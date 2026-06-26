@@ -1,35 +1,19 @@
 ---
-name: "paper-poster"
-description: "Indexed by skills.sh from wanshuiyin/auto-claude-code-research-in-sleep"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "wanshuiyin"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/wanshuiyin/auto-claude-code-research-in-sleep/paper-poster"
-sourceUrl: "https://skills.sh/wanshuiyin/auto-claude-code-research-in-sleep/paper-poster"
+name: paper-poster
+description: "DEPRECATED — superseded by /paper-poster-html. Kept only as a redirect for muscle memory; do not use for new posters."
+argument-hint: [paper-dir-or-pdf]
+allowed-tools: Read
 ---
 
-# paper-poster
+# Paper Poster (DEPRECATED → /paper-poster-html)
 
-> Indexed by skills.sh from wanshuiyin/auto-claude-code-research-in-sleep
+This skill is retired. The LaTeX/tcbposter pipeline it described produced posters with
+unbounded color palettes, no real paper figures, and no print-canvas verification, and
+has been replaced by the measurement-gated HTML/CSS pipeline.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** wanshuiyin
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/wanshuiyin/auto-claude-code-research-in-sleep/paper-poster`
-- **Source URL:** [https://skills.sh/wanshuiyin/auto-claude-code-research-in-sleep/paper-poster](https://skills.sh/wanshuiyin/auto-claude-code-research-in-sleep/paper-poster)
+**Immediately proceed with `/paper-poster-html`**, passing through all of the user's
+arguments unchanged. Do not attempt the legacy LaTeX flow.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/wanshuiyin/auto-claude-code-research-in-sleep/paper-poster
-```
+The full legacy implementation remains available in git history
+(`git log -- skills/paper-poster/SKILL.md`) if a venue ever mandates LaTeX poster
+source — none is known to.

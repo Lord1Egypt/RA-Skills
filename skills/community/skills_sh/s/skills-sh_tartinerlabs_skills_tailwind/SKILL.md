@@ -1,35 +1,66 @@
 ---
-name: "tailwind"
-description: "Indexed by skills.sh from tartinerlabs/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "tartinerlabs"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/tartinerlabs/skills/tailwind"
-sourceUrl: "https://skills.sh/tartinerlabs/skills/tailwind"
+name: tailwind
+description: Use when writing Tailwind classes, fixing spacing issues, reviewing CSS, or auditing Tailwind patterns. Enforces v4 best practices for grid and responsive.
+allowed-tools: Read Glob Grep Edit
+model: sonnet
+effort: medium
 ---
 
-# tailwind
+You are a Tailwind CSS v4 expert that detects and reports anti-patterns such as incorrect spacing, inconsistent sizing, desktop-first breakpoints, and non-GPU-accelerated animations.
 
-> Indexed by skills.sh from tartinerlabs/skills
+Targets the current project by default — or specify a path to audit a subset of files.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** tartinerlabs
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/tartinerlabs/skills/tailwind`
-- **Source URL:** [https://skills.sh/tartinerlabs/skills/tailwind](https://skills.sh/tartinerlabs/skills/tailwind)
+Read individual rule files in `rules/` for detailed explanations and code examples.
 
-## Overview
+## Rules Overview
 
+| Rule | Impact | File |
+|------|--------|------|
+| Spacing direction | HIGH | `rules/spacing-direction.md` |
+| Equal dimensions | HIGH | `rules/equal-dimensions.md` |
+| 8px grid | HIGH | `rules/8px-grid.md` |
+| Mobile-first responsive | MEDIUM | `rules/mobile-first.md` |
+| Logical shorthands | MEDIUM | `rules/logical-shorthands.md` |
+| GPU-accelerated animations | MEDIUM | `rules/gpu-animations.md` |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/tartinerlabs/skills/tailwind
+## Workflow
+
+### Step 1: Audit
+
+Scan the target scope for violations of each rule in `rules/`. Search patterns:
+
+- `mt-*` / `pt-*` classes (spacing direction)
+- `h-X w-X` pairs where both values match (equal dimensions)
+- Odd spacing values like `p-1`, `gap-3`, `m-5` (8px grid)
+- Desktop-first breakpoints (mobile-first)
+- Verbose individual sides where shorthands apply (logical shorthands)
+- `transition-all` usage (GPU animations)
+
+### Step 2: Report
+
+List all findings grouped by rule:
+
 ```
+## Tailwind CSS Audit Results
+
+### HIGH Severity
+- `src/components/Card.tsx:15` - `mt-4` → use `mb-4` or `gap` on parent
+- `src/components/Avatar.tsx:12` - `h-10 w-10` → `size-10`
+
+### MEDIUM Severity
+- `src/components/Button.tsx:8` - `p-3` (12px) → use `p-2` (8px) or `p-4` (16px)
+
+### Summary
+| Rule | Violations | Files |
+|------|-----------|-------|
+| Spacing direction | X | N |
+| Equal dimensions | Y | N |
+| **Total** | **Z** | **N** |
+```
+
+### Step 3: Fix
+
+Apply fixes. For each fix:
+1. Verify the change preserves visual appearance
+2. Keep changes minimal — only fix the identified issue
+3. Adjust surrounding elements when changing spacing direction

@@ -1,35 +1,41 @@
 ---
-name: "go-concurrency-patterns"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/go-concurrency-patterns"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/go-concurrency-patterns"
+name: go-concurrency-patterns
+description: "Master Go concurrency with goroutines, channels, sync primitives, and context. Use when building concurrent Go applications, implementing worker pools, or debugging race conditions."
+risk: safe
+source: community
+date_added: "2026-02-27"
 ---
 
-# go-concurrency-patterns
+# Go Concurrency Patterns
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
+Production patterns for Go concurrency including goroutines, channels, synchronization primitives, and context management.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/go-concurrency-patterns`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/go-concurrency-patterns](https://skills.sh/sickn33/antigravity-awesome-skills/go-concurrency-patterns)
+## Use this skill when
 
-## Overview
+- Building concurrent Go applications
+- Implementing worker pools and pipelines
+- Managing goroutine lifecycles
+- Using channels for communication
+- Debugging race conditions
+- Implementing graceful shutdown
 
+## Do not use this skill when
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/go-concurrency-patterns
-```
+- The task is unrelated to go concurrency patterns
+- You need a different domain or tool outside this scope
+
+## Instructions
+
+- Clarify goals, constraints, and required inputs.
+- Apply relevant best practices and validate outcomes.
+- Provide actionable steps and verification.
+- If detailed examples are required, open `resources/implementation-playbook.md`.
+
+## Resources
+
+- `resources/implementation-playbook.md` for detailed patterns and examples.
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

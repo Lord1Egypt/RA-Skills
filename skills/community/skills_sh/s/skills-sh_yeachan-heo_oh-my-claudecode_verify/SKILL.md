@@ -1,35 +1,37 @@
 ---
-name: "verify"
-description: "Indexed by skills.sh from yeachan-heo/oh-my-claudecode"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "yeachan-heo"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/yeachan-heo/oh-my-claudecode/verify"
-sourceUrl: "https://skills.sh/yeachan-heo/oh-my-claudecode/verify"
+name: verify
+description: Verify that a change really works before you claim completion
 ---
 
-# verify
+# Verify
 
-> Indexed by skills.sh from yeachan-heo/oh-my-claudecode
+Use this skill when the user wants confidence that a feature, fix, or refactor actually works.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** yeachan-heo
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/yeachan-heo/oh-my-claudecode/verify`
-- **Source URL:** [https://skills.sh/yeachan-heo/oh-my-claudecode/verify](https://skills.sh/yeachan-heo/oh-my-claudecode/verify)
+## Goal
+Turn vague “it should work” claims into concrete evidence.
 
-## Overview
+## Workflow
+1. Identify the exact behavior that must be proven.
+2. Prefer existing tests first.
+3. If coverage is missing, run the narrowest direct verification commands available.
+4. If direct automation is not enough, describe the manual validation steps and gather concrete observable evidence.
+5. Report only what was actually verified.
 
+## Verification order
+1. Existing tests
+2. Typecheck / build
+3. Narrow direct command checks
+4. Manual or interactive validation
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/yeachan-heo/oh-my-claudecode/verify
-```
+## Rules
+- Do not say a change is complete without evidence.
+- If a check fails, include the failure clearly.
+- If no realistic verification path exists, say that explicitly instead of bluffing.
+- Prefer concise evidence summaries over noisy logs.
+
+## Output
+- What was verified
+- Which commands/tests were run
+- What passed
+- What failed or remains unverified
+

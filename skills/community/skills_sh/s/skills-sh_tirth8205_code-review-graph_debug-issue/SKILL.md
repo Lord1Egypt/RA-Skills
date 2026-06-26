@@ -1,35 +1,27 @@
 ---
-name: "debug-issue"
-description: "Indexed by skills.sh from tirth8205/code-review-graph"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "tirth8205"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/tirth8205/code-review-graph/debug-issue"
-sourceUrl: "https://skills.sh/tirth8205/code-review-graph/debug-issue"
+name: Debug Issue
+description: Systematically debug issues using graph-powered code navigation
 ---
 
-# debug-issue
+## Debug Issue
 
-> Indexed by skills.sh from tirth8205/code-review-graph
+Use the knowledge graph to systematically trace and debug issues.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** tirth8205
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/tirth8205/code-review-graph/debug-issue`
-- **Source URL:** [https://skills.sh/tirth8205/code-review-graph/debug-issue](https://skills.sh/tirth8205/code-review-graph/debug-issue)
+### Steps
 
-## Overview
+1. Use `semantic_search_nodes_tool` to find code related to the issue.
+2. Use `query_graph_tool` with `callers_of` and `callees_of` to trace call chains.
+3. Use `get_flow` to see full execution paths through suspected areas.
+4. Run `detect_changes_tool` to check if recent changes caused the issue.
+5. Use `get_impact_radius_tool` on suspected files to see what else is affected.
 
+### Tips
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/tirth8205/code-review-graph/debug-issue
-```
+- Check both callers and callees to understand the full context.
+- Look at affected flows to find the entry point that triggers the bug.
+- Recent changes are the most common source of new issues.
+
+## Token Efficiency Rules
+- ALWAYS start with `get_minimal_context(task="<your task>")` before any other graph tool.
+- Use `detail_level="minimal"` on all calls. Only escalate to "standard" when minimal is insufficient.
+- Target: complete any review/debug/refactor task in ≤5 tool calls and ≤800 total output tokens.

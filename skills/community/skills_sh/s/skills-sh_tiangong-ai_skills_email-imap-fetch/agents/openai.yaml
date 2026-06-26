@@ -1,0 +1,4 @@
+interface:
+  display_name: "Email IMAP Fetch"
+  short_description: "Stage-1 IMAP listener with mail_ref dispatch"
+  default_prompt: "Use $email-imap-fetch to listen for unread IMAP emails and dispatch snippet plus machine-readable mail_ref and attachment manifest summary."

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi Panel Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>{{BASE_STYLES}}</style>
+</head>
+<body>
+  <div class="toolbar">
+    <div>
+      <h1>{{TITLE}}</h1>
+      <div class="subtitle">{{SUBTITLE}}</div>
+    </div>
+    <div class="actions">
+      <button onclick="downloadPNG(this)">📥 Download PNG</button>
+      <button onclick="copyToClipboard(this)">📋 Copy Image</button>
+      <button onclick="saveToProject(this)">💾 Save Image</button>
+    </div>
+  </div>
+
+  <!--
+    Multi-panel layout: all panels share ONE ECharts instance.
+    This enables tooltip sync / dataZoom linkage across panels automatically.
+    Panel height ratios: price 55% | volume 25% | indicator 20%
+  -->
+  <div id="chart-area">
+    <div id="main-chart" style="width:100%;height:600px;"></div>
+  </div>
+
+  <script>{{BASE_EXPORT_JS}}</script>
+  <script>
+    // === DATA ===
+    const dates  = ['2024-01','2024-02','2024-03','2024-04','2024-05','2024-06',
+                    '2024-07','2024-08','2024-09','2024-10','2024-11','2024-12'];
+    // [open, close, low, high]
+    const ohlc   = [
+      [42000,43500,41000,44000],[43500,41000,40000,44500],[41000,52000,40500,53000],
+      [52000,60000,51000,62000],[60000,57000,55000,61000],[57000,62000,56000,63500],
+      [62000,65000,61000,66000],[65000,58000,57000,67000],[58000,61000,57500,62000],
+      [61000,68000,60000,69000],[68000,72000,67000,73000],[72000,95000,71000,96000],
+    ];
+    const volume = [12000,15000,25000,30000,18000,22000,19000,35000,21000,28000,32000,55000];
+    // RSI (14) — mock values
+    const rsi    = [52,44,68,72,58,65,67,48,55,63,70,78];
+
+    // Derived MA
+    function ma(data, n) {
+      return data.map((_, i) => i < n - 1 ? null : data.slice(i - n + 1, i + 1).reduce((s, v) => s + v, 0) / n);
+    }
+    const closes = ohlc.map(d => d[1]);
+    const ma7    = ma(closes, 3);  // 3-period as proxy for short-window demo
+    const ma25   = ma(closes, 6);
+
+    // === CHART (single instance, 3 grids) ===
+    window.CHART_INSTANCES = [];
+    const chart = echarts.init(document.getElementById('main-chart'), 'dark');
+
+    chart.setOption({
+      backgroundColor: 'transparent',
+      animation: false,
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'cross', link: [{ xAxisIndex: 'all' }] },
+      },
+      axisPointer: { link: [{ xAxisIndex: 'all' }] },
+      dataZoom: [
+        { type: 'inside', xAxisIndex: [0, 1, 2] },
+        { type: 'slider', xAxisIndex: [0, 1, 2], height: 18, bottom: 4 },
+      ],
+      grid: [
+        { top: 40,  left: 70, right: 30, height: '52%' },   // price
+        { top: '62%', left: 70, right: 30, height: '16%' }, // volume
+        { top: '82%', left: 70, right: 30, height: '10%' }, // RSI
+      ],
+      xAxis: [
+        { type: 'category', data: dates, gridIndex: 0, axisLabel: { show: false }, boundaryGap: false },
+        { type: 'category', data: dates, gridIndex: 1, axisLabel: { show: false }, boundaryGap: false },
+        { type: 'category', data: dates, gridIndex: 2, boundaryGap: false },
+      ],
+      yAxis: [
+        { type: 'value', gridIndex: 0, scale: true, splitLine: { lineStyle: { color: '#2a2d3a' } }, axisLabel: { formatter: v => `$${(v/1000).toFixed(0)}k` } },
+        { type: 'value', gridIndex: 1, splitLine: { show: false }, axisLabel: { formatter: v => `${(v/1000).toFixed(0)}k` } },
+        { type: 'value', gridIndex: 2, min: 0, max: 100, splitLine: { lineStyle: { color: '#2a2d3a', type: 'dashed' } },
+          axisLabel: { formatter: v => `${v}` },
+          splitArea: {
+            show: true,
+            areaStyle: { color: ['rgba(255,80,80,0.04)', 'rgba(80,255,80,0.04)'] },
+          },
+        },
+      ],
+      series: [
+        // Candlestick
+        {
+          name: 'BTC', type: 'candlestick', xAxisIndex: 0, yAxisIndex: 0,
+          data: ohlc,
+          itemStyle: {
+            color: '#26a69a', color0: '#ef5350',
+            borderColor: '#26a69a', borderColor0: '#ef5350',
+          },
+        },
+        // MA7
+        { name: 'MA7', type: 'line', xAxisIndex: 0, yAxisIndex: 0, data: ma7,
+          smooth: true, symbol: 'none', lineStyle: { width: 1.5, color: '#f6c768' } },
+        // MA25
+        { name: 'MA25', type: 'line', xAxisIndex: 0, yAxisIndex: 0, data: ma25,
+          smooth: true, symbol: 'none', lineStyle: { width: 1.5, color: '#ee6666' } },
+        // Volume
+        {
+          name: 'Volume', type: 'bar', xAxisIndex: 1, yAxisIndex: 1, data: volume,
+          itemStyle: {
+            color: p => ohlc[p.dataIndex][1] >= ohlc[p.dataIndex][0] ? '#26a69a' : '#ef5350',
+            opacity: 0.7,
+          },
+        },
+        // RSI
+        {
+          name: 'RSI(14)', type: 'line', xAxisIndex: 2, yAxisIndex: 2, data: rsi,
+          smooth: true, symbol: 'none',
+          lineStyle: { width: 1.5, color: '#7b68ee' },
+          markLine: {
+            silent: true,
+            lineStyle: { color: '#555', type: 'dashed' },
+            data: [{ yAxis: 70 }, { yAxis: 30 }],
+          },
+        },
+      ],
+    });
+
+    CHART_INSTANCES.push(chart);
+  </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "cron-helper",
+  "version": "1.0.0",
+  "description": "Reminds me to use cron for time-based tasks",
+  "author": "TClawdE",
+  "keywords": ["cron", "scheduling", "reminders"],
+  "engines": {
+    "openclaw": ">=1.0.0"
+  }
+}

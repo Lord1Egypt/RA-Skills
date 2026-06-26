@@ -1,35 +1,29 @@
 ---
-name: "lesson"
-description: "Indexed by skills.sh from win4r/memory-lancedb-pro"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "win4r"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/win4r/memory-lancedb-pro/lesson"
-sourceUrl: "https://skills.sh/win4r/memory-lancedb-pro/lesson"
+name: lesson
+description: Store a lesson learned from the current conversation. Triggered by /lesson command. Use when Master signals that the recent conversation contains a pitfall, fix, or key insight that should be persisted to long-term memory.
+metadata: { "openclaw": { "requires": { "config": ["plugins.entries.memory-lancedb-pro.enabled"] } } }
 ---
 
-# lesson
+# Lesson Extraction & Storage
 
-> Indexed by skills.sh from win4r/memory-lancedb-pro
+When triggered, extract and store lessons from the **recent conversation context**.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** win4r
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/win4r/memory-lancedb-pro/lesson`
-- **Source URL:** [https://skills.sh/win4r/memory-lancedb-pro/lesson](https://skills.sh/win4r/memory-lancedb-pro/lesson)
+## Steps
 
-## Overview
+1. **Scan recent context** — identify the pitfall, bug fix, or key insight just discussed
+2. **Store technical layer** (category: fact, importance ≥ 0.8):
+   ```
+   Pitfall: [symptom]. Cause: [root cause]. Fix: [solution]. Prevention: [how to avoid].
+   ```
+3. **Store principle layer** (category: decision, importance ≥ 0.85):
+   ```
+   Decision principle ([tag]): [behavioral rule]. Trigger: [when]. Action: [what to do].
+   ```
+4. **Verify** — `memory_recall` with anchor keywords to confirm both entries retrievable
+5. **Report** — tell Master what was stored (brief summary)
 
+## Rules
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/win4r/memory-lancedb-pro/lesson
-```
+- Keep entries short and atomic (< 500 chars each)
+- If the lesson also affects a checklist or SKILL.md, update those files too
+- If no clear lesson is found in recent context, ask Master what to store

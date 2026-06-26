@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agent Integration"
+  short_description: "Integrate a raw repo with Veris end to end"
+  default_prompt: "Use $agent-integration to make this agent repo Veris-ready from scratch and push it with veris env push."
+
+policy:
+  allow_implicit_invocation: true

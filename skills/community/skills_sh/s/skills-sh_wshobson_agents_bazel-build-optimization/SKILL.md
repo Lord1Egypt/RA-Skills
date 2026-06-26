@@ -1,35 +1,69 @@
 ---
-name: "bazel-build-optimization"
-description: "Indexed by skills.sh from wshobson/agents"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "wshobson"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/wshobson/agents/bazel-build-optimization"
-sourceUrl: "https://skills.sh/wshobson/agents/bazel-build-optimization"
+name: bazel-build-optimization
+description: Optimize Bazel builds for large-scale monorepos. Use when configuring Bazel, implementing remote execution, or optimizing build performance for enterprise codebases.
 ---
 
-# bazel-build-optimization
+# Bazel Build Optimization
 
-> Indexed by skills.sh from wshobson/agents
+Production patterns for Bazel in large-scale monorepos.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** wshobson
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/wshobson/agents/bazel-build-optimization`
-- **Source URL:** [https://skills.sh/wshobson/agents/bazel-build-optimization](https://skills.sh/wshobson/agents/bazel-build-optimization)
+## When to Use This Skill
 
-## Overview
+- Setting up Bazel for monorepos
+- Configuring remote caching/execution
+- Optimizing build times
+- Writing custom Bazel rules
+- Debugging build issues
+- Migrating to Bazel
 
+## Core Concepts
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/wshobson/agents/bazel-build-optimization
+### 1. Bazel Architecture
+
 ```
+workspace/
+├── WORKSPACE.bazel       # External dependencies
+├── .bazelrc              # Build configurations
+├── .bazelversion         # Bazel version
+├── BUILD.bazel           # Root build file
+├── apps/
+│   └── web/
+│       └── BUILD.bazel
+├── libs/
+│   └── utils/
+│       └── BUILD.bazel
+└── tools/
+    └── bazel/
+        └── rules/
+```
+
+### 2. Key Concepts
+
+| Concept     | Description                            |
+| ----------- | -------------------------------------- |
+| **Target**  | Buildable unit (library, binary, test) |
+| **Package** | Directory with BUILD file              |
+| **Label**   | Target identifier `//path/to:target`   |
+| **Rule**    | Defines how to build a target          |
+| **Aspect**  | Cross-cutting build behavior           |
+
+## Templates and detailed worked examples
+
+Full template library and detailed worked examples live in `references/details.md`. Read that file when you need the concrete templates.
+
+## Best Practices
+
+### Do's
+
+- **Use fine-grained targets** - Better caching
+- **Pin dependencies** - Reproducible builds
+- **Enable remote caching** - Share build artifacts
+- **Use visibility wisely** - Enforce architecture
+- **Write BUILD files per directory** - Standard convention
+
+### Don'ts
+
+- **Don't use glob for deps** - Explicit is better
+- **Don't commit bazel-\* dirs** - Add to .gitignore
+- **Don't skip WORKSPACE setup** - Foundation of build
+- **Don't ignore build warnings** - Technical debt

@@ -1,35 +1,42 @@
 ---
-name: "architecture-review"
-description: "Indexed by skills.sh from srstomp/pokayokay"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "srstomp"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/srstomp/pokayokay/architecture-review"
-sourceUrl: "https://skills.sh/srstomp/pokayokay/architecture-review"
+name: architecture-review
+description: Use when auditing project structure, planning refactors, improving code organization, analyzing dependencies and module boundaries, or identifying structural issues. TypeScript/JavaScript-primary with language-agnostic patterns.
 ---
 
-# architecture-review
+# Architecture Review
 
-> Indexed by skills.sh from srstomp/pokayokay
+Analyze, audit, and improve project structure.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** srstomp
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/srstomp/pokayokay/architecture-review`
-- **Source URL:** [https://skills.sh/srstomp/pokayokay/architecture-review](https://skills.sh/srstomp/pokayokay/architecture-review)
+## Key Principles
 
-## Overview
+- **Measure before changing** — Map structure and identify concrete issues before proposing changes
+- **Clear boundaries** — Layers (UI, logic, data) separated with consistent dependency direction
+- **Colocation** — Related code together; easy to find, change, and delete features
+- **Incremental migration** — Refactor in phases, validate each step with tests
 
+## Quick Assessment
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/srstomp/pokayokay/architecture-review
-```
+- No circular dependencies
+- Consistent directory naming and grouping (by feature or by type)
+- Single responsibility per file/module, reasonable file sizes (<500 lines)
+- External dependencies isolated, shared code properly extracted
+- New developers can navigate and find code for any feature easily
+
+## Quick Start Checklist
+
+1. Map current structure: directory tree, dependency graph, module boundaries
+2. Identify issues: circular deps, god modules, leaky abstractions, deep nesting
+3. Classify severity: critical (blocks dev), high (maintenance burden), medium/low (friction)
+4. Propose target structure with migration plan
+5. Execute incrementally, validating with tests after each move
+
+## References
+
+| Reference | Description |
+|-----------|-------------|
+| [analysis-techniques.md](references/analysis-techniques.md) | Dependency graphs, complexity metrics, code analysis |
+| [refactoring-patterns.md](references/refactoring-patterns.md) | Safe refactoring techniques, migration strategies |
+| [structural-patterns.md](references/structural-patterns.md) | Directory structures for different project types |
+| [dependency-management.md](references/dependency-management.md) | Circular deps, coupling, module boundaries |
+| [cleanup-strategies.md](references/cleanup-strategies.md) | Dead code removal, consolidation, naming conventions |
+| [anti-rationalization.md](references/anti-rationalization.md) | Iron Law, common rationalizations, red flag STOP list for architecture discipline |

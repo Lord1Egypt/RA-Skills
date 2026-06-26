@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Tech RSS Subscribe"
+  short_description: "Subscribe RSS and store metadata"
+  default_prompt: "Use $ai-tech-rss-fetch to subscribe RSS feeds from URLs or OPML and persist deduplicated metadata into SQLite with incremental sync."

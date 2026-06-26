@@ -1,35 +1,105 @@
 ---
-name: "ctrip-flight-search"
-description: "Indexed by skills.sh from stvlynn/dingtalk-wukong-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "stvlynn"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/stvlynn/dingtalk-wukong-skills/ctrip-flight-search"
-sourceUrl: "https://skills.sh/stvlynn/dingtalk-wukong-skills/ctrip-flight-search"
+name: ctrip-flight-search
+description: 基于浏览器自动化工具的携程航班查询技能，支持单程、往返航班查询，能够处理出发地、目的地、日期等参数输入，并具备错误恢复机制。适用于需要从携程网查询航班信息、获取航班价格和时刻表的场景。
 ---
 
-# ctrip-flight-search
+# 携程查航班技能
 
-> Indexed by skills.sh from stvlynn/dingtalk-wukong-skills
+## 功能概述
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** stvlynn
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/stvlynn/dingtalk-wukong-skills/ctrip-flight-search`
-- **Source URL:** [https://skills.sh/stvlynn/dingtalk-wukong-skills/ctrip-flight-search](https://skills.sh/stvlynn/dingtalk-wukong-skills/ctrip-flight-search)
+本技能提供完整的携程航班查询自动化能力，基于实际验证的浏览器操作流程，支持以下功能：
 
-## Overview
+- **单程航班查询**: 查询指定日期从出发地到目的地的航班
+- **往返航班查询**: 查询指定往返日期的航班（已验证支持）
+- **多城市支持**: 支持中文城市名称和机场代码输入
+- **多城市通用性**: 已验证支持任意城市组合（如广州→成都、北京→上海等）
+- **国际航班查询**: 支持国际航线查询（如上海→东京、北京→首尔等）
+- **日期范围**: 支持YYYY-MM-DD格式的日期输入
+- **错误处理**: 具备元素不可见、页面变化等异常情况的处理机制
 
+## 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/stvlynn/dingtalk-wukong-skills/ctrip-flight-search
-```
+当用户需要：
+- 查询特定日期的航班信息
+- 获取航班价格和时刻表
+- 自动化航班查询流程
+- 从携程网提取航班数据
+- 验证不同城市间的航班查询可行性
+
+## 核心操作SOP流程
+
+### 基础查询流程
+1. **导航到携程首页**: `navigate` → `https://www.ctrip.com`
+2. **进入航班查询页面**: `backbone` → 定位机票按钮 → `click`
+3. **输入出发地**: `type` → 城市名称 → `search` → 选择具体机场 → `click`
+4. **输入目的地**: `search` → 目标城市 → `click`
+5. **设置日期**: 确认日期输入框已正确设置
+6. **执行查询**: `press` → `Enter`（优先方案）或点击搜索按钮
+
+### 关键操作要点
+
+#### 出发地/目的地输入
+- 先使用`type`在输入框中输入城市名称（如"北京"、"上海"、"广州"、"成都"等）
+- 系统会自动显示下拉选择列表
+- 使用`search`查找具体的机场选项（如"北京(大兴国际机场)(PKX)"、"成都(双流国际机场)(CTU)"等）
+- 使用`click`选择目标机场
+- **多城市通用性**: 技能已验证支持任意中文城市名称组合，包括一二三线城市
+
+#### 查询执行策略
+- **首选方案**: 使用`press` + `Enter`提交表单（避免覆盖层阻挡问题，已在多城市场景下验证有效性）
+- **备选方案**: 如果回车键无效，使用`search`查找搜索按钮并`click`
+
+#### 错误处理机制
+- **元素不可见**: 尝试使用键盘操作替代鼠标点击（键盘操作在多城市测试中表现更稳定）
+- **页面结构变化**: 每次交互后重新使用`backbone`或`search`获取最新元素引用
+- **输入失败**: 重试输入或使用替代的城市名称格式
+- **动态元素引用失效**: 在多城市测试中发现此问题普遍存在，建议每次操作前重新定位元素
+
+## 支持的参数格式
+
+### 出发地/目的地
+- **中文城市名**: "北京"、"上海"、"广州"、"成都"、"深圳"、"杭州"等（支持全国主要城市）
+- **国际城市名**: "东京"、"首尔"、"新加坡"、"曼谷"、"巴黎"、"伦敦"等（支持主要国际城市）
+- **机场代码**: "PEK"、"SHA"、"CAN"、"CTU"、"HND"、"ICN"等（三字代码）
+- **完整机场名称**: "北京首都国际机场"、"上海虹桥国际机场"、"广州白云国际机场"、"成都双流国际机场"、"东京羽田机场"、"首尔仁川国际机场"等
+
+### 日期格式
+- **标准格式**: YYYY-MM-DD（如2026-03-20）
+- **支持范围**: 当前日期及未来日期
+
+### 航班类型
+- **单程**: 默认支持
+- **往返**: 支持返程日期参数（已验证）
+- **多程**: 复杂查询场景（待扩展）
+
+## 已验证的操作范围
+
+✅ 访问携程官网并导航到航班查询页面  
+✅ 输入出发地城市名称并选择具体机场  
+✅ 输入目的地城市名称并选择具体机场  
+✅ 设置查询日期  
+✅ 执行航班查询并成功跳转到结果页面  
+✅ 处理页面动态变化和元素引用更新  
+✅ **多城市通用性验证**: 成功测试广州(CAN)→成都(CTU)、北京(PEK)→上海(SHA)等多种城市组合
+✅ **键盘操作稳定性**: 在多城市测试中验证了回车键提交策略的可靠性
+✅ **国际航班查询验证**: 成功测试上海(SHA)→东京(HND)国际航线，验证了国际城市识别和查询流程的通用性
+
+## 参考文档
+
+详细的操作指南和SOP流程请参考：[references/操作指南.md](references/操作指南.md)
+
+## 注意事项
+
+1. **页面加载时间**: 携程页面可能需要一定加载时间，操作间需适当等待
+2. **网络环境**: 确保网络连接正常，携程在国内访问稳定
+3. **浏览器兼容性**: 基于现代浏览器的自动化工具，确保工具版本兼容
+4. **验证码处理**: 如遇验证码或登录要求，需人工干预处理
+5. **多城市测试结论**: 技能在不同城市组合下表现一致，核心操作流程无需调整
+
+## 扩展方向
+
+- 添加往返航班查询支持
+- 支持舱位等级选择（经济舱、商务舱、头等舱）
+- 添加价格筛选和排序功能
+- 支持航班详情页面的数据提取
+- 添加批量查询功能

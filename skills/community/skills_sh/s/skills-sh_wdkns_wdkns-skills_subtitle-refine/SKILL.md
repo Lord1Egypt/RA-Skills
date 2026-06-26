@@ -1,35 +1,105 @@
 ---
-name: "subtitle-refine"
-description: "Indexed by skills.sh from wdkns/wdkns-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "wdkns"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/wdkns/wdkns-skills/subtitle-refine"
-sourceUrl: "https://skills.sh/wdkns/wdkns-skills/subtitle-refine"
+name: subtitle-refine
+description: 中文 SRT 字幕上线发布专业级精修与校验。用于把基于 ASR 的原始字幕清洗为可上线版本，只做字幕级清洗和纠错，不做书面化改写、总结或扩写；同时保持与原音频严格同步，必要时仅在原字幕时间范围内拆分条目，并输出一份完整的 clean SRT，再用随附校验脚本做最终规则检查和时间轴复核。适用于纪录片、访谈、口播、录屏等需要修正识别错误、删除语气词、补停顿空格、限制单条字数、避免误删有意义字幕的任务。
 ---
 
-# subtitle-refine
+# 字幕精修
 
-> Indexed by skills.sh from wdkns/wdkns-skills
+## 任务目标
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** wdkns
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/wdkns/wdkns-skills/subtitle-refine`
-- **Source URL:** [https://skills.sh/wdkns/wdkns-skills/subtitle-refine](https://skills.sh/wdkns/wdkns-skills/subtitle-refine)
+把用户提供的原始 `srt` 清洗成一份可交付的完整 `clean.srt`。
 
-## Overview
+- 不要覆盖原始字幕文件。
+- 只做字幕级纠错，不做润色、总结或扩写。
+- 最终校验：直接对原始 `srt` 和完整 `clean.srt` 运行 `scripts/check_clean_srt.py`。
 
+## 原始要求
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 文本清洗要求
+
+1. 修正识别错误，包括正确的“的地得”、合理的“他她它”。
+2. 删除“嗯、啊、呃、哈”之类的无意义语气词；清洗后的字幕不要带标点。
+3. 子句间需要有必要的空格停顿。
+   例：`来那你就先开始` -> `来 那你就先开始`
+   例：`你是第二个是吧` -> `你是第二个 是吧`
+4. 删除明显重复字眼，不要书面化改写，不要总结，不要扩写，只做字幕级清洗和纠错。
+5. 每条字幕最长不超过 14 字（英文单词默认视为一个字），单条字幕内不要换行。
+6. 如果原字幕超过 14 字，要做准确断句拆分。
+   例：`还得谢谢各位母亲对家里的付出` -> `还得谢谢各位母亲` + `对家里的付出`
+7. 不得因文本纠错、删语气词、删重复字眼或拆分字幕，造成后续字幕整体提前或滞后。所有调整都应限于当前字幕条目及其局部范围内。
+
+### 时间轴要求
+
+1. 处理后字幕必须与原音频严格同步，不得出现全局时间漂移。
+2. 若仅进行字幕级清洗与纠错，且未改变原句语义边界，则默认保持该条原始起止时间不变。
+3. 若因断句或单条超过 14 字而拆分，则拆分后的所有子条目必须完全落在原字幕时间范围内；各子条目之间不得重叠，优先首尾衔接，总覆盖时长必须与原条目一致。
+4. 拆分后的时间分配应优先依据语义停顿和说话节奏；无法精确判断时，再按各子句有效字符数比例分配，不得机械平均切分。
+5. 删除句中语气词或明显重复字眼时，通常不调整原条目起止时间；若某条本身只是独立且无意义的语气词，则可直接删除，但不得无依据拉伸前后字幕覆盖。
+6. 每条字幕应尽量贴合语音片段，不得明显早挂或滞留；如需微调，单条字幕起止时间相对语音边界的偏差应尽量控制在 ±100 到 150 毫秒内。
+7. 拆分和删改后仍须保证可读性，避免过短闪现、明显漏挂、无意义空窗或破坏自然语义边界的切分。
+
+### 额外要求
+
+1. 不要误删有意义的字幕条目。
+2. 时间轴必须 double check。
+3. 如果字幕文件过长，只有在用户明确要求并行或允许并行子代理时才并行；即便并行，也只把并行当作编辑辅助，主代理最后仍需直接整理出一份完整的 `clean.srt`。
+4. 脚本不应假设字幕一定发生了拆分；无拆分和有拆分都必须兼容。
+
+## 工作原则
+
+- 只做字幕级清洗和纠错，不做书面化改写、总结或扩写。除非确属错误、语气词、明显重复口误或规则强制要求，否则不要删减口语表达。
+- 保守优先。除非能明确判断为 ASR 识别错误、无意义语气词、明显重复口误、缺少必要停顿空格，或因超过 14 字必须拆分，否则不得改写原句语序、句法结构、搭配关系，或替换成更顺的说法。
+- 不得仅因“更通顺”“更简洁”“更像书面语”而改写原句。像“给我支持”改成“支持我”、“跟我说”改成“对我说”、“就是也是”改成“也是”等，若不属于明确识别错误或规则要求，一律不改。
+- 允许字幕不够书面、不够漂亮；只修错误，不做润色。若一句话当前形态已满足规则，就保持原样。
+- 删除规则从严。纯语气词独立条目可直接删除；除此之外，只有在能明确判断为断裂残句、重复残片或纯噪声误识别时才允许整条删除。所有非 filler 删除必须整理 allowlist，并在交付中逐条列出。
+- 若用户单独指定了字数计算口径，例如“英文单词视为一个字”，以用户要求为准；若脚本默认口径与用户要求不一致，要在交付中说明脚本局限和实际采用的复核方式。
+- 若用户单独指定了字数计算口径，例如“英文单词视为一个字”，以用户要求为准；可在运行校验脚本时加 `--latin-word-as-one-char`。
+- 默认输出的完整 `clean.srt` 以可校验、可回听为先。除非用户明确要求重编号，否则优先保留原始 `block_id`；单条拆分时使用 `123a`、`123b` 这类临时编号。
+- 不得跨条借词、补词或改写来“修顺”当前条目。若当前条目听不清或疑似 ASR 错乱，但无法仅依据本条明确修正，则优先保留原句并标记人工复听，不要从前后字幕主观拼接新文本。
+
+## 输出约定
+
+- 输出文件名默认形如 `xxx.clean.srt`。
+- 不覆盖原始文件。
+- 最终交付物是一份完整的 `clean.srt`；不要把“待合并的块文件”当作正式产物。
+- 若为了校验或编辑方便需要保留拆分后的原始编号，可直接在完整 `clean.srt` 中使用 `123a`、`123b`；不要额外依赖合并脚本把它们二次拼装。
+
+## 推荐流程
+
+1. 读取原始 `srt`，确认总条数、是否存在超长条目、是否需要按块处理。
+2. 明确本次字数约束的计数口径；若用户无补充说明，默认按脚本口径检查。
+3. 逐条执行清洗、纠错、必要拆分和时间轴控制，直接整理成一份完整的 `clean.srt`。
+4. 若文件很长且用户允许并行，可按字幕编号或时间范围分配给子代理，但主代理最终必须手工整合成一份完整 `clean.srt`，不要依赖合并脚本。
+5. 对非 filler 删除条目先整理 allowlist。
+6. 运行 `scripts/check_clean_srt.py` 做规则检查和时间轴复核。
+7. 对告警做人工复核，重点看语气词残留、重复口误残留、可能缺少停顿空格、过短闪现、文本串位和 allowlist。
+
+## 脚本资源
+
+### `scripts/check_clean_srt.py`
+
+用于检查完整 `clean.srt` 是否满足长度、标点、时间轴、删除条目、局部拆分边界等要求。该脚本应独立可运行。
+
+该脚本必须兼容两类输入：
+
+- 完整但未拆分的 `clean.srt`。
+- 完整且包含局部拆分条目的 `clean.srt`，允许使用 `123a`、`123b` 这类临时编号。
+
+常用方式：
+
 ```bash
-hermes skills install skills-sh/wdkns/wdkns-skills/subtitle-refine
+python3 scripts/check_clean_srt.py raw.srt clean.srt
+python3 scripts/check_clean_srt.py raw.srt clean.srt --allowed-deletions '284,415,450'
+python3 scripts/check_clean_srt.py raw.srt clean.srt --allowed-deletions '284,415,450' --fail-on-warnings
+python3 scripts/check_clean_srt.py raw.srt clean.srt --latin-word-as-one-char
 ```
+
+## 交付要求
+
+交付时至少说明：
+
+- 输出文件路径
+- 是否保留原始文件未覆盖
+- 是否存在允许删除条目
+- 是否执行了校验脚本
+- 是否仍有需要人工回听复核的告警位点

@@ -1,35 +1,193 @@
 ---
-name: "domain-driven-design"
-description: "Indexed by skills.sh from yonatangross/orchestkit"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "yonatangross"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/yonatangross/orchestkit/domain-driven-design"
-sourceUrl: "https://skills.sh/yonatangross/orchestkit/domain-driven-design"
+name: domain-driven-design
+license: MIT
+compatibility: "Claude Code 2.1.183+."
+description: "DDD tactical patterns for complex business modeling including entities, value objects, aggregates, domain services, repositories, specifications, and bounded contexts. Python dataclass implementations with TypeScript alternatives. Use when building rich domain models, enforcing invariants, or separating domain logic from infrastructure."
+context: fork
+agent: backend-system-architect
+version: 1.0.0
+tags: [ddd, domain-modeling, entities, value-objects, bounded-contexts, python]
+author: OrchestKit
+user-invocable: false
+disable-model-invocation: true
+complexity: medium
+persuasion-type: reference
+metadata:
+  category: document-asset-creation
+allowed-tools:
+  - Read
+  - Glob
+  - Grep
+  - WebFetch
+  - WebSearch
 ---
 
-# domain-driven-design
+# Domain-Driven Design Tactical Patterns
 
-> Indexed by skills.sh from yonatangross/orchestkit
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** yonatangross
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/yonatangross/orchestkit/domain-driven-design`
-- **Source URL:** [https://skills.sh/yonatangross/orchestkit/domain-driven-design](https://skills.sh/yonatangross/orchestkit/domain-driven-design)
+Model complex business domains with entities, value objects, and bounded contexts.
 
 ## Overview
 
+- Modeling complex business logic
+- Separating domain from infrastructure
+- Establishing clear boundaries between subdomains
+- Building rich domain models with behavior
+- Implementing ubiquitous language in code
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/yonatangross/orchestkit/domain-driven-design
+## Building Blocks Overview
+
 ```
+┌─────────────────────────────────────────────────────────────┐
+│                    DDD Building Blocks                       │
+├─────────────────────────────────────────────────────────────┤
+│  ENTITIES           VALUE OBJECTS        AGGREGATES         │
+│  Order (has ID)     Money (no ID)        [Order]→Items      │
+│                                                              │
+│  DOMAIN SERVICES    REPOSITORIES         DOMAIN EVENTS      │
+│  PricingService     IOrderRepository     OrderSubmitted     │
+│                                                              │
+│  FACTORIES          SPECIFICATIONS       MODULES            │
+│  OrderFactory       OverdueOrderSpec     orders/, payments/ │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## Quick Reference
+
+### Entity (Has Identity)
+
+```python
+from dataclasses import dataclass, field
+from uuid import UUID
+from uuid_utils import uuid7
+
+@dataclass
+class Order:
+    """Entity: Has identity, mutable state, lifecycle."""
+    id: UUID = field(default_factory=uuid7)
+    customer_id: UUID = field(default=None)
+    status: str = "draft"
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Order):
+            return NotImplemented
+        return self.id == other.id  # Identity equality
+
+    def __hash__(self) -> int:
+        return hash(self.id)
+```
+
+Load `Read("${CLAUDE_SKILL_DIR}/references/entities-value-objects.md")` for complete patterns.
+
+### Value Object (Immutable)
+
+```python
+from dataclasses import dataclass
+from decimal import Decimal
+
+@dataclass(frozen=True)  # MUST be frozen!
+class Money:
+    """Value Object: Defined by attributes, not identity."""
+    amount: Decimal
+    currency: str
+
+    def __add__(self, other: "Money") -> "Money":
+        if self.currency != other.currency:
+            raise ValueError("Cannot add different currencies")
+        return Money(self.amount + other.amount, self.currency)
+```
+
+Load `Read("${CLAUDE_SKILL_DIR}/references/entities-value-objects.md")` for Address, DateRange examples.
+
+## Key Decisions
+
+| Decision | Recommendation |
+|----------|----------------|
+| Entity vs VO | Has unique ID + lifecycle? Entity. Otherwise VO |
+| Entity equality | By ID, not attributes |
+| Value object mutability | Always immutable (`frozen=True`) |
+| Repository scope | One per aggregate root |
+| Domain events | Collect in entity, publish after persist |
+| Context boundaries | By business capability, not technical |
+
+## Rules Quick Reference
+
+| Rule | Impact | What It Covers |
+|------|--------|----------------|
+| aggregate-boundaries (load `${CLAUDE_SKILL_DIR}/rules/aggregate-boundaries.md`) | HIGH | Aggregate root design, reference by ID, one-per-transaction |
+| aggregate-invariants (load `${CLAUDE_SKILL_DIR}/rules/aggregate-invariants.md`) | HIGH | Business rule enforcement, specification pattern |
+| aggregate-sizing (load `${CLAUDE_SKILL_DIR}/rules/aggregate-sizing.md`) | HIGH | Right-sizing, when to split, eventual consistency |
+
+## When NOT to Use
+
+Under 5 entities? Skip DDD entirely. The ceremony costs more than the benefit.
+
+| Pattern | Interview | Hackathon | MVP | Growth | Enterprise | Simpler Alternative |
+|---------|-----------|-----------|-----|--------|------------|---------------------|
+| Aggregates | OVERKILL | OVERKILL | OVERKILL | SELECTIVE | APPROPRIATE | Plain dataclasses with validation |
+| Bounded contexts | OVERKILL | OVERKILL | OVERKILL | BORDERLINE | APPROPRIATE | Python packages with clear imports |
+| CQRS | OVERKILL | OVERKILL | OVERKILL | OVERKILL | WHEN JUSTIFIED | Single model for read/write |
+| Value objects | OVERKILL | OVERKILL | BORDERLINE | APPROPRIATE | REQUIRED | Typed fields on the entity |
+| Domain events | OVERKILL | OVERKILL | OVERKILL | SELECTIVE | APPROPRIATE | Direct method calls between services |
+| Repository pattern | OVERKILL | OVERKILL | BORDERLINE | APPROPRIATE | REQUIRED | Direct ORM queries in service layer |
+
+**Rule of thumb:** DDD adds ~40% code overhead. Only worth it when domain complexity genuinely demands it (5+ entities with invariants spanning multiple objects). A CRUD app with DDD is a red flag.
+
+## Anti-Patterns (FORBIDDEN)
+
+```python
+# NEVER have anemic domain models (data-only classes)
+@dataclass
+class Order:
+    id: UUID
+    items: list  # WRONG - no behavior!
+
+# NEVER leak infrastructure into domain
+class Order:
+    def save(self, session: Session):  # WRONG - knows about DB!
+
+# NEVER use mutable value objects
+@dataclass  # WRONG - missing frozen=True
+class Money:
+    amount: Decimal
+
+# NEVER have repositories return ORM models
+async def get(self, id: UUID) -> OrderModel:  # WRONG - return domain!
+```
+
+## Related Skills
+
+- `aggregate-patterns` - Deep dive on aggregate design
+- `ork:distributed-systems` - Cross-aggregate coordination
+- `ork:database-patterns` - Schema design for DDD
+
+## References
+
+Load on demand with `Read("${CLAUDE_SKILL_DIR}/references/<file>")`:
+| File | Content |
+|------|---------|
+| `entities-value-objects.md` | Full entity and value object patterns |
+| `repositories.md` | Repository pattern implementation |
+| `domain-events.md` | Event collection and publishing |
+| `bounded-contexts.md` | Context mapping and ACL |
+
+## Capability Details
+
+### entities
+**Keywords:** entity, identity, lifecycle, mutable, domain object
+**Solves:** Model entities in Python, identity equality, adding behavior
+
+### value-objects
+**Keywords:** value object, immutable, frozen, dataclass, structural equality
+**Solves:** Create immutable value objects, when to use VO vs entity
+
+### domain-services
+**Keywords:** domain service, business logic, cross-aggregate, stateless
+**Solves:** When to use domain service, logic spanning aggregates
+
+### repositories
+**Keywords:** repository, persistence, collection, IRepository, protocol
+**Solves:** Implement repository pattern, abstract DB access, ORM mapping
+
+### bounded-contexts
+**Keywords:** bounded context, context map, ACL, subdomain, ubiquitous language
+**Solves:** Define bounded contexts, integrate with ACL, context relationships

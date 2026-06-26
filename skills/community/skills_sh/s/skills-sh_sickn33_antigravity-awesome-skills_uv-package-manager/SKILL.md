@@ -1,35 +1,45 @@
 ---
-name: "uv-package-manager"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/uv-package-manager"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/uv-package-manager"
+name: uv-package-manager
+description: "Comprehensive guide to using uv, an extremely fast Python package installer and resolver written in Rust, for modern Python project management and dependency workflows."
+risk: safe
+source: community
+date_added: "2026-02-27"
 ---
 
-# uv-package-manager
+# UV Package Manager
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
+Comprehensive guide to using uv, an extremely fast Python package installer and resolver written in Rust, for modern Python project management and dependency workflows.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/uv-package-manager`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/uv-package-manager](https://skills.sh/sickn33/antigravity-awesome-skills/uv-package-manager)
+## Use this skill when
 
-## Overview
+- Setting up new Python projects quickly
+- Managing Python dependencies faster than pip
+- Creating and managing virtual environments
+- Installing Python interpreters
+- Resolving dependency conflicts efficiently
+- Migrating from pip/pip-tools/poetry
+- Speeding up CI/CD pipelines
+- Managing monorepo Python projects
+- Working with lockfiles for reproducible builds
+- Optimizing Docker builds with Python dependencies
 
+## Do not use this skill when
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/uv-package-manager
-```
+- The task is unrelated to uv package manager
+- You need a different domain or tool outside this scope
+
+## Instructions
+
+- Clarify goals, constraints, and required inputs.
+- Apply relevant best practices and validate outcomes.
+- Provide actionable steps and verification.
+- If detailed examples are required, open `resources/implementation-playbook.md`.
+
+## Resources
+
+- `resources/implementation-playbook.md` for detailed patterns and examples.
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

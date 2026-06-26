@@ -1,0 +1,24 @@
+{
+  "name": "jimeng-api-image-gen",
+  "version": "1.0.2",
+  "description": "AI image generation skill using Volcengine Jimeng API 4.0",
+  "author": "workspace",
+  "license": "MIT",
+  "keywords": [
+    "jimeng",
+    "ai-image",
+    "image-generation",
+    "volcengine",
+    "seedream",
+    "cursor-rules",
+    "opencode-skill"
+  ],
+  "main": "index.js",
+  "files": [
+    ".antigravityrules",
+    ".cursorrules",
+    ".opencode-rules",
+    "README.md",
+    "SKILL.md"
+  ]
+}

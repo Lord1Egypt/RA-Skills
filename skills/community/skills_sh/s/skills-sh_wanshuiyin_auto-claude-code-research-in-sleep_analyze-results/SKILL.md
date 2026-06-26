@@ -1,35 +1,46 @@
 ---
-name: "analyze-results"
-description: "Indexed by skills.sh from wanshuiyin/auto-claude-code-research-in-sleep"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "wanshuiyin"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/wanshuiyin/auto-claude-code-research-in-sleep/analyze-results"
-sourceUrl: "https://skills.sh/wanshuiyin/auto-claude-code-research-in-sleep/analyze-results"
+name: analyze-results
+description: Analyze ML experiment results, compute statistics, generate comparison tables and insights. Use when user says "analyze results", "compare", or needs to interpret experimental data.
+argument-hint: [results-path-or-description]
+allowed-tools: Bash(*), Read, Grep, Glob, Write, Edit
 ---
 
-# analyze-results
+# Analyze Experiment Results
 
-> Indexed by skills.sh from wanshuiyin/auto-claude-code-research-in-sleep
+Analyze: $ARGUMENTS
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** wanshuiyin
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/wanshuiyin/auto-claude-code-research-in-sleep/analyze-results`
-- **Source URL:** [https://skills.sh/wanshuiyin/auto-claude-code-research-in-sleep/analyze-results](https://skills.sh/wanshuiyin/auto-claude-code-research-in-sleep/analyze-results)
+## Workflow
 
-## Overview
+### Step 1: Locate Results
+Find all relevant JSON/CSV result files:
+- Check `figures/`, `results/`, or project-specific output directories
+- Parse JSON results into structured data
 
+### Step 2: Build Comparison Table
+Organize results by:
+- **Independent variables**: model type, hyperparameters, data config
+- **Dependent variables**: primary metric (e.g., perplexity, accuracy, loss), secondary metrics
+- **Delta vs baseline**: always compute relative improvement
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/wanshuiyin/auto-claude-code-research-in-sleep/analyze-results
-```
+### Step 3: Statistical Analysis
+- If multiple seeds: report mean +/- std, check reproducibility
+- If sweeping a parameter: identify trends (monotonic, U-shaped, plateau)
+- Flag outliers or suspicious results
+
+### Step 4: Generate Insights
+For each finding, structure as:
+1. **Observation**: what the data shows (with numbers)
+2. **Interpretation**: why this might be happening
+3. **Implication**: what this means for the research question
+4. **Next step**: what experiment would test the interpretation
+
+### Step 5: Update Documentation
+If findings are significant:
+- Propose updates to project notes or experiment reports
+- Draft a concise finding statement (1-2 sentences)
+
+## Output Format
+Always include:
+1. Raw data table
+2. Key findings (numbered, concise)
+3. Suggested next experiments (if any)

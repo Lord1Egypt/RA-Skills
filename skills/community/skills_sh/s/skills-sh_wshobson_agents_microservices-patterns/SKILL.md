@@ -1,35 +1,90 @@
 ---
-name: "microservices-patterns"
-description: "Indexed by skills.sh from wshobson/agents"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "wshobson"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/wshobson/agents/microservices-patterns"
-sourceUrl: "https://skills.sh/wshobson/agents/microservices-patterns"
+name: microservices-patterns
+description: Design microservices architectures with service boundaries, event-driven communication, and resilience patterns. Use when building distributed systems, decomposing monoliths, or implementing microservices.
 ---
 
-# microservices-patterns
+# Microservices Patterns
 
-> Indexed by skills.sh from wshobson/agents
+Master microservices architecture patterns including service boundaries, inter-service communication, data management, and resilience patterns for building distributed systems.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** wshobson
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/wshobson/agents/microservices-patterns`
-- **Source URL:** [https://skills.sh/wshobson/agents/microservices-patterns](https://skills.sh/wshobson/agents/microservices-patterns)
+## When to Use This Skill
 
-## Overview
+- Decomposing monoliths into microservices
+- Designing service boundaries and contracts
+- Implementing inter-service communication
+- Managing distributed data and transactions
+- Building resilient distributed systems
+- Implementing service discovery and load balancing
+- Designing event-driven architectures
 
+## Core Concepts
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/wshobson/agents/microservices-patterns
-```
+### 1. Service Decomposition Strategies
+
+**By Business Capability**
+
+- Organize services around business functions
+- Each service owns its domain
+- Example: OrderService, PaymentService, InventoryService
+
+**By Subdomain (DDD)**
+
+- Core domain, supporting subdomains
+- Bounded contexts map to services
+- Clear ownership and responsibility
+
+**Strangler Fig Pattern**
+
+- Gradually extract from monolith
+- New functionality as microservices
+- Proxy routes to old/new systems
+
+### 2. Communication Patterns
+
+**Synchronous (Request/Response)**
+
+- REST APIs
+- gRPC
+- GraphQL
+
+**Asynchronous (Events/Messages)**
+
+- Event streaming (Kafka)
+- Message queues (RabbitMQ, SQS)
+- Pub/Sub patterns
+
+### 3. Data Management
+
+**Database Per Service**
+
+- Each service owns its data
+- No shared databases
+- Loose coupling
+
+**Saga Pattern**
+
+- Distributed transactions
+- Compensating actions
+- Eventual consistency
+
+### 4. Resilience Patterns
+
+**Circuit Breaker**
+
+- Fail fast on repeated errors
+- Prevent cascade failures
+
+**Retry with Backoff**
+
+- Transient fault handling
+- Exponential backoff
+
+**Bulkhead**
+
+- Isolate resources
+- Limit impact of failures
+
+## Detailed patterns and worked examples
+
+Detailed pattern documentation lives in `references/details.md`. Read that file when the navigation tier above is insufficient.
+

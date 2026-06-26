@@ -1,0 +1,32 @@
+# Video Analyzer 配置（多 skill 共用 agent_config.toml，按 [skill名] 分区）
+# 复制到项目根目录为 agent_config.toml 并填入实际值
+
+[video-analyzer]
+default_model = "doubao-vision"
+
+# 火山引擎（豆包）视觉模型
+[video-analyzer.models.doubao-vision]
+# base_url = "https://ark.cn-beijing.volces.com/api/v3" # token付费
+base_url = "https://ark.cn-beijing.volces.com/api/coding/v3" # coding plan
+api_key = ""                         # 直接填写 API Key（优先）
+api_key_env = "ARK_API_KEY"          # 或从该环境变量读取（api_key 为空时生效）
+model = "doubao-seed-2-0-pro-260215"
+api_type = "responses"               # responses 或 chat_completions
+supports_video = false               # 是否支持原生视频输入
+
+# OpenAI GPT-4o
+[video-analyzer.models.gpt-4o]
+base_url = "https://api.openai.com/v1"
+api_key = ""
+api_key_env = "OPENAI_API_KEY"
+model = "gpt-4o"
+api_type = "responses"
+supports_video = false
+
+# 添加更多模型：
+# [video-analyzer.models.claude]
+# base_url = "https://api.anthropic.com/v1"
+# api_key_env = "ANTHROPIC_API_KEY"
+# model = "claude-sonnet-4-20250514"
+# api_type = "chat_completions"
+# supports_video = false

@@ -1,0 +1,143 @@
+{
+  "generated_at": "2026-04-23T00:00:00.000Z",
+  "root_dir": "/tmp/eval-11",
+  "browser": "puppeteer",
+  "axe_source": "/tmp/node_modules/axe-core/axe.min.js",
+  "dependency_sources": {
+    "axe-core": "fixture",
+    "puppeteer": "fixture"
+  },
+  "urls": [
+    "https://example.com/",
+    "https://example.com/docs/guide-a",
+    "https://example.com/docs/guide-b"
+  ],
+  "results": [
+    {
+      "url": "https://example.com/",
+      "axe": {
+        "violations": [
+          {
+            "id": "region",
+            "impact": "moderate",
+            "description": "All page content must be contained by landmarks",
+            "help": "All page content should be contained by landmarks",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=axeAPI",
+            "tags": [],
+            "nodes": [
+              {
+                "target": [
+                  "body > section.hero"
+                ],
+                "html": "<section class=\"hero\">",
+                "any": []
+              }
+            ]
+          }
+        ],
+        "passes": [
+          {
+            "id": "bypass",
+            "tags": [
+              "wcag241"
+            ]
+          }
+        ],
+        "incomplete": [],
+        "inapplicable": []
+      },
+      "lighthouse": {
+        "status": "skipped",
+        "reason": "Fixture data"
+      }
+    },
+    {
+      "url": "https://example.com/docs/guide-a",
+      "axe": {
+        "violations": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "description": "Elements must meet minimum color contrast ratio thresholds",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI",
+            "tags": [
+              "wcag143"
+            ],
+            "nodes": [
+              {
+                "target": [
+                  ".doc-callout"
+                ],
+                "html": "<p class=\"doc-callout\">Low contrast</p>",
+                "any": [
+                  {
+                    "data": {
+                      "fgColor": "#777777",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 3.2,
+                      "expectedContrastRatio": "4.5",
+                      "fontSize": "16px",
+                      "fontWeight": "400"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "passes": [],
+        "incomplete": [],
+        "inapplicable": []
+      },
+      "lighthouse": {
+        "status": "skipped",
+        "reason": "Fixture data"
+      }
+    },
+    {
+      "url": "https://example.com/docs/guide-b",
+      "axe": {
+        "violations": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "description": "Elements must meet minimum color contrast ratio thresholds",
+            "help": "Elements must meet minimum color contrast ratio thresholds",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=axeAPI",
+            "tags": [
+              "wcag143"
+            ],
+            "nodes": [
+              {
+                "target": [
+                  ".doc-note"
+                ],
+                "html": "<span class=\"doc-note\">Low contrast</span>",
+                "any": [
+                  {
+                    "data": {
+                      "fgColor": "#767676",
+                      "bgColor": "#ffffff",
+                      "contrastRatio": 3.4,
+                      "expectedContrastRatio": "4.5",
+                      "fontSize": "16px",
+                      "fontWeight": "400"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "passes": [],
+        "incomplete": [],
+        "inapplicable": []
+      },
+      "lighthouse": {
+        "status": "skipped",
+        "reason": "Fixture data"
+      }
+    }
+  ]
+}

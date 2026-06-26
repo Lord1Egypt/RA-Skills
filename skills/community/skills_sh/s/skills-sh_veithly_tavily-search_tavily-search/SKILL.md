@@ -1,35 +1,37 @@
 ---
-name: "tavily-search"
-description: "Indexed by skills.sh from veithly/tavily-search"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "veithly"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/veithly/tavily-search/tavily-search"
-sourceUrl: "https://skills.sh/veithly/tavily-search/tavily-search"
+name: tavily-search
+description: |
+  Tavily AI search API - Optimized search for AI agents. Use when searching the web for current information, news, facts, or any task requiring real-time data.
 ---
 
-# tavily-search
+# Tavily Search
 
-> Indexed by skills.sh from veithly/tavily-search
+Web search optimized for AI agents using Tavily API.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** veithly
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/veithly/tavily-search/tavily-search`
-- **Source URL:** [https://skills.sh/veithly/tavily-search/tavily-search](https://skills.sh/veithly/tavily-search/tavily-search)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/veithly/tavily-search/tavily-search
+./scripts/search "your search query"
+```
+
+## Scripts
+
+| Script | Usage |
+|--------|-------|
+| `scripts/search <query>` | Search the web |
+| `scripts/search "latest AI news" --format json` | JSON output |
+
+## Environment
+
+```bash
+export TAVILY_API_KEY="your-api-key"
+```
+
+Get API key: https://tavily.com/
+
+## Example
+
+```bash
+./scripts/search "Claude AI latest features"
+# Returns: Search results optimized for AI context
 ```

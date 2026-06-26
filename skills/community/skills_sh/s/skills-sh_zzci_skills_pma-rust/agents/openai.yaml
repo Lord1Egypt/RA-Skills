@@ -1,0 +1,4 @@
+interface:
+  display_name: "PMA Rust"
+  short_description: "Production Rust baseline for PMA projects"
+  default_prompt: "Use $pma-rust with $pma to design or review a production Rust service or CLI."

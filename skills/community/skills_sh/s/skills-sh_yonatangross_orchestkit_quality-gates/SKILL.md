@@ -1,35 +1,292 @@
 ---
-name: "quality-gates"
-description: "Indexed by skills.sh from yonatangross/orchestkit"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "yonatangross"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/yonatangross/orchestkit/quality-gates"
-sourceUrl: "https://skills.sh/yonatangross/orchestkit/quality-gates"
+name: quality-gates
+license: MIT
+compatibility: "Claude Code 2.1.183+."
+description: Use when assessing task complexity, before starting complex tasks, when stuck after multiple attempts, or reviewing code against best practices. Provides quality-gates scoring (1-5), escalation workflows, and pattern library management.
+context: fork
+agent: code-quality-reviewer
+version: 1.3.0
+author: OrchestKit AI Agent Hub
+tags: [quality, complexity, planning, escalation, blocking, best-practices, patterns, yagni, over-engineering]
+skills: [scope-appropriate-architecture]
+user-invocable: false
+disable-model-invocation: false
+complexity: max
+persuasion-type: discipline
+effort: high
+hooks:
+  PreToolUse:
+    - matcher: "Read"
+      command: "${CLAUDE_PLUGIN_ROOT}/hooks/bin/run-hook.mjs skill/quality-baseline-loader"
+      once: true
+metadata:
+  category: document-asset-creation
+allowed-tools:
+  - Read
+  - Glob
+  - Grep
+  - WebFetch
+  - WebSearch
 ---
 
-# quality-gates
+# Quality Gates
 
-> Indexed by skills.sh from yonatangross/orchestkit
+This skill teaches agents how to assess task complexity, enforce quality gates, and prevent wasted work on incomplete or poorly-defined tasks.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** yonatangross
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/yonatangross/orchestkit/quality-gates`
-- **Source URL:** [https://skills.sh/yonatangross/orchestkit/quality-gates](https://skills.sh/yonatangross/orchestkit/quality-gates)
+**Key Principle:** Stop and clarify before proceeding with incomplete information. Better to ask questions than to waste cycles on the wrong solution.
+
+---
 
 ## Overview
 
+### Auto-Activate Triggers
+- Receiving a new task assignment
+- Starting a complex feature implementation
+- Before allocating work in Squad mode
+- When requirements seem unclear or incomplete
+- After 3 failed attempts at the same task
+- When blocked by dependencies
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/yonatangross/orchestkit/quality-gates
+### Manual Activation
+- User asks for complexity assessment
+- Planning a multi-step project
+- Before committing to a timeline
+
+---
+
+## Core Concepts
+
+### Complexity Scoring (1-5 Scale)
+
+| Level | Files | Lines | Time | Characteristics |
+|-------|-------|-------|------|-----------------|
+| 1 - Trivial | 1 | < 50 | < 30 min | No deps, no unknowns |
+| 2 - Simple | 1-3 | 50-200 | 30 min - 2 hr | 0-1 deps, minimal unknowns |
+| 3 - Moderate | 3-10 | 200-500 | 2-8 hr | 2-3 deps, some unknowns |
+| 4 - Complex | 10-25 | 500-1500 | 8-24 hr | 4-6 deps, significant unknowns |
+| 5 - Very Complex | 25+ | 1500+ | 24+ hr | 7+ deps, many unknowns |
+
+Load: `Read("${CLAUDE_SKILL_DIR}/references/complexity-scoring.md")` for detailed examples and assessment formulas.
+
+### Blocking Thresholds
+
+| Condition | Threshold | Action |
+|-----------|-----------|--------|
+| **YAGNI Gate** | **Justified ratio > 2.0** | **BLOCK with simpler alternatives** |
+| YAGNI Warning | Justified ratio 1.5-2.0 | WARN with simpler alternatives |
+| Critical Questions | > 3 unanswered | BLOCK |
+| Missing Dependencies | Any blocking | BLOCK |
+| Failed Attempts | >= 3 | BLOCK & ESCALATE |
+| Evidence Failure | 2 fix attempts | BLOCK |
+| Complexity Overflow | Level 4-5 no plan | BLOCK |
+
+**WARNING Conditions** (proceed with caution):
+- Level 3 complexity
+- 1-2 unanswered questions
+- 1-2 failed attempts
+
+Load: `Read("${CLAUDE_SKILL_DIR}/references/blocking-thresholds.md")` for escalation protocols and decision logic.
+
+---
+
+## References
+
+Load on demand with `Read("${CLAUDE_SKILL_DIR}/references/<file>")`:
+| File | Content |
+|------|---------|
+| `complexity-scoring.md` | Detailed Level 1-5 characteristics, quick assessment formula, checklist |
+| `blocking-thresholds.md` | BLOCKING vs WARNING conditions, escalation protocol, gate decision logic, attempt tracking |
+| `workflows.md` | Pre-task gate validation, stuck detection, complexity breakdown (Level 4-5), requirements completeness |
+| `gate-patterns.md` | Gate validation process templates, context system integration, common pitfalls |
+| `llm-quality-validation.md` | LLM-as-judge patterns, quality aspects, fail-open/closed strategies, graceful degradation, triple-consumer artifacts |
+
+---
+
+## Quick Reference
+
+### Gate Decision Flow
+
 ```
+0. YAGNI check (runs FIRST — before any implementation planning)
+   → Read project tier from scope-appropriate-architecture
+   → Calculate justified_complexity = planned_LOC / tier_appropriate_LOC
+   → If ratio > 2.0: BLOCK (must simplify)
+   → If ratio 1.5-2.0: WARN (present simpler alternative)
+   → Security patterns exempt from YAGNI gate
+
+1. Assess complexity (1-5)
+2. Count critical questions unanswered
+3. Check dependencies blocked
+4. Check attempt count
+
+if (yagni_ratio > 2.0) -> BLOCK with simpler alternatives
+else if (questions > 3 || deps blocked || attempts >= 3) -> BLOCK
+else if (complexity >= 4 && no plan) -> BLOCK
+else if (yagni_ratio > 1.5 || complexity == 3 || questions 1-2) -> WARNING
+else -> PASS
+```
+
+### Gate Check Template
+
+```markdown
+## Quality Gate: [Task Name]
+
+**Complexity:** Level [1-5]
+**Unanswered Critical Questions:** [Count]
+**Blocked Dependencies:** [List or None]
+**Failed Attempts:** [Count]
+
+**Status:** PASS / WARNING / BLOCKED
+**Can Proceed:** Yes / No
+```
+
+### Escalation Template
+
+```markdown
+## Escalation: Task Blocked
+
+**Task:** [Description]
+**Block Type:** [Critical Questions / Dependencies / Stuck / Evidence]
+**Attempts:** [Count]
+
+### What Was Tried
+1. [Approach 1] - Failed: [Reason]
+2. [Approach 2] - Failed: [Reason]
+
+### Need Guidance On
+- [Specific question]
+
+**Recommendation:** [Suggested action]
+```
+
+---
+
+## Integration with Context System
+
+```javascript
+// Add gate check to context
+context.quality_gates = context.quality_gates || [];
+context.quality_gates.push({
+  task_id: taskId,
+  timestamp: new Date().toISOString(),
+  complexity_score: 3,
+  gate_status: 'pass', // pass, warning, blocked
+  critical_questions_count: 1,
+  unanswered_questions: 1,
+  dependencies_blocked: 0,
+  attempt_count: 0,
+  can_proceed: true
+});
+```
+
+## Integration with Evidence System
+
+```javascript
+// Before marking task complete
+const evidence = context.quality_evidence;
+const hasPassingEvidence = (
+  evidence?.tests?.exit_code === 0 ||
+  evidence?.build?.exit_code === 0
+);
+
+if (!hasPassingEvidence) {
+  return { gate_status: 'blocked', reason: 'no_passing_evidence' };
+}
+```
+
+---
+
+## Best Practices Pattern Library
+
+Track success/failure patterns across projects to prevent repeating mistakes and proactively warn during code reviews.
+
+| Rule | File | Key Pattern |
+|------|------|-------------|
+| YAGNI Gate | `rules/yagni-gate.md` | Pre-implementation scope check, justified complexity ratio, simpler alternatives |
+| Pattern Library | `rules/practices-code-standards.md` | Success/failure tracking, confidence scoring, memory integration |
+| Review Checklist | `rules/practices-review-checklist.md` | Category-based review, proactive anti-pattern detection |
+
+### Pattern Confidence Levels
+
+| Level | Meaning | Action |
+|-------|---------|--------|
+| Strong success | 3+ projects, 100% success | Always recommend |
+| Mixed results | Both successes and failures | Context-dependent |
+| Strong anti-pattern | 3+ projects, all failed | Block with explanation |
+
+---
+
+## Common Pitfalls
+
+| Pitfall | Problem | Solution |
+|---------|---------|----------|
+| Skip gates for "simple" tasks | Get stuck later | Always run gate check |
+| Ignore WARNING status | Undocumented assumptions cause issues | Document every assumption |
+| Not tracking attempts | Waste cycles on same approach | Track every attempt, escalate at 3 |
+| Proceed when BLOCKED | Build wrong solution | NEVER bypass BLOCKED gates |
+
+---
+
+---
+
+## Related Skills
+
+- `ork:scope-appropriate-architecture` - Project tier detection that feeds YAGNI gate
+- `ork:architecture-patterns` - Enforce testing standards as part of quality gates
+- `llm-evaluation` - LLM-as-judge patterns for quality validation
+- `ork:golden-dataset` - Validate datasets meet quality thresholds
+
+## Key Decisions
+
+| Decision | Choice | Rationale |
+|----------|--------|-----------|
+| Complexity Scale | 1-5 levels | Granular enough for estimation, simple enough for quick assessment |
+| Block Threshold | 3 critical questions | Prevents proceeding with too many unknowns |
+| Escalation Trigger | 3 failed attempts | Balances persistence with avoiding wasted cycles |
+| Level 4-5 Requirement | Plan required | Complex tasks need upfront decomposition |
+
+## Capability Details
+
+### complexity-scoring
+**Keywords:** complexity, score, difficulty, estimate, sizing, 1-5 scale
+**Solves:** How complex is this task? Score task complexity on 1-5 scale, assess implementation difficulty
+
+### blocking-thresholds
+**Keywords:** blocking, threshold, gate, stop, escalate, cannot proceed
+**Solves:** When should I block progress? >3 critical questions = BLOCK, Missing dependencies = BLOCK
+
+### critical-questions
+**Keywords:** critical questions, unanswered, unknowns, clarify
+**Solves:** What are critical questions? Count unanswered, block if >3
+
+### stuck-detection
+**Keywords:** stuck, failed attempts, retry, 3 attempts, escalate
+**Solves:** How do I detect when stuck? After 3 failed attempts, escalate
+
+### gate-validation
+**Keywords:** validate, gate check, pass, fail, gate status
+**Solves:** How do I validate quality gates? Run pre-task gate validation
+
+### pre-task-gate-check
+**Keywords:** pre-task, before starting, can proceed
+**Solves:** How do I check gates before starting? Assess complexity, identify blockers
+
+### complexity-breakdown
+**Keywords:** breakdown, decompose, subtasks, split task
+**Solves:** How do I break down complex tasks? Split Level 4-5 into Level 1-3 subtasks
+
+### requirements-completeness
+**Keywords:** requirements, incomplete, acceptance criteria
+**Solves:** Are requirements complete enough? Check functional/technical requirements
+
+### escalation-protocol
+**Keywords:** escalate, ask user, need help, human guidance
+**Solves:** When and how to escalate? Escalate after 3 failed attempts
+
+### llm-as-judge
+**Keywords:** llm as judge, g-eval, aspect scoring, quality validation
+**Solves:** How do I use LLM-as-judge? Evaluate relevance, depth, coherence with thresholds
+
+### yagni-gate
+**Keywords:** yagni, over-engineering, justified complexity, scope check, too complex, simplify
+**Solves:** Is this complexity justified? Calculate justified_complexity ratio against project tier, BLOCK if > 2.0, surface simpler alternatives

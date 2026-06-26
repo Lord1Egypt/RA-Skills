@@ -1,35 +1,28 @@
 ---
-name: "claude-win11-speckit-update-skill"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/claude-win11-speckit-update-skill"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/claude-win11-speckit-update-skill"
+name: claude-win11-speckit-update-skill
+description: "Windows 11 system management"
+risk: safe
+source: "https://github.com/NotMyself/claude-win11-speckit-update-skill"
+date_added: "2026-02-27"
 ---
 
-# claude-win11-speckit-update-skill
-
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/claude-win11-speckit-update-skill`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/claude-win11-speckit-update-skill](https://skills.sh/sickn33/antigravity-awesome-skills/claude-win11-speckit-update-skill)
+# Claude Win11 Speckit Update Skill
 
 ## Overview
 
+Windows 11 system management
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/claude-win11-speckit-update-skill
-```
+## When to Use This Skill
+
+Use this skill when you need to work with windows 11 system management.
+
+## Instructions
+
+This skill provides guidance and patterns for windows 11 system management.
+
+For more information, see the [source repository](https://github.com/NotMyself/claude-win11-speckit-update-skill).
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

@@ -1,35 +1,44 @@
 ---
-name: "context7-auto-research"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/context7-auto-research"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/context7-auto-research"
+name: context7-auto-research
+description: "Automatically fetch latest library/framework documentation for Claude Code via Context7 API. Use when you need up-to-date documentation for libraries and frameworks or asking about React, Next.js, Prisma, or any other popular library."
+risk: unknown
+source: community
+date_added: "2026-02-27"
 ---
 
 # context7-auto-research
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/context7-auto-research`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/context7-auto-research](https://skills.sh/sickn33/antigravity-awesome-skills/context7-auto-research)
-
 ## Overview
+Automatically fetch latest library/framework documentation for Claude Code via Context7 API
 
+## When to Use
+- When you need up-to-date documentation for libraries and frameworks
+- When asking about React, Next.js, Prisma, or any other popular library
 
 ## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/context7-auto-research
+npx skills add -g BenedictKing/context7-auto-research
 ```
+
+## Step-by-Step Guide
+1. Install the skill using the command above
+2. Configure API key (optional, see GitHub repo for details)
+3. Use naturally in Claude Code conversations
+
+## Examples
+See [GitHub Repository](https://github.com/BenedictKing/context7-auto-research) for examples.
+
+## Best Practices
+- Configure API keys via environment variables for higher rate limits
+- Use the skill's auto-trigger feature for seamless integration
+
+## Troubleshooting
+See the GitHub repository for troubleshooting guides.
+
+## Related Skills
+- tavily-web, exa-search, firecrawl-scraper, codex-review
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

@@ -1,35 +1,48 @@
 ---
-name: "api-authorization-and-bola"
-description: "Indexed by skills.sh from yaklang/hack-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "yaklang"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/yaklang/hack-skills/api-authorization-and-bola"
-sourceUrl: "https://skills.sh/yaklang/hack-skills/api-authorization-and-bola"
+name: api-authorization-and-bola
+description: >-
+  API authorization and BOLA testing playbook. Use when APIs expose object identifiers, nested resources, hidden writable fields, or weak function-level authorization.
 ---
 
-# api-authorization-and-bola
+# SKILL: API Authorization and BOLA — Object Access, Function Access, and Mass Assignment
 
-> Indexed by skills.sh from yaklang/hack-skills
+> **AI LOAD INSTRUCTION**: Use this skill when an API exposes object IDs, nested resources, or role-sensitive functions and you need a focused authorization test path: BOLA, BFLA, method abuse, and hidden field control.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** yaklang
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/yaklang/hack-skills/api-authorization-and-bola`
-- **Source URL:** [https://skills.sh/yaklang/hack-skills/api-authorization-and-bola](https://skills.sh/yaklang/hack-skills/api-authorization-and-bola)
+## 1. CORE TEST LOOP
 
-## Overview
+1. Create Account A and Account B.
+2. As Account A, capture create, read, update, and delete flows.
+3. Replay with Account B's token.
+4. Test sibling endpoints, nested endpoints, and alternate HTTP verbs.
 
+## 2. TEST SURFACES
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/yaklang/hack-skills/api-authorization-and-bola
+| Surface | Example |
+|---|---|
+| object read | `/api/v1/orders/123` |
+| nested object | `/api/v1/users/1/invoices/9` |
+| admin or internal function | `/api/v1/admin/users` |
+| update path | `PUT`, `PATCH`, `DELETE` variants |
+| hidden JSON fields | `role`, `org`, `verified`, `tier` |
+
+## 3. QUICK PAYLOADS
+
+```json
+{"role":"admin"}
+{"isAdmin":true}
+{"org":"target-company"}
+{"verified":true}
 ```
+
+## 4. WHAT TESTERS MISS
+
+- object IDs in headers, cookies, GraphQL args, and nested objects
+- alternate methods sharing the same route but weaker authz
+- parent check present, child resource check missing
+- admin docs revealing extra writable fields
+
+## 5. NEXT ROUTING
+
+- For JWT or token-layer abuse: [api auth and jwt abuse](../api-auth-and-jwt-abuse/SKILL.md)
+- For GraphQL and hidden parameter discovery: [graphql and hidden parameters](../graphql-and-hidden-parameters/SKILL.md)
+- For broader IDOR patterns outside APIs: [idor broken object authorization](../idor-broken-object-authorization/SKILL.md)

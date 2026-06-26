@@ -1,35 +1,28 @@
 ---
-name: "refactor-safely"
-description: "Indexed by skills.sh from tirth8205/code-review-graph"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "tirth8205"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/tirth8205/code-review-graph/refactor-safely"
-sourceUrl: "https://skills.sh/tirth8205/code-review-graph/refactor-safely"
+name: Refactor Safely
+description: Plan and execute safe refactoring using dependency analysis
 ---
 
-# refactor-safely
+## Refactor Safely
 
-> Indexed by skills.sh from tirth8205/code-review-graph
+Use the knowledge graph to plan and execute refactoring with confidence.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** tirth8205
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/tirth8205/code-review-graph/refactor-safely`
-- **Source URL:** [https://skills.sh/tirth8205/code-review-graph/refactor-safely](https://skills.sh/tirth8205/code-review-graph/refactor-safely)
+### Steps
 
-## Overview
+1. Use `refactor_tool` with mode="suggest" for community-driven refactoring suggestions.
+2. Use `refactor_tool` with mode="dead_code" to find unreferenced code.
+3. For renames, use `refactor_tool` with mode="rename" to preview all affected locations.
+4. Use `apply_refactor_tool` with the refactor_id to apply renames.
+5. After changes, run `detect_changes_tool` to verify the refactoring impact.
 
+### Safety Checks
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/tirth8205/code-review-graph/refactor-safely
-```
+- Always preview before applying (rename mode gives you an edit list).
+- Check `get_impact_radius_tool` before major refactors.
+- Use `get_affected_flows_tool` to ensure no critical paths are broken.
+- Run `find_large_functions` to identify decomposition targets.
+
+## Token Efficiency Rules
+- ALWAYS start with `get_minimal_context(task="<your task>")` before any other graph tool.
+- Use `detail_level="minimal"` on all calls. Only escalate to "standard" when minimal is insufficient.
+- Target: complete any review/debug/refactor task in ≤5 tool calls and ≤800 total output tokens.

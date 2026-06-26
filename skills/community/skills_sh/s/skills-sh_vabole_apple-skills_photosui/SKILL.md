@@ -1,35 +1,22 @@
 ---
-name: "photosui"
-description: "Indexed by skills.sh from vabole/apple-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "vabole"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/vabole/apple-skills/photosui"
-sourceUrl: "https://skills.sh/vabole/apple-skills/photosui"
+name: photosui
+user-invocable: true
+description: "API reference: PhotosUI. Query for PhotosPicker, PHLivePhotoView, photo selection."
+context: fork
+agent: Explore
 ---
 
-# photosui
+# PhotosUI Documentation
 
-> Indexed by skills.sh from vabole/apple-skills
+Search these docs to answer questions about photo picker APIs.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** vabole
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/vabole/apple-skills/photosui`
-- **Source URL:** [https://skills.sh/vabole/apple-skills/photosui](https://skills.sh/vabole/apple-skills/photosui)
+## Return Format
 
-## Overview
+Always include:
+1. **Summary** - Answer the question concisely
+2. **File paths** - List relevant files for full details
 
+## Files
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/vabole/apple-skills/photosui
-```
+- `photosui-index.md` - Framework overview, Live Photo views
+- `photospicker.md` - SwiftUI PhotosPicker for selecting photos

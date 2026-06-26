@@ -1,0 +1,160 @@
+{
+  "skill": "analytics",
+  "version": "1.0.0",
+  "testCases": [
+    {
+      "id": "analytics-agents",
+      "query": "/ork:analytics agents",
+      "expectedBehavior": [
+        "Reads agent-usage.jsonl log data from the ~/.claude/analytics/ directory",
+        "Runs jq query from references/jq-queries.md agents section",
+        "Presents results as markdown table with agent name, count, avg duration, success rate",
+        "Includes per-agent model breakdown showing usage across different models"
+      ]
+    },
+    {
+      "id": "analytics-session-latest",
+      "query": "/ork:analytics session latest",
+      "expectedBehavior": [
+        "Finds CC session directory using encoded project path",
+        "Locates most recently modified .jsonl file",
+        "Parses JSONL entries for tool calls, token usage, timestamps",
+        "Presents timeline with session metadata, tool usage table, token breakdown"
+      ]
+    },
+    {
+      "id": "analytics-cost",
+      "query": "/ork:analytics cost",
+      "expectedBehavior": [
+        "Reads ~/.claude/stats-cache.json for modelUsage data including token counts",
+        "Applies model-specific pricing (opus/sonnet/haiku) to 4 token types",
+        "Calculates cache savings (cache reads vs full-price input)",
+        "Shows daily costs for last 7 days",
+        "Presents as markdown table with per-model breakdown and totals"
+      ]
+    },
+    {
+      "id": "analytics-trends",
+      "query": "/ork:analytics trends 30",
+      "expectedBehavior": [
+        "Reads dailyActivity and dailyModelTokens from stats-cache.json for last 30 days",
+        "Shows daily activity table with sessions, messages, tools, estimated cost",
+        "Shows model delegation trend over time",
+        "Shows peak productivity hours based on session activity distribution",
+        "Shows all-time stats (total sessions, longest session)"
+      ]
+    },
+    {
+      "id": "analytics-no-trigger-general",
+      "query": "How many tokens did I use today?",
+      "expectedBehavior": [
+        "Analytics skill should NOT activate for general token questions",
+        "This is a conversational question, not an analytics subcommand",
+        "Claude should answer from context or suggest using /ork:analytics cost"
+      ]
+    },
+    {
+      "id": "analytics-no-subcommand",
+      "query": "/ork:analytics",
+      "expectedBehavior": [
+        "No subcommand provided — uses AskUserQuestion to let user pick",
+        "Offers all available subcommands: agents, models, skills, hooks, teams, session, cost, trends, summary"
+      ]
+    },
+    {
+      "id": "analytics-summary",
+      "query": "/ork:analytics summary",
+      "expectedBehavior": [
+        "Runs all subcommand queries and presents unified view",
+        "Shows total sessions, total tool invocations",
+        "Shows top 5 agents, top 5 skills",
+        "Shows team activity overview if team data exists",
+        "Shows unique project hash count to indicate distinct projects tracked",
+        "Gracefully handles missing files (notes 'no data collected yet')"
+      ]
+    },
+    {
+      "id": "cost-calculation",
+      "rule": "cost-calculation",
+      "query": "/ork:analytics cost breakdown with cache savings for the last week",
+      "expectedBehavior": [
+        "Calculates costs separately for four token types: input, output, cache_read, and cache_write",
+        "Applies cache_read pricing at 10x cheaper than regular input token pricing",
+        "Shows cache savings prominently comparing cost with and without caching",
+        "Uses model-specific pricing rates for opus, sonnet, and haiku models",
+        "Presents daily cost breakdown as a markdown table with per-model totals"
+      ]
+    },
+    {
+      "id": "data-privacy",
+      "rule": "data-privacy",
+      "query": "Log agent usage analytics for this project session to the analytics directory.",
+      "expectedBehavior": [
+        "Uses hashProject to generate an irreversible 12-character SHA256 hash for project identifier",
+        "Never logs raw file paths, usernames, or environment variables in analytics data",
+        "Stores all analytics data locally in the ~/.claude/analytics/ directory only",
+        "Logs only non-PII fields like agent name, skill name, model name, and duration",
+        "Uses ISO 8601 timestamps for the ts field in analytics JSONL entries"
+      ]
+    },
+    {
+      "id": "large-file-streaming",
+      "rule": "large-file-streaming",
+      "query": "/ork:analytics agents with full history including rotated files from the past 6 months",
+      "expectedBehavior": [
+        "Checks file size before querying and avoids jq slurp flag for files over 50MB",
+        "Uses streaming jq without the -s flag for large JSONL file processing",
+        "Includes rotated files matching the pattern agent-usage.YYYY-MM.jsonl for historical data",
+        "Aggregates results using jq reduce or pipe-based sort and uniq patterns",
+        "Filters by timestamp field when date range is specified before aggregating results"
+      ]
+    },
+    {
+      "id": "visualization-dashboards",
+      "rule": "visualization-dashboards",
+      "query": "Build a React dashboard with stat cards and charts that share a single data query for analytics metrics.",
+      "expectedBehavior": [
+        "Uses CSS Grid with responsive breakpoints for stat card and chart layout",
+        "Shares data via TanStack Query with granular query keys instead of per-widget fetching",
+        "Uses col-span-full for full-width charts and col-span-2 for half-width sections",
+        "Implements SSE with EventSource for real-time metric updates on specific query keys",
+        "Wraps widget components in Suspense with skeleton fallbacks for loading states"
+      ]
+    },
+    {
+      "id": "visualization-recharts",
+      "rule": "visualization-recharts",
+      "query": "Create a Recharts line chart for revenue trends with a custom tooltip and responsive container.",
+      "expectedBehavior": [
+        "Wraps the chart in ResponsiveContainer with a parent element that has explicit height",
+        "Disables animations on real-time or frequently updating charts using isAnimationActive false",
+        "Implements a custom tooltip component for branded UX instead of using defaults",
+        "Adds figure role and aria-label attributes for chart accessibility",
+        "Includes CartesianGrid, XAxis, YAxis, Tooltip, and Legend for complete chart setup"
+      ]
+    },
+    {
+      "id": "otel-enrichments-cc-2-1-117",
+      "rule": null,
+      "query": "Show me which slash commands are invoked most often — and split by user-typed vs model-delegated.",
+      "expectedBehavior": [
+        "Reads ~/.claude/otel/user-prompts.jsonl with 2>/dev/null for graceful fallback",
+        "Uses jq to filter command_name != null and group by command_name with user/model split",
+        "Reports an empty-state message (not an error) when the OTEL file is absent",
+        "References src/skills/analytics/references/otel-fields.md for the canonical query",
+        "Falls back cleanly on pre-CC-2.1.117 data without rendering empty panels"
+      ]
+    },
+    {
+      "id": "otel-effort-cost-breakdown",
+      "rule": null,
+      "query": "Break down token costs by effort tier for the last 30 days.",
+      "expectedBehavior": [
+        "Reads ~/.claude/otel/usage.jsonl with graceful fallback",
+        "Groups by effort and sums input_tokens, output_tokens, cost_usd",
+        "Produces rows sorted low → medium → high → xhigh",
+        "Does not render a panel when no usage records carry an effort attribute"
+      ]
+    }
+  ]
+}

@@ -1,35 +1,74 @@
 ---
-name: "apple-docs-index"
-description: "Indexed by skills.sh from vabole/apple-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "vabole"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/vabole/apple-skills/apple-docs-index"
-sourceUrl: "https://skills.sh/vabole/apple-skills/apple-docs-index"
+name: apple-docs-index
+user-invocable: true
+description: Index of Apple developer documentation for iOS, macOS, and related frameworks. Use when looking up what APIs exist in a framework, browsing available documentation, or deciding what docs to fetch. Covers SwiftUI, UIKit, Core Animation (QuartzCore), XCTest, HealthKit, Combine, SwiftData, and more.
 ---
 
-# apple-docs-index
+# Apple Documentation Index
 
-> Indexed by skills.sh from vabole/apple-skills
+This skill provides indexes of Apple framework documentation. Use these to:
+- Browse available APIs in a framework
+- Find the path to specific documentation
+- Decide what detailed docs to download
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** vabole
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/vabole/apple-skills/apple-docs-index`
-- **Source URL:** [https://skills.sh/vabole/apple-skills/apple-docs-index](https://skills.sh/vabole/apple-skills/apple-docs-index)
+## Available Indexes
 
-## Overview
+| Framework | File | Size | Topics |
+|-----------|------|------|--------|
+| SwiftUI | `../swiftui/swiftui-overview.md` | 907KB | Views, modifiers, navigation, state |
+| XCTest | `xctest-index.md` | 55KB | Testing, assertions, expectations |
+| XCUIAutomation | `xcuiautomation-index.md` | 58KB | UI testing, elements, queries |
+| UIKit | `../uikit/uikit-overview.md` | 1.8MB | Views, controllers, controls, scenes |
+| Core Animation | `../core-animation/core-animation-index.md` | 80KB | CALayer, CAAnimation, CATransaction, layer subclasses |
+| HealthKit | `healthkit-index.md` | 312KB | Health data, workouts, records |
+| Combine | `combine-index.md` | 153KB | Publishers, subscribers, operators |
+| SwiftData | `swiftdata-index.md` | 86KB | Models, containers, queries |
+| Observation | `observation-index.md` | 3KB | @Observable macro |
 
+## How to Use
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. Browse an Index
+
 ```bash
-hermes skills install skills-sh/vabole/apple-skills/apple-docs-index
+# See what's in HealthKit
+cat healthkit-index.md | head -100
+
+# Search for specific topic
+grep -i "workout" healthkit-index.md
+grep -i "navigation" ../swiftui/swiftui-overview.md
 ```
+
+### 2. Find Documentation Paths
+
+Index files list all available documentation pages. Each entry shows the path:
+
+```markdown
+- [HKWorkout](/documentation/healthkit/hkworkout)
+- [NavigationStack](/documentation/swiftui/navigationstack)
+```
+
+### 3. Fetch More Detailed Docs
+
+1. Check whether the detailed page is already available in one of your installed Apple skills.
+2. Use skill names, descriptions, or `SKILL.md` frontmatter to find likely skill directories, then grep their local `.md` files before fetching. This is faster and uses less context than fetching new docs from the internet.
+3. If no installed skill has the page, use the same path with the `sosumi.ai` Markdown mirror.
+
+For example, `/documentation/healthkit/hkworkout` maps to `https://sosumi.ai/documentation/healthkit/hkworkout`.
+
+### 4. Browse Missing Framework Indexes
+
+If the local indexes don't include the framework you need, use the framework's `sosumi.ai` index:
+
+```text
+https://sosumi.ai/documentation/{framework}
+```
+
+For example, `https://sosumi.ai/documentation/foundation` provides a Markdown index you can search for Foundation paths.
+
+If the Markdown mirror is unavailable and your environment can parse JSON, Apple's public DocC index endpoint is:
+
+```text
+https://developer.apple.com/tutorials/data/index/{framework}
+```
+
+The useful path tree is under `interfaceLanguages.swift[0].children`.

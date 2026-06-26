@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-05-19T00:00:00.000Z",
+  "root_dir": "/tmp/eval-3",
+  "browser": "puppeteer",
+  "axe_source": "/tmp/node_modules/axe-core/axe.min.js",
+  "dependency_sources": {
+    "axe-core": "fixture",
+    "puppeteer": "fixture"
+  },
+  "urls": [
+    "http://localhost:8080/"
+  ],
+  "results": [
+    {
+      "url": "http://localhost:8080/",
+      "axe": {
+        "violations": [
+          {
+            "id": "button-name",
+            "impact": "critical",
+            "description": "Buttons must have discernible text",
+            "help": "Buttons must have discernible text",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/button-name?application=axeAPI",
+            "tags": [
+              "wcag412"
+            ],
+            "nodes": [
+              {
+                "target": [
+                  "button"
+                ],
+                "html": "<button></button>",
+                "any": []
+              }
+            ]
+          }
+        ],
+        "passes": [
+          {
+            "id": "html-has-lang",
+            "tags": [
+              "wcag311"
+            ]
+          }
+        ],
+        "incomplete": [],
+        "inapplicable": []
+      },
+      "lighthouse": {
+        "status": "skipped",
+        "reason": "Quick scan does not require Lighthouse"
+      }
+    }
+  ]
+}

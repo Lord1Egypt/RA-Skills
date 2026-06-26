@@ -1,35 +1,56 @@
 ---
-name: "lint-and-validate"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/lint-and-validate"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/lint-and-validate"
+name: lint-and-validate
+description: "MANDATORY: Run appropriate validation tools after EVERY code change. Do not finish a task until the code is error-free."
+risk: unknown
+source: community
+date_added: "2026-02-27"
 ---
 
-# lint-and-validate
+# Lint and Validate Skill
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
+> **MANDATORY:** Run appropriate validation tools after EVERY code change. Do not finish a task until the code is error-free.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/lint-and-validate`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/lint-and-validate](https://skills.sh/sickn33/antigravity-awesome-skills/lint-and-validate)
+### Procedures by Ecosystem
 
-## Overview
+#### Node.js / TypeScript
+1. **Lint/Fix:** `npm run lint` or `npx eslint "path" --fix`
+2. **Types:** `npx tsc --noEmit`
+3. **Security:** `npm audit --audit-level=high`
 
+#### Python
+1. **Linter (Ruff):** `ruff check "path" --fix` (Fast & Modern)
+2. **Security (Bandit):** `bandit -r "path" -ll`
+3. **Types (MyPy):** `mypy "path"`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/lint-and-validate
-```
+## The Quality Loop
+1. **Write/Edit Code**
+2. **Run Audit** for the project's ecosystem:
+   - **Node.js / TypeScript:** `npm run lint && npx tsc --noEmit`
+   - **Python:** `ruff check . --fix && mypy . && bandit -r . -ll`
+3. **Analyze Report:** Check the "FINAL AUDIT REPORT" section.
+4. **Fix & Repeat:** Submitting code with "FINAL AUDIT" failures is NOT allowed.
+
+## Error Handling
+- If `lint` fails: Fix the style or syntax issues immediately.
+- If `tsc` fails: Correct type mismatches before proceeding.
+- If no tool is configured: Check the project root for `.eslintrc`, `tsconfig.json`, `pyproject.toml` and suggest creating one.
+
+---
+**Strict Rule:** No code should be committed or reported as "done" without passing these checks.
+
+---
+
+## Scripts
+
+| Script | Purpose | Command |
+|--------|---------|---------|
+| `scripts/lint_runner.py` | Unified lint check | `python scripts/lint_runner.py <project_path>` |
+| `scripts/type_coverage.py` | Type coverage analysis | `python scripts/type_coverage.py <project_path>` |
+
+## When to Use
+This skill is applicable to execute the workflow or actions described in the overview.
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

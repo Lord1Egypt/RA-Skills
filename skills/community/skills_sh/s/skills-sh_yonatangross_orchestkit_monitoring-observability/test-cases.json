@@ -1,0 +1,138 @@
+{
+  "skill": "monitoring-observability",
+  "version": "2.0.0",
+  "testCases": [
+    {
+      "id": "monitoring-prometheus",
+      "rule": "monitoring-prometheus",
+      "query": "Add Prometheus metrics to my FastAPI application",
+      "expectedBehavior": [
+        "Uses RED method (Rate, Errors, Duration)",
+        "Defines Counter for requests and Histogram for latency",
+        "Configures appropriate histogram buckets tailored to service latency patterns",
+        "Manages label cardinality to avoid explosions"
+      ]
+    },
+    {
+      "id": "monitoring-grafana",
+      "rule": "monitoring-grafana",
+      "query": "Create a Grafana dashboard for my service",
+      "expectedBehavior": [
+        "Includes Golden Signals panels (latency, traffic, errors, saturation)",
+        "Defines SLO/SLI targets with error budgets",
+        "Adds health check endpoints (liveness, readiness, startup)",
+        "Shows RED method metrics in dashboard layout"
+      ]
+    },
+    {
+      "id": "monitoring-alerting",
+      "rule": "monitoring-alerting",
+      "query": "Set up alerting rules for production monitoring",
+      "expectedBehavior": [
+        "Defines severity levels (Critical, High, Medium, Low)",
+        "Includes alert grouping and inhibition rules",
+        "Configures escalation policies with runbook links",
+        "Addresses alert fatigue prevention strategies with deduplication and silencing"
+      ]
+    },
+    {
+      "id": "llm-langfuse-traces",
+      "rule": "llm-langfuse-traces",
+      "query": "Set up Langfuse tracing for my LLM application",
+      "expectedBehavior": [
+        "Uses @observe decorator with get_client() API",
+        "Sets user_id and session_id via update_current_trace",
+        "Configures OpenTelemetry SpanProcessor for distributed trace export",
+        "Uses observation types for Agent Graph rendering"
+      ]
+    },
+    {
+      "id": "llm-cost-tracking",
+      "rule": "llm-cost-tracking",
+      "query": "Track LLM token usage and costs",
+      "expectedBehavior": [
+        "Configures automatic token counting with Langfuse",
+        "Sets up spend alerts with threshold rules",
+        "Uses Metrics API for programmatic cost queries",
+        "Supports custom model pricing configuration for accurate cost tracking"
+      ]
+    },
+    {
+      "id": "llm-eval-scoring",
+      "rule": "llm-eval-scoring",
+      "query": "Evaluate and score LLM output quality with Langfuse",
+      "expectedBehavior": [
+        "Creates custom scoring with numeric/categorical values",
+        "Configures evaluator execution tracing for scoring pipeline observability",
+        "Uses multi-judge evaluation with ensemble scoring",
+        "Filters traces by score thresholds to surface low-quality responses"
+      ]
+    },
+    {
+      "id": "drift-statistical",
+      "rule": "drift-statistical",
+      "query": "Detect distribution drift in LLM inputs",
+      "expectedBehavior": [
+        "Implements PSI (Population Stability Index) calculation",
+        "Applies correct PSI thresholds (<0.1 no drift, 0.1-0.25 moderate, >=0.25 significant)",
+        "Uses EWMA for dynamic threshold detection",
+        "Compares PSI vs KS test for different sample sizes"
+      ]
+    },
+    {
+      "id": "drift-quality",
+      "rule": "drift-quality",
+      "query": "Monitor LLM quality degradation over time",
+      "expectedBehavior": [
+        "Compares current scores against rolling baseline window",
+        "Integrates Langfuse score trends for drift analysis",
+        "Uses canary prompts for behavioral regression testing",
+        "Tracks embedding drift with centroid monitoring"
+      ]
+    },
+    {
+      "id": "drift-alerting",
+      "rule": "drift-alerting",
+      "query": "Set up drift detection alerts for my LLM system",
+      "expectedBehavior": [
+        "Uses dynamic thresholds (95th percentile of historical PSI)",
+        "Correlates drift metrics with performance metrics before alerting",
+        "Avoids anti-patterns like static thresholds without context",
+        "Triggers evaluation only when drift AND quality drop confirmed"
+      ]
+    },
+    {
+      "id": "silent-alerting",
+      "rule": "silent-alerting",
+      "query": "Our agents sometimes return wrong results without any errors. How do I detect these silent failures?",
+      "expectedBehavior": [
+        "Implements statistical baseline anomaly detection using z-score or similar statistical methods",
+        "Detects failures that produce no errors but deliver incorrect or degraded results",
+        "Uses historical baselines to identify when output metrics deviate from normal distribution",
+        "Goes beyond exception-based alerting to catch silent degradation that error handlers miss"
+      ]
+    },
+    {
+      "id": "silent-degraded-quality",
+      "rule": "silent-degraded-quality",
+      "query": "How do I detect when my LLM agent starts producing gibberish or repetitive output that passes basic checks?",
+      "expectedBehavior": [
+        "Uses heuristic pre-filters for cheap fast detection of obviously degraded output quality",
+        "Applies LLM-as-judge evaluation for nuanced quality scoring beyond simple length checks",
+        "Integrates with Langfuse observe decorator for quality check trace logging and monitoring",
+        "Catches outputs that pass basic emptiness checks but contain gibberish or repetitive content"
+      ]
+    },
+    {
+      "id": "silent-tool-skipping",
+      "rule": "silent-tool-skipping",
+      "query": "Our agent sometimes fabricates answers from training data instead of using the search tool. How do I catch this?",
+      "expectedBehavior": [
+        "Validates tool usage against expected tool call patterns for each query type",
+        "Detects when agents skip expected tool calls and produce plausible but wrong results",
+        "Uses Langfuse trace analysis to compare actual tool invocations against expected patterns",
+        "Flags results produced without required tool calls as potentially fabricated from training data"
+      ]
+    }
+  ]
+}

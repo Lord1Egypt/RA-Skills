@@ -1,35 +1,45 @@
 ---
-name: "apple-calendar"
-description: "Indexed by skills.sh from sundial-org/awesome-openclaw-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sundial-org"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sundial-org/awesome-openclaw-skills/apple-calendar"
-sourceUrl: "https://skills.sh/sundial-org/awesome-openclaw-skills/apple-calendar"
+name: apple-calendar
+description: Apple Calendar.app integration for macOS. CRUD operations for events, search, and multi-calendar support.
+metadata: {"clawdbot":{"emoji":"📅","os":["darwin"]}}
 ---
 
-# apple-calendar
+# Apple Calendar
 
-> Indexed by skills.sh from sundial-org/awesome-openclaw-skills
+Interact with Calendar.app via AppleScript. Run scripts from: `cd {baseDir}`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sundial-org
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sundial-org/awesome-openclaw-skills/apple-calendar`
-- **Source URL:** [https://skills.sh/sundial-org/awesome-openclaw-skills/apple-calendar](https://skills.sh/sundial-org/awesome-openclaw-skills/apple-calendar)
+## Commands
 
-## Overview
+| Command | Usage |
+|---------|-------|
+| List calendars | `scripts/cal-list.sh` |
+| List events | `scripts/cal-events.sh [days_ahead] [calendar_name]` |
+| Read event | `scripts/cal-read.sh <event-uid> [calendar_name]` |
+| Create event | `scripts/cal-create.sh <calendar> <summary> <start> <end> [location] [description] [allday] [recurrence]` |
+| Update event | `scripts/cal-update.sh <event-uid> [--summary X] [--start X] [--end X] [--location X] [--description X]` |
+| Delete event | `scripts/cal-delete.sh <event-uid> [calendar_name]` |
+| Search events | `scripts/cal-search.sh <query> [days_ahead] [calendar_name]` |
 
+## Date Format
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sundial-org/awesome-openclaw-skills/apple-calendar
-```
+- Timed: `YYYY-MM-DD HH:MM`
+- All-day: `YYYY-MM-DD`
+
+## Recurrence
+
+| Pattern | RRULE |
+|---------|-------|
+| Daily 10x | `FREQ=DAILY;COUNT=10` |
+| Weekly M/W/F | `FREQ=WEEKLY;BYDAY=MO,WE,FR` |
+| Monthly 15th | `FREQ=MONTHLY;BYMONTHDAY=15` |
+
+## Output
+
+- Events/search: `UID | Summary | Start | End | AllDay | Location | Calendar`
+- Read: Full details with description, URL, recurrence
+
+## Notes
+
+- Read-only calendars (Birthdays, Holidays) can't be modified
+- Calendar names are case-sensitive
+- Deleting recurring events removes entire series

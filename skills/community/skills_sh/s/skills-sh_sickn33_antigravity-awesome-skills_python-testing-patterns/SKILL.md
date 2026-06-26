@@ -1,35 +1,45 @@
 ---
-name: "python-testing-patterns"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/python-testing-patterns"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/python-testing-patterns"
+name: python-testing-patterns
+description: "Implement comprehensive testing strategies with pytest, fixtures, mocking, and test-driven development. Use when writing Python tests, setting up test suites, or implementing testing best practices."
+risk: safe
+source: community
+date_added: "2026-02-27"
 ---
 
-# python-testing-patterns
+# Python Testing Patterns
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
+Comprehensive guide to implementing robust testing strategies in Python using pytest, fixtures, mocking, parameterization, and test-driven development practices.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/python-testing-patterns`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/python-testing-patterns](https://skills.sh/sickn33/antigravity-awesome-skills/python-testing-patterns)
+## Use this skill when
 
-## Overview
+- Writing unit tests for Python code
+- Setting up test suites and test infrastructure
+- Implementing test-driven development (TDD)
+- Creating integration tests for APIs and services
+- Mocking external dependencies and services
+- Testing async code and concurrent operations
+- Setting up continuous testing in CI/CD
+- Implementing property-based testing
+- Testing database operations
+- Debugging failing tests
 
+## Do not use this skill when
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/python-testing-patterns
-```
+- The task is unrelated to python testing patterns
+- You need a different domain or tool outside this scope
+
+## Instructions
+
+- Clarify goals, constraints, and required inputs.
+- Apply relevant best practices and validate outcomes.
+- Provide actionable steps and verification.
+- If detailed examples are required, open `resources/implementation-playbook.md`.
+
+## Resources
+
+- `resources/implementation-playbook.md` for detailed patterns and examples.
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

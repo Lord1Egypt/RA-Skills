@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content-type
+    xmlns="urn:enonic:xp:model:1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:enonic:xp:model:1.0 https://raw.githubusercontent.com/enonic/xp/master/modules/core/core-api/src/main/resources/META-INF/xsd/model.xsd">
+  <display-name>DISPLAY_NAME</display-name>
+  <description>DESCRIPTION</description>
+  <super-type>base:structured</super-type>
+  <is-abstract>false</is-abstract>
+  <is-final>true</is-final>
+  <allow-child-content>true</allow-child-content>
+  <form>
+    <!-- Add inputs, item-sets, option-sets, field-sets, and mixin references here -->
+  </form>
+</content-type>

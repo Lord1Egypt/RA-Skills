@@ -1,35 +1,44 @@
 ---
-name: "exa-search"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/exa-search"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/exa-search"
+name: exa-search
+description: "Semantic search, similar content discovery, and structured research using Exa API. Use when you need semantic/embeddings-based search, finding similar content, or searching by category (company, people, research papers, etc.)."
+risk: unknown
+source: community
+date_added: "2026-02-27"
 ---
 
 # exa-search
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/exa-search`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/exa-search](https://skills.sh/sickn33/antigravity-awesome-skills/exa-search)
-
 ## Overview
+Semantic search, similar content discovery, and structured research using Exa API
 
+## When to Use
+- When you need semantic/embeddings-based search
+- When finding similar content
+- When searching by category (company, people, research papers, etc.)
 
 ## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/exa-search
+npx skills add -g BenedictKing/exa-search
 ```
+
+## Step-by-Step Guide
+1. Install the skill using the command above
+2. Configure Exa API key
+3. Use naturally in Claude Code conversations
+
+## Examples
+See [GitHub Repository](https://github.com/BenedictKing/exa-search) for examples.
+
+## Best Practices
+- Configure API keys via environment variables
+
+## Troubleshooting
+See the GitHub repository for troubleshooting guides.
+
+## Related Skills
+- context7-auto-research, tavily-web, firecrawl-scraper, codex-review
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

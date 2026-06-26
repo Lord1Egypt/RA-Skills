@@ -1,0 +1,46 @@
+{
+  "name": "web-design-studio",
+  "displayName": "Web Design Studio",
+  "description": "Create complete web pages with production-grade frontend design AND auto-generated images. Combines frontend aesthetics with AI image generation and HTML auto-extraction for stunning, complete web experiences.",
+  "version": "1.4.0",
+  "author": "xiaodong-wu",
+  "license": "Apache-2.0",
+  "tags": [
+    "web-design",
+    "frontend",
+    "image-generation",
+    "image-verification",
+    "html-parsing",
+    "auto-extraction",
+    "ai",
+    "html",
+    "css",
+    "javascript",
+    "design",
+    "gemini"
+  ],
+  "category": "Design & Development",
+  "agents": [
+    "claude-code",
+    "claude-api",
+    "windsurf"
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "tools": ["uv"],
+    "api": "Gemini API Key (GEMINI_API_KEY environment variable)"
+  },
+  "capabilities": [
+    "Frontend design with distinctive aesthetics",
+    "AI image generation using Gemini 3 Pro Image",
+    "Complete HTML/CSS/JS code generation",
+    "Responsive design",
+    "Custom image creation for web pages",
+    "Professional design documentation generation with 6 comprehensive sections",
+    "Automated image path verification",
+    "HTML auto-extraction for page structure, colors, images, and CTAs"
+  ],
+  "homepage": "https://github.com/xiaodong-wu/web-design-studio",
+  "repository": "https://github.com/xiaodong-wu/web-design-studio",
+  "bugs": "https://github.com/xiaodong-wu/web-design-studio/issues"
+}

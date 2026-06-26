@@ -1,35 +1,24 @@
 ---
-name: "create-pr"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/create-pr"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/create-pr"
+name: create-pr
+description: Alias for sentry-skills:pr-writer. Use when users explicitly ask for "create-pr" or reference the legacy skill name. Redirects to the canonical PR writing workflow.
+risk: unknown
+source: community
 ---
 
-# create-pr
+# Alias: create-pr
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
+This skill name is kept for compatibility.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/create-pr`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/create-pr](https://skills.sh/sickn33/antigravity-awesome-skills/create-pr)
+## When to Use
+- The user explicitly asks for `create-pr` or refers to the legacy skill name.
+- You need to redirect pull request creation work to the canonical `sentry-skills:pr-writer` workflow.
+- The task is specifically about writing or updating a pull request rather than general git operations.
 
-## Overview
+Use `sentry-skills:pr-writer` as the canonical skill for creating and editing pull requests.
 
+If invoked via `create-pr`, run the same workflow and conventions documented in `sentry-skills:pr-writer`.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/create-pr
-```
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

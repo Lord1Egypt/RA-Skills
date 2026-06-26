@@ -1,0 +1,4 @@
+{
+  "tshark_exe": "tshark",
+  "capinfos_exe": "capinfos"
+}

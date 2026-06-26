@@ -1,35 +1,46 @@
 ---
-name: "video-frames"
-description: "Indexed by skills.sh from steipete/clawdis"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "steipete"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/steipete/clawdis/video-frames"
-sourceUrl: "https://skills.sh/steipete/clawdis/video-frames"
+name: video-frames
+description: "Extract frames or short clips from videos using ffmpeg."
+homepage: https://ffmpeg.org
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🎬",
+        "requires": { "bins": ["ffmpeg"] },
+        "install":
+          [
+            {
+              "id": "brew",
+              "kind": "brew",
+              "formula": "ffmpeg",
+              "bins": ["ffmpeg"],
+              "label": "Install ffmpeg (brew)",
+            },
+          ],
+      },
+  }
 ---
 
-# video-frames
+# Video Frames (ffmpeg)
 
-> Indexed by skills.sh from steipete/clawdis
+Extract a single frame from a video, or create quick thumbnails for inspection.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** steipete
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/steipete/clawdis/video-frames`
-- **Source URL:** [https://skills.sh/steipete/clawdis/video-frames](https://skills.sh/steipete/clawdis/video-frames)
+## Quick start
 
-## Overview
+First frame:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/steipete/clawdis/video-frames
+{baseDir}/scripts/frame.sh /path/to/video.mp4 --out /tmp/frame.jpg
 ```
+
+At a timestamp:
+
+```bash
+{baseDir}/scripts/frame.sh /path/to/video.mp4 --time 00:00:10 --out /tmp/frame-10s.jpg
+```
+
+## Notes
+
+- Prefer `--time` for "what is happening around here?".
+- Use a `.jpg` for quick share; use `.png` for crisp UI frames.

@@ -1,0 +1,209 @@
+{
+  "skill": "security-patterns",
+  "version": "2.0.0",
+  "testCases": [
+    {
+      "id": "auth-jwt",
+      "rule": "auth-jwt",
+      "query": "Implement JWT authentication with access and refresh tokens",
+      "expectedBehavior": [
+        "Uses Argon2id for secure password hashing with recommended parameters",
+        "Access token expires in 15 minutes",
+        "Refresh token stored in HTTPOnly cookie",
+        "Hardcodes algorithm (HS256), never reads from header",
+        "Uses options require to verify token payload includes expected fields"
+      ]
+    },
+    {
+      "id": "auth-oauth",
+      "rule": "auth-oauth",
+      "query": "Implement OAuth 2.1 login flow for a SPA",
+      "expectedBehavior": [
+        "Uses PKCE with S256 code challenge method",
+        "No implicit grant (OAuth 2.1 requirement)",
+        "Includes state parameter for CSRF protection",
+        "Implements refresh token rotation to prevent token replay attacks"
+      ]
+    },
+    {
+      "id": "auth-rbac",
+      "rule": "auth-rbac",
+      "query": "Add role-based access control to API endpoints",
+      "expectedBehavior": [
+        "Uses decorator pattern such as require_role and require_permission for access control",
+        "Checks authorization on every API endpoint before processing the request",
+        "Returns HTTP 403 Forbidden response for insufficient user permissions",
+        "Uses generic error messages to avoid leaking internal authorization details"
+      ]
+    },
+    {
+      "id": "defense-layers",
+      "rule": "defense-layers",
+      "query": "Design a security architecture for an AI application",
+      "expectedBehavior": [
+        "Includes all 8 layers (edge to observability)",
+        "Applies rate limiting at the edge layer to throttle abuse",
+        "Performs JWT validation at the gateway layer before routing requests",
+        "Enforces schema validation at the input layer to reject malformed payloads",
+        "No IDs in LLM prompts at layer 5"
+      ]
+    },
+    {
+      "id": "defense-zero-trust",
+      "rule": "defense-zero-trust",
+      "query": "Implement tenant isolation for a multi-tenant SaaS",
+      "expectedBehavior": [
+        "Creates an immutable RequestContext object populated from the verified JWT claims",
+        "Ensures every database query includes a tenant_id filter for isolation",
+        "Tenant filter is mandatory, not optional",
+        "Includes tenant_id in all cache keys to prevent cross-tenant data leakage",
+        "Implements audit logging with sanitization to strip sensitive fields before storage"
+      ]
+    },
+    {
+      "id": "validation-input",
+      "rule": "validation-input",
+      "query": "Validate API request body with Zod",
+      "expectedBehavior": [
+        "Uses z.object with explicitly typed fields for structured input validation",
+        "Includes min and max length constraints on all string fields",
+        "Uses z.enum for fixed value sets",
+        "Returns structured validation errors using safeParse for safe error handling",
+        "Validates input server-side in addition to any client-side checks"
+      ]
+    },
+    {
+      "id": "validation-output",
+      "rule": "validation-output",
+      "query": "Sanitize user-provided HTML content",
+      "expectedBehavior": [
+        "Uses DOMPurify or markupsafe for escaping",
+        "Restricts allowed HTML tags to a safe whitelist of formatting elements",
+        "Prevents XSS attacks via context-aware output encoding on all user content",
+        "Sets a Content-Security-Policy header to restrict inline scripts and unsafe sources"
+      ]
+    },
+    {
+      "id": "validation-schemas",
+      "rule": "validation-schemas",
+      "query": "Validate file uploads and URL inputs",
+      "expectedBehavior": [
+        "Checks file magic bytes, not just extension",
+        "Enforces file size limits with clear maximum thresholds per upload type",
+        "Validates submitted URLs against a strict domain allowlist to prevent SSRF",
+        "Requires HTTPS protocol for all user-provided URL inputs"
+      ]
+    },
+    {
+      "id": "owasp-injection",
+      "rule": "owasp-injection",
+      "query": "Fix SQL injection vulnerability in a search endpoint",
+      "expectedBehavior": [
+        "Uses parameterized queries or ORM methods to prevent SQL injection",
+        "Never concatenates user input into SQL",
+        "Uses subprocess with list args for commands",
+        "Validates URL against domain allowlist for SSRF"
+      ]
+    },
+    {
+      "id": "owasp-broken-auth",
+      "rule": "owasp-broken-auth",
+      "query": "Fix authentication bypass vulnerability",
+      "expectedBehavior": [
+        "Hardcodes JWT algorithm (never reads from header)",
+        "Implements CSRF protection with tokens or SameSite cookies",
+        "Uses constant-time comparison functions for secret and token verification",
+        "Enforces an authorization check on every endpoint regardless of HTTP method"
+      ]
+    },
+    {
+      "id": "llm-prompt-injection",
+      "rule": "llm-prompt-injection",
+      "query": "Implement context separation for LLM prompts",
+      "expectedBehavior": [
+        "No user_id, tenant_id, or UUIDs in prompts",
+        "Uses SafePromptBuilder with built-in audit logging for every prompt assembly",
+        "Stores context IDs separately for attribution",
+        "Runs audit_prompt() before every LLM call"
+      ]
+    },
+    {
+      "id": "llm-guardrails",
+      "rule": "llm-guardrails",
+      "query": "Validate LLM output before using it",
+      "expectedBehavior": [
+        "Performs schema validation with Pydantic to enforce structured LLM output",
+        "Checks for hallucinated UUIDs that do not exist in the source context",
+        "Runs grounding validation against the source context to detect fabricated claims",
+        "Runs content safety checks for toxic language and PII before returning results",
+        "Enforces size limits on LLM output to prevent excessive token consumption"
+      ]
+    },
+    {
+      "id": "llm-content-filtering",
+      "rule": "llm-content-filtering",
+      "query": "Implement the three-phase LLM call pattern",
+      "expectedBehavior": [
+        "Pre-LLM phase performs tenant-scoped retrieval and content extraction without identifiers",
+        "LLM Call: content-only prompt, no identifiers",
+        "Post-LLM phase applies deterministic attribution using the original RequestContext metadata",
+        "Captures source references during retrieval for accurate post-LLM attribution"
+      ]
+    },
+    {
+      "id": "pii-detection",
+      "rule": "pii-detection",
+      "query": "Detect PII in user-provided text",
+      "expectedBehavior": [
+        "Uses Presidio or regex patterns for detection",
+        "Detects email, phone, SSN, credit card",
+        "Supports custom entity recognizers for domain-specific PII patterns",
+        "Returns the detected entity type and character location within the text"
+      ]
+    },
+    {
+      "id": "pii-redaction",
+      "rule": "pii-redaction",
+      "query": "Mask PII before sending to Langfuse",
+      "expectedBehavior": [
+        "Uses Langfuse mask callback at initialization",
+        "Replaces PII with typed tokens like [REDACTED_EMAIL]",
+        "Applies to both input and output traces",
+        "Supports reversible anonymization with LLM Guard Vault"
+      ]
+    },
+    {
+      "id": "scanning",
+      "rule": "scanning",
+      "query": "Set up a comprehensive security scanning pipeline for our CI with dependency auditing, secret detection, and SAST",
+      "expectedBehavior": [
+        "Runs npm audit or pip-audit with JSON output and blocks deployment on critical or high findings",
+        "Uses TruffleHog for git history scanning and Gitleaks for fast pre-commit secret detection",
+        "Configures Semgrep with auto config for broad OWASP coverage across multiple languages",
+        "Implements multi-layer defense with scanning in both pre-commit hooks and CI pipeline"
+      ]
+    },
+    {
+      "id": "guardrails-llm-validation",
+      "rule": "guardrails-llm-validation",
+      "query": "How do I red-team our LLM chatbot before launch to test for prompt injection and jailbreaking?",
+      "expectedBehavior": [
+        "Uses DeepTeam red_team function with vulnerability categories including prompt injection and jailbreaking",
+        "Tests multi-turn jailbreaking attacks using GOAT-style conversation manipulation techniques",
+        "Maps vulnerabilities to OWASP Top 10 for LLMs including LLM01 Prompt Injection and LLM02 Sensitive Information Disclosure",
+        "Recommends pre-release and quarterly red-teaming frequency for ongoing security validation"
+      ]
+    },
+    {
+      "id": "guardrails-nemo",
+      "rule": "guardrails-nemo",
+      "query": "Deploy NeMo Guardrails with toxicity filtering and PII detection for our production LLM app",
+      "expectedBehavior": [
+        "Configures NeMo rails with both input and output flow validation for defense in depth",
+        "Integrates Guardrails AI validators for toxicity, PII detection, and topic restriction",
+        "Uses Colang 2.0 for programmable fact-checking rails on RAG responses",
+        "Always validates both input and output rather than relying on a single validation layer"
+      ]
+    }
+  ]
+}

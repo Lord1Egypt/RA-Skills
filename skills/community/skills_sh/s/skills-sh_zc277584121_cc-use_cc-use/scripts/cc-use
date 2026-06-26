@@ -1,0 +1,1143 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage:
+  cc-use delegate "TASK" [--project DIR] [--agent codex|claude] [--profile NAME] [--session NAME] [--replace]
+  cc-use monitor [--project DIR] [--agent codex|claude] [--session NAME]
+  cc-use project-status [--project DIR] [--agent codex|claude] [--session NAME] [--json]
+  cc-use scrollback [--project DIR] [--agent codex|claude] [--session NAME] [--lines N] [--start LINE] [--end LINE]
+  cc-use schedule-add heartbeat NAME [--project DIR] [--interval-minutes N] [--agent codex|claude|auto] [--profile NAME] [--session NAME]
+  cc-use schedule-add cron NAME [--project DIR] --cron-expr EXPR --prompt TEXT [--agent codex|claude|auto] [--profile NAME] [--search]
+  cc-use schedule-list
+  cc-use schedule-status [ID]
+  cc-use schedule-remove ID
+  cc-use schedule-run ID
+  cc-use snapshot SESSION
+  cc-use kill SESSION
+  cc-use list
+EOF
+}
+
+die() {
+  echo "cc-use: $*" >&2
+  exit 1
+}
+
+json_escape() {
+  tr '\n\r\t' '   ' | sed 's/\\/\\\\/g; s/"/\\"/g'
+}
+
+safe_name() {
+  printf '%s' "$1" | tr -c '[:alnum:]_-' '-'
+}
+
+now_epoch() {
+  date +%s
+}
+
+project_abs() {
+  (cd "$1" && pwd)
+}
+
+cc_dir() {
+  printf '%s/.cc-use' "$1"
+}
+
+state_dir() {
+  printf '%s/state' "$(cc_dir "$1")"
+}
+
+watch_dir() {
+  local project_dir="$1"
+  local session="$2"
+  printf '%s/%s' "$(state_dir "$project_dir")" "$(safe_name "$session")"
+}
+
+session_name_for_project() {
+  local project_dir="$1"
+  printf 'ccu-%s' "$(safe_name "$(basename "$project_dir")")"
+}
+
+validate_agent() {
+  case "$1" in
+    codex|claude) ;;
+    *) die "unsupported agent: $1" ;;
+  esac
+}
+
+detect_agent() {
+  if [ -n "${CODEX_THREAD_ID:-}" ] || [ -n "${CODEX_CI:-}" ] || [ -n "${CODEX_HOME:-}" ]; then
+    printf 'codex'
+  elif [ -n "${CLAUDECODE:-}" ] || [ -n "${CLAUDE_CODE_ENTRYPOINT:-}" ]; then
+    printf 'claude'
+  else
+    printf 'codex'
+  fi
+}
+
+resolve_agent() {
+  case "$1" in
+    auto|"") detect_agent ;;
+    codex|claude) printf '%s' "$1" ;;
+    *) die "unsupported agent: $1" ;;
+  esac
+}
+
+validate_line_spec() {
+  local value="$1"
+  local flag="$2"
+  local number
+  [ -n "$value" ] || die "$flag must be '-' or an integer line number"
+  [ "$value" = "-" ] && return 0
+  number="${value#-}"
+  [ -n "$number" ] || die "$flag must be '-' or an integer line number"
+  case "$number" in
+    *[!0-9]*) die "$flag must be '-' or an integer line number" ;;
+  esac
+}
+
+hash_text() {
+  if command -v openssl >/dev/null 2>&1; then
+    openssl dgst -sha256 -r | awk '{print $1}'
+  elif command -v sha256sum >/dev/null 2>&1; then
+    sha256sum | awk '{print $1}'
+  elif command -v shasum >/dev/null 2>&1; then
+    LC_ALL=C LANG=C shasum -a 256 | awk '{print $1}'
+  else
+    cksum | awk '{print $1}'
+  fi
+}
+
+normalize_screen() {
+  sed -E $'s/\x1b\\[[0-?]*[ -\\/]*[@-~]//g; s/[[:space:]]+$//'
+}
+
+tmux_has_session() {
+  tmux has-session -t "$1" >/dev/null 2>&1
+}
+
+tmux_capture() {
+  tmux capture-pane -t "$1" -p 2>/dev/null | normalize_screen
+}
+
+tmux_capture_scrollback() {
+  local session="$1"
+  local start="$2"
+  local end="$3"
+  tmux capture-pane -t "$session" -p -S "$start" -E "$end" 2>/dev/null | normalize_screen
+}
+
+tmux_send_text() {
+  local session="$1"
+  local text="$2"
+  local tmp
+  local buffer
+  tmp="$(mktemp)"
+  buffer="cc-use-send-$$"
+  printf '%s' "$text" > "$tmp"
+  tmux send-keys -t "$session" C-u
+  tmux load-buffer -b "$buffer" "$tmp"
+  tmux paste-buffer -d -b "$buffer" -t "$session"
+  rm -f "$tmp"
+  sleep 0.5
+  tmux send-keys -t "$session" Enter
+  sleep 0.7
+  tmux send-keys -t "$session" C-m
+  sleep 0.7
+  tmux send-keys -t "$session" Enter
+}
+
+build_inner_task_prompt() {
+  printf '%s' "$1"
+}
+
+build_codex_command() {
+  local profile="$1"
+  # sandbox/approval positional args retained for caller compatibility
+  # but unused. cc-use launches the inner codex fully bypassed (matches
+  # Claude Code's --dangerously-skip-permissions risk level); the older
+  # --ask-for-approval / --sandbox pair was incompatible with codex
+  # configs already set to bypass mode and caused inner-session startup
+  # failures.
+  printf '%q --no-alt-screen --dangerously-bypass-approvals-and-sandbox' "codex"
+  if [ -n "$profile" ]; then
+    printf ' --profile %q' "$profile"
+  fi
+}
+
+resolve_codex_binary() {
+  local codex_path
+  local prefix
+  local package_root
+  local native
+  codex_path="$(command -v codex 2>/dev/null || true)"
+  [ -n "$codex_path" ] || die "codex command not found"
+
+  # npm global layout: <prefix>/bin/codex -> <prefix>/lib/node_modules/@openai/codex/bin/codex.js
+  prefix="$(cd "$(dirname "$codex_path")/.." && pwd)"
+  package_root="$prefix/lib/node_modules/@openai/codex"
+  if [ -d "$package_root" ]; then
+    native="$(find "$package_root" -path '*/vendor/*/codex/codex' -type f -perm -111 2>/dev/null | head -1)"
+    if [ -n "$native" ]; then
+      printf '%s' "$native"
+      return
+    fi
+  fi
+
+  printf '%s' "$codex_path"
+}
+
+resolve_claude_binary() {
+  local claude_path
+  claude_path="$(command -v claude 2>/dev/null || true)"
+  [ -n "$claude_path" ] || die "claude command not found"
+  printf '%s' "$claude_path"
+}
+
+build_agent_command() {
+  local agent="$1"
+  local profile="$2"
+  local sandbox="$3"
+  local approval="$4"
+  validate_agent "$agent"
+  case "$agent" in
+    codex)
+      build_codex_command "$profile" "$sandbox" "$approval"
+      ;;
+    claude)
+      [ -z "$profile" ] || die "--profile is only supported for codex"
+      printf '%q --dangerously-skip-permissions' "claude"
+      ;;
+  esac
+}
+
+launch_agent_session() {
+  local session="$1"
+  local project="$2"
+  local command="$3"
+
+  tmux new-session -d -s "$session" -c "$project"
+  tmux set-option -t "$session" history-limit 50000 >/dev/null 2>&1 || true
+
+  # Start the agent from the pane's interactive shell so user shell startup files
+  # can populate PATH, provider keys, and other local environment settings.
+  sleep 1
+  tmux send-keys -t "$session" "$command" Enter
+}
+
+build_agent_exec_command() {
+  local agent="$1"
+  local profile="$2"
+  local sandbox="$3"
+  local approval="$4"
+  local project="$5"
+  local search="$6"
+  validate_agent "$agent"
+  case "$agent" in
+    codex)
+      printf '%q' "$(resolve_codex_binary)"
+      if [ -n "$profile" ]; then
+        printf ' --profile %q' "$profile"
+      fi
+      # Same simplification as build_codex_command — see comment there.
+      printf ' --dangerously-bypass-approvals-and-sandbox'
+      if [ "$search" = "true" ]; then
+        printf ' --search'
+      fi
+      printf ' exec --skip-git-repo-check --cd %q' "$project"
+      ;;
+    claude)
+      [ -z "$profile" ] || die "--profile is only supported for codex"
+      printf '%q -p' "$(resolve_claude_binary)"
+      ;;
+  esac
+}
+
+write_watch_state() {
+  local project_dir="$1"
+  local session="$2"
+  local digest="$3"
+  local silence_started="$4"
+  local next_check="$5"
+  local observations="$6"
+  local last_observation_json="${7:-null}"
+  local state
+  state="$(watch_dir "$project_dir" "$session")"
+  mkdir -p "$state"
+  cat > "$state/watch.env" <<EOF
+last_digest=$(printf '%q' "$digest")
+silence_started_at=$silence_started
+next_check_at=$next_check
+observation_count=$observations
+EOF
+  cat > "$state/watch.json" <<EOF
+{
+  "last_digest": "$(printf '%s' "$digest" | json_escape)",
+  "next_check_at": $next_check,
+  "observation_count": $observations,
+  "session": "$(printf '%s' "$session" | json_escape)",
+  "silence_started_at": $silence_started,
+  "last_observation": $last_observation_json
+}
+EOF
+}
+
+load_watch_state() {
+  local project_dir="$1"
+  local session="$2"
+  local env_file
+  env_file="$(watch_dir "$project_dir" "$session")/watch.env"
+  if [ -f "$env_file" ]; then
+    # shellcheck disable=SC1090
+    source "$env_file"
+  else
+    last_digest=""
+    silence_started_at=0
+    next_check_at=0
+    observation_count=0
+  fi
+}
+
+decision_for_stable_screen() {
+  decision_action="inspect"
+  decision_next=0
+  decision_confidence="1.0"
+  decision_reason="The screen is stable; inspect screen_path semantically before deciding whether to wait, steer, or verify."
+}
+
+watch_once() {
+  local project_dir="$1"
+  local session="$2"
+  local initial_quiet="$3"
+  local poll_interval="$4"
+  local max_observations="$5"
+  local state
+  local screens
+  local history
+  local curr
+  local digest
+  local now
+  local sleep_for
+  local observation_json
+  state="$(watch_dir "$project_dir" "$session")"
+  screens="$state/screens"
+  history="$state/watch.observations.jsonl"
+  mkdir -p "$state" "$screens"
+
+  load_watch_state "$project_dir" "$session"
+
+  while :; do
+    now="$(now_epoch)"
+    curr="$(mktemp)"
+    if ! tmux_capture "$session" > "$curr"; then
+      observation_json="{\"event\":\"session_unavailable\",\"session\":\"$(printf '%s' "$session" | json_escape)\",\"observed_at\":$now}"
+      printf '%s\n' "$observation_json"
+      printf '%s\n' "$observation_json" >> "$history"
+      rm -f "$curr"
+      return 0
+    fi
+    digest="$(hash_text < "$curr")"
+
+    if [ "$digest" != "${last_digest:-}" ]; then
+      silence_started_at="$now"
+      next_check_at=$((now + initial_quiet))
+      write_watch_state "$project_dir" "$session" "$digest" "$silence_started_at" "$next_check_at" "${observation_count:-0}" "null"
+      last_digest="$digest"
+      rm -f "$curr"
+      sleep "$poll_interval"
+      continue
+    fi
+
+    if [ "${next_check_at:-0}" -le 0 ]; then
+      next_check_at=$((now + initial_quiet))
+      write_watch_state "$project_dir" "$session" "$digest" "${silence_started_at:-$now}" "$next_check_at" "${observation_count:-0}" "null"
+    fi
+
+    if [ "$now" -ge "$next_check_at" ]; then
+      local silence
+      local screen_path
+      silence=$((now - silence_started_at))
+      observation_count=$((observation_count + 1))
+      screen_path="$screens/$(safe_name "$session")-$(printf '%04d' "$observation_count").txt"
+      cp "$curr" "$screen_path"
+      decision_for_stable_screen
+      observation_json="{\"event\":\"observation\",\"session\":\"$(printf '%s' "$session" | json_escape)\",\"observed_at\":$now,\"silence_seconds\":$silence,\"screen_digest\":\"$digest\",\"screen_path\":\"$(printf '%s' "$screen_path" | json_escape)\",\"decision\":{\"action\":\"$decision_action\",\"next_check_after_seconds\":$decision_next,\"reason\":\"$(printf '%s' "$decision_reason" | json_escape)\",\"confidence\":$decision_confidence}}"
+      next_check_at=$((now + decision_next))
+      write_watch_state "$project_dir" "$session" "$digest" "$silence_started_at" "$next_check_at" "$observation_count" "$observation_json"
+      printf '%s\n' "$observation_json"
+      printf '%s\n' "$observation_json" >> "$history"
+      rm -f "$curr"
+      [ "$max_observations" -le 0 ] || [ "$observation_count" -ge "$max_observations" ] && return 0
+    else
+      rm -f "$curr"
+    fi
+
+    now="$(now_epoch)"
+    sleep_for="$poll_interval"
+    if [ "$next_check_at" -gt "$now" ] && [ $((next_check_at - now)) -lt "$sleep_for" ]; then
+      sleep_for=$((next_check_at - now))
+      [ "$sleep_for" -le 0 ] && sleep_for=1
+    fi
+    sleep "$sleep_for"
+  done
+}
+
+cmd_delegate() {
+  local task="$1"; shift
+  local project="."
+  local session=""
+  local agent="codex"
+  local profile=""
+  local sandbox="workspace-write"
+  local approval="never"
+  local replace=false
+  local initial_quiet=30
+  local poll_interval=2
+  local max_observations=1
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      --project) project="$2"; shift 2 ;;
+      --agent) agent="$2"; shift 2 ;;
+      --session) session="$2"; shift 2 ;;
+      --profile) profile="$2"; shift 2 ;;
+      --sandbox) sandbox="$2"; shift 2 ;;
+      --approval) approval="$2"; shift 2 ;;
+      --replace) replace=true; shift ;;
+      --initial-quiet-seconds) initial_quiet="$2"; shift 2 ;;
+      --poll-interval) poll_interval="$2"; shift 2 ;;
+      --max-observations) max_observations="$2"; shift 2 ;;
+      *) die "unknown delegate option: $1" ;;
+    esac
+  done
+  project="$(project_abs "$project")"
+  validate_agent "$agent"
+  [ -n "$session" ] || session="$(session_name_for_project "$project" "$agent")"
+
+  if $replace && tmux_has_session "$session"; then
+    tmux kill-session -t "$session" >/dev/null 2>&1 || true
+  fi
+
+  if ! tmux_has_session "$session"; then
+    local command
+    command="$(build_agent_command "$agent" "$profile" "$sandbox" "$approval")"
+    launch_agent_session "$session" "$project" "$command"
+    echo "launched $session: $command"
+    sleep 5
+    tmux send-keys -t "$session" Enter
+    sleep 1
+  fi
+
+  tmux_send_text "$session" "$(build_inner_task_prompt "$task")"
+  watch_once "$project" "$session" "$initial_quiet" "$poll_interval" "$max_observations"
+}
+
+cmd_monitor() {
+  local project="."
+  local agent="codex"
+  local session=""
+  local initial_quiet=30
+  local poll_interval=2
+  local max_observations=1
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      --project) project="$2"; shift 2 ;;
+      --agent) agent="$2"; shift 2 ;;
+      --session) session="$2"; shift 2 ;;
+      --initial-quiet-seconds) initial_quiet="$2"; shift 2 ;;
+      --poll-interval) poll_interval="$2"; shift 2 ;;
+      --max-observations) max_observations="$2"; shift 2 ;;
+      *) die "unknown monitor option: $1" ;;
+    esac
+  done
+  project="$(project_abs "$project")"
+  validate_agent "$agent"
+  [ -n "$session" ] || session="$(session_name_for_project "$project" "$agent")"
+  watch_once "$project" "$session" "$initial_quiet" "$poll_interval" "$max_observations"
+}
+
+cmd_scrollback() {
+  local project="."
+  local agent="codex"
+  local session=""
+  local lines=2000
+  local start=""
+  local end="-"
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      --project) project="$2"; shift 2 ;;
+      --agent) agent="$2"; shift 2 ;;
+      --session) session="$2"; shift 2 ;;
+      --lines) lines="$2"; shift 2 ;;
+      --start) start="$2"; shift 2 ;;
+      --end) end="$2"; shift 2 ;;
+      *) die "unknown scrollback option: $1" ;;
+    esac
+  done
+  case "$lines" in
+    ''|*[!0-9]*) die "--lines must be a positive integer" ;;
+  esac
+  [ "$lines" -gt 0 ] || die "--lines must be a positive integer"
+  if [ -z "$start" ]; then
+    start="-$lines"
+  fi
+  validate_line_spec "$start" "--start"
+  validate_line_spec "$end" "--end"
+  project="$(project_abs "$project")"
+  validate_agent "$agent"
+  [ -n "$session" ] || session="$(session_name_for_project "$project" "$agent")"
+  tmux_capture_scrollback "$session" "$start" "$end"
+}
+
+cmd_project_status() {
+  local project="."
+  local agent="codex"
+  local session=""
+  local as_json=false
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      --project) project="$2"; shift 2 ;;
+      --agent) agent="$2"; shift 2 ;;
+      --session) session="$2"; shift 2 ;;
+      --json) as_json=true; shift ;;
+      *) die "unknown project-status option: $1" ;;
+    esac
+  done
+  project="$(project_abs "$project")"
+  validate_agent "$agent"
+  [ -n "$session" ] || session="$(session_name_for_project "$project" "$agent")"
+  load_watch_state "$project" "$session"
+  local now silence remaining available
+  now="$(now_epoch)"
+  if [ "${silence_started_at:-0}" -le 0 ]; then
+    silence=0
+  else
+    silence=$((now - silence_started_at))
+  fi
+  remaining=$((next_check_at - now))
+  [ "$remaining" -lt 0 ] && remaining=0
+  if tmux_has_session "$session"; then available=true; else available=false; fi
+  if $as_json; then
+    cat <<EOF
+{"config":{"project_dir":"$(printf '%s' "$project" | json_escape)","session":"$(printf '%s' "$session" | json_escape)","agent":"$(printf '%s' "$agent" | json_escape)","session_available":$available},"watch":{"observation_count":${observation_count:-0},"silence_seconds":$silence,"seconds_until_next_check":$remaining}}
+EOF
+  else
+    echo "project: $project"
+    echo "session: $session"
+    echo "agent: $agent"
+    echo "session_available: $available"
+    echo "observations: ${observation_count:-0}"
+    echo "silence_seconds: $silence"
+    echo "seconds_until_next_check: $remaining"
+  fi
+}
+
+schedule_root() {
+  printf '%s/.cc-use' "$HOME"
+}
+
+schedule_db() {
+  printf '%s/schedules.json' "$(schedule_root)"
+}
+
+schedule_log_dir() {
+  printf '%s/logs' "$(schedule_root)"
+}
+
+source_user_shell_profile() {
+  local env_file
+  local rc
+  local old_umask
+  old_umask="$(umask)"
+  umask 077
+  env_file="$(mktemp)"
+  umask "$old_umask"
+  chmod 600 "$env_file" 2>/dev/null || true
+  for rc in "$HOME/.zshrc" "$HOME/.bashrc" "$HOME/.profile"; do
+    if [ -f "$rc" ]; then
+      grep -E '^[[:space:]]*export[[:space:]]+[A-Za-z_][A-Za-z0-9_]*=' "$rc" >> "$env_file" 2>/dev/null || true
+    fi
+  done
+  if [ -s "$env_file" ]; then
+    set -a
+    # shellcheck disable=SC1090
+    source "$env_file" >/dev/null 2>&1 || true
+    set +a
+  fi
+  rm -f "$env_file"
+}
+
+schedule_init() {
+  mkdir -p "$(schedule_log_dir)"
+  if [ ! -f "$(schedule_db)" ]; then
+    printf '{"schedules":[]}\n' > "$(schedule_db)"
+    chmod 600 "$(schedule_db)" 2>/dev/null || true
+  fi
+}
+
+schedule_id() {
+  local prefix="$1"
+  if command -v openssl >/dev/null 2>&1; then
+    printf '%s-%s' "$prefix" "$(printf '%s-%s' "$prefix" "$(now_epoch)-$$" | openssl dgst -sha256 -r | awk '{print substr($1,1,8)}')"
+  else
+    printf '%s-%s' "$prefix" "$(printf '%s-%s' "$prefix" "$(now_epoch)-$$" | cksum | awk '{print $1}')"
+  fi
+}
+
+schedule_get() {
+  local id="$1"
+  jq -e --arg id "$id" '.schedules[] | select(.id == $id)' "$(schedule_db)" 2>/dev/null
+}
+
+schedule_platform() {
+  case "$(uname -s)" in
+    Darwin) printf 'macos' ;;
+    Linux) printf 'linux' ;;
+    *) printf 'unsupported' ;;
+  esac
+}
+
+script_path() {
+  local dir
+  dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  printf '%s/%s' "$dir" "$(basename "${BASH_SOURCE[0]}")"
+}
+
+launchd_plist_path() {
+  local id="$1"
+  printf '%s/Library/LaunchAgents/com.cc-use.%s.plist' "$HOME" "$id"
+}
+
+launchd_write_interval() {
+  local id="$1"
+  local interval_seconds="$2"
+  local log_file="$3"
+  local plist
+  local script
+  plist="$(launchd_plist_path "$id")"
+  script="$(script_path)"
+  mkdir -p "$HOME/Library/LaunchAgents"
+  cat > "$plist" <<PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.cc-use.${id}</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>${script}</string>
+    <string>schedule-run</string>
+    <string>${id}</string>
+  </array>
+  <key>StartInterval</key>
+  <integer>${interval_seconds}</integer>
+  <key>StandardOutPath</key>
+  <string>${log_file}</string>
+  <key>StandardErrorPath</key>
+  <string>${log_file}</string>
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>
+PLIST
+  launchctl unload "$plist" >/dev/null 2>&1 || true
+  launchctl load "$plist" >/dev/null 2>&1 || true
+}
+
+cron_field_to_plist_keys() {
+  local minute="$1"
+  local hour="$2"
+  local day="$3"
+  local month="$4"
+  local weekday="$5"
+  [ "$minute" != "*" ] && printf '    <key>Minute</key><integer>%s</integer>\n' "$minute"
+  [ "$hour" != "*" ] && printf '    <key>Hour</key><integer>%s</integer>\n' "$hour"
+  [ "$day" != "*" ] && printf '    <key>Day</key><integer>%s</integer>\n' "$day"
+  [ "$month" != "*" ] && printf '    <key>Month</key><integer>%s</integer>\n' "$month"
+  [ "$weekday" != "*" ] && printf '    <key>Weekday</key><integer>%s</integer>\n' "$weekday"
+  return 0
+}
+
+launchd_write_calendar() {
+  local id="$1"
+  local cron_expr="$2"
+  local log_file="$3"
+  local plist
+  local script
+  local minute hour day month weekday
+  plist="$(launchd_plist_path "$id")"
+  script="$(script_path)"
+  read -r minute hour day month weekday <<EOF
+$cron_expr
+EOF
+  [ -n "${weekday:-}" ] || die "cron expression must have 5 fields"
+  mkdir -p "$HOME/Library/LaunchAgents"
+  {
+    cat <<PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.cc-use.${id}</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>${script}</string>
+    <string>schedule-run</string>
+    <string>${id}</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+PLIST
+    cron_field_to_plist_keys "$minute" "$hour" "$day" "$month" "$weekday"
+    cat <<PLIST
+  </dict>
+  <key>StandardOutPath</key>
+  <string>${log_file}</string>
+  <key>StandardErrorPath</key>
+  <string>${log_file}</string>
+</dict>
+</plist>
+PLIST
+  } > "$plist"
+  launchctl unload "$plist" >/dev/null 2>&1 || true
+  launchctl load "$plist" >/dev/null 2>&1 || true
+}
+
+crontab_add() {
+  local id="$1"
+  local cron_expr="$2"
+  local marker="#cc-use:${id}"
+  local script
+  script="$(script_path)"
+  (crontab -l 2>/dev/null | grep -v "$marker" || true; printf '%s /bin/bash %q schedule-run %q %s\n' "$cron_expr" "$script" "$id" "$marker") | crontab -
+}
+
+schedule_register() {
+  local id="$1"
+  local type="$2"
+  local cron_expr="$3"
+  local interval_minutes="$4"
+  local log_file="$5"
+  case "$(schedule_platform)" in
+    macos)
+      if [ "$type" = "heartbeat" ]; then
+        launchd_write_interval "$id" "$((interval_minutes * 60))" "$log_file"
+      else
+        launchd_write_calendar "$id" "$cron_expr" "$log_file"
+      fi
+      ;;
+    linux)
+      if [ "$type" = "heartbeat" ]; then
+        crontab_add "$id" "*/${interval_minutes} * * * *"
+      else
+        crontab_add "$id" "$cron_expr"
+      fi
+      ;;
+    *) echo "cc-use: unsupported platform; schedule saved but not registered" >&2 ;;
+  esac
+}
+
+schedule_unregister() {
+  local id="$1"
+  local marker="#cc-use:${id}"
+  local plist
+  plist="$(launchd_plist_path "$id")"
+  if [ -f "$plist" ]; then
+    launchctl unload "$plist" >/dev/null 2>&1 || true
+    rm -f "$plist"
+  fi
+  if command -v crontab >/dev/null 2>&1; then
+    crontab -l 2>/dev/null | grep -v "$marker" | crontab - 2>/dev/null || true
+  fi
+}
+
+heartbeat_state_file() {
+  local project="$1"
+  printf '%s/.cc-use/heartbeat-state.json' "$project"
+}
+
+heartbeat_state_init() {
+  local file="$1"
+  mkdir -p "$(dirname "$file")"
+  if [ ! -f "$file" ]; then
+    cat > "$file" <<'JSON'
+{
+  "last_run": null,
+  "last_result": null,
+  "consecutive_ok": 0,
+  "consecutive_errors": 0,
+  "last_alert": null,
+  "last_alert_time": null,
+  "history": []
+}
+JSON
+  fi
+}
+
+heartbeat_state_update() {
+  local file="$1"
+  local result="$2"
+  local duration="$3"
+  local summary="${4:-}"
+  local now
+  local tmp
+  now="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+  tmp="$(mktemp)"
+  jq --arg now "$now" --arg result "$result" --arg summary "$summary" --argjson duration "$duration" '
+    .last_run = $now |
+    .last_result = $result |
+    if $result == "ok" then
+      .consecutive_ok += 1 | .consecutive_errors = 0
+    elif $result == "alert" then
+      .consecutive_ok = 0 | .consecutive_errors = 0 | .last_alert = $summary | .last_alert_time = $now
+    elif $result == "error" then
+      .consecutive_ok = 0 | .consecutive_errors += 1
+    else . end |
+    .history = ([{time: $now, result: $result, duration_sec: $duration, summary: $summary}] + .history | .[0:20])
+  ' "$file" > "$tmp" && mv "$tmp" "$file"
+}
+
+notify_send() {
+  local title="$1"
+  local body="$2"
+  local config
+  local notifier
+  local webhook
+  config="$(schedule_root)/config.json"
+  [ -f "$config" ] || return 0
+  notifier="$(jq -r '.default_notifier // empty' "$config" 2>/dev/null)"
+  [ -n "$notifier" ] || return 0
+  webhook="$(jq -r --arg name "$notifier" '.notifiers[]? | select(.name == $name) | .webhook_url // empty' "$config" 2>/dev/null)"
+  [ -n "$webhook" ] || return 0
+  curl -s -X POST "$webhook" -H "Content-Type: application/json" -d "$(jq -n --arg text "[$title] $body" '{msg_type:"text",content:{text:$text}}')" >/dev/null 2>&1 || true
+}
+
+log_rotate() {
+  local file="$1"
+  [ -f "$file" ] || return 0
+  [ "$(wc -c < "$file" | tr -d ' ')" -le 1048576 ] && return 0
+  [ -f "${file}.2" ] && rm -f "${file}.3"
+  [ -f "${file}.1" ] && mv "${file}.1" "${file}.2"
+  mv "$file" "${file}.1"
+}
+
+cmd_schedule_add() {
+  local type="${1:-}"
+  [ -n "$type" ] || die "schedule-add requires heartbeat or cron"
+  shift
+  case "$type" in
+    heartbeat) cmd_schedule_add_heartbeat "$@" ;;
+    cron) cmd_schedule_add_cron "$@" ;;
+    *) die "unsupported schedule type: $type" ;;
+  esac
+}
+
+cmd_schedule_add_heartbeat() {
+  local name="${1:-}"
+  [ -n "$name" ] || die "schedule-add heartbeat requires NAME"
+  shift
+  local project="."
+  local interval=60
+  local agent="auto"
+  local profile=""
+  local session=""
+  local sandbox="danger-full-access"
+  local approval="never"
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      --project) project="$2"; shift 2 ;;
+      --interval-minutes) interval="$2"; shift 2 ;;
+      --agent) agent="$2"; shift 2 ;;
+      --profile) profile="$2"; shift 2 ;;
+      --session) session="$2"; shift 2 ;;
+      --sandbox) sandbox="$2"; shift 2 ;;
+      --approval) approval="$2"; shift 2 ;;
+      *) die "unknown schedule-add heartbeat option: $1" ;;
+    esac
+  done
+  project="$(project_abs "$project")"
+  agent="$(resolve_agent "$agent")"
+  validate_agent "$agent"
+  [ -n "$session" ] || session="$(session_name_for_project "$project")"
+  case "$interval" in ''|*[!0-9]*) die "--interval-minutes must be a positive integer" ;; esac
+  [ "$interval" -gt 0 ] || die "--interval-minutes must be a positive integer"
+  schedule_init
+  local id heartbeat_file log_file now tmp
+  id="$(schedule_id hb)"
+  heartbeat_file="$(cc_dir "$project")/heartbeat.md"
+  log_file="$(schedule_log_dir)/heartbeat-${id}.log"
+  now="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+  mkdir -p "$(cc_dir "$project")"
+  if [ ! -f "$heartbeat_file" ]; then
+    cat > "$heartbeat_file" <<'MD'
+# Heartbeat Checklist
+
+Check the items below. If nothing needs attention, respond with exactly:
+
+HEARTBEAT_OK
+
+Otherwise, describe what needs attention.
+MD
+  fi
+  heartbeat_state_init "$(heartbeat_state_file "$project")"
+  tmp="$(mktemp)"
+  jq --arg id "$id" --arg type "heartbeat" --arg name "$name" --arg project "$project" \
+    --arg agent "$agent" --arg profile "$profile" --arg session "$session" --arg heartbeat_file "$heartbeat_file" \
+    --arg sandbox "$sandbox" --arg approval "$approval" --arg now "$now" --arg env_path "$PATH" \
+    --arg platform_id "com.cc-use.${id}" --argjson interval "$interval" \
+    '.schedules += [{id:$id,type:$type,name:$name,project_dir:$project,agent:$agent,profile:$profile,session_name:$session,heartbeat_file:$heartbeat_file,interval_minutes:$interval,sandbox:$sandbox,approval:$approval,enabled:true,notify:true,auto_restart:true,created_at:$now,platform_id:$platform_id,env_path:$env_path}]' \
+    "$(schedule_db)" > "$tmp" && mv "$tmp" "$(schedule_db)"
+  schedule_register "$id" "heartbeat" "" "$interval" "$log_file"
+  echo "added heartbeat schedule: $name ($id)"
+}
+
+cmd_schedule_add_cron() {
+  local name="${1:-}"
+  [ -n "$name" ] || die "schedule-add cron requires NAME"
+  shift
+  local project="."
+  local cron_expr=""
+  local prompt=""
+  local agent="auto"
+  local profile=""
+  local sandbox="danger-full-access"
+  local approval="never"
+  local search=false
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      --project) project="$2"; shift 2 ;;
+      --cron-expr) cron_expr="$2"; shift 2 ;;
+      --prompt) prompt="$2"; shift 2 ;;
+      --agent) agent="$2"; shift 2 ;;
+      --profile) profile="$2"; shift 2 ;;
+      --sandbox) sandbox="$2"; shift 2 ;;
+      --approval) approval="$2"; shift 2 ;;
+      --search) search=true; shift ;;
+      *) die "unknown schedule-add cron option: $1" ;;
+    esac
+  done
+  [ -n "$cron_expr" ] || die "--cron-expr is required"
+  [ -n "$prompt" ] || die "--prompt is required"
+  project="$(project_abs "$project")"
+  agent="$(resolve_agent "$agent")"
+  validate_agent "$agent"
+  schedule_init
+  local id log_file now tmp
+  id="$(schedule_id cr)"
+  log_file="$(schedule_log_dir)/cron-${id}.log"
+  now="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+  tmp="$(mktemp)"
+  jq --arg id "$id" --arg type "cron" --arg name "$name" --arg project "$project" \
+    --arg agent "$agent" --arg profile "$profile" --arg cron_expr "$cron_expr" --arg prompt "$prompt" \
+    --arg sandbox "$sandbox" --arg approval "$approval" --arg now "$now" --arg env_path "$PATH" \
+    --arg platform_id "com.cc-use.${id}" --argjson search "$search" \
+    '.schedules += [{id:$id,type:$type,name:$name,project_dir:$project,agent:$agent,profile:$profile,cron_expr:$cron_expr,prompt:$prompt,search:$search,sandbox:$sandbox,approval:$approval,enabled:true,notify:true,created_at:$now,platform_id:$platform_id,env_path:$env_path}]' \
+    "$(schedule_db)" > "$tmp" && mv "$tmp" "$(schedule_db)"
+  schedule_register "$id" "cron" "$cron_expr" "" "$log_file"
+  echo "added cron schedule: $name ($id)"
+}
+
+cmd_schedule_list() {
+  schedule_init
+  jq -r '.schedules[] | [.id,.type,.name,.agent,(.profile // "-"),(if .type == "heartbeat" then "every \(.interval_minutes)m" else .cron_expr end),(.enabled|tostring)] | @tsv' "$(schedule_db)" |
+    awk -F '\t' 'BEGIN{printf "%-12s %-10s %-28s %-8s %-12s %-18s %s\n","ID","TYPE","NAME","AGENT","PROFILE","SCHEDULE","ENABLED"} {printf "%-12s %-10s %-28s %-8s %-12s %-18s %s\n",$1,$2,$3,$4,$5,$6,$7}'
+}
+
+cmd_schedule_status() {
+  local id="${1:-}"
+  schedule_init
+  if [ -z "$id" ]; then
+    cmd_schedule_list
+    return 0
+  fi
+  schedule_get "$id" || die "schedule not found: $id"
+  local log_file
+  log_file="$(schedule_log_dir)/$(jq -r --arg id "$id" '.schedules[] | select(.id == $id) | if .type == "heartbeat" then "heartbeat-" + .id + ".log" else "cron-" + .id + ".log" end' "$(schedule_db)")"
+  if [ -f "$log_file" ]; then
+    echo "log: $log_file"
+    tail -10 "$log_file"
+  fi
+}
+
+cmd_schedule_remove() {
+  local id="${1:-}"
+  [ -n "$id" ] || die "schedule-remove requires ID"
+  schedule_init
+  schedule_get "$id" >/dev/null || die "schedule not found: $id"
+  schedule_unregister "$id"
+  local tmp
+  tmp="$(mktemp)"
+  jq --arg id "$id" '.schedules |= map(select(.id != $id))' "$(schedule_db)" > "$tmp" && mv "$tmp" "$(schedule_db)"
+  echo "removed schedule: $id"
+}
+
+cmd_schedule_run() {
+  local id="${1:-}"
+  [ -n "$id" ] || die "schedule-run requires ID"
+  schedule_init
+  local entry type
+  entry="$(schedule_get "$id")" || die "schedule not found: $id"
+  type="$(printf '%s' "$entry" | jq -r '.type')"
+  case "$type" in
+    heartbeat) schedule_run_heartbeat "$entry" ;;
+    cron) schedule_run_cron "$entry" ;;
+    *) die "unsupported schedule type: $type" ;;
+  esac
+}
+
+schedule_run_cron() {
+  local entry="$1"
+  local id name project agent profile sandbox approval prompt search env_path log_file start duration command output status
+  id="$(printf '%s' "$entry" | jq -r '.id')"
+  name="$(printf '%s' "$entry" | jq -r '.name')"
+  project="$(printf '%s' "$entry" | jq -r '.project_dir')"
+  agent="$(printf '%s' "$entry" | jq -r '.agent // "codex"')"
+  profile="$(printf '%s' "$entry" | jq -r '.profile // ""')"
+  sandbox="$(printf '%s' "$entry" | jq -r '.sandbox // "danger-full-access"')"
+  approval="$(printf '%s' "$entry" | jq -r '.approval // "never"')"
+  prompt="$(printf '%s' "$entry" | jq -r '.prompt')"
+  search="$(printf '%s' "$entry" | jq -r '.search // false')"
+  env_path="$(printf '%s' "$entry" | jq -r '.env_path // ""')"
+  source_user_shell_profile
+  [ -n "$env_path" ] && export PATH="$env_path"
+  log_file="$(schedule_log_dir)/cron-${id}.log"
+  log_rotate "$log_file"
+  start="$(now_epoch)"
+  {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] === Cron job start: $name ==="
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Project: $project"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Agent: $agent"
+  } >> "$log_file"
+  cd "$project" || die "cannot cd to $project"
+  set +e
+  if [ -f "$prompt" ] && [ -x "$prompt" ]; then
+    output="$("$prompt" 2>&1)"
+    status=$?
+  else
+    command="$(build_agent_exec_command "$agent" "$profile" "$sandbox" "$approval" "$project" "$search")"
+    output="$(eval "$command"' "$prompt"' 2>&1 < /dev/null)"
+    status=$?
+  fi
+  set -e
+  duration=$(( $(now_epoch) - start ))
+  {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Exit code: $status"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Duration: ${duration}s"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Output:"
+    printf '%s\n' "$output"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] === Cron job end (${duration}s, exit $status) ==="
+  } >> "$log_file"
+  if [ "$status" -ne 0 ] && [ "$(printf '%s' "$entry" | jq -r '.notify // false')" = "true" ]; then
+    notify_send "Cron Failed" "Job '$name' exited with code $status (${duration}s)"
+  fi
+  return "$status"
+}
+
+schedule_run_heartbeat() {
+  local entry="$1"
+  local id name project agent profile sandbox approval session heartbeat_file env_path log_file state_file start duration output summary result
+  id="$(printf '%s' "$entry" | jq -r '.id')"
+  name="$(printf '%s' "$entry" | jq -r '.name')"
+  project="$(printf '%s' "$entry" | jq -r '.project_dir')"
+  agent="$(printf '%s' "$entry" | jq -r '.agent // "codex"')"
+  profile="$(printf '%s' "$entry" | jq -r '.profile // ""')"
+  sandbox="$(printf '%s' "$entry" | jq -r '.sandbox // "danger-full-access"')"
+  approval="$(printf '%s' "$entry" | jq -r '.approval // "never"')"
+  session="$(printf '%s' "$entry" | jq -r '.session_name // ""')"
+  heartbeat_file="$(printf '%s' "$entry" | jq -r '.heartbeat_file')"
+  env_path="$(printf '%s' "$entry" | jq -r '.env_path // ""')"
+  source_user_shell_profile
+  [ -n "$env_path" ] && export PATH="$env_path"
+  [ -n "$session" ] || session="$(session_name_for_project "$project")"
+  log_file="$(schedule_log_dir)/heartbeat-${id}.log"
+  state_file="$(heartbeat_state_file "$project")"
+  log_rotate "$log_file"
+  heartbeat_state_init "$state_file"
+  start="$(now_epoch)"
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] === Heartbeat start: $name ===" >> "$log_file"
+  if [ ! -f "$heartbeat_file" ]; then
+    duration=$(( $(now_epoch) - start ))
+    heartbeat_state_update "$state_file" "error" "$duration" "heartbeat file not found"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] ERROR: heartbeat file not found: $heartbeat_file" >> "$log_file"
+    return 1
+  fi
+  output="$("$0" delegate "$(cat "$heartbeat_file")" --project "$project" --agent "$agent" --profile "$profile" --session "$session" --sandbox "$sandbox" --approval "$approval" --initial-quiet-seconds 30 --poll-interval 2 --max-observations 1 2>&1 || true)"
+  duration=$(( $(now_epoch) - start ))
+  printf '%s\n' "$output" >> "$log_file"
+  if "$0" scrollback --project "$project" --agent "$agent" --session "$session" --lines 200 2>/dev/null | grep -q 'HEARTBEAT_OK'; then
+    result="ok"
+    summary=""
+  else
+    result="alert"
+    summary="$("$0" scrollback --project "$project" --agent "$agent" --session "$session" --lines 60 2>/dev/null | grep -v '^$' | tail -10 | tr '\n' ' ' | head -c 200)"
+  fi
+  heartbeat_state_update "$state_file" "$result" "$duration" "$summary"
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Result: $result ${summary}" >> "$log_file"
+  if [ "$result" = "alert" ] && [ "$(printf '%s' "$entry" | jq -r '.notify // false')" = "true" ]; then
+    notify_send "Heartbeat Alert" "$summary"
+  fi
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] === Heartbeat end (${duration}s) ===" >> "$log_file"
+}
+
+main() {
+  local cmd
+  cmd="${1:-}"
+  [ -n "$cmd" ] || { usage; exit 1; }
+  shift || true
+
+  case "$cmd" in
+    delegate)
+      [ "$#" -ge 1 ] || die "delegate requires TASK"
+      task="$1"; shift
+      cmd_delegate "$task" "$@"
+      ;;
+    monitor)
+      cmd_monitor "$@"
+      ;;
+    project-status)
+      cmd_project_status "$@"
+      ;;
+    scrollback)
+      cmd_scrollback "$@"
+      ;;
+    schedule-add)
+      cmd_schedule_add "$@"
+      ;;
+    schedule-list)
+      cmd_schedule_list "$@"
+      ;;
+    schedule-status)
+      cmd_schedule_status "$@"
+      ;;
+    schedule-remove)
+      cmd_schedule_remove "$@"
+      ;;
+    schedule-run)
+      cmd_schedule_run "$@"
+      ;;
+    snapshot)
+      [ "$#" -eq 1 ] || die "snapshot requires SESSION"
+      tmux_capture "$1"
+      ;;
+    kill)
+      [ "$#" -eq 1 ] || die "kill requires SESSION"
+      tmux kill-session -t "$1" >/dev/null 2>&1 || true
+      ;;
+    list)
+      tmux list-sessions -F "#{session_name}" 2>/dev/null || true
+      ;;
+    *)
+      usage
+      exit 1
+      ;;
+  esac
+}
+
+if [ "${BASH_SOURCE[0]}" = "$0" ]; then
+  main "$@"
+fi

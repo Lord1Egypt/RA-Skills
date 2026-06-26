@@ -1,35 +1,38 @@
 ---
-name: "workflow-patterns"
-description: "Indexed by skills.sh from wshobson/agents"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "wshobson"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/wshobson/agents/workflow-patterns"
-sourceUrl: "https://skills.sh/wshobson/agents/workflow-patterns"
+name: workflow-patterns
+description: Use this skill when implementing tasks according to Conductor's TDD workflow, handling phase checkpoints, managing git commits for tasks, or understanding the verification protocol.
+version: 1.0.0
 ---
 
-# workflow-patterns
+# Workflow Patterns
 
-> Indexed by skills.sh from wshobson/agents
+Guide for implementing tasks using Conductor's TDD workflow, managing phase checkpoints, handling git commits, and executing the verification protocol that ensures quality throughout implementation.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** wshobson
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/wshobson/agents/workflow-patterns`
-- **Source URL:** [https://skills.sh/wshobson/agents/workflow-patterns](https://skills.sh/wshobson/agents/workflow-patterns)
+## When to Use This Skill
 
-## Overview
+- Implementing tasks from a track's plan.md
+- Following TDD red-green-refactor cycle
+- Completing phase checkpoints
+- Managing git commits and notes
+- Understanding quality assurance gates
+- Handling verification protocols
+- Recording progress in plan files
 
+## Detailed patterns and worked examples
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/wshobson/agents/workflow-patterns
-```
+Detailed pattern documentation lives in `references/details.md`. Read that file when the navigation tier above is insufficient.
+
+## Best Practices
+
+1. **Never skip RED**: Always write failing tests first
+2. **Small commits**: One logical change per commit
+3. **Immediate updates**: Update plan.md right after task completion
+4. **Wait for approval**: Never skip checkpoint verification
+5. **Rich git notes**: Include context that helps future understanding
+6. **Coverage discipline**: Don't accept coverage below target
+7. **Quality gates**: Check all gates before marking complete
+8. **Sequential phases**: Complete phases in order
+9. **Document deviations**: Note any changes from original plan
+10. **Clean state**: Each commit should leave code in working state
+11. **Fast feedback**: Run relevant tests frequently during development
+12. **Clear blockers**: Address blockers promptly, don't work around them

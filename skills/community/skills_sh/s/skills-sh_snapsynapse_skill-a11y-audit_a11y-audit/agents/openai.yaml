@@ -1,0 +1,4 @@
+interface:
+  display_name: "Accessibility Audit"
+  short_description: "Audit web apps for WCAG issues"
+  default_prompt: "Use $a11y-audit to audit this web project for accessibility issues and produce a WCAG-mapped report."

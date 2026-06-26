@@ -1,0 +1,6 @@
+{
+  "cmake_exe": "cmake",
+  "toolchain_prefix": "arm-none-eabi-",
+  "toolchain_path": "",
+  "operation_mode": 1
+}

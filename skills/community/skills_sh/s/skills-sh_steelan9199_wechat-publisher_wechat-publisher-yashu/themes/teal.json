@@ -1,0 +1,107 @@
+{
+  "name": "青色主题",
+  "description": "清新青色主题，现代简约风格",
+
+  "decorations": {
+    "h2Prefix": "◇ ",
+    "h2Suffix": " ◇",
+    "h3Prefix": "· ",
+    "h3Suffix": " ·",
+    "listSymbol": "▪",
+    "hrSymbol": "◇ · ◇"
+  },
+
+  "base": {
+    "fontFamily": "-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif",
+    "sizes": {
+      "content": "15px",
+      "code": "13px"
+    },
+    "spacing": {
+      "h2Bottom": "16px",
+      "h3Bottom": "14px",
+      "contentBottom": "0px"
+    },
+    "defaultTextColor": "#374151"
+  },
+
+  "colors": {
+    "primary": "#14B8A6",
+    "secondary": "#14B8A6",
+    "accent": "#0D9488",
+    "text": "#374151",
+    "markBg": "#F0FDFA",
+    "markText": "#0F766E",
+    "codeBg": "#F0FDFA",
+    "codeText": "#115E59",
+    "quoteBg": "#F9FAFB",
+    "quoteText": "#4B5563",
+    "listColor": "#14B8A6"
+  },
+
+  "codeBlock": {
+    "outerBg": "#FFFFFF",
+    "border": "#99F6E4",
+    "headerBg": "#14B8A6",
+    "headerText": "#FFFFFF",
+    "contentBg": "#1F2937",
+    "contentText": "#E5E7EB",
+    "dots": {
+      "red": "#FF5F56",
+      "yellow": "#FFBD2E",
+      "green": "#27C93F"
+    }
+  },
+
+  "blockquoteAlert": {
+    "note": {
+      "barColor": "#14B8A6",
+      "bgColor": "#F0FDFA"
+    },
+    "tip": {
+      "barColor": "#10B981",
+      "bgColor": "#ECFDF5"
+    },
+    "important": {
+      "barColor": "#8B5CF6",
+      "bgColor": "#F5F3FF"
+    },
+    "warning": {
+      "barColor": "#F59E0B",
+      "bgColor": "#FFFBEB"
+    },
+    "caution": {
+      "barColor": "#EF4444",
+      "bgColor": "#FEF2F2"
+    }
+  },
+
+  "blockquoteNormal": {
+    "barColor": "#14B8A6",
+    "bgColor": "#F9FAFB"
+  },
+
+  "hr": {
+    "borderColor": "#99F6E4"
+  },
+
+  "headingSpan": {
+    "backgroundColor": "#F0FDFA",
+    "color": "#0D9488"
+  },
+
+  "settings": {
+    "h2": { "size": "18px" },
+    "h3": { "size": "17px" },
+    "lineHeight": "1.75",
+    "borderWidth": "3px",
+    "borderPadding": "8px",
+    "codePadding": "2px 6px",
+    "codeRadius": "4px",
+    "quotePadding": "12px 16px",
+    "listPadding": "20px",
+    "codeBlockRadius": "8px",
+    "codeBlockHeaderPadding": "8px 12px",
+    "codeBlockLineHeight": "1.6"
+  }
+}

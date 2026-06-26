@@ -1,0 +1,26 @@
+#!/bin/bash
+# Proactive agent upgrade script
+
+TARGET="${1:-}"
+if [ -z "$TARGET" ]; then
+    echo "Usage: upgrade <skill|capability>"
+    exit 1
+fi
+
+echo "🔄 Upgrading: $TARGET"
+echo ""
+
+# Clone or update skill from clawhub
+if [ -d "/home/google/clawd/skills/$TARGET" ]; then
+    echo "📦 Skill already exists, updating..."
+    cd "/home/google/clawd/skills/$TARGET"
+    git pull 2>/dev/null || echo "No git repo, manual update needed"
+else
+    echo "📥 Attempting to install from clawhub..."
+    echo "Note: clawhub not available, manual install required"
+fi
+
+echo ""
+echo "✅ Upgrade complete"
+echo ""
+echo "💡 Tip: The agent can now use '$TARGET' for relevant tasks"

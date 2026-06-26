@@ -1,35 +1,49 @@
 ---
-name: "local-whisper"
-description: "Indexed by skills.sh from thinkfleetai/thinkfleet-engine"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "thinkfleetai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/thinkfleetai/thinkfleet-engine/local-whisper"
-sourceUrl: "https://skills.sh/thinkfleetai/thinkfleet-engine/local-whisper"
+name: local-whisper
+description: Local speech-to-text using OpenAI Whisper. Runs fully offline after model download. High quality transcription with multiple model sizes.
+metadata: {"thinkfleetbot":{"emoji":"🎙️","requires":{"bins":["ffmpeg"]}}}
 ---
 
-# local-whisper
+# Local Whisper STT
 
-> Indexed by skills.sh from thinkfleetai/thinkfleet-engine
+Local speech-to-text using OpenAI's Whisper. **Fully offline** after initial model download.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** thinkfleetai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/thinkfleetai/thinkfleet-engine/local-whisper`
-- **Source URL:** [https://skills.sh/thinkfleetai/thinkfleet-engine/local-whisper](https://skills.sh/thinkfleetai/thinkfleet-engine/local-whisper)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/thinkfleetai/thinkfleet-engine/local-whisper
+# Basic
+~/.thinkfleetbot/skills/local-whisper/scripts/local-whisper audio.wav
+
+# Better model
+~/.thinkfleetbot/skills/local-whisper/scripts/local-whisper audio.wav --model turbo
+
+# With timestamps
+~/.thinkfleetbot/skills/local-whisper/scripts/local-whisper audio.wav --timestamps --json
+```
+
+## Models
+
+| Model | Size | Notes |
+|-------|------|-------|
+| `tiny` | 39M | Fastest |
+| `base` | 74M | **Default** |
+| `small` | 244M | Good balance |
+| `turbo` | 809M | Best speed/quality |
+| `large-v3` | 1.5GB | Maximum accuracy |
+
+## Options
+
+- `--model/-m` — Model size (default: base)
+- `--language/-l` — Language code (auto-detect if omitted)
+- `--timestamps/-t` — Include word timestamps
+- `--json/-j` — JSON output
+- `--quiet/-q` — Suppress progress
+
+## Setup
+
+Uses uv-managed venv at `.venv/`. To reinstall:
+```bash
+cd ~/.thinkfleetbot/skills/local-whisper
+uv venv .venv --python 3.12
+uv pip install --python .venv/bin/python click openai-whisper torch --index-url https://download.pytorch.org/whl/cpu
 ```

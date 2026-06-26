@@ -1,35 +1,41 @@
 ---
-name: "rust-async-patterns"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/rust-async-patterns"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/rust-async-patterns"
+name: rust-async-patterns
+description: "Master Rust async programming with Tokio, async traits, error handling, and concurrent patterns. Use when building async Rust applications, implementing concurrent systems, or debugging async code."
+risk: safe
+source: community
+date_added: "2026-02-27"
 ---
 
-# rust-async-patterns
+# Rust Async Patterns
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
+Production patterns for async Rust programming with Tokio runtime, including tasks, channels, streams, and error handling.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/rust-async-patterns`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/rust-async-patterns](https://skills.sh/sickn33/antigravity-awesome-skills/rust-async-patterns)
+## Use this skill when
 
-## Overview
+- Building async Rust applications
+- Implementing concurrent network services
+- Using Tokio for async I/O
+- Handling async errors properly
+- Debugging async code issues
+- Optimizing async performance
 
+## Do not use this skill when
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/rust-async-patterns
-```
+- The task is unrelated to rust async patterns
+- You need a different domain or tool outside this scope
+
+## Instructions
+
+- Clarify goals, constraints, and required inputs.
+- Apply relevant best practices and validate outcomes.
+- Provide actionable steps and verification.
+- If detailed examples are required, open `resources/implementation-playbook.md`.
+
+## Resources
+
+- `resources/implementation-playbook.md` for detailed patterns and examples.
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

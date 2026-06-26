@@ -1,0 +1,42 @@
+{
+  "source": "fixture",
+  "runtimeUrl": "https://example.com",
+  "totalPages": 5,
+  "selectedPages": 3,
+  "coverageRatio": "3 template groups, 3 pages selected",
+  "fingerprintedGroups": 0,
+  "apiManifest": null,
+  "groups": [
+    {
+      "pattern": "docs/*",
+      "count": 2,
+      "selected": [
+        "https://example.com/docs/guide-a",
+        "https://example.com/docs/guide-b"
+      ],
+      "reason": "fixture selection"
+    },
+    {
+      "pattern": "/",
+      "count": 1,
+      "selected": [
+        "https://example.com/"
+      ],
+      "reason": "fixture selection"
+    },
+    {
+      "pattern": "blog/*",
+      "count": 2,
+      "selected": [
+        "https://example.com/blog/post-a",
+        "https://example.com/blog/post-b"
+      ],
+      "reason": "fixture previous baseline"
+    }
+  ],
+  "scanList": [
+    "https://example.com/",
+    "https://example.com/docs/guide-a",
+    "https://example.com/docs/guide-b"
+  ]
+}

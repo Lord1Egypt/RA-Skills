@@ -1,0 +1,321 @@
+[
+  {
+    "id": "eval-1",
+    "prompt": "Run an accessibility audit on this project. The expected dev server URL is http://localhost:5173. Scan the homepage, about page, and contact page. Use axe-core and Lighthouse if available. If the app is actually running on a different local URL, use the live URL and note the mismatch in the report. Generate a markdown report. Do not create issue tracker tickets.",
+    "expectations": {
+      "structural": [
+        "Markdown report generated with all required sections",
+        "Executive summary includes either Lighthouse results or an explicit skip reason, plus axe violation counts",
+        "WCAG 2.1 AA compliance matrix present with status per criterion",
+        "Manual testing checklist generated with items organized by testing method",
+        "Remediation priority table present with P0-P3 classifications",
+        "Methodology section records tool versions and pages scanned"
+      ],
+      "behavioral": [
+        "Environment discovery ran first and identified tech stack",
+        "All three specified pages scanned (not more, not fewer)",
+        "axe-core violations grouped by WCAG criterion in results",
+        "If the expected URL was wrong, the live URL was used and the mismatch was recorded",
+        "No issue tracker tickets created (as instructed)",
+        "User was not asked about Issue creation"
+      ]
+    },
+    "results": {
+      "status": "pass",
+      "date": "2026-03-03",
+      "notes": [
+        "Run in Codex against PAICE2",
+        "Live URL reconciled from http://localhost:5173 to http://127.0.0.1:5137",
+        "axe-core found 76 total instances across 5 rule families",
+        "Lighthouse CLI unavailable; skip reason recorded in the report"
+      ]
+    }
+  },
+  {
+    "id": "eval-2",
+    "prompt": "Run an accessibility audit against http://localhost:5173. Scan all priority-1 routes from .a11y-audit/PROJECT_CONTEXT.md. Map findings to both WCAG 2.1 AA and CAN-ASC-6.2. Create GitHub Issues for all P0 and P1 findings. Use the labels defined in .a11y-audit/PROJECT_CONTEXT.md.",
+    "expectations": {
+      "structural": [
+        "Report includes both WCAG 2.1 AA and CAN-ASC-6.2 compliance sections",
+        "GitHub Issues created with correct PAICE label scheme",
+        "Issues include deduplication keys in body as HTML comments",
+        "Remediation table maps findings to both standards"
+      ],
+      "behavioral": [
+        ".a11y-audit/PROJECT_CONTEXT.md read and used for label scheme, routes, and standards",
+        "CAN-ASC-6.2 mapping references existing conformance plan documentation",
+        "Deduplication check ran before issue creation",
+        "User was asked for confirmation before creating issues",
+        "Only priority-1 routes from context file were scanned"
+      ]
+    },
+    "results": {
+      "status": "partial",
+      "date": "2026-04-23",
+      "notes": [
+        "Mitigated locally with fixture inputs under a11y-audit/evals/fixtures/eval-2",
+        "plan-issues.js now reads workspace context, applies P1 thresholding, attaches configured priority/status/WCAG labels, records additional standards, and skips simulated duplicates from an existing-key index",
+        "Fixture output produced one duplicate P1 color-contrast ticket for / and one create P0 label ticket for /checkout, matching context-driven expectations",
+        "Attempted live GitHub validation on 2026-04-23, but the GitHub app returned 403 Resource not accessible by integration and local gh auth status reported an invalid token",
+        "The remaining unvalidated portion is the authenticated live GitHub issue creation step itself, pending repo write access or refreshed CLI credentials"
+      ]
+    }
+  },
+  {
+    "id": "eval-3",
+    "prompt": "Run a quick accessibility check on http://localhost:8080. This is a plain HTML site with no framework. Just run axe-core on the index page and give me a summary. No report file needed.",
+    "expectations": {
+      "structural": [
+        "No markdown report file generated",
+        "Summary provided in conversation with violation counts",
+        "axe-core results included with severity breakdown"
+      ],
+      "behavioral": [
+        "Environment discovery detected plain HTML (no framework)",
+        "Only one page scanned (index)",
+        "No issue tracker tickets created",
+        "Skill adapted to minimal scope without running full six-phase pipeline",
+        "No Lighthouse run required for quick check"
+      ]
+    },
+    "results": {
+      "status": "pass",
+      "date": "2026-05-19",
+      "notes": [
+        "Validated with deterministic fixture inputs under a11y-audit/evals/fixtures/eval-3",
+        "Quick-scan eval uses prebuilt scan-shaped JSON for a single plain HTML page and does not generate a markdown report",
+        "Fixture summary reports one critical button-name violation and a skipped Lighthouse status because quick checks do not require Lighthouse"
+      ]
+    }
+  },
+  {
+    "id": "eval-4",
+    "prompt": "Run an accessibility audit where the app is live locally and axe can run, but Lighthouse is not installed. Generate the markdown report anyway and record the exact skip reason in both the executive summary and methodology.",
+    "expectations": {
+      "structural": [
+        "Markdown report still generated",
+        "Executive summary explicitly states the Lighthouse skip reason",
+        "Methodology explicitly states the Lighthouse skip reason",
+        "No invented Lighthouse score appears anywhere in the output"
+      ],
+      "behavioral": [
+        "axe-core scan still runs successfully",
+        "The run is treated as a valid degraded audit, not a hard failure",
+        "The JSON output uses a skipped Lighthouse status when JSON mode is enabled"
+      ]
+    },
+    "results": {
+      "status": "pass",
+      "date": "2026-03-03",
+      "notes": [
+        "Validated in Codex against PAICE2 using the bundled scripts/scan.js helper",
+        "Markdown report generated at docs/accessibility/audits/audit-2026-03-03-codex-eval-4-5.md",
+        "Executive summary and methodology both recorded the Lighthouse skip reason explicitly",
+        "No Lighthouse score was invented in the output",
+        "Added deterministic fixture coverage under a11y-audit/evals/fixtures/eval-4 to assert skipped Lighthouse markdown and JSON contract behavior"
+      ]
+    }
+  },
+  {
+    "id": "eval-5",
+    "prompt": "Run an accessibility audit where the expected base URL in the prompt or project context is wrong, but a different local URL is actually serving the app. Reconcile to the live URL, update the workspace-local PROJECT_CONTEXT base_url, and document the mismatch in the report.",
+    "expectations": {
+      "structural": [
+        "Report methodology records both expected and runtime URLs",
+        "Generated report uses findings from the actual live app",
+        "Workspace-local PROJECT_CONTEXT.md reflects the working base_url after the run"
+      ],
+      "behavioral": [
+        "The run does not fail just because the expected port was wrong",
+        "The live URL is verified before scanning",
+        "The mismatch is treated as runtime reconciliation, not silent substitution"
+      ]
+    },
+    "results": {
+      "status": "pass",
+      "date": "2026-03-03",
+      "notes": [
+        "Validated in Codex against PAICE2 with wrong expected URL restored first",
+        "Expected URL http://localhost:5173 reconciled to live URL http://127.0.0.1:5137",
+        "Workspace-local .a11y-audit/PROJECT_CONTEXT.md base_url updated to the working URL after verification",
+        "Methodology recorded both expected and runtime URLs explicitly"
+      ]
+    }
+  },
+  {
+    "id": "eval-6",
+    "prompt": "Run an accessibility audit in a workspace that does not yet contain .a11y-audit/PROJECT_CONTEXT.md. Create the workspace-local context using the canonical template, persist the chosen output mode, and continue the audit.",
+    "expectations": {
+      "structural": [
+        "A new .a11y-audit/PROJECT_CONTEXT.md file is created",
+        "The created file matches the canonical field contract",
+        "The selected output mode is persisted in the new file"
+      ],
+      "behavioral": [
+        "The skill uses scripts/bootstrap-context.js or equivalent logic instead of inventing a random file shape",
+        "Project-specific mutable state is stored in the workspace, not the skill install directory",
+        "The audit continues after context creation rather than stopping there"
+      ]
+    },
+    "results": {
+      "status": "pass",
+      "date": "2026-03-03",
+      "notes": [
+        "Validated via scripts/bootstrap-context.js in /tmp/a11y-audit-eval6",
+        "Created .a11y-audit/PROJECT_CONTEXT.md with canonical sections and persisted output_mode markdown+json",
+        "Workspace-local mutable state stayed in the target workspace, not the skill directory"
+      ]
+    }
+  },
+  {
+    "id": "eval-7",
+    "prompt": "Run an accessibility audit in issue mode when the browser automation dependency is missing or broken. Do not fabricate scan results. Explain the blocker clearly and produce the highest-value partial output the workspace supports.",
+    "expectations": {
+      "structural": [
+        "No fake automated findings appear in the report",
+        "The blocker is summarized clearly",
+        "Any partial output is labeled as partial rather than complete"
+      ],
+      "behavioral": [
+        "The missing browser automation dependency is detected before scan execution",
+        "The run degrades cleanly instead of crashing silently",
+        "The report distinguishes between unavailable automation and manual follow-up work"
+      ]
+    },
+    "results": {
+      "status": "pass",
+      "date": "2026-03-03",
+      "notes": [
+        "Validated against a temp workspace containing axe-core but no puppeteer",
+        "scripts/scan.js failed cleanly with: puppeteer not found in workspace dependency roots",
+        "The failure mode is explicit and non-silent, which satisfies the blocker-detection requirement"
+      ]
+    }
+  },
+  {
+    "id": "eval-8",
+    "prompt": "Run an accessibility audit in markdown+issues mode where matching issue tickets already exist for some findings. Verify deduplication before issue creation and report which findings were skipped as duplicates.",
+    "expectations": {
+      "structural": [
+        "Issue section distinguishes newly created tickets from existing duplicates",
+        "Deduplication keys are included in new tickets or equivalent tracker fields",
+        "No duplicate tickets are created for findings that already exist"
+      ],
+      "behavioral": [
+        "Existing tickets are searched before creation",
+        "Deduplication is based on stable finding/page identity rather than title text alone",
+        "The user is still asked for confirmation before any new issue creation"
+      ]
+    },
+    "results": {
+      "status": "partial",
+      "date": "2026-03-03",
+      "notes": [
+        "Non-destructive issue planning validated via scripts/plan-issues.js against PAICE2 helper output",
+        "Generated /tmp/a11y-issue-plan.md with stable deduplication keys and threshold filtering",
+        "Live tracker-side deduplication remains unvalidated until a real authenticated issue creation run is performed"
+      ]
+    }
+  },
+  {
+    "id": "eval-9",
+    "prompt": "Validate template-aware discovery against a site whose robots.txt or sitemap index points to an absolute sitemap URL on a different host or subdomain. Preserve absolute sitemap locations exactly as published, follow nested sitemap indexes without rewriting them onto the runtime base origin, and only normalize relative locations against the source sitemap URL. Generate the discovery JSON and confirm the selected scan list still targets the intended site.",
+    "expectations": {
+      "structural": [
+        "Discovery output records the discovered source and selected scan list",
+        "Selected URLs remain on the intended published origins instead of being rewritten to the runtime base origin",
+        "Nested sitemap index entries are followed successfully when they use absolute URLs"
+      ],
+      "behavioral": [
+        "Absolute sitemap URLs are preserved as-is",
+        "Relative sitemap URLs are resolved relative to the referring sitemap document rather than blindly against the runtime base origin",
+        "Discovery does not silently crawl a different site tree when sitemap hosting differs from the runtime URL"
+      ]
+    },
+    "results": {
+      "status": "pass",
+      "date": "2026-04-23",
+      "notes": [
+        "Validated locally with mocked HTTP responses after making discover.js importable without changing CLI behavior",
+        "Discovery preserved the robots.txt sitemap URL on http://cdn.test and followed a nested sitemap index without rewriting entries onto the runtime origin",
+        "Generated scanList remained on the published sitemap host: http://cdn.test/docs/a and http://cdn.test/docs/b"
+      ]
+    }
+  },
+  {
+    "id": "eval-10",
+    "prompt": "Run discovery twice against the same large sitemap-backed site with DOM fingerprinting enabled and no content changes between runs. The selected representative pages, group ordering, and discovery JSON should be identical across both runs so trend tracking and CI diffs remain stable.",
+    "expectations": {
+      "structural": [
+        "The two discovery JSON outputs are byte-for-byte equivalent or semantically identical after stable serialization",
+        "Each template group reports the same selected representative pages in both runs",
+        "The scan list ordering is stable between runs"
+      ],
+      "behavioral": [
+        "Representative sampling is deterministic for the same input site",
+        "DOM fingerprinting does not rely on unseeded randomness",
+        "Repeated discovery runs do not introduce noisy diffs that would invalidate delta tracking"
+      ]
+    },
+    "results": {
+      "status": "pass",
+      "date": "2026-04-23",
+      "notes": [
+        "Validated locally with mocked sitemap and page responses across repeated discover() runs",
+        "Two consecutive discovery runs produced identical JSON output and the same scanList ordering",
+        "Representative selection is now deterministic because candidate generation uses stable spread indexes instead of unseeded randomness"
+      ]
+    }
+  },
+  {
+    "id": "eval-11",
+    "prompt": "Generate a report with --previous where a rule keeps the same total instance count but moves to different pages or template groups between audits. The delta output should flag the rule as changed rather than unchanged, and the JSON delta should identify the page or route movement clearly enough for remediation triage.",
+    "expectations": {
+      "structural": [
+        "Markdown delta output marks the rule as changed when its affected pages differ between audits",
+        "JSON delta output includes page-aware or route-aware change information, not just aggregate instance counts",
+        "Unchanged classification is reserved for rules whose counts and affected coverage are both stable"
+      ],
+      "behavioral": [
+        "Delta comparison considers affected pages or route groups in addition to rule id",
+        "A regression that moves between templates is surfaced explicitly even when totals match",
+        "The report remains useful for template-level remediation planning after page movement"
+      ]
+    },
+    "results": {
+      "status": "pass",
+      "date": "2026-04-23",
+      "notes": [
+        "Validated locally with fixture inputs under a11y-audit/evals/fixtures/eval-11",
+        "report.js now marks color-contrast as changed when it moves from blog/* pages to docs/* pages with the same total instance count",
+        "Generated markdown shows color-contrast under the Changed section and keeps region under Unchanged",
+        "Generated JSON delta.changed includes previousPages, currentPages, addedPages, and removedPages for page-aware triage"
+      ]
+    }
+  },
+  {
+    "id": "eval-12",
+    "prompt": "Run discovery against a site whose robots.txt points to a sitemap on a different origin without explicitly allowing cross-origin sitemap traversal. Discovery should not fetch or fingerprint the cross-origin sitemap, should disclose the blocked origin, and should continue with same-origin discovery when available.",
+    "expectations": {
+      "structural": [
+        "Discovery output records the origin policy",
+        "Discovery output records any blocked cross-origin fetches",
+        "The selected scan list remains same-origin unless cross-origin sitemap traversal is explicitly enabled"
+      ],
+      "behavioral": [
+        "Cross-origin sitemap traversal is opt-in",
+        "Blocked cross-origin targets are disclosed rather than silently ignored",
+        "Same-origin sitemap discovery still proceeds after blocking the cross-origin sitemap"
+      ]
+    },
+    "results": {
+      "status": "pass",
+      "date": "2026-05-31",
+      "notes": [
+        "Validated locally with mocked HTTP responses under a11y-audit/evals/fixtures/eval-12",
+        "Default discovery blocked http://cdn.test/sitemap.xml from robots.txt and recorded the blocked origin and reason",
+        "Discovery continued with http://base.test/sitemap.xml and selected only same-origin scan targets"
+      ]
+    }
+  }
+]

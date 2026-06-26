@@ -1,0 +1,8 @@
+{
+  "exe": "openocd",
+  "scripts_dir": "",
+  "gdb_port": 3333,
+  "telnet_port": 4444,
+  "gdb_exe": "",
+  "operation_mode": 1
+}

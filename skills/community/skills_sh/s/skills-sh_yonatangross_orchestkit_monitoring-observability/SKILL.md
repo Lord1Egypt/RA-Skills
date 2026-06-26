@@ -1,35 +1,151 @@
 ---
-name: "monitoring-observability"
-description: "Indexed by skills.sh from yonatangross/orchestkit"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "yonatangross"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/yonatangross/orchestkit/monitoring-observability"
-sourceUrl: "https://skills.sh/yonatangross/orchestkit/monitoring-observability"
+name: monitoring-observability
+license: MIT
+compatibility: "Claude Code 2.1.183+."
+description: Monitoring and observability patterns for Prometheus metrics, Grafana dashboards, Langfuse v4 LLM tracing (as_type, score_current_span, should_export_span, LangfuseMedia), and drift detection. Use when adding logging, metrics, distributed tracing, LLM cost tracking, or quality drift monitoring.
+tags: [monitoring, observability, prometheus, grafana, langfuse, tracing, metrics, drift-detection, logging]
+context: fork
+version: 3.0.0
+author: OrchestKit
+user-invocable: false
+disable-model-invocation: true
+complexity: medium
+persuasion-type: reference
+targets:
+  - library: langfuse
+    version: ">=4.0.0"
+metadata:
+  category: document-asset-creation
+allowed-tools:
+  - Read
+  - Glob
+  - Grep
+  - WebFetch
+  - WebSearch
+path_patterns: ["**/metrics/**", "**/tracing/**", "prometheus.*", "grafana/**"]
 ---
 
-# monitoring-observability
+# Monitoring & Observability
 
-> Indexed by skills.sh from yonatangross/orchestkit
+Comprehensive patterns for infrastructure monitoring, LLM observability, and quality drift detection. Each category has individual rule files in `rules/` loaded on-demand.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** yonatangross
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/yonatangross/orchestkit/monitoring-observability`
-- **Source URL:** [https://skills.sh/yonatangross/orchestkit/monitoring-observability](https://skills.sh/yonatangross/orchestkit/monitoring-observability)
+## Quick Reference
 
-## Overview
+| Category | Rules | Impact | When to Use |
+|----------|-------|--------|-------------|
+| [Infrastructure Monitoring](#infrastructure-monitoring) | 3 | CRITICAL | Prometheus metrics, Grafana dashboards, alerting rules |
+| [LLM Observability](#llm-observability) | 3 | HIGH | Langfuse tracing, cost tracking, evaluation scoring |
+| [Drift Detection](#drift-detection) | 3 | HIGH | Statistical drift, quality regression, drift alerting |
+| [Silent Failures](#silent-failures) | 3 | HIGH | Tool skipping, quality degradation, loop/token spike alerting |
 
+**Total: 12 rules across 4 categories**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/yonatangross/orchestkit/monitoring-observability
+## Quick Start
+
+```python
+# Prometheus metrics with RED method
+from prometheus_client import Counter, Histogram
+
+http_requests = Counter('http_requests_total', 'Total requests', ['method', 'endpoint', 'status'])
+http_duration = Histogram('http_request_duration_seconds', 'Request latency',
+    buckets=[0.01, 0.05, 0.1, 0.5, 1, 2, 5])
 ```
+
+```python
+# Langfuse v4 LLM tracing — semantic as_type + inline scoring
+from langfuse import observe, get_client
+
+@observe(as_type="generation", name="analyze_content")
+async def analyze_content(content: str):
+    get_client().update_current_trace(
+        user_id="user_123", session_id="session_abc",
+        tags=["production", "orchestkit"],
+    )
+    result = await llm.generate(content)
+    get_client().score_current_span(name="response_quality", value=0.85)
+    return result
+```
+
+```python
+# PSI drift detection
+import numpy as np
+
+psi_score = calculate_psi(baseline_scores, current_scores)
+if psi_score >= 0.25:
+    alert("Significant quality drift detected!")
+```
+
+## Infrastructure Monitoring
+
+Prometheus metrics, Grafana dashboards, and alerting for application health.
+
+| Rule | File | Key Pattern |
+|------|------|-------------|
+| Prometheus Metrics | `rules/monitoring-prometheus.md` | RED method, counters, histograms, cardinality |
+| Grafana Dashboards | `rules/monitoring-grafana.md` | Golden Signals, SLO/SLI, health checks |
+| Alerting Rules | `rules/monitoring-alerting.md` | Severity levels, grouping, escalation, fatigue prevention |
+
+> **CC 2.1.161 — OTEL resource attributes as metric labels:** `OTEL_RESOURCE_ATTRIBUTES` values are now attached as labels on metric datapoints, so usage metrics can be sliced by custom dimensions (team, repo, environment). Add label selectors to dashboards for multi-tenant / per-team cost and usage tracking.
+
+## LLM Observability
+
+Langfuse-based tracing, cost tracking, and evaluation for LLM applications.
+
+| Rule | File | Key Pattern |
+|------|------|-------------|
+| Langfuse Traces | `rules/llm-langfuse-traces.md` | @observe decorator, OTEL spans, agent graphs |
+| Cost Tracking | `rules/llm-cost-tracking.md` | Token usage, spend alerts, Metrics API v2 |
+| Eval Scoring | `rules/llm-eval-scoring.md` | Custom scores, evaluator tracing, quality monitoring |
+
+## Drift Detection
+
+Statistical and quality drift detection for production LLM systems.
+
+| Rule | File | Key Pattern |
+|------|------|-------------|
+| Statistical Drift | `rules/drift-statistical.md` | PSI, KS test, KL divergence, EWMA |
+| Quality Drift | `rules/drift-quality.md` | Score regression, baseline comparison, canary prompts |
+| Drift Alerting | `rules/drift-alerting.md` | Dynamic thresholds, correlation, anti-patterns |
+
+## Silent Failures
+
+Detection and alerting for silent failures in LLM agents.
+
+| Rule | File | Key Pattern |
+|------|------|-------------|
+| Tool Skipping | `rules/silent-tool-skipping.md` | Expected vs actual tool calls, Langfuse traces |
+| Quality Degradation | `rules/silent-degraded-quality.md` | Heuristics + LLM-as-judge, z-score baselines |
+| Silent Alerting | `rules/silent-alerting.md` | Loop detection, token spikes, escalation workflow |
+
+> **CC 2.1.169 — OTEL client-cert paths require trust:** untrusted project settings can no longer set OTEL client-certificate paths without a trust confirmation. If your OTEL exporter uses client certs configured in project `.claude/settings.json`, expect a one-time trust prompt on first use in an untrusted project — telemetry silently not flowing after 2.1.169 is usually this gate, not the collector.
+
+## Key Decisions
+
+| Decision | Recommendation | Rationale |
+|----------|----------------|-----------|
+| Metric methodology | RED method (Rate, Errors, Duration) | Industry standard, covers essential service health |
+| Log format | Structured JSON | Machine-parseable, supports log aggregation |
+| Tracing | OpenTelemetry | Vendor-neutral, auto-instrumentation, broad ecosystem |
+| LLM observability | Langfuse (not LangSmith) | Open-source, self-hosted, built-in prompt management |
+| LLM tracing API | `@observe(as_type=...)` + `score_current_span()` | v4: semantic types, inline scoring, span filtering |
+| Langfuse APIs | Observations API v2 + Metrics API v2 | v4 (Mar 2026): faster querying, aggregations at scale |
+| Drift method | PSI for production, KS for small samples | PSI is stable for large datasets, KS more sensitive |
+| Threshold strategy | Dynamic (95th percentile) over static | Reduces alert fatigue, context-aware |
+| Alert severity | 4 levels (Critical, High, Medium, Low) | Clear escalation paths, appropriate response times |
+
+## Detailed Documentation
+
+| Resource | Description |
+|----------|-------------|
+| `${CLAUDE_SKILL_DIR}/references/` | Logging, metrics, tracing, Langfuse, drift analysis guides |
+| `${CLAUDE_SKILL_DIR}/checklists/` | Implementation checklists for monitoring and Langfuse setup |
+| `${CLAUDE_SKILL_DIR}/examples/` | Real-world monitoring dashboard and trace examples |
+| `${CLAUDE_SKILL_DIR}/scripts/` | Templates: Prometheus, OpenTelemetry, health checks, Langfuse |
+
+## Related Skills
+
+- `defense-in-depth` - Layer 8 observability as part of security architecture
+- `devops-deployment` - Observability integration with CI/CD and Kubernetes
+- `resilience-patterns` - Monitoring circuit breakers and failure scenarios
+- `llm-evaluation` - Evaluation patterns that integrate with Langfuse scoring
+- `caching` - Caching strategies that reduce costs tracked by Langfuse

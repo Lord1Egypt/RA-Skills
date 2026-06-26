@@ -1,35 +1,43 @@
 ---
-name: "microservices-patterns"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/microservices-patterns"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/microservices-patterns"
+name: microservices-patterns
+description: "Master microservices architecture patterns including service boundaries, inter-service communication, data management, and resilience patterns for building distributed systems."
+risk: none
+source: community
+date_added: "2026-02-27"
 ---
 
-# microservices-patterns
+# Microservices Patterns
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
+Master microservices architecture patterns including service boundaries, inter-service communication, data management, and resilience patterns for building distributed systems.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/microservices-patterns`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/microservices-patterns](https://skills.sh/sickn33/antigravity-awesome-skills/microservices-patterns)
+## Use this skill when
 
-## Overview
+- Decomposing monoliths into microservices
+- Designing service boundaries and contracts
+- Implementing inter-service communication
+- Managing distributed data and transactions
+- Building resilient distributed systems
+- Implementing service discovery and load balancing
+- Designing event-driven architectures
 
+## Do not use this skill when
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/microservices-patterns
-```
+- The system is small enough for a modular monolith
+- You need a quick prototype without distributed complexity
+- There is no operational support for distributed systems
+
+## Instructions
+
+1. Identify domain boundaries and ownership for each service.
+2. Define contracts, data ownership, and communication patterns.
+3. Plan resilience, observability, and deployment strategy.
+4. Provide migration steps and operational guardrails.
+
+## Resources
+
+- `resources/implementation-playbook.md` for detailed patterns and examples.
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

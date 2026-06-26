@@ -1,35 +1,45 @@
 ---
-name: "nodejs-backend-patterns"
-description: "Indexed by skills.sh from wshobson/agents"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "wshobson"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/wshobson/agents/nodejs-backend-patterns"
-sourceUrl: "https://skills.sh/wshobson/agents/nodejs-backend-patterns"
+name: nodejs-backend-patterns
+description: Build production-ready Node.js backend services with Express/Fastify, implementing middleware patterns, error handling, authentication, database integration, and API design best practices. Use when creating Node.js servers, REST APIs, GraphQL backends, or microservices architectures.
 ---
 
-# nodejs-backend-patterns
+# Node.js Backend Patterns
 
-> Indexed by skills.sh from wshobson/agents
+Comprehensive guidance for building scalable, maintainable, and production-ready Node.js backend applications with modern frameworks, architectural patterns, and best practices.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** wshobson
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/wshobson/agents/nodejs-backend-patterns`
-- **Source URL:** [https://skills.sh/wshobson/agents/nodejs-backend-patterns](https://skills.sh/wshobson/agents/nodejs-backend-patterns)
+## When to Use This Skill
 
-## Overview
+- Building REST APIs or GraphQL servers
+- Creating microservices with Node.js
+- Implementing authentication and authorization
+- Designing scalable backend architectures
+- Setting up middleware and error handling
+- Integrating databases (SQL and NoSQL)
+- Building real-time applications with WebSockets
+- Implementing background job processing
 
+## Detailed patterns and worked examples
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/wshobson/agents/nodejs-backend-patterns
-```
+Detailed pattern documentation lives in `references/details.md`. Read that file when the navigation tier above is insufficient.
+
+## Best Practices
+
+1. **Use TypeScript**: Type safety prevents runtime errors
+2. **Implement proper error handling**: Use custom error classes
+3. **Validate input**: Use libraries like Zod or Joi
+4. **Use environment variables**: Never hardcode secrets
+5. **Implement logging**: Use structured logging (Pino, Winston)
+6. **Add rate limiting**: Prevent abuse
+7. **Use HTTPS**: Always in production
+8. **Implement CORS properly**: Don't use `*` in production
+9. **Use dependency injection**: Easier testing and maintenance
+10. **Write tests**: Unit, integration, and E2E tests
+11. **Handle graceful shutdown**: Clean up resources
+12. **Use connection pooling**: For databases
+13. **Implement health checks**: For monitoring
+14. **Use compression**: Reduce response size
+15. **Monitor performance**: Use APM tools
+
+## Testing Patterns
+
+See `javascript-testing-patterns` skill for comprehensive testing guidance.

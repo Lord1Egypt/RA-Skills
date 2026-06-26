@@ -1,35 +1,29 @@
 ---
-name: "swift-concurrency"
-description: "Indexed by skills.sh from vabole/apple-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "vabole"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/vabole/apple-skills/swift-concurrency"
-sourceUrl: "https://skills.sh/vabole/apple-skills/swift-concurrency"
+name: swift-concurrency
+user-invocable: true
+description: "API reference: Swift Concurrency. async/await, Task, TaskGroup, actors, AsyncSequence, AsyncStream, continuations."
+context: fork
+agent: Explore
 ---
 
-# swift-concurrency
+# Swift Concurrency Reference
 
-> Indexed by skills.sh from vabole/apple-skills
+Structured concurrency, actors, and async sequences in Swift.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** vabole
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/vabole/apple-skills/swift-concurrency`
-- **Source URL:** [https://skills.sh/vabole/apple-skills/swift-concurrency](https://skills.sh/vabole/apple-skills/swift-concurrency)
+## Downloaded Reference Files
 
-## Overview
+| File | Content |
+|------|---------|
+| [concurrency-overview.md](concurrency-overview.md) | Swift concurrency index |
+| [task.md](task.md) | Task struct |
+| [taskgroup.md](taskgroup.md) | TaskGroup for parallel work |
+| [actor.md](actor.md) | Actor protocol |
+| [asyncsequence.md](asyncsequence.md) | AsyncSequence protocol |
+| [asyncstream.md](asyncstream.md) | AsyncStream |
+| [checkedcontinuation.md](checkedcontinuation.md) | CheckedContinuation for bridging |
 
+## Fetching More Docs
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/vabole/apple-skills/swift-concurrency
-```
+1. Search this skill's local `.md` files first.
+2. If the topic is not here, check the other installed Apple skills you have available by their names, descriptions, or `SKILL.md` frontmatter, then grep their local files. This is faster and uses less context than fetching new docs from the internet.
+3. If no installed skill has the page, use the relevant documentation path from `concurrency-overview.md` with the `sosumi.ai` Markdown mirror. For example, `/documentation/swift/task` maps to `https://sosumi.ai/documentation/swift/task`.

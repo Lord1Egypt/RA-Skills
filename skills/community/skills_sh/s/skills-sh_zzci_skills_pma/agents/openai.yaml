@@ -1,0 +1,4 @@
+interface:
+  display_name: "PMA"
+  short_description: "Lifecycle workflow and file-based project tracking"
+  default_prompt: "Use $pma to plan and track this repository change through investigate, proposal, and implement phases."

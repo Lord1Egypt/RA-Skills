@@ -1,35 +1,41 @@
 ---
-name: "threat-mitigation-mapping"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/threat-mitigation-mapping"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/threat-mitigation-mapping"
+name: threat-mitigation-mapping
+description: "Map identified threats to appropriate security controls and mitigations. Use when prioritizing security investments, creating remediation plans, or validating control effectiveness."
+risk: safe
+source: community
+date_added: "2026-02-27"
 ---
 
-# threat-mitigation-mapping
+# Threat Mitigation Mapping
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
+Connect threats to controls for effective security planning.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/threat-mitigation-mapping`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/threat-mitigation-mapping](https://skills.sh/sickn33/antigravity-awesome-skills/threat-mitigation-mapping)
+## Use this skill when
 
-## Overview
+- Prioritizing security investments
+- Creating remediation roadmaps
+- Validating control coverage
+- Designing defense-in-depth
+- Security architecture review
+- Risk treatment planning
 
+## Do not use this skill when
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/threat-mitigation-mapping
-```
+- The task is unrelated to threat mitigation mapping
+- You need a different domain or tool outside this scope
+
+## Instructions
+
+- Clarify goals, constraints, and required inputs.
+- Apply relevant best practices and validate outcomes.
+- Provide actionable steps and verification.
+- If detailed examples are required, open `resources/implementation-playbook.md`.
+
+## Resources
+
+- `resources/implementation-playbook.md` for detailed patterns and examples.
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

@@ -1,0 +1,46 @@
+code: bad
+name: "BMad Autonomous Development"
+description: "Orchestrates parallel BMad story implementation pipelines — automatically runs bmad-create-story, bmad-dev-story, bmad-code-review, and commit/PR in batches, driven by the sprint backlog and dependency graph"
+module_version: "1.2.0"
+module_greeting: "BAD is ready. Run /bad to start. Pass KEY=VALUE args to override config at runtime (e.g. /bad MAX_PARALLEL_STORIES=2)."
+
+header: "BAD — BMad Autonomous Development"
+subheader: "Configure the autonomous development pipeline for this project.\nHarness-specific settings (models, rate limit thresholds, timer support) are detected automatically from your installed harnesses."
+
+max_parallel_stories:
+  prompt: "Max stories to run in a single batch"
+  default: "3"
+  result: "{value}"
+
+worktree_base_path:
+  prompt: "Root directory for git worktrees (relative to repo root)"
+  default: ".worktrees"
+  result: "{value}"
+
+auto_pr_merge:
+  prompt: "Auto-merge batch PRs sequentially after each batch?"
+  default: false
+
+run_ci_locally:
+  prompt: "Skip GitHub Actions and run CI locally by default?"
+  default: false
+
+wait_timer_seconds:
+  prompt: "Seconds to wait between batches before re-checking PR status"
+  default: "3600"
+  result: "{value}"
+
+retro_timer_seconds:
+  prompt: "Seconds before auto-running retrospective after epic completion"
+  default: "600"
+  result: "{value}"
+
+context_compaction_threshold:
+  prompt: "Context window % at which to compact/summarise context"
+  default: "80"
+  result: "{value}"
+
+stale_timeout_minutes:
+  prompt: "Minutes of subagent inactivity before watchdog alerts (0 = disabled)"
+  default: "60"
+  result: "{value}"

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radar Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>{{BASE_STYLES}}</style>
+</head>
+<body>
+  <div class="toolbar">
+    <div>
+      <h1>{{TITLE}}</h1>
+      <div class="subtitle">{{SUBTITLE}}</div>
+    </div>
+    <div class="actions">
+      <button onclick="downloadPNG(this)">📥 Download PNG</button>
+      <button onclick="copyToClipboard(this)">📋 Copy Image</button>
+      <button onclick="saveToProject(this)">💾 Save Image</button>
+    </div>
+  </div>
+
+  <div id="chart-area">
+    <div id="main-chart" style="width:100%;height:500px;"></div>
+  </div>
+
+  <script>{{BASE_EXPORT_JS}}</script>
+  <script>
+    const indicators = [
+      { name: 'Performance', max: 100 },
+      { name: 'Reliability', max: 100 },
+      { name: 'Usability', max: 100 },
+      { name: 'Security', max: 100 },
+      { name: 'Scalability', max: 100 },
+      { name: 'Cost', max: 100 },
+    ];
+
+    window.CHART_INSTANCES = [];
+    const chart = echarts.init(document.getElementById('main-chart'), 'dark');
+    chart.setOption({
+      backgroundColor: 'transparent',
+      tooltip: {},
+      legend: { top: 8, data: ['Product A', 'Product B'] },
+      radar: {
+        indicator: indicators,
+        shape: 'circle',
+        splitArea: { areaStyle: { color: ['transparent'] } },
+        splitLine: { lineStyle: { color: '#2d3148' } },
+        axisLine: { lineStyle: { color: '#2d3148' } },
+      },
+      series: [{
+        type: 'radar',
+        data: [
+          { name: 'Product A', value: [85, 90, 78, 95, 80, 70], areaStyle: { opacity: 0.15 } },
+          { name: 'Product B', value: [70, 75, 92, 80, 88, 85], areaStyle: { opacity: 0.15 } },
+        ],
+      }],
+    });
+  
+    CHART_INSTANCES.push(chart);
+    </script>
+</body>
+</html>

@@ -1,35 +1,15 @@
 ---
-name: "problem-analysis"
-description: "Indexed by skills.sh from solatis/claude-config"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "solatis"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/solatis/claude-config/problem-analysis"
-sourceUrl: "https://skills.sh/solatis/claude-config/problem-analysis"
+name: problem-analysis
+description: Invoke IMMEDIATELY via python script when user requests problem analysis or root cause investigation. Do NOT explore first - the script orchestrates the investigation.
 ---
 
-# problem-analysis
+# Problem Analysis
 
-> Indexed by skills.sh from solatis/claude-config
+Root cause identification skill. Identifies WHY a problem occurs, NOT how to fix
+it.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** solatis
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/solatis/claude-config/problem-analysis`
-- **Source URL:** [https://skills.sh/solatis/claude-config/problem-analysis](https://skills.sh/solatis/claude-config/problem-analysis)
+## Invocation
 
-## Overview
+<invoke working-dir=".claude/skills/scripts" cmd="python3 -m skills.problem_analysis.analyze --step 1" />
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/solatis/claude-config/problem-analysis
-```
+Do NOT explore or analyze first. Run the script and follow its output.

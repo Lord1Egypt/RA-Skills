@@ -1,35 +1,37 @@
 ---
-name: "git-create-repo"
-description: "Indexed by skills.sh from zc277584121/mygitplugin"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "zc277584121"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/zc277584121/mygitplugin/git-create-repo"
-sourceUrl: "https://skills.sh/zc277584121/mygitplugin/git-create-repo"
+name: git-create-repo
+description: Create a new GitHub repository and clone it locally
+allowed-tools:
+  - Bash
 ---
 
-# git-create-repo
+# Git Create Repo
 
-> Indexed by skills.sh from zc277584121/mygitplugin
+在 GitHub 上创建新的仓库并 clone 到本地。
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** zc277584121
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/zc277584121/mygitplugin/git-create-repo`
-- **Source URL:** [https://skills.sh/zc277584121/mygitplugin/git-create-repo](https://skills.sh/zc277584121/mygitplugin/git-create-repo)
+## 触发条件
 
-## Overview
+当用户要求创建一个新的 GitHub 仓库时使用此 skill。
 
+## 执行步骤
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/zc277584121/mygitplugin/git-create-repo
-```
+1. **创建仓库**：
+   ```bash
+   gh repo create <repo-name> --public --add-readme
+   ```
+   - 默认创建公开仓库（`--public`）。
+   - 如果用户明确要求私有仓库，使用 `--private` 替代。
+   - 默认添加 README 文件。
+
+2. **Clone 仓库**：
+   ```bash
+   gh repo clone zc277584121/<repo-name>
+   ```
+
+3. **确认结果**：进入项目目录，向用户报告仓库创建成功。
+
+## 注意事项
+
+- GitHub 账号为 `zc277584121`。
+- 如果用户没有指定公开或私有，默认使用公开（`--public`）。
+- 如果用户提供了描述，使用 `--description` 参数。

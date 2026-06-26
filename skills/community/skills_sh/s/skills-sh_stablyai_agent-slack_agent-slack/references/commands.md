@@ -1,0 +1,202 @@
+# `agent-slack` command map (reference)
+
+Run `agent-slack --help` (or `agent-slack <command> --help`) for the full option list.
+
+## Auth
+
+- `agent-slack auth whoami` — show configured workspaces + token sources (secrets redacted)
+- `agent-slack auth test [--workspace <url-or-unique-substring>]` — verify credentials (`auth.test`)
+- `agent-slack auth import-desktop` — import browser-style creds from Slack Desktop (macOS/Windows)
+- `agent-slack auth import-brave` — import creds from Brave (macOS; requires View → Developer → Allow JavaScript from Apple Events)
+- `agent-slack auth import-chrome` — import creds from Chrome (macOS)
+- `agent-slack auth import-firefox` — import creds from Firefox profile storage (macOS/Linux)
+- `agent-slack auth parse-curl` — read a copied Slack cURL command from stdin and save creds
+- `agent-slack auth add --workspace-url <url> [--token <xoxb/xoxp> | --xoxc <xoxc> --xoxd <xoxd>]`
+- `agent-slack auth set-default <workspace-url>`
+- `agent-slack auth remove <workspace-url>`
+
+## Messages / threads
+
+- `agent-slack message get <target>`
+  - `<target>`: Slack message URL OR `#channel`/`channel`/channel id (`C...`) (see `targets.md`)
+  - Options:
+    - `--workspace <url-or-unique-substring>` (required when using a channel _name_ across multiple workspaces)
+    - `--ts <seconds>.<micros>` (required when targeting a channel)
+    - `--thread-ts <seconds>.<micros>` (optional hint for thread permalinks)
+    - `--max-body-chars <n>` (default `8000`, `-1` unlimited)
+    - `--include-reactions`
+    - `--resolve-users` (attach resolved user profiles in `referenced_users`)
+    - `--refresh-users` (implies `--resolve-users` and forces a cache refresh)
+
+- `agent-slack message list <target>`
+  - Lists recent channel messages (channel history), or fetches all thread replies
+  - **Channel history** (default when targeting a channel without `--thread-ts`):
+    - `agent-slack message list "general"` — latest 25 messages
+    - `agent-slack message list "general" --limit 50` — latest 50 messages
+  - **Thread mode** (when `--thread-ts` or `--ts` is provided, or target is a message URL):
+    - `agent-slack message list "<url>"` — all replies in that thread
+    - `agent-slack message list "general" --thread-ts "1770165109.000001"` — thread replies
+  - Options:
+    - `--workspace <url-or-unique-substring>` (same rules as above)
+    - `--thread-ts <seconds>.<micros>` (switches to thread mode; fetches replies)
+    - `--ts <seconds>.<micros>` (resolve a message to its thread)
+    - `--limit <n>` (default `25`, max `200`; channel history mode only)
+    - `--oldest <ts>` (only messages after this ts; channel history mode)
+    - `--latest <ts>` (only messages before this ts; channel history mode)
+    - `--with-reaction <emoji>` (repeatable; include only messages that have this reaction; channel history mode; requires `--oldest`)
+    - `--without-reaction <emoji>` (repeatable; include only messages that do not have this reaction; channel history mode; requires `--oldest`)
+    - `--max-body-chars <n>` (default `8000`, `-1` unlimited)
+    - `--include-reactions`
+    - `--resolve-users` (attach resolved user profiles in `referenced_users`)
+    - `--refresh-users` (implies `--resolve-users` and forces a cache refresh)
+
+- `agent-slack message draft <target> [text]`
+  - Opens a Slack-like WYSIWYG editor in the browser for composing and sending a message.
+  - Formatting toolbar: bold, italic, strikethrough, links, numbered/bulleted lists, quotes, inline code, code blocks.
+  - Toggle between rich-text editing and raw mrkdwn source view.
+  - After sending, shows a "View in Slack" permalink to the posted message.
+  - If `<target>` is a Slack message URL, the draft will reply in that thread.
+  - Options:
+    - `--workspace <url-or-unique-substring>` (needed for channel _names_ across multiple workspaces)
+    - `--thread-ts <seconds>.<micros>` (optional, channel mode only)
+
+- `agent-slack message send <target> [text]`
+  - If `<target>` is a Slack message URL, replies in that message’s thread.
+  - Otherwise posts to the channel/DM.
+  - `[text]` is optional when uploading files with `--attach`; when present, it becomes the initial comment on the first uploaded file.
+  - Bullet lists (`- `, `* `, `• `, `1. `, etc.) are automatically converted to Slack’s native rich text format, so recipients see real editable bullets instead of plain-text dashes. Inline mentions, broadcasts, emoji shortcodes, and `<#C...>` channel references inside those lists are preserved as Slack elements.
+  - Example: `agent-slack message send "general" "Coverage report" --attach ./report.md`
+  - Example: `agent-slack message send "general" "Monday launch checklist" --schedule-in "monday 9am"`
+  - Options:
+    - `--workspace <url-or-unique-substring>` (needed for channel _names_ across multiple workspaces)
+    - `--thread-ts <seconds>.<micros>` (optional, channel mode only)
+    - `--attach <path>` (repeatable; upload local files as attachments)
+    - `--blocks <path>` raw Block Kit blocks from a JSON file (or `-` for stdin). Bypasses markdown-to-rich-text conversion; enables header/divider/section/table blocks. Cannot be combined with `--attach`.
+    - `--reply-broadcast` when replying in a thread, also post the reply to the parent channel. For channel targets, pair with `--thread-ts`; for URL targets, the thread context is derived from the message. Not supported for DM targets; cannot be combined with `--attach`.
+    - `--schedule <time>` schedule delivery at an ISO 8601 timestamp with explicit timezone (or Unix timestamp). Must be in the future and within Slack's 120-day scheduled-send limit. Compatible with `--blocks`, `--thread-ts`, and `--reply-broadcast`; cannot be combined with `--attach`.
+    - `--schedule-in <duration>` schedule delivery after a duration or simple future phrase (`30m`, `3h`, `2d`, `tomorrow 9am`, `monday 9am`; phrases use your local timezone). Mutually exclusive with `--schedule`; cannot be combined with `--attach`.
+
+- `agent-slack message scheduled list`
+  - Lists pending scheduled messages from Slack's server-side scheduled message queue.
+  - Options:
+    - `--workspace <url-or-unique-substring>` (defaults to configured workspace)
+    - `--channel <channel>` filter to a channel/DM id or channel name
+    - `--oldest <unix-ts>` only messages scheduled after this time
+    - `--latest <unix-ts>` only messages scheduled before this time
+    - `--cursor <cursor>` fetch the next page
+    - `--limit <n>` max messages to return
+
+- `agent-slack message scheduled cancel <scheduled_message_id>`
+  - Cancels a pending scheduled message before it is sent.
+  - Options:
+    - `--channel <channel>` required channel/DM id or channel name for the scheduled message
+    - `--workspace <url-or-unique-substring>` (needed for channel _names_ across multiple workspaces)
+
+- `agent-slack message edit <target> <text>`
+  - URL target edits that exact message.
+  - Channel target requires `--ts`.
+  - Inline formatting is sent as text; bullet/numbered lists are converted to Slack native rich text. Inline mentions, broadcasts, emoji shortcodes, and `<#C...>` channel references inside those lists are preserved as Slack elements.
+  - Options:
+    - `--workspace <url-or-unique-substring>` (needed for channel _names_ across multiple workspaces)
+    - `--ts <seconds>.<micros>` (required for channel targets)
+
+- `agent-slack message delete <target>`
+  - URL target deletes that exact message.
+  - Channel target requires `--ts`.
+  - Options:
+    - `--workspace <url-or-unique-substring>` (needed for channel _names_ across multiple workspaces)
+    - `--ts <seconds>.<micros>` (required for channel targets)
+
+- `agent-slack message react add <target> <emoji>`
+- `agent-slack message react remove <target> <emoji>`
+  - Options (channel mode):
+    - `--workspace <url-or-unique-substring>` (needed for channel _names_ across multiple workspaces)
+    - `--ts <seconds>.<micros>` (required for channel targets)
+
+## Channels
+
+- `agent-slack channel list [--workspace <url-or-unique-substring>] [--user <U...|@handle|handle> | --all] [--limit <n>] [--cursor <cursor>]`
+  - Default mode calls `users.conversations` for the current user.
+  - `--user` resolves handles/ids and lists conversations for that user.
+  - `--all` switches to `conversations.list` (mutually exclusive with `--user`).
+  - Returns one page and optional `next_cursor`; pass `--cursor` to continue.
+- `agent-slack channel new --name <name> [--private] [--workspace <url-or-unique-substring>]`
+- `agent-slack channel invite --channel <id|name> --users "<U...,@handle,email,...>" [--workspace <url-or-unique-substring>]`
+  - Internal invite (default): resolves users (`U...`, `@handle`, `handle`, `email`) and uses `conversations.invite`
+  - External invite: add `--external` (email targets only) to use `conversations.inviteShared`
+  - Optional: `--allow-external-user-invites` sets `external_limited=false` for external invites
+- `agent-slack channel mark <target> [--ts <seconds>.<micros>] [--workspace <url-or-unique-substring>]`
+  - Marks a channel/DM as read up to the given message timestamp (`conversations.mark`)
+  - URL target extracts channel, ts, and workspace automatically; `--ts` optionally overrides the URL timestamp; `--workspace` is rejected
+  - Channel name/ID target requires `--ts`
+
+## Later
+
+- `agent-slack later list` â€” list saved-for-later messages (default: in-progress)
+  - Options:
+    - `--workspace <url-or-unique-substring>` (defaults to configured workspace)
+    - `--state <state>` (filter: `in_progress` (default), `archived`, `completed`, `all`)
+    - `--limit <n>` (max items, default `20`)
+    - `--max-body-chars <n>` (max content chars per message, default `4000`, `-1` unlimited)
+    - `--counts-only` (only show counts per state)
+
+- `agent-slack later complete <target>` â€” mark a saved message as completed
+- `agent-slack later archive <target>` â€” archive a saved message
+- `agent-slack later reopen <target>` â€” move back to in-progress (from completed or archived)
+- `agent-slack later save <target>` â€” save a message for later
+- `agent-slack later remove <target>` â€” remove from Later entirely
+  - All accept Slack message URL or channel ID with `--ts`
+  - Options: `--workspace <url-or-unique-substring>`, `--ts <seconds>.<micros>`
+
+- `agent-slack later remind <target> --in <duration>` â€” set a reminder on a saved item
+  - `--in` accepts: `30m`, `1h`, `3h`, `2d`, `tomorrow`, `monday`, or a unix timestamp
+  - Options: `--workspace <url-or-unique-substring>`, `--ts <seconds>.<micros>`
+
+## Unreads
+
+- `agent-slack unreads` — show all unread messages across channels, DMs, and threads
+  - Options:
+    - `--workspace <url-or-unique-substring>` (defaults to configured workspace)
+    - `--counts-only` (only show unread counts, skip message content)
+    - `--max-messages <n>` (max unread messages per channel, default `10`)
+    - `--max-body-chars <n>` (max content chars per message, default `4000`, `-1` unlimited)
+    - `--include-system` (include system messages like joins, leaves, topic changes; excluded by default)
+
+## Search
+
+- `agent-slack search all <query>` — messages + files (default)
+- `agent-slack search messages <query>`
+- `agent-slack search files <query>`
+
+Common options:
+
+- `--workspace <url-or-unique-substring>` (recommended when using channel names across multiple workspaces)
+- `--channel <channel...>` repeatable (`#name`, `name`, or id)
+- `--user <@name|name|U...>`
+- `--after YYYY-MM-DD`
+- `--before YYYY-MM-DD`
+- `--content-type any|text|image|snippet|file`
+- `--limit <n>` (default `20`)
+- `--max-content-chars <n>` (default `4000`, `-1` unlimited; messages only)
+- `--resolve-users` (attach resolved user profiles in `referenced_users`; applies to `search messages` / `search all`)
+- `--refresh-users` (implies `--resolve-users` and forces a cache refresh)
+
+## Canvas
+
+- `agent-slack canvas get <canvas-url-or-id>`
+  - Options:
+    - `--workspace <url-or-unique-substring>` (required when passing an id and multiple workspaces)
+    - `--max-chars <n>` (default `20000`, `-1` unlimited)
+
+## Workflows
+
+- `agent-slack workflow list <channel> [--workspace <url-or-unique-substring>]` — list workflows bookmarked or featured in a channel
+- `agent-slack workflow preview <trigger-id> [--workspace <url-or-unique-substring>]` — get workflow metadata from a trigger ID (no side effects)
+- `agent-slack workflow get <id> [--workspace <url-or-unique-substring>]` — get workflow definition including form fields and steps (accepts `Ft...` or `Wf...`)
+- `agent-slack workflow run <trigger-id> --channel <id-or-name> [--workspace <url-or-unique-substring>]` — trip a workflow trigger
+
+## Users
+
+- `agent-slack user list [--workspace <url-or-unique-substring>] [--limit <n>] [--cursor <cursor>] [--include-bots]`
+- `agent-slack user get <U...|@handle|handle> [--workspace <url-or-unique-substring>]`
+- `agent-slack user dm-open <users...> [--workspace <url-or-unique-substring>]` — get DM or group DM channel ID for one or more users (max 8)

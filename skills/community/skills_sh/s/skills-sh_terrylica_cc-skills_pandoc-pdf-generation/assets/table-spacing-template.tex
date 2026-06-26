@@ -1,0 +1,146 @@
+% Better table row spacing for PDF generation
+\usepackage{booktabs}
+
+% More compact spacing to fit tables on single page
+\renewcommand{\arraystretch}{1.0}
+
+% Minimal extra padding at top of cells
+\usepackage{array}
+\setlength{\extrarowheight}{2pt}
+
+% Let booktabs handle spacing around rules with default values
+% (toprule, midrule, bottomrule have built-in spacing)
+
+% Space before and after entire table
+\usepackage{longtable}
+\setlength{\LTpre}{8pt}
+\setlength{\LTpost}{12pt}
+
+% Compact column spacing to fit tables on one page
+\setlength{\tabcolsep}{6pt}
+
+% ==============================================================================
+% Reduce Table Font Size
+% ==============================================================================
+% Automatically use smaller font for all table content (Pandoc generates longtables)
+% Options: \small (~90%), \footnotesize (~80%), \scriptsize (~70%), \tiny (~50%)
+
+\usepackage{etoolbox}
+\AtBeginEnvironment{longtable}{\footnotesize}
+
+% Note: This affects table content only, not captions
+% To also reduce caption size, add: \usepackage[font=footnotesize]{caption}
+
+% Thicker rules for better visual separation between rows
+\setlength{\heavyrulewidth}{1.0pt}
+\setlength{\lightrulewidth}{0.4pt}
+\setlength{\cmidrulewidth}{0.4pt}
+
+% Colors for potential alternating rows
+\usepackage{colortbl}
+\usepackage{xcolor}
+\definecolor{lightgray}{gray}{0.96}
+
+% Page break control for tables
+\usepackage{needspace}
+
+% Discourage page breaks within tables
+% Increase chunk size to process more rows before considering page break
+\LTchunksize=100
+
+% Keep table captions with table content
+\setlength{\LTcapwidth}{\textwidth}
+
+% Discourage page breaks immediately before or after tables
+% by increasing penalties around table environments
+\widowpenalty=10000
+\clubpenalty=10000
+
+% ==============================================================================
+% Table of Contents Spacing Fix
+% ==============================================================================
+% Problem: Multi-digit subsection numbers (2.5.10, 2.5.11) overlap with titles
+% Solution: Increase allocated space for section numbers using tocloft package
+
+\usepackage{tocloft}
+
+% Increase width allocated for section numbers in ToC
+% Default values are too small for documents with many subsections
+\setlength{\cftsecnumwidth}{2.5em}      % Section numbers (1, 2, 3)
+\setlength{\cftsubsecnumwidth}{3.5em}   % Subsection numbers (2.1, 2.5.10) ← Fix
+\setlength{\cftsubsubsecnumwidth}{4.5em} % Subsubsection numbers (2.5.10.1)
+
+% Optional: Add spacing between ToC entries for better readability
+% \setlength{\cftbeforesecskip}{6pt}
+% \setlength{\cftbeforesubsecskip}{3pt}
+
+% ==============================================================================
+% Footnotes Configuration
+% ==============================================================================
+% Pandoc renders footnotes correctly by default with xelatex.
+% Footnotes appear at the bottom of each page (standard professional formatting).
+% Do NOT use the endnotes package with Pandoc unless you add a Lua filter
+% to call \theendnotes at document end.
+
+% ==============================================================================
+% Code Block Page Break Prevention
+% ==============================================================================
+% Problem: Code blocks (especially ASCII diagrams) split across pages
+% Solution: Configure fancyvrb to keep Verbatim environments on same page
+%
+% Note: This works for moderately-sized code blocks. For very tall diagrams
+% that exceed page height, use \newpage in markdown BEFORE the code block.
+%
+% Reference: Our conversation learnings (Dec 2025) - diagrams breaking across pages
+
+\usepackage{fancyvrb}
+\fvset{samepage=true}
+
+% Also wrap Pandoc's Shaded environment (syntax-highlighted code) in samepage
+\BeforeBeginEnvironment{Shaded}{\begin{samepage}}
+\AfterEndEnvironment{Shaded}{\end{samepage}}
+
+% ==============================================================================
+% Text Alignment
+% ==============================================================================
+% Use ragged-right (left-aligned) instead of justified text
+% Justified text can create awkward spacing; ragged-right is more readable
+\raggedright
+
+% ==============================================================================
+% Professional Hyperlink Styling - Underlined Links for Cross-Viewer Compatibility
+% ==============================================================================
+% Problem: Skim and Preview.app on macOS don't render colorlinks=true properly
+% Solution: Use underlined links with colored borders instead
+% Reference: https://tex.stackexchange.com/questions/26071/
+
+% Configure hyperref AFTER Pandoc loads it
+% \AtBeginDocument executes after all package loading is complete
+% This overrides Pandoc's default hyperref settings without breaking layout
+\AtBeginDocument{%
+  \hypersetup{%
+    colorlinks=false,%              % Required for borders/underlines to work
+    pdfborderstyle={/S/U/W 1},%     % /S/U = Underline style, /W 1 = 1pt width
+    urlbordercolor={0 0.3 0.6},%    % Navy blue for URL links (RGB 0-1 scale)
+    linkbordercolor={0 0.3 0.6},%   % Navy blue for internal links
+    citebordercolor={0 0.3 0.6}%    % Navy blue for citations
+  }%
+}
+
+% ==============================================================================
+% Table of Contents Pagination
+% ==============================================================================
+% Force page break after TOC and before first section
+% Pandoc's TOC generation doesn't respond to standard \tableofcontents patching
+% Solution: Add page break before the very first section
+
+\AtBeginDocument{%
+  % Save the original \section command
+  \let\oldsection\section
+  % Redefine \section to add clearpage before FIRST section only
+  \renewcommand{\section}{%
+    \clearpage  % Page break before first section (after TOC)
+    \global\let\section\oldsection  % Restore original \section for subsequent sections
+    \oldsection  % Call the original section command
+  }%
+}

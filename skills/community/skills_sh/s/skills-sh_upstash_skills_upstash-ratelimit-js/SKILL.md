@@ -1,35 +1,31 @@
 ---
-name: "upstash-ratelimit-js"
-description: "Indexed by skills.sh from upstash/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "upstash"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/upstash/skills/upstash-ratelimit-js"
-sourceUrl: "https://skills.sh/upstash/skills/upstash-ratelimit-js"
+name: upstash-ratelimit-js
+description: Lightweight guidance for using the Upstash Redis RateLimit TypeScript/JavaScript SDK, including setup steps, basic usage, and pointers to advanced algorithm, features, pricing, and traffic‑protection docs.
 ---
 
-# upstash-ratelimit-js
+# Rate Limit TS SDK
 
-> Indexed by skills.sh from upstash/skills
+## Quick Start
+- Install the SDK and connect to Redis.
+- Create a rate limiter and apply it to incoming operations.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** upstash
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/upstash/skills/upstash-ratelimit-js`
-- **Source URL:** [https://skills.sh/upstash/skills/upstash-ratelimit-js](https://skills.sh/upstash/skills/upstash-ratelimit-js)
+Example:
+```ts
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 
-## Overview
+const redis = new Redis({ url: "<url>", token: "<token>" });
+const limiter = new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(5, "10s") });
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/upstash/skills/upstash-ratelimit-js
+const { success } = await limiter.limit("user-id");
+if (!success) {
+  // throttled
+}
 ```
+
+## Other Skill Files
+- **algorithms.md**: Describes all available rate‑limiting algorithms and how they behave.
+- **pricing-cost.md**: Explains pricing, Redis cost implications, and operational considerations.
+- **features.md**: Lists SDK features such as prefixes, custom keys, and behavioral options.
+- **methods-getting-started.md**: Full method reference for the SDK's API and getting started guide.
+- **traffic-protection.md**: Guidance on applying rate limiting for traffic shaping, abuse prevention, and protection patterns.

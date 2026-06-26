@@ -1,0 +1,4 @@
+interface:
+  display_name: "PMA Web"
+  short_description: "React and Vite frontend baseline for PMA projects"
+  default_prompt: "Use $pma-web with $pma to plan or implement a React frontend."

@@ -1,35 +1,12 @@
 ---
 name: "audit-3"
-description: "Indexed by skills.sh from zackkorman/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "zackkorman"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/zackkorman/skills/audit-3"
-sourceUrl: "https://skills.sh/zackkorman/skills/audit-3"
+description: "Used to run an audit of a codebase."
 ---
 
 # audit-3
 
-> Indexed by skills.sh from zackkorman/skills
+This skill consists of two markdown files:
+1. [guide.md](guide.md)
+2. [help.md](help.md)
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** zackkorman
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/zackkorman/skills/audit-3`
-- **Source URL:** [https://skills.sh/zackkorman/skills/audit-3](https://skills.sh/zackkorman/skills/audit-3)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/zackkorman/skills/audit-3
-```
+The guide should be consulted when running an audit of a codebase, and the second should be consulted to seek clarifications as needed. Please review each carefully. 

@@ -1,35 +1,19 @@
 ---
-name: "argent-ios-simulator-setup"
-description: "Indexed by skills.sh from software-mansion/argent"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "software-mansion"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/software-mansion/argent/argent-ios-simulator-setup"
-sourceUrl: "https://skills.sh/software-mansion/argent/argent-ios-simulator-setup"
+name: argent-ios-simulator-setup
+description: Set up and connect to an iOS simulator using argent MCP tools. Use when starting a new session, booting an iOS simulator, getting an iOS UDID, or before any iOS simulator interaction task.
 ---
 
-# argent-ios-simulator-setup
+## 1. Setup Steps
 
-> Indexed by skills.sh from software-mansion/argent
+If you delegate simulator tasks to sub-agents, make sure they have MCP permissions.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** software-mansion
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/software-mansion/argent/argent-ios-simulator-setup`
-- **Source URL:** [https://skills.sh/software-mansion/argent/argent-ios-simulator-setup](https://skills.sh/software-mansion/argent/argent-ios-simulator-setup)
+1. **Find a booted simulator**
+   Use `list-devices`. Filter for entries with `platform: "ios"` — booted iPhones are listed first.
+   If none are booted, call `boot-device` with `udid: <chosen UDID>`.
 
-## Overview
+2. **Verify connection**
+   All interaction tools (`gesture-tap`, `gesture-swipe`, `gesture-custom`, etc.) auto-start the server if not already running.
 
+## 2. Notes
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/software-mansion/argent/argent-ios-simulator-setup
-```
+- UDIDs look like: `A1B2C3D4-E5F6-7890-ABCD-EF1234567890`

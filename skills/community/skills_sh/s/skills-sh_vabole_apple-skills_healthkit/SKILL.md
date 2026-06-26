@@ -1,35 +1,28 @@
 ---
-name: "healthkit"
-description: "Indexed by skills.sh from vabole/apple-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "vabole"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/vabole/apple-skills/healthkit"
-sourceUrl: "https://skills.sh/vabole/apple-skills/healthkit"
+name: healthkit
+user-invocable: true
+description: "API reference: HealthKit. Query for HKHealthStore, HKQuantitySample, workouts, health data read/write."
+context: fork
+agent: Explore
 ---
 
-# healthkit
+# HealthKit Documentation
 
-> Indexed by skills.sh from vabole/apple-skills
+Search these docs to answer questions about HealthKit APIs.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** vabole
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/vabole/apple-skills/healthkit`
-- **Source URL:** [https://skills.sh/vabole/apple-skills/healthkit](https://skills.sh/vabole/apple-skills/healthkit)
+## Return Format
 
-## Overview
+Always include:
+1. **Summary** - Answer the question concisely
+2. **File paths** - List relevant files for full details, e.g.:
+   - `hkhealthstore.md` for HKHealthStore API
+   - `hkunit.md` for unit conversions
 
+## Files
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/vabole/apple-skills/healthkit
-```
+- `healthkit-index.md` - Framework overview and all available APIs
+- `hkhealthstore.md` - Health data store operations
+- `hkquantitysample.md` - Quantity samples (weight, heart rate, etc.)
+- `hkquantitytypeidentifier.md` - All quantity type identifiers
+- `hksamplequery.md` - Querying health data
+- `hkunit.md` - Units and conversions

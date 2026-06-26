@@ -1,35 +1,42 @@
 ---
-name: "react-modernization"
-description: "Indexed by skills.sh from sickn33/antigravity-awesome-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sickn33"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sickn33/antigravity-awesome-skills/react-modernization"
-sourceUrl: "https://skills.sh/sickn33/antigravity-awesome-skills/react-modernization"
+name: react-modernization
+description: "Master React version upgrades, class to hooks migration, concurrent features adoption, and codemods for automated transformation."
+risk: safe
+source: community
+date_added: "2026-02-27"
 ---
 
-# react-modernization
+# React Modernization
 
-> Indexed by skills.sh from sickn33/antigravity-awesome-skills
+Master React version upgrades, class to hooks migration, concurrent features adoption, and codemods for automated transformation.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sickn33
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sickn33/antigravity-awesome-skills/react-modernization`
-- **Source URL:** [https://skills.sh/sickn33/antigravity-awesome-skills/react-modernization](https://skills.sh/sickn33/antigravity-awesome-skills/react-modernization)
+## Use this skill when
 
-## Overview
+- Upgrading React applications to latest versions
+- Migrating class components to functional components with hooks
+- Adopting concurrent React features (Suspense, transitions)
+- Applying codemods for automated refactoring
+- Modernizing state management patterns
+- Updating to TypeScript
+- Improving performance with React 18+ features
 
+## Do not use this skill when
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sickn33/antigravity-awesome-skills/react-modernization
-```
+- The task is unrelated to react modernization
+- You need a different domain or tool outside this scope
+
+## Instructions
+
+- Clarify goals, constraints, and required inputs.
+- Apply relevant best practices and validate outcomes.
+- Provide actionable steps and verification.
+- If detailed examples are required, open `resources/implementation-playbook.md`.
+
+## Resources
+
+- `resources/implementation-playbook.md` for detailed patterns and examples.
+
+## Limitations
+- Use this skill only when the task clearly matches the scope described above.
+- Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
+- Stop and ask for clarification if required inputs, permissions, safety boundaries, or success criteria are missing.

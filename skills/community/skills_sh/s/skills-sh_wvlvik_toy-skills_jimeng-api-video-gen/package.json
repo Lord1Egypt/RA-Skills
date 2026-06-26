@@ -1,0 +1,25 @@
+{
+  "name": "jimeng-api-video-gen",
+  "version": "1.0.0",
+  "description": "AI video generation skill using Volcengine Jimeng Video API 3.0 Pro",
+  "author": "workspace",
+  "license": "MIT",
+  "keywords": [
+    "jimeng",
+    "ai-video",
+    "video-generation",
+    "volcengine",
+    "text-to-video",
+    "image-to-video",
+    "cursor-rules",
+    "opencode-skill"
+  ],
+  "main": "index.js",
+  "files": [
+    ".antigravityrules",
+    ".cursorrules",
+    ".opencode-rules",
+    "README.md",
+    "SKILL.md"
+  ]
+}

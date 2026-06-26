@@ -1,0 +1,14 @@
+{
+  "db_path": "/absolute/path/to/workspace-rss-bot/ai_rss.db",
+  "opml_path": "assets/hn-popular-blogs-2025.opml",
+  "feed_urls": [
+    "https://openai.com/news/rss.xml"
+  ],
+  "max_feeds_per_run": 20,
+  "max_items_per_feed": 100,
+  "user_agent": "ai-tech-rss-fetch/1.0 (+https://github.com/tiangong-ai/skills)",
+  "active_only": true,
+  "seen_ttl_days": 30,
+  "enable_conditional_get": true,
+  "cleanup_enabled": true
+}

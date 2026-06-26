@@ -1,35 +1,27 @@
 ---
-name: "usernotifications"
-description: "Indexed by skills.sh from vabole/apple-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "vabole"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/vabole/apple-skills/usernotifications"
-sourceUrl: "https://skills.sh/vabole/apple-skills/usernotifications"
+name: usernotifications
+user-invocable: true
+description: "API reference: UserNotifications. Query for local/remote notifications, triggers, notification content."
+context: fork
+agent: Explore
 ---
 
-# usernotifications
+# UserNotifications Documentation
 
-> Indexed by skills.sh from vabole/apple-skills
+Search these docs to answer questions about notification APIs.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** vabole
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/vabole/apple-skills/usernotifications`
-- **Source URL:** [https://skills.sh/vabole/apple-skills/usernotifications](https://skills.sh/vabole/apple-skills/usernotifications)
+## Return Format
 
-## Overview
+Always include:
+1. **Summary** - Answer the question concisely
+2. **File paths** - List relevant files for full details, e.g.:
+   - `notifications-overview.md` for notification center and triggers
 
+## Files
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/vabole/apple-skills/usernotifications
-```
+- `notifications-overview.md` - Framework overview and notification types
+- `unusernotificationcenter.md` - Central notification management
+- `unnotificationrequest.md` - Creating notification requests
+- `unmutablenotificationcontent.md` - Notification content (title, body, etc.)
+- `uncalendarnotificationtrigger.md` - Date/time-based triggers
+- `untimeintervalnotificationtrigger.md` - Interval-based triggers

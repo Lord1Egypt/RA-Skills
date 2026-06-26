@@ -1,0 +1,4 @@
+interface:
+  display_name: "PMA Go"
+  short_description: "Go service and CLI baseline for PMA projects"
+  default_prompt: "Use $pma-go with $pma to design or implement a Go service or CLI."

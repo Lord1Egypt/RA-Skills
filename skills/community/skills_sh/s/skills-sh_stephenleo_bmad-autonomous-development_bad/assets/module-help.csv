@@ -1,0 +1,3 @@
+module,skill,display-name,menu-code,description,action,args,phase,after,before,required,output-location,outputs
+bad,bad,Run BAD Pipeline,RN,"Runs the full autonomous development loop — dependency graph, story pipeline, auto-merge, and continuation",run,[KEY=VALUE...],3-development,bmad-sprint-planning:run,,false,,
+bad,bad,Configure BAD,SU,"Configure BAD pipeline settings — parallelism, models, worktree paths, and timers",configure,[setup|configure|install],anytime,,,false,,

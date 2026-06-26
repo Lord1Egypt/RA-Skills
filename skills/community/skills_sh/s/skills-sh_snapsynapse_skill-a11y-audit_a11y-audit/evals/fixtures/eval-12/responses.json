@@ -1,0 +1,20 @@
+{
+  "http://base.test/robots.txt": {
+    "body": "Sitemap: http://cdn.test/sitemap.xml\n"
+  },
+  "http://base.test/sitemap.xml": {
+    "body": "<?xml version=\"1.0\"?><urlset><url><loc>http://base.test/docs/a</loc></url></urlset>"
+  },
+  "http://base.test/sitemap_index.xml": {
+    "statusCode": 404,
+    "body": "missing"
+  },
+  "http://base.test/api/v1/index.json": {
+    "statusCode": 404,
+    "body": "missing"
+  },
+  "http://base.test/api/index.json": {
+    "statusCode": 404,
+    "body": "missing"
+  }
+}

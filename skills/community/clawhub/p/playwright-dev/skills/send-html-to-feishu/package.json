@@ -1,0 +1,24 @@
+{
+  "name": "send-html-to-feishu",
+  "version": "1.0.0",
+  "description": "将本地 HTML 文件转换为 PDF 并发送到飞书",
+  "main": "scripts/run.js",
+  "scripts": {
+    "run": "node scripts/run.js",
+    "html-to-pdf": "node scripts/html-to-pdf.js",
+    "send-to-feishu": "node scripts/send-to-feishu.js"
+  },
+  "keywords": [
+    "html",
+    "pdf",
+    "feishu",
+    "converter"
+  ],
+  "author": "Xiabi",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.57.0",
+    "axios": "^1.6.0",
+    "form-data": "^4.0.0"
+  }
+}

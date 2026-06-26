@@ -1,0 +1,28 @@
+{
+  "name": "Pet Companion Journal",
+  "slug": "pet-companion-journal",
+  "version": "1.1.0",
+  "description": "Local-first pet profiles, journals, photos, feeding logs, health records, reminders, and compact reports with isolated test storage and safety boundaries.",
+  "author": "harrylabsj",
+  "license": "MIT-0",
+  "language": "en",
+  "tags": [
+    "pets",
+    "journal",
+    "local-first",
+    "reminders",
+    "health-records"
+  ],
+  "trigger_keywords": [
+    "pet journal",
+    "pet health record",
+    "pet feeding log",
+    "pet reminder",
+    "companion archive"
+  ],
+  "requires_api": false,
+  "requires_network": false,
+  "uses_local_storage": true,
+  "storage_env": "PET_COMPANION_HOME",
+  "readiness": "stable"
+}

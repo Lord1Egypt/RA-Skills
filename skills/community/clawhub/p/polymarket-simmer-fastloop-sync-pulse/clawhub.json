@@ -1,0 +1,16 @@
+{
+  "requires": {
+    "pip": [
+      "simmer-sdk"
+    ],
+    "env": [
+      "SIMMER_API_KEY",
+      "WALLET_PRIVATE_KEY"
+    ]
+  },
+  "cron": "*/5 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "fastloop_improved.py"
+  }
+}

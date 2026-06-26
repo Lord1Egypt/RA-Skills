@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工资审核报告 v6 - 2026-06-05</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f1f5f9; color: #1e293b; line-height: 1.6; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+  .header { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .header h1 { font-size: 22px; }
+  .header .meta { color: #64748b; font-size: 13px; }
+  .status-badge { display: inline-block; padding: 6px 16px; border-radius: 20px; color: white; font-weight: 600; background: #dc2626; font-size: 14px; }
+  .section { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .section h2 { font-size: 16px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; color: #0f172a; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #f8fafc; padding: 10px 12px; text-align: left; color: #475569; font-weight: 600; border-bottom: 2px solid #e2e8f0; white-space: nowrap; }
+  td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; }
+  tr:hover td { background: #f8fafc; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .rate-col { text-align: right; white-space: nowrap; }
+  .status-pass { color: #16a34a; font-weight: 600; }
+  .status-fail { color: #dc2626; font-weight: 600; }
+  .status-warn { color: #ea580c; font-weight: 600; }
+  .status-note { color: #6366f1; font-weight: 600; }
+  .evidence-list { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px 16px; }
+  .evidence-list.failed { background: #fef2f2; border-color: #fecaca; }
+  .evidence-list li { margin: 4px 0; font-size: 13px; }
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; }
+  .chart { text-align: center; }
+  .chart h3 { font-size: 13px; color: #64748b; margin-bottom: 8px; }
+  .detail-table td { font-size: 12px; }
+  .detail-table .person-tag { display: inline-block; padding: 2px 8px; background: #fef2f2; color: #dc2626; border-radius: 4px; font-size: 11px; margin: 2px; }
+  .detail-table .person-tag.yellow { background: #fffbeb; color: #d97706; }
+  .footer { text-align: center; color: #94a3b8; font-size: 12px; padding: 16px 0; }
+  .kanban-link { color: #3b82f6; text-decoration: none; font-size: 12px; }
+  .kanban-link:hover { text-decoration: underline; }
+  @media (max-width: 768px) { .charts { grid-template-columns: 1fr; } .header { flex-direction: column; align-items: flex-start; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1>📋 工资审核报告 v6.0</h1>
+      <div class="meta">审核时间: 2026-06-05 16:13:26 | 规则版本: 7.0.0 | 数据量: 947 人</div>
+    </div>
+    <div class="status-badge">🔴 存在红线异常，禁止出报告</div>
+  </div>
+
+  <div class="section">
+    <h2>📊 审核结论汇总表</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>维度</th>
+          <th>规则ID</th>
+          <th style="text-align:right">检查数</th>
+          <th style="text-align:right">通过数</th>
+          <th style="text-align:right">异常数</th>
+          <th style="text-align:right">通过率</th>
+          <th>结论</th>
+          <th>详情</th>
+        </tr>
+      </thead>
+      <tbody>
+<tr id="FC-001">
+          <td>字段完整性</td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">FC-001</td>
+          <td class="num">65</td>
+          <td class="num" style="color:#16a34a">65</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td><a href="kanban.html?rule=FC-001" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="FR-001">
+          <td>应发合计校验</td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">FR-001</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">947</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td><a href="kanban.html?rule=FR-001" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="FR-002">
+          <td>实发合计校验</td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">FR-002</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">947</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td><a href="kanban.html?rule=FR-002" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="FR-003">
+          <td>出勤工资校验</td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">FR-003</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">947</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td><a href="kanban.html?rule=FR-003" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="FR-004">
+          <td>计薪天数校验</td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">FR-004</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">947</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td><a href="kanban.html?rule=FR-004" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="RL-001">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">RL-001</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">947</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td><a href="kanban.html?rule=RL-001" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="RL-002">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">RL-002</td>
+          <td class="num">781</td>
+          <td class="num" style="color:#16a34a">781</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td><a href="kanban.html?rule=RL-002" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="RL-003">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">RL-003</td>
+          <td class="num">846</td>
+          <td class="num" style="color:#16a34a">846</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td><a href="kanban.html?rule=RL-003" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="RL-004">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">RL-004</td>
+          <td class="num">468</td>
+          <td class="num" style="color:#16a34a">468</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td><a href="kanban.html?rule=RL-004" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="RL-005">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">RL-005</td>
+          <td class="num">897</td>
+          <td class="num" style="color:#16a34a">897</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td><a href="kanban.html?rule=RL-005" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="RL-006">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">RL-006</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">947</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td><a href="kanban.html?rule=RL-006" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="RL-007">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">RL-007</td>
+          <td class="num">852</td>
+          <td class="num" style="color:#16a34a">711</td>
+          <td class="num" style="color:#dc2626;font-weight:600">141</td>
+          <td class="rate-col">83.5%</td>
+          <td class="status-fail">🔴 阻断</td>
+          <td><a href="kanban.html?rule=RL-007" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="YL-001">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">YL-001</td>
+          <td class="num">872</td>
+          <td class="num" style="color:#16a34a">868</td>
+          <td class="num" style="color:#dc2626;font-weight:600">4</td>
+          <td class="rate-col">99.5%</td>
+          <td class="status-warn">🟠 异常</td>
+          <td><a href="kanban.html?rule=YL-001" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="YL-002">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">YL-002</td>
+          <td class="num">872</td>
+          <td class="num" style="color:#16a34a">868</td>
+          <td class="num" style="color:#dc2626;font-weight:600">4</td>
+          <td class="rate-col">99.5%</td>
+          <td class="status-warn">🟠 异常</td>
+          <td><a href="kanban.html?rule=YL-002" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="YL-003">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">YL-003</td>
+          <td class="num">872</td>
+          <td class="num" style="color:#16a34a">869</td>
+          <td class="num" style="color:#dc2626;font-weight:600">3</td>
+          <td class="rate-col">99.7%</td>
+          <td class="status-warn">🟠 异常</td>
+          <td><a href="kanban.html?rule=YL-003" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="YL-004">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">YL-004</td>
+          <td class="num">944</td>
+          <td class="num" style="color:#16a34a">944</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td><a href="kanban.html?rule=YL-004" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="YL-005">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">YL-005</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">947</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td><a href="kanban.html?rule=YL-005" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="YL-006">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">YL-006</td>
+          <td class="num">872</td>
+          <td class="num" style="color:#16a34a">729</td>
+          <td class="num" style="color:#dc2626;font-weight:600">143</td>
+          <td class="rate-col">83.6%</td>
+          <td class="status-warn">🟠 异常</td>
+          <td><a href="kanban.html?rule=YL-006" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="BL-001">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">BL-001</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">816</td>
+          <td class="num" style="color:#dc2626;font-weight:600">131</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-note">🔵 提示</td>
+          <td><a href="kanban.html?rule=BL-001" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="BL-002">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">BL-002</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">778</td>
+          <td class="num" style="color:#dc2626;font-weight:600">169</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-note">🔵 提示</td>
+          <td><a href="kanban.html?rule=BL-002" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="BL-003">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">BL-003</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">947</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td><a href="kanban.html?rule=BL-003" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="BL-004">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">BL-004</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">621</td>
+          <td class="num" style="color:#dc2626;font-weight:600">326</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-note">🔵 提示</td>
+          <td><a href="kanban.html?rule=BL-004" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="">
+          <td>15号后入职当月不缴社保公积金</td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px"></td>
+          <td class="num">445</td>
+          <td class="num" style="color:#16a34a">445</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td></td>
+        </tr>
+<tr id="">
+          <td>实习生/保洁豁免社保公积金</td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px"></td>
+          <td class="num">50</td>
+          <td class="num" style="color:#16a34a">50</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td></td>
+        </tr>
+<tr id="">
+          <td>离职当月社保公积金缴纳规则</td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px"></td>
+          <td class="num">6</td>
+          <td class="num" style="color:#16a34a">6</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td></td>
+        </tr>
+<tr id="">
+          <td>道旅国际-社保豁免</td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px"></td>
+          <td class="num">11</td>
+          <td class="num" style="color:#16a34a">11</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td></td>
+        </tr>
+<tr id="">
+          <td>道旅国际-公积金豁免</td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px"></td>
+          <td class="num">11</td>
+          <td class="num" style="color:#16a34a">11</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td></td>
+        </tr>
+<tr id="BR-001">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">BR-001</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">32</td>
+          <td class="num" style="color:#dc2626;font-weight:600">915</td>
+          <td class="rate-col">3.4%</td>
+          <td class="status-warn">🟠 异常</td>
+          <td><a href="kanban.html?rule=BR-001" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="BR-002">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">BR-002</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">0</td>
+          <td class="num" style="color:#dc2626;font-weight:600">947</td>
+          <td class="rate-col">0.0%</td>
+          <td class="status-warn">🟠 异常</td>
+          <td><a href="kanban.html?rule=BR-002" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="BR-003">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">BR-003</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">0</td>
+          <td class="num" style="color:#dc2626;font-weight:600">947</td>
+          <td class="rate-col">0.0%</td>
+          <td class="status-warn">🟠 异常</td>
+          <td><a href="kanban.html?rule=BR-003" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="BR-004">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">BR-004</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">947</td>
+          <td class="num" style="color:#dc2626;font-weight:600">0</td>
+          <td class="rate-col">100.0%</td>
+          <td class="status-pass">✅ 通过</td>
+          <td><a href="kanban.html?rule=BR-004" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+<tr id="BR-005">
+          <td></td>
+          <td style="font-family:monospace;color:#94a3b8;font-size:11px">BR-005</td>
+          <td class="num">947</td>
+          <td class="num" style="color:#16a34a">945</td>
+          <td class="num" style="color:#dc2626;font-weight:600">2</td>
+          <td class="rate-col">99.8%</td>
+          <td class="status-warn">🟠 异常</td>
+          <td><a href="kanban.html?rule=BR-005" class="kanban-link" target="_blank">看板↗</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>📝 审核结论与数据支撑</h2>
+<div class="evidence-list failed"><strong>异常项（需核实）：</strong><ul>
+<li>红线 标准工资三字段变化无记录：141人异常，检查947人 <a href="kanban.html?rule=RL-007" class="kanban-link" target="_blank">查看明细↗</a></li>
+<li>黄线 绩效系数过高：4人异常，检查947人 <a href="kanban.html?rule=YL-001" class="kanban-link" target="_blank">查看明细↗</a></li>
+<li>黄线 绩效系数过低：4人异常，检查947人 <a href="kanban.html?rule=YL-002" class="kanban-link" target="_blank">查看明细↗</a></li>
+<li>黄线 绩效系数月度波动大：3人异常，检查947人 <a href="kanban.html?rule=YL-003" class="kanban-link" target="_blank">查看明细↗</a></li>
+<li>黄线 标准工资无依据变化：143人异常，检查947人 <a href="kanban.html?rule=YL-006" class="kanban-link" target="_blank">查看明细↗</a></li>
+<li>业务规则 出勤工资不超过标准工资：915人异常，检查947人 <a href="kanban.html?rule=BR-001" class="kanban-link" target="_blank">查看明细↗</a></li>
+<li>业务规则 出勤天数不超过应出勤天数：947人异常，检查947人 <a href="kanban.html?rule=BR-002" class="kanban-link" target="_blank">查看明细↗</a></li>
+<li>业务规则 绩效系数在合理范围：947人异常，检查947人 <a href="kanban.html?rule=BR-003" class="kanban-link" target="_blank">查看明细↗</a></li>
+<li>业务规则 轮班天数不超过计薪天数：2人异常，检查947人 <a href="kanban.html?rule=BR-005" class="kanban-link" target="_blank">查看明细↗</a></li>
+</ul></div>
+<div class="evidence-list"><strong>通过项（数据支撑）：</strong><ul>
+<li>✅ 字段完整性通过：65个必填字段全部存在，零缺失</li>
+<li>✅ 公式校验通过：947条记录全部在容差范围内，零误差</li>
+<li>✅ 公式校验通过：947条记录全部在容差范围内，零误差</li>
+<li>✅ 公式校验通过：947条记录全部在容差范围内，零误差</li>
+<li>✅ 公式校验通过：947条记录全部在容差范围内，零误差</li>
+<li>✅ 特殊政策执行通过：5项政策校验零违规</li>
+<li>✅ 总额环比正常：应发合计 从¥15,340,225→¥15,020,897，变化-2.1%，在±10%正常范围内</li>
+<li>✅ 总额环比正常：实发金额合计 从¥14,272,483→¥13,307,958，变化-6.8%，在±10%正常范围内</li>
+<li>✅ 总额环比正常：实际出勤工资小计 从¥10,943,185→¥11,250,835，变化+2.8%，在±10%正常范围内</li>
+<li>✅ 总额环比正常：实际绩效工资 从¥2,847,352→¥2,847,173，变化-0.0%，在±10%正常范围内</li>
+</ul></div>
+</div>
+
+  <div class="section">
+    <h2>🔍 异常明细</h2>
+
+    <h3 id="RL-007">🔴 [红线] 标准工资三字段变化无记录 (RL-007) — 141人异常</h3>
+    <table class="detail-table">
+      <thead><tr><th>工号</th><th>姓名</th><th>异常值</th><th>预期值</th><th>详情</th></tr></thead>
+      <tbody>
+<tr>
+          <td>5</td>
+          <td><span class="person-tag">128671De2Ml4</span></td>
+          <td>43888.47</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>7</td>
+          <td><span class="person-tag">895922Sx4St1</span></td>
+          <td>39543.02</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>16</td>
+          <td><span class="person-tag">150669Lv7Rk2</span></td>
+          <td>41493.02</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>19</td>
+          <td><span class="person-tag">964730Rn2Ru5</span></td>
+          <td>24161.72</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>28</td>
+          <td><span class="person-tag">620006La1Tm2</span></td>
+          <td>24793.02</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>42</td>
+          <td><span class="person-tag">905144Qi7Ey8</span></td>
+          <td>29543.02</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>51</td>
+          <td><span class="person-tag">643796Pl1Gt3</span></td>
+          <td>21355.1</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>67</td>
+          <td><span class="person-tag">598353He2Yv9</span></td>
+          <td>35943.02</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>109</td>
+          <td><span class="person-tag">785932Yx6Fx3</span></td>
+          <td>24125.18</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>214</td>
+          <td><span class="person-tag">157927Sl6Er2</span></td>
+          <td>24243.02</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>255</td>
+          <td><span class="person-tag">516628Zx4Rk3</span></td>
+          <td>21393.02</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>267</td>
+          <td><span class="person-tag">608716Lv4Na3</span></td>
+          <td>28193.02</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>296</td>
+          <td><span class="person-tag">160718Ze5Ko1</span></td>
+          <td>54190.63</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>320</td>
+          <td><span class="person-tag">875611Jr9Gd6</span></td>
+          <td>26743.02</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>457</td>
+          <td><span class="person-tag">879265Ph8Ta0</span></td>
+          <td>17586.15</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>452</td>
+          <td><span class="person-tag">641792Ck9Yi4</span></td>
+          <td>21912.77</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>461</td>
+          <td><span class="person-tag">482269Ma5Sh4</span></td>
+          <td>23193.01</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>466</td>
+          <td><span class="person-tag">220828Ux6Ec4</span></td>
+          <td>17433.02</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>473</td>
+          <td><span class="person-tag">802239Co5Lt3</span></td>
+          <td>22293.02</td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>477</td>
+          <td><span class="person-tag">446494Ug8Fy7</span></td>
+          <td>25417.22</td>
+          <td></td>
+          <td></td>
+        </tr>
+</tbody></table>
+
+    <h3 id="YL-001">🔴 [黄线] 绩效系数过高 (YL-001) — 4人异常</h3>
+    <table class="detail-table">
+      <thead><tr><th>工号</th><th>姓名</th><th>异常值</th><th>预期值</th><th>详情</th></tr></thead>
+      <tbody>
+<tr>
+          <td>541</td>
+          <td><span class="person-tag yellow">812248Fd9Er4</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>607</td>
+          <td><span class="person-tag yellow">919637Sc8Xg2</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>115</td>
+          <td><span class="person-tag yellow">512791Mh2Rt5</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>674</td>
+          <td><span class="person-tag yellow">336523Vz6Gb9</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+</tbody></table>
+
+    <h3 id="YL-002">🔴 [黄线] 绩效系数过低 (YL-002) — 4人异常</h3>
+    <table class="detail-table">
+      <thead><tr><th>工号</th><th>姓名</th><th>异常值</th><th>预期值</th><th>详情</th></tr></thead>
+      <tbody>
+<tr>
+          <td>338</td>
+          <td><span class="person-tag yellow">130032Bp7Vd3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>706</td>
+          <td><span class="person-tag yellow">603178Ww0Be7</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>1105</td>
+          <td><span class="person-tag yellow">539775Ic0Kw3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>467</td>
+          <td><span class="person-tag yellow">481204Bp0Qc5</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+</tbody></table>
+
+    <h3 id="YL-003">🔴 [黄线] 绩效系数月度波动大 (YL-003) — 3人异常</h3>
+    <table class="detail-table">
+      <thead><tr><th>工号</th><th>姓名</th><th>异常值</th><th>预期值</th><th>详情</th></tr></thead>
+      <tbody>
+<tr>
+          <td>65</td>
+          <td><span class="person-tag yellow">491087Ak6Wa8</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>467</td>
+          <td><span class="person-tag yellow">481204Bp0Qc5</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>1592</td>
+          <td><span class="person-tag yellow">790066Ae7Cx7</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+</tbody></table>
+
+    <h3 id="YL-006">🔴 [黄线] 标准工资无依据变化 (YL-006) — 143人异常</h3>
+    <table class="detail-table">
+      <thead><tr><th>工号</th><th>姓名</th><th>异常值</th><th>预期值</th><th>详情</th></tr></thead>
+      <tbody>
+<tr>
+          <td>1</td>
+          <td><span class="person-tag yellow">425269Wa0Wr3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>3</td>
+          <td><span class="person-tag yellow">100776Wz9Jx4</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>5</td>
+          <td><span class="person-tag yellow">128671De2Ml4</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>7</td>
+          <td><span class="person-tag yellow">895922Sx4St1</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>16</td>
+          <td><span class="person-tag yellow">150669Lv7Rk2</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>19</td>
+          <td><span class="person-tag yellow">964730Rn2Ru5</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>28</td>
+          <td><span class="person-tag yellow">620006La1Tm2</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>42</td>
+          <td><span class="person-tag yellow">905144Qi7Ey8</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>51</td>
+          <td><span class="person-tag yellow">643796Pl1Gt3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>67</td>
+          <td><span class="person-tag yellow">598353He2Yv9</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>109</td>
+          <td><span class="person-tag yellow">785932Yx6Fx3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>214</td>
+          <td><span class="person-tag yellow">157927Sl6Er2</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>255</td>
+          <td><span class="person-tag yellow">516628Zx4Rk3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>267</td>
+          <td><span class="person-tag yellow">608716Lv4Na3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>296</td>
+          <td><span class="person-tag yellow">160718Ze5Ko1</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>320</td>
+          <td><span class="person-tag yellow">875611Jr9Gd6</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>457</td>
+          <td><span class="person-tag yellow">879265Ph8Ta0</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>452</td>
+          <td><span class="person-tag yellow">641792Ck9Yi4</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>461</td>
+          <td><span class="person-tag yellow">482269Ma5Sh4</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>466</td>
+          <td><span class="person-tag yellow">220828Ux6Ec4</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+</tbody></table>
+
+    <h3 id="BR-001">🔴 [业务规则] 出勤工资不超过标准工资 (BR-001) — 915人异常</h3>
+    <table class="detail-table">
+      <thead><tr><th>工号</th><th>姓名</th><th>异常值</th><th>预期值</th><th>详情</th></tr></thead>
+      <tbody>
+<tr>
+          <td>1</td>
+          <td><span class="person-tag yellow">425269Wa0Wr3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>3</td>
+          <td><span class="person-tag yellow">100776Wz9Jx4</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>4</td>
+          <td><span class="person-tag yellow">313161Hq4Dj6</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>5</td>
+          <td><span class="person-tag yellow">128671De2Ml4</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>6</td>
+          <td><span class="person-tag yellow">334147Fa4Zk5</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>7</td>
+          <td><span class="person-tag yellow">895922Sx4St1</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>8</td>
+          <td><span class="person-tag yellow">548516Xu2Vm8</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>12</td>
+          <td><span class="person-tag yellow">108562Gp2Qz7</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>13</td>
+          <td><span class="person-tag yellow">864487Gf8Nv8</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>15</td>
+          <td><span class="person-tag yellow">721859My7Go6</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>16</td>
+          <td><span class="person-tag yellow">150669Lv7Rk2</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>17</td>
+          <td><span class="person-tag yellow">356598Lt2Pr3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>19</td>
+          <td><span class="person-tag yellow">964730Rn2Ru5</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>20</td>
+          <td><span class="person-tag yellow">631963Zi2Sz3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>22</td>
+          <td><span class="person-tag yellow">624709Vx1Gv4</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>23</td>
+          <td><span class="person-tag yellow">702606Dl4Zk3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>28</td>
+          <td><span class="person-tag yellow">620006La1Tm2</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>29</td>
+          <td><span class="person-tag yellow">477143Xt0Zb3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>31</td>
+          <td><span class="person-tag yellow">568991Xc1Cd5</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>36</td>
+          <td><span class="person-tag yellow">651354Ww9Fm9</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+</tbody></table>
+
+    <h3 id="BR-002">🔴 [业务规则] 出勤天数不超过应出勤天数 (BR-002) — 947人异常</h3>
+    <table class="detail-table">
+      <thead><tr><th>工号</th><th>姓名</th><th>异常值</th><th>预期值</th><th>详情</th></tr></thead>
+      <tbody>
+<tr>
+          <td>1</td>
+          <td><span class="person-tag yellow">425269Wa0Wr3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>3</td>
+          <td><span class="person-tag yellow">100776Wz9Jx4</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>4</td>
+          <td><span class="person-tag yellow">313161Hq4Dj6</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>5</td>
+          <td><span class="person-tag yellow">128671De2Ml4</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>6</td>
+          <td><span class="person-tag yellow">334147Fa4Zk5</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>7</td>
+          <td><span class="person-tag yellow">895922Sx4St1</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>8</td>
+          <td><span class="person-tag yellow">548516Xu2Vm8</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>12</td>
+          <td><span class="person-tag yellow">108562Gp2Qz7</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>13</td>
+          <td><span class="person-tag yellow">864487Gf8Nv8</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>15</td>
+          <td><span class="person-tag yellow">721859My7Go6</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>16</td>
+          <td><span class="person-tag yellow">150669Lv7Rk2</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>17</td>
+          <td><span class="person-tag yellow">356598Lt2Pr3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>19</td>
+          <td><span class="person-tag yellow">964730Rn2Ru5</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>20</td>
+          <td><span class="person-tag yellow">631963Zi2Sz3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>22</td>
+          <td><span class="person-tag yellow">624709Vx1Gv4</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>23</td>
+          <td><span class="person-tag yellow">702606Dl4Zk3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>28</td>
+          <td><span class="person-tag yellow">620006La1Tm2</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>29</td>
+          <td><span class="person-tag yellow">477143Xt0Zb3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>31</td>
+          <td><span class="person-tag yellow">568991Xc1Cd5</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>36</td>
+          <td><span class="person-tag yellow">651354Ww9Fm9</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+</tbody></table>
+
+    <h3 id="BR-003">🔴 [业务规则] 绩效系数在合理范围 (BR-003) — 947人异常</h3>
+    <table class="detail-table">
+      <thead><tr><th>工号</th><th>姓名</th><th>异常值</th><th>预期值</th><th>详情</th></tr></thead>
+      <tbody>
+<tr>
+          <td>1</td>
+          <td><span class="person-tag yellow">425269Wa0Wr3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>3</td>
+          <td><span class="person-tag yellow">100776Wz9Jx4</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>4</td>
+          <td><span class="person-tag yellow">313161Hq4Dj6</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>5</td>
+          <td><span class="person-tag yellow">128671De2Ml4</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>6</td>
+          <td><span class="person-tag yellow">334147Fa4Zk5</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>7</td>
+          <td><span class="person-tag yellow">895922Sx4St1</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>8</td>
+          <td><span class="person-tag yellow">548516Xu2Vm8</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>12</td>
+          <td><span class="person-tag yellow">108562Gp2Qz7</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>13</td>
+          <td><span class="person-tag yellow">864487Gf8Nv8</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>15</td>
+          <td><span class="person-tag yellow">721859My7Go6</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>16</td>
+          <td><span class="person-tag yellow">150669Lv7Rk2</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>17</td>
+          <td><span class="person-tag yellow">356598Lt2Pr3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>19</td>
+          <td><span class="person-tag yellow">964730Rn2Ru5</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>20</td>
+          <td><span class="person-tag yellow">631963Zi2Sz3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>22</td>
+          <td><span class="person-tag yellow">624709Vx1Gv4</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>23</td>
+          <td><span class="person-tag yellow">702606Dl4Zk3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>28</td>
+          <td><span class="person-tag yellow">620006La1Tm2</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>29</td>
+          <td><span class="person-tag yellow">477143Xt0Zb3</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>31</td>
+          <td><span class="person-tag yellow">568991Xc1Cd5</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>36</td>
+          <td><span class="person-tag yellow">651354Ww9Fm9</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+</tbody></table>
+
+    <h3 id="BR-005">🔴 [业务规则] 轮班天数不超过计薪天数 (BR-005) — 2人异常</h3>
+    <table class="detail-table">
+      <thead><tr><th>工号</th><th>姓名</th><th>异常值</th><th>预期值</th><th>详情</th></tr></thead>
+      <tbody>
+<tr>
+          <td>570</td>
+          <td><span class="person-tag yellow">847238Vf1Cg1</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+          <td>913</td>
+          <td><span class="person-tag yellow">388095Mf1Ay6</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+</tbody></table>
+</div>
+
+  <div class="section">
+    <h2>📈 总额环比分析</h2>
+    <table>
+      <thead><tr><th>指标</th><th style="text-align:right">本月</th><th style="text-align:right">上月</th><th style="text-align:right">变化率</th><th>状态</th></tr></thead>
+      <tbody>
+      <tr><td>人数</td><td class="num">947</td><td class="num">954</td><td class="rate-col">-0.7%</td><td>✅ 正常</td></tr>
+<tr><td>应发合计</td><td class="num">¥15,020,897</td><td class="num">¥15,340,225</td><td class="rate-col">-2.1%</td><td>✅ 正常</td></tr>
+<tr><td>实发金额合计</td><td class="num">¥13,307,958</td><td class="num">¥14,272,483</td><td class="rate-col">-6.8%</td><td>✅ 正常</td></tr>
+<tr><td>实际出勤工资小计</td><td class="num">¥11,250,835</td><td class="num">¥10,943,185</td><td class="rate-col">+2.8%</td><td>✅ 正常</td></tr>
+<tr><td>实际绩效工资</td><td class="num">¥2,847,173</td><td class="num">¥2,847,352</td><td class="rate-col">-0.0%</td><td>✅ 正常</td></tr>
+<tr><td>加班费小计</td><td class="num">¥92,748</td><td class="num">¥1,202</td><td class="rate-col">+7617.5%</td><td>⚠️ 需分析</td></tr>
+<tr><td>业务线奖金合计</td><td class="num">¥42,770</td><td class="num">¥952,910</td><td class="rate-col">-95.5%</td><td>⚠️ 需分析</td></tr>
+<tr><td>提成&其他&奖金</td><td class="num">¥290,518</td><td class="num">¥362,797</td><td class="rate-col">-19.9%</td><td>⚠️ 需分析</td></tr>
+<tr><td>补发</td><td class="num">¥260,654</td><td class="num">¥159</td><td class="rate-col">+164195.0%</td><td>⚠️ 需分析</td></tr>
+</tbody></table></div>
+
+  <div class="section">
+    <h2>📊 可视化附录</h2>
+    <div class="charts">
+      <div class="chart"><h3>异常分布</h3>
+<svg width="300" height="200" viewBox="0 0 300 200">
+<path d="M 150 100 L 150.0 20.0 A 80 80 0 0 1 192.7 32.4 Z" fill="#dc2626" stroke="#fff" stroke-width="1"><title>红线: 141</title></path>
+<rect x="180" y="20" width="12" height="12" fill="#dc2626"/><text x="198" y="30" font-size="11" fill="#333">红线: 141</text>
+<path d="M 150 100 L 192.7 32.4 A 80 80 0 0 1 223.9 69.4 Z" fill="#f59e0b" stroke="#fff" stroke-width="1"><title>黄线: 154</title></path>
+<rect x="180" y="38" width="12" height="12" fill="#f59e0b"/><text x="198" y="48" font-size="11" fill="#333">黄线: 154</text>
+<path d="M 150 100 L 223.9 69.4 A 80 80 0 0 1 109.1 168.7 Z" fill="#3b82f6" stroke="#fff" stroke-width="1"><title>蓝线: 626</title></path>
+<rect x="180" y="56" width="12" height="12" fill="#3b82f6"/><text x="198" y="66" font-size="11" fill="#333">蓝线: 626</text>
+<path d="M 150 100 L 109.1 168.7 A 80 80 0 0 1 150.0 20.0 Z" fill="#22c55e" stroke="#fff" stroke-width="1"><title>通过: 652</title></path>
+<rect x="180" y="74" width="12" height="12" fill="#22c55e"/><text x="198" y="84" font-size="11" fill="#333">通过: 652</text>
+</svg>
+</div><div class='chart'><h3>异常项对比</h3>
+<svg width="400" height="200" viewBox="0 0 400 200">
+<line x1="40" y1="40.0" x2="360" y2="40.0" stroke="#eee" stroke-width="1"/>
+<text x="35" y="44.0" text-anchor="end" font-size="10" fill="#999">143</text>
+<line x1="40" y1="70.0" x2="360" y2="70.0" stroke="#eee" stroke-width="1"/>
+<text x="35" y="74.0" text-anchor="end" font-size="10" fill="#999">107</text>
+<line x1="40" y1="100.0" x2="360" y2="100.0" stroke="#eee" stroke-width="1"/>
+<text x="35" y="104.0" text-anchor="end" font-size="10" fill="#999">72</text>
+<line x1="40" y1="130.0" x2="360" y2="130.0" stroke="#eee" stroke-width="1"/>
+<text x="35" y="134.0" text-anchor="end" font-size="10" fill="#999">36</text>
+<line x1="40" y1="160.0" x2="360" y2="160.0" stroke="#eee" stroke-width="1"/>
+<text x="35" y="164.0" text-anchor="end" font-size="10" fill="#999">0</text>
+<rect x="49.6" y="41.7" width="44.8" height="118.3" fill="#dc2626" rx="3"><title>标准工资三字段变化无记录: 141</title></rect>
+<text x="72.0" y="175" text-anchor="middle" font-size="10" fill="#666" transform="rotate(-45, 72.0, 175)">标准工资三字段变化无记录</text>
+<rect x="113.6" y="156.6" width="44.8" height="3.4" fill="#dc2626" rx="3"><title>绩效系数过高: 4</title></rect>
+<text x="136.0" y="175" text-anchor="middle" font-size="10" fill="#666" transform="rotate(-45, 136.0, 175)">绩效系数过高</text>
+<rect x="177.6" y="156.6" width="44.8" height="3.4" fill="#dc2626" rx="3"><title>绩效系数过低: 4</title></rect>
+<text x="200.0" y="175" text-anchor="middle" font-size="10" fill="#666" transform="rotate(-45, 200.0, 175)">绩效系数过低</text>
+<rect x="241.6" y="157.5" width="44.8" height="2.5" fill="#dc2626" rx="3"><title>绩效系数月度波动大: 3</title></rect>
+<text x="264.0" y="175" text-anchor="middle" font-size="10" fill="#666" transform="rotate(-45, 264.0, 175)">绩效系数月度波动大</text>
+<rect x="305.6" y="40.0" width="44.8" height="120.0" fill="#dc2626" rx="3"><title>标准工资无依据变化: 143</title></rect>
+<text x="328.0" y="175" text-anchor="middle" font-size="10" fill="#666" transform="rotate(-45, 328.0, 175)">标准工资无依据变化</text>
+</svg>
+</div></div></div>
+
+  <div class="footer">
+    <p>由 payroll-data-audit v6.0 自动生成 | 全量对齐 SOP | 数据来源: rules_engine.py | 关联文件: data_index.json + kanban.html</p>
+  </div>
+</div>
+</body>
+</html>

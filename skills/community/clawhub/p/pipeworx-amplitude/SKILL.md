@@ -1,35 +1,33 @@
----
-name: "Pipeworx amplitude"
-description: "Retrieve and analyze user events, active counts, retention, and profiles in Amplitude with detailed date-range and granularity options."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-amplitude"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-amplitude"
----
+# Amplitude
 
-# Pipeworx amplitude
+Amplitude MCP Pack
 
-> Retrieve and analyze user events, active counts, retention, and profiles in Amplitude with detailed date-range and granularity options.
+## amp_get_events
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-amplitude`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-amplitude](https://clawhub.ai/skills/pipeworx-amplitude)
+Get event counts and breakdowns for a date range (e.g., "2024-01-01" to "2024-01-31"). Returns frequ
 
-## Overview
+## amp_get_active_users
 
+Get active user counts by granularity (daily, weekly, or monthly) for a date range. Returns totals a
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-amplitude
+## amp_get_retention
+
+Get user retention metrics for a cohort over time. Returns retention percentages by time period (e.g
+
+## amp_user_search
+
+Search for users by ID or property (e.g., email, user_id). Returns matching profiles with properties
+
+## amp_get_user_activity
+
+Get recent event activity timeline for a specific user. Returns events with timestamps, properties, 
+
+```json
+{
+  "mcpServers": {
+    "amplitude": {
+      "url": "https://gateway.pipeworx.io/amplitude/mcp"
+    }
+  }
+}
 ```

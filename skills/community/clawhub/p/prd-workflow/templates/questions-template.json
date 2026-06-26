@@ -1,0 +1,161 @@
+{
+  "version": "1.0",
+  "description": "PRD Workflow 访谈问题库 - 6 维度深度访谈",
+  "dimensions": {
+    "产品定位": {
+      "priority": "high",
+      "questions": [
+        {
+          "id": "P01",
+          "question": "目标用户年龄段？",
+          "options": ["35-50 岁（规划期）", "50-65 岁（临近退休）", "65 岁以上（已退休）", "全年龄段覆盖"],
+          "required": true,
+          "followUp": "为什么选择这个年龄段？有什么特殊考虑吗？"
+        },
+        {
+          "id": "P02",
+          "question": "收入水平定位？",
+          "options": ["大众市场（年收入 10-30 万）", "中产阶层（年收入 30-100 万）", "高净值人群（年收入 100 万+）"],
+          "required": true,
+          "followUp": "这个收入水平的用户有什么特殊需求？"
+        },
+        {
+          "id": "P03",
+          "question": "养老测算精度？",
+          "options": ["粗估（快速试算，3 分钟内）", "详细（完整测算，10-15 分钟）", "专业级（精算师水平，30 分钟+）"],
+          "required": true,
+          "followUp": "精度要求高的原因是什么？"
+        }
+      ]
+    },
+    "核心功能": {
+      "priority": "high",
+      "questions": [
+        {
+          "id": "F01",
+          "question": "是否需要产品推荐？",
+          "options": ["仅测算，不推荐产品", "测算 + 产品推荐", "测算 + 配置方案 + 动态调整"],
+          "required": true,
+          "followUp": "推荐的依据是什么？（风险等级/收益/期限）"
+        },
+        {
+          "id": "F02",
+          "question": "数据来源？",
+          "options": ["用户手动输入", "对接社保/公积金系统", "对接商业保险系统", "以上全部"],
+          "required": true,
+          "followUp": "对接外部系统的时间和技术可行性？"
+        },
+        {
+          "id": "F03",
+          "question": "输出形式？",
+          "options": ["简单报告（1-2 页）", "详细报告（5-10 页）", "交互式方案（可调整参数）"],
+          "required": true,
+          "followUp": "报告需要导出吗？什么格式？"
+        }
+      ]
+    },
+    "合规要求": {
+      "priority": "high",
+      "questions": [
+        {
+          "id": "C01",
+          "question": "需要风险测评吗？",
+          "options": ["不需要", "简单测评（5-10 题）", "完整测评（20 题+，符合监管）"],
+          "required": true,
+          "followUp": "如果完整测评，需要符合哪些监管要求？"
+        },
+        {
+          "id": "C02",
+          "question": "适当性管理？",
+          "options": ["不需要", "需要（产品风险等级匹配）"],
+          "required": true,
+          "followUp": "适当性匹配的严格程度？（强匹配/弱匹配）"
+        },
+        {
+          "id": "C03",
+          "question": "是否需要冷静期/回访？",
+          "options": ["不需要", "需要（符合私募/信托要求）"],
+          "required": false,
+          "followUp": "冷静期多久？回访方式？"
+        }
+      ]
+    },
+    "技术约束": {
+      "priority": "medium",
+      "questions": [
+        {
+          "id": "T01",
+          "question": "使用渠道？",
+          "options": ["手机 APP", "企业微信", "H5 页面", "小程序", "多渠道"],
+          "required": true,
+          "followUp": "各渠道的优先级？"
+        },
+        {
+          "id": "T02",
+          "question": "现有系统对接？",
+          "options": ["已有客户系统", "已有产品库", "已有交易系统", "全新系统"],
+          "required": true,
+          "followUp": "现有系统的接口文档是否完整？"
+        },
+        {
+          "id": "T03",
+          "question": "上线时间要求？",
+          "options": ["紧急（1 个月内）", "正常（2-3 个月）", "不着急（3 个月以上）"],
+          "required": true,
+          "followUp": "时间紧张的话，哪些功能可以二期做？"
+        }
+      ]
+    },
+    "业务目标": {
+      "priority": "medium",
+      "questions": [
+        {
+          "id": "B01",
+          "question": "核心业务目标？",
+          "type": "text",
+          "required": true,
+          "example": "提升理财经理效率 50%，客户转化率提升 20%"
+        },
+        {
+          "id": "B02",
+          "question": "成功指标（KPI）？",
+          "type": "text",
+          "required": true,
+          "example": "测算时间从 30 分钟降到 10 分钟，产品购买转化率提升 15%"
+        }
+      ]
+    },
+    "用户场景": {
+      "priority": "low",
+      "questions": [
+        {
+          "id": "U01",
+          "question": "主要使用场景？",
+          "type": "text",
+          "required": true,
+          "example": "理财经理在网点为客户做养老规划，或在企业微信上远程服务"
+        },
+        {
+          "id": "U02",
+          "question": "使用频率？",
+          "options": ["每天多次", "每天 1-2 次", "每周几次", "每月几次"],
+          "required": false
+        }
+      ]
+    }
+  },
+  "questionGenerationRules": {
+    "vagueRequest": {
+      "condition": "用户需求包含'大概'、'可能'、'类似'等模糊词",
+      "action": "增加追问，探索设计树"
+    },
+    "complexRequest": {
+      "condition": "涉及 3 个以上模块或系统",
+      "action": "增加依赖关系问题"
+    },
+    "financialProduct": {
+      "condition": "涉及基金、理财、信托等",
+      "action": "增加合规问题（合格投资者、冷静期等）"
+    }
+  }
+}

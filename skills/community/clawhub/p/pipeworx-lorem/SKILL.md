@@ -1,35 +1,32 @@
 ---
-name: "Pipeworx lorem"
-description: "Lorem MCP — wraps loripsum.net (free, no auth)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-lorem"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-lorem"
+name: pipeworx-lorem
+description: Lorem MCP — wraps loripsum.net (free, no auth)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/lorem
 ---
 
-# Pipeworx lorem
+# pipeworx-lorem
 
-> Lorem MCP — wraps loripsum.net (free, no auth)
+Lorem MCP — wraps loripsum.net (free, no auth). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-lorem`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-lorem](https://clawhub.ai/skills/pipeworx-lorem)
+## Tools
 
-## Overview
+- `generate_paragraphs`
+- `generate_with_options`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-lorem
+```json
+{
+  "mcpServers": {
+    "pipeworx-lorem": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/lorem/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/lorem](https://pipeworx.io/packs/lorem)

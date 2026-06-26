@@ -1,0 +1,28 @@
+{
+    "_comment": "这是示例配置，使用前请替换为实际的 Worker 信息",
+    "_说明": "端口范围建议：主节点 8765-8769，各工作区错开使用",
+    "workers": [
+        {
+            "ws_id": "example_main",
+            "ws_name": "主工作区",
+            "host": "localhost",
+            "port": 8765,
+            "capabilities": ["task_dispatch", "coordination"]
+        },
+        {
+            "ws_id": "example_worker_1",
+            "ws_name": "工作区1",
+            "host": "localhost",
+            "port": 8766,
+            "capabilities": ["data_processing"]
+        },
+        {
+            "ws_id": "example_worker_2",
+            "ws_name": "工作区2",
+            "host": "localhost",
+            "port": 8767,
+            "capabilities": ["analysis"]
+        }
+    ],
+    "last_updated": "2026-04-21"
+}

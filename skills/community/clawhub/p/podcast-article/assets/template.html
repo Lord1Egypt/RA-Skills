@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}}</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+                   "Microsoft YaHei", "Segoe UI", sans-serif;
+      background: #f5f4f0;
+      color: #2d2d2d;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    /* ── 顶部 Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+      color: #fff;
+      padding: 64px 24px 48px;
+      text-align: center;
+    }
+    .hero .podcast-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #a0c4ff;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+    .hero h1 {
+      font-size: clamp(24px, 5vw, 42px);
+      font-weight: 800;
+      line-height: 1.25;
+      max-width: 780px;
+      margin: 0 auto 12px;
+      letter-spacing: -0.02em;
+    }
+    .hero .subtitle {
+      font-size: 18px;
+      color: #b8c9e8;
+      max-width: 620px;
+      margin: 0 auto 32px;
+      font-weight: 400;
+    }
+    .hero .meta {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: #7a9cc8;
+    }
+    .hero .meta span { display: flex; align-items: center; gap: 4px; }
+
+    /* ── 主体布局 ── */
+    .wrapper {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── 导语卡片 ── */
+    .lead-card {
+      background: #fff;
+      border-left: 4px solid #0f3460;
+      border-radius: 0 12px 12px 0;
+      padding: 24px 28px;
+      margin: 40px 0 36px;
+      font-size: 18px;
+      color: #3a3a4a;
+      font-style: italic;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    /* ── 正文 ── */
+    .body-content h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0f3460;
+      margin: 44px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e8edf5;
+    }
+    .body-content p {
+      margin-bottom: 20px;
+      color: #3a3a4a;
+    }
+    .body-content blockquote {
+      margin: 28px 0;
+      padding: 18px 24px;
+      background: #f0f4fb;
+      border-left: 3px solid #4a90d9;
+      border-radius: 0 8px 8px 0;
+      font-size: 16px;
+      color: #2c4a7a;
+    }
+    .body-content blockquote cite {
+      display: block;
+      margin-top: 10px;
+      font-size: 13px;
+      color: #7a9cc8;
+      font-style: normal;
+    }
+    .body-content ul, .body-content ol {
+      margin: 0 0 20px 24px;
+      color: #3a3a4a;
+    }
+    .body-content li { margin-bottom: 8px; }
+
+    /* ── 金句区 ── */
+    .quotes-section {
+      margin: 52px 0 0;
+    }
+    .quotes-section h2 {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8a9ab8;
+      margin-bottom: 20px;
+    }
+    .quotes-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .quotes-list li {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px 24px 20px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      border-left: 3px solid #e8b84b;
+      font-size: 15px;
+      color: #2d2d2d;
+      line-height: 1.7;
+    }
+    .quotes-list li::before {
+      content: '\201C';
+      font-size: 32px;
+      color: #e8b84b;
+      line-height: 0;
+      vertical-align: -12px;
+      margin-right: 4px;
+    }
+
+    /* ── 页脚 ── */
+    footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid #dde3ed;
+      font-size: 13px;
+      color: #9aaac0;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ── 响应式 ── */
+    @media (max-width: 600px) {
+      .hero { padding: 48px 20px 36px; }
+      .wrapper { padding: 0 16px 60px; }
+      .hero h1 { font-size: 26px; }
+      .lead-card { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="podcast-label">🎙 {{PODCAST_NAME}} · {{EPISODE}}</div>
+    <h1>{{TITLE}}</h1>
+    <p class="subtitle">{{SUBTITLE}}</p>
+    <div class="meta">
+      <span>📅 {{DATE}}</span>
+    </div>
+  </header>
+
+  <div class="wrapper">
+
+    <div class="lead-card">{{LEAD}}</div>
+
+    <article class="body-content">
+      {{BODY}}
+    </article>
+
+    <section class="quotes-section">
+      <h2>✦ 值得记住的话</h2>
+      <ul class="quotes-list">
+        {{QUOTES}}
+      </ul>
+    </section>
+
+    <footer>
+      <span>🎙 来源：{{PODCAST_NAME}} {{EPISODE}}</span>
+      <span>整理于 {{DATE}}</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

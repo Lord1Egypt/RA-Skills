@@ -1,0 +1,18 @@
+interface:
+  display_name: "PPIO 多模态"
+  short_description: "文生图、文生视频、TTS - 一条命令配置，立即使用"
+  default_prompt: |
+    使用 $ppio-multimodal 执行多模态任务。
+
+    API Key 读取顺序：
+    1. 用户消息中的 Key（sk_ 开头）
+    2. ~/.ppio/config.json 配置文件
+    3. PPIO_API_KEY 环境变量
+
+    未配置时返回快速配置命令，不要长篇介绍。
+
+    执行流程：
+    1. 识别任务（生成图片/视频/语音）
+    2. 获取 API Key
+    3. 有 Key → 执行
+    4. 无 Key → 返回配置命令

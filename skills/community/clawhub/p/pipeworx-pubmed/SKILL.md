@@ -1,35 +1,48 @@
----
-name: "Pipeworx pubmed"
-description: "Search PubMed for biomedical articles by keyword, author, or MeSH term; retrieve article metadata and full abstracts with structured section labels."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-pubmed"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-pubmed"
----
+# PubMed
 
-# Pipeworx pubmed
+Search and retrieve biomedical literature from the National Library of Medicine's PubMed database. Over 36 million citations from MEDLINE, life science journals, and online books.
 
-> Search PubMed for biomedical articles by keyword, author, or MeSH term; retrieve article metadata and full abstracts with structured section labels.
+## Capabilities
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-pubmed`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-pubmed](https://clawhub.ai/skills/pipeworx-pubmed)
+| Tool | Description |
+|------|-------------|
+| `search_pubmed` | Search by keyword, author name, or MeSH term. Returns PubMed IDs. |
+| `get_summary` | Metadata for one or more articles: title, authors, journal, DOI. |
+| `get_abstract` | Full abstract text with section labels (Background, Methods, Results, Conclusions). |
 
-## Overview
+## Typical workflow
 
+1. Search for articles on a topic with `search_pubmed`
+2. Get metadata for the top results with `get_summary`
+3. Pull the full abstract for the most relevant paper with `get_abstract`
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Example: find CRISPR research
+
 ```bash
-hermes skills install clawhub/pipeworx-pubmed
+curl -X POST https://gateway.pipeworx.io/pubmed/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"search_pubmed","arguments":{"query":"CRISPR cancer therapy","limit":5}}}'
 ```
+
+## Query syntax tips
+
+PubMed supports field-tagged searches. Some useful patterns:
+
+- `"Smith J"[Author]` -- search by author
+- `"COVID-19"[MeSH]` -- search MeSH terms
+- `"Nature"[Journal]` -- restrict to a journal
+- Combine with AND/OR: `CRISPR AND (cancer OR tumor)`
+
+## Add to your MCP client
+
+```json
+{
+  "mcpServers": {
+    "pubmed": {
+      "url": "https://gateway.pipeworx.io/pubmed/mcp"
+    }
+  }
+}
+```
+
+No API key required. Powered by NCBI E-utilities.

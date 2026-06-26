@@ -1,0 +1,54 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>论文与源码联合分析</title>
+  <link rel="stylesheet" href="./vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+  <aside class="nav">
+    <div class="brand">
+      <strong id="brandTitle">Paper-Code</strong>
+      <span>Joint Analysis Reader</span>
+    </div>
+    <a href="#summary">总览</a>
+    <a href="#report">论文解读报告</a>
+    <a href="#questions">阅读疑问</a>
+    <a href="#mechanisms">理论到代码</a>
+    <a href="#experiments">实验理解</a>
+    <a href="#omissions">未披露细节</a>
+    <a href="#diagrams">UML 与流程</a>
+    <a href="#modify">改方法指南</a>
+    <a href="#validation">验证</a>
+  </aside>
+
+  <main class="page">
+    <header class="top">
+      <div>
+        <h1 id="pageTitle">论文与源码联合分析</h1>
+        <p id="subtitle">读取 analysis_bundle.json 中...</p>
+      </div>
+      <label class="search">
+        <span>搜索</span>
+        <input id="searchInput" type="search" placeholder="公式、方法、实验或文件名">
+      </label>
+    </header>
+
+    <section id="summary" class="section"></section>
+    <section id="report" class="section"></section>
+    <section id="questions" class="section"></section>
+    <section id="mechanisms" class="section"></section>
+    <section id="experiments" class="section"></section>
+    <section id="omissions" class="section"></section>
+    <section id="diagrams" class="section"></section>
+    <section id="modify" class="section"></section>
+    <section id="validation" class="section"></section>
+  </main>
+
+  <script src="./vendor/katex/katex.min.js"></script>
+  <script src="./vendor/mermaid.min.js"></script>
+  <script src="./assets/app.js"></script>
+</body>
+</html>

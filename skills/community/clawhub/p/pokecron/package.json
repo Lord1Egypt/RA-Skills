@@ -1,0 +1,29 @@
+{
+  "name": "pokecron",
+  "version": "1.0.3",
+  "description": "Proactive agent scheduling for OpenClaw. OS-native wakeups, escalation, reply-awareness, side-effect hooks, bilingual.",
+  "license": "MIT-0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "poke": "./poke.js"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "sub-skills",
+    "poke.js",
+    "poke.sh",
+    "src",
+    "scripts",
+    "tones",
+    "presets"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

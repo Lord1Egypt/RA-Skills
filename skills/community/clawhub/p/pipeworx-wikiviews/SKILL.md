@@ -1,35 +1,35 @@
----
-name: "Pipeworx wikiviews"
-description: "Provides Wikipedia pageview data including daily views for specific articles, top 1000 articles by date, and total English Wikipedia traffic trends."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-wikiviews"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-wikiviews"
----
+# Wikiviews
 
-# Pipeworx wikiviews
+Wikipedia pageview analytics. Track how many people are reading specific articles, find the most popular pages on any given day, or measure aggregate traffic across all of English Wikipedia.
 
-> Provides Wikipedia pageview data including daily views for specific articles, top 1000 articles by date, and total English Wikipedia traffic trends.
+## get_article_views
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-wikiviews`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-wikiviews](https://clawhub.ai/skills/pipeworx-wikiviews)
+Daily pageview counts for a specific article over a date range. Dates in YYYYMMDD format. Returns per-day breakdown and total views.
 
-## Overview
+## get_top_articles
 
+The top 1000 most-viewed Wikipedia articles on a specific day. Each entry includes rank, article title, and view count.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## get_project_views
+
+Aggregate daily pageview totals for all of English Wikipedia. Useful for spotting traffic trends and seasonality.
+
+## Example: how popular is the "Taylor Swift" article?
+
 ```bash
-hermes skills install clawhub/pipeworx-wikiviews
+curl -X POST https://gateway.pipeworx.io/wikiviews/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_article_views","arguments":{"title":"Taylor_Swift","start":"20250301","end":"20250331"}}}'
+```
+
+Note: article titles use underscores instead of spaces.
+
+```json
+{
+  "mcpServers": {
+    "wikiviews": {
+      "url": "https://gateway.pipeworx.io/wikiviews/mcp"
+    }
+  }
+}
 ```

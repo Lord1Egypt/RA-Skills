@@ -1,0 +1,12 @@
+{
+  "name": "LinkedIn Jobs Scraper",
+  "tagline": "Extraia vagas de emprego do LinkedIn sem login, sem navegador, apenas com HTTP",
+  "description": "Skill para extrair vagas de emprego do LinkedIn usando a API pública não autenticada. Faz busca rápida por título + localização com filtros (remoto, nível, tipo, data). Retorna título, empresa, local e URL em segundos. Opcionalmente busca descrição completa de cada vaga individualmente. Funciona em qualquer VPS sem navegador (apenas requests HTTP).",
+  "category": "productivity",
+  "tags": ["linkedin", "jobs", "scraping", "recruitment", "hiring", "web-scraping", "job-search", "salary-filter", "company-filter"],
+  "version": "1.1.0",
+  "license": "MIT-0",
+  "pricing": "free",
+  "support_url": "https://github.com/nicolasteofilo/opencode-skills/issues",
+  "homepage": "https://github.com/nicolasteofilo/opencode-skills"
+}

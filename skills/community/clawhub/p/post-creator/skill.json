@@ -1,0 +1,19 @@
+{
+  "name": "post-creator",
+  "version": "1.6.3",
+  "author": "openclaw-community",
+  "description": "Generate beautiful single-page HTML posters with various styles. Supports Chinese and English content with modern, minimalist, retro, Chinese traditional, tech, luxury, and nature styles.",
+  "license": "MIT",
+  "tags": ["design", "poster", "html", "visual", "marketing", "creative", "bilingual"],
+  "homepage": "https://clawhub.ai/skills/post-creator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw-community/post-creator"
+  },
+  "minOpenClawVersion": "2.0.0",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "references/styles.md"
+  ]
+}

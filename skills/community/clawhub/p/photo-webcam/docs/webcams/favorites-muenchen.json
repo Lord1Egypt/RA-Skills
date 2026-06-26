@@ -1,0 +1,69 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "München Großhadern (LMU-Klinikum) – Blick nach Nordost / Innenstadt",
+      "page": "https://www.foto-webcam.eu/webcam/muenchen/"
+    },
+    {
+      "id": 2,
+      "name": "München Großhadern (LMU-Klinikum) – Blick nach Süden",
+      "page": "https://www.foto-webcam.eu/webcam/lmu-klinikum/"
+    },
+    {
+      "id": 3,
+      "name": "München Olympiapark – Olympiaturm / TUM Campus Baustelle",
+      "page": "https://www.foto-webcam.eu/webcam/tum-olympiapark/"
+    },
+    {
+      "id": 4,
+      "name": "München-Freimann – Studentenstadt (Blick Richtung A9/Allianz Arena)",
+      "page": "https://www.foto-webcam.eu/webcam/freimann/"
+    },
+    {
+      "id": 5,
+      "name": "München – LMU Neubau Geo- und Umweltwissenschaften (Baustelle)",
+      "page": "https://www.foto-webcam.eu/webcam/lmu-neubau/"
+    },
+    {
+      "id": 6,
+      "name": "Dachau – Rathaus (Blick nach Südosten)",
+      "page": "https://www.foto-webcam.eu/webcam/dachau/"
+    },
+    {
+      "id": 7,
+      "name": "Fürstenfeldbruck – Veranstaltungsforum Fürstenfeld (Blick zur Klosterkirche)",
+      "page": "https://www.foto-webcam.eu/webcam/fuerstenfeld/"
+    },
+    {
+      "id": 8,
+      "name": "Salzburg – Blick über Salzburg nach Osten (Hochstaufen/Reichenhaller Haus)",
+      "page": "https://www.foto-webcam.eu/webcam/salzburg/"
+    },
+    {
+      "id": 9,
+      "name": "Zugspitze – Seilbahn Zugspitze Talstation (Bayerische Zugspitzbahn)",
+      "page": "https://www.foto-webcam.eu/webcam/bzb-tal/"
+    },
+    {
+      "id": 10,
+      "name": "Eibsee – Eibsee-Hotel (Blick zur Zugspitze)",
+      "page": "https://www.foto-webcam.eu/webcam/eibsee-hotel/"
+    },
+    {
+      "id": 11,
+      "name": "Eibsee – Seilbahn-Zugspitze Stütze (Blick über den Eibsee nach Norden)",
+      "page": "https://www.foto-webcam.eu/webcam/eibsee-nord/"
+    },
+    {
+      "id": 12,
+      "name": "Chiemsee – Kampenwand/Andachtskreuz (Blick nach Norden über den Chiemsee)",
+      "page": "https://www.foto-webcam.eu/webcam/kampenwand/"
+    },
+    {
+      "id": 13,
+      "name": "Herzogstand/Fahrenbergkopf – Blick über den Kochelsee (links ferne: Starnberger See)",
+      "page": "https://www.foto-webcam.eu/webcam/kochelsee/"
+    }
+  ]
+}

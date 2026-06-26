@@ -1,0 +1,306 @@
+<div class="content">
+  <h2 class="section-title page-break" id="part4">
+    <span class="num">§04</span> 信息架构
+  </h2>
+  <p class="section-en">Information Architecture</p>
+  <p class="section-intro">产品结构、页面层级与导航设计</p>
+
+  <h3>4.1 产品架构图</h3>
+
+  <h4>4.1.1 整体结构</h4>
+  <div class="diagram">
+    <div class="label">产品功能架构图</div>
+    <pre class="mermaid">
+graph TD
+    A[产品名称] --> B[模块A]
+    A --> C[模块B]
+    A --> D[模块C]
+    A --> E[模块D]
+
+    B --> B1[功能1]
+    B --> B2[功能2]
+
+    C --> C1[功能3]
+    C --> C2[功能4]
+
+    D --> D1[功能5]
+
+    E --> E1[设置]
+    E --> E2[个人中心]
+    </pre>
+  </div>
+
+  <h4>4.1.2 模块说明</h4>
+  <table>
+    <tr>
+      <th>模块</th>
+      <th>功能描述</th>
+      <th>用户价值</th>
+      <th>优先级</th>
+    </tr>
+    <tr>
+      <td>【模块A】</td>
+      <td>【如：内容浏览与学习】</td>
+      <td>【核心价值】</td>
+      <td>P0</td>
+    </tr>
+    <tr>
+      <td>【模块B】</td>
+      <td>【如：社交互动】</td>
+      <td>【价值】</td>
+      <td>P1</td>
+    </tr>
+    <tr>
+      <td>【模块C】</td>
+      <td>【如：个人管理】</td>
+      <td>【价值】</td>
+      <td>P0</td>
+    </tr>
+    <tr>
+      <td>【模块D】</td>
+      <td>【如：系统设置】</td>
+      <td>【价值】</td>
+      <td>P1</td>
+    </tr>
+  </table>
+
+  <h3>4.2 页面结构</h3>
+
+  <h4>4.2.1 页面层级</h4>
+  <div class="diagram">
+    <div class="label">页面层级结构</div>
+    <pre class="mermaid">
+graph TD
+    Root[App/Web入口] --> Tab1[首页]
+    Root --> Tab2[分类]
+    Root --> Tab3[消息]
+    Root --> Tab4[我的]
+
+    Tab1 --> P1_1[详情页]
+    Tab1 --> P1_2[搜索页]
+
+    Tab2 --> P2_1[列表页]
+    Tab2 --> P2_2[筛选页]
+
+    Tab3 --> P3_1[通知列表]
+    Tab3 --> P3_2[聊天详情]
+
+    Tab4 --> P4_1[个人资料]
+    Tab4 --> P4_2[设置]
+    Tab4 --> P4_3[订单/记录]
+
+    P4_2 --> S1[账号安全]
+    P4_2 --> S2[隐私设置]
+    P4_2 --> S3[关于我们]
+    </pre>
+  </div>
+
+  <h4>4.2.2 页面清单</h4>
+  <table>
+    <tr>
+      <th>页面ID</th>
+      <th>页面名称</th>
+      <th>页面路径</th>
+      <th>入口</th>
+      <th>优先级</th>
+    </tr>
+    <tr>
+      <td>P01</td>
+      <td>首页</td>
+      <td>/home</td>
+      <td>启动页/Tab栏</td>
+      <td>P0</td>
+    </tr>
+    <tr>
+      <td>P02</td>
+      <td>分类页</td>
+      <td>/category</td>
+      <td>Tab栏</td>
+      <td>P0</td>
+    </tr>
+    <tr>
+      <td>P03</td>
+      <td>详情页</td>
+      <td>/detail/:id</td>
+      <td>首页/分类/搜索</td>
+      <td>P0</td>
+    </tr>
+    <tr>
+      <td>P04</td>
+      <td>搜索页</td>
+      <td>/search</td>
+      <td>首页/分类</td>
+      <td>P1</td>
+    </tr>
+    <tr>
+      <td>P05</td>
+      <td>消息中心</td>
+      <td>/message</td>
+      <td>Tab栏</td>
+      <td>P1</td>
+    </tr>
+    <tr>
+      <td>P06</td>
+      <td>个人中心</td>
+      <td>/profile</td>
+      <td>Tab栏</td>
+      <td>P0</td>
+    </tr>
+    <tr>
+      <td>P07</td>
+      <td>设置页</td>
+      <td>/settings</td>
+      <td>个人中心</td>
+      <td>P1</td>
+    </tr>
+    <tr>
+      <td>P08</td>
+      <td>登录页</td>
+      <td>/login</td>
+      <td>需要登录时</td>
+      <td>P0</td>
+    </tr>
+  </table>
+
+  <h3>4.3 导航系统</h3>
+
+  <h4>4.3.1 主导航</h4>
+  <p>【描述底部Tab栏或主导航的设计】</p>
+  <table>
+    <tr>
+      <th>Tab</th>
+      <th>名称</th>
+      <th>图标</th>
+      <th>选中状态</th>
+      <th>未读提示</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>首页</td>
+      <td>home</td>
+      <td>填充图标</td>
+      <td>支持</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>发现</td>
+      <td>compass</td>
+      <td>填充图标</td>
+      <td>不支持</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>消息</td>
+      <td>message</td>
+      <td>填充图标</td>
+      <td>红点+数字</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>我的</td>
+      <td>user</td>
+      <td>填充图标</td>
+      <td>不支持</td>
+    </tr>
+  </table>
+
+  <h4>4.3.2 返回规则</h4>
+  <table>
+    <tr>
+      <th>场景</th>
+      <th>返回行为</th>
+      <th>说明</th>
+    </tr>
+    <tr>
+      <td>一级页面点击返回</td>
+      <td>退出App/提示再按一次</td>
+      <td>【如：首页点击返回】</td>
+    </tr>
+    <tr>
+      <td>二级页面点击返回</td>
+      <td>返回上一级</td>
+      <td>【如：详情页返回首页】</td>
+    </tr>
+    <tr>
+      <td>存在未保存内容</td>
+      <td>弹窗确认</td>
+      <td>【提示保存或放弃】</td>
+    </tr>
+    <tr>
+      <td>深层页面返回</td>
+      <td>逐层返回</td>
+      <td>【如：设置-账号安全-修改密码】</td>
+    </tr>
+  </table>
+
+  <h3>4.4 状态与权限</h3>
+
+  <h4>4.4.1 登录状态</h4>
+  <table>
+    <tr>
+      <th>页面/功能</th>
+      <th>游客可见</th>
+      <th>登录后可见</th>
+      <th>未登录处理</th>
+    </tr>
+    <tr>
+      <td>首页浏览</td>
+      <td>✅</td>
+      <td>✅</td>
+      <td>正常访问</td>
+    </tr>
+    <tr>
+      <td>收藏功能</td>
+      <td>❌</td>
+      <td>✅</td>
+      <td>跳转登录</td>
+    </tr>
+    <tr>
+      <td>评论功能</td>
+      <td>❌</td>
+      <td>✅</td>
+      <td>跳转登录</td>
+    </tr>
+    <tr>
+      <td>个人中心</td>
+      <td>部分</td>
+      <td>完整</td>
+      <td>显示登录入口</td>
+    </tr>
+  </table>
+
+  <h4>4.4.2 用户角色权限</h4>
+  <table>
+    <tr>
+      <th>功能</th>
+      <th>普通用户</th>
+      <th>VIP用户</th>
+      <th>管理员</th>
+    </tr>
+    <tr>
+      <td>基础功能</td>
+      <td>✅</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>高级功能</td>
+      <td>❌</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>内容管理</td>
+      <td>仅自己</td>
+      <td>仅自己</td>
+      <td>全部</td>
+    </tr>
+    <tr>
+      <td>数据统计</td>
+      <td>❌</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+  </table>
+
+</div>

@@ -1,0 +1,85 @@
+# Ansible Playbook: Deploy JVM/MySQL metrics agent
+# Usage:
+#   ansible-playbook main.yml -l <hosts> \
+#     -e "PUSHGATEWAY=<pushgateway-url>" \
+#     -e "MYSQL_USER=<user>" \
+#     -e "MYSQL_PASSWORD=<your_mysql_password>" \
+#     -e "GAME_ROOT_DIR=/data/game" \
+#     -e "GAME_PROCESS_NAME=java"
+#
+# Required env vars:
+#   PUSHGATEWAY        Pushgateway URL (e.g. http://pushgateway:9091)
+#   MYSQL_USER         MySQL username
+#   MYSQL_PASSWORD     MySQL password
+#   GAME_ROOT_DIR      Game server root path (e.g. /data/game)
+#   GAME_PROCESS_NAME  Java process name pattern (e.g. java or com.example.game)
+
+- name: Install Python dependencies
+  shell: pip install prometheus_client==0.17.1 psutil pymysql
+
+- name: Create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "/opt/game_monitor/"
+    - "/var/log/game_monitor/"
+
+- name: Create env file
+  copy:
+    dest: "/opt/game_monitor/env.conf"
+    content: |
+      PUSHGATEWAY={{ PUSHGATEWAY }}
+      PUSH_INTERVAL=60
+      MYSQL_USER={{ MYSQL_USER }}
+      MYSQL_PASSWORD={{ MYSQL_PASSWORD }}
+      MYSQL_HOST=127.0.0.1
+      MYSQL_PORT=3306
+      GAME_ROOT_DIR={{ GAME_ROOT_DIR | default('/data/game') }}
+      GAME_PROCESS_NAME={{ GAME_PROCESS_NAME | default('java') }}
+      AGENT_LOG_FILE=/var/log/game_monitor/agent.log
+      HISTO_INTERVAL=600
+
+- name: Deploy agent script
+  copy:
+    src: "templates/game_agent.py"
+    dest: "/opt/game_monitor/game_agent.py"
+    mode: "0755"
+
+- name: Deploy systemd service
+  copy:
+    src: "templates/game_monitor.service"
+    dest: "/etc/systemd/system/game_monitor.service"
+
+- name: Deploy logrotate config
+  copy:
+    src: "templates/game_monitor"
+    dest: "/etc/logrotate.d/game_monitor"
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: Start and enable service
+  service:
+    name: game_monitor
+    state: started
+    enabled: yes
+
+- name: Wait for startup
+  wait_for:
+    timeout: 3
+  changed_when: false
+
+- name: Check service status
+  command: systemctl is-active game_monitor
+  register: game_monitor_status
+  changed_when: false
+  failed_when: false
+
+- name: Verify deployment
+  assert:
+    that:
+      - game_monitor_status.stdout == "active"
+    fail_msg: "Service failed to start: {{ game_monitor_status.stdout }}"
+    success_msg: "Service running: {{ game_monitor_status.stdout }}"

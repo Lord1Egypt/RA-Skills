@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{month} 工资审核报告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f2f5;color:#333;line-height:1.6}
+.container{max-width:1100px;margin:0 auto;padding:20px}
+.header{background:linear-gradient(135deg,#1a73e8,#0d47a1);color:#fff;padding:28px 32px;border-radius:12px;margin-bottom:20px}
+.header h1{font-size:24px;margin-bottom:6px}
+.header .meta{opacity:.85;font-size:14px;display:flex;gap:20px;flex-wrap:wrap}
+.dashboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card-label{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:.5px}
+.card-value{font-size:32px;font-weight:700;margin-top:4px}
+.card-sub{font-size:13px;color:#888;margin-top:2px}
+.risk-high{color:#d32f2f}.risk-medium{color:#f57c00}.risk-low{color:#2e7d32}
+.badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;color:#fff}
+.badge-high{background:#d32f2f}.badge-medium{background:#f57c00}.badge-low{background:#2e7d32}.badge-ok{background:#2e7d32}
+.badge-warn{background:#f57c00}.badge-pending{background:#9e9e9e}
+h2{font-size:18px;margin:24px 0 12px;padding-left:8px;border-left:4px solid #1a73e8}
+h3{font-size:15px;margin:16px 0 8px;color:#555}
+.audit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;margin-bottom:24px}
+.audit-card{background:#fff;border-radius:8px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.05);border-left:4px solid #ddd;transition:box-shadow .2s}
+.audit-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.audit-card.priority-p0{border-left-color:#d32f2f}
+.audit-card.priority-p1{border-left-color:#f57c00}
+.audit-card.priority-p2{border-left-color:#2e7d32}
+.audit-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.audit-card-title{font-weight:600;font-size:15px}
+.audit-card-body{font-size:13px;color:#555}
+.audit-card-body ul{padding-left:18px;margin-top:4px}
+.audit-card-body li{margin-bottom:2px}
+details{margin:8px 0}
+summary{cursor:pointer;font-size:14px;color:#555;padding:4px 0}
+.chart-container{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:24px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+th{background:#f5f7fa;text-align:left;padding:10px 12px;font-weight:600;border-bottom:2px solid #e0e0e0}
+td{padding:10px 12px;border-bottom:1px solid #f0f0f0}
+tr:hover td{background:#fafbfc}
+.checklist{list-style:none;padding:0}
+.checklist li{padding:8px 12px;border-bottom:1px solid #f0f0f0;font-size:14px;display:flex;align-items:flex-start;gap:8px}
+.checklist li::before{content:"☐";font-size:16px;color:#1a73e8;flex-shrink:0}
+.checklist li.checked::before{content:"☑";color:#2e7d32}
+.risk-item{background:#fff;border-radius:8px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.05);display:flex;gap:12px;align-items:flex-start}
+.risk-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.risk-content{flex:1}
+.risk-title{font-weight:600;font-size:14px;margin-bottom:2px}
+.risk-action{font-size:13px;color:#666;margin-top:2px}
+.footer{text-align:center;padding:20px;font-size:12px;color:#999;border-top:1px solid #e0e0e0;margin-top:20px}
+.data-log{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:24px}
+.data-log .phase{margin-bottom:16px}
+.data-log .phase-title{font-weight:600;font-size:14px;color:#1a73e8;margin-bottom:6px}
+.data-log .step{font-size:13px;color:#555;padding:4px 0 4px 16px;position:relative}
+.data-log .step::before{content:"•";position:absolute;left:0;color:#1a73e8}
+@media(max-width:600px){.dashboard{grid-template-columns:1fr 1fr}.audit-grid{grid-template-columns:1fr}.header h1{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- 顶部概览 -->
+<div class="header">
+  <h1>📊 {month} 工资审核报告</h1>
+  <div class="meta">
+    <span>📅 审核月份：{month}</span>
+    <span>🌍 审核范围：{region}</span>
+    <span>📋 审核进度：<strong>{progress}</strong></span>
+    <span>⚡ 风险等级：<span class="badge badge-{risk_class}">{risk_level}</span></span>
+  </div>
+</div>
+
+<!-- 仪表盘 -->
+<div class="dashboard">
+  <div class="card">
+    <div class="card-label">审核项总数</div>
+    <div class="card-value">10</div>
+    <div class="card-sub">P0 ×3 | P1 ×4 | P2 ×3</div>
+  </div>
+  <div class="card">
+    <div class="card-label">已完成</div>
+    <div class="card-value risk-low">{completed_count}</div>
+    <div class="card-sub">{completed_pct}% 完成率</div>
+  </div>
+  <div class="card">
+    <div class="card-label">存疑项</div>
+    <div class="card-value risk-medium">{warn_count}</div>
+    <div class="card-sub">需要进一步核实</div>
+  </div>
+  <div class="card">
+    <div class="card-label">待处理</div>
+    <div class="card-value risk-high">{pending_count}</div>
+    <div class="card-sub">尚未开始审核</div>
+  </div>
+</div>
+
+<!-- 审核项状态卡片 -->
+<h2>📋 审核项状态</h2>
+<div class="audit-grid">
+  {audit_items}
+</div>
+
+<!-- 风险趋势图（内联 SVG 柱状图） -->
+<h2>📈 风险趋势对比</h2>
+<div class="chart-container">
+  <svg viewBox="0 0 600 220" style="width:100%;max-width:600px;display:block;margin:0 auto">
+    <!-- Y轴标签 -->
+    <text x="30" y="20" font-size="11" fill="#999">高</text>
+    <text x="30" y="85" font-size="11" fill="#999">中</text>
+    <text x="30" y="155" font-size="11" fill="#999">低</text>
+    <!-- 网格线 -->
+    <line x1="50" y1="20" x2="560" y2="20" stroke="#eee" stroke-width="1"/>
+    <line x1="50" y1="85" x2="560" y2="85" stroke="#eee" stroke-width="1"/>
+    <line x1="50" y1="155" x2="560" y2="155" stroke="#eee" stroke-width="1"/>
+    <!-- 柱状图（示例数据，生成时替换） -->
+    <!-- 上月（灰色） / 本月（蓝色） -->
+    {chart_bars}
+    <!-- X轴标签 -->
+    <text x="80" y="190" font-size="10" fill="#888" text-anchor="middle">人员</text>
+    <text x="140" y="190" font-size="10" fill="#888" text-anchor="middle">入离职</text>
+    <text x="200" y="190" font-size="10" fill="#888" text-anchor="middle">考勤</text>
+    <text x="260" y="190" font-size="10" fill="#888" text-anchor="middle">绩效</text>
+    <text x="320" y="190" font-size="10" fill="#888" text-anchor="middle">奖金</text>
+    <text x="380" y="190" font-size="10" fill="#888" text-anchor="middle">异常</text>
+    <text x="440" y="190" font-size="10" fill="#888" text-anchor="middle">社保</text>
+    <text x="500" y="190" font-size="10" fill="#888" text-anchor="middle">个税</text>
+    <!-- 图例 -->
+    <rect x="420" y="10" width="12" height="12" fill="#bbb" rx="2"/>
+    <text x="438" y="20" font-size="10" fill="#888">上月</text>
+    <rect x="470" y="10" width="12" height="12" fill="#1a73e8" rx="2"/>
+    <text x="488" y="20" font-size="10" fill="#888">本月</text>
+  </svg>
+</div>
+
+<!-- 需索取材料清单 -->
+<h2>📂 需索取材料清单</h2>
+<div class="card">
+  <h3>必须索取（每次）</h3>
+  <ul class="checklist">
+    {required_materials}
+  </ul>
+  <h3 style="margin-top:16px">按场景补充</h3>
+  <ul class="checklist">
+    {scenario_materials}
+  </ul>
+</div>
+
+<!-- 风险提示 -->
+<h2>⚠️ 风险提示</h2>
+{risk_alerts}
+
+<!-- 数据处理记录 -->
+<h2>🔧 数据处理记录</h2>
+<div class="data-log">
+  {data_process_log}
+</div>
+
+<!-- 底部 -->
+<div class="footer">
+  <p>报告生成时间：{generated_at} | 工资审核助手 v2.0</p>
+  <p>本报告由 AI 辅助生成，最终审核结果需人工确认</p>
+</div>
+
+</div>
+</body>
+</html>

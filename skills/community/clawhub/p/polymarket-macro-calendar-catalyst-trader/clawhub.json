@@ -1,0 +1,119 @@
+{
+  "emoji": "\ud83d\udcc5\u26a1",
+  "requires": {
+    "env": [
+      "SIMMER_API_KEY"
+    ],
+    "pip": [
+      "simmer-sdk"
+    ]
+  },
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "trader.py"
+  },
+  "tunables": [
+    {
+      "env": "SIMMER_MAX_POSITION",
+      "type": "number",
+      "default": 40,
+      "range": [
+        1,
+        200
+      ],
+      "step": 1,
+      "label": "Max position size (USD)"
+    },
+    {
+      "env": "SIMMER_MIN_VOLUME",
+      "type": "number",
+      "default": 5000,
+      "range": [
+        0,
+        500000
+      ],
+      "step": 500,
+      "label": "Min market volume (USD)"
+    },
+    {
+      "env": "SIMMER_MAX_SPREAD",
+      "type": "number",
+      "default": 0.1,
+      "range": [
+        0.01,
+        0.5
+      ],
+      "step": 0.01,
+      "label": "Max bid-ask spread"
+    },
+    {
+      "env": "SIMMER_MIN_DAYS",
+      "type": "number",
+      "default": 1,
+      "range": [
+        1,
+        180
+      ],
+      "step": 1,
+      "label": "Min days until resolution"
+    },
+    {
+      "env": "SIMMER_MAX_POSITIONS",
+      "type": "number",
+      "default": 10,
+      "range": [
+        1,
+        20
+      ],
+      "step": 1,
+      "label": "Max open positions"
+    },
+    {
+      "env": "SIMMER_CATALYST_WINDOW",
+      "type": "number",
+      "default": 3,
+      "range": [
+        1,
+        14
+      ],
+      "step": 1,
+      "label": "Days window around catalyst events"
+    },
+    {
+      "env": "SIMMER_CATALYST_BOOST",
+      "type": "number",
+      "default": 1.25,
+      "range": [
+        1.0,
+        2.0
+      ],
+      "step": 0.05,
+      "label": "Conviction boost multiplier for catalyst-adjacent markets"
+    },
+    {
+      "env": "SIMMER_COIL_LOW",
+      "type": "number",
+      "default": 0.4,
+      "range": [
+        0.3,
+        0.49
+      ],
+      "step": 0.01,
+      "label": "Coiled spring lower bound (near-50% zone)"
+    },
+    {
+      "env": "SIMMER_COIL_HIGH",
+      "type": "number",
+      "default": 0.6,
+      "range": [
+        0.51,
+        0.7
+      ],
+      "step": 0.01,
+      "label": "Coiled spring upper bound (near-50% zone)"
+    }
+  ],
+  "version": "0.0.2"
+}

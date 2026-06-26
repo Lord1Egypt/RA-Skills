@@ -1,35 +1,39 @@
 ---
-name: "🌍 非洲市场政策查询Skill"
-description: "提供基于惠迈智能体架构的非洲市场政策、法规和投资环境的智能查询与分析，支持多语言和灵活数据源配置。无需API Key，安装即用。"
-category: "other"
-source: "ClawHub"
-tags: [africa, calibration, huimai, policy, trade]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/policy-africa"
-sourceUrl: "https://clawhub.ai/skills/policy-africa"
+name: 🌍 非洲市场政策查询Skill
+description: 提供基于惠迈智能体架构的非洲市场政策、法规和投资环境的智能查询与分析，支持多语言和灵活数据源配置。无需API Key，安装即用。
+metadata: {"openclaw":{"emoji":"🌍"}}
 ---
 
 # 🌍 非洲市场政策查询Skill
 
-> 提供基于惠迈智能体架构的非洲市场政策、法规和投资环境的智能查询与分析，支持多语言和灵活数据源配置。无需API Key，安装即用。
+> **无需API Key，安装即用。** 输入产品名称或HS编码，自动查询非洲的市场政策、法规和投资环境。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/policy-africa`
-- **Source URL:** [https://clawhub.ai/skills/policy-africa](https://clawhub.ai/skills/policy-africa)
+## 适用场景
+- **外贸企业**：查关税政策和法规
+- **跨境电商**：确认海关法规和合规要求
+- **政策研究者**：获取最新贸易政策动态
 
-## Overview
+## 使用示例
+```
+用户: "查关税政策"
+返回: 关税税率 | 政策依据 | 豁免条款 | 合规建议
 
+用户: "HS编码 8504.40 的进口限制"
+返回: 产品分类 | 关税税率 | 许可证要求 | 特殊规定
+```
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 🔧 校准框架
+本Skill搭载惠迈校准框架v1.0。首次加载自动执行快速校准。
+- **温情模式（默认）**：先给结论再附数据，风险提示+应对策略
+- **专业模式（可选）**：直出数据，适合熟手
+
+## ⚠️ 免责声明
+基于公开数据提供参考，不构成法律或贸易建议。政策可能随时变化，请以官方最新公告为准。
+
+## 📬 联系与反馈
+- **邮箱**: yezhaowang888@icloud.com
+
+## 安装
 ```bash
-hermes skills install clawhub/policy-africa
+clawhub install policy-africa
 ```

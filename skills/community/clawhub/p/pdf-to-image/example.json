@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/convert/pdf/image",
+    "headers": {
+      "CLIENT-API-KEY": "your_api_key",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "url": "https://pdfapihub.com/sample-pdfapi-intro.pdf",
+      "pages": "1-3",
+      "image_format": "jpg",
+      "dpi": 200,
+      "output": "url"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "count": 3,
+      "format": "jpg",
+      "dpi": 200,
+      "pages": [1, 2, 3],
+      "images": [
+        { "page": 1, "filename": "page_1.jpg", "image_url": "https://cdn.pdfapihub.com/jpg/page_1.jpg" },
+        { "page": 2, "filename": "page_2.jpg", "image_url": "https://cdn.pdfapihub.com/jpg/page_2.jpg" },
+        { "page": 3, "filename": "page_3.jpg", "image_url": "https://cdn.pdfapihub.com/jpg/page_3.jpg" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,68 @@
+# Papyrus — Academic Paper Deep-Read Tool
+#
+# Configuration for Google Open Code agent.
+# Place in your .open-code/ directory or reference from open-code.yaml
+
+tools:
+  papyrus:
+    description: >
+      Turn arXiv papers into bilingual, deeply annotated PDFs.
+      Fetches source, converts figures, renders LaTeX formulas,
+      builds Kami-styled PDF with English original + Chinese
+      translation + expert commentary.
+
+    commands:
+      fetch:
+        description: Download and extract arXiv paper source
+        run: "${PAPYRUS_HOME}/SCRIPTS/papyrus fetch ${arxiv_url} ${output_dir}"
+        args:
+          arxiv_url:
+            type: string
+            description: Full arXiv URL
+          output_dir:
+            type: string
+            default: /tmp/papyrus_work
+
+      figures:
+        description: Convert PDF figures to PNG
+        run: "${PAPYRUS_HOME}/SCRIPTS/papyrus figures ${figure_dir} ${output_dir}"
+        args:
+          figure_dir:
+            type: string
+          output_dir:
+            type: string
+            default: /tmp/papyrus_figures
+
+      formulas:
+        description: Render LaTeX formulas to PNG
+        run: "${PAPYRUS_HOME}/SCRIPTS/papyrus formulas ${formulas_file} ${output_dir}"
+        args:
+          formulas_file:
+            type: string
+          output_dir:
+            type: string
+            default: /tmp/papyrus_formulas
+
+      pdf:
+        description: Build final PDF from annotated HTML
+        run: "${PAPYRUS_HOME}/SCRIPTS/papyrus pdf ${html_file} ${output_pdf}"
+        args:
+          html_file:
+            type: string
+          output_pdf:
+            type: string
+
+env:
+  PAPYRUS_HOME: "$HOME/.openclaw/skills/papyrus"
+
+# Full workflow (agent executes in sequence)
+workflow:
+  deep-read:
+    requires: [pandoc, weasyprint, python3]
+    steps:
+      - papyrus.fetch
+      - papyrus.figures
+      - note: "Extract formulas from paper TeX source into formulas.txt"
+      - papyrus.formulas
+      - note: "Build annotated HTML using TEMPLATES/paper.html template"
+      - papyrus.pdf

@@ -1,35 +1,99 @@
 ---
-name: "报表官-分析"
-description: "噗滋（pozzzi）报表官 - 上传 1-6 份 Excel/WPS/钉钉/腾讯文档/CSV 报表 + 用中文提业务问题，获得「核心结论 + 数据归因 + 决策建议 + 图表代码」四段式输出。匹配 30 个分析框架（财务/运营/销售/HR），带三级置信度 + 数据不足主动拒答。专为中国中小企业决策层设计，不讲公式..."
-category: "other"
-source: "ClawHub"
-tags: [business-tools, chinese-sme, data-analysis]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pozzzi-cfo-analyze"
-sourceUrl: "https://clawhub.ai/skills/pozzzi-cfo-analyze"
+name: pozzzi-cfo-analyze
+description: 噗滋（pozzzi）报表官 - 上传 1-6 份 Excel/WPS/钉钉/腾讯文档/CSV 报表 + 用中文提业务问题，获得「核心结论 + 数据归因 + 决策建议 + 图表代码」四段式输出。匹配 30 个分析框架（财务/运营/销售/HR），带三级置信度 + 数据不足主动拒答。专为中国中小企业决策层设计，不讲公式只讲业务。
 ---
 
-# 报表官-分析
+# 报表分析工具 (analyze)
 
-> 噗滋（pozzzi）报表官 - 上传 1-6 份 Excel/WPS/钉钉/腾讯文档/CSV 报表 + 用中文提业务问题，获得「核心结论 + 数据归因 + 决策建议 + 图表代码」四段式输出。匹配 30 个分析框架（财务/运营/销售/HR），带三级置信度 + 数据不足主动拒答。专为中国中小企业决策层设计，不讲公式...
+> 上传业务报表 + 提业务问题 → 获得「结论 + 数据归因 + 决策建议 + 图表规格」
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pozzzi-cfo-analyze`
-- **Source URL:** [https://clawhub.ai/skills/pozzzi-cfo-analyze](https://clawhub.ai/skills/pozzzi-cfo-analyze)
+## 工具描述
 
-## Overview
+接受用户上传的 1-6 份 xlsx/csv 文件和一个自然语言业务问题，调用后端 RAG API 进行智能分析，返回四段式结构化输出。
 
+## 触发方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pozzzi-cfo-analyze
 ```
+/analyze [上传文件] [业务问题]
+```
+
+或自然语言触发（OpenClaw 路由识别）：
+- 上传文件后问"为什么..."
+- "分析一下..."
+- "对比..."
+- "本季度..."
+
+## 参数
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `files` | file[] | 是 | xlsx/xls/et/csv，每个 ≤ 10MB |
+| `question` | string | 是 | 自然语言业务问题，≤ 500 字 |
+| `business_context` | string | 否 | 补充业务背景（行业/规模/时期等），≤ 200 字 |
+| `target_tool` | enum | 否 | excel/wps/dingtalk/tencent-docs（影响图表代码生成） |
+
+## 输出格式
+
+```markdown
+## 核心结论
+[1-3 句直接回答业务问题]
+
+## 关键数据与归因
+| 指标 | 数值 | 变化趋势 |
+|------|------|---------|
+| ...  | ...  | ...     |
+
+> 分析框架：[框架名称] | 数据来源：[列名] | 置信度：高/中/低
+
+## 决策建议
+1. [Next-step 1]
+2. [Next-step 2]
+3. [Next-step 3（可选）]
+
+## 可视化建议
+> 以下图表代码可直接贴入 [目标工具]
+
+[图表代码]
+
+---
+*AI 辅助生成，仅供参考。数据来源：用户上传文件。重要决策请结合实际情况判断。*
+```
+
+## 约束与限制（v1.5.2）
+
+- 单文件 ≤ 10MB / 总 ≤ 30MB / 最多 6 个文件
+- 单 Sheet ≤ 5 万行；合并单元格自动拆解
+- 不支持 .pptx / .pdf / 图片格式
+- 不跨企业数据（每次会话独立）
+- **数据零落盘**（v1.5.2 PIPL 合规）：SCF 内存推理后立即销毁，不持久化用户业务数据
+
+## 后端调用（v1.5.2 极简）
+
+单次调用 — POST `/api/analyze`（无需 upload，直接 base64 内嵌文件）：
+
+```json
+{
+  "openclaw_token": "用户 OpenClaw token",
+  "files": [
+    {
+      "filename": "Q1-销售.xlsx",
+      "buffer_b64": "<base64 编码 xlsx>",
+      "source_tool": "excel"
+    }
+  ],
+  "question": "为什么华北区本季度利润下降了 15%？",
+  "business_context": "（可选）",
+  "target_tool": "excel"
+}
+```
+
+若用户要求图表 → POST `/api/visualize`（传 analyze 返回的 viz_specs）
+
+## 错误处理
+
+| 错误 | 用户提示 |
+|------|---------|
+| 文件格式不支持 | "请上传 xlsx/xls/et/csv 格式文件" |
+| 文件超大 | "文件超过 10MB 限制，请拆分后上传" |
+| 数据不足以回答 | "现有数据不足以回答此问题，请补充[具体缺失字段]" |
+| 置信度过低 | "以下结论置信度较低，建议人工复核后使用" |

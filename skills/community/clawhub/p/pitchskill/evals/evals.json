@@ -1,0 +1,133 @@
+{
+  "skill_name": "pitch-skill",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我们是一家数字营销公司，刚收到一个新能源汽车品牌的RFP，他们要找年度品牌代理商。客户是新势力品牌，今年销量增长放缓，想要通过品牌升级吸引更多家庭用户。预算大概2000万，下个月15号提案。帮我跑一个完整的比稿工作流。",
+      "expected_output": "应该触发完整比稿工作流（full mode），从Intake到Delivery全部执行。Intake应识别出'转型型'项目，Information应执行需求解构(De-briefing)识别真伪需求、做决策者深度画像、推演竞品策略找逻辑真空区，Strategy应执行第一性原理推导否定平庸切入点、构建逻辑链并自检跳跃点，Decision应计算胜率，Expression应生成8段式Pitch结构+情绪引擎评估+AIGC Demo提示词包+Q&A，Delivery应输出6个标准交付物（含AIGC Demo提示词包）。",
+      "files": [],
+      "assertions": [
+        {"name": "完整6Agent流程", "type": "contains_all", "values": ["Intake", "Information", "Strategy", "Decision", "Expression", "Delivery"]},
+        {"name": "项目类型识别为转型型", "type": "contains_any", "values": ["转型型", "转型期", "Transition", "转型"]},
+        {"name": "包含真伪需求分类", "type": "contains_any", "values": ["真痛点", "伪需求", "隐性需求", "De-briefing"]},
+        {"name": "包含胜率评估", "type": "regex_match", "pattern": "(WinRate|胜率|Win Rate).{0,10}\\d{1,3}%"},
+        {"name": "包含8段式Pitch结构", "type": "contains_all", "values": ["开场", "问题重构", "洞察", "策略", "执行", "结果", "风险", "收尾"]},
+        {"name": "包含AIGC Demo提示词", "type": "contains_any", "values": ["AIGC", "Midjourney", "DALL-E", "提示词", "prompt"]}
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "下周要去pitch一个咖啡连锁品牌的社交媒体代运营项目。客户是本土品牌，主打平价现磨，主要竞品是瑞幸和库迪。他们想提升社媒声量和年轻用户互动。预算不多，大概80万。帮我快速看看策略方向就行。",
+      "expected_output": "应该触发快速模式（preview mode），仅执行Intake→Information→Strategy。Intake应识别出'增长型'项目且预算有限，Information应分析咖啡连锁行业的社媒竞争格局+需求解构，Strategy应执行第一性原理推导找到与瑞幸/库迪的差异化解法+逻辑链自检。",
+      "files": [],
+      "assertions": [
+        {"name": "触发快速模式", "type": "contains_any", "values": ["快速模式", "快速", "preview", "Quick", "精简版"]},
+        {"name": "不执行Decision/Expression/Delivery", "type": "not_contains_all", "values": ["Decision Agent", "Expression Agent", "Delivery Agent"]},
+        {"name": "包含竞品差异化分析", "type": "contains_any", "values": ["瑞幸", "库迪", "竞品", "Competitor", "Strategy Gap", "逻辑真空"]}
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "我们是一家创意热店，要去竞标一个国际运动品牌的年度创意Campaign。客户 Brief 写得很模糊，只说'want something fresh and bold'。评审团有CMO、品牌总监和一个外部咨询顾问。我知道还有两家4A在竞标。帮我从情报到Pitch Deck全搞。",
+      "expected_output": "应该触发完整模式。Information应重点做需求解构（Brief模糊本身就是信号）、竞标对手模拟（4A的典型策略）、找逻辑真空区，Decision应识别为'Aggressive型'决策模式（'fresh and bold'是信号），Expression应生成激进版开场Hook+情绪引擎优化+AIGC Demo视觉震撼提示词+Q&A，整体输出应强调与4A的差异化。",
+      "files": [],
+      "assertions": [
+        {"name": "识别Aggressive决策模式", "type": "contains_any", "values": ["Aggressive", "激进", "aggressive"]},
+        {"name": "包含竞品策略推演", "type": "contains_any", "values": ["4A", "竞品", "Competitor", "Shadow Pitch", "对手"]},
+        {"name": "包含逻辑真空区分析", "type": "contains_any", "values": ["Strategy Gap", "逻辑真空", "空位", "strategy_gap"]},
+        {"name": "包含情绪引擎评估", "type": "contains_any", "values": ["情绪引擎", "Emotion Engine", "情绪曲线", "Emotion Curve", "情感冲击力"]},
+        {"name": "包含Q&A压力训练", "type": "contains_any", "values": ["Q&A", "Red Team", "压力训练", "尖锐问题"]}
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "我们公司要去pitch一个银行的品牌焕新项目。客户的CMO去年刚从互联网公司跳过来，很重视数字化。评审团包括CMO、零售银行部总经理、还有采购部的人。帮我们做个完整的比稿分析，特别关注决策者画像和胜率。",
+      "expected_output": "应该触发完整模式。Information应重点做决策者深度画像——CMO从互联网跳来银行意味着决策风格可能偏Aggressive但受银行文化制约，采购部参与说明有Procurement成分。需求解构应识别银行品牌焕新的真痛点（可能不是品牌本身而是获客效率）。Decision应识别为混合型决策模式（Political+Safety+Procurement），胜率评估应有充分的证据链。Expression的情绪引擎应针对银行场景设计压迫感但不过激的表达。",
+      "files": [],
+      "assertions": [
+        {"name": "包含决策者深度画像", "type": "contains_any", "values": ["决策者画像", "Stakeholder", "Persona", "CMO", "决策风格"]},
+        {"name": "包含胜率评估", "type": "regex_match", "pattern": "(WinRate|胜率|Win Rate).{0,10}\\d{1,3}%"},
+        {"name": "识别混合决策模式", "type": "contains_any", "values": ["Political", "Safety", "Procurement", "混合", "政治", "安全", "采购"]},
+        {"name": "包含权力图谱", "type": "contains_any", "values": ["权力图谱", "Power Graph", "影响者", "否决者", "Influencer"]},
+        {"name": "包含证据链", "type": "contains_any", "values": ["证据", "Evidence", "证据链", "evidence"]}
+      ]
+    },
+    {
+      "id": 5,
+      "category": "edge_case",
+      "description": "极简Brief — 只有一句话，信息严重不足",
+      "prompt": "帮我们pitch一个美妆品牌。",
+      "expected_output": "Intake应触发Brief质量门控，追问必需维度（客户身份、项目目标、交付物）。不应强行生成作战卡，或生成时大量标注【假设】。不应触发完整6Agent流程，应停留在Intake阶段等用户补充信息。",
+      "files": [],
+      "assertions": [
+        {"name": "触发Brief质量门控追问", "type": "contains_any", "values": ["请问", "补充", "具体", "哪个品牌", "什么目标", "需要什么"]},
+        {"name": "不强行生成完整作战卡", "type": "not_contains_all", "values": ["Strategy Agent", "Decision Agent", "Expression Agent"]}
+      ]
+    },
+    {
+      "id": 6,
+      "category": "adversarial",
+      "description": "矛盾需求 — 用户同时要求对立方向",
+      "prompt": "我们要去比稿一个保险品牌的年度营销。客户既要'大胆突破'又要'稳健安全'，预算500万。评审团有CEO和CFO。帮我们准备比稿方案。",
+      "expected_output": "Intake应识别出矛盾信号。Strategy应提供保守版和激进版两个版本（风险对冲），而不是强行统一。Decision应识别为混合决策模式（Aggressive+Safety），或在权力图谱中指出CEO可能偏Aggressive、CFO偏Safety的张力。Expression的Q&A应准备应对'到底是大胆还是安全'的质疑。",
+      "files": [],
+      "assertions": [
+        {"name": "识别矛盾需求", "type": "contains_any", "values": ["矛盾", "冲突", "张力", "Tension", "contradiction"]},
+        {"name": "提供多版本策略", "type": "contains_any", "values": ["保守版", "激进版", "Conservative", "Aggressive", "Plan B"]},
+        {"name": "包含胜率评估", "type": "regex_match", "pattern": "(WinRate|胜率|Win Rate).{0,10}\\d{1,3}%"}
+      ]
+    },
+    {
+      "id": 7,
+      "category": "edge_case",
+      "description": "Resume模式 — 从中间Agent继续",
+      "prompt": "上次我们做到了Decision Agent，你说胜率是55%。现在我想从Expression Agent继续，用激进版策略方向。客户是那个新能源车企。",
+      "expected_output": "应触发Resume模式，从Expression Agent开始。应从对话历史提取前置输出（Battle Card、策略路径、决策模式、胜率等）。如果关键信息缺失，应提示用户补充。不应从Intake重新开始。",
+      "files": [],
+      "assertions": [
+        {"name": "触发Resume模式", "type": "contains_any", "values": ["Resume", "继续", "从Expression"]},
+        {"name": "不从头开始", "type": "not_contains_all", "values": ["Intake Agent", "Information Agent", "Strategy Agent"]},
+        {"name": "引用前置结论", "type": "contains_any", "values": ["55%", "激进", "Aggressive", "新能源"]}
+      ]
+    },
+    {
+      "id": 8,
+      "category": "adversarial",
+      "description": "用户拒绝Agent输出 — Checkpoint时用户要求重做",
+      "prompt": "刚才Strategy Agent的策略方向不对，我们不想打'数字化'这个点，客户自己数字化程度很高，打这个没用。请重做Strategy，换个切入点。客户是那家传统车企。",
+      "expected_output": "应接受用户反馈，重新读取strategy-agent.md，基于用户校正（不用数字化切入点）重新执行Strategy Agent。新策略应避免数字化方向，找到替代的第一性原理切入点。应标注【用户校正】。",
+      "files": [],
+      "assertions": [
+        {"name": "接受反馈并重做", "type": "contains_any", "values": ["重做", "重新", "调整", "校正", "Revision"]},
+        {"name": "避免数字化方向", "type": "not_contains_all", "values": ["数字化转型的切入点", "数字化战略", "Digital Transformation"]},
+        {"name": "标注用户校正", "type": "contains_any", "values": ["用户校正", "User Correction", "校正"]}
+      ]
+    },
+    {
+      "id": 9,
+      "category": "edge_case",
+      "description": "英文Brief — 用户中文提问但Brief是英文",
+      "prompt": "客户发了个英文RFP，我贴给你看。'We are seeking a creative agency partner to reposition our premium skincare brand for Gen Z consumers in China. The selected agency will develop and execute a 360° launch campaign for Q3 2025.' 帮我做个比稿分析，我们是本土创意热店。",
+      "expected_output": "用户中文提问→中文输出。分析过程可用中文。但Pitch Deck和Q&A应与客户语言一致（英文），Expression Agent的Pitch结构和Q&A提供英文版。应加载bilingual-templates.md。",
+      "files": [],
+      "assertions": [
+        {"name": "分析过程用中文", "type": "contains_any", "values": ["比稿", "策略", "需求解构", "作战卡"]},
+        {"name": "Pitch内容提供英文版", "type": "contains_any", "values": ["Opening Hook", "Pitch Structure", "Q&A", "English"]},
+        {"name": "包含竞品推演", "type": "contains_any", "values": ["Strategy Gap", "逻辑真空", "竞品"]}
+      ]
+    },
+    {
+      "id": 10,
+      "category": "adversarial",
+      "description": "极低胜率场景 — 明显陪跑",
+      "prompt": "我们是一家5个人的小工作室，要去竞标一个头部互联网公司的年度品牌全案。据说奥美、BBDO都在竞标。客户预算1个亿。我们之前只做过几个小项目。帮我们分析一下要不要去。",
+      "expected_output": "Decision Agent应给出低胜率（<40%），并明确标注证据不足的地方。应给出'劣势明显'的区间解读。应提供'根本性策略转向'的建议（如：不做全案竞标，而是争取某个子项目）。不应给出虚假的乐观评估。",
+      "files": [],
+      "assertions": [
+        {"name": "胜率低于50%", "type": "regex_match", "pattern": "(WinRate|胜率|Win Rate).{0,10}[1234]\\d%"},
+        {"name": "包含风险分析", "type": "contains_any", "values": ["陪跑", "劣势", "风险", "不利", "underdog"]},
+        {"name": "建议策略转向", "type": "contains_any", "values": ["转向", "子项目", "细分", "pivot", "差异化"]}
+      ]
+    }
+  ]
+}

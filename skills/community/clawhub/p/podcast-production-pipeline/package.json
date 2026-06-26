@@ -1,0 +1,32 @@
+{
+  "name": "podcast-production-pipeline",
+  "version": "1.1.0",
+  "description": "端到端播客制作流水线 - 从选题到发布的完整自动化。支持录制前调研、大纲生成、节目笔记、社交媒体宣发。含国内平台适配。",
+  "main": "scripts/pre-production.cjs",
+  "author": "sunnyhot",
+  "license": "MIT",
+  "keywords": [
+    "podcast",
+    "production",
+    "automation",
+    "show-notes",
+    "social-media",
+    "xiaoyuzhou",
+    "ximalaya",
+    "bilibili"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sunnyhot/podcast-production-pipeline"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "openclaw": {
+    "requires": {
+      "bins": ["node"]
+    },
+    "optionalBins": ["whisper"],
+    "configPaths": ["config/settings.json"]
+  }
+}

@@ -1,0 +1,104 @@
+#!/bin/zsh
+
+# Configuration
+PERIOD_DAYS=30
+
+# Chargement de la config (seulement ce qui concerne allfiles)
+CONFIG_FILE="$(dirname "$0")/owncloud.json"
+ALLFILES_URL=$(jq -r '.ALLFILES_URL // "https://qemu.ovh:8443/allfiles"' "$CONFIG_FILE")
+ALLFILES_USER=$(jq -r '.ALLFILES_USER' "$CONFIG_FILE")
+ALLFILES_PASS=$(jq -r '.ALLFILES_PASS' "$CONFIG_FILE")
+
+export GOG_ACCOUNT='denis.etienne@gmail.com'
+EMAIL_RECIPIENT='denis.etienne@gmail.com'
+
+START_DATE=$(date -v -${PERIOD_DAYS}d +%Y-%m-%d)
+GOOGLE_DRIVE_QUERY="after:${START_DATE}"
+
+# === Récupération fichiers Google Drive ===
+GD_FILES_RAW=$(gog drive search "${GOOGLE_DRIVE_QUERY}")
+GD_FILES=()
+while IFS= read -r line; do
+  [[ -n $line ]] && GD_FILES+=("$line")
+done <<< "$GD_FILES_RAW"
+
+# === Récupération liste OwnCloud via le service ===
+OC_LIST=$(curl -s -f -v -u "${ALLFILES_USER}:${ALLFILES_PASS}" "${ALLFILES_URL}" 2> /tmp/curl-debug.log)
+# echo "Basic Auth: ${ALLFILES_USER}:${ALLFILES_PASS}"
+CURL_EXIT=$?
+
+if [[ $CURL_EXIT -ne 0 ]]; then
+    echo "ERREUR: curl a échoué (code = $CURL_EXIT) sur ${ALLFILES_URL}" >&2
+    echo "Utilisateur courant : $(whoami)" >&2
+    echo "=== Log curl (dernières lignes) ===" >&2
+    tail -n 30 /tmp/curl-debug.log >&2
+    exit 1
+fi
+
+# === Parsing : nom\tYYYY-MM-DD HH:MM ===
+typeset -A OC_MOD_DATES
+while IFS= read -r line || [[ -n $line ]]; do
+  [[ -z $line ]] && continue
+  fname="${line%%$'\t'*}"
+  mdate="${line#*$'\t'}"
+  fname="${fname##[[:space:]]}${fname%%[[:space:]]}"
+  mdate="${mdate##[[:space:]]}${mdate%%[[:space:]]}"
+  OC_MOD_DATES[$fname]=$mdate
+done <<< "$OC_LIST"
+
+# === Génération rapport ===
+START_TIME=$(date +%s)
+
+REPORT="OwnCloud Sync Report - Last ${PERIOD_DAYS} days
+Report generated on: $(date '+%Y-%m-%d %H:%M:%S')
+
+Total new files in Google Drive: ${#GD_FILES[@]}
+
+Files missing or older on OwnCloud:
+"
+
+for gdfile in "${GD_FILES[@]}"; do
+  ID_FIELD=$(echo "$gdfile" | awk '{print $1}')
+  LINE_NO_ID=${gdfile#${ID_FIELD} }
+
+  META_REGEX='file +[0-9]+\.?[0-9]* (B|KB|MB|GB) +[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}'
+  FILENAME=$(echo "$LINE_NO_ID" | sed -E "s/ $META_REGEX$//")
+
+  trimmed_line="$(echo "$LINE_NO_ID" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | tr -s ' ')"
+  if [[ "$trimmed_line" =~ ^(NAME|.*folder[[:space:]]+-) ]]; then
+    FILENAME="$LINE_NO_ID"
+  elif [[ "${FILENAME}" == "${LINE_NO_ID}" ]]; then
+    echo "Error: Metadata regex failed on: $LINE_NO_ID" >&2
+    exit 1
+  fi
+
+  FILENAME=$(echo "$FILENAME" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+  FILE_MOD_DATE=$(echo "$LINE_NO_ID" | awk '{print $(NF-1)" "$NF}')
+
+  OC_MOD_DATE="${OC_MOD_DATES[$FILENAME]}"
+
+  if [[ -z "$OC_MOD_DATE" ]]; then
+    REPORT+="$FILENAME - MISSING\n"
+  else
+    GD_TS=$(date -j -f "%Y-%m-%d %H:%M" "$FILE_MOD_DATE" +%s 2>/dev/null || echo "0")
+    OC_TS=$(date -j -f "%Y-%m-%d %H:%M" "$OC_MOD_DATE" +%s 2>/dev/null || echo "0")
+
+    if (( GD_TS > OC_TS )); then
+      REPORT+="$FILENAME - OLDER ON OWNCLOUD (OwnCloud: $OC_MOD_DATE | Google: $FILE_MOD_DATE)\n"
+    fi
+  fi
+done
+
+END_TIME=$(date +%s)
+ELAPSED=$((END_TIME - START_TIME))
+
+REPORT+="
+Report generation time: ${ELAPSED} seconds
+"
+
+REPORT_FILE="$(dirname "$0")/owncloud-sync-report.txt"
+echo -e "$REPORT" > "$REPORT_FILE"
+
+gog mail send --to "$EMAIL_RECIPIENT" --subject "OwnCloud Sync Report" --body-file "$REPORT_FILE"
+
+exit 0

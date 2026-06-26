@@ -1,0 +1,212 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ppt-pro-skill/planning.schema.json",
+  "title": "PPT Pro Skill -- Planning JSON Schema",
+  "description": "每页策划稿的正式 JSON Schema。用于编辑器自动补全、验证，以及 planning_validator.py 的 schema 层校验。",
+  "type": "object",
+  "required": ["page_number", "page_type", "title", "goal", "visual_weight", "cards", "required_resources"],
+  "additionalProperties": true,
+  "properties": {
+    "page_number": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "页码，从 1 开始"
+    },
+    "page_type": {
+      "type": "string",
+      "enum": ["cover", "toc", "section", "content", "end"],
+      "description": "页面类型"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "页面标题（每页必须有，用于导航和 PPTX 页面标签）"
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 5,
+      "description": "3秒目标描述：观众看到这一页需要在3秒内得到什么结论"
+    },
+    "visual_weight": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 9,
+      "description": "视觉密度 2-9。2=极简，9=极复杂。相邻页差不超过5，连续3页不得均>=7"
+    },
+    "layout_hint": {
+      "type": "string",
+      "description": "布局提示。content 页必填。参考 references/layouts/README.md",
+      "examples": ["非对称两栏", "英雄式", "三栏等宽", "50/50 对称", "混合网格"]
+    },
+    "director_command": {
+      "type": "string",
+      "description": "设计总监指令：具体、可执行的视觉排版指令。应包含字号、色彩、特效等细节"
+    },
+    "cards": {
+      "type": "array",
+      "description": "卡片列表。content 页至少 2 张，且 card_style 至少 2 种",
+      "items": {
+        "$ref": "#/definitions/Card"
+      }
+    },
+    "required_resources": {
+      "type": "object",
+      "description": "页面级资源声明。必须是对象（{}），不能是数组（[]）",
+      "properties": {
+        "layout": {
+          "type": "string",
+          "description": "布局文件路径（content 页必填）。格式: references/layouts/xxx.md",
+          "examples": ["references/layouts/hero-top.md", "references/layouts/asymmetric-two-column.md"]
+        },
+        "page_template": {
+          "type": "string",
+          "description": "页面模板路径（非content页建议填写）。格式: references/page-templates/xxx.md"
+        },
+        "principles": {
+          "type": "array",
+          "description": "本页适用的设计原则文件路径列表",
+          "items": {
+            "type": "string"
+          },
+          "examples": [["references/principles/visual-hierarchy.md"]]
+        }
+      }
+    },
+    "image": {
+      "type": "object",
+      "description": "配图配置",
+      "properties": {
+        "usage": {
+          "type": "string",
+          "enum": ["hero-blend", "atmosphere", "tint-overlay", "split-content", "card-inset", "card-header", "circle-badge", "none"],
+          "description": "配图融入方式"
+        },
+        "prompt": {
+          "type": "string",
+          "description": "配图生成 prompt（usage != none 时必填）"
+        },
+        "placement": {
+          "type": "string",
+          "description": "配图位置（如 left-half, background, card-header）"
+        }
+      }
+    },
+    "decoration_hints": {
+      "type": "object",
+      "description": "装饰元素提示（content 页建议填写）",
+      "additionalProperties": true
+    },
+    "content_summary": {
+      "type": "object",
+      "description": "内容摘要（可选，辅助 prompt_assembler 提取页面文案）",
+      "additionalProperties": true
+    }
+  },
+  "definitions": {
+    "Card": {
+      "type": "object",
+      "required": ["card_type", "card_style"],
+      "description": "卡片对象",
+      "properties": {
+        "card_type": {
+          "type": "string",
+          "enum": [
+            "text", "data", "list", "process", "tag_cloud", "data_highlight",
+            "timeline", "diagram", "quote", "comparison", "people",
+            "image_hero", "matrix_chart"
+          ],
+          "description": "卡片类型"
+        },
+        "card_style": {
+          "type": "string",
+          "enum": ["filled", "transparent", "outline", "accent", "glass", "elevated"],
+          "description": "卡片样式。每页至少用 2 种样式。accent/elevated 每页最多 1 个"
+        },
+        "title": {
+          "type": "string",
+          "description": "卡片标题"
+        },
+        "content": {
+          "type": "string",
+          "description": "卡片正文内容"
+        },
+        "chart_type": {
+          "type": "string",
+          "enum": [
+            "progress_bar", "ring", "comparison_bar", "sparkline", "waffle",
+            "kpi", "metric_row", "rating", "radar", "stacked_bar", "treemap",
+            "timeline", "funnel"
+          ],
+          "description": "图表类型（card_type 为 data/data_highlight 时必填）"
+        },
+        "data_points": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "数据点列表"
+        },
+        "emphasis_keywords": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "需要高亮的关键词"
+        },
+        "position": {
+          "type": "string",
+          "description": "卡片在布局中的位置（如 left-bleed, right, center）"
+        },
+        "resource_ref": {
+          "type": "object",
+          "description": "卡片级资源引用（复合卡片类型建议填写）",
+          "properties": {
+            "block": {
+              "type": "string",
+              "description": "组件模板文件路径，如 references/blocks/timeline.md"
+            },
+            "chart": {
+              "type": "string",
+              "description": "图表模板文件路径"
+            },
+            "principle": {
+              "type": "string",
+              "description": "设计原则文件路径"
+            }
+          }
+        }
+      },
+      "if": {
+        "properties": {"card_type": {"enum": ["data", "data_highlight"]}}
+      },
+      "then": {
+        "required": ["chart_type"]
+      }
+    }
+  },
+  "examples": [
+    {
+      "page_number": 1,
+      "page_type": "cover",
+      "title": "年终总结封面",
+      "goal": "3秒建立权威感：这是高质量年终汇报",
+      "visual_weight": 9,
+      "director_command": "封面必须有发布会级压迫感！...",
+      "cards": [
+        {
+          "card_type": "text",
+          "card_style": "transparent",
+          "title": "年终总结汇报",
+          "content": "大模型安全方向 · 技术研究员"
+        },
+        {
+          "card_type": "data",
+          "card_style": "accent",
+          "chart_type": "metric_row",
+          "title": "核心交付",
+          "data_points": ["9 核心 KPI 项"]
+        }
+      ],
+      "required_resources": {
+        "page_template": "references/page-templates/cover.md",
+        "principles": ["references/principles/visual-hierarchy.md"]
+      }
+    }
+  ]
+}

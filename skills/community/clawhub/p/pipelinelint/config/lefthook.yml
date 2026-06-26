@@ -1,0 +1,41 @@
+# PipelineLint -- lefthook configuration
+# Installed by: pipelinelint hooks install
+# Documentation: https://pipelinelint.pages.dev/docs/hooks
+#
+# This configuration integrates PipelineLint with git hooks via lefthook.
+# Pre-commit: scans staged files for pipeline issues (blocks on critical/high)
+# Pre-push: runs full scan of the working tree before push
+
+pre-commit:
+  parallel: true
+  commands:
+    pipelinelint-check:
+      run: |
+        PIPELINELINT_SKILL_DIR="${PIPELINELINT_SKILL_DIR:-$HOME/.openclaw/skills/pipelinelint}"
+        if [[ -f "$PIPELINELINT_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$PIPELINELINT_SKILL_DIR/scripts/patterns.sh"
+          source "$PIPELINELINT_SKILL_DIR/scripts/analyzer.sh"
+          hook_pipelinelint_check
+        else
+          echo "[PipelineLint] Skill not found at $PIPELINELINT_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Pipeline issues detected in staged files!
+        Run 'pipelinelint scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).
+
+pre-push:
+  parallel: true
+  commands:
+    pipelinelint-full-scan:
+      run: |
+        PIPELINELINT_SKILL_DIR="${PIPELINELINT_SKILL_DIR:-$HOME/.openclaw/skills/pipelinelint}"
+        if [[ -f "$PIPELINELINT_SKILL_DIR/scripts/dispatcher.sh" ]]; then
+          bash "$PIPELINELINT_SKILL_DIR/scripts/dispatcher.sh" --path . --format text
+        else
+          echo "[PipelineLint] Skill not found at $PIPELINELINT_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        PipelineLint detected pipeline quality issues in your codebase.
+        Run 'pipelinelint scan --verbose' for detailed findings.
+        Fix critical/high issues before pushing.

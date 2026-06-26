@@ -1,0 +1,22 @@
+{
+  "name": "pantrypilot",
+  "version": "1.0.0",
+  "description": "补货参谋 - 把 PDD、美团、淘宝从一次性下单工具升级成家庭补货系统，估算快用完的东西，把菜单映射成补货清单，并给出最低总价、最快送达、最省心三种补货方案",
+  "keywords": [
+    "pantrypilot",
+    "补货参谋",
+    "household-replenishment",
+    "pantry",
+    "restock",
+    "repeat-purchase",
+    "meal-plan",
+    "grocery",
+    "meituan",
+    "pdd",
+    "taobao",
+    "household-supply",
+    "shopping-decision"
+  ],
+  "author": "openclaw",
+  "license": "MIT"
+}

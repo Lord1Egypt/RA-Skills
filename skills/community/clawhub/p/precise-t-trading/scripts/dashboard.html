@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>股票监控仪表盘</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .stock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .stock-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        .stock-card:hover {
+            transform: translateY(-5px);
+        }
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        .stock-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+        .stock-code {
+            color: #999;
+            font-size: 0.9em;
+        }
+        .price-display {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .current-price {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        .price-up { color: #e74c3c; }
+        .price-down { color: #27ae60; }
+        .change-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .change-up { background: #e74c3c; }
+        .change-down { background: #27ae60; }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .info-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .info-label {
+            font-size: 0.8em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .info-value {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+        }
+        .alert-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .alert-box.show {
+            display: block;
+        }
+        .refresh-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 12px 30px;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        .refresh-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .last-update {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 股票监控仪表盘</h1>
+        
+        <div class="stock-grid" id="stockGrid">
+            <!-- 股票卡片将通过JS动态生成 -->
+        </div>
+        
+        <button class="refresh-btn" onclick="refreshData()">🔄 刷新数据</button>
+        
+        <div class="last-update" id="lastUpdate">
+            最后更新: --
+        </div>
+    </div>
+
+    <script>
+        // 监控的股票列表
+        const stocks = [
+            { code: 'sz000981', name: '山子高科' },
+            { code: 'sh601012', name: '隆基绿能' }
+        ];
+
+        // 获取股票数据
+        async function fetchStockData(code) {
+            // 使用JSONP方式获取腾讯数据
+            return new Promise((resolve) => {
+                const script = document.createElement('script');
+                const callbackName = 'stockCallback_' + Date.now();
+                
+                window[callbackName] = function(data) {
+                    resolve(data);
+                    delete window[callbackName];
+                    document.body.removeChild(script);
+                };
+                
+                script.src = `https://qt.gtimg.cn/q=${code}&callback=${callbackName}`;
+                script.onerror = () => resolve(null);
+                document.body.appendChild(script);
+                
+                // 5秒超时
+                setTimeout(() => {
+                    resolve(null);
+                    if (window[callbackName]) {
+                        delete window[callbackName];
+                        document.body.removeChild(script);
+                    }
+                }, 5000);
+            });
+        }
+
+        // 解析腾讯数据
+        function parseTencentData(text) {
+            if (!text || !text.includes('~')) return null;
+            const parts = text.split('~');
+            return {
+                name: parts[1],
+                price: parseFloat(parts[3]),
+                prevClose: parseFloat(parts[4]),
+                open: parseFloat(parts[5]),
+                high: parseFloat(parts[33]),
+                low: parseFloat(parts[34]),
+                volume: parseInt(parts[6]),
+                change: parseFloat(parts[31]),
+                changePct: parseFloat(parts[32])
+            };
+        }
+
+        // 创建股票卡片
+        function createStockCard(stock, data) {
+            if (!data) {
+                return `
+                    <div class="stock-card">
+                        <div class="stock-header">
+                            <div>
+                                <div class="stock-name">${stock.name}</div>
+                                <div class="stock-code">${stock.code}</div>
+                            </div>
+                        </div>
+                        <div style="text-align:center;color:#999;">数据获取失败</div>
+                    </div>
+                `;
+            }
+
+            const isUp = data.changePct >= 0;
+            const priceClass = isUp ? 'price-up' : 'price-down';
+            const badgeClass = isUp ? 'change-up' : 'change-down';
+            const changeSymbol = isUp ? '+' : '';
+
+            return `
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <div>
+                            <div class="stock-name">${data.name}</div>
+                            <div class="stock-code">${stock.code}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="price-display">
+                        <div class="current-price ${priceClass}">¥${data.price.toFixed(2)}</div>
+                        <div class="change-badge ${badgeClass}">
+                            ${changeSymbol}${data.change.toFixed(2)} (${changeSymbol}${data.changePct.toFixed(2)}%)
+                        </div>
+                    </div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">今开</div>
+                            <div class="info-value">¥${data.open.toFixed(2)}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">昨收</div>
+                            <div class="info-value">¥${data.prevClose.toFixed(2)}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">最高</div>
+                            <div class="info-value">¥${data.high.toFixed(2)}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">最低</div>
+                            <div class="info-value">¥${data.low.toFixed(2)}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">成交量</div>
+                            <div class="info-value">${(data.volume/10000).toFixed(2)}万</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">振幅</div>
+                            <div class="info-value">${((data.high-data.low)/data.prevClose*100).toFixed(2)}%</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 刷新数据
+        async function refreshData() {
+            const grid = document.getElementById('stockGrid');
+            grid.innerHTML = '<div style="color:white;text-align:center;">加载中...</div>';
+            
+            const cards = [];
+            for (const stock of stocks) {
+                const data = await fetchStockData(stock.code);
+                cards.push(createStockCard(stock, data));
+            }
+            
+            grid.innerHTML = cards.join('');
+            
+            const now = new Date();
+            document.getElementById('lastUpdate').textContent = 
+                `最后更新: ${now.toLocaleString('zh-CN')}`;
+        }
+
+        // 页面加载时自动刷新
+        window.onload = refreshData;
+        
+        // 每30秒自动刷新
+        setInterval(refreshData, 30000);
+    </script>
+</body>
+</html>

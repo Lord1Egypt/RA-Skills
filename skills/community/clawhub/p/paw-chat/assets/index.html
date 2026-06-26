@@ -1,0 +1,791 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paw Chat</title>
+<link rel="icon" href="logo.jpg">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root, [data-theme="dark"] {
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --surface2: #242424;
+  --border: #333;
+  --text: #e0e0e0;
+  --text-dim: #888;
+  --accent: #4a9eff;
+  --accent-dim: #1a3a5c;
+  --user-bg: #1a3a5c;
+  --assistant-bg: #1e1e1e;
+  --error: #ff4a4a;
+  --success: #4aff7a;
+  --tool-bg: #1a1a2e;
+  --tool-border: #2a2a4a;
+  --code-bg: rgba(255,255,255,0.08);
+  --pre-bg: rgba(0,0,0,0.3);
+  --radius: 12px;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+}
+
+[data-theme="light"] {
+  --bg: #f5f5f5;
+  --surface: #ffffff;
+  --surface2: #eaeaea;
+  --border: #d0d0d0;
+  --text: #1a1a1a;
+  --text-dim: #666;
+  --accent: #2563eb;
+  --accent-dim: #dbeafe;
+  --user-bg: #dbeafe;
+  --assistant-bg: #ffffff;
+  --error: #dc2626;
+  --success: #16a34a;
+  --tool-bg: #f0f0ff;
+  --tool-border: #c7c7e0;
+  --code-bg: rgba(0,0,0,0.06);
+  --pre-bg: rgba(0,0,0,0.04);
+}
+
+html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--font); }
+
+#app { display: flex; flex-direction: column; height: 100vh; }
+
+/* Main chat area */
+#main { display: flex; flex-direction: column; flex: 1; min-width: 0; height: 100vh; }
+
+/* Session dropdown (floating overlay) */
+#session-dropdown-overlay {
+  display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 500;
+}
+#session-dropdown-overlay.show { display: block; }
+#session-dropdown {
+  position: absolute; top: 52px; right: 16px;
+  width: 340px; max-height: 65vh; overflow-y: auto;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  padding: 12px; z-index: 501;
+}
+#session-dropdown::-webkit-scrollbar { width: 4px; }
+#session-dropdown::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+@media (max-width: 640px) { #session-dropdown { width: calc(100vw - 32px); right: 16px; } }
+#session-dropdown-header {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; padding: 0 4px;
+}
+#session-dropdown-header h3 { font-size: 14px; font-weight: 600; }
+.session-new-btn {
+  padding: 4px 12px; border-radius: 6px; border: 1px solid var(--accent);
+  background: transparent; color: var(--accent); cursor: pointer; font-size: 12px;
+}
+.session-new-btn:hover { background: var(--accent); color: #fff; }
+
+/* Session list (inside panel) */
+.session-list { list-style: none; }
+.session-agent-group {
+  padding: 10px 0 4px; font-size: 12px; font-weight: 600; color: var(--accent);
+  letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+  user-select: none;
+}
+.session-agent-group:hover { color: var(--text); }
+.session-agent-group .group-toggle { font-size: 10px; color: var(--text-dim); transition: transform 0.2s; }
+.session-agent-group.collapsed .group-toggle { transform: rotate(-90deg); }
+.session-agent-group .group-count { font-size: 10px; color: var(--text-dim); font-weight: 400; margin-left: 6px; background: var(--surface2); padding: 1px 6px; border-radius: 8px; }
+.session-show-more {
+  padding: 8px 0; font-size: 12px; color: var(--text-dim); cursor: pointer;
+  text-align: center; user-select: none;
+}
+.session-show-more:hover { color: var(--accent); }
+
+.session-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 8px; cursor: pointer; font-size: 13px;
+  transition: background 0.1s; border-left: 3px solid transparent;
+  border-radius: 6px; margin: 1px 0;
+}
+.session-item:hover { background: var(--surface2); }
+.session-item.active { background: var(--accent-dim); border-left-color: var(--accent); }
+.session-item-icon { font-size: 13px; flex-shrink: 0; width: 18px; text-align: center; }
+.session-item-info { flex: 1; min-width: 0; }
+.session-item-key { font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+.session-item-label { font-size: 11px; color: var(--text-dim); margin-top: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.session-item-meta { font-size: 11px; color: var(--text-dim); flex-shrink: 0; text-align: right; }
+.session-item-delete {
+  background: none; border: none; color: transparent; cursor: pointer;
+  font-size: 13px; padding: 2px 4px; border-radius: 4px; flex-shrink: 0; transition: color 0.1s;
+}
+.session-item:hover .session-item-delete { color: var(--text-dim); }
+.session-item-delete:hover { color: var(--error) !important; }
+
+/* New session dialog (inline in dropdown) */
+.session-create-inline {
+  display: none; padding: 10px; margin-top: 8px;
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+}
+.session-create-inline.show { display: block; }
+.session-create-inline label { display: block; font-size: 11px; color: var(--text-dim); margin-bottom: 3px; }
+.session-create-inline select, .session-create-inline input {
+  width: 100%; padding: 6px 8px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; color: var(--text); font-size: 12px; outline: none; margin-bottom: 6px;
+}
+.session-create-inline select:focus, .session-create-inline input:focus { border-color: var(--accent); }
+.session-create-actions { display: flex; gap: 6px; }
+.session-create-actions button {
+  padding: 5px 14px; border-radius: 6px; border: none; cursor: pointer; font-size: 12px;
+}
+
+#header-wrap {
+  border-bottom: 1px solid var(--border); flex-shrink: 0;
+}
+#header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0; position: relative;
+  max-width: 860px; margin: 0 auto; width: 100%;
+}
+#header h1 { font-size: 16px; font-weight: 600; }
+#status {
+  font-size: 12px; padding: 3px 10px; border-radius: 20px;
+  background: var(--surface2); color: var(--text-dim);
+}
+#status.connected { background: var(--accent-dim); color: var(--success); }
+#status.error { background: var(--accent-dim); color: var(--error); }
+#settings-btn, #sessions-btn, #theme-btn, #clear-btn, #agent-btn {
+  background: none; border: none; color: var(--text-dim); cursor: pointer;
+  font-size: 18px; padding: 4px 8px; border-radius: 6px;
+}
+#settings-btn:hover, #sessions-btn:hover, #theme-btn:hover, #clear-btn:hover, #agent-btn:hover { background: var(--surface2); color: var(--text); }
+#agent-btn:disabled { opacity: 0.3; cursor: default; }
+#agent-btn:disabled:hover { background: none; color: var(--text-dim); }
+.header-right { display: flex; align-items: center; gap: 4px; }
+
+/* Session list items — see "Session list (inside panel)" section above */
+
+#settings-overlay {
+  display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 500;
+}
+#settings-overlay.show { display: block; }
+#settings {
+  position: absolute; top: 52px; right: 16px;
+  width: 340px; overflow-y: auto;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  padding: 16px; z-index: 501;
+}
+@media (max-width: 640px) { #settings { width: calc(100vw - 32px); right: 16px; } }
+#settings label { display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 4px; margin-top: 12px; }
+#settings label:first-child { margin-top: 0; }
+#settings input {
+  width: 100%; padding: 8px 12px; background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); font-size: 14px; font-family: var(--mono); outline: none;
+}
+#settings input:focus { border-color: var(--accent); }
+.settings-row { display: flex; gap: 8px; margin-top: 12px; }
+.settings-row button {
+  padding: 8px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 13px; font-weight: 500;
+}
+#connect-btn { background: var(--accent); color: #fff; }
+#connect-btn:hover { opacity: 0.9; }
+#disconnect-btn { background: var(--surface2); color: var(--text-dim); border: 1px solid var(--border); }
+#disconnect-btn:hover { color: var(--text); }
+
+#messages {
+  flex: 1; overflow-y: auto; padding: 16px;
+  display: flex; flex-direction: column; gap: 8px; scroll-behavior: smooth;
+  max-width: 860px; margin: 0 auto; width: 100%;
+}
+#messages::-webkit-scrollbar { width: 6px; }
+#messages::-webkit-scrollbar-track { background: transparent; }
+#messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* Message rows with avatars */
+.msg-row {
+  display: flex; gap: 8px; max-width: 90%; align-items: flex-start;
+}
+.msg-row.user { align-self: flex-end; flex-direction: row-reverse; }
+.msg-row.assistant { align-self: flex-start; }
+.msg-row.system { align-self: center; }
+
+.avatar {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; line-height: 1; margin-top: 2px;
+  overflow: hidden;
+}
+.avatar.user-avatar { background: var(--user-bg); border: 1px solid var(--border); }
+.avatar.bot-avatar { background: var(--surface2); border: 1px solid var(--border); }
+
+.msg {
+  padding: 10px 14px; border-radius: var(--radius);
+  font-size: 14px; line-height: 1.6; word-wrap: break-word; min-width: 0;
+}
+.msg.user { background: var(--user-bg); border-bottom-right-radius: 4px; white-space: pre-wrap; }
+.msg.assistant {
+  background: var(--assistant-bg);
+  border: 1px solid var(--border); border-bottom-left-radius: 4px;
+}
+.msg.system { background: transparent; color: var(--text-dim); font-size: 12px; padding: 4px 12px; }
+.msg.error { border-color: var(--error); color: var(--error); }
+.msg.streaming { border-color: var(--accent); }
+
+.msg h1, .msg h2, .msg h3 { margin: 8px 0 4px; }
+.msg h1 { font-size: 17px; } .msg h2 { font-size: 16px; } .msg h3 { font-size: 15px; }
+.msg p { margin: 4px 0; }
+.msg ul, .msg ol { margin: 4px 0 4px 20px; }
+.msg li { margin: 2px 0; }
+.msg code { background: var(--code-bg); padding: 1px 5px; border-radius: 4px; font-family: var(--mono); font-size: 13px; }
+.msg pre { background: var(--pre-bg); padding: 10px 12px; border-radius: 8px; overflow-x: auto; margin: 6px 0; font-size: 13px; }
+.msg pre code { background: none; padding: 0; }
+.msg a { color: var(--accent); text-decoration: none; }
+.msg a:hover { text-decoration: underline; }
+.msg blockquote { border-left: 3px solid var(--border); padding-left: 10px; color: var(--text-dim); margin: 4px 0; }
+.msg hr { border: none; border-top: 1px solid var(--border); margin: 8px 0; }
+.msg table { border-collapse: collapse; margin: 6px 0; font-size: 13px; width: auto; }
+.msg th, .msg td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; }
+.msg th { background: rgba(255,255,255,0.05); font-weight: 600; }
+.msg del { text-decoration: line-through; opacity: 0.6; }
+
+/* Tool cards */
+.tool-group { margin: 6px 0; border: 1px solid var(--tool-border); border-radius: 8px; background: var(--tool-bg); overflow: hidden; }
+.tool-header {
+  display: flex; align-items: center; gap: 6px; padding: 6px 10px;
+  cursor: pointer; user-select: none; font-size: 12px; color: var(--text-dim);
+}
+.tool-header:hover { background: var(--code-bg); }
+.tool-chevron { transition: transform 0.2s; font-size: 10px; flex-shrink: 0; }
+.tool-group.open .tool-chevron { transform: rotate(90deg); }
+.tool-name { font-weight: 500; color: var(--accent); font-family: var(--mono); }
+.tool-summary { color: var(--text-dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.tool-body { display: none; padding: 8px 10px; border-top: 1px solid var(--tool-border); font-size: 12px; line-height: 1.5; max-height: 300px; overflow-y: auto; }
+.tool-group.open .tool-body { display: block; }
+.tool-body pre { background: var(--pre-bg); padding: 8px; border-radius: 6px; overflow-x: auto; font-size: 12px; white-space: pre-wrap; word-break: break-all; }
+.tool-body .tool-label { color: var(--text-dim); font-size: 11px; margin-bottom: 2px; }
+.tool-body .tool-result { margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--tool-border); }
+
+.typing { display: none; align-self: flex-start; padding: 10px 14px; max-width: 860px; margin: 0 auto; width: 100%; }
+.typing.show { display: flex; gap: 4px; align-items: center; }
+.typing span { width: 6px; height: 6px; background: var(--text-dim); border-radius: 50%; animation: blink 1.2s infinite; }
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes blink { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+#input-area {
+  padding: 12px 16px; border-top: 1px solid var(--border);
+  display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0;
+  max-width: 860px; margin: 0 auto; width: 100%;
+}
+#input {
+  flex: 1; padding: 10px 14px; background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius); color: var(--text); font-size: 14px;
+  font-family: var(--font); resize: none; outline: none;
+  max-height: 150px; min-height: 42px; line-height: 1.5;
+}
+#input:focus { border-color: var(--accent); }
+#input::placeholder { color: var(--text-dim); }
+#send-btn {
+  width: 42px; height: 42px; border-radius: 50%; border: none;
+  background: var(--accent); color: #fff; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px;
+}
+#send-btn:hover { opacity: 0.9; }
+#send-btn:disabled { opacity: 0.3; cursor: default; }
+#stop-btn {
+  display: none; width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--error);
+  background: transparent; color: var(--error); cursor: pointer;
+  align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px;
+}
+#stop-btn.show { display: flex; }
+
+/* Upload button */
+#upload-btn {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border);
+  background: var(--surface2); color: var(--text-dim); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px;
+}
+#upload-btn:hover { background: var(--surface); color: var(--text); border-color: var(--accent); }
+#upload-btn:disabled { opacity: 0.3; cursor: default; }
+#file-input { display: none; }
+
+/* Image preview */
+#preview-area {
+  display: none; padding: 8px 16px; border-top: 1px solid var(--border);
+  background: var(--surface); flex-shrink: 0;
+  max-width: 860px; margin: 0 auto; width: 100%;
+}
+#preview-area.show { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.preview-item {
+  position: relative; border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--border); background: var(--surface2);
+}
+.preview-item img { display: block; max-height: 80px; max-width: 120px; object-fit: cover; }
+.preview-remove {
+  position: absolute; top: 2px; right: 2px; width: 18px; height: 18px;
+  border-radius: 50%; background: rgba(0,0,0,0.7); color: #fff; border: none;
+  cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  line-height: 1;
+}
+.preview-remove:hover { background: var(--error); }
+
+/* Inline images in messages */
+.msg img.chat-img {
+  max-width: 300px; max-height: 200px; border-radius: 8px; margin: 4px 0;
+  cursor: pointer; display: block;
+}
+.msg img.chat-img:hover { opacity: 0.9; }
+.msg img.lazy-img:not([src]) {
+  width: 200px; height: 120px; background: var(--surface2); border: 1px solid var(--border);
+  animation: lazyPulse 1.5s ease-in-out infinite;
+}
+@keyframes lazyPulse { 0%,100% { opacity: 0.4; } 50% { opacity: 0.7; } }
+
+/* Image lightbox overlay */
+.img-lightbox {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.85); z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  cursor: zoom-out; animation: fadeIn 0.15s ease;
+}
+.img-lightbox img {
+  max-width: 90vw; max-height: 90vh; border-radius: 8px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.5); object-fit: contain;
+}
+.img-lightbox-close {
+  position: absolute; top: 16px; right: 20px;
+  background: none; border: none; color: #fff; font-size: 28px;
+  cursor: pointer; opacity: 0.7; z-index: 10000;
+}
+.img-lightbox-close:hover { opacity: 1; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+#empty {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  color: var(--text-dim); font-size: 14px; text-align: center; padding: 20px;
+}
+#empty.hidden { display: none; }
+
+/* ── Agent Modal ── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  z-index: 1000; align-items: center; justify-content: center;
+  backdrop-filter: blur(2px);
+}
+.modal-overlay.show { display: flex; }
+.modal-box {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  width: 90vw; max-width: 560px; max-height: 85vh; display: flex; flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-bottom: 1px solid var(--border); flex-shrink: 0;
+}
+.modal-header h2 { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.modal-close {
+  background: none; border: none; color: var(--text-dim); cursor: pointer;
+  font-size: 20px; padding: 4px 8px; border-radius: 6px; line-height: 1;
+}
+.modal-close:hover { background: var(--surface2); color: var(--text); }
+.modal-header select {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+  color: var(--text); padding: 6px 12px; font-size: 13px; font-family: var(--mono);
+  outline: none; cursor: pointer; min-width: 140px;
+}
+.modal-header select:focus { border-color: var(--accent); }
+
+/* Tabs */
+.modal-tabs {
+  display: flex; gap: 0; border-bottom: 1px solid var(--border); flex-shrink: 0;
+  padding: 0 20px;
+}
+.modal-tab {
+  background: none; border: none; color: var(--text-dim); cursor: pointer;
+  font-size: 13px; padding: 10px 16px; position: relative; font-weight: 500;
+  transition: color 0.15s;
+}
+.modal-tab:hover { color: var(--text); }
+.modal-tab.active { color: var(--accent); }
+.modal-tab.active::after {
+  content: ''; position: absolute; bottom: -1px; left: 8px; right: 8px;
+  height: 2px; background: var(--accent); border-radius: 2px 2px 0 0;
+}
+
+/* Tab content */
+.modal-body {
+  flex: 1; overflow-y: auto; padding: 20px;
+}
+.modal-body::-webkit-scrollbar { width: 5px; }
+.modal-body::-webkit-scrollbar-track { background: transparent; }
+.modal-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* Form elements */
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 6px; font-weight: 500;
+}
+.form-group input, .form-group textarea {
+  width: 100%; padding: 10px 12px; background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); font-size: 14px; font-family: var(--font);
+  outline: none; transition: border-color 0.15s;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+.form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-dim); }
+.form-group textarea {
+  resize: vertical; min-height: 60px; line-height: 1.6; font-size: 13px;
+}
+.form-group .form-hint {
+  font-size: 11px; color: var(--text-dim); margin-top: 4px;
+}
+
+/* Modal footer */
+.modal-footer {
+  display: flex; align-items: center; gap: 8px; padding: 12px 20px;
+  border-top: 1px solid var(--border); flex-shrink: 0;
+}
+.modal-footer button {
+  padding: 8px 24px; border-radius: 8px; border: none; cursor: pointer;
+  font-size: 13px; font-weight: 500; transition: opacity 0.15s;
+}
+.modal-footer .btn-primary { background: var(--accent); color: #fff; }
+.modal-footer .btn-primary:hover { opacity: 0.9; }
+.modal-footer .btn-primary:disabled { opacity: 0.4; cursor: default; }
+.modal-footer .btn-secondary {
+  background: var(--surface2); color: var(--text-dim); border: 1px solid var(--border);
+}
+.modal-footer .btn-secondary:hover { color: var(--text); }
+.modal-footer .save-status {
+  font-size: 12px; color: var(--text-dim); margin-left: auto;
+}
+.modal-footer .save-status.success { color: var(--success); }
+.modal-footer .save-status.error { color: var(--error); }
+
+/* Cron tab */
+.cron-list { list-style: none; }
+.cron-empty {
+  text-align: center; color: var(--text-dim); padding: 30px 0; font-size: 13px;
+}
+.cron-item {
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+  border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px;
+  background: var(--surface2); font-size: 13px;
+}
+.cron-item-info { flex: 1; min-width: 0; }
+.cron-item-name { font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.cron-item-schedule { font-size: 11px; color: var(--text-dim); font-family: var(--mono); }
+.cron-item-status {
+  font-size: 11px; padding: 2px 8px; border-radius: 10px;
+}
+.cron-item-status.enabled { background: rgba(74,255,122,0.1); color: var(--success); }
+.cron-item-status.disabled { background: rgba(255,74,74,0.1); color: var(--error); }
+.cron-item-actions { display: flex; gap: 4px; }
+.cron-item-actions button {
+  background: none; border: none; cursor: pointer; color: var(--text-dim);
+  padding: 4px 6px; border-radius: 4px; font-size: 14px;
+}
+.cron-item-actions button:hover { background: var(--surface); color: var(--text); }
+.cron-item-actions button.danger:hover { color: var(--error); }
+.cron-toolbar {
+  display: flex; gap: 8px; margin-bottom: 12px;
+}
+.cron-refresh-btn, .cron-add-btn {
+  background: none; border: 1px solid var(--border); color: var(--text-dim);
+  cursor: pointer; padding: 6px 14px; border-radius: 6px; font-size: 12px;
+}
+.cron-refresh-btn:hover, .cron-add-btn:hover { color: var(--text); border-color: var(--accent); }
+.cron-add-btn { border-color: var(--accent); color: var(--accent); }
+.cron-add-btn:hover { background: var(--accent); color: #fff; }
+
+/* Create form */
+.cron-create-form {
+  display: none; padding: 14px; margin-bottom: 12px;
+  border: 1px solid var(--border); border-radius: 10px; background: var(--surface2);
+}
+.cron-create-form.show { display: block; }
+.cron-type-row {
+  display: flex; gap: 16px; align-items: center;
+}
+.radio-label {
+  font-size: 13px; color: var(--text); cursor: pointer; display: flex; align-items: center; gap: 4px;
+}
+.radio-label input[type="radio"] { accent-color: var(--accent); }
+.cron-interval-row {
+  display: flex; gap: 8px; align-items: center;
+}
+.cron-interval-row input, .cron-interval-row select {
+  padding: 8px 10px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); font-size: 13px; outline: none;
+}
+.cron-interval-row input:focus, .cron-interval-row select:focus { border-color: var(--accent); }
+.cron-create-actions {
+  display: flex; gap: 8px; margin-top: 12px;
+}
+.cron-create-actions button {
+  padding: 7px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 13px; font-weight: 500;
+}
+.cron-type-panel input[type="datetime-local"] {
+  padding: 8px 12px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); font-size: 13px; outline: none; width: 100%;
+  color-scheme: dark;
+}
+[data-theme="light"] .cron-type-panel input[type="datetime-local"] { color-scheme: light; }
+
+/* Loading spinner */
+.loading-text {
+  text-align: center; color: var(--text-dim); padding: 20px 0; font-size: 13px;
+}
+</style>
+<script src="marked.min.js"></script>
+<link rel="stylesheet" href="github-dark.min.css">
+<script src="highlight.min.js"></script>
+</head>
+<body>
+<div id="app">
+  <!-- Main chat area -->
+  <div id="main">
+  <div id="header-wrap">
+  <div id="header">
+    <h1 id="app-logo"><img src="logo.jpg" style="height:32px;vertical-align:middle;border-radius:4px"></h1>
+    <span id="status">未连接</span>
+    <div class="header-right">
+      <button id="clear-btn" title="清除上下文">🧹</button>
+      <button id="agent-btn" title="Agent 管理" disabled>🤖</button>
+      <button id="theme-btn" title="切换主题">🌙</button>
+      <button id="sessions-btn" title="会话列表">💬</button>
+      <button id="settings-btn" title="设置">⚙</button>
+    </div>
+  </div>
+  </div>
+  <div id="settings-overlay">
+    <div id="settings">
+      <label>Gateway 地址</label>
+      <input id="cfg-url" type="text" placeholder="wss://your-host:30100" spellcheck="false">
+      <label>Token</label>
+      <input id="cfg-token" type="password" placeholder="见 ~/.openclaw/config.yaml → gateway.auth.token" spellcheck="false">
+      <label>Session Key</label>
+      <input id="cfg-session" type="text" placeholder="main" spellcheck="false">
+      <div class="settings-row">
+        <button id="connect-btn">连接</button>
+        <button id="disconnect-btn">断开</button>
+      </div>
+      <div style="display:flex;gap:16px;margin-top:12px;align-items:center;">
+        <a href="dev-guide.html" target="_blank" style="font-size:12px;color:var(--text-dim);text-decoration:none;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-dim)'">📖 开发文档</a>
+        <button id="download-btn" style="font-size:12px;color:var(--text-dim);background:none;border:none;cursor:pointer;padding:0;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-dim)'">📦 下载离线版</button>
+      </div>
+    </div>
+  </div>
+  <div id="empty">
+    <div style="font-size:32px;margin-bottom:12px;">🐾</div>
+    <div>连接 Gateway 开始对话</div>
+    <small style="display:block;margin-top:8px;line-height:1.6;">
+      点击右上角 ⚙ 打开设置<br>
+      填入 Gateway 地址和 Token，点击「连接」<br>
+      <span style="opacity:0.5;font-size:11px;">Gateway 地址格式：wss://host:port &nbsp;|&nbsp; Token 在 ~/.openclaw/config.yaml 中</span>
+    </small>
+  </div>
+  <!-- Session dropdown (floating) -->
+  <div id="session-dropdown-overlay">
+    <div id="session-dropdown">
+      <div id="session-dropdown-header">
+        <h3>会话列表</h3>
+        <button class="session-new-btn" id="new-session-btn">＋ 新建</button>
+      </div>
+      <ul class="session-list" id="session-list"></ul>
+      <div class="session-create-inline" id="new-session-dialog">
+        <label>Agent</label>
+        <select id="new-session-agent"></select>
+        <label>会话名称</label>
+        <input id="new-session-key" type="text" placeholder="留空自动命名" spellcheck="false">
+        <div class="session-create-actions">
+          <button id="create-session-btn" class="btn-primary">创建</button>
+          <button id="cancel-session-btn" class="btn-secondary">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="messages" style="display:none"></div>
+  <div class="typing" id="typing"><span></span><span></span><span></span></div>
+  <div id="preview-area"><span style="font-size:12px;color:var(--text-dim)">待发送图片：</span></div>
+  <div id="input-area">
+    <input type="file" id="file-input" accept="image/*" multiple>
+    <button id="upload-btn" title="上传图片" disabled>📎</button>
+    <textarea id="input" rows="1" placeholder="输入消息..." disabled></textarea>
+    <button id="send-btn" disabled>↑</button>
+    <button id="stop-btn" title="停止">■</button>
+  </div>
+  </div><!-- /main -->
+</div>
+
+<!-- Agent Management Modal -->
+<div class="modal-overlay" id="agent-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2>🤖 Agent 配置</h2>
+      <select id="agent-select"></select>
+      <button class="modal-close" id="agent-modal-close">✕</button>
+    </div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" data-tab="identity">身份</button>
+      <button class="modal-tab" data-tab="soul">性格与风格</button>
+      <button class="modal-tab" data-tab="user">用户信息</button>
+      <button class="modal-tab" data-tab="cron">定时任务</button>
+    </div>
+    <div class="modal-body">
+      <!-- Identity Tab -->
+      <div class="tab-pane active" id="tab-identity">
+        <div class="form-group">
+          <label>名称</label>
+          <input type="text" id="agent-name" placeholder="小助手">
+          <div class="form-hint">Agent 的显示名称</div>
+        </div>
+        <div class="form-group">
+          <label>角色定位</label>
+          <input type="text" id="agent-creature" placeholder="全能 AI 助手，擅长写作和分析">
+          <div class="form-hint">一句话描述 Agent 的角色</div>
+        </div>
+        <div class="form-group">
+          <label>风格</label>
+          <input type="text" id="agent-vibe" placeholder="温和耐心，说话简洁有条理">
+          <div class="form-hint">Agent 的沟通风格</div>
+        </div>
+        <div class="form-group">
+          <label>EMOJI</label>
+          <input type="text" id="agent-emoji" placeholder="🤖" style="width:80px">
+        </div>
+        <div class="form-group">
+          <label>头像 URL</label>
+          <input type="text" id="agent-avatar" placeholder="https://example.com/avatar.png">
+          <div class="form-hint">支持 URL 或 workspace 内的相对路径</div>
+        </div>
+      </div>
+      <!-- Soul Tab -->
+      <div class="tab-pane" id="tab-soul">
+        <div class="form-group">
+          <label>核心定位</label>
+          <textarea id="soul-core" rows="3" placeholder="你是一个全能 AI 助手，擅长写作、分析和编程"></textarea>
+          <div class="form-hint">用一段话描述 Agent 是谁、核心能力是什么</div>
+        </div>
+        <div class="form-group">
+          <label>工作风格</label>
+          <textarea id="soul-style" rows="3" placeholder="简洁务实，先做再说，代码优先"></textarea>
+          <div class="form-hint">Agent 做事和沟通的方式</div>
+        </div>
+        <div class="form-group">
+          <label>行为边界</label>
+          <textarea id="soul-boundaries" rows="3" placeholder="涉及外部操作时先确认，不自作主张"></textarea>
+          <div class="form-hint">Agent 不应该做的事情、需要注意的限制</div>
+        </div>
+        <div class="form-group">
+          <label>擅长领域</label>
+          <input type="text" id="soul-skills" placeholder="写作、数据分析、Python、前端开发...">
+          <div class="form-hint">用逗号分隔，告诉 Agent 它的专长</div>
+        </div>
+        <div class="form-group">
+          <label>自定义补充</label>
+          <textarea id="soul-extra" rows="3" placeholder="其他个性化指令..."></textarea>
+          <div class="form-hint">任何额外的人格指令或规则</div>
+        </div>
+      </div>
+      <!-- User Tab -->
+      <div class="tab-pane" id="tab-user">
+        <div class="form-group">
+          <label>用户名称</label>
+          <input type="text" id="user-name" placeholder="你的名字">
+        </div>
+        <div class="form-group">
+          <label>称呼</label>
+          <input type="text" id="user-callme" placeholder="希望 AI 怎么叫你">
+          <div class="form-hint">希望 Agent 怎么称呼你</div>
+        </div>
+        <div class="form-group">
+          <label>代词</label>
+          <input type="text" id="user-pronouns" placeholder="他 / 她 / TA">
+        </div>
+        <div class="form-group">
+          <label>时区</label>
+          <input type="text" id="user-timezone" placeholder="Asia/Shanghai">
+        </div>
+        <div class="form-group">
+          <label>备注</label>
+          <input type="text" id="user-notes" placeholder="对 AI 回复风格的偏好">
+          <div class="form-hint">关于你的简短备注</div>
+        </div>
+        <div class="form-group">
+          <label>上下文 / 偏好</label>
+          <textarea id="user-context" rows="4" placeholder="你的工作背景、兴趣偏好等"></textarea>
+          <div class="form-hint">你的工作背景、兴趣偏好等，Agent 会参考这些来个性化交互</div>
+        </div>
+      </div>
+      <!-- Cron Tab -->
+      <div class="tab-pane" id="tab-cron">
+        <div class="cron-toolbar">
+          <button class="cron-refresh-btn" id="cron-refresh">🔄 刷新</button>
+          <button class="cron-add-btn" id="cron-add-toggle">＋ 新建任务</button>
+        </div>
+        <!-- Create form (hidden by default) -->
+        <div class="cron-create-form" id="cron-create-form">
+          <div class="form-group">
+            <label>任务名称</label>
+            <input type="text" id="cron-new-name" placeholder="每日提醒、定期检查...">
+          </div>
+          <div class="form-group">
+            <label>类型</label>
+            <div class="cron-type-row">
+              <label class="radio-label"><input type="radio" name="cron-type" value="once" checked> 一次性</label>
+              <label class="radio-label"><input type="radio" name="cron-type" value="every"> 周期循环</label>
+              <label class="radio-label"><input type="radio" name="cron-type" value="cron"> Cron 表达式</label>
+            </div>
+          </div>
+          <!-- Once: date/time picker -->
+          <div class="form-group cron-type-panel" id="cron-panel-once">
+            <label>执行时间</label>
+            <input type="datetime-local" id="cron-once-time">
+          </div>
+          <!-- Every: interval -->
+          <div class="form-group cron-type-panel" id="cron-panel-every" style="display:none">
+            <label>间隔</label>
+            <div class="cron-interval-row">
+              <input type="number" id="cron-every-val" min="1" value="1" style="width:80px">
+              <select id="cron-every-unit">
+                <option value="60000">分钟</option>
+                <option value="3600000">小时</option>
+                <option value="86400000" selected>天</option>
+              </select>
+            </div>
+          </div>
+          <!-- Cron: expression -->
+          <div class="form-group cron-type-panel" id="cron-panel-cron" style="display:none">
+            <label>Cron 表达式</label>
+            <input type="text" id="cron-expr" placeholder="0 9 * * * (每天9点)">
+            <div class="form-hint">标准 5 位 cron 格式：分 时 日 月 周</div>
+          </div>
+          <div class="form-group">
+            <label>执行内容</label>
+            <textarea id="cron-new-message" rows="3" placeholder="提醒我查看邮件..."></textarea>
+            <div class="form-hint">Agent 收到的消息内容</div>
+          </div>
+          <div class="cron-create-actions">
+            <button class="btn-primary" id="cron-create-btn">创建</button>
+            <button class="btn-secondary" id="cron-cancel-btn">取消</button>
+          </div>
+        </div>
+        <div id="cron-list-container">
+          <div class="loading-text">加载中...</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer" id="agent-footer">
+      <button class="btn-primary" id="agent-save">保存</button>
+      <button class="btn-secondary" id="agent-revert">还原</button>
+      <span class="save-status" id="agent-save-status"></span>
+    </div>
+  </div>
+</div>
+
+<script src="paw-app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Paper Analysis Evidence"
+  short_description: "Extracts evidence-backed structured paper analysis and consistency checks."
+  icon: "📄"
+  color: "#FFEAD5"

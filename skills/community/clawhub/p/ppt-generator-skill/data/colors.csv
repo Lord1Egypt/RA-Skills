@@ -1,0 +1,39 @@
+category,palette_name,primary,secondary,accent,tags
+企业商务,Midnight Executive,1E2761,CADCFC,FFFFFF,corporate proposal investment finance
+企业商务,Navy Precision,0B1D51,E8EEF7,D4A843,finance banking annual-report
+企业商务,Slate Authority,2C3E50,ECF0F1,E74C3C,management strategy consulting
+企业商务,Graphite Gold,333333,F5F5F5,C9A84C,luxury premium executive
+企业商务,Oxford Blue,002147,B0C4DE,FFFFFF,legal policy governance
+未来科技,Ocean Gradient,065A82,1C7293,FFFFFF,ai technology digital
+未来科技,Neon Circuit,0D1117,58A6FF,39D353,dev-tools saas cloud github
+未来科技,Electric Violet,1A0533,7C3AED,00F5D4,ai metaverse quantum
+未来科技,Deep Space,0F0E17,FFFFFE,FF8906,startup tech-product launch
+未来科技,Cyber Teal,022B3A,1F7A8C,BFDBF7,iot automation smart-city
+年终总结,Midnight Executive,1E2761,CADCFC,FFFFFF,annual-review year-end performance
+年终总结,Charcoal Amber,2D2D2D,F7F7F7,E8A838,year-end milestone achievement
+年终总结,Deep Indigo,1B1464,E8E5F0,FF6B6B,review growth recap
+年终总结,Corporate Navy,003153,D9E2EC,F0B429,quarterly-report kpi metrics
+扁平简约,Charcoal Minimal,36454F,F2F2F2,212121,data-report product-design dashboard
+扁平简约,Paper White,1A1A2E,FAFAFA,0891B2,clean modern saas
+扁平简约,Soft Graphite,404040,F8F8F8,3B82F6,ui-design analytics
+扁平简约,Warm Mono,3D3D3D,FBF9F1,B45309,editorial documentation
+中国风,Cherry Bold,990011,FCF6F5,2F3C7E,traditional cultural heritage
+中国风,Ink Wash,2C2C2C,F5F0EB,8B4513,calligraphy painting poetry
+中国风,Imperial Gold,7B2D26,FFF8DC,DAA520,festival history royal
+中国风,Bamboo Sage,3E5C3E,F5F2E8,8B6914,zen nature tea-culture
+文化艺术,Berry Cream,6D2E46,ECE2D0,A26769,exhibition gallery art
+文化艺术,Gallery White,1A1A1A,F5F5F0,C7A17A,museum photography film
+文化艺术,Plum Dusk,4A2040,F0E6EF,D4AF37,theater music performance
+文艺清新,Sage Calm,84B59F,F5F5EE,50808E,lifestyle travel nature
+文艺清新,Peach Blossom,D4836D,FFF5F0,6B8F71,wellness journal healing
+文艺清新,Sky Linen,5B8FB9,FAF9F6,E8B960,photography blog personal
+卡通手绘,Coral Energy,F96167,F9E795,2F3C7E,education kids training
+卡通手绘,Candy Pop,FF6B9D,C0F0F5,FFD93D,playful fun workshop
+卡通手绘,Meadow Play,4CAF50,FFF8E1,FF7043,nature school children
+创意趣味,Warm Terracotta,B85042,E7E8D1,A7BEAE,brainstorm workshop design-thinking
+创意趣味,Electric Citrus,FF5722,FFF3E0,00BCD4,hackathon innovation startup
+创意趣味,Bold Magenta,C2185B,F3E5F5,00ACC1,creative pitch unconventional
+学术研究,Teal Trust,028090,E0F4F1,FFFFFF,research paper thesis
+学术研究,Academic Slate,34495E,EBF5FB,2980B9,dissertation methodology
+学术研究,Forest Study,1B4332,F0F4F0,4A90D9,biology ecology scientific
+学术研究,Classic Burgundy,6B2737,F9F3F0,2C5282,humanities law social-science

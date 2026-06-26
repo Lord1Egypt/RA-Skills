@@ -1,0 +1,13 @@
+{
+  "Crm/Customer/GetCustomers": {
+    "会员ID": ["id", "customer_id"],
+    "姓名": ["name", "customer_name"],
+    "手机号": ["phone"],
+    "自定义字段": ["custom_field_1", "custom_field_2"]
+  },
+  "Crm/Customer/GetCustomer": {
+    "会员ID": ["id", "customer_id"],
+    "姓名": ["name", "customer_name"]
+  },
+  "_comment": "这是一个字段映射配置文件示例。每个接口可以定义自己的字段映射，格式为：\"中文输出字段名\": [\"原始字段名1\", \"原始字段名2\", ...]。字段会按顺序尝试，使用第一个找到的字段值。"
+}

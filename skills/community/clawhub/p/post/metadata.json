@@ -1,0 +1,6 @@
+{
+  "name": "post",
+  "version": "1.5.0",
+  "description": "Manage email with the Post CLI and daemon, including reading, searching, drafting, replying, attachments, and scoped per-agent API-key access.",
+  "author": "Oliver Drobnik"
+}

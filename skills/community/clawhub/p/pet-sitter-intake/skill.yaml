@@ -1,0 +1,116 @@
+# ClawHub Skill Manifest - Pet Sitter Intake Form Generator
+name: pet-sitter-intake
+version: 5.0.0
+author: clawhub-community
+description: >
+  Generate professional PDF client intake forms for pet sitting businesses.
+  Use when a pet sitter, dog walker, or pet boarder needs a client intake form,
+  new client questionnaire, or pet information sheet. Supports fillable PDFs,
+  custom branding colors, multi-pet forms, and service-specific templates.
+license: MIT
+
+permissions:
+  - filesystem       # Write generated PDF files
+  - shell            # Run Python script
+
+config:
+  business_name:
+    type: string
+    required: false
+    default: "Your Business Name"
+    description: "Name of the pet sitting business"
+  
+  sitter_name:
+    type: string
+    required: false
+    default: ""
+    description: "Individual sitter name (for authorization text)"
+  
+  services:
+    type: string
+    required: false
+    default: "Pet Sitting, Dog Walking, Boarding"
+    description: "Comma-separated list of services offered"
+  
+  location:
+    type: string
+    required: false
+    default: ""
+    description: "Business location (city, state)"
+  
+  contact:
+    type: string
+    required: false
+    default: ""
+    description: "Contact info (phone, email, website)"
+  
+  theme:
+    type: string
+    required: false
+    default: "lavender"
+    description: "Color theme: lavender, ocean, forest, rose, sunset, neutral, midnight"
+  
+  service_type:
+    type: string
+    required: false
+    default: "general"
+    description: "Form type: general, boarding, walking, drop_in"
+  
+  num_pets:
+    type: number
+    required: false
+    default: 1
+    description: "Number of pet profile pages to generate"
+    min: 1
+    max: 10
+  
+  fillable:
+    type: boolean
+    required: false
+    default: true
+    description: "Generate fillable PDF form fields"
+
+entryPoint:
+  type: natural
+  prompt: |
+    You are a pet sitter intake form generator skill.
+    
+    When activated, collect these inputs from the user:
+    1. Business name (required)
+    2. Sitter name (optional)
+    3. Services offered (suggest: Pet Sitting, Dog Walking, Boarding, Drop-in Visits)
+    4. Location (city/state)
+    5. Contact info (email/phone)
+    6. Color theme preference (show available: lavender, ocean, forest, rose, sunset, neutral, midnight)
+    7. Service type if specific (boarding, walking, drop-in, or general)
+    8. Number of pets (if they have multiple pets)
+    
+    Then run the generation script:
+    ```bash
+    python /path/to/skill/scripts/generate_form.py \
+      --business-name "USER_INPUT" \
+      --sitter-name "USER_INPUT" \
+      --services "USER_INPUT" \
+      --location "USER_INPUT" \
+      --contact "USER_INPUT" \
+      --theme "USER_INPUT" \
+      --service-type "USER_INPUT" \
+      --pets NUMBER \
+      --output "/mnt/user-data/outputs/client_intake_form.pdf"
+    ```
+    
+    Present the generated PDF to the user and explain:
+    - The form has fillable fields they can type into
+    - They can also print it for handwritten responses
+    - Suggest they customize the theme to match their branding
+
+triggers:
+  keywords:
+    - "pet sitter form"
+    - "client intake form"
+    - "pet sitting intake"
+    - "new client form"
+    - "pet care form"
+    - "dog walker form"
+    - "boarding form"
+    - "pet questionnaire"

@@ -1,35 +1,39 @@
----
-name: "Pipeworx videogames"
-description: "Browse and search free-to-play PC and browser games by platform, category, and sort order using data from the FreeToGame database."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-videogames"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-videogames"
----
+# Video Games
 
-# Pipeworx videogames
+Browse and search free-to-play games across PC and browser platforms. Powered by the FreeToGame database.
 
-> Browse and search free-to-play PC and browser games by platform, category, and sort order using data from the FreeToGame database.
+## What can I do?
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-videogames`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-videogames](https://clawhub.ai/skills/pipeworx-videogames)
+**list_games** -- Browse the full catalog. Filter by platform (`pc`, `browser`), category (`mmorpg`, `shooter`, `strategy`, `moba`, `racing`, `sports`, `sandbox`, `open-world`, `survival`, `pvp`, `zombie`, `tower-defense`, `horror`, `mmofps`), and sort order (`release-date`, `popularity`, `alphabetical`, `relevance`).
 
-## Overview
+**get_game** -- Full details for a game by ID: description, genre, developer, publisher, release date, screenshots, system requirements, and game URL.
 
+**filter_games** -- Advanced filtering by dot-separated tags like `3d.mmorpg.fantasy` or `shooter.pvp` with optional platform filter.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Example: popular PC shooters
+
 ```bash
-hermes skills install clawhub/pipeworx-videogames
+curl -X POST https://gateway.pipeworx.io/videogames/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"list_games","arguments":{"platform":"pc","category":"shooter","sort_by":"popularity"}}}'
+```
+
+## Example: get Valorant details
+
+Valorant's FreeToGame ID is 452:
+
+```bash
+curl -X POST https://gateway.pipeworx.io/videogames/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_game","arguments":{"id":452}}}'
+```
+
+```json
+{
+  "mcpServers": {
+    "videogames": {
+      "url": "https://gateway.pipeworx.io/videogames/mcp"
+    }
+  }
+}
 ```

@@ -1,0 +1,254 @@
+[
+  {
+    "场景":"通用场景",
+    "音色名称":"Vivi 2.0",
+    "voice_type":"zh_female_vv_uranus_bigtts",
+    "语种":"中文、日文、印尼、墨西哥西班牙语",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"通用场景",
+    "音色名称":"小何 2.0",
+    "voice_type":"zh_female_xiaohe_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"通用场景",
+    "音色名称":"云舟 2.0",
+    "voice_type":"zh_male_m191_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"通用场景",
+    "音色名称":"小天 2.0",
+    "voice_type":"zh_male_taocheng_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"通用场景",
+    "音色名称":"刘飞 2.0",
+    "voice_type":"zh_male_liufei_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"通用场景",
+    "音色名称":"魅力苏菲 2.0",
+    "voice_type":"zh_male_sophie_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"通用场景",
+    "音色名称":"清新女声 2.0",
+    "voice_type":"zh_female_qingxinnvsheng_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"角色扮演",
+    "音色名称":"知性灿灿 2.0",
+    "voice_type":"zh_female_cancan_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"角色扮演",
+    "音色名称":"撒娇学妹 2.0",
+    "voice_type":"zh_female_sajiaoxuemei_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"通用场景",
+    "音色名称":"甜美小源 2.0",
+    "voice_type":"zh_female_tianmeixiaoyuan_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"通用场景",
+    "音色名称":"甜美桃子 2.0",
+    "voice_type":"zh_female_tianmeitaozi_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"通用场景",
+    "音色名称":"爽快思思 2.0",
+    "voice_type":"zh_female_shuangkuaisisi_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"视频配音",
+    "音色名称":"佩奇猪 2.0",
+    "voice_type":"zh_female_peiqi_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"通用场景",
+    "音色名称":"邻家女孩 2.0",
+    "voice_type":"zh_female_linjianvhai_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"通用场景",
+    "音色名称":"少年梓辛\/Brayan 2.0",
+    "voice_type":"zh_male_shaonianzixin_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"视频配音",
+    "音色名称":"猴哥 2.0",
+    "voice_type":"zh_male_sunwukong_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"教育场景",
+    "音色名称":"Tina老师 2.0",
+    "voice_type":"zh_female_yingyujiaoxue_uranus_bigtts",
+    "语种":"中文、英式英语",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"客服场景",
+    "音色名称":"暖阳女声 2.0",
+    "voice_type":"zh_female_kefunvsheng_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"有声阅读",
+    "音色名称":"儿童绘本 2.0",
+    "voice_type":"zh_female_xiaoxue_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"视频配音",
+    "音色名称":"大壹 2.0",
+    "voice_type":"zh_male_dayi_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"视频配音",
+    "音色名称":"黑猫侦探社咪仔 2.0",
+    "voice_type":"zh_female_mizai_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"视频配音",
+    "音色名称":"鸡汤女 2.0",
+    "voice_type":"zh_female_jitangnv_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"通用场景",
+    "音色名称":"魅力女友 2.0",
+    "voice_type":"zh_female_meilinvyou_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"视频配音",
+    "音色名称":"流畅女声 2.0",
+    "voice_type":"zh_female_liuchangnv_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"视频配音",
+    "音色名称":"儒雅逸辰 2.0",
+    "voice_type":"zh_male_ruyayichen_uranus_bigtts",
+    "语种":"中文",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"多语种",
+    "音色名称":"Tim",
+    "voice_type":"en_male_tim_uranus_bigtts",
+    "语种":"美式英语",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"多语种",
+    "音色名称":"Dacey",
+    "voice_type":"en_female_dacey_uranus_bigtts",
+    "语种":"美式英语",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"多语种",
+    "音色名称":"Stokie",
+    "voice_type":"en_female_stokie_uranus_bigtts",
+    "语种":"美式英语",
+    "支持能力":"情感变化、指令遵循、ASMR"
+  },
+  {
+    "场景":"角色扮演",
+    "音色名称":"可爱女生",
+    "voice_type":"saturn_zh_female_keainvsheng_tob",
+    "语种":"中文",
+    "支持能力":"指令遵循、COT\/QA功能"
+  },
+  {
+    "场景":"角色扮演",
+    "音色名称":"调皮公主",
+    "voice_type":"saturn_zh_female_tiaopigongzhu_tob",
+    "语种":"中文",
+    "支持能力":"指令遵循、COT\/QA功能"
+  },
+  {
+    "场景":"角色扮演",
+    "音色名称":"爽朗少年",
+    "voice_type":"saturn_zh_male_shuanglangshaonian_tob",
+    "语种":"中文",
+    "支持能力":"指令遵循、COT\/QA功能"
+  },
+  {
+    "场景":"角色扮演",
+    "音色名称":"天才同桌",
+    "voice_type":"saturn_zh_male_tiancaitongzhuo_tob",
+    "语种":"中文",
+    "支持能力":"指令遵循、COT\/QA功能"
+  },
+  {
+    "场景":"角色扮演",
+    "音色名称":"知性灿灿",
+    "voice_type":"saturn_zh_female_cancan_tob",
+    "语种":"中文",
+    "支持能力":"指令遵循、COT\/QA功能"
+  },
+  {
+    "场景":"客服场景",
+    "音色名称":"轻盈朵朵 2.0",
+    "voice_type":"saturn_zh_female_qingyingduoduo_cs_tob",
+    "语种":"中文",
+    "支持能力":"指令遵循"
+  },
+  {
+    "场景":"客服场景",
+    "音色名称":"温婉珊珊 2.0",
+    "voice_type":"saturn_zh_female_wenwanshanshan_cs_tob",
+    "语种":"中文",
+    "支持能力":"指令遵循"
+  },
+  {
+    "场景":"客服场景",
+    "音色名称":"热情艾娜 2.0",
+    "voice_type":"saturn_zh_female_reqingaina_cs_tob",
+    "语种":"中文",
+    "支持能力":"指令遵循"
+  }
+]

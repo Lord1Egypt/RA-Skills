@@ -1,0 +1,25 @@
+{
+  "name": "pixeldojo",
+  "version": "1.3.3",
+  "description": "Use PixelDojo's API helpers to generate AI images and videos, inspect the live model catalog, and download completed assets.",
+  "author": "Brian Lovett",
+  "license": "MIT",
+  "homepage": "https://pixeldojo.ai",
+  "keywords": [
+    "ai",
+    "image-generation",
+    "video-generation",
+    "creative-tools",
+    "model-catalog",
+    "pixeldojo"
+  ],
+  "requires": {
+    "env": ["PIXELDOJO_API_KEY"],
+    "bins": ["curl", "jq", "python3"]
+  },
+  "metadata": {
+    "category": "media-generation",
+    "product": "PixelDojo",
+    "apiBase": "https://pixeldojo.ai/api/v1"
+  }
+}

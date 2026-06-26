@@ -1,0 +1,124 @@
+# PokePerps - Pokemon Card Perpetuals
+# https://pokeperps.fun
+# This file helps AI assistants understand what this website is about.
+
+## About
+PokePerps is the first decentralized perpetual futures exchange for Pokemon Trading Card Game (TCG) collectibles. Users can trade perpetual contracts on real Pokemon card prices with up to 50x leverage.
+
+## Key Features
+- **Perpetual Futures**: Go long or short on Pokemon card prices with no expiry dates
+- **Up to 50x Leverage**: Amplify your trading positions
+- **Live Oracle Pricing**: Real-time prices sourced from TCGPlayer marketplace
+- **Non-Custodial**: Funds are held in on-chain smart contract vaults, not by any centralized entity
+- **Instant Execution**: Sub-second trades on Solana blockchain
+
+## Technology Stack
+- **Blockchain**: Solana (mainnet)
+- **Oracle**: TCGPlayer price feeds published directly on-chain
+- **Smart Contracts**: Custom perpetual DEX program
+- **Frontend**: React SPA
+
+## How It Works
+1. Connect your Solana wallet (Phantom, Solflare, etc.)
+2. Deposit USDC as collateral
+3. Browse Pokemon cards with live pricing data
+4. Open long or short positions with your desired leverage
+5. Close positions anytime to realize profits/losses
+
+## Target Audience
+- Pokemon TCG collectors interested in price speculation
+- Crypto traders looking for unique derivatives markets
+- DeFi users seeking novel trading opportunities
+
+## Main Pages
+- `/` - Landing page with platform overview
+- `/app` - Main trading interface
+- `/browse` - Card browsing and search
+- `/portfolio` - User portfolio and position management
+- `/card/:productId` - Individual card details and trading
+- `/terms` - Terms of service
+
+## AI Agent Integration
+
+### MCP Server (Recommended)
+The easiest way for AI agents to interact with PokePerps is via the MCP (Model Context Protocol) server:
+
+**Read-only mode:**
+```json
+{
+  "mcpServers": {
+    "pokeperps": {
+      "command": "npx",
+      "args": ["@pokeperps/mcp"]
+    }
+  }
+}
+```
+
+**With trade execution** (requires Solana keypair):
+```json
+{
+  "mcpServers": {
+    "pokeperps": {
+      "command": "npx",
+      "args": ["@pokeperps/mcp"],
+      "env": {
+        "POKEPERPS_KEYPAIR": "/path/to/keypair.json"
+      }
+    }
+  }
+}
+```
+
+**Read-only tools:**
+- `get_market_movers` — Top gainers, losers, and volatile cards
+- `get_portfolio` — Complete portfolio with computed PnL
+- `get_trading_signals` — Pre-computed signals and recommendations
+- `prepare_trade` — Pre-trade validation and simulation
+- `simulate_trade` — PnL scenarios at different price levels
+- `search_cards` — Search Pokemon cards by name
+- `get_card_details` — Full card info with listings, sales, history
+- `batch_get_cards` — Fetch up to 50 cards in one request
+- `get_tradable_products` — List all tradable product IDs
+- `get_trading_config` — Trading parameters (leverage, fees, etc.)
+
+**Execution tools** (require `POKEPERPS_KEYPAIR`):
+- `open_position` — Open a new long/short position
+- `close_position` — Close an existing position
+- `deposit` — Deposit USDC into trading account
+- `withdraw` — Withdraw USDC from trading account
+- `get_wallet_status` — Check wallet balance and execution status
+
+### OpenAPI Spec
+Auto-generated OpenAPI spec available at:
+- Swagger UI: https://backend.pokeperps.fun/api/docs
+- JSON: https://backend.pokeperps.fun/api/docs/json
+
+### AI-Optimized REST Endpoints
+These endpoints are designed to minimize API calls for AI agents:
+- `GET /api/trading/portfolio/{wallet}` — Complete portfolio with computed PnL in one call
+- `GET /api/trading/prepare-trade/{productId}` — Pre-trade validation (replaces 5+ calls)
+- `POST /api/trading/simulate` — Trade simulation with PnL scenarios
+- `GET /api/trading/analytics/movers` — Top gainers/losers/volatile cards
+- `POST /api/cards/batch` — Fetch up to 50 cards in one request
+- `GET /api/cards/{id}/signals` — Pre-computed trading signals and recommendations
+
+### Full Documentation
+For detailed programmatic API access, see SKILL.md at https://pokeperps.fun/SKILL.md
+
+## Creator
+Built by @ankushKun_ on Twitter/X
+
+## Links
+- Website: https://pokeperps.fun
+- Twitter: https://twitter.com/ankushKun_
+- Price Data: TCGPlayer (https://tcgplayer.com)
+
+## API
+The backend API is available at https://backend.pokeperps.fun for programmatic access to:
+- Card pricing data
+- Market information
+- Oracle prices
+- Trading transaction builders (returns params; signing happens client-side via Solana wallet)
+
+For complete API documentation and AI agent integration guide, see: https://pokeperps.fun/SKILL.md

@@ -1,0 +1,82 @@
+# Permission Vending Machine — Example Configuration
+# Copy to config.yaml and fill in your values.
+# Environment variables supported: ${VAR_NAME}
+
+vault:
+  db_path: "/absolute/path/to/grants.db"
+  default_ttl_minutes: 30
+  max_ttl_minutes: 480
+
+# ─── Notification Channels ──────────────────────────────────────────────────
+# All channels are independently enabled. Enable as many as you want.
+# Credentials can be set via environment variable placeholders: ${VAR_NAME}
+
+channels:
+  # ── Sendblue (iMessage / SMS) ─────────────────────────────────────────────
+  sendblue:
+    enabled: true
+    api_key: "${SENDBLUE_API_KEY}"
+    from_number: "+17870000000"
+    approver_numbers:
+      - "+1234567890"    # Tyler's number
+      - "+1987654321"    # Secondary approver
+
+  # ── Email (SMTP + IMAP) ────────────────────────────────────────────────
+  email:
+    enabled: false
+    smtp_host: "smtp.mail.me.com"
+    smtp_port: 465
+    imap_host: "imap.mail.me.com"
+    imap_port: 993
+    username: "${SMTP_USER}"          # e.g. tyler.delano@icloud.com
+    password: "${SMTP_PASSWORD}"      # app-specific password
+    from_addr: "agent@example.com"
+    approver_emails:
+      - "tyler@example.com"
+
+  # ── Discord ──────────────────────────────────────────────────────────────
+  discord:
+    enabled: true
+    webhook_url: "${DISCORD_WEBHOOK_URL}"
+    # HTTP base URL for approval buttons in Discord embeds.
+    # Must match the --port of `pvm approve-daemon` (default: 8080).
+    # Use your Mac mini's LAN IP (e.g. http://192.168.0.28:8080) if
+    # you want to approve from your phone.
+    http_approval_base: "http://localhost:7823"
+
+  # ── Telegram ─────────────────────────────────────────────────────────────
+  telegram:
+    enabled: false
+    bot_token: "${TELEGRAM_BOT_TOKEN}"
+    approver_chat_ids:
+      - "123456789"
+
+  # ── Slack ─────────────────────────────────────────────────────────────────
+  slack:
+    enabled: false
+    webhook_url: "${SLACK_WEBHOOK_URL}"
+
+# ─── Permission Guards ───────────────────────────────────────────────────────
+# Define which operations require approval and what scope they use.
+
+permissions:
+  guarded_operations:
+    - operation: "rm"
+      scope_type: "path"
+      require_approval: true
+
+    - operation: "git push --force"
+      scope_type: "repo"
+      require_approval: true
+
+    - operation: "trash"
+      scope_type: "path"
+      require_approval: false   # auto-approved inside workspace
+
+  # Operations outside these workspaces always require approval
+  workspace_root: "/Users/soup/workspace"
+
+  agent_workspaces:
+    coder: "/Users/soup/workspace/coder"
+    builder: "/Users/soup/workspace/builder"
+    default: "/Users/soup/workspace"

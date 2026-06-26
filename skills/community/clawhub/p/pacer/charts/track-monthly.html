@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>月度行动热力图</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background-color: #1a1a2e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  .chart-title {
+    color: #e0e0e0;
+    font-size: 14px;
+    margin-bottom: 14px;
+    opacity: 0.8;
+  }
+  .heatmap-wrapper {
+    display: flex;
+    gap: 6px;
+  }
+  .week-labels {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    justify-content: flex-start;
+    margin-top: 20px;
+  }
+  .week-label {
+    width: 14px;
+    height: 14px;
+    font-size: 9px;
+    color: #b0b0b0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .grid-area {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .month-row {
+    display: flex;
+    gap: 0;
+    height: 20px;
+    align-items: center;
+  }
+  .month-label {
+    font-size: 10px;
+    color: #b0b0b0;
+    width: 40px;
+    text-align: right;
+    padding-right: 6px;
+    flex-shrink: 0;
+  }
+  .week-col {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .day-cell {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: transform 0.1s;
+  }
+  .day-cell:hover {
+    transform: scale(1.3);
+    z-index: 10;
+  }
+  .day-cell:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(26,26,46,0.95);
+    color: #e0e0e0;
+    font-size: 10px;
+    white-space: nowrap;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.1);
+    pointer-events: none;
+    z-index: 100;
+  }
+  .legend {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    font-size: 10px;
+    color: #b0b0b0;
+  }
+  .legend-cell {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="chart-title" id="chartTitle">月度行动热力图</div>
+
+<div class="heatmap-wrapper">
+  <div class="week-labels">
+    <div class="week-label">一</div>
+    <div class="week-label">二</div>
+    <div class="week-label">三</div>
+    <div class="week-label">四</div>
+    <div class="week-label">五</div>
+    <div class="week-label">六</div>
+    <div class="week-label">日</div>
+  </div>
+  <div id="heatmapGrid" class="grid-area"></div>
+</div>
+
+<div class="legend">
+  <span>无记录</span>
+  <div class="legend-cell" style="background:#1a1a2e; border:1px solid #333;"></div>
+  <span>未完成</span>
+  <div class="legend-cell" style="background:#37474f;"></div>
+  <span>完成</span>
+  <div class="legend-cell" style="background:#26a69a;"></div>
+  <span>超额</span>
+  <div class="legend-cell" style="background:#00e676;"></div>
+</div>
+
+<script>
+  // ============================================================
+  // 模板变量说明（AI替换）
+  // ============================================================
+  // {{month_label}} → 月份标签，如 "2026年3月"
+  // {{year}} → 年份整数，如 2026
+  // {{month}} → 月份整数（1-12），如 3
+  // {{daily_records}} → 每日记录对象，key为"YYYY-MM-DD"，value为：
+  //   { status: "none|undone|done|extra", note: "行动描述" }
+  //   示例：{ "2026-03-01": { status: "done", note: "完成了产品需求文档" }, ... }
+
+  const monthLabel = "{{month_label}}";
+  const year = {{year}};
+  const month = {{month}};
+  const dailyRecords = {{daily_records}};
+
+  document.getElementById('chartTitle').textContent = monthLabel + ' 行动热力图';
+
+  const colorMap = {
+    none:   '#1a1a2e',
+    undone: '#37474f',
+    done:   '#26a69a',
+    extra:  '#00e676'
+  };
+
+  // 获取该月第一天是星期几（0=周日，需转为周一=0）
+  const firstDay = new Date(year, month - 1, 1);
+  const daysInMonth = new Date(year, month, 0).getDate();
+  // 调整为周一起始（0=周一，6=周日）
+  let startWeekday = (firstDay.getDay() + 6) % 7;
+
+  // 按列（周）组织数据，每列7天
+  const totalCells = startWeekday + daysInMonth;
+  const totalCols = Math.ceil(totalCells / 7);
+
+  const grid = document.getElementById('heatmapGrid');
+  grid.style.display = 'flex';
+  grid.style.flexDirection = 'row';
+  grid.style.gap = '3px';
+
+  for (let col = 0; col < totalCols; col++) {
+    const weekCol = document.createElement('div');
+    weekCol.className = 'week-col';
+
+    for (let row = 0; row < 7; row++) {
+      const cellIndex = col * 7 + row;
+      const dayNum = cellIndex - startWeekday + 1;
+
+      const cell = document.createElement('div');
+      cell.className = 'day-cell';
+
+      if (dayNum < 1 || dayNum > daysInMonth) {
+        cell.style.background = 'transparent';
+        cell.style.cursor = 'default';
+      } else {
+        const dateStr = year + '-' +
+          String(month).padStart(2, '0') + '-' +
+          String(dayNum).padStart(2, '0');
+        const record = dailyRecords[dateStr] || { status: 'none', note: '' };
+        cell.style.background = colorMap[record.status] || colorMap.none;
+        if (record.status === 'none') {
+          cell.style.border = '1px solid #2a2a3e';
+        }
+        const tipText = dateStr + (record.note ? '：' + record.note : '（无记录）');
+        cell.setAttribute('data-tip', tipText);
+        cell.title = tipText;
+      }
+
+      weekCol.appendChild(cell);
+    }
+    grid.appendChild(weekCol);
+  }
+</script>
+</body>
+</html>

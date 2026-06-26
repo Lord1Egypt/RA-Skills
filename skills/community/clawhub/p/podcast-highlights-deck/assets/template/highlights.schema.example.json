@@ -1,0 +1,261 @@
+{
+  "podcast": {
+    "title": "Daniel Priestley: Plumbers Will Earn More Than Lawyers! I Predicted 2008, Now I'm Warning About 2029",
+    "show": "The Diary Of A CEO with Steven Bartlett",
+    "host": "Steven Bartlett",
+    "guest": "Daniel Priestley",
+    "published": "2026-03-16",
+    "duration_sec": 7354,
+    "source_url": "https://podcasts.apple.com/cn/podcast/the-diary-of-a-ceo-with-steven-bartlett/id1291423644?i=1000755513967",
+    "audio_url": "https://pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/1390/claritaspod.com/measure/p.podderapp.com/2544644999/episode.flightcast.com/01KKQ4QF6BQXFRTP05HNPT7C20.mp3",
+    "cover_image": "https://files.flightcast.com/workspaces/edpmsc3wdznn1aa2txug5e3p/01KKQ4R78R6EV6VK7ESQQJDFAT/daniel_priestley.jpg"
+  },
+  "hero": {
+    "eyebrow": "Inside the episode",
+    "title_lines": [
+      "Plumbers, Lawyers, and the AI Economy",
+      "Daniel Priestley on what breaks in 2029"
+    ],
+    "subhead": "A curated set of moments worth rereading—ideas, warnings, and practical moves from a 2-hour conversation."
+  },
+  "highlights": [
+    {
+      "id": "h1",
+      "start": 248.0,
+      "end": 316.0,
+      "title": "Two forces, one shockwave",
+      "quote_en": "We are living through transformational times that is very similar to 250 years ago, where the end of the agricultural age ended and the beginning of the industrial age began. I would argue that it's more significant because there's two forces that kind of keep me up at night. The first force is AI, which is, you can think of it as just the replacement of the human brain from a sort of productivity standpoint. And then the other is robotics. And the problem is they're coming in at the same time.",
+      "context_en": "Priestley frames the AI moment as bigger than “software disruption” because it hits both thinking and doing.",
+      "takeaway_en": "The shift isn’t just knowledge-work automation; it’s intelligence + physical execution arriving together—so “where humans fit” becomes the core question.",
+      "quote_ja": "私たちは、約250年前に農業社会が終わり産業革命が始まった時と同じくらいの変革期にいます。むしろもっと大きい。僕を眠らせない力が2つあって、1つはAI—生産性の観点で言えば人間の脳の代替。もう1つはロボティクス。そして厄介なのは、それが同時に来ていることです。",
+      "takeaway_ja": "これは単なる知的労働の自動化ではなく、「知能」と「実行（身体）」が同時に置き換わる転換点。人間の役割設計が最重要テーマになる。",
+      "quote_zh": "我们正处在类似250年前农业时代结束、工业时代开启那样的变革期。我甚至认为更重大，因为有两股力量让我睡不着：第一是AI——从生产力角度看，几乎是在替代人类的大脑；第二是机器人。问题在于它们是同时到来的。",
+      "takeaway_zh": "这不是“把办公室工作自动化”那么简单，而是智力与体力执行同时被重构——人类的定位需要被重新定义。",
+      "ts": "04:08",
+      "clip": {
+        "file": "audio/h1.mp3",
+        "start": 246.0,
+        "end": 318.0
+      },
+      "title_en": "Two forces, one shockwave",
+      "title_ja": "二つの波が同時に来る",
+      "title_zh": "两股力量同时到来"
+    },
+    {
+      "id": "h2",
+      "start": 638.0,
+      "end": 662.0,
+      "title": "When intelligence stops being scarce",
+      "quote_en": "the skill of intelligence was still, of human intelligence, was still rare and scarce. And only humans had it. So the disruption of a content creation industry to a different content creation industry was still owned by humans. That transition was still a human one.",
+      "context_en": "A challenge to the usual “new tech creates new jobs” optimism.",
+      "takeaway_en": "Past disruptions reshuffled *human* labor. AI changes the premise: the scarce input (intelligence) may no longer be human-only.",
+      "quote_ja": "（これまでの転換では）知能というスキル—人間の知能—は希少で、持っているのは人間だけでした。だからコンテンツ産業が別のコンテンツ産業に置き換わっても、その移行は人間が担っていた。",
+      "takeaway_ja": "過去の破壊的変化は“人間の仕事の組み替え”だった。AIは、希少資源だった知能そのものを非人間化しうる点が違う。",
+      "quote_zh": "（过去）智力这种技能——人类的智力——依然稀缺，而且只有人类拥有。所以内容产业被另一个内容产业取代时，转型的主体仍然是人类。",
+      "takeaway_zh": "以往的产业更迭，是人类劳动重新分配；AI可能让“智力”不再只属于人类，从根上改变游戏规则。",
+      "ts": "10:38",
+      "clip": {
+        "file": "audio/h2.mp3",
+        "start": 636.0,
+        "end": 664.0
+      },
+      "title_en": "When intelligence stops being scarce",
+      "title_ja": "知能が希少でなくなる瞬間",
+      "title_zh": "当“智力”不再稀缺"
+    },
+    {
+      "id": "h3",
+      "start": 1170.0,
+      "end": 1236.0,
+      "title": "The AI business model is “astronomically out of balance”",
+      "quote_en": "This year ahead, we're gonna spend 650 billion. It's the equivalent of giving every single person in America an iPhone Pro with AirPods. But here's the crazy thing. 95% of people who have been given the free iPhone are not willing to pay for it. ... The numbers are just astronomically out of balance.",
+      "context_en": "A visceral analogy for AI capex vs. willingness-to-pay.",
+      "takeaway_en": "If the cost curve doesn’t compress faster than adoption monetizes, the “AI boom” could become a balance-sheet problem, not a product story.",
+      "quote_ja": "今年は6500億ドルを使う。これは、アメリカの全員にiPhone ProとAirPodsを配るのと同じくらい。でもおかしいのは、その“無料のiPhone”を受け取った人の95%が支払う気がないこと。…数字が天文学的に釣り合っていない。",
+      "takeaway_ja": "需要が課金に変わらないまま投資だけが膨らむと、AIはプロダクトではなく財務の爆弾になる。",
+      "quote_zh": "接下来这一年我们要花6500亿美元——相当于给美国每个人发一台iPhone Pro再配AirPods。但疯狂的是：拿到这台“免费iPhone”的95%的人不愿意付费……这个账从根本上就不平衡。",
+      "takeaway_zh": "如果成本下降速度追不上付费转化，AI热潮会从“产品叙事”变成“资产负债表风险”。",
+      "ts": "19:30",
+      "clip": {
+        "file": "audio/h3.mp3",
+        "start": 1168.0,
+        "end": 1238.0
+      },
+      "title_en": "The AI business model is “astronomically out of balance”",
+      "title_ja": "AIの収益モデルは「釣り合っていない」",
+      "title_zh": "AI商业模型“严重失衡”"
+    },
+    {
+      "id": "h4",
+      "start": 1257.0,
+      "end": 1278.0,
+      "title": "The skillset that survives: the entrepreneur loop",
+      "quote_en": "It's the entrepreneurial skillset that is the most important skillset. It is essentially the skills of identifying an opportunity, prototyping fast and cheap experiments to see if you've got something that people want, taking it to market, making your initial sales, scaling up to your addressable market, and then exiting and then coming up with a new idea.",
+      "context_en": "A definition of entrepreneurship as a repeatable process, not a personality trait.",
+      "takeaway_en": "In an AI era, “career resilience” looks like shipping cycles: validate → sell → scale—fast and cheaply.",
+      "quote_ja": "最も重要なのは起業家スキルです。機会を見つけ、安く速くプロトタイプして需要を確かめ、市場に出して最初の売上を作り、スケールし、出口を作ってまた次のアイデアへ—という一連の能力です。",
+      "takeaway_ja": "AI時代の強さは職種ではなく「学習→検証→販売→拡大」の回転速度。",
+      "quote_zh": "最重要的是创业者技能：识别机会、用快速低成本的实验做原型验证需求、推向市场拿到第一笔销售、扩大到可触达市场、退出，然后再开始下一个点子。",
+      "takeaway_zh": "AI时代的“职业韧性”是循环式的交付能力：验证→销售→扩张，越快越省越强。",
+      "ts": "20:57",
+      "clip": {
+        "file": "audio/h4.mp3",
+        "start": 1255.0,
+        "end": 1280.0
+      },
+      "title_en": "The skillset that survives: the entrepreneur loop",
+      "title_ja": "生き残るのは起業家ループ",
+      "title_zh": "能穿越周期的：创业者循环"
+    },
+    {
+      "id": "h5",
+      "start": 1509.0,
+      "end": 1562.0,
+      "title": "Small SaaS is no longer elite",
+      "quote_en": "I think one of the best opportunities is a small SaaS company. So software as a service was an elite level business opportunity that very, very few people could enter. ... Now, because of AI, all of those costs have massively come down.",
+      "context_en": "A shift in what it takes to build “real software”.",
+      "takeaway_en": "AI lowers the fixed costs of building; the new bottleneck is taste: picking a niche, understanding workflows, and earning trust.",
+      "quote_ja": "最高の機会の一つは小さなSaaSです。SaaSはこれまで、参入できる人がごく少ない“エリートな機会”でした。…でも今はAIのおかげで、そのコストが大きく下がっています。",
+      "takeaway_ja": "参入障壁は“技術”から“課題選定と信頼獲得”へ移る。ニッチ理解が勝負になる。",
+      "quote_zh": "最好的机会之一是做一个小型SaaS。软件即服务过去是极少数人才能进入的“精英级机会”……但现在因为AI，这些成本大幅下降了。",
+      "takeaway_zh": "门槛从“会不会写软件”变成“能不能选对细分场景、理解流程、建立信任”。",
+      "ts": "25:09",
+      "clip": {
+        "file": "audio/h5.mp3",
+        "start": 1507.0,
+        "end": 1564.0
+      },
+      "title_en": "Small SaaS is no longer elite",
+      "title_ja": "小さなSaaSが“エリート”ではなくなる",
+      "title_zh": "小型SaaS不再是少数人的游戏"
+    },
+    {
+      "id": "h6",
+      "start": 3301.0,
+      "end": 3349.0,
+      "title": "Government spending as distortion",
+      "quote_en": "Every amount of government spend is a market distortion regardless of what it's for and I'm saying there are plenty of things governments should be spending money on but all government spending is a market distortion. It's not market driven and there is a monopoly on spend so therefore it is a market distortion.",
+      "context_en": "A blunt framing of how incentives get scrambled.",
+      "takeaway_en": "When prices stop carrying signals, people train for the wrong things—until reality snaps back.",
+      "quote_ja": "政府支出は何に使うものであれ、市場を歪めます。政府が支出すべき領域は確かにあるけれど、政府支出は市場原理ではなく、支出の独占がある以上、それ自体が歪みです。",
+      "takeaway_ja": "価格シグナルが消えると、人は“正しい学習”ではなく“補助金最適化”を学び始める。",
+      "quote_zh": "无论政府把钱花在什么上，政府支出本身就是一种市场扭曲。我承认政府有很多该花钱的地方，但它不是市场驱动的，而且支出存在垄断，所以必然造成扭曲。",
+      "takeaway_zh": "当价格不再传递真实信号，人们会被训练去做“错误的选择”，直到现实反噬。",
+      "ts": "55:01",
+      "clip": {
+        "file": "audio/h6.mp3",
+        "start": 3299.0,
+        "end": 3351.0
+      },
+      "title_en": "Government spending as distortion",
+      "title_ja": "政府支出が生む市場の歪み",
+      "title_zh": "政府支出如何扭曲市场"
+    },
+    {
+      "id": "h7",
+      "start": 4130.0,
+      "end": 4186.0,
+      "title": "The bear case: capex bubbles wipe pensions",
+      "quote_en": "my real bare case for AI is that we overinvest in these data centers, we cause a massive financial collapse, and that we wipe out pension funds. ... the mathematics of spending 600 billion a year on something that only has a three or four-year lifespan, every single time in the last 180 years that we've spent more than 3% of our economy on an infrastructure build-out, we've ended up with either a massive recession",
+      "context_en": "A macro warning, not a model-capability critique.",
+      "takeaway_en": "Even if AI “works,” the funding mechanics can break—so risk lives in financing, not only in tech.",
+      "quote_ja": "AIの本当の弱気シナリオは知能ではない。データセンターに過剰投資して金融崩壊を起こし、年金基金を吹き飛ばすことだ。…寿命が3〜4年しかないものに毎年6000億ドルを投じる。過去180年で経済の3%超をインフラに投じたとき、毎回大きな景気後退か恐慌が起きている。",
+      "takeaway_ja": "技術の良し悪し以前に、資金調達の構造が壊れる可能性がある。リスクは“AIそのもの”だけにない。",
+      "quote_zh": "AI真正的熊市情景不是智能本身，而是我们在数据中心上过度投资，引发巨大的金融崩盘，甚至把养老金基金都抹掉……每年花6000亿美元在寿命只有三四年的基础设施上。过去180年里，只要一个社会把超过GDP 3%的资金投到一次基础设施建设，几乎都会以严重衰退告终。",
+      "takeaway_zh": "就算AI能力成立，融资与资本开支的泡沫也可能先把系统弄崩——风险在金融机制，不只在技术。",
+      "ts": "01:08:50",
+      "clip": {
+        "file": "audio/h7.mp3",
+        "start": 4128.0,
+        "end": 4188.0
+      },
+      "title_en": "The bear case: capex bubbles wipe pensions",
+      "title_ja": "弱気シナリオ：設備投資バブルと年金",
+      "title_zh": "熊市情景：资本开支泡沫与养老金"
+    },
+    {
+      "id": "h8",
+      "start": 4988.0,
+      "end": 5062.0,
+      "title": "Don’t use AI like search—give it your hardest problem",
+      "quote_en": "don't use AI as a search tool. Don't use it the way you used it a year ago. Give AI your hardest problem and say, hey, help me to solve this problem.",
+      "context_en": "A shift from “answers” to “analysis + action”.",
+      "takeaway_en": "The leverage is in delegating messy, high-context work—not in replacing Google.",
+      "quote_ja": "AIを検索ツールとして使わないでください。1年前と同じ使い方をしない。いちばん難しい問題を渡して、「これを解決して」と頼むんです。",
+      "takeaway_ja": "価値は“検索の代替”ではなく、文脈が絡む厄介な仕事を丸ごと渡すことにある。",
+      "quote_zh": "不要把AI当搜索工具用，也不要用一年前那种方式。把你最难的问题交给AI，说：帮我解决这个问题。",
+      "takeaway_zh": "AI的杠杆不在“替代搜索”，而在于接手高上下文、混乱但关键的思考与执行。",
+      "ts": "01:23:08",
+      "clip": {
+        "file": "audio/h8.mp3",
+        "start": 4986.0,
+        "end": 5064.0
+      },
+      "title_en": "Don’t use AI like search—give it your hardest problem",
+      "title_ja": "AIを検索の代わりに使わない",
+      "title_zh": "别把AI当搜索：交给它最难的问题"
+    },
+    {
+      "id": "h9",
+      "start": 5016.0,
+      "end": 5064.0,
+      "title": "AI finds the hidden pattern in your business",
+      "quote_en": "One of our team members used AI to analyse all the sales calls for the last three months and discovered a huge opportunity. What they discovered is that 75% of all of our sales calls, the person who we were on the phone to mentioned that their spouse was a decision maker",
+      "context_en": "A concrete example of AI uncovering a non-obvious conversion lever.",
+      "takeaway_en": "Use AI to mine reality (calls, tickets, docs) for patterns humans don’t have time to see—then change the process.",
+      "quote_ja": "チームの一人がAIで過去3か月の営業通話を全部分析して、大きな機会を見つけました。驚いたのは、営業電話の75%で相手が「配偶者が意思決定者で相談が必要」と言っていたことです。",
+      "takeaway_ja": "AIは“現実データ”から人間が見落とすパターンを掘り起こせる。次はプロセス設計を変える番。",
+      "quote_zh": "我们团队有人用AI把过去三个月的销售通话全部分析了一遍，发现了一个巨大机会：75%的销售电话里，对方都会提到配偶是决策者，需要和配偶商量。",
+      "takeaway_zh": "把AI用在“挖掘真实数据”的模式识别上（通话、工单、文档），能找到人力难以覆盖的增长杠杆。",
+      "ts": "01:23:36",
+      "clip": {
+        "file": "audio/h9.mp3",
+        "start": 5014.0,
+        "end": 5066.0
+      },
+      "title_en": "AI finds the hidden pattern in your business",
+      "title_ja": "AIが事業の隠れパターンを掘り起こす",
+      "title_zh": "AI挖出你业务里的隐藏模式"
+    },
+    {
+      "id": "h10",
+      "start": 5421.0,
+      "end": 5475.0,
+      "title": "The future belongs to wide skill stacks",
+      "quote_en": "even Steve Jobs himself, his skill stack contains typography and design, which is why he was able to disrupt Blackberry. He stumbled into a calligraphy class at university and loved calligraphy. And he was the first company to ever have fonts.",
+      "context_en": "A reminder that differentiation often comes from weird combinations.",
+      "takeaway_en": "In a world where tools commoditize execution, advantage shifts to cross-domain synthesis: combining ideas others don’t.",
+      "quote_ja": "スティーブ・ジョブズ自身、スキルスタックにタイポグラフィとデザインがあったからBlackBerryを破壊できた。大学でたまたまカリグラフィの授業に出会って、それを愛した。そして最初にフォントを載せた会社になった。",
+      "takeaway_ja": "実装がコモディティ化するほど、勝ち筋は“異分野の接続”に移る。",
+      "quote_zh": "乔布斯之所以能颠覆BlackBerry，是因为他的技能栈里有排版与设计。他在大学偶然上了一门书法课并爱上了它，后来成了第一家把字体做进电脑的公司。",
+      "takeaway_zh": "当执行被工具商品化，优势会转向跨领域的组合与综合：把别人没放在一起的东西连接起来。",
+      "ts": "01:30:21",
+      "clip": {
+        "file": "audio/h10.mp3",
+        "start": 5419.0,
+        "end": 5477.0
+      },
+      "title_en": "The future belongs to wide skill stacks",
+      "title_ja": "未来は「幅のあるスキルスタック」へ",
+      "title_zh": "未来属于“宽技能栈”"
+    }
+  ],
+  "closing": {
+    "title": "A reader's summary",
+    "bullets_en": [
+      "AI is not just software—it's intelligence plus robotics reshaping both brain and body work.",
+      "The financial plumbing (capex, credit, willingness-to-pay) may be the real systemic risk.",
+      "Your best hedge is becoming a fast-learning builder: validate, sell, iterate, and synthesize across domains."
+    ],
+    "bullets_ja": [
+      "AIはソフトウェアだけではなく、知能×ロボティクスで“考える・動かす”の両方を再編する。",
+      "最大のリスクは性能ではなく、投資・信用・課金の“金融配管”。",
+      "最強のヘッジは、学習と出荷を回すビルダーになること（検証→販売→改善）と、異分野の統合。"
+    ],
+    "bullets_zh": [
+      "AI不仅是软件，更是‘智能+机器人’，同时重塑脑力与体力工作。",
+      "系统性风险可能来自资本开支、信用与付费意愿等‘金融管道’，而不是模型能力本身。",
+      "最好的对冲是成为快速学习的建设者：验证→销售→迭代，并擅长跨领域组合。"
+    ]
+  }
+}

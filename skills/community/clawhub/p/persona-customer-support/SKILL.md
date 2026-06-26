@@ -1,35 +1,39 @@
 ---
-name: "Persona Customer Support"
+name: persona-customer-support
 description: "Manage customer support — track tickets, respond, escalate issues."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/persona-customer-support"
-sourceUrl: "https://clawhub.ai/skills/persona-customer-support"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "persona"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-gmail
+        - gws-sheets
+        - gws-chat
+        - gws-calendar
 ---
 
-# Persona Customer Support
+# Customer Support Agent
 
-> Manage customer support — track tickets, respond, escalate issues.
+> **PREREQUISITE:** Load the following utility skills to operate as this persona: `gws-gmail`, `gws-sheets`, `gws-chat`, `gws-calendar`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/persona-customer-support`
-- **Source URL:** [https://clawhub.ai/skills/persona-customer-support](https://clawhub.ai/skills/persona-customer-support)
+Manage customer support — track tickets, respond, escalate issues.
 
-## Overview
+## Relevant Workflows
+- `gws workflow +email-to-task`
+- `gws workflow +standup-report`
 
+## Instructions
+- Triage the support inbox with `gws gmail +triage --query 'label:support'`.
+- Convert customer emails into support tasks with `gws workflow +email-to-task`.
+- Log ticket status updates in a tracking sheet with `gws sheets +append`.
+- Escalate urgent issues to the team Chat space.
+- Schedule follow-up calls with customers using `gws calendar +insert`.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/persona-customer-support
-```
+## Tips
+- Use `gws gmail +triage --labels` to see email categories at a glance.
+- Set up Gmail filters for auto-labeling support requests.
+- Use `--format table` for quick status dashboard views.
+

@@ -1,0 +1,19 @@
+{
+  "emoji": "🎯",
+  "requires": {
+    "env": ["SIMMER_API_KEY"],
+    "pip": ["simmer-sdk"]
+  },
+  "cron": "0 */6 * * *",
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "market_importer.py"
+  },
+  "tunables": [
+    {"env": "IMPORTER_KEYWORDS", "type": "string", "default": "bitcoin,ethereum", "label": "Comma-separated search keywords"},
+    {"env": "IMPORTER_MIN_VOLUME", "type": "number", "default": 10000, "range": [0, 1000000], "step": 1000, "label": "Min 24h volume"},
+    {"env": "IMPORTER_MAX_PER_RUN", "type": "number", "default": 5, "range": [1, 50], "step": 1, "label": "Max imports per run"},
+    {"env": "IMPORTER_CATEGORIES", "type": "string", "default": "crypto", "label": "Comma-separated categories (crypto, politics, sports, etc.)"}
+  ]
+}

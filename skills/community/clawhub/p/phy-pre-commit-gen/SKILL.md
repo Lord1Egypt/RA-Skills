@@ -1,35 +1,289 @@
 ---
-name: "Phy Pre Commit Gen"
-description: "Generates a tailored .pre-commit-config.yaml by analyzing your project's language stack, existing linting tools, and CI setup. Detects Python/JS/TS/Go/Rust/T..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/phy-pre-commit-gen"
-sourceUrl: "https://clawhub.ai/skills/phy-pre-commit-gen"
+name: Pre Commit Gen
+description: Generates a tailored .pre-commit-config.yaml by analyzing your project's language stack, existing linting tools, and CI setup. Detects Python/JS/TS/Go/Rust/Terraform/Docker/Shell/SQL and picks the right hooks (Ruff vs Black vs ESLint vs Prettier, etc.) based on what's already configured. Also audits existing pre-commit configs for unpinned revs and missing security hooks. Zero external dependencies — pure Python stdlib. The only pre-commit config generator on ClawHub.
+license: Apache-2.0
+homepage: https://canlah.ai
+metadata:
+  author: Canlah AI
+  version: "1.0.3"
+tags:
+  - git
+  - pre-commit
+  - dx
+  - linting
+  - code-quality
+  - automation
+  - developer-experience
 ---
 
-# Phy Pre Commit Gen
+# phy-pre-commit-gen — Pre-commit Config Generator
 
-> Generates a tailored .pre-commit-config.yaml by analyzing your project's language stack, existing linting tools, and CI setup. Detects Python/JS/TS/Go/Rust/T...
+Analyzes your project and generates a `.pre-commit-config.yaml` with the right hooks for your specific stack. No generic templates — actual configuration based on what your project uses.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/phy-pre-commit-gen`
-- **Source URL:** [https://clawhub.ai/skills/phy-pre-commit-gen](https://clawhub.ai/skills/phy-pre-commit-gen)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/phy-pre-commit-gen
+# Generate config for the current directory
+python3 ~/.claude/skills/phy-pre-commit-gen/scripts/pre_commit_gen.py .
+
+# Preview without writing
+python3 ~/.claude/skills/phy-pre-commit-gen/scripts/pre_commit_gen.py . --dry-run
+
+# Audit an existing .pre-commit-config.yaml
+python3 ~/.claude/skills/phy-pre-commit-gen/scripts/pre_commit_gen.py . --audit
+
+# Overwrite an existing config
+python3 ~/.claude/skills/phy-pre-commit-gen/scripts/pre_commit_gen.py . --overwrite
+
+# Write to a specific path
+python3 ~/.claude/skills/phy-pre-commit-gen/scripts/pre_commit_gen.py . --output .pre-commit-config.yaml
 ```
+
+Then activate:
+```bash
+pip install pre-commit
+pre-commit install          # activate for this repo
+pre-commit autoupdate       # update all hook revs to latest
+pre-commit run --all-files  # run on existing code
+```
+
+## What It Detects
+
+| Detection | Signal Files |
+|-----------|-------------|
+| Python | `*.py`, `pyproject.toml`, `requirements.txt`, `setup.py` |
+| JavaScript/TypeScript | `package.json`, TypeScript in deps |
+| Go | `go.mod` |
+| Rust | `Cargo.toml` |
+| Terraform | `*.tf` files |
+| Docker | `Dockerfile*`, `*.dockerfile` |
+| Shell | `*.sh`, `*.bash` |
+| SQL | `*.sql`, `migrations/` directory |
+| YAML/CI | `.github/workflows/`, `.gitlab-ci.yml` |
+| Ruff | `ruff.toml`, `.ruff.toml`, `[tool.ruff]` in pyproject.toml |
+| Black | `[tool.black]` in pyproject.toml |
+| ESLint | `eslint` in package.json deps |
+| Prettier | `prettier` in package.json deps |
+| Commitizen | `commitizen` or `@commitlint/cli` in package.json |
+| Existing pre-commit | Reads existing hooks to avoid duplicates |
+
+## Hook Selection Logic
+
+**Python:**
+- Has Ruff config → use `ruff` + `ruff-format` (replaces black+isort+flake8)
+- Has Black config → use `black` + `isort` (if isort configured) + `flake8` (if configured)
+- Neither → add Ruff as recommended default
+
+**JS/TypeScript:**
+- Has ESLint → use `eslint` mirror hook
+- Has Prettier → use `prettier` mirror hook
+- Neither → add Prettier as baseline
+
+**Always included:**
+- `pre-commit-hooks` — trailing whitespace, EOF fixer, YAML/JSON/TOML check, large files, merge conflict detection, no-commit-to-branch (main/master)
+- `detect-secrets` — secret baseline scanning
+- `markdownlint-cli` — Markdown quality
+
+**Conditionally included:**
+- Go → `go-fmt`, `go-vet`, `go-unit-tests`
+- Rust → `rustfmt` (local), `clippy` (local)
+- Terraform → `terraform_fmt`, `terraform_validate`, `terraform_tflint`
+- Docker → `hadolint` (Dockerfile security)
+- Shell → `shellcheck`
+- SQL → `sqlfluff`
+- YAML CI present → `yamllint`
+- Commitizen/commitlint detected → `commitizen` (commit-msg stage)
+
+## Audit Mode
+
+Checks an existing `.pre-commit-config.yaml` for:
+- Unpinned revs (`latest`, `main`, `HEAD`) — can break unexpectedly
+- No secret detection hook (detect-secrets or gitleaks)
+- Missing trailing-whitespace hook
+- Local hooks that may not work cross-platform
+
+```bash
+python3 ~/.claude/skills/phy-pre-commit-gen/scripts/pre_commit_gen.py . --audit
+```
+
+Output:
+```
+📋  Auditing: .pre-commit-config.yaml
+
+  🔴 Unpinned rev 'main' — pre-commit hooks should be pinned to a specific tag
+  🟠 No secret detection hook — add detect-secrets or gitleaks
+  ✅ trailing-whitespace present
+```
+
+## Example Outputs
+
+### Python + Ruff project
+
+```yaml
+# Generated by phy-pre-commit-gen
+# Run: pre-commit install && pre-commit autoupdate
+
+repos:
+
+  # Universal quality checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: [--maxkb=1000]
+      - id: mixed-line-ending
+      - id: no-commit-to-branch
+        args: [--branch, main, --branch, master]
+
+  # Secret detection
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        args: [--baseline, .secrets.baseline]
+
+  # Python — Ruff (linter + formatter)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.7
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  # Markdown
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.41.0
+    hooks:
+      - id: markdownlint
+```
+
+### Full-stack polyglot (JS + Python + Terraform + Docker)
+
+```yaml
+# Generated by phy-pre-commit-gen
+
+repos:
+
+  # Universal
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      ... (+ 6 more)
+
+  # Secret detection
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+
+  # Python — Ruff
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.7
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  # JS/TS — ESLint
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v9.7.0
+    hooks:
+      - id: eslint
+
+  # JS/TS — Prettier
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.3.2
+    hooks:
+      - id: prettier
+
+  # Terraform
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.92.1
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_validate
+      - id: terraform_tflint
+
+  # Dockerfile security
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.13.0-beta
+    hooks:
+      - id: hadolint-docker
+
+  # Shell
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
+    hooks:
+      - id: shellcheck
+
+  # YAML
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        args: [-d, relaxed]
+
+  # Markdown
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.41.0
+    hooks:
+      - id: markdownlint
+```
+
+## Hook Revisions
+
+All revisions are pinned to stable releases as of early 2026. Always run `pre-commit autoupdate` after generating to get the latest pinned versions:
+
+```bash
+pre-commit autoupdate
+git add .pre-commit-config.yaml
+git commit -m "chore: update pre-commit hook revisions"
+```
+
+## Integration with CI
+
+```yaml
+# GitHub Actions — run pre-commit on all files
+- uses: pre-commit/action@v3.0.1
+  with:
+    extra_args: --all-files
+
+# Or manual:
+- name: pre-commit
+  run: |
+    pip install pre-commit
+    pre-commit run --all-files
+```
+
+## Technical Notes
+
+- **Zero external dependencies** — pure Python 3.7+ stdlib
+- **Duplicate detection** — reads existing `.pre-commit-config.yaml` to avoid adding already-present hooks
+- **Idempotent** — running on a project with existing config uses `--overwrite` flag; safe default is to not overwrite
+- **YAML output** — valid YAML, human-readable comments, standard pre-commit format
+
+## Companion Skills
+
+| Skill | Relationship |
+|-------|-------------|
+| `phy-dep-upgrade` | Keeps dependencies up-to-date (pre-commit hooks check quality) |
+| `phy-dockerfile-audit` | Hadolint is included as a pre-commit hook when Dockerfiles detected |
+| `phy-lock-file-auditor` | Detects lock file issues (complementary to pre-commit integrity checks) |
+| `phy-env-doctor` | Discovers .env refs — pairs with detect-secrets hook |
+
+---
+
+## Author
+
+**[Canlah AI](https://canlah.ai)** — Run performance marketing without breaking your brand.
+
+- GitHub: [github.com/PHY041](https://github.com/PHY041)
+- All Skills: [clawhub.ai/PHY041](https://clawhub.ai/PHY041)

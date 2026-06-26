@@ -1,0 +1,7 @@
+{
+  "name": "planefilter-skill",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for aviation flight aircraft type lookup.",
+  "private": true,
+  "dependencies": {}
+}

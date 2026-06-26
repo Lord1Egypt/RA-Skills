@@ -1,0 +1,6 @@
+{
+  "hooks": {
+    "PreCompact": [{ "matcher": "", "hooks": [{ "type": "command", "command": "bash .claude/scripts/pre-compact.sh" }] }],
+    "SessionStart": [{ "matcher": "", "hooks": [{ "type": "command", "command": "bash .claude/scripts/session-start.sh" }] }]
+  }
+}

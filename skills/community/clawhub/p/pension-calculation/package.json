@@ -1,0 +1,28 @@
+{
+  "name": "pension-calculator-skill",
+  "version": "1.3.0",
+  "description": "养老金计算器 - 支持Web界面和LLM对话交互",
+  "main": "mcp-server.js",
+  "scripts": {
+    "start": "node mcp-server.js",
+    "dev": "node mcp-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pension",
+    "calculator",
+    "retirement",
+    "china",
+    "social-security",
+    "mcp",
+    "skill"
+  ],
+  "author": "纲目财学",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

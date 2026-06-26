@@ -1,0 +1,62 @@
+# html-expert-review 技能更新 - 2026-03-08
+
+**日期：** 2026-03-08 (周日)
+**技能版本：** V1.8 → V2.0
+**状态：** ✅ 已同步
+
+---
+
+## 今日进展
+
+### 新增功能（V2.0）
+
+1. **思维导图自动生成**
+   - 发散式手绘风格（椭圆节点 + 曲线连接）
+   - 文件夹级别展示（不展示.html 文件名）
+   - Mermaid mindmap 集成
+   - 自动保存为 mindmap-folders-only.html
+
+2. **总结报告生成**
+   - 从 0 到 1 开发历程回顾
+   - 8 大章节（概述/时间线/踩坑/架构/思维导图/代码/统计/感悟/计划）
+   - 时间线展示（关键节点）
+   - 成果统计卡片（文件数/代码行数/踩坑数/开发周期）
+
+3. **用户约定**
+   - 思维导图只展示文件夹级别
+   - 发散式布局 + 手绘风格
+   - 微软雅黑字体
+
+### 成功案例
+
+- expert-review-2026-03-08-voice-redpacket-journey.html（28KB）
+- 包含思维导图章节（Mermaid 渲染）
+- Chrome 自动打开预览
+
+### 核心能力（7 个）
+
+1. 内容分析
+2. 专家视角（Critical Thinking）
+3. 架构绘制（Mermaid）
+4. HTML 生成（科学杂志 + 小红书风格）
+5. 思维导图（新增）
+6. Chrome 打开
+7. 总结报告（新增）
+
+### 文件修改
+
+- skills/html-expert-review/SKILL.md（V2.0）
+- skills/README.md（更新技能描述）
+- expert-review-2026-03-08-voice-redpacket-journey.html（添加思维导图章节）
+
+---
+
+## 同步状态
+
+- MD 文件：✅ 已更新（skills/html-expert-review/SKILL.md V2.0）
+- 技能索引：✅ 已更新（skills/README.md）
+- 总结报告：✅ 已生成（含思维导图）
+
+---
+
+_创建时间：2026-03-08 19:55_

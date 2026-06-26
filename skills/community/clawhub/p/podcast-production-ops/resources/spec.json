@@ -1,0 +1,37 @@
+{
+  "slug": "podcast-production-ops",
+  "title": "播客制作运营台",
+  "category": "vertical",
+  "categoryLabel": "垂直行业",
+  "mode": "structured_brief",
+  "summary": "从选题到上线整理播客生产流程，生成 show notes、标题、剪辑要点与发布清单。",
+  "inputHint": "节目主题、嘉宾摘要、录音要点",
+  "sections": [
+    "选题摘要",
+    "标题备选",
+    "剪辑要点",
+    "show notes",
+    "发布清单",
+    "复用素材"
+  ],
+  "useCases": [
+    "播客制作",
+    "内容团队协作",
+    "发布流程"
+  ],
+  "positiveExamples": [
+    "把这期播客整理成完整生产包",
+    "给我标题和 show notes"
+  ],
+  "negativeExamples": [
+    "不要虚构嘉宾观点",
+    "不要公开未授权片段"
+  ],
+  "risk": "适合作为音频后期与发布协作骨架。",
+  "tags": [
+    "podcast",
+    "production",
+    "content",
+    "ops"
+  ]
+}

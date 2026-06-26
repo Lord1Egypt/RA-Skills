@@ -1,0 +1,36 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+  <!-- Full Screen Dark Background -->
+  <rect x="0" y="0" width="1280" height="720" fill="#191919" />
+  <!-- Background Giant Chapter Number (Low Opacity) -->
+  <text x="1100" y="550" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="320" font-weight="bold" fill="#FFFFFF" fill-opacity="0.05" text-anchor="end">{{CHAPTER_NUM}}</text>
+  <!-- Left Side Title Vertical Bar -->
+  <rect x="100" y="200" width="6" height="120" fill="#E60012" />
+  <!-- Chapter Number & Title -->
+  <text x="130" y="240" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="24" fill="#E60012" font-weight="bold">CHAPTER {{CHAPTER_NUM}}</text>
+  <text x="130" y="300" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="52" font-weight="bold" fill="#FFFFFF">{{CHAPTER_TITLE}}</text>
+  <text x="130" y="350" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="18" fill="#FFFFFF" fill-opacity="0.7">{{CHAPTER_DESC}}</text>
+  <!-- Right Side Staircase Tech Lines -->
+  <line x1="800" y1="200" x2="1180" y2="200" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.1" />
+  <line x1="850" y1="240" x2="1180" y2="240" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.15" />
+  <line x1="900" y1="280" x2="1180" y2="280" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.2" />
+  <line x1="950" y1="320" x2="1180" y2="320" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.25" />
+  <line x1="1000" y1="360" x2="1180" y2="360" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.3" />
+  <!-- Diagonal Dot-Matrix Texture -->
+  <g>
+    <circle cx="820" cy="400" r="1" fill="#FFFFFF" fill-opacity="0.2" />
+    <circle cx="840" cy="420" r="1" fill="#FFFFFF" fill-opacity="0.2" />
+    <circle cx="860" cy="440" r="1" fill="#FFFFFF" fill-opacity="0.2" />
+    <circle cx="880" cy="460" r="1" fill="#FFFFFF" fill-opacity="0.2" />
+    <circle cx="900" cy="480" r="1" fill="#FFFFFF" fill-opacity="0.2" />
+    <circle cx="920" cy="500" r="1" fill="#FFFFFF" fill-opacity="0.2" />
+    <circle cx="940" cy="520" r="1" fill="#FFFFFF" fill-opacity="0.2" />
+    <circle cx="960" cy="540" r="1" fill="#FFFFFF" fill-opacity="0.2" />
+    <circle cx="980" cy="560" r="1" fill="#FFFFFF" fill-opacity="0.2" />
+    <circle cx="1000" cy="580" r="1" fill="#FFFFFF" fill-opacity="0.2" />
+    <circle cx="1020" cy="600" r="1" fill="#FFFFFF" fill-opacity="0.2" />
+  </g>
+  <!-- Bottom Accent Line -->
+  <rect x="100" y="620" width="200" height="2" fill="#E60012" />
+  <!-- Footer Brand -->
+  <text x="1240" y="685" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="12" fill="#FFFFFF" fill-opacity="0.5" text-anchor="end">华为技术有限公司</text>
+</svg>

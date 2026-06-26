@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "skill_name": "pixcake",
+  "public_entry": true,
+  "package_layout": "single-skill-with-references",
+  "min_client_version": "9.0.0",
+  "supported_platforms": [
+    "darwin",
+    "win32"
+  ],
+  "runtime": {
+    "primary_command": "mcporter --config ~/.openclaw/workspace/config/mcporter.json call pixcake.<tool_name>",
+    "flow": [
+      "preflight",
+      "setup",
+      "list",
+      "call"
+    ],
+    "env_overrides": [],
+    "config_sources": [
+      "~/.openclaw/workspace/config/mcporter.json"
+    ]
+  },
+  "domains": {
+    "projects": {
+      "reference": "./references/projects.md",
+      "required_tools": [
+        "get_project_list",
+        "create_projects",
+        "import_images_to_projects",
+        "get_project_images"
+      ]
+    },
+    "retouch": {
+      "reference": "./references/retouch.md",
+      "required_tools": [
+        "get_preset_suit_list",
+        "apply_preset_suit"
+      ]
+    },
+    "export": {
+      "reference": "./references/export.md",
+      "required_tools": [
+        "get_project_images",
+        "get_task_status",
+        "batch_export_images"
+      ]
+    }
+  },
+  "scope": {
+    "supported": [
+      "project_management",
+      "preset_retouch",
+      "export"
+    ],
+    "unsupported": [
+      "camera",
+      "ai_culling",
+      "ai_retouch",
+      "ai_color_match",
+      "filter",
+      "background_replace",
+      "bystander_removal",
+      "smart_crop"
+    ]
+  },
+  "path_resolution": "Resolve PixCake and pixcake-mcp paths with the agent's own shell or command tools before PixCake calls, then prefer ./scripts/setup.sh to write ~/.openclaw/workspace/config/mcporter.json. On Windows, do not assume mcporter can auto-discover PixCake on D:/E:; the command path must be explicit.",
+  "mismatch_policy": "If mcporter --config ~/.openclaw/workspace/config/mcporter.json list pixcake or mcporter --config ~/.openclaw/workspace/config/mcporter.json call pixcake.<tool_name> signals incompatibility, stop probing, recommend upgrading PixCake to 9.0.0 or newer, and suggest support if the issue remains."
+}

@@ -1,35 +1,34 @@
 ---
-name: "Pipeworx pokemon"
-description: "Pokemon MCP — wraps PokéAPI (free, no auth required)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-pokemon"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-pokemon"
+name: pipeworx-pokemon
+description: Pokemon MCP — wraps PokéAPI (free, no auth required)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/pokemon
 ---
 
-# Pipeworx pokemon
+# pipeworx-pokemon
 
-> Pokemon MCP — wraps PokéAPI (free, no auth required)
+Pokemon MCP — wraps PokéAPI (free, no auth required). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-pokemon`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-pokemon](https://clawhub.ai/skills/pipeworx-pokemon)
+## Tools
 
-## Overview
+- `get_pokemon`
+- `get_type`
+- `get_ability`
+- `get_evolution_chain`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-pokemon
+```json
+{
+  "mcpServers": {
+    "pipeworx-pokemon": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/pokemon/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/pokemon](https://pipeworx.io/packs/pokemon)

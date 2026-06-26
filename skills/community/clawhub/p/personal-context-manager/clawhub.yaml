@@ -1,0 +1,26 @@
+name: context-manager
+version: 2.0.0
+description: 个人上下文管理 - 让知识从收藏变成认知，从整理变成生长。新增发芽功能（4 种类型）和日记功能（旁观者反馈）。
+author: 燃冰 + ant
+license: MIT
+repository: https://github.com/lj22503/one-person-ceo-skills
+tags:
+  - context-manager
+  - knowledge-management
+  - cognitive-activation
+  - journal
+  - sprout
+  - diary
+  - feedback
+
+features:
+  - 记录触动事（每日 3 件）
+  - 整合外部信息（桥接机制）
+  - 提炼最小内核（熵减）
+  - 生成认知地图
+  - 知识发芽（4 种类型：跨领域/跨时空/问题启发/概念提炼）
+  - 日记功能（旁观者反馈）
+  - 认知等级标注（S/A/B/C）
+
+requirements:
+  - OpenClaw v0.7.0+

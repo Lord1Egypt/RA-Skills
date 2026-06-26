@@ -1,0 +1,16 @@
+{
+  "name": "personal-knowledge-hub",
+  "slug": "personal-knowledge-hub",
+  "version": "0.2.0",
+  "description": "Record, organize, search, and connect personal knowledge with note templates, metadata extraction, search, and lightweight knowledge graph exploration.",
+  "author": "harrylabsj",
+  "tags": [
+    "knowledge-management",
+    "note-taking",
+    "search",
+    "personal-knowledge",
+    "second-brain"
+  ],
+  "handler": "handler.py"
+}
+

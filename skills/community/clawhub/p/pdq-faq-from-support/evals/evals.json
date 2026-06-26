@@ -1,0 +1,43 @@
+{
+  "skill_name": "pdp-faq-from-support",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We exported the last 30 days of Gorgias tickets for our electric kettle SKU. Top paraphrased questions: (1) Is the plastic BPA-free? (2) Will it shut off automatically? (3) 110V only or dual voltage? (4) Warranty length and what voids it? (5) Dishwasher safe for the lid? Turn these into PDP FAQ and bullet updates. Tone: calm, factual. We're on Shopify.",
+      "expected_output": "Structured table with at least 4 rows (target 5), each with doubt, conversion block, PDP placement, publish-ready copy, claims guardrail; brief 30-day/method note; Shopify-aware placement labels.",
+      "files": [],
+      "expectations": [
+        "Includes a Markdown table with columns for rank, customer doubt theme, why it blocks conversion, PDP placement, on-page copy, and claims or proof guardrail",
+        "Table has at least four rows and addresses the five listed doubt themes or explains consolidation",
+        "Provides publish-ready FAQ or bullet copy that reframes doubts into reassuring, specific answers",
+        "Includes claims guardrails (e.g. avoid unqualified medical or safety claims without proof)",
+        "References PDP modules appropriate to Shopify (e.g. FAQ section, product description bullets)",
+        "Mentions ingestion window or scope (30-day support-driven) explicitly"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I don't have ticket exports yet. I want a repeatable monthly process: how we pull last 30 days of chat + email, pick the top 5 pre-purchase objections, and update PDPs. Give me the workflow and an empty template our team can fill.",
+      "expected_output": "Methodology for 30d rollup, PII/deduping note, how to select five themes, empty table template, rollout checklist—without fabricating fake ticket themes.",
+      "files": [],
+      "expectations": [
+        "Describes a 30-day rolling workflow from support channels to PDP updates without inventing specific fake customer quotes as if they were real data",
+        "Includes or implies selection criteria for conversion-blocking vs post-purchase noise",
+        "Provides an empty or fill-in version of the structured table from the skill",
+        "Includes a minimal data export checklist (what fields to pull, product linkage)",
+        "Includes rollout or cadence suggestions (e.g. monthly owner, metrics to watch)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Generate 15 Instagram Reel hooks for our summer sandal launch. Viral vibes only.",
+      "expected_output": "Short social copy ideas; does NOT force the full support-to-PDP table or five-objection extraction pipeline.",
+      "files": [],
+      "expectations": [
+        "Does not deliver the full mandatory PDP FAQ optimization table as the primary output",
+        "Does not force a 30-day support mining methodology for a pure social creative request",
+        "May provide Reel hooks or ask clarifying questions appropriate to social content"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1561 @@
+<!--
+  ══════════════════════════════════════════════════════════════════
+  PREDICT INTELLIGENCE REPORT — HTML TEMPLATE
+  ══════════════════════════════════════════════════════════════════
+
+  HOW TO USE (for AI agents):
+
+  1. Read this file to understand the exact structure and styling.
+  2. Do your research and analysis.
+  3. Generate a NEW .html file following THIS EXACT structure.
+     - Copy ALL CSS verbatim (the <style> block).
+     - Copy ALL D3 visualization code verbatim (the <script> blocks),
+       only replacing the DATA VARIABLES at the top of each script.
+     - Replace the HTML CONTENT (text inside tags) with your analysis.
+  4. Run: python to_pdf.py your_report.html output.pdf
+
+  RULES:
+  - DO NOT modify the CSS. It is tested and optimized for PDF output.
+  - DO NOT modify D3 rendering code. Only change data variables.
+  - DO NOT write custom D3/SVG code. Use ONLY the 10 pre-built types.
+  - Remove unused viz sections AND their matching scripts.
+  - Every URL must be a real article page you verified. Never a homepage.
+  - D3 <script> tag is needed for V1–V9. NOT needed for V10 (pure CSS).
+  - TopoJSON <script> tag is needed for V2, V7.
+  - d3-sankey <script> tag is ONLY needed for V8.
+
+  SECTION ORDER:
+  [A] Classification Bar .............. always present
+  [B] Header + Verdict + Context ...... always present
+  [E] Predict Outcomes ............... always present
+  [F] Key Drivers ..................... always present (5 items)
+  [G] Watch List ...................... always present (5 future triggers)
+
+  VISUALIZATION — pick 1 or 2 types (minimum 1, maximum 2):
+  V1  Metric Trend .................... line chart — data over time
+  V2  Regional Map .................... Mercator with markers
+  V3  Entity Graph .................... force-directed network
+  V4  Event Timeline .................. vertical dots (sparingly)
+  V5  Comparison Bars ................. horizontal ranked bars
+
+  V7  Choropleth ..................... election / regional statistics map
+  V8  Sankey ......................... flow diagram (funding, influence)
+  V9  Gantt .......................... phase / timeline bars
+  V10 Big Number ..................... key metrics as large numbers (VERY RARE)
+  ⚠ DELETE all unused types — both HTML <section> AND matching <script>
+
+  [H] Market Intelligence ............. OPTIONAL: remove if no Polymarket data
+  [I] Footer .......................... always present
+
+  ══════════════════════════════════════════════════════════════════
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>US–IRAN CEASEFIRE</title><!-- AGENT: Replace with your report title -->
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CSS — COPY VERBATIM, DO NOT MODIFY                     -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+  :root {
+    --black: #0a0a0a;
+    --dark: #262626;
+    --mid: #525252;
+    --light: #a3a3a3;
+    --faint: #d4d4d4;
+    --hairline: #e5e5e5;
+    --wash: #fafafa;
+    --bg: #ffffff;
+    --green: #16a34a;
+    --red: #dc2626;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: A4; margin: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg); color: var(--black);
+    font-size: 12px; line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    orphans: 3; widows: 3;
+  }
+  .mono { font-family: 'JetBrains Mono', 'Menlo', monospace; }
+  .brief { max-width: 760px; margin: 0 auto; }
+
+  .class-bar {
+    background: #000; color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 5px 32px;
+    display: flex; justify-content: space-between;
+  }
+
+  header { padding: 24px 32px 22px; border-bottom: 2px solid #000; }
+  .header-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--light);
+    letter-spacing: 0.5px; margin-bottom: 4px;
+  }
+  header h1 {
+    font-size: 15px; font-weight: 600;
+    color: var(--mid); margin-bottom: 16px;
+    letter-spacing: -0.2px;
+  }
+
+  .verdict-block {
+    padding: 16px 20px; border-left: 4px solid #000; background: var(--wash);
+  }
+  .verdict-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 52px; font-weight: 900;
+    line-height: 1; letter-spacing: -2px;
+  }
+  .verdict-outcome {
+    font-size: 20px; font-weight: 700;
+    line-height: 1.2; margin-top: 4px; letter-spacing: -0.3px;
+  }
+  .verdict-detail {
+    font-size: 12.5px; color: var(--mid);
+    margin-top: 6px; line-height: 1.5;
+  }
+  .verdict-bg {
+    margin-top: 10px; padding-top: 10px;
+    border-top: 1px solid var(--hairline);
+    line-height: 1.6;
+  }
+  .verdict-bg-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--light); margin-bottom: 3px;
+  }
+  .verdict-bg-text {
+    font-size: 11px; color: var(--mid);
+  }
+
+  .verdict-context {
+    font-size: 11.5px; color: var(--mid);
+    margin-top: 10px; line-height: 1.6;
+    padding-top: 10px; border-top: 1px solid var(--hairline);
+  }
+
+  section { padding: 18px 32px; border-bottom: 1px solid var(--hairline); }
+  section h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--light); margin-bottom: 10px;
+  }
+
+  .viz-section {
+    padding: 18px 32px; border-bottom: 1px solid var(--hairline);
+    page-break-inside: avoid;
+  }
+  .viz-wrap {
+    border: 1px solid var(--hairline); background: var(--bg); overflow: hidden;
+  }
+  #region-map { width: 100%; height: 360px; }
+  #entity-graph { width: 100%; height: 320px; }
+  #metric-trend { width: 100%; height: 260px; }
+  #comparison-bars { width: 100%; min-height: 160px; }
+
+  #choropleth { width: 100%; height: 360px; }
+  #event-timeline { width: 100%; min-height: 200px; }
+  #sankey-chart { width: 100%; height: 300px; }
+  #gantt-chart { width: 100%; min-height: 180px; }
+  .big-number-grid { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+  .big-number-card { text-align: center; padding: 20px 32px; border: 1px solid #e5e5e5; border-radius: 4px; min-width: 160px; }
+  .big-number-value { font-family: 'JetBrains Mono', monospace; font-size: 42px; font-weight: 700; letter-spacing: -2px; color: #0a0a0a; }
+  .big-number-delta { font-family: 'JetBrains Mono', monospace; font-size: 13px; margin-top: 4px; }
+  .big-number-delta.positive { color: #16a34a; }
+  .big-number-delta.negative { color: #dc2626; }
+  .big-number-delta.neutral { color: #a3a3a3; }
+  .big-number-label { font-size: 11px; color: #737373; margin-top: 6px; }
+
+  .outcome {
+    display: flex; align-items: center; gap: 10px;
+    padding: 5px 0; border-bottom: 1px solid #f5f5f5;
+    page-break-inside: avoid;
+  }
+  .outcome:last-child { border-bottom: none; }
+  .outcome-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px; font-weight: 700;
+    min-width: 50px; text-align: right;
+  }
+  .outcome-bar {
+    width: 90px; height: 4px; background: #f0f0f0;
+    border-radius: 2px; overflow: hidden; flex-shrink: 0;
+  }
+  .outcome-bar-fill { height: 100%; background: var(--black); border-radius: 2px; }
+  .outcome-label { font-size: 12px; color: var(--dark); }
+  .outcome.top .outcome-pct { font-size: 19px; }
+  .outcome.top .outcome-label { font-weight: 600; }
+  .outcome-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px; font-weight: 700;
+    letter-spacing: 1px; padding: 1.5px 5px;
+    border: 1px solid #000; white-space: nowrap;
+  }
+
+  .drivers-list { list-style: none; }
+  .driver {
+    display: flex; gap: 8px; padding: 6px 0;
+    line-height: 1.5; page-break-inside: avoid;
+    border-bottom: 1px solid #f8f8f8;
+  }
+  .driver:last-child { border-bottom: none; }
+  .driver-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--light);
+    min-width: 16px; padding-top: 1px;
+  }
+  .driver-dir {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 700;
+    min-width: 14px; padding-top: 0px;
+  }
+  .driver-dir.positive { color: var(--green); }
+  .driver-dir.negative { color: var(--red); }
+  .driver-dir.neutral { color: var(--light); }
+  .driver-text { font-size: 12px; flex: 1; }
+  .driver-text strong { font-weight: 600; }
+  .driver-logic { color: var(--mid); }
+
+  .src-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px; color: var(--light);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--faint);
+    margin-left: 3px;
+  }
+  .src-link:hover { color: var(--mid); }
+
+  .events-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  .events-table th {
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--light);
+    border-bottom: 1px solid var(--faint);
+    padding: 2px 6px 2px 0;
+  }
+  .events-table td {
+    padding: 6px 6px 6px 0; border-bottom: 1px solid #f5f5f5; vertical-align: top;
+  }
+  .events-table tr { page-break-inside: avoid; }
+  .date-col {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--mid); width: 56px; white-space: nowrap;
+  }
+  .evt-title { font-weight: 600; }
+  .evt-detail { color: var(--mid); }
+  .impact-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; font-weight: 600;
+    letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  .impact-tag.high { color: var(--black); border-bottom: 1.5px solid #000; }
+  .impact-tag.medium { color: var(--mid); }
+  .impact-tag.low { color: var(--light); }
+
+  .market-block {
+    margin-bottom: 14px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--hairline);
+    page-break-inside: avoid;
+  }
+  .market-block:last-child { border-bottom: none; }
+  .market-q { font-weight: 600; font-size: 12px; margin-bottom: 1px; }
+  .market-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px; color: var(--light); margin-bottom: 6px;
+  }
+  .market-meta a {
+    color: var(--light); text-decoration: none;
+    border-bottom: 1px dotted var(--faint);
+  }
+  .market-compare { width: 100%; border-collapse: collapse; font-size: 11px; }
+  .market-compare thead th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; font-weight: 600;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    color: var(--light); padding: 2px 8px;
+    text-align: right; border-bottom: 1px solid var(--faint);
+  }
+  .market-compare thead th:first-child { text-align: left; padding-left: 0; }
+  .market-compare td {
+    padding: 4px 8px; text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; border-bottom: 1px solid #f8f8f8;
+  }
+  .market-compare td:first-child {
+    text-align: left; font-family: 'Inter', sans-serif;
+    font-weight: 500; padding-left: 0;
+  }
+  .delta-pos { color: var(--green); font-weight: 600; }
+  .delta-neg { color: var(--red); font-weight: 600; }
+  .delta-zero { color: var(--light); }
+  tr.undervalued { background: #f0fdf4; }
+  tr.undervalued td:first-child::after {
+    content: ' ← UNDERVALUED';
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px; font-weight: 700;
+    letter-spacing: 0.5px; color: var(--green); margin-left: 5px;
+  }
+
+  footer {
+    padding: 14px 32px; font-size: 9.5px;
+    color: var(--light); line-height: 1.5;
+  }
+  footer .sources { margin-bottom: 3px; }
+
+  .page-break { page-break-before: always; }
+  .no-break { page-break-inside: avoid; }
+  @media print { .brief { max-width: none; } }
+</style>
+<!-- ═══════════════════ END CSS ═══════════════════ -->
+
+<!-- D3 is required for ALL viz types. Always include. -->
+<script src="https://unpkg.com/d3@7/dist/d3.min.js"></script>
+<!-- TopoJSON: needed for V2 (regional map) and V7 (choropleth). Remove if neither used. -->
+<script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
+<!-- d3-sankey: ONLY needed for V8 (Sankey). Remove if not used. -->
+<script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+
+</head>
+<body>
+<div class="brief">
+
+  <!-- ═══ [A] CLASSIFICATION BAR ═══════════════════════════════════
+       Left: classification label (see table below)
+       Right: report date YYYY-MM-DD
+
+       Always: "ANYGEN PREDICT INTELLIGENCE ASSESSMENT"
+       Right side: "#YY-MM-DD" (2-digit year, e.g. #26-03-12)
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="class-bar">
+    <span>ANYGEN PREDICT INTELLIGENCE ASSESSMENT</span>
+    <span>#26-03-12</span>
+  </div>
+
+  <!-- ═══ [B] HEADER + VERDICT ═════════════════════════════════════
+       verdict-number:  The top probability, e.g. "34%" — BIGGEST element on page (52px)
+       verdict-outcome: 3–6 word label of most likely outcome
+       verdict-detail:  1 sentence — "Most likely path: ..."
+       verdict-bg:      2–3 sentences of CONTEXT / background briefing (前情提要)
+                        — what led to the current situation, key prior events
+       verdict-context: 2–3 sentences expanding reasoning with key evidence
+  ═══════════════════════════════════════════════════════════════ -->
+  <header>
+    <div class="header-meta">2026-03-12 · MULTI-SOURCE ASSESSMENT</div>
+    <h1>US–IRAN CEASEFIRE</h1>
+    <div class="verdict-block">
+      <div class="verdict-number">34%</div>
+      <div class="verdict-outcome">Ceasefire before Apr 15</div>
+      <div class="verdict-detail">Most likely path: Omani-mediated direct deal between senior US and Iranian officials.</div>
+      <div class="verdict-bg">
+        <div class="verdict-bg-label">Context</div>
+        <div class="verdict-bg-text">Since the JCPOA framework collapsed in late 2024, the US and Iran have lacked a formal engagement channel while IRGC proxy operations in Iraq and Yemen escalated. Three developments in Feb–Mar 2026 — the Saudi-Iran economic commission, a covert Muscat backchannel, and UNSC Resolution 2891 — opened a narrow window for direct negotiations.</div>
+      </div>
+      <div class="verdict-context">Multiple diplomatic streams have shifted since UNSC Resolution 2891 (Mar 8) established a new inspection framework. Oman hosted the highest-level US-Iran direct contact in 18 months on Mar 5. However, IRGC hardliner opposition and compressed domestic political timelines in both Washington and Tehran create a narrow and fragile window — making the April deadline achievable but far from certain.</div>
+    </div>
+  </header>
+
+  <!-- ═══ [E] PREDICT OUTCOMES ════════════════════════════════════
+       List all outcomes sorted by probability descending.
+       Probabilities must sum to ~100%.
+
+       First item: add class="outcome top" and include the MOST LIKELY tag.
+       Other items: just class="outcome" with no tag.
+       Bar width: set style="width: XX%" matching the probability.
+  ═══════════════════════════════════════════════════════════════ -->
+  <section>
+    <h2>Predict</h2>
+
+    <!-- First outcome — highest probability, gets "top" class + tag -->
+    <div class="outcome top no-break">
+      <span class="outcome-pct">34.0%</span>
+      <div class="outcome-bar">
+        <div class="outcome-bar-fill" style="width: 34.0%"></div>
+      </div>
+      <span class="outcome-label">Ceasefire before Apr 15</span>
+      <span class="outcome-tag">MOST LIKELY</span>
+    </div>
+
+    <!-- Remaining outcomes — no "top" class, no tag -->
+    <div class="outcome no-break">
+      <span class="outcome-pct">28.0%</span>
+      <div class="outcome-bar">
+        <div class="outcome-bar-fill" style="width: 28.0%"></div>
+      </div>
+      <span class="outcome-label">Partial deal by June</span>
+    </div>
+
+    <div class="outcome no-break">
+      <span class="outcome-pct">22.0%</span>
+      <div class="outcome-bar">
+        <div class="outcome-bar-fill" style="width: 22.0%"></div>
+      </div>
+      <span class="outcome-label">Regional intermediary deal</span>
+    </div>
+
+    <div class="outcome no-break">
+      <span class="outcome-pct">13.0%</span>
+      <div class="outcome-bar">
+        <div class="outcome-bar-fill" style="width: 13.0%"></div>
+      </div>
+      <span class="outcome-label">No agreement in 2026</span>
+    </div>
+
+    <div class="outcome no-break">
+      <span class="outcome-pct">3.0%</span>
+      <div class="outcome-bar">
+        <div class="outcome-bar-fill" style="width: 3.0%"></div>
+      </div>
+      <span class="outcome-label">Military escalation</span>
+    </div>
+
+    <!-- AGENT: Add/remove outcome divs as needed. Probabilities must sum to ~100%. -->
+  </section>
+
+  <!-- ═══ [F] KEY DRIVERS ══════════════════════════════════════════
+       Exactly 5 drivers. Each must have:
+       - Number (01–05)
+       - Direction arrow: ↑ (positive, increases likelihood) or ↓ (negative, decreases)
+         Use class="driver-dir positive" for ↑, class="driver-dir negative" for ↓
+       - Title: 3–5 words, in <strong>
+       - Causal logic: 1 sentence explaining HOW this drives the outcome
+         (fact → mechanism → directional impact), in <span class="driver-logic">
+       - Source link: real article URL, in <a class="src-link">
+  ═══════════════════════════════════════════════════════════════ -->
+  <section>
+    <h2>Key Drivers</h2>
+    <ol class="drivers-list">
+
+      <li class="driver">
+        <span class="driver-num">01</span>
+        <span class="driver-dir positive">↑</span>
+        <div class="driver-text">
+          <strong>Omani backchannel active</strong> —
+          <span class="driver-logic">Muscat-hosted shuttle diplomacy established a direct senior channel — reduces miscalculation risk and compresses negotiation timeline toward earlier resolution</span>
+          <a class="src-link" href="https://reuters.com/world/middle-east/oman-hosts-rare-us-iran-talks-sources-say-2026-03-06/">[source]</a>
+        </div>
+      </li>
+
+      <li class="driver">
+        <span class="driver-num">02</span>
+        <span class="driver-dir positive">↑</span>
+        <div class="driver-text">
+          <strong>Narrow political window</strong> —
+          <span class="driver-logic">Both US midterm campaign and Iran's presidential transition create urgency — leaders on both sides need a deliverable before domestic constraints harden</span>
+          <a class="src-link" href="https://www.brookings.edu/articles/us-iran-diplomacy-window-closing/">[source]</a>
+        </div>
+      </li>
+
+      <li class="driver">
+        <span class="driver-num">03</span>
+        <span class="driver-dir positive">↑</span>
+        <div class="driver-text">
+          <strong>Sanctions at threshold</strong> —
+          <span class="driver-logic">Iran reserves at $12B with 45% inflation and rial down 30% YoY — economic pain pushes Tehran's SNSC toward concessions to secure sanctions relief</span>
+          <a class="src-link" href="https://www.iiss.org/online-analysis/2026/03/iran-economic-pressure-diplomacy/">[source]</a>
+        </div>
+      </li>
+
+      <li class="driver">
+        <span class="driver-num">04</span>
+        <span class="driver-dir negative">↓</span>
+        <div class="driver-text">
+          <strong>IRGC hardliners blocking</strong> —
+          <span class="driver-logic">IRGC controls proxy networks and key economic assets threatened by any deal — their opposition to concessions is the single largest risk of negotiation collapse</span>
+          <a class="src-link" href="https://www.csis.org/analysis/irgc-veto-power-iran-diplomacy">[source]</a>
+        </div>
+      </li>
+
+      <li class="driver">
+        <span class="driver-num">05</span>
+        <span class="driver-dir positive">↑</span>
+        <div class="driver-text">
+          <strong>Regional normalization cover</strong> —
+          <span class="driver-logic">Saudi-Iran détente and Abraham Accords expansion give both sides political cover to frame bilateral talks as part of broader regional stabilization, lowering domestic backlash risk</span>
+          <a class="src-link" href="https://www.aljazeera.com/news/2026/2/21/saudi-iran-economic-commission-meets-for-first-time">[source]</a>
+        </div>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ═══ [G] WATCH LIST ═════════════════════════════════════════
+       5 FUTURE triggers that could shift the predict. Each has:
+       - Date or window (e.g. "Apr 3", "Late Mar")
+       - Trigger: 3–6 words, in <span class="evt-title">
+       - Conditional impact: "If X → Y", in <span class="evt-detail">
+       - Magnitude: "high", "medium", or "low" — used as class on impact-tag
+
+       NO source URLs — these are future events, not past reporting.
+       NO past events — those belong in Key Drivers as evidence.
+
+       Key Drivers = WHY the current probability (past/present evidence)
+       Watch List  = WHAT could change it next (future triggers)
+  ═══════════════════════════════════════════════════════════════ -->
+  <section>
+    <h2>Watch List</h2>
+    <table class="events-table">
+      <thead><tr>
+        <th>Date</th><th>Trigger</th><th style="width:44px"></th>
+      </tr></thead>
+      <tbody>
+
+        <tr>
+          <td class="date-col">Apr 3</td>
+          <td>
+            <span class="evt-title">UNSC sanctions renewal vote</span>
+            <span class="evt-detail">If renewed → maintains economic pressure on Tehran, ↑ ceasefire incentive by ~10%</span>
+          </td>
+          <td><span class="impact-tag high">HIGH</span></td>
+        </tr>
+
+        <tr>
+          <td class="date-col">Late Mar</td>
+          <td>
+            <span class="evt-title">Muscat follow-up round</span>
+            <span class="evt-detail">If senior officials attend → signals commitment, ↑ deal probability; if cancelled → ↓ sharply</span>
+          </td>
+          <td><span class="impact-tag high">HIGH</span></td>
+        </tr>
+
+        <tr>
+          <td class="date-col">Apr 10</td>
+          <td>
+            <span class="evt-title">Iran presidential debate</span>
+            <span class="evt-detail">If reformist candidates lead polls → ↑ diplomatic flexibility; hardliner surge → ↓</span>
+          </td>
+          <td><span class="impact-tag medium">MEDIUM</span></td>
+        </tr>
+
+        <tr>
+          <td class="date-col">Apr 15</td>
+          <td>
+            <span class="evt-title">US sanctions waiver expiry</span>
+            <span class="evt-detail">If not extended → escalates pressure, could accelerate or collapse talks</span>
+          </td>
+          <td><span class="impact-tag medium">MEDIUM</span></td>
+        </tr>
+
+        <tr>
+          <td class="date-col">May 1</td>
+          <td>
+            <span class="evt-title">IAEA quarterly report</span>
+            <span class="evt-detail">If enrichment data shows compliance → ↑ trust for deal; violations → ↓ and possible US escalation</span>
+          </td>
+          <td><span class="impact-tag low">LOW</span></td>
+        </tr>
+
+        <!-- AGENT: Replace with 5 FUTURE triggers. No past events. No source URLs. -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══ VISUALIZATION — PICK 1 OR 2 (minimum 1, maximum 2) ═══════
+       ████████████████████████████████████████████████████████████████
+       ██  MANDATORY: If the topic involves countries, regions,      ██
+       ██  borders, military, diplomacy, or sanctions — you MUST     ██
+       ██  include V2 (Regional Map). Do NOT remove it.              ██
+       ██  TopoJSON is already loaded in <head>. Keep it.            ██
+       ██  Fill markers[] from your Step 2 research locations.       ██
+       ████████████████████████████████████████████████████████████████
+
+       ⚠ Pick 1–2 types total. V2 counts as one of them.
+       ⚠ DO NOT write custom D3/SVG code. Use ONLY these pre-built types.
+       ⚠ DELETE all unused <section> blocks AND matching <script> blocks.
+         (But do NOT delete V2 for geopolitical topics!)
+
+       9 TYPES AVAILABLE (pick 1–2). There is NO V6.
+
+       V1  Metric Trend     line chart — data over time
+           <div id="metric-trend">
+       V2  Regional Map     Mercator with auto-zoom + markers
+           <div id="region-map">
+       V3  Entity Graph     force-directed network
+           <div id="entity-graph">
+       V4  Event Timeline   vertical chronological dots (sparingly)
+           <div id="event-timeline">
+       V5  Comparison Bars  horizontal ranked bars
+           <div id="comparison-bars">
+       V7  Choropleth       election / regional statistics map
+           <div id="choropleth">
+       V8  Sankey           flow diagram — funding, resources, influence
+           <div id="sankey-chart">
+       V9  Gantt            phase / timeline bars
+           <div id="gantt-chart">
+       V10 Big Number       1–3 key metrics as large numbers (VERY RARE)
+           Pure CSS — no D3 required.
+           Use ONLY when a specific number is truly critical to the
+           argument and adds real analytical value. Examples:
+             ✓ "US unemployment 4.1% (↑0.3pp)" when discussing Fed rates
+             ✓ "$12B reserves" when discussing Iran sanctions threshold
+             ✗ Generic stats, percentages already in the Verdict, or
+               any number that doesn't directly drive the analysis.
+
+       RULES:
+       - Only change DATA VARIABLES at the top of each script block.
+       - Labels auto-truncate. Keep them short anyway.
+       - <h2> must describe WHAT the chart shows.
+       - Each chart must justify its place — no redundant information.
+  ═══════════════════════════════════════════════════════════════ -->
+
+  <!-- V1: Metric Trend — key data driving the predict over time -->
+  <section class="viz-section">
+    <h2>Diplomatic Contact Frequency</h2>
+    <div class="viz-wrap"><div id="metric-trend"></div></div>
+  </section>
+
+  <!-- V2: Regional Map — geographic theater
+       ⚠ MANDATORY for geopolitical / diplomacy / military / sanctions topics.
+       DO NOT DELETE this section for those domains. Keep the matching <script> too.
+       Fill markers[] with 3–5 locations from your research. -->
+  <section class="viz-section">
+    <h2>Persian Gulf Theater</h2><!-- AGENT: Replace with your theater title -->
+    <div class="viz-wrap"><div id="region-map"></div></div>
+  </section>
+
+  <!-- V3: Entity Graph — actor relationships -->
+  <section class="viz-section">
+    <h2>Negotiation Actors</h2>
+    <div class="viz-wrap"><div id="entity-graph"></div></div>
+  </section>
+
+  <!-- V4: Event Timeline — complex sequences only -->
+  <section class="viz-section">
+    <h2>Escalation Sequence</h2>
+    <div class="viz-wrap"><div id="event-timeline"></div></div>
+  </section>
+
+  <!-- V5: Comparison Bars — ranked values -->
+  <section class="viz-section">
+    <h2>Regional Military Spending</h2>
+    <div class="viz-wrap"><div id="comparison-bars"></div></div>
+  </section>
+
+
+  <!-- V7: Choropleth — election / regional statistics map -->
+  <section class="viz-section">
+    <h2>2028 Electoral Map Projection</h2>
+    <div class="viz-wrap"><div id="choropleth"></div></div>
+  </section>
+
+  <!-- V8: Sankey — flow of resources, funding, influence -->
+  <section class="viz-section">
+    <h2>Military Aid Flow</h2>
+    <div class="viz-wrap"><div id="sankey-chart"></div></div>
+  </section>
+
+  <!-- V9: Gantt — phased activities / timelines -->
+  <section class="viz-section">
+    <h2>Negotiation Phases</h2>
+    <div class="viz-wrap"><div id="gantt-chart"></div></div>
+  </section>
+
+  <!-- V10: Big Number — VERY RARE, only truly critical metrics -->
+  <!-- AGENT: Use ONLY when a specific number is indispensable to the
+       analysis and not already shown in the Verdict. Max 3 cards. -->
+  <section class="viz-section">
+    <h2>Key Metric</h2>
+    <div class="big-number-grid">
+      <div class="big-number-card">
+        <div class="big-number-value">4.1%</div>
+        <div class="big-number-delta negative">↑ 0.3pp from Jan</div>
+        <div class="big-number-label">US Unemployment Rate (Feb '26)</div>
+      </div>
+      <div class="big-number-card">
+        <div class="big-number-value">$12B</div>
+        <div class="big-number-delta negative">↓ 40% YoY</div>
+        <div class="big-number-label">Iran Foreign Reserves</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ [H] MARKET INTELLIGENCE — POLYMARKET (OPTIONAL) ═════════
+       Include 3 markets. If no relevant Polymarket data exists,
+       delete this entire <section> block.
+
+       For each market:
+       - question: the market question
+       - volume: formatted trading volume (e.g. "$20.9M")
+       - url: real polymarket.com event page URL
+       - options: 2+ rows, one per tradable outcome
+
+       Each option row:
+       - name: option label (e.g. "Yes", "No", "April 30", "No Change")
+       - market_prob: current market probability, formatted as "XX.X%"
+       - our_est: your estimated probability, formatted as "XX.X%"
+       - delta: our_est minus market_prob, formatted as "+X.X%" or "-X.X%"
+         Use class="delta-pos" for positive, "delta-neg" for negative
+
+       UNDERVALUED highlight:
+       - Find the option with the HIGHEST POSITIVE delta in each market
+       - Add class="undervalued" to that <tr>
+       - This auto-adds a green "← UNDERVALUED" label via CSS
+
+       Sort markets by highest absolute delta across all their options.
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="page-break">
+    <h2>Market Intelligence — Polymarket</h2>
+
+    <!-- Market 1 -->
+    <div class="market-block">
+      <div class="market-q">Iran enrichment below 20% by Q2 2026?</div>
+      <div class="market-meta">Vol $1.8M · <a href="https://polymarket.com/event/iran-enrichment-below-20-q2-2026">polymarket.com/event/iran-enrichment-below-20-q2-2026</a></div>
+      <table class="market-compare">
+        <thead><tr>
+          <th style="text-align:left">Option</th>
+          <th>Market</th>
+          <th>Our Est.</th>
+          <th>Δ</th>
+        </tr></thead>
+        <tbody>
+          <tr class="undervalued">
+            <td>Yes</td>
+            <td>35.0%</td>
+            <td>42.0%</td>
+            <td class="delta-pos">+7.0%</td>
+          </tr>
+          <tr>
+            <td>No</td>
+            <td>65.0%</td>
+            <td>58.0%</td>
+            <td class="delta-neg">-7.0%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Market 2 (multi-option example) -->
+    <div class="market-block">
+      <div class="market-q">US x Iran ceasefire by...?</div>
+      <div class="market-meta">Vol $20.9M · <a href="https://polymarket.com/event/us-x-iran-ceasefire-by">polymarket.com/event/us-x-iran-ceasefire-by</a></div>
+      <table class="market-compare">
+        <thead><tr>
+          <th style="text-align:left">Option</th>
+          <th>Market</th>
+          <th>Our Est.</th>
+          <th>Δ</th>
+        </tr></thead>
+        <tbody>
+          <tr class="undervalued">
+            <td>April 30</td>
+            <td>47.5%</td>
+            <td>53.0%</td>
+            <td class="delta-pos">+5.5%</td>
+          </tr>
+          <tr>
+            <td>March 31</td>
+            <td>25.5%</td>
+            <td>30.0%</td>
+            <td class="delta-pos">+4.5%</td>
+          </tr>
+          <tr>
+            <td>June 30</td>
+            <td>63.5%</td>
+            <td>68.0%</td>
+            <td class="delta-pos">+4.5%</td>
+          </tr>
+          <tr>
+            <td>March 15</td>
+            <td>2.4%</td>
+            <td>2.0%</td>
+            <td class="delta-neg">-0.4%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Market 3 -->
+    <div class="market-block">
+      <div class="market-q">Major Persian Gulf military confrontation in 2026?</div>
+      <div class="market-meta">Vol $1.1M · <a href="https://polymarket.com/event/gulf-confrontation-2026">polymarket.com/event/gulf-confrontation-2026</a></div>
+      <table class="market-compare">
+        <thead><tr>
+          <th style="text-align:left">Option</th>
+          <th>Market</th>
+          <th>Our Est.</th>
+          <th>Δ</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td>Yes</td>
+            <td>18.0%</td>
+            <td>12.0%</td>
+            <td class="delta-neg">-6.0%</td>
+          </tr>
+          <tr class="undervalued">
+            <td>No</td>
+            <td>82.0%</td>
+            <td>88.0%</td>
+            <td class="delta-pos">+6.0%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AGENT: Replace with your 3 markets. Each market is a market-block div. -->
+  </section>
+
+  <!-- ═══ [I] FOOTER ══════════════════════════════════════════════ -->
+  <footer>
+    <div class="sources">Sources: Reuters · Al Jazeera · CSIS · IISS · Brookings · UN News · Polymarket</div>
+    <div>OSINT assessment. Not investment or policy advice. Subject to revision.</div>
+  </footer>
+
+  <div class="class-bar">
+    <span>ANYGEN PREDICT INTELLIGENCE ASSESSMENT</span>
+    <span>#26-03-12</span>
+  </div>
+
+</div><!-- end .brief -->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     VISUALIZATION SCRIPTS — 9 pre-built types (V1–V5, V7–V9 use D3, V10 is CSS-only)
+     Include ONLY the scripts matching the <section> blocks you kept.
+     For each script: change ONLY the data variables at the top.
+     DO NOT modify rendering code. DO NOT write custom D3 code.
+═══════════════════════════════════════════════════════════════ -->
+
+<!-- ── [V1] METRIC TREND — line chart of key data over time ────
+     AGENT DATA: Replace "trendConfig" object.
+       yLabel:  Y-axis label (≤20 chars)
+       lines[]: 1–3 data series (use monochrome colors)
+         label:  series name (≤20 chars)
+         color:  hex color — use "#0a0a0a", "#737373", "#a3a3a3"
+         points[]: {x: "label", y: number}
+                   x = ordered categories (dates, quarters, months...)
+                   y = numeric value (null to skip a point)
+     Max 12 x-axis points. Max 3 lines.
+──────────────────────────────────────────────────────────── -->
+<script>
+(function(){
+  var el = document.getElementById('metric-trend');
+  if (!el) return;
+
+  // ╔═══ AGENT: Replace trendConfig with YOUR data ═══════════╗
+  // ║  Show the key metric(s) that DRIVE the predict.         ║
+  // ║  Examples: polling %, interest rates, troop counts,      ║
+  // ║  diplomatic meetings, incident frequency, market price   ║
+  var trendConfig = {
+    yLabel: "Contacts / month",
+    lines: [
+      {
+        label: "US-Iran direct",
+        color: "#0a0a0a",
+        points: [
+          {x:"Q1'25",y:0},{x:"Q2'25",y:1},{x:"Q3'25",y:0},
+          {x:"Q4'25",y:2},{x:"Jan'26",y:1},{x:"Feb'26",y:3},{x:"Mar'26",y:5}
+        ]
+      },
+      {
+        label: "Via Oman channel",
+        color: "#737373",
+        points: [
+          {x:"Q1'25",y:2},{x:"Q2'25",y:3},{x:"Q3'25",y:2},
+          {x:"Q4'25",y:4},{x:"Jan'26",y:5},{x:"Feb'26",y:6},{x:"Mar'26",y:8}
+        ]
+      }
+    ]
+  };
+  // ╚═══ DO NOT MODIFY BELOW ═════════════════════════════════╝
+
+  function trunc(s,n){ return s.length > n ? s.substring(0,n-1)+'…' : s; }
+  var W = el.offsetWidth, H = 260;
+  var svg = d3.select(el).append('svg').attr('width',W).attr('height',H);
+  var m = {top:20, right:20, bottom:32, left:46};
+  var w = W-m.left-m.right, h = H-m.top-m.bottom;
+  var g = svg.append('g').attr('transform','translate('+m.left+','+m.top+')');
+
+  var allX=[], allY=[];
+  trendConfig.lines.forEach(function(line){
+    line.points.forEach(function(p){
+      if(allX.indexOf(p.x)===-1) allX.push(p.x);
+      if(p.y!=null) allY.push(p.y);
+    });
+  });
+  var xScale = d3.scalePoint().domain(allX).range([0,w]).padding(0.08);
+  var yMax = d3.max(allY)*1.18 || 1;
+  var yScale = d3.scaleLinear().domain([0,yMax]).range([h,0]).nice();
+
+  g.selectAll('.grid').data(yScale.ticks(5)).enter().append('line')
+    .attr('x1',0).attr('x2',w)
+    .attr('y1',function(d){return yScale(d)}).attr('y2',function(d){return yScale(d)})
+    .attr('stroke','#f0f0f0').attr('stroke-width',0.8);
+
+  g.append('g').attr('transform','translate(0,'+h+')').call(d3.axisBottom(xScale).tickSize(0))
+    .call(function(a){
+      a.select('.domain').remove();
+      a.selectAll('text').attr('font-family','JetBrains Mono,monospace')
+        .attr('font-size',8).attr('fill','#a3a3a3').attr('dy','0.9em');
+    });
+  g.append('g').call(d3.axisLeft(yScale).ticks(5).tickSize(0))
+    .call(function(a){
+      a.select('.domain').remove();
+      a.selectAll('text').attr('font-family','JetBrains Mono,monospace')
+        .attr('font-size',8).attr('fill','#a3a3a3');
+    });
+
+  svg.append('text')
+    .attr('x',-(m.top+h/2)).attr('y',12).attr('transform','rotate(-90)')
+    .text(trunc(trendConfig.yLabel,20))
+    .attr('font-family','JetBrains Mono,monospace')
+    .attr('font-size',7.5).attr('fill','#a3a3a3').attr('text-anchor','middle');
+
+  var lineGen = d3.line().x(function(d){return xScale(d.x)}).y(function(d){return yScale(d.y)})
+    .defined(function(d){return d.y!=null});
+
+  trendConfig.lines.slice(0,3).forEach(function(series,si){
+    g.append('path').datum(series.points).attr('d',lineGen)
+      .attr('fill','none').attr('stroke',series.color).attr('stroke-width',1.8);
+    series.points.forEach(function(p){
+      if(p.y==null) return;
+      g.append('circle').attr('cx',xScale(p.x)).attr('cy',yScale(p.y))
+        .attr('r',3).attr('fill',series.color);
+      g.append('circle').attr('cx',xScale(p.x)).attr('cy',yScale(p.y))
+        .attr('r',1.2).attr('fill','#fff');
+    });
+  });
+
+  var lx = w-10;
+  trendConfig.lines.slice(0,3).forEach(function(series,i){
+    var ly = 2+i*16;
+    g.append('line').attr('x1',lx-55).attr('x2',lx-42)
+      .attr('y1',ly).attr('y2',ly).attr('stroke',series.color).attr('stroke-width',2);
+    g.append('text').attr('x',lx-38).attr('y',ly+3)
+      .text(trunc(series.label,20))
+      .attr('font-family','Inter,sans-serif').attr('font-size',8.5).attr('fill','#525252');
+  });
+})();
+</script>
+
+<!-- ── [V2] REGIONAL MAP — D3 Mercator with auto-zoom ─────────
+     ⚠⚠⚠ MANDATORY for geopolitical / diplomacy / military / sanctions.
+     DO NOT DELETE this script block for those domains.
+     Even if you only want 1 chart, THIS is the one you keep.
+
+     AGENT DATA: Replace markers, connections, hlCodes.
+     markers[]:     {"lat","lon","label"(≤20),"type":"primary"|"secondary"}
+                    → Minimum 3 markers from your research.
+     connections[]: {"from":[lat,lon],"to":[lat,lon],"label"(≤20),"type"}
+     hlCodes:       ISO 3166-1 alpha-2 codes to highlight
+     TopoJSON is already loaded in <head>. You need nothing extra.
+──────────────────────────────────────────────────────────── -->
+<script>
+(function(){
+  var el = document.getElementById('region-map');
+  if (!el) return;
+  var W = el.offsetWidth, H = 360;
+  var svg = d3.select(el).append('svg').attr('width',W).attr('height',H);
+
+  // ╔═══ AGENT: Replace these 3 variables ═══╗
+  var markers = [
+    {"lat": 35.69, "lon": 51.39, "label": "Tehran", "type": "primary"},
+    {"lat": 33.31, "lon": 44.37, "label": "Baghdad", "type": "secondary"},
+    {"lat": 23.59, "lon": 58.38, "label": "Muscat", "type": "secondary"},
+    {"lat": 26.22, "lon": 50.59, "label": "Bahrain", "type": "secondary"},
+    {"lat": 26.85, "lon": 56.28, "label": "Strait of Hormuz", "type": "primary"}
+  ];
+  var connections = [
+    {"from": [23.59, 58.38], "to": [35.69, 51.39], "label": "Mediation", "type": "diplomatic"},
+    {"from": [35.69, 51.39], "to": [33.31, 44.37], "label": "Proxy influence", "type": "military"}
+  ];
+  var hlCodes = ["IR", "IQ", "OM", "SA", "AE"];
+  // ╚═══ DO NOT MODIFY BELOW ════════════════╝
+
+  function trunc(s,n){ return s.length > n ? s.substring(0,n-1)+'…' : s; }
+  var ISO = {
+    'AF':'004','DZ':'012','AO':'024','AR':'032','AM':'051','AU':'036',
+    'AZ':'031','BH':'048','BD':'050','BY':'112','BR':'076','CA':'124',
+    'CN':'156','CU':'192','EG':'818','ET':'231','FR':'250','GE':'268',
+    'DE':'276','GR':'300','IN':'356','ID':'360','IR':'364','IQ':'368',
+    'IL':'376','IT':'380','JP':'392','JO':'400','KZ':'398','KW':'414',
+    'LB':'422','LY':'434','MY':'458','MX':'484','NG':'566','OM':'512',
+    'PK':'586','PH':'608','PL':'616','QA':'634','RO':'642','RU':'643',
+    'SA':'682','KR':'410','SD':'729','SY':'760','TW':'158','TH':'764',
+    'TR':'792','UA':'804','AE':'784','GB':'826','US':'840','YE':'887'
+  };
+  var hlIds = hlCodes.map(function(c){ return ISO[c]; }).filter(Boolean);
+  var pad = 50;
+  var fc = {type:"FeatureCollection", features: markers.map(function(m){
+    return {type:"Feature", geometry:{type:"Point", coordinates:[m.lon, m.lat]}};
+  })};
+  var projection = d3.geoMercator().fitExtent([[pad,pad],[W-pad,H-pad]], fc);
+  var path = d3.geoPath().projection(projection);
+
+  svg.append('rect').attr('width',W).attr('height',H).attr('fill','#fafafa');
+  var grat = d3.geoGraticule().step([5,5]);
+  svg.append('path').datum(grat()).attr('d',path)
+    .attr('fill','none').attr('stroke','#f0f0f0').attr('stroke-width',0.4);
+
+  d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function(world){
+    var countries = topojson.feature(world, world.objects.countries);
+    svg.selectAll('.country').data(countries.features).enter().append('path')
+      .attr('d', path)
+      .attr('fill', function(d){ return hlIds.includes(String(d.id)) ? '#e8e8e8' : '#f2f2f2'; })
+      .attr('stroke', function(d){ return hlIds.includes(String(d.id)) ? '#999' : '#ddd'; })
+      .attr('stroke-width', function(d){ return hlIds.includes(String(d.id)) ? 0.8 : 0.3; });
+    svg.append('path')
+      .datum(topojson.mesh(world, world.objects.countries, function(a,b){return a!==b;}))
+      .attr('d', path).attr('fill','none').attr('stroke','#ccc').attr('stroke-width',0.3);
+
+    connections.forEach(function(c){
+      svg.append('path')
+        .datum({type:'LineString', coordinates:[[c.from[1],c.from[0]],[c.to[1],c.to[0]]]})
+        .attr('d', path).attr('fill','none').attr('stroke','#000')
+        .attr('stroke-width',1.5).attr('stroke-dasharray','8,5').attr('opacity',0.35);
+    });
+    markers.forEach(function(m){
+      var pt = projection([m.lon, m.lat]);
+      if(!pt) return;
+      var isPrimary = m.type === 'primary';
+      if(isPrimary){
+        [28,18,10].forEach(function(r,i){
+          svg.append('circle').attr('cx',pt[0]).attr('cy',pt[1]).attr('r',r)
+            .attr('fill','none').attr('stroke','#000')
+            .attr('stroke-width',0.5).attr('opacity',0.06*(3-i));
+        });
+      }
+      svg.append('circle').attr('cx',pt[0]).attr('cy',pt[1])
+        .attr('r', isPrimary ? 5 : 3.5)
+        .attr('fill', isPrimary ? '#0a0a0a' : '#525252');
+      svg.append('circle').attr('cx',pt[0]).attr('cy',pt[1])
+        .attr('r', isPrimary ? 2 : 1.5).attr('fill','#fff');
+      svg.append('text').attr('x',pt[0]).attr('y',pt[1]-(isPrimary?10:7))
+        .text(trunc(m.label, 20))
+        .attr('font-size', isPrimary ? 11 : 9.5)
+        .attr('font-weight', isPrimary ? 700 : 500)
+        .attr('text-anchor','middle').attr('font-family','Inter, sans-serif')
+        .attr('fill','#262626');
+    });
+  }).catch(function(){
+    el.innerHTML='<div style="text-align:center;color:#a3a3a3;padding:80px 0">Map unavailable</div>';
+  });
+})();
+</script>
+
+<!-- ── [V3] ENTITY GRAPH — force-directed network ─────────────
+     AGENT DATA: Replace "raw" object.
+     nodes[]: {"id","label"(≤16 chars),"type"} — max 8 nodes
+     edges[]: {"from","to","label"(≤14 chars),"type"}
+     legend: colors for each type
+──────────────────────────────────────────────────────────── -->
+<script>
+(function(){
+  var el = document.getElementById('entity-graph');
+  if (!el) return;
+
+  // ╔═══ AGENT: Replace "raw" with YOUR data ═══╗
+  // ║  Keep labels SHORT: nodes ≤16, edges ≤14   ║
+  // ║  Max 8 nodes to avoid clutter               ║
+  var raw = {
+    "nodes": [
+      {"id": "us", "label": "United States", "type": "government"},
+      {"id": "iran", "label": "Iran", "type": "government"},
+      {"id": "khamenei", "label": "Khamenei", "type": "person"},
+      {"id": "irgc", "label": "IRGC", "type": "organization"},
+      {"id": "oman", "label": "Oman", "type": "government"},
+      {"id": "saudi", "label": "Saudi Arabia", "type": "government"}
+    ],
+    "edges": [
+      {"from": "us", "to": "iran", "label": "Negotiation", "type": "diplomatic"},
+      {"from": "oman", "to": "us", "label": "Channel", "type": "diplomatic"},
+      {"from": "oman", "to": "iran", "label": "Mediation", "type": "diplomatic"},
+      {"from": "khamenei", "to": "iran", "label": "Authority", "type": "authority"},
+      {"from": "irgc", "to": "iran", "label": "Military arm", "type": "military"},
+      {"from": "saudi", "to": "iran", "label": "Rival", "type": "military"},
+      {"from": "saudi", "to": "us", "label": "Alliance", "type": "diplomatic"}
+    ],
+    "legend": {
+      "node_types": {"government":"#3b82f6","person":"#f59e0b","organization":"#ef4444","event":"#8b5cf6"},
+      "edge_types": {"diplomatic":"#3b82f6","military":"#ef4444","authority":"#f59e0b","economic":"#10b981"}
+    }
+  };
+  // ╚═══ DO NOT MODIFY BELOW ════════════════════╝
+
+  function trunc(s,n){ return s.length > n ? s.substring(0,n-1)+'…' : s; }
+  var W = el.offsetWidth, H = 320;
+  var svg = d3.select(el).append('svg').attr('width',W).attr('height',H);
+  var nc = raw.legend.node_types, ec = raw.legend.edge_types;
+
+  var nodes = raw.nodes.slice(0,8).map(function(n){ return Object.assign({}, n); });
+  var nodeIds = {};
+  nodes.forEach(function(n){ nodeIds[n.id] = true; });
+  var edges = raw.edges.filter(function(e){
+    return nodeIds[e.from] && nodeIds[e.to];
+  }).map(function(e){
+    return {source:e.from, target:e.to, label:e.label, type:e.type};
+  });
+
+  var sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(edges).id(function(d){return d.id}).distance(120))
+    .force('charge', d3.forceManyBody().strength(-350))
+    .force('center', d3.forceCenter(W/2, H/2))
+    .force('collision', d3.forceCollide(42));
+  for(var i=0;i<600;i++) sim.tick();
+  sim.stop();
+
+  nodes.forEach(function(n){
+    n.x = Math.max(60, Math.min(W-60, n.x));
+    n.y = Math.max(45, Math.min(H-45, n.y));
+  });
+
+  svg.append('defs').append('marker').attr('id','arw')
+    .attr('viewBox','0 0 10 6').attr('refX',10).attr('refY',3)
+    .attr('markerWidth',7).attr('markerHeight',5).attr('orient','auto-start-reverse')
+    .append('path').attr('d','M 0 0 L 10 3 L 0 6 z').attr('fill','#a3a3a3');
+
+  svg.selectAll('.link').data(edges).enter().append('line')
+    .attr('x1',function(d){return d.source.x}).attr('y1',function(d){return d.source.y})
+    .attr('x2',function(d){return d.target.x}).attr('y2',function(d){return d.target.y})
+    .attr('stroke',function(d){return ec[d.type]||'#d4d4d4'})
+    .attr('stroke-width',1.2).attr('stroke-dasharray','5,3')
+    .attr('marker-end','url(#arw)');
+
+  svg.selectAll('.elbl').data(edges).enter().append('text')
+    .attr('x',function(d){return(d.source.x+d.target.x)/2})
+    .attr('y',function(d){return(d.source.y+d.target.y)/2-6})
+    .text(function(d){return trunc(d.label,14)})
+    .attr('font-size',7.5).attr('fill','#a3a3a3').attr('text-anchor','middle')
+    .attr('font-family','JetBrains Mono, monospace');
+
+  var g = svg.selectAll('.node').data(nodes).enter().append('g')
+    .attr('transform',function(d){return 'translate('+d.x+','+d.y+')'});
+  g.append('circle').attr('r',16)
+    .attr('fill','#fff').attr('stroke',function(d){return nc[d.type]||'#000'})
+    .attr('stroke-width',1.5);
+  g.append('circle').attr('r',3)
+    .attr('fill',function(d){return nc[d.type]||'#000'});
+  g.append('text').text(function(d){return trunc(d.label,16)})
+    .attr('font-size',8.5).attr('font-weight',600)
+    .attr('text-anchor','middle').attr('dy',28)
+    .attr('font-family','Inter, sans-serif').attr('fill','#262626');
+})();
+</script>
+
+<!-- ── [V4] EVENT TIMELINE — vertical chronological dots ──────
+     AGENT DATA: Replace "timelineData" array.
+     {"date":"short date","label":"≤45 chars","type":"positive"|"negative"|"neutral"}
+     Max 8 items. Items render top to bottom in array order.
+──────────────────────────────────────────────────────────── -->
+<script>
+(function(){
+  var el = document.getElementById('event-timeline');
+  if (!el) return;
+
+  // ╔═══ AGENT: Replace this array with YOUR events ═══╗
+  var timelineData = [
+    {"date": "Feb 20", "label": "Saudi-Iran econ commission", "type": "neutral"},
+    {"date": "Feb 28", "label": "Sanctions waiver extended", "type": "positive"},
+    {"date": "Mar 1", "label": "IRGC Hormuz exercise", "type": "negative"},
+    {"date": "Mar 5", "label": "Secret Muscat meeting", "type": "positive"},
+    {"date": "Mar 8", "label": "UNSC Resolution 2891", "type": "positive"}
+  ];
+  // ╚═══ DO NOT MODIFY BELOW ══════════════════════════╝
+
+  function trunc(s,n){ return s.length > n ? s.substring(0,n-1)+'…' : s; }
+  var data = timelineData.slice(0,8);
+  var W = el.offsetWidth;
+  var rowH = 38;
+  var H = data.length * rowH + 40;
+  el.style.height = H + 'px';
+  var svg = d3.select(el).append('svg').attr('width',W).attr('height',H);
+
+  var tc = {"positive":"#16a34a","negative":"#dc2626","neutral":"#a3a3a3"};
+  var lineX = 82;
+
+  svg.append('line').attr('x1',lineX).attr('y1',18).attr('x2',lineX).attr('y2',H-18)
+    .attr('stroke','#e5e5e5').attr('stroke-width',1);
+
+  data.forEach(function(d,i){
+    var y = 28 + i * rowH;
+    var c = tc[d.type] || '#a3a3a3';
+
+    svg.append('text').attr('x',lineX-14).attr('y',y+4)
+      .text(trunc(d.date,8))
+      .attr('text-anchor','end')
+      .attr('font-family','JetBrains Mono, monospace')
+      .attr('font-size',10).attr('fill','#a3a3a3');
+
+    svg.append('circle').attr('cx',lineX).attr('cy',y).attr('r',5).attr('fill',c);
+    svg.append('circle').attr('cx',lineX).attr('cy',y).attr('r',2).attr('fill','#fff');
+
+    svg.append('text').attr('x',lineX+14).attr('y',y+4)
+      .text(trunc(d.label,45))
+      .attr('font-family','Inter, sans-serif')
+      .attr('font-size',11).attr('fill','#262626');
+  });
+})();
+</script>
+
+<!-- ── [V5] COMPARISON BARS — horizontal ranked bars ──────────
+     AGENT DATA: Replace "barConfig" object.
+       unit:   suffix for values (e.g. "$B", "%", "K troops")
+       bars[]: {label(≤18), value(number)} — max 8, auto-sorted desc
+──────────────────────────────────────────────────────────── -->
+<script>
+(function(){
+  var el = document.getElementById('comparison-bars');
+  if (!el) return;
+
+  // ╔═══ AGENT: Replace barConfig with YOUR data ═════════════╗
+  var barConfig = {
+    unit: "$B",
+    bars: [
+      {label: "United States", value: 886},
+      {label: "China", value: 292},
+      {label: "Russia", value: 109},
+      {label: "Saudi Arabia", value: 75},
+      {label: "Iran", value: 25}
+    ]
+  };
+  // ╚═══ DO NOT MODIFY BELOW ═════════════════════════════════╝
+
+  function trunc(s,n){ return s.length > n ? s.substring(0,n-1)+'…' : s; }
+  var data = barConfig.bars.slice(0,8).sort(function(a,b){return b.value-a.value});
+  var W = el.offsetWidth;
+  var barH = 24, gap = 6;
+  var H = data.length * (barH + gap) + 16;
+  el.style.height = H + 'px';
+  var svg = d3.select(el).append('svg').attr('width',W).attr('height',H);
+
+  var maxVal = d3.max(data, function(d){return d.value}) || 1;
+  var labelW = 120, barStart = labelW + 10;
+  var barMax = W - barStart - 70;
+  var grays = ['#0a0a0a','#262626','#404040','#525252','#737373','#8a8a8a','#a3a3a3','#bbb'];
+
+  data.forEach(function(d, i){
+    var y = 8 + i * (barH + gap);
+    var barW = (d.value / maxVal) * barMax;
+    svg.append('text').attr('x', labelW).attr('y', y + barH/2 + 4)
+      .text(trunc(d.label, 18)).attr('text-anchor','end')
+      .attr('font-family','Inter,sans-serif').attr('font-size',10).attr('fill','#262626');
+    svg.append('rect').attr('x', barStart).attr('y', y)
+      .attr('width', Math.max(barW, 2)).attr('height', barH).attr('rx',2)
+      .attr('fill', grays[Math.min(i, grays.length-1)]);
+    svg.append('text').attr('x', barStart + barW + 6).attr('y', y + barH/2 + 4)
+      .text(d.value + (barConfig.unit ? ' '+barConfig.unit : ''))
+      .attr('font-family','JetBrains Mono,monospace')
+      .attr('font-size',9.5).attr('fill','#525252');
+  });
+})();
+</script>
+
+<!-- ── [V7] CHOROPLETH — election / regional statistics map ───
+     AGENT DATA: Replace "choroConfig" object.
+       geo:       "us" for US states, "world" for countries
+       regions[]: {id, category, value(0–1 intensity, optional)}
+                  id = state abbreviation (US) or ISO alpha-2 (world)
+       categories: {key: {color:"#hex", label:"text"}}
+     US example: {id:"CA", category:"dem"} / {id:"TX", category:"rep"}
+     World example: {id:"RU", category:"sanctions"} / {id:"CN", category:"neutral"}
+──────────────────────────────────────────────────────────── -->
+<script>
+(function(){
+  var el = document.getElementById('choropleth');
+  if (!el) return;
+
+  // ╔═══ AGENT: Replace choroConfig with YOUR data ═══════════╗
+  var choroConfig = {
+    geo: "us",
+    regions: [
+      {id:"CA", category:"dem", value:0.8}, {id:"NY", category:"dem", value:0.7},
+      {id:"IL", category:"dem", value:0.6}, {id:"WA", category:"dem", value:0.6},
+      {id:"MA", category:"dem", value:0.7}, {id:"CO", category:"dem", value:0.5},
+      {id:"TX", category:"rep", value:0.6}, {id:"FL", category:"rep", value:0.5},
+      {id:"OH", category:"rep", value:0.5}, {id:"TN", category:"rep", value:0.7},
+      {id:"AL", category:"rep", value:0.7}, {id:"IN", category:"rep", value:0.6},
+      {id:"PA", category:"tossup", value:0.3}, {id:"MI", category:"tossup", value:0.2},
+      {id:"WI", category:"tossup", value:0.2}, {id:"GA", category:"tossup", value:0.3},
+      {id:"AZ", category:"tossup", value:0.2}, {id:"NV", category:"tossup", value:0.1}
+    ],
+    categories: {
+      "dem": {color: "#404040", label: "Democratic lead"},
+      "rep": {color: "#a3a3a3", label: "Republican lead"},
+      "tossup": {color: "#d4d4d4", label: "Toss-up"}
+    }
+  };
+  // ╚═══ DO NOT MODIFY BELOW ═════════════════════════════════╝
+
+  function trunc(s,n){ return s.length > n ? s.substring(0,n-1)+'…' : s; }
+  var W = el.offsetWidth, H = 360;
+  var svg = d3.select(el).append('svg').attr('width',W).attr('height',H);
+
+  var regionMap = {};
+  choroConfig.regions.forEach(function(r){ regionMap[r.id] = r; });
+
+  function getColor(id){
+    var r = regionMap[id];
+    if(!r) return '#f5f5f5';
+    var cat = choroConfig.categories[r.category];
+    if(!cat) return '#f5f5f5';
+    var v = r.value != null ? Math.max(0.25, Math.min(1, r.value)) : 0.7;
+    return d3.interpolateRgb('#ffffff', cat.color)(v);
+  }
+
+  function renderLegend(){
+    var cats = Object.keys(choroConfig.categories);
+    var lgY = H - 22, lgX = 20;
+    cats.forEach(function(key,i){
+      var cat = choroConfig.categories[key];
+      svg.append('rect').attr('x',lgX+i*150).attr('y',lgY)
+        .attr('width',10).attr('height',10).attr('rx',1).attr('fill',cat.color);
+      svg.append('text').attr('x',lgX+i*150+14).attr('y',lgY+9)
+        .text(trunc(cat.label,20))
+        .attr('font-family','Inter,sans-serif').attr('font-size',9).attr('fill','#525252');
+    });
+  }
+
+  if(choroConfig.geo === "us"){
+    var s2f = {
+      'AL':'01','AK':'02','AZ':'04','AR':'05','CA':'06','CO':'08','CT':'09',
+      'DE':'10','DC':'11','FL':'12','GA':'13','HI':'15','ID':'16','IL':'17',
+      'IN':'18','IA':'19','KS':'20','KY':'21','LA':'22','ME':'23','MD':'24',
+      'MA':'25','MI':'26','MN':'27','MS':'28','MO':'29','MT':'30','NE':'31',
+      'NV':'32','NH':'33','NJ':'34','NM':'35','NY':'36','NC':'37','ND':'38',
+      'OH':'39','OK':'40','OR':'41','PA':'42','RI':'44','SC':'45','SD':'46',
+      'TN':'47','TX':'48','UT':'49','VT':'50','VA':'51','WA':'53','WV':'54',
+      'WI':'55','WY':'56'
+    };
+    var f2s = {};
+    Object.keys(s2f).forEach(function(k){ f2s[s2f[k]] = k; });
+
+    d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json').then(function(us){
+      var states = topojson.feature(us, us.objects.states);
+      var projection = d3.geoAlbersUsa().fitSize([W, H-36], states);
+      var path = d3.geoPath().projection(projection);
+      svg.selectAll('.state').data(states.features).enter().append('path')
+        .attr('d', path)
+        .attr('fill', function(d){
+          var fips = String(d.id).padStart(2,'0');
+          var abbr = f2s[fips];
+          return abbr ? getColor(abbr) : '#f5f5f5';
+        })
+        .attr('stroke','#fff').attr('stroke-width',0.8);
+      svg.append('path')
+        .datum(topojson.mesh(us, us.objects.states, function(a,b){return a!==b;}))
+        .attr('d',path).attr('fill','none').attr('stroke','#fff').attr('stroke-width',0.8);
+      renderLegend();
+    }).catch(function(){
+      el.innerHTML='<div style="text-align:center;color:#a3a3a3;padding:80px 0">Map unavailable</div>';
+    });
+  } else {
+    var ISO = {
+      'AF':'004','DZ':'012','AO':'024','AR':'032','AM':'051','AU':'036',
+      'AZ':'031','BH':'048','BD':'050','BY':'112','BR':'076','CA':'124',
+      'CN':'156','CU':'192','EG':'818','ET':'231','FR':'250','GE':'268',
+      'DE':'276','GR':'300','IN':'356','ID':'360','IR':'364','IQ':'368',
+      'IL':'376','IT':'380','JP':'392','JO':'400','KZ':'398','KW':'414',
+      'LB':'422','LY':'434','MY':'458','MX':'484','NG':'566','OM':'512',
+      'PK':'586','PH':'608','PL':'616','QA':'634','RO':'642','RU':'643',
+      'SA':'682','KR':'410','SD':'729','SY':'760','TW':'158','TH':'764',
+      'TR':'792','UA':'804','AE':'784','GB':'826','US':'840','YE':'887'
+    };
+    var i2a = {};
+    Object.keys(ISO).forEach(function(k){ i2a[ISO[k]] = k; });
+
+    d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function(world){
+      var countries = topojson.feature(world, world.objects.countries);
+      var projection = d3.geoMercator().fitSize([W, H-36], countries);
+      var path = d3.geoPath().projection(projection);
+      svg.selectAll('.country').data(countries.features).enter().append('path')
+        .attr('d',path)
+        .attr('fill', function(d){
+          var a2 = i2a[String(d.id)];
+          return a2 ? getColor(a2) : '#f5f5f5';
+        })
+        .attr('stroke','#ddd').attr('stroke-width',0.3);
+      renderLegend();
+    }).catch(function(){
+      el.innerHTML='<div style="text-align:center;color:#a3a3a3;padding:80px 0">Map unavailable</div>';
+    });
+  }
+})();
+</script>
+
+<!-- ── [V8] SANKEY — flow diagram (funding, resources, influence) ──
+     AGENT DATA: Replace "sankeyConfig" object.
+       nodes[]: {name(≤18)} — max 12 nodes
+       links[]: {source(index), target(index), value(number)} — max 15 links
+       unit:    suffix for values ("$B", "M troops", etc.)
+     Needs: d3-sankey <script> in <head>
+──────────────────────────────────────────────────────────── -->
+<script>
+(function(){
+  var el = document.getElementById('sankey-chart');
+  if (!el) return;
+
+  // ╔═══ AGENT: Replace sankeyConfig with YOUR data ══════════╗
+  var sankeyConfig = {
+    nodes: [
+      {name: "US Congress"},
+      {name: "Dept of Defense"},
+      {name: "Israel"},
+      {name: "Ukraine"},
+      {name: "Iron Dome"},
+      {name: "HIMARS"},
+      {name: "Patriot"},
+      {name: "Econ Support"}
+    ],
+    links: [
+      {source:0, target:2, value:3.8},
+      {source:0, target:3, value:2.1},
+      {source:1, target:2, value:1.2},
+      {source:1, target:3, value:0.9},
+      {source:2, target:4, value:2.5},
+      {source:2, target:6, value:1.5},
+      {source:2, target:7, value:1.0},
+      {source:3, target:5, value:1.8},
+      {source:3, target:6, value:0.8},
+      {source:3, target:7, value:0.4}
+    ],
+    unit: "$B"
+  };
+  // ╚═══ DO NOT MODIFY BELOW ═════════════════════════════════╝
+
+  function trunc(s,n){ return s.length > n ? s.substring(0,n-1)+'…' : s; }
+  var W = el.offsetWidth, H = 300;
+  var svg = d3.select(el).append('svg').attr('width',W).attr('height',H);
+
+  var nodes = sankeyConfig.nodes.slice(0,12).map(function(d,i){return {name:d.name, index:i}});
+  var links = sankeyConfig.links.slice(0,15).map(function(d){
+    return {source:d.source, target:d.target, value:d.value};
+  });
+
+  var sankey = d3.sankey()
+    .nodeId(function(d){return d.index})
+    .nodeWidth(14)
+    .nodePadding(12)
+    .nodeAlign(d3.sankeyLeft)
+    .extent([[20,10],[W-20,H-20]]);
+
+  var graph = sankey({nodes:nodes, links:links});
+  var grays = ['#0a0a0a','#262626','#404040','#525252','#737373','#8a8a8a','#a3a3a3','#bbb','#d4d4d4','#e5e5e5','#f0f0f0','#fafafa'];
+
+  svg.append('g').selectAll('rect').data(graph.nodes).enter().append('rect')
+    .attr('x',function(d){return d.x0}).attr('y',function(d){return d.y0})
+    .attr('height',function(d){return Math.max(d.y1-d.y0,1)})
+    .attr('width',sankey.nodeWidth())
+    .attr('fill',function(d,i){return grays[i%grays.length]})
+    .attr('stroke','#fff').attr('stroke-width',0.5);
+
+  svg.append('g').attr('fill','none').selectAll('path')
+    .data(graph.links).enter().append('path')
+    .attr('d',d3.sankeyLinkHorizontal())
+    .attr('stroke','#a3a3a3').attr('stroke-opacity',0.35)
+    .attr('stroke-width',function(d){return Math.max(d.width,1)});
+
+  var unit = sankeyConfig.unit || '';
+  svg.append('g').selectAll('.link-val').data(graph.links).enter().append('text')
+    .attr('x',function(d){return (d.source.x1 + d.target.x0)/2})
+    .attr('y',function(d){return (d.y0 + d.y1)/2})
+    .attr('dy','0.35em').attr('text-anchor','middle')
+    .text(function(d){return d.value + (unit ? ' '+unit : '')})
+    .attr('font-family','JetBrains Mono,monospace')
+    .attr('font-size',function(d){return d.width > 6 ? 8.5 : 7})
+    .attr('fill','#525252').attr('opacity',function(d){return d.width > 3 ? 0.9 : 0.55});
+
+  svg.append('g').selectAll('text').data(graph.nodes).enter().append('text')
+    .attr('x',function(d){return d.x0 < W/2 ? d.x1+6 : d.x0-6})
+    .attr('y',function(d){return (d.y0+d.y1)/2})
+    .attr('dy','0.35em')
+    .attr('text-anchor',function(d){return d.x0 < W/2 ? 'start' : 'end'})
+    .text(function(d){return trunc(d.name,18)})
+    .attr('font-family','Inter,sans-serif').attr('font-size',9).attr('fill','#262626');
+})();
+</script>
+
+<!-- ── [V9] GANTT — phase / timeline bars ──────────────────────
+     AGENT DATA: Replace "ganttConfig" object.
+       tasks[]: max 8 items
+         label:    task name (≤22 chars)
+         start:    date string for left edge (e.g. "2026-01", "Jan'26")
+         end:      date string for right edge
+         category: key in categories object
+       categories: {key: "#hex_color"}
+       xLabels[]:  ordered time labels for x-axis
+──────────────────────────────────────────────────────────── -->
+<script>
+(function(){
+  var el = document.getElementById('gantt-chart');
+  if (!el) return;
+
+  // ╔═══ AGENT: Replace ganttConfig with YOUR data ═══════════╗
+  var ganttConfig = {
+    tasks: [
+      {label: "Backchannel phase", start:"Jan'26", end:"Feb'26", category:"diplomacy"},
+      {label: "Direct talks", start:"Feb'26", end:"Apr'26", category:"diplomacy"},
+      {label: "IRGC opposition", start:"Jan'26", end:"Mar'26", category:"risk"},
+      {label: "Sanctions pressure", start:"Oct'25", end:"Mar'26", category:"economic"},
+      {label: "UNSC framework", start:"Mar'26", end:"May'26", category:"diplomacy"},
+      {label: "Election window", start:"Apr'26", end:"Jun'26", category:"risk"}
+    ],
+    categories: {
+      "diplomacy": "#0a0a0a",
+      "risk": "#a3a3a3",
+      "economic": "#d4d4d4"
+    },
+    xLabels: ["Oct'25","Nov'25","Dec'25","Jan'26","Feb'26","Mar'26","Apr'26","May'26","Jun'26"]
+  };
+  // ╚═══ DO NOT MODIFY BELOW ═════════════════════════════════╝
+
+  function trunc(s,n){ return s.length > n ? s.substring(0,n-1)+'…' : s; }
+  var tasks = ganttConfig.tasks.slice(0,8);
+  var W = el.offsetWidth;
+  var rowH = 28, gap = 5, headerH = 22, legendH = 24;
+  var H = headerH + tasks.length * (rowH + gap) + legendH + 10;
+  el.style.height = H + 'px';
+  var svg = d3.select(el).append('svg').attr('width',W).attr('height',H);
+
+  var labelW = 130, barStart = labelW + 10, barEnd = W - 16;
+  var xScale = d3.scalePoint().domain(ganttConfig.xLabels).range([barStart, barEnd]).padding(0.05);
+
+  ganttConfig.xLabels.forEach(function(x){
+    svg.append('text').attr('x',xScale(x)).attr('y',14).text(trunc(x,8))
+      .attr('text-anchor','middle')
+      .attr('font-family','JetBrains Mono,monospace')
+      .attr('font-size',8).attr('fill','#a3a3a3');
+    svg.append('line').attr('x1',xScale(x)).attr('x2',xScale(x))
+      .attr('y1',headerH).attr('y2',H-legendH-5)
+      .attr('stroke','#f0f0f0').attr('stroke-width',0.8);
+  });
+
+  tasks.forEach(function(t, i){
+    var y = headerH + i * (rowH + gap);
+    var x1 = xScale(t.start), x2 = xScale(t.end);
+    if(x1==null || x2==null) return;
+    var cat = ganttConfig.categories[t.category] || '#a3a3a3';
+    svg.append('text').attr('x',labelW-4).attr('y',y+rowH/2+4)
+      .text(trunc(t.label,22)).attr('text-anchor','end')
+      .attr('font-family','Inter,sans-serif').attr('font-size',10).attr('fill','#262626');
+    svg.append('rect').attr('x',x1).attr('y',y+2)
+      .attr('width',Math.max(x2-x1,4)).attr('height',rowH-4).attr('rx',3)
+      .attr('fill',cat).attr('opacity',0.75);
+  });
+
+  var cats = Object.keys(ganttConfig.categories);
+  var lgY = H - legendH + 4;
+  cats.forEach(function(key,i){
+    svg.append('rect').attr('x',barStart+i*120).attr('y',lgY)
+      .attr('width',10).attr('height',10).attr('rx',1)
+      .attr('fill',ganttConfig.categories[key]);
+    svg.append('text').attr('x',barStart+i*120+14).attr('y',lgY+9)
+      .text(trunc(key,14))
+      .attr('font-family','Inter,sans-serif').attr('font-size',9).attr('fill','#525252');
+  });
+})();
+</script>
+
+</body>
+</html>

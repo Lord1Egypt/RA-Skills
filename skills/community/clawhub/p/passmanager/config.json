@@ -1,0 +1,62 @@
+{
+  "name": "passmanager",
+  "displayName": "PassManager",
+  "version": "1.1.0",
+  "description": "Enterprise-grade password management system for AI assistants. AES-256-GCM encrypted credential storage with RBAC, audit logging, backup/restore.",
+  "author": "iSenlink",
+  "license": "MIT",
+  "emoji": "🔐",
+  "homepage": "https://clawhub.ai/isenlink/passmanager",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/isenlink/passmanager.git"
+  },
+  "keywords": ["password", "security", "encryption", "aes-256-gcm", "credential-management", "ai-assistants"],
+  "tags": ["security", "password-management", "credentials", "enterprise", "sqlite", "encryption"],
+  "categories": ["security", "management", "productivity"],
+  "requires": {
+    "bins": ["python3"],
+    "python": ">=3.8"
+  },
+  "dependencies": {
+    "python": ["cryptography>=3.0"]
+  },
+  "commands": {
+    "passmanager": {
+      "script": "scripts/passmanager.py",
+      "description": "Manage passwords and credentials securely with AES-256-GCM encryption",
+      "usage": "passmanager <command> [options]",
+      "help": true,
+      "examples": [
+        "passmanager init MyMasterPassword --admin admin",
+        "passmanager add admin MyMasterPassword email Gmail user@example.com MyPassword123",
+        "passmanager get admin MyMasterPassword email Gmail user@example.com --show-password",
+        "passmanager list admin --type email",
+        "passmanager status"
+      ]
+    }
+  },
+  "config": {
+    "database_path": "~/.passmanager/passwords.db",
+    "backup_path": "~/.passmanager/backups/",
+    "log_path": "~/.passmanager/logs/",
+    "default_role": "user",
+    "backup_retention_days": 30,
+    "audit_log_retention_days": 90,
+    "pbkdf2_iterations": 600000
+  },
+  "compatibility": {
+    "openclaw": ">=2026.3.0",
+    "node": ">=18.0.0",
+    "platforms": ["linux", "macos"]
+  },
+  "security": {
+    "level": "high",
+    "requiresReview": true,
+    "dataEncryption": true,
+    "encryptionAlgorithm": "AES-256-GCM",
+    "keyDerivation": "PBKDF2-SHA256 (600K iterations)",
+    "auditLogging": true,
+    "accessControl": "RBAC (admin/user/auditor/guest)"
+  }
+}

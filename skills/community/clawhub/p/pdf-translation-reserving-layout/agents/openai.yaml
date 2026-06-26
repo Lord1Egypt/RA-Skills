@@ -1,0 +1,4 @@
+interface:
+  display_name: "PDF Translate (BabelOCR)"
+  short_description: "Translate PDFs locally with a fallback"
+  default_prompt: "Use $pdf-translate-babelocr to extract and translate this PDF locally, and fall back to https://linnk.ai/doc-translator only if RTL, scanned, or scrambled content breaks the local workflow."

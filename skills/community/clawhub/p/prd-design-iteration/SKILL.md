@@ -1,35 +1,322 @@
 ---
-name: "prd-design-iteration"
-description: "Use this skill when the user wants to iterate on an existing company-internal process management system — adding/modifying/deleting features. Triggers when t..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prd-design-iteration"
-sourceUrl: "https://clawhub.ai/skills/prd-design-iteration"
+name: product-design-iteration
+description: Use this skill when the user wants to iterate on an existing company-internal process management system — adding/modifying/deleting features. Triggers when the user explicitly says "迭代", "给现有产品加功能", "改一下", "删除某功能", or similar iteration requests. Produces delta PRD and modified prototype through a streamlined 4-step process with screenshot-based precision.
 ---
 
-# prd-design-iteration
+# Product Design Iteration (Internal Process System) — v3.0
 
-> Use this skill when the user wants to iterate on an existing company-internal process management system — adding/modifying/deleting features. Triggers when t...
+**精简迭代流程**：4步完成，以截图为核心，精准定位变更。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prd-design-iteration`
-- **Source URL:** [https://clawhub.ai/skills/prd-design-iteration](https://clawhub.ai/skills/prd-design-iteration)
+## 🆕 v3.0 核心优化
+- ❌ 去除冗长的7步流程，精简为4步
+- ✅ 增加**界面截图**作为核心输入，精准识别变更位置
+- ✅ 按变更类型（新增/调整/删除）分类处理
+- ✅ 最终输出：差量PRD + 修改后原型（before/after对比）
 
-## Overview
+## Domain assumption
+Target is ALWAYS a company-internal process management system that ALREADY EXISTS. If product is brand new → use `product-design-0to1` skill instead.
 
+## Core philosophy
+**以截图为锚点，精准变更。** 不看到界面就不知道改什么，不知道改什么就无法精准迭代。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/prd-design-iteration
+## The 4 Steps
+
+### Step 1: 基础信息收集（3个快速问题）
+
+依次询问以下3个问题：
+
+#### 1.1 涉及角色
+> "这个流程涉及哪些角色？每个角色一句话职责。"
+
+示例：
+- 客服专员：执行客户回访任务，记录回访结果
+- 业务部门：配置回访模版，分配任务，审核质量
+
+#### 1.2 现有主流程
+> "请用3-7步描述现有的核心业务流程。"
+
+示例：
+1. 业务部门配置回访模板
+2. 业务部门创建回访任务并分配给客服专员
+3. 客服专员执行回访并记录结果
+4. 业务部门审核回访质量
+5. 系统生成回访数据报表
+
+#### 1.3 迭代需求
+> "目前流程存在什么问题？为什么要迭代？需要增加/修改/删除什么功能？"
+
+示例：
+- 问题：业务部门手动创建任务太费时，每次要导入Excel客户名单
+- 需求：希望系统能自动根据规则生成回访任务
+
+**收集完成后**：创建 `project/00-input/baseline.md` 保存这3部分信息，用 `present_files` 呈现，等用户确认。
+
+---
+
+### Step 2: AI分析并输出调整清单
+
+基于Step 1的信息，AI分析并输出：
+
+#### 2.1 功能模块推断
+根据主流程和迭代需求，推断出系统的功能模块列表。
+
+示例输出格式：
+```markdown
+## 现有功能模块（推断）
+
+- M1 回访模板管理
+- M2 回访任务管理
+- M3 回访执行
+- M4 质量审核
+- M5 数据报表
 ```
+
+#### 2.2 调整清单
+列出本次迭代涉及的模块和调整类型。
+
+示例输出格式：
+```markdown
+## 本次调整清单
+
+| 模块 | 调整类型 | 调整说明 |
+|------|---------|---------|
+| M2 回访任务管理 | 调整 | 增加自动生成任务功能 |
+| M6 规则引擎 | 新增 | 新增规则配置模块 |
+| M3 回访执行 | 调整 | 增加客户历史记录展示 |
+```
+
+**输出位置**：`project/01-adjustment-list.md`
+
+用 `present_files` 呈现，询问用户：
+> "我理解您需要调整以上模块，对吗？如有遗漏或错误请告诉我。"
+
+**等用户确认后进入Step 3。**
+
+---
+
+### Step 3: 分类收集调整内容
+
+根据Step 2确认的调整清单，按**调整类型**分别收集材料。
+
+#### 3.1 新增界面（Type A）
+
+对于每个"新增"的模块/界面，依次询问：
+
+**问题1：需求描述**
+> "请描述这个新增界面的需求和功能。"
+
+**问题2：界面字段**
+> "这个界面需要哪些字段？请列出字段名称和说明。"
+
+示例：
+- 规则名称（文本）
+- 触发条件（下拉多选）
+- 生成频率（单选：每日/每周/每月）
+- 目标客户筛选（复杂条件组件）
+
+**问题3：前序/后续界面截图**
+> "请上传这个界面的**前序界面截图**（从哪里进入）和**后续界面截图**（点击后去哪里）。如果没有截图，请描述前后跳转关系。"
+
+**收集完成后**：创建 `project/02-add/{模块名}.md`，包含：
+- 需求描述
+- 界面字段表
+- 前后跳转关系
+- 前序/后续截图引用
+
+#### 3.2 调整当前界面（Type B）
+
+对于每个"调整"的模块/界面，依次询问：
+
+**问题1：调整说明**
+> "请说明要对这个界面做什么调整？"
+
+示例：在任务管理页面增加"自动生成"按钮和配置入口
+
+**问题2：当前界面截图/原型**
+> "请上传**当前界面的截图**或HTML原型。这样我能精准知道在哪里加什么。"
+
+**如果用户无法提供截图**，追问：
+> "请描述当前界面有哪些主要元素？比如：顶部有什么按钮、表格有哪些列、右侧有什么操作。"
+
+**收集完成后**：创建 `project/03-modify/{模块名}.md`，包含：
+- 调整说明
+- 当前界面截图/描述
+- 标注变更位置
+
+#### 3.3 删除界面（Type C）
+
+对于每个"删除"的模块/界面：
+
+**AI自动分析**：
+1. 检查该界面/模块在主流程中的位置
+2. 分析删除后对数据流的影响
+3. 检查是否有其他模块依赖
+
+**输出分析结果**：`project/04-delete/{模块名}-impact.md`
+
+示例：
+```markdown
+## 删除影响分析：M4 质量审核
+
+### 流程影响
+- 主流程第4步"业务部门审核回访质量"将被移除
+- 第3步"客服提交"后直接进入第5步"生成报表"
+
+### 数据影响
+- 回访记录表的"审核状态"字段将废弃
+- 回访记录表的"审核意见"字段将废弃
+- 历史审核数据建议归档保留
+
+### 依赖检查
+- M5 数据报表中有"审核通过率"指标，需同步删除
+```
+
+用 `present_files` 呈现分析结果，询问用户：
+> "删除这个模块会有以上影响，确认要删除吗？"
+
+**所有类型收集完成后**，用 `present_files` 呈现所有收集的材料，等用户最终确认。
+
+---
+
+### Step 4: 合理性检查 + 输出
+
+#### 4.1 合理性检查
+
+在输出前，执行以下检查：
+
+**检查项1：信息完整性**
+- [ ] 所有新增界面都有字段清单
+- [ ] 所有调整界面都有截图/描述
+- [ ] 所有删除界面都有影响分析
+
+**检查项2：流程闭环性**
+- [ ] 新增界面的前序/后续跳转是否合理
+- [ ] 调整后的主流程是否完整
+- [ ] 删除后是否有流程断裂
+
+**检查项3：角色权限覆盖**
+- [ ] 每个新增/调整的界面是否明确了操作角色
+- [ ] 是否有角色失去必要功能
+
+**如果检查不通过**：
+- 输出缺失项清单
+- 要求用户补充信息
+- 补充后重新检查
+
+**如果检查通过**：
+- 输出检查结果：`project/05-validation-passed.md`
+- 进入输出阶段
+
+#### 4.2 最终输出
+
+**输出1：差量PRD文档**
+
+位置：`project/06-output/delta-prd.md`
+
+结构：
+```markdown
+# [产品名称] 迭代PRD - [版本号]
+
+## 1. 迭代概述
+- 迭代目标
+- 涉及角色
+- 调整范围
+
+## 2. 现有流程回顾
+（引用Step 1的主流程）
+
+## 3. 迭代需求
+（引用Step 1的迭代需求）
+
+## 4. 调整清单
+（引用Step 2的调整清单）
+
+## 5. 新增功能详述
+（针对每个Type A模块）
+### 5.1 [模块名]
+- 功能描述
+- 界面字段
+- 前后跳转
+- 用户故事
+
+## 6. 调整功能详述
+（针对每个Type B模块）
+### 6.1 [模块名]
+- 调整说明
+- Before（当前状态）
+- After（调整后状态）
+- 影响范围
+
+## 7. 删除功能说明
+（针对每个Type C模块）
+### 7.1 [模块名]
+- 删除原因
+- 影响分析
+- 数据迁移方案
+
+## 8. 迭代后主流程
+（更新后的完整流程）
+
+## 9. 数据字段变更
+- 新增字段
+- 修改字段
+- 废弃字段
+
+## 10. 回滚预案
+- 回滚触发条件
+- 回滚步骤
+- 数据恢复方案
+```
+
+**输出2：修改后的原型**
+
+位置：`project/06-output/prototype.html`
+
+原型要求：
+1. **新增界面**：完整交互原型
+2. **调整界面**：Before/After对比视图（左右分屏或Tab切换）
+3. **删除界面**：标注"已删除"，说明删除原因
+4. **导航**：提供原型导航菜单，按模块分组
+
+原型技术栈：
+- 使用React + Tailwind
+- 使用tabs或左右分屏展示before/after
+- 调整部分用高亮标注变更区域
+- 支持点击跳转模拟真实流程
+
+**使用 `present_files` 同时呈现差量PRD和原型。**
+
+---
+
+## Cross-cutting rules
+
+1. **强制卡点**：每步产物必须用 `present_files` 呈现并等用户确认
+2. **截图优先**：Type B调整界面，必须要求截图/原型，否则无法精准定位
+3. **不编造**：信息不足时用 `[TODO: 需要用户补充XXX]` 占位
+4. **闭环检查**：Step 4必须检查流程完整性，发现断裂必须打回
+5. **before/after必须对比**：调整类界面的原型必须有清晰的对比展示
+
+## File layout (under `project/`)
+
+```
+project/
+├── 00-input/
+│   └── baseline.md                    # Step 1收集的基础信息
+├── 01-adjustment-list.md              # Step 2的调整清单
+├── 02-add/                            # Step 3 新增界面材料
+│   ├── {模块名}.md
+│   └── screenshots/
+├── 03-modify/                         # Step 3 调整界面材料
+│   ├── {模块名}.md
+│   └── screenshots/
+├── 04-delete/                         # Step 3 删除影响分析
+│   └── {模块名}-impact.md
+├── 05-validation-passed.md            # Step 4 检查结果
+└── 06-output/
+    ├── delta-prd.md                   # 差量PRD
+    └── prototype.html                 # 修改后原型
+```
+
+## End
+
+"✅ 迭代设计完成（含差量PRD + 修改后原型）。请走灰度发布流程或交付工程实施。"

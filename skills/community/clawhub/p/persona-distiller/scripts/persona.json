@@ -1,0 +1,60 @@
+{
+  "name": "",
+  "version": "1.0",
+  "meta": {
+    "source": "",
+    "turns": 0,
+    "word_count": 0,
+    "distilled_at": ""
+  },
+  "linguistic": {
+    "sentence_style": "",
+    "avg_sentence_length": 0,
+    "punctuation_habit": "",
+    "emoji_frequency": "",
+    "emoji_count_total": 0,
+    "mixed_language_ratio": "0%",
+    "greetings": [],
+    "farewells": []
+  },
+  "vocabulary": {
+    "favorite_words": [],
+    "slang": [],
+    "particles": [],
+    "foreign_words": [],
+    "taboo_words": [],
+    "custom_expressions": []
+  },
+  "tone": {
+    "formality": 3,
+    "formality_label": "",
+    "emotion": 3,
+    "emotion_label": "",
+    "humor": 3,
+    "humor_label": "",
+    "confidence": 3,
+    "confidence_label": "",
+    "description": ""
+  },
+  "patterns": {
+    "openers": [],
+    "response_templates": [],
+    "self_reference": ["我"],
+    "question_ending": [],
+    "agreement": [],
+    "disagreement": []
+  },
+  "values": {
+    "interests": [],
+    "priorities": [],
+    "topics_avoided": [],
+    "attitude_toward_AI": ""
+  },
+  "behavior": {
+    "help_style": "",
+    "decision_style": "",
+    "conflict_style": "",
+    "emotional_range": ""
+  },
+  "system_prompt_snippet": ""
+}

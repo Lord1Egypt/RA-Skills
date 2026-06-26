@@ -1,0 +1,26 @@
+{
+  "posts": [
+    {
+      "content": "Summer sale! 25% off all plans this month. Use code SUMMER25 at checkout.",
+      "mediaItems": [
+        {
+          "key": "image/YOUR_UPLOAD_KEY.jpg",
+          "type": "IMAGE",
+          "sortOrder": 0
+        }
+      ],
+      "scheduledAt": "2026-05-30T09:00:00.000Z",
+      "socialMediaId": "YOUR_GBP_ACCOUNT_ID"
+    }
+  ],
+  "controls": {
+    "gbpLocationId": "accounts/109049740544589765860/locations/4875357571247123933",
+    "gbpTopicType": "OFFER",
+    "gbpEventTitle": "Summer Sale",
+    "gbpEventStartDate": "2026-06-01T00:00:00.000Z",
+    "gbpEventEndDate": "2026-06-30T23:59:00.000Z",
+    "gbpOfferCouponCode": "SUMMER25",
+    "gbpOfferRedeemUrl": "https://example.com/redeem",
+    "gbpOfferTerms": "25% off all plans. Online only. Cannot be combined with other offers."
+  }
+}

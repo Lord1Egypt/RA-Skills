@@ -1,35 +1,37 @@
----
-name: "Pipeworx sunrisesunset"
-description: "Provides precise sunrise, sunset, dawn, dusk, solar noon, golden hour, and day length times for any location and date worldwide."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-sunrisesunset"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-sunrisesunset"
----
+# Sunrise & Sunset
 
-# Pipeworx sunrisesunset
+When does the sun rise in Tokyo? What time is golden hour in Reykjavik on the summer solstice?
 
-> Provides precise sunrise, sunset, dawn, dusk, solar noon, golden hour, and day length times for any location and date worldwide.
+This pack returns precise sunrise, sunset, dawn, dusk, solar noon, golden hour, first light, last light, and day length for any location on Earth.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-sunrisesunset`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-sunrisesunset](https://clawhub.ai/skills/pipeworx-sunrisesunset)
+## Two tools
 
-## Overview
+**get_times** -- Today's sun times for a latitude/longitude.
 
+**get_times_date** -- Sun times for a specific date at a latitude/longitude.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Example: sunrise in New York today
+
 ```bash
-hermes skills install clawhub/pipeworx-sunrisesunset
+curl -X POST https://gateway.pipeworx.io/sunrisesunset/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_times","arguments":{"lat":40.7128,"lng":-74.006}}}'
+```
+
+## Example: summer solstice in Reykjavik
+
+```bash
+curl -X POST https://gateway.pipeworx.io/sunrisesunset/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_times_date","arguments":{"lat":64.1466,"lng":-21.9426,"date":"2025-06-21"}}}'
+```
+
+```json
+{
+  "mcpServers": {
+    "sunrisesunset": {
+      "url": "https://gateway.pipeworx.io/sunrisesunset/mcp"
+    }
+  }
+}
 ```

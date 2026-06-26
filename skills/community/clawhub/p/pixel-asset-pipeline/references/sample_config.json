@@ -1,0 +1,57 @@
+{
+  "output_base": "./game_assets",
+  "backend": "seedream",
+  "default_size": 48,
+  "default_bg_color": "auto",
+  "assets": [
+    {
+      "name": "slime",
+      "category": "enemies",
+      "prompt": "16-bit pixel art sprite sheet, green slime monster idle animation, top-down RPG, 4 frames, white background, clean outline, no shading",
+      "cols": 4,
+      "target_size": 48
+    },
+    {
+      "name": "bat",
+      "category": "enemies",
+      "prompt": "16-bit pixel art sprite sheet, blue bat flying animation, top-down roguelike, 4 frames, white background",
+      "cols": 4,
+      "target_size": 48
+    },
+    {
+      "name": "skeleton",
+      "category": "enemies",
+      "prompt": "16-bit pixel art sprite sheet, skeleton warrior walk cycle, top-down RPG, 4 frames, white background",
+      "cols": 4,
+      "target_size": 48
+    },
+    {
+      "name": "sword",
+      "category": "weapons",
+      "prompt": "pixel art, silver sword slash effect sprite sheet, 3 frames, white background, game asset",
+      "cols": 3,
+      "target_size": 32
+    },
+    {
+      "name": "fire_potion",
+      "category": "items",
+      "prompt": "pixel art icon, red fire potion bottle, 16x16, white background, game item, clean pixel art",
+      "cols": 1,
+      "target_size": 32
+    },
+    {
+      "name": "grass_tile",
+      "category": "tiles",
+      "prompt": "pixel art tileset, grass terrain with flowers, top-down RPG, 4 tile variations, white background, seamless",
+      "cols": 4,
+      "target_size": 32
+    },
+    {
+      "name": "chest",
+      "category": "items",
+      "prompt": "pixel art sprite sheet, wooden treasure chest open animation, top-down, 3 frames, white background",
+      "cols": 3,
+      "target_size": 48
+    }
+  ]
+}

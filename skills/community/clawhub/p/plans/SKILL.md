@@ -1,35 +1,60 @@
 ---
-name: "Plans & Todos"
-description: "管理长期规划与短期待办事项。当用户提到目标、任务、计划、路线图，或需要将复杂目标拆解为存储在 memory/plans-todos.md 中的可执行项时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/plans"
-sourceUrl: "https://clawhub.ai/skills/plans"
+name: plans-todos
+description: 管理长期规划与短期待办事项。当用户提到目标、任务、计划、路线图，或需要将复杂目标拆解为存储在 memory/plans-todos.md 中的可执行项时使用。
+version: 1.0.0
 ---
 
-# Plans & Todos
+# Plans & Todos 助手
 
-> 管理长期规划与短期待办事项。当用户提到目标、任务、计划、路线图，或需要将复杂目标拆解为存储在 memory/plans-todos.md 中的可执行项时使用。
+本技能通过维护 `~/.openclaw/workspace/memory/plans-todos.md` 文件，帮助用户管理目标拆解、进度追踪和待办清单。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/plans`
-- **Source URL:** [https://clawhub.ai/skills/plans](https://clawhub.ai/skills/plans)
+## 核心能力
 
-## Overview
+### 1. 目标拆解 (Goal Decomposition)
+当用户提出一个宽泛的目标（如“学习 Python”）时：
+- **操作**：将其记录为一个 **Plan**。
+- **拆解**：主动将其分解为至少 3-5 个具体的 **Todos**。
+- **格式**：每个 Plan 必须包含描述、创建日期和初始任务列表。
 
+### 2. 状态管理
+- **标记完成**：将 `[ ]` 更新为 `[x]`，并可选添加 `(完成日期: YYYY-MM-DD)`。
+- **动态更新**：当用户在对话中提到“完成了某事”时，自动检索并更新对应的待办事项。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/plans
+### 3. 视图查询
+- **全量列表**：读取存储文件，提取所有“进行中”的 Plan 及其挂载的待办事项。
+- **分类检索**：支持按 Plan 名称或日期筛选任务。
+
+## 存储规范
+
+始终保持 `~/.openclaw/workspace/memory/plans-todos.md` 如下结构：
+
+```markdown
+# Plans & Todos 归档
+
+## [Plan 名称]
+- **描述**: [简短描述]
+- **创建日期**: YYYY-MM-DD
+- **当前状态**: [进行中 / 已完成 / 搁置]
+
+### 待办清单
+- [ ] 任务 1 (预计日期: MM-DD)
+- [x] 任务 2 (完成日期: YYYY-MM-DD)
 ```
+
+## 执行指南
+
+1. **先读后写**：在任何增删改操作前，必须先使用 `read_file` 读取当前内容，以防覆盖历史数据或产生重复 ID。
+2. **主动性**：如果用户提到的新意图看起来像是一个长期项目，主动询问：“需要我把这个加入你的 Plans 吗？”
+3. **精准匹配**：在标记任务完成时，需通过上下文确保匹配到正确的任务描述。
+4. **目录检查**：如果 `~/.openclaw/workspace/memory/` 目录不存在，请先创建。
+
+## 常用触发语例
+- “帮我规划一下如何准备下周的面试”
+- “把‘买牛奶’加到我的待办里”
+- “列出我目前正在跟进的所有计划”
+- “刚才那个任务我做完了”
+- “帮我拆解一下制作个人博客的目标”
+
+## 注意事项
+- 保护隐私：不要在 Plans 中记录敏感密码或密钥。
+- 保持整洁：定期建议用户清理或归档“已完成”超过一个月的 Plan。

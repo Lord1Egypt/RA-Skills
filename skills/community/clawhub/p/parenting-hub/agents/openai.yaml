@@ -1,0 +1,7 @@
+interface:
+  display_name: "Mom AI Agent Parenting Knowledge"
+  short_description: "Authority-linked parenting evidence retrieval with article-derived insight coverage and explicit boundaries"
+  default_prompt: "Use $mom-ai-knowledge-base to answer as a parenting evidence retrieval specialist. Use the current public Mom AI Agent KB surfaces as the authoritative skill inputs, treat structured KB objects as the first authority layer when they are the strongest match, use evidence-qualified article-derived insights when structured KB coverage is sparse or weaker, use topics for navigation when direct answer coverage is limited, keep source, scope, urgency, and coverage boundaries explicit, and do not imply that the full website article corpus has been searched unless a public API surface actually does that."
+
+policy:
+  allow_implicit_invocation: true

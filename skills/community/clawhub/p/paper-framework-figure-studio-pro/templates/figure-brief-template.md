@@ -1,0 +1,32 @@
+# Figure Brief Template
+
+- Figure thesis:
+- Paper slot:
+- Audience:
+- Diagram labels:
+- Primary production subtype:
+- Reader 10-second effect:
+- Reader 60-second understanding:
+- Layout skeleton:
+- Panel order:
+- Required modules/entities/evidence:
+- Exact labels:
+- Sample-image transfer rules:
+  - Image 1 preferred attributes:
+  - Image 2 preferred attributes:
+  - Image 3 preferred attributes:
+- Style family:
+- Color semantics:
+- Text candidate count: 6 by default, allowed 4-6
+- Candidate-board image count: 6 by default, allowed 4-6
+- Candidate-board varied axis:
+- Candidate-board fixed elements:
+- Candidate comparison focus:
+- Mandatory next visual action: after text candidates, set up and generate 6 candidate images or schematic candidates unless the user explicitly skips image candidates
+- Rendering route:
+  - ChatGPT web: Create image through ChatGPT Images 2.0
+  - Codex: `$imagegen` first
+  - Fallback: ChatGPT Images 2.0 API or another approved image-generation API
+- Response boundary: if this brief is shown in a text reply, stop before image generation
+- Negative constraints:
+- What the user should compare:

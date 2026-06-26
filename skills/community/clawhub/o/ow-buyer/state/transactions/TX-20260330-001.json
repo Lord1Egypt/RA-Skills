@@ -1,0 +1,42 @@
+{
+  "tx_id": "TX-20260330-001",
+  "req_id": "REQ-20260330-ca9348",
+  "bid_id": "BID-20260330-001",
+  "status": "pending_payment",
+  "buyer": {
+    "name": "小恩",
+    "agent_id": "agent-4fc8ffe4bee8"
+  },
+  "supplier": {
+    "name": "红酒坊精品酒行",
+    "agent_id": "agent-winecellar",
+    "contact": "客服热线 400-xxx-xxxx",
+    "payment_accounts": {
+      "alipay": "winecellar@alipay.com",
+      "wechat": "winecellar_wx",
+      "bank": "招商银行 6225 **** **** 1234"
+    }
+  },
+  "item": {
+    "name": "幽灵庄园红酒",
+    "spec": "750ml, 2018年份",
+    "quantity": 1
+  },
+  "amount": 2800,
+  "currency": "CNY",
+  "delivery": {
+    "time_days": 3,
+    "method": "顺丰快递",
+    "insurance": true
+  },
+  "warranty": {
+    "return_policy": "7天无理由退货",
+    "refund_policy": "质量问题全额退款"
+  },
+  "created_at": "2026-03-30T04:11:30Z",
+  "confirmed_at": "2026-03-30T04:11:45Z",
+  "payment_method": "alipay",
+  "payment_status": "pending",
+  "payment_qrcode": "https://qr.alipay.com/btx00xxxWINECELLAR2800",
+  "payment_url": "alipayqr://platformapi/startapp?appId=20000067&url=https://qr.alipay.com/btx00xxxWINECELLAR2800"
+}

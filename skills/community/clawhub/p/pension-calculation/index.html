@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>养老金计算器 - 纲目财学</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(180deg, #f5f5f5 0%, #e8e8e8 100%);
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        .back-btn, .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .header-title { font-size: 18px; font-weight: 600; color: #333; }
+        .header-actions { display: flex; gap: 10px; }
+        .main-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .main-title { font-size: 24px; font-weight: 700; color: #333; }
+        .retirement-age-selector {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 16px;
+            background: white;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .overview-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .overview-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .overview-item { flex: 1; }
+        .overview-label { font-size: 13px; color: #999; margin-bottom: 8px; }
+        .overview-value { font-size: 32px; font-weight: 700; color: #333; }
+        .overview-value .unit { font-size: 14px; font-weight: 400; color: #666; margin-left: 4px; }
+        .view-detail {
+            font-size: 13px;
+            color: #999;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        .current-value { text-align: right; }
+        .current-value .overview-value { font-size: 28px; }
+        .inflation-info {
+            font-size: 13px;
+            color: #999;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+        }
+        .lifestyle-indicator {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+        .lifestyle-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 12px;
+            color: #999;
+        }
+        .lifestyle-bar {
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        .lifestyle-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #4a90a4 0%, #6b5b95 50%, #c9a66b 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .lifestyle-marker {
+            position: absolute;
+            top: -4px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border: 3px solid #4a90a4;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            transition: left 0.3s ease;
+        }
+        .lifestyle-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        .lifestyle-current { color: #4a90a4; font-weight: 600; }
+        .replacement-rate {
+            font-size: 13px;
+            color: #666;
+            margin-top: 8px;
+        }
+        .warning-text {
+            font-size: 13px;
+            color: #e74c3c;
+            margin-top: 10px;
+            padding: 10px;
+            background: #fdf2f2;
+            border-radius: 8px;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        .feature-icon {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        .feature-icon.blue { background: #e8f4f8; }
+        .feature-icon.cyan { background: #e0f7fa; }
+        .feature-icon.gold { background: #fcf4e6; }
+        .feature-icon.green { background: #e8f5e9; }
+        .feature-title { font-size: 15px; font-weight: 600; color: #333; margin-bottom: 12px; }
+        .feature-item { margin-bottom: 8px; }
+        .feature-item-label { font-size: 12px; color: #999; margin-bottom: 2px; }
+        .feature-item-value { font-size: 16px; font-weight: 600; color: #333; }
+        .feature-item-value.small { font-size: 14px; font-weight: 400; color: #666; }
+        .feature-update { font-size: 11px; color: #ccc; margin-top: 8px; }
+        .feature-action {
+            font-size: 13px;
+            color: #c9a66b;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .data-actions {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-align: center;
+        }
+        .btn-primary { background: #333; color: white; }
+        .btn-secondary { background: white; color: #333; border: 1px solid #e0e0e0; }
+        .btn-cyan { background: #4a90a4; color: white; }
+        .btn-gold { background: #c9a66b; color: white; }
+        
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 480px;
+            max-height: 90vh;
+            border-radius: 24px 24px 0 0;
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .modal-title { font-size: 18px; font-weight: 600; color: #333; }
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            max-height: calc(90vh - 80px);
+        }
+        .form-group { margin-bottom: 24px; }
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .form-hint {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+        }
+        .input-wrapper { position: relative; }
+        .form-input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.2s;
+            background: white;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        /* 数字输入框样式优化 */
+        input[type="number"].form-input {
+            padding-right: 50px;
+            font-weight: 500;
+            color: #333;
+        }
+        /* 移除数字输入框的上下箭头（Webkit浏览器） */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        /* 移除数字输入框的上下箭头（Firefox） */
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        /* 数字输入框容器 */
+        .number-input-wrapper {
+            position: relative;
+        }
+        /* 数字控制按钮 */
+        .number-controls {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .number-btn {
+            width: 24px;
+            height: 20px;
+            border: 1px solid #e0e0e0;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+            transition: all 0.2s;
+        }
+        .number-btn:hover {
+            background: #f5f5f5;
+            border-color: #667eea;
+            color: #667eea;
+        }
+        .number-btn:active {
+            background: #667eea;
+            color: white;
+        }
+        .input-unit {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            color: #999;
+        }
+        .age-selector {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .age-option {
+            flex: 1;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .age-option.active {
+            border-color: #6b5b95;
+            background: #f8f7fc;
+        }
+        .age-option-label { font-size: 12px; color: #999; margin-bottom: 4px; }
+        .age-option-value { font-size: 18px; font-weight: 600; color: #333; }
+        .age-option.active .age-option-value { color: #6b5b95; }
+        .slider-container { margin-top: 16px; }
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+        }
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #e0e0e0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #c9a66b;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        .info-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        .info-card-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .info-card-text {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* 明细模态框样式 */
+        .detail-section {
+            padding-bottom: 20px;
+        }
+        .detail-header {
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .detail-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        .detail-subtitle {
+            font-size: 12px;
+            color: #999;
+        }
+        .detail-item {
+            margin-bottom: 20px;
+            padding: 16px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        .detail-item-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .detail-item-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        .detail-item-icon.blue { background: #e8f4f8; }
+        .detail-item-icon.purple { background: #f0e6ff; }
+        .detail-item-icon.cyan { background: #e0f7fa; }
+        .detail-item-icon.gold { background: #fcf4e6; }
+        .detail-item-icon.green { background: #e8f5e9; }
+        .detail-item-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+        }
+        .detail-item-content {
+            padding-left: 42px;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-row.total {
+            padding-top: 12px;
+            margin-top: 8px;
+            border-top: 2px solid #e0e0e0;
+            border-bottom: none;
+            font-weight: 600;
+        }
+        .detail-row.total .detail-value {
+            color: #4a90a4;
+            font-size: 16px;
+        }
+        .detail-label {
+            font-size: 14px;
+            color: #666;
+        }
+        .detail-value {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+        .detail-info {
+            font-size: 12px;
+            color: #999;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .detail-summary {
+            margin-top: 24px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            color: white;
+        }
+        .detail-summary-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+        .detail-summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+        .detail-summary-value {
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        /* 免责声明样式 */
+        .disclaimer {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+            border-left: 4px solid #999;
+        }
+        .disclaimer-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .disclaimer-content {
+            font-size: 12px;
+            color: #999;
+            line-height: 1.8;
+        }
+        .disclaimer-content p {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-btn">←</button>
+            <div class="header-title">纲目财学 - 养老金计算器</div>
+            <div class="header-actions">
+                <button class="icon-btn" onclick="exportData()">↓</button>
+                <button class="icon-btn" onclick="importData()">↑</button>
+            </div>
+        </div>
+
+        <div class="main-header">
+            <h1 class="main-title">我的退休生活</h1>
+            <div class="retirement-age-selector" onclick="openModal('retirementModal')">
+                <span id="displayRetirementAge">63</span>岁退休
+                <span>▼</span>
+            </div>
+        </div>
+
+        <div class="data-actions">
+            <button class="btn btn-secondary" onclick="exportData()">导出数据</button>
+            <button class="btn btn-secondary" onclick="importData()">导入数据</button>
+            <button class="btn btn-primary" onclick="calculateAndDisplay()">重新计算</button>
+            <button class="btn btn-cyan" onclick="saveDataToServer()">💾 保存数据</button>
+        </div>
+
+        <div class="overview-card">
+            <div class="overview-header">
+                <div class="overview-item">
+                    <div class="overview-label">退休后预估可领取的养老金</div>
+                    <div class="overview-value">
+                        <span id="totalMonthly">0</span>
+                        <span class="unit">元/月</span>
+                    </div>
+                    <div class="view-detail" onclick="openModal('detailModal')">
+                        查看明细 →
+                    </div>
+                </div>
+                <div class="overview-item current-value">
+                    <div class="overview-label">相当于现在的</div>
+                    <div class="overview-value">
+                        <span id="currentValue">0</span>
+                        <span class="unit">元/月</span>
+                    </div>
+                    <div class="inflation-info">
+                        预期通胀率 <span id="displayInflation">2.5</span>% →
+                    </div>
+                </div>
+            </div>
+
+            <div class="lifestyle-indicator">
+                <div class="lifestyle-labels">
+                    <span>55%</span>
+                    <span>70%</span>
+                </div>
+                <div class="lifestyle-bar">
+                    <div class="lifestyle-progress" id="lifestyleProgress" style="width: 21%"></div>
+                    <div class="lifestyle-marker" id="lifestyleMarker" style="left: 21%"></div>
+                </div>
+                <div class="lifestyle-text">
+                    <span class="lifestyle-current" id="lifestyleText">开支缩减</span>
+                    <span style="color: #6b5b95">平衡</span>
+                    <span style="color: #c9a66b">开支宽裕</span>
+                </div>
+                <div class="replacement-rate">
+                    替代率: <span id="replacementRate">21</span>%
+                </div>
+                <div class="warning-text" id="warningText">
+                    退休后收入显著下降，开支可能受到较大影响。了解更多>>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="feature-card" onclick="openModal('basicPensionModal')">
+                <div class="feature-icon blue">🏛️</div>
+                <div class="feature-title">基本养老</div>
+                <div class="feature-item">
+                    <div class="feature-item-label">个人账户余额</div>
+                    <div class="feature-item-value" id="basicBalance">0 元</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-label">企业年金账户余额</div>
+                    <div class="feature-item-value small" id="enterpriseBalance">0 元</div>
+                </div>
+                <div class="feature-update" id="basicUpdate">更新</div>
+            </div>
+
+            <div class="feature-card" onclick="openModal('personalPensionModal')">
+                <div class="feature-icon cyan">📋</div>
+                <div class="feature-title">个人养老金</div>
+                <div class="feature-item">
+                    <div class="feature-item-label">账户余额</div>
+                    <div class="feature-item-value" id="personalBalance">0 元</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-label">每年存入 <span id="personalAnnual">0</span> 元</div>
+                    <div class="feature-item-value small">存入到 <span id="personalEndAge">63</span> 岁</div>
+                </div>
+                <div class="feature-update" id="personalUpdate">更新</div>
+            </div>
+
+            <div class="feature-card" onclick="openModal('savingsModal')">
+                <div class="feature-icon gold">💰</div>
+                <div class="feature-title">养老储蓄</div>
+                <div class="feature-item">
+                    <div class="feature-item-label">当前储蓄金额</div>
+                    <div class="feature-item-value" id="savingsAmount">0 元</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-label">预期年化收益率</div>
+                    <div class="feature-item-value small" id="savingsReturn">6%</div>
+                </div>
+                <div class="feature-update" id="savingsUpdate">更新</div>
+            </div>
+
+            <div class="feature-card" onclick="openModal('futurePlanModal')">
+                <div class="feature-icon green">🎯</div>
+                <div class="feature-title">未来计划</div>
+                <div class="feature-item">
+                    <div class="feature-item-label">退休前持续存入</div>
+                    <div class="feature-item-value" id="futureDeposit">0 元/年</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-label">预期年化收益率</div>
+                    <div class="feature-item-value small" id="futureReturn">6%</div>
+                </div>
+                <div class="feature-action">
+                    计划进行中 →
+                </div>
+            </div>
+        </div>
+
+        <!-- 免责声明 -->
+        <div class="disclaimer">
+            <div class="disclaimer-title">免责声明</div>
+            <div class="disclaimer-content">
+                <p>1. 本计算器提供的养老金估算结果仅供参考，不构成任何投资或财务建议。</p>
+                <p>2. 计算结果基于用户输入的数据和预设的公式，实际养老金金额以当地社保经办机构核算为准。</p>
+                <p>3. 未来收益率、通胀率等参数为预测值，实际情况可能与预测存在差异。</p>
+                <p>4. 养老金政策可能随国家法规调整而变化，请以最新政策为准。</p>
+                <p>5. 对于因使用本计算器而产生的任何直接或间接损失，纲目财学不承担任何责任。</p>
+                <p>6. 建议在做重大财务决策前咨询专业的财务顾问或社保经办机构。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 退休年龄选择模态框 -->
+    <div class="modal" id="retirementModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">选择退休年龄</div>
+                <button class="modal-close" onclick="closeModal('retirementModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <!-- 性别选择 -->
+                <div class="form-group">
+                    <label class="form-label">性别</label>
+                    <div class="gender-selector" style="display: flex; gap: 12px; margin-bottom: 20px;">
+                        <div class="gender-option" data-gender="male" onclick="selectGender('male')" style="flex: 1; padding: 16px; border: 2px solid #e0e0e0; border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.3s;">
+                            <div style="font-size: 32px; margin-bottom: 8px;">👨</div>
+                            <div style="font-weight: 600;">男性</div>
+                            <div style="font-size: 12px; color: #999; margin-top: 4px;">法定退休年龄 60岁起</div>
+                        </div>
+                        <div class="gender-option" data-gender="female" onclick="selectGender('female')" style="flex: 1; padding: 16px; border: 2px solid #e0e0e0; border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.3s;">
+                            <div style="font-size: 32px; margin-bottom: 8px;">👩</div>
+                            <div style="font-weight: 600;">女性</div>
+                            <div style="font-size: 12px; color: #999; margin-top: 4px;">法定退休年龄 55岁起</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 退休年龄选择 -->
+                <div class="form-group">
+                    <label class="form-label">退休年龄 <span id="displaySelectedAge">60</span>岁</label>
+                    <div class="age-slider-container" style="margin-bottom: 16px;">
+                        <input type="range" class="slider" id="retirementAgeSlider" min="50" max="70" step="1" value="60" oninput="updateRetirementAgeDisplay(this.value)">
+                        <div class="slider-labels" style="display: flex; justify-content: space-between; font-size: 12px; color: #999; margin-top: 8px;">
+                            <span>50岁</span>
+                            <span id="legalRetirementAge">法定60岁</span>
+                            <span>70岁</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 快速选择按钮 -->
+                <div class="quick-age-selector" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px;">
+                    <button class="btn btn-secondary" onclick="setRetirementAge(55)" id="btnAge55" style="display: none;">55岁</button>
+                    <button class="btn btn-secondary" onclick="setRetirementAge(60)">60岁</button>
+                    <button class="btn btn-secondary" onclick="setRetirementAge(63)">63岁</button>
+                    <button class="btn btn-secondary" onclick="setRetirementAge(65)">65岁</button>
+                    <button class="btn btn-secondary" onclick="setRetirementAge(70)">70岁</button>
+                </div>
+                
+                <button class="btn btn-primary" onclick="saveRetirementSettings()">确定</button>
+                <button class="btn btn-secondary" onclick="resetData()" style="margin-top: 12px;">重置所有数据</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 基本养老模态框 -->
+    <div class="modal" id="basicPensionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">基本养老保险</div>
+                <button class="modal-close" onclick="closeModal('basicPensionModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">已缴纳月数</label>
+                    <div class="input-wrapper">
+                        <input type="number" class="form-input" id="inputPaidMonths" value="301">
+                        <span class="input-unit">个月</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">当前个人账户余额</label>
+                    <div class="input-wrapper">
+                        <input type="number" class="form-input" id="inputCurrentBalance" value="384000">
+                        <span class="input-unit">元</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">企业年金账户余额</label>
+                    <div class="input-wrapper">
+                        <input type="number" class="form-input" id="inputEnterpriseBalance" value="0">
+                        <span class="input-unit">元</span>
+                    </div>
+                    <div class="form-hint">如没有企业年金可填0</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">企业年金预期年化收益率 <span id="displayEnterpriseReturn">5</span>%</label>
+                    <div class="slider-container">
+                        <input type="range" class="slider" id="sliderEnterpriseReturn" min="1" max="10" step="0.5" value="5" oninput="updateEnterpriseReturn(this.value)">
+                        <div class="slider-labels">
+                            <span>1%</span>
+                            <span>10%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">月缴费基数</label>
+                    <div class="input-wrapper">
+                        <input type="number" class="form-input" id="inputMonthlyBase" value="12000">
+                        <span class="input-unit">元</span>
+                    </div>
+                    <div class="form-hint">个人缴纳8%进入个人账户</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">当前年龄</label>
+                    <div class="input-wrapper">
+                        <input type="number" class="form-input" id="inputCurrentAge" value="35">
+                        <span class="input-unit">岁</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">当地上年度社平工资</label>
+                    <div class="input-wrapper">
+                        <input type="number" class="form-input" id="inputAvgWage" value="10000">
+                        <span class="input-unit">元</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="saveBasicPension()">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 个人养老金模态框 -->
+    <div class="modal" id="personalPensionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">个人养老金</div>
+                <button class="modal-close" onclick="closeModal('personalPensionModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">当前账户总额</label>
+                    <div class="form-hint">个人养老金账户当前总金额，而非之前存入的本金</div>
+                    <div class="input-wrapper">
+                        <input type="number" class="form-input" id="inputPersonalBalance" value="75000">
+                        <span class="input-unit">元</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">预计未来每年存入</label>
+                    <div class="input-wrapper">
+                        <input type="number" class="form-input" id="inputPersonalAnnual" value="12000">
+                        <span class="input-unit">元</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">预期个人养老金年化收益率 <span id="displayPersonalReturn">6</span>%</label>
+                    <div class="slider-container">
+                        <input type="range" class="slider" id="sliderPersonalReturn" min="1" max="10" step="0.5" value="6" oninput="updatePersonalReturn(this.value)">
+                        <div class="slider-labels">
+                            <span>1%</span>
+                            <span>10%</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-cyan" onclick="savePersonalPension()">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 养老储蓄模态框 -->
+    <div class="modal" id="savingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">养老储蓄</div>
+                <button class="modal-close" onclick="closeModal('savingsModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">当前金额</label>
+                    <div class="input-wrapper">
+                        <input type="number" class="form-input" id="inputSavingsAmount" value="270000">
+                        <span class="input-unit">元</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">预期年化收益率 <span id="displaySavingsReturn">6</span>%</label>
+                    <div class="slider-container">
+                        <input type="range" class="slider" id="sliderSavingsReturn" min="1" max="10" step="0.5" value="6" oninput="updateSavingsReturn(this.value)">
+                        <div class="slider-labels">
+                            <span>1%</span>
+                            <span>10%</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-gold" onclick="saveSavings()">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 未来计划模态框 -->
+    <div class="modal" id="futurePlanModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">未来养老金计划</div>
+                <button class="modal-close" onclick="closeModal('futurePlanModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">退休前持续存入</label>
+                    <div class="input-wrapper">
+                        <input type="number" class="form-input" id="inputFutureAnnual" value="36000">
+                        <span class="input-unit">元/年</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">预期年化收益率 <span id="displayFutureReturn">6</span>%</label>
+                    <div class="slider-container">
+                        <input type="range" class="slider" id="sliderFutureReturn" min="1" max="10" step="0.5" value="6" oninput="updateFutureReturn(this.value)">
+                        <div class="slider-labels">
+                            <span>1%</span>
+                            <span>10%</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="saveFuturePlan()">保存计划</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 明细模态框 -->
+    <div class="modal" id="detailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">养老金明细</div>
+                <button class="modal-close" onclick="closeModal('detailModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div id="detailContent">
+                    <!-- 动态生成明细内容 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载模块 -->
+    <script src="js/pensionData.js"></script>
+    <script src="js/pensionCalculator.js"></script>
+    <script src="js/pensionStorage.js"></script>
+
+    <script>
+        // 全局数据
+        let pensionData = null;
+        let calculationResults = null;
+
+        // 初始化
+        async function init() {
+            // 优先尝试从服务器加载数据
+            const serverData = await loadDataFromServer();
+            if (serverData) {
+                pensionData = PensionDataModel.create(serverData);
+                console.log('✅ 已从服务器加载数据');
+            } else {
+                // 如果服务器没有数据，尝试从 localStorage 加载
+                const savedData = PensionStorage.loadFromLocal();
+                if (savedData) {
+                    pensionData = PensionDataModel.create(savedData);
+                    console.log('✅ 已从本地存储加载数据');
+                } else {
+                    pensionData = PensionDataModel.create();
+                    console.log('✅ 已创建默认数据');
+                }
+            }
+            updateInputValues();
+            calculateAndDisplay();
+        }
+        
+        // 从服务器加载数据
+        async function loadDataFromServer() {
+            try {
+                const response = await fetch('/api/get-data');
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('✅ 从服务器获取数据成功');
+                    return data;
+                } else if (response.status === 404) {
+                    console.log('ℹ️ 服务器上暂无数据');
+                    return null;
+                } else {
+                    console.error('❌ 从服务器获取数据失败:', response.status);
+                    return null;
+                }
+            } catch (error) {
+                console.error('❌ 连接服务器失败:', error.message);
+                return null;
+            }
+        }
+
+        // 更新输入框值
+        function updateInputValues() {
+            document.getElementById('inputPaidMonths').value = pensionData.socialSecurity.paidMonths;
+            document.getElementById('inputCurrentBalance').value = pensionData.socialSecurity.currentBalance;
+            document.getElementById('inputEnterpriseBalance').value = pensionData.enterpriseAnnuity.balance;
+            document.getElementById('sliderEnterpriseReturn').value = pensionData.enterpriseAnnuity.returnRate;
+            document.getElementById('displayEnterpriseReturn').textContent = pensionData.enterpriseAnnuity.returnRate;
+            document.getElementById('inputMonthlyBase').value = pensionData.socialSecurity.monthlyBase;
+            document.getElementById('inputCurrentAge').value = pensionData.profile.currentAge;
+            document.getElementById('inputAvgWage').value = pensionData.socialSecurity.avgWage;
+            document.getElementById('inputPersonalBalance').value = pensionData.personalPension.balance;
+            document.getElementById('inputPersonalAnnual').value = pensionData.personalPension.annualDeposit;
+            document.getElementById('sliderPersonalReturn').value = pensionData.personalPension.returnRate;
+            document.getElementById('displayPersonalReturn').textContent = pensionData.personalPension.returnRate;
+            document.getElementById('inputSavingsAmount').value = pensionData.savings.amount;
+            document.getElementById('sliderSavingsReturn').value = pensionData.savings.returnRate;
+            document.getElementById('displaySavingsReturn').textContent = pensionData.savings.returnRate;
+            document.getElementById('inputFutureAnnual').value = pensionData.futurePlan.annualDeposit;
+            document.getElementById('sliderFutureReturn').value = pensionData.futurePlan.returnRate;
+            document.getElementById('displayFutureReturn').textContent = pensionData.futurePlan.returnRate;
+        }
+
+        // 计算并显示
+        function calculateAndDisplay() {
+            calculationResults = PensionCalculator.calculate(pensionData);
+            updateDisplay();
+            PensionStorage.saveToLocal(pensionData);
+        }
+
+        // 保存数据到服务器（供LLM读取）
+        async function saveDataToServer() {
+            const saveStatus = {
+                server: false,
+                localStorage: false,
+                file: false,
+                errors: []
+            };
+            
+            // 更新版本号和修改时间
+            pensionData.version = PensionDataModel.version;
+            pensionData.meta.lastModified = new Date().toISOString();
+            
+            // 1. 尝试保存到 MCP Server
+            try {
+                const response = await fetch('/api/save-data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(pensionData)
+                });
+                
+                if (response.ok) {
+                    saveStatus.server = true;
+                    console.log('✅ 数据已成功保存到服务器');
+                } else {
+                    saveStatus.errors.push('服务器返回错误：' + response.status);
+                }
+            } catch (error) {
+                console.error('❌ 服务器保存失败:', error);
+                saveStatus.errors.push('服务器连接失败：' + error.message);
+            }
+            
+            // 2. 保存到 localStorage
+            try {
+                PensionStorage.saveToLocal(pensionData);
+                saveStatus.localStorage = true;
+                console.log('✅ 数据已保存到浏览器本地存储');
+            } catch (error) {
+                console.error('❌ localStorage 保存失败:', error);
+                saveStatus.errors.push('本地存储失败：' + error.message);
+            }
+            
+            // 3. 导出数据到 JSON 文件
+            try {
+                exportDataForLLM();
+                saveStatus.file = true;
+                console.log('✅ 数据文件已导出');
+            } catch (error) {
+                console.error('❌ 文件导出失败:', error);
+                saveStatus.errors.push('文件导出失败：' + error.message);
+            }
+            
+            // 显示保存结果
+            showSaveResult(saveStatus);
+        }
+        
+        // 显示保存结果
+        function showSaveResult(status) {
+            let title = '';
+            let icon = '';
+            let details = [];
+            let nextSteps = [];
+            
+            // 判断保存状态
+            if (status.server) {
+                // 服务器保存成功（最佳情况）
+                title = '保存成功！';
+                icon = '✅';
+                details.push('✓ 数据已保存到服务器');
+                details.push('✓ 数据已保存到浏览器本地');
+                details.push('✓ 数据文件已导出');
+                nextSteps.push('请返回对话窗口告诉 AI"已完成"');
+                nextSteps.push('AI 将为您生成养老金分析报告');
+                
+                // 构建提示消息
+                const message = `${icon} ${title}
+
+${details.join('\n')}
+
+下一步操作：
+${nextSteps.map((step, i) => `${i + 1}. ${step}`).join('\n')}`;
+                
+                alert(message);
+            } else {
+                // 服务器保存失败，显示数据复制界面
+                showDataCopyDialog();
+            }
+        }
+        
+        // 显示数据复制对话框
+        function showDataCopyDialog() {
+            // 生成简洁的数据摘要
+            const summary = generateDataSummary();
+            
+            // 创建对话框
+            const dialog = document.createElement('div');
+            dialog.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.7);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                padding: 20px;
+            `;
+            
+            dialog.innerHTML = `
+                <div style="
+                    background: white;
+                    border-radius: 16px;
+                    padding: 24px;
+                    max-width: 500px;
+                    width: 100%;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                ">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <div style="font-size: 48px; margin-bottom: 10px;">📋</div>
+                        <h2 style="margin: 0; color: #333; font-size: 20px;">数据已准备好</h2>
+                        <p style="color: #666; margin: 8px 0 0 0; font-size: 14px;">由于使用静态服务器，请复制下方数据提供给 AI</p>
+                    </div>
+                    
+                    <div style="background: #f5f5f5; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+                        <div style="font-weight: 600; margin-bottom: 12px; color: #333;">📊 数据摘要</div>
+                        <pre id="dataSummary" style="
+                            background: white;
+                            border: 1px solid #ddd;
+                            border-radius: 6px;
+                            padding: 12px;
+                            font-size: 13px;
+                            line-height: 1.6;
+                            color: #333;
+                            white-space: pre-wrap;
+                            word-break: break-all;
+                            max-height: 200px;
+                            overflow-y: auto;
+                            margin: 0;
+                        ">${summary}</pre>
+                    </div>
+                    
+                    <button onclick="copyDataToClipboard()" style="
+                        width: 100%;
+                        padding: 14px;
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white;
+                        border: none;
+                        border-radius: 10px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        margin-bottom: 12px;
+                    ">📋 复制数据</button>
+                    
+                    <button onclick="closeDataDialog()" style="
+                        width: 100%;
+                        padding: 14px;
+                        background: #f5f5f5;
+                        color: #666;
+                        border: none;
+                        border-radius: 10px;
+                        font-size: 16px;
+                        cursor: pointer;
+                    ">关闭</button>
+                    
+                    <div style="margin-top: 16px; padding: 12px; background: #e8f4f8; border-radius: 8px; font-size: 13px; color: #4a90a4;">
+                        <strong>💡 提示：</strong>复制后，请返回对话窗口将数据粘贴给 AI，或直接告诉 AI "我已填写完成"，AI 会为您生成分析报告。
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(dialog);
+            
+            // 保存对话框引用
+            window.dataDialog = dialog;
+            window.dataSummaryText = summary;
+        }
+        
+        // 生成数据摘要
+        function generateDataSummary() {
+            const p = pensionData;
+            return `养老金数据：
+年龄：${p.profile.currentAge}岁，计划${p.profile.retirementAge}岁退休
+社保：已缴${p.socialSecurity.paidMonths}个月，账户余额${p.socialSecurity.currentBalance.toLocaleString()}元，月缴费基数${p.socialSecurity.monthlyBase.toLocaleString()}元
+企业年金：${p.enterpriseAnnuity.balance.toLocaleString()}元
+个人养老金：${p.personalPension.balance.toLocaleString()}元，每年存入${p.personalPension.annualDeposit.toLocaleString()}元
+养老储蓄：${p.savings.amount.toLocaleString()}元
+未来计划：每年存入${p.futurePlan.annualDeposit.toLocaleString()}元`;
+        }
+        
+        // 复制数据到剪贴板
+        function copyDataToClipboard() {
+            const text = window.dataSummaryText;
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                // 使用 Clipboard API
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('✅ 数据已复制到剪贴板！\n\n请返回对话窗口粘贴给 AI。');
+                }).catch(err => {
+                    console.error('复制失败:', err);
+                    fallbackCopy(text);
+                });
+            } else {
+                // 使用备用方案
+                fallbackCopy(text);
+            }
+        }
+        
+        // 备用复制方案
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                alert('✅ 数据已复制到剪贴板！\n\n请返回对话窗口粘贴给 AI。');
+            } catch (err) {
+                console.error('复制失败:', err);
+                alert('❌ 复制失败，请手动选择并复制上方数据。');
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+        
+        // 关闭数据对话框
+        function closeDataDialog() {
+            if (window.dataDialog) {
+                document.body.removeChild(window.dataDialog);
+                window.dataDialog = null;
+            }
+        }
+        
+        // 导出数据给 LLM 使用
+        function exportDataForLLM() {
+            const dataStr = JSON.stringify(pensionData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            // 创建一个隐藏的下载链接
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `pension-data-${new Date().toISOString().slice(0, 10)}.json`;
+            document.body.appendChild(link);
+            
+            // 延迟执行下载，让用户看到提示后再下载
+            setTimeout(() => {
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            }, 100);
+        }
+
+        // 更新显示
+        function updateDisplay() {
+            const { summary, details } = calculationResults;
+            const currentMonth = new Date().toISOString().slice(0, 7).replace('-', '.');
+            
+            document.getElementById('totalMonthly').textContent = summary.totalMonthly.toLocaleString();
+            document.getElementById('currentValue').textContent = summary.currentValue.toLocaleString();
+            document.getElementById('displayRetirementAge').textContent = pensionData.profile.retirementAge;
+            document.getElementById('displayInflation').textContent = pensionData.parameters.inflationRate;
+            document.getElementById('replacementRate').textContent = summary.replacementRate;
+            
+            // 生活水平指示器
+            const lifestyleProgress = Math.min(summary.replacementRate, 100);
+            document.getElementById('lifestyleProgress').style.width = lifestyleProgress + '%';
+            document.getElementById('lifestyleMarker').style.left = lifestyleProgress + '%';
+            
+            let lifestyleText = '开支缩减';
+            let lifestyleColor = '#4a90a4';
+            if (summary.replacementRate >= 70) {
+                lifestyleText = '开支宽裕';
+                lifestyleColor = '#c9a66b';
+            } else if (summary.replacementRate >= 55) {
+                lifestyleText = '平衡';
+                lifestyleColor = '#6b5b95';
+            }
+            document.getElementById('lifestyleText').textContent = lifestyleText;
+            document.getElementById('lifestyleText').style.color = lifestyleColor;
+            document.getElementById('lifestyleMarker').style.borderColor = lifestyleColor;
+            
+            // 警告文字
+            const warningText = document.getElementById('warningText');
+            if (summary.replacementRate < 55) {
+                warningText.style.display = 'block';
+                warningText.textContent = '退休后收入显著下降，开支可能受到较大影响。了解更多>>';
+            } else if (summary.replacementRate >= 70) {
+                warningText.style.display = 'block';
+                warningText.style.color = '#27ae60';
+                warningText.style.background = '#eafaf1';
+                warningText.textContent = '退休后收入充足，可以维持较好的生活品质！';
+            } else {
+                warningText.style.display = 'none';
+            }
+            
+            // 功能卡片
+            document.getElementById('basicBalance').textContent = pensionData.socialSecurity.currentBalance.toLocaleString() + ' 元';
+            document.getElementById('enterpriseBalance').textContent = pensionData.enterpriseAnnuity.balance.toLocaleString() + ' 元';
+            document.getElementById('personalBalance').textContent = pensionData.personalPension.balance.toLocaleString() + ' 元';
+            document.getElementById('personalAnnual').textContent = pensionData.personalPension.annualDeposit.toLocaleString();
+            document.getElementById('personalEndAge').textContent = pensionData.profile.retirementAge;
+            document.getElementById('savingsAmount').textContent = pensionData.savings.amount.toLocaleString() + ' 元';
+            document.getElementById('savingsReturn').textContent = pensionData.savings.returnRate + '%';
+            document.getElementById('futureDeposit').textContent = pensionData.futurePlan.annualDeposit.toLocaleString() + ' 元/年';
+            document.getElementById('futureReturn').textContent = pensionData.futurePlan.returnRate + '%';
+            
+            // 更新日期
+            document.getElementById('basicUpdate').textContent = currentMonth + ' 更新';
+            document.getElementById('personalUpdate').textContent = currentMonth + ' 更新';
+            document.getElementById('savingsUpdate').textContent = currentMonth + ' 更新';
+        }
+
+        // 模态框控制
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // 如果是明细模态框，生成明细内容
+            if (modalId === 'detailModal') {
+                generateDetailContent();
+            }
+        }
+        
+        // 生成明细内容
+        function generateDetailContent() {
+            const { summary, details } = calculationResults;
+            const currentMonth = new Date().toISOString().slice(0, 7).replace('-', '.');
+            
+            const detailHTML = `
+                <div class="detail-section">
+                    <div class="detail-header">
+                        <div class="detail-title">养老金来源明细</div>
+                        <div class="detail-subtitle">计算时间：${currentMonth}</div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-item-header">
+                            <div class="detail-item-icon blue">🏛️</div>
+                            <div class="detail-item-title">基本养老保险</div>
+                        </div>
+                        <div class="detail-item-content">
+                            <div class="detail-row">
+                                <span class="detail-label">个人账户养老金</span>
+                                <span class="detail-value">${Math.round(details.basicPension.personalMonthly).toLocaleString()} 元/月</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">基础养老金（统筹账户）</span>
+                                <span class="detail-value">${Math.round(details.basicPension.poolMonthly).toLocaleString()} 元/月</span>
+                            </div>
+                            <div class="detail-row total">
+                                <span class="detail-label">基本养老金合计</span>
+                                <span class="detail-value">${Math.round(details.basicPension.monthly).toLocaleString()} 元/月</span>
+                            </div>
+                            <div class="detail-info">
+                                个人账户累计：${Math.round(details.basicPension.totalBalance).toLocaleString()} 元，计发月数：${details.basicPension.payoutMonths} 个月
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-item-header">
+                            <div class="detail-item-icon purple">🏢</div>
+                            <div class="detail-item-title">企业年金</div>
+                        </div>
+                        <div class="detail-item-content">
+                            <div class="detail-row">
+                                <span class="detail-label">企业年金月领取</span>
+                                <span class="detail-value">${Math.round(details.enterprisePension.monthly).toLocaleString()} 元/月</span>
+                            </div>
+                            <div class="detail-info">
+                                退休时账户累计：${Math.round(details.enterprisePension.totalBalance).toLocaleString()} 元
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-item-header">
+                            <div class="detail-item-icon cyan">📋</div>
+                            <div class="detail-item-title">个人养老金</div>
+                        </div>
+                        <div class="detail-item-content">
+                            <div class="detail-row">
+                                <span class="detail-label">个人养老金月领取</span>
+                                <span class="detail-value">${Math.round(details.personalPension.monthly).toLocaleString()} 元/月</span>
+                            </div>
+                            <div class="detail-info">
+                                退休时账户累计：${Math.round(details.personalPension.totalBalance).toLocaleString()} 元（已扣除3%税率）
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-item-header">
+                            <div class="detail-item-icon gold">💰</div>
+                            <div class="detail-item-title">养老储蓄</div>
+                        </div>
+                        <div class="detail-item-content">
+                            <div class="detail-row">
+                                <span class="detail-label">养老储蓄月领取</span>
+                                <span class="detail-value">${Math.round(details.savingsPension.monthly).toLocaleString()} 元/月</span>
+                            </div>
+                            <div class="detail-info">
+                                退休时累计：${Math.round(details.savingsPension.totalBalance).toLocaleString()} 元
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-item-header">
+                            <div class="detail-item-icon green">🎯</div>
+                            <div class="detail-item-title">未来计划</div>
+                        </div>
+                        <div class="detail-item-content">
+                            <div class="detail-row">
+                                <span class="detail-label">未来计划月领取</span>
+                                <span class="detail-value">${Math.round(details.futurePension.monthly).toLocaleString()} 元/月</span>
+                            </div>
+                            <div class="detail-info">
+                                退休时累计：${Math.round(details.futurePension.totalBalance).toLocaleString()} 元（本金：${Math.round(details.futurePension.totalContribution).toLocaleString()} 元）
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-summary">
+                        <div class="detail-summary-title">养老金汇总</div>
+                        <div class="detail-summary-row">
+                            <span>退休后月领取总额</span>
+                            <span class="detail-summary-value">${summary.totalMonthly.toLocaleString()} 元/月</span>
+                        </div>
+                        <div class="detail-summary-row">
+                            <span>相当于现在的购买力</span>
+                            <span class="detail-summary-value">${summary.currentValue.toLocaleString()} 元/月</span>
+                        </div>
+                        <div class="detail-summary-row">
+                            <span>养老金替代率</span>
+                            <span class="detail-summary-value">${summary.replacementRate}%</span>
+                        </div>
+                        <div class="detail-summary-row">
+                            <span>距离退休还有</span>
+                            <span class="detail-summary-value">${summary.yearsToRetirement} 年</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('detailContent').innerHTML = detailHTML;
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // 选择性别
+        function selectGender(gender) {
+            pensionData.profile.gender = gender;
+            
+            // 更新UI
+            document.querySelectorAll('.gender-option').forEach(option => {
+                option.style.borderColor = '#e0e0e0';
+                option.style.background = 'white';
+            });
+            document.querySelector(`.gender-option[data-gender="${gender}"]`).style.borderColor = '#667eea';
+            document.querySelector(`.gender-option[data-gender="${gender}"]`).style.background = '#f0f4ff';
+            
+            // 根据性别更新退休年龄选项
+            const legalAge = gender === 'male' ? 60 : 55;
+            document.getElementById('legalRetirementAge').textContent = `法定${legalAge}岁`;
+            document.getElementById('retirementAgeSlider').value = legalAge;
+            updateRetirementAgeDisplay(legalAge);
+            
+            // 显示/隐藏55岁按钮
+            document.getElementById('btnAge55').style.display = gender === 'female' ? 'block' : 'none';
+        }
+        
+        // 更新退休年龄显示
+        function updateRetirementAgeDisplay(age) {
+            document.getElementById('displaySelectedAge').textContent = age;
+            document.getElementById('retirementAgeSlider').value = age;
+        }
+        
+        // 设置退休年龄
+        function setRetirementAge(age) {
+            updateRetirementAgeDisplay(age);
+        }
+        
+        // 保存退休设置
+        function saveRetirementSettings() {
+            const age = parseInt(document.getElementById('retirementAgeSlider').value);
+            pensionData.profile.retirementAge = age;
+            calculateAndDisplay();
+            closeModal('retirementModal');
+        }
+        
+        // 选择退休年龄（旧函数，保留兼容）
+        function selectRetirementAge(age) {
+            pensionData.profile.retirementAge = age;
+            calculateAndDisplay();
+        }
+
+        // 更新滑块显示
+        function updateEnterpriseReturn(value) {
+            document.getElementById('displayEnterpriseReturn').textContent = value;
+        }
+        function updatePersonalReturn(value) {
+            document.getElementById('displayPersonalReturn').textContent = value;
+        }
+        function updateSavingsReturn(value) {
+            document.getElementById('displaySavingsReturn').textContent = value;
+        }
+        function updateFutureReturn(value) {
+            document.getElementById('displayFutureReturn').textContent = value;
+        }
+
+        // 保存基本养老
+        function saveBasicPension() {
+            pensionData.socialSecurity.paidMonths = parseInt(document.getElementById('inputPaidMonths').value) || 0;
+            pensionData.socialSecurity.currentBalance = parseInt(document.getElementById('inputCurrentBalance').value) || 0;
+            pensionData.enterpriseAnnuity.balance = parseInt(document.getElementById('inputEnterpriseBalance').value) || 0;
+            pensionData.enterpriseAnnuity.returnRate = parseFloat(document.getElementById('sliderEnterpriseReturn').value);
+            pensionData.socialSecurity.monthlyBase = parseInt(document.getElementById('inputMonthlyBase').value) || 0;
+            pensionData.profile.currentAge = parseInt(document.getElementById('inputCurrentAge').value) || 35;
+            pensionData.socialSecurity.avgWage = parseInt(document.getElementById('inputAvgWage').value) || 10000;
+            calculateAndDisplay();
+            closeModal('basicPensionModal');
+        }
+
+        // 保存个人养老金
+        function savePersonalPension() {
+            pensionData.personalPension.balance = parseInt(document.getElementById('inputPersonalBalance').value) || 0;
+            pensionData.personalPension.annualDeposit = parseInt(document.getElementById('inputPersonalAnnual').value) || 0;
+            pensionData.personalPension.returnRate = parseFloat(document.getElementById('sliderPersonalReturn').value);
+            calculateAndDisplay();
+            closeModal('personalPensionModal');
+        }
+
+        // 保存养老储蓄
+        function saveSavings() {
+            pensionData.savings.amount = parseInt(document.getElementById('inputSavingsAmount').value) || 0;
+            pensionData.savings.returnRate = parseFloat(document.getElementById('sliderSavingsReturn').value);
+            calculateAndDisplay();
+            closeModal('savingsModal');
+        }
+
+        // 保存未来计划
+        function saveFuturePlan() {
+            pensionData.futurePlan.annualDeposit = parseInt(document.getElementById('inputFutureAnnual').value) || 0;
+            pensionData.futurePlan.returnRate = parseFloat(document.getElementById('sliderFutureReturn').value);
+            calculateAndDisplay();
+            closeModal('futurePlanModal');
+        }
+
+        // 导出数据
+        function exportData() {
+            const filename = `pension-data-${new Date().toISOString().slice(0, 10)}.json`;
+            PensionStorage.exportToFile(pensionData, filename);
+            alert('数据已导出！');
+        }
+
+        // 导入数据
+        function importData() {
+            PensionStorage.createFileInput((error, data) => {
+                if (error) {
+                    alert('导入失败：' + error.message);
+                    return;
+                }
+                const validation = PensionDataModel.validate(data);
+                if (!validation.valid) {
+                    alert('数据验证失败：' + validation.errors.join(', '));
+                    return;
+                }
+                if (data.version !== PensionDataModel.version) {
+                    data = PensionDataModel.migrate(data, data.version);
+                }
+                pensionData = data;
+                updateInputValues();
+                calculateAndDisplay();
+                alert('数据导入成功！');
+            });
+        }
+
+        // 重置数据
+        function resetData() {
+            PensionStorage.removeFromLocal();
+            pensionData = PensionDataModel.create();
+            updateInputValues();
+            calculateAndDisplay();
+            closeModal('retirementModal');
+            alert('数据已重置为默认值');
+        }
+
+        // 点击模态框背景关闭
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal(this.id);
+                }
+            });
+        });
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

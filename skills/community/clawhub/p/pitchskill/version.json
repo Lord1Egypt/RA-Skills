@@ -1,0 +1,66 @@
+{
+  "skill_name": "pitch-skill",
+  "version": "2.2.0",
+  "created": "2025-01-01",
+  "updated": "2026-06-14",
+  "smm_level": 3,
+  "smm_target": 5,
+  "agents": [
+    {"name": "intake", "file": "agents/intake-agent.md", "version": "2.2.0"},
+    {"name": "information", "file": "agents/information-agent.md", "version": "2.2.0"},
+    {"name": "strategy", "file": "agents/strategy-agent.md", "version": "2.2.0"},
+    {"name": "decision", "file": "agents/decision-agent.md", "version": "2.2.0"},
+    {"name": "expression", "file": "agents/expression-agent.md", "version": "2.2.0"},
+    {"name": "delivery", "file": "agents/delivery-agent.md", "version": "2.2.0"}
+  ],
+  "references": [
+    {"name": "strategy-frameworks", "file": "references/strategy-frameworks.md"},
+    {"name": "decision-engine", "file": "references/decision-engine.md"},
+    {"name": "pitch-structure", "file": "references/pitch-structure.md"},
+    {"name": "bilingual-templates", "file": "references/bilingual-templates.md", "conditional": true}
+  ],
+  "registry": "agents/__init__.md",
+  "baselines": {
+    "2.1.0": {
+      "date": "2026-06-12",
+      "evals_total": 10,
+      "trigger_evals_total": 30,
+      "note": "Baseline established at v2.1.0 — metrics to be populated after first eval run"
+    },
+    "2.2.0": {
+      "date": "2026-06-12",
+      "evals_total": 10,
+      "trigger_evals_total": 30,
+      "note": "Self-evolution infrastructure removed (v2.2.0 was over-optimized). Core pipeline unchanged."
+    }
+  },
+  "changelog": [
+    {
+      "version": "2.2.0",
+      "date": "2026-06-14",
+      "changes": [
+        "Removed Self-Evolution Protocol (TLSE Loop 3) from SKILL.md — over-optimized for conversational AI context",
+        "Removed learnings/knowledge-base.json, pattern-library.json, creator-vnext.json — redundant copies of domain knowledge already encoded in agent files",
+        "Removed evolution config from version.json",
+        "Corrected SMM level from 5 to 3 (no production validation data exists)",
+        "Kept regression baseline section (L3.5) as lightweight version-upgrade gate"
+      ]
+    },
+    {
+      "version": "2.1.0",
+      "date": "2026-06-12",
+      "changes": [
+        "Added agents/__init__.md lazy-loading registry",
+        "Added inter-agent handoff protocol with structured summaries",
+        "Added fallback table for all agents",
+        "Strengthened SKILL.md with explicit file loading protocol",
+        "Added version.json and baseline.json",
+        "Added adversarial/edge-case evals",
+        "Added edge-case trigger evals",
+        "Win Rate formula: added multiplicative floor",
+        "Added per-mode cost estimation",
+        "Strengthened Delivery Agent with quality checks"
+      ]
+    }
+  ]
+}

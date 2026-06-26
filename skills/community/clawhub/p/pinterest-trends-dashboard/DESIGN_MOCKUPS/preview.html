@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pinterest Trends Dashboard — Design Mockups</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        pinterest: { DEFAULT: '#E60023', dark: '#AD081B', light: '#FFE0E6' },
+        sidebar: { DEFAULT: '#1A1A2E', light: '#16213E', accent: '#0F3460' },
+        opp: { hot: '#10B981', warm: '#F59E0B', cold: '#EF4444' }
+      }
+    }
+  }
+}
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+.scrollbar-thin::-webkit-scrollbar { width: 6px; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: #4B5563; border-radius: 3px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.fade-in { animation: fadeIn 0.3s ease-in; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.pulse-dot { animation: pulse-dot 2s infinite; }
+.bar-animate { animation: barGrow 0.8s ease-out; transform-origin: left; }
+@keyframes barGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+</style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+// ─── DATA ───────────────────────────────────────────────────────────
+const NICHES = [
+  { id: 'dietary-supplements', name: 'Dietary Supplements', rank: 1, revenue: 450, avgPayout: 150, competition: 9, trend: 'up', pinterestVol: 250000, score: 72, subNiches: [
+    { name: 'Fat Burning', products: ['Mitolyn', 'Leanbiome'], payout: 160, vol: 89000 },
+    { name: 'Blood Sugar', products: ['GlucoTrust', 'Sugar Defender'], payout: 145, vol: 67000 },
+    { name: 'Gut Health', products: ['BioFit', 'Synogut'], payout: 130, vol: 54000 },
+  ], trendTerms: ['weight loss supplements 2026', 'natural fat burner', 'metabolism booster', 'best diet pills', 'keto supplements'] },
+  { id: 'online-education', name: 'Online Education', rank: 2, revenue: 380, avgPayout: 120, competition: 7, trend: 'up', pinterestVol: 310000, score: 85, subNiches: [
+    { name: 'Language Learning', products: ['Rocket Languages', 'Synapse Spanish'], payout: 110, vol: 120000 },
+    { name: 'Music Lessons', products: ['Piano For All', 'Guitar Theory'], payout: 95, vol: 78000 },
+    { name: 'Photography', products: ['Photography Masterclass'], payout: 80, vol: 64000 },
+  ], trendTerms: ['learn from home', 'online courses 2026', 'skill building', 'free tutorials', 'digital learning'] },
+  { id: 'fitness', name: 'Health & Fitness', rank: 3, revenue: 320, avgPayout: 95, competition: 8, trend: 'stable', pinterestVol: 420000, score: 78, subNiches: [
+    { name: 'Home Workouts', products: ['Yoga Burn', 'Old School New Body'], payout: 90, vol: 185000 },
+    { name: 'Strength Training', products: ['Anabolic Running'], payout: 75, vol: 95000 },
+    { name: 'Flexibility', products: ['Hyperbolic Stretching'], payout: 65, vol: 72000 },
+  ], trendTerms: ['home workout plan', 'fitness motivation', 'exercise for beginners', 'yoga at home', 'weight loss tips'] },
+  { id: 'self-help', name: 'Self-Help & Spirituality', rank: 4, revenue: 280, avgPayout: 85, competition: 6, trend: 'up', pinterestVol: 195000, score: 91, subNiches: [
+    { name: 'Manifestation', products: ['Manifestation Magic', 'Soul Manifestation'], payout: 95, vol: 88000 },
+    { name: 'Meditation', products: ['Zen12', 'BrainTap'], payout: 70, vol: 65000 },
+    { name: 'Numerology', products: ['Numerologist.com'], payout: 90, vol: 42000 },
+  ], trendTerms: ['manifestation tips', 'daily affirmations', 'spiritual awakening', 'self improvement', 'mindfulness practice'] },
+  { id: 'wealth', name: 'Wealth & Finance', rank: 5, revenue: 260, avgPayout: 200, competition: 8, trend: 'stable', pinterestVol: 180000, score: 74, subNiches: [
+    { name: 'Crypto/Trading', products: ['Bitcoin Profit Secrets'], payout: 250, vol: 72000 },
+    { name: 'Passive Income', products: ['Perpetual Income 365'], payout: 180, vol: 58000 },
+    { name: 'Budgeting', products: ['The Lost Ways'], payout: 120, vol: 50000 },
+  ], trendTerms: ['passive income ideas', 'make money online', 'investing for beginners', 'side hustle 2026', 'financial freedom'] },
+  { id: 'relationships', name: 'Relationships & Dating', rank: 6, revenue: 220, avgPayout: 110, competition: 5, trend: 'up', pinterestVol: 165000, score: 88, subNiches: [
+    { name: 'Texting Guides', products: ['Text Chemistry', 'Obsession Method'], payout: 120, vol: 55000 },
+    { name: 'Marriage Help', products: ['Mend the Marriage', 'Save My Marriage'], payout: 95, vol: 48000 },
+  ], trendTerms: ['relationship advice', 'dating tips', 'love quotes', 'how to attract', 'marriage counseling'] },
+  { id: 'beauty', name: 'Beauty & Skincare', rank: 7, revenue: 190, avgPayout: 80, competition: 7, trend: 'up', pinterestVol: 380000, score: 82, subNiches: [
+    { name: 'Anti-Aging', products: ['Derma Prime Plus', 'Kollagen Intensiv'], payout: 90, vol: 145000 },
+    { name: 'Acne Solutions', products: ['Exposed Skin Care'], payout: 70, vol: 98000 },
+  ], trendTerms: ['skincare routine', 'anti aging tips', 'natural beauty', 'glowing skin', 'beauty hacks'] },
+  { id: 'survival', name: 'Survival & Preparedness', rank: 8, revenue: 170, avgPayout: 130, competition: 4, trend: 'up', pinterestVol: 95000, score: 94, subNiches: [
+    { name: 'Food Storage', products: ['The Lost SuperFoods', 'Alive After The Fall'], payout: 140, vol: 42000 },
+    { name: 'Self-Sufficiency', products: ['Power Efficiency Guide'], payout: 120, vol: 33000 },
+  ], trendTerms: ['emergency preparedness', 'survival skills', 'off grid living', 'homesteading', 'food preservation'] },
+  { id: 'pets', name: 'Pet Care', rank: 9, revenue: 140, avgPayout: 65, competition: 3, trend: 'stable', pinterestVol: 290000, score: 89, subNiches: [
+    { name: 'Dog Training', products: ['Brain Training for Dogs', 'Doggy Dan'], payout: 70, vol: 135000 },
+    { name: 'Pet Health', products: ['Ultimate Pet Nutrition'], payout: 60, vol: 88000 },
+  ], trendTerms: ['dog training tips', 'puppy care', 'pet health', 'dog food recipes', 'cat behavior'] },
+  { id: 'green-energy', name: 'Green Energy & DIY', rank: 10, revenue: 110, avgPayout: 140, competition: 3, trend: 'up', pinterestVol: 120000, score: 96, subNiches: [
+    { name: 'Solar Power', products: ['Backyard Revolution', 'Smart Solar Box'], payout: 150, vol: 52000 },
+    { name: 'Generator Plans', products: ['Nomad Power System'], payout: 130, vol: 38000 },
+  ], trendTerms: ['solar panel diy', 'green energy home', 'reduce electric bill', 'off grid solar', 'diy generator'] },
+];
+
+const formatRevenue = (m) => `$${m}M`;
+const formatVol = (v) => v >= 1000 ? `${(v/1000).toFixed(0)}K` : v;
+const trendIcon = (t) => t === 'up' ? '↑' : t === 'down' ? '↓' : '→';
+const trendColor = (t) => t === 'up' ? 'text-opp-hot' : t === 'down' ? 'text-opp-cold' : 'text-opp-warm';
+const compColor = (c) => c <= 4 ? 'bg-opp-hot' : c <= 7 ? 'bg-opp-warm' : 'bg-opp-cold';
+const compLabel = (c) => c <= 4 ? 'Low' : c <= 7 ? 'Medium' : 'High';
+const scoreColor = (s) => s >= 90 ? 'text-opp-hot' : s >= 75 ? 'text-opp-warm' : 'text-gray-500';
+
+// ─── ICONS (inline SVG) ─────────────────────────────────────────────
+const Icons = {
+  search: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>,
+  filter: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>,
+  download: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>,
+  back: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7"/></svg>,
+  ext: <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>,
+  fire: <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clipRule="evenodd"/></svg>,
+  gem: <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M3.196 12.87l-.825.483a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.758 0l7.25-4.25a.75.75 0 000-1.294l-.825-.484-5.666 3.322a2.25 2.25 0 01-2.276 0L3.196 12.87z"/><path d="M3.196 8.87l-.825.483a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.758 0l7.25-4.25a.75.75 0 000-1.294l-.825-.484-5.666 3.322a2.25 2.25 0 01-2.276 0L3.196 8.87z"/><path d="M10.38 1.103a.75.75 0 00-.76 0l-7.25 4.25a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.76 0l7.25-4.25a.75.75 0 000-1.294l-7.25-4.25z"/></svg>,
+  chart: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>,
+  pinterest: <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0a12 12 0 00-4.373 23.178c-.07-.633-.134-1.606.028-2.298.146-.625.943-3.998.943-3.998s-.24-.482-.24-1.192c0-1.118.648-1.953 1.455-1.953.687 0 1.018.515 1.018 1.133 0 .69-.44 1.722-.667 2.678-.19.803.402 1.457 1.193 1.457 1.432 0 2.532-1.51 2.532-3.688 0-1.929-1.386-3.276-3.366-3.276-2.293 0-3.64 1.72-3.64 3.498 0 .693.267 1.435.6 1.838a.24.24 0 01.056.23c-.061.255-.197.803-.224.916-.036.148-.116.18-.268.108-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.835-4.84 5.287-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.152 4.976-.81 0-1.573-.422-1.834-.92l-.498 1.902c-.18.695-.668 1.566-.994 2.097A12 12 0 1012 0z"/></svg>,
+  close: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/></svg>,
+  menu: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"/></svg>,
+  star: <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>,
+  check: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/></svg>,
+};
+
+// ─── SCREEN SELECTOR ────────────────────────────────────────────────
+const ScreenTab = ({ label, active, onClick, icon }) => (
+  <button onClick={onClick} className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-all ${active ? 'bg-pinterest text-white shadow-lg shadow-pinterest/25' : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900 border border-gray-200'}`}>
+    {icon} {label}
+  </button>
+);
+
+// ─── KPI CARD ───────────────────────────────────────────────────────
+const KpiCard = ({ label, value, sub, icon, color = 'pinterest' }) => (
+  <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+    <div className="flex items-center justify-between mb-3">
+      <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">{label}</span>
+      <span className={`p-2 rounded-lg bg-${color}/10 text-${color}`}>{icon}</span>
+    </div>
+    <div className="text-2xl font-extrabold text-gray-900">{value}</div>
+    {sub && <div className="text-xs text-gray-500 mt-1">{sub}</div>}
+  </div>
+);
+
+// ─── COMPETITION BADGE ──────────────────────────────────────────────
+const CompBadge = ({ score }) => (
+  <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold text-white ${compColor(score)}`}>
+    {score}/10 {compLabel(score)}
+  </span>
+);
+
+// ─── SIDEBAR ────────────────────────────────────────────────────────
+const Sidebar = ({ niches, selected, onSelect, visible, onClose }) => (
+  <aside className={`${visible ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 fixed lg:relative z-30 w-64 h-full bg-sidebar text-white flex flex-col transition-transform duration-300`}>
+    <div className="p-5 border-b border-white/10">
+      <div className="flex items-center gap-3">
+        <div className="p-2 bg-pinterest rounded-lg">{Icons.pinterest}</div>
+        <div>
+          <div className="font-bold text-sm">Trends Dashboard</div>
+          <div className="text-xs text-gray-400">ClickBank × Pinterest</div>
+        </div>
+        <button onClick={onClose} className="lg:hidden ml-auto p-1 hover:bg-white/10 rounded">{Icons.close}</button>
+      </div>
+    </div>
+    <nav className="flex-1 overflow-y-auto scrollbar-thin p-3 space-y-1">
+      <div className="px-3 py-2 text-[10px] font-semibold uppercase tracking-widest text-gray-500">Niches</div>
+      {niches.map(n => (
+        <button key={n.id} onClick={() => { onSelect(n.id); onClose(); }}
+          className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-sm transition-all ${selected === n.id ? 'bg-white/15 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-gray-200'}`}>
+          <span className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${selected === n.id ? 'bg-pinterest text-white' : 'bg-white/10 text-gray-500'}`}>
+            {n.rank}
+          </span>
+          <span className="flex-1 truncate">{n.name}</span>
+          <span className={`text-xs font-bold ${trendColor(n.trend)}`}>{trendIcon(n.trend)}</span>
+        </button>
+      ))}
+    </nav>
+    <div className="p-4 border-t border-white/10 text-xs text-gray-500">
+      Data: ClickBank 2025 · Updated Mar 2026
+    </div>
+  </aside>
+);
+
+// ─── NICHE CARD ─────────────────────────────────────────────────────
+const NicheCard = ({ niche, onDrillDown }) => (
+  <div className="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-lg hover:border-pinterest/20 transition-all cursor-pointer group" onClick={onDrillDown}>
+    <div className="p-5">
+      <div className="flex items-start justify-between mb-3">
+        <div className="flex items-center gap-3">
+          <span className="w-8 h-8 rounded-lg bg-pinterest/10 text-pinterest flex items-center justify-center text-sm font-bold">#{niche.rank}</span>
+          <div>
+            <h3 className="font-semibold text-gray-900 group-hover:text-pinterest transition-colors">{niche.name}</h3>
+            <span className="text-xs text-gray-400">{niche.subNiches.length} sub-niches</span>
+          </div>
+        </div>
+        <div className={`flex items-center gap-1 text-sm font-bold ${trendColor(niche.trend)}`}>
+          {trendIcon(niche.trend)} {niche.trend === 'up' ? 'Growing' : niche.trend === 'down' ? 'Declining' : 'Stable'}
+        </div>
+      </div>
+      <div className="grid grid-cols-3 gap-3 mb-4">
+        <div className="bg-gray-50 rounded-lg p-3 text-center">
+          <div className="text-lg font-bold text-gray-900">{formatRevenue(niche.revenue)}</div>
+          <div className="text-[10px] text-gray-500 uppercase tracking-wide">Revenue</div>
+        </div>
+        <div className="bg-gray-50 rounded-lg p-3 text-center">
+          <div className="text-lg font-bold text-gray-900">${niche.avgPayout}</div>
+          <div className="text-[10px] text-gray-500 uppercase tracking-wide">Avg Payout</div>
+        </div>
+        <div className="bg-gray-50 rounded-lg p-3 text-center">
+          <div className="text-lg font-bold text-gray-900">{formatVol(niche.pinterestVol)}</div>
+          <div className="text-[10px] text-gray-500 uppercase tracking-wide">Pin Volume</div>
+        </div>
+      </div>
+      <div className="flex items-center justify-between">
+        <CompBadge score={niche.competition} />
+        <div className="flex items-center gap-1.5">
+          <span className="text-xs text-gray-500">Opportunity:</span>
+          <span className={`text-sm font-bold ${scoreColor(niche.score)}`}>{niche.score}</span>
+          {niche.score >= 90 && <span className="text-opp-hot">{Icons.gem}</span>}
+        </div>
+      </div>
+    </div>
+    <div className="px-5 py-3 bg-gray-50/50 border-t border-gray-100 rounded-b-xl flex items-center justify-between">
+      <div className="flex gap-1.5">
+        {niche.subNiches.slice(0, 3).map((s, i) => (
+          <span key={i} className="text-[10px] px-2 py-0.5 bg-pinterest/5 text-pinterest/80 rounded-full">{s.name}</span>
+        ))}
+      </div>
+      <span className="text-xs text-pinterest font-medium group-hover:underline">View Details →</span>
+    </div>
+  </div>
+);
+
+// ─── SCREEN 1: DASHBOARD ────────────────────────────────────────────
+const DashboardScreen = ({ niches, selectedNiche, setSelectedNiche, onDrillDown, onFilter, onExport }) => {
+  const hidden = niches.filter(n => n.score >= 90).length;
+  return (
+    <div className="flex h-[700px] bg-gray-50 rounded-2xl overflow-hidden border border-gray-200 shadow-xl">
+      <Sidebar niches={niches} selected={selectedNiche} onSelect={setSelectedNiche} visible={true} onClose={() => {}} />
+      <main className="flex-1 overflow-y-auto scrollbar-thin">
+        {/* Header */}
+        <div className="sticky top-0 z-10 bg-white/80 backdrop-blur-lg border-b border-gray-100 px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-xl font-bold text-gray-900">Niche Rankings</h1>
+              <p className="text-xs text-gray-500">Top ClickBank niches ranked by opportunity score</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <button onClick={onFilter} className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                {Icons.filter} Filters
+              </button>
+              <button onClick={onExport} className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-white bg-pinterest rounded-lg hover:bg-pinterest-dark transition-colors">
+                {Icons.download} Export
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* KPIs */}
+        <div className="px-6 py-4">
+          <div className="grid grid-cols-4 gap-4 mb-6">
+            <KpiCard label="Total Niches" value="10" sub="ClickBank 2025 data" icon={Icons.chart} />
+            <KpiCard label="Avg Payout" value="$118" sub="Across all niches" icon={<span className="text-lg">💰</span>} />
+            <KpiCard label="Top Score" value="96" sub="Green Energy & DIY" icon={Icons.star} color="opp-hot" />
+            <KpiCard label="Hidden Gems" value={hidden} sub="Score ≥ 90, low competition" icon={Icons.gem} color="opp-hot" />
+          </div>
+          {/* Niche Cards */}
+          <div className="grid grid-cols-2 gap-4">
+            {niches.map(n => <NicheCard key={n.id} niche={n} onDrillDown={() => onDrillDown(n.id)} />)}
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+// ─── SCREEN 2: TREND DETAIL ─────────────────────────────────────────
+const TrendDetailScreen = ({ niche, onBack }) => {
+  if (!niche) return null;
+  const maxVol = Math.max(...niche.subNiches.map(s => s.vol));
+  return (
+    <div className="h-[700px] bg-gray-50 rounded-2xl overflow-hidden border border-gray-200 shadow-xl flex flex-col">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-100 px-6 py-4">
+        <div className="flex items-center gap-4">
+          <button onClick={onBack} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">{Icons.back}</button>
+          <div className="flex-1">
+            <div className="flex items-center gap-3">
+              <span className="w-8 h-8 rounded-lg bg-pinterest/10 text-pinterest flex items-center justify-center text-sm font-bold">#{niche.rank}</span>
+              <h1 className="text-xl font-bold text-gray-900">{niche.name}</h1>
+              <span className={`flex items-center gap-1 text-sm font-bold ${trendColor(niche.trend)}`}>{trendIcon(niche.trend)} {niche.trend}</span>
+            </div>
+            <p className="text-xs text-gray-500 mt-1">Detailed breakdown · {niche.subNiches.length} sub-niches · {formatVol(niche.pinterestVol)} monthly Pinterest searches</p>
+          </div>
+          <div className="text-right">
+            <div className={`text-3xl font-extrabold ${scoreColor(niche.score)}`}>{niche.score}</div>
+            <div className="text-[10px] text-gray-400 uppercase tracking-wide">Opp. Score</div>
+          </div>
+        </div>
+      </div>
+      {/* Content */}
+      <div className="flex-1 overflow-y-auto p-6">
+        <div className="grid grid-cols-2 gap-6">
+          {/* Left: Sub-niches */}
+          <div>
+            <h2 className="text-sm font-semibold text-gray-900 mb-4 flex items-center gap-2">{Icons.fire} Sub-Niche Breakdown</h2>
+            <div className="space-y-3">
+              {niche.subNiches.map((sub, i) => (
+                <div key={i} className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm fade-in" style={{animationDelay: `${i * 100}ms`}}>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="font-semibold text-gray-900">{sub.name}</h3>
+                    <span className="text-sm font-bold text-opp-hot">${sub.payout} avg</span>
+                  </div>
+                  {/* Volume bar */}
+                  <div className="mb-3">
+                    <div className="flex justify-between text-[10px] text-gray-400 mb-1">
+                      <span>Pinterest Volume</span>
+                      <span>{formatVol(sub.vol)}/mo</span>
+                    </div>
+                    <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="h-full bg-gradient-to-r from-pinterest to-pinterest-dark rounded-full bar-animate" style={{width: `${(sub.vol / maxVol) * 100}%`}} />
+                    </div>
+                  </div>
+                  {/* Products */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {sub.products.map((p, j) => (
+                      <span key={j} className="inline-flex items-center gap-1 text-[10px] px-2 py-1 bg-blue-50 text-blue-700 rounded-md font-medium">
+                        {Icons.star} {p}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* Action Buttons */}
+            <div className="mt-4 flex gap-2">
+              <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-pinterest text-white text-sm font-medium rounded-lg hover:bg-pinterest-dark transition-colors">
+                View on ClickBank {Icons.ext}
+              </button>
+              <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-white text-gray-700 text-sm font-medium rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+                Research on Pinterest {Icons.ext}
+              </button>
+            </div>
+          </div>
+          {/* Right: Pinterest Trends */}
+          <div>
+            <h2 className="text-sm font-semibold text-gray-900 mb-4 flex items-center gap-2">{Icons.pinterest} Pinterest Search Trends</h2>
+            <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm mb-4">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-medium text-gray-500">Trending Search Terms</span>
+                <span className="flex items-center gap-1 text-[10px] text-opp-hot font-medium"><span className="w-1.5 h-1.5 rounded-full bg-opp-hot pulse-dot"></span> Live data</span>
+              </div>
+              <div className="space-y-2.5">
+                {niche.trendTerms.map((term, i) => (
+                  <div key={i} className="flex items-center gap-3 group cursor-pointer">
+                    <span className="w-6 h-6 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center text-[10px] font-bold group-hover:bg-pinterest/10 group-hover:text-pinterest transition-colors">{i+1}</span>
+                    <span className="flex-1 text-sm text-gray-700 group-hover:text-pinterest transition-colors">"{term}"</span>
+                    <span className="text-xs text-gray-400 font-medium">{formatVol(Math.floor(niche.pinterestVol * (0.35 - i * 0.06)))}/mo</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Overview Cards */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm text-center">
+                <div className="text-2xl font-extrabold text-gray-900">{formatRevenue(niche.revenue)}</div>
+                <div className="text-[10px] text-gray-400 uppercase tracking-wide mt-1">Annual Revenue</div>
+              </div>
+              <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm text-center">
+                <div className="text-2xl font-extrabold text-gray-900">${niche.avgPayout}</div>
+                <div className="text-[10px] text-gray-400 uppercase tracking-wide mt-1">Avg Payout</div>
+              </div>
+              <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm text-center">
+                <CompBadge score={niche.competition} />
+                <div className="text-[10px] text-gray-400 uppercase tracking-wide mt-2">Competition</div>
+              </div>
+              <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm text-center">
+                <div className="text-2xl font-extrabold text-gray-900">{formatVol(niche.pinterestVol)}</div>
+                <div className="text-[10px] text-gray-400 uppercase tracking-wide mt-1">Pin Searches/mo</div>
+              </div>
+            </div>
+            {/* Seasonal Note */}
+            <div className="mt-4 bg-amber-50 border border-amber-200 rounded-xl p-4">
+              <div className="flex items-start gap-2">
+                <span className="text-amber-500 mt-0.5">⚡</span>
+                <div>
+                  <div className="text-xs font-semibold text-amber-800">Seasonal Insight</div>
+                  <div className="text-xs text-amber-700 mt-1">This niche typically sees a 35% search volume spike in January (New Year resolutions) and September (back-to-routine). Plan content 2-3 weeks ahead of peaks.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── SCREEN 3: FILTER PANEL ─────────────────────────────────────────
+const FilterPanelScreen = ({ onClose }) => {
+  const [payRange, setPayRange] = useState([50, 250]);
+  const [compRange, setCompRange] = useState([1, 10]);
+  const [volRange, setVolRange] = useState([0, 500]);
+  const [trends, setTrends] = useState({ up: true, stable: true, down: false });
+  const [preset, setPreset] = useState(null);
+  
+  const presets = [
+    { id: 'gems', label: '💎 Hidden Gems', desc: 'Low competition, high score' },
+    { id: 'volume', label: '📈 High Volume', desc: '200K+ Pinterest searches' },
+    { id: 'earners', label: '💰 Top Earners', desc: '$150+ avg payout' },
+    { id: 'growing', label: '🔥 Growing Fast', desc: 'Upward trend niches only' },
+  ];
+
+  return (
+    <div className="h-[700px] bg-gray-50 rounded-2xl overflow-hidden border border-gray-200 shadow-xl flex">
+      {/* Filter Panel (slide-over) */}
+      <div className="w-80 bg-white border-r border-gray-200 flex flex-col shadow-xl">
+        <div className="p-5 border-b border-gray-100 flex items-center justify-between">
+          <h2 className="text-lg font-bold text-gray-900">Filters</h2>
+          <button onClick={onClose} className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors">{Icons.close}</button>
+        </div>
+        <div className="flex-1 overflow-y-auto p-5 space-y-6">
+          {/* Presets */}
+          <div>
+            <label className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 block mb-3">Quick Presets</label>
+            <div className="grid grid-cols-2 gap-2">
+              {presets.map(p => (
+                <button key={p.id} onClick={() => setPreset(p.id)}
+                  className={`p-3 rounded-xl border text-left transition-all ${preset === p.id ? 'border-pinterest bg-pinterest/5 shadow-sm' : 'border-gray-200 hover:border-gray-300'}`}>
+                  <div className="text-sm font-medium">{p.label}</div>
+                  <div className="text-[10px] text-gray-500 mt-0.5">{p.desc}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+          {/* Payout Range */}
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <label className="text-[10px] font-semibold uppercase tracking-widest text-gray-400">Avg Payout</label>
+              <span className="text-xs font-medium text-gray-700">${payRange[0]} – ${payRange[1]}</span>
+            </div>
+            <div className="relative h-2 bg-gray-100 rounded-full">
+              <div className="absolute h-full bg-pinterest rounded-full" style={{left: `${(payRange[0]/300)*100}%`, width: `${((payRange[1]-payRange[0])/300)*100}%`}} />
+              <input type="range" min="0" max="300" value={payRange[0]} onChange={e => setPayRange([+e.target.value, payRange[1]])} className="absolute w-full h-full opacity-0 cursor-pointer" />
+            </div>
+          </div>
+          {/* Competition */}
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <label className="text-[10px] font-semibold uppercase tracking-widest text-gray-400">Competition</label>
+              <span className="text-xs font-medium text-gray-700">{compRange[0]} – {compRange[1]}</span>
+            </div>
+            <div className="flex gap-1.5">
+              {[1,2,3,4,5,6,7,8,9,10].map(n => (
+                <button key={n} className={`flex-1 h-8 rounded text-[10px] font-bold transition-all ${n >= compRange[0] && n <= compRange[1] ? (n <= 4 ? 'bg-opp-hot text-white' : n <= 7 ? 'bg-opp-warm text-white' : 'bg-opp-cold text-white') : 'bg-gray-100 text-gray-400'}`}>
+                  {n}
+                </button>
+              ))}
+            </div>
+          </div>
+          {/* Pinterest Volume */}
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <label className="text-[10px] font-semibold uppercase tracking-widest text-gray-400">Pinterest Volume</label>
+              <span className="text-xs font-medium text-gray-700">{volRange[0]}K – {volRange[1]}K+</span>
+            </div>
+            <div className="relative h-2 bg-gray-100 rounded-full">
+              <div className="absolute h-full bg-blue-500 rounded-full" style={{left: `${(volRange[0]/500)*100}%`, width: `${((volRange[1]-volRange[0])/500)*100}%`}} />
+            </div>
+          </div>
+          {/* Trend Direction */}
+          <div>
+            <label className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 block mb-3">Trend Direction</label>
+            <div className="space-y-2">
+              {[{k:'up', l:'↑ Growing', c:'opp-hot'}, {k:'stable', l:'→ Stable', c:'opp-warm'}, {k:'down', l:'↓ Declining', c:'opp-cold'}].map(t => (
+                <label key={t.k} className="flex items-center gap-3 cursor-pointer group">
+                  <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${trends[t.k] ? `border-${t.c} bg-${t.c}` : 'border-gray-300'}`}>
+                    {trends[t.k] && <span className="text-white">{Icons.check}</span>}
+                  </div>
+                  <span className="text-sm text-gray-700 group-hover:text-gray-900">{t.l}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+        {/* Footer */}
+        <div className="p-5 border-t border-gray-100 space-y-2">
+          <button className="w-full py-2.5 bg-pinterest text-white text-sm font-medium rounded-lg hover:bg-pinterest-dark transition-colors">
+            Apply Filters · 7 results
+          </button>
+          <button className="w-full py-2 text-sm text-gray-500 hover:text-gray-700 transition-colors">
+            Reset all
+          </button>
+        </div>
+      </div>
+      {/* Dimmed background showing dashboard */}
+      <div className="flex-1 bg-gray-900/5 flex items-center justify-center">
+        <div className="text-center text-gray-400">
+          <div className="text-6xl mb-4">🔍</div>
+          <div className="text-sm font-medium">Dashboard updates in real-time</div>
+          <div className="text-xs mt-1">as you adjust filters</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── SCREEN 4: EXPORT MODAL ─────────────────────────────────────────
+const ExportModalScreen = ({ onClose }) => {
+  const [format, setFormat] = useState('csv');
+  const [scope, setScope] = useState('all');
+  const formats = [
+    { id: 'csv', label: 'CSV', desc: 'Spreadsheet-friendly', icon: '📊' },
+    { id: 'pdf', label: 'PDF', desc: 'Shareable report', icon: '📄' },
+    { id: 'png', label: 'PNG', desc: 'Dashboard screenshot', icon: '🖼️' },
+    { id: 'json', label: 'JSON', desc: 'API-compatible data', icon: '{ }' },
+  ];
+  return (
+    <div className="h-[700px] bg-gray-900/50 rounded-2xl overflow-hidden border border-gray-200 shadow-xl flex items-center justify-center relative">
+      {/* Blurred background hint */}
+      <div className="absolute inset-0 bg-gray-50 opacity-30" />
+      {/* Modal */}
+      <div className="relative bg-white rounded-2xl shadow-2xl w-[480px] max-h-[600px] overflow-hidden fade-in border border-gray-200">
+        {/* Header */}
+        <div className="p-6 border-b border-gray-100">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-lg font-bold text-gray-900">Export Data</h2>
+              <p className="text-xs text-gray-500 mt-1">Download niche data for offline analysis</p>
+            </div>
+            <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">{Icons.close}</button>
+          </div>
+        </div>
+        {/* Content */}
+        <div className="p-6 space-y-5">
+          {/* Format Selection */}
+          <div>
+            <label className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 block mb-3">Export Format</label>
+            <div className="grid grid-cols-4 gap-2">
+              {formats.map(f => (
+                <button key={f.id} onClick={() => setFormat(f.id)}
+                  className={`p-3 rounded-xl border text-center transition-all ${format === f.id ? 'border-pinterest bg-pinterest/5 shadow-sm ring-1 ring-pinterest/20' : 'border-gray-200 hover:border-gray-300'}`}>
+                  <div className="text-2xl mb-1">{f.icon}</div>
+                  <div className="text-xs font-semibold text-gray-900">{f.label}</div>
+                  <div className="text-[10px] text-gray-500">{f.desc}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+          {/* Scope */}
+          <div>
+            <label className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 block mb-3">Data Scope</label>
+            <div className="space-y-2">
+              {[{id:'all', l:'All Niches', d:'Complete dataset (10 niches)'}, {id:'filtered', l:'Filtered Results', d:'Current filter selection (7 niches)'}, {id:'selected', l:'Selected Niche', d:'Dietary Supplements only'}].map(s => (
+                <label key={s.id} className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all ${scope === s.id ? 'border-pinterest bg-pinterest/5' : 'border-gray-200 hover:border-gray-300'}`}>
+                  <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${scope === s.id ? 'border-pinterest' : 'border-gray-300'}`}>
+                    {scope === s.id && <div className="w-2 h-2 rounded-full bg-pinterest" />}
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium text-gray-900">{s.l}</div>
+                    <div className="text-[10px] text-gray-500">{s.d}</div>
+                  </div>
+                </label>
+              ))}
+            </div>
+          </div>
+          {/* Include Options */}
+          <div>
+            <label className="text-[10px] font-semibold uppercase tracking-widest text-gray-400 block mb-3">Include</label>
+            <div className="flex flex-wrap gap-2">
+              {['Sub-niches', 'Products', 'Pinterest Trends', 'Opportunity Scores', 'Revenue Data'].map((opt, i) => (
+                <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-opp-hot/10 text-opp-hot text-xs font-medium rounded-full">
+                  {Icons.check} {opt}
+                </span>
+              ))}
+            </div>
+          </div>
+          {/* Preview */}
+          <div className="bg-gray-50 rounded-xl p-3 border border-gray-100">
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-gray-500">Preview: <strong className="text-gray-700">niches-2026-03-10.{format}</strong></span>
+              <span className="text-gray-400">~24 KB</span>
+            </div>
+          </div>
+        </div>
+        {/* Footer */}
+        <div className="p-6 border-t border-gray-100 flex gap-3">
+          <button onClick={onClose} className="flex-1 py-2.5 text-sm font-medium text-gray-600 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">Cancel</button>
+          <button className="flex-1 py-2.5 bg-pinterest text-white text-sm font-medium rounded-lg hover:bg-pinterest-dark transition-colors flex items-center justify-center gap-2">
+            {Icons.download} Export {format.toUpperCase()}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── SCREEN 5: MOBILE PREVIEW ───────────────────────────────────────
+const MobilePreviewScreen = ({ niches }) => {
+  const [mobileMenu, setMobileMenu] = useState(false);
+  return (
+    <div className="flex gap-8 items-start justify-center py-6">
+      {/* Desktop Preview (scaled) */}
+      <div className="flex-shrink-0">
+        <div className="text-xs font-semibold text-gray-400 text-center mb-3 uppercase tracking-widest">Desktop (1280px)</div>
+        <div className="w-[560px] h-[380px] bg-gray-50 rounded-xl overflow-hidden border border-gray-200 shadow-lg" style={{transform: 'scale(1)', transformOrigin: 'top center'}}>
+          <div className="flex h-full">
+            {/* Mini sidebar */}
+            <div className="w-40 bg-sidebar text-white p-3 flex-shrink-0">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-6 h-6 bg-pinterest rounded flex items-center justify-center">
+                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0a12 12 0 00-4.373 23.178c-.07-.633-.134-1.606.028-2.298.146-.625.943-3.998.943-3.998s-.24-.482-.24-1.192c0-1.118.648-1.953 1.455-1.953.687 0 1.018.515 1.018 1.133 0 .69-.44 1.722-.667 2.678-.19.803.402 1.457 1.193 1.457 1.432 0 2.532-1.51 2.532-3.688 0-1.929-1.386-3.276-3.366-3.276-2.293 0-3.64 1.72-3.64 3.498 0 .693.267 1.435.6 1.838a.24.24 0 01.056.23c-.061.255-.197.803-.224.916-.036.148-.116.18-.268.108-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.835-4.84 5.287-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.152 4.976-.81 0-1.573-.422-1.834-.92l-.498 1.902c-.18.695-.668 1.566-.994 2.097A12 12 0 1012 0z"/></svg>
+                </div>
+                <span className="text-[10px] font-bold">Trends</span>
+              </div>
+              {niches.slice(0,6).map(n => (
+                <div key={n.id} className={`flex items-center gap-1.5 px-2 py-1.5 rounded text-[8px] mb-0.5 ${n.rank === 1 ? 'bg-white/15 text-white' : 'text-gray-400'}`}>
+                  <span className="w-3 h-3 rounded-full bg-white/10 flex items-center justify-center text-[7px]">{n.rank}</span>
+                  <span className="truncate">{n.name}</span>
+                </div>
+              ))}
+              <div className="text-[7px] text-gray-600 mt-1 px-2">+ 4 more</div>
+            </div>
+            {/* Mini content */}
+            <div className="flex-1 p-3 overflow-hidden">
+              <div className="flex gap-2 mb-3">
+                {['10 Niches', '$118 Avg', '96 Top', '4 Gems'].map((k, i) => (
+                  <div key={i} className="flex-1 bg-white rounded-lg p-2 border border-gray-100 text-center">
+                    <div className="text-[9px] font-bold text-gray-800">{k.split(' ')[0]}</div>
+                    <div className="text-[7px] text-gray-400">{k.split(' ').slice(1).join(' ')}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {niches.slice(0,4).map(n => (
+                  <div key={n.id} className="bg-white rounded-lg p-2 border border-gray-100">
+                    <div className="flex items-center gap-1 mb-1">
+                      <span className="w-4 h-4 rounded bg-pinterest/10 text-pinterest flex items-center justify-center text-[7px] font-bold">#{n.rank}</span>
+                      <span className="text-[8px] font-semibold text-gray-800 truncate">{n.name}</span>
+                    </div>
+                    <div className="flex gap-1">
+                      <span className="text-[7px] px-1 py-0.5 bg-gray-50 rounded text-gray-600">{formatRevenue(n.revenue)}</span>
+                      <span className="text-[7px] px-1 py-0.5 bg-gray-50 rounded text-gray-600">${n.avgPayout}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Preview */}
+      <div className="flex-shrink-0">
+        <div className="text-xs font-semibold text-gray-400 text-center mb-3 uppercase tracking-widest">Mobile (375px)</div>
+        <div className="w-[280px] h-[560px] bg-gray-50 rounded-[2rem] overflow-hidden border-[6px] border-gray-800 shadow-2xl relative">
+          {/* Notch */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-5 bg-gray-800 rounded-b-xl z-10" />
+          <div className="h-full overflow-y-auto pt-6">
+            {/* Mobile Header */}
+            <div className="bg-white px-4 py-3 border-b border-gray-100 flex items-center justify-between sticky top-0 z-10">
+              <button onClick={() => setMobileMenu(!mobileMenu)} className="p-1">{Icons.menu}</button>
+              <div className="flex items-center gap-1.5">
+                <div className="w-5 h-5 bg-pinterest rounded flex items-center justify-center">
+                  <svg className="w-3 h-3" fill="white" viewBox="0 0 24 24"><path d="M12 0a12 12 0 00-4.373 23.178c-.07-.633-.134-1.606.028-2.298.146-.625.943-3.998.943-3.998s-.24-.482-.24-1.192c0-1.118.648-1.953 1.455-1.953.687 0 1.018.515 1.018 1.133 0 .69-.44 1.722-.667 2.678-.19.803.402 1.457 1.193 1.457 1.432 0 2.532-1.51 2.532-3.688 0-1.929-1.386-3.276-3.366-3.276-2.293 0-3.64 1.72-3.64 3.498 0 .693.267 1.435.6 1.838a.24.24 0 01.056.23c-.061.255-.197.803-.224.916-.036.148-.116.18-.268.108-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.835-4.84 5.287-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.152 4.976-.81 0-1.573-.422-1.834-.92l-.498 1.902c-.18.695-.668 1.566-.994 2.097A12 12 0 1012 0z"/></svg>
+                </div>
+                <span className="text-xs font-bold text-gray-900">Trends</span>
+              </div>
+              <button className="p-1">{Icons.search}</button>
+            </div>
+
+            {/* Mobile Menu Overlay */}
+            {mobileMenu && (
+              <div className="absolute inset-0 bg-sidebar z-20 pt-8 fade-in">
+                <div className="px-4 py-3 flex items-center justify-between border-b border-white/10">
+                  <span className="text-white font-bold text-sm">Niches</span>
+                  <button onClick={() => setMobileMenu(false)} className="text-white p-1">{Icons.close}</button>
+                </div>
+                {niches.map(n => (
+                  <button key={n.id} onClick={() => setMobileMenu(false)} className="w-full flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 border-b border-white/5">
+                    <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-[10px] font-bold">{n.rank}</span>
+                    <span className="text-sm">{n.name}</span>
+                    <span className={`ml-auto text-xs ${trendColor(n.trend)}`}>{trendIcon(n.trend)}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Mobile KPIs */}
+            <div className="p-3 grid grid-cols-2 gap-2">
+              {[{l:'Avg Payout', v:'$118'}, {l:'Hidden Gems', v:'4'}].map((k,i) => (
+                <div key={i} className="bg-white rounded-xl p-3 border border-gray-100 text-center">
+                  <div className="text-lg font-bold text-gray-900">{k.v}</div>
+                  <div className="text-[9px] text-gray-400 uppercase">{k.l}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile Cards */}
+            <div className="px-3 space-y-2 pb-20">
+              {niches.slice(0,5).map(n => (
+                <div key={n.id} className="bg-white rounded-xl p-3 border border-gray-100 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="w-6 h-6 rounded-lg bg-pinterest/10 text-pinterest flex items-center justify-center text-[10px] font-bold">#{n.rank}</span>
+                    <span className="text-xs font-semibold text-gray-900 flex-1">{n.name}</span>
+                    <span className={`text-[10px] font-bold ${trendColor(n.trend)}`}>{trendIcon(n.trend)}</span>
+                  </div>
+                  <div className="flex gap-1.5 mb-2">
+                    <span className="text-[9px] px-1.5 py-0.5 bg-gray-50 rounded text-gray-600">{formatRevenue(n.revenue)}</span>
+                    <span className="text-[9px] px-1.5 py-0.5 bg-gray-50 rounded text-gray-600">${n.avgPayout} avg</span>
+                    <span className="text-[9px] px-1.5 py-0.5 bg-gray-50 rounded text-gray-600">{formatVol(n.pinterestVol)}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <CompBadge score={n.competition} />
+                    <span className={`text-xs font-bold ${scoreColor(n.score)}`}>Score: {n.score}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Bottom Nav */}
+            <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex items-center justify-around py-2">
+              {[{i: Icons.chart, l:'Dashboard'}, {i: Icons.filter, l:'Filter'}, {i: Icons.search, l:'Search'}, {i: Icons.download, l:'Export'}].map((tab, idx) => (
+                <button key={idx} className={`flex flex-col items-center gap-0.5 ${idx === 0 ? 'text-pinterest' : 'text-gray-400'}`}>
+                  {tab.i}
+                  <span className="text-[8px] font-medium">{tab.l}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── MAIN APP ───────────────────────────────────────────────────────
+const App = () => {
+  const [screen, setScreen] = useState('dashboard');
+  const [selectedNiche, setSelectedNiche] = useState('dietary-supplements');
+  const [drillNiche, setDrillNiche] = useState(null);
+
+  const screens = [
+    { id: 'dashboard', label: 'Dashboard', icon: Icons.chart },
+    { id: 'detail', label: 'Trend Detail', icon: Icons.fire },
+    { id: 'filter', label: 'Filter Panel', icon: Icons.filter },
+    { id: 'export', label: 'Export Modal', icon: Icons.download },
+    { id: 'mobile', label: 'Mobile Preview', icon: <span className="text-sm">📱</span> },
+  ];
+
+  const handleDrillDown = (id) => {
+    setDrillNiche(id);
+    setScreen('detail');
+  };
+
+  const currentNiche = NICHES.find(n => n.id === (drillNiche || 'dietary-supplements'));
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 p-6">
+      {/* Header */}
+      <div className="max-w-7xl mx-auto mb-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-extrabold text-gray-900 flex items-center gap-3">
+              <span className="p-2 bg-pinterest rounded-xl text-white">{Icons.pinterest}</span>
+              Pinterest Trends Dashboard — Design Mockups
+            </h1>
+            <p className="text-sm text-gray-500 mt-1">Interactive preview · 5 screens · Tailwind-compatible components</p>
+          </div>
+          <div className="text-right text-xs text-gray-400">
+            <div>Max-Co Products</div>
+            <div>March 2026</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Screen Tabs */}
+      <div className="max-w-7xl mx-auto mb-6">
+        <div className="flex gap-2 flex-wrap">
+          {screens.map(s => (
+            <ScreenTab key={s.id} label={s.label} icon={s.icon} active={screen === s.id} onClick={() => setScreen(s.id)} />
+          ))}
+        </div>
+      </div>
+
+      {/* Active Screen */}
+      <div className="max-w-7xl mx-auto">
+        {screen === 'dashboard' && (
+          <DashboardScreen
+            niches={NICHES}
+            selectedNiche={selectedNiche}
+            setSelectedNiche={setSelectedNiche}
+            onDrillDown={handleDrillDown}
+            onFilter={() => setScreen('filter')}
+            onExport={() => setScreen('export')}
+          />
+        )}
+        {screen === 'detail' && (
+          <TrendDetailScreen niche={currentNiche} onBack={() => setScreen('dashboard')} />
+        )}
+        {screen === 'filter' && (
+          <FilterPanelScreen onClose={() => setScreen('dashboard')} />
+        )}
+        {screen === 'export' && (
+          <ExportModalScreen onClose={() => setScreen('dashboard')} />
+        )}
+        {screen === 'mobile' && (
+          <MobilePreviewScreen niches={NICHES} />
+        )}
+      </div>
+
+      {/* Footer */}
+      <div className="max-w-7xl mx-auto mt-8 text-center text-xs text-gray-400">
+        <p>Design mockup for review · Components map directly to Next.js + Tailwind implementation</p>
+        <p className="mt-1">Colors, spacing, and typography are 1:1 with production Tailwind config</p>
+      </div>
+    </div>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

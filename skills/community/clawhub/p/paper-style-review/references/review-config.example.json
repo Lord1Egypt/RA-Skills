@@ -1,0 +1,68 @@
+{
+  "target": {
+    "path": "./inputs/target.docx",
+    "title": "target paper",
+    "description": "待审校的目标论文"
+  },
+  "refs": [
+    {
+      "id": "ref-style-01",
+      "path": "./inputs/ref-style-01.docx",
+      "enabled": true,
+      "stage": 1,
+      "primary": true
+    },
+    {
+      "id": "ref-style-02",
+      "path": "./inputs/ref-style-02.docx",
+      "enabled": true,
+      "stage": 1,
+      "primary": true
+    },
+    {
+      "id": "ref-style-03",
+      "path": "./inputs/ref-style-03.docx",
+      "enabled": false,
+      "styleProfileEnabled": true,
+      "stage": 2,
+      "primary": false,
+      "note": "review 不启用，但会进入 style profile"
+    }
+  ],
+  "extraction": {
+    "includeFullChapter1": true,
+    "includeChapterIntroductions": true,
+    "includeChapterConclusions": true,
+    "includeFirstIntroParagraphOfLevel2": true,
+    "includeFirstIntroParagraphOfLevel3": true,
+    "dropFrontMatter": true,
+    "dropBackMatter": true,
+    "description": "段落抽取规则，仅抽取具有引言/章节导入/章节总结功能的段落"
+  },
+  "formatCheck": {
+    "enabled": true,
+    "checkFontSize": true,
+    "checkFontName": true,
+    "checkLineSpacing": true,
+    "checkParagraphSpacing": true,
+    "checkIndentation": true,
+    "checkAlignment": true
+  },
+  "termValidation": {
+    "enabled": true,
+    "useCnki": false,
+    "localTerminologyPath": "./glossary.json",
+    "autoSearch": false
+  },
+  "enabledChecks": {
+    "format": true,
+    "terminology": true,
+    "style": true,
+    "logic": true
+  },
+  "styleProfilePath": "./outputs/style-profile.json",
+  "targetStructureMapPath": "./outputs/target-structure-map.json",
+  "outputDir": "./outputs",
+  "version": "2.0",
+  "note": "示例配置不内置任何示例论文。用户只需传入自己的 refs；未显式设置 stage 的 ref 默认按 stage1 处理，styleProfileEnabled=true 的 ref 会自动进入风格学习集合。"
+}

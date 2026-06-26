@@ -1,0 +1,76 @@
+# Papyrus — Academic Paper Deep-Read Agent
+#
+# Tool definition for OpenAI Codex.
+# Place in your workspace as codex.yaml or reference from .codex/agents.yaml
+#
+# Usage in Codex:
+#   @papyrus deep-read https://arxiv.org/abs/2502.11089
+
+name: papyrus
+description: >
+  Turn arXiv papers into bilingual, deeply annotated, professionally
+  typeset PDFs. Fetches paper source, converts figures, renders formulas,
+  and builds Kami-styled PDF with EN→CN translation + expert commentary.
+version: "0.2.0"
+
+tools:
+  - name: fetch
+    description: Download and extract arXiv paper source
+    command: "${PAPYRUS_HOME}/SCRIPTS/papyrus fetch ${ARXIV_URL} ${OUTPUT_DIR}"
+    parameters:
+      - name: ARXIV_URL
+        type: string
+        description: Full arXiv URL (e.g. https://arxiv.org/abs/2502.11089)
+      - name: OUTPUT_DIR
+        type: string
+        description: Directory to extract source files
+        default: /tmp/papyrus_work
+
+  - name: figures
+    description: Convert PDF figures to PNG for HTML embedding
+    command: "${PAPYRUS_HOME}/SCRIPTS/papyrus figures ${FIGURE_DIR} ${OUTPUT_DIR}"
+    parameters:
+      - name: FIGURE_DIR
+        type: string
+        description: Directory containing PDF figure files
+      - name: OUTPUT_DIR
+        type: string
+        description: Output directory for PNG figures
+
+  - name: formulas
+    description: Render LaTeX formulas to PNG images
+    command: "${PAPYRUS_HOME}/SCRIPTS/papyrus formulas ${FORMULAS_FILE} ${OUTPUT_DIR}"
+    parameters:
+      - name: FORMULAS_FILE
+        type: string
+        description: Text file with LaTeX formulas (one per line)
+      - name: OUTPUT_DIR
+        type: string
+        description: Output directory for PNG formula images
+
+  - name: pdf
+    description: Convert annotated HTML to final PDF
+    command: "${PAPYRUS_HOME}/SCRIPTS/papyrus pdf ${HTML_FILE} ${OUTPUT_PDF}"
+    parameters:
+      - name: HTML_FILE
+        type: string
+        description: Path to annotated HTML file
+      - name: OUTPUT_PDF
+        type: string
+        description: Output PDF file path
+
+env:
+  PAPYRUS_HOME: "$HOME/.openclaw/skills/papyrus"
+
+workflow:
+  deep-read:
+    description: Full paper deep-read pipeline
+    steps:
+      - tool: fetch
+      - tool: figures
+      - description: "Write formulas.txt from paper equations"
+        action: manual
+      - tool: formulas
+      - description: "Build annotated HTML from TEMPLATES/paper.html following SOP.md"
+        action: manual
+      - tool: pdf

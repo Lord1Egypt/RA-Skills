@@ -1,0 +1,5 @@
+interface:
+  display_name: "Paper Deep Reading"
+  short_description: "Source-aware paper deep reading plus research-direction mining."
+  brand_color: "#2563EB"
+  default_prompt: "Deep-read this paper using paper-deep-reading v1.2.0. Produce report.md with 25 anchored sections, preserve formulas, audit figures/tables/experiments, keep main-body claims anchored with claim IDs, move detailed evidence into the final Claim -> Evidence Index appendix, emit traceability_manifest.json, latex_paragraphs.json, artifact_index.json, research_lens.json, and direction_board.json. Use the direction board to rank concrete research seeds with minimum viable experiments, negative-result interpretations, killer objections, and killer results. Match the report language to the user request language."

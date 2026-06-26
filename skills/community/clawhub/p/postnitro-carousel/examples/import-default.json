@@ -1,0 +1,45 @@
+{
+  "postType": "CAROUSEL",
+  "templateId": "YOUR_TEMPLATE_ID",
+  "brandId": "YOUR_BRAND_ID",
+  "responseType": "PNG",
+  "slides": [
+    {
+      "type": "starting_slide",
+      "sub_heading": "A Step-by-Step Guide",
+      "heading": "How to Build a Content Strategy",
+      "description": "Everything you need to know to create content that converts.",
+      "cta_button": "Swipe to learn more"
+    },
+    {
+      "type": "body_slide",
+      "heading": "Step 1: Define Your Audience",
+      "description": "Know exactly who you're talking to. Create detailed personas covering demographics, pain points, and goals.",
+      "image": "https://example.com/audience-research.jpg"
+    },
+    {
+      "type": "body_slide",
+      "heading": "Step 2: Choose Your Platforms",
+      "description": "Go where your audience already is. Focus on 2-3 platforms rather than spreading thin across all of them.",
+      "image": "https://example.com/platforms.jpg"
+    },
+    {
+      "type": "body_slide",
+      "heading": "Step 3: Create a Content Calendar",
+      "description": "Plan 2-4 weeks ahead. Batch your content creation to save time and maintain consistency.",
+      "image": "https://example.com/calendar.jpg"
+    },
+    {
+      "type": "body_slide",
+      "heading": "Step 4: Measure and Iterate",
+      "description": "Track engagement, reach, and conversions. Double down on what works, drop what doesn't."
+    },
+    {
+      "type": "ending_slide",
+      "heading": "Ready to Get Started?",
+      "sub_heading": "Your content strategy starts today",
+      "description": "Follow us for more actionable marketing tips every week.",
+      "cta_button": "Follow for More"
+    }
+  ]
+}

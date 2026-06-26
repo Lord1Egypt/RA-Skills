@@ -1,0 +1,72 @@
+# skill.yaml
+name: PipeNet_Fluid_Skill
+version: 1.0.0
+description: 流体管网设计与仿真技能。支持生成管网拓扑、水力学求解及可靠性分析。
+
+author: 张志伟
+tags: [fluid, simulation, network, design]
+
+# 定义技能提供的工具
+tools:
+  - name: design_network
+    description: |
+      根据用户的自然语言描述，设计并生成工业园区供水管网的TOML配置文件。
+      该工具会自动解析生成的配置，并返回管网系统的摘要信息。
+      当用户需要新建管网、修改管网拓扑或定义新工况时调用此工具。
+    parameters:
+      type: object
+      properties:
+        toml_content:
+          type: string
+          description: |
+            完整的管网配置TOML格式字符串。
+            必须严格遵循以下TOML结构规范：
+            1. 包含[network]元数据。
+            2. [nodes]部分：至少包含source, load类型，可选junction类型，load节点需定义min_flow和min_pressure，source节点需定义pressure。
+            3. [edges]部分：定义管道连接关系、阻力和阀门状态。
+            4. [scenarios]部分：(可选) 定义不同的工况动作。
+          format: toml
+      required:
+        - toml_content
+
+  - name: analyze_network
+    description: |
+      加载指定的管网TOML配置文件，并执行求解管网状态（如连通性检查、压力计算、工况模拟）。
+      必须提供有效的文件路径。通常在使用 design_network 生成管网后调用。
+    parameters:
+      type: object
+      properties:
+        file_path:
+          type: string
+          description: 管网配置文件的路径，通常由设计阶段返回，或接受用户上传的TOML文件路径。
+        scenario_name:
+          type: string
+          description: (可选) 如果需要模拟特定工况，指定工况名称，同时指定多个工况用分号分隔，工况必须来自TOML文件中的scenarios部分定义。
+      required:
+        - file_path
+
+  - name: visualize_network
+    description: |
+      加载指定的管网TOML配置文件，并可视化管网状态。
+      必须提供有效的文件路径。通常在使用 design_network 生成管网后调用。
+    parameters:
+      type: object
+      properties:
+        file_path:
+          type: string
+          description: 管网配置文件的路径，通常由设计阶段返回，或接受用户上传的TOML文件路径。
+        scenario_name:
+          type: string
+          description: (可选) 如果需要模拟特定工况，指定工况名称，同时指定多个工况用分号分隔，工况必须来自TOML文件中的scenarios部分定义。
+      required:
+        - file_path
+
+
+# 定义依赖环境
+dependencies:
+  python: ">=3.11"
+  packages:
+    - numpy
+    - scipy
+    - tomllib
+    - networkx

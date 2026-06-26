@@ -1,0 +1,23 @@
+{
+  "name": "api-trade-polymarket-scripts",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "trade": "tsx trade.ts",
+    "cancel": "tsx cancel.ts",
+    "balance": "tsx balance.ts",
+    "positions": "tsx positions.ts",
+    "orderbook": "tsx orderbook.ts",
+    "scrape": "tsx scrape-market.ts"
+  },
+  "dependencies": {
+    "@polymarket/clob-client": "^5.0.0",
+    "dotenv": "^16.3.1",
+    "ethers": "^5.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.6.0",
+    "typescript": "^5.3.0"
+  }
+}

@@ -1,0 +1,529 @@
+{
+  "version": "7.0.0",
+  "metadata": {
+    "lastUpdated": "2026-06-03",
+    "updatedBy": "HRCOE",
+    "description": "工资数据审核规则库，所有阈值和逻辑以本文件为准。全量对齐SOP v1.0",
+    "changelog": "v7.0.0: 对齐SOP文档20260603 - 最低工资2520/加班32h/总额环比±5%/标准工资三字段红线/出勤工资红线/出勤天数红线/公式红线/状态列替代岗位列/病假事假列名对齐/轮班补贴校验/连续在职定义/按人分析双条件/补发提成波动±20%"
+  },
+  "thresholds": {
+    "overtime_limit": 32,
+    "overtime_unit": "hour",
+    "overtime_breakdown": [
+      "平时加班时数",
+      "周末加班时数",
+      "法定加班时数"
+    ],
+    "min_wage_default": 2520,
+    "min_wage_shenzhen": 2360,
+    "min_wage_guangzhou": 2300,
+    "min_wage_dongguan": 1900,
+    "perf_coefficient_max": 1.5,
+    "perf_coefficient_min": 0.5,
+    "perf_coefficient_swing": 0.5,
+    "bonus_volatility_threshold": 0.2,
+    "supply_volatility_threshold": 0.2,
+    "headcount_variance_threshold": 0.05,
+    "total_variance_threshold": 0.05,
+    "supply_months_tolerance": 2
+  },
+  "red_lines": [
+    {
+      "id": "RL-001",
+      "name": "实发≤0",
+      "description": "实发金额合计≤0，必须立即核实",
+      "condition": "sum(实发金额合计) <= 0",
+      "field": "实发金额合计",
+      "exclusions": [],
+      "severity": "BLOCK",
+      "action": "stop_and_alert"
+    },
+    {
+      "id": "RL-002",
+      "name": "加班超32h",
+      "description": "月加班总时数>32小时，违反劳动法",
+      "condition": "sum(平时加班时数 + 周末加班时数 + 法定加班时数) > 32",
+      "field": "平时加班时数",
+      "exclusions": [
+        "当月入职",
+        "当月离职",
+        "实习生",
+        "保洁",
+        "当月长时间请假"
+      ],
+      "severity": "BLOCK",
+      "action": "stop_and_alert"
+    },
+    {
+      "id": "RL-003",
+      "name": "低于最低工资",
+      "description": "应发合计低于当地最低工资标准",
+      "condition": "应发合计 < 当地最低工资",
+      "field": "应发合计",
+      "exclusions": [
+        "实习生",
+        "保洁",
+        "当月长时间请假",
+        "当月入职",
+        "当月离职",
+        "实习生(日薪)",
+        "实习生(月薪)"
+      ],
+      "severity": "BLOCK",
+      "action": "stop_and_alert"
+    },
+    {
+      "id": "RL-004",
+      "name": "社保公积金应缴未缴",
+      "description": "不符合豁免政策但个人社保/公积金扣款为0",
+      "condition": "不符合豁免政策 AND 个人社保 == 0",
+      "field": "个人社保",
+      "exclusions": [
+        "实习生",
+        "日薪",
+        "保洁",
+        "实习生(月薪)"
+      ],
+      "severity": "BLOCK",
+      "action": "stop_and_alert"
+    },
+    {
+      "id": "RL-005",
+      "name": "出勤工资超标准",
+      "description": "实际出勤工资小计 > 标准基本工资（排除实习生/日薪/保洁）",
+      "condition": "实际出勤工资小计 > 标准基本工资",
+      "field": "实际出勤工资小计",
+      "exclusions": [
+        "实习生",
+        "日薪",
+        "保洁"
+      ],
+      "severity": "BLOCK",
+      "action": "stop_and_alert"
+    },
+    {
+      "id": "RL-006",
+      "name": "出勤天数超应出勤",
+      "description": "实际计薪出勤天数 > 应计薪出勤天数",
+      "condition": "实际计薪出勤天数 > 应计薪出勤天数",
+      "field": "实际计薪出勤天数",
+      "exclusions": [],
+      "severity": "BLOCK",
+      "action": "stop_and_alert"
+    },
+    {
+      "id": "RL-007",
+      "name": "标准工资三字段变化无记录",
+      "description": "标准基本工资/标准绩效工资/标准福利任一变化，但无调薪/转正记录",
+      "condition": "标准基本工资≠上月 OR 标准绩效工资≠上月 OR 标准福利≠上月",
+      "field": "标准基本工资",
+      "exclusions": [],
+      "severity": "BLOCK",
+      "action": "stop_and_alert"
+    }
+  ],
+  "yellow_lines": [
+    {
+      "id": "YL-001",
+      "name": "绩效系数过高",
+      "threshold": 1.5,
+      "field": "绩效系数",
+      "description": "绩效系数>1.5，需核实是否有特殊贡献依据",
+      "action": "flag_and_explain",
+      "exclusions": [
+        "实习生",
+        "日薪",
+        "保洁",
+        "当月入职",
+        "当月离职"
+      ]
+    },
+    {
+      "id": "YL-002",
+      "name": "绩效系数过低",
+      "threshold": 0.5,
+      "field": "绩效系数",
+      "description": "绩效系数<0.5，需核实绩效评估是否合理",
+      "action": "flag_and_explain",
+      "exclusions": [
+        "实习生",
+        "日薪",
+        "保洁",
+        "当月入职",
+        "当月离职"
+      ]
+    },
+    {
+      "id": "YL-003",
+      "name": "绩效系数月度波动大",
+      "threshold": 0.5,
+      "field": "绩效系数",
+      "description": "本月系数与上月系数差值>0.5，需核实评估依据",
+      "action": "flag_and_explain",
+      "exclusions": [
+        "实习生",
+        "日薪",
+        "保洁",
+        "当月入职",
+        "当月离职"
+      ]
+    },
+    {
+      "id": "YL-004",
+      "name": "住宿扣款变化",
+      "threshold": 0,
+      "field": "住宿扣款",
+      "description": "本月住宿扣款与上月不一致，需确认是否退宿或新入住",
+      "action": "flag_and_explain",
+      "exclusions": [
+        "实习生",
+        "日薪",
+        "保洁"
+      ]
+    },
+    {
+      "id": "YL-005",
+      "name": "出勤天数超计薪天数",
+      "threshold": 0,
+      "field": "实际计薪出勤天数",
+      "description": "实际计薪出勤天数 > 应计薪出勤天数，排班数据可能有误",
+      "action": "flag_and_explain"
+    },
+    {
+      "id": "YL-006",
+      "name": "标准工资无依据变化",
+      "threshold": 0,
+      "field": "标准基本工资",
+      "description": "本月&上月均无调薪/转正记录但标准工资有变化",
+      "action": "flag_and_explain",
+      "exclusions": [
+        "实习生",
+        "日薪",
+        "保洁",
+        "当月入职",
+        "当月离职"
+      ]
+    }
+  ],
+  "blue_lines": [
+    {
+      "id": "BL-001",
+      "name": "业务线奖金波动",
+      "description": "季度奖金发放导致的正常波动",
+      "action": "note_only"
+    },
+    {
+      "id": "BL-002",
+      "name": "加班费波动",
+      "description": "法定节假日加班费与普通加班费差异",
+      "action": "note_only"
+    },
+    {
+      "id": "BL-003",
+      "name": "补发波动",
+      "description": "某月突然增加补发，需确认依据",
+      "action": "note_only"
+    },
+    {
+      "id": "BL-004",
+      "name": "提成波动",
+      "description": "业务正常波动，±20%以内属正常",
+      "threshold": 0.2,
+      "action": "note_only"
+    }
+  ],
+  "policies": [
+    {
+      "id": "POL-001",
+      "name": "15号后入职当月不缴社保公积金",
+      "condition": "入职日期.day > 15",
+      "effect": {
+        "个人社保": 0,
+        "个人公积金": 0
+      },
+      "applies_to": "both",
+      "note": "入职当月15号后可以不缴纳，次月起缴纳。已缴纳的也合理（公司代缴），不做违规判定。",
+      "check_scope": "note_only"
+    },
+    {
+      "id": "POL-002",
+      "name": "实习生/保洁豁免社保公积金",
+      "condition": "岗位 in [实习生, 日薪, 保洁]",
+      "effect": {
+        "个人社保": 0,
+        "个人公积金": 0
+      },
+      "applies_to": "both",
+      "note": "非全日制实习生按需调整"
+    },
+    {
+      "id": "POL-003",
+      "name": "离职当月社保公积金缴纳规则",
+      "condition": "离职日期.day <= 15",
+      "effect": {
+        "个人社保": 0,
+        "个人公积金": 0
+      },
+      "applies_to": "both",
+      "note": "15号前离职当月不缴，15号后离职当月缴纳。仅检查当月离职人员，不检查非离职人员。",
+      "check_scope": "leavers_only"
+    },
+    {
+      "id": "POL-004",
+      "name": "道旅国际-社保豁免",
+      "condition": "公司主体 == '道旅国际'",
+      "effect": {
+        "个人社保": 0
+      },
+      "applies_to": "both",
+      "note": "道旅国际员工不缴纳个人社保"
+    },
+    {
+      "id": "POL-005",
+      "name": "道旅国际-公积金豁免",
+      "condition": "公司主体 == '道旅国际' AND 入职月数 <= 2",
+      "effect": {
+        "个人公积金": 0
+      },
+      "applies_to": "both",
+      "note": "道旅国际员工入职2个月内可以不缴纳个人公积金。已缴纳的也合理，不做违规判定。",
+      "check_scope": "note_only"
+    }
+  ],
+  "formula_rules": [
+    {
+      "id": "FR-001",
+      "name": "应发合计校验",
+      "description": "应发合计 = 各收入科目之和 - 其他扣减",
+      "left": "应发合计",
+      "right_fields": [
+        "实际出勤工资小计",
+        "实际绩效工资",
+        "实际出勤福利小计",
+        "轮班补贴",
+        "加班费小计",
+        "业务线奖金合计",
+        "提成&其他&奖金",
+        "补发"
+      ],
+      "deductions": [
+        "其他扣减"
+      ],
+      "tolerance": 0,
+      "applies_to": "all"
+    },
+    {
+      "id": "FR-002",
+      "name": "实发合计校验",
+      "description": "实发合计 = 应发合计 - 代扣款项 + 补贴",
+      "left": "实发金额合计",
+      "deductions": [
+        "个人社保",
+        "个人公积金",
+        "个人所得税",
+        "税后扣减项",
+        "个人住宿扣款",
+        "个人承担社保差额",
+        "个人承担公积金差额"
+      ],
+      "additions": [
+        "经济补偿金"
+      ],
+      "tolerance": 0,
+      "applies_to": "all"
+    },
+    {
+      "id": "FR-003",
+      "name": "出勤工资校验",
+      "description": "实际出勤工资小计 ≤ 标准基本工资",
+      "left": "实际出勤工资小计",
+      "right_field": "标准基本工资",
+      "tolerance": 0,
+      "direction": "lte",
+      "applies_to": "all",
+      "exclusions": [
+        "实习生",
+        "日薪"
+      ]
+    },
+    {
+      "id": "FR-004",
+      "name": "计薪天数校验",
+      "description": "实际计薪出勤天数 ≤ 应计薪出勤天数",
+      "left": "实际计薪出勤天数",
+      "right_field": "应计薪出勤天数",
+      "tolerance": 0,
+      "direction": "lte",
+      "applies_to": "all"
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "BR-001",
+      "name": "出勤工资不超过标准工资",
+      "condition": "实际出勤工资小计 <= 标准基本工资",
+      "exclusions_field": "岗位",
+      "exclusions_values": [
+        "实习生(日薪)",
+        "日薪"
+      ],
+      "description": "实际出勤工资小计不应超过标准基本工资（排除日薪实习生）",
+      "severity": "yellow"
+    },
+    {
+      "id": "BR-002",
+      "name": "出勤天数不超过应出勤天数",
+      "condition": "实际计薪出勤天数 <= 应计薪出勤天数",
+      "description": "实际计薪出勤天数不应超过应计薪出勤天数",
+      "severity": "yellow"
+    },
+    {
+      "id": "BR-003",
+      "name": "绩效系数在合理范围",
+      "condition": "绩效系数 >= 0.5 AND 绩效系数 <= 1.5",
+      "description": "绩效系数应在0.5~1.5之间",
+      "severity": "yellow"
+    },
+    {
+      "id": "BR-004",
+      "name": "班天数不超过计薪天数",
+      "condition": "班天数合计 <= 实际计薪出勤天数",
+      "description": "排班天数合计不应超过实际计薪出勤天数",
+      "severity": "yellow"
+    },
+    {
+      "id": "BR-005",
+      "name": "轮班天数不超过计薪天数",
+      "condition": "C1&C2班天数 + C班天数 + D班天数 <= 实际计薪出勤天数",
+      "description": "C1&C2班天数+C班天数+D班天数不应超过实际计薪出勤天数",
+      "severity": "red"
+    }
+  ],
+  "person_analysis_exclusions": {
+    "离职": {
+      "field": "离职日期",
+      "condition": "离职日期 in 当月",
+      "note": "当月离职人员，工资因不满勤而下降属正常"
+    },
+    "新入职不满勤": {
+      "field": "入职日期",
+      "condition": "入职日期 in 上月 AND 上月不满勤",
+      "note": "上月新入职人员，上月不满勤导致基数偏低"
+    },
+    "转正": {
+      "field": "转正薪资生效日期",
+      "condition": "转正薪资生效日期 in [上月, 当月]",
+      "note": "转正导致标准工资变化属正常"
+    },
+    "调薪": {
+      "field": "调薪生效日期",
+      "condition": "调薪生效日期 in [上月, 当月]",
+      "note": "调薪导致标准工资变化属正常"
+    },
+    "请假": {
+      "field": "请假天数",
+      "condition": "病假 > 2 OR 事假 > 2",
+      "note": "请假导致计薪天数下降属正常"
+    },
+    "多主体发薪": {
+      "field": "工号",
+      "condition": "同一工号在多个公司主体出现",
+      "note": "多主体发薪人员不应直接对比单一主体工资"
+    }
+  },
+  "required_fields": {
+    "基础信息": [
+      "发薪月",
+      "公司主体",
+      "姓名代号",
+      "工号"
+    ],
+    "人员变动": [
+      "入职日期"
+    ],
+    "工资变动": [
+    ],
+    "出勤": [
+      "实际计薪出勤天数",
+      "实际出勤工资小计",
+      "应计薪出勤天数"
+    ],
+    "绩效": [
+      "绩效系数",
+      "实际绩效工资"
+    ],
+    "福利补贴": [
+      "标准福利",
+      "通讯补贴",
+      "电脑补贴",
+      "交通补贴",
+      "住房补贴",
+      "约定补贴",
+      "餐补",
+      "实际出勤福利小计",
+      "轮班补贴"
+    ],
+    "加班": [
+      "加班费小计",
+      "平时加班时数",
+      "周末加班时数",
+      "法定加班时数"
+    ],
+    "奖金提成": [
+      "业务线奖金合计",
+      "提成&其他&奖金",
+      "补发",
+      "其他扣减"
+    ],
+    "应发项": [
+      "标准基本工资",
+      "标准绩效工资",
+      "应计薪出勤天数",
+      "实际计薪出勤天数",
+      "实际出勤工资小计",
+      "绩效系数",
+      "实际绩效工资",
+      "实际出勤福利小计",
+      "轮班补贴",
+      "C1&C2班天数",
+      "C班天数",
+      "D班天数",
+      "加班费小计",
+      "业务线奖金合计",
+      "提成&其他&奖金",
+      "补发",
+      "其他扣减",
+      "应发合计"
+    ],
+    "实发代扣项": [
+      "个人社保",
+      "个人公积金",
+      "个人所得税",
+      "税后扣减项",
+      "个人住宿扣款",
+      "个人承担社保差额",
+      "个人承担公积金差额",
+      "经济补偿金"
+    ],
+    "最终结果": [
+      "应发合计",
+      "实发金额合计"
+    ],
+    "社保公积金": [
+      "个人社保",
+      "个人公积金"
+    ],
+    "代扣税": [
+      "个人所得税",
+      "税后扣减项",
+      "个人住宿扣款",
+      "个人承担社保差额",
+      "个人承担公积金差额",
+      "经济补偿金"
+    ],
+    "请假": [
+      "病假（天）",
+      "事假（天）"
+    ]
+  }
+}

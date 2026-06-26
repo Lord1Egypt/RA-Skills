@@ -1,35 +1,12 @@
 ---
-name: "个人健康教练"
-description: "Personal health coach for gym and daily reminders with weather-aware outfit suggestions."
-category: "health"
-source: "ClawHub"
-tags: [fitness, health, nutrition, reminder, training]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/personal-health-coach"
-sourceUrl: "https://clawhub.ai/skills/personal-health-coach"
+name: personal-health-coach
+description: Personal health coach for gym and daily reminders with weather-aware outfit suggestions.
 ---
 
-# 个人健康教练
+# Personal Health Coach
 
-> Personal health coach for gym and daily reminders with weather-aware outfit suggestions.
-
-- **Category:** Health
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/personal-health-coach`
-- **Source URL:** [https://clawhub.ai/skills/personal-health-coach](https://clawhub.ai/skills/personal-health-coach)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/personal-health-coach
-```
+- Create daily workout and nutrition reminders.
+- Use absolute dates (YYYY-MM-DD + weekday).
+- For muscle gain, use protein 1.6-2.2 g/kg/day.
+- Send fixed daily outputs: previous afternoon meal plan, morning weather+outfit, evening check-in.
+- Let user choose reminder tone: encouraging, concise, or strict.

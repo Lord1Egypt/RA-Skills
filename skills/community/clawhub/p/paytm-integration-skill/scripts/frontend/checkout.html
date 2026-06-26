@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <title>Paytm Checkout</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 42rem;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+      button {
+        padding: 0.65rem 1.25rem;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      #payment-result {
+        margin-top: 1rem;
+        padding: 0.75rem 1rem;
+        border-radius: 0.4rem;
+        font-size: 0.95rem;
+        display: none;
+      }
+      #payment-result.success { background: #e7f6e7; color: #1b5e20; display: block; }
+      #payment-result.failure { background: #fdecea; color: #a40000; display: block; }
+      #payment-result.pending { background: #fff8e1; color: #6d4c00; display: block; }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+          monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Paytm JS Checkout</h1>
+    <p>
+      Minimal trigger flow:
+      <code>initiateTransaction</code> (server) → <code>txnToken</code> →
+      <code>init</code> → <code>invoke</code>.
+    </p>
+
+    <button type="button" id="payBtn" disabled>Pay with Paytm</button>
+    <div id="payment-result" role="status" aria-live="polite"></div>
+
+    <script>
+      var resultEl = document.getElementById("payment-result");
+      var payBtn = document.getElementById("payBtn");
+
+      function showResult(kind, message) {
+        resultEl.className = kind;
+        resultEl.textContent = message;
+      }
+
+      // Loader URL is provided by the backend as /paytm-client-config.json (public; no merchant key).
+      fetch(new URL("paytm-client-config.json", document.baseURI).toString())
+        .then(function (r) { return r.json(); })
+        .then(function (cfg) {
+          if (!cfg.loader_url) throw new Error("Missing loader_url");
+          var s = document.createElement("script");
+          s.type = "application/javascript";
+          s.src = cfg.loader_url;
+          s.crossOrigin = "anonymous";
+          s.onload = function () { payBtn.disabled = false; };
+          s.onerror = function () {
+            console.error("[paytm] loader failed");
+            showResult("failure", "Could not load Paytm. Refresh and try again.");
+          };
+          document.head.appendChild(s);
+        })
+        .catch(function (e) {
+          console.error("[paytm] client-config fetch failed", e);
+          showResult("failure", "Could not initialise checkout. Refresh and try again.");
+        });
+
+      payBtn.addEventListener("click", function () {
+        payBtn.disabled = true;
+
+        fetch(new URL("paytm/create-order", document.baseURI).toString(), {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount: "1.00", custId: "CUST_CHECKOUT" }),
+        })
+          .then(function (r) {
+            if (!r.ok) {
+              return r.text().then(function (t) {
+                throw new Error("HTTP " + r.status + " - " + t);
+              });
+            }
+            return r.json();
+          })
+          .then(function (data) {
+            if (!window.Paytm || !window.Paytm.CheckoutJS) {
+              throw new Error("Paytm.CheckoutJS not available - loader may have failed");
+            }
+
+            // IMPORTANT: do NOT wrap init/invoke in CheckoutJS.onLoad() here.
+            // onLoad fires ONCE when the script first loads - by the time the user
+            // clicks Pay, it has already fired and the callback will never run.
+            // CheckoutJS is already ready at this point (we set payBtn.disabled=false
+            // from the script's onload above), so call init/invoke directly.
+            var config = {
+              root: "",
+              flow: "DEFAULT",
+              data: {
+                orderId: data.orderId,
+                token: data.txnToken,
+                tokenType: "TXN_TOKEN",
+                amount: data.amount,
+              },
+              merchant: { redirect: false },
+              handler: {
+                notifyMerchant: function (eventName, payload) {
+                  console.log("[paytm] notifyMerchant", eventName, payload);
+                  if (eventName === "APP_CLOSED") {
+                    showResult("failure", "Payment cancelled.");
+                    payBtn.disabled = false;
+                  } else if (eventName === "SESSION_EXPIRED") {
+                    showResult("failure", "Session expired. Please try again.");
+                    payBtn.disabled = false;
+                  }
+                },
+                transactionStatus: function (status) {
+                  console.log("[paytm] transactionStatus", status);
+                  // status.STATUS: TXN_SUCCESS / TXN_FAILURE / PENDING.
+                  // ALWAYS reconfirm via /paytm/order-status before fulfilling.
+                  if (status && status.STATUS === "TXN_SUCCESS") {
+                    showResult("success", "Payment successful.");
+                  } else if (status && status.STATUS === "PENDING") {
+                    showResult("pending", "Payment pending - we'll confirm shortly.");
+                  } else {
+                    showResult("failure", "Payment failed. Please try again.");
+                  }
+                  window.Paytm.CheckoutJS.close();
+                  payBtn.disabled = false;
+                },
+              },
+            };
+
+            return window.Paytm.CheckoutJS.init(config).then(function () {
+              window.Paytm.CheckoutJS.invoke();
+            });
+          })
+          .catch(function (e) {
+            console.error("[paytm] checkout error", e);
+            showResult("failure", "Something went wrong. Please try again.");
+            payBtn.disabled = false;
+          });
+      });
+    </script>
+  </body>
+</html>

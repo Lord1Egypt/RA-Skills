@@ -1,0 +1,28 @@
+{
+  "surveyIntent": "Determine optimal pricing by testing multiple price points",
+  "country": "US",
+  "sampleSize": "100",
+  "targeting": [],
+  "reporting": ["gender", "age-range", "income"],
+  "questions": [
+    {
+      "type": "single_select",
+      "prompt": "At which price would you be most likely to purchase [Product Name]?",
+      "context": {
+        "text": "[Brief product description — what it does, key features, value proposition]"
+      },
+      "options": [
+        { "value": "$9.99/month" },
+        { "value": "$14.99/month" },
+        { "value": "$19.99/month" },
+        { "value": "$24.99/month" },
+        { "value": "I would not purchase at any of these prices" }
+      ]
+    },
+    {
+      "type": "open_ended",
+      "prompt": "What price would you consider fair for this product, and why?",
+      "options": []
+    }
+  ]
+}

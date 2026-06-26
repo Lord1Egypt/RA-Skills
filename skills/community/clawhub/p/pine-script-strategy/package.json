@@ -1,0 +1,7 @@
+{
+  "name": "pine-script-strategy",
+  "version": "1.0.0",
+  "description": "Write, fix, test, and backtest Pine Script v5 strategies and indicators for TradingView",
+  "main": "SKILL.md",
+  "type": "skill"
+}

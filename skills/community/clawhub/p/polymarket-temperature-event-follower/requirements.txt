@@ -1,0 +1,23 @@
+# Polymarket & SkillPay 交易机器人依赖
+# 使用 pip install -r requirements.txt 安装
+
+# HTTP 请求
+aiohttp          # 异步HTTP客户端（扫描市场）
+requests        # 同步HTTP请求（SkillPay计费）
+
+# 时间与时区
+pytz          # 时区支持（城市时间转换）
+
+# 环境配置
+python-dotenv    # 从 .env 文件加载配置
+
+# 区块链交互
+eth-account     # 以太坊钱包私钥处理、签名
+
+# Polymarket 官方客户端（实盘必需）
+py-clob-client   # CLOB订单簿客户端（包含交易逻辑）
+# 注意：py-clob-client 会自动安装其依赖：
+# eth-utils, httpx, poly-eip712-structs, py-builder-signing-sdk, py-order-utils
+
+# 可选（如果使用Web3相关功能）
+# web3>=6.0.0           # 不需要，当前仅使用 eth-account

@@ -1,0 +1,11 @@
+{
+  "name": "pingcode",
+  "description": "PingCode 研发管理平台 API 集成。支持查询工作项、生成周报、管理项目进度等。使用场景：研发管理自动化、团队协作、数据分析。",
+  "metadata": {
+    "openclaw": {
+      "requires": {
+        "env": ["PINGCODE_CLIENT_ID", "PINGCODE_CLIENT_SECRET"]
+      }
+    }
+  }
+}

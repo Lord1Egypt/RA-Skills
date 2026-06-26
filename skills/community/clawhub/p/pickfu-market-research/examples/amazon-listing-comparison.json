@@ -1,0 +1,22 @@
+{
+  "surveyIntent": "Compare Amazon product listings to optimize positioning against competitors",
+  "country": "US",
+  "sampleSize": "50",
+  "targeting": ["amznpr"],
+  "reporting": ["gender", "age-range"],
+  "questions": [
+    {
+      "type": "head_to_head",
+      "prompt": "Which product would you be more likely to purchase?",
+      "options": [
+        { "asin": "B0XXXXXXXXXX" },
+        { "asin": "B0YYYYYYYYYY" }
+      ]
+    },
+    {
+      "type": "open_ended",
+      "prompt": "What factors influenced your choice? (price, images, reviews, title, etc.)",
+      "options": []
+    }
+  ]
+}

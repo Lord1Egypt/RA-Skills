@@ -1,0 +1,13 @@
+{
+  "emoji": "🐋",
+  "requires": {
+    "pip": ["simmer-sdk"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "cron": "*/15 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "copytrading.py",
+    "args": ["--live"]
+  }
+}

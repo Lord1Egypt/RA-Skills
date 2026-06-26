@@ -1,35 +1,32 @@
 ---
-name: "Pipeworx iplookup"
-description: "IP Lookup MCP — ip-api.com (free, no auth for basic usage)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-iplookup"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-iplookup"
+name: pipeworx-iplookup
+description: IP Lookup MCP — ip-api.com (free, no auth for basic usage)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/iplookup
 ---
 
-# Pipeworx iplookup
+# pipeworx-iplookup
 
-> IP Lookup MCP — ip-api.com (free, no auth for basic usage)
+IP Lookup MCP — ip-api.com (free, no auth for basic usage). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-iplookup`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-iplookup](https://clawhub.ai/skills/pipeworx-iplookup)
+## Tools
 
-## Overview
+- `geolocate_ip`
+- `batch_geolocate`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-iplookup
+```json
+{
+  "mcpServers": {
+    "pipeworx-iplookup": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/iplookup/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/iplookup](https://pipeworx.io/packs/iplookup)

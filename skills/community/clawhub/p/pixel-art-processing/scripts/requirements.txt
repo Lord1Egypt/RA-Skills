@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+"""
+pixel-art-processing skill - Python dependencies
+像素美术处理技能 - Python依赖
+
+基于 FrameRonin: https://github.com/systemchester/FrameRonin
+"""
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+pydantic>=2.5.0
+redis>=5.0.0
+rq>=1.15.0
+ffmpeg-python>=0.2.0
+rembg>=2.0.50
+pillow>=10.0.0
+python-magic-bin>=0.4.14;sys_platform=="win32"
+python-magic>=0.4.27;sys_platform!="win32"
+aiofiles>=23.2.0
+httpx>=0.25.0
+opencv-python-headless>=4.8.0
+numpy>=1.24.0

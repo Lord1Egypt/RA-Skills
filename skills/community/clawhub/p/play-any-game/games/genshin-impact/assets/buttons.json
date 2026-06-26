@@ -1,0 +1,276 @@
+{
+    "paimon_menu": {
+        "description": "派蒙菜单按钮（左上角）",
+        "roi": [0, 0, "width/4", "height/4"],
+        "threshold": 0.8
+    },
+    "inventory": {
+        "description": "背包按钮（右上角）",
+        "roi": ["width*3/4", 0, "width/4", 100],
+        "threshold": 0.8
+    },
+    "in_domain": {
+        "description": "秘境退出图标",
+        "roi": [0, 0, "width/4", "height/4"],
+        "threshold": 0.8
+    },
+    "blue_track_point_28x": {
+        "description": "任务追踪点位",
+        "roi": [300, 0, "width-600", "height"],
+        "threshold": 0.6
+    },
+    "ui_left_top_cook_icon": {
+        "description": "左上角UI元素",
+        "roi": [0, 0, 150, 120],
+        "threshold": 0.8
+    },
+    "space_key": {
+        "description": "空格键提示",
+        "roi": ["width-350", "height-70", 200, 70],
+        "threshold": 0.8
+    },
+    "key_space": {
+        "description": "空格键提示",
+        "roi": ["width-350", "height-70", 200, 70],
+        "threshold": 0.8
+    },
+    "key_x": {
+        "description": "X键提示",
+        "roi": ["width-350", "height-70", 200, 70],
+        "threshold": 0.8
+    },
+    "friend_chat": {
+        "description": "好友聊天图标",
+        "roi": [0, "height-70", 83, 70],
+        "threshold": 0.8
+    },
+    "party_btn_choose_view": {
+        "description": "队伍切换",
+        "roi": [0, "height-120", "width/7", 120],
+        "threshold": 0.8
+    },
+    "party_btn_delete": {
+        "description": "队伍删除",
+        "roi": ["width/4", "height-120", "width/2", 120],
+        "threshold": 0.8
+    },
+    "craft_condensed_resin": {
+        "description": "合成浓缩树脂",
+        "roi": ["width/2", 0, "width/2", "height*2/3"],
+        "threshold": 0.8
+    },
+    "fragile_resin_count": {
+        "description": "脆弱树脂数量",
+        "roi": ["width/2", "height*3/4", "width/3", "height/6"],
+        "threshold": 0.8
+    },
+    "condensed_resin_count": {
+        "description": "浓缩树脂数量",
+        "roi": ["width/2", 0, "width/4", "height/15"],
+        "threshold": 0.8
+    },
+    "key_reduce": {
+        "description": "减少合成",
+        "roi": ["width/2", "height/2", "width/2", "height/2"],
+        "threshold": 0.8
+    },
+    "key_increase": {
+        "description": "增加合成",
+        "roi": ["width/2", "height/2", "width/2", "height/2"],
+        "threshold": 0.8
+    },
+    "bag_weapon_unchecked": {
+        "description": "背包武器未选中",
+        "roi": [0, 0, "width", "height/10"],
+        "threshold": 0.87
+    },
+    "bag_weapon_checked": {
+        "description": "背包武器选中",
+        "roi": [0, 0, "width", "height/10"],
+        "threshold": 0.8
+    },
+    "bag_artifact_unchecked": {
+        "description": "背包圣遗物未选中",
+        "roi": [0, 0, "width", "height/10"],
+        "threshold": 0.87
+    },
+    "bag_artifact_checked": {
+        "description": "背包圣遗物选中",
+        "roi": [0, 0, "width", "height/10"],
+        "threshold": 0.8
+    },
+    "btn_artifact_salvage": {
+        "description": "圣遗物分解按钮",
+        "roi": [0, "height-height/10", "width", "height/10"],
+        "threshold": 0.8
+    },
+    "btn_artifact_salvage_confirm": {
+        "description": "圣遗物分解确认",
+        "roi": ["width-width*0.3", "height-height*0.1", "width*0.3", "height*0.1"],
+        "threshold": 0.8
+    },
+    "btn_claim_encounter_points_rewards": {
+        "description": "领取历练点奖励",
+        "roi": ["width/2", "height/2", "width/2", "height/2"],
+        "threshold": 0.8
+    },
+    "primogem": {
+        "description": "原石",
+        "roi": ["width/2", "height/5", "width/4", "height/8"],
+        "threshold": 0.8
+    },
+    "esc_mail_reward": {
+        "description": "邮件奖励",
+        "roi": [0, 0, "width*7/10", "height"],
+        "threshold": 0.8
+    },
+    "collect": {
+        "description": "领取按钮",
+        "roi": [0, 0, "width*7/10", "height"],
+        "threshold": 0.8
+    },
+    "page_close_white": {
+        "description": "白色关闭按钮",
+        "roi": ["width-width/8", 0, "width/8", "height/8"],
+        "threshold": 0.8
+    },
+    "sereniteapot_home": {
+        "description": "尘歌壶主页",
+        "roi": [0, 0, "width", "height"],
+        "threshold": 0.8
+    },
+    "teleport_sereniteapot_home": {
+        "description": "传送到尘歌壶",
+        "roi": ["width/2", "height/2", "width/2", "height/2"],
+        "threshold": 0.8
+    },
+    "sereniteapot_love": {
+        "description": "尘歌壶好感度",
+        "roi": ["width-width/8", "height/2", "width/8", "height/4"],
+        "threshold": 0.8
+    },
+    "sereniteapot_money": {
+        "description": "尘歌壶宝钱",
+        "roi": ["width/2", "height-height/4", "width/4", "height/4"],
+        "threshold": 0.8
+    },
+    "sereniteapot_page_close": {
+        "description": "尘歌壶关闭页面",
+        "roi": [0, 0, "width*7/10", "height"],
+        "threshold": 0.8
+    },
+    "sereniteapot_shop_number_btn": {
+        "description": "尘歌壶商店数量按钮",
+        "roi": [0, 0, "width*7/10", "height"],
+        "threshold": 0.8
+    },
+    "current_avatar_threshold": {
+        "description": "当前角色能量条",
+        "roi": ["width-240", 155, 210, 600],
+        "threshold": 0.8
+    },
+    "feedback": {
+        "description": "反馈按钮",
+        "threshold": 0.8
+    },
+    "btn_white_confirm": {
+        "description": "白色确认按钮",
+        "use_3_channels": true,
+        "threshold": 0.8
+    },
+    "btn_white_cancel": {
+        "description": "白色取消按钮",
+        "use_3_channels": true,
+        "threshold": 0.8
+    },
+    "btn_white_recover": {
+        "description": "白色恢复按钮",
+        "roi": [580, 950, 90, 95],
+        "use_3_channels": true,
+        "threshold": 0.8
+    },
+    "btn_black_confirm": {
+        "description": "黑色确认按钮",
+        "use_3_channels": true,
+        "threshold": 0.8
+    },
+    "btn_black_cancel": {
+        "description": "黑色取消按钮",
+        "use_3_channels": true,
+        "threshold": 0.8
+    },
+    "btn_back_teyvat": {
+        "description": "返回提瓦特按钮",
+        "threshold": 0.8
+    },
+    "btn_online_yes": {
+        "description": "在线确认按钮",
+        "use_3_channels": true,
+        "threshold": 0.8
+    },
+    "btn_online_no": {
+        "description": "在线取消按钮",
+        "use_3_channels": true,
+        "threshold": 0.8
+    },
+    "btn_exit_door": {
+        "description": "退出按钮（门）",
+        "threshold": 0.8
+    },
+    "page_close": {
+        "description": "关闭页面按钮",
+        "threshold": 0.8
+    },
+    "page_close_main": {
+        "description": "主界面关闭按钮",
+        "threshold": 0.8
+    },
+    "esc_down": {
+        "description": "ESC按下状态",
+        "threshold": 0.8
+    },
+    "key_E": {
+        "description": "E键提示",
+        "threshold": 0.8
+    },
+    "key_F": {
+        "description": "F键提示",
+        "threshold": 0.8
+    },
+    "key_G": {
+        "description": "G键提示",
+        "threshold": 0.8
+    },
+    "key_L": {
+        "description": "L键提示",
+        "threshold": 0.8
+    },
+    "icon_settings": {
+        "description": "设置图标",
+        "threshold": 0.8
+    },
+    "comfirm_btn1": {
+        "description": "确认按钮1",
+        "threshold": 0.8
+    },
+    "comfirm_btn2": {
+        "description": "确认按钮2",
+        "threshold": 0.8
+    },
+    "index_1": {
+        "description": "队伍序号1",
+        "threshold": 0.8
+    },
+    "index_2": {
+        "description": "队伍序号2",
+        "threshold": 0.8
+    },
+    "index_3": {
+        "description": "队伍序号3",
+        "threshold": 0.8
+    },
+    "index_4": {
+        "description": "队伍序号4",
+        "threshold": 0.8
+    }
+}

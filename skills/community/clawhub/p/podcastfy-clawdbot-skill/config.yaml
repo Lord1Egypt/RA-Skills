@@ -1,0 +1,7 @@
+# Local overrides for Podcastfy
+# (Used by the Clawdbot wrapper via `config=`)
+
+website_extractor:
+  # TechCrunch (and similar sites) can take longer to reach networkidle.
+  # Default in podcastfy is 10 seconds.
+  timeout: 60

@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"import\\('./relay.mjs'\\).then\\(\\(\\) => console.log\\('relay.mjs OK'\\)\\).catch\\(e => console.error\\('relay.mjs FAIL:', e.message\\)\\)\")",
+      "Bash(node -e \"import\\('./register-and-mint.mjs'\\).catch\\(e => console.log\\('Import check:', e.message\\)\\)\")",
+      "Bash(node --check bridge.mjs)",
+      "Bash(PORT=3299 BASE_URL=http://localhost:3299 node relay.mjs)",
+      "Bash(curl -s http://localhost:3299/api/health)",
+      "Bash(python3 -m json.tool)",
+      "Bash(lsof -ti:3299)",
+      "Bash(xargs kill)",
+      "Bash(node --check relay.mjs)",
+      "Bash(node --check register-and-mint.mjs)",
+      "Bash(node -e ' *)",
+      "Bash(npx create-next-app@latest nextjs-app --typescript --app --src-dir --no-tailwind --no-eslint --import-alias \"@/*\" --use-npm)"
+    ]
+  }
+}

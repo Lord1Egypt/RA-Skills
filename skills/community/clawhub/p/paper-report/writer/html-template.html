@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{PAPER_TITLE}} — 阅读报告</title>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    processEscapes: true
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<style>
+  :root {
+    --primary: #1a365d;
+    --accent: #2b6cb0;
+    --bg: #ffffff;
+    --text: #2d3748;
+    --muted: #718096;
+    --border: #e2e8f0;
+    --section-bg: #f7fafc;
+    --code-bg: #edf2f7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.8;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  /* Header */
+  .report-header {
+    text-align: center;
+    padding-bottom: 32px;
+    border-bottom: 2px solid var(--primary);
+    margin-bottom: 40px;
+  }
+  .report-header h1 {
+    font-size: 1.8em;
+    color: var(--primary);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .report-header .meta {
+    color: var(--muted);
+    font-size: 0.95em;
+  }
+  .report-header .meta span { margin: 0 8px; }
+
+  /* Sections */
+  h2 {
+    font-size: 1.35em;
+    color: var(--primary);
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 1.15em;
+    color: var(--accent);
+    margin-top: 28px;
+    margin-bottom: 12px;
+  }
+  h4 {
+    font-size: 1.05em;
+    color: #4a5568;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  p { margin-bottom: 14px; }
+
+  /* Lists */
+  ul, ol {
+    margin: 12px 0 14px 24px;
+    line-height: 1.8;
+  }
+  ul li, ol li {
+    margin-bottom: 6px;
+  }
+  ul { list-style-type: disc; }
+  ol { list-style-type: decimal; }
+
+  /* Code */
+  code {
+    font-family: "SF Mono", "Fira Code", "Cascadia Code", Menlo, Consolas, monospace;
+    font-size: 0.88em;
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  pre {
+    background: var(--code-bg);
+    padding: 16px 20px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 16px 0;
+    line-height: 1.5;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: 0.85em;
+  }
+
+  /* Subscript / Superscript */
+  sub { font-size: 0.75em; vertical-align: sub; }
+  sup { font-size: 0.75em; vertical-align: super; }
+
+  /* Figures */
+  .figure {
+    margin: 24px 0;
+    text-align: center;
+  }
+  .figure img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .figure figcaption {
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Highlight box */
+  .highlight {
+    background: var(--section-bg);
+    border-left: 4px solid var(--accent);
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .highlight p {
+    margin-bottom: 10px;
+  }
+  .highlight p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95em;
+  }
+  th, td {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    text-align: left;
+  }
+  th {
+    background: var(--section-bg);
+    color: var(--primary);
+    font-weight: 600;
+  }
+  caption {
+    text-align: left;
+    margin-bottom: 8px;
+    color: var(--muted);
+    font-size: 0.9em;
+  }
+
+  /* Blockquote */
+  blockquote {
+    border-left: 3px solid var(--border);
+    padding-left: 16px;
+    margin: 16px 0;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Footer */
+  .report-footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85em;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== 报告头部 ==================== -->
+<div class="report-header">
+  <h1>{{PAPER_TITLE_CN}}</h1>
+  <p style="font-size:0.95em; color:#4a5568; margin-bottom:8px;">{{PAPER_TITLE_EN}}</p>
+  <div class="meta">
+    <span>作者：{{AUTHORS}}</span><br>
+    <span>机构：{{AFFILIATIONS}}</span><br>
+    <span>来源：{{VENUE}} · {{YEAR}}</span>
+  </div>
+</div>
+
+<!-- ==================== 正文区域 ==================== -->
+
+<h2>一、研究背景与动机</h2>
+<p>{{BACKGROUND_CONTENT}}</p>
+
+<h2>二、核心方法 / 技术方案</h2>
+<p>{{METHOD_CONTENT}}</p>
+
+<!-- 示例：嵌入图片 -->
+<figure class="figure">
+  <img src="{{FIG1_BASE64}}" alt="Figure 1: 系统架构">
+  <figcaption>图 1：{{FIG1_CAPTION}}</figcaption>
+</figure>
+
+<h2>三、实验设计</h2>
+<p>{{EXPERIMENT_DESIGN}}</p>
+
+<h2>四、实验结果与分析</h2>
+<p>{{RESULTS_CONTENT}}</p>
+
+<figure class="figure">
+  <img src="{{FIG2_BASE64}}" alt="Figure 2: 实验结果">
+  <figcaption>图 2：{{FIG2_CAPTION}}</figcaption>
+</figure>
+
+<h2>五、主要贡献与创新点</h2>
+<div class="highlight">
+  <p>{{CONTRIBUTIONS}}</p>
+</div>
+
+<h2>六、局限性与未来方向</h2>
+<p>{{LIMITATIONS}}</p>
+
+<h2>七、个人点评与总结</h2>
+<p>{{COMMENTARY}}</p>
+
+<!-- ==================== 页脚 ==================== -->
+<div class="report-footer">
+  基于论文原文整理 · 仅供学术交流参考
+</div>
+
+</body>
+</html>

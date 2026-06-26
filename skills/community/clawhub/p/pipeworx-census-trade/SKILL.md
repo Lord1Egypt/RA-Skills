@@ -1,35 +1,29 @@
----
-name: "Pipeworx census-trade"
-description: "Access detailed US international trade data including imports, exports, trade balance, and trends by commodity and country."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-census-trade"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-census-trade"
----
+# Census Trade
 
-# Pipeworx census-trade
+Census Trade MCP — US Census Bureau International Trade data
 
-> Access detailed US international trade data including imports, exports, trade balance, and trends by commodity and country.
+## census_imports
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-census-trade`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-census-trade](https://clawhub.ai/skills/pipeworx-census-trade)
+Search US import data by HS commodity code (e.g., "8471" for computers) and/or country (e.g., "China
 
-## Overview
+## census_exports
 
+Search US export data by HS commodity code (e.g., "8471" for computers) and/or country (e.g., "Mexic
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-census-trade
+## census_trade_balance
+
+Check US trade balance with a specific country for a given year. Returns net trade value and breakdo
+
+## census_trade_trends
+
+Get monthly US trade trends for a commodity and/or country over time. Returns month-by-month values 
+
+```json
+{
+  "mcpServers": {
+    "census-trade": {
+      "url": "https://gateway.pipeworx.io/census-trade/mcp"
+    }
+  }
+}
 ```

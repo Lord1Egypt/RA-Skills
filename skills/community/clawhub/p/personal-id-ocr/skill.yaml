@@ -1,0 +1,23 @@
+name: personal_id_ocr
+version: 1.0.3
+description: 支持身份证正反两面全自动检测与识别，提取姓名、性别、民族、出生日期、住址、公民身份号码及签发机关等关键字段。
+author: SCNet
+license: MIT
+tags:
+  - ocr
+  - 文字提取
+
+required_env_vars:
+  - SCNET_API_KEY
+
+optional_env_vars:
+  - SCNET_API_BASE
+
+primary_credential: SCNET_API_KEY
+
+# 增加项目主页，解决 missing homepage 警告
+homepage: https://github.com/SCNet-sugon/personal_id_ocr.git  # 请替换为实际仓库地址
+
+dependencies:
+  - python3
+  - requests

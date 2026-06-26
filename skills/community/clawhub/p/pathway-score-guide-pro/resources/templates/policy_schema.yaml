@@ -1,0 +1,25 @@
+meta:
+  institution_name: ""
+  institution_type: school_or_unit
+  pathway: ""
+  document_title: ""
+  year: 2026
+  official_url: ""
+hard_requirements:
+  - item: ""
+    satisfied: unknown
+    evidence: ""
+competitive_items:
+  - item: ""
+    max_points: 0
+    user_points: 0
+    evidence: ""
+materials:
+  required: []
+  optional: []
+timeline:
+  - stage: ""
+    deadline: ""
+    note: ""
+risks: []
+notes: []

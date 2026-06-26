@@ -1,35 +1,106 @@
 ---
-name: "Pinduoduo Deal Finder"
-description: "拼多多神价发现、百亿补贴监控、多人团优惠、砍价免费拿进度追踪。适合省钱购物、副业套利。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pinduoduo-deal-finder"
-sourceUrl: "https://clawhub.ai/skills/pinduoduo-deal-finder"
+name: pinduoduo-deal-finder
+version: 1.0.0
+description: 拼多多神价发现、百亿补贴监控、多人团优惠、砍价免费拿进度追踪。适合省钱购物、副业套利。
+homepage: https://github.com/openclaw/skills
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "💰",
+        "requires": { "bins": ["python3", "curl"] },
+        "install":
+          [
+            {
+              "id": "requests",
+              "kind": "pip",
+              "package": "requests",
+              "label": "安装依赖：pip3 install requests",
+            },
+          ],
+      },
+  }
 ---
 
-# Pinduoduo Deal Finder
+# 拼多多优惠发现技能
 
-> 拼多多神价发现、百亿补贴监控、多人团优惠、砍价免费拿进度追踪。适合省钱购物、副业套利。
+发现拼多多神价、监控百亿补贴、多人团优惠、砍价进度追踪。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pinduoduo-deal-finder`
-- **Source URL:** [https://clawhub.ai/skills/pinduoduo-deal-finder](https://clawhub.ai/skills/pinduoduo-deal-finder)
+## 功能
 
-## Overview
+1. **神价发现**: 发现历史低价、BUG 价、限时秒杀
+2. **百亿补贴**: 监控百亿补贴商品价格和库存
+3. **多人团**: 发现超值多人团优惠
+4. **砍价追踪**: 追踪砍价免费拿进度
+5. **优惠券**: 领取隐藏优惠券
+6. **比价推荐**: 对比淘宝/京东同款价格
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pinduoduo-deal-finder
 ```
+查看今天的拼多多神价
+```
+
+```
+监控这个百亿补贴商品 https://mobile.yangkeduo.com/goods.html?goods_id=xxx
+```
+
+```
+帮我找 iPhone 的多人团优惠
+```
+
+```
+查询这个商品的比价信息
+```
+
+## 输出示例
+
+```
+💰 拼多多优惠发现
+
+🔥 今日神价 TOP5：
+1. AirPods Pro 2 代 - ¥899（百亿补贴，历史最低）
+2. 小米 14 Ultra - ¥5,299（限时秒杀，省¥1,700）
+3. 戴森 V15 - ¥2,999（多人团，需 5 人成团）
+4. 茅台飞天 53 度 - ¥2,499（限量抢购）
+5. 任天堂 Switch - ¥1,599（百亿补贴）
+
+📊 百亿补贴监控：
+├─ 商品：iPhone 15 Pro Max 256G
+├─ 当前价：¥8,499
+├─ 补贴价：¥7,999（补贴¥500）
+├─ 库存：紧张（剩余 50+ 件）
+└─ 比价：
+    ├─ 淘宝：¥8,999
+    ├─ 京东：¥8,999
+    └─ 拼多多：¥7,999 ✅ 最低
+
+👥 多人团优惠：
+├─ 商品：戴森 V15 吸尘器
+├─ 原价：¥3,999
+├─ 多人团：¥2,999（省¥1,000）
+├─ 成团人数：5 人
+└─ 当前进度：3/5 人已成团
+
+✂️ 砍价进度：
+├─ 商品：AirPods Pro 2
+├─ 目标价：¥0（免费拿）
+├─ 当前价：¥199（已砍¥1,800）
+├─ 剩余：¥199
+└─ 预计：还需 3-5 人助力
+
+💡 省钱建议：
+1. 百亿补贴商品优先购买（正品保障）
+2. 多人团找已成形团加入
+3. 晚上 20-22 点神价最多
+```
+
+## 变现模式
+
+- 免费：每日 10 次查询
+- 付费 (¥29/月)：无限查询 + 实时监控 + 推送提醒
+- 付费 (¥59/月)：+ 批量监控 + 砍价助力群
+
+---
+
+**声明**: 价格库存实时变化，以实际页面为准。

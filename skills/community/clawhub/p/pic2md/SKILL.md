@@ -1,35 +1,61 @@
 ---
-name: "Pic2md"
-description: "Image to Markdown - extract text from images (PNG, JPG, WebP) to Markdown with OCR. Use when reading text from screenshots, photos, scanned pages, or any ima..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pic2md"
-sourceUrl: "https://clawhub.ai/skills/pic2md"
+name: pic2md
+description: "Image to Markdown - extract text from images (PNG, JPG, WebP) to Markdown with OCR. Use when reading text from screenshots, photos, scanned pages, or any image file."
+homepage: https://mineru.net
+metadata: {"openclaw":{"emoji":"🖼️","requires":{"bins":["mineru-open-api"]},"install":[{"id":"npm","kind":"node","package":"mineru-open-api","bins":["mineru-open-api"],"label":"Install via npm"},{"id":"uv","kind":"uv","package":"mineru-open-api","bins":["mineru-open-api"],"label":"Install via uv"},{"id":"go","kind":"go","package":"github.com/opendatalab/MinerU-Ecosystem/cli/mineru-open-api","bins":["mineru-open-api"],"label":"Install via go install","os":["darwin","linux"]}]}}
 ---
 
-# Pic2md
+# Pic2MD - Picture to Markdown Parser
 
-> Image to Markdown - extract text from images (PNG, JPG, WebP) to Markdown with OCR. Use when reading text from screenshots, photos, scanned pages, or any ima...
+Extract text from images to Markdown using MinerU Open API. No API key required.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pic2md`
-- **Source URL:** [https://clawhub.ai/skills/pic2md](https://clawhub.ai/skills/pic2md)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pic2md
+# Pic2MD - Picture to Markdown Parser
+mineru-open-api flash-extract screenshot.png
+
+# Pic2MD - Picture to Markdown Parser
+mineru-open-api flash-extract https://example.com/image.png
+
+# Pic2MD - Picture to Markdown Parser
+mineru-open-api flash-extract photo.jpg -o ./output/
+
+# Pic2MD - Picture to Markdown Parser
+mineru-open-api flash-extract scan.jpg --language en
 ```
+
+## Language Rule
+
+You MUST reply to the user in the SAME language they use. This is non-negotiable.
+
+## Capabilities
+
+- OCR text extraction from PNG, JPG, JPEG, WebP, BMP, TIFF
+- Supports both local files and URLs directly
+- Language hint with `--language` (default: `ch`, use `en` for English)
+- No API key, no signup, no authentication
+- Max 10MB per image
+
+## When to Use
+
+- User asks to "read", "extract", or "OCR" an image
+- User shares a screenshot and asks what it says
+- User wants text from a photo of a document or whiteboard
+- User needs image content converted to Markdown
+
+## CLI Reference
+
+Run `mineru-open-api flash-extract --help` for all available options.
+
+## Data Privacy
+
+- `flash-extract` uploads the image to MinerU's cloud API for processing and returns the result. No account or API key is required.
+- Images are processed in real-time and are not stored after extraction.
+- For details, see https://mineru.net
+
+## Notes
+
+- Output is Markdown text extracted via OCR
+- For higher precision or batch processing, use `mineru-open-api extract` (requires auth via `mineru-open-api auth`)
+- If the CLI cannot be installed via npm/uv/go, download it from https://mineru.net/ecosystem?tab=cli

@@ -1,35 +1,43 @@
----
-name: "Pdfreader"
-description: "Extract text and metadata from PDF files using PyMuPDF, supporting large files and outputting results in JSON format."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pdfreader"
-sourceUrl: "https://clawhub.ai/skills/pdfreader"
----
+# PDF Reader Skill for OpenClaw
 
-# Pdfreader
-
-> Extract text and metadata from PDF files using PyMuPDF, supporting large files and outputting results in JSON format.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pdfreader`
-- **Source URL:** [https://clawhub.ai/skills/pdfreader](https://clawhub.ai/skills/pdfreader)
-
-## Overview
-
+Extract and read text from PDF files using PyMuPDF.
 
 ## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pdfreader
+
+```powershell
+pip install pymupdf
 ```
+
+## Usage
+
+```powershell
+# Extract text (first 10 pages by default)
+python pdf_reader.py "path/to/file.pdf" 10
+
+# Output to JSON file (for reading)
+python pdf_reader.py "path/to/file.pdf" 10 --output=extracted.json
+
+# Read specific number of pages
+python pdf_reader.py "path/to/file.pdf" 5
+```
+
+## Features
+
+- Extracts text from any PDF
+- Supports large files
+- Outputs JSON for AI reading
+- Handles encoding issues
+- Shows metadata (title, author, etc.)
+
+## Security Restrictions
+
+For safety, the script enforces:
+- **Input files:** Must be `.pdf` files within the current working directory
+- **Output files:** Must be `.json` files within the current working directory
+- No path traversal (`../`) allowed
+- Files can only be read/written in the directory where the script runs
+
+## Files
+
+- `pdf_reader.py` - Main Python script
+- `SKILL.md` - This documentation

@@ -1,0 +1,654 @@
+{
+  "generatedAt": "2026-04-01T18:05:33.988099+00:00",
+  "sourceMarketCount": 26,
+  "partnerCount": 35,
+  "loopCandidateCount": 11,
+  "markets": [
+    {
+      "marketAddress": "0x50dce085af29caba28f7308bea57c4043757b491",
+      "ptAddress": "0x92a6a01b07984de46c24e8eba248449beb8b1dcb",
+      "ptName": "PT apxUSD (apxUSD)",
+      "chain": "ethereum",
+      "underlyingSymbol": "apxUSD",
+      "impliedApy": 0.14958837110272127,
+      "daysToExpiry": 77.25,
+      "liquidityUsd": 5500657.95516173,
+      "bestFit": "hold-to-par",
+      "integrations": [
+        {
+          "venue": "Morpho",
+          "category": "money market",
+          "partnerUrl": "https://app.morpho.org/ethereum/borrow",
+          "borrowAssets": [
+            "apxUSD"
+          ],
+          "venueConfidence": "verified-live",
+          "notes": "Verified via Morpho GraphQL: PT collateral supported against apxUSD.",
+          "dataStatus": "protocol-live",
+          "marketId": "0xf3814af4869a6ce59ffef016e555dd4c1e92bf383b5ab89abe496044c6364746",
+          "loanAssetSymbol": "apxUSD",
+          "lltv": 0.86,
+          "borrowApy": 0.03644590196908656,
+          "supplyAssetsUsd": 10.012146581660543,
+          "borrowAssetsUsd": 10.012146581660543,
+          "utilization": 1
+        },
+        {
+          "venue": "Morpho",
+          "category": "money market",
+          "partnerUrl": "https://app.morpho.org/ethereum/borrow",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "verified-live",
+          "notes": "Verified via Morpho GraphQL: PT collateral supported against USDC.",
+          "dataStatus": "protocol-live",
+          "marketId": "0xed05fcc2893b78b3fa468d21b6e4d2925e7f2c64eb1f16279757c43f87502a99",
+          "loanAssetSymbol": "USDC",
+          "lltv": 0.86,
+          "borrowApy": 0.049339373089337446,
+          "supplyAssetsUsd": 124892.10106547108,
+          "borrowAssetsUsd": 120410.37296713314,
+          "utilization": 0.9641151997596026
+        },
+        {
+          "venue": "Contango",
+          "category": "yield strategy",
+          "partnerUrl": "https://app.contango.xyz/",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live",
+          "notes": "Contango listed in Pendle ecosystem; verify this exact PT route in Contango app.",
+          "dataStatus": "ecosystem-live"
+        }
+      ],
+      "practicalLeverageBand": "moderate",
+      "loopabilityVerdict": "high-priority",
+      "manualRoute": "Pendle PT -> money market collateral -> borrow USDC -> buy more PT -> redeposit",
+      "automationRoute": "Contango / other yield-strategy route if supported for this exact PT",
+      "dataStatus": "mixed-live",
+      "sources": {
+        "pendleMarketData": "live-api",
+        "pencosystemDirectory": "live-html",
+        "marketIntegrationMapping": "heuristic unless confirmed-by-user"
+      }
+    },
+    {
+      "marketAddress": "0x3c53fae231ad3c0408a8b6d33138bbff1caec330",
+      "ptAddress": "0x3365554a61ceff74a76528f9e86c1e87946d16a5",
+      "ptName": "PT apyUSD (apxUSD)",
+      "chain": "ethereum",
+      "underlyingSymbol": "apyUSD",
+      "impliedApy": 0.14740390957508187,
+      "daysToExpiry": 77.25,
+      "liquidityUsd": 7292204.738429074,
+      "bestFit": "hold-to-par",
+      "integrations": [
+        {
+          "venue": "Morpho",
+          "category": "money market",
+          "partnerUrl": "https://app.morpho.org/ethereum/borrow",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "verified-live",
+          "notes": "Verified via Morpho GraphQL: PT collateral supported against USDC.",
+          "dataStatus": "protocol-live",
+          "marketId": "0xa75bb490ecfee90c86a9d22ebc2dde42fb83478b3f18722b9fc6f5f668cab124",
+          "loanAssetSymbol": "USDC",
+          "lltv": 0.86,
+          "borrowApy": 0.060010513484829955,
+          "supplyAssetsUsd": 1360989.5289905646,
+          "borrowAssetsUsd": 1360989.5289905646,
+          "utilization": 1
+        },
+        {
+          "venue": "Morpho",
+          "category": "money market",
+          "partnerUrl": "https://app.morpho.org/ethereum/borrow",
+          "borrowAssets": [
+            "apxUSD"
+          ],
+          "venueConfidence": "verified-live",
+          "notes": "Verified via Morpho GraphQL: PT collateral supported against apxUSD.",
+          "dataStatus": "protocol-live",
+          "marketId": "0x04663e98d677d8ef38b76d5a19d1fddc1aff10a86b71dc7f01cd8f5a18a16f06",
+          "loanAssetSymbol": "apxUSD",
+          "lltv": 0.86,
+          "borrowApy": 0.004453959927084354,
+          "supplyAssetsUsd": 10.010582413200286,
+          "borrowAssetsUsd": 0,
+          "utilization": 0
+        },
+        {
+          "venue": "Contango",
+          "category": "yield strategy",
+          "partnerUrl": "https://app.contango.xyz/",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live",
+          "notes": "Contango listed in Pendle ecosystem; verify this exact PT route in Contango app.",
+          "dataStatus": "ecosystem-live"
+        }
+      ],
+      "practicalLeverageBand": "moderate",
+      "loopabilityVerdict": "high-priority",
+      "manualRoute": "Pendle PT -> money market collateral -> borrow USDC -> buy more PT -> redeposit",
+      "automationRoute": "Contango / other yield-strategy route if supported for this exact PT",
+      "dataStatus": "mixed-live",
+      "sources": {
+        "pendleMarketData": "live-api",
+        "pencosystemDirectory": "live-html",
+        "marketIntegrationMapping": "heuristic unless confirmed-by-user"
+      }
+    },
+    {
+      "marketAddress": "0x6cb9a013604a567a5834fadd411165b1ca616783",
+      "ptAddress": "0xdc9a5a2e3ce7ac881fc3b28c629c05d1617d1c56",
+      "ptName": "PT reUSDe (USDe)",
+      "chain": "ethereum",
+      "underlyingSymbol": "reUSDe",
+      "impliedApy": 0.1385337931626438,
+      "daysToExpiry": 84.25,
+      "liquidityUsd": 5498366.039117198,
+      "bestFit": "hold-to-par",
+      "integrations": [
+        {
+          "venue": "Morpho",
+          "category": "money market",
+          "partnerUrl": "https://app.morpho.org/ethereum/borrow",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live+heuristic",
+          "notes": "A permissionless and non-custodial lending protocol where users can earn interest on over-collaterized lending and borrow digital assets using immutable infrastructure.",
+          "dataStatus": "partner-live / market-mapping-heuristic"
+        },
+        {
+          "venue": "Euler",
+          "category": "money market",
+          "partnerUrl": "https://app.euler.finance/borrow?network=ethereum",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live+heuristic",
+          "notes": "Euler is a modular lending platform that enables users to lend, borrow and build without limits.",
+          "dataStatus": "partner-live / market-mapping-heuristic"
+        },
+        {
+          "venue": "Contango",
+          "category": "yield strategy",
+          "partnerUrl": "https://app.contango.xyz/",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live+heuristic",
+          "notes": "Contango is a Pendle ecosystem leverage route; confirm the exact PT market in-app.",
+          "dataStatus": "partner-live / market-mapping-heuristic"
+        }
+      ],
+      "practicalLeverageBand": "light",
+      "loopabilityVerdict": "high-priority",
+      "manualRoute": "Pendle PT -> money market collateral -> borrow USDC -> buy more PT -> redeposit",
+      "automationRoute": "Contango / other yield-strategy route if supported for this exact PT",
+      "dataStatus": "mixed-live",
+      "sources": {
+        "pendleMarketData": "live-api",
+        "pencosystemDirectory": "live-html",
+        "marketIntegrationMapping": "heuristic unless confirmed-by-user"
+      }
+    },
+    {
+      "marketAddress": "0xe2aef2a77a2db2757455d799fb1ceb2a3ea7a04c",
+      "ptAddress": "0xffa6dd8d30feb8759b84b4c9269fa888c6582c65",
+      "ptName": "PT msY (msUSD)",
+      "chain": "ethereum",
+      "underlyingSymbol": "msY",
+      "impliedApy": 0.13334876912166282,
+      "daysToExpiry": 7.25,
+      "liquidityUsd": 3488723.4705695743,
+      "bestFit": "near-par rotation",
+      "integrations": [
+        {
+          "venue": "Morpho",
+          "category": "money market",
+          "partnerUrl": "https://app.morpho.org/ethereum/borrow",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live+heuristic",
+          "notes": "A permissionless and non-custodial lending protocol where users can earn interest on over-collaterized lending and borrow digital assets using immutable infrastructure.",
+          "dataStatus": "partner-live / market-mapping-heuristic"
+        },
+        {
+          "venue": "Euler",
+          "category": "money market",
+          "partnerUrl": "https://app.euler.finance/borrow?network=ethereum",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live+heuristic",
+          "notes": "Euler is a modular lending platform that enables users to lend, borrow and build without limits.",
+          "dataStatus": "partner-live / market-mapping-heuristic"
+        },
+        {
+          "venue": "Contango",
+          "category": "yield strategy",
+          "partnerUrl": "https://app.contango.xyz/",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live+heuristic",
+          "notes": "Contango is a Pendle ecosystem leverage route; confirm the exact PT market in-app.",
+          "dataStatus": "partner-live / market-mapping-heuristic"
+        }
+      ],
+      "practicalLeverageBand": "light",
+      "loopabilityVerdict": "candidate",
+      "manualRoute": "Pendle PT -> money market collateral -> borrow USDC -> buy more PT -> redeposit",
+      "automationRoute": "Contango / other yield-strategy route if supported for this exact PT",
+      "dataStatus": "mixed-live",
+      "sources": {
+        "pendleMarketData": "live-api",
+        "pencosystemDirectory": "live-html",
+        "marketIntegrationMapping": "heuristic unless confirmed-by-user"
+      }
+    },
+    {
+      "marketAddress": "0xf5929a1c332ceab7918a4593a43db2b9ac20095f",
+      "ptAddress": "0x3eaa0f0f0a5d3d595ae4e4b0d27f439d01c3e7b2",
+      "ptName": "PT reUSD (USDC)",
+      "chain": "ethereum",
+      "underlyingSymbol": "reUSD",
+      "impliedApy": 0.08706769236878342,
+      "daysToExpiry": 84.25,
+      "liquidityUsd": 11300952.722865611,
+      "bestFit": "hold-to-par",
+      "integrations": [
+        {
+          "venue": "Morpho",
+          "category": "money market",
+          "partnerUrl": "https://app.morpho.org/ethereum/borrow",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "verified-live",
+          "notes": "Verified via Morpho GraphQL: PT collateral supported against USDC.",
+          "dataStatus": "protocol-live",
+          "marketId": "0x9bc98c2f20ac58287ef2c860eea53a2fdc27c17a7817ff1206c0b7840cc7cd79",
+          "loanAssetSymbol": "USDC",
+          "lltv": 0.915,
+          "borrowApy": 0.09445495890180657,
+          "supplyAssetsUsd": 26055451.72956984,
+          "borrowAssetsUsd": 23676045.145191763,
+          "utilization": 0.9086791275363791
+        },
+        {
+          "venue": "Contango",
+          "category": "yield strategy",
+          "partnerUrl": "https://app.contango.xyz/",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live",
+          "notes": "Contango listed in Pendle ecosystem; verify this exact PT route in Contango app.",
+          "dataStatus": "ecosystem-live"
+        }
+      ],
+      "practicalLeverageBand": "light",
+      "loopabilityVerdict": "candidate",
+      "manualRoute": "Pendle PT -> money market collateral -> borrow USDC -> buy more PT -> redeposit",
+      "automationRoute": "Contango / other yield-strategy route if supported for this exact PT",
+      "dataStatus": "mixed-live",
+      "sources": {
+        "pendleMarketData": "live-api",
+        "pencosystemDirectory": "live-html",
+        "marketIntegrationMapping": "heuristic unless confirmed-by-user"
+      }
+    },
+    {
+      "marketAddress": "0x4bba42da555f3d8c2b441ca6d8ef9bd1ebf3bff8",
+      "ptAddress": "0x6c65db1d88c8eda1e3debf2b2ef3d0ece8600466",
+      "ptName": "PT sNUSD (NUSD)",
+      "chain": "ethereum",
+      "underlyingSymbol": "sNUSD",
+      "impliedApy": 0.08386972224201461,
+      "daysToExpiry": 63.25,
+      "liquidityUsd": 35718579.73360588,
+      "bestFit": "hold-to-par",
+      "integrations": [
+        {
+          "venue": "Morpho",
+          "category": "money market",
+          "partnerUrl": "https://app.morpho.org/ethereum/borrow",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "verified-live",
+          "notes": "Verified via Morpho GraphQL: PT collateral supported against USDC.",
+          "dataStatus": "protocol-live",
+          "marketId": "0xb62aac664f81d19f21a158aa0373967ef60fd1ac8de4a9091bd225c007973ca6",
+          "loanAssetSymbol": "USDC",
+          "lltv": 0.86,
+          "borrowApy": 0.07525606707467818,
+          "supplyAssetsUsd": 2829364.6457790006,
+          "borrowAssetsUsd": 2569413.4491890664,
+          "utilization": 0.9081238266768679
+        },
+        {
+          "venue": "Contango",
+          "category": "yield strategy",
+          "partnerUrl": "https://app.contango.xyz/",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live",
+          "notes": "Contango listed in Pendle ecosystem; verify this exact PT route in Contango app.",
+          "dataStatus": "ecosystem-live"
+        }
+      ],
+      "practicalLeverageBand": "light",
+      "loopabilityVerdict": "candidate",
+      "manualRoute": "Pendle PT -> money market collateral -> borrow USDC -> buy more PT -> redeposit",
+      "automationRoute": "Contango / other yield-strategy route if supported for this exact PT",
+      "dataStatus": "mixed-live",
+      "sources": {
+        "pendleMarketData": "live-api",
+        "pencosystemDirectory": "live-html",
+        "marketIntegrationMapping": "heuristic unless confirmed-by-user"
+      }
+    },
+    {
+      "marketAddress": "0x723fcaa9830f6b6f68ebf7e30c097532a4cbbd26",
+      "ptAddress": "0x82b853db31f025858792d8fa969f2a1dc245c179",
+      "ptName": "PT srNUSD (NUSD)",
+      "chain": "ethereum",
+      "underlyingSymbol": "srNUSD",
+      "impliedApy": 0.08819946610781426,
+      "daysToExpiry": 56.25,
+      "liquidityUsd": 3580464.5370375416,
+      "bestFit": "hold-to-par",
+      "integrations": [
+        {
+          "venue": "Morpho",
+          "category": "money market",
+          "partnerUrl": "https://app.morpho.org/ethereum/borrow",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "verified-live",
+          "notes": "Verified via Morpho GraphQL: PT collateral supported against USDC.",
+          "dataStatus": "protocol-live",
+          "marketId": "0xc2bc5e1e304fb1ea103dcbee37ece3c7e9219fb4b2b19d8ffdf81c39f4fbf180",
+          "loanAssetSymbol": "USDC",
+          "lltv": 0.915,
+          "borrowApy": 0.058004194092153766,
+          "supplyAssetsUsd": 1837915.332190387,
+          "borrowAssetsUsd": 1617999.1322430936,
+          "utilization": 0.8803447601227626
+        },
+        {
+          "venue": "Contango",
+          "category": "yield strategy",
+          "partnerUrl": "https://app.contango.xyz/",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live",
+          "notes": "Contango listed in Pendle ecosystem; verify this exact PT route in Contango app.",
+          "dataStatus": "ecosystem-live"
+        }
+      ],
+      "practicalLeverageBand": "light",
+      "loopabilityVerdict": "candidate",
+      "manualRoute": "Pendle PT -> money market collateral -> borrow USDC -> buy more PT -> redeposit",
+      "automationRoute": "Contango / other yield-strategy route if supported for this exact PT",
+      "dataStatus": "mixed-live",
+      "sources": {
+        "pendleMarketData": "live-api",
+        "pencosystemDirectory": "live-html",
+        "marketIntegrationMapping": "heuristic unless confirmed-by-user"
+      }
+    },
+    {
+      "marketAddress": "0x3d83a85e0b0fe9cc116a4efc61bb29cb29c3cb9a",
+      "ptAddress": "0x5d99ff7bcd32c432cbc07fbb0a593ef4cc9d019d",
+      "ptName": "PT superUSDC (USDC)",
+      "chain": "ethereum",
+      "underlyingSymbol": "superUSDC",
+      "impliedApy": 0.0910550532841432,
+      "daysToExpiry": 28.25,
+      "liquidityUsd": 1028503.6762113287,
+      "bestFit": "near-par rotation",
+      "integrations": [
+        {
+          "venue": "Morpho",
+          "category": "money market",
+          "partnerUrl": "https://app.morpho.org/ethereum/borrow",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live+heuristic",
+          "notes": "A permissionless and non-custodial lending protocol where users can earn interest on over-collaterized lending and borrow digital assets using immutable infrastructure.",
+          "dataStatus": "partner-live / market-mapping-heuristic"
+        },
+        {
+          "venue": "Euler",
+          "category": "money market",
+          "partnerUrl": "https://app.euler.finance/borrow?network=ethereum",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live+heuristic",
+          "notes": "Euler is a modular lending platform that enables users to lend, borrow and build without limits.",
+          "dataStatus": "partner-live / market-mapping-heuristic"
+        },
+        {
+          "venue": "Contango",
+          "category": "yield strategy",
+          "partnerUrl": "https://app.contango.xyz/",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live+heuristic",
+          "notes": "Contango is a Pendle ecosystem leverage route; confirm the exact PT market in-app.",
+          "dataStatus": "partner-live / market-mapping-heuristic"
+        }
+      ],
+      "practicalLeverageBand": "light",
+      "loopabilityVerdict": "candidate",
+      "manualRoute": "Pendle PT -> money market collateral -> borrow USDC -> buy more PT -> redeposit",
+      "automationRoute": "Contango / other yield-strategy route if supported for this exact PT",
+      "dataStatus": "mixed-live",
+      "sources": {
+        "pendleMarketData": "live-api",
+        "pencosystemDirectory": "live-html",
+        "marketIntegrationMapping": "heuristic unless confirmed-by-user"
+      }
+    },
+    {
+      "marketAddress": "0x9f56fbe66110f4a0bc9a6ced9c35c4cfdfefb92f",
+      "ptAddress": "0x3a0f4beeb1bb41bb545a1ce54b905fa13c162e34",
+      "ptName": "PT jrNUSD (NUSD)",
+      "chain": "ethereum",
+      "underlyingSymbol": "jrNUSD",
+      "impliedApy": 0.09010660251584457,
+      "daysToExpiry": 56.25,
+      "liquidityUsd": 2621999.4202463436,
+      "bestFit": "hold-to-par",
+      "integrations": [
+        {
+          "venue": "Morpho",
+          "category": "money market",
+          "partnerUrl": "https://app.morpho.org/ethereum/borrow",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live+heuristic",
+          "notes": "A permissionless and non-custodial lending protocol where users can earn interest on over-collaterized lending and borrow digital assets using immutable infrastructure.",
+          "dataStatus": "partner-live / market-mapping-heuristic"
+        },
+        {
+          "venue": "Euler",
+          "category": "money market",
+          "partnerUrl": "https://app.euler.finance/borrow?network=ethereum",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live+heuristic",
+          "notes": "Euler is a modular lending platform that enables users to lend, borrow and build without limits.",
+          "dataStatus": "partner-live / market-mapping-heuristic"
+        },
+        {
+          "venue": "Contango",
+          "category": "yield strategy",
+          "partnerUrl": "https://app.contango.xyz/",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live+heuristic",
+          "notes": "Contango is a Pendle ecosystem leverage route; confirm the exact PT market in-app.",
+          "dataStatus": "partner-live / market-mapping-heuristic"
+        }
+      ],
+      "practicalLeverageBand": "light",
+      "loopabilityVerdict": "candidate",
+      "manualRoute": "Pendle PT -> money market collateral -> borrow USDC -> buy more PT -> redeposit",
+      "automationRoute": "Contango / other yield-strategy route if supported for this exact PT",
+      "dataStatus": "mixed-live",
+      "sources": {
+        "pendleMarketData": "live-api",
+        "pencosystemDirectory": "live-html",
+        "marketIntegrationMapping": "heuristic unless confirmed-by-user"
+      }
+    },
+    {
+      "marketAddress": "0xf968b785b4bfd5a6c0fc197b42264beeecf58d85",
+      "ptAddress": "0xcc16cd49194e7aa3dca780c742580e2f9b418874",
+      "ptName": "PT avUSD (avUSD)",
+      "chain": "ethereum",
+      "underlyingSymbol": "avUSD",
+      "impliedApy": 0.08422079695699547,
+      "daysToExpiry": 42.25,
+      "liquidityUsd": 2533115.552505991,
+      "bestFit": "hold-to-par",
+      "integrations": [
+        {
+          "venue": "Morpho",
+          "category": "money market",
+          "partnerUrl": "https://app.morpho.org/ethereum/borrow",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "verified-live",
+          "notes": "Verified via Morpho GraphQL: PT collateral supported against USDC.",
+          "dataStatus": "protocol-live",
+          "marketId": "0xf80a664057fe3cadcd9e83f27bb1effe5c15d1d2648acc7634daff1581951b5e",
+          "loanAssetSymbol": "USDC",
+          "lltv": 0.915,
+          "borrowApy": 0.0673543325618655,
+          "supplyAssetsUsd": 4983662.050159571,
+          "borrowAssetsUsd": 4566428.500973737,
+          "utilization": 0.9162797266374686
+        },
+        {
+          "venue": "Morpho",
+          "category": "money market",
+          "partnerUrl": "https://app.morpho.org/ethereum/borrow",
+          "borrowAssets": [
+            "frxUSD"
+          ],
+          "venueConfidence": "verified-live",
+          "notes": "Verified via Morpho GraphQL: PT collateral supported against frxUSD.",
+          "dataStatus": "protocol-live",
+          "marketId": "0x6a8f296524b7f300b56e3653bbfc0ce4dd0dff225f1d5ec09c4fd190886ae53e",
+          "loanAssetSymbol": "frxUSD",
+          "lltv": 0.915,
+          "borrowApy": 0.06614312569146476,
+          "supplyAssetsUsd": 474520.63635603996,
+          "borrowAssetsUsd": 421568.0163841077,
+          "utilization": 0.8884081830906905
+        },
+        {
+          "venue": "Contango",
+          "category": "yield strategy",
+          "partnerUrl": "https://app.contango.xyz/",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live",
+          "notes": "Contango listed in Pendle ecosystem; verify this exact PT route in Contango app.",
+          "dataStatus": "ecosystem-live"
+        }
+      ],
+      "practicalLeverageBand": "light",
+      "loopabilityVerdict": "candidate",
+      "manualRoute": "Pendle PT -> money market collateral -> borrow USDC -> buy more PT -> redeposit",
+      "automationRoute": "Contango / other yield-strategy route if supported for this exact PT",
+      "dataStatus": "mixed-live",
+      "sources": {
+        "pendleMarketData": "live-api",
+        "pencosystemDirectory": "live-html",
+        "marketIntegrationMapping": "heuristic unless confirmed-by-user"
+      }
+    },
+    {
+      "marketAddress": "0xb1aa024da92e80f6d684a80429882874455da011",
+      "ptAddress": "0x0c5f4687ff0ff614438dd75db1c6db0e6669eff2",
+      "ptName": "PT msUSD (msUSD)",
+      "chain": "ethereum",
+      "underlyingSymbol": "msUSD",
+      "impliedApy": 0.08752752760792304,
+      "daysToExpiry": 7.25,
+      "liquidityUsd": 1271157.9847957105,
+      "bestFit": "near-par rotation",
+      "integrations": [
+        {
+          "venue": "Morpho",
+          "category": "money market",
+          "partnerUrl": "https://app.morpho.org/ethereum/borrow",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live+heuristic",
+          "notes": "A permissionless and non-custodial lending protocol where users can earn interest on over-collaterized lending and borrow digital assets using immutable infrastructure.",
+          "dataStatus": "partner-live / market-mapping-heuristic"
+        },
+        {
+          "venue": "Euler",
+          "category": "money market",
+          "partnerUrl": "https://app.euler.finance/borrow?network=ethereum",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live+heuristic",
+          "notes": "Euler is a modular lending platform that enables users to lend, borrow and build without limits.",
+          "dataStatus": "partner-live / market-mapping-heuristic"
+        },
+        {
+          "venue": "Contango",
+          "category": "yield strategy",
+          "partnerUrl": "https://app.contango.xyz/",
+          "borrowAssets": [
+            "USDC"
+          ],
+          "venueConfidence": "ecosystem-live+heuristic",
+          "notes": "Contango is a Pendle ecosystem leverage route; confirm the exact PT market in-app.",
+          "dataStatus": "partner-live / market-mapping-heuristic"
+        }
+      ],
+      "practicalLeverageBand": "light",
+      "loopabilityVerdict": "candidate",
+      "manualRoute": "Pendle PT -> money market collateral -> borrow USDC -> buy more PT -> redeposit",
+      "automationRoute": "Contango / other yield-strategy route if supported for this exact PT",
+      "dataStatus": "mixed-live",
+      "sources": {
+        "pendleMarketData": "live-api",
+        "pencosystemDirectory": "live-html",
+        "marketIntegrationMapping": "heuristic unless confirmed-by-user"
+      }
+    }
+  ]
+}

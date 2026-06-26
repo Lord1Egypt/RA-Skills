@@ -1,35 +1,25 @@
----
-name: "Pipeworx boardgames"
-description: "Search and retrieve detailed info on board games, including popular titles, player count, playtime, rating, price, and descriptions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-boardgames"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-boardgames"
----
+# Boardgames
 
-# Pipeworx boardgames
+Boardgames MCP — wraps Board Game Atlas API (public demo client_id, free)
 
-> Search and retrieve detailed info on board games, including popular titles, player count, playtime, rating, price, and descriptions.
+## search_games
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-boardgames`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-boardgames](https://clawhub.ai/skills/pipeworx-boardgames)
+Search for board games by name. Returns title, year, player count, playtime, rating, price, and desc
 
-## Overview
+## get_game
 
+Get full details for a specific board game by ID (from search_games results). Returns name, year, pl
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-boardgames
+## hot_games
+
+Get the most popular board games ranked by current buzz. Returns title, year, player count, playtime
+
+```json
+{
+  "mcpServers": {
+    "boardgames": {
+      "url": "https://gateway.pipeworx.io/boardgames/mcp"
+    }
+  }
+}
 ```

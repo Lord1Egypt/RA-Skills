@@ -1,35 +1,25 @@
 ---
-name: "Transcribe Audio with Parakeet MLX"
-description: "Local speech-to-text with Parakeet MLX (ASR) for Apple Silicon (no API key)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/parakeet-mlx"
-sourceUrl: "https://clawhub.ai/skills/parakeet-mlx"
+name: parakeet-mlx
+description: Local speech-to-text with Parakeet MLX (ASR) for Apple Silicon (no API key).
+homepage: https://github.com/senstella/parakeet-mlx
+metadata: {"clawdbot":{"emoji":"🦜","requires":{"bins":["parakeet-mlx"]},"install":[{"id":"uv-tool","kind":"uv","formula":"parakeet-mlx","bins":["parakeet-mlx"],"label":"Install Parakeet MLX CLI (uv tool install)"}]}}
 ---
 
-# Transcribe Audio with Parakeet MLX
+# Parakeet MLX (CLI)
 
-> Local speech-to-text with Parakeet MLX (ASR) for Apple Silicon (no API key).
+Use `parakeet-mlx` to transcribe audio locally on Apple Silicon.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/parakeet-mlx`
-- **Source URL:** [https://clawhub.ai/skills/parakeet-mlx](https://clawhub.ai/skills/parakeet-mlx)
+Quick start
+- `parakeet-mlx /path/audio.mp3 --output-format txt`
+- `parakeet-mlx /path/audio.m4a --output-format vtt --highlight-words`
+- `parakeet-mlx *.mp3 --output-format all`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/parakeet-mlx
-```
+Notes
+- Install CLI with: `uv tool install parakeet-mlx -U` (not `uv add` or `pip install`)
+- Use `parakeet-mlx --help` to see all options (`--help`, not `-h`).
+- Models download from Hugging Face to `~/.cache/huggingface` on first run.
+- Default model: `mlx-community/parakeet-tdt-0.6b-v3` (optimized for Apple Silicon).
+- Requires `ffmpeg` installed for audio processing.
+- Output formats: txt, srt, vtt, json, or all.
+- Use `--verbose` for detailed progress and confidence scores.
+- Accepts multiple files (shell wildcards like `*.mp3` work).

@@ -1,0 +1,20 @@
+# Example config for a boarding/kennel facility
+# Usage: python scripts/generate_form.py --config examples/boarding_business.yaml
+
+business_name: "Cozy Canine Boarding"
+sitter_name: ""  # Staff rotates, use business name in authorization
+services: "Overnight Boarding, Doggy Daycare, Grooming"
+location: "Denver, CO"
+contact: "(303) 555-7890 | stay@cozycanine.com | cozycanine.com"
+
+# Form settings
+service_type: boarding        # Adds drop-off/pickup times, items checklist
+num_pets: 1                   # Change to 2-3 for multi-pet households
+fillable: true                # Clients fill out digitally before arrival
+include_home_access: false    # Not needed for facility-based boarding
+
+# Output
+output: "screenshots/cozy_canine_intake.pdf"
+
+# Branding
+theme: forest                 # Natural green tones

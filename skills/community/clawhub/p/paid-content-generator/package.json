@@ -1,0 +1,21 @@
+{
+  "name": "paid-content-generator",
+  "version": "1.0.0",
+  "description": "AI内容生成器 - 收费版",
+  "main": "scripts/generate.js",
+  "scripts": {
+    "generate": "node scripts/generate.js",
+    "test": "node scripts/generate.js xiaohongshu 测试主题"
+  },
+  "keywords": [
+    "ai",
+    "content",
+    "generator",
+    "xiaohongshu",
+    "video",
+    "skillpay"
+  ],
+  "author": "小白",
+  "license": "MIT",
+  "dependencies": {}
+}

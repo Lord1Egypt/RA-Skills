@@ -1,0 +1,21 @@
+# -----------------------------------------------------------------------------
+# Default: one analytics round, then exit (cron-friendly). Use --daemon to repeat.
+# scope multi → bds_mpp_snapshot_allTrades + all-pools volume; single_pool → one pool.
+# -----------------------------------------------------------------------------
+name: defi-analyst
+description: Periodic analytics + random on-chain verification (multi-pool by default).
+heartbeat:
+  interval_seconds: 300
+filters:
+  scope: multi
+  volume_token_address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+  project_id: "uniswapv3.eth-usdc-0.05"
+  pool_address: "0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640"
+client:
+  call_timeout_ms: 90000
+  snapshot_max_events: 50
+verification:
+  mode: sampled
+  sample_probability: 0.2
+dispatch:
+  channel: stdout

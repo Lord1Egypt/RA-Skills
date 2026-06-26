@@ -1,0 +1,116 @@
+{
+  "name": "pr-doctor",
+  "version": "1.0.0",
+  "description": "PR全流程质量医生 — 自动化代码审查、测试分析、问题追踪和持续改进的完整流水线",
+  "category": "开发",
+  "triggers": [
+    "审查PR",
+    "PR质量检查",
+    "代码审查",
+    "代码质量报告",
+    "PR健康检查",
+    "review PR",
+    "检查我的PR",
+    "代码审查流水线"
+  ],
+  "steps": [
+    {
+      "order": 1,
+      "name": "代码审查",
+      "skill": "code-review-skill",
+      "input": {
+        "source": "${PR_URL}"
+      },
+      "output": {
+        "issues": "${CODE_ISSUES}",
+        "score": "${CODE_SCORE}",
+        "files_reviewed": "${FILES}"
+      },
+      "description": "使用 code-review-skill 获取 PR diff 并进行逐文件代码审查，输出问题清单和质量评分"
+    },
+    {
+      "order": 2,
+      "name": "测试覆盖分析",
+      "skill": "testing-patterns",
+      "input": {
+        "files": "${FILES}",
+        "test_patterns": "jest|vitest|pytest|junit"
+      },
+      "output": {
+        "coverage": "${COVERAGE}",
+        "missing_tests": "${MISSING}",
+        "test_quality": "${QUALITY}"
+      },
+      "description": "分析 PR 中新增代码的测试覆盖情况，识别测试缺口"
+    },
+    {
+      "order": 3,
+      "name": "创建追踪Issue",
+      "skill": "github-issues-skill",
+      "input": {
+        "repo": "${REPO}",
+        "issues": "${ALL_ISSUES}",
+        "pr_number": "${PR_NUMBER}",
+        "labels": {
+          "critical": ["bug", "critical", "security"],
+          "major": ["performance", "refactor"],
+          "minor": ["style", "enhancement"]
+        }
+      },
+      "output": {
+        "created_issues": "${ISSUE_URLS}"
+      },
+      "description": "根据审查结果自动创建分级 GitHub Issue，并关联到原始 PR"
+    },
+    {
+      "order": 4,
+      "name": "持续改进",
+      "skill": "self-improvement",
+      "input": {
+        "category": "pr_review",
+        "findings": "${NOVEL_PATTERNS}",
+        "context": {
+          "pr_url": "${PR_URL}",
+          "repo": "${REPO}",
+          "total_issues": "${ISSUE_COUNT}"
+        }
+      },
+      "output": {
+        "learnings_logged": "${LOGGED}"
+      },
+      "description": "将审查中发现的新型问题模式记录到学习文件，促进团队知识积累"
+    }
+  ],
+  "output": {
+    "summary_report": {
+      "quality_score": "${FINAL_SCORE}",
+      "total_issues": "${ISSUE_COUNT}",
+      "issues_by_severity": {
+        "critical": "${CRITICAL_COUNT}",
+        "major": "${MAJOR_COUNT}",
+        "minor": "${MINOR_COUNT}"
+      },
+      "test_coverage": "${COVERAGE}",
+      "created_issues": "${ISSUE_URLS}",
+      "recommendation": "${MERGE_RECOMMENDATION}"
+    },
+    "format": "markdown",
+    "channels": ["feishu", "console"]
+  },
+  "config": {
+    "requires_gh_auth": true,
+    "requires_git_repo": true,
+    "severity_threshold": {
+      "block_merge": ["critical"],
+      "require_fix_before_merge": ["major"],
+      "optional_fix": ["minor"]
+    },
+    "auto_create_issues": true,
+    "issue_template": "pr-doctor-issue"
+  },
+  "metadata": {
+    "author": "PR Doctor Team",
+    "created": "2026-04-20",
+    "tags": ["code-review", "testing", "github", "automation", "quality-assurance"]
+  }
+}

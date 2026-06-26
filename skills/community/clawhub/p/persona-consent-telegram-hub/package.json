@@ -1,0 +1,21 @@
+{
+  "name": "persona-consent-telegram-hub",
+  "version": "1.0.0",
+  "description": "Telegram-approved persona gate + persona-service client for OpenClaw",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["openclaw", "skill", "persona", "telegram", "clawhub"],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

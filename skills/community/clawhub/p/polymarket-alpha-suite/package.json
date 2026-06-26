@@ -1,0 +1,53 @@
+{
+  "name": "polymarket-alpha-suite",
+  "version": "1.0.0",
+  "description": "Institutional-grade Polymarket trading tools: NegRisk arbitrage, latency arbitrage, BTC scalping, whale tracking, edge detection",
+  "main": "negrisk_scanner.cjs",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "polymarket",
+    "prediction-markets",
+    "arbitrage",
+    "trading",
+    "cryptocurrency",
+    "defi",
+    "btc",
+    "scalping",
+    "alpha",
+    "edge-detection"
+  ],
+  "author": "OpenClaw Labs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/polymarket-alpha-suite"
+  },
+  "scripts": {
+    "scan-negrisk": "node negrisk_scanner.cjs scan",
+    "scan-latency": "node latency_arb.cjs scan",
+    "scan-btc": "node btc_15m.cjs scan",
+    "scan-alpha": "node alpha_scan.cjs",
+    "scan-universe": "node universe_scanner.cjs",
+    "scan-edge": "node edge_finder.cjs",
+    "demo": "node demo.cjs"
+  },
+  "bin": {
+    "polymarket-alpha": "./demo.cjs"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {},
+  "clawHub": {
+    "category": "Trading",
+    "tags": ["prediction-markets", "arbitrage", "alpha"],
+    "price": 19,
+    "tier": "premium",
+    "requirements": ["node18+"],
+    "demo": "node demo.cjs",
+    "setup": "See SETUP.md for Polymarket API configuration"
+  }
+}

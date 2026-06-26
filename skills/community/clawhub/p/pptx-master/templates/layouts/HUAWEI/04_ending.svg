@@ -1,0 +1,28 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+  <!-- Full Screen Background (Echo Cover) -->
+  <rect x="0" y="0" width="1280" height="720" fill="#FFFFFF" />
+  <rect x="0" y="620" width="1280" height="100" fill="#F5F5F5" />
+  <!-- Top Accent Bar (Consistent with Cover) -->
+  <rect x="0" y="0" width="1280" height="8" fill="#E60012" />
+  <rect x="0" y="10" width="1280" height="2" fill="#191919" fill-opacity="0.2" />
+  <!-- Symmetrical Concentric Rings (Left & Right) -->
+  <g>
+    <circle cx="100" cy="360" r="60" stroke="#E60012" stroke-width="1" fill="none" stroke-opacity="0.1" />
+    <circle cx="100" cy="360" r="45" stroke="#E60012" stroke-width="1" fill="none" stroke-opacity="0.2" />
+    <circle cx="100" cy="360" r="30" stroke="#E60012" stroke-width="1.5" fill="none" stroke-opacity="0.3" />
+  </g>
+  <g>
+    <circle cx="1180" cy="360" r="60" stroke="#E60012" stroke-width="1" fill="none" stroke-opacity="0.1" />
+    <circle cx="1180" cy="360" r="45" stroke="#E60012" stroke-width="1" fill="none" stroke-opacity="0.2" />
+    <circle cx="1180" cy="360" r="30" stroke="#E60012" stroke-width="1.5" fill="none" stroke-opacity="0.3" />
+  </g>
+  <!-- Core Closing Content -->
+  <text x="640" y="300" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="52" font-weight="bold" fill="#191919" text-anchor="middle">{{THANK_YOU}}</text>
+  <rect x="540" y="330" width="200" height="3" fill="#E60012" />
+  <text x="640" y="380" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="24" fill="#595959" text-anchor="middle">{{ENDING_SUBTITLE}}</text>
+  <!-- Contact Info Card -->
+  <rect x="340" y="450" width="600" height="80" rx="4" fill="#F5F5F5" />
+  <text x="640" y="490" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="18" fill="#191919" text-anchor="middle">{{CONTACT_INFO}}</text>
+  <!-- Footer Brand Text -->
+  <text x="1240" y="680" font-family="HarmonyOS Sans, 微软雅黑, Arial, sans-serif" font-size="18" font-weight="bold" fill="#191919" text-anchor="end">华为技术有限公司</text>
+</svg>

@@ -1,0 +1,12 @@
+{
+  "name": "@pearl-cash/client",
+  "version": "0.0.15",
+  "type": "module",
+  "main": "scripts/run.js",
+  "files": [
+    "scripts/run.js",
+    "scripts/io.js"
+  ],
+  "homepage": "https://pearlcash.ai",
+  "author": "Pearl Cash (https://pearlcash.ai)"
+}

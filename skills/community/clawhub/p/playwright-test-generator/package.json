@@ -1,0 +1,39 @@
+{
+  "name": "playwright-test-generator",
+  "version": "1.0.0",
+  "description": "AI-driven Playwright test code generator — POM, standard scripts, data-driven tests from natural language or page analysis",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "playwright-test-generator": "./src/index.js"
+  },
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "generate": "node ./src/index.js generate",
+    "analyze": "node ./src/index.js analyze",
+    "extract-locators": "node ./src/index.js extract-locators"
+  },
+  "keywords": [
+    "playwright",
+    "test-automation",
+    "page-object-model",
+    "qa",
+    "generator",
+    "pytest-playwright",
+    "jest-playwright"
+  ],
+  "author": "kay",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "ejs": "^3.1.9",
+    "playwright": "^1.42.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

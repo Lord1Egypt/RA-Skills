@@ -1,0 +1,39 @@
+# 记忆系统配置
+memory:
+  enabled: true
+  
+  # 模式: private (多用户) / shared (共享)
+  mode: private
+  
+  # 每N条记忆后自动去重
+  deduplicate_after: 20
+  
+  # 检索配置
+  retrieval:
+    max_memories: 5          # 最多注入5条记忆
+    relevance_threshold: 0.3  # 相关度阈值
+    
+  # 自动归档
+  auto_archive:
+    enabled: true
+    after_messages: 50       # N 条消息后自动摘要
+    importance_threshold: 3   # 低于此重要性不存储
+    
+  # 搜索
+  search:
+    method: fts5             # fts5 / hybrid
+    max_results: 10
+    
+  # 存储
+  storage:
+    sessions_dir: "./sessions"
+    knowledge_dir: "./knowledge"
+    memories_dir: "./memories"
+    db_path: "./index.db"
+    
+  # 排除规则（不记住这些）
+  exclude:
+    - "密码"
+    - "token"
+    - "api_key"
+    - "授权码"

@@ -1,0 +1,16 @@
+{
+  "name": "Ox Moltbook Interact",
+  "version": "1.0.0",
+  "description": "Moltbook social network for AI agents. Post, reply, browse hot posts, and track engagement.",
+  "repository": "https://github.com/0x-wzw/moltbook-interact",
+  "tags": [
+    "moltbook",
+    "social",
+    "ai-agents",
+    "engagement",
+    "community"
+  ],
+  "skills": [
+    "ox-moltbook-interact"
+  ]
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{title}}</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: {{bg_color}};   /* 主色 */
+    --accent: {{accent_color}}; /* 强调色 */
+    --bg: #F7F7F7;
+    --white: #FFFFFF;
+    --dark: #1A1A1A;
+    --gray: #666;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans SC', sans-serif; background: var(--bg); }
+  
+  /* 标题区 */
+  .hero {
+    background: linear-gradient(135deg, #E8F5F3 0%, #FFFFFF 60%);
+    text-align: center;
+    padding: 2.2rem 2rem 1.5rem;
+    border-bottom: 4px solid var(--primary);
+  }
+  .hero h1 {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+  }
+  .hero .subtitle {
+    font-size: 0.8rem;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+  }
+  .hero .badge {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    font-size: 0.68rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    margin-top: 0.7rem;
+  }
+
+  /* 区块标题栏 */
+  .section-bar {
+    background: var(--primary);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.5rem 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .section-bar .num {
+    width: 20px; height: 20px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem;
+  }
+
+  /* 三卡片布局 */
+  .card3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #E0E0E0; }
+  .card3 .c { background: white; padding: 1rem 0.9rem; }
+  .card3 h3 { font-size: 0.78rem; color: var(--primary); margin-bottom: 0.35rem; }
+  .card3 p { font-size: 0.68rem; color: var(--gray); line-height: 1.55; }
+  .card3 .c.accent { background: #FFF8F0; }
+
+  /* 列表项 */
+  .list2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: #E0E0E0; }
+  .list2 .item { background: white; padding: 0.75rem 1rem; display: flex; align-items: flex-start; gap: 0.6rem; }
+  .list2 .n {
+    width: 20px; height: 20px; min-width: 20px;
+    background: var(--primary); color: white;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem; font-weight: 700;
+  }
+  .list2 p { font-size: 0.72rem; color: var(--dark); line-height: 1.45; }
+
+  /* 信号列表 */
+  .signal { padding: 1.2rem 1.4rem; background: white; }
+  .signal-item { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.6rem 0; border-bottom: 1px solid #F0F0F0; }
+  .signal-item:last-child { border-bottom: none; }
+  .signal .n { width: 22px; height: 22px; min-width: 22px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; }
+  .signal p { font-size: 0.75rem; color: var(--dark); }
+
+  /* 页脚 */
+  .footer { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #E0E0E0; }
+  .footer .l { background: white; padding: 1.2rem 1.4rem; }
+  .footer .r { background: var(--primary); color: white; padding: 1.2rem 1.4rem; }
+  .footer h4 { font-size: 0.75rem; margin-bottom: 0.45rem; }
+  .footer .l h4 { color: var(--primary); }
+  .footer .r h4 { opacity: 0.8; }
+  .footer p { font-size: 0.7rem; line-height: 1.7; }
+  .footer .r p:first-of-type { font-weight: 700; }
+
+  @media (max-width: 500px) {
+    .card3, .list2, .footer { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div>
+
+  <!-- 标题 -->
+  <div class="hero">
+    <h1>{{title}}</h1>
+    <p class="subtitle">{{subtitle}}</p>
+    <span class="badge">{{badge}}</span>
+  </div>
+
+  <!-- 板块1 -->
+  <div class="section-bar"><span class="num">1</span>{{section1_title}}</div>
+  <div class="card3">
+    {{#each section1_cards}}
+    <div class="c {{#if this.accent}}accent{{/if}}">
+      <h3>{{this.title}}</h3>
+      <p>{{this.body}}</p>
+    </div>
+    {{/each}}
+  </div>
+
+  <!-- 板块2 -->
+  <div class="section-bar"><span class="num">2</span>{{section2_title}}</div>
+  <div class="list2">
+    {{#each section2_items}}
+    <div class="item"><span class="n">{{this.num}}</span><p>{{this.text}}</p></div>
+    {{/each}}
+  </div>
+
+  <!-- 板块3 -->
+  <div class="section-bar"><span class="num">3</span>{{section3_title}}</div>
+  <div class="signal">
+    {{#each section3_items}}
+    <div class="signal-item"><span class="n">{{this.num}}</span><p>{{this.text}}</p></div>
+    {{/each}}
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footer">
+    <div class="l">
+      <h4>{{footer_left_title}}</h4>
+      <p>{{footer_left_text}}</p>
+    </div>
+    <div class="r">
+      <h4>{{footer_right_title}}</h4>
+      <p>{{footer_right_line1}}</p>
+      <p style="opacity:0.9">{{footer_right_line2}}</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

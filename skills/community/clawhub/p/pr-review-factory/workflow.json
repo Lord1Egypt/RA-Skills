@@ -1,0 +1,119 @@
+{
+  "name": "pr-review-factory",
+  "version": "1.0.0",
+  "description": "自动化 Code Review 工厂 — GitHub PR审查全流程自动化，从提交到修复到合并，一站式质量门禁",
+  "workflow": {
+    "trigger": {
+      "type": "manual",
+      "keywords": [
+        "Code Review",
+        "PR审查",
+        "Pull Request审查",
+        "代码审查",
+        "PR合并",
+        "GitHub质量门禁"
+      ]
+    },
+    "steps": [
+      {
+        "step": 1,
+        "id": "fetch_pr",
+        "name": "拉取PR信息",
+        "skill": "code-review-skill",
+        "description": "通过 GitHub API 获取 PR 变更内容、文件列表、提交历史",
+        "inputs": {
+          "repo": "${input.repo}",
+          "pr_number": "${input.pr_number}",
+          "include_diff": true,
+          "include_comments": false
+        },
+        "outputs": ["pr_diff", "changed_files", "commit_list"],
+        "next_step": 2,
+        "on_error": "abort"
+      },
+      {
+        "step": 2,
+        "id": "structured_review",
+        "name": "结构化Code Review",
+        "skill": "code-review-skill",
+        "description": "启动5个并行Agent进行5维度独立审查：正确性、安全、可读性、性能、可维护性",
+        "inputs": {
+          "pr_diff": "${fetch_pr.pr_diff}",
+          "changed_files": "${fetch_pr.changed_files}",
+          "review_mode": "parallel_agents",
+          "dimensions": ["correctness", "security", "readability", "performance", "maintainability"]
+        },
+        "outputs": ["review_report", "blocking_issues", "suggestions", "verdict"],
+        "depends_on": ["fetch_pr"],
+        "next_step": 3,
+        "on_error": "abort"
+      },
+      {
+        "step": 3,
+        "id": "create_issues",
+        "name": "审查问题Issue化",
+        "skill": "github-issues-skill",
+        "description": "将 Blocking 问题创建为 GitHub Issue 并分派给 PR 作者；Suggestion 作为 PR 评论保留",
+        "inputs": {
+          "repo": "${input.repo}",
+          "pr_number": "${input.pr_number}",
+          "blocking_issues": "${structured_review.blocking_issues}",
+          "suggestions": "${structured_review.suggestions}",
+          "assignee": "${input.pr_author}",
+          "verdict": "${structured_review.verdict}"
+        },
+        "outputs": ["created_issues", "issue_count", "comment_count"],
+        "depends_on": ["structured_review"],
+        "next_step": 4,
+        "on_error": "continue"
+      },
+      {
+        "step": 4,
+        "id": "setup_ci_gate",
+        "name": "配置CI质量门禁",
+        "skill": "github-actions-templates",
+        "description": "生成并部署 PR 质量门禁 GitHub Actions 工作流，包含 lint / test / build 三个阶段",
+        "inputs": {
+          "repo": "${input.repo}",
+          "workflow_name": "pr-quality-gate",
+          "jobs": ["lint", "test", "build", "quality_gate"],
+          "gate_condition": "all_blocking_issues_closed"
+        },
+        "outputs": ["workflow_file", "workflow_url"],
+        "depends_on": ["create_issues"],
+        "next_step": 5,
+        "on_error": "continue"
+      },
+      {
+        "step": 5,
+        "id": "merge_check",
+        "name": "合并条件检查",
+        "skill": "github-issues-skill",
+        "description": "检查所有 Blocking Issue 是否已关闭，若全部关闭则标记 PR 为可合并状态",
+        "inputs": {
+          "repo": "${input.repo}",
+          "pr_number": "${input.pr_number}",
+          "check": "blocking_issues_closed"
+        },
+        "outputs": ["can_merge", "remaining_issues"],
+        "depends_on": ["create_issues"],
+        "next_step": null,
+        "on_error": "continue"
+      }
+    ],
+    "output": {
+      "review_summary": {
+        "verdict": "${structured_review.verdict}",
+        "blocking_count": "${structured_review.blocking_issues.length}",
+        "suggestion_count": "${structured_review.suggestions.length}",
+        "issues_created": "${create_issues.issue_count}",
+        "can_merge": "${merge_check.can_merge}"
+      },
+      "next_action": {
+        "if_verdict_approve": "PR可直接合并，质量门禁通过",
+        "if_verdict_request_changes": "等待PR作者修复所有Blocking Issue后重新触发审查",
+        "if_verdict_reject": "PR需要大幅重构后重新提交"
+      }
+    }
+  }
+}

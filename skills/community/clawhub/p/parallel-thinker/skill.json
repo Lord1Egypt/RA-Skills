@@ -1,0 +1,11 @@
+{
+  "name": "parallel-thinker",
+  "version": "1.0.0",
+  "description": "Parallelize queries across multiple specialized agents and synthesize results.",
+  "entrypoints": [],
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "scripts/run.js"
+  ]
+}

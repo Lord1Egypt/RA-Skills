@@ -1,0 +1,4 @@
+interface:
+  display_name: "Polymarket Football Odds"
+  short_description: "Analyze Polymarket soccer URLs with API-Football"
+  default_prompt: "Use $polymarket-football-odds to estimate win probabilities for this Polymarket football URL."

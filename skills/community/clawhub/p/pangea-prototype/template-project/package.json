@@ -1,0 +1,22 @@
+{
+  "name": "pangea-prototype",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@arco-design/web-vue": "^2.21.3",
+    "@arco-iconbox/vue-pangea-mobile": "1.0.24",
+    "@arco-themes/vue-pangea-3-linear": "^1.0.11",
+    "vue": "^3.5.13",
+    "vue-router": "^5.0.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "less": "^4.6.3",
+    "typescript": "^5.9.3",
+    "vite": "^6.0.3"
+  }
+}

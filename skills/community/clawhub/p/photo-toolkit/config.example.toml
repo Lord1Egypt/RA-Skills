@@ -1,0 +1,30 @@
+# photo-toolkit 配置
+
+# 原始照片目录（RAW/JPG/HEIC 文件所在路径）
+raw_dir = ""
+
+# 缩略图输出目录
+output_dir = ""
+
+# 输出图片最大边长（像素），超过此尺寸会等比缩小
+max_size = 1200
+
+# 输出 JPEG 画质 (1-100)，缩略图建议 85
+jpeg_quality = 85
+
+# 是否递归搜索子目录中的照片（相机上传通常是多层目录，建议开启）
+recursive = true
+
+# 是否覆盖已存在的输出文件
+overwrite = false
+
+# 是否保留原始照片的 EXIF 元数据
+preserve_exif = true
+
+# 并行工作进程数，0 = 自动（取 CPU 核数，最多 8）
+workers = 0
+
+# LLM 视觉输入的总大小预算（MB）
+# 小于 (预算 / 照片数) 的 JPG/HEIC 文件将直接软链接而非重新编码
+# 设为 0 禁用此优化
+thumbnail_budget_mb = 50

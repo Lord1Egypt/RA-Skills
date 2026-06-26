@@ -1,0 +1,74 @@
+{
+  "emoji": "\u26a1",
+  "requires": {
+    "env": [
+      "SIMMER_API_KEY"
+    ],
+    "pip": [
+      "simmer-sdk"
+    ]
+  },
+  "cron": "*/1 * * * *",
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "mtf_momentum.py"
+  },
+  "tunables": [
+    {
+      "env": "SIMMER_MTF_CONF_MIN",
+      "type": "number",
+      "default": 0.5,
+      "range": [
+        0.1,
+        1.0
+      ],
+      "step": 0.05,
+      "label": "Min confidence threshold"
+    },
+    {
+      "env": "SIMMER_MTF_CONF_SCALE",
+      "type": "number",
+      "default": 3.0,
+      "range": [
+        0.5,
+        5.0
+      ],
+      "step": 0.1,
+      "label": "Confidence scaling factor"
+    },
+    {
+      "env": "SIMMER_MTF_EVAL_MIN_AGE",
+      "type": "number",
+      "default": 90,
+      "range": [
+        60,
+        180
+      ],
+      "step": 10,
+      "label": "Min market age (seconds)"
+    },
+    {
+      "env": "SIMMER_MTF_EVAL_MAX_AGE",
+      "type": "number",
+      "default": 180,
+      "range": [
+        120,
+        270
+      ],
+      "step": 10,
+      "label": "Max market age (seconds)"
+    },
+    {
+      "env": "SIMMER_MTF_TRADE_SIZE",
+      "type": "number",
+      "default": 10,
+      "range": [
+        5,
+        50
+      ],
+      "step": 5,
+      "label": "Trade size ($SIM)"
+    }
+  ]
+}

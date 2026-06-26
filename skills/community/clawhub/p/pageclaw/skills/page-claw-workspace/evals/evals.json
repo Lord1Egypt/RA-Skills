@@ -1,0 +1,23 @@
+{
+  "skill_name": "page-claw",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use the page-claw skill to build a page from skills/pageclaw-test/fixtures/page-story-test.md. For the questions: Q1 pick 'Cool & minimal', Q2 pick whichever option has a sticky sidebar layout, Q3 skip.",
+      "expected_output": "index.html with a sticky sidebar layout — left panel fixed/sticky with identity info, right scrollable main content. The design doc should have a Layout structure field in ### Aesthetic Implementation specifying the sidebar layout. Q2 options presented must each include a layout descriptor.",
+      "files": ["skills/pageclaw-test/fixtures/page-story-test.md"]
+    },
+    {
+      "id": 2,
+      "prompt": "Use the page-claw skill to build a page from skills/pageclaw-test/fixtures/page-story-test.md. For the questions: Q1 pick 'Warm & editorial', Q2 pick whichever option has a single-column or card-stacked layout, Q3 skip.",
+      "expected_output": "index.html with a single-column or stacked-card layout (NOT a sidebar). The design doc Layout structure field must match the selected Q2 option's layout descriptor. The page must look visually different from a sidebar layout page.",
+      "files": ["skills/pageclaw-test/fixtures/page-story-test.md"]
+    },
+    {
+      "id": 3,
+      "prompt": "Use the page-claw skill to build a page from skills/pageclaw-test/fixtures/page-story-test.md. Simulate the user interaction: answer Q1 with any option, then for Q2 deliberately pick the most unexpected/bold layout option available. Skip Q3.",
+      "expected_output": "index.html whose layout matches the Q2 choice — not defaulting to single-column regardless of how bold the Q2 choice was. The HTML structure should clearly reflect the Q2 layout descriptor from the design doc.",
+      "files": ["skills/pageclaw-test/fixtures/page-story-test.md"]
+    }
+  ]
+}

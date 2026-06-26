@@ -1,35 +1,254 @@
 ---
-name: "PDF Processor"
-description: "学术PDF处理：提取文字、判断语言、翻译（英文→中文）、生成200字纯中文概述。使用本地Ollama模型，不消耗线上API。适用于学术论文、研究报告等PDF文件的处理。当用户说"处理PDF"、"翻译论文"、"生成论文概述"时，或用户将PDF放入论文处理目录时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pdf-processor"
-sourceUrl: "https://clawhub.ai/skills/pdf-processor"
+name: pdf-processor
+description: 学术PDF处理：提取文字、判断语言、翻译（英文→中文）、生成200字纯中文概述。使用本地Ollama模型，不消耗线上API。适用于学术论文、研究报告等PDF文件的处理。当用户说"处理PDF"、"翻译论文"、"生成论文概述"时，或用户将PDF放入论文处理目录时使用。
 ---
 
 # PDF Processor
 
-> 学术PDF处理：提取文字、判断语言、翻译（英文→中文）、生成200字纯中文概述。使用本地Ollama模型，不消耗线上API。适用于学术论文、研究报告等PDF文件的处理。当用户说"处理PDF"、"翻译论文"、"生成论文概述"时，或用户将PDF放入论文处理目录时使用。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pdf-processor`
-- **Source URL:** [https://clawhub.ai/skills/pdf-processor](https://clawhub.ai/skills/pdf-processor)
-
 ## Overview
 
+处理学术论文PDF的完整工作流：文字提取、语言判断、翻译、概述生成。使用本地Ollama模型（qwen2.5:7b），成本为0元，适合处理大量学术文献。
 
-## Installation
-To install this skill, run the following command in your terminal:
+**核心功能**：
+- 提取PDF全部文字（按页分隔）
+- 判断语言（中文/英文）
+- 提取和翻译论文标题（英文→中文）
+- 英文PDF分段翻译（每段2000字符）
+- **实时进度显示**（显示当前段/总段数、百分比）
+- **断点续传**（中断后可从断点继续）
+- 生成200字纯中文概述
+- 自动文件组织和清理
+
+## Quick Start
+
+### 处理单个PDF
+
 ```bash
-hermes skills install clawhub/pdf-processor
+python3 scripts/process_pdf.py <pdf_path> <output_base_dir>
 ```
+
+**示例**：
+```bash
+# 处理英文PDF
+python3 scripts/process_pdf.py \
+  ~/Documents/论文处理/未处理/英文/2602.23362v1.pdf \
+  ~/Documents/论文处理
+
+# 处理中文PDF
+python3 scripts/process_pdf.py \
+  ~/Documents/论文处理/未处理/中文/test.pdf \
+  ~/Documents/论文处理
+```
+
+### 目录结构
+
+PDF处理前需先创建目录：
+
+```
+~/Documents/论文处理/
+├── 未处理/
+│   ├── 中文/
+│   └── 英文/
+├── 处理中/
+├── 已完成/
+│   ├── 原文/
+│   ├── 翻译/
+│   └── 概述/
+└── 索引/
+```
+
+详见 [directory-structure.md](references/directory-structure.md)
+
+## Workflow
+
+### 完整处理流程
+
+```
+1. PDF提取文字 → 保存到"处理中/文件名_提取.txt"
+2. 提取和翻译论文标题（英文→中文）
+3. 判断语言（中文/英文）
+4. 如果是英文：
+   - 分段（每段2000字符）
+   - 逐段翻译（本地Ollama）
+   - **显示实时进度**（当前段/总段数 | 百分比 | 字符数）
+   - **保存进度**（处理中/文件名_progress.json）
+   - 合并翻译结果
+   - **删除进度文件**
+5. 生成概述（200字纯中文，本地Ollama）
+6. 保存翻译文件到"已完成/翻译/"
+7. 保存概述文件到"已完成/概述/"（包含中英文标题）
+8. 移动PDF到"已完成/原文/"
+9. 删除"处理中/提取.txt"
+```
+
+详细说明见 [workflow.md](references/workflow.md)
+
+### 分段翻译策略
+
+- **分段大小**: 每段最多4000字符
+- **分段边界**: 优先在段落边界断开（\n\n\n, \n\n, 。, ！, ？）
+- **翻译模型**: 本地Ollama (qwen2.5:7b)
+- **优势**: 避免长文本处理问题，提高翻译质量
+
+### 概述生成
+
+- **输入**: 前5000字符（摘要和引言）
+- **输出**: 200字纯中文
+- **内容**: 研究背景、主要方法、核心贡献、应用价值
+- **清理**: 移除所有英文、数字、符号
+
+## Technical Details
+
+### 依赖项
+
+- **Python库**: pdfplumber, requests, re, shutil, pathlib
+- **Ollama**: qwen2.5:7b模型
+- **Ollama服务**: 本地运行在http://localhost:11434
+
+### 性能特点
+
+- **成本**: 0元（本地模型，不消耗线上API）
+- **处理时间**:
+  - 提取: 秒级
+  - 翻译: 每段30秒-1分钟，总时间取决于段数
+  - 概述: 秒级
+- **质量**:
+  - 翻译: 学术准确性高，保持段落结构
+  - 概述: 200字纯中文，简洁准确
+- **v2.0新功能**:
+  - **实时进度显示**: 显示当前段/总段数、百分比、字符数
+  - **断点续传**: 中断后可从断点继续，自动跳过已翻译段落
+  - **进度保存**: 保存到临时JSON文件，完成后自动删除
+
+### 分段示例
+
+对于45,873字符的PDF：
+- 分段数: 17段
+- 每段字符数: 2,000-4,000
+- 总翻译时间: 约8-17分钟
+
+## Output Files
+
+### 翻译文件
+
+**位置**: `已完成/翻译/文件名_翻译.txt`
+
+**格式**:
+```
+# 论文翻译
+
+**源文件**: 文件名.pdf
+**处理时间**: YYYY-MM-DD HH:MM:SS
+**翻译模型**: 本地Ollama (qwen2.5:7b)
+**分段数**: N
+
+## 📄 翻译内容
+
+[翻译内容]
+```
+
+### 概述文件
+
+**位置**: `已完成/概述/文件名_概述.txt`
+
+**格式**:
+```
+# 论文概述
+
+**源文件**: 文件名.pdf
+**处理时间**: YYYY-MM-DD HH:MM:SS
+**概述模型**: 本地Ollama (qwen2.5:7b)
+
+## 📚 论文标题
+
+**英文**: [论文英文标题]
+**中文**: [论文中文标题]
+
+## 📝 论文概述
+
+[200字纯中文概述]
+```
+
+## Resources
+
+### scripts/
+
+- **process_pdf.py**: 完整的PDF处理脚本（v2.0）
+  - 文字提取、语言判断、翻译、概述生成
+  - **实时进度显示**（当前段/总段数 | 百分比）
+  - **断点续传**（中断后可从断点继续，自动跳过已翻译段落）
+  - 自动文件组织和清理
+  - 可独立运行或被其他脚本调用
+
+- **generate_index.py**: 索引生成脚本
+  - 生成已完成论文的索引文件
+  - 包含标题、语言、概述、处理时间
+  - 支持关键词搜索
+
+### references/
+
+- **workflow.md**: 完整工作流程说明
+  - 关键步骤说明
+  - 技术依赖
+  - 性能特点
+
+- **directory-structure.md**: 目录结构和使用说明
+  - 完整目录树
+  - 文件夹用途
+  - 文件生命周期
+
+## Troubleshooting
+
+### Ollama服务未启动
+
+**错误**: `Connection refused`
+
+**解决**:
+```bash
+# 启动Ollama服务
+ollama serve
+```
+
+### Ollama模型未安装
+
+**错误**: `model 'qwen2.5:7b' not found`
+
+**解决**:
+```bash
+# 安装模型
+ollama pull qwen2.5:7b
+
+# 查看已安装模型
+ollama list
+```
+
+### PDF路径错误
+
+**错误**: `PDF文件不存在`
+
+**检查**:
+- 确认PDF路径正确
+- 确认输出目录存在
+- 确认有读写权限
+
+### 翻译质量不佳
+
+**可能原因**:
+- 分段过大（超过4000字符）
+- 温度设置过高（当前0.3）
+
+**调整**:
+- 修改`split_text()`函数的`max_length`参数
+- 修改`translate_segment()`的`temperature`选项
+
+## Notes
+
+- **成本优势**: 使用本地Ollama，完全避免线上API费用
+- **质量平衡**: 分段翻译在质量和速度之间取得平衡
+- **自动化**: 文件自动组织和清理，无需手动管理
+- **v2.0改进**:
+  - **进度显示**: 实时显示翻译进度（当前段/总段数 | 百分比 | 字符数）
+  - **断点续传**: 中断后可从断点继续，自动跳过已翻译段落，节省时间
+  - **进度文件**: 保存到`处理中/文件名_progress.json`，完成后自动删除
+  - **串行翻译**: 稳定可靠，适合各类机器性能
+- **适用范围**: 适用于学术论文、研究报告、技术文档等PDF文件

@@ -1,0 +1,195 @@
+
+# ===========================================
+# 管网系统配置文件 (修正版)
+# 7个节点，6条边
+# ===========================================
+
+[network]
+name = "industrial_water_network"
+description = "工业园区供水管网系统"
+
+# ===========================================
+# 节点定义（共7个）
+# ===========================================
+
+# 源节点：泵站
+[nodes.pump_station]
+type = "source"
+pressure = 200.0
+
+# 中间节点1：主管分叉点
+[nodes.junction_main]
+type = "junction"
+
+# 中间节点2：支管分叉点
+[nodes.junction_branch]
+type = "junction"
+
+# 负载节点1：上游高压设备
+[nodes.load_high_pressure]
+type = "load"
+is_worked = true
+min_flow = 2.0
+min_pressure = 7.0
+
+# 负载节点2：中游工艺设备
+[nodes.load_mid_process]
+type = "load"
+is_worked = true
+min_flow = 3.0
+min_pressure = 5.0
+
+# 负载节点3：下游冷却系统
+[nodes.load_cooling]
+type = "load"
+is_worked = true
+min_flow = 4.0
+min_pressure = 4.0
+
+# 负载节点4：末端消防系统
+[nodes.load_fire_suppression]
+type = "load"
+is_worked = true
+min_flow = 1.5
+min_pressure = 3.0
+
+# ===========================================
+# 边定义（共6条）
+# ===========================================
+
+[edges.pipe_main]
+start_node_id = "pump_station"
+end_node_id = "junction_main"
+resistance = 0.5
+is_open = true
+
+[edges.pipe_to_high_pressure]
+start_node_id = "junction_main"
+end_node_id = "load_high_pressure"
+resistance = 0.8
+is_open = true
+
+[edges.pipe_to_branch]
+start_node_id = "junction_main"
+end_node_id = "junction_branch"
+resistance = 1.2
+is_open = true
+
+[edges.pipe_to_process]
+start_node_id = "junction_branch"
+end_node_id = "load_mid_process"
+resistance = 1.5
+is_open = true
+
+[edges.pipe_to_cooling]
+start_node_id = "junction_branch"
+end_node_id = "load_cooling"
+resistance = 2.0
+is_open = true
+
+[edges.pipe_to_fire]
+start_node_id = "junction_branch"
+end_node_id = "load_fire_suppression"
+resistance = 2.5
+is_open = true
+
+# ===========================================
+# 工况定义
+# ===========================================
+
+# 工况1：正常供水
+[scenarios.normal_operation]
+description = "正常供水工况，所有阀门全开"
+
+# 工况2：消防系统维护
+[scenarios.fire_system_maintenance]
+description = "消防系统停机维护，关闭相关管路"
+[[scenarios.fire_system_maintenance.actions]]
+target_id = "pipe_to_fire"
+action_type = "close_valve"
+[[scenarios.fire_system_maintenance.actions]]
+target_id = "load_fire_suppression"
+action_type = "change_min_flow"
+value = 0.0
+
+# 工况3：泵站压力降低
+[scenarios.energy_saving_mode]
+description = "夜间节能模式，降低泵站出口压力"
+[[scenarios.energy_saving_mode.actions]]
+target_id = "pump_station"
+action_type = "change_pressure"
+value = 7.0
+
+# 工况4：管道堵塞故障
+[scenarios.pipe_main_clogged]
+description = "主管道部分堵塞，流阻增加"
+[[scenarios.pipe_main_clogged.actions]]
+target_id = "pipe_main"
+action_type = "change_resistance"
+value = 2.0
+
+# 工况5：冷却系统需求增加
+[scenarios.cooling_high_demand]
+description = "夏季冷却需求增加，提高最小流量要求"
+[[scenarios.cooling_high_demand.actions]]
+target_id = "load_cooling"
+action_type = "change_min_flow"
+value = 6.0
+[[scenarios.cooling_high_demand.actions]]
+target_id = "load_cooling"
+action_type = "change_min_pressure"
+value = 5.0
+
+# 工况6：多故障组合
+[scenarios.combined_fault_scenario]
+description = "泵压力下降 + 主管堵塞 + 消防系统关闭"
+[[scenarios.combined_fault_scenario.actions]]
+target_id = "pump_station"
+action_type = "change_pressure"
+value = 8.0
+[[scenarios.combined_fault_scenario.actions]]
+target_id = "pipe_main"
+action_type = "change_resistance"
+value = 1.5
+[[scenarios.combined_fault_scenario.actions]]
+target_id = "pipe_to_fire"
+action_type = "close_valve"
+
+# 工况7：新增临时负载（拓扑变更）
+[scenarios.temporary_load_addition]
+description = "新增一个临时测试负载"
+[[scenarios.temporary_load_addition.actions]]
+target_id = "temp_load"
+action_type = "add_node"
+[scenarios.temporary_load_addition.actions.value]
+id = "temp_load"
+type = "load"
+is_worked = true
+min_flow = 1.0
+min_pressure = 4.0
+
+[[scenarios.temporary_load_addition.actions]]
+target_id = "temp_pipe"
+action_type = "add_edge"
+[scenarios.temporary_load_addition.actions.value]
+id = "temp_pipe"
+start_node_id = "junction_branch"
+end_node_id = "temp_load"
+resistance = 1.8
+is_open = true
+
+# 工况8：应急修复（拓扑变更）
+[scenarios.emergency_bypass_operation]
+description = "删除堵塞管道，安装临时旁通"
+[[scenarios.emergency_bypass_operation.actions]]
+target_id = "pipe_main"
+action_type = "remove_edge"
+[[scenarios.emergency_bypass_operation.actions]]
+target_id = "bypass_pipe"
+action_type = "add_edge"
+[scenarios.emergency_bypass_operation.actions.value]
+id = "bypass_pipe"
+start_node_id = "pump_station"
+end_node_id = "junction_main"
+resistance = 0.6
+is_open = true

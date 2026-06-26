@@ -1,0 +1,4 @@
+interface:
+  display_name: "多论文创新点对比"
+  short_description: "分批读取论文，滚动总结创新点、主要工作和可融合研究方向"
+  default_prompt: "Use $multi-paper-innovation-comparator to compare innovations across papers in a folder and produce a summ document."

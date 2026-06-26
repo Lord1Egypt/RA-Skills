@@ -1,0 +1,81 @@
+{
+  "skill_name": "polymarket-market-movers",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Which markets are fluctuating dramatically now? Show me the markets with the largest probability changes in the past hour",
+      "expected_output": "List the markets with the largest probability changes in the past hour (Top 5~10), each showing: market name (clickable link), old probability → new probability (change percentage), volume change, latest trade time, AI speculated reason, sorted by change magnitude descending",
+      "files": [],
+      "assertions": [
+        {
+          "name": "shows_probability_change",
+          "description": "Output contains specific probability numbers in format X% → Y% (old → new probability)"
+        },
+        {
+          "name": "shows_volume_change",
+          "description": "Output contains volume change information (increase percentage or absolute amount)"
+        },
+        {
+          "name": "market_link_present",
+          "description": "At least one market name has a clickable polymarket.com link"
+        },
+        {
+          "name": "data_not_fabricated",
+          "description": "Output comes from actual shared data query, not fabricated example data; or clearly explains errors when data service is unavailable"
+        },
+        {
+          "name": "sorted_by_magnitude",
+          "description": "Market list sorted by probability change magnitude descending, item 1 change >= item 2"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Help me check crypto market probability fluctuations in the past 2 hours, I only care about changes exceeding 8%",
+      "expected_output": "Query crypto (CRY) domain markets in the past 2 hours, filter for probability changes >=8%, same format as basic query; clearly inform if no markets meet criteria",
+      "files": [],
+      "assertions": [
+        {
+          "name": "respects_window_param",
+          "description": "Query time window is 2 hours (not default 1 hour)"
+        },
+        {
+          "name": "respects_threshold_param",
+          "description": "Only show markets with probability change >= 8% (or clearly explain no markets meet criteria)"
+        },
+        {
+          "name": "filters_crypto_domain",
+          "description": "Only show crypto-related markets (bitcoin/ethereum/crypto, etc.), no mixing with politics/sports and other domains"
+        },
+        {
+          "name": "handles_empty_gracefully",
+          "description": "If crypto domain currently has no movements >=8%, give clear notice rather than returning error"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Help me set an alert: crypto and politics markets, tell me when probability fluctuates more than 15% in 1 hour. Also, I previously set an all-market 10% alert, list that for me too",
+      "expected_output": "1) Create a new alert (CRY+POL, threshold 15%, 1h window), output confirmation with trigger condition/coverage/frequency estimate; 2) List all existing alerts (including new + historical)",
+      "files": [],
+      "assertions": [
+        {
+          "name": "alert_config_saved",
+          "description": "Wrote new alert record to scripts/state/alerts.json containing threshold_pct=15, domains=[CRY,POL], window_hours=1"
+        },
+        {
+          "name": "confirmation_shows_parameters",
+          "description": "Output confirmation clearly shows: trigger condition (>15%), coverage (crypto+politics)"
+        },
+        {
+          "name": "lists_existing_alerts",
+          "description": "Also shows list of existing alerts (even if historical alert doesn't exist, gives notice)"
+        },
+        {
+          "name": "frequency_estimate_provided",
+          "description": "Gives estimated trigger frequency for this alert (can be 'X times per day' or 'frequency unknown')"
+        }
+      ]
+    }
+  ]
+}

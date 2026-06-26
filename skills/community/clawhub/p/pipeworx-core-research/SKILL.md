@@ -1,35 +1,21 @@
----
-name: "Pipeworx core-research"
-description: "Search open-access research papers by keyword and retrieve full metadata including title, authors, abstract, and full text by CORE ID."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-core-research"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-core-research"
----
+# Core Research
 
-# Pipeworx core-research
+CORE Research MCP — wraps CORE API (api.core.ac.uk/v3)
 
-> Search open-access research papers by keyword and retrieve full metadata including title, authors, abstract, and full text by CORE ID.
+## search_papers
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-core-research`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-core-research](https://clawhub.ai/skills/pipeworx-core-research)
+Search open-access research papers by keyword (e.g., "machine learning healthcare"). Returns titles,
 
-## Overview
+## get_paper
 
+Get full metadata for a research paper by its CORE ID. Returns title, authors, abstract, full text l
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-core-research
+```json
+{
+  "mcpServers": {
+    "core-research": {
+      "url": "https://gateway.pipeworx.io/core-research/mcp"
+    }
+  }
+}
 ```

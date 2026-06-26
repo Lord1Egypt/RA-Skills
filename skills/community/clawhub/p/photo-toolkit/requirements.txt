@@ -1,0 +1,6 @@
+# photo-toolkit dependencies
+# System dependency: libraw (RedHat: dnf install LibRaw-devel / Debian: apt-get install libraw-dev)
+rawpy>=0.19.0
+pillow>=10.0.0
+numpy>=1.24.0
+pillow-heif>=0.13.0  # optional: HEIC/HEIF support (iPhone/iPad). NOTE: GPLv2 licensed

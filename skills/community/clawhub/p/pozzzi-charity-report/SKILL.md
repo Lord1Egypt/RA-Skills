@@ -1,35 +1,61 @@
 ---
-name: "噗滋慈善 - 报告助手 / pozzzi-charity report-assistant"
-description: "噗滋（pozzzi）慈善 - 帮助中小型 NGO 自动生成年度工作报告、项目结项报告和财务决算报告草稿，确保法定章节不遗漏，输出符合民政部和资助方格式要求。"
-category: "other"
-source: "ClawHub"
-tags: [charity, chinese-nonprofit, ngo, report]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pozzzi-charity-report"
-sourceUrl: "https://clawhub.ai/skills/pozzzi-charity-report"
+name: report-assistant
+description: 噗滋（pozzzi）慈善 - 帮助中小型 NGO 自动生成年度工作报告、项目结项报告和财务决算报告草稿，确保法定章节不遗漏，输出符合民政部和资助方格式要求。
 ---
 
-# 噗滋慈善 - 报告助手 / pozzzi-charity report-assistant
+# 报告助手
 
-> 噗滋（pozzzi）慈善 - 帮助中小型 NGO 自动生成年度工作报告、项目结项报告和财务决算报告草稿，确保法定章节不遗漏，输出符合民政部和资助方格式要求。
+> ℹ️ **公益开源工具（v0.1.0）**
+>
+> 本 Skill 为噗滋（pozzzi）慈善开源工具集成员，由社区贡献者维护，遵循 MIT License。
+>
+> **使用约束**（用户自负责任）：
+> - 🚫 禁止处理 14 岁以下未成年人个体级数据（《未成年人保护法》第 72-74 条）
+> - 🚫 禁止用于编造法规条文、文件编号、资质证书编号等
+> - 🚫 不适用于公开募捐相关内容生成（建议使用专业工具）
+> - ⚠️ AI 生成内容**必须经人工审核后方可使用**，开发者不对使用结果承担责任
+> - ⚠️ 本工具不构成专业的法律/财务/管理建议
+> - ✅ 用户自带模型 API（混元/DeepSeek/豆包，均已各自备案）
+> - ✅ 噗滋（pozzzi）作为工具提供者，不接触/不存储用户数据
+>
+> 详细法律声明：[LICENSE](https://github.com/kirinspark/pozzzi-charity/blob/main/LICENSE) | [免责声明](https://github.com/kirinspark/pozzzi-charity/blob/main/docs/legal/disclaimer.md)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pozzzi-charity-report`
-- **Source URL:** [https://clawhub.ai/skills/pozzzi-charity-report](https://clawhub.ai/skills/pozzzi-charity-report)
+报告助手是噗滋慈善（pozzzi-charity） Skill 集群中痛点权重最高、合规强制性最强的核心 Skill。
 
-## Overview
+## 支持的报告类型
 
+- **年度工作报告**（社会组织年检版）— 法定必交，截止每年5月31日
+- **项目结项报告**（通用版 + 腾讯公益版）— 资助方结案
+- **财务决算报告** — 项目财务结案
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pozzzi-charity-report
-```
+## 使用方式
+
+通过企业微信与噗滋 AI 助手对话，按引导填写结构化数据，自动生成可编辑的报告草稿。
+
+### 输入流程
+
+1. 选择报告类型
+2. 填写基本信息（组织名称、报告年度等）
+3. 填写核心数据（财务数据、项目指标）
+4. 填写叙事内容（成效描述、挑战、故事案例）
+5. 确认并补充遗漏字段
+
+### 输出
+
+- Markdown 格式报告草稿
+- 自动包含 AI 辅助生成声明和免责提示
+- 数值自动格式化（千位分隔符）
+- 支持单章节重新生成
+
+## 合规要求
+
+- 所有输出经 PII 过滤和免责声明注入（强制，不可跳过）
+- 联系人信息不进入模型 API
+- 受益人故事案例需预先脱敏
+- 日志保留 ≥6 个月，不含 prompt 正文
+
+## 技术依赖
+
+- `model-gateway` — 多模型路由、域名白名单、内置 PII 前置过滤（间接依赖 pii-filter）
+- `disclaimer-injector` — AI 声明和免责提示注入
+- `storage-adapter` — 本地数据存储（日志、历史）

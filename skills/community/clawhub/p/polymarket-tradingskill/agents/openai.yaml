@@ -1,0 +1,7 @@
+interface:
+  display_name: "OpenClaw Decision Support"
+  short_description: "Polymarket opportunity discovery and structured market analysis"
+  default_prompt: "Use $polymarket-tradingskill as a router first: use NBA scan mode for fast NBA opportunity generation, use /fair only for NBA price views, and use /analyze-style deep analysis for one specific market or event in any domain, without making the final trading decision."
+
+policy:
+  allow_implicit_invocation: true

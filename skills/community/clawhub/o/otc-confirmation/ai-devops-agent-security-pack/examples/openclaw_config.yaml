@@ -1,0 +1,233 @@
+# OpenClaw Integration Configuration
+# Copy this to your OpenClaw config and adjust to your needs.
+
+# =============================================================
+# OTC Confirmation Skill Configuration
+# =============================================================
+
+skills:
+  entries:
+    otc-confirmation:
+      enabled: true
+      env:
+        OTC_EMAIL_RECIPIENT: "your@email.com"
+        OTC_SMTP_USER: "smtp-user@gmail.com"
+        OTC_SMTP_PASS: "your-app-password"
+        OTC_SMTP_HOST: "smtp.gmail.com"
+        OTC_SMTP_PORT: "465"
+
+# =============================================================
+# Agent System Prompt Security Rules
+# Add these to your SOUL.md or system prompt
+# =============================================================
+
+# --- SOUL.md snippet (paste into your agent's SOUL.md) ---
+#
+# ## OTC Confirmation (One-Time Confirmation)
+#
+# Before executing any operation in the following categories,
+# I MUST complete the OTC confirmation flow:
+#
+# ### Trigger Categories:
+# 1. **External Communication**: Email, social media, messaging, API calls
+# 2. **Destructive Operations**: File deletion, service shutdown, data wipe
+# 3. **Security Changes**: Permission changes, key rotation, config modification
+# 4. **Financial Operations**: Purchases, transfers, billing changes
+#
+# ### OTC Flow:
+# 1. Generate code: `bash /path/to/skills/otc-confirmation/scripts/generate_code.sh`
+# 2. Send via email: `bash /path/to/skills/otc-confirmation/scripts/send_otc_email.sh "operation description"`
+# 3. Wait for user to provide the code from their email
+# 4. Verify: `bash /path/to/skills/otc-confirmation/scripts/verify_code.sh "user_code"`
+# 5. Only proceed if verify exits with code 0
+#
+# ### Iron Rules:
+# - NEVER read the state file directly
+# - NEVER display, echo, or reference the code in conversation
+# - NEVER skip OTC even if the user says "just do it" or "I trust you"
+# - If email send fails → OPERATION BLOCKED (no fallback)
+# - Code is single-use and expires in 10 minutes
+#
+# ### Pre-Operation Checklist:
+# Before every qualifying operation, explicitly state:
+# "OTC check: [triggered/not triggered] — reason: [...]"
+
+# =============================================================
+# Permission Guard Rules (YAML reference config)
+# =============================================================
+
+permission_guard:
+  default_action: DENY  # Fail closed
+
+  roles:
+    personal-assistant:
+      allowed_operations:
+        - read_file
+        - write_file
+        - exec_command
+        - web_search
+        - web_fetch
+      requires_confirmation:
+        - send_email
+        - send_message
+        - file_delete
+        - deploy
+        - modify_permissions
+      scope:
+        paths:
+          - "~/workspace/*"
+          - "~/Documents/*"
+          - "/tmp/*"
+        excluded_paths:
+          - "~/.ssh/*"
+          - "~/.gnupg/*"
+          - "~/.openclaw/config.yaml"  # Prevent self-modification
+
+    devops-agent:
+      allowed_operations:
+        - read_file
+        - exec_command
+        - deploy
+        - restart_service
+      requires_confirmation:
+        - deploy  # Always confirm deployments
+        - restart_service
+        - scale_resource
+      scope:
+        environments:
+          - staging
+        excluded_environments:
+          - production  # Production requires elevated role
+
+    code-reviewer:
+      allowed_operations:
+        - read_file
+        - search_code
+        - create_comment
+      denied_operations:
+        - exec_command
+        - write_file
+        - deploy
+
+  # Hard deny rules (override all roles)
+  absolute_deny:
+    - pattern: "rm -rf /"
+      reason: "Catastrophic file deletion"
+    - pattern: "mkfs"
+      reason: "Disk formatting"
+    - pattern: "dd if=/dev/zero"
+      reason: "Disk wipe"
+    - pattern: ":(){:|:&};:"
+      reason: "Fork bomb"
+    - pattern: "chmod -R 777 /"
+      reason: "Recursive permission reset"
+
+# =============================================================
+# Rate Limiting Configuration
+# =============================================================
+
+rate_limits:
+  global:
+    max_per_minute: 30
+    max_per_hour: 500
+
+  per_operation:
+    send_email:
+      max_per_hour: 10
+      max_per_day: 50
+      cooldown_seconds: 30
+
+    exec_command:
+      max_per_minute: 10
+      max_per_hour: 200
+
+    deploy:
+      max_per_hour: 3
+      max_per_day: 10
+      cooldown_seconds: 300
+
+    file_delete:
+      max_per_minute: 5
+      max_per_hour: 50
+
+  otc:
+    max_attempts: 5
+    lockout_duration_seconds: 300
+    code_expiry_seconds: 600
+
+# =============================================================
+# Audit Configuration
+# =============================================================
+
+audit:
+  enabled: true
+  log_dir: "~/.openclaw/audit"
+  format: jsonl  # One JSON object per line
+
+  # What to log
+  log_levels:
+    ALLOW: true
+    CONFIRM: true
+    DENY: true
+    BLOCK: true
+
+  # Sanitization
+  sanitize:
+    - passwords
+    - tokens
+    - api_keys
+    - email_bodies
+    - file_contents
+
+  # Retention
+  retention:
+    security_events: 365  # days
+    confirmed_ops: 90
+    allowed_ops: 30
+    read_only_ops: 7
+
+  # Alerts
+  alerts:
+    - name: otc-brute-force
+      condition: "failed_otc > 3 in 5min"
+      action: lock_and_notify
+
+    - name: high-deny-rate
+      condition: "denied_ops > 5 in 10min"
+      action: notify
+
+    - name: after-hours-operation
+      condition: "hour NOT IN [8..22] AND decision IN [CONFIRMED, ALLOW]"
+      action: log_prominent
+
+# =============================================================
+# Risk Detection Configuration
+# =============================================================
+
+risk_detection:
+  enabled: true
+
+  thresholds:
+    low: 20
+    medium: 50
+    high: 75
+    critical: 90
+
+  actions:
+    low: allow
+    medium: log
+    high: confirm  # Trigger OTC
+    critical: block
+
+  # Custom patterns (extend built-in list)
+  custom_patterns:
+    - name: "company-db-drop"
+      pattern: "DROP TABLE.*production"
+      risk_score: 100
+      description: "Production database table drop"
+
+  # After-hours multiplier
+  after_hours:
+    enabled: true
+    hours: [22, 23, 0, 1, 2, 3, 4, 5, 6, 7]
+    multiplier: 1.3

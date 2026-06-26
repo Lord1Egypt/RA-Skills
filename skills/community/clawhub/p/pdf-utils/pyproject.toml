@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pdf-utils"
+version = "1.0.1"
+description = "PDF processing utilities: arxiv reference extraction, OCR, and scriptable PyMuPDF helpers."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    {name = "Lu Wang", email = "wangwllu@users.noreply.github.com"}
+]
+keywords = ["pdf", "arxiv", "ocr", "tesseract", "pymupdf", "openclaw", "skill"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "pymupdf>=1.23.0",
+    "pytesseract>=0.3.10",
+    "Pillow>=10.0.0",
+]
+
+[project.scripts]
+extract-refs = "scripts.extract_refs:main"
+ocr-pdf = "scripts.ocr_pdf:main"
+pdf-ops = "scripts.pdf_ops:main"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+packages = ["scripts"]
+
+[tool.setuptools.package-data]
+scripts = ["*.py"]

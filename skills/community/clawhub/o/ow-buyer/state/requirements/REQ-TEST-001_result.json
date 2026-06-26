@@ -1,0 +1,75 @@
+{
+  "req_id": "REQ-TEST-001",
+  "total_bids": 1,
+  "evaluated_at": "2026-04-01T15:47:59.780400",
+  "top3": [
+    {
+      "bid_id": "BID-TEST-001",
+      "supplier": "幽灵庄园旗舰店",
+      "price": 2800,
+      "price_score": 50.0,
+      "media_score": 15,
+      "auth_score": 8.0,
+      "delivery_days": 3,
+      "delivery_score": 5.0,
+      "reputation_score": 8.940000000000001,
+      "total_score": 86.94,
+      "auth_docs": [
+        "营业执照",
+        "代理权证明"
+      ],
+      "images": [
+        "https://example.com/wine1.jpg",
+        "https://example.com/wine2.jpg"
+      ],
+      "video": "https://example.com/wine.mp4",
+      "reputation": {
+        "total_transactions": 50,
+        "success_rate": 0.98,
+        "disputes": 0,
+        "platform_verified": true
+      },
+      "shop_links": [
+        {
+          "platform": "淘宝",
+          "url": "https://shop123456.taobao.com"
+        }
+      ]
+    }
+  ],
+  "all_results": [
+    {
+      "bid_id": "BID-TEST-001",
+      "supplier": "幽灵庄园旗舰店",
+      "price": 2800,
+      "price_score": 50.0,
+      "media_score": 15,
+      "auth_score": 8.0,
+      "delivery_days": 3,
+      "delivery_score": 5.0,
+      "reputation_score": 8.940000000000001,
+      "total_score": 86.94,
+      "auth_docs": [
+        "营业执照",
+        "代理权证明"
+      ],
+      "images": [
+        "https://example.com/wine1.jpg",
+        "https://example.com/wine2.jpg"
+      ],
+      "video": "https://example.com/wine.mp4",
+      "reputation": {
+        "total_transactions": 50,
+        "success_rate": 0.98,
+        "disputes": 0,
+        "platform_verified": true
+      },
+      "shop_links": [
+        {
+          "platform": "淘宝",
+          "url": "https://shop123456.taobao.com"
+        }
+      ]
+    }
+  ]
+}

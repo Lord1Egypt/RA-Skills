@@ -1,0 +1,37 @@
+{
+  "slug": "policy-delta-watcher",
+  "title": "制度差异观察员",
+  "category": "security",
+  "categoryLabel": "安全与治理",
+  "mode": "structured_brief",
+  "summary": "比较新旧制度或政策差异，指出业务影响、流程影响和需更新的操作手册。",
+  "inputHint": "旧版政策、新版政策、受影响团队",
+  "sections": [
+    "主要变化",
+    "业务影响",
+    "流程影响",
+    "需更新文档",
+    "培训建议",
+    "待确认问题"
+  ],
+  "useCases": [
+    "制度升级",
+    "内控变更",
+    "流程调整"
+  ],
+  "positiveExamples": [
+    "比较新旧制度有哪些差异",
+    "说明会影响哪些流程"
+  ],
+  "negativeExamples": [
+    "不要给法律定性结论",
+    "不要忽略边缘影响人群"
+  ],
+  "risk": "适合作为政策变更说明底稿。",
+  "tags": [
+    "policy",
+    "diff",
+    "governance",
+    "compliance"
+  ]
+}

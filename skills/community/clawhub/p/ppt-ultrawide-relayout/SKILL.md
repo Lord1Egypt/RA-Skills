@@ -1,35 +1,162 @@
 ---
-name: "PPT Ultra-wide Relayout"
-description: "把普通比例的 PPT 重新排版成更宽的超宽横版，或参考另一份 PPT 的页面比例与视觉语言进行重排。只要用户提到“改成更宽屏”“参考另一份 PPT 的比例”“不要拉伸文字”“只改字号和版式适配”“按参考稿的宽屏风格重排”，就应该主动使用这个 skill。尤其适用于需要保留原始文案、字体风格、颜色系统与层级关系，但..."
-category: "creative"
-source: "ClawHub"
-tags: [design, layout, powerpoint, ppt]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ppt-ultrawide-relayout"
-sourceUrl: "https://clawhub.ai/skills/ppt-ultrawide-relayout"
+name: ppt-ultrawide-relayout
+description: 把普通比例的 PPT 重新排版成更宽的超宽横版，或参考另一份 PPT 的页面比例与视觉语言进行重排。只要用户提到“改成更宽屏”“参考另一份 PPT 的比例”“不要拉伸文字”“只改字号和版式适配”“按参考稿的宽屏风格重排”，就应该主动使用这个 skill。尤其适用于需要保留原始文案、字体风格、颜色系统与层级关系，但要把 16:9 或其他常规页面改造成超宽横版的场景。
 ---
 
 # PPT Ultra-wide Relayout
 
-> 把普通比例的 PPT 重新排版成更宽的超宽横版，或参考另一份 PPT 的页面比例与视觉语言进行重排。只要用户提到“改成更宽屏”“参考另一份 PPT 的比例”“不要拉伸文字”“只改字号和版式适配”“按参考稿的宽屏风格重排”，就应该主动使用这个 skill。尤其适用于需要保留原始文案、字体风格、颜色系统与层级关系，但...
+这个 skill 用来处理“PPT 比例改造 + 文字重排”。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ppt-ultrawide-relayout`
-- **Source URL:** [https://clawhub.ai/skills/ppt-ultrawide-relayout](https://clawhub.ai/skills/ppt-ultrawide-relayout)
+它适合这类任务：
 
-## Overview
+- 用户给了一份源 PPT，要改成更宽的横版比例
+- 用户给了一份参考 PPT，希望页面比例和整体构图向参考稿靠拢
+- 用户明确要求“不要拉伸文字，只能通过字号、框体、留白、位置来适配”
+- 用户希望保留原稿的主题色、字体、层级、内容顺序，只重新组织版面
 
+## 默认策略
 
-## Installation
-To install this skill, run the following command in your terminal:
+默认优先使用“保留源稿高度 + 套用参考稿宽高比”的方式，而不是直接把页面压成参考稿的绝对尺寸。
+
+这样更稳的原因是：
+
+- 不容易把纵向空间压扁
+- 更符合“不要拉伸文字”的要求
+- 文字和卡片可以通过字号、文本框宽度和留白来适配
+
+## 硬性约束
+
+- 不要拉伸文字，不要通过非等比缩放让字形变扁或变长
+- 不要直接把整页元素做机械等比缩放后交差
+- 优先保留原稿的字体、字重、字号层级、颜色和阅读顺序
+- 优先保留原稿每一页的元素顺序和块状关系，不要把本来成组的元素拆散
+- 可以放大或缩小文本框，可以减小字号，可以改变换行位置
+- 可以延展背景图、裁切背景图、重设图像位置，但要避免把人物或主体裁没
+- 先做可编辑的 PPTX 输出，不要把内容转成纯图片页
+
+## 推荐工作流
+
+### 1. 先分析结构
+
 ```bash
-hermes skills install clawhub/ppt-ultrawide-relayout
+python3 scripts/pptx_layout_dump.py /path/to/source.pptx --pretty
+python3 scripts/pptx_layout_dump.py /path/to/reference.pptx --pretty
 ```
+
+重点看：
+
+- 画布尺寸和宽高比
+- 每页主要文本框数量
+- 标题字号、正文字号、字体
+- 是否存在全屏背景图、右侧主视觉图、底部页脚信息
+
+### 2. 决定目标画布
+
+默认公式：
+
+```text
+target_width = source_height * (reference_width / reference_height)
+target_height = source_height
+```
+
+如果用户明确要求精确尺寸，才直接使用参考稿的 `width x height`。
+
+### 3. 先映射版心，再微调
+
+超宽重排时，默认先建立一个“居中的内容安全区”，把原始版心整体映射进去，再做小幅微调。
+
+优先遵守这些规则：
+
+- 不要把每个元素各自拉开
+- 先保住原页的阅读顺序、成组关系和视觉节奏
+- 新增空间优先用作留白、背景延展和辅助氛围
+- 如果页面原本就偏左或偏右构图，可以保留这种倾向，但整体重心要稳定
+- 如果某个文本框原本在一个卡片、描边块或色块里，重排后必须继续待在那个块里
+
+### 4. 再按页面类型处理
+
+优先把每页归为以下类型之一：
+
+- 封面页
+- 章节页
+- 内容页
+- 双列或多卡片页
+- 步骤/方法论页
+- 收尾页
+
+页面信息很多时，不要为了“看起来像超宽”而把内容排得过散。优先保证层级、可读性和块内安全。
+
+## 脚本用法
+
+### 结构分析
+
+```bash
+python3 scripts/pptx_layout_dump.py /path/to/file.pptx --pretty
+```
+
+### 首轮超宽重排
+
+```bash
+python3 scripts/pptx_ultrawide_relayout.py \
+  /path/to/source.pptx \
+  --reference /path/to/reference.pptx \
+  --output /path/to/output.pptx
+```
+
+默认行为：
+
+- 保留源稿高度
+- 按参考稿宽高比扩展画布
+- 保持文字不被拉伸
+- 先把原始版心整体映射到居中的安全区
+- 再对背景、正文框、标题框和装饰元素做温和微调
+- 尽量避免块内溢出、顺序错乱和过度横向发散
+
+如果用户明确要求精确尺寸：
+
+```bash
+python3 scripts/pptx_ultrawide_relayout.py \
+  /path/to/source.pptx \
+  --reference /path/to/reference.pptx \
+  --target-mode exact-reference \
+  --output /path/to/output.pptx
+```
+
+## XML 改稿原则
+
+PPTX 本质是 zip 包。常见关键文件：
+
+- `ppt/presentation.xml`
+- `ppt/slides/slideN.xml`
+- `ppt/theme/theme1.xml`
+
+重点关注这些节点：
+
+- `p:sldSz`：画布宽高
+- `a:xfrm`：元素位置和尺寸
+- `a:off`：左上角坐标
+- `a:ext`：宽高
+- `a:rPr`：文本字号、字重、颜色、字体
+
+文字适配时优先这样做：
+
+1. 先改文本框尺寸和位置
+2. 再看是否需要减小字号
+3. 最后再处理换行和行距
+
+不要这样做：
+
+- 直接对文字所在形状做横向或纵向非等比拉伸
+- 不检查块边界和换行就统一缩小所有字号
+
+## 验收清单
+
+- 每一页都已经换成目标比例
+- 没有任何文字被拉伸变形
+- 字号层级仍然清晰
+- 标题和正文没有明显溢出
+- 文本框没有冲出所属卡片、描边块或底色块
+- 背景图没有露白边
+- 页脚、页码、辅助装饰没有被甩到错误位置
+- 阅读顺序与原稿一致，没有出现“元素虽然都在，但视觉关系散掉了”的问题
+- 版式整体看起来像“重新设计过”，不是“被拖宽了”

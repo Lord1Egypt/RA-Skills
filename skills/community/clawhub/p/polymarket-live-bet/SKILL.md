@@ -1,35 +1,18 @@
 ---
-name: "Polymarket Live Bet"
-description: "Place live bets on Polymarket CLOB with EIP-712 signing on Polygon. Handles USDC.e approval, order submission, and position tracking. Use for Polymarket auto..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/polymarket-live-bet"
-sourceUrl: "https://clawhub.ai/skills/polymarket-live-bet"
+name: polymarket-live-bet
+version: 1.0.0
+description: Place live bets on Polymarket CLOB with EIP-712 signing on Polygon. Handles USDC.e approval, order submission, and position tracking. Use for Polymarket automation, live crypto betting, or prediction market trading.
+author: JamieRossouw
+tags: [polymarket,betting,clob,polygon,usdc,defi,prediction-markets]
 ---
+# Polymarket Live Bet Engine
 
-# Polymarket Live Bet
+Place live bets on Polymarket CLOB with EIP-712 signing on Polygon. Handles USDC.e approval, order submission, and position tracking. Use for Polymarket automation, live crypto betting, or prediction market trading.
 
-> Place live bets on Polymarket CLOB with EIP-712 signing on Polygon. Handles USDC.e approval, order submission, and position tracking. Use for Polymarket auto...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/polymarket-live-bet`
-- **Source URL:** [https://clawhub.ai/skills/polymarket-live-bet](https://clawhub.ai/skills/polymarket-live-bet)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/polymarket-live-bet
+## Usage
 ```
+Use polymarket-live-bet to get started
+```
+
+## Built by RHO Genesis
+Part of the RHO autonomous trading fleet. See also: rho-signals, argus-edge, polymarket-scout.

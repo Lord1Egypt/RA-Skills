@@ -1,0 +1,26 @@
+{
+  "eval_id": 2,
+  "configuration": "with_skill",
+  "expectations": [
+    {
+      "text": "Q2 options presented each include a layout descriptor (e.g., '· layout: ...')",
+      "passed": true,
+      "evidence": "design.md confirms Q2 'Warm Paper' was chosen with CSS signature including '· layout: single centered column, stacked content cards'"
+    },
+    {
+      "text": "Design doc ### Aesthetic Implementation contains a 'Layout structure' field",
+      "passed": true,
+      "evidence": "design.md contains 'Layout structure' field in Aesthetic Implementation section"
+    },
+    {
+      "text": "index.html does NOT use a sticky sidebar — uses single-column, stacked cards, or centered column",
+      "passed": true,
+      "evidence": "grep for 'sticky' in index.html returns 0 matches; layout is single centered 720px column"
+    },
+    {
+      "text": "The HTML layout matches the layout descriptor of the chosen Q2 option",
+      "passed": true,
+      "evidence": "Q2 'Warm Paper' specified single centered column; HTML implements max-width:720px centered single column"
+    }
+  ]
+}

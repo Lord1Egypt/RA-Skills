@@ -1,0 +1,162 @@
+{
+  "metadata": {
+    "skill_name": "page-claw",
+    "skill_path": "/Users/showing/Library/CloudStorage/OneDrive-Personal/A-Creating/ThinkBig/pageclaw/skills/page-claw",
+    "executor_model": "claude-sonnet-4-6",
+    "timestamp": "2026-03-15T22:16:00Z",
+    "evals_run": ["sidebar-layout-chosen", "single-column-layout-chosen", "bold-unexpected-layout"],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "sidebar-layout-chosen",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 272.9,
+        "tokens": 51936,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Q2 options each include a layout descriptor (· layout: ...)", "passed": true, "evidence": "design.md line 18: CSS signature includes '· layout: sticky sidebar left, scrollable main right'"},
+        {"text": "Design doc Aesthetic Implementation contains a Layout structure field", "passed": true, "evidence": "design.md contains '#### Layout structure' heading"},
+        {"text": "index.html contains sticky sidebar structure", "passed": true, "evidence": "position:sticky present; flex aside+main layout"},
+        {"text": "HTML layout matches chosen Q2 layout descriptor", "passed": true, "evidence": "Terminal Scholar 'sticky sidebar left' → position:sticky aside"}
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "sidebar-layout-chosen",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 2,
+        "failed": 2,
+        "total": 4,
+        "time_seconds": 200.9,
+        "tokens": 30195,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Q2 options each include a layout descriptor (· layout: ...)", "passed": false, "evidence": "Old skill CSS signatures have no '· layout:' descriptor; sidebar inferred from style name 'Structured Sidebar Scholar'"},
+        {"text": "Design doc Aesthetic Implementation contains a Layout structure field", "passed": true, "evidence": "Agent inferred layout structure from style name containing 'Sidebar' — accidental, not formal"},
+        {"text": "index.html contains sticky sidebar structure", "passed": true, "evidence": "position:sticky present — produced by name inference, not layout descriptor"},
+        {"text": "HTML layout matches chosen Q2 layout descriptor", "passed": false, "evidence": "No formal layout descriptor; layout matched by coincidence of style name"}
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "single-column-layout-chosen",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 282.2,
+        "tokens": 53848,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Q2 options each include a layout descriptor (· layout: ...)", "passed": true, "evidence": "Warm Paper chosen with '· layout: single centered column, stacked content cards'"},
+        {"text": "Design doc Aesthetic Implementation contains a Layout structure field", "passed": true, "evidence": "design.md contains Layout structure field"},
+        {"text": "index.html does NOT use sticky sidebar — single-column or stacked cards", "passed": true, "evidence": "grep sticky → 0 matches; max-width:720px single centered column"},
+        {"text": "HTML layout matches chosen Q2 layout descriptor", "passed": true, "evidence": "Warm Paper 'single centered column' → 720px centered column in HTML"}
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "single-column-layout-chosen",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.25,
+        "passed": 1,
+        "failed": 3,
+        "total": 4,
+        "time_seconds": 238.7,
+        "tokens": 49775,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Q2 options each include a layout descriptor (· layout: ...)", "passed": false, "evidence": "Old skill CSS signatures contain only decorative properties, no layout descriptor"},
+        {"text": "Design doc Aesthetic Implementation contains a Layout structure field", "passed": false, "evidence": "design.md has no Layout structure field; layout only mentioned as anti-pattern"},
+        {"text": "index.html does NOT use sticky sidebar — single-column or stacked cards", "passed": true, "evidence": "Single-column centered layout, no sidebar — old skill default behavior"},
+        {"text": "HTML layout matches chosen Q2 layout descriptor", "passed": false, "evidence": "No formal layout descriptor; defaulted to single-column by model inference"}
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "bold-unexpected-layout",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 333.4,
+        "tokens": 68893,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Q2 options each include a layout descriptor (· layout: ...)", "passed": true, "evidence": "Brutalist Academic chosen with '· layout: asymmetric two-column grid, sticky sidebar left, content bleed right'"},
+        {"text": "Design doc Aesthetic Implementation contains a Layout structure field", "passed": true, "evidence": "design.md contains Layout structure field"},
+        {"text": "index.html is structurally distinct from plain single-column", "passed": true, "evidence": "grid-template-columns: 240px 1fr implements asymmetric two-column grid"},
+        {"text": "HTML structure reflects bold Q2 layout descriptor, not generic default", "passed": true, "evidence": "Brutalist Academic 'asymmetric two-column grid' → CSS Grid 240px 1fr in HTML"}
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "bold-unexpected-layout",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "passed": 0,
+        "failed": 4,
+        "total": 4,
+        "time_seconds": 248.6,
+        "tokens": 50272,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Q2 options each include a layout descriptor (· layout: ...)", "passed": false, "evidence": "Old skill CSS signatures have no layout descriptor"},
+        {"text": "Design doc Aesthetic Implementation contains a Layout structure field", "passed": false, "evidence": "design.md explicitly says 'single-column... No sidebar, no multi-column grid' — no positive layout spec"},
+        {"text": "index.html is structurally distinct from plain single-column", "passed": false, "evidence": "Single-column 720px centered — identical structure to eval-2 despite bold Q2 choice"},
+        {"text": "HTML structure reflects bold Q2 layout descriptor, not generic default", "passed": false, "evidence": "No layout descriptor; model defaulted to single-column regardless of bold aesthetic choice"}
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 1.0, "stddev": 0.0, "min": 1.0, "max": 1.0},
+      "time_seconds": {"mean": 296.2, "stddev": 30.7, "min": 272.9, "max": 333.4},
+      "tokens": {"mean": 58226, "stddev": 9000, "min": 51936, "max": 68893}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.25, "stddev": 0.21, "min": 0.0, "max": 0.5},
+      "time_seconds": {"mean": 229.4, "stddev": 20.2, "min": 200.9, "max": 248.6},
+      "tokens": {"mean": 43414, "stddev": 9000, "min": 30195, "max": 50272}
+    },
+    "delta": {
+      "pass_rate": "+0.75",
+      "time_seconds": "+66.8",
+      "tokens": "+14812"
+    }
+  },
+  "notes": [
+    "Eval 1 old_skill got lucky: agent picked style named 'Structured Sidebar Scholar' and inferred sidebar from the name. This is NOT reliable — eval 3 old_skill with 'Terminal Scholar' (same visual register) got single-column.",
+    "Key discriminating assertion: 'Q2 options include layout descriptor' — passes 100% new, 0% old. Clean signal.",
+    "Old skill evals 2 and 3 produce structurally identical single-column HTML despite different Q2 choices — no layout diversity mechanism existed.",
+    "New skill evals 1 and 2 produce different layouts from different Q2 choices (sticky sidebar vs. single column) — layout diversity now works deterministically.",
+    "Time overhead: new skill ~67s longer average — expected; additional layout spec in design doc and impl plan adds depth."
+  ]
+}

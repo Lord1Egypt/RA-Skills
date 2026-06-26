@@ -1,0 +1,19 @@
+{
+  "slug": "portfolio-project-writer-skill",
+  "name": "Portfolio Project Writer Skill",
+  "version": "0.1.0",
+  "tags": [
+    "career",
+    "openclaw",
+    "portfolio-project-writer",
+    "templates"
+  ],
+  "category": "Career & Portfolio",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-10",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

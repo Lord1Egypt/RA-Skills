@@ -1,35 +1,41 @@
----
-name: "Pipeworx swisstransport"
-description: "Provides real-time Swiss public transport info including station search, route planning with schedules, and live departure boards for trains, buses, and trams."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-swisstransport"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-swisstransport"
----
+# Swiss Transport
 
-# Pipeworx swisstransport
+Real-time Swiss public transport data: train, bus, and tram schedules from SBB and regional operators.
 
-> Provides real-time Swiss public transport info including station search, route planning with schedules, and live departure boards for trains, buses, and trams.
+## search_stations
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-swisstransport`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-swisstransport](https://clawhub.ai/skills/pipeworx-swisstransport)
+Find stations by name. Returns station ID, name, and coordinates.
 
-## Overview
+## get_connections
 
+Route planning between two locations. Returns departure/arrival times, duration, number of transfers, platform numbers, delays, and a breakdown of each journey section (which train/bus, intermediate stops).
 
-## Installation
-To install this skill, run the following command in your terminal:
+## get_stationboard
+
+Live departure board for any station. Shows the next departures with line name, category, destination, platform, and delay information.
+
+## Example: Zurich to Bern connections
+
 ```bash
-hermes skills install clawhub/pipeworx-swisstransport
+curl -X POST https://gateway.pipeworx.io/swisstransport/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_connections","arguments":{"from":"Zurich HB","to":"Bern","limit":3}}}'
+```
+
+## Example: departures from Geneva
+
+```bash
+curl -X POST https://gateway.pipeworx.io/swisstransport/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_stationboard","arguments":{"station":"Geneve","limit":5}}}'
+```
+
+```json
+{
+  "mcpServers": {
+    "swisstransport": {
+      "url": "https://gateway.pipeworx.io/swisstransport/mcp"
+    }
+  }
+}
 ```

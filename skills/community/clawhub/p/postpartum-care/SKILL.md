@@ -1,35 +1,58 @@
----
-name: "Postpartum Care 坐月子全流程助手"
-description: "Comprehensive postpartum care assistant covering body recovery, wound care, diet, breastfeeding, newborn care, exercise, emotional support, family roles, and..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/postpartum-care"
-sourceUrl: "https://clawhub.ai/skills/postpartum-care"
----
-
 # Postpartum Care 坐月子全流程助手
 
-> Comprehensive postpartum care assistant covering body recovery, wound care, diet, breastfeeding, newborn care, exercise, emotional support, family roles, and...
+坐月子全流程护理助手，覆盖产后身体恢复、伤口护理、月子饮食、哺乳指导、新生儿护理、产后运动、情绪疏导、家人分工，以及公众号/小红书月子攻略内容创作。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/postpartum-care`
-- **Source URL:** [https://clawhub.ai/skills/postpartum-care](https://clawhub.ai/skills/postpartum-care)
+## 功能模块
 
-## Overview
+### 1. 产后身体变化
+- 各器官恢复周期：子宫6-8周、会阴3-6周、剖腹伤口2-3周、盆底肌3-6个月
+- 恶露观察：血性（1-3天）→ 浆性（4-10天）→ 白色（11天-6周）
+- 异常信号：4天后仍鲜红/有异味/突然增多→及时就医
 
+### 2. 伤口护理
+- 会阴护理：温开水冲洗2-3次/天，烤灯照伤口，禁用坐浴
+- 剖腹产伤口：保持干燥，束腹带减轻牵拉，疤痕贴/膏用3-6个月
+- 禁忌：提重物、不用力揉搓、紧身衣摩擦
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/postpartum-care
-```
+### 3. 月子饮食（四阶段）
+- 第一周（排）：清淡易消化，小米粥/红糖姜茶/莲藕排骨汤，禁催奶汤
+- 第二周（清）：补血防水肿，红豆薏米/当归乌鸡/番茄牛腩
+- 第三周（补）：催乳养气血，通草鲫鱼/黄豆猪蹄/花生排骨
+- 第四周（养）：固本培元，桂圆红枣/芝麻核桃/枸杞炖羊肉
+- 催奶：鲫鱼/猪蹄/花生/丝瓜/无花果/豆浆/黑芝麻
+- 回奶：韭菜/麦芽/花椒/苦瓜
+
+### 4. 哺乳指导
+- 衔乳：正确含住乳晕（不只是乳头），宝宝嘴唇外翻，妈妈不疼
+- 涨奶/堵奶：宝宝下巴对硬块吸，喂前热敷3分钟+按摩，喂后冷敷
+- 追奶：多吸多产，PP追奶法（每晚22-23点循环3次），保证睡眠
+- 断奶：渐进式减少哺乳，回奶食物+紧身哺乳文胸，禁悬崖式断奶
+
+### 5. 新生儿护理
+- 喂养：按需哺乳，每次拍嗝
+- 脐带：碘伏消毒根部，7-14天自然脱落
+- 黄疸：生理性多吃多排晒太阳，病理性立即就医
+- 皮肤：红屁股厚涂护臀膏，湿疹厚涂润肤霜
+
+### 6. 月子生活
+- 洗头洗澡：顺产1周后淋浴/剖腹产2周后，伤口愈合即可
+- 环境：室温24-26℃，湿度50-60%，每天通风2-3次
+- 禁忌：提重物、久站久坐、碰冷水、剧烈运动
+
+### 7. 产后42天检查
+- 妈妈：子宫恢复B超、盆底肌评估、腹直肌评估、乳房触诊、产后抑郁筛查
+- 宝宝：身高体重、神经行为发育、髋关节B超
+
+### 8. 情绪疏导
+- 情绪波动 vs 抑郁：情绪波动2周内可自愈，抑郁持续2周以上需就医
+- 高风险信号：持续低落、失眠、对宝宝无兴趣、有自伤念头→立即就医
+- 家人支持：分担育儿、倾听陪伴、给予肯定
+
+### 9. 家人分工
+- 产妇：休息+哺乳
+- 月嫂/家人：伤口护理、新生儿护理、做饭、清洁家务
+
+## 参考文档
+- `references/postpartum_recipes.md` — 月子餐详细食谱（四周分阶段）
+- `references/newborn_care.md` — 新生儿护理操作清单（换尿布/洗澡/拍嗝）
+- `assets/content_templates.md` — 公众号月子攻略模板（4套）

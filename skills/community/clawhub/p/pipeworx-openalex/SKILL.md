@@ -1,35 +1,34 @@
 ---
-name: "Pipeworx openalex"
-description: "OpenAlex MCP — wraps the OpenAlex API (scholarly works, free, no auth)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-openalex"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-openalex"
+name: pipeworx-openalex
+description: OpenAlex MCP — wraps the OpenAlex API (scholarly works, free, no auth)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/openalex
 ---
 
-# Pipeworx openalex
+# pipeworx-openalex
 
-> OpenAlex MCP — wraps the OpenAlex API (scholarly works, free, no auth)
+OpenAlex MCP — wraps the OpenAlex API (scholarly works, free, no auth). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-openalex`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-openalex](https://clawhub.ai/skills/pipeworx-openalex)
+## Tools
 
-## Overview
+- `search_works`
+- `search_authors`
+- `search_institutions`
+- `get_concept`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-openalex
+```json
+{
+  "mcpServers": {
+    "pipeworx-openalex": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/openalex/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/openalex](https://pipeworx.io/packs/openalex)

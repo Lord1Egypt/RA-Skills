@@ -1,0 +1,21 @@
+{
+  "posts": [
+    {
+      "content": "Golden hour, captured. Where's your favorite spot in the city?",
+      "mediaItems": [
+        {
+          "key": "image/YOUR_UPLOAD_KEY.jpg",
+          "type": "IMAGE",
+          "sortOrder": 0
+        }
+      ],
+      "scheduledAt": "2026-06-20T18:30:00.000Z",
+      "socialMediaId": "YOUR_INSTAGRAM_ACCOUNT_ID"
+    }
+  ],
+  "controls": {
+    "instagramPublishType": "TIMELINE",
+    "instagramLocationId": "1559011447688271",
+    "instagramLocationName": "Национален дворец на културата - НДК"
+  }
+}

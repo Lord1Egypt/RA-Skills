@@ -1,35 +1,86 @@
 ---
-name: "把播客变成可读文章。支持输入音频文字稿、节目链接或摘要笔记，自动提炼核心观点、精选金句，生成适配微信公众号、知乎、企业内刊等多平台的图文内容。提供深度解析、精华摘要、对话体重构、社交媒体切片四种风格，开箱即用。"
-description: "播客文章生成器。将播客内容（音频文字稿、节目链接、摘要笔记）转化为结构清晰、适合发布的图文文章。 支持多种输出风格（深度解析、精华摘要、对话体重构、社交媒体切片）和多种输出格式（Markdown、微信公众号、知乎、企业内刊）。 触发词：播客文章、播客转文章、podcast to article、podcast a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/podcast-article"
-sourceUrl: "https://clawhub.ai/skills/podcast-article"
+name: podcast-article
+description: >
+  播客文章生成器。将播客内容（音频文字稿、节目链接、摘要笔记）转化为结构清晰、适合发布的图文文章。
+  支持多种输出风格（深度解析、精华摘要、对话体重构、社交媒体切片）和多种输出格式（Markdown、微信公众号、知乎、企业内刊）。
+  触发词：播客文章、播客转文章、podcast to article、podcast article、把播客整理成文章、帮我写播客稿、节目文字版、播客总结文章。
+  当用户提供播客链接、音频转录文本、播客嘉宾对话记录、节目笔记，或要求将播客内容二次创作为可读文章时，均应触发此 Skill。
 ---
 
-# 把播客变成可读文章。支持输入音频文字稿、节目链接或摘要笔记，自动提炼核心观点、精选金句，生成适配微信公众号、知乎、企业内刊等多平台的图文内容。提供深度解析、精华摘要、对话体重构、社交媒体切片四种风格，开箱即用。
+# Podcast Article Generator（播客文章生成器）
 
-> 播客文章生成器。将播客内容（音频文字稿、节目链接、摘要笔记）转化为结构清晰、适合发布的图文文章。 支持多种输出风格（深度解析、精华摘要、对话体重构、社交媒体切片）和多种输出格式（Markdown、微信公众号、知乎、企业内刊）。 触发词：播客文章、播客转文章、podcast to article、podcast a...
+将播客音频内容高效转化为结构清晰、可直接发布的优质图文文章。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/podcast-article`
-- **Source URL:** [https://clawhub.ai/skills/podcast-article](https://clawhub.ai/skills/podcast-article)
+## 快速开始
 
-## Overview
+### 步骤 1：收集输入素材
 
+用户提供以下任意一种（或组合）：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/podcast-article
-```
+- **音频文字稿**：自动转录或手动整理的对话文本
+- **播客链接**：节目 URL（需先用 `browser-use` 或 `realtime-search` 抓取内容）
+- **摘要笔记**：用户自己整理的关键点
+- **章节时间戳**：如有，用于结构化提取
+
+若用户仅提供链接，优先用 `realtime-search` 获取节目简介与摘要；若需抓取完整文字稿，使用 `browser-use` Skill。
+
+### 步骤 2：分析内容，澄清关键参数
+
+在生成文章前，根据可推断的信息智能填充默认值，**不足时**再问用户以下问题（一次性问完，不分多轮）：
+
+| 参数 | 默认值 | 说明 |
+|------|--------|------|
+| 输出风格 | 深度解析 | 见下方风格说明 |
+| 目标平台 | Markdown | 见下方平台说明 |
+| 目标读者 | 通用读者 | 影响专业术语密度 |
+| 文章长度 | 1500~2500字 | 可指定短文/长文 |
+| 是否保留嘉宾名字 | 是 | 访谈类可能需隐去 |
+
+### 步骤 3：生成文章
+
+按所选风格和平台规范生成文章，输出包含：
+
+1. **标题**（主标题 + 可选副标题）
+2. **导语**（100字内，概述核心价值）
+3. **正文**（按结构模板展开）
+4. **金句摘录**（3~5条，可用于配图文案）
+5. **延伸阅读 / 行动建议**（可选）
+
+### 步骤 4：保存产出物
+
+1. 调用 `date-calculator` Skill 获取当前日期（格式 `YYYYMMDD`），严禁自行推算。
+2. 在产出物目录下新建任务子文件夹，命名格式：`<播客名称>_article_<日期>`（日期来自上一步）。
+3. 将最终文章写入该子文件夹的 `article.md`。
+
+---
+
+## 输出风格说明
+
+详见 `references/styles.md`
+
+简要速查：
+
+- **深度解析**：提炼核心论点，加入背景补充与作者点评
+- **精华摘要**：要点列表 + 一句话核心洞见，适合碎片阅读
+- **对话体重构**：保留 Q&A 形式，精炼冗余表达，增强可读性
+- **社交媒体切片**：拆分为 3~5 条独立短内容，适合微博/朋友圈
+
+## 平台规范说明
+
+详见 `references/platforms.md`
+
+支持平台：`markdown` / `wechat`（微信公众号）/ `zhihu`（知乎）/ `newsletter`（企业内刊）/ `webpage`（HTML 网页，可直接浏览器打开）
+
+选择 `webpage` 时，读取 `assets/template.html`，将文章内容填入模板，输出完整 HTML 文件，保存至产出物目录下的 `article.html`。
+
+## 质量检查清单
+
+生成文章后，自检以下项目再输出：
+
+- [ ] 标题吸引人且准确反映核心内容
+- [ ] 导语在前3句内抓住读者
+- [ ] 正文层次清晰，段落不超过200字
+- [ ] 专业术语已在首次出现时简短解释
+- [ ] 无口语化赘词（"然后就是"、"嗯"、"其实"等）
+- [ ] 金句原汁原味，未被过度改写
+- [ ] 文末有清晰的收尾或行动号召

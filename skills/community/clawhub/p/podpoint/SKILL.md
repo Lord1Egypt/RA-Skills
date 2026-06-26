@@ -1,35 +1,41 @@
+# Pod Point Watcher
+
+This skill monitors the live status of a specific Pod Point charging pod using Pod Point's public status endpoint.
+
+It mirrors the behaviour of a native Pod Point watcher:
+- Tracks connector **A** and **B**
+- Detects when a charger goes from **Charging → Available**
+- Detects when **both connectors become available**
+- Can either return current status or wait and notify when availability changes
+
+No authentication or API keys are required.
+
 ---
-name: "Podpoint"
-description: "Monitors live status of a Pod Point charger’s connectors A and B, reporting current availability and changes without requiring authentication."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/podpoint"
-sourceUrl: "https://clawhub.ai/skills/podpoint"
+
+## When to use this skill
+
+Use this skill when the user asks things like:
+
+- "Is my Pod Point charger free?"
+- "Check pod 10059"
+- "Watch my charger and tell me when it's available"
+- "Are both connectors free at my Pod Point?"
+- "Monitor this Pod Point"
+
+This skill is specifically for **live availability**, not for maps or locations.
+
 ---
 
-# Podpoint
+## Actions
 
-> Monitors live status of a Pod Point charger’s connectors A and B, reporting current availability and changes without requiring authentication.
+### `podpoint_status`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/podpoint`
-- **Source URL:** [https://clawhub.ai/skills/podpoint](https://clawhub.ai/skills/podpoint)
+Returns the current state of connectors A and B.
 
-## Overview
+Example input:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/podpoint
-```
+```json
+{
+  "action": "podpoint_status",
+  "podId": "10059"
+}

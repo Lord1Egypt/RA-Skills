@@ -1,0 +1,48 @@
+{
+  "slug": "pet-vaccine-record-wallet",
+  "name": "Pet Vaccine Record Wallet",
+  "version": "1.0.0",
+  "language": "en",
+  "license": "MIT-0",
+  "type": "prompt-flow",
+  "description": "Organizes pet vaccination proof into a shareable wallet card, document index, renewal tracker, and missing-proof checklist without giving veterinary advice.",
+  "category": "Pet Care Administration",
+  "tags": [
+    "pet records",
+    "vaccine proof",
+    "rabies certificate",
+    "pet travel documents",
+    "boarding checklist",
+    "record organizer"
+  ],
+  "trigger_keywords": [
+    "pet vaccine record wallet",
+    "organize pet vaccine records",
+    "rabies certificate card",
+    "dog vaccine proof",
+    "cat vaccine proof",
+    "boarding vaccine documents",
+    "pet travel vaccine records",
+    "vet record organizer"
+  ],
+  "use_cases": [
+    "Summarize pet vaccination proof for boarding, grooming, daycare, travel, licensing, or emergency use.",
+    "Create a document index from veterinary records and rabies certificates.",
+    "Track due dates exactly as written on records and flag missing proof."
+  ],
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "hasExecutableCode": false,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "project": "daily-50-skills-2026-05-08",
+  "safety_notes": [
+    "Proof organizer only.",
+    "Do not provide veterinary advice, vaccine recommendations, medical schedules, diagnoses, or treatment guidance.",
+    "Use dates and vaccine names from the supplied records; do not infer medical due dates.",
+    "Tell the user to confirm medical questions with a licensed veterinarian and requirements with the requesting facility or authority.",
+    "Do not collect unnecessary personal data or full payment details."
+  ]
+}

@@ -1,35 +1,58 @@
 ---
-name: "Pipeworx disify"
-description: "Detect disposable and temporary email addresses — validate emails and check domains against known throwaway services"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-disify"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-disify"
+name: pipeworx-disify
+description: Detect disposable and temporary email addresses — validate emails and check domains against known throwaway services
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - curl
+    emoji: "📧"
+    homepage: https://pipeworx.io/packs/disify
 ---
 
-# Pipeworx disify
+# Disify — Disposable Email Detection
 
-> Detect disposable and temporary email addresses — validate emails and check domains against known throwaway services
+Is that email real or a throwaway? Disify checks email addresses and domains against a database of known disposable email services like Mailinator, Guerrilla Mail, and Temp Mail. Useful for form validation, anti-fraud, and user quality checks.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-disify`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-disify](https://clawhub.ai/skills/pipeworx-disify)
+## Tools
 
-## Overview
+- **`validate_email`** — Check if an email address is disposable or malformed. Returns format validity and disposable status.
+- **`check_domain`** — Check if a domain is associated with disposable email services (e.g., "mailinator.com").
 
+## When to use
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Validating sign-up forms to block throwaway emails
+- Screening lead generation forms for quality
+- Checking if a domain in your user database is disposable
+- Anti-abuse pipelines that need to flag temporary email usage
+
+## Example
+
 ```bash
-hermes skills install clawhub/pipeworx-disify
+curl -s -X POST https://gateway.pipeworx.io/disify/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"validate_email","arguments":{"email":"test@mailinator.com"}}}'
+```
+
+```json
+{
+  "email": "test@mailinator.com",
+  "format_valid": true,
+  "disposable": true,
+  "domain": "mailinator.com"
+}
+```
+
+## MCP config
+
+```json
+{
+  "mcpServers": {
+    "pipeworx-disify": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/disify/mcp"]
+    }
+  }
+}
 ```

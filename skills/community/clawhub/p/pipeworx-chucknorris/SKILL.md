@@ -1,35 +1,56 @@
 ---
-name: "Pipeworx chucknorris"
-description: "Chuck Norris jokes — random, by category, or keyword search from chucknorris.io"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-chucknorris"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-chucknorris"
+name: pipeworx-chucknorris
+description: Chuck Norris jokes — random, by category, or keyword search from chucknorris.io
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - curl
+    emoji: "👊"
+    homepage: https://pipeworx.io/packs/chucknorris
 ---
 
-# Pipeworx chucknorris
+# Chuck Norris Jokes
 
-> Chuck Norris jokes — random, by category, or keyword search from chucknorris.io
+The internet's definitive Chuck Norris joke database. Pull random jokes, search by keyword, browse categories, or get a joke from a specific category like "dev", "science", or "sport".
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-chucknorris`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-chucknorris](https://clawhub.ai/skills/pipeworx-chucknorris)
+## Tools
 
-## Overview
+- **`random_joke`** — A random Chuck Norris joke
+- **`search_jokes`** — Search jokes containing a keyword
+- **`list_categories`** — All available joke categories
+- **`joke_by_category`** — Random joke from a specific category
 
+## Example
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pipeworx-chucknorris
+curl -s -X POST https://gateway.pipeworx.io/chucknorris/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"joke_by_category","arguments":{"category":"dev"}}}'
+```
+
+```json
+{
+  "id": "elgv2wkvt8ioag6xywykbq",
+  "value": "Chuck Norris writes code that optimizes itself.",
+  "categories": ["dev"]
+}
+```
+
+## Categories
+
+animal, career, celebrity, dev, explicit, fashion, food, history, money, movie, music, political, religion, science, sport, travel
+
+## MCP config
+
+```json
+{
+  "mcpServers": {
+    "pipeworx-chucknorris": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/chucknorris/mcp"]
+    }
+  }
+}
 ```

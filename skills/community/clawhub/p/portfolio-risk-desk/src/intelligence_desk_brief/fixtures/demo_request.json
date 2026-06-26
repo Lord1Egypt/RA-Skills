@@ -1,0 +1,17 @@
+{
+  "portfolio_name": "Semiconductor Core",
+  "workspace_id": "demo-workspace",
+  "profile_name": "semiconductor-core",
+  "holdings": ["NVDA", "AMD", "TSM", "ASML"],
+  "watchlist": [],
+  "themes": ["AI infrastructure", "semiconductors"],
+  "brief_type": "daily",
+  "lookback_hours": 24,
+  "delivery_target": "inline",
+  "max_items_per_theme": 8,
+  "benchmark_or_comparison_lens": "SOX index and prior brief",
+  "scenario_questions": [
+    "What changes if rates move higher again?",
+    "What breaks or holds if a major semiconductor name misses expectations?"
+  ]
+}

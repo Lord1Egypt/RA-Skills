@@ -1,0 +1,27 @@
+{
+  "eval_id": 2,
+  "eval_name": "single-column-layout-chosen",
+  "prompt": "page-claw with Q1=Warm&editorial, Q2=single-column/card option, Q3=skip",
+  "assertions": [
+    {
+      "text": "Q2 options presented each include a layout descriptor (e.g., '· layout: ...')",
+      "passed": null,
+      "evidence": null
+    },
+    {
+      "text": "Design doc ### Aesthetic Implementation contains a 'Layout structure' field",
+      "passed": null,
+      "evidence": null
+    },
+    {
+      "text": "index.html does NOT use a sticky sidebar — uses single-column, stacked cards, or centered column",
+      "passed": null,
+      "evidence": null
+    },
+    {
+      "text": "The HTML layout matches the layout descriptor of the chosen Q2 option",
+      "passed": null,
+      "evidence": null
+    }
+  ]
+}

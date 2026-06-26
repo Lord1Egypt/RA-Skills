@@ -1,0 +1,12 @@
+{
+  "id": "daily-standup",
+  "schedule": {
+    "on_calendar": "Mon..Fri *-*-* 09:25:00",
+    "persistent": true
+  },
+  "escalation": null,
+  "tone": "warm",
+  "description": "Weekday morning standup reminder",
+  "task": null,
+  "remind": "Standup in 5 minutes. What are you working on today?"
+}

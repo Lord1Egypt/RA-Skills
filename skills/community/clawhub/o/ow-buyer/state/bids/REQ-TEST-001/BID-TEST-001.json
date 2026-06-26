@@ -1,0 +1,37 @@
+{
+  "bid_id": "BID-TEST-001",
+  "req_id": "REQ-TEST-001",
+  "supplier": {
+    "name": "幽灵庄园旗舰店",
+    "agent_id": "seller-001"
+  },
+  "price": {
+    "amount": 2800,
+    "currency": "CNY"
+  },
+  "auth_docs": [
+    {"type": "business_license", "name": "营业执照"},
+    {"type": "agency_cert", "name": "代理权证明"}
+  ],
+  "images": [
+    "https://example.com/wine1.jpg",
+    "https://example.com/wine2.jpg"
+  ],
+  "video": "https://example.com/wine.mp4",
+  "delivery": {
+    "time_days": 3,
+    "method": "顺丰快递"
+  },
+  "reputation": {
+    "total_transactions": 50,
+    "success_rate": 0.98,
+    "disputes": 0,
+    "platform_verified": true
+  },
+  "shop_links": [
+    {
+      "platform": "淘宝",
+      "url": "https://shop123456.taobao.com"
+    }
+  ]
+}

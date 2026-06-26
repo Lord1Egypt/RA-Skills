@@ -1,35 +1,23 @@
 ---
-name: "Package.json Generator"
-description: "生成专业的 package.json，包含最佳实践的脚本、依赖和配置。"
-category: "other"
-source: "ClawHub"
-tags: [generator, node, npm, package.json]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/package-json-generator"
-sourceUrl: "https://clawhub.ai/skills/package-json-generator"
+name: package-json-generator
+description: 生成专业的 package.json，包含最佳实践的脚本、依赖和配置。
+metadata: {"clawdbot":{"emoji":"📦","requires":{},"primaryEnv":""}}
 ---
 
-# Package.json Generator
+# package.json Generator
 
-> 生成专业的 package.json，包含最佳实践的脚本、依赖和配置。
+生成专业的 package.json 文件。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/package-json-generator`
-- **Source URL:** [https://clawhub.ai/skills/package-json-generator](https://clawhub.ai/skills/package-json-generator)
+## 功能
 
-## Overview
+- 📝 标准化的 scripts
+- ✅ 最佳实践验证
+- 🔧 开发/生产依赖分离
+- 🏷️ 语义化版本
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/package-json-generator
+package-json-generator --name my-project --type node
+package-json-generator --name my-app --framework express
 ```

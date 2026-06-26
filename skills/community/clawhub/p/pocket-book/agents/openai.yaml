@@ -1,0 +1,7 @@
+interface:
+  display_name: "Pocketbook"
+  short_description: "Conversational personal ledger with quick capture, local persistence, and easy correction"
+  default_prompt: "Use $pocketbook to record quick personal transactions, summarize activity, and correct recent entries from a local ledger."
+
+policy:
+  allow_implicit_invocation: true

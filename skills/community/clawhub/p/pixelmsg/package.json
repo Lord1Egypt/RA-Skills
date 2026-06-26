@@ -1,0 +1,14 @@
+{
+  "name": "pixelmsg",
+  "version": "1.0.0",
+  "description": "Turn AI responses into beautiful image cards — render HTML templates to pixel-perfect PNGs with Playwright",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "screenshots": "node screenshot.mjs templates/weather.html --viewport mobile --out ./screenshots && node screenshot.mjs templates/github-trending.html --viewport mobile --out ./screenshots && node screenshot.mjs templates/todolist.html --viewport mobile --out ./screenshots && node screenshot.mjs templates/github-stats.html --viewport desktop --out ./screenshots"
+  },
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}

@@ -1,35 +1,36 @@
----
-name: "Pipeworx sec"
-description: "Query the SEC EDGAR database to find companies, retrieve recent filings by form type, and access key financial metrics from XBRL data."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-sec"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-sec"
----
+# SEC EDGAR
 
-# Pipeworx sec
+Query the SEC's EDGAR database for public company filings and financial data. Search companies, pull recent 10-K/10-Q/8-K filings, and access structured XBRL financial facts.
 
-> Query the SEC EDGAR database to find companies, retrieve recent filings by form type, and access key financial metrics from XBRL data.
+## Capabilities
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-sec`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-sec](https://clawhub.ai/skills/pipeworx-sec)
+**search_companies** -- Find companies by name or ticker. Returns CIK numbers needed for other tools.
 
-## Overview
+**get_company_filings** -- Recent filings for a company by CIK. Optionally filter by form type (10-K, 10-Q, 8-K, DEF 14A, etc.). Each filing includes the accession number, date, and a direct link to the primary document.
 
+**get_company_facts** -- XBRL financial data for a company. Returns curated key metrics: revenue, net income, total assets, liabilities, stockholders equity, cash, EPS, shares outstanding, operating income, gross profit, and R&D expense -- each with the most recent annual value.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Example: look up Apple's recent 10-K filings
+
 ```bash
-hermes skills install clawhub/pipeworx-sec
+curl -X POST https://gateway.pipeworx.io/sec/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_company_filings","arguments":{"cik":"320193","form_type":"10-K"}}}'
+```
+
+## Common CIK numbers
+
+- Apple: 320193
+- Tesla: 1318605
+- Microsoft: 789019
+- Amazon: 1018724
+
+```json
+{
+  "mcpServers": {
+    "sec": {
+      "url": "https://gateway.pipeworx.io/sec/mcp"
+    }
+  }
+}
 ```

@@ -1,0 +1,92 @@
+groups:
+
+# ================= JVM =================
+- name: jvm_alerts
+  rules:
+
+  - alert: JVMHeapUsageHigh
+    expr: (heap_used_bytes / clamp_min(heap_committed_bytes, 1)) > 0.85
+      and (time() - jvm_start_time_seconds > 3600)
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "堆内存高"
+      description: "{{ $labels.hostname }} {{ $labels.game_dir }} 堆内存使用率过高"
+      value: "{{ $value }}"
+
+  # - alert: JVMOldGenHigh
+  #   expr: (old_used_bytes / clamp_min(old_max_bytes, 1)) > 0.8
+  #     and (time() - jvm_start_time_seconds > 3600)
+  #   for: 5m
+  #   labels:
+  #     severity: warning
+  #   annotations:
+  #     summary: "老年代高"
+  #     description: "{{ $labels.hostname }} {{ $labels.game_dir }} 老年代使用率过高"
+  #     value: "{{ $value }}"
+
+  - alert: JVMGcPressureWarning
+    expr: gc_time_seconds / 60 > 0.3
+    for: 3m
+    labels:
+      severity: warning
+    annotations:
+      summary: "GC压力高"
+      description: "{{ $labels.hostname }} {{ $labels.game_dir }} GC占用CPU时间过高"
+      value: "{{ $value }}"
+
+  - alert: JVMGcPressureCritical
+    expr: gc_time_seconds / 60 > 0.6
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: "GC严重"
+      description: "{{ $labels.hostname }} {{ $labels.game_dir }} GC异常"
+      value: "{{ $value }}"
+
+  # - alert: JVMProcessDown
+  #   expr: jvm_up == 0
+  #   for: 5m
+  #   labels:
+  #     severity: critical
+  #   annotations:
+  #     summary: "JVM掉线"
+  #     description: "{{ $labels.hostname }} {{ $labels.game_dir }} JVM进程消失"
+  #     value: "0"
+
+
+# ================= MySQL =================
+- name: mysql_alerts
+  rules:
+
+  - alert: MySQLDown
+    expr: mysql_up == 0
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: "MySQL挂了"
+      description: "{{ $labels.hostname }} MySQL不可连接"
+      value: "0"
+
+  - alert: MySQLBufferPoolHigh
+    expr: (innodb_buffer_pool_bytes_data / clamp_min(innodb_buffer_pool_bytes_total, 1)) > 0.85
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "BufferPool高"
+      description: "{{ $labels.hostname }} BufferPool使用率过高"
+      value: "{{ $value }}"
+
+  - alert: MySQLMemoryHigh
+    expr: mysql_process_resident_memory_bytes > 8589934592
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "MySQL内存高"
+      description: "{{ $labels.hostname }} MySQL内存占用过高"
+      value: "{{ $value }}"

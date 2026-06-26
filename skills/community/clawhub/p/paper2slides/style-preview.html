@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>paper-to-slides — Style Preview</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;800;900&family=Archivo+Black&family=Nunito:wght@400;500;600&family=Space+Grotesk:wght@400;500&family=Cormorant:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@300;400&family=Bodoni+Moda:wght@400;700&family=DM+Sans:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Outfit:wght@400;500;700;800&family=Fraunces:wght@700;900&family=Work+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:wght@400;600&family=Source+Serif+4:wght@400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@700&f[]=satoshi@400,500&display=swap">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+        html, body { height: 100%; overflow-x: hidden; }
+
+        .slide {
+            width: 100vw; height: 100vh; height: 100dvh;
+            overflow: hidden; scroll-snap-align: start;
+            display: flex; flex-direction: column; justify-content: center;
+            position: relative;
+        }
+        .slide-inner {
+            padding: clamp(2rem, 6vw, 6rem);
+            max-height: 100%; overflow: hidden;
+        }
+
+        /* Style label & number */
+        .style-label {
+            position: absolute; top: clamp(12px, 2vh, 24px); left: clamp(12px, 2vw, 24px);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.6rem, 1vw, 0.8rem);
+            letter-spacing: 0.08em; text-transform: uppercase;
+            padding: 4px 12px; border-radius: 4px; z-index: 10;
+        }
+        .style-number {
+            position: absolute; top: clamp(12px, 2vh, 24px); right: clamp(12px, 2vw, 24px);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.6rem, 1vw, 0.75rem); z-index: 10;
+        }
+
+        /* Info grid */
+        .info-grid {
+            display: grid; grid-template-columns: auto 1fr;
+            gap: clamp(0.2rem, 0.5vh, 0.5rem) clamp(0.8rem, 2vw, 2rem);
+            margin-top: clamp(0.8rem, 2vh, 2rem);
+        }
+        .info-key {
+            font-size: clamp(0.6rem, 1vw, 0.78rem);
+            text-transform: uppercase; letter-spacing: 0.1em;
+            font-weight: 600; white-space: nowrap;
+        }
+        .info-val {
+            font-size: clamp(0.75rem, 1.3vw, 1rem);
+            line-height: 1.45;
+        }
+
+        /* Tags */
+        .scene-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: clamp(0.3rem, 0.5vh, 0.5rem); }
+        .scene-tag {
+            padding: 3px 10px; border-radius: 4px;
+            font-size: clamp(0.55rem, 0.85vw, 0.72rem);
+            font-weight: 600;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0; transform: translateY(24px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .slide.visible .reveal { opacity: 1; transform: translateY(0); }
+        .reveal:nth-child(1) { transition-delay: 0.05s; }
+        .reveal:nth-child(2) { transition-delay: 0.12s; }
+        .reveal:nth-child(3) { transition-delay: 0.19s; }
+        .reveal:nth-child(4) { transition-delay: 0.26s; }
+        .reveal:nth-child(5) { transition-delay: 0.33s; }
+
+        /* Nav */
+        .nav-dots {
+            position: fixed; right: 16px; top: 50%; transform: translateY(-50%);
+            display: flex; flex-direction: column; gap: 6px; z-index: 9999;
+        }
+        .nav-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(128,128,128,0.4); border: none;
+            cursor: pointer; padding: 0; transition: all 0.3s;
+        }
+        .nav-dot.active { background: #e63312; transform: scale(1.4); }
+        .progress-bar {
+            position: fixed; top: 0; left: 0; height: 3px;
+            background: #e63312; z-index: 9999; transition: width 0.3s ease;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
+        }
+
+        /* ===========================================
+           1. SWISS MODERN
+           =========================================== */
+        .swiss-modern { background: #ffffff; font-family: 'Nunito', sans-serif; }
+        .swiss-modern::before { content:''; position:absolute; left:0; top:0; bottom:0; width:5px; background:#e63312; }
+        .swiss-modern::after { content:''; position:absolute; top:-40px; right:-40px; width:clamp(180px,28vw,320px); height:clamp(180px,28vw,320px); border:4px solid #e63312; border-radius:50%; opacity:0.1; }
+        .swiss-modern .style-label { background: rgba(230,51,18,0.08); color: #e63312; }
+        .swiss-modern .style-number { color: #aaa; }
+        .swiss-modern h1 { font-family:'Archivo',sans-serif; font-weight:900; font-size:clamp(2.2rem,5.5vw,4.5rem); line-height:1.05; color:#1a1a1a; letter-spacing:-0.02em; }
+        .swiss-modern h1 span { color: #e63312; }
+        .swiss-modern .info-key { color: #999; font-family: 'JetBrains Mono', monospace; }
+        .swiss-modern .info-val { color: #333; }
+        .swiss-modern .scene-tag { background: rgba(230,51,18,0.08); color: #e63312; }
+
+        /* ===========================================
+           2. NOTEBOOK TABS
+           =========================================== */
+        .notebook-tabs { background: #2d2d2d; font-family: 'DM Sans', sans-serif; }
+        .notebook-tabs .slide-inner {
+            background:#f8f6f1; margin:clamp(16px,3vh,40px) clamp(20px,4vw,60px);
+            border-radius:4px; box-shadow:0 4px 24px rgba(0,0,0,0.3);
+            padding:clamp(2rem,4vw,4rem); position:relative;
+            max-height: calc(100vh - clamp(32px,6vh,80px));
+        }
+        .notebook-tabs .tab { position:absolute; right:-1px; width:28px; border-radius:0 6px 6px 0; writing-mode:vertical-rl; text-orientation:mixed; font-size:9px; font-weight:500; display:flex; align-items:center; justify-content:center; letter-spacing:0.05em; }
+        .notebook-tabs .tab1 { top:20%; height:60px; background:#98d4bb; color:#1a5c3a; }
+        .notebook-tabs .tab2 { top:35%; height:50px; background:#c7b8ea; color:#4a3680; }
+        .notebook-tabs .tab3 { top:48%; height:70px; background:#f4b8c5; color:#8c2a3e; }
+        .notebook-tabs .tab4 { top:65%; height:45px; background:#a8d8ea; color:#1a5c7a; }
+        .notebook-tabs .style-label { background:#c7b8ea; color:#4a3680; }
+        .notebook-tabs .style-number { color:rgba(255,255,255,0.5); }
+        .notebook-tabs h1 { font-family:'Bodoni Moda',serif; font-weight:700; font-size:clamp(1.8rem,4.5vw,3.5rem); line-height:1.1; color:#1a1a1a; }
+        .notebook-tabs h1 span { color: #7c5cbf; }
+        .notebook-tabs .info-key { color: #999; }
+        .notebook-tabs .info-val { color: #333; }
+        .notebook-tabs .scene-tag { background: #c7b8ea; color: #4a3680; }
+
+        /* ===========================================
+           3. PASTEL GEOMETRY
+           =========================================== */
+        .pastel-geo { background:#c8d9e6; font-family:'Plus Jakarta Sans',sans-serif; }
+        .pastel-geo .slide-inner {
+            background:#faf9f7; margin:clamp(16px,3vh,40px) clamp(20px,4vw,60px);
+            border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,0.08);
+            padding:clamp(2rem,4vw,4rem); position:relative;
+            max-height: calc(100vh - clamp(32px,6vh,80px));
+        }
+        .pastel-geo .pill { position:absolute; right:-14px; width:28px; border-radius:14px; }
+        .pastel-geo .pill1 { top:20%; height:40px; background:#f0b4d4; }
+        .pastel-geo .pill2 { top:32%; height:60px; background:#a8d4c4; }
+        .pastel-geo .pill3 { top:48%; height:80px; background:#9b8dc4; }
+        .pastel-geo .pill4 { top:66%; height:50px; background:#f0b4d4; }
+        .pastel-geo .pill5 { top:78%; height:35px; background:#a8d4c4; }
+        .pastel-geo .style-label { background:#a8d4c4; color:#2d5a47; }
+        .pastel-geo .style-number { color:#8aafbf; }
+        .pastel-geo h1 { font-weight:800; font-size:clamp(1.8rem,4.5vw,3.5rem); line-height:1.1; color:#1a1a1a; }
+        .pastel-geo h1 span { color:#7c6aad; }
+        .pastel-geo .info-key { color: #999; }
+        .pastel-geo .info-val { color: #444; }
+        .pastel-geo .scene-tag { background: #a8d4c4; color: #2d5a47; }
+
+        /* ===========================================
+           4. BOLD SIGNAL
+           =========================================== */
+        .bold-signal { background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 50%,#1a1a1a 100%); font-family:'Space Grotesk',sans-serif; }
+        .bold-signal .accent-card {
+            position:absolute; top:clamp(40px,8vh,80px); right:clamp(40px,6vw,100px);
+            width:clamp(140px,20vw,240px); height:clamp(140px,20vw,240px);
+            background:#FF5722; border-radius:12px; opacity:0.9;
+            display:flex; align-items:center; justify-content:center;
+            font-family:'Archivo Black',sans-serif; font-size:clamp(3.5rem,9vw,7rem); color:rgba(0,0,0,0.15);
+        }
+        .bold-signal .style-label { background:rgba(255,87,34,0.2); color:#FF5722; }
+        .bold-signal .style-number { color:rgba(255,255,255,0.3); }
+        .bold-signal h1 { font-family:'Archivo Black',sans-serif; font-weight:900; font-size:clamp(2rem,5vw,4rem); line-height:1.05; color:#fff; max-width:55%; }
+        .bold-signal h1 span { color:#FF5722; }
+        .bold-signal .info-key { color:rgba(255,255,255,0.35); font-family:'Space Mono',monospace; }
+        .bold-signal .info-val { color:rgba(255,255,255,0.7); }
+        .bold-signal .scene-tag { background:rgba(255,87,34,0.2); color:#FF5722; }
+
+        /* ===========================================
+           5. NEON CYBER
+           =========================================== */
+        .neon-cyber { background:#0a0f1c; font-family:'Satoshi',sans-serif; }
+        .neon-cyber::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(0,255,204,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,204,0.03) 1px,transparent 1px); background-size:50px 50px; }
+        .neon-cyber .style-label { background:rgba(0,255,204,0.1); color:#00ffcc; }
+        .neon-cyber .style-number { color:rgba(0,255,204,0.3); }
+        .neon-cyber h1 { font-family:'Clash Display',sans-serif; font-weight:700; font-size:clamp(2rem,5.5vw,4.5rem); line-height:1.05; color:#fff; }
+        .neon-cyber h1 span { color:#00ffcc; text-shadow:0 0 20px rgba(0,255,204,0.4); }
+        .neon-cyber .info-key { color:rgba(0,255,204,0.4); font-family:'JetBrains Mono',monospace; }
+        .neon-cyber .info-val { color:rgba(255,255,255,0.6); }
+        .neon-cyber .scene-tag { background:rgba(0,255,204,0.1); color:#00ffcc; }
+
+        /* ===========================================
+           6. DARK BOTANICAL
+           =========================================== */
+        .dark-botanical { background:#0f0f0f; font-family:'IBM Plex Sans',sans-serif; }
+        .dark-botanical .blob1 { position:absolute; top:15%; right:10%; width:clamp(150px,25vw,300px); height:clamp(150px,25vw,300px); background:radial-gradient(circle,rgba(212,165,116,0.25) 0%,transparent 70%); border-radius:50%; filter:blur(40px); }
+        .dark-botanical .blob2 { position:absolute; bottom:20%; right:25%; width:clamp(100px,18vw,220px); height:clamp(100px,18vw,220px); background:radial-gradient(circle,rgba(232,180,184,0.2) 0%,transparent 70%); border-radius:50%; filter:blur(40px); }
+        .dark-botanical .style-label { background:rgba(212,165,116,0.15); color:#d4a574; }
+        .dark-botanical .style-number { color:rgba(232,228,223,0.25); }
+        .dark-botanical h1 { font-family:'Cormorant',serif; font-weight:600; font-size:clamp(2rem,5.5vw,4.5rem); line-height:1.1; color:#e8e4df; }
+        .dark-botanical h1 span { color:#d4a574; }
+        .dark-botanical .info-key { color:#5a5550; }
+        .dark-botanical .info-val { color:#9a9590; font-weight:300; }
+        .dark-botanical .scene-tag { background:rgba(212,165,116,0.15); color:#d4a574; }
+
+        /* ===========================================
+           7. SPLIT PASTEL
+           =========================================== */
+        .split-pastel { background:#f5e6dc; font-family:'Outfit',sans-serif; }
+        .split-pastel .right-panel { position:absolute; top:0; right:0; bottom:0; width:45%; background:#e4dff0; }
+        .split-pastel .grid-overlay { position:absolute; top:0; right:0; bottom:0; width:45%; background-image:linear-gradient(rgba(0,0,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.03) 1px,transparent 1px); background-size:30px 30px; }
+        .split-pastel .slide-inner { position:relative; z-index:2; }
+        .split-pastel .style-label { background:#c8f0d8; color:#2d6b3f; }
+        .split-pastel .style-number { color:#bbb; }
+        .split-pastel h1 { font-weight:800; font-size:clamp(2rem,5vw,4rem); line-height:1.05; color:#1a1a1a; max-width:50%; }
+        .split-pastel h1 span { color:#7c6aad; }
+        .split-pastel .info-key { color:#999; }
+        .split-pastel .info-val { color:#444; max-width:48%; }
+        .split-pastel .scene-tag { background:#c8f0d8; color:#2d6b3f; }
+
+        /* ===========================================
+           8. VINTAGE EDITORIAL
+           =========================================== */
+        .vintage-editorial { background:#f5f3ee; font-family:'Work Sans',sans-serif; }
+        .vintage-editorial .geo-circle { position:absolute; top:15%; right:12%; width:clamp(120px,18vw,240px); height:clamp(120px,18vw,240px); border:2px solid #1a1a1a; border-radius:50%; opacity:0.08; }
+        .vintage-editorial .geo-line { position:absolute; top:12%; right:calc(12% + clamp(60px,9vw,120px)); width:2px; height:clamp(80px,14vw,180px); background:#1a1a1a; opacity:0.08; }
+        .vintage-editorial .geo-dot { position:absolute; top:calc(12% + clamp(80px,14vw,180px) + 10px); right:calc(12% + clamp(59px,9vw,119px)); width:6px; height:6px; border-radius:50%; background:#1a1a1a; opacity:0.12; }
+        .vintage-editorial .style-label { background:#e8d4c0; color:#7a5c3e; }
+        .vintage-editorial .style-number { color:#ccc; }
+        .vintage-editorial h1 { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(2rem,5.5vw,4.5rem); line-height:1.08; color:#1a1a1a; }
+        .vintage-editorial h1 span { color:#8c5a2e; }
+        .vintage-editorial .info-key { color:#aaa; }
+        .vintage-editorial .info-val { color:#555; }
+        .vintage-editorial .scene-tag { background:#e8d4c0; color:#7a5c3e; }
+
+        /* ===========================================
+           9. TERMINAL GREEN
+           =========================================== */
+        .terminal-green { background:#0d1117; font-family:'JetBrains Mono',monospace; }
+        .terminal-green::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(57,211,83,0.015) 2px,rgba(57,211,83,0.015) 4px); pointer-events:none; }
+        .terminal-green .cursor { display:inline-block; width:10px; height:clamp(1rem,2vw,1.4rem); background:#39d353; animation:blink 1s step-end infinite; vertical-align:text-bottom; margin-left:4px; }
+        @keyframes blink { 50% { opacity:0; } }
+        .terminal-green .style-label { background:rgba(57,211,83,0.1); color:#39d353; }
+        .terminal-green .style-number { color:rgba(57,211,83,0.3); }
+        .terminal-green .prompt { color:#39d353; font-size:clamp(0.7rem,1.2vw,0.9rem); margin-bottom:clamp(0.3rem,0.8vh,0.8rem); }
+        .terminal-green h1 { font-weight:500; font-size:clamp(1.6rem,4vw,3.2rem); line-height:1.15; color:#e6edf3; }
+        .terminal-green h1 span { color:#39d353; }
+        .terminal-green .info-key { color:#39d353; opacity:0.5; }
+        .terminal-green .info-val { color:#7d8590; }
+        .terminal-green .scene-tag { background:rgba(57,211,83,0.1); color:#39d353; }
+
+        /* ===========================================
+           10. PAPER & INK
+           =========================================== */
+        .paper-ink { background:#faf9f7; font-family:'Source Serif 4',serif; }
+        .paper-ink .drop-cap { font-family:'Cormorant Garamond',serif; font-size:clamp(4rem,10vw,8rem); font-weight:600; color:#c41e3a; float:left; line-height:0.75; margin-right:clamp(0.3rem,0.8vw,0.8rem); margin-top:0.1em; }
+        .paper-ink hr.elegant { border:none; height:1px; background:linear-gradient(to right,transparent,#1a1a1a,transparent); opacity:0.2; margin:clamp(0.6rem,1.5vh,1.5rem) 0; max-width:60%; }
+        .paper-ink .style-label { background:rgba(196,30,58,0.08); color:#c41e3a; }
+        .paper-ink .style-number { color:#ccc; }
+        .paper-ink h1 { font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2rem,5.5vw,4.5rem); line-height:1.1; color:#1a1a1a; }
+        .paper-ink h1 span { color:#c41e3a; }
+        .paper-ink .info-key { color:#aaa; font-family:'JetBrains Mono',monospace; }
+        .paper-ink .info-val { color:#555; }
+        .paper-ink .scene-tag { background:rgba(196,30,58,0.08); color:#c41e3a; }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <nav class="nav-dots" id="navDots"></nav>
+
+    <!-- 1. Swiss Modern -->
+    <section class="slide swiss-modern">
+        <span class="style-label reveal">Swiss Modern</span>
+        <span class="style-number reveal">01 / 10</span>
+        <div class="slide-inner">
+            <h1 class="reveal"><span>Swiss</span> Modern</h1>
+            <div class="info-grid reveal">
+                <span class="info-key">色调</span><span class="info-val">亮色 · 白底 + 红色点缀</span>
+                <span class="info-key">气质</span><span class="info-val">干净精确，Bauhaus 包豪斯灵感，高信息密度但不拥挤</span>
+                <span class="info-key">字体</span><span class="info-val">Archivo (标题) + Nunito (正文) + JetBrains Mono (代码)</span>
+                <span class="info-key">特征</span><span class="info-val">左侧红色竖线、大号淡化章节编号、几何圆环装饰、精准的数据表格</span>
+            </div>
+            <div class="scene-tags reveal">
+                <span class="scene-tag">⭐ 默认风格</span>
+                <span class="scene-tag">组会汇报</span>
+                <span class="scene-tag">学术研讨</span>
+                <span class="scene-tag">内部技术分享</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Notebook Tabs -->
+    <section class="slide notebook-tabs">
+        <span class="style-label reveal">Notebook Tabs</span>
+        <span class="style-number reveal">02 / 10</span>
+        <div class="slide-inner">
+            <div class="tab tab1">方法</div>
+            <div class="tab tab2">实验</div>
+            <div class="tab tab3">讨论</div>
+            <div class="tab tab4">总结</div>
+            <h1 class="reveal"><span>Notebook</span> Tabs</h1>
+            <div class="info-grid reveal">
+                <span class="info-key">色调</span><span class="info-val">亮色 · 深灰外框 + 奶油纸底 + 彩色标签页</span>
+                <span class="info-key">气质</span><span class="info-val">编辑风、笔记本质感，有条理的手工感，像翻开一本精心整理的笔记</span>
+                <span class="info-key">字体</span><span class="info-val">Bodoni Moda (标题·经典衬线) + DM Sans (正文)</span>
+                <span class="info-key">特征</span><span class="info-val">纸张卡片 + 阴影、右侧彩色章节标签（薄荷/薰衣草/粉/天蓝）、装订孔装饰</span>
+            </div>
+            <div class="scene-tags reveal">
+                <span class="scene-tag">教学课件</span>
+                <span class="scene-tag">读书笔记分享</span>
+                <span class="scene-tag">论文阅读汇报</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Pastel Geometry -->
+    <section class="slide pastel-geo">
+        <span class="style-label reveal">Pastel Geometry</span>
+        <span class="style-number reveal">03 / 10</span>
+        <div class="slide-inner">
+            <div class="pill pill1"></div>
+            <div class="pill pill2"></div>
+            <div class="pill pill3"></div>
+            <div class="pill pill4"></div>
+            <div class="pill pill5"></div>
+            <h1 class="reveal"><span>Pastel</span> Geometry</h1>
+            <div class="info-grid reveal">
+                <span class="info-key">色调</span><span class="info-val">亮色 · 柔和蓝灰底 + 白色圆角卡片 + 粉紫绿胶囊</span>
+                <span class="info-key">气质</span><span class="info-val">友好亲和，现代简洁，适合面向非技术受众的场合</span>
+                <span class="info-key">字体</span><span class="info-val">Plus Jakarta Sans (标题+正文，一体化)</span>
+                <span class="info-key">特征</span><span class="info-val">圆角卡片 + 柔和阴影、右侧彩色胶囊装饰（高低错落）</span>
+            </div>
+            <div class="scene-tags reveal">
+                <span class="scene-tag">项目介绍</span>
+                <span class="scene-tag">产品 Demo</span>
+                <span class="scene-tag">轻松场合的学术汇报</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Bold Signal -->
+    <section class="slide bold-signal">
+        <span class="style-label reveal">Bold Signal</span>
+        <span class="style-number reveal">04 / 10</span>
+        <div class="slide-inner">
+            <div class="accent-card">04</div>
+            <h1 class="reveal"><span>Bold</span> Signal</h1>
+            <div class="info-grid reveal" style="max-width:50%;">
+                <span class="info-key">色调</span><span class="info-val">暗色 · 深灰渐变底 + 橙色焦点卡片</span>
+                <span class="info-key">气质</span><span class="info-val">自信、高冲击力、现代商务感，一眼抓住注意力</span>
+                <span class="info-key">字体</span><span class="info-val">Archivo Black (标题) + Space Grotesk (正文)</span>
+                <span class="info-key">特征</span><span class="info-val">大色块卡片作为视觉焦点、大号章节编号、导航面包屑</span>
+            </div>
+            <div class="scene-tags reveal">
+                <span class="scene-tag">学术会议演讲</span>
+                <span class="scene-tag">Pitch / 路演</span>
+                <span class="scene-tag">高影响力汇报</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Neon Cyber -->
+    <section class="slide neon-cyber">
+        <span class="style-label reveal">Neon Cyber</span>
+        <span class="style-number reveal">05 / 10</span>
+        <div class="slide-inner">
+            <h1 class="reveal"><span>Neon</span> Cyber</h1>
+            <div class="info-grid reveal">
+                <span class="info-key">色调</span><span class="info-val">暗色 · 深海军蓝底 + 霓虹青 (#00ffcc) + 品红点缀</span>
+                <span class="info-key">气质</span><span class="info-val">未来感、科技感、赛博朋克美学，适合炫酷的技术展示</span>
+                <span class="info-key">字体</span><span class="info-val">Clash Display (标题·Fontshare) + Satoshi (正文·Fontshare)</span>
+                <span class="info-key">特征</span><span class="info-val">霓虹发光效果、网格背景、粒子系统（可选）</span>
+            </div>
+            <div class="scene-tags reveal">
+                <span class="scene-tag">AI / 深度学习</span>
+                <span class="scene-tag">技术大会</span>
+                <span class="scene-tag">Hackathon</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Dark Botanical -->
+    <section class="slide dark-botanical">
+        <span class="style-label reveal">Dark Botanical</span>
+        <span class="style-number reveal">06 / 10</span>
+        <div class="blob1"></div>
+        <div class="blob2"></div>
+        <div class="slide-inner">
+            <h1 class="reveal"><span>Dark</span> Botanical</h1>
+            <div class="info-grid reveal">
+                <span class="info-key">色调</span><span class="info-val">暗色 · 纯黑底 + 暖色柔和光晕（琥珀/玫瑰金/粉）</span>
+                <span class="info-key">气质</span><span class="info-val">优雅、高级、艺术感，安静而有力量的视觉语言</span>
+                <span class="info-key">字体</span><span class="info-val">Cormorant (标题·优雅衬线) + IBM Plex Sans (正文·极细)</span>
+                <span class="info-key">特征</span><span class="info-val">模糊渐变光球装饰、纤细竖线、斜体签名式排版</span>
+            </div>
+            <div class="scene-tags reveal">
+                <span class="scene-tag">高端学术报告</span>
+                <span class="scene-tag">邀请制研讨会</span>
+                <span class="scene-tag">跨学科分享</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Split Pastel -->
+    <section class="slide split-pastel">
+        <span class="style-label reveal">Split Pastel</span>
+        <span class="style-number reveal">07 / 10</span>
+        <div class="right-panel"></div>
+        <div class="grid-overlay"></div>
+        <div class="slide-inner">
+            <h1 class="reveal"><span>Split</span> Pastel</h1>
+            <div class="info-grid reveal" style="max-width:48%;">
+                <span class="info-key">色调</span><span class="info-val">亮色 · 桃粉左 + 薰衣草紫右 · 双色垂直分割</span>
+                <span class="info-key">气质</span><span class="info-val">活泼、创意、现代，年轻感强，适合轻松有趣的话题</span>
+                <span class="info-key">字体</span><span class="info-val">Outfit (标题+正文，一体化，圆润几何)</span>
+                <span class="info-key">特征</span><span class="info-val">双色背景分割、右侧网格纹理、圆角标签徽章（薄荷/柠檬/粉）</span>
+            </div>
+            <div class="scene-tags reveal">
+                <span class="scene-tag">创意项目展示</span>
+                <span class="scene-tag">实验室内部分享</span>
+                <span class="scene-tag">Poster 风格讲解</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Vintage Editorial -->
+    <section class="slide vintage-editorial">
+        <span class="style-label reveal">Vintage Editorial</span>
+        <span class="style-number reveal">08 / 10</span>
+        <div class="geo-circle"></div>
+        <div class="geo-line"></div>
+        <div class="geo-dot"></div>
+        <div class="slide-inner">
+            <h1 class="reveal"><span>Vintage</span> Editorial</h1>
+            <div class="info-grid reveal">
+                <span class="info-key">色调</span><span class="info-val">亮色 · 米色/奶白底 + 暖棕点缀 + 几何线条装饰</span>
+                <span class="info-key">气质</span><span class="info-val">复古杂志风、有个性和态度的编辑美学，机智而自信</span>
+                <span class="info-key">字体</span><span class="info-val">Fraunces (标题·个性衬线) + Work Sans (正文)</span>
+                <span class="info-key">特征</span><span class="info-val">抽象几何装饰（圆环轮廓+竖线+圆点）、粗边框按钮、对话式文案风格</span>
+            </div>
+            <div class="scene-tags reveal">
+                <span class="scene-tag">人文社科论文</span>
+                <span class="scene-tag">综述性报告</span>
+                <span class="scene-tag">设计/艺术相关</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Terminal Green -->
+    <section class="slide terminal-green">
+        <span class="style-label reveal">Terminal Green</span>
+        <span class="style-number reveal">09 / 10</span>
+        <div class="slide-inner">
+            <p class="prompt reveal">$ cat style --info<span class="cursor"></span></p>
+            <h1 class="reveal"><span>Terminal</span> Green</h1>
+            <div class="info-grid reveal">
+                <span class="info-key">色调</span><span class="info-val">暗色 · GitHub Dark (#0d1117) + 终端绿 (#39d353)</span>
+                <span class="info-key">气质</span><span class="info-val">开发者美学、黑客风、极客气质，纯等宽字体的终端沉浸感</span>
+                <span class="info-key">字体</span><span class="info-val">JetBrains Mono (全局等宽)</span>
+                <span class="info-key">特征</span><span class="info-val">CRT 扫描线纹理、闪烁光标动画、代码语法高亮风格</span>
+            </div>
+            <div class="scene-tags reveal">
+                <span class="scene-tag">系统/架构论文</span>
+                <span class="scene-tag">开源项目介绍</span>
+                <span class="scene-tag">极客圈分享</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Paper & Ink -->
+    <section class="slide paper-ink">
+        <span class="style-label reveal">Paper & Ink</span>
+        <span class="style-number reveal">10 / 10</span>
+        <div class="slide-inner">
+            <h1 class="reveal"><span class="drop-cap">P</span><span>aper</span> & Ink</h1>
+            <hr class="elegant reveal">
+            <div class="info-grid reveal">
+                <span class="info-key">色调</span><span class="info-val">亮色 · 暖白纸底 (#faf9f7) + 炭黑文字 + 绯红点缀 (#c41e3a)</span>
+                <span class="info-key">气质</span><span class="info-val">文学编辑风、深思熟虑的气质，像一本精装学术专著的排版</span>
+                <span class="info-key">字体</span><span class="info-val">Cormorant Garamond (标题·古典衬线) + Source Serif 4 (正文·阅读衬线)</span>
+                <span class="info-key">特征</span><span class="info-val">首字下沉 (Drop Cap)、Pull Quote 引用、优雅水平分隔线、全衬线排版</span>
+            </div>
+            <div class="scene-tags reveal">
+                <span class="scene-tag">文献综述</span>
+                <span class="scene-tag">理论性论文</span>
+                <span class="scene-tag">需要阅读感的报告</span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        class SlidePreview {
+            constructor() {
+                this.slides = document.querySelectorAll('.slide');
+                this.currentSlide = 0;
+                const obs = new IntersectionObserver(entries => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) {
+                            e.target.classList.add('visible');
+                            const idx = Array.from(this.slides).indexOf(e.target);
+                            if (idx !== -1) { this.currentSlide = idx; this.update(); }
+                        }
+                    });
+                }, { threshold: 0.5 });
+                this.slides.forEach(s => obs.observe(s));
+                document.addEventListener('keydown', e => {
+                    if (['ArrowDown','ArrowRight',' ','PageDown'].includes(e.key)) { e.preventDefault(); this.go(this.currentSlide+1); }
+                    if (['ArrowUp','ArrowLeft','PageUp'].includes(e.key)) { e.preventDefault(); this.go(this.currentSlide-1); }
+                });
+                let startY=0;
+                document.addEventListener('touchstart', e => { startY=e.touches[0].clientY; }, {passive:true});
+                document.addEventListener('touchend', e => { const d=startY-e.changedTouches[0].clientY; if(Math.abs(d)>50) this.go(this.currentSlide+(d>0?1:-1)); }, {passive:true});
+                let lastW=0;
+                document.addEventListener('wheel', e => { const now=Date.now(); if(now-lastW<800) return; lastW=now; if(Math.abs(e.deltaY)>30) this.go(this.currentSlide+(e.deltaY>0?1:-1)); }, {passive:true});
+                const nav = document.getElementById('navDots');
+                this.slides.forEach((_,i) => { const d=document.createElement('button'); d.className='nav-dot'+(i===0?' active':''); d.onclick=()=>this.go(i); nav.appendChild(d); });
+                this.dots = nav.querySelectorAll('.nav-dot');
+                this.pb = document.getElementById('progressBar');
+            }
+            go(i) { if(i<0||i>=this.slides.length) return; this.currentSlide=i; this.slides[i].scrollIntoView({behavior:'smooth'}); this.update(); }
+            update() { this.pb.style.width=((this.currentSlide+1)/this.slides.length*100)+'%'; this.dots.forEach((d,i)=>d.classList.toggle('active',i===this.currentSlide)); }
+        }
+        new SlidePreview();
+    </script>
+</body>
+</html>

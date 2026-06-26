@@ -1,0 +1,41 @@
+{
+  "skill_name": "pitch-skill",
+  "version": "2.1.0",
+  "baseline_date": "2026-06-12",
+  "eval_results": {
+    "functional": {
+      "total_cases": 4,
+      "description": "4 standard success-scenario test cases from evals.json",
+      "estimated_pass_rate": 0.80,
+      "note": "Baseline established before adversarial evals added"
+    },
+    "adversarial": {
+      "total_cases": 0,
+      "description": "Adversarial/edge-case tests to be added in v2.1.0",
+      "estimated_pass_rate": null
+    },
+    "trigger_accuracy": {
+      "total_cases": 20,
+      "positive": 10,
+      "negative": 10,
+      "description": "Balanced trigger evaluation from trigger-eval.json"
+    }
+  },
+  "production_score": 69.25,
+  "dimensions": {
+    "pass_rate": 80,
+    "hallucination": 85,
+    "risk": 75,
+    "robustness": 60,
+    "cost_efficiency": 50,
+    "token_efficiency": 40,
+    "path_coverage": 70
+  },
+  "smm_level": 3,
+  "known_issues": [
+    "No context window management between agents",
+    "Delivery Agent under-specified",
+    "Win Rate formula lacks multiplicative floor",
+    "No per-mode cost estimation"
+  ]
+}

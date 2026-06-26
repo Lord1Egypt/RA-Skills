@@ -1,0 +1,30 @@
+{
+  "name": "poe-connector",
+  "version": "1.1.0",
+  "description": "Connect OpenClaw to Poe.com — access 100+ AI models (Claude, GPT, Gemini, Grok, Llama), generate images/video/audio, and list available models, all through a single API key.",
+  "author": "dzwalker",
+  "category": "ai-ml",
+  "tags": [
+    "poe",
+    "ai",
+    "chatbot",
+    "llm",
+    "image-generation",
+    "video-generation",
+    "audio-generation",
+    "multimodal",
+    "openai-compatible"
+  ],
+  "permissions": [
+    "network"
+  ],
+  "entry": "SKILL.md",
+  "support": "https://github.com/dzwalker/poe-connector/issues",
+  "license": "MIT",
+  "engines": {
+    "python": ">=3.9"
+  },
+  "dependencies": {
+    "openai": ">=1.0.0"
+  }
+}

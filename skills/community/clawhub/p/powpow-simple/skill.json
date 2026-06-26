@@ -1,0 +1,164 @@
+{
+  "name": "powpow-simple",
+  "slug": "powpow-simple",
+  "version": "1.0.0",
+  "description": "POWPOW 简化版 - 在 OpenClaw 中轻松创建和管理 POWPOW 数字人。支持用户注册、数字人创建、位置选择和徽章管理。",
+  "author": "durenzidu",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "form-data": "^4.0.0"
+  },
+  "peerDependencies": {
+    "@openclaw/core": ">=1.0.0"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "powpow",
+    "digital-human",
+    "map",
+    "creation",
+    "avatar",
+    "badge"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/durenzidu/powpow-simple.git"
+  },
+  "config": {
+    "powpowBaseUrl": {
+      "type": "string",
+      "required": false,
+      "description": "POWPOW API 基础 URL",
+      "default": "https://global.powpow.online"
+    },
+    "amapKey": {
+      "type": "string",
+      "required": false,
+      "description": "高德地图 Web Service Key（用于地理位置查询）",
+      "default": "8477cbc2bfd4288ac09582f583f33cca"
+    },
+    "defaultAvatar": {
+      "type": "string",
+      "required": false,
+      "description": "默认头像 URL",
+      "default": "https://global.powpow.online/logo.png"
+    }
+  },
+  "commands": {
+    "start": {
+      "name": "powpow.start",
+      "description": "开始 POWPOW 旅程 - 故事化引导流程",
+      "parameters": {}
+    },
+    "register": {
+      "name": "powpow.register",
+      "description": "注册 POWPOW 账号",
+      "parameters": {
+        "username": {
+          "type": "string",
+          "required": true,
+          "description": "用户名（2-50个字符）"
+        },
+        "password": {
+          "type": "string",
+          "required": true,
+          "description": "密码（至少6位）"
+        }
+      }
+    },
+    "login": {
+      "name": "powpow.login",
+      "description": "登录 POWPOW 账号",
+      "parameters": {
+        "username": {
+          "type": "string",
+          "required": true,
+          "description": "用户名"
+        },
+        "password": {
+          "type": "string",
+          "required": true,
+          "description": "密码"
+        }
+      }
+    },
+    "logout": {
+      "name": "powpow.logout",
+      "description": "退出登录",
+      "parameters": {}
+    },
+    "status": {
+      "name": "powpow.status",
+      "description": "查看当前登录状态",
+      "parameters": {}
+    },
+    "create": {
+      "name": "powpow.create",
+      "description": "创建数字人（交互式流程）",
+      "parameters": {}
+    },
+    "list": {
+      "name": "powpow.list",
+      "description": "查看我的数字人列表",
+      "parameters": {}
+    },
+    "renew": {
+      "name": "powpow.renew",
+      "description": "续期数字人",
+      "parameters": {
+        "digitalHumanId": {
+          "type": "string",
+          "required": true,
+          "description": "数字人 ID"
+        }
+      }
+    },
+    "uploadAvatar": {
+      "name": "powpow.uploadAvatar",
+      "description": "上传头像",
+      "parameters": {
+        "filePath": {
+          "type": "string",
+          "required": true,
+          "description": "图片文件路径"
+        }
+      }
+    },
+    "searchLocation": {
+      "name": "powpow.searchLocation",
+      "description": "搜索地理位置（使用高德地图）",
+      "parameters": {
+        "keyword": {
+          "type": "string",
+          "required": true,
+          "description": "地点关键词"
+        }
+      }
+    },
+    "feedback": {
+      "name": "powpow.feedback",
+      "description": "提交反馈或报告问题",
+      "parameters": {
+        "message": {
+          "type": "string",
+          "required": true,
+          "description": "反馈内容"
+        },
+        "contact": {
+          "type": "string",
+          "required": false,
+          "description": "联系方式（可选，用于回复）"
+        }
+      }
+    }
+  }
+}

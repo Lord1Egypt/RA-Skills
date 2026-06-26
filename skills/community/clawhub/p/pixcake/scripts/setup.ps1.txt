@@ -1,0 +1,337 @@
+#Requires -Version 5.1
+<#
+.SYNOPSIS
+  PixCake MCP 环境检查与配置写入（Windows）
+
+.DESCRIPTION
+  功能与 setup.sh 对等：
+  - 自动定位 pixcake 与 pixcake-mcp
+  - 安装 mcporter（如缺失）
+  - 写入 ~/.openclaw/workspace/config/mcporter.json
+  - --CheckOnly 仅检查不修改
+
+.PARAMETER PixcakeApp
+  显式指定 PixCake 客户端可执行文件路径
+
+.PARAMETER PixcakeMcp
+  显式指定 pixcake-mcp 可执行文件路径
+
+.PARAMETER ConfigPath
+  mcporter 配置文件路径（默认 ~/.openclaw/workspace/config/mcporter.json）
+
+.PARAMETER CheckOnly
+  仅检查环境状态，不做任何修改
+#>
+
+[CmdletBinding()]
+param(
+    [string]$PixcakeApp = '',
+    [string]$PixcakeMcp = '',
+    [string]$ConfigPath = (Join-Path $env:USERPROFILE '.openclaw\workspace\config\mcporter.json'),
+    [switch]$CheckOnly
+)
+
+$ErrorActionPreference = 'Stop'
+
+# ── 工具函数 ──────────────────────────────────────────────
+
+function Write-Log {
+    param([string]$Message)
+    Write-Host $Message
+}
+
+function Test-CommandExists {
+    param([string]$Name)
+    $null -ne (Get-Command $Name -ErrorAction SilentlyContinue)
+}
+
+function Resolve-CanonicalPath {
+    param([string]$Path)
+    if ([string]::IsNullOrWhiteSpace($Path)) { return '' }
+    try {
+        return (Resolve-Path $Path -ErrorAction Stop).Path
+    } catch {
+        return $Path
+    }
+}
+
+# ── 路径发现 ──────────────────────────────────────────────
+
+function Find-PixcakeAppPath {
+    # 1. 从进程中查找
+    $proc = Get-Process | Where-Object {
+        $_.Path -and $_.Path -match 'pixcake' -and $_.Path -notmatch 'pixcake-mcp'
+    } | Select-Object -First 1
+
+    if ($proc) {
+        return $proc.Path
+    }
+
+    # 2. 文件系统搜索
+    $searchDirs = @(
+        'C:\Program Files',
+        'C:\Program Files (x86)'
+    )
+    # 追加 D:\ E:\ （如果存在）
+    foreach ($drive in @('D:\', 'E:\')) {
+        if (Test-Path $drive) { $searchDirs += $drive }
+    }
+
+    foreach ($dir in $searchDirs) {
+        $found = Get-ChildItem -Path $dir -Filter 'pixcake*.exe' -Recurse -ErrorAction SilentlyContinue |
+            Where-Object { $_.Name -notmatch 'pixcake-mcp' } |
+            Select-Object -First 1
+        if ($found) { return $found.FullName }
+    }
+
+    return ''
+}
+
+function Find-PixcakeMcpPath {
+    # 1. 从进程中查找
+    $proc = Get-Process | Where-Object {
+        $_.Path -and $_.Path -match 'pixcake-mcp'
+    } | Select-Object -First 1
+
+    if ($proc) {
+        return $proc.Path
+    }
+
+    # 2. 文件系统搜索
+    $searchDirs = @(
+        'C:\Program Files',
+        'C:\Program Files (x86)'
+    )
+    foreach ($drive in @('D:\', 'E:\')) {
+        if (Test-Path $drive) { $searchDirs += $drive }
+    }
+
+    foreach ($dir in $searchDirs) {
+        $found = Get-ChildItem -Path $dir -Filter 'pixcake-mcp.exe' -Recurse -ErrorAction SilentlyContinue |
+            Select-Object -First 1
+        if ($found) { return $found.FullName }
+    }
+
+    return ''
+}
+
+# ── 路径检测入口 ─────────────────────────────────────────
+
+function Invoke-DetectPaths {
+    $script:AppSource = ''
+    $script:McpSource = ''
+
+    if ($PixcakeApp) {
+        $PixcakeApp = Resolve-CanonicalPath $PixcakeApp
+        $script:PixcakeApp = $PixcakeApp
+        $script:AppSource = 'explicit'
+    }
+    if ($PixcakeMcp) {
+        $PixcakeMcp = Resolve-CanonicalPath $PixcakeMcp
+        $script:PixcakeMcp = $PixcakeMcp
+        $script:McpSource = 'explicit'
+    }
+
+    if (-not $script:PixcakeApp) {
+        $script:PixcakeApp = Find-PixcakeAppPath
+        if ($script:PixcakeApp) { $script:AppSource = 'auto' }
+    }
+    if (-not $script:PixcakeMcp) {
+        $script:PixcakeMcp = Find-PixcakeMcpPath
+        if ($script:PixcakeMcp) { $script:McpSource = 'auto' }
+    }
+}
+
+# ── 配置读写 ──────────────────────────────────────────────
+
+function Test-ConfigHasPixcake {
+    if (-not (Test-Path $ConfigPath)) { return $false }
+    try {
+        $config = Get-Content $ConfigPath -Raw | ConvertFrom-Json
+        return ($null -ne $config.mcpServers -and $null -ne $config.mcpServers.pixcake)
+    } catch {
+        return $false
+    }
+}
+
+function Write-McporterConfig {
+    $configDir = Split-Path $ConfigPath -Parent
+    if (-not (Test-Path $configDir)) {
+        New-Item -ItemType Directory -Path $configDir -Force | Out-Null
+    }
+
+    $config = @{ mcpServers = @{} }
+    if (Test-Path $ConfigPath) {
+        try {
+            $existing = Get-Content $ConfigPath -Raw | ConvertFrom-Json
+            # 保留已有的其他 server
+            if ($existing.mcpServers) {
+                $config.mcpServers = @{}
+                $existing.mcpServers.PSObject.Properties | ForEach-Object {
+                    $config.mcpServers[$_.Name] = $_.Value
+                }
+            }
+        } catch {}
+    }
+
+    $mcpDir = Split-Path $script:PixcakeMcp -Parent
+    $config.mcpServers['pixcake'] = @{
+        transport = 'stdio'
+        command   = 'cmd'
+        args      = @('/c', $script:PixcakeMcp)
+        cwd       = $mcpDir
+    }
+
+    $json = $config | ConvertTo-Json -Depth 10
+    # 用 .NET 写入无 BOM 的 UTF-8，避免 PowerShell 5.1 默认带 BOM 导致 mcporter 读取失败
+    [System.IO.File]::WriteAllText($ConfigPath, $json, (New-Object System.Text.UTF8Encoding $false))
+}
+
+# ── mcporter 安装 ─────────────────────────────────────────
+
+function Install-Mcporter {
+    if (Test-CommandExists 'mcporter') {
+        $ver = try { & mcporter --version 2>&1 } catch { 'unknown' }
+        Write-Log "[OK] mcporter already installed: $ver"
+        return
+    }
+
+    if (-not (Test-CommandExists 'npm')) {
+        Write-Log '[ERROR] mcporter not found and npm is unavailable'
+        exit 1
+    }
+
+    Write-Log '[INSTALL] Installing mcporter via npm...'
+    try { & npm install -g mcporter 2>&1 | Out-Null } catch {}
+
+    if (-not (Test-CommandExists 'mcporter')) {
+        Write-Log '[WARN] First install attempt failed, cleaning npm cache and retrying...'
+        try { & npm cache clean --force 2>&1 | Out-Null } catch {}
+        & npm install -g mcporter
+    }
+
+    if (Test-CommandExists 'mcporter') {
+        $ver = try { & mcporter --version 2>&1 } catch { 'unknown' }
+        Write-Log "[OK] mcporter installed: $ver"
+    } else {
+        Write-Log '[ERROR] mcporter installation failed'
+        exit 1
+    }
+}
+
+# ── mcporter 验证 ─────────────────────────────────────────
+
+function Test-McporterPixcake {
+    if (-not (Test-CommandExists 'mcporter')) {
+        Write-Log '[WARN] mcporter not found on PATH; config written but runtime verification skipped'
+        return
+    }
+
+    try {
+        $null = & mcporter --config $ConfigPath list pixcake --json 2>&1
+        Write-Log '[OK] mcporter can list pixcake server'
+    } catch {
+        Write-Log '[WARN] mcporter exists, but failed to list pixcake server'
+    }
+}
+
+# ── CheckOnly 模式 ───────────────────────────────────────
+
+function Invoke-CheckStatus {
+    Write-Log '=== PixCake MCP Status Check ==='
+
+    Invoke-DetectPaths
+
+    if ($script:PixcakeApp) {
+        Write-Log "[OK] PixCake app path found: $($script:PixcakeApp)"
+    } else {
+        Write-Log '[MISSING] PixCake app not found'
+    }
+
+    if ($script:PixcakeMcp) {
+        Write-Log "[OK] pixcake-mcp path found: $($script:PixcakeMcp)"
+    } else {
+        Write-Log '[MISSING] pixcake-mcp not found'
+    }
+
+    if (Test-CommandExists 'mcporter') {
+        $ver = try { & mcporter --version 2>&1 } catch { 'unknown' }
+        Write-Log "[OK] mcporter installed: $ver"
+    } else {
+        Write-Log '[MISSING] mcporter not found on PATH'
+        Write-Log '  Fix: .\scripts\setup.ps1'
+    }
+
+    if (Test-Path $ConfigPath) {
+        Write-Log "[OK] Config file exists: $ConfigPath"
+        if (Test-ConfigHasPixcake) {
+            Write-Log '[OK] pixcake MCP server configured'
+        } else {
+            Write-Log '[MISSING] pixcake MCP server not in config'
+        }
+    } else {
+        Write-Log "[MISSING] Config file not found: $ConfigPath"
+    }
+
+    # 工具探测
+    if ((Test-CommandExists 'mcporter') -and (Test-Path $ConfigPath)) {
+        Write-Log ''
+        Write-Log '=== PixCake Tool Probe ==='
+        try {
+            $probe = & mcporter --config $ConfigPath list pixcake --schema --json 2>&1
+            if ($probe -match '"status"\s*:\s*"error"') {
+                if ($probe -match 'pixcake is not running') {
+                    Write-Log '[WARN] PixCake client is not running; launching PixCake will also start pixcake-mcp'
+                } else {
+                    Write-Log '[WARN] Failed to list pixcake tools'
+                    Write-Log $probe
+                }
+            } else {
+                Write-Log $probe
+            }
+        } catch {
+            Write-Log '[WARN] Failed to list pixcake tools'
+        }
+    }
+}
+
+# ── 主流程 ────────────────────────────────────────────────
+
+function Main {
+    if ($CheckOnly) {
+        Invoke-CheckStatus
+        return
+    }
+
+    Write-Log '=== PixCake MCP Auto Setup ==='
+
+    Invoke-DetectPaths
+    Install-Mcporter
+
+    if (-not $script:PixcakeMcp) {
+        Write-Log '[ERROR] pixcake-mcp path not found'
+        Write-Log '  Fix: pass -PixcakeMcp <path> or locate it first'
+        exit 1
+    }
+
+    if ($script:PixcakeApp) {
+        Write-Log "[OK] PixCake app path: $($script:PixcakeApp)"
+    } else {
+        Write-Log '[WARN] PixCake app path not found; continuing because config only requires pixcake-mcp'
+    }
+
+    Write-Log "[OK] pixcake-mcp path: $($script:PixcakeMcp)"
+
+    Write-McporterConfig
+    Write-Log "[OK] Config written: $ConfigPath"
+
+    Test-McporterPixcake
+
+    Write-Log ''
+    Write-Log '=== Setup Complete ==='
+    Write-Log "Config: $ConfigPath"
+    Write-Log "PixCake app: $(if ($script:PixcakeApp) { $script:PixcakeApp } else { 'not found' })"
+    Write-Log "pixcake-mcp: $($script:PixcakeMcp)"
+}
+
+Main

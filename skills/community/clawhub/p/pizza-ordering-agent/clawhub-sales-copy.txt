@@ -1,0 +1,13 @@
+**Stop the "Half-and-Half" Headache.**
+
+Pizza ordering is hard for AI. Most agents mess up toppings, crusts, or deliver to the wrong side of town. 
+
+I built this agent using my experience leading mobile at Subway to handle the chaos of a Friday night pizza rush. It's hardened with **ThumbGate** to stop the 10 most common pizza-ordering errors before they hit your kitchen.
+
+**Key Features:**
+- Complex customization (Half-and-half, special instructions)
+- Hard delivery zone validation
+- Smart combo upselling
+- Zero-hallucination menu matching
+
+**Price: 47** - Pays for itself in 2 saved "remake" orders.

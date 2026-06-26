@@ -1,0 +1,67 @@
+# English Language Pack / 英文语言包
+
+common:
+  greeting: "Hello! I'm the Park Smart Operations Assistant. How can I help you?"
+  goodbye: "Thank you for your inquiry. Have a great day!"
+  waiting: "Searching for you, please wait..."
+  not_found: "Sorry, no relevant information found. Please try different keywords."
+  error: "System busy. Please try again later."
+  
+buttons:
+  query_overview: "Park Overview"
+  query_policies: "View Policies"
+  query_properties: "View Properties"
+  query_process: "Move-in Process"
+  query_service: "Enterprise Services"
+  query_property: "Property Services"
+  query_data: "Data Dashboard"
+
+park_overview:
+  title: "Park Overview"
+  basic_info: "Basic Information"
+  transportation: "Transportation"
+  amenities: "Amenities"
+  advantages: "Core Advantages"
+  
+recruitment:
+  title: "Business Recruitment"
+  policies: "Incentive Policies"
+  properties: "Property Listings"
+  process: "Move-in Process"
+  qualifications: "Qualifications"
+  tax_incentive: "Tax Incentives"
+  rent_subsidy: "Rent Subsidy"
+  talent_bonus: "Talent Bonus"
+  
+enterprise_service:
+  title: "Enterprise Services"
+  registration: "Business Registration"
+  policy_apply: "Policy Application"
+  talent: "Talent Services"
+  financing: "Financing Support"
+  
+operations:
+  title: "Operations Management"
+  property: "Property Services"
+  safety: "Safety Management"
+  environmental: "Environmental Compliance"
+  complaints: "Complaints Handling"
+  
+dashboard:
+  title: "Data Dashboard"
+  occupancy: "Occupancy Rate"
+  industry: "Industry Distribution"
+  tax: "Tax Contribution"
+  growth: "Enterprise Growth"
+  
+status:
+  available: "Available"
+  occupied: "Fully Leased"
+  reserved: "Reserved"
+  under_renovation: "Under Renovation"
+  
+messages:
+  welcome: "Welcome to Technology Innovation Park!"
+  policy_intro: "The park offers 3-year tax exemption and 2-year reduction policies."
+  property_available: "Currently available properties for lease:"
+  process_intro: "The move-in process has 4 simple steps."

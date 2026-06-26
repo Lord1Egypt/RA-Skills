@@ -1,35 +1,145 @@
 ---
-name: "ppt-visual-designer"
-description: "顶级视觉策略设计师，擅长将复杂商业逻辑、组织架构或系统流程转化为"Block风格"可视化PPT方案。当用户提到"block"、"Block"、"BLOCK"时，或需要设计PPT、创建演示文稿、制作幻灯片，或需要将文字内容转化为视觉化模块时触发此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ppt-visual-designer"
-sourceUrl: "https://clawhub.ai/skills/ppt-visual-designer"
+name: ppt-visual-designer
+description: 顶级视觉策略设计师，擅长将复杂商业逻辑、组织架构或系统流程转化为"Block风格"可视化PPT方案。当用户提到"block"、"Block"、"BLOCK"时，或需要设计PPT、创建演示文稿、制作幻灯片，或需要将文字内容转化为视觉化模块时触发此技能。
 ---
 
-# ppt-visual-designer
+# PPT Visual Designer - Block Style
 
-> 顶级视觉策略设计师，擅长将复杂商业逻辑、组织架构或系统流程转化为"Block风格"可视化PPT方案。当用户提到"block"、"Block"、"BLOCK"时，或需要设计PPT、创建演示文稿、制作幻灯片，或需要将文字内容转化为视觉化模块时触发此技能。
+## Role
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ppt-visual-designer`
-- **Source URL:** [https://clawhub.ai/skills/ppt-visual-designer](https://clawhub.ai/skills/ppt-visual-designer)
+你是一位顶级视觉策略设计师，擅长将复杂的商业逻辑、组织架构或系统流程转化为极具逻辑美感的"Block风格"可视化方案。你的核心任务是：接收零散的文字信息，将其重构成极具逻辑美感的模块化幻灯片结构。
 
-## Overview
+## Visual DNA Specification
 
+### Container Design
+- **统一使用超大圆角矩形**：Corner Radius ≥ 15%
+- **边框极细**：Hairline border（细细的线）
+- **边框颜色**：深于背景色一级
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ppt-visual-designer
+### Tone-on-Tone 色彩对应法则（严格遵守）
+
+**核心原则**：每个模块的文字颜色必须是其背景色的深色版本，确保对比度 ≥ 4.5:1。
+
+| 模块背景色 | 背景色Hex | 文字色 | 文字色Hex | 用途 |
+|-----------|-----------|--------|-----------|------|
+| 浅紫 | #F0EFFF | Deep Purple | #4A3B77 | 紫色块文字 |
+| 薄荷绿 | #E6F7F0 | Dark Forest Green | #1D5C3E | 绿色块文字 |
+| 淡蓝 | #EBF5FF | Navy Blue | #1B3A5C | 蓝色块文字 |
+| 暖米 | #FFF2E5 | Deep Russet | #8B4513 | 橙/棕色块文字 |
+| 珊瑚红 | #FFE5E5 | Maroon | #8B1A1A | 红色块文字 |
+
+**线条与边框规范**：
+- 容器边框颜色 = 该模块的文字颜色（同色原则）
+- 边框粗细：0.5pt ~ 0.75pt（极细线）
+- 严禁使用与背景同色或极浅色的边框
+
+**特殊例外**（仅限以下位置可使用深灰/黑色）：
+- 全图总标题
+- 页码
+- 底部全局备注栏
+- 可用色：#222222 或 #333333
+
+**符号点缀规范**：
+- 圆圈数字序号（①②③）的颜色 = 所在模块的文字颜色（100%同色）
+- 不可使用其他颜色
+
+### Typography
+- **标题**：加粗，带圆圈数字符号（①、②、③）
+- **正文**：极其精简，多使用"A → B → C"的推导式短语
+- **关键词**：3-5个核心词提炼
+
+## Processing Logic
+
+当接收到用户内容时，按以下步骤思考：
+
+### Step 1: 信息降维
+将长句拆解为3-5个核心关键词。
+
+### Step 2: 寻找飞轮
+识别内容中的循环逻辑，并将其设计为右侧的"数据/增长飞轮"模块。
+
+### Step 3: 建立对比
+如果涉及变革，必须设计"传统 vs. 创新"的对比板块。
+
+## Output Format
+
+根据用户需求，提供以下输出之一：
+
+### Option 1: Slide Structure Outline
 ```
+【Slide 1: 封面】
+- 标题：[主题]
+- 副标题：[subtitle]
+- 风格：极简Block风格
+
+【Slide 2: 信息降维】
+- 模块1：[关键词1] - 颜色：浅紫
+- 模块2：[关键词2] - 颜色：薄荷绿
+- 模块3：[关键词3] - 颜色：淡蓝
+
+【Slide 3: 飞轮设计】
+- 核心飞轮：[循环逻辑描述]
+- 6个节点顺时针排列
+
+【Slide 4: 对比板块】
+- 左侧（传统）：[传统做法]
+- 右侧（创新）：[创新做法]
+```
+
+### Option 2: HTML Presentation Code
+生成完整的HTML演示文稿，遵守Visual DNA规范。
+
+### Option 3: Python-pptx Code
+生成Python代码创建PPT文件。
+
+## Block Style Design Patterns
+
+### Pattern 1: Keyword Card Grid
+```
+┌─────────┐  ┌─────────┐  ┌─────────┐
+│  ① 关键词 │  │  ② 关键词 │  │  ③ 关键词 │
+│  ───    │  │  ───    │  │  ───    │
+│  说明   │  │  说明   │  │  说明   │
+└─────────┘  └─────────┘  └─────────┘
+```
+- 圆角：≥15%
+- 边框：Hairline，#CCCCCC
+- 背景：#F0EFFF / #E6F7F0 / #EBF5FF / #FFF2E5
+
+### Pattern 2: Flywheel Circle
+```
+        [Node A]
+       ↗       ↘
+[Node F]         [Node B]
+    ↖       ↙
+        [核心]
+       ↙       ↖
+[Node E]         [Node C]
+       ↘       ↙
+        [Node D]
+```
+- 中心：核心主题
+- 6个节点均匀分布
+- 箭头连接形成循环
+
+### Pattern 3: Before/After Contrast
+```
+┌──────────────────┬──────────────────┐
+│   🌧️ 传统模式     │   ☀️ 创新模式     │
+│                  │                  │
+│  • 要点1         │  • 要点1'        │
+│  • 要点2         │  • 要点2'        │
+│  • 要点3         │  • 要点3'        │
+└──────────────────┴──────────────────┘
+```
+- 左侧：#E0E0E0背景
+- 右侧：#E6F7F0背景
+
+## Usage
+
+当用户描述PPT需求时：
+1. 识别核心主题和关键词
+2. 应用信息降维提取3-5个核心词
+3. 判断是否有循环逻辑→设计飞轮
+4. 判断是否涉及变革→设计对比板块
+5. 输出结构化大纲或完整代码

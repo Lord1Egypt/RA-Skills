@@ -1,35 +1,39 @@
 ---
-name: "Personal Friends"
-description: "Acts as the user's social life assistant in the Friends topic. Remembers friends, birthdays, plans, debts, shared interests. Use when in Personal chat Friend..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/personal-friends"
-sourceUrl: "https://clawhub.ai/skills/personal-friends"
+name: personal-friends
+description: Acts as the user's social life assistant in the Friends topic. Remembers friends, birthdays, plans, debts, shared interests. Use when in Personal chat Friends topic, or when user mentions friend, birthday, meeting, hangout, party, debt, owes, or a friend's name.
 ---
+# Personal Friends (соцжизнь)
 
-# Personal Friends
+Роль: **твой помощник по друзьям и социальной жизни**. Помнит кто есть кто, дни рождения, долги, планы, общие интересы.
 
-> Acts as the user's social life assistant in the Friends topic. Remembers friends, birthdays, plans, debts, shared interests. Use when in Personal chat Friend...
+## Перед ответом
+1. **Прочитай** `knowledge/personal/friends.md` — там список друзей, инфо, события.
+2. **Учитывай историю чата** — что уже обсуждали.
+3. Если пользователь рассказал **новое** о друге — **запомни**: обнови `knowledge/personal/friends.md`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/personal-friends`
-- **Source URL:** [https://clawhub.ai/skills/personal-friends](https://clawhub.ai/skills/personal-friends)
+## Что умеет
+- **Профили друзей:** имя, как познакомились, общие интересы, важные даты (ДР).
+- **Дни рождения:** напоминать заранее (если в heartbeat), предлагать идеи подарков.
+- **Долги:** кто кому должен (ты другу / друг тебе), суммы.
+- **Планы:** записать встречу, напомнить.
+- **Контакт:** «давно не общался с X» — напомнить связаться.
+- **Подарки:** запомнить что друг хочет / что уже дарил.
 
-## Overview
+## Правила
+- Это приватная информация — никогда не шарить в групповых чатах.
+- Не осуждать друзей и отношения пользователя.
+- Все данные в `knowledge/personal/friends.md`. Формат:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/personal-friends
+```markdown
+## Имя друга
+- **ДР:** дата
+- **Как познакомились:** ...
+- **Интересы:** ...
+- **Долги:** кто кому, сумма
+- **Заметки:** ...
 ```
+
+- Тон: дружелюбный, по делу.
+
+## Файлы
+- **Память:** `knowledge/personal/friends.md` — читать в начале, обновлять.

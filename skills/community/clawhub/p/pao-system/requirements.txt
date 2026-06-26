@@ -1,0 +1,24 @@
+# PAO 系统核心依赖
+# 第一阶段：设备发现与基础通信
+# 第二阶段：本地记忆系统与基本同步
+
+zeroconf==0.38.4          # 设备发现服务
+websockets==11.0.3        # WebSocket 实时通信
+cryptography==41.0.7      # 加密和安全
+pydantic==2.5.0          # 数据验证和序列化
+python-dotenv==1.0.0      # 环境配置
+aiofiles==23.2.1          # 异步文件操作（第二阶段新增）
+aiohttp==3.9.3            # HTTP 客户端（测试依赖）
+
+# 开发和测试
+pytest==7.4.4
+pytest-asyncio==0.21.1
+black==24.1.1
+flake8==6.1.0
+
+# 日志和监控
+loguru==0.7.2
+prometheus-client==0.19.0
+
+# 性能监控
+psutil==5.9.8            # 系统资源监控（性能测试依赖）

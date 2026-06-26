@@ -1,0 +1,50 @@
+{
+  "timestamp": "2026-03-19T02:22:27.322623",
+  "count": 4,
+  "articles": [
+    {
+      "url": "https://www.cnbc.com/2026/03/18/trump-jones-act-oil-iran-war.html",
+      "title": "Trump waives Jones Act shipping rules for 60 days to steady oil market",
+      "market_impact": "Energy: shipping law in an attempt to stabilize oil markets amid the Iran war, the White House confirmed to CNBC on Wednesday.; Stocks: shipping law in an attempt to stabilize oil markets amid the Iran war, the White House confirmed to CNBC on Wednesday.; Analyst: The statute has been criticized as a form of protectionism, and some economists have recently argued that it impedes domestic trade.",
+      "hard_facts": [
+        "Official: The Trump administration \"remains committed to continuing to strengthen our critical supply chains\" amid the Iran war, press secretary Karoline Leavitt said.",
+        "Action: shipping law in an attempt to stabilize oil markets amid the Iran war, the White House confirmed to CNBC on Wednesday.",
+        "Data: Brent prices, the international benchmark, rose 3.83% on Wednesday to close at $107.38 per barrel.",
+        "Timeline: The Jones Act, signed into law in 1920 by then-President Woodrow Wilson, requires that the transport of goods between U.S."
+      ]
+    },
+    {
+      "url": "https://www.cnbc.com/2026/03/18/vance-oil-industry-gas-prices-iran-war.html",
+      "title": "Vice President Vance to meet with oil industry as White House plans more actions to address fuel prices",
+      "market_impact": "Energy:  Vice President JD Vance and Energy Secretary Chris Wright will meet Thursday with the oil industry as the White House looks for ways to address surging fuel prices.; Stocks: The action is part of a broader effort by more than 30 nations to inject 400 million barrels into the market.",
+      "hard_facts": [
+        "Official: They will discuss \"supporting reliable energy supply amid global volatility,\" a spokesperson for API told CNBC.",
+        "Action: Consumers are seeing fuel prices rapidly rise as the Iran war has triggered the biggest oil supply disruption in history.",
+        "Data: Prices have increased about 35% since the U.S.",
+        "Timeline: API is the lobby group that represents all the big U.S."
+      ]
+    },
+    {
+      "url": "https://www.cnbc.com/2026/03/18/trump-jones-act-oil-iran-war.html",
+      "title": "Trump waives Jones Act shipping rules for 60 days to steady oil market",
+      "market_impact": "Energy: shipping law in an attempt to stabilize oil markets amid the Iran war, the White House confirmed to CNBC on Wednesday.; Stocks: shipping law in an attempt to stabilize oil markets amid the Iran war, the White House confirmed to CNBC on Wednesday.; Analyst: The statute has been criticized as a form of protectionism, and some economists have recently argued that it impedes domestic trade.",
+      "hard_facts": [
+        "Official: The Trump administration \"remains committed to continuing to strengthen our critical supply chains\" amid the Iran war, press secretary Karoline Leavitt said.",
+        "Action: shipping law in an attempt to stabilize oil markets amid the Iran war, the White House confirmed to CNBC on Wednesday.",
+        "Data: Brent prices, the international benchmark, rose 3.83% on Wednesday to close at $107.38 per barrel.",
+        "Timeline: The Jones Act, signed into law in 1920 by then-President Woodrow Wilson, requires that the transport of goods between U.S."
+      ]
+    },
+    {
+      "url": "https://www.cnbc.com/2026/03/18/vance-oil-industry-gas-prices-iran-war.html",
+      "title": "Vice President Vance to meet with oil industry as White House plans more actions to address fuel prices",
+      "market_impact": "Energy:  Vice President JD Vance and Energy Secretary Chris Wright will meet Thursday with the oil industry as the White House looks for ways to address surging fuel prices.; Stocks: The action is part of a broader effort by more than 30 nations to inject 400 million barrels into the market.",
+      "hard_facts": [
+        "Official: They will discuss \"supporting reliable energy supply amid global volatility,\" a spokesperson for API told CNBC.",
+        "Action: Consumers are seeing fuel prices rapidly rise as the Iran war has triggered the biggest oil supply disruption in history.",
+        "Data: Prices have increased about 35% since the U.S.",
+        "Timeline: API is the lobby group that represents all the big U.S."
+      ]
+    }
+  ]
+}

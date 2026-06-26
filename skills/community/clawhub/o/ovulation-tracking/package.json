@@ -1,0 +1,31 @@
+{
+  "name": "@openclaw/fertility-tracker",
+  "version": "1.0.0",
+  "description": "AI-powered fertility tracking using Oura Ring HRV patterns, LH surge detection, and temperature tracking",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "fertility",
+    "oura",
+    "tracking",
+    "ovulation",
+    "health",
+    "ai",
+    "automation"
+  ],
+  "author": "Kale (OpenClaw)",
+  "license": "MIT",
+  "dependencies": {
+    "nodemailer": "^6.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mayi12345/fertility-tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mayi12345/fertility-tracker/issues"
+  },
+  "homepage": "https://github.com/mayi12345/fertility-tracker#readme"
+}

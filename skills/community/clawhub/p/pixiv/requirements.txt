@@ -1,0 +1,10 @@
+requests>=2.31.0
+PyYAML>=6.0
+beautifulsoup4>=4.12.2
+tqdm>=4.65.0
+Pillow>=10.0.0
+fake-useragent>=1.4.0
+aiohttp>=3.8.6
+asyncio>=3.4.3
+pycryptodome>=3.19.0
+qrcode>=7.4.2

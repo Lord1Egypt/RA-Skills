@@ -1,0 +1,16 @@
+[Unit]
+Description=OpenClaw Bluetooth pairing agent
+Documentation=file://${HOME}/.openclaw/workspace/skills/bluetooth/SKILL.md
+After=bluetooth.service dbus.socket
+Requires=dbus.socket
+
+[Service]
+Type=simple
+ExecStart=%h/bin/bt-agent.py --mode auto
+Restart=on-failure
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

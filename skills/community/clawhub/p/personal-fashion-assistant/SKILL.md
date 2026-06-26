@@ -1,35 +1,215 @@
 ---
-name: "smart personal fashion assistant"
-description: "个人时尚助手 - 管理你的穿搭风格、电子衣橱，并提供每日穿搭推荐。支持身材肤色录入、衣橱增删改查、冲突检测、统计与智能推荐。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/personal-fashion-assistant"
-sourceUrl: "https://clawhub.ai/skills/personal-fashion-assistant"
+name: personal-fashion-assistant
+description: 个人时尚助手 - 管理你的穿搭风格、电子衣橱，并提供每日穿搭推荐。支持身材肤色录入、衣橱增删改查、冲突检测、统计与智能推荐。
 ---
 
-# smart personal fashion assistant
+## 技能列表
 
-> 个人时尚助手 - 管理你的穿搭风格、电子衣橱，并提供每日穿搭推荐。支持身材肤色录入、衣橱增删改查、冲突检测、统计与智能推荐。
+| 子技能名称 | 功能描述 | 触发方式 |
+| :--- | :--- | :--- |
+| **`body_data_create`** | 创建个人风格档案，完成身材/肤色录入，并通过大模型获取专业评估反馈。 | 首次技能安装时系统自动引导触发，或者用户说“开始建立我的个人风格档案”。 |
+| **`body_data_update`** | 查询和修改已有个人档案的任意字段，修改后可选择重新触发大模型评估。 | 用户说“更新我的身材数据”、“看看我的肤色档案”或“我最近风格变了，改成街头风”。 |
+| **`self_wardrobe_preference`** | 确立个人衣橱管理的底层逻辑与量化目标（如黄金色彩配比、单季衣物容量上限等）。 | 在建立风格档案后系统主动提示设定，或用户直接给出管理目标的反馈。 |
+| **`wardrobe_init`** | 在后台进行衣橱环境的初始化（构建必需的文件与目录结构）。 | 安装助手时自动后台调用；如果用户误删了衣橱的核心文件/目录，也可用于手动重建。 |
+| **`clothing_add`** | 处理衣物完整的入库流程，将衣物档案写入数据库并进行图片归档。 | 安装首次引导入库、明确附带意图上传图片（如“添加一件白色衬衫”）、或者完成冲突检查后用户确认入库。 |
+| **`clothing_conflict_check`** | 检查用户新上传的衣物与衣橱内现货是否存在颜色、风格或高重复度冲突，并给出购买/入库建议。 | 用户传入图片主动询问“帮我看看衣橱是否有相似衣物”，或上传图片10秒无明确指令后系统主动询问触发。 |
+| **`clothing_search`** | 根据名称、颜色、类别、ID 等条件，从衣橱库存中检索定位具体衣物。 | 用户说“帮我找找我的真丝衬衣”或“我的衣柜中有没有黑色牛仔裤”。 |
+| **`clothing_update`** | 定位目标衣物后，修改其电子衣橱记录属性或将其彻底出库/移除删除。 | 用户说“我已经把这件衣服送洗了”、“改一下这件衣服的状态”，或“这件我上周扔了，把它删掉吧”。 |
+| **`wardrobe_stats`** | 基于衣橱当前实况与设定的管理目标，进行智能统计与分析，自动生成可视化的 HTML 诊断看板。 | 由系统每月定时推送，或用户说“看看我的衣橱统计”或“我还缺什么衣服”等探寻全局维度的指令。 |
+| **`daily_outfit_recommend`** | 根据常驻城市天气、适用场景、个人风格以及当前衣橱库存，智能生成第二天的穿搭推荐方案与图片展示。 | 用户说“帮我配一下明天的衣服”或由系统每日定时主动推送。 |
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/personal-fashion-assistant`
-- **Source URL:** [https://clawhub.ai/skills/personal-fashion-assistant](https://clawhub.ai/skills/personal-fashion-assistant)
+## 安装流程
 
-## Overview
+当用户首次启用本技能时，请按以下步骤引导用户完成初始化：
+
+1. **友好问候**：向用户说明核心功能和子功能触发方式："你好！我将帮助你建立个人风格档案、管理衣橱，并每天为你推荐穿搭。以下是主要的子功能，你可以这样说调用功能……（此处列举子功能名称和触发方式）"
+2. **构建风格档案（必须）**：向用户介绍并调用 `body_data_create` 子技能（引导用户："首先，让我们建立你的个人风格档案吧，我将引导你录入你的身材和肤色特征，给出专业的个人评估报告~要开始吗？"）。
+3. **设定衣橱偏好（必须）**：向用户介绍并调用 `self_wardrobe_preference` 子技能（引导用户："接下来，为了更好地管理，你想采用怎样的色彩比例或衣橱容量上限呢？"）。
+4. **初始化环境（必须）**：后台调用 `wardrobe_init` 构建目录与索引，完成后告知用户专属衣橱已就绪。
+5. **引导首次入库**：提示用户可以开始使用 `clothing_add` 录入单品（例如："衣橱准备好了！你可以随时拍一张衣服的照片发给我，我会帮你存进去。"），或选择跳过。
+
+> 💡 **提示**：安装过程中收集的档案与偏好数据将统一持久化至 `USER.md` 表单（详见[附录：`USER.md` 示例](#附录)）。若用户后续需修改档案，可随时唤起 `body_data_update` 等其他变更子技能。
+> 🚨 **注意**：在调用任何子技能（包含上述安装流程中的 `body_data_create` 等）时，**必须先使用 `view_file` 读取其对应的 `.md` 定义文件**，严格按其流程执行。
+
+---
+
+## 子技能一览
+
+> 🚨 **全系统最高优指令 (CRITICAL INSTRUCTION)** 🚨  
+> 本系统由多个专注单一职责的子技能协同组成。**Agent 在触发或执行任何一个子技能前，绝对禁止仅凭摘要或猜测行事！**  
+> **必须且强制**第一时间使用 `view_file` 工具读取该子技能对应的 `.md` 定义文件，并严格按照其内部的流程、约束条件和规范进行执行。不阅读对应文件直接回答或执行属于严重违规！
+
+详细的执行逻辑、约束条件与技术实现请参考各自对应的说明文件：
+
+### 1. `body_data_create`
+- **功能**：创建个人风格档案，并通过大模型获取专业评估反馈。
+- **对应技能定义**：[smart_selfstyle_create.md](./smart_selfstyle_create.md)
+  > ⚠️ **强制前置操作**：执行本技能前，必须使用 `view_file` 读取 `smart_selfstyle_create.md`，严格遵循其内部定义的 Phase 1~3 流程进行多轮交互！
+- **输入**：无（通过交互式问答获取）。
+- **输出**：生成/覆盖 `USER.md`（含大模型评估结果），输出个人风格档案评估结果。
+- **执行流程**：**严格遵循** `smart_selfstyle_create.md` 中定义的交互流程。
+- **工具依赖**：[body_data_generator.py](./TOOLS/body_data_generator.py) 中的 `check_data_sufficiency()`、`build_evaluation_payload()`。
+- **调用示例**：用户说"开始建立我的个人风格档案"或技能安装时自动触发。
+
+### 2. `body_data_update`
+- **功能**：查询和修改已有个人档案的任意字段，修改后可重新触发大模型评估。
+- **对应技能定义**：[smart_selfstyle_update.md](./smart_selfstyle_update.md)
+  > ⚠️ **强制前置操作**：执行本技能前，必须使用 `view_file` 读取 `smart_selfstyle_update.md`，依照其规范执行查询或修改！
+- **输入**：用户指定要修改的字段及新值（如"我的体重变成65kg"或"我喜欢休闲风格"）。
+- **输出**：更新 `USER.md` 并确认修改，可选重新触发大模型评估。
+- **执行流程**：**严格遵循** `smart_selfstyle_update.md` 中定义的交互流程。
+- **工具依赖**：[body_data_generator.py](./TOOLS/body_data_generator.py) 中的 `build_evaluation_payload()`（重新评估时使用）。
+- **调用示例**：用户说"更新我的身材数据"、"看看我的肤色档案"或"我最近风格变了，改成街头风"。
+
+### 3. `wardrobe_init`
+- **功能**：初始化衣橱环境。
+- **对应技能定义**：[smart_wardrobe_archiver.md](./smart_wardrobe_archiver.md)
+  > ⚠️ **强制前置操作**：执行本技能前，必须使用 `view_file` 读取 `smart_wardrobe_archiver.md` 并遵循其初始化逻辑！
+- **输入**：无。
+- **执行流程**：**严格遵循** `smart_wardrobe_archiver.md` 中定义的初始化逻辑。
+- **工具依赖**：[wardrobe_tools.py](./TOOLS/wardrobe_tools.py) 中的 `WardrobeManager.init_environment()`。
+- **输出**：确认目录及文件已就绪，衣橱环境准备完毕。
+- **调用示例**：安装时自动调用；如果用户误删衣橱文件或目录，可手动调用重建。
+
+### 4. `clothing_add`
+- **功能**：录入衣物（完整入库流程）。
+- **对应技能定义**：[smart_wardrobe_archiver.md](./smart_wardrobe_archiver.md)
+  > ⚠️ **强制前置操作**：执行本技能前，必须使用 `view_file` 读取 `smart_wardrobe_archiver.md` 并遵循入库全流程！
+- **触发条件**：发生在安装首次入库引导时、执行完冲突检查后确认入库、或明确附带"入库"等指令上传图片时。（注：若仅上传照片，Agent 需等待 10 秒无意图后，主动询问是要进行冲突检查还是入库）。
+- **执行流程**：**严格遵循** `smart_wardrobe_archiver.md` 中定义的入库全流程。
+- **工具依赖**：[wardrobe_tools.py](./TOOLS/wardrobe_tools.py) 中的 `WardrobeManager` 类（`receive_image()`、`load_prompt_template()`、`build_model_payload()`、`archive_items_batch()`、`cleanup_temp()`）。
+- **输出**：将衣物信息写入 `inventory.md`，图片归档至 `wardrobe_data/`。
+- **调用示例**：用户说"添加一件白色棉质衬衫"并上传衣物照片。
+
+### 5. `clothing_conflict_check`
+- **功能**：检测新衣物（通过图片上传）与衣橱内现有衣物是否存在潜在冲突，包括颜色冲突、风格冲突及重复度过高，并为用户提供建议。
+- **对应技能定义**：[clothing_conflict_check.md](./clothing_conflict_check.md)
+  > ⚠️ **强制前置操作**：执行本技能前，必须使用 `view_file` 读取 `clothing_conflict_check.md`，执行冲突检索！
+- **输入**：用户上传图片并主动要求检查，或仅上传图片等待 10 秒后经系统主动询问选择“冲突检查”。
+- **执行流程**：**严格遵循** `clothing_conflict_check.md` 中定义的交互流程。
+- **工具依赖**：[wardrobe_tools.py](./TOOLS/wardrobe_tools.py) 和 `PROMPT/fashion_analyser_prompt.md`。
+- **输出**：带有原因的诊断结论和建议（如"您已有一件类似的黑色休闲裤，确定要买吗？"）。
+- **调用示例**：用户主动上传图片并说"帮我看看衣橱是否有相似衣物"。
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/personal-fashion-assistant
+### 6. `wardrobe_stats`
+- **功能**：基于用户当前衣橱状况与个人偏好进行智能统计与诊断分析，并生成可视化看板。
+- **对应技能定义**：[smart_wardrobe_analysis.md](./smart_wardrobe_analysis.md)
+  > ⚠️ **强制前置操作**：执行本技能前，必须使用 `view_file` 读取 `smart_wardrobe_analysis.md`！
+- **触发条件**：用户说"看看我的衣橱统计"或"我还缺什么衣服"等查询衣橱状态的话语。
+- **执行流程**：**严格遵循** `smart_wardrobe_analysis.md` 中定义的交互流程。
+- **工具依赖**：[wardrobe_analysis_tool.py](./TOOLS/wardrobe_analysis_tool.py) 中的 `build_analysis_payload()` 和 `save_html_dashboard()`。
+- **输出**：生成的可视化 HTML 诊断看板文件。
+- **调用示例**：用户说"看看我的衣橱统计"或"我还缺什么衣服"。
+
+### 7. `clothing_update`
+- **功能**：在 clothing_search 确认目标衣物（ID）后，修改电子衣橱记录或从衣橱中明确出库/移除衣物。
+- **对应技能定义**：[smart_wardrobe_update.md](./smart_wardrobe_update.md)
+  > ⚠️ **强制前置操作**：执行本技能前，必须使用 `view_file` 读取 `smart_wardrobe_update.md`！
+- **输入**：用户确认的目标衣物 ID，以及用户的操作意图（修改某属性字段，还是彻底删除）。
+- **执行流程**：**严格遵循** `smart_wardrobe_update.md` 中定义的交互流程。
+- **输出**：完成记录的直接更新或被删除操作，并向用户反馈最新结果。
+- **调用示例**：用户说"我已经把这件衣服送洗了"或"这件我上周扔了，把它删掉吧"。
+
+### 8. `clothing_search`
+- **功能**：从衣橱中搜索衣物。
+- **对应技能定义**：[smart_wardrobe_search.md](./smart_wardrobe_search.md)
+  > ⚠️ **强制前置操作**：执行本技能前，必须使用 `view_file` 读取 `smart_wardrobe_search.md`！
+- **输入**：衣物标识（名称/颜色/类别/ID等）。
+- **执行流程**：**严格遵循** `smart_wardrobe_search.md` 中定义的交互流程。
+- **输出**：查询可能的衣物图片与ID请求确认，确认后返回完整档案详情。
+- **调用示例**：用户说"帮我找找我的真丝衬衣"或"我的衣柜中有没有黑色牛仔裤"。
+
+### 9. `daily_outfit_recommend`
+- **功能**：根据用户的常驻城市天气、风格偏好及衣橱库存，结合明日行程场景，为用户智能生成适宜的每日穿搭推荐方案，并配送单品图片。
+- **对应技能定义**：[daily_outfit_recommend.md](./daily_outfit_recommend.md)
+  > ⚠️ **强制前置操作**：执行本技能前，必须使用 `view_file` 读取 `daily_outfit_recommend.md`！
+- **输入**：用户画像（审美偏好、风格逻辑如6:3:1配色）、外部环境（常驻城市天气/温度区间/适用场景）、洗涤过滤后的衣橱库存（`inventory.md`）。
+- **执行流程**：**严格遵循** `daily_outfit_recommend.md` 中定义的交互流程。
+- **工具依赖**：[outfit_recommend_tools.py](./TOOLS/outfit_recommend_tools.py) 与核心模板 [outfit_recommend_prompt.md](./PROMPT/outfit_recommend_prompt.md)。
+- **输出**：方案概览、单品清单、推荐理由及对应衣物的可视图片。
+- **调用示例**：用户说"帮我配一下明天的衣服"或系统定时主动推送。
+
+### 10. `self_wardrobe_preference`
+- **功能**：确立个人衣橱管理的底层逻辑与量化目标（如色彩配比、单季衣物上限等）。
+- **对应技能定义**：[smart_wardrobe_preference.md](./smart_wardrobe_preference.md)
+  > ⚠️ **强制前置操作**：执行本技能前，必须使用 `view_file` 读取 `smart_wardrobe_preference.md`！
+- **输入**：用户对色彩比例（如 60:30:10）、单季衣物数量上限（如 35 件）及管理侧重点（如极简主义）的反馈与设定。
+- **执行流程**：**严格遵循** `smart_wardrobe_preference.md` 中定义的交互流程。
+- **输出**：更新后的 `USER.md`（包含色彩配比、容量限制、管理偏好等指标）。
+- **调用示例**：完成档案建立后主动提示：“为了衣橱色彩视觉最大化，推荐 60%主色+30%辅助色+10%提亮色，结合单季35件的胶囊衣橱理念。您想参考这套方案，还是自定义偏好？”
+
+
+
+
+## 附录
+
+### `USER.md` 示例
+
+```markdown
+# 个人时尚与衣橱档案 (Personal Fashion Profile)
+
+> **最后更新时间**: 2026-04-01
+> **更新说明**: 更新了衣橱实时统计数据与偏好 KPI。
+
+## 1. 基础特征与风格档案 (Basic Features)
+*本部分由 `body_data_create` / `body_data_update` 维护*
+
+- **面部与肤色特征**
+  - **肤色基调**: 冷白皮 / 暖黄皮 / 极度白皙 (例：夏季冷调)
+  - **五官特点**: 量感适中，轮廓清晰
+- **身材数据**
+  | 部位 | 数值 | 备注 |
+  |------|------|------|
+  | 身高 | 165 cm | - |
+  | 体重 | 52 kg | - |
+  | 肩宽 | 37 cm | 直线距离 |
+  | 胸围 | 82 cm | BP 点 |
+  | 腰围 | 64 cm | 最细处 |
+  | 臀围 | 90 cm | - |
+  | 手腕围 | 14.5 cm | - |
+  | 腿长 | 76 cm | - |
+  | 体态特征 | 轻微圆肩、轻度假胯宽 | - |
+  - **体型判定**：梨形（A 型）｜匹配度 85%
+  - 肩臀比 0.82，腰臀比 0.71，上窄下宽特征明显
+  - **骨架量感**：小–中量感
+  - **线条曲直**：偏曲线（轮廓较柔和）
+  - **优劣势规避**: 强调高腰线，修饰假胯宽
+
+- **风格偏好与OOTD**
+    | 项目 | 偏好设定 |
+    |------|-------------|
+    | 常用穿搭场景 | 职场通勤（70%）、周末约会（20%）、旅行休闲（10%） |
+    | 偏好材质 | 真丝、棉麻、轻薄针织 |
+    | 避雷单品 | 荧光色单品、过度破洞牛仔、豹纹元素 |
+    | OOTD 照片路径 | /smart_wardrobe/temp_upload/ |
+  - **核心风格设定**: 法式优雅、极简通勤、Weekend Casual
+  - **色彩策略**：以低饱和冷调中性色为主色，偶用玫瑰粉/雾霾蓝作点缀
+  - **常见穿搭场景**: 互联网公司日常通勤、周末探店、轻商务会议
+  - **OOTD参考图路径**: `[wardrobe_data/ootd_refs/style_01.jpg]`
+
+## 2. AI 专家评估与诊断反馈 (Expert Evaluation)
+*本部分由大模型评估生成并写入*
+
+- **身材与肤色诊断**:
+  作为典型的夏季冷调肤色，非常适合低饱和度的冷色系（如雾霾蓝、灰粉色、冷白色）。梨形身材建议多采用“上紧下松”或“A字下装”的穿搭范式。
+- **风格演进建议**:
+  目前的偏好非常契合您的职场身份，建议在极简通勤中增加一两件具有设计感的金属配饰来提升精致度。避免过多大面积印花，以维持优雅感。
+
+## 3. 衣橱管理 KPI 设定 (Wardrobe Management Goals)
+*本部分由 `self_wardrobe_preference` 维护，作为 AI 推荐和冲突筛查的底层基准*
+
+- **核心管理理念**: 胶囊衣橱与极简主义
+- **单季数量上限 (Item Limit)**: 35 件
+- **黄金色彩配比 (Color Target)**: 
+  - **主色调 (60%)**: 黑色、白色、藏蓝色 (作为大面积基础款)
+  - **辅助色 (30%)**: 燕麦色、雾霾蓝、高级灰 (用于过渡和层次叠穿)
+  - **提亮色/点缀色 (10%)**: 酒红色、银色 (用于包袋、鞋履或配饰)
+
+## 4. 实时统计与追踪 (Dynamic Wardrobe Stats)
+*本部分由 `wardrobe_stats` 诊断后自动反馈并同步*
+
+- **当前衣物总数**: 28 件 (距上限还差 7 件)
+- **实际色彩分布**: 主色 55% | 辅助色 40% | 提亮色 5%
+- **健康度警报**: 辅助色比例偏高，建议后续购入时倾向于补充“核心主色款”和“点缀色单品”。
 ```

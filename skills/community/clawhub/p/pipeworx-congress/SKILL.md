@@ -1,35 +1,29 @@
----
-name: "Pipeworx congress"
-description: "Access US Congress data to search bills, retrieve bill details, get current members, and view recent congressional votes via GovTrack API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-congress"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-congress"
----
+# Congress
 
-# Pipeworx congress
+Congress MCP — US Congress data via GovTrack API (free, no auth required)
 
-> Access US Congress data to search bills, retrieve bill details, get current members, and view recent congressional votes via GovTrack API.
+## search_bills
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-congress`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-congress](https://clawhub.ai/skills/pipeworx-congress)
+Search US congressional bills by keyword. Returns bill type, number, title, status, sponsor, and int
 
-## Overview
+## get_bill
 
+Get full details for a congressional bill by its ID. Returns text, sponsors, cosponsors, committee a
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-congress
+## get_members
+
+Get current members of Congress with their name, party, state, district (for representatives), and c
+
+## get_votes
+
+Get recent congressional votes on bills. Returns question, result, chamber, vote counts (yes/no/abst
+
+```json
+{
+  "mcpServers": {
+    "congress": {
+      "url": "https://gateway.pipeworx.io/congress/mcp"
+    }
+  }
+}
 ```

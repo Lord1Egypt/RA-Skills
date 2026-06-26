@@ -1,35 +1,51 @@
 ---
-name: "Parakeet Local Asr"
-description: "Install and operate local NVIDIA Parakeet ASR for OpenClaw with an OpenAI-compatible transcription API on Ubuntu/Linux and macOS (Intel/Apple Silicon). Use w..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/parakeet-local-asr"
-sourceUrl: "https://clawhub.ai/skills/parakeet-local-asr"
+name: parakeet-local-asr
+description: Install and operate local NVIDIA Parakeet ASR for OpenClaw with an OpenAI-compatible transcription API on Ubuntu/Linux and macOS (Intel/Apple Silicon). Use when the user wants private/local speech-to-text, voice transcription setup, ASR troubleshooting, or OpenClaw voice stack configuration with Parakeet (and optional Whisper fallback).
 ---
 
-# Parakeet Local Asr
+# Parakeet Local ASR
 
-> Install and operate local NVIDIA Parakeet ASR for OpenClaw with an OpenAI-compatible transcription API on Ubuntu/Linux and macOS (Intel/Apple Silicon). Use w...
+Run local Parakeet ASR in a deterministic way.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/parakeet-local-asr`
-- **Source URL:** [https://clawhub.ai/skills/parakeet-local-asr](https://clawhub.ai/skills/parakeet-local-asr)
+## Standard workflow
 
-## Overview
+1. Install/update runtime:
+   ```bash
+   bash scripts/bootstrap.sh
+   ```
+2. Start service:
+   ```bash
+   bash scripts/start.sh
+   ```
+3. Validate service health:
+   ```bash
+   bash scripts/healthcheck.sh
+   ```
+4. (Optional) Run a smoke transcription test with a local audio file:
+   ```bash
+   bash scripts/smoke-test.sh /path/to/audio.mp3
+   ```
 
+## Repo location
 
-## Installation
-To install this skill, run the following command in your terminal:
+Default install/update path used by scripts:
+- `~/parakeet-asr`
+
+Override with env var before running scripts:
 ```bash
-hermes skills install clawhub/parakeet-local-asr
+PARAKEET_DIR=/custom/path bash scripts/bootstrap.sh
 ```
+
+## OpenClaw integration notes
+
+After healthcheck passes, use:
+- URL: `http://localhost:9001`
+- Endpoint: `/v1/audio/transcriptions`
+
+If a user requests reliability over purity, keep Whisper as fallback provider.
+
+## Safety rules
+
+- Ask before elevated/package-manager operations.
+- Do not kill unrelated processes.
+- Keep changes scoped to ASR setup unless explicitly asked.

@@ -1,35 +1,57 @@
 ---
-name: "Perftest"
+name: "perftest"
+version: "3.0.0"
 description: "Run HTTP performance tests with latency and throughput measurement. Use when benchmarking web services. Requires curl."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/perftest"
-sourceUrl: "https://clawhub.ai/skills/perftest"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Perftest
+# perftest
 
-> Run HTTP performance tests with latency and throughput measurement. Use when benchmarking web services. Requires curl.
+Run HTTP performance tests with latency and throughput measurement. Use when benchmarking web services. Requires curl.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/perftest`
-- **Source URL:** [https://clawhub.ai/skills/perftest](https://clawhub.ai/skills/perftest)
+## Commands
 
-## Overview
+### `http`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/perftest
+scripts/script.sh http <url count>
 ```
+
+### `latency`
+
+```bash
+scripts/script.sh latency <host>
+```
+
+### `throughput`
+
+```bash
+scripts/script.sh throughput <url>
+```
+
+### `stress`
+
+```bash
+scripts/script.sh stress <url concurrent>
+```
+
+### `report`
+
+```bash
+scripts/script.sh report <logfile>
+```
+
+### `compare`
+
+```bash
+scripts/script.sh compare <f1 f2>
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/perftest/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

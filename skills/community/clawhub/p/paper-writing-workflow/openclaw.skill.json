@@ -1,0 +1,132 @@
+{
+  "id": "paper-writing-workflow",
+  "name": "Paper Writing Workflow",
+  "description": "标准化论文写作工作流，整合 academic-writing、research-paper-writer、scientific-writing 等技能，提供从选题到完稿的完整论文写作流程。支持 Scientific Data/Nature/IEEE/PNAS 等多种期刊模板，包含 6 阶段写作流程。",
+  "version": "1.0.0",
+  "author": "academic-assistant",
+  "license": "MIT",
+  
+  "trigger": {
+    "keywords": [
+      "论文写作",
+      "写论文",
+      "paper writing",
+      "thesis writing",
+      "manuscript writing",
+      "论文生成"
+    ],
+    "mode": "keyword"
+  },
+
+  "config": {
+    "default_template": "scientific_data",
+    "supported_templates": [
+      "scientific_data",
+      "nature_communications",
+      "ieee_conference",
+      "pnas",
+      "psychological_science"
+    ],
+    "citation_style": "APA",
+    "workflow_stages": 6
+  },
+
+  "workflow": {
+    "stages": [
+      {
+        "name": "选题与假设",
+        "description": "研究问题生成和假设形成",
+        "duration": "10-20 分钟",
+        "skills": ["hypothesis-generation", "research-lookup"]
+      },
+      {
+        "name": "文献搜索与综述",
+        "description": "文献搜索和文献综述写作",
+        "duration": "30-60 分钟",
+        "skills": ["literature-search-workflow", "paper-parse", "citation-management"]
+      },
+      {
+        "name": "论文大纲设计",
+        "description": "IMRAD 结构大纲设计",
+        "duration": "15-30 分钟",
+        "skills": ["scientific-writing", "research-paper-writer"]
+      },
+      {
+        "name": "初稿写作",
+        "description": "论文各部分初稿写作",
+        "duration": "60-120 分钟",
+        "skills": ["scientific-writing", "academic-writing", "research-paper-writer"]
+      },
+      {
+        "name": "图表生成",
+        "description": "图形摘要和技术图表生成",
+        "duration": "30-60 分钟",
+        "skills": ["scientific-schematics", "scientific-visualization"]
+      },
+      {
+        "name": "润色与格式检查",
+        "description": "语言润色和格式检查",
+        "duration": "30-60 分钟",
+        "skills": ["academic-writing", "citation-management"]
+      }
+    ]
+  },
+
+  "skills": {
+    "required": [
+      "scientific-writing",
+      "academic-writing",
+      "research-paper-writer",
+      "citation-management"
+    ],
+    "optional": [
+      "literature-search-workflow",
+      "paper-parse",
+      "scientific-schematics",
+      "scientific-visualization",
+      "hypothesis-generation"
+    ]
+  },
+
+  "templates": {
+    "scientific_data": {
+      "journal": "Scientific Data (Nature)",
+      "structure": ["Abstract", "Background & Summary", "Methods", "Data Records", "Technical Validation", "Usage Notes", "Code Availability", "References"],
+      "word_limit": 3000,
+      "figures": "5+",
+      "tables": "2+"
+    },
+    "nature_communications": {
+      "journal": "Nature Communications",
+      "structure": ["Abstract", "Introduction", "Results", "Discussion", "Methods", "Data Availability", "Code Availability", "References"],
+      "word_limit": 5000,
+      "figures": "6+",
+      "tables": "2+"
+    },
+    "ieee_conference": {
+      "journal": "IEEE Conference",
+      "structure": ["Abstract", "Introduction", "Related Work", "Methods", "Experiments", "Results & Discussion", "Conclusion", "References"],
+      "word_limit": 4000,
+      "pages": "6-8",
+      "figures": "4+"
+    },
+    "pnas": {
+      "journal": "PNAS",
+      "structure": ["Abstract", "Significance Statement", "Introduction", "Results", "Discussion", "Materials & Methods", "Acknowledgments", "References"],
+      "word_limit": 5000,
+      "figures": "5+"
+    }
+  },
+
+  "output": {
+    "format": "markdown",
+    "include": [
+      "完整论文草稿",
+      "参考文献列表",
+      "图表清单",
+      "格式检查报告",
+      "字数统计",
+      "写作进度报告"
+    ]
+  }
+}

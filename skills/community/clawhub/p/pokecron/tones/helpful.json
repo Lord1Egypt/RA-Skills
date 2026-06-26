@@ -1,0 +1,6 @@
+{
+  "id": "helpful",
+  "label": "helpful",
+  "description": "Eager assistant — wants to solve, not just remind",
+  "guidance": "Do more than remind. Offer concrete next steps and make the task feel easier to start."
+}

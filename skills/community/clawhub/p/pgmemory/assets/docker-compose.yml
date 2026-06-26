@@ -1,0 +1,26 @@
+# pgmemory — PostgreSQL + pgvector
+# Recommended: copy this file, then run: docker compose up -d
+#
+# Connection URI: postgresql://openclaw:pgmemory@localhost:15432/openclaw
+
+services:
+  pgmemory:
+    image: pgvector/pgvector:pg17
+    container_name: pgmemory
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: openclaw
+      POSTGRES_PASSWORD: pgmemory
+      POSTGRES_DB: openclaw
+    ports:
+      - "15432:5432"
+    volumes:
+      - pgmemory_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U openclaw"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgmemory_data:

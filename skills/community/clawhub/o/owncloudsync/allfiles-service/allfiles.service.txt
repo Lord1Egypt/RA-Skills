@@ -1,0 +1,20 @@
+[Unit]
+Description=Allfiles REST Service (Go)
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Environment="ALLFILES_USER=admin"
+Environment="ALLFILES_PASS=SuperSecretPasswordChangeMe2026!"
+ExecStart=/usr/local/bin/allfiles-service
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/tmp
+ReadOnlyPaths=/etc/allfiles/certs
+
+[Install]
+WantedBy=multi-user.target
+

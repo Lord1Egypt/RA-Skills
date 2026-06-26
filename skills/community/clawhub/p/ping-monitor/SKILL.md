@@ -1,35 +1,31 @@
 ---
-name: "Ping Monitor"
+name: ping-monitor
 description: "ICMP health check for hosts, phones, and daemons"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ping-monitor"
-sourceUrl: "https://clawhub.ai/skills/ping-monitor"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🏓",
+        "requires": { "bins": ["ping"] },
+        "install": [],
+      },
+  }
 ---
 
 # Ping Monitor
 
-> ICMP health check for hosts, phones, and daemons
+ICMP health check for hosts, phones, and daemons. Uses the standard `ping` utility to verify network reachability of any target host.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ping-monitor`
-- **Source URL:** [https://clawhub.ai/skills/ping-monitor](https://clawhub.ai/skills/ping-monitor)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ping-monitor
+# Ping a host with default settings
+ping-monitor <host>
+
+# Ping a host with a specific count
+ping-monitor check <host> --count 3
 ```
+
+## Install
+
+No installation needed. `ping` is always present on the system.

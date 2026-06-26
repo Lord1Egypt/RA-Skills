@@ -1,0 +1,15 @@
+{
+  "name": "@paynode/skill-payment",
+  "version": "1.0.1",
+  "type": "module",
+  "scripts": {
+    "check-wallet": "bun run scripts/check-wallet.ts",
+    "request": "bun run scripts/request.ts",
+    "mint-test-tokens": "bun run scripts/mint-test-tokens.ts"
+  },
+  "dependencies": {
+    "@paynodelabs/sdk-js": "1.4.0",
+    "dotenv": "16.4.5",
+    "ethers": "6.13.0"
+  }
+}

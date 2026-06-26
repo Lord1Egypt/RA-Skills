@@ -1,0 +1,931 @@
+{
+  "schema_version": "v1.2.0-deep-explanation-continuity",
+  "authoritative_report_patterns": [
+    "reports/per_paper/<paper-slug>/<paper-slug>_detailed_cn.md",
+    "reports/<paper-slug>_detailed_cn.md",
+    "idea / 理论证明 / 具体算法或模块里哪些部分更像作者的主观选择、经验判断或研究风格"
+  ],
+  "top_conference_common_sections": [
+    "论文信息",
+    "这篇论文真正解决的是什么",
+    "核心方法到底在干什么",
+    "具体公式、模块与设计假设的不足及可改进空间",
+    "这篇论文为什么重要 / 为什么值得被接收",
+    "实验是如何被设计出来的",
+    "倒推作者怎么想到这个 idea",
+    "研究方程与缺失机制替代",
+    "作者可能如何发现这个方向",
+    "论文故事线如何搭建",
+    "模块级作者思路深读",
+    "关键引用的叙事功能与 Citation-to-Module Map",
+    "实验作为故事证据",
+    "可复用的论文造故事模式",
+    "从隐藏假设生成新 idea",
+    "作者主观判断与研究风格关联分析",
+    "报告具体性要求：必须紧扣论文中的公式、模块、图表、实验与措辞",
+    "审稿人最关注什么",
+    "作者是怎么回复的",
+    "审稿人是否认同作者回复",
+    "审稿意见回复覆盖核对",
+    "这篇论文最强的地方",
+    "额外审稿视角审计（借鉴 GitHub 热门审稿 skill 的 reviewer 关注点）",
+    "这篇论文的弱点 / 不足",
+    "作者团队近年的相关延续",
+    "从这篇论文出发，最值得突破的未来边界",
+    "对选题的直接启示",
+    "最后一段通俗故事总结",
+    "参考来源",
+    "结构化补充附录",
+    "Author-Team Continuation Notes From Upstream Materials",
+    "External Retrieval Deferred To Collection Stage",
+    "Routing Appendix",
+    "idea / 理论证明 / 具体算法或模块里哪些部分更像作者的主观选择、经验判断或研究风格"
+  ],
+  "required_sections": [
+    {
+      "id": "paper_identity_and_sources",
+      "heading": "论文信息",
+      "required_items": [
+        "title",
+        "venue_year_status",
+        "openreview_or_primary_urls",
+        "arxiv_pdf_or_latex",
+        "authors",
+        "team_or_affiliation_clues",
+        "preferred_local_source_path",
+        "review_rebuttal_context",
+        "source_basis_and_gaps"
+      ]
+    },
+    {
+      "id": "title_interpretation",
+      "heading": "论文标题解读",
+      "required_items": [
+        "title_keyword_breakdown",
+        "title_phrase_rationale",
+        "title_to_method_mapping",
+        "title_to_claim_mapping"
+      ]
+    },
+    {
+      "id": "true_problem",
+      "heading": "这篇论文真正解决的是什么",
+      "required_items": [
+        "concrete_problem",
+        "broader_scientific_problem",
+        "why_not_only_a_narrow_engineering_problem"
+      ]
+    },
+    {
+      "id": "mentioned_papers_and_open_gaps",
+      "heading": "论文中提到的其他论文做了什么、留下了什么空白、与本文是什么关系",
+      "required_items": [
+        "frequently_mentioned_papers",
+        "what_each_prior_paper_solved",
+        "remaining_gaps_or_blanks",
+        "relation_to_current_paper"
+      ]
+    },
+    {
+      "id": "core_method",
+      "heading": "核心方法到底在干什么",
+      "required_items": [
+        "core_judgment_or_intuition",
+        "knowledge_dependency_order_symbols_data_model_training_inference_experiments",
+        "method_structure_breakdown",
+        "key_modules",
+        "module_inputs_outputs_symbols_dimensions",
+        "trainable_parameters_hyperparameters_and_dataflow",
+        "training_pipeline",
+        "inference_or_deployment_path",
+        "optimization_objectives",
+        "communication_or_system_path_when_relevant",
+        "pdf_or_latex_key_figure_explanations",
+        "figure_to_claim_mapping",
+        "module_choices_that_seem_author_specific"
+      ]
+    },
+    {
+      "id": "formula_preservation_and_equation_walkthrough",
+      "heading": "公式保留与逐式解释",
+      "required_items": [
+        "preserved_key_equations",
+        "term_by_term_equation_explanation",
+        "key_concepts_explained_as_intuition_formula_example_limitation",
+        "equation_role_in_method",
+        "equation_to_algorithm_location",
+        "equation_or_theory_choices_that_seem_author_specific"
+      ]
+    },
+    {
+      "id": "equation_module_assumption_critique",
+      "heading": "具体公式、模块与设计假设的不足及可改进空间",
+      "required_items": [
+        "formula_level_weaknesses",
+        "module_level_weaknesses",
+        "assumption_fragility_or_mismatch",
+        "optimization_or_efficiency_concerns",
+        "possible_alternatives_or_reformulations",
+        "improvement_room_and_tradeoffs"
+      ]
+    },
+    {
+      "id": "innovation_claim_audit",
+      "heading": "创新点、核心主张与证据逐条核对",
+      "required_items": [
+        "claimed_innovations",
+        "core_claims",
+        "evidence_type_per_claim",
+        "support_strength_per_claim",
+        "unsupported_or_weak_claims"
+      ]
+    },
+    {
+      "id": "scientific_importance",
+      "heading": "这篇论文为什么重要 / 为什么值得被接收",
+      "required_items": [
+        "scientific_significance",
+        "what_assumption_it_challenges_or_preserves",
+        "why_reviewers_or_pc_should_care"
+      ]
+    },
+    {
+      "id": "experiment_design",
+      "heading": "实验是如何被设计出来的",
+      "required_items": [
+        "experiment_goals_or_validation_chains",
+        "dataset_scale_split_protocol_and_label_definition",
+        "main_experiments",
+        "bridge_experiments",
+        "ablation_logic",
+        "baseline_source_and_rerun_or_reconstruction_status",
+        "metric_meanings_and_interpretation_limits",
+        "evidence_to_claim_gap",
+        "result_exceptions_and_reproducibility_risks",
+        "missing_hardware_runtime_hyperparameter_or_protocol_details",
+        "figure_table_data_explanations",
+        "visual_or_numeric_evidence_to_claim_mapping",
+        "mismatch_or_partial_support_analysis",
+        "paper_specific_findings_instead_of_generic_summary"
+      ]
+    },
+    {
+      "id": "idea_genesis",
+      "heading": "倒推作者怎么想到这个 idea",
+      "required_items": [
+        "borrowed_algorithm_lineage",
+        "idea_genesis_trace",
+        "why_the_idea_became_natural",
+        "related_papers_worth_linking",
+        "subjective_judgment_or_research_style_trace"
+      ]
+    },
+    {
+      "id": "research_equation_and_replacement_mechanism",
+      "heading": "研究方程与缺失机制替代",
+      "required_items": [
+        "important_setting",
+        "broken_assumption",
+        "borrowed_tool",
+        "new_constraint",
+        "unavailable_ideal_mechanism_Y",
+        "constructed_surrogate_mechanism_Z",
+        "why_Z_approximates_or_replaces_Y",
+        "research_equation_A_notC_T_M_to_Z"
+      ]
+    },
+    {
+      "id": "author_direction_discovery_reconstruction",
+      "heading": "作者可能如何发现这个方向",
+      "required_items": [
+        "valuable_field",
+        "painful_assumption",
+        "emerging_or_borrowed_tool",
+        "unserved_setting",
+        "blocking_constraint",
+        "conceptual_replacement",
+        "evidence_backed_vs_speculative_parts"
+      ]
+    },
+    {
+      "id": "story_construction_challenge_to_module",
+      "heading": "论文故事线如何搭建",
+      "required_items": [
+        "narrative_escalation",
+        "challenge_failure_design_module_evidence_table",
+        "additive_vs_closed_loop_story_judgment",
+        "flowing_object_through_modules",
+        "story_fragile_links"
+      ]
+    },
+    {
+      "id": "module_author_thinking_deepread",
+      "heading": "模块级作者思路深读",
+      "required_items": [
+        "failure_fixed_by_each_module",
+        "ideal_unavailable_solution",
+        "available_proxy",
+        "design_choice_and_author_subjectivity",
+        "hidden_assumption_H_i",
+        "risk_when_not_H_i",
+        "future_research_point_from_each_module"
+      ]
+    },
+    {
+      "id": "reverse_citation_logic",
+      "heading": "关键引用的叙事功能与 Citation-to-Module Map",
+      "required_items": [
+        "citation_clusters",
+        "narrative_function_per_cluster",
+        "assumption_inherited",
+        "how_current_paper_modifies_prior_work",
+        "citation_to_module_map"
+      ]
+    },
+    {
+      "id": "experiments_as_story_evidence",
+      "heading": "实验作为故事证据",
+      "required_items": [
+        "experiment_claim_counterfactual_metric_stress_matrix",
+        "alternative_explanations_ruled_out",
+        "module_justification_by_experiment",
+        "stress_condition_validity",
+        "ablation_story_alignment"
+      ]
+    },
+    {
+      "id": "reusable_story_making_pattern",
+      "heading": "可复用的论文造故事模式",
+      "required_items": [
+        "old_success_new_reality_pattern",
+        "replacement_story_pattern",
+        "two_axis_empty_cell_pattern",
+        "closed_loop_contribution_pattern",
+        "how_to_reuse_for_future_papers"
+      ]
+    },
+    {
+      "id": "hidden_assumption_to_new_idea",
+      "heading": "从隐藏假设生成新 idea",
+      "required_items": [
+        "hidden_assumption_table",
+        "violated_assumption_setting",
+        "required_new_mechanism",
+        "engineering_vs_boundary_pushing_label",
+        "ranked_new_research_questions"
+      ]
+    },
+    {
+      "id": "author_subjectivity_linkage",
+      "heading": "作者主观判断与研究风格关联分析",
+      "required_items": [
+        "where_choices_look_author_specific",
+        "objective_necessity_vs_author_choice",
+        "evidence_backed_subjective_inference",
+        "author_style_or_research_taste_signals"
+      ]
+    },
+    {
+      "id": "paper_grounded_specificity",
+      "heading": "报告具体性要求：必须紧扣论文中的公式、模块、图表、实验与措辞",
+      "required_items": [
+        "concrete_formula_module_dataset_baseline_mentions",
+        "evidence_level_labels_paper_explicit_reasonable_inference_nearby_work_inference_missing",
+        "figure_table_and_experiment_specifics",
+        "theorem_object_and_assumption_specificity",
+        "avoid_generic_high_level_only_summary"
+      ]
+    },
+    {
+      "id": "reviewer_focus",
+      "heading": "审稿人最关注什么",
+      "required_items": [
+        "at_least_three_key_concerns",
+        "primary_concern_categories",
+        "concerns_with_highest_acceptance_impact"
+      ]
+    },
+    {
+      "id": "reviewer_lens_enrichment",
+      "heading": "额外审稿视角审计（借鉴 GitHub 热门审稿 skill 的 reviewer 关注点）",
+      "required_items": [
+        "novelty_and_significance_audit",
+        "technical_soundness_and_methodology_rigor",
+        "reproducibility_and_missing_details",
+        "results_claims_alignment",
+        "missing_baselines_or_controls",
+        "figure_table_clarity_and_honesty_of_limitations",
+        "venue_fit_or_acceptance_logic_when_relevant"
+      ]
+    },
+    {
+      "id": "author_reply",
+      "heading": "作者是怎么回复的",
+      "required_items": [
+        "direct_replies_to_major_concerns"
+      ]
+    },
+    {
+      "id": "reviewer_acceptance",
+      "heading": "审稿人是否认同作者回复",
+      "required_items": [
+        "meta_review_or_decision_signal",
+        "resolved_points",
+        "remaining_unresolved_points"
+      ]
+    },
+    {
+      "id": "review_coverage_check",
+      "heading": "审稿意见回复覆盖核对",
+      "required_items": [
+        "concern_reply_resolution_mapping",
+        "coverage_conclusion"
+      ]
+    },
+    {
+      "id": "strengths",
+      "heading": "这篇论文最强的地方",
+      "required_items": [
+        "at_least_three_strengths"
+      ]
+    },
+    {
+      "id": "weaknesses",
+      "heading": "这篇论文的弱点 / 不足",
+      "required_items": [
+        "at_least_three_weaknesses",
+        "open_risks",
+        "unresolved_questions",
+        "failure_modes_or_scope_limits",
+        "structural_limitations"
+      ]
+    },
+    {
+      "id": "team_continuation",
+      "heading": "作者团队近年的相关延续",
+      "required_items": [
+        "follow_up_papers_or_repos",
+        "lab_or_team_agenda_signal",
+        "title_based_author_lookup_sources",
+        "confirmed_author_identity",
+        "team_related_papers_ranked",
+        "continuation_vs_gap_assessment"
+      ]
+    },
+    {
+      "id": "future_boundaries",
+      "heading": "从这篇论文出发，最值得突破的未来边界",
+      "required_items": [
+        "at_least_three_future_directions",
+        "which_directions_are_only_engineering_extensions",
+        "which_directions_may_push_scientific_boundaries"
+      ]
+    },
+    {
+      "id": "innovation_type_and_boundary_judgment",
+      "heading": "创新类型判断：这是增量创新、交叉创新，还是边界突破",
+      "required_items": [
+        "innovation_type_judgment",
+        "why_incremental_or_cross",
+        "disciplinary_boundary_crossing",
+        "boundary_breaking_limits"
+      ]
+    },
+    {
+      "id": "topic_takeaways",
+      "heading": "对选题的直接启示",
+      "required_items": [
+        "borrowable_mechanisms",
+        "next_experiments",
+        "what_should_enter_graph_stage"
+      ]
+    },
+    {
+      "id": "new_directions_and_fresh_hooks",
+      "heading": "可能的新研究方向或新创新点（尤其是可能推动科学边界的方向）",
+      "required_items": [
+        "native_extensions",
+        "cross_domain_transfers",
+        "migrated_or_hybrid_hooks",
+        "high_risk_high_reward_ideas",
+        "boundary_pushing_direction_candidates"
+      ]
+    },
+    {
+      "id": "plain_language_summary",
+      "heading": "最后一段通俗故事总结",
+      "required_items": [
+        "plain_language_analogy_or_story"
+      ]
+    },
+    {
+      "id": "reference_sources",
+      "heading": "参考来源",
+      "required_items": [
+        "primary_sources",
+        "supporting_sources"
+      ]
+    },
+    {
+      "id": "appendix_problem_provenance",
+      "heading": "上位科学问题定位的三条证据链",
+      "required_items": [
+        "paper_explicit_path",
+        "borrowed_algorithm_path",
+        "new_algorithm_bottleneck_path"
+      ]
+    },
+    {
+      "id": "appendix_unified_ml_problems",
+      "heading": "统一后的更高层 AI/ML 问题",
+      "required_items": [
+        "ml_problem_set_with_provenance"
+      ]
+    },
+    {
+      "id": "appendix_borrowed_upper_problems",
+      "heading": "借鉴算法所属上位问题",
+      "required_items": [
+        "borrowed_upper_problem_list"
+      ]
+    },
+    {
+      "id": "appendix_bottleneck_upper_problems",
+      "heading": "新算法遇到的问题所对应的上位问题",
+      "required_items": [
+        "bottleneck_upper_problem_list"
+      ]
+    },
+    {
+      "id": "appendix_module_mapping",
+      "heading": "模块到问题、算法与瓶颈的映射",
+      "required_items": [
+        "module_to_problem_mapping",
+        "module_to_algorithm_lineage",
+        "module_to_bottleneck_mapping"
+      ]
+    },
+    {
+      "id": "appendix_graph_candidates",
+      "heading": "知识图谱节点与关系候选",
+      "required_items": [
+        "graph_node_candidates",
+        "graph_relation_candidates"
+      ]
+    },
+    {
+      "id": "appendix_pipeline_summary",
+      "heading": "提出算法的模型、架构、训练与推理流程",
+      "required_items": [
+        "model_form",
+        "architecture_summary",
+        "key_modules",
+        "training_pipeline",
+        "inference_pipeline",
+        "optimization_objectives",
+        "module_inputs_outputs_symbols_dimensions_training_parameters_and_dataflow",
+        "communication_or_deployment_path"
+      ]
+    },
+    {
+      "id": "appendix_algorithm_example",
+      "heading": "带具体例子的算法步骤演示",
+      "required_items": [
+        "worked_example_setup",
+        "step_by_step_state_updates",
+        "example_inputs_outputs",
+        "complete_numeric_training_to_inference_walkthrough",
+        "learned_parameters_vs_fixed_hyperparameters",
+        "example_revealed_failure_or_advantage"
+      ]
+    },
+    {
+      "id": "appendix_related_papers",
+      "heading": "相关论文与关联理由",
+      "required_items": [
+        "related_papers_and_rationales"
+      ]
+    },
+    {
+      "id": "appendix_mentioned_paper_gap_map",
+      "heading": "论文中反复提到的关键文献及其未解空白",
+      "required_items": [
+        "key_repeatedly_discussed_papers",
+        "unsolved_gaps_carried_forward",
+        "why_current_paper_targets_those_gaps"
+      ]
+    },
+    {
+      "id": "appendix_review_coverage",
+      "heading": "审稿覆盖核对",
+      "required_items": [
+        "review_reply_chain_check",
+        "report_level_coverage_conclusion"
+      ]
+    },
+    {
+      "id": "appendix_visual_findings",
+      "heading": "架构图 / 模型图 / 结果图补充",
+      "required_items": [
+        "important_figures_or_pages",
+        "what_each_visual_clarifies",
+        "figure_to_claim_mapping",
+        "latex_figure_caption_label_context_when_available",
+        "what_each_visual_still_leaves_unclear"
+      ]
+    },
+    {
+      "id": "appendix_figure_blueprints",
+      "heading": "架构图 / 模型图设计方案",
+      "required_items": [
+        "reusable_figure_blueprints",
+        "visual_prompt_blueprints",
+        "multi_image_camera_style_logic_continuity_prompt_blueprints",
+        "split_into_multiple_images_not_one_compressed_image",
+        "source_grounding_and_hallucination_check"
+      ]
+    },
+    {
+      "id": "appendix_experiment_borrowing",
+      "heading": "实验图表设计可借鉴点",
+      "required_items": [
+        "reusable_experiment_or_table_patterns"
+      ]
+    },
+    {
+      "id": "appendix_baseline_genealogy",
+      "heading": "实验设置与比较算法谱系对应表",
+      "required_items": [
+        "datasets_metrics_protocols",
+        "dataset_scale_label_definition_split_protocol",
+        "baseline_to_related_work_mapping",
+        "baseline_source_and_whether_rerun_reconstructed_or_imported",
+        "why_each_baseline_was_included",
+        "intro_relatedwork_to_experiment_link"
+      ]
+    },
+    {
+      "id": "appendix_experiment_purpose_and_findings",
+      "heading": "各实验环节的目的、支撑主张与现象总结",
+      "required_items": [
+        "experiment_block_purpose",
+        "claim_supported_by_each_block",
+        "table_chart_data_explanation",
+        "metric_meanings_result_exceptions_and_reproduction_risks",
+        "support_vs_contradiction_vs_partial_support",
+        "surprising_or_controversial_findings",
+        "limitations_exposed_by_experiments",
+        "possible_causes_of_mismatch"
+      ]
+    },
+    {
+      "id": "appendix_innovation_hooks",
+      "heading": "可继续追的创新点",
+      "required_items": [
+        "innovation_hooks"
+      ]
+    },
+    {
+      "id": "scientific_gap_and_positioning",
+      "heading": "Scientific Problem, Missing Gap, And Literature Positioning",
+      "required_items": [
+        "paper_level_scientific_problem",
+        "claimed_missing_gap",
+        "closest_literature_threads",
+        "borrowed_method_families",
+        "what_is_improved_over_prior_work"
+      ]
+    },
+    {
+      "id": "claim_support_matrix",
+      "heading": "Claim-Support Matrix",
+      "required_items": [
+        "claim_rows",
+        "evidence_columns",
+        "support_strength_scale",
+        "missing_support_notes"
+      ]
+    },
+    {
+      "id": "symbols_and_concepts",
+      "heading": "Symbols, Definitions, And Core Concepts For Beginners",
+      "required_items": [
+        "main_symbols",
+        "core_definitions",
+        "task_setting_for_beginners"
+      ]
+    },
+    {
+      "id": "core_algorithm_procedure",
+      "heading": "Core Algorithm And Procedure",
+      "required_items": [
+        "step_by_step_algorithm",
+        "inputs_outputs_and_states",
+        "novel_vs_inherited_parts"
+      ]
+    },
+    {
+      "id": "algorithm_example_for_beginners",
+      "heading": "Algorithm Walkthrough With A Concrete Example",
+      "required_items": [
+        "mini_case_setup",
+        "step_by_step_walkthrough",
+        "where_novelty_enters",
+        "what_the_example_teaches"
+      ]
+    },
+    {
+      "id": "theory_and_proofs",
+      "heading": "Theory, Proofs, And Their Role",
+      "required_items": [
+        "theorems_or_lemmas",
+        "why_proofs_are_needed",
+        "proof_assumptions",
+        "practical_algorithm_relevance",
+        "theory_to_algorithm_gap"
+      ]
+    },
+    {
+      "id": "theory_proof_implementation_mapping",
+      "heading": "理论、证明与实现步骤对照",
+      "required_items": [
+        "theorem_to_algorithm_step_mapping",
+        "assumption_to_implementation_mapping",
+        "exact_match_vs_local_approximation",
+        "practical_significance_of_theory",
+        "where_theory_stops_matching_practice"
+      ]
+    },
+    {
+      "id": "experiment_logic",
+      "heading": "Experimental Design Logic And Author Reasoning",
+      "required_items": [
+        "dataset_baseline_metric_choice_rationale",
+        "dataset_scale_labels_baseline_rerun_status_metric_meaning",
+        "major_experiment_doubts_preempted",
+        "missing_experiment_details_hardware_runtime_hyperparameters_data_split",
+        "reasoning_chain_from_idea_to_experiment_plan"
+      ]
+    },
+    {
+      "id": "probe_models_and_mechanism_checks",
+      "heading": "Probe Models, Bridge Experiments, And Mechanism Checks",
+      "required_items": [
+        "exploratory_models_or_probes",
+        "bridge_experiments",
+        "mechanism_checks_strength"
+      ]
+    },
+    {
+      "id": "interesting_phenomena",
+      "heading": "Interesting Empirical Phenomena And Lessons",
+      "required_items": [
+        "surprising_results",
+        "scientific_lessons",
+        "follow_up_tests_implied"
+      ]
+    },
+    {
+      "id": "innovation_type_and_boundary_appendix",
+      "heading": "Innovation Type And Boundary-Crossing Judgment",
+      "required_items": [
+        "incremental_vs_cross_type",
+        "why_it_counts_or_not",
+        "discipline_boundary_assessment",
+        "future_crossings_suggested"
+      ]
+    },
+    {
+      "id": "author_team_continuation_from_upstream_materials",
+      "heading": "Author-Team Continuation Notes From Upstream Materials",
+      "required_items": [
+        "upstream_author_context_used",
+        "confirmed_authors_from_upstream_or_paper",
+        "team_continuation_if_already_available",
+        "missing_context_not_collected_here"
+      ]
+    },
+    {
+      "id": "external_retrieval_deferred",
+      "heading": "External Retrieval Deferred To Collection Stage",
+      "required_items": [
+        "no_new_external_retrieval_rule",
+        "missing_external_context_for_later_collection_stage",
+        "stage_boundary_note"
+      ]
+    },
+    {
+      "id": "routing_appendix",
+      "heading": "Routing Appendix",
+      "required_items": [
+        "current_status",
+        "produced_artifacts",
+        "possible_user_inputs_for_next_stage"
+      ]
+    },
+    {
+      "id": "teaching_audience_and_goal",
+      "heading": "面向讲解的受众画像与讲解目标",
+      "required_items": [
+        "target_audience",
+        "prior_knowledge",
+        "likely_confusions",
+        "teaching_goal",
+        "math_depth",
+        "evidence_needed"
+      ]
+    },
+    {
+      "id": "three_layer_teaching_summary",
+      "heading": "3 层讲解摘要：30 秒 / 3 分钟 / 10 分钟",
+      "required_items": [
+        "thirty_second_version",
+        "three_minute_version",
+        "ten_minute_version",
+        "core_caveat_preserved"
+      ]
+    },
+    {
+      "id": "teaching_story_spine",
+      "heading": "讲解主线 Story Spine",
+      "required_items": [
+        "before",
+        "pain",
+        "broken_assumption",
+        "key_replacement",
+        "mechanism",
+        "evidence",
+        "caveat",
+        "next_idea"
+      ]
+    },
+    {
+      "id": "audience_prerequisites",
+      "heading": "听众先修知识与概念铺垫",
+      "required_items": [
+        "task_setting",
+        "symbols",
+        "field_conventions",
+        "datasets_or_benchmarks",
+        "assumptions",
+        "minimum_background"
+      ]
+    },
+    {
+      "id": "formula_visual_experiment_teaching_script",
+      "heading": "公式 / 图表 / 实验的讲解脚本",
+      "required_items": [
+        "formula_teaching_table",
+        "visual_teaching_table",
+        "experiment_teaching_units",
+        "what_not_to_overclaim"
+      ]
+    },
+    {
+      "id": "blackboard_derivation_and_toy_example",
+      "heading": "板书推导与小例子演示",
+      "required_items": [
+        "mini_case_setup",
+        "step_by_step_derivation",
+        "state_updates",
+        "teaching_takeaway",
+        "where_simplification_breaks"
+      ]
+    },
+    {
+      "id": "role_play_discussion_questions",
+      "heading": "角色扮演式讨论问题",
+      "required_items": [
+        "archaeologist",
+        "bug_hunter",
+        "researcher",
+        "industry_practitioner",
+        "social_impact_assessor",
+        "author_defender",
+        "teacher"
+      ]
+    },
+    {
+      "id": "likely_questions_and_evidence_backed_answers",
+      "heading": "可能被问到的问题与回答证据",
+      "required_items": [
+        "beginner_questions",
+        "peer_questions",
+        "advisor_reviewer_questions",
+        "practitioner_questions",
+        "evidence_links",
+        "confidence_or_uncertainty"
+      ]
+    },
+    {
+      "id": "misunderstanding_guardrails",
+      "heading": "易误解点与纠偏",
+      "required_items": [
+        "paper_does_not_claim",
+        "analogy_limits",
+        "overgeneralization_risks",
+        "baseline_overinterpretation",
+        "limitation_to_state_aloud"
+      ]
+    },
+    {
+      "id": "ppt_or_talk_blueprint",
+      "heading": "PPT / 分享稿结构草案",
+      "required_items": [
+        "slide_blueprint",
+        "speaker_notes",
+        "transitions",
+        "likely_questions",
+        "time_budget"
+      ]
+    },
+    {
+      "id": "three_takeaways_for_audience",
+      "heading": "听众可带走的三句话",
+      "required_items": [
+        "takeaway_1",
+        "takeaway_2",
+        "takeaway_3"
+      ]
+    }
+  ],
+  "mandatory_section_headings": [
+    "论文信息",
+    "论文标题解读",
+    "这篇论文真正解决的是什么",
+    "论文中提到的其他论文做了什么、留下了什么空白、与本文是什么关系",
+    "核心方法到底在干什么",
+    "公式保留与逐式解释",
+    "具体公式、模块与设计假设的不足及可改进空间",
+    "创新点、核心主张与证据逐条核对",
+    "这篇论文为什么重要 / 为什么值得被接收",
+    "实验是如何被设计出来的",
+    "倒推作者怎么想到这个 idea",
+    "研究方程与缺失机制替代",
+    "作者可能如何发现这个方向",
+    "论文故事线如何搭建",
+    "模块级作者思路深读",
+    "关键引用的叙事功能与 Citation-to-Module Map",
+    "实验作为故事证据",
+    "可复用的论文造故事模式",
+    "从隐藏假设生成新 idea",
+    "审稿人最关注什么",
+    "额外审稿视角审计（借鉴 GitHub 热门审稿 skill 的 reviewer 关注点）",
+    "作者是怎么回复的",
+    "审稿人是否认同作者回复",
+    "审稿意见回复覆盖核对",
+    "这篇论文最强的地方",
+    "这篇论文的弱点 / 不足",
+    "作者团队近年的相关延续",
+    "从这篇论文出发，最值得突破的未来边界",
+    "创新类型判断：这是增量创新、交叉创新，还是边界突破",
+    "对选题的直接启示",
+    "可能的新研究方向或新创新点（尤其是可能推动科学边界的方向）",
+    "面向讲解的受众画像与讲解目标",
+    "3 层讲解摘要：30 秒 / 3 分钟 / 10 分钟",
+    "讲解主线 Story Spine",
+    "听众先修知识与概念铺垫",
+    "公式 / 图表 / 实验的讲解脚本",
+    "板书推导与小例子演示",
+    "角色扮演式讨论问题",
+    "可能被问到的问题与回答证据",
+    "易误解点与纠偏",
+    "PPT / 分享稿结构草案",
+    "听众可带走的三句话",
+    "最后一段通俗故事总结",
+    "参考来源",
+    "上位科学问题定位的三条证据链",
+    "统一后的更高层 AI/ML 问题",
+    "借鉴算法所属上位问题",
+    "新算法遇到的问题所对应的上位问题",
+    "模块到问题、算法与瓶颈的映射",
+    "知识图谱节点与关系候选",
+    "提出算法的模型、架构、训练与推理流程",
+    "带具体例子的算法步骤演示",
+    "相关论文与关联理由",
+    "论文中反复提到的关键文献及其未解空白",
+    "审稿覆盖核对",
+    "架构图 / 模型图 / 结果图补充",
+    "架构图 / 模型图设计方案",
+    "实验图表设计可借鉴点",
+    "实验设置与比较算法谱系对应表",
+    "各实验环节的目的、支撑主张与现象总结",
+    "可继续追的创新点",
+    "Scientific Problem, Missing Gap, And Literature Positioning",
+    "Claim-Support Matrix",
+    "Symbols, Definitions, And Core Concepts For Beginners",
+    "Core Algorithm And Procedure",
+    "Algorithm Walkthrough With A Concrete Example",
+    "Theory, Proofs, And Their Role",
+    "理论、证明与实现步骤对照",
+    "Experimental Design Logic And Author Reasoning",
+    "Probe Models, Bridge Experiments, And Mechanism Checks",
+    "Interesting Empirical Phenomena And Lessons",
+    "Innovation Type And Boundary-Crossing Judgment",
+    "Author-Team Continuation Notes From Upstream Materials",
+    "External Retrieval Deferred To Collection Stage",
+    "Routing Appendix",
+    "idea / 理论证明 / 具体算法或模块里哪些部分更像作者的主观选择、经验判断或研究风格",
+    "报告必须结合论文本身的具体模块、公式、图表、实验、数据与原文表述，避免空泛抽象总结"
+  ]
+}

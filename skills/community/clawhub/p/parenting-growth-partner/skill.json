@@ -1,0 +1,46 @@
+{
+  "name": "parenting-growth-partner",
+  "slug": "parenting-growth-partner",
+  "version": "1.0.0",
+  "description": "Parenting Growth Partner / 育儿成长伙伴 - AI-powered companion for evidence-based parenting guidance",
+  "author": "Harry",
+  "license": "MIT",
+  "handler": "handler.py",
+  "runtime": "python3",
+  "tags": [
+    "parenting",
+    "child-development",
+    "education",
+    "family"
+  ],
+  "categories": [
+    "lifestyle",
+    "education"
+  ],
+  "inputs": [
+    {
+      "name": "action",
+      "type": "string",
+      "required": true,
+      "description": "Action to perform: milestone_assessment, activity_recommendation, communication_guidance, behavior_analysis, daily_routine"
+    },
+    {
+      "name": "params",
+      "type": "object",
+      "required": false,
+      "description": "Parameters for the action"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "success",
+      "type": "boolean",
+      "description": "Whether the operation succeeded"
+    },
+    {
+      "name": "result",
+      "type": "object",
+      "description": "The result data structure"
+    }
+  ]
+}

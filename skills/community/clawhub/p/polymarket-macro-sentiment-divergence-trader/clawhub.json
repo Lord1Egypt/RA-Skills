@@ -1,0 +1,97 @@
+{
+  "emoji": "\u2696\ufe0f\ud83d\udd00",
+  "requires": {
+    "env": [
+      "SIMMER_API_KEY"
+    ],
+    "pip": [
+      "simmer-sdk"
+    ]
+  },
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "trader.py"
+  },
+  "tunables": [
+    {
+      "env": "SIMMER_MAX_POSITION",
+      "type": "number",
+      "default": 40,
+      "range": [
+        1,
+        200
+      ],
+      "step": 1,
+      "label": "Max position size (USD)"
+    },
+    {
+      "env": "SIMMER_MIN_VOLUME",
+      "type": "number",
+      "default": 5000,
+      "range": [
+        0,
+        500000
+      ],
+      "step": 500,
+      "label": "Min market volume (USD)"
+    },
+    {
+      "env": "SIMMER_MAX_SPREAD",
+      "type": "number",
+      "default": 0.1,
+      "range": [
+        0.01,
+        0.5
+      ],
+      "step": 0.01,
+      "label": "Max bid-ask spread"
+    },
+    {
+      "env": "SIMMER_MIN_DAYS",
+      "type": "number",
+      "default": 3,
+      "range": [
+        1,
+        180
+      ],
+      "step": 1,
+      "label": "Min days until resolution"
+    },
+    {
+      "env": "SIMMER_MAX_POSITIONS",
+      "type": "number",
+      "default": 8,
+      "range": [
+        1,
+        20
+      ],
+      "step": 1,
+      "label": "Max open positions"
+    },
+    {
+      "env": "SIMMER_DIVERGENCE_THRESHOLD",
+      "type": "number",
+      "default": 0.15,
+      "range": [
+        0.05,
+        0.5
+      ],
+      "step": 0.01,
+      "label": "Min divergence to trigger trades"
+    },
+    {
+      "env": "SIMMER_MIN_BUCKET_SIZE",
+      "type": "number",
+      "default": 3,
+      "range": [
+        1,
+        20
+      ],
+      "step": 1,
+      "label": "Min markets per sentiment bucket"
+    }
+  ],
+  "version": "0.0.2"
+}

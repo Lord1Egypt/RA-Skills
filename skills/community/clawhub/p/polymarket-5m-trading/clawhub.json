@@ -1,0 +1,60 @@
+{
+  "emoji": "chart_with_upwards_trend",
+  "primaryEnv": "AIONMARKET_API_KEY",
+  "requires": {
+    "pip": ["aion-sdk", "py-clob-client", "python-dotenv"],
+    "env": ["AIONMARKET_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "AIONMARKET_API_KEY",
+      "required": true,
+      "description": "Main AION API key for market search, context checks, and trading operations."
+    },
+    {
+      "name": "AION_API_KEY",
+      "required": false,
+      "description": "Optional alias for platforms that standardize on AION_API_KEY instead of AIONMARKET_API_KEY."
+    },
+    {
+      "name": "WALLET_PRIVATE_KEY",
+      "required": false,
+      "description": "Polygon private key required for live Polymarket self-custody orders."
+    },
+    {
+      "name": "AIONMARKET_BASE_URL",
+      "required": false,
+      "description": "Optional non-default AION backend URL when your environment documents one."
+    },
+    {
+      "name": "BUY_USD",
+      "required": false,
+      "description": "Target USD notional for each buy cycle. Default: 1.0"
+    },
+    {
+      "name": "HOLD_SECONDS",
+      "required": false,
+      "description": "Seconds to hold the position before selling. Default: 300"
+    },
+    {
+      "name": "MAX_BUYS",
+      "required": false,
+      "description": "Number of buy cycles before the strategy stops. Default: 10"
+    },
+    {
+      "name": "SEARCH_LIMIT",
+      "required": false,
+      "description": "Number of BTC search results to inspect before selecting a target market. Default: 50"
+    },
+    {
+      "name": "MARKET_PRICE_BUFFER",
+      "required": false,
+      "description": "Price buffer used to form market-style FAK orders. Default: 0.03"
+    }
+  ],
+  "cron": "0 */3 * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "run_skill.py"
+  }
+}

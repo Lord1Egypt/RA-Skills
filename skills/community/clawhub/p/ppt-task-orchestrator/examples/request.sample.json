@@ -1,0 +1,17 @@
+{
+  "requestId": "ppt-task-demo-001",
+  "pptPath": "~/Desktop/店铺存放/v1-client.pptx",
+  "confidenceThreshold": 0.8,
+  "fallbackPolicy": "structured_first_with_ocr",
+  "execution": {
+    "dryRun": true,
+    "force": false,
+    "rollbackPolicy": "rollback_all",
+    "bundleZip": true
+  },
+  "delivery": {
+    "outputDir": "~/.openclaw/deliveries",
+    "zipName": "all-images.zip",
+    "copySelectedOnly": true
+  }
+}

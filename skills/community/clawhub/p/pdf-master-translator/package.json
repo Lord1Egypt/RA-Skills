@@ -1,0 +1,6 @@
+{
+  "name": "pdf-master-translator",
+  "version": "1.0.0",
+  "description": "A highly robust, multi-agent pipeline for translating and reconstructing complex, image-heavy, or scanned PDF documents.",
+  "scripts": {}
+}

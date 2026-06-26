@@ -1,0 +1,7 @@
+{
+  "base_url": "https://crm.pinkr.com",
+  "retry_times": 3,
+  "retry_delay": [1, 2, 4],
+  "timeout": 30,
+  "token_expire_hours": 23
+}

@@ -1,0 +1,6 @@
+{
+  "edge_debug_port": 9222,
+  "default_timeout": 30,
+  "outlook_body_max_chars": 5000,
+  "output_dir": ""
+}

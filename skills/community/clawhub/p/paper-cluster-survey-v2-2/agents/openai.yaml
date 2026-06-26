@@ -1,0 +1,6 @@
+interface:
+  display_name: "Paper Cluster Survey 2.2"
+  short_description: "Extract, classify, and review papers from PDFs or URLs"
+  default_prompt: "Use $paper-cluster-survey-v2-2 to extract structured paper records from the provided PDFs or URLs, build a classification table, and write an academic survey review."
+policy:
+  allow_implicit_invocation: true

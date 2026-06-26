@@ -1,35 +1,37 @@
----
-name: "Pipeworx asana"
-description: "Access and manage Asana workspaces, projects, and tasks via API calls for listing, searching, retrieving details, and creating tasks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-asana"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-asana"
----
+# Asana
 
-# Pipeworx asana
+Asana MCP — wraps the Asana REST API (OAuth)
 
-> Access and manage Asana workspaces, projects, and tasks via API calls for listing, searching, retrieving details, and creating tasks.
+## asana_list_workspaces
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-asana`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-asana](https://clawhub.ai/skills/pipeworx-asana)
+Get all accessible Asana workspaces. Returns workspace names and IDs needed to list projects and tas
 
-## Overview
+## asana_list_tasks
 
+List tasks in a project. Returns task ID, name, completion status, assignee, and due date. Requires 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-asana
+## asana_get_task
+
+Get full task details including name, description, assignee, projects, tags, subtasks, and status. R
+
+## asana_create_task
+
+Create a new task in a project. Returns task ID, name, and permalink. Requires project ID and task n
+
+## asana_list_projects
+
+List all projects in a workspace. Returns project ID, name, and archived status. Requires workspace 
+
+## asana_search_tasks
+
+Search tasks across a workspace by keyword. Returns matching tasks with ID, name, completion status,
+
+```json
+{
+  "mcpServers": {
+    "asana": {
+      "url": "https://gateway.pipeworx.io/asana/mcp"
+    }
+  }
+}
 ```

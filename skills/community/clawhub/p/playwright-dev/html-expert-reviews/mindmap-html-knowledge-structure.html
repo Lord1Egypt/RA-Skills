@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 专家点评项目知识库 - 思维导图</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --purple: #9b59b6;
+            --bg: #ffffff;
+            --text: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .meta {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .mermaid {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .legend {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .legend-item {
+            display: inline-block;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+        
+        .legend-color {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🗺️ HTML 专家点评项目知识库 - 思维导图</h1>
+        <div class="meta">
+            生成时间：2026-03-08 12:32 | 工具：Mermaid Mindmap | 版本：V1.0
+        </div>
+    </header>
+
+    <!-- 统计卡片 -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-number">13</span>
+            <span class="stat-label">HTML 文件总数</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">~220KB</span>
+            <span class="stat-label">总大小</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">5</span>
+            <span class="stat-label">项目关联</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">4</span>
+            <span class="stat-label">主目录</span>
+        </div>
+    </div>
+
+    <!-- 思维导图 -->
+    <h2 style="text-align: center; margin: 40px 0 20px;">📁 完整文件夹结构</h2>
+    <div class="mermaid">
+mindmap
+  root((📊 HTML 专家点评<br/>项目知识库))
+    📁 html-expert-reviews
+      📄 README.md
+        ::icon(fa fa-file-text)
+        索引文件 13 个 HTML
+      📄 expert-review-2026-03-08-html-knowledge-structure.html
+        ::icon(fa fa-file-powerpoint)
+        25KB 知识库结构
+      📄 expert-review-user-profile-2026-03-08.html
+        ::icon(fa fa-user)
+        26KB 用户画像
+      📄 expert-review-2026-03-08-clawhub-skills.html
+        ::icon(fa fa-wrench)
+        20KB 技能推荐
+      📄 expert-review-2026-03-08-data-governance.html
+        ::icon(fa fa-database)
+        14KB 数据治理
+      📄 expert-review-2026-03-08-knowledge-graph.html
+        ::icon(fa fa-sitemap)
+        24KB 知识图谱
+      📄 expert-review-2026-03-08-knowledge-graph-final.html
+        ::icon(fa fa-check-circle)
+        14KB 完成报告
+      📄 expert-review-2026-03-08-project-knowledge.html
+        ::icon(fa fa-folder)
+        12KB 项目知识库
+      📄 expert-review-2026-03-08-projects-link.html
+        ::icon(fa fa-link)
+        11KB 知识库打通
+      📄 expert-review-2026-03-08-projects-memory-link.html
+        ::icon(fa fa-chain)
+        18KB 双向链接
+      📄 expert-review-2026-03-08-html-index.html
+        ::icon(fa fa-list)
+        13KB HTML 索引
+      📄 expert-review-2026-03-07-ai-basics.html
+        ::icon(fa fa-robot)
+        23KB AI 基础
+      📄 expert-review-2026-03-07-workflow-atomic-architecture.html
+        ::icon(fa fa-cogs)
+        15KB 工作流架构
+      📄 expert-review-2026-03-07-知识卡片.html
+        ::icon(fa fa-id-card)
+        10KB 知识卡片
+    📁 tasks/projects
+      📄 豆包会话自动化.md
+        ::icon(fa fa-hourglass-half)
+        ⚠️ 待关联 2 个 HTML
+      📄 地理知识库.md
+        ::icon(fa fa-globe)
+        ⚪ 等项目启动
+      📄 周报系统.md
+        ::icon(fa fa-calendar)
+        ⚪ 等项目优化
+      📄 任务管理.md
+        ::icon(fa fa-tasks)
+        ✅ 已关联 3 个 HTML
+      📄 数据治理 - 小米汽车.md
+        ::icon(fa fa-car)
+        ✅ 已关联 1 个 HTML
+    📁 memory
+      📄 2026-03-08.md
+        ::icon(fa fa-calendar-day)
+        今日记忆
+      📄 triple-line-sync-log.md
+        ::icon(fa fa-sync)
+        三线同步日志
+    📁 skills
+      📄 README.md
+        ::icon(fa fa-list-alt)
+        16 个技能索引
+      📁 html-expert-review
+        📄 SKILL.md
+          ::icon(fa fa-file-code)
+          HTML 生成技能
+    </div>
+
+    <!-- 图例 -->
+    <div class="legend">
+        <h3>📋 图例说明</h3>
+        <div class="legend-item">
+            <span class="legend-color" style="background: #27ae60;"></span>
+            ✅ 已完成
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background: #f39c12;"></span>
+            ⚠️ 待完成
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background: #95a5a6;"></span>
+            ⚪ 未开始
+        </div>
+    </div>
+
+    <!-- 项目关联详情 -->
+    <h2 style="text-align: center; margin: 40px 0 20px;">🔗 项目关联详情</h2>
+    <div class="mermaid">
+graph LR
+    subgraph P0[🔴 P0 紧急重要]
+        A1[数据治理 - 小米汽车<br/>1 个 HTML ✅]
+        A2[任务管理<br/>3 个 HTML ✅]
+    end
+    
+    subgraph P1[🟡 P1 重要不紧急]
+        B1[豆包会话自动化<br/>2 个 HTML ⚠️]
+        B2[地理知识库<br/>0 个 HTML ⚪]
+        B3[周报系统<br/>0 个 HTML ⚪]
+    end
+    
+    subgraph General[⚪ 通用/跨项目]
+        C1[用户画像<br/>1 个 HTML]
+        C2[技能推荐<br/>1 个 HTML]
+        C3[知识图谱<br/>2 个 HTML]
+        C4[HTML 索引<br/>2 个 HTML]
+        C5[知识卡片<br/>1 个 HTML]
+    end
+    
+    A1 --> D[html-expert-reviews/]
+    A2 --> D
+    B1 --> D
+    B2 --> D
+    B3 --> D
+    C1 --> D
+    C2 --> D
+    C3 --> D
+    C4 --> D
+    C5 --> D
+    
+    style P0 fill:#ffebee,stroke:#e74c3c,stroke-width:2px
+    style P1 fill:#fff3e0,stroke:#f39c12,stroke-width:2px
+    style General fill:#f5f5f5,stroke:#95a5a6,stroke-width:2px
+    style D fill:#3498db,color:#fff,stroke:#2980b9,stroke-width:2px
+    </div>
+
+    <!-- 文件统计 -->
+    <h2 style="text-align: center; margin: 40px 0 20px;">📊 文件统计</h2>
+    <div class="mermaid">
+xychart-beta
+    title "HTML 文件大小分布 (KB)"
+    x-axis ["用户画像", "技能推荐", "数据治理", "知识图谱", "图谱完成", "项目知识", "项目链接", "项目记忆", "HTML 索引", "AI 基础", "工作流", "知识卡片", "知识库结构"]
+    y-axis "大小 (KB)" 0 --> 30
+    bar [26, 20, 14, 24, 14, 12, 11, 18, 13, 23, 15, 10, 25]
+    </div>
+
+    <!-- 时间线 -->
+    <h2 style="text-align: center; margin: 40px 0 20px;">📅 生成时间线</h2>
+    <div class="mermaid">
+timeline
+    title HTML 专家点评生成时间线
+    2026-03-07 : AI 基础知识 (23KB)
+               : 工作流原子架构 (15KB)
+               : 知识卡片 (10KB)
+    2026-03-08 08:42 : 项目知识库系统 (12KB)
+               10:37 : 项目知识库打通 (11KB)
+               11:20 : 用户画像 (26KB)
+               11:36 : projects↔MEMORY 链接 (18KB)
+               11:39 : 知识图谱 (24KB)
+               11:45 : 知识图谱完成报告 (14KB)
+               11:50 : HTML 索引页 (13KB)
+               11:55 : 数据治理 (14KB)
+               12:18 : ClawHub 技能推荐 (20KB)
+               12:28 : HTML 知识库结构 (25KB)
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'default',
+            mindmap: {
+                useMaxWidth: true,
+                padding: 20
+            }
+        });
+    </script>
+</body>
+</html>

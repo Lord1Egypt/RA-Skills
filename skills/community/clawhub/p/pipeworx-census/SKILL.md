@@ -1,35 +1,33 @@
----
-name: "Pipeworx census"
-description: "Access U.S. Census Bureau housing data including ACS, building permits, housing starts, homeownership rates, and available census datasets by geography."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-census"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-census"
----
+# Census
 
-# Pipeworx census
+Census MCP — U.S. Census Bureau housing-relevant APIs.
 
-> Access U.S. Census Bureau housing data including ACS, building permits, housing starts, homeownership rates, and available census datasets by geography.
+## census_acs
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-census`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-census](https://clawhub.ai/skills/pipeworx-census)
+Search American Community Survey data by geography and variable code (e.g., B25077_001E for median h
 
-## Overview
+## census_building_permits
 
+Check monthly building permits for new residential construction by geography. Returns count of autho
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-census
+## census_housing_starts
+
+Get residential construction pipeline by geography: new starts, units under construction, and comple
+
+## census_homeownership
+
+Check quarterly homeownership rates by geography. Returns percentage of owner-occupied housing units
+
+## census_available_datasets
+
+Discover Census datasets and their variables. Returns dataset names, descriptions, and variable code
+
+```json
+{
+  "mcpServers": {
+    "census": {
+      "url": "https://gateway.pipeworx.io/census/mcp"
+    }
+  }
+}
 ```

@@ -1,0 +1,7 @@
+# Pet Sitter Intake Form Generator - Dependencies
+
+# PDF generation (required)
+reportlab>=4.0.0
+
+# YAML config support (optional but recommended)
+pyyaml>=6.0

@@ -1,0 +1,10 @@
+{
+  "skill_id": null,
+  "skill_name": "planner-pitch-stress-test",
+  "skill_type": "general",
+  "version_bumped": false,
+  "published_at": null,
+  "status": "pending_upload",
+  "change_summary": "[init] 首次入库——好莱坞/皮克斯级流程升级新增 skill",
+  "note": "当前 session 为 training 模式，不具备 workbench_upload_skill 工具。待正式工作 session 中执行上传。"
+}

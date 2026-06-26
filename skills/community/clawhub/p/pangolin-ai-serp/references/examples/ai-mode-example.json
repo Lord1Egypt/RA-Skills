@@ -1,0 +1,34 @@
+{
+  "success": true,
+  "task_id": "1768988520324-766a695d93b57aad",
+  "results_num": 1,
+  "ai_overview_count": 1,
+  "ai_overview": [
+    {
+      "content": [
+        "Quantum computing is a type of computation that uses quantum-mechanical phenomena such as superposition and entanglement to process information.",
+        "Unlike classical computers that use bits (0 or 1), quantum computers use quantum bits, or qubits, which can exist in multiple states simultaneously.",
+        "Key concepts include: superposition (a qubit can be in a combination of 0 and 1 states), entanglement (qubits can be correlated with each other), and quantum gates (operations that manipulate qubits).",
+        "Potential applications include cryptography, drug discovery, optimization problems, and machine learning acceleration."
+      ],
+      "references": [
+        {
+          "title": "Quantum Computing - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Quantum_computing",
+          "domain": "Wikipedia"
+        },
+        {
+          "title": "What Is Quantum Computing? - IBM",
+          "url": "https://www.ibm.com/topics/quantum-computing",
+          "domain": "IBM"
+        },
+        {
+          "title": "Quantum Computing Explained - MIT Technology Review",
+          "url": "https://www.technologyreview.com/2024/01/quantum-computing-explained/",
+          "domain": "MIT Technology Review"
+        }
+      ]
+    }
+  ],
+  "screenshot": "https://image.datasea.network/screenshots/example-quantum-computing-ai-mode.png"
+}

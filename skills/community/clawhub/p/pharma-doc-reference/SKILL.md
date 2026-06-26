@@ -1,35 +1,86 @@
 ---
-name: "Pharma Doc Reference"
-description: "医药行业文档知识参考库——Universal Task OS的领域负载物。提供行业文档清单、内容要求清单、范本槽位，由UTOS执行轴动态编排管线、内容轴按清单法/样本法组织产出。触发词：医药、制药、药企、医学事务、市场部、推广部、合规、PV、药物警戒、KOL、学术会议、竞品分析、医保、招标、DRG、临床研究、DA..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pharma-doc-reference"
-sourceUrl: "https://clawhub.ai/skills/pharma-doc-reference"
+name: pharma-doc-reference
+author: 王教成 Wang Jiaocheng (波动几何)
+description: 医药行业文档知识参考库——Universal Task OS的领域负载物。提供行业文档清单、内容要求清单、范本槽位，由UTOS执行轴动态编排管线、内容轴按清单法/样本法组织产出。触发词：医药、制药、药企、医学事务、市场部、推广部、合规、PV、药物警戒、KOL、学术会议、竞品分析、医保、招标、DRG、临床研究、DA、核心信息屋、Message House、ABP、品牌计划、准入、讲者、卫星会、CSR、ICSR、RMP、PSUR、医学写作、NDA、IND、CTA、BLA、ANDA、注册、法规、NMPA、FDA、GMP、QA、QC、供应链、生产、冷链、RWS、RWD、RWE、HTA、药物经济学、定价、谈判、科学拜访、客户分级、胜任力、培训、人才梯队、危机预案、跨部门协同、供应商管理、IIR、上市后研究、利益冲突、品牌视觉、入职培训、pharma、pharmaceutical。
 ---
 
-# Pharma Doc Reference
+# 医药行业文档知识参考库
 
-> 医药行业文档知识参考库——Universal Task OS的领域负载物。提供行业文档清单、内容要求清单、范本槽位，由UTOS执行轴动态编排管线、内容轴按清单法/样本法组织产出。触发词：医药、制药、药企、医学事务、市场部、推广部、合规、PV、药物警戒、KOL、学术会议、竞品分析、医保、招标、DRG、临床研究、DA...
+## 定位
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pharma-doc-reference`
-- **Source URL:** [https://clawhub.ai/skills/pharma-doc-reference](https://clawhub.ai/skills/pharma-doc-reference)
+本技能是 **Universal Task OS 的领域负载物仓库**，不包含任何执行框架。只提供医药行业的"是什么"和"长什么样"——执行全部委托UTOS。
 
-## Overview
+| 本技能提供 | UTOS消费方式 |
+|-----------|-------------|
+| 文档清单（有哪些文档） | 内容轴·清单法的成品目录 |
+| 内容要求（每种文档的组件槽位） | 内容轴·清单法的组件清单 |
+| 优秀范本（待企业填充） | 内容轴·样本法的样本 |
+| 文档依赖拓扑（文档间先后关系） | 执行轴·管线编排的依赖输入 |
 
+## 三层结构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pharma-doc-reference
 ```
+第一层：文档清单 + 依赖拓扑   →  references/document-catalog.md
+第二层：内容要求清单          →  references/content-requirements.md
+第三层：优秀范本库            →  references/exemplars.md
+```
+
+## 依赖声明
+
+本技能**强依赖** Universal Task OS (universal-task-os)。没有UTOS，本技能只有参考查阅能力，无法执行任何文档产出任务。
+
+**加载检查流程**（每次激活时执行）：
+
+1. 检测 `universal-task-os` 技能是否已安装
+2. **未安装** → 自动安装 `universal-task-os` 技能
+3. **安装成功** → 同时加载UTOS，按本技能"使用规则"执行
+4. **安装失败** → 降级为**只读参考模式**：
+   - ✅ 允许：查阅文档清单、内容要求、范本索引
+   - ❌ 拒绝：任何涉及文档产出、管线编排、内容生成的任务，并提示"需先安装 Universal Task OS"
+
+**任务模式判定**：
+
+| 任务类型 | 无UTOS | 有UTOS |
+|---------|--------|--------|
+| 查阅文档清单/要求/范本 | ✅ 只读参考 | ✅ 完整 |
+| 按清单/范本产出文档 | ❌ 拒绝 | ✅ UTOS编排执行 |
+| 依赖拓扑推导管线 | ❌ 拒绝 | ✅ UTOS执行轴 |
+| 合规检查点插入 | ❌ 拒绝 | ✅ UTOS守护单元 |
+
+## 使用规则
+
+1. **依赖检查**：激活时按上述流程检测并安装UTOS
+2. **首次加载**：读取 `references/document-catalog.md`，获取文档分类、依赖拓扑、UTOS元操作映射提示
+3. **按需深入**：确认目标文档类型后，读取 `references/content-requirements.md` 获取组件清单；如需样本法，读取 `references/exemplars.md` 获取范本
+4. **委托UTOS**：将文档清单作为清单法输入、范本作为样本法输入、依赖拓扑作为管线编排输入，交给UTOS执行轴+内容轴处理
+5. **企业填充**：范本槽位标注 `[待企业提供]` 的条目需企业补充脱敏真实范本后才能使用样本法；内容要求中标注 `[待补充]` 的字段需企业定义后才能完整使用清单法
+
+## 与UTOS的接口
+
+当UTOS处理医药领域任务时：
+
+- **Step 0 三轴判定**：医药任务通常为中等+结构化 → 执行轴+内容轴激活
+- **Step 1 领域校准**：医药=高规范性(R4)+高交互性(R3) → G权重高，I权重高，自治度偏低
+- **Step 2 内容轴**：清单法用本技能的content-requirements；样本法用本技能的exemplars
+- **Step 3 执行轴**：管线编排基于本技能的依赖拓扑自动推导元操作序列
+- **Step 4 交付**：G类守护单元自动插入合规检查点（超适应症、数据引用、法规红线）
+
+## 文档域概览
+
+按医药价值链组织，共11域93种文档类型：
+
+| 域 | 文档数 | 典型文档 |
+|----|--------|---------|
+| D1 市场情报 | 8 | 竞品监测报告、PESTEL分析、政策趋势预判 |
+| D2 战略规划 | 11 | ABP九宫格、SWOT、STRAP、品牌差异化定位、品牌视觉规范 |
+| D3 市场准入 | 4 | 药物经济学模型、定价策略、医保谈判、准入活动指南 |
+| D4 证据与医学 | 10 | 医学策略、RWS设计、RWE报告、HTA证据包、IIR管理、上市后追踪 |
+| D5 内容与品牌 | 6 | Message House、DA故事线、内容日历、PPT |
+| D6 KOL与利益相关方 | 7 | KOL分级矩阵、科学拜访、学术合作、KOL合同、讲者管理、利益冲突声明 |
+| D7 活动与推广 | 11 | 活动方案、学术会议参展、会议SOP、预算表、费用报销、服务供应商管理 |
+| D8 注册与法规 | 9 | IND资料包、NDA/BLA统筹、CTD模块、审评应答、变更申报 |
+| D9 供应链与生产 | 8 | 生产供应商评估、GMP自检、偏差CAPA、APR/PQR |
+| D10 合规与药物警戒 | 11 | ICSR报告、RMP、PSUR/DSUR、审核SOP、迎检准备包、费用合规审查 |
+| D11 组织与协同 | 8 | 医学问答库、培训体系、入职培训包、胜任力模型、危机预案、跨部门协同 |
+
+完整清单见 `references/document-catalog.md`。

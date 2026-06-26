@@ -1,0 +1,1022 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": ".pen design format",
+  "required": ["version", "children"],
+  "type": "object",
+  "properties": {
+    "version": { "type": "string", "const": "2.8" },
+    "fonts": {
+      "_PRIVATE": true,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "url": { "type": "string" },
+          "style": {
+            "type": "string",
+            "enum": ["normal", "italic"]
+          },
+          "weight": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "array",
+                "items": { "type": "number" },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            ]
+          },
+          "axes": {
+            "type": "array",
+            "description": "Variable font axes with their supported ranges.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tag": {
+                  "type": "string",
+                  "description": "Four-letter axis tag (e.g., 'wght', 'wdth', 'opsz', 'slnt')."
+                },
+                "start": { "type": "number" },
+                "end": { "type": "number" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "themes": {
+      "type": "object",
+      "patternProperties": {
+        "[^:]+": {
+          "description": "Each key is a theme axis (e.g. 'device'), and the value is an array of possible choices for that axis (e.g. ['phone', 'tablet', 'desktop']).",
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        }
+      }
+    },
+    "imports": {
+      "_PRIVATE": true,
+      "type": "object",
+      "additionalProperties": {
+        "description": "Each value is a path to an imported .pen file, from which variables and reusable components are made available in the current file. The key is a short alias for the imported file.",
+        "type": "string"
+      }
+    },
+    "variables": {
+      "type": "object",
+      "patternProperties": {
+        "[^:]+": {
+          "type": "object",
+          "oneOf": [
+            {
+              "required": ["type", "value"],
+              "properties": {
+                "type": { "const": "boolean" },
+                "value": {
+                  "oneOf": [
+                    { "$ref": "#/$defs/booleanOrVariable" },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": ["value"],
+                        "properties": {
+                          "value": { "$ref": "#/$defs/booleanOrVariable" },
+                          "theme": { "$ref": "#/$defs/theme" }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "required": ["type", "value"],
+              "properties": {
+                "type": { "const": "color" },
+                "value": {
+                  "oneOf": [
+                    { "$ref": "#/$defs/colorOrVariable" },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": ["value"],
+                        "properties": {
+                          "value": { "$ref": "#/$defs/colorOrVariable" },
+                          "theme": { "$ref": "#/$defs/theme" }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "required": ["type", "value"],
+              "properties": {
+                "type": { "const": "number" },
+                "value": {
+                  "oneOf": [
+                    { "$ref": "#/$defs/numberOrVariable" },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": ["value"],
+                        "properties": {
+                          "value": { "$ref": "#/$defs/numberOrVariable" },
+                          "theme": { "$ref": "#/$defs/theme" }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "required": ["type", "value"],
+              "properties": {
+                "type": { "const": "string" },
+                "value": {
+                  "oneOf": [
+                    { "$ref": "#/$defs/stringOrVariable" },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": ["value"],
+                        "properties": {
+                          "value": { "$ref": "#/$defs/stringOrVariable" },
+                          "theme": { "$ref": "#/$defs/theme" }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "children": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "$ref": "#/$defs/frame" },
+          { "$ref": "#/$defs/group" },
+          { "$ref": "#/$defs/rectangle" },
+          { "$ref": "#/$defs/ellipse" },
+          { "$ref": "#/$defs/line" },
+          { "$ref": "#/$defs/polygon" },
+          { "$ref": "#/$defs/path" },
+          { "$ref": "#/$defs/text" },
+          {
+            "_PRIVATE": true,
+            "$ref": "#/$defs/connection"
+          },
+          { "$ref": "#/$defs/note" },
+          { "$ref": "#/$defs/context" },
+          { "$ref": "#/$defs/prompt" },
+          { "$ref": "#/$defs/iconFont" },
+          { "$ref": "#/$defs/ref" }
+        ]
+      }
+    }
+  },
+
+  "$defs": {
+    "theme": {
+      "description": "Each key must be an existing theme axis, and each value must be one of the possible values for that axis. E.g. { 'device': 'phone' }",
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "variable": {
+      "description": "To bind a variable to a property, set the property to the dollar-prefixed name of the variable!",
+      "type": "string",
+      "pattern": "^\\$"
+    },
+    "numberOrVariable": {
+      "oneOf": [{ "type": "number" }, { "$ref": "#/$defs/variable" }]
+    },
+    "colorOrVariable": {
+      "oneOf": [{ "$ref": "#/$defs/color" }, { "$ref": "#/$defs/variable" }]
+    },
+    "booleanOrVariable": {
+      "oneOf": [{ "type": "boolean" }, { "$ref": "#/$defs/variable" }]
+    },
+    "stringOrVariable": {
+      "oneOf": [{ "type": "string" }, { "$ref": "#/$defs/variable" }]
+    },
+    "layout": {
+      "type": "object",
+      "properties": {
+        "layout": {
+          "description": "Enable flex layout. None means all children are absolutely positioned and will not be affected by layout properties. Frames default to horizontal, groups default to none.",
+          "enum": ["none", "vertical", "horizontal"]
+        },
+        "gap": {
+          "description": "The gap between children in the main axis direction. Defaults to 0.",
+          "$ref": "#/$defs/numberOrVariable"
+        },
+        "layoutIncludeStroke": { "type": "boolean" },
+        "padding": {
+          "description": "The Inside padding along the edge of the container",
+          "oneOf": [
+            {
+              "$ref": "#/$defs/numberOrVariable",
+              "description": "The inside padding to all sides"
+            },
+            {
+              "type": "array",
+              "description": "The inside horizontal and vertical padding",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": { "$ref": "#/$defs/numberOrVariable" }
+            },
+            {
+              "type": "array",
+              "description": "Top, Right, Bottom, Left padding",
+              "minItems": 4,
+              "maxItems": 4,
+              "items": { "$ref": "#/$defs/numberOrVariable" }
+            }
+          ]
+        },
+        "justifyContent": {
+          "description": "Control the justify alignment of the children along the main axis. Defaults to 'start'.",
+          "enum": ["start", "center", "end", "space_between", "space_around"]
+        },
+        "alignItems": {
+          "description": "Control the alignment of children along the cross axis. Defaults to 'start'.",
+          "enum": ["start", "center", "end"]
+        }
+      }
+    },
+
+    "sizingBehavior": {
+      "type": "string",
+      "description": "SizingBehavior controls the dynamic layout size.\n- fit_content: Use the combined size of all children for the container size. Fallback is used when there are no children.\n- fill_container: Use the parent size for the container size. Fallback is used when the parent has no layout.\nOptional number in parentheses (e.g., 'fit_content(100)') specifies the fallback size."
+    },
+
+    "position": {
+      "type": "object",
+      "description": "Position is relative to the parent object's position. X increases rightwards, Y increases downwards.\nIMPORTANT: x and y are IGNORED when parent uses flexbox layout.",
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" }
+      }
+    },
+
+    "size": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "oneOf": [
+            { "$ref": "#/$defs/numberOrVariable" },
+            { "$ref": "#/$defs/sizingBehavior" }
+          ]
+        },
+        "height": {
+          "oneOf": [
+            { "$ref": "#/$defs/numberOrVariable" },
+            { "$ref": "#/$defs/sizingBehavior" }
+          ]
+        }
+      }
+    },
+
+    "canHaveRotation": {
+      "type": "object",
+      "properties": {
+        "rotation": {
+          "description": "Rotation is represented in degrees, measured counter-clockwise.",
+          "$ref": "#/$defs/numberOrVariable"
+        }
+      }
+    },
+
+    "color": {
+      "description": "Colors can be 8-digit RGBA hex strings (e.g. #AABBCCDD), 6-digit RGB hex strings (e.g. #AABBCC) or 3-digit RGB hex strings (e.g. #ABC which means #AABBCC).",
+      "type": "string",
+      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+    },
+
+    "blendMode": {
+      "enum": [
+        "normal",
+        "darken",
+        "multiply",
+        "linearBurn",
+        "colorBurn",
+        "light",
+        "screen",
+        "linearDodge",
+        "colorDodge",
+        "overlay",
+        "softLight",
+        "hardLight",
+        "difference",
+        "exclusion",
+        "hue",
+        "saturation",
+        "color",
+        "luminosity"
+      ]
+    },
+
+    "fill": {
+      "description": "A fill is either a solid color, a gradient or an image. Each fill can have its own blend mode.",
+      "oneOf": [
+        { "$ref": "#/$defs/colorOrVariable" },
+        {
+          "type": "object",
+          "required": ["type", "color"],
+          "properties": {
+            "type": { "const": "color" },
+            "enabled": { "$ref": "#/$defs/booleanOrVariable" },
+            "blendMode": { "$ref": "#/$defs/blendMode" },
+
+            "color": { "$ref": "#/$defs/colorOrVariable" }
+          }
+        },
+        {
+          "title": "Gradient",
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "gradient" },
+            "enabled": { "$ref": "#/$defs/booleanOrVariable" },
+            "blendMode": { "$ref": "#/$defs/blendMode" },
+            "gradientType": { "enum": ["linear", "radial", "angular"] },
+            "opacity": {
+              "$ref": "#/$defs/numberOrVariable",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "center": {
+              "description": "Normalized to bounding box (default: 0.5,0.5).",
+              "$ref": "#/$defs/position"
+            },
+            "size": {
+              "description": "Normalized to bounding box (default: 1,1). Linear: height sets gradient length, width is ignored. Radial/Angular: sets ellipse diameters.",
+              "properties": {
+                "width": { "$ref": "#/$defs/numberOrVariable" },
+                "height": { "$ref": "#/$defs/numberOrVariable" }
+              }
+            },
+            "rotation": {
+              "description": "Rotation in degrees, counterclockwise (0° up, 90° left, 180° down).",
+              "$ref": "#/$defs/numberOrVariable"
+            },
+            "colors": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["color", "position"],
+                "properties": {
+                  "color": { "$ref": "#/$defs/colorOrVariable" },
+                  "position": {
+                    "$ref": "#/$defs/numberOrVariable",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "description": "Image fill. Url needs to be a relative from the pen file, for example `../../file.png` or `./image.jpg`",
+          "required": ["type", "url"],
+          "properties": {
+            "type": { "const": "image" },
+            "enabled": { "$ref": "#/$defs/booleanOrVariable" },
+            "blendMode": { "$ref": "#/$defs/blendMode" },
+            "opacity": {
+              "$ref": "#/$defs/numberOrVariable",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "url": { "type": "string" },
+            "mode": { "enum": ["stretch", "fill", "fit"] }
+          }
+        },
+        {
+          "type": "object",
+          "description": "Grid of colors with bezier-interpolated edges. Row-major order. Adjust the points and handles to create complex gradients. Keep the points on the edges at their default position.",
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "mesh_gradient" },
+            "enabled": { "$ref": "#/$defs/booleanOrVariable" },
+            "blendMode": { "$ref": "#/$defs/blendMode" },
+            "opacity": {
+              "$ref": "#/$defs/numberOrVariable",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "columns": { "type": "number" },
+            "rows": { "type": "number" },
+            "colors": {
+              "description": "Color per vertex.",
+              "type": "array",
+              "items": { "$ref": "#/$defs/colorOrVariable" }
+            },
+            "points": {
+              "description": "columns * rows points in [0,1] normalized coordinates.",
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "description": "Position with auto-generated handles.",
+                    "type": "array",
+                    "items": { "type": "number" },
+                    "minItems": 2,
+                    "maxItems": 2
+                  },
+                  {
+                    "description": "Position with optional bezier handles (relative offsets). Omitted handles are auto-generated.",
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "type": "array",
+                        "items": { "type": "number" },
+                        "minItems": 2,
+                        "maxItems": 2
+                      },
+                      "leftHandle": {
+                        "type": "array",
+                        "items": { "type": "number" },
+                        "minItems": 2,
+                        "maxItems": 2
+                      },
+                      "rightHandle": {
+                        "type": "array",
+                        "items": { "type": "number" },
+                        "minItems": 2,
+                        "maxItems": 2
+                      },
+                      "topHandle": {
+                        "type": "array",
+                        "items": { "type": "number" },
+                        "minItems": 2,
+                        "maxItems": 2
+                      },
+                      "bottomHandle": {
+                        "type": "array",
+                        "items": { "type": "number" },
+                        "minItems": 2,
+                        "maxItems": 2
+                      }
+                    },
+                    "required": ["position"]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "fills": {
+      "description": "An object can have either a single fill or a list of fills, which are drawn on top of each other in list order.",
+      "oneOf": [
+        { "$ref": "#/$defs/fill" },
+        { "type": "array", "items": { "$ref": "#/$defs/fill" } }
+      ]
+    },
+
+    "stroke": {
+      "type": "object",
+      "properties": {
+        "align": {
+          "enum": ["inside", "center", "outside"]
+        },
+        "thickness": {
+          "oneOf": [
+            { "$ref": "#/$defs/numberOrVariable" },
+            {
+              "type": "object",
+              "properties": {
+                "top": { "$ref": "#/$defs/numberOrVariable" },
+                "right": { "$ref": "#/$defs/numberOrVariable" },
+                "bottom": { "$ref": "#/$defs/numberOrVariable" },
+                "left": { "$ref": "#/$defs/numberOrVariable" }
+              }
+            }
+          ]
+        },
+        "join": { "enum": ["miter", "bevel", "round"] },
+        "miterAngle": { "$ref": "#/$defs/numberOrVariable" },
+        "cap": { "enum": ["none", "round", "square"] },
+        "dashPattern": { "type": "array", "items": { "type": "number" } },
+        "fill": { "$ref": "#/$defs/fills" }
+      }
+    },
+
+    "effect": {
+      "oneOf": [
+        {
+          "description": "'blur' type blurs the entire layer content",
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "enabled": { "$ref": "#/$defs/booleanOrVariable" },
+            "type": { "const": "blur" },
+            "radius": { "$ref": "#/$defs/numberOrVariable" }
+          }
+        },
+        {
+          "description": "'background_blur' type blurs the background content behind the layer",
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "enabled": { "$ref": "#/$defs/booleanOrVariable" },
+            "type": { "const": "background_blur" },
+            "radius": { "$ref": "#/$defs/numberOrVariable" }
+          }
+        },
+        {
+          "title": "Shadow Effect",
+          "description": "The drop shadow effect can be an inner or outer shadow, with adjustable offset, spread, blur, color and blend mode.",
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "shadow" },
+            "enabled": { "$ref": "#/$defs/booleanOrVariable" },
+            "shadowType": { "enum": ["inner", "outer"] },
+            "offset": {
+              "type": "object",
+              "required": ["x", "y"],
+              "properties": {
+                "x": { "$ref": "#/$defs/numberOrVariable" },
+                "y": { "$ref": "#/$defs/numberOrVariable" }
+              }
+            },
+            "spread": { "$ref": "#/$defs/numberOrVariable" },
+            "blur": { "$ref": "#/$defs/numberOrVariable", "minimum": 0 },
+            "color": { "$ref": "#/$defs/colorOrVariable" },
+            "blendMode": { "$ref": "#/$defs/blendMode" }
+          }
+        }
+      ]
+    },
+
+    "effects": {
+      "description": "An object can have either a single effect or a list of effects, each of which are applied on the result of the previous effect in list order.",
+      "oneOf": [
+        { "$ref": "#/$defs/effect" },
+        { "type": "array", "items": { "$ref": "#/$defs/effect" } }
+      ]
+    },
+
+    "strokes": {
+      "description": "An object can have either a single stroke or a list of strokes, which are drawn on top of fills.",
+      "oneOf": [
+        { "$ref": "#/$defs/stroke" },
+        { "type": "array", "items": { "$ref": "#/$defs/stroke" } }
+      ]
+    },
+
+    "canHaveGraphics": {
+      "type": "object",
+      "properties": {
+        "stroke": { "$ref": "#/$defs/strokes" },
+        "fill": { "$ref": "#/$defs/fills" }
+      },
+      "$ref": "#/$defs/canHaveEffects"
+    },
+
+    "canHaveEffects": {
+      "type": "object",
+      "properties": {
+        "effect": { "$ref": "#/$defs/effects" }
+      }
+    },
+
+    "entity": {
+      "description": "Entities have unique identifiers.",
+      "required": ["id"],
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[^/]+$",
+          "description": "A unique string that MUST NOT contain slash (/) characters. If omitted, a unique ID will be generated automatically."
+        },
+        "name": {
+          "type": "string",
+          "description": "Optional name for the entity, used for display and identification purposes"
+        },
+        "context": {
+          "type": "string",
+          "description": "Optional context information about this object."
+        },
+        "reusable": {
+          "description": "Objects are not reusable by default. If an object is made reusable by setting this property to `true`, the object can be duplicated using `ref` objects.",
+          "type": "boolean"
+        },
+        "theme": { "$ref": "#/$defs/theme" },
+        "enabled": { "$ref": "#/$defs/booleanOrVariable" },
+        "opacity": {
+          "$ref": "#/$defs/numberOrVariable",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "flipX": { "$ref": "#/$defs/booleanOrVariable" },
+        "flipY": { "$ref": "#/$defs/booleanOrVariable" },
+        "metadata": {
+          "type": "object",
+          "required": ["type"],
+          "additionalProperties": true,
+          "properties": {
+            "type": { "type": "string" }
+          }
+        }
+      },
+      "allOf": [
+        { "$ref": "#/$defs/position" },
+        { "$ref": "#/$defs/canHaveRotation" }
+      ]
+    },
+
+    "rectangleish": {
+      "type": "object",
+      "properties": {
+        "cornerRadius": {
+          "oneOf": [
+            { "$ref": "#/$defs/numberOrVariable" },
+            {
+              "type": "array",
+              "minItems": 4,
+              "maxItems": 4,
+              "items": { "$ref": "#/$defs/numberOrVariable" }
+            }
+          ]
+        }
+      },
+      "allOf": [
+        { "$ref": "#/$defs/entity" },
+        { "$ref": "#/$defs/size" },
+        { "$ref": "#/$defs/canHaveGraphics" }
+      ]
+    },
+
+    "rectangle": {
+      "title": "Rectangle",
+      "description": "A rectangle is defined by its position and size. The position corresponds to the top-left corner.",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "rectangle" }
+      },
+      "allOf": [{ "$ref": "#/$defs/rectangleish" }]
+    },
+
+    "ellipse": {
+      "description": "An ellipse is defined by its bounding rectangle's position and size.",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "ellipse" },
+        "innerRadius": {
+          "description": "Inner-to-outer radius ratio for ring shapes. 0 = solid, 1 = fully hollow. Default: 0.",
+          "$ref": "#/$defs/numberOrVariable"
+        },
+        "startAngle": {
+          "description": "Arc start angle in degrees, counter-clockwise from the right. Default: 0.",
+          "$ref": "#/$defs/numberOrVariable"
+        },
+        "sweepAngle": {
+          "description": "Arc length in degrees from startAngle. Positive = counter-clockwise, negative = clockwise. Range: -360 to 360. Default: 360 (full ellipse).",
+          "$ref": "#/$defs/numberOrVariable"
+        }
+      },
+      "allOf": [
+        { "$ref": "#/$defs/entity" },
+        { "$ref": "#/$defs/size" },
+        { "$ref": "#/$defs/canHaveGraphics" }
+      ]
+    },
+
+    "line": {
+      "description": "A line is defined by its bounding rectangle's position and size.",
+      "type": "object",
+      "required": ["type"],
+      "properties": { "type": { "const": "line" } },
+      "allOf": [
+        { "$ref": "#/$defs/entity" },
+        { "$ref": "#/$defs/size" },
+        { "$ref": "#/$defs/canHaveGraphics" }
+      ]
+    },
+
+    "polygon": {
+      "description": "A regular polygon is defined by its bounding rectangle's position and size.",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "polygon" },
+        "polygonCount": { "$ref": "#/$defs/numberOrVariable" },
+        "cornerRadius": { "$ref": "#/$defs/numberOrVariable" }
+      },
+      "allOf": [
+        { "$ref": "#/$defs/entity" },
+        { "$ref": "#/$defs/size" },
+        { "$ref": "#/$defs/canHaveGraphics" }
+      ]
+    },
+
+    "path": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "path" }
+      },
+      "allOf": [
+        { "$ref": "#/$defs/entity" },
+        { "$ref": "#/$defs/size" },
+        { "$ref": "#/$defs/canHaveGraphics" },
+        {
+          "type": "object",
+          "properties": {
+            "fillRule": {
+              "description": "fillRule is used to determine which parts of the path are considered inside the shape to be filled. Default is 'nonzero'.",
+              "enum": ["nonzero", "evenodd"]
+            },
+            "geometry": {
+              "description": "SVG Path",
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+
+    "textStyle": {
+      "type": "object",
+      "properties": {
+        "fontFamily": { "$ref": "#/$defs/stringOrVariable" },
+        "fontSize": { "$ref": "#/$defs/numberOrVariable" },
+        "fontWeight": { "$ref": "#/$defs/stringOrVariable" },
+        "letterSpacing": { "$ref": "#/$defs/numberOrVariable" },
+        "fontStyle": { "$ref": "#/$defs/stringOrVariable" },
+        "underline": { "$ref": "#/$defs/booleanOrVariable" },
+        "lineHeight": {
+          "description": "A multiplier that gets applied to the font size to determine spacing between lines. If not specified, uses the font's built-in line height.",
+          "$ref": "#/$defs/numberOrVariable"
+        },
+        "textAlign": { "enum": ["left", "center", "right", "justify"] },
+        "textAlignVertical": { "enum": ["top", "middle", "bottom"] },
+        "strikethrough": { "$ref": "#/$defs/booleanOrVariable" },
+        "href": { "type": "string" }
+      }
+    },
+
+    "textContent": {
+      "description": "Text content can be either a plain string, or an array of strings styled individually.",
+      "oneOf": [
+        { "$ref": "#/$defs/stringOrVariable" },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "content": { "type": "string" }
+            },
+            "$ref": "#/$defs/textStyle"
+          }
+        }
+      ]
+    },
+
+    "text": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "text" },
+        "content": { "$ref": "#/$defs/textContent" },
+        "textGrowth": {
+          "description": "textGrowth controls how the text box dimensions behave. It must be set before width or height can be used — without textGrowth, the width and height properties are ignored.\n'auto': The text box automatically grows to fit the text content. Text does not wrap. Width and height adjust dynamically.\n'fixed-width': The width is fixed and text wraps within it. The height grows automatically to fit the wrapped content.\n'fixed-width-height': Both width and height are fixed. Text wraps and may be overflow if it exceeds the bounds.\nIMPORTANT: Never set width or height without also setting textGrowth. If you want to control the size of a text box, you must set textGrowth first.",
+          "enum": ["auto", "fixed-width", "fixed-width-height"]
+        }
+      },
+      "allOf": [
+        { "$ref": "#/$defs/entity" },
+        { "$ref": "#/$defs/size" },
+        { "$ref": "#/$defs/canHaveGraphics" },
+        { "$ref": "#/$defs/textStyle" }
+      ]
+    },
+
+    "child": {
+      "oneOf": [
+        { "$ref": "#/$defs/frame" },
+        { "$ref": "#/$defs/group" },
+        { "$ref": "#/$defs/rectangle" },
+        { "$ref": "#/$defs/ellipse" },
+        { "$ref": "#/$defs/line" },
+        { "$ref": "#/$defs/path" },
+        { "$ref": "#/$defs/polygon" },
+        { "$ref": "#/$defs/text" },
+        { "$ref": "#/$defs/note" },
+        { "$ref": "#/$defs/prompt" },
+        { "$ref": "#/$defs/context" },
+        { "$ref": "#/$defs/iconFont" },
+        { "$ref": "#/$defs/ref" }
+      ]
+    },
+
+    "canHaveChildren": {
+      "type": "object",
+      "properties": {
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/child" }
+        }
+      }
+    },
+
+    "frame": {
+      "title": "Frame",
+      "description": "A frame is a rectangle that can have children.",
+      "required": ["type"],
+      "type": "object",
+      "properties": {
+        "type": { "const": "frame" },
+        "clip": {
+          "description": "Visually clip content that overflows the frame bounds. Default is false.",
+          "$ref": "#/$defs/booleanOrVariable"
+        },
+        "placeholder": { "type": "boolean" },
+        "slot": {
+          "description": "The presence of this property indicates that this frame is a \"slot\" - which means that it is intended be customized with children in instances of the parent component. Each element of the array is an ID of a \"recommended\" reusable component, one which fits semantically as a child here (e.g. inside a menu bar, the content slot would recommend IDs of various menu item components).",
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "allOf": [
+        { "$ref": "#/$defs/rectangleish" },
+        { "$ref": "#/$defs/canHaveChildren" },
+        { "$ref": "#/$defs/layout" }
+      ]
+    },
+
+    "iconFont": {
+      "title": "IconFont",
+      "description": "Icon from a font",
+      "required": ["type"],
+      "type": "object",
+      "properties": {
+        "type": { "const": "icon_font" },
+        "iconFontName": {
+          "description": "Name of the icon in the icon font",
+          "$ref": "#/$defs/stringOrVariable"
+        },
+        "iconFontFamily": {
+          "description": "Icon font to use. Valid fonts are 'lucide', 'feather', 'Material Symbols Outlined', 'Material Symbols Rounded', 'Material Symbols Sharp', 'phosphor'",
+          "$ref": "#/$defs/stringOrVariable"
+        },
+        "weight": {
+          "description": "Variable font weight, only valid for icon fonts with variable weight. Values from 100 to 700.",
+          "$ref": "#/$defs/numberOrVariable"
+        },
+        "fill": { "$ref": "#/$defs/fills" }
+      },
+      "allOf": [
+        { "$ref": "#/$defs/entity" },
+        { "$ref": "#/$defs/size" },
+        { "$ref": "#/$defs/canHaveEffects" }
+      ]
+    },
+
+    "group": {
+      "title": "Group",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "group" },
+        "width": { "$ref": "#/$defs/sizingBehavior" },
+        "height": { "$ref": "#/$defs/sizingBehavior" }
+      },
+      "allOf": [
+        { "$ref": "#/$defs/entity" },
+        { "$ref": "#/$defs/canHaveChildren" },
+        { "$ref": "#/$defs/canHaveEffects" },
+        { "$ref": "#/$defs/layout" }
+      ]
+    },
+
+    "connectionAnchor": {
+      "_PRIVATE": true,
+      "enum": ["center", "top", "left", "bottom", "right"]
+    },
+
+    "connection": {
+      "_PRIVATE": true,
+      "description": "Objects can be connected with connections.",
+      "type": "object",
+      "required": ["type", "source", "target"],
+      "properties": {
+        "type": { "const": "connection" },
+        "source": { "$ref": "#/$defs/connectionEndpoint" },
+        "target": { "$ref": "#/$defs/connectionEndpoint" },
+        "stroke": { "$ref": "#/$defs/stroke" }
+      },
+      "allOf": [{ "$ref": "#/$defs/entity" }]
+    },
+
+    "connectionEndpoint": {
+      "_PRIVATE": true,
+      "description": "Connections use a slash-separated path of object IDs to specify their endpoints.",
+      "type": "object",
+      "required": ["path", "anchor"],
+      "properties": {
+        "path": { "$ref": "#/$defs/idPath" },
+        "anchor": { "$ref": "#/$defs/connectionAnchor" }
+      }
+    },
+
+    "idPath": {
+      "type": "string",
+      "pattern": "^[^/]+(/[^/]+)*$"
+    },
+
+    "note": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "note" },
+        "content": { "$ref": "#/$defs/textContent" }
+      },
+      "allOf": [
+        { "$ref": "#/$defs/entity" },
+        { "$ref": "#/$defs/size" },
+        { "$ref": "#/$defs/textStyle" }
+      ]
+    },
+
+    "prompt": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "prompt" },
+        "content": { "$ref": "#/$defs/textContent" },
+        "model": { "$ref": "#/$defs/stringOrVariable" }
+      },
+      "allOf": [
+        { "$ref": "#/$defs/entity" },
+        { "$ref": "#/$defs/size" },
+        { "$ref": "#/$defs/textStyle" }
+      ]
+    },
+
+    "context": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "context" },
+        "content": { "$ref": "#/$defs/textContent" }
+      },
+      "allOf": [
+        { "$ref": "#/$defs/entity" },
+        { "$ref": "#/$defs/size" },
+        { "$ref": "#/$defs/textStyle" }
+      ]
+    },
+
+    "ref": {
+      "description": "References allow reusing other objects in different places.",
+      "type": "object",
+      "required": ["type", "ref"],
+      "properties": {
+        "type": { "const": "ref" },
+        "ref": {
+          "description": "The `ref` property must be another object's ID.",
+          "type": "string",
+          "pattern": "^[^/]+$"
+        },
+        "descendants": {
+          "description": "This can be used to customize the properties of descendant objects except the `children` property.",
+          "type": "object",
+          "propertyNames": {
+            "description": "Each key is an ID path pointing to a descendant object.",
+            "$ref": "#/$defs/idPath"
+          },
+          "additionalProperties": {
+            "description": "Descendant objects can be customized in two manners:\n- Property overrides: only the customized properties are present with their new values. In this case, the `id`, `type` and `children` properties must not be specified!\n- Object replacement: in this case, this object must be a completely new node tree, that will replace the original descendant of the referenced component. This is useful for adding custom content to instances of container-type components (cards, windows, panels, etc).",
+            "type": "object"
+          }
+        }
+      },
+      "additionalProperties": true,
+      "allOf": [{ "$ref": "#/$defs/entity" }]
+    }
+  }
+}

@@ -1,0 +1,88 @@
+---
+name: pollinations-sketch-note
+description: 生成手绘风格知识卡片（自动搜索总结）
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🎨",
+        "requires":
+          {
+            "bins": ["python3", "curl"],
+            "env": ["POLLINATIONS_API_KEY", "TAVILY_API_KEY"],
+          },
+        "primaryEnv": "POLLINATIONS_API_KEY",
+      },
+  }
+---
+
+# Pollinations Sketch Note
+
+生成手绘风格知识卡片，自动搜索主题信息并总结，合成图片。
+
+## 功能特点
+
+- 🔍 **自动搜索**：使用 Tavily API 搜索主题信息
+- 📝 **智能总结**：压缩到 180-200 字
+- 🎨 **3 种风格**：极简风、可爱插画风、赛博朋克风（随机轮换）
+- 📐 **固定尺寸**：804×440 横版
+- ✍️ **署名**：sk-openclaw + 日期时间
+
+## 环境配置
+
+使用前需要配置以下环境变量：
+
+```bash
+# 在 ~/.zshrc 中添加：
+export POLLINATIONS_API_KEY="your-pollinations-api-key"
+export TAVILY_API_KEY="your-tavily-api-key"
+
+# 然后运行：
+source ~/.zshrc
+```
+
+## 使用方法
+
+```bash
+# 基础用法
+python3 {baseDir}/scripts/generate.py --theme "猫"
+
+# 指定输出路径
+python3 {baseDir}/scripts/generate.py --theme "咖啡" --output "~/Pictures/coffee_note.png"
+
+# 自定义文字（不搜索）
+python3 {baseDir}/scripts/generate.py --theme "猫" --detail "自定义的详细介绍文字..."
+```
+
+## 触发方式
+
+在对话中说：
+- "生成关于 XXX 的图片"
+- "画一个 XXX 的知识卡片"
+- "用文生图生成 XXX"
+
+## 输出
+
+- `*.png` 图片（804×440）
+- 自动发送到对话
+
+## 🎨 3 种风格（随机轮换）
+
+1. 🎨 **极简干净背景** - 柔和水彩渐变、大面积空白、简洁手绘形状
+2. 🐶 **可爱插画风** - 龙虾小狗 OpenClaw 吉祥物、治愈系卡通、黑板文字区域
+3. 🌆 **赛博朋克 AI 涂鸦广告牌** - 霓虹灯、二进制代码涂鸦、赛博都市夜景
+
+## API 配置
+
+| 项目 | 值 |
+|------|-----|
+| **Pollinations API** | `https://gen.pollinations.ai/image/{prompt}` |
+| **默认模型** | `flux` |
+| **尺寸** | 804×440 |
+| **Tavily API** | 用于搜索主题信息 |
+
+## 文字结构
+
+- **标题**：用户输入的 XXX（32px）
+- **详情**：180-200 字（18px，每行 24 字）
+- **署名**：sk-openclaw · MM-DD HH:mm（10px，右下角）

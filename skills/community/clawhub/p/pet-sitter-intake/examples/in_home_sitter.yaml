@@ -1,0 +1,27 @@
+# Example config for in-home pet sitting
+# Usage: python scripts/generate_form.py --config examples/in_home_sitter.yaml
+
+business_name: "Home Sweet Home Pet Sitting"
+sitter_name: "Sarah Chen"
+services: "In-Home Pet Sitting, Overnight Stays, Drop-in Visits, House Sitting"
+location: "Seattle, WA"
+contact: "sarah@homesweethomepets.com | (206) 555-PETS"
+
+# Form settings
+service_type: general         # Full intake form with all sections
+num_pets: 2                   # Many clients have multiple pets
+fillable: true
+include_home_access: true     # Critical for in-home sitting
+
+# Output
+output: "screenshots/home_sweet_home_intake.pdf"
+
+# Branding
+theme: lavender               # Warm, welcoming feel
+
+# Custom colors (optional - uncomment to override theme)
+# theme: custom
+# colors:
+#   primary: "#E8DFF5"
+#   primary_dark: "#7B68A6"
+#   accent: "#F5C6AA"

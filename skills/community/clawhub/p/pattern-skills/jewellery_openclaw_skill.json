@@ -1,0 +1,187 @@
+{
+  "skill_name": "pattern_jewellery_vertex_automation",
+  "version": "1.2.0",
+  "description": "Automates jewellery product marketing using Google Vertex AI (Gemini for text, Imagen for visuals) and stores final assets in Google Drive. Enhances images, generates lifestyle/product visuals, creates SEO content, and organizes returning final unified assets.",
+  
+  "pattern_jewellery_specs": {
+    "intricate_design_focus": true,
+    "high_detail_textures": true,
+    "fusion_aesthetic": "traditional-modern",
+    "target_market": "Gulf luxury"
+  },
+
+  "input_schema": {
+    "product_image": {
+      "type": "string",
+      "format": "url_or_base64",
+      "required": true,
+      "description": "Raw product photograph from studio shoot"
+    },
+    "product_details": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "name":        { "type": "string", "example": "Diamond Blue Sapphire Ring" },
+        "sku":         { "type": "string", "example": "R4389" },
+        "category":    { "type": "string", "example": "rings" },
+        "material":    { "type": "string", "example": "18K white gold" },
+        "price_now":   { "type": "number", "example": 4455 },
+        "description": { "type": "string", "example": "Oval blue sapphire centrepiece with double diamond halo" }
+      }
+    }
+  },
+
+  "output_schema": {
+    "model_image_url":   { "type": "string", "description": "URL of generated lifestyle model image" },
+    "product_image_url": { "type": "string", "description": "URL of generated premium product-only image" },
+    "caption":           { "type": "string", "description": "SEO-optimized social media caption from Gemini" },
+    "hashtags":          { "type": "array", "items": { "type": "string" } },
+    "drive_link":        { "type": "string", "description": "Google Drive folder URL containing all generated assets" }
+  },
+
+  "tools": [
+    {
+      "tool_name": "gemini_llm",
+      "description": "Google Vertex AI Gemini 1.5 Pro for prompt generation and social content creation",
+      "api_endpoint": "https://us-central1-aiplatform.googleapis.com/v1/projects/{project_id}/locations/us-central1/publishers/google/models/gemini-1.5-pro:generateContent",
+      "auth_method": "bearer_token",
+      "auth_header": "Authorization",
+      "model": "gemini-1.5-pro",
+      "functions": [
+        {
+          "name": "generate_image_prompt",
+          "description": "Generate optimized Imagen prompts for model and product visuals",
+          "max_tokens": 300,
+          "input_schema": {
+            "image_url": {"type": "string"},
+            "product_details": {
+              "type": "object",
+              "fields": ["name", "material", "description"]
+            }
+          },
+          "output_schema": {
+            "model_prompt": { "type": "string", "max_tokens": 120 },
+            "product_prompt": { "type": "string", "max_tokens": 120 }
+          },
+          "response_format": "json"
+        },
+        {
+          "name": "generate_social_content",
+          "description": "Generate SEO-optimized Instagram caption and hashtag array",
+          "max_tokens": 220,
+          "input_schema": {
+            "product_details": {
+              "type": "object",
+              "fields": ["name", "price_now", "material", "description"]
+            }
+          },
+          "output_schema": {
+            "caption":  { "type": "string", "max_chars": 220 },
+            "hashtags": { "type": "array", "max_items": 20 }
+          },
+          "response_format": "json"
+        }
+      ]
+    },
+    {
+      "tool_name": "imagen_api",
+      "description": "Google Vertex AI Imagen 3 for high-fidelity jewellery image generation",
+      "api_endpoint": "https://us-central1-aiplatform.googleapis.com/v1/projects/{project_id}/locations/us-central1/publishers/google/models/imagen-3.0-generate-002:predict",
+      "auth_method": "bearer_token",
+      "auth_header": "Authorization",
+      "model_version": "imagen-3.0-generate-002",
+      "functions": [
+        {
+          "name": "generate_model_image",
+          "description": "Generate lifestyle shot of model wearing jewellery",
+          "input_schema": {
+            "prompt":       { "type": "string", "required": true },
+            "aspect_ratio": { "type": "string", "default": "4:5", "enum": ["1:1", "4:5", "9:16"] },
+            "person_generation": { "type": "string", "default": "ALLOW_ADULT" }
+          },
+          "output_schema": {
+            "image_bytes": { "type": "string", "format": "base64" }
+          }
+        },
+        {
+          "name": "generate_product_image",
+          "description": "Generate premium product-only image on luxury background",
+          "input_schema": {
+            "prompt":       { "type": "string", "required": true },
+            "aspect_ratio": { "type": "string", "default": "1:1", "enum": ["1:1", "4:5"] }
+          },
+          "output_schema": {
+            "image_bytes": { "type": "string", "format": "base64" }
+          }
+        }
+      ]
+    },
+    {
+      "tool_name": "drive_api",
+      "description": "Google Drive for organized asset storage",
+      "api_endpoint": "https://www.googleapis.com/upload/drive/v3/files",
+      "auth_method": "oauth2_service_account",
+      "scopes": ["https://www.googleapis.com/auth/drive.file"],
+      "folder_structure": "/Pattern_Jewellery/{product_category}/{sku}/",
+      "functions": [
+        {
+          "name": "upload_to_drive",
+          "description": "Upload file to structured Drive folder, return shareable link",
+          "input_schema": {
+            "file_data":   { "type": "string", "format": "binary_or_base64" },
+            "folder_path": { "type": "string", "example": "/Pattern_Jewellery/rings/R4389/" },
+            "file_name":   { "type": "string", "example": "R4389_model_lifestyle.jpg" },
+            "mime_type":   { "type": "string", "default": "image/jpeg" }
+          },
+          "output_schema": {
+            "drive_link": { "type": "string", "format": "https://drive.google.com/drive/folders/{folder_id}" },
+            "file_id":    { "type": "string" }
+          }
+        }
+      ]
+    }
+  ],
+
+  "steps": [
+    {
+      "step": 1,
+      "id": "prompt_generation",
+      "agent": "creative_agent",
+      "tool": "gemini_llm",
+      "function": "generate_image_prompt",
+      "description": "Analyze the product image and details using Gemini 1.5 Pro to generate tailored model and product generation prompts."
+    },
+    {
+      "step": 2,
+      "id": "image_generation",
+      "agent": "vision_agent",
+      "tool": "imagen_api",
+      "parallel": true,
+      "description": "Dispatch parallel requests to Imagen 3 to generate the lifestyle model shot and the standalone product shot based on Gemini's prompts."
+    },
+    {
+      "step": 3,
+      "id": "content_generation",
+      "agent": "content_agent",
+      "tool": "gemini_llm",
+      "function": "generate_social_content",
+      "parallel": true,
+      "description": "Use Gemini 1.5 Pro to draft an engaging Instagram caption and SEO hashtag package concurrently with image generation."
+    },
+    {
+      "step": 4,
+      "id": "storage",
+      "agent": "storage_agent",
+      "tool": "drive_api",
+      "depends_on": ["image_generation", "content_generation"],
+      "description": "Take outputs from the parallel generation steps and upload all assets (images + text) into a dedicated Google Drive folder."
+    },
+    {
+      "step": 5,
+      "id": "response_compilation",
+      "agent": "system_agent",
+      "depends_on": ["storage"],
+      "description": "Return the final unified JSON payload containing the Google Drive link and captions."
+    }
+  ]
+}

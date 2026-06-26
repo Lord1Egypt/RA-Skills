@@ -1,0 +1,31 @@
+{
+  "id": "polyguard-trader-martin-v1",
+  "name": "PolyGuard Martin Pro",
+  "version": "1.1.0",
+  "description": "Free, open-source Polymarket auto-trading skill. No data collection.",
+  "entrypoint": "main.py",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "api_key": {
+        "type": "string"
+      },
+      "market_id": {
+        "type": "string"
+      },
+      "side": {
+        "type": "string"
+      },
+      "size": {
+        "type": "number"
+      },
+      "max_price": {
+        "type": "number"
+      },
+      "poll_interval_seconds": {
+        "type": "number"
+      }
+    },
+    "required": ["api_key", "market_id", "side", "size", "max_price"]
+  }
+}

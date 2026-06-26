@@ -1,0 +1,19 @@
+{
+  "name": "Plex Standalone Skill",
+  "version": "1.1.0",
+  "description": "Secure, high-performance Plex management CLI with local caching and playback control.",
+  "requiredEnvVars": [
+    "PLEX_URL",
+    "PLEX_TOKEN"
+  ],
+  "requiredBinaries": [
+    "uv",
+    "python3"
+  ],
+  "dependencies": {
+    "python": [
+      "plexapi"
+    ]
+  },
+  "privacyPolicy": "This skill only caches media names, genres, and artist names in the OS temporary directory for search performance. Live session data (usernames, playback states) is fetched in real-time and never cached."
+}

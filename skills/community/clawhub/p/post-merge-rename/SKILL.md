@@ -1,35 +1,57 @@
 ---
-name: "Post Merge Rename"
-description: "Post-merge branch renaming. Appends --merged-YYYY-MM-DD to preserve history."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/post-merge-rename"
-sourceUrl: "https://clawhub.ai/skills/post-merge-rename"
+name: post-merge-rename
+description: Post-merge branch renaming. Appends --merged-YYYY-MM-DD to preserve history.
+license: MIT
+interface: [cli, skill]
+metadata:
+  display-name: "Post-Merge Branch Naming"
+  version: "1.3.0"
+  homepage: "https://github.com/wipcomputer/wip-ai-devops-toolbox"
+  author: "Parker Todd Brooks"
+  category: dev-tools
+  capabilities:
+    - branch-rename
+    - history-preservation
+  requires:
+    bins: [git, bash]
+  openclaw:
+    requires:
+      bins: [git, bash]
+    emoji: "🏷️"
+compatibility: Requires git, bash.
 ---
 
-# Post Merge Rename
+# post-merge-rename
 
-> Post-merge branch renaming. Appends --merged-YYYY-MM-DD to preserve history.
+Scans for merged branches that haven't been renamed and appends `--merged-YYYY-MM-DD` to preserve history. We never delete branches. We rename them.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/post-merge-rename`
-- **Source URL:** [https://clawhub.ai/skills/post-merge-rename](https://clawhub.ai/skills/post-merge-rename)
+## When to Use This Skill
 
-## Overview
+**Use post-merge-rename for:**
+- After merging PRs, to rename the source branch
+- Cleaning up branches that were merged but not renamed
+- Runs automatically as step 10 of `wip-release`
 
+### Do NOT Use For
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Unmerged branches
+- Branches you're currently working on
+
+## API Reference
+
+### CLI
+
 ```bash
-hermes skills install clawhub/post-merge-rename
+bash scripts/post-merge-rename.sh              # scan + rename all merged branches
+bash scripts/post-merge-rename.sh --dry-run     # preview only
+bash scripts/post-merge-rename.sh <branch>      # rename specific branch
 ```
+
+## What It Does
+
+1. Lists all local branches merged into main
+2. Skips branches already renamed (containing `--merged-`)
+3. Finds the merge date from git history
+4. Renames: `feature-branch` -> `feature-branch--merged-2026-03-09`
+5. Pushes the renamed branch to origin
+6. Deletes the old branch name from origin

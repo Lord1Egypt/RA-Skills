@@ -1,0 +1,173 @@
+{
+  "skill_name": "intelligence-desk-brief",
+  "display_name": "Portfolio Risk Desk",
+  "entrypoints": [
+    {
+      "name": "create_brief",
+      "description": "Create a daily or on-demand Portfolio Risk Desk brief for a portfolio, watchlist, or set of themes.",
+      "input_schema": {
+        "portfolio_name": "string, optional",
+        "workspace_id": "string, optional",
+        "profile_id": "string, optional",
+        "profile_name": "string, optional",
+        "holdings": [
+          "string"
+        ],
+        "watchlist": [
+          "string"
+        ],
+        "themes": [
+          "string"
+        ],
+        "brief_type": "daily | on_demand | earnings_reaction",
+        "lookback_hours": "integer",
+        "delivery_target": "inline | notion",
+        "max_items_per_theme": "integer, optional",
+        "benchmark_or_comparison_lens": "string, optional",
+        "scenario_questions": [
+          "string"
+        ]
+      },
+      "output_schema": {
+        "brief_id": "string",
+        "date": "ISO date",
+        "workspace_id": "string",
+        "profile_id": "string, optional",
+        "profile_name": "string, optional",
+        "summary": "string",
+        "user_focus": {
+          "portfolio_or_watchlist": "string",
+          "interested_industries": [
+            "string"
+          ],
+          "brief_objective": "string",
+          "factor_lens": [
+            "string"
+          ],
+          "comparison_baseline": "string",
+          "scenario_questions": [
+            "string"
+          ]
+        },
+        "current_exposure_map": [
+          "object"
+        ],
+        "dominant_factors": [
+          "object"
+        ],
+        "risk_map_changes": [
+          "object"
+        ],
+        "key_drivers_and_readthroughs": [
+          "object"
+        ],
+        "scenario_analysis": [
+          {
+            "scenario": "string",
+            "confidence_level": "low | medium | high",
+            "confidence_reason": "string",
+            "breaks_or_holds": [
+              "string"
+            ],
+            "affected_names": [
+              "string"
+            ],
+            "supporting_evidence_ids": [
+              "string"
+            ],
+            "supporting_evidence": [
+              "object"
+            ],
+            "falsifiers": [
+              "string"
+            ]
+          }
+        ],
+        "signal_vs_noise": [
+          "object"
+        ],
+        "watchpoints": [
+          "object"
+        ],
+        "evidence_and_sources": [
+          "object"
+        ],
+        "audit_trail": "object",
+        "uncertainty_notes": [
+          "string"
+        ],
+        "delivery_status": "inline_returned | handoff_recorded | failed",
+        "delivery_metadata": "object, optional"
+      }
+    },
+    {
+      "name": "write_brief_to_notion",
+      "description": "Return a host-consumable handoff for writing a generated brief into Notion with structured properties and body blocks.",
+      "input_schema": {
+        "brief_payload": "object",
+        "parent_page_id": "string",
+        "workspace_id": "string",
+        "database_id": "string, optional",
+        "profile_id": "string, optional",
+        "profile_name": "string, optional",
+        "brief_title": "string, optional",
+        "markdown": "string, optional",
+        "delivery_payload": "object, optional"
+      },
+      "output_schema": {
+        "notion_page_id": "string",
+        "url": "string",
+        "status": "accepted | created | updated | failed",
+        "delivery_metadata": "object, optional"
+      }
+    }
+  ],
+  "data_sources": {
+    "civic": [
+      "Host-managed least-privilege OAuth and user-scoped access boundary",
+      "Constrains what the agent can access or do on behalf of the user"
+    ],
+    "apify": [
+      "Broad public-web retrieval and scraping",
+      "Collection for filings, press releases, earnings pages, investor relations, market news pages, and other public web evidence"
+    ],
+    "redis": [
+      "Host-managed memory for prior briefs and over-time comparison",
+      "Can store normalized notes, change logs, and retrieval continuity metadata",
+      "Invoked by the OpenClaw or ClawHub host rather than by this package directly"
+    ],
+    "x": [
+      "Complementary fast-moving signal source for official accounts, management commentary, and market-adjacent chatter",
+      "Can be collected through Apify-backed workflows in the MVP, with direct integration evaluated later"
+    ],
+    "contextual_ai": [
+      "Optional comparison point for retrieval quality and memory continuity over time",
+      "Evaluation path, not a required MVP dependency"
+    ],
+    "notion": [
+      "Host-managed persistence target for Portfolio Risk Desk brief handoffs",
+      "The skill emits the handoff payload and the host performs the API write"
+    ]
+  },
+  "guardrails": [
+    "No trade recommendations or price targets",
+    "This is a simplified public-markets research assistant, not an institutional-grade risk model",
+    "Facts and interpretations separated in output",
+    "Every key point tied to one or more sources",
+    "When evidence is weak or conflicting, say so explicitly",
+    "Scenario analysis must include an explicit confidence level"
+  ],
+  "operator_workflows": {
+    "bootstrap_apify_tasks": [
+      "APIFY_API_TOKEN=... python3 -m intelligence_desk_brief bootstrap-apify"
+    ],
+    "run_demo": [
+      "PYTHONPATH=src python3 -m intelligence_desk_brief run-demo --mode happy --output-format both",
+      "PYTHONPATH=src python3 -m intelligence_desk_brief run-demo --mode provider_failure --output-format json",
+      "PYTHONPATH=src python3 -m intelligence_desk_brief run-demo --mode delivery_failure --output-format json"
+    ],
+    "run_quality_benchmarks": [
+      "PYTHONPATH=src python3 -m intelligence_desk_brief run-benchmarks --output-format both"
+    ]
+  ]
+}

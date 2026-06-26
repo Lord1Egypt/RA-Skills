@@ -1,0 +1,245 @@
+{
+  "knowledge_points": [
+    {
+      "id": "KP001",
+      "category": "刑法",
+      "name": "犯罪构成要件",
+      "description": "犯罪主体、主观方面、客体、客观方面的认定标准",
+      "importance": "核心",
+      "frequency": 0.95,
+      "related_laws": [
+        "《中华人民共和国刑法》第13-31条"
+      ],
+      "exam_tips": "重点掌握主观故意的认定、因果关系判断"
+    },
+    {
+      "id": "KP002",
+      "category": "刑法",
+      "name": "正当防卫与紧急避险",
+      "description": "正当防卫的条件、限度及紧急避险的适用",
+      "importance": "核心",
+      "frequency": 0.9,
+      "related_laws": [
+        "《中华人民共和国刑法》第20-21条"
+      ],
+      "exam_tips": "注意防卫过当的认定标准"
+    },
+    {
+      "id": "KP003",
+      "category": "刑事诉讼法",
+      "name": "证据规则与非法证据排除",
+      "description": "证据的种类、收集程序及非法证据排除规则",
+      "importance": "核心",
+      "frequency": 0.92,
+      "related_laws": [
+        "《中华人民共和国刑事诉讼法》第48-62条"
+      ],
+      "exam_tips": "掌握八种法定证据类型及排除标准"
+    },
+    {
+      "id": "KP004",
+      "category": "刑事诉讼法",
+      "name": "强制措施适用",
+      "description": "拘传、取保候审、监视居住、拘留、逮捕的适用条件和程序",
+      "importance": "核心",
+      "frequency": 0.88,
+      "related_laws": [
+        "《中华人民共和国刑事诉讼法》第64-98条"
+      ],
+      "exam_tips": "重点掌握不同强制措施的期限和变更条件"
+    },
+    {
+      "id": "KP005",
+      "category": "行政法",
+      "name": "行政处罚程序",
+      "description": "行政处罚的简易程序、一般程序、听证程序的适用",
+      "importance": "核心",
+      "frequency": 0.85,
+      "related_laws": [
+        "《中华人民共和国行政处罚法》"
+      ],
+      "exam_tips": "掌握告知、陈述申辩、听证权利等程序要求"
+    },
+    {
+      "id": "KP006",
+      "category": "行政法",
+      "name": "行政许可与行政强制",
+      "description": "行政许可的设定与实施，行政强制措施与行政强制执行",
+      "importance": "重要",
+      "frequency": 0.78,
+      "related_laws": [
+        "《中华人民共和国行政许可法》",
+        "《中华人民共和国行政强制法》"
+      ],
+      "exam_tips": "区分行政强制措施与行政强制执行"
+    },
+    {
+      "id": "KP007",
+      "category": "警察法",
+      "name": "警察职权与义务",
+      "description": "人民警察的法定职责、权限及义务规范",
+      "importance": "核心",
+      "frequency": 0.82,
+      "related_laws": [
+        "《中华人民共和国人民警察法》第6-22条"
+      ],
+      "exam_tips": "重点掌握盘问、检查、传唤等职权的适用条件"
+    },
+    {
+      "id": "KP008",
+      "category": "警察法",
+      "name": "警械武器使用规范",
+      "description": "警械武器的使用条件、程序及法律责任",
+      "importance": "重要",
+      "frequency": 0.75,
+      "related_laws": [
+        "《中华人民共和国人民警察使用警械和武器条例》"
+      ],
+      "exam_tips": "掌握不同警械的使用条件和报告程序"
+    },
+    {
+      "id": "KP009",
+      "category": "宪法",
+      "name": "公民基本权利",
+      "description": "宪法规定的公民基本权利及其保障",
+      "importance": "基础",
+      "frequency": 0.7,
+      "related_laws": [
+        "《中华人民共和国宪法》第33-56条"
+      ],
+      "exam_tips": "掌握权利限制的宪法原则"
+    },
+    {
+      "id": "KP010",
+      "category": "宪法",
+      "name": "国家机构职权",
+      "description": "国家权力机关、行政机关、司法机关的职权划分",
+      "importance": "基础",
+      "frequency": 0.65,
+      "related_laws": [
+        "《中华人民共和国宪法》第三章"
+      ],
+      "exam_tips": "重点掌握公安机关的法律地位和职权"
+    },
+    {
+      "id": "KP011",
+      "category": "警务实战",
+      "name": "现场处置原则",
+      "description": "接处警规范、现场控制、证据收集等处置原则",
+      "importance": "重要",
+      "frequency": 0.8,
+      "related_laws": [
+        "《公安机关办理行政案件程序规定》",
+        "《公安机关办理刑事案件程序规定》"
+      ],
+      "exam_tips": "掌握优先保护生命、控制事态、固定证据的处置顺序"
+    },
+    {
+      "id": "KP012",
+      "category": "警务实战",
+      "name": "执法记录仪使用",
+      "description": "执法记录仪的开机、摄录、保存等规范操作",
+      "importance": "重要",
+      "frequency": 0.72,
+      "related_laws": [
+        "《公安机关现场执法视音频记录工作规定》"
+      ],
+      "exam_tips": "掌握必须全程录音录像的情形"
+    },
+    {
+      "id": "KP013",
+      "category": "民法",
+      "name": "侵权责任认定",
+      "description": "一般侵权与特殊侵权的责任构成与认定",
+      "importance": "基础",
+      "frequency": 0.6,
+      "related_laws": [
+        "《中华人民共和国民法典》侵权责任编"
+      ],
+      "exam_tips": "重点掌握过错责任、无过错责任、公平责任的区别"
+    },
+    {
+      "id": "KP014",
+      "category": "民法",
+      "name": "民事行为能力",
+      "description": "完全民事行为能力、限制民事行为能力、无民事行为能力的认定",
+      "importance": "基础",
+      "frequency": 0.55,
+      "related_laws": [
+        "《中华人民共和国民法典》第17-24条"
+      ],
+      "exam_tips": "掌握不同年龄段的行为能力标准"
+    },
+    {
+      "id": "KP015",
+      "category": "新内容",
+      "name": "人工智能执法应用",
+      "description": "人工智能在侦查、取证、分析等执法环节的应用规范",
+      "importance": "新增",
+      "frequency": 0.5,
+      "related_laws": [
+        "《新一代人工智能发展规划》",
+        "相关部委规定"
+      ],
+      "exam_tips": "关注数据安全、隐私保护和算法透明性要求"
+    }
+  ],
+  "categories": [
+    {
+      "name": "刑法",
+      "point_count": 4,
+      "total_weight": 0.25,
+      "description": "犯罪与刑罚的基本法律规定"
+    },
+    {
+      "name": "刑事诉讼法",
+      "point_count": 2,
+      "total_weight": 0.18,
+      "description": "刑事诉讼程序与证据规则"
+    },
+    {
+      "name": "行政法",
+      "point_count": 2,
+      "total_weight": 0.16,
+      "description": "行政行为规范与行政救济"
+    },
+    {
+      "name": "警察法",
+      "point_count": 2,
+      "total_weight": 0.16,
+      "description": "警察职权、义务与行为规范"
+    },
+    {
+      "name": "宪法",
+      "point_count": 2,
+      "total_weight": 0.07,
+      "description": "国家根本大法与公民权利"
+    },
+    {
+      "name": "警务实战",
+      "point_count": 2,
+      "total_weight": 0.12,
+      "description": "执法操作规范与实战技能"
+    },
+    {
+      "name": "民法",
+      "point_count": 2,
+      "total_weight": 0.05,
+      "description": "民事法律关系与权利保护"
+    },
+    {
+      "name": "新内容",
+      "point_count": 1,
+      "total_weight": 0.01,
+      "description": "2026年大纲新增内容"
+    }
+  ],
+  "statistics": {
+    "total_points": 15,
+    "core_points": 7,
+    "important_points": 5,
+    "basic_points": 3,
+    "avg_frequency": 0.76,
+    "last_updated": "2026-04-19"
+  }
+}

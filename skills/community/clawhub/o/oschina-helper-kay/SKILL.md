@@ -1,35 +1,133 @@
----
-name: "Oschina"
-description: "Assist with registering, logging in, writing, editing, and publishing technical articles on the Oschina open-source community platform."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oschina-helper-kay"
-sourceUrl: "https://clawhub.ai/skills/oschina-helper-kay"
+# 开源中国发布技能
+
+## 1. 平台简介
+
+开源中国（OSCHINA）是中国最大的开源技术社区，成立于2008年，拥有众多开发者用户。平台提供博客、问答、开源项目推荐等技术内容分享，同时也支持企业招聘和技术资讯发布。
+
+**网址**: https://www.oschina.net
+
 ---
 
-# Oschina
+## 2. 注册/登录方式
 
-> Assist with registering, logging in, writing, editing, and publishing technical articles on the Oschina open-source community platform.
+### 注册方式
+- **邮箱注册**：输入邮箱 + 设置密码
+- **手机号注册**：输入手机号 + 验证码
+- **第三方登录**：支持 Github / 微信 / 支付宝 登录
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oschina-helper-kay`
-- **Source URL:** [https://clawhub.ai/skills/oschina-helper-kay](https://clawhub.ai/skills/oschina-helper-kay)
+### 登录入口
+- 首页右上角「登录/注册」
+- 推荐使用 Github 登录（技术身份更匹配，也方便后续关联开源项目）
 
-## Overview
+---
 
+## 3. 发布文章流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/oschina-helper-kay
+### 步骤一：进入博客后台
+1. 登录后，点击右上角头像 → 「我的博客」或「管理博客」
+2. 进入博客管理后台
+
+### 步骤二：写文章
+1. 点击「发布博客」或「写博客」
+2. 进入在线编辑器（支持富文本和 Markdown 两种模式）
+
+### 步骤三：填写文章信息
+1. **标题**：输入文章标题
+2. **分类**：选择文章分类（原创翻译、新闻、技巧分享、值得关注等）
+3. **标签**：添加1-5个标签
+4. **正文**：在编辑器中撰写内容
+5. **封面图**：可上传文章封面图（可选）
+
+### 步骤四：发布
+1. 点击「发布」或「保存」
+2. 文章审核后公开（通常几分钟到几小时）
+
+### 草稿与编辑
+- 文章会自动保存草稿
+- 已发布的文章也可以随时编辑修改
+
+---
+
+## 4. 文章模板
+
+### 文章标题模板
 ```
+[技术点] + [场景/价值] + [类型标识]
+示例：
+深入理解 Python 装饰器及其高级用法
+Spring Boot 整合 Redis 实现缓存实战
+【译】2024年 Web 开发趋势预测
+```
+
+### 文章正文模板
+
+```markdown
+# 文章标题
+
+> 导读：本文介绍[核心内容]，适合[目标读者]，读完可掌握[收获]。
+
+## 背景
+
+[介绍文章背景和解决的问题]
+
+## 目录
+
+1. [章节一]
+2. [章节二]
+3. [章节三]
+
+---
+
+## 一、[章节标题]
+
+[正文内容]
+
+### 1.1 [小节]
+
+[代码示例]
+
+```python
+# 示例代码
+def example():
+    pass
+```
+
+## 总结
+
+[总结全文要点]
+
+## 参考
+
+- [参考1]
+- [参考2]
+```
+
+---
+
+## 5. 注意事项
+
+1. **原创声明**：平台鼓励原创，翻译文章需注明「译」
+2. **内容质量**：技术深度要够，代码要有实际运行价值
+3. **标题规范**：避免夸大、标题党，保持技术严谨性
+4. **配图规范**：图片使用平台图床或可靠的外部链接
+5. **代码规范**：代码块标明语言，版本说明清楚
+6. **频繁发布限制**：新手每天发布数量有限制，优质用户可提升权限
+
+---
+
+## 6. 常见问题
+
+**Q: 开源中国文章有收益吗？**
+A：开源中国有博客之星等活动，优质内容可获得推荐和奖励。
+
+**Q: 如何提高文章阅读量？**
+A：优化标题、选对分类和标签、提高更新频率、与其他博客互动。
+
+**Q: 可以发布软文吗？**
+A：可以在「ITeye」子站发布，oschina.net 主站对商业内容有限制。
+
+**Q: 文章被举报抄袭怎么办？**
+A：需保证原创性，被认定抄袭会导致账号受限。
+
+**Q: 如何关联 GitHub 开源项目？**
+A：在个人资料中绑定 GitHub，可自动同步开源项目到个人主页。

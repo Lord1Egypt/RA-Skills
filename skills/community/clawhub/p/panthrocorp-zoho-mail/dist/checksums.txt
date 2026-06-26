@@ -1,0 +1,4 @@
+dc03665cc965458f4eb4dc290a69c787809224bf149b2a7ecde10ee42989f65b  zoho-mail_0.3.1_darwin_amd64.tar.gz
+14a061732206e8e79fd35d8e35e46f2f50c3f38aa49977c2f31e0c5664635aa5  zoho-mail_0.3.1_darwin_arm64.tar.gz
+b98e7f80749a127cec5439d59cba0dec5f905b6f41f8998871f9b29d5b2c34b0  zoho-mail_0.3.1_linux_amd64.tar.gz
+51cdfd67cd06285b6ab80a010ec0e89a0ed47af21a91b011380baa5c97936020  zoho-mail_0.3.1_linux_arm64.tar.gz

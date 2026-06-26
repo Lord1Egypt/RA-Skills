@@ -1,0 +1,32 @@
+[
+  {
+    "client": "智谱AI",
+    "type": "gpu_util",
+    "value": 87.5,
+    "severity": "high"
+  },
+  {
+    "client": "智谱AI",
+    "type": "team_expansion",
+    "value": 15,
+    "severity": "medium"
+  },
+  {
+    "client": "出门问问",
+    "type": "queue_time",
+    "value": 45,
+    "severity": "medium"
+  },
+  {
+    "client": "月之暗面",
+    "type": "new_model",
+    "value": 1,
+    "severity": "high"
+  },
+  {
+    "client": "MiniMax",
+    "type": "business_growth",
+    "value": 35,
+    "severity": "high"
+  }
+]

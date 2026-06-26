@@ -1,0 +1,8 @@
+{
+  "name": "pdf-parser-agent",
+  "version": "1.0.0",
+  "description": "Local deterministic PDF parsing for RAG pipelines.",
+  "main": "scripts/pdf_extractor.py",
+  "keywords": ["pdf", "rag", "parser", "local"],
+  "license": "MIT"
+}

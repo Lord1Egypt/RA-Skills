@@ -1,35 +1,34 @@
 ---
-name: "Pet To Human Generator"
-description: "your dog, cat, or any pet into a realistic human portrait with AI. Pet-to-human generator, humanize your pet, dog as a person, cat as human, animal-to-person..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pet-to-human-generator"
-sourceUrl: "https://clawhub.ai/skills/pet-to-human-generator"
+name: pet-to-human-generator
+description: your dog, cat, or any pet into a realistic human portrait with AI. Pet-to-human generator, humanize your pet, dog as a person, cat as human, animal-to-person art, pet human version, pet portrait transformation, viral pet trend generator — turn your furry friend into their human alter ego via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Pet To Human Generator
 
-> your dog, cat, or any pet into a realistic human portrait with AI. Pet-to-human generator, humanize your pet, dog as a person, cat as human, animal-to-person...
+your dog, cat, or any pet into a realistic human portrait with AI. Pet-to-human generator, humanize your pet, dog as a person, cat as human, animal-to-person art, pet human version, pet portrait transformation, viral pet trend generator — turn your furry friend into their human alter ego.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pet-to-human-generator`
-- **Source URL:** [https://clawhub.ai/skills/pet-to-human-generator](https://clawhub.ai/skills/pet-to-human-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pet-to-human-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create pet to human ai generator images.
+
+## Quick start
+```bash
+node pettohumangenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add omactiengartelle/pet-to-human-generator
 ```

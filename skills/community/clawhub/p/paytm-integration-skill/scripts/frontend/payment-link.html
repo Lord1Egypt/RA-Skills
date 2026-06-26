@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paytm Payment Link</title>
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; }
+      label { display: block; margin: 0.5rem 0 0.25rem; font-size: 0.9rem; color: #444; }
+      input { width: 100%; padding: 0.5rem; font-size: 1rem; box-sizing: border-box; }
+      button { margin-top: 1rem; padding: 0.65rem 1.25rem; font-size: 1rem; cursor: pointer; }
+      .row { margin-top: 1.5rem; padding: 0.75rem 1rem; border-radius: 0.4rem; display: none; }
+      .row.success { background: #e7f6e7; color: #1b5e20; display: block; }
+      .row.failure { background: #fdecea; color: #a40000; display: block; }
+      .row.pending { background: #fff8e1; color: #6d4c00; display: block; }
+      .row a { color: inherit; word-break: break-all; }
+      table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; font-size: 0.9rem; }
+      th, td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(0,0,0,0.08); }
+      th { font-weight: 600; }
+      #fetchBtn { display: none; }
+    </style>
+  </head>
+  <body>
+    <h1>Generate a Paytm Payment Link</h1>
+    <p>
+      Server calls <code>/paytm/create-link</code> → Paytm returns a short URL you can
+      share via SMS / WhatsApp / email. The customer pays on a Paytm-hosted page.
+      Reconcile via <code>/paytm/link-transactions</code> (which calls Paytm's
+      <code>/link/fetchTransaction</code>) - not <code>/v3/order/status</code>.
+    </p>
+
+    <label>Amount (INR)</label>
+    <input id="amount" type="number" step="0.01" min="1" value="499.00" />
+    <label>Customer name</label>
+    <input id="name" type="text" placeholder="Buyer Name" />
+    <label>Customer mobile (10 digits)</label>
+    <input id="mobile" type="tel" placeholder="9999999999" />
+    <label>Customer email</label>
+    <input id="email" type="email" placeholder="buyer@example.com" />
+    <label>Description (alphanumerics + spaces, ≥ 3 chars)</label>
+    <input id="desc" type="text" value="Invoice payment" />
+
+    <button type="button" id="createBtn">Create payment link</button>
+    <button type="button" id="fetchBtn">Fetch transactions for this link</button>
+
+    <div id="result" class="row" role="status" aria-live="polite"></div>
+    <div id="txns" class="row" aria-live="polite"></div>
+
+    <script>
+      var resultEl = document.getElementById("result");
+      var txnsEl = document.getElementById("txns");
+      var fetchBtn = document.getElementById("fetchBtn");
+      var lastLinkId = null;
+
+      function showResult(kind, html) {
+        resultEl.className = "row " + kind;
+        resultEl.innerHTML = html;
+      }
+
+      function showTxns(kind, html) {
+        txnsEl.className = "row " + kind;
+        txnsEl.innerHTML = html;
+      }
+
+      function escapeHtml(s) {
+        return String(s == null ? "" : s)
+          .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+      }
+
+      document.getElementById("createBtn").addEventListener("click", function () {
+        var amount = document.getElementById("amount").value;
+        var customerName = document.getElementById("name").value;
+        var customerMobile = document.getElementById("mobile").value;
+        var customerEmail = document.getElementById("email").value;
+        var linkDescription = document.getElementById("desc").value;
+
+        showResult("pending", "Creating link…");
+        showTxns("", "");
+        txnsEl.style.display = "none";
+        fetchBtn.style.display = "none";
+
+        fetch(new URL("paytm/create-link", document.baseURI).toString(), {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            amount: amount,
+            linkName: linkDescription,
+            linkDescription: linkDescription,
+            customerName: customerName,
+            customerMobile: customerMobile,
+            customerEmail: customerEmail,
+            sendSms: !!customerMobile,
+            sendEmail: !!customerEmail,
+          }),
+        })
+          .then(function (r) {
+            if (!r.ok) return r.text().then(function (t) { throw new Error("HTTP " + r.status + " - " + t); });
+            return r.json();
+          })
+          .then(function (data) {
+            console.log("[paytm] link created", data);
+            lastLinkId = data.linkId;
+            fetchBtn.style.display = "inline-block";
+            var url = data.shortUrl || data.longUrl || "";
+            showResult("success",
+              "Link created. <strong>linkId:</strong> " + escapeHtml(data.linkId) +
+              "<br><strong>URL:</strong> <a href=\"" + escapeHtml(url) + "\" target=\"_blank\">" + escapeHtml(url) + "</a>" +
+              (data.shortUrl && (customerMobile || customerEmail)
+                ? "<br><em>Paytm is dispatching the link via SMS / email if templates are approved on your MID.</em>"
+                : ""));
+          })
+          .catch(function (e) {
+            console.error("[paytm] link error", e);
+            showResult("failure", "Could not create link.");
+          });
+      });
+
+      fetchBtn.addEventListener("click", function () {
+        if (lastLinkId == null) return;
+        showTxns("pending", "Fetching transactions for linkId " + escapeHtml(lastLinkId) + "…");
+
+        fetch(new URL("paytm/link-transactions", document.baseURI).toString(), {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            linkId: lastLinkId,
+            pageNo: 1,
+            pageSize: 10,
+            fetchAllTxns: true,
+          }),
+        })
+          .then(function (r) {
+            if (!r.ok) return r.text().then(function (t) { throw new Error("HTTP " + r.status + " - " + t); });
+            return r.json();
+          })
+          .then(function (data) {
+            console.log("[paytm] link transactions", data);
+            var orders = data.orders || [];
+            if (orders.length === 0) {
+              showTxns("pending", "No transactions yet for linkId " + escapeHtml(lastLinkId) + ". Try again after the customer pays.");
+              return;
+            }
+            var rows = orders.map(function (o) {
+              return "<tr>" +
+                "<td>" + escapeHtml(o.orderId) + "</td>" +
+                "<td>" + escapeHtml(o.txnId) + "</td>" +
+                "<td>" + escapeHtml(o.txnAmount) + "</td>" +
+                "<td>" + escapeHtml(o.orderStatus) + "</td>" +
+                "<td>" + escapeHtml(o.customerEmail || o.customerPhoneNumber || "") + "</td>" +
+              "</tr>";
+            }).join("");
+            showTxns("success",
+              "<strong>" + orders.length + " transaction(s) for linkId " + escapeHtml(lastLinkId) + ":</strong>" +
+              "<table><thead><tr><th>orderId</th><th>txnId</th><th>amount</th><th>status</th><th>customer</th></tr></thead>" +
+              "<tbody>" + rows + "</tbody></table>");
+          })
+          .catch(function (e) {
+            console.error("[paytm] link transactions error", e);
+            showTxns("failure", "Could not fetch transactions.");
+          });
+      });
+    </script>
+  </body>
+</html>

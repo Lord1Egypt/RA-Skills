@@ -1,35 +1,21 @@
 ---
-name: "Policy Lawyer 1.0.0"
-description: "Reference the workspace policy playbook, answer"What are the rules for tone, data, and collaboration?" by searching the curated policy doc or listing its sec..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/policy-lawyer-1-0-0"
-sourceUrl: "https://clawhub.ai/skills/policy-lawyer-1-0-0"
+name: policy-lawyer
+description: Reference the workspace policy playbook, answer"What are the rules for tone, data, and collaboration?" by searching the curated policy doc or listing its sections.
 ---
 
-# Policy Lawyer 1.0.0
-
-> Reference the workspace policy playbook, answer"What are the rules for tone, data, and collaboration?" by searching the curated policy doc or listing its sec...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/policy-lawyer-1-0-0`
-- **Source URL:** [https://clawhub.ai/skills/policy-lawyer-1-0-0](https://clawhub.ai/skills/policy-lawyer-1-0-0)
+# Policy Lawyer
 
 ## Overview
 
+`policy-lawyer` is built around the curated policy notebook at `references/policies.md`. The CLI (`scripts/policy_lawyer.py`) lets you:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/policy-lawyer-1-0-0
-```
+- `--list-topics` to list every policy heading.
+- `--topic <name>` to show the section that matches a topic (case-insensitive).
+- `--keyword <term>` to search all policies for a given keyword.
+
+Use this skill when you need to remind yourself of the community standards before drafting announcements or when a question lands that needs an authoritative policy quote.
+
+## Resources
+
+- **GitHub:** https://github.com/CrimsonDevil333333/policy-lawyer
+- **ClawHub:** https://www.clawhub.ai/skills/policy-lawyer

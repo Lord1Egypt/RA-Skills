@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pipaclaw Skills Hub"
+  short_description: "Front door that routes users to Pipaclaw public skills for PPTs, social ops, and promo videos."
+  default_prompt: "Use $pipaclaw-skills-hub as the front door for this skill collection. Route the user to the smallest matching public skill, keep the interaction concise, and avoid exposing implementation details."

@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Paper Defense Visual QA Storyboard",
+  "type": "object",
+  "required": [
+    "paper",
+    "visual_policy",
+    "cards"
+  ],
+  "properties": {
+    "paper": {
+      "type": "object",
+      "required": ["paper_slug", "paper_title"],
+      "properties": {
+        "paper_slug": {"type": "string"},
+        "paper_title": {"type": "string"},
+        "venue": {"type": "string"},
+        "year": {"type": "string"}
+      }
+    },
+    "visual_policy": {
+      "type": "object",
+      "required": ["text_first_then_image", "target_environment", "preferred_model", "exact_text_policy"],
+      "properties": {
+        "text_first_then_image": {"type": "boolean", "const": true},
+        "target_environment": {
+          "type": "string",
+          "enum": ["chatgpt_web", "codex_cli", "api_pipeline", "manual_ppt"]
+        },
+        "preferred_model": {"type": "string"},
+        "style_brief": {"type": "string"},
+        "aspect_ratio": {"type": "string"},
+        "exact_text_policy": {"type": "string"},
+        "generation_reminder_cn": {"type": "string"}
+      }
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "card_id",
+          "linked_q_ids",
+          "card_type",
+          "title_cn",
+          "question_cn",
+          "spoken_answer_summary_cn",
+          "evidence_labels",
+          "boundary_cn",
+          "visual_concept_cn",
+          "image_prompt_cn",
+          "text_overlay_plan_cn",
+          "generation_status"
+        ],
+        "properties": {
+          "card_id": {"type": "string"},
+          "linked_q_ids": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+          "card_type": {
+            "type": "string",
+            "enum": [
+              "claim_evidence_map",
+              "attack_surface_radar",
+              "method_pipeline",
+              "equation_to_code_bridge",
+              "training_timeline",
+              "baseline_fairness_board",
+              "limitation_boundary_card",
+              "recovery_answer_card",
+              "backup_slide_visual",
+              "qa_flashcard",
+              "comic_metaphor"
+            ]
+          },
+          "priority": {"type": "string", "enum": ["P0", "P1", "P2", "P3", "P4"]},
+          "audience": {"type": "array", "items": {"type": "string"}},
+          "title_cn": {"type": "string"},
+          "question_cn": {"type": "string"},
+          "spoken_answer_summary_cn": {"type": "string"},
+          "evidence_labels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["paper_grounded", "code_grounded", "experiment_log_grounded", "review_grounded", "inferred", "missing_evidence", "external_context"]
+            }
+          },
+          "boundary_cn": {"type": "string"},
+          "visual_concept_cn": {"type": "string"},
+          "image_prompt_cn": {"type": "string"},
+          "negative_prompt_cn": {"type": "string"},
+          "text_overlay_plan_cn": {"type": "string"},
+          "style_consistency_notes_cn": {"type": "string"},
+          "revision_prompt_cn": {"type": "string"},
+          "generation_status": {
+            "type": "string",
+            "enum": ["text_ready", "image_pending", "image_generated"]
+          }
+        }
+      }
+    }
+  }
+}

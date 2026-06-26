@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "content": "We just launched our new scheduling dashboard! Manage all your social accounts in one place with PostFast.",
+      "mediaItems": [
+        {
+          "key": "image/YOUR_UPLOAD_KEY.jpg",
+          "type": "IMAGE",
+          "sortOrder": 0
+        }
+      ],
+      "scheduledAt": "2026-06-15T09:00:00.000Z",
+      "socialMediaId": "YOUR_GBP_ACCOUNT_ID"
+    }
+  ],
+  "controls": {
+    "gbpLocationId": "accounts/109049740544589765860/locations/4875357571247123933",
+    "gbpTopicType": "STANDARD",
+    "gbpCallToActionType": "LEARN_MORE",
+    "gbpCallToActionUrl": "https://example.com/new-dashboard"
+  }
+}

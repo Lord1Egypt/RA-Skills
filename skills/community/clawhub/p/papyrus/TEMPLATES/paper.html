@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>{{PAPER_TITLE}} — 逐段精读</title>
+  <meta name="author" content="Papyrus">
+  <meta name="description" content="{{PAPER_SHORT_DESC}}">
+  <meta name="keywords" content="{{PAPER_KEYWORDS}}">
+  <meta name="generator" content="Papyrus">
+  <!--
+    Design system adapted from Kami (docs.openclaw.ai)
+    Colors, spacing, font stacks, and wireframe patterns
+    used under MIT license.
+  -->
+  <style>
+    /* ================================================================
+       Papyrus Design System — Kami-inspired academic paper layout
+       ================================================================ */
+
+    /* === Page === */
+    @page {
+      size: A4;
+      margin: 20mm 22mm 22mm 22mm;
+      @bottom-center {
+        content: counter(page);
+        font-family: "Times New Roman", Charter, Georgia, serif;
+        font-size: 9pt;
+        color: #6b6a64;
+      }
+    }
+
+    /* === Variables === */
+    :root {
+      --h1: 22pt;
+      --h2: 17pt;
+      --h3: 13pt;
+      --body-lead: 11pt;
+      --body: 10pt;
+      --body-dense: 9pt;
+      --caption: 9pt;
+      --label: 9pt;
+      --accent: #1B365D;
+      --warm: #f5f4ed;
+      --light-bg: #faf9f5;
+      --border: #d0dce9;
+      --text-muted: #6b6a64;
+    }
+
+    /* === Typography === */
+    body {
+      font-family: "MingLiU", "LiSong Pro", "SimSun", "Songti SC", serif;
+      font-size: var(--body);
+      line-height: 1.6;
+      color: #141413;
+    }
+    .english-text {
+      font-family: "Times New Roman", "Charter", "Georgia", serif;
+      font-style: normal;
+    }
+    .chinese-text {
+      font-family: "MingLiU", "LiSong Pro", "SimSun", "Songti SC", serif;
+    }
+
+    /* === Section Headings === */
+    .cover-title {
+      font-size: 28pt;
+      font-weight: 500;
+      color: var(--accent);
+      text-align: center;
+      margin-bottom: 8pt;
+    }
+    .cover-authors {
+      font-size: var(--body-lead);
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 24pt;
+    }
+    .cover-abstract {
+      font-size: var(--body-dense);
+      line-height: 1.5;
+      padding: 16pt 20pt;
+      background: var(--warm);
+      border-radius: 6pt;
+    }
+    .section-title {
+      font-size: var(--h1);
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 28pt;
+      margin-bottom: 12pt;
+      padding-bottom: 4pt;
+      border-bottom: 1.5pt solid var(--accent);
+      page-break-after: avoid;
+    }
+    .subsection-title {
+      font-size: var(--h2);
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 22pt;
+      margin-bottom: 10pt;
+      page-break-after: avoid;
+    }
+    .subsubsection-title {
+      font-size: var(--h3);
+      font-weight: 600;
+      color: #2a4d6e;
+      margin-top: 16pt;
+      margin-bottom: 8pt;
+      page-break-after: avoid;
+    }
+
+    /* === Bilingual Block === */
+    .bilingual-block {
+      margin: 12pt 0;
+      page-break-inside: avoid;
+    }
+    .bilingual-block .english-text {
+      font-size: var(--body);
+      line-height: 1.6;
+      padding-left: 12pt;
+      border-left: 2pt solid var(--accent);
+      margin-bottom: 6pt;
+      color: #141413;
+    }
+    .bilingual-block .chinese-text {
+      font-size: var(--body);
+      line-height: 1.6;
+      margin-bottom: 6pt;
+      color: #141413;
+    }
+    .bilingual-block .commentary {
+      font-size: var(--body-dense);
+      line-height: 1.5;
+      padding: 8pt 12pt;
+      background: var(--light-bg);
+      border: 0.5pt solid var(--border);
+      border-radius: 4pt;
+      color: var(--text-muted);
+    }
+
+    /* === Formula (LaTeX PNG) === */
+    .formula-block {
+      text-align: center;
+      padding: 18pt 24pt;
+      margin: 18pt 0;
+      background: var(--light-bg);
+      border: 1pt solid var(--border);
+      border-radius: 8pt;
+      page-break-inside: avoid;
+    }
+    .formula-block img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .formula-caption {
+      text-align: center;
+      font-size: var(--caption);
+      color: var(--text-muted);
+      margin-top: 8pt;
+      margin-bottom: 16pt;
+    }
+
+    /* === Figures === */
+    .figure-container {
+      margin: 16pt 0;
+      page-break-inside: avoid;
+      text-align: center;
+    }
+    .figure-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4pt;
+      display: block;
+      margin: 0 auto;
+    }
+    .figure-caption {
+      text-align: center;
+      font-size: var(--caption);
+      color: var(--text-muted);
+      margin-top: 6pt;
+      margin-bottom: 16pt;
+    }
+
+    /* === Tables === */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16pt 0;
+      page-break-inside: avoid;
+    }
+    thead {
+      background: var(--accent);
+      color: var(--light-bg);
+    }
+    th, td {
+      padding: 8pt 10pt;
+      text-align: left;
+      border-bottom: 0.5pt solid var(--border);
+    }
+    th {
+      font-weight: 500;
+      font-size: var(--label);
+    }
+    tbody tr:nth-child(even) {
+      background: var(--light-bg);
+    }
+
+    /* === Utility === */
+    .toc {
+      page-break-after: always;
+    }
+    .toc h2 { font-size: var(--h1); color: var(--accent); }
+    .toc ul { list-style: none; padding: 0; }
+    .toc li { margin-bottom: 6pt; }
+    .toc a { text-decoration: none; color: #141413; }
+
+    .author-block {
+      margin-top: 40pt;
+      padding-top: 16pt;
+      border-top: 0.5pt solid var(--border);
+      font-size: var(--caption);
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     COVER PAGE
+     ============================================================ -->
+<div class="toc">
+  <div style="text-align:center; padding-top: 120pt;">
+    <div class="cover-title">{{PAPER_TITLE}}</div>
+    <div class="cover-title" style="font-size:22pt; color:var(--text-muted); margin-bottom:16pt;">逐段精读</div>
+    <div class="cover-authors">{{PAPER_AUTHORS}}</div>
+    <div style="font-size:var(--caption); color:var(--text-muted); margin-bottom:32pt;">
+      {{PAPER_VENUE}} · {{PAPER_YEAR}}
+    </div>
+  </div>
+  <div class="cover-abstract">{{PAPER_ABSTRACT}}</div>
+</div>
+
+<!-- ============================================================
+     BODY — Build sections here following SOP.md
+     ============================================================ -->
+
+{{PAPER_BODY}}
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<div class="author-block">
+  <p><strong>原始论文：</strong>{{PAPER_CITATION}}</p>
+  <p><strong>编译说明：</strong>本文档由 Papyrus 生成，为学术研读用途。英文原文精确保留，中文翻译与解读仅供学习参考。</p>
+</div>
+
+</body>
+</html>

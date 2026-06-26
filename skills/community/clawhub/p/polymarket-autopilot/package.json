@@ -1,0 +1,17 @@
+{
+  "name": "polymarket-autopilot",
+  "version": "1.0.0",
+  "description": "Automated paper trading on Polymarket using AI agents",
+  "main": "scripts/autopilot.cjs",
+  "scripts": {
+    "autopilot": "node scripts/autopilot.cjs"
+  },
+  "keywords": [
+    "polymarket",
+    "trading",
+    "ai-trading",
+    "automation"
+  ],
+  "author": "sunnyhot",
+  "license": "MIT"
+}

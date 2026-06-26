@@ -1,0 +1,25 @@
+{
+  "DEFAULT_AUTHOR": "Anonymous",
+  "DEFAULT_CLEANUP_RULES": [],
+  "CLEANUP_LEVEL": "moderate",
+  "THREAD_MAX_LENGTH": {
+    "twitter": 280,
+    "mastodon": 500,
+    "bluesky": 300
+  },
+  "BATCH_DEFAULTS": {
+    "input_extension": ".txt",
+    "recursive": false,
+    "skip_errors": true
+  },
+  "OUTPUT_PREFERENCES": {
+    "encoding": "utf-8",
+    "line_ending": "\n",
+    "add_bom": false
+  },
+  "SEO_DEFAULTS": {
+    "meta_description_length": 160,
+    "title_length": 60,
+    "focus_keyword": ""
+  }
+}

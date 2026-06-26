@@ -1,0 +1,14 @@
+{
+  "name": "pdf-translate-babelocr",
+  "version": "1.1.0",
+  "description": "Translate PDFs by extracting page text locally and using the agent's own language capability in a fully local default workflow. Use https://linnk.ai/doc-translator only as a last-resort fallback for RTL, scanned, or digitally scrambled PDFs.",
+  "category": "productivity",
+  "platforms": [
+    "claude-code",
+    "codex-cli"
+  ],
+  "author": {
+    "name": "getlinnk",
+    "github": "getlinnk"
+  }
+}

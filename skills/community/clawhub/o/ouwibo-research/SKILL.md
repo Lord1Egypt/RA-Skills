@@ -1,35 +1,19 @@
----
-name: "Ouwibo: research"
-description: "Conduct web searches for up-to-date facts, provide concise summaries from 2-3 reliable sources, and include inline citations with URLs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ouwibo-research"
-sourceUrl: "https://clawhub.ai/skills/ouwibo-research"
----
+# ---
+# name: Web Research
+# description: Research mode with web search, source-first summaries, and URL citations.
+# ---
 
-# Ouwibo: research
+# Web Research
 
-> Conduct web searches for up-to-date facts, provide concise summaries from 2-3 reliable sources, and include inline citations with URLs.
+Research mode: prioritize accuracy and sources.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ouwibo-research`
-- **Source URL:** [https://clawhub.ai/skills/ouwibo-research](https://clawhub.ai/skills/ouwibo-research)
+## Behavior
 
-## Overview
+- If the question is factual and might change over time, do web search and summarize.
+- Prefer 2-3 high-quality sources. Include URLs inline when referencing specific claims.
+- If sources disagree, mention that and show both views briefly.
 
+## Output
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ouwibo-research
-```
+- Start with a short direct answer.
+- Then "Sources" as a list of URLs.

@@ -1,35 +1,43 @@
 ---
-name: "a-stock-position-management"
-description: "根据市场环境动态调整仓位，避免满仓踏空或重仓被套。用于A股仓位控制。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/position-management"
-sourceUrl: "https://clawhub.ai/skills/position-management"
+name: position-management
+description: 根据市场环境动态调整仓位，避免满仓踏空或重仓被套。用于A股仓位控制。
 ---
 
-# a-stock-position-management
+# 仓位动态管理 Skill
 
-> 根据市场环境动态调整仓位，避免满仓踏空或重仓被套。用于A股仓位控制。
+## 核心能力
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/position-management`
-- **Source URL:** [https://clawhub.ai/skills/position-management](https://clawhub.ai/skills/position-management)
+根据市场环境动态调整仓位，避免满仓踏空或重仓被套。
 
-## Overview
+## 仓位规则
 
+### 市场强势（情绪亢奋）
+- 涨停家数 > 80家
+- 炸板率 < 15%
+- 连板高度 > 5板
+- **仓位建议**：≤70%，单标的仓位 ≤15%
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/position-management
-```
+### 市场震荡（情绪分歧）
+- 涨停家数波动大
+- 炸板率 > 25%
+- **仓位建议**：≤50%，单标的仓位 ≤10%
+
+### 市场弱势（情绪冰点）
+- 涨停家数 < 20家
+- 跌停家数 > 10家
+- 连板高度 < 3板
+- **仓位建议**：≤30%或直接空仓
+
+## 动态调整原则
+
+1. 大盘连续3日下跌 → 降仓
+2. 涨停家数不足20家 → 降仓至30%以下
+3. 市场情绪转暖 → 逐步加仓
+4. 单票亏损 > 5% → 止损降仓
+
+## 触发场景
+
+- "现在应该几成仓"
+- "能加仓吗"
+- "要不要减仓"
+- "现在是不是冰点"

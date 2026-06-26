@@ -1,0 +1,21 @@
+[Unit]
+Description=Paired \u2014 signed-inbox /sms /phone command dispatcher
+Documentation=https://github.com/nj070574-gif/openclaw-paired-skill/blob/main/skill/SKILL.md
+After=openclaw.service network.target
+Wants=openclaw.service
+StartLimitIntervalSec=60
+StartLimitBurst=6
+
+[Service]
+Type=simple
+# Reads commands from ~/.openclaw/paired/inbox/, requires HMAC signature.
+# Generates ~/.config/paired/inbox.key once via 'paired-inbox-hook --keygen'.
+ExecStart=%h/bin/paired-inbox-hook --watch
+Restart=on-failure
+RestartSec=10
+TimeoutStartSec=15
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

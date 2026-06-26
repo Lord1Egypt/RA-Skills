@@ -1,0 +1,57 @@
+# PingCode TimeLogger Configuration
+# Copy this file to: ~/.openclaw/skills/pingcode-timelogger/config.yaml
+
+pingcode:
+  # Your PingCode instance URL (required)
+  url: https://your-company.pingcode.com
+
+  # Path to cookie file, relative to this config directory (required)
+  # Export from browser: DevTools → Application → Cookies → copy as text
+  cookie_file: ./cookies.txt
+
+  # Project ID — 24-character hex string (required)
+  # Find it: open your project in PingCode, check browser DevTools network requests
+  project_id: ""
+
+  # Default parent work item ID to create sub-tasks under (optional)
+  # If not set, user must specify a parent each time
+  default_parent_id: ""
+
+  # Your user ID in PingCode — 24-character hex string (required)
+  # Find it: DevTools → network → look for your user ID in API responses
+  user_id: ""
+
+  # Work item type IDs (required)
+  # These are usually consistent within a PingCode instance
+  task_type_id: ""           # "任务" (Task) type ID
+  completed_state_id: ""     # "已完成" (Completed) state ID
+  open_state_id: ""          # "打开" (Open) state ID
+
+# Git integration (optional — needed for auto-fill from commits)
+git:
+  # Provider: github or gitlab
+  provider: github
+
+  # API base URL
+  # GitHub: https://api.github.com
+  # GitLab: https://your-gitlab.com
+  url: https://api.github.com
+
+  # Path to token file, relative to this config directory
+  # Create the file with just the token string inside
+  token_file: ./git-token.txt
+
+  # Your Git username (for filtering commits)
+  username: ""
+
+  # Repositories to scan for commits
+  # Format: ["owner/repo1", "owner/repo2"]
+  repos: []
+
+# Default values for time logging
+defaults:
+  # Work category: 研发/设计/部署/测试/文档/产品/调研/其他
+  work_category: 研发
+
+  # Your display name (used in confirmation messages)
+  assignee_name: ""

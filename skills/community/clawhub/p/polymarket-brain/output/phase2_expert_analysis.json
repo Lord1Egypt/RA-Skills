@@ -1,0 +1,24 @@
+{
+  "analyses": [
+    {
+      "title": "European stocks + Fed focus",
+      "expert": "the-fed-agent",
+      "focus": "Fed policy, oil stagflation"
+    },
+    {
+      "title": "Israel kills Iran minister",
+      "expert": "geopolitics-expert",
+      "focus": "Assassination escalation, regime stability"
+    },
+    {
+      "title": "France Hormuz help",
+      "expert": "geopolitics-expert",
+      "focus": "Strait of Hormuz closure"
+    },
+    {
+      "title": "Trump shipping waiver",
+      "expert": "the-fed-agent",
+      "focus": "Oil market stabilization"
+    }
+  ]
+}

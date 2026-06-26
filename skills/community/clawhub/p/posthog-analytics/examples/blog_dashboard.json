@@ -1,0 +1,12 @@
+{
+  "name": "Blog Analytics",
+  "description": "Track blog performance and reader engagement",
+  "filter": {"key": "source", "value": "blog"},
+  "dashboard_id": null,
+  "insights": [
+    {"name": "Blog Pageviews (Total)", "type": "pageviews_total"},
+    {"name": "Unique Blog Readers", "type": "unique_users"},
+    {"name": "Blog Traffic Trend", "type": "traffic_trend"},
+    {"name": "Top Blog Posts", "type": "top_pages"}
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "paper-polisher-pro",
+  "version": "1.1.0",
+  "description": "Academic AI detector fingerprinting Chinese LLMs. 9-layer engine, F1=98.3% on 2026 models.",
+  "author": "docsor1212",
+  "changelog": "v1.1.0: 9-layer detection engine, 1002 patterns, 501 synonyms, 10x 2026 flagship models benchmarked (F1 98.3%)"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "podcast-launchpad",
+  "version": "1.1.0",
+  "description": "A complete podcast launch kit covering show concept, format design, equipment, scripting, recording, editing, hosting, directory submission, launch assets, and sustainable growth.",
+  "keywords": ["podcast", "audio", "content-creation", "media-launch", "distribution"],
+  "author": "harrylabsj",
+  "license": "MIT-0",
+  "repository": "https://github.com/harrylabsj/podcast-launchpad"
+}

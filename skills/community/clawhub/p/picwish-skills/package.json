@@ -1,0 +1,29 @@
+{
+  "name": "picwish-skills",
+  "version": "1.0.7",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "run": "node scripts/run_task.mjs"
+  },
+  "openclaw": {
+    "credentials": [
+      {
+        "name": "PICWISH_API_KEY",
+        "required": true,
+        "description": "PicWish API Key. Get yours at https://picwish.com/open-api",
+        "source": "env | openclaw-config:skills.entries.picwish.apiKey"
+      },
+      {
+        "name": "PICWISH_REGION",
+        "required": false,
+        "default": "global",
+        "description": "Set to 'cn' for China mainland users, defaults to 'global'",
+        "source": "env | openclaw-config:skills.entries.picwish.region"
+      }
+    ]
+  }
+}

@@ -1,35 +1,73 @@
 ---
-name: "PDF视觉阅读器"
-description: "PDF视觉阅读器 — 将PDF转换为图片，通过AI视觉模型理解PDF内容。 当用户发送PDF文件或提供PDF路径，需要理解、分析、总结PDF内容时使用。 能力： - 将PDF每页渲染为高清PNG图片（PyMuPDF） - 使用AI视觉模型分析图片内容（中英文均可） - 支持幻灯片型、图片型、扫描件型PDF - 自..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pdf-vision-reader"
-sourceUrl: "https://clawhub.ai/skills/pdf-vision-reader"
+name: pdf-vision-reader
+description: >
+  PDF视觉阅读器 — 将PDF转换为图片，通过AI视觉模型理解PDF内容。
+  
+  当用户发送PDF文件或提供PDF路径，需要理解、分析、总结PDF内容时使用。
+  
+  能力：
+  - 将PDF每页渲染为高清PNG图片（PyMuPDF）
+  - 使用AI视觉模型分析图片内容（中英文均可）
+  - 支持幻灯片型、图片型、扫描件型PDF
+  - 自动识别水印、表格、图表、数字
+  - 输出一页或多页的详细内容描述
+  
+  使用方式：
+  1. 接收PDF文件路径或Telegram文件
+  2. 提取PDF为图片
+  3. 分批次用视觉AI分析（每批4-5页）
+  4. 整合结果，可选：摘要整理、要点提炼、知识归档
 ---
 
-# PDF视觉阅读器
+# PDF视觉阅读器 (pdf-vision-reader)
 
-> PDF视觉阅读器 — 将PDF转换为图片，通过AI视觉模型理解PDF内容。 当用户发送PDF文件或提供PDF路径，需要理解、分析、总结PDF内容时使用。 能力： - 将PDF每页渲染为高清PNG图片（PyMuPDF） - 使用AI视觉模型分析图片内容（中英文均可） - 支持幻灯片型、图片型、扫描件型PDF - 自...
+## 工作流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pdf-vision-reader`
-- **Source URL:** [https://clawhub.ai/skills/pdf-vision-reader](https://clawhub.ai/skills/pdf-vision-reader)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pdf-vision-reader
 ```
+用户发送PDF
+    ↓
+提取PDF页面为PNG图片（PyMuPDF, 2x缩放）
+    ↓
+分批次用视觉AI分析（每批4-5页）
+    ↓
+整合视觉分析结果
+    ↓
+可选后续处理：
+  - 整理为结构化摘要
+  - 提炼关键数据/要点
+  - 归档至 memory/ 目录
+  - 回答用户具体问题
+```
+
+## 使用场景
+
+- 用户发来 PDF 需要分析理解
+- 图片型/幻灯片型 PDF 无法用文字提取
+- 扫描件 PDF 识别
+- 需要理解 PDF 中的图表、数据、布局信息
+
+## 输出格式
+
+建议输出结构：
+
+```
+## PDF内容概览
+[总页数] 页，主题：[...]
+
+## 分页详解
+### 第X页
+[视觉AI返回的详细描述]
+
+## 关键信息提炼
+[数据/要点/结论]
+
+## 相关知识
+[如果已有相关背景知识，可关联补充]
+```
+
+## 注意事项
+
+- PDF路径包含中文时，Python读取可能需处理编码
+- 视觉分析每批4-5页，避免超出token限制
+- 对于非常长的PDF（>50页），可先分析目录页+重点页面
+- 分析完成后可询问用户是否需要归档到memory目录

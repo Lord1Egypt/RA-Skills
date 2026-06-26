@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "content": "Full tutorial: How to build a social media content calendar that actually works.\n\nIn this video I walk through my exact process for planning, creating, and scheduling a month of content in one sitting.",
+      "mediaItems": [
+        {
+          "key": "video/YOUR_UPLOAD_KEY.mp4",
+          "type": "VIDEO",
+          "sortOrder": 0
+        }
+      ],
+      "scheduledAt": "2026-06-15T14:00:00.000Z",
+      "socialMediaId": "YOUR_YOUTUBE_ACCOUNT_ID"
+    }
+  ],
+  "controls": {
+    "youtubeIsShort": false,
+    "youtubeTitle": "How to Build a Content Calendar (Full Tutorial)",
+    "youtubePrivacy": "PUBLIC",
+    "youtubeThumbnailKey": "image/YOUR_THUMBNAIL_KEY.jpg",
+    "youtubeTags": ["content calendar", "social media", "tutorial", "scheduling"],
+    "youtubeMadeForKids": false
+  }
+}

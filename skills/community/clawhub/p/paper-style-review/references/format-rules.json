@@ -1,0 +1,193 @@
+{
+  "_meta": {
+    "source": [
+      "institution-format-guide (东北大学硕士学位论文排版打印格式)",
+      "historical-defect-checklist (往年研究生分院抽检发现的主要问题)",
+      "format-public-addendum.md (用户补充口径：目录标题黑体小三 / 正文宋体小四 / 正文中中文与英文单词之间如果出现空格，则标注出来)"
+    ],
+    "version": "2.1",
+    "updatedAt": "2026-03-13",
+    "note": "格式检查以《institution-format-guide》+《historical-defect-checklist》为基础，并叠加公开版保留的补充规则；不再使用参考论文 Word 样式做基线推断。"
+  },
+  "paper": {
+    "size": "A4",
+    "dimensions": "210mm×297mm",
+    "printArea": "160mm×247mm (不含页眉页码行)",
+    "binding": "双面打印，沿长边装订",
+    "linesPerPage": "30～35行",
+    "charsPerLine": "35～38字"
+  },
+  "margins": {
+    "note": "版芯160mm×247mm对应的页边距（A4纸210×297）",
+    "left": "25mm",
+    "right": "25mm",
+    "top": "25mm",
+    "bottom": "25mm",
+    "strict": true,
+    "historicalIssue": "页边距不符合格式规范（往届抽检常见问题）"
+  },
+  "bodyText": {
+    "fontSize": "小四",
+    "fontName": "宋体",
+    "fontNameEn": "Times New Roman",
+    "note": "正文字体小4号宋体，全文统一。外文、数字字号与同行汉字字号相同，字体用Times New Roman或相近字体。"
+  },
+  "headings": {
+    "level1": {
+      "label": "章标题（第一级）",
+      "fontSize": "二号",
+      "fontName": "黑体",
+      "alignment": "居中",
+      "occupyLines": 3,
+      "example": "第1章 XXX",
+      "note": "摘要、目录、参考文献、致谢、个人简历等标题也作为第一级标题排版"
+    },
+    "level2": {
+      "label": "条标题（第二级）",
+      "fontSize": "三号",
+      "fontName": "黑体",
+      "alignment": "居左",
+      "occupyLines": 2,
+      "example": "1.1 XXXXXX"
+    },
+    "level3": {
+      "label": "款标题（第三级）",
+      "fontSize": "四号",
+      "fontName": "黑体",
+      "alignment": "居左",
+      "occupyLines": 2,
+      "example": "1.1.1 XXXXXX"
+    },
+    "level4": {
+      "label": "项标题（第四级）",
+      "fontSize": "小四",
+      "fontName": "黑体",
+      "alignment": "居左",
+      "occupyLines": 1,
+      "example": "1.1.1.1 XXXXXX"
+    },
+    "numberingRule": "章、条、款、项用阿拉伯数字编号，各级之间用半角实心下圆点'.'相隔，最末级编号之后不加点。分级编号法只分至第四级。再分可用（1）、（2）……；（a）、（b）……等。"
+  },
+  "pageNumber": {
+    "style": "阿拉伯数字连续编页",
+    "fontSize": "与正文字体相同",
+    "position": "页底居中",
+    "decoration": "数字两侧用圆点或一字横线修饰，如·3·或－3－",
+    "fontNameEn": "罗马体（Times New Roman）",
+    "historicalIssues": [
+      "摘要、空白页也应有页码",
+      "正文页码的字体应采用罗马体",
+      "页码格式需规范"
+    ]
+  },
+  "pageHeader": {
+    "startFrom": "摘要页",
+    "style": "单线或双线（二等线、文武线）",
+    "fontSize": "五号",
+    "fontName": "楷体",
+    "leftContent": "东北大学硕士学位论文",
+    "rightContent": "章号章题"
+  },
+  "figures": {
+    "numberingRule": "图号编码用章序号，如'图2.1'表示第2章第1图",
+    "captionPosition": "图的正下方",
+    "captionFontSize": "五号",
+    "captionFontName": "宋体（须全文统一）",
+    "labelFormat": "图号与图题文字间置一字空格",
+    "annotationFontSize": "不大于图题的字号",
+    "historicalIssues": [
+      "图表的题目与图表的间距不正确",
+      "图的编号错误"
+    ]
+  },
+  "tables": {
+    "numberingRule": "表号用章序号编码，如'表2.1'是第2章中的第1表",
+    "captionPosition": "表的上方居中",
+    "captionFontSize": "五号",
+    "captionFontName": "宋体（须全文统一）",
+    "labelFormat": "表应有表题，与表号之间空1～2字",
+    "contentFontSize": "不大于图题的字号",
+    "historicalIssues": [
+      "图表的题目与图表的间距不正确",
+      "表头和表的内容应该连在一起，不能断页"
+    ]
+  },
+  "formulas": {
+    "numberingRule": "按章序号用阿拉伯数字编号，如'式（2.1）'表示第2章第1式",
+    "layout": "公式一般单行居中排版与上下文分开",
+    "numberPosition": "式号与公式同行居右排版",
+    "historicalIssues": [
+      "公式的释义应采用统一的表达方式，如'其中'、'式中'应统一",
+      "公式编号格式不统一"
+    ]
+  },
+  "references": {
+    "numberingSystem": "顺序号编号体系",
+    "formats": {
+      "book": "序号. 编著者. 书名[M]，出版地：出版社，年代，起止页码",
+      "journal": "序号. 作者. 论文名称[J]，期刊名称，年度，卷（期）：起止页码",
+      "thesis": "序号. 作者. 学位论文名称[D]，发表地：学位授予单位，年度"
+    },
+    "historicalIssues": [
+      "参考文献的卷和期格式错误",
+      "部分引用的参考文献没有标页码",
+      "参考文献信息不全"
+    ]
+  },
+  "appendix": {
+    "numberingRule": "图、表、公式、参考文献等另行编排序号，与正文分开，用阿拉伯数字编号，但在数码前冠以附录序码。例如：图A.1，式（B.3）等。"
+  },
+  "units": {
+    "standard": "中华人民共和国法定计量单位（1984年国务院发布）",
+    "gbStandards": [
+      "GB3100-82",
+      "GB3101-82",
+      "GB3102/1-13-82"
+    ],
+    "rule": "单位名称和符号的书写方式，可以采用国际通用符号，也可以用中文名称，但统一采用一种，不要混用。"
+  },
+  "toc": {
+    "historicalIssues": [
+      "目录排版不够美观，行间距不统一",
+      "目录字体大小需符合标准"
+    ],
+    "titleFontSize": "小三",
+    "titleFontName": "黑体",
+    "titleRuleNote": "用户补充口径：目录页标题“目录”按黑体小三检查。"
+  },
+  "terminology": {
+    "historicalIssues": [
+      "部分专业术语简写错误"
+    ]
+  },
+  "structure": {
+    "frontMatter": [
+      "封面",
+      "扉页（中英两种）",
+      "声明（独创性声明）",
+      "摘要（中英两种文字）",
+      "目录",
+      "插图和附表清单（必要时）",
+      "缩略字/缩写词/符号/单位表（必要时）",
+      "名词术语注释表（必要时）"
+    ],
+    "mainBody": [
+      "绪论（前言/引言/绪言）",
+      "正文",
+      "讨论、结论和建议"
+    ],
+    "endMatter": [
+      "参考文献",
+      "致谢",
+      "攻读学位期间发表的论著/获奖情况/发明专利等",
+      "作者科研和学习经历简历",
+      "可供参考的文献题录（必要时）",
+      "索引（必要时）"
+    ]
+  },
+  "textHygiene": {
+    "forbidExtraInnerSpaces": false,
+    "note": "用户补充口径（后续澄清）：只在正文区检查“中文与英文单词之间出现空格”的情况；目录、封面等前置部分不泛化处理。",
+    "flagChineseEnglishWordSpacing": true
+  }
+}

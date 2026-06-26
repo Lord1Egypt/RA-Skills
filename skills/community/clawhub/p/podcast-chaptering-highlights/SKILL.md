@@ -1,35 +1,56 @@
 ---
-name: "Podcast Chaptering Highlights"
-description: "Create chapters, highlights, and show notes from podcast audio or transcripts. Use when a user wants chapter markers, highlight clips, or show-note drafts without publishing or distribution actions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/podcast-chaptering-highlights"
-sourceUrl: "https://clawhub.ai/skills/podcast-chaptering-highlights"
+name: podcast-chaptering-highlights
+description: Create chapters, highlights, and show notes from podcast audio or transcripts. Use when a user wants chapter markers, highlight clips, or show-note drafts without publishing or distribution actions.
 ---
 
-# Podcast Chaptering Highlights
+# Podcast Chaptering and Highlights
 
-> Create chapters, highlights, and show notes from podcast audio or transcripts. Use when a user wants chapter markers, highlight clips, or show-note drafts without publishing or distribution actions.
+## Goal
+Produce podcast chapter markers and highlight suggestions with concise show notes.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/podcast-chaptering-highlights`
-- **Source URL:** [https://clawhub.ai/skills/podcast-chaptering-highlights](https://clawhub.ai/skills/podcast-chaptering-highlights)
+## Best fit
+- Use when the user provides audio files or transcripts.
+- Use when the user wants chapter timestamps and titles.
+- Use when the user needs highlight clip ideas and show notes.
 
-## Overview
+## Not fit
+- Avoid when the user asks to publish or upload to hosting platforms.
+- Avoid when rights or consent are unclear.
+- Avoid when audio quality is too poor to segment.
 
+## Quick orientation
+- `references/overview.md` for workflow and quality bar.
+- `references/auth.md` for access and token handling.
+- `references/endpoints.md` for optional integrations and templates.
+- `references/webhooks.md` for async event handling.
+- `references/ux.md` for intake questions and output formats.
+- `references/troubleshooting.md` for common issues.
+- `references/safety.md` for safety and privacy guardrails.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/podcast-chaptering-highlights
-```
+## Required inputs
+- Audio file path or transcript.
+- Target chapter format (MM:SS or HH:MM:SS).
+- Preferred chapter length range.
+- Show description and guest details if available.
+
+## Expected output
+- Chapter markers with timestamps and titles.
+- Highlight clip suggestions with timestamps.
+- Show notes draft with key links or topics.
+- Optional social post drafts.
+
+## Operational notes
+- Keep chapters aligned to topic shifts.
+- Ensure titles are concise and descriptive.
+- Provide drafts only; do not publish or upload.
+
+## Security notes
+- Treat audio content as private unless told otherwise.
+- Avoid sharing raw audio beyond the workspace.
+
+## Safe mode
+- Analyze and draft chapters, highlights, and notes only.
+- No publishing or distribution actions.
+
+## Sensitive ops
+- Uploading or publishing audio is out of scope.

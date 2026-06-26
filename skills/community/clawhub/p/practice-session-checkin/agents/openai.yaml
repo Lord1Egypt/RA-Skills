@@ -1,0 +1,7 @@
+interface:
+  display_name: "专项练习打卡助手"
+  short_description: "Public-safe practice session intake, confirmation, reminders, completion checks, and follow-up tracking"
+  default_prompt: "Use $practice-session-checkin to manage practice-task intake, start-time confirmation, reminders, completion checks, and follow-up tracking."
+
+policy:
+  allow_implicit_invocation: true

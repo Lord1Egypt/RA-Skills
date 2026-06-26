@@ -1,0 +1,12 @@
+{
+  "name": "Payment Link Reader",
+  "tagline": "Fetch product info from GStable payment links via API",
+  "description": "Payment Link Reader fetches product information by payment link ID. It calls the GStable API to retrieve payment link details and returns product names, descriptions, prices, and supported payment tokens. Ideal for AI assistants that need to parse payment links shared by users, display product lists, or validate links before payment. Supports both link IDs (lnk_xxx) and full payment URLs.",
+  "category": "utility",
+  "tags": ["payment", "gstable", "api", "ai-payment", "product-info"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://docs.gstable.io/zh-Hans/docs/api/ai-payment/get-payment-link/",
+  "homepage": "https://docs.gstable.io/zh-Hans/docs/api/ai-payment/get-payment-link/"
+}

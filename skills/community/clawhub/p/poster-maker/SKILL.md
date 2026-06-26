@@ -1,35 +1,104 @@
 ---
-name: "Poster Maker"
+name: poster-maker
 description: "AI 海报制作大师。三种模式：风格复刻、创意生成、直播预告海报。含产品原图还原方法论和生成脚本。Nano Banana Pro 生成，支持 Ofox/OpenRouter。"
-category: "creative"
-source: "ClawHub"
-tags: [design, livestream, marketing, poster, nano-banana]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/poster-maker"
-sourceUrl: "https://clawhub.ai/skills/poster-maker"
 ---
 
-# Poster Maker
+# AI 海报制作大师
 
-> AI 海报制作大师。三种模式：风格复刻、创意生成、直播预告海报。含产品原图还原方法论和生成脚本。Nano Banana Pro 生成，支持 Ofox/OpenRouter。
+三种模式，覆盖海报制作全场景。自带生成脚本，安装即用。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/poster-maker`
-- **Source URL:** [https://clawhub.ai/skills/poster-maker](https://clawhub.ai/skills/poster-maker)
+## 适用场景
 
-## Overview
+电商产品海报 / 直播预告海报 / 营销活动海报 / 社交媒体素材 / 品牌宣传
+
+## 前置：Brainstorming（可选）
+
+需求不明确时先用 `think-first` skill 做一轮 brainstorming：产品是什么？目标人群？场景？有参考吗？根据回答进入对应模式。
+
+## 三种模式
+
+| 模式 | 输入 | 输出 |
+|------|------|------|
+| **1 风格复刻** | 参考海报 + 替换内容 | 同风格新海报 |
+| **2 创意生成** | 产品图 + 卖点 | 原创海报 |
+| **3 直播预告** | 品牌 + 产品 + 直播信息 | 直播预热海报 |
+
+---
+
+## 模式 1：风格复刻
+
+Step 1：**分析参考海报**——用 7 维度（构图/色调/字体/装饰/排版/信息密度/气质）输出风格分析卡。详见 `references/风格分析指南.md`
+
+Step 2：**收集替换内容**——产品图 + 主标题 + 卖点 + 品牌 + 尺寸
+
+Step 3：**生成 Prompt**——风格分析 + 新内容合成。详见 `references/Prompt模板.md`
+
+Step 4：**生成 + 迭代**——通常 3-7 轮
+
+## 模式 2：创意生成
+
+Step 1：**理解产品**——产品名/核心卖点/目标人群/品牌调性/参考方向
+
+Step 2：**AI 写文案**——生成 2-3 套候选（主标题 + 副标题 + 卖点），用户选一套。详见 `references/文案原则.md`
+
+Step 3：**设计构图**——产品居中型/场景代入型/信息密集型/极简留白型/对比展示型
+
+Step 4-5：生成 Prompt → 生成 + 迭代
+
+## 模式 3：直播预告海报
+
+直播海报必备 10 个元素（缺一不可）：品牌名 / 直播日期时间 / "锁定直播间" / 平台标识 / 活动名称 / 品类标签 / 产品展示 / 产品卖点 / 底部活动栏 / 预约按钮
+
+常见版式：竖版多品展示（2-4 个主推品 9:16）/ 横版单品主推（16:9）
+
+风格推荐：深蓝星空+金丝绸（家纺/珠宝）/ 红金喜庆（大促）/ 清新渐变（食品/母婴）/ 黑金科技（3C/数码）
+
+---
+
+## 产品原图还原
+
+AI 无法 100% 还原真实产品照片。三种应对策略：
+
+**策略 A 纯 AI（推荐）**：用极详细的文字描述产品外观。还原度 70-85%，整体协调。
+
+**策略 B 模板+合成**：AI 生成无产品模板 → 真实产品图抠图后合成。100% 还原但需 PS 技能。
+
+**策略 C 混合**：AI 生成完整海报 → PS 只替换产品区域。兼顾协调和还原。
+
+产品描述黄金模板：形状 + 颜色 hex + 纹理（类型/间距/凹陷深度）+ 材质 + 观察角度 + 特殊细节
+
+迭代顺序：第 1 轮形状 → 第 2 轮颜色 → 第 3 轮纹理 → 第 4 轮质感
+
+---
+
+## 生成脚本
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/poster-maker
-```
+
+运行：
+
+    python3 scripts/generate_poster.py --prompt prompt.txt -o poster.png
+    python3 scripts/generate_poster.py --text "生成一张..." -o poster.png --size 1080x1080
+
+自动检测 Ofox/OpenRouter，成本约 ¥0.1-0.3/张。
+
+## QA 迭代
+
+通常 3-7 轮。每轮只改 2-3 个问题，不要推翻重来。
+
+常见问题：中文乱码（加 CRITICAL）/ 产品颜色偏（用 hex）/ 产品太小（写"占 70%"）/ 缺直播元素（逐条检查 10 项清单）/ Prompt 泄漏（第一句改为描述句）
+
+---
+
+## 铁律
+
+1. **文案用户确认后才生成**
+2. **产品描述要极其详细**（hex + 纹理深度 + 材质 + 角度）
+3. **中文必须清晰**——加 CRITICAL 指令
+4. **颜色用 hex**——"浅绿色"不准确，`#C8E6C5` 才准确
+5. **不编数据**
+6. **风格分析要具体**——7 维度结构化
+7. **直播海报别忘直播元素**——10 项清单
+8. **每轮迭代只改 2-3 个问题**
+9. **产品描述后期重点打磨**
+10. **构图先文字后图片**

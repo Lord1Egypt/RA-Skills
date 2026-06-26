@@ -1,35 +1,37 @@
----
-name: "pollinations-sketch-note"
-description: "Generates AI-powered hand-drawn style sketch notes by auto-searching and summarizing topics from Wikipedia and Baidu Baike in three artistic styles."
-category: "other"
-source: "ClawHub"
-tags: [pollinations]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pollinations-sketch-note"
-sourceUrl: "https://clawhub.ai/skills/pollinations-sketch-note"
----
+# Pollinations Sketch Note Skill
 
-# pollinations-sketch-note
+**Name**: pollinations-sketch-note  
+**Version**: 0.0.1  
+**Author**: 锦鲤  
+**License**: MIT
 
-> Generates AI-powered hand-drawn style sketch notes by auto-searching and summarizing topics from Wikipedia and Baidu Baike in three artistic styles.
+## Description
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pollinations-sketch-note`
-- **Source URL:** [https://clawhub.ai/skills/pollinations-sketch-note](https://clawhub.ai/skills/pollinations-sketch-note)
+AI-powered sketch note generator that creates hand-drawn style knowledge cards with auto-search and summary.
 
-## Overview
+AI 手绘知识卡片生成器，自动搜索主题并总结，生成手绘风格知识卡片。
 
+## Features
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Auto-search from Wikipedia and Baidu Baike
+- AI summary to 180-200 characters
+- 3 artistic styles (Minimalist/Cute/Cyberpunk)
+- Standard 804×440 output
+- Auto signature and timestamp
+
+## Requirements
+
+- Python 3.10+
+- requests
+- pillow>=10.0.0
+- Environment variables: POLLINATIONS_API_KEY, TAVILY_API_KEY
+
+## Usage
+
 ```bash
-hermes skills install clawhub/pollinations-sketch-note
+python3 generate.py --theme "主题名"
 ```
+
+## Documentation
+
+See README.md and INTRO.md for full usage guide.

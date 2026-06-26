@@ -1,0 +1,42 @@
+{
+  "_comment": "Example: 把具体 agent 名字映射到 skill 抽象。放 ~/.config/playwright-per-agent/agents.json (不进 git / 不进 skill 包)。",
+
+  "agents": {
+    "_comment": "key = 你在 openclaw.json 里实际的 agent id，value = 业务元数据 (role, displayName 等)",
+    "your-agent-id-1": {
+      "role": "production",
+      "displayName": "Production Worker",
+      "tags": ["ci", "build"]
+    },
+    "your-agent-id-2": {
+      "role": "qa",
+      "displayName": "QA Worker",
+      "tags": ["test", "scraper"]
+    }
+  },
+
+  "subagents": {
+    "_comment": "命名规则: <parent>:<sub-name>。建议用业务语义命名。",
+    "examples": [
+      "your-agent-id-1:scout-1",
+      "your-agent-id-1:scout-1:finder-3"
+    ]
+  },
+
+  "mode_overrides": {
+    "_comment": "按 agent 单独覆盖默认 mode。比如某些 QA agent 强制 ephemeral。",
+    "your-agent-id-2": "ephemeral"
+  },
+
+  "_usage": [
+    "import { AgentBrowser } from 'skills/playwright-per-agent/scripts/per-agent-browser.mjs';",
+    "import agentMap from './agents.json' with { type: 'json' };",
+    "",
+    "const ab = new AgentBrowser({ mode: 'per-agent' });",
+    "for (const [id, meta] of Object.entries(agentMap.agents)) {",
+    "  ab.registerAgent(id, meta);",
+    "}",
+    "",
+    "const { page } = await ab.getBrowser(agentMap.agents[Object.keys(agentMap.agents)[0]].id);"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "PDF Info",
+  "description": "Get PDF metadata, encryption status, page count, and file size. Useful for pre-flight checks before processing.",
+  "method": "POST",
+  "endpoint": "/v1/pdf/info",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": { "type": "apiKey", "header": "CLIENT-API-KEY", "required": true },
+  "parameters": {
+    "body": {
+      "content_type": "application/json",
+      "fields": [
+        { "name": "url", "type": "string", "required": false, "description": "URL to a PDF" },
+        { "name": "base64_pdf", "type": "string", "required": false, "description": "Base64-encoded PDF" }
+      ],
+      "also_accepts": "multipart/form-data with 'file' field"
+    }
+  }
+}

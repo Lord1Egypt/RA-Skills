@@ -1,0 +1,42 @@
+{
+  "name": "periodic-reflection",
+  "version": "1.0.0",
+  "description": "周期性反思报告生成工具 - 自动化生成结构化的自我进化反思报告，支持数据驱动的快速迭代优化",
+  "author": "肥肥 🦞",
+  "license": "MIT",
+  "keywords": [
+    "reflection",
+    "evolution",
+    "report",
+    "devops",
+    "monitoring",
+    "self-improvement"
+  ],
+  "main": "scripts/generate-report.js",
+  "scripts": {
+    "generate": "node scripts/generate-report.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/tree/main/periodic-reflection"
+  },
+  "clawhub": {
+    "category": "productivity",
+    "tags": ["report", "automation", "monitoring", "reflection"],
+    "featured": true,
+    "screenshots": [
+      "https://raw.githubusercontent.com/openclaw/skills/main/periodic-reflection/screenshot-1.png"
+    ]
+  },
+  "usage": {
+    "basic": "node scripts/generate-report.js --project \"你的项目\" --cycle daily",
+    "advanced": "node scripts/generate-report.js --project \"EvoMap\" --cycle hourly --auto --output reports/custom.md",
+    "cron": "0 */8 * * * cd /path/to/periodic-reflection && node scripts/generate-report.js --auto"
+  },
+  "config": {
+    "defaultCycle": "daily",
+    "defaultProject": "My Project",
+    "outputDir": "reports"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "polymarket-monitor",
+  "version": "1.0.0",
+  "description": "Polymarket预测市场监控 - 收费版",
+  "main": "scripts/monitor.js",
+  "scripts": {
+    "monitor": "node scripts/monitor.js",
+    "hot": "node scripts/monitor.js hot"
+  },
+  "keywords": [
+    "polymarket",
+    "prediction-market",
+    "odds",
+    "skillpay"
+  ],
+  "author": "小白",
+  "license": "MIT"
+}

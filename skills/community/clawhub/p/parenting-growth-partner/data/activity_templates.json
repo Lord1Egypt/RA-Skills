@@ -1,0 +1,36 @@
+{
+  "activity_categories": [
+    {
+      "category": "sensory_play",
+      "description": "Activities that engage the senses",
+      "examples": ["water play", "sand play", "play dough", "texture boards"]
+    },
+    {
+      "category": "motor_skills",
+      "description": "Activities that develop gross and fine motor skills",
+      "examples": ["ball games", "building blocks", "puzzles", "threading beads"]
+    },
+    {
+      "category": "cognitive_development",
+      "description": "Activities that support thinking and problem-solving",
+      "examples": ["sorting games", "matching games", "simple puzzles", "cause-effect toys"]
+    },
+    {
+      "category": "language_development",
+      "description": "Activities that support communication skills",
+      "examples": ["reading books", "singing songs", "storytelling", "conversation games"]
+    },
+    {
+      "category": "social_emotional",
+      "description": "Activities that support social skills and emotional regulation",
+      "examples": ["role play", "cooperative games", "emotion cards", "turn-taking games"]
+    }
+  ],
+  "safety_guidelines": [
+    "Always supervise children during activities",
+    "Choose age-appropriate materials",
+    "Check for choking hazards (small parts)",
+    "Ensure materials are non-toxic",
+    "Create a safe play environment"
+  ]
+}

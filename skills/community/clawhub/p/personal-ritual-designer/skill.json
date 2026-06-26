@@ -1,0 +1,24 @@
+{
+  "name": "Personal Ritual Designer",
+  "slug": "personal-ritual-designer",
+  "version": "1.0.0",
+  "description": "Creates meaningful personal rituals for grounding, intention, and daily transitions.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "ritual",
+    "mindfulness",
+    "daily-practice",
+    "self-care"
+  ],
+  "trigger_keywords": [
+    "design personal ritual",
+    "morning ritual",
+    "evening ritual",
+    "grounding practice",
+    "ritual for transition"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

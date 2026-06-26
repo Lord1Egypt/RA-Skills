@@ -1,35 +1,147 @@
 ---
-name: "PPT 生成器 AI Pro"
-description: "一键生成乔布斯风极简科技感 PPT，支持 HTML/PDF 导出。当用户需要制作演示文稿、工作汇报、产品发布、融资路演时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ppt-generator-ai-pro"
-sourceUrl: "https://clawhub.ai/skills/ppt-generator-ai-pro"
+name: ppt-generator-pro
+version: 1.0.0
+description: 一键生成乔布斯风极简科技感 PPT，支持 HTML/PDF 导出。当用户需要制作演示文稿、工作汇报、产品发布、融资路演时触发。
+author: 全能虾大王
+license: MIT
+metadata:
+  openclaw:
+    emoji: "📊"
+    category: "productivity"
+    requires:
+      bins: ["node"]
 ---
 
-# PPT 生成器 AI Pro
+# PPT Generator Pro - 专业 PPT 生成器
 
-> 一键生成乔布斯风极简科技感 PPT，支持 HTML/PDF 导出。当用户需要制作演示文稿、工作汇报、产品发布、融资路演时触发。
+一键生成极简科技感 PPT，支持 HTML/PDF 导出。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ppt-generator-ai-pro`
-- **Source URL:** [https://clawhub.ai/skills/ppt-generator-ai-pro](https://clawhub.ai/skills/ppt-generator-ai-pro)
+## 功能特点
 
-## Overview
+- ✅ 乔布斯风极简设计
+- ✅ 科技感竖屏演示
+- ✅ 支持中文排版
+- ✅ 一键导出 HTML/PDF
+- ✅ 自动配色方案
+- ✅ 10+ 专业模板
 
+## 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ppt-generator-ai-pro
+| 场景 | 适用模板 | 页数 |
+|------|---------|------|
+| 工作汇报 | 商务蓝 | 10-15 页 |
+| 产品发布 | 科技黑 | 15-20 页 |
+| 融资路演 | 创投红 | 12-18 页 |
+| 学术答辩 | 学术绿 | 20-30 页 |
+| 培训课件 | 教育橙 | 15-25 页 |
+
+## 使用方法
+
+### 基础用法
 ```
+用户：帮我做一个产品发布会 PPT
+AI：请问您的产品是什么？目标受众是谁？希望什么风格？
+```
+
+### 高级用法
+```
+用户：做一个融资路演 PPT，15 页，科技风格，包含市场分析、产品介绍、团队介绍、财务预测
+```
+
+## 输出格式
+
+### HTML 单文件（推荐）
+- 可直接打开
+- 支持动画
+- 可打印为 PDF
+
+### PDF 格式
+- 适合打印
+- 适合邮件发送
+- 兼容性好
+
+## 模板列表
+
+| 模板名 | 主色 | 适用场景 |
+|-------|------|---------|
+| 商务蓝 | #1E88E5 | 工作汇报、商务演示 |
+| 科技黑 | #212121 | 产品发布、技术分享 |
+| 创投红 | #D32F2F | 融资路演、创业比赛 |
+| 学术绿 | #388E3C | 学术答辩、论文汇报 |
+| 教育橙 | #F57C00 | 培训课件、教学演示 |
+| 医疗青 | #00BCD4 | 医疗汇报、健康科普 |
+| 金融紫 | #7B1FA2 | 金融分析、投资报告 |
+| 简约白 | #757575 | 通用场景 |
+
+## 价格说明
+
+| 套餐 | 价格 | 包含内容 |
+|------|------|---------|
+| 基础版 | ¥99 | 单模板，10 页以内 |
+| 标准版 | ¥199 | 任选模板，20 页以内 |
+| 专业版 | ¥399 | 定制设计，30 页以内 |
+| 企业版 | ¥999 | 无限页数，专属模板 |
+
+## 交付流程
+
+1. 用户提供主题和要求
+2. AI 生成大纲确认
+3. AI 生成完整 PPT
+4. 用户审核修改
+5. 交付最终文件
+
+## 修改政策
+
+- 基础版：1 次免费修改
+- 标准版：2 次免费修改
+- 专业版：3 次免费修改
+- 企业版：无限修改
+
+## 交付时间
+
+- 基础版：24 小时内
+- 标准版：24-48 小时
+- 专业版：48-72 小时
+- 企业版：协商确定
+
+## 常见问题
+
+**Q: 可以加 logo 吗？**
+A: 专业版和企业版支持自定义 logo。
+
+**Q: 可以改颜色吗？**
+A: 可以，所有模板颜色都可自定义。
+
+**Q: 支持动画吗？**
+A: HTML 版本支持简单动画，PDF 不支持。
+
+**Q: 可以导出 Keynote/PowerPoint 格式吗？**
+A: 目前支持 HTML 和 PDF，其他格式需额外收费。
+
+## 案例展示
+
+### 产品发布会 PPT
+- 客户：某科技公司
+- 页数：18 页
+- 模板：科技黑
+- 交付时间：36 小时
+- 客户评价："非常专业，老板很满意！"
+
+### 融资路演 PPT
+- 客户：某创业团队
+- 页数：15 页
+- 模板：创投红
+- 交付时间：24 小时
+- 客户评价："成功拿到投资，感谢！"
+
+## 联系我们
+
+- 微信：xxx（专业版以上客户）
+- 邮箱：ppt@example.com
+- 响应时间：24 小时内
+
+---
+
+**让 PPT 制作变得简单高效！**
+
+*最后更新：2026-04-05*

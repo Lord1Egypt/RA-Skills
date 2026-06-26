@@ -1,0 +1,372 @@
+<div class="content">
+  <h2 class="section-title page-break" id="part10">
+    <span class="num">§10</span> 技术方案
+  </h2>
+  <p class="section-en">Technical Architecture</p>
+  <p class="section-intro">系统架构、技术选型与接口设计</p>
+
+  <h3>10.1 架构设计</h3>
+
+  <h4>10.1.1 整体架构</h4>
+  <div class="diagram">
+    <div class="label">系统架构图</div>
+    <pre class="mermaid">
+graph TB
+    subgraph 客户端层
+        A[Web端<br/>React/Vue]
+        B[App端<br/>Flutter/RN]
+        C[小程序<br/>原生]
+    end
+
+    subgraph 网关层
+        D[负载均衡<br/>Nginx/ALB]
+        E[API网关<br/>Kong/Spring Gateway]
+        F[CDN<br/>阿里云/腾讯云]
+    end
+
+    subgraph 服务层
+        G[用户服务]
+        H[内容服务]
+        I[订单服务]
+        J[消息服务]
+        K[搜索服务]
+    end
+
+    subgraph 数据层
+        L[MySQL<br/>主从集群]
+        M[Redis<br/>缓存集群]
+        N[Elasticsearch<br/>搜索引擎]
+        O[OSS<br/>对象存储]
+    end
+
+    A --> D
+    B --> D
+    C --> D
+    D --> E
+    E --> G
+    E --> H
+    E --> I
+    E --> J
+    E --> K
+    G --> L
+    G --> M
+    H --> L
+    H --> N
+    I --> L
+    J --> M
+    K --> N
+    G --> O
+    </pre>
+  </div>
+
+  <h4>10.1.2 技术选型</h4>
+  <table>
+    <tr>
+      <th>层级</th>
+      <th>技术</th>
+      <th>版本</th>
+      <th>选型理由</th>
+    </tr>
+    <tr>
+      <td>前端框架</td>
+      <td>【React/Vue】</td>
+      <td>【v18/v3】</td>
+      <td>【生态成熟，团队熟悉】</td>
+    </tr>
+    <tr>
+      <td>移动端</td>
+      <td>【Flutter/RN/原生】</td>
+      <td>【-】</td>
+      <td>【跨平台/性能需求】</td>
+    </tr>
+    <tr>
+      <td>后端框架</td>
+      <td>【Spring Boot/Go】</td>
+      <td>【v3.x】</td>
+      <td>【成熟稳定，性能优秀】</td>
+    </tr>
+    <tr>
+      <td>数据库</td>
+      <td>MySQL</td>
+      <td>8.0</td>
+      <td>关系型数据，事务支持</td>
+    </tr>
+    <tr>
+      <td>缓存</td>
+      <td>Redis</td>
+      <td>7.x</td>
+      <td>高性能缓存，支持多种数据结构</td>
+    </tr>
+    <tr>
+      <td>消息队列</td>
+      <td>RabbitMQ/RocketMQ</td>
+      <td>【-】</td>
+      <td>异步解耦，削峰填谷</td>
+    </tr>
+    <tr>
+      <td>搜索引擎</td>
+      <td>Elasticsearch</td>
+      <td>8.x</td>
+      <td>全文搜索，聚合分析</td>
+    </tr>
+    <tr>
+      <td>对象存储</td>
+      <td>阿里云OSS/AWS S3</td>
+      <td>-</td>
+      <td>海量存储，CDN加速</td>
+    </tr>
+  </table>
+
+  <h3>10.2 接口设计</h3>
+
+  <h4>10.2.1 接口规范</h4>
+  <ul>
+    <li><strong>协议：</strong>HTTPS</li>
+    <li><strong>格式：</strong>JSON</li>
+    <li><strong>编码：</strong>UTF-8</li>
+    <li><strong>版本：</strong>v1（路径中体现，如 /api/v1/）</li>
+    <li><strong>认证：</strong>JWT Token（Header: Authorization: Bearer {token}）</li>
+    <li><strong>时间戳：</strong>毫秒级时间戳</li>
+  </ul>
+
+  <h4>10.2.2 统一响应格式</h4>
+  <pre><code>{
+  "code": 0,           // 业务码，0表示成功
+  "message": "success", // 提示信息
+  "data": {},          // 业务数据
+  "timestamp": 1234567890123,  // 时间戳
+  "requestId": "uuid"  // 请求追踪ID
+}</code></pre>
+
+  <h4>10.2.3 核心接口清单</h4>
+  <table>
+    <tr>
+      <th>接口</th>
+      <th>方法</th>
+      <th>路径</th>
+      <th>说明</th>
+    </tr>
+    <tr>
+      <td>用户注册</td>
+      <td>POST</td>
+      <td>/api/v1/auth/register</td>
+      <td>手机号+验证码注册</td>
+    </tr>
+    <tr>
+      <td>用户登录</td>
+      <td>POST</td>
+      <td>/api/v1/auth/login</td>
+      <td>密码/验证码登录</td>
+    </tr>
+    <tr>
+      <td>获取用户信息</td>
+      <td>GET</td>
+      <td>/api/v1/user/profile</td>
+      <td>获取当前登录用户信息</td>
+    </tr>
+    <tr>
+      <td>更新用户信息</td>
+      <td>PUT</td>
+      <td>/api/v1/user/profile</td>
+      <td>更新用户资料</td>
+    </tr>
+    <tr>
+      <td>内容列表</td>
+      <td>GET</td>
+      <td>/api/v1/content/list</td>
+      <td>分页获取内容列表</td>
+    </tr>
+    <tr>
+      <td>内容详情</td>
+      <td>GET</td>
+      <td>/api/v1/content/{id}</td>
+      <td>获取内容详情</td>
+    </tr>
+    <tr>
+      <td>文件上传</td>
+      <td>POST</td>
+      <td>/api/v1/file/upload</td>
+      <td>通用文件上传接口</td>
+    </tr>
+  </table>
+
+  <h4>10.2.4 接口示例</h4>
+  <p><strong>用户登录接口</strong></p>
+  <table>
+    <tr>
+      <th>属性</th>
+      <th>说明</th>
+    </tr>
+    <tr>
+      <td>接口路径</td>
+      <td>POST /api/v1/auth/login</td>
+    </tr>
+    <tr>
+      <td>请求参数</td>
+      <td>
+        <pre>{
+  "account": "13800138000",
+  "password": "xxxxxx",
+  "captcha": "1234"
+}</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>成功响应</td>
+      <td>
+        <pre>{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "accessToken": "eyJhbG...",
+    "refreshToken": "eyJhbG...",
+    "expiresIn": 604800,
+    "user": {
+      "id": 12345,
+      "nickname": "张三",
+      "avatar": "https://..."
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>错误响应</td>
+      <td>
+        <pre>{
+  "code": 1001,
+  "message": "账号或密码错误"
+}</pre>
+      </td>
+    </tr>
+  </table>
+
+  <h3>10.3 部署方案</h3>
+
+  <h4>10.3.1 环境规划</h4>
+  <table>
+    <tr>
+      <th>环境</th>
+      <th>用途</th>
+      <th>配置</th>
+      <th>域名</th>
+    </tr>
+    <tr>
+      <td>开发环境</td>
+      <td>日常开发调试</td>
+      <td>单机部署</td>
+      <td>dev-api.example.com</td>
+    </tr>
+    <tr>
+      <td>测试环境</td>
+      <td>功能/集成测试</td>
+      <td>与生产同构</td>
+      <td>test-api.example.com</td>
+    </tr>
+    <tr>
+      <td>预发布</td>
+      <td>上线前验证</td>
+      <td>与生产同构</td>
+      <td>staging-api.example.com</td>
+    </tr>
+    <tr>
+      <td>生产环境</td>
+      <td>正式服务</td>
+      <td>高可用集群</td>
+      <td>api.example.com</td>
+    </tr>
+  </table>
+
+  <h4>10.3.2 服务器配置</h4>
+  <table>
+    <tr>
+      <th>角色</th>
+      <th>配置</th>
+      <th>数量</th>
+      <th>说明</th>
+    </tr>
+    <tr>
+      <td>Web服务器</td>
+      <td>4C8G</td>
+      <td>2</td>
+      <td>Nginx反向代理</td>
+    </tr>
+    <tr>
+      <td>应用服务器</td>
+      <td>8C16G</td>
+      <td>4</td>
+      <td>业务服务部署</td>
+    </tr>
+    <tr>
+      <td>数据库</td>
+      <td>8C32G</td>
+      <td>2</td>
+      <td>主从架构</td>
+    </tr>
+    <tr>
+      <td>缓存</td>
+      <td>4C8G</td>
+      <td>3</td>
+      <td>Redis集群</td>
+    </tr>
+  </table>
+
+  <h4>10.3.3 CI/CD流程</h4>
+  <div class="diagram">
+    <div class="label">发布流程</div>
+    <pre class="mermaid">
+flowchart LR
+    A[代码提交] --> B[单元测试]
+    B --> C[代码扫描]
+    C --> D[构建镜像]
+    D --> E[部署测试]
+    E --> F[集成测试]
+    F --> G[人工审核]
+    G --> H[部署生产]
+    H --> I[健康检查]
+    I --> J[流量切换]
+    </pre>
+  </div>
+
+  <h3>10.4 安全设计</h3>
+
+  <h4>10.4.1 认证授权</h4>
+  <ul>
+    <li><strong>JWT Token：</strong>包含用户ID、角色、过期时间</li>
+    <li><strong>Token有效期：</strong>Access Token 7天，Refresh Token 30天</li>
+    <li><strong>权限控制：</strong>RBAC模型，接口级别鉴权</li>
+  </ul>
+
+  <h4>10.4.2 防护措施</h4>
+  <table>
+    <tr>
+      <th>威胁</th>
+      <th>防护措施</th>
+    </tr>
+    <tr>
+      <td>SQL注入</td>
+      <td>参数化查询，ORM框架</td>
+    </tr>
+    <tr>
+      <td>XSS攻击</td>
+      <td>输入过滤，输出编码</td>
+    </tr>
+    <tr>
+      <td>CSRF攻击</td>
+      <td>Token验证，SameSite Cookie</td>
+    </tr>
+    <tr>
+      <td>重放攻击</td>
+      <td>请求签名+时间戳</td>
+    </tr>
+    <tr>
+      <td>暴力破解</td>
+      <td>登录失败锁定+验证码</td>
+    </tr>
+    <tr>
+      <td>敏感数据</td>
+      <td>加密存储，脱敏展示</td>
+    </tr>
+  </table>
+
+</div>

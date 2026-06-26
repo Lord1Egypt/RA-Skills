@@ -1,35 +1,103 @@
 ---
-name: "Popover"
+name: "popover"
+version: "1.0.0"
 description: "Generate popover UI elements and design assets. Use when building interfaces, creating visual components, or styling web pages."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/popover"
-sourceUrl: "https://clawhub.ai/skills/popover"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [popover, frontend, cli, tool]
+category: "frontend"
 ---
 
-# Popover
+# popover
 
-> Generate popover UI elements and design assets. Use when building interfaces, creating visual components, or styling web pages.
+Generate popover UI elements and design assets. Use when building interfaces, creating visual components, or styling web pages.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/popover`
-- **Source URL:** [https://clawhub.ai/skills/popover](https://clawhub.ai/skills/popover)
+## Commands
 
-## Overview
+### `status`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/popover
+scripts/script.sh status
 ```
+
+Show current status
+
+### `add`
+
+```bash
+scripts/script.sh add
+```
+
+Add new entry
+
+### `list`
+
+```bash
+scripts/script.sh list
+```
+
+List all entries
+
+### `search`
+
+```bash
+scripts/script.sh search
+```
+
+Search entries
+
+### `remove`
+
+```bash
+scripts/script.sh remove
+```
+
+Remove entry by number
+
+### `export`
+
+```bash
+scripts/script.sh export
+```
+
+Export data to file
+
+### `stats`
+
+```bash
+scripts/script.sh stats
+```
+
+Show statistics
+
+### `config`
+
+```bash
+scripts/script.sh config
+```
+
+View or set config
+
+### `help`
+
+```bash
+scripts/script.sh help
+```
+
+### `version`
+
+```bash
+scripts/script.sh version
+```
+
+## Configuration
+
+Use `scripts/script.sh config <key> <value>` to set preferences.
+
+| Variable | Description |
+|----------|-------------|
+| `POPOVER_DIR` | Data directory (default: ~/.popover/) |
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

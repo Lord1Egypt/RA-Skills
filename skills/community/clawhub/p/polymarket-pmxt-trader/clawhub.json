@@ -1,0 +1,60 @@
+{
+  "emoji": "🔮",
+  "primaryEnv": "SIMMER_API_KEY",
+  "requires": {
+    "pip": ["simmer-sdk"],
+    "env": ["SIMMER_API_KEY", "PMXT_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "SIMMER_API_KEY",
+      "required": true,
+      "description": "Simmer SDK API key from simmer.markets/dashboard"
+    },
+    {
+      "name": "PMXT_API_KEY",
+      "required": true,
+      "description": "PMXT API key from pmxt.dev/dashboard for cross-exchange market data"
+    },
+    {
+      "name": "PMXT_ENTRY_THRESHOLD",
+      "required": false,
+      "description": "Max YES price to enter (default 0.25)"
+    },
+    {
+      "name": "PMXT_EXIT_THRESHOLD",
+      "required": false,
+      "description": "Sell when price reaches this (default 0.45)"
+    },
+    {
+      "name": "PMXT_MAX_POSITION_USD",
+      "required": false,
+      "description": "Max per-trade position USD (default 2.00)"
+    },
+    {
+      "name": "PMXT_MIN_VOLUME",
+      "required": false,
+      "description": "Minimum market volume USD to consider (default 10000)"
+    },
+    {
+      "name": "PMXT_MAX_TRADES_PER_RUN",
+      "required": false,
+      "description": "Trade count cap per run (default 5)"
+    },
+    {
+      "name": "PMXT_CATEGORIES",
+      "required": false,
+      "description": "Comma-separated category filter (default: any)"
+    },
+    {
+      "name": "WALLET_PRIVATE_KEY",
+      "required": false,
+      "description": "Only needed for external-wallet self-custody trading. Managed wallets work without this."
+    }
+  ],
+  "cron": "*/5 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "pmxt_trader.py"
+  }
+}

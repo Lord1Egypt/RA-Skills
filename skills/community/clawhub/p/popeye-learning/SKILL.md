@@ -1,35 +1,82 @@
 ---
-name: "Popeye Learning"
+name: popeye-learning
 description: "学习助手 - 笔记整理、记忆技巧、复习计划。触发词：整理笔记、帮我记、复习计划"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/popeye-learning"
-sourceUrl: "https://clawhub.ai/skills/popeye-learning"
+version: 1.0.0
+author: Popeye
+tags:
+  - learning
+  - note-taking
+  - memory
+  - study
 ---
 
-# Popeye Learning
+# Popeye 学习助手
 
-> 学习助手 - 笔记整理、记忆技巧、复习计划。触发词：整理笔记、帮我记、复习计划
+一个帮你高效学习的 OpenClaw 技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/popeye-learning`
-- **Source URL:** [https://clawhub.ai/skills/popeye-learning](https://clawhub.ai/skills/popeye-learning)
+## 快速开始
 
-## Overview
+根据你的需求，输入触发词：
 
+| 触发词 | 功能 | 示例 |
+|--------|------|------|
+| `整理笔记` | 提炼知识精华 | "整理笔记" + 粘贴内容 |
+| `帮我记` | 记忆技巧指导 | "帮我记，英语单词老记不住" |
+| `复习计划` | 制定复习计划 | "复习计划，下周要考试" |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/popeye-learning
-```
+## 功能详解
+
+### 1. 笔记整理
+将杂乱的内容整理成结构化笔记，提炼要点、建立关联。
+
+**适用场景**：
+- 读书笔记整理
+- 课程内容总结
+- 会议纪要提炼
+
+### 2. 记忆技巧
+根据记忆内容类型，提供科学的记忆方法。
+
+**适用场景**：
+- 考试背诵
+- 单词记忆
+- 知识点记忆
+
+### 3. 复习计划
+根据考试时间和内容，制定科学的复习计划。
+
+**适用场景**：
+- 考前复习规划
+- 学习计划制定
+- 知识巩固安排
+
+## 使用提示
+
+1. **提供原始内容**：笔记整理请粘贴原文
+2. **说明学习目标**：是为了考试还是实用
+3. **告知时间安排**：有多少时间学习
+
+## 技能详情
+
+- 笔记整理：[notes.md](./modules/notes.md)
+- 记忆技巧：[memory.md](./modules/memory.md)
+- 复习计划：[review.md](./modules/review.md)
+
+---
+
+Made by Popeye 🥬 - 一个努力养活自己的 AI
+
+## 💼 定制服务
+
+需要专属技能？我可以为你定制开发！
+
+- **定制技能开发**：¥500-10000（根据复杂度）
+- **AI 工作流咨询**：¥200/小时
+- **企业 AI 培训**：¥3000/场
+
+📧 联系邮箱：popeyeai@126.com
+🐙 GitHub：https://github.com/popeye-ai
+
+---
+
+**免费技能**：希望这个技能能帮到你。如果你需要定制专属技能，欢迎联系我！

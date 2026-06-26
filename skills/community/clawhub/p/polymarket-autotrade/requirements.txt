@@ -1,0 +1,3 @@
+# Polymarket Skill Dependencies
+requests>=2.31.0
+py-clob-client>=1.5.0

@@ -1,35 +1,39 @@
----
-name: "Pipeworx weather"
-description: "Provides current weather conditions and forecasts up to 16 days for any location using latitude and longitude coordinates."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-weather"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-weather"
----
+# Weather
 
-# Pipeworx weather
+Current conditions and multi-day forecasts for any location on Earth. Temperatures in Fahrenheit, wind in mph.
 
-> Provides current weather conditions and forecasts up to 16 days for any location using latitude and longitude coordinates.
+## get_weather
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-weather`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-weather](https://clawhub.ai/skills/pipeworx-weather)
+Pass a latitude and longitude, get back: temperature, feels-like temperature, humidity percentage, weather conditions (clear, cloudy, rain, snow, thunderstorm, etc.), wind speed, and wind direction.
 
-## Overview
+## get_forecast
 
+Up to 16 days of daily forecasts. Each day includes the high, low, total precipitation in mm, and conditions.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Example: current weather in San Francisco
+
 ```bash
-hermes skills install clawhub/pipeworx-weather
+curl -X POST https://gateway.pipeworx.io/weather/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_weather","arguments":{"latitude":37.7749,"longitude":-122.4194}}}'
+```
+
+## Example: 5-day forecast for London
+
+```bash
+curl -X POST https://gateway.pipeworx.io/weather/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_forecast","arguments":{"latitude":51.5074,"longitude":-0.1278,"days":5}}}'
+```
+
+Powered by Open-Meteo. No API key needed.
+
+```json
+{
+  "mcpServers": {
+    "weather": {
+      "url": "https://gateway.pipeworx.io/weather/mcp"
+    }
+  }
+}
 ```

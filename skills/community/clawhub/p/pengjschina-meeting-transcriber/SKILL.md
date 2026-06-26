@@ -1,35 +1,209 @@
----
-name: "Meeting Transcriber"
-description: "基于FunASR实现的中文实时会议语音转录，支持自动标点、转录保存、环境检测和文件管理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pengjschina-meeting-transcriber"
-sourceUrl: "https://clawhub.ai/skills/pengjschina-meeting-transcriber"
----
+# Meeting Transcriber - 会议转录技能
 
-# Meeting Transcriber
+基于 FunASR 的实时会议转录技能，支持中文语音识别、实时转录、文件保存和环境管理。
 
-> 基于FunASR实现的中文实时会议语音转录，支持自动标点、转录保存、环境检测和文件管理。
+## 🎯 功能特性
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pengjschina-meeting-transcriber`
-- **Source URL:** [https://clawhub.ai/skills/pengjschina-meeting-transcriber](https://clawhub.ai/skills/pengjschina-meeting-transcriber)
+### 🎙️ 实时语音转录
+- 实时麦克风录音和语音识别
+- 支持中文语音识别
+- 智能语音活动检测（VAD）
+- 自动标点恢复
 
-## Overview
+### 📝 会议纪要生成
+- 自动保存转录文本
+- 按时间戳记录发言
+- 生成结构化会议纪要
+- 支持导出文本格式
 
+### 🔧 环境管理
+- Conda 环境自动检测
+- 依赖包完整性检查
+- 一键环境配置
+- 音频设备检测
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pengjschina-meeting-transcriber
+## 🚀 快速开始
+
+### 安装技能
+技能已自动注册到 OpenClaw，无需额外安装。
+
+### 使用命令
+在 OpenClaw 会话中，使用以下命令：
+
+#### 转录操作
+- `开始会议转录` - 启动实时语音转录
+- `停止转录` - 停止转录并保存文件
+
+#### 环境管理
+- `检查转录环境` - 检查 Conda 环境和依赖包
+- `设置转录环境` - 配置 Conda 环境和安装依赖
+
+#### 文件管理
+- `查看会议记录` - 列出所有会议转录文件
+- `打开最新会议纪要` - 打开最新的会议纪要文件
+
+## 📁 文件结构
+
 ```
+meeting-transcriber/
+├── _meta.json          # 技能元数据
+├── transcriber.py      # 技能主文件（支持所有命令）
+├── start_meeting.bat   # 批处理启动文件
+├── check_env.py        # 环境检查工具
+├── conda_setup.py      # 环境设置工具
+└── SKILL.md           # 技能说明文档
+```
+
+## 🔧 技术要求
+
+### 必需条件
+- **操作系统**: Windows 10/11
+- **Conda**: Miniconda 或 Anaconda
+- **Python**: 3.8+（通过 Conda `audioProject` 环境）
+- **Conda 环境**: `audioProject`
+
+### 依赖包
+- `funasr` - 语音识别引擎
+- `torch` - 深度学习框架
+- `pyaudio` - 音频输入输出
+- `webrtcvad` - 语音活动检测
+- `numpy` - 数值计算
+
+## 📊 使用示例
+
+### 示例 1: 完整会议转录流程
+```
+用户: 开始会议转录
+AI: 启动转录系统...
+用户: （开始会议讨论）
+用户: 停止转录
+AI: 转录已保存，文件位置: ...
+```
+
+### 示例 2: 环境检查
+```
+用户: 检查转录环境
+AI: 检查Python环境... OK
+AI: 检查项目目录... OK
+AI: 检查依赖包... OK
+AI: 环境检查通过！
+```
+
+### 示例 3: 查看会议记录
+```
+用户: 查看会议记录
+AI: 找到 5 个转录文件:
+AI: 1. meeting_20260402_103149.txt
+AI: 2. meeting_20260402_100724.txt
+AI: ...
+```
+
+## 🛠️ 故障排除
+
+### 常见问题
+
+**Q: 环境检查失败**
+```
+A: 1. 运行'设置转录环境'命令
+   2. 或手动创建环境: conda create -n audioProject python=3.8
+   3. 手动安装依赖: pip install funasr torch pyaudio webrtcvad
+```
+
+**Q: 转录启动失败**
+```
+A: 1. 检查麦克风权限
+   2. 运行'检查转录环境'验证环境
+   3. 尝试使用批处理文件: start_meeting.bat
+```
+
+**Q: 编码错误（乱码）**
+```
+A: 1. 使用批处理文件: start_meeting.bat
+   2. 脚本已内置编码修复
+```
+
+**Q: 麦克风无法工作**
+```
+A: 1. 检查麦克风是否被其他程序占用
+   2. 运行环境检查查看音频设备
+   3. 确保麦克风已正确连接
+```
+
+### 性能优化建议
+
+1. **硬件优化**
+   - 使用 USB 麦克风或耳机麦克风
+   - 确保足够的系统内存（建议 8GB+）
+   - 使用 SSD 存储提高 IO 性能
+
+2. **软件优化**
+   - 关闭不必要的后台程序
+   - 调整音频缓冲区大小
+   - 使用安静的录音环境
+
+3. **环境优化**
+   - 在安静的房间中使用
+   - 避免风扇、空调等背景噪音
+   - 说话时靠近麦克风
+
+## 📈 高级功能
+
+### 自定义配置
+技能支持以下自定义配置：
+- 转录语言设置（默认中文）
+- VAD 参数调整
+- 保存路径配置
+- 音频设备选择
+
+### 扩展功能
+如需扩展功能，可以修改以下文件：
+- `D:/dev/python/voiceFunAsr/vocie_mic_fixed_gbk.py` - 核心转录逻辑
+- `transcriber.py` - 技能命令处理逻辑
+
+## 📝 文件说明
+
+### 核心文件
+| 文件 | 功能 | 使用场景 |
+|------|------|----------|
+| `transcriber.py` | 技能主文件 | 处理所有命令，OpenClaw自动调用 |
+| `start_meeting.bat` | 批处理启动文件 | 直接启动转录，解决编码问题 |
+| `check_env.py` | 环境检查工具 | 独立运行环境检查 |
+| `conda_setup.py` | 环境设置工具 | 自动安装依赖和环境 |
+
+### 转录文件
+- **位置**: `D:\dev\python\voiceFunAsr\meeting_records\`
+- **格式**: `meeting_YYYYMMDD_HHMMSS.txt`
+- **内容**: 按时间戳记录的转录文本
+
+## 🔄 更新日志
+
+### v1.0.0 (2026-04-02)
+- 初始版本发布
+- 基于 FunASR 的实时语音转录
+- 完整的命令支持
+- 环境检查和管理
+- 文件查看和打开功能
+- OpenClaw 技能集成
+
+### 计划功能
+- [ ] 多说话人识别
+- [ ] 实时翻译功能
+- [ ] 云端同步备份
+- [ ] 移动端支持
+
+## 📞 技术支持
+
+如有问题，请提供：
+1. 操作系统和 Python 版本
+2. 错误日志或截图
+3. 麦克风设备信息
+4. 会议环境描述
+
+---
+
+**提示**: 首次使用时建议运行环境检查：
+```
+检查转录环境
+```
+
+**转录文件位置**: `D:\dev\python\voiceFunAsr\meeting_records\`

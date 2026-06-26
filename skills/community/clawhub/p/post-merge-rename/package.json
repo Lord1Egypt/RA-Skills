@@ -1,0 +1,9 @@
+{
+  "name": "@wipcomputer/post-merge-rename",
+  "version": "1.9.68",
+  "description": "Post-merge branch renaming. Appends --merged-YYYY-MM-DD to preserve history.",
+  "bin": {
+    "post-merge-rename": "./post-merge-rename.sh"
+  },
+  "license": "MIT"
+}

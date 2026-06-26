@@ -1,0 +1,39 @@
+Assistant: I'll search for wireless earbuds under £50 using the shopping_search tool.
+
+[Calls API via Bash tool with shopping_search]
+
+### 🛍️ Best Wireless Earbuds Under £50
+
+**Found**: 16 products
+
+#### Top Picks:
+
+**1. SOUNDCORE R50i NC** - Noise-Cancelling
+💰 **Price**: £19.99 🏷️ 50% OFF (was £39.99)
+⭐ **Rating**: 4.6/5
+🛒 **Platform**: Currys
+🔗 [View Product](...)
+
+**2. soundcore P31i by Anker** - Hi-Res Sound, 50H Playtime
+💰 **Price**: £24.21 🏷️ 15% OFF
+⭐ **Rating**: 4.6/5
+🛒 **Platform**: Amazon
+🔗 [View Product](...)
+
+**3. Tayo Wireless Earbuds** by Avenue
+💰 **Price**: £22.99
+⭐ **Rating**: 4.6/5
+🛒 **Platform**: Debenhams
+🔗 [View Product](...)
+
+---
+
+**💡 Suggestions**:
+- Want top brands? → Try "Sony budget earbuds" or "JBL wireless"
+- Need noise cancelling? → Filter for "ANC earbuds under 50"
+```
+
+### Example 2: Gift Recommendation (Multi-turn)
+
+```
+User: I need a birthday gift for my friend

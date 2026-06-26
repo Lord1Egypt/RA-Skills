@@ -1,0 +1,10 @@
+{
+  "name": "image-editor",
+  "version": "1.1.0",
+  "description": "专业图像后期处理工具，支持多种修图风格和批量处理",
+  "author": "WorkBuddy",
+  "entry_point": "scripts/editor.py",
+  "dependencies": [],
+  "system_dependencies": ["imagemagick"],
+  "tags": ["image", "photo", "editor", "filter", "raw"]
+}

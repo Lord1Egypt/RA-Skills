@@ -1,0 +1,14 @@
+{
+  "name": "pinterest-browser-publisher",
+  "version": "1.0.1",
+  "description": "Automate Pinterest pin publishing via browser automation (Playwright)",
+  "main": "scripts/publish.js",
+  "scripts": {
+    "login": "node scripts/login.js",
+    "publish": "node scripts/publish.js",
+    "install-deps": "npm install playwright"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}

@@ -1,35 +1,32 @@
 ---
-name: "Pipeworx ipinfo"
-description: "IPInfo MCP — wraps ipinfo.io (free tier, no auth required for basic usage)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-ipinfo"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-ipinfo"
+name: pipeworx-ipinfo
+description: IPInfo MCP — wraps ipinfo.io (free tier, no auth required for basic usage)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/ipinfo
 ---
 
-# Pipeworx ipinfo
+# pipeworx-ipinfo
 
-> IPInfo MCP — wraps ipinfo.io (free tier, no auth required for basic usage)
+IPInfo MCP — wraps ipinfo.io (free tier, no auth required for basic usage). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-ipinfo`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-ipinfo](https://clawhub.ai/skills/pipeworx-ipinfo)
+## Tools
 
-## Overview
+- `lookup_ip`
+- `get_my_ip`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-ipinfo
+```json
+{
+  "mcpServers": {
+    "pipeworx-ipinfo": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/ipinfo/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/ipinfo](https://pipeworx.io/packs/ipinfo)

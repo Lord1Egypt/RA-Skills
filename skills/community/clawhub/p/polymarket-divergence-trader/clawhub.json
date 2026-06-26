@@ -1,0 +1,50 @@
+{
+  "emoji": "chart_with_upwards_trend",
+  "primaryEnv": "SIMMER_API_KEY",
+  "requires": {
+    "pip": ["simmer-sdk", "python-dotenv"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "SIMMER_API_KEY",
+      "required": true,
+      "description": "Main Simmer API key used by the skill."
+    },
+    {
+      "name": "MARKET_ID",
+      "required": false,
+      "description": "Target Simmer market id for automated runs."
+    },
+    {
+      "name": "MY_PROBABILITY",
+      "required": false,
+      "description": "Your probability estimate between 0 and 1."
+    },
+    {
+      "name": "TRADE_SIZE",
+      "required": false,
+      "description": "Trade amount in dollars or venue units, default 5.0."
+    },
+    {
+      "name": "MIN_EDGE",
+      "required": false,
+      "description": "Minimum probability edge required before trading, default 0.05."
+    },
+    {
+      "name": "REASONING_PREFIX",
+      "required": false,
+      "description": "Human-readable prefix for the public reasoning string."
+    },
+    {
+      "name": "LIVE_VENUE",
+      "required": false,
+      "description": "Venue used when --live is passed, default polymarket."
+    }
+  ],
+  "cron": "*/15 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "divergence_trader.py"
+  }
+}

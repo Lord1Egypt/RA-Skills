@@ -1,0 +1,58 @@
+{
+  "seller_id": "global-wine-seller",
+  "seller_name": "Global Wine Shop",
+  "seller_country": "美国",
+  "contact": "seller@globalwine.com",
+  
+  "products": [
+    {
+      "product_id": "PROD-US-001",
+      "name": "Napa Valley Cabernet Sauvignon",
+      "category": "红酒",
+      "keywords": ["红酒", "wine", "Cabernet", "Napa", "红酒", "葡萄酒"],
+      "active": true,
+      "price_range": [50, 200],
+      "cost": 30,
+      "stock": 500,
+      "currency": "USD",
+      "auth_docs": ["business_license"],
+      "images": [],
+      "video": null,
+      "delivery": {
+        "methods": ["DHL", "FedEx"],
+        "default_days": 7
+      },
+      "shop_links": [
+        {
+          "platform": "Amazon",
+          "url": "https://amazon.com/shop/globalwine",
+          "shop_name": "Global Wine Shop"
+        }
+      ]
+    }
+  ],
+  
+  "ship_regions": {
+    "mode": "global",
+    "enabled": ["全球"],
+    "disabled": [],
+    "countries": ["全球"]
+  },
+  
+  "logistics": {
+    "methods": ["DHL", "FedEx", "UPS"],
+    "default_delivery_days": 7
+  },
+  
+  "auto_match": {
+    "enabled": true,
+    "scan_interval_minutes": 30,
+    "min_match_score": 0.3,
+    "notify_on_match": true,
+    "filter_by_region": true
+  },
+  
+  "setup_completed": true,
+  "setup_time": "2026-04-01T15:39:00",
+  "version": "2.2.0"
+}

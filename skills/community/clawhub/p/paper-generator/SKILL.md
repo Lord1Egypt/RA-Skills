@@ -1,35 +1,31 @@
----
-name: "Paper Generator"
-description: "Automatically generate complete academic papers in Chinese or English from experimental code, supporting LaTeX templates and PDF conversion."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/paper-generator"
-sourceUrl: "https://clawhub.ai/skills/paper-generator"
----
+# paper-generator
 
-# Paper Generator
+version: 0.1.0
 
-> Automatically generate complete academic papers in Chinese or English from experimental code, supporting LaTeX templates and PDF conversion.
+一个用于自动生成学术论文的 OpenClaw Skill，支持从实验代码生成完整的学术论文（中英文），包括摘要、引言、方法、实验、讨论和结论等章节。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/paper-generator`
-- **Source URL:** [https://clawhub.ai/skills/paper-generator](https://clawhub.ai/skills/paper-generator)
+## 功能
 
-## Overview
+- 自动生成完整学术论文结构
+- 支持中英文论文生成
+- 自动转换为 PDF 格式
+- 支持多种 LaTeX 模板
 
+## 用法
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/paper-generator
+# 生成英文论文
+paper-gen --template=icml --output=paper.md
+
+# 生成中文论文
+paper-gen --template=icml --lang=zh --output=paper_cn.md
+
+# 转换为 PDF
+paper-to-pdf paper.md paper.pdf
+```
+
+## 安装
+
+```bash
+clawhub install paper-generator
 ```

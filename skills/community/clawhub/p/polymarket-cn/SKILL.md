@@ -1,35 +1,185 @@
 ---
-name: "Polymarket 预测市场工具"
+name: polymarket
 description: "Polymarket 预测市场工具。查询市场、下注策略、风险管理、收益计算。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/polymarket-cn"
-sourceUrl: "https://clawhub.ai/skills/polymarket-cn"
+override-tools:
+  - exec
+  - web_search
+  - browser
 ---
 
 # Polymarket 预测市场工具
 
-> Polymarket 预测市场工具。查询市场、下注策略、风险管理、收益计算。
+Polymarket 是一个基于 Polygon 链的预测市场平台，可以用 USDC 对未来事件进行交易。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/polymarket-cn`
-- **Source URL:** [https://clawhub.ai/skills/polymarket-cn](https://clawhub.ai/skills/polymarket-cn)
+## ⚠️ 风险提示
 
-## Overview
+- 预测市场有风险，可能损失全部本金
+- 仅供娱乐/研究，请勿投入超过承受范围的资金
+- 本工具不提供投资建议
 
+## Quick Reference
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/polymarket-cn
+| 命令 | 说明 |
+|------|------|
+| `./scripts/main.sh --info` | 平台介绍 |
+| `./scripts/main.sh --markets` | 当前热门市场 |
+| `./scripts/main.sh --strategy` | 下注策略 |
+| `./scripts/main.sh --calc` | 收益计算 |
+| `./scripts/main.sh --risk` | 风险管理 |
+
+## Polymarket 简介
+
+### 什么是预测市场?
+
+预测市场允许用户对未来事件的结果进行"交易"。每个事件有两个结果选项:
+- "是" (Yes) - 如果事件发生，你获得收益
+- "否" (No) - 如果事件不发生，你获得收益
+
+### 价格机制
+
+- 价格范围: $0 - $1 (以 USDC 计价)
+- 价格代表事件发生的概率
+- 例如: "是" = $0.70 表示 70% 概率发生
+
+## 热门市场类型
+
+| 类别 | 示例 |
+|------|------|
+| 政治 | 2028年总统大选谁会赢 |
+| 体育 | 下一届世界杯冠军 |
+| 科技 | 某公司会不会发布某产品 |
+| 金融 | BTC 年底会不会突破 10 万 |
+| 环境 | 明年会不会有极端天气 |
+
+## 使用流程
+
+### 1. 准备工作
+
 ```
+• 安装 Metamask 钱包
+• 获取 Polygon 链的 USDC
+• 访问 polymarket.com
+```
+
+### 2. 连接钱包
+
+```
+• 点击 "Connect Wallet"
+• 选择 Metamask
+• 确认连接
+```
+
+### 3. 选择市场
+
+```
+• 浏览热门市场
+• 点击感兴趣的事件
+• 查看详情和赔率
+```
+
+### 4. 下注
+
+```
+• 选择 "Yes" 或 "No"
+• 输入数量
+• 确认交易
+```
+
+## 下注策略
+
+### 策略1: 概率优势
+
+当你自己判断的概率 > 市场定价时买入
+
+```
+例子:
+• 你认为 BTC 有 80% 概率涨
+• 市场定价 "是" = $0.60 (60%)
+• 80% > 60% → 值得买入
+```
+
+### 策略2: 分散投资
+
+不要把全部资金投入一个市场
+
+```
+• 单个市场 ≤ 10% 资金
+• 多个市场分散风险
+```
+
+### 策略3: 流动性考虑
+
+选择流动性好的市场
+
+```
+• 交易量大的市场
+• 买卖价差小
+```
+
+## 收益计算
+
+### 基本公式
+
+```
+收益 = 投入金额 × (1 - 买入价格) / 买入价格
+```
+
+### 示例
+
+```
+投入: 100 USDC
+买入价格: $0.60 (60% 概率)
+结果: 是 (事件发生)
+
+收益 = 100 × (1 - 0.60) / 0.60 = 66.67 USDC
+利润率 = 66.67%
+```
+
+## 风险管理
+
+### 原则
+
+1. **只用闲钱** - 不要借usdt/eth
+2. **分散投资** - 不要 All in
+3. **设置止损** - 预设退出点
+4. **不要上头** - 理性判断
+
+### 建议
+
+| 建议 | 说明 |
+|------|------|
+| 仓位控制 | 单个市场 ≤ 10% |
+| 止损线 | 亏损 50% 考虑退出 |
+| 止盈线 | 盈利 100% 可部分获利 |
+| 不听信 | 独立判断，不要盲从 |
+
+## 常用链接
+
+| 链接 | 说明 |
+|------|------|
+| polymarket.com | 官网 |
+| docs.polymarket.com | 文档 |
+| polymarket.com/markets | 市场列表 |
+
+## 使用示例
+
+```bash
+# 查看平台信息
+./scripts/main.sh --info
+
+# 查看热门市场
+./scripts/main.sh --markets
+
+# 了解策略
+./scripts/main.sh --strategy
+
+# 计算收益
+./scripts/main.sh --calc
+
+# 风险管理
+./scripts/main.sh --risk
+```
+
+---
+
+**记住: 预测市场有风险，投资需谨慎!**

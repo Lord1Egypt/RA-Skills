@@ -1,35 +1,31 @@
 ---
-name: "Ping Beads"
+name: ping-beads
 description: "Verify the bead daemon is alive and responsive"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ping-beads"
-sourceUrl: "https://clawhub.ai/skills/ping-beads"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🫘",
+        "requires": { "bins": ["bd"] },
+        "install": [],
+      },
+  }
 ---
 
 # Ping Beads
 
-> Verify the bead daemon is alive and responsive
+Verify the bead daemon is alive and responsive. Checks the `bd.sock` socket to confirm the bead daemon (`bd`) is running and accepting connections.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ping-beads`
-- **Source URL:** [https://clawhub.ai/skills/ping-beads](https://clawhub.ai/skills/ping-beads)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ping-beads
+# Check if the bead daemon is alive (checks bd.sock)
+ping-beads
+
+# Show detailed bead daemon status
+ping-beads status
 ```
+
+## Install
+
+No installation needed. `bd` is expected to be in PATH as part of the beads system.

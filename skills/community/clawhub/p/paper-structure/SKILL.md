@@ -1,35 +1,90 @@
 ---
-name: "文献全文结构一键拆分"
-description: "学术文献结构拆解专家。将收到的文献文本按学术通用格式逐段划分，输出纯结构化清单，标注每个板块的核心用途与作者写作意图。适用场景：(1) 输入文献文本并要求"拆解结构" (2) 要求"梳理文献框架" (3) 要求"分析论文组成部分" (4) 输入"结构拆解"相关指令。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/paper-structure"
-sourceUrl: "https://clawhub.ai/skills/paper-structure"
+name: paper-structure
+description: 学术文献结构拆解专家。将收到的文献文本按学术通用格式逐段划分，输出纯结构化清单，标注每个板块的核心用途与作者写作意图。适用场景：(1) 输入文献文本并要求"拆解结构" (2) 要求"梳理文献框架" (3) 要求"分析论文组成部分" (4) 输入"结构拆解"相关指令。
 ---
 
-# 文献全文结构一键拆分
+# Paper Structure
 
-> 学术文献结构拆解专家。将收到的文献文本按学术通用格式逐段划分，输出纯结构化清单，标注每个板块的核心用途与作者写作意图。适用场景：(1) 输入文献文本并要求"拆解结构" (2) 要求"梳理文献框架" (3) 要求"分析论文组成部分" (4) 输入"结构拆解"相关指令。
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/paper-structure`
-- **Source URL:** [https://clawhub.ai/skills/paper-structure](https://clawhub.ai/skills/paper-structure)
+将学术论文/文献文本拆解为标准结构清单，标注每个板块的核心用途与作者意图，输出纯结构化结果便于长期复盘。
 
-## Overview
+## 使用方法
 
+用户粘贴文献文本（或提供摘要/全文），直接输出结构化拆解结果。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/paper-structure
+## 输出格式
+
 ```
+# [论文标题]
+**类型：** [实证论文/综述/理论/元分析/etc.]
+
+## 结构拆解
+
+1. **板块名称**
+   - 核心用途：
+   - 作者意图：
+   - 关键内容：[1-3句话概括]
+
+（重复直到所有板块）
+```
+
+---
+
+## 标准板块库（按文献类型选用）
+
+### 实证论文（以 Psychology / HCI / Social Sciences 为主）
+
+| 序号 | 板块 | 核心用途 | 作者意图 |
+|------|------|----------|----------|
+| 1 | Title | 概括研究核心 | 吸引检索、传递关键变量 |
+| 2 | Abstract | 完整研究摘要 | 让读者快速判断相关性与价值 |
+| 3 | Introduction | 背景铺垫 | 建立研究必要性 |
+| 4 | Theoretical Background / Literature Review | 理论基础与文献定位 | 将研究嵌入已有知识体系 |
+| 5 | Hypotheses / Research Questions | 明确研究假设或问题 | 锁定研究边界与预期贡献 |
+| 6 | Method | 描述研究设计 | 确保可复现性与透明度 |
+| 7 | Results | 报告统计分析结果 | 回答假设是否成立 |
+| 8 | Discussion | 解释结果意义 | 与理论对话、承认局限 |
+| 9 | Conclusion | 提炼核心结论 | 强调研究贡献 |
+| 10 | References | 文献列表 | 提供知识溯源 |
+| 11 | Appendices | 补充材料 | 保留细节不打断正文 |
+
+### 综述类论文（Review / Meta-Analysis）
+
+| 序号 | 板块 | 核心用途 | 作者意图 |
+|------|------|----------|----------|
+| 1 | Title | 主题概括 | 定位研究范围 |
+| 2 | Abstract | 综述核心结论 | 传递领域共识或争议 |
+| 3 | Introduction | 阐述综述必要性 | 填补文献空缺 |
+| 4 | Methods（含 Search Strategy / Inclusion Criteria） | 报告文献筛选流程 | 确保系统性与透明度 |
+| 5 | Results | 汇总已有研究发现 | 整合证据 |
+| 6 | Discussion | 解释结论意义 | 指导未来研究 |
+| 7 | Conclusion | 提炼要点 | 强调实践/政策启示 |
+| 8 | References | 文献列表 | — |
+
+### 理论类论文（Theoretical / Philosophical）
+
+| 序号 | 板块 | 核心用途 | 作者意图 |
+|------|------|----------|----------|
+| 1 | Title | 传递理论名称或主张 | 吸引同领域读者 |
+| 2 | Abstract | 理论核心主张 | 快速判断相关性 |
+| 3 | Introduction | 提出理论动机 | 建立批判性对话 |
+| 4 | Theoretical Contribution | 阐述理论模型/框架 | 建立原创性贡献 |
+| 5 | Discussion | 理论意义与边界 | 引导后续验证 |
+| 6 | Conclusion | 总结理论价值 | 强调对领域的影响 |
+| 7 | References | 支撑文献 | — |
+
+---
+
+## 拆解步骤
+
+1. **识别文献类型**（实证/综述/理论/元分析）
+2. **匹配板块库**，对照标准结构找出本文所有板块
+3. **逐板块标注**：核心用途 + 作者意图 + 关键内容
+4. **输出结构化清单**，无遗漏、无废话
+
+## 注意事项
+
+- 心理学/HCI/社科类文献优先适配上述实证结构
+- 非标准结构（如 Conference Paper、Book Chapter）按实际板块输出，在开头注明格式来源
+- 若文献缺少某些标准板块，标注为"缺失（原文未包含）"而非硬凑

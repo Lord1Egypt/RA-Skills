@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ashen Era Playtest"
+  short_description: "Play Ashen Era and write a full run report"
+  default_prompt: "Use $openclaw-ashen-era-playtest to play one real Ashen Era CLI run in English and write a first-person play report."

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TravelSmart - 智能出行决策助手</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* ── Clean Tech Dark Theme ── */
+  :root {
+    --bg:      #0F172A;
+    --surface: #1E293B;
+    --card:    #1E293B;
+    --border:  #334155;
+    --primary: #06B6D4;   /* cyan-500 */
+    --primary-dark: #0891B2;
+    --secondary: #3B82F6;
+    --text:    #F8FAFC;
+    --muted:   #94A3B8;
+    --gold:    #EAB308;
+    --success: #22C55E;
+    --error:   #EF4444;
+    --radius:  12px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans SC', 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── Layout ── */
+  .app {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .tagline {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  /* ── Tab Navigation ── */
+  .tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    background: var(--surface);
+    padding: 0.4rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-bottom: 1.75rem;
+  }
+  .tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .tab:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+  .tab.active {
+    background: var(--primary);
+    color: #fff;
+  }
+  .tab-icon { font-size: 1.3rem; line-height: 1; }
+  .tab-label { font-size: 0.82rem; font-weight: 600; }
+
+  /* ── Scene Panels ── */
+  .scene { display: none; }
+  .scene.active { display: block; }
+
+  /* ── Card ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .card-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  /* ── Form Grid ── */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+  }
+  .form-grid.full { grid-template-columns: 1fr; }
+  .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+  .form-group.span-2 { grid-column: span 2; }
+
+  label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  input, select {
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus, select:focus { border-color: var(--primary); }
+  input::placeholder { color: #475569; }
+
+  /* ── Geocode Row ── */
+  .addr-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-end;
+    grid-column: span 2;
+  }
+  .addr-row .form-group { flex: 1; }
+  .btn-lookup {
+    padding: 0.6rem 0.85rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--primary);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .btn-lookup:hover { border-color: var(--primary); background: rgba(6,182,212,0.08); }
+  .btn-lookup:disabled { opacity: 0.4; cursor: not-allowed; }
+  .addr-hint {
+    font-size: 0.75rem;
+    color: var(--muted);
+    min-height: 1em;
+    padding: 0 0.25rem;
+    grid-column: span 2;
+  }
+
+  /* ── Section Divider ── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1rem 0;
+  }
+
+  /* ── Primary Button ── */
+  .btn-primary {
+    width: 100%;
+    padding: 0.85rem;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn-primary.loading { position: relative; color: transparent; }
+  .btn-primary.loading::after {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.65s linear infinite;
+    display: inline-block;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Results ── */
+  #result { display: none; }
+  #result.show { display: block; }
+
+  .result-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .result-header .scene-icon { font-size: 1.8rem; }
+  .result-header h3 { font-size: 1rem; font-weight: 600; }
+  .result-header .badge {
+    margin-left: auto;
+    background: rgba(34,197,94,0.15);
+    color: var(--success);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    border: 1px solid rgba(34,197,94,0.3);
+  }
+
+  /* ── Exit/Hotel/Taxi Cards ── */
+  .result-item {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--primary);
+    transition: border-color 0.2s;
+  }
+  .result-item:hover { border-left-color: var(--gold); }
+
+  .result-item-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.45rem;
+  }
+  .result-item-name { font-weight: 700; font-size: 0.95rem; }
+  .result-item-score {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--gold);
+    background: rgba(234,179,8,0.1);
+    padding: 0.15rem 0.55rem;
+    border-radius: 6px;
+  }
+
+  .result-item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.9rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .result-item-meta .tag {
+    background: rgba(6,182,212,0.1);
+    color: var(--primary);
+    padding: 0.1rem 0.5rem;
+    border-radius: 5px;
+    font-weight: 500;
+  }
+
+  /* Dining detail for highway */
+  .dining-list {
+    font-size: 0.78rem;
+    color: var(--muted);
+    padding: 0.5rem 0.75rem;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+    margin-top: 0.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  .dining-list span::before { content: '🍽 '; }
+
+  /* Tip */
+  .tip-box {
+    margin-top: 1.1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(6,182,212,0.08);
+    border: 1px solid rgba(6,182,212,0.2);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #67E8F9;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .tip-box::before { content: '💡'; flex-shrink: 0; margin-top: 0.05rem; }
+
+  /* Error */
+  .error-box {
+    padding: 1rem;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: 10px;
+    color: #FCA5A5;
+    font-size: 0.9rem;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 2.5rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-group.span-2 { grid-column: span 1; }
+    .addr-row { flex-direction: column; }
+    .btn-lookup { width: 100%; }
+    .app { padding: 1.5rem 1rem 3rem; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <div class="logo-icon">🚗</div>
+      TravelSmart
+    </div>
+    <p class="tagline">自驾途中的「第二大脑」— 智能出行决策</p>
+  </header>
+
+  <!-- Tab Nav -->
+  <div class="tabs">
+    <button class="tab active" data-scene="highway" onclick="switchTab('highway')">
+      <span class="tab-icon">🚗</span>
+      <span class="tab-label">高速出口</span>
+    </button>
+    <button class="tab" data-scene="hotel" onclick="switchTab('hotel')">
+      <span class="tab-icon">🏨</span>
+      <span class="tab-label">途中住宿</span>
+    </button>
+    <button class="tab" data-scene="taxi" onclick="switchTab('taxi')">
+      <span class="tab-icon">🚕</span>
+      <span class="tab-label">打车点</span>
+    </button>
+  </div>
+
+  <!-- ═══ Highway Scene ═══ -->
+  <div class="scene active" id="scene-highway">
+    <div class="card">
+      <div class="card-title">📍 高速信息</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>高速名称</label>
+          <input type="text" id="hw-highway" placeholder="如 G4" value="G4">
+        </div>
+        <div class="form-group">
+          <label>目的地（可选）</label>
+          <input type="text" id="hw-dest" placeholder="如 北京">
+        </div>
+
+        <div class="addr-row">
+          <div class="form-group">
+            <label>当前位置（输入地址解析经纬度）</label>
+            <input type="text" id="hw-addr" placeholder="如 北京市朝阳区东直门" autocomplete="off">
+          </div>
+          <button class="btn-lookup" onclick="geocode('hw')">🔍</button>
+        </div>
+        <div class="addr-hint" id="hw-hint"></div>
+
+        <div class="form-group">
+          <label>经度</label>
+          <input type="number" id="hw-lng" step="0.001" placeholder="116.397" value="116.397">
+        </div>
+        <div class="form-group">
+          <label>纬度</label>
+          <input type="number" id="hw-lat" step="0.001" placeholder="39.909" value="39.909">
+        </div>
+      </div>
+    </div>
+    <button class="btn-primary" id="btn-hw" onclick="doHighway()">🔍 推荐下高速出口</button>
+  </div>
+
+  <!-- ═══ Hotel Scene ═══ -->
+  <div class="scene" id="scene-hotel">
+    <div class="card">
+      <div class="card-title">📍 当前位置</div>
+      <div class="form-grid">
+        <div class="addr-row">
+          <div class="form-group">
+            <label>当前位置（输入地址解析经纬度）</label>
+            <input type="text" id="ht-addr" placeholder="如 北京市朝阳区望京" autocomplete="off">
+          </div>
+          <button class="btn-lookup" onclick="geocode('ht')">🔍</button>
+        </div>
+        <div class="addr-hint" id="ht-hint"></div>
+
+        <div class="form-group">
+          <label>经度</label>
+          <input type="number" id="ht-lng" step="0.001" placeholder="116.397" value="116.397">
+        </div>
+        <div class="form-group">
+          <label>纬度</label>
+          <input type="number" id="ht-lat" step="0.001" placeholder="39.909" value="39.909">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏨 住宿偏好</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>预算（元/晚）</label>
+          <input type="number" id="ht-budget" placeholder="300" value="300">
+        </div>
+        <div class="form-group">
+          <label>入住人数</label>
+          <input type="number" id="ht-people" placeholder="2" value="2">
+        </div>
+
+        <div class="addr-row">
+          <div class="form-group">
+            <label>次日目的地（可选，用于判断顺路）</label>
+            <input type="text" id="ht-next-addr" placeholder="如 北京市故宫" autocomplete="off">
+          </div>
+          <button class="btn-lookup" onclick="geocode('ht-next')">🔍</button>
+        </div>
+        <div class="addr-hint" id="ht-next-hint"></div>
+
+        <div class="form-group">
+          <label>次日目的地经度</label>
+          <input type="number" id="ht-next-lng" step="0.001" placeholder="116.404">
+        </div>
+        <div class="form-group">
+          <label>次日目的地纬度</label>
+          <input type="number" id="ht-next-lat" step="0.001" placeholder="39.915">
+        </div>
+      </div>
+    </div>
+    <button class="btn-primary" id="btn-ht" onclick="doHotel()">🔍 推荐住宿</button>
+  </div>
+
+  <!-- ═══ Taxi Scene ═══ -->
+  <div class="scene" id="scene-taxi">
+    <div class="card">
+      <div class="card-title">📍 出发地（当前位置）</div>
+      <div class="form-grid">
+        <div class="addr-row">
+          <div class="form-group">
+            <label>出发地（输入地址解析经纬度）</label>
+            <input type="text" id="tx-addr" placeholder="如 北京市朝阳区三里屯" autocomplete="off">
+          </div>
+          <button class="btn-lookup" onclick="geocode('tx')">🔍</button>
+        </div>
+        <div class="addr-hint" id="tx-hint"></div>
+
+        <div class="form-group">
+          <label>经度</label>
+          <input type="number" id="tx-lng" step="0.001" placeholder="116.397" value="116.397">
+        </div>
+        <div class="form-group">
+          <label>纬度</label>
+          <input type="number" id="tx-lat" step="0.001" placeholder="39.909" value="39.909">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏛 目的地（景点）</div>
+      <div class="form-grid">
+        <div class="addr-row">
+          <div class="form-group">
+            <label>目的地（输入地址解析经纬度）</label>
+            <input type="text" id="txdest-addr" placeholder="如 北京天安门广场" autocomplete="off">
+          </div>
+          <button class="btn-lookup" onclick="geocode('txdest')">🔍</button>
+        </div>
+        <div class="addr-hint" id="txdest-hint"></div>
+
+        <div class="form-group">
+          <label>经度</label>
+          <input type="number" id="txdest-lng" step="0.001" placeholder="116.404">
+        </div>
+        <div class="form-group">
+          <label>纬度</label>
+          <input type="number" id="txdest-lat" step="0.001" placeholder="39.915">
+        </div>
+      </div>
+    </div>
+    <button class="btn-primary" id="btn-tx" onclick="doTaxi()">🔍 推荐打车点</button>
+  </div>
+
+  <!-- ═══ Result ═══ -->
+  <div id="result">
+    <div class="result-header">
+      <span class="scene-icon" id="res-icon">🚗</span>
+      <h3 id="res-title">推荐结果</h3>
+      <span class="badge" id="res-count"></span>
+    </div>
+    <div id="res-body"></div>
+    <div class="tip-box" id="res-tip"></div>
+  </div>
+
+  <div class="footer">
+    TravelSmart · MIT License · 高德地图 + MiniMax M2.7
+  </div>
+</div>
+
+<script>
+const API = '/api/travel-smart';
+const ICONS = { highway: '🚗', hotel: '🏨', taxi: '🚕' };
+
+// ── Tab switching ──
+function switchTab(scene) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelector(`.tab[data-scene="${scene}"]`).classList.add('active');
+  document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+  document.getElementById(`scene-${scene}`).classList.add('active');
+  hideResult();
+}
+
+function hideResult() {
+  document.getElementById('result').classList.remove('show');
+}
+
+// ── Geocode ──
+const GEO = {
+  hw:        { addr: 'hw-addr',       lng: 'hw-lng',       lat: 'hw-lat',       hint: 'hw-hint' },
+  ht:        { addr: 'ht-addr',       lng: 'ht-lng',       lat: 'ht-lat',       hint: 'ht-hint' },
+  'ht-next': { addr: 'ht-next-addr',  lng: 'ht-next-lng',  lat: 'ht-next-lat',  hint: 'ht-next-hint' },
+  tx:        { addr: 'tx-addr',       lng: 'tx-lng',       lat: 'tx-lat',       hint: 'tx-hint' },
+  txdest:    { addr: 'txdest-addr',   lng: 'txdest-lng',   lat: 'txdest-lat',   hint: 'txdest-hint' },
+};
+
+async function geocode(prefix) {
+  const m = GEO[prefix];
+  if (!m) return;
+  const addr = document.getElementById(m.addr).value.trim();
+  if (!addr) { showHint(m.hint, '请先输入地址'); return; }
+  const btn = document.querySelector(`[onclick="geocode('${prefix}')"]`);
+  btn.disabled = true;
+  showHint(m.hint, '解析中...');
+  try {
+    const res = await fetch(API + '/geocode', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ address: addr }),
+    });
+    const data = await res.json();
+    if (data.error) { showHint(m.hint, '❌ ' + data.error); return; }
+    document.getElementById(m.lng).value = data.lng.toFixed(3);
+    document.getElementById(m.lat).value = data.lat.toFixed(3);
+    showHint(m.hint, '✅ ' + (data.formatted || addr));
+  } catch(e) {
+    showHint(m.hint, '❌ 请求失败');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function showHint(id, text) {
+  document.getElementById(id).textContent = text;
+}
+
+// ── Result Rendering ──
+function renderHighway(items) {
+  return items.map((e, i) => {
+    const medal = ['🥇','🥈','🥉'][i];
+    const dining = (e.dining_pois || []).map(p => p.name).slice(0, 3);
+    return `
+    <div class="result-item">
+      <div class="result-item-top">
+        <span class="result-item-name">${medal} ${e.name}</span>
+        <span class="result-item-score">${e.score}分</span>
+      </div>
+      <div class="result-item-meta">
+        <span>📍 距你 ${(e.distance/1000).toFixed(1)}km</span>
+        <span>🔄 绕行 ${(e.detour/1000).toFixed(1)}km</span>
+        <span class="tag">⭐ ${e.rating.toFixed(1)}分</span>
+        <span>🏠 ${e.address || '地址未知'}</span>
+      </div>
+      ${dining.length ? `<div class="dining-list">${dining.map(n => `<span>${n}</span>`).join('')}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function renderHotel(items) {
+  return items.map((h, i) => {
+    const medal = ['🥇','🥈','🥉'][i];
+    const nd = h.next_day_distance;
+    const ndStr = nd < 200000 ? `距次日目的 ${(nd/1000).toFixed(1)}km` : '距次日目的较远';
+    return `
+    <div class="result-item">
+      <div class="result-item-top">
+        <span class="result-item-name">${medal} ${h.name}</span>
+        <span class="result-item-score">${h.score}分</span>
+      </div>
+      <div class="result-item-meta">
+        <span>📍 距你 ${(h.distance/1000).toFixed(1)}km</span>
+        <span class="tag">¥${h.price}/晚</span>
+        <span class="tag">⭐ ${h.rating.toFixed(1)}分</span>
+        <span>🏠 ${h.address || '地址未知'}</span>
+      </div>
+      <div class="result-item-meta" style="color:#67E8F9;font-size:0.78rem">${ndStr}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderTaxi(items) {
+  return items.map((p, i) => {
+    const medal = ['🥇','🥈','🥉'][i];
+    return `
+    <div class="result-item">
+      <div class="result-item-top">
+        <span class="result-item-name">${medal} ${p.name}</span>
+        <span class="result-item-score">${p.score}分</span>
+      </div>
+      <div class="result-item-meta">
+        <span>🚶 距你 ${(p.distance/1000).toFixed(1)}km</span>
+        <span>🚕 到目的地 ${((p.dest_distance||0)/1000).toFixed(1)}km</span>
+        <span class="tag">⭐ ${(p.rating||3.5).toFixed(1)}分</span>
+        <span>🏠 ${p.address || '地址未知'}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function showResult(scene, title, html, tip) {
+  const el = document.getElementById('result');
+  document.getElementById('res-icon').textContent = ICONS[scene] || '📍';
+  document.getElementById('res-title').textContent = title;
+  document.getElementById('res-body').innerHTML = html;
+  document.getElementById('res-tip').textContent = tip;
+  el.classList.add('show');
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function showError(msg) {
+  const el = document.getElementById('result');
+  el.classList.add('show');
+  document.getElementById('res-icon').textContent = '❌';
+  document.getElementById('res-title').textContent = '出错了';
+  document.getElementById('res-count').textContent = '';
+  document.getElementById('res-body').innerHTML = `<div class="error-box">${msg}</div>`;
+  document.getElementById('res-tip').textContent = '';
+}
+
+// ── API Calls ──
+function loading(btn, text, on) {
+  btn.disabled = on;
+  if (on) btn.classList.add('loading'); else btn.classList.remove('loading');
+  if (!on) btn.textContent = text;
+}
+
+async function doHighway() {
+  const btn = document.getElementById('btn-hw');
+  const hw = document.getElementById('hw-highway').value.trim();
+  const lng = parseFloat(document.getElementById('hw-lng').value);
+  const lat = parseFloat(document.getElementById('hw-lat').value);
+  const dest = document.getElementById('hw-dest').value.trim();
+  if (!hw || isNaN(lng) || isNaN(lat)) { showError('请填写高速名称和经纬度'); return; }
+  loading(btn, '🔍 推荐下高速出口', true);
+  try {
+    const data = await fetchJson(API + '/highway', { highway: hw, lng, lat, destination: dest });
+    if (data.error) { showError(data.error); return; }
+    const exits = data.exits || [];
+    document.getElementById('res-count').textContent = exits.length + ' 个推荐';
+    showResult('highway', '推荐下高速出口', renderHighway(exits),
+      `💡 推荐【${exits[0]?.name || ''}】，综合得分最高`);
+  } catch(e) { showError(e.message); }
+  finally { loading(btn, '🔍 推荐下高速出口', false); }
+}
+
+async function doHotel() {
+  const btn = document.getElementById('btn-ht');
+  const lng = parseFloat(document.getElementById('ht-lng').value);
+  const lat = parseFloat(document.getElementById('ht-lat').value);
+  const budget = parseInt(document.getElementById('ht-budget').value) || 300;
+  const people = parseInt(document.getElementById('ht-people').value) || 2;
+  const nextLng = parseFloat(document.getElementById('ht-next-lng').value) || undefined;
+  const nextLat = parseFloat(document.getElementById('ht-next-lat').value) || undefined;
+  if (isNaN(lng) || isNaN(lat)) { showError('请填写经纬度'); return; }
+  loading(btn, '🔍 推荐住宿', true);
+  try {
+    const body = { lng, lat, budget, people };
+    if (nextLng && nextLat) { body.nextLng = nextLng; body.nextLat = nextLat; }
+    const data = await fetchJson(API + '/hotel', body);
+    if (data.error) { showError(data.error); return; }
+    const hotels = data.hotels || [];
+    document.getElementById('res-count').textContent = hotels.length + ' 个推荐';
+    showResult('hotel', '推荐住宿', renderHotel(hotels),
+      `💡 推荐【${hotels[0]?.name || ''}】，综合得分最高`);
+  } catch(e) { showError(e.message); }
+  finally { loading(btn, '🔍 推荐住宿', false); }
+}
+
+async function doTaxi() {
+  const btn = document.getElementById('btn-tx');
+  const lng = parseFloat(document.getElementById('tx-lng').value);
+  const lat = parseFloat(document.getElementById('tx-lat').value);
+  const destLng = parseFloat(document.getElementById('txdest-lng').value);
+  const destLat = parseFloat(document.getElementById('txdest-lat').value);
+  if (isNaN(lng) || isNaN(lat) || isNaN(destLng) || isNaN(destLat)) {
+    showError('请填写完整的两组经纬度'); return;
+  }
+  loading(btn, '🔍 推荐打车点', true);
+  try {
+    const data = await fetchJson(API + '/taxi', { lng, lat, destLng, destLat });
+    if (data.error) { showError(data.error); return; }
+    const points = data.points || [];
+    document.getElementById('res-count').textContent = points.length + ' 个推荐';
+    showResult('taxi', '推荐打车点', renderTaxi(points),
+      `💡 推荐【${points[0]?.name || ''}】，步行距离最短`);
+  } catch(e) { showError(e.message); }
+  finally { loading(btn, '🔍 推荐打车点', false); }
+}
+
+async function fetchJson(url, body) {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  return res.json();
+}
+</script>
+</body>
+</html>

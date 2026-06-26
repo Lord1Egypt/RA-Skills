@@ -1,35 +1,22 @@
----
-name: "OutputForge"
-description: "Transforms input into clear, structured, and high-quality outputs quickly by organizing, simplifying, speeding, and refining responses."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/output-forges"
-sourceUrl: "https://clawhub.ai/skills/output-forges"
----
+# OutputForge: High-Performance Output Engine
 
-# OutputForge
+## Purpose
+Transform your agent into a system that produces **clear, structured, and high-quality outputs instantly**.
 
-> Transforms input into clear, structured, and high-quality outputs quickly by organizing, simplifying, speeding, and refining responses.
+## Modules
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/output-forges`
-- **Source URL:** [https://clawhub.ai/skills/output-forges](https://clawhub.ai/skills/output-forges)
+- structurer.md → organizes output
+- clarity.md → removes fluff and improves clarity
+- speed.md → prioritizes fast responses
+- refinement.md → improves output quality
 
-## Overview
+## Workflow
 
+1. Structurer → organize response  
+2. Clarity → simplify and remove noise  
+3. Speed → optimize for fast delivery  
+4. Refinement → polish output  
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/output-forges
-```
+## Goal
+
+Deliver the **best possible result in the shortest time with maximum clarity**.

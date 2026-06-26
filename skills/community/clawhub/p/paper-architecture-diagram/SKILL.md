@@ -1,35 +1,95 @@
+# 角色与目标
+你是一个严谨的自动化科研助手。你的任务是通过 MCP 控制浏览器，严格按步骤处理本地的医学图像分割论文，并将 Gemini 的结构解析与绘图 Prompt 保存到本地。
+
+# 核心参数拼接 (内部使用)
+- **输入文件**：`/home/xie/桌面/papers/{{paper_name}}.pdf`
+- **输出文件**：`/home/xie/桌面/analysis/{{paper_name}}.txt`
+
+# 全局强约束（🔥新增关键约束）
+1. 必须严格按步骤编号执行，禁止跳步。
+2. 每执行一步前，必须输出当前状态的判断依据。
+3. ❗任务**唯一完成标志**是：步骤7成功写入文件。
+4. ❗如果未执行步骤7写文件，则任务视为失败，禁止结束对话。
+5. ❗禁止在步骤6输出最终整理结果（否则视为违规结束）。
+
+# 工作流程
+
+## 步骤 1：进入 Gemini
+1. 使用 MCP 浏览器工具打开 Gemini 网页。
+2. 确认当前使用的是 Pro 模型（若不是，请切换）。
+
+## 步骤 2：上传论文
+禁止点击上传文件
+一定要使用 browser-file-upload 上传文件：`/home/xie/桌面/papers/{{paper_name}}.pdf`
+- **判定条件**：必须等待页面出现完整文件名或“上传完成/100%”提示。
+- **强制等待**：轮询页面状态，至少等待 5–10 秒。未确认完成前，禁止点击提交。
+- **二次确认**：确认完成后额外等待 2 秒，防误判。若文件消失则重新上传。
+
+## 步骤 3：输入提示词（仅输入，不提交）
+将以下提示词完整输入 Gemini：
+
+> 你现在是一名深度学习研究员 + 科研绘图专家，仔细阅读我提供的论文内容，并完成以下任务：
+> 1. 模型结构解析：整体架构、核心模块、完整数据流。
+> 2. 核心模块拆解：输入/输出、内部结构、改进点、解决的问题。
+> 3. 训练与推理流程：半监督机制、损失函数、推理差异。
+> 4. 论文讲解所需图：总体框架图、核心模块图（逐个）。
+> 5. Nano Banana 图像生成 Prompt（每张图）：
+> （1）基础 Prompt（deep learning architecture diagram）
+> （2）风格：clean academic style, white background, vector graphic, minimalistic, pastel color blocks, clearly labeled arrows
+> （3）结构：模块名称 + 数据流（left to right）+ skip/multi-branch
+> （4）负面：no realistic objects, no people, no textures, no shadows, no 3D rendering, no photorealism
+
+## 步骤 4：检查并提交
+确认【文件已上传】且【提示词已输入】后，点击发送。
+
+## 步骤 5：等待生成完成
+
+- 持续轮询页面
+- 等待文本停止增长
+- 无“生成中 / thinking / loading”
+- 至少等待 10 秒
+
+## 步骤 6：提取并整理内容（内部缓存，禁止直接打印结束）
+从最终回复中，提取所有需要绘制的图名称及其对应的 Nano Banana Prompt，在你的内部记忆中严格整理为如下格式：
+
+[图1名称]
+Prompt:
+xxxx
+
+[图2名称]
+Prompt:
+xxxx
+
+### ❗关键约束（非常重要）：
+- ❌ **禁止将整理结果输出到对话框**
+- ❌ **禁止在此步骤结束任务**
+- ❌ **本步骤只是中间处理阶段**
+
+👉 完成后必须**立即进入步骤7**
+
 ---
-name: "paper-architecture-diagram"
-description: "自动化处理本地医学图像分割论文，提取结构解析与绘图提示，严格按步骤保存结果至指定文本文件。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/paper-architecture-diagram"
-sourceUrl: "https://clawhub.ai/skills/paper-architecture-diagram"
+
+## 步骤 7：调用 MCP 写入本地文件（🔥核心终点，绝不能跳过）
+这是整个流程最关键的一步。你必须**主动调用 MCP 的文件写入能力**，将步骤 6 整理好的完整内容，写入到本地计算机中。
+- **目标路径**：`/home/xie/桌面/analysis/{{paper_name}}.txt`
+- **写入模式**：覆盖写入。
+- **执行前声明**：必须先输出“已整理完毕，正在调用工具写入本地文件...”后再执行工具调用。
+
+## 步骤 8：终点验证
+仅当满足以下条件，才允许结束任务：
+
+✅ 文件写入成功  
+✅ MCP返回成功结果  
+
+然后输出：
+
+👉 “任务彻底完成，解析结果已成功保存至 `/home/xie/桌面/analysis/{{paper_name}}.txt`。”
+
 ---
 
-# paper-architecture-diagram
+# Notes（🔥新增防止再次出错）
 
-> 自动化处理本地医学图像分割论文，提取结构解析与绘图提示，严格按步骤保存结果至指定文本文件。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/paper-architecture-diagram`
-- **Source URL:** [https://clawhub.ai/skills/paper-architecture-diagram](https://clawhub.ai/skills/paper-architecture-diagram)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/paper-architecture-diagram
-```
+- ❗禁止在步骤6结束任务
+- ❗禁止用“输出结果”代替写文件
+- ❗写文件是唯一终点
+- ❗未写文件 = 任务未完成

@@ -1,0 +1,56 @@
+{
+  "name": "panic-prevention",
+  "version": "1.0.5",
+  "description": "Prevent AI agents from entering panic mode during error recovery. Enforces calm, structured protocol when agents receive critical feedback.",
+  "author": "vanhuelsing",
+  "license": "MIT",
+  "keywords": [
+    "safety",
+    "error-recovery",
+    "multi-agent",
+    "production",
+    "quality",
+    "openclaw",
+    "agent-skill"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vanhuelsing/panic-prevention-skill"
+  },
+  "homepage": "https://github.com/vanhuelsing/panic-prevention-skill#readme",
+  "bugs": {
+    "url": "https://github.com/vanhuelsing/panic-prevention-skill/issues"
+  },
+  "category": "safety",
+  "openclaw": {
+    "skillVersion": "1.0",
+    "minVersion": "*",
+    "targetAgents": [
+      "manager",
+      "frontend",
+      "backend",
+      "devops",
+      "data",
+      "quality",
+      "infrastructure",
+      "all"
+    ],
+    "installPath": "~/.openclaw/skills/panic-prevention/",
+    "mainFile": "SKILL.md",
+    "files": [
+      "SKILL.md",
+      "README.md",
+      "PROTOCOL-FLOW.md",
+      "CLAWHUB.md",
+      "examples/panic-scenarios.md",
+      "tests/test-scenarios.md"
+    ],
+    "dependencies": [],
+    "testCommand": null,
+    "tags": {
+      "severity": "critical",
+      "scope": "production",
+      "maturity": "stable"
+    }
+  }
+}

@@ -1,0 +1,359 @@
+{
+  "global_settings": {
+    "default_delay_min": 2,
+    "default_delay_max": 5,
+    "max_retries": 3,
+    "backoff_factor": 2,
+    "max_backoff": 60,
+    "timeout": 30,
+    "proxy": null,
+    "output_dir": "/home/claude/pepper_data"
+  },
+  "keywords": {
+    "zh": ["花椒油", "藤椒油", "花椒", "藤椒", "青花椒", "红花椒", "调味油", "麻椒油", "花椒麻素"],
+    "en": ["Sichuan pepper oil", "prickly ash oil", "Zanthoxylum", "green Sichuan pepper", "mala oil"]
+  },
+  "companies": {
+    "幺麻子": {"stock_code": "874322", "exchange": "NQ", "full_name": "幺麻子食品股份有限公司"},
+    "天味食品": {"stock_code": "603317", "exchange": "SH", "full_name": "四川天味食品集团股份有限公司"},
+    "颐海国际": {"stock_code": "01579", "exchange": "HK", "full_name": "颐海国际控股有限公司"},
+    "海天味业": {"stock_code": "603288", "exchange": "SH", "full_name": "佛山市海天调味食品股份有限公司"},
+    "丁点儿":  {"stock_code": null, "exchange": null, "full_name": "珪一食品集团股份有限公司"}
+  },
+  "hs_codes": ["0910991000", "091099", "0904"],
+  "sites": {
+    "cnhnb": {
+      "name": "惠农网",
+      "category": "price",
+      "base_url": "https://www.cnhnb.com",
+      "endpoints": [
+        "/hangqing/huajiao/",
+        "/hangqing/cdlist-2009095-0-0-0-0-1.html",
+        "/hangqing/cdlist-2009096-0-0-0-0-1.html"
+      ],
+      "search_url": "https://www.cnhnb.com/hangqing/search/?keyword={keyword}",
+      "delay_min": 3,
+      "delay_max": 6,
+      "needs_js": false,
+      "notes": "花椒实时报价、各品种历史走势图"
+    },
+    "ymt": {
+      "name": "一亩田",
+      "category": "price",
+      "base_url": "https://www.ymt.com",
+      "endpoints": [
+        "/price/huajiao/",
+        "/price/qinghuajiao/",
+        "/price/tengjiaohuajiao/"
+      ],
+      "search_url": "https://www.ymt.com/search/price?keyword={keyword}",
+      "delay_min": 2,
+      "delay_max": 5,
+      "needs_js": false,
+      "notes": "产地收购价、批发商报价"
+    },
+    "cnfin_index": {
+      "name": "新华花椒价格指数",
+      "category": "price",
+      "base_url": "https://indices.cnfin.com",
+      "endpoints": [
+        "/5066/index.html",
+        "/5066/indices_details.html"
+      ],
+      "api_endpoints": [
+        "https://indices.cnfin.com/api/v1/index_data?index_id=5066&period=daily",
+        "https://indices.cnfin.com/api/v1/index_data?index_id=5066&period=weekly"
+      ],
+      "delay_min": 2,
+      "delay_max": 4,
+      "needs_js": true,
+      "notes": "新华·中国（武都）花椒价格指数，基期2016年7-12月=1000"
+    },
+    "huajiao_bigdata": {
+      "name": "花椒大数据网",
+      "category": "price",
+      "base_url": "http://www.860938.cn",
+      "endpoints": [
+        "/yaotree",
+        "/news/",
+        "/price/"
+      ],
+      "delay_min": 2,
+      "delay_max": 5,
+      "needs_js": false,
+      "notes": "各产区实时价格、面积产量、行业新闻"
+    },
+    "huajiao_cn": {
+      "name": "中国花椒网",
+      "category": "price",
+      "base_url": "http://www.huajiao.cn",
+      "endpoints": ["/market/", "/news/", "/price/"],
+      "delay_min": 2,
+      "delay_max": 5,
+      "needs_js": false,
+      "notes": "花椒行情、产区动态"
+    },
+    "chinabaogao": {
+      "name": "观研天下",
+      "category": "market",
+      "base_url": "https://www.chinabaogao.com",
+      "search_url": "https://www.chinabaogao.com/search.html?keyword={keyword}",
+      "target_pages": [
+        "/baogao/202402/694755.html",
+        "/detail/760747.html",
+        "/market/202508/760806.html"
+      ],
+      "delay_min": 3,
+      "delay_max": 6,
+      "needs_js": false,
+      "notes": "花椒行业/藤椒油行业报告摘要；只能抓公开摘要，完整报告付费"
+    },
+    "askci": {
+      "name": "中商产业研究院",
+      "category": "market",
+      "base_url": "https://www.askci.com",
+      "search_url": "https://www.askci.com/search/?keyword={keyword}",
+      "target_pages": [
+        "/news/chanye/20221115/0941022022660.shtml"
+      ],
+      "delay_min": 3,
+      "delay_max": 6,
+      "needs_js": false,
+      "notes": "藤椒油市场规模及竞争格局"
+    },
+    "chyxx": {
+      "name": "智研咨询",
+      "category": "market",
+      "base_url": "https://www.chyxx.com",
+      "search_url": "https://www.chyxx.com/search.html?keyword={keyword}",
+      "delay_min": 3,
+      "delay_max": 6,
+      "needs_js": false,
+      "notes": "花椒油行业深度报告"
+    },
+    "qianzhan": {
+      "name": "前瞻产业研究院",
+      "category": "market",
+      "base_url": "https://www.qianzhan.com",
+      "search_url": "https://www.qianzhan.com/search/?q={keyword}",
+      "delay_min": 3,
+      "delay_max": 7,
+      "needs_js": true,
+      "notes": "行业趋势报告，部分数据需登录"
+    },
+    "chinairn": {
+      "name": "中研网",
+      "category": "market",
+      "base_url": "https://www.chinairn.com",
+      "search_url": "https://www.chinairn.com/search/?word={keyword}",
+      "target_pages": [
+        "/hyzx/20250122/175422310.shtml"
+      ],
+      "delay_min": 3,
+      "delay_max": 6,
+      "needs_js": false,
+      "notes": "花椒油市场规模数据，2019-2024"
+    },
+    "gonyn": {
+      "name": "共研网",
+      "category": "market",
+      "base_url": "https://www.gonyn.com",
+      "target_pages": [
+        "/industry/1692233.html"
+      ],
+      "delay_min": 3,
+      "delay_max": 6,
+      "needs_js": false,
+      "notes": "花椒油产业链分析"
+    },
+    "cninfo": {
+      "name": "巨潮资讯网",
+      "category": "company",
+      "base_url": "https://www.cninfo.com.cn",
+      "api_url": "http://www.cninfo.com.cn/new/hisAnnouncement/query",
+      "search_params": {
+        "stock_codes": ["874322", "603317"],
+        "category": "category_ndbg_szsh;category_bndbg_szsh;category_zhaogushu",
+        "keywords": ["年度报告", "招股说明书"]
+      },
+      "delay_min": 3,
+      "delay_max": 8,
+      "needs_js": true,
+      "notes": "需要 JS 渲染；抓取公告列表 + PDF 链接"
+    },
+    "eastmoney": {
+      "name": "东方财富",
+      "category": "company",
+      "base_url": "https://www.eastmoney.com",
+      "api_endpoints": [
+        "https://datacenter.eastmoney.com/securities/api/data/v1/get?reportName=RPT_LICO_FN_CPD",
+        "https://emweb.securities.eastmoney.com/PC_HSF10/CompanySurvey/Index?type=web&code={stock_code}"
+      ],
+      "delay_min": 2,
+      "delay_max": 5,
+      "needs_js": true,
+      "notes": "F10 资料、财务报表数据 API"
+    },
+    "sina_finance": {
+      "name": "新浪财经",
+      "category": "company",
+      "base_url": "https://finance.sina.com.cn",
+      "search_url": "https://search.sina.com.cn/?q={keyword}&c=news&from=channel&ie=utf-8",
+      "target_pages": [
+        "/cj/2025-05-08/doc-inevvnky8707536.shtml",
+        "/jjxw/2025-03-28/doc-inerfitp0038817.shtml"
+      ],
+      "delay_min": 2,
+      "delay_max": 5,
+      "needs_js": false,
+      "notes": "幺麻子年报解读、天味食品财报新闻"
+    },
+    "oilcn": {
+      "name": "导油网",
+      "category": "company",
+      "base_url": "https://www.oilcn.com",
+      "search_url": "https://www.oilcn.com/search.php?keyword={keyword}",
+      "target_pages": [
+        "/article/2025/08/08_95539.html",
+        "/article/2023/12/12_90448.html"
+      ],
+      "delay_min": 2,
+      "delay_max": 5,
+      "needs_js": false,
+      "notes": "食用油行业专业资讯"
+    },
+    "forestry": {
+      "name": "国家林草局",
+      "category": "gov",
+      "base_url": "https://www.forestry.gov.cn",
+      "search_url": "https://www.forestry.gov.cn/search.html?searchword={keyword}",
+      "target_pages": [
+        "/c/www/lcdt/522070.jhtml"
+      ],
+      "delay_min": 3,
+      "delay_max": 6,
+      "needs_js": false,
+      "notes": "花椒种植面积2300万亩等权威数据"
+    },
+    "moa": {
+      "name": "农业农村部",
+      "category": "gov",
+      "base_url": "https://www.moa.gov.cn",
+      "search_url": "https://www.moa.gov.cn/was5/web/search?searchword={keyword}",
+      "delay_min": 3,
+      "delay_max": 6,
+      "needs_js": false,
+      "notes": "农产品市场价格信息"
+    },
+    "customs": {
+      "name": "海关总署",
+      "category": "gov",
+      "base_url": "https://www.customs.gov.cn",
+      "stats_url": "http://stats.customs.gov.cn/",
+      "hs_codes": ["0910991000"],
+      "delay_min": 5,
+      "delay_max": 10,
+      "needs_js": true,
+      "notes": "花椒进出口数据；统计查询系统需 JS + 可能需验证码"
+    },
+    "samr_std": {
+      "name": "国家标准全文公开系统",
+      "category": "gov",
+      "base_url": "https://openstd.samr.gov.cn",
+      "search_keywords": ["花椒油", "花椒", "DBS51/008", "GB/T 30391", "GB/T 22479", "GB/T 38495"],
+      "delay_min": 3,
+      "delay_max": 6,
+      "needs_js": true,
+      "notes": "花椒油相关国标全文"
+    },
+    "kr36": {
+      "name": "36氪",
+      "category": "media",
+      "base_url": "https://36kr.com",
+      "search_url": "https://36kr.com/search/articles/{keyword}",
+      "target_pages": [
+        "/p/3422632239173250"
+      ],
+      "delay_min": 2,
+      "delay_max": 5,
+      "needs_js": true,
+      "notes": "幺麻子企业分析"
+    },
+    "jiemian": {
+      "name": "界面新闻",
+      "category": "media",
+      "base_url": "https://www.jiemian.com",
+      "search_url": "https://www.jiemian.com/search/index.html?keyword={keyword}",
+      "target_pages": [
+        "/article/7535441.html",
+        "/article/13144500.html"
+      ],
+      "delay_min": 2,
+      "delay_max": 5,
+      "needs_js": false,
+      "notes": "幺麻子 IPO 分析"
+    },
+    "cbndata": {
+      "name": "CBNData",
+      "category": "media",
+      "base_url": "https://www.cbndata.com",
+      "target_pages": [
+        "/information/225531"
+      ],
+      "delay_min": 2,
+      "delay_max": 5,
+      "needs_js": true,
+      "notes": "绝味投资-幺麻子分析"
+    },
+    "cnr": {
+      "name": "央广网",
+      "category": "media",
+      "base_url": "https://www.cnr.cn",
+      "target_pages": [
+        "https://ent.cnr.cn/canyin/zixun/20240320/t20240320_526633503.shtml",
+        "https://ent.cnr.cn/canyin/zixun/20211112/t20211112_525659742.shtml"
+      ],
+      "delay_min": 2,
+      "delay_max": 5,
+      "needs_js": false,
+      "notes": "花椒产业研究报告原文，数据密度极高"
+    },
+    "bri": {
+      "name": "Business Research Insights",
+      "category": "global",
+      "base_url": "https://www.businessresearchinsights.com",
+      "target_pages": [
+        "/market-reports/prickly-ash-oil-market-115761"
+      ],
+      "delay_min": 3,
+      "delay_max": 6,
+      "needs_js": false,
+      "notes": "全球花椒油市场规模 $1亿(2023) → $1.6亿(2032)"
+    },
+    "vmr": {
+      "name": "Verified Market Reports",
+      "category": "global",
+      "base_url": "https://www.verifiedmarketreports.com",
+      "target_pages": [
+        "/product/prickly-ash-oil-market/"
+      ],
+      "delay_min": 3,
+      "delay_max": 6,
+      "needs_js": false,
+      "notes": "全球花椒油市场预测"
+    },
+    "wiseguy": {
+      "name": "WiseGuy Reports",
+      "category": "global",
+      "base_url": "https://www.wiseguyreports.com",
+      "target_pages": [
+        "/reports/sichuan-flavor-seasoning-market",
+        "/reports/sichuan-flavor-compound-seasoning-market"
+      ],
+      "delay_min": 3,
+      "delay_max": 6,
+      "needs_js": false,
+      "notes": "四川风味调味品全球市场 $33亿(2023)"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "slug": "physical-mail-action-sorter",
+  "name": "Physical Mail Action Sorter",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Sort a stressful stack of physical mail into four bins with action labels, discard/archive rules, and a simple action tracker.",
+  "author": "OpenClaw Batch AC",
+  "license": "MIT-0",
+  "language": "en",
+  "category": "Home Admin",
+  "target_user": "People who feel overwhelmed by physical mail, envelopes, notices, and paper clutter.",
+  "tags": [
+    "physical-mail",
+    "home-admin",
+    "paperwork",
+    "declutter",
+    "action-tracker",
+    "life-admin"
+  ],
+  "trigger_keywords": [
+    "sort my mail",
+    "mail stack is stressful",
+    "physical mail pile",
+    "paperwork pile",
+    "what do I do with this mail",
+    "organize envelopes",
+    "mail action tracker"
+  ],
+  "use_cases": [
+    "Sorting envelopes into action bins",
+    "Using sender clues without exposing private account details",
+    "Creating action labels for mail items",
+    "Defining discard and archive rules for paper mail"
+  ],
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "requiresApi": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "requires": {},
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ],
+  "project": "daily-50-skills-2026-05-08"
+}

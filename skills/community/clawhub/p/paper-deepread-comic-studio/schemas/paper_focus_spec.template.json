@@ -1,0 +1,222 @@
+{
+  "paper_id": "string",
+  "title": "string",
+  "venue": "string",
+  "year": 2026,
+  "openreview_forum_url": "",
+  "source_record": {
+    "status": "",
+    "status_bucket": "accepted | not_accepted | status_unknown",
+    "verification_state": "unverified | partially_verified | fully_verified",
+    "verification_checks": {
+      "title_verified": false,
+      "authors_verified": false,
+      "year_verified": false,
+      "venue_verified": false,
+      "status_verified": false
+    },
+    "match_reason": "",
+    "canonical_paper_page_url": "",
+    "source_url": "",
+    "conference_paper_url": "",
+    "conference_pdf_url": "",
+    "openreview_forum_url": "",
+    "openreview_pdf_url": "",
+    "arxiv_abs_url": "",
+    "arxiv_pdf_url": "",
+    "arxiv_latex_url": "",
+    "preferred_source_type": "",
+    "preferred_local_source_path": "",
+    "local_latex_dir": "",
+    "local_pdf_path": "",
+    "local_openreview_pdf_path": "",
+    "local_official_pdf_path": "",
+    "local_arxiv_pdf_path": "",
+    "review_bundle_dir": "",
+    "review_digest_path": "",
+    "canonical_review_source_type": "",
+    "missing_source_after_exhaustive_search": false,
+    "source_acquisition_status": "materialized | partial | missing_source",
+    "source_stage": "",
+    "artifact_status": "",
+    "why_collected": "",
+    "notes": [],
+    "retrieval_sources": [],
+    "review_bundle_completeness": {
+      "forum": false,
+      "reviews_or_meta_reviews": false,
+      "author_responses": false,
+      "decision": false
+    }
+  },
+  "upstream_bundle_context": {
+    "routing_status_json": "",
+    "project_directory_index_json": "",
+    "project_directory_index_md": "",
+    "paper_batch_manifest_json": "",
+    "openreview_rebuttal_digest_json": "",
+    "stage_delivery_handoff_md": "",
+    "delivery_bundle_manifest_json": ""
+  },
+  "problem_source_paths": [
+    "paper-explicit",
+    "borrowed-algorithm-ancestry",
+    "new-algorithm-bottleneck"
+  ],
+  "explicit_higher_ml_ai_problems": [],
+  "higher_ml_ai_problems": [],
+  "higher_problem_map": {
+    "paper_explicit": [],
+    "algorithm_ancestry": [],
+    "algorithm_bottleneck": []
+  },
+  "algorithm_ancestry_upper_problems": [
+    {
+      "problem": "string",
+      "why": "string",
+      "trigger_algorithms": [],
+      "source_modules": []
+    }
+  ],
+  "algorithm_encountered_problem_upper_problems": [
+    {
+      "problem": "string",
+      "why": "string",
+      "trigger_issue": "string",
+      "source_modules": []
+    }
+  ],
+  "field_problems": [],
+  "direction_native_problems": [],
+  "module_to_problem_map": [
+    {
+      "module": "string",
+      "module_role": "string",
+      "instantiated_ml_ai_problems": [],
+      "instantiated_field_problems": [],
+      "likely_algorithm_lineage": [],
+      "borrowed_algorithm_upper_problems": [
+        {
+          "problem": "string",
+          "why": "string",
+          "trigger_algorithms": []
+        }
+      ],
+      "encountered_issue": "string",
+      "encountered_problem_upper_problems": [
+        {
+          "problem": "string",
+          "why": "string",
+          "trigger_issue": "string"
+        }
+      ]
+    }
+  ],
+  "graph_node_candidates": [],
+  "graph_relation_candidates": [],
+  "related_papers": [],
+  "idea_genesis": {
+    "summary": "",
+    "trace": []
+  },
+  "motivation_bridge": {
+    "motivation_claims": [],
+    "bridge_experiments": [
+      {
+        "name": "string",
+        "kind": "probe | ablation | pilot-design | sanity-check | mechanism-check | toy-experiment | visualization",
+        "what_it_tests": "string",
+        "why_it_exists": "string",
+        "observed_takeaway": "string",
+        "how_it_closes_gap": "string",
+        "bridge_strength": "strong | medium | weak"
+      }
+    ],
+    "trial_designs_before_final_method": [],
+    "bridge_summary": "",
+    "remaining_gap": ""
+  },
+  "algorithm_design": {
+    "model_form": "",
+    "architecture_summary": "",
+    "key_modules": [],
+    "training_pipeline": [],
+    "inference_pipeline": [],
+    "optimization_objectives": [],
+    "communication_or_deployment_path": ""
+  },
+  "review_context": {
+    "required": false,
+    "source_type": "none"
+  },
+  "figure_targets": [],
+  "innovation_hooks": [],
+  "upstream_author_team_context": {
+    "used_existing_context": false,
+    "context_sources": [],
+    "confirmed_authors_from_upstream_or_paper": [],
+    "team_related_papers_if_already_available": [],
+    "team_agenda_summary_if_available": "string",
+    "missing_context_not_collected_here": []
+  },
+  "external_followup_deferred": {
+    "no_new_external_retrieval_in_this_stage": true,
+    "followup_needs_for_collection_stage": [],
+    "stage_boundary_note": "Record retrieval gaps for later collection-stage work instead of reopening search inside deep reading."
+  },
+  "research_generative_reading": {
+    "research_equation": {
+      "important_setting": "",
+      "broken_assumption": "",
+      "borrowed_tool": "",
+      "new_constraint": "",
+      "unavailable_ideal_mechanism_Y": "",
+      "constructed_surrogate_mechanism_Z": "",
+      "why_Z_approximates_Y": ""
+    },
+    "author_side_direction_discovery": {
+      "valuable_field": "",
+      "painful_assumption": "",
+      "emerging_or_borrowed_tool": "",
+      "unserved_setting": "",
+      "blocking_constraint": "",
+      "conceptual_replacement": "",
+      "evidence_backed_vs_speculative_notes": ""
+    },
+    "story_construction": {
+      "challenge_failure_design_module_evidence": [],
+      "additive_vs_closed_loop_judgment": "",
+      "flowing_object": "",
+      "fragile_links": []
+    },
+    "module_author_thinking": [],
+    "reverse_citation_logic": [],
+    "experiments_as_story_evidence": [],
+    "reusable_story_making_patterns": [],
+    "hidden_assumption_to_new_idea": []
+  },
+  "teaching_explanation_reading": {
+    "audience_profile": {
+      "primary_audience": "",
+      "secondary_audience": "",
+      "beginner_prerequisites": [],
+      "likely_confusions": [],
+      "math_depth": ""
+    },
+    "three_layer_summary": {
+      "thirty_seconds": "",
+      "three_minutes": "",
+      "ten_minutes": ""
+    },
+    "story_spine": {},
+    "formula_teaching": [],
+    "visual_teaching": [],
+    "experiment_teaching": [],
+    "role_play_discussion_pack": [],
+    "qa_bank": [],
+    "misunderstanding_guardrails": [],
+    "slide_blueprint": [],
+    "teachback_self_test": [],
+    "three_takeaways": []
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "procurement": {
+    "websites": [
+      {
+        "name": "中央政府采购网",
+        "url": "https://www.ccgp.gov.cn",
+        "enabled": true
+      },
+      {
+        "name": "中国政府采购网",
+        "url": "https://www.zfcg.gov.cn",
+        "enabled": true
+      },
+      {
+        "name": "北京市政府采购网",
+        "url": "http://www.ccgp-beijing.gov.cn",
+        "enabled": true
+      },
+      {
+        "name": "上海市政府采购网",
+        "url": "http://www.ccgp-shanghai.gov.cn",
+        "enabled": true
+      },
+      {
+        "name": "广东省政府采购网",
+        "url": "http://www.ccgp-guangdong.gov.cn",
+        "enabled": true
+      }
+    ],
+    "searchKeywords": [
+      "药学系统",
+      "医院药学",
+      "药房管理系统",
+      "药品管理系统",
+      "智慧药房",
+      "临床药学系统",
+      "药物咨询系统"
+    ]
+  },
+  "filtering": {
+    "minDaysBeforeDeadline": 2,
+    "minBudget": 1000000,
+    "hospitalTypes": [
+      "三级医院",
+      "县人民医院",
+      "二级甲等医院"
+    ]
+  },
+  "evaluation": {
+    "minDaysBeforeOpening": 10,
+    "highBudgetThreshold": 5000000,
+    "autoParticipateConditions": [
+      "budget_over_1m",
+      "tertiary_hospital",
+      "county_hospital",
+      "more_than_10_days"
+    ]
+  },
+  "wechatWork": {
+    "webhookUrl": "",
+    "smartTableId": "",
+    "departmentId": "",
+    "apiToken": ""
+  },
+  "scheduling": {
+    "enabled": true,
+    "cron": "30 8 * * *",
+    "timezone": "Asia/Shanghai"
+  },
+  "logging": {
+    "level": "info",
+    "file": "logs/bidding-collector.log",
+    "maxSize": "10m",
+    "maxFiles": 5
+  }
+}

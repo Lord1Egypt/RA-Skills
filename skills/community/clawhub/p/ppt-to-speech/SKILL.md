@@ -1,35 +1,116 @@
 ---
-name: "PPT to Speech Skill"
-description: "将 PPT/PPTX 文件转换为结构化演讲稿。当用户说"帮我整理这份PPT"、"把这个PPT转成演讲稿/文章"、"提取PPT内容"、"生成演讲稿"、"PPT转markdown"、"分析这份幻灯片"，或提供了 .pptx 文件路径并要求处理时，立即使用此 skill。无需用户配置任何 API Key，由 Agent..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ppt-to-speech"
-sourceUrl: "https://clawhub.ai/skills/ppt-to-speech"
+name: ppt-to-speech
+description: 将 PPT/PPTX 文件转换为结构化演讲稿。当用户说"帮我整理这份PPT"、"把这个PPT转成演讲稿/文章"、"提取PPT内容"、"生成演讲稿"、"PPT转markdown"、"分析这份幻灯片"，或提供了 .pptx 文件路径并要求处理时，立即使用此 skill。无需用户配置任何 API Key，由 Agent 自身完成演讲稿撰写。
+version: 3.1.0
+allowed-tools: Bash, Read, Write
 ---
 
-# PPT to Speech Skill
+将 PPTX 文件的每页标题、正文、演讲者备注提取为结构化数据，生成每页缩略图，最终由你（Agent）结合文字内容与缩略图，撰写一篇连贯、有感染力的 Markdown 演讲稿。
 
-> 将 PPT/PPTX 文件转换为结构化演讲稿。当用户说"帮我整理这份PPT"、"把这个PPT转成演讲稿/文章"、"提取PPT内容"、"生成演讲稿"、"PPT转markdown"、"分析这份幻灯片"，或提供了 .pptx 文件路径并要求处理时，立即使用此 skill。无需用户配置任何 API Key，由 Agent...
+**输入**：用户提供的 PPTX 文件路径 —— `$ARGUMENTS`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ppt-to-speech`
-- **Source URL:** [https://clawhub.ai/skills/ppt-to-speech](https://clawhub.ai/skills/ppt-to-speech)
+---
 
-## Overview
+## 第一步：安装 Python 依赖
 
+首次使用前执行（已安装可跳过）：
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ppt-to-speech
+pip install python-pptx pdf2image Pillow requests
 ```
+
+> LibreOffice 和 Poppler 由脚本**自动检测并下载**，无需手动安装。
+## 依赖说明
+
+本技能需要 **LibreOffice** 和 **poppler-utils** 来解析 PPT 并生成缩略图。
+
+**首次运行时，脚本会自动：**
+- 从阿里云镜像下载 LibreOffice（约 300 MB）并解压到 `~/.cache/ppt_skill/`
+- 从 GitHub 下载 poppler 预编译包（约 50 MB）并解压到 `~/.claude/skills/ppt-to-speech/bin/`
+- 将上述路径临时添加到当前进程的 PATH
+
+**网络访问**：仅用于下载上述依赖，所有下载源均为可信镜像。
+
+**权限要求**：
+- Windows：无需管理员权限（使用便携式提取）
+- Linux：若系统中未安装 poppler-utils，脚本会尝试通过 `apt`/`yum` 等包管理器安装，可能需要 sudo 权限；若无法获取 sudo，会提示手动安装。
+
+如您不希望自动下载，可提前手动安装 LibreOffice 和 poppler-utils，并确保 `soffice` 和 `pdfinfo` 命令在 PATH 中。
+---
+
+## 第二步：提取内容与生成缩略图
+
+运行脚本，提取 PPT 结构化内容并生成每页缩略图：
+
+```bash
+python scripts/extractor_ppt.py "$ARGUMENTS"
+```
+
+脚本完成后，输出文件位于与输入文件同目录：
+- `<文件名>.md` —— 结构化文本（标题 / 正文 / 备注的原始拼接）
+- `<文件名>_thumbnails/page_001.png` … —— 每页缩略图
+
+---
+
+## 第三步：由 Agent 撰写演讲稿
+
+脚本只做机械提取，**真正的演讲稿由你来写**。
+
+### 3.1 读取提取结果
+
+用 Read 工具读取上一步生成的 `.md` 文件，获取每页的标题、正文和演讲者备注。
+
+### 3.2 查看缩略图
+
+用 Read 工具依次查看 `_thumbnails/` 目录中的 PNG 图片，理解每页的视觉布局、图表和设计重点，补充纯文字无法传达的信息。
+
+### 3.3 撰写演讲稿
+
+基于以上内容，按如下要求撰写演讲稿：
+
+**结构要求**
+- 全文分章节，章节标题对应 PPT 的逻辑段落（不必与页码一一对应）
+- 每个章节开头插入对应页缩略图：`![第N页](相对路径/page_00N.png)`
+- 以引言开场、以行动号召收尾
+
+**写作要求**
+- 语言风格：使用口语化但精炼的演讲语言，避免照抄 bullet points。把要点展开成完整句子，必要时用比喻、类比、设问增强感染力。
+- 数据与案例：PPT 中的数据、案例、引述必须完整保留，并用口语化方式解释其意义，这是演讲的血肉。
+- 备注融入：如有演讲者备注（通常在 .md 文件中有单独标记），将其自然融入正文，作为强调或补充说明。 
+- 避免逐页罗列：严禁出现“第1页：……；第2页：……”这样的流水账。而是提炼出核心信息，按逻辑重组。
+
+**图文要求**
+- 结合缩略图中观察到的视觉信息（图表趋势、配色重点、布局层级）进行解读
+- 不要只复述文字，要说明"这张图想说明什么"
+- 在文字描述前或后插入对应的缩略图引用，使读者图文并茂
+
+### 3.4 写入输出文件
+
+用 Write 工具将最终演讲稿**覆盖写入**第二步生成的 `.md` 文件，完成替换。
+
+---
+
+## 输出规范
+
+所有产物统一放在一个文件夹内：
+| 产物 | 路径 | 说明 |
+|------|------|------|
+| `<文件名>.md` | 与输入文件同目录 | 最终 Markdown 演讲稿（由 Agent 撰写） |
+| `<文件名>_thumbnails/` | 与输入文件同目录 | 每页 PNG 缩略图（800px 宽，供 Agent 阅读） |
+输出文件夹名称：<输入文件名（不含扩展名）>_output，位于输入文件同目录或用户指定位置。
+
+处理完成后，必须：
+1. 将 `<文件名>.md` 和 `<文件名>_thumbnails/`打包发给用户
+2. 将整个压缩包发送给用户
+3. 不能只发送单个 .md 文件
+---
+
+## 注意事项
+
+- 仅支持 `.pptx` 格式，不支持旧版 `.ppt`
+- 第三步完全由 Agent 自身完成，**无需配置任何外部 API Key**
+- 首次运行第二步时会自动下载 LibreOffice（体积较大），请保持网络畅通
+- 缩略图路径在 `.md` 中使用相对路径，确保文件移动后图片仍可显示
+
+
+## 示例文件（./examples/sample_speech.md）

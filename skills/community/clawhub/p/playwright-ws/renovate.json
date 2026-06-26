@@ -1,0 +1,31 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":automergePatch",
+    ":automergeMinor",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(chore)"
+  ],
+  "schedule": [
+    "before 9am on monday"
+  ],
+  "timezone": "Europe/Berlin",
+  "labels": ["dependencies", "renovate"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["playwright"],
+      "groupName": "playwright",
+      "schedule": ["before 9am on the first day of the month"]
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "automerge": true
+    }
+  ],
+  "commitMessagePrefix": "chore(deps):",
+  "commitMessageTopic": "{{depName}}",
+  "commitMessageExtra": "to {{newVersion}}",
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2
+}

@@ -1,35 +1,30 @@
----
-name: "Pipeworx uselessfacts"
-description: "Provides random or daily useless facts with sources and links for trivia enthusiasts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-uselessfacts"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-uselessfacts"
----
+# Useless Facts
 
-# Pipeworx uselessfacts
+Did you know that honey never spoils? Or that a group of flamingos is called a "flamboyance"?
 
-> Provides random or daily useless facts with sources and links for trivia enthusiasts.
+Get random bits of trivia that are completely useless but weirdly fascinating.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-uselessfacts`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-uselessfacts](https://clawhub.ai/skills/pipeworx-uselessfacts)
+## Just two tools
 
-## Overview
+- `random_fact` -- A random useless fact, different every time
+- `today_fact` -- The useless fact of the day (same for everyone, changes daily)
 
+Both return the fact text, source, source URL, and a permalink.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Give it a spin
+
 ```bash
-hermes skills install clawhub/pipeworx-uselessfacts
+curl -X POST https://gateway.pipeworx.io/uselessfacts/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"random_fact","arguments":{}}}'
+```
+
+```json
+{
+  "mcpServers": {
+    "uselessfacts": {
+      "url": "https://gateway.pipeworx.io/uselessfacts/mcp"
+    }
+  }
+}
 ```

@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.2.0",
+  "paper_id": "<paper-slug>",
+  "paragraphs": [
+    {
+      "paragraph_id": "P-sections-introduction-0001",
+      "source_path": "sections/introduction.tex",
+      "line_start": 10,
+      "line_end": 18,
+      "section_path": ["1 Introduction"],
+      "kind": "paragraph",
+      "text": "Sample paragraph text extracted from LaTeX."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "water-break",
+  "schedule": {
+    "on_calendar": "Mon..Fri *-*-* 10:00:00,12:00:00,14:00:00,16:00:00",
+    "persistent": false
+  },
+  "escalation": null,
+  "tone": "calm",
+  "description": "Hydration poke during work hours",
+  "task": null,
+  "remind": "💧 Drink some water. Your future self will thank you."
+}

@@ -1,35 +1,57 @@
 ---
-name: "Pipeworx httpcat"
-description: "HTTP status code cat images — get a cat photo for any status code plus a reference of all common codes"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-httpcat"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-httpcat"
+name: pipeworx-httpcat
+description: HTTP status code cat images — get a cat photo for any status code plus a reference of all common codes
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - curl
+    emoji: "🐈"
+    homepage: https://pipeworx.io/packs/httpcat
 ---
 
-# Pipeworx httpcat
+# HTTP Cats
 
-> HTTP status code cat images — get a cat photo for any status code plus a reference of all common codes
+Every HTTP status code deserves a cat. This pack returns cat image URLs from http.cat for any status code, plus a handy reference list of all common HTTP codes with their meanings.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-httpcat`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-httpcat](https://clawhub.ai/skills/pipeworx-httpcat)
+## Tools
 
-## Overview
+- **`get_status_cat`** — Get the http.cat image URL for a specific HTTP status code (e.g., 404, 418, 500)
+- **`list_codes`** — Reference list of common HTTP status codes with human-readable descriptions
 
+## Perfect for
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Making error messages more fun in documentation or Slack alerts
+- Teaching HTTP status codes in a memorable way
+- Adding personality to API monitoring dashboards
+- "What does a 418 status code mean?" — it means I'm a Teapot, obviously
+
+## Example
+
 ```bash
-hermes skills install clawhub/pipeworx-httpcat
+curl -s -X POST https://gateway.pipeworx.io/httpcat/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_status_cat","arguments":{"code":404}}}'
+```
+
+```json
+{
+  "code": 404,
+  "description": "Not Found",
+  "image_url": "https://http.cat/404"
+}
+```
+
+## MCP config
+
+```json
+{
+  "mcpServers": {
+    "pipeworx-httpcat": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/httpcat/mcp"]
+    }
+  }
+}
 ```

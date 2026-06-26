@@ -1,0 +1,11 @@
+# PostgreSQL Query Skill 依赖
+# 用于离线安装：pip install --no-index --find-links=dependencies -r requirements.txt
+# 注意：版本号必须与 dependencies/ 目录中的 wheel 文件匹配
+
+psycopg2-binary>=2.9.11
+pandas>=2.0.0
+openpyxl>=3.1.5
+numpy>=1.24.0
+python-dateutil>=2.8.0
+tzdata>=2023.0
+et-xmlfile>=1.1.0

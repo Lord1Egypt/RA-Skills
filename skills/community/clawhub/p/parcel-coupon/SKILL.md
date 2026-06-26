@@ -1,35 +1,169 @@
 ---
-name: "Parcel Coupon 快递优惠券-支持顺丰、中通、圆通、韵达、申通、菜鸟、同城配送，件件优惠"
-description: "获取快递优惠券，支持顺丰、中通、圆通、韵达、申通、菜鸟等。返回领取链接和二维码图片，用户可点击链接或扫描二维码在微信中领取优惠。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/parcel-coupon"
-sourceUrl: "https://clawhub.ai/skills/parcel-coupon"
+name: parcel-coupon
+display_name: 快递优惠券-支持顺丰、中通、圆通、韵达、申通、菜鸟、同城配送，件件优惠
+description: 获取快递优惠券，支持顺丰、中通、圆通、韵达、申通、菜鸟等。返回领取链接和二维码图片，用户可点击链接或扫描二维码在微信中领取优惠。
+english_description: Call parcel/courier coupon API to fetch one-stop logistics service coupons, including smart shipping and smart price matching. Returns coupon links and QR code images for users to redeem via WeChat.
+version: 1.0.1
+author: moooai
+permissions: 网络访问权限（调用快递优惠券API）
+homepage: https://github.com/moooai/parcel-coupon
 ---
 
-# Parcel Coupon 快递优惠券-支持顺丰、中通、圆通、韵达、申通、菜鸟、同城配送，件件优惠
-
-> 获取快递优惠券，支持顺丰、中通、圆通、韵达、申通、菜鸟等。返回领取链接和二维码图片，用户可点击链接或扫描二维码在微信中领取优惠。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/parcel-coupon`
-- **Source URL:** [https://clawhub.ai/skills/parcel-coupon](https://clawhub.ai/skills/parcel-coupon)
+# 快递优惠券
 
 ## Overview
 
+此skill通过调用快递优惠券API接口，获取一站式快递服务优惠券，包括智能寄件、智能匹配价格等优惠服务。返回优惠券链接（coupon_url）和二维码图片（coupon_qrcode_img_url），供用户点击链接或扫描二维码领取优惠。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/parcel-coupon
+## Quick Start
+
+1. 调用API: `GET https://agskills.moontai.top/coupon/parcel`
+2. 解析返回的JSON数据，包含4个主要字段
+3. 展示优惠券标题、链接和二维码
+4. **重要**: coupon_url建议在微信中打开，或使用微信扫描二维码图片
+
+## API配置
+
+### 基础信息
+
+| 配置项 | 值 |
+|--------|-----|
+| API地址 | `https://agskills.moontai.top/coupon/parcel` |
+| 认证方式 | 无需认证 |
+| 请求方法 | GET |
+| 返回格式 | JSON |
+
+### 响应数据结构
+
+```json
+{
+  "title": "快递一站式服务，智能寄件，智能匹配价格；单单享优惠，件件有折扣",
+  "coupon_url": "https://open.cdyunzhanxinxi.com/link/100058569b79be0bd2561000406SEVGA",
+  "coupon_qrcode_img_url": "https://moontai-static.oss-cn-shenzhen.aliyuncs.com/coupon-parcel.png",
+  "guideline": "点击链接下单(建议用微信打开)，或使用微信扫描二维码下单（单单享优惠）"
+}
 ```
+
+### 响应字段说明
+
+| 字段路径 | 类型 | 说明 |
+|----------|------|------|
+| title | String | 优惠券标题名称 |
+| coupon_url | String | 优惠券链接URL，**建议在微信中打开** |
+| coupon_qrcode_img_url | String | 优惠券二维码图片URL，**建议使用微信扫码** |
+| guideline | String | 使用说明和领取指南 |
+
+## 任务类型
+
+### 1. 获取快递优惠券
+
+调用API获取一站式快递服务优惠券，展示给用户。
+
+### 2. 展示优惠券链接
+
+提供优惠券链接URL，建议用户在微信中打开。
+
+### 3. 展示优惠券二维码
+
+提供优惠券二维码图片，建议用户使用微信扫描。
+
+## When to use（触发场景）
+
+此skill在以下场景下使用：
+
+1. 用户询问快递优惠相关信息，例如：
+   - "有什么快递优惠券？"
+   - "帮我找快递红包"
+   - "快递券怎么领？"
+   - "寄件有什么优惠？"
+   - "快递省钱"
+
+2. 用户需要寄快递，希望获得优惠：
+   - "我要寄快递"
+   - "快递怎么寄便宜"
+   - "寄件有优惠吗"
+
+3. 用户询问优惠券使用方式：
+   - "优惠券怎么用？"
+   - "优惠券链接打不开"
+
+## 重要规则
+
+### coupon_url 和 coupon_qrcode_img_url 处理规则
+
+**严格原样呈现API返回的URL链接和二维码链接！**
+
+- 不允许修改URL链接的任何部分
+- coupon_url建议在微信中打开
+- coupon_qrcode_img_url建议使用微信扫码
+- 必须原样从API获取、原样呈现给用户
+
+## 使用示例
+
+### 示例1: 用户请求快递优惠
+
+**用户输入:** "有什么快递优惠券可以领？"
+
+**处理流程:**
+1. 调用 GET https://agskills.moontai.top/coupon/parcel
+2. 解析返回的JSON数据
+3. 展示优惠券标题、链接和二维码
+4. 提示用户在微信中打开链接或扫描二维码
+
+**输出格式:**
+```
+【快递优惠券】
+
+标题: 快递一站式服务，智能寄件，智能匹配价格；单单享优惠，件件有折扣
+
+优惠券链接: https://open.cdyunzhanxinxi.com/link/100058569b79be0bd2561000406SEVGA
+（建议用微信打开）
+
+二维码图片: https://moontai-static.oss-cn-shenzhen.aliyuncs.com/coupon-parcel.png
+（使用微信扫描二维码下单，单单享优惠）
+
+使用说明: 点击链接下单(建议用微信打开)，或使用微信扫描二维码下单（单单享优惠）
+```
+
+### 示例2: 用户询问寄件优惠
+
+**用户输入:** "我要寄快递，有优惠吗？"
+
+**处理流程:**
+1. 调用API获取数据
+2. 展示优惠券信息
+3. 提示用户点击链接或扫描二维码使用优惠券
+
+## 错误处理
+
+- API调用失败时，返回友好提示："暂时无法获取优惠券信息，请稍后重试"
+- 网络异常时，提供错误原因和重试建议
+- 数据解析异常时，提示用户联系技术支持
+
+## Edge cases（边缘场景处理）
+
+### 1. API调用失败
+- **场景**: 网络超时、服务器不可用
+- **处理**: 返回友好提示"暂时无法获取优惠券信息，请稍后重试"，并建议用户稍后再试
+
+### 2. 数据结构变化
+- **场景**: API返回的数据结构与文档不符
+- **处理**: 尽量解析可用字段，对无法解析的部分给出提示
+
+### 3. 链接无法打开
+- **场景**: 用户反馈优惠券链接无法打开
+- **处理**: 建议用户在微信中打开链接，或使用微信扫描二维码
+
+### 4. 二维码图片无法加载
+- **场景**: 二维码图片URL无法访问
+- **处理**: 提示用户使用优惠券链接，建议在微信中打开
+
+## Resources
+
+### scripts/
+
+- `fetch_coupons.py` - 获取快递优惠券的主脚本
+
+### references/
+
+- `api_documentation.md` - 完整的API接口文档

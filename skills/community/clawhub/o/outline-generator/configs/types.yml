@@ -1,0 +1,138 @@
+# 小说类型配置
+# 用于 outline-generator skill 的大纲生成逻辑
+
+玄幻:
+  min_chapter_words: 2500
+  max_chapter_words: 3500
+  min_chapters_per_vol: 20
+  max_chapters_per_vol: 40
+  min_volumes: 3
+  max_volumes: 5
+  typical_keywords:
+    - 修炼体系
+    - 灵气复苏
+    - 洞府秘境
+    - 跨越 realms
+    - 逆天改命
+    - 神秘前世
+    - 上古传承
+    - 天道压制
+    - 奇遇buff
+    - 群mate团战
+    - 体系重构
+  protagonist_start: 平凡青年/穿越者/废柴
+  protagonist_end: 体系重建者/至高主宰/开天辟地者
+  ally_start: 陌生/怀疑/利益驱使
+  ally_end: 生死之交/左膀右臂/道侣
+  enemy_start: 强大/神秘/高高在上
+  enemy_end: 落败/顿悟/彻底毁灭
+  power_system: 多层级修炼体系 (凡人→修真→飞升→神域)
+  core_conflict: 个人成长 vs 天道压制 vs 上古阴谋
+  location_1: 凡人世界/主角起点
+  location_2: 灵气复苏之地/古秘境
+  location_3: 世界中枢/天道之地
+  ranks: 凝气→筑基→金丹→元婴→化神→渡劫→飞升
+  growth_method: 修炼+资源+机缘+顿悟
+  restrictions: 资源不足/境界瓶颈/天道压制/仇敌追杀
+
+都市:
+  min_chapter_words: 2000
+  max_chapter_words: 3000
+  min_chapters_per_vol: 15
+  max_chapters_per_vol: 30
+  min_volumes: 2
+  max_volumes: 4
+  typical_keywords:
+    - 商战资本
+    - 古玩鉴宝
+    - 现代科技
+    - 二次元文化
+    - 社交媒体
+    - 高手隐世
+    - 星际遗产
+    - 跨级强者
+    - 低调装逼
+    - 草根逆袭
+    - 都市奇遇
+  protagonist_start: 草根/白领/落魄者
+  protagonist_end: 商业巨擘/传承继承者/社会顶层
+  ally_start: 同事/同学/偶遇
+  ally_end: 核心团队/合伙人/挚友
+  enemy_start: 竞争对手/小人/既得利益者
+  enemy_end: 彻底失败/破产/社会性死亡
+  power_system: 商业资本+古武传承+现代科技
+  core_conflict: 平凡生活 vs 超凡责任 vs 商业战争
+  location_1: 普通城市/主角所住小区
+  location_2: 商业中心/古玩市场
+  location_3: 国际舞台/最终舞台
+  ranks: 普通人→古武者→商业精英→顶尖强者
+  growth_method: 商业运作+资源积累+人脉拓展
+  restrictions: 资金压力/社会监管/竞争压力/敌人暗算
+
+科幻:
+  min_chapter_words: 2500
+  max_chapter_words: 3500
+  min_chapters_per_vol: 15
+  max_chapters_per_vol: 30
+  min_volumes: 2
+  max_volumes: 4
+  typical_keywords:
+    - 星际航行
+    - 人工智能
+    - 虚拟现实
+    - 外星文明
+    - 量子科技
+    - 时间穿越
+    - 太空殖民
+    - 黑暗森林
+    - 脑机接口
+    - 宇宙真相
+    - 人类进阶
+  protagonist_start: 普通人/科学家/军人
+  protagonist_end: 星际领袖/文明引领者/宇宙真相发现者
+  ally_start: 同事/战友/AI伙伴
+  ally_end: 生死之交/团队核心/形影不离的伙伴
+  enemy_start: 外星侵略者/邪恶组织/失控AI
+  enemy_end: 被击败/被进化/被感化
+  power_system: 科技等级+文明层次+个体进化
+  core_conflict: 人类存续 vs 外星威胁 vs 真相探索
+  location_1: 地球基地/ corporation总部
+  location_2: 太空站/外星遗迹
+  location_3: 宇宙中心/真相之地
+  ranks: 普通人→精英→科学家→星际领袖
+  growth_method: 学习+科技研发+团队协作
+  restrictions: 科技瓶颈/资源限制/伦理约束/外部威胁
+
+历史:
+  min_chapter_words: 2500
+  max_chapter_words: 3500
+  min_chapters_per_vol: 20
+  max_chapters_per_vol: 35
+  min_volumes: 3
+  max_volumes: 6
+  typical_keywords:
+    - 科举考试
+    - 宦海沉浮
+    - 朝堂争斗
+    - 古代技術
+    - 历史事件
+    - 文人雅士
+    - 商业贸易
+    - 军事战略
+    - 江湖侠义
+    - 民间风俗
+    - 历史变革
+  protagonist_start: 书生/小吏/平民
+  protagonist_end: 重臣/宰相/开派祖师
+  ally_start: 同窗/下属/偶遇
+  ally_end: 心腹重臣/生死之交/合作盟友
+  enemy_start: 同僚/政敌/对手
+  enemy_end: 被罢免/被流放/彻底失败
+  power_system: 科举等级→官职→爵位→开派立宗
+  core_conflict: 个人理想 vs 时代局限 vs 权力斗争
+  location_1: 乡试考场/主角家乡
+  location_2: 京城/权力中心
+  location_3: 战场/边疆/最终舞台
+  ranks: 秀才→举人→进士→翰林→宰相/藩王
+  growth_method: 学习+政绩+人脉+机遇
+  restrictions: 科举难度/政治打压/同僚倾轧/时代限制

@@ -1,35 +1,20 @@
 ---
-name: "PracticePanther API MCP"
-description: "MCP server for the PracticePanther legal practice management API. Exposes PracticePanther's REST API as read-only MCP tools."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/practicepanther-mcp"
-sourceUrl: "https://clawhub.ai/skills/practicepanther-mcp"
+name: practicepanther-mcp
+description: MCP server for the PracticePanther legal practice management API. Exposes PracticePanther's REST API as read-only MCP tools.
+metadata: { "openclaw": { "requires": { "bins": ["mcporter", "practicepanther-mcp"], "env": ["NODE_MCP_SECRET_KEY"] } } }
 ---
 
-# PracticePanther API MCP
+# PracticePanther MCP Server
 
-> MCP server for the PracticePanther legal practice management API. Exposes PracticePanther's REST API as read-only MCP tools.
+Read-only MCP server for the PracticePanther legal practice management API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/practicepanther-mcp`
-- **Source URL:** [https://clawhub.ai/skills/practicepanther-mcp](https://clawhub.ai/skills/practicepanther-mcp)
+## Usage
 
-## Overview
+Use mcporter to interact with this server via stdio:
 
+- **List available tools:** `mcporter list --stdio practicepanther-mcp`
+- **Call a tool:** `mcporter call --stdio practicepanther-mcp <tool_name> [args]`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/practicepanther-mcp
-```
+## Links
+
+- **npm:** https://www.npmjs.com/package/@mjquinlan2000/practicepanther-mcp

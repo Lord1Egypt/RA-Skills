@@ -1,0 +1,23 @@
+{
+  "cacheTimeout": 172800,
+  "maxHistoryVersions": 3,
+  "auditLogLevel": "all",
+  "autoDetect": {
+    "enabled": true,
+    "sensitivityThreshold": "medium",
+    "askBeforeSave": true
+  },
+  "requireConfirm": {
+    "delete": true,
+    "deleteAll": true,
+    "export": true,
+    "backup": true,
+    "restore": true
+  },
+  "generator": {
+    "defaultLength": 32,
+    "includeUppercase": true,
+    "includeNumbers": true,
+    "includeSymbols": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "trash-day",
+  "schedule": {
+    "on_calendar": "Sun *-*-* 19:00:00",
+    "persistent": true
+  },
+  "escalation": {
+    "max_pokes": 6,
+    "intervals": "60,30,15,10,5,5"
+  },
+  "tone": "warm,playful,stern,chaotic",
+  "description": "Sunday trash reminder with escalation",
+  "task": null,
+  "remind": "Have you taken out the trash yet?"
+}

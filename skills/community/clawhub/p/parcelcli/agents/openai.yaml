@@ -1,0 +1,4 @@
+interface:
+  display_name: "parcelcli"
+  short_description: "Track parcels locally with parcelcli."
+  default_prompt: "Track this parcel locally using parcelcli and summarize the normalized status."

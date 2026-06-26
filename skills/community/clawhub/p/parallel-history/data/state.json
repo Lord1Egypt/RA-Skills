@@ -1,0 +1,48 @@
+{
+  "game_id": null,
+  "player": {
+    "political_life": 20,
+    "current_turn": 0,
+    "current_year": null,
+    "faction": null,
+    "organization": null,
+    "ideology": null,
+    "legacy_score": 0,
+    "historical_evaluation": 0
+  },
+  "game_state": {
+    "mode": "political_life",
+    "starting_point": null,
+    "current_era": null,
+    "historical_events": []
+  },
+  "organization": {
+    "name": null,
+    "founded": null,
+    "members": 0,
+    "influence": 0,
+    "stability": 0,
+    "ideology_purity": 0,
+    "resources": 0,
+    "status": null
+  },
+  "ideology_sect": {
+    "name": null,
+    "founded": null,
+    "believers": 0,
+    "doctrine_purity": 0,
+    "spread_rate": 0,
+    "institutionalization": 0,
+    "status": null
+  },
+  "history": {
+    "decisions": [],
+    "major_events": [],
+    "turns": []
+  },
+  "metadata": {
+    "created_at": null,
+    "last_updated": null,
+    "version": "1.0"
+  }
+}

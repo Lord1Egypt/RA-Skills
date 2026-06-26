@@ -1,0 +1,24 @@
+{
+  "name": "Physiology-PMPH-10edition",
+  "version": "1.0.0",
+  "description": "基于人民卫生出版社《生理学》第10版的系统化生理学技能集合 — 165项核心生理学技能",
+  "author": "xllgreen",
+  "license": "MIT",
+  "language": "multilingual",
+  "homepage": "https://clawhub.ai/xllgreen/physiology-pmph-10edition",
+  "skills": 165,
+  "categories": {
+    "nervous-system": "神经与感觉系统 / Nervous & Sensory Systems",
+    "endocrine-metabolism": "内分泌与代谢调节 / Endocrine & Metabolism",
+    "cardiovascular": "心血管生理 / Cardiovascular Physiology",
+    "respiratory": "呼吸系统 / Respiratory System",
+    "renal-fluid": "泌尿与水盐平衡 / Renal & Fluid Balance",
+    "digestive-nutrition": "消化与营养吸收 / Digestion & Nutrition",
+    "blood-immune": "血液与免疫 / Blood & Immunity",
+    "energy-thermoregulation": "能量代谢与体温调节 / Energy Metabolism & Thermoregulation",
+    "cellular-molecular": "细胞与分子机制 / Cellular & Molecular Mechanisms",
+    "reproduction-development": "生殖与发育 / Reproduction & Development",
+    "integrative-physiology": "整合生理与临床评估 / Integrative Physiology & Clinical Assessment",
+    "methodology": "方法学与教材资源 / Methodology & Textbook Resources"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper-Code Joint Analysis"
+  short_description: "Analyze papers together with open-source implementations."
+  default_prompt: "Analyze this paper and its repository together, mapping theory, algorithms, experiments, domain-critical execution, code paths, missing implementation details, and reproducibility gaps into analysis_bundle.json, standardized companion artifacts, and a generated static reader."

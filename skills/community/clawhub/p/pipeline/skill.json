@@ -1,0 +1,46 @@
+{
+  "name": "pipeline",
+  "version": "2.0.0",
+  "description": "Diagnose pipeline health, detect stalled deals, and surface what needs attention this week. Built for sales teams managing active opportunities.",
+  "author": "dpetcr",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "pipeline",
+    "sales pipeline",
+    "forecast",
+    "deal review",
+    "pipeline hygiene",
+    "stage discipline",
+    "stalled deals"
+  ],
+  "files": {
+    "skill.md": "skill.md"
+  },
+  "capabilities": {
+    "pipeline_diagnosis": "Diagnose pipeline health and detect stalled or false-active deals",
+    "stage_control": "Enforce stage discipline and surface stage risks",
+    "forecast_review": "Assess forecast credibility and pipeline honesty",
+    "priority_ranking": "Identify the top opportunities that need attention now"
+  },
+  "triggers": [
+    "pipeline health",
+    "review my pipeline",
+    "stalled deals",
+    "forecast accuracy",
+    "pipeline hygiene",
+    "deal review",
+    "what deals need attention",
+    "stage discipline"
+  ],
+  "audience": [
+    "Founders running sales",
+    "Sales reps managing active opportunities",
+    "Sales managers reviewing team pipelines",
+    "Revenue operators improving forecast discipline"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

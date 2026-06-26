@@ -1,0 +1,14 @@
+schema_version: "1"
+skill:
+  name: "mom-ai-knowledge-base"
+  version: "1.4.1"
+  description: "Professional parenting evidence retrieval through the Mom AI Agent public API, with authority-linked KB objects first, evidence-qualified insight coverage second, and explicit coverage boundaries."
+  entrypoint: "SKILL.md"
+bundle:
+  files:
+    - "SKILL.md"
+    - "MANIFEST.yaml"
+    - "agents/openai.yaml"
+    - "references/api.md"
+    - "references/architecture.md"
+    - "references/high-risk-examples.md"

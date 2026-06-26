@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 专家点评项目知识库 - 手绘风格思维导图</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(135deg, #fef9f3 0%, #f8f4e8 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 26px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+        
+        .meta {
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+        
+        .diagram-container {
+            background: #fff;
+            border: 3px solid #2c3e50;
+            border-radius: 20px;
+            padding: 60px;
+            margin: 30px auto;
+            max-width: 1200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .mermaid {
+            background: transparent;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 15px 30px;
+            border: 3px solid #2c3e50;
+            border-radius: 50px;
+            min-width: 130px;
+            background: #fff;
+            box-shadow: 4px 4px 0 rgba(44,62,80,0.15);
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-top: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📊 HTML 专家点评项目知识库</h1>
+        <div class="meta">生成时间：2026-03-08 12:41 | 手绘风格 V6.0</div>
+    </header>
+
+    <!-- 统计 -->
+    <div class="stats">
+        <div class="stat-item">
+            <span class="stat-number">13</span>
+            <span class="stat-label">HTML 文件</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">~220KB</span>
+            <span class="stat-label">总大小</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">5</span>
+            <span class="stat-label">项目关联</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">4</span>
+            <span class="stat-label">主目录</span>
+        </div>
+    </div>
+
+    <!-- 手绘风格思维导图 -->
+    <div class="diagram-container">
+        <div class="mermaid">
+graph TD
+    Root[(📊 HTML 专家点评<br/>项目知识库)]
+    
+    D1[(📁 html-expert-reviews<br/>13 个 HTML 文件)]
+    D2[(📁 tasks/projects<br/>5 个项目卡片)]
+    D3[(📁 memory<br/>记忆文件)]
+    D4[(📁 skills<br/>技能文件)]
+    
+    Root --> D1
+    Root --> D2
+    Root --> D3
+    Root --> D4
+    
+    classDef root fill:#fff,stroke:#2c3e50,stroke-width:3px,font-size:16px;
+    classDef folder fill:#f9f6f0,stroke:#2c3e50,stroke-width:2px,font-size:14px;
+    
+    class Root root;
+    class D1,D2,D3,D4 folder;
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                fontFamily: 'Microsoft YaHei, sans-serif',
+                primaryColor: '#fff',
+                primaryTextColor: '#2c3e50',
+                primaryBorderColor: '#2c3e50',
+                lineColor: '#2c3e50',
+                secondaryColor: '#f9f6f0',
+                tertiaryColor: '#fef9f3'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                curve: 'basis',
+                rankSpacing: 100,
+                nodeSpacing: 80,
+                padding: 30
+            }
+        });
+    </script>
+</body>
+</html>

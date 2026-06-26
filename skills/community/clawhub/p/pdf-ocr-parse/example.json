@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/pdf/ocr/parse",
+    "headers": { "CLIENT-API-KEY": "your_api_key", "Content-Type": "application/json" },
+    "body": { "url": "https://pdfapihub.com/sample-pdfinvoice-with-image.pdf", "pages": "1", "lang": "eng", "dpi": 300, "detail": "words" }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "source_type": "pdf",
+      "language": "eng",
+      "total_pages": 5,
+      "processed_pages": 1,
+      "pages": [
+        {
+          "page": 1,
+          "text": "INVOICE\nInvoice #12345\nDate: 2026-04-01\nTotal: $1,249.00",
+          "char_count": 52,
+          "confidence": 92.3,
+          "words": [
+            { "text": "INVOICE", "confidence": 96.2, "bbox": { "x": 100, "y": 50, "width": 180, "height": 30 } },
+            { "text": "#12345", "confidence": 94.0, "bbox": { "x": 290, "y": 50, "width": 120, "height": 30 } }
+          ]
+        }
+      ],
+      "full_text": "INVOICE\nInvoice #12345\nDate: 2026-04-01\nTotal: $1,249.00"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "pdf-learning-workflow",
+  "version": "1.0.0",
+  "description": "扫描版PDF书籍 → OCR识别 → 章节分割 → 学习优化笔记",
+  "author": "OpenClaw Community",
+  "homepage": "https://docs.openclaw.ai",
+  "license": "MIT",
+  "metadata": {
+    "openclaw": {
+      "emoji": "📚",
+      "requires": {
+        "bin": ["python3"],
+        "pip_packages": ["zai-sdk", "pymupdf", "Pillow"]
+      }
+    }
+  },
+  "scripts": {
+    "setup": "pip3 install zai-sdk pymupdf Pillow"
+  }
+}

@@ -1,35 +1,99 @@
 ---
-name: "PluginEval"
-description: "PluginEval Quality Evaluation with enhanced UI. Wraps plugineval-core with vetting and reporting features. Requires plugineval-core."
-category: "security"
-source: "ClawHub"
-tags: [quality, security, skills, vetting]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/plugineval"
-sourceUrl: "https://clawhub.ai/skills/plugineval"
+name: plugineval
+version: 2.0.0
+description: PluginEval Quality Evaluation with enhanced UI. Wraps plugineval-core with vetting and reporting features. Requires plugineval-core.
+source: https://github.com/Donmeusi/openclaw-config/tree/main/skills/plugineval
+requires:
+  - plugineval-core
 ---
 
-# PluginEval
+# PluginEval 2.0.0 🔬
 
-> PluginEval Quality Evaluation with enhanced UI. Wraps plugineval-core with vetting and reporting features. Requires plugineval-core.
+Enhanced quality evaluation with vetting workflow. This skill wraps `plugineval-core` and adds:
+- Combined security + quality checks
+- Vetting workflow
+- Report generation
 
-- **Category:** Security
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/plugineval`
-- **Source URL:** [https://clawhub.ai/skills/plugineval](https://clawhub.ai/skills/plugineval)
+## Use When
 
-## Overview
+- Evaluating skills before installation
+- Combined security + quality vetting
+- Publishing with quality badges
 
+## Dependencies
 
-## Installation
-To install this skill, run the following command in your terminal:
+**Required:** `plugineval-core`
+
 ```bash
-hermes skills install clawhub/plugineval
+clawhub install plugineval-core
 ```
+
+## Input / Output
+
+**Input:** Skill name or path
+
+**Output:** Combined security + quality report
+
+## Quick Start
+
+```bash
+# Vetting workflow (Security + Quality)
+~/.openclaw/skills/plugineval/scripts/vet.sh weather-pollen
+
+# Or use core directly
+python3 ~/.openclaw/skills/plugineval-core/scripts/eval.py --layer1 <skill>
+```
+
+## Examples
+
+### Vetting a Skill
+
+```bash
+vet-skill weather-pollen
+
+# Output:
+# ════════════════════════════════════════════════════
+# Skill Vetting: weather-pollen
+# ════════════════════════════════════════════════════
+#
+# [1/3] Security Scan (ClawDefender)
+# ─────────────────────────────────────────
+#   ✓ Clean
+#
+# [2/3] Quality Evaluation (PluginEval)
+# ─────────────────────────────────────────
+#   Final: 81 | Badge: Gold ★★★★
+#
+# [3/3] Anti-Pattern Detection
+# ─────────────────────────────────────────
+#   ✓ No anti-patterns
+```
+
+## References
+
+- [EXTERNAL.md](EXTERNAL.md) - External dependencies documentation
+- `plugineval-core` - Core evaluation engine
+
+## Changelog
+
+### v2.0.0 (2026-04-08)
+- Now wraps plugineval-core (separate skill)
+- Added dependency management
+- Simplified structure
+- Platinum badge quality
+
+### v1.3.0 (2026-04-08)
+- Version sync fix
+- Added source link
+- Added EXTERNAL.md documentation
+
+### v1.2.0 (2026-03-31)
+- Added Layer 3: Auto-Fix
+- Added vet-skill.sh
+
+### v1.0.0 (2026-03-31)
+- Initial release
+
+---
+
+**Requires:** plugineval-core | **Version:** 2.0.0

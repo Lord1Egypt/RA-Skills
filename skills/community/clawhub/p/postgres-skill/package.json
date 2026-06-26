@@ -1,0 +1,42 @@
+{
+  "name": "postgres-skill",
+  "version": "1.0.0",
+  "description": "PostgreSQL 数据库管理技能。通过自然语言查询、管理 PostgreSQL 数据库，支持复杂查询、性能分析、JSON 操作、全文搜索等高级功能。",
+  "author": "ryanlee-gemini <ryanlee.gemini@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "postgresql",
+    "postgres",
+    "database",
+    "sql",
+    "json",
+    "full-text-search",
+    "performance",
+    "db-management"
+  ],
+  "openclaw": {
+    "category": "database",
+    "requires": {
+      "bins": ["psql", "pg_dump", "pg_restore"]
+    },
+    "install": [
+      {
+        "id": "postgresql-client",
+        "kind": "system",
+        "label": "Install PostgreSQL Client",
+        "commands": {
+          "ubuntu": "sudo apt update && sudo apt install -y postgresql-client",
+          "macos": "brew install libpq"
+        }
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryanlee-gemini/postgres-skill"
+  },
+  "homepage": "https://clawhub.com/skills/postgres-skill",
+  "bugs": {
+    "url": "https://github.com/ryanlee-gemini/postgres-skill/issues"
+  }
+}

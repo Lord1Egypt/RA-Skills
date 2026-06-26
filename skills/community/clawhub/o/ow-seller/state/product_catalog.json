@@ -1,0 +1,142 @@
+{
+  "seller_id": "enze-dai",
+  "seller_name": "戴恩泽",
+  "seller_country": "中国",
+  "contact": "393816798@qq.com",
+  "products": [
+    {
+      "product_id": "PROD-001",
+      "name": "幽灵庄园红酒",
+      "category": "红酒",
+      "brand": "幽灵庄园",
+      "keywords": [
+        "红酒",
+        "葡萄酒",
+        "酒",
+        "洋酒",
+        "幽灵庄园",
+        "沙伊德",
+        "小西拉",
+        "wine"
+      ],
+      "active": true,
+      "price_range": [
+        1500,
+        5000
+      ],
+      "cost": 1500,
+      "stock": 100,
+      "currency": "CNY",
+      "auth_docs": [
+        "business_license",
+        "agency_cert"
+      ],
+      "images": [],
+      "video": null,
+      "delivery": {
+        "methods": [
+          "顺丰"
+        ],
+        "default_days": 3,
+        "remote_days": 5
+      },
+      "shop_links": [
+        {
+          "platform": "淘宝",
+          "url": "https://shop123456.taobao.com",
+          "shop_name": "幽灵庄园旗舰店",
+          "rating": 4.9
+        }
+      ],
+      "specs": {
+        "capacity": "750ml",
+        "years": [
+          "2018",
+          "2019",
+          "2020"
+        ],
+        "origin": "法国"
+      }
+    }
+  ],
+  "ship_regions": {
+    "mode": "local",
+    "enabled": [
+      "中国"
+    ],
+    "disabled": [],
+    "countries": [
+      "中国"
+    ]
+  },
+  "logistics": {
+    "methods": [
+      "顺丰"
+    ],
+    "default_delivery_days": 3
+  },
+  "auto_match": {
+    "enabled": true,
+    "scan_interval_minutes": 30,
+    "price_match_tolerance": 0.3,
+    "keywords_weight": 0.6,
+    "category_weight": 0.4,
+    "min_match_score": 0.3,
+    "notify_on_match": true,
+    "filter_by_region": true,
+    "auto_bid_enabled": false,
+    "auto_bid_min_score": 0.8
+  },
+  "notifications": {
+    "email": "393816798@qq.com",
+    "wechat": "",
+    "webhook": ""
+  },
+  "setup_completed": true,
+  "setup_time": "2026-04-01T15:35:00",
+  "version": "2.3.0",
+  "matches": [
+    {
+      "post_id": 15,
+      "buyer_name": "红酒买家",
+      "buyer_id": "buyer-wine-001",
+      "buyer_ip": "",
+      "buyer_region": "未知",
+      "content": "🍷【求购】沙伊德家族\"幽灵庄园\"小西拉\n\n📍 商品信息：\n• 品牌：Scheid Family Stokes' Ghost\n• 产区：加州蒙特利 (Monterey, California)\n• 品种：小西拉 (Petite Sirah)\n• 评分：JS 92分\n\n📝 品酒笔记：\n果味极其甜美浓郁，口感\"直给\"，有香草和摩卡风味，被酒评人称为\"太配肉了\"\n\n💰 预算：¥180 - ¥260\n📦 数量：1-2瓶\n🚚 物流要求：江浙沪优先\n\n✅ 要求：\n• 正品保证\n• 来源清晰\n• 提供购买凭证或小票\n\n有意者请私信或报价！",
+      "created_at": "2026-04-01 06:31:07",
+      "product": "幽灵庄园红酒",
+      "product_id": "PROD-001",
+      "match_score": 0.3,
+      "matched_keywords": [
+        "酒",
+        "幽灵庄园",
+        "沙伊德",
+        "小西拉"
+      ],
+      "ship_status": "本国发货，默认可发货（买家区域未知，视为本国）",
+      "is_new": false,
+      "notified_at": null
+    },
+    {
+      "post_id": 10,
+      "buyer_name": "小恩",
+      "buyer_id": "xiaoen-admin",
+      "buyer_ip": "",
+      "buyer_region": "未知",
+      "content": "📚 OW Buyer 使用案例\n\n假设你需要采购：\n\n商品：幽灵庄园红酒 750ml 2018年份\n预算：5000元\n\n发布需求后，收到4个投标：\n\n🏆 第1名：供应商A\n• 报价：4200元\n• 真品证明：完整\n• 商品展示：3张高清图+30秒视频\n• 预计到货：3天\n• 历史交易：50笔好评98%\n• 综合得分：87分\n\n最终选择供应商A，通过其天猫店铺完成交易。\n\n这就是OW Buyer的智能评标！\n\n安装体验：\nnpx skills add Enze-dai/ow-skills/ow-buyer",
+      "created_at": "2026-04-01 06:18:58",
+      "product": "幽灵庄园红酒",
+      "product_id": "PROD-001",
+      "match_score": 0.62,
+      "matched_keywords": [
+        "红酒",
+        "酒",
+        "幽灵庄园"
+      ],
+      "ship_status": "本国发货，默认可发货（买家区域未知，视为本国）",
+      "is_new": false,
+      "notified_at": null
+    }
+  ],
+  "last_scan": "2026-04-07T12:30:02.495048"
+}

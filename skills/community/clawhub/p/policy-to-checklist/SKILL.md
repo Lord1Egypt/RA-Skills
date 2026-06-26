@@ -1,35 +1,34 @@
 ---
-name: "policy-to-checklist"
-description: "把征稿启事、通知、比赛规则、制度文件、招标要求等转成可执行检查清单与时间线。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/policy-to-checklist"
-sourceUrl: "https://clawhub.ai/skills/policy-to-checklist"
+name: policy-to-checklist
+description: 把征稿启事、通知、比赛规则、制度文件、招标要求等转成可执行检查清单与时间线。
+metadata: {"openclaw":{"emoji":"✅","requires":{"bins":["node","pbpaste"]}}}
 ---
 
-# policy-to-checklist
+# Policy To Checklist
 
-> 把征稿启事、通知、比赛规则、制度文件、招标要求等转成可执行检查清单与时间线。
+这是一个把复杂要求文档转成执行清单的 skill。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/policy-to-checklist`
-- **Source URL:** [https://clawhub.ai/skills/policy-to-checklist](https://clawhub.ai/skills/policy-to-checklist)
+## 主要用途
 
-## Overview
+适合处理：
+- 征稿通知
+- 投稿要求
+- 比赛规则
+- 申报书要求
+- 制度文件
+- 招标要求
+- 申请表填写说明
+- 项目申报通知
 
+## 调用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
+当用户说：
+- 读取剪贴板并整理成清单
+- 把这段通知变成执行 checklist
+- 帮我提取要求和截止信息
+- 把投稿要求拆成步骤
+
+你应运行：
+
 ```bash
-hermes skills install clawhub/policy-to-checklist
-```
+node {baseDir}/scripts/read_clipboard.mjs

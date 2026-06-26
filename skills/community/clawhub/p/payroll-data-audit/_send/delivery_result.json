@@ -1,0 +1,87 @@
+{
+  "ok": true,
+  "total_files": 11,
+  "uploaded_count": 11,
+  "doc_url": "https://didatravel.feishu.cn/docx/ZCNPdzmyToS690xSmK2cGjVsnFe",
+  "uploaded_files": [
+    {
+      "filename": "00_data_scan.json",
+      "ok": true,
+      "file_token": "HAOobVxIEoedqixaY9LcsuAKnSe",
+      "url": "https://didatravel.feishu.cn/file/HAOobVxIEoedqixaY9LcsuAKnSe",
+      "size": 1249
+    },
+    {
+      "filename": "01_audit_result.json",
+      "ok": true,
+      "file_token": "OXWybqJPzoC95CxdXVWcyNPTntg",
+      "url": "https://didatravel.feishu.cn/file/OXWybqJPzoC95CxdXVWcyNPTntg",
+      "size": 63388
+    },
+    {
+      "filename": "02_report_v6.html",
+      "ok": true,
+      "file_token": "EUbEbQafPoYJ7sxi8Yuc7t4znIf",
+      "url": "https://didatravel.feishu.cn/file/EUbEbQafPoYJ7sxi8Yuc7t4znIf",
+      "size": 49447
+    },
+    {
+      "filename": "02_report_v6.md",
+      "ok": true,
+      "file_token": "JQ1TbjQCroiexQx2MiscPu9LnBe",
+      "url": "https://didatravel.feishu.cn/file/JQ1TbjQCroiexQx2MiscPu9LnBe",
+      "size": 4704
+    },
+    {
+      "filename": "02a_data_index.json",
+      "ok": true,
+      "file_token": "Q85wbLe9so1ZvjxwEiTcLghqnXc",
+      "url": "https://didatravel.feishu.cn/file/Q85wbLe9so1ZvjxwEiTcLghqnXc",
+      "size": 31186
+    },
+    {
+      "filename": "03_kanban_v6.html",
+      "ok": true,
+      "file_token": "PA1QboAnVo5YD3xAwe6cjZlTntd",
+      "url": "https://didatravel.feishu.cn/file/PA1QboAnVo5YD3xAwe6cjZlTntd",
+      "size": 37946
+    },
+    {
+      "filename": "03_kanban.md",
+      "ok": true,
+      "file_token": "QxDbbOVr2os7U2xaSYscxmdAnMg",
+      "url": "https://didatravel.feishu.cn/file/QxDbbOVr2os7U2xaSYscxmdAnMg",
+      "size": 5643
+    },
+    {
+      "filename": "04_sampling_verify.json",
+      "ok": true,
+      "file_token": "WMQLbeFddo476hxwmx2c1Pb7nac",
+      "url": "https://didatravel.feishu.cn/file/WMQLbeFddo476hxwmx2c1Pb7nac",
+      "size": 4551
+    },
+    {
+      "filename": "05_issue_report.md",
+      "ok": true,
+      "file_token": "NcIabuCXAojcxCxvgwAcDzKYnMe",
+      "url": "https://didatravel.feishu.cn/file/NcIabuCXAojcxCxvgwAcDzKYnMe",
+      "size": 3638
+    },
+    {
+      "filename": "06_master_report.html",
+      "ok": true,
+      "file_token": "WftKb6zHLoYlCrx8KX3cN1i4nXE",
+      "url": "https://didatravel.feishu.cn/file/WftKb6zHLoYlCrx8KX3cN1i4nXE",
+      "size": 20126
+    },
+    {
+      "filename": "audit_summary.md",
+      "ok": true,
+      "file_token": "Nek2bmvMSoMh9Mx1xZ7cBBhQnbb",
+      "url": "https://didatravel.feishu.cn/file/Nek2bmvMSoMh9Mx1xZ7cBBhQnbb",
+      "size": 687
+    }
+  ],
+  "delivery_message_path": "/tmp/audit_v731/delivery_message.md",
+  "delivery_message": "**📊 工资审核报告 — 完整交付**\n\n**审核范围**：947人\n\n### 总体结论\n🔴 **审核未通过** — 触发 141 条红线，需要立即处理。\n\n| 维度 | 结果 |\n|------|------|\n| 📐 公式校验 | ✅ 通过 |\n| 📋 字段检查 | ✅ 通过 |\n| 🔴 红线 | 141 条 |\n| ⚠️ 黄线 | 154 条 |\n| ℹ️ 蓝线 | 626 条 |\n\n### 📎 交付文件清单\n\n**📄 飞书文档（在线查看）：**\nhttps://didatravel.feishu.cn/docx/ZCNPdzmyToS690xSmK2cGjVsnFe\n\n**📁 云盘文件（11/11 个）：**\n- 00_data_scan.json — 数据扫描确认\n- 01_audit_result.json — 审核结果\n- 02_report_v6.html — 表格化审核报告（推荐）\n- 02_report_v6.md — Markdown 审核报告\n- 02a_data_index.json — 数据支撑索引\n- 03_kanban_v6.html — 动态交互看板（推荐）\n- 03_kanban.md — Markdown 审核清单\n- 04_sampling_verify.json — 抽样校验结果\n- 05_issue_report.md — 问题清单\n- 06_master_report.html — 总审核报告\n- audit_summary.md — 审核结论摘要（自动生成）\n\n### 📊 总额环比\n- 应发合计：15,340,225 → 15,020,897 (-2.1%)\n- 实发金额合计：14,272,483 → 13,307,958 (-6.8%)\n- 实际出勤工资小计：10,943,185 → 11,250,835 (+2.8%)\n- 实际绩效工资：2,847,352 → 2,847,173 (-0.0%)\n- 加班费小计：1,202 → 92,748 (+7617.5%) ⚠️\n- 业务线奖金合计：952,910 → 42,770 (-95.5%) ⚠️\n- 提成&其他&奖金：362,797 → 290,518 (-19.9%) ⚠️\n- 补发：159 → 260,654 (+164195.0%) ⚠️\n\n---\n*由 payroll-data-audit 自动交付 | 时间: 2026-06-05 16:44:12*"
+}

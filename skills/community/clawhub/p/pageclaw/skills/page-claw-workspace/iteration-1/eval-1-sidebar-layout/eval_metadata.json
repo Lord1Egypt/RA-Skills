@@ -1,0 +1,27 @@
+{
+  "eval_id": 1,
+  "eval_name": "sidebar-layout-chosen",
+  "prompt": "page-claw with Q1=Cool&minimal, Q2=sticky sidebar option, Q3=skip",
+  "assertions": [
+    {
+      "text": "Q2 options presented each include a layout descriptor (e.g., '· layout: ...')",
+      "passed": null,
+      "evidence": null
+    },
+    {
+      "text": "Design doc ### Aesthetic Implementation contains a 'Layout structure' field",
+      "passed": null,
+      "evidence": null
+    },
+    {
+      "text": "index.html contains a sticky sidebar structure (position:sticky, flex layout with ~280-360px sidebar + main content)",
+      "passed": null,
+      "evidence": null
+    },
+    {
+      "text": "The HTML layout matches the layout descriptor of the chosen Q2 option",
+      "passed": null,
+      "evidence": null
+    }
+  ]
+}

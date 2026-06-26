@@ -1,0 +1,11 @@
+{
+  "state_dir": "./state",
+  "state_file": "positions.json",
+  "min_position_value": 5.0,
+  "max_positions": 10,
+  "skip_cleanup_seconds": 3600,
+  "exited_cleanup_seconds": 1800,
+  "enable_auto_reconcile": false,
+  "reconcile_interval": 300,
+  "alert_callback": null
+}

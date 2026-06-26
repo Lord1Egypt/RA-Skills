@@ -1,35 +1,28 @@
 ---
-name: "Personal Finance Tracker"
-description: "Manage personal finances, track spending by category, set budgets, and receive reminders for EMIs and one-time annual expenses. Use for logging expenses, checking budget status, or setting up financial reminders."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/personal-finance"
-sourceUrl: "https://clawhub.ai/skills/personal-finance"
+name: personal-finance
+description: Manage personal finances, track spending by category, set budgets, and receive reminders for EMIs and one-time annual expenses. Use for logging expenses, checking budget status, or setting up financial reminders.
 ---
 
-# Personal Finance Tracker
+# Personal Finance
 
-> Manage personal finances, track spending by category, set budgets, and receive reminders for EMIs and one-time annual expenses. Use for logging expenses, checking budget status, or setting up financial reminders.
+Track spending, manage budgets, and stay on top of recurring payments (EMIs) and one-time annual expenses using a local SQLite backend.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/personal-finance`
-- **Source URL:** [https://clawhub.ai/skills/personal-finance](https://clawhub.ai/skills/personal-finance)
+## Preset Categories
+The skill starts with: `Food`, `Rent`, `Utilities`, `Travel`, `Entertainment`, `Shopping`, `Health`, `Misc`.
 
-## Overview
+## Core Features
+- **Categorized Tracking**: Log expenses into preset or custom categories.
+- **Dynamic Categories**: Add new categories on the fly.
+- **SQLite Backend**: All data is stored in `finance.db`.
 
+## Setup
+1. Run `scripts/init_db.py` to initialize the database (already done).
+2. Ask the user if they want to add custom categories or set budgets for the presets.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/personal-finance
-```
+## Logging Expenses
+Record spends into `finance.db`. 
+Example: "Spent 500 on Food for lunch" -> Insert into transactions table.
+
+## Scheduled Tasks
+- **Weekly Digest**: Summarize SQLite `transactions` table.
+- **Reminders**: Check `schedules` table for EMIs and One-time spends.

@@ -1,35 +1,137 @@
 ---
-name: "播客音频节目策划助手"
-description: "Use this skill when planning a podcast episode or audio program. Covers episode structure design, topic research, interview question frameworks, show notes w..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/podcast-outline"
-sourceUrl: "https://clawhub.ai/skills/podcast-outline"
+name: podcast-outline
+description: >
+  Use this skill when planning a podcast episode or audio program. Covers
+  episode structure design, topic research, interview question frameworks,
+  show notes writing, and audience engagement strategies for Chinese and
+  bilingual podcasts.
 ---
 
-# 播客音频节目策划助手
+# 播客/音频节目策划助手
 
-> Use this skill when planning a podcast episode or audio program. Covers episode structure design, topic research, interview question frameworks, show notes w...
+## 适用场景
+- 策划单期播客节目结构与内容
+- 设计访谈嘉宾问题框架
+- 撰写节目文案（简介/标题/show notes）
+- 规划播客系列主题与内容日历
+- 独立播客或企业品牌播客内容设计
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/podcast-outline`
-- **Source URL:** [https://clawhub.ai/skills/podcast-outline](https://clawhub.ai/skills/podcast-outline)
+## 核心工作流
 
-## Overview
+### Step 1：确定节目定位
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/podcast-outline
 ```
+播客定位四要素：
+1. 目标听众：[具体描述谁在听，他们的痛点/兴趣]
+2. 节目形式：独白/双主播/访谈/圆桌/纪录片
+3. 时长定位：15min（通勤型）/ 30min（干货型）/ 60min+（深度型）
+4. 更新频率：每周/双周/月更
+5. 核心价值主张：听完这个节目，听众会得到______
+```
+
+### Step 2：单集结构设计
+
+#### 访谈型节目结构（45-60分钟）
+```
+[0-2min]  片头：品牌音乐 + 主持人自我介绍
+[2-5min]  本期预告：今天聊什么，为什么值得听
+[5-10min] 嘉宾介绍 + 暖场破冰问题
+[10-40min] 核心访谈：3-4个主题模块
+[40-50min] 快问快答 / 推荐一本书/一个工具
+[50-55min] 嘉宾结语 + 如何联系/关注嘉宾
+[55-60min] 主持人总结 + 下期预告 + 订阅引导
+```
+
+#### 独白干货型节目（20-30分钟）
+```
+[0-1min]  Hook：本期最核心的1个洞见/结论
+[1-3min]  为什么聊这个话题（背景/痛点）
+[3-20min] 主体内容：3个要点，每点5-6分钟
+[20-25min] 总结 + 行动建议（听众可以马上做什么）
+[25-30min] 互动引导 + 下期预告
+```
+
+### Step 3：访谈问题设计框架
+
+#### 开场破冰类（选1-2个）
+- "用3个词描述你自己？"
+- "最近让你兴奋的一件事是什么？"
+- "你通常怎么向陌生人介绍自己的工作？"
+
+#### 背景深挖类
+- "你是怎么走上[领域]这条路的？有什么关键转折点？"
+- "哪个经历让你对[话题]的看法发生了180度转变？"
+- "你在[领域]犯过的最大错误是什么？从中学到什么？"
+
+#### 洞见提炼类
+- "大多数人对[话题]最大的误解是什么？"
+- "如果只能给[目标听众]一条建议，你会说什么？"
+- "5年后，[行业/领域]会有什么不一样？"
+
+#### 具体案例类
+- "能给我们讲一个具体的案例吗？"
+- "这个方法在实际中是怎么操作的，有什么细节？"
+- "你见过最极端的[正面/负面]案例是什么样的？"
+
+#### 收尾互动类
+- "有什么问题是你希望我问你但没有问到的？"
+- "听众可以通过哪里继续关注你/了解更多？"
+- "推荐一本书/一部电影/一个资源？"
+
+### Step 4：节目简介写作公式
+
+```
+标题格式：
+A. [嘉宾名] × [主播名]：[核心话题/金句]
+B. EP.X | [数字/结论]：[具体话题]
+C. [反常识观点]——对话[嘉宾身份]
+
+简介结构（300-500字）：
+① 一句话总结本期价值（听众能学到什么）
+② 嘉宾背景介绍（2-3句，聚焦与本期话题相关的经历）
+③ 本期聊了什么（3-5个要点，用bullet列出）
+④ 精彩摘录（1-2句嘉宾金句）
+⑤ 时间戳（章节标记）
+⑥ 嘉宾社交账号 + 相关资源链接
+```
+
+### Step 5：Show Notes 模板
+
+```markdown
+## 本期嘉宾
+[姓名]，[职位/身份]
+微博/公众号/网站：[链接]
+
+## 本期聊了什么
+- [要点1]
+- [要点2]
+- [要点3]
+
+## 时间轴
+00:00 片头与介绍
+02:30 [话题1]
+15:00 [话题2]
+28:00 [话题3]
+42:00 快问快答
+55:00 总结与下期预告
+
+## 嘉宾推荐
+📚 书籍：《[书名]》
+🔧 工具：[工具名]
+🎙️ 播客：[播客名]
+
+## 节目信息
+订阅/关注：[各平台链接]
+合作/投稿：[联系方式]
+```
+
+## 播客平台分发清单
+
+| 平台 | 用户群 | 提交要求 |
+|------|--------|----------|
+| 小宇宙 | 中文核心播客用户 | RSS订阅 |
+| 喜马拉雅 | 最大中文音频平台 | 直接上传 |
+| 网易云音乐 | 年轻用户 | 后台申请 |
+| Apple Podcasts | 苹果用户 | RSS提交 |
+| Spotify | 全球+中国 | RSS提交 |
+| 荔枝FM | 泛娱乐用户 | 直接上传 |

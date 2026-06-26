@@ -1,0 +1,9 @@
+{
+  "name": "parenting-growth-partner",
+  "version": "0.1.0",
+  "description": "Parenting Growth Partner / 亲子成长伙伴 - 智能育儿支持系统，帮助家长科学陪伴孩子成长",
+  "keywords": ["parenting","child-development","education","family","growth"],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/parenting-growth-partner"
+}

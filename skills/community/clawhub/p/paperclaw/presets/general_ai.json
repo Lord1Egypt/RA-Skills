@@ -1,0 +1,143 @@
+{
+  "id": "general_ai",
+  "name": "General AI/ML",
+  "name_zh": "通用人工智能",
+  "description": "Broad AI/ML research covering multiple domains",
+  "description_zh": "涵盖多领域的通用人工智能研究",
+  "arxiv_categories": [
+    {
+      "id": "cs.AI",
+      "name": "Artificial Intelligence",
+      "url": "https://arxiv.org/list/cs.AI/recent",
+      "description": "All areas of AI"
+    },
+    {
+      "id": "cs.LG",
+      "name": "Machine Learning",
+      "url": "https://arxiv.org/list/cs.LG/recent",
+      "description": "Machine learning, statistical learning, deep learning"
+    },
+    {
+      "id": "cs.CL",
+      "name": "Computation and Language",
+      "url": "https://arxiv.org/list/cs.CL/recent",
+      "description": "Natural language processing"
+    },
+    {
+      "id": "cs.CV",
+      "name": "Computer Vision",
+      "url": "https://arxiv.org/list/cs.CV/recent",
+      "description": "Computer vision and pattern recognition"
+    },
+    {
+      "id": "stat.ML",
+      "name": "Machine Learning (Statistics)",
+      "url": "https://arxiv.org/list/stat.ML/recent",
+      "description": "Statistical machine learning"
+    }
+  ],
+  "classification": [
+    {
+      "name": "Deep Learning",
+      "labels": {
+        "zh": "深度学习",
+        "en": "Deep Learning",
+        "ja": "深層学習"
+      },
+      "keywords": [
+        "deep learning",
+        "neural network",
+        "backpropagation",
+        "activation",
+        "optimization",
+        "gradient descent"
+      ]
+    },
+    {
+      "name": "Reinforcement Learning",
+      "labels": {
+        "zh": "强化学习",
+        "en": "Reinforcement Learning",
+        "ja": "強化学習"
+      },
+      "keywords": [
+        "reinforcement learning",
+        "rl",
+        "q-learning",
+        "policy gradient",
+        "actor-critic",
+        "reward",
+        "environment"
+      ]
+    },
+    {
+      "name": "Generative Models",
+      "labels": {
+        "zh": "生成模型",
+        "en": "Generative Models",
+        "ja": "生成モデル"
+      },
+      "keywords": [
+        "generative",
+        "gan",
+        "vae",
+        "diffusion",
+        "flow-based",
+        "generative adversarial",
+        "sampling"
+      ]
+    },
+    {
+      "name": "Optimization",
+      "labels": {
+        "zh": "优化",
+        "en": "Optimization",
+        "ja": "最適化"
+      },
+      "keywords": [
+        "optimization",
+        "convex optimization",
+        "gradient",
+        "learning rate",
+        "scheduler",
+        "adam",
+        "sgd"
+      ]
+    },
+    {
+      "name": "Theory",
+      "labels": {
+        "zh": "理论",
+        "en": "Theory",
+        "ja": "理論"
+      },
+      "keywords": [
+        "theory",
+        "generalization",
+        "convergence",
+        "bounds",
+        "complexity",
+        "capacity",
+        "pac",
+        "statistical learning"
+      ]
+    },
+    {
+      "name": "Applications",
+      "labels": {
+        "zh": "应用",
+        "en": "Applications",
+        "ja": "応用"
+      },
+      "keywords": [
+        "application",
+        "healthcare",
+        "finance",
+        "education",
+        "robotics",
+        "autonomous",
+        "real-world"
+      ]
+    }
+  ]
+}

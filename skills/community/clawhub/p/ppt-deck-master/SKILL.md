@@ -1,35 +1,247 @@
 ---
-name: "Ppt Deck Master"
+name: ppt-deck-master
 description: "媲美 Manus 的高质量 PPT 制作大师。从一句话需求到 35+ 页高品质演示文稿，覆盖内容策划、文案撰写、视觉设计、AI 生图、QA 迭代、交付全流程。使用 Nano Banana Pro 逐页生成幻灯片图片，成本仅为 Manus 的 1/10。支持 OpenRouter 和 Ofox API。"
-category: "other"
-source: "ClawHub"
-tags: [manus-alternative, nano-banana, ofox, ppt, presentation, slides]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ppt-deck-master"
-sourceUrl: "https://clawhub.ai/skills/ppt-deck-master"
 ---
 
-# Ppt Deck Master
+# 媲美 Manus 的高质量 PPT 制作大师
 
-> 媲美 Manus 的高质量 PPT 制作大师。从一句话需求到 35+ 页高品质演示文稿，覆盖内容策划、文案撰写、视觉设计、AI 生图、QA 迭代、交付全流程。使用 Nano Banana Pro 逐页生成幻灯片图片，成本仅为 Manus 的 1/10。支持 OpenRouter 和 Ofox API。
+从一句话需求到高品质演示 PPT。成本 ¥6，品质 9/10，不依赖 Manus。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ppt-deck-master`
-- **Source URL:** [https://clawhub.ai/skills/ppt-deck-master](https://clawhub.ai/skills/ppt-deck-master)
+## 适用场景
 
-## Overview
+- 产品演示 Deck / Pitch Deck / 销售资料 / 培训材料 / 客户报告
+- 需要"能直接拿去见客户"的品质
+- 不想每次花 ¥50-100 用 Manus，想用 ¥5 做出同等品质
+
+## 为什么能媲美 Manus
+
+| 维度 | Manus | 本 Skill |
+|------|-------|---------|
+| 品质 | 9/10 | 8.5-9/10 |
+| 成本 | ¥50-100/次 | **¥5/次** |
+| 中文渲染 | 偶有乱码 | 同等（用同一个模型）|
+| 单页修复 | 全量重跑 | **只重跑 1 页，30 秒** |
+| 迭代成本 | ¥200+（4 轮）| **¥7** |
+| VPN 依赖 | 不需要（Manus 在海外）| Ofox 不需要 / OpenRouter 需要 |
+| 可定制 | 改 prompt 重跑全部 | **改数据重跑单页** |
+| 可复现 | 每次结果不同 | **同 prompt 同结果** |
+
+## 核心方法论
+
+**内容和形式分离，三步走**：
+
+Step 1: 内容文档 → 说什么（文案、数据、逻辑）
+Step 2: 设计文档 → 长什么样（视觉、模板、版式）
+Step 3: PPT 生成 → 按 Step 1 + 2 出成品
+
+每步独立审批，不过不进下一步。
+
+---
+
+## 完整工作流（7 个阶段）
+
+### 阶段 1：Brainstorming — 收敛决策
+
+> **推荐 Skill**：如果已安装 `idea-to-design`（头脑风暴 · 从想法到设计），可以先调用它完成通用 brainstorming 流程。本阶段的 PPT 专属决策项作为具体问题输入。支持 Visual Companion（浏览器实时展示视觉方案对比）。
+
+**每次只问一个问题**，给 3-5 个选项 + 推荐，等用户回答后再问下一个。
+
+必须收敛的决策：
+
+| 决策 | 为什么重要 |
+|------|---------|
+| 类型（通用/定制/内部）| 决定复用性 |
+| 受众（老板/中层/技术/投资人）| 决定语言和深度 |
+| 使用场景（现场讲/留档/双用）| 双用 = 每页自解释 |
+| 时长页数（15/25/35+ 页）| 页数服务内容 |
+| 叙事骨架（问题/场景/模块/混合）| 决定全 deck 节奏 |
+| 主线故事（用什么场景串联）| 有故事代入感强 |
+| 视觉风格（有参考/跟产品统一/形容词）| 有参考最好 |
+| 数据案例（真实/占位/无）| 决定可信度策略 |
+| 商业信息（明码/定位信号/不提）| 客户关心"我付不付得起" |
+
+**关键**：接纳用户的重新定义。用户可能提出更好的框架，接受它。
+
+**推荐模板**：5 题快速收敛（视觉流派 / 文字密度 / 色彩 / 插画风格 / 图文比），见 `references/Brainstorming模板.md`。
+
+---
+
+### 阶段 2：Spec 设计文档 — 大纲 + 自审
+
+写 `00-spec.md`，包含全局定位 + 每页大纲 + 视觉方向 + 风险项。
+
+**视觉策略**：参考 `references/视觉策略.md`（A+B 混合 / 分层派文字密度 / 3 色生存线 / 插画隐喻库 / 视觉 DNA 三件套）。
+
+#### 必做：两轮自审
+
+**第一轮：受众视角自审**
+
+站在目标受众角度读一遍大纲：
+
+- 开场有钩子吗？前 30 秒有没有让人继续读的理由？
+- 大部分页在讲"受众的世界"还是在"推销产品"？
+- 主线有具体人物吗？（有名字、身份、动机、顾虑）
+- 核心 claim 放太早了吗？（应该先演示后下定义）
+- 标题是受众语言还是产品经理术语？
+- 数据可信吗？没数据就 `[待补]`，别编
+- CTA 能此刻兑现吗？不承诺不存在的东西
+- 有没有受众会抗拒的表述？（暗示"替代你的岗位"）
+
+完整清单见 `references/自审清单.md`
+
+**第二轮：文案质量审计**
+
+grep 扫描禁用词（见 `references/写作原则.md`），确保零正文命中。
+
+---
+
+### 阶段 3：内容文档 — 每页文案
+
+写 `01-content.md`：
+
+- **核心页**（主线故事/关键转折/核心宣言）→ **终稿级文案**
+- **其他页** → **结构化要点**（标题 + 核心论点 + 3-5 个 bullet）
+
+每页格式：
+
+### Slide N - [标题]
+**核心论点**：[一句话]
+**详细文案**：[终稿或 bullet]
+**图片意图**：[需要什么视觉素材]
+
+#### 写作铁律
+
+1. **用事实和数据制造张力，不用形容词**
+2. **具体 > 抽象** — 每句话是事实或具体动作
+3. **先演示后下定义** — 核心 claim 放在故事之后
+4. **数据克制** — "提升 2-4 倍"比"提升 10 倍"可信
+5. **CTA 必须能兑现** — 不承诺还不存在的东西
+6. **占位符统一** — 全部用 `[待补]`
+
+禁用词列表见 `references/写作原则.md`
+
+---
+
+### 阶段 4：设计文档 — 模板 + 版式
+
+写 `02-design.md`：
+
+§1 视觉系统（色彩 hex / 字体 / 栅格 / 标志性元素）
+§2 页面模板库（6-10 种，含 wireframe + 变体 + 禁止事项）
+§3 每页设计指令（每页：模板 / 文案来源 / 图像清单 / 版式要点）
+§4 AI 插图 Prompt 清单
+§5 降级版规范（投影/打印/移动端适配，可选）
+
+模板设计原则：
+- 6-10 种模板（太少挤、太多碎）
+- **最复杂的模板优先设计** — 它决定品质上限
+- 每个模板的"禁止事项"必须明确
+
+---
+
+### 阶段 5：PPT 生成 — Nano Banana 逐页生图
+
+**技术栈**：
+
+模型：   Nano Banana Pro (google/gemini-3-pro-image-preview)
+API：    Ofox 或 OpenRouter
+组装：   python-pptx (JPG → 16:9 PPTX)
+成本：   ~¥0.15/页
+
+**生成脚本**：
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ppt-deck-master
-```
+
+安装后运行：
+
+    # 1. 复制 slides.example.json 为 slides.json，填入你的 prompt
+    cp scripts/slides.example.json scripts/slides.json
+
+    # 2. 生成全部页（Ofox 无需 VPN）
+    python3 scripts/generate_deck.py
+
+    # 3. 只重跑某一页
+    rm scripts/output/slide_03.jpg && python3 scripts/generate_deck.py --start 3 --end 3
+
+    # 4. 生成完自动组装 PPTX
+    python3 scripts/generate_deck.py --assemble
+
+slides.json 格式：style（全局风格前缀）+ slides 数组（每页 num + prompt）。
+见 `scripts/slides.example.json` 示例。
+
+依赖：`pip install python-pptx`（仅组装时需要）
+
+**Prompt 写作规则**（见 `references/Prompt指南.md`）：
+
+1. 文案从 content.md **原文复制**，不让 AI 发挥
+2. 颜色用 **hex**，不用"绿色"
+3. UI mockup **详细描述**每个元素
+4. 中文名加 **CRITICAL 指令**
+5. 表格**逐行列出**
+6. 避免 **prompt 泄漏**（第一句不写样式，写"这是一张什么页"）
+
+---
+
+### 阶段 6：QA 迭代 — 只修有问题的页
+
+**铁律：永远不碰已通过的页。**
+
+流程：
+1. 逐页审，标记 Pass / Fix
+2. 分级：Critical > Important > Minor
+3. 删旧 JPG → 修 prompt → 重跑单页 → 重组装
+
+常见问题修复（见 `references/QA修复模式.md`）：
+
+| 问题 | 修复 |
+|------|------|
+| 标题被加 "Slide N:" 前缀 | prompt 加 CRITICAL 指令 |
+| Prompt 指令被渲染为正文 | 第一句改为"这是一张XXX页" |
+| 中文名乱码 | 加 CRITICAL 指令；重跑 2 次仍失败 → HTML fallback |
+| 字号标注 "(36pt)" 泄漏 | 分离样式描述和标题文字 |
+| 时间轴节点数错 | 显式列出每个节点 + "不多不少" |
+| 表格缺失 | 逐行列出表格内容 |
+| 数字被 AI 篡改 | 加 CRITICAL 精确数字指令 |
+| 风格不一致 | 启用参考链（传入上一页 JPG）|
+
+---
+
+### 阶段 7：交付
+
+产出：
+output/
+├── slide_01.jpg ~ slide_NN.jpg
+├── deck-v1.pptx
+└── deck-v1.pdf (可选)
+
+交付前 checklist：
+- [ ] 全部页面生成成功
+- [ ] QA 修复页已替换并重组装
+- [ ] pptx 能正常打开
+- [ ] 核心论点每页站得住
+- [ ] 禁用词零命中
+- [ ] 数字和人名全 deck 一致
+- [ ] CTA 能此刻兑现
+
+---
+
+## 成本对比
+
+| 方案 | 成本 | 品质 | 可控性 |
+|------|------|------|--------|
+| Manus | ¥50-100/次 | 9/10 | 低（全量重跑）|
+| **本 Skill** | **¥5-6/次** | **8.5-9/10** | **高（单页修复）**|
+| 人工 PPT 设计 | ¥2000-5000 | 9/10 | 高但慢 |
+
+## 铁律（Key Pitfalls）
+
+1. **永远不改用户的文案** — 原文复制，不让 AI "优化"
+2. **永远不加 "Slide N:" 前缀**
+3. **永远不加英文副标题**（除非 spec 明确要求）
+4. **永远不把 meta 注释放进正文**（"重点页" / "Final CTA"）
+5. **永远不编数据** — 没有就 `[待补]`
+6. **永远不跳过自审** — 至少两轮
+7. **永远不动已通过的页** — QA 只改有问题的
+8. **永远不在 CTA 里承诺不存在的东西**
+9. **先演示后下定义** — 核心 claim 放故事之后
+10. **内容质量 > 视觉效果** — 80% 说服力来自内容

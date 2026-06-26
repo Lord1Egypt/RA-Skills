@@ -1,0 +1,56 @@
+{
+  "version": "1.0.0",
+  "shops": [
+    {
+      "name": "默认店铺",
+      "username": "",
+      "password": "",
+      "autoLogin": false,
+      "sessionPath": "./session-data.json"
+    }
+  ],
+  "browser": {
+    "headless": false,
+    "userDataDir": "./browser-data",
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "args": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage"
+    ]
+  },
+  "messageListener": {
+    "checkInterval": 5000,
+    "maxConcurrentChats": 10,
+    "autoReply": false,
+    "autoReplyDelay": 3000,
+    "workingHours": {
+      "enabled": false,
+      "start": "09:00",
+      "end": "22:00"
+    }
+  },
+  "notifications": {
+    "enabled": true,
+    "sound": true,
+    "desktopNotification": true,
+    "feishuWebhook": "",
+    "wechatNotification": false
+  },
+  "dataExport": {
+    "enabled": true,
+    "format": "json",
+    "exportPath": "./exports",
+    "autoExport": true,
+    "exportInterval": 86400000
+  },
+  "security": {
+    "maxRequestsPerMinute": 60,
+    "requestDelay": 1000,
+    "avoidDetection": true,
+    "randomDelay": true
+  }
+}

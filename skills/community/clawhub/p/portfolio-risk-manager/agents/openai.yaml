@@ -1,0 +1,13 @@
+interface:
+  display_name: "Portfolio Risk Manager (No Margin)"
+  short_description: "Mini IPS and no-margin position sizing."
+  default_prompt: |
+    Use $portfolio-risk-manager with the current ACTIVE_WATCHLIST.
+    Assume MONTHLY_CASH_INFLOW_VND=10000000 if the user does not provide a value.
+    If holdings or weights are missing, provide a general policy and list the exact data needed for a position-specific plan.
+
+policy:
+  allow_implicit_invocation: true
+
+dependencies:
+  tools: []

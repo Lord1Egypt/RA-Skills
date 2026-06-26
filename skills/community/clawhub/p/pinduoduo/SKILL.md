@@ -1,35 +1,49 @@
 ---
-name: "Pinduoduo"
-description: "Provides summarized price, reviews, and promotional info for public Pinduoduo product and event pages without placing orders or bypassing controls."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pinduoduo"
-sourceUrl: "https://clawhub.ai/skills/pinduoduo"
+name: pinduoduo-hot-trend
+description: 注册“拼多多”热门技能；当需要访问或自动化拼多多相关内容时调用。
+homepage: `https://www.pinduoduo.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Pinduoduo
+# 拼多多
 
-> Provides summarized price, reviews, and promotional info for public Pinduoduo product and event pages without placing orders or bypassing controls.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pinduoduo`
-- **Source URL:** [https://clawhub.ai/skills/pinduoduo](https://clawhub.ai/skills/pinduoduo)
+- 面向公开商品页与活动页的信息检索与价格/评价摘要
+- 不提供下单、接口逆向或突破风控能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.pinduoduo.com/
+- 商品搜索：APP内为主，网页入口有限
+- 活动页：通过官方活动链接进入
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pinduoduo
-```
+常见任务
+
+- 指定关键词的商品列表摘要（价格区间、评价数、拼购类型）
+- 商品详情核心指标整理（价格、促销、规格、评价亮点）
+- 同类商品对比分析（品牌、规格、价格/促销）
+
+数据字段
+
+- 商品标题、链接、主图URL、拼购价/原价、评价数
+- 店铺名称、店铺链接、品牌、规格/属性
+- 评价亮点关键词（可基于文本提取）
+
+自动化要点
+
+- 网页端展示有限，很多信息需在APP端；建议人工打开后触发解析
+- 价格/促销随时间变动，需标注采集时间
+- 频率控制，避免触发风控；不进行批量抓取
+
+示例流程
+
+- 关键词清单：输入关键词 → 搜索/活动页 → 解析 → 输出价格/评价摘要
+- 商品摘要：访问详情页 → 提取价格/规格/评价 → 生成对比卡片
+- 同类对比：收集候选 → 按品牌/规格分组 → 输出差异点
+
+合规提示
+
+- 遵守平台规则，不进行接口调用或批量采集
+- 结果仅用于内部分析与提醒

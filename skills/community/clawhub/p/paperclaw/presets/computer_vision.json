@@ -1,0 +1,127 @@
+{
+  "id": "computer_vision",
+  "name": "Computer Vision",
+  "name_zh": "计算机视觉",
+  "description": "Computer vision, image processing, video analysis, and multimodal learning",
+  "description_zh": "计算机视觉、图像处理、视频分析、多模态学习",
+  "arxiv_categories": [
+    {
+      "id": "cs.CV",
+      "name": "Computer Vision and Pattern Recognition",
+      "url": "https://arxiv.org/list/cs.CV/recent",
+      "description": "Image processing, computer vision, scene understanding"
+    },
+    {
+      "id": "cs.MM",
+      "name": "Multimedia",
+      "url": "https://arxiv.org/list/cs.MM/recent",
+      "description": "Multimedia systems, streaming, content analysis"
+    },
+    {
+      "id": "cs.LG",
+      "name": "Machine Learning",
+      "url": "https://arxiv.org/list/cs.LG/recent",
+      "description": "Machine learning, statistical learning, deep learning"
+    }
+  ],
+  "classification": [
+    {
+      "name": "Image Generation",
+      "labels": {
+        "zh": "图像生成",
+        "en": "Image Generation",
+        "ja": "画像生成"
+      },
+      "keywords": [
+        "image generation",
+        "diffusion model",
+        "gan",
+        "stable diffusion",
+        "dall-e",
+        "synthesis",
+        "text-to-image"
+      ]
+    },
+    {
+      "name": "Object Detection",
+      "labels": {
+        "zh": "目标检测",
+        "en": "Object Detection",
+        "ja": "物体検出"
+      },
+      "keywords": [
+        "object detection",
+        "object recognition",
+        "yolo",
+        "rcnn",
+        "ssd",
+        "bounding box",
+        "instance segmentation"
+      ]
+    },
+    {
+      "name": "Segmentation",
+      "labels": {
+        "zh": "图像分割",
+        "en": "Segmentation",
+        "ja": "セグメンテーション"
+      },
+      "keywords": [
+        "segmentation",
+        "semantic segmentation",
+        "panoptic segmentation",
+        "mask",
+        "sam",
+        "u-net"
+      ]
+    },
+    {
+      "name": "Video Understanding",
+      "labels": {
+        "zh": "视频理解",
+        "en": "Video Understanding",
+        "ja": "動画理解"
+      },
+      "keywords": [
+        "video understanding",
+        "action recognition",
+        "video classification",
+        "temporal",
+        "motion",
+        "tracking"
+      ]
+    },
+    {
+      "name": "Multimodal",
+      "labels": {
+        "zh": "多模态",
+        "en": "Multimodal Learning",
+        "ja": "マルチモーダル"
+      },
+      "keywords": [
+        "multimodal",
+        "vision-language",
+        "clip",
+        "image-text",
+        "visual question answering",
+        "vqa"
+      ]
+    },
+    {
+      "name": "3D Vision",
+      "labels": {
+        "zh": "三维视觉",
+        "en": "3D Vision",
+        "ja": "3Dビジョン"
+      },
+      "keywords": [
+        "3d vision",
+        "point cloud",
+        "depth estimation",
+        "nerf",
+        "reconstruction",
+        "slam"
+      ]
+    }
+  ]
+}

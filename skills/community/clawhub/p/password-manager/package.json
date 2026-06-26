@@ -1,0 +1,33 @@
+{
+  "name": "password-manager",
+  "version": "1.0.4",
+  "description": "A fully local password management skill for OpenClaw with AES-256-GCM encryption, password generation, and sensitive info detection",
+  "type": "module",
+  "main": "scripts/password-manager.mjs",
+  "bin": {
+    "password-manager": "./scripts/password-manager.mjs"
+  },
+  "scripts": {
+    "start": "node scripts/password-manager.mjs",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "keywords": [
+    "password-manager",
+    "openclaw-skill",
+    "encryption",
+    "security",
+    "vault",
+    "credential"
+  ],
+  "author": "jixsonwang",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "clawhub": {
+    "category": "security",
+    "tags": ["password", "security", "encryption", "vault", "credential"],
+    "minOpenClawVersion": "2026.2.0"
+  }
+}

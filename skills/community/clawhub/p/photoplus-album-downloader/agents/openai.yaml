@@ -1,0 +1,4 @@
+interface:
+  display_name: "PhotoPlus Album Downloader"
+  short_description: "Download PhotoPlus live album photos"
+  default_prompt: "Use $photoplus-album-downloader to download photos from a PhotoPlus live album link or activity ID."

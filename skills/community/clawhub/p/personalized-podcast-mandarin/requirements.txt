@@ -1,0 +1,26 @@
+# Core dependencies
+pydantic>=2.0.0
+requests>=2.31.0
+# Volcano Engine SDK
+volcenginesdkarkruntime>=1.0.0
+websocket-client>=1.7.0
+
+# Audio processing (optional, for stereo output)
+pydub>=0.25.1
+
+# FFmpeg wrapper (optional, for better audio merging)
+# Note: Requires ffmpeg system package. See README for installation.
+# ffmpeg-python>=0.2.0
+
+# JSON repair for robust parsing
+json-repair>=0.10.0
+
+# PDF processing
+pypdf>=4.0.0
+
+# Web scraping
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# Chinese text segmentation
+jieba>=0.42.1

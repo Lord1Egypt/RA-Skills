@@ -1,0 +1,38 @@
+{
+  "name": "喜剧风格",
+  "description": "幽默调侃，轻松解构，适合娱乐话题和严肃内容的轻松化表达",
+  "segment_count": {
+    "min": 4,
+    "max": 5
+  },
+  "dynamic_mode_preference": ["storytelling", "debate"],
+  "emotional_arc": [0.4, 0.6, 0.7, 0.5],
+  "persona_interaction": {
+    "default_chemistry": "损友",
+    "role_distribution": "互相接梗，吐槽调侃",
+    "interaction_frequency": "极高"
+  },
+  "content_characteristics": {
+    "data_density": "低",
+    "storytelling_ratio": "高",
+    "debate_intensity": "中"
+  },
+  "segment_guidelines": {
+    "setup": {
+      "dynamic_mode": "storytelling",
+      "emotional_tone": "curious",
+      "key_elements": ["幽默开场", "抛梗预热", "建立轻松氛围"]
+    },
+    "confrontation": {
+      "dynamic_mode": "debate",
+      "emotional_tone": "tense",
+      "key_elements": ["梗+观点交替", "吐槽调侃", "用幽默包裹严肃"]
+    },
+    "resolution": {
+      "dynamic_mode": "storytelling",
+      "emotional_tone": "reflective",
+      "key_elements": ["爆笑收尾", "callback", "轻松结尾"]
+    }
+  },
+  "special_instructions": "节奏轻快，短句为主，中高频互动，互相接梗，吐槽调侃贯穿全程，允许适度人身攻击（友好范围内）"
+}

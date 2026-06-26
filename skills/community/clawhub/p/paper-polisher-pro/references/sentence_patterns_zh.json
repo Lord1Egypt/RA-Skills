@@ -1,0 +1,282 @@
+{
+  "version": "1.0.0",
+  "description": "常见AI学术句式模板（中文），用于检测和改写建议",
+  "note": "仅覆盖高频可模板化的句式，不做语法分析",
+  "patterns": [
+    {
+      "id": "sp001",
+      "category": "研究目的",
+      "pattern": "本研究旨在探讨{topic}的{aspect}",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "关于{topic}的{aspect}，我们做了一个分析",
+        "{topic}的{aspect}到底如何？我们看了看数据",
+        "我们关注的问题是{topic}中{aspect}的情况"
+      ]
+    },
+    {
+      "id": "sp002",
+      "category": "研究目的",
+      "pattern": "本研究/本文的目的是{action}",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "我们做这项研究主要是想{action}",
+        "为了弄清楚{action}，我们设计了这项分析",
+        "这项工作围绕{action}展开"
+      ]
+    },
+    {
+      "id": "sp003",
+      "category": "方法描述",
+      "pattern": "回顾性分析了{time}期间收治的{n}例{disease}患者的临床资料",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "我们调取了{time}间{n}例{disease}患者的病历",
+        "{time}共有{n}例{disease}患者入组",
+        "从{time}的病历中筛选出{n}例{disease}进行分析"
+      ]
+    },
+    {
+      "id": "sp004",
+      "category": "结果描述",
+      "pattern": "结果显示{group1}与{group2}在{variable}方面存在显著差异",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "{group1}和{group2}的{variable}差别明显",
+        "比较两组的{variable}，差异有统计学意义",
+        "{variable}在两组间拉开了差距"
+      ]
+    },
+    {
+      "id": "sp005",
+      "category": "结果描述",
+      "pattern": "多因素{analysis}分析显示{factor1}、{factor2}和{factor3}是{outcome}的独立危险因素",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "把{factor1}、{factor2}、{factor3}放在一起看，发现它们各自独立影响{outcome}",
+        "{analysis}告诉我们，即使控制了其他变量，{factor1}等仍然与{outcome}相关",
+        "排除了混杂因素后，{factor1}、{factor2}、{factor3}依然显著"
+      ]
+    },
+    {
+      "id": "sp006",
+      "category": "结论",
+      "pattern": "结论：临床上应重视{topic}的评估，合理使用{treatment}",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "简单说就是：{topic}不能掉以轻心，{treatment}要用得当",
+        "临床工作中要关注{topic}，{treatment}方案因人而异",
+        "提醒临床同道注意{topic}，用好{treatment}"
+      ]
+    },
+    {
+      "id": "sp007",
+      "category": "过渡",
+      "pattern": "然而，其{aspect}日益引起临床关注",
+      "ai_frequency": "high",
+      "alternatives": [
+        "但{aspect}这块一直不太清楚",
+        "{aspect}是个不能回避的问题",
+        "临床中{aspect}的争议也不少"
+      ]
+    },
+    {
+      "id": "sp008",
+      "category": "综述",
+      "pattern": "本文综述了{topic}的发生机制、临床表现及处理策略，为临床实践提供参考",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "下面从机制、临床和治疗方案三个角度梳理{topic}",
+        "这篇综述聚焦{topic}，讨论病理机制、临床特点和怎么办",
+        "我们整理了{topic}相关的最新证据，供同行参考"
+      ]
+    },
+    {
+      "id": "sp009",
+      "category": "局限",
+      "pattern": "本研究仍存在一定局限性，包括{limit1}和{limit2}。未来需要开展更大规模的{study_type}以进一步验证上述结论",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "当然这项研究也有短板：{limit1}和{limit2}。后续需要更大样本的{study_type}来确认",
+        "不足之处在于{limit1}和{limit2}，期待后续有人做{study_type}来回答这些问题",
+        "客观地说，{limit1}是个问题，{limit2}也需要改进。下一步应该做{study_type}"
+      ]
+    },
+    {
+      "id": "sp010",
+      "category": "综述开头",
+      "pattern": "近年来，{topic}在{field}领域取得了突破性进展",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "过去几年{field}领域关于{topic}的进展很快",
+        "{field}圈子里{topic}的变化可以用翻天覆地来形容",
+        "{topic}是{field}这两年最热的话题之一"
+      ]
+    },
+    {
+      "id": "sp011",
+      "category": "方法",
+      "pattern": "所有患者均签署知情同意书并通过{committee}审批",
+      "ai_frequency": "high",
+      "alternatives": [
+        "研究方案经{committee}批准，患者知情同意",
+        "{committee}审批通过，纳入患者均签了知情同意",
+        "伦理方面：{committee}同意，知情同意书签了"
+      ]
+    },
+    {
+      "id": "sp012",
+      "category": "方法",
+      "pattern": "采用{software}进行数据分析，计量资料以{stat}表示",
+      "ai_frequency": "high",
+      "alternatives": [
+        "数据用{software}处理，连续变量报{stat}",
+        "统计软件是{software}，连续变量用{stat}描述",
+        "计量资料以{stat}呈现在{software}中分析"
+      ]
+    },
+    {
+      "id": "sp013",
+      "category": "方法",
+      "pattern": "符合纳入标准的患者被随机分为{group1}和{group2}",
+      "ai_frequency": "high",
+      "alternatives": [
+        "按纳入标准筛完后，患者被随机分到{group1}或{group2}",
+        "入组患者随机进入{group1}或{group2}",
+        "随机分组：{group1} vs {group2}"
+      ]
+    },
+    {
+      "id": "sp014",
+      "category": "讨论",
+      "pattern": "与既往研究结果一致，提示{finding}",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "这个发现跟之前的研究对得上，说明{finding}",
+        "前人也有类似的发现，{finding}这个观点更加站得住脚了",
+        "我们的结果印证了{finding}——多个团队都看到了这个现象"
+      ]
+    },
+    {
+      "id": "sp015",
+      "category": "讨论",
+      "pattern": "本研究的创新之处在于{innovation}",
+      "ai_frequency": "high",
+      "alternatives": [
+        "这项工作新在{innovation}",
+        "跟已有工作最大的不同是{innovation}",
+        "值得关注的亮点：{innovation}"
+      ]
+    },
+    {
+      "id": "sp016",
+      "category": "综述结尾",
+      "pattern": "综上所述，{summary}。未来需要{future}",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "总结来说：{summary}。下一步{future}",
+        "归拢一下：{summary}。展望一下：{future}",
+        "{summary}。至于{future}，留给后续研究"
+      ]
+    },
+    {
+      "id": "sp017",
+      "category": "结果",
+      "pattern": "在随访期间共有{n}例患者出现{event}",
+      "ai_frequency": "high",
+      "alternatives": [
+        "随访过程中{n}例发生了{event}",
+        "{n}例在随访中出现{event}",
+        "{event}发生在{n}例患者中"
+      ]
+    },
+    {
+      "id": "sp018",
+      "category": "结果",
+      "pattern": "{treatment}组与{control}组的{endpoint}比较，差异有统计学意义(P<{p})",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "{treatment}组的{endpoint}明显优于{control}(P<{p})",
+        "两组{endpoint}拉开了差距，{treatment}更好(P<{p})",
+        "{endpoint}方面，{treatment}显著胜出(P<{p})"
+      ]
+    },
+    {
+      "id": "sp019",
+      "category": "背景",
+      "pattern": "{disease}是一种常见的{type}疾病，其发病机制尚未完全阐明",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "{disease}这种{type}病很常见，但到底怎么发生的还没完全搞清楚",
+        "{disease}在{type}领域是老话题了，不过发病机制这块还有不少空白",
+        "说到{type}疾病，{disease}发病率不低，但病因至今不完全明确"
+      ]
+    },
+    {
+      "id": "sp020",
+      "category": "背景",
+      "pattern": "早期诊断和及时治疗对改善{disease}预后具有重要意义",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "{disease}越早发现越好治，这已经是共识了",
+        "{disease}预后好不好，很大程度上取决于什么时候开始治",
+        "抓早期、及时干预，{disease}的结局会好很多"
+      ]
+    },
+    {
+      "id": "sp021",
+      "category": "过渡",
+      "pattern": "值得注意的是，{finding}",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "有意思的是{finding}",
+        "一个意外的发现：{finding}",
+        "{finding}，这个值得单独说说"
+      ]
+    },
+    {
+      "id": "sp022",
+      "category": "方法",
+      "pattern": "根据{criteria}进行诊断",
+      "ai_frequency": "high",
+      "alternatives": [
+        "诊断标准参照{criteria}",
+        "按{criteria}来确诊",
+        "{criteria}是诊断依据"
+      ]
+    },
+    {
+      "id": "sp023",
+      "category": "讨论",
+      "pattern": "分析其原因可能与{factor}有关",
+      "ai_frequency": "high",
+      "alternatives": [
+        "推测跟{factor}脱不了干系",
+        "可能的原因之一是{factor}",
+        "{factor}可能是背后的推手"
+      ]
+    },
+    {
+      "id": "sp024",
+      "category": "安全",
+      "pattern": "{treatment}总体安全性良好，不良反应多为轻度",
+      "ai_frequency": "very_high",
+      "alternatives": [
+        "{treatment}安全可耐受，严重副反应很少见",
+        "用{treatment}的大多没什么大问题，偶尔有点轻微不适",
+        "{treatment}的安全性数据让人放心，严重不良事件基本没有"
+      ]
+    },
+    {
+      "id": "sp025",
+      "category": "统计",
+      "pattern": "以P<{threshold}为差异有统计学意义",
+      "ai_frequency": "high",
+      "alternatives": [
+        "显著性水平设为{threshold}",
+        "P值小于{threshold}视为有意义",
+        "统计检验水准α={threshold}"
+      ]
+    }
+  ]
+}

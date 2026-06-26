@@ -1,35 +1,31 @@
----
-name: "Pipeworx wikipedia"
-description: "Search, summarize, and explore the structure of English Wikipedia articles with full-text search, section info, and random article retrieval."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-wikipedia"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-wikipedia"
----
+# Wikipedia
 
-# Pipeworx wikipedia
+Search, summarize, and explore the structure of English Wikipedia articles.
 
-> Search, summarize, and explore the structure of English Wikipedia articles with full-text search, section info, and random article retrieval.
+## Capabilities
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-wikipedia`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-wikipedia](https://clawhub.ai/skills/pipeworx-wikipedia)
+**search_wikipedia** -- Full-text search across Wikipedia. Returns titles, text snippets, page IDs, and word counts. Useful for finding the right article before pulling its content.
 
-## Overview
+**get_article_summary** -- The introductory extract for an article by title. Also returns the description, thumbnail URL, and desktop/mobile content links. This is the fastest way to get a concise answer from Wikipedia.
 
+**get_article_sections** -- The table of contents for an article. Returns each section heading with its level, number, and anchor. Helpful for understanding the structure of long articles.
 
-## Installation
-To install this skill, run the following command in your terminal:
+**get_random_articles** -- Fetch 1-10 random Wikipedia articles with their extracts. Good for serendipitous discovery or testing.
+
+## Example: summarize an article
+
 ```bash
-hermes skills install clawhub/pipeworx-wikipedia
+curl -X POST https://gateway.pipeworx.io/wikipedia/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_article_summary","arguments":{"title":"Turing machine"}}}'
+```
+
+```json
+{
+  "mcpServers": {
+    "wikipedia": {
+      "url": "https://gateway.pipeworx.io/wikipedia/mcp"
+    }
+  }
+}
 ```

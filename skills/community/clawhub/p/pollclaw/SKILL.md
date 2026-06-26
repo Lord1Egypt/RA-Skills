@@ -1,35 +1,28 @@
 ---
-name: "Pollclaw"
+name: pollclaw
 description: "Deprecated: Pollclaw is now MeetLark. Use the coordinate-meeting skill instead for meeting scheduling. See https://meetlark.ai"
-category: "productivity"
-source: "ClawHub"
-tags: [calendar, coordination, meetings, polls, scheduling]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pollclaw"
-sourceUrl: "https://clawhub.ai/skills/pollclaw"
+homepage: https://meetlark.ai
+user-invocable: true
+metadata: {"openclaw":{"emoji":"🗳️"}}
 ---
 
-# Pollclaw
+# Pollclaw has moved to MeetLark
 
-> Deprecated: Pollclaw is now MeetLark. Use the coordinate-meeting skill instead for meeting scheduling. See https://meetlark.ai
+Pollclaw is now **MeetLark** — same service, new name, at [meetlark.ai](https://meetlark.ai).
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pollclaw`
-- **Source URL:** [https://clawhub.ai/skills/pollclaw](https://clawhub.ai/skills/pollclaw)
+Use the **coordinate-meeting** skill instead. It does everything Pollclaw did: create scheduling polls, collect votes from humans and agents, and find the best meeting time.
 
-## Overview
+## How to switch
 
+Ask your agent to use the `coordinate-meeting` skill, or just say:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pollclaw
 ```
+"Schedule a meeting with the team next week"
+"Find a time for a 1:1 with Sarah"
+```
+
+## Links
+
+- **MeetLark:** https://meetlark.ai
+- **coordinate-meeting skill:** install `coordinate-meeting` from the skill registry
+- **API docs:** https://meetlark.ai/docs

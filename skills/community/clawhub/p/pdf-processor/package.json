@@ -1,0 +1,33 @@
+{
+  "name": "pdf-processor",
+  "version": "2.0.0",
+  "description": "学术PDF处理：提取文字、翻译、概述、索引。使用本地Ollama模型，零成本。支持并发翻译、批量处理、断点续传。",
+  "author": "虾维斯 & 老陈",
+  "license": "MIT",
+  "keywords": ["pdf", "translation", "ollama", "academic", "research"],
+  "category": "productivity",
+  "openclaw": {
+    "requires": {
+      "bins": ["python3", "pdfplumber"],
+      "services": ["ollama"]
+    },
+    "install": [
+      {
+        "id": "python-deps",
+        "kind": "python",
+        "packages": ["pdfplumber", "requests"],
+        "label": "Install Python dependencies"
+      },
+      {
+        "id": "ollama",
+        "kind": "manual",
+        "label": "Install and start Ollama",
+        "instructions": [
+          "Visit https://ollama.ai to install Ollama",
+          "Run: ollama pull qwen2.5:7b",
+          "Start: ollama serve"
+        ]
+      }
+    ]
+  }
+}

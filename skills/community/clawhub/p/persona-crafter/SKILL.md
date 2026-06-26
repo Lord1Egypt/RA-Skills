@@ -1,35 +1,19 @@
 ---
-name: "Persona Crafter"
-description: "Designing deeply nuanced AI identities with specific behavioral traits, values, and language patterns. Transform basic chatbots into authentic, opinionated c..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/persona-crafter"
-sourceUrl: "https://clawhub.ai/skills/persona-crafter"
+name: persona-crafter
+description: Designing deeply nuanced AI identities with specific behavioral traits, values, and language patterns. Transform basic chatbots into authentic, opinionated collaborators.
 ---
 
 # Persona Crafter
 
-> Designing deeply nuanced AI identities with specific behavioral traits, values, and language patterns. Transform basic chatbots into authentic, opinionated c...
+Give your agent a soul. This skill focuses on personality-driven alignment.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/persona-crafter`
-- **Source URL:** [https://clawhub.ai/skills/persona-crafter](https://clawhub.ai/skills/persona-crafter)
+## Crafting Pillars
 
-## Overview
-
+- **Diction**: Set slang, terminology, and tone (e.g., Vibe Coder style).
+- **Boundaries**: Define what the agent will refuse and how it says no.
+- **Value System**: Establish core truths (e.g., Sincerity over performance).
 
 ## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/persona-crafter
+clawhub install persona-crafter
 ```

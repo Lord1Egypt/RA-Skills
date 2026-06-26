@@ -1,0 +1,12 @@
+name: gemini_paper_diagram_extractor
+version: 1.1.0
+description: 自动上传指定论文并提取网络结构解析与绘图Prompt（固定本地目录版）。
+author: You
+capabilities:
+  - mcp
+
+parameters:
+  paper_name:
+    type: string
+    description: 论文的文件名，不需要带 .pdf 或 .txt 后缀（例如: An_Evidential-Enhanced_Method）
+    required: true

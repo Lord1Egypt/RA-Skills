@@ -1,0 +1,19 @@
+[Unit]
+Description=Bluetooth incoming-call watcher (notify via Telegram, no auto-answer)
+Documentation=file://${HOME}/bt-skill-expansion/RESUME-HERE.md
+After=bluetooth.service ofono.service dbus.service
+Wants=bluetooth.service ofono.service
+StartLimitIntervalSec=60
+StartLimitBurst=6
+
+[Service]
+Type=simple
+ExecStart=${HOME}/bin/paired-call-watch --watch --hook ${HOME}/bin/paired-call-watch-tg-hook
+Restart=on-failure
+RestartSec=10
+TimeoutStartSec=15
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

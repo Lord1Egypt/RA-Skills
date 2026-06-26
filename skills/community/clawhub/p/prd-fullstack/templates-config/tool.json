@@ -1,0 +1,37 @@
+{
+  "name": "tool",
+  "displayName": "工具类",
+  "keywords": ["工具", "计算器", "转换", "助手", "效率", "扫描", "识别", "查询", "天气", "日历", "记账"],
+  "description": "适用于效率工具、计算工具、查询工具、生活助手等产品",
+  "sections": {
+    "overview": {
+      "focus": ["核心功能", "使用场景", "效率提升"],
+      "specialFields": ["核心算法", "数据准确性", "响应速度"]
+    },
+    "requirements": {
+      "commonFeatures": [
+        "核心功能模块",
+        "历史记录",
+        "数据导入导出",
+        "快捷操作",
+        "结果分享"
+      ]
+    },
+    "userStories": {
+      "roles": ["普通用户", "高级用户"]
+    },
+    "data": {
+      "specialEvents": [
+        "功能使用",
+        "结果导出",
+        "设置更改"
+      ]
+    }
+  },
+  "flowcharts": {
+    "autoGenerate": true,
+    "commonFlows": [
+      "核心功能流程"
+    ]
+  }
+}

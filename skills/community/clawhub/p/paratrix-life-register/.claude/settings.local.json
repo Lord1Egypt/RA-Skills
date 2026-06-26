@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -c /Users/wyn/.openclaw/workspace/skills/paratrix-life-register/register-and-mint.mjs)",
+      "Bash(node -e ' *)",
+      "Bash(grep -n '`' /Users/wyn/.openclaw/workspace/skills/paratrix-life-register/register-and-mint.mjs)",
+      "Bash(lsof -iTCP:3996 -sTCP:LISTEN -P -n)",
+      "Bash(lsof -iTCP -sTCP:LISTEN -P -n)",
+      "WebSearch",
+      "Bash(git *)"
+    ]
+  }
+}

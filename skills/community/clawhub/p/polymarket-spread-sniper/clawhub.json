@@ -1,0 +1,19 @@
+{
+  "emoji": "📊",
+  "requires": {
+    "env": ["SIMMER_API_KEY"],
+    "pip": ["simmer-sdk"]
+  },
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "spread_sniper.py"
+  },
+  "tunables": [
+    {"env": "SIMMER_SPREAD_MIN_SPREAD", "type": "number", "default": 0.04, "range": [0.01, 0.20], "step": 0.01, "label": "Min spread to trade"},
+    {"env": "SIMMER_SPREAD_MIN_VOLUME", "type": "number", "default": 5000, "range": [500, 100000], "step": 500, "label": "Min 24h volume USD"},
+    {"env": "SIMMER_SPREAD_MAX_POSITION", "type": "number", "default": 5.0, "range": [1.0, 25.0], "step": 0.5, "label": "Max position USD"},
+    {"env": "SIMMER_SPREAD_MAX_HOURS", "type": "number", "default": 48, "range": [1, 168], "step": 1, "label": "Max hours to resolution"}
+  ]
+}

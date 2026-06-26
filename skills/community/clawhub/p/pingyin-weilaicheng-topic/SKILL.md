@@ -1,35 +1,70 @@
 ---
-name: "Pingyin Weilaicheng Topic"
-description: "平阴未来城抖音选题知识库 - 包含项目卖点、对标账号策略、选题执行规范。解决"抖音选题=短视频≠直播"的核心铁律。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pingyin-weilaicheng-topic"
-sourceUrl: "https://clawhub.ai/skills/pingyin-weilaicheng-topic"
+name: pingyin-weilaicheng-topic
+description: 平阴未来城抖音选题知识库 - 包含项目卖点、对标账号策略、选题执行规范。解决"抖音选题=短视频≠直播"的核心铁律。
+version: 1.0.0
+tags: [knowledge, douyin, real-estate, pingyin]
+permissions: [read, write]
+metadata:
+  source: manual
+  autoLoad: true
 ---
 
-# Pingyin Weilaicheng Topic
+# 平阴未来城抖音选题知识技能
 
-> 平阴未来城抖音选题知识库 - 包含项目卖点、对标账号策略、选题执行规范。解决"抖音选题=短视频≠直播"的核心铁律。
+## ⚠️ 核心铁律（最高优先级）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pingyin-weilaicheng-topic`
-- **Source URL:** [https://clawhub.ai/skills/pingyin-weilaicheng-topic](https://clawhub.ai/skills/pingyin-weilaicheng-topic)
+**抖音选题 = 短视频脚本选题（18-45秒），不是直播话题！**
 
-## Overview
+| 类型 | 用途 | 时间 |
+|------|------|------|
+| **抖音视频选题** | 短视频脚本选题（18-45秒） | 每天 8:30/8:45 |
+| ClueRich直播日报 | 直播数据分析复盘 | 每天 19:30 |
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pingyin-weilaicheng-topic
-```
+## 项目核心卖点
+
+| 维度 | 内容 |
+|------|------|
+| **账号** | 平阴未来城美好生活体验馆（抖音官方号） |
+| **项目** | 济南平阴·玛钢公园西100米 |
+| **产品** | 1.3容积率·纯现房洋房 |
+| **价格** | 6000元/㎡起，63万起 |
+| **学区** | 500米九年一贯制（和山学校·实验高中） |
+| **环境** | 4A景区玛钢公园50米 |
+| **户型** | 105㎡刚需 / 120㎡改善 / 132㎡终极改善 |
+
+---
+
+## 对标账号策略
+
+| 账号 | 内容类型 | 时长 | 权重 |
+|------|---------|------|------|
+| 衡水胜茂雍景湾 | 职场段子+房产科普+逻辑梗 | 20-30秒 | 40% |
+| 梁山运河府 | 剧情反转 | 22秒 | 25% |
+| 锦利地产 | 销售自嘲 | 26秒 | 20% |
+| 甲第天玺 | 诗意化+热销氛围 | 18-32秒 | 15% |
+
+---
+
+## 每周内容规划
+
+| 日期 | 内容类型 | 参考账号 | 建议时长 |
+|------|---------|---------|---------|
+| 周一 | 房产科普型 | 衡水 | 28秒 |
+| 周二 | 职场段子型 | 衡水+锦利 | 25秒 |
+| 周三 | 剧情反转型 | 梁山 | 22秒 |
+| 周四 | 销售自嘲型 | 锦利 | 26秒 |
+| 周五 | 诗意化场景型 | 甲第 | 32秒 |
+| 周六 | 逻辑梗型 | 衡水 | 20秒 |
+| 周日 | 热销氛围型 | 甲第+锦利 | 18秒 |
+
+---
+
+## 飞书推送
+
+- 目标：oc_32c3913a830d673ce6d5cea5b8973e91
+
+---
+
+*此技能包含平阴未来城抖音运营的核心知识*

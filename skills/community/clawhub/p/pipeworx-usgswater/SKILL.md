@@ -1,35 +1,35 @@
----
-name: "Pipeworx usgswater"
-description: "Provides real-time and historical USGS streamflow and gage height data for rivers, creeks, and streams across the United States."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-usgswater"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-usgswater"
----
+# USGS Water
 
-# Pipeworx usgswater
+Real-time streamflow and gage height data from the USGS National Water Information System. Monitor rivers, creeks, and streams across the United States.
 
-> Provides real-time and historical USGS streamflow and gage height data for rivers, creeks, and streams across the United States.
+## Tools
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-usgswater`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-usgswater](https://clawhub.ai/skills/pipeworx-usgswater)
+**get_current** -- Current instantaneous readings for a USGS monitoring site. Returns discharge (cubic feet per second) and gage height (feet) with timestamps and data quality flags.
 
-## Overview
+**search_sites** -- Find active stream-gage sites in a US state that have real-time data. Returns site ID, name, coordinates, HUC code, and drainage area.
 
+**get_daily** -- Historical daily mean streamflow values for a site between two dates.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Example: Potomac River at Little Falls
+
+Site 01646500 monitors the Potomac River near Washington, DC:
+
 ```bash
-hermes skills install clawhub/pipeworx-usgswater
+curl -X POST https://gateway.pipeworx.io/usgswater/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_current","arguments":{"site_id":"01646500"}}}'
+```
+
+## Finding site IDs
+
+Use `search_sites` with a two-letter state abbreviation. For example, `"VA"` returns all active stream gages in Virginia with their site IDs and coordinates.
+
+```json
+{
+  "mcpServers": {
+    "usgswater": {
+      "url": "https://gateway.pipeworx.io/usgswater/mcp"
+    }
+  }
+}
 ```

@@ -1,35 +1,37 @@
----
-name: "Pipeworx altos"
-description: "Provides real estate market intelligence including inventory trends, active listings, pending sales, new listings, and downloadable data files for specified..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-altos"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-altos"
----
+# Altos
 
-# Pipeworx altos
+Altos Research MCP — Real estate market intelligence
 
-> Provides real estate market intelligence including inventory trends, active listings, pending sales, new listings, and downloadable data files for specified...
+## altos_market_stats
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-altos`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-altos](https://clawhub.ai/skills/pipeworx-altos)
+Get current market snapshot for a region (e.g., "San Francisco, CA"). Returns inventory count, new l
 
-## Overview
+## altos_inventory_trend
 
+Track weekly inventory changes for a region (e.g., "Austin, TX"). Returns trends in inventory, new l
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-altos
+## altos_active_listings
+
+Search active property listings in a region (e.g., "Denver, CO"). Returns address, price, beds, bath
+
+## altos_pending_sales
+
+Find properties under contract in a region (e.g., "Miami, FL"). Returns address, price, beds, baths,
+
+## altos_new_listings
+
+Get freshly listed properties (under one week on market) for a region (e.g., "Boston, MA"). Returns 
+
+## altos_list_files
+
+Browse downloadable regional real estate data files. Returns catalog with file names, formats, and d
+
+```json
+{
+  "mcpServers": {
+    "altos": {
+      "url": "https://gateway.pipeworx.io/altos/mcp"
+    }
+  }
+}
 ```

@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.2",
+  "paper_id": "<paper_id>",
+  "report": "report.md",
+  "traceability_manifest": "traceability_manifest.json",
+  "latex_paragraphs": "latex_paragraphs.json",
+  "research_lens": "research_lens.json",
+  "direction_board": "direction_board.json",
+  "source_package": "<optional source package path>",
+  "pdfs": {
+    "main": "<optional main pdf path>",
+    "supplementary": "<optional supplementary pdf path>"
+  },
+  "notes": "Text-first bundle. Verify claims directly from report.md and source locators. Use direction_board.json for research seed ranking."
+}

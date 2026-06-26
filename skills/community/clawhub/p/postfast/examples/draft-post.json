@@ -1,0 +1,13 @@
+{
+  "posts": [
+    {
+      "content": "Draft idea — finalize and schedule from the PostFast dashboard.",
+      "mediaItems": [
+        { "key": "image/YOUR_UPLOAD_KEY.png", "type": "IMAGE", "sortOrder": 0 }
+      ],
+      "socialMediaId": "YOUR_ACCOUNT_ID"
+    }
+  ],
+  "status": "DRAFT",
+  "controls": {}
+}

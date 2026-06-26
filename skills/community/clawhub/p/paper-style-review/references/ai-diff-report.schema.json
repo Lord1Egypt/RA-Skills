@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "version": "0.2",
+    "taskType": "master-thesis",
+    "language": "zh-CN"
+  },
+  "summary": {
+    "totalFindings": 0,
+    "patternCount": {
+      "template_transition": 0,
+      "over_even_paragraphing": 0,
+      "abstract_summary_without_anchor": 0,
+      "claim_before_evidence": 0,
+      "balanced_but_empty_sentence": 0,
+      "generic_conclusion_tail": 0
+    }
+  },
+  "findings": [
+    {
+      "id": "ai-001",
+      "location": "abstract-para-1",
+      "aiPatternType": "abstract_summary_without_anchor",
+      "sourceText": "",
+      "basisFromRefs": "",
+      "refContrast": "",
+      "differenceExplanation": "",
+      "rewriteStrategy": "",
+      "confidence": "medium"
+    }
+  ]
+}

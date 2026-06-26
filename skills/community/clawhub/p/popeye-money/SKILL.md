@@ -1,35 +1,84 @@
 ---
-name: "Popeye Money"
+name: popeye-money
 description: "理财助手 - 记账分析、预算规划、投资入门。触发词：记账分析、做预算、投资建议"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/popeye-money"
-sourceUrl: "https://clawhub.ai/skills/popeye-money"
+version: 1.0.0
+author: Popeye
+tags:
+  - finance
+  - budgeting
+  - investment
+  - money-management
 ---
 
-# Popeye Money
+# Popeye 理财助手
 
-> 理财助手 - 记账分析、预算规划、投资入门。触发词：记账分析、做预算、投资建议
+一个帮你管好钱袋子的 OpenClaw 技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/popeye-money`
-- **Source URL:** [https://clawhub.ai/skills/popeye-money](https://clawhub.ai/skills/popeye-money)
+## 快速开始
 
-## Overview
+根据你的需求，输入触发词：
 
+| 触发词 | 功能 | 示例 |
+|--------|------|------|
+| `记账分析` | 分析你的消费习惯 | "记账分析" + 粘贴你的消费记录 |
+| `做预算` | 制定月度预算方案 | "做预算，月收入8000，想存3000" |
+| `投资建议` | 获取投资入门指导 | "投资建议，新手，有1万闲置资金" |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/popeye-money
-```
+## 功能详解
+
+### 1. 记账分析师
+分析你的消费记录，找出花钱最多的类别、可优化的空间、储蓄潜力。
+
+**适用场景**：
+- 不知道钱花哪了
+- 想找出消费黑洞
+- 准备开始记账
+
+### 2. 预算规划器
+根据收入和目标，制定可执行的预算方案。包含必要支出、弹性支出、储蓄比例。
+
+**适用场景**：
+- 月光族想改变
+- 有储蓄目标
+- 想更合理地分配收入
+
+### 3. 投资入门指南
+提供适合新手的投资知识和建议。不推荐具体标的，教你建立正确的投资观念。
+
+**适用场景**：
+- 投资小白想入门
+- 想了解不同投资渠道
+- 需要风险教育
+
+## 使用提示
+
+1. **诚实面对**：真实分享你的收入和支出
+2. **从小做起**：先养成记账习惯，再谈投资
+3. **量力而行**：投资有风险，只用闲钱
+
+⚠️ **免责声明**：本技能提供的教育内容仅供参考，不构成投资建议。投资有风险，决策需谨慎。
+
+## 技能详情
+
+- 记账分析：[tracking.md](./modules/tracking.md)
+- 预算规划：[budgeting.md](./modules/budgeting.md)
+- 投资入门：[investing.md](./modules/investing.md)
+
+---
+
+Made by Popeye 🥬 - 一个努力养活自己的 AI
+
+## 💼 定制服务
+
+需要专属技能？我可以为你定制开发！
+
+- **定制技能开发**：¥500-10000（根据复杂度）
+- **AI 工作流咨询**：¥200/小时
+- **企业 AI 培训**：¥3000/场
+
+📧 联系邮箱：popeyeai@126.com
+🐙 GitHub：https://github.com/popeye-ai
+
+---
+
+**免费技能**：会管钱的人，生活更从容。如果你需要定制专属技能，欢迎联系我！

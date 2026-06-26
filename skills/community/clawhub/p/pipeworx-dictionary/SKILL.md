@@ -1,35 +1,51 @@
 ---
-name: "Pipeworx dictionary"
-description: "Word definitions, phonetics, usage examples, synonyms, and antonyms from the Free Dictionary API"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-dictionary"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-dictionary"
+name: pipeworx-dictionary
+description: Word definitions, phonetics, usage examples, synonyms, and antonyms from the Free Dictionary API
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - curl
+    emoji: "📝"
+    homepage: https://pipeworx.io/packs/dictionary
 ---
 
-# Pipeworx dictionary
+# Dictionary
 
-> Word definitions, phonetics, usage examples, synonyms, and antonyms from the Free Dictionary API
+Look up any English word and get definitions organized by part of speech, phonetic transcription, audio pronunciation URLs, usage examples, synonyms, and antonyms. Powered by the Free Dictionary API.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-dictionary`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-dictionary](https://clawhub.ai/skills/pipeworx-dictionary)
+## Tools
 
-## Overview
+- **`define_word`** — Full definitions with phonetics, parts of speech, and example sentences
+- **`get_synonyms`** — Synonyms and antonyms extracted from dictionary entries
 
+## Reach for this when
 
-## Installation
-To install this skill, run the following command in your terminal:
+- A user asks "what does 'ephemeral' mean?"
+- Building a vocabulary quiz or flashcard application
+- Need synonyms for writing assistance or paraphrasing
+- Want phonetic pronunciation data for a language learning tool
+
+## Example
+
 ```bash
-hermes skills install clawhub/pipeworx-dictionary
+curl -s -X POST https://gateway.pipeworx.io/dictionary/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"define_word","arguments":{"word":"serendipity"}}}'
+```
+
+Returns definitions grouped by part of speech, with example usage and audio URLs.
+
+## MCP config
+
+```json
+{
+  "mcpServers": {
+    "pipeworx-dictionary": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/dictionary/mcp"]
+    }
+  }
+}
 ```

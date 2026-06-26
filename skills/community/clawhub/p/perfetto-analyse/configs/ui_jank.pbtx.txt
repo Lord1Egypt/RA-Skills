@@ -1,0 +1,20 @@
+# UI 卡顿/帧率分析：调度 + gfx/view atrace，约 15 秒
+duration_ms: 15000
+buffers {
+  size_kb: 32768
+  fill_policy: RING_BUFFER
+}
+data_sources {
+  config {
+    name: "linux.ftrace"
+    target_buffer: 0
+    ftrace_config {
+      ftrace_events: "sched/sched_switch"
+      ftrace_events: "sched/sched_wakeup"
+      atrace_categories: "gfx"
+      atrace_categories: "view"
+      # 只抓指定应用时取消注释并改包名:
+      # atrace_apps: "com.example.myapp"
+    }
+  }
+}

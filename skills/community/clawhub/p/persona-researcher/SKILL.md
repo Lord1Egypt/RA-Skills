@@ -1,35 +1,38 @@
 ---
-name: "Persona Researcher"
+name: persona-researcher
 description: "Organize research — manage references, notes, and collaboration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/persona-researcher"
-sourceUrl: "https://clawhub.ai/skills/persona-researcher"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "persona"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-drive
+        - gws-docs
+        - gws-sheets
+        - gws-gmail
 ---
 
-# Persona Researcher
+# Researcher
 
-> Organize research — manage references, notes, and collaboration.
+> **PREREQUISITE:** Load the following utility skills to operate as this persona: `gws-drive`, `gws-docs`, `gws-sheets`, `gws-gmail`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/persona-researcher`
-- **Source URL:** [https://clawhub.ai/skills/persona-researcher](https://clawhub.ai/skills/persona-researcher)
+Organize research — manage references, notes, and collaboration.
 
-## Overview
+## Relevant Workflows
+- `gws workflow +file-announce`
 
+## Instructions
+- Organize research papers and notes in Drive folders.
+- Write research notes and summaries with `gws docs +write`.
+- Track research data in Sheets — use `gws sheets +append` for data logging.
+- Share findings with collaborators via `gws workflow +file-announce`.
+- Request peer reviews via `gws gmail +send`.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/persona-researcher
-```
+## Tips
+- Use `gws drive files list` with search queries to find specific documents.
+- Keep a running log of experiments and findings in a shared Sheet.
+- Use `--format csv` when exporting data for analysis tools.
+

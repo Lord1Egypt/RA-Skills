@@ -1,0 +1,27 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="1280" height="720" fill="#F5F5F5"/>
+  
+  <!-- 底部灰色条 -->
+  <rect x="0" y="680" width="1280" height="40" fill="#E0E0E0"/>
+  <text x="80" y="705" font-family="思源黑体, Arial, sans-serif" font-size="14" fill="#666666">{{COPYRIGHT}}</text>
+  <text x="1200" y="705" font-family="思源黑体, Arial, sans-serif" font-size="14" fill="#666666" text-anchor="end">{{LOGO}}</text>
+  
+  <!-- 左上角红色竖条 -->
+  <rect x="0" y="0" width="5" height="50" fill="#D9001B"/>
+  
+  <!-- 页面标题 -->
+  <text x="80" y="105" font-family="思源黑体, Arial, sans-serif" font-size="32" font-weight="bold" fill="#333333">{{PAGE_TITLE}}</text>
+  
+  <!-- 左侧图片占位符 -->
+  <rect x="80" y="180" width="400" height="350" fill="#CCCCCC"/>
+  <text x="280" y="355" font-family="思源黑体, Arial, sans-serif" font-size="20" fill="#FFFFFF" text-anchor="middle">图片占位符</text>
+  
+  <!-- 右侧文本内容 -->
+  <text x="520" y="220" font-family="思源黑体, Arial, sans-serif" font-size="22" font-weight="bold" fill="#333333">{{CONTENT_TITLE}}</text>
+  <text x="520" y="260" font-family="思源黑体, Arial, sans-serif" font-size="18" fill="#666666">
+    <tspan x="520" dy="0">{{CONTENT_BODY}}</tspan>
+    <tspan x="520" dy="25">这是内容页的示例文本，用于展示模板的布局和样式。</tspan>
+    <tspan x="520" dy="25">您可以根据需要替换为实际内容。</tspan>
+  </text>
+</svg>

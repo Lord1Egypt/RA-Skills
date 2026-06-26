@@ -1,35 +1,200 @@
 ---
-name: "paper-innov-compare"
-description: "多篇科研论文创新点对比与交叉研究方向挖掘。当用户需要对一个文件夹内的多篇论文进行批量总结、逐篇对比、挖掘可结合的创新研究方向时使用此skill。触发场景："对比这些论文"、"分析这些论文的创新点"、"多篇论文对比"、"找找这些论文可以结合的点"、"论文横向对比"、"compare these papers"、"c..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/paper-innov-compare-skill"
-sourceUrl: "https://clawhub.ai/skills/paper-innov-compare-skill"
+name: paper-innov-compare
+description: 多篇科研论文创新点对比与交叉研究方向挖掘。当用户需要对一个文件夹内的多篇论文进行批量总结、逐篇对比、挖掘可结合的创新研究方向时使用此skill。触发场景："对比这些论文"、"分析这些论文的创新点"、"多篇论文对比"、"找找这些论文可以结合的点"、"论文横向对比"、"compare these papers"、"cross-paper analysis"。文件夹内论文数量不超过20篇。
 ---
 
-# paper-innov-compare
+# 多篇论文创新点对比与交叉研究
 
-> 多篇科研论文创新点对比与交叉研究方向挖掘。当用户需要对一个文件夹内的多篇论文进行批量总结、逐篇对比、挖掘可结合的创新研究方向时使用此skill。触发场景："对比这些论文"、"分析这些论文的创新点"、"多篇论文对比"、"找找这些论文可以结合的点"、"论文横向对比"、"compare these papers"、"c...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/paper-innov-compare-skill`
-- **Source URL:** [https://clawhub.ai/skills/paper-innov-compare-skill](https://clawhub.ai/skills/paper-innov-compare-skill)
+此 skill 对文件夹内多篇科研论文（≤20 篇）进行系统性分析：逐篇总结创新点，与已读论文对比，发现相似处时深度挖掘可结合的创新研究方向，最终生成一份综合对比报告（.docx）。
 
-## Overview
+## 工作流程
 
+### 第零步：环境准备
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/paper-innov-compare-skill
+1. 确认 python-docx 已安装：`pip install python-docx`
+
+### 第一步：扫描文件夹
+
+1. 询问用户论文所在文件夹路径（如果用户未提供）
+2. 使用 Bash 列出文件夹内所有 PDF 和 DOCX 文件：
+   ```
+   ls "<folder_path>"/*.pdf "<folder_path>"/*.docx 2>/dev/null
+   ```
+3. **数量检查**：如果文件数量 > 20，提示用户该 skill 最多支持 20 篇，请用户选择最重要的 20 篇
+4. 将文件列表保存到 `<folder_path>/paper_list.json`，格式如下：
+   ```json
+   {
+     "folder": "<folder_path>",
+     "total": 5,
+     "files": [
+       {"filename": "paper1.pdf", "status": "pending"},
+       {"filename": "paper2.docx", "status": "pending"}
+     ]
+   }
+   ```
+
+### 第二步：逐篇处理与对比（核心流程）
+
+按以下循环处理每篇论文，直到所有论文处理完毕：
+
+#### 2.1 选取未读论文
+从 `paper_list.json` 中找第一篇 `status: "pending"` 的文件。
+
+#### 2.2 调用单篇总结 Skill 进行总结
+使用 Skill 工具调用 `paper-innov-summary`，对当前论文进行分层总结，生成该论文的 `_summary.docx` 文件。
+
+**效率提醒**：单篇总结时遵循"读关键章节"原则——提取前2-3页（标题+摘要+引言）和最后1-2页（结论），中间方法和实验部分按需提取。禁止逐页全量输出。不做无用功。
+
+#### 2.3 保存摘要数据
+读取刚生成的 `_summary.docx`（或从 Skill A 调用返回的结果中提取），将摘要信息追加保存到 `paper_list.json` 中该论文的条目下：
+```json
+{
+  "filename": "paper1.pdf",
+  "status": "summarized",
+  "summary": {
+    "title": "...",
+    "core_contribution": "...",
+    "innovations": ["...", "..."],
+    "method": "..."
+  }
+}
 ```
+
+#### 2.4 与已读论文对比（仅当已读论文数 ≥ 1 时）
+
+将当前论文的摘要与 `paper_list.json` 中所有 `status: "summarized"` 的论文进行对比分析，重点关注以下维度：
+
+1. **研究问题相似度**：是否试图解决同一类问题？
+2. **方法相似度**：是否使用了相同或相关的技术路线？
+3. **数据集重叠**：是否使用了相同的数据集或评测基准？
+4. **互补性**：一篇论文的方法是否可以弥补另一篇的不足？
+5. **矛盾点**：两篇论文的结论是否存在不一致之处？
+
+对比结果以简洁的文字记录，用于后续深度分析判断。
+
+#### 2.5 深度对比分析（发现相似/互补时触发）
+
+当对比发现两篇论文存在有意义的相似性或互补性时，执行以下深度分析：
+
+##### 2.5.1 定向重读（优先读取方法与讨论部分）
+
+深度对比的核心信息集中在论文的**方法/模型**和**讨论/结论**部分。为节省 token 并聚焦关键内容，采用分层读取策略：
+
+**第一层（必读）：方法与讨论部分**
+- 使用 Read 工具重新打开论文，快速定位到以下章节：
+  - **Method / Approach / Model / 方法 / 模型** 章节
+  - **Discussion / Conclusion / 讨论 / 结论** 章节
+  - **Experiment Setup** 中的关键配置信息（数据集、评估指标、对比基线）
+- 如果论文章节标题不明确（如某些 PDF 无清晰书签），阅读论文的后半部分（通常方法在中间，讨论在末尾），通过关键词搜索定位
+
+**第二层（按需补充）：**
+- 如果方法部分引用了 Introduction 或 Related Work 中定义的核心概念，回读相关段落
+- 如果讨论部分的结论依赖特定的实验结果表格，回读实验部分的对应数据
+- 一般无需重新阅读完整的 Introduction 和 Related Work
+
+> 原则：**以方法细节和讨论结论为锚点，按需回溯，避免全文重读。**
+
+##### 2.5.2 方向级分析（宏观层面）
+
+基于重读内容，分析以下维度：
+- 两篇论文所属的研究方向/子领域
+- 该方向当前的整体发展趋势
+- 两篇论文在该方向中的定位（开创性/改进性/应用性）
+
+##### 2.5.3 方法级分析（微观层面）
+
+深入到技术细节：
+- 具体哪些技术组件可以结合
+- 结合后的潜在优势是什么
+- 结合可能面临的挑战
+- 给出一个具体的混合方案构想
+
+##### 2.5.4 保存分析结果
+
+将深度分析结果保存到 `paper_list.json` 中：
+   ```json
+   {
+     "cross_analyses": [
+       {
+         "pair": ["paper1.pdf", "paper2.pdf"],
+         "similarity_type": "方法相似",
+         "direction_analysis": "...",
+         "method_analysis": "...",
+         "combined_idea": "..."
+       }
+     ]
+   }
+   ```
+
+#### 2.6 更新状态
+将该论文在 `paper_list.json` 中的状态更新为 `summarized`，然后回到 2.1 继续处理下一篇。
+
+### 第三步：生成最终综合报告
+
+所有论文处理完毕后，使用 `python scripts/create_compare_docx.py` 生成综合对比报告。
+
+将 `paper_list.json` 和所有交叉分析数据整理为 JSON 输入，通过 stdin 传给脚本。JSON 结构参见脚本文件头部的注释。
+
+**报告结构：**
+
+```
+# 多篇论文创新点对比分析报告
+
+## 概览
+（论文总数、研究主题分布、时间跨度等宏观信息）
+
+## 各论文创新点总结
+（每篇论文的分层总结 —— 来自 Skill A 的输出）
+
+## 交叉对比分析
+### 相似研究方向
+（按相似度分组，列出每组论文的异同）
+
+### 可结合的创新方向
+（每个方向包含：
+  - 方向级分析：研究趋势、结合的必要性
+  - 方法级分析：具体技术结合方案
+  - 潜在创新点：可以进一步研究的切入点）
+
+## 总结与建议
+（最具潜力的 2-3 个交叉研究方向推荐）
+```
+
+**输出文件命名**：`comparison_report.docx`，保存在论文所在文件夹内。
+
+### 第四步：向用户汇报
+
+生成报告后，向用户简要汇报：
+- 总共处理了多少篇论文
+- 发现了多少组相似/互补关系
+- 给出了多少个潜在创新研究方向
+- 报告文件路径
+
+## 重要原则
+
+- **进度不可丢失**：每处理完一篇论文立即更新 `paper_list.json`，确保中断后可以续传
+- **对比要有深度**：不要停留在表面相似度判断，要深入到方法层面思考结合可能性
+- **尊重论文边界**：提出的结合方案应标注置信度——哪些是论文直接支持的，哪些是推测的
+- **定向重读**：深度对比时优先重读方法和讨论章节（方法细节 + 结论分析是交叉创新点的核心来源），按需回溯其他章节，避免全文重读造成 token 浪费
+- **使用中文输出**：报告和对话均使用中文，技术术语保留英文
+- **禁止啰嗦**：所有 Bash 命令和 Python 脚本直接执行，不需要用户确认；汇报总结要简洁，不逐页输出论文原文；用户说了"继续"就直接执行下一步
+
+## 文件清单
+
+- `paper_list.json`：进度追踪和中间数据存储（位于论文文件夹内）
+- `comparison_report.docx`：最终综合报告（位于论文文件夹内）
+- `scripts/create_compare_docx.py`：生成综合报告的脚本
+
+## 依赖
+
+- Python 3.x
+- python-docx 库：`pip install python-docx`
+- 依赖 Skill: `paper-innov-summary`（用于单篇论文总结）
+
+## 自我进化机制
+每次执行完本 Skill 后：
+1. 评估输出是否达成目标（pass / fail）
+2. fail 时反思失败原因，在 diary/YYYY-MM-DD.md 追加「失败案例 + 修复建议」
+3. 某条修复建议在最近 3 次执行中被反复提及时，提炼为正式规则，提交 PR 修改本 SKILL.md

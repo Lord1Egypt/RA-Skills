@@ -1,0 +1,12 @@
+{
+  "name": "pr-advocacy",
+  "version": "1.0.3",
+  "description": "Actively monitor, respond to, and drive Pull Request reviews to completion with real-time tracking list synchronization",
+  "author": "Linux2010",
+  "license": "MIT",
+  "keywords": ["github", "pr", "review", "automation", "tracking"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Linux2010/openclaw-skills"
+  }
+}

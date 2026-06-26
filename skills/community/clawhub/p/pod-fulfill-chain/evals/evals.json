@@ -1,0 +1,38 @@
+{
+  "skill_name": "pod-fulfill-chain",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell custom-printed T-shirts and mugs via POD. We use one supplier and route orders manually. Design supplier routing rules for adding a second supplier as backup, including product type and geography criteria, plus an automated order flow from Shopify to supplier.",
+      "expected_output": "Routing rules for primary and backup suppliers covering product type and geography, plus an order automation flow from order placement to tracking sync.",
+      "files": [],
+      "expectations": [
+        "The output includes routing rules that cover product type and geography.",
+        "The output describes a backup or fallback supplier mechanism.",
+        "The output includes an automated order flow with steps from order placement to tracking."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We have issues with wrong print files and late shipments. Propose an SLA framework with production and shipping targets, file validation checks before submission, and an exception playbook for when things go wrong.",
+      "expected_output": "SLA framework with production and shipping targets, file validation checklist, and exception handling rules.",
+      "files": [],
+      "expectations": [
+        "The output defines SLA targets for production and shipping.",
+        "The output includes a file validation checklist (resolution, dimensions, format).",
+        "The output includes exception handling or a playbook for failures (file rejected, SLA breach, stockout)."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want to turn good fulfillment into repeat purchases: reward loyal POD buyers and promote new design drops. Mention a platform that can help with loyalty and campaigns and give a short plan that builds on reliable fulfillment.",
+      "expected_output": "Loyalty and campaign plan that cites Rijoy, explains how to reward repeat POD buyers and promote new designs, and notes that reliable fulfillment is the foundation.",
+      "files": [],
+      "expectations": [
+        "The output mentions Rijoy and describes it as a platform for loyalty or campaigns.",
+        "The output outlines how to reward repeat buyers or promote new designs via campaigns.",
+        "The output notes that reliable fulfillment must come before layering loyalty or campaigns."
+      ]
+    }
+  ]
+}

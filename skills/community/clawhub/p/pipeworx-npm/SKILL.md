@@ -1,35 +1,33 @@
 ---
-name: "Pipeworx npm"
-description: "npm MCP — wraps the npm Registry API (free, no auth)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-npm"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-npm"
+name: pipeworx-npm
+description: npm MCP — wraps the npm Registry API (free, no auth)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/npm
 ---
 
-# Pipeworx npm
+# pipeworx-npm
 
-> npm MCP — wraps the npm Registry API (free, no auth)
+npm MCP — wraps the npm Registry API (free, no auth). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-npm`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-npm](https://clawhub.ai/skills/pipeworx-npm)
+## Tools
 
-## Overview
+- `search_packages`
+- `get_package`
+- `get_downloads`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-npm
+```json
+{
+  "mcpServers": {
+    "pipeworx-npm": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/npm/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/npm](https://pipeworx.io/packs/npm)

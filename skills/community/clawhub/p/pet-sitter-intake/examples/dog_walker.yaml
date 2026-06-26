@@ -1,0 +1,20 @@
+# Example config for a dog walking service
+# Usage: python scripts/generate_form.py --config examples/dog_walker.yaml
+
+business_name: "Urban Paws Dog Walking"
+sitter_name: "Alex Rivera"
+services: "Dog Walking, Potty Breaks, Park Visits"
+location: "Chicago, IL"
+contact: "alex@urbanpaws.dog | (312) 555-WALK"
+
+# Form settings
+service_type: walking         # Adds leash behavior, route preferences, duration
+num_pets: 1
+fillable: true
+include_home_access: true     # Need key/code access for pickups
+
+# Output
+output: "screenshots/urban_paws_intake.pdf"
+
+# Branding
+theme: ocean                  # Calming blue tones

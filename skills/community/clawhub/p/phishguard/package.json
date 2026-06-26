@@ -1,0 +1,12 @@
+{
+  "name": "phishguard",
+  "version": "1.0.0",
+  "description": "Phishing detection skill for OpenClaw — monitors Gmail/Outlook with AI analysis",
+  "type": "module",
+  "main": "phishguard.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": ["phishing", "security", "email", "gmail", "openclaw", "skill"],
+  "license": "MIT"
+}

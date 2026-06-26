@@ -1,0 +1,10 @@
+{
+  "id": "pattern-miner",
+  "name": "Pattern Miner",
+  "version": "2.0.1",
+  "author": "harrylabsj",
+  "description": "Discover patterns in your own data files with local analysis. No external APIs, no system file access, only reads files you explicitly specify.",
+  "status": "stable",
+  "tags": ["data-analysis", "pattern-recognition", "local-only", "privacy"],
+  "workspace": "pattern-miner"
+}

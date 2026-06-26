@@ -1,0 +1,35 @@
+{
+  "jobs": [
+    {
+      "id": "__JOB_ID__",
+      "agentId": "main",
+      "name": "PolySports NBA Daily Opportunity Scan",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 23 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "执行一次真正的 PolySports NBA 每日交易机会扫描（不是空跑说明，不是只复述规则）。\n\n固定要求：\n1. 首先强制 read `polysports-trading-agent` 的 SKILL.md。\n2. 然后读取：\n   - `references/skills-api.md`\n   - `references/trading-playbook.md`\n   - `references/monitoring-rules.md`\n3. 真实检查：交易余额、当前持仓、授权状态、今日/明日可交易 NBA 市场。\n4. 先拉市场列表，再对候选市场逐个拉 `/skills/v1/markets/{market_id}` 详情；不能只看列表。\n5. 分析必须综合：ML 预测、`odds_compare`、PolySports 当前定价、近期球队数据、必要时的网络查询，以及可得的 smart money 等详情字段。\n6. 目标是赚钱，不是保持活跃。没有可执行优势就不要下单。\n7. 单笔金额必须使用任务参数 `__POSITION_SIZE_USDC__`，不要自作主张改仓位；若余额不足该额度，则停止新增仓位。\n8. 若下单成交并形成持仓，必须立即创建独立的两段式赛中监控；监控时重点看比赛内容、关键事件、市场价格与持仓盈亏，必要时补充网络检索。\n9. 不要使用 skills 自带 auto-exit；若需要离场，用标准下单端点手动 `SELL`。\n10. 禁止重复下单：如果同一 `market_id` / `outcome` 已持有，或今天已做过同方向，不要重复再下。\n11. 每笔 PolySports 交易在平仓或赎回后，都必须做赛后复盘并回报结果。\n12. 输出必须使用中文；无论下单、不下单还是失败，都必须明确汇报，不允许静默。\n\n执行本任务时涉及的占位符：\n- PolySports API Key: __POLYSPORTS_API_KEY__\n- Telegram target: telegram:__TELEGRAM_CHAT_ID__\n- 所有 PolySports 请求都必须显式带 `X-PolySports-Api-Key`、`X-PolySports-Skill: polysports-trading-agent`、`X-PolySports-Client: chatgpt`\n- 不要把 `/skills/v1/*` 请求发到 `https://polysports.vip`，默认 API host 是 `https://api.polysports.vip`。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:__TELEGRAM_CHAT_ID__",
+        "accountId": "default",
+        "bestEffort": false
+      },
+      "deleteAfterRun": false,
+      "state": {}
+    }
+  ],
+  "total": 1,
+  "offset": 0,
+  "limit": 1,
+  "hasMore": false,
+  "nextOffset": null
+}

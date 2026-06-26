@@ -1,0 +1,24 @@
+name: playwright-scraper-skill
+version: 1.0.0
+description: 基于Playwright的网页抓取技能，支持反爬虫保护绕过，适用于复杂网站抓取。
+author: clawd
+homepage: https://clawhub.com/skills/playwright-scraper-skill
+
+triggers:
+  - 网页抓取
+  - 爬虫
+  - 网页采集
+  - web scraping
+  - scraper
+
+features:
+  - 反爬虫保护绕过
+  - 复杂网站抓取
+  - 动态页面处理
+  - 截图和PDF生成
+  - 自动化交互
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

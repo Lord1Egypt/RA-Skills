@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ossify - 首次使用配置</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #ffffff; color: #1f2937; line-height: 1.6;
+    }
+    .container {
+      max-width: 750px; margin: 0 auto; padding: 40px 24px 80px;
+    }
+    .header { text-align: center; margin-bottom: 40px; }
+    .header .logo { font-size: 32px; font-weight: 700; color: #3b82f6; margin-bottom: 4px; }
+    .header .subtitle { font-size: 16px; color: #6b7280; }
+
+    .progress { display: flex; justify-content: center; gap: 0; margin-bottom: 36px; flex-wrap: wrap; }
+    .step-indicator { display: flex; align-items: center; gap: 4px; padding: 0 6px; }
+    .step-circle {
+      width: 24px; height: 24px; border-radius: 50%; border: 2px solid #d1d5db;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 600; color: #9ca3af; transition: all 0.3s ease;
+    }
+    .step-circle.completed { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+    .step-circle.current { border-color: #3b82f6; color: #3b82f6; }
+    .step-label { font-size: 12px; color: #9ca3af; white-space: nowrap; }
+    .step-label.completed { color: #3b82f6; }
+    .step-label.current { color: #3b82f6; font-weight: 600; }
+    .step-connector { width: 12px; height: 2px; background: #e5e7eb; margin-top: 11px; }
+    .step-connector.completed { background: #3b82f6; }
+
+    .step-content { display: none; }
+    .step-content.active { display: block; }
+    .step-title { font-size: 24px; font-weight: 700; margin-bottom: 20px; }
+    .step-text { font-size: 15px; line-height: 1.8; color: #374151; margin-bottom: 20px; }
+
+    .screenshot { max-width: 100%; margin-bottom: 20px; }
+    .screenshot img {
+      max-width: 100%; border-radius: 8px; border: 1px solid #e5e7eb;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08); display: block;
+    }
+    .screenshot .caption { text-align: center; font-size: 13px; color: #9ca3af; margin-top: 6px; }
+
+    .action-btn {
+      display: inline-block; padding: 10px 20px; border: 2px solid #3b82f6;
+      color: #3b82f6; background: transparent; border-radius: 8px;
+      font-size: 16px; font-weight: 500; text-decoration: none; cursor: pointer;
+      transition: all 0.2s ease; margin-bottom: 24px;
+    }
+    .action-btn:hover { background: #3b82f6; color: #ffffff; }
+
+    .sub-steps { list-style: none; padding: 0; margin-bottom: 20px; }
+    .sub-steps li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; font-size: 15px; line-height: 1.6; color: #374151; }
+    .sub-steps li .step-num {
+      flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
+      background: #3b82f6; color: #fff; display: flex; align-items: center;
+      justify-content: center; font-size: 13px; font-weight: 600; margin-top: 2px;
+    }
+    .sub-steps li strong { color: #1f2937; }
+    .sub-steps li code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #4b5563; }
+
+    .step-screenshot-row { margin-bottom: 20px; }
+    .step-screenshot-row .screenshot img { max-height: 400px; object-fit: contain; }
+
+    .warning-box {
+      background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px;
+      padding: 12px 16px; margin-bottom: 20px; font-size: 14px; color: #92400e;
+    }
+    .warning-box strong { color: #78350f; }
+
+    .terminal-area {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; min-height: 180px; background: #1f2937; border-radius: 8px;
+      margin-bottom: 24px; padding: 24px; flex-direction: column; gap: 12px;
+    }
+    .terminal-area svg { width: 48px; height: 48px; stroke: #9ca3af; }
+    .terminal-area .terminal-text {
+      color: #9ca3af; font-family: "SF Mono","Fira Code","Cascadia Code",monospace; font-size: 14px; text-align: center;
+    }
+    .terminal-area .terminal-text .prompt { color: #3b82f6; }
+    .terminal-area .terminal-text .cursor {
+      display: inline-block; width: 8px; height: 16px; background: #9ca3af;
+      animation: blink 1s step-end infinite; vertical-align: text-bottom;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .nav-fixed-wrapper {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 830px; max-width: calc(100vw - 32px);
+      display: flex; justify-content: space-between; pointer-events: none; z-index: 1000;
+    }
+    .nav-btn {
+      pointer-events: auto; width: 44px; height: 44px; border-radius: 50%;
+      font-size: 0; cursor: pointer; border: none; transition: all 0.25s ease;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.6); backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px); box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .nav-btn:hover { background: rgba(255,255,255,0.85); box-shadow: 0 4px 12px rgba(0,0,0,0.15); transform: scale(1.08); }
+    .nav-btn:active { transform: scale(0.95); }
+    .nav-btn.prev svg { stroke: #9ca3af; }
+    .nav-btn.next svg { stroke: #3b82f6; }
+    .nav-btn.hidden { opacity: 0; pointer-events: none; transform: scale(0.8); }
+    .nav-btn svg { width: 22px; height: 22px; }
+
+    @media (max-width: 600px) {
+      .container { padding: 24px 16px 40px; }
+      .step-title { font-size: 20px; }
+      .progress .step-label { display: none; }
+      .nav-fixed-wrapper { width: calc(100vw - 32px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">ossify</div>
+      <div class="subtitle">首次使用配置</div>
+    </div>
+
+    <div class="progress">
+      <div class="step-indicator"><div class="step-circle current" data-step="0">1</div><span class="step-label current">登录</span></div>
+      <div class="step-connector" data-after="0"></div>
+      <div class="step-indicator"><div class="step-circle" data-step="1">2</div><span class="step-label">开通OSS</span></div>
+      <div class="step-connector" data-after="1"></div>
+      <div class="step-indicator"><div class="step-circle" data-step="2">3</div><span class="step-label">买域名</span></div>
+      <div class="step-connector" data-after="2"></div>
+      <div class="step-indicator"><div class="step-circle" data-step="3">4</div><span class="step-label">创建用户</span></div>
+      <div class="step-connector" data-after="3"></div>
+      <div class="step-indicator"><div class="step-circle" data-step="4">5</div><span class="step-label">授权</span></div>
+      <div class="step-connector" data-after="4"></div>
+      <div class="step-indicator"><div class="step-circle" data-step="5">6</div><span class="step-label">完成</span></div>
+    </div>
+
+    <!-- Step 1: Login -->
+    <div class="step-content active" data-step="0">
+      <h2 class="step-title">注册/登录阿里云</h2>
+      <div class="screenshot"><img src="screenshots/01-login.png" alt="阿里云登录页"></div>
+      <p class="step-text">点击下方按钮打开阿里云官网，注册一个新账号或使用已有账号登录。</p>
+      <a href="https://www.aliyun.com/" target="_blank" rel="noopener noreferrer" class="action-btn">打开阿里云 &rarr;</a>
+    </div>
+
+    <!-- Step 2: Enable OSS -->
+    <div class="step-content" data-step="1">
+      <h2 class="step-title">开通 OSS 服务</h2>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">1</span><span>打开 <a href="https://oss.console.aliyun.com/" target="_blank">OSS 控制台</a>，如果是首次使用，会提示未开通，点击「立即开通」</span></li>
+        </ol>
+        <div class="screenshot">
+          <img src="screenshots/02-oss-console.png" alt="OSS 控制台">
+          <div class="caption">OSS 管理控制台（已开通状态）</div>
+        </div>
+      </div>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">2</span><span>确认订单，费用 ¥0.00（按量付费，开通免费），点击确认支付</span></li>
+        </ol>
+        <div class="screenshot">
+          <img src="screenshots/02-oss-confirm-pay.png" alt="确认支付">
+          <div class="caption">确认开通，费用为 ¥0.00</div>
+        </div>
+      </div>
+
+      <p class="step-text">OSS 按量付费，部署一个小网站每月费用约 ¥1-3，几乎可以忽略。</p>
+    </div>
+
+    <!-- Step 3: Buy Domain -->
+    <div class="step-content" data-step="2">
+      <h2 class="step-title">购买域名</h2>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">1</span><span>打开阿里云 <a href="https://wanwang.aliyun.com/domain/" target="_blank">域名注册页</a>，搜索你想要的域名</span></li>
+        </ol>
+        <div class="screenshot">
+          <img src="screenshots/07-domain-home.png" alt="域名首页">
+          <div class="caption">阿里云域名注册首页</div>
+        </div>
+      </div>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">2</span><span>输入想要的域名（如 tatadi.top），点击搜索查看是否可注册</span></li>
+        </ol>
+        <div class="screenshot">
+          <img src="screenshots/08-domain-search.png" alt="搜索域名">
+          <div class="caption">搜索域名是否可注册</div>
+        </div>
+      </div>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">3</span><span>选择可用的域名，加入购物车</span></li>
+        </ol>
+        <div class="screenshot">
+          <img src="screenshots/08-domain-search2.png" alt="选择域名">
+          <div class="caption">找到可用域名，加入购物车</div>
+        </div>
+      </div>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">4</span><span>填写域名信息，确认购买</span></li>
+        </ol>
+        <div class="screenshot">
+          <img src="screenshots/09-domain-buy.png" alt="确认购买">
+          <div class="caption">填写域名信息并确认购买</div>
+        </div>
+      </div>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">5</span><span>完成支付</span></li>
+        </ol>
+        <div class="screenshot">
+          <img src="screenshots/09-domain-buy2.png" alt="支付">
+          <div class="caption">完成支付</div>
+        </div>
+      </div>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">6</span><span>购买成功！可以在域名管理列表中看到你的域名</span></li>
+        </ol>
+        <div class="screenshot">
+          <img src="screenshots/11-domain-list.png" alt="域名列表">
+          <div class="caption">域名购买成功</div>
+        </div>
+      </div>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">7</span><span>购买后需要完成<strong>域名实名认证</strong>（上传身份证/营业执照），审核通常 1-3 个工作日</span></li>
+        </ol>
+        <div class="screenshot">
+          <img src="screenshots/12-domain-reel.png" alt="域名实名认证">
+          <div class="caption">完成域名实名认证</div>
+        </div>
+      </div>
+
+      <p class="step-text">.top 域名首年约 ¥6，非常便宜。购买后需完成实名认证才能正常使用。</p>
+    </div>
+
+    <!-- Step 4: Create RAM User + Get AccessKey -->
+    <div class="step-content" data-step="3">
+      <h2 class="step-title">创建 RAM 用户并获取 AccessKey</h2>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">1</span><span>打开 <a href="https://ram.console.aliyun.com/users" target="_blank">RAM 控制台</a> &rarr; 用户 &rarr; 创建用户</span></li>
+        </ol>
+        <div class="screenshot">
+          <img src="screenshots/03-ram-users.png" alt="RAM 用户列表">
+          <div class="caption">点击「创建用户」按钮</div>
+        </div>
+      </div>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">2</span><span>填写<strong>登录名称</strong>（如 ossify），勾选「使用永久 AccessKey 访问」</span></li>
+        </ol>
+        <div class="screenshot">
+          <img src="screenshots/04-ram-create-form-filled.png" alt="填写表单">
+          <div class="caption">填写用户名并勾选 AccessKey</div>
+        </div>
+      </div>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">3</span><span>勾选确认，点击「确定」，完成安全验证（手机/扫脸）</span></li>
+        </ol>
+        <div class="screenshot">
+          <img src="screenshots/04-ram-create-confirmed.png" alt="确认创建">
+          <div class="caption">勾选确认并点击「确定」</div>
+        </div>
+      </div>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">4</span><span><strong>立即复制保存 AccessKey ID 和 Secret！</strong>Secret 仅显示一次。</span></li>
+        </ol>
+        <div class="warning-box"><strong>重要：</strong>AccessKey Secret 只在创建时显示一次！请立即复制保存。</div>
+        <div class="screenshot">
+          <img src="screenshots/06-accesskey.png" alt="AccessKey">
+          <div class="caption">立即复制 AccessKey ID 和 Secret</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5: Grant Permissions -->
+    <div class="step-content" data-step="4">
+      <h2 class="step-title">为 RAM 用户添加权限</h2>
+      <p class="step-text">勾选刚创建的用户，点击「新增授权」，依次添加三个权限策略：</p>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">1</span><span>在列表中找到并勾选 <code>AliyunOSSFullAccess</code></span></li>
+        </ol>
+        <div class="screenshot"><img src="screenshots/05-permission-oss.png" alt="OSS 权限"><div class="caption">勾选 AliyunOSSFullAccess</div></div>
+      </div>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">2</span><span>搜索 <code>AliyunDNS</code>，勾选 <code>AliyunDNSFullAccess</code></span></li>
+        </ol>
+        <div class="screenshot"><img src="screenshots/05-permission-search-dns.png" alt="DNS 权限"><div class="caption">搜索并勾选 AliyunDNSFullAccess</div></div>
+      </div>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">3</span><span>搜索 <code>AliyunCDN</code>，勾选 <code>AliyunCDNFullAccess</code></span></li>
+        </ol>
+        <div class="screenshot"><img src="screenshots/05-permission-search-cdn.png" alt="CDN 权限"><div class="caption">搜索并勾选 AliyunCDNFullAccess</div></div>
+      </div>
+
+      <div class="step-screenshot-row">
+        <ol class="sub-steps">
+          <li><span class="step-num">4</span><span>确认已选 3 个权限，点击「确认新增授权」</span></li>
+        </ol>
+        <div class="screenshot"><img src="screenshots/05-permission-all-selected.png" alt="全选"><div class="caption">确认 3 个权限已选，点击确认</div></div>
+      </div>
+
+      <div class="step-screenshot-row">
+        <div class="screenshot"><img src="screenshots/05-permission-done.png" alt="授权成功"><div class="caption">授权成功！3/3 权限绑定完成</div></div>
+      </div>
+    </div>
+
+    <!-- Step 6: Back to Terminal -->
+    <div class="step-content" data-step="5">
+      <h2 class="step-title">回到终端粘贴凭证</h2>
+      <div class="terminal-area">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
+        </svg>
+        <div class="terminal-text">
+          <span class="prompt">$</span> ossify config<br>
+          AccessKey ID: <span class="cursor"></span>
+        </div>
+      </div>
+      <p class="step-text">现在回到 Claude Code 终端，将 AccessKey ID 和 AccessKey Secret 粘贴到终端中。</p>
+      <p class="step-text">你的 AccessKey 只保存在你电脑本地（~/.ossify/auth.json），不会传输到任何外部服务器。</p>
+    </div>
+
+  </div>
+
+  <div class="nav-fixed-wrapper">
+    <button class="nav-btn prev hidden" id="prevBtn" onclick="prevStep()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <button class="nav-btn next" id="nextBtn" onclick="nextStep()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+
+  <script>
+    var currentStep = 0;
+    var totalSteps = 6;
+    var steps = document.querySelectorAll('.step-content');
+    var circles = document.querySelectorAll('.progress .step-circle');
+    var labels = document.querySelectorAll('.progress .step-label');
+    var connectors = document.querySelectorAll('.progress .step-connector');
+    var prevBtn = document.getElementById('prevBtn');
+    var nextBtn = document.getElementById('nextBtn');
+
+    function renderStep(n) {
+      for (var i = 0; i < steps.length; i++) steps[i].classList.remove('active');
+      steps[n].classList.add('active');
+      for (var i = 0; i < circles.length; i++) {
+        circles[i].classList.remove('completed', 'current');
+        labels[i].classList.remove('completed', 'current');
+        if (i < n) { circles[i].classList.add('completed'); labels[i].classList.add('completed'); }
+        else if (i === n) { circles[i].classList.add('current'); labels[i].classList.add('current'); }
+      }
+      for (var i = 0; i < connectors.length; i++) {
+        connectors[i].classList.remove('completed');
+        if (i < n) connectors[i].classList.add('completed');
+      }
+      if (n === 0) prevBtn.classList.add('hidden'); else prevBtn.classList.remove('hidden');
+      if (n === totalSteps - 1) nextBtn.classList.add('hidden'); else nextBtn.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function nextStep() { if (currentStep < totalSteps - 1) { currentStep++; renderStep(currentStep); } }
+    function prevStep() { if (currentStep > 0) { currentStep--; renderStep(currentStep); } }
+  </script>
+</body>
+</html>

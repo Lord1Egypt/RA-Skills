@@ -1,0 +1,4 @@
+# Core monitoring uses only Python standard library (urllib, json, smtplib).
+# py-clob-client is optional — required only for open order monitoring.
+
+py-clob-client>=0.34

@@ -1,0 +1,55 @@
+{
+  "name": "predictfun-mcp",
+  "version": "0.5.0",
+  "description": "MCP server for Predict.fun prediction market data on BNB Chain — supports stdio and SSE transports",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "predict-fun",
+    "prediction-market",
+    "polymarket",
+    "subgraph",
+    "the-graph",
+    "graphql",
+    "bnb-chain",
+    "bsc",
+    "defi",
+    "web3",
+    "ai-agent",
+    "claude",
+    "llm",
+    "openclaw",
+    "sse"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PaulieB14/predictfun-subgraphs",
+    "directory": "mcp-server"
+  },
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "predictfun-mcp": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "start:http": "node dist/index.js --http",
+    "start:http-only": "node dist/index.js --http-only",
+    "dev": "tsc && node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}

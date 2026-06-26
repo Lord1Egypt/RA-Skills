@@ -1,0 +1,108 @@
+{
+  "emoji": "\ud83d\udd2b\ud83c\udfaf",
+  "requires": {
+    "env": [
+      "SIMMER_API_KEY"
+    ],
+    "pip": [
+      "simmer-sdk"
+    ]
+  },
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "trader.py"
+  },
+  "tunables": [
+    {
+      "env": "SIMMER_MAX_POSITION",
+      "type": "number",
+      "default": 10,
+      "range": [
+        1,
+        50
+      ],
+      "step": 1,
+      "label": "Max position size USD (micro ceiling)"
+    },
+    {
+      "env": "SIMMER_MIN_TRADE",
+      "type": "number",
+      "default": 2,
+      "range": [
+        1,
+        20
+      ],
+      "step": 1,
+      "label": "Min trade size USD (floor)"
+    },
+    {
+      "env": "SIMMER_MAX_SPREAD",
+      "type": "number",
+      "default": 0.08,
+      "range": [
+        0.01,
+        0.1
+      ],
+      "step": 0.01,
+      "label": "Max bid-ask spread (8% = sniper mode)"
+    },
+    {
+      "env": "SIMMER_MAX_POSITIONS",
+      "type": "number",
+      "default": 20,
+      "range": [
+        1,
+        50
+      ],
+      "step": 1,
+      "label": "Max concurrent micro positions"
+    },
+    {
+      "env": "SIMMER_NO_THRESHOLD",
+      "type": "number",
+      "default": 0.8,
+      "range": [
+        0.75,
+        0.99
+      ],
+      "step": 0.01,
+      "label": "Extreme high threshold \u2014 sell NO when p >= this"
+    },
+    {
+      "env": "SIMMER_YES_THRESHOLD",
+      "type": "number",
+      "default": 0.0,
+      "range": [
+        0.0,
+        0.25
+      ],
+      "step": 0.01,
+      "label": "YES longshot threshold (0 = disabled, NO-mode only)"
+    },
+    {
+      "env": "SIMMER_MIN_VOLUME",
+      "type": "number",
+      "default": 500,
+      "range": [
+        0,
+        50000
+      ],
+      "step": 100,
+      "label": "Min market volume USD"
+    },
+    {
+      "env": "SIMMER_MIN_DAYS",
+      "type": "number",
+      "default": 0,
+      "range": [
+        0,
+        30
+      ],
+      "step": 1,
+      "label": "Min days until resolution (0 = allow imminent)"
+    }
+  ],
+  "version": "0.0.2"
+}

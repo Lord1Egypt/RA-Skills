@@ -1,35 +1,164 @@
 ---
-name: "Pc Health Check"
-description: "Windows PC一键健康体检工具。覆盖CPU/内存/磁盘/网络/进程/驱动/系统事件/启动项/端口/安全更新， 自动生成结构化Markdown报告，标注风险等级与处理建议。 触发词：PC体检、电脑巡检、健康检查、系统检查、PC health check。 支持两种模式： - 快速模式（--quick）：5项核..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pc-health-check"
-sourceUrl: "https://clawhub.ai/skills/pc-health-check"
+name: pc-health-check
+version: 1.0.1
+description: |
+  Windows PC一键健康体检工具。覆盖CPU/内存/磁盘/网络/进程/驱动/系统事件/启动项/端口/安全更新，
+  自动生成结构化Markdown报告，标注风险等级与处理建议。
+  
+  触发词：PC体检、电脑巡检、健康检查、系统检查、PC health check。
+  
+  支持两种模式：
+  - 快速模式（--quick）：5项核心检查，10秒内完成
+  - 完整模式（默认）：11项全面体检，约30秒
+  
+  新增 v1.0.1：--save / --silent / --version 支持
+metadata:
+  openclaw:
+    emoji: "🏥"
+    category: "system"
+    author: "OpenClaw Team"
+    license: "MIT"
 ---
 
-# Pc Health Check
+# PC Health Check — Windows电脑一键体检
 
-> Windows PC一键健康体检工具。覆盖CPU/内存/磁盘/网络/进程/驱动/系统事件/启动项/端口/安全更新， 自动生成结构化Markdown报告，标注风险等级与处理建议。 触发词：PC体检、电脑巡检、健康检查、系统检查、PC health check。 支持两种模式： - 快速模式（--quick）：5项核...
+## 功能概览
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pc-health-check`
-- **Source URL:** [https://clawhub.ai/skills/pc-health-check](https://clawhub.ai/skills/pc-health-check)
+| 检查项 | 快速模式 | 完整模式 | 风险判定 |
+|--------|----------|----------|----------|
+| 操作系统信息 | ✅ | ✅ | - |
+| CPU状态 | ✅ | ✅ | >70%警告，>90%错误 |
+| 内存使用 | ✅ | ✅ | >80%警告，>90%错误 |
+| 磁盘空间 | ✅ | ✅ | >80%警告，>90%错误 |
+| 网络连接 | ✅ | ✅ | 断网/高延迟错误 |
+| 高资源进程 | - | ✅ | - |
+| 设备异常 | - | ✅ | 任何Error设备标红 |
+| 系统事件 | - | ✅ | >5个Error事件标红 |
+| 启动项 | - | ✅ | - |
+| 监听端口 | - | ✅ | 高危端口(445/3389等)警告 |
+| 安全更新 | - | ✅ | - |
 
-## Overview
+## 使用方式
 
+对AI说以下任意一句即可触发：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pc-health-check
+- "帮我做一次PC体检"
+- "电脑健康检查"
+- "PC巡检"
+- "检查一下系统状态"
+- "快速体检"（触发快速模式）
+
+## 工作流程
+
 ```
+用户说"PC体检"
+  → Step 1: 调用 scripts/health_check.cjs 执行扫描
+  → Step 2: 脚本返回JSON格式检查结果
+  → Step 3: AI分析结果，标注风险等级
+  → Step 4: 生成Markdown健康报告
+  → Step 5: 如有高风险项，主动给出处理建议
+```
+
+## 报告格式
+
+生成的报告包含以下部分：
+
+```markdown
+# PC健康体检报告
+
+**检查时间**：2026/4/19 18:38:15
+
+## ✅ 总评：良好
+
+| 检查项 | 正常 | 警告 | 错误 |
+|--------|------|------|------|
+| 总计 | 5 | 0 | 0 |
+
+## 系统概况
+- **操作系统**：Microsoft Windows 10 企业版 64位
+- **版本**：10.0.19045 (Build 19045)
+- **运行时间**：0d 6h 26m
+
+### ✅ CPU
+- Intel(R) Core(TM) i5-10400F CPU @ 2.90GHz
+- 6核/12线程 | 负载 17%
+
+### ✅ 内存
+- 总计：34.3 GB
+- 已用：12.5 GB (36%)
+- 可用：21.8 GB
+
+### ✅ 磁盘
+| 分区 | 总容量 | 已用 | 剩余 | 使用率 |
+|------|--------|------|------|--------|
+| ✅ C: | 255.7GB | 114.4GB | 141.3GB | 45% |
+| ... | ... | ... | ... | ... |
+
+## 需要关注的问题
+### 🔴 设备异常
+- PS/2 标准键盘 (错误码: 24)
+- ...
+
+---
+*由 PC Health Check Skill 生成*
+```
+
+## 技术实现
+
+- **语言**：Node.js（零外部依赖）
+- **数据采集**：Windows WMI（通过child_process调用PowerShell命令）
+- **输出格式**：JSON结构化数据 + Markdown报告
+- **编码处理**：强制UTF-8，解决中文乱码问题
+
+## 脚本参数
+
+```bash
+node scripts/health_check.cjs [options]
+
+Options:
+  --quick     快速模式，只检查5项核心指标
+  --report    直接输出Markdown格式报告（默认JSON）
+  --json      输出JSON格式（默认）
+  --save <path>   保存报告到指定路径
+  --silent    静默模式，仅保存文件，不输出到终端
+  --version,-v  输出版本号
+```
+
+## 风险等级说明
+
+| 图标 | 等级 | 含义 | 建议操作 |
+|------|------|------|----------|
+| ✅ | 正常 | 指标健康 | 无需处理 |
+| ⚠️ | 警告 | 接近阈值 | 建议关注，适时优化 |
+| 🔴 | 错误 | 超出阈值或存在异常 | 建议立即处理 |
+
+## 常见问题
+
+**Q: 为什么有些设备显示Error？**
+A: 通常是PS/2虚拟设备或已禁用但未卸载的硬件，不影响实际使用。
+
+**Q: 445端口开放有风险吗？**
+A: 445是SMB文件共享端口，局域网使用正常。如不需要共享，可在防火墙关闭。
+
+**Q: 检查需要管理员权限吗？**
+A: 基础检查不需要，但部分驱动和安全更新信息可能需要。
+
+## 更新日志
+
+### v1.0.1 (2026-04-21)
+- 新增 `--save <path>` 保存报告到文件（cron友好）
+- 新增 `--silent` 静默模式（不输出到终端）
+- 新增 `--version` / `-v` 输出版本号
+- 修复报告渲染：设备警告与设备异常分类显示
+- 修复报告渲染：系统事件图标根据严重程度区分
+
+### v1.0.0 (2026-04-19)
+- 初始版本发布
+- 支持11项全面检查
+- 支持快速/完整两种模式
+- 自动生成Markdown报告
+- 解决PowerShell中文编码问题
+
+## 许可
+
+MIT License

@@ -1,0 +1,45 @@
+{
+  "name": "paperdaily",
+  "displayName": "PaperDaily",
+  "description": "Daily computer science paper recommendations from arXiv",
+  "version": "0.1.0",
+  "author": "PaperDaily Team",
+  "commands": [
+    {
+      "name": "今日文献",
+      "description": "获取今日推荐的计算机论文（使用缓存）",
+      "handler": "getTodayPaper"
+    },
+    {
+      "name": "刷新文献",
+      "description": "强制刷新并获取新的今日推荐论文",
+      "handler": "refreshPaper"
+    }
+  ],
+  "config": {
+    "english_excerpt_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否启用英文摘录（100-150词）"
+    },
+    "default_timezone": {
+      "type": "string",
+      "default": "Asia/Shanghai",
+      "description": "默认时区"
+    },
+    "keywords": {
+      "type": "array",
+      "default": [
+        "machine learning",
+        "deep learning",
+        "neural networks",
+        "transformer",
+        "LLM",
+        "computer vision",
+        "natural language processing",
+        "reinforcement learning"
+      ],
+      "description": "论文筛选关键词"
+    }
+  }
+}

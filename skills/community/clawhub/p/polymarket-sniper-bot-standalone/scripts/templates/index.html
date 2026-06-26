@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polymarket Sniper Dashboard</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
+        .container { max-width: 1200px; margin: auto; }
+        h1 { border-bottom: 2px solid #1e293b; padding-bottom: 10px; color: #38bdf8; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .panel { background: #1e293b; border-radius: 8px; padding: 15px; overflow-x: auto; }
+        h2 { margin-top: 0; font-size: 1.2rem; color: #94a3b8; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th, td { text-align: left; padding: 10px; border-bottom: 1px solid #334155; }
+        th { color: #94a3b8; font-weight: 500; }
+        .side-yes { color: #4ade80; font-weight: bold; }
+        .side-no { color: #f87171; font-weight: bold; }
+        .status { padding: 3px 8px; border-radius: 4px; background: #334155; font-size: 0.75rem; }
+        .heartbeat { color: #fbbf24; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌌 Polymarket Sniper Bot</h1>
+        
+        <p class="heartbeat">
+            Last Heartbeat: 
+            {% if heartbeats %}
+                {{ heartbeats[0]['timestamp'] }}
+            {% else %}
+                No heartbeats detected.
+            {% endif %}
+        </p>
+
+        <div class="grid">
+            <div class="panel">
+                <h2>📈 Recent Positions</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Market</th>
+                            <th>Side</th>
+                            <th>Size</th>
+                            <th>Entry</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pos in positions %}
+                        <tr>
+                            <td>{{ pos['market_id'][:10] }}...</td>
+                            <td class="side-{{ pos['side']|lower }}">{{ pos['side'] }}</td>
+                            <td>${{ pos['size_usd'] }}</td>
+                            <td>{{ pos['entry_price'] }}</td>
+                            <td><span class="status">{{ pos['status'] }}</span></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel">
+                <h2>📝 Logs</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Event</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for log in logs %}
+                        <tr>
+                            <td>{{ log['timestamp'][11:19] }}</td>
+                            <td><strong>{{ log['event'] }}</strong></td>
+                            <td>{{ log['message'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

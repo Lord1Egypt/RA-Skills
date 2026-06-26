@@ -1,0 +1,107 @@
+{
+  "skill_name": "aesthetic-scorer",
+  "version": "1.7.0",
+  "environment_variables": {
+    "AESTHETIC_SCORER_MODEL_DIR": "Override IAP model directory (default: F:\\software\\skill\\aesthetic-scorer\\models\\improved-aesthetic-predictor)",
+    "AESTHETIC_SCORER_NIMA_DIR": "Override NIMA model directory (default: F:\\software\\skill\\aesthetic-scorer\\models\\neural-image-assessment)"
+  },
+  "models": {
+    "improved_predictor": {
+      "enabled": true,
+      "model_dir": "F:\\software\\skill\\aesthetic-scorer\\models\\improved-aesthetic-predictor",
+      "model_path": "F:\\software\\skill\\aesthetic-scorer\\models\\improved-aesthetic-predictor\\sac+logos+ava1-l14-linearMSE.pth",
+      "model_size_mb": 50,
+      "response_time": "<1s",
+      "offline": true,
+      "base_weight": 0.45,
+      "weight_range": [0.45, 0.70],
+      "description": "CLIP ViT-L/14 + MLP for content-level aesthetic scoring"
+    },
+    "nima": {
+      "enabled": true,
+      "model_dir": "F:\\software\\skill\\aesthetic-scorer\\models\\neural-image-assessment",
+      "model_path": "F:\\software\\skill\\aesthetic-scorer\\models\\neural-image-assessment\\weights\\mobilenet_weights.h5",
+      "backbone": "mobilenet",
+      "model_size_mb": 200,
+      "response_time": "2-5s",
+      "offline": true,
+      "default_device": "cpu",
+      "base_weight": 0.55,
+      "weight_range": [0.30, 0.55],
+      "description": "MobileNet for technical quality scoring, provides std for dynamic weighting"
+    }
+  },
+  "dynamic_weight": {
+    "enabled": true,
+    "normalization_factor": 2.5,
+    "base_weight_iap": 0.45,
+    "adjustment_range": 0.25,
+    "divergence_threshold": 2.0,
+    "penalty_coefficient": 0.05,
+    "description": "Dynamic weights based on NIMA standard deviation - higher controversy = more weight to IAP"
+  },
+  "dependencies": {
+    "required": ["torch>=2.0.0", "torchvision>=0.15.0", "transformers>=4.30.0", "tensorflow>=2.12.0", "tf_keras>=2.12.0", "pillow>=10.0.0", "numpy>=1.23.0"],
+    "install_command": "pip install -r requirements.txt"
+  },
+  "defaults": {
+    "analysis_mode": "comprehensive",
+    "language": "zh-CN",
+    "output_format": "formatted",
+    "prefer_offline": true,
+    "detail_level": 3,
+    "rating_system": "conghang_to_la"
+  },
+  "rating_systems": {
+    "conghang_to_la": {
+      "name": "从夯到拉",
+      "levels": {
+        "9.0-10.0": {
+          "level": "夯",
+          "description": "好到没话说,顶级水平",
+          "english": "Exceptional, top-tier, perfect"
+        },
+        "8.0-8.9": {
+          "level": "顶级",
+          "description": "极好,专业水准",
+          "english": "Excellent, professional level"
+        },
+        "7.0-7.9": {
+          "level": "人上人",
+          "description": "很好,超越常人",
+          "english": "Very good, above average, outstanding"
+        },
+        "6.0-6.9": {
+          "level": "NPC",
+          "description": "不起眼,普普通通",
+          "english": "Average, unremarkable, plain"
+        },
+        "0.0-5.9": {
+          "level": "拉完了",
+          "description": "差到没法再差",
+          "english": "Terrible, needs major improvement"
+        }
+      }
+    }
+  },
+  "image_requirements": {
+    "min_resolution": [224, 224],
+    "max_file_size_mb": 20,
+    "supported_formats": ["jpg", "jpeg", "png", "webp"],
+    "optimal_resolution": [512, 512]
+  },
+  "tags": [
+    "照片评分",
+    "照片分析",
+    "美学评分",
+    "摄影评分",
+    "图片评分",
+    "视觉评分",
+    "photo-scoring",
+    "aesthetic-scoring",
+    "photography",
+    "image",
+    "vision",
+    "offline"
+  ]
+}

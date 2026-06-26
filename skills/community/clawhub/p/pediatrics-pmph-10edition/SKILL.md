@@ -1,35 +1,57 @@
 ---
-name: "Pediatrics-PMPH-10edition"
-description: "基于人卫版《儿科学》第10版（五年制临床医学专业）的系统化儿科临床技能知识库。涵盖新生儿、生长发育、营养、免疫接种、传染病、呼吸/心血管/消化/泌尿/神经等各系统疾病、急重症抢救、遗传代谢病、实验室诊断及教材评价等184项核心技能。项目地址：https://github.com/xllgreen/Pediatrics-PMPH-10edition"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pediatrics-pmph-10edition"
-sourceUrl: "https://clawhub.ai/skills/pediatrics-pmph-10edition"
+name: 儿科学核心技能知识库 (Pediatrics-PMPH-10edition)
+description: 基于人卫版《儿科学》第10版（五年制临床医学专业）的系统化儿科临床技能知识库。涵盖新生儿、生长发育、营养、免疫接种、传染病、呼吸/心血管/消化/泌尿/神经等各系统疾病、急重症抢救、遗传代谢病、实验室诊断及教材评价等184项核心技能。
 ---
 
-# Pediatrics-PMPH-10edition
+# 儿科学核心技能知识库 (Pediatrics-PMPH-10edition)
 
-> 基于人卫版《儿科学》第10版（五年制临床医学专业）的系统化儿科临床技能知识库。涵盖新生儿、生长发育、营养、免疫接种、传染病、呼吸/心血管/消化/泌尿/神经等各系统疾病、急重症抢救、遗传代谢病、实验室诊断及教材评价等184项核心技能。项目地址：https://github.com/xllgreen/Pediatrics-PMPH-10edition
+本仓库包含 **184 项** 儿科学临床核心技能，每项技能对应一个独立目录，内含 `SKILL.md` 标准技能文件。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pediatrics-pmph-10edition`
-- **Source URL:** [https://clawhub.ai/skills/pediatrics-pmph-10edition](https://clawhub.ai/skills/pediatrics-pmph-10edition)
+## 仓库结构
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pediatrics-pmph-10edition
 ```
+Pediatrics-PMPH-10edition/
+├── SKILL.md              ← 本文件，仓库级核心配置与索引
+├── README.md             ← 详细文档与使用说明
+├── scripts/              ← 可执行脚本（处理、分析、工具）
+├── config/               ← 配置文件
+├── tests/                ← 测试文件
+└── <skill-dir>/          ← 每个技能一个独立目录
+    ├── SKILL.md          ← 技能定义（必需）
+    └── references/       ← 参考资料（可选）
+```
+
+## 技能分类索引
+
+| 分类 | 技能数 | 说明 |
+|------|--------|------|
+| 新生儿与围产期医学 | ~12 | 黄疸、RDS、溶血、出血、NEC、ROP 等 |
+| 生长发育与营养 | ~16 | 体格生长评价、辅食、睡眠、微量营养素等 |
+| 免疫接种与传染病防控 | ~17 | 计划免疫、麻疹、手足口、结核、川崎病等 |
+| 呼吸系统疾病 | ~11 | 肺炎、哮喘、支原体、支气管镜、血气分析等 |
+| 心血管系统疾病 | ~9 | 先心病分类、心衰、心肌炎、Duke 标准等 |
+| 消化与肝胆系统疾病 | ~11 | 肠套叠、巨结肠、IBD、胆道闭锁、GERD 等 |
+| 泌尿与肾脏疾病 | ~7 | 血尿、肾炎、肾病综合征、AKI、RTA 等 |
+| 内分泌与代谢疾病 | ~11 | GHD、性早熟、甲减、糖尿病、DKA 等 |
+| 血液与肿瘤疾病 | ~9 | ITP、AIHA、血友病、地贫、LCH 等 |
+| 神经与精神行为疾病 | ~10 | 癫痫、热性惊厥、ADHD、GBS、重症肌无力等 |
+| 急诊与重症抢救 | ~8 | CPR、创伤、溺水、呼吸衰竭、脱水等 |
+| 遗传与先天性疾病 | ~7 | 三级预防、遗传病分类、CHARGE、DMD/BMD 等 |
+| 实验室与辅助检查 | ~10 | CSF、PKU、CAH、佝偻病、MRI、超声等 |
+| 教材与循证医学 | ~6 | 教材权威性评估、修订原则、文献推荐等 |
+| 综合健康管理 | ~7 | 运动、膳食、免疫系统、药物剂量、体格检查等 |
+
+## 使用方式
+
+本知识库可在 Claude Code 中直接调用。每项技能定义了明确的适用场景和执行流程。
+
+**示例：**
+- “请根据「新生儿低血糖诊断与分层治疗」技能，制定一名出生4小时、血糖1.8 mmol/L的足月儿处理方案。”
+- “依据「儿童肾病综合征诊断与分型」技能，分析一名5岁男孩大量蛋白尿、低白蛋白血症、水肿的诊断步骤。”
+- “参考「国家免疫规划疫苗应用」和「12月龄内婴儿强制疫苗清单」，为一名2月龄健康婴儿制定0–12月龄全程免疫计划。”
+
+## 相关链接
+
+- [完整技能列表](README.md)
+- [新生儿与围产期医学](README.md#新生儿与围产期医学)
+- [生长发育与营养](README.md#生长发育与营养)

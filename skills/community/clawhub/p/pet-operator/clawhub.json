@@ -1,0 +1,24 @@
+{
+  "name": "pet-operator",
+  "version": "1.2.0",
+  "description": "Delegate Aavegotchi petting rights to AAI. Generate approve/revoke tx data, check status, and maintain delegated wallet bookkeeping.",
+  "author": "aaigotchi",
+  "license": "MIT",
+  "repository": "https://github.com/aaigotchi/pet-operator",
+  "category": "aavegotchi",
+  "tags": [
+    "aavegotchi",
+    "nft",
+    "base",
+    "delegation",
+    "pet-operator"
+  ],
+  "openclaw": {
+    "requires": {
+      "bins": [
+        "cast",
+        "jq"
+      ]
+    }
+  }
+}

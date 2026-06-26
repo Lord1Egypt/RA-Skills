@@ -1,0 +1,20 @@
+{
+  "name": "pinecone-memory-skill",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Minimal CLI for Pinecone memory skill",
+  "scripts": {
+    "check": "node tools/pinecone-memory.mjs check --index openclaw-memory",
+    "sync": "node tools/pinecone-memory.mjs sync --index openclaw-memory --namespace default --path MEMORY.md --path memory --verify-write true",
+    "query": "node tools/pinecone-memory.mjs query --index openclaw-memory --namespace default --text 用户偏好",
+    "stats": "node tools/pinecone-memory.mjs stats --index openclaw-memory --namespace default",
+    "heartbeat": "node tools/pinecone-memory.mjs heartbeat --index openclaw-memory --namespace default --write-probe true",
+    "cleanup": "node tools/pinecone-memory.mjs cleanup --index openclaw-memory --namespace default --confirm yes",
+    "backup": "node tools/pinecone-memory.mjs backup --path MEMORY.md --path memory --output backup/pinecone-memory-backup.jsonl",
+    "restore": "node tools/pinecone-memory.mjs restore --input backup/pinecone-memory-backup.jsonl --index openclaw-memory --namespace default --verify-write true"
+  },
+  "dependencies": {
+    "@pinecone-database/pinecone": "^5.0.0"
+  }
+}

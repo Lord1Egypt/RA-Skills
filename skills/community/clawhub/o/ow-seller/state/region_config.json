@@ -1,0 +1,16 @@
+{
+  "seller_id": "enze-dai",
+  "seller_name": "戴恩泽",
+  "seller_country": "中国",
+  "ship_regions": {
+    "mode": "local",
+    "enabled": ["中国"],
+    "disabled": [],
+    "countries": ["中国"],
+    "allow_unknown_as_local": true
+  },
+  "logistics": {
+    "methods": ["顺丰"],
+    "default_delivery_days": 3
+  }
+}

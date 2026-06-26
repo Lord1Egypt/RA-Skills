@@ -1,0 +1,20 @@
+{
+  "name": "Payment Term Negotiator",
+  "slug": "payment-term-negotiator",
+  "version": "1.0.0",
+  "description": "Provides payment term negotiation frameworks",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "descriptive",
+    "payment"
+  ],
+  "trigger_keywords": [
+    "payment term negotiator",
+    "payment term negotiator"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

@@ -1,0 +1,41 @@
+{
+  "skill_name": "payment-funnel-monitor",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Our overall payment success rate is about 91%. Stripe dashboard shows a mix of generic declines and some authentication_failed. Support keeps getting 'payment timed out' on mobile. We sell globally — Brazil and Germany are worst. What should we analyze and what payment methods should we add?",
+      "expected_output": "Error code analysis table + local methods for BR/DE + timeout actions.",
+      "files": [],
+      "expectations": [
+        "Mentions payment success below 95% and reconciliation framing",
+        "Includes failure / error code analysis (table or grouped by family with causes and actions)",
+        "Includes recommended local payment methods checklist or table for Brazil and Germany",
+        "Addresses authentication_failed and timeout themes",
+        "Actionable gateway or configuration angles (not only generic advice)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Germany converts way below France on same catalog. Payments are mostly card and PayPal. No obvious site errors. Focus on pay step.",
+      "expected_output": "Country anomaly + DE local methods (SEPA, Klarna, PayPal emphasis) + decline analysis prompt.",
+      "files": [],
+      "expectations": [
+        "Frames Germany vs baseline as payment or trust rail issue",
+        "Includes recommended local payment methods relevant to Germany",
+        "Includes error or decline analysis guidance even if codes not provided",
+        "Success criteria: local PM list + failure analysis structure"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Write product descriptions for three candles only.",
+      "expected_output": "Candle copy; no full payment funnel report (should-not-trigger).",
+      "files": [],
+      "expectations": [
+        "Does not output full payment error code analysis as main deliverable for unrelated product copy task",
+        "Does not force Brazil/Germany payment method checklist unless user ties to checkout",
+        "Appropriate response to candle descriptions"
+      ]
+    }
+  ]
+}

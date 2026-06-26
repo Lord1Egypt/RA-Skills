@@ -1,35 +1,38 @@
----
-name: "Pipeworx radio"
-description: "Search and discover internet radio stations worldwide by name, genre, or country with direct stream URLs and detailed metadata."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-radio"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-radio"
----
+# Radio
 
-# Pipeworx radio
+Discover internet radio stations from around the world. The Radio Browser database indexes tens of thousands of live streams across every genre and country.
 
-> Search and discover internet radio stations worldwide by name, genre, or country with direct stream URLs and detailed metadata.
+## Available commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-radio`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-radio](https://clawhub.ai/skills/pipeworx-radio)
+- **search_stations** -- Find stations by name, sorted by popularity
+- **get_top_stations** -- Most-voted stations globally or filtered by country
+- **list_countries** -- All countries with station counts
+- **list_tags** -- Top genres and tags by station count
 
-## Overview
+## Example: find jazz stations
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pipeworx-radio
+curl -X POST https://gateway.pipeworx.io/radio/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"search_stations","arguments":{"query":"jazz","limit":5}}}'
+```
+
+Each station result includes a direct stream URL, codec, bitrate, country, language, and tags -- everything needed to start playing.
+
+## Popular use cases
+
+- Build a radio discovery feature for a music app
+- Find stations by country for localization projects
+- Get stream URLs for background audio in creative coding
+
+## Setup
+
+```json
+{
+  "mcpServers": {
+    "radio": {
+      "url": "https://gateway.pipeworx.io/radio/mcp"
+    }
+  }
+}
 ```

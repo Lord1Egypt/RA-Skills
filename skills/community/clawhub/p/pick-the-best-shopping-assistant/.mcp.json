@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "gpt-mcp": {
+      "type": "sse",
+      "url": "https://pickthebest.com/gb/en/v1/shopping/mcp",
+      "description": "GPT-powered shopping search MCP server"
+    }
+  }
+}

@@ -1,35 +1,90 @@
 ---
-name: "海外中餐短视频变现系统"
-description: "海外中餐短视频变现系统 — 从0到1打造爆款视频号。适用于：在海外开中餐厅的老板/厨师、想通过短视频推广中餐的用户、跨境餐饮创业者。触发场景：(1)用户想创建/运营一个海外中餐/中餐相关短视频账号 (2)需要内容选题、脚本、拍摄方案 (3)想了解竞品分析和差异化定位 (4)需要30条选题清单+脚本模板 (5)不知..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/overseas-chinese-food-shortvideo"
-sourceUrl: "https://clawhub.ai/skills/overseas-chinese-food-shortvideo"
+name: overseas-chinese-food-shortvideo
+description: 海外中餐短视频变现系统 — 从0到1打造爆款视频号。适用于：在海外开中餐厅的老板/厨师、想通过短视频推广中餐的用户、跨境餐饮创业者。触发场景：(1)用户想创建/运营一个海外中餐/中餐相关短视频账号 (2)需要内容选题、脚本、拍摄方案 (3)想了解竞品分析和差异化定位 (4)需要30条选题清单+脚本模板 (5)不知道发什么内容、怎么拍、怎么变现。当用户询问海外中餐、餐厅推广、短视频运营、厨师IP、菜品展示等话题时使用此技能。
 ---
 
 # 海外中餐短视频变现系统
 
-> 海外中餐短视频变现系统 — 从0到1打造爆款视频号。适用于：在海外开中餐厅的老板/厨师、想通过短视频推广中餐的用户、跨境餐饮创业者。触发场景：(1)用户想创建/运营一个海外中餐/中餐相关短视频账号 (2)需要内容选题、脚本、拍摄方案 (3)想了解竞品分析和差异化定位 (4)需要30条选题清单+脚本模板 (5)不知...
+实战沉淀的短视频运营方法论，覆盖选题策划 → 脚本写作 → 竞品分析 → 变现路径全链路。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/overseas-chinese-food-shortvideo`
-- **Source URL:** [https://clawhub.ai/skills/overseas-chinese-food-shortvideo](https://clawhub.ai/skills/overseas-chinese-food-shortvideo)
+## 核心框架：三支柱内容模型
 
-## Overview
+| 支柱 | 占比 | 内容方向 |
+|------|------|---------|
+| 干货知识 | 50% | 烹饪技巧、菜品知识、厨房经验 |
+| 做菜展示 | 30% | 特色菜制作过程 |
+| 人物故事 | 20% | 厨师成长、海外生活、创业经历 |
 
+**黄金更新节奏**：前两周每天1条测方向，第三周围绕爆款加量，稳定后每天1-2条。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/overseas-chinese-food-shortvideo
+## 工作流
+
+### Step 1：账号定位
+
+向用户确认以下信息：
+
+- 所在国家/城市（中餐稀缺程度决定竞争强度）
+- 自身菜系（台州菜/粤菜/川菜/湘菜/融合菜等）
+- 核心差异点（在海外做正宗中餐 vs 融合创新 vs 平价快餐）
+- 目标受众（海外华人 / 国内中餐爱好者 / 餐饮从业者）
+
+**输出**：账号定位表（见 assets/account_positioning.md）
+
+### Step 2：选题规划
+
+根据菜系和目标受众，从 `references/content_topics.md` 中选择适配的选题库，生成第一月30条选题清单。
+
+选题优先级判断：
+- 爆款潜力⭐⭐⭐⭐⭐ = 天然对比话题、有态度表达、情感共鸣强
+- 有差异化 = 本地特色/海外视角/稀缺性
+- 避开纯产品展示、负能量、敏感话题
+
+### Step 3：脚本写作
+
+使用 `references/script_templates.md` 中的脚本公式和模板，为选定选题生成逐字脚本。
+
+通用脚本公式（所有视频都适用）：
+
 ```
+[1] 钩子（3秒）→ 抓注意力，反差/疑问/数字
+[2] 自我介绍（5秒）→ 我是谁，专业背书
+[3] 干货输出（20-40秒）→ 给价值，知识点/制作过程/故事
+[4] 互动引导（3秒）→ 引导评论/关注
+```
+
+### Step 4：竞品分析
+
+使用 `references/competitor_analysis.md` 的框架，分析同类账号：
+- 哪些内容数据好（选品参考）
+- 他们的差异化是什么（避免同质化）
+- 空白点在哪里（找到自己的切入点）
+
+### Step 5：拍摄执行
+
+视频规范：
+- 竖屏 9:16，1080P+
+- 前3秒必须有画面+声音抓注意力
+- 必须有字幕
+- 时长：30-90秒（初期不超90秒）
+- 配乐轻，不盖人声
+
+详细拍摄要点见 `references/video_specs.md`
+
+### Step 6：变现路径
+
+| 阶段 | 变现方式 |
+|------|---------|
+| 0-1000粉 | 引流到店，私域沉淀 |
+| 1000-1万粉 | 同城流量 + 团购券 |
+| 1万粉+ | 品牌授权、食材供应链、付费教程 |
+
+---
+
+## 资源索引
+
+- `references/content_topics.md` — 30条选题清单，按菜系/类型分类
+- `references/script_templates.md` — 5条完整脚本模板 + 通用公式
+- `references/competitor_analysis.md` — 竞品分析框架
+- `references/video_specs.md` — 视频拍摄规范和设备建议
+- `assets/content_calendar.md` — 第一月内容日历模板
+- `assets/account_positioning.md` — 账号定位表模板

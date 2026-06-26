@@ -1,0 +1,37 @@
+{
+  "智谱AI": {
+    "contract_id": "C001",
+    "start_date": "2025-01-01",
+    "expiry_date": "2026-06-30",
+    "value": 500000,
+    "renewal_status": "pending"
+  },
+  "商汤科技": {
+    "contract_id": "C002",
+    "start_date": "2025-06-01",
+    "expiry_date": "2026-12-01",
+    "value": 1200000,
+    "renewal_status": "pending"
+  },
+  "云从科技": {
+    "contract_id": "C003",
+    "start_date": "2025-03-01",
+    "expiry_date": "2026-07-15",
+    "value": 300000,
+    "renewal_status": "pending"
+  },
+  "旷视科技": {
+    "contract_id": "C004",
+    "start_date": "2025-09-01",
+    "expiry_date": "2026-09-01",
+    "value": 800000,
+    "renewal_status": "pending"
+  },
+  "第四范式": {
+    "contract_id": "C005",
+    "start_date": "2025-04-01",
+    "expiry_date": "2026-07-01",
+    "value": 400000,
+    "renewal_status": "pending"
+  }
+}

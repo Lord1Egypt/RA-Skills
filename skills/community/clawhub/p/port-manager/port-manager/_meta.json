@@ -1,0 +1,9 @@
+{
+  "name": "port-manager",
+  "version": "1.0.0",
+  "author": "damien",
+  "description": "Port Manager - Track and manage system port usage, avoid conflicts",
+  "keywords": ["port", "manager", "network", "system"],
+  "platform": ["darwin", "linux"],
+  "license": "MIT"
+}

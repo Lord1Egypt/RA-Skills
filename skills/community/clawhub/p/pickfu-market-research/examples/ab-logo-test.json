@@ -1,0 +1,22 @@
+{
+  "surveyIntent": "Compare two logo designs to determine which resonates better with the target audience",
+  "country": "US",
+  "sampleSize": "50",
+  "targeting": [],
+  "reporting": ["gender", "age-range"],
+  "questions": [
+    {
+      "type": "head_to_head",
+      "prompt": "Which logo do you prefer for [Brand Name]?",
+      "options": [
+        { "mediaUrl": "https://example.com/logo-a.png" },
+        { "mediaUrl": "https://example.com/logo-b.png" }
+      ]
+    },
+    {
+      "type": "open_ended",
+      "prompt": "What made you choose that logo over the other?",
+      "options": []
+    }
+  ]
+}

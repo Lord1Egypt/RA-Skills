@@ -1,35 +1,50 @@
 ---
-name: "Pipeworx emojihub"
-description: "Browse and fetch emojis by category or group — random picks, smileys, animals, food, flags, and more"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-emojihub"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-emojihub"
+name: pipeworx-emojihub
+description: Browse and fetch emojis by category or group — random picks, smileys, animals, food, flags, and more
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - curl
+    emoji: "😀"
+    homepage: https://pipeworx.io/packs/emojihub
 ---
 
-# Pipeworx emojihub
+# EmojiHub
 
-> Browse and fetch emojis by category or group — random picks, smileys, animals, food, flags, and more
+Need the right emoji? Pull random emojis, browse by category (smileys-and-people, animals-and-nature, food-and-drink, etc.), or filter by group for even more specific results. Returns emoji name, unicode character, and HTML entity.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-emojihub`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-emojihub](https://clawhub.ai/skills/pipeworx-emojihub)
+## Tools
 
-## Overview
+- **`random_emoji`** — A random emoji from any category
+- **`get_by_category`** — Emojis from a specific category (e.g., "smileys-and-people", "travel-and-places")
+- **`get_by_group`** — Emojis from a specific group within a category
 
+## Good for
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Adding emoji reactions to chatbot responses
+- Building emoji picker components with categorized data
+- Random emoji for games or creative prompts
+- Enriching social media tools with emoji suggestions
+
+## Example
+
 ```bash
-hermes skills install clawhub/pipeworx-emojihub
+curl -s -X POST https://gateway.pipeworx.io/emojihub/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_by_category","arguments":{"category":"food-and-drink"}}}'
+```
+
+## Setup
+
+```json
+{
+  "mcpServers": {
+    "pipeworx-emojihub": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/emojihub/mcp"]
+    }
+  }
+}
 ```

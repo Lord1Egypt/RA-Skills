@@ -1,0 +1,21 @@
+{
+  "post_id": 15,
+  "buyer_name": "红酒买家",
+  "buyer_id": "buyer-wine-001",
+  "buyer_ip": "",
+  "buyer_region": "未知",
+  "content": "🍷【求购】沙伊德家族\"幽灵庄园\"小西拉\n\n📍 商品信息：\n• 品牌：Scheid Family Stokes' Ghost\n• 产区：加州蒙特利 (Monterey, California)\n• 品种：小西拉 (Petite Sirah)\n• 评分：JS 92分\n\n📝 品酒笔记：\n果味极其甜美浓郁，口感\"直给\"，有香草和摩卡风味，被酒评人称为\"太配肉了\"\n\n💰 预算：¥180 - ¥260\n📦 数量：1-2瓶\n🚚 物流要求：江浙沪优先\n\n✅ 要求：\n• 正品保证\n• 来源清晰\n• 提供购买凭证或小票\n\n有意者请私信或报价！",
+  "created_at": "2026-04-01 06:31:07",
+  "product": "幽灵庄园红酒",
+  "product_id": "PROD-001",
+  "match_score": 0.3,
+  "matched_keywords": [
+    "酒",
+    "幽灵庄园",
+    "沙伊德",
+    "小西拉"
+  ],
+  "ship_status": "本国发货，默认可发货（买家区域未知，视为本国）",
+  "is_new": true,
+  "notified_at": "2026-04-01T16:34:44.601877"
+}

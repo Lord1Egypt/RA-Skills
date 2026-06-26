@@ -1,0 +1,603 @@
+<!-- 配置（修改这里来调整初始值） -->
+<script>
+const configData = {
+    "matrix": { "m00": 1, "m01": 0, "m02": 0, "m10": 0, "m11": 1, "m12": 0, "m20": 0, "m21": 0, "m22": 2 },
+    "sliders": { "tx": 0, "ty": 0, "rotate": 0, "sx": 1, "sy": 1, "shx": 0, "shy": 0, "px": 0, "py": 0, "tz": 1 },
+    "polygon": [[0, 0], [1, 0], [1, 1], [0, 1]]
+};
+</script>
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>透视变换可视化</title>
+    <style>
+        body { margin: 0; overflow: hidden; font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: #eee; }
+        #container { width: 100vw; height: 100vh; }
+        #controls {
+            position: absolute; top: 20px; left: 20px;
+            background: rgba(30, 30, 50, 0.9);
+            padding: 20px; border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            max-width: 320px;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+        #controls-right {
+            position: absolute; top: 20px; right: 20px;
+            background: rgba(30, 30, 50, 0.9);
+            padding: 20px; border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            max-width: 280px;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+        h2 { margin: 0 0 15px 0; color: #00d4ff; font-size: 1.3em; }
+        .param-group { margin-bottom: 12px; }
+        label { display: block; margin-bottom: 4px; color: #aaa; font-size: 0.9em; }
+        input[type="number"] {
+            width: 100%; padding: 8px;
+            background: #2a2a4a; border: 1px solid #444;
+            color: #fff; border-radius: 6px;
+            box-sizing: border-box;
+        }
+        input[type="range"] { width: 100%; }
+        .matrix-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 4px; margin-top: 8px;
+        }
+        .matrix-grid input { text-align: center; }
+        button {
+            width: 100%; padding: 10px; margin-top: 10px;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border: none; color: white; border-radius: 6px;
+            cursor: pointer; font-weight: bold;
+            transition: transform 0.2s;
+        }
+        button:hover { transform: scale(1.02); }
+        #info {
+            margin-top: 15px; padding: 10px;
+            background: #252540; border-radius: 6px;
+            font-size: 0.85em; line-height: 1.5;
+        }
+        .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+        .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.85em; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        pre { margin: 5px 0; white-space: pre; font-family: monospace; }
+        .point-input { display: flex; align-items: center; gap: 5px; margin-bottom: 8px; }
+        .point-input span { width: 24px; color: #aaa; }
+        .point-input input { width: 70px; }
+        .camera-control { margin-bottom: 10px; }
+        .camera-control label { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .camera-control .val { color: #00d4ff; font-weight: bold; }
+        .camera-control input[type="range"] { margin-top: 2px; }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <h2>🔮 透视变换可视化</h2>
+        
+        <div class="param-group">
+            <label>平移 (tx, ty)</label>
+            <div style="display:flex;gap:5px">
+                <input type="range" id="tx" min="-2" max="2" step="0.1" value="0" style="flex:1">
+                <input type="range" id="ty" min="-2" max="2" step="0.1" value="0" style="flex:1">
+            </div>
+        </div>
+
+        <div class="param-group">
+            <label>旋转 (角度°)</label>
+            <input type="range" id="rotate" min="-180" max="180" step="1" value="0">
+        </div>
+
+        <div class="param-group">
+            <label>缩放 (sx, sy)</label>
+            <div style="display:flex;gap:5px">
+                <input type="range" id="sx" min="0.1" max="3" step="0.1" value="1" style="flex:1">
+                <input type="range" id="sy" min="0.1" max="3" step="0.1" value="1" style="flex:1">
+            </div>
+        </div>
+
+        <div class="param-group">
+            <label>剪切 (shx, shy)</label>
+            <div style="display:flex;gap:5px">
+                <input type="range" id="shx" min="-2" max="2" step="0.1" value="0" style="flex:1">
+                <input type="range" id="shy" min="-2" max="2" step="0.1" value="0" style="flex:1">
+            </div>
+        </div>
+
+        <div class="param-group">
+            <label>透视 (px, py)</label>
+            <div style="display:flex;gap:5px">
+                <input type="range" id="px" min="-1" max="1" step="0.05" value="0" style="flex:1">
+                <input type="range" id="py" min="-1" max="1" step="0.05" value="0" style="flex:1">
+            </div>
+        </div>
+
+        <div class="param-group">
+            <label>Z轴距离 (d)</label>
+            <input type="range" id="tz" min="-2" max="2" step="0.1" value="0">
+        </div>
+
+        <div class="param-group">
+            <label>透视变换矩阵 (3×3)</label>
+            <div class="matrix-grid" id="matrixInputs">
+                <input type="number" step="0.1" value="1" id="m00"><input type="number" step="0.1" value="0" id="m01"><input type="number" step="0.1" value="0" id="m02">
+                <input type="number" step="0.1" value="0" id="m10"><input type="number" step="0.1" value="1" id="m11"><input type="number" step="0.1" value="0" id="m12">
+                <input type="number" step="0.1" value="0" id="m20"><input type="number" step="0.1" value="0" id="m21"><input type="number" step="0.1" value="1" id="m22">
+            </div>
+            <button onclick="resetMatrix()" style="margin-top:8px;padding:6px;">🔄 复位矩阵</button>
+        </div>
+
+        <div class="param-group">
+            <label>📷 相机视角</label>
+            <div class="camera-control">
+                <label>⬆️ 仰角 <span class="val" id="elev-val">20°</span></label>
+                <input type="range" id="elev" min="-90" max="90" value="20" oninput="document.getElementById('elev-val').textContent=this.value+'°'">
+            </div>
+            <div class="camera-control">
+                <label>🔄 方位角 <span class="val" id="azim-val">45°</span></label>
+                <input type="range" id="azim" min="-180" max="180" value="45" oninput="document.getElementById('azim-val').textContent=this.value+'°'">
+            </div>
+            <div class="camera-control">
+                <label>📏 距离 <span class="val" id="dist-val">5</span></label>
+                <input type="range" id="dist" min="2" max="15" step="0.5" value="5" oninput="document.getElementById('dist-val').textContent=this.value">
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item"><div class="dot" style="background:#0088ff"></div>原始 (z=1)</div>
+            <div class="legend-item"><div class="dot" style="background:#ff4444"></div>变换后3D</div>
+            <div class="legend-item"><div class="dot" style="background:#44ff44"></div>投影 (z=1)</div>
+        </div>
+    </div>
+    
+    <div id="controls-right">
+        <h2>📐 计算结果</h2>
+        <div id="result"></div>
+        <div style="margin-top:15px;">
+            <button onclick="resetPolygon()">🔄 复位多边形</button>
+        </div>
+        <div id="polygon-inputs"></div>
+        <div style="display:flex;gap:5px;margin-top:8px">
+            <button onclick="addPoint()">+ 点</button>
+            <button onclick="removePoint()">- 点</button>
+        </div>
+        <button onclick="updatePolygon()">✨ 更新图形</button>
+    </div>
+    
+    <div id="container"></div>
+
+    <!-- 配置（修改这里来调整初始值） -->
+    <script>
+        const configData = {
+            "matrix": { "m00": 1, "m01": 0, "m02": 0, "m10": 0, "m11": 1, "m12": 0, "m20": 0, "m21": 0, "m22": 2 },
+            "sliders": { "tx": 0, "ty": 0, "rotate": 0, "sx": 1, "sy": 1, "shx": 0, "shy": 0, "px": 0, "py": 0, "tz": 0 },
+            "polygon": [[0, 0], [1, 0], [1, 1], [0, 1]]
+        };
+    </script>
+
+    <script src="three.min.js"></script>
+    <script>
+        let scene, camera, renderer, controls;
+        let originalGroup, transformedRawGroup, projectedGroup;
+        
+        // 原始二维多边形
+        let originalPolygon = [];
+
+        function loadConfig() {
+            return configData;
+        }
+
+        function applyConfig(config) {
+            // 应用矩阵
+            document.getElementById('m00').value = config.matrix.m00;
+            document.getElementById('m01').value = config.matrix.m01;
+            document.getElementById('m02').value = config.matrix.m02;
+            document.getElementById('m10').value = config.matrix.m10;
+            document.getElementById('m11').value = config.matrix.m11;
+            document.getElementById('m12').value = config.matrix.m12;
+            document.getElementById('m20').value = config.matrix.m20;
+            document.getElementById('m21').value = config.matrix.m21;
+            document.getElementById('m22').value = config.matrix.m22;
+            
+            // 应用滑块
+            document.getElementById('tx').value = config.sliders.tx;
+            document.getElementById('ty').value = config.sliders.ty;
+            document.getElementById('rotate').value = config.sliders.rotate;
+            document.getElementById('sx').value = config.sliders.sx;
+            document.getElementById('sy').value = config.sliders.sy;
+            document.getElementById('shx').value = config.sliders.shx;
+            document.getElementById('shy').value = config.sliders.shy;
+            document.getElementById('px').value = config.sliders.px;
+            document.getElementById('py').value = config.sliders.py;
+            document.getElementById('tz').value = config.sliders.tz;
+            
+        }
+
+        function init() {
+            const config = loadConfig();
+            applyConfig(config);
+            // 多边形单独初始化，不放在applyConfig里（避免resetMatrix时重置多边形）
+            originalPolygon = JSON.parse(JSON.stringify(config.polygon));
+            renderPolygonInputs();
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x1a1a2e);
+
+            const container = document.getElementById('container');
+            const w = container.clientWidth, h = container.clientHeight;
+            
+            camera = new THREE.PerspectiveCamera(60, w/h, 0.1, 1000);
+            camera.position.set(4, 3, 4);
+            camera.lookAt(0, 0.5, 0);
+
+            renderer = new THREE.WebGLRenderer({antialias: true});
+            renderer.setSize(w, h);
+            container.appendChild(renderer.domElement);
+
+            // 灯光
+            const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambient);
+            const directional = new THREE.DirectionalLight(0xffffff, 0.8);
+            directional.position.set(5, 10, 5);
+            scene.add(directional);
+
+            // 坐标系 - 纯白色
+            const axesHelper = new THREE.AxesHelper(3);
+            // 修改 geometry 的 color attribute 为白色
+            const colors = axesHelper.geometry.attributes.color;
+            for (let i = 0; i < colors.count; i++) {
+                colors.setXYZ(i, 1, 1, 1);
+            }
+            colors.needsUpdate = true;
+            scene.add(axesHelper);
+
+            // 坐标轴标签
+            function createLabel(text, pos) {
+                const canvas = document.createElement('canvas');
+                canvas.width = 64; canvas.height = 64;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 48px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(text, 32, 32);
+                const texture = new THREE.CanvasTexture(canvas);
+                const spriteMat = new THREE.SpriteMaterial({ map: texture });
+                const sprite = new THREE.Sprite(spriteMat);
+                sprite.position.copy(pos);
+                sprite.scale.set(0.3, 0.3, 0.3);
+                return sprite;
+            }
+            scene.add(createLabel('X', new THREE.Vector3(3.2, 0, 0)));
+            scene.add(createLabel('Z', new THREE.Vector3(0, 3.2, 0)));
+            scene.add(createLabel('Y', new THREE.Vector3(0, 0, 3.2)));
+
+            // z=1 平面参考
+            const planeGeom = new THREE.PlaneGeometry(4, 4);
+            const planeMat = new THREE.MeshBasicMaterial({color: 0x444466, transparent: true, opacity: 0.3, side: THREE.DoubleSide});
+            const plane = new THREE.Mesh(planeGeom, planeMat);
+            plane.rotation.x = Math.PI / 2;
+            plane.position.y = 1;
+            scene.add(plane);
+
+            // 创建多边形组
+            originalGroup = new THREE.Group();
+            transformedRawGroup = new THREE.Group();
+            projectedGroup = new THREE.Group();
+            scene.add(originalGroup);
+            scene.add(transformedRawGroup);
+            scene.add(projectedGroup);
+
+            // 事件监听
+            document.getElementById('elev').addEventListener('input', updateCamera);
+            document.getElementById('azim').addEventListener('input', updateCamera);
+            document.getElementById('dist').addEventListener('input', updateCamera);
+            window.addEventListener('resize', onResize);
+
+            // 矩阵输入实时更新
+            document.querySelectorAll('.matrix-grid input').forEach(input => {
+                input.addEventListener('input', () => {
+                    isUpdatingFromMatrix = true;
+                    updateTransform();
+                    isUpdatingFromMatrix = false;
+                });
+            });
+
+            // 滚动条实时更新
+            ['tx','ty','rotate','sx','sy','shx','shy','px','py','tz'].forEach(id => {
+                document.getElementById(id).addEventListener('input', () => {
+                    isUpdatingFromSliders = false;
+                    updateTransform();
+                });
+            });
+
+            // 鼠标控制
+            let isDragging = false, prevX, prevY;
+            container.addEventListener('mousedown', e => { isDragging = true; prevX = e.clientX; prevY = e.clientY; });
+            container.addEventListener('mouseup', () => isDragging = false);
+            container.addEventListener('mousemove', e => {
+                if (!isDragging) return;
+                const dx = e.clientX - prevX, dy = e.clientY - prevY;
+                const r = Math.sqrt(camera.position.x**2 + camera.position.z**2);
+                const angle = Math.atan2(camera.position.z, camera.position.x) + dx * 0.01;
+                camera.position.x = r * Math.cos(angle);
+                camera.position.z = r * Math.sin(angle);
+                camera.position.y = Math.max(0.1, camera.position.y + dy * 0.02);
+                camera.lookAt(0, 0.5, 0);
+                prevX = e.clientX; prevY = e.clientY;
+            });
+
+            updateTransform();
+            animate();
+        }
+
+        let isUpdatingFromSliders = false;
+        let isUpdatingFromMatrix = false;
+
+        function getMatrix() {
+            // 如果正在从矩阵输入框更新，不读取滚动条
+            if (isUpdatingFromMatrix) {
+                return [
+                    [parseFloat(document.getElementById('m00').value), parseFloat(document.getElementById('m01').value), parseFloat(document.getElementById('m02').value)],
+                    [parseFloat(document.getElementById('m10').value), parseFloat(document.getElementById('m11').value), parseFloat(document.getElementById('m12').value)],
+                    [parseFloat(document.getElementById('m20').value), parseFloat(document.getElementById('m21').value), parseFloat(document.getElementById('m22').value)]
+                ];
+            }
+
+            // 从滚动条计算矩阵
+            const tx = parseFloat(document.getElementById('tx').value);
+            const ty = parseFloat(document.getElementById('ty').value);
+            const rotate = parseFloat(document.getElementById('rotate').value) * Math.PI / 180;
+            const sx = parseFloat(document.getElementById('sx').value);
+            const sy = parseFloat(document.getElementById('sy').value);
+            const shx = parseFloat(document.getElementById('shx').value);
+            const shy = parseFloat(document.getElementById('shy').value);
+            const px = parseFloat(document.getElementById('px').value);
+            const py = parseFloat(document.getElementById('py').value);
+            const tz = parseFloat(document.getElementById('tz').value);
+
+            const T = [[1, 0, tx], [0, 1, ty], [0, 0, 1]];
+            const R = [[Math.cos(rotate), -Math.sin(rotate), 0], [Math.sin(rotate), Math.cos(rotate), 0], [0, 0, 1]];
+            const S = [[sx, 0, 0], [0, sy, 0], [0, 0, 1]];
+            const Sh = [[1, shx, 0], [shy, 1, 0], [0, 0, 1]];
+            const P = [[1, 0, 0], [0, 1, 0], [px, py, 1]]; // 透视矩阵
+
+            // Z轴距离：修改 P 矩阵的 [2][2]
+            P[2][2] = 1 + tz;
+
+            function mul(A, B) {
+                const C = [[0,0,0],[0,0,0],[0,0,0]];
+                for (let i = 0; i < 3; i++)
+                    for (let j = 0; j < 3; j++)
+                        for (let k = 0; k < 3; k++)
+                            C[i][j] += A[i][k] * B[k][j];
+                return C;
+            }
+            return mul(mul(mul(mul(P, Sh), S), R), T);
+        }
+
+        function syncMatrixToInputs(matrix) {
+            isUpdatingFromSliders = true;
+            document.getElementById('m00').value = matrix[0][0].toFixed(2);
+            document.getElementById('m01').value = matrix[0][1].toFixed(2);
+            document.getElementById('m02').value = matrix[0][2].toFixed(2);
+            document.getElementById('m10').value = matrix[1][0].toFixed(2);
+            document.getElementById('m11').value = matrix[1][1].toFixed(2);
+            document.getElementById('m12').value = matrix[1][2].toFixed(2);
+            document.getElementById('m20').value = matrix[2][0].toFixed(2);
+            document.getElementById('m21').value = matrix[2][1].toFixed(2);
+            document.getElementById('m22').value = matrix[2][2].toFixed(2);
+            isUpdatingFromSliders = false;
+        }
+
+        function syncSlidersFromMatrix(matrix) {
+            // 从矩阵反向解析参数（简化版）
+            // 这只是个近似，主要用于让用户看到矩阵变化
+            isUpdatingFromMatrix = true;
+            // 平移
+            document.getElementById('tx').value = matrix[0][2];
+            document.getElementById('ty').value = matrix[1][2];
+            // 缩放
+            document.getElementById('sx').value = Math.sqrt(matrix[0][0]**2 + matrix[1][0]**2);
+            document.getElementById('sy').value = Math.sqrt(matrix[0][1]**2 + matrix[1][1]**2);
+            // 旋转（简化）
+            document.getElementById('rotate').value = Math.atan2(matrix[1][0], matrix[0][0]) * 180 / Math.PI;
+            isUpdatingFromMatrix = false;
+        }
+
+        function perspectiveTransform2DTo3D(points2D, matrix) {
+            const n = points2D.length;
+            const results = { raw: [], projected: [], projected2D: [] };
+            
+            for (const [x, y] of points2D) {
+                // 齐次坐标 (x, y, 1)
+                const wx = matrix[0][0]*x + matrix[0][1]*y + matrix[0][2];
+                const wy = matrix[1][0]*x + matrix[1][1]*y + matrix[1][2];
+                const ww = matrix[2][0]*x + matrix[2][1]*y + matrix[2][2];
+                
+                results.raw.push([wx, wy, ww]);
+                
+                const w = Math.abs(ww) < 1e-10 ? 1e-10 : ww;
+                results.projected2D.push([wx/w, wy/w]);
+                results.projected.push([wx/w, wy/w, 1]);
+            }
+            return results;
+        }
+
+        function clearGroup(group) {
+            while(group.children.length) {
+                group.remove(group.children[0]);
+            }
+        }
+
+        function addPolygon(group, points, color, size = 0.08) {
+            // 点
+            points.forEach(([x, y, z]) => {
+                const geom = new THREE.SphereGeometry(size, 16, 16);
+                const mat = new THREE.MeshPhongMaterial({color});
+                group.add(new THREE.Mesh(geom, mat));
+                group.children[group.children.length-1].position.set(x, y, z);
+            });
+            
+            // 线（闭合）
+            if (points.length > 1) {
+                const closed = [...points, points[0]];
+                const pts = closed.map(p => new THREE.Vector3(p[0], p[1], p[2]));
+                const geom = new THREE.BufferGeometry().setFromPoints(pts);
+                const mat = new THREE.LineBasicMaterial({color, transparent: true, opacity: 0.7});
+                group.add(new THREE.Line(geom, mat));
+            }
+        }
+
+        function addDashedLine(group, points) {
+            const origin = new THREE.Vector3(0, 0, 0);
+            points.forEach(([x, y, z]) => {
+                const far = new THREE.Vector3(x, y, z);
+                const geom = new THREE.BufferGeometry().setFromPoints([origin, far]);
+                const mat = new THREE.LineDashedMaterial({color: 0x666666, dashSize: 0.1, gapSize: 0.05});
+                const line = new THREE.Line(geom, mat);
+                line.computeLineDistances();
+                group.add(line);
+            });
+        }
+
+        function updateTransform() {
+            const matrix = getMatrix();
+            const result = perspectiveTransform2DTo3D(originalPolygon, matrix);
+            
+            // 同步矩阵到输入框
+            syncMatrixToInputs(matrix);
+            
+            // 从矩阵同步到滑块
+            if (isUpdatingFromMatrix) {
+                syncSlidersFromMatrix(matrix);
+            }
+            
+            // 清理旧内容
+            clearGroup(originalGroup);
+            clearGroup(transformedRawGroup);
+            clearGroup(projectedGroup);
+
+            // 原始多边形 (y=1) - 画到 (x, z, y)
+            const original3D = originalPolygon.map(([x, y]) => [x, 1, y]);
+            addPolygon(originalGroup, original3D, 0x0088ff);
+            
+            // 变换后3D - 画到 (x, z, y)
+            const transformedRawConverted = result.raw.map(([x, y, z]) => [x, z, y]);
+            addPolygon(transformedRawGroup, transformedRawConverted, 0xff4444);
+            
+            // 投影 (z=1) - 画到 (x, z, y)
+            const projectedConverted = result.projected.map(([x, y, z]) => [x, z, y]);
+            addPolygon(projectedGroup, projectedConverted, 0x44ff44);
+            
+            // 虚线连接 - 用转换后的坐标
+            const dashedPoints = result.raw.map((pt, i) => {
+                const w = pt[2];
+                const rawConverted = [pt[0], pt[2], pt[1]];
+                const projConverted = [result.projected[i][0], result.projected[i][2], result.projected[i][1]];
+                return w >= 1 ? rawConverted : projConverted;
+            });
+            addDashedLine(originalGroup, dashedPoints);
+
+            // 更新信息 - 显示原始坐标 (x, y, z)
+            const formatPointsOriginal = (arr) => arr.map(p => `${p[0].toFixed(2)}\t${p[1].toFixed(2)}\t${p[2].toFixed(2)}`).join('\n');
+            document.getElementById('result').innerHTML = 
+                `<strong>变换后3D (x,y,z):</strong>\n<pre>${formatPointsOriginal(result.raw)}</pre>` +
+                `<strong>投影3D(x,y,z):</strong>\n<pre>${formatPointsOriginal(result.projected)}</pre>`;
+        }
+
+        let currentConfig = configData;
+
+        function resetMatrix() {
+            const config = loadConfig();
+            currentConfig = config;
+            applyConfig(config);
+            updateTransform();
+        }
+
+        function resetPolygon() {
+            const config = loadConfig();
+            currentConfig = config;
+            originalPolygon = JSON.parse(JSON.stringify(config.polygon));
+            renderPolygonInputs();
+            updateTransform();
+        }
+
+        function renderPolygonInputs() {
+            const container = document.getElementById('polygon-inputs');
+            container.innerHTML = originalPolygon.map((p, i) => 
+                `<div class="point-input">
+                    <span>P${i}:</span>
+                    <input type="number" step="0.1" value="${p[0]}" id="px${i}">
+                    <input type="number" step="0.1" value="${p[1]}" id="py${i}">
+                </div>`
+            ).join('');
+            
+            // 点坐标实时更新
+            originalPolygon.forEach((_, i) => {
+                document.getElementById(`px${i}`).addEventListener('input', () => {
+                    originalPolygon[i][0] = parseFloat(document.getElementById(`px${i}`).value);
+                    updateTransform();
+                });
+                document.getElementById(`py${i}`).addEventListener('input', () => {
+                    originalPolygon[i][1] = parseFloat(document.getElementById(`py${i}`).value);
+                    updateTransform();
+                });
+            });
+        }
+
+        function addPoint() {
+            const last = originalPolygon[originalPolygon.length - 1];
+            originalPolygon.push([last[0] + 0.5, last[1] + 0.5]);
+            renderPolygonInputs();
+        }
+
+        function removePoint() {
+            if (originalPolygon.length > 3) {
+                originalPolygon.pop();
+                renderPolygonInputs();
+            }
+        }
+
+        function updatePolygon() {
+            originalPolygon = originalPolygon.map((_, i) => [
+                parseFloat(document.getElementById(`px${i}`).value),
+                parseFloat(document.getElementById(`py${i}`).value)
+            ]);
+            updateTransform();
+        }
+
+        function updateCamera() {
+            const elev = parseFloat(document.getElementById('elev').value) * Math.PI / 180;
+            const azim = parseFloat(document.getElementById('azim').value) * Math.PI / 180;
+            const r = parseFloat(document.getElementById('dist').value);
+            camera.position.x = r * Math.cos(elev) * Math.sin(azim);
+            camera.position.y = r * Math.sin(elev) + 1;
+            camera.position.z = r * Math.cos(elev) * Math.cos(azim);
+            camera.lookAt(0, 0.5, 0);
+        }
+
+        function onResize() {
+            const container = document.getElementById('container');
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+
+        init();
+    </script>
+    <!-- 访客计数器 -->
+    <div style="position:fixed;bottom:10px;right:10px;background:rgba(30,30,50,0.8);padding:8px 12px;border-radius:8px;color:#aaa;font-size:12px;">
+        👁️ 访问: <span id="busuanzi_value_site_pv">-</span>
+    </div>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>

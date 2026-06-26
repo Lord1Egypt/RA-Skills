@@ -1,35 +1,128 @@
 ---
-name: "Portfolio Optimizer"
-description: "virtual-trading MCPの価格情報とautomatic-investment-strategy/analysisのニュース分析を 組み合わせてポートフォリオを最適化し、割安資産の購入・割高資産の売却を実行する。 年率7%以上を目標とし、買い判断・売り判断・リバランス提案を行う。 ユーザーが「ポートフ..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/portfolio-optimizer"
-sourceUrl: "https://clawhub.ai/skills/portfolio-optimizer"
+name: portfolio-optimizer
+description: >-
+  virtual-trading MCPの価格情報とautomatic-investment-strategy/analysisのニュース分析を
+  組み合わせてポートフォリオを最適化し、割安資産の購入・割高資産の売却を実行する。
+  年率7%以上を目標とし、買い判断・売り判断・リバランス提案を行う。
+  ユーザーが「ポートフォリオを最適化して」「割安な資産を買って」「リバランスして」
+  「投資戦略を実行して」などと依頼したときにトリガーすること。
 ---
 
-# Portfolio Optimizer
+# ポートフォリオ最適化 Workflow
 
-> virtual-trading MCPの価格情報とautomatic-investment-strategy/analysisのニュース分析を 組み合わせてポートフォリオを最適化し、割安資産の購入・割高資産の売却を実行する。 年率7%以上を目標とし、買い判断・売り判断・リバランス提案を行う。 ユーザーが「ポートフ...
+virtual-trading MCP の価格データと analysis/ のニュース分析スコアを統合し、
+S&P500を上回るリターンを目標とした売買判断・注文執行を行う。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/portfolio-optimizer`
-- **Source URL:** [https://clawhub.ai/skills/portfolio-optimizer](https://clawhub.ai/skills/portfolio-optimizer)
+## ワークフロー概要
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/portfolio-optimizer
 ```
+1. 現状把握   → ポートフォリオ残高・価格取得
+2. 分析読込   → 直近のニュース分析スコア集計
+3. バリュエーション → 価格トレンド＋ニューススコアで割安/割高判定
+4. 判断       → 買い/売り/ホールドの資産リスト作成
+5. 執行       → virtual-trading MCP で注文
+6. サマリー   → 実行結果と次回推奨をレポート
+```
+
+## Step 1: 現状把握
+
+以下の virtual-trading MCP ツールで現状を取得する。
+
+```
+get_portfolio   → 保有資産一覧・数量・平均取得コスト
+get_prices      → 対象資産の現在価格（または PromQL で過去1週間の高値/安値）
+get_balance     → 現金残高
+```
+
+PromQL で価格トレンドを見る場合: [references/virtual-trading-api.md](./references/virtual-trading-api.md) 参照。
+
+## Step 2: ニュース分析スコア集計
+
+git pull あるいは 
+
+```
+git clone git@github.com:kackyt/automatic-investment-strategy.git
+```
+
+を実行して最新のニュース分析を取得する
+
+`analysis/` ディレクトリの構造と読み方: [references/news-analysis-format.md](./references/news-analysis-format.md) 参照。
+
+- 直近 3〜7 日分の bloomberg.md / coindesk.md を読む
+- 投資対象となる資産クラスの **平均スコア** を算出する
+  - 株式 (Stocks): bloomberg スコア (株式) の平均
+  - 暗号資産 (Crypto): coindesk スコアの平均
+  *(注: 現金は USD で保有し、債券は取引対象外のためスコア集計から除外する)*
+
+## Step 3: 戦略の一貫性維持（Stateful Strategy Memory の読み込み）
+
+10分ごとの実行（Tick）において方針がブレるのを防ぐため、前回の戦略状態を読み込む。
+- `automatic-investment-strategy/analysis/strategy_state.md` ファイルを確認する（存在しなければ新規作成を想定）。
+- 記載されている「長期軸（Long-term View）」と「短期軸（Short-term View）」を読み込み、直近の動きとの差分をとらえ、適宜更新していく。
+
+## Step 4: マクロ環境による「Risk-On / Risk-Off」の判定
+
+各アセットクラスの `news_score` を用いて、相場全体の地合いを判定し、攻めと守りのスイッチを切り替える。ベンチマークである「SPYの100%バイアンドホールド」のドローダウンを回避することが目的である。
+
+- **Risk-On（強気相場）**: アセットクラスの `news_score` が **0より大きい** 場合。このクラスの銘柄への投資を許可する。
+- **Risk-Off（弱気相場）**: `news_score` が **0以下** の場合。暴落回避のため、このクラスの銘柄は**すべて売却し、100%現金（USD）に退避**する。
+
+## Step 5: 個別銘柄のモメンタム判定と目標配分計算
+
+売買対象銘柄（`SPY`, `BKCH`, `MSFT`, `GOOGL`, `BTC`, `ETH`, `LINK`）について、価格の勢い（モメンタム）を評価し、強い銘柄に資金を集中させる。
+
+```text
+R = (現在価格 - 直近7日安値) / (直近7日高値 - 直近7日安値)  // 0なら底値、1なら高値
+モメンタムスコア = R × 100
+
+総合確信度スコア = (ニューススコア平均 × 5) + モメンタムスコア
+```
+
+- **投資条件**: 総合確信度スコアが **+60 以上** の銘柄のみを投資対象とする。
+- **目標割合(%)**: `確信度スコア` の数値そのままを目標割合(%)とする（例: スコア70なら70%）。
+- **上限設定**: 分散を強制するため、**1銘柄あたりの上限は 30%** とする。
+- **現金バッファ**: 条件を満たす銘柄の割合合計が100%に満たない場合は、残りをUSD（現金）として保持する。合計が100%を超える場合のみ、100%になるよう等比率で縮小（正規化）する。
+
+## Step 6: 取引コストと決済ラグへの対応（Hysteresis）
+
+10分周期の実行に対して毎回細かく売買すると、取引手数料（0.25%）により資金（初期$10,000）が枯渇する（Fee Bleed）。また、株式の翌日決済により資金ロックが発生する。
+
+- **リバランス閾値（不感帯）**: 各銘柄の「現在の保有割合」と「目標割合」の差が**絶対値で 15% 以上**乖離していない限り、売買は実行しない（ホールド継続）。これにより微細なノイズによる取引を防止する。
+- **注文時の残高確認（決済対応）**: `buy_asset` 発注前に必ず利用可能なUSD残高（Settled Cash）を確認する。株式の売却代金が未決済（翌日反映）である場合は、手元の現金残高の範囲内でのみ買い注文を出す。
+
+## Step 7: 注文執行
+
+virtual-trading MCP の `sell_asset` および `buy_asset` で注文を執行する。
+（※ 売り注文を先に行い、現金を確保してから買い注文を行うこと）
+執行後は `get_portfolio` で最新の状況を確認する。
+
+## Step 8: サマリーレポートと戦略の更新
+
+以下の形式でレポートを出力するとともに、次回のTickに向けて `strategy_state.md` を最新の状況で上書き更新する。
+
+```markdown
+## 最適化レポート (YYYY-MM-DD HH:MM)
+
+### 市場環境サマリー
+- Stocks センチメント: [スコア] (Risk-[On/Off])
+- Crypto センチメント: [スコア] (Risk-[On/Off])
+
+### 実行した取引 (Threshold 15% filter applied)
+| 資産 | 売/買 | 数量 | 金額 | 理由 |
+|------|-------|------|------|------|
+（※ 取引なしの場合は「なし（不感帯内）」と記載）
+
+### ポートフォリオ変化
+- 総額 $X / 現金 $Y
+
+### 戦略状態の更新 (strategy_state.md へ反映)
+- **長期軸**: [マクロトレンドの評価]
+- **短期軸**: [直近のアクション理由と次の注目点]
+```
+
+## 注意事項
+
+- virtual-trading は仮想取引: 実際の資金損失は発生しないが、ロジックの一貫性を保つこと
+- ニュース分析は `automatic-investment-strategy/analysis/<YYYY-MM-DD>/` に格納される
+- 分析ファイルが当日分でない場合は直近の日付フォルダを使う
+- MCP ツール名は会話の文脈で確認すること（get_portfolio, get_prices 等）

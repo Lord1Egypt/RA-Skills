@@ -1,0 +1,104 @@
+# Papyrus — Academic Paper Deep-Read Skill
+#
+# OpenClaw platform adapter. Papyrus is already an OpenClaw skill
+# (SKILL.md in the parent directory is auto-loaded). This config
+# defines how an OpenClaw agent should invoke the deep-read pipeline.
+
+name: papyrus
+display: "📜 Papyrus — Paper Deep-Read"
+version: "0.2.0+openclaw"
+
+## When the agent should use Papyrus
+triggers:
+  - "User asks to deep-read or annotate a paper"
+  - "User provides an arXiv URL"
+  - "User mentions 'papyrus', '论文详读', 'paper deep-read'"
+
+## Pipeline: the OpenClaw agent executes these steps in order
+pipeline:
+  - step: fetch
+    description: Download arXiv LaTeX source
+    command: bash "${PAPYRUS_HOME}/SCRIPTS/papyrus" fetch "${ARXIV_URL}" /tmp/papyrus_work
+    
+  - step: figure_mapping
+    description: Extract figure-to-file mapping from arXiv HTML
+    note: >
+      NEVER guess ModalNet/fig filenames. Fetch the arXiv HTML page,
+      parse <figure> blocks, extract src= attributes. Build a mapping
+      table: Figure N → actual filename. Download any x*.png appendix
+      figures from the HTML page (they are NOT in the source tar.gz).
+    
+  - step: rasterize
+    description: Convert PDF figures to PNG
+    command: bash "${PAPYRUS_HOME}/SCRIPTS/papyrus" figures /tmp/papyrus_work/figures /tmp/papyrus_work/figures_png
+    
+  - step: extract_formulas
+    description: Extract display math from LaTeX source
+    note: >
+      Scan all .tex files for \begin{equation}, \begin{align},
+      \begin{aligned} blocks. Write each to formulas.txt with
+      @name= prefixes for output filenames.
+    
+  - step: render_formulas
+    description: Render LaTeX to PNG
+    command: bash "${PAPYRUS_HOME}/SCRIPTS/papyrus" formulas /tmp/papyrus_work/formulas.txt /tmp/papyrus_work/formulas
+    
+  - step: web_research
+    description: Search for quality paper interpretations
+    note: >
+      For EACH major section, search the web for:
+      - Blog posts by ML researchers discussing this paper
+      - Lecture notes or course materials citing it
+      - Hacker News / Reddit discussion threads
+      - Citation papers explaining the method
+      Use findings to write insightful commentary (max 4 sentences per block).
+    
+  - step: build_html
+    description: Construct annotated bilingual HTML
+    template: "${PAPYRUS_HOME}/TEMPLATES/paper.html"
+    note: >
+      Follow SOP.md Phase 4 exactly. Sections: cover → abstract →
+      body (bilingual blocks) → appendix → epilogue. Figures use
+      figure-container + figure-caption. Formulas use formula-block
+      with <img src="..."> at max-width:100%; height:auto.
+    
+  - step: qc
+    description: Three-round quality control
+    checklists: "${PAPYRUS_HOME}/PROMPTS/qc_checklist.md"
+    rounds:
+      - Structure: all sections, figures, formulas present
+      - Content: translation accuracy, figure captions match paper
+      - Visual: formula sharpness, no overflow, font rendering
+    
+  - step: pdf
+    description: Generate final PDF
+    command: bash "${PAPYRUS_HOME}/SCRIPTS/papyrus" pdf /tmp/papyrus_work/annotated.html /tmp/papyrus_work/output.pdf
+    
+  - step: deliver
+    description: Send PDF to user
+    note: Attach the PDF and provide a summary of sections, formulas, figures.
+
+## Environment
+env:
+  PAPYRUS_HOME: "${HOME}/.openclaw/skills/papyrus"
+  OUTPUT_DIR: /tmp/papyrus_work
+
+## Dependencies
+requires:
+  python:
+    - weasyprint
+    - pypdf
+    - PyMuPDF      # for vector PDF → PNG (optional but recommended)
+    - Pillow
+    - requests
+  optional:
+    - pdflatex     # local formula rendering (fallback: codecogs.com)
+
+## Design Rules (copied from SOP.md for agent reference)
+rules:
+  - NEVER guess figure file-to-number mapping; always verify from arXiv HTML
+  - NEVER upscale formula images; use native resolution with height:auto
+  - ALWAYS web-research before writing commentary
+  - ALWAYS run three QC rounds before delivery
+  - Formula wireframe: 1pt #d0dce9 border, rounded corners, light background
+  - Font: MingLiU (CN) + Times New Roman (EN), 10pt body

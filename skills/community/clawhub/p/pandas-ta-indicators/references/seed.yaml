@@ -1,0 +1,3526 @@
+meta:
+  id: finance-bp-122-v5.3
+  version: v6.1
+  blueprint_id: finance-bp-122
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-22T13:01:00.198579+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    - "[V6 READING ORDER]\nThis crystal contains the following V6 layers. Before answering any business question, the host\
+      \ MUST read them in order:\n  1. anti_patterns[] — cross-project anti-patterns (with AP-* ids)\n  2. cross_project_wisdom[]\
+      \ — cross-project wisdom (with CW-* ids)\n  3. domain_constraints_injected[] — domain constraints (SHARED-* ids)\n \
+      \ 4. known_use_cases[] — concrete business scenarios (KUC-* ids)\n  5. component_capability_map — AST component map\
+      \ (by module)\n\nWhen answering user questions, proactively cite relevant AP-*/CW-*/SHARED-*/KUC-* ids with source text.\
+      \ Examples: T+1 rules -> cite SHARED-* constraint; model comparison -> warn via AP-*; follow-holdings strategy -> cite\
+      \ KUC-* with example file."
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+  capability_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  upgraded_from: finance-bp-122-v1.seed.yaml
+  upgraded_at: '2026-04-22T13:20:33.510071+00:00'
+  v6_inputs:
+    ast_mind_map: knowledge/sources/finance/finance-bp-122--ta-python/v6_inputs/ast_mind_map.yaml
+    anti_patterns: null
+    cross_project_wisdom: null
+    examples_kuc: knowledge/sources/finance/finance-bp-122--ta-python/v6_inputs/examples_kuc.yaml
+    shared_pools_dir: knowledge/sources/finance/_shared
+anti_patterns:
+- id: AP-TECHNICAL-ANALYSIS-001
+  title: C FFI Type Mismatch with Non-float64 Arrays
+  description: Passing non-float64 (NPY_DOUBLE) numpy arrays to TA-Lib C functions causes memory corruption or silent incorrect
+    calculations. The C FFI layer expects precisely float64 precision, and type mismatches propagate undetected, producing
+    wrong indicator values that may silently corrupt trading strategies. Root cause is not validating array dtype before the
+    C function call.
+  project_source: finance-bp-109--ta-lib-python
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  _source_file: anti-patterns/technical-analysis.yaml
+- id: AP-TECHNICAL-ANALYSIS-002
+  title: Multidimensional Array Memory Access Violations
+  description: Passing multidimensional numpy arrays to TA-Lib C functions causes segmentation faults and memory access violations
+    due to incorrect stride calculations. The C layer assumes contiguous 1-dimensional memory layouts, and higher-dimensional
+    inputs break its internal pointer arithmetic, leading to crashes or silent memory corruption.
+  project_source: finance-bp-109--ta-lib-python
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  _source_file: anti-patterns/technical-analysis.yaml
+- id: AP-TECHNICAL-ANALYSIS-003
+  title: Ignoring TA_RetCode Error Status from C Calls
+  description: When TA-Lib C functions return non-zero TA_RetCode values (indicating errors like uninitialized library, invalid
+    parameters, or out-of-range inputs), ignoring these codes silently propagates invalid computation results. This leads
+    to incorrect technical indicator values feeding into trading strategies without any warning, potentially causing significant
+    financial loss.
+  project_source: finance-bp-109--ta-lib-python
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  _source_file: anti-patterns/technical-analysis.yaml
+- id: AP-TECHNICAL-ANALYSIS-004
+  title: Mismatched Array Lengths in Multi-Input Functions
+  description: When calculating indicators that require multiple input arrays (e.g., open, high, low, close, volume), providing
+    arrays of different lengths causes out-of-bounds memory access. TA-Lib iterates assuming identical sizes, and length mismatches
+    produce garbage values or segmentation faults, corrupting the entire indicator output.
+  project_source: finance-bp-109--ta-lib-python
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  _source_file: anti-patterns/technical-analysis.yaml
+- id: AP-TECHNICAL-ANALYSIS-005
+  title: Time-Series Index Reindexing Breaks Alignment
+  description: Reindexing or resetting the DataFrame/Series index after computing technical indicators breaks temporal alignment
+    with original price data and other features. This causes look-ahead bias, shifts indicator values to incorrect timestamps,
+    and corrupts time-series datasets when used in backtesting or feature engineering pipelines.
+  project_source: finance-bp-122--ta-python
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  _source_file: anti-patterns/technical-analysis.yaml
+- id: AP-TECHNICAL-ANALYSIS-006
+  title: NaN/Inf/Zero Propagation Corrupts Indicator Values
+  description: Failing to clean input data of NaN, infinite values, or zero prices causes cascading corruption through rolling
+    window calculations. Division-by-zero errors on zero prices produce NaN that propagates into all subsequent indicator
+    values, corrupting entire datasets. Invalid values also cause incorrect boolean mask classifications when compared with
+    np.inf directly.
+  project_source: finance-bp-122--ta-python
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  _source_file: anti-patterns/technical-analysis.yaml
+- id: AP-TECHNICAL-ANALYSIS-007
+  title: EMA Smoothing Parameter Divergence from TA Standards
+  description: Using pandas adjust=True (the default) for ewm() when implementing EMA-based indicators produces Yahoo Finance
+    variant smoothing instead of standard recursive exponential smoothing per technical analysis textbooks. This causes different
+    signal thresholds and divergence from widely-accepted indicator calculations, leading to inconsistent trading signals.
+  project_source: finance-bp-122--ta-python
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  _source_file: anti-patterns/technical-analysis.yaml
+- id: AP-TECHNICAL-ANALYSIS-008
+  title: 'False Claims: Indicator Calculation as Trading Signal'
+  description: Presenting technical indicator values as real-time trading signals or guaranteed future performance misleads
+    users about the tool's capabilities. The library calculates historical indicators from OHLCV data; claiming these as trading
+    signals leads to improper trading decisions. Backtest results also do not guarantee future performance due to look-ahead
+    bias and market regime changes.
+  project_source: finance-bp-122--ta-python
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  _source_file: anti-patterns/technical-analysis.yaml
+- id: AP-TECHNICAL-ANALYSIS-009
+  title: Functional vs OOP API Implementation Divergence
+  description: When both functional wrappers (e.g., rsi()) and OOP classes (e.g., RSIIndicator) are provided, diverging implementations
+    produce different indicator values for the same inputs. This causes confusion, test failures, and breaks user code that
+    expects consistent behavior across APIs. The functional wrapper must delegate to the class implementation to ensure equivalence.
+  project_source: finance-bp-122--ta-python
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  _source_file: anti-patterns/technical-analysis.yaml
+- id: AP-TECHNICAL-ANALYSIS-010
+  title: Bollinger Bands Using Sample Std Deviation
+  description: Using pandas default ddof=1 (sample standard deviation) for Bollinger Bands produces wider bands than John
+    Bollinger's original specification, which uses population standard deviation. This causes overestimation of volatility,
+    incorrect trading signal thresholds, and divergence from the canonical indicator calculation that traders expect.
+  project_source: finance-bp-122--ta-python
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  _source_file: anti-patterns/technical-analysis.yaml
+- id: AP-TECHNICAL-ANALYSIS-011
+  title: Stale Cached Outputs Without Invalidation
+  description: Caching computed indicator outputs without invalidating when inputs, parameters, or input_names change causes
+    stale results to be returned even when underlying data has changed. This produces incorrect indicator values that silently
+    propagate into trading strategies, leading to wrong signals based on outdated calculations.
+  project_source: finance-bp-109--ta-lib-python
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  _source_file: anti-patterns/technical-analysis.yaml
+- id: AP-TECHNICAL-ANALYSIS-012
+  title: Concurrent Access Without Thread-Local State
+  description: Using shared Function instances across multiple threads without thread-local storage causes race conditions
+    where concurrent threads share state. This leads to data corruption, incorrect results, and non-deterministic indicator
+    values when multiple threads compute indicators simultaneously on the same instance.
+  project_source: finance-bp-109--ta-lib-python
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  _source_file: anti-patterns/technical-analysis.yaml
+- id: AP-TECHNICAL-ANALYSIS-013
+  title: Using Python Lists Instead of NumPy Arrays for Stream Functions
+  description: Stream functions require numpy.ndarray inputs due to direct C API access via PyArray_TYPE() and PyArray_FLAGS().
+    Passing plain Python lists or other sequences causes runtime errors because the C layer cannot access the underlying C
+    arrays. This breaks real-time indicator calculations that expect efficient numpy buffer access.
+  project_source: finance-bp-109--ta-lib-python
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  _source_file: anti-patterns/technical-analysis.yaml
+- id: AP-TECHNICAL-ANALYSIS-014
+  title: Library Not Initialized Before C Function Calls
+  description: Calling TA-Lib C functions without prior library initialization returns TA_RetCode=1 (TA_LIB_NOT_INITIALIZE),
+    causing all function calls to fail. This is a silent failure mode that produces no output indicators, breaking batch calculation
+    pipelines unless the initialization step is explicitly performed before any function calls.
+  project_source: finance-bp-109--ta-lib-python
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  _source_file: anti-patterns/technical-analysis.yaml
+- id: AP-TECHNICAL-ANALYSIS-015
+  title: Stateful Wrapper Functions Leak State Across Calls
+  description: When functional wrapper functions retain internal state between calls, different input series contaminate each
+    other's results through data leakage. This produces incorrect indicator values when the same wrapper function is called
+    sequentially with different data, as cached state from previous calls affects new computations.
+  project_source: finance-bp-122--ta-python
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - technical-analysis
+  _source_file: anti-patterns/technical-analysis.yaml
+cross_project_wisdom:
+- wisdom_id: CW-TECHNICAL-ANALYSIS-001
+  source_project: finance-bp-109--ta-lib-python, finance-bp-122--ta-python
+  pattern_name: Explicit Input Validation Before Computation
+  description: 'Both projects require rigorous pre-computation validation: dtype checking (float64 for C FFI, numeric for
+    pandas), dimension checking (1D arrays for C layer), and length validation. This defensive pattern prevents silent failures
+    and memory corruption. Apply this pattern whenever interfacing with external C libraries or computing indicators on potentially
+    malformed input data.'
+  applicable_to_activity: technical-analysis
+  _source_file: cross-project-wisdom/technical-analysis.yaml
+- wisdom_id: CW-TECHNICAL-ANALYSIS-002
+  source_project: finance-bp-109--ta-lib-python, finance-bp-122--ta-python
+  pattern_name: Index Preservation Throughout Indicator Pipeline
+  description: Preserving the original DataFrame/Series index without reindexing or reset is critical for temporal alignment.
+    When constructing output Series, use index=self._close.index to maintain alignment with price data. This prevents look-ahead
+    bias and ensures downstream features correctly reference their corresponding timestamps.
+  applicable_to_activity: technical-analysis
+  _source_file: cross-project-wisdom/technical-analysis.yaml
+- wisdom_id: CW-TECHNICAL-ANALYSIS-003
+  source_project: finance-bp-122--ta-python
+  pattern_name: Data Cleaning Before Indicator Computation
+  description: Indicators like RSI, MACD, and Bollinger Bands produce incorrect results when fed NaN, inf, or zero values.
+    Remove rows with zero prices (to prevent division-by-zero), filter out infinite values using the exp(709) threshold as
+    the maximum float64, and apply dropna to DataFrames before passing to indicator functions. This ensures clean propagation
+    through rolling window calculations.
+  applicable_to_activity: technical-analysis
+  _source_file: cross-project-wisdom/technical-analysis.yaml
+- wisdom_id: CW-TECHNICAL-ANALYSIS-004
+  source_project: finance-bp-109--ta-lib-python
+  pattern_name: Error Code Propagation from C to Python Layer
+  description: Always call _ta_check_success and raise exceptions on non-zero TA_RetCode return values from C function calls.
+    This pattern ensures that errors like uninitialized library, invalid parameters, or out-of-range inputs propagate as proper
+    Python exceptions instead of silently producing garbage values. Never ignore return codes from the underlying C library.
+  applicable_to_activity: technical-analysis
+  _source_file: cross-project-wisdom/technical-analysis.yaml
+- wisdom_id: CW-TECHNICAL-ANALYSIS-005
+  source_project: finance-bp-109--ta-lib-python
+  pattern_name: Thread-Local Storage for Concurrent Indicator Access
+  description: When the same Function instance may be accessed from multiple threads, use thread-local storage to maintain
+    isolated state per thread. This prevents race conditions, state corruption, and non-deterministic results when concurrent
+    threads compute indicators simultaneously. The pattern is essential for any multi-threaded trading system or async processing
+    pipeline.
+  applicable_to_activity: technical-analysis
+  _source_file: cross-project-wisdom/technical-analysis.yaml
+- wisdom_id: CW-TECHNICAL-ANALYSIS-006
+  source_project: finance-bp-122--ta-python
+  pattern_name: Functional Wrapper Delegates to OOP Implementation
+  description: Functional wrapper functions like rsi() and ema_indicator() should instantiate the corresponding Indicator
+    class and call its result method, not reimplement logic. This ensures OOP and functional APIs produce identical outputs.
+    Any divergence causes test failures and breaks user code that switches between API styles. Validate equivalence in test
+    suites.
+  applicable_to_activity: technical-analysis
+  _source_file: cross-project-wisdom/technical-analysis.yaml
+- wisdom_id: CW-TECHNICAL-ANALYSIS-007
+  source_project: finance-bp-122--ta-python
+  pattern_name: Standard TA Textbook Parameters for EMA Calculations
+  description: When implementing EMA-based indicators, use adjust=False in pandas ewm() to match standard recursive exponential
+    smoothing from technical analysis textbooks, not the Yahoo Finance variant. Also use ddof=0 for Bollinger Bands standard
+    deviation per the original specification. Deviations produce different signal thresholds that diverge from what traders
+    expect.
+  applicable_to_activity: technical-analysis
+  _source_file: cross-project-wisdom/technical-analysis.yaml
+- wisdom_id: CW-TECHNICAL-ANALYSIS-008
+  source_project: finance-bp-109--ta-lib-python
+  pattern_name: Cache Invalidation on Any Input Change
+  description: Set outputs_valid flag to False whenever inputs, parameters, or input_names change. This pattern prevents returning
+    stale cached outputs when underlying data or parameters have been modified. Implement proper cache invalidation to ensure
+    computed indicators always reflect the current state.
+  applicable_to_activity: technical-analysis
+  _source_file: cross-project-wisdom/technical-analysis.yaml
+- wisdom_id: CW-TECHNICAL-ANALYSIS-009
+  source_project: finance-bp-109--ta-lib-python, finance-bp-122--ta-python
+  pattern_name: Library Initialization Before First Use
+  description: Explicitly initialize the TA-Lib C library before any function calls. Without initialization, all function
+    calls fail with TA_RetCode=1 (TA_LIB_NOT_INITIALIZE). This is a critical setup step that must be performed once before
+    the indicator computation pipeline begins, typically at application startup or when first loading the library.
+  applicable_to_activity: technical-analysis
+  _source_file: cross-project-wisdom/technical-analysis.yaml
+domain_constraints_injected: []
+resources_injected: {}
+known_use_cases:
+- kuc_id: KUC-101
+  source_file: docs/conf.py
+  business_problem: Configures the Sphinx documentation builder for the Technical Analysis Library, enabling automated generation
+    of API documentation.
+  intent_keywords:
+  - documentation
+  - sphinx
+  - config
+  - api docs
+  stage: reporting
+  data_domain: mixed
+  type: reporting
+- kuc_id: KUC-102
+  source_file: examples_to_use/visualize_features.ipynb
+  business_problem: Explores and visualizes various technical analysis indicators (Bollinger Bands, Keltner Channel, Donchian
+    Channel, MACD) on historical price data to understand their patterns and behavior.
+  intent_keywords:
+  - visualize
+  - technical indicators
+  - charting
+  - feature exploration
+  - research
+  stage: factor_computation
+  data_domain: market_data
+  type: research_analysis
+component_capability_map:
+  project: finance-bp-122--ta-python
+  scan_date: '2026-04-22'
+  stats:
+    total_files: 5
+    total_classes: 29
+    total_functions: 0
+    total_stages: 5
+  modules:
+    data_input:
+      class_count: 6
+      stage_id: data_input
+      stage_order: 1
+      responsibility: Accept raw OHLCV pandas DataFrames and validate column presence. Acts as entry point for each feature
+        engineering pipelines, orchestrating the addition of technical indicator columns in-place to the input DataFrame.
+      classes:
+      - name: add_all_ta_features
+        file: data_input/add-all-ta-features.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: add_volume_ta
+        file: data_input/add-volume-ta.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: add_trend_ta
+        file: data_input/add-trend-ta.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: add_momentum_ta
+        file: data_input/add-momentum-ta.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: add_volatility_ta
+        file: data_input/add-volatility-ta.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Column naming convention
+        file: data_input/column-naming-convention.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    indicator_computation:
+      class_count: 8
+      stage_id: indicator_computation
+      stage_order: 2
+      responsibility: Compute mathematical transformations of OHLCV data to produce technical indicators. Each indicator class
+        encapsulates one TA formula with consistent __init__ → _run → <result> pattern across each 41 indicator classes.
+      classes:
+      - name: RSIIndicator.rsi
+        file: indicator_computation/rsiindicator-rsi.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: MACD.macd/macd_signal/macd_diff
+        file: indicator_computation/macd-macd-macd-signal-macd-diff.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: BollingerBands.bollinger_mavg/hband/lband/wband/pband/hband_indicator/lband_indicator
+        file: indicator_computation/bollingerbands-bollinger-mavg-hband-lban.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: MFIIndicator.money_flow_index
+        file: indicator_computation/mfiindicator-money-flow-index.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: IndicatorMixin._check_fillna
+        file: indicator_computation/indicatormixin-check-fillna.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Fill strategy
+        file: indicator_computation/fill-strategy.py
+        line: 0
+        kind: replaceable_point
+      - name: Rolling window minimum periods
+        file: indicator_computation/rolling-window-minimum-periods.py
+        line: 0
+        kind: replaceable_point
+      - name: EMA smoothing method
+        file: indicator_computation/ema-smoothing-method.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 7
+    feature_aggregation:
+      class_count: 8
+      stage_id: feature_aggregation
+      stage_order: 3
+      responsibility: Combine multiple related indicator outputs into single API calls. Each indicator may produce multiple
+        derived outputs (e.g., MACD line, signal, histogram) from a single _run() computation to avoid recomputing rolling
+        windows.
+      classes:
+      - name: BollingerBands.bollinger_mavg
+        file: feature_aggregation/bollingerbands-bollinger-mavg.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: BollingerBands.bollinger_hband/bollinger_lband
+        file: feature_aggregation/bollingerbands-bollinger-hband-bollinger.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: BollingerBands.bollinger_pband
+        file: feature_aggregation/bollingerbands-bollinger-pband.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: MACD.macd
+        file: feature_aggregation/macd-macd.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: MACD.macd_signal
+        file: feature_aggregation/macd-macd-signal.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: MACD.macd_diff
+        file: feature_aggregation/macd-macd-diff.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: StochasticOscillator.stoch/stoch_signal
+        file: feature_aggregation/stochasticoscillator-stoch-stoch-signal.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Derived output selection
+        file: feature_aggregation/derived-output-selection.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 2
+    functional_api_layer:
+      class_count: 6
+      stage_id: functional_api
+      stage_order: 4
+      responsibility: Provide stateless function wrappers for each indicator, enabling both OOP and functional usage patterns.
+        Functions instantiate classes internally and call single result methods, serving both OOP users needing multiple outputs
+        and functional users wanting single calls.
+      classes:
+      - name: rsi
+        file: functional_api_layer/rsi.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: macd
+        file: functional_api_layer/macd.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: bollinger_mavg
+        file: functional_api_layer/bollinger-mavg.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: money_flow_index
+        file: functional_api_layer/money-flow-index.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: on_balance_volume
+        file: functional_api_layer/on-balance-volume.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: API style
+        file: functional_api_layer/api-style.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 2
+    data_cleanup_utility:
+      class_count: 1
+      stage_id: data_cleanup
+      stage_order: 5
+      responsibility: Remove rows with invalid numeric values (NaN, inf, zero) that would corrupt indicator calculations.
+        Acts as data quality gate before and after indicator computation.
+      classes:
+      - name: dropna
+        file: data_cleanup_utility/dropna.py
+        line: 0
+        kind: required_method
+        signature: ''
+      design_decision_count: 2
+  data_flow_hints: []
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: 1.0
+    evidence_verify_ratio: 0.7254901960784313
+    evidence_invalid: 28
+    evidence_verified: 74
+    evidence_auto_fixed: 0
+    audit_coverage: 47/47 (100%)
+    audit_pass_rate: 1/47 (2%)
+    audit_fail_total: 34
+    audit_finance_universal:
+      pass: 1
+      warn: 5
+      fail: 14
+    audit_subdomain_totals:
+      pass: 0
+      warn: 7
+      fail: 20
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-122. Evidence verify ratio
+    = 72.5% and audit fail total = 34. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-122-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc:
+  - UC-101
+  - UC-102
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-101
+    name: Sphinx Documentation Configuration
+    positive_terms:
+    - documentation
+    - sphinx
+    - config
+    - api docs
+    data_domain: mixed
+    negative_terms:
+    - trading
+    - screening
+    - backtesting
+    - indicators
+    ambiguity_question: Are you looking to build documentation or to implement a trading strategy?
+  - uc_id: UC-102
+    name: Technical Analysis Features Visualization
+    positive_terms:
+    - visualize
+    - technical indicators
+    - charting
+    - feature exploration
+    - research
+    data_domain: market_data
+    negative_terms:
+    - backtesting
+    - live trading
+    - screening
+    - signal generation
+    ambiguity_question: Do you want to explore and visualize indicator behavior, or do you need automated screening/trading
+      signals?
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 135
+    fatal_constraints_count: 19
+    non_fatal_constraints_count: 171
+    use_cases_count: 2
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 28 source groups: algorithm_selection(2),
+        data_cleanup(1), data_input(25), default_value(6), feature_aggregation(1), functional_api(1), and 22 more.'
+      key_decisions: 135 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-041
+      type: B/BA
+      summary: Keltner original_version=True uses SMA of typical price
+    - id: BD-GAP-005
+      type: B/BA
+      summary: Volume moving average uses Simple Moving Average (SMA) with 20-period default rather than exponential weighting,
+        prioritizing interpretability over recency sensitivity
+    - id: BD-042
+      type: B/DK
+      summary: DropNA filters values > exp(709) and != 0.0 then dropna()
+    - id: BD-GAP-007
+      type: DK
+      summary: 'Missing: as-of vs processing time'
+    - id: BD-GAP-008
+      type: DK
+      summary: 'Missing: Trading calendar vs natural calendar'
+    - id: BD-GAP-009
+      type: DK
+      summary: 'Missing: Timezone explicit annotation + UTC'
+    - id: BD-GAP-010
+      type: RC
+      summary: 'Missing: float vs Decimal for currency'
+    - id: BD-GAP-011
+      type: DK
+      summary: 'Missing: Stale data detection and expiry'
+    - id: BD-GAP-012
+      type: B
+      summary: 'Missing: PnL conservation (realized + unrealized)'
+    - id: BD-GAP-013
+      type: B
+      summary: 'Missing: Train/test time split integrity'
+    - id: BD-GAP-014
+      type: DK
+      summary: 'Missing: Random seed full coverage'
+    - id: BD-GAP-015
+      type: DK
+      summary: 'Missing: Model and data version snapshot binding'
+    - id: BD-GAP-016
+      type: B
+      summary: 'Missing: Immutable event log'
+    - id: BD-GAP-017
+      type: RC
+      summary: 'Missing: Settlement and delivery time convention'
+    - id: BD-GAP-018
+      type: RC
+      summary: 'Missing: Price and quantity precision (tick/lot)'
+    - id: BD-GAP-019
+      type: B
+      summary: 'Missing: Cost Model Completeness'
+    - id: BD-GAP-020
+      type: B
+      summary: 'Missing: Funding Cost Modeling (Carry)'
+    - id: BD-GAP-021
+      type: M/DK
+      summary: 'Missing: Day Count and Compounding Conventions'
+    - id: BD-GAP-022
+      type: M
+      summary: 'Missing: Transition Matrix Time Homogeneity'
+    - id: BD-GAP-023
+      type: DK
+      summary: 'Missing: Versioned Writes & Snapshot Semantics'
+    - id: BD-GAP-024
+      type: B
+      summary: 'Missing: Provider Priority & Credential Isolation'
+    - id: BD-GAP-025
+      type: B
+      summary: 'Missing: type'
+    - id: BD-GAP-026
+      type: B
+      summary: 'Missing: Implied Volatility Solver'
+    - id: BD-GAP-027
+      type: B
+      summary: 'Missing: Finite Difference Grid Stability (CFL)'
+    - id: BD-GAP-028
+      type: B
+      summary: 'Missing: Arbitrage-Free Constraint Verification'
+    - id: BD-GAP-029
+      type: B
+      summary: 'Missing: PD/LGD/EAD Estimation Methods'
+    - id: BD-GAP-030
+      type: B
+      summary: 'Missing: NPL Portfolio EBA Field Completeness'
+    - id: BD-GAP-031
+      type: B
+      summary: 'Missing: type'
+    - id: BD-082
+      type: BA
+      summary: '_fillna=False class-level default in IndicatorMixin encodes business rule: NaN handling is opt-in'
+    - id: BD-083
+      type: BA
+      summary: 'min_periods logic tied to _fillna: 0 if fillna else window — affects first valid index position'
+    - id: BD-084
+      type: BA/DK
+      summary: 'Fill value by indicator type encodes semantic meaning: 50 for oscillators, 0 for momentum, 20 for ADX'
+    - id: BD-092
+      type: B/BA
+      summary: CumulativeReturnIndicator uses first price as base; cannot recompute after data updates
+    - id: BD-093
+      type: BA/DK
+      summary: PSAR step=0.02, max_step=0.20 defaults encode specific market assumptions
+    - id: BD-094
+      type: BA/DK
+      summary: MACD defaults (fast=12, slow=26, signal=9) encode standard market cycle assumptions
+    - id: BD-GAP-001
+      type: B
+      summary: Volume features use On-Balance Volume (OBV) with cumulative signed volume logic rather than raw volume totals,
+        enabling direction-aware momentum tracking
+    - id: BD-GAP-004
+      type: BA/M
+      summary: Feature aggregation combines volume, momentum, and volatility indicators into a single normalized output dictionary,
+        allowing downstream consumers to select desired features without code changes
+    - id: BD-097
+      type: BA/DK
+      summary: 'INTERACTION: [BD-001] × [BD-044] × [BD-046] → Canonical RSI Implementation (Wilder equivalence)'
+    - id: BD-098
+      type: B/BA
+      summary: 'INTERACTION: [BD-082] × [BD-083] × [BD-033] → Coupled NaN propagation system with boundary conditions'
+    - id: BD-099
+      type: BA
+      summary: 'INTERACTION: [BD-090] × [BD-070] × [BD-030] → Keltner Channel dependency on internal ATR with Wilder smoothing'
+    - id: BD-100
+      type: B
+      summary: 'INTERACTION: [BD-034/BD-081] × [BD-070,BD-065,BD-067,BD-048] → True Range single point of failure cascades'
+    - id: BD-101
+      type: B
+      summary: 'INTERACTION: [BD-086] × [BD-009/BD-010] × [BD-051] → shift(1) hardcoded conflicts with multi-period return
+        definitions'
+    - id: BD-102
+      type: B/BA
+      summary: 'INTERACTION: [BD-003] × [BD-089] → Bollinger Bands ddof=0 conflicts with pandas default sample std'
+    - id: BD-103
+      type: B/BA
+      summary: 'INTERACTION: [BD-087] × [BD-044] × [BD-058] → adjust=False creates pandas ewm incompatibility'
+    - id: BD-104
+      type: BA
+      summary: 'INTERACTION: [BD-091] × [BD-004] × [BD-050] → KAMA np.roll() boundary issue corrupts Efficiency Ratio calculation'
+    - id: BD-001
+      type: B/BA
+      summary: RSI default window=14, EMA-based calculation using alpha=1/window
+    - id: BD-002
+      type: B/BA
+      summary: 'MACD default windows: slow=26, fast=12, signal=9'
+    - id: BD-003
+      type: B/BA
+      summary: 'Bollinger Bands default: window=20, window_dev=2, ddof=0 (population std)'
+    - id: BD-004
+      type: B/BA
+      summary: 'KAMA default: window=10, pow1=2, pow2=30 for efficiency ratio'
+    - id: BD-005
+      type: B/BA
+      summary: CCI default constant=0.015 (0.015 = typical commodity constant)
+    - id: BD-006
+      type: B/BA
+      summary: 'PSAR default: step=0.02, max_step=0.20 for acceleration factor'
+    - id: BD-007
+      type: B/BA
+      summary: NVI initial value starts at 1000 (cumulative base)
+    - id: BD-013
+      type: B/DK
+      summary: TRIX triple EMA smoothing then ROC on third EMA
+    - id: BD-014
+      type: B/BA
+      summary: Mass Index = EMA(amplitude) / EMA(EMA(amplitude)) sum over slow window
+    - id: BD-015
+      type: B/BA
+      summary: 'Ichimoku defaults: window1=9 (conversion), window2=26 (base), window3=52 (span B)'
+    - id: BD-016
+      type: B
+      summary: 'KST: 4 ROC periods (10,15,20,30) weighted 1:2:3:4, smoothed with SMA'
+    - id: BD-017
+      type: B/DK
+      summary: DPO shift = int((window/2) + 1) to detrend price
+    - id: BD-018
+      type: B/DK
+      summary: 'Ultimate Oscillator weights: 4:2:1 (window1:window2:window3)'
+    - id: BD-019
+      type: B/BA
+      summary: Williams %R multiplied by -100 (inverted negative scale)
+    - id: BD-020
+      type: B/DK
+      summary: Stochastic Oscillator smooth_window=3 for %D signal line
+    - id: BD-021
+      type: B/DK
+      summary: 'TSI double EMA smoothing: window_slow=25, window_fast=13'
+    - id: BD-022
+      type: B/BA
+      summary: Force Index default window=13 (EMA smoothing)
+    - id: BD-023
+      type: B/BA
+      summary: 'VPT: cumulative (close_pct_change * volume), no default smoothing'
+    - id: BD-024
+      type: B/BA
+      summary: VWAP uses rolling window (default 14) for cumulative calculation
+    - id: BD-025
+      type: B/BA
+      summary: ROC default window=12 periods
+    - id: BD-026
+      type: B/BA
+      summary: 'Awesome Oscillator: window1=5 (fast SMA), window2=34 (slow SMA) on median price'
+    - id: BD-027
+      type: B/BA
+      summary: Aroon default window=25 periods
+    - id: BD-028
+      type: B/BA
+      summary: Vortex Indicator default window=14 periods
+    - id: BD-029
+      type: B/DK
+      summary: Donchian Channel middle band = (high + low) / 2 of rolling window
+    - id: BD-030
+      type: B/BA
+      summary: Keltner Channel multiplier=2 (ATR-based bands)
+    - id: BD-031
+      type: B/BA
+      summary: 'Ulcer Index: Rolling max period default=14 for drawdown calculation'
+    - id: BD-032
+      type: B/BA
+      summary: 'STC: window_slow=50, window_fast=23, cycle=10, smooth1=3, smooth2=3'
+    - id: BD-035
+      type: B/BA
+      summary: ADX default window=14 for directional movement smoothing
+    - id: BD-036
+      type: B/BA
+      summary: 'AccDist Index (CLV): (Close-Low - High-Close) / (High-Low)'
+    - id: BD-037
+      type: B/BA
+      summary: 'OBV: add volume on up day, subtract on down day, cumulative sum'
+    - id: BD-038
+      type: B/BA
+      summary: Chaikin Money Flow default window=20 periods
+    - id: BD-039
+      type: B/BA
+      summary: 'StochRSI: window=14, smooth1=3, smooth2=3 (KAMA-like smoothing)'
+    - id: BD-040
+      type: B
+      summary: 'Percent Price Oscillator (PPO): same as MACD but expressed as percentage'
+    - id: BD-GAP-002
+      type: B/BA
+      summary: Rate of Change (ROC) uses percentage-based calculation with configurable period defaulting to 12 bars, enabling
+        cross-asset comparability
+    - id: BD-090
+      type: T
+      summary: KeltnerChannel creates internal AverageTrueRange instance when original_version=False
+    - id: BD-045
+      type: B/BA
+      summary: add_all_ta_features expects 76 columns (vectorized) or 94 columns (full)
+    - id: BD-086
+      type: B/BA
+      summary: 'shift(1) hardcoded across 18+ locations: each indicators assume 1-period lookback'
+    - id: BD-089
+      type: B/BA
+      summary: BollingerBands uses ddof=0 (population std) while pandas defaults to ddof=1 (sample std)
+    - id: BD-091
+      type: B
+      summary: 'np.roll() used in KAMA: wraps first element with last element causing spurious first-value calculation'
+    - id: BD-033
+      type: B
+      summary: 'FillNA: replace inf with NaN, then ffill, then bfill or fillna(value)'
+    - id: BD-088
+      type: T
+      summary: 'add_all_ta_features calls indicators in fixed sequence: volume→volatility→trend→momentum→others'
+    - id: BD-GAP-006
+      type: B
+      summary: Bollinger Band feature extraction returns upper band, middle band, lower band, and bandwidth percentage, enabling
+        both breakout and mean-reversion strategy support
+    - id: BD-GAP-003
+      type: B/BA
+      summary: Bollinger Bands use 20-period SMA with 2 standard deviation bands as the default configuration, representing
+        the most widely-used technical analysis parameters
+    - id: BD-085
+      type: T
+      summary: 'Dual-API pattern: every indicator has both Class and Function wrapper APIs'
+    - id: BD-087
+      type: B/BA
+      summary: 'EMA uses adjust=False: traditional Wilder smoothing, not modern exponential decay'
+    - id: BD-095
+      type: T
+      summary: _true_range static method in IndicatorMixin used by ATR, Ultimate Oscillator, Vortex
+    - id: BD-096
+      type: B/BA
+      summary: NegativeVolumeIndex initializes to 1000 and uses explicit loop, not cumulative sum
+    - id: BD-011
+      type: B
+      summary: Vectorized mode excludes MFI, NVI, ADX, CCI, Aroon, PSAR (non-vectorized only)
+    - id: BD-012
+      type: B/BA
+      summary: Typical Price = (High + Low + Close) / 3 for MFI, VWAP, CCI
+    - id: BD-034
+      type: B
+      summary: True Range = max(High-Low, |High-PrevClose|, |Low-PrevClose|)
+    - id: BD-009
+      type: B/BA
+      summary: 'Daily Return: (close/prev_close) - 1, multiplied by 100 for percentage'
+    - id: BD-010
+      type: B/BA
+      summary: 'Log Return: ln(close) - ln(prev_close), multiplied by 100'
+    - id: BD-043
+      type: B/DK
+      summary: SMA min_periods = 0 if fillna else periods (allows partial calculation)
+    - id: BD-008
+      type: B/BA
+      summary: EoM multiplier = 100000000 (100M) for scale normalization
+    - id: BD-044
+      type: B/DK
+      summary: EMA uses adjust=False for traditional (non-Yahoo Finance) smoothing
+    - id: BD-046
+      type: B/DK
+      summary: RSI uses EMA smoothing with alpha=1/window for up/down direction components
+    - id: BD-047
+      type: B/DK
+      summary: TSI uses double EMA smoothing (recursive ewm) on price difference and absolute difference
+    - id: BD-048
+      type: B
+      summary: Ultimate Oscillator uses weighted average of 3 timeframe BP/TR ratios
+    - id: BD-049
+      type: B/DK
+      summary: Stochastic Oscillator %K uses rolling min/max of high/low over window
+    - id: BD-050
+      type: B
+      summary: KAMA uses Efficiency Ratio (ER) to adapt smoothing constant for each period
+    - id: BD-051
+      type: B/BA
+      summary: 'Rate of Change uses percentage change formula: (current - past) / past * 100'
+    - id: BD-052
+      type: B/DK
+      summary: Awesome Oscillator uses SMA of median price (H+L)/2 with windows 5 and 34
+    - id: BD-053
+      type: B/BA
+      summary: Williams %R uses inverse stochastic formula with -100 scaling
+    - id: BD-054
+      type: B/DK
+      summary: Stochastic RSI applies stochastic normalization to RSI values themselves
+    - id: BD-055
+      type: B/BA
+      summary: Percentage Price Oscillator computes ((fast_ema - slow_ema) / slow_ema) * 100
+    - id: BD-056
+      type: B
+      summary: MACD uses EMA difference (fast minus slow) with signal line as EMA of MACD
+    - id: BD-059
+      type: B/DK
+      summary: 'WMA uses linear weights: weight_i = 2*i/(n*(n+1)) for i from 1 to n'
+    - id: BD-060
+      type: B
+      summary: TRIX applies triple EMA then computes ROC of the triple-smoothed series
+    - id: BD-061
+      type: B/BA
+      summary: Mass Index uses EMA ratio (ema1/ema2) summed over window_slow
+    - id: BD-062
+      type: B/BA
+      summary: Ichimoku Conversion/Baseline uses midpoint (high+low)/2 rolling extremes
+    - id: BD-063
+      type: B/BA
+      summary: KST uses weighted sum of multiple ROC smoothed values with fixed weights 1:2:3:4
+    - id: BD-064
+      type: B/DK
+      summary: Detrended Price Oscillator shifts SMA by (window/2 + 1) then subtracts from shifted close
+    - id: BD-065
+      type: B/BA
+      summary: CCI uses Mean Absolute Deviation (MAD) in denominator with constant=0.015
+    - id: BD-066
+      type: B/BA
+      summary: ADX uses Wilder smoothing (recursive EMA equivalent) for DX averaging
+    - id: BD-067
+      type: B/BA
+      summary: Vortex Indicator uses sum of abs(price movement) divided by true range sum
+    - id: BD-068
+      type: B/BA
+      summary: PSAR uses parabolic formula with acceleration factor step=0.02, max_step=0.20
+    - id: BD-069
+      type: B/BA
+      summary: STC applies stochastic to MACD values, then EMA smooths twice with cycle=10
+    - id: BD-057
+      type: B/DK
+      summary: SMA uses rolling window mean with min_periods control for fillna behavior
+    - id: BD-058
+      type: B/RC
+      summary: EMA uses pandas ewm with span parameter and adjust=False for exact Wilder smoothing
+    - id: BD-081
+      type: B
+      summary: 'True Range uses max of three: H-L, |H-prev_C|, |L-prev_C|'
+    - id: BD-070
+      type: B/BA
+      summary: ATR uses Wilder smoothing (recursive formula) for true range averaging
+    - id: BD-071
+      type: B/BA
+      summary: Bollinger Bands use population std (ddof=0) with SMA centerline
+    - id: BD-072
+      type: B/BA
+      summary: Keltner Channel uses SMA of typical price (H+L+C)/3 as centerline by default
+    - id: BD-073
+      type: B/BA
+      summary: Ulcer Index computes RMS of percentage drawdowns from rolling maximum
+    - id: BD-074
+      type: B/BA
+      summary: Accumulation/Distribution uses CLV = ((C-L) - (H-C))/(H-L) multiplied by volume
+    - id: BD-075
+      type: B/DK
+      summary: On-Balance Volume adds volume when close rises, subtracts when close falls
+    - id: BD-076
+      type: B/BA
+      summary: Chaikin Money Flow sums MFI over window divided by sum of volume over window
+    - id: BD-077
+      type: B/DK
+      summary: Force Index uses (close - prev_close) * volume with EMA smoothing
+    - id: BD-078
+      type: B/BA
+      summary: Ease of Movement uses (H.diff + L.diff)*(H-L)/(2*V) scaled by 1e8 for readability
+    - id: BD-079
+      type: B/BA
+      summary: Money Flow Index applies RSI formula to typical price * volume * direction
+    - id: BD-080
+      type: B/BA
+      summary: VWAP computes sum(typical_price * volume) / sum(volume) over rolling window
+resources:
+  packages:
+  - name: pandas
+    version_pin: ==1.5.3
+  - name: numpy
+    version_pin: ==1.24.4
+  - name: matplotlib
+    version_pin: '>=2'
+  - name: requests
+    version_pin: ==2.31.0
+  - name: scipy
+    version_pin: '>=1.3.0'
+  - name: scikit-learn
+    version_pin: '>1.4.2'
+  - name: pytest
+    version_pin: '>=8.3'
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: finance-C-003
+    when: When calculating technical indicators
+    action: preserve the input DataFrame index without reindexing
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Reindexing breaks temporal alignment with other features, causes data corruption in time-series datasets,
+      and may shift indicator values to incorrect timestamps
+    stage_ids:
+    - data_input
+  - id: finance-C-010
+    when: When using ta library for financial analysis
+    action: claim the library provides real-time trading signals or live trading capability
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: The library is a feature engineering tool that calculates technical indicators from historical OHLCV data;
+      presenting these as trading signals could lead to financial losses if users trade without proper risk management
+    stage_ids:
+    - data_input
+  - id: finance-C-011
+    when: When calculating technical indicators on financial data
+    action: present backtest results as guaranteed future trading performance
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Historical indicator values do not guarantee future performance; backtest results are affected by look-ahead
+      bias, survivorship bias, and market regime changes
+    stage_ids:
+    - data_input
+  - id: finance-C-013
+    when: When computing Bollinger Bands standard deviation
+    action: use ddof=0 (population standard deviation) for consistency with original Bollinger specification
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using sample std (ddof=1) would produce wider bands than specified by John Bollinger, causing overestimation
+      of volatility and incorrect trading signal thresholds
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-017
+    when: When implementing EMA-based indicators requiring traditional exponential smoothing
+    action: use adjust=False in ewm() to implement standard recursive exponential smoothing per TA textbooks
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using adjust=True (pandas default) implements Yahoo Finance variant smoothing which produces different results
+      from standard technical analysis textbooks, causing signal divergence from expected indicator behavior
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-018
+    when: When returning computed indicator Series from result methods
+    action: preserve the input Series index object to maintain temporal alignment in downstream calculations
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Creating a new Series with reindexed or reset index breaks temporal alignment with original price data, causing
+      look-ahead bias or misaligned signals in trading strategies
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-042
+    when: When implementing functional wrapper functions like rsi(), ema_indicator()
+    action: instantiate the corresponding Indicator class and call the single result method
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Diverging implementations produce inconsistent results between OOP and functional API, causing users to receive
+      different indicator values for the same inputs
+    stage_ids:
+    - functional_api
+  - id: finance-C-043
+    when: When implementing functional wrapper functions
+    action: retain any instance state between function calls
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Stateful wrappers cause data leakage across calls, producing incorrect indicator values when the same function
+      is called with different input series
+    stage_ids:
+    - functional_api
+  - id: finance-C-047
+    when: When providing functional wrappers for the public API
+    action: verify functional wrapper produces identical output to class method with same parameters
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Test suite validation failure causing regression in user code that depends on equivalence between rsi() and
+      RSIIndicator().rsi()
+    stage_ids:
+    - functional_api
+  - id: finance-C-055
+    when: When implementing data cleanup for financial time series indicators
+    action: Use np.inf directly in comparisons; use math.exp(709) as the maximum float64 threshold instead
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Comparing values with np.inf in boolean masks can produce unexpected results in pandas, causing valid large
+      values to be incorrectly classified and corrupting indicator calculations
+    stage_ids:
+    - data_cleanup
+  - id: finance-C-056
+    when: When processing price or volume data before indicator computation
+    action: Remove rows with zero values in numeric columns; zero prices cause division-by-zero errors
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Zero values in price columns will cause division-by-zero errors when computing returns, ratios, or percentage-based
+      indicators, leading to NaN propagation or infinite values
+    stage_ids:
+    - data_cleanup
+  - id: finance-C-058
+    when: When cleaning up DataFrames for indicator computation
+    action: Filter out rows containing inf or -inf values in numeric columns using the exp(709) threshold
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Infinite values propagate through rolling window calculations and produce NaN in all subsequent indicator
+      values, corrupting the entire dataset
+    stage_ids:
+    - data_cleanup
+  - id: finance-C-066
+    when: When using the ta library for financial analysis
+    action: Apply dropna to any DataFrame before passing it to ta indicator functions
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: Indicators like RSI, MACD, Bollinger Bands, and other calculations will produce incorrect results when fed
+      data containing NaN, inf, or zero values, leading to false trading signals
+    stage_ids:
+    - data_cleanup
+  - id: finance-C-070
+    when: When passing internal pandas.Series from _run() computation to wrapper method accessors
+    action: return Series that preserve the original close price index for temporal alignment
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: If returned indicator Series lose the original time index, downstream feature aggregation will misalign indicators
+      with each other and with price data, causing incorrect backtest results
+    stage_ids:
+    - indicator_computation
+    - feature_aggregation
+  - id: finance-C-081
+    when: When implementing any technical indicator class that outputs a Series
+    action: preserve the input Series index without reindexing — use index=self._close.index when constructing output Series
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Output Series index misalignment causes downstream features or trading logic to reference incorrect timestamps,
+      leading to wrong signal generation and corrupted DataFrames
+  - id: finance-C-083
+    when: When implementing rolling-window calculations with fillna
+    action: set min_periods=0 when fillna=True, otherwise set min_periods equal to the window size
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect min_periods causes premature rolling calculations with insufficient data, producing unreliable
+      indicator values at the start of the time series
+  - id: finance-C-086
+    when: When implementing any price-change or return calculation
+    action: use shift(1) for 1-period lookback to prevent look-ahead bias — no abstraction for configurable lookback periods
+      exists
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Missing shift(1) causes look-ahead bias where current price is compared against itself, producing incorrect
+      RSI, momentum, and return calculations that inflate backtest performance
+  - id: finance-C-121
+    when: When implementing or refactoring True Range calculation logic
+    action: Modify the _true_range calculation implementation — this function is the foundational input for ATR, CCI, Vortex,
+      and Ultimate Oscillator (4 independent indicators)
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: A bug or change to _true_range silently propagates to four independent indicators, creating systematic errors
+      across volatility, trend, and momentum calculations without obvious single source of failure
+    derived_from_bd_id: BD-100
+  - id: finance-C-174
+    when: When implementing Williams %R indicator
+    action: Apply the negative scaling (multiply by -100) — the indicator MUST output values in the range 0 to -100 where
+      values above -20 indicate overbought and below -80 indicate oversold; do not apply positive scaling (0 to 100)
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Removing the negative sign inverts the oscillator scale, making overbought conditions appear near -100 and
+      oversold near 0 — all strategy thresholds become inverted, causing opposite trading signals in live execution
+    derived_from_bd_id: BD-019
+  regular:
+  - id: finance-C-001
+    when: When implementing wrapper functions for data input
+    action: accept column NAME strings instead of Series objects
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Accepting Series objects directly would break the in-place DataFrame mutation design, preventing fluent API
+      chaining where users expect df to be modified without explicit reassignment
+    stage_ids:
+    - data_input
+  - id: finance-C-002
+    when: When adding indicator columns to DataFrame
+    action: use naming pattern {colprefix}{category}_{indicator_name}
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using inconsistent naming patterns breaks downstream feature selection, causes column name conflicts, and
+      prevents reproducible experiments
+    stage_ids:
+    - data_input
+  - id: finance-C-004
+    when: When calling add_all_ta_features with vectorized=True
+    action: produce exactly 76 indicator features
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Incorrect feature count indicates non-vectorized indicators were incorrectly included or vectorized indicators
+      were skipped, breaking the expected feature set for performance-critical applications
+    stage_ids:
+    - data_input
+  - id: finance-C-005
+    when: When calling add_all_ta_features with vectorized=False
+    action: produce exactly 94 indicator features
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Incorrect feature count indicates non-vectorized indicators (ADX, CCI, Aroon, PSAR, KAMA, MFI, NVI, ATR,
+      UI) were incorrectly skipped or included twice, breaking the expected full feature set
+    stage_ids:
+    - data_input
+  - id: finance-C-006
+    when: When providing column names to wrapper functions
+    action: raise KeyError with informative message for missing OHLCV columns
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Pandas df[colname] access raises KeyError for missing columns, but without explicit validation the error
+      message may not clearly indicate which required OHLCV column is missing
+    stage_ids:
+    - data_input
+  - id: finance-C-007
+    when: When adding each TA features via add_all_ta_features
+    action: process indicators in fixed volume→volatility→trend→momentum→others order
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Processing in non-deterministic order causes irreproducible column ordering, breaks tests that check column
+      positions, and may cause issues with feature dependencies if later categories depend on earlier computations
+    stage_ids:
+    - data_input
+  - id: finance-C-008
+    when: When using vectorized=True parameter
+    action: include non-vectorized indicators (ADX, CCI, Aroon, PSAR, KAMA, MFI, NVI, ATR, UI)
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: Non-vectorized indicators contain iterative Python loops that significantly degrade performance; enabling
+      them defeats the purpose of vectorized=True
+    stage_ids:
+    - data_input
+  - id: finance-C-009
+    when: When adding multiple indicator sets to the same DataFrame
+    action: use colprefix parameter to namespace different indicator sets
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without colprefix, multiple calls to add_all_ta_features will overwrite columns with the same names, causing
+      silent data loss and incorrect feature values
+    stage_ids:
+    - data_input
+  - id: finance-C-012
+    when: When the data contains NaN values before adding TA features
+    action: clean NaN values using ta.utils.dropna or handle fillna parameter
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: NaN values propagate through indicator calculations, producing NaN outputs for rows that could otherwise
+      have valid indicator values, reducing the effective dataset size
+    stage_ids:
+    - data_input
+  - id: finance-C-014
+    when: When implementing new price-derived indicators that can't have negative values
+    action: use fillna value=-1 to indicate missing data as impossible price levels
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using other fillna values like 0 or 50 would corrupt data semantics, as -1 is the sentinel value distinguishing
+      legitimate negative indicator values from missing price-derived data
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-015
+    when: When implementing normalized oscillator indicators with 0-100 range
+    action: use fillna value=50 to fill NaN values with the neutral midpoint of the oscillator range
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using other fillna values would misrepresent indicator state during warmup periods, potentially causing false
+      overbought/oversold signals during backtesting
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-016
+    when: When implementing difference or ratio indicators where 0 is meaningful
+    action: use fillna value=0 to fill NaN values preserving the semantic meaning of zero change
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using non-zero fillna would introduce artificial bias in return/difference calculations, corrupting strategy
+      performance metrics
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-019
+    when: When implementing rolling window calculations with fillna=True
+    action: set min_periods=0 to start producing values immediately from the first element
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using default min_periods=window with fillna=True would leave excessive NaN values at series start, reducing
+      effective indicator history and causing warmup period issues
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-020
+    when: When implementing rolling window calculations with fillna=False (default)
+    action: set min_periods equal to window size to verify sufficient data for calculation
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using min_periods=0 without fillna=True would produce NaN-inflated calculations from insufficient data samples,
+      corrupting early indicator values
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-021
+    when: When implementing shift operations on series at series start
+    action: use fill_value=series.mean() to provide meaningful edge value instead of NaN propagation
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Newer pandas versions require explicit fill_value parameter; omitting it causes NaN propagation that corrupts
+      TRIX, KST, Ichimoku, and Vortex indicators at series start
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-022
+    when: When creating new technical indicator classes
+    action: inherit from IndicatorMixin and implement __init__ → _run → <result> pattern for consistent API
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Deviating from the established pattern breaks interoperability with wrapper functions (add_all_ta_features)
+      and violates user expectations for 41+ indicator implementations
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-023
+    when: When handling NaN values across indicator calculations
+    action: use _check_fillna method from IndicatorMixin to centralize fillna logic and replace infinities with NaN first
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Bypassing _check_fillna allows infinite values to propagate through calculations, causing division errors
+      or corrupted indicator outputs
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-024
+    when: When computing True Range for ATR, ADX, or Vortex indicators
+    action: use the shared _true_range static method to verify DRY principle and consistent formula implementation
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Reimplementing True Range formula separately risks divergence between indicators that must share identical
+      calculation (Wilder's specification)
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-025
+    when: When using shift() without explicit fill_value in pandas operations
+    action: rely on implicit fill_value behavior in newer pandas versions without providing explicit fill_value
+    severity: high
+    kind: operational_lesson
+    modality: must_not
+    consequence: Pandas 2.0+ removed implicit fill_value support; shift() without explicit fill_value produces NaN, breaking
+      indicators that depend on edge value propagation
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-026
+    when: When initializing IndicatorMixin subclasses
+    action: set _fillna class attribute to True as default, as this can mask calculation errors from insufficient data
+    severity: high
+    kind: operational_lesson
+    modality: must_not
+    consequence: Default fillna=True hides NaN propagation issues during development, causing silent data corruption that
+      only manifests in production with incomplete data
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-027
+    when: When computing technical indicators as input for trading strategies
+    action: claim that indicator values alone constitute trading signals or guarantees of profit
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting indicator values as trading signals implies financial advice, violates regulatory requirements,
+      and exposes users to uncontrolled market risk
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-028
+    when: When evaluating indicator performance based on historical calculations
+    action: claim that historical indicator values predict future market behavior or guarantee similar results
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Backtested indicator performance does not indicate future returns; presenting historical calculations as
+      predictive overstates library capabilities
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-029
+    when: When using fillna=True for production trading systems
+    action: silently accept NaN replacement as real data without explicit logging of fill locations
+    severity: high
+    kind: operational_lesson
+    modality: must_not
+    consequence: Filled NaN values treated as real observations can cause strategy to trade on fabricated indicator readings,
+      leading to unexpected position sizing or entry/exit timing
+    stage_ids:
+    - indicator_computation
+  - id: finance-C-030
+    when: When implementing percentage band (pband) calculations for channel indicators
+    action: Return NaN where the channel range (hband - lband) equals zero to prevent division by zero
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Division by zero produces inf values which corrupt downstream calculations and statistical analysis, leading
+      to invalid trading signals or corrupted feature data
+    stage_ids:
+    - feature_aggregation
+  - id: finance-C-031
+    when: When implementing derived getter methods for an indicator class
+    action: Preserve the input Series index across each derived outputs to verify temporal alignment
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Misaligned indices cause incorrect feature values when joining or merging indicator outputs, producing data
+      corruption that is difficult to debug
+    stage_ids:
+    - feature_aggregation
+  - id: finance-C-032
+    when: When computing oscillator difference outputs (macd_diff, kst_diff, ppo_hist, etc.)
+    action: Compute the difference as primary_value minus derived_signal at each data point
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect difference calculation produces wrong histogram values, causing misinterpretation of momentum direction
+      and leading to bad trading decisions
+    stage_ids:
+    - feature_aggregation
+  - id: finance-C-033
+    when: When designing multi-output indicator classes that cache _run() results
+    action: Call _run() once during __init__ and store each derived values as instance attributes for retrieval by getter
+      methods
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Repeated computation of expensive rolling window operations causes severe performance degradation on long
+      time series, making the library unusable for large datasets
+    stage_ids:
+    - feature_aggregation
+  - id: finance-C-034
+    when: When implementing percentage band for KeltnerChannel or DonchianChannel
+    action: Apply the same division-by-zero protection as BollingerBands using .where(hband != lband, np.nan)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: KeltnerChannel and DonchianChannel pband implementations produce inf values when channels are flat (hband
+      equals lband), corrupting downstream feature calculations
+    stage_ids:
+    - feature_aggregation
+  - id: finance-C-035
+    when: When implementing derived getter methods for multi-output indicators
+    action: Recompute rolling window calculations within getter methods — each computation must occur in _run()
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Placing computation logic in getter methods causes redundant expensive operations when users call multiple
+      derived outputs, leading to O(n*m) complexity instead of O(n)
+    stage_ids:
+    - feature_aggregation
+  - id: finance-C-036
+    when: When using ta library for financial feature engineering
+    action: Claim or imply that technical indicators predict future price movements or guarantee profitable trading
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Misrepresenting indicator outputs as trading signals creates regulatory and ethical risks, potentially leading
+      users to make harmful financial decisions
+    stage_ids:
+    - feature_aggregation
+  - id: finance-C-037
+    when: When implementing the _check_fillna utility method for NaN handling
+    action: Replace inf and -inf values with np.nan before applying fillna logic to prevent infinite value propagation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Unchecked inf values propagate through mathematical operations, corrupting statistical summaries and visualization
+      while causing crashes in numerical algorithms
+    stage_ids:
+    - feature_aggregation
+  - id: finance-C-038
+    when: When implementing channel indicator classes with offset parameter
+    action: Apply the same offset shift to each derived band outputs (mband, pband, wband) for consistency
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Inconsistent offset application across derived outputs breaks mathematical relationships (e.g., pband = (close
+      - lband) / (hband - lband)) causing incorrect feature values
+    stage_ids:
+    - feature_aggregation
+  - id: finance-C-039
+    when: When implementing oscillator-based indicators with signal lines (MACD, PPO, KST)
+    action: Cache each intermediate EMA calculations (emafast, emaslow, macd_signal/ppo_signal) as instance attributes during
+      _run()
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Recomputing EMA calculations for each derived getter causes quadratic time complexity and memory waste, especially
+      for long time series
+    stage_ids:
+    - feature_aggregation
+  - id: finance-C-040
+    when: When accessing derived outputs from an indicator class instance
+    action: Expect computation to occur on each getter call — each values are pre-computed in _run() during __init__
+    severity: medium
+    kind: resource_boundary
+    modality: must_not
+    consequence: Users expecting lazy computation may inadvertently modify input data after indicator instantiation, leading
+      to stale cached results and incorrect indicators
+    stage_ids:
+    - feature_aggregation
+  - id: finance-C-041
+    when: When implementing the fillna parameter behavior for indicator getters
+    action: Apply fillna consistently across each derived outputs from the same indicator instance
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Inconsistent NaN handling across derived outputs creates mathematical inconsistencies (e.g., bollinger_wband
+      numerator/denominator mismatch) corrupting normalized indicators
+    stage_ids:
+    - feature_aggregation
+  - id: finance-C-044
+    when: When comparing outputs between class and functional interfaces
+    action: expect wrapper default parameters to match class defaults
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Using default parameters with rsi() will produce different results than RSIIndicator(), leading to incorrect
+      backtesting or trading signal generation
+    stage_ids:
+    - functional_api
+  - id: finance-C-045
+    when: When implementing functional wrappers for multi-output indicators like MACD
+    action: provide separate wrapper functions for each output method
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Users lose access to secondary outputs like MACD signal line and histogram, reducing analytical capability
+      and requiring OOP usage
+    stage_ids:
+    - functional_api
+  - id: finance-C-046
+    when: When using the functional API for analytical workflows
+    action: expect the functional wrapper to maintain any internal state across calls
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Each function call computes results independently; streaming calculations requiring state continuity cannot
+      be achieved with functional API alone
+    stage_ids:
+    - functional_api
+  - id: finance-C-048
+    when: When extending the library with new indicators
+    action: provide both class-based and functional wrapper implementations
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Users requiring simple single-call interface cannot use new indicators, reducing adoption and inconsistent
+      API experience
+    stage_ids:
+    - functional_api
+  - id: finance-C-049
+    when: When testing functional wrappers for correctness
+    action: verify wrapper produces same output as corresponding class method with identical parameters
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Undetected divergence between functional and OOP interfaces causes silent data corruption in user workflows
+    stage_ids:
+    - functional_api
+  - id: finance-C-050
+    when: When documenting default parameter differences between wrappers and classes
+    action: document each wrapper with its specific default values prominently
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Users unaware of default parameter mismatch use wrong window values, producing incorrect indicator readings
+      that propagate to trading decisions
+    stage_ids:
+    - functional_api
+  - id: finance-C-051
+    when: When considering live trading capabilities of the library
+    action: claim real-time data streaming support for functional API
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: The ta library is a pure feature engineering library for historical data; claiming real-time capability misleads
+      users into inappropriate live trading deployment
+    stage_ids:
+    - functional_api
+  - id: finance-C-052
+    when: When comparing functional API performance to OOP
+    action: imply functional wrappers have inherent performance advantage
+    severity: low
+    kind: claim_boundary
+    modality: must_not
+    consequence: Each functional wrapper creates a new class instance, so performance characteristics are equivalent; misleading
+      claims lead to inappropriate architecture decisions
+    stage_ids:
+    - functional_api
+  - id: finance-C-053
+    when: When providing a stateless functional interface
+    action: claim functional wrappers can replace OOP for each use cases
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Multi-output indicators like MACD require OOP to access all results in one instantiation; functional API
+      users must make multiple calls, missing the efficiency benefit
+    stage_ids:
+    - functional_api
+  - id: finance-C-054
+    when: When choosing between OOP and functional programming patterns
+    action: consider functional API as a replacement for understanding class-based implementation
+    severity: low
+    kind: rationalization_guard
+    modality: should_not
+    consequence: Hiding class instantiation behind functional wrappers obscures the computational model, making it harder
+      to debug issues or extend functionality
+    stage_ids:
+    - functional_api
+  - id: finance-C-057
+    when: When validating output from the data cleanup function
+    action: Check non-numeric columns for invalid values; only numeric columns are validated
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Non-numeric columns (dates, strings) are intentionally skipped by the function. Assuming all columns are
+      checked would miss data quality issues in non-numeric columns
+    stage_ids:
+    - data_cleanup
+  - id: finance-C-059
+    when: When implementing data cleanup utility functions
+    action: Create a copy of the input DataFrame before modifying it to avoid side effects
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Mutating the input DataFrame would cause data loss in the caller's scope, leading to incorrect results in
+      downstream processing that expects the original data to be intact
+    stage_ids:
+    - data_cleanup
+  - id: finance-C-060
+    when: When computing technical indicators after data cleanup
+    action: Preserve the original row order in the output DataFrame; do not reorder valid rows
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Reordering rows would break the temporal sequence of financial data, causing indicators to be calculated
+      on incorrect time periods and producing meaningless results
+    stage_ids:
+    - data_cleanup
+  - id: finance-C-061
+    when: When using the dropna function to clean financial data
+    action: Call dropna before computing technical indicators to verify data quality
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Computing indicators on uncleaned data will propagate NaN and inf values through rolling calculations, corrupting
+      all subsequent indicator values and making the dataset unusable for analysis
+    stage_ids:
+    - data_cleanup
+  - id: finance-C-062
+    when: When estimating data loss from the cleanup process
+    action: Compare input and output DataFrame shapes to determine the number of invalid rows removed
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Without tracking shape reduction, invalid rows may silently corrupt a large portion of the dataset, and users
+      will not realize the extent of data quality issues in their source data
+    stage_ids:
+    - data_cleanup
+  - id: finance-C-063
+    when: When validating the data cleanup output
+    action: Verify that the output DataFrame contains no rows with NaN, inf, -inf, or zero in any numeric column
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Any remaining invalid numeric values will propagate through indicator calculations, producing corrupted results
+      that appear valid but are mathematically incorrect
+    stage_ids:
+    - data_cleanup
+  - id: finance-C-064
+    when: When claiming capabilities of the data cleanup function
+    action: Claim the function handles each data quality issues; it only handles NaN, inf, and zero in numeric columns
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Misrepresenting the scope of data cleanup would lead users to assume their data is fully validated when negative
+      prices, invalid strings in numeric columns, or non-numeric column issues remain unhandled
+    stage_ids:
+    - data_cleanup
+  - id: finance-C-065
+    when: When evaluating whether to skip data cleanup
+    action: Skip the data cleanup step even if the dataset appears clean; NaN/inf/zero values may be hidden
+    severity: high
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Skipping cleanup assuming data is clean will cause division-by-zero errors and NaN propagation when computing
+      returns, ratios, and percentage-based indicators on hidden invalid values
+    stage_ids:
+    - data_cleanup
+  - id: finance-C-067
+    when: When passing pandas.Series from DataFrame columns (close, high, low, volume) to indicator constructors
+    action: pass pandas.Series objects with numeric dtype that share the same index alignment
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Indicators compute incorrect values or raise exceptions when input Series indices are misaligned, causing
+      wrong technical analysis results in downstream trading decisions
+    stage_ids:
+    - data_input
+    - indicator_computation
+  - id: finance-C-068
+    when: When computing indicators that perform division operations on price data
+    action: handle division by zero cases to prevent inf/nan propagation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Division by zero (e.g., when high equals low in Accumulation/Distribution) produces inf values that corrupt
+      all downstream indicator calculations and trading signals
+    stage_ids:
+    - data_input
+    - indicator_computation
+  - id: finance-C-069
+    when: When extracting columns from DataFrame as input to indicator constructors
+    action: extract Series using df[colname] notation, not df.colname, to preserve explicit column name strings
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using attribute access (df.High) instead of item access (df['High']) may cause KeyError when column names
+      contain spaces or special characters, breaking the entire analysis pipeline
+    stage_ids:
+    - data_input
+    - indicator_computation
+  - id: finance-C-071
+    when: When using shift() operations in indicator computations
+    action: account for the NaN values introduced at the beginning of shifted Series due to look-back nature
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: shift(1) produces NaN at index 0, which propagates through dependent calculations and can cause indicators
+      to report misleading values for early data points
+    stage_ids:
+    - indicator_computation
+    - feature_aggregation
+  - id: finance-C-072
+    when: When passing Series through _check_fillna() before returning indicator values
+    action: apply fillna consistently across each outputs of the same indicator family to maintain semantic consistency
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Inconsistent NaN handling between related indicators (e.g., MACD line filled but MACD signal not filled)
+      creates data integrity issues that corrupt machine learning feature matrices
+    stage_ids:
+    - indicator_computation
+    - feature_aggregation
+  - id: finance-C-073
+    when: When assigning named pandas.Series to df[colname] via wrapper methods
+    action: use meaningful column names with prefixes to avoid naming conflicts with existing DataFrame columns
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Overwriting original OHLCV columns with indicator results destroys the source data and prevents recalculating
+      different indicators without reloading
+    stage_ids:
+    - feature_aggregation
+    - data_input
+  - id: finance-C-074
+    when: When passing DataFrame with numeric columns to indicator constructors after adding features
+    action: verify each new indicator columns contain numeric dtype (float64) compatible with pandas mathematical operations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Non-numeric indicator columns cause TypeError in subsequent rolling/ewm operations, breaking iterative indicator
+      chains like VWAP that depend on intermediate results
+    stage_ids:
+    - feature_aggregation
+    - data_input
+  - id: finance-C-075
+    when: When passing pandas.DataFrame with NaN/inf/zero values from raw data to data_cleanup
+    action: clean or validate numeric columns to prevent inf propagation through indicator calculations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Raw data with inf values (from division by zero before data collection) corrupts all downstream indicators
+      and produces NaN in cumulative calculations like OBV and ADI
+    stage_ids:
+    - data_input
+    - data_cleanup
+  - id: finance-C-076
+    when: When using the dropna utility function for data cleanup
+    action: filter out rows containing exp(709) as maximum threshold and 0.0 values from numeric columns before dropping NaN
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Skipping the numeric range filtering step allows extreme values (overflow indicators) to remain in data,
+      causing numerical instability in rolling mean and exponential weighted mean calculations
+    stage_ids:
+    - data_input
+    - data_cleanup
+  - id: finance-C-077
+    when: When returning cleaned DataFrame from data_cleanup to data_input for indicator computation
+    action: preserve column order and each non-numeric columns (like timestamps) that are needed for time series alignment
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Losing the original index or timestamp column breaks temporal alignment between cleaned data and any external
+      signals or signals computed from pre-cleaned segments
+    stage_ids:
+    - data_cleanup
+    - data_input
+  - id: finance-C-078
+    when: When applying rolling window operations to compute indicators
+    action: verify input Series have at least window length data points to produce meaningful results
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Short Series produce all NaN values for rolling means, causing ATR, Bollinger Bands, and other window-based
+      indicators to return invalid results without raising errors
+    stage_ids:
+    - data_input
+    - indicator_computation
+    - data_cleanup
+  - id: finance-C-079
+    when: When chaining multiple indicator computations that depend on each other
+    action: pass indicator output Series directly as input to subsequent indicators without explicit validation of their numeric
+      properties
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Using raw indicator outputs (which may contain NaN/inf from edge cases) as inputs to nested indicators amplifies
+      numerical errors and produces unreliable composite indicators
+    stage_ids:
+    - feature_aggregation
+    - data_input
+  - id: finance-C-080
+    when: When performing cumulative operations like cumsum() on indicator results
+    action: verify input Series contains no NaN values at the starting point to prevent cumulative error propagation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: NaN at the beginning of a cumsum operation (e.g., OBV, ADI) propagates as NaN through the entire Series,
+      making the entire indicator useless
+    stage_ids:
+    - indicator_computation
+    - feature_aggregation
+  - id: finance-C-082
+    when: When implementing any indicator output method
+    action: set the name attribute on every returned Series to an indicator-specific string (e.g., 'rsi', 'macd', 'macd_signal')
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Unnamed Series cause DataFrame column naming failures and break downstream feature selection by name, leading
+      to KeyError exceptions in calling code
+  - id: finance-C-084
+    when: When implementing Bollinger Bands or any band indicator
+    action: use ddof=0 for the population standard deviation calculation (not pandas default ddof=1 for sample std)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using sample std (ddof=1) instead of population std (ddof=0) underestimates volatility, causing Bollinger
+      Band boundaries to be too narrow and triggering false breakouts in backtesting
+  - id: finance-C-085
+    when: When implementing EMA-based indicators
+    action: use adjust=False parameter for traditional Wilder smoothing (non-exponential weighting of past values)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using adjust=True causes EMA to put more weight on recent values, producing different smoothing than established
+      Wilder method used in traditional technical analysis — RSI and other indicators will not match textbook calculations
+  - id: finance-C-087
+    when: When using fillna to handle missing values in price-derived indicators
+    action: fill with value=-1 for volatility bands and similar price-derived indicators that cannot have negative price or
+      range values
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect fillna value for price-derived indicators causes artificial -1 values to be mistaken for
+      valid price data in downstream calculations
+  - id: finance-C-088
+    when: When using fillna to handle missing values in normalized oscillators
+    action: fill with value=50 for RSI, Stochastic, and other normalized oscillators (neutral midpoint of 0-100 range)
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect fillna value for normalized oscillators causes artificial 50 values to be mistaken for neutral
+      indicator readings in downstream logic
+  - id: finance-C-089
+    when: When using fillna to handle missing values in difference/ratio indicators
+    action: fill with value=0 for MACD, PPO, and other difference/ratio indicators that have neutral zero-crossing semantics
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect fillna value for difference indicators causes artificial zero values to be mistaken for valid
+      zero-crossing signals in downstream trading logic
+  - id: finance-C-090
+    when: When using add_all_ta_features with vectorized=True
+    action: expect exactly 76 features to be added to the DataFrame (excludes non-vectorized indicators like ADX, CCI, Aroon,
+      PSAR, ATR, Ulcer Index, MFI, NVI)
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Mismatch between expected and actual feature count causes downstream ML pipelines or feature selection logic
+      to fail silently with wrong number of inputs
+  - id: finance-C-092
+    when: When presenting or reporting this library's backtested indicator values to users
+    action: claim that technical indicator outputs can be used directly as trading signals without additional threshold optimization
+      and risk management — this library provides feature engineering only
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users may blindly trade on raw indicator values (e.g., RSI > 70 = sell) without understanding overbought/oversold
+      dynamics, leading to significant financial losses in sideways markets
+  - id: finance-C-093
+    when: When presenting or reporting this system's backtested indicator accuracy to users
+    action: claim that historical indicator values equal expected future indicator values — each technical indicators exhibit
+      regime dependency and their predictive power degrades as market conditions change
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users allocate capital based on historically profitable indicator configurations that may no longer work
+      due to market regime changes, causing significant underperformance
+  - id: finance-C-094
+    when: When building systems based on this blueprint
+    action: claim support for real-time trading systems — this is a feature engineering library that computes indicators from
+      historical OHLCV DataFrames, with no live data feed integration or order execution capability
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users build live trading systems expecting real-time indicator updates, leading to system failures when no
+      real-time data pipeline exists
+  - id: finance-C-095
+    when: When building systems based on this blueprint
+    action: claim support for backtesting frameworks — this library computes indicators but contains no backtesting engine,
+      position tracking, portfolio management, or performance attribution logic
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users expect this library to provide backtesting capabilities, leading to incomplete backtesting implementations
+      that miss key components like transaction costs and slippage modeling
+  - id: finance-C-096
+    when: When building systems based on this blueprint
+    action: claim support for non-OHLCV data analysis — each indicators expect Open, High, Low, Close, Volume columns and
+      compute price-derived features using financial domain formulas
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users apply this library to non-price data (e.g., web traffic, sensor readings) producing meaningless technical
+      indicator values that have no valid financial interpretation
+  - id: finance-C-097
+    when: When building systems based on this blueprint
+    action: claim support for streaming data processing — each indicators are designed for batch DataFrame computation with
+      no support for incremental/online learning or partial series updates
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users implement streaming pipelines expecting incremental indicator updates, leading to full DataFrame recomputation
+      on each tick and severe performance degradation
+  - id: finance-C-098
+    when: When building systems based on this blueprint
+    action: claim support for non-financial time series analysis — indicator formulas (RSI, MACD, Bollinger Bands, etc.) are
+      mathematically defined for financial price data with specific range and behavior assumptions
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users apply financial indicators to non-financial time series (e.g., temperature, inventory counts) producing
+      values that have no meaningful interpretation and may lead to incorrect business decisions
+  - id: finance-C-099
+    when: When users call add_all_ta_features without first cleaning their DataFrame
+    action: pass DataFrames with NaN values to indicator functions without prior cleaning — the README explicitly states 'You
+      should clean or fill NaN values in your dataset before add technical analysis features'
+    severity: medium
+    kind: operational_lesson
+    modality: should_not
+    consequence: Uncleaned DataFrames with NaN values cause incorrect rolling calculations and produce unreliable indicator
+      values that may lead to wrong trading decisions
+  - id: finance-C-102
+    when: When building transition matrix-based models for regime detection or state prediction
+    action: Assume the framework provides transition matrix time homogeneity validation or enforcement — the framework does
+      not implement this capability; matrices computed from different time periods are used as-is without homogeneity testing
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without time homogeneity validation, non-stationary transition matrices cause regime models to incorrectly
+      assume consistent state transition probabilities, leading to systematic prediction errors in changing market conditions
+    derived_from_bd_id: BD-GAP-022
+  - id: finance-C-103
+    when: When computing transition matrices for regime analysis
+    action: 'Implement time homogeneity testing: compute separate transition matrices for rolling windows, then apply chi-square
+      test (p<0.05) or KL divergence threshold to detect stationarity breaks; if homogeneity fails, segment data or use time-varying
+      transition models'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Non-stationary transition matrices without homogeneity validation cause regime models to extrapolate outdated
+      transition probabilities, producing systematically biased predictions that diverge from actual market behavior
+    derived_from_bd_id: BD-GAP-022
+  - id: finance-C-104
+    when: When implementing financial calculations involving interest accrual, bond pricing, or option valuation
+    action: Assume the framework handles day count conventions (Actual/360, 30/360, Actual/365) or compounding frequency (annual,
+      semi-annual, continuous) — these are not implemented; default Python float arithmetic is used without convention enforcement
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without day count convention handling, interest calculations and bond pricing produce incorrect values that
+      vary by convention, causing systematic pricing errors that accumulate over time and lead to significant valuation discrepancies
+    derived_from_bd_id: BD-GAP-021
+  - id: finance-C-105
+    when: When implementing financial instruments requiring precise time-based calculations
+    action: Explicitly specify day_count convention parameter (e.g., 'actual/360', '30/360', 'actual/365') and compounding_frequency
+      (e.g., 'annual', 'semi-annual', 'continuous') in each interest and pricing calculations; use libraries like QuantLib
+      or implement convention-aware formulas
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Financial instruments using incorrect day count or compounding conventions produce pricing errors ranging
+      from 0.01% to 0.5% per period, which compound significantly in high-notional trades and long-dated instruments
+    derived_from_bd_id: BD-GAP-021
+  - id: finance-C-106
+    when: When implementing currency-denominated calculations for financial reporting, pricing, or reconciliation
+    action: Use Python Decimal type for each currency values instead of float — float precision errors cause rounding discrepancies
+      in financial calculations; initialize Decimal from string (Decimal('10.25')) not float (Decimal(10.25)) to avoid float-to-Decimal
+      conversion errors
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using float for currency causes representation errors (e.g., 0.1 + 0.2 != 0.3 in float), leading to reconciliation
+      failures, incorrect P&L reporting, and potential regulatory compliance issues in audit trails
+    derived_from_bd_id: BD-GAP-010
+  - id: finance-C-107
+    when: When implementing or optimizing KST (Know Sure Thing) indicator calculations
+    action: Use exactly 4 ROC periods (10, 15, 20, 30) with weights 1, 2, 3, 4 respectively, smoothed with SMA — do not alter
+      ROC periods or weight ratios
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Changing KST ROC periods or weights produces different momentum signals, causing the indicator to generate
+      trading signals at different price points than intended and breaking strategy reproducibility
+    derived_from_bd_id: BD-016
+  - id: finance-C-108
+    when: When implementing NaN handling for financial time series data
+    action: 'Apply the three-step FillNA sequence: replace inf with NaN first, then forward-fill (ffill) to propagate last
+      valid value, then backward-fill (bfill) or fillna(value) for leading NaNs — use forward-fill only in live trading scenarios
+      where backward-fill would introduce look-ahead bias'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using dropna-only or forward-fill-only breaks time series continuity required for rolling calculations, causing
+      NaN values in rolling windows and breaking indicator computations mid-series
+    derived_from_bd_id: BD-033
+  - id: finance-C-109
+    when: When using the framework's default MACD parameters for momentum calculations
+    action: Verify that MACD slow=26, fast=12, signal=9 matches the target market's trading patterns (~252 trading days/year);
+      for crypto or markets with different trading patterns, adjust windows to half and full market cycles accordingly
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using standard 12/26/9 MACD on markets with different trading day counts produces delayed or premature crossover
+      signals, causing momentum strategies to enter/exit positions at suboptimal price points
+    derived_from_bd_id: BD-002
+  - id: finance-C-110
+    when: When implementing Detrended Price Oscillator calculations
+    action: Use formula int((window/2) + 1) for DPO shift to center the SMA at window/2 position, ensuring DPO peaks and troughs
+      align with actual price cycle turning points
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using alternative shift formulas misaligns DPO indicator peaks with actual price cycle turning points, causing
+      momentum signals to fire at wrong price levels and corrupting trading decisions
+    derived_from_bd_id: BD-017
+  - id: finance-C-111
+    when: When using the framework's default min_periods parameter for rolling calculations
+    action: 'Verify that min_periods logic aligns with _fillna strategy: min_periods=0 when fillna=True (immediate computation
+      after filling), min_periods=window when fillna=False (full window required) — verify first valid index positions match
+      between backtesting and live trading'
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Incorrect min_periods creates different indicator availability windows between backtesting and live trading,
+      causing strategies to execute on indicators that were not yet valid in backtest or fail to load in live trading
+    derived_from_bd_id: BD-083
+  - id: finance-C-112
+    when: When processing timestamped financial data in the data input stage
+    action: 'Assume processing time equals as-of time — these represent fundamentally different concepts: as-of time is when
+      an event occurred, processing time is when data was recorded or ingested'
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Confusing as-of time with processing time causes timestamp-based joins and historical reconstruction to produce
+      incorrect data associations, corrupting backtest signals and breaking audit trails
+    derived_from_bd_id: BD-GAP-007
+  - id: finance-C-113
+    when: When processing timestamped financial data in the data input stage
+    action: 'Implement explicit as-of and processing time fields: as_of_time field captures event timestamp, processing_time
+      field captures ingestion timestamp — use as_of_time for each time-series operations and joins'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without explicit time field separation, timestamp-based operations use wrong time references, causing historical
+      data reconstruction to produce incorrect market states and corrupting backtesting accuracy
+    derived_from_bd_id: BD-GAP-007
+  - id: finance-C-114
+    when: When calculating date-based offsets or duration for trading strategies
+    action: Assume natural calendar calculations apply to trading strategies — natural calendar ignores non-trading days (weekends,
+      holidays) and produces incorrect date offsets for trading operations
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Using natural calendar (e.g., 30 days) for trading operations causes position calculations to span wrong
+      number of trading days, corrupting time-series alignment and causing signals to fire on non-trading days
+    derived_from_bd_id: BD-GAP-008
+  - id: finance-C-115
+    when: When implementing date-based calculations for trading operations
+    action: 'Use trading calendar that accounts for market-specific non-trading days: replace natural calendar date arithmetic
+      with trading-day counting functions (e.g., add_trading_days(date, n) instead of date + timedelta(days=n))'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without trading calendar support, date-based position sizing and duration calculations include non-trading
+      days, causing strategies to reference incorrect historical prices and corrupting backtest results
+    derived_from_bd_id: BD-GAP-008
+  - id: finance-C-116
+    when: When modeling settlement and delivery timing for financial instruments
+    action: Assume T+0 settlement or same-day delivery — the framework does not implement settlement timing conventions, treating
+      each trades as if settled immediately upon execution
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Assuming T+0 settlement causes cash flow calculations to ignore settlement delays, creating apparent liquidity
+      that does not exist and causing settlement failures when positions are reused before funds settle
+    derived_from_bd_id: BD-GAP-017
+  - id: finance-C-117
+    when: When implementing trade execution or position management logic
+    action: 'Define settlement_time convention per instrument: T+1 for A-shares, T+2 for US equities, T+0 for same-day futures
+      — implement settlement_delay tracking and prevent position reuse until settlement completes'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without settlement convention tracking, the framework allows same-day position reuse that violates market
+      settlement rules, causing failed settlements and potential regulatory violations in live trading
+    derived_from_bd_id: BD-GAP-017
+  - id: finance-C-118
+    when: When modeling price or quantity values for backtesting
+    action: Assume continuous decimal precision for prices and quantities — the framework treats prices as continuous floats
+      without enforcing discrete tick sizes or lot minimums
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Continuous price models allow fractional tick values that cannot execute in real markets, causing backtest
+      results to assume fills at prices unattainable in live trading due to tick size constraints
+    derived_from_bd_id: BD-GAP-018
+  - id: finance-C-119
+    when: When implementing order sizing or price validation for backtesting
+    action: 'Enforce tick_size and lot_size constraints: round order prices to nearest tick (e.g., price = round(raw_price
+      / tick_size) * tick_size), round quantities to nearest lot (quantity = round(raw_quantity / lot_size) * lot_size), reject
+      orders below minimum lot'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without tick/lot enforcement, backtested orders assume execution at continuous prices that cannot actually
+      trade, creating systematic overestimation of fills and underestimation of transaction costs in live trading
+    derived_from_bd_id: BD-GAP-018
+  - id: finance-C-120
+    when: When implementing or refactoring KAMA indicator calculations
+    action: Use np.roll() for boundary handling in KAMA indicator — np.roll() wraps the last element to position 0, causing
+      spurious first-value calculation from wrapped data
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: The first KAMA value incorporates data from the wrapped last element, producing incorrect indicator values
+      that corrupt trading signal generation for short price series
+    derived_from_bd_id: BD-091
+  - id: finance-C-122
+    when: When implementing or refactoring shift operations in return and ROC calculations
+    action: Change the hardcoded shift(1) lookback period in return calculations — shift(1) is hardcoded across 18+ locations
+      and conflicts with multi-period return definitions (Daily Return, Log Return, ROC)
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Changing shift(1) to make it configurable breaks the documented flexibility; users cannot compute multi-period
+      returns as documented when shift() is modified, causing backtest-live inconsistency
+    derived_from_bd_id: BD-101
+  - id: finance-C-123
+    when: When implementing log return calculations in backtesting
+    action: Calculate log returns as ln(close) - ln(prev_close), multiplied by 100 for percentage convention — verify time-additivity
+      for multi-period compounding is preserved
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using simple returns instead of log returns breaks multi-period compounding equivalence; accumulated return
+      errors grow significantly over longer backtest periods, causing live trading returns to diverge from backtested results
+    derived_from_bd_id: BD-010
+  - id: finance-C-124
+    when: When implementing Typical Price calculations for MFI, VWAP, or CCI indicators
+    action: Calculate Typical Price as (High + Low + Close) / 3 — do not use OHLC4 or weighted averages as they change the
+      price representation used by MFI, VWAP, and CCI
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using OHLC4 or weighted averages instead of (H+L+C)/3 changes the price normalization baseline for MFI, VWAP,
+      and CCI, causing volume-weighted and momentum signals to diverge from expected values
+    derived_from_bd_id: BD-012
+  - id: finance-C-125
+    when: When implementing Mass Index indicator for trend reversal detection
+    action: Calculate Mass Index as EMA(amplitude) / EMA(EMA(amplitude)) summed over the slow window (default 25) — values
+      above 27 indicate potential reversal; below 26.5 confirms reversal entry
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect EMA ratio or window length breaks the reversal signal thresholds; Mass Index values become
+      incomparable to standard 27/26.5 reversal boundaries, causing false or missed trend reversal signals
+    derived_from_bd_id: BD-014
+  - id: finance-C-126
+    when: When implementing Ichimoku Cloud indicator calculations
+    action: 'Use default windows of window1=9 (conversion line), window2=26 (base line), window3=52 (span B) — these derive
+      from standard Ichimoku time periods: 9=1.5 weeks, 26=1 month, 52=2 months'
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Using non-standard windows breaks the Ichimoku cloud formation and signal generation; custom windows produce
+      different conversion/base line crossovers and cloud boundaries that do not match standard Ichimoku interpretation
+    derived_from_bd_id: BD-015
+  - id: finance-C-127
+    when: When implementing RSI indicator calculations
+    action: Apply EMA smoothing with alpha=1/window to RSI directional components — window must be positive integer >= 1;
+      alpha is fixed at 1/window and not adjustable
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using standard EMA with span parameter or different alpha values breaks Wilder's smoothing equivalence; RSI
+      values become incomparable to standard 30/70 overbought/oversold thresholds, corrupting momentum signals
+    derived_from_bd_id: BD-046
+  - id: finance-C-128
+    when: When implementing TSI indicator calculations
+    action: Apply double EMA smoothing (recursive ewm with span=window_slow then span=window_fast) to price difference and
+      absolute difference — window_slow must be >= window_fast; both must be positive integers
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using single EMA, triple EMA, or different smoothing order breaks TSI's two-stage noise reduction design;
+      momentum signals become unreliable and incomparable to standard TSI interpretation
+    derived_from_bd_id: BD-047
+  - id: finance-C-129
+    when: When implementing Stochastic Oscillator %K calculations
+    action: Calculate Stochastic %K using rolling min/max of high/low over the window — window must be positive integer >=
+      1; requires sufficient high/low data for the lookback period
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using alternative range calculations (e.g., close-only or EMA-smoothed) instead of rolling min/max breaks
+      Stochastic %K normalization; price position within range becomes incomparable to standard 80/20 overbought/oversold
+      levels
+    derived_from_bd_id: BD-049
+  - id: finance-C-130
+    when: When implementing train/test data split logic for model development
+    action: Assume train/test time split integrity is automatically enforced — the framework does not implement temporal data
+      leakage prevention; test data timestamps may overlap with or precede training data timestamps
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without proper time-based split enforcement, future information leaks into training data, causing model performance
+      to appear inflated in backtesting but fail catastrophically in production deployment
+    derived_from_bd_id: BD-GAP-013
+  - id: finance-C-131
+    when: When implementing train/test data split logic for model development
+    action: Implement temporal separation by validating that each training samples have timestamps strictly before their corresponding
+      test samples; use a time-based split function that enforces no temporal overlap or data contamination between splits
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without explicit temporal separation enforcement, future data can contaminate training sets, causing models
+      to memorize temporal patterns that don't exist at prediction time
+    derived_from_bd_id: BD-GAP-013
+  - id: finance-C-132
+    when: When implementing event logging in the backtesting framework
+    action: Assume event logs provide immutability guarantees — the framework does not implement write-once or cryptographic
+      integrity verification for logged events; logs can be modified or deleted after creation
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without immutable event logging, audit trails can be altered retroactively, making regulatory compliance
+      verification impossible and invalidating post-hoc trade reconstruction
+    derived_from_bd_id: BD-GAP-016
+  - id: finance-C-133
+    when: When implementing event logging in the backtesting framework
+    action: Implement append-only event logging with cryptographic hash chains or database write-protections to verify logged
+      events cannot be modified or deleted after creation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without immutable event logging, trade records can be tampered with, violating audit requirements and making
+      it impossible to prove backtest result integrity
+    derived_from_bd_id: BD-GAP-016
+  - id: finance-C-134
+    when: When implementing cost calculations in the backtesting framework
+    action: Assume the framework's cost model is complete — the framework does not implement slippage, market impact, or crossing
+      spread costs; backtest P&L will overstate actual returns
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Incomplete cost modeling causes backtest returns to exceed actual trading returns by 0.1-0.5% per trade in
+      liquid markets and up to 1-2% in illiquid markets
+    derived_from_bd_id: BD-GAP-019
+  - id: finance-C-135
+    when: When implementing cost calculations in the backtesting framework
+    action: Implement comprehensive cost model including slippage (0.01-0.05% for liquid stocks), market impact proportional
+      to order size, and crossing spread costs for limit orders
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without comprehensive cost modeling, strategies that appear profitable in backtesting become unprofitable
+      in live trading due to unmodeled transaction costs
+    derived_from_bd_id: BD-GAP-019
+  - id: finance-C-136
+    when: When implementing position carry cost calculations for overnight positions
+    action: Assume funding costs are automatically modeled — the framework does not implement margin interest, short borrow
+      rates, or dividend adjustments; strategies with overnight exposure will show inflated returns
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Unmodeled carry costs cause overnight strategies to appear 0.01-0.05% per day more profitable than reality,
+      accumulating to significant discrepancies over multi-week holding periods
+    derived_from_bd_id: BD-GAP-020
+  - id: finance-C-137
+    when: When implementing position carry cost calculations for overnight positions
+    action: Implement funding cost model with configurable margin_rate, short_rebate_rate, and dividend_adjustment parameters;
+      apply costs daily based on position value and current rates
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without carry cost modeling, long-short strategies that rely on overnight funding appear profitable but may
+      lose money when actual margin costs are applied
+    derived_from_bd_id: BD-GAP-020
+  - id: finance-C-138
+    when: When using the Chaikin Money Flow indicator with default parameters
+    action: Verify CMF window=20 matches the trading instrument's cycle length; adjust window if sampling frequency differs
+      from daily data (e.g., intraday data may require window proportional to trading session length)
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using a window size that doesn't match the sampling frequency causes CMF to measure money flow over an incorrect
+      time horizon, leading to misleading overbought/oversold signals and poor trade timing
+    derived_from_bd_id: BD-038
+  - id: finance-C-139
+    when: When implementing or adjusting StochRSI overbought/oversold thresholds
+    action: Use 80/20 thresholds instead of default 70/30 when applying StochRSI, since the nested oscillator structure causes
+      more frequent extreme readings; adjust further for high-volatility instruments if signals are too frequent
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using RSI-style thresholds (70/30) for StochRSI causes excessive overbought/oversold signals due to the nested
+      oscillator amplification, leading to overtrading and eroded profits in live trading
+    derived_from_bd_id: BD-039
+  - id: finance-C-140
+    when: When configuring Keltner Channel middle line calculation method
+    action: Verify original_version parameter matches the intended trading system specification; original_version=True uses
+      SMA (Keltner 1960 specification for backward compatibility), original_version=False uses EMA (modern adaptation with
+      faster response)
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Using the wrong Keltner version creates inconsistent backtest behavior when comparing against historical
+      trading systems that relied on the original SMA-based Keltner approach, making live trading results non-reproducible
+    derived_from_bd_id: BD-041
+  - id: finance-C-141
+    when: When implementing or refactoring Ichimoku Conversion Line (tenkan-sen) calculation
+    action: Replace the midpoint formula (high+low)/2 with single price (close) or asymmetric high/low combinations; the midpoint
+      of rolling extremes is the defining characteristic of tenkan-sen per Ichimoku specification
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: Using close price or asymmetric high/low instead of midpoint fundamentally alters the conversion line's sensitivity
+      and trend detection, producing different buy/sell signals that invalidate historical strategy backtests
+    derived_from_bd_id: BD-062
+  - id: finance-C-142
+    when: When implementing or refactoring Know Sure Thing (KST) momentum indicator calculation
+    action: Replace the fixed weight structure 1:2:3:4 with equal weights or arbitrary coefficients; the graduated weight
+      scheme reflects Martin Prime's theory that longer-term ROC carries greater predictive significance
+    severity: medium
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Using equal or arbitrary weights breaks the KST's theoretical foundation, fundamentally altering signal timing
+      and smoothness; backtests calibrated on the original weight structure will produce inconsistent live trading results
+    derived_from_bd_id: BD-063
+  - id: finance-C-143
+    when: When calculating Bollinger Bands or comparing results with pandas DataFrame.std()
+    action: Verify that ddof=0 (population std) is explicitly specified for Bollinger Bands calculations to match the ta library
+      rationale; be aware that pandas DataFrame.std() defaults to ddof=1 (sample std), causing different band widths in cross-library
+      validation
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using pandas default ddof=1 when comparing with ta library Bollinger Bands produces narrower bands, causing
+      cross-library validation failures and potential misinterpretation of volatility signals
+    derived_from_bd_id: BD-102
+  - id: finance-C-144
+    when: When implementing or extending EMA-based indicators in the framework
+    action: Verify adjust=False (Wilder smoothing) is consistently used for each EMA calculations; must_not assume compatibility
+      with pandas DataFrame.ewm(adjust=True) default, which produces different smoothing behavior
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Assuming pandas ewm compatibility causes systematic calculation differences across all 80+ EMA-using indicators,
+      making backtest results incompatible with standard pandas workflows and creating silent discrepancies hard to debug
+    derived_from_bd_id: BD-103
+  - id: finance-C-145
+    when: When using the ROC (Rate of Change) indicator with default 12-period parameter
+    action: Verify that the default period of 12 bars matches strategy requirements for short-term momentum capture; validate
+      that price data does not approach zero, as ROC calculation produces extreme values when divisor approaches zero
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using ROC with near-zero prices produces extreme percentage values that could trigger incorrect trading signals,
+      causing strategies to misread momentum and execute trades at unfavorable prices
+    derived_from_bd_id: BD-GAP-002
+  - id: finance-C-146
+    when: When implementing or modifying Bollinger Bands calculations in the framework
+    action: Maintain 20-period SMA with 2 standard deviation bands as the default configuration; changing these parameters
+      fundamentally alters the indicator's behavior and breaks compatibility with industry-standard trading platforms
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Modifying Bollinger Bands default parameters without explicit rationale causes backtest results to diverge
+      from standard trading platform outputs, making strategy validation unreliable and performance claims non-reproducible
+    derived_from_bd_id: BD-GAP-003
+  - id: finance-C-147
+    when: When implementing volume moving average calculations in the framework
+    action: Use Simple Moving Average (SMA) with 20-period default for volume calculations; must_not substitute exponential
+      weighting without explicit business rationale, as SMA ensures predictable and human-readable threshold interpretation
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Replacing SMA with exponential weighting amplifies recent volume spikes and introduces signal interpretation
+      lag, causing volume-based strategies to generate different entry/exit signals than originally designed
+    derived_from_bd_id: BD-GAP-005
+  - id: finance-C-148
+    when: When using the framework's default Bollinger Bands parameters for backtesting or live trading
+    action: Verify that ddof=0 (population standard deviation) matches the intended statistical assumption for the strategy;
+      for sample-based statistical analysis, explicitly set ddof=1 and revalidate band thresholds
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using population std (ddof=0) instead of sample std (ddof=1) produces narrower bands, potentially generating
+      false Bollinger Band breakouts and triggering premature mean-reversion entries that consistently lose money
+    derived_from_bd_id: BD-003
+  - id: finance-C-149
+    when: When implementing or refactoring Ultimate Oscillator calculations
+    action: Apply the 4:2:1 weighting ratio across the three timeframes (short_period:medium_period:long_period) as designed
+      by Larry Williams to balance short-term, medium-term, and long-term buying pressure
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect weighting ratios alters oscillator sensitivity across timeframes, causing divergences and
+      false signals that lead to poor entry and exit timing decisions
+    derived_from_bd_id: BD-018
+  - id: finance-C-150
+    when: When implementing or refactoring Stochastic Oscillator indicator logic
+    action: Apply smooth_window=3 as the default SMA smoothing for %D signal line calculation to reduce raw %K volatility
+      and generate clear crossover signals
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Removing or changing smooth_window from 3 causes the indicator to behave as raw %K instead of smoothed %D,
+      introducing excessive noise and false crossover signals that degrade strategy performance
+    derived_from_bd_id: BD-020
+  - id: finance-C-151
+    when: When implementing or modifying Keltner Channel indicators in backtesting or live trading
+    action: Assume Keltner Channel operates independently of its internal ATR component — the band calculations depend entirely
+      on the hidden ATR instance using Wilder smoothing, and modifying Keltner without awareness of this dependency causes
+      silent calculation changes
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Backtested strategies using Keltner bands without awareness of hidden ATR dependency produce results that
+      diverge from live trading when ATR parameters or smoothing assumptions change silently
+    derived_from_bd_id: BD-099
+  - id: finance-C-152
+    when: When implementing strategies using Keltner Channel indicators
+    action: Access the internal KeltnerChannel.indicators['atr'] instance and verify Wilder smoothing (ema_span=2*atr_period-1)
+      matches strategy assumptions; when modifying ATR parameters, revalidate Keltner band thresholds and multiplier=2 accordingly
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Strategies relying on Keltner band width for volatility breakout or mean reversion signals fail silently
+      when the internal ATR smoothing differs from expectations, causing persistent backtest-live inconsistency in position
+      sizing and entry decisions
+    derived_from_bd_id: BD-099
+  - id: finance-C-153
+    when: When implementing or modifying KAMA indicator calculations in backtesting
+    action: Validate that np.roll() boundary handling does not corrupt Efficiency Ratio calculations; use explicit slicing
+      or initialization logic for the first N values instead of relying on np.roll() wrapped data
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: np.roll() wraps array boundaries, causing the first N KAMA values to incorporate wrapped last-element data,
+      which corrupts the Efficiency Ratio and produces incorrect adaptive smoothing constants for trend signals near the series
+      start
+    derived_from_bd_id: BD-104
+  - id: finance-C-154
+    when: When using MACD indicator with default parameters for backtesting
+    action: 'Verify that MACD parameters match the intended market frequency: fast=12 (approx 2-week), slow=26 (approx 1-month),
+      signal=9 represent short-term momentum conventions; document any custom period justification'
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using MACD with mismatched periods for the target market frequency produces momentum signals at wrong time
+      scales, causing trades to enter/exit at suboptimal points and reducing strategy profitability
+    derived_from_bd_id: BD-094
+  - id: finance-C-155
+    when: When calculating RSI values for overbought/oversold signals
+    action: 'Maintain the exact Wilder RSI parameter combination: window=14, alpha=1/14, and adjust=False must each be preserved
+      together; changing any single parameter without the others breaks Wilder''s exponential smoothing equivalence'
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Changing RSI parameters individually without maintaining the Wilder equivalence produces non-standard RSI
+      values, causing overbought/oversold signals to trigger at incorrect thresholds and leading to wrong trade entries
+    derived_from_bd_id: BD-097
+  - id: finance-C-156
+    when: When processing timestamp data in backtesting
+    action: Assume timezone handling is explicit or that UTC conversion is applied automatically — the framework lacks explicit
+      timezone annotation
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without explicit timezone annotation, timestamps from different sources may use inconsistent timezone references,
+      causing overnight gap calculations and True Range measurements to produce incorrect volatility estimates across sessions
+    derived_from_bd_id: BD-GAP-009
+  - id: finance-C-157
+    when: When ingesting timestamp data at the data input boundary
+    action: Annotate each timestamps with explicit timezone (prefer UTC); convert each timestamps to UTC-aware datetime types
+      at ingestion; store timestamps with timezone info to prevent misalignment across sessions
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without timezone-aware timestamps, overnight gap calculations produce incorrect True Range values, which
+      propagates errors into ATR, position sizing, and risk management calculations throughout the backtest
+    derived_from_bd_id: BD-GAP-009
+  - id: finance-C-158
+    when: When calculating volatility measures using True Range
+    action: 'Use the complete True Range formula: max(High-Low, |High-PrevClose|, |Low-PrevClose|); do not simplify to High-Low
+      only; for the first bar without previous close, use High-Low as the fallback'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Simplified High-Low range misses overnight gaps, causing volatility underestimation; this propagates into
+      ATR, Bollinger Bands, and position sizing calculations, leading to incorrect risk estimates and over-leveraged positions
+    derived_from_bd_id: BD-034
+  - id: finance-C-159
+    when: When processing data inputs in the framework
+    action: Assume the framework automatically detects stale data and handles data expiry — the framework does not implement
+      stale data detection or expiry mechanisms
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without stale data detection, the framework may process outdated market data that no longer reflects current
+      market conditions, causing strategies to trade on expired information and produce incorrect signals
+    derived_from_bd_id: BD-GAP-011
+  - id: finance-C-160
+    when: When implementing data ingestion pipelines
+    action: Implement data freshness validation by checking timestamp fields (e.g., data_date, timestamp) against current
+      time, and reject or flag data older than the configured stale_threshold (e.g., > 5 minutes for intraday data)
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without data freshness validation, stale market data causes strategies to generate signals based on outdated
+      prices, leading to failed trade execution or positions based on expired information
+    derived_from_bd_id: BD-GAP-011
+  - id: finance-C-161
+    when: When implementing any stochastic operations or random sampling in backtesting
+    action: Assume reproducibility is guaranteed without explicit random seed configuration — the framework does not automatically
+      set random seeds for each random number generators
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without explicit random seed coverage, backtest results become non-reproducible; different runs produce varying
+      equity curves and performance metrics, making it impossible to validate strategy consistency or compare strategy improvements
+    derived_from_bd_id: BD-GAP-014
+  - id: finance-C-162
+    when: When running backtests or simulations with stochastic components
+    action: Set random seed explicitly via framework seed function before stochastic operations, and verify each RNG sources
+      (numpy.random, random, torch.random, etc.) are seeded consistently
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without full random seed coverage, backtests produce non-reproducible results across runs; the same strategy
+      may show different Sharpe ratios and drawdowns, making it impossible to verify strategy stability or compare parameter
+      changes
+    derived_from_bd_id: BD-GAP-014
+  - id: finance-C-163
+    when: When loading models or datasets for strategy execution
+    action: Assume the framework automatically binds and tracks model versions to data versions — the framework does not implement
+      version snapshot binding between models and data
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without model-data version binding, running a model trained on older data with newer market conditions may
+      produce unpredictable results, and it becomes impossible to reproduce specific backtest runs when model or data versions
+      change
+    derived_from_bd_id: BD-GAP-015
+  - id: finance-C-164
+    when: When implementing model versioning and data management
+    action: Implement version snapshot binding by capturing model version hash and data version hash at model load time, and
+      log them alongside backtest results to verify reproducibility
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without version snapshot binding, mixing different model versions with different data versions causes non-reproducible
+      backtests; changing model or data without tracking produces inconsistent results that cannot be validated or audited
+    derived_from_bd_id: BD-GAP-015
+  - id: finance-C-165
+    when: When implementing PPO (Percentage Price Oscillator) indicator calculations
+    action: Calculate PPO using the formula ((fast_EMA - slow_EMA) / slow_EMA) * 100 to normalize momentum as a percentage
+      of price, enabling cross-asset comparison of momentum signals
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect PPO formula produces wrong momentum normalization; using absolute MACD values instead of percentage
+      causes PPO signals to be incomparable across different price levels and assets, leading to suboptimal asset selection
+      in multi-asset strategies
+    derived_from_bd_id: BD-040
+  - id: finance-C-166
+    when: When implementing Ultimate Oscillator calculations
+    action: Use periods 7, 14, and 28 with corresponding weights 4, 2, and 1 to calculate the weighted average of BP/TR ratios
+      across three timeframes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect Ultimate Oscillator periods or weights (not 7/14/28 with 4/2/1 weighting) produces false
+      signals that deviate from the standard formula, reducing the oscillator's effectiveness at filtering noise and confirming
+      momentum across multiple timeframes
+    derived_from_bd_id: BD-048
+  - id: finance-C-167
+    when: When implementing or modifying Awesome Oscillator calculation in ta/momentum.py
+    action: Use median price (H+L)/2 rather than close price, combined with fixed windows w1=5 and w2=34 (representing one
+      week and one month of daily data)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using close instead of median price reduces noise reduction effect; using different windows deviates from
+      Bill Williams' original formula and produces non-standard indicator values that may not match mainstream technical analysis
+      libraries
+    derived_from_bd_id: BD-052
+  - id: finance-C-168
+    when: When implementing Stochastic RSI calculation in ta/momentum.py
+    action: Apply stochastic oscillator normalization formula to RSI values themselves (not raw prices), producing output
+      normalized to [0,1] range within the rolling window's RSI extremes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Applying stochastic normalization to prices instead of RSI values fundamentally changes the indicator meaning,
+      producing a momentum oscillator instead of an RSI position indicator; strategies expecting RSI extremes analysis will
+      receive incorrect signals
+    derived_from_bd_id: BD-054
+  - id: finance-C-169
+    when: When implementing SMA calculation in ta/utils.py
+    action: Use rolling window mean with min_periods parameter to allow partial calculations before window is complete; verify
+      min_periods <= periods and both are positive integers >= 1
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Requiring full periods for all SMA calculations would produce excessive NAs at series start, breaking downstream
+      indicators and strategies that depend on SMA values being available earlier
+    derived_from_bd_id: BD-057
+  - id: finance-C-170
+    when: When implementing WMA calculation in ta/trend.py
+    action: Apply linear weight formula weight_i = 2*i/(n*(n+1)) where i ranges from 1 to n, ensuring weights sum to 1.0 and
+      are strictly increasing (most recent price gets highest weight)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using non-linear weights (exponential, square root, or equal weights) changes WMA's sensitivity to recent
+      price changes, altering signal timing and potentially causing strategies to generate trades at different points than
+      expected
+    derived_from_bd_id: BD-059
+  - id: finance-C-171
+    when: When implementing volume-based features in feature_aggregation
+    action: Use On-Balance Volume (OBV) cumulative signed volume logic where positive days add to running total and negative
+      days subtract, preserving directional volume information
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using raw volume totals loses directional information; strategies expecting OBV divergence detection (price
+      up but volume down signals weakness) will fail to detect momentum divergence, missing critical trend reversal signals
+    derived_from_bd_id: BD-GAP-001
+  - id: finance-C-172
+    when: When implementing Bollinger Band feature extraction
+    action: 'Return each four values: upper_band, middle_band, lower_band, and bandwidth_percentage; the bandwidth_percentage
+      enables volatility regime detection independent of absolute price levels'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Omitting bandwidth_percentage breaks volatility regime detection strategies that rely on normalized band
+      width; dropping any band loses either breakout or mean-reversion signal support
+    derived_from_bd_id: BD-GAP-006
+  - id: finance-C-173
+    when: When middle band equals zero in Bollinger Band calculation
+    action: Handle division by zero gracefully — bandwidth calculation (bandwidth = (upper - lower) / middle) must not raise
+      an exception; return null or skip the record when middle_band is zero
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Division by zero crashes the feature extraction when middle band is zero (occurs during certain market conditions
+      or data artifacts); unhandled exception prevents backtest from running
+    derived_from_bd_id: BD-GAP-006
+  - id: finance-C-175
+    when: When using Williams %R output for trading signals
+    action: 'Apply the standard Williams %R boundaries: values above -20 signal overbought (potential sell), values below
+      -80 signal oversold (potential buy); these thresholds are specific to the negative-scaled convention'
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Using positive-scaled thresholds (e.g., above 80 for overbought) on negative-scaled output produces inverted
+      signals, causing the strategy to buy when overbought and sell when oversold
+    derived_from_bd_id: BD-019
+  - id: finance-C-176
+    when: When implementing Force Index indicator
+    action: Use default window of 13 for EMA smoothing as specified by Elder — this window provides sufficient smoothing to
+      filter daily noise while remaining responsive to meaningful force changes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using non-13 window sizes changes the indicator's smoothing characteristics; shorter windows increase sensitivity
+      to daily fluctuations while longer windows follow longer trends, altering the intended signal behavior
+    derived_from_bd_id: BD-022
+  - id: finance-C-177
+    when: When implementing Volume Price Trend indicator
+    action: Calculate VPT as cumulative sum of (close_pct_change * volume) with no default smoothing applied — preserve the
+      raw cumulative nature of the indicator
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Applying default EMA smoothing to VPT fundamentally changes its interpretation from cumulative money flow
+      to smoothed momentum; the indicator no longer represents true cumulative flow behavior
+    derived_from_bd_id: BD-023
+  - id: finance-C-178
+    when: When using VPT output for trading decisions
+    action: Apply custom moving average smoothing externally if needed — the raw unsmoothed VPT shows true cumulative flow;
+      if smoothed version is required, apply user-defined MA after obtaining the base VPT value
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Misinterpreting unsmoothed VPT volatility as noise may lead to unnecessary filtering or over-smoothing, obscuring
+      genuine cumulative flow divergences that indicate trend reversals
+    derived_from_bd_id: BD-023
+  - id: finance-C-179
+    when: When implementing or refactoring Aroon indicator calculations in backtesting
+    action: Verify that the Aroon window parameter matches the intended strategy timeframe; default window=25 periods assumes
+      one trading month lookback; adjust window to align with specific trend capture objectives (e.g., 14 for shorter-term,
+      50+ for longer-term trends)
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using default Aroon window=25 with a short-term strategy causes laggy signals and missed opportunities; using
+      a short window with a long-term strategy introduces excessive noise and false signals
+    derived_from_bd_id: BD-027
+  - id: finance-C-180
+    when: When implementing or refactoring Vortex Indicator calculations in backtesting
+    action: Verify that the Vortex window parameter matches the intended strategy timeframe; default window=14 periods assumes
+      two trading weeks; adjust window to balance responsiveness vs reliability for specific market conditions
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using default VI window=14 with highly volatile assets causes whipsaw trades and excessive false signals;
+      using a longer window reduces responsiveness, causing delayed entries and exits
+    derived_from_bd_id: BD-028
+  - id: finance-C-181
+    when: When implementing or refactoring Keltner Channel calculations in backtesting
+    action: Verify that the Keltner Channel multiplier matches the intended volatility capture; default multiplier=2 assumes
+      95% price envelope under normal distribution; adjust multiplier based on asset volatility profile (higher volatility
+      assets may need multiplier >2, lower volatility may need <2)
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Using default multiplier=2 on high-volatility assets creates bands too tight, generating excessive false
+      breakout signals; using too large a multiplier on low-volatility assets creates bands too wide, missing valid breakout
+      opportunities
+    derived_from_bd_id: BD-030
+  - id: finance-C-182
+    when: When implementing or refactoring Ulcer Index calculations in backtesting
+    action: Verify that the Ulcer Index rolling max period matches the intended risk measurement timeframe; default period=14
+      assumes two trading weeks drawdown measurement; adjust period to align with strategy holding period and risk tolerance
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using default Ulcer period=14 with long-holding strategies causes underestimation of maximum drawdown risk;
+      using longer periods with short-holding strategies causes over-sensitivity to temporary dips and premature risk alerts
+    derived_from_bd_id: BD-031
+  - id: finance-C-183
+    when: When implementing or refactoring Schaff Trend Cycle (STC) calculations in backtesting
+    action: Verify that each STC parameters match the intended strategy characteristics; default (window_slow=50, window_fast=23,
+      cycle=10, smooth1=3, smooth2=3) assumes medium-term trend following; adjust parameters based on asset class and trading
+      frequency (shorter cycles for high-frequency, longer for swing trading)
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Using default STC parameters mismatched to strategy timeframe causes systematic signal timing errors; short
+      cycle values with long-term strategies create noise, long cycle values with short-term strategies cause lag and missed
+      opportunities
+    derived_from_bd_id: BD-032
+  - id: finance-C-184
+    when: When implementing or modifying the CCI indicator calculation
+    action: Use any denominator other than Mean Absolute Deviation (MAD) — CCI requires MAD for proper outlier insensitivity
+      and the constant 0.015 to verify 70-80% of values fall within [-100, 100]
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Using standard deviation instead of MAD would increase CCI sensitivity to outliers, causing significant deviation
+      from expected statistical distribution and producing unreliable overbought/oversold signals
+    derived_from_bd_id: BD-065
+  - id: finance-C-185
+    when: When configuring the CCI indicator parameters
+    action: Verify window parameter is a positive integer >= 1 and constant parameter is exactly 0.015
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: CCI constant=0.015 (approximately 1/66.7) is calibrated to produce 70-80% values in [-100, 100]; incorrect
+      constant produces non-standard CCI distribution breaking threshold-based trading strategies
+    derived_from_bd_id: BD-065
+  - id: finance-C-186
+    when: When implementing or modifying the ADX indicator calculation
+    action: Use Wilder smoothing (recursive EMA equivalent) for DX averaging — standard EMA would produce different lag characteristics
+      and break consistency with Wilder's original DM/TR methodology
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Replacing Wilder smoothing with standard EMA alters the lag profile of ADX values, causing systematic divergence
+      from Welles Wilder's original formula and breaking strategies calibrated to ADX signal levels
+    derived_from_bd_id: BD-066
+  - id: finance-C-187
+    when: When configuring the ADX indicator parameters
+    action: Verify window parameter is a positive integer >= 1 (standard value is 14 per Wilder's methodology)
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: ADX window controls DX averaging; non-standard window values alter smoothing characteristics and produce
+      ADX values incompatible with standard interpretation thresholds (e.g., ADX > 25 for trend strength)
+    derived_from_bd_id: BD-066
+  - id: finance-C-188
+    when: When implementing or modifying the Vortex Indicator calculation
+    action: Calculate VI using sum of absolute price movement divided by True Range sum — using close-to-close changes or
+      alternative range measures would alter VI's volatility sensitivity and break the upward/downward movement isolation
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Alternative price movement calculations change VI's normalization, causing VI+ and VI- crossover signals
+      to occur at different price levels than expected and breaking mean-reversion strategies using VI thresholds
+    derived_from_bd_id: BD-067
+  - id: finance-C-189
+    when: When configuring the Vortex Indicator parameters
+    action: Verify window parameter is a positive integer >= 1; VI+ and VI- are separate indicators that must be compared
+      together (not in isolation)
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: VI+ and VI- crossover timing depends on window size; using only one component or incorrect window breaks
+      momentum reversal detection that relies on VI signal line crossings
+    derived_from_bd_id: BD-067
+  - id: finance-C-190
+    when: When implementing or modifying the PSAR indicator calculation
+    action: Use parabolic stop-and-reverse formula with acceleration factor step=0.02 and max_step=0.20 to achieve gradual
+      acceleration without excessive sensitivity
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Different step/max_step values alter stop-tightening speed and reversal frequency; excessive step values
+      cause premature reversals while insufficient values result in stops too loose to be useful
+    derived_from_bd_id: BD-068
+  - id: finance-C-191
+    when: When configuring PSAR indicator parameters
+    action: Verify step is in range (0, max_step] and max_step is positive; larger max_step values increase reversal sensitivity
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: PSAR max_step=0.20 caps acceleration factor to control reversal frequency; unbounded or larger max_step causes
+      erratic stop behavior making the indicator impractical for risk management
+    derived_from_bd_id: BD-068
+  - id: finance-C-192
+    when: When implementing or modifying the STC indicator calculation
+    action: Apply stochastic normalization to MACD values, then perform double EMA smoothing with cycle=10 — single EMA or
+      different cycle lengths alter smoothness and signal timing
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: STC combines MACD momentum with oscillator properties using double smoothing; single EMA or incorrect cycle
+      breaks the noise-filtering design causing excessive false signals in volatile markets
+    derived_from_bd_id: BD-069
+  - id: finance-C-193
+    when: When configuring STC indicator parameters
+    action: Verify cycle parameter is a positive integer (standard value is 10); cycle controls the EMA smoothing window affecting
+      both noise filtering and signal lag
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: STC cycle=10 balances smoothness against responsiveness; non-standard cycle values shift the STC centerline
+      crossover timing breaking strategies calibrated to standard 50-level signals
+    derived_from_bd_id: BD-069
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-122 / Sphinx Documentation Configuration
+    version: v5.3
+    intent_keywords:
+    - documentation
+    - sphinx
+    - config
+    - api docs
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: auto-grouped by UC.type (2 distinct values, balanced distribution)
+      groups:
+      - group_id: reporting
+        name: Reporting
+        description: ''
+        emoji: 📋
+        uc_count: 1
+        ucs:
+        - uc_id: UC-101
+          name: Sphinx Documentation Configuration
+          short_description: Configures the Sphinx documentation builder for the Technical Analysis Library, enabling automated
+            generation of API documentation
+          sample_triggers:
+          - documentation
+          - sphinx
+          - config
+      - group_id: research_analysis
+        name: Research Analysis
+        description: ''
+        emoji: 📦
+        uc_count: 1
+        ucs:
+        - uc_id: UC-102
+          name: Technical Analysis Features Visualization
+          short_description: Explores and visualizes various technical analysis indicators (Bollinger Bands, Keltner Channel,
+            Donchian Channel, MACD) on historical price data to u
+          sample_triggers:
+          - visualize
+          - technical indicators
+          - charting
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-101
+      beginner_prompt: Try sphinx documentation configuration
+      auto_selected: true
+    - uc_id: UC-102
+      beginner_prompt: Try technical analysis features visualization
+      auto_selected: true
+    - uc_id: UC-100
+      beginner_prompt: Try capability UC-100
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 2 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - Technical Analysis Features Visualization
+    - Sphinx Documentation Configuration
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+    - Institutional fund holdings tracker via joinquant_fund_runner pattern
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

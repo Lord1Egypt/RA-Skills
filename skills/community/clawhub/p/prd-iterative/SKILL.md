@@ -1,35 +1,177 @@
 ---
-name: "PRD Iterative"
-description: "多轮迭代PRD写作流程。用法：用户说"写PRD"、"帮我做一个产品的PRD"、"多轮迭代PRD"、"PRD rounds"时触发。输入：产品主题 + 背景素材 + 开发平台。流程：派发writer写稿 → reviewer审阅 → 反馈打回 → 循环N轮 → 最终交付。"
-category: "productivity"
-source: "ClawHub"
-tags: [prd, productivity, writing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prd-iterative"
-sourceUrl: "https://clawhub.ai/skills/prd-iterative"
+name: prd-iterative
+description: 多轮迭代PRD写作流程。用法：用户说"写PRD"、"帮我做一个产品的PRD"、"多轮迭代PRD"、"PRD rounds"时触发。输入：产品主题 + 背景素材 + 开发平台。流程：派发writer写稿 → reviewer审阅 → 反馈打回 → 循环N轮 → 最终交付。
 ---
 
-# PRD Iterative
+# PRD Iterative — 多轮迭代PRD写作
 
-> 多轮迭代PRD写作流程。用法：用户说"写PRD"、"帮我做一个产品的PRD"、"多轮迭代PRD"、"PRD rounds"时触发。输入：产品主题 + 背景素材 + 开发平台。流程：派发writer写稿 → reviewer审阅 → 反馈打回 → 循环N轮 → 最终交付。
+## 启动前确认（必须）
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prd-iterative`
-- **Source URL:** [https://clawhub.ai/skills/prd-iterative](https://clawhub.ai/skills/prd-iterative)
+每次开始前，主agent必须向用户确认以下信息：
 
-## Overview
+| 确认项 | 说明 | 示例 |
+|--------|------|------|
+| **产品名称** | 要做什么产品 | 时光小屋 |
+| **开发平台** | 小程序/iOS/Android/Web/其他 | 微信小程序 |
+| **Writer模型** | 写稿用的模型 | MiniMax-M2.7-highspeed |
+| **Reviewer模型** | 审阅用的模型 | Kimi (kimi-coding/k2p5) |
+| **交付路径** | 最终文件存放位置（用户自定义） | ~/Desktop/prd/时光小屋/ |
+| **轮数** | 迭代次数（默认3轮） | 3 |
 
+> ⚠️ 模型和路径必须用户确认后再开始，不能用默认值直接跑。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/prd-iterative
+## 工作原理
+
 ```
+用户输入产品主题 + 素材
+       ↓
+┌─ Round N ──────────────────────────┐
+│  Writer Agent（用户指定模型）        │
+│  → 产出 PRD-v{N}.md               │
+│  → 产出 PRD-v{N}-review.md         │
+└────────────────────────────────────┘
+       ↓
+┌─ Review Agent（用户指定模型）───────┐
+│  → 审阅 PRD-v{N}.md               │
+│  → 输出具体问题清单               │
+│  → 标注"通过"或"需修改"          │
+└────────────────────────────────────┘
+       ↓
+  反馈给 Writer → 下一轮
+       ↓
+  达到指定轮数或reviewer通过 → 交付到用户指定路径
+```
+
+## 标准配置
+
+| 参数 | 默认值 | 说明 |
+|------|--------|------|
+| 轮数 | 3轮 | 可配置 2-5 轮 |
+| Writer模型 | MiniMax-M2.7-highspeed | 中文写作快 |
+| Reviewer模型 | kimi-coding/k2p5 | 批判性思维强 |
+| 输出目录 | `~/.openclaw/workspace/prd/` | 仅作默认提示，**实际以用户指定为准** |
+
+## 启动流程
+
+### Step 1：收集信息
+向用户确认：
+1. 产品名称/主题是什么？
+2. 开发什么平台？（小程序/iOS/Android/Web/混合/其他）
+3. Writer 用什么模型？（默认 MiniMax-M2.7-highspeed）
+4. Reviewer 用什么模型？（默认 Kimi）
+5. 交付路径放哪里？（默认 ~/.openclaw/workspace/prd/）
+6. 跑几轮？（默认3轮）
+7. 素材来源？（可以是一段描述/竞品链接/文章链接/手写大纲）
+
+### Step 2：素材预处理
+如果素材是链接，先抓取内容再开始。
+
+### Step 3：确认后开始
+所有信息确认后，告知用户：
+- 产品：「XXX」
+- 平台：「XXX」
+- Writer：「XXX」/ Reviewer：「XXX」
+- 交付路径：「XXX」
+- 轮数：「X轮」
+- 开始时间，预计每轮 X 分钟
+
+## Agent Prompt 模板
+
+### Writer Agent（用户指定模型）
+
+```
+你是一个资深产品经理。请根据以下信息撰写PRD。
+
+【产品名称】：{product_name}
+【开发平台】：{platform}
+【背景素材】：{material}
+
+【上一轮审阅意见】（第一轮为空）：
+{previous_review}
+
+【本次任务】：
+1. 解决上一轮指出的所有问题
+2. 保持上一轮已通过的内容不变
+3. 输出一份完整的PRD（Markdown格式）
+4. 根据开发平台调整技术描述的准确性
+
+【PRD结构要求】：
+- 产品概述（背景/问题/解决方案）
+- 用户画像
+- 核心功能（按优先级排序）
+- 信息架构
+- 交互流程
+- 数据埋点（关键指标）
+- MVP范围（必须/可选/排除）
+- 附录（如有特殊设计）
+
+输出文件：{output_dir}/{product_slug}-prd-v{round}.md
+写完后报告：文件路径 + 行数 + 主要新增内容
+```
+
+### Reviewer Agent（用户指定模型）
+
+```
+你是一个严格的PRD审阅者。请审阅以下PRD。
+
+【产品】：{product_name}
+【开发平台】：{platform}
+【版本】：v{round}
+【审阅标准】：
+1. 逻辑是否自洽（问题→解决方案是否对应）
+2. 功能是否完整（核心路径有无遗漏）
+3. 交互是否合理（用户体验是否流畅）
+4. MVP是否可行（能否按平台特性2周内完成）
+5. 是否有模糊表述（"应该/可能/大概"等需明确）
+
+【输出格式】：
+## 审阅结果
+- 通过：✅ / 需修改：❌
+
+## 问题清单
+（按严重程度排序，每个问题说明：位置、内容、建议修改方向）
+
+## 通过的部分
+（列出做得好的点，避免下一轮改动）
+
+输出文件：{output_dir}/{product_slug}-prd-v{round}-review.md
+```
+
+## 标准文件命名
+
+```
+{用户指定路径}/
+├── {product-slug}-prd-v1.md
+├── {product-slug}-prd-v1-review.md
+├── {product-slug}-prd-v2.md
+├── {product-slug}-prd-v2-review.md
+├── {product-slug}-prd-v{final}-final.md   ← 最终版
+└── {product-slug}-prd-v{final}-final-review.md
+```
+
+## 交付标准
+
+每轮完成后，主agent向用户汇报：
+- 当前轮次 + 状态（进行中/通过/需修改）
+- 主要变更点
+- 剩余轮次
+
+所有轮次完成后：
+- 汇总所有版本到最终文件
+- 告知用户最终文件路径
+- 询问是否需要打开文件夹
+
+## 适用场景
+
+- "帮我写一个xxx的PRD"
+- "用多轮迭代写PRD"
+- "run PRD rounds"
+- "做一个产品的完整PRD"
+
+## 注意事项
+
+- 素材可以是：竞品链接、文章链接、手写大纲、对话摘要
+- 如果素材是链接，先抓取内容再开始写
+- 审阅意见要具体，避免"写得不错"这类模糊反馈
+- 每轮开始前简要告知用户本轮重点
+- 用户指定的交付路径优先于默认路径

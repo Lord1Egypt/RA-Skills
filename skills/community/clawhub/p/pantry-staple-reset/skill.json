@@ -1,0 +1,42 @@
+{
+  "slug": "pantry-staple-reset",
+  "name": "Pantry Staple Reset",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Build a lean pantry restock list from current staples, upcoming meals, and real gaps without overbuying or making dietary assumptions.",
+  "category": "Home Admin",
+  "tags": [
+    "home admin",
+    "pantry",
+    "grocery planning",
+    "restock",
+    "meal planning"
+  ],
+  "trigger_keywords": [
+    "reset my pantry",
+    "what staples should I restock",
+    "make a lean grocery list",
+    "I keep overbuying pantry items",
+    "plan pantry basics",
+    "group this grocery list by aisle"
+  ],
+  "use_cases": [
+    "Turn a rough pantry inventory into a practical restock plan.",
+    "Compare current staples with upcoming meals to find only real gaps.",
+    "Group needed items by store aisle for easier shopping.",
+    "Create a lean cart that separates must-buy items from optional extras."
+  ],
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "hasExecutableCode": false,
+  "contentType": "document-only",
+  "language": "en",
+  "license": "MIT-0",
+  "project": "daily-50-skills-2026-05-08",
+  "priority": "P2",
+  "promptOnly": true,
+  "execution": "noExec"
+}

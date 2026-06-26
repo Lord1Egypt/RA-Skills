@@ -1,0 +1,35 @@
+{
+  "slug": "phone-notification-reset-routine",
+  "name": "phone-notification-reset-routine",
+  "displayName": "Phone Notification Reset Routine",
+  "version": "1.0.0",
+  "description": "Create a 20-minute phone notification audit card for attention hygiene, without account, credential, surveillance, or monitoring setup.",
+  "triggerKeywords": [
+    "phone notification cleanup checklist",
+    "notification reset routine",
+    "reduce phone notifications",
+    "app notification audit",
+    "focus notification settings",
+    "mute noisy apps",
+    "attention hygiene phone",
+    "phone distraction reset"
+  ],
+  "tags": [
+    "productivity",
+    "attention",
+    "phone",
+    "habits",
+    "checklist"
+  ],
+  "license": "MIT-0",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "Attention hygiene only. Do not request or manage accounts, credentials, private messages, monitoring setup, surveillance, tracking, device management, parental controls, workplace controls, or emergency alert suppression."
+}

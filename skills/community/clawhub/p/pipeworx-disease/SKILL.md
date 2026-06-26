@@ -1,35 +1,53 @@
 ---
-name: "Pipeworx disease"
-description: "COVID-19 statistics — global totals, per-country breakdowns, historical trends, and vaccination data from disease.sh"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-disease"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-disease"
+name: pipeworx-disease
+description: COVID-19 statistics — global totals, per-country breakdowns, historical trends, and vaccination data from disease.sh
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - curl
+    emoji: "🦠"
+    homepage: https://pipeworx.io/packs/disease
 ---
 
-# Pipeworx disease
+# COVID-19 Statistics
 
-> COVID-19 statistics — global totals, per-country breakdowns, historical trends, and vaccination data from disease.sh
+Real-time and historical COVID-19 data from disease.sh. Pull global totals, per-country stats, time-series trends, and vaccination numbers. Data is aggregated from Johns Hopkins, Worldometers, and government sources.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-disease`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-disease](https://clawhub.ai/skills/pipeworx-disease)
+## Tools
 
-## Overview
+| Tool | Description |
+|------|-------------|
+| `get_global_stats` | Current global totals: cases, deaths, recovered, active, tests |
+| `get_country_stats` | Stats for a specific country by name or ISO code (e.g., "USA", "germany", "gb") |
+| `get_historical` | Time-series data for cases, deaths, and recovered over N days |
+| `get_vaccine_stats` | Vaccination totals — global or per country |
 
+## Use cases
 
-## Installation
-To install this skill, run the following command in your terminal:
+- Answering questions about COVID-19 statistics for a specific country
+- Charting pandemic trends over time
+- Comparing vaccination rates across countries
+- Historical research on pandemic impact
+
+## Example: Germany's COVID stats
+
 ```bash
-hermes skills install clawhub/pipeworx-disease
+curl -s -X POST https://gateway.pipeworx.io/disease/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_country_stats","arguments":{"country":"germany"}}}'
+```
+
+## MCP config
+
+```json
+{
+  "mcpServers": {
+    "pipeworx-disease": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/disease/mcp"]
+    }
+  }
+}
 ```

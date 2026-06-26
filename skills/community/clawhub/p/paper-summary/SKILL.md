@@ -1,35 +1,124 @@
 ---
-name: "Paper Summary"
-description: "用于总结学术论文和研究文章。当用户提供 PDF 文件、论文链接或上传论文内容时自动触发。适用于研究论文、学术文章、技术报告等的阅读理解与内容提炼。触发短语：总结论文、论文摘要、阅读报告、文章总结、帮我理解这篇论文。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/paper-summary"
-sourceUrl: "https://clawhub.ai/skills/paper-summary"
+name: paper-summary
+description: 用于总结学术论文和研究文章。当用户提供 PDF 文件、论文链接或上传论文内容时自动触发。适用于研究论文、学术文章、技术报告等的阅读理解与内容提炼。触发短语：总结论文、论文摘要、阅读报告、文章总结、帮我理解这篇论文。
 ---
 
-# Paper Summary
+# 论文总结技能
 
-> 用于总结学术论文和研究文章。当用户提供 PDF 文件、论文链接或上传论文内容时自动触发。适用于研究论文、学术文章、技术报告等的阅读理解与内容提炼。触发短语：总结论文、论文摘要、阅读报告、文章总结、帮我理解这篇论文。
+本技能用于快速提取和总结学术论文的核心内容，包括研究背景、方法论、主要发现和结论。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/paper-summary`
-- **Source URL:** [https://clawhub.ai/skills/paper-summary](https://clawhub.ai/skills/paper-summary)
+## 输入要求
 
-## Overview
+支持以下输入方式：
+1. **PDF 文件**：直接上传 PDF 文件或提供本地路径
+2. **URL 链接**：提供论文的网页或 PDF 直链
+3. **文本内容**：直接粘贴论文文本（适用于未加密的论文）
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/paper-summary
+### 步骤 1：论文解析
+
+使用 `extract_pdfs_full_content` 或 `extract_pdfs_key_info` 提取论文内容：
+
+- 对于完整分析：使用 `extract_pdfs_full_content` 提取全部内容
+- 对于快速摘要：使用 `extract_pdfs_key_info` 提取关键信息
+
+### 步骤 2：内容分析与结构化
+
+根据提取的内容，进行以下维度的分析：
+
+1. **基本信息**
+   - 论文标题
+   - 作者信息
+   - 发表时间/期刊
+   - 研究领域
+
+2. **研究背景**
+   - 研究问题的定义
+   - 现有研究的局限性
+   - 研究动机与意义
+
+3. **研究方法**
+   - 采用的研究方法/技术路线
+   - 数据来源与实验设计
+   - 分析框架
+
+4. **主要发现**
+   - 核心研究成果
+   - 关键数据与统计结果
+   - 重要结论
+
+5. **研究贡献**
+   - 理论贡献
+   - 实践意义
+   - 创新点
+
+6. **局限性与展望**
+   - 研究的局限性
+   - 未来研究方向
+
+## 输出格式
+
+生成结构化的论文摘要报告，包含以下部分：
+
+### 摘要概览（约 200 字）
+
+一句话概括论文核心价值，3-5 个关键词。
+
+### 详细内容
+
+按照上述六个维度展开详细分析。
+
+### 核心要点提炼
+
+列出 3-5 个最重要的 takeaways。
+
+### 适用场景
+
+说明该论文适合哪类读者，以及可应用于哪些场景。
+
+## 输出示例
+
 ```
+【论文总结报告】
+
+标题：[论文标题]
+作者：[作者信息]
+领域：[研究领域]
+来源：[期刊/会议/预印本]
+
+【一句话总结】
+[用一句话概括论文的核心贡献]
+
+【关键词】
+关键词1 | 关键词2 | 关键词3 | 关键词4 | 关键词5
+
+【详细内容】
+
+1. 研究背景
+   [详细分析...]
+
+2. 研究方法
+   [详细分析...]
+
+3. 主要发现
+   [详细分析...]
+
+...
+
+【核心要点】
+1. [要点1]
+2. [要点2]
+3. [要点3]
+
+【阅读建议】
+[适合的读者群体和应用场景]
+```
+
+## 使用场景
+
+- 快速筛选论文是否值得精读
+- 帮助理解跨领域的研究论文
+- 准备文献综述
+- 学术写作参考
+- 会议/ Seminar 准备

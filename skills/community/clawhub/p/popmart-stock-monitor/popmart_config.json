@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "name": "星星人怦然星动系列 - 搪胶毛绒公仔礼盒",
+      "sku": "PM-XRX-BRSD-899",
+      "price_target": "899",
+      "platforms": ["jd", "tmall", "taobao", "wechat"],
+      "priority": ["jd", "tmall", "taobao", "wechat"]
+    }
+  ],
+  "check_interval_minutes": 30,
+  "notification": {
+    "channel": "feishu",
+    "webhook_url": ""
+  },
+  "api_keys": {
+    "taobao_app_key": "",
+    "taobao_app_secret": "",
+    "jd_app_key": "",
+    "jd_app_secret": ""
+  }
+}

@@ -1,0 +1,3 @@
+interface:
+  display_name: "带脚本的论文摘要生成"
+  short_description: "下载 arXiv PDF 并预处理后生成论文摘要"

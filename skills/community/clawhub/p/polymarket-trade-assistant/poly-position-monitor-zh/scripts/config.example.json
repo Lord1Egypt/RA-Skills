@@ -1,0 +1,47 @@
+{
+  "user_addresses": [
+    "0xYOUR_WALLET_ADDRESS_HERE"
+  ],
+  "watched_addresses": [
+    {"address": "0xWHALE_ADDRESS_1", "label": "GCR"},
+    {"address": "0xWHALE_ADDRESS_2", "label": "Theo"}
+  ],
+  "clob_auth": {
+    "api_key": "",
+    "secret": "",
+    "passphrase": ""
+  },
+  "thresholds": {
+    "price_change": {
+      "5m": 0.03,
+      "15m": 0.15,
+      "60m": 0.10,
+      "240m": 0.20
+    },
+    "volume_spike_ratio": 2.0,
+    "volume_drop_ratio": 0.3,
+    "position_change_pct": 0.20,
+    "min_inflow_usd": 1000
+  },
+  "notifications": {
+    "telegram": {
+      "enabled": false,
+      "bot_token": "123456:ABC-DEF...",
+      "chat_id": "your_chat_id",
+      "min_level": "WARNING"
+    },
+    "email": {
+      "enabled": false,
+      "smtp_host": "smtp.gmail.com",
+      "smtp_port": 587,
+      "username": "your@gmail.com",
+      "password": "your_app_password",
+      "to": "alerts@example.com",
+      "min_level": "ALERT"
+    }
+  },
+  "monitor": {
+    "interval_seconds": 60,
+    "state_dir": "~/polymarket-monitoring"
+  }
+}

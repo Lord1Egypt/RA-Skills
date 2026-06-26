@@ -1,0 +1,35 @@
+{
+  "name": "phone-charger-stash-map",
+  "slug": "phone-charger-stash-map",
+  "displayName": "Phone Charger Stash Map",
+  "version": "1.0.1",
+  "description": "Create a room-by-room household phone charger stash map with cable type, outlet location, return spot, travel backup, and reset routine without device passwords, account information, tracking, or monitoring setup.",
+  "triggerKeywords": [
+    "phone charger stash map",
+    "charger location map",
+    "household cable checklist",
+    "phone charger organizer",
+    "where are the chargers",
+    "cable return spots",
+    "charging station map",
+    "family charger checklist"
+  ],
+  "tags": [
+    "home",
+    "organization",
+    "chargers",
+    "household",
+    "checklist"
+  ],
+  "license": "MIT-0",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "Physical charger organization only; do not request or record device passwords, account information, private device identifiers, location tracking, monitoring setup, or surveillance instructions."
+}

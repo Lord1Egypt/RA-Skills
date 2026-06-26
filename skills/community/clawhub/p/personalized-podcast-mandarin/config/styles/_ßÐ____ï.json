@@ -1,0 +1,38 @@
+{
+  "name": "高效传达",
+  "description": "信息密度高，节奏紧凑，适合知识科普和新闻解读",
+  "segment_count": {
+    "min": 3,
+    "max": 4
+  },
+  "dynamic_mode_preference": ["collaborate", "storytelling"],
+  "emotional_arc": [0.3, 0.4, 0.4, 0.3],
+  "persona_interaction": {
+    "default_chemistry": "同事",
+    "role_distribution": "A负责信息梳理，B负责举例说明",
+    "interaction_frequency": "低"
+  },
+  "content_characteristics": {
+    "data_density": "极高",
+    "storytelling_ratio": "低",
+    "debate_intensity": "低"
+  },
+  "segment_guidelines": {
+    "setup": {
+      "dynamic_mode": "collaborate",
+      "emotional_tone": "curious",
+      "key_elements": ["直接点题", "开门见山", "预告要点"]
+    },
+    "confrontation": {
+      "dynamic_mode": "collaborate",
+      "emotional_tone": "curious",
+      "key_elements": ["信息传递", "聚焦要点", "举例说明"]
+    },
+    "resolution": {
+      "dynamic_mode": "collaborate",
+      "emotional_tone": "reflective",
+      "key_elements": ["精准总结", "行动建议", "清晰结论"]
+    }
+  },
+  "special_instructions": "节奏紧凑，每段3-5分钟，低频率互动，以信息传递为主，避免跑题"
+}

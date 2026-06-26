@@ -1,0 +1,13 @@
+{
+  "name": "plexmedia2html-export",
+  "version": "1.3.1",
+  "description": "Exportiert Plex Mediathek (Filme & Serien) als statische HTML-Seiten. Features: Multilingual (DE/EN), sichere Token-Verschlüsselung, Genre-Filter, Detail-Popups.",
+  "language": ["de", "en"],
+  "author": "Ronny",
+  "license": "MIT",
+  "main": "export.py",
+  "cli": {
+    "command": "plex-export",
+    "description": "Plex Mediathek als HTML exportieren"
+  }
+}

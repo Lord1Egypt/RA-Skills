@@ -1,0 +1,4 @@
+interface:
+  display_name: "商机跟进官"
+  short_description: "盯 CRM 和跟进节奏，找出快冷商机、卡阶段机会和今天最该推进的客户"
+  default_prompt: "Use $pipeline-keeper to inspect my CRM, spreadsheet, or deal notes, identify overdue follow-ups, stale opportunities, stage bottlenecks, and the top accounts to push today, then draft the next-best outreach in the right tone."

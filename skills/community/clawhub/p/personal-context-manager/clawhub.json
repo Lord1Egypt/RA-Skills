@@ -1,0 +1,13 @@
+{
+  "name": "context-manager",
+  "version": "1.1.0",
+  "description": "Context 管理技能 - 让知识从收藏变成认知，从整理变成生长（v1.1.0 skill-evolve Round 1 改进）",
+  "author": "燃冰 + ant",
+  "license": "MIT",
+  "keywords": ["context", "知识管理", "认知激活", "日记", "熵减", "最小内核"],
+  "category": "productivity",
+  "tags": ["context", "knowledge-management", "journal", "cognitive-activation"],
+  "main": "SKILL.md",
+  "files": ["SKILL.md", "evolve-test"],
+  "repository": {"type": "git", "url": "https://github.com/lj22503/women-awakening-museum.git"}
+}

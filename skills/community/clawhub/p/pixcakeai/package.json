@@ -1,0 +1,8 @@
+{
+  "name": "photo-enhance",
+  "version": "1.0.0",
+  "main": "openclaw-index.js",
+  "dependencies": {
+    "sharp": "^0.33.2"
+  }
+}

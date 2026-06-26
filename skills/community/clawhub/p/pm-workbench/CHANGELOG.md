@@ -1,0 +1,466 @@
+# Changelog
+
+All notable changes to `pm-workbench` will be documented in this file.
+
+---
+
+## v1.2.0 — Product-leadership workflows, stronger examples, and release governance
+
+### Added
+
+- formal product-leadership workflows:
+  - `references/workflows/portfolio-review.md`
+  - `references/workflows/head-of-product-operating-review.md`
+  - `references/workflows/founder-business-review.md`
+- benchmark run-record documentation:
+  - `benchmark/runs/README.md`
+  - `benchmark/runs/run-template.md`
+- failure regression checks:
+  - `benchmark/failure-regression.md`
+- Chinese core workflow example set:
+  - `examples.zh-CN/README.md`
+  - `examples.zh-CN/01-clarify-vague-request.md`
+  - `examples.zh-CN/02-feature-evaluation-memo.md`
+  - `examples.zh-CN/03-prioritization-stack.md`
+  - `examples.zh-CN/04-exec-summary.md`
+  - `examples.zh-CN/05-decision-brief.md`
+  - `examples.zh-CN/06-prd-lite.md`
+  - `examples.zh-CN/07-roadmap-one-pager.md`
+  - `examples.zh-CN/08-metrics-scorecard.md`
+  - `examples.zh-CN/09-postmortem-lite.md`
+
+### Improved
+
+- upgraded all 9 core workflow examples with more complete target outputs, plus the launch-readiness example
+- expanded the visible workflow set from 9 to 12 and wired leader/founder workflows into routing, README tables, and the scenario router
+- expanded Chinese example coverage from 4 common cases to all 9 core workflow entries
+- standardized all templates with required-core and optional-expansion guidance so templates behave more like output contracts than forms
+- tightened `SKILL.md` trigger boundaries with explicit out-of-scope categories
+- changed the default follow-up posture from 3-5 questions to 0-2 questions unless the task is high-risk or materially under-specified
+- clarified install verification so repo validation is not mistaken for local OpenClaw skill discovery
+- added failure regression checks for common polished-but-useless PM answer patterns
+- tightened `SKILL.md` reference-loading discipline so agents are less likely to load the whole library by default
+- clarified `clarify-request` misuse guidance so clarification does not continue after the problem is already stable
+- strengthened validation to catch more structural drift, including asset links, unknown workflow-like code tokens, template guidance, example expectations, and benchmark run-record docs
+
+### Fixed
+
+- removed stale references to a non-existent diagnose-growth-problem workflow from workflow routing guidance
+- added missing guidance headers to leader-grade templates:
+  - `references/templates/portfolio-review-summary.md`
+  - `references/templates/founder-business-review.md`
+
+---
+
+## v1.1.3 — PM workbench onboarding, command paths, and proof-chain tightening
+
+### Added
+
+- new cold-start entry asset:
+  - `START_HERE.md`
+- new routing and entry assets:
+  - `docs/SCENARIO-ROUTER.md`
+  - `docs/10-REAL-ENTRY-PROMPTS.md`
+- new command-path docs:
+  - `docs/COMMANDS.md`
+  - `docs/COMMANDS.zh-CN.md`
+- new command references:
+  - `references/commands/clarify-then-evaluate.md`
+  - `references/commands/clarify-then-compare.md`
+  - `references/commands/prioritize-roadmap-exec.md`
+  - `references/commands/prd-metrics-exec.md`
+  - `references/commands/exec-then-postmortem.md`
+- new command-path examples:
+  - `examples/22-command-clarify-then-evaluate.md`
+  - `examples/23-command-prioritize-roadmap-exec.md`
+- new benchmark support assets:
+  - `benchmark/command-benchmark-guide.md`
+  - `benchmark/worked-example-command-mini.md`
+
+### Improved
+
+- tightened README and Chinese README onboarding so first-time visitors can enter through start-here, scenario, prompt, or command paths without turning the repo into a large skill library
+- made command-style combinations visible in the main README narrative while keeping workflows as the core unit
+- added standardized workflow metadata across the 9 workflow references to improve routing clarity and reduce misuse
+- strengthened proof positioning so the benchmark layer now tests not only isolated workflow outputs, but also short multi-step PM chains
+- extended validation coverage to the new onboarding docs, command docs, command references, proof assets, and release-version alignment
+
+### Validated
+
+- `npm run validate` passes locally after the onboarding / commands / benchmark tightening
+
+### Notes
+
+This version is about making `pm-workbench` feel more like a coherent OpenClaw-native PM workbench: easier to enter, easier to route, and easier to trust through visible multi-step proof.
+
+---
+
+## v1.1.2 — Bilingual README and visual system planning
+
+### Added
+
+- new Chinese README:
+  - `README.zh-CN.md`
+- planned bilingual README visual asset directories:
+  - `assets/readme/en/`
+  - `assets/readme/zh-CN/`
+- placeholder notes inside the new README asset directories so future image production has a stable home
+
+### Improved
+
+- upgraded the local package version to `1.1.2` in `package.json`
+- added a prominent language switch to `README.md` so GitHub visitors can jump to Chinese immediately
+- documented the bilingual README structure so English and Chinese repo visitors can navigate with less friction
+- clarified that README image production should follow a bilingual asset model instead of mixing all future visuals into the old path structure
+
+### Notes
+
+This version is focused on lowering GitHub discovery friction for Chinese-speaking visitors while preparing a cleaner bilingual README visual system for future image production.
+
+---
+
+## v1.1.0 — Workflow judgment sharpening
+
+### Improved
+
+- sharpened the 4 highest-signal core workflows with lighter framing / judgment cues:
+  - `references/workflows/clarify-request.md`
+  - `references/workflows/prioritize-requests.md`
+  - `references/workflows/design-metrics.md`
+  - `references/workflows/evaluate-feature-value.md`
+- strengthened `SKILL.md` so the skill can briefly suggest the right angle when the ask is still fuzzy, while staying workflow-first and artifact-first
+- tightened `README.md` language so the added judgment behavior is clearer without turning the repo into a framework library
+
+### Guardrails
+
+- kept the repo structure unchanged for this release
+- did not add new workflow paths, templates, examples, benchmark layers, or navigation surfaces
+- kept the upgrade focused on sharper early judgment rather than broader framework coverage
+
+### Validated
+
+- `npm run validate` passes locally after the workflow judgment upgrade
+
+### Notes
+
+This version is about making `pm-workbench` less likely to jump into the wrong next step when the ask is still fuzzy, while keeping the repo tight, workflow-led, and reusable in real PM work.
+
+---
+
+## v1.0.6 — Install and pre-release check polish
+
+### Added
+
+- new short install checklist:
+  - `docs/INSTALL-CHECKLIST.md`
+
+### Improved
+
+- made the source-first install path more explicit in:
+  - `README.md`
+  - `docs/GETTING-STARTED.md`
+  - `docs/TRY-IN-3-MINUTES.md`
+- clarified the default path as **copy → validate → skills check** before first use or release
+- strengthened repo validation coverage so the install-check doc is also guarded by local validation
+
+### Validated
+
+- `npm run validate` passes locally after the install-check polish
+
+### Notes
+
+This version is aimed at making `pm-workbench` easier to try, easier to verify after copying, and easier to sanity-check before source-first distribution.
+
+---
+
+## v1.0.5 — Decision-under-uncertainty hardening
+
+### Added
+
+- new higher-pressure examples:
+  - `examples/20-launch-readiness-call.md`
+  - `examples/21-mixed-signals-operating-review.md`
+- new benchmark worked examples:
+  - `benchmark/worked-example-launch-readiness.md`
+  - `benchmark/worked-example-mixed-signals.md`
+
+### Improved
+
+- strengthened `SKILL.md` with a cross-workflow **conditional recommendation rule** so the skill is more likely to make a usable call under uncertainty instead of stopping at “needs more information”
+- strengthened `SKILL.md` with a **leader-grade decision rule** focused on period objective, scarce-resource protection, and explicit non-decisions
+- sharpened `compare-solutions` around decisive trade-offs, what the choice is protecting, why-not-the-other-option-now logic, and decide-now vs validate-next framing
+- sharpened `prepare-exec-summary` around launch / readiness recommendation framing, decision-now vs validation-next, and clearer upward decision asks
+- sharpened `build-roadmap` around scarce-resource protection, stronger not-now language, and clearer stage-goal defense
+- sharpened `prioritize-requests` around scarce-resource framing, non-decision language patterns, and more explicit below-the-line logic
+- strengthened the matching templates:
+  - `references/templates/decision-brief.md`
+  - `references/templates/exec-summary.md`
+  - `references/templates/roadmap-one-pager.md`
+  - `references/templates/head-of-product-operating-review.md`
+- updated example and benchmark indexes so the new higher-pressure scenarios are discoverable from the repo surface
+
+### Validated
+
+- `npm run validate` passes locally after the decision-under-uncertainty upgrade
+
+### Notes
+
+This version is aimed at making `pm-workbench` feel less like a strong PM analyst and more like a stronger product-leadership workbench under uncertainty, conflict, and pressure.
+
+---
+
+## v1.0.3 — High-pressure acceptance suite
+
+### Added
+
+- new benchmark pressure-test asset:
+  - `benchmark/high-pressure-acceptance-suite.md`
+
+### Improved
+
+- extended the benchmark layer from baseline comparison scenarios to harsher real-world acceptance testing
+- added more conflict-heavy, ambiguity-heavy, leadership-heavy scenarios designed to reveal whether `pm-workbench` still holds judgment quality under pressure
+- connected the pressure-test suite back into `benchmark/README.md` and `benchmark/scenarios.md` so it works as part of the repo’s visible evaluation path
+
+### Notes
+
+This version is about shifting from “looks strong in curated examples” toward “can survive messier real PM conditions.”
+
+---
+
+## v1.0.2 — Core judgment sharpening
+
+### Improved
+
+- sharpened `prepare-exec-summary` with clearer failure modes, stronger-output standards, and more explicit emphasis on decision ask, business consequence, and why-now logic
+- sharpened `compare-solutions` with stronger standards for decisive trade-off framing, why-not-the-other-option reasoning, and staged-path judgment
+- sharpened `build-roadmap` with clearer standards for sequencing logic, explicit non-focus calls, and resource-constrained stage framing
+- strengthened the matching templates:
+  - `references/templates/exec-summary.md`
+  - `references/templates/decision-brief.md`
+  - `references/templates/roadmap-one-pager.md`
+- updated core examples so the repo’s visible examples better reflect the newer judgment bar:
+  - `examples/03-exec-summary.md`
+  - `examples/06-decision-brief.md`
+  - `examples/08-roadmap-one-pager.md`
+
+### Validated
+
+- `npm run validate` passes locally after the workflow and template upgrades
+
+### Notes
+
+This version is focused on making the core workflow layer feel less like “good structure” and more like “stronger PM judgment under real constraints.”
+
+---
+
+## v1.0.1 — Proof and onboarding hardening
+
+### Added
+
+- new ultra-fast onboarding asset:
+  - `docs/TRY-IN-3-MINUTES.md`
+- new workflow-map visual:
+  - `docs/images/pm-workbench-workflow-map.svg`
+- new high-tension case-study examples:
+  - `examples/15-case-study-boss-wow-factor.md`
+  - `examples/16-case-study-gimmick-feature.md`
+  - `examples/17-case-study-quarterly-priority-conflict.md`
+- new bad-input correction examples:
+  - `examples/18-bad-input-reframed.md`
+  - `examples/19-bad-priority-input-corrected.md`
+
+### Improved
+
+- tightened README first screen around value proposition, fit, fastest trial path, and differentiation from generic AI
+- added clearer in-scope / out-of-scope boundary so the repo reads like a focused product, not a drifting strategy dump
+- upgraded benchmark README with fairness-control notes and explicit benchmark limitations
+- upgraded benchmark worked examples so they more clearly show original input, representative generic AI pattern, representative `pm-workbench` pattern, judgment-vs-format distinction, and benchmark caveats
+- sharpened the 3 highest-signal workflows:
+  - `clarify-request`
+  - `evaluate-feature-value`
+  - `prioritize-requests`
+- added clearer failure-mode and strong-output standards to the most important workflows
+- strengthened `SKILL.md` with an explicit anti-template rule so artifact quality does not replace judgment quality
+- improved `docs/GETTING-STARTED.md` and `CONTRIBUTING.md` to make adoption and extension paths faster and more coherent
+- rewrote `ROADMAP.md` around product evolution logic: trust -> core judgment -> expansion
+
+### Validated
+
+- `npm run validate` passes locally after the upgrade
+
+### Notes
+
+This version is mainly about making `pm-workbench` easier to trust, easier to try quickly, and more obviously differentiated on core PM judgment.
+
+---
+
+## v1.0.0 — Release-ready PM judgment layer
+
+### Added
+
+- benchmark proof layer:
+  - `benchmark/README.md`
+  - `benchmark/CONTRIBUTING-BENCHMARKS.md`
+  - `benchmark/scenarios.md`
+  - `benchmark/rubric.md`
+  - `benchmark/scorecard.md`
+  - `benchmark/worked-example-product-leader.md`
+  - `benchmark/worked-example-clarify-request.md`
+  - `benchmark/worked-example-exec-summary.md`
+- cold-start evaluation assets:
+  - `docs/GETTING-STARTED.md`
+  - `docs/TRY-3-PROMPTS.md`
+- product-leader / founder support assets:
+  - `docs/PRODUCT-LEADER-PLAYBOOK.md`
+  - `references/templates/portfolio-review-summary.md`
+  - `references/templates/head-of-product-operating-review.md`
+  - `references/templates/founder-business-review.md`
+- share-friendly benchmark visuals:
+  - `docs/images/pm-workbench-benchmark-summary.svg`
+  - `docs/images/pm-workbench-benchmark-card.svg`
+- expanded examples:
+  - `10-product-leader-quarterly-priority-call.md`
+  - `11-founder-strategy-decision.md`
+  - `12-portfolio-review-summary.md`
+  - `13-head-of-product-operating-review.md`
+  - `14-founder-business-review.md`
+- lightweight repo validation tooling:
+  - `scripts/validate-repo.js`
+  - `package.json` with `npm run validate`
+
+### Improved
+
+- strengthened the repo from a GitHub-packaged skill into a more complete PM judgment layer with clearer differentiation from generic AI
+- expanded reusable artifact coverage across workflow, leadership, and operating-review scenarios
+- improved onboarding, first-use evaluation, and GitHub discovery flow
+- made benchmark evidence and proof-of-value much more visible in the README and repo structure
+- improved support for heads of product, product leaders, and founders in higher-altitude decision scenarios
+
+### Validated
+
+- `npm run validate` passes locally
+- repo structure validated for source-first local use
+- OpenClaw skill recognition may depend on local version and skill-path configuration
+
+### Notes
+
+This is the first version that feels like a coherent 1.0 release point: clear product thesis, reusable artifact system, initial proof layer, stronger leadership scenarios, and enough validation to publish with confidence.
+
+---
+
+## v0.5.0 — GitHub packaging layer
+
+### Added
+
+- `README.md` with positioning, workflows, built-in artifacts, use cases, quick start, and current status
+- initial `examples/` directory with example cases for:
+  - vague request clarification
+  - feature evaluation memo
+  - executive summary
+  - PRD Lite
+  - Postmortem Lite
+
+### Improved
+
+- clearer GitHub-facing product story
+- easier first-use understanding for external users
+- stronger demonstration of scenario-driven and artifact-first behavior
+
+### Notes
+
+This version made `pm-workbench` more ready for open distribution, GitHub discovery, and external testing.
+
+---
+
+## v0.4.0 — Artifact-first output layer
+
+### Added
+
+- first template batch:
+  - `feature-evaluation-memo.md`
+  - `exec-summary.md`
+- second template batch:
+  - `prd-lite.md`
+  - `roadmap-one-pager.md`
+- closing template batch:
+  - `postmortem-lite.md`
+
+### Improved
+
+- wired templates back into the main `SKILL.md`
+- added default artifact mapping from workflows to PM artifacts
+- added compressed artifact rule for fast / lightweight usage
+- added minimum compressed artifact expectations for each mapped artifact
+
+### Notes
+
+This version shifted `pm-workbench` from "strong analysis skill" toward "artifact-producing PM workbench."
+
+---
+
+## v0.3.0 — Stronger follow-up behavior
+
+### Added
+
+- critical-premise rule to the main `SKILL.md`
+- critical-premise rule added into high-frequency workflows:
+  - `evaluate-feature-value`
+  - `compare-solutions`
+  - `prioritize-requests`
+  - `draft-prd`
+  - `prepare-exec-summary`
+
+### Improved
+
+- stronger behavior for asking 1-2 missing premises before giving strong conclusions
+- clearer support for assumption-labeled `v0` outputs when speed matters
+
+### Notes
+
+This version improved judgment stability in low-context and high-pressure PM scenarios.
+
+---
+
+## v0.2.0 — Validation and packaging
+
+### Improved
+
+- compressed the main `SKILL.md` into a more trigger-friendly and packaging-friendly core file
+- kept workflow detail in `references/workflows/`
+- standardized workflow structure for consistency across all core workflows
+
+### Validated
+
+- completed workflow consistency checks across the first 9 workflow files
+- fixed YAML frontmatter validation issue in `SKILL.md`
+- successfully packaged the first working `.skill` bundle
+
+### Notes
+
+This version made `pm-workbench` testable, packageable, and easier to maintain.
+
+---
+
+## v0.1.0 — Initial workflow foundation
+
+### Added
+
+- initial `pm-workbench` skill scaffold
+- core `SKILL.md` positioning and routing logic
+- first batch of workflow references:
+  - `clarify-request`
+  - `evaluate-feature-value`
+  - `prepare-exec-summary`
+- second batch of workflow references:
+  - `compare-solutions`
+  - `prioritize-requests`
+  - `draft-prd`
+- third batch of workflow references:
+  - `build-roadmap`
+  - `design-metrics`
+  - `write-postmortem`
+
+### Notes
+
+This version established the core idea of `pm-workbench` as a scenario-driven PM workflow skill instead of a framework lookup or generic PM prompt pack.

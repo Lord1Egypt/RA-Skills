@@ -1,35 +1,35 @@
 ---
-name: "Planit"
-description: "一句话规划出行——输入自然语言即可获得AI优化过的出行方案。触发词：出行、旅游、旅行、行程、规划、路线、度假、游玩、机票、火车票、酒店、景点、攻略"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/planit"
-sourceUrl: "https://clawhub.ai/skills/planit"
+name: planit
+description: Plan your trip in one sentence - Get AI-optimized travel itineraries with natural language input. Triggers: travel, trip, journey, itinerary, plan, route, vacation, tour, flight, train, hotel, attraction, guide
+argument-hint: "Destination + Time + Group, e.g.: Friday trip to Hangzhou with parents / Tomorrow to Xinjiang"
+user-invokable: true
+disable-model-invocation: false
+compatibility: "node >= 16"
+license: MIT
+metadata:
+  author: PlanIt
+  category: travel
 ---
 
-# Planit
+# PlanIt — Plan Your Trip in One Sentence
 
-> 一句话规划出行——输入自然语言即可获得AI优化过的出行方案。触发词：出行、旅游、旅行、行程、规划、路线、度假、游玩、机票、火车票、酒店、景点、攻略
+**OpenClaw Skill** · Node.js · v2.0.8
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/planit`
-- **Source URL:** [https://clawhub.ai/skills/planit](https://clawhub.ai/skills/planit)
+---
 
-## Overview
+## Features
 
+PlanIt allows users to get complete travel itineraries with just one natural language sentence - including transportation options, hotel recommendations, daily attraction schedules, and cost estimates.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/planit
-```
+---
+
+## Usage
+
+Simply describe your travel needs in natural language:
+
+- `Friday trip to Hangzhou with parents`
+- `Tomorrow to Xinjiang`
+- `This weekend to Sanya with friends`
+- `May Day holiday to Beijing with kids`
+
+PlanIt will automatically parse your request and generate a complete itinerary including transportation, hotels, attractions, and cost estimates.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Podcast Feed Manager"
+  short_description: "Manage huisheng.fm Podcast Feeds from an agent"
+  default_prompt: "Use $podcast-feed-manager to inspect my huisheng.fm Podcast Feeds."

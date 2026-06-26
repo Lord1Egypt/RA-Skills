@@ -1,0 +1,15 @@
+{
+  "name": "pingcode",
+  "description": "PingCode 研发管理平台 API 集成。支持查询工作项、测试库、项目进度、组织架构、知识库、DevOps、周报生成、全局看板等。",
+  "author": "geji",
+  "homepage": "",
+  "license": "MIT-0",
+  "tags": ["pingcode", "项目管理", "研发管理", "周报", "工作项"],
+  "metadata": {
+    "openclaw": {
+      "requires": {
+        "env": ["PINGCODE_CLIENT_ID", "PINGCODE_CLIENT_SECRET"]
+      }
+    }
+  }
+}

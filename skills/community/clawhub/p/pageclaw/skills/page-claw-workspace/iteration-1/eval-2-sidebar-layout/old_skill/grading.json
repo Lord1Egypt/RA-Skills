@@ -1,0 +1,26 @@
+{
+  "eval_id": 2,
+  "configuration": "old_skill",
+  "expectations": [
+    {
+      "text": "Q2 options presented each include a layout descriptor (e.g., '· layout: ...')",
+      "passed": false,
+      "evidence": "Old skill Q2 CSS signatures contain only decorative CSS properties, no '· layout:' descriptor"
+    },
+    {
+      "text": "Design doc ### Aesthetic Implementation contains a 'Layout structure' field",
+      "passed": false,
+      "evidence": "design.md has no 'Layout structure' field — layout is mentioned implicitly as anti-pattern ('No grid or flex column layouts that divide the page into sidebar + content') but not as a positive spec"
+    },
+    {
+      "text": "index.html does NOT use a sticky sidebar — uses single-column, stacked cards, or centered column",
+      "passed": true,
+      "evidence": "Single-column centered layout, no sidebar, no sticky — consistent with old skill behavior"
+    },
+    {
+      "text": "The HTML layout matches the layout descriptor of the chosen Q2 option",
+      "passed": false,
+      "evidence": "No formal layout descriptor existed in Q2 signature; layout defaulted to single-column by model inference"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "PDF to Text",
+  "description": "Extract plain text from all or selected pages of a PDF.",
+  "method": "POST",
+  "endpoint": "/v1/convert/pdf/txt",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": { "type": "apiKey", "header": "CLIENT-API-KEY", "required": true },
+  "parameters": {
+    "body": {
+      "content_type": "application/json",
+      "fields": [
+        { "name": "url", "type": "string", "required": false, "description": "Public URL to a PDF" },
+        { "name": "file", "type": "string", "required": false, "description": "Base64-encoded PDF" },
+        { "name": "pages", "type": "string", "required": false, "description": "Page selection (e.g. '1-3')" },
+        { "name": "output", "type": "string", "required": false, "default": "url", "enum": ["url", "base64", "both", "file"], "description": "Output mode" },
+        { "name": "output_filename", "type": "string", "required": false, "description": "Custom output filename" }
+      ],
+      "also_accepts": "multipart/form-data with 'file' field",
+      "aliases": ["/v1/convert/pdf/text"]
+    }
+  }
+}

@@ -1,35 +1,119 @@
 ---
-name: "PRD Generator"
-description: "Use when drafting, improving, reviewing, or explaining PRDs, product requirements, feature specs, user stories, acceptance criteria, scope boundaries, MVP de..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prd-generator-cc"
-sourceUrl: "https://clawhub.ai/skills/prd-generator-cc"
+name: prd-generator
+description: Use when drafting, improving, reviewing, or explaining PRDs, product requirements, feature specs, user stories, acceptance criteria, scope boundaries, MVP definitions, or stakeholder-ready product documents; trigger on PRD, 需求文档, 功能规格, feature spec, 产品文档, 需求评审, 写用户故事.
 ---
 
-# PRD Generator
+# PRD 生成器
 
-> Use when drafting, improving, reviewing, or explaining PRDs, product requirements, feature specs, user stories, acceptance criteria, scope boundaries, MVP de...
+帮助用户产出可讨论、可评审、可测试的 PRD。重点是澄清问题、边界和验收，而不是机械套模板或执行外部导出流程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prd-generator-cc`
-- **Source URL:** [https://clawhub.ai/skills/prd-generator-cc](https://clawhub.ai/skills/prd-generator-cc)
+## 使用边界
 
-## Overview
+- 本技能默认产出 `Markdown` 或直接在对话中给出内容
+- 不默认执行 shell、Python、第三方二进制或未随 skill 打包的脚本
+- 不承诺生成 `.docx`、PDF 或调用本地工具链，除非用户**明确提出**，且相关脚本就在当前项目中、已被你检查过、用途与请求一致
+- 涉及税务、法务、隐私、支付、合规时，必须标注 `需专业确认`，不要把推测写成事实
 
+## 可用资源
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/prd-generator-cc
-```
+- `references/prd_template.md`：需要完整 PRD 结构时读取
+- `references/ux_guidelines.md`：涉及页面行为、状态反馈、错误处理时读取
+- `assets/user_journey_example.md`：场景跨多角色或多阶段时参考
+
+按需读取，不要一次性加载所有参考文件。
+
+## 快速分流
+
+先判断用户真正需要哪种帮助：
+
+| 用户意图 | 默认动作 | 输出 |
+|---|---|---|
+| 起草 PRD | 先补关键缺口，再起草 | 问题清单或 Markdown 草稿 |
+| 直接出稿 | 立即起草，缺口标 `【推测】` | Markdown 草稿 |
+| 评审已有 PRD | 先评审，不默认重写全文 | 评审结论 + 修订建议 |
+| 解释方法 | 只讲结构、方法、检查表 | 简明指南 |
+
+## 默认流程
+
+### 1. 先提炼已知信息
+
+从用户输入中提取这 5 类最小信息：
+
+- 业务目标
+- 目标用户/角色
+- 范围边界
+- 约束条件
+- 成功标准
+
+### 2. 信息不足时先问，不要直接铺满模板
+
+除非用户明确说“直接写一版”“先按你的理解出稿”，否则第一轮先提 `3-7` 个定向问题，只问真正缺失的关键项。
+
+最多进行 `3` 轮问答；一旦足够起草，就进入文档输出。
+
+### 3. 起草时用结构化、可测试的写法
+
+起草前读取 `references/prd_template.md`。PRD 至少应覆盖：
+
+1. 背景与业务目标
+2. 用户角色与使用场景
+3. MVP 范围与非目标
+4. 功能需求
+5. 业务规则与边界条件
+6. 数据/状态/权限/异常处理
+7. 非功能要求
+8. 验收标准
+9. 待确认事项
+
+要求：
+
+- 需求尽量编号，如 `FR-001`
+- 每条核心需求写清触发条件、系统行为、结果状态
+- 重要假设标 `【推测】`
+- 缺失项进入“待确认事项”，不要静默补造
+- 需求描述“做什么”，避免写成具体实现方案
+
+## 评审模式
+
+当用户给你已有 PRD、需求片段或截图文字时，先评审再改写。
+
+重点检查：
+
+- 为什么做、为谁做、成功如何衡量
+- MVP 做什么、不做什么
+- 角色、场景、上下游依赖是否完整
+- 需求是否可测试、可验收
+- 数据字段、状态流转、唯一性、审计是否明确
+- 权限、异常、失败重试、超时、空状态是否覆盖
+- 性能、安全、合规、隔离、日志保留是否有明确要求
+- 是否存在未决问题且有人负责确认
+
+评审输出格式：
+
+1. 结论
+2. 阻塞问题
+3. 改进建议
+4. 待确认事项
+
+## 输出规则
+
+- 默认直接在对话中输出，或在用户明确要求时生成 `Markdown` 文件
+- 若用户要求“可交付文档”，优先先给完整 `Markdown` 源稿
+- 只有当用户明确要求特定文件格式，且当前项目内存在对应、可审计、与请求一致的本地工具时，才可以在说明风险后继续处理
+- 如果工具、模板或依赖不存在，明确说明限制，并继续提供完整 `Markdown`
+
+## 质量门禁
+
+输出前快速自检：
+
+- 是否说清业务目标、用户、边界、约束、成功标准
+- 是否明确“非目标/暂不做”
+- 是否覆盖数据、状态、权限、异常、审计
+- 是否把所有 `【推测】`、`【待补充】` 收拢到待确认事项
+- 高风险领域是否标注 `需专业确认`
+
+## 语气与风格
+
+- 主动语态，简洁直给
+- 以可执行、可评审、可测试为优先
+- 多用表格、编号和短段落，少写空泛背景话术

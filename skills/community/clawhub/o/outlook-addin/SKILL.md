@@ -1,35 +1,24 @@
 ---
-name: "Outlook Add-in"
-description: "Outlook sidebar add-in that brings the full power of your OpenClaw agent into Microsoft Outlook. Chat with your agent about any email, use all your tools and..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/outlook-addin"
-sourceUrl: "https://clawhub.ai/skills/outlook-addin"
+name: outlook-addin
+description: Outlook sidebar add-in that brings the full power of your OpenClaw agent into Microsoft Outlook. Chat with your agent about any email, use all your tools and skills, draft replies — directly from the inbox. Works with Outlook Desktop (Classic) and Outlook Web (OWA). Use when a user wants to integrate OpenClaw with Outlook, chat with their agent from email, or set up an AI sidebar in Outlook.
 ---
 
-# Outlook Add-in
+# OpenClaw Outlook Add-in
 
-> Outlook sidebar add-in that brings the full power of your OpenClaw agent into Microsoft Outlook. Chat with your agent about any email, use all your tools and...
+An Office.js sidebar add-in that connects Outlook to your local OpenClaw Gateway via WebSocket. Select any email, and your full agent — with all tools, skills, and automations — is available right in the sidebar.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/outlook-addin`
-- **Source URL:** [https://clawhub.ai/skills/outlook-addin](https://clawhub.ai/skills/outlook-addin)
+**Repository:** https://github.com/nachtsheim/openclaw-outlook-addin (MIT)
 
-## Overview
+## Quick Start
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/outlook-addin
+git clone https://github.com/nachtsheim/openclaw-outlook-addin.git
+cd openclaw-outlook-addin
+npm install
+npx office-addin-dev-certs install   # first time only
+npm run dev                           # starts https://localhost:3000
 ```
+
+Then add `https://localhost:3000` to Gateway allowed origins and sideload `manifest.xml` into Outlook.
+
+Full setup instructions, architecture details, auto-start config, and troubleshooting: see [README](https://github.com/nachtsheim/openclaw-outlook-addin#readme).

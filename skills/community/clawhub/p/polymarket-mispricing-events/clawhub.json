@@ -1,0 +1,13 @@
+{
+  "emoji": "🎯",
+  "version": "1.0.0",
+  "requires": {
+    "pip": ["simmer-sdk", "requests", "urllib3"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "cron": "*/15 * * * *",
+  "automaton": {
+    "managed": true,
+    "entrypoint": "mispricing_events.py"
+  }
+}

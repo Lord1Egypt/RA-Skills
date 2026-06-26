@@ -1,0 +1,10 @@
+{
+  "name": "paperdaily",
+  "version": "0.1.0",
+  "description": "Daily computer science paper recommendations from arXiv",
+  "main": "dist/index.js",
+  "type": "module",
+  "dependencies": {
+    "openclaw-paperdaily": "^0.1.0"
+  }
+}

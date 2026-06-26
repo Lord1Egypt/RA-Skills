@@ -1,35 +1,21 @@
----
-name: "Pipeworx cdc"
-description: "Search and retrieve public health datasets and records from the CDC via Socrata API using dataset keywords or IDs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-cdc"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-cdc"
----
+# Cdc
 
-# Pipeworx cdc
+CDC MCP — wraps CDC open data via Socrata API (data.cdc.gov)
 
-> Search and retrieve public health datasets and records from the CDC via Socrata API using dataset keywords or IDs.
+## search_datasets
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-cdc`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-cdc](https://clawhub.ai/skills/pipeworx-cdc)
+Search CDC public health datasets by keyword. Returns dataset names, descriptions, IDs, and update d
 
-## Overview
+## get_dataset
 
+Get rows from a specific CDC dataset by its Socrata dataset ID (four-by-four format like "xxxx-xxxx"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-cdc
+```json
+{
+  "mcpServers": {
+    "cdc": {
+      "url": "https://gateway.pipeworx.io/cdc/mcp"
+    }
+  }
+}
 ```

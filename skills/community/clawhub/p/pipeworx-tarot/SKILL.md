@@ -1,35 +1,36 @@
----
-name: "Pipeworx tarot"
-description: "Draw and search all 78 Rider-Waite tarot cards with upright and reversed meanings, including single or multiple card spreads and detailed lookups."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-tarot"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-tarot"
----
+# Tarot
 
-# Pipeworx tarot
+Draw tarot cards, search the deck, and look up meanings. All 78 cards of the Rider-Waite deck are available with upright and reversed interpretations.
 
-> Draw and search all 78 Rider-Waite tarot cards with upright and reversed meanings, including single or multiple card spreads and detailed lookups.
+## The deck at your fingertips
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-tarot`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-tarot](https://clawhub.ai/skills/pipeworx-tarot)
+| Tool | Description |
+|------|-------------|
+| `random_card` | Draw one card at random |
+| `draw_cards` | Draw 1-78 cards (for spreads -- 3-card past/present/future, 10-card Celtic Cross, etc.) |
+| `search_cards` | Search by keyword across names and descriptions ("moon", "strength", "cups") |
+| `get_card` | Look up a specific card by short name |
 
-## Overview
+## Card naming
 
+Short names follow a pattern: Major Arcana use `ar` prefix (`ar00` = The Fool, `ar01` = The Magician), Minor Arcana use suit + value (`wap01` = Ace of Wands, `cup10` = Ten of Cups, `swkn` = Knight of Swords, `pequ` = Queen of Pentacles).
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Example: draw a 3-card spread
+
 ```bash
-hermes skills install clawhub/pipeworx-tarot
+curl -X POST https://gateway.pipeworx.io/tarot/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"draw_cards","arguments":{"count":3}}}'
+```
+
+Each card comes with its name, suit, type (Major/Minor Arcana), upright meaning, reversed meaning, and a description.
+
+```json
+{
+  "mcpServers": {
+    "tarot": {
+      "url": "https://gateway.pipeworx.io/tarot/mcp"
+    }
+  }
+}
 ```

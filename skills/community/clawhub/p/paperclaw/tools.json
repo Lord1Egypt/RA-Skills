@@ -1,0 +1,417 @@
+{
+  "name": "paper_claw",
+  "version": "2.0.0",
+  "description": "Fetch, classify, and summarize papers from multiple sources with AI-powered multi-language summaries",
+  "author": "Paper Claw Team",
+  "license": "MIT",
+  "homepage": "https://github.com/PigeonDan1/paper_claw",
+  "presets": {
+    "description": "Configuration presets for different research fields",
+    "list": "presets/index.json",
+    "available": [
+      {
+        "id": "speech_audio",
+        "name": "Speech & Audio",
+        "description": "Speech recognition, synthesis, audio processing"
+      },
+      {
+        "id": "nlp",
+        "name": "NLP & LLM",
+        "description": "Natural Language Processing and Large Language Models"
+      },
+      {
+        "id": "computer_vision",
+        "name": "Computer Vision",
+        "description": "Image processing, video analysis, multimodal learning"
+      },
+      {
+        "id": "general_ai",
+        "name": "General AI/ML",
+        "description": "Broad AI/ML research covering multiple domains"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "name": "list_presets",
+      "description": "List all available configuration presets for different research fields",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      },
+      "returns": {
+        "type": "array",
+        "description": "List of available presets with id, name, and description",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {"type": "string"},
+            "name": {"type": "string"},
+            "name_zh": {"type": "string"},
+            "description": {"type": "string"},
+            "description_zh": {"type": "string"}
+          }
+        }
+      }
+    },
+    {
+      "name": "preview_preset",
+      "description": "Preview what a preset will configure without applying it. Shows arXiv categories and classification categories that will be set.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "preset_id": {
+            "type": "string",
+            "description": "Preset identifier (speech_audio, nlp, computer_vision, general_ai)",
+            "enum": ["speech_audio", "nlp", "computer_vision", "general_ai"]
+          }
+        },
+        "required": ["preset_id"]
+      },
+      "returns": {
+        "type": "object",
+        "description": "Preview of preset configuration",
+        "properties": {
+          "success": {"type": "boolean"},
+          "preset_id": {"type": "string"},
+          "name": {"type": "string"},
+          "arxiv_categories": {"type": "array"},
+          "classification_categories": {"type": "array"}
+        }
+      }
+    },
+    {
+      "name": "apply_preset",
+      "description": "Apply a preset configuration to the system. This will update config/default.json with the preset's arXiv categories and classification categories.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "preset_id": {
+            "type": "string",
+            "description": "Preset identifier to apply",
+            "enum": ["speech_audio", "nlp", "computer_vision", "general_ai"]
+          }
+        },
+        "required": ["preset_id"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {"type": "boolean"},
+          "preset_id": {"type": "string"},
+          "preset_name": {"type": "string"},
+          "arxiv_categories": {"type": "array"},
+          "classification_categories": {"type": "array"},
+          "config_path": {"type": "string"}
+        }
+      }
+    },
+    {
+      "name": "fetch_papers",
+      "description": "Fetch papers from configured sources for a specific date or date range",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "day": {
+            "type": "string",
+            "description": "Specific date in YYYY-MM-DD format",
+            "format": "date"
+          },
+          "start_date": {
+            "type": "string",
+            "description": "Start date for range in YYYY-MM-DD format",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "description": "End date for range in YYYY-MM-DD format",
+            "format": "date"
+          },
+          "language": {
+            "type": "string",
+            "description": "Output language for summaries",
+            "enum": ["zh", "en", "ja", "ko", "de", "fr", "es"],
+            "default": "zh"
+          }
+        },
+        "oneOf": [
+          {"required": ["day"]},
+          {"required": ["start_date", "end_date"]}
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "description": "Path to generated digest files",
+        "properties": {
+          "markdown_path": {
+            "type": "string",
+            "description": "Path to Markdown digest file"
+          },
+          "json_path": {
+            "type": "string",
+            "description": "Path to JSON data file"
+          },
+          "paper_count": {
+            "type": "integer",
+            "description": "Number of papers fetched"
+          }
+        }
+      }
+    },
+    {
+      "name": "configure_sources",
+      "description": "Configure data sources and categories",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "sources": {
+            "type": "object",
+            "description": "Source configuration",
+            "properties": {
+              "arxiv": {
+                "type": "object",
+                "properties": {
+                  "enabled": {"type": "boolean"},
+                  "categories": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {"type": "string"},
+                        "name": {"type": "string"},
+                        "url": {"type": "string"}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": ["sources"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {"type": "boolean"},
+          "message": {"type": "string"}
+        }
+      }
+    },
+    {
+      "name": "configure_language",
+      "description": "Set default output language for summaries",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "Language code",
+            "enum": ["zh", "en", "ja", "ko", "de", "fr", "es"]
+          }
+        },
+        "required": ["language"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {"type": "boolean"},
+          "language": {"type": "string"},
+          "message": {"type": "string"}
+        }
+      }
+    },
+    {
+      "name": "send_digest",
+      "description": "Send email digest with HTML preview and Markdown attachment",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Date of digest to send in YYYY-MM-DD format",
+            "format": "date"
+          }
+        }
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {"type": "boolean"},
+          "recipients": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "List of recipient emails"
+          },
+          "attachment_sent": {"type": "boolean"},
+          "message": {"type": "string"}
+        }
+      }
+    },
+    {
+      "name": "configure_categories",
+      "description": "Update paper classification categories",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "description": "List of category definitions",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Category name in English"
+                },
+                "labels": {
+                  "type": "object",
+                  "description": "Multi-language labels",
+                  "properties": {
+                    "zh": {"type": "string"},
+                    "en": {"type": "string"},
+                    "ja": {"type": "string"},
+                    "ko": {"type": "string"}
+                  }
+                },
+                "keywords": {
+                  "type": "array",
+                  "items": {"type": "string"},
+                  "description": "Keywords for classification"
+                }
+              },
+              "required": ["name", "labels", "keywords"]
+            }
+          }
+        },
+        "required": ["categories"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {"type": "boolean"},
+          "message": {"type": "string"}
+        }
+      }
+    },
+    {
+      "name": "configure_recipients",
+      "description": "Update email recipients",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "recipients": {
+            "type": "array",
+            "description": "List of recipient definitions",
+            "items": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "description": "Recipient email address",
+                  "format": "email"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Recipient name"
+                },
+                "enabled": {
+                  "type": "boolean",
+                  "description": "Whether this recipient is enabled",
+                  "default": true
+                }
+              },
+              "required": ["email", "name"]
+            }
+          }
+        },
+        "required": ["recipients"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {"type": "boolean"},
+          "recipient_count": {"type": "integer"},
+          "message": {"type": "string"}
+        }
+      }
+    },
+    {
+      "name": "get_digest_content",
+      "description": "Get the content of a generated digest",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Date of digest in YYYY-MM-DD format",
+            "format": "date"
+          },
+          "format": {
+            "type": "string",
+            "enum": ["markdown", "json", "summary"],
+            "description": "Format to retrieve",
+            "default": "summary"
+          }
+        },
+        "required": ["date"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "content": {"type": "string"},
+          "format": {"type": "string"},
+          "paper_count": {"type": "integer"},
+          "categories": {"type": "array"}
+        }
+      }
+    },
+    {
+      "name": "schedule_digest",
+      "description": "Schedule automatic daily digest generation",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Enable or disable scheduled runs"
+          },
+          "time": {
+            "type": "string",
+            "description": "Time to run daily in HH:MM format (24h)",
+            "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"
+          }
+        },
+        "required": ["enabled"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": {
+          "success": {"type": "boolean"},
+          "message": {"type": "string"},
+          "schedule": {"type": "string"}
+        }
+      }
+    }
+  ],
+  "config": {
+    "env_file": ".env",
+    "config_dir": "config",
+    "output_dir": "content/posts",
+    "data_dir": "data/processed"
+  },
+  "examples": [
+    {
+      "description": "Fetch papers for a specific date in English",
+      "command": "python scripts/main.py --day 2026-03-10 --language en"
+    },
+    {
+      "description": "Fetch papers in Japanese",
+      "command": "python scripts/main.py --day 2026-03-10 --language ja"
+    },
+    {
+      "description": "View paper count from JSON",
+      "command": "jq '.summary.total' data/processed/2026-03-10.json"
+    }
+  ]
+}

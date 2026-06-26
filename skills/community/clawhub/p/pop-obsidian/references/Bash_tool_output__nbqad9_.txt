@@ -1,0 +1,25 @@
+24
+f1651f5 docs: Expand project documentation with new guides on resolved issues, platform integration, and technical analyses, integrating Obsidian for knowledge management, and updating core project files.
+d16c899 feat: Add Cloudflare Worker configuration and initial tool schemas with placeholder implementations for Twitter search, system health, and process monitoring.
+7f4fc2b feat: Establish `coherence-mcp` server with TUI, atom tracking, WAVE validation, and real-time bridge.
+cd372fd feat: Add Resonance Cascade POP pipeline template
+37abc5c feat: Implement WebSocket bridge and enhance TUI for orchestrator-tui
+fda5ff4 feat: add Gemini Vortex Weaver and Minecraft Weaver skills and configure the Obsidian workspace and recent files plugin.
+13a3f50 feat: Configure Obsidian workspace and recent files plugin, and update project documentation with DEPLOY-MAP.
+cb25b3e Merge branch 'main' of https://github.com/toolate28/coherence-mcp
+52c96d4 feat: implement NEAR smart contract for on-chain verification of the `α + ω = 15` conservation law, including stateful and view-only checks, peak resonance, and statistics.
+db66534 feat: introduce the `conservation-verifier` package with `near-sdk` dependency and release profiles.
+9bac24f build: Generate debug artifacts for the `near/conservation-verifier` project.
+5e7ec02 feat: initialize conservation-verifier NEAR project by creating its Cargo.toml configuration.
+b8389fb feat: Initialize the `conservation-verifier` Rust library for the NEAR protocol.
+ae6492c feat: Introduce `plugin-catalog.md` to define Obsidian POP actions, encompassing core functionalities and community plugin integrations.
+a1ba53e feat: introduce a new TUI frontend crate for the orchestrator.
+4c556a6 feat: introduce superskill pipeline orchestration with braided execution and coherence invariants, supported by a new bridge communication layer.
+a550830 feat: Introduce `orchestrator/crates/core` with a WebSocket bridge for dispatching system telemetry, coherence, pipeline progress, and ATOM events.
+8336f89 api tings
+3efbf19 chore: generate orchestrator Cargo.lock for dependency consistency.
+f945551 feat: introduce orchestrator core with inter-component messaging protocols, structured logging, and initial TUI architecture.
+de284db ATOM-CANVAS-20260221-001: Live-wired Command Canvas + Coherence Gate
+273e2cc feat: establish core Coherence-MCP architecture, integrate Gemini, Grok, and Minecraft connectors, and deploy initial coherence-site.
+8af2e40 feat: Establish Coherence-MCP development environment by adding Obsidian vault configuration, numerous plugins, initial `coherence-site` structure, and updating `reson8-activator.zip`.
+372c5d8 Optimize WAVE validator: fix heading detection in code blocks and refine semantic connectivity

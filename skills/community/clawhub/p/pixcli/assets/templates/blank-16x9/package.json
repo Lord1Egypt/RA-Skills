@@ -1,0 +1,27 @@
+{
+  "name": "remotion-blank-template",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts BlankVideo out/blank-video.mp4",
+    "render:1080": "remotion render src/index.ts BlankVideo out/blank-video-1080.mp4 --codec=h264 --pixel-format=yuv420p",
+    "verify": "remotion compositions src/index.ts --quiet",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.419",
+    "@remotion/cli": "4.0.419",
+    "@remotion/google-fonts": "4.0.419",
+    "@remotion/renderer": "4.0.419",
+    "@remotion/transitions": "4.0.419",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "remotion": "4.0.419"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "typescript": "5.6.3"
+  }
+}

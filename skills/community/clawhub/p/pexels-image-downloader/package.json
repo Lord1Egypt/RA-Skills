@@ -1,0 +1,26 @@
+{
+  "name": "@openclaw/pexels-image-downloader",
+  "version": "1.0.0",
+  "description": "使用Pexels API搜索和下载高质量免费图片，支持自动调整尺寸和格式验证",
+  "main": "SKILL.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "pip install -r requirements.txt",
+    "download-example": "python download_pexels.py --query \"nature\" --count 1"
+  },
+  "keywords": [
+    "pexels",
+    "images",
+    "download",
+    "free",
+    "stock-photos",
+    "social-media",
+    "content-creation",
+    "photography",
+    "visual-content"
+  ],
+  "author": "OpenClaw User",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

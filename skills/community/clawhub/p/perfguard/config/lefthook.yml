@@ -1,0 +1,17 @@
+pre-commit:
+  parallel: true
+  commands:
+    perfguard-perf-scan:
+      glob: "*.{js,ts,jsx,tsx,py,rb,java,mjs,cjs}"
+      run: |
+        PERFGUARD_SKILL_DIR="${PERFGUARD_SKILL_DIR:-$HOME/.openclaw/skills/perfguard}"
+        if [[ -f "$PERFGUARD_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$PERFGUARD_SKILL_DIR/scripts/patterns.sh"
+          source "$PERFGUARD_SKILL_DIR/scripts/analyzer.sh"
+          hook_perf_scan
+        else
+          echo "[PerfGuard] Skill not found -- skipping"
+        fi
+      fail_text: |
+        Performance anti-patterns detected!
+        Run 'perfguard scan' for details.

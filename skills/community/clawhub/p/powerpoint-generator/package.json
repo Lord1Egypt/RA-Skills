@@ -1,0 +1,10 @@
+{
+  "name": "Powerpoint-Generator",
+  "dependencies": {
+    "dom-to-svg": "^0.12.2",
+    "esbuild": "^0.28.0",
+    "jsdom": "^29.0.2",
+    "pptxgenjs": "^4.0.1",
+    "puppeteer": "^24.40.0"
+  }
+}

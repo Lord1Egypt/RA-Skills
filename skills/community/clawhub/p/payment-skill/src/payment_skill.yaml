@@ -1,0 +1,75 @@
+id: payment_skill
+name: 支付服务
+description: 提供支付相关的功能,支持创建支付、查询状态、发起退款
+version: 1.0.0
+author: zlclaw Team
+
+# 依赖
+dependencies:
+  - aiohttp>=3.8.0
+  - pydantic>=2.0.0
+  - pyyaml>=6.0
+
+# 必需环境变量
+required_env_vars:
+  - PAYMENT_API_KEY: "API 密钥，用于身份认证"
+  - PAYMENT_API_SECRET: "API 密钥，用于请求签名"
+  - PAYMENT_API_URL: "支付 API 地址"
+
+# 可选环境变量
+optional_env_vars:
+  - PAYMENT_ENCRYPTION_KEY: "32 字节加密密钥（可选）"
+  - PAYMENT_LOG_LEVEL: "日志级别，默认 INFO"
+  - PAYMENT_LOG_FILE: "日志文件路径"
+  - PAYMENT_ENABLE_CROSS_DEVICE_AUTH: "启用跨设备验证，默认 true"
+
+# 配置
+config:
+  api_key: ${PAYMENT_API_KEY}
+  api_url: https://api.alipay.com
+  timeout: 30
+  retry_count: 3
+  enable_logging: true
+  enable_encryption: false
+
+# 工具列表
+tools:
+  - name: create_payment
+    description: 创建支付请求
+    timeout: 10000
+    rate_limit:
+      requests_per_minute: 60
+    requires_approval: false
+
+  - name: query_payment
+    description: 查询支付状态
+    timeout: 5000
+    rate_limit:
+      requests_per_minute: 100
+    requires_approval: false
+
+  - name: refund_payment
+    description: 发起退款
+    timeout: 10000
+    rate_limit:
+      requests_per_minute: 30
+    requires_approval: true
+
+# 权限要求
+permissions:
+  - network.http
+  - storage.read
+  - storage.write
+  - crypto.sign
+
+# 健康检查
+health_check:
+  enabled: true
+  interval: 60
+  timeout: 5000
+
+# 日志配置
+logging:
+  level: INFO
+  format: json
+  output: stdout

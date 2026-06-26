@@ -1,0 +1,36 @@
+{
+  "name": "prd-skill-workflow",
+  "version": "1.0.0",
+  "description": "全栈PRD协作工作流 - 与用户共同探讨，产出完整的PRD文档",
+  "main": "templates/build.js",
+  "scripts": {
+    "build": "node templates/build.js",
+    "build:pdf": "node templates/build-pdf.js",
+    "build:all": "node templates/build.js && node templates/build-pdf.js",
+    "init": "node scripts/init-prd.js",
+    "score": "node scripts/score.js",
+    "score:html": "node scripts/score.js --html",
+    "validate": "node scripts/validate.js",
+    "update": "node update.js",
+    "iterate": "node update.js iterate",
+    "history": "node update.js history",
+    "diff": "node update.js diff",
+    "rollback": "node update.js rollback"
+  },
+  "keywords": [
+    "prd",
+    "product-requirements",
+    "documentation",
+    "skill",
+    "workflow"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

@@ -1,35 +1,49 @@
 ---
-name: "Oschina"
-description: "提供开源中国公开项目和技术文章的关键词检索、项目摘要及技术文章要点提取服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/oschina"
-sourceUrl: "https://clawhub.ai/skills/oschina"
+name: oschina-hot-trend
+description: 注册“开源中国”热门技能；当需要访问或自动化开源中国相关内容时调用。
+homepage: `https://www.oschina.net/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Oschina
+# 开源中国
 
-> 提供开源中国公开项目和技术文章的关键词检索、项目摘要及技术文章要点提取服务。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/oschina`
-- **Source URL:** [https://clawhub.ai/skills/oschina](https://clawhub.ai/skills/oschina)
+- 面向公开项目页与技术文章的检索与要点摘要
+- 不提供接口逆向或批量抓取能力
+- 仅用于公开页面的轻量信息整理
 
-## Overview
+关键入口
 
+- 主页：https://www.oschina.net/
+- 开源项目频道：https://www.oschina.net/project
+- 搜索入口：https://www.oschina.net/search
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/oschina
-```
+常见任务
+
+- 指定关键词的项目列表摘要（语言、Star、License、维护状态）
+- 技术文章的核心要点提取（技术栈、问题/解决方案）
+- 标签分布与技术趋势统计
+
+数据字段
+
+- 项目名称、语言、Star（若展示）、License、维护状态、链接
+- 文章标题、作者、发布时间、标签、点赞/评论数、链接
+- 技术栈、问题与解决方案摘要
+
+自动化要点
+
+- 动态渲染与人机校验，建议人工打开后触发解析
+- 请求频率需控制，不进行批量抓取
+- 不进行接口调用
+
+示例流程
+
+- 项目摘要：输入关键词 → 搜索 → 抽取项目 → 输出语言/License摘要
+- 文章要点：访问文章页 → 抽取技术栈/关键点 → 输出摘要
+- 趋势统计：收集条目 → 基于标签分类 → 生成趋势分布
+
+合规提示
+
+- 遵守平台规则，不进行接口调用或批量采集
+- 结果仅用于内部分析与提醒

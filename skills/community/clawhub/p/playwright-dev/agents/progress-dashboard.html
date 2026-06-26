@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿福的浏览器自动化进度看板</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 { font-size: 28px; margin-bottom: 10px; }
+        .header p { opacity: 0.9; font-size: 14px; }
+        .progress-bar {
+            height: 24px;
+            background: #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 20px 30px;
+            position: relative;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 32px; font-weight: bold; color: #667eea; }
+        .stat-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .task-list { padding: 20px 30px; }
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        .task-item.pending { border-left-color: #e0e0e0; opacity: 0.6; }
+        .task-item.processing { border-left-color: #667eea; background: #f0f4ff; }
+        .task-item.completed { border-left-color: #4caf50; background: #e8f5e9; }
+        .task-item.error { border-left-color: #f44336; background: #ffebee; }
+        .task-rank {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #667eea;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .task-item.completed .task-rank { background: #4caf50; }
+        .task-item.error .task-rank { background: #f44336; }
+        .task-item.processing .task-rank { animation: pulse 1s infinite; }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .task-info { flex: 1; }
+        .task-title { font-weight: bold; margin-bottom: 5px; color: #333; }
+        .task-up { font-size: 12px; color: #666; }
+        .task-status {
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+        .status-pending { background: #e0e0e0; color: #666; }
+        .status-processing { background: #667eea; color: white; }
+        .status-completed { background: #4caf50; color: white; }
+        .status-error { background: #f44336; color: white; }
+        .task-comments {
+            margin-top: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+            display: none;
+        }
+        .task-item.completed .task-comments { display: block; }
+        .comment-item {
+            font-size: 12px;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .comment-item:last-child { border-bottom: none; }
+        .comment-likes { color: #ff9800; font-weight: bold; margin-right: 8px; }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 12px;
+        }
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .auto-refresh-tip {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+            padding: 10px 20px;
+            margin: 0 30px 20px 30px;
+            border-radius: 8px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .auto-refresh-tip .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4caf50;
+            margin-right: 8px;
+            animation: blink 2s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎩 阿福的浏览器自动化进度看板</h1>
+            <p>任务：抓取 B 站鬼畜区 Top 10 视频热门评论</p>
+        </div>
+        
+        <div class="auto-refresh-tip">
+            <div style="display: flex; align-items: center;">
+                <span class="status-dot"></span>
+                <span>📊 数据已嵌入页面（无需轮询）</span>
+            </div>
+            <span id="lastUpdate">最后更新：20:01</span>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%;">0%</div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="totalTasks">10</div>
+                <div class="stat-label">总任务数</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="completedTasks">0</div>
+                <div class="stat-label">已完成</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="processingTasks">0</div>
+                <div class="stat-label">进行中</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="pendingTasks">10</div>
+                <div class="stat-label">待处理</div>
+            </div>
+        </div>
+        
+        <div class="task-list" id="taskList">
+            <!-- Tasks will be inserted here -->
+        </div>
+        
+        <div class="footer">
+            <p>🤖 Powered by OpenClaw + 阿福 | 数据已嵌入 HTML | 最后更新：<span id="footerUpdate">-</span></p>
+        </div>
+    </div>
+    
+    <script>
+        // 数据直接嵌入 HTML，避免 CORS 问题
+        const tasks = [
+            {
+                rank: 1,
+                title: "瓜 摊 斗 舞",
+                up: "一团小包子",
+                views: "226 万",
+                status: "completed",
+                comments: [
+                    {likes: "5929", content: "现场 [doge]"},
+                    {likes: "3459", content: "这视频早几年，站内排行榜前十"},
+                    {likes: "2486", content: "出自陳明道 [doge]"}
+                ]
+            },
+            {
+                rank: 2,
+                title: "金雨良缘",
+                up: "大粪收集家",
+                views: "128.5 万",
+                status: "completed",
+                comments: [
+                    {likes: "3358", content: "三连分享给你喜欢大汗脚的兄弟"},
+                    {likes: "3247", content: "[笑哭]"},
+                    {likes: "596", content: "这谁能不心动？"}
+                ]
+            },
+            {
+                rank: 3,
+                title: "🐔\"雪 地 里 传 来 了 鸡 你 太 美\"🐔",
+                up: "浪迹天涯的小光",
+                views: "37.3 万",
+                status: "error",
+                comments: [],
+                note: "视频链接失效"
+            },
+            {
+                rank: 4,
+                title: "【鬼畜动漫】抽象历险记 胃袋恶魔良子！（上）",
+                up: "哥谭市汽修职业学院",
+                views: "119.9 万",
+                status: "pending",
+                comments: []
+            },
+            {
+                rank: 5,
+                title: "\"佩奇，你的刀钝了\"",
+                up: "洛温阿特金森",
+                views: "58.2 万",
+                status: "pending",
+                comments: []
+            },
+            {
+                rank: 6,
+                title: "🍉误闯摊下，劝余放下手中瓜🍉",
+                up: "对号与 x",
+                views: "61.9 万",
+                status: "pending",
+                comments: []
+            },
+            {
+                rank: 7,
+                title: "寒假最后一天早上睡醒的我：",
+                up: "星际电视小电",
+                views: "64.2 万",
+                status: "pending",
+                comments: []
+            },
+            {
+                rank: 8,
+                title: "没办法，不让做人了",
+                up: "新世纪咖啡战士 v",
+                views: "85.5 万",
+                status: "pending",
+                comments: []
+            },
+            {
+                rank: 9,
+                title: "⚡贞 德 食 泥 鸭 找 妈 妈⚡【重制版】",
+                up: "青禾椰木耶",
+                views: "102 万",
+                status: "pending",
+                comments: []
+            },
+            {
+                rank: 10,
+                title: "只有这样...才肯跟我组乐队吗",
+                up: "东洋雪莲",
+                views: "55.9 万",
+                status: "pending",
+                comments: []
+            }
+        ];
+        
+        function renderTasks() {
+            const taskList = document.getElementById('taskList');
+            taskList.innerHTML = tasks.map((task, index) => `
+                <div class="task-item ${task.status}" id="task-${index}">
+                    <div class="task-rank">${task.rank}</div>
+                    <div class="task-info">
+                        <div class="task-title">${task.title}</div>
+                        <div class="task-up">UP 主：${task.up} | 播放：${task.views}</div>
+                        ${task.comments.length > 0 ? `
+                            <div class="task-comments">
+                                ${task.comments.map(c => `
+                                    <div class="comment-item">
+                                        <span class="comment-likes">👍 ${c.likes}</span>
+                                        <span>${c.content}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                        ${task.note ? `<div style="font-size:12px;color:#f44336;margin-top:5px;">⚠️ ${task.note}</div>` : ''}
+                    </div>
+                    <div class="task-status status-${task.status}">
+                        ${task.status === 'processing' ? '<span class="spinner"></span>抓取中...' : 
+                          task.status === 'completed' ? '✅ 完成' : 
+                          task.status === 'error' ? '❌ 失败' : '⏳ 等待'}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function updateProgress() {
+            const completed = tasks.filter(t => t.status === 'completed').length;
+            const processing = tasks.filter(t => t.status === 'processing').length;
+            const pending = tasks.filter(t => t.status === 'pending' || t.status === 'error').length;
+            const progress = (completed / tasks.length) * 100;
+            
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressFill').textContent = Math.round(progress) + '%';
+            document.getElementById('completedTasks').textContent = completed;
+            document.getElementById('processingTasks').textContent = processing;
+            document.getElementById('pendingTasks').textContent = pending;
+            document.getElementById('lastUpdate').textContent = '最后更新：' + new Date().toLocaleTimeString('zh-CN', {hour: '2-digit', minute:'2-digit'});
+            document.getElementById('footerUpdate').textContent = new Date().toLocaleTimeString('zh-CN', {hour: '2-digit', minute:'2-digit'});
+        }
+        
+        // Initialize
+        renderTasks();
+        updateProgress();
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "surveyIntent": "Determine the most appealing product name from a set of candidates",
+  "country": "US",
+  "sampleSize": "50",
+  "targeting": [],
+  "reporting": ["gender", "age-range"],
+  "questions": [
+    {
+      "type": "ranked",
+      "prompt": "Rank these product names from most to least appealing for a [product category]:",
+      "options": [
+        { "value": "Name Option A" },
+        { "value": "Name Option B" },
+        { "value": "Name Option C" },
+        { "value": "Name Option D" },
+        { "value": "Name Option E" }
+      ]
+    },
+    {
+      "type": "open_ended",
+      "prompt": "What makes your top-ranked name stand out? What associations does it create?",
+      "options": []
+    }
+  ]
+}

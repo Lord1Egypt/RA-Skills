@@ -1,0 +1,23 @@
+{
+  "skill_name": "personal-genomics",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我做了微基因的基因检测，数据文件已经上传到文件夹了，能帮我分析一下健康风险吗？",
+      "expected_output": "Should detect WeGene format, parse the TSV file, look up health risk SNPs, and produce an HTML report with risk findings organized by category (cancer, cardiovascular, metabolic, neurological, etc.)",
+      "files": ["test_data/mock_wegene.txt"]
+    },
+    {
+      "id": 2,
+      "prompt": "I have my 23andMe raw data and a VCF file from whole genome sequencing. I'd like a comprehensive analysis focusing on cardiovascular risk — my father had a heart attack at 55. I'm currently taking atorvastatin 20mg.",
+      "expected_output": "Should detect both formats, use dual-source lookup, conduct deep cardiovascular risk analysis (lipid + CAD SNP panels), check statin pharmacogenomics (SLCO1B1), and provide personalized recommendations considering family history and current medication.",
+      "files": ["test_data/mock_23andme.txt", "test_data/mock_variants.vcf"]
+    },
+    {
+      "id": 3,
+      "prompt": "帮我分析下我的基因数据，我已经确诊痛风了，尿酸一直降不下来，在吃苯溴马隆。另外血脂也偏高。能不能根据基因结果给我出一份补充剂方案？",
+      "expected_output": "Should perform deep analysis on uric acid/gout pathway (SLC2A9, ABCG2 etc.) and lipid pathway, then generate a personalized supplement plan considering benzbromarone interaction, organized in priority tiers with dosage, timing, and monitoring schedule.",
+      "files": ["test_data/mock_wegene.txt"]
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Per Paytm JS Checkout configuration docs (responsive checkout) -->
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>Paytm JS Checkout (QA)</title>
+  <!-- QA: single host pgp-qa12 for CheckoutJS (same as initiateTransaction host). -->
+  <script
+    type="application/javascript"
+    src="https://pgp-qa12.paytm.in/merchantpgpui/checkoutjs/merchants/qa12ps69382732062304.js"
+    crossorigin="anonymous"
+    onload="onPaytmScriptLoad()"
+  ></script>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; }
+    button { padding: 0.6rem 1.2rem; font-size: 1rem; cursor: pointer; }
+    #status { margin-top: 1rem; color: #333; white-space: pre-wrap; }
+    .err { color: #a40000; }
+  </style>
+</head>
+<body>
+  <h1>Paytm JS Checkout demo</h1>
+  <p>Flow: initiateTransaction → <code>txnToken</code> → CheckoutJS → payment → validate callback / <a href="https://www.paytmpayments.com/docs/jscheckout-verify-payment">order status</a>.</p>
+  <p>Served from this WAR: open as <code>/paytm-backend/index.html</code> after deploy.</p>
+  <p>
+    <label>Amount (INR): <input id="amount" type="text" value="1.00" /></label>
+  </p>
+  <button type="button" id="payBtn" disabled>Pay with Paytm</button>
+  <div id="status"></div>
+
+  <script>
+    /* Relative to this page: /paytm-backend/index.html → /paytm-backend/paytm/create-order */
+    var statusEl = document.getElementById("status");
+    var payBtn = document.getElementById("payBtn");
+
+    function setStatus(msg, isErr) {
+      statusEl.textContent = msg;
+      statusEl.className = isErr ? "err" : "";
+    }
+
+    function onPaytmScriptLoad() {
+      payBtn.disabled = false;
+      setStatus("CheckoutJS script loaded. Click Pay to call /paytm/create-order and open the popup.");
+    }
+
+    payBtn.addEventListener("click", function () {
+      var amount = document.getElementById("amount").value || "1.00";
+      setStatus("Creating order (initiateTransaction)…");
+      payBtn.disabled = true;
+
+      fetch(new URL("paytm/create-order", document.baseURI).toString(), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: amount, custId: "CUST_DEMO" })
+      })
+        .then(function (r) {
+          if (!r.ok) {
+            return r.text().then(function (t) {
+              throw new Error("HTTP " + r.status + " - " + t);
+            });
+          }
+          return r.json();
+        })
+        .then(function (data) {
+          var orderId = data.orderId;
+          var txnToken = data.txnToken;
+          var amt = data.amount;
+
+          if (!window.Paytm || !window.Paytm.CheckoutJS) {
+            throw new Error("Paytm.CheckoutJS not available");
+          }
+
+          var config = {
+            root: "",
+            flow: "DEFAULT",
+            data: {
+              orderId: orderId,
+              token: txnToken,
+              tokenType: "TXN_TOKEN",
+              amount: amt
+            },
+            handler: {
+              notifyMerchant: function (eventName, info) {
+                console.log("notifyMerchant", eventName, info);
+              }
+            }
+          };
+
+          /* Per https://www.paytmpayments.com/docs/jscheckout-invoke-payment - init after CheckoutJS.onLoad */
+          return new Promise(function (resolve, reject) {
+            window.Paytm.CheckoutJS.onLoad(function () {
+              window.Paytm.CheckoutJS.init(config)
+                .then(function () {
+                  window.Paytm.CheckoutJS.invoke();
+                  setStatus("Checkout invoked for orderId=" + orderId + ". After payment, verify via POST paytm/order-status or callback CHECKSUMHASH.");
+                  payBtn.disabled = false;
+                  resolve();
+                })
+                .catch(function (err) {
+                  console.error(err);
+                  reject(err);
+                });
+            });
+          });
+        })
+        .catch(function (e) {
+          console.error(e);
+          setStatus(String(e.message || e), true);
+          payBtn.disabled = false;
+        });
+    });
+  </script>
+</body>
+</html>

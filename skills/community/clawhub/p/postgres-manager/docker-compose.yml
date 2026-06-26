@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:16.4-alpine
+    container_name: ${POSTGRES_CONTAINER:-codai_postgres}
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-codai}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pgpass}
+      POSTGRES_DB: ${POSTGRES_MAIN_DB:-codai_main}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - codai_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-codai}"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+volumes:
+  postgres_data:
+
+networks:
+  codai_net:
+    external: true
+    name: ${CODAI_NETWORK:-nginx-proxy_net}

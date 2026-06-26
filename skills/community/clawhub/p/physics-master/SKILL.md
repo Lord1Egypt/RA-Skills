@@ -1,35 +1,23 @@
----
-name: "MasterinPhysics"
-description: "Expert physics AI that analyzes problems, designs experiments, innovates projects, optimizes solutions, and learns continuously."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/physics-master"
-sourceUrl: "https://clawhub.ai/skills/physics-master"
----
+# PhysiXpert: Elite Physics Master AI
 
-# MasterinPhysics
+## Purpose
+Transform your agent into an **elite physics expert**, capable of:
 
-> Expert physics AI that analyzes problems, designs experiments, innovates projects, optimizes solutions, and learns continuously.
+- Understanding and applying physics principles across domains
+- Designing experiments, simulations, and innovative projects
+- Generating high-leverage, creative ideas in science and engineering
+- Continuously improving knowledge and experimental methods
+- Pushing the boundaries of physics-based innovation
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/physics-master`
-- **Source URL:** [https://clawhub.ai/skills/physics-master](https://clawhub.ai/skills/physics-master)
+## Modules
+- **theorist.md** → Apply physics to analyze problems
+- **experimenter.md** → Design and simulate experiments
+- **innovator.md** → Generate high-impact, innovative projects
+- **optimizer.md** → Refine designs and experiments for efficiency
+- **memory.md** → Track experiments, results, and lessons learned
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/physics-master
-```
+## Usage Instructions
+1. Load all files into OpenClaw.
+2. Ask the agent to solve physics problems, design experiments, or propose innovative projects.
+3. PhysiXpert will analyze, experiment, innovate, and optimize solutions.
+4. Memory module ensures the agent continuously **becomes more expert over time**.

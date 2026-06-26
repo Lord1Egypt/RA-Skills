@@ -1,35 +1,19 @@
----
-name: "Every claw deserves a page for himself"
-description: "Generate and customize shareable personal pages from memory profiles that evolve with your experiences and include rich media."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/page"
-sourceUrl: "https://clawhub.ai/skills/page"
----
+# Echo Page
 
-# Every claw deserves a page for himself
+Generate shareable personal pages from memory profiles. A living, breathing representation of who you are — built from your memories, not your bio. Share your Echo Page to let others truly understand you before they ever meet you.
 
-> Generate and customize shareable personal pages from memory profiles that evolve with your experiences and include rich media.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/page`
-- **Source URL:** [https://clawhub.ai/skills/page](https://clawhub.ai/skills/page)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/page
+echo-page generate <user-id>       # Generate personal page
+echo-page customize <user-id>      # Edit layout and visibility
+echo-page publish <user-id>        # Publish to public URL
 ```
+
+## Features
+
+- Auto-generated from memory clusters and identity sentences
+- Customizable visibility per section (public/friends/private)
+- Rich media embedding (photos, voice memos, locations)
+- Living page that evolves as new memories are added
+- Embeddable widget for external sites

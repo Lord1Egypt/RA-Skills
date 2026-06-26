@@ -1,35 +1,33 @@
 ---
-name: "Pipeworx patents"
-description: "Patents MCP — wraps PatentsView API (https://api.patentsview.org/)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-patents"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-patents"
+name: pipeworx-patents
+description: Patents MCP — wraps PatentsView API (https://api.patentsview.org/)
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://pipeworx.io/packs/patents
 ---
 
-# Pipeworx patents
+# pipeworx-patents
 
-> Patents MCP — wraps PatentsView API (https://api.patentsview.org/)
+Patents MCP — wraps PatentsView API (https://api.patentsview.org/). Free, no API key. Part of [Pipeworx](https://pipeworx.io).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-patents`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-patents](https://clawhub.ai/skills/pipeworx-patents)
+## Tools
 
-## Overview
+- `search_patents`
+- `get_patent`
+- `search_inventors`
 
+## Connect
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-patents
+```json
+{
+  "mcpServers": {
+    "pipeworx-patents": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://gateway.pipeworx.io/patents/mcp"]
+    }
+  }
+}
 ```
+
+More at [pipeworx.io/packs/patents](https://pipeworx.io/packs/patents)

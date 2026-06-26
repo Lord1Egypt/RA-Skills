@@ -1,0 +1,17 @@
+{
+  "ppt_dir": "/Users/mw/Desktop/",
+  "ppt_file": "10只小青蛙迎接春天.pptx",
+
+  "libreoffice_path": "/Applications/LibreOffice.app/Contents/MacOS/soffice",
+  "ghostscript_path": "gs",
+
+  "dpi": 300,
+
+  "thumbnail_cols": 3,
+  "thumbnail_rows": 3,
+
+  "wechat_appid": "XXX",
+  "wechat_appsecret": "XXX",
+
+  "wechat_author": "VX+\"XCZSQGS\""
+}

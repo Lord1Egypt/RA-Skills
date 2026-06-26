@@ -1,35 +1,29 @@
----
-name: "Pipeworx coingecko"
-description: "Access real-time cryptocurrency data including coin details, market rankings, trending tokens, and search by name or symbol using CoinGecko's free API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-coingecko"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-coingecko"
----
+# Coingecko
 
-# Pipeworx coingecko
+CoinGecko MCP — wraps CoinGecko free API (no auth required)
 
-> Access real-time cryptocurrency data including coin details, market rankings, trending tokens, and search by name or symbol using CoinGecko's free API.
+## get_coin
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-coingecko`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-coingecko](https://clawhub.ai/skills/pipeworx-coingecko)
+Get detailed information about a cryptocurrency including price, market cap, volume, and description
 
-## Overview
+## search_coins
 
+Search for cryptocurrencies by name or symbol. Returns matching coins with their IDs. Example: searc
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-coingecko
+## get_market_data
+
+Get top cryptocurrencies ranked by market cap with current prices, 24h changes, and volume. Example:
+
+## get_trending
+
+Get currently trending cryptocurrencies on CoinGecko based on user search activity. No parameters ne
+
+```json
+{
+  "mcpServers": {
+    "coingecko": {
+      "url": "https://gateway.pipeworx.io/coingecko/mcp"
+    }
+  }
+}
 ```

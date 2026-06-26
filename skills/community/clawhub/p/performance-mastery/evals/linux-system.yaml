@@ -1,0 +1,51 @@
+# Evaluation: Linux 系统性能分析
+# 验证 AI 是否能正确应用 linux-perf 和 sysctl-tuning 的知识
+
+tests:
+  - name: "diagnose-high-cpu"
+    input: "服务器 CPU 使用率持续 95%+ 但 top 看不到明显的用户进程，该怎么排查？"
+    expected_keywords:
+      - "perf top"
+      - "softirq"
+      - "ksoftirqd"
+      - "mpstat"
+      - "中断"
+    expected_not:
+      - "重启"
+
+  - name: "diagnose-high-load-low-cpu"
+    input: "服务器 load average 很高但 CPU 利用率很低，可能是什么原因？"
+    expected_keywords:
+      - "I/O"
+      - "vmstat"
+      - "iostat"
+      - "await"
+      - "磁盘"
+    expected_not:
+      - "CPU 优化"
+
+  - name: "sysctl-web-server"
+    input: "我有一个 Nginx Web 服务器，连接数经常打满，有什么内核参数可以调优？"
+    expected_keywords:
+      - "somaxconn"
+      - "tcp_max_syn_backlog"
+      - "tcp_tw_reuse"
+      - "bbr"
+      - "file-max"
+
+  - name: "io-scheduler-selection"
+    input: "数据库服务器用的 NVMe SSD，I/O 调度器应该选什么？"
+    expected_keywords:
+      - "none"
+      - "noop"
+      - "NVMe"
+      - "硬件自调度"
+
+  - name: "perf-flamegraph"
+    input: "怎么用 perf 生成火焰图找到 CPU 热点？"
+    expected_keywords:
+      - "perf record"
+      - "perf script"
+      - "stackcollapse"
+      - "flamegraph.pl"
+      - "svg"

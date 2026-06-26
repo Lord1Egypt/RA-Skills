@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习主题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #fafafa;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* 左侧导航 */
+        .sidebar {
+            width: 280px;
+            background-color: #fff;
+            border-right: 1px solid #e8e8e8;
+            padding: 32px 24px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #1890ff;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 8px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 10px 16px;
+            color: #595959;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .nav-link:hover {
+            background-color: #f0f7ff;
+            color: #1890ff;
+        }
+
+        .nav-link.active {
+            background-color: #e6f4ff;
+            color: #1890ff;
+            font-weight: 500;
+        }
+
+        .nav-number {
+            color: #8c8c8c;
+            margin-right: 8px;
+        }
+
+        /* 右侧正文 */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 48px 64px;
+            max-width: 900px;
+        }
+
+        .chapter {
+            margin-bottom: 64px;
+            scroll-margin-top: 24px;
+        }
+
+        .chapter-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .chapter-content {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .chapter-content h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #262626;
+            margin: 24px 0 12px;
+        }
+
+        .chapter-content p {
+            margin-bottom: 16px;
+        }
+
+        .chapter-content ul, .chapter-content ol {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .chapter-content li {
+            margin-bottom: 8px;
+        }
+
+        /* 可视化区域 */
+        .visualization {
+            margin: 32px 0;
+            padding: 24px;
+            background-color: #fff;
+            border-radius: 8px;
+            border: 1px solid #e8e8e8;
+            text-align: center;
+        }
+
+        .visualization-title {
+            font-size: 14px;
+            color: #8c8c8c;
+            margin-bottom: 16px;
+        }
+
+        /* 提示框 */
+        .tip-box {
+            margin: 24px 0;
+            padding: 16px 20px;
+            background-color: #fffbe6;
+            border-left: 4px solid #faad14;
+            border-radius: 4px;
+        }
+
+        .tip-box-title {
+            font-weight: 500;
+            color: #d48806;
+            margin-bottom: 8px;
+        }
+
+        .tip-box-content {
+            color: #595959;
+            font-size: 14px;
+        }
+
+        /* 参考资料区 */
+        .references {
+            margin-top: 64px;
+            padding-top: 32px;
+            border-top: 2px solid #e8e8e8;
+        }
+
+        .references-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+
+        .references-list {
+            list-style: none;
+        }
+
+        .references-list li {
+            margin-bottom: 8px;
+            color: #595959;
+        }
+
+        .references-list a {
+            color: #1890ff;
+            text-decoration: none;
+        }
+
+        .references-list a:hover {
+            text-decoration: underline;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 24px;
+            }
+
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧导航 -->
+        <nav class="sidebar">
+            <h1 class="sidebar-title">学习主题</h1>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="#chapter-1" class="nav-link active">
+                        <span class="nav-number">01</span>章节标题一
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#chapter-2" class="nav-link">
+                        <span class="nav-number">02</span>章节标题二
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#chapter-3" class="nav-link">
+                        <span class="nav-number">03</span>章节标题三
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- 右侧正文 -->
+        <main class="main-content">
+            <!-- 章节1 -->
+            <section id="chapter-1" class="chapter">
+                <h2 class="chapter-title">章节标题一</h2>
+                <div class="chapter-content">
+                    <p>这里是章节引言，简要说明本章要解决什么问题。</p>
+
+                    <h3>核心概念</h3>
+                    <p>概念解释内容...</p>
+
+                    <!-- SVG静态可视化示例 -->
+                    <div class="visualization">
+                        <div class="visualization-title">概念关系图</div>
+                        <svg width="400" height="200" viewBox="0 0 400 200">
+                            <defs>
+                                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#1890ff"/>
+                                </marker>
+                            </defs>
+                            <circle cx="80" cy="100" r="40" fill="#e6f4ff" stroke="#1890ff" stroke-width="2"/>
+                            <text x="80" y="105" text-anchor="middle" font-size="14" fill="#1890ff">概念A</text>
+                            <circle cx="320" cy="100" r="40" fill="#f6ffed" stroke="#52c41a" stroke-width="2"/>
+                            <text x="320" y="105" text-anchor="middle" font-size="14" fill="#52c41a">概念B</text>
+                            <line x1="120" y1="100" x2="280" y2="100" stroke="#1890ff" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <text x="200" y="85" text-anchor="middle" font-size="12" fill="#8c8c8c">关系说明</text>
+                        </svg>
+                    </div>
+
+                    <h3>示例说明</h3>
+                    <p>通过具体例子帮助理解...</p>
+
+                    <div class="tip-box">
+                        <div class="tip-box-title">易错点提醒</div>
+                        <div class="tip-box-content">
+                            这里是容易出错或需要注意的地方...
+                        </div>
+                    </div>
+
+                    <p>本章小结，引出下一章...</p>
+                </div>
+            </section>
+
+            <!-- 章节2 -->
+            <section id="chapter-2" class="chapter">
+                <h2 class="chapter-title">章节标题二</h2>
+                <div class="chapter-content">
+                    <p>章节内容...</p>
+
+                    <!-- Canvas动态可视化示例 -->
+                    <div class="visualization">
+                        <div class="visualization-title">动态过程演示</div>
+                        <canvas id="dynamicCanvas" width="400" height="200"></canvas>
+                    </div>
+
+                    <p>更多内容...</p>
+                </div>
+            </section>
+
+            <!-- 章节3 -->
+            <section id="chapter-3" class="chapter">
+                <h2 class="chapter-title">章节标题三</h2>
+                <div class="chapter-content">
+                    <p>章节内容...</p>
+                </div>
+            </section>
+
+            <!-- 参考资料区 -->
+            <section class="references">
+                <h2 class="references-title">参考资料</h2>
+                <ul class="references-list">
+                    <li>参考来源1: <a href="#" target="_blank">标题</a></li>
+                    <li>参考来源2: <a href="#" target="_blank">标题</a></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // 导航高亮效果
+        const navLinks = document.querySelectorAll('.nav-link');
+        const chapters = document.querySelectorAll('.chapter');
+
+        function updateActiveNav() {
+            let currentChapter = '';
+            chapters.forEach(chapter => {
+                const rect = chapter.getBoundingClientRect();
+                if (rect.top <= 100) {
+                    currentChapter = chapter.id;
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentChapter) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+
+        // Canvas动态可视化示例
+        const canvas = document.getElementById('dynamicCanvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let x = 50;
+            let direction = 1;
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // 绘制背景线
+                ctx.beginPath();
+                ctx.moveTo(50, 100);
+                ctx.lineTo(350, 100);
+                ctx.strokeStyle = '#e8e8e8';
+                ctx.stroke();
+
+                // 绘制移动的圆
+                ctx.beginPath();
+                ctx.arc(x, 100, 20, 0, Math.PI * 2);
+                ctx.fillStyle = '#1890ff';
+                ctx.fill();
+
+                // 更新位置
+                x += direction * 2;
+                if (x >= 350 || x <= 50) {
+                    direction *= -1;
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+    </script>
+</body>
+</html>

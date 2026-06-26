@@ -1,0 +1,47 @@
+[
+  {
+    "name": "get_syt_balance",
+    "description": "Get the sUSDC balance for a wallet address. Defaults to the agent's own wallet if no address is provided. Run: node scripts/getSYTBalance.js [address]",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "EVM wallet address to check (optional — omit to check the agent's own wallet)"
+        }
+      }
+    }
+  },
+  {
+    "name": "mint_syt",
+    "description": "Deposit USDC into autoHODL to receive yield-bearing sUSDC. Handles USDC approval automatically on first use. Run: node scripts/mintSYT.js <amount>",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "description": "Amount of USDC to deposit (e.g. \"10.5\")"
+        }
+      },
+      "required": ["amount"]
+    }
+  },
+  {
+    "name": "transfer_syt",
+    "description": "Send USDC to a recipient via sUSDC. The recipient receives plain USDC — not a yield token. Run: node scripts/transferSYT.js <recipient> <amount>",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "recipient": {
+          "type": "string",
+          "description": "Recipient EVM wallet address"
+        },
+        "amount": {
+          "type": "string",
+          "description": "Amount to send in USDC (e.g. \"20\")"
+        }
+      },
+      "required": ["recipient", "amount"]
+    }
+  }
+]

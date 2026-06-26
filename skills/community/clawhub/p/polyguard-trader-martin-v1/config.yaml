@@ -1,0 +1,6 @@
+api_key: "YOUR_API_KEY_HERE"
+market_id: "YOUR_MARKET_ID_HERE"
+side: "buy"
+size: 10
+max_price: 0.45
+poll_interval_seconds: 5

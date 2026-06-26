@@ -1,0 +1,254 @@
+# 园区数据配置文件
+# Park Configuration File
+
+park:
+  basic_info:
+    name: "科技创新园区"
+    name_en: "Technology Innovation Park"
+    location: "北京市海淀区中关村科技园"
+    location_en: "Zhongguancun Science Park, Haidian District, Beijing"
+    area: 500000  # 平方米 / sqm
+    building_count: 15
+    established: 2018
+    industry_focus: 
+      - "人工智能"
+      - "生物医药"
+      - "新能源"
+      - "信息技术"
+    operator: "中关科创运营管理有限公司"
+
+  transportation:
+    metro:
+      - line: "地铁4号线"
+        station: "中关村站"
+        distance: "500米"
+      - line: "地铁13号线"
+        station: "上地站"
+        distance: "800米"
+    bus:
+      - route: "320路"
+        stop: "中关村南站"
+      - route: "982路"
+        stop: "园区北门"
+    highway:
+      - name: "京藏高速"
+        exit: "北京城区入口"
+        distance: "3公里"
+    parking:
+      total_spaces: 2000
+      visitor_spaces: 200
+      fee: "首2小时免费，此后5元/小时"
+
+  amenities:
+    dining:
+      - name: "园区食堂"
+        capacity: 500人
+        hours: "7:00-20:00"
+      - name: "咖啡厅"
+        count: 3
+      - name: "便利店"
+        count: 5
+    accommodation:
+      - name: "人才公寓"
+        rooms: 300
+        distance: "园区内"
+      - name: "周边酒店"
+        count: 8
+    banking:
+      - name: "中国银行"
+        distance: "园区内"
+      - name: "招商银行"
+        distance: "500米"
+      - name: "工商银行ATM"
+        distance: "园区内"
+    medical:
+      - name: "社区卫生服务中心"
+        distance: "1公里"
+      - name: "海淀医院"
+        distance: "3公里"
+
+  advantages:
+    policy: 
+      - "三免两减半税收优惠"
+      - "高新技术企业认定绿色通道"
+      - "人才引进补贴最高50万"
+    location: "位于中关村核心区，产业集聚效应显著"
+    environment: "花园式办公环境，绿化率40%"
+    service: "一站式企业服务平台，7*24小时服务"
+
+# 招商信息
+recruitment:
+  policies:
+    tax_incentive:
+      name: "三免两减半"
+      description: "前三年减免企业所得税，后两年减半"
+      eligibility: "高新技术企业认定企业"
+    rent_subsidy:
+      name: "租金补贴"
+      amount: "首年租金50%补贴"
+      duration: "最长24个月"
+    talent_bonus:
+      name: "人才引进奖励"
+      amount: "博士5万/人，硕士2万/人"
+      
+  properties:
+    office:
+      - id: "OFF-A"
+        name: "A座写字楼"
+        area_range: "100-1000㎡"
+        price: 5.0  # 元/㎡/天
+        condition: "精装修"
+        floor: "1-15层"
+      - id: "OFF-B"
+        name: "B座写字楼"
+        area_range: "200-2000㎡"
+        price: 4.5
+        condition: "简装"
+        floor: "1-20层"
+    factory:
+      - id: "FAC-01"
+        name: "1号厂房"
+        area_range: "500-3000㎡"
+        price: 2.0
+        condition: "标准厂房"
+        floor_height: "6米"
+      - id: "FAC-02"
+        name: "2号厂房"
+        area_range: "1000-5000㎡"
+        price: 1.8
+        condition: "可定制"
+        floor_height: "8米"
+    warehouse:
+      - id: "WAR-01"
+        name: "物流仓库"
+        area_range: "300-2000㎡"
+        price: 1.2
+        condition: "丙类仓库"
+        
+  process:
+    - step: 1
+      name: "提交申请"
+      description: "填写入驻申请表，提交企业资料"
+      duration: "1-3工作日"
+    - step: 2
+      name: "资质审核"
+      description: "园区管理部门审核企业资质"
+      duration: "5-7工作日"
+    - step: 3
+      name: "签订合同"
+      description: "签订租赁合同及入驻协议"
+      duration: "1-2工作日"
+    - step: 4
+      name: "装修入驻"
+      description: "办理装修手续，完成入驻"
+      duration: "7-30工作日"
+
+# 企业服务
+enterprise_service:
+  registration:
+    address_provided: true
+    process_days: 7
+    required_docs:
+      - "营业执照"
+      - "法人身份证"
+      - "公司章程"
+      - "注册地址证明"
+      
+  policy_application:
+    categories:
+      - name: "高新技术企业认定"
+        deadline: "每年5月、10月"
+        subsidy: "最高50万"
+      - name: "专精特新企业"
+        deadline: "每年3月"
+        subsidy: "最高100万"
+      - name: "研发费用加计扣除"
+        deadline: "年度汇算清缴"
+        ratio: "按研发费用75%加计扣除"
+        
+  talent_service:
+    recruitment_platform: "园区人才服务网"
+    apartment: true
+    children_school: true
+    
+  financing:
+    banks:
+      - name: "中国银行"
+        product: "科技贷"
+        limit: "最高500万"
+      - name: "北京银行"
+        product: "新创贷"
+        limit: "最高300万"
+    funds:
+      - name: "园区产业基金"
+        scope: "1000万-5000万"
+      - name: "政府引导基金"
+        scope: "500万-2000万"
+
+# 运营管理
+operations:
+  property_service:
+    hotline: "400-888-8888"
+    working_hours: "7*24小时"
+    response_time: "30分钟内响应"
+    fee_standard:
+      office: "8元/㎡/月"
+      factory: "5元/㎡/月"
+      warehouse: "4元/㎡/月"
+      
+  safety:
+    fire_inspection: "每年2次"
+    security: "24小时安保"
+    emergency: "紧急电话 010-xxxx-xxxx"
+    
+  environmental:
+    discharge_permit: "需办理"
+    waste_disposal: "园区统一回收处理"
+    inspection_frequency: "每季度1次"
+    
+  complaints:
+    hotline: "400-999-9999"
+    response_time: "24小时内回复"
+    satisfaction_rate: "95%以上"
+
+# 数据看板默认值
+dashboard:
+  occupancy:
+    total_area: 500000
+    occupied_area: 425000
+    occupancy_rate: 85.0
+    
+  industry_distribution:
+    - industry: "人工智能"
+      companies: 45
+      percentage: 30.0
+      output: 50.0  # 亿元
+    - industry: "生物医药"
+      companies: 30
+      percentage: 20.0
+      output: 35.0
+    - industry: "新能源"
+      companies: 25
+      percentage: 16.7
+      output: 40.0
+    - industry: "信息技术"
+      companies: 50
+      percentage: 33.3
+      output: 45.0
+      
+  tax_contribution:
+    total: 12.5  # 亿元
+    per_acre: 83.3  # 万元/亩
+    top_companies:
+      - name: "XX科技公司"
+        tax: 1.2
+      - name: "YY生物医药"
+        tax: 0.8
+      - name: "ZZ新能源"
+        tax: 0.6
+        
+  enterprise_growth:
+    total_companies: 150
+    new_this_year: 25
+    graduated: 10
+    churned: 5

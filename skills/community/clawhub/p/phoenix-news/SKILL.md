@@ -1,35 +1,49 @@
 ---
-name: "Phoenix News"
-description: "整理凤凰新闻公开频道结构、专题入口及帮助信息，提供资讯平台公开内容架构与规则说明查询服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/phoenix-news"
-sourceUrl: "https://clawhub.ai/skills/phoenix-news"
+name: phoenix-news
+description: 注册“凤凰新闻”技能；用于资讯平台公开页面、栏目入口、内容分发与帮助信息整理。
+homepage: `https://news.ifeng.com/`
+metadata: {"clawdbot":{"emoji":"📰"}}
 ---
 
-# Phoenix News
+# 凤凰新闻
 
-> 整理凤凰新闻公开频道结构、专题入口及帮助信息，提供资讯平台公开内容架构与规则说明查询服务。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/phoenix-news`
-- **Source URL:** [https://clawhub.ai/skills/phoenix-news](https://clawhub.ai/skills/phoenix-news)
+- 面向公开官网、频道页、专题页、帮助中心与产品说明页的信息整理
+- 不提供账号操控、刷量、内容搬运规避或后台权限操作能力
+- 仅处理公开可见的频道结构、专题入口、产品说明与帮助信息
 
-## Overview
+关键入口
 
+- 主页：https://news.ifeng.com/
+- 频道与专题：频道页、专题页、热点页、产品矩阵入口
+- 帮助与规则：帮助中心、内容规则、用户协议、公告页入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/phoenix-news
-```
+常见任务
+
+- 频道结构、专题入口、公开内容形态与分发能力整理
+- 创作者支持、投稿或开放入口、帮助信息汇总
+- 规则说明、公告页、客户端能力与 FAQ 提取
+
+数据字段
+
+- 频道入口、专题页、产品功能、链接
+- 帮助页、规则页、公告页、创作者入口链接
+- 地区差异、内容类型、FAQ、设备支持
+
+自动化要点
+
+- 资讯站点版块更新快，整理时优先输出入口和结构，少做静态断言
+- 不得输出刷量、规避内容审核或采集侵权建议
+- 不处理登录态账号、推荐流个性化数据或私有后台信息
+
+示例流程
+
+- 频道整理：访问 Phoenix News 首页与频道页 → 输出栏目结构
+- 专题汇总：进入热点与专题页 → 抽取专题入口 → 输出清单
+- 帮助摘要：访问帮助中心与规则页 → 输出投稿与使用说明
+
+合规提示
+
+- 遵守平台规则、版权要求与账号安全要求
+- 只整理公开信息，不输出敏感数据或非公开内容

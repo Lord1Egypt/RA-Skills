@@ -1,35 +1,42 @@
----
-name: "Pipeworx worldbank"
-description: "Retrieve global development data like GDP, population, CO2 emissions, literacy, and mortality rates for countries by ISO code and date range."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-worldbank"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-worldbank"
----
+# World Bank
 
-# Pipeworx worldbank
+Access the World Bank's development indicators: GDP, population, CO2 emissions, literacy rates, mortality rates, and hundreds more metrics for every country, going back decades.
 
-> Retrieve global development data like GDP, population, CO2 emissions, literacy, and mortality rates for countries by ISO code and date range.
+## Tools
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-worldbank`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-worldbank](https://clawhub.ai/skills/pipeworx-worldbank)
+**get_country** -- Basic country info. Pass an ISO code (e.g., `US`, `GBR`, `IN`) and get the full name, region, income level, capital city, and coordinates.
 
-## Overview
+**get_indicator** -- Time-series data for any World Bank indicator. Specify a country code, indicator code, and optional date range (default 2015-2024).
 
+**get_population** -- Shortcut for total population over time (indicator SP.POP.TOTL).
 
-## Installation
-To install this skill, run the following command in your terminal:
+**get_gdp** -- Shortcut for GDP in current USD over time (indicator NY.GDP.MKTP.CD).
+
+## Common indicator codes
+
+| Code | Metric |
+|------|--------|
+| NY.GDP.MKTP.CD | GDP (current USD) |
+| SP.POP.TOTL | Population, total |
+| EN.ATM.CO2E.KT | CO2 emissions (kt) |
+| SE.ADT.LITR.ZS | Literacy rate, adult (%) |
+| SH.DYN.MORT | Under-5 mortality rate |
+| SI.POV.GINI | Gini index |
+
+## Example: India's GDP over the last decade
+
 ```bash
-hermes skills install clawhub/pipeworx-worldbank
+curl -X POST https://gateway.pipeworx.io/worldbank/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_gdp","arguments":{"country_code":"IN"}}}'
+```
+
+```json
+{
+  "mcpServers": {
+    "worldbank": {
+      "url": "https://gateway.pipeworx.io/worldbank/mcp"
+    }
+  }
+}
 ```

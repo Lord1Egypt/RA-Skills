@@ -1,0 +1,50 @@
+{
+  "name": "payroll",
+  "version": "1.0.0",
+  "description": "A comprehensive AI agent skill for managing payroll accurately and on time. Covers employee setup, payroll calculations, tax deposits, quarterly filings, year-end processing, and compliance requirements for small businesses.",
+  "author": "AGIstack",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "payroll", "small business", "HR", "employees", "payroll tax",
+    "W-2", "1099", "withholding", "FICA", "FUTA", "SUTA",
+    "direct deposit", "overtime", "contractor", "classification"
+  ],
+  "files": {
+    "skill.md": "skill.md",
+    "heartbeat.md": "heartbeat.md",
+    "examples.md": "examples.md"
+  },
+  "capabilities": {
+    "payroll_setup": "Guides complete payroll system setup for first-time employers",
+    "classification_guidance": "Helps correctly classify workers as employees or contractors",
+    "tax_calculation": "Explains and calculates all payroll tax obligations",
+    "compliance_calendar": "Tracks all deposit and filing deadlines throughout the year",
+    "year_end_processing": "Guides W-2 preparation and annual reconciliation",
+    "audit_preparation": "Maintains audit-ready records and documentation"
+  },
+  "triggers": [
+    "payroll", "pay employees", "payroll tax", "W-2", "1099",
+    "withholding", "direct deposit", "overtime pay", "employee pay",
+    "payroll setup", "first employee", "payroll compliance",
+    "FICA", "FUTA", "941", "quarterly payroll", "year end payroll",
+    "wage garnishment", "final pay", "contractor vs employee"
+  ],
+  "heartbeat": {
+    "every_payroll": "Verify hours, changes, and setup before processing",
+    "monthly": "Confirm tax deposits made on correct schedule",
+    "quarterly": "File Form 941 and state payroll returns",
+    "annual": "Year-end W-2 and 1099 processing by January 31"
+  },
+  "audience": [
+    "Small business owners running payroll without dedicated HR",
+    "First-time employers setting up payroll for the first time",
+    "Businesses that have grown beyond manual payroll management",
+    "Anyone who has received a payroll tax notice and needs to understand it",
+    "Business owners unsure about contractor vs employee classification"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

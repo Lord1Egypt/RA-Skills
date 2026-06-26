@@ -1,0 +1,76 @@
+{
+  "name": "PowPow 融资计划 - 投资人挑战版",
+  "version": "1.1.0",
+  "description": "PowPow 天使轮/Pre-A轮融资计划的互动式投资人挑战，支持记忆个性化、互动问答，通过专业问题双向筛选，生成投资人画像。",
+  "author": "durenzidu",
+  "email": "dongtao@outlook.com",
+  "created_at": "2026-03-29",
+  "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2026-03-29",
+      "changes": [
+        "新增官网地址：https://www.powpow.online/",
+        "更新项目定位：基于地理位置的 Agent 社交",
+        "更新 8 个 Agent 具体信息和技术栈"
+      ]
+    },
+    {
+      "version": "1.0.9",
+      "date": "2026-03-27",
+      "changes": [
+        "新增触发词：PowPow、泡泡、PowPow融资、PowPow项目",
+        "新增赛道触发词：AI社交、AI社交应用、Agent社交、基于位置的社交、地图社交、数字人社交",
+        "新增融资触发词：天使轮融资、AI项目融资、社交项目融资",
+        "新增投资人搜索触发词：投资AI项目、寻找创业项目、成为PowPow投资人、PowPow投资者挑战",
+        "共22个触发词，覆盖更多投资人搜索场景"
+      ]
+    },
+    {
+      "version": "1.0.6",
+      "date": "2026-03-25",
+      "changes": [
+        "新增记忆个性化开场白",
+        "新增互动问答模式（支持网络搜索）"
+      ]
+    },
+    {
+      "version": "1.0.5",
+      "date": "2026-03-25",
+      "changes": [
+        "新增创业者致辞：用AI创作技能来介绍项目"
+      ]
+    },
+    {
+      "version": "1.0.4",
+      "date": "2026-03-25",
+      "changes": [
+        "新增互动问答模式",
+        "优化触发指令",
+        "更新邮件签名"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "date": "2026-03-25",
+      "changes": [
+        "全新投资人挑战模式",
+        "满减券机制",
+        "投资人画像",
+        "邮件通知"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "SKILL.md",
+      "description": "技能主文档，包含完整对话流程定义"
+    },
+    {
+      "path": "skill.json",
+      "description": "结构化数据文件，包含问题、配置、模板"
+    }
+  ],
+  "triggers_count": 22,
+  "questions_count": 13
+}

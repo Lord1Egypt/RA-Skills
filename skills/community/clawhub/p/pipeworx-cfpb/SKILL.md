@@ -1,35 +1,33 @@
----
-name: "Pipeworx cfpb"
-description: "Search and retrieve detailed consumer financial complaints, company complaint summaries, top complaint companies, and product category breakdowns from CFPB d..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-cfpb"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-cfpb"
----
+# Cfpb
 
-# Pipeworx cfpb
+CFPB MCP — Consumer Financial Protection Bureau complaint database (free, no auth)
 
-> Search and retrieve detailed consumer financial complaints, company complaint summaries, top complaint companies, and product category breakdowns from CFPB d...
+## cfpb_search_complaints
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-cfpb`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-cfpb](https://clawhub.ai/skills/pipeworx-cfpb)
+Search consumer complaints by keyword, company, product, or date range. Returns complaint narratives
 
-## Overview
+## cfpb_company_complaints
 
+Get recent complaints against a specific company (e.g., 'Wells Fargo'). Returns narratives, company 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-cfpb
+## cfpb_get_complaint
+
+Retrieve full details for a specific complaint by ID. Returns narrative, company response, resolutio
+
+## cfpb_top_companies
+
+Find companies with the most complaints in a date range. Returns ranked list with company names and 
+
+## cfpb_product_breakdown
+
+Get complaint counts by product category (e.g., 'Credit Card', 'Mortgage'). Filter by company or dat
+
+```json
+{
+  "mcpServers": {
+    "cfpb": {
+      "url": "https://gateway.pipeworx.io/cfpb/mcp"
+    }
+  }
+}
 ```

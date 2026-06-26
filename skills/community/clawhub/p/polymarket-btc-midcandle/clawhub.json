@@ -1,0 +1,26 @@
+{
+  "emoji": "⚡",
+  "requires": {
+    "env": ["SIMMER_API_KEY"],
+    "pip": ["simmer-sdk"]
+  },
+  "cron": "3,8,13,18,23,28,33,38,43,48,53,58 * * * *",
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "btc_midcandle.py"
+  },
+  "tunables": [
+    {"env": "SIMMER_BTCMC_AGENT_ID",  "type": "string",  "default": "",     "label": "Polymarket Agent ID"},
+    {"env": "SIMMER_BTCMC_BET_SIZE",  "type": "number",  "default": 5.0,    "range": [1.0, 100.0], "step": 1.0,    "label": "Bet size (USDC)"},
+    {"env": "SIMMER_BTCMC_THRESHOLD", "type": "number",  "default": 0.0015, "range": [0.0005, 0.005], "step": 0.0001, "label": "Momentum threshold (5m % change)"},
+    {"env": "SIMMER_BTCMC_VOL_RATIO", "type": "number",  "default": 0.0,    "range": [0.0, 3.0],  "step": 0.1,    "label": "Min volume ratio (0 = disabled)"},
+    {"env": "SIMMER_BTCMC_MIN_ENTRY", "type": "number",  "default": 0.45,   "range": [0.10, 0.60], "step": 0.01,  "label": "Min entry price"},
+    {"env": "SIMMER_BTCMC_MAX_ENTRY", "type": "number",  "default": 0.65,   "range": [0.50, 0.90], "step": 0.01,  "label": "Max entry price"},
+    {"env": "SIMMER_BTCMC_1M_CONFIRM","type": "boolean", "default": false,   "label": "Require 1m candle confirmation"},
+    {"env": "SIMMER_BTCMC_SKIP_HOURS","type": "string",  "default": "2,9,10,11,15", "label": "UTC hours to skip (comma-separated, historically poor WR)"},
+    {"env": "SIMMER_BTCMC_WEBHOOK",   "type": "string",  "default": "",     "label": "Discord webhook URL (optional)"},
+    {"env": "SIMMER_BTCMC_MAX_POSITION", "type": "number", "default": 50.0, "range": [5.0, 500.0], "step": 5.0, "label": "Max position size for smart sizing (USDC)"},
+    {"env": "SIMMER_BTCMC_SIZING_PCT",   "type": "number", "default": 0.03, "range": [0.01, 0.20], "step": 0.01, "label": "Portfolio % per trade for smart sizing"}
+  ]
+}

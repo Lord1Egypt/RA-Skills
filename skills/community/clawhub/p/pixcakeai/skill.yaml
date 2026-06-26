@@ -1,0 +1,13 @@
+name: photo-enhance
+description: Enhance photos with CCD effect and watermark
+version: 1.0.0
+
+triggers:
+  - enhance photo
+  - add watermark
+
+parameters:
+  - name: image
+    type: file
+  - name: watermark_text
+    type: string

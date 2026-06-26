@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "config": {
+    "max_parallel_tasks": 2,
+    "timeout_per_task": 60,
+    "enable_smart_batching": true,
+    "enable_dependency_aware": true,
+    "log_performance": true
+  },
+  "algorithms": {
+    "simple_parallel": {
+      "enabled": true,
+      "max_workers": 2
+    },
+    "smart_batching": {
+      "enabled": true,
+      "batch_size": 2,
+      "batch_timeout": 120
+    },
+    "dependency_aware": {
+      "enabled": false,
+      "max_workers": 2
+    }
+  },
+  "optimization": {
+    "auto_adjust_parallelism": true,
+    "predict_optimal_parallelism": true,
+    "enable_timeout_control": true
+  }
+}

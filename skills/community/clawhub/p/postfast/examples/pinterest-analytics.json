@@ -1,0 +1,88 @@
+{
+  "_description": "Fetch analytics for published Pinterest pins. Pinterest analytics requires a business account.",
+  "method": "GET",
+  "url": "/social-posts/analytics?startDate=2026-04-01T00:00:00.000Z&endDate=2026-04-30T23:59:59.999Z&platforms=PINTEREST",
+  "headers": {
+    "pf-api-key": "$POSTFAST_API_KEY"
+  },
+  "response": {
+    "data": [
+      {
+        "id": "9f1e3b2c-5a4d-4f8e-9b3c-1a2b3c4d5e6f",
+        "content": "10 minimal home office setups\nDesks, chairs, and lighting that actually look good on camera.",
+        "socialMediaId": "c7d8e9f0-1234-5678-9abc-def012345678",
+        "platformPostId": "1099511627776",
+        "publishedAt": "2026-04-05T12:30:00.000Z",
+        "latestMetric": {
+          "impressions": "4821",
+          "reach": null,
+          "likes": "47",
+          "comments": "3",
+          "shares": "112",
+          "totalInteractions": "544",
+          "fetchedAt": "2026-04-30T18:00:14.882Z",
+          "extras": {
+            "pin_clicks": 298,
+            "outbound_clicks": 84,
+            "impressions_90d": 2104,
+            "pin_clicks_90d": 142,
+            "outbound_clicks_90d": 41,
+            "engagement": 460,
+            "engagement_rate": 0.0954,
+            "pin_click_rate": 0.0618,
+            "outbound_click_rate": 0.0174,
+            "save_rate": 0.0532
+          }
+        }
+      },
+      {
+        "id": "3b2c1a0f-7e6d-4c5b-8a9b-0f1e2d3c4b5a",
+        "content": "Behind the scenes: shooting product video on a phone\nQuick tips for natural light and steady hands.",
+        "socialMediaId": "c7d8e9f0-1234-5678-9abc-def012345678",
+        "platformPostId": "2199023255552",
+        "publishedAt": "2026-04-12T09:15:00.000Z",
+        "latestMetric": {
+          "impressions": "1934",
+          "reach": null,
+          "likes": "22",
+          "comments": "1",
+          "shares": "38",
+          "totalInteractions": "211",
+          "fetchedAt": "2026-04-30T18:00:14.882Z",
+          "extras": {
+            "pin_clicks": 121,
+            "outbound_clicks": 29,
+            "impressions_90d": 1402,
+            "pin_clicks_90d": 78,
+            "outbound_clicks_90d": 19,
+            "engagement": 173,
+            "engagement_rate": 0.0894,
+            "pin_click_rate": 0.0625,
+            "outbound_click_rate": 0.015,
+            "save_rate": 0.0271,
+            "video_mrc_views": 612,
+            "video_10s_views": 418,
+            "video_avg_watch_time": 8400,
+            "video_v50_watch_time": 9100,
+            "video_start": 1502,
+            "quartile_95_percent_view": 82
+          }
+        }
+      }
+    ]
+  },
+  "_notes": [
+    "Pinterest analytics requires the connected account to be a Pinterest business account",
+    "Canonical fields impressions / likes (reactions) / comments are LIFETIME totals from Pinterest's pin endpoint",
+    "Canonical shares is the 90-DAY rolling save count — Pinterest's v5 API does not expose lifetime save totals",
+    "Canonical totalInteractions = pin_clicks + outbound_clicks + saves + reactions + comments. The saves portion is 90-day, the rest is lifetime — treat it as 'best available' rather than strictly lifetime",
+    "reach is always null on Pinterest",
+    "extras.pin_clicks and extras.outbound_clicks are LIFETIME totals from Pinterest's pin endpoint",
+    "extras.*_90d fields are the 90-day equivalents (impressions_90d, pin_clicks_90d, outbound_clicks_90d)",
+    "extras.engagement / engagement_rate / pin_click_rate / outbound_click_rate come from Pinterest's lifetime analytics; extras.save_rate is the 90-day save ÷ impressions ratio",
+    "Video pin extras (video_mrc_views, video_avg_watch_time, video_v50_watch_time, video_10s_views, video_start, quartile_95_percent_view) only populate for video pins — image pins and carousels won't have them",
+    "Refresh cadence: every 6h for pins under 14 days old, daily for pins 14-60 days old. Older pins stop refreshing automatically",
+    "Manual refresh available on demand from the PostFast dashboard",
+    "Canonical metric values are strings (bigint); extras values are typed as Pinterest returns them (numbers for counts and rates). null means unavailable"
+  ]
+}

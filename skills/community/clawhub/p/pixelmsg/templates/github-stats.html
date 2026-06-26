@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Stats</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0d1117; font-family: 'Inter', -apple-system, sans-serif; }
+    .mono { font-family: 'JetBrains Mono', 'SF Mono', monospace; }
+    .contrib-cell { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+    .divider { border-top: 1px solid #21262d; }
+  </style>
+</head>
+<body>
+
+<div x-data="{
+  user: {
+    name: 'Zhangsan',
+    handle: 'zhangsan',
+    bio: 'Full-stack developer. Rust & TypeScript.',
+    followers: 1284,
+    following: 156,
+    repos: 87
+  },
+  stats: {
+    contributions: 2347,
+    currentStreak: 42,
+    longestStreak: 89,
+    thisWeek: 38
+  },
+  languages: [
+    { name: 'TypeScript', pct: 42, color: '#3178c6' },
+    { name: 'Rust',       pct: 28, color: '#dea584' },
+    { name: 'Python',     pct: 15, color: '#3572A5' },
+    { name: 'Go',         pct: 10, color: '#00ADD8' },
+    { name: 'Other',      pct: 5,  color: '#484f58' }
+  ],
+  pinnedRepos: [
+    { name: 'picture-ui',  desc: 'Widget screenshot toolkit for AI agents', stars: 234, lang: 'TypeScript', langColor: '#3178c6' },
+    { name: 'rsa-cli',     desc: 'Fast RSA encryption CLI in Rust',          stars: 189, lang: 'Rust',       langColor: '#dea584' },
+    { name: 'api-gateway', desc: 'Lightweight API gateway',                  stars: 156, lang: 'Go',         langColor: '#00ADD8' },
+    { name: 'ml-pipeline', desc: 'ML training pipeline framework',           stars: 98,  lang: 'Python',     langColor: '#3572A5' }
+  ],
+  grid: [
+    [0,1,2,1,0,0,1],[1,2,3,2,1,0,0],[0,1,1,2,3,2,1],[2,3,4,3,2,1,0],
+    [1,2,3,4,3,2,1],[0,1,2,3,2,1,1],[2,3,3,4,4,3,2],[1,2,2,3,3,2,1],
+    [0,1,3,4,3,2,0],[2,3,4,4,3,2,1],[1,2,3,3,4,3,2],[3,4,4,3,2,1,0],
+    [2,3,4,4,3,2,1],[1,2,3,3,4,3,2],[3,4,4,3,2,1,0],[2,3,3,4,4,3,2],
+    [0,1,3,4,3,2,0],[2,3,4,4,3,2,1],[1,2,3,3,4,3,2],[3,4,4,3,2,1,0],
+    [1,2,3,4,3,2,1],[0,1,2,3,2,1,1],[2,3,3,4,4,3,2],[1,2,2,3,3,2,1],
+    [0,1,3,4,3,2,0],[2,3,4,4,3,2,1]
+  ],
+  cellColor(level) {
+    return ['#161b22','#0e4429','#006d32','#26a641','#39d353'][level];
+  },
+  fmt(n) {
+    return n >= 1000 ? (n / 1000).toFixed(1) + 'k' : String(n);
+  }
+}" id="app">
+
+  <div style="width:800px; background:#0d1117; padding:48px; box-sizing:border-box;">
+
+    <!-- Profile -->
+    <div style="display:flex; align-items:center; gap:20px; margin-bottom:28px;">
+      <div style="width:56px; height:56px; border-radius:50%; background:#21262d; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+        <span style="font-size:22px; font-weight:700; color:#8b949e;">Z</span>
+      </div>
+      <div style="flex:1;">
+        <div style="font-size:20px; font-weight:700; color:#e6edf3; letter-spacing:-0.3px;" x-text="user.name"></div>
+        <div class="mono" style="font-size:12px; color:#484f58; margin-top:2px;">@<span x-text="user.handle"></span></div>
+        <div style="font-size:13px; color:#8b949e; margin-top:4px;" x-text="user.bio"></div>
+      </div>
+    </div>
+
+    <!-- Follow stats -->
+    <div style="display:flex; gap:20px; margin-bottom:28px; padding-bottom:28px;" class="divider">
+      <div>
+        <span style="font-size:14px; font-weight:700; color:#e6edf3;" x-text="fmt(user.followers)"></span>
+        <span style="font-size:13px; color:#8b949e; margin-left:4px;">followers</span>
+      </div>
+      <div>
+        <span style="font-size:14px; font-weight:700; color:#e6edf3;" x-text="user.following"></span>
+        <span style="font-size:13px; color:#8b949e; margin-left:4px;">following</span>
+      </div>
+      <div>
+        <span style="font-size:14px; font-weight:700; color:#e6edf3;" x-text="user.repos"></span>
+        <span style="font-size:13px; color:#8b949e; margin-left:4px;">repos</span>
+      </div>
+    </div>
+
+    <!-- Contribution Graph -->
+    <div style="margin-bottom:28px;">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:12px;">
+        <div style="font-size:11px; color:#484f58; text-transform:uppercase; letter-spacing:0.1em; font-weight:500;">Contributions</div>
+        <div class="mono" style="font-size:13px; color:#e6edf3; font-weight:500;">
+          <span x-text="fmt(stats.contributions)"></span>
+          <span style="font-size:11px; color:#484f58; font-weight:400;"> this year</span>
+        </div>
+      </div>
+      <div style="display:flex; gap:3px;">
+        <template x-for="(week, wi) in grid" :key="wi">
+          <div style="display:flex; flex-direction:column; gap:3px;">
+            <template x-for="(day, di) in week" :key="wi + '-' + di">
+              <div class="contrib-cell" :style="'background:' + cellColor(day)"></div>
+            </template>
+          </div>
+        </template>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:flex-end; gap:4px; margin-top:8px;">
+        <span style="font-size:11px; color:#484f58;">Less</span>
+        <template x-for="i in 5" :key="i">
+          <div class="contrib-cell" :style="'background:' + cellColor(i - 1)"></div>
+        </template>
+        <span style="font-size:11px; color:#484f58;">More</span>
+      </div>
+    </div>
+
+    <!-- Streak stats -->
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:#21262d; margin-bottom:28px; border:1px solid #21262d; border-radius:6px; overflow:hidden;">
+      <div style="background:#0d1117; padding:16px 20px; text-align:center;">
+        <div style="font-size:32px; font-weight:700; color:#3fb950; line-height:1;" x-text="stats.currentStreak"></div>
+        <div style="font-size:11px; color:#484f58; margin-top:6px; text-transform:uppercase; letter-spacing:0.06em;">Current Streak</div>
+      </div>
+      <div style="background:#0d1117; padding:16px 20px; text-align:center;">
+        <div style="font-size:32px; font-weight:700; color:#e6edf3; line-height:1;" x-text="stats.longestStreak"></div>
+        <div style="font-size:11px; color:#484f58; margin-top:6px; text-transform:uppercase; letter-spacing:0.06em;">Longest Streak</div>
+      </div>
+      <div style="background:#0d1117; padding:16px 20px; text-align:center;">
+        <div style="font-size:32px; font-weight:700; color:#e6edf3; line-height:1;" x-text="stats.thisWeek"></div>
+        <div style="font-size:11px; color:#484f58; margin-top:6px; text-transform:uppercase; letter-spacing:0.06em;">This Week</div>
+      </div>
+    </div>
+
+    <!-- Languages -->
+    <div style="margin-bottom:28px;">
+      <div style="font-size:11px; color:#484f58; text-transform:uppercase; letter-spacing:0.1em; font-weight:500; margin-bottom:12px;">Top Languages</div>
+      <div style="display:flex; height:6px; border-radius:3px; overflow:hidden; gap:2px; margin-bottom:10px;">
+        <template x-for="lang in languages" :key="lang.name">
+          <div style="height:100%; border-radius:2px;" :style="'width:' + lang.pct + '%; background:' + lang.color"></div>
+        </template>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:12px;">
+        <template x-for="lang in languages" :key="lang.name">
+          <div style="display:flex; align-items:center; gap:6px;">
+            <div style="width:8px; height:8px; border-radius:50%;" :style="'background:' + lang.color"></div>
+            <span style="font-size:12px; color:#8b949e;" x-text="lang.name"></span>
+            <span class="mono" style="font-size:12px; color:#484f58;" x-text="lang.pct + '%'"></span>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <!-- Pinned Repos -->
+    <div>
+      <div style="font-size:11px; color:#484f58; text-transform:uppercase; letter-spacing:0.1em; font-weight:500; margin-bottom:12px;">Pinned</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <template x-for="repo in pinnedRepos" :key="repo.name">
+          <div style="border:1px solid #21262d; border-radius:6px; padding:14px 16px;">
+            <div style="font-size:13px; font-weight:700; color:#58a6ff; margin-bottom:4px;" x-text="repo.name"></div>
+            <div style="font-size:12px; color:#8b949e; line-height:1.5; margin-bottom:12px; min-height:36px;" x-text="repo.desc"></div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div style="display:flex; align-items:center; gap:5px;">
+                <div style="width:10px; height:10px; border-radius:50%;" :style="'background:' + repo.langColor"></div>
+                <span style="font-size:11px; color:#8b949e;" x-text="repo.lang"></span>
+              </div>
+              <div style="display:flex; align-items:center; gap:4px;">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="#8b949e"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg>
+                <span class="mono" style="font-size:11px; color:#8b949e;" x-text="repo.stars"></span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

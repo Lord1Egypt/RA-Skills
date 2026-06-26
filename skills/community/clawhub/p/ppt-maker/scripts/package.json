@@ -1,0 +1,15 @@
+{
+  "name": "ppt-maker",
+  "version": "1.0.0",
+  "description": "Generate PPT slides automatically from user input",
+  "main": "ppt-maker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["ppt", "pptx", "slides", "presentation", "ai", "generator", "automatic"],
+  "author": "北灵聊AI",
+  "license": "MIT",
+  "dependencies": {
+    "pptxgenjs": "^4.0.1"
+  }
+}

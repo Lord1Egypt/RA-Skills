@@ -1,0 +1,199 @@
+:root {
+  --ink: #10212b;
+  --muted: #60717d;
+  --line: #d7e0e5;
+  --soft: #f5f8fa;
+  --accent: #096b72;
+  --accent-soft: #e4f4f2;
+  --warn: #8a5a00;
+  --bad: #8b1d1d;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fff;
+  font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+  line-height: 1.65;
+}
+.nav {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 248px;
+  padding: 24px 18px;
+  background: #102926;
+  color: #e9fffb;
+  overflow-y: auto;
+}
+.brand {
+  display: grid;
+  gap: 2px;
+  padding-bottom: 22px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(255,255,255,.18);
+}
+.brand strong { font-size: 24px; }
+.brand span { color: #b7d6d1; font-size: 13px; }
+.nav a {
+  display: block;
+  color: #e9fffb;
+  text-decoration: none;
+  padding: 10px 12px;
+  margin: 6px 0;
+  border-radius: 6px;
+}
+.nav a:hover, .nav a.active { background: rgba(255,255,255,.12); }
+.page {
+  margin-left: 248px;
+  max-width: 1180px;
+  padding: 28px 40px 80px;
+}
+.top {
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 22px;
+  border-bottom: 2px solid var(--line);
+}
+h1, h2, h3 { line-height: 1.25; margin: 0 0 10px; }
+h1 { font-size: 30px; }
+h2 { font-size: 24px; margin-top: 34px; padding-top: 10px; border-top: 1px solid var(--line); }
+h3 { font-size: 18px; margin-top: 22px; }
+p { margin: 8px 0 12px; }
+.search {
+  min-width: 280px;
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.search input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #b9c9d2;
+  border-radius: 6px;
+  font-size: 15px;
+}
+.section { scroll-margin-top: 18px; }
+.note {
+  padding: 12px 14px;
+  background: var(--soft);
+  border-left: 4px solid var(--accent);
+  margin: 12px 0 18px;
+}
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border: 1px solid #bdd4d2;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: #06494e;
+  font-size: 12px;
+  font-weight: 600;
+}
+.block {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.formula-list {
+  display: grid;
+  gap: 10px;
+  margin: 10px 0;
+}
+.formula {
+  padding: 12px;
+  background: #fbfcfd;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow-x: auto;
+}
+.formula .math {
+  min-height: 32px;
+  font-size: 1.04rem;
+}
+.fallback {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.formula-rendered .fallback { display: none; }
+.formula-failed .fallback {
+  display: block;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 20px;
+  font-size: 14px;
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid var(--line);
+  padding: 9px 10px;
+}
+th { background: #eef4f6; }
+code, pre { font-family: Consolas, "Cascadia Mono", monospace; }
+pre {
+  background: #0f2a3d;
+  color: #eef8ff;
+  padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+.markdown table { display: block; overflow-x: auto; }
+.status-direct { color: #14613d; font-weight: 700; }
+.status-manual-matrix, .status-approximate { color: var(--warn); font-weight: 700; }
+.status-requires-code-edit, .status-unsupported { color: var(--bad); font-weight: 700; }
+.diagram-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 14px;
+}
+.diagram-tabs button {
+  border: 1px solid #abc1cb;
+  border-radius: 6px;
+  background: #fff;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.diagram-tabs button.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.diagram-box {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 14px;
+  overflow: auto;
+  background: #fff;
+}
+.hidden-by-search { display: none; }
+.empty { color: var(--muted); padding: 20px 0; }
+@media (max-width: 860px) {
+  .nav {
+    position: static;
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .brand { width: 100%; }
+  .nav a { margin: 0; }
+  .page { margin-left: 0; padding: 20px; }
+  .top { display: block; }
+  .search { min-width: 0; margin-top: 14px; }
+}

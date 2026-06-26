@@ -1,0 +1,7 @@
+# Changelog
+
+## [0.1.1] - 2026-05-28
+Rewrote frontmatter description to concise 200–500 character format for improved agent-trigger clarity.
+
+## [0.1.0] - 2026-05-24
+Initial release. Adds a CDC Field Epi Manual 10-step outbreak-investigation drafting workflow covering one-question-at-a-time intake (role, jurisdiction, suspected agent class, dates, source documents), preparation; outbreak-existence test against baseline with pseudo-outbreak rule-outs; diagnosis verification; a four-element case definition with confirmed / probable / suspect ladder; case-finding plan and line-list field specification using case IDs only; descriptive epidemiology with epi-curve shape interpretation (point / continuous-common-source / propagated / intermittent / mixed) and exposure-window arithmetic; testable hypotheses; analytical-study design matching measure to design (cohort → RR, case-control → OR, with 95% CI and p-value); control and prevention measures by target (source / transmission / exposed / at-risk population) with the authorizing authority recorded; a communication plan that distinguishes internal team / clinician HAN specification / public risk-communication specification / community plain-language summary specification; methods, limitations, and lessons-learned sections; a 15-item confidentiality and compliance self-check (including a small-cell N < 5 suppression rule and a HIPAA public-health-authority basis); an edit log; and a verbatim DRAFT-for-supervising-medical-epidemiologist-review banner.

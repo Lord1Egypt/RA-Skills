@@ -1,0 +1,46 @@
+{
+  "seller_id": "seller-demo",
+  "seller_name": "演示卖家",
+  "contact": "客服微信: demo_seller",
+  "products": [
+    {
+      "name": "幽灵庄园红酒",
+      "category": "红酒",
+      "specs": {
+        "容量": "750ml",
+        "年份": "2018"
+      },
+      "cost": 1500,
+      "price_range": [2000, 4000],
+      "stock": 100
+    }
+  ],
+  "credentials": [
+    {
+      "type": "business_license",
+      "name": "企业营业执照",
+      "url": "https://example.com/license.jpg"
+    },
+    {
+      "type": "agency_cert",
+      "name": "产品代理权证明",
+      "url": "https://example.com/agency.jpg"
+    }
+  ],
+  "logistics": {
+    "methods": ["顺丰快递", "京东物流"],
+    "regions": ["全国"]
+  },
+  "reputation": {
+    "total_transactions": 100,
+    "success_rate": 0.98,
+    "disputes": 0,
+    "platform_verified": true
+  },
+  "auto_bid": {
+    "enabled": false,
+    "categories": [],
+    "max_auto_bid_per_day": 10,
+    "min_profit_margin": 0.15
+  }
+}

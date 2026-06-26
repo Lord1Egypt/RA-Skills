@@ -1,35 +1,37 @@
----
-name: "Pipeworx alphavantage"
-description: "Access real-time stock prices, historical data, company fundamentals, financial statements, and earnings for any stock symbol using Alpha Vantage."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pipeworx-alphavantage"
-sourceUrl: "https://clawhub.ai/skills/pipeworx-alphavantage"
----
+# Alphavantage
 
-# Pipeworx alphavantage
+Alpha Vantage MCP — Stock market data, fundamentals, and earnings
 
-> Access real-time stock prices, historical data, company fundamentals, financial statements, and earnings for any stock symbol using Alpha Vantage.
+## av_quote
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pipeworx-alphavantage`
-- **Source URL:** [https://clawhub.ai/skills/pipeworx-alphavantage](https://clawhub.ai/skills/pipeworx-alphavantage)
+Get real-time stock price for a symbol (e.g., "AAPL"). Returns current price, change, percent change
 
-## Overview
+## av_daily
 
+Get daily stock price history for a symbol (e.g., "AAPL"). Returns open, high, low, close, volume fo
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pipeworx-alphavantage
+## av_overview
+
+Get company fundamentals for a symbol (e.g., "AAPL"). Returns sector, market cap, P/E ratio, EPS, di
+
+## av_income_statement
+
+Get annual and quarterly income statements for a symbol (e.g., "AAPL"). Returns revenue, gross profi
+
+## av_balance_sheet
+
+Get annual and quarterly balance sheets for a symbol (e.g., "AAPL"). Returns total assets, liabiliti
+
+## av_earnings
+
+Get quarterly earnings data for a symbol (e.g., "AAPL"). Returns reported and estimated EPS, surpris
+
+```json
+{
+  "mcpServers": {
+    "alphavantage": {
+      "url": "https://gateway.pipeworx.io/alphavantage/mcp"
+    }
+  }
+}
 ```

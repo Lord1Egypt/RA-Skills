@@ -1,0 +1,7 @@
+interface:
+  display_name: "Pixr CLI"
+  short_description: "Operate the local pixr image CLI and its defaults"
+  default_prompt: "Use $pixr-cli to generate or configure images with the local pixr CLI."
+
+policy:
+  allow_implicit_invocation: true

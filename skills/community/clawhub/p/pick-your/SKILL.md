@@ -1,35 +1,30 @@
 ---
-name: "pick your"
-description: "Generates multi-themed food collages (Burgers, Pizzas, Sushi, Salads, Desserts) with circle-masked images. Use when user asks for a collage of specific food..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pick-your"
-sourceUrl: "https://clawhub.ai/skills/pick-your"
+name: pick-your
+description: "Generates multi-themed food collages (Burgers, Pizzas, Sushi, Salads, Desserts) with circle-masked images. Use when user asks for a collage of specific food categories, layouts with circle-masked images, or when they want to 'pick' items from a curated list."
 ---
 
-# pick your
+# Pick Your
 
-> Generates multi-themed food collages (Burgers, Pizzas, Sushi, Salads, Desserts) with circle-masked images. Use when user asks for a collage of specific food...
+This skill generates high-quality food collages based on predefined themes.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pick-your`
-- **Source URL:** [https://clawhub.ai/skills/pick-your](https://clawhub.ai/skills/pick-your)
+## Usage
 
-## Overview
+Use the `make_wings_collage.py` script to generate collages. 
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pick-your
+python3 /root/.openclaw/workspace/skills/pick-your/scripts/make_wings_collage.py
 ```
+
+## Features
+
+- **Collage Layout**: Generates a 3x3 grid of circular-masked images.
+- **Dynamic Titles**: Automatically handles "PICK [X] [THEME]" titles.
+- **Customizable**: Handles themes like Burgers, Pizzas, Sushi, Salads, and Desserts.
+
+## Themes
+
+- Gourmet_Burgers
+- Artisan_Pizzas
+- Sushi_Rolls
+- Healthy_Salads
+- Dessert_Delights

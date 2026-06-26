@@ -1,35 +1,155 @@
 ---
-name: "Prd Skill Workflow2"
-description: "全栈PRD协作工作流。与用户共同探讨，产出可供开发、设计、测试、运营、项目经理使用的完整PRD文档。 协作流程共10步，输出PRD包含14个章节（项目概述、市场分析、需求列表、信息架构、用户流程、原型设计、UI规范、功能规格、数据模型、技术方案、非功能需求、测试方案、数据埋点、运营方案、项目计划）。 当用户说"帮..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prd-skill-workflow2"
-sourceUrl: "https://clawhub.ai/skills/prd-skill-workflow2"
+name: prd-fullstack
+version: 1.0.0
+description: |
+  全栈PRD协作工作流。与用户共同探讨，产出可供开发、设计、测试、运营、项目经理使用的完整PRD文档。
+  协作流程共10步，输出PRD包含14个章节（项目概述、市场分析、需求列表、信息架构、用户流程、原型设计、UI规范、功能规格、数据模型、技术方案、非功能需求、测试方案、数据埋点、运营方案、项目计划）。
+  当用户说"帮我写PRD"、"做完整需求文档"、"产品需求文档"时触发。
 ---
 
-# Prd Skill Workflow2
+# PRD FullStack：全栈PRD协作工作流
 
-> 全栈PRD协作工作流。与用户共同探讨，产出可供开发、设计、测试、运营、项目经理使用的完整PRD文档。 协作流程共10步，输出PRD包含14个章节（项目概述、市场分析、需求列表、信息架构、用户流程、原型设计、UI规范、功能规格、数据模型、技术方案、非功能需求、测试方案、数据埋点、运营方案、项目计划）。 当用户说"帮...
+**核心理念**：你说想法，我帮你梳理成**专业、完整、可执行**的PRD文档。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prd-skill-workflow2`
-- **Source URL:** [https://clawhub.ai/skills/prd-skill-workflow2](https://clawhub.ai/skills/prd-skill-workflow2)
+## 适用对象
 
-## Overview
+- **产品经理**：系统梳理需求
+- **开发团队**：技术方案、接口设计
+- **设计师**：UI规范、交互原型
+- **测试团队**：测试策略、验收标准
+- **运营团队**：数据指标、运营策略
+- **项目经理**：排期计划、风险管理
 
+## 完整PRD结构（14章）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/prd-skill-workflow2
+### Part 1: 产品篇
+- 01 项目概述（背景、目标、用户画像）
+- 02 市场分析（竞品分析、差异化）
+- 03 需求列表（功能清单、优先级）
+
+### Part 2: 体验篇
+- 04 信息架构（产品结构、页面层级）
+- 05 用户流程（核心流程、异常流程）
+- 06 原型设计（线框图、交互说明）
+- 07 UI设计规范（色彩、字体、组件）
+
+### Part 3: 功能篇
+- 08 功能规格（详细功能、业务规则）
+- 09 数据模型（实体关系、表结构）
+
+### Part 4: 技术篇
+- 10 技术方案（架构、选型、接口）
+- 11 非功能需求（性能、安全、兼容）
+
+### Part 5: 质量篇
+- 12 测试方案（测试策略、用例）
+- 13 数据埋点（指标体系、埋点）
+
+### Part 6: 运营篇
+- 14 运营方案（运营策略、推广计划）
+
+### Part 7: 管理篇
+- 15 项目计划（里程碑、排期、风险）
+
+## 10步协作流程
+
 ```
+Step 1: 需求探索      → 理清产品想法
+Step 2: 产品定位      → 确定类型、名称、平台
+Step 3: 功能蓝图      → 梳理功能清单和优先级
+Step 4: 市场分析      → 竞品分析、差异化定位
+Step 5: 信息架构      → 产品结构、页面层级
+Step 6: 原型+UI       → 线框图、设计规范
+Step 7: 功能+数据     → 功能规格、数据模型
+Step 8: 技术方案      → 架构、接口、部署
+Step 9: 测试+数据     → 测试用例、数据埋点
+Step 10: 运营+计划    → 运营策略、项目排期
+```
+
+## 协作原则
+
+1. **对话式**：每一步都通过对话确认，不是AI单向输出
+2. **可视化**：用图表、表格展示关键信息
+3. **可回退**：随时可以回到上一步修改
+4. **专业级**：输出内容达到企业级PRD标准
+
+## 使用方式
+
+```
+用户：我想做一个在线教育平台
+
+AI：好的！我们一起来做这份完整的PRD。
+      首先，能详细说说你的想法吗？
+
+[经过10步协作...]
+
+AI：✅ PRD全栈文档完成！
+
+      📄 prd-edu-platform-v1.0.0.pdf (180页)
+      🌐 prd-edu-platform-v1.0.0.html
+      📝 prd-edu-platform-v1.0.0.md
+
+      章节覆盖：
+      ✅ 产品篇：项目背景、市场分析、需求列表
+      ✅ 体验篇：信息架构、流程图、原型、UI规范
+      ✅ 功能篇：功能规格、数据模型
+      ✅ 技术篇：架构设计、接口文档
+      ✅ 质量篇：测试方案、数据埋点
+      ✅ 运营篇：运营策略
+      ✅ 管理篇：项目计划
+```
+
+## 文件结构
+
+```
+prd-skill-workflow/
+├── SKILL.md                    # 本文件
+├── COLLABORATION.md            # 协作流程快速参考
+├── prompts/                    # 10步协作Prompts
+│   ├── step1-explorer.md      # 需求探索
+│   ├── step2-positioning.md   # 产品定位
+│   ├── step3-blueprint.md     # 功能蓝图
+│   ├── step4-market.md        # 市场分析
+│   ├── step5-architecture.md  # 信息架构
+│   ├── step6-prototype.md     # 原型+UI
+│   ├── step7-functional.md    # 功能+数据
+│   ├── step8-tech.md          # 技术方案
+│   ├── step9-testing.md       # 测试+数据
+│   ├── step10-operation.md    # 运营+计划
+│   └── iteration.md           # 版本迭代管理
+├── templates/                  # 输出模板
+│   ├── build.js               # HTML构建脚本
+│   ├── build-pdf.js           # PDF生成脚本
+│   ├── update.js               # 版本更新脚本
+│   ├── styles.css             # PRD样式表
+│   └── fragments/             # 14个章节模板
+├── templates-config/          # 6种产品类型配置
+│   ├── saas.json              # SaaS/B端
+│   ├── ecommerce.json         # 电商
+│   ├── education.json         # 教育
+│   ├── social.json            # 社交
+│   ├── content.json           # 内容
+│   └── tool.json              # 工具
+├── checklists/                # 检查清单
+│   └── prd-review-checklist.md # PRD审查清单
+├── shortcuts/                 # 快捷模板
+│   └── quick-templates.md     # 常用功能模板
+├── examples/                  # 示例项目
+│   └── ledger-app/            # 简记账完整示例
+├── scripts/                   # 工具脚本
+│   └── validate.js            # PRD验证脚本
+└── references/                # 参考资料
+    └── design-system.md       # 设计规范
+```
+
+## 输出规格
+
+最终PRD约 **150-200页**，包含：
+- 30+ 张表格（需求清单、竞品对比、测试用例等）
+- 20+ 张流程图（Mermaid语法）
+- 15+ 个页面原型描述
+- 完整的UI设计规范
+- 详细的技术架构说明
+- 可执行的测试方案
+- 运营推广策略
+- 项目里程碑规划

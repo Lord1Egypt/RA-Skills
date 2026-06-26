@@ -1,0 +1,21 @@
+category,title,source,url,notes
+openclaw,Skills docs,OpenClaw,https://docs.openclaw.ai/skills,Skill folder with SKILL.md and YAML frontmatter
+openclaw,Cron jobs,OpenClaw,https://docs.openclaw.ai/cron-jobs,Gateway scheduler and persistence
+kaoyan,2026全国硕士研究生招生考试报名公告,研招网,https://yz.chsi.com.cn/kyzx/other/202509/20250930/2293435905.html,报名与预报名时间
+kaoyan,2025硕士研究生复试录取工作,教育部,https://www.moe.gov.cn/jyb_xwfb/gzdt_gzdt/s5987/202502/t20250224_1180237.html,国家线与调剂系统
+pushian,进一步完善推免工作办法,教育部,https://www.moe.gov.cn/srcsite/A15/moe_778/s3261/201408/t20140804_172730.html,推免公开与系统化要求
+pushian,清华大学2026推免报名通知,清华大学/研招网,https://yz.chsi.com.cn/kyzx/yxzc/202509/20250919/2293429300.html,推免系统正式报名时间点
+pushian,武汉大学2026接收推免公告,武汉大学/研招网,https://yz.chsi.com.cn/kyzx/yxzc/202509/20250925/2293430781.html,推免接收规模与直博范围
+zhuanshengben,安徽2025普通高校专升本,安徽省相关公开页,https://tyjrj.ahsz.gov.cn/public/55927291/195353601.html,省级专升本样本
+kaoyan,四川大学2026硕士招生章程,四川大学/研招网,https://yz.chsi.com.cn/kyzx/zsjz/202510/20251010/2293437846.html,硕士招生与推免规模样本
+kaoyan,浙江大学2026硕士招生简章,浙江大学/研招网,https://yz.chsi.com.cn/kyzx/zsjz/202510/20251011/2293437953.html,报考条件样本
+kaoyan,东南大学2026硕士招生章程,东南大学/研招网,https://yz.chsi.com.cn/kyzx/zsjz/202510/20251011/2293437448.html,同等学力与非全样本
+dubo,上海交大与宁波东方理工2026博士招生简章,高校/研招网,https://yz.chsi.com.cn/kyzx/yxzc/202511/20251113/2293443647.html,申请考核制样本
+dubo,宁波大学2026博士招生日程安排,宁波大学/研招网,https://yz.chsi.com.cn/sch/viewBulletin--schId-368207%2CinfoId-3501844043%2CcategoryId-479984%2Cmindex-10.dhtml,博士多批次时间线样本
+liuxue,2025青年骨干教师出国研修项目指南,CSC,https://origin-bg.csc.edu.cn/article/3698,公派项目样本
+liuxue,2026国际组织后备人才培养项目实施指南,CSC,https://origin-bg.csc.edu.cn/article/4082,2026项目样本
+liuxue,美国研究生申请与标化考试,EducationUSA,https://educationusa.state.gov/your-5-steps-us-study/research-your-options/graduate/prepare-us-standardized-tests,美国官方留学申请信息
+liuxue,美国研究生申请流程,EducationUSA,https://educationusa.state.gov/complete-your-us-application-graduate,院校要求差异与材料说明
+liuxue,美国学生签证,EducationUSA,https://educationusa.state.gov/your-5-steps-us-study/apply-your-student-visa/graduate,签证前置条件
+zhicheng,职称评审管理暂行规定,中国政府网,https://www.gov.cn/gongbao/content/2019/content_5437137.htm,国家职称评审框架
+zhicheng,事业单位工作人员考核规定解读,中国政府网,https://www.gov.cn/fuwu/2023-02/02/content_5739617.htm,年度考核与职称衔接

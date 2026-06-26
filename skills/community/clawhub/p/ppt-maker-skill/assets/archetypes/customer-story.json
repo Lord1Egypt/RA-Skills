@@ -1,0 +1,280 @@
+{
+  "id": "customer-story",
+  "label": "客户案例介绍",
+  "description": "适合售前证明、客户案例和项目成效展示，强调客户场景、问题、方案、结果和客户评价。",
+  "briefSections": [
+    "客户行业与业务场景",
+    "原始问题或业务痛点",
+    "我们提供的方案与落地方式",
+    "结果数据与收益",
+    "客户评价或后续合作"
+  ],
+  "starterDeck": {
+    "meta": {
+      "mode": "editable"
+    },
+    "slides": [
+      {
+        "id": "slide-01",
+        "label": "封面",
+        "type": "cover",
+        "layoutVariant": "hero-left",
+        "components": [
+          {
+            "id": "s01-title",
+            "label": "案例标题",
+            "type": "title",
+            "text": "{{title}}",
+            "x": 0.9,
+            "y": 0.95,
+            "w": 6.4,
+            "h": 0.8,
+            "style": {
+              "fontSize": 30,
+              "bold": true
+            }
+          },
+          {
+            "id": "s01-subtitle",
+            "label": "案例结论",
+            "type": "subtitle",
+            "text": "用一句话讲清这个客户案例最重要的结果或价值。",
+            "x": 0.95,
+            "y": 1.85,
+            "w": 6.1,
+            "h": 0.5,
+            "style": {
+              "fontSize": 17,
+              "color": "#475569"
+            }
+          },
+          {
+            "id": "s01-image",
+            "label": "客户场景图",
+            "type": "image",
+            "src": "../../assets/preview/placeholder-graphic.svg",
+            "fit": "cover",
+            "x": 7.7,
+            "y": 1.0,
+            "w": 4.35,
+            "h": 4.15
+          }
+        ]
+      },
+      {
+        "id": "slide-02",
+        "label": "客户与挑战",
+        "type": "title-bullets",
+        "layoutVariant": "evidence-split",
+        "components": [
+          {
+            "id": "s02-title",
+            "label": "挑战标题",
+            "type": "title",
+            "text": "客户是谁，原来卡在哪里",
+            "x": 0.9,
+            "y": 0.75,
+            "w": 6.4,
+            "h": 0.7,
+            "style": {
+              "fontSize": 26,
+              "bold": true
+            }
+          },
+          {
+            "id": "s02-bullets",
+            "label": "客户挑战",
+            "type": "bullet-list",
+            "items": [
+              "客户背景：行业、规模、核心业务场景",
+              "原始痛点：效率、成本、增长或流程问题",
+              "这次项目想达成的目标"
+            ],
+            "x": 0.95,
+            "y": 1.85,
+            "w": 5.3,
+            "h": 3.2,
+            "style": {
+              "fontSize": 18
+            }
+          },
+          {
+            "id": "s02-text",
+            "label": "补充背景",
+            "type": "text",
+            "text": "这里可以补一句客户原始状态，例如“人工流程多、响应慢、跨部门协同困难”。",
+            "x": 6.95,
+            "y": 1.9,
+            "w": 4.2,
+            "h": 1.55,
+            "style": {
+              "fontSize": 18,
+              "color": "#334155"
+            }
+          }
+        ]
+      },
+      {
+        "id": "slide-03",
+        "label": "方案落地",
+        "type": "image-text",
+        "layoutVariant": "media-right-focus",
+        "components": [
+          {
+            "id": "s03-title",
+            "label": "方案标题",
+            "type": "title",
+            "text": "我们如何把方案真正落到客户现场",
+            "x": 0.9,
+            "y": 0.75,
+            "w": 7.2,
+            "h": 0.7,
+            "style": {
+              "fontSize": 26,
+              "bold": true
+            }
+          },
+          {
+            "id": "s03-bullets",
+            "label": "方案要点",
+            "type": "bullet-list",
+            "items": [
+              "方案结构：做了哪些关键动作",
+              "落地路径：试点、部署、培训或集成",
+              "客户侧配合：哪些环节一起完成"
+            ],
+            "x": 0.95,
+            "y": 1.85,
+            "w": 5.15,
+            "h": 3.3,
+            "style": {
+              "fontSize": 18
+            }
+          },
+          {
+            "id": "s03-image",
+            "label": "方案截图",
+            "type": "image",
+            "src": "../../assets/preview/placeholder-graphic.svg",
+            "fit": "contain",
+            "x": 7.05,
+            "y": 1.55,
+            "w": 4.2,
+            "h": 3.8
+          }
+        ]
+      },
+      {
+        "id": "slide-04",
+        "label": "结果数据",
+        "type": "chart",
+        "layoutVariant": "headline-data",
+        "components": [
+          {
+            "id": "s04-title",
+            "label": "结果标题",
+            "type": "title",
+            "text": "结果不是“更好”，而是“看得见地变好”",
+            "x": 0.9,
+            "y": 0.75,
+            "w": 8.0,
+            "h": 0.7,
+            "style": {
+              "fontSize": 26,
+              "bold": true
+            }
+          },
+          {
+            "id": "s04-chart",
+            "label": "结果图表",
+            "type": "chart",
+            "kind": "bar",
+            "text": "示例结果图，请替换为真实业务指标",
+            "categories": [
+              "上线前",
+              "试点期",
+              "稳定期"
+            ],
+            "series": [
+              {
+                "name": "核心指标",
+                "values": [
+                  10,
+                  28,
+                  46
+                ]
+              }
+            ],
+            "x": 0.95,
+            "y": 1.55,
+            "w": 6.3,
+            "h": 4.0
+          },
+          {
+            "id": "s04-text",
+            "label": "结果说明",
+            "type": "text",
+            "text": "在这里补 2 到 3 条业务变化：效率提升、响应缩短、转化提高或满意度变化。",
+            "x": 7.7,
+            "y": 1.9,
+            "w": 3.7,
+            "h": 2.2,
+            "style": {
+              "fontSize": 17,
+              "color": "#334155"
+            }
+          }
+        ]
+      },
+      {
+        "id": "slide-05",
+        "label": "客户评价",
+        "type": "quote",
+        "layoutVariant": "pull-quote",
+        "components": [
+          {
+            "id": "s05-title",
+            "label": "客户评价标题",
+            "type": "title",
+            "text": "客户怎么评价这次合作",
+            "x": 0.9,
+            "y": 0.85,
+            "w": 6.2,
+            "h": 0.7,
+            "style": {
+              "fontSize": 26,
+              "bold": true
+            }
+          },
+          {
+            "id": "s05-quote",
+            "label": "客户原话",
+            "type": "quote-block",
+            "text": "这里放客户原话、关键背书或一句总结性评价。",
+            "x": 1.0,
+            "y": 2.05,
+            "w": 10.1,
+            "h": 1.6,
+            "style": {
+              "fontSize": 24
+            }
+          },
+          {
+            "id": "s05-text",
+            "label": "复用价值",
+            "type": "text",
+            "text": "最后补一句这类方案对其他客户的可复制价值或下一步合作机会。",
+            "x": 1.05,
+            "y": 4.2,
+            "w": 9.4,
+            "h": 0.9,
+            "style": {
+              "fontSize": 18,
+              "color": "#475569"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

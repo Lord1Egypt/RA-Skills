@@ -1,0 +1,20 @@
+{
+  "sessions": [
+    {
+      "time": "09:00",
+      "duration": 15
+    },
+    {
+      "time": "13:00",
+      "duration": 15
+    },
+    {
+      "time": "17:00",
+      "duration": 15
+    },
+    {
+      "time": "21:00",
+      "duration": 15
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+bundle: game-concept-brainstorm
+bundle_version: 1.1.0
+bundle_date: 2026-03-30
+description: >
+  Turn a vague game idea into a sharp fantasy, design pillars, player verbs, and acceptance bar before implementation begins. This is the proper “brainstorm” stage, not endless ideation.
+compatibility:
+  designed_for:
+    surfaces:
+      - chat
+      - cli
+      - ide
+    capabilities:
+      - local filesystem access
+      - markdown skill bundles
+      - reusable game-development workflows
+  tested_on:
+    - platform: OpenClaw
+      surface: ClawHub
+      status: pending
+      date: 2026-03-30
+    - platform: Claude Code
+      surface: CLI
+      status: pass
+      date: 2026-03-30
+    - platform: Codex
+      surface: CLI
+      status: pass
+      date: 2026-03-30
+  spec_version: agentskills.io/1.0
+  frontmatter_mode: metadata
+dependencies:
+  - game-requirements-brainstorm
+  - game-scope-profile
+  - game-ux-flow-designer
+files:
+  - path: CHANGELOG.md
+    role: reference
+    version: 1
+    hash: sha256:2e4dd4ede51437e3b7f06e5a1bcc9bec25781f72bd0f5f3ecb38f8993ff7ee10
+    note: Bundle release notes
+  - path: README.md
+    role: reference
+    version: 1
+    hash: sha256:09555f4fcc817ca93452bc68ab117e2089ebacef79e5fb9b43b4918634c9361f
+    note: ClawHub-facing usage and context
+  - path: SKILL.md
+    role: skill
+    version: 1
+    hash: sha256:ce23d71a7454ab294abe0db29dbc7890935b9ed5e88995cd48655eebcff73d96
+    note: Canonical skill definition for this publish bundle
+  - path: examples/usage.md
+    role: reference
+    version: 1
+    hash: sha256:c6222eed1922a48f3f1a46f32dbe3837b9caf2f9be7981e09e1bfaea675458c0
+    note: Referenced support file: examples/usage.md
+  - path: shared/templates/concept-brainstorm.md
+    role: reference
+    version: 1
+    hash: sha256:a35f0f510db75dc3264af30065182f37de6dffc5adb9292ecdafaa1706b4b8d2
+    note: Referenced support file: shared/templates/concept-brainstorm.md
+  - path: tests/smoke.md
+    role: reference
+    version: 1
+    hash: sha256:01cf5ae774efa32d985bacaa8fe92ce7f27e90dfe5faf73bb37aea1bf7c147cf
+    note: Referenced support file: tests/smoke.md

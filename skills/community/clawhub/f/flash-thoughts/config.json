@@ -1,0 +1,8 @@
+{
+  "name": "flash-thoughts",
+  "version": "1.0.0",
+  "description": "随手记录灵感闪念。按日期存储，分隔线分隔每个想法，支持快速添加和搜索。",
+  "author": "bosichong",
+  "license": "MIT",
+  "repository": "https://github.com/bosichong/flash-thoughts"
+}

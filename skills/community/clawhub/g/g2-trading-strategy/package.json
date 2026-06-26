@@ -1,0 +1,62 @@
+{
+  "name": "g2-trading-strategy",
+  "version": "1.0.0",
+  "title": "G2量化交易策略",
+  "description": "基于21组策略回测验证的最优A股量化交易系统，回测收益+26.7%，夏普1.12",
+  "author": {
+    "name": "投资大师",
+    "email": "support@example.com"
+  },
+  "keywords": [
+    "A股",
+    "量化交易",
+    "v5.2评分",
+    "G2策略",
+    "止损止盈",
+    "量化选股"
+  ],
+  "price": 199,
+  "currency": "CNY",
+  "category": "finance",
+  "tags": [
+    "trading",
+    "stock",
+    "quantitative",
+    "A-share",
+    "strategy"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/investment-master/g2-trading-strategy",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/investment-master/g2-trading-strategy.git"
+  },
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "numpy": ">=1.20.0",
+    "requests": ">=2.25.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "trading_unified_config.json",
+    "stock_analysis_v5.py",
+    "trading_workflow.py",
+    "check_config_consistency.py"
+  ],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2026-04-05",
+      "changes": [
+        "初始版本发布",
+        "v5.2评分系统",
+        "量比硬过滤",
+        "固定2%止损/25%止盈"
+      ]
+    }
+  ]
+}

@@ -1,35 +1,88 @@
 ---
-name: "生成短视频分镜脚本_无限"
-description: "自动化生成短视频分镜脚本。打开Chrome浏览器访问DeepSeek平台，使用深度思考和智能搜索模式，根据旁白文本自动生成分镜脚本。触发场景：生成分镜脚本、生成短视频分镜、分镜脚本生成、旁白转分镜、短视频分镜制作。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/generate-short-video-storyboard-script-infinite"
-sourceUrl: "https://clawhub.ai/skills/generate-short-video-storyboard-script-infinite"
+name: generate-short-video-storyboard-script-infinite
+description: 自动化生成短视频分镜脚本。打开Chrome浏览器访问DeepSeek平台，使用深度思考和智能搜索模式，根据旁白文本自动生成分镜脚本。触发场景：生成分镜脚本、生成短视频分镜、分镜脚本生成、旁白转分镜、短视频分镜制作。
 ---
 
-# 生成短视频分镜脚本_无限
+# 生成短视频分镜脚本
 
-> 自动化生成短视频分镜脚本。打开Chrome浏览器访问DeepSeek平台，使用深度思考和智能搜索模式，根据旁白文本自动生成分镜脚本。触发场景：生成分镜脚本、生成短视频分镜、分镜脚本生成、旁白转分镜、短视频分镜制作。
+自动化流程：使用 DeepSeek 平台将旁白文本转换为分镜脚本。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/generate-short-video-storyboard-script-infinite`
-- **Source URL:** [https://clawhub.ai/skills/generate-short-video-storyboard-script-infinite](https://clawhub.ai/skills/generate-short-video-storyboard-script-infinite)
+## 触发场景
 
-## Overview
+用户说：
+- "生成分镜脚本"
+- "生成短视频分镜脚本"
+- "生成视频分镜脚本"
 
+## 浏览器配置
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/generate-short-video-storyboard-script-infinite
+- **浏览器**: Chrome
+- **目标平台**: https://chat.deepseek.com
+
+## 执行步骤
+
+### 1. 启动浏览器
+
+1. 调用 `browser(action=start, target="host", profile="openclaw")` 启动浏览器
+2. 若浏览器已在运行，跳过此步骤
+3. 检查 `browser(action=status, target="host")` 确认状态
+4. 导航到 DeepSeek 平台：https://chat.deepseek.com。
+
+### 2. 开启新会话
+
+在 DeepSeek 页面左上角点击「开启新会话」按钮。
+
+### 3. 配置生成模式
+
+在右侧框架中，点击专家模式，同时开启「深度思考」和「智能搜索」两个模式。
+
+**重要说明**：
+- 两个按钮是独立的，可以同时开启
+
+**操作步骤**：
+1. 两个模式都开启后，继续下一步
+
+### 4. 输入分镜提示词
+
+在提示词输入框中输入以下固定模板：
+
+```
+我要用后面的旁白做一个短视频。你把它拆成很多个分镜，每一个分镜只有画面描述和旁白。画面描述内容前直接是"分镜"加分镜的序号加":"(无需输出“画面描述：”这5个字符。)，每一个分镜只配少量的旁白(“旁白：”三个字符需输出。每个分镜的旁白无需用双引号括起来)。不要增删改旁白。分镜总字符数小于3000个。
+```
+
+### 5. 追加旁白内容
+
+在分镜提示词后面，用双引号括起旁白内容追加到输入框。
+
+**格式示例**：
+```
+我要用后面的旁白做一个短视频。你把它拆成很多个分镜，每一个分镜只有画面描述和旁白。画面描述内容前直接是"分镜"加分镜的序号加":"(无需输出“画面描述：”这5个字符。)，每一个分镜只配少量的旁白(“旁白：”三个字符需输出。每个分镜的旁白无需用双引号括起来)。不要增删改旁白。分镜总字符数小于3000个。"这里是用户的旁白内容..."
+```
+
+### 6. 提交对话
+
+点击提示词输入框右下角的向上箭头按钮提交对话。
+
+## 输出格式
+
+DeepSeek 将返回分镜脚本，格式如下：
+
+```
+分镜1: [画面描述]
+旁白：[旁白片段]
+
+分镜2: [画面描述]
+旁白：[旁白片段]
+
+...
+```
+
+## 使用方式
+
+调用此技能时，用户需提供：
+1. 旁白文本内容
+
+示例调用：
+```
+帮我生成分镜脚本，旁白是："今天我们来聊聊人工智能的发展历程。从最初的图灵测试，到如今的ChatGPT，AI已经走过了漫长的道路..."
 ```

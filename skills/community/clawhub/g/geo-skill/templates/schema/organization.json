@@ -1,0 +1,121 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{PARK_NAME}}",
+  "alternateName": ["{{PARK_ALTERNATE_NAME_1}}", "{{PARK_ALTERNATE_NAME_2}}"],
+  "description": "{{PARK_DESCRIPTION}}",
+  "url": "{{WEBSITE_URL}}",
+  "logo": "{{LOGO_URL}}",
+  "image": "{{HERO_IMAGE_URL}}",
+  "video": "{{PROMO_VIDEO_URL}}",
+  
+  "foundingDate": "{{ESTABLISHMENT_DATE}}",
+  "foundingLocation": {
+    "@type": "City",
+    "name": "{{CITY_NAME}}"
+  },
+  
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{STREET_ADDRESS}}",
+    "addressLocality": "{{DISTRICT}}",
+    "addressRegion": "{{PROVINCE}}",
+    "postalCode": "{{POSTAL_CODE}}",
+    "addressCountry": "CN"
+  },
+  
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": {{LATITUDE}},
+    "longitude": {{LONGITUDE}}
+  },
+  
+  "telephone": "{{CONTACT_PHONE}}",
+  "email": "{{CONTACT_EMAIL}}",
+  "faxNumber": "{{FAX_NUMBER}}",
+  
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "{{INVESTMENT_HOTLINE}}",
+      "contactType": "customer service",
+      "areaServed": "CN",
+      "availableLanguage": ["Chinese", "English"]
+    }
+  ],
+  
+  "areaServed": {
+    "@type": "City",
+    "name": "{{CITY_NAME}}",
+    "containedInPlace": {
+      "@type": "State",
+      "name": "{{PROVINCE}}"
+    }
+  },
+  
+  "knowsAbout": [
+    "{{INDUSTRY_1}}",
+    "{{INDUSTRY_2}}",
+    "{{INDUSTRY_3}}"
+  ],
+  
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "{{PARK_NAME}}产品目录",
+    "description": "园区厂房、办公楼、研发空间等产品信息",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "标准厂房"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "独栋办公楼"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "研发实验室"
+        }
+      }
+    ]
+  },
+  
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{RATING_VALUE}}",
+    "reviewCount": "{{REVIEW_COUNT}}",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  
+  "sameAs": [
+    "{{WECHAT_ID}}",
+    "{{WECHAT_MINI_PROGRAM}}",
+    "{{OFFICIAL_WEIBO}}",
+    "{{OFFICIAL_DOUBEIN}}",
+    "{{OFFICIAL_XIAOHONGSHU}}"
+  ],
+  
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "value": "{{EMPLOYEE_COUNT_IN_PARK}}",
+    "unitText": "人"
+  },
+  
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "08:30",
+    "closes": "18:00"
+  },
+  
+  "priceRange": "{{PRICE_RANGE}}"
+}

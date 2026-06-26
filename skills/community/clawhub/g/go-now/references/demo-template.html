@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>现在就出发吧！— 小明的杭州两日游</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:#FFF8F0;display:flex;justify-content:center;padding:20px 10px}
+.poster{width:800px;background:linear-gradient(180deg,#FFF5E6 0%,#FFECD2 50%,#FFF5E6 100%);border-radius:24px;padding:40px 44px 36px;position:relative;overflow:hidden}
+
+/* 散落装饰 */
+.dk{position:absolute;pointer-events:none;z-index:0}
+.dk.h{color:#FFB0B0;font-size:16px;opacity:.3}
+.dk.s{color:#F0C060;font-size:14px;opacity:.25}
+.dk.f{color:#E8C890;font-size:12px;opacity:.2}
+
+/* === 封面 === */
+.cover{text-align:center;margin-bottom:10px;position:relative;z-index:1}
+.badge{display:inline-block;background:linear-gradient(135deg,#FF9A6C,#FF6B8A);color:#fff;padding:6px 22px;border-radius:20px;font-size:13px;font-weight:500;letter-spacing:2px;margin-bottom:12px}
+.cover h1{font-size:28px;font-weight:900;color:#4A3520;letter-spacing:2px}
+.hl{color:#FF6B8A}
+.cover .sub{font-size:17px;font-weight:500;color:#9A7B5A;margin-top:5px}
+.cover .dt{font-size:12px;color:#B09060;margin-top:6px}
+.tags{display:flex;justify-content:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+.tag{background:rgba(255,255,255,.65);padding:4px 13px;border-radius:14px;font-size:11px;color:#7A6040}
+.prow{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px}
+.av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#FFB88C,#FF6B8A);display:flex;align-items:center;justify-content:center;font-size:17px;box-shadow:0 2px 8px rgba(255,107,138,.2)}
+.pt{background:rgba(255,255,255,.75);border:1.5px dashed #E8C9A0;padding:3px 10px;border-radius:10px;font-size:10px;color:#8A6A40}
+
+/* === 步骤通用 === */
+.step{position:relative;z-index:1;margin-bottom:6px}
+.s-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.s-num{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#FF9A6C,#FF6B8A);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;flex-shrink:0;box-shadow:0 3px 10px rgba(255,107,138,.25)}
+.s-num.g{background:linear-gradient(135deg,#66BB6A,#43A047);box-shadow:0 3px 10px rgba(67,160,71,.25)}
+.s-title{font-size:18px;font-weight:800;color:#4A3520}
+.s-time{display:inline-block;background:linear-gradient(135deg,#FF9A6C,#FF6B8A);color:#fff;padding:4px 14px;border-radius:12px;font-size:12px;font-weight:600;white-space:nowrap}
+.s-time.g{background:linear-gradient(135deg,#66BB6A,#43A047)}
+
+/* 内容区域（无卡片边框，直接浮在背景上） */
+.s-body{padding:4px 0 4px 48px}
+.s-desc{font-size:12px;color:#8A7A60;line-height:1.7;margin-bottom:3px}
+.s-desc b{color:#4A3520;font-weight:600}
+.s-desc .icon{margin-right:3px}
+
+/* 提示 */
+.tip{display:inline-flex;align-items:center;gap:5px;margin-top:4px;font-size:11px}
+.tip .tip-icon{width:18px;height:18px;border-radius:50%;background:#5CB85C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
+.tip .tip-icon.pink{background:#FF6B8A}
+.tip .tip-text{color:#5A8A40;font-weight:600}
+.tip .tip-text.pink{color:#C05060}
+
+/* 推荐 */
+.recs{display:flex;gap:6px;margin-top:6px;padding-left:48px}
+.rec{background:rgba(255,255,255,.45);border-radius:8px;padding:6px 10px;text-align:center}
+.rec .re{font-size:16px}
+.rec .rt{font-size:10px;font-weight:600;color:#6A5030}
+.rec .rd{font-size:9px;color:#9A7B5A}
+
+/* 双列并排 */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:6px}
+
+/* === 粗绳索 SVG === */
+.rope{position:relative;z-index:1;display:flex;justify-content:center;margin:0 0 0 0;height:50px}
+.rope svg{width:200px;height:50px}
+
+/* === 地标插画（扁平填充色，直接浮在背景上） === */
+.illust{position:relative;margin-bottom:6px}
+
+/* --- 酒店（白墙黛瓦杭州风格） --- */
+.hotel-wrap{display:flex;align-items:flex-end;gap:12px;padding-left:48px;margin-bottom:4px}
+.hotel{position:relative;width:110px;height:90px}
+.hotel .wall{position:absolute;bottom:0;left:10px;width:90px;height:55px;background:#FAF5F0;border:2px solid #D4C8B0;border-radius:3px}
+.hotel .roof{position:absolute;bottom:55px;left:5px;width:100px;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:18px solid #4A4A4A}
+.hotel .roof::before{content:'';position:absolute;top:18px;left:-9px;width:106px;height:3px;background:#4A4A4A}
+.hotel .eave{position:absolute;bottom:55px;width:12px;height:12px}
+.hotel .eave.l{left:2px;border-bottom:2px solid #4A4A4A;border-left:2px solid #4A4A4A;border-radius:0 0 0 8px;transform:rotate(10deg)}
+.hotel .eave.r{right:2px;border-bottom:2px solid #4A4A4A;border-right:2px solid #4A4A4A;border-radius:0 0 8px 0;transform:rotate(-10deg)}
+.hotel .win{position:absolute;width:14px;height:18px;background:#87CEEB;border:2px solid #B0A890;border-radius:6px 6px 0 0}
+.hotel .door{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:16px;height:24px;background:#8B6914;border-radius:8px 8px 0 0;border:2px solid #6B5010}
+.hotel .door::after{content:'';position:absolute;top:9px;right:2px;width:3px;height:3px;background:#D4A060;border-radius:50%}
+.hotel .lantern{position:absolute;width:9px;height:12px;background:#FF4444;border-radius:4px;box-shadow:0 0 4px rgba(255,68,68,.2)}
+.hotel .lantern::before{content:'';position:absolute;top:-2px;left:50%;transform:translateX(-50%);width:5px;height:2px;background:#CC0000;border-radius:1px}
+/* 行李箱 */
+.luggage{width:16px;height:20px;background:#FF9A6C;border-radius:3px;border:2px solid #E07840;position:relative;margin-bottom:2px}
+.luggage::before{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:8px;height:3px;background:#E07840;border-radius:2px}
+
+/* --- 断桥（拱桥+柳树） --- */
+.bridge-wrap{position:relative;height:90px;margin-left:48px;margin-bottom:4px}
+.bridge{position:absolute;bottom:18px;left:50%;transform:translateX(-50%)}
+.br-arch{width:100px;height:32px;border-bottom:3px solid #C8B8A0;border-left:3px solid #C8B8A0;border-right:3px solid #C8B8A0;border-radius:0 0 50px 50px}
+.br-deck{position:absolute;top:0;left:-10px;width:120px;height:4px;background:#E8DCC8;border-radius:2px}
+.br-rail{position:absolute;top:-5px;left:-6px;width:112px;height:2px;background:#D4C8B0}
+.willow{position:absolute;bottom:18px}
+.wl-trunk{width:4px;height:22px;background:#8B7355;border-radius:2px;margin:0 auto}
+.wl-leaves{width:30px;height:22px;position:relative;margin-bottom:-2px}
+.wl-leaf{position:absolute;top:0;width:2px;background:#6AAF50;border-radius:0 0 2px 2px;transform:rotate(-3deg);transform-origin:top center}
+.lake{position:absolute;bottom:0;left:0;right:0;height:18px;background:rgba(100,180,220,.2);border-radius:0 0 8px 8px}
+/* 小人 */
+.person{position:absolute}
+.p-head{width:7px;height:7px;background:#FFD4B0;border-radius:50%;margin:0 auto}
+.p-body{width:9px;height:13px;border-radius:4px 4px 2px 2px;margin:0 auto;margin-top:-1px}
+.p-legs{position:relative;width:9px;height:7px;margin:0 auto}
+.p-leg{position:absolute;bottom:0;width:3px;height:7px;border-radius:1px}
+.p-leg.l{left:0;transform:rotate(-10deg)}
+.p-leg.r{right:0;transform:rotate(10deg)}
+
+/* --- 楼外楼名菜 --- */
+.food-wrap{display:flex;align-items:flex-end;gap:16px;padding-left:48px;margin-bottom:4px}
+.dish{position:relative}
+.plate{width:40px;height:10px;background:#F0E0D0;border-radius:50%;border:2px solid #D4C0A0}
+.fish{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:28px;height:14px;background:linear-gradient(135deg,#FFB060,#FF8C40);border-radius:14px 14px 4px 4px}
+.fish::before{content:'';position:absolute;right:-4px;top:3px;width:0;height:0;border-top:3px solid transparent;border-bottom:3px solid transparent;border-left:6px solid #FF8C40}
+.fish-eye{position:absolute;top:3px;left:4px;width:3px;height:3px;background:#fff;border-radius:50%}
+.fish-eye::after{content:'';position:absolute;top:1px;left:1px;width:1.5px;height:1.5px;background:#333;border-radius:50%}
+.dprou{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:18px;height:15px;background:linear-gradient(180deg,#C0704A,#A05030);border-radius:3px;border:2px solid #8B4020}
+.dprou::before{content:'';position:absolute;top:4px;left:0;right:0;height:1px;background:rgba(255,255,255,.15)}
+.dprou::after{content:'';position:absolute;top:8px;left:0;right:0;height:1px;background:rgba(255,255,255,.15)}
+.steam{position:absolute;display:flex;gap:3px}
+.stl{width:2px;height:8px;background:rgba(170,170,170,.2);border-radius:2px;animation:stR 2s ease-in-out infinite}
+.stl:nth-child(2){animation-delay:.3s;height:11px}
+.stl:nth-child(3){animation-delay:.6s;height:6px}
+@keyframes stR{0%{opacity:.3;transform:translateY(0)}50%{opacity:.1;transform:translateY(-4px) scaleX(1.2)}100%{opacity:0;transform:translateY(-8px) scaleX(1.4)}}
+/* 茶壶 */
+.teapot{position:relative}
+.tp-body{width:34px;height:24px;background:#C4956A;border-radius:5px}
+.tp-spout{position:absolute;right:-9px;top:5px;width:11px;height:5px;background:#C4956A;border-radius:0 5px 5px 0}
+.tp-handle{position:absolute;left:-8px;top:2px;width:9px;height:14px;border:2px solid #C4956A;border-right:none;border-radius:6px 0 0 6px}
+.tp-lid{position:absolute;top:-5px;left:50%;transform:translateX(-50%);width:20px;height:5px;background:#A07850;border-radius:3px 3px 0 0}
+.tp-lid::after{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:5px;height:3px;background:#A07850;border-radius:3px 3px 0 0}
+
+/* --- 北高峰（山+亭子+小人+小径） --- */
+.peak-wrap{position:relative;height:130px;margin-left:48px;margin-bottom:4px}
+.mt{position:absolute;bottom:0}
+.mt1{left:8%;width:0;height:0;border-left:160px solid transparent;border-right:110px solid transparent;border-bottom:110px solid #5A9A3E}
+.mt2{left:40%;width:0;height:0;border-left:80px solid transparent;border-right:130px solid transparent;border-bottom:80px solid #7BAF58;opacity:.6}
+.mt3{right:5%;width:0;height:0;border-left:70px solid transparent;border-right:80px solid transparent;border-bottom:60px solid #8BC06A;opacity:.45}
+.pavilion{position:absolute}
+.pav-roof{width:24px;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-bottom:8px solid #8B4513}
+.pav-roof::before{content:'';position:absolute;top:8px;left:-6px;width:28px;height:2px;background:#8B4513}
+.pav-pillar{display:flex;gap:8px;justify-content:center;margin-top:1px}
+.pav-p{width:2px;height:7px;background:#A0522D}
+.trail svg{position:absolute;bottom:0}
+.trail path{fill:none;stroke:rgba(200,180,140,.4);stroke-width:2;stroke-dasharray:4 3}
+.pine{position:absolute;bottom:0}
+.pine-t{width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:14px solid #3A7A28;margin:0 auto}
+.pine-t2{width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:16px solid #4A8A30;margin:-4px auto 0}
+.pine-s{width:3px;height:8px;background:#6B4E14;border-radius:1px;margin:0 auto}
+
+/* --- 雷峰塔 + 日落 --- */
+.tower-wrap{position:relative;height:110px;margin-left:48px;margin-bottom:4px;background:linear-gradient(180deg,#FFD4A0 0%,#FFB070 35%,#FF8C60 65%,#E06040 100%);border-radius:14px;overflow:hidden}
+.tower{position:absolute;bottom:6px;left:50%;transform:translateX(-50%)}
+.tw-base{width:38px;height:8px;background:#C4956A;border-radius:2px;border:1px solid #A07850}
+.tw-floor{width:30px;height:10px;background:#D4A878;border:1px solid #B08858;margin:0 auto;position:relative}
+.tw-floor::after{content:'';position:absolute;top:-3px;left:-4px;width:38px;height:3px;background:#8B6914}
+.tw-eave{position:relative;width:38px;height:3px;margin:0 auto}
+.tw-eave::before,.tw-eave::after{content:'';position:absolute;top:-1px;width:4px;height:4px;border-bottom:2px solid #6B4E14}
+.tw-eave::before{left:-2px;border-left:2px solid #6B4E14;border-radius:0 0 0 4px}
+.tw-eave::after{right:-2px;border-right:2px solid #6B4E14;border-radius:0 0 4px 0}
+.tw-top{width:14px;height:5px;background:#D4A878;border:1px solid #B08858;margin:0 auto;border-radius:2px 2px 0 0}
+.tw-spire{width:2px;height:10px;background:#8B6914;margin:0 auto;border-radius:1px}
+.tw-spire::after{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:4px;height:4px;background:#FFD700;border-radius:50%}
+.sun{position:absolute;top:10px;right:18%;width:28px;height:28px;background:radial-gradient(circle,#FFE080,#FFC040);border-radius:50%;box-shadow:0 0 12px rgba(255,200,60,.3)}
+.sun-w{position:absolute;bottom:0;left:0;right:0;height:16px;background:linear-gradient(180deg,rgba(255,140,80,.15),rgba(200,80,40,.2))}
+
+/* --- 夜游河坊街 --- */
+.night-wrap{position:relative;height:95px;margin-left:48px;margin-bottom:4px;background:linear-gradient(180deg,#1A1A3E,#2D2D5E,#3A3A6E);border-radius:14px;overflow:hidden}
+.lantern-n{position:absolute;width:7px;height:10px;background:#FF6644;border-radius:3px;box-shadow:0 0 5px rgba(255,100,60,.35)}
+.lantern-n::before{content:'';position:absolute;top:-2px;left:50%;transform:translateX(-50%);width:4px;height:2px;background:#CC4422;border-radius:1px}
+.star-n{position:absolute;width:2px;height:2px;background:#FFE080;border-radius:50%;box-shadow:0 0 3px rgba(255,224,128,.4)}
+.shop-n{position:absolute;bottom:10px;width:26px;height:18px;border-radius:3px 3px 0 0}
+.shop-win{position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:10px;height:8px;border-radius:2px}
+.street-n{position:absolute;bottom:0;left:0;right:0;height:10px;background:#3A3A5E;border-radius:0 0 14px 14px}
+
+/* --- 龙井茶园 --- */
+.tea-wrap{position:relative;height:90px;margin-left:48px;margin-bottom:4px}
+.terrace{position:absolute;bottom:0;left:0;right:0}
+.t-row{height:12px;border-top:2px solid #8BC06A}
+.t-row:nth-child(1){background:linear-gradient(180deg,#7BAF58,#6A9F48)}
+.t-row:nth-child(2){background:linear-gradient(180deg,#6A9F48,#5A8F38)}
+.t-row:nth-child(3){background:linear-gradient(180deg,#5A8F38,#4A7F28)}
+.bush{position:absolute;width:16px;height:9px;background:#5A9A3E;border-radius:8px 8px 3px 3px}
+
+/* --- 地图标注 --- */
+.map-pin{display:inline-flex;align-items:center;gap:4px;margin:3px 0}
+.pin-icon{width:14px;height:18px;background:#FF6B8A;border-radius:50% 50% 50% 0;transform:rotate(-45deg);position:relative;box-shadow:0 1px 4px rgba(255,107,138,.25)}
+.pin-icon::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:5px;height:5px;background:#fff;border-radius:50%}
+.pin-label{font-size:10px;color:#FF6B8A;font-weight:600}
+
+/* --- 手机 APP --- */
+.phone{width:36px;height:56px;background:#333;border-radius:6px;position:relative;border:2px solid #555}
+.phone-screen{position:absolute;top:4px;left:3px;right:3px;bottom:8px;background:#fff;border-radius:2px;display:flex;align-items:center;justify-content:center}
+.phone-btn{position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:6px;height:3px;background:#555;border-radius:1px}
+.app-icon{width:14px;height:14px;border-radius:3px}
+
+/* === 表格 === */
+.dtbl{margin-top:20px;position:relative;z-index:1}
+.dtbl h3{font-size:15px;font-weight:700;color:#4A3520;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.dtbl table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;border:1.5px solid rgba(230,200,160,.3)}
+.dtbl th{background:linear-gradient(135deg,#FF9A6C,#FF6B8A);color:#fff;padding:8px 10px;font-size:11px;font-weight:600;text-align:left}
+.dtbl td{padding:7px 10px;font-size:10.5px;color:#6A5030;border-bottom:1px solid rgba(230,200,160,.15)}
+.dtbl tr:nth-child(even) td{background:rgba(255,240,220,.2)}
+.dtbl tr:last-child td{border-bottom:none}
+
+/* === 底部 === */
+.ft{margin-top:16px;position:relative;z-index:1}
+.fc{background:rgba(255,255,255,.5);border-radius:12px;padding:12px 16px;margin-bottom:8px}
+.fc h3{font-size:13px;font-weight:700;color:#4A3520;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.wbar{display:flex;gap:6px}
+.wd{flex:1;background:rgba(255,240,220,.4);border-radius:8px;padding:6px;text-align:center}
+.wd .wdt{font-size:9px;color:#9A7B5A}
+.wd .wi{font-size:17px;margin:2px 0}
+.wd .wt{font-size:11px;color:#6A5030;font-weight:600}
+.wd .wds{font-size:9px;color:#9A7B5A}
+.cg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px}
+.ci{display:flex;align-items:center;gap:3px;font-size:11px;color:#6A5030}
+.ci .ck{color:#5CB85C;font-size:10px}
+.sig{text-align:center;margin-top:12px;padding-top:10px;border-top:1.5px dashed rgba(200,170,120,.2)}
+.sig .s1{font-size:11px;color:#B09060}
+.sig .s2{font-size:9px;color:#C8A878;margin-top:3px}
+</style>
+</head>
+<body>
+<div class="poster">
+
+<!-- 散落装饰 -->
+<span class="dk h" style="top:2%;left:3%">♥</span>
+<span class="dk s" style="top:5%;right:4%">✦</span>
+<span class="dk h" style="top:12%;right:2%">♥</span>
+<span class="dk f" style="top:18%;left:2%">❄</span>
+<span class="dk s" style="top:26%;right:5%">✧</span>
+<span class="dk h" style="top:35%;left:4%">♥</span>
+<span class="dk f" style="top:42%;right:3%">❄</span>
+<span class="dk s" style="top:52%;left:2%">✦</span>
+<span class="dk h" style="top:62%;right:4%">♥</span>
+<span class="dk f" style="top:70%;left:3%">❄</span>
+<span class="dk s" style="top:78%;right:2%">✧</span>
+<span class="dk h" style="top:86%;left:5%">♥</span>
+<span class="dk f" style="top:92%;right:4%">❄</span>
+
+<!-- 封面 -->
+<div class="cover">
+  <div class="badge">✈ 现在就出发吧！</div>
+  <h1>小明 × <span class="hl">杭州西湖</span></h1>
+  <div class="sub">两天一夜 · 放空治愈之旅 🌿</div>
+  <div class="dt">2026年4月5日 - 4月6日</div>
+  <div class="tags">
+    <span class="tag">📅 2天1夜</span>
+    <span class="tag">💰 ¥800-1200</span>
+    <span class="tag">🌤 18-24°C</span>
+    <span class="tag">🧘 放松治愈</span>
+  </div>
+  <div class="prow">
+    <div class="av">🧑</div>
+    <span class="pt">👤 小明</span>
+    <span class="pt">🚗 Model Y · 浙A·88888</span>
+    <span class="pt">👫 和女朋友</span>
+  </div>
+</div>
+
+<!-- ===== Step 1: 自驾出发 ===== -->
+<div class="step">
+  <div class="s-head">
+    <div class="s-num">1</div>
+    <span class="s-title">自驾出发</span>
+    <span class="s-time">8:00-10:30</span>
+  </div>
+  <div class="s-body" style="display:flex;align-items:flex-start;gap:20px">
+    <!-- 酒店插画（出发点） -->
+    <div class="hotel">
+      <div class="roof"></div>
+      <div class="eave l"></div>
+      <div class="eave r"></div>
+      <div class="wall">
+        <div class="win" style="top:14px;left:8px"></div>
+        <div class="win" style="top:14px;right:8px"></div>
+        <div class="door"></div>
+        <div class="lantern" style="left:-14px;top:6px"></div>
+        <div class="lantern" style="right:-14px;top:6px"></div>
+      </div>
+    </div>
+    <div>
+      <div class="s-desc"><span class="icon">📍</span> 8:00 酒店出发</div>
+      <div class="s-desc" style="margin-top:4px">
+        <span class="icon">🚗</span> <b>上海→杭州</b> · G60沪昆高速
+      </div>
+      <div class="s-desc"><span class="icon">⏱</span> 约170km · 2.5小时</div>
+      <div class="tip" style="margin-top:6px">
+        <div class="tip-icon">💡</div>
+        <span class="tip-text">清明高速免费！8点前出发避高峰</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 粗绳索 -->
+<div class="rope">
+  <svg viewBox="0 0 200 50">
+    <path d="M30 0 Q0 25 50 30 Q100 35 120 25 Q160 10 170 50" stroke="#D4A060" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M30 0 Q0 25 50 30 Q100 35 120 25 Q160 10 170 50" stroke="#E8C890" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<!-- ===== Step 2: 入住 + Step 3: 断桥漫步（并排） ===== -->
+<div class="grid2">
+  <div class="step">
+    <div class="s-head">
+      <div class="s-num">2</div>
+      <span class="s-title">入住酒店</span>
+      <span class="s-time">10:30</span>
+    </div>
+    <div class="hotel-wrap">
+      <div class="hotel">
+        <div class="roof"></div>
+        <div class="eave l"></div>
+        <div class="eave r"></div>
+        <div class="wall">
+          <div class="win" style="top:14px;left:8px"></div>
+          <div class="win" style="top:14px;right:8px"></div>
+          <div class="door"></div>
+          <div class="lantern" style="left:-14px;top:6px"></div>
+          <div class="lantern" style="right:-14px;top:6px"></div>
+        </div>
+      </div>
+      <div class="luggage"></div>
+    </div>
+    <div class="s-desc" style="padding-left:0"><span class="icon">📍</span> <b>西湖国宾馆</b></div>
+    <div class="s-desc" style="padding-left:0"><span class="icon">💰</span> ¥680/晚 · 含双早 · 免费停车</div>
+  </div>
+  <div class="step">
+    <div class="s-head">
+      <div class="s-num">3</div>
+      <span class="s-title">断桥漫步</span>
+      <span class="s-time">11:00-12:30</span>
+    </div>
+    <div class="bridge-wrap" style="margin-left:0;height:80px">
+      <div class="bridge" style="left:40%;transform:translateX(-50%)">
+        <div class="br-rail"></div>
+        <div class="br-deck"></div>
+        <div class="br-arch"></div>
+      </div>
+      <div class="willow" style="left:10px">
+        <div class="wl-leaves">
+          <div class="wl-leaf" style="left:3px;height:18px"></div>
+          <div class="wl-leaf" style="left:9px;height:22px"></div>
+          <div class="wl-leaf" style="left:15px;height:16px"></div>
+          <div class="wl-leaf" style="left:21px;height:20px"></div>
+        </div>
+        <div class="wl-trunk"></div>
+      </div>
+      <!-- 两人在桥上 -->
+      <div class="person" style="bottom:52px;left:38%">
+        <div class="p-head"></div>
+        <div class="p-body" style="background:#FF9A6C"></div>
+        <div class="p-legs"><div class="p-leg l" style="background:#E07840"></div><div class="p-leg r" style="background:#E07840"></div></div>
+      </div>
+      <div class="person" style="bottom:52px;left:calc(38% + 12px)">
+        <div class="p-head"></div>
+        <div class="p-body" style="background:#6B8AFF"></div>
+        <div class="p-legs"><div class="p-leg l" style="background:#4A6ADF"></div><div class="p-leg r" style="background:#4A6ADF"></div></div>
+      </div>
+      <div class="lake"></div>
+    </div>
+    <div class="s-desc" style="padding-left:0"><span class="icon">📍</span> 断桥残雪→苏堤春晓</div>
+  </div>
+</div>
+
+<!-- 粗绳索 -->
+<div class="rope">
+  <svg viewBox="0 0 200 50">
+    <path d="M30 0 Q80 10 100 30 Q120 50 170 45" stroke="#D4A060" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M30 0 Q80 10 100 30 Q120 50 170 45" stroke="#E8C890" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<!-- ===== Step 4: 午餐楼外楼 ===== -->
+<div class="step">
+  <div class="s-head">
+    <div class="s-num">4</div>
+    <span class="s-title">午餐 · 楼外楼</span>
+    <span class="s-time">12:30-14:00</span>
+  </div>
+  <div class="s-body" style="display:flex;align-items:flex-start;gap:20px">
+    <div style="display:flex;align-items:flex-end;gap:10px">
+      <!-- 西湖醋鱼 -->
+      <div class="dish">
+        <div class="steam" style="top:-10px;left:6px"><div class="stl"></div><div class="stl"></div><div class="stl"></div></div>
+        <div class="fish"><div class="fish-eye"></div></div>
+        <div class="plate"></div>
+      </div>
+      <!-- 东坡肉 -->
+      <div class="dish">
+        <div class="steam" style="top:-10px;left:5px"><div class="stl"></div><div class="stl"></div><div class="stl"></div></div>
+        <div class="dprou"></div>
+        <div class="plate"></div>
+      </div>
+      <!-- 茶壶 -->
+      <div class="teapot">
+        <div class="steam" style="top:-10px;left:8px"><div class="stl"></div><div class="stl"></div><div class="stl"></div></div>
+        <div class="tp-lid"></div>
+        <div class="tp-body"><div class="tp-spout"></div><div class="tp-handle"></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="map-pin"><div class="pin-icon"></div><span class="pin-label">楼外楼 · 孤山路30号</span></div>
+      <div class="s-desc"><span class="icon">🍽</span> 推荐菜品：西湖醋鱼、东坡肉、龙井虾仁</div>
+      <div class="s-desc"><span class="icon">💰</span> 人均消费 ¥150</div>
+      <!-- APP 提示 -->
+      <div style="display:flex;align-items:center;gap:8px;margin-top:6px">
+        <div class="phone">
+          <div class="phone-screen"><div class="app-icon" style="background:#FF6633"></div></div>
+          <div class="phone-btn"></div>
+        </div>
+        <div>
+          <div class="s-desc" style="margin:0"><b>"大众点评" APP搜索</b></div>
+          <div class="tip" style="margin-top:2px">
+            <div class="tip-icon">🔍</div>
+            <span class="tip-text">取号技巧：提前远程取号、淡点进入、避开拱门</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 粗绳索 -->
+<div class="rope">
+  <svg viewBox="0 0 200 50">
+    <path d="M30 0 Q60 40 100 25 Q140 10 170 50" stroke="#D4A060" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M30 0 Q60 40 100 25 Q140 10 170 50" stroke="#E8C890" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<!-- ===== Step 5 + 6 并排：北高峰 + 雷峰夕照 ===== -->
+<div class="grid2">
+  <div class="step">
+    <div class="s-head">
+      <div class="s-num">5</div>
+      <span class="s-title">北高峰登山</span>
+      <span class="s-time">14:30-17:00</span>
+    </div>
+    <div class="peak-wrap" style="margin-left:0;height:110px">
+      <div class="mt mt1" style="left:5%"></div>
+      <div class="mt mt2" style="left:35%"></div>
+      <div class="mt mt3" style="right:3%"></div>
+      <!-- 山顶亭子 -->
+      <div class="pavilion" style="bottom:106px;left:calc(5% + 42px)">
+        <div class="pav-roof"></div>
+        <div class="pav-pillar"><div class="pav-p"></div><div class="pav-p"></div></div>
+      </div>
+      <!-- 之字形小径 -->
+      <div class="trail">
+        <svg viewBox="0 0 40 110" style="left:calc(5% + 60px);width:40px;height:110px">
+          <path d="M35 110 L20 85 L35 60 L15 35 L28 10 L22 0"/>
+        </svg>
+      </div>
+      <!-- 小人背包在山脚 -->
+      <div class="person" style="bottom:2px;left:calc(5% + 80px)">
+        <div class="p-head"></div>
+        <div class="p-body" style="background:#FF6B8A"></div>
+        <div class="p-legs"><div class="p-leg l" style="background:#D05070"></div><div class="p-leg r" style="background:#D05070;transform:rotate(0)"></div></div>
+        <div style="position:absolute;top:8px;right:-4px;width:4px;height:6px;background:#FFD700;border-radius:2px;border:1px solid #E0B800"></div>
+      </div>
+      <div class="pine" style="left:10px"><div class="pine-t"></div><div class="pine-t2"></div><div class="pine-s"></div></div>
+      <div class="pine" style="right:15px"><div class="pine-t" style="border-bottom-color:#3A7A28"></div><div class="pine-t2" style="border-bottom-color:#4A8A30"></div><div class="pine-s"></div></div>
+    </div>
+    <div class="s-desc" style="padding-left:0"><span class="icon">📍</span> <b>北高峰</b> · 海拔314米</div>
+    <div class="tip">
+      <div class="tip-icon pink">⏰</div>
+      <span class="tip-text pink">穿运动鞋！台阶多，带够水</span>
+    </div>
+  </div>
+  <div class="step">
+    <div class="s-head">
+      <div class="s-num">6</div>
+      <span class="s-title">雷峰夕照</span>
+      <span class="s-time">17:30-18:30</span>
+    </div>
+    <div class="tower-wrap" style="margin-left:0;height:100px">
+      <div class="sun"></div>
+      <div class="tower">
+        <div class="tw-spire"></div>
+        <div class="tw-top"></div>
+        <div class="tw-eave"></div>
+        <div class="tw-floor"></div>
+        <div class="tw-eave"></div>
+        <div class="tw-floor"></div>
+        <div class="tw-eave"></div>
+        <div class="tw-floor"></div>
+        <div class="tw-eave"></div>
+        <div class="tw-base"></div>
+      </div>
+      <!-- 两人背影坐在湖边 -->
+      <div class="person" style="bottom:18px;left:18%">
+        <div class="p-head"></div>
+        <div class="p-body" style="background:#FF9A6C;height:10px"></div>
+      </div>
+      <div class="person" style="bottom:18px;left:calc(18% + 12px)">
+        <div class="p-head"></div>
+        <div class="p-body" style="background:#6B8AFF;height:10px"></div>
+      </div>
+      <div class="sun-w"></div>
+    </div>
+    <div class="s-desc" style="padding-left:0"><span class="icon">📍</span> <b>长桥公园</b> · 西湖十景</div>
+  </div>
+</div>
+
+<!-- 粗绳索 -->
+<div class="rope">
+  <svg viewBox="0 0 200 50">
+    <path d="M30 0 Q10 30 60 35 Q110 40 140 20 Q170 0 170 50" stroke="#D4A060" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M30 0 Q10 30 60 35 Q110 40 140 20 Q170 0 170 50" stroke="#E8C890" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<!-- ===== Step 7: 夜游河坊街 ===== -->
+<div class="step">
+  <div class="s-head">
+    <div class="s-num">7</div>
+    <span class="s-title">河坊街 · 夜游</span>
+    <span class="s-time">19:00-21:00</span>
+  </div>
+  <div class="night-wrap">
+    <div class="star-n" style="top:8%;left:12%"></div>
+    <div class="star-n" style="top:6%;left:35%"></div>
+    <div class="star-n" style="top:10%;right:18%"></div>
+    <div class="star-n" style="top:5%;right:32%"></div>
+    <div class="lantern-n" style="top:20%;left:18%"></div>
+    <div class="lantern-n" style="top:18%;left:42%"></div>
+    <div class="lantern-n" style="top:22%;right:22%"></div>
+    <div class="shop-n" style="left:8%;background:#3A3A5E"><div class="shop-win" style="background:rgba(255,200,100,.35)"></div></div>
+    <div class="shop-n" style="left:28%;background:#3A3A5E"><div class="shop-win" style="background:rgba(255,180,80,.3)"></div></div>
+    <div class="shop-n" style="right:12%;background:#3A3A5E"><div class="shop-win" style="background:rgba(255,220,120,.35)"></div></div>
+    <div class="shop-n" style="right:32%;background:#3A3A5E"><div class="shop-win" style="background:rgba(255,160,80,.25)"></div></div>
+    <!-- 两人逛街 -->
+    <div class="person" style="bottom:10px;left:40%">
+      <div class="p-head"></div>
+      <div class="p-body" style="background:#FF9A6C"></div>
+      <div class="p-legs"><div class="p-leg l" style="background:#E07840"></div><div class="p-leg r" style="background:#E07840"></div></div>
+    </div>
+    <div class="person" style="bottom:10px;left:calc(40% + 14px)">
+      <div class="p-head"></div>
+      <div class="p-body" style="background:#6B8AFF"></div>
+      <div class="p-legs"><div class="p-leg l" style="background:#4A6ADF"></div><div class="p-leg r" style="background:#4A6ADF"></div></div>
+    </div>
+    <div class="street-n"></div>
+  </div>
+  <div class="s-body">
+    <div class="s-desc"><span class="icon">📍</span> <b>河坊街</b> · 小吃美食街</div>
+    <div class="s-desc"><span class="icon">🌙</span> 饭后沿湖看音乐喷泉</div>
+  </div>
+</div>
+
+<!-- 粗绳索 -->
+<div class="rope">
+  <svg viewBox="0 0 200 50">
+    <path d="M30 0 Q50 35 100 30 Q150 25 170 50" stroke="#D4A060" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M30 0 Q50 35 100 30 Q150 25 170 50" stroke="#E8C890" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<!-- ===== Step 8 + 9 并排：龙井问茶 + 返程 ===== -->
+<div class="grid2">
+  <div class="step">
+    <div class="s-head">
+      <div class="s-num g">8</div>
+      <span class="s-title">龙井问茶</span>
+      <span class="s-time g">Day2 9:00</span>
+    </div>
+    <div class="tea-wrap" style="margin-left:0;height:80px">
+      <div class="terrace">
+        <div class="t-row">
+          <div class="bush" style="left:10px;top:1px"></div>
+          <div class="bush" style="left:40px;top:1px"></div>
+          <div class="bush" style="left:70px;top:1px"></div>
+          <div class="bush" style="left:110px;top:1px"></div>
+          <div class="bush" style="left:150px;top:1px"></div>
+          <div class="bush" style="left:200px;top:1px"></div>
+          <div class="bush" style="left:250px;top:1px"></div>
+        </div>
+        <div class="t-row">
+          <div class="bush" style="left:25px;top:1px"></div>
+          <div class="bush" style="left:55px;top:1px"></div>
+          <div class="bush" style="left:90px;top:1px"></div>
+          <div class="bush" style="left:130px;top:1px"></div>
+          <div class="bush" style="left:170px;top:1px"></div>
+          <div class="bush" style="left:220px;top:1px"></div>
+        </div>
+        <div class="t-row">
+          <div class="bush" style="left:15px;top:1px"></div>
+          <div class="bush" style="left:50px;top:1px"></div>
+          <div class="bush" style="left:85px;top:1px"></div>
+          <div class="bush" style="left:120px;top:1px"></div>
+          <div class="bush" style="left:160px;top:1px"></div>
+          <div class="bush" style="left:210px;top:1px"></div>
+        </div>
+      </div>
+      <!-- 茶壶 -->
+      <div class="teapot" style="position:absolute;bottom:40px;right:20px">
+        <div class="steam" style="top:-10px;left:8px"><div class="stl"></div><div class="stl"></div><div class="stl"></div></div>
+        <div class="tp-lid"></div>
+        <div class="tp-body"><div class="tp-spout"></div><div class="tp-handle"></div></div>
+      </div>
+    </div>
+    <div class="map-pin"><div class="pin-icon"></div><span class="pin-label">龙井村</span></div>
+    <div class="s-desc" style="padding-left:0"><span class="icon">🍃</span> 明前龙井 · 人均¥60</div>
+  </div>
+  <div class="step">
+    <div class="s-head">
+      <div class="s-num g">9</div>
+      <span class="s-title">返程回家</span>
+      <span class="s-time g">14:00</span>
+    </div>
+    <!-- 简化地图 + 路线 -->
+    <div style="position:relative;height:70px;margin-bottom:6px">
+      <div style="position:absolute;bottom:0;left:10%;width:35%;height:50px;background:rgba(144,200,160,.3);border-radius:8px"></div>
+      <div style="position:absolute;bottom:0;right:10%;width:30%;height:45px;background:rgba(160,180,220,.3);border-radius:8px"></div>
+      <div class="map-pin" style="position:absolute;bottom:50px;left:20%"><div class="pin-icon"></div><span class="pin-label">杭州</span></div>
+      <div class="map-pin" style="position:absolute;bottom:45px;right:18%"><div class="pin-icon"></div><span class="pin-label">上海</span></div>
+      <!-- 虚线路径 -->
+      <svg style="position:absolute;bottom:30px;left:28%;width:40%;height:20px">
+        <line x1="0" y1="10" x2="100%" y2="10" stroke="#D4A060" stroke-width="2" stroke-dasharray="6 4"/>
+        <polygon points="100%,10 95%,5 95%,15" fill="#D4A060" transform="translate(-5,0)"/>
+      </svg>
+    </div>
+    <div class="s-desc" style="padding-left:0"><span class="icon">🚗</span> <b>杭州→上海</b> · G60 · 约2.5h</div>
+    <div class="tip">
+      <div class="tip-icon">💡</div>
+      <span class="tip-text">14点前出发避返程高峰</span>
+    </div>
+  </div>
+</div>
+
+<!-- 详细表格 -->
+<div class="dtbl">
+  <h3>📋 详细行程一览</h3>
+  <table>
+    <tr><th>时间</th><th>活动</th><th>地点</th><th>交通</th><th>费用</th><th>备注</th></tr>
+    <tr><td>Day1 8:00</td><td>出发</td><td>上海→杭州</td><td>自驾G60</td><td>高速免费</td><td>8点前出发</td></tr>
+    <tr><td>10:30</td><td>入住</td><td>西湖国宾馆</td><td>—</td><td>¥680/晚</td><td>含双早·停车</td></tr>
+    <tr><td>11:00</td><td>漫步</td><td>断桥→苏堤</td><td>步行</td><td>免费</td><td>拍照</td></tr>
+    <tr><td>12:30</td><td>午餐</td><td>楼外楼</td><td>步行</td><td>人均¥150</td><td>提前取号</td></tr>
+    <tr><td>14:30</td><td>登山</td><td>北高峰</td><td>步行</td><td>免费</td><td>运动鞋·带水</td></tr>
+    <tr><td>17:30</td><td>日落</td><td>长桥公园</td><td>步行</td><td>免费</td><td>雷峰夕照</td></tr>
+    <tr><td>19:00</td><td>夜游</td><td>河坊街</td><td>打车</td><td>人均¥80</td><td>音乐喷泉</td></tr>
+    <tr><td>Day2 9:00</td><td>问茶</td><td>龙井村</td><td>自驾</td><td>人均¥60</td><td>买新茶</td></tr>
+    <tr><td>14:00</td><td>返程</td><td>杭州→上海</td><td>自驾G60</td><td>高速免费</td><td>避高峰</td></tr>
+  </table>
+</div>
+
+<!-- 底部 -->
+<div class="ft">
+  <div class="fc">
+    <h3>🌤 天气</h3>
+    <div class="wbar">
+      <div class="wd"><div class="wdt">4月5日</div><div class="wi">⛅</div><div class="wt">18-24°C</div><div class="wds">多云 · 适合出行</div></div>
+      <div class="wd"><div class="wdt">4月6日</div><div class="wi">🌤</div><div class="wt">16-22°C</div><div class="wds">晴 · 带薄外套</div></div>
+    </div>
+  </div>
+  <div class="fc">
+    <h3>🎒 必备清单</h3>
+    <div class="cg">
+      <div class="ci"><span class="ck">✓</span> 身份证×2</div>
+      <div class="ci"><span class="ck">✓</span> 运动鞋</div>
+      <div class="ci"><span class="ck">✓</span> 防晒+墨镜</div>
+      <div class="ci"><span class="ck">✓</span> 薄外套</div>
+      <div class="ci"><span class="ck">✓</span> 充电宝</div>
+      <div class="ci"><span class="ck">✓</span> 相机</div>
+    </div>
+  </div>
+  <div class="sig">
+    <div class="s1">🧑 小明 & 👫 女朋友 · 杭州西湖放空之旅</div>
+    <div class="s2">Powered by ✈ 现在就出发吧！</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "name": "gbrow",
+  "version": "1.0.0",
+  "description": "Full-featured headless browser skill for OpenClaw. Navigate, snapshot with accessibility tree, click by @ref, tabs, JS execution — no vision model needed.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "server": "bun run src/server.ts",
+    "setup": "bash setup.sh"
+  },
+  "dependencies": {
+    "playwright": "^1.58.0",
+    "diff": "^7.0.0"
+  },
+  "keywords": [
+    "openclaw",
+    "ai-agent",
+    "browser",
+    "headless",
+    "playwright",
+    "automation",
+    "accessibility-tree",
+    "snapshot",
+    "web-scraping",
+    "agent-browser",
+    "mcp",
+    "a2a"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashish797/Gbrow"
+  }
+}

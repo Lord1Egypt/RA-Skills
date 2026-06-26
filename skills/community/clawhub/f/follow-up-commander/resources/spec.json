@@ -1,0 +1,37 @@
+{
+  "slug": "follow-up-commander",
+  "title": "会后跟进指挥官",
+  "category": "meeting",
+  "categoryLabel": "会议与执行",
+  "mode": "structured_brief",
+  "summary": "把会后事项拆成行动清单、催办节奏、邮件草稿和下次同步议题。",
+  "inputHint": "会议纪要、参与角色、优先级",
+  "sections": [
+    "行动清单",
+    "负责人映射",
+    "建议邮件草稿",
+    "升级与催办规则",
+    "下次同步议题",
+    "未决问题"
+  ],
+  "useCases": [
+    "会后行动清单",
+    "邮件草拟",
+    "责任分发"
+  ],
+  "positiveExamples": [
+    "把会后事项整理成行动清单和邮件草稿",
+    "按负责人拆分 follow-up"
+  ],
+  "negativeExamples": [
+    "不要用来直接发送邮件",
+    "不要用来伪造完成状态"
+  ],
+  "risk": "默认只生成文本，不直接调用外部邮箱。",
+  "tags": [
+    "followup",
+    "meeting",
+    "email",
+    "action-items"
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Git Commit Workflow"
+  short_description: "Stage and create one safe commit"
+  default_prompt: "Review the current diff, stage the right files, and create one well-formed commit without amending."

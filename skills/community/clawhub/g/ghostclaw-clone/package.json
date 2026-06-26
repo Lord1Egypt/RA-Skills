@@ -1,0 +1,42 @@
+{
+    "name": "ghostclaw",
+    "version": "0.1.9",
+    "description": "Architectural code review assistant that perceives code vibes",
+    "bin": {
+        "ghostclaw": "./bin/ghostclaw.sh"
+    },
+    "scripts": {
+        "install-deps": "pip install -r requirements-dev.txt",
+        "install-service": "./scripts/install_service.sh",
+        "test": "python3 -m pytest -p no:sugar tests/unit",
+        "build": "./scripts/install.sh",
+        "postinstall": "./scripts/setup-path.sh"
+    },
+    "keywords": [
+        "ghostclaw",
+        "openclaw-skill",
+        "agents-skill",
+        "agents-skills",
+        "agents-skills-ghostclaw",
+        "agents-skills-ghostclaw-architecture",
+        "agents-skills-ghostclaw-architecture-code-review",
+        "architecture",
+        "code-review"
+    ],
+    "author": "Ev3lynx",
+    "github": "Ev3lynx727/ghostclaw",
+    "license": "MIT",
+    "openclaw": {
+        "skill": true,
+        "entry": "~/.local/bin/ghostclaw"
+    },
+    "files": [
+        "SKILL.md",
+        "src/",
+        "scripts/",
+        "README.md",
+        "CHANGELOG.md",
+        "LICENSE",
+        "AGENTS.md"
+    ]
+}

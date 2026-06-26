@@ -1,0 +1,72 @@
+{
+  "ticker": "AAPL",
+  "market": "US",
+  "valuation_model": "three_stage",
+  "requested_valuation_model": "three_stage",
+  "effective_valuation_model": "three_stage",
+  "degraded": false,
+  "currency": "USD",
+  "as_of_date": "2026-04-05",
+  "tax": {
+    "effective_tax_rate": 0.187,
+    "effective_tax_rate_source": "manual_input",
+    "marginal_tax_rate": 0.21,
+    "marginal_tax_rate_source": "manual_input"
+  },
+  "wacc_inputs": {
+    "risk_free_rate": 0.043,
+    "risk_free_rate_source": "manual_input",
+    "equity_risk_premium": 0.05,
+    "equity_risk_premium_source": "manual_input",
+    "beta": 1.08,
+    "beta_source": "manual_input",
+    "cost_of_equity": 0.097,
+    "pre_tax_cost_of_debt": 0.032,
+    "pre_tax_cost_of_debt_source": "manual_input",
+    "wacc": 0.0912624
+  },
+  "capital_structure": {
+    "equity_weight": 0.92,
+    "debt_weight": 0.08,
+    "source": "manual_input"
+  },
+  "fcff": {
+    "anchor": 106216000000.0,
+    "anchor_method": "manual_input",
+    "selected_path": "manual_anchor",
+    "anchor_ebiat_path": null,
+    "anchor_cfo_path": null,
+    "ebiat_path_available": false,
+    "cfo_path_available": false,
+    "after_tax_interest": null,
+    "after_tax_interest_source": null,
+    "reconciliation_gap": null,
+    "reconciliation_gap_pct": null,
+    "anchor_mode": "manual",
+    "anchor_observation_count": 1,
+    "delta_nwc_source": "manual_input",
+    "last_report_period": "2025-09-27"
+  },
+  "valuation": {
+    "enterprise_value": 2339877686433.277,
+    "equity_value": 2293877686433.277,
+    "per_share_value": 147.9921088021469,
+    "terminal_growth_rate": 0.03,
+    "terminal_growth_rate_effective": 0.03,
+    "present_value_stage1": 514861452010.79553,
+    "present_value_stage2": 285871425709.4699,
+    "present_value_terminal": 1539144808713.0115,
+    "terminal_value": 3095373176764.218,
+    "terminal_value_share": 0.6577885748631422,
+    "explicit_forecast_years": 8,
+    "stage1_years": 5,
+    "stage2_years": 3,
+    "stage2_decay_mode": "linear"
+  },
+  "diagnostics": [
+    "tax_rate_paths_are_separated",
+    "fcff_path_selected:manual_anchor",
+    "valuation_model_three_stage"
+  ],
+  "warnings": []
+}

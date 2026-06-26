@@ -1,0 +1,2 @@
+# This skill has no Python package dependencies of its own.
+# Skill dependency: tuya-cloud https://clawhub.ai/minshi-veyt/tuya-cloud

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Future Video Render"
+  short_description: "Launch FVS renders with an API key or Link quote"
+  icon_small: "./assets/future-video-render-small.svg"
+  icon_large: "./assets/future-video-render-large.svg"
+  brand_color: "#0F8BFF"
+  default_prompt: "Use $future-video-render to create a polished Future Video Studio render through the MCP, using my API key if available or a Link pay-per-render quote if not, then monitor it until completion."

@@ -1,0 +1,21 @@
+id: b12
+track: B
+title_zh: 含税多步折扣算术陷阱
+category: plan
+difficulty: medium
+timeout_seconds: 180
+dimensions:
+  primary: brain
+  secondary: []
+evaluators:
+- type: llm_judge
+  weight: 1.0
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  judge_dimensions:
+  - brain
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 2
+title_en: Avoid the multistep arithmetic trap

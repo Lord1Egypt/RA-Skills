@@ -1,0 +1,116 @@
+{
+  "gitlab": {
+    "url": "https://gitlab.example.com",
+    "token": "glpat-your-token-here"
+  },
+  "users": [
+    {"username": "user_a", "id": 101, "name": "成员A"},
+    {"username": "user_b", "id": 102, "name": "成员B"},
+    {"username": "user_c", "id": 103, "name": "成员C"}
+  ],
+  "feishu": {
+    "enabled": false,
+    "doc_url": "",
+    "parent_wiki_url": "https://your-domain.feishu.cn/wiki/parent-node",
+    "user_token_file": "~/path/to/feishu_token.json",
+    "app_id": "cli_xxxxxxxx",
+    "app_secret": "xxxxxxxx"
+  },
+  "visualization": {
+    "enabled": true,
+    "charts": ["commits_by_user", "mr_status", "daily_activity", "project_distribution"],
+    "output_format": "png"
+  },
+  "report": {
+    "output_dir": "./reports",
+    "template": "default",
+    "include_charts": true,
+    "generate_html": true,
+    "generate_index": true,
+    "classification_rules_file": "./config/classification.rules.json",
+    "title_prefix": "Engineering Weekly Report",
+    "exclude_repos": [
+      "example-org/sandbox-repo"
+    ]
+  },
+  "classification": {
+    "产品与体验": [
+      {
+        "name": "客户端与界面体验",
+        "repo_keywords": ["client", "app", "frontend", "web", "ios", "android"],
+        "mr_keywords": ["ui", "ux", "交互", "体验", "页面", "客户端", "前端"],
+        "label_keywords": ["frontend", "ui", "ux"]
+      },
+      {
+        "name": "性能与稳定性",
+        "repo_keywords": ["runtime", "core", "performance", "stability"],
+        "mr_keywords": ["性能", "优化", "稳定", "crash", "latency", "memory"],
+        "label_keywords": ["performance", "stability", "bugfix"]
+      },
+      {
+        "name": "数据与可观测性",
+        "repo_keywords": ["data", "analytics", "monitor", "metrics", "logging"],
+        "mr_keywords": ["监控", "日志", "埋点", "analytics", "metrics", "observability"],
+        "label_keywords": ["monitoring", "analytics", "data"]
+      },
+      {
+        "name": "安全与配置管理",
+        "repo_keywords": ["auth", "security", "config", "policy"],
+        "mr_keywords": ["权限", "认证", "安全", "配置", "token", "policy"],
+        "label_keywords": ["security", "auth", "config"]
+      }
+    ],
+    "业务与运营": [
+      {
+        "name": "账号与身份",
+        "repo_keywords": ["auth", "account", "user", "profile"],
+        "mr_keywords": ["登录", "注册", "账号", "账户", "profile", "身份"],
+        "label_keywords": ["auth", "account", "user"]
+      },
+      {
+        "name": "商业化与支付",
+        "repo_keywords": ["billing", "payment", "subscription", "checkout"],
+        "mr_keywords": ["支付", "订阅", "套餐", "billing", "invoice", "checkout"],
+        "label_keywords": ["billing", "payment", "subscription"]
+      },
+      {
+        "name": "增长与用户运营",
+        "repo_keywords": ["growth", "marketing", "engagement", "retention", "notification"],
+        "mr_keywords": ["增长", "转化", "留存", "运营", "campaign", "push", "通知"],
+        "label_keywords": ["growth", "marketing", "conversion", "retention", "engagement"]
+      },
+      {
+        "name": "后台与运营工具",
+        "repo_keywords": ["admin", "console", "ops", "dashboard"],
+        "mr_keywords": ["后台", "管理台", "配置台", "审批", "console", "dashboard"],
+        "label_keywords": ["admin", "ops", "console"]
+      }
+    ],
+    "核心平台能力": [
+      {
+        "name": "会话与交互流程",
+        "repo_keywords": ["chat", "conversation", "session", "message"],
+        "mr_keywords": ["会话", "消息", "发送", "接收", "渲染", "conversation", "session"],
+        "label_keywords": ["chat", "conversation", "message"]
+      },
+      {
+        "name": "上下文与记忆",
+        "repo_keywords": ["memory", "context", "history", "search"],
+        "mr_keywords": ["记忆", "上下文", "history", "summary", "embedding", "检索"],
+        "label_keywords": ["memory", "context"]
+      },
+      {
+        "name": "自动化与工具集成",
+        "repo_keywords": ["agent", "tool", "plugin", "mcp", "workflow", "gateway", "api"],
+        "mr_keywords": ["agent", "tool", "插件", "技能", "workflow", "automation", "api"],
+        "label_keywords": ["agent", "tools", "plugin", "automation"]
+      },
+      {
+        "name": "模型与推理服务",
+        "repo_keywords": ["model", "llm", "router", "inference"],
+        "mr_keywords": ["模型", "推理", "路由", "provider", "reasoning", "prompt", "token"],
+        "label_keywords": ["model", "llm", "inference"]
+      }
+    ]
+  }
+}

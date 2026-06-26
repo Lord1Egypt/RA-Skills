@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>萤火虫空压机 报价单 — {{QUOTE_NO}}</title>
+<style>
+:root{
+  --primary:#1B8C3A;--primary-dark:#0E5C25;--primary-light:#4CAF50;
+  --primary-bg:#E8F5E9;--secondary:#1565C0;--accent:#F57C00;--accent-hover:#E65100;
+  --text:#1A1A1A;--text2:#555;--text3:#888;
+  --bg:#FAFAFA;--card:#FFF;--border:#E0E0E0;
+  --font:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  --shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:1.6}
+.container{max-width:900px;margin:0 auto;padding:0 20px}
+
+/* Header */
+.header{padding:32px 0 20px;border-bottom:3px solid var(--primary)}
+.header__inner{display:flex;justify-content:space-between;align-items:flex-start}
+.header__brand{display:flex;align-items:center;gap:12px}
+.header__logo{width:48px;height:48px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.3rem;flex-shrink:0}
+.header__name{font-size:1.3rem;font-weight:700;color:var(--primary-dark)}
+.header__sub{font-size:0.75rem;color:var(--text3)}
+.header__meta{text-align:right;font-size:0.85rem}
+.header__meta .quote-no{font-size:1.2rem;font-weight:700;color:var(--primary)}
+.header__meta .date{color:var(--text3);margin-top:4px}
+
+/* Section */
+.section{margin:24px 0}
+.section__title{font-size:1.1rem;font-weight:700;color:var(--primary-dark);border-bottom:2px solid var(--primary-bg);padding-bottom:8px;margin-bottom:12px}
+
+/* Customer info */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px}
+.info-item{display:flex}
+.info-label{color:var(--text3);width:70px;flex-shrink:0}
+.info-value{font-weight:500}
+
+/* Table */
+.table{width:100%;border-collapse:collapse;margin:12px 0}
+.table th{background:var(--primary);color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:0.9rem}
+.table th:last-child,.table th:nth-last-child(2){text-align:right}
+.table td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:0.9rem}
+.table td:last-child,.table td:nth-last-child(2){text-align:right;font-weight:600}
+.table tbody tr:hover{background:var(--primary-bg)}
+.table .total-row td{font-weight:700;border-top:2px solid var(--primary);background:var(--primary-bg);font-size:0.95rem}
+.table .total-row td:last-child{color:var(--primary-dark)}
+
+/* Fee summary */
+.fee-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 0;max-width:500px;margin:12px 0}
+.fee-item{display:flex;justify-content:space-between;padding:4px 0}
+.fee-item--total{font-size:1.1rem;font-weight:700;color:var(--primary-dark);border-top:2px solid var(--primary);padding-top:8px;margin-top:4px}
+.fee-item--grand{font-size:1.3rem;font-weight:700;color:var(--accent);border-top:2px solid var(--accent);padding-top:8px}
+
+/* Terms */
+.terms-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px}
+.terms-item{display:flex}
+.terms-label{color:var(--text3);width:80px;flex-shrink:0;font-size:0.85rem}
+.terms-value{font-size:0.85rem;font-weight:500}
+
+/* Footer */
+.footer{margin-top:32px;padding:20px 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:0.8rem;color:var(--text3)}
+.footer__contact{line-height:1.8}
+.footer__stamp{text-align:right}
+.validity{color:var(--accent);font-weight:600}
+
+/* Print */
+@media print{
+  body{background:#fff}.container{max-width:100%}
+  .header{padding:16px 0 12px}
+  .section{margin:16px 0}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <div class="header__inner">
+    <div class="header__brand">
+      <div class="header__logo">萤</div>
+      <div>
+        <div class="header__name">萤火虫空压机</div>
+        <div class="header__sub">广州市萤火虫智能装备技术有限公司</div>
+      </div>
+    </div>
+    <div class="header__meta">
+      <div class="quote-no">报价单号：{{QUOTE_NO}}</div>
+      <div class="date">日期：{{QUOTE_DATE}} | 有效期：30 天</div>
+    </div>
+  </div>
+</div>
+
+<!-- Customer Info -->
+<div class="section">
+  <div class="section__title">客户信息 / Customer Information</div>
+  <div class="info-grid">
+    <div class="info-item"><span class="info-label">客户名称</span><span class="info-value">{{CUSTOMER_NAME}}</span></div>
+    <div class="info-item"><span class="info-label">联系人</span><span class="info-value">{{CONTACT_PERSON}}</span></div>
+    <div class="info-item"><span class="info-label">联系电话</span><span class="info-value">{{CONTACT_PHONE}}</span></div>
+    <div class="info-item"><span class="info-label">项目名称</span><span class="info-value">{{PROJECT_NAME}}</span></div>
+  </div>
+</div>
+
+<!-- Equipment List -->
+<div class="section">
+  <div class="section__title">设备清单 / Equipment List</div>
+  <table class="table">
+    <thead>
+      <tr><th>序号</th><th>型号</th><th>名称</th><th>数量</th><th>单价(万元)</th><th>金额(万元)</th></tr>
+    </thead>
+    <tbody>
+      {{LINE_ITEMS}}
+      <tr class="total-row"><td colspan="5">设备总价</td><td>{{TOTAL_PRICE}}</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Fee Details -->
+<div class="section">
+  <div class="section__title">费用明细 / Fee Breakdown</div>
+  <div class="fee-grid">
+    <div class="fee-item"><span>设备总价</span><span>{{TOTAL_PRICE}} 万元</span></div>
+    <div class="fee-item"><span>折扣 ({{DISCOUNT_PCT}}%)</span><span>-{{DISCOUNT_AMOUNT}} 万元</span></div>
+    <div class="fee-item"><span>折后总价</span><span>{{AFTER_DISCOUNT}} 万元</span></div>
+    <div class="fee-item"><span>运费</span><span>{{FREIGHT_AMOUNT}} 万元</span></div>
+    <div class="fee-item"><span>安装调试费</span><span>{{INSTALL_AMOUNT}} 万元</span></div>
+    {{OPTIONAL_FEES}}
+    <div class="fee-item fee-item--total"><span>不含税合计</span><span>{{SUBTOTAL}} 万元</span></div>
+    <div class="fee-item"><span>增值税 (13%)</span><span>{{VAT_AMOUNT}} 万元</span></div>
+    <div class="fee-item fee-item--grand"><span>含税总价</span><span>{{GRAND_TOTAL}} 万元</span></div>
+  </div>
+</div>
+
+<!-- Terms -->
+<div class="section">
+  <div class="section__title">商务条款 / Commercial Terms</div>
+  <div class="terms-grid">
+    <div class="terms-item"><span class="terms-label">交货期</span><span class="terms-value">{{LEAD_TIME}} 天</span></div>
+    <div class="terms-item"><span class="terms-label">质保期</span><span class="terms-value">{{WARRANTY}} 年</span></div>
+    <div class="terms-item"><span class="terms-label">付款方式</span><span class="terms-value">预付30% + 发货前60% + 10%</span></div>
+    <div class="terms-item"><span class="terms-label">运输方式</span><span class="terms-value">汽运</span></div>
+    <div class="terms-item"><span class="terms-label">安装调试</span><span class="terms-value">卖方负责</span></div>
+    <div class="terms-item"><span class="terms-label">售后响应</span><span class="terms-value">24小时</span></div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer__contact">
+    📞 13825202084（邹先生）<br/>
+    📧 aifirefly@163.com<br/>
+    🌐 www.fireflies.net.cn
+  </div>
+  <div class="footer__stamp">
+    <p>广州市萤火虫智能装备技术有限公司</p>
+    <p class="validity">报价有效期：30 天</p>
+    <p style="margin-top:4px;color:var(--text3);font-size:0.7rem">最终价格以合同为准</p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

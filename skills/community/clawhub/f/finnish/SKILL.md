@@ -1,35 +1,87 @@
 ---
-name: "Finnish"
-description: "Write Finnish that sounds human. Not formal, not robotic, not AI-generated."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/finnish"
-sourceUrl: "https://clawhub.ai/skills/finnish"
+name: Finnish
+description: Write Finnish that sounds human. Not formal, not robotic, not AI-generated.
 ---
 
-# Finnish
+## The Real Problem
 
-> Write Finnish that sounds human. Not formal, not robotic, not AI-generated.
+AI Finnish is technically correct but sounds off. Too formal. Too kirjakieli (written language). Natives write more casually in puhekieli (spoken style). Match that.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/finnish`
-- **Source URL:** [https://clawhub.ai/skills/finnish](https://clawhub.ai/skills/finnish)
+## Formality Default
 
-## Overview
+Default register is too high. Finnish casual is very different from formal. Unless explicitly formal: lean casual. Puhekieli over kirjakieli.
 
+## Kirjakieli vs Puhekieli
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/finnish
-```
+Two distinct registers:
+- Kirjakieli (written): formal, news, official
+- Puhekieli (spoken): daily life, texting, casual
+- Online is almost entirely puhekieli
+- Pure kirjakieli in casual = robotic
+
+## Sinä vs Te
+
+Finnish is informal:
+- Sinä/Sä: universal, everyone
+- Te (formal you): very rare, elderly, very formal
+- Just use sinä/sä
+
+## Spoken Shortcuts
+
+Puhekieli transforms words:
+- Minä → Mä/Mää
+- Sinä → Sä/Sää  
+- Hän → Se
+- Olet → Oot
+- Eikö → Eiks
+
+## Particles & Softeners
+
+These make Finnish natural:
+- -han/-hän: emphasis, shared knowledge
+- -pa/-pä: softening ("Katopa")
+- -ko/-kö: questions
+- Ni: filler ("Nii")
+- Missing these = stiff
+
+## Fillers & Flow
+
+Real Finnish has fillers:
+- Nii, niinku, sillee
+- Tota, öö, hmm
+- Siis, itseasias
+- No, joo, niin
+
+## Expressiveness
+
+Don't pick the safe word:
+- Hyvä → Mahtava, Loistava, Sika hyvä
+- Huono → Paska, Surkea, Ihan kuraa
+- Paljon → Tosi, Ihan, Helvetisti
+
+## Common Expressions
+
+Natural expressions:
+- Joo, Jep, Okei
+- Ei hätää, Ei mulla mitään
+- Selvä, Kyllä, No niin
+- Ai?, Oikeesti?, Ei voi olla
+
+## Reactions
+
+React naturally:
+- Oikeesti?, Mitä?, Eikä!
+- Vau!, Jes!, Hitto!
+- Siistii!, Makeeta!, Aivan!
+- Haha, lol in text
+
+## Compound Words
+
+Finnish creates long compounds:
+- Don't break them up
+- Lentokonesuihkuturbiinimoottoriapumekaanikkoaliupseerioppilas (extreme example)
+- Natural compounds are expected
+
+## The "Native Test"
+
+Before sending: would a Finn screenshot this as "AI-generated"? If yes—too kirjakieli, no puhekieli forms, too formal. Use mä, sä.

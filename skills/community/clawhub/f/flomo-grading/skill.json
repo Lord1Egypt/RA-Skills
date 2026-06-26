@@ -1,0 +1,7 @@
+{
+  "name": "flomo-grading",
+  "version": "1.3.0",
+  "description": "flomo笔记打分游戏，学习你的好笔记标准，持续迭代打分原则。v1.3: 新增AI打分建议功能",
+  "tags": ["flomo", "note-taking", "grading", "game", "productivity"],
+  "author": "jayshna"
+}

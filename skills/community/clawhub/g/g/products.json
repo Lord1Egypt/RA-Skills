@@ -1,0 +1,204 @@
+{
+  "products": [
+    {
+      "id": "search",
+      "name": "Google Search",
+      "icon": "🔍",
+      "description": "全球最大的搜索引擎，快速查找任何信息",
+      "url": "https://www.google.com",
+      "category": "搜索类"
+    },
+    {
+      "id": "scholar",
+      "name": "Google Scholar",
+      "icon": "📚",
+      "description": "学术文献搜索，查找论文、书籍和学术资源",
+      "url": "https://scholar.google.com",
+      "category": "搜索类"
+    },
+    {
+      "id": "news",
+      "name": "Google News",
+      "icon": "📰",
+      "description": "实时新闻聚合，了解全球热点资讯",
+      "url": "https://news.google.com",
+      "category": "搜索类"
+    },
+    {
+      "id": "trends",
+      "name": "Google Trends",
+      "icon": "📈",
+      "description": "搜索趋势分析，了解热门话题",
+      "url": "https://trends.google.com",
+      "category": "搜索类"
+    },
+    {
+      "id": "gmail",
+      "name": "Gmail",
+      "icon": "📧",
+      "description": "智能电子邮件服务，安全可靠的邮箱",
+      "url": "https://mail.google.com",
+      "category": "通讯类"
+    },
+    {
+      "id": "meet",
+      "name": "Google Meet",
+      "icon": "📹",
+      "description": "高清视频会议，随时随地进行线上会议",
+      "url": "https://meet.google.com",
+      "category": "通讯类"
+    },
+    {
+      "id": "chat",
+      "name": "Google Chat",
+      "icon": "💬",
+      "description": "团队即时通讯，高效协作沟通",
+      "url": "https://chat.google.com",
+      "category": "通讯类"
+    },
+    {
+      "id": "drive",
+      "name": "Google Drive",
+      "icon": "💾",
+      "description": "云端存储，安全保存和分享文件",
+      "url": "https://drive.google.com",
+      "category": "办公类"
+    },
+    {
+      "id": "docs",
+      "name": "Google Docs",
+      "icon": "📝",
+      "description": "在线文档编辑，多人实时协作",
+      "url": "https://docs.google.com",
+      "category": "办公类"
+    },
+    {
+      "id": "sheets",
+      "name": "Google Sheets",
+      "icon": "📊",
+      "description": "电子表格，强大的数据处理和分析",
+      "url": "https://sheets.google.com",
+      "category": "办公类"
+    },
+    {
+      "id": "slides",
+      "name": "Google Slides",
+      "icon": "📽️",
+      "description": "演示文稿，创建精美的幻灯片",
+      "url": "https://slides.google.com",
+      "category": "办公类"
+    },
+    {
+      "id": "calendar",
+      "name": "Google Calendar",
+      "icon": "📅",
+      "description": "智能日历，管理日程和会议",
+      "url": "https://calendar.google.com",
+      "category": "办公类"
+    },
+    {
+      "id": "keep",
+      "name": "Google Keep",
+      "icon": "📌",
+      "description": "笔记和待办事项，随时记录灵感",
+      "url": "https://keep.google.com",
+      "category": "办公类"
+    },
+    {
+      "id": "forms",
+      "name": "Google Forms",
+      "icon": "📋",
+      "description": "在线表单和问卷调查，轻松收集数据",
+      "url": "https://forms.google.com",
+      "category": "办公类"
+    },
+    {
+      "id": "maps",
+      "name": "Google Maps",
+      "icon": "🗺️",
+      "description": "全球地图导航，查找地点和路线",
+      "url": "https://maps.google.com",
+      "category": "地图与位置"
+    },
+    {
+      "id": "earth",
+      "name": "Google Earth",
+      "icon": "🌍",
+      "description": "探索地球，3D查看全球地貌",
+      "url": "https://earth.google.com",
+      "category": "地图与位置"
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "icon": "🎥",
+      "description": "全球最大的视频分享平台，观看和上传视频",
+      "url": "https://www.youtube.com",
+      "category": "娱乐与媒体"
+    },
+    {
+      "id": "photos",
+      "name": "Google Photos",
+      "icon": "📷",
+      "description": "智能照片存储和管理，自动备份和整理",
+      "url": "https://photos.google.com",
+      "category": "娱乐与媒体"
+    },
+    {
+      "id": "translate",
+      "name": "Google Translate",
+      "icon": "🌐",
+      "description": "实时翻译，支持 100+ 语言",
+      "url": "https://translate.google.com",
+      "category": "工具与服务"
+    },
+    {
+      "id": "analytics",
+      "name": "Google Analytics",
+      "icon": "📊",
+      "description": "网站数据分析，了解访客行为",
+      "url": "https://analytics.google.com",
+      "category": "工具与服务"
+    },
+    {
+      "id": "ads",
+      "name": "Google Ads",
+      "icon": "📢",
+      "description": "在线广告平台，推广你的业务",
+      "url": "https://ads.google.com",
+      "category": "工具与服务"
+    },
+    {
+      "id": "cloud",
+      "name": "Google Cloud",
+      "icon": "☁️",
+      "description": "云计算服务，强大的云端基础设施",
+      "url": "https://cloud.google.com",
+      "category": "工具与服务"
+    },
+    {
+      "id": "play",
+      "name": "Google Play Store",
+      "icon": "▶️",
+      "description": "Android 应用商店，下载应用和游戏",
+      "url": "https://play.google.com",
+      "category": "工具与服务"
+    },
+    {
+      "id": "fonts",
+      "name": "Google Fonts",
+      "icon": "🔤",
+      "description": "免费开源字体库，丰富的字体选择",
+      "url": "https://fonts.google.com",
+      "category": "工具与服务"
+    }
+  ],
+  "categories": [
+    "搜索类",
+    "通讯类",
+    "办公类",
+    "地图与位置",
+    "娱乐与媒体",
+    "工具与服务"
+  ]
+}

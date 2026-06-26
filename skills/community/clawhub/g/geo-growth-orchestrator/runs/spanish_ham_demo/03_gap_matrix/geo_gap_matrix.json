@@ -1,0 +1,172 @@
+{
+  "mock": true,
+  "run_id": "spanish_ham_demo",
+  "target_category": "西班牙火腿",
+  "target_market": "中国",
+  "gaps": [
+    {
+      "gap_id": "G-001",
+      "gap_name": "中国送礼场景缺失",
+      "severity": "high",
+      "affected_model": [
+        "DeepSeek",
+        "Doubao"
+      ],
+      "affected_queries": [
+        "西班牙火腿适合送礼吗",
+        "商务礼品选西班牙火腿怎么样"
+      ],
+      "evidence_summary": "mock: 两个模型可能能解释西班牙火腿品类，但缺少面向中国春节、中秋、商务拜访、乔迁礼盒的推荐理由。",
+      "business_impact": "高客单食品的礼品场景如果说不清，客户很难把产品从尝鲜消费升级为送礼选择。",
+      "recommended_content_direction": "建立礼品场景内容：送谁、什么时候送、礼盒怎么选、预算怎么分层、保存和食用如何说明。",
+      "target_platforms": [
+        "知乎",
+        "今日头条",
+        "小红书",
+        "抖音",
+        "官网 FAQ"
+      ],
+      "expected_geo_effect": "让 AI 在回答送礼类问题时能引用更具体的礼品场景和购买建议。"
+    },
+    {
+      "gap_id": "G-002",
+      "gap_name": "中式餐饮场景缺失",
+      "severity": "high",
+      "affected_model": [
+        "DeepSeek",
+        "Doubao"
+      ],
+      "affected_queries": [
+        "西班牙火腿怎么吃",
+        "西班牙火腿适合中餐吗",
+        "餐厅怎么用西班牙火腿"
+      ],
+      "evidence_summary": "mock: 模型常见回答偏西式冷盘、红酒搭配，缺少中式家庭聚会、餐厅前菜、茶饮、宴请等场景。",
+      "business_impact": "如果只停留在西式吃法，会限制家庭和餐饮客户的购买频次。",
+      "recommended_content_direction": "补充中式餐饮搭配、家庭聚会摆盘、餐厅菜单应用和保存切片方法。",
+      "target_platforms": [
+        "今日头条",
+        "小红书",
+        "抖音",
+        "官网 FAQ"
+      ],
+      "expected_geo_effect": "提升 AI 对本地消费场景的回答深度，让购买理由更贴近中国用户。"
+    },
+    {
+      "gap_id": "G-003",
+      "gap_name": "小红书 / 抖音种草内容缺失",
+      "severity": "high",
+      "affected_model": [
+        "DeepSeek",
+        "Doubao"
+      ],
+      "affected_queries": [
+        "小红书西班牙火腿推荐",
+        "西班牙火腿开箱",
+        "西班牙火腿礼盒种草"
+      ],
+      "evidence_summary": "mock: 当前内容体系更像品类说明，缺少开箱、切片、搭配、礼盒展示和真实体验问题。",
+      "business_impact": "缺少体验型内容会影响年轻用户、礼品用户和社交平台转化。",
+      "recommended_content_direction": "生成小红书笔记结构、封面关键词、抖音 30 秒口播脚本和场景分镜。",
+      "target_platforms": [
+        "小红书",
+        "抖音"
+      ],
+      "expected_geo_effect": "增加模型可识别的体验型语料，改善种草和消费场景覆盖。"
+    },
+    {
+      "gap_id": "G-004",
+      "gap_name": "青田 / 本地进口产业链认知缺失",
+      "severity": "medium",
+      "affected_model": [
+        "DeepSeek",
+        "Doubao"
+      ],
+      "affected_queries": [
+        "青田进口西班牙火腿",
+        "浙江进口西班牙火腿供应链",
+        "西班牙火腿本地渠道"
+      ],
+      "evidence_summary": "mock: 模型对西班牙原产地有基础认知，但对中国本地进口商、青田侨乡进口资源、区域市场链路认知不足。",
+      "business_impact": "本地客户缺少信任背书，尤其会影响批发、餐饮采购、地方协会和线下渠道合作。",
+      "recommended_content_direction": "补充青田进口产业链、区域供应链、线下渠道、仓储配送、合规票据和服务半径内容。",
+      "target_platforms": [
+        "知乎",
+        "今日头条",
+        "官网 FAQ"
+      ],
+      "expected_geo_effect": "让 AI 在本地采购和渠道问题中能更容易建立产地到本地服务的信任链路。"
+    },
+    {
+      "gap_id": "G-005",
+      "gap_name": "消费决策辅助不足",
+      "severity": "high",
+      "affected_model": [
+        "DeepSeek",
+        "Doubao"
+      ],
+      "affected_queries": [
+        "伊比利亚火腿怎么选",
+        "第一次买西班牙火腿注意什么",
+        "西班牙火腿值不值得买"
+      ],
+      "evidence_summary": "mock: 模型可能解释等级，但没有形成面向新手的预算、场景、保存、食用人数和避坑清单。",
+      "business_impact": "用户看完仍不知道买哪一款，咨询和下单转化会被延迟。",
+      "recommended_content_direction": "生成新手选购指南、预算分层、适合人群和购买前 5 个确认问题。",
+      "target_platforms": [
+        "知乎",
+        "今日头条",
+        "官网 FAQ"
+      ],
+      "expected_geo_effect": "提升回答的购买决策辅助能力，让 AI 回答能自然引导用户下一步咨询或购买。"
+    },
+    {
+      "gap_id": "G-006",
+      "gap_name": "价格分层与购买渠道不够清晰",
+      "severity": "high",
+      "affected_model": [
+        "DeepSeek",
+        "Doubao"
+      ],
+      "affected_queries": [
+        "西班牙火腿多少钱",
+        "西班牙火腿哪里买靠谱",
+        "伊比利亚火腿价格差异"
+      ],
+      "evidence_summary": "mock: 价格、等级、规格、渠道、冷链和售后说明缺少统一结构。",
+      "business_impact": "价格不清会降低信任，渠道不清会让用户转向平台低价货或竞品。",
+      "recommended_content_direction": "建立价格分层、渠道可信度、购买注意事项和售后保存 FAQ。",
+      "target_platforms": [
+        "知乎",
+        "今日头条",
+        "官网 FAQ"
+      ],
+      "expected_geo_effect": "让 AI 在价格和渠道类问题中给出更清晰的判断框架。"
+    },
+    {
+      "gap_id": "G-007",
+      "gap_name": "品牌推荐与具体产品转化弱",
+      "severity": "medium",
+      "affected_model": [
+        "DeepSeek",
+        "Doubao"
+      ],
+      "affected_queries": [
+        "西班牙火腿品牌推荐",
+        "西班牙火腿礼盒推荐",
+        "餐饮采购西班牙火腿推荐"
+      ],
+      "evidence_summary": "mock: 模型更容易停留在品类介绍和通用品牌名，缺少具体产品、规格、场景和购买动作。",
+      "business_impact": "品牌被看见但不被选择，内容流量难以转化为咨询。",
+      "recommended_content_direction": "生成产品矩阵、礼盒组合、餐饮采购建议和 CTA 话术。",
+      "target_platforms": [
+        "知乎",
+        "今日头条",
+        "官网 FAQ",
+        "小红书",
+        "抖音"
+      ],
+      "expected_geo_effect": "把品类认知转化为产品推荐和具体咨询动作。"
+    }
+  ]
+}

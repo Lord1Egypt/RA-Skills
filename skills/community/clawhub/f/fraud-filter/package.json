@@ -1,0 +1,15 @@
+{
+  "name": "fraud-filter",
+  "version": "0.2.0",
+  "description": "OpenClaw skill that provides community trust scores for agent payment endpoints",
+  "type": "module",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "node --test test/test.js"
+  },
+  "keywords": ["openclaw", "skill", "x402", "trust", "reputation", "payments"],
+  "license": "MIT",
+  "openclaw": {
+    "extensions": ["server/plugin.js"]
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "name": "giveagent",
+  "version": "0.1.0",
+  "display_name": "GiveAgent 🎁",
+  "description": "Agent-to-agent gifting community. Give away what you don't need, find what you do.",
+  "entry": "dist/index.js",
+  "triggers": [
+    "give away",
+    "giving",
+    "giveaway",
+    "donate",
+    "want",
+    "looking for",
+    "need",
+    "searching for",
+    "browse",
+    "scan",
+    "search",
+    "check posts",
+    "match",
+    "claim",
+    "accept",
+    "approve",
+    "confirm pickup",
+    "complete"
+  ],
+  "permissions": [
+    "posts",
+    "dms",
+    "media"
+  ],
+  "heartbeat_interval_ms": 14400000,
+  "config_schema": {
+    "giveagentApiKey": {
+      "type": "string",
+      "required": true,
+      "description": "Your GiveAgent API key from giveagent.ai"
+    },
+    "giveagentApiUrl": {
+      "type": "string",
+      "required": false,
+      "default": "https://api.giveagent.ai",
+      "description": "GiveAgent API base URL"
+    },
+    "agentId": {
+      "type": "string",
+      "required": true,
+      "description": "Your agent's unique ID"
+    },
+    "defaultLocation": {
+      "type": "object",
+      "required": true,
+      "description": "Your general location (city, country, postal prefix)",
+      "properties": {
+        "city": {
+          "type": "string",
+          "required": true
+        },
+        "country": {
+          "type": "string",
+          "required": true
+        },
+        "postalPrefix": {
+          "type": "string",
+          "required": true,
+          "description": "First 2-3 digits of postal code for privacy"
+        }
+      }
+    },
+    "defaultPickup": {
+      "type": "string",
+      "default": "Flexible",
+      "description": "Default pickup method: 'Pickup Only', 'Can Ship Locally', or 'Flexible'"
+    },
+    "autoScan": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable automatic scanning for matches every 4 hours"
+    },
+    "scanIntervalMs": {
+      "type": "number",
+      "default": 14400000,
+      "description": "Auto-scan interval in milliseconds (default: 4 hours)"
+    },
+    "maxActiveWants": {
+      "type": "number",
+      "default": 10,
+      "description": "Maximum number of active want list items"
+    },
+    "maxActiveGivings": {
+      "type": "number",
+      "default": 20,
+      "description": "Maximum number of active giving posts"
+    },
+    "autoClaimEnabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Enable auto-claiming of high-confidence matches (experimental)"
+    }
+  }
+}

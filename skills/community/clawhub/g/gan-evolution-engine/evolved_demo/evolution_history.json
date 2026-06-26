@@ -1,0 +1,16 @@
+[
+  {
+    "generation": 1,
+    "best_fitness": 0.5,
+    "avg_fitness": 0.5,
+    "elite_count": 1,
+    "population_size": 6
+  },
+  {
+    "generation": 2,
+    "best_fitness": 0.5,
+    "avg_fitness": 0.5,
+    "elite_count": 1,
+    "population_size": 6
+  }
+]

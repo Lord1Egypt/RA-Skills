@@ -1,0 +1,23 @@
+id: b20
+track: B
+title_zh: 基于 AB 实验数据写决策建议
+category: plan
+difficulty: medium
+timeout_seconds: 240
+dimensions:
+  primary: brain
+  secondary:
+  - soul
+evaluators:
+- type: llm_judge
+  weight: 1.0
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  judge_dimensions:
+  - brain
+  - soul
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 4
+title_en: Write the A/B test decision brief

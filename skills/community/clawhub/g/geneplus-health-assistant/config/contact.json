@@ -1,0 +1,17 @@
+{
+  "screening": {
+    "name": "健康筛查",
+    "url": "https://bmsapp.geneplus.org.cn/business/addOrder",
+    "description": "专业健康筛查，助您早发现、早预防、早干预"
+  },
+  "hotline": {
+    "number": "400-166-6506",
+    "hours": "周一至周五 9:00-18:00"
+  },
+  "report": {
+    "title": "健康疾病风险评估报告",
+    "subtitle": "Smart Health Risk Assessment Report",
+    "generated_by": "智能健康管理助手",
+    "powered_by": "健康"
+  }
+}

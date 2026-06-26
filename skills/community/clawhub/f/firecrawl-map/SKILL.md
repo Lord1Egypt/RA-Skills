@@ -1,35 +1,50 @@
 ---
-name: "Firecrawl Map"
-description: "Discover and list all URLs on a website, with optional search filtering. Use this skill when the user wants to find a specific page on a large site, list all..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/firecrawl-map"
-sourceUrl: "https://clawhub.ai/skills/firecrawl-map"
+name: firecrawl-map
+description: |
+  Discover and list all URLs on a website, with optional search filtering. Use this skill when the user wants to find a specific page on a large site, list all URLs, see the site structure, find where something is on a domain, or says "map the site", "find the URL for", "what pages are on", or "list all pages". Essential when the user knows which site but not which exact page.
+allowed-tools:
+  - Bash(firecrawl *)
+  - Bash(npx firecrawl *)
 ---
 
-# Firecrawl Map
+# firecrawl map
 
-> Discover and list all URLs on a website, with optional search filtering. Use this skill when the user wants to find a specific page on a large site, list all...
+Discover URLs on a site. Use `--search` to find a specific page within a large site.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/firecrawl-map`
-- **Source URL:** [https://clawhub.ai/skills/firecrawl-map](https://clawhub.ai/skills/firecrawl-map)
+## When to use
 
-## Overview
+- You need to find a specific subpage on a large site
+- You want a list of all URLs on a site before scraping or crawling
+- Step 3 in the [workflow escalation pattern](firecrawl-cli): search → scrape → **map** → crawl → interact
 
+## Quick start
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/firecrawl-map
+# Find a specific page on a large site
+firecrawl map "<url>" --search "authentication" -o .firecrawl/filtered.txt
+
+# Get all URLs
+firecrawl map "<url>" --limit 500 --json -o .firecrawl/urls.json
 ```
+
+## Options
+
+| Option                            | Description                  |
+| --------------------------------- | ---------------------------- |
+| `--limit <n>`                     | Max number of URLs to return |
+| `--search <query>`                | Filter URLs by search query  |
+| `--sitemap <include\|skip\|only>` | Sitemap handling strategy    |
+| `--include-subdomains`            | Include subdomain URLs       |
+| `--json`                          | Output as JSON               |
+| `-o, --output <path>`             | Output file path             |
+
+## Tips
+
+- **Map + scrape is a common pattern**: use `map --search` to find the right URL, then `scrape` it.
+- Example: `map https://docs.example.com --search "auth"` → found `/docs/api/authentication` → `scrape` that URL.
+
+## See also
+
+- [firecrawl-scrape](../firecrawl-scrape/SKILL.md) — scrape the URLs you discover
+- [firecrawl-crawl](../firecrawl-crawl/SKILL.md) — bulk extract instead of map + scrape
+- [firecrawl-download](../firecrawl-download/SKILL.md) — download entire site (uses map internally)

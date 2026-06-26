@@ -1,0 +1,33 @@
+{
+  "repository": "flowcreatebot/conspiracy-canvas",
+  "total_count": 3,
+  "artifacts": [
+    {
+      "id": 9101,
+      "name": "nextjs-build-cache",
+      "size_in_bytes": 146800640,
+      "expired": false,
+      "expires_at": "2030-01-09T10:00:00Z",
+      "archive_download_url": "https://api.github.com/artifacts/9101/zip",
+      "workflow_run": {"id": 2201}
+    },
+    {
+      "id": 9102,
+      "name": "nextjs-build-cache",
+      "size_in_bytes": 157286400,
+      "expired": false,
+      "expires_at": "2030-01-10T10:00:00Z",
+      "archive_download_url": "https://api.github.com/artifacts/9102/zip",
+      "workflow_run": {"id": 2202}
+    },
+    {
+      "id": 9103,
+      "name": "storybook-static",
+      "size_in_bytes": 838860800,
+      "expired": false,
+      "expires_at": "2030-01-06T10:00:00Z",
+      "archive_download_url": "https://api.github.com/artifacts/9103/zip",
+      "workflow_run": {"id": 2203}
+    }
+  ]
+}

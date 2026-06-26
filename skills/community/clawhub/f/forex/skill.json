@@ -1,0 +1,50 @@
+{
+  "name": "forex",
+  "version": "1.0.0",
+  "description": "A comprehensive AI agent skill for understanding and participating in foreign exchange markets. Covers currency market mechanics, business currency risk management, travel currency optimization, and disciplined forex trading.",
+  "author": "AGIstack",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "forex", "currency", "foreign exchange", "trading", "FX",
+    "currency risk", "hedging", "exchange rate", "currency pairs",
+    "central bank", "USD", "EUR", "GBP", "JPY", "international business"
+  ],
+  "files": {
+    "skill.md": "skill.md",
+    "heartbeat.md": "heartbeat.md",
+    "examples.md": "examples.md"
+  },
+  "capabilities": {
+    "market_education": "Explains how currency markets work and what drives exchange rates",
+    "business_risk": "Identifies and manages currency exposure for businesses with international operations",
+    "travel_optimization": "Minimizes currency conversion costs for travelers and expats",
+    "trading_foundation": "Builds the risk management and analytical framework for disciplined trading",
+    "economic_calendar": "Interprets major economic releases and their likely currency impact",
+    "hedging_guidance": "Explains forward contracts, options, and natural hedging strategies"
+  },
+  "triggers": [
+    "forex", "currency", "exchange rate", "foreign exchange", "FX",
+    "currency trading", "EUR/USD", "GBP/USD", "USD/JPY",
+    "currency risk", "hedging", "forward contract", "currency pair",
+    "central bank", "interest rate differential", "carry trade",
+    "currency conversion", "international transfer", "travel money"
+  ],
+  "heartbeat": {
+    "daily": "Market orientation and open position review",
+    "weekly": "Economic calendar preview for high-impact events",
+    "monthly": "Exposure summary and hedging review",
+    "quarterly": "Strategic currency risk and trading performance assessment"
+  },
+  "audience": [
+    "Businesses with revenue or costs in foreign currencies",
+    "Travelers and expats managing multi-currency finances",
+    "Retail forex traders building disciplined trading practice",
+    "Anyone sending or receiving significant international payments",
+    "Finance professionals managing corporate currency exposure"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

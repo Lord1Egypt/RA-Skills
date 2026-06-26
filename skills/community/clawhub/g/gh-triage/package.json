@@ -1,0 +1,17 @@
+{
+  "name": "gh-triage",
+  "version": "0.1.0",
+  "description": "Automated GitHub issues/PR triage and lightweight fixes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "echo 'no lint configured'"
+  },
+  "author": "openclaw",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/rest": "^21.0.0",
+    "node-cron": "^3.0.0",
+    "dotenv": "^16.0.0"
+  }
+}

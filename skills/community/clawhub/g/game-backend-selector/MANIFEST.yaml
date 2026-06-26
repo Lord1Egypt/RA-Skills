@@ -1,0 +1,64 @@
+bundle: game-backend-selector
+bundle_version: 1.1.1
+bundle_date: 2026-03-30
+description: >
+  Choose or compare backend profiles based on required capabilities, project state, and quality target. Stay stack-neutral at the top level while still giving sharp recommendations and tradeoffs.
+compatibility:
+  designed_for:
+    surfaces:
+      - chat
+      - cli
+      - ide
+    capabilities:
+      - local filesystem access
+      - markdown skill bundles
+      - reusable game-development workflows
+  tested_on:
+    - platform: OpenClaw
+      surface: ClawHub
+      status: pending
+      date: 2026-03-30
+    - platform: Claude Code
+      surface: CLI
+      status: pass
+      date: 2026-03-30
+    - platform: Codex
+      surface: CLI
+      status: pass
+      date: 2026-03-30
+  spec_version: agentskills.io/1.0
+  frontmatter_mode: metadata
+dependencies:
+  - game-web-2d-specialist
+  - game-web-3d-specialist
+files:
+  - path: CHANGELOG.md
+    role: reference
+    version: 1
+    hash: sha256:08aa94e996f17e3e988bbc874236c90a4c5017cc29a238fcd4d76cca6dc45046
+    note: Bundle release notes
+  - path: README.md
+    role: reference
+    version: 1
+    hash: sha256:40da23135635fd8275c8e95c6643898dbe91a655758a6b5511e70b8e5f687090
+    note: ClawHub-facing usage and context
+  - path: SKILL.md
+    role: skill
+    version: 1
+    hash: sha256:d3919ba281e90253000245e07f0a614738b3f9b96dbb2de16eb3da2104cac218
+    note: Canonical skill definition for this publish bundle
+  - path: examples/usage.md
+    role: reference
+    version: 1
+    hash: sha256:7fc449c0b4023704a27763f8ed65213be454032ceb64c99cb403aadeb6865c90
+    note: Referenced support file: examples/usage.md
+  - path: shared/reference/backend-profiles.md
+    role: reference
+    version: 1
+    hash: sha256:f43e18e5844678d050ebf34c561caab2efe5049a9775e86790ad7b84a8eb6e1d
+    note: Referenced support file: shared/reference/backend-profiles.md
+  - path: tests/smoke.md
+    role: reference
+    version: 1
+    hash: sha256:60b4bf6f6048ad160ac0a5e075d1935f1b5574e93554afaa09e2cd2edb01ef60
+    note: Referenced support file: tests/smoke.md

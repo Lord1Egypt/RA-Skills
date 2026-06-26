@@ -1,0 +1,11 @@
+{
+  "max_results": 10,
+  "time_window_hours": 24,
+  "default_query": "AI Agent",
+  "search_categories": ["cs.AI", "cs.CL", "cs.LG"],
+  "request_delay": 3,
+  "pdf_download_dir": "~/.arxiv-search/pdfs",
+  "max_retries": 3,
+  "language": "zh",
+  "onboarding_complete": false
+}

@@ -1,35 +1,40 @@
 ---
-name: "GlowSkin Promo"
-description: "Create viral TikTok hooks, Instagram captions, story ideas, and CTAs to promote skincare affiliate products effectively."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/glowskin-promo"
-sourceUrl: "https://clawhub.ai/skills/glowskin-promo"
+name: GlowSkin Promo
+description: Generate viral marketing content for skincare affiliate products
+author: underbench2-gif
+version: 1.0.0
+tags: [marketing, skincare, affiliate, tiktok, instagram]
 ---
 
 # GlowSkin Promo
 
-> Create viral TikTok hooks, Instagram captions, story ideas, and CTAs to promote skincare affiliate products effectively.
+Generate high-converting marketing content for skincare affiliate promotions.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/glowskin-promo`
-- **Source URL:** [https://clawhub.ai/skills/glowskin-promo](https://clawhub.ai/skills/glowskin-promo)
+## Features
 
-## Overview
+- TikTok video script hooks
+- Instagram caption templates  
+- Story ideas for engagement
+- Call-to-action variations
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/glowskin-promo
-```
+Ask for marketing content like:
+- "Generate 5 TikTok hooks for anti-aging skincare"
+- "Create an Instagram caption for a skincare product"
+- "Give me story ideas for skincare engagement"
+
+## Example Prompts
+
+### TikTok Hooks
+- "POV: You finally found the skincare secret dermatologists don't want you to know..."
+- "I was today years old when I learned THIS about aging skin..."
+- "The $300 cream vs the $30 secret that actually works..."
+
+### Instagram Captions
+- "Your skin doesn't need 10 products. It needs THIS one thing 👇"
+- "3 months ago vs now... the glow up is REAL ✨"
+
+### CTAs
+- "Link in bio for the full routine!"
+- "Comment 'GLOW' and I'll DM you the secret!"

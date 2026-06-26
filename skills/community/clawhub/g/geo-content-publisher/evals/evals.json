@@ -1,0 +1,24 @@
+{
+  "skill_name": "geo-content-publisher",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We just finished a GEO-optimized pillar article about 'AI-powered contract management'. Help me design a full publishing workflow: website landing page, supporting blog post, LinkedIn posts, a short email for our newsletter, and recommendations for sitemaps / llms.txt / schema so AI models can pick it up.",
+      "expected_output": "A structured markdown plan following the skill's output format, including Publishing Brief, Content Readiness, Channel Strategy, Channel Content Variants, Structured Data Package, AI & Crawler Signaling Plan, and Final Plan sections.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I have a long-form case study about how our product improved conversion rate for a SaaS client. Turn this into a repeatable GEO publishing playbook: which pages to create or update on our site, how to repurpose it for LinkedIn and X, what to send to our email list, and how to make sure ChatGPT and Perplexity discover it.",
+      "expected_output": "A detailed, step-by-step publishing playbook that maps the case study into multiple channels, proposes internal linking, suggests schema types, and outlines AI crawler signaling tasks, formatted using the skill's recommended headings.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We are launching a new pricing guide that we want AI assistants to cite when users ask about our product's pricing model. Create an end-to-end GEO publishing and distribution plan that covers our main pricing page, supporting docs, FAQ, social announcement posts, and specific steps for sitemaps, llms.txt, and internal links.",
+      "expected_output": "An end-to-end GEO publishing and distribution plan with all standard sections, clearly describing how the pricing guide becomes the canonical source, how different channels support it, and how AI crawlers and models are signaled.",
+      "files": []
+    }
+  ]
+}
+

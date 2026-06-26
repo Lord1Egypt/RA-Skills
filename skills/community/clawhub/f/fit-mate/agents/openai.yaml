@@ -1,0 +1,7 @@
+interface:
+  display_name: "Fitness Coach"
+  short_description: "Training, nutrition, recovery, and weekly PDF fitness reports"
+  default_prompt: "Use $fitness-coach to set up a profile, manage training and nutrition logs, and generate weekly fitness PDF reports."
+
+policy:
+  allow_implicit_invocation: true

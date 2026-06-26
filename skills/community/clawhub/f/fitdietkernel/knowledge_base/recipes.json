@@ -1,0 +1,85 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-04-06",
+  "recipes": [
+    {
+      "id": "recipe_001",
+      "name": "燕麦蛋白启动",
+      "type": "早餐",
+      "suitableFor": ["medium", "high"],
+      "carbon": 40,
+      "protein": 40,
+      "steps": [
+        "65g 干燕麦沸水冲泡",
+        "加入 1.5 份蛋白粉",
+        "加入 50g 蓝莓"
+      ]
+    },
+    {
+      "id": "recipe_002",
+      "name": "馒头午餐",
+      "type": "午餐",
+      "suitableFor": ["medium"],
+      "carbon": 37,
+      "protein": 45,
+      "steps": [
+        "2个杂粮馒头",
+        "150g 熟肉",
+        "大份蔬菜"
+      ]
+    },
+    {
+      "id": "recipe_003",
+      "name": "意面预充能",
+      "type": "晚餐",
+      "suitableFor": ["high", "medium"],
+      "carbon": 65,
+      "protein": 45,
+      "steps": [
+        "65g 干意面煮熟",
+        "150g 熟肉",
+        "100g 蓝莓"
+      ]
+    },
+    {
+      "id": "recipe_004",
+      "name": "练后修复",
+      "type": "PWO",
+      "suitableFor": ["all"],
+      "carbon": 20,
+      "protein": 40,
+      "steps": [
+        "1.5份蛋白粉",
+        "50g 蓝莓 (仅高碳日)",
+        "零脂肪"
+      ]
+    },
+    {
+      "id": "recipe_005",
+      "name": "低碳开启",
+      "type": "早餐",
+      "suitableFor": ["low"],
+      "carbon": 10,
+      "protein": 40,
+      "steps": [
+        "2全蛋",
+        "1份蛋白粉",
+        "100g 蓝莓",
+        "20g 坚果"
+      ]
+    },
+    {
+      "id": "recipe_006",
+      "name": "低碳正餐",
+      "type": "午餐/晚餐",
+      "suitableFor": ["low"],
+      "carbon": 5,
+      "protein": 50,
+      "steps": [
+        "180g 熟肉",
+        "1个牛油果",
+        "大量蔬菜"
+      ]
+    }
+  ]
+}

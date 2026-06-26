@@ -1,0 +1,4 @@
+version: 1
+display_name: GitHub Skill Updater
+short_description: 检查并更新通过 GitHub 安装的 OpenClaw skills
+default_prompt: 检查当前 workspace 里通过 git clone 安装的 skills 是否有更新，并在安全前提下执行更新。

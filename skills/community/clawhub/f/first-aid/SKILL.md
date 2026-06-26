@@ -1,35 +1,57 @@
 ---
-name: "First Aid"
+name: "first-aid"
+version: "3.0.0"
 description: "First aid reference guide with emergency procedures and kit checklists. Use when looking up first aid instructions."
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/first-aid"
-sourceUrl: "https://clawhub.ai/skills/first-aid"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# First Aid
+# first-aid
 
-> First aid reference guide with emergency procedures and kit checklists. Use when looking up first aid instructions.
+First aid reference guide with emergency procedures and kit checklists. Use when looking up first aid instructions.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/first-aid`
-- **Source URL:** [https://clawhub.ai/skills/first-aid](https://clawhub.ai/skills/first-aid)
+## Commands
 
-## Overview
+### `guide`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/first-aid
+scripts/script.sh guide <condition>
 ```
+
+### `emergency`
+
+```bash
+scripts/script.sh emergency
+```
+
+### `kit`
+
+```bash
+scripts/script.sh kit
+```
+
+### `list`
+
+```bash
+scripts/script.sh list
+```
+
+### `search`
+
+```bash
+scripts/script.sh search <keyword>
+```
+
+### `quiz`
+
+```bash
+scripts/script.sh quiz
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/first-aid/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

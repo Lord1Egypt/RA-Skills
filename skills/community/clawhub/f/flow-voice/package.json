@@ -1,0 +1,24 @@
+{
+  "name": "flow-voice",
+  "version": "1.0.0",
+  "description": "Clone any voice from a short audio sample and generate speech with it. Powered by LuxTTS — 150x realtime, local, free, no API key. Works on CPU and Apple Silicon MPS.",
+  "homepage": "https://github.com/ysharma3501/LuxTTS",
+  "keywords": [
+    "tts",
+    "voice-cloning",
+    "luxtts",
+    "speech",
+    "audio",
+    "voiceover",
+    "openclaw",
+    "flowverse",
+    "local",
+    "free"
+  ],
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "emoji": "🎙️",
+    "author": "windseeker1111"
+  }
+}

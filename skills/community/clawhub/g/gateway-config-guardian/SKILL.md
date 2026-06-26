@@ -1,35 +1,309 @@
 ---
-name: "Gateway Guardian"
-description: "Three-layer protection for the OpenClaw gateway: real-time config monitoring with auto-rollback, systemd crash recovery, and tiered notifications via Feishu/..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gateway-config-guardian"
-sourceUrl: "https://clawhub.ai/skills/gateway-config-guardian"
+name: gateway-guardian
+description: >
+  Three-layer protection for the OpenClaw gateway: real-time config monitoring with
+  auto-rollback, systemd crash recovery, and tiered notifications via Feishu/Telegram/Discord.
+  Use when: (1) user shares a GitHub link and says "install this" / "帮我安装",
+  (2) user asks for status: "gateway-guardian status" / "guardian 运行正常吗",
+  (3) user asks to uninstall: "uninstall gateway-guardian" / "卸载 gateway-guardian".
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - inotifywait
+        - nc
+        - python3
+        - journalctl
+        - systemctl
+        - openclaw
 ---
 
-# Gateway Guardian
+# Gateway Guardian — Skill Instructions
 
-> Three-layer protection for the OpenClaw gateway: real-time config monitoring with auto-rollback, systemd crash recovery, and tiered notifications via Feishu/...
+## Triggers
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gateway-config-guardian`
-- **Source URL:** [https://clawhub.ai/skills/gateway-config-guardian](https://clawhub.ai/skills/gateway-config-guardian)
+Activate this skill when the user:
+- Shares `https://github.com/Dios-Man/gateway-guardian` and asks to install it
+- Says "install gateway-guardian", "帮我安装", "install this skill", or similar
+- Says "gateway-guardian status", "guardian status", "guardian 运行正常吗", or similar
+- Says "uninstall gateway-guardian", "卸载 gateway-guardian", or similar
+- Sends a message matching `设置通知群: <id>` or `set guardian group: <id>`
 
-## Overview
+---
 
+## Installation (AI-executed)
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Pre-flight checks
+
+1. Confirm the system is Linux with `systemd --user` available:
+   ```bash
+   systemctl --user status 2>&1 | head -3
+   ```
+2. Check and install `inotify-tools` if missing:
+   ```bash
+   if ! which inotifywait > /dev/null 2>&1; then
+       sudo apt-get install -y inotify-tools 2>/dev/null || apt-get install -y inotify-tools 2>/dev/null || true
+   fi
+   ```
+   If `apt-get` fails (no sudo), ask the user to run: `sudo apt-get install -y inotify-tools`
+3. Confirm OpenClaw is installed and the gateway is running.
+
+### Determine notification fallback
+
+**Before writing guardian.conf, resolve the following values from the current conversation context:**
+
+| Variable | How to resolve |
+|---|---|
+| `FALLBACK_CHANNEL` | The channel name from inbound metadata (e.g. `feishu`, `telegram`, `discord`) |
+| `FALLBACK_TARGET` | See rules below |
+
+`FALLBACK_TARGET` rules:
+- **Feishu**: always `user:{sender_id}` (DM to installer, even if installed from a group)
+- **Telegram**: use `{chat_id}` for direct chats; for groups, ask: "What is your personal Telegram numeric ID? (needed for DM notifications)"
+- **Discord**: ask: "What is your Discord DM channel ID? (needed for direct notifications)"
+
+These resolved values replace `{detected channel}` and `{determined fallback target}` in Step 4.
+
+### Determine notification language (LOCALE)
+
+Detect the language the user is communicating in during this conversation:
+- User is writing in Chinese → `LOCALE=zh`
+- User is writing in English → `LOCALE=en`
+- Language is unclear or mixed → ask the user: "Should notifications be sent in Chinese or English?"
+
+### Installation steps
+
+**Step 1 — Back up current config**
 ```bash
-hermes skills install clawhub/gateway-config-guardian
+TIMESTAMP_DIR="$HOME/.openclaw/config-backups"
+mkdir -p "$TIMESTAMP_DIR"
+cp "$HOME/.openclaw/openclaw.json" \
+   "$TIMESTAMP_DIR/openclaw.json.$(date +%Y%m%d-%H%M%S).preinstall"
+echo "Backup created: $(ls -t $TIMESTAMP_DIR | head -1)"
 ```
+
+**Step 2 — Download skill files**
+```bash
+SKILL_DIR="$HOME/.openclaw/workspace/skills/gateway-guardian"
+mkdir -p "$SKILL_DIR"
+BASE_URL="https://raw.githubusercontent.com/Dios-Man/gateway-guardian/main"
+for f in config-lib.sh config-watcher.sh gateway-recovery.sh pre-stop.sh; do
+    # Skip if file already present (e.g. installed via clawhub install)
+    [ -f "$SKILL_DIR/$f" ] && continue
+    curl -fsSL "$BASE_URL/$f" -o "$SKILL_DIR/$f"
+done
+```
+
+**Step 3 — Ask bot name (optional)**
+
+Ask the user: "What name should I use for myself in team notifications? (e.g. Claw, MyBot, OpenClaw — press Enter to skip and use the default 'OpenClaw')"
+
+Record as `BOT_NAME`. If the user skips, use `OpenClaw`.
+
+**Step 4 — Write guardian.conf**
+
+Substitute resolved values before running. Replace:
+- `{FALLBACK_CHANNEL}` → resolved channel name (e.g. `feishu`)
+- `{FALLBACK_TARGET}` → resolved target (e.g. `user:ou_xxx` for Feishu)
+- `{LOCALE}` → `zh` or `en`
+- `{BOT_NAME}` → bot display name from Step 3
+
+```bash
+SKILL_DIR="$HOME/.openclaw/workspace/skills/gateway-guardian"
+cat > "$SKILL_DIR/guardian.conf" << GUARDIANCONF
+# Auto-generated by gateway-guardian installer. Do not upload to GitHub.
+
+# Fallback notification target (used when dynamic session detection fails)
+FALLBACK_CHANNEL={FALLBACK_CHANNEL}
+FALLBACK_TARGET={FALLBACK_TARGET}
+
+# Notification language: zh (Chinese) | en (English)
+LOCALE={LOCALE}
+
+# Bot display name used in staff/team notifications
+BOT_NAME={BOT_NAME}
+
+# Team group/channel notification (optional)
+# Leave empty to disable. Supported formats:
+#   Feishu:   oc_xxx
+#   Telegram: -100xxxxxxxxxx  (supergroup/channel numeric id)
+#   Discord:  123456789012345678  (channel id, digits only)
+# Only effective if the channel is configured and running in OpenClaw.
+STAFF_GROUP_CHAT_ID=
+GUARDIANCONF
+```
+
+**Step 5 — Set execute permissions**
+```bash
+SKILL_DIR="$HOME/.openclaw/workspace/skills/gateway-guardian"
+chmod +x "$SKILL_DIR/config-watcher.sh"
+chmod +x "$SKILL_DIR/gateway-recovery.sh"
+chmod +x "$SKILL_DIR/pre-stop.sh"
+```
+
+**Step 6 — Register config-watcher service**
+```bash
+SKILL_DIR="$HOME/.openclaw/workspace/skills/gateway-guardian"
+cat > ~/.config/systemd/user/openclaw-config-watcher.service << EOF
+[Unit]
+Description=OpenClaw Gateway Guardian - File Watcher
+After=openclaw-gateway.service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash $SKILL_DIR/config-watcher.sh
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target
+EOF
+```
+
+**Step 7 — Register gateway-recovery service**
+```bash
+SKILL_DIR="$HOME/.openclaw/workspace/skills/gateway-guardian"
+cat > ~/.config/systemd/user/openclaw-recovery.service << EOF
+[Unit]
+Description=OpenClaw Gateway Guardian - Crash Recovery
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash $SKILL_DIR/gateway-recovery.sh
+EOF
+```
+
+**Step 8 — Register OnFailure drop-in and ExecStopPost hook**
+```bash
+SKILL_DIR="$HOME/.openclaw/workspace/skills/gateway-guardian"
+mkdir -p ~/.config/systemd/user/openclaw-gateway.service.d/
+cat > ~/.config/systemd/user/openclaw-gateway.service.d/recovery.conf << EOF
+[Unit]
+OnFailure=openclaw-recovery.service
+
+[Service]
+StartLimitBurst=3
+StartLimitIntervalSec=60
+ExecStopPost=/bin/bash $SKILL_DIR/pre-stop.sh
+EOF
+```
+
+**Step 9 — Start services**
+```bash
+systemctl --user daemon-reload
+systemctl --user enable openclaw-config-watcher.service
+systemctl --user start openclaw-config-watcher.service
+```
+
+**Step 10 — Verify installation**
+```bash
+systemctl --user is-active openclaw-config-watcher.service
+cat ~/.config/systemd/user/openclaw-gateway.service.d/recovery.conf
+tail -5 /tmp/config-watcher.log
+```
+
+**Step 11 — Report result to user**
+
+Reply with a summary in the user's language (match LOCALE):
+
+---
+✅ **Gateway Guardian installed**
+
+🔔 Notification channel: {channel} (fallback target: {FALLBACK_TARGET})
+🌐 Notification language: {zh | en}
+🤖 Bot name: {BOT_NAME}
+📋 Service status: {Active line from systemctl output}
+📝 Log: `/tmp/config-watcher.log`
+
+To uninstall, tell me: "uninstall gateway-guardian" / "卸载 gateway-guardian"
+---
+
+**Optional — Team group notification**
+
+If OpenClaw is used by multiple people, you can configure a group to receive recovery notifications.
+
+zh prompt:
+> 如果团队有多人使用，可以配置一个通知群，网关恢复后自动通知大家。
+> 请发送以下消息完成配置（支持飞书 / Telegram / Discord）：
+> `设置通知群: oc_xxx`
+
+en prompt:
+> If your team uses OpenClaw together, you can set up a group notification.
+> When the gateway recovers, your team will be notified automatically.
+> Send me this to configure (Feishu / Telegram / Discord supported):
+> `set guardian group: oc_xxx`
+
+**When you receive the config command:**
+- Parse the group ID from the message
+- Write it to `STAFF_GROUP_CHAT_ID` in `guardian.conf`
+- Confirm back to the user
+
+---
+
+## Status Check (AI-executed)
+
+When the user asks for status:
+
+```bash
+systemctl --user status openclaw-config-watcher.service
+tail -10 /tmp/config-watcher.log
+ls -lt ~/.openclaw/config-backups/ | head -5
+```
+
+Report: service active/inactive, recent log lines, number of config backups on hand.
+
+---
+
+## Set Team Group (AI-executed)
+
+When the user sends a message matching `设置通知群: <id>` or `set guardian group: <id>`:
+
+1. Extract the group ID from the message
+2. Determine the channel based on ID format:
+   - Starts with `oc_` → feishu
+   - Starts with `-100` → telegram
+   - Pure digits → discord
+3. Update `guardian.conf`:
+```bash
+SKILL_DIR="$HOME/.openclaw/workspace/skills/gateway-guardian"
+sed -i "s|^STAFF_GROUP_CHAT_ID=.*|STAFF_GROUP_CHAT_ID={extracted_id}|" "$SKILL_DIR/guardian.conf"
+```
+4. Confirm to the user (zh/en based on LOCALE):
+   - zh: `✅ 已配置团队通知群，网关恢复后会自动通知群里的成员。`
+   - en: `✅ Team group configured. Members will be notified automatically when the gateway recovers.`
+
+---
+
+## Uninstall (AI-executed)
+
+When the user asks to uninstall:
+
+```bash
+systemctl --user stop openclaw-config-watcher.service
+systemctl --user disable openclaw-config-watcher.service
+rm -f ~/.config/systemd/user/openclaw-config-watcher.service
+rm -f ~/.config/systemd/user/openclaw-recovery.service
+rm -f ~/.config/systemd/user/openclaw-gateway.service.d/recovery.conf
+systemctl --user daemon-reload
+systemctl --user reset-failed openclaw-gateway.service 2>/dev/null
+```
+
+Ask the user whether to also delete config backups:
+```bash
+# Only run if user confirms
+rm -rf ~/.openclaw/config-backups/
+```
+
+Confirm removal is complete.
+
+---
+
+## Notes
+
+- This skill must be installed via an OpenClaw AI agent — no manual install script is provided.
+- Installation requires an active message context (in-conversation metadata is used for notification setup).
+- `guardian.conf` contains private notification config and is never uploaded to GitHub.
+- Config backups in `~/.openclaw/config-backups/` are retained across uninstalls unless the user explicitly requests deletion.
+- 群通知（`_MSG_STAFF_RECOVERY`）：配置了 `STAFF_GROUP_CHAT_ID` 则只发该固定群，未配置则动态检测最活跃 session 发送。
+- 技术通知（urgent/status）：始终通过动态 session 检测发送，优先私聊，无私聊 session 时发最活跃群。`guardian.conf` 的 `FALLBACK_CHANNEL`/`FALLBACK_TARGET` 作为兜底。

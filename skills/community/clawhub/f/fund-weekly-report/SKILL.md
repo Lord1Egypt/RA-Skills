@@ -1,35 +1,66 @@
 ---
-name: "Fund Weekly Report"
-description: "基金周报生成。根据Excel数据自动生成基金周报Word文档。支持主动权益、固定收益、指数基金、FOF、QDII、REITs等各类基金的周度表现分析。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fund-weekly-report"
-sourceUrl: "https://clawhub.ai/skills/fund-weekly-report"
+name: fund-weekly-report
+version: 1.8.2
+description: 基金周报生成。根据Excel数据自动生成基金周报Word文档。支持主动权益、固定收益、指数基金、FOF、QDII、REITs等各类基金的周度表现分析。
+dependencies:
+  - pandas>=1.3.0
+  - python-docx>=0.8.11
+  - openpyxl>=3.0.0
 ---
 
-# Fund Weekly Report
+# 基金周报生成
 
-> 基金周报生成。根据Excel数据自动生成基金周报Word文档。支持主动权益、固定收益、指数基金、FOF、QDII、REITs等各类基金的周度表现分析。
+根据Excel数据自动生成基金周报Word文档。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fund-weekly-report`
-- **Source URL:** [https://clawhub.ai/skills/fund-weekly-report](https://clawhub.ai/skills/fund-weekly-report)
+## 安装
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/fund-weekly-report
+pip install pandas python-docx openpyxl
 ```
+
+## 使用方式
+
+发送基金周度收益Excel文件（必需），可选发送ETF资金流动Excel文件，AI会自动生成周报。
+
+**输入：**
+- 基金细分类型周度收益Excel（24个Sheet） - **必需**
+- ETF资金流动Excel - 可选
+
+**输出：**
+- 基金周报Word文档（楷体格式）
+
+## 周报内容
+
+1. 主要市场指数周度表现回顾
+2. 主动权益基金周度表现复盘
+3. 固定收益基金周度表现复盘
+4. 指数型基金周度表现复盘
+5. FOF基金周度表现复盘
+6. 其他类型基金周度表现复盘
+7. 基金成立与发行回顾
+8. 附注及风险提示
+
+## 安全声明
+
+### 权限范围
+
+| 权限 | 说明 |
+|-----|------|
+| 读取Excel文件 | 读取用户明确提供的Excel文件（聊天上传或本地路径） |
+| 写入Word文档 | 将生成的周报写入用户工作目录 |
+
+### 文件路径约束
+
+- 只接受 `.xlsx` 或 `.xls` 扩展名的文件
+- 禁止访问系统敏感目录（`/etc/`, `/root/`, `.ssh` 等）
+
+### 不做的事情
+
+- ❌ 不读取非Excel文件
+- ❌ 不访问系统敏感目录
+- ❌ 不发起网络请求
+- ❌ 不存储凭据或密码
+
+---
+
+详见 `references/` 目录了解更多技术细节。

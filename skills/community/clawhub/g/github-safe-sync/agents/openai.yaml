@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Safe Sync"
+  short_description: "Inspect and operate GitHub mirror sync workflows."
+  default_prompt: "Use $github-safe-sync to inspect or operate a GitHub mirror sync workflow for a repository."

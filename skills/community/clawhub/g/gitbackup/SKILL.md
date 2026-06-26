@@ -1,35 +1,22 @@
 ---
-name: "gitbackup"
-description: "Create a local Git bundle backup of the OpenClaw workspace repository. Use when running /gitbackup in Telegram or when the user asks to back up Git history/refs to a local file."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gitbackup"
-sourceUrl: "https://clawhub.ai/skills/gitbackup"
+name: gitbackup
+description: Create a local Git bundle backup of the OpenClaw workspace repository. Use when running /gitbackup in Telegram or when the user asks to back up Git history/refs to a local file.
 ---
 
-# gitbackup
-
-> Create a local Git bundle backup of the OpenClaw workspace repository. Use when running /gitbackup in Telegram or when the user asks to back up Git history/refs to a local file.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gitbackup`
-- **Source URL:** [https://clawhub.ai/skills/gitbackup](https://clawhub.ai/skills/gitbackup)
+# Git Backup (local bundle)
 
 ## Overview
+Create a self-contained Git bundle of the workspace repo and store it in `/root/.openclaw/backups`.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick start
+Run the bundled script:
 ```bash
-hermes skills install clawhub/gitbackup
+bash /root/.openclaw/workspace/skills/gitbackup/scripts/git-backup.sh
 ```
+
+## Output
+Print the bundle path and size. The bundle filename includes UTC timestamp.
+
+## Notes
+- If the workspace is not a Git repo, exit with a clear error.
+- Do not delete older bundles.

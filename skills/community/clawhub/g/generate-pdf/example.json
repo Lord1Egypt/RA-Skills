@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://pdfapihub.com/api/v1/generatePdf",
+    "headers": {
+      "CLIENT-API-KEY": "your_api_key",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "html_content": "<html><body><h1>Invoice #{{invoice_id}}</h1><p>Customer: {{customer}}</p><p>Total: {{total}}</p></body></html>",
+      "css_content": "body { font-family: Arial, sans-serif; padding: 32px; } h1 { color: #333; }",
+      "dynamic_params": {
+        "invoice_id": "INV-2026-0042",
+        "customer": "Acme Corp",
+        "total": "$1,249.00"
+      },
+      "paper_size": "A4",
+      "output_format": "url"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "pdf_url": "https://cdn.pdfapihub.com/pdf/0ac4a76f-1a4f-4f14-8c63-5190f501e112.pdf",
+      "file_size_bytes": 84321,
+      "file_deletion_date": "2026-05-17",
+      "source_type": "html"
+    }
+  }
+}

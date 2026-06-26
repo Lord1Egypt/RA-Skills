@@ -1,0 +1,418 @@
+{
+  "1": {
+    "date": "2026-06-11",
+    "venue": "Mexico City, Mexico City - Mexico City Stadium"
+  },
+  "2": {
+    "date": "2026-06-11",
+    "venue": "Guadalajara, Jalisco - Guadalajara Stadium"
+  },
+  "3": {
+    "date": "2026-06-12",
+    "venue": "Toronto, Ontario - Toronto Stadium"
+  },
+  "4": {
+    "date": "2026-06-12",
+    "venue": "Los Angeles, California - Los Angeles Stadium"
+  },
+  "5": {
+    "date": "2026-06-13",
+    "venue": "Boston, Massachusetts - Boston Stadium"
+  },
+  "6": {
+    "date": "2026-06-13",
+    "venue": "Vancouver, British Columbia - Vancouver Stadium"
+  },
+  "7": {
+    "date": "2026-06-13",
+    "venue": "New York / New Jersey - New York New Jersey Stadium"
+  },
+  "8": {
+    "date": "2026-06-13",
+    "venue": "San Francisco Bay Area, California - San Francisco Bay Area Stadium"
+  },
+  "9": {
+    "date": "2026-06-14",
+    "venue": "Philadelphia, Pennsylvania - Philadelphia Stadium"
+  },
+  "10": {
+    "date": "2026-06-14",
+    "venue": "Houston, Texas - Houston Stadium"
+  },
+  "11": {
+    "date": "2026-06-14",
+    "venue": "Dallas, Texas - Dallas Stadium"
+  },
+  "12": {
+    "date": "2026-06-14",
+    "venue": "Monterrey, Nuevo León - Monterrey Stadium"
+  },
+  "13": {
+    "date": "2026-06-15",
+    "venue": "Miami Gardens, Florida - Miami Stadium"
+  },
+  "14": {
+    "date": "2026-06-15",
+    "venue": "Atlanta, Georgia - Atlanta Stadium"
+  },
+  "15": {
+    "date": "2026-06-15",
+    "venue": "Los Angeles, California - Los Angeles Stadium"
+  },
+  "16": {
+    "date": "2026-06-15",
+    "venue": "Seattle, Washington - Seattle Stadium"
+  },
+  "17": {
+    "date": "2026-06-16",
+    "venue": "New York / New Jersey - New York New Jersey Stadium"
+  },
+  "18": {
+    "date": "2026-06-16",
+    "venue": "Boston, Massachusetts - Boston Stadium"
+  },
+  "19": {
+    "date": "2026-06-16",
+    "venue": "Kansas City, Missouri - Kansas City Stadium"
+  },
+  "20": {
+    "date": "2026-06-16",
+    "venue": "San Francisco Bay Area, California - San Francisco Bay Area Stadium"
+  },
+  "21": {
+    "date": "2026-06-17",
+    "venue": "Toronto, Ontario - Toronto Stadium"
+  },
+  "22": {
+    "date": "2026-06-17",
+    "venue": "Dallas, Texas - Dallas Stadium"
+  },
+  "23": {
+    "date": "2026-06-17",
+    "venue": "Houston, Texas - Houston Stadium"
+  },
+  "24": {
+    "date": "2026-06-17",
+    "venue": "Mexico City, Mexico City - Mexico City Stadium"
+  },
+  "25": {
+    "date": "2026-06-18",
+    "venue": "Atlanta, Georgia - Atlanta Stadium"
+  },
+  "26": {
+    "date": "2026-06-18",
+    "venue": "Los Angeles, California - Los Angeles Stadium"
+  },
+  "27": {
+    "date": "2026-06-18",
+    "venue": "Vancouver, British Columbia - Vancouver Stadium"
+  },
+  "28": {
+    "date": "2026-06-18",
+    "venue": "Guadalajara, Jalisco - Guadalajara Stadium"
+  },
+  "29": {
+    "date": "2026-06-19",
+    "venue": "Philadelphia, Pennsylvania - Philadelphia Stadium"
+  },
+  "30": {
+    "date": "2026-06-19",
+    "venue": "Boston, Massachusetts - Boston Stadium"
+  },
+  "31": {
+    "date": "2026-06-19",
+    "venue": "San Francisco Bay Area, California - San Francisco Bay Area Stadium"
+  },
+  "32": {
+    "date": "2026-06-19",
+    "venue": "Seattle, Washington - Seattle Stadium"
+  },
+  "33": {
+    "date": "2026-06-20",
+    "venue": "Toronto, Ontario - Toronto Stadium"
+  },
+  "34": {
+    "date": "2026-06-20",
+    "venue": "Kansas City, Missouri - Kansas City Stadium"
+  },
+  "35": {
+    "date": "2026-06-20",
+    "venue": "Houston, Texas - Houston Stadium"
+  },
+  "36": {
+    "date": "2026-06-20",
+    "venue": "Monterrey, Nuevo León - Monterrey Stadium"
+  },
+  "37": {
+    "date": "2026-06-21",
+    "venue": "Miami Gardens, Florida - Miami Stadium"
+  },
+  "38": {
+    "date": "2026-06-21",
+    "venue": "Atlanta, Georgia - Atlanta Stadium"
+  },
+  "39": {
+    "date": "2026-06-21",
+    "venue": "Los Angeles, California - Los Angeles Stadium"
+  },
+  "40": {
+    "date": "2026-06-21",
+    "venue": "Vancouver, British Columbia - Vancouver Stadium"
+  },
+  "41": {
+    "date": "2026-06-22",
+    "venue": "New York / New Jersey - New York New Jersey Stadium"
+  },
+  "42": {
+    "date": "2026-06-22",
+    "venue": "Philadelphia, Pennsylvania - Philadelphia Stadium"
+  },
+  "43": {
+    "date": "2026-06-22",
+    "venue": "Dallas, Texas - Dallas Stadium"
+  },
+  "44": {
+    "date": "2026-06-22",
+    "venue": "San Francisco Bay Area, California - San Francisco Bay Area Stadium"
+  },
+  "45": {
+    "date": "2026-06-23",
+    "venue": "Boston, Massachusetts - Boston Stadium"
+  },
+  "46": {
+    "date": "2026-06-23",
+    "venue": "Toronto, Ontario - Toronto Stadium"
+  },
+  "47": {
+    "date": "2026-06-23",
+    "venue": "Houston, Texas - Houston Stadium"
+  },
+  "48": {
+    "date": "2026-06-23",
+    "venue": "Guadalajara, Jalisco - Guadalajara Stadium"
+  },
+  "49": {
+    "date": "2026-06-24",
+    "venue": "Miami Gardens, Florida - Miami Stadium"
+  },
+  "50": {
+    "date": "2026-06-24",
+    "venue": "Atlanta, Georgia - Atlanta Stadium"
+  },
+  "51": {
+    "date": "2026-06-24",
+    "venue": "Vancouver, British Columbia - Vancouver Stadium"
+  },
+  "52": {
+    "date": "2026-06-24",
+    "venue": "Seattle, Washington - Seattle Stadium"
+  },
+  "53": {
+    "date": "2026-06-24",
+    "venue": "Mexico City, Mexico City - Mexico City Stadium"
+  },
+  "54": {
+    "date": "2026-06-24",
+    "venue": "Monterrey, Nuevo León - Monterrey Stadium"
+  },
+  "55": {
+    "date": "2026-06-25",
+    "venue": "Philadelphia, Pennsylvania - Philadelphia Stadium"
+  },
+  "56": {
+    "date": "2026-06-25",
+    "venue": "New York / New Jersey - New York New Jersey Stadium"
+  },
+  "57": {
+    "date": "2026-06-25",
+    "venue": "Dallas, Texas - Dallas Stadium"
+  },
+  "58": {
+    "date": "2026-06-25",
+    "venue": "Kansas City, Missouri - Kansas City Stadium"
+  },
+  "59": {
+    "date": "2026-06-25",
+    "venue": "Los Angeles, California - Los Angeles Stadium"
+  },
+  "60": {
+    "date": "2026-06-25",
+    "venue": "San Francisco Bay Area, California - San Francisco Bay Area Stadium"
+  },
+  "61": {
+    "date": "2026-06-26",
+    "venue": "Boston, Massachusetts - Boston Stadium"
+  },
+  "62": {
+    "date": "2026-06-26",
+    "venue": "Toronto, Ontario - Toronto Stadium"
+  },
+  "63": {
+    "date": "2026-06-26",
+    "venue": "Seattle, Washington - Seattle Stadium"
+  },
+  "64": {
+    "date": "2026-06-26",
+    "venue": "Vancouver, British Columbia - Vancouver Stadium"
+  },
+  "65": {
+    "date": "2026-06-26",
+    "venue": "Houston, Texas - Houston Stadium"
+  },
+  "66": {
+    "date": "2026-06-26",
+    "venue": "Guadalajara, Jalisco - Guadalajara Stadium"
+  },
+  "67": {
+    "date": "2026-06-27",
+    "venue": "New York / New Jersey - New York New Jersey Stadium"
+  },
+  "68": {
+    "date": "2026-06-27",
+    "venue": "Philadelphia, Pennsylvania - Philadelphia Stadium"
+  },
+  "69": {
+    "date": "2026-06-27",
+    "venue": "Kansas City, Missouri - Kansas City Stadium"
+  },
+  "70": {
+    "date": "2026-06-27",
+    "venue": "Dallas, Texas - Dallas Stadium"
+  },
+  "71": {
+    "date": "2026-06-27",
+    "venue": "Miami Gardens, Florida - Miami Stadium"
+  },
+  "72": {
+    "date": "2026-06-27",
+    "venue": "Atlanta, Georgia - Atlanta Stadium"
+  },
+  "73": {
+    "date": "2026-06-28",
+    "venue": "Los Angeles, California - Los Angeles Stadium"
+  },
+  "74": {
+    "date": "2026-06-29",
+    "venue": "Boston, Massachusetts - Boston Stadium"
+  },
+  "75": {
+    "date": "2026-06-29",
+    "venue": "Monterrey, Nuevo León - Monterrey Stadium"
+  },
+  "76": {
+    "date": "2026-06-29",
+    "venue": "Houston, Texas - Houston Stadium"
+  },
+  "77": {
+    "date": "2026-06-30",
+    "venue": "New York / New Jersey - New York New Jersey Stadium"
+  },
+  "78": {
+    "date": "2026-06-30",
+    "venue": "Dallas, Texas - Dallas Stadium"
+  },
+  "79": {
+    "date": "2026-06-30",
+    "venue": "Mexico City, Mexico City - Mexico City Stadium"
+  },
+  "80": {
+    "date": "2026-07-01",
+    "venue": "Atlanta, Georgia - Atlanta Stadium"
+  },
+  "81": {
+    "date": "2026-07-01",
+    "venue": "San Francisco Bay Area, California - San Francisco Bay Area Stadium"
+  },
+  "82": {
+    "date": "2026-07-01",
+    "venue": "Seattle, Washington - Seattle Stadium"
+  },
+  "83": {
+    "date": "2026-07-02",
+    "venue": "Toronto, Ontario - Toronto Stadium"
+  },
+  "84": {
+    "date": "2026-07-02",
+    "venue": "Los Angeles, California - Los Angeles Stadium"
+  },
+  "85": {
+    "date": "2026-07-02",
+    "venue": "Vancouver, British Columbia - Vancouver Stadium"
+  },
+  "86": {
+    "date": "2026-07-03",
+    "venue": "Miami Gardens, Florida - Miami Stadium"
+  },
+  "87": {
+    "date": "2026-07-03",
+    "venue": "Kansas City, Missouri - Kansas City Stadium"
+  },
+  "88": {
+    "date": "2026-07-03",
+    "venue": "Dallas, Texas - Dallas Stadium"
+  },
+  "89": {
+    "date": "2026-07-04",
+    "venue": "Philadelphia, Pennsylvania - Philadelphia Stadium"
+  },
+  "90": {
+    "date": "2026-07-04",
+    "venue": "Houston, Texas - Houston Stadium"
+  },
+  "91": {
+    "date": "2026-07-05",
+    "venue": "New York / New Jersey - New York New Jersey Stadium"
+  },
+  "92": {
+    "date": "2026-07-05",
+    "venue": "Mexico City, Mexico City - Mexico City Stadium"
+  },
+  "93": {
+    "date": "2026-07-06",
+    "venue": "Dallas, Texas - Dallas Stadium"
+  },
+  "94": {
+    "date": "2026-07-06",
+    "venue": "Seattle, Washington - Seattle Stadium"
+  },
+  "95": {
+    "date": "2026-07-07",
+    "venue": "Atlanta, Georgia - Atlanta Stadium"
+  },
+  "96": {
+    "date": "2026-07-07",
+    "venue": "Vancouver, British Columbia - Vancouver Stadium"
+  },
+  "97": {
+    "date": "2026-07-09",
+    "venue": "Boston, Massachusetts - Boston Stadium"
+  },
+  "98": {
+    "date": "2026-07-10",
+    "venue": "Los Angeles, California - Los Angeles Stadium"
+  },
+  "99": {
+    "date": "2026-07-11",
+    "venue": "Miami Gardens, Florida - Miami Stadium"
+  },
+  "100": {
+    "date": "2026-07-11",
+    "venue": "Kansas City, Missouri - Kansas City Stadium"
+  },
+  "101": {
+    "date": "2026-07-14",
+    "venue": "Dallas, Texas - Dallas Stadium"
+  },
+  "102": {
+    "date": "2026-07-15",
+    "venue": "Atlanta, Georgia - Atlanta Stadium"
+  },
+  "103": {
+    "date": "2026-07-18",
+    "venue": "Miami Gardens, Florida - Miami Stadium"
+  },
+  "104": {
+    "date": "2026-07-19",
+    "venue": "New York / New Jersey - New York New Jersey Stadium"
+  }
+}

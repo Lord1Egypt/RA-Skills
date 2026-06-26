@@ -1,35 +1,55 @@
 ---
-name: "Gnview Kit"
-description: "抖音数据分析工具集，包含视频数据分析、用户画像分析、趋势统计等完整分析能力。适用于抖音数据深度挖掘和报告生成场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gnview-kit"
-sourceUrl: "https://clawhub.ai/skills/gnview-kit"
+name: gnview-kit
+description: 抖音数据分析工具集，包含视频数据分析、用户画像分析、趋势统计等完整分析能力。适用于抖音数据深度挖掘和报告生成场景。
 ---
 
-# Gnview Kit
+# gnview-kit
 
-> 抖音数据分析工具集，包含视频数据分析、用户画像分析、趋势统计等完整分析能力。适用于抖音数据深度挖掘和报告生成场景。
+## 功能概述
+本技能集为抖音视频数据分析与飞书多维表格同步的完整解决方案，核心能力包括：
+- 抖音视频元数据获取与下载
+- 抖音视频脚本/字幕提取与分析
+- 飞书多维表格数据校验与写入
+- 分析结果云文档关联与同步
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gnview-kit`
-- **Source URL:** [https://clawhub.ai/skills/gnview-kit](https://clawhub.ai/skills/gnview-kit)
+## 核心流程
+1. **环境校验**：验证飞书多维表格权限与依赖服务状态
+2. **数据采集**：通过关联技能获取抖音视频元数据、下载视频、提取脚本内容
+3. **数据处理**：标准化分析结果，生成结构化数据
+4. **同步写入**：将处理后的数据写入目标飞书多维表格
+5. **文档关联**：生成并关联飞书云文档存储详细分析内容
 
-## Overview
+## 配置说明
+所有配置项均统一存放在技能目录下的`config.json`文件中，需在使用前完成配置：
+
+| 配置项路径                     | 类型   | 示例值                                                                 | 说明                     |
+|--------------------------------|--------|----------------------------------------------------------------------|--------------------------|
+| `global.bitable.base`          | 字符串 | https://feishu.cn/base/xxx         | 飞书多维表格基础URL      |
+| `global.bitable.table`         | 字符串 | tblsh3nGcKBMbb4G                                                     | 目标数据表ID             |
+| `global.download.path`         | 字符串 | ./download                                                           | 视频文件下载保存路径     |
+| `global.download.name`         | 字符串 | $aweme_id.mp4                                                        | 下载文件名模板（支持$aweme_id变量） |
+
+## 关联技能
+- gnview-douyin-video-download
+- gnview-script-extraction
+- gnview-api-downloader
+
+## 数据字段规范
+写入多维表格的标准字段如下：
+| 字段名称         | 字段类型 | 示例值                                                                 | 说明                     |
+|------------------|----------|----------------------------------------------------------------------|--------------------------|
+| 视频原链接       | 文本     | https://www.douyin.com/video/7615937081646272185                      | 原始抖音视频地址         |
+| 视频ID           | 文本     | 7615937081646272185                                                  | 抖音视频唯一标识         |
+| 抖音号           | 文本     | unique_id(抖音号)                                                    | 视频发布者抖音号         |
+| 发布时间         | 日期     | 1712345678000                                                          | 视频发布时间戳           |
+| 视频标题         | 文本     | 抖音视频分析教程                                                    | 视频标题内容             |
+| 下载链接         | 超链接   | http://xxx/api/download?url=https://www.douyin.com/video/7615937081646272185 | 带下载前缀的视频地址     |
+| 分析文档链接     | 超链接   | https://feishu.cn/docx/[doc_id]                                      | 存储详细分析结果的飞书文档 |
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gnview-kit
-```
+## 注意事项
+1. 确保目标飞书多维表格已配置正确的写入权限
+2. 依赖的关联技能（gnview-api-downloader）需提前完成配置
+3. 所有API调用需遵守抖音开放平台的限流规则，建议添加重试与延迟机制
+4. 批量处理时建议添加分页逻辑，避免触发飞书API频率限制
+5. 敏感配置信息（如API密钥）请勿直接提交至代码仓库，使用环境变量或加密存储

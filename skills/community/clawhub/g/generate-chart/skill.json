@@ -1,0 +1,25 @@
+{
+  "name": "Generate Chart",
+  "description": "Generate a chart image using Chart.js. Supports line, bar, pie, doughnut, radar, polarArea, bubble, and scatter chart types.",
+  "method": "POST",
+  "endpoint": "/v1/generateChart",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": {
+    "type": "apiKey",
+    "header": "CLIENT-API-KEY",
+    "required": true
+  },
+  "parameters": {
+    "body": {
+      "content_type": "application/json",
+      "fields": [
+        { "name": "chart_type", "type": "string", "required": true, "enum": ["line", "bar", "pie", "doughnut", "radar", "polarArea", "bubble", "scatter"], "description": "Type of chart to generate" },
+        { "name": "data", "type": "object", "required": true, "description": "Chart.js data configuration with labels and datasets" },
+        { "name": "options", "type": "object", "required": false, "description": "Chart.js options configuration (plugins, scales, etc.)" },
+        { "name": "width", "type": "integer", "required": false, "default": 800, "description": "Width of the chart in pixels" },
+        { "name": "height", "type": "integer", "required": false, "default": 600, "description": "Height of the chart in pixels" },
+        { "name": "output_format", "type": "string", "required": false, "default": "url", "enum": ["url", "base64", "both", "image"], "description": "Output format for the chart image" }
+      ]
+    }
+  }
+}

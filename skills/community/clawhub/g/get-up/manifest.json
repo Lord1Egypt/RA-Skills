@@ -1,0 +1,107 @@
+{
+  "name": "dream-dance-of-clawra",
+  "displayName": "Dream of Clawra Selfie",
+  "version": "1.0.5",
+  "description": "Send Haocun's dancing and selfie images to messaging channels via OpenClaw. Users can request photos with context like 'dancing' or 'turn around'.",
+  "author": {
+    "name": "qidu",
+    "url": "https://github.com/qidu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qidu/dream-of-clawra"
+  },
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "selfie",
+    "dancing",
+    "images",
+    "messaging",
+    "haocun",
+    "clawra"
+  ],
+  "categories": [
+    "media",
+    "fun",
+    "lifestyle"
+  ],
+  "homepage": "https://github.com/qidu/dream-of-clawra#readme",
+  "bugs": {
+    "url": "https://github.com/qidu/dream-of-clawra/issues"
+  },
+  "openclaw": {
+    "requires": ">=2.0.0",
+    "install": {
+      "type": "clone",
+      "target": "~/.openclaw/skills/dream-of-clawra"
+    },
+    "config": {
+      "type": "optional",
+      "path": "skills.entries.dream-of-clawra",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable or disable the skill"
+          },
+          "defaultChannel": {
+            "type": "string",
+            "default": "whatsapp",
+            "description": "Default channel for sending images"
+          },
+          "defaultCaption": {
+            "type": "string",
+            "default": "I am here",
+            "description": "Default caption for sent images"
+          },
+          "OPENCLAW_GATEWAY_URL": {
+            "type": "string",
+            "default": "http://localhost:18789",
+            "description": "OpenClaw Gateway URL for direct API calls"
+          },
+          "OPENCLAW_GATEWAY_TOKEN": {
+            "type": "string",
+            "default": "",
+            "description": "OpenClaw Gateway token for authentication"
+          }
+        }
+      }
+    }
+  },
+  "assets": {
+    "referenceImages": {
+      "dance": 52,
+      "selfie": 31,
+      "source": "https://cdn.jsdelivr.net/gh/christoagent/haoclaw@main/assets/"
+    }
+  },
+  "triggers": {
+    "patterns": [
+      "send.*pic",
+      "send.*photo",
+      "send.*selfie",
+      "dance",
+      "dream",
+      "what.*doing",
+      "show.*me.*you"
+    ]
+  },
+  "compatibility": {
+    "channels": [
+      "whatsapp",
+      "signal",
+      "telegram",
+      "discord",
+      "slack"
+    ]
+  },
+  "screenshots": [
+    {
+      "url": "https://cdn.jsdelivr.net/gh/christoagent/haoclaw@main/assets/haocun-dancing.png",
+      "caption": "Haocun dancing reference image"
+    }
+  ]
+}

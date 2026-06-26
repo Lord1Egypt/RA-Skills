@@ -1,35 +1,58 @@
 ---
-name: "Forum Downloader"
-description: "从论坛帖子批量下载图片/视频到指定目录。支持需要代理访问的论坛（如 hjd2048），自动提取页面标题创建文件夹，PowerShell 脚本，UTF-8 BOM 编码。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/forum-downloader"
-sourceUrl: "https://clawhub.ai/skills/forum-downloader"
+name: forum-downloader
+description: 从论坛帖子批量下载图片/视频到指定目录。支持需要代理访问的论坛（如 hjd2048），自动提取页面标题创建文件夹，PowerShell 脚本，UTF-8 BOM 编码。
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📥",
+        "requires": { "bins": ["powershell"] },
+        "install": [],
+      },
+  }
 ---
 
 # Forum Downloader
 
-> 从论坛帖子批量下载图片/视频到指定目录。支持需要代理访问的论坛（如 hjd2048），自动提取页面标题创建文件夹，PowerShell 脚本，UTF-8 BOM 编码。
+从论坛帖子批量下载图片或视频，保存到用户指定目录。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/forum-downloader`
-- **Source URL:** [https://clawhub.ai/skills/forum-downloader](https://clawhub.ai/skills/forum-downloader)
+## 适用场景
 
-## Overview
+- hjd2048、2048 等需要代理访问的论坛
+- 帖子内含多张图片或附件视频
+- 自动用页面标题创建文件夹
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/forum-downloader
-```
+提供论坛帖子 URL，我会自动：
+1. 通过代理获取页面内容
+2. 用 GBK/GB2312 编码正确提取标题
+3. 在用户指定目录下创建 `{标题}` 文件夹
+4. 解析页面中的图片/附件 URL
+5. 用 PowerShell WebClient 下载全部文件
+
+## 技术细节
+
+- **下载方式**：`System.Net.WebClient` + `WebProxy`
+- **脚本编码**：UTF-8 with BOM（解决 PowerShell 中文路径变量问题）
+- **编码处理**：论坛页面用 GBK 编码读取
+- **代理地址**：从用户处获取（不硬编码）
+
+## 示例
+
+**用户说 "下载到 D:\图片，使用 XXX 端口的代理"：**
+1. 创建目录：`D:\图片\{页面标题}\`
+2. 用用户提供的代理地址获取页面
+3. 解析图片 URL（`data-original` 属性）
+4. 批量下载
+
+## 常见问题
+
+**Q: 代理端口不是 7890？**
+→ 告诉我实际的代理地址和端口。
+
+**Q: 图片是其他格式（jpeg/gif/webp）？**
+→ 脚本中用正则匹配所有图片扩展名，自动处理。
+
+**Q: 想下载视频而不是图片？**
+→ 同样适用，只需提供视频帖子的 URL。

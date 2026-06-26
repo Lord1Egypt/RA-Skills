@@ -1,35 +1,66 @@
 ---
-name: "积存金价格监控助手"
+name: gold-price-monitor
 description: "监控黄金价格 - 获取实时国际金价，记录历史价格，当价格波动超过阈值时发出通知。适合 OpenClaw 定时调用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gold-price-monitor"
-sourceUrl: "https://clawhub.ai/skills/gold-price-monitor"
 ---
 
-# 积存金价格监控助手
+# 黄金积存金价格监控 Skill
 
-> 监控黄金价格 - 获取实时国际金价，记录历史价格，当价格波动超过阈值时发出通知。适合 OpenClaw 定时调用。
+监控上海金交所 Au99.99 实时报价（人民币/克），与基准价格（首次记录或最近一次触发警报的价格）进行对比。当买入价变动超过阈值时生成通知消息，并将当前价格更新为新的基准价，以避免金价缓慢变化时永远无法触发警报的问题。辅助买入/卖出决策。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gold-price-monitor`
-- **Source URL:** [https://clawhub.ai/skills/gold-price-monitor](https://clawhub.ai/skills/gold-price-monitor)
+## 执行步骤
 
-## Overview
+### 1. 运行价格检查脚本
 
+执行以下命令获取最新积存金报价：
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gold-price-monitor
+python d:\VibeCode\.agents\skills\gold-price-monitor\scripts\check_gold_price.py
 ```
+
+### 2. 解读脚本输出
+
+脚本输出 JSON 格式的结果，关键字段：
+
+- `buy_price`：客户买入价（你用这个价格买入黄金）
+- `sell_price`：客户卖出价（你用这个价格卖出黄金）
+- `mid_price`：中间价
+- `buy_change`：与上次买入价的差值
+- `today_open_buy`：今日开盘价（北京时间9点后首次记录）
+- `day_change`：与今日开盘价的差值（日内涨跌）
+- `alert`：是否触发警报（差价超过阈值）
+- `suggestion`：买卖建议
+
+### 3. 根据结果通知用户
+
+- 如果 `alert` 为 `true`：**必须立即通知用户**，用醒目格式输出消息和买卖建议。
+- 如果 `alert` 为 `false`：简要告知用户当前价格即可。
+- 如果 `status` 为 `error`：告知用户获取价格失败。
+
+### 通知格式示例
+
+**价格大幅下跌（买入机会）：**
+```
+🚨 黄金价格波动警报！
+📉 上金所Au99.99报价
+  买入价: ¥1010.50/克（-12.30）
+  卖出价: ¥1000.20/克（-12.10）
+  上次买入价: ¥1022.80/克
+  今日开盘价: ¥1020.00/克（日内-9.50, -0.93%）
+  💡 价格大幅下跌，可考虑买入
+⏰ 银行更新时间: 2026-03-25 10:30:00
+```
+
+**价格平稳：**
+```
+📊 黄金价格播报
+上金所Au99.99买入价: ¥1022.37/克（+2.30）
+今日开盘价: ¥1020.00/克（日内+2.37, +0.23%）
+价格波动不大，建议观望
+```
+
+## 配置说明
+
+- **价格阈值**：默认买入价差价 ≥ 10 元触发警报，可在脚本中修改 `ALERT_THRESHOLD`
+- **数据来源**：新浪财经上海金交所 Au99.99 报价（JSONP 接口，无需 API Key）
+- **数据存储**：历史基准记录存于 `data/price_history.json`（仅在触发警报或首次记录时保存以用作对比基准，保留 1000 条），开盘价存于 `data/daily_open.json`（保留 30 天）
+- **开盘价**：每天北京时间 9:00 后的首次调用自动记录为当日开盘价

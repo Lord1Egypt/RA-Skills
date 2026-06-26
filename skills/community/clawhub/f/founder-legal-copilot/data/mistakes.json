@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "mistake": "Not incorporating as a Delaware C-Corp before fundraising",
+    "severity": "critical",
+    "phase": "pre-incorporation",
+    "consequence": "VCs will not invest in an LLC or non-Delaware entity. You will waste $5K–$15K converting later, plus 2–4 months of delays right when you need momentum.",
+    "prevention": "Form a Delaware C-Corp from day one if you plan to raise VC money. Use Stripe Atlas, Clerky, or Firstbase for around $500. Even if you are based in another state, incorporate in Delaware and register as a foreign corporation in your home state.",
+    "source": "YC Library"
+  },
+  {
+    "id": 2,
+    "mistake": "No founder vesting agreement",
+    "severity": "critical",
+    "phase": "pre-incorporation",
+    "consequence": "If a co-founder leaves after 3 months, they keep 100% of their equity stake. No institutional investor will fund a company with a departed co-founder holding 30–50% of the cap table.",
+    "prevention": "Standard structure is 4-year vesting with a 1-year cliff. All founders must sign a Restricted Stock Purchase Agreement (RSPA) at incorporation. If you already issued shares without vesting, re-paper immediately.",
+    "source": "YC SAFE Documents"
+  },
+  {
+    "id": 3,
+    "mistake": "Missing the 83(b) election deadline",
+    "severity": "critical",
+    "phase": "pre-incorporation",
+    "consequence": "You have exactly 30 days from the date of stock grant to file an 83(b) election with the IRS. Missing it means you will owe income tax on the full fair market value of your shares every time they vest — potentially hundreds of thousands of dollars in ordinary income tax instead of long-term capital gains rates.",
+    "prevention": "File the 83(b) election within 30 days of receiving restricted stock. Send it via certified mail. Keep a copy with the USPS certified mail receipt as proof. Many founders have lost more money to this mistake than they raised in their seed round.",
+    "source": "IRS Rev. Proc. 2012-29"
+  },
+  {
+    "id": 4,
+    "mistake": "Not assigning intellectual property to the company",
+    "severity": "critical",
+    "phase": "early-stage",
+    "consequence": "The company does not legally own its own product. Any future investor, acquirer, or IPO will discover this during due diligence and either walk away or massively reduce valuation. Former employees or contractors can claim ownership of the code they wrote.",
+    "prevention": "Every founder must sign an IP Assignment Agreement at incorporation. Every employee and contractor must sign a CIIA (Confidential Information and Invention Assignment Agreement) before doing any work. This is non-negotiable.",
+    "source": "NVCA Model Documents"
+  },
+  {
+    "id": 5,
+    "mistake": "Misclassifying employees as independent contractors",
+    "severity": "high",
+    "phase": "early-stage",
+    "consequence": "The IRS and Department of Labor have strict tests for worker classification. Getting it wrong means back taxes, penalties, interest, and potential personal liability for founders. California AB5 makes this even stricter. One misclassified engineer can trigger a six-figure liability.",
+    "prevention": "Use the IRS common law test (behavioral control, financial control, type of relationship). When in doubt, classify as an employee. If you need flexibility, use a staffing agency or PEO. True contractors should work for multiple clients, set their own hours, and use their own tools.",
+    "source": "IRS SS-8, California AB5"
+  },
+  {
+    "id": 6,
+    "mistake": "Using a generic NDA instead of a CIIA with employees",
+    "severity": "high",
+    "phase": "early-stage",
+    "consequence": "A standard NDA only covers confidentiality. It does not assign inventions to the company. An employee who builds your core product on their personal laptop might own that IP. This is one of the most expensive oversights to fix in Series A due diligence.",
+    "prevention": "Use a Confidential Information and Invention Assignment Agreement (CIIA) for every person who works with you. It covers: confidentiality, IP assignment, prior inventions disclosure, non-solicitation, and return of company property. Orrick and Cooley publish free templates.",
+    "source": "Orrick Startup Forms"
+  },
+  {
+    "id": 7,
+    "mistake": "Issuing SAFEs without a valuation cap or discount",
+    "severity": "high",
+    "phase": "fundraising",
+    "consequence": "An uncapped, no-discount SAFE means your early investors get no economic advantage over future investors. No sophisticated angel will take this deal. And if they do, the SAFE terms may be challenged as unconscionable or not reflecting the intent of the parties.",
+    "prevention": "Standard YC SAFE has either: (a) a valuation cap only, (b) a discount rate only (typically 15–20%), or (c) both. For pre-seed, a $5M–$10M cap is common. Use the YC post-money SAFE template from YC's website, not a modified version.",
+    "source": "Y Combinator SAFE Documents"
+  },
+  {
+    "id": 8,
+    "mistake": "Not maintaining corporate records and board minutes",
+    "severity": "medium",
+    "phase": "growth",
+    "consequence": "Courts can pierce the corporate veil if you treat the company as an alter ego of yourself. This means investors, creditors, and plaintiffs can come after your personal assets. Failure to maintain records also creates massive problems in M&A due diligence.",
+    "prevention": "Hold at least one annual board meeting and document it with minutes. Keep a corporate records binder with: Certificate of Incorporation, Bylaws, shareholder register, option grants, board resolutions for all material decisions. Use tools like Carta or Pulley to automate cap table tracking.",
+    "source": "Delaware General Corporation Law"
+  },
+  {
+    "id": 9,
+    "mistake": "Skipping the 409A valuation before issuing stock options",
+    "severity": "critical",
+    "phase": "growth",
+    "consequence": "The IRS requires that stock options be issued at fair market value (FMV). Without a 409A valuation to establish FMV, every option holder faces immediate ordinary income tax on the full value of their options, plus a 20% penalty tax. This can bankrupt employees who exercised their options.",
+    "prevention": "Get a 409A valuation from a qualified appraiser before issuing any stock options. Cost: $1,500–$3,000. Update it every 12 months or after any material event (funding round, major revenue milestone, M&A discussion). The safe harbor protection is worth far more than the cost.",
+    "source": "IRC Section 409A"
+  },
+  {
+    "id": 10,
+    "mistake": "No privacy policy before product launch",
+    "severity": "high",
+    "phase": "growth",
+    "consequence": "CCPA (California) fines are $2,500–$7,500 per intentional violation. GDPR fines can reach 4% of global annual turnover. If you collect any personal data from users — including IP addresses and cookies — you need a privacy policy. Launching without one is not a gray area.",
+    "prevention": "Draft a privacy policy before launch that covers: what data you collect, why you collect it, how you store it, who you share it with, and user rights (access, deletion, portability). If you serve EU users, you also need a GDPR-compliant Data Processing Addendum and cookie consent mechanism.",
+    "source": "CCPA, GDPR Article 13"
+  },
+  {
+    "id": 11,
+    "mistake": "Handshake deals with advisors",
+    "severity": "medium",
+    "phase": "early-stage",
+    "consequence": "Advisors who receive verbal equity promises can later claim more than you intended to give. Even if you win in court, the dispute will surface in due diligence and spook investors. Unwritten agreements are also unenforceable in many states.",
+    "prevention": "Use a formal Advisor Agreement from the Fast Agreement (FAST) template by Founders' Workbench or NVCA. Standard advisor equity is 0.1–0.5% with 2-year vesting (no cliff). Define exactly what the advisor will do in exchange for equity.",
+    "source": "Founder's Workbench FAST Template"
+  },
+  {
+    "id": 12,
+    "mistake": "Using a generic Terms of Service template found online",
+    "severity": "medium",
+    "phase": "growth",
+    "consequence": "Free online templates often have outdated dispute resolution clauses, incorrect governing law for your jurisdiction, and missing provisions for SaaS businesses (SLAs, data ownership, acceptable use). Unenforceable ToS means you cannot terminate abusive users, and you may be liable for their actions on your platform.",
+    "prevention": "Have a lawyer draft or review your ToS. At minimum, ensure it covers: limitation of liability, indemnification, acceptable use policy, governing law and arbitration, subscription auto-renewal terms (required by FTC), and DMCA safe harbor designation. Cost: $500–$2,000 with a startup lawyer.",
+    "source": "FTC Negative Option Rule, DMCA Section 512"
+  },
+  {
+    "id": 13,
+    "mistake": "Not purchasing D&O insurance before closing a funding round",
+    "severity": "high",
+    "phase": "fundraising",
+    "consequence": "Directors and Officers can be personally sued for company decisions — by investors, employees, competitors, or regulators. Without D&O insurance, a lawsuit can wipe out personal assets. Many institutional investors require D&O as a condition of investment.",
+    "prevention": "Purchase D&O insurance before your first institutional round. Typical coverage: $2M–$5M for seed stage. Cost: $5,000–$15,000 per year. Work with a broker who specializes in tech startups (Founder Shield, Vouch, Hiscox). Most VCs will flag the absence of D&O in their term sheet.",
+    "source": "Delaware Indemnification Statute"
+  },
+  {
+    "id": 14,
+    "mistake": "Granting too much equity to early employees",
+    "severity": "medium",
+    "phase": "early-stage",
+    "consequence": "Early equity grants that are too generous leave insufficient equity for future key hires and dilute the cap table heading into a Series A. A CTO hired at 10% who leaves after 1 year can create a structurally broken cap table that deters investors.",
+    "prevention": "Market rates for early employees: first 5 engineers: 0.5–1% each. VP-level: 0.5–1.5%. C-suite (non-founder): 1–3% for pre-Series A. All subject to standard 4-year vesting with 1-year cliff. Reserve 10–15% in your option pool before Series A.",
+    "source": "Carta Equity Compensation Benchmarks"
+  },
+  {
+    "id": 15,
+    "mistake": "Omitting non-solicitation clauses in employment agreements",
+    "severity": "medium",
+    "phase": "growth",
+    "consequence": "Without non-solicitation provisions, a departing employee can immediately contact your clients and recruit your team. Unlike non-competes, non-solicitation clauses are enforceable in most states, including California, when properly drafted.",
+    "prevention": "Include a 12-month non-solicitation clause covering both customers and employees in all offer letters and employment agreements. Note that customer non-solicitation requires identification of the specific customers to be enforceable in some states. Have a local employment lawyer review for each state where you hire.",
+    "source": "Restatement (Third) of Employment Law"
+  },
+  {
+    "id": 16,
+    "mistake": "Granting side letters to investors without board approval",
+    "severity": "high",
+    "phase": "fundraising",
+    "consequence": "Side letters that give one investor rights not disclosed to others can violate MFN clauses held by existing investors, trigger disputes at Series A when lead investors discover conflicting rights, and create fiduciary duty problems for the board. This is a common deal killer in due diligence.",
+    "prevention": "Any side letter must be disclosed to and approved by the board before execution. Most side letters address: MFN rights, pro-rata rights, information rights, board observer seats. Keep a side letter register and disclose in the Series A data room proactively.",
+    "source": "Delaware Fiduciary Duty Law"
+  },
+  {
+    "id": 17,
+    "mistake": "Not registering trademarks early",
+    "severity": "medium",
+    "phase": "growth",
+    "consequence": "Trademark rights in the US are primarily use-based, but federal registration gives you nationwide priority. If a competitor or troll registers your brand name first, you may have to rebrand entirely — a six-to-seven-figure cost in marketing and legal fees.",
+    "prevention": "File a trademark application with the USPTO within 6 months of launch, or earlier if you have a unique name. Cost: $250–$350 per class. Use TEAS Plus application. In most countries, trademark rights are registration-based (first to file), so prioritize international registration in your target markets.",
+    "source": "USPTO Trademark Manual of Examining Procedure"
+  },
+  {
+    "id": 18,
+    "mistake": "Relying on verbal or email agreements about equity",
+    "severity": "critical",
+    "phase": "pre-incorporation",
+    "consequence": "Equity disputes are the most expensive startup litigation there is. An email saying 'you'll get 10%' is ambiguous about vesting, dilution, class of shares, and conditions. Courts interpret these inconsistently. A single equity dispute can consume $200K+ in legal fees and kill a fundraise.",
+    "prevention": "Zero equity agreements should ever be verbal. Use proper legal documents: Restricted Stock Purchase Agreement, Stock Option Agreement, SAFE, or Convertible Note — all signed and dated. If you promised equity before incorporating, document it immediately in writing and then formalize it at incorporation.",
+    "source": "California Business & Professions Code"
+  },
+  {
+    "id": 19,
+    "mistake": "No Data Processing Agreements (DPAs) with vendors",
+    "severity": "high",
+    "phase": "growth",
+    "consequence": "Under GDPR, if your vendor processes personal data on your behalf without a DPA, you are in violation — even if the vendor is at fault for a breach. Fines start at €10M or 2% of global turnover. Under CCPA, you may also be liable for your service providers' violations.",
+    "prevention": "Before sending any personal data to a vendor (analytics, CRM, email tools, infrastructure), execute a DPA. Most major vendors (AWS, Google, Stripe, Twilio) have standard DPAs you can sign in their dashboards. Create a vendor data processing register to track all sub-processors.",
+    "source": "GDPR Article 28, CCPA Section 1798.140"
+  },
+  {
+    "id": 20,
+    "mistake": "Ignoring state-specific employment laws when hiring across states",
+    "severity": "high",
+    "phase": "growth",
+    "consequence": "Employment law in the US is a state patchwork. California has some of the strictest laws in the world: non-competes are void, meal and rest break requirements are strict, and ABC test for contractors is harsh. Hiring one remote employee in California without adjusting your employment agreements exposes you to class action risk.",
+    "prevention": "When hiring in a new state, consult with an employment lawyer in that state before the first hire. Key states with major differences: California, New York, Illinois, Massachusetts, Washington. Use an HR platform like Rippling or Gusto that flags state-specific compliance requirements automatically.",
+    "source": "California Labor Code, NLRA"
+  }
+]

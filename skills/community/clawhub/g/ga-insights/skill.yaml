@@ -1,0 +1,60 @@
+name: ga-insights
+description: AI-powered Google Analytics co-pilot — ask analytics questions in plain English
+version: 0.3.0
+author: Larrylaptop
+
+commands:
+  ga:
+    description: GA4 analytics assistant
+    setup:
+      description: Start guided GA4 setup
+      script: python ga_insights.py setup
+    status:
+      description: Check connection status
+      script: python ga_insights.py status
+    traffic:
+      description: Get traffic summary
+      script: python ga_insights.py traffic --days ${days=7}
+    realtime:
+      description: Get current active users
+      script: python ga_insights.py realtime
+    sources:
+      description: Get traffic sources breakdown
+      script: python ga_insights.py sources --days ${days=7}
+    bounce:
+      description: Bounce rate analysis by page
+      script: python ga_insights.py bounce
+    pages:
+      description: Best/worst performing pages
+      script: python ga_insights.py pages
+    devices:
+      description: Mobile/desktop/tablet breakdown
+      script: ga_insights.py devices --days ${days=7}
+    geo:
+      description: Traffic by country
+      script: python ga_insights.py geo --days ${days=7}
+    hourly:
+      description: Hourly traffic distribution
+      script: python ga_insights.py hourly --days ${days=1}
+    daily:
+      description: Daily traffic trends
+      script: python ga_insights.py daily --days ${days=30}
+    conversions:
+      description: Conversion events analysis
+      script: python ga_insights.py conversions --days ${days=7}
+    funnel:
+      description: Conversion funnel analysis
+      script: python ga_insights.py funnel --days ${days=7}
+    compare:
+      description: Compare two time periods
+      script: python ga_insights.py compare --period1 ${period1=7} --period2 ${period2=7}
+    drop:
+      description: Analyze traffic drops
+      script: python ga_insights.py drop --days ${days=7}
+    cache:
+      description: Clear cached data
+      script: python ga_insights.py cache
+
+natural_language:
+  enabled: true
+  handle_query: python ga_insights.py query "{input}"

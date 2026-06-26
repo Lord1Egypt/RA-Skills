@@ -1,35 +1,18 @@
----
-name: "Get Kalshi Live Games"
-description: "Fetch up to five currently live Kalshi sports markets with game names and their probabilities using the browser."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/get-kalshi-live-games"
-sourceUrl: "https://clawhub.ai/skills/get-kalshi-live-games"
----
+# Skill: Get Kalshi Live Games
 
-# Get Kalshi Live Games
+## Purpose
+Fetch currently live Kalshi sports markets using the browser.
 
-> Fetch up to five currently live Kalshi sports markets with game names and their probabilities using the browser.
+## Tool Policy
+- MUST use the browser tool
+- MUST NOT use web_search or web_fetch for live market data
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/get-kalshi-live-games`
-- **Source URL:** [https://clawhub.ai/skills/get-kalshi-live-games](https://clawhub.ai/skills/get-kalshi-live-games)
+## Steps
+1. Start browser if not running.
+2. Open https://kalshi.com
+3. Navigate to live sports markets.
+4. Extract up to 5 currently running games.
+5. Return only:
+   - Game name
+   - Probability
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/get-kalshi-live-games
-```

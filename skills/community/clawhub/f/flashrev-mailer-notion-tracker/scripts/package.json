@@ -1,0 +1,13 @@
+{
+  "name": "flashrev-notion-tracker-scripts",
+  "version": "1.0.0",
+  "description": "Pushes FlashRev send-log entries into a Notion database",
+  "type": "module",
+  "dependencies": {
+    "@notionhq/client": "^2.2.15"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT-0"
+}

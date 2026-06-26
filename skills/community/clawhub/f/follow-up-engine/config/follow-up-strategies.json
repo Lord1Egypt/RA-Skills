@@ -1,0 +1,310 @@
+{
+  "strategies": [
+    {
+      "stage_id": "new_inquiry",
+      "stage_name": "新询盘",
+      "follow_up_sequence": [1, 3, 7, 14, 30],
+      "templates": [
+        {"day": 1, "template_id": "template-inquiry-001", "intent": "initial_response"},
+        {"day": 3, "template_id": "template-followup-001", "intent": "price_followup"},
+        {"day": 7, "template_id": "template-followup-002", "intent": "value_proposition"},
+        {"day": 14, "template_id": "template-followup-003", "intent": "case_study"},
+        {"day": 30, "template_id": "template-followup-004", "intent": "final_check"}
+      ],
+      "escalation_rules": {
+        "no_reply_after_followups": 3,
+        "action": "mark_as_cold",
+        "notify_owner": true,
+        "suggested_action": "尝试电话或 WhatsApp 联系"
+      },
+      "channel": "email",
+      "working_hours_only": true
+    },
+    {
+      "stage_id": "quoted",
+      "stage_name": "已报价",
+      "follow_up_sequence": [2, 5, 10, 20],
+      "templates": [
+        {"day": 2, "template_id": "template-quote-001", "intent": "quote_confirmation"},
+        {"day": 5, "template_id": "template-quote-002", "intent": "price_negotiation"},
+        {"day": 10, "template_id": "template-quote-003", "intent": "urgency_create"},
+        {"day": 20, "template_id": "template-quote-004", "intent": "last_chance"}
+      ],
+      "escalation_rules": {
+        "no_reply_after_followups": 2,
+        "action": "offer_discount",
+        "notify_owner": true,
+        "suggested_action": "申请特价审批或提供样品"
+      },
+      "channel": "email",
+      "working_hours_only": true
+    },
+    {
+      "stage_id": "sample_sent",
+      "stage_name": "已寄样",
+      "follow_up_sequence": [1, 3, 7, 14],
+      "templates": [
+        {"day": 1, "template_id": "template-sample-001", "intent": "tracking_notify"},
+        {"day": 3, "template_id": "template-sample-002", "intent": "delivery_confirm"},
+        {"day": 7, "template_id": "template-sample-003", "intent": "feedback_request"},
+        {"day": 14, "template_id": "template-sample-004", "intent": "test_result_followup"}
+      ],
+      "escalation_rules": {
+        "no_reply_after_followups": 2,
+        "action": "schedule_call",
+        "notify_owner": true,
+        "suggested_action": "安排视频会议讨论样品测试结果"
+      },
+      "channel": "email",
+      "working_hours_only": true
+    },
+    {
+      "stage_id": "negotiating",
+      "stage_name": "谈判中",
+      "follow_up_sequence": [1, 2, 5, 10],
+      "templates": [
+        {"day": 1, "template_id": "template-nego-001", "intent": "counter_offer_response"},
+        {"day": 2, "template_id": "template-nego-002", "intent": "terms_clarification"},
+        {"day": 5, "template_id": "template-nego-003", "intent": "deadline_reminder"},
+        {"day": 10, "template_id": "template-nego-004", "intent": "final_offer"}
+      ],
+      "escalation_rules": {
+        "no_reply_after_followups": 2,
+        "action": "escalate_to_manager",
+        "notify_owner": true,
+        "suggested_action": "升级至销售经理介入谈判"
+      },
+      "channel": "email",
+      "working_hours_only": true
+    },
+    {
+      "stage_id": "closed_won",
+      "stage_name": "已成交",
+      "follow_up_sequence": [1, 7, 30, 90],
+      "templates": [
+        {"day": 1, "template_id": "template-won-001", "intent": "order_confirmation"},
+        {"day": 7, "template_id": "template-won-002", "intent": "production_update"},
+        {"day": 30, "template_id": "template-won-003", "intent": "delivery_notify"},
+        {"day": 90, "template_id": "template-won-004", "intent": "satisfaction_survey"}
+      ],
+      "escalation_rules": {
+        "no_reply_after_followups": 1,
+        "action": "account_review",
+        "notify_owner": false,
+        "suggested_action": "标记为低活跃客户，季度回顾"
+      },
+      "channel": "email",
+      "working_hours_only": false
+    },
+    {
+      "stage_id": "lost",
+      "stage_name": "已流失",
+      "follow_up_sequence": [30, 90, 180],
+      "templates": [
+        {"day": 30, "template_id": "template-lost-001", "intent": "winback_offer"},
+        {"day": 90, "template_id": "template-lost-002", "intent": "new_product_notify"},
+        {"day": 180, "template_id": "template-lost-003", "intent": "seasonal_promotion"}
+      ],
+      "escalation_rules": {
+        "no_reply_after_followups": 3,
+        "action": "archive",
+        "notify_owner": false,
+        "suggested_action": "归档至历史客户库，年度激活尝试"
+      },
+      "channel": "email",
+      "working_hours_only": false
+    }
+  ],
+  "templates_reference": [
+    {
+      "template_id": "template-inquiry-001",
+      "subject": "Re: Your inquiry about {product_name} - {company_name}",
+      "body_key": "inquiry_initial_response",
+      "intent": "initial_response",
+      "tone": "professional"
+    },
+    {
+      "template_id": "template-followup-001",
+      "subject": "Following up on your {product_name} inquiry",
+      "body_key": "price_followup",
+      "intent": "price_followup",
+      "tone": "friendly"
+    },
+    {
+      "template_id": "template-followup-002",
+      "subject": "Why {company_name} is the right partner for {product_name}",
+      "body_key": "value_proposition",
+      "intent": "value_proposition",
+      "tone": "professional"
+    },
+    {
+      "template_id": "template-followup-003",
+      "subject": "Case study: How we helped {similar_company} with {product_name}",
+      "body_key": "case_study_share",
+      "intent": "case_study",
+      "tone": "friendly"
+    },
+    {
+      "template_id": "template-followup-004",
+      "subject": "Still interested in {product_name}?",
+      "body_key": "final_interest_check",
+      "intent": "final_check",
+      "tone": "friendly"
+    },
+    {
+      "template_id": "template-quote-001",
+      "subject": "Quotation #{quote_number} for {product_name} - Confirmation",
+      "body_key": "quote_confirmation",
+      "intent": "quote_confirmation",
+      "tone": "professional"
+    },
+    {
+      "template_id": "template-quote-002",
+      "subject": "Flexible pricing options for {product_name}",
+      "body_key": "price_negotiation",
+      "intent": "price_negotiation",
+      "tone": "friendly"
+    },
+    {
+      "template_id": "template-quote-003",
+      "subject": "Limited stock alert: {product_name}",
+      "body_key": "urgency_create",
+      "intent": "urgency_create",
+      "tone": "urgent"
+    },
+    {
+      "template_id": "template-quote-004",
+      "subject": "Final chance: Quote #{quote_number} expires soon",
+      "body_key": "last_chance",
+      "intent": "last_chance",
+      "tone": "urgent"
+    },
+    {
+      "template_id": "template-sample-001",
+      "subject": "Sample shipped: Tracking #{tracking_number}",
+      "body_key": "tracking_notify",
+      "intent": "tracking_notify",
+      "tone": "professional"
+    },
+    {
+      "template_id": "template-sample-002",
+      "subject": "Did you receive the {product_name} sample?",
+      "body_key": "delivery_confirm",
+      "intent": "delivery_confirm",
+      "tone": "friendly"
+    },
+    {
+      "template_id": "template-sample-003",
+      "subject": "Your feedback on {product_name} sample",
+      "body_key": "feedback_request",
+      "intent": "feedback_request",
+      "tone": "friendly"
+    },
+    {
+      "template_id": "template-sample-004",
+      "subject": "Sample test results discussion",
+      "body_key": "test_result_followup",
+      "intent": "test_result_followup",
+      "tone": "professional"
+    },
+    {
+      "template_id": "template-nego-001",
+      "subject": "Re: Your counter offer for {product_name}",
+      "body_key": "counter_offer_response",
+      "intent": "counter_offer_response",
+      "tone": "professional"
+    },
+    {
+      "template_id": "template-nego-002",
+      "subject": "Clarification on terms for order #{order_number}",
+      "body_key": "terms_clarification",
+      "intent": "terms_clarification",
+      "tone": "professional"
+    },
+    {
+      "template_id": "template-nego-003",
+      "subject": "Production slot deadline: {deadline_date}",
+      "body_key": "deadline_reminder",
+      "intent": "deadline_reminder",
+      "tone": "urgent"
+    },
+    {
+      "template_id": "template-nego-004",
+      "subject": "Final offer for {product_name} - Valid until {expiry_date}",
+      "body_key": "final_offer",
+      "intent": "final_offer",
+      "tone": "professional"
+    },
+    {
+      "template_id": "template-won-001",
+      "subject": "Order #{order_number} confirmed - Thank you!",
+      "body_key": "order_confirmation",
+      "intent": "order_confirmation",
+      "tone": "friendly"
+    },
+    {
+      "template_id": "template-won-002",
+      "subject": "Production update: Order #{order_number}",
+      "body_key": "production_update",
+      "intent": "production_update",
+      "tone": "professional"
+    },
+    {
+      "template_id": "template-won-003",
+      "subject": "Your order #{order_number} has been shipped",
+      "body_key": "delivery_notify",
+      "intent": "delivery_notify",
+      "tone": "friendly"
+    },
+    {
+      "template_id": "template-won-004",
+      "subject": "How satisfied are you with {product_name}?",
+      "body_key": "satisfaction_survey",
+      "intent": "satisfaction_survey",
+      "tone": "friendly"
+    },
+    {
+      "template_id": "template-lost-001",
+      "subject": "Special win-back offer for {customer_name}",
+      "body_key": "winback_offer",
+      "intent": "winback_offer",
+      "tone": "friendly"
+    },
+    {
+      "template_id": "template-lost-002",
+      "subject": "New product launch: {new_product_name}",
+      "body_key": "new_product_notify",
+      "intent": "new_product_notify",
+      "tone": "friendly"
+    },
+    {
+      "template_id": "template-lost-003",
+      "subject": "Seasonal promotion: {product_name}",
+      "body_key": "seasonal_promotion",
+      "intent": "seasonal_promotion",
+      "tone": "friendly"
+    }
+  ],
+  "global_settings": {
+    "working_hours": {
+      "timezone": "Asia/Shanghai",
+      "start": "09:00",
+      "end": "18:00",
+      "exclude_weekends": true,
+      "exclude_holidays": true
+    },
+    "max_follow_ups": 5,
+    "default_interval_days": 3,
+    "auto_pause_on_reply": true,
+    "okki_sync": {
+      "enabled": true,
+      "sync_followup_records": true,
+      "update_stage_on_reply": true
+    },
+    "notification": {
+      "discord_channel": "follow-up-alerts",
+      "notify_on_escalation": true,
+      "notify_on_stage_change": true
+    }
+  }
+}

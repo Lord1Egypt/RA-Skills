@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://powermatrix.local/schemas/workflow_state.schema.json",
+  "title": "PowerMatrix GEO Growth Workflow State",
+  "type": "object",
+  "required": [
+    "workflow_id",
+    "current_stage",
+    "delivery_status",
+    "brand_profile",
+    "geo_audit_report",
+    "content_tasks",
+    "platform_drafts",
+    "publish_plan",
+    "errors",
+    "next_actions"
+  ],
+  "properties": {
+    "workflow_id": {
+      "type": "string"
+    },
+    "current_stage": {
+      "type": "string",
+      "enum": [
+        "Stage 1 Intake",
+        "Stage 2 Brand Profile Resolve",
+        "Stage 3 GEO Audit Planning",
+        "Stage 4 Content Gap Analysis",
+        "Stage 5 Content Package Planning",
+        "Stage 6 Platform Dispatch",
+        "Stage 7 Publish Plan Generation",
+        "Stage 8 Full Report Generation",
+        "Stage 9 Dual Report Generation",
+        "Stage 10 Review and Next Cycle",
+        "Stage 8 Review and Next Cycle",
+        "Completed"
+      ]
+    },
+    "delivery_status": {
+      "type": "string",
+      "enum": ["ready", "needs_review", "blocked"],
+      "description": "Overall handoff status for the workflow. Use blocked when critical facts, evidence, or compliance issues prevent scheduling or publication."
+    },
+    "brand_profile": {
+      "type": "object"
+    },
+    "geo_audit_report": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "content_gap_report": {
+      "type": "object"
+    },
+    "content_tasks": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "platform_drafts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "publish_plan": {
+      "type": "object"
+    },
+    "review_report": {
+      "type": "string"
+    },
+    "output_mode": {
+      "type": "string",
+      "enum": ["full_report", "summary"],
+      "description": "Default is full_report. Use summary only when the user explicitly asks for a short summary."
+    },
+    "final_report": {
+      "type": "string"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,34 @@
+{
+  "activity": {
+    "pickleball": ["Pickleball session", "Book a pickleball court"],
+    "coffee": ["Coffee catch-up"],
+    "dim sum": ["Dim sum brunch"],
+    "walk": ["Neighborhood walk"],
+    "dinner": ["Dinner catch-up"],
+    "brunch": ["Weekend brunch"],
+    "workout": ["Workout session"],
+    "drinks": ["Drinks after work"],
+    "hike": ["Weekend hike"],
+    "poker": ["Poker night"],
+    "tennis": ["Tennis session"],
+    "lunch": ["Lunch catch-up"]
+  },
+  "interest": {
+    "pickleball": ["Pickleball session", "Book a pickleball court"],
+    "coffee": ["Coffee catch-up"],
+    "dim sum": ["Dim sum brunch"],
+    "walk": ["Neighborhood walk"],
+    "poker": ["Poker night"],
+    "food": ["Dinner catch-up"],
+    "fitness": ["Workout session"],
+    "hiking": ["Weekend hike"],
+    "tennis": ["Tennis session"]
+  },
+  "fallback": [
+    "Coffee catch-up",
+    "Neighborhood walk",
+    "Dinner catch-up",
+    "Workout session",
+    "Weekend brunch"
+  ]
+}

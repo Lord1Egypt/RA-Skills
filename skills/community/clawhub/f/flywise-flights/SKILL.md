@@ -1,35 +1,77 @@
 ---
-name: "FlyWise — Student Flight Price API (留学生机票实时查询)"
-description: "当用户想查询中国出发/到达的航班实时票价、对比航司价格、判断现在是不是该下手，或获取留学生常用航线（北京/上海/广州 ↔ 美东/美西/英国/澳洲/欧洲/东南亚）的购买建议时，调用此技能。买家通过本 Skill 向 flywise 服务端发起航班搜索请求，完成支付（0.03 元/次）后可获取：实时最低价、Top-1..."
-category: "other"
-source: "ClawHub"
-tags: [a2m, ai-pay, airfare, alipay, cheap-flights, china-au, china-eu, china-flights, china-uk, china-us, flight, flights, flywise, http-402, pay-per-call, real-time-pricing, student, studyabroad]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/flywise-flights"
-sourceUrl: "https://clawhub.ai/skills/flywise-flights"
+name: flywise-flight-price-monitor
+description: 当用户想查询中国出发/到达的航班实时票价、对比航司价格、判断现在是不是该下手，或获取留学生常用航线（北京/上海/广州 ↔ 美东/美西/英国/澳洲/欧洲/东南亚）的购买建议时，调用此技能。买家通过本 Skill 向 flywise 服务端发起航班搜索请求，完成支付（0.03 元/次）后可获取：实时最低价、Top-10 航班详情（含航班号/机型/舱位/中转机场/转机时长）、该航线最近 30 天历史价格走势、以及 AI 给出的"立即买/再等等"建议。适合场景：留学生回国/返校、跨太平洋长途、东南亚短途、大陆出境游。
 ---
 
-# FlyWise — Student Flight Price API (留学生机票实时查询)
+## 技能概述
 
-> 当用户想查询中国出发/到达的航班实时票价、对比航司价格、判断现在是不是该下手，或获取留学生常用航线（北京/上海/广州 ↔ 美东/美西/英国/澳洲/欧洲/东南亚）的购买建议时，调用此技能。买家通过本 Skill 向 flywise 服务端发起航班搜索请求，完成支付（0.03 元/次）后可获取：实时最低价、Top-1...
+本 Skill 提供 **留学生机票实时价格 + 30 天走势 + AI 买点建议**，是基于 A2M 智能收协议（HTTP 402）的付费资源。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/flywise-flights`
-- **Source URL:** [https://clawhub.ai/skills/flywise-flights](https://clawhub.ai/skills/flywise-flights)
+- **数据源**：Google Flights 实时爬取，深度解析每段航班的航班号、机型、舱位、中转机场、转机时长。
+- **独家数据**：30 天历史最低价沉淀（自有数据库持久化），用于判断当前价格是"该买"还是"再等"。
+- **服务方**：flywise.win（留学生机票比价平台）
 
-## Overview
+## 工作流程
 
+当用户请求"查机票价格"、"帮我看看 X→Y 的航班"、"下周回国便宜吗"、"现在该不该订"等场景时，按以下步骤执行：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/flywise-flights
+### 第一步：发起请求
+
+向以下 URL 发起 **GET** 请求，使用 query string 指定行程：
+
 ```
+curl -v "https://flywise.win/api/ai-pay/flights?from=PEK&to=SHA&date=2026-05-10&cabin=economy&max_results=3"
+```
+
+参数说明：
+
+| 参数 | 必填 | 示例 | 说明 |
+|---|---|---|---|
+| `from` | 是 | `PEK` | 出发机场 IATA 三字码（PEK/PVG/CAN/JFK/LAX/LHR/SYD 等）|
+| `to` | 是 | `SHA` | 到达机场 IATA 三字码 |
+| `date` | 是 | `2026-05-10` | 出发日期，YYYY-MM-DD |
+| `cabin` | 否 | `economy` | 舱位：economy / premium-economy / business / first，默认 economy |
+| `max_results` | 否 | `3` | 返回结果数 1-10，默认 3 |
+
+### 第二步：处理 402 响应
+
+你会收到 **HTTP 402 + `Payment-Needed` 响应头**。此时把**整个 402 响应报文**（包括响应头与响应体）传递给支付宝的 **alipay-pay-for-402-service** 技能，引导用户完成付款（每次 0.03 元，单次扣款，无订阅）。
+
+### 第三步：携带凭证重新请求
+
+用户付款成功后会得到 `Payment-Proof` 凭证。将该凭证作为 HTTP Header 携带，**重新发起完全相同的请求**：
+
+```
+curl -v -H "Payment-Proof: <凭证字符串>" "https://flywise.win/api/ai-pay/flights?from=PEK&to=SHA&date=2026-05-10&cabin=economy&max_results=3"
+```
+
+### 第四步：呈现结果
+
+服务端校验凭证通过后会返回 **HTTP 200** + 航班数据 JSON。请按以下顺序向用户呈现：
+
+1. **最低价航班** —— 突出价格 + 航司 + 直飞或几次中转
+2. **Top-3 航班详情** —— 航班号、出发/到达时间、中转机场与转机时长、机型、舱位
+3. **30 天历史价格走势** —— 用文字说明"当前价格 vs 30 天均价 vs 30 天最低价"
+4. **AI 购买建议** —— 直接转述返回的 `priceInsights.recommendation`（立即购买 / 再等 X 天 / 价格已处历史低位）
+
+如返回结果中包含 `detailUrl`，请在最后附上一句"想看完整 30 天走势图可访问：<detailUrl>"。
+
+## 异常情况处理
+
+- **用户拒绝付款**：告知"航班实时数据为付费资源（每次 0.03 元），如需免费版可访问 https://flywise.win/flights/search 在浏览器自助查询"，不要反复劝说付款。
+- **返回 5xx 错误**：告知"航班搜索服务临时不可用（爬虫服务可能在重启或被反爬限制），建议改用 Google Flights / Skyscanner，或 5 分钟后重试"。
+- **返回 4xx 错误**（非 402）：检查参数格式，特别是机场三字码大小写和日期格式。
+- **该航线无结果**：建议用户尝试相邻日期（前后 1-3 天）或临近大型机场（如 PVG ↔ SHA、JFK ↔ EWR、LAX ↔ ONT）。
+- **其余支付相关异常**：由 alipay-pay-for-402-service 技能负责处理。
+
+## 适用与不适用
+
+✅ 适用：
+- 中国大陆 ↔ 美/英/澳/加/欧/东南亚 的国际航班查询
+- 大陆境内航班
+- 单程查询
+
+❌ 暂不适用（V1 不支持，会返回错误或不完整结果）：
+- 往返查询（请拆成两次单程查询）
+- 多程联程（>2 段）
+- 货运 / 包机

@@ -1,35 +1,33 @@
 ---
-name: "Game Architecture Maintainability Audit"
-description: "Audit architecture, state management, boundaries, coupling, and maintainability risks that will make future AI or human iteration harder."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/game-architecture-maintainability-audit"
-sourceUrl: "https://clawhub.ai/skills/game-architecture-maintainability-audit"
+name: game-architecture-maintainability-audit
+description: Audit architecture, state management, boundaries, coupling, and maintainability risks that will make future AI or human iteration harder.
+license: MIT
+compatibility: Claude Code and Codex. Best results with file read/write access; shell/build access improves evidence quality.
+metadata:
+  author: game-superpowers
+  version: "1.1.0"
+  domain: game-development
 ---
 
 # Game Architecture Maintainability Audit
 
-> Audit architecture, state management, boundaries, coupling, and maintainability risks that will make future AI or human iteration harder.
+## Goal
+Audit technical structure and changeability, especially where future iteration will become painful.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/game-architecture-maintainability-audit`
-- **Source URL:** [https://clawhub.ai/skills/game-architecture-maintainability-audit](https://clawhub.ai/skills/game-architecture-maintainability-audit)
+## Deliverables
+Update:
+- `docs/game-studio/audit/audit-summary.md`
+- `docs/game-studio/audit/scorecard.json`
+- `docs/game-studio/audit/risk-register.md`
 
-## Overview
+Use:
+- `./shared/checklists/architecture-maintainability-audit-checklist.md`
+- `./shared/reference/game-dev-abstractions.md`
 
+## Evaluate
+- state management clarity
+- coupling between UI, gameplay, systems, and content
+- module boundaries and change surfaces
+- hidden complexity and implicit contracts
+- where future AI edits are likely to rot the codebase
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/game-architecture-maintainability-audit
-```

@@ -1,0 +1,22 @@
+{
+  "name": "git-commit-ai",
+  "version": "1.0.0",
+  "description": "根据 git diff 自动生成符合规范的 commit message",
+  "type": "module",
+  "main": "index.js",
+  "keywords": [
+    "git",
+    "commit",
+    "ai",
+    "commit-message",
+    "skill",
+    "claude-code",
+    "angular-commit",
+    "git-hook"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

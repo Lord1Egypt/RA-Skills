@@ -1,0 +1,1162 @@
+{
+  "tasks": [
+    {
+      "taskId": "001",
+      "status": "active",
+      "from": "北京",
+      "to": "上海",
+      "date": "2026-04-15",
+      "flightType": "direct",
+      "timePreference": "all",
+      "basePrice": 680,
+      "thresholdPercent": 10,
+      "thresholdAmount": 200,
+      "createdAt": "2026-04-02T03:17:05.439Z",
+      "expiresAt": "2026-04-09T03:17:05.439Z",
+      "lastCheckAt": "2026-04-02T06:42:29.738Z",
+      "lastAlertAt": "2026-04-02T03:58:37.212Z",
+      "priceHistory": [
+        {
+          "time": "2026-04-02T03:58:35.655Z",
+          "flights": [
+            {
+              "price": 680,
+              "flightNo": "KN5977",
+              "airline": "中联航",
+              "departure": "20:50",
+              "arrival": "22:55",
+              "depStation": "大兴",
+              "arrStation": "浦东",
+              "duration": "125",
+              "jumpUrl": "https://a.feizhu.com/1",
+              "isBaseFlight": true
+            },
+            {
+              "price": 490,
+              "flightNo": "MF8561",
+              "airline": "厦航",
+              "departure": "07:50",
+              "arrival": "09:45",
+              "depStation": "大兴",
+              "arrStation": "虹桥",
+              "duration": "115",
+              "jumpUrl": "https://a.feizhu.com/2",
+              "isBaseFlight": false
+            },
+            {
+              "price": 510,
+              "flightNo": "MU6873",
+              "airline": "东航",
+              "departure": "08:15",
+              "arrival": "10:15",
+              "depStation": "大兴",
+              "arrStation": "虹桥",
+              "duration": "120",
+              "jumpUrl": "https://a.feizhu.com/3",
+              "isBaseFlight": false
+            }
+          ],
+          "minPrice": 680
+        },
+        {
+          "time": "2026-04-02T03:58:37.212Z",
+          "flights": [
+            {
+              "price": 680,
+              "flightNo": "KN5977",
+              "airline": "中联航",
+              "departure": "20:50",
+              "arrival": "22:55",
+              "depStation": "大兴",
+              "arrStation": "浦东",
+              "duration": "125",
+              "jumpUrl": "https://a.feizhu.com/1",
+              "isBaseFlight": true
+            },
+            {
+              "price": 490,
+              "flightNo": "MF8561",
+              "airline": "厦航",
+              "departure": "07:50",
+              "arrival": "09:45",
+              "depStation": "大兴",
+              "arrStation": "虹桥",
+              "duration": "115",
+              "jumpUrl": "https://a.feizhu.com/2",
+              "isBaseFlight": false
+            },
+            {
+              "price": 510,
+              "flightNo": "MU6873",
+              "airline": "东航",
+              "departure": "08:15",
+              "arrival": "10:15",
+              "depStation": "大兴",
+              "arrStation": "虹桥",
+              "duration": "120",
+              "jumpUrl": "https://a.feizhu.com/3",
+              "isBaseFlight": false
+            }
+          ],
+          "minPrice": 490
+        },
+        {
+          "time": "2026-04-02T06:42:29.738Z",
+          "flights": [
+            {
+              "price": 680,
+              "flightNo": "KN5977",
+              "airline": "中联航",
+              "departure": "20:50",
+              "arrival": "22:55",
+              "depStation": "大兴",
+              "arrStation": "浦东",
+              "duration": "125",
+              "jumpUrl": "https://a.feizhu.com/1",
+              "isBaseFlight": true
+            },
+            {
+              "price": 490,
+              "flightNo": "MF8561",
+              "airline": "厦航",
+              "departure": "07:50",
+              "arrival": "09:45",
+              "depStation": "大兴",
+              "arrStation": "虹桥",
+              "duration": "115",
+              "jumpUrl": "https://a.feizhu.com/2",
+              "isBaseFlight": false
+            },
+            {
+              "price": 510,
+              "flightNo": "MU6873",
+              "airline": "东航",
+              "departure": "08:15",
+              "arrival": "10:15",
+              "depStation": "大兴",
+              "arrStation": "虹桥",
+              "duration": "120",
+              "jumpUrl": "https://a.feizhu.com/3",
+              "isBaseFlight": false
+            }
+          ],
+          "minPrice": 490
+        }
+      ],
+      "baseFlights": [
+        {
+          "price": 480,
+          "flightNo": "KN5977",
+          "airline": "中联航",
+          "departure": "20:50",
+          "duration": "125"
+        },
+        {
+          "price": 490,
+          "flightNo": "MF8561",
+          "airline": "厦航",
+          "departure": "07:50",
+          "duration": "115"
+        },
+        {
+          "price": 510,
+          "flightNo": "MU6873",
+          "airline": "东航",
+          "departure": "08:15",
+          "duration": "120"
+        }
+      ],
+      "checkFrequency": "daily",
+      "checkTime": "09:00",
+      "currentFlights": [
+        {
+          "price": 690,
+          "flightNo": "",
+          "airline": "",
+          "departure": "",
+          "arrival": "",
+          "duration": "115",
+          "jumpUrl": "https://a.feizhu.com/3BBcXW"
+        },
+        {
+          "price": 560,
+          "flightNo": "",
+          "airline": "",
+          "departure": "",
+          "arrival": "",
+          "duration": "115",
+          "jumpUrl": "https://a.feizhu.com/3bghMJ"
+        },
+        {
+          "price": 510,
+          "flightNo": "",
+          "airline": "",
+          "departure": "",
+          "arrival": "",
+          "duration": "120",
+          "jumpUrl": "https://a.feizhu.com/2hpBbF"
+        }
+      ],
+      "selectedFlights": [
+        {
+          "price": 680,
+          "flightNo": "KN5977",
+          "airline": "中联航",
+          "departure": "20:50",
+          "arrival": "22:55",
+          "depStation": "大兴",
+          "arrStation": "浦东",
+          "duration": "125",
+          "jumpUrl": "https://a.feizhu.com/1",
+          "isBaseFlight": true
+        },
+        {
+          "price": 490,
+          "flightNo": "MF8561",
+          "airline": "厦航",
+          "departure": "07:50",
+          "arrival": "09:45",
+          "depStation": "大兴",
+          "arrStation": "虹桥",
+          "duration": "115",
+          "jumpUrl": "https://a.feizhu.com/2",
+          "isBaseFlight": false
+        },
+        {
+          "price": 510,
+          "flightNo": "MU6873",
+          "airline": "东航",
+          "departure": "08:15",
+          "arrival": "10:15",
+          "depStation": "大兴",
+          "arrStation": "虹桥",
+          "duration": "120",
+          "jumpUrl": "https://a.feizhu.com/3",
+          "isBaseFlight": false
+        }
+      ],
+      "baseFlightIndex": 0
+    },
+    {
+      "taskId": "002",
+      "status": "active",
+      "from": "杭州",
+      "to": "三亚",
+      "date": "2026-04-15",
+      "flightType": "direct",
+      "timePreference": "all",
+      "checkFrequency": "daily",
+      "checkTime": "09:00",
+      "selectedFlights": [
+        {
+          "price": 700,
+          "flightNo": "JD5136",
+          "airline": "首都航空",
+          "departure": "22:35",
+          "arrival": "01:25",
+          "depStation": "萧山",
+          "arrStation": "凤凰",
+          "duration": "170",
+          "jumpUrl": "https://a.feizhu.com/3Yllau",
+          "isBaseFlight": true
+        },
+        {
+          "price": 960,
+          "flightNo": "HU7384",
+          "airline": "海南航空",
+          "departure": "20:50",
+          "arrival": "23:40",
+          "depStation": "萧山",
+          "arrStation": "凤凰",
+          "duration": "170",
+          "jumpUrl": "https://a.feizhu.com/0WRNmE",
+          "isBaseFlight": false
+        }
+      ],
+      "basePrice": 700,
+      "baseFlightIndex": 0,
+      "thresholdPercent": 10,
+      "thresholdAmount": 200,
+      "createdAt": "2026-04-02T06:25:03.819Z",
+      "expiresAt": "2026-04-09T06:25:03.819Z",
+      "lastCheckAt": "2026-04-02T06:42:30.393Z",
+      "lastAlertAt": null,
+      "priceHistory": [
+        {
+          "time": "2026-04-02T06:25:03.819Z",
+          "flights": [
+            {
+              "price": 700,
+              "flightNo": "JD5136",
+              "airline": "首都航空",
+              "departure": "22:35",
+              "arrival": "01:25",
+              "depStation": "萧山",
+              "arrStation": "凤凰",
+              "duration": "170",
+              "jumpUrl": "https://a.feizhu.com/3Yllau",
+              "isBaseFlight": true
+            },
+            {
+              "price": 960,
+              "flightNo": "HU7384",
+              "airline": "海南航空",
+              "departure": "20:50",
+              "arrival": "23:40",
+              "depStation": "萧山",
+              "arrStation": "凤凰",
+              "duration": "170",
+              "jumpUrl": "https://a.feizhu.com/0WRNmE",
+              "isBaseFlight": false
+            }
+          ],
+          "minPrice": 700
+        },
+        {
+          "time": "2026-04-02T06:42:30.393Z",
+          "flights": [
+            {
+              "price": 700,
+              "flightNo": "JD5136",
+              "airline": "首都航空",
+              "departure": "22:35",
+              "arrival": "01:25",
+              "depStation": "萧山",
+              "arrStation": "凤凰",
+              "duration": "170",
+              "jumpUrl": "https://a.feizhu.com/3Yllau",
+              "isBaseFlight": true
+            },
+            {
+              "price": 960,
+              "flightNo": "HU7384",
+              "airline": "海南航空",
+              "departure": "20:50",
+              "arrival": "23:40",
+              "depStation": "萧山",
+              "arrStation": "凤凰",
+              "duration": "170",
+              "jumpUrl": "https://a.feizhu.com/0WRNmE",
+              "isBaseFlight": false
+            }
+          ],
+          "minPrice": 700
+        }
+      ]
+    },
+    {
+      "taskId": "003",
+      "status": "active",
+      "from": "北京",
+      "to": "三亚",
+      "date": "2026-04-15",
+      "flightType": "direct",
+      "timePreference": "all",
+      "checkFrequency": "daily",
+      "checkTime": "09:00",
+      "selectedFlights": [
+        {
+          "price": 420,
+          "flightNo": "CA1345",
+          "airline": "国航",
+          "departure": "15:45",
+          "arrival": "19:45",
+          "depStation": "首都",
+          "arrStation": "凤凰",
+          "duration": "240",
+          "jumpUrl": "https://a.feizhu.com/47gg8o",
+          "isBaseFlight": true
+        }
+      ],
+      "basePrice": 420,
+      "baseFlightIndex": 0,
+      "thresholdPercent": 10,
+      "thresholdAmount": 200,
+      "createdAt": "2026-04-02T06:41:51.594Z",
+      "expiresAt": "2026-04-09T06:41:51.594Z",
+      "lastCheckAt": "2026-04-02T06:42:30.879Z",
+      "lastAlertAt": null,
+      "priceHistory": [
+        {
+          "time": "2026-04-02T06:41:51.594Z",
+          "flights": [
+            {
+              "price": 420,
+              "flightNo": "CA1345",
+              "airline": "国航",
+              "departure": "15:45",
+              "arrival": "19:45",
+              "depStation": "首都",
+              "arrStation": "凤凰",
+              "duration": "240",
+              "jumpUrl": "https://a.feizhu.com/47gg8o"
+            }
+          ],
+          "minPrice": 420
+        },
+        {
+          "time": "2026-04-03T06:41:51.594Z",
+          "flights": [
+            {
+              "price": 420,
+              "flightNo": "CA1345",
+              "airline": "国航",
+              "departure": "15:45",
+              "arrival": "19:45",
+              "depStation": "首都",
+              "arrStation": "凤凰",
+              "duration": "240",
+              "jumpUrl": "https://a.feizhu.com/47gg8o"
+            }
+          ],
+          "minPrice": 420
+        },
+        {
+          "time": "2026-04-04T06:41:51.594Z",
+          "flights": [
+            {
+              "price": 410,
+              "flightNo": "CA1345",
+              "airline": "国航",
+              "departure": "15:45",
+              "arrival": "19:45",
+              "depStation": "首都",
+              "arrStation": "凤凰",
+              "duration": "240",
+              "jumpUrl": "https://a.feizhu.com/47gg8o"
+            }
+          ],
+          "minPrice": 410
+        },
+        {
+          "time": "2026-04-05T06:41:51.594Z",
+          "flights": [
+            {
+              "price": 400,
+              "flightNo": "CA1345",
+              "airline": "国航",
+              "departure": "15:45",
+              "arrival": "19:45",
+              "depStation": "首都",
+              "arrStation": "凤凰",
+              "duration": "240",
+              "jumpUrl": "https://a.feizhu.com/47gg8o"
+            }
+          ],
+          "minPrice": 400
+        },
+        {
+          "time": "2026-04-06T06:41:51.594Z",
+          "flights": [
+            {
+              "price": 390,
+              "flightNo": "CA1345",
+              "airline": "国航",
+              "departure": "15:45",
+              "arrival": "19:45",
+              "depStation": "首都",
+              "arrStation": "凤凰",
+              "duration": "240",
+              "jumpUrl": "https://a.feizhu.com/47gg8o"
+            }
+          ],
+          "minPrice": 390
+        },
+        {
+          "time": "2026-04-07T06:41:51.594Z",
+          "flights": [
+            {
+              "price": 280,
+              "flightNo": "CA1345",
+              "airline": "国航",
+              "departure": "15:45",
+              "arrival": "19:45",
+              "depStation": "首都",
+              "arrStation": "凤凰",
+              "duration": "240",
+              "jumpUrl": "https://a.feizhu.com/47gg8o"
+            }
+          ],
+          "minPrice": 280
+        },
+        {
+          "time": "2026-04-02T06:42:30.879Z",
+          "flights": [
+            {
+              "price": 420,
+              "flightNo": "CA1345",
+              "airline": "国航",
+              "departure": "15:45",
+              "arrival": "19:45",
+              "depStation": "首都",
+              "arrStation": "凤凰",
+              "duration": "240",
+              "jumpUrl": "https://a.feizhu.com/47gg8o",
+              "isBaseFlight": true
+            }
+          ],
+          "minPrice": 420
+        }
+      ]
+    },
+    {
+      "taskId": "004",
+      "status": "active",
+      "from": "北京",
+      "to": "贵阳",
+      "date": "2026-04-18",
+      "flightType": "direct",
+      "timePreference": "all",
+      "checkFrequency": "per-minute",
+      "checkTime": "09:00",
+      "selectedFlights": [
+        {
+          "price": 660,
+          "flightNo": "CZ8916",
+          "airline": "南航",
+          "departure": "20:00",
+          "arrival": "23:10",
+          "depStation": "大兴",
+          "arrStation": "龙洞堡",
+          "duration": "190",
+          "jumpUrl": "https://a.feizhu.com/3bKXbt",
+          "isBaseFlight": true
+        },
+        {
+          "price": 710,
+          "flightNo": "HU7289",
+          "airline": "海南航空",
+          "departure": "07:30",
+          "arrival": "10:40",
+          "depStation": "首都",
+          "arrStation": "龙洞堡",
+          "duration": "190",
+          "jumpUrl": "https://a.feizhu.com/1mQkzM",
+          "isBaseFlight": false
+        }
+      ],
+      "basePrice": 660,
+      "baseFlightIndex": 0,
+      "thresholdPercent": 10,
+      "thresholdAmount": 200,
+      "createdAt": "2026-04-02T06:48:06.631Z",
+      "expiresAt": "2026-04-09T06:48:06.631Z",
+      "lastCheckAt": "2026-04-02T06:54:26.916Z",
+      "lastAlertAt": null,
+      "priceHistory": [
+        {
+          "time": "2026-04-02T06:48:06.631Z",
+          "flights": [
+            {
+              "price": 660,
+              "flightNo": "CZ8916",
+              "airline": "南航",
+              "departure": "20:00",
+              "arrival": "23:10",
+              "depStation": "大兴",
+              "arrStation": "龙洞堡",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/3bKXbt",
+              "isBaseFlight": true
+            },
+            {
+              "price": 710,
+              "flightNo": "HU7289",
+              "airline": "海南航空",
+              "departure": "07:30",
+              "arrival": "10:40",
+              "depStation": "首都",
+              "arrStation": "龙洞堡",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/1mQkzM",
+              "isBaseFlight": false
+            }
+          ],
+          "minPrice": 660
+        },
+        {
+          "time": "2026-04-02T06:48:11.524Z",
+          "flights": [
+            {
+              "price": 660,
+              "flightNo": "CZ8916",
+              "airline": "南航",
+              "departure": "20:00",
+              "arrival": "23:10",
+              "depStation": "大兴",
+              "arrStation": "龙洞堡",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/3bKXbt",
+              "isBaseFlight": true
+            },
+            {
+              "price": 710,
+              "flightNo": "HU7289",
+              "airline": "海南航空",
+              "departure": "07:30",
+              "arrival": "10:40",
+              "depStation": "首都",
+              "arrStation": "龙洞堡",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/1mQkzM",
+              "isBaseFlight": false
+            }
+          ],
+          "minPrice": 660
+        },
+        {
+          "time": "2026-04-02T06:48:32.168Z",
+          "flights": [
+            {
+              "price": 600,
+              "flightNo": "CZ8916",
+              "airline": "南航",
+              "departure": "20:00",
+              "arrival": "23:10",
+              "depStation": "大兴",
+              "arrStation": "龙洞堡",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/3bKXbt",
+              "isBaseFlight": true
+            },
+            {
+              "price": 650,
+              "flightNo": "HU7289",
+              "airline": "海南航空",
+              "departure": "07:30",
+              "arrival": "10:40",
+              "depStation": "首都",
+              "arrStation": "龙洞堡",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/1mQkzM",
+              "isBaseFlight": false
+            }
+          ],
+          "minPrice": 600
+        },
+        {
+          "time": "2026-04-02T06:48:39.884Z",
+          "flights": [
+            {
+              "price": 500,
+              "flightNo": "CZ8916",
+              "airline": "南航",
+              "departure": "20:00",
+              "arrival": "23:10",
+              "depStation": "大兴",
+              "arrStation": "龙洞堡",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/3bKXbt",
+              "isBaseFlight": true
+            },
+            {
+              "price": 550,
+              "flightNo": "HU7289",
+              "airline": "海南航空",
+              "departure": "07:30",
+              "arrival": "10:40",
+              "depStation": "首都",
+              "arrStation": "龙洞堡",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/1mQkzM",
+              "isBaseFlight": false
+            }
+          ],
+          "minPrice": 500
+        },
+        {
+          "time": "2026-04-02T06:50:25.524Z",
+          "flights": [
+            {
+              "price": 750,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "175",
+              "jumpUrl": "https://a.feizhu.com/042W31"
+            },
+            {
+              "price": 710,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/1Fs6R5"
+            },
+            {
+              "price": 660,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/2p66hB"
+            },
+            {
+              "price": 710,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "185",
+              "jumpUrl": "https://a.feizhu.com/3yFqYe"
+            },
+            {
+              "price": 720,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/4PLVr0"
+            },
+            {
+              "price": 750,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/0IIMKY"
+            },
+            {
+              "price": 750,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "195",
+              "jumpUrl": "https://a.feizhu.com/3hxRov"
+            },
+            {
+              "price": 890,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "175",
+              "jumpUrl": "https://a.feizhu.com/0rOLfZ"
+            },
+            {
+              "price": 890,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "180",
+              "jumpUrl": "https://a.feizhu.com/0dLXT2"
+            },
+            {
+              "price": 750,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "205",
+              "jumpUrl": "https://a.feizhu.com/2C8Qc9"
+            }
+          ],
+          "minPrice": 660
+        },
+        {
+          "time": "2026-04-02T06:52:26.171Z",
+          "flights": [
+            {
+              "price": 750,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "175",
+              "jumpUrl": "https://a.feizhu.com/2fzE1S"
+            },
+            {
+              "price": 710,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/2cTaOP"
+            },
+            {
+              "price": 660,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/0ysgvw"
+            },
+            {
+              "price": 710,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "185",
+              "jumpUrl": "https://a.feizhu.com/28TsGX"
+            },
+            {
+              "price": 720,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/2a4kay"
+            },
+            {
+              "price": 750,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/3ZdqAh"
+            },
+            {
+              "price": 750,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "195",
+              "jumpUrl": "https://a.feizhu.com/1lr2PW"
+            },
+            {
+              "price": 890,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "175",
+              "jumpUrl": "https://a.feizhu.com/3EL4b3"
+            },
+            {
+              "price": 890,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "180",
+              "jumpUrl": "https://a.feizhu.com/16UelB"
+            },
+            {
+              "price": 750,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "205",
+              "jumpUrl": "https://a.feizhu.com/3QEqME"
+            }
+          ],
+          "minPrice": 660
+        },
+        {
+          "time": "2026-04-02T06:54:26.916Z",
+          "flights": [
+            {
+              "price": 750,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "175",
+              "jumpUrl": "https://a.feizhu.com/2VYc6Z"
+            },
+            {
+              "price": 710,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/0nhUg6"
+            },
+            {
+              "price": 660,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/4Z0AZg"
+            },
+            {
+              "price": 710,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "185",
+              "jumpUrl": "https://a.feizhu.com/41k7sw"
+            },
+            {
+              "price": 720,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/1gHRxp"
+            },
+            {
+              "price": 750,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/2S1iDM"
+            },
+            {
+              "price": 750,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "195",
+              "jumpUrl": "https://a.feizhu.com/08bZge"
+            },
+            {
+              "price": 890,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "175",
+              "jumpUrl": "https://a.feizhu.com/4K0KYW"
+            },
+            {
+              "price": 890,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "180",
+              "jumpUrl": "https://a.feizhu.com/3IBmrQ"
+            },
+            {
+              "price": 750,
+              "flightNo": "",
+              "airline": "",
+              "departure": "",
+              "arrival": "",
+              "depStation": "",
+              "arrStation": "",
+              "duration": "205",
+              "jumpUrl": "https://a.feizhu.com/4aWzwZ"
+            }
+          ],
+          "minPrice": 660
+        }
+      ]
+    },
+    {
+      "taskId": "005",
+      "status": "active",
+      "from": "北京",
+      "to": "贵阳",
+      "date": "2026-05-01",
+      "flightType": "direct",
+      "timePreference": "all",
+      "checkFrequency": "daily",
+      "checkTime": "09:00",
+      "selectedFlights": [
+        {
+          "price": 1280,
+          "flightNo": "CA4166",
+          "airline": "国航",
+          "departure": "21:30",
+          "arrival": "00:30",
+          "depStation": "首都",
+          "arrStation": "龙洞堡",
+          "duration": "180",
+          "jumpUrl": "https://a.feizhu.com/0gPHXj",
+          "isBaseFlight": true
+        },
+        {
+          "price": 1280,
+          "flightNo": "CA8676",
+          "airline": "国航",
+          "departure": "21:20",
+          "arrival": "00:30",
+          "depStation": "大兴",
+          "arrStation": "龙洞堡",
+          "duration": "190",
+          "jumpUrl": "https://a.feizhu.com/0zFV6z",
+          "isBaseFlight": false
+        },
+        {
+          "price": 1280,
+          "flightNo": "CA1443",
+          "airline": "国航",
+          "departure": "18:15",
+          "arrival": "21:30",
+          "depStation": "首都",
+          "arrStation": "龙洞堡",
+          "duration": "195",
+          "jumpUrl": "https://a.feizhu.com/1pFF9A",
+          "isBaseFlight": false
+        }
+      ],
+      "basePrice": 1280,
+      "baseFlightIndex": 0,
+      "thresholdPercent": 10,
+      "thresholdAmount": 200,
+      "createdAt": "2026-04-02T07:01:48.508Z",
+      "expiresAt": "2026-04-09T07:01:48.508Z",
+      "lastCheckAt": "2026-04-02T07:05:59.959Z",
+      "lastAlertAt": null,
+      "priceHistory": [
+        {
+          "time": "2026-04-02T07:01:48.508Z",
+          "flights": [
+            {
+              "price": 1280,
+              "flightNo": "CA4166",
+              "airline": "国航",
+              "departure": "21:30",
+              "arrival": "00:30",
+              "depStation": "首都",
+              "arrStation": "龙洞堡",
+              "duration": "180",
+              "jumpUrl": "https://a.feizhu.com/0gPHXj",
+              "isBaseFlight": true
+            },
+            {
+              "price": 1280,
+              "flightNo": "CA8676",
+              "airline": "国航",
+              "departure": "21:20",
+              "arrival": "00:30",
+              "depStation": "大兴",
+              "arrStation": "龙洞堡",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/0zFV6z",
+              "isBaseFlight": false
+            },
+            {
+              "price": 1280,
+              "flightNo": "CA1443",
+              "airline": "国航",
+              "departure": "18:15",
+              "arrival": "21:30",
+              "depStation": "首都",
+              "arrStation": "龙洞堡",
+              "duration": "195",
+              "jumpUrl": "https://a.feizhu.com/1pFF9A",
+              "isBaseFlight": false
+            }
+          ],
+          "minPrice": 1280
+        },
+        {
+          "time": "2026-04-02T07:05:59.959Z",
+          "flights": [
+            {
+              "price": 1050,
+              "flightNo": "CA4166",
+              "airline": "国航",
+              "departure": "21:30",
+              "arrival": "00:30",
+              "depStation": "首都",
+              "arrStation": "龙洞堡",
+              "duration": "180",
+              "jumpUrl": "https://a.feizhu.com/0gPHXj",
+              "isBaseFlight": true
+            },
+            {
+              "price": 1180,
+              "flightNo": "CA8676",
+              "airline": "国航",
+              "departure": "21:20",
+              "arrival": "00:30",
+              "depStation": "大兴",
+              "arrStation": "龙洞堡",
+              "duration": "190",
+              "jumpUrl": "https://a.feizhu.com/0zFV6z",
+              "isBaseFlight": false
+            },
+            {
+              "price": 1180,
+              "flightNo": "CA1443",
+              "airline": "国航",
+              "departure": "18:15",
+              "arrival": "21:30",
+              "depStation": "首都",
+              "arrStation": "龙洞堡",
+              "duration": "195",
+              "jumpUrl": "https://a.feizhu.com/1pFF9A",
+              "isBaseFlight": false
+            }
+          ],
+          "minPrice": 1050
+        }
+      ]
+    }
+  ],
+  "nextTaskId": 6
+}

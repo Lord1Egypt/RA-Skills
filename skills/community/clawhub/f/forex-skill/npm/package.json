@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "dependencies": {
+    "@openclaw/brave-plugin": "2026.5.4"
+  }
+}

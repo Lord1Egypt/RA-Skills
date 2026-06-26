@@ -1,35 +1,64 @@
 ---
-name: "auto-git"
-description: "Commit and push local project changes to GitHub, with optional repo creation and deployment hints."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/github-deploy-skill"
-sourceUrl: "https://clawhub.ai/skills/github-deploy-skill"
+name: GitHub Deploy Skill
+slug: github-deploy-skill
+version: 1.0.0
+description: Commit and push local project changes to GitHub, with optional repo creation and deployment hints.
+author: cruciata
+tags:
+  - latest
+  - github
+  - deploy
+  - powershell
 ---
 
-# auto-git
+# GitHub Deploy Skill
 
-> Commit and push local project changes to GitHub, with optional repo creation and deployment hints.
+This skill provides a reusable PowerShell script for Windows to automate:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/github-deploy-skill`
-- **Source URL:** [https://clawhub.ai/skills/github-deploy-skill](https://clawhub.ai/skills/github-deploy-skill)
+1. Git checks
+2. Commit creation
+3. Push to remote branch
+4. Optional GitHub repository creation (via GitHub CLI)
+5. Optional deployment hints (for Streamlit flow)
 
-## Overview
+## Included file
 
+- `github-deploy-skill.ps1`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/github-deploy-skill
+## Parameters
+
+- `-CommitMessage` (required): commit message text
+- `-Repo` (optional): GitHub repository in `owner/repo` format
+- `-Branch` (optional): target branch, default `main`
+- `-CreateRepo` (optional switch): create repo with `gh` if missing
+- `-SkipDeployHint` (optional switch): do not print deployment hint
+
+## Usage
+
+From any Git project folder:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\github-deploy-skill.ps1 -CommitMessage "feat: update" -Repo "owner/repo" -Branch "main"
 ```
+
+Create repository automatically:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\github-deploy-skill.ps1 -CommitMessage "init" -Repo "owner/new-repo" -CreateRepo
+```
+
+## Expected output
+
+- Success: commit and push completed
+- Failure: explicit error with reason (missing command, auth, push/network, remote config)
+
+## Requirements
+
+- Git installed and available in PATH
+- Network access to remote Git host
+- If `-CreateRepo` is used: GitHub CLI (`gh`) installed and authenticated
+
+## Notes
+
+- Works with repositories that do not yet have a first commit.
+- If `origin` does not exist, pass `-Repo` and the script will add it automatically.

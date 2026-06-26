@@ -1,0 +1,136 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "{{EVENT_NAME}}",
+  "description": "{{EVENT_DESCRIPTION}}",
+  "image": "{{EVENT_IMAGE_URL}}",
+  
+  "eventStatus": "{{EVENT_STATUS}}",
+  "eventAttendanceMode": "{{EVENT_ATTENDANCE_MODE}}",
+  
+  "startDate": "{{START_DATE}}",
+  "endDate": "{{END_DATE}}",
+  
+  "eventSchedule": {
+    "@type": "Schedule",
+    "startDate": "{{START_DATE}}",
+    "endDate": "{{END_DATE}}",
+    "scheduleTimezone": "Asia/Shanghai",
+    "byDay": ["{{EVENT_DAYS}}"],
+    "startTime": "{{START_TIME}}",
+    "endTime": "{{END_TIME}}"
+  },
+  
+  "location": {
+    "@type": "{{LOCATION_TYPE}}",
+    "name": "{{LOCATION_NAME}}",
+    "description": "{{LOCATION_DESCRIPTION}}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{LOCATION_ADDRESS}}",
+      "addressLocality": "{{LOCATION_CITY}}",
+      "addressRegion": "{{LOCATION_PROVINCE}}",
+      "postalCode": "{{LOCATION_POSTAL_CODE}}",
+      "addressCountry": "CN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": {{LOCATION_LATITUDE}},
+      "longitude": {{LOCATION_LONGITUDE}}
+    },
+    "url": "{{LOCATION_URL}}"
+  },
+  
+  "organizer": {
+    "@type": "Organization",
+    "name": "{{ORGANIZER_NAME}}",
+    "url": "{{ORGANIZER_URL}}",
+    "logo": "{{ORGANIZER_LOGO}}"
+  },
+  
+  "coOrganizer": {
+    "@type": "Organization",
+    "name": "{{CO_ORGANIZER_NAME}}",
+    "url": "{{CO_ORGANIZER_URL}}"
+  },
+  
+  "performer": {
+    "@type": "Organization",
+    "name": "{{PERFORMER_NAME}}",
+    "jobTitle": "{{PERFORMER_TITLE}}"
+  },
+  
+  "producer": {
+    "@type": "Organization",
+    "name": "{{PRODUCER_NAME}}"
+  },
+  
+  "sponsor": {
+    "@type": "Organization",
+    "name": "{{SPONSOR_NAME}}",
+    "type": "{{SPONSOR_TYPE}}"
+  },
+  
+  "offers": {
+    "@type": "Offer",
+    "name": "{{OFFER_NAME}}",
+    "description": "{{OFFER_DESCRIPTION}}",
+    "url": "{{REGISTRATION_URL}}",
+    "price": "{{TICKET_PRICE}}",
+    "priceCurrency": "CNY",
+    "availability": "{{TICKET_AVAILABILITY}}",
+    "validFrom": "{{REGISTRATION_START_DATE}}",
+    "validThrough": "{{REGISTRATION_END_DATE}}",
+    "inventoryLevel": {
+      "@type": "QuantitativeValue",
+      "value": "{{REMAINING_SEATS}}",
+      "maxValue": "{{TOTAL_SEATS}}"
+    },
+    "offeredBy": {
+      "@type": "Organization",
+      "name": "{{ORGANIZER_NAME}}"
+    }
+  },
+  
+  "superEvent": {
+    "@type": "EventSeries",
+    "name": "{{EVENT_SERIES_NAME}}",
+    "description": "{{EVENT_SERIES_DESCRIPTION}}"
+  },
+  
+  "subEvent": {
+    "@type": "Event",
+    "name": "{{SUB_EVENT_NAME}}",
+    "description": "{{SUB_EVENT_DESCRIPTION}}"
+  },
+  
+  "keywords": ["{{KEYWORD_1}}", "{{KEYWORD_2}}", "{{KEYWORD_3}}"],
+  
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "{{TARGET_AUDIENCE}}"
+  },
+  
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{RATING_VALUE}}",
+    "reviewCount": "{{REVIEW_COUNT}}"
+  },
+  
+  "typicalAgeRange": "{{AGE_RANGE}}",
+  
+  "doorTime": "{{DOOR_TIME}}",
+  
+  "inLanguage": ["zh-CN", "en"],
+  
+  "recordedIn": {
+    "@type": "CreativeWork",
+    "name": "{{RECORDING_NAME}}",
+    "description": "{{RECORDING_DESCRIPTION}}"
+  },
+  
+  "workFeatured": {
+    "@type": "CreativeWork",
+    "name": "{{FEATURED_CONTENT_NAME}}"
+  }
+}

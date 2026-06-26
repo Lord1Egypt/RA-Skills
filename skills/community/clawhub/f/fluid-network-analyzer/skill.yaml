@@ -1,0 +1,75 @@
+name: fluid-network-analyzer
+
+description: >
+  一个用于工业流体网络建模、稳态求解与工况分析的原型 Skill。
+  支持基于 TOML 的网络描述、节点压力与支路流量求解、
+  连通性与流路分析，以及负载功能状态判断。
+
+version: "0.1.0"
+
+capabilities:
+  - name: generate_network_toml
+    description: >
+      根据用户的自然语言描述，生成符合本项目 Schema 的 TOML 网络定义文件。
+      适用于快速构建流体网络拓扑、节点属性、支路参数和工况配置。
+    inputs:
+      - name: description
+        type: string
+        description: 用户对流体网络结构、设备、负载和工况的自然语言描述
+    outputs:
+      - name: toml_text
+        type: string
+        description: 符合 Schema 的 TOML 网络定义文本
+
+  - name: solve_network
+    description: >
+      对给定的 TOML 流体网络模型和指定工况进行稳态求解，
+      输出节点压力、支路流量、流速和压降结果。
+    inputs:
+      - name: toml_text
+        type: string
+        description: TOML 网络定义文本
+      - name: scenario_name
+        type: string
+        description: 需要求解的工况名称，例如 normal 或 valve_closed
+    outputs:
+      - name: solve_result
+        type: object
+        description: 包含节点压力、支路流量、流速和压降的求解结果
+
+  - name: analyze_scenario
+    description: >
+      对指定工况执行拓扑连通性分析、流路分析和负载功能分析，
+      并输出结构化分析结果和 Markdown 报告。
+    inputs:
+      - name: toml_text
+        type: string
+        description: TOML 网络定义文本
+      - name: scenario_name
+        type: string
+        description: 需要分析的工况名称
+    outputs:
+      - name: analysis_result
+        type: object
+        description: 包含连通性、路径、负载状态和失败原因的分析结果
+      - name: markdown_report
+        type: string
+        description: Markdown 格式的工况分析报告
+
+usage_examples:
+  - user: >
+      设计一个单源双负载的流体网络，源压力为300kPa，
+      经过一个分支节点分别供给L1和L2，其中L1最小压力要求120kPa，
+      L2最小压力要求100kPa，并在L2支路上设置一个可关闭阀门。
+    agent_action: generate_network_toml
+    expected_output: 生成符合 Schema 的 TOML 网络定义
+
+  - user: >
+      计算该网络在 normal 工况下的节点压力和支路流量。
+    agent_action: solve_network
+    expected_output: 输出节点压力、流量、流速和压降
+
+  - user: >
+      分析阀门关闭后系统各负载是否还能正常工作，并给出流路分析报告。
+    agent_action: analyze_scenario
+    expected_output: 输出负载功能状态、拓扑分析结果和 Markdown 报告

@@ -1,0 +1,23 @@
+id: b10
+track: B
+title_zh: 做员工打卡系统列假设和风险
+category: plan
+difficulty: medium
+timeout_seconds: 180
+dimensions:
+  primary: brain
+  secondary:
+  - soul
+evaluators:
+- type: llm_judge
+  weight: 1.0
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  judge_dimensions:
+  - brain
+  - soul
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 4
+title_en: List hidden assumptions and risks

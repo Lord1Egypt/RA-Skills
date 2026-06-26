@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FounderClaw - Workspace Structure</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0a0a0a; 
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 40px;
+    overflow-x: auto;
+  }
+  h1 { 
+    text-align: center; 
+    font-size: 28px; 
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #ff6b35, #f7c948);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    text-align: center;
+    color: #888;
+    margin-bottom: 40px;
+    font-size: 14px;
+  }
+  .mindmap {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .center-node {
+    background: linear-gradient(135deg, #ff6b35, #e85d26);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 16px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
+    min-width: 200px;
+    margin-top: 80px;
+  }
+  .branch {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .branch-label {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .shared .branch-label { background: #1a3a2a; color: #4ade80; }
+  .private .branch-label { background: #1a2a3a; color: #60a5fa; }
+  
+  .folder {
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 16px;
+    min-width: 220px;
+    transition: all 0.3s;
+    cursor: default;
+  }
+  .folder:hover {
+    border-color: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  }
+  .folder-title {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .folder-title .icon { font-size: 18px; }
+  .shared .folder { border-left: 3px solid #4ade80; }
+  .shared .folder-title { color: #4ade80; }
+  .private .folder { border-left: 3px solid #60a5fa; }
+  .private .folder-title { color: #60a5fa; }
+  
+  .subfolder {
+    font-size: 12px;
+    color: #888;
+    padding: 3px 0 3px 12px;
+    border-left: 1px solid #333;
+    margin-left: 4px;
+    margin-bottom: 2px;
+  }
+  .subfolder:hover { color: #ccc; }
+  
+  .agent-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 8px;
+  }
+  
+  .agent-card {
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 12px;
+    border-left: 3px solid;
+    transition: all 0.3s;
+  }
+  .agent-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  }
+  .agent-card .name {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .agent-card .role {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  .agent-card .files {
+    font-size: 11px;
+    color: #666;
+  }
+  
+  .strategy { border-color: #f59e0b; }
+  .strategy .name { color: #f59e0b; }
+  .shipper { border-color: #3b82f6; }
+  .shipper .name { color: #3b82f6; }
+  .tester { border-color: #8b5cf6; }
+  .tester .name { color: #8b5cf6; }
+  .safety { border-color: #ef4444; }
+  .safety .name { color: #ef4444; }
+  .observer { border-color: #10b981; }
+  .observer .name { color: #10b981; }
+  .ycmain { border-color: #ff6b35; }
+  .ycmain .name { color: #ff6b35; }
+  
+  .section {
+    margin-bottom: 40px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  
+  .project-example {
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 12px;
+  }
+  .project-example .title {
+    font-weight: 700;
+    color: #4ade80;
+    margin-bottom: 12px;
+  }
+  .project-folders {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .pf {
+    background: #1a1a1a;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    text-align: center;
+  }
+  .pf .emoji { font-size: 16px; display: block; margin-bottom: 4px; }
+  
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .flow-step {
+    background: #1a1a1a;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    border: 1px solid #333;
+  }
+  .flow-arrow { color: #ff6b35; font-size: 18px; }
+</style>
+</head>
+<body>
+
+<h1>FounderClaw — Workspace Structure</h1>
+<p class="subtitle">Publishing house analogy: shared books + personal desks</p>
+
+<!-- SECTION 1: Overview -->
+<div class="section">
+  <div class="section-title">🏠 The Publishing House</div>
+  <div class="mindmap">
+    <div class="branch shared">
+      <div class="branch-label">📚 SHARED — Books (Projects)</div>
+      <div class="folder">
+        <div class="folder-title"><span class="icon">📁</span> projects/</div>
+        <div class="subfolder">project-alpha/</div>
+        <div class="subfolder">project-beta/</div>
+        <div class="subfolder">project-gamma/</div>
+        <div class="subfolder" style="color:#666">...all agents read & write here</div>
+      </div>
+    </div>
+    
+    <div class="center-node">🏗️<br>founderclaw/</div>
+    
+    <div class="branch private">
+      <div class="branch-label">🪑 PRIVATE — Desks (Agents)</div>
+      <div class="folder">
+        <div class="folder-title"><span class="icon">👤</span> founderclaw-main/</div>
+        <div class="subfolder">SOUL.md</div>
+        <div class="subfolder">AGENTS.md</div>
+        <div class="subfolder">memory.md</div>
+        <div class="subfolder">sessions/</div>
+      </div>
+      <div class="folder">
+        <div class="folder-title"><span class="icon">👤</span> strategy/</div>
+        <div class="subfolder">SOUL.md</div>
+        <div class="subfolder">memory.md</div>
+        <div class="subfolder">sessions/</div>
+      </div>
+      <div class="folder" style="opacity:0.5">
+        <div class="folder-title"><span class="icon">👤</span> shipper, tester, safety, observer...</div>
+        <div class="subfolder">same structure</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: Agents -->
+<div class="section">
+  <div class="section-title">👥 The Team (6 Agents)</div>
+  <div class="agent-grid">
+    <div class="agent-card ycmain">
+      <div class="name">🎯 FounderClaw Main</div>
+      <div class="role">The Publisher — orchestrates everything</div>
+      <div class="files">Talks to user. Delegates to team. Runs auto mode.</div>
+    </div>
+    <div class="agent-card strategy">
+      <div class="name">📐 Strategy</div>
+      <div class="role">The Editor — plans & designs</div>
+      <div class="files">office-hours, plan-*, design-*</div>
+    </div>
+    <div class="agent-card shipper">
+      <div class="name">🚀 Shipper</div>
+      <div class="role">The Printer — code & deploy</div>
+      <div class="files">review, ship, deploy, canary</div>
+    </div>
+    <div class="agent-card tester">
+      <div class="name">🔍 Tester</div>
+      <div class="role">The Proofreader — test & verify</div>
+      <div class="files">qa, browse, cookies, chrome</div>
+    </div>
+    <div class="agent-card safety">
+      <div class="name">🛡️ Safety</div>
+      <div class="role">The Lawyer — security & guardrails</div>
+      <div class="files">cso, careful, freeze, guard</div>
+    </div>
+    <div class="agent-card observer">
+      <div class="name">📊 Observer</div>
+      <div class="role">The Historian — debug & learn</div>
+      <div class="files">investigate, retro, second-opinion</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: Project structure -->
+<div class="section">
+  <div class="section-title">📖 Inside One Project (e.g., "todo-app")</div>
+  <div class="project-example">
+    <div class="title">📁 projects/todo-app/</div>
+    <div class="project-folders">
+      <div class="pf"><span class="emoji">💻</span> code/<br><small>the actual code</small></div>
+      <div class="pf"><span class="emoji">🎨</span> design/<br><small>strategy outputs</small></div>
+      <div class="pf"><span class="emoji">📝</span> reviews/<br><small>shipper's reviews</small></div>
+      <div class="pf"><span class="emoji">🧪</span> qa/<br><small>tester's results</small></div>
+      <div class="pf"><span class="emoji">🔒</span> security/<br><small>safety's audits</small></div>
+      <div class="pf"><span class="emoji">📊</span> retro/<br><small>observer's notes</small></div>
+      <div class="pf"><span class="emoji">📋</span> STATUS.md<br><small>who's doing what</small></div>
+      <div class="pf"><span class="emoji">📖</span> README.md<br><small>project overview</small></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: How it flows -->
+<div class="section">
+  <div class="section-title">⚡ Example Flow: "Build a todo app"</div>
+  <div class="flow">
+    <div class="flow-step">👤 User talks to</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" style="border-color:#ff6b35">🎯 FounderClaw Main</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" style="border-color:#f59e0b">📐 Strategy runs office-hours</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" style="border-color:#f59e0b">📐 Writes to design/</div>
+  </div>
+  <div class="flow">
+    <div class="flow-step" style="border-color:#ff6b35">🎯 FounderClaw Main approves</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" style="border-color:#3b82f6">🚀 Shipper reviews code</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" style="border-color:#8b5cf6">🔍 Tester runs QA</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" style="border-color:#3b82f6">🚀 Shipper deploys</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" style="border-color:#10b981">📊 Observer logs retro</div>
+  </div>
+</div>
+
+</body>
+</html>

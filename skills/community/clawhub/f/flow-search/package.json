@@ -1,0 +1,11 @@
+{
+  "name": "flow-search",
+  "version": "1.0.0",
+  "description": "Deep web research using Claude's native search — for OpenClaw agents",
+  "type": "module",
+  "main": "search.ts",
+  "scripts": {
+    "search": "npx tsx search.ts"
+  },
+  "dependencies": {}
+}

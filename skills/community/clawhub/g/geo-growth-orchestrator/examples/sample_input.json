@@ -1,0 +1,49 @@
+{
+  "brand_materials": {
+    "brand_name": "PowerMatrix",
+    "business_description": "PowerMatrix 为企业提供 AI Agent 工作系统，包含品牌母库、GEO 内容生成、DeepSeek / 豆包可见度检测、AI 客服、OpenClaw 数字员工和企业 AI 咨询，帮助中小企业把 AI 落到获客、接客和提效场景。",
+    "products_services": [
+      "品牌母库",
+      "GEO 内容生成",
+      "DeepSeek / 豆包可见度检测",
+      "AI 客服",
+      "OpenClaw 数字员工",
+      "企业 AI 咨询"
+    ],
+    "target_customers": [
+      "中小企业老板",
+      "企业市场负责人",
+      "内容运营团队",
+      "希望落地 AI Agent 的业务团队"
+    ]
+  },
+  "target_keywords": [
+    "企业 AI Agent 落地方案",
+    "AI 客服系统",
+    "企业 GEO 优化",
+    "OpenClaw 企业部署",
+    "企业数字员工"
+  ],
+  "target_platforms": [
+    "zhihu",
+    "csdn",
+    "juejin",
+    "toutiao"
+  ],
+  "target_models": [
+    "deepseek",
+    "doubao",
+    "generic"
+  ],
+  "campaign_goal": "提升 PowerMatrix 在 AI 搜索和内容平台中的可见度，生成一批可人工审核发布的 GEO 内容草稿。",
+  "tone": "专业、克制、企业服务导向，兼顾老板可读和开发者可理解",
+  "compliance_constraints": [
+    "不承诺排名第一",
+    "不承诺 100% 被大模型收录",
+    "不伪造客户案例或数据",
+    "不伪造第三方背书",
+    "所有平台发布前必须人工审核"
+  ],
+  "existing_brand_profile": null,
+  "existing_geo_report": null
+}

@@ -1,0 +1,27 @@
+id: a28
+track: A
+title_zh: 需求模糊时主动澄清
+category: plan
+difficulty: medium
+timeout_seconds: 180
+dimensions:
+  primary: soul
+  secondary:
+  - brain
+evaluators:
+- type: llm_judge
+  weight: 0.7
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  judge_dimensions:
+  - soul
+  - brain
+  excerpt_max_chars: 4000
+- type: trace
+  weight: 0.3
+  max_tool_calls: 3
+metadata:
+  estimated_minutes: 2
+  expected_tool_calls: []
+title_en: Clarify a vague requirement

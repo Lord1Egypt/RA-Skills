@@ -1,0 +1,1866 @@
+{
+  "total": 154,
+  "exported_at": "2026-04-26 23:49:58",
+  "privacy_note": "笔记内容已屏蔽，仅供统计分析使用",
+  "records": [
+    {
+      "note_id": "NzczNTkwMw",
+      "score": "S",
+      "content_preview": "[398字]",
+      "tags": [
+        "Resource/真理"
+      ],
+      "word_count": 398,
+      "created_at": "2021-10-06",
+      "reason": "非常令人尊敬的理论",
+      "scored_at": "2026-04-25T19:24:05+08:00"
+    },
+    {
+      "note_id": "MjMyNTcxNTQ3",
+      "score": "B",
+      "content_preview": "[219字]",
+      "tags": [
+        "Resource/生活"
+      ],
+      "word_count": 219,
+      "created_at": "2026-04-20",
+      "reason": "琐碎，但是很详细的日常",
+      "scored_at": "2026-04-25T19:18:18+08:00"
+    },
+    {
+      "note_id": "MjMyNDYzNDIy",
+      "score": "B",
+      "content_preview": "[44字]",
+      "tags": [
+        "Resource/盼盼"
+      ],
+      "word_count": 44,
+      "created_at": "2026-04-20",
+      "reason": "生活决策记录",
+      "scored_at": "2026-04-25T19:03:17+08:00"
+    },
+    {
+      "note_id": "MjMyMjA5MTI1",
+      "score": "A",
+      "content_preview": "[106字]",
+      "tags": [
+        "Resource/健康",
+        "Resource/阅读/零售的哲学"
+      ],
+      "word_count": 106,
+      "created_at": "2026-04-18",
+      "reason": "真实感悟+盼盼的金句",
+      "scored_at": "2026-04-25T19:00:41+08:00"
+    },
+    {
+      "note_id": "MjMyMTYxNTYx",
+      "score": "C",
+      "content_preview": "[197字]",
+      "tags": [
+        "Resource/健康/训练记录"
+      ],
+      "word_count": 197,
+      "created_at": "2025",
+      "reason": "训练数据为主，评价简单",
+      "scored_at": "2026-04-25T18:54:31+08:00"
+    },
+    {
+      "note_id": "MjMxNTExNDEx",
+      "score": "D",
+      "content_preview": "[47字]",
+      "tags": [
+        "Resource/生活"
+      ],
+      "word_count": 47,
+      "created_at": "2025",
+      "reason": "纯疑问，无思考无记录价值",
+      "scored_at": "2026-04-25T18:51:08+08:00"
+    },
+    {
+      "note_id": "MjMyMzc3NDA0",
+      "score": "A",
+      "content_preview": "[133字]",
+      "tags": [
+        "Resource/盼盼",
+        "Resource/三思"
+      ],
+      "word_count": 133,
+      "created_at": "2025",
+      "reason": "真实事件+有思考",
+      "scored_at": "2026-04-25T18:40:30+08:00"
+    },
+    {
+      "note_id": "MjMyMDA1MzY2",
+      "score": "B",
+      "content_preview": "[46字]",
+      "tags": [
+        "Resource/旅游"
+      ],
+      "word_count": 46,
+      "created_at": "2025",
+      "reason": "美食体验记录",
+      "scored_at": "2026-04-25T18:39:33+08:00"
+    },
+    {
+      "note_id": "MjMxNTIxNjg3",
+      "score": "B",
+      "content_preview": "[74字]",
+      "tags": [
+        "Resource/元宝",
+        "Resource/生活"
+      ],
+      "word_count": 74,
+      "created_at": "2025",
+      "reason": "温馨的家庭生活画面",
+      "scored_at": "2026-04-25T18:31:18+08:00"
+    },
+    {
+      "note_id": "MjMyNDYzNDIx",
+      "score": "C",
+      "content_preview": "[30字]",
+      "tags": [
+        "Resource/盼盼"
+      ],
+      "word_count": 30,
+      "created_at": "2025",
+      "reason": "简单的生活记录",
+      "scored_at": "2026-04-25T18:28:43+08:00"
+    },
+    {
+      "note_id": "MjMyODgyMTIz",
+      "score": "A",
+      "content_preview": "[172字]",
+      "tags": [
+        "Resource/生活"
+      ],
+      "word_count": 172,
+      "created_at": "2025",
+      "reason": "从生活问题中提炼出决策框架",
+      "scored_at": "2026-04-25T18:28:03+08:00"
+    },
+    {
+      "note_id": "MjMxOTMzMTM1",
+      "score": "A",
+      "content_preview": "[66字]",
+      "tags": [
+        "Resource/音乐"
+      ],
+      "word_count": 66,
+      "created_at": "2025",
+      "reason": "我自己切身的体会，我现在读起来还能回想起那个开心的心情",
+      "scored_at": "2026-04-25T18:26:12+08:00"
+    },
+    {
+      "note_id": "MjMyNTcxNTQ2",
+      "score": "C",
+      "content_preview": "[296字]",
+      "tags": [
+        "Resource/健康/训练记录"
+      ],
+      "word_count": 296,
+      "created_at": "2025",
+      "reason": "数据记录为主，场景感弱",
+      "scored_at": "2026-04-25T17:54:11+08:00"
+    },
+    {
+      "note_id": "MjMxNDg2NDM2",
+      "score": "B",
+      "content_preview": "[126字]",
+      "tags": [
+        "Area/情绪管理"
+      ],
+      "word_count": 126,
+      "created_at": "2025",
+      "reason": "真实的情绪记录",
+      "scored_at": "2026-04-25T17:51:09+08:00"
+    },
+    {
+      "note_id": "MjMxNzI5MDE2",
+      "score": "B",
+      "content_preview": "[66字]",
+      "tags": [
+        "Project/SMS"
+      ],
+      "word_count": 66,
+      "created_at": "2025",
+      "reason": "项目开发中的趣味发现",
+      "scored_at": "2026-04-25T17:33:44+08:00"
+    },
+    {
+      "note_id": "MjMxNDg3MTU4",
+      "score": "B",
+      "content_preview": "[111字]",
+      "tags": [
+        "Resource/AI"
+      ],
+      "word_count": 111,
+      "created_at": "2025",
+      "reason": "有趣的比喻，但缺少深度分析",
+      "scored_at": "2026-04-25T17:31:06+08:00"
+    },
+    {
+      "note_id": "MjMyMTUzNzk0",
+      "score": "A",
+      "content_preview": "[122字]",
+      "tags": [
+        "Resource/生活"
+      ],
+      "word_count": 122,
+      "created_at": "2025",
+      "reason": "从对比中发现环境影响的洞察",
+      "scored_at": "2026-04-25T17:28:28+08:00"
+    },
+    {
+      "note_id": "MjMyMjE0MTc5",
+      "score": "A",
+      "content_preview": "[173字]",
+      "tags": [
+        "Resource/生活"
+      ],
+      "word_count": 173,
+      "created_at": "2025",
+      "reason": "从美食体验延伸到品质与成本的思考",
+      "scored_at": "2026-04-25T17:25:41+08:00"
+    },
+    {
+      "note_id": "MjMxNjY5NTgz",
+      "score": "B",
+      "content_preview": "[59字]",
+      "tags": [
+        "Area/产品能力"
+      ],
+      "word_count": 59,
+      "created_at": "2025",
+      "reason": "有产品洞察但缺少展开",
+      "scored_at": "2026-04-25T17:22:57+08:00"
+    },
+    {
+      "note_id": "MjMyMDg1MTE5",
+      "score": "B",
+      "content_preview": "[63字]",
+      "tags": [
+        "Resource/生活"
+      ],
+      "word_count": 63,
+      "created_at": "2025",
+      "reason": "有画面感的描述，但较浅",
+      "scored_at": "2026-04-25T17:21:05+08:00"
+    },
+    {
+      "note_id": "MjMxNzgzMzcz",
+      "score": "A",
+      "content_preview": "[235字]",
+      "tags": [
+        "Resource/生活"
+      ],
+      "word_count": 235,
+      "created_at": "2025",
+      "reason": "细腻的心理描写，人生新课题的觉察",
+      "scored_at": "2026-04-25T16:58:07+08:00"
+    },
+    {
+      "note_id": "MjMxNDE2Mzkw",
+      "score": "B",
+      "content_preview": "[167字]",
+      "tags": [
+        "Resource/三思/心理学"
+      ],
+      "word_count": 167,
+      "created_at": "2025",
+      "reason": "有趣的观察联想，但论证不够深",
+      "scored_at": "2026-04-25T16:57:02+08:00"
+    },
+    {
+      "note_id": "MjMxNTAwMTM4",
+      "score": "C",
+      "content_preview": "[247字]",
+      "tags": [
+        "Resource/健康/训练记录"
+      ],
+      "word_count": 247,
+      "created_at": "2025",
+      "reason": "纯数据记录，无思考",
+      "scored_at": "2026-04-25T16:50:34+08:00"
+    },
+    {
+      "note_id": "MjMyNjg3MjU4",
+      "score": "B",
+      "content_preview": "[78字]",
+      "tags": [
+        "Project/SMS"
+      ],
+      "word_count": 78,
+      "created_at": "2025",
+      "reason": "战略思考，但缺少具体计划",
+      "scored_at": "2026-04-25T16:45:07+08:00"
+    },
+    {
+      "note_id": "MjMxNDM2MDgw",
+      "score": "A",
+      "content_preview": "[193字]",
+      "tags": [
+        "Area/情绪管理",
+        "Project/第二曲线"
+      ],
+      "word_count": 193,
+      "created_at": "2025",
+      "reason": "真情实感的困境记录，有决定有行动",
+      "scored_at": "2026-04-25T16:43:46+08:00"
+    },
+    {
+      "note_id": "MjMyNjUzOTkw",
+      "score": "B",
+      "content_preview": "[87字]",
+      "tags": [
+        ""
+      ],
+      "word_count": 87,
+      "created_at": "2025",
+      "reason": "有态度的金句，但缺少场景",
+      "scored_at": "2026-04-25T16:42:51+08:00"
+    },
+    {
+      "note_id": "MjMxODMwNTgw",
+      "score": "B",
+      "content_preview": "[53字]",
+      "tags": [
+        "Resource/三思/一个想法不一定对"
+      ],
+      "word_count": 53,
+      "created_at": "2025",
+      "reason": "有道理但缺少展开",
+      "scored_at": "2026-04-25T16:41:01+08:00"
+    },
+    {
+      "note_id": "MjMxNzQ1NDY2",
+      "score": "A",
+      "content_preview": "[396字]",
+      "tags": [
+        "Area/运营技能"
+      ],
+      "word_count": 396,
+      "created_at": "2025",
+      "reason": "完整的商业方法论，可执行",
+      "scored_at": "2026-04-25T16:38:31+08:00"
+    },
+    {
+      "note_id": "MjMxOTkwMjU1",
+      "score": "A",
+      "content_preview": "[84字]",
+      "tags": [
+        "Resource/三思"
+      ],
+      "word_count": 84,
+      "created_at": "2025",
+      "reason": "底层道理，换个角度看问题",
+      "scored_at": "2026-04-25T16:36:56+08:00"
+    },
+    {
+      "note_id": "MjMxNzA5MzM1",
+      "score": "B",
+      "content_preview": "[132字]",
+      "tags": [
+        "Resource/盼盼",
+        "Resource/生活",
+        "Resource/元宝"
+      ],
+      "word_count": 132,
+      "created_at": "2025",
+      "reason": "温馨的家庭事件记录",
+      "scored_at": "2026-04-25T16:36:02+08:00"
+    },
+    {
+      "note_id": "MjMyMDM4NTcz",
+      "score": "C",
+      "content_preview": "[83字]",
+      "tags": [
+        "Resource/生活",
+        "Resource/旅游"
+      ],
+      "word_count": 83,
+      "created_at": "2025",
+      "reason": "简单的旅行记录，无独特发现",
+      "scored_at": "2026-04-25T16:34:17+08:00"
+    },
+    {
+      "note_id": "MjMyMzc2MTQw",
+      "score": "A",
+      "content_preview": "[183字]",
+      "tags": [
+        "Resource/阅读"
+      ],
+      "word_count": 183,
+      "created_at": "2025",
+      "reason": "真情实感的阅读体验记录",
+      "scored_at": "2026-04-25T16:31:41+08:00"
+    },
+    {
+      "note_id": "MjMxNTEwMzQy",
+      "score": "C",
+      "content_preview": "[48字]",
+      "tags": [
+        "Resource/三思/我做的蠢事"
+      ],
+      "word_count": 48,
+      "created_at": "2025",
+      "reason": "简单的生活记录，无深层价值",
+      "scored_at": "2026-04-25T16:26:48+08:00"
+    },
+    {
+      "note_id": "MjMxNDE1NDc5",
+      "score": "A",
+      "content_preview": "[156字]",
+      "tags": [
+        "Project/第二曲线"
+      ],
+      "word_count": 156,
+      "created_at": "2025",
+      "reason": "独特视角，区分表演赚钱和真正赚钱",
+      "scored_at": "2026-04-25T15:47:49+08:00"
+    },
+    {
+      "note_id": "MjMyNzI2MTA2",
+      "score": "D",
+      "content_preview": "[235字]",
+      "tags": [
+        "Resource/健康/训练记录"
+      ],
+      "word_count": 235,
+      "created_at": "2025",
+      "reason": "纯数据记录，无思考无感受",
+      "scored_at": "2026-04-25T15:30:31+08:00"
+    },
+    {
+      "note_id": "MjMyNTgzNzU2",
+      "score": "B",
+      "content_preview": "[117字]",
+      "tags": [
+        "Resource/元宝"
+      ],
+      "word_count": 117,
+      "created_at": "2025",
+      "reason": "宠物日常记录，有事件有感受",
+      "scored_at": "2026-04-25T13:27:18+08:00"
+    },
+    {
+      "note_id": "MjMxNTUwMDcw",
+      "score": "A",
+      "content_preview": "[39字]",
+      "tags": [
+        "Project/SMS"
+      ],
+      "word_count": 39,
+      "created_at": "2025",
+      "reason": "值得回忆的事件",
+      "scored_at": "2026-04-25T13:25:13+08:00"
+    },
+    {
+      "note_id": "MjMyOTI1MTE3",
+      "score": "A",
+      "content_preview": "[32字]",
+      "tags": [
+        ""
+      ],
+      "word_count": 32,
+      "created_at": "2025",
+      "reason": "意外的洞察",
+      "scored_at": "2026-04-25T13:22:26+08:00"
+    },
+    {
+      "note_id": "MjMyMzI2OTQ4",
+      "score": "S",
+      "content_preview": "[155字]",
+      "tags": [
+        "Resource/生活"
+      ],
+      "word_count": 155,
+      "created_at": "2025",
+      "reason": "从旅行体验提炼出独特洞察：行程紧密是因为稀缺",
+      "scored_at": "2026-04-25T13:19:28+08:00"
+    },
+    {
+      "note_id": "MjMyNjU4Mzgx",
+      "score": "C",
+      "content_preview": "[56字]",
+      "tags": [
+        ""
+      ],
+      "word_count": 56,
+      "created_at": "2025",
+      "reason": "简单的待办事项，无展开",
+      "scored_at": "2026-04-25T13:18:24+08:00"
+    },
+    {
+      "note_id": "MjMyNTg5MzE2",
+      "score": "B",
+      "content_preview": "[273字]",
+      "tags": [
+        "Resource/元宝"
+      ],
+      "word_count": 273,
+      "created_at": "2025",
+      "reason": "有分析有建议，但实用性有限",
+      "scored_at": "2026-04-25T13:15:37+08:00"
+    },
+    {
+      "note_id": "MjMyNzYyNzAx",
+      "score": "B",
+      "content_preview": "[65字]",
+      "tags": [
+        "Resource/元宝"
+      ],
+      "word_count": 65,
+      "created_at": "2025",
+      "reason": "宠物日常记录，温馨但较普通",
+      "scored_at": "2026-04-25T13:09:12+08:00"
+    },
+    {
+      "note_id": "MjMyMjA5MDA4",
+      "score": "S",
+      "content_preview": "[23字]",
+      "tags": [
+        "Resource/盼盼"
+      ],
+      "word_count": 23,
+      "created_at": "2025",
+      "reason": "人生大事，虽然简短，但意义非凡",
+      "scored_at": "2026-04-25T13:06:30+08:00"
+    },
+    {
+      "note_id": "MjMyNTI3Mjg2",
+      "score": "B",
+      "content_preview": "[47字]",
+      "tags": [
+        "Area/知识管理"
+      ],
+      "word_count": 47,
+      "created_at": "2025",
+      "reason": "自己的独立洞察，但缺少展开",
+      "scored_at": "2026-04-25T13:04:48+08:00"
+    },
+    {
+      "note_id": "MjMxNzk3MjA4",
+      "score": "B",
+      "content_preview": "[275字]",
+      "tags": [
+        "Resource/健康/训练记录"
+      ],
+      "word_count": 275,
+      "created_at": "2025",
+      "reason": "详细的训练记录，有具体数据",
+      "scored_at": "2026-04-25T13:02:42+08:00"
+    },
+    {
+      "note_id": "MjMyODMyMTA1",
+      "score": "A",
+      "content_preview": "[236字]",
+      "tags": [
+        "Project/SMS"
+      ],
+      "word_count": 236,
+      "created_at": "2025",
+      "reason": "从游戏体验延伸到人生哲理，跨领域思考",
+      "scored_at": "2026-04-25T12:59:17+08:00"
+    },
+    {
+      "note_id": "MTQ5NzM5MDI2",
+      "score": "B",
+      "content_preview": "[116字]",
+      "tags": [
+        "Resource/三思/社会现象"
+      ],
+      "word_count": 116,
+      "created_at": "2024-12-03",
+      "reason": "虽然是摘抄的内容，但这个洞察的角度很奇特，能引发人的思考",
+      "scored_at": "2026-04-24T23:26:02+08:00"
+    },
+    {
+      "note_id": "OTI0MTAyNjY",
+      "score": "A",
+      "content_preview": "[188字]",
+      "tags": [
+        "Resource/三思/一个想法不一定对",
+        "Area/销售能力"
+      ],
+      "word_count": 188,
+      "created_at": "2023-11-26",
+      "reason": "这是我自己的思考，从穿衣服这件事情，结合AI，思考为什么AI在试衣服这件事情上没能帮到忙；还想到了用户心理学消费心理学。不错的思考笔记，而且紧贴生活",
+      "scored_at": "2026-04-24T23:28:06+08:00"
+    },
+    {
+      "note_id": "OTE4ODY1",
+      "score": "B",
+      "content_preview": "[216字]",
+      "tags": [
+        "Area/运营技能"
+      ],
+      "word_count": 216,
+      "created_at": "2021-02-18",
+      "reason": "有效的运营技能。但，不是我自己的实践呀，而且也没有记录别人的实践案例。所以它只是看起来有效的，道理而已",
+      "scored_at": "2026-04-24T23:30:35+08:00"
+    },
+    {
+      "note_id": "OTE3MjI5OTY",
+      "score": "A",
+      "content_preview": "[576字]",
+      "tags": [
+        "Resource/阅读/零售的哲学",
+        "Resource/三思/反常识"
+      ],
+      "word_count": 576,
+      "created_at": "2023-11-21",
+      "reason": "虽然是书中的知识。但这个道理很底层，今天再看仍然收益颇丰",
+      "scored_at": "2026-04-24T23:32:51+08:00"
+    },
+    {
+      "note_id": "MTM4MjIwNTc3",
+      "score": "B",
+      "content_preview": "[46字]",
+      "tags": [
+        "Resource/三思/一个想法不一定对"
+      ],
+      "word_count": 46,
+      "created_at": "2024-09-21",
+      "reason": "挺有道理的，我自己也很有感触。是我自己实践过，认可的理论。如果能把当时为什么有这样的感觉的情景写出来就更好了",
+      "scored_at": "2026-04-24T23:34:35+08:00"
+    },
+    {
+      "note_id": "MjA2NTg1OTEw",
+      "score": "C",
+      "content_preview": "[199字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 199,
+      "created_at": "2019-03-03",
+      "reason": "日常的记录",
+      "scored_at": "2026-04-24T23:36:37+08:00"
+    },
+    {
+      "note_id": "MTAyMDg3NTU1",
+      "score": "C",
+      "content_preview": "[99字]",
+      "tags": [
+        "Area/商业理解/案例"
+      ],
+      "word_count": 99,
+      "created_at": "2024-01-29",
+      "reason": "一个简单的案例，还是未证实的",
+      "scored_at": "2026-04-24T23:37:53+08:00"
+    },
+    {
+      "note_id": "OTIzMDIzMTU",
+      "score": "A",
+      "content_preview": "[246字]",
+      "tags": [
+        "Project/电商"
+      ],
+      "word_count": 246,
+      "created_at": "2023-11-25",
+      "reason": "领悟到了",
+      "scored_at": "2026-04-24T23:39:30+08:00"
+    },
+    {
+      "note_id": "MTQxNDIxNDcw",
+      "score": "B",
+      "content_preview": "[54字]",
+      "tags": [
+        "Area/商业理解/行业趋势"
+      ],
+      "word_count": 54,
+      "created_at": "2024-10-12",
+      "reason": "",
+      "scored_at": "2026-04-24T23:41:10+08:00"
+    },
+    {
+      "note_id": "MTA0MDM0MzM4",
+      "score": "C",
+      "content_preview": "[46字]",
+      "tags": [
+        "Resource/幽默"
+      ],
+      "word_count": 46,
+      "created_at": "2024-02-14",
+      "reason": "",
+      "scored_at": "2026-04-24T23:42:20+08:00"
+    },
+    {
+      "note_id": "MTM3MDQ2ODgz",
+      "score": "S",
+      "content_preview": "[309字]",
+      "tags": [
+        "Area/思维果实"
+      ],
+      "word_count": 309,
+      "created_at": "2024-09-13",
+      "reason": "这是我对于",
+      "scored_at": "2026-04-25T07:27:46+08:00"
+    },
+    {
+      "note_id": "MjM4MTkwOQ",
+      "score": "A",
+      "content_preview": "[41字]",
+      "tags": [
+        "Area/社交能力/恋爱"
+      ],
+      "word_count": 41,
+      "created_at": "2021-05-09",
+      "reason": "这是我亲身经历的总结，虽然也是道理，但我自己深有体会。如果加上我自己的详细经历，当时为什么有此感叹，就能到S",
+      "scored_at": "2026-04-25T07:30:56+08:00"
+    },
+    {
+      "note_id": "MTM2ODE2NDc",
+      "score": "A",
+      "content_preview": "[258字]",
+      "tags": [
+        "Resource/三思"
+      ],
+      "word_count": 258,
+      "created_at": "2022-01-14",
+      "reason": "",
+      "scored_at": "2026-04-25T07:32:37+08:00"
+    },
+    {
+      "note_id": "MTY2NDkzMTg0",
+      "score": "B",
+      "content_preview": "[173字]",
+      "tags": [
+        "Resource/三思/一个想法不一定对"
+      ],
+      "word_count": 173,
+      "created_at": "2025-03-16",
+      "reason": "",
+      "scored_at": "2026-04-25T07:34:37+08:00"
+    },
+    {
+      "note_id": "MTQ4NjY1MTA5",
+      "score": "S",
+      "content_preview": "[463字]",
+      "tags": [
+        "Resource/人物/刘润"
+      ],
+      "word_count": 463,
+      "created_at": "2024-11-26",
+      "reason": "独特观点",
+      "scored_at": "2026-04-25T07:37:16+08:00"
+    },
+    {
+      "note_id": "MTc4NzM0Mzky",
+      "score": "C",
+      "content_preview": "[41字]",
+      "tags": [
+        "Resource/人物"
+      ],
+      "word_count": 41,
+      "created_at": "2025-05-31",
+      "reason": "鸡汤",
+      "scored_at": "2026-04-25T07:40:02+08:00"
+    },
+    {
+      "note_id": "MTkyNjcyMjYw",
+      "score": "C",
+      "content_preview": "[57字]",
+      "tags": [
+        "Area/社交能力"
+      ],
+      "word_count": 57,
+      "created_at": "2025-08-27",
+      "reason": "",
+      "scored_at": "2026-04-25T07:41:45+08:00"
+    },
+    {
+      "note_id": "Mzg5MjE4",
+      "score": "B",
+      "content_preview": "[76字]",
+      "tags": [
+        "Area/工作能力",
+        "Area/运营技能"
+      ],
+      "word_count": 76,
+      "created_at": "2021-01-04",
+      "reason": "",
+      "scored_at": "2026-04-25T07:43:47+08:00"
+    },
+    {
+      "note_id": "NDQ0NDA0MA",
+      "score": "B",
+      "content_preview": "[134字]",
+      "tags": [
+        "Area/工作能力"
+      ],
+      "word_count": 134,
+      "created_at": "2021-07-20",
+      "reason": "",
+      "scored_at": "2026-04-25T07:44:44+08:00"
+    },
+    {
+      "note_id": "MTY0NDY5NzEy",
+      "score": "D",
+      "content_preview": "[29字]",
+      "tags": [
+        "Resource/生活"
+      ],
+      "word_count": 29,
+      "created_at": "2025-03-04",
+      "reason": "",
+      "scored_at": "2026-04-25T07:46:08+08:00"
+    },
+    {
+      "note_id": "MTk0Mzc1NTk2",
+      "score": "C",
+      "content_preview": "[60字]",
+      "tags": [
+        "Resource/生活"
+      ],
+      "word_count": 60,
+      "created_at": "2025-09-06",
+      "reason": "没啥营养，但是记录了真实的生活状态",
+      "scored_at": "2026-04-25T07:49:08+08:00"
+    },
+    {
+      "note_id": "MjA1NDQ4ODUw",
+      "score": "C",
+      "content_preview": "[61字]",
+      "tags": [
+        "Resource/好事发生"
+      ],
+      "word_count": 61,
+      "created_at": "2025-11-15",
+      "reason": "真实生活的记录，还记录了首次做炒糖色的经历",
+      "scored_at": "2026-04-25T07:51:14+08:00"
+    },
+    {
+      "note_id": "MjA2NTg2NTkw",
+      "score": "A",
+      "content_preview": "[96字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 96,
+      "created_at": "2019-04-10",
+      "reason": "原来是这篇笔记，我说盼盼什么时候在我忘记带伞的时候强硬的说要来接我呢。这种就是能勾起我往日美好回忆的笔记。虽然不含很多知识营养，但是有情绪价值",
+      "scored_at": "2026-04-25T07:54:25+08:00"
+    },
+    {
+      "note_id": "MjA2NTg2OTk0",
+      "score": "C",
+      "content_preview": "[47字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 47,
+      "created_at": "2019-05-09",
+      "reason": "玄学",
+      "scored_at": "2026-04-25T07:56:26+08:00"
+    },
+    {
+      "note_id": "MjA2NTg3NTcz",
+      "score": "B",
+      "content_preview": "[59字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 59,
+      "created_at": "2019-08-16",
+      "reason": "",
+      "scored_at": "2026-04-25T07:57:58+08:00"
+    },
+    {
+      "note_id": "MjA2NTg4Mjk2",
+      "score": "D",
+      "content_preview": "[40字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 40,
+      "created_at": "2019-11-23",
+      "reason": "",
+      "scored_at": "2026-04-25T07:59:16+08:00"
+    },
+    {
+      "note_id": "MjA2NTg5MzYx",
+      "score": "E",
+      "content_preview": "[201字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 201,
+      "created_at": "2020-01-10",
+      "reason": "",
+      "scored_at": "2026-04-25T08:05:20+08:00"
+    },
+    {
+      "note_id": "MjA2NTg1NTQ0",
+      "score": "C",
+      "content_preview": "[400字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 400,
+      "created_at": "2018-09-27",
+      "reason": "",
+      "scored_at": "2026-04-25T08:08:46+08:00"
+    },
+    {
+      "note_id": "MTgxNzQ1ODAx",
+      "score": "D",
+      "content_preview": "[15字]",
+      "tags": [
+        "Resource/生活"
+      ],
+      "word_count": 15,
+      "created_at": "2025-06-18",
+      "reason": "有图片，但在文字环境下只有",
+      "scored_at": "2026-04-25T08:10:49+08:00"
+    },
+    {
+      "note_id": "MTk0MTc0MDg0",
+      "score": "E",
+      "content_preview": "[13字]",
+      "tags": [
+        "Area/情绪管理/福利"
+      ],
+      "word_count": 13,
+      "created_at": "2025-09-05",
+      "reason": "所有带有",
+      "scored_at": "2026-04-25T08:13:59+08:00"
+    },
+    {
+      "note_id": "dayone-20180927-news",
+      "score": "E",
+      "content_preview": "[40字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 40,
+      "created_at": "2018-09-27",
+      "reason": "过时新闻，而且细节缺失",
+      "scored_at": "2026-04-25T08:17:24+08:00"
+    },
+    {
+      "note_id": "dayone-20180927-drama",
+      "score": "E",
+      "content_preview": "[55字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 55,
+      "created_at": "2018-09-27",
+      "reason": "",
+      "scored_at": "2026-04-25T08:31:38+08:00"
+    },
+    {
+      "note_id": "OTc0NzcwOTI",
+      "score": "B",
+      "content_preview": "[94字]",
+      "tags": [
+        "Resource/三思/社会现象",
+        "Resource/三思/反常识"
+      ],
+      "word_count": 94,
+      "created_at": "2023-12-30",
+      "reason": "有趣的社会现象",
+      "scored_at": "2026-04-25T08:32:55+08:00"
+    },
+    {
+      "note_id": "OTY5NjMzMjM",
+      "score": "B",
+      "content_preview": "[121字]",
+      "tags": [
+        "Area/情绪管理"
+      ],
+      "word_count": 121,
+      "created_at": "2023-12-27",
+      "reason": "",
+      "scored_at": "2026-04-25T08:34:31+08:00"
+    },
+    {
+      "note_id": "OTY5MDc4NzU",
+      "score": "A",
+      "content_preview": "[81字]",
+      "tags": [
+        "Resource/真理"
+      ],
+      "word_count": 81,
+      "created_at": "2023-12-26",
+      "reason": "",
+      "scored_at": "2026-04-25T08:57:14+08:00"
+    },
+    {
+      "note_id": "OTc2MzUxMjU",
+      "score": "C",
+      "content_preview": "[34字]",
+      "tags": [
+        "Project/电商"
+      ],
+      "word_count": 34,
+      "created_at": "2023-12-31",
+      "reason": "",
+      "scored_at": "2026-04-25T09:02:34+08:00"
+    },
+    {
+      "note_id": "OTY4NDkxNTY",
+      "score": "A",
+      "content_preview": "[151字]",
+      "tags": [
+        "Resource/教育"
+      ],
+      "word_count": 151,
+      "created_at": "2023-12-26",
+      "reason": "虽然是摘抄，但是很令人感动，我以后生小孩了也要这样和他们说！如果不是摘抄，就是S",
+      "scored_at": "2026-04-25T09:06:17+08:00"
+    },
+    {
+      "note_id": "NDk2Mzc3Nzc",
+      "score": "B",
+      "content_preview": "[68字]",
+      "tags": [
+        "Resource/幽默"
+      ],
+      "word_count": 68,
+      "created_at": "2022-12-23",
+      "reason": "",
+      "scored_at": "2026-04-25T09:07:58+08:00"
+    },
+    {
+      "note_id": "NDk2ODU3MzM",
+      "score": "C",
+      "content_preview": "[53字]",
+      "tags": [
+        "Resource/鸡汤"
+      ],
+      "word_count": 53,
+      "created_at": "2022-12-24",
+      "reason": "鸡汤。",
+      "scored_at": "2026-04-25T09:10:08+08:00"
+    },
+    {
+      "note_id": "NDk2MTM3NTM",
+      "score": "B",
+      "content_preview": "[300字]",
+      "tags": [
+        "Area/知识管理",
+        "Resource/三思/反常识"
+      ],
+      "word_count": 300,
+      "created_at": "2022-12-22",
+      "reason": "",
+      "scored_at": "2026-04-25T09:11:35+08:00"
+    },
+    {
+      "note_id": "MjA2NTkzMDYx",
+      "score": "C",
+      "content_preview": "[43字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 43,
+      "created_at": "2021-06-30",
+      "reason": "",
+      "scored_at": "2026-04-25T09:14:09+08:00"
+    },
+    {
+      "note_id": "MzUyNzAz",
+      "score": "C",
+      "content_preview": "[19字]",
+      "tags": [
+        "Area/管理技能"
+      ],
+      "word_count": 19,
+      "created_at": "2020-12-31",
+      "reason": "有用的信息，有道理。但是没有详情",
+      "scored_at": "2026-04-25T09:15:35+08:00"
+    },
+    {
+      "note_id": "MTI1NjE5OTQw",
+      "score": "B",
+      "content_preview": "[41字]",
+      "tags": [
+        "Area/实用工具"
+      ],
+      "word_count": 41,
+      "created_at": "2024-06-30",
+      "reason": "对我自己很有帮助的tips",
+      "scored_at": "2026-04-25T09:17:35+08:00"
+    },
+    {
+      "note_id": "MTU0MzAzNTI2",
+      "score": "B",
+      "content_preview": "[94字]",
+      "tags": [
+        "Resource/阅读"
+      ],
+      "word_count": 94,
+      "created_at": "2024-12-31",
+      "reason": "",
+      "scored_at": "2026-04-25T09:19:21+08:00"
+    },
+    {
+      "note_id": "NzE5NTA4Mjc",
+      "score": "A",
+      "content_preview": "[32字]",
+      "tags": [
+        "Resource/三思"
+      ],
+      "word_count": 32,
+      "created_at": "2023-06-19",
+      "reason": "确实很有效的建议，没有详情，但是看到这句话能让我想到很多自己的精力。属于对我非常有效的建议，所以能给出高分",
+      "scored_at": "2026-04-25T09:21:12+08:00"
+    },
+    {
+      "note_id": "MTIzMzMyODQ",
+      "score": "A",
+      "content_preview": "[200字]",
+      "tags": [
+        "Area/情绪管理"
+      ],
+      "word_count": 200,
+      "created_at": "2021-12-28",
+      "reason": "",
+      "scored_at": "2026-04-25T09:25:36+08:00"
+    },
+    {
+      "note_id": "MTY4OTg2ODI3",
+      "score": "A",
+      "content_preview": "[217字]",
+      "tags": [
+        "Project/内容创作"
+      ],
+      "word_count": 217,
+      "created_at": "2025-03-31",
+      "reason": "正确而且可执行的道理",
+      "scored_at": "2026-04-25T09:30:04+08:00"
+    },
+    {
+      "note_id": "MTIwOTQ0ODc2",
+      "score": "B",
+      "content_preview": "[187字]",
+      "tags": [
+        "Area/情绪管理/压力释放"
+      ],
+      "word_count": 187,
+      "created_at": "2024-05-30",
+      "reason": "有用的建议",
+      "scored_at": "2026-04-25T09:31:00+08:00"
+    },
+    {
+      "note_id": "OTMwOTkwNTU",
+      "score": "B",
+      "content_preview": "[219字]",
+      "tags": [
+        "Resource/阅读/拼多多「闹革命」"
+      ],
+      "word_count": 219,
+      "created_at": "2023-11-30",
+      "reason": "",
+      "scored_at": "2026-04-25T09:32:11+08:00"
+    },
+    {
+      "note_id": "MTgzNTcwOTYz",
+      "score": "A",
+      "content_preview": "[198字]",
+      "tags": [
+        "Area/情绪管理"
+      ],
+      "word_count": 198,
+      "created_at": "2025-06-30",
+      "reason": "真情实感的事件",
+      "scored_at": "2026-04-25T09:34:02+08:00"
+    },
+    {
+      "note_id": "MjA2NTkxNDI2",
+      "score": "D",
+      "content_preview": "[26字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 26,
+      "created_at": "2020-08-29T17:26:12+08:00",
+      "reason": "纯情绪表达，无内容无价值",
+      "scored_at": "2026-04-26T15:45:45+08:00"
+    },
+    {
+      "note_id": "MjA2NTkwMTYx",
+      "score": "D",
+      "content_preview": "[41字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 41,
+      "created_at": "2020-03-12T13:09:49+08:00",
+      "reason": "纯流水账，无思考无价值",
+      "scored_at": "2026-04-26T15:45:05+08:00"
+    },
+    {
+      "note_id": "MjA2NTg3MTAx",
+      "score": "C",
+      "content_preview": "[100字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 100,
+      "created_at": "2019-05-22T11:26:18+08:00",
+      "reason": "吃喝流水账，无思考或情感升华",
+      "scored_at": "2026-04-26T15:43:43+08:00"
+    },
+    {
+      "note_id": "MjA2NTg1NDM3",
+      "score": "B",
+      "content_preview": "[996字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 996,
+      "created_at": "2018-08-06T04:00:00+08:00",
+      "reason": "完整日记结构有反思，但不够深入",
+      "scored_at": "2026-04-26T15:42:53+08:00"
+    },
+    {
+      "note_id": "MjAzMDcwMDU4",
+      "score": "C",
+      "content_preview": "[143字]",
+      "tags": [
+        "Resource/幽默"
+      ],
+      "word_count": 143,
+      "created_at": "2025-11-01T09:28:58+08:00",
+      "reason": "有链接可能是转发，讽刺段子价值有限",
+      "scored_at": "2026-04-26T15:42:02+08:00"
+    },
+    {
+      "note_id": "MjAxNDkxMjY5",
+      "score": "C",
+      "content_preview": "[44字]",
+      "tags": [
+        "Project/出海/Paper-cutting"
+      ],
+      "word_count": 44,
+      "created_at": "2025-10-22T13:57:31+08:00",
+      "reason": "自我认知但太碎片，缺少展开",
+      "scored_at": "2026-04-26T15:40:26+08:00"
+    },
+    {
+      "note_id": "MTYwOTM5OTE2",
+      "score": "C",
+      "content_preview": "[24字]",
+      "tags": [
+        "Resource/健康"
+      ],
+      "word_count": 24,
+      "created_at": "2025-02-12T12:24:47+08:00",
+      "reason": "正确的废话，没有个人思考痕迹",
+      "scored_at": "2026-04-26T15:37:30+08:00"
+    },
+    {
+      "note_id": "MTU0MTU2MTcw",
+      "score": "B",
+      "content_preview": "[26字]",
+      "tags": [
+        "Resource/三思"
+      ],
+      "word_count": 26,
+      "created_at": "2024-12-30T16:49:40+08:00",
+      "reason": "有共鸣的文化现象，但太短缺少展开",
+      "scored_at": "2026-04-26T15:36:06+08:00"
+    },
+    {
+      "note_id": "MTI1NDA5NzIy",
+      "score": "B",
+      "content_preview": "[45字]",
+      "tags": [
+        "Area/社交能力/恋爱"
+      ],
+      "word_count": 45,
+      "created_at": "2024-06-29T11:48:07+08:00",
+      "reason": "梦境记录有画面感，但缺少延伸思考",
+      "scored_at": "2026-04-26T15:35:05+08:00"
+    },
+    {
+      "note_id": "MTEwMzQwNTgx",
+      "score": "A",
+      "content_preview": "[27字]",
+      "tags": [
+        "Resource/人物/罗翔"
+      ],
+      "word_count": 27,
+      "created_at": "2024-03-24T21:37:54+08:00",
+      "reason": "虽然是摘抄，但对用户有茅塞顿开的感觉，底层道理+猎奇视角",
+      "scored_at": "2026-04-26T15:32:07+08:00"
+    },
+    {
+      "note_id": "MTMxMjUzMTE",
+      "score": "B",
+      "content_preview": "[26字]",
+      "tags": [
+        "Resource/三思"
+      ],
+      "word_count": 26,
+      "created_at": "2022-01-07T17:03:37+08:00",
+      "reason": "精炼金句，但可能是摘抄，缺少场景",
+      "scored_at": "2026-04-26T15:30:49+08:00"
+    },
+    {
+      "note_id": "MTU1NTE0NTc3",
+      "score": "B",
+      "content_preview": "[72字]",
+      "tags": [
+        "Area/实用工具"
+      ],
+      "word_count": 72,
+      "created_at": "2025-01-07T16:13:26+08:00",
+      "reason": "实用方法，但可能是摘抄，缺少实践",
+      "scored_at": "2026-04-26T15:27:57+08:00"
+    },
+    {
+      "note_id": "MTY2MjczMzI0",
+      "score": "A",
+      "content_preview": "[91字]",
+      "tags": [
+        "Resource/三思/一个想法不一定对"
+      ],
+      "word_count": 91,
+      "created_at": "2025-03-15T12:04:58+08:00",
+      "reason": "批判事后诸葛亮思维，底层道理可迁移",
+      "scored_at": "2026-04-26T14:16:16+08:00"
+    },
+    {
+      "note_id": "MTQ5MTk1NjA1",
+      "score": "B",
+      "content_preview": "[61字]",
+      "tags": [
+        "Resource/三思/社会现象",
+        "Project/第二曲线"
+      ],
+      "word_count": 61,
+      "created_at": "2024-11-30T09:37:39+08:00",
+      "reason": "反直觉洞察，但缺少论证和延伸",
+      "scored_at": "2026-04-26T14:15:28+08:00"
+    },
+    {
+      "note_id": "MTM0OTM5NTQ5",
+      "score": "A",
+      "content_preview": "[94字]",
+      "tags": [
+        "Resource/三思/社会现象"
+      ],
+      "word_count": 94,
+      "created_at": "2024-08-31T01:37:56+08:00",
+      "reason": "从具体场景提炼出普遍道理：不破坏别人的快乐",
+      "scored_at": "2026-04-26T14:04:32+08:00"
+    },
+    {
+      "note_id": "MTI0MDQ2NzI2",
+      "score": "B",
+      "content_preview": "[75字]",
+      "tags": [
+        "Resource/三思/社会现象"
+      ],
+      "word_count": 75,
+      "created_at": "2024-06-20T11:15:43+08:00",
+      "reason": "有观察和讽刺意味，但略显碎片",
+      "scored_at": "2026-04-26T13:57:41+08:00"
+    },
+    {
+      "note_id": "MTE0MzkyMjQ4",
+      "score": "C",
+      "content_preview": "[110字]",
+      "tags": [
+        "Resource/AI"
+      ],
+      "word_count": 110,
+      "created_at": "2024-04-19T00:21:33+08:00",
+      "reason": "泛泛而谈，缺少个人实践和深度追问",
+      "scored_at": "2026-04-26T13:08:15+08:00"
+    },
+    {
+      "note_id": "MTQ2NDg0NjE",
+      "score": "B",
+      "content_preview": "[184字]",
+      "tags": [
+        "Resource/三思"
+      ],
+      "word_count": 184,
+      "created_at": "2022-01-27T13:46:41+08:00",
+      "reason": "有观点但可能是摘抄，缺少原创延伸",
+      "scored_at": "2026-04-26T13:00:11+08:00"
+    },
+    {
+      "note_id": "MTQ2ODQxMzM",
+      "score": "B",
+      "content_preview": "[73字]",
+      "tags": [
+        "Resource/健康"
+      ],
+      "word_count": 73,
+      "created_at": "2022-01-27T22:41:09+08:00",
+      "reason": "有形象的比喻+真实经历触发",
+      "scored_at": "2026-04-26T12:59:17+08:00"
+    },
+    {
+      "note_id": "MTE5OTM4Mg",
+      "score": "B",
+      "content_preview": "[52字]",
+      "tags": [
+        "Resource/阅读/产品沉思录"
+      ],
+      "word_count": 52,
+      "created_at": "2021-03-09T21:56:09+08:00",
+      "reason": "有洞察但可能是摘抄，缺少场景",
+      "scored_at": "2026-04-26T16:13:02+08:00"
+    },
+    {
+      "note_id": "MTI1MTQ3Nzg3",
+      "score": "B",
+      "content_preview": "[203字]",
+      "tags": [
+        "Resource/阅读/用户不是理性人"
+      ],
+      "word_count": 203,
+      "created_at": "2024-06-27T15:42:23+08:00",
+      "reason": "有洞察但可能是摘抄，缺少自己的延伸",
+      "scored_at": "2026-04-26T16:14:00+08:00"
+    },
+    {
+      "note_id": "MTI2NTY0Njk3",
+      "score": "B",
+      "content_preview": "[92字]",
+      "tags": [
+        "Resource/三思/社会现象"
+      ],
+      "word_count": 92,
+      "created_at": "2024-07-07T10:12:38+08:00",
+      "reason": "有观察有分析，略显个人情绪",
+      "scored_at": "2026-04-26T16:14:35+08:00"
+    },
+    {
+      "note_id": "MTI4MzY4MjQ4",
+      "score": "B",
+      "content_preview": "[40字]",
+      "tags": [
+        "Resource/写作/有趣的比喻"
+      ],
+      "word_count": 40,
+      "created_at": "2024-07-19T11:01:34+08:00",
+      "reason": "有趣比喻，但太短可能是段子",
+      "scored_at": "2026-04-26T16:15:10+08:00"
+    },
+    {
+      "note_id": "MTI5NTQ2MjE4",
+      "score": "B",
+      "content_preview": "[88字]",
+      "tags": [
+        "Resource/写作"
+      ],
+      "word_count": 88,
+      "created_at": "2024-07-27T09:13:04+08:00",
+      "reason": "有观点但可能是摘抄",
+      "scored_at": "2026-04-26T16:15:47+08:00"
+    },
+    {
+      "note_id": "MTMzOTI0NDgw",
+      "score": "C",
+      "content_preview": "[94字]",
+      "tags": [
+        "Resource/生活"
+      ],
+      "word_count": 94,
+      "created_at": "2024-08-24T18:43:23+08:00",
+      "reason": "温馨生活记录，无思考升华",
+      "scored_at": "2026-04-26T16:16:40+08:00"
+    },
+    {
+      "note_id": "MTU1MTQzMTM0",
+      "score": "B",
+      "content_preview": "[149字]",
+      "tags": [
+        "Resource/阅读/好好说话"
+      ],
+      "word_count": 149,
+      "created_at": "2025-01-05T14:26:30+08:00",
+      "reason": "实用话术对比，但摘抄感明显",
+      "scored_at": "2026-04-26T16:17:29+08:00"
+    },
+    {
+      "note_id": "MTU1NTgxMjQx",
+      "score": "D",
+      "content_preview": "[29字]",
+      "tags": [
+        "Resource/写作"
+      ],
+      "word_count": 29,
+      "created_at": "2025-01-07T23:29:56+08:00",
+      "reason": "太碎片，无背景无价值",
+      "scored_at": "2026-04-26T16:39:21+08:00"
+    },
+    {
+      "note_id": "MTU1NTgzODUy",
+      "score": "A",
+      "content_preview": "[102字]",
+      "tags": [
+        "Resource/写作"
+      ],
+      "word_count": 102,
+      "created_at": "2025-01-07T23:45:58+08:00",
+      "reason": "实用性强，对写作者有指导意义",
+      "scored_at": "2026-04-26T16:41:01+08:00"
+    },
+    {
+      "note_id": "MTU2Njc4NzMx",
+      "score": "B",
+      "content_preview": "[135字]",
+      "tags": [
+        "Resource/阅读/如何写出一篇好文章"
+      ],
+      "word_count": 135,
+      "created_at": "2025-01-14T20:27:29+08:00",
+      "reason": "实用技巧有对比示例，但摘抄明显",
+      "scored_at": "2026-04-26T16:41:49+08:00"
+    },
+    {
+      "note_id": "MTU4NjgxMDA3",
+      "score": "A",
+      "content_preview": "[153字]",
+      "tags": [
+        "Resource/写作",
+        "Resource/AI"
+      ],
+      "word_count": 153,
+      "created_at": "2025-01-28T11:43:06+08:00",
+      "reason": "跨领域思考：写作+AI反馈循环，实用方法论",
+      "scored_at": "2026-04-26T16:42:43+08:00"
+    },
+    {
+      "note_id": "MTUxNTc4Mzg5",
+      "score": "B",
+      "content_preview": "[29字]",
+      "tags": [
+        "Resource/写作"
+      ],
+      "word_count": 29,
+      "created_at": "2024-12-14T18:41:31+08:00",
+      "reason": "短但有哲理",
+      "scored_at": "2026-04-26T17:03:26+08:00"
+    },
+    {
+      "note_id": "MTUxNTc4NDQ5",
+      "score": "B",
+      "content_preview": "[30字]",
+      "tags": [
+        "Resource/写作"
+      ],
+      "word_count": 30,
+      "created_at": "2024-12-14T18:42:09+08:00",
+      "reason": "有哲理的金句",
+      "scored_at": "2026-04-26T17:03:26+08:00"
+    },
+    {
+      "note_id": "MTUxNTc4NTM2",
+      "score": "B",
+      "content_preview": "[30字]",
+      "tags": [
+        "Resource/写作"
+      ],
+      "word_count": 30,
+      "created_at": "2024-12-14T18:42:59+08:00",
+      "reason": "黑色幽默有创意",
+      "scored_at": "2026-04-26T17:03:26+08:00"
+    },
+    {
+      "note_id": "MTY3NTI4Mjk3",
+      "score": "B",
+      "content_preview": "[54字]",
+      "tags": [
+        "Resource/元宝"
+      ],
+      "word_count": 54,
+      "created_at": "2025-03-23T00:41:10+08:00",
+      "reason": "真挚的情感",
+      "scored_at": "2026-04-26T17:03:26+08:00"
+    },
+    {
+      "note_id": "MTc3NzI4MDk5",
+      "score": "B",
+      "content_preview": "[88字]",
+      "tags": [
+        "Resource/阅读/微习惯"
+      ],
+      "word_count": 88,
+      "created_at": "2025-05-24T22:23:46+08:00",
+      "reason": "逆向思维方法有例子",
+      "scored_at": "2026-04-26T17:03:26+08:00"
+    },
+    {
+      "note_id": "MTcyODY2NzYw",
+      "score": "A",
+      "content_preview": "[72字]",
+      "tags": [
+        "Resource/AI",
+        "Resource/人物/少楠"
+      ],
+      "word_count": 72,
+      "created_at": "2025-04-24T09:57:22+08:00",
+      "reason": "AI使用方法论实用且底层",
+      "scored_at": "2026-04-26T17:03:26+08:00"
+    },
+    {
+      "note_id": "MTczNTM5MjE4",
+      "score": "B",
+      "content_preview": "[22字]",
+      "tags": [
+        "Area/知识管理"
+      ],
+      "word_count": 22,
+      "created_at": "2025-04-28T11:15:07+08:00",
+      "reason": "知识管理分类框架但太短",
+      "scored_at": "2026-04-26T17:03:26+08:00"
+    },
+    {
+      "note_id": "MTg2NTI2NzA4",
+      "score": "C",
+      "content_preview": "[28字]",
+      "tags": [
+        "Resource/健康"
+      ],
+      "word_count": 28,
+      "created_at": "2025-07-19T13:39:53+08:00",
+      "reason": "正确道理但鸡汤感",
+      "scored_at": "2026-04-26T17:03:26+08:00"
+    },
+    {
+      "note_id": "MTg3NjY2MzAz",
+      "score": "C",
+      "content_preview": "[37字]",
+      "tags": [
+        "Area/工作能力"
+      ],
+      "word_count": 37,
+      "created_at": "2025-07-26T19:20:07+08:00",
+      "reason": "有道理但太泛缺案例",
+      "scored_at": "2026-04-26T17:03:26+08:00"
+    },
+    {
+      "note_id": "MTIwOTQ0ODc2",
+      "score": "B",
+      "content_preview": "[187字]",
+      "tags": [
+        "Area/情绪管理/压力释放"
+      ],
+      "word_count": 187,
+      "created_at": "2024-05-30T22:07:26+08:00",
+      "reason": "实用行动指南",
+      "scored_at": "2026-04-26T17:03:26+08:00"
+    },
+    {
+      "note_id": "MjA3MDEyMDUw",
+      "score": "B",
+      "content_preview": "[40字]",
+      "tags": [
+        "Area/工作能力"
+      ],
+      "word_count": 40,
+      "created_at": "2025-11-24T23:35:06+08:00",
+      "reason": "自我认知方法论但缺展开",
+      "scored_at": "2026-04-26T17:10:41+08:00"
+    },
+    {
+      "note_id": "MjA2NTg4MjYx",
+      "score": "C",
+      "content_preview": "[24字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 24,
+      "created_at": "2019-11-18T12:22:50+08:00",
+      "reason": "人生事件但太短",
+      "scored_at": "2026-04-26T17:10:41+08:00"
+    },
+    {
+      "note_id": "MjA2NTg5NjY0",
+      "score": "C",
+      "content_preview": "[95字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 95,
+      "created_at": "2020-02-02T08:57:41+08:00",
+      "reason": "假期焦虑情绪记录",
+      "scored_at": "2026-04-26T17:10:41+08:00"
+    },
+    {
+      "note_id": "MjA2NTg4Mjgw",
+      "score": "D",
+      "content_preview": "[29字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 29,
+      "created_at": "2019-11-20T15:24:49+08:00",
+      "reason": "无上下文碎片",
+      "scored_at": "2026-04-26T17:10:41+08:00"
+    },
+    {
+      "note_id": "OTgxMDc3NjY",
+      "score": "B",
+      "content_preview": "[100字]",
+      "tags": [
+        "Resource/写作/有趣的比喻"
+      ],
+      "word_count": 100,
+      "created_at": "2024-01-03T17:05:29+08:00",
+      "reason": "名人名言关于写作本质",
+      "scored_at": "2026-04-26T17:10:41+08:00"
+    },
+    {
+      "note_id": "ODk4MjQ4OTk",
+      "score": "B",
+      "content_preview": "[181字]",
+      "tags": [
+        "Resource/阅读/笔记的方法"
+      ],
+      "word_count": 181,
+      "created_at": "2023-11-08T22:33:57+08:00",
+      "reason": "揭示欲望本质有理论有案例",
+      "scored_at": "2026-04-26T17:10:41+08:00"
+    },
+    {
+      "note_id": "OTMwNTYy",
+      "score": "B",
+      "content_preview": "[141字]",
+      "tags": [
+        "Area/工作能力"
+      ],
+      "word_count": 141,
+      "created_at": "2021-02-19T13:57:56+08:00",
+      "reason": "有研究支撑的反常识洞察",
+      "scored_at": "2026-04-26T17:10:41+08:00"
+    },
+    {
+      "note_id": "NDQ0Mzg1NQ",
+      "score": "C",
+      "content_preview": "[34字]",
+      "tags": [
+        "Area/工作能力"
+      ],
+      "word_count": 34,
+      "created_at": "2021-07-20T17:53:57+08:00",
+      "reason": "自我反思但太短",
+      "scored_at": "2026-04-26T17:10:41+08:00"
+    },
+    {
+      "note_id": "MTQ1OTEzNTM",
+      "score": "A",
+      "content_preview": "[234字]",
+      "tags": [
+        "Resource/三思"
+      ],
+      "word_count": 234,
+      "created_at": "2022-01-26T17:50:02+08:00",
+      "reason": "独立思考反常识洞察",
+      "scored_at": "2026-04-26T17:10:41+08:00"
+    },
+    {
+      "note_id": "MjA2NTg1OTEw",
+      "score": "B",
+      "content_preview": "[199字]",
+      "tags": [
+        "Resource/Dayone"
+      ],
+      "word_count": 199,
+      "created_at": "2019-03-03T09:15:04+08:00",
+      "reason": "生活经历+学到的东西",
+      "scored_at": "2026-04-26T17:10:41+08:00"
+    },
+    {
+      "note_id": "MTg3NDEyMDA3",
+      "score": "C",
+      "content_preview": "[334字]",
+      "tags": [
+        "Project/出海/lorecast"
+      ],
+      "word_count": 334,
+      "created_at": "2025-07-25T00:38:48+08:00",
+      "reason": "项目开发记录缺上下文",
+      "scored_at": "2026-04-26T17:10:41+08:00"
+    },
+    {
+      "note_id": "MjAwNzYzNTY4",
+      "score": "B",
+      "content_preview": "[727字]",
+      "tags": [
+        "Area/情绪管理/压力释放"
+      ],
+      "word_count": 727,
+      "created_at": "2025-10-17T20:09:11+08:00",
+      "reason": "真情实感的情绪记录",
+      "scored_at": "2026-04-26T17:10:41+08:00"
+    },
+    {
+      "note_id": "MjMzNjIyNjY2",
+      "score": "B",
+      "content_preview": "[0字]",
+      "tags": [],
+      "word_count": 0,
+      "created_at": "2026-04-26",
+      "reason": "工具对比，实用性中等",
+      "scored_at": "2026-04-26T18:48:31+08:00"
+    },
+    {
+      "note_id": "MjMzNTg1OTIw",
+      "score": "C",
+      "content_preview": "[403字]",
+      "tags": [
+        "Resource/健康/训练记录"
+      ],
+      "word_count": 403,
+      "created_at": "2026-04-26",
+      "reason": "纯数据记录，缺少思考",
+      "scored_at": "2026-04-26T18:53:05+08:00"
+    },
+    {
+      "note_id": "MjMzNTgwMjkx",
+      "score": "A",
+      "content_preview": "[263字]",
+      "tags": [
+        "Resource/AI"
+      ],
+      "word_count": 263,
+      "created_at": "2026-04-26",
+      "reason": "真实自我反思+决策框架",
+      "scored_at": "2026-04-26T18:55:11+08:00"
+    },
+    {
+      "note_id": "MjMzNTYwNzMw",
+      "score": "A",
+      "content_preview": "[261字]",
+      "tags": [],
+      "word_count": 261,
+      "created_at": "2026-04-26",
+      "reason": "真实场景+提炼出通用原则",
+      "scored_at": "2026-04-26T23:05:44+08:00"
+    },
+    {
+      "note_id": "MjMzNjI5NjY1",
+      "score": "D",
+      "content_preview": "[48字]",
+      "tags": [
+        "Resource/AI"
+      ],
+      "word_count": 48,
+      "created_at": "2026-04-26",
+      "reason": "纯疑问，无思考",
+      "scored_at": "2026-04-26T23:22:08+08:00"
+    },
+    {
+      "note_id": "MTAwOTEyNjQy",
+      "score": "A",
+      "content_preview": "[55字]",
+      "tags": [
+        "Resource/三思"
+      ],
+      "word_count": 55,
+      "created_at": "2024-01-21",
+      "reason": "简洁有力的人生策略，有底层思维和行动指南",
+      "scored_at": "2026-04-26T23:49:41+08:00"
+    }
+  ]
+}

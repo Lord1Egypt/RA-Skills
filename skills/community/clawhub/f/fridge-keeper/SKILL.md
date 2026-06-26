@@ -1,35 +1,169 @@
 ---
-name: "fridge-keeper"
-description: "冰箱食物管理助手。用于记录食物的入库与出库、追踪保质期、提醒临期食品、提供烹饪建议。当用户说"我的冰箱里有什么"、"检查过期食品"、"推荐菜谱"、"记录入库"或"记录出库"时触发此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fridge-keeper"
-sourceUrl: "https://clawhub.ai/skills/fridge-keeper"
+name: fridge-keeper
+description: 冰箱食物管理助手。用于记录食物的入库与出库、追踪保质期、提醒临期食品、提供烹饪建议。当用户说"我的冰箱里有什么"、"检查过期食品"、"推荐菜谱"、"记录入库"或"记录出库"时触发此技能。
 ---
 
-# fridge-keeper
+# 冰箱管家 (Fridge Keeper)
 
-> 冰箱食物管理助手。用于记录食物的入库与出库、追踪保质期、提醒临期食品、提供烹饪建议。当用户说"我的冰箱里有什么"、"检查过期食品"、"推荐菜谱"、"记录入库"或"记录出库"时触发此技能。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fridge-keeper`
-- **Source URL:** [https://clawhub.ai/skills/fridge-keeper](https://clawhub.ai/skills/fridge-keeper)
+管理冰箱食物的入库、出库、保质期追踪与烹饪建议。支持本地文件存储和远程数据库两种模式。
 
-## Overview
+## 核心能力
 
+1. **食物入库** - 记录食物名称、数量、入库时间、保质期
+2. **食物出库** - 记录食物被消耗或丢弃
+3. **查询食物** - 查看当前冰箱中的所有食物
+4. **临期检查** - 识别将在指定天数内过期的食物
+5. **烹饪建议** - 根据现有食材和临期情况推荐菜谱
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fridge-keeper
+## 数据模型
+
+### 食物条目 (FoodItem)
+
+```json
+{
+  "id": "uuid",
+  "name": "食物名称",
+  "quantity": 数量,
+  "unit": "单位(克/个/颗等)",
+  "storage_location": "冷藏室/冷冻室/保鲜层",
+  "入库时间": "2024-01-15T10:30:00Z",
+  "保质期天数": 7,
+  "过期时间": "2024-01-22T10:30:00Z",
+  "状态": "active|consumed|expired"
+}
 ```
+
+### 配置 (Config)
+
+```json
+{
+  "storage_type": "local|database",
+  "local_path": "./fridge_data.json",
+  "database": {
+    "type": "mysql|postgres|mongodb",
+    "host": "localhost",
+    "port": 3306,
+    "database": "fridge",
+    "username": "user",
+    "password": "pass"
+  },
+  "expiry_warning_days": 3,
+  "reminder_schedule": "daily|weekly|custom"
+}
+```
+
+## 工作流程
+
+### 首次初始化
+
+当用户首次使用或说"初始化配置"、"设置冰箱"时：
+
+1. **询问存储方式**
+   - "请选择数据存储方式：(1) 本地文件 (2) 远程数据库"
+   - 若选本地：使用默认路径 `./fridge_data.json` 或询问用户指定路径
+   - 若选数据库：询问数据库类型、连接信息
+
+2. **配置提醒**
+   - "设置临期提醒天数（默认3天）"
+   - "设置提醒方式：每日/每周/自定义"
+
+3. **保存配置**
+   - 将配置写入 `~/.claude/skills/fridge-keeper/config.json`
+
+### 食物入库
+
+当用户说"入库"、"放进冰箱"、"添加食物"时：
+
+1. **解析食物信息**
+   - 名称（必填）
+   - 数量和单位
+   - 存放位置（冷藏室/冷冻室/保鲜层）
+   - 保质期天数（冷藏食物必填，冷冻食物可省略或设更长）
+
+2. **计算过期时间**
+   - 过期时间 = 当前时间 + 保质期天数
+   - 冷冻食品默认保质期 180 天
+
+3. **写入存储**
+   - 生成唯一 ID
+   - 追加到存储
+
+4. **确认入库**
+   - 汇报入库成功，包含过期时间
+
+### 食物出库
+
+当用户说"出库"、"吃掉"、"拿出冰箱"、"消耗"时：
+
+1. **识别食物**
+   - 匹配用户提到的食物名称
+   - 若有多个匹配，询问具体是哪个
+
+2. **更新状态**
+   - 消耗：状态改为 `consumed`，记录消耗时间
+   - 丢弃：状态改为 `expired`，记录丢弃时间
+
+3. **确认出库**
+   - 汇报出库成功
+
+### 查询食物
+
+当用户说"有什么"、"查看冰箱"、"当前食物"时：
+
+1. **读取活跃食物**
+   - 从存储读取状态为 `active` 的条目
+
+2. **按位置分组**
+   - 冷藏室 / 冷冻室 / 保鲜层
+
+3. **格式化输出**
+   - 列出每类食物，包含名称、数量、剩余保质期
+
+### 临期检查
+
+当用户说"临期"、"快过期"、"检查过期"时：
+
+1. **计算临期阈值**
+   - 临期 = 过期时间 - 警告天数 ≤ 当前时间
+
+2. **筛选临期食物**
+   - 状态为 `active`
+   - 过期时间 ≤ 当前时间 + 警告天数
+
+3. **按紧急程度排序**
+   - 已过期 > 今天过期 > 明天过期 > 即将临期
+
+4. **输出警告**
+   - 清晰标注紧急程度
+
+### 烹饪建议
+
+当用户说"推荐菜谱"、"做什么菜"、"建议"时：
+
+1. **获取当前食物**
+   - 读取所有 `active` 状态的食材
+
+2. **识别临期食材**
+   - 优先考虑即将过期的食材
+
+3. **AI 自主推荐**
+   - 利用自身的烹饪知识，根据现有食材推荐合适的菜谱
+   - 优先使用临期食材
+   - 说明每道菜使用哪些食材（含临期标注）
+
+4. **输出建议**
+   - 推荐 2-3 道菜
+   - 说明每道菜使用哪些食材（含临期标注）
+
+## 存储操作
+
+核心存储操作由 `scripts/storage.py` 实现，支持本地文件和数据库两种模式。Claude 调用相应方法：
+
+- `load_config()` - 读取配置
+- `save_config(config)` - 保存配置
+- `load_items()` - 读取所有食物条目
+- `save_item(item)` - 添加新条目
+- `update_item(id, updates)` - 更新条目
+- `delete_item(id)` - 删除条目

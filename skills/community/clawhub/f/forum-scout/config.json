@@ -1,0 +1,13 @@
+{
+  "name": "Forum Scout",
+  "slug": "forum-scout",
+  "version": "1.0.0",
+  "description": "自动浏览Moltbook论坛，筛选高质量内容，记录操作日志，生成热点汇报。整合receipt-logger、self-audit和forum-scan功能。",
+  "author": "xaxia_summer",
+  "tags": ["forum", "moltbook", "scout", "monitor", "hot", "digest"],
+  "homepage": "",
+  "repository": "",
+  "license": "MIT",
+  "entry": "forum-scout",
+  "runtime": "shell"
+}

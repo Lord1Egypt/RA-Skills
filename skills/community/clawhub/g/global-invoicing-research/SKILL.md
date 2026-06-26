@@ -1,35 +1,162 @@
 ---
-name: "global-invoicing-research"
-description: "生成全球开票系统的国家调研报告，输出结构化的 .docx 文档，同时服务产品经理、研发、售前三类角色。 当用户提到以下任意场景时，务必使用本 Skill： - "调研 XX 国家的开票/发票/电子发票要求" - "我要做全球开票系统，帮我调研某个国家" - "帮我生成 XX 国家的开票调研报告" - "开票合规调..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/global-invoicing-research"
-sourceUrl: "https://clawhub.ai/skills/global-invoicing-research"
+name: global-invoicing-research
+description: >
+  生成全球开票系统的国家调研报告，输出结构化的 .docx 文档，同时服务产品经理、研发、售前三类角色。
+  当用户提到以下任意场景时，务必使用本 Skill：
+  - "调研 XX 国家的开票/发票/电子发票要求"
+  - "我要做全球开票系统，帮我调研某个国家"
+  - "帮我生成 XX 国家的开票调研报告"
+  - "开票合规调研"、"e-invoicing research"、"VAT invoice research"
+  - 用户提到 KSeF、Peppol、CFDI、NF-e、GST 等具体的国家电子发票标准
+  即使用户没有明确说"生成报告"，只要涉及对某个国家的开票要求进行结构化调研，就应使用本 Skill。
 ---
 
-# global-invoicing-research
+# 全球开票系统 · 国家调研报告生成 Skill
 
-> 生成全球开票系统的国家调研报告，输出结构化的 .docx 文档，同时服务产品经理、研发、售前三类角色。 当用户提到以下任意场景时，务必使用本 Skill： - "调研 XX 国家的开票/发票/电子发票要求" - "我要做全球开票系统，帮我调研某个国家" - "帮我生成 XX 国家的开票调研报告" - "开票合规调...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/global-invoicing-research`
-- **Source URL:** [https://clawhub.ai/skills/global-invoicing-research](https://clawhub.ai/skills/global-invoicing-research)
+本 Skill 帮助团队为任意目标国家生成一份**三端通用的开票合规调研报告**（.docx 格式），覆盖：
 
-## Overview
+- **售前 / 管理层**：市场背景、合规风险、强制时间表、违规处罚
+- **产品经理**：发票类型矩阵、字段清单、业务流程、功能需求
+- **研发团队**：API接口、数据格式、错误处理、本地化细节
 
+报告所有待填项以 `【待填写】` 标注，团队对照官方文档和顾问访谈逐项填入。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/global-invoicing-research
+---
+
+## 使用流程
+
+### Step 1：确认目标国家与背景
+
+向用户确认（如对话中已有则直接提取）：
+
+1. **目标国家**：中文名 + 英文名（如：波兰 / Poland）
+2. **优先角色**：是否有某个角色特别需要详细内容（默认三端均输出）
+3. **已知背景**：用户是否已了解该国的电子发票系统名称（如 KSeF、SDI、Factur-X 等）及监管模式
+
+如果用户没有提供，直接用默认配置生成通用报告即可，无需反复追问。
+
+---
+
+### Step 2：读取生成脚本参考
+
+参考 `references/docx-template-structure.md` 了解文档的完整结构和各模块内容。
+
+生成脚本时遵循 `references/docx-coding-rules.md` 中的编码规范。
+
+---
+
+### Step 3：生成 .docx 报告
+
+使用 `docx` npm 包（`npm install -g docx`）编写 JavaScript 脚本生成文档。
+
+**文档结构（固定，适用所有国家）：**
+
 ```
+封面页
+├── 国家名、调研负责人、日期、版本号
+└── 文档使用说明（三端分工说明）
+
+结论
+├── 电子发票进展总结
+└── 对接建议
+
+第一部分：市场与合规概览
+├── 1.1 核心影响摘要
+├── 1.2 国家税务体系概览（表格）
+├── 1.3 电子发票发展阶段（时间线表格）
+├── 1.4 电子发票监管模式            ← Clearance / Post Audit / Hybrid
+├── 1.5 合规违规风险与处罚（表格 + 售前话术框）
+└── 1.6 市场情况（竞争格局、客户画像、服务商情况）
+
+第二部分：产品需求分析
+├── 2.1 产品影响摘要
+├── 2.2 发票类型矩阵（B2B/B2C/B2G 差异）
+├── 2.3 发票必填字段清单（逐字段，含校验规则）
+├── 2.4 核心业务流程与状态机（发票生命周期，含正向流程/逆向流程，含可修改/取消/重开矩阵）
+├── 2.5 税率计算规则（税率表 + 精度要求）
+├── 2.6 B2G 特殊要求
+├── 2.7 发票归档与合规存储要求
+├── 2.8 产品功能需求清单（含优先级 P0/P1/P2）
+├── 2.9 发票编号与序列规则          ← 编号连续性、多序列、税局生成
+└── 2.10 跨境交易与 VAT 规则        ← B2B/B2C/Export/Import 场景
+
+第三部分：技术对接规范
+├── 3.1 研发影响摘要
+├── 3.2 发票数据格式（Schema 版本、编码、命名空间）
+├── 3.3 API 接口清单（Endpoint、方法、说明）
+├── 3.4 认证与数字签名（证书类型、Token 机制）
+├── 3.5 错误码与异常处理（含离线降级方案）
+├── 3.6 性能与限制（QPS、超时、重试）
+├── 3.7 本地化技术细节（语言、日期、字符集、税号校验算法）
+├── 3.8 客户接入流程（Onboarding）  ← 税号验证→注册→证书→授权→沙盒→启用
+└── 3.9 网络协议支持（PEPPOL / EDI）
+
+附录
+├── 附录 A：调研信息来源
+├── 附录 B：待确认问题清单（含负责人 / 状态跟踪）
+├── 附录 C：术语表
+├── 附录 D：发票票样示例
+├── 附录 E：全球国家能力矩阵
+└── 附录 F：版本更新记录
+```
+
+**视觉规范：**
+- 配色：蓝色主色（`#1E4D8C`）、橙色警示（`#C55A11`）、绿色提示（`#375623`）
+- 每个部分开头有**"角色快速阅读"信息框**
+- 表格使用交替行颜色（白色 + 浅蓝 `#E8F0FB`）
+- 表头深蓝背景白字
+
+**国家定制化要点：**
+
+根据目标国家，替换以下内容：
+- 封面国家名称
+- 税务体系（VAT / GST / 消费税等）
+- 电子发票系统名称（KSeF / SDI / Chorus Pro / CFDI 等）
+- 税号字段名称（NIP / GSTIN / RFC / P.IVA 等）
+- 货币与语言
+- 时间线中的强制节点
+- XML Schema 名称（FA / FatturaPA / CFDI / UBL 等）
+- 术语表中的本地术语
+
+**输出文件命名：**`{国家名}开票调研报告.docx`，保存至 `/mnt/user-data/outputs/`
+
+---
+
+### Step 4：输出与交付
+
+生成完成后：
+1. 调用 `present_files` 工具将文件呈现给用户
+2. 简短说明三部分结构和填写方式
+3. 提示用户：所有 `【待填写】` 项需结合官方文档和当地税务顾问填入
+
+---
+
+## 常见国家速查
+
+调研时可参考以下国家的电子发票系统名称，在报告中替换对应术语：
+
+| 国家 | 电子发票系统 | 税号字段 | 标准格式 | 当前阶段 |
+|------|-------------|----------|----------|----------|
+| 波兰 | KSeF | NIP | FA XML (FA2) | 强制推进中 |
+| 意大利 | SDI / FatturaPA | P.IVA | FatturaPA XML | 已全面强制 |
+| 法国 | Chorus Pro / PPF | SIREN/SIRET | Factur-X / UBL | 2026年起强制 |
+| 德国 | — / ZUGFeRD | USt-IdNr | ZUGFeRD / XRechnung | B2G已强制 |
+| 印度 | IRP (GSTN) | GSTIN | JSON (e-Invoice) | 按营收分批强制 |
+| 墨西哥 | SAT | RFC | CFDI XML | 已全面强制 |
+| 巴西 | SEFAZ | CNPJ/CPF | NF-e XML | 已全面强制（最复杂） |
+| 韩国 | NTS | 事业者登录番号 | 标准세금계산서 | 已强制 |
+| 马来西亚 | MyInvois (LHDN) | TIN | UBL / JSON | 2024年起分批强制 |
+| 澳大利亚 | ATO / PEPPOL | ABN | UBL (PEPPOL) | 自愿，推进中 |
+| 英国 | HMRC MTD | UTR/VAT No. | UBL / 自定义 | Making Tax Digital |
+| 欧盟跨境 | PEPPOL 网络 | EU VAT No. | UBL / PEPPOL BIS | B2G已广泛要求 |
+
+---
+
+## 注意事项
+
+- **合规时间表频繁变动**：所有强制日期必须以调研时官方公告为准，报告中的时间节点仅作占位
+- **不可替代专业顾问**：报告是调研框架，具体合规解读需配合当地税务律师/会计师确认
+- **数据本地化风险**：部分国家（印度、中国等）对发票数据存储有境内要求，技术方案需特别关注
+- **多租户 SaaS 注意**：B2B SaaS 场景下，证书管理、数据隔离、报送主体身份需专项设计

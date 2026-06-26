@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Setup — Friday Budgeting Pro{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h1>Welcome to Friday Budgeting Pro</h1>
+  <p class="subtitle">Let's get you set up. This wizard runs once.</p>
+
+  <!-- Step indicator -->
+  <div class="steps">
+    <span class="step {% if step == 1 %}active{% elif step > 1 %}done{% endif %}">1 · Password</span>
+    <span class="sep">›</span>
+    <span class="step {% if step == 2 %}active{% elif step > 2 %}done{% endif %}">2 · Notifications</span>
+    <span class="sep">›</span>
+    <span class="step {% if step == 3 %}active{% endif %}">3 · Connect Bank</span>
+  </div>
+
+  {% if error %}
+  <div class="alert alert-error">{{ error }}</div>
+  {% endif %}
+
+  <!-- ── Step 1: Set password ────────────────────────────────────────── -->
+  {% if step == 1 %}
+  <form method="post" action="/setup/1">
+    <h2>Create your account</h2>
+    <p>Set a username and password to protect your local dashboard.</p>
+    <label for="username">Your name</label>
+    <input id="username" name="username" type="text" required
+           placeholder="e.g. Alex" autocomplete="username" />
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" required minlength="8"
+           placeholder="At least 8 characters" autocomplete="new-password" />
+    <label for="password_confirm">Confirm password</label>
+    <input id="password_confirm" name="password_confirm" type="password" required
+           placeholder="Same password again" autocomplete="new-password" />
+    <button type="submit" class="btn-primary">Continue →</button>
+  </form>
+
+  <!-- ── Step 2: Notification preference ───────────────────────────── -->
+  {% elif step == 2 %}
+  <form method="post" action="/setup/2">
+    <h2>Notification preference</h2>
+    <p>How should Friday alert you when action is needed?</p>
+    <label>
+      <input type="radio" name="notification_channel" value="openclaw_chat" checked />
+      OpenClaw chat (recommended)
+    </label>
+    <label>
+      <input type="radio" name="notification_channel" value="macos" />
+      macOS Notification Center
+    </label>
+    <label>
+      <input type="radio" name="notification_channel" value="in_ui" />
+      In-browser banner only
+    </label>
+    <button type="submit" class="btn-primary">Continue →</button>
+  </form>
+
+  <!-- ── Step 3: Connect first bank ────────────────────────────────── -->
+  {% elif step == 3 %}
+  <h2>Connect your first bank</h2>
+  <p>Link a bank account via Plaid so Friday can import transactions automatically.
+     You can also skip and connect later from your profile.</p>
+
+  {% if error %}<div class="alert alert-error">{{ error }}</div>{% endif %}
+
+  {% if link_token %}
+  <!-- Hidden form — submitted by Plaid onSuccess callback -->
+  <form id="plaid-form" method="post" action="/setup/3">
+    <input type="hidden" name="action" value="bank_linked">
+    <input type="hidden" name="public_token" id="public_token_input" value="">
+  </form>
+
+  <button id="plaid-link-btn" class="btn-primary">Connect a bank →</button>
+
+  <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+  <script>
+    var handler = Plaid.create({
+      token: {{ link_token | tojson }},
+      onSuccess: function(public_token, metadata) {
+        document.getElementById("public_token_input").value = public_token;
+        document.getElementById("plaid-form").submit();
+      },
+      onExit: function(err) {
+        if (err) console.error("Plaid Link error:", err);
+      }
+    });
+    document.getElementById("plaid-link-btn").addEventListener("click", function() {
+      handler.open();
+    });
+  </script>
+
+  <form method="post" action="/setup/3" style="margin-top:12px">
+    <input type="hidden" name="action" value="skip">
+    <button type="submit" class="btn-secondary">Skip for now →</button>
+  </form>
+
+  {% else %}
+  <p style="color:#888;">Plaid is not configured yet. You can connect a bank later from your
+     profile once your Plaid credentials are set up.</p>
+  <form method="post" action="/setup/3">
+    <input type="hidden" name="action" value="skip">
+    <button type="submit" class="btn-primary">Go to Dashboard →</button>
+  </form>
+  {% endif %}
+  {% endif %}
+</div>
+{% endblock %}

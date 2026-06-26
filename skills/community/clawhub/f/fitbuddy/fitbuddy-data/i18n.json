@@ -1,0 +1,50 @@
+{
+  "zh": {
+    "reminders": {
+      "weight": "🏋️ 早上好！该称体重啦~ 记得告诉我今天的体重哦！",
+      "breakfast": "🍳 早餐吃了吗？吃完记得告诉我吃了什么~ {suggestion}",
+      "lunch": "🍱 午饭时间到！吃完记得告诉我吃了什么~ {suggestion}",
+      "dinner": "🌙 晚餐时间到！吃完告诉我吃了什么~ {suggestion}",
+      "water": "💧 该喝水啦！今天还差 {remaining} ml，目标 {target} ml~",
+      "preworkout": "⚡ 练前餐时间！距离训练还有1小时，吃点碳水+少量蛋白质充能吧~ 建议：全麦面包+香蕉 / 米饭+鸡蛋"
+    },
+    "suggestions": {
+      "protein_low": "蛋白质还差 {gap}g，这顿重点补！推荐：鸡蛋 / 鸡胸肉 / 牛肉",
+      "carbs_full": "碳水接近上限，后面避开主食",
+      "carbs_low": "碳水还有空间，可以适当补充",
+      "fat_full": "脂肪接近上限，选低脂食物",
+      "fat_low": "脂肪还有空间，可以适当补充",
+      "rest_day": "今天休息日，吃够营养好好恢复就行~",
+      "train_day": "今天训练日，碳水要吃够有力气练！",
+      "calories_low": "热量还剩不少，别饿着自己！"
+    },
+    "record_template": "✅ 已记录：{food} ({calories} kcal)\n📊 今日进度：{consumed}/{target} kcal\n   蛋白质 {protein}/{protein_target}g | 碳水 {carbs}/{carbs_target}g | 脂肪 {fat}/{fat_target}g\n💡 {suggestion}",
+    "food_added": "已加入食物库！",
+    "food_not_found": "食物库里没找到 {food}，我帮你估一下~",
+    "water_done": "今天喝水已达标，太棒了！💧"
+  },
+  "en": {
+    "reminders": {
+      "weight": "🏋️ Good morning! Time to weigh in~ Tell me your weight today!",
+      "breakfast": "🍳 Had breakfast? Tell me what you ate~ {suggestion}",
+      "lunch": "🍱 Lunch time! Tell me what you had~ {suggestion}",
+      "dinner": "🌙 Dinner time! Tell me what you ate~ {suggestion}",
+      "water": "💧 Time to hydrate! {remaining} ml to go, target {target} ml~",
+      "preworkout": "⚡ Pre-workout meal time! Fuel up with carbs + a bit of protein~ Suggestion: whole wheat bread + banana / rice + eggs"
+    },
+    "suggestions": {
+      "protein_low": "Still need {gap}g protein! Load up on: eggs / chicken breast / beef",
+      "carbs_full": "Carbs almost at limit, skip the starch",
+      "carbs_low": "Still room for carbs",
+      "fat_full": "Fats almost at limit, choose low-fat options",
+      "fat_low": "Still room for fats",
+      "rest_day": "Rest day — eat well and recover~",
+      "train_day": "Training day — fuel up on carbs for energy!",
+      "calories_low": "Plenty of calories left, don't starve yourself!"
+    },
+    "record_template": "✅ Recorded: {food} ({calories} kcal)\n📊 Daily: {consumed}/{target} kcal\n   Protein {protein}/{protein_target}g | Carbs {carbs}/{carbs_target}g | Fat {fat}/{fat_target}g\n💡 {suggestion}",
+    "food_added": "Added to food database!",
+    "food_not_found": "{food} not found in database, let me estimate~",
+    "water_done": "Water goal reached today, awesome! 💧"
+  }
+}

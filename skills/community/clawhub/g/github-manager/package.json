@@ -1,0 +1,52 @@
+{
+  "name": "github-manager-cli",
+  "version": "1.0.0",
+  "description": "A comprehensive GitHub repository management tool with code review, auto-deployment, changelog generation, CI/CD configuration, bug tracking, and project management automation",
+  "main": "github-cli.js",
+  "bin": {
+    "github": "./github-cli.js"
+  },
+  "scripts": {
+    "start": "node github-cli.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "github",
+    "cli",
+    "management",
+    "code-review",
+    "deployment",
+    "ci-cd",
+    "changelog",
+    "bug-tracking",
+    "automation"
+  ],
+  "author": "GitHub Manager Team",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/rest": "^20.0.2",
+    "commander": "^11.0.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.6",
+    "ora": "^5.4.1",
+    "figlet": "^1.6.0",
+    "boxen": "^5.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "prettier": "^3.1.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/github-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/github-manager/issues"
+  },
+  "homepage": "https://github.com/your-username/github-manager#readme"
+}

@@ -1,0 +1,23 @@
+{
+  "routes": [
+    {
+      "distanceMeters": 3520,
+      "duration": "842s",
+      "polyline": {
+        "encodedPolyline": "a~l~Fjk~uOwHJy@P"
+      },
+      "legs": [
+        {
+          "distanceMeters": 3520,
+          "duration": "842s",
+          "startLocation": {
+            "latLng": { "latitude": 35.6580339, "longitude": 139.7016358 }
+          },
+          "endLocation": {
+            "latLng": { "latitude": 35.6585805, "longitude": 139.7454329 }
+          }
+        }
+      ]
+    }
+  ]
+}

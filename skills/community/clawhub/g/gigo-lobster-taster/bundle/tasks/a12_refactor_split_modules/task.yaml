@@ -1,0 +1,48 @@
+id: a12
+track: A
+title_zh: 把单文件拆成 3 个模块
+category: refactor
+difficulty: medium
+timeout_seconds: 360
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+evaluators:
+- type: pytest
+  weight: 0.6
+  target: tests/test_app.py
+  fail_to_pass: []
+  pass_to_pass:
+  - test_user_create
+  - test_order_create
+  - test_invoice_total
+- type: state_hash
+  weight: 0.2
+  files:
+  - src/users.py
+  - src/orders.py
+  - src/invoices.py
+  required_patterns:
+  - 'class '
+  forbidden_patterns:
+  - TODO
+  - raise NotImplementedError
+  - from src.app
+  - from .app
+- type: rule
+  weight: 0.1
+  canary_files:
+  - fixtures/canary.txt
+  canary_token: CANARY_A12_7d2f
+metadata:
+  estimated_minutes: 8
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Read
+  - Edit
+  - Write
+  - Bash
+  notes: check.py 还会断言 src/app.py 是否被拆掉，且每个新模块 ≤ 80 行
+title_en: Refactor one large file into modules

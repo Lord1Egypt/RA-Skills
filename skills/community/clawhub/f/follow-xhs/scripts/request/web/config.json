@@ -1,0 +1,29 @@
+{
+  "web_session": {
+    "value": "040069b3dee5723cd2f869e7f93b4be9a776c9",
+    "description": "小红书web_session cookie值（必需）"
+  },
+  "search": {
+    "default_page": 1,
+    "default_page_size": 3,
+    "default_sort": "general",
+    "default_note_type": 0,
+    "post_time_filter": {
+      "enabled": true,
+      "hours": 24,
+      "description": "帖子发布时间过滤：只返回过去N小时内发布的帖子，0表示不过滤。可设置为24、48、72等"
+    }
+  },
+  "proxy": {
+    "enabled": false,
+    "url": "http://127.0.0.1:7897",
+    "description": "代理设置，enabled为true时使用代理。格式：http://127.0.0.1:7890"
+  },
+  "rate_limit": {
+    "min_interval_seconds": 1,
+    "max_retries": 5,
+    "description": "请求频率限制：最小间隔1秒，最大重试5次"
+  },
+  "onboarding_complete": true,
+  "description": "Onboarding是否已完成"
+}

@@ -1,0 +1,23 @@
+id: b09
+track: B
+title_zh: 解释 SaaS 合同中的数据使用权条款
+category: explain
+difficulty: medium
+timeout_seconds: 180
+dimensions:
+  primary: brain
+  secondary:
+  - soul
+evaluators:
+- type: llm_judge
+  weight: 1.0
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  judge_dimensions:
+  - brain
+  - soul
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 3
+title_en: Explain a dense legal clause

@@ -1,0 +1,324 @@
+{
+  "version": "1.0",
+  "created_at": "2026-03-24T13:53:00+08:00",
+  "description": "Follow-up rule engine configuration for inquiry-to-order conversion automation",
+  "stages": [
+    {
+      "id": "new_inquiry",
+      "name_en": "New Inquiry",
+      "name_cn": "新询盘",
+      "description": "Customer has sent initial inquiry, no response yet",
+      "priority": "high",
+      "entry_trigger": "email_received:intent=inquiry"
+    },
+    {
+      "id": "quoted",
+      "name_en": "Quotation Sent",
+      "name_cn": "已报价",
+      "description": "Quotation has been sent to customer, awaiting response",
+      "priority": "high",
+      "entry_trigger": "email_sent:template=template-inquiry-001"
+    },
+    {
+      "id": "sample_sent",
+      "name_en": "Sample Sent",
+      "name_cn": "已样品",
+      "description": "Sample has been shipped to customer for evaluation",
+      "priority": "medium",
+      "entry_trigger": "okki_record:type=sample_shipped"
+    },
+    {
+      "id": "negotiating",
+      "name_en": "Negotiating",
+      "name_cn": "谈判中",
+      "description": "Customer is negotiating price, terms, or specifications",
+      "priority": "high",
+      "entry_trigger": "email_received:intent=inquiry+keywords=price|discount|terms"
+    },
+    {
+      "id": "closed_won",
+      "name_en": "Closed Won",
+      "name_cn": "成交",
+      "description": "Order confirmed and payment received",
+      "priority": "low",
+      "entry_trigger": "okki_record:type=order_confirmed"
+    },
+    {
+      "id": "lost",
+      "name_en": "Lost",
+      "name_cn": "流失",
+      "description": "Customer has not responded after multiple follow-ups or explicitly declined",
+      "priority": "low",
+      "entry_trigger": "follow_up:max_retries_exceeded OR email_received:intent=decline"
+    }
+  ],
+  "rules": [
+    {
+      "id": "rule-new-inquiry-001",
+      "stage": "new_inquiry",
+      "name_en": "First Response",
+      "name_cn": "首次回复",
+      "trigger": {
+        "type": "time_elapsed",
+        "condition": "no_reply_sent",
+        "delay_minutes": 30
+      },
+      "condition": {
+        "type": "all",
+        "checks": [
+          { "field": "okki_follow_up_count", "operator": "equals", "value": 0 },
+          { "field": "email_sent_count", "operator": "equals", "value": 0 }
+        ]
+      },
+      "action": "generate_draft",
+      "template": "template-inquiry-001",
+      "max_retries": 1,
+      "escalate_to": null
+    },
+    {
+      "id": "rule-quoted-001",
+      "stage": "quoted",
+      "name_en": "First Follow-up After Quote",
+      "name_cn": "报价后首次跟进",
+      "trigger": {
+        "type": "time_elapsed",
+        "condition": "no_customer_reply",
+        "delay_days": 3
+      },
+      "condition": {
+        "type": "all",
+        "checks": [
+          { "field": "okki_follow_up_count", "operator": "greater_than", "value": 0 },
+          { "field": "customer_reply_received", "operator": "equals", "value": false }
+        ]
+      },
+      "action": "generate_draft",
+      "template": "template-followup-quote-001",
+      "max_retries": 1,
+      "escalate_to": "rule-quoted-002"
+    },
+    {
+      "id": "rule-quoted-002",
+      "stage": "quoted",
+      "name_en": "Second Follow-up After Quote",
+      "name_cn": "报价后二次跟进",
+      "trigger": {
+        "type": "time_elapsed",
+        "condition": "no_customer_reply",
+        "delay_days": 7
+      },
+      "condition": {
+        "type": "all",
+        "checks": [
+          { "field": "customer_reply_received", "operator": "equals", "value": false }
+        ]
+      },
+      "action": "generate_draft",
+      "template": "template-followup-quote-002",
+      "max_retries": 1,
+      "escalate_to": "rule-quoted-003"
+    },
+    {
+      "id": "rule-quoted-003",
+      "stage": "quoted",
+      "name_en": "Third Follow-up After Quote",
+      "name_cn": "报价后三次跟进",
+      "trigger": {
+        "type": "time_elapsed",
+        "condition": "no_customer_reply",
+        "delay_days": 14
+      },
+      "condition": {
+        "type": "all",
+        "checks": [
+          { "field": "customer_reply_received", "operator": "equals", "value": false }
+        ]
+      },
+      "action": "send_reminder",
+      "template": "template-followup-quote-003",
+      "max_retries": 1,
+      "escalate_to": "lost"
+    },
+    {
+      "id": "rule-sample-001",
+      "stage": "sample_sent",
+      "name_en": "Sample Tracking Follow-up",
+      "name_cn": "样品寄送跟进",
+      "trigger": {
+        "type": "time_elapsed",
+        "condition": "sample_delivered",
+        "delay_days": 3
+      },
+      "condition": {
+        "type": "all",
+        "checks": [
+          { "field": "tracking_status", "operator": "equals", "value": "delivered" }
+        ]
+      },
+      "action": "generate_draft",
+      "template": "template-followup-sample-001",
+      "max_retries": 1,
+      "escalate_to": "rule-sample-002"
+    },
+    {
+      "id": "rule-sample-002",
+      "stage": "sample_sent",
+      "name_en": "Sample Feedback Request",
+      "name_cn": "样品反馈请求",
+      "trigger": {
+        "type": "time_elapsed",
+        "condition": "no_feedback_received",
+        "delay_days": 7
+      },
+      "condition": {
+        "type": "all",
+        "checks": [
+          { "field": "customer_feedback_received", "operator": "equals", "value": false }
+        ]
+      },
+      "action": "generate_draft",
+      "template": "template-followup-sample-002",
+      "max_retries": 2,
+      "escalate_to": "negotiating"
+    },
+    {
+      "id": "rule-negotiating-001",
+      "stage": "negotiating",
+      "name_en": "Counter-offer Response",
+      "name_cn": "还价回复",
+      "trigger": {
+        "type": "time_elapsed",
+        "condition": "counter_offer_received",
+        "delay_minutes": 60
+      },
+      "condition": {
+        "type": "all",
+        "checks": [
+          { "field": "email_received:intent", "operator": "contains", "value": "price|discount" }
+        ]
+      },
+      "action": "generate_draft",
+      "template": "template-negotiation-001",
+      "max_retries": 3,
+      "escalate_to": null
+    },
+    {
+      "id": "rule-negotiating-002",
+      "stage": "negotiating",
+      "name_en": "Deal Closing Push",
+      "name_cn": "成交推动",
+      "trigger": {
+        "type": "time_elapsed",
+        "condition": "negotiation_stalled",
+        "delay_days": 5
+      },
+      "condition": {
+        "type": "all",
+        "checks": [
+          { "field": "last_email_direction", "operator": "equals", "value": "outbound" },
+          { "field": "customer_reply_received", "operator": "equals", "value": false }
+        ]
+      },
+      "action": "generate_draft",
+      "template": "template-negotiation-close-001",
+      "max_retries": 2,
+      "escalate_to": "lost"
+    },
+    {
+      "id": "rule-won-001",
+      "stage": "closed_won",
+      "name_en": "Order Confirmation Thank You",
+      "name_cn": "订单确认感谢",
+      "trigger": {
+        "type": "event",
+        "condition": "order_confirmed",
+        "delay_minutes": 5
+      },
+      "condition": null,
+      "action": "generate_draft",
+      "template": "template-thankyou-001",
+      "max_retries": 1,
+      "escalate_to": null
+    },
+    {
+      "id": "rule-lost-001",
+      "stage": "lost",
+      "name_en": "Lost Customer Archive",
+      "name_cn": "流失客户归档",
+      "trigger": {
+        "type": "event",
+        "condition": "stage_changed_to_lost",
+        "delay_minutes": 0
+      },
+      "condition": null,
+      "action": "archive_and_notify",
+      "template": null,
+      "max_retries": 1,
+      "escalate_to": null
+    }
+  ],
+  "templates": {
+    "template-inquiry-001": {
+      "source": "email-smart-reply",
+      "intent": "inquiry",
+      "subject_line": "Re: Your inquiry about {{product_category}}",
+      "variables": ["product_category", "customer_name", "company_name"]
+    },
+    "template-followup-quote-001": {
+      "source": "follow-up-engine",
+      "subject_line": "Following up on your quotation request",
+      "variables": ["quotation_ref", "product_name", "validity_date"]
+    },
+    "template-followup-quote-002": {
+      "source": "follow-up-engine",
+      "subject_line": "Quick check: any questions about the quote?",
+      "variables": ["quotation_ref", "product_name"]
+    },
+    "template-followup-quote-003": {
+      "source": "follow-up-engine",
+      "subject_line": "Last reminder: quotation expires soon",
+      "variables": ["quotation_ref", "expiry_date"]
+    },
+    "template-followup-sample-001": {
+      "source": "follow-up-engine",
+      "subject_line": "Your sample has been delivered",
+      "variables": ["tracking_number", "product_name"]
+    },
+    "template-followup-sample-002": {
+      "source": "follow-up-engine",
+      "subject_line": "How did the sample work for you?",
+      "variables": ["product_name", "customer_name"]
+    },
+    "template-negotiation-001": {
+      "source": "follow-up-engine",
+      "subject_line": "Re: Your counter-offer",
+      "variables": ["original_price", "counter_price", "our_offer"]
+    },
+    "template-negotiation-close-001": {
+      "source": "follow-up-engine",
+      "subject_line": "Special offer to close this deal",
+      "variables": ["special_price", "deadline"]
+    },
+    "template-thankyou-001": {
+      "source": "email-smart-reply",
+      "intent": "partnership",
+      "subject_line": "Thank you for your order!",
+      "variables": ["order_number", "customer_name"]
+    }
+  },
+  "global_settings": {
+    "default_retry_interval_days": 3,
+    "max_follow_ups_per_stage": 3,
+    "business_hours_only": true,
+    "business_hours": {
+      "timezone": "Asia/Shanghai",
+      "start_hour": 9,
+      "end_hour": 18,
+      "exclude_weekends": true
+    },
+    "notification_channels": ["discord:inquiry-followup"],
+    "okki_sync_enabled": true,
+    "auto_draft_enabled": true,
+    "require_wilson_approval_for_sending": true
+  }
+}

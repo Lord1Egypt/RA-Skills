@@ -1,0 +1,6 @@
+{
+  "name": "git-monitor",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "description": "Git 项目监控工具"
+}

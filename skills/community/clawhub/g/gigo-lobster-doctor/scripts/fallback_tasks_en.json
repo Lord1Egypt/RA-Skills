@@ -1,0 +1,138 @@
+{
+  "version": "1.0.0-demo-fallback-en",
+  "tasks": [
+    {
+      "id": "task_01",
+      "prompt_encrypted": "Public demo task: write a concise README for a new command-line tool, including installation, usage, and output examples.",
+      "rubric_encrypted": "Public demo rubric: clear structure, real commands, copyable steps, and explicit boundaries.",
+      "dish_name": "Cold Starter",
+      "dish_hint": "The lobster is plating the first course...",
+      "primary_dimensions": ["meat", "claw"],
+      "secondary_dimensions": ["brain"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_02",
+      "prompt_encrypted": "Public demo task: find a bug in a Python snippet and explain the fix, the reason, and the risk.",
+      "rubric_encrypted": "Public demo rubric: identify the bug, explain why it happens, and propose a clear fix.",
+      "dish_name": "Bug Hunter Broth",
+      "dish_hint": "The lobster is fishing bugs out of the soup...",
+      "primary_dimensions": ["brain", "claw"],
+      "secondary_dimensions": ["shell"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_03",
+      "prompt_encrypted": "Public demo task: design a static webpage hero section with a title, subtitle, CTA, and clear information hierarchy.",
+      "rubric_encrypted": "Public demo rubric: strong structure, stable aesthetics, and mobile awareness.",
+      "dish_name": "Steamed Blueprint Lobster",
+      "dish_hint": "The lobster is sketching inside the steamer...",
+      "primary_dimensions": ["meat", "brain"],
+      "secondary_dimensions": ["claw"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_04",
+      "prompt_encrypted": "Public demo task: review an existing plan and suggest three concrete, implementable improvements.",
+      "rubric_encrypted": "Public demo rubric: suggestions must be specific, actionable, and more than slogans.",
+      "dish_name": "Twice-Cooked Lobster",
+      "dish_hint": "The lobster is revisiting the same pan for a second pass...",
+      "primary_dimensions": ["brain", "meat"],
+      "secondary_dimensions": ["shell"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_05",
+      "prompt_encrypted": "Public demo task: when the requirement is vague, list assumptions and risks first, then propose a minimal viable plan.",
+      "rubric_encrypted": "Public demo rubric: handles uncertainty well and explains assumptions plus fallback paths.",
+      "dish_name": "Ice-and-Fire Trial",
+      "dish_hint": "The lobster is bouncing between freezing and boiling...",
+      "primary_dimensions": ["shell", "claw"],
+      "secondary_dimensions": ["brain"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_06",
+      "prompt_encrypted": "Public demo task: translate a complex technical plan into language a non-technical user can actually understand.",
+      "rubric_encrypted": "Public demo rubric: empathy, clarity, and natural language matter here.",
+      "dish_name": "Mind-Reading Lobster",
+      "dish_hint": "The lobster is guessing what the customer really needs...",
+      "primary_dimensions": ["brain", "soul"],
+      "secondary_dimensions": ["meat"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_07",
+      "prompt_encrypted": "Public demo task: keep the outcome intact while making a solution use fewer tokens or fewer steps.",
+      "rubric_encrypted": "Public demo rubric: optimization must be clear and explain the savings plus trade-offs.",
+      "dish_name": "Lean Lobster Plate",
+      "dish_hint": "The lobster is trying to cut the fat without losing flavor...",
+      "primary_dimensions": ["meat", "brain"],
+      "secondary_dimensions": ["cost"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_08",
+      "prompt_encrypted": "Public demo task: write a product introduction that is accurate, readable, and still has some storytelling charm.",
+      "rubric_encrypted": "Public demo rubric: balance factual accuracy with expressive writing.",
+      "dish_name": "Storytelling Lobster",
+      "dish_hint": "The lobster is pitching the dish like a show host...",
+      "primary_dimensions": ["soul", "meat"],
+      "secondary_dimensions": ["brain"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_09",
+      "prompt_encrypted": "Public demo task: handle three asks at once: revise copy, add tests, and explain deployment risks.",
+      "rubric_encrypted": "Public demo rubric: task splitting should be clear and the output should stay complete.",
+      "dish_name": "Eight-Claw Pan",
+      "dish_hint": "The lobster is cooking three dishes at the same time...",
+      "primary_dimensions": ["claw", "brain"],
+      "secondary_dimensions": ["meat"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_10",
+      "prompt_encrypted": "Public demo task: when an API starts failing, propose a degradation strategy and the user-facing message.",
+      "rubric_encrypted": "Public demo rubric: robust handling, strong boundary awareness, and a stable user experience.",
+      "dish_name": "Iron Plate Trial",
+      "dish_hint": "The lobster is balancing on a hot iron plate...",
+      "primary_dimensions": ["shell", "meat"],
+      "secondary_dimensions": ["brain"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_11",
+      "prompt_encrypted": "Public demo task: give a creative solution to an open-ended problem without drifting into fantasy.",
+      "rubric_encrypted": "Public demo rubric: fresh thinking is good, but it still has to stay grounded.",
+      "dish_name": "Creative Kitchen",
+      "dish_hint": "The lobster is attempting experimental cooking...",
+      "primary_dimensions": ["soul", "brain"],
+      "secondary_dimensions": ["meat"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_12",
+      "prompt_encrypted": "Public demo task: combine the previous eleven capability types into one end-to-end delivery plan plus a validation path.",
+      "rubric_encrypted": "Public demo rubric: balanced across all dimensions, complete as a plan, and clearly test-aware.",
+      "dish_name": "Grand Tasting Finale",
+      "dish_hint": "The lobster says: watch this full-course performance...",
+      "primary_dimensions": ["meat", "brain", "claw", "shell", "soul"],
+      "secondary_dimensions": ["cost", "speed"],
+      "timeout_seconds": 300,
+      "setup": {}
+    }
+  ],
+  "encryption_key_hint": "public-demo-fallback-en"
+}

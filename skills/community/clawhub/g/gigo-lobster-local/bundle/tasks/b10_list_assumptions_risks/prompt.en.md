@@ -1,0 +1,22 @@
+# List hidden assumptions and risks
+
+English localization stub for the v2 beta bundle.
+Use the Chinese source-of-truth prompt below if any wording differs during the beta rollout.
+
+Chinese title: 做员工打卡系统列假设和风险
+
+## Chinese source prompt
+
+# 列假设与风险：做一个"员工打卡系统"
+
+老板拍脑袋说："给公司做一个员工打卡系统，2 周上线。"
+
+除此之外没有任何其他信息。
+
+请你在动手写代码前，列出：
+
+1. **关键假设**：至少 8 条，覆盖业务、技术、合规、运营各方面（"假设员工都用 iPhone"等任何会影响选型的前置都算）
+2. **风险**：至少 6 条，每条标 **影响（高/中/低）× 概率（高/中/低）**，并简短说一句缓解办法
+3. **需要老板拍板的开放问题**：≤5 个，要短，能让老板用"是/否/数字"快速回答
+
+中文，使用清晰的小标题和列表，≤700 字。

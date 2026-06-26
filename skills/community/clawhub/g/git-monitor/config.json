@@ -1,0 +1,32 @@
+{
+  "repositories": [
+    {
+      "url": "https://github.com/openclaw/openclaw.git",
+      "name": "openclaw-openclaw",
+      "platform": "github",
+      "owner": "openclaw",
+      "repo": "openclaw",
+      "localPath": "C:\\Users\\79112\\.openclaw\\workspace\\repos\\openclaw-openclaw",
+      "branch": "main",
+      "lastChecked": "2026-04-04T12:50:44.769Z",
+      "lastCommit": "ae16452a69855245c3feac6db168952064ec80c5",
+      "addedAt": "2026-04-04T12:47:03.211Z"
+    },
+    {
+      "url": "https://github.com/anthropics/skills.git",
+      "name": "anthropics-skills",
+      "platform": "github",
+      "owner": "anthropics",
+      "repo": "skills",
+      "localPath": "C:\\Users\\79112\\.openclaw\\workspace\\repos\\anthropics-skills",
+      "branch": "main",
+      "lastChecked": "2026-04-04T12:50:48.365Z",
+      "lastCommit": "98669c11ca63e9c81c11501e1437e5c47b556621",
+      "addedAt": "2026-04-04T12:47:08.164Z"
+    }
+  ],
+  "checkInterval": "6h",
+  "notifyChannel": "feishu",
+  "maxCommitsToShow": 10,
+  "includeDiffSummary": true
+}

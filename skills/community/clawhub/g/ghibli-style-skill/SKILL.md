@@ -1,35 +1,35 @@
 ---
-name: "Ghibli Style Skill"
-description: "Generate studio ghibli ai art generator images with AI via the Neta AI image generation API (free trial at neta.art/open)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ghibli-style-skill"
-sourceUrl: "https://clawhub.ai/skills/ghibli-style-skill"
+name: ghibli-style-skill
+description: Generate studio ghibli ai art generator images with AI via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
-# Ghibli Style Skill
+# Ghibli Style Image Generator
 
-> Generate studio ghibli ai art generator images with AI via the Neta AI image generation API (free trial at neta.art/open).
+Generate stunning studio ghibli ai art generator images from a text description. Get back a direct image URL instantly.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ghibli-style-skill`
-- **Source URL:** [https://clawhub.ai/skills/ghibli-style-skill](https://clawhub.ai/skills/ghibli-style-skill)
+## Token
 
-## Overview
+Requires a Neta API token. Free trial available at <https://www.neta.art/open/>.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ghibli-style-skill
+export NETA_TOKEN=your_token_here
+node <script> "your prompt" --token "$NETA_TOKEN"
+```
+
+## When to use
+Use when someone asks to generate or create studio ghibli ai art generator images.
+
+## Quick start
+```bash
+node ghiblistyle.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `landscape`)
+- `--style` — `anime`, `cinematic`, `realistic` (default: `anime`)
+
+## Install
+```bash
+npx skills add wkl-nieta/ghibli-style-skill
 ```

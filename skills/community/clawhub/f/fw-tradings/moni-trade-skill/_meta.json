@@ -1,0 +1,8 @@
+{
+  "slug": "moni-trade",
+  "name": "moni-trade-skill",
+  "version": "1.8.0",
+  "description": "复星财富港美股模拟盘 OpenAPI skill。通过 FOSUN_ENV_PATH 复用共享凭证；未设置时自动解析到总 skill 根目录的 fosun.env，只执行模拟盘接口，不负责凭证生成或修复。",
+  "entry": "SKILL.md",
+  "install": "./install.sh"
+}

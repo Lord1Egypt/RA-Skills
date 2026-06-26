@@ -1,35 +1,81 @@
 ---
-name: "Frontend Architecture Pro"
-description: "Provide technical UX architecture and CSS systems to establish design tokens, layout frameworks, component structure, responsive breakpoints, and theme toggles."
-category: "other"
-source: "ClawHub"
-tags: [accessibility, css, design-system, frontend, responsive, ui, web dev]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/frontend-architecture-pro"
-sourceUrl: "https://clawhub.ai/skills/frontend-architecture-pro"
+name: ux-architect
+description: Technical UX architecture and CSS systems skill for bridging design and development. Use when setting up project foundations, creating CSS design systems, defining layout frameworks (Grid/Flexbox), establishing component architecture, planning responsive breakpoints, or implementing light/dark/system theme support. Triggers on requests involving: CSS architecture, layout systems, component naming conventions, responsive strategy, design tokens, or technical handoff specs.
 ---
 
-# Frontend Architecture Pro
+# UX Architect
 
-> Provide technical UX architecture and CSS systems to establish design tokens, layout frameworks, component structure, responsive breakpoints, and theme toggles.
+Technical architecture and UX specialist who gives developers solid foundations, CSS systems, and clear implementation paths.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/frontend-architecture-pro`
-- **Source URL:** [https://clawhub.ai/skills/frontend-architecture-pro](https://clawhub.ai/skills/frontend-architecture-pro)
+## Core Workflow
 
-## Overview
+1. **Assess project scope** — identify what needs architectural foundation
+2. **Define CSS token system** — colors, typography, spacing, shadows
+3. **Establish layout framework** — container system, grid patterns, responsive breakpoints
+4. **Set component architecture** — naming conventions, hierarchy, boundaries
+5. **Add theme support** — light/dark/system with toggle
+6. **Document handoff spec** — clear deliverables for developers
 
+## CSS Architecture Principles
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/frontend-architecture-pro
+- **Design tokens first** — define all CSS custom properties before writing any component styles
+- **Mobile-first responsive** — base styles target mobile, enhance upward with `min-width` breakpoints
+- **Component naming** — use hyphen-case, keep it semantic (`.card-header`, not `.red-box`)
+- **No `!important`** — architecture should make specificity wars unnecessary
+- **Theme-agnostic by default** — component styles reference tokens, not hardcoded colors
+
+## Layout System
+
+### Container Breakpoints
+| Name | Max-width | Target |
+|------|-----------|--------|
+| sm   | 640px     | Large phones |
+| md   | 768px     | Tablets |
+| lg   | 1024px    | Laptops |
+| xl   | 1280px    | Desktops |
+
+### Grid Patterns
+- **Hero**: Full viewport, vertically centered
+- **Content Grid**: 2-col desktop → 1-col mobile
+- **Card Grid**: `auto-fit` with `minmax(300px, 1fr)`
+- **Sidebar**: `2fr main + 1fr aside`
+
+## Theme System
+
+Every new project must include light/dark/system theme toggle:
+
+```css
+/* Light theme — default */
+:root { --bg: #ffffff; --text: #111827; }
+
+/* Dark theme */
+[data-theme="dark"] { --bg: #111827; --text: #f9fafb; }
+
+/* System preference */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #111827; --text: #f9fafb; }
+}
 ```
+
+## Handoff Deliverables
+
+For each project, provide:
+- Full CSS token system with all custom properties
+- Layout container and grid specifications
+- Component hierarchy diagram
+- Responsive breakpoint map
+- Theme toggle implementation
+- Accessibility baseline (keyboard nav, focus states, contrast)
+
+## Trigger Examples
+
+- "set up the CSS architecture for this project"
+- "build a design token system for [brand]"
+- "create a [light/dark/system] theme toggle"
+- "define responsive breakpoints for [device targets]"
+- "establish a component naming convention"
+
+## Reference Files
+
+- `references/css-architecture.md` — Full CSS system with tokens, layout, and theme patterns
+- `references/component-hierarchy.md` — Component architecture and naming conventions

@@ -1,0 +1,8 @@
+interface:
+  display_name: "GitHub-README Hero.skill"
+  short_description: "Turn plain GitHub README pages into stronger hero-style front pages"
+  brand_color: "#2F4858"
+  default_prompt: "Use $github-readme-hero to turn this GitHub README into a polished hero-style front page while preserving the strongest original introduction."
+
+policy:
+  allow_implicit_invocation: true

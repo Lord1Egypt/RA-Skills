@@ -1,0 +1,24 @@
+{
+  "name": "follow-builders-sidecar-scripts",
+  "version": "1.0.9",
+  "description": "Scripts for Follow Builders Sidecar — takeover, digest preparation, and delivery",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "generate-feed": "node generate-feed.js",
+    "prepare-digest": "node prepare-digest.js",
+    "send-feishu-card": "node send-feishu-card.js",
+    "send-openclaw-message": "node send-openclaw-message.js",
+    "run-feishu-card-digest": "node run-feishu-card-digest.js",
+    "run-scheduled-feishu-card-digest": "node run-scheduled-feishu-card-digest.js",
+    "sidecar:run": "node run-sidecar.js",
+    "sidecar:setup": "node sidecar-setup.js",
+    "sidecar:configure": "node sidecar-configure.js",
+    "sidecar:status": "node sidecar-status.js",
+    "sidecar:rollback": "node sidecar-rollback.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.0",
+    "proper-lockfile": "^4.1.0"
+  }
+}

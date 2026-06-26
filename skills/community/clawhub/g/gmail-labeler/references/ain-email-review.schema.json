@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "category",
+    "actionable",
+    "confidence",
+    "archive",
+    "star",
+    "important",
+    "notify",
+    "reason"
+  ],
+  "properties": {
+    "category": {
+      "type": "string",
+      "enum": [
+        "newsletter",
+        "promotions",
+        "notifications",
+        "receipt-non-actionable",
+        "billing-issue",
+        "reply",
+        "opportunity",
+        "action-required",
+        "press-releases-pr-agencies",
+        "press-opportunities-and-trips",
+        "none"
+      ]
+    },
+    "actionable": { "type": "boolean" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "archive": { "type": "boolean" },
+    "star": { "type": "boolean" },
+    "important": { "type": "boolean" },
+    "notify": { "type": "boolean" },
+    "reason": { "type": "string", "minLength": 1, "maxLength": 500 }
+  }
+}

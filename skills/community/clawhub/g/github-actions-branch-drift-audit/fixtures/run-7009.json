@@ -1,0 +1,1 @@
+{"databaseId":7009,"workflowName":"Deploy","event":"push","conclusion":"failure","headBranch":"release/hotfix-1","createdAt":"2026-03-03T02:00:00Z","updatedAt":"2026-03-03T02:16:00Z","url":"https://example.com/run/7009","repository":{"nameWithOwner":"flowcreatebot/yf-api"}}

@@ -1,0 +1,23 @@
+id: b02
+track: B
+title_zh: 给同事的 PR 写建设性 code review
+category: write
+difficulty: medium
+timeout_seconds: 180
+dimensions:
+  primary: soul
+  secondary:
+  - brain
+evaluators:
+- type: llm_judge
+  weight: 1.0
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  judge_dimensions:
+  - soul
+  - brain
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 3
+title_en: Write a constructive PR review

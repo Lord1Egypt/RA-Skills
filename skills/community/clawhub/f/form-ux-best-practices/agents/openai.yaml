@@ -1,0 +1,4 @@
+interface:
+  display_name: "Form UX Best Practices"
+  short_description: "Audit and improve product forms"
+  default_prompt: "Use $form-ux-best-practices to review this form spec and produce a prioritized remediation report."

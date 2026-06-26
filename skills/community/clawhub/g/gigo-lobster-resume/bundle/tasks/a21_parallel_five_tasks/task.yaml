@@ -1,0 +1,36 @@
+id: a21
+track: A
+title_zh: 5 个独立任务并行执行
+category: cli_script
+difficulty: medium
+timeout_seconds: 240
+dimensions:
+  primary: claw
+  secondary:
+  - brain
+evaluators:
+- type: trace
+  weight: 0.7
+  required_tools_set:
+  - Read
+  forbidden_tools: []
+  max_tool_calls: 12
+  parallel_required: true
+- type: state_hash
+  weight: 0.3
+  files:
+  - report.md
+  required_patterns:
+  - file_a
+  - file_b
+  - file_c
+  - file_d
+  - file_e
+metadata:
+  estimated_minutes: 3
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Read
+  - Write
+title_en: Run five independent tasks in parallel

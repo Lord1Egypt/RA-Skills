@@ -1,0 +1,36 @@
+{
+  "colors": {
+    "glucose_line": "#3498db",
+    "target_range": "#27ae60",
+    "low_threshold": "#e74c3c",
+    "high_threshold": "#f39c12",
+    "average_line": "#9b59b6"
+  },
+  "ranges": {
+    "target_min": 4.0,
+    "target_max": 10.0,
+    "low_threshold": 4.0,
+    "high_threshold": 10.0
+  },
+  "chart": {
+    "width": 12,
+    "height": 6,
+    "dpi": 150,
+    "grid_alpha": 0.3,
+    "line_width": 1.5,
+    "marker_size": 4
+  },
+  "labels": {
+    "title": "Blood Glucose Trend",
+    "x_axis": "Date/Time",
+    "y_axis": "Glucose (mmol/L)",
+    "target_range": "Target Range",
+    "low_threshold": "Low Threshold",
+    "high_threshold": "High Threshold",
+    "average": "Average"
+  },
+  "formats": {
+    "date_format": "%m/%d %H:%M",
+    "value_format": "%.1f"
+  }
+}

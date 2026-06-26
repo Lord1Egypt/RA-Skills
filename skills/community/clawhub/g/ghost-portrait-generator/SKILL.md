@@ -1,35 +1,34 @@
 ---
-name: "Ghost Portrait Generator"
-description: "Generate haunting ghost portraits and inner demon shadow photos with AI — create spectral ghostly apparitions, paranormal spirit figures, smoky shadow compan..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ghost-portrait-generator"
-sourceUrl: "https://clawhub.ai/skills/ghost-portrait-generator"
+name: ghost-portrait-generator
+description: Generate haunting ghost portraits and inner demon shadow photos with AI — create spectral ghostly apparitions, paranormal spirit figures, smoky shadow companions standing behind subjects, translucent ethereal ghosts, gothic horror portraits, Halloween spooky imagery, dark supernatural aesthetic art, ghostly phantom visuals, and eerie spectre illustrations perfect for social media viral trends, Halloween content, horror story covers, gothic aesthetic feeds, paranormal enthusiasts, dark fantasy art, and spooky photo transformations inspired by the viral Gemini and ChatGPT ghost portrait trend via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Ghost Portrait Generator
 
-> Generate haunting ghost portraits and inner demon shadow photos with AI — create spectral ghostly apparitions, paranormal spirit figures, smoky shadow compan...
+Generate haunting ghost portraits and inner demon shadow photos with AI — create spectral ghostly apparitions, paranormal spirit figures, smoky shadow companions standing behind subjects, translucent ethereal ghosts, gothic horror portraits, Halloween spooky imagery, dark supernatural aesthetic art, ghostly phantom visuals, and eerie spectre illustrations perfect for social media viral trends, Halloween content, horror story covers, gothic aesthetic feeds, paranormal enthusiasts, dark fantasy art, and spooky photo transformations inspired by the viral Gemini and ChatGPT ghost portrait trend.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ghost-portrait-generator`
-- **Source URL:** [https://clawhub.ai/skills/ghost-portrait-generator](https://clawhub.ai/skills/ghost-portrait-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ghost-portrait-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create ghost portrait ai generator images.
+
+## Quick start
+```bash
+node ghostportraitgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add blammectrappora/ghost-portrait-generator
 ```

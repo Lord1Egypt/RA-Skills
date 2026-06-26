@@ -1,0 +1,53 @@
+{
+  "user": {
+    "level": 2,
+    "xp": 200,
+    "xpToNext": 400,
+    "attributes": {
+      "physical": 2,
+      "intellectual": 0,
+      "wealth": 0,
+      "spiritual": 0,
+      "social": 0
+    }
+  },
+  "habits": [
+    {
+      "id": "mn6o6detxmfqwdjhr6g",
+      "name": "早起",
+      "type": "physical",
+      "typeName": "体力",
+      "frequency": "daily",
+      "xpReward": 50,
+      "streak": 1,
+      "lastCheckin": "2026-03-25",
+      "history": [
+        "2026-03-25"
+      ],
+      "createdAt": "2026-03-25T23:23:28.997Z"
+    }
+  ],
+  "achievements": [
+    {
+      "id": "first-checkin",
+      "name": "新手上路",
+      "unlockedAt": "2026-03-25T06:48:29.980Z"
+    }
+  ],
+  "checkinHistory": [
+    {
+      "habitId": "mn5omrnx0vpil1v351op",
+      "habitName": "测试习惯",
+      "date": "2026-03-25",
+      "xpGained": 50,
+      "streak": 1
+    },
+    {
+      "habitId": "mn6o6detxmfqwdjhr6g",
+      "habitName": "早起",
+      "date": "2026-03-25",
+      "xpGained": 50,
+      "streak": 1
+    }
+  ]
+}

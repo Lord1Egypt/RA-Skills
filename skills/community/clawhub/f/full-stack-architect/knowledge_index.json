@@ -1,0 +1,134 @@
+{
+  "timestamp": "2026-04-30T21:30:05.726048",
+  "references": [
+    {
+      "filename": "frontend_performance.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/frontend_performance.md",
+      "last_modified": 1777518245.5632095
+    },
+    {
+      "filename": "backend_performance.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/backend_performance.md",
+      "last_modified": 1777518245.5542586
+    },
+    {
+      "filename": "mobile_development.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/mobile_development.md",
+      "last_modified": 1777518245.5675635
+    },
+    {
+      "filename": "nodejs_best_practices.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/nodejs_best_practices.md",
+      "last_modified": 1777518245.5683045
+    },
+    {
+      "filename": "database_best_practices.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/database_best_practices.md",
+      "last_modified": 1777518245.5576644
+    },
+    {
+      "filename": "frontend_best_practices.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/frontend_best_practices.md",
+      "last_modified": 1777518245.5614955
+    },
+    {
+      "filename": "game_development.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/game_development.md",
+      "last_modified": 1777518245.5639465
+    },
+    {
+      "filename": "security_best_practices.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/security_best_practices.md",
+      "last_modified": 1777518245.569008
+    },
+    {
+      "filename": "computer_networking.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/computer_networking.md",
+      "last_modified": 1777518245.5562456
+    },
+    {
+      "filename": "software_engineering.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/software_engineering.md",
+      "last_modified": 1777518245.5697706
+    },
+    {
+      "filename": "vue_best_practices.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/vue_best_practices.md",
+      "last_modified": 1777518245.5704224
+    },
+    {
+      "filename": "go_best_practices.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/go_best_practices.md",
+      "last_modified": 1777518245.5646396
+    },
+    {
+      "filename": "knowledge_system.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/knowledge_system.md",
+      "last_modified": 1777518245.5652478
+    },
+    {
+      "filename": "frontend_frameworks.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/frontend_frameworks.md",
+      "last_modified": 1777518245.5624704
+    },
+    {
+      "filename": "backend_frameworks.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/backend_frameworks.md",
+      "last_modified": 1777518245.5517812
+    },
+    {
+      "filename": "data_structures_algorithms.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/data_structures_algorithms.md",
+      "last_modified": 1777518245.5569382
+    },
+    {
+      "filename": "ai_machine_learning.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/ai_machine_learning.md",
+      "last_modified": 1777518245.551074
+    },
+    {
+      "filename": "cloud_native_devops.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/cloud_native_devops.md",
+      "last_modified": 1777518245.5549486
+    },
+    {
+      "filename": "composition_patterns.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/references/composition_patterns.md",
+      "last_modified": 1777518245.5555835
+    }
+  ],
+  "code_snippets": [
+    {
+      "filename": "react_snippets.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/code_snippets/react_snippets.md",
+      "last_modified": 1777518245.5305037
+    },
+    {
+      "filename": "go_snippets.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/code_snippets/go_snippets.md",
+      "last_modified": 1777518245.527758
+    },
+    {
+      "filename": "nodejs_snippets.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/code_snippets/nodejs_snippets.md",
+      "last_modified": 1777518245.528819
+    },
+    {
+      "filename": "vue_snippets.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/code_snippets/vue_snippets.md",
+      "last_modified": 1777518245.5312266
+    },
+    {
+      "filename": "python_snippets.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/code_snippets/python_snippets.md",
+      "last_modified": 1777518245.5298307
+    }
+  ],
+  "project_examples": [
+    {
+      "filename": "nextjs_project.md",
+      "path": "/Users/Drip/Library/Application Support/com.tencent.mac.marvis/MarvisData/User/oAN1i2Qnk8xLWUDxwtGwlY01f0UA/skills/custom/full-stack-architect/project_examples/nextjs_project.md",
+      "last_modified": 1777518245.550339
+    }
+  ]
+}

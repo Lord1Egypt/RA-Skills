@@ -1,0 +1,16 @@
+{
+  "ok": false,
+  "run_id": "20260326T221101Z",
+  "started_at": "2026-03-26T22:11:01.347236+00:00",
+  "window": {
+    "start": "2026-03-24",
+    "end": "2026-03-26"
+  },
+  "backup_dir": "/Users/joao/.openclaw/workspace/fitbit-connector/backups/pipeline/20260326T221101Z",
+  "steps": [],
+  "checks": [],
+  "rollback_performed": false,
+  "dry_run": false,
+  "error": "pipeline lock already held: /Users/joao/.openclaw/workspace/fitbit-connector/assets/.fitbit_pipeline.lock",
+  "finished_at": "2026-03-26T22:11:01.347321+00:00"
+}

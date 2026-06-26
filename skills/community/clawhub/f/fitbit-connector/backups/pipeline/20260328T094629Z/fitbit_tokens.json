@@ -1,0 +1,10 @@
+{
+  "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM1Y3M1AiLCJzdWIiOiJDTk1KSFAiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJlY2cgcnNldCByaXJuIHJveHkgcnBybyBybnV0IHJzbGUgcmNmIHJhY3QgcnJlcyBybG9jIHJ3ZWkgcmhyIHJ0ZW0iLCJleHAiOjE3NzQ2NjM4NDgsImlhdCI6MTc3NDYzNTA0OH0.EXw3BNb3Bt2-IIBtquq9U9LTL3sFasKNYg283IKvaN0",
+  "expires_in": 28800,
+  "refresh_token": "974be9730adcebe9e13c42a798aba2aa13701721d9865174fc85891fa7ad3abc",
+  "scope": "social temperature cardio_fitness electrocardiogram respiratory_rate irregular_rhythm_notifications profile oxygen_saturation settings location sleep activity weight nutrition heartrate",
+  "token_type": "Bearer",
+  "user_id": "CNMJHP",
+  "expires_at": 1774663848.641143,
+  "saved_at": "2026-03-27T18:10:48.916780+00:00"
+}

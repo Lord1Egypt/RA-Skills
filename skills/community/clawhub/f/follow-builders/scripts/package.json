@@ -1,0 +1,14 @@
+{
+  "name": "follow-builders-fetcher",
+  "version": "1.0.0",
+  "description": "Content fetcher for Follow Builders skill — Supadata for YouTube",
+  "type": "module",
+  "scripts": {
+    "fetch": "node fetch-content.js",
+    "test": "node --test test-fetch.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.0",
+    "proper-lockfile": "^4.1.0"
+  }
+}

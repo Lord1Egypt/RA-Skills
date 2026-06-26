@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  gomboc-mcp:
+    image: gombocai/mcp:latest
+    container_name: gomboc-mcp-server
+    ports:
+      - "3100:3100"
+    environment:
+      - GOMBOC_PAT=${GOMBOC_PAT}
+      - MCP_PORT=3100
+      - LOG_LEVEL=info
+    volumes:
+      - ./:/workspace:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3100/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+    networks:
+      - gomboc
+
+networks:
+  gomboc:
+    driver: bridge

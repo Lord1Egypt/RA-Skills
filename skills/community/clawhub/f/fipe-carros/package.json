@@ -1,0 +1,12 @@
+{
+  "name": "fipe-carros",
+  "version": "1.0.0",
+  "description": "Consulta preços de veículos na Tabela FIPE brasileira",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

@@ -1,35 +1,108 @@
 ---
-name: "Global Stock Analysis"
-description: "Global stock analysis (US, China & EU stock markets, technicals, fundamentals, etc) powered by NASDAQ's official data provider Alpha Vantage. 全球股票分析（包括美股、A股和..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/global-stock-analysis"
-sourceUrl: "https://clawhub.ai/skills/global-stock-analysis"
+name: global-stock-analysis
+description: Global stock analysis (US, China & EU stock markets, technicals, fundamentals, etc) powered by NASDAQ's official data provider Alpha Vantage. 全球股票分析（包括美股、A股和欧洲股市、技术面分析、基本面分析等）。
+compatibility: Requires marketdata-cli installed (pip install marketdata-cli) and ALPHAVANTAGE_API_KEY set.
+metadata:
+  author: alphavantage
+  version: "0.0.13"
+  homepage: https://www.alphavantage.co
+  source: https://github.com/alphavantage/alpha_vantage_mcp
+  openclaw:
+    requires:
+      bins: ["marketdata-cli"]
+      env: ["ALPHAVANTAGE_API_KEY"]
+    install: "pip install marketdata-cli"
 ---
 
 # Global Stock Analysis
 
-> Global stock analysis (US, China & EU stock markets, technicals, fundamentals, etc) powered by NASDAQ's official data provider Alpha Vantage. 全球股票分析（包括美股、A股和...
+Use these workflows to research stocks, evaluate companies, read technical signals, and monitor macro conditions — all from the terminal.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/global-stock-analysis`
-- **Source URL:** [https://clawhub.ai/skills/global-stock-analysis](https://clawhub.ai/skills/global-stock-analysis)
+## Tutorial
 
-## Overview
+Watch the end-to-end installation tutorial, from procuring a fresh Mac VM (or Mac mini), to installing OpenClaw, to installing and using the skill: https://www.youtube.com/watch?v=Z6DjYKN4uos
 
+## Setup
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. Install: `pip install marketdata-cli` or `uv tool install marketdata-cli --force` or run directly with `uvx marketdata-cli`
+2. Set API key (one of):
+   - `export ALPHAVANTAGE_API_KEY=your_key`
+   - Add `ALPHAVANTAGE_API_KEY=your_key` to a `.env` file
+   - Pass `-k your_key` on each command
+
+Get a free key at https://www.alphavantage.co/support/#api-key
+
+## Workflows
+
+### 1. Quick Stock Lookup
+
+Get a snapshot of where a stock is right now — price, recent history, and news.
+
 ```bash
-hermes skills install clawhub/global-stock-analysis
+marketdata-cli global_quote AAPL
+marketdata-cli time_series_daily AAPL
+marketdata-cli news_sentiment --tickers AAPL
+# Optional: intraday detail
+marketdata-cli time_series_intraday AAPL --interval 5min
 ```
+
+### 2. Fundamental Analysis
+
+Evaluate a company's financial health: overview, financials, earnings, dividends, and insider activity.
+See [fundamentals.md](references/fundamentals.md) for the full step-by-step guide.
+
+### 3. Technical Analysis
+
+Assess trend, momentum, volatility, and volume signals.
+See [technicals.md](references/technicals.md) for the full step-by-step guide.
+
+### 4. Macro & Market Overview
+
+Check economic conditions, commodities, market movers, and upcoming events.
+See [macro.md](references/macro.md) for the full step-by-step guide.
+
+### 5. Sector / Multi-Stock Comparison
+
+Compare fundamentals or technicals across multiple tickers by running the same commands for each symbol:
+
+```bash
+marketdata-cli company_overview AAPL
+marketdata-cli company_overview MSFT
+marketdata-cli company_overview GOOGL
+```
+
+See [comparison.md](references/comparison.md) for more examples.
+
+### 6. Forex & Crypto
+
+Exchange rates and price history for currencies and cryptocurrencies.
+See [forex-crypto.md](references/forex-crypto.md) for the full step-by-step guide.
+
+### 7. Options Chain
+
+Inspect US options chains, greeks, and put/call sentiment — realtime or historical.
+
+```bash
+marketdata-cli realtime_options AAPL
+marketdata-cli realtime_options AAPL --require_greeks --expiration 2026-06-19
+marketdata-cli realtime_options_fmv AAPL --expiration 2026-06-19
+marketdata-cli realtime_put_call_ratio SPY
+marketdata-cli historical_options AAPL --date 2024-01-15
+marketdata-cli historical_put_call_ratio SPY --date 2024-01-15
+```
+
+See [options.md](references/options.md) for the full step-by-step guide.
+
+## Quick Reference
+
+Run `marketdata-cli --help` for the full list of 100+ commands, or `marketdata-cli <command> --help` for any specific command.
+
+| Flag | Description |
+|------|-------------|
+| `-k, --api-key` | API key (overrides env var) |
+| `-v, --verbose` | Enable verbose logging |
+| `-h, --help` | Show help for any command |
+
+- Most stock commands accept a positional SYMBOL argument (e.g., `marketdata-cli global_quote AAPL`)
+- Forex commands use `--from_symbol` / `--to_symbol` or `--from_currency` / `--to_currency`
+- Technical indicators default to `daily` interval if not specified

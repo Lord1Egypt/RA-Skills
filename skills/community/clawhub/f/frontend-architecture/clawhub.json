@@ -1,0 +1,12 @@
+{
+  "name": "Frontend Architecture (前端架构设计)",
+  "tagline": "为大型前端应用设计可扩展架构：结构、边界、选型、技术债管理",
+  "description": "为大型前端应用设计长期可维护的架构。覆盖按规模选择项目结构（小/中/大型）、Feature-Sliced Design 模块边界与依赖规则、代码分割策略、技术选型决策矩阵、ADR 架构决策记录、渐进式重构与绞杀者模式等场景。",
+  "category": "development",
+  "tags": ["frontend", "architecture", "monorepo", "feature-sliced", "code-splitting", "adr", "前端架构", "技术选型"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill"
+}

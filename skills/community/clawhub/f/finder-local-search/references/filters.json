@@ -1,0 +1,137 @@
+{
+  "platforms": [
+    {
+      "value": "TikTok",
+      "label": "TikTok",
+      "aliases": ["tiktok", "tt", "抖音国际版"]
+    },
+    {
+      "value": "Instagram",
+      "label": "Instagram",
+      "aliases": ["instagram", "ins", "ig"]
+    },
+    {
+      "value": "YouTube",
+      "label": "YouTube",
+      "aliases": ["youtube", "yt", "油管"]
+    }
+  ],
+  "regions": [
+    { "value": "US", "label": "美国", "aliases": ["美国", "United States", "USA"] },
+    { "value": "GB", "label": "英国", "aliases": ["英国", "United Kingdom", "UK"] },
+    { "value": "CA", "label": "加拿大", "aliases": ["加拿大", "Canada"] },
+    { "value": "AU", "label": "澳大利亚", "aliases": ["澳大利亚", "Australia"] },
+    { "value": "NZ", "label": "新西兰", "aliases": ["新西兰", "New Zealand"] },
+    { "value": "CN", "label": "中国大陆", "aliases": ["中国大陆", "中国", "China mainland"] },
+    { "value": "HK", "label": "中国香港", "aliases": ["中国香港", "香港", "Hong Kong"] },
+    { "value": "TW", "label": "中国台湾", "aliases": ["中国台湾", "台湾", "Taiwan"] },
+    { "value": "JP", "label": "日本", "aliases": ["日本", "Japan"] },
+    { "value": "KR", "label": "韩国", "aliases": ["韩国", "South Korea"] },
+    { "value": "SG", "label": "新加坡", "aliases": ["新加坡", "Singapore"] },
+    { "value": "MY", "label": "马来西亚", "aliases": ["马来西亚", "Malaysia"] },
+    { "value": "TH", "label": "泰国", "aliases": ["泰国", "Thailand"] },
+    { "value": "PH", "label": "菲律宾", "aliases": ["菲律宾", "Philippines"] },
+    { "value": "VN", "label": "越南", "aliases": ["越南", "Vietnam"] },
+    { "value": "ID", "label": "印度尼西亚", "aliases": ["印度尼西亚", "印尼", "Indonesia"] },
+    { "value": "DE", "label": "德国", "aliases": ["德国", "Germany"] },
+    { "value": "FR", "label": "法国", "aliases": ["法国", "France"] },
+    { "value": "IT", "label": "意大利", "aliases": ["意大利", "Italy"] },
+    { "value": "ES", "label": "西班牙", "aliases": ["西班牙", "Spain"] },
+    { "value": "BR", "label": "巴西", "aliases": ["巴西", "Brazil"] },
+    { "value": "MX", "label": "墨西哥", "aliases": ["墨西哥", "Mexico"] },
+    { "value": "AE", "label": "阿联酋", "aliases": ["阿联酋", "United Arab Emirates", "UAE"] },
+    { "value": "IN", "label": "印度", "aliases": ["印度", "India"] }
+  ],
+  "languages": [
+    { "value": "en", "label": "英语", "aliases": ["英语", "英文", "English"] },
+    { "value": "zh", "label": "中文", "aliases": ["中文", "汉语", "Chinese"] },
+    { "value": "ja", "label": "日语", "aliases": ["日语", "Japanese"] },
+    { "value": "ko", "label": "韩语", "aliases": ["韩语", "Korean"] },
+    { "value": "fr", "label": "法语", "aliases": ["法语", "French"] },
+    { "value": "de", "label": "德语", "aliases": ["德语", "German"] },
+    { "value": "es", "label": "西班牙语", "aliases": ["西班牙语", "Spanish"] },
+    { "value": "pt", "label": "葡萄牙语", "aliases": ["葡萄牙语", "Portuguese"] },
+    { "value": "it", "label": "意大利语", "aliases": ["意大利语", "Italian"] },
+    { "value": "ru", "label": "俄语", "aliases": ["俄语", "Russian"] },
+    { "value": "ar", "label": "阿拉伯语", "aliases": ["阿拉伯语", "Arabic"] },
+    { "value": "hi", "label": "印地语", "aliases": ["印地语", "Hindi"] },
+    { "value": "id", "label": "印度尼西亚语", "aliases": ["印度尼西亚语", "印尼语", "Indonesian"] },
+    { "value": "th", "label": "泰语", "aliases": ["泰语", "Thai"] },
+    { "value": "vi", "label": "越南语", "aliases": ["越南语", "Vietnamese"] }
+  ],
+  "labels": [
+    { "value": "美妆", "label": "美妆", "aliases": ["美妆", "beauty"] },
+    { "value": "时尚", "label": "时尚", "aliases": ["时尚", "fashion"] },
+    { "value": "穿搭", "label": "穿搭", "aliases": ["穿搭", "outfit"] },
+    { "value": "护肤", "label": "护肤", "aliases": ["护肤", "skincare"] },
+    { "value": "母婴", "label": "母婴", "aliases": ["母婴", "育儿", "parenting"] },
+    { "value": "家居", "label": "家居", "aliases": ["家居", "home"] },
+    { "value": "宠物", "label": "宠物", "aliases": ["宠物", "pet"] },
+    { "value": "美食", "label": "美食", "aliases": ["美食", "food"] },
+    { "value": "健身", "label": "健身", "aliases": ["健身", "fitness"] },
+    { "value": "旅行", "label": "旅行", "aliases": ["旅行", "travel"] },
+    { "value": "科技", "label": "科技", "aliases": ["科技", "tech"] },
+    { "value": "数码", "label": "数码", "aliases": ["数码", "gadgets"] },
+    { "value": "游戏", "label": "游戏", "aliases": ["游戏", "gaming"] },
+    { "value": "教育", "label": "教育", "aliases": ["教育", "education"] },
+    { "value": "音乐", "label": "音乐", "aliases": ["音乐", "music"] },
+    { "value": "舞蹈", "label": "舞蹈", "aliases": ["舞蹈", "dance"] },
+    { "value": "搞笑", "label": "搞笑", "aliases": ["搞笑", "comedy"] },
+    { "value": "汽车", "label": "汽车", "aliases": ["汽车", "car", "auto"] },
+    { "value": "财经", "label": "财经", "aliases": ["财经", "finance"] },
+    { "value": "商业", "label": "商业", "aliases": ["商业", "business"] },
+    { "value": "创业", "label": "创业", "aliases": ["创业", "startup"] },
+    { "value": "情感", "label": "情感", "aliases": ["情感", "relationship"] },
+    { "value": "摄影", "label": "摄影", "aliases": ["摄影", "photography"] },
+    { "value": "户外", "label": "户外", "aliases": ["户外", "outdoor"] },
+    { "value": "手工", "label": "手工", "aliases": ["手工", "craft"] },
+    { "value": "艺术", "label": "艺术", "aliases": ["艺术", "art"] },
+    { "value": "影视", "label": "影视", "aliases": ["影视", "film"] },
+    { "value": "动漫", "label": "动漫", "aliases": ["动漫", "anime"] },
+    { "value": "生活方式", "label": "生活方式", "aliases": ["生活方式", "lifestyle"] }
+  ],
+  "followerRanges": [
+    {
+      "label": "0-10K",
+      "aliases": ["0-1万", "1万以下", "0-10k"],
+      "minFollowerCount": 0,
+      "maxFollowerCount": 10000
+    },
+    {
+      "label": "10K-50K",
+      "aliases": ["1万到5万", "1w-5w", "10k-50k"],
+      "minFollowerCount": 10000,
+      "maxFollowerCount": 50000
+    },
+    {
+      "label": "50K-100K",
+      "aliases": ["5万到10万", "5w-10w", "50k-100k"],
+      "minFollowerCount": 50000,
+      "maxFollowerCount": 100000
+    },
+    {
+      "label": "100K-200K",
+      "aliases": ["10万到20万", "10w-20w", "100k-200k"],
+      "minFollowerCount": 100000,
+      "maxFollowerCount": 200000
+    },
+    {
+      "label": "200K-500K",
+      "aliases": ["20万到50万", "20w-50w", "200k-500k"],
+      "minFollowerCount": 200000,
+      "maxFollowerCount": 500000
+    },
+    {
+      "label": "500K-1M",
+      "aliases": ["50万到100万", "50w-100w", "500k-1m"],
+      "minFollowerCount": 500000,
+      "maxFollowerCount": 1000000
+    },
+    {
+      "label": "1M+",
+      "aliases": ["100万以上", "百万以上", "1m+"],
+      "minFollowerCount": 1000000,
+      "maxFollowerCount": null
+    }
+  ]
+}

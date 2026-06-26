@@ -1,0 +1,13 @@
+{
+  "name": "gan-evolution-engine",
+  "version": "1.0.0",
+  "description": "Generative Adversarial Evolution for AI Agent Skills. Uses GAN-like process to evolve skill capabilities.",
+  "author": "小哩子",
+  "license": "MIT",
+  "tags": ["evolution", "gan", "self-improvement", "meta"],
+  "entrypoint": "scripts/gan_evolution.py",
+  "requirements": ["openai>=1.0.0", "psutil>=5.9.0"],
+  "compatibility": {
+    "openclaw": ">=2026.3.0"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "databaseId": 6002,
+  "workflowName": "Unit Tests",
+  "event": "push",
+  "conclusion": "timed_out",
+  "headBranch": "main",
+  "headSha": "badc0de1",
+  "createdAt": "2026-03-05T01:20:00Z",
+  "updatedAt": "2026-03-05T01:50:00Z",
+  "url": "https://github.com/acme/api/actions/runs/6002",
+  "repository": "acme/api"
+}

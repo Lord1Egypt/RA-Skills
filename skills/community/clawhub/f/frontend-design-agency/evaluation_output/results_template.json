@@ -1,0 +1,151 @@
+{
+  "evaluation_results": [
+    {
+      "category": "design_thinking",
+      "category_name": "Design Thinking & Produktverständnis",
+      "scores": {
+        "accuracy": null,
+        "practical": null,
+        "exam_ready": null,
+        "assets": null,
+        "references": null
+      },
+      "average": null,
+      "weaknesses": [],
+      "missing_assets": []
+    },
+    {
+      "category": "visual_direction",
+      "category_name": "Visuelle Richtung & Gestalterische These",
+      "scores": {
+        "accuracy": null,
+        "practical": null,
+        "exam_ready": null,
+        "assets": null,
+        "references": null
+      },
+      "average": null,
+      "weaknesses": [],
+      "missing_assets": []
+    },
+    {
+      "category": "color_tokens",
+      "category_name": "Farbkonzept & Design Tokens",
+      "scores": {
+        "accuracy": null,
+        "practical": null,
+        "exam_ready": null,
+        "assets": null,
+        "references": null
+      },
+      "average": null,
+      "weaknesses": [],
+      "missing_assets": []
+    },
+    {
+      "category": "typography",
+      "category_name": "Typografie & Hierarchy",
+      "scores": {
+        "accuracy": null,
+        "practical": null,
+        "exam_ready": null,
+        "assets": null,
+        "references": null
+      },
+      "average": null,
+      "weaknesses": [],
+      "missing_assets": []
+    },
+    {
+      "category": "layout",
+      "category_name": "Layout, Raum & Raster",
+      "scores": {
+        "accuracy": null,
+        "practical": null,
+        "exam_ready": null,
+        "assets": null,
+        "references": null
+      },
+      "average": null,
+      "weaknesses": [],
+      "missing_assets": []
+    },
+    {
+      "category": "motion",
+      "category_name": "Motion & Animation",
+      "scores": {
+        "accuracy": null,
+        "practical": null,
+        "exam_ready": null,
+        "assets": null,
+        "references": null
+      },
+      "average": null,
+      "weaknesses": [],
+      "missing_assets": []
+    },
+    {
+      "category": "components",
+      "category_name": "Komponenten-System",
+      "scores": {
+        "accuracy": null,
+        "practical": null,
+        "exam_ready": null,
+        "assets": null,
+        "references": null
+      },
+      "average": null,
+      "weaknesses": [],
+      "missing_assets": []
+    },
+    {
+      "category": "responsive",
+      "category_name": "Responsive Design",
+      "scores": {
+        "accuracy": null,
+        "practical": null,
+        "exam_ready": null,
+        "assets": null,
+        "references": null
+      },
+      "average": null,
+      "weaknesses": [],
+      "missing_assets": []
+    },
+    {
+      "category": "accessibility",
+      "category_name": "Accessibility & UX",
+      "scores": {
+        "accuracy": null,
+        "practical": null,
+        "exam_ready": null,
+        "assets": null,
+        "references": null
+      },
+      "average": null,
+      "weaknesses": [],
+      "missing_assets": []
+    },
+    {
+      "category": "anti_generic",
+      "category_name": "Anti-Generic Check & Qualitätssicherung",
+      "scores": {
+        "accuracy": null,
+        "practical": null,
+        "exam_ready": null,
+        "assets": null,
+        "references": null
+      },
+      "average": null,
+      "weaknesses": [],
+      "missing_assets": []
+    }
+  ],
+  "summary": {
+    "total_categories": 10,
+    "average_overall": null,
+    "categories_below_7": [],
+    "strongest_category": null,
+    "weakest_category": null
+  }
+}

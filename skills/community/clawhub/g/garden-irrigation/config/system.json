@@ -1,0 +1,25 @@
+{
+  "timezone": "Europe/Oslo",
+  "language": "auto",
+  "schedule": {"daily_run": "07:00"},
+  "location": {"name": "Asker, Norway", "latitude": 59.833, "longitude": 10.433},
+  "reporting": {
+    "enabled": true,
+    "channel": "telegram",
+    "send_report_to_bot": true,
+    "bot_account_id": "telegram bot id",
+    "bot_target": "telegram:telegram user id",
+    "send_on_irrigation": true,
+    "send_on_no_irrigation": true
+  },
+  "learning": {"enabled": true, "min_samples_per_zone": 20},
+  "safety": {"max_daily_minutes_per_zone": 30, "skip_if_sensor_missing": true},
+  "automation": {
+    "enabled": true,
+    "mode": "auto",
+    "require_confirmation": false,
+    "max_minutes_per_session": 20,
+    "min_hours_between_irrigation": 6
+  },
+  "storage": {"base_dir": "../data"}
+}

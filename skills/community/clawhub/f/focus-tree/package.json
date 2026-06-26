@@ -1,0 +1,11 @@
+{
+  "name": "focus-tree",
+  "version": "1.0.0",
+  "description": "Session content focus tree with checklist tracking",
+  "bin": {
+    "focus": "./scripts/focus.mjs"
+  },
+  "keywords": ["focus", "tree", "session", "checklist"],
+  "author": "OpenClaw",
+  "license": "MIT"
+}

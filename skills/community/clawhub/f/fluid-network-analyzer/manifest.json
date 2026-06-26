@@ -1,0 +1,8 @@
+{
+  "name": "fluid-network-analyzer",
+  "version": "0.1.0",
+  "description": "Prototype skill for fluid network modeling, steady-state solving, and scenario analysis.",
+  "entry": "skill/skill.yaml",
+  "author": "Yang Yusen",
+  "license": "MIT"
+}

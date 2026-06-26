@@ -1,35 +1,52 @@
 ---
-name: "Firm Skill Loader Pack"
-description: "Skill lazy loading and search pack. On-demand SKILL.md loading and keyword-based skill search. 2 loader tools."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/firm-skill-loader-pack"
-sourceUrl: "https://clawhub.ai/skills/firm-skill-loader-pack"
+name: firm-skill-loader-pack
+version: 1.0.0
+description: >
+  Skill lazy loading and search pack.
+  On-demand SKILL.md loading and keyword-based skill search. 2 loader tools.
+author: romainsantoli-web
+license: MIT
+metadata:
+  openclaw:
+    registry: ClawHub
+    requires:
+      - mcp-openclaw-extensions >= 3.0.0
+tags:
+  - skills
+  - loader
+  - search
+  - lazy-loading
+  - registry
 ---
 
-# Firm Skill Loader Pack
+# firm-skill-loader-pack
 
-> Skill lazy loading and search pack. On-demand SKILL.md loading and keyword-based skill search. 2 loader tools.
+> ⚠️ Contenu généré par IA — validation humaine requise avant utilisation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/firm-skill-loader-pack`
-- **Source URL:** [https://clawhub.ai/skills/firm-skill-loader-pack](https://clawhub.ai/skills/firm-skill-loader-pack)
+## Purpose
 
-## Overview
+Provides lazy loading of SKILL.md files and keyword-based skill search
+across the local skills directory. Enables on-demand skill discovery
+without pre-loading all skills into memory.
 
+## Tools (2)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/firm-skill-loader-pack
+| Tool | Description |
+|------|-------------|
+| `openclaw_skill_lazy_loader` | Lazy-load SKILL.md on demand |
+| `openclaw_skill_search` | Keyword-based skill search |
+
+## Usage
+
+```yaml
+skills:
+  - firm-skill-loader-pack
+
+# Search and load skills:
+openclaw_skill_search query="security audit"
+openclaw_skill_lazy_loader skill_name=firm-security-audit
 ```
+
+## Requirements
+
+- `mcp-openclaw-extensions >= 3.0.0`

@@ -1,0 +1,4 @@
+interface:
+  display_name: "FlashFormat Local Converters"
+  short_description: "Run 5 local format converters via Python CLI"
+  default_prompt: "Use $flashformat-local-converters to convert YAML/JSON/Markdown locally."

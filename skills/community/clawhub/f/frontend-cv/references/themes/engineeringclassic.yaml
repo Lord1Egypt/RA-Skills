@@ -1,0 +1,59 @@
+meta:
+  variant: engineeringclassic
+  display_name: RenderCV Engineering Classic
+
+fonts:
+  links:
+    - https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap
+  body_stack: '"Raleway","Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif'
+  heading_stack: '"Raleway","Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif'
+  section_stack: '"Raleway","Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif'
+
+colors:
+  name: "#2a7fd3"
+  headline: "#71859b"
+  section: "#2a7fd3"
+  links: "#2a7fd3"
+  text: "#242424"
+  muted: "#555555"
+  muted_soft: "#c0b7af"
+  rule: "#9fc3ea"
+  title: "#141414"
+  subtitle: "#4d4d4d"
+  bullet: "#1f1f1f"
+
+page:
+  top: "0.7in"
+  right: "0.7in"
+  bottom: "0.7in"
+  left: "0.7in"
+
+header:
+  align: left
+  show_icons: true
+  separator: ""
+  social_display: username
+  website_display: domain
+  name_size: "29pt"
+  name_weight: 400
+  headline_size: "10pt"
+  connection_size: "9.2pt"
+  gap: "0.52cm"
+
+section:
+  title_size: "16.5pt"
+  title_weight: 400
+  space_above: "0.5cm"
+
+entry:
+  layout: right-meta
+  meta_width: "3.3cm"
+  column_gap: "0.48cm"
+  gap: "0.4cm"
+  body_size: "9.7pt"
+  meta_size: "9pt"
+  bullet: "•"
+  bullet_indent: "0.2cm"
+  bullet_text_gap: "0.34cm"
+  highlights_top: "0.1cm"
+  bullet_gap: "0.08cm"

@@ -1,0 +1,112 @@
+{
+  "user": {
+    "level": 2,
+    "xp": 240,
+    "xpToNext": 400,
+    "attributes": {
+      "physical": 2,
+      "intellectual": 0,
+      "wealth": 1,
+      "spiritual": 0,
+      "social": 0
+    }
+  },
+  "habits": [
+    {
+      "id": "mn5jkpg0ib6xaovalzk",
+      "name": "早起",
+      "type": "physical",
+      "typeName": "体力",
+      "frequency": "daily",
+      "xpReward": 50,
+      "streak": 1,
+      "lastCheckin": "2026-03-25",
+      "history": [
+        "2026-03-25"
+      ],
+      "createdAt": "2026-03-25T04:26:53.520Z"
+    },
+    {
+      "id": "mn5k2s33wuz2o0yf5",
+      "name": "家人陪伴",
+      "type": "social",
+      "typeName": "社交",
+      "frequency": "daily",
+      "xpReward": 35,
+      "streak": 0,
+      "lastCheckin": null,
+      "history": [],
+      "createdAt": "2026-03-25T04:40:56.751Z"
+    },
+    {
+      "id": "mn5k3nlfumyx9zclula",
+      "name": "阅读",
+      "type": "intellectual",
+      "typeName": "智力",
+      "frequency": "daily",
+      "xpReward": 60,
+      "streak": 0,
+      "lastCheckin": null,
+      "history": [],
+      "createdAt": "2026-03-25T04:41:37.587Z"
+    },
+    {
+      "id": "mn5kt6tsqjgdauiyjk",
+      "name": "创造",
+      "type": "wealth",
+      "typeName": "财富",
+      "frequency": "daily",
+      "xpReward": 40,
+      "streak": 1,
+      "lastCheckin": "2026-03-25",
+      "history": [
+        "2026-03-25"
+      ],
+      "createdAt": "2026-03-25T05:01:28.912Z"
+    },
+    {
+      "id": "mn5m0zo76xmnf2bleni",
+      "name": "跑步",
+      "type": "physical",
+      "typeName": "体力",
+      "frequency": "daily",
+      "xpReward": 50,
+      "streak": 1,
+      "lastCheckin": "2026-03-25",
+      "history": [
+        "2026-03-25"
+      ],
+      "createdAt": "2026-03-25T05:35:32.503Z"
+    }
+  ],
+  "achievements": [
+    {
+      "id": "first-checkin",
+      "name": "新手上路",
+      "unlockedAt": "2026-03-25T04:26:53.524Z"
+    }
+  ],
+  "checkinHistory": [
+    {
+      "habitId": "mn5jkpg0ib6xaovalzk",
+      "habitName": "早起",
+      "date": "2026-03-25",
+      "xpGained": 50,
+      "streak": 1
+    },
+    {
+      "habitId": "mn5kt6tsqjgdauiyjk",
+      "habitName": "创造",
+      "date": "2026-03-25",
+      "xpGained": 40,
+      "streak": 1
+    },
+    {
+      "habitId": "mn5m0zo76xmnf2bleni",
+      "habitName": "跑步",
+      "date": "2026-03-25",
+      "xpGained": 50,
+      "streak": 1
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "glancely"
+version = "0.3.0"
+description = "All-in-one personal tracker (diary, mood, reminders, MIT) as a single openclaw skill bundle. One dashboard, chat-driven, scaffolder for new components."
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [{name = "Junjie Yu", email = "junjieyu1001@gmail.com"}]
+requires-python = ">=3.9"
+keywords = ["openclaw", "personal", "routine", "diary", "tracker", "dashboard", "mood", "reminders"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Scheduling",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "tomli>=2.0; python_version<'3.11'",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "ruff>=0.5",
+    "build>=1.0",
+]
+diary = [
+    "google-auth>=2.20",
+    "google-auth-oauthlib>=1.0",
+    "google-api-python-client>=2.100",
+]
+
+[project.scripts]
+glancely = "glancely.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/JunjieYu95/glancely"
+Repository = "https://github.com/JunjieYu95/glancely"
+Issues = "https://github.com/JunjieYu95/glancely/issues"
+Changelog = "https://github.com/JunjieYu95/glancely/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+include = ["glancely*"]
+exclude = ["glancely.*.tests*", "glancely.*.tests.*"]
+
+[tool.setuptools.package-data]
+glancely = [
+    "py.typed",
+    "skills/**/*.toml",
+    "skills/**/*.md",
+    "skills/**/*.sql",
+    "skills/**/*.tmpl",
+    "skills/**/templates/**/*",
+    "dashboard/*.html",
+    "examples/**/*.py",
+    "examples/**/*.toml",
+    "examples/**/*.md",
+    "examples/**/*.sql",
+    "examples/**/templates/**/*",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["glancely", "examples"]
+python_files = ["test_*.py"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# Component scripts intentionally bootstrap sys.path so they can run standalone
+# (the dashboard subprocesses each stats.py). The deferred imports trigger
+# E402; the bootstrap shuffles import order and trips I001.
+"glancely/examples/*/scripts/*.py" = ["E402", "I001"]
+"glancely/examples/*/tests/*.py" = ["E402", "I001"]
+"glancely/core/*/tests/*.py" = ["E402", "I001"]
+"glancely/dashboard/build.py" = ["E402", "I001"]
+"glancely/examples/**/*.py" = ["E402", "I001"]
+"glancely/skills/scaffold_component/templates/**" = ["F", "E", "W", "I", "B", "UP"]

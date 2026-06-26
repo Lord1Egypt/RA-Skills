@@ -1,0 +1,47 @@
+# ghostprint config
+# Copy to config.yaml and fill in your keys.
+# API keys can be set as env vars: ${MY_API_KEY}
+
+providers:
+  - name: anthropic
+    base_url: https://api.anthropic.com/v1
+    api_key: ${ANTHROPIC_API_KEY}
+    model: claude-haiku-4-5
+    style: anthropic          # anthropic | openai
+    weight: 1                 # used with strategy: weighted
+
+  - name: zai
+    base_url: https://api.z.ai/api/paas/v4
+    api_key: ${ZAI_API_KEY}
+    model: glm-4-flash
+    style: openai
+    weight: 1
+
+  # Uncomment to add more:
+  # - name: openai
+  #   base_url: https://api.openai.com/v1
+  #   api_key: ${OPENAI_API_KEY}
+  #   model: gpt-4o-mini
+  #   style: openai
+  #   weight: 2
+
+  # - name: mistral
+  #   base_url: https://api.mistral.ai/v1
+  #   api_key: ${MISTRAL_API_KEY}
+  #   model: mistral-small-latest
+  #   style: openai
+
+  # - name: groq
+  #   base_url: https://api.groq.com/openai/v1
+  #   api_key: ${GROQ_API_KEY}
+  #   model: llama3-8b-8192
+  #   style: openai
+
+noise:
+  max_tokens: 60              # keep queries cheap
+  topics_file: topics.txt     # optional custom topic list (one per line)
+  strategy: random            # random | round-robin | weighted
+
+schedule:
+  base_interval_minutes: 120  # cron base interval
+  jitter_minutes: 40          # random delay added before firing (0 to N min)

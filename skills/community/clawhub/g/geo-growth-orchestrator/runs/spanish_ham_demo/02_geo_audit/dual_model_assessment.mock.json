@@ -1,0 +1,9 @@
+{
+  "mock": true,
+  "models": [
+    "DeepSeek",
+    "Doubao"
+  ],
+  "summary": "双模型 mock 评估显示共同盲区集中在本地化场景、价格渠道、种草内容和产品转化。",
+  "not_live_result": true
+}

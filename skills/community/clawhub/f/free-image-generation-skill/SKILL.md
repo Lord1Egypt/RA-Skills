@@ -1,35 +1,52 @@
 ---
-name: "Free Image Generation Skill"
-description: "Professional free image generation skill for agents. No API key required. Generate images from text with resilient retry/backoff and clean local file output...."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/free-image-generation-skill"
-sourceUrl: "https://clawhub.ai/skills/free-image-generation-skill"
+name: free-image-generation-skill
+description: Professional free image generation skill for agents. No API key required. Generate images from text with resilient retry/backoff and clean local file output. Supports free, high-volume usage patterns with responsible request pacing. Use when users request prompt-to-image generation or image bot automation.
 ---
 
 # Free Image Generation Skill
 
-> Professional free image generation skill for agents. No API key required. Generate images from text with resilient retry/backoff and clean local file output....
+No API key required.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/free-image-generation-skill`
-- **Source URL:** [https://clawhub.ai/skills/free-image-generation-skill](https://clawhub.ai/skills/free-image-generation-skill)
+Run a clean production workflow:
+1) install dependencies,
+2) generate image from prompt,
+3) save output.
 
-## Overview
+## Quick Start (Fresh Setup)
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+1. Install dependencies:
 ```bash
-hermes skills install clawhub/free-image-generation-skill
+bash scripts/setup_env.sh
 ```
+
+2. Generate one image:
+```bash
+python3 scripts/perchance_generate.py \
+  --prompt "cinematic isometric office, dusk, neon reflections" \
+  --out ./media/free-image-sample.jpg \
+  --shape square
+```
+
+## Reliability Rules
+
+- Default retries: 3
+- Backoff: built into script
+- On failure, return exact `error` and propose retry
+- Designed for free, repeated usage with responsible pacing
+- Keep usage responsible and moderate
+
+## Parameters
+
+`perchance_generate.py` supports:
+- `--prompt` (required)
+- `--out` (required)
+- `--shape` (`portrait|square|landscape`)
+- `--negative`
+- `--guidance`
+- `--retries`
+- `--timeout`
+
+## Resources
+
+- Main generator: `scripts/perchance_generate.py`
+- Dependency setup: `scripts/setup_env.sh`, `scripts/requirements.txt`

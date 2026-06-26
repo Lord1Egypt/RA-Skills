@@ -1,0 +1,19 @@
+# MIT component — calendar grid showing completed/incomplete days
+[chart]
+type = "calendar_grid"
+title = "MIT"
+
+[chart.data]
+source = "rows"
+date_field = "date"
+value_field = "completed"
+
+[chart.options]
+color_scheme = "green"
+
+[overview]
+enabled = true
+card_type = "stat"
+label = "Completion"
+data_key = "summary.completion_rate_7d"
+suffix = "%"

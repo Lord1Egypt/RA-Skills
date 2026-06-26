@@ -1,0 +1,38 @@
+{
+  "name": "Generate PDF",
+  "description": "Generate a PDF document from HTML content or a public URL. Supports custom page sizes, fonts, margins, viewport dimensions, dynamic parameter substitution, and multiple output formats.",
+  "method": "POST",
+  "endpoint": "/v1/generatePdf",
+  "base_url": "https://pdfapihub.com/api",
+  "auth": {
+    "type": "apiKey",
+    "header": "CLIENT-API-KEY",
+    "required": true
+  },
+  "parameters": {
+    "body": {
+      "content_type": "application/json",
+      "fields": [
+        { "name": "url", "type": "string", "required": false, "description": "URL of the webpage to convert to PDF" },
+        { "name": "html_content", "type": "string", "required": false, "description": "HTML content to convert to PDF. Either url or html_content must be provided." },
+        { "name": "css_content", "type": "string", "required": false, "description": "Optional CSS to apply to the HTML" },
+        { "name": "output_format", "type": "string", "required": false, "default": "url", "enum": ["url", "base64", "pdf", "binary", "file"], "description": "Output format for the generated PDF" },
+        { "name": "paper_size", "type": "string", "required": false, "default": "A4", "enum": ["A4", "A3", "A5", "Letter", "Legal", "Tabloid"], "description": "Paper size for the PDF" },
+        { "name": "landscape", "type": "boolean", "required": false, "default": false, "description": "Set to true for landscape orientation" },
+        { "name": "printBackground", "type": "boolean", "required": false, "default": true, "description": "Whether to print background graphics" },
+        { "name": "displayHeaderFooter", "type": "boolean", "required": false, "default": false, "description": "Whether to display header and footer" },
+        { "name": "preferCSSPageSize", "type": "boolean", "required": false, "default": true, "description": "Whether to prefer CSS-defined page size" },
+        { "name": "margin", "type": "object", "required": false, "description": "Custom margins with top, right, bottom, left values (e.g. '10mm')" },
+        { "name": "page_size", "type": "integer", "required": false, "description": "Maximum number of pages to generate (tier-dependent)" },
+        { "name": "paperWidth", "type": "number", "required": false, "description": "Custom paper width in pixels" },
+        { "name": "paperHeight", "type": "number", "required": false, "description": "Custom paper height in pixels" },
+        { "name": "viewPortWidth", "type": "integer", "required": false, "default": 1080, "description": "Viewport width for rendering" },
+        { "name": "viewPortHeight", "type": "integer", "required": false, "default": 720, "description": "Viewport height for rendering" },
+        { "name": "font", "type": "string", "required": false, "description": "Google Font name(s), pipe-separated (e.g. 'Roboto|Open Sans')" },
+        { "name": "wait_till", "type": "integer", "required": false, "default": 0, "description": "Time to wait in seconds before generating PDF" },
+        { "name": "dynamic_params", "type": "object", "required": false, "description": "Key-value pairs for {{placeholder}} substitution in HTML" },
+        { "name": "output_filename", "type": "string", "required": false, "description": "Custom filename for the output PDF" }
+      ]
+    }
+  }
+}

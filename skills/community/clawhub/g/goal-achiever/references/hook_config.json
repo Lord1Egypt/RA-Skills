@@ -1,0 +1,8 @@
+{
+  "_comment": "商店版 event-driven auto-run 配置表。auto_runs = 一次用户触发自动跑几个 batch。默认 1（跑完即停）。",
+  "default_auto_runs": 1,
+  "platforms": {},
+  "_on_failure": "task_failed -> 不停止流程，失败状态与原因回写至 task_result，继续推进至 Step 5 -> Step 6。",
+  "_on_goal_achieved": "workflow_status=goal_achieved -> 立即终止，忽略 remaining。",
+  "_on_user_stop": "用户说“停止” -> 将 master_task.auto_run.remaining 设为 0。"
+}

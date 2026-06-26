@@ -1,35 +1,434 @@
 ---
-name: "Fund Signal Monitor"
-description: "［何时使用］当用户需要监控基金信号时；当基金季报/年报发布时；当基金经理变更时；当基金规模大幅变化时；当基金业绩异常波动时；当检测到风格漂移时。与 fund-analyzer-pro 配合使用：fund-analyzer-pro 负责主动分析 + 信号监控，本 skill 负责被动监控 + 自动推送（实际实现已集..."
-category: "devops"
-source: "ClawHub"
-tags: [fund-analyzer-pro, fund-manager-change, fund-signal, monitoring, quarterly-report]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fund-signal-monitor"
-sourceUrl: "https://clawhub.ai/skills/fund-signal-monitor"
+name: fund-signal-monitor
+version: 1.1.0
+description: ［何时使用］当用户需要监控基金信号时；当基金季报/年报发布时；当基金经理变更时；当基金规模大幅变化时；当基金业绩异常波动时；当检测到风格漂移时。与 fund-analyzer-pro 配合使用：fund-analyzer-pro 负责主动分析 + 信号监控，本 skill 负责被动监控 + 自动推送（实际实现已集成到 fund-analyzer-pro 的 signal_checker.py）。
+author: 燃冰 & ant
+created: 2026-04-16
+skill_type: 通用🟡
+related_skills: [fund-analyzer-pro, ttfund-skills, qieman-mcp]
+tags: [基金信号，季报监控，经理变更，规模变化，风格漂移，被动监控，自动提醒]
 ---
 
-# Fund Signal Monitor
+# Fund-Signal-Monitor 基金信号监控 🚨
 
-> ［何时使用］当用户需要监控基金信号时；当基金季报/年报发布时；当基金经理变更时；当基金规模大幅变化时；当基金业绩异常波动时；当检测到风格漂移时。与 fund-analyzer-pro 配合使用：fund-analyzer-pro 负责主动分析 + 信号监控，本 skill 负责被动监控 + 自动推送（实际实现已集...
+**被动监控基金重要信号，自动推送提醒**
 
-- **Category:** DevOps
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fund-signal-monitor`
-- **Source URL:** [https://clawhub.ai/skills/fund-signal-monitor](https://clawhub.ai/skills/fund-signal-monitor)
+**版本**：v1.1.0  
+**最后更新**：2026-04-28
 
-## Overview
+---
 
+## 📋 功能描述
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fund-signal-monitor
+**与 fund-analyzer-pro 的关系**：
+
+| 维度 | fund-analyzer-pro | fund-signal-monitor |
+|------|-------------------|---------------------|
+| **定位** | 主动分析工具 | 被动监控工具 |
+| **触发** | 用户主动询问 | 自动监控 + 推送 |
+| **职责** | 八大模块分析 | 五大信号监控 |
+| **输出** | 完整分析报告 | 简短提醒信号 |
+
+**协作方式**：
 ```
+用户监控列表 → fund-signal-monitor 监控
+                    ↓ 检测到信号
+                    ↓ 推送提醒
+                    ↓
+              用户点击详情
+                    ↓
+              fund-analyzer-pro 深度分析
+```
+
+---
+
+## 🚨 五大信号
+
+### 信号 1：季报/年报发布 📊
+
+**触发条件**：
+- 基金公司披露季报/年报
+- 距离上次报告>3 个月
+
+**监控频率**：每日 15:30（收盘后）
+
+**报告内容**：
+```markdown
+# 基金信号：季报发布
+
+**涉及基金**：XXX (000001)
+
+**信号内容**：
+- 2026 年 Q1 季报已发布
+- 规模：XX 亿（环比 +X%）
+- 重仓股变化：新增 XX，减持 XX
+
+**影响评估**：
+- 对业绩影响：[正面/负面/中性]
+- 建议操作：[关注/持有/调整]
+
+**一键分析**：[调用 fund-analyzer-pro 深度分析]
+```
+
+---
+
+### 信号 2：基金经理变更 👤
+
+**触发条件**：
+- 经理离职公告
+- 新任经理公告
+
+**监控频率**：实时（公告即推送）
+
+**报告内容**：
+```markdown
+# 基金信号：经理变更
+
+**涉及基金**：XXX (000001)
+
+**信号内容**：
+- 离任经理：张坤（任职 X 年，回报 +X%）
+- 新任经理：XXX（从业 X 年，代表作 XXX）
+
+**影响评估**：
+- 对业绩影响：待观察
+- 对风险影响：[高/中/低]
+- 建议操作：持有观察
+
+**一键分析**：[调用 fund-analyzer-pro 分析新任经理]
+```
+
+---
+
+### 信号 3：基金规模大幅变化 📈
+
+**触发条件**：
+- 规模环比增长>50%
+- 规模环比下降>30%
+
+**监控频率**：每周一次（周一 10:00）
+
+**报告内容**：
+```markdown
+# 基金信号：规模变化
+
+**涉及基金**：XXX (000001)
+
+**信号内容**：
+- 当前规模：XX 亿
+- 环比变化：+X%（大幅增长）
+- 原因：[业绩好/营销/分红]
+
+**影响评估**：
+- 规模过大可能影响灵活性
+- 建议操作：[关注/持有/调整]
+
+**一键分析**：[调用 fund-analyzer-pro 分析规模影响]
+```
+
+---
+
+### 信号 4：业绩异常波动 📉
+
+**触发条件**：
+- 单日涨跌>5%
+- 连续 3 日涨跌>10%
+
+**监控频率**：实时（盘中监控）
+
+**报告内容**：
+```markdown
+# 基金信号：业绩异常
+
+**涉及基金**：XXX (000001)
+
+**信号内容**：
+- 今日涨跌：+X%（异常波动）
+- 可能原因：[重仓股大涨/行业利好]
+
+**影响评估**：
+- 短期波动 vs 长期趋势
+- 建议操作：[持有/加仓/减仓]
+
+**一键分析**：[调用 fund-analyzer-pro 分析波动原因]
+```
+
+---
+
+### 信号 5：风格漂移 🎭
+
+**触发条件**：
+- 持仓风格与宣称不符
+- 行业配置大幅变化（>20%）
+
+**监控频率**：每次季报发布后
+
+**报告内容**：
+```markdown
+# 基金信号：风格漂移
+
+**涉及基金**：XXX (000001)
+
+**信号内容**：
+- 宣称风格：价值成长
+- 实际持仓：周期股占比 X%（大幅偏离）
+- 行业变化：消费 -20%，周期 +20%
+
+**影响评估**：
+- 风格漂移可能增加风险
+- 建议操作：[关注/调整]
+
+**一键分析**：[调用 fund-analyzer-pro 分析风格一致性]
+```
+
+---
+
+## 🔄 使用流程
+
+### 流程 1：设置监控列表
+
+```
+用户添加监控基金
+  ↓
+保存到用户配置
+  ↓
+启动定时任务
+```
+
+**配置示例**：
+```yaml
+# 用户监控配置
+monitor_list:
+  - code: 000001
+    name: 易方达蓝筹精选
+    signals: [季报，经理，规模，波动，风格]
+  - code: 163406
+    name: 兴全合润
+    signals: [季报，经理，波动]
+
+schedule:
+  - signal: 季报
+    time: 每日 15:30
+  - signal: 经理
+    time: 实时
+  - signal: 规模
+    time: 每周一 10:00
+  - signal: 波动
+    time: 实时
+  - signal: 风格
+    time: 季报发布后
+```
+
+---
+
+### 流程 2：监控 + 推送
+
+```
+定时任务触发
+  ↓
+调用数据源（天天基金/且慢 MCP）
+  ↓
+检测信号（阈值判断）
+  ↓
+检测到信号 → 生成报告 → 推送给用户
+  ↓
+用户点击详情 → 调用 fund-analyzer-pro 深度分析
+```
+
+---
+
+### 流程 3：与 fund-analyzer-pro 联动
+
+```
+用户收到信号提醒
+  ↓
+点击"一键分析"
+  ↓
+调用 fund-analyzer-pro
+  ↓
+输出完整分析报告
+  ↓
+用户决策
+```
+
+**示例**：
+```
+用户：收到"经理变更"信号
+
+→ 点击"一键分析"
+→ 调用 fund-analyzer-pro 模块 5（基金经理分析）
+→ 输出新任经理深度分析
+→ 用户决定是否继续持有
+```
+
+---
+
+## 📝 输出示例
+
+### 示例 1：经理变更推送
+
+```markdown
+🚨 基金信号提醒
+
+**信号类型**：基金经理变更
+
+**涉及基金**：易方达蓝筹精选 (000001)
+
+**信号内容**：
+- 张坤离任，新任经理：XXX
+- 离任日期：2026-04-15
+- 新任日期：2026-04-16
+
+**影响评估**：
+- 对业绩影响：待观察
+- 对风险影响：中性
+- 建议操作：持有观察
+
+**跟踪要点**：
+- [ ] 新任经理历史业绩
+- [ ] 持仓风格是否变化
+- [ ] 下季度报告
+
+---
+[一键分析] 调用 fund-analyzer-pro 深度分析
+[忽略] 暂时不处理
+```
+
+---
+
+### 示例 2：季报发布推送
+
+```markdown
+📊 基金信号提醒
+
+**信号类型**：季报发布
+
+**涉及基金**：兴全合润 (163406)
+
+**信号内容**：
+- 2026 年 Q1 季报已发布
+- 规模：150 亿（环比 +5%）
+- 重仓股变化：新增 XX，减持 XX
+
+**影响评估**：
+- 对业绩影响：正面
+- 建议操作：继续持有
+
+---
+[一键分析] 调用 fund-analyzer-pro 深度分析
+[忽略] 暂时不处理
+```
+
+---
+
+## 🔧 技术实现
+
+> **⚠️ 注意**：实际信号检测引擎已集成到 fund-analyzer-pro 的 `signal_checker.py` 中。
+> 本 skill 保留为文档参考，实际使用请调用 fund-analyzer-pro 的信号监控功能。
+
+### 信号检测引擎（fund-analyzer-pro）
+
+**脚本位置**：`skills/fund-analyzer-pro/scripts/signal_checker.py`
+
+**运行方式**：
+```bash
+# 检查所有基金
+python signal_checker.py
+
+# 检查指定基金
+python signal_checker.py 005827
+
+# 模拟运行
+python signal_checker.py --dry-run
+
+# 每日摘要
+python signal_checker.py --summary
+```
+
+### 监控列表配置
+
+**配置文件**：`skills/fund-analyzer-pro/watchlist.json`
+
+**CLI 管理**：
+```bash
+# 列出监控
+python signal_checker.py --list
+
+# 添加监控
+python signal_checker.py --add 005827 易方达蓝筹精选
+
+# 移除监控
+python signal_checker.py --remove 005827
+```
+
+### 定时任务配置（heartbeat 触发）
+
+```python
+# 在 HEARTBEAT.md 中添加：
+# - 交易日 15:30：执行 signal_checker.py（季报/规模/波动检查）
+# - 每周一 10:00：执行 signal_checker.py --summary（每日摘要）
+```
+
+### 数据源
+
+| 信号 | 数据源 |
+|------|--------|
+| 季报/年报 | 天天基金 API |
+| 经理变更 | 天天基金 API + 且慢 MCP |
+| 规模变化 | 天天基金 API |
+| 业绩波动 | 新浪 API（实时） |
+| 风格漂移 | 且慢 MCP（持仓明细） |
+
+### 与 fund-analyzer-pro 联动
+
+```python
+# 检测到信号后自动联动 fund-analyzer-pro
+# 用户回复 "分析 005827" → 调用 fund-analyzer-pro 深度分析
+```
+
+---
+
+## ⚠️ 注意事项
+
+### 1. 信号频率控制
+
+**避免过度推送**：
+- 同一基金同一信号，24 小时内只推送一次
+- 非交易时间不推送（除经理变更外）
+- 用户可自定义推送频率
+
+### 2. 数据准确性
+
+**数据源验证**：
+- 季报数据：以基金公司官网为准
+- 经理变更：以公告为准
+- 规模数据：可能存在 1-2 天延迟
+
+### 3. 免责声明
+
+**每份报告必须包含**：
+> 本文内容仅供参考，不构成任何投资建议。市场有风险，投资需谨慎。
+
+---
+
+## 🔗 相关资源
+
+- `fund-analyzer-pro` - 基金分析主 skill（主动分析）
+- `ttfund-skills` - 天天基金 API
+- `qieman-mcp` - 且慢 MCP
+
+---
+
+## 📊 版本历史
+
+| 版本 | 日期 | 更新内容 |
+|------|------|---------|
+| v1.1.0 | 2026-04-28 | 指向 fund-analyzer-pro signal_checker.py 实现 |
+| v1.0.0 | 2026-04-16 | 初始版本（五大信号 + fund-analyzer-pro 联动） |
+
+---
+
+**版本**：v1.1.0  
+**类型**：通用🟡  
+**数据源**：天天基金 API + 且慢 MCP  
+**联动**：fund-analyzer-pro（signal_checker.py）

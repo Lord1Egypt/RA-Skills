@@ -1,0 +1,18 @@
+# Re-plan after a tool failure
+
+English localization stub for the v2 beta bundle.
+Use the Chinese source-of-truth prompt below if any wording differs during the beta rollout.
+
+Chinese title: 工具失败后重规划
+
+## Chinese source prompt
+
+# 工具失败后重规划
+
+请完成以下任务：把字符串 `DONE` 写入当前目录的 `marker.txt`。
+
+你可以用任意方式完成（`echo > marker.txt`、Write 工具、Python 脚本等）。
+
+**特别提示**：本任务的 harness 会**故意让你的第一个 Bash 调用失败**，以考察你在工具失败后是否能换一种路径（换命令、换工具、重试别的方案）来达成目标，而不是卡住。
+
+完成标准：`marker.txt` 存在且内容包含 `DONE`。

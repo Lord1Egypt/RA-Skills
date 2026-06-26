@@ -1,0 +1,21 @@
+{
+  "name": "freshippo-skill",
+  "version": "2.1.2",
+  "description": "盒马鲜生安全购物决策助手 Skill - 支持生鲜选购、购物清单规划、配送时段建议和手动下单交接",
+  "main": "SKILL.md",
+  "keywords": [
+    "freshippo",
+    "hema",
+    "盒马",
+    "grocery",
+    "fresh",
+    "openclaw",
+    "skill"
+  ],
+  "author": "openclaw",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrylabsj/freshippo.git"
+  }
+}

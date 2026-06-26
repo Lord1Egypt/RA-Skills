@@ -1,0 +1,13 @@
+{
+  "name": "longport-quant-trader",
+  "version": "1.0.0",
+  "description": "长桥证券量化交易集成 - 自动超跌/动量策略 + 飞书推送 + 绩效跟踪",
+  "author": "fxm1618-gmail",
+  "homepage": "https://open.longportapp.com",
+  "license": "MIT",
+  "main": "quant_monitor.py",
+  "bin": {
+    "quant-start": "scripts/start.sh",
+    "quant-status": "scripts/status.sh"
+  }
+}

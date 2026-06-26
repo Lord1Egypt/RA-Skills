@@ -1,35 +1,53 @@
 ---
-name: "funasr-punctuation-restore"
-description: "当用户想要**给文本恢复标点**、**ASR 转录结果加标点**、**无标点文本加标点**、**转录文本整理标点**、**批量给文件或目录加标点**时自动触发。 使用 FunASR ct-punc 模型，为一段文本、单个记事本文件（.txt）、或整个目录一键恢复中文/英文标点符号。 支持直接输入文本、单个文件路径..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/funasr-punctuation-restore"
-sourceUrl: "https://clawhub.ai/skills/funasr-punctuation-restore"
+name: Funasr-Punctuation-Restore
+description: |
+  当用户想要**给文本恢复标点**、**ASR 转录结果加标点**、**无标点文本加标点**、**转录文本整理标点**、**批量给文件或目录加标点**时自动触发。
+  使用 FunASR ct-punc 模型，为一段文本、单个记事本文件（.txt）、或整个目录一键恢复中文/英文标点符号。
+  支持直接输入文本、单个文件路径、或整个文件夹路径（目录模式会自动在同级创建 _punctuated 镜像目录，原文件/目录不变）。
+  
+  【重要约束】只处理文本标点恢复，不处理音频转录、翻译或其他 NLP 任务。
+  
+  常见触发口语（越多越好）：
+  - “帮我给这段文本加标点”
+  - “把这个转录结果恢复标点”
+  - “ASR 文本加标点”
+  - “这段话没有标点，帮我整理一下”
+  - “给这个 txt 文件加标点”
+  - “批量给文件夹里的所有文本文件加标点”
+  - “恢复这个文本的标点符号”
+  - “FunASR 加标点”
+  - “把这个无标点文本变正常”
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python
+    user-invocable: true
 ---
 
-# funasr-punctuation-restore
+# Funasr-Punctuation-Restore
 
-> 当用户想要**给文本恢复标点**、**ASR 转录结果加标点**、**无标点文本加标点**、**转录文本整理标点**、**批量给文件或目录加标点**时自动触发。 使用 FunASR ct-punc 模型，为一段文本、单个记事本文件（.txt）、或整个目录一键恢复中文/英文标点符号。 支持直接输入文本、单个文件路径...
+**功能**：使用 FunASR ct-punc 模型一键恢复标点（支持文本/文件/目录）。目录模式会在同级创建结构完全一致的 `_punctuated` 镜像目录（原目录不变）。支持 GPU 加速 + 自动清理显存。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/funasr-punctuation-restore`
-- **Source URL:** [https://clawhub.ai/skills/funasr-punctuation-restore](https://clawhub.ai/skills/funasr-punctuation-restore)
+### 触发时机（Triggers）
+- 用户提供一段没有标点或标点不全的文本，要求“加标点”“恢复标点”“整理标点”。
+- 用户提供 .txt 文件路径或整个文件夹，要求批量处理。
+- 常用于 ASR（语音转文字）后的后处理场景。
+- 支持直接粘贴文本、单个文件、或整个目录。
 
-## Overview
+### 支持的模型（推荐顺序）
+1. **punc_ct-transformer_cn-en-common-vocab471067-large** → 基于 Transformer 的中英文混合文本标点恢复模型，适合 ASR 结果自动加标点。
 
+### 参数提取指南
+当决定调用此技能时，请从用户上下文中提取以下参数：
+1. **`--text "<文本内容>"`** （如果用户直接提供了文本）
+2. **`--file "<文件路径>"`** （如果用户提供了单个 .txt 文件路径）
+3. **`--dir "<目录路径>"`** （如果用户提供了文件夹路径，会批量处理）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/funasr-punctuation-restore
-```
+### 执行步骤
+1. **解析输入**：识别用户是提供了文本、单个文件，还是整个目录。
+2. **默认目标**：若未指定输出路径，默认在输入同级创建 `[原文件名]_punctuated.txt` 或 `_punctuated` 目录（原文件/目录保持不变）。
+3. **调用命令**：使用以下兼容性命令启动脚本（优先 python3，失败则 python）。脚本会自动创建虚拟环境、检测 GPU 并安装对应版本。
+
+   ```bash
+   (python3 scripts/punctuation_restore.py (--text "<文本内容>" | --file "<文件路径>" | --dir "<目录路径>")) || (python scripts/punctuation_restore.py (--text "<文本内容>" | --file "<文件路径>" | --dir "<目录路径>"))

@@ -1,0 +1,15 @@
+name: gateway-monitor
+description: OpenClaw Gateway 监控面板 v1.0.1 - 实时监控服务状态、日志检索、告警系统、一键还原配置、快照捕获
+version: 1.0.3
+author: 9 哥
+repository: github.com/yes999zc/gateway-monitor
+keywords:
+  - gateway
+  - monitor
+  - dashboard
+  - log
+  - alert
+  - restore
+build:
+  output: server.js
+  entry: server.js

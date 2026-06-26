@@ -1,0 +1,19 @@
+{
+  "slug": "game-design-document-skill",
+  "name": "Game Design Document Skill",
+  "version": "0.1.0",
+  "tags": [
+    "game",
+    "game-design-document",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Game Design",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-24",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

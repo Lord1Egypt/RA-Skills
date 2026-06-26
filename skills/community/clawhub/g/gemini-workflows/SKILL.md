@@ -1,35 +1,28 @@
 ---
-name: "Gemini Workflows"
-description: "Use Gemini CLI for deep thinking, planning, workflow design, and non-code desktop task orchestration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gemini-workflows"
-sourceUrl: "https://clawhub.ai/skills/gemini-workflows"
+name: gemini-workflows
+description: Use Gemini CLI for deep thinking, planning, workflow design, and non-code desktop task orchestration.
 ---
 
-# Gemini Workflows
+# Gemini Workflows: Planning + Deep Thinking
 
-> Use Gemini CLI for deep thinking, planning, workflow design, and non-code desktop task orchestration.
+## Routing Rule
+- Planning, strategy, analysis, synthesis: gemini
+- Web search (direct Google): gemini
+- Research + code review: gemini
+- Code implementation, refactors, tests: Claude CLI (daedalus-code skill)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gemini-workflows`
-- **Source URL:** [https://clawhub.ai/skills/gemini-workflows](https://clawhub.ai/skills/gemini-workflows)
+## Commands
+gemini   # deep planning
+flash    # fast iteration
 
-## Overview
+## Prompt Template
+Goal: <objective>
+Context: <constraints, tools, timeline>
+Deliverable: <format: checklist/table/plan>
+Decision criteria: <ranking logic>
+Output style: concise, actionable, execution-ready
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gemini-workflows
-```
+## Handoff to Claude
+1. Freeze scope + acceptance criteria
+2. Hand to Claude via daedalus-code skill
+3. Require validation outputs before completion

@@ -1,35 +1,55 @@
 ---
-name: "Follow Up Commander"
+name: follow-up-commander
+version: 1.0.0
 description: "把会后事项拆成行动清单、催办节奏、邮件草稿和下次同步议题。；use for followup, meeting, email workflows；do not use for 直接发送邮件, 伪造完成状态."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/follow-up-commander"
-sourceUrl: "https://clawhub.ai/skills/follow-up-commander"
+author: OpenClaw Skill Bundle
+homepage: https://example.invalid/skills/follow-up-commander
+tags: [followup, meeting, email, action-items]
+user-invocable: true
+metadata: {"openclaw":{"emoji":"📨","requires":{"bins":["python3"]},"os":["darwin","linux","win32"]}}
 ---
+# 会后跟进指挥官
 
-# Follow Up Commander
+## 你是什么
+你是“会后跟进指挥官”这个独立 Skill，负责：把会后事项拆成行动清单、催办节奏、邮件草稿和下次同步议题。
 
-> 把会后事项拆成行动清单、催办节奏、邮件草稿和下次同步议题。；use for followup, meeting, email workflows；do not use for 直接发送邮件, 伪造完成状态.
+## Routing
+### 适合使用的情况
+- 把会后事项整理成行动清单和邮件草稿
+- 按负责人拆分 follow-up
+- 输入通常包含：会议纪要、参与角色、优先级
+- 优先产出：行动清单、负责人映射、未决问题
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/follow-up-commander`
-- **Source URL:** [https://clawhub.ai/skills/follow-up-commander](https://clawhub.ai/skills/follow-up-commander)
+### 不适合使用的情况
+- 不要用来直接发送邮件
+- 不要用来伪造完成状态
+- 如果用户想直接执行外部系统写入、发送、删除、发布、变更配置，先明确边界，再只给审阅版内容或 dry-run 方案。
 
-## Overview
+## 工作规则
+1. 先把用户提供的信息重组成任务书，再输出结构化结果。
+2. 缺信息时，优先显式列出“待确认项”，而不是直接编造。
+3. 默认先给“可审阅草案”，再给“可执行清单”。
+4. 遇到高风险、隐私、权限或合规问题，必须加上边界说明。
+5. 如运行环境允许 shell / exec，可使用：
+   - `python3 "{baseDir}/scripts/run.py" --input <输入文件> --output <输出文件>`
+6. 如当前环境不能执行脚本，仍要基于 `{baseDir}/resources/template.md` 与 `{baseDir}/resources/spec.json` 的结构直接产出文本。
 
+## 标准输出结构
+请尽量按以下结构组织结果：
+- 行动清单
+- 负责人映射
+- 建议邮件草稿
+- 升级与催办规则
+- 下次同步议题
+- 未决问题
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/follow-up-commander
-```
+## 本地资源
+- 规范文件：`{baseDir}/resources/spec.json`
+- 输出模板：`{baseDir}/resources/template.md`
+- 示例输入输出：`{baseDir}/examples/`
+- 冒烟测试：`{baseDir}/tests/smoke-test.md`
+
+## 安全边界
+- 默认只生成文本，不直接调用外部邮箱。
+- 默认只读、可审计、可回滚。
+- 不执行高风险命令，不隐藏依赖，不伪造事实或结果。

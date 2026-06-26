@@ -1,0 +1,91 @@
+{
+  "data_sources": [
+    {"name": "WHO Global Health Observatory", "url": "https://www.who.int/data/gho", "coverage": "194 countries, 1000+ indicators", "type": "official"},
+    {"name": "CDC Data & Statistics", "url": "https://www.cdc.gov/datastatistics/", "coverage": "US + global disease surveillance", "type": "official"},
+    {"name": "ClinicalTrials.gov", "url": "https://clinicaltrials.gov/", "coverage": "480K+ trials in 220 countries", "type": "trial_registry"},
+    {"name": "EU Clinical Trials Register", "url": "https://www.clinicaltrialsregister.eu/", "coverage": "EU/EEA trials, 40K+ records", "type": "trial_registry"},
+    {"name": "PubMed / MEDLINE", "url": "https://pubmed.ncbi.nlm.nih.gov/", "coverage": "37M+ biomedical citations", "type": "literature"},
+    {"name": "Our World in Data — Health", "url": "https://ourworldindata.org/health", "coverage": "Global health trends, interactive", "type": "analytics"},
+    {"name": "IHME Global Burden of Disease", "url": "https://www.healthdata.org/gbd", "coverage": "369 diseases, 204 countries", "type": "analytics"},
+    {"name": "FDA Drug Approvals", "url": "https://www.fda.gov/drugs", "coverage": "US drug approval database", "type": "regulatory"},
+    {"name": "EMA Medicines", "url": "https://www.ema.europa.eu/en/medicines", "coverage": "EU drug approvals", "type": "regulatory"},
+    {"name": "Pharmaceutical Intelligence — Evaluate Pharma", "url": "https://www.evaluate.com/", "coverage": "Drug pipeline, market forecasts", "type": "commercial"},
+    {"name": "World Bank Health Data", "url": "https://data.worldbank.org/topic/health", "coverage": "Health expenditure, outcomes", "type": "economic"},
+    {"name": "UNICEF Data", "url": "https://data.unicef.org/", "coverage": "Child & maternal health", "type": "official"}
+  ],
+  "disease_categories": [
+    {
+      "id": "infectious",
+      "name": "Infectious Diseases",
+      "subs": ["COVID-19 variants", "Influenza strains", "Tuberculosis", "Malaria", "HIV/AIDS", "Antimicrobial Resistance (AMR)", "Emerging zoonotic diseases"],
+      "priority": "PANDEMIC"
+    },
+    {
+      "id": "oncology",
+      "name": "Oncology",
+      "subs": ["Solid tumors", "Hematologic malignancies", "Immunotherapy", "Liquid biopsy", "CAR-T", "mRNA cancer vaccines"],
+      "priority": "HIGH"
+    },
+    {
+      "id": "cardiovascular",
+      "name": "Cardiovascular & Metabolic",
+      "subs": ["Hypertension", "Diabetes (Type 1/2)", "Obesity / GLP-1", "Heart failure", "Stroke prevention"],
+      "priority": "HIGH"
+    },
+    {
+      "id": "neurology",
+      "name": "Neurology & Mental Health",
+      "subs": ["Alzheimer's / dementia", "Parkinson's", "Depression & anxiety", "Psychedelic therapy", "ADHD", "Brain-computer interface"],
+      "priority": "HIGH"
+    },
+    {
+      "id": "rare_disease",
+      "name": "Rare & Genetic Diseases",
+      "subs": ["Gene therapy (AAV/lenti)", "CRISPR therapeutics", "siRNA/ASO", "Orphan drug designation", "Newborn screening"],
+      "priority": "MEDIUM"
+    },
+    {
+      "id": "aging_longevity",
+      "name": "Aging & Longevity Science",
+      "subs": ["Senolytics", "NAD+ / NMN", "Epigenetic clocks", "Metformin / Rapamycin", "Telomere biology", "Caloric restriction mimetics"],
+      "priority": "EMERGING"
+    },
+    {
+      "id": "digital_health",
+      "name": "Digital Health & MedTech",
+      "subs": ["AI diagnostics (radiology/pathology)", "Wearables & biosensors", "Telemedicine platforms", "Digital therapeutics (DTx)", "Surgical robotics"],
+      "priority": "HIGH"
+    },
+    {
+      "id": "vaccine",
+      "name": "Vaccine & Immunotherapy",
+      "subs": ["mRNA platform", "Universal flu vaccine", "Cancer vaccines", "Adjuvant technology", "Cold chain logistics"],
+      "priority": "HIGH"
+    },
+    {
+      "id": "global_health_policy",
+      "name": "Global Health Policy & Systems",
+      "subs": ["Universal Health Coverage", "Pandemic preparedness treaty", "Drug pricing & access", "Health workforce migration", "Climate-health nexus"],
+      "priority": "HIGH"
+    }
+  ],
+  "drug_development_phases": {
+    "preclinical": {"description": "Lab/animal testing", "duration": "1-3 years", "success_rate": "~0.1% from discovery"},
+    "phase1": {"description": "Safety in healthy volunteers (20-100)", "duration": "1-2 years", "success_rate": "~70%"},
+    "phase2": {"description": "Efficacy & side effects (100-300)", "duration": "2-3 years", "success_rate": "~33%"},
+    "phase3": {"description": "Large-scale confirmatory (300-3000+)", "duration": "3-5 years", "success_rate": "~25-30%"},
+    "nda_review": {"description": "Regulatory review (FDA/EMA/etc)", "duration": "6-12 months", "success_rate": "~85%"}
+  },
+  "health_systems_comparison": {
+    "countries": [
+      {"code": "US", "system": "Mixed (private insurance dominant)", "expenditure_gdp_pct": 17.8, "universal": false},
+      {"code": "UK", "system": "Beveridge (NHS, tax-funded)", "expenditure_gdp_pct": 11.9, "universal": true},
+      {"code": "DE", "system": "Bismarck (multi-payer social insurance)", "expenditure_gdp_pct": 12.8, "universal": true},
+      {"code": "CN", "system": "Social health insurance (urban/rural)", "expenditure_gdp_pct": 6.5, "universal": "Near-universal"},
+      {"code": "SG", "system": "3M: Medisave/MediShield/MediFund", "expenditure_gdp_pct": 4.1, "universal": true},
+      {"code": "JP", "system": "Universal Statutory Health Insurance", "expenditure_gdp_pct": 10.9, "universal": true},
+      {"code": "IN", "system": "Ayushman Bharat + mixed", "expenditure_gdp_pct": 3.0, "universal": "Partial"}
+    ]
+  }
+}
+（内容由AI生成，仅供参考）

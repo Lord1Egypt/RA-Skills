@@ -1,0 +1,10 @@
+{
+  "name": "full-webpage-screenshot",
+  "version": "1.0.0",
+  "description": "Full page screenshot with lazy-load support",
+  "main": "screenshot.js",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^22.0.0"
+  }
+}

@@ -1,0 +1,23 @@
+id: b08
+track: B
+title_zh: 估算月活 10 万 AI 投标产品的云服务器成本
+category: plan
+difficulty: medium
+timeout_seconds: 180
+dimensions:
+  primary: brain
+  secondary:
+  - meat
+evaluators:
+- type: llm_judge
+  weight: 1.0
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  judge_dimensions:
+  - brain
+  - meat
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 5
+title_en: Estimate server cost for 100k monthly active users

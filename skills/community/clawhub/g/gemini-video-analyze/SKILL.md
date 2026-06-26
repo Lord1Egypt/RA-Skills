@@ -1,35 +1,29 @@
 ---
-name: "gemini video analyze"
-description: "Send a public video URL directly to a Google Gemini model for analysis. Use when Codex must summarize a video, answer questions about video content, or extra..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gemini-video-analyze"
-sourceUrl: "https://clawhub.ai/skills/gemini-video-analyze"
+name: google-video-url-analysis
+description: Send a public video URL directly to a Google Gemini model for analysis. Use when Codex must summarize a video, answer questions about video content, or extract key points from a URL without local download or file upload steps.
 ---
 
-# gemini video analyze
+# Google Video Url Analysis
 
-> Send a public video URL directly to a Google Gemini model for analysis. Use when Codex must summarize a video, answer questions about video content, or extra...
+Use `scripts/gemini_video_url_analyzer.py` for deterministic Gemini calls instead of ad-hoc API snippets.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gemini-video-analyze`
-- **Source URL:** [https://clawhub.ai/skills/gemini-video-analyze](https://clawhub.ai/skills/gemini-video-analyze)
+## Workflow
 
-## Overview
+1. Set an API key:
+   - `GEMINI_API_KEY` (preferred), or
+   - `GOOGLE_API_KEY`
+2. Run the analyzer with a public video URL supported by Gemini as direct URI input.
+3. Provide a task-specific prompt (summary, timeline extraction, Q&A, moderation, etc.).
+4. Inspect the text output.
 
+## Command Guide
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gemini-video-analyze
-```
+- Basic analysis:
+  - `python scripts/gemini_video_url_analyzer.py --video-url "https://www.youtube.com/watch?v=..." --prompt "Summarize in 5 bullets and list important timestamps."`
+- Override model:
+  - `python scripts/gemini_video_url_analyzer.py --video-url "<url>" --model "gemini-2.5-pro" --prompt "Produce a scene-by-scene report."`
+
+## Operational Rules
+
+- Require a publicly accessible URL.
+- Prefer concise, explicit prompts with concrete output constraints.

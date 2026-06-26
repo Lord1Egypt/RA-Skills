@@ -1,0 +1,22 @@
+# GitHub repos to watch for new releases
+# Format: owner/repo (one per line)
+
+# OpenClaw ecosystem
+openclaw/openclaw
+
+# CLI tools I use
+BurntSushi/ripgrep
+sharkdp/fd
+junegunn/fzf
+jesseduffield/lazygit
+
+# AI/ML
+moonshine-ai/moonshine
+openai/codex
+anthropics/courses
+
+# Dev tools
+yt-dlp/yt-dlp
+jgm/pandoc
+astral-sh/uv
+nodejs/node

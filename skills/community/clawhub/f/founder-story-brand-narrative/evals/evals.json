@@ -1,0 +1,23 @@
+{
+  "skill_name": "founder-story-brand-narrative",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell handcrafted leather bags and wallets on our Shopify store. The founder is the sole maker and has been doing this for 8 years. We have an About page but it reads generic. I want a proper founder story and brand narrative we can use on the About page, and a short block for our product pages so people know who’s behind the product. Everything in English and suitable for our independent DTC site.",
+      "expected_output": "A full founder-story and brand-narrative output: summary (gaps, narrative spine, placements, tone), placement map (About + PDP), narrative framework (origin, mission, process, for whom, values), and copy deliverables including About page sections and a short PDP 'from the founder' block; all in English with DTC terminology (PDP, hero, CTA, trust signals, etc.).",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I run a small DTC brand selling homemade hot sauce and small-batch condiments. The story is: family recipe, started in the home kitchen, now we have a small commercial kitchen. We need a founder story for our brand page and a one-liner for the homepage hero. Use professional e-commerce / independent store language.",
+      "expected_output": "Structured output with summary, placement map (brand page + homepage hero), narrative framework tailored to food/craft origin, and copy deliverables: full brand-page narrative (sections, word-count guidance) and 1–2 hero headline + sub options; consistent DTC terms (About/Brand page, hero, CTA, value proposition).",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We’re an artisan ceramic tableware brand, founder-led, selling on our own site. I need help with: 1) Where should the founder story appear on the site? 2) A short 'why we make this' block for product detail pages. 3) One line we could put on packaging or in the box. Keep it all in English and use proper terms for direct-to-consumer / independent store.",
+      "expected_output": "Placement map for About, PDP, and packaging; narrative framework (origin, craft, mission); copy deliverables including PDP 'why we make this' block (2–4 sentences, 2 options) and 1–2 packaging/insert lines; summary with next steps; professional DTC/independent-store terminology throughout.",
+      "files": []
+    }
+  ]
+}

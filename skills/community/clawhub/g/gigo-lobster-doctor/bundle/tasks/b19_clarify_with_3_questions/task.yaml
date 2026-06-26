@@ -1,0 +1,23 @@
+id: b19
+track: B
+title_zh: 用 3 个澄清问题把模糊需求收敛
+category: plan
+difficulty: medium
+timeout_seconds: 180
+dimensions:
+  primary: brain
+  secondary:
+  - soul
+evaluators:
+- type: llm_judge
+  weight: 1.0
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  judge_dimensions:
+  - brain
+  - soul
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 3
+title_en: Use three clarifying questions to converge the request

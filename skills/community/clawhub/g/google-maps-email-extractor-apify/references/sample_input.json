@@ -1,0 +1,13 @@
+{
+  "searchStringsArray": [
+    "wedding photographer"
+  ],
+  "locationQuery": "Austin, Texas, USA",
+  "maxCrawledPlacesPerSearch": 25,
+  "contactResultMode": "emailsOnly",
+  "contactPagesLimit": 2,
+  "includePersonalData": true,
+  "website": "withWebsite",
+  "skipClosedPlaces": true,
+  "language": "en"
+}

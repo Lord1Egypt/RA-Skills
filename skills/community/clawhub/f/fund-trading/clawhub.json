@@ -1,0 +1,52 @@
+{
+  "name": "fund-trading",
+  "tagline": "基金模拟交易工具，真实基金净值，虚拟资金交易",
+  "description": "Fund Trading Skill 是一个基金模拟交易工具，支持账户管理、基金查询、申购赎回、资产查询等功能。【重要声明：真实基金净值和行情数据，虚拟资金交易，仅供学习和测试】使用 OAuth 2.0 安全认证，Token 自动刷新，数据本地持久化。同时提供 Python 和 TypeScript 两个版本，可通过 pip 或 npm 安装。",
+  "category": "finance",
+  "tags": [
+    "fund",
+    "trading",
+    "investment",
+    "finance",
+    "基金",
+    "交易",
+    "投资",
+    "理财",
+    "模拟交易",
+    "虚拟资金"
+  ],
+  "version": "1.0.2",
+  "license": "MIT",
+  "pricing": "free",
+  "author": {
+    "name": "weiqitong",
+    "email": "weiqitong@nicaifu.com"
+  },
+  "support_url": "https://github.com/weiqitong/fund-trading-skill/issues",
+  "homepage": "https://github.com/weiqitong/fund-trading-skill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weiqitong/fund-trading-skill.git"
+  },
+  "keywords": [
+    "fund",
+    "trading",
+    "investment",
+    "finance",
+    "基金",
+    "交易",
+    "投资",
+    "理财",
+    "openclaw",
+    "opencode",
+    "skill"
+  ],
+  "requirements": {
+    "python": ">=3.8",
+    "node": ">=16.0.0"
+  },
+  "install": {
+    "pip": "pip install fund-trading-skill",
+    "npm": "npm install -g fund-trading-skill"
+  }
+}

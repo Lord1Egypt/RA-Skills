@@ -1,35 +1,57 @@
 ---
-name: "Github Actions Gen"
+name: "github-actions-gen"
+version: "3.0.0"
 description: "Generate GitHub Actions workflow YAML files for CI/CD. Use when setting up automated pipelines."
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/github-actions-gen"
-sourceUrl: "https://clawhub.ai/skills/github-actions-gen"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
 ---
 
-# Github Actions Gen
+# github-actions-gen
 
-> Generate GitHub Actions workflow YAML files for CI/CD. Use when setting up automated pipelines.
+Generate GitHub Actions workflow YAML files for CI/CD. Use when setting up automated pipelines.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/github-actions-gen`
-- **Source URL:** [https://clawhub.ai/skills/github-actions-gen](https://clawhub.ai/skills/github-actions-gen)
+## Commands
 
-## Overview
+### `create`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/github-actions-gen
+scripts/script.sh create <type>
 ```
+
+### `template`
+
+```bash
+scripts/script.sh template <language>
+```
+
+### `lint`
+
+```bash
+scripts/script.sh lint <file>
+```
+
+### `list`
+
+```bash
+scripts/script.sh list
+```
+
+### `optimize`
+
+```bash
+scripts/script.sh optimize <file>
+```
+
+### `secrets`
+
+```bash
+scripts/script.sh secrets <file>
+```
+
+## Data Storage
+
+Data stored in `~/.local/share/github-actions-gen/`.
+
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

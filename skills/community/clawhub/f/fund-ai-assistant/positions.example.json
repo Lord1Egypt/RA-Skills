@@ -1,0 +1,14 @@
+{
+  "_comment": "示例持仓文件。请删除本注释并填入你自己的实际持仓。",
+  "_structure": {
+    "基金代码": [
+      {"date": "YYYY-MM-DD", "type": "buy", "quantity": 份额数量, "price": 买入价格},
+      {"date": "YYYY-MM-DD", "type": "sell", "quantity": 卖出份额, "price": 卖出价格}
+    ]
+  },
+  "_example": {
+    "000001": [
+      {"date": "2026-01-01", "type": "buy", "quantity": 500, "price": 2.1234}
+    ]
+  }
+}

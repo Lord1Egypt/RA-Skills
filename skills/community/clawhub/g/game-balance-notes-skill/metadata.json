@@ -1,0 +1,19 @@
+{
+  "slug": "game-balance-notes-skill",
+  "name": "Game Balance Notes Skill",
+  "version": "0.1.0",
+  "tags": [
+    "game",
+    "game-balance-notes",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Game Design",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-25",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

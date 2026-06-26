@@ -1,35 +1,153 @@
 ---
-name: "Gamified Habits"
-description: "游戏化习惯养成助手 - 用游戏化的方式培养好习惯，支持打卡、XP 升级、属性面板"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gamified-habits"
-sourceUrl: "https://clawhub.ai/skills/gamified-habits"
+name: gamified-habits
+description: 游戏化习惯养成助手 - 用游戏化的方式培养好习惯，支持打卡、XP 升级、属性面板
+version: 1.0.0
+author: 万万粥
+license: MIT-0
+triggers:
+  - "创建习惯"
+  - "删除习惯"
+  - "习惯列表"
+  - "打卡"
+  - "我起床了"
+  - "我跑步了"
+  - "我读书了"
+  - "看看我的属性"
+  - "我的属性"
+  - "属性面板"
+  - "打卡记录"
+  - "成就列表"
+  - "habits"
+permissions:
+  - exec
 ---
 
-# Gamified Habits
+# 🎮 游戏化习惯养成 Skill
 
-> 游戏化习惯养成助手 - 用游戏化的方式培养好习惯，支持打卡、XP 升级、属性面板
+将习惯养成游戏化的 OpenClaw Skill，让坚持变得有趣！
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gamified-habits`
-- **Source URL:** [https://clawhub.ai/skills/gamified-habits](https://clawhub.ai/skills/gamified-habits)
+## 功能特性
 
-## Overview
+### 核心功能
+- ✅ 习惯管理（创建/删除/列表）
+- ✅ 打卡系统（命令行 + 自然语言）
+- ✅ XP 经验值系统（含连击加成）
+- ✅ 等级系统（升级成长）
+- ✅ 五维属性（体力/智力/财富/心灵/社交）
+- ✅ 成就系统
+- ✅ 数据持久化（本地 JSON 存储）
 
+### 🎮 游戏化功能（Phase 1+2）
+- ⚔️ **战斗故事**：每次打卡生成独特的战斗/冒险描述
+- 🔥 **连击称号**：新手冒险者 → 不朽传说
+- 👹 **Boss 战**：完成所有今日习惯后触发 Boss 战
+- 📖 **冒险日记**：自动生成每日冒险日志
+- 🎁 **胜利奖励**：击败 Boss 获得额外 XP 奖励
+- 🏆 **成就系统**：解锁各种成就徽章
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 🎨 自定义描述
+- 创建习惯时可自定义描述：`--desc "击败赖床恶魔"`
+- 自定义成功描述：`--success "你战胜了睡意"`
+
+## 使用方式
+
+### 命令行方式
 ```bash
-hermes skills install clawhub/gamified-habits
+habits create <名称> [类型] [--desc "描述"] [--success "成功描述"]
+                        # 创建习惯（支持自定义描述）
+habits delete <名称>           # 删除习惯
+habits list                    # 查看列表
+habits checkin <名称>          # 打卡（生成战斗故事）
+habits status                  # 查看属性面板
+habits history [天数]          # 查看历史
+habits achievements            # 查看成就
+habits whoami                  # 查看当前用户
+habits boss                    # 检查 Boss 战
+habits diary [read]            # 生成/查看今日日记
 ```
+
+### 自然语言方式
+- "创建一个早起习惯"
+- "我起床了" → 自动打卡
+- "我跑步了" → 自动打卡
+- "看看我的属性" → 显示面板
+- "有什么成就" → 查看成就
+
+## 🎯 多用户支持
+
+系统会**自动识别用户**，根据 OpenClaw 渠道和账号隔离数据：
+
+- 万万（钉钉）：`dingtalk-0124046821484330`
+- 万万（企业微信）：`wecom-xxx`
+- 其他用户：自动分配独立数据文件
+
+每个用户的数据完全隔离，互不干扰。
+
+### 自然语言方式
+- "创建一个早起习惯"
+- "我起床了" → 自动打卡
+- "我跑步了" → 自动打卡
+- "看看我的属性" → 显示面板
+- "有什么成就" → 查看成就
+
+## 项目位置
+
+- 技能目录：`~/.openclaw/skills/gamified-habits/`
+- CLI 入口：`~/.openclaw/skills/gamified-habits/bin/habits.js`
+- 数据存储：`~/.gamified-habits/user-data.json`
+
+## 习惯类型
+
+| 类型 | 属性 | 示例习惯 |
+|------|------|---------|
+| physical | 体力 | 早起、跑步、健身 |
+| intellectual | 智力 | 阅读、学习、写作 |
+| wealth | 财富 | 储蓄、记账、理财 |
+| spiritual | 心灵 | 冥想、日记、感恩 |
+| social | 社交 | 聚会、networking |
+
+## 等级系统
+
+升级所需 XP 公式：`Level_N = N² × 100`
+
+- Lv.1: 0-100 XP
+- Lv.2: 100-400 XP
+- Lv.3: 400-900 XP
+- Lv.4: 900-1600 XP
+- Lv.5: 1600-2500 XP
+
+## 连击加成
+
+- 1-3 天：1.0x
+- 4-7 天：1.1x
+- 8-14 天：1.2x
+- 15-30 天：1.5x
+- 30+ 天：2.0x
+
+## 示例对话
+
+**用户**: 创建一个早起习惯
+**Skill**: ✅ 已创建习惯「早起」
+        类型：体力 | 频率：每日 | 奖励：50 XP
+
+**用户**: 我起床了
+**Skill**: ✅ 「早起」打卡成功！
+        +55 XP (连击加成 x1.1) | 连击 5 天 🔥
+        💪 体力 +1，当前等级 Lv.3 (280/500 XP)
+
+**用户**: 看看我的属性
+**Skill**: 🎯 Lv.5 自律勇者 (1680/2500 XP)
+        
+        💪 体力：72  ████████░░
+        🧠 智力：85  █████████░
+        💰 财富：60  ██████░░░░
+        😌 心灵：55  █████░░░░░
+        🤝 社交：48  ████░░░░░░
+        
+        🔥 当前连击：早起 5 天，跑步 3 天
+
+## 开发信息
+
+- Phase 1 MVP: 基础习惯管理 + 打卡 + XP 系统
+- Phase 2: 游戏化增强 + 自然语言优化
+- Phase 3: 社交功能 + 随机事件

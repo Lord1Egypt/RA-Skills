@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全栈架构导师 - 执行状态</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>全栈架构导师 - 执行状态</h1>
+        <nav>
+            <ul>
+                <li><a href="#dashboard">仪表盘</a></li>
+                <li><a href="#prd-files">PRD文件</a></li>
+                <li><a href="#execution-logs">执行日志</a></li>
+                <li><a href="#patterns">模式库</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="dashboard">
+            <h2>仪表盘</h2>
+            <div class="dashboard-cards">
+                <div class="card">
+                    <h3>PRD文件</h3>
+                    <div class="card-content">
+                        <span id="prd-count">0</span> 个文件
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>执行状态</h3>
+                    <div class="card-content">
+                        <span id="execution-status">未执行</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>模式数量</h3>
+                    <div class="card-content">
+                        <span id="pattern-count">0</span> 个模式
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>最近执行</h3>
+                    <div class="card-content">
+                        <span id="last-execution">从未执行</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="prd-files">
+            <h2>PRD文件</h2>
+            <div class="file-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>文件名</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="prd-file-list">
+                        <tr>
+                            <td colspan="3" class="empty-state">暂无PRD文件</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="execution-logs">
+            <h2>执行日志</h2>
+            <div class="log-container">
+                <pre id="execution-log-content">加载中...</pre>
+            </div>
+        </section>
+
+        <section id="patterns">
+            <h2>模式库</h2>
+            <div class="pattern-list">
+                <div id="pattern-content">加载中...</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>全栈架构导师 © 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

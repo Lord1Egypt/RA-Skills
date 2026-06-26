@@ -1,0 +1,24 @@
+{
+  "skill_name": "geo-metrics-tracker",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We already run a monthly GEO performance report using geo-report-builder for our SaaS product. Design a GEO metrics tracking system that turns those static reports into a live AIGVR / SoM / citation-volume dashboard, with daily updates and alert rules for sudden spikes or drops on ChatGPT and Perplexity.",
+      "expected_output": "A structured monitoring plan with a metrics catalog, storage schema, data collection plan from monthly reports plus additional sampling, dashboard specs, and alert conditions for AIGVR/SoM/citations.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Last week our brand citations on Perplexity seemed to collapse overnight for a few key intents. Help us design a real-time GEO metrics command center that tracks AIGVR, SoM vs two main competitors, and citation volume across Perplexity and ChatGPT, including anomaly detection rules and incident playbooks.",
+      "expected_output": "A GEO metrics command-center design including a clear monitoring brief, metrics catalog focused on AIGVR/SoM/citations, time-series tracking schema, per-platform dashboards, and critical/warning alert rules plus operational incident playbooks.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Our CMO wants a weekly \u201cAI visibility health\u201d dashboard for our top 30 product intents across ChatGPT, Gemini, and Claude. Create a GEO metrics tracking framework that defines the right metrics, dimensions, data sources, dashboards, and review cadences so that leadership can see SoM trends, citation volume changes, and coverage expansion over time.",
+      "expected_output": "A leadership-focused monitoring framework describing metrics and dimensions, tracking tables, collection methods for each platform, dashboard views for executives vs operators, and suggested daily/weekly/monthly review routines.",
+      "files": []
+    }
+  ]
+}
+

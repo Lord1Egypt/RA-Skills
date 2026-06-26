@@ -1,35 +1,36 @@
 ---
-name: "Gmail Draft Send"
-description: "Atomic node skill to send an existing Gmail draft."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gmail-draft-send"
-sourceUrl: "https://clawhub.ai/skills/gmail-draft-send"
+name: Gmail Draft Send
+description: Atomic node skill to send an existing Gmail draft.
+os: all
+requires:
+  bins:
+    - gog
 ---
+## Lean Philosophy (Principles)
+- **Kaizen (改善):** This skill is an atomic node, strictly limited to sending an existing draft.
+- **Standardized Work (Hyojun Sagyo):** This node represents the most efficient, standardized path for this specific task before automation.
+- **Jidoka (自働化):** This node includes autonomous defect detection.
 
 # Gmail Draft Send
 
-> Atomic node skill to send an existing Gmail draft.
+This skill allows the agent to send an existing Gmail draft using the native CLI.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gmail-draft-send`
-- **Source URL:** [https://clawhub.ai/skills/gmail-draft-send](https://clawhub.ai/skills/gmail-draft-send)
+## Cognitive Directives
+WHEN [An existing email draft needs to be sent]
+THEN [Execute the native terminal command `gog gmail drafts send <draftId> --json`]
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gmail-draft-send
+## Schema Example
+```json
+{
+  "command": "gog gmail drafts send draft_id_123 --json"
+}
 ```
+
+## Jidoka Validation Loop
+1. Try: Execute the command.
+2. Evaluate: Check the JSON response to confirm the email was sent successfully.
+3. Correct/Fail: If it failed or hallucinated parameters, retry up to 3 times (max_retries=3).
+4. Proceed: Return the confirmation.
+
+## Expected Output
+A JSON object confirming the email was sent successfully.

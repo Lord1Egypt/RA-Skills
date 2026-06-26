@@ -1,0 +1,48 @@
+{
+  "name": "gigo-lobster-taster",
+  "entry": "run_upload.py",
+  "runtime": "python",
+  "python_version": "3.11",
+  "triggers": {
+    "zh": [
+      "试吃我的龙虾",
+      "品鉴我的龙虾",
+      "鉴定我的龙虾",
+      "评估我的龙虾",
+      "测试我的龙虾",
+      "检测我的龙虾",
+      "龙虾鉴定",
+      "龙虾评测",
+      "龙虾考试",
+      "我的龙虾什么水平",
+      "我的龙虾什么段位",
+      "我的龙虾几分",
+      "龙虾好不好吃",
+      "尝尝我的龙虾",
+      "给我的龙虾打个分",
+      "开始试吃",
+      "开始鉴定",
+      "开始评估",
+      "跑一下龙虾评测"
+    ],
+    "en": [
+      "lobster taste",
+      "lobster taster",
+      "taste my lobster",
+      "lobster eval",
+      "evaluate my lobster",
+      "lobster test",
+      "lobster benchmark",
+      "lobster score",
+      "lobster rating",
+      "rate my lobster",
+      "grade my lobster",
+      "rank my lobster",
+      "how good is my lobster",
+      "lobster exam",
+      "/lobster-taste",
+      "/lobster-eval",
+      "/taste"
+    ]
+  }
+}

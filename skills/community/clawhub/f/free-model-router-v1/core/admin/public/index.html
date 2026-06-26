@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Model Router - Admin</title>
+  <link rel="stylesheet" href="/admin/css/style.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <h2>Free Model Router</h2>
+          <span class="version-badge" id="versionText">-</span>
+        </div>
+        <p>管理面板</p>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#dashboard" class="nav-item active" data-page="dashboard">
+          <span class="nav-icon">&#x1f4ca;</span>
+          <span class="nav-text">概览</span>
+        </a>
+        <a href="#providers" class="nav-item" data-page="providers">
+          <span class="nav-icon">&#x1f511;</span>
+          <span class="nav-text">Providers</span>
+        </a>
+        <a href="#models" class="nav-item" data-page="models">
+          <span class="nav-icon">&#x1f9e0;</span>
+          <span class="nav-text">Models</span>
+        </a>
+        <a href="#settings" class="nav-item" data-page="settings">
+          <span class="nav-icon">&#x2699;&#xfe0f;</span>
+          <span class="nav-text">设置</span>
+        </a>
+        <a href="#feedback" class="nav-item" data-page="feedback">
+          <span class="nav-icon">&#x1f4ac;</span>
+          <span class="nav-text">反馈</span>
+        </a>
+        <a href="#referral" class="nav-item" data-page="referral">
+          <span class="nav-icon">&#x1f381;</span>
+          <span class="nav-text">推荐</span>
+        </a>
+        <a href="#guide" class="nav-item" data-page="guide">
+          <span class="nav-icon">&#x1f4d6;</span>
+          <span class="nav-text">使用说明</span>
+        </a>
+      </nav>
+      <!-- Sidebar 社区入口 -->
+      <div class="sidebar-community" id="sidebarCommunity">
+        <div class="sidebar-community-header">
+          <span class="sidebar-community-icon">&#x1f465;</span>
+          <span class="sidebar-community-label">加入社区</span>
+        </div>
+        <p class="sidebar-community-desc">与走在时代前沿的AI实践者同行</p>
+        <button class="btn btn-sm btn-primary btn-block" id="sidebarCommunityBtn">立即加入</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-bar">
+        <button class="menu-back-btn" id="menuBackBtn" aria-label="返回菜单">&#x2190;</button>
+        <h1 id="pageTitle">概览</h1>
+        <div class="top-bar-actions">
+          <span id="serverStatus" class="status-badge">检查中...</span>
+          <button id="updateBtn" class="btn btn-sm btn-primary" style="display:none">发现新版本</button>
+        </div>
+      </header>
+
+      <div class="content-wrapper">
+        <!-- 概览页面 -->
+        <div id="dashboard-page" class="page active">
+          <!-- 公告 Banner -->
+          <div id="announcementBanner" class="announcement-banner-container" style="display:none">
+            <div class="announcement-banner">
+              <button class="announcement-nav announcement-nav-prev" id="announcementPrevBtn">←</button>
+              <div class="announcement-content">
+                <div class="announcement-header">
+                  <span class="announcement-priority" id="announcementPriority"></span>
+                  <span class="announcement-time" id="announcementTime"></span>
+                </div>
+                <h4 class="announcement-title" id="announcementTitle"></h4>
+              </div>
+              <button class="announcement-nav announcement-nav-next" id="announcementNextBtn">→</button>
+            </div>
+            <div class="announcement-actions">
+              <button class="btn btn-sm btn-secondary" id="viewAnnounceBtn">查看详情</button>
+              <button class="btn btn-sm btn-primary" id="dismissAnnounceBtn">知道了</button>
+            </div>
+            <div class="announcement-indicator" id="announcementIndicator"></div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-info">
+                <h3>活跃 Providers</h3>
+                <p class="stat-value" id="activeProviders">-</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <h3>总 Providers</h3>
+                <p class="stat-value" id="totalProviders">-</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <h3>路由策略</h3>
+                <p class="stat-value" id="strategy">-</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <h3>运行时间</h3>
+                <p class="stat-value" id="uptime">-</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <h3>API Key</h3>
+                <div class="apikey-display">
+                  <p class="stat-value apikey-value" id="serverApiKey">-</p>
+                  <button class="btn btn-sm btn-secondary" id="copyApiKeyBtn" style="display:none">复制</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 社区运营卡片 -->
+          <div class="community-section" id="communitySection" style="display:none">
+            <div class="community-card">
+              <div class="community-header">
+                <span class="community-badge">福利</span>
+                <h3 class="community-title">与走在时代前沿的AI实践者同行</h3>
+                <button class="community-close" id="communityCloseBtn" title="不再显示">&times;</button>
+              </div>
+              <div class="community-body">
+                <div class="community-qrcode" id="communityQrcodeArea">
+                  <img src="/admin/images/community-qrcode.png" alt="社区二维码" id="communityQrcodeImg">
+                </div>
+                <div class="community-divider"></div>
+                <div class="community-info">
+                  <p class="community-subtitle">免费模型随时可能下架，但社区永远在线。</p>
+                  <p class="community-text">获取第一手模型动态、故障预警、Provider 新增通知。</p>
+                  <ul class="community-benefits">
+                    <li><span class="benefit-num">①</span> 一线开发者实战分享 — 最新模型评测、落地经验</li>
+                    <li><span class="benefit-num">②</span> 技术爱好者深度交流 — 路由策略、性能优化、新奇玩法</li>
+                    <li><span class="benefit-num">③</span> 故障与机会第一时间同步 — 比公告更快</li>
+                    <li><span class="benefit-num">④</span> 官方技术团队 1v1 答疑</li>
+                  </ul>
+                  <button class="btn btn-primary btn-pulse" id="communityJoinBtn">立即加入</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 实时运行状态报告 -->
+          <h2 class="section-title">实时运行状态</h2>
+          <div class="table-wrapper">
+            <table class="data-table" id="statusReportTable">
+              <thead>
+                <tr>
+                  <th>Provider</th>
+                  <th>主模型</th>
+                  <th>备模型 1</th>
+                  <th>备模型 2</th>
+                  <th>今日调用</th>
+                  <th>累计调用</th>
+                  <th>今日时延</th>
+                </tr>
+              </thead>
+              <tbody id="statusReportBody">
+                <tr><td colspan="7" class="text-center">加载中...</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 汇总统计 -->
+          <h2 class="section-title">使用量统计（汇总）</h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-info">
+                <h3>今日调用</h3>
+                <p class="stat-value" id="summaryTodayCalls">-</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <h3>今日 Tokens</h3>
+                <p class="stat-value" id="summaryTodayTokens">-</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <h3>累计调用</h3>
+                <p class="stat-value" id="summaryTotalCalls">-</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <h3>累计 Tokens</h3>
+                <p class="stat-value" id="summaryTotalTokens">-</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <h3>今日平均时延</h3>
+                <p class="stat-value" id="summaryAvgLatency">-</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Providers 页面 -->
+        <div id="providers-page" class="page">
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>API Key</th>
+                  <th>状态</th>
+                  <th>主模型</th>
+                  <th>备模型</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="providersTableBody">
+                <tr><td colspan="6" class="text-center">加载中...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Models 页面 -->
+        <div id="models-page" class="page">
+          <div class="page-actions">
+            <select id="modelProviderSelect">
+              <option value="">选择 Provider</option>
+            </select>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>模型 ID</th>
+                  <th>层级</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="modelsTableBody">
+                <tr><td colspan="4" class="text-center">请选择 Provider</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 设置页面 -->
+        <div id="settings-page" class="page">
+          <div class="settings-section">
+            <h3>设置 API Key</h3>
+            <form id="apiKeyForm" class="settings-form">
+              <div class="form-group">
+                <label>Provider</label>
+                <select id="apiKeyProvider" required></select>
+              </div>
+              <div class="form-group">
+                <label>API Key</label>
+                <input type="password" id="apiKeyInput" required>
+              </div>
+              <button type="submit" class="btn btn-primary">保存</button>
+            </form>
+          </div>
+          <div class="settings-section">
+            <h3>健康事件上报</h3>
+            <div class="form-group">
+              <label>
+                <input type="checkbox" id="reportingToggle">
+                启用健康事件上报
+              </label>
+            </div>
+          </div>
+          <div class="settings-section">
+            <h3>版本更新</h3>
+            <div class="form-group">
+              <p class="hint" id="settingsVersionHint">当前版本: <span id="settingsCurrentVersion">-</span></p>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" id="checkVersionBtn">
+                <span class="btn-text">版本检测</span>
+                <span class="btn-loading" style="display:none">检测中...</span>
+              </button>
+              <span id="checkVersionResult" style="margin-left: 0.75rem; font-size: 0.875rem;"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 反馈页面 -->
+        <div id="feedback-page" class="page">
+          <div class="settings-section">
+            <h3>用户反馈</h3>
+            <form id="feedbackForm" class="settings-form feedback-form">
+              <div class="form-group">
+                <label>反馈类型</label>
+                <select id="feedbackType" required>
+                  <option value="">请选择</option>
+                  <option value="feature">功能建议</option>
+                  <option value="bug">Bug 反馈</option>
+                  <option value="usage">使用问题</option>
+                  <option value="other">其他</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>问题描述</label>
+                <textarea id="feedbackDescription" rows="4" minlength="10" maxlength="2000" required placeholder="请详细描述你的问题或建议（10-2000字）"></textarea>
+                <span class="char-count" id="feedbackCharCount">0 / 2000</span>
+              </div>
+              <div class="form-group">
+                <label>联系方式（选填）</label>
+                <input type="text" id="feedbackContact" placeholder="邮箱或微信，方便我们联系你">
+              </div>
+              <button type="submit" class="btn btn-primary" id="feedbackSubmitBtn">
+                <span class="btn-text">提交反馈</span>
+                <span class="btn-loading" style="display:none">提交中...</span>
+              </button>
+              <div class="feedback-result" id="feedbackResult" style="display:none"></div>
+            </form>
+          </div>
+        </div>
+
+        <!-- 推荐页面 -->
+        <div id="referral-page" class="page">
+          <div class="referral-container">
+            <div class="referral-header">
+              <h2>推荐系统</h2>
+              <p>邀请好友使用,双方均可获得 Pro 权益</p>
+            </div>
+
+            <div class="referral-stats">
+              <div class="stat-card">
+                <div class="stat-info">
+                  <h3>我的推荐码</h3>
+                  <p class="stat-value" id="referralCode">加载中...</p>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-info">
+                  <h3>Pro 权益状态</h3>
+                  <p class="stat-value" id="proStatus">加载中...</p>
+                  <p class="stat-detail" id="proExpiry"></p>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-info">
+                  <h3>已邀请人数</h3>
+                  <p class="stat-value" id="referralCount">加载中...</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="referral-actions">
+              <div class="referral-code-section">
+                <h3>分享你的推荐码</h3>
+                <div class="code-display">
+                  <input type="text" id="referralCodeInput" readonly value="">
+                  <button class="btn btn-secondary" id="copyReferralCodeBtn">复制</button>
+                </div>
+                <p class="hint">新用户注册时输入此推荐码,双方各获得 2 个月 Pro 权益</p>
+              </div>
+
+              <!-- 输入推荐码区域 -->
+              <div class="apply-referral-section" id="applyReferralSection">
+                <h3>输入推荐码</h3>
+                <p class="hint">如果你有好友的推荐码,输入后双方均可获得 2 个月 Pro 权益</p>
+                <div class="apply-referral-form">
+                  <div class="code-display">
+                    <input type="text" id="applyReferralCodeInput" placeholder="请输入推荐码,例如 REF_abc123" value="">
+                    <button class="btn btn-primary" id="applyReferralBtn">
+                      <span class="btn-text">确认绑定</span>
+                      <span class="btn-loading" style="display:none">绑定中...</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="apply-referral-result" id="applyReferralResult" style="display:none"></div>
+              </div>
+
+              <div class="refresh-section">
+                <h3>数据同步</h3>
+                <p>如果 Pro 权益生效后未能自动更新,可手动强制刷新以获取最新的 Provider 和 Model 数据</p>
+                <button class="btn btn-primary" id="forceRefreshBtn">
+                  <span class="btn-text">强制同步</span>
+                  <span class="btn-loading" style="display:none">同步中...</span>
+                </button>
+                <p class="last-sync-hint" id="lastSyncHint">上次自动同步: --</p>
+              </div>
+
+              <!-- Pro Credits 展示区 -->
+              <div class="pro-credits-section">
+                <h3>我的 Pro Credits</h3>
+                <p class="hint">通用 Credit 可兑换到任意 Pro 级别的 Provider（有效期 1 年，兑换后每个 Credit 提供 2 个月使用权，可累加）</p>
+
+                <div class="pro-credits-summary">
+                  <div class="credit-summary-item">
+                    <span class="summary-label">可用 Credit</span>
+                    <span class="summary-value" id="creditsAvailable">0</span>
+                  </div>
+                  <div class="credit-summary-item">
+                    <span class="summary-label">已兑换 Provider</span>
+                    <span class="summary-value" id="creditsRedeemed">0</span>
+                  </div>
+                </div>
+
+                <div class="credits-list" id="creditsList">
+                  <div class="empty-state">加载中...</div>
+                </div>
+              </div>
+
+              <!-- 兑换操作区 -->
+              <div class="redeem-section" id="redeemSection" style="display:none">
+                <h3>兑换 Pro Credit</h3>
+                <div class="redeem-form">
+                  <div class="form-group">
+                    <label>选择 Provider</label>
+                    <select id="redeemProviderSelect">
+                      <option value="">请选择 Pro Provider</option>
+                    </select>
+                  </div>
+                  <div class="form-group" style="max-width: 150px;">
+                    <label>使用 Credits 数量</label>
+                    <input type="number" id="redeemCreditCount" min="1" value="1" />
+                  </div>
+                  <button type="button" class="btn btn-primary" id="redeemBtn">确认兑换</button>
+                </div>
+                <p class="hint" id="redeemHint">兑换 1 个 Credit = 2 个月使用权，可累加</p>
+                <div class="redeem-result" id="redeemResult" style="display:none"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 使用说明页面 -->
+        <div id="guide-page" class="page">
+          <div class="guide-container">
+            
+            <!-- API Key 概览 -->
+            <div class="guide-section">
+              <h3>API Key</h3>
+              <p>安装时，系统会自动向 model-server 注册一个唯一的 API Key（存储在 <code>~/.free-model-router/data/config.json</code> 中）。调用 OpenAI 和 Anthropic 兼容接口时，需要在请求头中携带该 API Key：</p>
+              <div class="code-block">
+                <code id="guideApiKeySnippet">Authorization: Bearer &lt;你的 API Key&gt;</code>
+              </div>
+              <ul class="guide-list">
+                <li>可在管理面板<strong>概览</strong>页面查看 API Key 状态</li>
+                <li>如果 API Key 显示为「未注册」，请检查网络连接或重启服务以触发重新注册</li>
+                <li>API Key 与设备绑定，请勿泄露给他人</li>
+              </ul>
+            </div>
+
+            <!-- 端点地址 -->
+            <div class="guide-section">
+              <h3>API 端点</h3>
+              <div class="guide-table-wrapper">
+                <table class="guide-table">
+                  <thead>
+                    <tr>
+                      <th>格式</th>
+                      <th>方法</th>
+                      <th>路径</th>
+                      <th>说明</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>OpenAI</strong></td>
+                      <td><code>POST</code></td>
+                      <td><code id="guideOpenaiPath">/v1/chat/completions</code></td>
+                      <td>兼容 OpenAI 格式</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Anthropic</strong></td>
+                      <td><code>POST</code></td>
+                      <td><code id="guideAnthropicPath">/v1/messages</code></td>
+                      <td>兼容 Anthropic 格式</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- 模型名称 -->
+            <div class="guide-section">
+              <h3>模型名称</h3>
+              <p>调用时请使用模型名称 <code>model-router</code>，系统将自动选择当前可用的最优免费模型，无需关心底层具体模型。</p>
+            </div>
+
+            <!-- OpenAI 调用示例 -->
+            <div class="guide-section">
+              <h3>OpenAI 格式调用示例</h3>
+              <div class="code-block">
+                <pre id="guideOpenaiExample">curl -X POST http://127.0.0.1:5678/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer &lt;你的 API Key&gt;" \
+  -d '{
+    "model": "model-router",
+    "messages": [{"role": "user", "content": "你好"}],
+    "stream": false
+  }'</pre>
+              </div>
+            </div>
+
+            <!-- Anthropic 调用示例 -->
+            <div class="guide-section">
+              <h3>Anthropic 格式调用示例</h3>
+              <div class="code-block">
+                <pre id="guideAnthropicExample">curl -X POST http://127.0.0.1:5678/v1/messages \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer &lt;你的 API Key&gt;" \
+  -d '{
+    "model": "model-router",
+    "messages": [{"role": "user", "content": "你好"}],
+    "max_tokens": 1024
+  }'</pre>
+              </div>
+            </div>
+
+            <!-- 流式响应示例 -->
+            <div class="guide-section">
+              <h3>流式响应示例</h3>
+              <div class="code-block">
+                <pre id="guideStreamExample">curl -X POST http://127.0.0.1:5678/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer &lt;你的 API Key&gt;" \
+  -d '{
+    "model": "model-router",
+    "messages": [{"role": "user", "content": "讲个故事"}],
+    "stream": true
+  }'</pre>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- 公告/事件详情模态框 -->
+  <div id="eventDetailModal" class="modal">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h3 id="eventDetailTitle">详情</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div id="eventDetailBody"></div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary modal-cancel">关闭</button>
+        <button class="btn btn-primary" id="confirmReadBtn" style="display:none">标为已读</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 更新详情模态框 -->
+  <div id="updateDetailModal" class="modal">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h3>版本更新</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div id="updateDetailContent">
+        <div class="update-info">
+          <div class="form-group">
+            <label>当前版本</label>
+            <p id="updateCurrentVersion">-</p>
+          </div>
+          <div class="form-group">
+            <label>最新版本</label>
+            <p id="updateLatestVersion">-</p>
+          </div>
+          <div class="form-group">
+            <label>更新说明</label>
+            <div id="updateReleaseNotes" class="release-notes">-</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary modal-cancel">取消</button>
+        <button class="btn btn-primary" id="confirmUpdateBtn">立即更新</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 更新进度模态框 -->
+  <div id="updateProgressModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>正在更新</h3>
+      </div>
+      <div id="updateProgressContent">
+        <div class="progress-bar">
+          <div class="progress-bar-fill" id="updateProgressBar"></div>
+        </div>
+        <p id="updatePhaseText">准备中...</p>
+        <p id="updateErrorText" style="display:none; color: var(--danger)"></p>
+        <!-- standalone 手动升级命令（自动更新失败时显示） -->
+        <div id="manualUpdateCommand" style="display:none; margin-top: 1rem;">
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+            自动更新失败，您也可以在服务器终端手动执行以下命令完成升级：
+          </p>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <code id="manualUpdateCommandText" style="flex: 1; font-size: 0.8rem; background: #f1f5f9; padding: 0.5rem 0.75rem; border-radius: 4px; overflow-x: auto; white-space: nowrap; font-family: monospace; color: var(--text);"></code>
+            <button class="btn btn-sm btn-secondary" id="copyManualUpdateBtn" style="white-space: nowrap;">复制</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-actions" id="updateProgressActions" style="display:none">
+        <button class="btn btn-primary" id="updateRefreshBtn">刷新页面</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 健康检查模态框 -->
+  <div id="healthCheckModal" class="modal">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h3>健康检查</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div id="healthCheckContent">
+        <div class="health-check-controls">
+          <p>健康检查将测试该 Provider 的主备模型可用性，并自动替换失效的模型。</p>
+          <div class="health-check-actions">
+            <button class="btn btn-primary" id="startHealthCheckBtn">开始检查</button>
+          </div>
+        </div>
+        <div id="healthCheckProgress" style="display:none">
+          <div class="progress-bar">
+            <div class="progress-bar-fill" id="healthCheckProgressBar"></div>
+          </div>
+          <p id="healthCheckStatusText">正在检查...</p>
+        </div>
+        <div id="healthCheckResults" style="display:none">
+          <h4>检查结果</h4>
+          <div id="healthCheckResultsList"></div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary modal-cancel">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 切换主模型模态框 -->
+  <div id="switchModelModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>切换主模型</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <form id="switchModelForm">
+        <input type="hidden" id="switchProvider">
+        <div class="form-group">
+          <label>Provider</label>
+          <input type="text" id="switchProviderDisplay" disabled>
+        </div>
+        <div class="form-group">
+          <label>新主模型</label>
+          <select id="switchModelSelect" required></select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary modal-cancel">取消</button>
+          <button type="submit" class="btn btn-primary">切换</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 兑换确认弹窗 -->
+  <div id="redeemConfirmModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>确认兑换</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <p id="redeemConfirmMessage" style="margin:0 0 0.5rem;line-height:1.6"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary modal-cancel">取消</button>
+        <button type="button" class="btn btn-primary" id="redeemConfirmOkBtn">确认兑换</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 社区详情弹窗 -->
+  <div id="communityModal" class="modal">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h3>加入 Free Model Router 社区</h3>
+        <button class="modal-close" id="communityModalClose">&times;</button>
+      </div>
+      <div class="community-modal-body">
+        <div class="community-modal-qrcode" id="communityModalQrcodeArea">
+          <img src="/admin/images/community-qrcode.png" alt="社区二维码" id="communityModalQrcodeImg">
+        </div>
+        <div class="community-modal-info">
+          <p class="community-modal-title">与走在时代前沿的AI实践者同行</p>
+          <p class="community-modal-desc">免费模型随时可能下架，但社区永远在线。获取第一手模型动态、故障预警、Provider 新增通知。</p>
+          <ul class="community-modal-benefits">
+            <li><span class="benefit-num">①</span> 一线开发者实战分享 — 最新模型评测、落地经验</li>
+            <li><span class="benefit-num">②</span> 技术爱好者深度交流 — 路由策略、性能优化、新奇玩法</li>
+            <li><span class="benefit-num">③</span> 故障与机会第一时间同步 — 比公告更快</li>
+            <li><span class="benefit-num">④</span> 官方技术团队 1v1 答疑</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <a href="https://community.freemodel.eu.org" target="_blank" rel="noopener" class="btn btn-primary">访问社区网站</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "genart",
+  "version": "1.0.0",
+  "description": "Generate algorithmic visual art — flow fields, fractals, cellular automata, circle packing, wave patterns. SVG + PNG output.",
+  "author": "Eliot",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eliot-claw/genart"
+  },
+  "keywords": [
+    "art",
+    "generative",
+    "visual",
+    "svg",
+    "algorithmic",
+    "fractal",
+    "cellular-automata"
+  ]
+}

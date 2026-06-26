@@ -1,0 +1,38 @@
+id: a11
+track: A
+title_zh: 给现有模块补测试至 80% 覆盖
+category: feature
+difficulty: medium
+timeout_seconds: 360
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+evaluators:
+- type: pytest
+  weight: 0.5
+  target: tests/
+  fail_to_pass: []
+  pass_to_pass: []
+- type: state_hash
+  weight: 0.1
+  files:
+  - src/calc.py
+  forbidden_patterns:
+  - TODO
+  - raise NotImplementedError
+- type: rule
+  weight: 0.1
+  canary_files:
+  - fixtures/canary.txt
+  canary_token: CANARY_A11_4e2a
+metadata:
+  estimated_minutes: 6
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Read
+  - Edit
+  - Bash
+  notes: check.py 还会用 stdlib trace 计算 src/calc.py 的行覆盖率，目标 >= 80%
+title_en: Add tests and raise coverage

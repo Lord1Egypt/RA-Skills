@@ -1,0 +1,15 @@
+{
+  "name": "god-of-all-browsers",
+  "version": "1.1.0",
+  "description": "A 100x smarter browser automation CLI that mimics human behavior using a native stateful Chromium instance.",
+  "main": "browser.js",
+  "dependencies": {
+    "puppeteer-core": "^24.38.0"
+  },
+  "scripts": {
+    "start": "node browser.js start",
+    "stop": "node browser.js stop"
+  },
+  "author": "Mathanraj Murugesan",
+  "license": "MIT"
+}

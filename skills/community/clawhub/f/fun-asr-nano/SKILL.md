@@ -1,35 +1,50 @@
 ---
-name: "Local fun-asr-nano powered by sherpa-onnx"
+name: fun-asr-nano
 description: "Fun-ASR-Nano 基于 sherpa-onnx 引擎的本地语音识别，完全离线运行。当用户需要转录音频文件时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fun-asr-nano"
-sourceUrl: "https://clawhub.ai/skills/fun-asr-nano"
+version: "1.0.0"
 ---
 
-# Local fun-asr-nano powered by sherpa-onnx
+# Fun-ASR-Nano
 
-> Fun-ASR-Nano 基于 sherpa-onnx 引擎的本地语音识别，完全离线运行。当用户需要转录音频文件时触发。
+Fun-ASR-Nano 基于 sherpa-onnx 引擎的本地语音识别，完全离线运行，无需网络连接。支持多种语言和方言的语音转文字。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fun-asr-nano`
-- **Source URL:** [https://clawhub.ai/skills/fun-asr-nano](https://clawhub.ai/skills/fun-asr-nano)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fun-asr-nano
 ```
+
+中文包括 7 种方言（吴语、粤语、闽语、客家话、赣语、湘语、晋语）和 26 种地方口音（河南、山西、湖北、四川、重庆、云南、贵州、广东、广西 及其他 20 多个地区）。
+
+英文和日文涵盖多种地方口音。
+
+此外还支持歌词识别和说唱语音识别。
+
+特点：
+- 本地运行，保护隐私
+- 离线识别，无需网络
+- 支持多种音频格式
+```
+
+## 激活条件
+
+| 触发场景 | 说明 |
+|----------|------|
+| 用户发送音频文件 | `.wav` / `.mp3` / `.m4a` / `.flac` / `.ogg` 等格式 |
+| 用户要求转录 | "转写音频"、"语音转文字" |
+| 音频文件处理 | 需要提取音频中的文字内容 |
+
+## 使用方法
+
+### 安装依赖
+
+```bash
+pip install sherpa-onnx soundfile modelscope
+```
+
+### 转写音频文件
+
+```bash
+python scripts/cli.py audio.wav
+```
+
+---
+
+*版本：1.0.0*
+*创建于：2026-03-18*

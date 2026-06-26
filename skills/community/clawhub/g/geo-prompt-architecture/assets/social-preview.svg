@@ -1,0 +1,46 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="640" fill="#0B1020"/>
+  <rect x="54" y="54" width="1172" height="532" rx="28" fill="url(#bg)"/>
+  <rect x="92" y="98" width="140" height="36" rx="18" fill="#1A2442"/>
+  <text x="118" y="121" fill="#A6FFD2" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700">OPEN SOURCE</text>
+
+  <text x="92" y="215" fill="#F8FAFC" font-family="Helvetica, Arial, sans-serif" font-size="68" font-weight="800">GEO Prompt</text>
+  <text x="92" y="288" fill="#F8FAFC" font-family="Helvetica, Arial, sans-serif" font-size="68" font-weight="800">Architecture</text>
+
+  <text x="92" y="360" fill="#CBD5E1" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="500">
+    Generate client-fit GEO monitoring prompts for discovery,
+  </text>
+  <text x="92" y="402" fill="#CBD5E1" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="500">
+    competitor comparison, and brand defense.
+  </text>
+
+  <rect x="92" y="458" width="248" height="44" rx="22" fill="#11203D"/>
+  <text x="118" y="487" fill="#DDEAFE" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="700">NON-BRAND DISCOVERY</text>
+
+  <rect x="356" y="458" width="270" height="44" rx="22" fill="#142948"/>
+  <text x="382" y="487" fill="#DDEAFE" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="700">COMPETITOR COMPARISON</text>
+
+  <rect x="642" y="458" width="214" height="44" rx="22" fill="#183051"/>
+  <text x="668" y="487" fill="#DDEAFE" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="700">BRAND DEFENSE</text>
+
+  <rect x="916" y="124" width="248" height="248" rx="28" fill="#101A31"/>
+  <rect x="948" y="156" width="184" height="44" rx="22" fill="#A6FFD2"/>
+  <text x="977" y="184" fill="#0B1020" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="800">PROMPT OS</text>
+  <text x="948" y="250" fill="#F8FAFC" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="700">Built for</text>
+  <text x="948" y="292" fill="#F8FAFC" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="700">GEO teams,</text>
+  <text x="948" y="334" fill="#F8FAFC" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="700">agencies,</text>
+  <text x="948" y="376" fill="#F8FAFC" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="700">and operators</text>
+
+  <rect x="916" y="400" width="248" height="122" rx="28" fill="#101A31"/>
+  <text x="948" y="450" fill="#A6FFD2" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="800">Repo Focus</text>
+  <text x="948" y="487" fill="#E2E8F0" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="600">Prompt generation</text>
+  <text x="948" y="517" fill="#E2E8F0" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="600">Prompt scoring</text>
+  <text x="948" y="547" fill="#E2E8F0" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="600">Reverse optimization</text>
+
+  <defs>
+    <linearGradient id="bg" x1="54" y1="54" x2="1226" y2="586" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#111C35"/>
+    </linearGradient>
+  </defs>
+</svg>

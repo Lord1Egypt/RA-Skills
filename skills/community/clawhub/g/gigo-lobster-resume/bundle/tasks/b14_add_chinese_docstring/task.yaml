@@ -1,0 +1,28 @@
+id: b14
+track: B
+title_zh: 给 Python 函数补中文 docstring
+category: write
+difficulty: medium
+timeout_seconds: 300
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+  - soul
+evaluators:
+- type: rule
+  weight: 0.4
+- type: llm_judge
+  weight: 0.6
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  - files
+  judge_dimensions:
+  - meat
+  - brain
+  - soul
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 5
+title_en: Add Chinese docstrings

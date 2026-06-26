@@ -1,0 +1,17 @@
+[
+  {"id":"founderclaw-main","name":"FounderClaw CEO","workspace":"~/.openclaw/founderclaw/ceo"},
+  {"id":"fc-strategy","name":"Strategy","workspace":"~/.openclaw/founderclaw/strategy-dept","skills":["office-hours","plan-ceo-review","plan-eng-review","plan-design-review","design-consultation","design-review","design-shotgun","autoplan"]},
+  {"id":"fc-shipper","name":"Shipper","workspace":"~/.openclaw/founderclaw/shipping-dept","skills":["review","ship","land-and-deploy","canary","benchmark","document-release"]},
+  {"id":"fc-tester","name":"Tester","workspace":"~/.openclaw/founderclaw/testing-dept","skills":["qa","qa-only","browse","setup-browser-cookies","connect-chrome"]},
+  {"id":"fc-safety","name":"Safety","workspace":"~/.openclaw/founderclaw/security-dept","skills":["cso","careful","freeze","guard","unfreeze"]},
+  {"id":"fc-observer","name":"Observer","workspace":"~/.openclaw/founderclaw/history-dept","skills":["investigate","retro","codex"]}
+]
+
+# After adding agents, create these Telegram topics:
+# - Topic for founderclaw-main (CEO)
+# - Topic for fc-strategy  
+# - Topic for fc-shipper
+# - Topic for fc-tester
+# - Topic for fc-safety
+# - Topic for fc-observer
+# Then update the topic IDs in the config.

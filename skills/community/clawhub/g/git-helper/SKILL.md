@@ -1,35 +1,40 @@
 ---
-name: "Git Helper"
+name: git-helper
 description: "Common git operations as a skill (status, pull, push, branch, log)"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/git-helper"
-sourceUrl: "https://clawhub.ai/skills/git-helper"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🔀",
+        "requires": { "bins": ["git"] },
+        "install": [],
+      },
+  }
 ---
 
 # Git Helper
 
-> Common git operations as a skill (status, pull, push, branch, log)
+Common git operations as a skill. Provides convenient wrappers for frequently used git commands including status, pull, push, branch management, and log viewing.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/git-helper`
-- **Source URL:** [https://clawhub.ai/skills/git-helper](https://clawhub.ai/skills/git-helper)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/git-helper
+# Show working tree status
+git-helper status
+
+# Pull latest changes
+git-helper pull
+
+# Push local commits
+git-helper push
+
+# List or manage branches
+git-helper branch
+
+# View commit log with optional limit
+git-helper log [--limit 10]
 ```
+
+## Install
+
+No installation needed. `git` is always present on the system.

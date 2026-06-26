@@ -1,0 +1,12 @@
+{
+  "databaseId": 6006,
+  "workflowName": "CI Build",
+  "event": "push",
+  "conclusion": "cancelled",
+  "headBranch": "hotfix/login-timeout",
+  "headSha": "hotfix333",
+  "createdAt": "2026-03-05T04:00:00Z",
+  "updatedAt": "2026-03-05T04:05:00Z",
+  "url": "https://github.com/acme/api/actions/runs/6006",
+  "repository": "acme/api"
+}

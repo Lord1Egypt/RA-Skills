@@ -1,0 +1,11 @@
+# 基金AI助手 - Python 依赖声明
+# 运行基础功能（fund_api / technical / positions 等）无需额外依赖
+# 以下为可选依赖，安装后启用对应功能：
+
+# 图表生成（chart_generator.py / correlation.py / correlation_v2.py）
+Pillow>=9.0.0
+numpy>=1.21.0
+matplotlib>=3.5.0
+
+# 选装方式：
+#   pip install -r requirements.txt

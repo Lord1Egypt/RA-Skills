@@ -1,0 +1,8 @@
+{
+  "feed_url": "https://input.reai.group/v1/public/feed",
+  "scoutx_feed_url": "https://input.reai.group/v1/public/feed",
+  "x_feed_url": "https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-x.json",
+  "podcast_feed_url": "https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-podcasts.json",
+  "meta_url": "https://input.reai.group/v1/public/meta",
+  "timeout_seconds": 60
+}

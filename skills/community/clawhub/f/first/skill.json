@@ -1,0 +1,24 @@
+{
+  "name": "Firstprinciples thinking",
+  "version": "1.1.0",
+  "description": "Think from first principles instead of analogy. Break problems into fundamental truths, challenge assumptions, and rebuild better solutions from scratch.",
+  "entrypoints": [],
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "references/philosophy.md",
+    "scripts/init_storage.py",
+    "scripts/analyze_problem.py",
+    "scripts/extract_assumptions.py",
+    "scripts/decompose_truths.py",
+    "scripts/rebuild_solution.py",
+    "scripts/score_reasoning.py",
+    "scripts/show_case.py",
+    "scripts/list_cases.py",
+    "scripts/show_score.py",
+    "scripts/export_case.py",
+    "scripts/lib/storage.py",
+    "scripts/lib/schema.py",
+    "scripts/lib/reasoning.py"
+  ]
+}

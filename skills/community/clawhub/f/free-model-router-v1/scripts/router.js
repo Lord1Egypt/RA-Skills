@@ -1,0 +1,1 @@
+const path=require("path"),os=require("os");process.env.FMR_DATA_DIR||process.env.FMR_TEST_DATA_DIR||(process.env.FMR_DATA_DIR=path.join(os.homedir(),".free-model-router","data"));const{startServer}=require("../core/server");require.main===module&&startServer(),module.exports={startServer};

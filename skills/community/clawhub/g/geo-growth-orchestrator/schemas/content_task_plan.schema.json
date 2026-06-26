@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://powermatrix.local/schemas/content_task_plan.schema.json",
+  "title": "Content Task Plan",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "brand_name",
+    "tasks"
+  ],
+  "properties": {
+    "brand_name": {
+      "type": "string"
+    },
+    "target_keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "task_id",
+          "source_gap_id",
+          "platform",
+          "content_type",
+          "title",
+          "objective",
+          "priority_score",
+          "human_review_required",
+          "expected_output"
+        ],
+        "properties": {
+          "task_id": {
+            "type": "string"
+          },
+          "source_gap_id": {
+            "type": "string"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "skill_id": {
+            "type": "string"
+          },
+          "content_type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "target_keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "objective": {
+            "type": "string"
+          },
+          "business_impact": {
+            "type": "string"
+          },
+          "impact_score": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "difficulty_score": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "speed_score": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "priority_score": {
+            "type": "number"
+          },
+          "required_facts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "publishing_prerequisites": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "expected_output": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "planned",
+              "ready_for_generation",
+              "needs_client_input",
+              "generated",
+              "skipped"
+            ]
+          },
+          "human_review_required": {
+            "type": "boolean",
+            "const": true
+          }
+        }
+      }
+    }
+  }
+}

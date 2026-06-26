@@ -1,0 +1,7 @@
+interface:
+  display_name: "Goal Clarifier"
+  short_description: "Turn vague requests into executable goal briefs."
+  default_prompt: "Use $goal-clarifier to clarify the real goal, constraints, and success criteria before proposing any solution."
+
+policy:
+  allow_implicit_invocation: true

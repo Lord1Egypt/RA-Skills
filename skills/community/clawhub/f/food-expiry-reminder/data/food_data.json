@@ -1,0 +1,78 @@
+{
+  "foods": [
+    {
+      "id": "a3bd5788",
+      "name": "牛奶",
+      "production_date": "2024-03-01",
+      "expiry_days": 7,
+      "expiry_date": "2024-03-08",
+      "location": "冰箱",
+      "quantity": 2,
+      "notes": "全脂牛奶",
+      "created_at": "2026-03-04T11:14:14.688472",
+      "updated_at": "2026-03-04T11:14:14.688484"
+    },
+    {
+      "id": "625c5ac1",
+      "name": "鸡蛋",
+      "production_date": "2024-02-28",
+      "expiry_days": 30,
+      "expiry_date": "2024-03-29",
+      "location": "冰箱",
+      "quantity": 12,
+      "notes": "有机鸡蛋",
+      "created_at": "2026-03-04T11:14:20.626586",
+      "updated_at": "2026-03-04T11:14:20.626594"
+    },
+    {
+      "id": "5ed84ceb",
+      "name": "面包",
+      "production_date": "2024-03-03",
+      "expiry_days": 5,
+      "expiry_date": "2024-03-08",
+      "location": "pantry",
+      "quantity": 1,
+      "notes": "",
+      "created_at": "2026-03-04T11:14:26.216593",
+      "updated_at": "2026-03-04T11:14:26.216604"
+    },
+    {
+      "id": "e77f5bed",
+      "name": "酸奶",
+      "production_date": "2026-03-01",
+      "expiry_days": 14,
+      "expiry_date": "2026-03-15",
+      "location": "冰箱",
+      "quantity": 4,
+      "notes": "希腊酸奶",
+      "created_at": "2026-03-04T11:14:37.314782",
+      "updated_at": "2026-03-04T11:14:37.314790"
+    },
+    {
+      "id": "a13d609a",
+      "name": "苹果",
+      "production_date": "2026-03-02",
+      "expiry_days": 21,
+      "expiry_date": "2026-03-23",
+      "location": "水果篮",
+      "quantity": 6,
+      "notes": "红富士",
+      "created_at": "2026-03-04T11:14:43.598254",
+      "updated_at": "2026-03-04T11:14:43.598262"
+    },
+    {
+      "id": "837de565",
+      "name": "秦晋小馒头",
+      "production_date": "2026-03-04",
+      "expiry_days": 3,
+      "expiry_date": "2026-03-07",
+      "location": "冰箱保鲜层",
+      "quantity": 1,
+      "notes": "",
+      "created_at": "2026-03-04T11:18:45.519643",
+      "updated_at": "2026-03-04T11:18:45.519651"
+    }
+  ],
+  "created_at": "2026-03-04T11:14:09.359868",
+  "updated_at": "2026-03-04T11:18:45.519802"
+}

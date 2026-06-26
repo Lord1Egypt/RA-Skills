@@ -1,0 +1,53 @@
+{
+  "skill_name": "gitlab",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Show me all my GitLab repositories",
+      "expected_output": "A Markdown formatted table listing all GitLab projects with columns: Name, Visibility, Last Updated, and URL. Should include project count at the top.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Search for GitLab projects related to 'microservice' and show me the results",
+      "expected_output": "A Markdown table showing GitLab projects matching the search term 'microservice' with relevant project details and links.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "List all open issues in my GitLab projects",
+      "expected_output": "A Markdown table showing open issues from all accessible GitLab projects with columns: ID, Title, State, Author, and Updated date, with links to each issue.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Show me my open merge requests across all GitLab projects",
+      "expected_output": "A Markdown table displaying open merge requests with columns: IID, Title, State, Author, and Source → Target branch information, with links to each MR.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Get the list of branches in the 'myproject' GitLab project",
+      "expected_output": "A list or table showing all branches in the specified project with their names, protection status, and commit information.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Show recent commits in the main branch of the 'webapp' project",
+      "expected_output": "A list of recent commits showing commit SHA (short), author, message, and date for the specified project and branch.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Check the pipeline status for my GitLab projects",
+      "expected_output": "A table showing pipeline information including ID, status, ref, user, and created date with visual status indicators (✅ ✗ ⏳).",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Create a new issue in the 'api-project' repository titled 'Fix authentication bug' with description 'Users cannot log in with SAML'",
+      "expected_output": "Confirmation that the issue was created with the issue URL, title, and issue number displayed.",
+      "files": []
+    }
+  ]
+}

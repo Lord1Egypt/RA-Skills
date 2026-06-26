@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">GlobalWire logo</title>
+  <desc id="desc">A circular news signal mark with a globe and wire lines.</desc>
+  <rect width="256" height="256" rx="40" fill="#0F4C81"/>
+  <circle cx="128" cy="128" r="74" fill="none" stroke="#F5F7FA" stroke-width="10"/>
+  <path d="M54 106h148M54 150h148M128 54c22 22 34 47 34 74s-12 52-34 74M128 54c-22 22-34 47-34 74s12 52 34 74" fill="none" stroke="#F5F7FA" stroke-width="8" stroke-linecap="round"/>
+  <path d="M44 205h168" stroke="#7FD1B9" stroke-width="12" stroke-linecap="round"/>
+  <path d="M44 184h124" stroke="#7FD1B9" stroke-width="12" stroke-linecap="round" opacity="0.82"/>
+  <path d="M44 163h92" stroke="#7FD1B9" stroke-width="12" stroke-linecap="round" opacity="0.64"/>
+</svg>

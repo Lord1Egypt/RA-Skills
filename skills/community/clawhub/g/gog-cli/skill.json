@@ -1,0 +1,21 @@
+{
+  "name": "gog-cli",
+  "description": "Google Workspace CLI via gog",
+  "tools": [
+    {
+      "name": "gmail_list",
+      "description": "List Gmail messages",
+      "command": "gog gmail list"
+    },
+    {
+      "name": "gmail_read",
+      "description": "Read a Gmail message",
+      "command": "gog gmail read --id {{id}}"
+    },
+    {
+      "name": "drive_list",
+      "description": "List Google Drive files",
+      "command": "gog drive list"
+    }
+  ]
+}

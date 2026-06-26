@@ -1,35 +1,43 @@
 ---
-name: "create-destination-marketing-content"
+name: "Create Destination Marketing Content"
 description: "Generate tourism promotional content for destinations. Use when working on destination marketing for travel agencies, hotels, tour operators."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/godfery-create-destination-marketing-content"
-sourceUrl: "https://clawhub.ai/skills/godfery-create-destination-marketing-content"
+homepage: "https://www.skillboss.co/skills/create-destination-marketing-content"
+metadata: {"category":"travel","subcategory":"destination-marketing","source":"daily-skill-generator-2026-03-28_to_2026-04-03","skill_id":"create-destination-marketing-content","generated_day":"2026-03-29"}
 ---
 
-# create-destination-marketing-content
+# Create Destination Marketing Content
 
-> Generate tourism promotional content for destinations. Use when working on destination marketing for travel agencies, hotels, tour operators.
+Generate tourism promotional content for destinations. Use when working on destination marketing for travel agencies, hotels, tour operators.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/godfery-create-destination-marketing-content`
-- **Source URL:** [https://clawhub.ai/skills/godfery-create-destination-marketing-content](https://clawhub.ai/skills/godfery-create-destination-marketing-content)
+## Use When
 
-## Overview
+Use this skill for destination marketing work for travel agencies, hotels, tour operators.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/godfery-create-destination-marketing-content
-```
+1. Clarify the audience, goal, constraints, and required output format.
+2. Produce a strong first draft optimized for the business use case.
+3. Use the relevant SkillBoss capabilities to generate supporting assets or enrich the result.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## APIs Used
+
+- `chat`
+- `image_generation`
+- `web_search`
+
+## Suggested Prompt
+
+[Create Destination Marketing Content] for my travel-hospitality business
+
+## SEO Keywords
+
+- destination marketing AI
+- tourism content creator
+- travel promotion generator
+- place marketing tool
+
+## Notes
+
+- Generate tourism promotional content for destinations
+- Review outputs before external publication or automated execution.

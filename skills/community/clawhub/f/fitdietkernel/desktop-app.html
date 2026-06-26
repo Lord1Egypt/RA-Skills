@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitDiet Kernel</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #00ff88;
+            --primary-dim: #00cc6a;
+            --bg: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-card-hover: #1a1a25;
+            --text: #ffffff;
+            --text-dim: #8888aa;
+            --accent-low: #5352ed;
+            --accent-mid: #ffa502;
+            --accent-high: #ff4757;
+            --border: #2a2a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 背景效果 */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(0,255,136,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(83,82,237,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, rgba(255,165,2,0.04) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 30px 0 20px;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 200;
+            letter-spacing: 6px;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+
+        .logo span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* 今日状态 */
+        .today-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, #15151f 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .today-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .day-label {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .mode-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .mode-badge.low { background: rgba(83,82,237,0.2); color: var(--accent-low); }
+        .mode-badge.mid { background: rgba(255,165,2,0.2); color: var(--accent-mid); }
+        .mode-badge.high { background: rgba(255,71,87,0.2); color: var(--accent-high); }
+
+        .today-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .today-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        /* 宏量进度条 */
+        .macro-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .macro-item {
+            background: rgba(0,0,0,0.3);
+            border-radius: 14px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .macro-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .macro-item.carbon::before { background: var(--accent-mid); }
+        .macro-item.protein::before { background: var(--primary); }
+        .macro-item.fat::before { background: var(--accent-low); }
+
+        .macro-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .macro-label {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .macro-progress {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .macro-progress-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+
+        .carbon .macro-progress-fill { background: var(--accent-mid); }
+        .protein .macro-progress-fill { background: var(--primary); }
+        .fat .macro-progress-fill { background: var(--accent-low); }
+
+        /* 打卡卡片 */
+        .checklist-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title::before {
+            content: '▸';
+            color: var(--primary);
+        }
+
+        .meal-item {
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .meal-item:hover {
+            background: rgba(0,255,136,0.05);
+        }
+
+        .meal-item.checked {
+            opacity: 0.5;
+            border-left-color: var(--text-dim);
+        }
+
+        .meal-item.checked .meal-name {
+            text-decoration: line-through;
+        }
+
+        .meal-time {
+            font-size: 0.7rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .meal-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .meal-desc {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 5px;
+        }
+
+        /* 食物库 */
+        .food-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .food-item {
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            font-size: 0.75rem;
+        }
+
+        .food-item b {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 3px;
+        }
+
+        /* 体重图表 */
+        .weight-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .weight-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .weight-input-group input {
+            flex: 1;
+            padding: 12px 15px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .weight-input-group button {
+            padding: 12px 20px;
+            background: var(--primary);
+            border: none;
+            border-radius: 10px;
+            color: var(--bg);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .current-weight {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .current-weight span {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            font-weight: 400;
+        }
+
+        /* 周进度 */
+        .week-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .week-day {
+            text-align: center;
+            padding: 10px 5px;
+            border-radius: 10px;
+            background: rgba(0,0,0,0.2);
+            font-size: 0.7rem;
+        }
+
+        .week-day.active {
+            background: var(--primary);
+            color: var(--bg);
+        }
+
+        .week-day.low { border: 1px solid var(--accent-low); }
+        .week-day.mid { border: 1px solid var(--accent-mid); }
+        .week-day.high { border: 1px solid var(--accent-high); }
+
+        /* 时间 */
+        .time-display {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    
+    <div class="container">
+        <header class="header">
+            <div class="logo">FIT<span>DIET</span></div>
+            <div class="subtitle">Kernel v1.0</div>
+        </header>
+
+        <!-- 今日状态 -->
+        <div class="today-card">
+            <div class="today-header">
+                <div class="day-label" id="dayLabel">周三 · 高碳日</div>
+                <div class="mode-badge high" id="modeBadge">HIGH</div>
+            </div>
+            <div class="today-title">碳水目标</div>
+            <div class="today-subtitle" id="carbonTarget">315g · 已摄入 0g · 剩余 315g</div>
+
+            <div class="macro-grid">
+                <div class="macro-item carbon">
+                    <span class="macro-value" id="carbonValue">0 / 315g</span>
+                    <span class="macro-label">碳水</span>
+                    <div class="macro-progress">
+                        <div class="macro-progress-fill" id="carbonProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="macro-item protein">
+                    <span class="macro-value" id="proteinValue">0 / 135g</span>
+                    <span class="macro-label">蛋白</span>
+                    <div class="macro-progress">
+                        <div class="macro-progress-fill" id="proteinProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="macro-item fat">
+                    <span class="macro-value" id="fatValue">0 / 38g</span>
+                    <span class="macro-label">脂肪</span>
+                    <div class="macro-progress">
+                        <div class="macro-progress-fill" id="fatProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 打卡列表 -->
+        <div class="checklist-card">
+            <div class="card-title">今日打卡</div>
+            <div id="mealList"></div>
+        </div>
+
+        <!-- 食物库 -->
+        <div class="food-card">
+            <div class="card-title">10g 碳水换算</div>
+            <div class="food-grid">
+                <div class="food-item"><b>燕麦</b>16g</div>
+                <div class="food-item"><b>意面</b>13g</div>
+                <div class="food-item"><b>馒头</b>0.5个</div>
+                <div class="food-item"><b>蓝莓</b>72g</div>
+                <div class="food-item"><b>红薯</b>50g</div>
+                <div class="food-item"><b>玉米</b>45g</div>
+            </div>
+        </div>
+
+        <!-- 体重 -->
+        <div class="weight-card">
+            <div class="card-title">体重追踪</div>
+            <div class="current-weight" id="currentWeight">89.2 <span>kg</span></div>
+            <div class="weight-input-group">
+                <input type="number" id="weightInput" step="0.1" placeholder="输入今日体重">
+                <button onclick="saveWeight()">记录</button>
+            </div>
+            <canvas id="weightChart" height="100"></canvas>
+        </div>
+
+        <!-- 周进度 -->
+        <div class="week-card">
+            <div class="card-title">本周档位</div>
+            <div class="week-grid">
+                <div class="week-day low" id="day0">一<br>LC</div>
+                <div class="week-day mid" id="day1">二<br>MC</div>
+                <div class="week-day high active" id="day2">三<br>HC</div>
+                <div class="week-day mid" id="day3">四<br>MC</div>
+                <div class="week-day mid" id="day4">五<br>MC</div>
+                <div class="week-day high" id="day5">六<br>HC</div>
+                <div class="week-day low" id="day6">日<br>LC</div>
+            </div>
+        </div>
+
+        <div class="time-display" id="timeDisplay"></div>
+    </div>
+
+<script>
+    // 数据配置
+    const config = {
+        weight: 89.2,
+        targetWeight: 85,
+        schedule: ['low', 'mid', 'high', 'mid', 'mid', 'high', 'low'],
+        macros: {
+            low: { c: 95, p: 135, f: 126 },
+            mid: { c: 147, p: 135, f: 59 },
+            high: { c: 315, p: 135, f: 38 }
+        },
+        meals: {
+            high: [
+                { time: '08:30', name: '早餐', desc: '130g燕麦 + 蛋白粉 + 蓝莓' },
+                { time: '12:00', name: '午餐', desc: '4个杂粮馒头 + 150g肉' },
+                { time: '17:30', name: '预充能', desc: '意面 + 150g肉 + 玉米' },
+                { time: '21:05', name: 'PWO', desc: '蛋白粉 + 蓝莓 + 馒头' }
+            ],
+            mid: [
+                { time: '08:30', name: '早餐', desc: '65g燕麦 + 蛋白粉 + 蓝莓' },
+                { time: '12:00', name: '午餐', desc: '2个杂粮馒头 + 150g肉' },
+                { time: '17:30', name: '预充能', desc: '意面 + 150g肉' },
+                { time: '21:05', name: 'PWO', desc: '蛋白粉 + 蓝莓' }
+            ],
+            low: [
+                { time: '09:00', name: '早餐', desc: '2全蛋 + 蛋白粉 + 蓝莓' },
+                { time: '13:00', name: '午餐', desc: '180g肉 + 牛油果' },
+                { time: '18:00', name: '晚餐', desc: '180g肉 + 坚果' },
+                { time: '21:30', name: '睡前', desc: '蛋白粉' }
+            ]
+        }
+    };
+
+    // 初始化
+    let today = new Date().getDay();
+    let currentMode = config.schedule[today === 0 ? 6 : today - 1];
+    const modeLabels = { low: '低碳', mid: '中碳', high: '高碳' };
+    const modeClasses = { low: 'low', mid: 'mid', high: 'high' };
+    const dayLabels = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+
+    // 更新界面
+    function updateUI() {
+        const todayIndex = new Date().getDay();
+        const displayIndex = todayIndex === 0 ? 6 : todayIndex - 1;
+        const todayMode = config.schedule[displayIndex];
+        const macros = config.macros[todayMode];
+
+        // 今日信息
+        document.getElementById('dayLabel').innerText = `${dayLabels[displayIndex]} · ${modeLabels[todayMode]}日`;
+        document.getElementById('modeBadge').innerText = todayMode.toUpperCase();
+        document.getElementById('modeBadge').className = `mode-badge ${modeClasses[todayMode]}`;
+        document.getElementById('carbonTarget').innerText = `${macros.c}g · 已摄入 0g · 剩余 ${macros.c}g`;
+
+        // 宏量值
+        document.getElementById('carbonValue').innerText = `0 / ${macros.c}g`;
+        document.getElementById('proteinValue').innerText = `0 / ${macros.p}g`;
+        document.getElementById('fatValue').innerText = `0 / ${macros.f}g`;
+
+        // 渲染打卡
+        const meals = config.meals[todayMode];
+        const mealHtml = meals.map((m, i) => `
+            <div class="meal-item" onclick="toggleMeal(this)">
+                <div class="meal-time">${m.time}</div>
+                <div class="meal-name">${m.name}</div>
+                <div class="meal-desc">${m.desc}</div>
+            </div>
+        `).join('');
+        document.getElementById('mealList').innerHTML = mealHtml;
+
+        // 更新周视图
+        document.querySelectorAll('.week-day').forEach((el, i) => {
+            el.classList.remove('active');
+            if (i === displayIndex) el.classList.add('active');
+        });
+
+        // 时间
+        updateTime();
+    }
+
+    function toggleMeal(el) {
+        el.classList.toggle('checked');
+    }
+
+    function updateTime() {
+        const now = new Date();
+        const options = { 
+            year: 'numeric', month: 'long', day: 'numeric', 
+            weekday: 'long', hour: '2-digit', minute: '2-digit' 
+        };
+        document.getElementById('timeDisplay').innerText = now.toLocaleString('zh-CN', options);
+    }
+
+    // 体重追踪
+    function saveWeight() {
+        const w = document.getElementById('weightInput').value;
+        if (!w) return;
+        config.weight = parseFloat(w);
+        localStorage.setItem('fdk_weight', JSON.stringify({
+            current: config.weight,
+            history: JSON.parse(localStorage.getItem('fdk_weight_history') || '[]').concat({
+                d: new Date().toLocaleDateString('zh-CN'), w: config.weight
+            })
+        }));
+        document.getElementById('currentWeight').innerHTML = `${config.weight} <span>kg</span>`;
+        document.getElementById('weightInput').value = '';
+        initChart();
+    }
+
+    // 图表
+    let chart = null;
+    function initChart() {
+        const history = JSON.parse(localStorage.getItem('fdk_weight_history') || '[]');
+        if (history.length === 0) return;
+
+        document.getElementById('currentWeight').innerHTML = `${history[history.length-1].w} <span>kg</span>`;
+        
+        const ctx = document.getElementById('weightChart').getContext('2d');
+        if (chart) chart.destroy();
+        
+        chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: history.map(i => i.d),
+                datasets: [{
+                    data: history.map(i => i.w),
+                    borderColor: '#00ff88',
+                    backgroundColor: 'rgba(0,255,136,0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 3,
+                    pointBackgroundColor: '#00ff88'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { grid: { color: '#2a2a3a' }, ticks: { color: '#888' } },
+                    x: { display: false }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+    }
+
+    // 启动
+    updateUI();
+    setInterval(updateTime, 1000);
+    initChart();
+</script>
+</body>
+</html>

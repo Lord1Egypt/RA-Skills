@@ -1,35 +1,55 @@
 ---
-name: "Garmin Trail Running Roadmap & Training Plan"
-description: "根据佳明(Garmin)运动数据和比赛GPX轨迹，自动化制作专业越野赛路书、动态训练计划，并同步至系统日历。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/garmin-trail-running-training-plan"
-sourceUrl: "https://clawhub.ai/skills/garmin-trail-running-training-plan"
+name: garmin-trail-running-roadmap-training-plan
+description: 根据佳明(Garmin)运动数据和比赛GPX轨迹，自动化制作专业越野赛路书、动态训练计划，并同步至系统日历。
 ---
 
-# Garmin Trail Running Roadmap & Training Plan
+# Garmin Trail-Running Roadmap & Training Plan
 
-> 根据佳明(Garmin)运动数据和比赛GPX轨迹，自动化制作专业越野赛路书、动态训练计划，并同步至系统日历。
+本技能旨在为越野跑者提供一站式的“数据分析 -> 策略制定 -> 计划同步”服务。它能够深度解析佳明手表的运动表现数据，并结合比赛赛道信息生成科学的路书和赛前训练安排。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/garmin-trail-running-training-plan`
-- **Source URL:** [https://clawhub.ai/skills/garmin-trail-running-training-plan](https://clawhub.ai/skills/garmin-trail-running-training-plan)
+## 使用场景
 
-## Overview
+- 准备参加新的越野比赛，需要根据赛道 GPX 制作分段路书。
+- 比赛前 2-3 周，需要根据近期身体状态调整减量训练课表。
+- 希望将复杂的训练计划一键同步到 macOS/iOS 系统日历中。
+- 需要将枯燥的训练数据转化为通俗易懂的小红书文案进行分享。
 
+## 核心能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/garmin-trail-running-training-plan
-```
+### 1. 佳明数据深度解析与自动化获取
+- **自动化连接**：内置 `scripts/garmin_auth.py` 脚本，支持 **佳明中国 (Garmin China)** 和全球账号。
+- **配置指引**：
+  - 在技能根目录创建 `config.json` 或设置环境变量 `GARMIN_EMAIL`, `GARMIN_PASSWORD`, `GARMIN_IS_CN=True`。
+  - 运行 `python3 scripts/garmin_auth.py login --cn` 进行首次授权登录。
+- **数据提取**：使用 `scripts/garmin_query.py` 自动获取特定日期的越野跑活动 ID 及详细指标。
+- **心率区间对齐**：支持 6 区间制（Zone 0-5）深度分析（参考 `references/roadmap_standard.md`）。
+- **爬升数据校准**：自动平滑 GPX 抖动，校准真实累计爬升。
+
+### 2. 智能化路书制作 (v4.0 架构)
+- **分坡度策略**：摒弃单一配速目标，改为“心率 + 功率”双控。
+- **时间银行逻辑**：量化下坡回收能力的战术应用。
+- **Z3 预算分配**：科学计算比赛全程节奏区的使用比例。
+
+### 3. 动态训练计划同步
+- 提供 `scripts/sync_gen.py` 脚本，可根据比赛日期自动生成日历同步脚本。
+- 自动设置全天事件，包含详细的训练内容、备注和强度建议。
+
+## 工作流程
+
+1. **环境准备**：
+   - 确保已获取比赛 GPX 文件。
+   - 获取用户最近一次代表性训练的 Garmin 数据（距离、爬升、心率分布）。
+2. **分析阶段**：
+   - 读取 `references/roadmap_standard.md` 确认心率定义和量化标准。
+   - 对比 GPX 数据与实测表现，识别用户的强项（如：下坡提速）与限制（如：陡坡心率漂移）。
+3. **输出阶段**：
+   - 生成路书 HTML。
+   - 运行 `scripts/sync_gen.py` 生成日历同步代码并执行。
+   - （可选）提炼社交媒体分享文案。
+
+## 关键文档
+- `references/roadmap_standard.md`: 佳明 6 区间定义及路书制作量化标准。
+
+## 开发者备注
+- 执行日历同步时需通过 `osascript` 调用 macOS 日历，确保权限已开启。
+- 处理 GPX 时优先进行 5-10 点的平滑移动平均处理以消除海拔噪点。

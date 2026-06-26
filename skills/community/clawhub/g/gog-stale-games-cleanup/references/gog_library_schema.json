@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GOG Library",
+  "type": "object",
+  "required": ["games"],
+  "properties": {
+    "account": { "type": "string" },
+    "games": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "installed"],
+        "properties": {
+          "id": { "type": "integer" },
+          "name": { "type": "string" },
+          "platforms": { "type": "array", "items": { "type": "string" } },
+          "installed": { "type": "boolean" },
+          "install_path": { "type": ["string", "null"] },
+          "last_played": { "type": ["string", "null"], "format": "date-time" },
+          "genres": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "wishlist": { "type": "array", "items": { "type": "string" } }
+  }
+}

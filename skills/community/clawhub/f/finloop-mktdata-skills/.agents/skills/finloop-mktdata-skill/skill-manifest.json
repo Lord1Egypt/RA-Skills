@@ -1,0 +1,23 @@
+{
+  "id": "finloop-mktdata-skill",
+  "name": "Finloop 金融行情数据技能",
+  "version": "1.0.0",
+  "description": "为 OpenClaw 提供全球金融数据查询与分析：股票/指数 K 线、实时行情、公司信息、公募基金信息与净值、债券信息与行情。必须直接使用 HTTP 请求调用接口。",
+  "author": "",
+  "repository": { "type": "git", "url": "" },
+  "source": {
+    "type": "git",
+    "url": "",
+    "branch": "main",
+    "path": ".agents/skills/finloop-mktdata-skill"
+  },
+  "files": [
+    "SKILL.md",
+    "skill-manifest.json",
+    "references/REFERENCE.md"
+  ],
+  "dependencies": [],
+  "tags": ["api", "mktdata", "finance", "stock", "fund", "bond", "company", "finloop", "agent"],
+  "created_at": "2026-03-13T00:00:00Z",
+  "updated_at": "2026-03-13T00:00:00Z"
+}

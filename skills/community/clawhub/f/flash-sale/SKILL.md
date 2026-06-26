@@ -1,35 +1,61 @@
 ---
-name: "Flash Sale"
-description: "限时促销制造紧迫感提升转化；适用于大促与上新。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/flash-sale"
-sourceUrl: "https://clawhub.ai/skills/flash-sale"
+name: 限时秒杀
+slug: flash-sale
+type: CPS
+status: draft
+description: 限时促销制造紧迫感提升转化；适用于大促与上新。
 ---
 
-# Flash Sale
+目标
+- 提升转化率与客单，扩大GMV与CPS净佣金
+- 建立可复用模板与数据口径，降低执行成本
 
-> 限时促销制造紧迫感提升转化；适用于大促与上新。
+适用场景
+- 渠道：官网/自营电商/平台店/社群/直播/线下O2O（因技能而异）
+- 人群：新客引导、老客复购、促销敏感、B2B商采（按技能细分）
+- 品类：标品、快消、服饰配饰、家居数码、服务与虚拟品
+- 时机：大促/节点/上新/清仓/复购激活
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/flash-sale`
-- **Source URL:** [https://clawhub.ai/skills/flash-sale](https://clawhub.ai/skills/flash-sale)
+策略要点
+- 明确主目标（拉新/转化/客单/复购）与核心杠杆（价格/权益/场景）
+- 设定门槛与奖励形式（折扣/满赠/免邮/积分/返现），避免过度叠加
+- 强化文案与锚点（限时/限量/对比价/权益稀缺），制造决策闭环
+- 前端清晰展示进度与可达性（距离下一档/权益对比/FAQ）
+- 联盟归因与标签化订单，确保结算与复盘可追踪
 
-## Overview
+实施步骤（SOP）
+- 明确目标与预算，盘点SKU与毛利结构
+- 设计规则与素材，确定叠加/排他策略与黑名单SKU
+- 配置后台促销与页面组件，联调结算与风控兜底
+- 配置追踪参数（utm/campaignId）与订单促销标签
+- 渠道投放与分发（内容/社群/直播/广告/联盟）
+- 监控实时指标并AB测试优化阈值与文案
+- 复盘成交结构与利润，沉淀模板与数据口径
 
+核心指标
+- 流量：UV、CTR、加购率、进入结算率
+- 交易：转化率、AOV、件单、GMV、退款率
+- 促销：优惠使用率、命中率、库存周转
+- 联盟：CPS佣金额、净毛利率、ROI
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/flash-sale
-```
+技术实现
+- 促销规则引擎：门槛校验、叠加/排他、兜底计算与审计日志
+- 归因：utm_source/utm_campaign/aid，订单打促销标签
+- 风控：高成本SKU封顶、限购与黑名单、库存预警
+- 数据：统一口径与时区，对齐取消/退款处理
+
+埋点与追踪
+- 事件：promotion_view、promotion_progress、promotion_applied
+- 维度：tier_level/order_amount/sku_count/discount_value/gift_sku
+- 渠道：来源/媒介/活动ID，联盟AID与结算周期
+
+注意事项
+- 合规与平台规则：避免夸大宣传，遵守价格保护与促销限制
+- 叠加冲突：明确与店铺券/平台券/会员折扣的关系，保持规则可解释
+- 利润与库存：设置封顶与替代SKU，保证履约体验
+- 结算兜底：异常回退与日志审计，保障数据一致性
+
+常见问题（FAQ）
+- 是否与其他优惠叠加：建议有限叠加，优先平台券
+- 门槛设置如何确定：依据AOV与毛利倒推，兼顾可达性与利润
+- 物料不足或缺货：预置替代方案并动态展示，降低体验风险

@@ -1,35 +1,35 @@
 ---
-name: "GitHub Issue Reply Assistant"
-description: "Free basic version that drafts a structured GitHub issue response and triage checklist. Reserves premium upgrade hooks for multilingual replies and fix-draft..."
-category: "github"
-source: "ClawHub"
-tags: [developer, free, github]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/github-issue-reply-assistant"
-sourceUrl: "https://clawhub.ai/skills/github-issue-reply-assistant"
+name: github-issue-reply-assistant
+description: Free basic version that drafts a structured GitHub issue response and triage checklist. Reserves premium upgrade hooks for multilingual replies and fix-draft generation.
 ---
 
-# GitHub Issue Reply Assistant
+# GitHub Issue Smart Reply Assistant
 
-> Free basic version that drafts a structured GitHub issue response and triage checklist. Reserves premium upgrade hooks for multilingual replies and fix-draft...
+## Value
 
-- **Category:** GitHub
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/github-issue-reply-assistant`
-- **Source URL:** [https://clawhub.ai/skills/github-issue-reply-assistant](https://clawhub.ai/skills/github-issue-reply-assistant)
+- Free tier: one high-quality reply draft + triage checklist.
+- Premium tier (reserved): multilingual reply, fix-draft, similar-issue clustering.
 
-## Overview
+## Input
 
+- `user_id`
+- `repo` (`owner/repo`)
+- `issue_title`
+- `issue_body`
+- optional `tier` (`free`/`premium`)
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Run
+
 ```bash
-hermes skills install clawhub/github-issue-reply-assistant
+python3 scripts/github_issue_reply_assistant.py \
+  --user-id user_003 \
+  --repo openclaw/openclaw \
+  --issue-title "Bug: login flow crashes" \
+  --issue-body "When I click login, app crashes on callback page"
+```
+
+## Tests
+
+```bash
+python3 -m unittest scripts/test_github_issue_reply_assistant.py -v
 ```

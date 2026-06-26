@@ -1,0 +1,53 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fnclub_signer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "clawhub": {
+    "description": "自动登录 club.fnnas.com 并保存会话",
+    "requiresCredentials": true,
+    "environmentVariables": {
+      "FNCLUB_USERNAME": {
+        "description": "论坛登录用户名",
+        "required": true,
+        "sensitive": true
+      },
+      "FNCLUB_PASSWORD": {
+        "description": "论坛登录密码",
+        "required": true,
+        "sensitive": true
+      },
+      "BAIDU_OCR_API_KEY": {
+        "description": "百度 OCR API 访问密钥",
+        "required": true,
+        "sensitive": true
+      },
+      "BAIDU_OCR_SECRET_KEY": {
+        "description": "百度 OCR API 密钥",
+        "required": true,
+        "sensitive": true
+      },
+      "FNCLUB_CONFIG": {
+        "description": "配置文件路径",
+        "required": false,
+        "sensitive": false
+      },
+      "FNCLUB_DATA_DIR": {
+        "description": "数据目录（Cookie/Token缓存）",
+        "required": false,
+        "sensitive": false
+      }
+    }
+  },
+  "dependencies": {
+    "axios": "^1.13.6",
+    "cheerio": "^1.2.0",
+    "tough-cookie": "^6.0.0"
+  }
+}

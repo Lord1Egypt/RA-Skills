@@ -1,0 +1,20 @@
+name: gcadclaw
+version: 1.0.0
+author: 浩辰创新研究院 
+license: MIT
+description: "通过 pygcadwin 实现 GstarCAD 二维图纸的自然语言生成、修改、校验与修复。支持机械零件和装配体的 DWG 自动化输出，包含强制截图反馈和实体验证。"
+tags: [cad, gstarcad, dwg, mechanical, engineering, drawing, automation, pygcadwin, 2d]
+platforms: [windows]
+entry:
+  prompt: SKILL.md
+  spec: SKILL.md
+references:
+  - examples.md
+  - references/2d-pygcadwin-workflow.md
+  - references/feedback-loop.md
+tools:
+  required:
+    - filesystem.read_file
+    - filesystem.write_file
+    - python
+    - exec

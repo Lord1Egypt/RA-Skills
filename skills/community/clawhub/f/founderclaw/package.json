@@ -1,0 +1,41 @@
+{
+  "name": "founderclaw",
+  "version": "0.1.0",
+  "description": "FounderClaw — Multi-agent engineering team for OpenClaw. Build startups with AI agents.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "browse": "./browse/dist/browse"
+  },
+  "scripts": {
+    "build": "bun run gen:skill-docs && bun build --compile browse/src/cli.ts --outfile browse/dist/browse && bun build --compile browse/src/find-browse.ts --outfile browse/dist/find-browse && git rev-parse HEAD > browse/dist/.version",
+    "gen:skill-docs": "bun run scripts/gen-skill-docs.ts",
+    "dev": "bun run browse/src/cli.ts",
+    "server": "bun run browse/src/server.ts",
+    "skill:check": "bun run scripts/skill-check.ts",
+    "dev:skill": "bun run scripts/dev-skill.ts",
+    "eval:list": "bun run scripts/eval-list.ts",
+    "eval:compare": "bun run scripts/eval-compare.ts",
+    "eval:summary": "bun run scripts/eval-summary.ts",
+    "eval:watch": "bun run scripts/eval-watch.ts",
+    "eval:select": "bun run scripts/eval-select.ts"
+  },
+  "dependencies": {
+    "diff": "^7.0.0",
+    "playwright": "^1.58.2",
+    "puppeteer-core": "^24.40.0"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "keywords": [
+    "openclaw",
+    "founderclaw",
+    "browser",
+    "automation",
+    "playwright",
+    "headless",
+    "ai-agent",
+    "multi-agent"
+  ]
+}

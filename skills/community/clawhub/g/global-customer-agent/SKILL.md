@@ -1,35 +1,87 @@
 ---
-name: "Global Customer Agent"
-description: "7×24小时36语种客户接待。自动理解多语种需求，智能推荐商品，生成多语种报价，让全球客户都能获得专业服务体验，适合有多语种客户的外贸企业和独立站运营。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/global-customer-agent"
-sourceUrl: "https://clawhub.ai/skills/global-customer-agent"
+name: 跨境客户Agent
+slug: global-customer-agent
+description: 7×24小时36语种客户接待。自动理解多语种需求，智能推荐商品，生成多语种报价，让全球客户都能获得专业服务体验，适合有多语种客户的外贸企业和独立站运营。
+tags:
+  - 客户服务
+  - 多语种
+  - 客户接待
+  - 跨境电商
+  - 自动回复
 ---
 
-# Global Customer Agent
+# 跨境客户Agent
 
-> 7×24小时36语种客户接待。自动理解多语种需求，智能推荐商品，生成多语种报价，让全球客户都能获得专业服务体验，适合有多语种客户的外贸企业和独立站运营。
+## 记忆点
+**7×24小时36语种客户接待**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/global-customer-agent`
-- **Source URL:** [https://clawhub.ai/skills/global-customer-agent](https://clawhub.ai/skills/global-customer-agent)
+## 核心功能
 
-## Overview
+### 1. 多语种即时响应
+- 36个语种自动识别和回复
+- 专业术语准确翻译
+- 本地化表达习惯
 
+### 2. 全天候客户接待
+- 7×24小时不间断服务
+- 毫秒级响应速度
+- 夜间询盘零遗漏
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/global-customer-agent
+### 3. 智能需求理解
+- 自动提取客户需求关键词
+- 产品匹配推荐
+- 库存状态实时查询
+
+### 4. 多语种报价生成
+- 支持36语种报价单
+- 自动汇率计算
+- 规格参数本地化
+
+## 客户生命周期管理
+
+| 阶段 | 核心诉求 | 运营策略 |
+|-----|---------|---------|
+| 潜在客户 | 了解产品 | 多渠道曝光 |
+| 询盘客户 | 快速响应 | 24h内专业回复 |
+| 报价客户 | 透明价格 | 详细方案+案例 |
+| 成交客户 | 信任建立 | 定期跟进 |
+| 复购客户 | 便捷体验 | 个性化推荐 |
+
+## 语种支持
+
+| 语种 | 区域 | 优先级 |
+|-----|------|-------|
+| 英语 | 全球通用 | P0 |
+| 西班牙语 | 拉美/西班牙 | P0 |
+| 法语 | 非洲/法国 | P0 |
+| 德语 | 欧洲 | P1 |
+| 葡萄牙语 | 巴西/葡萄牙 | P1 |
+| 俄语 | 俄语区 | P1 |
+| 阿拉伯语 | 中东 | P1 |
+| 日韩语 | 东亚 | P1 |
+| 其他28语种 | 东南亚/南亚 | P2 |
+
+## 响应模板
+
+```markdown
+## 询盘响应
+[自动识别语种]
+Thank you for your inquiry about [产品].
+We have [规格] in stock. 
+Price: $XX/unit, MOQ: XX units.
+Delivery: XX days to [目的港].
+
+## 报价生成
+[自动生成多语种报价单]
+- Product specs
+- Pricing (FOB/CIF/EXW)
+- Payment terms
+- Delivery timeline
 ```
+
+## 关键指标
+
+- 响应时间：<1分钟
+- 语种识别准确率：>95%
+- 询盘转化率：>15%
+- 客户满意度：>90%

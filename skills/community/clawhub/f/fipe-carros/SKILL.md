@@ -1,35 +1,62 @@
----
-name: "Tabela FIPE"
-description: "Consulta preços médios de carros, motos e caminhões na Tabela FIPE brasileira para compra, venda, seguro e financiamento."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fipe-carros"
-sourceUrl: "https://clawhub.ai/skills/fipe-carros"
----
+# Tabela FIPE Skill
 
-# Tabela FIPE
+Consulta preços de veículos (carros, motos, caminhões) na Tabela FIPE brasileira.
 
-> Consulta preços médios de carros, motos e caminhões na Tabela FIPE brasileira para compra, venda, seguro e financiamento.
+## O que é a Tabela FIPE?
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fipe-carros`
-- **Source URL:** [https://clawhub.ai/skills/fipe-carros](https://clawhub.ai/skills/fipe-carros)
+A **Tabela FIPE** é uma referência oficial de preços médios de veículos no Brasil, calculada pela **Fundação Instituto de Pesquisas Econômicas (FIPE)** ligada à USP. Atualizada mensalmente, é usada para:
+- Compra e venda de veículos
+- Financiamentos e consórcios
+- Cálculo de seguros
+- Base para IPVA
 
-## Overview
+## Gatilhos
 
+Ative a skill usando:
+- `"fipe"`, `"tabela fipe"` — buscar preço
+- `"preço carro"`, `"valor carro"` — consultar
+- `"carro tá quanto"` — consulta informal
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Como Usar
+
 ```bash
-hermes skills install clawhub/fipe-carros
+# Listar marcas de carros
+node src/index.js marcas
+
+# Listar modelos de uma marca
+node src/index.js modelos 59  # 59 = Volkswagen
+
+# List anos de um modelo
+node src/index.js anos 59 5940
+
+# Ver preço de um veículo
+node src/index.js preco 59 5940 2014-3
+
+# Busca rápida por nome (pesquisa em todas as marcas)
+node src/index.js search "Hilux"
 ```
+
+## Busca Inteligente
+
+A skill suporta busca por nome que retorna modelos compatíveis:
+```bash
+node src/index.js search "Toyota Corolla"
+node src/index.js search "Honda Civic"
+```
+
+## API
+
+- **URL Base:** https://parallelum.com.br/fipe/api/v1
+- **Autenticação:** Não requer API key
+- **Veículos:** carros, motos, caminhoes
+
+## Exemplos de Códigos de Marcas
+
+| Código | Marca |
+|--------|-------|
+| 59 | Volkswagen |
+| 21 | Chevrolet |
+| 23 | Ford |
+| 33 | Fiat |
+| 2 | Honda (motos) |
+| 1 | Yamaha (motos) |

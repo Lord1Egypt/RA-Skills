@@ -1,0 +1,23 @@
+id: b11
+track: B
+title_zh: 限流方案：令牌桶 vs 漏桶权衡
+category: plan
+difficulty: medium
+timeout_seconds: 180
+dimensions:
+  primary: brain
+  secondary:
+  - meat
+evaluators:
+- type: llm_judge
+  weight: 1.0
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  judge_dimensions:
+  - brain
+  - meat
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 4
+title_en: Compare token bucket and leaky bucket

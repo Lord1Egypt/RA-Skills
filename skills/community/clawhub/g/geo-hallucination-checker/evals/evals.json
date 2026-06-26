@@ -1,0 +1,24 @@
+{
+  "skill_name": "geo-hallucination-checker",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "You are given a blog post draft about a new 'QuantumBoost-9' processor that claims a 500% performance increase over all existing CPUs, references a '2026 MIT study in the Journal of Impossible Physics', and quotes several exact statistics with no sources. Use the geo-hallucination-checker skill to analyze the text, flag hallucinated or unsupported claims, and propose safer phrasing that avoids inventing sources.",
+      "expected_output": "The assistant identifies fabricated or suspicious elements (e.g., non-existent or dubious journal, extreme performance claims, unsourced statistics), marks them as high-risk hallucinations or unsupported claims, explains why they are risky, and suggests conservative rephrasing or removal instead of inventing sources.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "A landing page draft claims that a wellness app is 'clinically proven to reduce depression by 80% in 2 weeks' and cites an unspecified 'Harvard 2025 study' without a link, authors, or details. Use the geo-hallucination-checker skill to review these claims and output a structured hallucination analysis table plus a safer alternative copy block.",
+      "expected_output": "The assistant highlights that the clinical proof and Harvard study are unspecified and likely hallucinated or at least unsupported, labels them as high-risk problematic claims, recommends either adding real study details or softening language to avoid false medical claims, and outputs both a hallucination analysis table and a rewritten, safer version.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "You receive a product page draft for an AI camera that includes realistic but unsourced specs (sensor size, resolution, frame rate) and modest claims such as 'used by hundreds of creators worldwide'. Use the geo-hallucination-checker skill to distinguish between low-risk, plausible claims and high-risk, potentially hallucinated details, and clearly mark which ones require external verification.",
+      "expected_output": "The assistant classifies each claim with status and risk level, treating specific technical specs and numbers as needing verification while allowing modest qualitative claims as lower risk, marks clearly which claims require external verification, and avoids inventing citations or new statistics.",
+      "files": []
+    }
+  ]
+}
+

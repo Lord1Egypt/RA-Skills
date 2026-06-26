@@ -1,35 +1,108 @@
 ---
-name: "生成每日金融市场 PPT 简报"
-description: "根据采集的市场数据，按照 E:\daily\cankao\M2.pptx 模板生成每日金融市场 PPT 简报。 当用户要求"生成 PPT 简报"、"生成 PPT"、"制作 PPT"、 或触发"生成每日金融日报"流程的第三步时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/generate-ppt-report"
-sourceUrl: "https://clawhub.ai/skills/generate-ppt-report"
+name: generate-ppt-report
+description: >
+  根据采集的市场数据，按照 E:\daily\cankao\M2.pptx 模板生成每日金融市场 PPT 简报。
+  当用户要求"生成 PPT 简报"、"生成 PPT"、"制作 PPT"、
+  或触发"生成每日金融日报"流程的第三步时使用。
 ---
 
-# 生成每日金融市场 PPT 简报
+# PPT 报告生成 Skill
 
-> 根据采集的市场数据，按照 E:\daily\cankao\M2.pptx 模板生成每日金融市场 PPT 简报。 当用户要求"生成 PPT 简报"、"生成 PPT"、"制作 PPT"、 或触发"生成每日金融日报"流程的第三步时使用。
+**配置来源**：`workspace-yoyo/config.py`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/generate-ppt-report`
-- **Source URL:** [https://clawhub.ai/skills/generate-ppt-report](https://clawhub.ai/skills/generate-ppt-report)
+## 模板路径
 
-## Overview
+- 模板文件：`E:\daily\cankao\M2.pptx`
+- 输出目录：`E:\daily\{YYYY-MM-DD}\`
+- 输出文件名：`金融市场简报_{YYYYMMDD}.pptx`
 
+## PPT 结构（单页 Dashboard）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/generate-ppt-report
+**重要**：M2.pptx 是**单页 Dashboard 布局**（只有 1 张幻灯片），内容分布在多个文本框（Shape）中：
+
+| Shape ID | 内容类型 | 说明 |
+|----------|----------|------|
+| 5 | 封面标题 | "每日环球市场速览" |
+| 6 | 市场表现 | 美国 / 中国及中国香港 / 黄金 |
+| 12 | 标签 | ★市场表现 |
+| 14 | 标签 | ★政策 |
+| 15 | 政策内容 | 美国 / 欧洲 / 中国 |
+| 18 | 结尾 | 内部资料，切勿随意转发 |
+| 20 | 标签 | ★企业 |
+| 23 | 企业内容 | 美国 / 中国及中国香港 |
+
+## 数据分类规则
+
+**关键原则**：严格按 `market_data.json` 的分类模块取数，不同分类的数据不会混用。
+
+| Shape | 内容 | 数据来源（market_data.json） |
+|-------|------|------------------------------|
+| **Shape 6** 市场表现 | 美国（美股/美债/美元/就业）/ 中国及中国香港（A股/港股）/ 黄金 | `市场表现` 模块下的子项 |
+| **Shape 15** 政策 | 美国 / 欧洲 / 中国 | `政策动态` 模块 |
+| **Shape 23** 企业 | 美国 / 中国及中国香港 | `企业动态` 模块 |
+
+### 分类边界
+
+- **政策类**（Shape 15）：政府/监管机构发布的法规、监管措施、行政决策
+  - ✅ 正确：`"美国司法部终止对美联储主席鲍威尔的刑事调查"` → 政策动态·美国
+  - ❌ 错误：不能放入企业类
+
+- **企业类**（Shape 23）：上市企业经营动态、财报、并购、人事
+  - ✅ 正确：`"丰田换帅：日系车阵营加速分裂"` → 企业动态·日本
+  - ❌ 错误：不能放入政策类
+
+- **市场表现类**（Shape 6）：指数涨跌、价格波动、市场情绪
+  - ✅ 正确：`"A股三大指数4月25日收跌，创业板指跌1.41%"` → 市场表现·A股
+  - ✅ 正确：`"恒生指数收涨0.24%，港股主要指数涨跌分化"` → 市场表现·港股
+  - ❌ 错误：不能放入企业类
+
+## 填充规则
+
+### Shape 6（市场表现）
+
+从 `market_data.json` → `市场表现` 模块取数：
+
+| 子类 | 指标 | 格式 |
+|------|------|------|
+| **美国** | 道琼斯工业平均指数、标普500指数、纳斯达克综合指数 | 道指涨0.13%报49230.71点 |
+| | 10年期美债收益率、2年期美债收益率 | 10年期4.25% |
+| | 美元指数(DXY) | 美元指数涨0.33%报98.38 |
+| | 挑战者企业裁员/当周初请/四周均值/续请失业金 | 挑战者企业裁员当月5.0万人 前值6.2万人；上周初请失业金人数：21.0万人，预期22.0万人，前值22.5万人；四周均值：21.8万人，前值自22.0万人修正至21.5万人；至当日续请失业金人数：184.0万人，预期186.0万人，前值自187.0万人修正至186.5万人 |
+| **中国及中国香港** | 上证指数、深证成指、创业板指、沪深300 | 上证指数跌0.33%报4079.90点 |
+| | 恒生指数、恒生科技指数 | 恒生指数涨0.24%报25978.07点 |
+| **黄金** | 现货黄金(XAUUSD)、COMEX黄金期货 | 现货黄金上涨0.32%报4709.24美元/盎司；COMEX黄金期货下跌0.15%报4712.50美元/盎司 |
+
+### Shape 15（政策）
+
+从 `market_data.json` → `政策动态` 模块取数，取各地区第一条政策动态的**内容字段**（前120字截断）作为正文，与 Word `build_policy` 一致：
+
+```python
+policy = mdata.get('政策动态', {})
+items = policy.get('美国', [])  # list of {标题, 内容, 来源, 时间}
+if items:
+    title = items[0].get('标题', '')  # 取第一条政策标题
 ```
+
+### Shape 23（企业）
+
+从 `market_data.json` → `企业动态` 模块取数，取各地区第一条企业动态的**公司名+事件简述**作为正文：
+
+```python
+enterprise = mdata.get('企业动态', {})
+items = enterprise.get('美国', [])  # list of {公司, 事件, 时间, 来源}
+if items:
+    company = items[0].get('公司', '')
+    event = items[0].get('事件', '')
+    text = company + '：' + event[:60]  # 公司名+事件简述（限80字）
+```
+
+## 关键约束
+
+1. **严格分类**：政策类数据只从 `政策动态` 取，企业类数据只从 `企业动态` 取，市场表现类数据只从 `市场表现` 取
+2. **只修改文字**：保持模板样式、颜色、布局完全不变
+3. **Shape ID 定位**：通过 `shape.shape_id` 精确匹配文本框
+4. **数字格式**：与 Word 报告保持一致（例：道指跌0.13%报49230.71点）
+
+## 脚本
+
+执行：本 Skill 的 `scripts/generate_ppt.py`

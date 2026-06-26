@@ -1,35 +1,113 @@
----
-name: "高考志愿"
-description: "提供基于分数、省份和选科的高考院校与专业组查询，支持付费API订阅及数据只读调用接入。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gaokao2026"
-sourceUrl: "https://clawhub.ai/skills/gaokao2026"
----
+# 高考志愿.skill
 
-# 高考志愿
+## 技能名称
 
-> 提供基于分数、省份和选科的高考院校与专业组查询，支持付费API订阅及数据只读调用接入。
+高考志愿
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gaokao2026`
-- **Source URL:** [https://clawhub.ai/skills/gaokao2026](https://clawhub.ai/skills/gaokao2026)
+## 一句话简介
 
-## Overview
+面向高考考生、家长、升学顾问和教育产品团队的高考志愿数据查询技能，支持基于分数、省份、选科进行院校与专业组检索，并可通过只读 API 接入你的应用、Agent 或自动化流程。
+
+## 技能介绍
+
+`高考志愿.skill` 连接的是 `zhiyuanx.com` 的高考志愿数据服务，适合用于以下场景：
+
+- 根据考生分数、选科、省份快速筛选可报院校和专业组
+- 给家长或咨询师做初步志愿建议和候选名单整理
+- 为教育类 App、Agent、自动化工具提供高考志愿查询能力
+- 用于生成志愿填报参考、院校对比、地区对比、专业组分析
+
+这个技能背后对应的是可订阅的数据 API，购买后可在网页中直接查看自己的 API Key 与 Secret，并接入到自己的工具或工作流中。
+
+## 官方网址
+
+- 订阅与文档入口：`https://zhiyuanx.com/api.html`
+- 主站：`https://zhiyuanx.com/`
+- 官方应用链接：`https://apps.apple.com/cn/app/id6743759582/`
+- 官方应用链接：`https://apps.apple.com/cn/app/id6747729955`
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gaokao2026
-```
+
+## 付费方式
+
+- 产品名称：高考志愿数据 API
+- 价格：`198 元 / 90 天`
+- 登录方式：微信登录
+- 支付方式：微信支付 / 支付宝
+- 权限类型：`只读`
+- 请求限制：`GET only`
+
+用户购买后，系统会自动分配或续期一组专属 `AK / SK`，可在订阅页面中查看、复制和管理。
+
+## 使用方法
+
+1. 打开 `https://zhiyuanx.com/api.html`
+2. 使用微信登录
+3. 购买 `198 元 / 90 天` 的 API 订阅
+4. 在页面中获取自己的 `API Key` 和 `API Secret`
+5. 按页面文档调用接口，或在支持自定义 API 的 Agent / Skill 平台中配置使用
+
+## 推荐使用场景
+
+- 高考志愿初筛：按分数和省份快速找出可能区间内的学校
+- 专业组分析：查看不同学校下的专业组、选科要求、计划人数、学费等信息
+- 家长咨询辅助：给出候选院校清单和结构化对比信息
+- 教育产品接入：将志愿检索能力集成到 App、网站、Agent、工作流平台
+- 只读数据调用：适合查询、推荐、报告生成，不适合写入和后台管理
+
+## 可获取的数据示例
+
+返回数据以院校与专业组检索结果为主，常见字段包括但不限于：
+
+- `school`：院校名称
+- `school_code`：院校代码
+- `source_province`：考生来源省份
+- `school_province`：院校所在省份
+- `subject`：选科 / 科类
+- `major_group`：专业组
+- `major_group_code`：专业组代码
+- `major`：专业或专业组详细内容
+- `subject_requirement`：选科要求
+- `plan_num`：计划人数
+- `score_2024`：往年参考分数
+- `score_2025_est`：当前检索结果中的分数参考字段
+- `tier`：批次信息
+- `study_period`：学制
+- `tuition`：学费
+- `is_public`：公办 / 民办
+- `city`：城市
+- `city_level_tag`：城市等级标签
+
+说明：不同省份、学校、专业组的数据完整度会有差异，实际返回字段以接口结果为准。
+
+## 对外能力说明
+
+- 支持主库与备库的数据查询能力
+- 支持账号购买后自动开通 API 凭证
+- 支持在页面中查看完整 AK / SK 与到期时间
+- 支持未来接入 Codex、ClawHub、其他 Skill / Agent 平台
+- 默认不开放写入权限，避免误操作数据库
+
+## 适合放在商店页的推广文案
+
+高考志愿.skill 是一个可直接接入真实高考志愿数据能力的技能入口。  
+无论你是考生、家长、升学咨询师，还是正在做教育 Agent、志愿填报工具、数据助手，这个技能都可以帮助你快速获得基于分数、省份、选科的院校与专业组参考结果。
+
+它不是单纯的静态介绍页，而是对应一套真实可购买、可登录、可调用的只读 API 服务。用户在 `https://zhiyuanx.com/api.html` 登录并购买后，即可获得自己的 API Key 与 Secret，用于查询院校、专业组、分数参考、选科要求、计划人数、学费、学校地区等信息。
+
+如果你需要把高考志愿查询能力集成到自己的 App、AI 助手、自动化工作流或技能市场中，这个技能适合作为统一订阅入口和数据接入入口。
+
+## 建议放到 Skill 市场里的提醒
+
+- 先订阅，再调用
+- 当前产品为付费能力，不是免费公共接口
+- API 仅开放只读查询，不支持写入
+- 推荐从官方页面查看最新价格、有效期和接口说明
+
+## 推荐展示标题
+
+高考志愿数据查询与 API 订阅
+
+## 推荐展示副标题
+
+登录购买后即可获取只读 API Key，快速接入高考志愿、院校专业组与分数检索能力。

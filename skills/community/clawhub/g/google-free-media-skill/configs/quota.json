@@ -1,0 +1,11 @@
+{
+  "dailyLimits": {
+    "images": 100,
+    "videoCredits": 50
+  },
+  "currentUsage": {
+    "images": 2,
+    "videoCredits": 0
+  },
+  "lastReset": "2026-03-02T00:00:00+07:00"
+}

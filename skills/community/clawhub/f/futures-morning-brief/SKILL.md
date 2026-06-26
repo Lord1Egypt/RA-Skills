@@ -1,35 +1,46 @@
----
-name: "卓钢链黑色产研院的早报工具"
-description: "期货早报生成工具。用户输入网址或留空默认使用西本资讯，自动抓取当天最新行业要闻早餐，按固定HTML格式输出，包含：整体综述（置顶）、重点关注（3条）、信息速览（行情表格）、宏观要闻（10条+详情）、产业要闻（6条+详情）。触发词：生成早报、期货早报、早间新闻、行业要闻早餐、早班车、卓钢早报。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/futures-morning-brief"
-sourceUrl: "https://clawhub.ai/skills/futures-morning-brief"
+﻿---
+name: futures-morning-brief
+description: 期货早报生成工具。用户输入网址或留空默认使用西本资讯，自动抓取当天最新行业要闻早餐，按固定HTML格式输出，包含：整体综述（置顶）、重点关注（3条）、信息速览（行情表格）、宏观要闻（10条+详情）、产业要闻（6条+详情）。触发词：生成早报、期货早报、早间新闻、行业要闻早餐、早班车、卓钢早报。
 ---
 
-# 卓钢链黑色产研院的早报工具
+# 期货早报生成工具
 
-> 期货早报生成工具。用户输入网址或留空默认使用西本资讯，自动抓取当天最新行业要闻早餐，按固定HTML格式输出，包含：整体综述（置顶）、重点关注（3条）、信息速览（行情表格）、宏观要闻（10条+详情）、产业要闻（6条+详情）。触发词：生成早报、期货早报、早间新闻、行业要闻早餐、早班车、卓钢早报。
+## 工作流程
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/futures-morning-brief`
-- **Source URL:** [https://clawhub.ai/skills/futures-morning-brief](https://clawhub.ai/skills/futures-morning-brief)
+### Step 1：获取目标 URL
+- 用户提供网址时直接使用；未提供时默认 https://www.steelx2.com/；进入后自动定位当前日期最新的 X月X日行业要闻早餐 文章
+- 只使用用户提供的内容，不搜索其他来源
 
-## Overview
+### Step 2：提取页面内容
+- 重点关注：页面中重点关注板块（通常3条，含标题+详情）
+- 行情数据：品种、收盘价、涨跌、幅度
+- 宏观要闻：10条（标题+详情）
+- 产业要闻：6条（标题+详情）
 
+### Step 3：生成 HTML 早报
+按 eferences/output-format.md 规范输出，保存到用户桌面。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/futures-morning-brief
-```
+HTML 结构顺序：
+1. 顶部横幅
+2. 整体综述（置顶第一版块）
+3. 重点关注（3条）
+4. 信息速览（四列表格）
+5. 宏观要闻（标题列表+每条标题+内容展开，共10条）
+6. 产业要闻（标题列表+每条标题+内容展开，共6条）
+7. 页脚
+
+全文不显示任何来源说明。
+
+### Step 4：验证
+打开生成的 HTML 截图确认。
+
+## 参考资源
+- 格式规范：eferences/output-format.md 
+- 原始模版：ssets/template.html 
+
+## 注意事项
+- 默认：西本资讯 steelx2.com，自动获取最新一期早报
+- 表格涨跌：正数红色 rgb(204,0,0)；负数绿色 rgb(0,128,0)
+- 宏观/产业要闻：每条新闻标题+内容直接展开，不用折叠/滚动区
+- 产业要闻标题蓝色 rgb(79,129,189)；宏观要闻标题棕色 rgb(117,79,68)
+- 主色调：#d2bd8b 金棕色

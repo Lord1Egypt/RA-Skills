@@ -1,0 +1,27 @@
+{
+  "name": "free-web-search-js",
+  "version": "29.1.0",
+  "type": "module",
+  "description": "Playwright 联网搜索，国内Bing/搜狗，海外DDG，自动抓取，零 API Key",
+  "license": "MIT",
+  "author": "free-web-search-js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "search": "node scripts/search.js",
+    "fetch": "node scripts/fetch.js",
+    "check": "node scripts/check-env.js",
+    "daemon": "node scripts/browser-daemon.js"
+  },
+  "dependencies": {
+    "cheerio": "~1.0.0",
+    "commander": "~12.1.0",
+    "iconv-lite": "~0.6.3",
+    "playwright": "~1.52.0"
+  }
+}

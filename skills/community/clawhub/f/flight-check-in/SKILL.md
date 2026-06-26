@@ -1,35 +1,26 @@
 ---
-name: "Flight Check In"
+name: "Flight Check-in"
 description: "提供在线选座、行李托运规则及延误证明获取指引。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/flight-check-in"
-sourceUrl: "https://clawhub.ai/skills/flight-check-in"
 ---
 
-# Flight Check In
+# 航班值机
 
-> 提供在线选座、行李托运规则及延误证明获取指引。
+## 筛选项
+- 交通方式（高铁/飞机/自驾/公共交通）
+- 出行偏好（特惠/舒适/周边/长途）
+- 签证与政策（免签/落地签/核酸要求/预约预约）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/flight-check-in`
-- **Source URL:** [https://clawhub.ai/skills/flight-check-in](https://clawhub.ai/skills/flight-check-in)
+## 返回字段
+- 实时余票/航班动态/延误信息
+- 目的地攻略/天气预警/当地消费参考
+- 订单行程单/值机助手/数字登机牌
 
-## Overview
+## 示例请求
+- “如何快速使用 航班值机 处理 [具体场景任务] ？”
+- “航班值机 的 [核心功能] 有哪些最新玩法/优惠信息？”
 
+## 更新频率
+- 随交通枢纽数据、气象信息及库存变动分钟级响应
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/flight-check-in
-```
+## 注意事项
+- 高峰出行请提前购买延误险；遵守当地旅游文明公约与防疫要求。

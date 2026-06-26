@@ -1,0 +1,22 @@
+[
+  {
+    "file": "chunk-01.json",
+    "count": 9,
+    "bytes": 164342
+  },
+  {
+    "file": "chunk-02.json",
+    "count": 9,
+    "bytes": 126976
+  },
+  {
+    "file": "chunk-03.json",
+    "count": 9,
+    "bytes": 182502
+  },
+  {
+    "file": "chunk-04.json",
+    "count": 8,
+    "bytes": 108824
+  }
+]

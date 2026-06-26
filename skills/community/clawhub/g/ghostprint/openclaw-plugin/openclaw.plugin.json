@@ -1,0 +1,32 @@
+{
+  "id": "ghostprint",
+  "name": "Ghostprint",
+  "description": "LLM fingerprint noise injector. Sends randomized queries to configured providers on a schedule to depersonalize your usage profile and prevent behavioral fingerprinting.",
+  "version": "1.0.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": { "type": "boolean" },
+      "providers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name":     { "type": "string" },
+            "base_url": { "type": "string" },
+            "api_key":  { "type": "string" },
+            "model":    { "type": "string" },
+            "style":    { "type": "string", "enum": ["openai", "anthropic"] },
+            "weight":   { "type": "number" }
+          },
+          "required": ["name", "base_url", "api_key", "model"]
+        }
+      },
+      "max_tokens":          { "type": "number" },
+      "strategy":            { "type": "string", "enum": ["random", "round-robin", "weighted"] },
+      "interval_minutes":    { "type": "number" },
+      "jitter_minutes":      { "type": "number" }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "_comment": "Merge ONE of the blocks below into <repo>/.claude/settings.json -> hooks. SessionStart is the portable default; WorktreeCreate is cleaner if your team uses `claude --worktree`.",
+
+  "_choice_a_session_start": {
+    "_when": "Default. Works with manual `git worktree add`, IDE worktree creation, any agent CLI (Claude Code / Codex / Gemini). Runs after TUI renders so output mixes with banner — that's fine for setup logs.",
+    "hooks": {
+      "SessionStart": [
+        {
+          "matcher": "",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash $(cd \"$(git rev-parse --git-common-dir)/..\" && pwd)/scripts/setup-worktree.sh"
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  "_choice_b_worktree_create": {
+    "_when": "Team uses `claude --worktree <name>` to create worktrees. Runs BEFORE the TUI so output is clean. STRICT contract: stdout must contain ONLY the absolute worktree path; everything else goes to /dev/tty or stderr. The script template handles this when invoked by Claude (it detects the WorktreeCreate JSON on stdin).",
+    "hooks": {
+      "WorktreeCreate": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash $CLAUDE_PROJECT_DIR/scripts/worktree-create.sh"
+            }
+          ]
+        }
+      ],
+      "WorktreeRemove": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash $CLAUDE_PROJECT_DIR/scripts/worktree-remove.sh"
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  "_choice_c_belt_and_suspenders": {
+    "_when": "Use both: WorktreeCreate for `claude --worktree`, SessionStart as fallback for everything else. The script's idempotent `link_resource` makes the second run a no-op.",
+    "hooks": {
+      "SessionStart": [
+        {
+          "matcher": "",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash $(cd \"$(git rev-parse --git-common-dir)/..\" && pwd)/scripts/setup-worktree.sh"
+            }
+          ]
+        }
+      ],
+      "WorktreeCreate": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash $CLAUDE_PROJECT_DIR/scripts/worktree-create.sh"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

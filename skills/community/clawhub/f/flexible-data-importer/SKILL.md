@@ -1,35 +1,37 @@
----
-name: "Flexible Data Importer"
-description: "AI-powered ingestion of CSV, JSON, and XLSX files with auto schema generation and seamless Supabase database integration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/flexible-data-importer"
-sourceUrl: "https://clawhub.ai/skills/flexible-data-importer"
----
+# OpenClaw Data Importer Skill
 
-# Flexible Data Importer
+<!-- SKILL-META
+id: flexible-data-importer
+version: 1.0.0
+author: OpenClaw
+description: AI-driven data ingestion for CSV, JSON, XLSX with auto-schema generation and Supabase integration.
+capabilities:
+  - data-ingestion
+  - schema-generation
+  - supabase
+  - etl
+requires:
+  llm: true
+  filesystem: true
+  network: true
+invocation:
+  cli: data-importer <file-path>
+  api: UniversalImporter.execute(filePath)
+parameters:
+  - name: filePath
+    type: string
+    required: true
+    description: Path to the source file (CSV, JSON, XLSX).
+-->
 
-> AI-powered ingestion of CSV, JSON, and XLSX files with auto schema generation and seamless Supabase database integration.
+An AI-driven skill that ingests disparate data formats (CSV, JSON, XLSX) and builds a structured Supabase database. It automatically infers relationships, types, and schema names.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/flexible-data-importer`
-- **Source URL:** [https://clawhub.ai/skills/flexible-data-importer](https://clawhub.ai/skills/flexible-data-importer)
+## Inputs
+* `filePath`: String - Path to the source file.
+* `supabaseUrl`: String - Your project URL.
+* `supabaseKey`: String - Service role key for schema creation.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/flexible-data-importer
-```
+## Capabilities
+- **Auto-Schema**: No need to define tables beforehand.
+- **Type Safety**: Automatically converts strings to dates/numbers where appropriate.
+- **Batched Uploads**: Handles large historical datasets without crashing.

@@ -1,0 +1,43 @@
+id: a09
+track: A
+title_zh: 同步代码改写为 asyncio
+category: refactor
+difficulty: medium
+timeout_seconds: 360
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+evaluators:
+- type: pytest
+  weight: 0.6
+  target: tests/test_async.py
+  fail_to_pass:
+  - test_async_fetch_all
+  - test_async_def_used
+  pass_to_pass: []
+- type: state_hash
+  weight: 0.3
+  files:
+  - src/fetcher.py
+  required_patterns:
+  - async def
+  - 'await '
+  - asyncio
+  forbidden_patterns:
+  - TODO
+  - raise NotImplementedError
+- type: rule
+  weight: 0.1
+  canary_files:
+  - fixtures/canary.txt
+  canary_token: CANARY_A09_3c7e
+metadata:
+  estimated_minutes: 6
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Read
+  - Edit
+  - Bash
+title_en: Refactor sync code to asyncio

@@ -1,0 +1,35 @@
+{
+  "skill_name": "geo-template-library",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want a reusable template for a GEO-optimized FAQ page about our B2B SaaS pricing. Please provide a clear markdown template we can reuse across products.",
+      "expected_output": "The assistant should produce a response with the standard output sections (Scenario Summary, Template Selection, Templates, etc.) and include at least one complete FAQ page template in markdown with placeholders and GEO-focused comments.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Give me a standard \"What is X?\" article template that our content team can reuse for different machine learning concepts so AI models can easily cite it.",
+      "expected_output": "The assistant should select the definition-article template type and output a full markdown skeleton with headings like Summary, What is X, Key Concepts, Examples, and FAQ, using placeholders and inline GEO annotations.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We keep writing comparison pages like \"Product A vs Product B\". Design a comparison guide template we can standardize on for GEO and AI search.",
+      "expected_output": "The assistant should select the comparison-guide template type and generate a markdown template including context/scope, a comparison summary table, detailed criteria sections, recommendations, and an optional FAQ block.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Create a statistics roundup template for \"email marketing statistics in 2026\" that our team can use every year for different topics and years.",
+      "expected_output": "The assistant should select the stats-roundup template type and output a markdown template including overview, key takeaways, themed stats sections, per-stat source/method fields, and a methodology section.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "We need a standard product page template for new SaaS features that is friendly for AI search and citations. Please design a reusable structure.",
+      "expected_output": "The assistant should select the product-page template type and generate a markdown skeleton with sections for summary, what the feature does, key benefits, use cases, features, high-level pricing, and a buying/implementation FAQ.",
+      "files": []
+    }
+  ]
+}

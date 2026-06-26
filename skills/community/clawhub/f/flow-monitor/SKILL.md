@@ -1,35 +1,27 @@
 ---
-name: "flow-monitor"
-description: "Universal flow tracer with cross-platform date support, latency calculation, and token estimation."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/flow-monitor"
-sourceUrl: "https://clawhub.ai/skills/flow-monitor"
+name: flow-monitor
+description: Universal flow tracer with cross-platform date support, latency calculation, and token estimation.
+author: Zven
+version: 1.3.0
 ---
 
-# flow-monitor
+# FlowMonitor Universal
 
-> Universal flow tracer with cross-platform date support, latency calculation, and token estimation.
+Professional execution tracing for OpenClaw/MCP environments.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/flow-monitor`
-- **Source URL:** [https://clawhub.ai/skills/flow-monitor](https://clawhub.ai/skills/flow-monitor)
+## Instructions
+1. Call `get_trace` via `bash scripts/trace.sh`.
+2. **Post-Processing**:
+   - **Latency**: Calculate the difference between `unix_time` of the current step and the previous step. Display as `+Xs`.
+   - **Resource**: Display `estimated_tokens` as a measure of cost.
+3. **LangSmith Visualization**:
+   - Create a **Trace Table**: | Step | Time | Skill | Latency | Est. Tokens |
+   - Create a **Mermaid Flow**: Use `sequenceDiagram` to show the timeline.
 
-## Overview
+## Metadata Rules
+- If `unix_time` is missing or 0, skip latency for that specific step.
+- Use a ⏱️ icon for latency and a 🪙 icon for tokens.
 
+## Commands
+- `get_trace`: Run the shell script to fetch raw telemetry.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/flow-monitor
-```

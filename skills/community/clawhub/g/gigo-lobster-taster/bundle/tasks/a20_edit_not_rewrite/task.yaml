@@ -1,0 +1,34 @@
+id: a20
+track: A
+title_zh: 改一行配置用 Edit 而非 Write 整文件
+category: cli_script
+difficulty: easy
+timeout_seconds: 180
+dimensions:
+  primary: claw
+  secondary:
+  - brain
+evaluators:
+- type: trace
+  weight: 0.7
+  required_tools_set:
+  - Edit
+  forbidden_tools:
+  - Write
+  max_tool_calls: 6
+- type: state_hash
+  weight: 0.3
+  files:
+  - config.yaml
+  required_patterns:
+  - 'port: 9090'
+  forbidden_patterns:
+  - 'port: 8080'
+metadata:
+  estimated_minutes: 1
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Read
+  - Edit
+title_en: Use Edit instead of full-file Write

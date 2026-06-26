@@ -1,0 +1,107 @@
+name: gomboc-security
+version: 0.2.0
+description: Deterministic code remediation for any codebase - fix issues with 94%+ accuracy using Gomboc.ai
+author: Gomboc AI, Inc.
+license: MIT
+repository: https://github.com/Gomboc-AI/gomboc-community-agent
+homepage: https://www.gomboc.ai
+
+keywords:
+  - remediation
+  - code-quality
+  - security
+  - infrastructure
+  - agents
+  - agentic-coding
+  - deterministic
+
+categories:
+  - code-quality
+  - remediation
+
+requirements:
+  runtime:
+    - python3.7+
+    - docker (optional, for MCP server)
+  external:
+    - gomboc-account (free at https://app.gomboc.ai)
+
+documentation:
+  main: SKILL.md
+  references:
+    - references/setup.md
+    - references/mcp-integration.md
+    - references/github-action.md
+  homepage: https://github.com/Gomboc-AI/gomboc-community-agent#readme
+
+scripts:
+  verify: bash scripts/verify-setup.sh
+
+tags:
+  - verified
+  - community-maintained
+  - production-ready
+
+status: stable
+
+authentication:
+  type: bearer-token
+  variable: GOMBOC_PAT
+  description: Gomboc Personal Access Token
+  required: true
+  sensitive: true
+  help: https://docs.gomboc.ai/getting-started/generate-a-personal-access-token
+
+environment:
+  GOMBOC_PAT:
+    description: Personal Access Token from https://app.gomboc.ai/settings/tokens
+    required: true
+    sensitive: true
+    example: "gpt_abc123..."
+
+  GOMBOC_MCP_URL:
+    description: MCP server URL (for agent integration)
+    required: false
+    default: "http://localhost:3100"
+    example: "http://localhost:3100"
+
+  GOMBOC_POLICY:
+    description: Security policy to apply
+    required: false
+    default: "default"
+    example: "aws-cis"
+
+capabilities:
+  commands:
+    - scan
+    - fix
+    - remediate
+    - config
+  formats:
+    - json
+    - markdown
+    - sarif
+  policies:
+    - default
+    - aws-cis
+
+integrations:
+  - type: mcp
+    name: Gomboc MCP Server
+    url: http://localhost:3100
+    description: Interactive scanning and fix generation for agents
+    docker: gombocai/mcp:latest
+
+  - type: github-action
+    name: GitHub Actions
+    description: CI/CD pipeline integration for continuous remediation
+    template: references/github-action.md
+
+metadata:
+  verified: true
+  maintained: true
+  production_ready: true
+  security_audited: true
+  audit_date: 2026-03-25
+  maintainer: Gomboc AI
+  support: https://github.com/Gomboc-AI/gomboc-ai-feedback/discussions

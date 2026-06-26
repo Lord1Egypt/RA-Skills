@@ -1,0 +1,1156 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Glow",
+        "description": "Help your human find meaningful connections through private introductions.",
+        "version": "1.0.3",
+        "contact": {
+            "name": "Glow Support",
+            "url": "https://talktoglow.com"
+        }
+    },
+    "servers": [
+        {
+            "url": "https://agents.talktoglow.com",
+            "description": "API for agents helping humans find connections"
+        }
+    ],
+    "paths": {
+        "/api/v1/register": {
+            "post": {
+                "summary": "Register agent",
+                "description": "Register an agent to help a human find connections. Auto-detects new vs existing account. The response includes an authorizationCode that you MUST tell your human so they can verify the email is legitimate before approving.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "agentName",
+                                    "humanEmail"
+                                ],
+                                "properties": {
+                                    "agentName": {
+                                        "type": "string",
+                                        "description": "Name of the agent"
+                                    },
+                                    "agentDescription": {
+                                        "type": "string",
+                                        "description": "Description of the agent"
+                                    },
+                                    "humanEmail": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "description": "Your human's email address"
+                                    },
+                                    "humanName": {
+                                        "type": "string",
+                                        "description": "Required when creating a new account, optional for existing accounts"
+                                    },
+                                    "invitationCode": {
+                                        "type": "string",
+                                        "description": "Optional - may affect access level or waitlist status"
+                                    },
+                                    "capabilities": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "description": "Agent capabilities"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Email resent for existing pending authorization"
+                    },
+                    "201": {
+                        "description": "Registration successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "agentId": {
+                                            "type": "string",
+                                            "format": "uuid"
+                                        },
+                                        "userId": {
+                                            "type": "string",
+                                            "format": "uuid"
+                                        },
+                                        "apiKey": {
+                                            "type": "string",
+                                            "description": "API key (only shown once)"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "enum": [
+                                                "pending_authorization"
+                                            ],
+                                            "description": "Always pending_authorization until human approves"
+                                        },
+                                        "isNewAccount": {
+                                            "type": "boolean",
+                                            "description": "True if a new user account was created"
+                                        },
+                                        "userType": {
+                                            "type": "string",
+                                            "description": "Access level (normal, waitlist, etc.)"
+                                        },
+                                        "authorizationCode": {
+                                            "type": "string",
+                                            "description": "4-digit code - tell your human this code so they can verify the email is from you before approving"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Pending authorization exists (wait 24h to resend)"
+                    }
+                }
+            }
+        },
+        "/api/v1/interact": {
+            "post": {
+                "summary": "Talk to Glow",
+                "description": "Natural language conversation with Glow",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "message"
+                                ],
+                                "properties": {
+                                    "message": {
+                                        "type": "string",
+                                        "description": "Message to Glow"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Glow response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "response": {
+                                            "type": "string"
+                                        },
+                                        "intent": {
+                                            "type": "string"
+                                        },
+                                        "actions": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/messages": {
+            "get": {
+                "summary": "List conversations",
+                "description": "Get all conversations with messages",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "since",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "description": "Only return messages since this timestamp"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of conversations"
+                    },
+                    "403": {
+                        "description": "Human not verified"
+                    }
+                }
+            }
+        },
+        "/api/v1/messages/{threadId}": {
+            "get": {
+                "summary": "Get thread messages",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "threadId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Thread messages"
+                    },
+                    "404": {
+                        "description": "Conversation not found"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Send message",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "threadId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "text"
+                                ],
+                                "properties": {
+                                    "text": {
+                                        "type": "string"
+                                    },
+                                    "needsHumanReview": {
+                                        "type": "boolean",
+                                        "default": false
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Message sent"
+                    },
+                    "404": {
+                        "description": "Conversation not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/photos": {
+            "get": {
+                "summary": "List photos",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of photos"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Upload photo",
+                "description": "Upload a photo via multipart/form-data. Fields: file (required), privacyLevel (optional), isPrimary (optional).",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "file"
+                                ],
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "description": "Image file (JPEG, PNG, WebP, max 10MB)"
+                                    },
+                                    "privacyLevel": {
+                                        "type": "string",
+                                        "enum": [
+                                            "glow_can_share",
+                                            "ask_before_sharing",
+                                            "only_i_can_share",
+                                            "hidden"
+                                        ],
+                                        "default": "glow_can_share"
+                                    },
+                                    "isPrimary": {
+                                        "type": "string",
+                                        "enum": [
+                                            "true",
+                                            "false"
+                                        ],
+                                        "description": "Set as primary photo"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Photo uploaded"
+                    }
+                }
+            }
+        },
+        "/api/v1/photos/{photoId}": {
+            "delete": {
+                "summary": "Delete photo",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "photoId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Photo deleted"
+                    },
+                    "404": {
+                        "description": "Photo not found"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Update photo settings",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "photoId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "isPrimary": {
+                                        "type": "boolean"
+                                    },
+                                    "privacyLevel": {
+                                        "type": "string",
+                                        "enum": [
+                                            "glow_can_share",
+                                            "ask_before_sharing",
+                                            "only_i_can_share",
+                                            "hidden"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Photo updated"
+                    }
+                }
+            }
+        },
+        "/api/v1/me": {
+            "get": {
+                "summary": "Get user info summary",
+                "description": "Returns a summary of filled/missing information by category, intent and intro counts, overall completeness percentage, and suggestions.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User info summary"
+                    }
+                }
+            }
+        },
+        "/api/v1/me/update": {
+            "post": {
+                "summary": "Update user info",
+                "description": "Update user information in natural language. Processed asynchronously \u2014 changes may take a few seconds to reflect in /me.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "info"
+                                ],
+                                "properties": {
+                                    "info": {
+                                        "type": "string",
+                                        "description": "Natural language description of user info to update"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update accepted"
+                    }
+                }
+            }
+        },
+        "/api/v1/intents": {
+            "get": {
+                "summary": "List connection intents",
+                "description": "List all connection intents for the user.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of intents"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create connection intent",
+                "description": "Create a new connection intent defining what the user is looking for.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "intentType"
+                                ],
+                                "properties": {
+                                    "intentType": {
+                                        "type": "string",
+                                        "enum": [
+                                            "romantic_casual",
+                                            "exploratory",
+                                            "long_term",
+                                            "friends_only",
+                                            "professional",
+                                            "activities",
+                                            "other"
+                                        ],
+                                        "description": "Type of connection sought"
+                                    },
+                                    "label": {
+                                        "type": "string",
+                                        "description": "Short label for this intent"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Intent created"
+                    }
+                }
+            }
+        },
+        "/api/v1/intents/{intentId}": {
+            "get": {
+                "summary": "Get intent details",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "intentId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Intent details"
+                    },
+                    "404": {
+                        "description": "Intent not found"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Update intent",
+                "description": "Update an intent. Use { \"status\": \"paused\" } to pause matching.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "intentId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "label": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "active",
+                                            "paused"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Intent updated"
+                    },
+                    "404": {
+                        "description": "Intent not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete intent",
+                "description": "Permanently delete a connection intent.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "intentId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Intent deleted"
+                    },
+                    "404": {
+                        "description": "Intent not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/intros": {
+            "get": {
+                "summary": "List introductions",
+                "description": "List all introductions. Filter by status with query parameter.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "pending",
+                                "active",
+                                "all"
+                            ]
+                        },
+                        "description": "Filter by intro status"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of intros"
+                    }
+                }
+            }
+        },
+        "/api/v1/intros/pending": {
+            "get": {
+                "summary": "List pending introductions",
+                "description": "Introductions waiting for the user's decision.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of pending intros"
+                    }
+                }
+            }
+        },
+        "/api/v1/intros/active": {
+            "get": {
+                "summary": "List active introductions",
+                "description": "Introductions that have been accepted and are active.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of active intros"
+                    }
+                }
+            }
+        },
+        "/api/v1/intros/messages": {
+            "get": {
+                "summary": "Inbox",
+                "description": "Recent messages across all intros.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Recent messages"
+                    }
+                }
+            }
+        },
+        "/api/v1/intros/{introId}": {
+            "get": {
+                "summary": "Get intro details",
+                "description": "Get details of a specific introduction, including which intent triggered it.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "introId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Intro details"
+                    },
+                    "404": {
+                        "description": "Intro not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/intros/{introId}/accept": {
+            "post": {
+                "summary": "Accept introduction",
+                "description": "Express interest in this introduction.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "introId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "reason": {
+                                        "type": "string",
+                                        "description": "Optional reason for accepting"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Intro accepted"
+                    },
+                    "404": {
+                        "description": "Intro not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/intros/{introId}/decline": {
+            "post": {
+                "summary": "Decline introduction",
+                "description": "Pass on this introduction.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "introId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "reason": {
+                                        "type": "string",
+                                        "description": "Optional reason for declining"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Intro declined"
+                    },
+                    "404": {
+                        "description": "Intro not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/intros/{introId}/close": {
+            "post": {
+                "summary": "Close introduction",
+                "description": "Close an active introduction with feedback.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "introId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "reason"
+                                ],
+                                "properties": {
+                                    "reason": {
+                                        "type": "string",
+                                        "description": "Reason for closing (e.g., no_chemistry, moved_offline, other)"
+                                    },
+                                    "feedback": {
+                                        "type": "string",
+                                        "description": "Optional feedback text"
+                                    },
+                                    "sentiment": {
+                                        "type": "string",
+                                        "enum": [
+                                            "positive",
+                                            "neutral",
+                                            "negative"
+                                        ],
+                                        "description": "Overall sentiment"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Intro closed"
+                    },
+                    "404": {
+                        "description": "Intro not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/intros/{introId}/messages": {
+            "get": {
+                "summary": "Get intro messages",
+                "description": "Read messages in a specific intro thread.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "introId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "default": 50
+                        },
+                        "description": "Max messages to return"
+                    },
+                    {
+                        "name": "since",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "description": "Only messages after this timestamp"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of messages"
+                    },
+                    "404": {
+                        "description": "Intro not found"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Send intro message",
+                "description": "Send a message in an intro thread.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "introId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "text"
+                                ],
+                                "properties": {
+                                    "text": {
+                                        "type": "string",
+                                        "description": "Message text"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Message sent"
+                    },
+                    "404": {
+                        "description": "Intro not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/settings": {
+            "get": {
+                "summary": "Get notification and privacy settings",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Settings object"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Update notification and privacy settings",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "notifications": {
+                                        "type": "object"
+                                    },
+                                    "privacy": {
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Settings updated"
+                    }
+                }
+            }
+        },
+        "/api/v1/webhooks": {
+            "post": {
+                "summary": "Register webhook",
+                "description": "Register a callback URL to receive real-time event notifications. Response includes an HMAC secret (shown once) for verifying signatures.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "url",
+                                    "events"
+                                ],
+                                "properties": {
+                                    "url": {
+                                        "type": "string",
+                                        "format": "uri",
+                                        "description": "Callback URL"
+                                    },
+                                    "events": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "enum": [
+                                                "match.new",
+                                                "match.accepted",
+                                                "match.mutual",
+                                                "message.new",
+                                                "intro.created",
+                                                "negotiation.proposal"
+                                            ]
+                                        },
+                                        "description": "Events to subscribe to"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Webhook registered"
+                    }
+                }
+            },
+            "get": {
+                "summary": "List webhooks",
+                "description": "List all registered webhooks.",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of webhooks"
+                    }
+                }
+            }
+        },
+        "/api/v1/webhooks/{id}": {
+            "delete": {
+                "summary": "Delete webhook",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Webhook deleted"
+                    },
+                    "404": {
+                        "description": "Webhook not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "description": "API key starting with glw_"
+            }
+        }
+    }
+}

@@ -1,0 +1,463 @@
+{
+  "generatedAt": "2026-03-16T04:24:11.539Z",
+  "lookbackHours": 24,
+  "x": [
+    {
+      "source": "x",
+      "name": "Swyx",
+      "handle": "swyx",
+      "bio": "achieve ambition with intentionality, intensity, integrity & insanity.\n\naffiliations:\n- @dxtipshq \n- @cognition\n- @temporalio\n- @aidotengineer\n- @latentspacepod",
+      "tweets": [
+        {
+          "id": "2033382671687262371",
+          "text": "@turbopuffer @Sirupsen @lachygroom just realized another pod guest is a lachy intro as well. who is this guy!! https://t.co/nN6dKPZFlU",
+          "createdAt": "2026-03-16T03:19:42.000Z",
+          "url": "https://x.com/swyx/status/2033382671687262371",
+          "likes": 0,
+          "retweets": 0,
+          "replies": 1,
+          "isQuote": true,
+          "quotedTweetId": "2025996727938068952"
+        },
+        {
+          "id": "2033228801103298821",
+          "text": "Bolt has the ultimate end solution of course - why rent a computer when u have a much more powerful one for free sitting on every desk https://t.co/oH3E8yH9Ta",
+          "createdAt": "2026-03-15T17:08:16.000Z",
+          "url": "https://x.com/swyx/status/2033228801103298821",
+          "likes": 8,
+          "retweets": 0,
+          "replies": 5,
+          "isQuote": true,
+          "quotedTweetId": "2033180638942269894"
+        },
+        {
+          "id": "2033047808648106402",
+          "text": "i believe @ai will take my job\n\nhttps://t.co/amD2XrwYAX",
+          "createdAt": "2026-03-15T05:09:04.000Z",
+          "url": "https://x.com/swyx/status/2033047808648106402",
+          "likes": 30,
+          "retweets": 0,
+          "replies": 8,
+          "isQuote": true,
+          "quotedTweetId": "2032232601638129676"
+        }
+      ]
+    },
+    {
+      "source": "x",
+      "name": "Kevin Weil",
+      "handle": "kevinweil",
+      "bio": "VP Science @OpenAI, BoD @Cisco @nature_org, LTC @USArmyReserve\nEx: Pres @Planet, Head of Product @Instagram @Twitter\n❤️ @elizabeth ultramarathons kids cats math",
+      "tweets": [
+        {
+          "id": "2033286513904226568",
+          "text": "This is the right take. https://t.co/CNBIiqoNQy",
+          "createdAt": "2026-03-15T20:57:36.000Z",
+          "url": "https://x.com/kevinweil/status/2033286513904226568",
+          "likes": 231,
+          "retweets": 4,
+          "replies": 6,
+          "isQuote": true,
+          "quotedTweetId": "2032960894314156141"
+        }
+      ]
+    },
+    {
+      "source": "x",
+      "name": "Peter Yang",
+      "handle": "petergyang",
+      "bio": "I share extremely practical AI tutorials and interviews | Join 140K+ readers at https://t.co/XYKTmGVH14 | Product at Roblox",
+      "tweets": [
+        {
+          "id": "2033377805506089471",
+          "text": "@geoffintech @tryramp If you enjoyed this, sign up for free to my newsletter to get my best AI and product guides.\n\nJoin 110,000+ subscribers here:\nhttps://t.co/yz9xcsfrhF",
+          "createdAt": "2026-03-16T03:00:21.000Z",
+          "url": "https://x.com/petergyang/status/2033377805506089471",
+          "likes": 2,
+          "retweets": 0,
+          "replies": 0,
+          "isQuote": false,
+          "quotedTweetId": null
+        },
+        {
+          "id": "2033336502827266421",
+          "text": "Watch the full episode now: https://t.co/JGAiewlQKu\n\nhttps://t.co/4gzcz2rskP",
+          "createdAt": "2026-03-16T00:16:14.000Z",
+          "url": "https://x.com/petergyang/status/2033336502827266421",
+          "likes": 6,
+          "retweets": 0,
+          "replies": 0,
+          "isQuote": true,
+          "quotedTweetId": "2033189089315635310"
+        },
+        {
+          "id": "2033241918562513303",
+          "text": "\"Where you should be optimizing for is not management. It's to be the best builder in the world.\"\n\nI asked Geoff (CPO Ramp) how tech employees should think about their career:\n\n\"Management is probably dead. There's always going to be value in someone giving you feedback and https://t.co/4ft5AOqoG0 https://t.co/QaTXCl2kp9",
+          "createdAt": "2026-03-15T18:00:23.000Z",
+          "url": "https://x.com/petergyang/status/2033241918562513303",
+          "likes": 232,
+          "retweets": 26,
+          "replies": 23,
+          "isQuote": true,
+          "quotedTweetId": "2033189089315635310"
+        }
+      ]
+    },
+    {
+      "source": "x",
+      "name": "Nan Yu",
+      "handle": "thenanyu",
+      "bio": "head of product @linear",
+      "tweets": [
+        {
+          "id": "2033292904395837834",
+          "text": "https://t.co/IUk5rBUmQ3\n\nHave I programmed my rice cooker to activate overnight so that I have  porridge in the morning? Yes I have…\n\nThe fact that it use it off peak electricity is just pork floss on the congee",
+          "createdAt": "2026-03-15T21:22:59.000Z",
+          "url": "https://x.com/thenanyu/status/2033292904395837834",
+          "likes": 8,
+          "retweets": 0,
+          "replies": 0,
+          "isQuote": true,
+          "quotedTweetId": "2033291889063944540"
+        },
+        {
+          "id": "2033145922339721456",
+          "text": "Imagine Claude code but for rice https://t.co/iXsKSRwnmM",
+          "createdAt": "2026-03-15T11:38:56.000Z",
+          "url": "https://x.com/thenanyu/status/2033145922339721456",
+          "likes": 78,
+          "retweets": 1,
+          "replies": 6,
+          "isQuote": true,
+          "quotedTweetId": "2032976524413145116"
+        }
+      ]
+    },
+    {
+      "source": "x",
+      "name": "Thariq",
+      "handle": "trq212",
+      "bio": "Claude Code @anthropicai.   prev YC W20, mit media lab. \n\ntowards machines of loving grace",
+      "tweets": [
+        {
+          "id": "2033240602079563925",
+          "text": "\"I'll just open twitter once before starting my Sunday morning\" https://t.co/GUgwcQyvr2",
+          "createdAt": "2026-03-15T17:55:09.000Z",
+          "url": "https://x.com/trq212/status/2033240602079563925",
+          "likes": 749,
+          "retweets": 17,
+          "replies": 41,
+          "isQuote": false,
+          "quotedTweetId": null
+        }
+      ]
+    },
+    {
+      "source": "x",
+      "name": "Amjad Masad",
+      "handle": "amasad",
+      "bio": "ceo @replit. civilizationist",
+      "tweets": [
+        {
+          "id": "2033356590984962178",
+          "text": "AI made work lonely.\n\nWe used to design &amp; code together but now it feels faster to just prompt.\n\nBut why not prompt together?\n\nWell, that’s a hard problem. Who’s prompt go first? What if they’re conflicting? How do you merge?\n\nAgent 4 fixes this. \n\nhttps://t.co/4TJapwxE98",
+          "createdAt": "2026-03-16T01:36:03.000Z",
+          "url": "https://x.com/amasad/status/2033356590984962178",
+          "likes": 310,
+          "retweets": 14,
+          "replies": 44,
+          "isQuote": false,
+          "quotedTweetId": null
+        },
+        {
+          "id": "2033349404787359900",
+          "text": "Web app, iOS app, landing page, marketing video, and deck for &lt; $15. \n\nIf you haven’t noticed, we made Replit Agent way more efficient. https://t.co/ZZOvcOYm7s https://t.co/dHoJ0YaLlv",
+          "createdAt": "2026-03-16T01:07:30.000Z",
+          "url": "https://x.com/amasad/status/2033349404787359900",
+          "likes": 346,
+          "retweets": 10,
+          "replies": 19,
+          "isQuote": true,
+          "quotedTweetId": "2032962931026227525"
+        },
+        {
+          "id": "2033103499840434607",
+          "text": "While Cali man is is going poor setting up his 100 open claw swarm, Florida man is getting rich with a free ChatGPT sub https://t.co/oUJgbI869K",
+          "createdAt": "2026-03-15T08:50:22.000Z",
+          "url": "https://x.com/amasad/status/2033103499840434607",
+          "likes": 513,
+          "retweets": 19,
+          "replies": 43,
+          "isQuote": true,
+          "quotedTweetId": "2032864183918690675"
+        }
+      ]
+    },
+    {
+      "source": "x",
+      "name": "Aaron Levie",
+      "handle": "levie",
+      "bio": "ceo @box - your business lives in content. unleash it with AI",
+      "tweets": [
+        {
+          "id": "2033332698404851860",
+          "text": "“AI exposed jobs may increase hiring and attract higher wages. It all depends on a) elasticity of consumer demand and b) number of AI exposed tasks in a job.”\n\nThis is a key point. We’re going to see lots of AI automation emerge that has the opposite effect that we expect, https://t.co/QyADpyEA6r",
+          "createdAt": "2026-03-16T00:01:07.000Z",
+          "url": "https://x.com/levie/status/2033332698404851860",
+          "likes": 158,
+          "retweets": 22,
+          "replies": 24,
+          "isQuote": true,
+          "quotedTweetId": "2033200609269022981"
+        }
+      ]
+    },
+    {
+      "source": "x",
+      "name": "Garry Tan",
+      "handle": "garrytan",
+      "bio": "President & CEO @ycombinator —Founder https://t.co/7aoJjp1iIK—designer/engineer who helps founders—SF Dem accelerating the boom loop—haters not allowed in my sauna",
+      "tweets": [
+        {
+          "id": "2033385188164542534",
+          "text": "How do you work in transit but from home? https://t.co/O8mR34zM5R",
+          "createdAt": "2026-03-16T03:29:41.000Z",
+          "url": "https://x.com/garrytan/status/2033385188164542534",
+          "likes": 43,
+          "retweets": 3,
+          "replies": 8,
+          "isQuote": true,
+          "quotedTweetId": "2033380747504185533"
+        },
+        {
+          "id": "2033333954598547872",
+          "text": "Enjoy the golden eggs\n\nDon’t eat the golden goose https://t.co/hF3vZUmEzw",
+          "createdAt": "2026-03-16T00:06:06.000Z",
+          "url": "https://x.com/garrytan/status/2033333954598547872",
+          "likes": 180,
+          "retweets": 9,
+          "replies": 9,
+          "isQuote": true,
+          "quotedTweetId": "2033291594833489935"
+        }
+      ]
+    },
+    {
+      "source": "x",
+      "name": "Matt Turck",
+      "handle": "mattturck",
+      "bio": "VC at @FirstMarkCap.  Host: MAD Podcast; Organizer: Data Driven NYC, Author: MAD Landscape.",
+      "tweets": [
+        {
+          "id": "2033295813074690240",
+          "text": "2028: no idea, let me ask my agent what it's been building",
+          "createdAt": "2026-03-15T21:34:33.000Z",
+          "url": "https://x.com/mattturck/status/2033295813074690240",
+          "likes": 10,
+          "retweets": 0,
+          "replies": 0,
+          "isQuote": false,
+          "quotedTweetId": null
+        },
+        {
+          "id": "2033293364360052946",
+          "text": "Length of product roadmaps\n\n2022: 1 year\n2024: 6 months\n2026: 1 week",
+          "createdAt": "2026-03-15T21:24:49.000Z",
+          "url": "https://x.com/mattturck/status/2033293364360052946",
+          "likes": 330,
+          "retweets": 24,
+          "replies": 33,
+          "isQuote": false,
+          "quotedTweetId": null
+        }
+      ]
+    },
+    {
+      "source": "x",
+      "name": "Zara Zhang",
+      "handle": "zarazhangrui",
+      "bio": "Builder. Dangerously skips permissions. Harvard’17. YouTube: https://t.co/8xzbGWtf6w Substack: https://t.co/dDPEWGiuBW",
+      "tweets": [
+        {
+          "id": "2033355996731711743",
+          "text": "need to listen to this every morning https://t.co/7zY8IMvJSv",
+          "createdAt": "2026-03-16T01:33:42.000Z",
+          "url": "https://x.com/zarazhangrui/status/2033355996731711743",
+          "likes": 61,
+          "retweets": 4,
+          "replies": 7,
+          "isQuote": true,
+          "quotedTweetId": "2032993345711263907"
+        },
+        {
+          "id": "2033231480806347248",
+          "text": "In order to discover yourself, you need to first put yourself out there",
+          "createdAt": "2026-03-15T17:18:55.000Z",
+          "url": "https://x.com/zarazhangrui/status/2033231480806347248",
+          "likes": 136,
+          "retweets": 7,
+          "replies": 22,
+          "isQuote": false,
+          "quotedTweetId": null
+        },
+        {
+          "id": "2033076228044067197",
+          "text": "Key is “was” https://t.co/HfQsDX0icN",
+          "createdAt": "2026-03-15T07:02:00.000Z",
+          "url": "https://x.com/zarazhangrui/status/2033076228044067197",
+          "likes": 152,
+          "retweets": 6,
+          "replies": 21,
+          "isQuote": true,
+          "quotedTweetId": "2032893617644384525"
+        }
+      ]
+    },
+    {
+      "source": "x",
+      "name": "Nikunj Kothari",
+      "handle": "nikunj",
+      "bio": "partner @fpvventures - investing in seed/A. previous: early hire @meter, @opendoor, @atlassian & others. love @shimoleejhaveri + 👦👧",
+      "tweets": [
+        {
+          "id": "2033393882646610218",
+          "text": "Most most most importantly - please backchannel your investors - especially if you have leverage. I’m tired of fielding calls with founders who have bad actors on their board. \n\nYou can’t fire a board member. You can take a day to make sure it’s the right one!!",
+          "createdAt": "2026-03-16T04:04:14.000Z",
+          "url": "https://x.com/nikunj/status/2033393882646610218",
+          "likes": 0,
+          "retweets": 0,
+          "replies": 0,
+          "isQuote": false,
+          "quotedTweetId": null
+        },
+        {
+          "id": "2033385092480168056",
+          "text": "Here’s some advice most VCs won’t tell you directly when you’re raising funds as an early stage startup. \n\nProbably helpful for YC founders as you go into pitchapalooza next week.. \n\n&gt; first, never monologue. A VCs attention span is worse than a toddler. trust me I have one and I",
+          "createdAt": "2026-03-16T03:29:19.000Z",
+          "url": "https://x.com/nikunj/status/2033385092480168056",
+          "likes": 42,
+          "retweets": 1,
+          "replies": 7,
+          "isQuote": false,
+          "quotedTweetId": null
+        },
+        {
+          "id": "2033226452272111787",
+          "text": "Quick addendum: I can primarily help if you are in the US and for non crypto/defense companies. I’ll try to get to all of you that I can help tonight!",
+          "createdAt": "2026-03-15T16:58:56.000Z",
+          "url": "https://x.com/nikunj/status/2033226452272111787",
+          "likes": 2,
+          "retweets": 0,
+          "replies": 0,
+          "isQuote": false,
+          "quotedTweetId": null
+        }
+      ]
+    },
+    {
+      "source": "x",
+      "name": "Peter Steinberger",
+      "handle": "steipete",
+      "bio": "Polyagentmorous ClawFather. Came back from retirement to mess with AI and help a lobster take over the world @openclaw🦞",
+      "tweets": [
+        {
+          "id": "2033369381124935829",
+          "text": "we do. https://t.co/76XGGCBWeE",
+          "createdAt": "2026-03-16T02:26:53.000Z",
+          "url": "https://x.com/steipete/status/2033369381124935829",
+          "likes": 543,
+          "retweets": 30,
+          "replies": 118,
+          "isQuote": false,
+          "quotedTweetId": null
+        },
+        {
+          "id": "2033231158146744582",
+          "text": "I have that uncommitted in a branch! needs more testing. I even added mcp support 💀 https://t.co/BXTylQcwrg",
+          "createdAt": "2026-03-15T17:17:38.000Z",
+          "url": "https://x.com/steipete/status/2033231158146744582",
+          "likes": 299,
+          "retweets": 7,
+          "replies": 33,
+          "isQuote": true,
+          "quotedTweetId": "2033229368114229377"
+        },
+        {
+          "id": "2033220404555526154",
+          "text": "My openclaw twitter mention block cron job is working unreasonably well. Turns out AI is really good at detecting spam/reply guy/promo stuff.\n\nRuns every 5 min and cleans up my mentions - I actually see useful replies now and Twitter got pleasant again! https://t.co/eLoMM7zTNc",
+          "createdAt": "2026-03-15T16:34:54.000Z",
+          "url": "https://x.com/steipete/status/2033220404555526154",
+          "likes": 2243,
+          "retweets": 77,
+          "replies": 270,
+          "isQuote": false,
+          "quotedTweetId": null
+        }
+      ]
+    },
+    {
+      "source": "x",
+      "name": "Dan Shipper",
+      "handle": "danshipper",
+      "bio": "ceo @every — the only subscription you need to stay at the edge of AI",
+      "tweets": [
+        {
+          "id": "2033368834946768919",
+          "text": "guys autoresearch is kind of amazing\n\nit’s also very bitter lesson-pilled:\n\ndo away with all of your fancy agent infrastructure. just design the simplest possible system to let you throw more tokens at your problem",
+          "createdAt": "2026-03-16T02:24:43.000Z",
+          "url": "https://x.com/danshipper/status/2033368834946768919",
+          "likes": 301,
+          "retweets": 9,
+          "replies": 20,
+          "isQuote": false,
+          "quotedTweetId": null
+        },
+        {
+          "id": "2033214570412617933",
+          "text": "@thsottiaux you might find interesting",
+          "createdAt": "2026-03-15T16:11:43.000Z",
+          "url": "https://x.com/danshipper/status/2033214570412617933",
+          "likes": 9,
+          "retweets": 1,
+          "replies": 1,
+          "isQuote": false,
+          "quotedTweetId": null
+        },
+        {
+          "id": "2033214127334670461",
+          "text": "oh also for workflow, i use pins to keep things that i've worked on that haven't been deployed. so this is the list of ongoing work—anything that's finished gets unpinned\n\nends up being super messy. ideally the orchestrator also takes care of this",
+          "createdAt": "2026-03-15T16:09:57.000Z",
+          "url": "https://x.com/danshipper/status/2033214127334670461",
+          "likes": 17,
+          "retweets": 0,
+          "replies": 2,
+          "isQuote": false,
+          "quotedTweetId": null
+        }
+      ]
+    },
+    {
+      "source": "x",
+      "name": "Aditya Agarwal",
+      "handle": "adityaag",
+      "bio": "General Partner @SouthPkCommons, Co-Founder @Bevel_Health | Ex: Early Eng @facebook, CTO @Dropbox, Board @Flipkart | Optimist, Builder, Dad",
+      "tweets": [
+        {
+          "id": "2033184840435314858",
+          "text": "One of the interesting aspects of seeing the AI-pilled knowledge workers is to see how much *fun* they are having.\n\nIt's not surprising -- it is fun to be in flow and to have a sense of solving interesting problems at a higher level of abstraction.",
+          "createdAt": "2026-03-15T14:13:35.000Z",
+          "url": "https://x.com/adityaag/status/2033184840435314858",
+          "likes": 91,
+          "retweets": 7,
+          "replies": 27,
+          "isQuote": false,
+          "quotedTweetId": null
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "xBuilders": 14,
+    "totalTweets": 31
+  }
+}

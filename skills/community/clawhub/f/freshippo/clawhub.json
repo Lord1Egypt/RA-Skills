@@ -1,0 +1,9 @@
+{
+  "name": "freshippo",
+  "version": "2.1.2",
+  "description": "盒马鲜生安全购物决策助手 - 支持生鲜选购、购物清单规划、配送时段建议和手动下单交接",
+  "keywords": ["freshippo", "hema", "盒马", "grocery", "fresh"],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/freshippo"
+}

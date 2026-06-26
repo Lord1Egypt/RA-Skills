@@ -1,0 +1,19 @@
+# GhostShield Dependencies
+
+# Core
+python>=3.8
+
+# PII Detection
+presidio-analyzer>=2.2.0
+presidio-anonymizer>=2.2.0
+
+# NLP
+spacy>=3.5.0
+jieba>=0.42.1
+
+# Git
+gitpython>=3.1.0
+
+# Optional: Advanced features
+# transformers>=4.20.0
+# torch>=2.0.0

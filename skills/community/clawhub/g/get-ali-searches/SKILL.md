@@ -1,35 +1,30 @@
----
-name: "Get Ali Searches"
-description: "Retrieve a list of related Alibaba Cloud search queries by providing the ALIYUN_RPA_RobotId parameter."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/get-ali-searches"
-sourceUrl: "https://clawhub.ai/skills/get-ali-searches"
----
+# 获取相关搜索
 
-# Get Ali Searches
+用途：获取阿里云相关搜索
 
-> Retrieve a list of related Alibaba Cloud search queries by providing the ALIYUN_RPA_RobotId parameter.
+## 调用
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/get-ali-searches`
-- **Source URL:** [https://clawhub.ai/skills/get-ali-searches](https://clawhub.ai/skills/get-ali-searches)
+使用mcp调用此工具，需要提供以下参数：
 
-## Overview
+| 参数     | 默认 | 说明             |
+|--------|----|----------------|
+| robotId| 必填 | 使用ALIYUN_RPA_RobotId|
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/get-ali-searches
-```
+## 输出结构
+
+- 返回列表结构
+
+```list
+[
+    "阿里云官网登录入口",
+    "阿里云游戏服务器",
+    "阿里云控制台",
+    "阿里云轻量云服务器",
+    "阿里云域名注册",
+    "阿里云免费服务器",
+    "阿里云域名购买",
+    "云服务",
+    "阿里云和腾讯云哪个好",
+    "中国十大云计算公司排名",
+]

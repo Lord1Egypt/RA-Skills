@@ -1,0 +1,294 @@
+{
+  "_comment": "Airports with no commercial passenger flights (closed, non-commercial, cargo-only, etc.). Used to filter multi-airport city queries to avoid timeouts on non-functional airports. Users can manually edit this file to add/remove entries.",
+  "_updated": "2026-03-08",
+  "airports": {
+    "NAY": {
+      "name": "Beijing Nanyuan Airport",
+      "city": "Beijing",
+      "reason": "Closed 2019-09-25. All flights transferred to PKX (Daxing).",
+      "since": "2019-09-25"
+    },
+    "SIA": {
+      "name": "Xi'an Xiguan Airport",
+      "city": "Xi'an",
+      "reason": "Closed 1991. All flights transferred to XIY (Xianyang).",
+      "since": "1991-09-01"
+    },
+    "THF": {
+      "name": "Berlin Tempelhof Airport",
+      "city": "Berlin",
+      "reason": "Closed 2008-10-30. Site converted to public park.",
+      "since": "2008-10-30"
+    },
+    "TXL": {
+      "name": "Berlin-Tegel International Airport",
+      "city": "Berlin",
+      "reason": "Closed 2020-11-08. All flights transferred to BER (Brandenburg).",
+      "since": "2020-11-08"
+    },
+    "HEW": {
+      "name": "Athens Hellinikon Airport",
+      "city": "Athens",
+      "reason": "Closed 2001-03-28. Replaced by ATH (Eleftherios Venizelos).",
+      "since": "2001-03-28"
+    },
+    "ISL": {
+      "name": "Istanbul Ataturk Airport",
+      "city": "Istanbul",
+      "reason": "Passenger ops closed 2019-04-06. Replaced by IST (Istanbul Airport).",
+      "since": "2019-04-06"
+    },
+    "BKA": {
+      "name": "Moscow Bykovo Airport",
+      "city": "Moscow",
+      "reason": "Passenger operations ended 2010. General aviation only.",
+      "since": "2010-10-18"
+    },
+    "CKL": {
+      "name": "Moscow Chkalovskiy Airport",
+      "city": "Moscow",
+      "reason": "No commercial passenger flights.",
+      "since": "N/A"
+    },
+    "OSF": {
+      "name": "Moscow Ostafyevo International Airport",
+      "city": "Moscow",
+      "reason": "No commercial passenger flights.",
+      "since": "N/A"
+    },
+    "DIA": {
+      "name": "Doha International Airport",
+      "city": "Doha",
+      "reason": "Passenger flights moved to DOH (Hamad International) 2014-05-27.",
+      "since": "2014-05-27"
+    },
+    "NYS": {
+      "name": "New York Skyports Seaplane Base",
+      "city": "New York",
+      "reason": "Seaplane base only. Not a conventional airport for flight search.",
+      "since": "N/A"
+    },
+    "GML": {
+      "name": "Kyiv Gostomel/Antonov Airport",
+      "city": "Kiev",
+      "reason": "No commercial passenger flights.",
+      "since": "2022-02-24"
+    },
+    "KBP": {
+      "name": "Kyiv Boryspil International Airport",
+      "city": "Kiev",
+      "reason": "Closed since 2022-02-24. Airspace closed.",
+      "since": "2022-02-24"
+    },
+    "IEV": {
+      "name": "Kyiv Zhuliany International Airport",
+      "city": "Kiev",
+      "reason": "Closed since 2022-02-24. Airspace closed.",
+      "since": "2022-02-24"
+    },
+    "BQH": {
+      "name": "London Biggin Hill Airport",
+      "city": "London",
+      "reason": "Business aviation only. No scheduled commercial passenger service.",
+      "since": "N/A"
+    },
+    "NHT": {
+      "name": "Northolt Airport",
+      "city": "London",
+      "reason": "No commercial passenger flights.",
+      "since": "N/A"
+    },
+    "LBG": {
+      "name": "Paris-Le Bourget Airport",
+      "city": "Paris",
+      "reason": "Business/private aviation only since 1980. No commercial passenger flights.",
+      "since": "1980"
+    },
+    "YMX": {
+      "name": "Montreal Mirabel International Airport",
+      "city": "Montreal",
+      "reason": "Passenger flights ended 2004-10-31. Now cargo-only.",
+      "since": "2004-10-31"
+    },
+    "YKZ": {
+      "name": "Toronto Buttonville Municipal Airport",
+      "city": "Toronto",
+      "reason": "Closed 2023-11-24. Land being redeveloped.",
+      "since": "2023-11-24"
+    },
+    "YZD": {
+      "name": "Toronto Downsview Airport",
+      "city": "Toronto",
+      "reason": "Closed April 2024. Former de Havilland facility, being redeveloped.",
+      "since": "2024-04-01"
+    },
+    "YXD": {
+      "name": "Edmonton City Centre Airport",
+      "city": "Edmonton",
+      "reason": "Closed 2013-11-30. Land redeveloped as Blatchford community.",
+      "since": "2013-11-30"
+    },
+    "HEM": {
+      "name": "Helsinki-Malmi Airport",
+      "city": "Helsinki",
+      "reason": "Closed to aviation 2021-03-14. Land planned for development.",
+      "since": "2021-03-14"
+    },
+    "ETH": {
+      "name": "Eilat Airport",
+      "city": "Eilat",
+      "reason": "Closed 2019-03-18. Replaced by ETM (Ramon Airport).",
+      "since": "2019-03-18"
+    },
+    "VDA": {
+      "name": "Ovda Airport",
+      "city": "Eilat",
+      "reason": "Closed. No commercial passenger flights.",
+      "since": "2019-03-31"
+    },
+    "BPM": {
+      "name": "Hyderabad Begumpet Airport",
+      "city": "Hyderabad",
+      "reason": "Commercial flights ended 2008. Replaced by HYD (Rajiv Gandhi Intl).",
+      "since": "2008-03-23"
+    },
+    "VBC": {
+      "name": "Mandalay Chanmyathazi Airport",
+      "city": "Mandalay",
+      "reason": "Replaced by MDL (Mandalay International) in 2000. Abandoned.",
+      "since": "2000"
+    },
+    "MHP": {
+      "name": "Minsk-1 Airport",
+      "city": "Minsk",
+      "reason": "Commercial flights ended 2012. Airport closed 2015. Demolished 2019.",
+      "since": "2012-10-26"
+    },
+    "DAX": {
+      "name": "Dazhou Heshi Airport",
+      "city": "Dazhou",
+      "reason": "Commercial flights ended 2022-05-18. Replaced by DZH (Jinya Airport).",
+      "since": "2022-05-18"
+    },
+    "YHJ": {
+      "name": "Nanchang Yaohu Airport",
+      "city": "Nanchang",
+      "reason": "Test flight / general aviation only. No commercial passenger service.",
+      "since": "N/A"
+    },
+    "WHU": {
+      "name": "Wuhu Wanli Airport",
+      "city": "Wuhu",
+      "reason": "No commercial passenger flights.",
+      "since": "N/A"
+    },
+    "NHD": {
+      "name": "Al Minhad Airport",
+      "city": "Dubai",
+      "reason": "No commercial passenger flights.",
+      "since": "N/A"
+    },
+    "DET": {
+      "name": "Coleman A. Young Municipal Airport",
+      "city": "Detroit",
+      "reason": "General aviation only since ~2000. No scheduled commercial service.",
+      "since": "2000"
+    },
+    "ECV": {
+      "name": "Madrid Cuatro Vientos Airport",
+      "city": "Madrid",
+      "reason": "Flight training and helicopters only. No commercial passenger flights.",
+      "since": "N/A"
+    },
+    "TOJ": {
+      "name": "Madrid Torrejon Airport",
+      "city": "Madrid",
+      "reason": "No commercial passenger flights.",
+      "since": "N/A"
+    },
+    "ANK": {
+      "name": "Ankara Etimesgut Airport",
+      "city": "Ankara",
+      "reason": "No commercial passenger flights.",
+      "since": "N/A"
+    },
+    "IGL": {
+      "name": "Cigli Airport",
+      "city": "Izmir",
+      "reason": "No commercial passenger flights.",
+      "since": "N/A"
+    },
+    "ESK": {
+      "name": "Eskisehir Airport",
+      "city": "Eskisehir",
+      "reason": "No commercial passenger flights.",
+      "since": "N/A"
+    },
+    "BXN": {
+      "name": "Bodrum-Imsik Airport",
+      "city": "Bodrum",
+      "reason": "No commercial flights since late 1990s. Replaced by BJV (Milas-Bodrum).",
+      "since": "1997"
+    },
+    "XFW": {
+      "name": "Hamburg-Finkenwerder Airport",
+      "city": "Hamburg",
+      "reason": "Private Airbus factory airfield. No public scheduled services.",
+      "since": "N/A"
+    },
+    "MTS": {
+      "name": "Matsapha Airport",
+      "city": "Manzini",
+      "reason": "Commercial flights ended 2014-09-29. Replaced by SHO (King Mswati III).",
+      "since": "2014-09-29"
+    },
+    "QRA": {
+      "name": "Johannesburg Rand Airport",
+      "city": "Johannesburg",
+      "reason": "General aviation only since 1940. No commercial passenger flights.",
+      "since": "1940"
+    },
+    "GSE": {
+      "name": "Gothenburg City Airport (Save)",
+      "city": "Gothenburg",
+      "reason": "Closed to airline traffic 2015-01-18. Runway damage.",
+      "since": "2015-01-18"
+    },
+    "LAD": {
+      "name": "Luanda Quatro de Fevereiro Airport",
+      "city": "Luanda",
+      "reason": "Commercial ops transferred to NBJ (Dr. Antonio Agostinho Neto) by Oct 2025.",
+      "since": "2025-10"
+    },
+    "CSO": {
+      "name": "Magdeburg-Cochstedt Airport",
+      "city": "Magdeburg",
+      "reason": "No scheduled commercial flights since 2013. Now drone test center.",
+      "since": "2013"
+    },
+    "PCB": {
+      "name": "Pondok Cabe Airport",
+      "city": "Jakarta",
+      "reason": "No commercial passenger flights.",
+      "since": "N/A"
+    },
+    "NHA": {
+      "name": "Nha Trang Airport",
+      "city": "Nha Trang",
+      "reason": "No commercial passenger flights. CXR (Cam Ranh) serves Nha Trang.",
+      "since": "N/A"
+    },
+    "TIP": {
+      "name": "Tripoli International Airport",
+      "city": "Tripoli",
+      "reason": "Closed. No commercial passenger flights. MJI serves Tripoli.",
+      "since": "2014-07"
+    },
+    "ALY": {
+      "name": "Alexandria El Nouzha Airport",
+      "city": "Alexandria",
+      "reason": "Closed 2011. All flights transferred to HBE (Borg El Arab).",
+      "since": "2011"
+    }
+  }
+}

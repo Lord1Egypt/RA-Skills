@@ -1,0 +1,20 @@
+---
+name: good-memory
+version: 2.0.0
+description: Session 重置后自动恢复上下文，解决系统自动重置导致的"失忆"问题。支持所有OpenClaw平台，安装后自动生效，无需任何配置。
+emoji: 🧠
+author: OpenClaw Community
+license: MIT-0
+homepage: https://clawhub.ai/acilgit/good-memory
+
+# 触发配置：session启动时自动执行恢复脚本
+triggers:
+  - event: session_start
+    action: run
+    script: scripts/autorecover.py
+    background: false
+
+# 依赖
+requires:
+  bins: ["bash", "python3", "tail", "ls"]
+---

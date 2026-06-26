@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>粒子拖尾 · 手势控制</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script src="../assets/gesture-scene.js"></script>
+<script>
+// ── 粒子配置 ──
+const CFG = {
+  gravity: 0.02,
+  drag: 0.985,
+  fadeBase: 3.5,
+  fadeVar: 2,
+  sizeMin: 2,
+  sizeMax: 7,
+  hueMin: 0,
+  hueMax: 360,
+  glowThreshold: 4.5,
+};
+
+// ── 粒子类 ──
+class Particle {
+  constructor(x, y, vx, vy) {
+    this.vx = vx * 0.35 + (Math.random() - 0.5) * 2.4;
+    this.vy = vy * 0.35 + (Math.random() - 0.5) * 2.4;
+    this.ax = 0;
+    this.ay = -CFG.gravity; // Three.js Y轴向上
+    
+    this.size = CFG.sizeMin + Math.random() * (CFG.sizeMax - CFG.sizeMin);
+    this.hue = CFG.hueMin + Math.random() * (CFG.hueMax - CFG.hueMin);
+    this.saturation = 65 + Math.random() * 35;
+    this.lightness = 75 + Math.random() * 25;
+    
+    this.alpha = 1.0;
+    this.fade = (CFG.fadeBase + (Math.random() - 0.5) * 2 * CFG.fadeVar) / 100;
+    this.fade += (this.size - CFG.sizeMin) / (CFG.sizeMax - CFG.sizeMin) * (1.5 - (-0.5)) / 100;
+    
+    // 创建网格
+    const geometry = new THREE.SphereGeometry(this.size, 8, 8);
+    const material = new THREE.MeshBasicMaterial({
+      color: new THREE.Color().setHSL(this.hue / 360, this.saturation / 100, this.lightness / 100),
+      transparent: true,
+      opacity: this.alpha,
+    });
+    
+    this.mesh = new THREE.Mesh(geometry, material);
+    this.mesh.position.set(x, y, 0);
+    
+    // 发光效果（如果粒子足够大）
+    if (this.size > CFG.glowThreshold && this.alpha > 0.2) {
+      const glowGeometry = new THREE.SphereGeometry(this.size * 2.5, 8, 8);
+      const glowMaterial = new THREE.MeshBasicMaterial({
+        color: new THREE.Color().setHSL(this.hue / 360, this.saturation / 100, this.lightness / 100),
+        transparent: true,
+        opacity: this.alpha * 0.12,
+      });
+      this.glowMesh = new THREE.Mesh(glowGeometry, glowMaterial);
+      this.mesh.add(this.glowMesh);
+    }
+  }
+
+  update() {
+    this.vx += this.ax;
+    this.vy += this.ay;
+    this.vx *= CFG.drag;
+    this.vy *= CFG.drag;
+    this.mesh.position.x += this.vx;
+    this.mesh.position.y += this.vy;
+    this.alpha -= this.fade;
+    
+    // 更新透明度
+    this.mesh.material.opacity = Math.max(this.alpha, 0);
+    if (this.glowMesh) {
+      this.glowMesh.material.opacity = Math.max(this.alpha * 0.12, 0);
+    }
+  }
+
+  isDead() {
+    return this.alpha <= 0;
+  }
+}
+
+// ── 创建场景 ──
+const scene = new GestureScene({
+  title: '粒子拖尾 · 手势控制',
+  create: (x, y, vx, vy) => new Particle(x, y, vx, vy),
+  spawnRate: 3,
+  burstRate: 14,
+  maxObjects: 4000,
+});
+</script>
+</body>
+</html>

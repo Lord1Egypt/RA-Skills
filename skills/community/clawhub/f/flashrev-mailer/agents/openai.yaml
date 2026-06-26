@@ -1,0 +1,7 @@
+interface:
+  display_name: "FlashRev AI Mailer"
+  short_description: "Build FlashRev email sequences with follow-up + AI auto-reply"
+  default_prompt: "Use $flashrev-mailer to build personalized email sequences (single email or multi-step follow-up), commit to the FlashRev backend, triage inbox replies, and optionally enable LLM auto-reply. All send-time params (mailbox, schedule, timezone, ai-auto-reply, send-now) live on the send command; the queue command was removed in v2.1. Always confirm with the user before: send --live, send --live --send-now (bypasses working-time window), ai-auto-reply enable, pause/resume, reply, steps remove, delete (irreversible — list deletion targets in chat first)."
+
+policy:
+  allow_implicit_invocation: true

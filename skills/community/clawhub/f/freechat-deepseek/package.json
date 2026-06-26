@@ -1,0 +1,40 @@
+{
+  "name": "freechat-deepseek",
+  "version": "1.0.4",
+  "acceptLicenseTerms": true,
+  "description": "browse https://chat.deepseek.com , ask DeepSeek your questions and get answers for you.",
+  "alias": [
+    "deepseek",
+    "chat-deepseek",
+    "deepseek-it",
+    "ask-deepseek",
+    "open-deepseek",
+    "browse-deepseek",
+    "deepseek-search",
+    "deepseeking"
+  ],
+  "files": [
+    "skill/",
+    "SKILL.md"
+  ],
+  "keywords": [
+    "openclaw",
+    "browser",
+    "deepseek",
+    "deepseek-chat",
+    "messaging"
+  ],
+  "author": "qidu",
+  "license": "MIT-0",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "homepage": "https://github.com/qidu",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+  }
+}

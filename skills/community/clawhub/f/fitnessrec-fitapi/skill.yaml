@@ -1,0 +1,50 @@
+name: fitnessrec-fitapi
+version: 1.1.5
+description: >-
+  Precise food & exercise data for AI agents — not LLM guesses.
+  16k foods (180 nutrients from USDA/NUTTAB/CNF2015/MEXT/FRIDA),
+  3M branded products with barcodes, 80k recipes in 48 languages,
+  5k exercises with muscle targeting. Filter/sort by any nutrient,
+  calculate personalized daily needs. Free tier available.
+author:
+  name: FitnessRec
+  email: support@fitnessrec.com
+
+triggers:
+  - pattern: "search food"
+    type: contains
+  - pattern: "nutrition"
+    type: contains
+  - pattern: "calories in"
+    type: contains
+  - pattern: "protein in"
+    type: contains
+  - pattern: "macros"
+    type: contains
+  - pattern: "exercise"
+    type: contains
+  - pattern: "barcode"
+    type: contains
+  - pattern: "omega"
+    type: contains
+  - pattern: "vitamin"
+    type: contains
+  - pattern: "highest in"
+    type: contains
+  - pattern: "foods high in"
+    type: contains
+  - pattern: "nutrient"
+    type: contains
+
+config:
+  apiKey:
+    type: string
+    required: true
+    description: >
+      FitAPI key from https://fitapi.fitnessrec.com/dashboard.
+      Register for free (10 requests/day) or upgrade for more.
+
+permissions:
+  - network
+
+runtime: markdown

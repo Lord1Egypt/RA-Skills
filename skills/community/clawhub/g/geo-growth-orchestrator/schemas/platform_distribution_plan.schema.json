@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://powermatrix.local/schemas/platform_distribution_plan.schema.json",
+  "title": "Platform Distribution Plan",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "industry",
+    "platform_routes"
+  ],
+  "properties": {
+    "industry": {
+      "type": "string"
+    },
+    "user_specified_platforms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "localized_keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "platform_routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "platform",
+          "route_status",
+          "reason",
+          "human_review_required"
+        ],
+        "properties": {
+          "platform": {
+            "type": "string"
+          },
+          "route_status": {
+            "type": "string",
+            "enum": [
+              "planned",
+              "called",
+              "skipped",
+              "manual",
+              "future_skill",
+              "failed",
+              "partial"
+            ]
+          },
+          "skill_id": {
+            "type": "string"
+          },
+          "relative_path": {
+            "type": "string",
+            "pattern": "^\\.\\./"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "skip_reason": {
+            "type": "string"
+          },
+          "required_inputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "expected_outputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "human_review_required": {
+            "type": "boolean",
+            "const": true
+          }
+        }
+      }
+    }
+  }
+}

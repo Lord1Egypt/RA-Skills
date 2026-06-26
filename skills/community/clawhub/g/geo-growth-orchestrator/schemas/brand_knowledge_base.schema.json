@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://powermatrix.local/schemas/brand_knowledge_base.schema.json",
+  "title": "Brand Knowledge Base",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "brand_name",
+    "industry",
+    "target_market",
+    "brand_definition",
+    "products_or_services",
+    "target_customers",
+    "selling_points",
+    "faq",
+    "compliance_boundary",
+    "missing_fields"
+  ],
+  "properties": {
+    "brand_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "brand_aliases": {
+      "type": "array",
+      "description": "Known aliases, short names, legal names, public listing names, spelling variants, and source-title variants that refer to the same brand entity.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "company_name": {
+      "type": "string"
+    },
+    "industry": {
+      "type": "string"
+    },
+    "target_market": {
+      "type": "string"
+    },
+    "brand_definition": {
+      "type": "string"
+    },
+    "products_or_services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "description"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "pricing": {
+            "type": "string"
+          },
+          "proof_points": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "target_customers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "selling_points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "point",
+          "evidence_level"
+        ],
+        "properties": {
+          "point": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "evidence_level": {
+            "type": "string",
+            "enum": [
+              "verified",
+              "provided_by_client",
+              "needs_confirmation",
+              "unverified"
+            ]
+          }
+        }
+      }
+    },
+    "faq": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "question",
+          "answer"
+        ],
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "string"
+          },
+          "required_confirmation": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "contact_and_channels": {
+      "type": "object"
+    },
+    "competitors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "brand_tone": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "compliance_boundary": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "missing_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,35 +1,152 @@
----
-name: "Geo Shield"
-description: "检测网页是否含有针对 AI 的 GEO 投毒虚假信息，提供可信度评分与详细风险分析报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/geo-shield"
-sourceUrl: "https://clawhub.ai/skills/geo-shield"
----
+# 🛡️ GEO-Shield - AI 投毒检测守护者
 
-# Geo Shield
+## 🎯 功能
 
-> 检测网页是否含有针对 AI 的 GEO 投毒虚假信息，提供可信度评分与详细风险分析报告。
+检测网页内容是否为 GEO（Generative Engine Optimization）投毒，识别针对 AI 的虚假信息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/geo-shield`
-- **Source URL:** [https://clawhub.ai/skills/geo-shield](https://clawhub.ai/skills/geo-shield)
+### 核心功能
 
-## Overview
+- 🛡️ **GEO 特征检测** - 5 大类投毒特征识别
+- 📊 **可信度评分** - 综合评估（0-100 分）
+- 🔍 **域名分析** - 来源可信度评估
+- 📝 **内容质量分析** - 内容质量指标检测
+- 💡 **智能建议** - 验证建议生成
 
+## 🚀 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/geo-shield
+### 命令触发
+
 ```
+/geo-check https://example.com/article
+/verify https://example.com
+/fact-check https://example.com/news
+```
+
+### 自然语言触发
+
+```
+检测这个链接的投毒：https://example.com
+验证信息来源：https://example.com
+AI 投毒检查 https://example.com
+这个信息可信吗？https://example.com
+```
+
+## 📋 输出示例
+
+### 高可信度（85 分）
+
+```
+### 🛡️ GEO 投毒检测报告
+
+**检测 URL：** `https://www.gov.cn/article/123`
+**可信度评分：** 85/100
+**风险等级：** ✅ 高可信度
+
+---
+
+### 📊 评分明细
+
+| 维度 | 得分 |
+|------|------|
+| 域名可信度 | 100 |
+| 内容质量 | 85 |
+| GEO 检测 | 95 |
+
+> ✅ 内容可信度较高，可以参考
+```
+
+### 疑似投毒（35 分）
+
+```
+### 🛡️ GEO 投毒检测报告
+
+**检测 URL：** `https://health-info-2026.com/miracle`
+**可信度评分：** 35/100
+**风险等级：** 🚨 疑似投毒
+
+---
+
+### 🔍 GEO 特征检测
+
+| 特征类型 | 检测数量 |
+|----------|----------|
+| 过度优化 | 5 |
+| 情感操纵 | 4 |
+| 虚假权威 | 3 |
+
+> 🚨 高度疑似 GEO 投毒内容！请勿采信
+```
+
+## ⚙️ 配置
+
+### 可信度等级
+
+| 评分 | 等级 | 建议 |
+|------|------|------|
+| 80-100 | ✅ 高可信度 | 可以参考 |
+| 60-79 | ⚠️ 中等可信度 | 需谨慎 |
+| 40-59 | ⚠️ 低可信度 | 强烈验证 |
+| 0-39 | 🚨 疑似投毒 | 请勿采信 |
+
+### GEO 特征类型
+
+1. **过度优化** - "最佳 2026"、"100% 有效"
+2. **情感操纵** - "立即行动"、"最后机会"
+3. **虚假权威** - "哈佛研究"、"NASA 确认"
+4. **AI 生成内容** - "总之"、"综上所述"
+5. **链接操纵** - "点击这里"、"立即访问"
+
+## 🔧 技术原理
+
+### 域名可信度
+
+- 白名单域名：自动 100 分（gov/edu/权威媒体）
+- 黑名单域名：自动 30 分（博客/自媒体）
+- 普通域名：60 分基准
+
+### 内容质量分析
+
+- 段落/句子长度分析
+- 引用来源检测
+- 作者信息检测
+- 发布日期检测
+
+### GEO 特征检测
+
+- 正则表达式匹配
+- 特征权重计算
+- 综合扣分机制
+
+## 📝 使用场景
+
+1. **新闻验证** - 查看惊人新闻真假
+2. **健康信息核实** - 识别"神奇疗法"
+3. **产品评测验证** - 识别软文推广
+4. **学术研究查证** - 确保引用真实
+
+## 🐛 常见问题
+
+**Q: 检测准确率如何？**  
+A: 约 70-80%，建议作为参考工具。
+
+**Q: 支持中文吗？**  
+A: ✅ 完全支持中英文。
+
+**Q: 如何举报投毒内容？**  
+A: 保存报告，向平台举报，提醒他人。
+
+## 📄 许可证
+
+MIT License
+
+## 🔗 相关链接
+
+- [OpenClaw 文档](https://docs.openclaw.ai)
+- [ClawHub](https://clawhub.ai)
+- [GitHub 仓库](https://github.com/rfdiosuao/openclaw-skills)
+
+---
+
+**作者：** Spark ⚡  
+**版本：** 1.0.0  
+**最后更新：** 2026-04-06

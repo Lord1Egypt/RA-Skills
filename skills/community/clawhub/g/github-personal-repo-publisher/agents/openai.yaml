@@ -1,0 +1,6 @@
+interface:
+  display_name: "GitHub Repo Publisher"
+  short_description: "Create your own GitHub repo and push a local project safely"
+  default_prompt: "Use $github-personal-repo-publisher to create a repo under my GitHub account, connect this local project to it, and push only the committed history safely."
+policy:
+  allow_implicit_invocation: false

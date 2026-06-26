@@ -1,0 +1,32 @@
+{
+  "name": "zhouyi-benjing-oracle",
+  "version": "1.0.0",
+  "description": "以《周易》本经原著为底，系统收集并拆解市面上几乎所有可获取的同类 divination agents / skills / 程序，汲取百家之长，取其精华、去其糟粕，最终打磨成更准确、更完整、更好用的周易系统。Built on the original Zhouyi text and refined by absorbing the best ideas across virtually every comparable divination agent we could access.",
+  "main": "SKILL.md",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "zhouyi",
+    "yijing",
+    "iching",
+    "周易",
+    "易经",
+    "六十四卦",
+    "占卜",
+    "卦辞",
+    "爻辞"
+  ],
+  "author": "pineapple",
+  "license": "MIT-0",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "cast": "node scripts/zhouyi_cli.js cast",
+    "lookup": "node scripts/zhouyi_cli.js lookup",
+    "search": "node scripts/zhouyi_cli.js search",
+    "catalog": "node scripts/zhouyi_cli.js catalog",
+    "build:data": "python3 scripts/build_zhouyi_data.py",
+    "test": "node tests/verify_zhouyi_system.js && node tests/verify_system_catalog.js && node tests/verify_cli.js"
+  }
+}

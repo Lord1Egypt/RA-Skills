@@ -1,0 +1,244 @@
+{
+  "categories": {
+    "portrait": {
+      "name": "Portrait Photography",
+      "templates": [
+        {
+          "name": "Professional Headshot",
+          "template": "professional headshot, {subject}, {expression}, {clothing}, studio lighting, softbox, 85mm lens, f/1.8, sharp focus, detailed skin texture, {background}, high quality, photorealistic",
+          "variables": {
+            "subject": "business person, model, actor",
+            "expression": "confident smile, neutral expression, warm smile",
+            "clothing": "business suit, casual wear, formal attire",
+            "background": "neutral gray background, blurred office, gradient background"
+          }
+        },
+        {
+          "name": "Environmental Portrait",
+          "template": "environmental portrait, {subject} in {location}, {activity}, natural lighting, {time_of_day}, {mood}, storytelling composition, {camera}, photorealistic, detailed",
+          "variables": {
+            "subject": "artist, chef, musician, craftsman",
+            "location": "studio, kitchen, workshop, garden",
+            "activity": "working, creating, performing, crafting",
+            "time_of_day": "golden hour, soft morning light, dramatic sunset",
+            "mood": "warm and inviting, focused and intense, peaceful",
+            "camera": "35mm lens, 50mm lens"
+          }
+        }
+      ]
+    },
+    "landscape": {
+      "name": "Landscape & Nature",
+      "templates": [
+        {
+          "name": "Epic Landscape",
+          "template": "epic landscape, {location}, {weather}, {time_of_day}, dramatic lighting, vast scale, sense of awe, {elements}, {mood}, highly detailed, 8k resolution, {photography_style}",
+          "variables": {
+            "location": "mountain range, coastal cliffs, desert dunes, forest",
+            "weather": "stormy clouds, clear sky, misty fog, dramatic sunset",
+            "time_of_day": "golden hour, blue hour, sunrise, sunset",
+            "elements": "foreground interest, leading lines, reflections",
+            "mood": "serene and peaceful, dramatic and powerful, mysterious",
+            "photography_style": "national geographic style, fine art photography"
+          }
+        },
+        {
+          "name": "Intimate Nature",
+          "template": "intimate nature detail, {subject}, macro photography, {lighting}, {background}, shallow depth of field, bokeh, delicate details, {mood}, nature photography",
+          "variables": {
+            "subject": "flower petals, dew drops, leaf texture, insect",
+            "lighting": "soft diffused light, backlighting, dappled sunlight",
+            "background": "soft green background, blurred natural background",
+            "mood": "peaceful, delicate, vibrant"
+          }
+        }
+      ]
+    },
+    "anime": {
+      "name": "Anime & Manga",
+      "templates": [
+        {
+          "name": "Character Portrait",
+          "template": "masterpiece, best quality, {quality_tags}, {character_type}, {features}, {expression}, {outfit}, {pose}, {background}, {style}, detailed face, detailed eyes, anime style",
+          "variables": {
+            "quality_tags": "1girl, solo / 1boy, solo",
+            "character_type": "schoolgirl, warrior, mage, idol",
+            "features": "long hair, short hair, colored hair, detailed eyes",
+            "expression": "smiling, serious, surprised, gentle expression",
+            "outfit": "school uniform, fantasy armor, casual clothes, traditional dress",
+            "pose": "standing pose, action pose, sitting, portrait",
+            "background": "simple background, detailed background, gradient",
+            "style": "anime style, manga style, modern anime"
+          }
+        },
+        {
+          "name": "Scene/Illustration",
+          "template": "masterpiece, best quality, {scene_type}, {setting}, {characters}, {action}, {atmosphere}, {lighting}, {composition}, detailed background, anime art style, illustration",
+          "variables": {
+            "scene_type": "fantasy scene, slice of life, action scene, romantic scene",
+            "setting": "classroom, fantasy world, city street, nature",
+            "characters": "1girl, 2girls, group of friends",
+            "action": "reading book, fighting, walking, talking",
+            "atmosphere": "peaceful, dramatic, mysterious, cheerful",
+            "lighting": "soft lighting, dramatic lighting, golden hour",
+            "composition": "wide shot, medium shot, close-up"
+          }
+        }
+      ]
+    },
+    "architecture": {
+      "name": "Architecture & Interior",
+      "templates": [
+        {
+          "name": "Modern Architecture",
+          "template": "architectural photography, {building_type}, {style}, {materials}, {lighting}, {time}, {composition}, clean lines, geometric forms, {mood}, photorealistic, detailed textures",
+          "variables": {
+            "building_type": "modern house, skyscraper, museum, office building",
+            "style": "minimalist, brutalist, contemporary, futuristic",
+            "materials": "glass and steel, concrete, wood and stone",
+            "lighting": "natural light, dramatic shadows, night lighting",
+            "time": "daytime, golden hour, blue hour, night",
+            "composition": "wide angle, symmetrical, dramatic perspective",
+            "mood": "serene, powerful, inviting, mysterious"
+          }
+        },
+        {
+          "name": "Interior Design",
+          "template": "interior photography, {room_type}, {style}, {furniture}, {lighting}, {color_scheme}, {materials}, spacious, {mood}, architectural digest style, detailed",
+          "variables": {
+            "room_type": "living room, bedroom, kitchen, office",
+            "style": "modern, minimalist, scandinavian, industrial, luxury",
+            "furniture": "designer furniture, comfortable seating, functional",
+            "lighting": "natural light from windows, warm ambient lighting",
+            "color_scheme": "neutral tones, warm colors, cool palette",
+            "materials": "wood, marble, concrete, fabric textures",
+            "mood": "cozy, elegant, professional, relaxing"
+          }
+        }
+      ]
+    },
+    "product": {
+      "name": "Product Photography",
+      "templates": [
+        {
+          "name": "Product Shot",
+          "template": "product photography, {product}, {material}, {lighting}, {background}, {angle}, sharp focus, professional studio lighting, commercial photography, detailed textures, {style}",
+          "variables": {
+            "product": "electronics, cosmetics, jewelry, food, beverage",
+            "material": "metallic, matte, glossy, textured",
+            "lighting": "soft box lighting, dramatic side lighting, even lighting",
+            "background": "white background, gradient background, lifestyle setting",
+            "angle": "front view, 45 degree angle, top down, detail shot",
+            "style": "clean and minimal, luxury, lifestyle, technical"
+          }
+        }
+      ]
+    },
+    "concept_art": {
+      "name": "Concept Art",
+      "templates": [
+        {
+          "name": "Character Concept",
+          "template": "character concept art, {character_type}, {features}, {outfit}, {equipment}, {pose}, {style}, detailed design, turnaround, professional concept art, artstation",
+          "variables": {
+            "character_type": "fantasy warrior, sci-fi soldier, medieval knight, cyberpunk hacker",
+            "features": "distinctive silhouette, unique features, expressive face",
+            "outfit": "armor design, costume design, functional clothing",
+            "equipment": "weapons, tools, accessories, gadgets",
+            "pose": "T-pose, action pose, character sheet",
+            "style": "realistic, stylized, painterly, detailed line art"
+          }
+        },
+        {
+          "name": "Environment Concept",
+          "template": "environment concept art, {setting}, {atmosphere}, {scale}, {lighting}, {elements}, {style}, establishing shot, detailed, matte painting style, artstation",
+          "variables": {
+            "setting": "fantasy city, alien planet, post-apocalyptic wasteland, underwater world",
+            "atmosphere": "mysterious, epic scale, serene, dangerous",
+            "scale": "vast landscape, intimate scene, architectural focus",
+            "lighting": "dramatic lighting, atmospheric perspective, god rays",
+            "elements": "unique flora, alien architecture, natural formations",
+            "style": "realistic, painterly, stylized, detailed"
+          }
+        }
+      ]
+    },
+    "food": {
+      "name": "Food Photography",
+      "templates": [
+        {
+          "name": "Food Shot",
+          "template": "food photography, {dish}, {presentation}, {lighting}, {background}, {angle}, appetizing, {style}, detailed textures, steam, fresh ingredients, professional food photography",
+          "variables": {
+            "dish": "gourmet meal, dessert, beverage, street food",
+            "presentation": "elegant plating, rustic presentation, modern styling",
+            "lighting": "natural window light, soft studio light, dramatic lighting",
+            "background": "wooden table, marble surface, dark background",
+            "angle": "overhead shot, 45 degree, eye level, detail shot",
+            "style": "editorial, commercial, lifestyle, artistic"
+          }
+        }
+      ]
+    }
+  },
+  "enhancers": {
+    "quality": [
+      "masterpiece",
+      "best quality",
+      "high quality",
+      "ultra detailed",
+      "highly detailed",
+      "intricate details",
+      "8k resolution",
+      "sharp focus"
+    ],
+    "lighting": [
+      "soft lighting",
+      "dramatic lighting",
+      "golden hour",
+      "studio lighting",
+      "natural lighting",
+      "volumetric lighting",
+      "rim lighting",
+      "backlighting"
+    ],
+    "camera": [
+      "DSLR",
+      "Canon EOS R5",
+      "Nikon D850",
+      "Sony A7R IV",
+      "50mm lens",
+      "85mm lens",
+      "35mm lens",
+      "24mm lens",
+      "f/1.8",
+      "f/2.8",
+      "shallow depth of field",
+      "bokeh"
+    ],
+    "mood": [
+      "serene",
+      "dramatic",
+      "mysterious",
+      "cheerful",
+      "melancholic",
+      "epic",
+      "intimate",
+      "powerful"
+    ],
+    "style": [
+      "photorealistic",
+      "cinematic",
+      "fine art",
+      "editorial",
+      "commercial",
+      "documentary"
+    ]
+  },
+  "negative_prompts": {
+    "general": "low quality, blurry, distorted, deformed, ugly, duplicate, watermark, signature, text, logo, cropped, out of frame",
+    "anime": "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, bad feet, mutation, deformed",
+    "photorealistic": "painting, drawing, illustration, cartoon, anime, 3d render, cgi, unrealistic, plastic look, oversaturated",
+    "portrait": "disfigured, bad anatomy, disfigured, poorly drawn face, mutation, mutated, extra limbs, extra fingers, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck, cross-eyed"
+  }
+}

@@ -1,0 +1,70 @@
+# AI 增强配置文件
+# Good-Txt-To-Hwreader AI Enhancement Configuration
+
+# 处理模式: fast / balanced / thorough
+mode: "balanced"
+
+# AI 增强总开关
+ai_enhancement:
+  enabled: true
+  
+  # 广告识别配置
+  ad_detection:
+    enabled: true
+    batch_size: 10
+    confidence_threshold: 0.8
+    max_paragraphs: 100  # 最多检测段落数
+    
+  # 乱码修复配置
+  mojibake_fix:
+    enabled: true
+    batch_size: 5
+    confidence_threshold: 0.7
+    auto_learn: true
+    max_fixes: 50  # 每次最多修复数量
+    
+  # 章节识别配置
+  chapter_detection:
+    enabled: false  # balanced 模式默认关闭
+    sample_size: 5000
+    confidence_threshold: 0.8
+
+# 模式配置
+mode_config:
+  fast:
+    ai_ad_detection: false
+    ai_mojibake_fix: false
+    ai_chapter_detection: false
+    
+  balanced:
+    ai_ad_detection: true
+    ai_mojibake_fix: true
+    ai_chapter_detection: false
+    
+  thorough:
+    ai_ad_detection: true
+    ai_mojibake_fix: true
+    ai_chapter_detection: true
+
+# LLM 配置
+llm:
+  provider: "openclaw-subagent"  # 使用 OpenClaw 子会话调用
+  model: "myprovider/LLM_GLM5"   # 使用当前会话的模型
+  timeout: 60
+  max_retries: 3
+  temperature: 0.1  # 低温度保证稳定性
+  
+  # 子会话调用方式
+  subagent_mode: true
+  subagent_timeout: 60
+
+# 缓存配置
+cache:
+  enabled: true
+  ttl: 3600  # 缓存有效期（秒）
+  max_size: 1000  # 最大缓存条目
+
+# 日志配置
+logging:
+  level: "INFO"
+  file: "ai_enhancement.log"

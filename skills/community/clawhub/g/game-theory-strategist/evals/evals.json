@@ -1,0 +1,37 @@
+[
+  {
+    "scenario_id": "EV-001",
+    "title": "Salary Negotiation under Incomplete Information",
+    "description": "User is negotiating a starting salary but does not know the company's true reservation price. The company knows the user's current salary. Assess using Bayesian game principles.",
+    "expected_coaching_output": "Formulate a signaling strategy to reveal the user's 'type' (high-value) without exposing their reservation minimum. Produce a 2x2 matrix with user strategies (Anchor High / Reveal Current) vs company strategies (Meet / Lowball). Identify Nash Equilibrium. Recommend anchoring first with a credible high number backed by market data, framed as the user's outside option — not as a demand. Plan includes: research phase, anchor delivery script, silence tactic post-offer.",
+    "expected_sections": ["CLASIFICACIÓN DEL JUEGO", "MATRIZ DE PAGOS", "EQUILIBRIO DE NASH", "ESTRATEGIAS ÓPTIMAS", "PLAN DE ACCIÓN POR FASES", "VEREDICTO ESTRATÉGICO"]
+  },
+  {
+    "scenario_id": "EV-002",
+    "title": "Family Inheritance Ultimatum",
+    "description": "User is offered an unfair split of an inheritance by a sibling (80/20). If the user rejects, neither gets anything. Evaluate using Behavioral Game Theory.",
+    "expected_coaching_output": "Identify Ultimatum Game dynamics. Classify as one-shot sequential game with asymmetric information about the sibling's minimum acceptable split. Acknowledge inequity aversion. Propose shifting from single-shot Ultimatum to iterated negotiation by introducing a third option (delay, mediation, legal escalation) that changes the payoff structure. Nash in current form: sibling proposes 80/20, user accepts reluctantly. After mechanism redesign: equilibrium shifts toward fairer split.",
+    "expected_sections": ["CLASIFICACIÓN DEL JUEGO", "MATRIZ DE PAGOS", "EQUILIBRIO DE NASH", "ESTRATEGIAS ÓPTIMAS", "PLAN DE ACCIÓN POR FASES", "VEREDICTO ESTRATÉGICO"]
+  },
+  {
+    "scenario_id": "EV-003",
+    "title": "Career Pivot: Exploration vs. Exploitation",
+    "description": "User is ten years into a stable but unfulfilling career and is considering a high-risk startup venture. Apply Regret Minimization and CFR.",
+    "expected_coaching_output": "Apply CFR framework. Model as multi-period decision under uncertainty. Stable career: EV ~5, low variance (σ=1). Startup: EV ~6, high variance (σ=4). CFR over 1000 iterations typically converges to 60-70% startup weight when EV advantage is +1 and variance is 4x. Recommend mixed strategy: do not quit immediately — activate startup as side project first to generate real data and reduce variance before committing. Plan phases: validate while employed, set a 6-month decision gate, define exit criteria.",
+    "expected_sections": ["CLASIFICACIÓN DEL JUEGO", "PLAN DE ACCIÓN POR FASES", "VEREDICTO ESTRATÉGICO"]
+  },
+  {
+    "scenario_id": "EV-004",
+    "title": "Co-founder Equity Dispute",
+    "description": "Two co-founders are locked in a Prisoner's Dilemma over workload and equity. Both are currently shirking because they feel the other isn't working hard enough.",
+    "expected_coaching_output": "Identify Prisoner's Dilemma: (Shirk, Shirk) is the Nash Equilibrium even though (Work, Work) is Pareto-superior. Use Mechanism Design to restructure. Implement: 4-year vesting with 1-year cliff, quarterly milestone reviews, transparent work-logging. This raises the cost of shirking and shifts Nash from (Defect, Defect) to (Cooperate, Cooperate). Use mechanism_designer.py: set lying_payoff below truthful_payoff for both agents.",
+    "expected_sections": ["CLASIFICACIÓN DEL JUEGO", "MATRIZ DE PAGOS", "EQUILIBRIO DE NASH", "PLAN DE ACCIÓN POR FASES", "VEREDICTO ESTRATÉGICO"]
+  },
+  {
+    "scenario_id": "EV-005",
+    "title": "The Price of Anarchy in Household Management",
+    "description": "A household of 4 adults is experiencing a Tragedy of the Commons regarding shared resources and cleaning.",
+    "expected_coaching_output": "Calculate Price of Anarchy: current Nash (everyone free-rides) vs. Pareto optimum (coordinated effort). PoA is likely 3-4x in household chore games. Introduce a Coordination Mechanism: rotating weekly accountability roles, transparent completion tracking, or a small penalty-reward system (chore tax). Show that the mechanism reduces PoA toward 1.0 by making contribution the dominant strategy for each individual.",
+    "expected_sections": ["CLASIFICACIÓN DEL JUEGO", "MATRIZ DE PAGOS", "EQUILIBRIO DE NASH", "PLAN DE ACCIÓN POR FASES", "VEREDICTO ESTRATÉGICO"]
+  }
+]

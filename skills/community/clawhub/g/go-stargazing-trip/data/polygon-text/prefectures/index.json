@@ -1,0 +1,62 @@
+[
+  {
+    "file": "chunk-01.json",
+    "count": 38,
+    "bytes": 125274
+  },
+  {
+    "file": "chunk-02.json",
+    "count": 38,
+    "bytes": 75886
+  },
+  {
+    "file": "chunk-03.json",
+    "count": 38,
+    "bytes": 129376
+  },
+  {
+    "file": "chunk-04.json",
+    "count": 38,
+    "bytes": 195942
+  },
+  {
+    "file": "chunk-05.json",
+    "count": 38,
+    "bytes": 156476
+  },
+  {
+    "file": "chunk-06.json",
+    "count": 38,
+    "bytes": 193451
+  },
+  {
+    "file": "chunk-07.json",
+    "count": 38,
+    "bytes": 157071
+  },
+  {
+    "file": "chunk-08.json",
+    "count": 38,
+    "bytes": 156933
+  },
+  {
+    "file": "chunk-09.json",
+    "count": 38,
+    "bytes": 149859
+  },
+  {
+    "file": "chunk-10.json",
+    "count": 38,
+    "bytes": 113845
+  },
+  {
+    "file": "chunk-11.json",
+    "count": 38,
+    "bytes": 126057
+  },
+  {
+    "file": "chunk-12.json",
+    "count": 37,
+    "bytes": 117066
+  }
+]

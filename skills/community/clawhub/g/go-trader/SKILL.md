@@ -1,35 +1,33 @@
----
-name: "Go Trader"
-description: "Control and monitor the go-trader cryptocurrency trading system with natural language commands for strategies, status, risk, and emergency stops."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/go-trader"
-sourceUrl: "https://clawhub.ai/skills/go-trader"
----
+# go-trader Trading Bot Control
 
-# Go Trader
+Control the go-trader cryptocurrency trading system through natural language commands.
 
-> Control and monitor the go-trader cryptocurrency trading system with natural language commands for strategies, status, risk, and emergency stops.
+## Available Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/go-trader`
-- **Source URL:** [https://clawhub.ai/skills/go-trader](https://clawhub.ai/skills/go-trader)
+### Status & Monitoring
+- "What's my trading status?" → Check all positions and P&L
+- "Show my BTC position" → Get specific asset status
+- "Check trading health" → Verify go-trader is running
+- "View recent trades" → Display recent trading activity
+- "Show trading logs" → View system logs
 
-## Overview
+### Control Commands
+- "Enable momentum strategy" → Activate momentum trading
+- "Disable RSI strategy" → Pause RSI strategy
+- "Switch to paper trading" → Change to paper trading mode
+- "Switch to live trading" → Enable live trading (WARNING)
 
+### Risk Management
+- "Emergency stop all" → Immediately halt all positions
+- "Show risk status" → Display current risk metrics
+- "Reset trading state" → Clear and reset trading state
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/go-trader
-```
+## System Information
+- go-trader API: localhost:8099
+- Status endpoint: /status
+- Health endpoint: /health
+
+## Safety
+- Always confirm before enabling live trading
+- Default to paper trading mode
+- Emergency stop available for urgent situations

@@ -1,35 +1,178 @@
 ---
-name: "帮我凑假"
-description: "智能拼假日历助手，帮助用户计算最优请假方案。输入目的地、可请假天数和出发城市，自动生成拼假方案并查询机票价格。当用户提到"凑假"、"拼假"、"请假方案"、"怎么请假划算"、"假期规划"时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/flyai-vacation-planner"
-sourceUrl: "https://clawhub.ai/skills/flyai-vacation-planner"
+name: flyai-vacation-planner
+description: 智能拼假日历助手，帮助用户计算最优请假方案。输入目的地、可请假天数和出发城市，自动生成拼假方案并查询机票价格。当用户提到"凑假"、"拼假"、"请假方案"、"怎么请假划算"、"假期规划"时使用。
 ---
 
-# 帮我凑假
+# 智能拼假日历助手
 
-> 智能拼假日历助手，帮助用户计算最优请假方案。输入目的地、可请假天数和出发城市，自动生成拼假方案并查询机票价格。当用户提到"凑假"、"拼假"、"请假方案"、"怎么请假划算"、"假期规划"时使用。
+帮助用户用最少的请假天数拼出最长的旅行时间，并提供目的地机票价格参考。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/flyai-vacation-planner`
-- **Source URL:** [https://clawhub.ai/skills/flyai-vacation-planner](https://clawhub.ai/skills/flyai-vacation-planner)
+## 核心能力
 
-## Overview
+### FlyAI 能力
 
+> 完整命令参考见 reference 目录
 
-## Installation
-To install this skill, run the following command in your terminal:
+**本技能主要使用**：`search-flight`、`search-hotel`
+
+| 能力 | 说明 |
+|-----|------|
+| 📅 拼假计算 | 基于法定节假日+周末，计算最优请假方案 |
+| ✈️ 机票查询 | 实时查询往返机票价格 |
+| 🏨 酒店推荐 | 查询目的地酒店信息 |
+| 🌍 目的地信息 | 获取景点、天气、签证等信息 |
+
+## 工作流程
+
+### 步骤 1：安装/升级 FlyAI CLI
+
+在执行任何搜索之前，**必须先执行安装命令**（幂等安装，确保为最新版本）：
+
 ```bash
-hermes skills install clawhub/flyai-vacation-planner
+npm install -g @fly-ai/flyai-cli@latest --registry=https://registry.npmjs.org
 ```
+
+> 💡 此命令会自动处理首次安装和版本升级，无需手动判断是否已安装。
+
+**安装问题处理：**
+- npm 未安装 → 提示安装 Node.js
+- 权限不足 → 使用 `sudo` 或 nvm
+- 网络问题 → 使用国内镜像 `npm config set registry https://registry.npmmirror.com`
+
+### 步骤 2：读取用户画像（双模式）
+
+启动时读取用户历史偏好，减少重复询问。
+
+> 详见 [reference/user-profile-storage.md](reference/user-profile-storage.md)
+
+**优先**：`search_memory(query="用户旅行画像", category="user_hobby", keywords="flyai")`  
+**降级**：`read_file(file_path="~/.flyai/user-profile.md")`
+
+### 步骤 3：收集用户输入
+
+启动对话：
+
+> "我来帮你规划拼假方案！请告诉我：
+> 1. 你想去哪里？
+> 2. 最多能请几天假？
+> 3. 从哪个城市出发？"
+
+必需信息：
+- **目的地**: 具体城市或国家（如"冲绳"、"日本"、"三亚"）
+- **可请假天数上限**: 数字（如"2天"、"最多3天"）
+- **出发城市**: 用户所在城市（如"上海"、"北京"）
+
+如果目的地模糊（如只说"海岛"），追问偏好后推荐3个具体目的地。
+
+### 步骤 4：计算拼假方案
+
+基于当前日期，计算未来3个月内的最优拼假方案。
+
+#### 中国法定节假日参考（2026-2027）
+
+```
+春节: 2月17日-2月23日（2026）/ 2月6日-2月12日（2027）
+清明节: 4月4日-6日
+劳动节: 5月1日-5日
+端午节: 6月19日-21日（2026）/ 6月8日-10日（2027）
+中秋节: 9月25日-27日（2026）/ 9月15日-17日（2027）
+国庆节: 10月1日-7日
+```
+
+#### 拼假算法逻辑
+
+1. **识别周末**: 每周六、周日
+2. **识别法定假日**: 上述节假日
+3. **计算连续区间**: 将相邻的周末和假日合并
+4. **插入请假日**: 在连续区间的间隙中插入请假日，优先选择能拼出最长旅行时间的位置
+5. **排序方案**: 按 (旅行天数 / 请假天数) 比值降序排列
+
+#### 方案筛选标准
+
+- 旅行总天数 >= 3天
+- 请假天数 <= 用户指定上限
+- 优先推荐性价比高的方案（请假少、玩得久）
+
+### 步骤 5：查询机票价格
+
+> 命令详情见 [reference/search-flight.md](reference/search-flight.md)
+
+```bash
+/flyai search-flight --origin "{出发城市}" --destination "{目的地}" --dep-date {出发日期} --back-date {返回日期} --sort-type 3
+```
+
+如果机票查询失败，展示"参考价"并标注为历史同期估价。
+
+### 步骤 6：补充目的地信息
+
+> 命令详情见 [reference/keyword-search.md](reference/keyword-search.md)
+
+调用 `keyword-search --query "{目的地} 旅游攻略 景点"` 获取信息，补充：
+- **淡旺季标签**: 根据节假日和旅游旺季判断
+  - 🟢 淡季：价格低、人少
+  - 🟡 平季：性价比较高
+  - 🔴 旺季：价格高、人多（如国庆、春节）
+- **天气概况**: 根据季节和目的地给出大致天气
+
+### 步骤 7：输出方案卡片
+
+按以下格式输出每个拼假方案：
+
+```
+━━━━━━━━━━━━━━━━━━━━
+📋 方案{字母}（{推荐标签}）
+  请假：{具体日期}（周几）
+  旅行时段：{起始日期} - {结束日期}，共{X}天{Y}晚
+  机票参考：往返 ¥{最低价}-{最高价}
+  天气：{温度} {天气描述}
+  标签：{淡旺季标签} | {性价比评价}
+  👉 下一步：{引导性问题}
+━━━━━━━━━━━━━━━━━━━━
+```
+
+**推荐标签规则**:
+- 性价比最高的方案标记为"推荐⭐"
+- 旅行天数最长的方案标记为"最长假期"
+- 价格最低的方案标记为"最省钱💰"
+
+**下一步引导**:
+- 淡季/平季方案: "要我帮你搜这个时段的机+酒套餐吗？"
+- 旺季方案: "要我设置降价提醒吗？"
+- 需要签证: "要我帮你查签证办理流程吗？"
+
+## 异常处理
+
+| 场景 | 处理方式 |
+|------|----------|
+| 目的地模糊 | 追问偏好，推荐3个具体目的地 |
+| 机票价格获取失败 | 展示"参考价"，标注历史同期估价 |
+| 可请假天数为0 | 仅推荐纯周末/法定假日方案 |
+| 目的地需要签证 | 在方案卡片标红提示签证办理时间 |
+| 找不到合适方案 | 建议用户增加可请假天数或调整目的地 |
+
+## 签证提醒规则
+
+> 签证办理时间详见 [reference/visa-rules.md](reference/visa-rules.md)
+
+如果目的地需要签证且方案出发日期距现在不足办理时间，标红提示：
+> ⚠️ 签证办理约需X个工作日，该方案时间可能不足
+
+## 后续操作
+
+用户选定方案后，根据需求调用：
+
+- **机+酒套餐**: `keyword-search --query "{目的地} 机票酒店套餐 {日期}"` — 详见 [reference/keyword-search.md](reference/keyword-search.md)
+- **当地景点**: `search-poi --city-name "{目的地}" --category "{类型}"` — 详见 [reference/search-poi.md](reference/search-poi.md)
+- **酒店**: `search-hotel --dest-name "{目的地}" --check-in-date {入住} --check-out-date {退房}` — 详见 [reference/search-hotel.md](reference/search-hotel.md)
+
+---
+
+## 示例对话
+
+> 详见 [reference/examples.md](reference/examples.md)
+
+## 用户偏好保存（双模式）
+
+发现新偏好时提示保存。详见 [reference/user-profile-storage.md](reference/user-profile-storage.md)
+
+**保存流程**：发现偏好 → 提示确认 → Qoder 用 `update_memory` / 非 Qoder 更新本地文件

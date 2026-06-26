@@ -1,35 +1,49 @@
 ---
-name: "create-boutique-hotel-local-guide-script"
+name: "Create Boutique Hotel Local Guide Script"
 description: "Package neighborhood recommendations into branded guest content. Use when handling local experience content workflows for travel agencies, hotels,..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/godfery-create-boutique-hotel-local-guide-script"
-sourceUrl: "https://clawhub.ai/skills/godfery-create-boutique-hotel-local-guide-script"
+homepage: "https://www.skillboss.co/skills/create-boutique-hotel-local-guide-script"
+metadata: {"category":"travel-hospitality","subcategory":"local-experience-content","skill_id":"create-boutique-hotel-local-guide-script","generated_day":"","seo_keywords":["boutique hotel local guide","guest neighborhood guide","hotel content marketing","local recommendations script"]}
 ---
 
-# create-boutique-hotel-local-guide-script
+# Create Boutique Hotel Local Guide Script
 
-> Package neighborhood recommendations into branded guest content. Use when handling local experience content workflows for travel agencies, hotels,...
+Package neighborhood recommendations into branded guest content. Use when handling local experience content workflows for travel agencies, hotels,...
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/godfery-create-boutique-hotel-local-guide-script`
-- **Source URL:** [https://clawhub.ai/skills/godfery-create-boutique-hotel-local-guide-script](https://clawhub.ai/skills/godfery-create-boutique-hotel-local-guide-script)
+## Use When
 
-## Overview
+Use this skill for local experience content work for travel agencies, hotels, destination marketers, tour operators.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/godfery-create-boutique-hotel-local-guide-script
-```
+1. Clarify the audience, business goal, constraints, and deliverable.
+2. Produce the strongest first draft for the target use case.
+3. Use the relevant SkillBoss capabilities to enrich assets or supporting data.
+4. Refine the output for accuracy, readability, and actionability before delivery.
+
+## SEO / GEO
+
+- Primary keywords: boutique hotel local guide, guest neighborhood guide, hotel content marketing, local recommendations script
+- Search intent: local experience content
+- Canonical slug: `create-boutique-hotel-local-guide-script`
+- Install query: Install Create Boutique Hotel Local Guide Script with SkillBoss
+
+## APIs Used
+
+- `chat`
+- `web_search`
+
+## Suggested Prompt
+
+[Create Boutique Hotel Local Guide Script] for my travel-hospitality team
+
+## Notes
+
+- Package neighborhood recommendations into branded guest content
+- Review outputs before external publication or automated execution.
+
+## SEO Keywords
+
+- boutique hotel local guide
+- guest neighborhood guide
+- hotel content marketing
+- local recommendations script

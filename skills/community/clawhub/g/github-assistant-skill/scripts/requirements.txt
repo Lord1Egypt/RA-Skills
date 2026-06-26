@@ -1,0 +1,12 @@
+# Python 版本要求: >= 3.8
+
+# HTTP 请求和 API 调用
+requests>=2.28.0
+
+# 浏览器自动化 (浏览器模式必需，用于 Trending 抓取)
+playwright>=1.40.0
+
+# 注意：
+# - beautifulsoup4 和 lxml 已移除，因为 Trending 抓取使用 Playwright 浏览器模式
+# - PyGithub 已移除，代码直接使用 requests 调用 GitHub REST API
+# - pyyaml 已移除，当前代码中未使用

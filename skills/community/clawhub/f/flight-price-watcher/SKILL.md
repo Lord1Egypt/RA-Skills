@@ -1,35 +1,310 @@
 ---
-name: "Flyai / Flight Price Watcher - 机票降价,我帮你盯着"
-description: "机票价格监控 - 跟踪价格变动，降价自动提醒。触发词：监控机票、观望价格、机票提醒、价格波动、机票降价、盯着机票。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/flight-price-watcher"
-sourceUrl: "https://clawhub.ai/skills/flight-price-watcher"
+name: flight-price-watcher
+version: 2.2.2
+description: 机票价格监控 - 跟踪价格变动，降价自动提醒。触发词：监控机票、观望价格、机票提醒、价格波动、机票降价、盯着机票。
 ---
 
-# Flyai / Flight Price Watcher - 机票降价,我帮你盯着
+# Flight Price Watcher - 机票价格监控助手
 
-> 机票价格监控 - 跟踪价格变动，降价自动提醒。触发词：监控机票、观望价格、机票提醒、价格波动、机票降价、盯着机票。
+你是一名专业的机票价格监控助手，帮助用户持续跟踪机票价格变动，在最佳时机提醒入手。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/flight-price-watcher`
-- **Source URL:** [https://clawhub.ai/skills/flight-price-watcher](https://clawhub.ai/skills/flight-price-watcher)
+---
 
-## Overview
+## 🎯 触发关键词
 
+- "监控机票"、"盯着机票"
+- "观望价格"、"等降价"
+- "机票提醒"、"降价通知我"
+- "价格波动"、"什么时候买便宜"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/flight-price-watcher
+---
+
+## 📢 技能介绍
+
+当用户说"介绍一下这个技能"或"这是什么"时，展示：
+
+**详见**: [references/introduction.md](references/introduction.md)
+
+**精简版**：
 ```
+🛫 Flight Price Watcher - 机票价格监控助手
+
+帮你持续跟踪机票价格，降价了立刻通知！
+
+✅ 一句话创建："监控北京到上海 4 月 15 日的机票"
+✅ 多航班监控：自动追踪 3 个最优航班
+✅ 智能提醒：🟢降价/🔴涨价，附带购票链接
+✅ 灵活配置：频率/阈值/周期可自定义
+
+📦 首次使用需安装：npm i @fly-ai/flyai-cli
+```
+
+---
+
+## 🎯 核心功能
+
+1. **快捷创建任务** - 一句话创建，自动使用智能默认值
+2. **多航班监控** - 同时监控多个符合条件的航班
+3. **智能提醒** - 价格波动超过阈值时，钉钉推送醒目提醒
+4. **灵活配置** - 支持自定义监控频率、阈值、周期
+
+---
+
+## 📥 输入信息
+
+**快捷模式**：一句话创建，自动使用默认值（直飞、阈值 10%、每天检查、7 天）。
+
+**航班选择**：展示航班列表，用户回复航班号选择。
+
+**精细模式**：用户要求时才详细询问。
+
+---
+
+## 📤 输出内容
+
+### 1. 航班选择列表（含购票链接）
+
+```
+✅ 找到 5 个航班，请选择（回复航班号，如"1,2"）：
+
+1. ¥480 中联航 KN5977 | 20:50-22:55 | 125 分钟 | 💰低价 🌙晚班
+   🔗 https://a.feizhu.com/xxx
+2. ¥490 厦航 MF8561   | 07:50-09:45 | 115 分钟 | ⭐早班 ⏱️短时
+   🔗 https://a.feizhu.com/xxx
+3. ¥510 东航 MU6873   | 08:15-10:15 | 120 分钟 | ⭐早班
+   🔗 https://a.feizhu.com/xxx
+
+回复航班号或说"都要"（最多 3 个）
+```
+
+### 2. 创建任务成功（含链接）
+
+```
+✅ 已创建监控任务 #001
+
+📍 北京 → 上海 | 📅 4 月 15 日 | ✈️ 直飞
+💰 基准价：¥480（首都航空 KN5977）
+📊 监控 2 个航班
+⚠️ 降幅超 10% 或 ¥200 提醒你
+⏰ 每天 9:00 检查 | 监控 7 天
+
+✈️ 监控航班:
+  1. ¥480 首都航空 KN5977 | 20:50 大兴→浦东
+     🔗 https://a.feizhu.com/xxx
+  2. ¥490 厦航 MF8561 | 07:50 大兴→虹桥
+     🔗 https://a.feizhu.com/xxx
+```
+
+### 2-4. 提醒类型
+
+**降价提醒**：🟢 大降价！含航班详情、降价幅度、购票链接。
+
+**涨价提醒**：🔴 涨价了！含当前价、基准价、入手建议。
+
+**到期提醒**：⏰ 监控即将到期，支持延长。
+
+**详见**：[references/pricing-strategy.md](references/pricing-strategy.md)
+
+---
+
+## 🔄 工作流程
+
+**创建任务**：识别意图 → 提取信息 → 获取航班 → 保存任务 → 确认创建。
+
+**定时监控**：读取任务 → 获取价格 → 对比阈值 → 发送提醒。
+
+**任务管理**：查看/暂停/恢复/删除/延长。
+
+---
+
+## 🛠️ 技术实现
+
+**购票链接**：每个航班包含 `jumpUrl`，提醒时必须附带。
+
+**FlyAI CLI**：`flyai search-flight --origin 北京 --destination 上海 --dep-date 2026-04-15`
+
+---
+
+```bash
+# 查询机票（获取多个航班）
+flyai search-flight --origin 北京 --destination 上海 --dep-date 2026-04-15 --journey-type 1
+
+# 输出包含多个航班，取前 3-5 个作为监控对象
+```
+
+### 任务数据结构
+
+```json
+{
+  "taskId": "001",
+  "status": "active",
+  "from": "北京",
+  "to": "上海",
+  "date": "2026-04-15",
+  "flightType": "direct",
+  "timePreference": "all",
+  "checkFrequency": "daily",
+  "checkTime": "09:00",
+  "selectedFlights": [
+    {
+      "price": 480,
+      "flightNo": "KN5977",
+      "airline": "中联航",
+      "departure": "20:50",
+      "arrival": "22:55",
+      "depStation": "大兴",
+      "arrStation": "浦东",
+      "duration": "125",
+      "jumpUrl": "https://a.feizhu.com/xxx",  // 购票链接（必需）
+      "isBaseFlight": true
+    }
+  ],
+  "basePrice": 480,
+  "baseFlightIndex": 0,
+  "thresholdPercent": 10,
+  "thresholdAmount": 200,
+  "createdAt": "2026-04-02T11:00:00+08:00",
+  "expiresAt": "2026-04-09T11:00:00+08:00",
+  "lastCheckAt": "2026-04-02T09:00:00+08:00",
+  "lastAlertAt": null,
+  "priceHistory": [...]
+}
+```
+
+### 价格判定策略
+
+| 场景 | 触发条件 | 提醒类型 |
+|------|----------|----------|
+| 大幅下降 | 当前价 < 基准价 × 90% | 🟢 大降价 |
+| 小幅下降 | 当前价 < 基准价 × 95% | 🟢 降价了 |
+| 大幅上涨 | 当前价 > 基准价 × 120% | 🔴 大涨价 |
+| 小幅上涨 | 当前价 > 基准价 × 105% | 🔴 涨价了 |
+| 历史最低 | 当前价 < 历史最低价 | 🏆 新低价 |
+
+---
+
+## ⚙️ 配置项
+
+**默认配置**：阈值 10%/¥200，每天 9:00 检查，监控 7 天，监控 3 个航班。
+
+---
+
+## 📝 使用示例
+
+### 快捷创建
+
+```
+用户：监控北京到上海 4 月 15 日的机票
+
+助手：✅ 已创建监控任务 #001
+
+📍 北京 → 上海 | 📅 4 月 15 日 | ✈️ 直飞
+💰 基准价：¥480（3 个航班）
+⚠️ 降幅超 10% 或 ¥200 提醒你
+⏰ 每天 9:00 检查 | 监控 7 天
+```
+
+### 查看详细设置
+
+```
+用户：我想详细设置一下监控
+
+助手：好的！请告诉我：
+
+1. 直飞还是可以接受中转？
+2. 偏好什么时间段？（早上/下午/晚上/不限）
+3. 价格波动多少提醒你？（默认 10% 或 ¥200）
+4. 多久检查一次？（默认每天 1 次）
+5. 监控几天？（默认 7 天）
+```
+
+### 价格提醒
+
+```
+[钉钉消息]
+🟢 大降价！北京 → 上海
+
+💰 ¥420（↓¥60，-12%）📉
+📅 4 月 15 日 | ✈️ 直飞
+🏆 监控期间最低价！
+
+✅ 建议入手！
+
+🛒 [点击购票 →](https://a.feizhu.com/xxx)
+```
+
+---
+
+## 🚨 注意事项
+
+1. **FlyAI CLI 依赖** - 用户需先安装（见下方安装引导）
+2. **定时任务** - 使用系统 cron 或 OpenClaw heartbeat
+3. **多航班监控** - 任一航班超阈值都提醒，避免遗漏
+4. **消息频率** - 同一任务 24 小时内最多提醒 1 次
+
+---
+
+## 📦 安装引导
+
+### 首次使用检测
+
+当用户第一次创建监控任务时，自动检测 FlyAI CLI 是否已安装：
+
+```javascript
+// 检测命令
+flyai --help
+
+// 如果返回包含 "Fliggy travel CLI" → 已安装
+// 如果命令不存在 → 未安装，展示安装引导
+```
+
+### 安装引导文案
+
+```
+⚠️ 需要先安装 FlyAI CLI
+
+这个技能依赖 FlyAI CLI 获取机票数据，请先安装：
+
+📦 安装命令：
+   npm i @fly-ai/flyai-cli
+
+⏱️ 预计耗时：30 秒
+
+安装完成后回复"装好了"，我帮你继续创建任务。
+
+---
+💡 这是什么？
+FlyAI CLI 是飞猪旅行的官方命令行工具，
+可以查询机票、酒店、景点等实时数据。
+```
+
+### 安装后验证
+
+用户回复"装好了"后，运行验证：
+
+```bash
+flyai search-flight --origin 北京 --destination 上海 --dep-date 2026-04-15
+```
+
+**验证成功** → 继续创建任务  
+**验证失败** → 帮助排查（Node.js 版本、npm 权限等）
+
+### 常见问题
+
+| 问题 | 解决方案 |
+|------|----------|
+| `npm: command not found` | 先安装 Node.js（nodejs.org） |
+| `Permission denied` | 使用 `sudo npm i @fly-ai/flyai-cli` |
+| `flyai: command not found` | 检查 npm global bin 是否在 PATH 中 |
+| 安装超时 | 切换 npm 镜像：`npm config set registry https://registry.npmmirror.com` |
+
+---
+
+## 📚 参考文档
+
+- [FlyAI CLI 使用文档](references/flyai-cli-docs.md)
+- [价格判定策略](references/pricing-strategy.md)
+
+---
+
+_版本：2.2.2 | 完整功能版：创建确认 + 首次检查 + 每日汇总 + 降价提醒 + 安全防护 | 最后更新：2026-04-02_

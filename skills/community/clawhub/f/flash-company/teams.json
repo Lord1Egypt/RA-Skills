@@ -1,0 +1,155 @@
+{
+  "version": "1.0.0",
+  "teams": {
+    "dev": {
+      "name": "快速开发组",
+      "emoji": "💻",
+      "members": [
+        {
+          "role": "产品经理",
+          "emoji": "🎯",
+          "model": "qwen3-max",
+          "description": "需求分析、方案设计"
+        },
+        {
+          "role": "程序员",
+          "emoji": "👨‍💻",
+          "model": "glm-5",
+          "description": "代码实现、Bug修复"
+        },
+        {
+          "role": "测试员",
+          "emoji": "🧪",
+          "model": "qwen3.5-plus",
+          "description": "测试用例、质量保证"
+        }
+      ],
+      "triggers": ["开发组", "dev", "快速开发", "写代码", "功能开发"]
+    },
+    "content": {
+      "name": "内容创作组",
+      "emoji": "✍️",
+      "members": [
+        {
+          "role": "策划",
+          "emoji": "📝",
+          "model": "qwen3-max",
+          "description": "内容规划、选题策划"
+        },
+        {
+          "role": "写手",
+          "emoji": "✍️",
+          "model": "qwen3.5-plus",
+          "description": "内容创作、文案撰写"
+        },
+        {
+          "role": "编辑",
+          "emoji": "👁️",
+          "model": "glm-5",
+          "description": "内容审核、润色优化"
+        }
+      ],
+      "triggers": ["内容组", "content", "创作组", "写文章", "内容创作"]
+    },
+    "biz": {
+      "name": "商业分析组",
+      "emoji": "📊",
+      "members": [
+        {
+          "role": "分析师",
+          "emoji": "📊",
+          "model": "qwen3-max",
+          "description": "数据分析、趋势洞察"
+        },
+        {
+          "role": "顾问",
+          "emoji": "💼",
+          "model": "qwen3-max",
+          "description": "商业建议、策略规划"
+        },
+        {
+          "role": "研究员",
+          "emoji": "🔍",
+          "model": "qwen3.5-plus",
+          "description": "市场调研、信息收集"
+        }
+      ],
+      "triggers": ["分析组", "biz", "商业组", "商业分析", "市场分析"]
+    },
+    "tech": {
+      "name": "技术攻坚组",
+      "emoji": "🔧",
+      "members": [
+        {
+          "role": "架构师",
+          "emoji": "🏗️",
+          "model": "qwen3-max",
+          "description": "架构设计、技术选型"
+        },
+        {
+          "role": "技术专家",
+          "emoji": "💻",
+          "model": "glm-5",
+          "description": "核心攻坚、复杂问题"
+        },
+        {
+          "role": "工程师",
+          "emoji": "🔧",
+          "model": "qwen3.5-plus",
+          "description": "开发执行、代码优化"
+        }
+      ],
+      "triggers": ["技术组", "tech", "攻坚组", "技术攻坚", "架构设计"]
+    },
+    "design": {
+      "name": "创意设计组",
+      "emoji": "🎨",
+      "members": [
+        {
+          "role": "创意总监",
+          "emoji": "💡",
+          "model": "qwen3-max",
+          "description": "创意方向、概念设计"
+        },
+        {
+          "role": "设计师",
+          "emoji": "🎨",
+          "model": "qwen3.5-plus",
+          "description": "视觉设计、UI/UX"
+        },
+        {
+          "role": "优化师",
+          "emoji": "✨",
+          "model": "qwen3.5-plus",
+          "description": "细节打磨、体验优化"
+        }
+      ],
+      "triggers": ["设计组", "design", "创意组", "创意设计", "UI设计"]
+    }
+  },
+  "modelMapping": {
+    "qwen3-max": "深度推理、战略、决策",
+    "qwen3.5-plus": "创作、设计、平衡",
+    "glm-5": "代码、技术、攻坚"
+  },
+  "taskMapping": {
+    "代码": "dev",
+    "功能": "dev",
+    "开发": "dev",
+    "API": "dev",
+    "文章": "content",
+    "内容": "content",
+    "文案": "content",
+    "写作": "content",
+    "分析": "biz",
+    "商业": "biz",
+    "市场": "biz",
+    "评估": "biz",
+    "架构": "tech",
+    "技术": "tech",
+    "攻坚": "tech",
+    "设计": "design",
+    "创意": "design",
+    "UI": "design"
+  }
+}

@@ -1,0 +1,1 @@
+{"name":"gaode-c3-us-shop","version":"0.1.0","description":"POI 详情页问题排查编排器。自动执行 6 步排查流程：查代码 (sourceId)→查日志→复现请求→解析返回→阅读代码→定位问题。当用户提供 gsid/traceId 排查 POI 详情页问题时触发。触发词：POI 排查、poi 问题、详情页异常、gsid 排查、traceId 分析、poi 调试、contentPerson、手艺人模块。","publishConfig":{"registry":"https://contextlab.alibaba-inc.com/skill"}}

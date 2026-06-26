@@ -1,0 +1,45 @@
+{
+  "reason": "成功",
+  "result": {
+    "orderid": "JH818250617094826CZLKl",
+    "flightInfo": [
+      {
+        "airline": "MU",
+        "airlineName": "中国东方航空公司",
+        "flightNo": "MU5102",
+        "isCodeShare": false,
+        "equipment": "359",
+        "departure": "SHA",
+        "departureName": "虹桥国际机场",
+        "departureDate": "2026-03-20",
+        "departureTime": "08:00",
+        "arrivalDate": "2026-03-20",
+        "arrivalTime": "10:20",
+        "arrival": "PEK",
+        "arrivalName": "首都国际机场",
+        "duration": "02:20",
+        "transferNum": 1,
+        "ticketPrice": 680
+      },
+      {
+        "airline": "CA",
+        "airlineName": "中国国际航空公司",
+        "flightNo": "CA1512",
+        "isCodeShare": false,
+        "equipment": "738",
+        "departure": "PVG",
+        "departureName": "浦东国际机场",
+        "departureDate": "2026-03-20",
+        "departureTime": "09:30",
+        "arrivalDate": "2026-03-20",
+        "arrivalTime": "11:55",
+        "arrival": "PEK",
+        "arrivalName": "首都国际机场",
+        "duration": "02:25",
+        "transferNum": 1,
+        "ticketPrice": 750
+      }
+    ]
+  },
+  "error_code": 0
+}

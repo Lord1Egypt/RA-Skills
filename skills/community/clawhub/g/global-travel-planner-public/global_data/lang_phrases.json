@@ -1,0 +1,33 @@
+{
+  "lang_name": {
+    "zh": "中文",
+    "en": "English",
+    "ko": "한국어",
+    "ja": "日本語",
+    "fr": "Français",
+    "de": "Deutsch",
+    "es": "Español",
+    "pt": "Português",
+    "ru": "Русский",
+    "ar": "العربية",
+    "th": "ไทย",
+    "vi": "Tiếng Việt",
+    "id": "Bahasa Indonesia",
+    "ms": "Bahasa Melayu",
+    "hi": "हिन्दी",
+    "nl": "Nederlands",
+    "it": "Italiano",
+    "tr": "Türkçe",
+    "pl": "Polski",
+    "sv": "Svenska"
+  },
+  "module_headings": {},
+  "country_indicator": {
+    "zh": "国家",
+    "en": "Country",
+    "ko": "국가",
+    "ja": "国",
+    "fr": "Pays",
+    "de": "Land"
+  }
+}

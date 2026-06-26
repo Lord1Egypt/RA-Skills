@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>幻灯片模板 - 时间线</title>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 1920px;
+            height: 1080px;
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+        }
+        
+        /* 顶部栏 */
+        .header {
+            height: 120px;
+            background: linear-gradient(90deg, #003366 0%, #004080 50%, #003366 100%);
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+        }
+        
+        .header-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0066ff, #00cc66);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+        }
+        
+        .header-icon i {
+            font-size: 24px;
+            color: white;
+        }
+        
+        .header-title {
+            font-size: 42px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* 时间线区域 */
+        .timeline-container {
+            padding: 60px 100px;
+            height: calc(100% - 120px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        /* 时间线 */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+        }
+        
+        /* 主线 */
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #0066ff, #00cc66, #0066ff, #ff9900);
+            border-radius: 3px;
+            transform: translateY(-50%);
+        }
+        
+        /* 节点容器 */
+        .timeline-nodes {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* 单个节点 */
+        .timeline-node {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* 时间点 */
+        .timeline-point {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .timeline-point::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid;
+            opacity: 0.3;
+        }
+        
+        .timeline-node:nth-child(1) .timeline-point {
+            background: linear-gradient(135deg, #00cc66, #66ff99);
+            border-color: #00cc66;
+        }
+        
+        .timeline-node:nth-child(2) .timeline-point {
+            background: linear-gradient(135deg, #ff9900, #ffcc66);
+            border-color: #ff9900;
+        }
+        
+        .timeline-node:nth-child(3) .timeline-point {
+            background: linear-gradient(135deg, #0066ff, #4da6ff);
+            border-color: #0066ff;
+        }
+        
+        .timeline-node:nth-child(4) .timeline-point {
+            background: linear-gradient(135deg, #9933ff, #cc66ff);
+            border-color: #9933ff;
+        }
+        
+        /* 日期 */
+        .timeline-date {
+            font-size: 22px;
+            font-weight: bold;
+            color: #0066ff;
+            margin-bottom: 10px;
+        }
+        
+        /* 事件标题 */
+        .timeline-event {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        /* 事件描述 */
+        .timeline-desc {
+            font-size: 18px;
+            color: #666666;
+            text-align: center;
+            max-width: 200px;
+            line-height: 1.5;
+        }
+        
+        /* 装饰 */
+        .decor-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(0deg, rgba(0,102,255,0.05) 0%, transparent 100%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-icon">
+            <i class="fas fa-history"></i>
+        </div>
+        <h1 class="header-title">三天工作回顾</h1>
+    </div>
+    
+    <div class="timeline-container">
+        <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-nodes">
+                <!-- 节点1 -->
+                <div class="timeline-node">
+                    <div class="timeline-point">
+                        <i class="fas fa-folder-plus"></i>
+                    </div>
+                    <div class="timeline-date">5月3日</div>
+                    <div class="timeline-event">创建记忆系统</div>
+                    <div class="timeline-desc">初始化MEMORY.md和memory文件夹</div>
+                </div>
+                
+                <!-- 节点2 -->
+                <div class="timeline-node">
+                    <div class="timeline-point">
+                        <i class="fas fa-unlock"></i>
+                    </div>
+                    <div class="timeline-date">5月4日</div>
+                    <div class="timeline-event">突破技术难题</div>
+                    <div class="timeline-desc">用Agent Browser解决WeChat反爬</div>
+                </div>
+                
+                <!-- 节点3 -->
+                <div class="timeline-node">
+                    <div class="timeline-point">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="timeline-date">5月4日</div>
+                    <div class="timeline-event">知识沉淀</div>
+                    <div class="timeline-desc">建立可复用的解决方案文档</div>
+                </div>
+                
+                <!-- 节点4 -->
+                <div class="timeline-node">
+                    <div class="timeline-point">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="timeline-date">未来</div>
+                    <div class="timeline-event">持续进化</div>
+                    <div class="timeline-desc">与你一起创造更多可能</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="decor-bg"></div>
+</body>
+</html>

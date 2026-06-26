@@ -1,35 +1,50 @@
 ---
-name: "Firm Browser Audit Pack"
-description: "Browser automation security audit pack. Validates Playwright/Puppeteer headless configuration for dangerous arguments. 1 audit tool."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/firm-browser-audit-pack"
-sourceUrl: "https://clawhub.ai/skills/firm-browser-audit-pack"
+name: firm-browser-audit-pack
+version: 1.0.0
+description: >
+  Browser automation security audit pack.
+  Validates Playwright/Puppeteer headless configuration for dangerous arguments. 1 audit tool.
+author: romainsantoli-web
+license: MIT
+metadata:
+  openclaw:
+    registry: ClawHub
+    requires:
+      - mcp-openclaw-extensions >= 3.0.0
+tags:
+  - browser
+  - security
+  - playwright
+  - puppeteer
+  - audit
 ---
 
-# Firm Browser Audit Pack
+# firm-browser-audit-pack
 
-> Browser automation security audit pack. Validates Playwright/Puppeteer headless configuration for dangerous arguments. 1 audit tool.
+> ⚠️ Contenu généré par IA — validation humaine requise avant utilisation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/firm-browser-audit-pack`
-- **Source URL:** [https://clawhub.ai/skills/firm-browser-audit-pack](https://clawhub.ai/skills/firm-browser-audit-pack)
+## Purpose
 
-## Overview
+Audits browser automation configurations for security risks. Detects 13 dangerous
+Chrome/Chromium arguments (--no-sandbox, --disable-web-security, etc.) in Playwright
+and Puppeteer configs with severity-based classification.
 
+## Tools (1)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/firm-browser-audit-pack
+| Tool | Description | Severity |
+|------|-------------|----------|
+| `openclaw_browser_context_check` | Headless browser config security audit | CRITICAL (--no-sandbox), HIGH (others) |
+
+## Usage
+
+```yaml
+skills:
+  - firm-browser-audit-pack
+
+# Audit browser configuration:
+openclaw_browser_context_check config_path=/path/to/config.json
 ```
+
+## Requirements
+
+- `mcp-openclaw-extensions >= 3.0.0`

@@ -1,0 +1,23 @@
+SKILL VETTING REPORT
+═══════════════════════════════════════
+Skill: general-ocr-struct
+Source: local workspace
+Author: officeassistant
+Version: draft
+───────────────────────────────────────
+METRICS:
+• Files Reviewed: 3
+───────────────────────────────────────
+RED FLAGS: None found
+
+PERMISSIONS NEEDED:
+• Files: reads local image paths provided by caller
+• Network: None in skill code
+• Commands: python3 local script
+───────────────────────────────────────
+RISK LEVEL: 🟢 LOW
+
+VERDICT: ✅ SAFE TO PUBLISH AFTER QUALITY TUNING
+
+NOTES: Uses rapidocr_onnxruntime local dependency already installed on host. Current known issue is row spillover in merchant field for transaction screenshots; this is quality-related, not a security issue.
+═══════════════════════════════════════

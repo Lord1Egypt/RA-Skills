@@ -1,0 +1,7 @@
+interface:
+  display_name: "FineBI Skills"
+  short_description: "Route FineBI dashboard, dataset, alert, and sync workflows"
+  default_prompt: "Use $finebi-skills to find the right FineBI workflow and work from real CLI data."
+
+policy:
+  allow_implicit_invocation: true

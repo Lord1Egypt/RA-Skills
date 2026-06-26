@@ -1,35 +1,48 @@
 ---
-name: "gateway-notify"
-description: "Set up automatic notifications when OpenClaw gateway restarts. Use when user wants to be notified of gateway startup events via any messaging channel (iMessa..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gateway-notify"
-sourceUrl: "https://clawhub.ai/skills/gateway-notify"
+name: gateway-notify
+description: "Set up automatic notifications when OpenClaw gateway restarts. Use when user wants to be notified of gateway startup events via any messaging channel (iMessage, WhatsApp, Telegram, Discord, etc.)."
 ---
 
-# gateway-notify
+# Gateway Notify
 
-> Set up automatic notifications when OpenClaw gateway restarts. Use when user wants to be notified of gateway startup events via any messaging channel (iMessa...
+Automatically send notifications when the OpenClaw gateway starts up.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gateway-notify`
-- **Source URL:** [https://clawhub.ai/skills/gateway-notify](https://clawhub.ai/skills/gateway-notify)
+## What It Does
 
-## Overview
+Creates a hook that triggers on `gateway:startup` events and sends a notification message to the user's preferred channel with gateway status information.
 
+## Quick Start
 
-## Installation
-To install this skill, run the following command in your terminal:
+Run the setup script with the user's messaging channel and address:
+
 ```bash
-hermes skills install clawhub/gateway-notify
+scripts/setup_gateway_notify.sh <channel> <address>
 ```
+
+Examples:
+```bash
+scripts/setup_gateway_notify.sh imessage user@example.com
+scripts/setup_gateway_notify.sh whatsapp +1234567890
+scripts/setup_gateway_notify.sh telegram @username
+```
+
+The script will:
+1. Create the hook directory at `~/.openclaw/hooks/gateway-restart-notify`
+2. Generate the handler with the specified channel configuration
+3. Enable the hook in OpenClaw config
+4. Restart the gateway to activate
+
+## How It Works
+
+The hook uses OpenClaw's internal hook system:
+- Listens for `gateway:startup` events
+- Collects gateway status (model, time, port)
+- Sends notification via the configured channel CLI
+
+## Supported Channels
+
+See [CHANNELS.md](references/CHANNELS.md) for channel-specific CLI commands and address formats.
+
+## Manual Setup
+
+If you need to customize the hook, see [MANUAL.md](references/MANUAL.md) for step-by-step instructions.

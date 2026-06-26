@@ -1,0 +1,84 @@
+# Overview
+
+There are two sources for searching x402 resource
+
+# 1. Searching FluxA Oneshot API
+
+Public x402 services published by FluxA Monetize product.
+
+https://monetize.fluxapay.xyz/api/discover?type=api
+
+# 2. Searching the x402 Bazaar
+
+Use the `npx awal@2.0.3 x402` commands to discover and inspect paid API endpoints available on the x402 bazaar marketplace. No authentication or balance is required for searching.
+
+## Commands
+
+### Search the Bazaar
+
+Find paid services by keyword using BM25 relevance search:
+
+```bash
+npx awal@2.0.3 x402 bazaar search <query> [-k <n>] [--force-refresh] [--json]
+```
+
+| Option            | Description                          |
+| ----------------- | ------------------------------------ |
+| `-k, --top <n>`   | Number of results (default: 5)       |
+| `--force-refresh` | Re-fetch resource index from CDP API |
+| `--json`          | Output as JSON                       |
+
+Results are cached locally at `~/.config/awal/bazaar/` and auto-refresh after 12 hours.
+
+### List Bazaar Resources
+
+Browse all available resources:
+
+```bash
+npx awal@2.0.3 x402 bazaar list [--network <network>] [--full] [--json]
+```
+
+| Option             | Description                             |
+| ------------------ | --------------------------------------- |
+| `--network <name>` | Filter by network (base, base-sepolia)  |
+| `--full`           | Show complete details including schemas |
+| `--json`           | Output as JSON                          |
+
+### Discover Payment Requirements
+
+Inspect an endpoint's x402 payment requirements without paying:
+
+```bash
+npx awal@2.0.3 x402 details <url> [--json]
+```
+
+Auto-detects the correct HTTP method (GET, POST, PUT, DELETE, PATCH) by trying each until it gets a 402 response, then displays price, accepted payment schemes, network, and input/output schemas.
+
+## Examples
+
+```bash
+# Search for weather-related paid APIs
+npx awal@2.0.3 x402 bazaar search "weather"
+
+# Search with more results
+npx awal@2.0.3 x402 bazaar search "sentiment analysis" -k 10
+
+# Browse all bazaar resources with full details
+npx awal@2.0.3 x402 bazaar list --full
+
+# Check what an endpoint costs
+npx awal@2.0.3 x402 details https://example.com/api/weather
+```
+
+## Prerequisites
+
+- No authentication needed for search, list, or details commands
+
+## Next Steps
+
+Once you've found a service you want to use, use the `pay-for-service` skill to make a paid request to the endpoint.
+
+## Error Handling
+
+- "CDP API returned 429" - Rate limited; cached data will be used if available
+- "No X402 payment requirements found" - URL may not be an x402 endpoint

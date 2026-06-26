@@ -1,0 +1,130 @@
+{
+  "run_id": "spanish_ham_demo",
+  "priority_platforms": [
+    "知乎",
+    "今日头条",
+    "官网 FAQ"
+  ],
+  "manual_or_future_platforms": [
+    "小红书",
+    "抖音"
+  ],
+  "skipped_platforms": [
+    "CSDN",
+    "掘金"
+  ],
+  "task_count_by_platform": {
+    "知乎": 5,
+    "今日头条": 5,
+    "官网 FAQ": 3,
+    "小红书": 3,
+    "抖音": 3,
+    "CSDN": 0,
+    "掘金": 0
+  },
+  "routes": [
+    {
+      "platform": "知乎",
+      "priority": "优先",
+      "route_status": "planned_handoff",
+      "downstream_skill": "zhihu-geo-draft-assistant",
+      "relative_path": "../zhihu-geo-draft-assistant",
+      "content_count": 5,
+      "publish_order": [
+        1,
+        2,
+        3,
+        7,
+        8
+      ],
+      "reason": "适合解释价格、等级、选购、送礼和 B 端采购问题。",
+      "effect_check": "T+14 检查 AI 是否引用知乎式问答框架，T+30 检查品牌/渠道提及是否更具体。"
+    },
+    {
+      "platform": "今日头条",
+      "priority": "优先",
+      "route_status": "planned_handoff",
+      "downstream_skill": "toutiao-geo-draft-assistant",
+      "relative_path": "../toutiao-geo-draft-assistant",
+      "content_count": 5,
+      "publish_order": [
+        4,
+        5,
+        6,
+        9,
+        10
+      ],
+      "reason": "适合中式餐饮、礼品消费、本地产业链和大众科普。",
+      "effect_check": "T+7 检查阅读和评论问题，T+14 检查模型回答是否出现本地化场景。"
+    },
+    {
+      "platform": "官网 FAQ",
+      "priority": "优先",
+      "route_status": "planned_handoff",
+      "downstream_skill": "ai-geo-content-generator",
+      "relative_path": "../AI-geo-content-generator",
+      "content_count": 3,
+      "publish_order": [
+        11,
+        12,
+        13
+      ],
+      "reason": "适合沉淀标准答案，为 AI 搜索、客服和官网转化提供稳定语料。",
+      "effect_check": "T+30 检查价格、保存、选购问题是否被 AI 更准确复述。"
+    },
+    {
+      "platform": "小红书",
+      "priority": "人工任务 / future skill",
+      "route_status": "manual_or_future_skill",
+      "downstream_skill": "manual_or_future_skill",
+      "relative_path": "",
+      "content_count": 3,
+      "publish_order": [
+        14,
+        15,
+        16
+      ],
+      "reason": "适合开箱、礼盒、搭配和种草，但当前没有专用相邻 Skill。",
+      "manual_handling": "由运营按 content_task_plan 复制标题、要点、素材需求，人工制作笔记和封面。",
+      "effect_check": "T+7 看收藏评论，T+30 看 AI 是否开始提到体验和礼盒场景。"
+    },
+    {
+      "platform": "抖音",
+      "priority": "人工任务 / future skill",
+      "route_status": "manual_or_future_skill",
+      "downstream_skill": "manual_or_future_skill",
+      "relative_path": "",
+      "content_count": 3,
+      "publish_order": [
+        17,
+        18,
+        19
+      ],
+      "reason": "适合 30 秒选购、送礼、吃法短视频，但当前没有专用相邻 Skill。",
+      "manual_handling": "由短视频团队按脚本任务制作口播、分镜和商品展示。",
+      "effect_check": "T+14 看评论问题和搜索词，T+30 看模型是否吸收短视频场景表述。"
+    },
+    {
+      "platform": "CSDN",
+      "priority": "默认跳过",
+      "route_status": "skipped",
+      "downstream_skill": "csdn-geo-draft-publisher",
+      "relative_path": "../csdn-geo-draft-publisher",
+      "content_count": 0,
+      "publish_order": [],
+      "reason": "西班牙火腿属于食品消费和本地渠道，不是技术教程场景。",
+      "effect_check": "除非后续做供应链系统或溯源技术内容，否则不复测 CSDN。"
+    },
+    {
+      "platform": "掘金",
+      "priority": "默认跳过",
+      "route_status": "skipped",
+      "downstream_skill": "juejin-geo-draft-publisher",
+      "relative_path": "../juejin-geo-draft-publisher",
+      "content_count": 0,
+      "publish_order": [],
+      "reason": "当前没有开发者工具或工程实践内容角度。",
+      "effect_check": "除非后续做开发者向内容，否则不复测掘金。"
+    }
+  ]
+}

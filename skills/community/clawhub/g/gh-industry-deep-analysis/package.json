@@ -1,0 +1,15 @@
+{
+  "slug": "gh-industry-deep-analysis",
+  "displayName": "行业深度分析框架",
+  "description": "基于最新数据和资讯，对行业进行全面深入分析（十维全维度深度分析，10000-20000 字）",
+  "version": "1.1.0",
+  "author": "投资助手",
+  "keywords": ["行业分析", "深度研究", "产业链", "成本结构", "投资框架"],
+  "category": "analysis",
+  "license": "MIT",
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "README.md"
+  ]
+}

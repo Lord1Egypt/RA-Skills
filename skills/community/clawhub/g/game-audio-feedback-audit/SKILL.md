@@ -1,35 +1,35 @@
 ---
-name: "Game Audio Feedback Audit"
+name: game-audio-feedback-audit
 description: "Audit the project's audio layer as UX feedback: UI sounds, success/failure signals, danger cues, layering, and semantic sound priorities."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/game-audio-feedback-audit"
-sourceUrl: "https://clawhub.ai/skills/game-audio-feedback-audit"
+license: MIT
+compatibility: Claude Code and Codex. Best results with file read/write access; shell/build access improves evidence quality.
+metadata:
+  author: game-superpowers
+  version: "1.1.0"
+  domain: game-development
 ---
 
 # Game Audio Feedback Audit
 
-> Audit the project's audio layer as UX feedback: UI sounds, success/failure signals, danger cues, layering, and semantic sound priorities.
+## Goal
+Audit audio as part of the feedback grammar rather than as a late cosmetic layer.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/game-audio-feedback-audit`
-- **Source URL:** [https://clawhub.ai/skills/game-audio-feedback-audit](https://clawhub.ai/skills/game-audio-feedback-audit)
+## Deliverables
+Update:
+- `docs/game-studio/audit/audit-summary.md`
+- `docs/game-studio/audit/ux-findings.md`
+- `docs/game-studio/audit/scorecard.json`
 
-## Overview
+Use:
+- `./shared/checklists/audio-feedback-audit-checklist.md`
+- `./shared/reference/audit-confidence-and-evidence.md`
 
+## Evaluate
+- menu and button confirmation sounds
+- reward, pickup, and completion sounds
+- fail, deny, and danger cues
+- layering conflicts and priority confusion
+- whether audio clarifies state or merely adds noise
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/game-audio-feedback-audit
-```
+## When evidence is weak
+If assets or hooks exist but runtime behavior is unclear, classify findings as inferred and explain what remains unverified.

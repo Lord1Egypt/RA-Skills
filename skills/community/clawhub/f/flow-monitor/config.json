@@ -1,0 +1,15 @@
+{
+  "name": "flow-monitor",
+  "version": "1.0.0",
+  "description": "Post-analysis flow tracing tool for monitoring skill usage.",
+  "author": "YourName",
+  "entrypoint": "SKILL.md",
+  "commands": [
+    {
+      "name": "get_trace",
+      "command": "bash scripts/trace.sh",
+      "description": "Extracts the tool execution history from logs."
+    }
+  ]
+}
+

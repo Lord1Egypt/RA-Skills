@@ -1,0 +1,83 @@
+{
+  "Q": {
+    "control|sev=0.5|layer=0": {
+      "pause_reflect": 0.0,
+      "empathy_repair": 0.0,
+      "pattern_interrupt": 0.842,
+      "support_seeking": 0.0
+    },
+    "projection|sev=0.5|layer=0": {
+      "pause_reflect": 0.0,
+      "empathy_repair": 0.8,
+      "pattern_interrupt": 0.0,
+      "support_seeking": 0.0
+    },
+    "shame_driven|sev=0.5|layer=0": {
+      "pause_reflect": 0.892,
+      "empathy_repair": 0.0,
+      "pattern_interrupt": 0.0,
+      "support_seeking": 0.0
+    },
+    "anxiety_driven|sev=0.5|layer=0": {
+      "pause_reflect": 0.742,
+      "empathy_repair": 0.0,
+      "pattern_interrupt": 0.0,
+      "support_seeking": 0.0
+    },
+    "guilt_driven|sev=0.5|layer=0": {
+      "pause_reflect": 0.0,
+      "empathy_repair": 0.8,
+      "pattern_interrupt": 0.0,
+      "support_seeking": 0.0
+    },
+    "denial_avoidance|sev=0.5|layer=0": {
+      "pause_reflect": 0.0,
+      "empathy_repair": 0.0,
+      "pattern_interrupt": 0.0,
+      "support_seeking": 0.8
+    },
+    "compensation|sev=0.5|layer=0": {
+      "pause_reflect": 0.0,
+      "empathy_repair": 0.0,
+      "pattern_interrupt": 0.8,
+      "support_seeking": 0.0
+    },
+    "rationalization|sev=0.5|layer=0": {
+      "pause_reflect": 0.0,
+      "empathy_repair": 0.0,
+      "pattern_interrupt": 0.0,
+      "support_seeking": 0.8
+    },
+    "shame_driven|sev=0.1|layer=1": {
+      "pause_reflect": 0.8,
+      "empathy_repair": 0.0,
+      "pattern_interrupt": 0.0,
+      "support_seeking": 0.0
+    }
+  },
+  "history": [
+    {
+      "state_key": "shame_driven|sev=0.5|layer=0",
+      "strategy": "pause_reflect",
+      "reward": 1.0,
+      "timestamp": 1780670761.397165,
+      "success": true
+    },
+    {
+      "state_key": "control|sev=0.5|layer=0",
+      "strategy": "pattern_interrupt",
+      "reward": 0.5,
+      "timestamp": 1780670761.3975098,
+      "success": true
+    },
+    {
+      "state_key": "anxiety_driven|sev=0.5|layer=0",
+      "strategy": "pause_reflect",
+      "reward": -0.5,
+      "timestamp": 1780670761.397703,
+      "success": false
+    }
+  ],
+  "version": "1.0.0",
+  "timestamp": 1780670761.397722
+}

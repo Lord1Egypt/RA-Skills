@@ -1,0 +1,4 @@
+interface:
+  display_name: "GEO Prompt Architecture"
+  short_description: "Generate and audit GEO monitoring prompts."
+  default_prompt: "Use $geo-prompt-architecture to generate or audit GEO monitoring prompts for this client."

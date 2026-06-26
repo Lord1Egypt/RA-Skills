@@ -1,0 +1,16 @@
+{
+  "name": "genvr-skills",
+  "description": "Generate images, videos, 360 panoramas and more with hundreds of models via the GenVR API Platform",
+  "version": "1.0.0",
+  "owner": {
+    "name": "GenVR",
+    "url": "https://genvrresearch.com"
+  },
+  "plugins": [
+    {
+      "name": "genvr",
+      "source": ".",
+      "description": "Generate high-quality media with Google Imagen, Flux, Kling, Veo, and more."
+    }
+  ]
+}

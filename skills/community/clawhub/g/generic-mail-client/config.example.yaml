@@ -1,0 +1,47 @@
+mailAccounts:
+  - id: "aliyun-work"              # 必须唯一
+    displayName: "阿里云企业邮箱"
+    protocol:
+      receive: "imap"              # imap | pop3
+      send: "smtp"
+    imap:
+      host: "imap.qiye.aliyun.com"
+      port: 993
+      useTLS: true
+    pop3:
+      host: "pop.qiye.aliyun.com"
+      port: 995
+      useTLS: true
+    smtp:
+      host: "smtp.qiye.aliyun.com"
+      port: 465
+      useTLS: true
+    auth:
+      username: "bot@your-company.com"
+      password: "APP_SPECIFIC_PASSWORD"   # 建议使用应用专用密码
+    defaults:
+      inboxFolder: "INBOX"
+      sentFolder: "Sent"
+      maxListLimit: 50
+
+  # 示例：Gmail
+  - id: "gmail-personal"
+    displayName: "Gmail 个人"
+    protocol:
+      receive: "imap"
+      send: "smtp"
+    imap:
+      host: "imap.gmail.com"
+      port: 993
+      useTLS: true
+    smtp:
+      host: "smtp.gmail.com"
+      port: 465
+      useTLS: true
+    auth:
+      username: "yourname@gmail.com"
+      password: "APP_SPECIFIC_PASSWORD"
+    defaults:
+      inboxFolder: "INBOX"
+      sentFolder: "[Gmail]/Sent Mail"
+      maxListLimit: 50

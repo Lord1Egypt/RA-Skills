@@ -1,35 +1,176 @@
 ---
-name: "Get Resource Element"
-description: "根据产品名称查询对应标准硬件资源评估要点，智能对比用户提供内容是否完整并返回缺失项或确认完整。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/get-resource-element"
-sourceUrl: "https://clawhub.ai/skills/get-resource-element"
+name: get-resource-element
+description: 根据输入的产品名称，查询对应产品的硬件资源评估要点是否满足。Use when: (1) 需要验证产品硬件资源评估要点是否完整，(2) 对比已提供的评估要点与标准要求的差异，(3) 查询产品对应的标准单产品硬件资源测算文件中的评估要点。支持产品线：CDSS 系统、VTE 系统、病历质控系统、单病种系统、智医助理 - 基层人工智能辅助诊疗系统。
 ---
 
-# Get Resource Element
+# Get Resource Element - 评估要点对比技能
 
-> 根据产品名称查询对应标准硬件资源评估要点，智能对比用户提供内容是否完整并返回缺失项或确认完整。
+本技能用于根据产品名称查询对应的标准评估要点，并对比已提供的评估要点是否完整。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/get-resource-element`
-- **Source URL:** [https://clawhub.ai/skills/get-resource-element](https://clawhub.ai/skills/get-resource-element)
+## 核心功能
 
-## Overview
+1. **解析需求** - 从输入中提取产品名称和已提供的评估要点
+2. **查询知识库** - 根据产品名称定位 `kb/<产品目录>/<产品>-标准单产品硬件资源测算.md` 文件
+3. **提取评估要点** - 从文件中提取"服务器资源评估输入项"部分的所有要点
+4. **对比分析** - 将已提供的评估要点与所需要点进行智能匹配对比
+5. **返回结果** - 满足则返回 `ok`，不满足则返回缺少的评估要点列表
 
+## 使用流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/get-resource-element
+### 步骤 1: 解析输入
+
+从用户输入中提取：
+- **产品名称**: 如"病历质控系统"、"CDSS 系统"等
+- **已提供的评估要点**: 用户已经提供的评估要点列表
+
+示例输入：
 ```
+产品：病历质控系统
+已提供评估要点：
+- 年门诊人次 10 万
+- 年出院人次 5000
+```
+
+### 步骤 2: 查询产品文件
+
+根据产品名称在知识库中查找对应文件：
+- 遍历 `kb/` 目录下的所有子目录
+- 查找包含产品名称的目录
+- 定位该目录下的 `*标准单产品硬件资源测算.md` 文件
+
+文件命名规则：`<产品简称>-标准单产品硬件资源测算.md`
+
+### 步骤 3: 提取评估要点
+
+从文件中提取"服务器资源评估输入项"章节的所有编号列表项。
+
+示例（病历质控系统）：
+1. 年门诊人次
+2. 年出院人次
+3. 医护人员总数
+
+### 步骤 4: 对比评估要点
+
+使用 `scripts/compare_elements.py` 脚本进行对比：
+- 标准化处理（去除空格、统一大小写）
+- 支持部分匹配（如"年门诊人次"匹配"年门诊人次 10 万"）
+- 识别满足和缺失的要点
+
+### 步骤 5: 返回结果
+
+**满足时**:
+```
+ok
+```
+
+**不满足时**:
+```
+缺少的评估要点：医护人员总数
+```
+
+## 脚本使用
+
+### compare_elements.py
+
+**位置**: `scripts/compare_elements.py`
+
+**输入** (JSON 格式):
+```json
+{
+  "product": "病历质控系统",
+  "provided_elements": ["年门诊人次 10 万", "年出院人次 5000"],
+  "kb_dir": "/Users/hushuai/.openclaw/workspace-ClinicalManager/kb"
+}
+```
+
+**输出** (JSON 格式):
+
+满足时：
+```json
+{
+  "status": "ok",
+  "message": "ok",
+  "details": {
+    "satisfied": ["年门诊人次", "年出院人次"],
+    "missing": [],
+    "is_complete": true
+  }
+}
+```
+
+不满足时：
+```json
+{
+  "status": "missing",
+  "message": "缺少的评估要点：医护人员总数",
+  "details": {
+    "satisfied": ["年门诊人次", "年出院人次"],
+    "missing": ["医护人员总数"],
+    "is_complete": false
+  }
+}
+```
+
+**执行方式**:
+```bash
+python3 scripts/compare_elements.py '<input_json>'
+```
+
+## 支持的产品线
+
+- CDSS 系统
+- VTE 系统
+- 病历质控系统
+- 单病种系统
+- 智医助理 - 基层人工智能辅助诊疗系统
+
+## 示例
+
+### 示例 1: 评估要点完整
+
+**用户输入**:
+```
+帮我检查一下病历质控系统的评估要点是否完整：
+- 年门诊人次：10 万
+- 年出院人次：5000
+- 医护人员总数：200 人
+```
+
+**处理流程**:
+1. 解析出产品：病历质控系统
+2. 解析出已提供要点：年门诊人次、年出院人次、医护人员总数
+3. 查询文件：`kb/病历质控系统/病历质控 - 标准单产品硬件资源测算.md`
+4. 提取所需要点：年门诊人次、年出院人次、医护人员总数
+5. 对比结果：全部满足
+
+**输出**:
+```
+ok
+```
+
+### 示例 2: 评估要点缺失
+
+**用户输入**:
+```
+检查 CDSS 系统的评估要点，目前有：
+- 年门诊人次 15 万
+```
+
+**处理流程**:
+1. 解析出产品：CDSS 系统
+2. 解析出已提供要点：年门诊人次
+3. 查询文件：`kb/CDSS 系统/CDSS-标准单产品硬件资源测算.md`
+4. 提取所需要点：年门诊人次、年出院人次、医护人员总数
+5. 对比结果：缺少 2 项
+
+**输出**:
+```
+缺少的评估要点：年出院人次、医护人员总数
+```
+
+## 注意事项
+
+1. **产品名称匹配**: 支持模糊匹配，如"病历质控"可匹配"病历质控系统"
+2. **评估要点匹配**: 支持部分匹配，如"年门诊人次"可匹配"年门诊人次 10 万"
+3. **知识库路径**: 默认为 `/Users/hushuai/.openclaw/workspace-ClinicalManager/kb`，可通过 `kb_dir` 参数自定义
+4. **文件格式**: 产品文件必须是 Markdown 格式，且包含"## 服务器资源评估输入项"章节

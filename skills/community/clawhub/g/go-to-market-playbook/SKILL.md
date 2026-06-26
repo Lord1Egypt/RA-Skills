@@ -1,35 +1,52 @@
 ---
-name: "Go-to-Market Playbook — Launch Strategy & Channel Selection"
-description: "A reusable Go-to-Market strategy template for both B2B and B2C launches. Covers positioning, messaging, ICP definition, channel selection, and competitive an..."
-category: "domain"
-source: "ClawHub"
-tags: [b2b, b2c, buyer-persona, channels, competitive-analysis, framework, go-to-market, gtm, icp, launch, launch-planning, market-entry, marketing, messaging, planning, positioning, startup, strategy, strategy-template]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/go-to-market-playbook"
-sourceUrl: "https://clawhub.ai/skills/go-to-market-playbook"
+name: go-to-market-playbook
+description: |
+  A reusable Go-to-Market strategy template for both B2B and B2C launches. Covers positioning, messaging, ICP definition, channel selection, and competitive analysis frameworks. By @WeiYipei.
+source: https://github.com/Gingiris-1031/gingiris-skills/tree/main/skills/go-to-market-playbook
+tags:
+  - go-to-market
+  - gtm
+  - product-launch
+  - startup-launch
+  - positioning
+  - icp
+  - b2b-saas
+  - saas
+  - startup
+  - competitive-analysis
+  - claude-code
+  - ai-agent-skill
+  - messaging
+  - channel-selection
+  - latest
 ---
 
-# Go-to-Market Playbook — Launch Strategy & Channel Selection
+## 📦 Install
 
-> A reusable Go-to-Market strategy template for both B2B and B2C launches. Covers positioning, messaging, ICP definition, channel selection, and competitive an...
-
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/go-to-market-playbook`
-- **Source URL:** [https://clawhub.ai/skills/go-to-market-playbook](https://clawhub.ai/skills/go-to-market-playbook)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/go-to-market-playbook
+clawhub install go-to-market-playbook
 ```
+
+**What you get after installing:**
+- Positioning canvas and ICP worksheet you can fill in for any product launch
+- Channel-market fit matrix matching distribution to your buyer journey
+- Competitive battle cards and objection-handling messaging framework
+
+---
+
+# Go-to-Market Strategy Template — B2B & B2C Launch Planning
+
+> 🌍 **Language / 语言**: [中文](#中文版) | [English](references/en/README.md) | [日本語](references/ja/README.md) | [한국어](references/ko/README.md)
+
+A structured GTM template you can fill in for any product launch — B2B or B2C.
+
+- **Positioning canvas**: Define your category, differentiator, and value prop
+- **ICP worksheet**: Identify and prioritize your ideal customer profiles
+- **Messaging framework**: Headlines, elevator pitches, and objection handling
+- **Channel-market fit**: Match distribution channels to your buyer journey
+- **Competitive analysis**: Battle cards and positioning against alternatives
+
+## Related Gingiris Skills
+- Full version: https://clawhub.ai/skill/gingiris-b2b-growth
+- All skills: https://clawhub.ai/user/gingiris
+- Follow: [@WeiYipei on X](https://x.com/WeiYipei)

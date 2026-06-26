@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FoolClaw Browser Taunt</title>
+  <style>
+    :root {
+      --wall: #161616;
+      --paper: #fff6c8;
+      --paper-2: #ffef9d;
+      --ink: #111111;
+      --hot: #ff4d00;
+      --acid: #d4ff2a;
+      --spray: #ff2a8e;
+      --edge: #060606;
+      --tape: #c4f1ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Arial Black", Impact, "Trebuchet MS", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 42, 142, 0.18), transparent 0 20%),
+        radial-gradient(circle at 82% 16%, rgba(212, 255, 42, 0.18), transparent 0 16%),
+        radial-gradient(circle at 80% 80%, rgba(255, 77, 0, 0.16), transparent 0 22%),
+        linear-gradient(180deg, #1a1a1a, #0f0f0f 55%, #191919);
+      overflow-x: hidden;
+    }
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.16;
+      background-image:
+        linear-gradient(transparent 0, rgba(255,255,255,0.24) 50%, transparent 100%),
+        linear-gradient(90deg, rgba(255,255,255,0.06), transparent 28%, rgba(255,255,255,0.04));
+      background-size: 100% 3px, 160px 100%;
+      mix-blend-mode: screen;
+    }
+    .stage {
+      width: min(1120px, calc(100% - 28px));
+      margin: 20px auto 36px;
+      display: grid;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .banner {
+      width: fit-content;
+      max-width: min(100%, 960px);
+      padding: 14px 20px 12px;
+      border: 4px solid var(--edge);
+      border-radius: 2px;
+      background: linear-gradient(92deg, var(--hot), #ff7f11 45%, var(--spray));
+      color: #fff7ea;
+      font-size: clamp(24px, 4.4vw, 52px);
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      box-shadow: 11px 11px 0 rgba(0, 0, 0, 0.4);
+      transform: rotate(-2.4deg);
+      text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.32);
+    }
+    .card {
+      display: grid;
+      gap: 16px;
+      padding: 26px 24px 24px;
+      border: 5px solid var(--edge);
+      border-radius: 6px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.15), transparent 20%),
+        linear-gradient(135deg, var(--paper), var(--paper-2));
+      box-shadow: 16px 16px 0 rgba(0, 0, 0, 0.34);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before,
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 28px;
+      background: rgba(196, 241, 255, 0.72);
+      border: 2px solid rgba(6, 6, 6, 0.35);
+      top: 12px;
+    }
+    .card::before {
+      left: 20px;
+      transform: rotate(-8deg);
+    }
+    .card::after {
+      right: 28px;
+      transform: rotate(11deg);
+    }
+    .eyebrow {
+      margin: 0;
+      width: fit-content;
+      padding: 6px 10px;
+      border: 3px solid var(--edge);
+      background: var(--acid);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transform: rotate(-3deg);
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+    }
+    .headline {
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+      font-size: clamp(36px, 6vw, 82px);
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      text-wrap: pretty;
+      text-transform: uppercase;
+    }
+    .hero {
+      display: grid;
+      gap: 12px;
+      padding: 20px 18px;
+      border-radius: 4px;
+      border: 4px solid var(--edge);
+      background:
+        repeating-linear-gradient(-45deg, rgba(255,255,255,0.12) 0 14px, rgba(255,255,255,0.03) 14px 28px),
+        linear-gradient(135deg, rgba(255, 77, 0, 0.16), rgba(255, 255, 255, 0.74));
+      transform: rotate(-1deg);
+    }
+    .hero p,
+    .callout,
+    .witness,
+    .excuse {
+      margin: 0;
+      line-height: 1.45;
+    }
+    .hero p {
+      font-size: clamp(18px, 2.4vw, 28px);
+      font-weight: 700;
+    }
+    .callout {
+      width: min(780px, 100%);
+      padding: 16px 18px;
+      border-radius: 2px;
+      border: 4px solid rgba(6, 6, 6, 0.72);
+      background: rgba(255, 255, 255, 0.88);
+      font-size: 18px;
+      transform: rotate(1.1deg);
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .pill {
+      padding: 8px 13px;
+      border: 3px solid var(--edge);
+      border-radius: 999px;
+      background: var(--acid);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .repo-strip {
+      display: grid;
+      gap: 8px;
+      width: min(760px, 100%);
+      padding: 16px 18px;
+      border: 4px dashed rgba(6, 6, 6, 0.72);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.92);
+      transform: rotate(-1.2deg);
+      box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.16);
+    }
+    .repo-strip p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+    .repo-strip a {
+      width: fit-content;
+      color: #7b2f00;
+      font-weight: 900;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 3px;
+      word-break: break-all;
+    }
+    button,
+    .link-button {
+      appearance: none;
+      border: 4px solid var(--edge);
+      border-radius: 6px;
+      background: #fff5d8;
+      color: var(--ink);
+      padding: 12px 16px 10px;
+      font: inherit;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.22);
+      transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    button:hover,
+    .link-button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.28);
+      background: #fff;
+    }
+    #excuse-button { transform: rotate(1.4deg); background: #ffe1f1; }
+    #respect-button { transform: rotate(-1deg); background: #e5ff9b; }
+    #repo-link { transform: rotate(2deg); background: #d9f7ff; }
+    .panels {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr 0.95fr;
+    }
+    .panel {
+      padding: 18px;
+      border-radius: 4px;
+      border: 4px solid rgba(6, 6, 6, 0.82);
+      background: #fff8e2;
+      box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.18);
+    }
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .panel:nth-child(1) { transform: rotate(1deg); }
+    .panel:nth-child(2) { transform: rotate(-2deg); }
+    .panel ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 10px;
+    }
+    .witness {
+      font-style: italic;
+      font-size: 16px;
+    }
+    .footer {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      border-top: 4px dotted rgba(6, 6, 6, 0.5);
+      padding-top: 12px;
+    }
+    .footer a {
+      color: #7b2f00;
+      font-weight: 900;
+    }
+    .emoji-burst {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 9;
+    }
+    .emoji-burst span {
+      position: absolute;
+      top: -5vh;
+      font-size: clamp(20px, 3vw, 32px);
+      animation: burst-fall 1500ms ease-in forwards;
+    }
+    @keyframes burst-fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    [hidden] {
+      display: none !important;
+    }
+    @media (max-width: 880px) {
+      .panels {
+        grid-template-columns: 1fr;
+      }
+      .panel,
+      .hero,
+      .callout,
+      .repo-strip,
+      #excuse-button,
+      #respect-button,
+      #repo-link,
+      .banner,
+      .eyebrow {
+        transform: none;
+      }
+      .headline {
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <main class="stage">
+    <section class="banner" id="banner"></section>
+    <article class="card">
+      <p class="eyebrow" id="eyebrow"></p>
+      <h1 class="headline" id="headline"></h1>
+
+      <section class="hero">
+        <p id="taunt"></p>
+        <div class="pill-row" id="status-pills"></div>
+      </section>
+
+      <section class="callout" id="context-hint"></section>
+
+      <div class="controls">
+        <button id="excuse-button" type="button">Generate Another Excuse</button>
+        <button id="respect-button" type="button">Respect FoolClaw</button>
+        <a class="link-button" id="repo-link" href="#" target="_blank" rel="noreferrer">Open Repository</a>
+      </div>
+
+      <section class="repo-strip">
+        <p id="repo-blurb"></p>
+        <a id="repo-url-text" href="#" target="_blank" rel="noreferrer"></a>
+      </section>
+
+      <section class="panels">
+        <article class="panel">
+          <p class="excuse" id="excuse-line"></p>
+        </article>
+        <article class="panel">
+          <p class="witness" id="witness-line"></p>
+        </article>
+      </section>
+
+      <footer class="footer">
+        <span id="signature"></span>
+        <span id="timestamp"></span>
+      </footer>
+    </article>
+  </main>
+
+  <script id="foolclaw-payload" type="application/json">__PAYLOAD_JSON__</script>
+  <script>
+    const payload = JSON.parse(document.getElementById("foolclaw-payload").textContent);
+    if (payload.lang) {
+      document.documentElement.lang = payload.lang;
+    }
+    if (payload.pageTitle) {
+      document.title = payload.pageTitle;
+    }
+
+    const banner = document.getElementById("banner");
+    const eyebrow = document.getElementById("eyebrow");
+    const headline = document.getElementById("headline");
+    const taunt = document.getElementById("taunt");
+    const contextHint = document.getElementById("context-hint");
+    const statusPills = document.getElementById("status-pills");
+    const repoLink = document.getElementById("repo-link");
+    const repoBlurb = document.getElementById("repo-blurb");
+    const repoUrlText = document.getElementById("repo-url-text");
+    const excuseLine = document.getElementById("excuse-line");
+    const witnessLine = document.getElementById("witness-line");
+    const signature = document.getElementById("signature");
+    const timestamp = document.getElementById("timestamp");
+    const excuseButton = document.getElementById("excuse-button");
+    const respectButton = document.getElementById("respect-button");
+
+    banner.textContent = payload.banner;
+    eyebrow.textContent = payload.eyebrow;
+    headline.textContent = payload.headline;
+    taunt.textContent = payload.taunt;
+    contextHint.textContent = payload.contextHint;
+    repoLink.href = payload.repoUrl;
+    repoLink.textContent = payload.labels.repo;
+    repoBlurb.textContent = payload.repoBlurb;
+    repoUrlText.href = payload.repoUrl;
+    repoUrlText.textContent = payload.repoUrl;
+    signature.textContent = payload.signature;
+    timestamp.textContent = payload.labels.filedAt + " " + payload.timestamp;
+    witnessLine.textContent = payload.witnessLine;
+    excuseButton.textContent = payload.labels.excuse;
+    respectButton.textContent = payload.labels.respect;
+
+    payload.statusPills.forEach((item) => {
+      const pill = document.createElement("span");
+      pill.className = "pill";
+      pill.textContent = item;
+      statusPills.appendChild(pill);
+    });
+
+    let currentExcuse = 0;
+    function showExcuse() {
+      excuseLine.textContent = payload.excuseLines[currentExcuse % payload.excuseLines.length];
+    }
+    showExcuse();
+
+    excuseButton.addEventListener("click", () => {
+      currentExcuse += 1;
+      showExcuse();
+    });
+
+    respectButton.addEventListener("click", () => {
+      const layer = document.createElement("div");
+      layer.className = "emoji-burst";
+      const emojis = ["🎉", "🃏", "💥", "🦞", "🎭", "🎪"];
+
+      for (let index = 0; index < 18; index += 1) {
+        const node = document.createElement("span");
+        node.textContent = emojis[index % emojis.length];
+        node.style.left = Math.random() * 100 + "vw";
+        node.style.animationDelay = Math.random() * 180 + "ms";
+        layer.appendChild(node);
+      }
+
+      document.body.appendChild(layer);
+      setTimeout(() => layer.remove(), 1700);
+    });
+  </script>
+</body>
+</html>

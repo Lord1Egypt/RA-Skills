@@ -1,0 +1,8 @@
+{
+  "slug": "fortress-agent-suite",
+  "name": "Fortress Agent Suite",
+  "description": "Tự động phục hồi, giám sát và bảo mật cho OpenClaw Agents. / Enables automatic recovery, monitoring, and proactive hardening for OpenClaw deployments.",
+  "version": "1.0.0",
+  "author": "Phan Kien <kienphan91>",
+  "repository": "https://github.com/kienphan91/fortress-agent-suite"
+}

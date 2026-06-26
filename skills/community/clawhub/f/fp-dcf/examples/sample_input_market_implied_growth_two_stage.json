@@ -1,0 +1,33 @@
+{
+  "ticker": "AAPL",
+  "market": "US",
+  "valuation_model": "two_stage",
+  "market_inputs": {
+    "market_price": 225.0
+  },
+  "market_implied_growth": {
+    "enabled": true
+  },
+  "sensitivity": {
+    "enabled": true
+  },
+  "assumptions": {
+    "effective_tax_rate": 0.19,
+    "marginal_tax_rate": 0.21,
+    "risk_free_rate": 0.043,
+    "equity_risk_premium": 0.0475,
+    "beta": 0.92,
+    "pre_tax_cost_of_debt": 0.037,
+    "equity_weight": 0.92,
+    "debt_weight": 0.08,
+    "terminal_growth_rate": 0.03,
+    "stage1_growth_rate": 0.09,
+    "stage1_years": 8
+  },
+  "fundamentals": {
+    "fcff_anchor": 103000000000.0,
+    "fcff_anchor_method": "manual_input",
+    "net_debt": 30000000000.0,
+    "shares_out": 14750000000.0
+  }
+}

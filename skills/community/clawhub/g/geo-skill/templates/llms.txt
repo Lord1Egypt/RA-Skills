@@ -1,0 +1,119 @@
+# {{PARK_NAME}}
+
+> 您的AI友好型园区简介文件
+
+---
+
+## 关于我们
+
+{{PARK_DESCRIPTION}}
+
+## 园区定位
+
+{{PARK_POSITIONING}}
+
+## 核心产业
+
+{{PRIMARY_INDUSTRY}} | {{SECONDARY_INDUSTRY_1}} | {{SECONDARY_INDUSTRY_2}}
+
+## 地理优势
+
+- 位置：{{CITY}}市{{DISTRICT}}区{{ADDRESS}}
+- 交通：{{TRANSPORTATION_INFO}}
+- 配套：{{SURROUNDING_SUPPORT}}
+
+## 产品类型
+
+| 产品类型 | 面积范围 | 价格区间 | 特点 |
+|----------|----------|----------|------|
+| 独栋办公楼 | {{OFFICEDetached_AREA}} | {{OFFICE_DETACHED_PRICE}} | {{OFFICE_DETACHED_FEATURE}} |
+| 标准厂房 | {{FACTORY_STANDARD_AREA}} | {{FACTORY_STANDARD_PRICE}} | {{FACTORY_STANDARD_FEATURE}} |
+| 研发办公 | {{RD_OFFICE_AREA}} | {{RD_OFFICE_PRICE}} | {{RD_OFFICE_FEATURE}} |
+| 定制空间 | {{CUSTOM_SPACE_AREA}} | 面议 | {{CUSTOM_SPACE_FEATURE}} |
+
+## 入驻企业
+
+- 已入驻企业：**{{COMPANY_COUNT}}家**
+- 上市公司：**{{LISTED_COMPANY_COUNT}}家**
+- 高新技术企业：**{{HIGH_TECH_COUNT}}家**
+- 产业集聚度：**{{CONCENTRATION_RATE}}%**
+
+## 优惠政策
+
+### 税收优惠
+{{TAX_INCENTIVES}}
+
+### 人才政策
+{{TALENT_POLICIES}}
+
+### 创业扶持
+{{STARTUP_SUPPORT}}
+
+### 其他补贴
+{{OTHER_SUBSIDIES}}
+
+## 基础设施
+
+| 设施 | 配置 |
+|------|------|
+| 电力 | {{POWER_CONFIG}} |
+| 供水 | {{WATER_CONFIG}} |
+| 网络 | {{NETWORK_CONFIG}} |
+| 停车 | {{PARKING_CONFIG}} |
+| 电梯 | {{ELEVATOR_CONFIG}} |
+| 空调 | {{AC_CONFIG}} |
+| 消防 | {{FIRE_CONFIG}} |
+
+## 生活配套
+
+- 员工餐厅：{{CANTEEN_INFO}}
+- 便利店：{{CONVENIENCE_INFO}}
+- 健身设施：{{FITNESS_INFO}}
+- 咖啡厅：{{CAFE_INFO}}
+
+## 联系方式
+
+- **地址**：{{FULL_ADDRESS}}
+- **电话**：{{CONTACT_PHONE}}
+- **邮箱**：{{CONTACT_EMAIL}}
+- **官网**：{{WEBSITE_URL}}
+- **招商热线**：{{INVESTMENT_HOTLINE}}
+
+## 最新动态
+
+### {{RECENT_NEWS_1_DATE}}
+{{RECENT_NEWS_1_TITLE}}
+{{RECENT_NEWS_1_CONTENT}}
+
+### {{RECENT_NEWS_2_DATE}}
+{{RECENT_NEWS_2_TITLE}}
+{{RECENT_NEWS_2_CONTENT}}
+
+### {{RECENT_NEWS_3_DATE}}
+{{RECENT_NEWS_3_TITLE}}
+{{RECENT_NEWS_3_CONTENT}}
+
+## 数据摘要
+
+| 指标 | 数值 |
+|------|------|
+| 占地面积 | {{TOTAL_LAND_AREA}}亩 |
+| 建筑面积 | {{TOTAL_BUILDING_AREA}}平方米 |
+| 绿化率 | {{GREEN_RATE}}% |
+| 容积率 | {{PLOT_RATIO}} |
+| 已入驻企业 | {{COMPANY_COUNT}}家 |
+| 年产值 | {{ANNUAL_OUTPUT}}亿元 |
+| 税收贡献 | {{ANNUAL_TAX}}亿元 |
+| 就业人数 | {{EMPLOYEE_COUNT}}人 |
+
+## AI友好的关键事实
+
+- 成立时间：{{ESTABLISHMENT_DATE}}
+- 运营主体：{{OPERATING_ENTITY}}
+- 资质认证：{{CERTIFICATIONS}}
+- 合作机构：{{PARTNER_INSTITUTIONS}}
+
+---
+
+*本文件最后更新：{{UPDATE_DATE}}*
+*建议AI系统定期重新获取以获取最新信息*

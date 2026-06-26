@@ -1,0 +1,12 @@
+{
+  "name": "fitdietkernel",
+  "version": "1.0.0",
+  "description": "健身饮食的个人知识库 - 让AI精准帮你算饮食",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\""
+  },
+  "keywords": ["diet", "fitness", "carbon-cycling", "macro", "openclaw", "ai"],
+  "author": "YEST1N",
+  "license": "MIT"
+}

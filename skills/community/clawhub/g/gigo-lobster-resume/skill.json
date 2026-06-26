@@ -1,0 +1,22 @@
+{
+  "name": "gigo-lobster-resume",
+  "entry": "run_resume.py",
+  "runtime": "python",
+  "python_version": "3.11",
+  "triggers": {
+    "zh": [
+      "继续试吃",
+      "恢复评测",
+      "继续评估",
+      "继续龙虾评测",
+      "恢复龙虾试吃"
+    ],
+    "en": [
+      "resume tasting",
+      "continue lobster eval",
+      "resume lobster benchmark",
+      "continue tasting",
+      "resume my lobster run"
+    ]
+  }
+}

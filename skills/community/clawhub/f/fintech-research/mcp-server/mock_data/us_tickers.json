@@ -1,0 +1,62 @@
+{
+  "AAPL": {
+    "cik": "0000320193",
+    "name": "Apple Inc"
+  },
+  "MSFT": {
+    "cik": "0000789019",
+    "name": "Microsoft Corp"
+  },
+  "GOOGL": {
+    "cik": "0001652044",
+    "name": "Alphabet Inc"
+  },
+  "NVDA": {
+    "cik": "0001018724",
+    "name": "NVIDIA Corp"
+  },
+  "TSLA": {
+    "cik": "0001318605",
+    "name": "Tesla Inc"
+  },
+  "AMZN": {
+    "cik": "0001018724",
+    "name": "Amazon.com Inc"
+  },
+  "META": {
+    "cik": "0001326801",
+    "name": "Meta Platforms Inc"
+  },
+  "BABA": {
+    "cik": "0001547601",
+    "name": "Alibaba Group Holding Ltd"
+  },
+  "NFLX": {
+    "cik": "0001065280",
+    "name": "Netflix Inc"
+  },
+  "AMD": {
+    "cik": "0000002488",
+    "name": "Advanced Micro Devices Inc"
+  },
+  "INTC": {
+    "cik": "0000050863",
+    "name": "Intel Corp"
+  },
+  "CRM": {
+    "cik": "0001108524",
+    "name": "Salesforce Inc"
+  },
+  "PYPL": {
+    "cik": "0001633917",
+    "name": "PayPal Holdings Inc"
+  },
+  "UBER": {
+    "cik": "0001543151",
+    "name": "Uber Technologies Inc"
+  },
+  "COIN": {
+    "cik": "0001679788",
+    "name": "Coinbase Global Inc"
+  }
+}

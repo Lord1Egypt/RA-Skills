@@ -1,0 +1,4 @@
+interface:
+  display_name: "FlowSpeech Voice Script Planner"
+  short_description: "Prepare FlowSpeech-ready TTS scripts."
+  default_prompt: "Use $flowspeech-voice-script-planner to prepare this narration for FlowSpeech with mode, voice direction, emotion tags, pause markers, and QA checks."

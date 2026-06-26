@@ -1,35 +1,49 @@
 ---
-name: "github-trending"
+name: github-trending
 description: "Fetch top trending GitHub repositories today/this-week/this-month and summarize top 15 with stars, language, description."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/github-treding"
-sourceUrl: "https://clawhub.ai/skills/github-treding"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📈",
+        "requires": { "bins": ["curl", "jq"] },
+        "install":
+          [
+            {
+              "id": "brew",
+              "kind": "brew",
+              "formula": ["curl", "jq"],
+              "bins": ["curl", "jq"],
+              "label": "Install curl + jq (brew)",
+            },
+          ],
+      },
+  }
 ---
 
-# github-trending
+# GitHub Trending
 
-> Fetch top trending GitHub repositories today/this-week/this-month and summarize top 15 with stars, language, description.
+Fetch and summarize top trending GitHub repos. Uses GitHub search API — no auth required for basic queries (rate-limited at 10 req/min unauthenticated).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/github-treding`
-- **Source URL:** [https://clawhub.ai/skills/github-treding](https://clawhub.ai/skills/github-treding)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/github-treding
+# Top 15 repos trending this week (default)
+bash scripts/fetch-trending.sh
+
+# Custom time range
+bash scripts/fetch-trending.sh "2026-05-15"
+
+# Custom count
+bash scripts/fetch-trending.sh "7-days-ago" 10
 ```
+
+## Output
+
+For each repo: rank, name, description (truncated), language, ⭐ stars, 🍴 forks, link.
+
+## Rate Limits
+
+- Unauthenticated: 10 req/min — enough for occasional use
+- Authenticated (set `GH_TOKEN` env): 5000 req/hr
+- If hitting limits, increase the `--retry` or use longer date ranges

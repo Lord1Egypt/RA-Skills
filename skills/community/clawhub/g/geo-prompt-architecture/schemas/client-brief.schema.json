@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/client-brief.schema.json",
+  "title": "GEO Client Brief",
+  "description": "Structured onboarding input for generating topic-first GEO monitoring prompts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "brand_name",
+    "website_url",
+    "business_model",
+    "target_markets",
+    "target_customers"
+  ],
+  "properties": {
+    "brand_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "website_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "business_model": {
+      "type": "string",
+      "enum": [
+        "ecommerce",
+        "saas",
+        "services",
+        "marketplace",
+        "manufacturer",
+        "content-media",
+        "other"
+      ]
+    },
+    "target_markets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "target_customers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "priority_topics": {
+      "type": "array",
+      "description": "Optional user-provided topics to seed prompt generation.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "topic_type": {
+            "type": "string",
+            "enum": [
+              "product-category",
+              "use-case",
+              "audience-segment",
+              "competitor-alternative",
+              "trust-evaluation",
+              "channel-marketplace",
+              "seasonal-trend",
+              "other"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "seed_keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "core_product_lines": {
+      "type": "array",
+      "description": "Optional product lines that can be converted into topic seeds.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "priority_keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "competitors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "overlap_tier": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium-high",
+              "medium",
+              "low"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "weak_ai_surfaces": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "priority_channels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "business_goals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "optional_context": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

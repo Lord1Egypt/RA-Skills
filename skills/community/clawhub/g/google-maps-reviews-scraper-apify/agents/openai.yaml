@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Maps Reviews Scraper (Apify)"
+  short_description: "Run exact-place Google reviews scraping through Apify"
+  default_prompt: "Use $google-maps-reviews-scraper-apify to build a Google Maps reviews payload and run actor V2kIsQs3Ta9C9kkEt with APIFY_TOKEN."

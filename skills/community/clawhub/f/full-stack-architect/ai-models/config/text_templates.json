@@ -1,0 +1,7 @@
+{
+  "prd_summary": "请对以下PRD文档进行总结，提取关键信息：\n\n{prd_content}\n\n总结应该包括：\n1. 项目概述\n2. 核心功能\n3. 技术栈\n4. 目标用户\n5. 成功指标\n",
+  "tech_recommendation": "请根据以下项目需求，推荐合适的技术栈：\n\n项目需求：{project_requirements}\n\n推荐应该包括：\n1. 前端技术\n2. 后端技术\n3. 数据库\n4. 部署方案\n5. 推荐理由\n",
+  "code_explanation": "请解释以下代码的功能和实现原理：\n\n{code}\n\n解释应该包括：\n1. 代码的整体功能\n2. 关键部分的详细说明\n3. 可能的优化建议\n",
+  "bug_analysis": "请分析以下代码中可能存在的bug：\n\n{code}\n\n分析应该包括：\n1. 可能的bug\n2. 问题原因\n3. 修复建议\n",
+  "documentation": "请为以下功能编写文档：\n\n功能描述：{feature_description}\n\n文档应该包括：\n1. 功能概述\n2. 使用方法\n3. 参数说明\n4. 示例代码\n5. 注意事项\n"
+}

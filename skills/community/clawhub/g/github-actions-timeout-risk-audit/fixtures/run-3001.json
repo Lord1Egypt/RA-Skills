@@ -1,0 +1,23 @@
+{
+  "databaseId": 3001,
+  "workflowName": "CI",
+  "headBranch": "main",
+  "repository": {"nameWithOwner": "flowcreatebot/yf-api-saas"},
+  "url": "https://github.com/flowcreatebot/yf-api-saas/actions/runs/3001",
+  "jobs": [
+    {
+      "name": "integration-tests",
+      "conclusion": "success",
+      "startedAt": "2026-03-06T08:00:00Z",
+      "completedAt": "2026-03-06T08:56:00Z",
+      "url": "https://github.com/flowcreatebot/yf-api-saas/actions/runs/3001/job/1"
+    },
+    {
+      "name": "deployed-smoke",
+      "conclusion": "timed_out",
+      "startedAt": "2026-03-06T09:00:00Z",
+      "completedAt": "2026-03-06T10:00:00Z",
+      "url": "https://github.com/flowcreatebot/yf-api-saas/actions/runs/3001/job/2"
+    }
+  ]
+}

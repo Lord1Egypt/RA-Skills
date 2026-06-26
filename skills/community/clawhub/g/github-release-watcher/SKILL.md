@@ -1,35 +1,51 @@
----
-name: "Github Release Watcher"
-description: "Monitor specified GitHub repositories for new releases and receive notifications of newly detected tags."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/github-release-watcher"
-sourceUrl: "https://clawhub.ai/skills/github-release-watcher"
----
+# GitHub Release Watcher
 
-# Github Release Watcher
+Monitor GitHub repositories for new releases and get notified.
 
-> Monitor specified GitHub repositories for new releases and receive notifications of newly detected tags.
+## Setup
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/github-release-watcher`
-- **Source URL:** [https://clawhub.ai/skills/github-release-watcher](https://clawhub.ai/skills/github-release-watcher)
+1. Requires `gh` CLI (GitHub CLI), authenticated
+2. Edit `repos.txt` — one `owner/repo` per line, `#` for comments
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/github-release-watcher
+# Check all repos for new releases
+bash scripts/check_releases.sh
+
+# Use custom config file
+bash scripts/check_releases.sh /path/to/repos.txt
+
+# Dry run (show all latest releases regardless of state)
+rm -f scripts/.last_seen.json && bash scripts/check_releases.sh
+```
+
+## Integration
+
+### Cron (recommended)
+Run daily via OpenClaw cron job to get notified of new releases:
+```
+Schedule: daily at 09:00
+Payload: "Check for new GitHub releases using the github-release-watcher skill"
+```
+
+### Heartbeat
+Add to HEARTBEAT.md for periodic checks (1x/day recommended).
+
+## Output
+
+- `🆕 **owner/repo** → tag (name)` — new release detected
+- `✅ No new releases detected.` — all repos up to date
+
+## State
+
+Release state stored in `scripts/.last_seen.json`. Delete to reset.
+
+## Adding Repos
+
+Edit `repos.txt`:
+```
+# My tools
+owner/repo
+another/repo
 ```

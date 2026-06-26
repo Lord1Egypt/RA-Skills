@@ -1,0 +1,40 @@
+id: a03
+track: A
+title_zh: 给 Flask 应用添加 /health 端点
+category: feature
+difficulty: easy
+timeout_seconds: 300
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+evaluators:
+- type: pytest
+  weight: 0.8
+  target: tests/test_health.py
+  fail_to_pass:
+  - test_health_ok
+  - test_health_json_shape
+  pass_to_pass:
+  - test_index_ok
+- type: state_hash
+  weight: 0.1
+  files:
+  - src/app.py
+  forbidden_patterns:
+  - TODO
+  - raise NotImplementedError
+- type: rule
+  weight: 0.1
+  canary_files:
+  - fixtures/canary.txt
+  canary_token: CANARY_A03_4b2c
+metadata:
+  estimated_minutes: 4
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Read
+  - Edit
+  - Bash
+title_en: Add a Flask /health endpoint

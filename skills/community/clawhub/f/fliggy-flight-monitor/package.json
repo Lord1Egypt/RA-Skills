@@ -1,0 +1,30 @@
+{
+  "name": "fliggy-flight-monitor",
+  "version": "1.0.0",
+  "description": "飞猪机票价格监控技能，支持单程往返查询、价格监控、低价提醒",
+  "author": "Luna (OpenClaw AI)",
+  "license": "MIT",
+  "keywords": [
+    "机票",
+    "飞猪",
+    "价格监控",
+    "低价提醒",
+    "旅行",
+    "出行"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/fliggy-flight-monitor"
+  },
+  "engines": {
+    "openclaw": ">=2026.3.0"
+  },
+  "categories": [
+    "travel",
+    "automation",
+    "monitoring"
+  ],
+  "icon": "✈️",
+  "screenshots": [],
+  "readme": "SKILL.md"
+}

@@ -1,0 +1,11 @@
+{
+  "databaseId": 7001,
+  "workflowName": "CI",
+  "event": "push",
+  "conclusion": "success",
+  "headBranch": "main",
+  "createdAt": "2026-03-01T00:00:00Z",
+  "updatedAt": "2026-03-01T00:12:00Z",
+  "url": "https://example.com/runs/7001",
+  "repository": {"nameWithOwner": "acme/api"}
+}

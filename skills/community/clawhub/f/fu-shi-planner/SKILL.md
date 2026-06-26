@@ -1,35 +1,137 @@
 ---
-name: "伏矢·路径魄"
-description: "伏矢·路径魄 - AI任务规划与策略拆解，让AI像修士一样精准规划、执行、复盘"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fu-shi-planner"
-sourceUrl: "https://clawhub.ai/skills/fu-shi-planner"
+name: task-planner
+version: 1.0.0
+description: 伏矢·路径魄 - AI任务规划与策略拆解，让AI像修士一样精准规划、执行、复盘
+tags:
+  - planning
+  - strategy
+  - task-management
+  - optimization
 ---
 
-# 伏矢·路径魄
+# 伏矢·路径魄 (Task Planner) - 任务规划与策略拆解
 
-> 伏矢·路径魄 - AI任务规划与策略拆解，让AI像修士一样精准规划、执行、复盘
+## 技能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fu-shi-planner`
-- **Source URL:** [https://clawhub.ai/skills/fu-shi-planner](https://clawhub.ai/skills/fu-shi-planner)
+**伏矢·路径魄** 是硅灵决七魄之一，主管任务规划、策略选择与目标拆解。让AI能够像修士御剑一样，精准规划路径、高效执行任务。
 
-## Overview
+---
 
+## 核心能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fu-shi-planner
+### 1. 任务拆解 (Task Decomposition)
+- 将复杂任务拆解为可执行的最小单元
+- 识别任务间的依赖关系
+- 评估任务难度与风险
+
+### 2. 策略选择 (Strategy Selection)
+- 根据上下文选择最优执行策略
+- 贪婪/分治/回溯/动态规划等策略适配
+- 权衡时间成本与收益
+
+### 3. 路径优化 (Path Optimization)
+- 寻找最短/最快执行路径
+- 并行化独立任务
+- 避免重复劳动
+
+### 4. 进度追踪 (Progress Tracking)
+- 关键里程碑检查
+- 偏差检测与纠正
+- 实时状态更新
+
+---
+
+## 使用方法
+
+当用户描述一个复杂任务时，使用本技能进行分析：
+
 ```
+用户：帮我开发一个APP
+→ 触发伏矢·路径魄
+→ 输出任务拆解报告
+```
+
+---
+
+## 输出格式
+
+### 任务拆解报告
+
+```markdown
+## 任务拆解报告
+
+### 任务概述
+[一句话描述核心目标]
+
+### 阶段划分
+1. **准备阶段** - [具体任务]
+2. **执行阶段** - [具体任务]  
+3. **收尾阶段** - [具体任务]
+
+### 关键路径
+[最关键的执行链]
+
+### 风险点
+- [风险1]
+- [风险2]
+
+### 资源需求
+- [资源1]
+- [资源2]
+```
+
+---
+
+## 核心算法
+
+### 任务复杂度评估
+
+```
+复杂度 = f(步骤数, 依赖数, 不确定性, 外部依赖)
+```
+
+| 复杂度 | 境界对应 | 建议策略 |
+|--------|----------|----------|
+| 低(1-3) | 炼气境 | 直接执行 |
+| 中(4-6) | 筑基境 | 分步执行 |
+| 高(7-9) | 金丹境 | 深度规划 |
+| 极高(10+) | 元婴境 | 多策略并行 |
+
+### 依赖关系图
+
+```
+A → B → C
+↓
+D → E
+```
+
+---
+
+## 调度者守则
+
+1. **主动规划** - 不等用户催促，提前规划下一步
+2. **最小步骤** - 用最少的步骤完成目标
+3. **及时调整** - 发现偏差立即修正
+4. **复盘总结** - 完成后输出经验教训
+
+---
+
+## 适用场景
+
+- 复杂项目拆解
+- 多步骤任务规划
+- 资源协调与分配
+- 风险识别与规避
+- 进度管理与追踪
+
+---
+
+## 依赖技能
+
+- silicon-soul（硅灵决基础）
+- deep-thinking（深度思考）
+- first-principles-decomposer（第一性原理）
+
+## 版本
+
+v1.0.0 | 2026-04-12 | 硅灵宗·菩提

@@ -1,0 +1,149 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "苏州生物医药创新园A3栋GMP车间",
+  "sku": "SZB-A3-GMP-001",
+  "gtin": "6901234567890",
+  "description": "苏州生物医药创新园A3栋GMP车间，面积1200平方米，层高5.5米，符合中国NMPA和欧盟EMA双重GMP认证标准，配备独立空气净化系统，适合生物制药、医疗器械生产企业使用。",
+  "image": [
+    "https://www.szbiomed.cn/images/products/a3-gmp-1.jpg",
+    "https://www.szbiomed.cn/images/products/a3-gmp-2.jpg",
+    "https://www.szbiomed.cn/images/products/a3-gmp-3.jpg"
+  ],
+  "video": "https://www.szbiomed.cn/videos/a3-gmp-tour.mp4",
+  
+  "brand": {
+    "@type": "Brand",
+    "name": "苏州生物医药创新园"
+  },
+  
+  "manufacturer": {
+    "@type": "Organization",
+    "name": "苏州生物医药创新园",
+    "url": "https://www.szbiomed.cn"
+  },
+  
+  "seller": {
+    "@type": "Organization",
+    "name": "苏州生物医药创新园招商中心",
+    "url": "https://www.szbiomed.cn/contact",
+    "telephone": "400-888-8888"
+  },
+  
+  "category": "GMP生产车间",
+  "material": "钢筋混凝土",
+  
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": "2.8",
+    "highPrice": "3.5",
+    "priceCurrency": "CNY",
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition",
+    "seller": {
+      "@type": "Organization",
+      "name": "苏州生物医药创新园"
+    },
+    "offerCount": "3"
+  },
+  
+  "additionalProperty": [
+    {
+      "@type": "PropertyValue",
+      "name": "建筑面积",
+      "value": "1200",
+      "unitCode": "MTK"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "使用面积",
+      "value": "1080",
+      "unitCode": "MTK"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "层高",
+      "value": "5.5",
+      "unitCode": "MTR"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "楼层",
+      "value": "3",
+      "unitText": "层"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "总层数",
+      "value": "6",
+      "unitText": "层"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "楼板承重",
+      "value": "800",
+      "unitCode": "KGM"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "供电容量",
+      "value": "500",
+      "unitText": "KVA"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "电梯配置",
+      "value": "货梯1部，载重2吨"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "GMP认证",
+      "value": "NMPA+EMA双认证"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "空气净化",
+      "value": "万级洁净车间"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "装修状态",
+      "value": "精装修，GMP标准"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "交付标准",
+      "value": "GMP认证状态交付"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "租期",
+      "value": "3",
+      "unitText": "年起"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "免租期",
+      "value": "2",
+      "unitText": "个月"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "物业费",
+      "value": "12",
+      "unitText": "元/㎡/月"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "停车位",
+      "value": "20",
+      "unitText": "个"
+    }
+  ],
+  
+  "hasMeasurement": {
+    "@type": "QuantitativeValue",
+    "value": "1200",
+    "unitCode": "MTK"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "Geode On-device Transcribe",
+  "description": "Privacy-first, local audio/video transcription and AI summarization for macOS.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/YOUR_USERNAME/geode-transcribe-skill",
+  "tools": [
+    {
+      "name": "submit_transcription",
+      "description": "Asynchronously submits an audio file for transcription. Returns a TASK_ID immediately.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "audio_path": { 
+            "type": "string", 
+            "description": "The absolute path to the audio file." 
+          },
+          "language": { 
+            "type": "string", 
+            "description": "ISO language code (e.g., 'en', 'zh').", 
+            "default": "zh" 
+          },
+          "summarize": { 
+            "type": "boolean", 
+            "description": "Whether to generate an AI summary after transcription.", 
+            "default": true 
+          }
+        },
+        "required": ["audio_path"]
+      },
+      "command": "/Applications/Geode.app/Contents/Helpers/GeodeCLI --enqueue-transcription --audio {{audio_path}} --language {{language}} {{#if summarize}}--summary{{/if}}"
+    },
+    {
+      "name": "check_task_status",
+      "description": "Polls the status of a transcription task using its TASK_ID.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "task_id": { 
+            "type": "string", 
+            "description": "The UUID returned by the submission tool." 
+          }
+        },
+        "required": ["task_id"]
+      },
+      "command": "/Applications/Geode.app/Contents/Helpers/GeodeCLI --task-status {{task_id}}"
+    }
+  ]
+}

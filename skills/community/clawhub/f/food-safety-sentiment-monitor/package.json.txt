@@ -1,0 +1,15 @@
+{
+  "name": "food-safety-sentiment-monitor",
+  "version": "1.0.1",
+  "description": "Test for Kevin(凯文老师)",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "install:browser": "npx playwright install"
+  },
+  "author": "Kevin(凯文老师) <maifieldai@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}

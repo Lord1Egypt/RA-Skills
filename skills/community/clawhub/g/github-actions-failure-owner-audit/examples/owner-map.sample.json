@@ -1,0 +1,4 @@
+{
+  "^alice$": "platform",
+  "^bob$": "delivery"
+}

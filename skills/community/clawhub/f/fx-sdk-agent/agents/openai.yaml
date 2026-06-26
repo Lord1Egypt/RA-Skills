@@ -1,0 +1,5 @@
+version: 1
+interface:
+  display_name: FX SDK Agent
+  short_description: Integrate and operate FX Protocol with fx-sdk
+  default_prompt: Use this skill to integrate or operate FX Protocol via fx-sdk.

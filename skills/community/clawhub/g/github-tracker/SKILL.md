@@ -1,35 +1,15 @@
----
-name: "Github_tracker"
-description: "Monitors GitHub organization commits daily, providing team activity updates and current standings on demand via /team-status command."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/github-tracker"
-sourceUrl: "https://clawhub.ai/skills/github-tracker"
----
+# Org Commit Monitor
 
-# Github_tracker
+## Setup
+1. Place `monitor.py`, and `SKILL.md` in the skill folder.
+2. get the list of member needed for this skill from the `monitor.py`
+3. Set Environment Variables:
+   - `GITHUB_TOKEN`: Your Personal Access Token.
+   - `GITHUB_ORG`: Your Organization name.
 
-> Monitors GitHub organization commits daily, providing team activity updates and current standings on demand via /team-status command.
+## Automation
+- **Cron**: `30 4 * * *` (Runs daily at 10:00 AM IST; adjust for UTC timezone offset)
+- **Action**: Run `python3 monitor.py` and post output to #dev-updates.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/github-tracker`
-- **Source URL:** [https://clawhub.ai/skills/github-tracker](https://clawhub.ai/skills/github-tracker)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/github-tracker
-```
+## Commands
+- `/team-status`: Runs the script immediately to show current standings.

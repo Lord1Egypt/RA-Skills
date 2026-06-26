@@ -1,0 +1,6 @@
+{
+  "_comment": "This is an example configuration file",
+  "_note": "Copy this to ~/.claude/gitlab_config.json and add your real credentials",
+  "host": "https://gitlab.example.com",
+  "access_token": "glpat-your-token-here"
+}

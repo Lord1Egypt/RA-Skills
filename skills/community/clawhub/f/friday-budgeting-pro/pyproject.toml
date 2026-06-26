@@ -1,0 +1,24 @@
+[tool.black]
+line-length = 100
+target-version = ['py311']
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | venv
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]  # pycodestyle errors/warnings, pyflakes, isort
+ignore = ["E501", "E722", "E402"]  # line too long, bare except, late imports
+exclude = ["tests/fixtures/*"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["F841"]  # unused vars in tests are often intentional (side-effect assertions)

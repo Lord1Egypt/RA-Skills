@@ -1,0 +1,22 @@
+{
+  "name": "gigo-lobster-doctor",
+  "entry": "run_doctor.py",
+  "runtime": "python",
+  "python_version": "3.11",
+  "triggers": {
+    "zh": [
+      "龙虾体检",
+      "检查龙虾环境",
+      "先体检龙虾",
+      "龙虾环境检查",
+      "帮我检查龙虾 skill"
+    ],
+    "en": [
+      "lobster doctor",
+      "check lobster environment",
+      "lobster environment check",
+      "doctor my lobster",
+      "preflight lobster benchmark"
+    ]
+  }
+}

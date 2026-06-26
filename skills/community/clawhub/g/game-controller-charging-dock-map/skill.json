@@ -1,0 +1,35 @@
+{
+  "name": "game-controller-charging-dock-map",
+  "displayName": "Game Controller Charging Dock Map",
+  "version": "1.0.1",
+  "description": "Create a dock layout card for game controllers, with assigned slots, cable labels, return rules, charge routine, and a shared setup reset checklist.",
+  "triggerKeywords": [
+    "controller charging dock map",
+    "game controller charging station",
+    "gaming dock setup map",
+    "controller cable labels",
+    "dead controller checklist",
+    "shared gaming setup card",
+    "console controller dock layout",
+    "game room charging routine"
+  ],
+  "tags": [
+    "home",
+    "gaming",
+    "organization",
+    "cable-tidiness",
+    "checklist"
+  ],
+  "license": "MIT-0",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "Cable tidiness and shared setup organization only; no electrical repair advice, charging modification, battery diagnosis, device repair, or instructions to open or alter hardware.",
+  "slug": "game-controller-charging-dock-map"
+}

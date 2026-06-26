@@ -1,0 +1,125 @@
+{
+  "sources": [
+    {
+      "name": "Google Trends",
+      "url": "https://trends.google.com/trends/",
+      "type": "search_trends",
+      "regions": ["global", "us", "cn", "jp", "de", "fr", "br", "in", "uk", "kr"],
+      "description": "Real-time and historical search trend data from Google"
+    },
+    {
+      "name": "Gartner Hype Cycle",
+      "url": "https://www.gartner.com/en/research/methodologies/gartner-hype-cycle",
+      "type": "technology_trends",
+      "description": "Authoritative technology maturity and adoption curves"
+    },
+    {
+      "name": "CB Insights",
+      "url": "https://www.cbinsights.com/research/",
+      "type": "market_intelligence",
+      "description": "Global tech market intelligence and venture capital trends"
+    },
+    {
+      "name": "World Economic Forum Reports",
+      "url": "https://www.weforum.org/reports",
+      "type": "global_risk",
+      "description": "Global risks, competitiveness, and future of jobs reports"
+    },
+    {
+      "name": "OECD Data",
+      "url": "https://data.oecd.org/",
+      "type": "economic_indicators",
+      "description": "Comprehensive economic, social, and environmental data across OECD countries"
+    },
+    {
+      "name": "arXiv",
+      "url": "https://arxiv.org/",
+      "type": "academic_breakthrough",
+      "categories": ["cs.AI", "cs.CL", "cs.CV", "stat.ML", "q-bio", "q-fin"],
+      "description": "Preprint papers revealing cutting-edge research directions"
+    },
+    {
+      "name": "Statista",
+      "url": "https://www.statista.com/",
+      "type": "statistics",
+      "description": "Global market and consumer data across 170+ industries"
+    },
+    {
+      "name": "McKinsey Global Institute",
+      "url": "https://www.mckinsey.com/mgi/overview",
+      "type": "economic_research",
+      "description": "Deep economic research on global trends and productivity"
+    },
+    {
+      "name": "PatentScope (WIPO)",
+      "url": "https://patentscope.wipo.int/",
+      "type": "patent_data",
+      "description": "Global patent filings revealing innovation hotspots"
+    },
+    {
+      "name": "Pew Research Center",
+      "url": "https://www.pewresearch.org/global/",
+      "type": "social_demographics",
+      "description": "Global attitudes, demographics, and social trends"
+    }
+  ],
+  "trend_categories": [
+    {
+      "id": "ai_automation",
+      "name": "AI & Automation",
+      "keywords_en": ["artificial intelligence", "machine learning", "automation", "robotics", "LLM", "generative AI"],
+      "keywords_zh": ["浜哄伐鏅鸿兘", "鏈哄櫒瀛︿範", "鑷姩鍖?, "鏈哄櫒浜?, "澶ц瑷€妯″瀷"],
+      "lifecycle": 10
+    },
+    {
+      "id": "climate_sustainability",
+      "name": "Climate & Sustainability",
+      "keywords_en": ["climate change", "renewable energy", "carbon neutral", "ESG", "sustainability"],
+      "keywords_zh": ["姘斿€欏彉鍖?, "鍙啀鐢熻兘婧?, "纰充腑鍜?, "ESG"],
+      "lifecycle": 20
+    },
+    {
+      "id": "digital_transformation",
+      "name": "Digital Transformation",
+      "keywords_en": ["digital transformation", "industry 4.0", "IoT", "5G", "edge computing", "digital twin"],
+      "keywords_zh": ["鏁板瓧鍖栬浆鍨?, "宸ヤ笟4.0", "鐗╄仈缃?, "鏁板瓧瀛敓"],
+      "lifecycle": 10
+    },
+    {
+      "id": "biotech_health",
+      "name": "Biotech & Health",
+      "keywords_en": ["gene therapy", "CRISPR", "mRNA", "precision medicine", "longevity", "digital health"],
+      "keywords_zh": ["鍩哄洜娌荤枟", "绮惧噯鍖荤枟", "闀垮绉戝", "鏁板瓧鍋ュ悍"],
+      "lifecycle": 15
+    },
+    {
+      "id": "geopolitics_economics",
+      "name": "Geopolitics & Global Economics",
+      "keywords_en": ["globalization", "supply chain", "trade war", "de-dollarization", "BRICS", "belt and road"],
+      "keywords_zh": ["鍏ㄧ悆鍖?, "渚涘簲閾?, "鍘荤編鍏冨寲", "涓€甯︿竴璺?],
+      "lifecycle": 15
+    },
+    {
+      "id": "future_of_work",
+      "name": "Future of Work & Education",
+      "keywords_en": ["remote work", "gig economy", "upskilling", "EdTech", "universal basic income"],
+      "keywords_zh": ["杩滅▼鍔炲叕", "闆跺伐缁忔祹", "鎶€鑳芥彁鍗?, "鏁欒偛绉戞妧"],
+      "lifecycle": 10
+    },
+    {
+      "id": "space_exploration",
+      "name": "Space & Deep Tech",
+      "keywords_en": ["space economy", "quantum computing", "fusion energy", "brain-computer interface"],
+      "keywords_zh": ["澶┖缁忔祹", "閲忓瓙璁＄畻", "鏍歌仛鍙?, "鑴戞満鎺ュ彛"],
+      "lifecycle": 20
+    },
+    {
+      "id": "global_demographics",
+      "name": "Global Demographics & Migration",
+      "keywords_en": ["aging population", "urbanization", "migration", "middle class", "Gen Z"],
+      "keywords_zh": ["浜哄彛鑰侀緞鍖?, "鍩庡競鍖?, "绉绘皯", "涓骇闃剁骇"],
+      "lifecycle": 20
+    }
+  ]
+}
+锛堝唴瀹圭敱AI鐢熸垚锛屼粎渚涘弬鑰冿級

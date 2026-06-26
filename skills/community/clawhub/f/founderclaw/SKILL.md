@@ -1,35 +1,53 @@
 ---
-name: "FounderClaw"
-description: "FounderClaw — Multi-agent engineering team for OpenClaw. 29 skills, 6 agents (CEO + 5 departments), structured workspace, auto mode, vision sub-agent routing..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [engineering, multi-agent, openclaw, startup]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/founderclaw"
-sourceUrl: "https://clawhub.ai/skills/founderclaw"
+name: founderclaw
+description: >
+  FounderClaw — Multi-agent engineering team for OpenClaw. 29 skills,
+  6 agents (CEO + 5 departments), structured workspace, auto mode,
+  vision sub-agent routing. Build startups with AI agents.
 ---
 
 # FounderClaw
 
-> FounderClaw — Multi-agent engineering team for OpenClaw. 29 skills, 6 agents (CEO + 5 departments), structured workspace, auto mode, vision sub-agent routing...
+Multi-agent engineering team for OpenClaw. 29 skills. 6 agents. One install.
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/founderclaw`
-- **Source URL:** [https://clawhub.ai/skills/founderclaw](https://clawhub.ai/skills/founderclaw)
+## IMPORTANT: Post-Install Setup Required
 
-## Overview
+After installing this package (via ClawHub or git clone), you MUST run the installer to:
+1. Symlink individual skills to `~/.agents/skills/`
+2. Create the workspace at `~/.openclaw/founderclaw/`
+3. Apply multi-agent config (6 agents)
+4. Build the headless browser
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+Run from this directory:
 ```bash
-hermes skills install clawhub/founderclaw
+bash install.sh
 ```
+
+This is REQUIRED. Without it, only the package directory exists — skills won't be discovered by OpenClaw.
+
+## What FounderClaw Adds
+
+**Agents:**
+| Agent | Role |
+|---|---|
+| CEO (🎯) | Orchestrates everything |
+| Strategy (📐) | Product thinking & design |
+| Shipper (🚀) | Code review & deploy |
+| Tester (🔍) | QA & browser testing |
+| Safety (🛡️) | Security & guardrails |
+| Observer (📊) | Debug & retrospectives |
+
+**Skills (29):**
+Strategy: office-hours, plan-ceo-review, plan-eng-review, plan-design-review, design-consultation, design-review, design-shotgun, autoplan
+Shipping: review, ship, land-and-deploy, canary, benchmark, document-release
+Testing: qa, qa-only, browse, setup-browser-cookies, connect-chrome
+Safety: cso, careful, freeze, guard, unfreeze
+Debugging: investigate, retro, codex
+Setup: gstack-upgrade, setup-deploy, install-founderclaw, founderclaw-status
+
+## Links
+- GitHub: https://github.com/ashish797/FounderClaw
+- Landing: https://founderclaw.hashqy.com
+
+## License
+MIT

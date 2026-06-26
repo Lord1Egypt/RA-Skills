@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}Profile — Friday Budgeting Pro{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h1>Profile</h1>
+
+  {% if saved %}
+  <div class="alert alert-success">Settings saved.</div>
+  {% endif %}
+
+  <!-- Settings form -->
+  <section>
+    <h2>Settings</h2>
+    <form method="post" action="/profile">
+      <label for="notification_pref">Notification preference</label>
+      <select id="notification_pref" name="notification_pref">
+        <option value="openclaw"
+          {% if notification_pref == "openclaw" %}selected{% endif %}>
+          OpenClaw chat
+        </option>
+        <option value="macos"
+          {% if notification_pref == "macos" %}selected{% endif %}>
+          macOS Notification Center
+        </option>
+        <option value="ui"
+          {% if notification_pref == "ui" %}selected{% endif %}>
+          In-browser banner only
+        </option>
+      </select>
+      <button type="submit" class="btn-primary">Save settings</button>
+    </form>
+  </section>
+
+  <!-- Quick actions -->
+  <section>
+    <h2>Data</h2>
+    {% if action_result %}
+      {% if action_result.ok %}
+      <div class="alert alert-success">{{ action_result.message }}</div>
+      {% if action_result.url %}
+      <p><a href="{{ action_result.url }}" class="btn-primary" target="_blank">Open Reconnect Link</a></p>
+      {% endif %}
+      {% else %}
+      <div class="alert alert-error">{{ action_result.message }}</div>
+      {% endif %}
+    {% endif %}
+    <div class="action-row">
+      <a href="/ledgers" class="btn-secondary">View Ledgers</a>
+      <form method="post" action="/profile" style="display:inline">
+        <input type="hidden" name="action" value="sync_now">
+        <button type="submit" class="btn-secondary" id="btn-sync-now">Sync Now</button>
+      </form>
+      <a href="/export/excel" class="btn-secondary">Export Excel</a>
+    </div>
+  </section>
+
+  <!-- Linked Accounts (#47) -->
+  <section id="linked-accounts">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem">
+      <h2 style="margin:0">Linked Accounts</h2>
+      <a href="/link/start" class="btn-primary" id="connect-bank-btn">+ Connect a bank</a>
+    </div>
+    {% if connections %}
+    <table class="connections-table">
+      <thead>
+        <tr>
+          <th>Institution</th>
+          <th>Status</th>
+          <th>Last Synced</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for conn in connections %}
+        <tr>
+          <td>{{ conn.institution_name if conn.institution_name else "—" }}</td>
+          <td>
+            <span class="status-pill status-{{ conn.status }}">
+              {{ conn.status }}
+            </span>
+          </td>
+          <td>
+            {% if conn.last_synced_at %}
+            <span class="datetime-local" data-utc="{{ conn.last_synced_at }}">Loading…</span>
+            {% else %}
+            Never
+            {% endif %}
+          </td>
+          <td class="action-cell">
+            {% if conn.status == "needs_reauth" %}
+            <form method="post" action="/profile" style="display:inline">
+              <input type="hidden" name="action" value="reconnect_bank">
+              <input type="hidden" name="bank_id" value="{{ conn.id }}">
+              <button type="submit" class="btn-warning">Reconnect</button>
+            </form>
+            {% endif %}
+            <form method="post" action="/profile" style="display:inline">
+              <input type="hidden" name="action" value="disconnect_bank">
+              <input type="hidden" name="bank_id" value="{{ conn.id }}">
+              <button type="submit" class="btn-danger"
+                onclick="return confirm('Disconnect this bank account?')">Disconnect</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- Per-account descriptions (#127) -->
+    {% if accounts %}
+    <div id="account-descriptions" style="margin-top:1rem">
+      <h3 style="font-size:1rem;margin-bottom:0.5rem">Account Descriptions</h3>
+      <p class="hint" style="margin-bottom:0.75rem">Optional context shown to the AI classifier when routing transactions from each account.</p>
+      {% for acct in accounts %}
+      <div class="account-desc-row" style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem">
+        <span style="min-width:14rem;font-weight:500">
+          {{ acct.institution_name or "—" }} &mdash; {% if acct.name %}{{ acct.name }}{% elif acct.subtype %}{{ acct.subtype|title }}{% if acct.mask %} ••••{{ acct.mask }}{% endif %}{% elif acct.type %}{{ acct.type|title }}{% if acct.mask %} ••••{{ acct.mask }}{% endif %}{% elif acct.mask %}Account ••••{{ acct.mask }}{% else %}Unknown Account{% endif %}
+          {% if acct.type and not acct.name %}<small class="hint"></small>{% elif acct.type %}<small class="hint">({{ acct.type }})</small>{% endif %}
+        </span>
+        <input
+          type="text"
+          id="desc-{{ acct.id }}"
+          class="account-desc-input"
+          data-account-id="{{ acct.id }}"
+          value="{{ acct.description or '' }}"
+          placeholder="e.g. Day-to-day spending"
+          style="flex:1;min-width:0"
+        >
+        <button
+          type="button"
+          class="btn-secondary btn-save-desc"
+          data-account-id="{{ acct.id }}"
+          style="white-space:nowrap"
+        >Save</button>
+        <span class="desc-feedback" id="fb-{{ acct.id }}" style="font-size:0.85em;min-width:4rem"></span>
+      </div>
+      {% endfor %}
+      {% if accounts | selectattr('name', 'none') | selectattr('mask', 'none') | list %}
+      <p class="hint" style="margin-top:0.5rem"><em>Note: some accounts are missing names. Run sync to refresh from Plaid.</em></p>
+      {% endif %}
+    </div>
+    <script>
+    (function() {
+      document.querySelectorAll('.btn-save-desc').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var id = btn.getAttribute('data-account-id');
+          var val = document.getElementById('desc-' + id).value;
+          var fb = document.getElementById('fb-' + id);
+          fetch('/profile/accounts/' + id + '/description', {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({description: val})
+          }).then(function(r) {
+            fb.textContent = r.ok ? 'Saved ✓' : 'Error';
+            fb.style.color = r.ok ? 'green' : 'red';
+            setTimeout(function(){ fb.textContent = ''; }, 2500);
+          }).catch(function(){
+            fb.textContent = 'Error'; fb.style.color = 'red';
+          });
+        });
+      });
+    })();
+    </script>
+    {% endif %}
+
+    {% else %}
+    <p class="hint">No bank accounts connected yet.</p>
+    {% endif %}
+
+  </section>
+</div>
+{% endblock %}

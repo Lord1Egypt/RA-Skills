@@ -1,35 +1,42 @@
 ---
-name: "fund-monitor"
+name: fund-monitor
 description: "基金监控Skill - 获取基金净值、涨跌数据，支持批量查询和监控"
-category: "other"
-source: "ClawHub"
-tags: [fund, monitor, stock]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fund-monitor"
-sourceUrl: "https://clawhub.ai/skills/fund-monitor"
+version: 1.0.0
 ---
 
-# fund-monitor
+# 基金监控Skill
 
-> 基金监控Skill - 获取基金净值、涨跌数据，支持批量查询和监控
+## 能力概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fund-monitor`
-- **Source URL:** [https://clawhub.ai/skills/fund-monitor](https://clawhub.ai/skills/fund-monitor)
+本Skill用于获取基金净值、涨跌数据，支持：
+- 单只基金查询
+- 批量基金查询  
+- 持仓组合分析
+- 每日涨跌播报
 
-## Overview
+## 使用方法
 
+### 1. 查询单只基金
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fund-monitor
 ```
+查询 017745 基金的今日数据
+```
+
+### 2. 批量查询
+
+```
+查询以下基金的今日涨跌：017745, 002834, 018412
+```
+
+### 3. 持仓分析（需要提供持仓数据）
+
+```
+分析我的基金持仓：017745 27366元, 002834 15815元
+```
+
+## 注意事项
+
+- 免费数据源可能有延迟
+- 批量查询有频率限制
+- 需要网络连接
+- 支持A股公募基金（场外基金）

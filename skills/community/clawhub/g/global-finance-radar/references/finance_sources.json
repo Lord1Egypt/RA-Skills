@@ -1,0 +1,53 @@
+{
+  "data_sources": [
+    {"name": "IMF Data", "url": "https://www.imf.org/en/Data", "type": "macroeconomic", "coverage": "190 countries, GDP/CPI/BoP/fiscal"},
+    {"name": "World Bank Open Data", "url": "https://data.worldbank.org/", "type": "development", "coverage": "1400+ indicators, 217 economies"},
+    {"name": "Federal Reserve (FRED)", "url": "https://fred.stlouisfed.org/", "type": "central_bank", "coverage": "823K US + international time series"},
+    {"name": "ECB Statistical Data Warehouse", "url": "https://sdw.ecb.europa.eu/", "type": "central_bank", "coverage": "Euro area monetary/financial data"},
+    {"name": "BIS Statistics", "url": "https://www.bis.org/statistics/", "type": "central_bank", "coverage": "Global banking, OTC derivatives, credit"},
+    {"name": "OECD Data", "url": "https://data.oecd.org/", "type": "economic", "coverage": "38 members, key economic indicators"},
+    {"name": "Trading Economics", "url": "https://tradingeconomics.com/", "type": "aggregator", "coverage": "20M indicators, 196 countries"},
+    {"name": "Investing.com", "url": "https://www.investing.com/", "type": "market_data", "coverage": "Stocks, forex, commodities, bonds, crypto"},
+    {"name": "Yahoo Finance", "url": "https://finance.yahoo.com/", "type": "market_data", "coverage": "Global stocks, ETFs, indices, news"},
+    {"name": "World Gold Council", "url": "https://www.gold.org/goldhub/data", "type": "commodities", "coverage": "Gold supply/demand, reserves, ETFs"},
+    {"name": "OPEC Monthly Oil Market Report", "url": "https://www.opec.org/opec_web/en/publications/338.htm", "type": "commodities", "coverage": "Oil supply/demand, inventories, price"},
+    {"name": "CoinGecko", "url": "https://www.coingecko.com/", "type": "crypto", "coverage": "15K+ cryptocurrencies, 900+ exchanges"}
+  ],
+  "central_banks": [
+    {"bank": "Federal Reserve", "jurisdiction": "US", "rate": "Fed Funds Rate", "meeting_schedule": "8/year (FOMC)", "mandate": "Dual mandate (price stability + max employment)"},
+    {"bank": "European Central Bank", "jurisdiction": "Eurozone", "rate": "Deposit Facility Rate", "meeting_schedule": "8/year (Governing Council)", "mandate": "Price stability (~2% inflation)"},
+    {"bank": "Bank of England", "jurisdiction": "UK", "rate": "Bank Rate", "meeting_schedule": "8/year (MPC)", "mandate": "Price stability (~2% CPI)"},
+    {"bank": "Bank of Japan", "jurisdiction": "JP", "rate": "Policy Rate", "meeting_schedule": "8/year (Policy Board)", "mandate": "Price stability (~2% CPI)"},
+    {"bank": "People's Bank of China", "jurisdiction": "CN", "rate": "LPR (Loan Prime Rate)", "meeting_schedule": "Monthly (20th)", "mandate": "Currency stability + growth + employment"},
+    {"bank": "Reserve Bank of India", "jurisdiction": "IN", "rate": "Repo Rate", "meeting_schedule": "6/year (MPC)", "mandate": "Inflation target (4% ± 2%) + growth"},
+    {"bank": "Swiss National Bank", "jurisdiction": "CH", "rate": "Policy Rate", "meeting_schedule": "4/year", "mandate": "Price stability + economic development"},
+    {"bank": "Reserve Bank of Australia", "jurisdiction": "AU", "rate": "Cash Rate", "meeting_schedule": "8/year", "mandate": "Price stability + full employment + welfare"}
+  ],
+  "economic_indicators": [
+    {"name": "GDP Growth Rate", "frequency": "Quarterly", "source": "IMF/World Bank", "use": "Economic momentum"},
+    {"name": "CPI / Inflation Rate", "frequency": "Monthly", "source": "National statistical offices", "use": "Purchasing power, monetary policy"},
+    {"name": "Unemployment Rate", "frequency": "Monthly", "source": "ILO/National agencies", "use": "Labor market health"},
+    {"name": "Purchasing Managers Index (PMI)", "frequency": "Monthly", "source": "S&P Global / ISM", "use": "Manufacturing/services sentiment"},
+    {"name": "Balance of Trade", "frequency": "Monthly", "source": "Customs agencies", "use": "Trade competitiveness"},
+    {"name": "Government Debt-to-GDP", "frequency": "Annual/Quarterly", "source": "IMF/WB", "use": "Fiscal sustainability"},
+    {"name": "Foreign Exchange Reserves", "frequency": "Monthly", "source": "Central banks", "use": "Currency defense capacity"},
+    {"name": "Yield Curve (2s10s spread)", "frequency": "Daily", "source": "Treasury/Central banks", "use": "Recession probability"},
+    {"name": "VIX / Volatility Index", "frequency": "Daily", "source": "CBOE", "use": "Market fear gauge"}
+  ],
+  "asset_classes": [
+    {"class": "Equities", "instruments": ["Individual stocks", "ETFs", "Index futures", "ADR/GDR"], "global_indices": ["S&P 500", "FTSE 100", "Nikkei 225", "CSI 300", "Nifty 50", "DAX", "CAC 40", "Hang Seng"]},
+    {"class": "Fixed Income", "instruments": ["Government bonds", "Corporate bonds", "MBS", "TIPS/Inflation-linked"], "benchmarks": ["US 10Y Treasury", "Bund 10Y", "JGB 10Y", "UK Gilt 10Y"]},
+    {"class": "Forex", "instruments": ["EUR/USD", "USD/JPY", "GBP/USD", "USD/CNY", "USD/INR", "USD/CHF", "AUD/USD", "DXY Index"], "drivers": ["Rate differentials", "Trade balances", "Risk sentiment", "Capital flows"]},
+    {"class": "Commodities", "instruments": ["Crude Oil (WTI/Brent)", "Natural Gas", "Gold", "Silver", "Copper", "Lithium", "Agricultural (corn/wheat/soy)"], "drivers": ["Supply disruptions", "Geopolitics", "Weather", "Industrial demand"]},
+    {"class": "Cryptocurrencies", "instruments": ["Bitcoin (BTC)", "Ethereum (ETH)", "Stablecoins (USDC/USDT)", "Layer 2 tokens"], "regulatory_status": "Varies by jurisdiction"}
+  ],
+  "analysis_frameworks": [
+    {"name": "DCF Valuation", "use": "Intrinsic value estimation", "inputs": ["Free cash flow projections", "WACC/discount rate", "Terminal growth rate"]},
+    {"name": "PE / EV-EBITDA Comparable Analysis", "use": "Relative valuation", "inputs": ["Peer group multiples", "Growth adjustments"]},
+    {"name": "DuPont Analysis", "use": "ROE decomposition", "inputs": ["Net margin", "Asset turnover", "Equity multiplier"]},
+    {"name": "Yield Curve Analysis", "use": "Recession forecasting", "inputs": ["2Y/10Y spread", "Fed funds futures", "Forward rates"]},
+    {"name": "Purchasing Power Parity (PPP)", "use": "Long-term fair FX", "inputs": ["CPI baskets", "Big Mac Index", "OECD PPP data"]},
+    {"name": "CFA Ethics & Professional Standards", "use": "Investment analysis guardrails", "principles": ["Duty of care", "Suitability", "Disclosure", "Fair dealing"]}
+  ]
+}
+（内容由AI生成，仅供参考）

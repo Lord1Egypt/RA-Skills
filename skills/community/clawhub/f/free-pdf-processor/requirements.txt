@@ -1,0 +1,21 @@
+# PDF 处理技能依赖
+# 安装: pip install -r requirements.txt
+
+# 核心 PDF 处理
+pymupdf>=1.23.0
+pdfplumber>=0.10.0
+
+# Word/Excel 转换
+python-docx>=1.1.0
+openpyxl>=3.1.0
+
+# 图片处理
+Pillow>=10.0.0
+
+# 可选: OCR 支持
+# pytesseract>=0.3.10
+# tessdata>=4.1.0
+
+# 测试
+pytest>=7.4.0
+pytest-cov>=4.1.0

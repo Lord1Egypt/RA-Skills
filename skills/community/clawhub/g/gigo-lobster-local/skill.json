@@ -1,0 +1,22 @@
+{
+  "name": "gigo-lobster-local",
+  "entry": "run_local.py",
+  "runtime": "python",
+  "python_version": "3.11",
+  "triggers": {
+    "zh": [
+      "本地试吃龙虾",
+      "离线试吃龙虾",
+      "只在本地评测龙虾",
+      "龙虾本地模式",
+      "龙虾本地自测"
+    ],
+    "en": [
+      "local lobster taste",
+      "offline lobster taste",
+      "run lobster locally",
+      "local lobster eval",
+      "local only lobster benchmark"
+    ]
+  }
+}

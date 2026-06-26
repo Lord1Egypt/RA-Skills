@@ -1,0 +1,298 @@
+name: Deploy Pipeline
+
+on:
+  push:
+    tags:
+      - 'v*'  # Deploy on version tags
+  workflow_dispatch:  # Manual trigger
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+      version:
+        description: 'Version to deploy (default: latest tag)'
+        required: false
+        type: string
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  prepare:
+    name: Prepare Deployment
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      environment: ${{ steps.env.outputs.environment }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Determine version
+      id: version
+      run: |
+        if [[ "${{ github.event.inputs.version }}" != "" ]]; then
+          echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+        elif [[ "${{ github.ref }}" == refs/tags/* ]]; then
+          echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        else
+          echo "version=$(git describe --tags --always)" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Determine environment
+      id: env
+      run: |
+        if [[ "${{ github.event.inputs.environment }}" != "" ]]; then
+          echo "environment=${{ github.event.inputs.environment }}" >> $GITHUB_OUTPUT
+        elif [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+          echo "environment=production" >> $GITHUB_OUTPUT
+        else
+          echo "environment=staging" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Log deployment info
+      run: |
+        echo "🚀 Deployment Information:"
+        echo "Version: ${{ steps.version.outputs.version }}"
+        echo "Environment: ${{ steps.env.outputs.environment }}"
+        echo "Repository: ${{ github.repository }}"
+        echo "Triggered by: ${{ github.actor }}"
+
+  build:
+    name: Build and Push Container
+    runs-on: ubuntu-latest
+    needs: prepare
+    if: needs.prepare.outputs.environment == 'staging' || needs.prepare.outputs.environment == 'production'
+    
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    
+    - name: Log in to Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=ref,event=tag
+          type=sha,prefix={{branch}}-
+          latest=${{ needs.prepare.outputs.environment == 'production' }}
+    
+    - name: Build and push
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [prepare, build]
+    if: needs.prepare.outputs.environment == 'staging'
+    environment: staging
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup deployment
+      run: |
+        echo "🚀 Deploying to Staging Environment"
+        echo "Version: ${{ needs.prepare.outputs.version }}"
+        
+        # Add your staging deployment commands here
+        # Example for Kubernetes:
+        # kubectl set image deployment/staging-app app=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.prepare.outputs.version }}
+        # kubectl rollout status deployment/staging-app
+        
+        echo "✅ Staging deployment initiated"
+    
+    - name: Run smoke tests
+      run: |
+        echo "Running smoke tests on staging..."
+        # Add your smoke test commands here
+        # Example: curl -f https://staging.example.com/health
+        sleep 10
+        echo "✅ Smoke tests passed"
+    
+    - name: Notify staging deployment
+      uses: 8398a7/action-slack@v3
+      with:
+        status: success
+        text: |
+          🚀 Staging Deployment Complete
+          Version: ${{ needs.prepare.outputs.version }}
+          Commit: ${{ github.sha }}
+          By: ${{ github.actor }}
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_STAGING }}
+
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [prepare, build]
+    if: needs.prepare.outputs.environment == 'production'
+    environment: production
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Wait for approval
+      if: github.event_name != 'workflow_dispatch'
+      run: |
+        echo "⏳ Waiting for manual approval..."
+        echo "Production deployment requires manual approval"
+        echo "Please approve the deployment in the GitHub UI"
+    
+    - name: Deploy to production
+      run: |
+        echo "🚀 DEPLOYING TO PRODUCTION"
+        echo "Version: ${{ needs.prepare.outputs.version }}"
+        echo "This is a production deployment - proceed with caution!"
+        
+        # Add your production deployment commands here
+        # Example for Kubernetes with blue-green:
+        # kubectl apply -f k8s/production/
+        # kubectl rollout status deployment/production-app
+        
+        echo "✅ Production deployment initiated"
+    
+    - name: Run comprehensive tests
+      run: |
+        echo "Running comprehensive tests on production..."
+        # Add your production test commands here
+        # Example: npm run test:e2e -- --env production
+        sleep 15
+        echo "✅ All tests passed"
+    
+    - name: Update deployment status
+      run: |
+        echo "📊 Deployment Summary:"
+        echo "Environment: Production"
+        echo "Version: ${{ needs.prepare.outputs.version }}"
+        echo "Status: ✅ Success"
+        echo "Time: $(date)"
+    
+    - name: Create GitHub release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ needs.prepare.outputs.version }}
+        name: Release ${{ needs.prepare.outputs.version }}
+        body: |
+          ## What's Changed
+          
+          Production deployment completed successfully.
+          
+          ### Deployment Details
+          - Version: ${{ needs.prepare.outputs.version }}
+          - Environment: Production
+          - Deployed by: @${{ github.actor }}
+          - Time: $(date)
+          
+          ### Verification
+          - ✅ Build passed
+          - ✅ Tests passed
+          - ✅ Security scans passed
+          - ✅ Deployment completed
+        draft: false
+        prerelease: false
+    
+    - name: Notify production deployment
+      uses: 8398a7/action-slack@v3
+      with:
+        status: success
+        text: |
+          🎉 PRODUCTION DEPLOYMENT COMPLETE
+          Version: ${{ needs.prepare.outputs.version }}
+          Commit: ${{ github.sha }}
+          Deployed by: ${{ github.actor }}
+          Time: $(date)
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_PRODUCTION }}
+
+  rollback:
+    name: Rollback Procedure
+    runs-on: ubuntu-latest
+    if: failure()
+    needs: [deploy-staging, deploy-production]
+    
+    steps:
+    - name: Check rollback needed
+      run: |
+        echo "⚠️ Deployment failed! Checking if rollback is needed..."
+        
+        # Determine which environment failed
+        if [[ "${{ needs.deploy-staging.result }}" == "failure" ]]; then
+          echo "Staging deployment failed"
+          ENV="staging"
+        elif [[ "${{ needs.deploy-production.result }}" == "failure" ]]; then
+          echo "Production deployment failed"
+          ENV="production"
+        else
+          echo "No rollback needed"
+          exit 0
+        fi
+        
+        echo "Initiating rollback for $ENV environment..."
+        
+        # Add your rollback commands here
+        # Example: kubectl rollout undo deployment/$ENV-app
+        
+        echo "✅ Rollback initiated for $ENV"
+    
+    - name: Notify rollback
+      uses: 8398a7/action-slack@v3
+      with:
+        status: failure
+        text: |
+          🔄 Rollback Initiated
+          Environment: ${{ needs.prepare.outputs.environment }}
+          Version: ${{ needs.prepare.outputs.version }}
+          Reason: Deployment failed
+          Action: Automatic rollback initiated
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  cleanup:
+    name: Cleanup
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Cleanup old artifacts
+      run: |
+        echo "🧹 Cleaning up old artifacts..."
+        # Cleanup commands here
+    
+    - name: Update deployment records
+      run: |
+        echo "📝 Updating deployment records..."
+        # Update deployment tracking

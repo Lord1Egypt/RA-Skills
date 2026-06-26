@@ -1,0 +1,155 @@
+{
+  "name": "github-repo-deep-dive",
+  "version": "1.0.0",
+  "description": "GitHub 仓库深度技术解读工作流 — 自动采集、分析、摘要并生成可视化报告",
+  "combo": true,
+  "category": "开发",
+  "channels": ["feishu", "命令行"],
+
+  "dependencies": [
+    "github",
+    "summarize",
+    "Agent-Reach",
+    "card-renderer"
+  ],
+
+  "steps": [
+    {
+      "step": 1,
+      "skill": "github",
+      "name": "获取仓库元数据",
+      "description": "使用 gh CLI 获取仓库基本信息：描述、语言、Stars、Fork 数、许可证等",
+      "commands": [
+        "gh repo view {owner}/{repo} --json name,description,language,stargazerCount,pushedAt,license",
+        "gh api repos/{owner}/{repo}/languages --jq '.'",
+        "gh api repos/{owner}/{repo}/contents --jq 'map({name, type})'"
+      ],
+      "output": {
+        "metadata": "仓库基础信息 JSON",
+        "fileTree": "根目录文件列表",
+        "languages": "语言占比"
+      }
+    },
+    {
+      "step": 2,
+      "skill": "github",
+      "name": "读取 README 和关键文档",
+      "description": "获取仓库 README 内容、CHANGELOG、CONTRIBUTING 等关键文档",
+      "commands": [
+        "gh api repos/{owner}/{repo}/readme --jq '.content' | base64 -d > /tmp/repo_readme.md"
+      ],
+      "output": {
+        "readme": "README.md 原始内容",
+        "readmeFile": "/tmp/repo_readme.md"
+      }
+    },
+    {
+      "step": 3,
+      "skill": "summarize",
+      "name": "AI 深度摘要 README",
+      "description": "使用 summarize CLI 对 README 进行深度摘要，提炼技术亮点、架构模式、使用限制",
+      "commands": [
+        "summarize /tmp/repo_readme.md --model google/gemini-3-flash-preview",
+        "summarize \"https://github.com/{owner}/{repo}\" --model google/gemini-3-flash-preview"
+      ],
+      "output": {
+        "summary": "README 深度摘要文本",
+        "highlights": "技术亮点列表"
+      }
+    },
+    {
+      "step": 4,
+      "skill": "Agent-Reach",
+      "name": "聚合社区评价和舆情分析",
+      "description": "搜索项目在 Twitter/X、Reddit HackerNews、GitHub Discussions 的真实用户评价",
+      "commands": [
+        "使用 Agent-Reach 搜索 Twitter/X: '{repo} review 2025 OR 2026'",
+        "使用 Agent-Reach 搜索 Reddit: '{repo} discussion pros cons'",
+        "使用 Agent-Reach 搜索 GitHub: '{repo} issues architecture feedback'"
+      ],
+      "output": {
+        "twitter_mentions": "Twitter 评价摘要",
+        "reddit_discussions": "Reddit 讨论要点",
+        "github_issues": "GitHub Issues 反馈摘要",
+        "community_sentiment": "社区整体情绪判断"
+      }
+    },
+    {
+      "step": 5,
+      "skill": "github",
+      "name": "分析核心文件和依赖",
+      "description": "分析 package.json / requirements.txt / Cargo.toml 等关键配置文件，判定技术栈",
+      "commands": [
+        "gh api repos/{owner}/{repo}/contents/package.json --jq '.content' | base64 -d 2>/dev/null || echo 'No package.json'",
+        "gh api repos/{owner}/{repo}/contents/Cargo.toml --jq '.content' | base64 -d 2>/dev/null || echo 'No Cargo.toml'",
+        "gh api repos/{owner}/{repo}/contents/go.mod --jq '.content' | base64 -d 2>/dev/null || echo 'No go.mod'"
+      ],
+      "output": {
+        "tech_stack": "技术栈列表",
+        "key_dependencies": "核心依赖",
+        "architecture_pattern": "架构模式判断"
+      }
+    },
+    {
+      "step": 6,
+      "skill": "card-renderer",
+      "name": "生成架构解读知识卡片",
+      "description": "使用 Mac Pro 极客风生成小红书风格知识卡片（封面 + 详情页）",
+      "commands": [
+        "python3 scripts/render_mac_pro_card.py --title '{repo_name}' --subtitle '{one_line_description}' --stars '{star_count}' --lang '{primary_language}' --output /tmp/{repo_name}_cover.png",
+        "python3 scripts/render_mac_pro_card.py --content '{architecture_summary}' --output /tmp/{repo_name}_detail.png"
+      ],
+      "output": {
+        "cover_card": "/tmp/{repo_name}_cover.png",
+        "detail_card": "/tmp/{repo_name}_detail.png"
+      }
+    },
+    {
+      "step": 7,
+      "skill": "output",
+      "name": "生成结构化 Markdown 报告",
+      "description": "汇总以上所有信息，生成完整 Markdown 分析报告",
+      "template": "github-repo-report.md",
+      "output": {
+        "report": "{repo_name}-deep-dive.md",
+        "location": "当前工作目录"
+      }
+    }
+  ],
+
+  "triggers": [
+    "分析 {owner}/{repo}",
+    "解读 GitHub 项目 {url}",
+    "调研 {project} 的技术架构",
+    "对比 {repo1} 和 {repo2}",
+    "生成 {project} 的技术报告",
+    "GitHub 项目尽调 {url}"
+  ],
+
+  "variables": {
+    "owner": "GitHub 用户/组织名",
+    "repo": "仓库名称",
+    "url": "完整 GitHub URL"
+  },
+
+  "outputs": {
+    "markdown_report": "结构化 Markdown 技术分析报告",
+    "cover_card_image": "封面知识卡片图片",
+    "detail_card_image": "详情页知识卡片图片",
+    "community_summary": "社区舆情摘要"
+  },
+
+  "error_handling": {
+    "private_repo": "提示用户该仓库为私有仓库，部分数据无法获取",
+    "rate_limit": "gh CLI 速率限制时自动等待后重试（最多3次）",
+    "no_readme": "若无 README，尝试从 gh api 获取 description 并标记",
+    "card_render_fail": "卡片渲染失败时仍输出 Markdown 报告"
+  },
+
+  "metadata": {
+    "author": "OpenClaw Agent",
+    "tags": ["github", "架构分析", "技术调研", "开源", "代码审查"],
+    "created": "2026-04-27",
+    "estimated_time": "3-5 分钟（单个仓库）"
+  }
+}

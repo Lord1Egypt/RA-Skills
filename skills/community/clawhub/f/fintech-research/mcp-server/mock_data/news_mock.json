@@ -1,0 +1,45 @@
+{
+  "articles": [
+    {
+      "title": "Tencent Q1 Earnings Beat Expectations on Gaming Recovery",
+      "source": "Reuters",
+      "published_at": "2025-05-14T08:30:00Z",
+      "url": "https://www.reuters.com/article/tencent-earnings",
+      "sentiment_score": 0.67,
+      "mock": true
+    },
+    {
+      "title": "Alibaba Cloud Revenue Surges 28% on AI Demand",
+      "source": "Bloomberg",
+      "published_at": "2025-05-13T12:15:00Z",
+      "url": "https://www.bloomberg.com/article/alibaba-cloud",
+      "sentiment_score": 0.75,
+      "mock": true
+    },
+    {
+      "title": "Hong Kong Market Rally Fades as China Growth Concerns Persist",
+      "source": "Financial Times",
+      "published_at": "2025-05-12T09:45:00Z",
+      "url": "https://www.ft.com/article/hk-market-rally",
+      "sentiment_score": -0.33,
+      "mock": true
+    },
+    {
+      "title": "BYD Expands European EV Market Share with New Factory",
+      "source": "Nikkei Asia",
+      "published_at": "2025-05-11T14:20:00Z",
+      "url": "https://www.nikkei.com/article/byd-europe",
+      "sentiment_score": 0.80,
+      "mock": true
+    },
+    {
+      "title": "Fed Signals Potential Rate Cut in September on Cooling Inflation",
+      "source": "Wall Street Journal",
+      "published_at": "2025-05-10T11:00:00Z",
+      "url": "https://www.wsj.com/article/fed-rate-cut",
+      "sentiment_score": 0.50,
+      "mock": true
+    }
+  ],
+  "mock": true
+}

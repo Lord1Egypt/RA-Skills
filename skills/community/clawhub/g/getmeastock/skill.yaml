@@ -1,0 +1,22 @@
+name: give-me-a-stock
+version: 18.0.0
+author: prana
+description: 全面的A股股票分析工具，提供7大核心模块（核心财务、技术指标、估值分析、股东持股、市场热度、券商盈利预测、K线图表）+ 财报、公告、新闻资讯和交易所互动问答的多维度分析。
+license: MIT
+permissions:
+- network
+- filesystem
+entryPoint:
+  type: shell
+  path: scripts/prana_skill_client.py
+prana_runners:
+  python: scripts/prana_skill_client.py
+  node: scripts/prana_skill_client.js
+  node_note: 包根目录先执行 npm install（解析 SKILL.md 需 yaml 依赖）
+paid_skill:
+  order_skills_url: https://claw-uat.ebonex.io/api/order/skills
+  after_payment_zh: 付费技能：支付成功后访问 https://claw-uat.ebonex.io/api/order/skills 获取购买记录；请求头
+    x-api-key，值为 public_key:secret_key（与 Claw API 一致）。
+  authentication:
+    header: x-api-key
+    value_format: public_key:secret_key

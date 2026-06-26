@@ -1,0 +1,282 @@
+{
+    "frontend": {
+        "react": {
+            "description": "React 是一个用于构建用户界面的 JavaScript 库",
+            "pros": ["组件化开发", "虚拟DOM", "丰富的生态系统", "适合大型应用", "React 18新特性"],
+            "cons": ["学习曲线较陡", "需要额外的状态管理库"],
+            "use_cases": ["单页应用", "复杂的用户界面", "需要高性能的应用"],
+            "popularity": 95,
+            "community": 90,
+            "maintenance": 85
+        },
+        "vue": {
+            "description": "Vue 是一个渐进式 JavaScript 框架",
+            "pros": ["易于学习", "双向数据绑定", "轻量级", "文档完善", "Vue 3组合式API"],
+            "cons": ["生态系统相对较小", "大型项目经验较少"],
+            "use_cases": ["中小型应用", "快速原型开发", "需要简单上手的场景"],
+            "popularity": 85,
+            "community": 80,
+            "maintenance": 85
+        },
+        "angular": {
+            "description": "Angular 是一个由 Google 维护的前端框架",
+            "pros": ["完整的框架", "TypeScript 支持", "强大的 CLI", "适合大型团队"],
+            "cons": ["学习曲线陡峭", "体积较大", "更新频繁"],
+            "use_cases": ["大型企业应用", "需要严格架构的项目", "团队协作项目"],
+            "popularity": 75,
+            "community": 70,
+            "maintenance": 90
+        },
+        "svelte": {
+            "description": "Svelte 是一个构建用户界面的全新方法",
+            "pros": ["编译时优化", "更小的 bundle 体积", "简洁的语法", "响应式系统"],
+            "cons": ["生态系统较小", "企业采用率较低", "社区支持有限"],
+            "use_cases": ["性能敏感的应用", "小型项目", "快速开发"],
+            "popularity": 65,
+            "community": 60,
+            "maintenance": 75
+        },
+        "solidjs": {
+            "description": "SolidJS 是一个高性能的前端框架",
+            "pros": ["卓越性能", "类型安全", "反应式编程", "细粒度更新"],
+            "cons": ["生态系统相对较新", "企业采用率较低"],
+            "use_cases": ["高性能应用", "需要极致性能的场景"],
+            "popularity": 55,
+            "community": 50,
+            "maintenance": 70
+        },
+        "nextjs": {
+            "description": "Next.js 是一个基于 React 的生产框架",
+            "pros": ["服务端渲染", "静态站点生成", "API路由", "优秀的开发体验"],
+            "cons": ["学习曲线", "部署配置"],
+            "use_cases": ["生产级React应用", "SEO重要的应用"],
+            "popularity": 90,
+            "community": 85,
+            "maintenance": 85
+        },
+        "nuxtjs": {
+            "description": "Nuxt.js 是一个基于 Vue 的现代 Web 应用框架",
+            "pros": ["服务端渲染", "自动路由", "模块化架构", "优秀的开发体验"],
+            "cons": ["学习曲线", "部署配置"],
+            "use_cases": ["生产级Vue应用", "SEO重要的应用"],
+            "popularity": 75,
+            "community": 70,
+            "maintenance": 80
+        }
+    },
+    "backend": {
+        "nodejs": {
+            "description": "Node.js 是基于 Chrome V8 引擎的 JavaScript 运行环境",
+            "pros": ["使用 JavaScript", "非阻塞 I/O", "丰富的包生态", "适合实时应用", "Nest.js生态"],
+            "cons": ["单线程模型", "回调地狱", "内存使用较高"],
+            "use_cases": ["实时应用", "API 开发", "微服务", "全栈 JavaScript"],
+            "popularity": 90,
+            "community": 85,
+            "maintenance": 80
+        },
+        "python": {
+            "description": "Python 是一种广泛使用的高级编程语言",
+            "pros": ["简洁易读", "丰富的库", "强大的数据科学生态", "快速开发", "FastAPI/Django"],
+            "cons": ["性能相对较低", "GIL 限制并发", "部署相对复杂"],
+            "use_cases": ["数据科学", "机器学习", "后端 API", "脚本工具"],
+            "popularity": 95,
+            "community": 90,
+            "maintenance": 85
+        },
+        "java": {
+            "description": "Java 是一种广泛使用的计算机编程语言",
+            "pros": ["跨平台", "强类型", "成熟的生态", "企业级支持", "Spring Boot"],
+            "cons": ["语法 verbose", "启动时间长", "内存占用大"],
+            "use_cases": ["企业应用", "大型系统", "Android 开发", "微服务"],
+            "popularity": 85,
+            "community": 80,
+            "maintenance": 90
+        },
+        "go": {
+            "description": "Go 是 Google 开发的开源编程语言",
+            "pros": ["高性能", "简洁语法", "内置并发", "快速编译", "Gin/Echo框架"],
+            "cons": ["生态系统相对年轻", "错误处理 verbose", "泛型支持有限"],
+            "use_cases": ["高并发服务", "微服务", "系统编程", "云原生应用"],
+            "popularity": 80,
+            "community": 75,
+            "maintenance": 85
+        },
+        "rust": {
+            "description": "Rust 是一个系统编程语言",
+            "pros": ["内存安全", "高性能", "零成本抽象", "丰富的类型系统"],
+            "cons": ["学习曲线陡峭", "生态系统相对年轻", "编译时间较长"],
+            "use_cases": ["系统编程", "高性能服务", "WebAssembly"],
+            "popularity": 60,
+            "community": 55,
+            "maintenance": 75
+        },
+        "kotlin": {
+            "description": "Kotlin 是一个现代的、静态类型的编程语言",
+            "pros": ["与Java互操作", "简洁语法", "类型安全", "Ktor/Spring支持"],
+            "cons": ["生态系统相对较小", "学习曲线"],
+            "use_cases": ["Android开发", "后端服务", "跨平台开发"],
+            "popularity": 70,
+            "community": 65,
+            "maintenance": 80
+        },
+        "deno": {
+            "description": "Deno 是一个现代的JavaScript/TypeScript运行环境",
+            "pros": ["TypeScript原生支持", "安全沙箱", "内置工具", "ES模块"],
+            "cons": ["生态系统相对较小", "企业采用率较低"],
+            "use_cases": ["工具开发", "现代JavaScript应用"],
+            "popularity": 50,
+            "community": 45,
+            "maintenance": 70
+        }
+    },
+    "database": {
+        "mongodb": {
+            "description": "MongoDB 是一个基于文档的 NoSQL 数据库",
+            "pros": ["灵活的文档模型", "水平扩展", "快速开发", "适合非结构化数据"],
+            "cons": ["查询性能有限", "占用空间大", "事务支持有限"],
+            "use_cases": ["内容管理系统", "移动应用后端", "实时分析", "物联网数据"],
+            "popularity": 85,
+            "community": 80,
+            "maintenance": 80
+        },
+        "postgresql": {
+            "description": "PostgreSQL 是一个功能强大的开源关系型数据库",
+            "pros": ["强大的 SQL 支持", "可靠性高", "高级特性丰富", "扩展性好"],
+            "cons": ["配置复杂", "性能调优需要专业知识", "资源消耗较大"],
+            "use_cases": ["企业应用", "数据仓库", "需要复杂查询的场景", "金融系统"],
+            "popularity": 80,
+            "community": 75,
+            "maintenance": 85
+        },
+        "mysql": {
+            "description": "MySQL 是一个流行的关系型数据库管理系统",
+            "pros": ["易于使用", "性能稳定", "社区支持广泛", "适合 web 应用"],
+            "cons": ["高级特性相对较少", "扩展性有限", "开源版本功能受限"],
+            "use_cases": ["Web 应用", "内容管理系统", "电子商务", "小型企业应用"],
+            "popularity": 90,
+            "community": 85,
+            "maintenance": 80
+        },
+        "redis": {
+            "description": "Redis 是一个开源的内存数据结构存储",
+            "pros": ["极高的性能", "丰富的数据结构", "支持持久化", "适合缓存"],
+            "cons": ["内存消耗大", "数据量受内存限制", "复杂查询支持有限"],
+            "use_cases": ["缓存", "会话存储", "实时分析", "消息队列"],
+            "popularity": 85,
+            "community": 80,
+            "maintenance": 80
+        },
+        "cockroachdb": {
+            "description": "CockroachDB 是一个云原生分布式SQL数据库",
+            "pros": ["分布式架构", "强一致性", "PostgreSQL兼容", "高可用性"],
+            "cons": ["资源消耗较高", "学习曲线", "部署复杂"],
+            "use_cases": ["云原生应用", "高可用服务", "地理分布数据"],
+            "popularity": 60,
+            "community": 55,
+            "maintenance": 75
+        },
+        "influxdb": {
+            "description": "InfluxDB 是一个开源时序数据库",
+            "pros": ["专为时序数据设计", "高性能写入", "内置分析", "丰富的查询语言"],
+            "cons": ["存储开销", "集群方案复杂"],
+            "use_cases": ["监控数据", "物联网数据", "应用指标"],
+            "popularity": 70,
+            "community": 65,
+            "maintenance": 75
+        }
+    },
+    "devops": {
+        "docker": {
+            "description": "Docker 是一个开源的应用容器引擎",
+            "pros": ["容器化部署", "一致的环境", "快速启动", "轻量级"],
+            "cons": ["学习曲线", "存储管理", "网络配置"],
+            "use_cases": ["应用容器化", "开发环境", "微服务部署"],
+            "popularity": 95,
+            "community": 90,
+            "maintenance": 85
+        },
+        "kubernetes": {
+            "description": "Kubernetes 是一个容器编排平台",
+            "pros": ["自动扩展", "服务发现", "负载均衡", "自动故障恢复"],
+            "cons": ["学习曲线陡峭", "配置复杂", "资源消耗高"],
+            "use_cases": ["容器编排", "微服务架构", "云原生应用"],
+            "popularity": 90,
+            "community": 85,
+            "maintenance": 85
+        },
+        "gitlab": {
+            "description": "GitLab 是一个完全集成的DevOps平台",
+            "pros": ["完整的CI/CD", "代码仓库", "项目管理", "一站式解决方案"],
+            "cons": ["资源消耗", "配置复杂"],
+            "use_cases": ["DevOps实践", "团队协作", "项目管理"],
+            "popularity": 80,
+            "community": 75,
+            "maintenance": 85
+        },
+        "github_actions": {
+            "description": "GitHub Actions 是GitHub提供的CI/CD平台",
+            "pros": ["与GitHub集成", "自动化工作流", "丰富的Action市场"],
+            "cons": ["配置学习", "运行成本"],
+            "use_cases": ["CI/CD", "自动化部署", "项目管理"],
+            "popularity": 85,
+            "community": 80,
+            "maintenance": 85
+        },
+        "terraform": {
+            "description": "Terraform 是一个基础设施即代码工具",
+            "pros": ["多云支持", "版本控制", "可重用模块", "状态管理"],
+            "cons": ["学习曲线", "状态管理", "复杂配置"],
+            "use_cases": ["基础设施管理", "多云部署", "环境标准化"],
+            "popularity": 75,
+            "community": 70,
+            "maintenance": 80
+        }
+    },
+    "ai_ml": {
+        "tensorflow": {
+            "description": "TensorFlow 是一个开源的机器学习框架",
+            "pros": ["广泛的生态系统", "生产就绪", "可视化工具", "分布式训练"],
+            "cons": ["学习曲线", "计算资源消耗", "版本兼容性"],
+            "use_cases": ["深度学习", "计算机视觉", "自然语言处理"],
+            "popularity": 85,
+            "community": 80,
+            "maintenance": 85
+        },
+        "pytorch": {
+            "description": "PyTorch 是一个开源的机器学习框架",
+            "pros": ["动态计算图", "易于调试", "Python优先", "研究友好"],
+            "cons": ["生产部署", "移动支持"],
+            "use_cases": ["深度学习研究", "计算机视觉", "自然语言处理"],
+            "popularity": 90,
+            "community": 85,
+            "maintenance": 85
+        },
+        "scikit_learn": {
+            "description": "Scikit-learn 是一个Python机器学习库",
+            "pros": ["简单易用", "丰富的算法", "优秀的文档", "数据处理工具"],
+            "cons": ["不适合深度学习", "性能限制"],
+            "use_cases": ["传统机器学习", "数据预处理", "快速原型"],
+            "popularity": 85,
+            "community": 80,
+            "maintenance": 80
+        },
+        "openai": {
+            "description": "OpenAI API提供AI模型访问",
+            "pros": ["强大的模型", "易于集成", "持续更新", "多种模型选择"],
+            "cons": ["API成本", "依赖网络", "模型限制"],
+            "use_cases": ["文本生成", "代码生成", "内容理解", "对话系统"],
+            "popularity": 95,
+            "community": 90,
+            "maintenance": 85
+        },
+        "langchain": {
+            "description": "LangChain 是一个用于开发由语言模型驱动的应用程序的框架",
+            "pros": ["模块化设计", "集成性强", "丰富的用例", "文档完善"],
+            "cons": ["快速变化", "学习曲线"],
+            "use_cases": ["聊天机器人", "问答系统", "文档分析", "代码助手"],
+            "popularity": 80,
+            "community": 75,
+            "maintenance": 75
+        }
+    }
+}

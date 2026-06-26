@@ -1,0 +1,7 @@
+# 核心依赖
+# 无外部依赖，纯Python实现
+
+# 可选依赖（用于大模型调用）
+# openai>=1.0.0
+# anthropic>=0.18.0
+# google-generativeai>=0.3.0

@@ -1,0 +1,9 @@
+{
+  "monitor_times": ["19:31"],
+  "default_ma_period": 20,
+  "feishu_webhook": "https://open.feishu.cn/open-apis/bot/v2/hook/d8c64276-f53b-4c76-b88f-a1e3e04e6b62",
+  "webhook_url": "https://open.feishu.cn/open-apis/bot/v2/hook/d8c64276-f53b-4c76-b88f-a1e3e04e6b62",
+  "tasks": {},
+  "alert": {"default_threshold": 3, "mode": "close"},
+  "backup": {"format": "csv", "path": "", "auto_backup": false}
+}

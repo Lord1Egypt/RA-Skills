@@ -1,35 +1,29 @@
 ---
-name: "Geo Seo"
-description: "GEO SEO — Generative Engine Optimization reference. Complete guide for optimizing websites for AI search engines. Covers llms.txt spec, GEO checklist, automa..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/geo-seo"
-sourceUrl: "https://clawhub.ai/skills/geo-seo"
+name: geo-seo
+version: 1.2.0
+description: >
+  GEO SEO — Generative Engine Optimization reference. Complete
+  guide for optimizing websites for AI search engines. Covers
+  llms.txt spec, GEO checklist, automated scanning, AI bot
+  tracking with nginx, AEO (Answer Engine Optimization) for
+  getting cited by ChatGPT/Perplexity/Gemini, citation
+  monitoring, and content strategy for AI-powered search.
+author: loutai0307-prog
+homepage: https://bytesagain.com
+tags: [geo, seo, ai-search, llms-txt, aeo, optimization]
 ---
 
-# Geo Seo
+# GEO SEO Reference
 
-> GEO SEO — Generative Engine Optimization reference. Complete guide for optimizing websites for AI search engines. Covers llms.txt spec, GEO checklist, automa...
+Generative Engine Optimization — get discovered by AI.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/geo-seo`
-- **Source URL:** [https://clawhub.ai/skills/geo-seo](https://clawhub.ai/skills/geo-seo)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/geo-seo
-```
+| Command | Description |
+|---------|-------------|
+| `intro` | GEO vs SEO, why it matters |
+| `llms` | llms.txt spec, best practices |
+| `checklist` | Full optimization checklist |
+| `monitor` | Auto scanning, citation tracking |
+| `tracking` | AI bot detection, nginx analysis |
+| `aeo` | Answer Engine Optimization for AI citations |

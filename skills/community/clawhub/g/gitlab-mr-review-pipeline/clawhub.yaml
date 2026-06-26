@@ -1,0 +1,20 @@
+name: gitlab-mr-review-pipeline
+version: 1.0.0
+description: 自动化 GitLab MR 代码审核流水线。使用 AI 对 MR 进行代码审查，生成报告并邮件发送给提交人。
+author: milet_suki
+license: MIT
+
+dependencies:
+  - code-review
+  - md-to-pdf-advanced
+  - email-mail-master
+
+entry: scripts/gitlab-api.py
+tags:
+  - gitlab
+  - code-review
+  - mr
+  - automation
+  - email
+
+category: development

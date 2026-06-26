@@ -1,0 +1,25 @@
+{
+  "name": "fusion-bridge",
+  "version": "1.0.3",
+  "description": "Control Autodesk Fusion 360 via OpenClaw through a local HTTP bridge and the official Fusion add-in.",
+  "author": "Michael Beetz",
+  "license": "MIT",
+  "tags": [
+    "cad",
+    "autodesk",
+    "fusion360",
+    "automation",
+    "openclaw"
+  ],
+  "platforms": [
+    "linux",
+    "macos",
+    "windows"
+  ],
+  "dependencies": {
+    "bins": [
+      "python3",
+      "node"
+    ]
+  }
+}

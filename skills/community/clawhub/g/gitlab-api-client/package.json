@@ -1,0 +1,13 @@
+{
+  "name": "gitlab-client",
+  "version": "1.0.0",
+  "description": "GitLab REST API v4 CLI client for OpenCode",
+  "main": "gitlab-client.js",
+  "bin": {
+    "gitlab-client": "./gitlab-client.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  },
+  "license": "MIT"
+}

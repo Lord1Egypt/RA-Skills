@@ -1,0 +1,167 @@
+# GEO.SKILL ClawHub 发布配置
+# Version: 1.0.0
+
+metadata:
+  skill_name: geo-skill
+  display_name: "GEO.SKILL - 生成式引擎优化技能"
+  tagline: "让AI读懂并信任你的园区"
+  version: "1.0.0"
+  author: "OpenClaw AI Team"
+  author_url: "https://openclaw.ai"
+  license: "MIT-0"
+  created_date: "2025-01-15"
+  updated_date: "2025-01-15"
+  
+  # 技能分类
+  category:
+    primary: "Marketing & Growth"
+    secondary: "AI Optimization"
+    tags:
+      - GEO
+      - SEO
+      - AI-optimization
+      - llms.txt
+      - schema
+      - content-marketing
+      - 园区招商
+      - 生成式引擎
+
+  # 兼容版本
+  compatibility:
+    platform: "Coze"
+    min_version: "1.0.0"
+
+# 功能描述
+description:
+  short: "生成式引擎优化技能，帮助园区在AI搜索中获得更高曝光和可信度"
+  full: |
+    GEO.SKILL是一套完整的生成式引擎优化技能体系，专门为产业园区招商运营设计。
+    覆盖从基础设施部署（llms.txt、Schema）到内容工程生产，再到工具自动化和
+    运营监控的完整闭环，让AI系统能够准确理解和信任园区信息。
+  
+  features:
+    - name: "llms.txt生成器"
+      description: "一键生成符合规范的园区llms.txt文件"
+    - name: "Schema结构化数据"
+      description: "生成Organization、Product、Event三类JSON-LD代码"
+    - name: "问题图谱生成"
+      description: "基于园区信息自动生成50-100个核心问题"
+    - name: "倒金字塔写作"
+      description: "提供AI友好的内容写作模板"
+    - name: "多模态内容封装"
+      description: "自动生成表格、清单、图表等结构化内容"
+    - name: "诊断工具"
+      description: "检测GEO部署状态，生成修复清单"
+    - name: "内容分发工具"
+      description: "多平台内容适配与分发"
+    - name: "监控工具"
+      description: "AI引用监控与效果追踪"
+
+  use_cases:
+    - "园区官网GEO优化"
+    - "产业园区招商内容生产"
+    - "AI搜索排名提升"
+    - "竞品AI曝光度分析"
+
+  target_users:
+    - "产业园区运营方"
+    - "招商营销团队"
+    - "数字化转型负责人"
+    - "市场营销人员"
+
+# 技能结构
+structure:
+  main_file: "SKILL.md"
+  
+  modules:
+    - id: "infrastructure"
+      name: "基础设施层"
+      description: "llms.txt部署、Schema结构化数据、可信信源矩阵"
+      files:
+        - "templates/llms.txt"
+        - "templates/schema/organization.json"
+        - "templates/schema/product.json"
+        - "templates/schema/event.json"
+        - "templates/matrix，信源矩阵.md"
+      required: true
+      
+    - id: "content"
+      name: "内容工程层"
+      description: "问题图谱生成、倒金字塔写作、多模态内容封装"
+      files:
+        - "templates/content/question_graph.md"
+        - "templates/content/pyramid_writing.md"
+        - "templates/monitoring/report_template.md"
+      required: true
+      
+    - id: "tools"
+      name: "工具部署层"
+      description: "诊断工具、内容分发工具、监控工具"
+      files:
+        - "scripts/generator.py"
+        - "scripts/diagnostic.py"
+        - "scripts/monitor.py"
+      required: false
+      
+    - id: "examples"
+      name: "示例文件"
+      description: "完整园区GEO优化示例"
+      files:
+        - "examples/park_example/llms.txt"
+        - "examples/park_example/schema/organization.json"
+        - "examples/park_example/schema/product.json"
+        - "examples/park_example/schema/event.json"
+        - "examples/content_example/article_1.md"
+        - "examples/content_example/article_2.md"
+      required: false
+
+  dependencies: []
+
+# 配置参数
+config:
+  language_support:
+    - "zh-CN"  # 简体中文
+    - "en"     # 英文
+    
+  default_settings:
+    park_name: ""        # 园区名称
+    city: ""             # 城市
+    industry: []         # 产业类型
+    product_types: []    # 产品类型
+    
+  customization:
+    allow_user_config: true
+    required_fields:
+      - "park_name"
+      - "city"
+      - "contact_phone"
+      - "contact_email"
+
+# 发布信息
+publish:
+  status: "published"
+  
+  repositories:
+    github: ""
+    gitee: ""
+    
+  demo:
+    enabled: true
+    url: ""
+    
+  changelog:
+    - version: "1.0.0"
+      date: "2025-01-15"
+      changes:
+        - "初始版本发布"
+        - "支持llms.txt生成"
+        - "支持Schema结构化数据"
+        - "支持问题图谱生成"
+        - "支持内容分发"
+        - "支持监控追踪"
+
+# 统计信息
+stats:
+  downloads: 0
+  ratings: 0
+  reviews: 0

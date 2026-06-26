@@ -1,0 +1,37 @@
+id: a30
+track: A
+title_zh: 完整 todo CLI
+category: feature
+difficulty: hard
+timeout_seconds: 600
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+  - claw
+evaluators:
+- type: pytest
+  weight: 0.9
+  target: tests/test_todo.py
+  fail_to_pass:
+  - test_add
+  - test_list
+  - test_done
+  - test_delete
+  - test_persist_across_runs
+  pass_to_pass: []
+- type: state_hash
+  weight: 0.1
+  files:
+  - todo.py
+  forbidden_patterns:
+  - raise NotImplementedError
+  - pass\s*$
+metadata:
+  estimated_minutes: 10
+  expected_tool_calls:
+  - Read
+  - Write
+  - Edit
+  - Bash
+title_en: Build the full todo CLI

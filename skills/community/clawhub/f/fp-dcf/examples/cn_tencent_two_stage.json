@@ -1,0 +1,28 @@
+{
+  "ticker": "0700.HK",
+  "market": "HK",
+  "provider": "yahoo",
+  "statement_frequency": "A",
+  "valuation_model": "two_stage",
+  "normalization": {
+    "provider": "yahoo",
+    "use_cache": true,
+    "refresh": false
+  },
+  "sensitivity": {
+    "enabled": true
+  },
+  "assumptions": {
+    "effective_tax_rate": 0.17,
+    "marginal_tax_rate": 0.25,
+    "risk_free_rate": 0.025,
+    "equity_risk_premium": 0.06,
+    "beta": 1.05,
+    "pre_tax_cost_of_debt": 0.035,
+    "equity_weight": 0.9,
+    "debt_weight": 0.1,
+    "terminal_growth_rate": 0.03,
+    "stage1_growth_rate": 0.1,
+    "stage1_years": 5
+  }
+}

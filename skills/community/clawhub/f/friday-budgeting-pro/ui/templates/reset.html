@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Reset Password — Friday Budgeting Pro{% endblock %}
+
+{% block content %}
+<div class="card card-narrow">
+  <h1>Reset your password</h1>
+
+  {% if success %}
+  <div class="alert alert-success">Password reset successfully. <a href="/login">Sign in</a></div>
+  {% else %}
+
+  {% if error %}
+  <div class="alert alert-error">{{ error }}</div>
+  {% endif %}
+
+  <form method="post" action="/reset">
+    <label for="token">Recovery token</label>
+    <input id="token" name="token" type="text" required autofocus
+           placeholder="Paste the token from recovery.txt" />
+
+    <label for="new_password">New password</label>
+    <input id="new_password" name="new_password" type="password" required minlength="8"
+           autocomplete="new-password" placeholder="At least 8 characters" />
+
+    <button type="submit" class="btn-primary">Reset password</button>
+  </form>
+  {% endif %}
+
+  <p class="hint"><a href="/login">Back to login</a></p>
+</div>
+{% endblock %}

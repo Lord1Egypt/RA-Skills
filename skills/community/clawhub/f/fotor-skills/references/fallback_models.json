@@ -1,0 +1,26 @@
+{
+  "text2image": {
+    "gemini-3.1-flash-image-preview": "seedream-5-0-260128",
+    "gpt-image-2": "gemini-3.1-flash-image-preview"
+  },
+  "image2image": {
+    "gemini-3.1-flash-image-preview": "seedream-5-0-260128",
+    "gpt-image-2": "gemini-3.1-flash-image-preview"
+  },
+  "text2video": {
+    "seedance-1-5-pro-251215": "kling-v3",
+    "doubao-seedance-2-0-260128": "kling-v3"
+  },
+  "single_image2video": {
+    "seedance-1-5-pro-251215": "kling-v3",
+    "doubao-seedance-2-0-260128": "kling-v3"
+  },
+  "start_end_frame2video": {
+    "kling-video-o1": "viduq2-turbo",
+    "doubao-seedance-2-0-260128": "viduq2-turbo"
+  },
+  "multiple_image2video": {
+    "kling-v3-omni": "kling-video-o1",
+    "doubao-seedance-2-0-260128": "kling-video-o1"
+  }
+}

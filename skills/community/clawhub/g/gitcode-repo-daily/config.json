@@ -1,0 +1,14 @@
+{
+  "repos": [],
+  "timezone": "Asia/Shanghai",
+  "request_timeout_seconds": 30,
+  "request_retry_times": 2,
+  "request_retry_interval_seconds": 2,
+  "request_sleep_seconds": 0.1,
+  "stale_days": 30,
+  "stale_issue_exclude_keywords": ["RFC", "CVE", "Roadmap"],
+  "major_pr_additions_threshold": 500,
+  "hot_issue_comments_threshold": 5,
+  "max_repos_per_report": 50,
+  "merged_pr_body_max_chars": 2000
+}

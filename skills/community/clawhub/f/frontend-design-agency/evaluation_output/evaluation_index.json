@@ -1,0 +1,147 @@
+{
+  "evaluation_metadata": {
+    "skill_name": "frontend-design-agency",
+    "evaluation_date": "2026-03-22T12:45:53.665418",
+    "model": "FiSi-Adaptiert-Frontend",
+    "total_categories": 10,
+    "dimensions": [
+      "accuracy",
+      "practical",
+      "exam_ready",
+      "assets",
+      "references"
+    ]
+  },
+  "categories": [
+    {
+      "id": "design_thinking",
+      "name": "Design Thinking & Produktverständnis",
+      "description": "Produkttyp verstehen, Nutzerrolle definieren, Nutzungsszenario ableiten, Informationspriorität festlegen"
+    },
+    {
+      "id": "visual_direction",
+      "name": "Visuelle Richtung & Gestalterische These",
+      "description": "Stilrichtung definieren, visuelle Referenzen dokumentieren, Hauptthese formulieren"
+    },
+    {
+      "id": "color_tokens",
+      "name": "Farbkonzept & Design Tokens",
+      "description": "Farbrollen definieren (Canvas, Surface, Primary, Accent), CSS-Variablen/Tokens anlegen"
+    },
+    {
+      "id": "typography",
+      "name": "Typografie & Hierarchy",
+      "description": "Display/Heading/Body-Skalen definieren, Schriftarten wählen, Leselinien etablieren"
+    },
+    {
+      "id": "layout",
+      "name": "Layout, Raum & Raster",
+      "description": "Grid-System, Content-Breite, Spacing-Skala, Asymmetrie, visuelle Spannung"
+    },
+    {
+      "id": "motion",
+      "name": "Motion & Animation",
+      "description": "Motion-Prinzipien definieren, Hover/Focus-States, Animation-Timing, Zustandswechsel"
+    },
+    {
+      "id": "components",
+      "name": "Komponenten-System",
+      "description": "Button/Input/Card-Familien, Status-Indikatoren, Empty States, modulare Architektur"
+    },
+    {
+      "id": "responsive",
+      "name": "Responsive Design",
+      "description": "Breakpoint-Entscheidungen, mobile Umbruchslogik, Desktop+Mobile zusammendenken"
+    },
+    {
+      "id": "accessibility",
+      "name": "Accessibility & UX",
+      "description": "Tastaturbedienbarkeit, Fokuszustände, ARIA-Attribute, Kontrast, semantisches HTML"
+    },
+    {
+      "id": "anti_generic",
+      "name": "Anti-Generic Check & Qualitätssicherung",
+      "description": "KI-Einheitsbrei vermeiden, erkennbare Produktidentität, Qualitätskriterien prüfen"
+    }
+  ],
+  "prompts": [
+    {
+      "number": 1,
+      "category_id": "design_thinking",
+      "category_name": "Design Thinking & Produktverständnis",
+      "file": "/Volumes/T7/Projekte/openclaw skill/Frontend Design/frontend-design-agency/evaluation_output/judge_prompt_01__design_thinking.txt",
+      "test_question_preview": "\nErstelle ein Dashboard für ein B2B-SaaS-Produkt im Bereich Incident Management.\nWie identifiziere i..."
+    },
+    {
+      "number": 2,
+      "category_id": "visual_direction",
+      "category_name": "Visuelle Richtung & Gestalterische These",
+      "file": "/Volumes/T7/Projekte/openclaw skill/Frontend Design/frontend-design-agency/evaluation_output/judge_prompt_02__visual_direction.txt",
+      "test_question_preview": "\nEntwickle eine Landing Page für eine Fintech-App. Wie formuliere ich eine klare\ngestalterische Thes..."
+    },
+    {
+      "number": 3,
+      "category_id": "color_tokens",
+      "category_name": "Farbkonzept & Design Tokens",
+      "file": "/Volumes/T7/Projekte/openclaw skill/Frontend Design/frontend-design-agency/evaluation_output/judge_prompt_03__color_tokens.txt",
+      "test_question_preview": "\nBaue eine Settings-UI für ein Health-Tech-Produkt. Welche Farbrollen brauche ich\nmindestens (Canvas..."
+    },
+    {
+      "number": 4,
+      "category_id": "typography",
+      "category_name": "Typografie & Hierarchy",
+      "file": "/Volumes/T7/Projekte/openclaw skill/Frontend Design/frontend-design-agency/evaluation_output/judge_prompt_04__typography.txt",
+      "test_question_preview": "\nGestalte eine Content-Heavy Admin-Oberfläche. Welche Typografie-Skalen (Display,\nH1-H3, Body, Small..."
+    },
+    {
+      "number": 5,
+      "category_id": "layout",
+      "category_name": "Layout, Raum & Raster",
+      "file": "/Volumes/T7/Projekte/openclaw skill/Frontend Design/frontend-design-agency/evaluation_output/judge_prompt_05__layout.txt",
+      "test_question_preview": "\nErstelle ein Analytics-Dashboard mit vielen Daten. Welches Grid-System eignet sich?\nWie nutze ich S..."
+    },
+    {
+      "number": 6,
+      "category_id": "motion",
+      "category_name": "Motion & Animation",
+      "file": "/Volumes/T7/Projekte/openclaw skill/Frontend Design/frontend-design-agency/evaluation_output/judge_prompt_06__motion.txt",
+      "test_question_preview": "\nBaue einen Onboarding-Flow mit mehreren Schritten. Welche Motion-Prinzipien sollte\nich definieren? ..."
+    },
+    {
+      "number": 7,
+      "category_id": "components",
+      "category_name": "Komponenten-System",
+      "file": "/Volumes/T7/Projekte/openclaw skill/Frontend Design/frontend-design-agency/evaluation_output/judge_prompt_07__components.txt",
+      "test_question_preview": "\nEntwickle ein CRM-Interface mit Tabellen, Formularen und Detailansichten. Wie baue\nich eine Button-..."
+    },
+    {
+      "number": 8,
+      "category_id": "responsive",
+      "category_name": "Responsive Design",
+      "file": "/Volumes/T7/Projekte/openclaw skill/Frontend Design/frontend-design-agency/evaluation_output/judge_prompt_08__responsive.txt",
+      "test_question_preview": "\nGestalte eine datenintensive Tabelle, die auf Desktop und Mobile funktioniert.\nWelche Breakpoint-En..."
+    },
+    {
+      "number": 9,
+      "category_id": "accessibility",
+      "category_name": "Accessibility & UX",
+      "file": "/Volumes/T7/Projekte/openclaw skill/Frontend Design/frontend-design-agency/evaluation_output/judge_prompt_09__accessibility.txt",
+      "test_question_preview": "\nBaue ein Formular mit komplexen Interaktionen. Wie stelle ich Tastaturbedienbarkeit\nsicher? Welche ..."
+    },
+    {
+      "number": 10,
+      "category_id": "anti_generic",
+      "category_name": "Anti-Generic Check & Qualitätssicherung",
+      "file": "/Volumes/T7/Projekte/openclaw skill/Frontend Design/frontend-design-agency/evaluation_output/judge_prompt_10__anti_generic.txt",
+      "test_question_preview": "\nReviewe einen Entwurf, der wie eine Standard-shadcn-Demo aussieht. Wie erkenne\nich KI-Einheitsbrei ..."
+    }
+  ],
+  "instructions": {
+    "step1": "Führe jeden Judge Prompt durch einen LLM (Claude/GPT)",
+    "step2": "Extrahiere die JSON-Scores aus der Antwort",
+    "step3": "Trage Scores in results_template.json ein",
+    "step4": "Identifiziere Kategorien mit Score < 7",
+    "step5": "Erstelle fehlende Assets",
+    "step6": "Wiederhole Evaluation bis Durchschnitt ≥ 8/10"
+  }
+}

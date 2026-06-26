@@ -1,35 +1,79 @@
 ---
-name: "Gangtise知识库"
-description: "对 Gangtise 内部知识库（报告、观点、会议纪要等）进行语义检索，返回高相关度的内容片段。当你需要阅读或推理文档的真实内容（如论点、结论、段落等），并且不关心如何定位文件时，务必使用本技能；若你更偏向先按类型/日期/证券等定位筛选再下载核验，请使用 `gangtise-file`。检索结果以语义匹配为核心，..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gangtise-kb-api"
-sourceUrl: "https://clawhub.ai/skills/gangtise-kb-api"
+name: gangtise-kb
+description: 对 Gangtise 内部知识库（报告、观点、会议纪要等）进行语义检索，返回高相关度的内容片段。当你需要阅读或推理文档的真实内容（如论点、结论、段落等），并且不关心如何定位文件时，务必使用本技能；若你更偏向先按类型/日期/证券等定位筛选再下载核验，请使用 `gangtise-file`。检索结果以语义匹配为核心，强调专业性、准确性与信息覆盖尽可能完整。
+metadata:
+  version: 1.4.2
 ---
 
-# Gangtise知识库
+# 知识库检索
 
-> 对 Gangtise 内部知识库（报告、观点、会议纪要等）进行语义检索，返回高相关度的内容片段。当你需要阅读或推理文档的真实内容（如论点、结论、段落等），并且不关心如何定位文件时，务必使用本技能；若你更偏向先按类型/日期/证券等定位筛选再下载核验，请使用 `gangtise-file`。检索结果以语义匹配为核心，...
+## 鉴权
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gangtise-kb-api`
-- **Source URL:** [https://clawhub.ai/skills/gangtise-kb-api](https://clawhub.ai/skills/gangtise-kb-api)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+在 `scripts/.authorization` 文件中添加
+```json
+{
+    "accessKey": "<ak>",
+    "secretAccessKey": "<sk>"
+}
+```
+或者添加全局环境变量GTS_ACCESS_KEY和GTS_SECRET_KEY
 ```bash
-hermes skills install clawhub/gangtise-kb-api
+export GTS_ACCESS_KEY=<ak>
+export GTS_SECRET_KEY=<sk>
+```
+## 概览
+
+该技能会在 Gangtise 内部知识库中进行深度语义检索，并直接返回高相关度的内容片段；这些命中结果以语义匹配为依据，强调专业性、准确性与覆盖关键表达，同时提供按类型与 ID 下载完整文件的可选方式。当你主要关心的是*文档表达了什么*（论点、结论、段落等），而不仅仅是定位文件时，它比 `gangtise-file` 更高效。
+
+使用场景：
+- 你需要阅读、引用或总结内部文档的*内容*（例如研究报告、内部报告、会议纪要、首席观点等）。
+- 你希望快速获取关键段落，用于支撑推理、起草或问答。
+- 你已经大致了解主题，只需最相关的文本片段。
+
+与其他技能的区别：
+- 如果你主要想按类型/日期/证券等定位/筛选文档，再决定下载或进一步处理，使用 **`gangtise-file`**。
+
+（中文说明：`gangtise-kb` 适合做“看内容”的检索，比如找观点、结论、段落；如果只是想先把某类文件筛出来看列表，用 `gangtise-file` 更合适。）
+
+使用技巧：
+- 请注意检索时可以多尝试一些不同的语句。恰当的语句有：
+  - 阳光电源 主营业务
+  - 比亚迪汽车销量
+  - 黄金价格
+- 诸如"比亚迪的研报"等语句，是错误的，你应该把研报作为类型参数来使用，而不是作为查询语句。语句仅为"比亚迪"即可。
+
+调用并使用sd和ed参数时，注意今天的年份和日期！
+
+## 知识库调用指南
+
+### 脚本
+
+`scripts/kb.py`
+
+### 参数
+
+| 参数 | 必填 | 说明 |
+|------|------|------|
+| `-q` / `--query` | 是 | 检索查询语句。 |
+| `-sd` / `--start-date` | 否 | 开始日期，如 `2026-01-01`。 |
+| `-ed` / `--end-date` | 否 | 结束日期，如 `2026-12-31`。 |
+| `-l` / `--limit` | 否 | 返回结果数量上限。 |
+| `-o` / `--output` | 否 | 搜索结果保存路径；若不指定，则默认保存在gangtise工作目录下的 `kb/kb_x.md`（自动编号）；仅当环境变量GTS_SAVE_FILE为True时生效；一般不建议使用，由后端统一管理。|
+| `--file-types` | 否 | 文件类型，逗号分隔。可选：研究报告,外资研报,内部报告,AI云盘,首席观点,公司公告,产业公众号,会议纪要,调研纪要,网络纪要。 |
+| `-d` / `--download` | 否 | 是否下载文件。 |
+| `-od` / `--output-dir` | 否 | 下载文件保存路径。 |
+| `-dt` / `--download-types` | 否 | 下载文件类型，逗号分隔。可选：pdf, markdown。 |
+
+会议纪要,调研纪要,网络纪要的区别是：会议纪要是来自Gangtise会议平台，调研纪要来自公司调研公告，网络纪要来自网络资源搜集。
+
+### 示例
+示例 1（按关键词检索新能源汽车相关文件）：
+
+```bash
+python3 scripts/kb.py -q "新能源汽车销量与政策"
+```
+
+示例 2（限制结果数量为 10, 查询比亚迪相关的外资研报）：
+```bash
+python3 scripts/kb.py -q "新能源汽车销量与政策" -l 10 --file-types "外资研报"
 ```

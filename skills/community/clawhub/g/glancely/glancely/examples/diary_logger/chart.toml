@@ -1,0 +1,17 @@
+# Diary Logger — donut chart for today's category breakdown
+[chart]
+type = "donut"
+title = "Today's Categories"
+
+[chart.data]
+source = "summary"
+value_field = "by_category_today"
+
+[chart.options]
+
+[overview]
+enabled = true
+card_type = "stat"
+label = "Today's Log"
+data_key = "summary.total_minutes_today"
+suffix = " min"

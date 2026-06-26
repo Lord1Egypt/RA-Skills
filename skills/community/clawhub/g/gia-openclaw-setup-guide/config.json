@@ -1,0 +1,8 @@
+{
+  "name": "gia-openclaw-setup-guide",
+  "version": "1.0.0",
+  "description": "Complete guide to installing and configuring OpenClaw from scratch. Covers installation, channel setup, skills, automation workflows, and troubleshooting.",
+  "author": "GIA Digital",
+  "tags": ["setup", "installation", "onboarding", "getting-started", "tutorial"],
+  "category": "utilities"
+}

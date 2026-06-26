@@ -1,0 +1,27 @@
+{
+  "databaseId": 4102,
+  "workflowName": "CI",
+  "headBranch": "main",
+  "headSha": "abc123",
+  "runAttempt": 2,
+  "url": "https://github.com/flowcreatebot/yf-api-saas/actions/runs/4102",
+  "repository": {
+    "nameWithOwner": "flowcreatebot/yf-api-saas"
+  },
+  "jobs": [
+    {
+      "name": "test",
+      "startedAt": "2026-03-06T09:22:00Z",
+      "completedAt": "2026-03-06T09:36:00Z",
+      "conclusion": "success",
+      "url": "https://github.com/flowcreatebot/yf-api-saas/actions/runs/4102/job/1"
+    },
+    {
+      "name": "lint",
+      "startedAt": "2026-03-06T09:22:00Z",
+      "completedAt": "2026-03-06T09:27:00Z",
+      "conclusion": "success",
+      "url": "https://github.com/flowcreatebot/yf-api-saas/actions/runs/4102/job/2"
+    }
+  ]
+}

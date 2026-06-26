@@ -1,0 +1,18 @@
+[component]
+name        = "mit"
+title       = "MIT"
+version     = "0.1.0"
+description = "Most Important Task — nightly check-in for today's MIT and tomorrow's plan."
+
+[panel]
+enabled         = true
+order           = 5
+freshness_hours = 36
+
+[storage]
+tables = ["mit_entries"]
+
+[cron]
+schedule    = "0 23 * * *"
+command     = "python3 scripts/prompt.py"
+description = "MIT nightly check-in"

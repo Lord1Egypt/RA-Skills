@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://powermatrix.local/schemas/platform_draft.schema.json",
+  "title": "Platform Draft",
+  "type": "object",
+  "required": [
+    "draft_id",
+    "platform",
+    "title",
+    "body",
+    "tags",
+    "cta",
+    "compliance_check",
+    "manual_review_required",
+    "publish_readiness"
+  ],
+  "properties": {
+    "draft_id": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["zhihu", "csdn", "juejin", "toutiao", "website", "generic", "other"]
+    },
+    "title": {
+      "type": "string"
+    },
+    "body": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cta": {
+      "type": "string"
+    },
+    "compliance_check": {
+      "type": "object",
+      "required": ["status", "notes"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["pass", "needs_review", "blocked"]
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "manual_review_required": {
+      "type": "boolean",
+      "const": true
+    },
+    "publish_readiness": {
+      "type": "string",
+      "enum": ["ready", "needs_review", "blocked"],
+      "description": "Whether this draft can proceed to manual publishing review."
+    },
+    "fact_check_items": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Facts that a human must confirm before publication."
+    },
+    "blocking_items": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Unresolved facts or compliance issues that block scheduling or publication."
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["high", "medium", "low"]
+    }
+  },
+  "additionalProperties": true
+}

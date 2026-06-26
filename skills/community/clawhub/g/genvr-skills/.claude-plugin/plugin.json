@@ -1,0 +1,9 @@
+{
+  "name": "genvr-skills",
+  "version": "1.0.0",
+  "description": "Generate high-quality images and videos using the GenVR API Platform.",
+  "author": "GenVR Research",
+  "repository": "https://github.com/genvrresearch/genvr-skills",
+  "entry": "SKILL.md",
+  "icon": "https://api.genvrresearch.com/favicon.ico"
+}

@@ -1,0 +1,121 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "苏州生物医药创新园",
+  "alternateName": ["苏州生物园", "SZBioMed"],
+  "description": "苏州市重点打造的生物医药产业专业园区，位于苏州工业园区，集研发、生产、办公于一体，重点引进创新药物、医疗器械、生物技术等领域企业。",
+  "url": "https://www.szbiomed.cn",
+  "logo": "https://www.szbiomed.cn/images/logo.png",
+  "image": "https://www.szbiomed.cn/images/park-hero.jpg",
+  "video": "https://www.szbiomed.cn/videos/park-intro.mp4",
+  
+  "foundingDate": "2018-03-15",
+  "foundingLocation": {
+    "@type": "City",
+    "name": "苏州市"
+  },
+  
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "星湖街328号",
+    "addressLocality": "苏州工业园区",
+    "addressRegion": "江苏省",
+    "postalCode": "215000",
+    "addressCountry": "CN"
+  },
+  
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 31.2989,
+    "longitude": 120.6853
+  },
+  
+  "telephone": "+86-512-8888-8888",
+  "email": "info@szbiomed.cn",
+  "faxNumber": "+86-512-8888-8889",
+  
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "400-888-8888",
+      "contactType": "customer service",
+      "areaServed": "CN",
+      "availableLanguage": ["Chinese", "English"]
+    }
+  ],
+  
+  "areaServed": {
+    "@type": "City",
+    "name": "苏州市",
+    "containedInPlace": {
+      "@type": "State",
+      "name": "江苏省"
+    }
+  },
+  
+  "knowsAbout": [
+    "生物医药",
+    "基因技术",
+    "医疗器械",
+    "精准医疗",
+    "GMP生产"
+  ],
+  
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "苏州生物医药创新园产品目录",
+    "description": "园区研发办公楼、标准厂房、GMP车间等产品信息",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "研发办公楼"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "标准厂房"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "GMP车间"
+        }
+      }
+    ]
+  },
+  
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "126",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  
+  "sameAs": [
+    "https://mp.weixin.qq.com/s/SZBioMed",
+    "https://weibo.com/szbiomed",
+    "https://www.douyin.com/user/SZBioMed"
+  ],
+  
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "value": "8000",
+    "unitText": "人"
+  },
+  
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "08:30",
+    "closes": "18:00"
+  },
+  
+  "priceRange": "¥¥¥"
+}

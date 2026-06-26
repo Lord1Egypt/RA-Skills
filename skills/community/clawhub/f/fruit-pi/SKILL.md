@@ -1,35 +1,246 @@
 ---
-name: "🍓 Fruit Pi · 水果派（全球水果·实时价格·水果价格）"
-description: "全球水果价格收集与查询。管理水果池，自动采集榴莲/荔枝/樱桃等水果每日批发价，支持国内外报价，RMB/公斤换算。Fruit price tracker for global fruits, wholesale market data, agricultural commodity prices."
-category: "other"
-source: "ClawHub"
-tags: [agriculture, china, fruit, global, market, price]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fruit-pi"
-sourceUrl: "https://clawhub.ai/skills/fruit-pi"
+name: fruit-pi
+description: 全球水果价格收集与查询。管理水果池，自动采集榴莲/荔枝/樱桃等水果每日批发价，支持国内外报价，RMB/公斤换算。Fruit price tracker for global fruits, wholesale market data, agricultural commodity prices.
+tags:
+  - fruit-price
+  - 水果价格
+  - 农产品行情
+  - 批发价
+  - 榴莲价格
+  - 全球果价
+  - 每日报价
+  - Data & APIs
+triggers:
+  - fruit pi
+  - Fruit Pi
+  - 水果派
+  - 水果价格
+  - 全球水果价格
+  - 果价
+  - 水果池
+  - 看看水果池
 ---
 
-# 🍓 Fruit Pi · 水果派（全球水果·实时价格·水果价格）
+# 🥧 Fruit Pi · 水果派
 
-> 全球水果价格收集与查询。管理水果池，自动采集榴莲/荔枝/樱桃等水果每日批发价，支持国内外报价，RMB/公斤换算。Fruit price tracker for global fruits, wholesale market data, agricultural commodity prices.
+全球水果价格收集助手。管理您的水果池，定时收集价格，按 RMB/公斤 展示。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fruit-pi`
-- **Source URL:** [https://clawhub.ai/skills/fruit-pi](https://clawhub.ai/skills/fruit-pi)
+## 📋 功能概览
 
-## Overview
+Fruit Pi 是一款 **全球水果价格查询与追踪工具**，采集国内外水果批发价格，支持多币种换算。
 
+**核心功能：**
+- **🍉 水果价格查询** — 榴莲、荔枝、樱桃、蓝莓、山竹等热门水果实时价格
+- **🌐 全球市场覆盖** — 国内批发市场 + 国际主要水果产地报价
+- **💰 单位换算** — 自动换算 RMB/公斤，支持多种计价单位
+- **📅 价格走势** — 跟踪水果历史价格，把握采购时机
+- **🔔 价格提醒** — 设置目标价，价格达标时自动通知
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fruit-pi
+## 时区规则
+
+读取 `USER.md` 中的 `Timezone:` 字段。若无配置则用 `date +%Z` 回退。
+
+## 行为规则
+
+**触发即执行**：用户说出任意触发词，按不同规则执行：
+
+**区分两种触发模式：**
+- 🍎 **价格模式**：`水果派 / 水果价格 / 全球水果价格 / 果价 / fruit pi`
+  → 执行完整收集流程：读池→拉价格→搜补→展示
+- 📋 **列表模式**：`水果池 / 看看水果池`
+  → **只列出水果池中的水果，不搜索不收集**
+
+**主动感知与初始化**：首次触发或无水果池时，自动创建水果池文件并以默认水果启动跟踪。若水果池为空则主动提示添加水果。
+
+## 文件索引
+
+### 运行时（`workspace/memory/`）
+- `fruit-pool.json` - 水果池（用户区，不上传）
+
+### 脚本
+- `skills/fruit-pi/fruit-pi.py` - 核心收集器
+
+## 核心流程
+
+### 1. 水果池管理
+
+水果池文件：`workspace/memory/fruit-pool.json`
+
+**水果池结构：**
+```json
+{
+  "fruits": {
+    "金枕头榴莲": {
+      "en_name": "Monthong Durian",
+      "sources": [
+        {"name": "惠农网", "url": "https://...", "currency": "CNY"},
+        {"name": "泰国市场", "url": "https://...", "currency": "THB"}
+      ],
+      "last_price": {"price_rmb": 89.5, "original_price": 450, "original_currency": "THB"},
+      "last_updated": "2026-05-11"
+    }
+  },
+  "seasonal_fruits": [
+    {"name": "荔枝", "season": "5-7月", "en_name": "Lychee"},
+    {"name": "樱桃", "season": "5-7月", "en_name": "Cherry"}
+  ],
+  "metadata": {
+    "version": 1,
+    "last_collected": null
+  }
+}
 ```
+
+**管理操作（通过自然语言）：**
+- 「把榴莲加入水果池」 → `--add "榴莲" --en "Durian"`
+- 「给榴莲加个新的价格来源」 → 询问URL后 `--add-source`
+- 「把荔枝移出水果池」 → `--remove "荔枝"`
+- 「看看水果池」 → `--list`
+
+### 2. 价格收集流程
+
+#### 2a. 脚本自动收集
+```bash
+python3 skills/fruit-pi/fruit-pi.py
+```
+脚本依次尝试每个水果的配置来源URL：
+- 成功提取价格 → 输出结构化价格
+- 失败 → 输出 search_hints（建议在哪个平台搜索）
+
+#### 2b. 手动触发收集
+```bash
+python3 skills/fruit-pi/fruit-pi.py --collect "金枕头榴莲"
+```
+
+#### 2c. 搜索补充（脚本无法获取时）
+
+当脚本返回 `status: "no_price"` 或脚本无法运行时，使用 web_search 手动搜索价格。
+
+**价格新鲜度规则（按顺序执行）：**
+1. **先尝试当前配置的平台** —— 用脚本或用 fetch 从当前 sources 拉取价格
+2. **检查拉取结果的新鲜度**：
+   - 若成功获取 **48小时以内**的价格 → 直接使用，更新 `last_price` + `last_updated`
+   - 若获取失败，或获取到的价格标记已 **超过48小时** → 按后面流程搜索新平台
+3. **搜索新平台**：用 search_hints 或搜索策略搜索 → 成功则更新水果池（含 sources），失败则保持当前状态，不强行填数
+
+**搜索策略（按优先级）：**
+1. 国内水果：`<水果名> 批发价 今日 <年>`
+2. 泰国水果：`<fruit_en> wholesale price Thailand <month> <year>`
+3. 进口水果：`<fruit_en> import price China <month> <year>`
+4. 东南亚水果：`<fruit_en> price <country> market <month> <year>`
+
+**推荐平台（按地区）：**
+
+| 地区 | 平台 |
+|------|------|
+| 中国 | 惠农网(www.cnhnb.com), 一亩田(www.ymt.com), 广州江南市场, 北京新发地 |
+| 泰国 | Talad Thai, 泰国农业部, Tridge |
+| 越南 | 越南海关, 边贸市场 |
+| 全球 | FAO, Trading Economics, Selina Wamucii |
+
+#### 2d. 价格提取与归化
+
+从搜索结果提取价格后，统一处理：
+1. **单位归化**：斤→×2=kg, 磅(lb)→×2.2046=kg
+2. **货币转换**：外币→RMB（使用脚本汇率工具或按市场汇率，在回复中注明汇率来源）
+3. **保留原始价**：同时显示外币原价 + 换算后 RMB/公斤
+
+### 3. 输出格式
+
+```
+🥧 Fruit Pi · 水果派 · <日期>
+
+━━━ 🍎 水果池 ━━━
+
+<报价来源1>  ← 来源平台
+  🥇 金枕头榴莲 · ¥89.5/kg
+     泰国 ฿450/kg（≈¥89.5，汇率฿1=¥0.20）
+  🥇 山竹 · ¥45.2/kg
+     ...
+
+<报价来源2>  ← 其他来源
+  🥇 阿克苏苹果 · ¥12.8/kg
+     ...
+
+━━━ 🌟 当季推荐 ━━━
+
+🔥 荔枝（5-7月） | 樱桃（5-7月） | 杨梅（5-6月）
+不在水果池中，可回复"加入荔枝"开始跟踪
+
+━━━ 📖 什么是水果池？━━━
+
+水果池是你关注的水果清单。把想跟踪价格的水果加入池中，
+我会每天收集最新价格。
+
+用法：
+  "把榴莲加入水果池" → 开始跟踪
+  "看看水果池" → 查看当前池中水果
+  "刷新水果池" → 手动更新一次价格
+
+💬 回复"水果派"查看最新价格
+```
+
+### 4. 消息格式要求
+
+- 使用 `━━━` 分隔段落
+- 报价来源用小标题 `← 来源平台`
+- 每个水果一行：`🥇 名称 · RMB价格/kg` + 外币原价
+- 价格来源标注清晰
+- 末尾附水果池用法提示
+
+### 5. 用户交互
+
+| 用户说 | 动作 |
+|--------|------|
+| 「水果派/水果价格/果价」 | 完整收集：拉价格+搜索补采+展示 |
+| 「水果池/看看水果池」 | **只列出水果清单，不收集价格** |
+| 「加入<水果名>」 | `--add "<fruit>"` |
+| 「移除<水果名>」 | `--remove "<fruit>"` |
+| 「看看水果池」 | `--list` |
+| 「刷新水果池」 | 执行完整收集流程 |
+| 「刷新<水果名>」 | `--collect "<fruit>"` |
+| 「<水果名>什么价」 | 尝试收集该水果价格 |
+| 「推荐水果」 | 当季推荐 |
+
+### 6. 工作流程（用户触发时）
+
+**第一步：检查水果池**
+```bash
+python3 skills/fruit-pi/fruit-pi.py --status
+```
+- 无 `fruit-pool.json` → 自动创建
+- 池为空 → 提示添加水果
+
+**第二步：价格采集**
+```bash
+python3 skills/fruit-pi/fruit-pi.py
+```
+收集结果分三类：
+- ✅ 有价格 → 直接使用
+- ❌ 无价格但有 search_hints → web_search 补采
+- ❌ 无价格无 hint → 按「搜索策略」手动搜索
+
+**第三步：搜索补采（针对获取不到或过期的数据）**
+对脚本获取失败、或获取到的价格已超48小时的水果，执行 web_search：
+1. 用 search_hints 或搜索策略生成查询
+2. 从搜索结果提取价格
+3. 单位归化 + 货币换算
+4. 成功 → 更新水果池的 last_price / sources
+5. 失败 → 保持当前状态，不强行填数
+
+**第四步：格式化输出**
+按「输出格式」组织所有水果价格。
+
+### 7. 异常处理
+
+- URL失效爬不下 → 搜索新来源，提示用户添加
+- 汇率API超时 → 使用脚本内建默认汇率，标注为估算
+- 所有来源都无法获取 → 显示「暂无数据」，给出搜索建议
+
+### 8. 输出约束
+
+- **严禁输出思考过程、中间步骤、调试信息**
+- 不要输出脚本运行的JSON原始数据
+- 只推送最终整理后的内容
+- 价格统一用 ¥/kg 格式
+- 外币始终保留原价标注

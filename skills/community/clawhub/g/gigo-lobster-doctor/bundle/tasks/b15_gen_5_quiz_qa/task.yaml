@@ -1,0 +1,25 @@
+id: b15
+track: B
+title_zh: 生成 5 道关于 Git 的中文测验题
+category: write
+difficulty: easy
+timeout_seconds: 180
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+evaluators:
+- type: rule
+  weight: 0.4
+- type: llm_judge
+  weight: 0.6
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  judge_dimensions:
+  - meat
+  - brain
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 3
+title_en: Generate five quiz Q&A pairs

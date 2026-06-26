@@ -1,0 +1,19 @@
+{
+  "fiscal_calendars": {
+    "0700.HK": { "name": "Tencent Holdings", "fiscal_year_end": "12-31", "notes": "Calendar year" },
+    "9988.HK": { "name": "Alibaba Group", "fiscal_year_end": "03-31", "notes": "Apr-Mar fiscal year" },
+    "3690.HK": { "name": "Meituan", "fiscal_year_end": "12-31", "notes": "Calendar year" },
+    "1810.HK": { "name": "Xiaomi Corp", "fiscal_year_end": "12-31", "notes": "Calendar year" },
+    "1211.HK": { "name": "BYD Company", "fiscal_year_end": "12-31", "notes": "Calendar year" },
+    "0388.HK": { "name": "HKEx", "fiscal_year_end": "12-31", "notes": "Calendar year" },
+    "1299.HK": { "name": "AIA Group", "fiscal_year_end": "12-31", "notes": "Calendar year" },
+    "2318.HK": { "name": "Ping An Insurance", "fiscal_year_end": "12-31", "notes": "Calendar year" },
+    "1024.HK": { "name": "Kuaishou", "fiscal_year_end": "12-31", "notes": "Calendar year" },
+    "2015.HK": { "name": "Li Auto", "fiscal_year_end": "12-31", "notes": "Calendar year" },
+    "0005.HK": { "name": "HSBC Holdings", "fiscal_year_end": "12-31", "notes": "Calendar year" },
+    "9999.HK": { "name": "NetEase", "fiscal_year_end": "12-31", "notes": "Calendar year" },
+    "2319.HK": { "name": "Mengniu Dairy", "fiscal_year_end": "12-31", "notes": "Calendar year" },
+    "2020.HK": { "name": "ANTA Sports", "fiscal_year_end": "12-31", "notes": "Calendar year" },
+    "9868.HK": { "name": "XPeng Inc", "fiscal_year_end": "12-31", "notes": "Calendar year" }
+  }
+}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Settings — Friday Budgeting Pro{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h1>Settings</h1>
+
+  {% if saved %}
+  <p class="success">Settings saved.</p>
+  {% endif %}
+
+  {% if error %}
+  <p class="error">{{ error }}</p>
+  {% endif %}
+
+  <form method="post" action="/settings">
+    <div class="form-group">
+      <label for="home_currency">Home Currency</label>
+      <select id="home_currency" name="home_currency">
+        {% for c in currencies %}
+        <option value="{{ c }}" {% if c == home_currency %}selected{% endif %}>{{ c }}</option>
+        {% endfor %}
+      </select>
+      <p class="hint">Used for summaries, totals, and reports.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="timezone">Timezone</label>
+      <select id="timezone" name="timezone">
+        {% for tz in timezones %}
+        <option value="{{ tz }}" {% if tz == timezone %}selected{% endif %}>{{ tz }}</option>
+        {% endfor %}
+      </select>
+      <p class="hint">Used for date display and &ldquo;this month&rdquo; boundaries.</p>
+    </div>
+
+    <button type="submit">Save</button>
+  </form>
+</div>
+
+<div class="card">
+  <h2>Classification Rules</h2>
+  <p class="hint">Rules are evaluated in priority order. Edit via OpenClaw chat.</p>
+  {% if rules %}
+  <table>
+    <thead>
+      <tr>
+        <th>Priority</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for rule in rules %}
+    <tr class="{% if not rule.enabled %}rule-disabled{% endif %}">
+      <td>{{ rule.priority }}</td>
+      <td>{{ rule.name }}</td>
+      <td>{{ rule.rule_type }}</td>
+      <td>
+        {% if rule.enabled %}● enabled{% else %}○ disabled{% endif %}
+        {% if rule.is_default %}<span class="badge badge-default">default</span>{% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="hint">No classification rules configured yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{
+  "skill_name": "geo-audit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "/geo-audit https://notion.com",
+      "expected_output": "A full GEO audit report for notion.com with a composite score, 4 dimension sub-scores, prioritized issues, and a markdown report file. Business type should be detected as SaaS.",
+      "files": [],
+      "expectations": [
+        "Business type is detected as SaaS or Technology",
+        "Report contains all 4 dimension scores (Technical, Citability, Schema, Brand)",
+        "Composite GEO score is calculated using the weighted formula",
+        "A grade letter (A-F) is assigned based on the score",
+        "A markdown report file is written to disk",
+        "Report includes Quick Wins section",
+        "Report includes 30-Day Roadmap",
+        "JSON-LD templates are generated for missing schemas"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I run a local bakery website at https://example-bakery.com and ChatGPT never mentions us when people ask for bakeries in our area. Can you figure out why?",
+      "expected_output": "This eval tests degraded behavior with an unreachable URL. The audit should detect the URL is unreachable, report it as a critical issue, and still provide general Local business GEO recommendations based on the business context described in the prompt.",
+      "files": [],
+      "expectations": [
+        "URL unreachable is reported as a critical issue",
+        "Business type is inferred as Local from the prompt context",
+        "General Local business GEO recommendations are provided (LocalBusiness schema, directory presence, NAP consistency)",
+        "Report explains that a full audit requires an accessible URL",
+        "Partial results are gracefully handled without crashing"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "/geo-audit https://techcrunch.com",
+      "expected_output": "A GEO audit for a major publisher site. Should detect Publisher type and emphasize content citability, Article schema, author markup, and news-specific optimizations. Should score relatively high on brand signals due to strong entity recognition.",
+      "files": [],
+      "expectations": [
+        "Business type is detected as Publisher or Media",
+        "Citability analysis evaluates article content quality",
+        "Schema analysis checks for Article/NewsArticle markup",
+        "Brand score reflects strong entity recognition (Wikipedia presence)",
+        "Technical analysis checks for proper canonical URLs and meta tags",
+        "Content analysis identifies citable passages from articles"
+      ]
+    }
+  ]
+}

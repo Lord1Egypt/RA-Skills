@@ -1,0 +1,18 @@
+{
+  "name": "analyze_geo_performance",
+  "description": "测试和验证特定品牌或产品在大模型中的 GEO (Generative Engine Optimization) 表现。该技能会询问大模型行业解决方案，并分析目标品牌是否被提及及相关情感倾向。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "brand_name": {
+        "type": "string",
+        "description": "需要验证的品牌或产品名（如：'CoolTrade'）"
+      },
+      "category_keyword": {
+        "type": "string",
+        "description": "品牌所在的行业或通用痛点关键词（如：'数字货币高频套利系统'）"
+      }
+    },
+    "required": ["brand_name", "category_keyword"]
+  }
+}

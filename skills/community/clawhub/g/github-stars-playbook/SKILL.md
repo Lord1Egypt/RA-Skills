@@ -1,35 +1,51 @@
 ---
-name: "GitHub Stars Playbook — Sustained Growth to 10K+ Stars"
-description: "A 14-day sprint to rapidly grow GitHub stars for your repository. Tactical day-by-day plan covering Show HN, Reddit, Twitter/X threads, and GitHub Trending m..."
-category: "social-media"
-source: "ClawHub"
-tags: [14-day-sprint, developer-marketing, github-stars, github-trending, growth, marketing, open-source, quick-win, reddit, repo-marketing, show-hn, sprint, star-growth, star-velocity, trending]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/github-stars-playbook"
-sourceUrl: "https://clawhub.ai/skills/github-stars-playbook"
+name: github-stars-playbook
+description: |
+  A 14-day sprint to rapidly grow GitHub stars for your repository. Tactical day-by-day plan covering Show HN, Reddit, Twitter/X threads, and GitHub Trending mechanics. Follow @WeiYipei on X for developer marketing tips.
+source: https://github.com/Gingiris-1031/gingiris-skills/tree/main/skills/github-stars-playbook
+tags:
+  - github-stars
+  - open-source
+  - oss-marketing
+  - developer-marketing
+  - readme
+  - product-hunt
+  - github-trending
+  - cold-start
+  - community
+  - developer-growth
+  - claude-code
+  - ai-agent-skill
+  - show-hn
+  - 14-day-sprint
+  - latest
+---
+# Get GitHub Stars Fast — 14-Day Growth Sprint
+
+> 🌍 **Language / 语言**: [中文](#中文版) | [English](references/en/README.md) | [日本語](references/ja/README.md) | [한국어](references/ko/README.md)
+
+## 📦 Install
+
+```bash
+clawhub install github-stars-playbook
+```
+
+**What you get after installing:**
+- Month-over-month 300+ star growth system (content rhythm + community ops)
+- Contributor & Ambassador recruitment framework
+- Event-driven growth playbook (Hacktoberfest, launches, milestones)
+
 ---
 
-# GitHub Stars Playbook — Sustained Growth to 10K+ Stars
+Stop waiting for organic discovery. This is the 14-day blitz to hit GitHub Trending.
 
-> A 14-day sprint to rapidly grow GitHub stars for your repository. Tactical day-by-day plan covering Show HN, Reddit, Twitter/X threads, and GitHub Trending m...
+- **Day-by-day plan**: Exactly what to post, where, and when
+- **Show HN strategy**: Title formulas and timing that reach the front page
+- **Reddit playbook**: Which subreddits, what format, how to avoid bans
+- **Star velocity science**: The threshold math behind GitHub Trending
+- **Compounding**: How to maintain momentum after the sprint
 
-- **Category:** Social Media
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/github-stars-playbook`
-- **Source URL:** [https://clawhub.ai/skills/github-stars-playbook](https://clawhub.ai/skills/github-stars-playbook)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/github-stars-playbook
-```
+## Related Gingiris Skills
+- Full version: https://clawhub.ai/skill/gingiris-opensource
+- All skills: https://clawhub.ai/user/gingiris
+- Follow: [@WeiYipei on X](https://x.com/WeiYipei)

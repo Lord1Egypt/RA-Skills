@@ -1,0 +1,8 @@
+{
+  "slug": "real-trade",
+  "name": "real-trade-skill",
+  "version": "1.8.0",
+  "description": "复星财富港美股实盘 OpenAPI skill。通过 FOSUN_ENV_PATH 复用总入口共享 fosun.env；未设置时自动解析到总 skill 根目录凭证。只执行实盘接口，不负责凭证生成或修复。",
+  "entry": "SKILL.md",
+  "install": "install.sh"
+}

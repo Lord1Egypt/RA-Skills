@@ -1,0 +1,23 @@
+{
+  "skill_name": "gen-z-lingo",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Decode this DM and tell me if it sounds friendly or rude: 'icl that outfit is fire but the caption is giving delulu. no cap tho, still a W.'",
+      "expected_output": "Explains each slang term, gives overall meaning, identifies playful/mixed tone, and offers a plain-English rewrite.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "Rewrite this internal Slack message so it has a light Gen Z vibe but won't make HR combust: 'Great job everyone. The launch went very well, and I appreciate the hard work.'",
+      "expected_output": "Produces a restrained casual rewrite with 1-2 appropriate slang terms and notes that it is suitable only for informal internal chat.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I'm a teacher. A student wrote 'FAFO, catch these hands, gyatt' in a class chat. Explain what each means and what I should do without overreacting.",
+      "expected_output": "Defines the terms, flags profanity/violence/objectification, recommends calm policy-based intervention and safer alternatives.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,345 @@
+# 萤火虫空压机产品数据库
+# 格式：纯文本 YAML，适配 ClawHub/OpenClaw Skill 平台
+# 替代传统的 products.xlsx，避免二进制文件上传限制
+#
+# 使用方式：
+#   - Claude 直接读取解析，无需 Excel 库
+#   - 通过 SKILL.md 中的计算逻辑生成报价
+#   - 支持脚本验算：python scripts/calculate.py --model YDV-75
+#
+# 更新日期：2026-06-03
+
+categories:
+  - id: PM_VSD
+    name: 永磁变频螺杆空压机
+    name_en: PM VSD Screw Air Compressor
+  - id: FIXED_SPEED
+    name: 工频螺杆空压机
+    name_en: Fixed Speed Screw Air Compressor
+  - id: TWO_STAGE
+    name: 双级压缩永磁变频空压机
+    name_en: Two-Stage PM VSD Screw Air Compressor
+  - id: LASER_CUT
+    name: 激光切割专用空压机
+    name_en: Laser Cutting Air Compressor
+
+products:
+  # ===== 永磁变频系列 =====
+  - model: YDV-15
+    category: PM_VSD
+    power_kw: 15
+    pressure_mpa: 0.8
+    fad_m3min: 2.6
+    price_exw: 3.85       # 万元，出厂价
+    noise_db: 62
+    weight_kg: 480
+    dimensions_mm: "1300×780×1150"
+    motor_efficiency: IE5
+    warranty_years: 2
+    lead_time_days: 15
+    tags: [畅销款, 中小型, 入门首选]
+
+  - model: YDV-22
+    category: PM_VSD
+    power_kw: 22
+    pressure_mpa: 0.8
+    fad_m3min: 3.8
+    price_exw: 5.20
+    noise_db: 63
+    weight_kg: 620
+    dimensions_mm: "1450×850×1300"
+    motor_efficiency: IE5
+    warranty_years: 2
+    lead_time_days: 15
+    tags: [畅销款, 中小型]
+
+  - model: YDV-37
+    category: PM_VSD
+    power_kw: 37
+    pressure_mpa: 0.8
+    fad_m3min: 6.5
+    price_exw: 8.50
+    noise_db: 65
+    weight_kg: 980
+    dimensions_mm: "1800×1100×1550"
+    motor_efficiency: IE5
+    warranty_years: 2
+    lead_time_days: 20
+    tags: [热销款, 中型主力]
+
+  - model: YDV-55
+    category: PM_VSD
+    power_kw: 55
+    pressure_mpa: 0.8
+    fad_m3min: 10.5
+    price_exw: 12.80
+    noise_db: 66
+    weight_kg: 1500
+    dimensions_mm: "2100×1250×1700"
+    motor_efficiency: IE5
+    warranty_years: 2
+    lead_time_days: 20
+    tags: [热销款, 中型主力]
+
+  - model: YDV-75
+    category: PM_VSD
+    power_kw: 75
+    pressure_mpa: 0.8
+    fad_m3min: 14.0
+    price_exw: 16.50
+    noise_db: 68
+    weight_kg: 2200
+    dimensions_mm: "2400×1450×1800"
+    motor_efficiency: IE5
+    warranty_years: 2
+    lead_time_days: 25
+    tags: [明星产品, 大中型]
+
+  - model: YDV-90
+    category: PM_VSD
+    power_kw: 90
+    pressure_mpa: 0.8
+    fad_m3min: 17.0
+    price_exw: 19.80
+    noise_db: 70
+    weight_kg: 2800
+    dimensions_mm: "2600×1550×1900"
+    motor_efficiency: IE5
+    warranty_years: 2
+    lead_time_days: 25
+    tags: [大型主力]
+
+  - model: YDV-132
+    category: PM_VSD
+    power_kw: 132
+    pressure_mpa: 0.8
+    fad_m3min: 24.0
+    price_exw: 28.00
+    noise_db: 72
+    weight_kg: 3800
+    dimensions_mm: "3200×1800×2100"
+    motor_efficiency: IE5
+    warranty_years: 3
+    lead_time_days: 30
+    tags: [大型定制]
+
+  - model: YDV-185
+    category: PM_VSD
+    power_kw: 185
+    pressure_mpa: 0.8
+    fad_m3min: 32.0
+    price_exw: 38.00
+    noise_db: 74
+    weight_kg: 4800
+    dimensions_mm: "3600×2000×2300"
+    motor_efficiency: IE5
+    warranty_years: 3
+    lead_time_days: 35
+    tags: [大型定制]
+
+  # ===== 双级压缩系列 =====
+  - model: YDV-D75
+    category: TWO_STAGE
+    power_kw: 75
+    pressure_mpa: 0.8
+    fad_m3min: 16.5
+    price_exw: 22.00
+    noise_db: 67
+    weight_kg: 2500
+    dimensions_mm: "2600×1500×1850"
+    motor_efficiency: IE5
+    warranty_years: 3
+    lead_time_days: 30
+    tags: [高效节能, 双级压缩]
+
+  - model: YDV-D132
+    category: TWO_STAGE
+    power_kw: 132
+    pressure_mpa: 0.8
+    fad_m3min: 28.0
+    price_exw: 36.00
+    noise_db: 71
+    weight_kg: 4200
+    dimensions_mm: "3400×1850×2150"
+    motor_efficiency: IE5
+    warranty_years: 3
+    lead_time_days: 35
+    tags: [高效节能, 双级压缩, 大型]
+
+  # ===== 工频系列 =====
+  - model: YD-37
+    category: FIXED_SPEED
+    power_kw: 37
+    pressure_mpa: 0.8
+    fad_m3min: 6.0
+    price_exw: 5.80
+    noise_db: 68
+    weight_kg: 950
+    dimensions_mm: "1750×1050×1500"
+    motor_efficiency: IE3
+    warranty_years: 1
+    lead_time_days: 10
+    tags: [经济型, 现货]
+
+  - model: YD-75
+    category: FIXED_SPEED
+    power_kw: 75
+    pressure_mpa: 0.8
+    fad_m3min: 13.0
+    price_exw: 11.50
+    noise_db: 72
+    weight_kg: 2100
+    dimensions_mm: "2350×1400×1750"
+    motor_efficiency: IE3
+    warranty_years: 1
+    lead_time_days: 15
+    tags: [经济型, 中型]
+
+  # ===== 激光切割系列 =====
+  - model: YDV-L15
+    category: LASER_CUT
+    power_kw: 15
+    pressure_mpa: 1.6
+    fad_m3min: 2.2
+    price_exw: 4.80
+    noise_db: 62
+    weight_kg: 520
+    dimensions_mm: "1350×800×1200"
+    motor_efficiency: IE5
+    warranty_years: 2
+    lead_time_days: 20
+    tags: [激光专用, 高压]
+
+# ===== 后处理设备 =====
+accessories:
+  - id: HD-37
+    type: 冷冻干燥机
+    type_en: Refrigerated Dryer
+    capacity_m3min: 6.5
+    price_exw: 0.85
+    compatible_with: [YDV-15, YDV-22, YDV-37, YD-37, YDV-L15]
+    tags: [标配推荐]
+
+  - id: HD-75
+    type: 冷冻干燥机
+    type_en: Refrigerated Dryer
+    capacity_m3min: 15.0
+    price_exw: 1.50
+    compatible_with: [YDV-55, YDV-75, YD-75, YDV-D75]
+    tags: [标配推荐]
+
+  - id: HD-132
+    type: 冷冻干燥机
+    type_en: Refrigerated Dryer
+    capacity_m3min: 26.0
+    price_exw: 2.80
+    compatible_with: [YDV-90, YDV-132, YDV-D132]
+    tags: [标配推荐]
+
+  - id: HD-185
+    type: 冷冻干燥机
+    type_en: Refrigerated Dryer
+    capacity_m3min: 35.0
+    price_exw: 4.20
+    compatible_with: [YDV-185]
+    tags: [大型配套]
+
+  - id: PF-37
+    type: 精密过滤器
+    type_en: Precision Filter
+    capacity_m3min: 6.5
+    price_exw: 0.28
+    compatible_with: [YDV-15, YDV-22, YDV-37, YD-37, YDV-L15]
+    tags: [标配推荐, 三级过滤]
+
+  - id: PF-75
+    type: 精密过滤器
+    type_en: Precision Filter
+    capacity_m3min: 15.0
+    price_exw: 0.45
+    compatible_with: [YDV-55, YDV-75, YD-75, YDV-D75]
+    tags: [标配推荐, 三级过滤]
+
+  - id: PF-132
+    type: 精密过滤器
+    type_en: Precision Filter
+    capacity_m3min: 26.0
+    price_exw: 0.75
+    compatible_with: [YDV-90, YDV-132, YDV-D132]
+    tags: [标配推荐, 三级过滤]
+
+  - id: ST-1
+    type: 储气罐 1m³/8kg
+    type_en: Air Tank 1m³/8bar
+    price_exw: 0.45
+    compatible_with: [YDV-15, YDV-22, YDV-L15]
+    tags: [选配]
+
+  - id: ST-2
+    type: 储气罐 2m³/8kg
+    type_en: Air Tank 2m³/8bar
+    price_exw: 0.75
+    compatible_with: [YDV-37, YD-37, YDV-55]
+    tags: [选配]
+
+  - id: ST-3
+    type: 储气罐 3m³/8kg
+    type_en: Air Tank 3m³/8bar
+    price_exw: 1.10
+    compatible_with: [YDV-75, YD-75, YDV-90, YDV-D75]
+    tags: [选配]
+
+  - id: ST-5
+    type: 储气罐 5m³/8kg
+    type_en: Air Tank 5m³/8bar
+    price_exw: 1.80
+    compatible_with: [YDV-132, YDV-185, YDV-D132]
+    tags: [选配]
+
+# ===== 定价规则 =====
+pricing_rules:
+  # 折扣规则
+  discount_tiers:
+    - min_total: 0      # 万元
+      max_total: 10
+      discount_pct: 0     # 无折扣
+    - min_total: 10
+      max_total: 30
+      discount_pct: 3     # 3%
+    - min_total: 30
+      max_total: 50
+      discount_pct: 5     # 5%
+    - min_total: 50
+      max_total: 100
+      discount_pct: 8     # 8%
+    - min_total: 100
+      max_total: 9999
+      discount_pct: 10    # 10%
+
+  # 运费估算
+  freight:
+    base_fee_wan: 0.15                       # 基础运费（万元）
+    per_km_rate_wan: 0.0005                  # 每公里（万元）
+    included_km: 200                          # 包邮里程
+    note: "200公里内免运费，超出按 5元/公里 计费，偏远地区另议"
+
+  # 税费
+  tax:
+    vat_rate: 0.13                            # 增值税 13%
+    include_vat_default: true                 # 默认含税报价
+
+  # 安装调试
+  installation:
+    rate_pct: 3                               # 安装调试费 = 设备总价 × 3%
+    min_fee_wan: 0.15                         # 最低 1500 元
+    note: "标准安装含：设备就位、管道连接、电气接线、调试运行"
+
+  # 质保延期
+  warranty_extension:
+    per_year_wan: 0.30                        # 每延保一年 3000 元
+    max_years: 5
+
+  # 备品备件包
+  spare_parts_kit:
+    price_wan: 0.18                           # 标准备件包
+    contents: [空滤芯×2, 油滤芯×2, 油分芯×1, 润滑油 20L]

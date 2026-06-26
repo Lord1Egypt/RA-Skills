@@ -1,0 +1,22 @@
+name: Risky PR Target
+
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+
+jobs:
+  dangerous:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - name: Print secret (bad)
+        run: |
+          echo "token=${{ secrets.GITHUB_TOKEN }}"
+      - name: Upload with secret on floating ref
+        uses: vendor/unsafe-action@v1
+        with:
+          api_token: ${{ secrets.DEPLOY_API_TOKEN }}
+      - name: Hardcoded credential (bad)
+        env:
+          DEPLOY_PASSWORD: supersecretpassword123
+        run: echo "deploy"

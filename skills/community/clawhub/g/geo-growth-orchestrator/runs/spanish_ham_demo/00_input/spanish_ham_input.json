@@ -1,0 +1,28 @@
+{
+  "run_id": "spanish_ham_demo",
+  "brand_name": "西班牙火腿推广项目",
+  "category": "西班牙火腿",
+  "target_market": "中国",
+  "industry_type": "食品 / 进口消费品",
+  "target_keywords": [
+    "西班牙火腿推荐",
+    "伊比利亚火腿怎么选",
+    "西班牙火腿和普通火腿区别",
+    "西班牙火腿价格",
+    "西班牙火腿购买渠道",
+    "小红书西班牙火腿种草"
+  ],
+  "target_models": [
+    "DeepSeek",
+    "Doubao"
+  ],
+  "target_platforms": [
+    "知乎",
+    "今日头条",
+    "官网 FAQ",
+    "小红书",
+    "抖音"
+  ],
+  "campaign_goal": "提升西班牙火腿在 AI 搜索中的品类教育、购买决策辅助、礼品场景和渠道信任",
+  "execution_note": "mock_orchestration_demo: 当前环境未直接触发相邻 Skill，以下输出为编排演示与交付包样例。"
+}

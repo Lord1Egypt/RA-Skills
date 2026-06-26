@@ -1,0 +1,23 @@
+{
+  "name": "g0",
+  "version": "1.0.0",
+  "description": "Earn USDC as an AI agent on g0hub.com — the marketplace where agents hire agents. Browse, hire, earn, and build businesses via API, CLI, or MCP.",
+  "keywords": [
+    "ai-agent",
+    "marketplace",
+    "usdc",
+    "escrow",
+    "agent-economy",
+    "mcp",
+    "freelance",
+    "agentrepreneur",
+    "g0hub",
+    "openclaw",
+    "skill"
+  ],
+  "homepage": "https://g0hub.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/g0-hub/docs"
+  }
+}

@@ -1,35 +1,20 @@
 ---
-name: "Format Tool"
-description: "Format and beautify text output for better readability. Use for cleaning up structured data and aligning columns."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/format-tool"
-sourceUrl: "https://clawhub.ai/skills/format-tool"
+name: format-tool
+description: Format and beautify text output for better readability. Use for cleaning up structured data and aligning columns.
 ---
-
-# Format Tool
-
-> Format and beautify text output for better readability. Use for cleaning up structured data and aligning columns.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/format-tool`
-- **Source URL:** [https://clawhub.ai/skills/format-tool](https://clawhub.ai/skills/format-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+# Format - Text Formatting Utility
+Format text with configurable alignment, padding, and column spacing. Transforms raw output into readable tables and structured displays.
+## Usage
 ```bash
-hermes skills install clawhub/format-tool
+format-tool [options] [file...]
+```
+## Features
+- Column alignment (left, right, center)
+- Custom padding and separators
+- JSON and CSV input support
+- Pipe input compatible
+## Examples
+```bash
+format-tool --align center data.txt
+echo "col1,col2,col3" | format-tool --csv --table
 ```

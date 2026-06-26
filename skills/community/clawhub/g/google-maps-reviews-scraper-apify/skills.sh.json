@@ -1,0 +1,13 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Apify",
+      "description": "Skills for running Google Maps reviews scraping workflows through Apify actors.",
+      "skills": [
+        "google-maps-reviews-scraper-apify"
+      ]
+    }
+  ]
+}

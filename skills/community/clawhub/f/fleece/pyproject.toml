@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fleece-cli"
+version = "0.4.0"
+description = "Credit card research and redemption CLI — live data via Brave Search, PointsYeah URL generation, designed for humans and AI agents."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Yuan Chen", email = "cysbc1999@gmail.com" }]
+requires-python = ">=3.11"
+keywords = ["credit-cards", "finance", "cli", "ai", "brave-search"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial",
+]
+dependencies = [
+    "typer[all]>=0.12.0",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.0",
+    "langchain-core>=0.3.0",
+    "requests>=2.31.0",
+]
+
+[project.scripts]
+fleece = "cli:app"
+
+[tool.hatch.build.targets.wheel]
+include = ["cli.py", "db.py", "pointsyeah.py", "mcc_codes.jsonl", "tools/"]

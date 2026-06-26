@@ -1,0 +1,9 @@
+{
+  "_comment": "【本地配置文件】不会被发布到 ClawHub",
+  "_how_to_use": "将 FEISHU_APP_ID / FEISHU_APP_SECRET / FEISHU_CHAT_ID 环境变量配置在 OpenClaw 主配置中，详见 SKILL.md",
+  "repositories": [],
+  "checkInterval": "6h",
+  "notifyChannel": "feishu",
+  "maxCommitsToShow": 10,
+  "includeDiffSummary": true
+}

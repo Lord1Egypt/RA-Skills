@@ -1,0 +1,33 @@
+{
+  "name": "free-models-for-agent",
+  "version": "0.2.1",
+  "description": "Discover and use free/cheap models from OpenRouter for AI agents (e.g. OpenClaw). Includes model discovery, filtering, and easy model selection for agent workflows.",
+  "main": "scripts/free-models.js",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/free-models.js",
+    "test": "node scripts/free-models.js"
+  },
+  "keywords": [
+    "free-models",
+    "tool-calling",
+    "openrouter",
+    "ai-agents",
+    "model-discovery"
+  ],
+  "author": "qidu",
+  "license": "MIT",
+  "homepage": "https://openrouter.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "bugs": {
+    "url": "https://github.com/openclaw/openclaw/issues"
+  }
+}

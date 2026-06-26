@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>幻灯片模板 - 双栏页</title>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 1920px;
+            height: 1080px;
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+        }
+        
+        /* 顶部栏 */
+        .header {
+            height: 120px;
+            background: linear-gradient(90deg, #003366 0%, #004080 50%, #003366 100%);
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+        }
+        
+        .header-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0066ff, #00cc66);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+        }
+        
+        .header-icon i {
+            font-size: 24px;
+            color: white;
+        }
+        
+        .header-title {
+            font-size: 42px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* 双栏内容区 */
+        .content {
+            display: flex;
+            padding: 40px 60px;
+            height: calc(100% - 120px);
+            gap: 40px;
+        }
+        
+        /* 栏 */
+        .column {
+            flex: 1;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        
+        /* 栏标题 */
+        .column-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .column-title.left {
+            color: #0066ff;
+        }
+        
+        .column-title.right {
+            color: #00cc66;
+        }
+        
+        .column-title i {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .column-title.left i {
+            background: linear-gradient(135deg, #0066ff, #4da6ff);
+        }
+        
+        .column-title.right i {
+            background: linear-gradient(135deg, #00cc66, #66ff99);
+        }
+        
+        /* 列表 */
+        .item-list {
+            list-style: none;
+        }
+        
+        .item-list li {
+            font-size: 24px;
+            color: #333333;
+            padding: 18px 0;
+            padding-left: 55px;
+            position: relative;
+            border-bottom: 1px dashed #e8e8e8;
+            transition: all 0.3s ease;
+        }
+        
+        .item-list li:hover {
+            padding-left: 65px;
+            color: #0066ff;
+        }
+        
+        .item-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .item-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+        }
+        
+        .column.left .item-list li::before {
+            background: linear-gradient(135deg, #0066ff, #0099ff);
+        }
+        
+        .column.right .item-list li::before {
+            background: linear-gradient(135deg, #00cc66, #00ff99);
+        }
+        
+        /* 分隔线 */
+        .divider {
+            width: 2px;
+            background: linear-gradient(180deg, transparent, #e0e0e0, transparent);
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <h1 class="header-title">功能展望</h1>
+    </div>
+    
+    <div class="content">
+        <!-- 左栏 -->
+        <div class="column left">
+            <h2 class="column-title left">
+                <i class="fas fa-check-circle"></i>
+                <span>已实现的能力</span>
+            </h2>
+            <ul class="item-list">
+                <li>文件读写与编辑</li>
+                <li>Web搜索与内容抓取</li>
+                <li>浏览器自动化操作</li>
+                <li>音频生成(TTS)</li>
+                <li>视频生成</li>
+                <li>图片分析与生成</li>
+                <li>代码执行</li>
+                <li>任务规划与分解</li>
+            </ul>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <!-- 右栏 -->
+        <div class="column right">
+            <h2 class="column-title right">
+                <i class="fas fa-rocket"></i>
+                <span>未来可拓展</span>
+            </h2>
+            <ul class="item-list">
+                <li>数据可视化仪表盘</li>
+                <li>智能邮件管理</li>
+                <li>日程与会议助手</li>
+                <li>创意内容工坊</li>
+                <li>多端同步协作</li>
+                <li>自动化工作流</li>
+                <li>项目进度追踪</li>
+                <li>演示文稿自动生成</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

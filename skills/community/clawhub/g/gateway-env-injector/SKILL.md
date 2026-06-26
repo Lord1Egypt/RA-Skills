@@ -1,35 +1,38 @@
 ---
-name: "Gateway Env Injector"
-description: "Safely inject API keys from 1Password into macOS LaunchAgent plists using PlistBuddy. Use when running OpenClaw on macOS and storing secrets in 1Password — a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gateway-env-injector"
-sourceUrl: "https://clawhub.ai/skills/gateway-env-injector"
+name: gateway-env-injector
+version: 1.0.0
+description: Safely inject API keys from 1Password into macOS LaunchAgent plists using PlistBuddy. Use when running OpenClaw on macOS and storing secrets in 1Password — avoids plaintext keys on disk while keeping LaunchAgent env vars populated. Requires 1Password CLI (op).
+metadata:
+  {"openclaw": {"emoji": "🔐", "requires": {"bins": ["op", "bash"], "env": ["OP_SERVICE_ACCOUNT_TOKEN"]}, "primaryEnv": "OP_SERVICE_ACCOUNT_TOKEN", "network": {"outbound": true, "reason": "Reads secrets from 1Password via op CLI (1password.com). Writes locally to plist files only."}}}
 ---
 
-# Gateway Env Injector
+# Gateway Environment Injector
 
-> Safely inject API keys from 1Password into macOS LaunchAgent plists using PlistBuddy. Use when running OpenClaw on macOS and storing secrets in 1Password — a...
+Bake secrets from 1Password into macOS LaunchAgent plists without leaving plaintext keys on disk. Uses `op read` to fetch secrets and `/usr/libexec/PlistBuddy` to inject them directly into the plist's `EnvironmentVariables` block.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gateway-env-injector`
-- **Source URL:** [https://clawhub.ai/skills/gateway-env-injector](https://clawhub.ai/skills/gateway-env-injector)
+## Why This Exists
 
-## Overview
+- `launchctl setenv` doesn't inject into a plist's own `EnvironmentVariables` block
+- Environment variables in `.zshrc` aren't available to LaunchAgents
+- Plaintext key files are a security risk
+- 1Password service accounts provide read-only, rotatable access
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gateway-env-injector
+bash scripts/inject-gateway-env.sh
 ```
+
+Reads each key from 1Password, injects into the gateway plist, then restarts the service.
+
+## What It Injects
+
+Configurable list of `op://Vault/Item/field` references mapped to environment variable names. Modify the script's `KEYS` array for your setup.
+
+## Key Lesson
+
+Changing the Node binary path (even to a symlink) can silently revoke macOS TCC permissions. Always keep the gateway plist locked to the Homebrew Cellar path, not an NVM symlink.
+
+## Files
+
+- `scripts/inject-gateway-env.sh` — Injection script with 1Password integration

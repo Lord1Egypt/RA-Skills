@@ -1,35 +1,143 @@
 ---
-name: "健身训练计划制定助手"
-description: "Create personalized Chinese fitness training plans based on goals, fitness level, available equipment, and schedule. Use when someone needs a structured work..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fitness-coach-cn"
-sourceUrl: "https://clawhub.ai/skills/fitness-coach-cn"
+name: fitness-coach-cn
+description: >
+  Create personalized Chinese fitness training plans based on goals, fitness
+  level, available equipment, and schedule. Use when someone needs a structured
+  workout program for weight loss, muscle building, endurance, or general
+  fitness — with exercise instructions, weekly schedules, and progress tracking.
 ---
 
 # 健身训练计划制定助手
 
-> Create personalized Chinese fitness training plans based on goals, fitness level, available equipment, and schedule. Use when someone needs a structured work...
+## 使用场景
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fitness-coach-cn`
-- **Source URL:** [https://clawhub.ai/skills/fitness-coach-cn](https://clawhub.ai/skills/fitness-coach-cn)
+- 根据个人情况制定个性化训练计划
+- 解释动作要领和常见错误
+- 规划减脂/增肌/塑形/提升耐力等目标
+- 提供营养搭配和恢复建议
 
-## Overview
+## 信息收集工作流
 
+开始前先询问用户：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fitness-coach-cn
 ```
+📋 请提供以下信息（可以简短回答）：
+
+1. 健身目标：减脂 / 增肌 / 塑形 / 提升体能 / 其他？
+2. 当前健身水平：新手（<3个月）/ 初级（3-12个月）/ 中级（1-3年）/ 高级？
+3. 可用设备：无器械（居家）/ 哑铃 / 健身房全套 / 其他？
+4. 每周可训练天数：2-3天 / 4-5天 / 6天+？
+5. 每次训练时长：30分钟 / 45分钟 / 60-90分钟？
+6. 年龄、性别（可选）：
+7. 身体限制或受伤史（可选）：
+```
+
+## 训练计划生成框架
+
+### 减脂计划模板（示例：新手 · 3天/周 · 无器械）
+
+```markdown
+## 🔥 减脂训练计划 | 新手 | 3天/周 | 居家
+
+**训练原则**：HIIT + 基础力量，提升代谢率
+
+---
+### 第一天：全身 HIIT（周一）40分钟
+
+**热身** 5分钟
+- 原地高抬腿 × 30秒 × 2组
+- 动态拉伸（肩、髋、踝）
+
+**主训练** 30分钟（循环3轮，组间休息60秒）
+1. 深蹲 × 15个
+2. 俯卧撑 × 10个（可膝盖着地）
+3. 弓步蹲（左右各10次）
+4. 平板支撑 × 30秒
+5. 波比跳 × 8个
+6. 卷腹 × 20个
+
+**拉伸放松** 5分钟
+
+---
+### 第二天：有氧+核心（周三）40分钟
+...
+
+### 第三天：下肢力量（周六）45分钟
+...
+```
+
+### 增肌计划模板（示例：中级 · 5天/周 · 健身房）
+
+```markdown
+## 💪 增肌训练计划 | 中级 | 5天推拉腿分化
+
+**训练原则**：渐进超负荷，每2周增加重量或次数
+
+| 日期 | 训练内容 |
+|------|---------|
+| 周一 | Push（胸、肩、三头）|
+| 周二 | Pull（背、二头）|
+| 周三 | Legs（腿、臀）|
+| 周四 | 休息 / 主动恢复 |
+| 周五 | Push |
+| 周六 | Pull |
+| 周日 | Legs |
+
+### Push Day 详细安排
+1. 卧推 4组 × 6-8次（主力）
+2. 哑铃上斜飞鸟 3组 × 10-12次
+3. 坐姿推举 3组 × 8-10次
+4. 侧平举 3组 × 12-15次
+5. 绳索下压 3组 × 12-15次
+```
+
+## 动作要领说明格式
+
+```markdown
+### 深蹲（Squat）
+
+**目标肌群**：股四头肌、臀大肌、腘绳肌
+
+**正确姿势**
+- 双脚与肩同宽或略宽，脚尖微外展（15-30°）
+- 挺胸收腹，保持腰椎自然弓度
+- 下蹲时膝盖跟随脚尖方向，不内扣
+- 大腿下蹲至少平行地面
+
+**常见错误** ⚠️
+- ❌ 膝盖内扣（增加损伤风险）
+- ❌ 背部圆背（腰椎受压）
+- ❌ 脚跟抬起（踝关节灵活性不足）
+
+**进阶/退阶**
+- 新手：坐椅深蹲（后方放椅子作辅助）
+- 进阶：杠铃深蹲、保加利亚深蹲
+```
+
+## 进度追踪建议
+
+```markdown
+## 健身日志模板
+
+日期：____  训练内容：____
+
+| 动作 | 组数 | 重量 | 次数 | 感受 |
+|------|------|------|------|------|
+| 深蹲 | 组1 | 60kg | 8次 | 💪 |
+|      | 组2 | 60kg | 7次 | 😤 |
+
+本次训练评分（1-10）：____
+恢复状态（睡眠/酸痛）：____
+```
+
+## 营养搭配要点
+
+| 目标 | 热量建议 | 蛋白质 | 注意事项 |
+|------|---------|--------|---------|
+| 减脂 | 每日TDEE -300~500kcal | 1.6-2.0g/kg体重 | 不低于1200kcal |
+| 增肌 | 每日TDEE +200~300kcal | 1.8-2.2g/kg体重 | 训练后30分钟补充蛋白 |
+| 维持 | 等于TDEE | 1.4-1.8g/kg体重 | 均衡饮食 |
+
+## 参考文件
+
+查看 `references/` 获取居家/健身房动作库、常见伤病预防和分化方案参考。

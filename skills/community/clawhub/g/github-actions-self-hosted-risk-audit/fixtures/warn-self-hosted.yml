@@ -1,0 +1,13 @@
+name: warn-self-hosted
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: [self-hosted, linux, x64]
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm test

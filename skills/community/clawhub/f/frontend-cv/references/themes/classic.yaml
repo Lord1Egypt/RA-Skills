@@ -1,0 +1,59 @@
+meta:
+  variant: classic
+  display_name: RenderCV Classic
+
+fonts:
+  links:
+    - https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap
+  body_stack: '"Source Sans 3","Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif'
+  heading_stack: '"Source Sans 3","Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif'
+  section_stack: '"Source Sans 3","Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif'
+
+colors:
+  name: "#004f90"
+  headline: "#004f90"
+  section: "#004f90"
+  links: "#004f90"
+  text: "#222222"
+  muted: "#666666"
+  muted_soft: "#b4b4b4"
+  rule: "#a9c0db"
+  title: "#1c1c1c"
+  subtitle: "#5f5f5f"
+  bullet: "#1c1c1c"
+
+page:
+  top: "0.7in"
+  right: "0.7in"
+  bottom: "0.7in"
+  left: "0.7in"
+
+header:
+  align: center
+  show_icons: true
+  separator: ""
+  social_display: username
+  website_display: domain
+  name_size: "30pt"
+  name_weight: 700
+  headline_size: "10pt"
+  connection_size: "9.3pt"
+  gap: "0.62cm"
+
+section:
+  title_size: "18pt"
+  title_weight: 700
+  space_above: "0.55cm"
+
+entry:
+  layout: right-meta
+  meta_width: "3.35cm"
+  column_gap: "0.5cm"
+  gap: "0.42cm"
+  body_size: "10pt"
+  meta_size: "9.1pt"
+  bullet: "•"
+  bullet_indent: "0.22cm"
+  bullet_text_gap: "0.35cm"
+  highlights_top: "0.12cm"
+  bullet_gap: "0.08cm"

@@ -1,0 +1,20 @@
+[project]
+name = "gmail-no-send"
+version = "0.1.0"
+description = "Drafts-only Gmail client (CLI + library) with no send functionality"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "Mei Park", email = "hey@meimakes.com"}]
+dependencies = [
+  "google-api-python-client",
+  "google-auth-httplib2",
+  "google-auth-oauthlib",
+]
+
+[project.scripts]
+gmail-no-send = "gmail_no_send.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["gmail_no_send*"]

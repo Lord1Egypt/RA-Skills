@@ -1,0 +1,17 @@
+{
+  "name": "global-travel-planner",
+  "version": "1.17.0",
+  "description": "一键查询48国签证、法律、文化、安全等24个模块。输出：输入语言+目的地语言双语Word方案。支持20+种语言。自动检测输入语言，不猜国籍。",
+  "main": "global_travel_planner.py",
+  "scripts": {
+    "start": "python3 global_travel_planner.py"
+  },
+  "description_en": "One-stop query for 48 countries: 24 modules. Output: bilingual (input language + destination language) Word doc. Supports 20+ languages. Auto-detect input language, never guess nationality.",
+  "features": [
+    "🌍 支持28+种文字系统检测 / 28+ script detection",
+    "🇨🇳🇯🇵🇰🇷 中日韩 | 🇹🇭🇰🇭🇱🇦🇲🇲 东南亚 | 🇮🇳🇱🇰🇧🇹🇲🇻 南亚",
+    "🇸🇦🇮🇱🇦🇲🇬🇪 西亚/高加索 | 🇷🇺🇬🇷 欧洲 | 🇪🇹🇲🇱🇬🇳 非洲",
+    "🌏 全部通过Unicode块检测，不猜国籍",
+    "输出：输入语言+目的地语言双语 / Output: input lang + destination lang"
+  ]
+}

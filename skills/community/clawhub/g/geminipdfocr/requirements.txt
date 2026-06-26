@@ -1,0 +1,12 @@
+# Geminipdf - Requirements
+# OCR PDF processing with Google Gemini
+
+# Gemini API
+google-genai
+
+# PDF Processing
+pymupdf
+
+# Pydantic
+pydantic-settings
+pydantic

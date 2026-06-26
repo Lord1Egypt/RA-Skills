@@ -1,0 +1,12 @@
+{
+  "databaseId": 5005,
+  "workflowName": "Release Checks",
+  "event": "workflow_dispatch",
+  "conclusion": "timed_out",
+  "headBranch": "release/2026.03",
+  "headSha": "abc5005",
+  "createdAt": "2026-03-05T00:00:00Z",
+  "updatedAt": "2026-03-05T00:20:00Z",
+  "url": "https://github.com/acme/api/actions/runs/5005",
+  "repository": "acme/api"
+}

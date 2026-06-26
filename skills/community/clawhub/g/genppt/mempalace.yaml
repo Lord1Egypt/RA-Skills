@@ -1,0 +1,4 @@
+wing: genppt
+rooms:
+  - name: general
+    description: All project files

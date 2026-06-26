@@ -1,35 +1,46 @@
 ---
-name: "Gateway Monitor (macOS)"
-description: "Install and operate a local OpenClaw Gateway Monitor stack on macOS with LaunchAgent + watchdog. Use when setting up, repairing, or validating gateway-monito..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gateway-monitor-macos"
-sourceUrl: "https://clawhub.ai/skills/gateway-monitor-macos"
+name: gateway-monitor-macos
+description: Install and operate a local OpenClaw Gateway Monitor stack on macOS with LaunchAgent + watchdog. Use when setting up, repairing, or validating gateway-monitor services, including one-command install/uninstall/status and automatic launchctl registration.
 ---
 
 # Gateway Monitor (macOS)
 
-> Install and operate a local OpenClaw Gateway Monitor stack on macOS with LaunchAgent + watchdog. Use when setting up, repairing, or validating gateway-monito...
+Run this skill when you need a reproducible install of gateway monitor + watchdog on macOS.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gateway-monitor-macos`
-- **Source URL:** [https://clawhub.ai/skills/gateway-monitor-macos](https://clawhub.ai/skills/gateway-monitor-macos)
+## Install
 
-## Overview
+Run:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gateway-monitor-macos
+bash scripts/install.sh
 ```
+
+What it does:
+- Copy monitor files to `~/.openclaw/tools/gateway-monitor`
+- Install/update LaunchAgents:
+  - `ai.openclaw.gateway-monitor`
+  - `ai.openclaw.gateway-watchdog`
+- Reload both jobs with `launchctl`
+- Verify monitor API health (`/api/summary`)
+
+## Status
+
+Run:
+
+```bash
+bash scripts/status.sh
+```
+
+## Uninstall
+
+Run:
+
+```bash
+bash scripts/uninstall.sh
+```
+
+## Notes
+
+- This skill targets macOS `launchd` only.
+- Installer is idempotent: safe to run repeatedly.
+- Backups of existing plists are written to `~/.openclaw/config-backups` before overwrite.

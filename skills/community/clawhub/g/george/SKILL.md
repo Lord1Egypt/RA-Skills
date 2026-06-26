@@ -1,35 +1,48 @@
 ---
-name: "George Banking Automation"
+name: george
 description: "Automate George online banking (Erste Bank / Sparkasse Austria): login/logout, list accounts, and fetch transactions via Playwright."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/george"
-sourceUrl: "https://clawhub.ai/skills/george"
+summary: "George banking automation: login, accounts, transactions."
+version: 1.5.4
+homepage: https://github.com/odrobnik/george-skill
+metadata:
+  openclaw:
+    emoji: "🏦"
+    requires:
+      bins: ["python3", "playwright"]
+      python: ["playwright"]
 ---
 
 # George Banking Automation
 
-> Automate George online banking (Erste Bank / Sparkasse Austria): login/logout, list accounts, and fetch transactions via Playwright.
+Fetch current account balances, stock portfolio, and transactions for all account types (checking, savings, depots) in JSON format for automatic processing. Uses Playwright to automate George (Erste Bank / Sparkasse Austria).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/george`
-- **Source URL:** [https://clawhub.ai/skills/george](https://clawhub.ai/skills/george)
+**Entry point:** `{baseDir}/scripts/george.py`
 
-## Overview
+## Setup
 
+See [SETUP.md](SETUP.md) for prerequisites and setup instructions.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Commands
+
 ```bash
-hermes skills install clawhub/george
+python3 {baseDir}/scripts/george.py login
+python3 {baseDir}/scripts/george.py logout
+python3 {baseDir}/scripts/george.py accounts
+python3 {baseDir}/scripts/george.py transactions --account <id|iban> --from YYYY-MM-DD --until YYYY-MM-DD
+python3 {baseDir}/scripts/george.py datacarrier-list [--json] [--state OPEN|CLOSED]
+python3 {baseDir}/scripts/george.py datacarrier-upload <file> [--type pain.001] [--out <dir>] [--wait-done] [--wait-done-timeout 120]
+python3 {baseDir}/scripts/george.py datacarrier-sign <datacarrier_id> [--sign-id <id>] [--out <dir>]
 ```
+
+## Recommended Flow
+
+```
+login → accounts → transactions → portfolio → logout
+login → datacarrier-upload → datacarrier-sign → logout
+```
+
+Always call `logout` after completing all operations to clear the stored browser session (cookies, local storage, Playwright profile). This minimizes persistent auth state on disk.
+
+## Notes
+- Session state stored in `{workspace}/george/` with restrictive permissions (dirs `700`, files `600`).
+- Ephemeral exports default to `/tmp/openclaw/george` (override with `OPENCLAW_TMP`).

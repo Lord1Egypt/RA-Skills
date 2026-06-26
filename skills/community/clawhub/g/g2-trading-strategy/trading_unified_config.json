@@ -1,0 +1,453 @@
+{
+  "version": "v6.0-g2-optimal",
+  "updated": "2026-04-05",
+  "description": "G2最优策略 - v5.2评分+量比>1.2硬过滤 (21组策略回测验证)",
+  "__回测结果__": "收益+26.7%, 年化+21.2%, 夏普1.12, 回撤15.2%, 跑赢大盘+23.6%",
+  "__origin__": "2025-01-03~2026-04-03 301天回测, 300只沪深300成分股, 21组策略对比",
+  "__core_change__": "在v5.2基础上加入量比>=1.2作为入场硬过滤条件 (原版已有vol_ratio_min但非硬过滤)",
+  "__architecture__": "v5.2量化初筛 + TradingAgents多代理深度分析 + 统一风险管理",
+  "__workflow__": "1.v5初筛 → 2.多代理分析(Fundamentals/Sentiment/News/Technical) → 3.多空辩论(Bull/Bear Research) → 4.交易决策(Trader) → 5.风险审批(Risk Manager) → 6.执行(Portfolio Manager)",
+  "core_principle": "止损纪律比选股能力重要十倍",
+  "core_concept": "只做大概率正确的事，让决策简单化",
+  "data_source": {
+    "primary": "tencent",
+    "backup": "tencent",
+    "fallback": "tencent",
+    "description": "主:腾讯 | 备用:腾讯 | 兜底:腾讯"
+  },
+  "score_system": {
+    "position": {
+      "权重": 0.12,
+      "核心逻辑": "低位=安全边际",
+      "评分规则": "距60日均线<20%→+20分, <30%→+15分, <40%→+10分"
+    },
+    "volume": {
+      "权重": 0.15,
+      "核心逻辑": "放量=资金入场",
+      "评分规则": "量比>1.5→+15分, >1.2→+10分, 放量→+5分"
+    },
+    "trend": {
+      "权重": 0.1,
+      "核心逻辑": "短期动能",
+      "评分规则": "MACD金叉+KDJ金叉→+15分, 单一金叉→+8分"
+    },
+    "chips": {
+      "权重": 0.1,
+      "核心逻辑": "底部缩量=主力建仓",
+      "评分规则": "底部缩量+低位→+15分, 低位→+8分"
+    },
+    "performance": {
+      "权重": 0.12,
+      "核心逻辑": "基本面支撑",
+      "评分规则": "净利>30%→+5分, >10%→+4分, >0%→+2分"
+    },
+    "ma_trend": {
+      "权重": 0.08,
+      "核心逻辑": "MA5>MA20>MA60",
+      "评分规则": "MA5>MA20→+8分, MA20>MA60→+5分, 价格>MA20→+2分"
+    },
+    "turnover": {
+      "权重": 0.08,
+      "核心逻辑": "活跃度",
+      "评分规则": "4%~12%→+10分, 其他→+5分"
+    },
+    "sentiment": {
+      "权重": 0.05,
+      "核心逻辑": "市场情绪",
+      "评分规则": "涨跌幅2%~6%→+5分, 量价配合→+3分"
+    },
+    "rebound": {
+      "权重": 0.2,
+      "核心逻辑": "超跌反弹",
+      "评分规则": "近21日跌幅>30%→+20分, >25%→+15分 | 近7日缩量→+15分 | 连续缩量7天→+20分 | 距60日均线<-30%→+10分"
+    }
+  },
+  "filter_criteria": {
+    "min_score": 40,
+    "min_upside": 8,
+    "max_position_pct": 65,
+    "min_pe": 0,
+    "turnover_rate_min": 4,
+    "turnover_rate_max": 12,
+    "vol_ratio_min": 1.2,
+    "change_pct_min": 2,
+    "change_pct_max": 6,
+    "price_above_ma5": true,
+    "use_10am_vol_ratio": true
+  },
+  "entry_filters": {
+    "__说明__": "G2最优策略：加入量比硬过滤",
+    "vol_ratio_hard_filter": true,
+    "vol_ratio_min": 1.2,
+    "recent_drop_filter": false,
+    "recent_drop_limit": 15,
+    "__效果__": "回测收益+26.7% (vs 原版16.6%), 夏普1.12"
+  },
+  "tradingagents": {
+    "enabled": true,
+    "__说明__": "多代理系统开关，设为true启用完整多代理流程",
+    "llm_provider": "openai",
+    "deep_think_llm": "gpt-4.5",
+    "quick_think_llm": "gpt-4.5-mini",
+    "max_debate_rounds": 2,
+    "analysis_depth": "balanced",
+    "v5_weight": 0.6,
+    "llm_weight": 0.4,
+    "v5_threshold": 40,
+    "agents": {
+      "fundamentals": {
+        "enabled": true,
+        "描述": "基本面分析师-财务/估值/成长"
+      },
+      "technical": {
+        "enabled": true,
+        "描述": "技术面分析师-均线/MACD/KDJ/量能"
+      },
+      "sentiment": {
+        "enabled": true,
+        "描述": "情绪分析师-换手率/涨跌幅/资金流向"
+      },
+      "news": {
+        "enabled": true,
+        "描述": "新闻分析师-公告/政策/热点"
+      },
+      "researchers": {
+        "enabled": true,
+        "描述": "研究团队-多空辩论"
+      },
+      "trader": {
+        "enabled": true,
+        "描述": "交易员-综合决策"
+      },
+      "risk_mgmt": {
+        "enabled": true,
+        "描述": "风险管理-仓位/止损/审批"
+      }
+    }
+  },
+  "take_profit_rules": {
+    "优先级1": {
+      "条件": "盈利>=25%",
+      "操作": "全部止盈",
+      "说明": "落袋为安"
+    },
+    "优先级2": {
+      "条件": "盈利>=20% + 收盘价高点回落5%",
+      "操作": "全部止盈",
+      "说明": "移动止盈，用收盘价高点"
+    },
+    "优先级3": {
+      "条件": "盈利>=15% + 回落8%",
+      "操作": "止盈50%",
+      "说明": "部分止盈"
+    },
+    "关键细节": {
+      "高点定义": "用日K收盘价高点或收盘价高点，不用日内分时高点",
+      "回落计算": "从收盘价高点计算回落百分比",
+      "目的": "避免盘中假突破触发移动止盈"
+    }
+  },
+  "stop_loss_rules": {
+    "优先级1": {
+      "条件": "亏损>=2%",
+      "操作": "立即卖出",
+      "说明": "固定止损，直接执行，不犹豫"
+    },
+    "优先级2": {
+      "条件": "收盘价跌破MA20",
+      "操作": "卖出80%",
+      "说明": "假突破过滤，用收盘价判断"
+    },
+    "优先级3": {
+      "条件": "放量下跌信号",
+      "操作": "卖出80%",
+      "说明": "量比>2.5 且 跌幅>大盘1.5倍"
+    },
+    "优先级4": {
+      "条件": "业绩变脸/利空",
+      "操作": "立即清仓",
+      "说明": "不等跌破"
+    },
+    "放量下跌判断": {
+      "量比": ">2.5",
+      "跌幅条件": "个股跌幅 > 大盘跌幅 × 1.5",
+      "区分": "主动放量（真跌）vs 被动放量（跟跌）"
+    }
+  },
+  "volume_divergence": {
+    "enabled": true,
+    "顶背离": {
+      "特征": "股价连续创新高（3天内2次以上）+ 成交量连续缩量",
+      "周期信号": "30分钟+日线同时背离 = 强信号"
+    },
+    "底背离": {
+      "特征": "股价下跌，但成交量放大",
+      "危险": "放量下跌 = 主力出货"
+    },
+    "持续确认": {
+      "第1天背离": {
+        "风险等级": "警惕",
+        "操作": "关注"
+      },
+      "第2天背离": {
+        "风险等级": "确认",
+        "操作": "准备卖出"
+      },
+      "第3天背离": {
+        "风险等级": "高概率反转",
+        "操作": "立即卖出"
+      }
+    }
+  },
+  "market_monitor": {
+    "时间节点": {
+      "9:00": "盘前新闻、政策面检查",
+      "9:30": "开盘情况，大盘量能",
+      "10:00": "量比校准（排除开盘虚高）",
+      "11:30": "上午盘复盘，监控持仓",
+      "14:00": "热门行业扫描，选股",
+      "14:30": "尾盘买入确认/每日扫描",
+      "15:00": "收盘复盘，记录伤疤",
+      "15:30": "配置备份",
+      "17:00": "InStreet社区互动"
+    },
+    "持仓监控": {
+      "价格vs止损价": {
+        "频率": "每小时",
+        "触发": "触及-2%立即卖出"
+      },
+      "价格vs移动止盈": {
+        "频率": "每小时",
+        "触发": "触及条件立即卖出"
+      },
+      "量能背离": {
+        "频率": "每日14:00/14:30",
+        "触发": "背离确认立即卖出"
+      },
+      "大盘走势": {
+        "频率": "每日9:30/14:00",
+        "触发": "大跌减仓避险"
+      },
+      "放量下跌信号": {
+        "频率": "实时",
+        "触发": "触发立即卖出80%"
+      }
+    }
+  },
+  "scars_log": {
+    "enabled": true,
+    "file": "scars_log.md",
+    "principle": "只记伤疤，不记高光",
+    "格式": {
+      "交易日期": "YYYY-MM-DD",
+      "股票代码": "XXXXXX",
+      "亏损比例": "-X%",
+      "触发条件": "什么情况下买入",
+      "亏损原因": "为什么会亏",
+      "认知偏差": "当时有什么错误判断",
+      "止损铁律": "下次遇到同样情况怎么做",
+      "市场状态": "震荡市/趋势市/熊市"
+    },
+    "决策简化": "每次交易前问：这次会踩到伤疤吗？"
+  },
+  "core_principles": [
+    {
+      "序号": 1,
+      "原则": "只买低位+放量",
+      "说明": "高位放量=主力出货，远离"
+    },
+    {
+      "序号": 2,
+      "原则": "严格止损",
+      "说明": "触及-2%直接卖，不问"
+    },
+    {
+      "序号": 3,
+      "原则": "尾盘买入",
+      "说明": "14:30-15:00"
+    },
+    {
+      "序号": 4,
+      "原则": "收盘价判断",
+      "说明": "止损止盈都用收盘价，不用盘中触及"
+    },
+    {
+      "序号": 5,
+      "原则": "分散持仓",
+      "说明": "最多3只，单只≤25%"
+    },
+    {
+      "序号": 6,
+      "原则": "执行合一",
+      "说明": "触及条件立即执行，不犹豫"
+    },
+    {
+      "序号": 7,
+      "原则": "量能背离监控",
+      "说明": "持续背离立即卖出"
+    },
+    {
+      "序号": 8,
+      "原则": "伤疤决策",
+      "说明": "每次决策问会踩伤疤吗"
+    },
+    {
+      "序号": 9,
+      "原则": "只做大概率",
+      "说明": "不确定性高时放弃"
+    }
+  ],
+  "position_management": {
+    "max_positions": 3,
+    "single_position_pct": 25
+  },
+  "trading_rules": {
+    "stop_loss_pct": 2.0,
+    "take_profit_full_pct": 25.0,
+    "trail_stop_reach_pct": 20,
+    "trail_stop_pct": 5.0,
+    "partial_take_profit_pct": 15,
+    "partial_trail_stop_pct": 8.0
+  },
+  "timing": {
+    "scan_time": "14:00",
+    "screen_time": "14:30",
+    "execute_window": "14:30-15:00",
+    "use_close_price": true,
+    "position_sync": {
+      "enabled": false,
+      "time_window": "9:15-15:00",
+      "description": "仅在交易时段进行自动持仓同步报告",
+      "sync_points": [
+        "9:15-9:30",
+        "10:00",
+        "11:30",
+        "14:00",
+        "14:30"
+      ],
+      "disabled_outside": "15:00-次日9:15 不发送自动报告"
+    }
+  },
+  "trading_agents": {
+    "version": "v0.2.3",
+    "source": "https://github.com/TauricResearch/TradingAgents",
+    "enabled": true,
+    "description": "多代理LLM金融交易框架",
+    "agents": {
+      "analyst_team": {
+        "description": "分析员团队 - 提供多维度市场分析",
+        "agents": {
+          "fundamentals_analyst": {
+            "role": "基本面分析师",
+            "responsibility": "评估公司财务和业绩指标,识别内在价值",
+            "focus": "营收、净利润、毛利率、ROE、PE估值",
+            "prompt_key_words": [
+              "财务分析",
+              "估值",
+              "基本面"
+            ]
+          },
+          "sentiment_analyst": {
+            "role": "情绪分析师",
+            "responsibility": "分析社交媒体和公众情绪,短期市场情绪",
+            "focus": "舆情分析、资金流向、买卖情绪",
+            "prompt_key_words": [
+              "情绪",
+              "资金流",
+              "热度"
+            ]
+          },
+          "news_analyst": {
+            "role": "新闻分析师",
+            "responsibility": "监控全球新闻和宏观经济指标",
+            "focus": "政策动向、行业新闻、重大公告",
+            "prompt_key_words": [
+              "新闻",
+              "政策",
+              "宏观"
+            ]
+          },
+          "technical_analyst": {
+            "role": "技术分析师",
+            "responsibility": "使用技术指标检测交易模式和价格走势",
+            "focus": "K线形态、MACD、RSI、均线、布林带",
+            "prompt_key_words": [
+              "技术",
+              "均线",
+              "MACD",
+              "突破"
+            ]
+          }
+        }
+      },
+      "researcher_team": {
+        "description": "研究员团队 - 多空辩论平衡风险收益",
+        "agents": {
+          "bullish_researcher": {
+            "role": "多头研究员",
+            "responsibility": "积极评估,发现潜在上涨机会",
+            "focus": "寻找买入理由,上行空间,催化剂"
+          },
+          "bearish_researcher": {
+            "role": "空头研究员",
+            "responsibility": "审慎评估,识别潜在风险和陷阱",
+            "focus": "寻找卖出理由,下行风险,警示信号"
+          }
+        },
+        "debate_rounds": 2,
+        "synthesize_insights": true
+      },
+      "trader": {
+        "role": "交易员",
+        "responsibility": "综合分析员和研究员的见解,制定交易策略",
+        "outputs": [
+          "交易建议",
+          "买入/卖出理由",
+          "目标价格",
+          "止损位"
+        ],
+        "decision_factors": [
+          "分析师共识",
+          "研究员辩论",
+          "风险收益比"
+        ]
+      },
+      "risk_management": {
+        "role": "风险管理团队",
+        "responsibility": "持续评估投资组合风险,调整交易策略",
+        "checks": [
+          "市场波动性评估",
+          "流动性风险检查",
+          "仓位上限检查",
+          "止损纪律执行",
+          "单日亏损限制"
+        ],
+        "max_drawdown_pct": 10,
+        "daily_loss_limit_pct": 5
+      },
+      "portfolio_manager": {
+        "role": "组合经理",
+        "responsibility": "最终决策是否执行交易",
+        "approval_required": true,
+        "final_authority": true
+      }
+    },
+    "execution": {
+      "simulation_only": true,
+      "backtest_mode": false,
+      "log_level": "INFO"
+    },
+    "model_config": {
+      "provider": "openai",
+      "model": "gpt-4.5",
+      "temperature": 0.7,
+      "max_tokens": 4000
+    },
+    "integration": {
+      "v5_screening": true,
+      "v5_score_threshold": 40,
+      "final_approval_required": true,
+      "risk_check_mandatory": true
+    }
+  }
+}

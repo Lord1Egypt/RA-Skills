@@ -1,0 +1,122 @@
+{
+  "version": "1.0",
+  "description": "个人食物数据库 - 碳水等值换算 (每10g单位为基准)",
+  "lastUpdated": "2026-04-06",
+  "foods": [
+    {
+      "id": "mt_001",
+      "name": "杂粮馒头",
+      "alias": ["馒头", "粗粮馒头"],
+      "unit": "个",
+      "carbonPerUnit": 18.5,
+      "carbonPer10g": 5.4,
+      "tags": ["主食", "中高碳日", "便捷"],
+      "note": "控制误差关键：不要因为'小'就多吃"
+    },
+    {
+      "id": "oat_001",
+      "name": "五黑燕麦",
+      "alias": ["燕麦", "干燕麦"],
+      "unit": "g (干重)",
+      "carbonPerUnit": 10,
+      "carbonPer10g": 10,
+      "tags": ["主食", "早餐", "高碳日"],
+      "note": "干重换算，泡开后约3倍重量"
+    },
+    {
+      "id": "pasta_001",
+      "name": "意大利面",
+      "alias": ["意面", "意粉"],
+      "unit": "g (干重)",
+      "carbonPerUnit": 10,
+      "carbonPer10g": 10,
+      "tags": ["主食", "预充能", "高碳日"],
+      "note": "干重计算，煮熟后约2.5倍"
+    },
+    {
+      "id": "berry_001",
+      "name": "蓝莓",
+      "alias": ["新鲜蓝莓"],
+      "unit": "g",
+      "carbonPer10g": 1.39,
+      "tags": ["碳水来源", "抗氧化", "全天候"],
+      "note": "升糖指数低，可用于填充糖原"
+    },
+    {
+      "id": "sweet_potato_001",
+      "name": "红薯",
+      "alias": ["地瓜", "番薯"],
+      "unit": "g",
+      "carbonPer10g": 2,
+      "tags": ["主食", "中碳日"],
+      "note": "需冷藏12小时以上食用"
+    },
+    {
+      "id": "corn_001",
+      "name": "水果玉米",
+      "alias": ["玉米", "甜玉米"],
+      "unit": "根",
+      "carbonPerUnit": 22,
+      "carbonPer10g": 4.5,
+      "tags": ["主食", "高碳日"],
+      "note": "1根约45-50g碳水"
+    },
+    {
+      "id": "avocado_001",
+      "name": "牛油果",
+      "alias": [],
+      "unit": "个",
+      "carbonPerUnit": 12,
+      "tags": ["脂肪", "低碳日"],
+      "note": "主要提供健康脂肪"
+    },
+    {
+      "id": "egg_001",
+      "name": "全蛋",
+      "alias": ["鸡蛋"],
+      "unit": "个",
+      "carbonPerUnit": 0.6,
+      "tags": ["蛋白", "脂肪", "全天候"],
+      "note": "低碳日主要蛋白来源"
+    },
+    {
+      "id": "whey_001",
+      "name": "WHEY蛋白粉",
+      "alias": ["蛋白粉", "Foryes粉"],
+      "unit": "份 (30g)",
+      "carbonPerUnit": 3,
+      "proteinPerUnit": 24,
+      "tags": ["蛋白", "练后"],
+      "note": "1份约等于1勺"
+    },
+    {
+      "id": "chicken_001",
+      "name": "鸡胸肉",
+      "alias": ["瘦肉", "熟肉"],
+      "unit": "g (熟重)",
+      "proteinPer100g": 31,
+      "tags": ["蛋白", "主力"],
+      "note": "每餐建议150g熟肉"
+    },
+    {
+      "id": "nuts_001",
+      "name": "混合坚果",
+      "alias": ["坚果"],
+      "unit": "g",
+      "fatPer10g": 5,
+      "tags": ["脂肪", "低碳日"],
+      "note": "控制量，20-30g足够"
+    }
+  ],
+  "conversionTable": {
+    "description": "10g 碳水等值换算",
+    "items": [
+      { "food": "燕麦", "amount": "16g (干重)" },
+      { "food": "意面", "amount": "13g (干重)" },
+      { "food": "杂粮馒头", "amount": "0.5个" },
+      { "food": "蓝莓", "amount": "72g" },
+      { "food": "红薯", "amount": "50g" },
+      { "food": "玉米", "amount": "45g" }
+    ]
+  }
+}

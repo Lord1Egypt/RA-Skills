@@ -1,0 +1,20 @@
+{
+  "id": "c3fb43a8-5947-4c3f-a6b9-9fc7752a568e",
+  "enqueuedAt": 1777948202577,
+  "channel": "telegram",
+  "to": "1003916184688",
+  "accountId": "default",
+  "payloads": [
+    {
+      "text": "⚠️ Cron job \"Daily AI Trends on Twitter\" failed: FailoverError: ⚠️ openrouter (openrouter/auto) returned a billing error — your API key has run out of credits or has an insufficient balance. Check your openrouter billing dashboard and top up or switch to a different API key."
+    }
+  ],
+  "bestEffort": false,
+  "session": {
+    "key": "agent:main:telegram:direct:8612962104",
+    "agentId": "main"
+  },
+  "retryCount": 1,
+  "lastAttemptAt": 1777948203128,
+  "lastError": "Telegram send failed: chat not found (chat_id=1003916184688). Likely: bot not started in DM, bot removed from group/channel, group migrated (new -100… id), or wrong bot token. Input was: \"1003916184688\"."
+}

@@ -1,0 +1,328 @@
+{
+  "name": "floor-otc",
+  "display_name": "FLOOR OTC",
+  "description": "Trustless token swaps for AI agents on Base. Two paths — relay agent-signed orders to CoW Protocol for instant batch-auction settlement (zero capital, MEV-protected, ~30s fills), or create a 1:1 on-chain escrow for human OTC. Both atomic, no middleman, no admin keys.",
+  "version": "1.3.0",
+  "author": "Agora0x",
+  "license": "MIT-0",
+  "tags": [
+    "otc",
+    "trading",
+    "escrow",
+    "defi",
+    "swap",
+    "base",
+    "erc-8004",
+    "web3",
+    "tokens",
+    "agent-economy",
+    "cow-protocol",
+    "batch-auction",
+    "mev-protected",
+    "eip-712",
+    "relay"
+  ],
+  "homepage": "https://floor-otc.vercel.app",
+  "agent_id": 31596,
+  "registry": "ERC-8004 Base Mainnet",
+  "registry_address": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+  "chain": "base",
+  "chain_id": 8453,
+  "escrow_contract": "0x9EC9d882C93F52621CBD0d146D3F2e0929E53AA7",
+  "cow_settlement": "0x9008D19f58AAbD9eD0D60971565AA8510560ab41",
+  "cow_vault_relayer": "0xC92E8bdf79f0507f65a392b0ab4667716BFE0110",
+  "endpoints": {
+    "agent_card": "https://floor-a2a-production.up.railway.app/.well-known/agent.json",
+    "a2a": "https://floor-a2a-production.up.railway.app/a2a",
+    "rest_quote": "https://floor-a2a-production.up.railway.app/api/quote",
+    "rest_prices": "https://floor-a2a-production.up.railway.app/api/prices",
+    "health": "https://floor-a2a-production.up.railway.app/health",
+    "telegram": "https://t.me/FloorOTCbot",
+    "mcp_sse": "https://zesty-solace-production-13de.up.railway.app/sse"
+  },
+  "supported_tokens": [
+    { "symbol": "USDC", "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913", "decimals": 6 },
+    { "symbol": "USDbC", "address": "0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6Ca", "decimals": 6 },
+    { "symbol": "DAI", "address": "0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb", "decimals": 18 },
+    { "symbol": "WETH", "address": "0x4200000000000000000000000000000000000006", "decimals": 18 }
+  ],
+  "protocol_fee_bps": 25,
+  "protocol_fee_note": "0.25% on every fill. CoW relay path: routed by solvers via partnerFee in the appData the trader signs. FloorEscrowV2 path: deducted from each side on settlement, immutable in contract. Zero spread on quotes.",
+  "venues": {
+    "cow_relay": {
+      "type": "off-chain order book + on-chain batch auction",
+      "settlement": "~30s by CoW solvers",
+      "custody": "non-custodial — FLOOR never holds funds",
+      "mev_protection": true,
+      "skills": ["prepare_trade", "submit_signed_trade", "check_cow_order"]
+    },
+    "floor_escrow_v2": {
+      "type": "1:1 on-chain escrow",
+      "settlement": "atomic on deposit-by-both-parties",
+      "custody": "smart contract escrow, no admin keys",
+      "skills": ["execute_trade", "check_trade"]
+    }
+  },
+  "skills": [
+    {
+      "id": "get_quote",
+      "name": "Get OTC Quote",
+      "description": "Get a live token swap quote at real CoinGecko market rates. Zero spread.",
+      "tags": ["quote", "swap", "pricing"],
+      "input": {
+        "method": "REST GET or JSON-RPC",
+        "rest": "GET /api/quote?from={from_token}&to={to_token}&amount={amount}",
+        "jsonrpc": {
+          "method": "tasks/send",
+          "params": {
+            "skill_id": "get_quote",
+            "arguments": {
+              "from_token": "string — token symbol (e.g. USDC, WETH, DAI)",
+              "to_token": "string — token symbol",
+              "amount": "number — amount of from_token to swap"
+            }
+          }
+        }
+      },
+      "output": {
+        "quote": {
+          "from_token": "string",
+          "to_token": "string",
+          "from_amount": "number",
+          "to_amount": "number",
+          "rate": "number",
+          "usd_value": "number",
+          "protocol_fee_bps": 25,
+          "escrow_contract": "address",
+          "network": "Base Mainnet",
+          "chain_id": 8453,
+          "settlement": "atomic_on_chain",
+          "valid_for_seconds": 60
+        }
+      },
+      "examples": [
+        "Get a quote for swapping 1000 USDC to WETH",
+        "How much DAI can I get for 5000 USDC?",
+        "Quote 10000 USDC to WETH"
+      ]
+    },
+    {
+      "id": "execute_trade",
+      "name": "Execute OTC Trade",
+      "description": "Create a trustless on-chain escrow for a token swap on Base. Both parties deposit, settlement is atomic.",
+      "tags": ["trade", "escrow", "swap", "settlement"],
+      "input": {
+        "method": "JSON-RPC",
+        "jsonrpc": {
+          "method": "tasks/send",
+          "params": {
+            "skill_id": "execute_trade",
+            "arguments": {
+              "from_token": "string — token symbol",
+              "to_token": "string — token symbol",
+              "amount": "number — amount of from_token"
+            }
+          }
+        }
+      },
+      "output": {
+        "trade": {
+          "trade_id": "bytes32",
+          "status": "Created",
+          "escrow_contract": "address",
+          "create_tx": "tx hash",
+          "basescan_url": "string",
+          "next_steps": "Buyer and seller must approve + deposit tokens"
+        },
+        "quote": "same as get_quote output"
+      },
+      "examples": [
+        "Swap 1000 USDC for DAI through escrow",
+        "Execute trade: 5000 USDC to WETH"
+      ]
+    },
+    {
+      "id": "check_trade",
+      "name": "Check Trade Status",
+      "description": "Check the on-chain status of an existing escrow trade by its trade ID.",
+      "tags": ["status", "trade", "escrow"],
+      "input": {
+        "method": "JSON-RPC",
+        "jsonrpc": {
+          "method": "tasks/send",
+          "params": {
+            "skill_id": "check_trade",
+            "arguments": {
+              "trade_id": "bytes32 — the escrow trade ID"
+            }
+          }
+        }
+      },
+      "output": {
+        "trade": {
+          "trade_id": "bytes32",
+          "status": "Created | BuyerDeposited | SellerDeposited | BothDeposited | Settled | Expired | Refunded",
+          "buyer": "address",
+          "seller": "address",
+          "buy_token": "address",
+          "sell_token": "address"
+        }
+      },
+      "examples": [
+        "Check trade status for 0x8cb14ec9..."
+      ]
+    },
+    {
+      "id": "get_prices",
+      "name": "Get Live Prices",
+      "description": "Get current token prices from CoinGecko for all supported tokens.",
+      "tags": ["prices", "market", "rates"],
+      "input": {
+        "method": "REST GET or JSON-RPC",
+        "rest": "GET /api/prices",
+        "jsonrpc": {
+          "method": "tasks/send",
+          "params": {
+            "skill_id": "get_prices",
+            "arguments": {}
+          }
+        }
+      },
+      "output": {
+        "prices": {
+          "TOKEN": { "usd": "number", "change_24h": "number" }
+        },
+        "source": "coingecko",
+        "updated_at": "ISO 8601"
+      },
+      "examples": [
+        "What are the current token prices?",
+        "Get live crypto prices"
+      ]
+    },
+    {
+      "id": "prepare_trade",
+      "name": "Prepare CoW Order",
+      "description": "Build a CoW Protocol order for the calling agent's wallet to sign. FLOOR returns the EIP-712 typed data, the appData document with FLOOR's 25 bps partnerFee baked in, a CoW quote, and a preflight check on the trader's sell-token balance and GPv2VaultRelayer allowance. The trader signs locally — FLOOR never custodies funds. The 25 bps fee is enforced because the appData hash is part of what the trader signs.",
+      "tags": ["cow", "swap", "relay", "eip-712", "prepare", "sign"],
+      "input": {
+        "method": "JSON-RPC",
+        "jsonrpc": {
+          "method": "tasks/send",
+          "params": {
+            "skill_id": "prepare_trade",
+            "arguments": {
+              "sell_token": "string — token symbol (USDC, USDT, USDbC, DAI, WETH)",
+              "buy_token": "string — token symbol",
+              "sell_amount": "number — amount of sell_token (human units)",
+              "trader_address": "string — 0x address of the calling agent's wallet",
+              "valid_for_seconds": "number (optional) — order validity window, default 1800"
+            }
+          }
+        }
+      },
+      "output": {
+        "order": "GPv2Order struct (sellToken, buyToken, receiver, sellAmount, buyAmount, validTo, appData, feeAmount, kind, partiallyFillable, sellTokenBalance, buyTokenBalance)",
+        "typed_data": {
+          "domain": "EIP-712 domain for Gnosis Protocol v2 on Base",
+          "types": "EIP-712 Order struct types",
+          "primaryType": "Order",
+          "message": "the order struct to sign"
+        },
+        "app_data": {
+          "hash": "bytes32 — keccak256 of the canonical appData JSON, signed inside the order",
+          "document": "the appData JSON object with FLOOR's partnerFee",
+          "full_string": "canonical JSON string — submit this with the signed order"
+        },
+        "quote_summary": "human-readable amounts, rate, validTo",
+        "partner_fee": "{ bps: 25, recipient: FLOOR treasury, note }",
+        "preflight": "{ balance, allowance, sufficient_balance, sufficient_allowance }",
+        "relayer": "{ address, approve_calldata, approve_to } — for one-time GPv2VaultRelayer approval if needed",
+        "next_steps": "array of human instructions",
+        "venue": "cow-protocol"
+      },
+      "examples": [
+        "Prepare a CoW order to swap 1000 USDC for WETH from 0xMyAgent",
+        "Build a sell order: 0.5 WETH to USDC, trader 0xabc..."
+      ]
+    },
+    {
+      "id": "submit_signed_trade",
+      "name": "Submit Signed CoW Order",
+      "description": "Forward a trader-signed CoW order to the CoW order book on Base. FLOOR re-checks the appData hash matches FLOOR's partnerFee doc, validates the EIP-712 signature locally (rejects if recovered != trader_address), then POSTs to api.cow.fi. Returns the orderUid and CoW explorer URL. Solvers fill in the next batch (~30s).",
+      "tags": ["cow", "swap", "relay", "submit", "settle"],
+      "input": {
+        "method": "JSON-RPC",
+        "jsonrpc": {
+          "method": "tasks/send",
+          "params": {
+            "skill_id": "submit_signed_trade",
+            "arguments": {
+              "order": "GPv2Order struct from prepare_trade",
+              "signature": "string — 0x-prefixed 65-byte EIP-712 signature (132 hex chars)",
+              "trader_address": "string — must match the EIP-712 signer"
+            }
+          }
+        }
+      },
+      "output": {
+        "order_uid": "0x... — 56-byte CoW order UID",
+        "explorer_url": "https://explorer.cow.fi/base/orders/{uid}",
+        "status": "open",
+        "venue": "cow-protocol",
+        "trader": "address",
+        "sell_token": "address",
+        "buy_token": "address",
+        "sell_amount": "uint256 string",
+        "buy_amount": "uint256 string",
+        "valid_to": "unix timestamp",
+        "partner_fee": "{ bps: 25, recipient }"
+      },
+      "examples": [
+        "Submit signed order with signature 0x... and trader 0xabc..."
+      ]
+    },
+    {
+      "id": "check_cow_order",
+      "name": "Check CoW Order",
+      "description": "Look up the live status of a CoW order by its 56-byte orderUid. Returns the order's state (open, fulfilled, cancelled, expired) plus executed sell/buy amounts.",
+      "tags": ["cow", "status", "order", "track"],
+      "input": {
+        "method": "JSON-RPC",
+        "jsonrpc": {
+          "method": "tasks/send",
+          "params": {
+            "skill_id": "check_cow_order",
+            "arguments": {
+              "order_uid": "string — 0x-prefixed 56-byte CoW order UID"
+            }
+          }
+        }
+      },
+      "output": {
+        "order_uid": "string",
+        "status": "open | fulfilled | cancelled | expired",
+        "executed_sell_amount": "uint256 string",
+        "executed_buy_amount": "uint256 string",
+        "sell_token": "address",
+        "buy_token": "address",
+        "from": "trader address",
+        "valid_to": "unix timestamp",
+        "explorer_url": "https://explorer.cow.fi/base/orders/{uid}",
+        "venue": "cow-protocol"
+      },
+      "examples": [
+        "Check CoW order 0x..."
+      ]
+    }
+  ],
+  "authentication": {
+    "required": false,
+    "note": "No API key needed. Quotes are free. CoW relay (prepare_trade/submit_signed_trade) requires the calling agent's own wallet to sign orders — FLOOR never holds keys for the trader. FloorEscrowV2 path requires the A2A server to have PRIVATE_KEY configured for the escrow creator role."
+  },
+  "capabilities": {
+    "streaming": false,
+    "push_notifications": false,
+    "protocols": ["google-a2a", "json-rpc-2.0", "rest", "mcp", "cow-protocol", "eip-712"]
+  }
+}

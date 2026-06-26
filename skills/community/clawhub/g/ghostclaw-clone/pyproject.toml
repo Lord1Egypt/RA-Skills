@@ -1,0 +1,86 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ghostclaw"
+version = "0.2.2a0"
+description = "Architectural code review assistant that perceives code vibes"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+authors = [{name = "Ev3lynx", email = "ev3lynx727@example.com"}]
+keywords = ["architecture", "code-review", "code-quality", "code-smell"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Quality Assurance",
+]
+# Optional URLs for PyPI
+urls = {Homepage = "https://github.com/Ev3lynx727/ghostclaw", Repository = "https://github.com/Ev3lynx727/ghostclaw.git"}
+
+dependencies = [
+    "pyyaml>=6.0.3",
+    "python-dotenv>=1.0.0",
+    "requests>=2.32.5",
+    "pydantic-settings>=2.13.1",
+    "httpx>=0.28.1",
+    "tenacity>=9.0.0",
+    "rich>=14.3.0",
+    "tiktoken>=0.7.0",
+    "openai>=1.50.0",
+    "anthropic>=0.40.0",
+    "pluggy>=1.0.0",
+    "aiosqlite>=0.20.0",
+    "lizard>=1.21.2",
+]
+
+[project.optional-dependencies]
+full = [
+    "mcp>=1.0.0",
+    "ai-codeindex>=0.1.0",
+    "pyscn>=0.1.0",
+    "codebert-score>=0.1.0",
+    "complexipy>=0.1.0"
+]
+complexity = [
+    "complexipy>=0.1.0"
+]
+mcp = [
+    "mcp>=1.0.0"
+]
+pyscn = [
+    "pyscn>=0.1.0"
+]
+ai-codeindex = [
+    "ai-codeindex>=0.1.0"
+]
+semantic = [
+    "codebert-score>=0.1.0"
+]
+orchestrator = [
+    "ghost-orchestrator>=0.1.1a1"
+]
+qmd = [
+    "lancedb>=0.12.0",
+    "fastembed>=0.4.0",  # default embedding backend (lightweight, no torch)
+    "numpy>=1.24.0",
+    "pandas>=2.0.0"      # used in vector_store for table scans
+]
+# For sentence-transformers backend (requires torch), install: pip install torch first, then pip install sentence-transformers
+config = [
+    "json5>=0.9.0"
+]
+
+[project.scripts]
+ghostclaw = "ghostclaw.cli.ghostclaw:main"
+ghostclaw-watcher = "ghostclaw.cli.watcher:main"
+ghostclaw-compare = "ghostclaw.cli.compare:main"
+ghostclaw-mcp = "ghostclaw_mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["references/*.yaml"]

@@ -1,0 +1,9 @@
+{
+  "name": "sentiment-analysis",
+  "version": "1.0.0",
+  "description": "情绪分析 - 股吧/雪球评论情感分析",
+  "main": "sentiment_analysis.py",
+  "exports": ["analyze_stock_sentiment", "calculate_sentiment_index"],
+  "dependencies": ["akshare", "pandas", "numpy", "jieba", "snownlp"],
+  "targetAgents": ["aisentiment", "ainewsfinance"]
+}

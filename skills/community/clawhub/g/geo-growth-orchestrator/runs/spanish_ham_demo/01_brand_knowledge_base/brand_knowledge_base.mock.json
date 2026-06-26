@@ -1,0 +1,43 @@
+{
+  "mock": true,
+  "brand_name": "西班牙火腿推广项目",
+  "category": "西班牙火腿",
+  "target_market": "中国",
+  "industry": "食品 / 进口消费品",
+  "brand_definition": "面向中国家庭、礼品和餐饮采购场景的西班牙火腿品类推广资料包。",
+  "target_customers": [
+    "家庭消费者",
+    "礼品采购",
+    "餐饮老板",
+    "精品超市渠道",
+    "本地进口食品渠道"
+  ],
+  "selling_points": [
+    {
+      "point": "西班牙原产地和品类文化具备高认知价值",
+      "evidence_level": "needs_confirmation"
+    },
+    {
+      "point": "适合礼品、聚会、餐饮和精品零售场景",
+      "evidence_level": "needs_confirmation"
+    },
+    {
+      "point": "可通过青田等本地进口产业链建立区域信任",
+      "evidence_level": "needs_confirmation"
+    }
+  ],
+  "missing_fields": [
+    "具体品牌名",
+    "产品规格",
+    "价格区间",
+    "渠道证明",
+    "食品合规资质",
+    "礼盒图片",
+    "配送范围"
+  ],
+  "compliance_boundary": [
+    "不承诺治疗或健康功效",
+    "不伪造原产地、认证、价格和客户案例",
+    "所有内容发布前人工审核"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "api_base": "https://api.agent-gigo.com",
+  "gateway_base": "http://127.0.0.1:18789",
+  "task_timeout_seconds": 300,
+  "total_timeout_seconds": 3600,
+  "task_heartbeat_seconds": 15,
+  "unlock_threshold": 3,
+  "estimated_tokens": "15K",
+  "estimated_minutes": "15-25",
+  "report_poll_initial_seconds": 10,
+  "report_poll_slow_seconds": 60,
+  "dimensions": {
+    "meat": { "weight": 0.30, "emoji": "🥩", "zh": "肉质", "en": "Meat" },
+    "brain": { "weight": 0.20, "emoji": "🧠", "zh": "脑子", "en": "Brain" },
+    "claw": { "weight": 0.15, "emoji": "🦀", "zh": "爪子", "en": "Claw" },
+    "shell": { "weight": 0.15, "emoji": "🛡️", "zh": "壳", "en": "Shell" },
+    "soul": { "weight": 0.10, "emoji": "👻", "zh": "灵魂", "en": "Soul" },
+    "cost": { "weight": 0.05, "emoji": "💰", "zh": "钱包", "en": "Cost" },
+    "speed": { "weight": 0.05, "emoji": "🦵", "zh": "脚力", "en": "Speed" }
+  },
+  "tiers": [
+    { "key": "street_stall", "min": 0, "max": 30, "emoji": "🚫", "zh": "路边摊龙虾", "en": "Street Stall" },
+    { "key": "night_market", "min": 31, "max": 45, "emoji": "🍜", "zh": "大排档龙虾", "en": "Night Market" },
+    { "key": "restaurant", "min": 46, "max": 55, "emoji": "🍽️", "zh": "餐厅龙虾", "en": "Restaurant" },
+    { "key": "star_grade", "min": 56, "max": 65, "emoji": "⭐", "zh": "星级龙虾", "en": "Star Grade" },
+    { "key": "michelin", "min": 66, "max": 75, "emoji": "🌟", "zh": "米其林龙虾", "en": "Michelin" },
+    { "key": "royal", "min": 76, "max": 84, "emoji": "👑", "zh": "皇家龙虾", "en": "Royal" },
+    { "key": "legendary", "min": 85, "max": 91, "emoji": "🏆", "zh": "传说龙虾", "en": "Legendary" },
+    { "key": "god_tier", "min": 92, "max": 100, "emoji": "🐉", "zh": "龙虾之神", "en": "God Tier" }
+  ],
+  "scoring_layers": {
+    "L1": { "weight": 0.40, "method": "rule", "zh": "基础完成", "en": "Basic Completion" },
+    "L2": { "weight": 0.25, "method": "rule", "zh": "质量达标", "en": "Quality Pass" },
+    "L3": { "weight": 0.20, "method": "ai_judge", "zh": "主动思考", "en": "Proactive Thinking" },
+    "L4": { "weight": 0.10, "method": "ai_judge", "zh": "超出预期", "en": "Beyond Expectations" },
+    "L5": { "weight": 0.05, "method": "ai_judge", "zh": "优雅程度", "en": "Elegance" }
+  }
+}

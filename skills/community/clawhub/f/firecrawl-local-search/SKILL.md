@@ -1,35 +1,57 @@
 ---
-name: "Firecrawl Local Search"
-description: "抓取网站数据的本地 Firecrawl 服务。使用本地 API (http://192.168.1.2:3002/) 进行网页抓取、数据提取和站内搜索。"
-category: "other"
-source: "ClawHub"
-tags: [chinese, firecrawl, local-api, web-scraping]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/firecrawl-local-search"
-sourceUrl: "https://clawhub.ai/skills/firecrawl-local-search"
+name: firecrawl-local-search
+description: 抓取网站数据的本地 Firecrawl 服务。使用本地 API (http://192.168.1.2:3002/) 进行网页抓取、数据提取和站内搜索。
 ---
 
-# Firecrawl Local Search
+# Firecrawl 本地搜索技能
 
-> 抓取网站数据的本地 Firecrawl 服务。使用本地 API (http://192.168.1.2:3002/) 进行网页抓取、数据提取和站内搜索。
+## 快速开始
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/firecrawl-local-search`
-- **Source URL:** [https://clawhub.ai/skills/firecrawl-local-search](https://clawhub.ai/skills/firecrawl-local-search)
+使用本地 Firecrawl 服务抓取网站数据。
 
-## Overview
+### API 配置
 
+- **基础 URL**: `http://192.168.1.2:3002/`
+- **协议**: HTTP (本地服务)
+- **超时**: 30 秒
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 主要功能
+
+### 1. 网页抓取 (Scrape)
+
 ```bash
-hermes skills install clawhub/firecrawl-local-search
+curl -X POST "http://192.168.1.2:3002/v1/scrape" \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://example.com", "formats": ["markdown"]}'
 ```
+
+### 2. 网站地图 (Map)
+
+```bash
+curl -X POST "http://192.168.1.2:3002/v1/map" \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://example.com"}'
+```
+
+### 3. 内容搜索 (Search)
+
+```bash
+python3 scripts/firecrawl_search.py "关键词" --site https://example.com
+```
+
+## 使用脚本
+
+- `scripts/firecrawl_scrape.py` - 网页抓取（无需外部依赖）
+- `scripts/firecrawl_map.py` - 网站地图
+- `scripts/firecrawl_search.py` - 内容搜索
+
+## 依赖说明
+
+✅ **无需安装任何依赖** - 使用 Python 标准库 `urllib.request`
+
+## 注意事项
+
+1. **本地服务**: API 运行在本地网络，确保网络连接正常
+2. **超时设置**: 默认 30 秒超时
+3. **速率限制**: 根据服务器配置调整请求频率
+4. **网络要求**: 需要访问 `http://192.168.1.2:3002/`

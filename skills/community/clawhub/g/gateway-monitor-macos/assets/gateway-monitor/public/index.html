@@ -1,0 +1,1642 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gateway Monitor</title>
+  <style>
+    :root {
+      --bg:    #09131f;
+      --bg1:   #0d1e30;
+      --panel: #0e2034;
+      --bdr:   #1c3d58;
+      --text:  #dce9f5;
+      --muted: #7aa4bf;
+      --acc:   #22b8cf;
+      --ok:    #22c55e;
+      --warn:  #f59e0b;
+      --err:   #ef4444;
+      --mono:  ui-monospace,'SF Mono',Menlo,monospace;
+      --sans:  system-ui,-apple-system,sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.35;overflow-x:hidden;}
+    .app{width:100%;max-width:1320px;margin:0 auto;padding:20px;display:grid;gap:14px;}
+    .app > *, .panel, .hdr > *, .hdr-actions, .ph, .ph-act, .toolbar label, .stream-hdr, .stream-imeta{min-width:0;}
+
+    /* ── Panel ── */
+    .panel{width:100%;background:var(--panel);border:1px solid var(--bdr);border-radius:10px;padding:14px;overflow:hidden;}
+
+    /* ── Header ── */
+    .hdr{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;}
+    h1{font-size:24px;color:var(--acc);letter-spacing:.01em;}
+    .meta{margin-top:6px;font-size:11px;color:var(--muted);font-family:var(--mono);overflow-wrap:anywhere;word-break:break-all;line-height:1.5;}
+    .hdr-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:flex-end;}
+    .badge{border-radius:5px;padding:3px 8px;font-size:11px;border:1px solid var(--ok);color:var(--ok);background:rgba(34,197,94,.08);font-family:var(--mono);}
+    .badge.paused{border-color:var(--warn);color:var(--warn);background:rgba(245,158,11,.08);}
+    .refresh-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+    .refresh-ctl{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);}
+    .refresh-ctl select{min-width:72px;}
+    .section-title{font-size:15px;font-weight:700;letter-spacing:.01em;color:var(--text);margin-bottom:12px;}
+    .audit-grid{display:grid;grid-template-columns:1.2fr .9fr;gap:10px;}
+    .audit-box{border:1px solid var(--bdr);background:var(--bg1);border-radius:8px;padding:10px;}
+    .audit-title{font-size:12px;color:var(--muted);margin-bottom:8px;letter-spacing:.03em;text-transform:uppercase;}
+    .audit-table{width:100%;border-collapse:collapse;}
+    .audit-table th,.audit-table td{padding:6px 4px;border-bottom:1px dashed rgba(28,61,88,.65);font-size:11px;text-align:left;vertical-align:top;}
+    .audit-table th{color:var(--muted);font-weight:600;}
+    .audit-table th,.audit-table td,.session-table th,.session-table td{overflow-wrap:anywhere;word-break:break-word;}
+    .src-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;background:#64748b;}
+    .src-ok{background:var(--ok);} .src-warn{background:var(--warn);} .src-bad{background:var(--err);}
+    .audit-note{font-size:11px;color:var(--muted);line-height:1.55;white-space:pre-wrap;font-family:var(--mono);}
+    .session-panel{margin-top:10px;border:1px solid var(--bdr);border-radius:8px;background:var(--bg1);padding:10px;display:none;}
+    .session-panel.show{display:block;}
+    .session-table{width:100%;border-collapse:collapse;}
+    .session-table th,.session-table td{font-size:11px;padding:6px;border-bottom:1px dashed rgba(28,61,88,.65);text-align:left;vertical-align:top;}
+    .session-table th{color:var(--muted);}
+
+    /* ── Button / Input ── */
+    button,input,select{
+      border-radius:7px;border:1px solid var(--bdr);background:var(--bg1);
+      color:var(--text);font-family:var(--sans);font-size:12px;
+    }
+    button,input,select,code{max-width:100%;}
+    button{padding:5px 10px;cursor:pointer;}
+    button:hover{border-color:var(--acc);}
+    input,select{padding:5px 8px;}
+
+    /* ── Alert Strip ── */
+    .alert-strip{display:none;padding:10px 12px;border-radius:8px;border:1px solid #7a2436;background:rgba(90,20,30,.9);}
+    .alert-strip.show{display:block;}
+    .alert-head{font-size:12px;font-weight:700;color:#ffd8df;margin-bottom:6px;}
+    .alert-chips{display:flex;flex-wrap:wrap;gap:6px;}
+    .alert-chip{border-radius:5px;padding:3px 8px;font-size:11px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);}
+    .chip-critical{border-color:#f87171;}.chip-high{border-color:#fbbf24;}.chip-medium{border-color:#67e8f9;}
+
+    /* ── KPI row ── */
+    .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;}
+    .kpi{border:1px solid var(--bdr);background:var(--bg1);border-radius:8px;padding:12px;cursor:pointer;transition:border-color .15s;}
+    .kpi.static{cursor:default;}
+    .kpi:not(.static):hover{border-color:var(--acc);}
+    .kpi-lbl{font-size:11px;color:var(--muted);margin-bottom:4px;letter-spacing:.02em;}
+    .kpi-val{font-size:24px;font-weight:700;line-height:1;}
+    .kpi-sub{font-size:11px;color:var(--muted);margin-top:6px;font-family:var(--mono);}
+
+    /* ── Services row ── */
+    .svc-badge-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
+    .status-badge{border-radius:999px;padding:4px 10px;font-size:11px;border:1px solid transparent;font-family:var(--mono);white-space:nowrap;}
+    .status-badge.ok{color:#c6f6d5;border-color:rgba(34,197,94,.45);background:rgba(9,48,28,.7);}
+    .status-badge.warn{color:#fde68a;border-color:rgba(245,158,11,.45);background:rgba(66,43,7,.7);}
+    .status-badge.bad{color:#fecdd3;border-color:rgba(239,68,68,.45);background:rgba(74,13,20,.7);}
+    .status-badge.neutral{color:#bfdbfe;border-color:rgba(125,211,252,.28);background:rgba(30,64,96,.45);}
+    .svc-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;}
+    .svc-card{border:1px solid var(--bdr);border-radius:8px;padding:12px;transition:border-color .18s;}
+    .svc-card.ok{border-color:rgba(34,197,94,.45);}
+    .svc-card.warn{border-color:rgba(245,158,11,.45);}
+    .svc-card.bad{border-color:rgba(239,68,68,.45);}
+    .svc-head{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+    .svc-dot{width:9px;height:9px;border-radius:50%;background:#607080;flex-shrink:0;transition:background .2s,box-shadow .2s;}
+    .svc-dot.ok{background:var(--ok);box-shadow:0 0 7px rgba(34,197,94,.55);}
+    .svc-dot.warn{background:var(--warn);box-shadow:0 0 7px rgba(245,158,11,.55);}
+    .svc-dot.bad{background:var(--err);box-shadow:0 0 7px rgba(239,68,68,.55);}
+    .svc-name{font-size:13px;font-weight:600;}
+    .svc-tag{margin-left:auto;font-size:10px;border:1px solid transparent;border-radius:4px;padding:2px 6px;font-family:var(--mono);}
+    .svc-tag.ok{color:#c6f6d5;border-color:rgba(34,197,94,.4);background:rgba(9,48,28,.7);}
+    .svc-tag.warn{color:#fde68a;border-color:rgba(245,158,11,.4);background:rgba(66,43,7,.7);}
+    .svc-tag.bad{color:#fecdd3;border-color:rgba(239,68,68,.4);background:rgba(74,13,20,.7);}
+    .svc-detail{font-size:11px;color:var(--muted);font-family:var(--mono);line-height:1.55;word-break:break-word;}
+
+    /* ── MiniMax compact ── */
+    .mm-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px;align-items:start;}
+    .mm-lbl{font-size:10px;color:var(--muted);margin-bottom:3px;}
+    .mm-val{font-size:20px;font-weight:700;line-height:1;}
+    .mm-bar{height:5px;background:rgba(30,64,96,.8);border-radius:999px;overflow:hidden;margin:6px 0 4px;}
+    .mm-bar-fill{height:100%;width:0;border-radius:999px;background:var(--ok);transition:width .25s;}
+    .mm-bar-fill.warn{background:var(--warn);}.mm-bar-fill.bad{background:var(--err);}
+    .mm-meta{font-size:10px;color:var(--muted);font-family:var(--mono);line-height:1.55;word-break:break-word;}
+    .models-grid{display:grid;grid-template-columns:1fr;gap:12px;align-items:stretch;}
+    .model-box{
+      border:1px solid var(--bdr);
+      background:var(--bg1);
+      border-radius:8px;
+      padding:10px;
+      display:flex;
+      flex-direction:column;
+    }
+    .model-box.minimax-box{min-height:0;}
+    .model-box.omlx-box{min-height:220px;}
+    .omlx-list-wrap{grid-column:span 3;}
+    .omlx-head{
+      display:grid;
+      grid-template-columns:110px minmax(0,1fr);
+      gap:8px;
+      margin-bottom:7px;
+      color:var(--muted);
+      font-size:10px;
+      font-family:var(--mono);
+      letter-spacing:.03em;
+      text-transform:uppercase;
+    }
+    .omlx-list{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:6px;
+      max-height:220px;
+      overflow:auto;
+      padding-right:2px;
+    }
+    .omlx-item{
+      display:grid;
+      grid-template-columns:110px minmax(0,1fr);
+      gap:8px;
+      align-items:center;
+      border:1px solid var(--bdr);
+      background:var(--bg1);
+      border-radius:7px;
+      padding:6px 8px;
+    }
+    .omlx-type{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:22px;
+      border-radius:999px;
+      border:1px solid rgba(34,184,207,.35);
+      background:rgba(34,184,207,.12);
+      color:#9fe9f5;
+      font-size:10px;
+      font-weight:700;
+      font-family:var(--mono);
+      text-transform:uppercase;
+      letter-spacing:.03em;
+      white-space:nowrap;
+      padding:0 8px;
+    }
+    .omlx-id{
+      font-family:var(--mono);
+      font-size:11px;
+      color:var(--text);
+      word-break:break-all;
+      line-height:1.45;
+    }
+    .omlx-empty{
+      border:1px dashed var(--bdr);
+      border-radius:7px;
+      padding:8px;
+      color:var(--muted);
+      font-size:11px;
+      font-family:var(--mono);
+    }
+    .modality-pills{display:flex;flex-wrap:wrap;gap:6px;}
+    .modality-pill{
+      border-radius:999px;
+      border:1px solid rgba(125,211,252,.28);
+      background:rgba(30,64,96,.45);
+      color:#bfdbfe;
+      padding:2px 8px;
+      font-size:10px;
+      font-family:var(--mono);
+      text-transform:lowercase;
+      white-space:nowrap;
+    }
+
+    /* ── Two column: stream + sig ── */
+    .two-col{display:grid;grid-template-columns:1fr 300px;gap:10px;align-items:start;}
+
+    /* ── Stream ── */
+    .stream-hdr{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+    .stream-st{font-size:11px;font-family:var(--mono);color:var(--muted);}
+    .stream-st.ok{color:#86efac;}.stream-st.warn{color:#fde68a;}.stream-st.bad{color:#fca5a5;}
+    .stream-box{max-height:270px;overflow-y:auto;border:1px solid var(--bdr);border-radius:8px;padding:6px;background:var(--bg);display:grid;gap:6px;align-content:start;}
+    .stream-item{border:1px solid var(--bdr);border-left:3px solid var(--bdr);border-radius:6px;padding:5px 7px;background:var(--bg1);}
+    .stream-item.level-error{border-left-color:var(--err);}
+    .stream-item.level-warn{border-left-color:var(--warn);}
+    .stream-item.level-info{border-left-color:var(--acc);}
+    .stream-imeta{display:flex;gap:6px;font-size:10px;color:var(--muted);font-family:var(--mono);margin-bottom:3px;}
+    .stream-item pre{margin:0;white-space:pre-wrap;font-family:var(--mono);font-size:10px;overflow-wrap:anywhere;}
+
+    /* ── Signature cloud ── */
+    .sig-cloud{display:flex;flex-wrap:wrap;gap:6px;}
+    .sig-pill{border-radius:6px;border:1px solid #1e4060;background:var(--bg1);color:var(--text);padding:4px 9px;font-size:11px;cursor:pointer;}
+    .sig-pill:hover{border-color:var(--acc);}
+
+    /* ── Panel header ── */
+    .ph{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+    .ph-title{font-size:15px;font-weight:700;letter-spacing:.01em;}
+    .ph-hint{font-size:11px;color:var(--muted);font-family:var(--mono);overflow-wrap:anywhere;}
+    .ph-hint-kbd{font-size:11px;color:var(--muted);font-family:var(--mono);}
+    @media(hover:none) and (pointer:coarse){.ph-hint-kbd{display:none;}}
+    .ph-act{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+
+    /* ── Log table ── */
+    .toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:8px;}
+    .toolbar label{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:4px;}
+    .toolbar-ext{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:8px;}
+    .pager{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+    .pager-info{font-size:11px;color:var(--muted);font-family:var(--mono);}
+    .btn-active{border-color:var(--warn);color:var(--warn);background:rgba(245,158,11,.08);}
+    .scroll-hint{display:none;font-size:11px;color:var(--muted);margin:0 0 6px;letter-spacing:.02em;text-align:center;padding:4px 8px;background:rgba(28,61,88,.35);border-radius:5px;border:1px solid var(--bdr);}
+    .table-wrap{
+      overflow:auto;max-height:48vh;border-radius:8px;border:1px solid var(--bdr);
+      position:relative;-webkit-overflow-scrolling:touch;scrollbar-width:thin;
+    }
+    .table-wrap::before,.table-wrap::after{
+      content:'';position:absolute;top:0;bottom:0;width:14px;pointer-events:none;opacity:0;transition:opacity .18s;z-index:2;
+    }
+    .table-wrap::before{left:0;background:linear-gradient(to right, rgba(9,19,31,.92), rgba(9,19,31,0));}
+    .table-wrap::after{right:0;background:linear-gradient(to left, rgba(9,19,31,.92), rgba(9,19,31,0));}
+    .table-wrap.can-scroll-left::before{opacity:1;}
+    .table-wrap.can-scroll-right::after{opacity:1;}
+    table{width:100%;border-collapse:collapse;min-width:500px;background:var(--bg);}
+    th,td{border-bottom:1px solid #183450;padding:6px 8px;font-size:11px;text-align:left;vertical-align:top;}
+    th{position:sticky;top:0;background:var(--bg1);color:var(--muted);z-index:1;}
+    td pre{margin:0;white-space:pre-wrap;font-family:var(--mono);font-size:10px;overflow-wrap:anywhere;}
+    tr.row-error td{background:rgba(130,27,49,.2);}
+    tr.row-warn td{background:rgba(132,89,20,.17);}
+    mark{background:#f9a826;color:#111;padding:0 2px;border-radius:2px;}
+
+    /* ── Colors ── */
+    .c-ok{color:var(--ok);}.c-warn{color:var(--warn);}.c-err{color:var(--err);}.c-acc{color:var(--acc);}
+
+    /* ── Responsive ── */
+    @media(max-width:1100px){
+      .two-col{grid-template-columns:1fr;}
+      .mm-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:760px){
+      .app{padding:12px;gap:10px;}
+      .panel{padding:12px;}
+      h1{font-size:20px;}
+      .meta{font-size:12px;line-height:1.45;}
+      button,input,select{min-height:44px;font-size:14px;}
+      .kpi-row{grid-template-columns:repeat(2,minmax(0,1fr));}
+      .mm-grid{grid-template-columns:1fr;}
+      .audit-grid{grid-template-columns:1fr;}
+      .models-grid{grid-template-columns:1fr;}
+      .model-box.omlx-box{min-height:0;}
+      .omlx-list{grid-template-columns:1fr;}
+      .omlx-head,.omlx-item{grid-template-columns:92px minmax(0,1fr);}
+      .omlx-list-wrap{grid-column:span 1;}
+      .svc-row{grid-template-columns:1fr;}
+      .hdr{align-items:stretch;}
+      .hdr-actions{
+        width:100%;
+        justify-content:stretch;
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:8px;
+      }
+      .hdr-actions .badge{grid-column:1/-1;justify-self:start;min-height:0;padding:5px 10px;}
+      .refresh-group{
+        grid-column:1/-1;
+        display:grid;
+        grid-template-columns:minmax(0,1fr) auto;
+        align-items:end;
+        gap:8px;
+      }
+      .refresh-ctl{
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        gap:4px;
+        font-size:12px;
+      }
+      .refresh-ctl select{width:100%;min-width:0;}
+      #refreshToggle{min-width:96px;}
+      .hdr-actions button{width:100%;}
+      .ph{align-items:flex-start;}
+      .ph-act{width:100%;justify-content:space-between;}
+      /* toolbar: 2-col grid for search inputs, full-width for select, buttons row */
+      .toolbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:end;}
+      .toolbar label{width:100%;display:grid;grid-template-columns:1fr;gap:4px;align-items:stretch;font-size:12px;color:var(--muted);}
+      .toolbar label:first-child{grid-column:1/-1;}
+      .toolbar-actions{display:flex;gap:8px;grid-column:1/-1;}
+      .toolbar-actions button{flex:1;}
+      .toolbar button,.toolbar input,.toolbar select{width:100%;}
+      .toolbar label input,.toolbar label select{width:100%!important;min-width:0;}
+      .toolbar-ext{display:grid;grid-template-columns:1fr;gap:8px;}
+      .pager{justify-content:space-between;}
+      .stream-box{max-height:42vh;}
+      .stream-imeta{flex-wrap:wrap;row-gap:2px;}
+      th,td{font-size:12px;padding:8px;}
+      .scroll-hint{display:block;}
+      .audit-table,.session-table{display:block;max-width:100%;overflow-x:auto;}
+      .audit-table thead,.audit-table tbody,.session-table thead,.session-table tbody{display:table;min-width:640px;width:100%;}
+      /* stream header: wrap controls neatly */
+      .stream-hdr{gap:8px;}
+      .stream-hdr .ph-act{gap:6px;}
+      .stream-hdr .ph-act button{min-height:36px;padding:4px 12px;}
+      /* sig cloud: larger tap targets */
+      .sig-pill{padding:7px 12px;font-size:12px;}
+      /* svc badge row: allow vertical stacking */
+      .svc-badge-row{gap:6px;}
+    }
+    @media(max-width:480px){
+      .app{padding:8px;gap:8px;}
+      .panel{padding:10px;}
+      h1{font-size:18px;}
+      .hdr-actions{grid-template-columns:1fr;}
+      .refresh-group{grid-template-columns:1fr;}
+      #refreshToggle{width:100%;}
+      .kpi-row{grid-template-columns:1fr;}
+      .kpi{padding:10px;}
+      .kpi-val{font-size:20px;}
+      .ph-title{font-size:14px;}
+      .stream-box{max-height:38vh;}
+      /* tiny screen toolbar: stack to single column */
+      .toolbar{grid-template-columns:1fr;}
+      .toolbar label:first-child{grid-column:auto;}
+    }
+    /* Scrollable area fade indicators (vertical) */
+    .scroll-fade-wrap{position:relative;}
+    .scroll-fade-wrap::after{
+      content:'';position:absolute;bottom:0;left:0;right:0;
+      height:32px;pointer-events:none;
+      background:linear-gradient(to bottom,rgba(9,19,31,0),rgba(9,19,31,.88));
+      border-radius:0 0 7px 7px;z-index:1;
+      transition:opacity .2s;
+    }
+    .scroll-fade-wrap.at-bottom::after{opacity:0;}
+    /* Touch-friendly scroll snap feel for stream */
+    @media(hover:none) and (pointer:coarse){
+      .stream-box{scroll-snap-type:y proximity;-webkit-overflow-scrolling:touch;}
+      .stream-item{scroll-snap-align:start;}
+      .table-wrap{-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+      .table-wrap::-webkit-scrollbar{display:none;}
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <!-- Header -->
+  <header class="panel hdr">
+    <div>
+      <h1>Gateway Monitor</h1>
+      <div class="meta" id="meta">加载中...</div>
+    </div>
+    <div class="hdr-actions">
+      <span class="badge" id="liveBadge">● LIVE</span>
+      <div class="refresh-group">
+        <label class="refresh-ctl">
+          刷新间隔
+          <select id="refreshInterval" onchange="setRefreshInterval(this.value)">
+            <option value="10000" selected>10s</option>
+            <option value="30000">30s</option>
+            <option value="60000">60s</option>
+          </select>
+        </label>
+        <button onclick="toggleAutoRefresh()" id="refreshToggle">暂停刷新</button>
+      </div>
+      <button onclick="copyRecoverCmd()">复制恢复命令</button>
+      <button onclick="copyDiagnostics()">复制诊断</button>
+      <button id="restartGatewayBtn" onclick="restartGateway()" style="background-color: #f59e0b; color: white; border-color: #d97706;">重启 Gateway</button>
+      <button onclick="restoreConfig()" style="background-color: #ef4444; color: white; border-color: #dc2626;">紧急还原配置</button>
+    </div>
+  </header>
+
+  <!-- Alert strip -->
+  <section id="alertStrip" class="alert-strip"></section>
+
+  <!-- Source & Algorithm Audit -->
+  <section class="panel">
+    <div class="ph">
+      <span class="ph-title">数据源与算法审计</span>
+      <div class="ph-act">
+        <span class="ph-hint" id="auditUpdatedAt">更新时间: -</span>
+        <button onclick="reloadAudit()">刷新审计</button>
+      </div>
+    </div>
+    <div class="audit-grid">
+      <article class="audit-box">
+        <div class="audit-title">数据源状态</div>
+        <table class="audit-table">
+          <thead>
+            <tr><th>模块</th><th>来源</th><th>状态</th><th>更新时间</th></tr>
+          </thead>
+          <tbody id="auditRows"></tbody>
+        </table>
+      </article>
+      <article class="audit-box">
+        <div class="audit-title">当前算法口径</div>
+        <div class="audit-note" id="auditNotes">加载中...</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- KPI row -->
+  <section class="panel">
+    <div class="section-title">总览指标</div>
+    <div class="kpi-row">
+      <div class="kpi" onclick="setFilter('')">
+        <div class="kpi-lbl">1h 日志</div>
+        <div class="kpi-val" id="totalLogs">0</div>
+        <div class="kpi-sub">全部</div>
+      </div>
+      <div class="kpi" onclick="setLevel('error')">
+        <div class="kpi-lbl">1h Error</div>
+        <div class="kpi-val c-err" id="totalError">0</div>
+        <div class="kpi-sub">筛选</div>
+      </div>
+      <div class="kpi" onclick="setLevel('warn')">
+        <div class="kpi-lbl">1h Warn</div>
+        <div class="kpi-val c-warn" id="totalWarn">0</div>
+        <div class="kpi-sub">筛选</div>
+      </div>
+      <div class="kpi" onclick="toggleSessionPanel()">
+        <div class="kpi-lbl">Sessions</div>
+        <div class="kpi-val c-acc" id="sessionCount">-</div>
+        <div class="kpi-sub" id="sessionSub">点击查看会话明细</div>
+      </div>
+      <div class="kpi static">
+        <div class="kpi-lbl">Gateway CPU</div>
+        <div class="kpi-val" id="cpuNow">-</div>
+        <div class="kpi-sub" id="cpuSub">process</div>
+      </div>
+      <div class="kpi static">
+        <div class="kpi-lbl">Mac Studio 内存占用</div>
+        <div class="kpi-val" id="macMemNow">-</div>
+        <div class="kpi-sub" id="macMemSub">host</div>
+      </div>
+      <div class="kpi static">
+        <div class="kpi-lbl">上下文占用</div>
+        <div class="kpi-val" id="ctxNow">-</div>
+        <div class="kpi-sub" id="ctxSub">-</div>
+      </div>
+    </div>
+    <div class="session-panel" id="sessionPanel">
+      <div class="ph" style="margin-bottom:8px;">
+        <span class="ph-title" style="font-size:13px;">Session 明细</span>
+        <span class="ph-hint" id="sessionPanelMeta">-</span>
+      </div>
+      <table class="session-table">
+        <thead>
+          <tr>
+            <th>Session ID</th>
+            <th>Model</th>
+            <th>占用%</th>
+            <th>Total Tokens</th>
+            <th>最后活动</th>
+          </tr>
+        </thead>
+        <tbody id="sessionRows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Services: gateway + launchagents + resources -->
+  <section class="panel">
+    <div class="ph">
+      <span class="ph-title">服务状态</span>
+      <div class="ph-act">
+        <span class="ph-hint" id="svcRefreshTime"></span>
+        <button onclick="reloadServices()">刷新</button>
+      </div>
+    </div>
+    <div class="svc-row">
+      <article class="svc-card" id="svc-gateway-card">
+        <div class="svc-head">
+          <span class="svc-dot" id="svc-gateway-dot"></span>
+          <span class="svc-name">Gateway</span>
+          <span class="svc-tag" id="svc-gateway-tag">-</span>
+        </div>
+        <div class="svc-detail" id="svc-gateway-detail">等待数据...</div>
+      </article>
+      <article class="svc-card" id="svc-agents-card">
+        <div class="svc-head">
+          <span class="svc-dot" id="svc-agents-dot"></span>
+          <span class="svc-name">LaunchAgents</span>
+          <span class="svc-tag" id="svc-agents-tag">-</span>
+        </div>
+        <div class="svc-detail" id="svc-agents-detail">等待数据...</div>
+      </article>
+      <article class="svc-card" id="svc-res-card">
+        <div class="svc-head">
+          <span class="svc-dot" id="svc-res-dot"></span>
+          <span class="svc-name">资源</span>
+          <span class="svc-tag" id="svc-res-tag">-</span>
+        </div>
+        <div class="svc-detail" id="svc-res-detail">等待数据...</div>
+      </article>
+      <article class="svc-card" id="svc-acpx-card">
+        <div class="svc-head">
+          <span class="svc-dot" id="svc-acpx-dot"></span>
+          <span class="svc-name">acpx 服务</span>
+          <span class="svc-tag" id="svc-acpx-tag">-</span>
+        </div>
+        <div class="svc-detail" id="svc-acpx-detail">等待数据...</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Models & Plan -->
+  <section class="panel">
+    <div class="ph">
+      <span class="ph-title">模型与配额</span>
+      <div class="ph-act">
+        <button onclick="reloadMiniMax(true)">刷新 MiniMax</button>
+        <button onclick="reloadOmlx(true)">刷新 oMLX</button>
+        <button id="checkOmlxUpdateBtn" onclick="checkOmlxUpdate(true)">检查 oMLX 更新</button>
+        <button onclick="setOmlxRepo()">设置 oMLX 仓库</button>
+      </div>
+    </div>
+    <div class="models-grid">
+      <article class="model-box minimax-box">
+        <div class="ph" style="margin-bottom:8px;">
+          <span class="ph-title" style="font-size:13px;">MiniMax Coding Plan</span>
+          <span class="ph-hint" id="mmStatusText"></span>
+        </div>
+        <div class="mm-grid">
+          <div>
+            <div class="mm-lbl" id="mmModelName">主模型</div>
+            <div class="mm-val" id="miniUsageValue">-</div>
+            <div class="mm-bar"><div class="mm-bar-fill" id="miniUsageBar"></div></div>
+            <div class="mm-meta" id="miniUsageMeta">等待数据...</div>
+          </div>
+          <div>
+            <div class="mm-lbl">剩余时间</div>
+            <div class="mm-val" id="miniCountdown">-</div>
+            <div class="mm-meta" id="miniWindowMeta">-</div>
+          </div>
+          <div>
+            <div class="mm-lbl">接口</div>
+            <div class="mm-meta" id="miniStatusMeta">等待数据...</div>
+          </div>
+        </div>
+      </article>
+      <article class="model-box omlx-box">
+        <div class="ph" style="margin-bottom:8px;">
+          <span class="ph-title" style="font-size:13px;">oMLX 可用模型</span>
+          <span class="ph-hint" id="omlxStatusText">加载中...</span>
+        </div>
+        <div class="mm-grid">
+          <div>
+            <div class="mm-lbl">可用数量</div>
+            <div class="mm-val c-acc" id="omlxModelCount">-</div>
+            <div class="mm-meta" id="omlxStatusMeta">等待数据...</div>
+          </div>
+          <div>
+            <div class="mm-lbl">oMLX 版本</div>
+            <div class="mm-val c-ok" id="omlxVersionValue">-</div>
+            <div class="mm-meta" id="omlxVersionMeta">等待检测...</div>
+            <div class="mm-meta" id="omlxUpdateMeta">点击“检查 oMLX 更新”获取 GitHub 最新版本</div>
+            <div class="mm-meta" id="omlxRepoMeta">repo: jundot/omlx</div>
+          </div>
+          <div>
+            <div class="mm-lbl">可用模态</div>
+            <div class="modality-pills" id="omlxModalityPills">
+              <span class="modality-pill">loading</span>
+            </div>
+            <div class="mm-meta" id="omlxModalMeta">基于 OpenAPI 自动识别</div>
+          </div>
+          <div class="omlx-list-wrap">
+            <div class="omlx-head">
+              <span>Type</span>
+              <span>Model ID</span>
+            </div>
+            <div class="omlx-list" id="omlxModelRows">
+              <div class="omlx-empty">加载中...</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Log search -->
+  <section class="panel">
+    <div class="ph">
+      <span class="ph-title">日志检索</span>
+      <span class="ph-hint-kbd">按 <code>/</code> 聚焦搜索</span>
+    </div>
+    <div class="ph" style="margin-bottom:10px;">
+      <span class="ph-title" style="font-size:13px;">Signature 热点</span>
+      <span class="ph-hint">点击筛选</span>
+    </div>
+    <div class="sig-cloud" id="sigCloud"></div>
+    <div style="height:10px;"></div>
+    <div class="toolbar">
+      <label>signature <input id="signature" placeholder="terminated" style="width:140px" /></label>
+      <label>level
+        <select id="level">
+          <option value="error,warn" selected>error+warn</option>
+          <option value="error">error</option>
+          <option value="warn">warn</option>
+        </select>
+      </label>
+      <label>keyword <input id="keyword" placeholder="关键字" style="width:140px" /></label>
+      <div class="toolbar-actions">
+        <button id="onlyIssuesBtn" onclick="toggleOnlyIssues()">仅看异常</button>
+        <button onclick="reloadLogs()">筛选</button>
+        <button onclick="resetFilter()">重置</button>
+        <button id="clearLogsBtn" onclick="toggleClearCurrentLogs()">清除当前日志</button>
+        <button onclick="exportLogs()">导出 JSON</button>
+      </div>
+    </div>
+    <div class="toolbar-ext">
+      <div class="pager">
+        <button onclick="prevLogPage()">上一页</button>
+        <span class="pager-info" id="logPageInfo">第 1 页 / 共 1 页</span>
+        <button onclick="nextLogPage()">下一页</button>
+      </div>
+      <span class="pager-info" id="logCutoffMeta">基线: 全部日志</span>
+      <label class="pager-info">每页
+        <select id="logPageSize" onchange="setLogPageSize(this.value)">
+          <option value="20">20</option>
+          <option value="50" selected>50</option>
+          <option value="100">100</option>
+        </select>
+      </label>
+    </div>
+    <div class="scroll-hint" id="logScrollHint">← 左右滑动查看完整表格 →</div>
+    <div class="table-wrap" id="logsTableWrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:135px">时间</th>
+            <th style="width:55px">级别</th>
+            <th style="width:155px">signature</th>
+            <th>消息</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+<script>
+const state = {
+  autoRefresh: true,
+  autoRefreshIntervalMs: 10000,
+  refreshTimer: null,
+  latestSummary: null,
+  latestAgents: null,
+  latestMiniMax: null,
+  latestOmlx: null,
+  latestOmlxUpdate: null,
+  checkingOmlxUpdate: false,
+  latestLogs: [],
+  latestLogsRaw: [],
+  latestLogsAll: [],
+  logsCutoffTs: null,
+  restartingGateway: false,
+  logPage: 1,
+  logPageSize: 50,
+  onlyIssues: false,
+  sourceAudit: {
+    summary: null,
+    launchd: null,
+    logs: null,
+    minimax: null,
+    omlx: null
+  },
+  renderCache: {
+    cards: {},
+    sigCloud: '',
+    alerts: '',
+    logsKey: ''
+  }
+};
+
+/* ── utils ── */
+function esc(s) {
+  return String(s||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+}
+function byId(id) { return document.getElementById(id); }
+function setText(id, value) {
+  const el = byId(id);
+  if (!el) return;
+  const txt = String(value ?? '');
+  if (el.textContent !== txt) el.textContent = txt;
+}
+function setHtml(id, html) {
+  const el = byId(id);
+  if (!el) return;
+  if (el.innerHTML !== html) el.innerHTML = html;
+}
+function setCls(id, cls) {
+  const el = byId(id);
+  if (!el) return;
+  if (el.className !== cls) el.className = cls;
+}
+function escRe(s){ return String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+function hlKw(text, kw) {
+  const e = esc(text);
+  if (!kw) return e;
+  return e.replace(new RegExp(escRe(kw),'ig'), m => `<mark>${m}</mark>`);
+}
+function fmtPct(v){ return Number.isFinite(Number(v)) ? `${Number(v).toFixed(1)}%` : '-'; }
+function fmtMB(v){ return Number.isFinite(Number(v)) ? `${Number(v).toFixed(1)} MB` : '-'; }
+function fmtN(v, fb='-'){ return Number.isFinite(Number(v)) ? String(v) : fb; }
+function toN(v){ const n=Number(v); return Number.isFinite(n)?n:null; }
+function fmtDur(ms) {
+  const n=Number(ms);
+  if (!Number.isFinite(n)||n<0) return '-';
+  const s=Math.floor(n/1000), h=Math.floor(s/3600), m=Math.floor((s%3600)/60);
+  return `${h}h ${String(m).padStart(2,'0')}m`;
+}
+function fmtEpoch(ms) {
+  const n=Number(ms);
+  if (!Number.isFinite(n)||n<=0) return '-';
+  return new Date(n).toLocaleString();
+}
+function fmtTime(ts) {
+  if (!ts) return '-';
+  const d = new Date(ts);
+  if (Number.isNaN(d.getTime())) return '-';
+  return d.toLocaleTimeString();
+}
+function minimaxHealthLvl(pct) {
+  const p = Number(pct);
+  if (!Number.isFinite(p)) return 'warn';
+  if (p>=80) return 'ok';
+  if (p>=60) return 'warn';
+  return 'bad';
+}
+
+async function getJSON(url, options = {}) {
+  const r = await fetch(url, { cache:'no-store', ...options });
+  if (!r.ok) throw new Error(`${url} -> ${r.status}`);
+  return r.json();
+}
+
+function setAuditSource(name, payload) {
+  state.sourceAudit[name] = {
+    ok: !!payload?.ok || name === 'summary' || name === 'launchd' || name === 'logs',
+    at: Date.now(),
+    detail: payload?.statusMsg || payload?.error || 'ok'
+  };
+}
+
+function setAuditSourceError(name, error) {
+  state.sourceAudit[name] = {
+    ok: false,
+    at: Date.now(),
+    detail: String(error?.message || error || 'request failed')
+  };
+}
+
+function renderAuditPanel() {
+  const rowsEl = byId('auditRows');
+  if (!rowsEl) return;
+  const entries = [
+    ['summary', 'OpenClaw Monitor /api/summary'],
+    ['launchd', 'launchctl /api/launchd-status'],
+    ['logs', 'openclaw logs /api/logs'],
+    ['minimax', 'MiniMax remains API'],
+    ['omlx', 'oMLX /v1/models + /openapi.json']
+  ];
+
+  rowsEl.innerHTML = entries.map(([key, source]) => {
+    const x = state.sourceAudit[key];
+    const level = !x ? 'bad' : (x.ok ? 'ok' : 'warn');
+    const statusText = x ? (x.ok ? 'ok' : 'warn') : 'unknown';
+    const detail = x?.detail ? ` · ${esc(x.detail)}` : '';
+    return `<tr>
+      <td>${esc(key)}</td>
+      <td>${esc(source)}</td>
+      <td><span class="src-dot src-${level}"></span>${statusText}${detail}</td>
+      <td>${fmtTime(x?.at)}</td>
+    </tr>`;
+  }).join('');
+
+  setText('auditUpdatedAt', `更新时间: ${new Date().toLocaleTimeString()}`);
+setText('auditNotes',
+`memory.used = active + wired + compressed
+memory.cached = inactive + speculative + purgeable
+MiniMax 颜色按 usagePercent 判定：高=绿，低=红
+log.level 优先读取 _meta.logLevelName，再做关键词回退
+signature 由规则映射，未命中归类为 other
+oMLX 模态由 openapi.paths 自动识别（text/embedding/rerank/tts/asr/vision/mcp-tools）
+summary/logs/launchd 独立刷新，避免旧状态互相覆盖`);
+}
+
+/* ── Filter helpers ── */
+function curFilters() {
+  const selectedLevel = document.getElementById('level').value.trim();
+  return {
+    signature: document.getElementById('signature').value.trim(),
+    level:     state.onlyIssues ? 'error,warn' : selectedLevel,
+    keyword:   document.getElementById('keyword').value.trim()
+  };
+}
+function setFilter(sig) {
+  document.getElementById('signature').value = sig;
+  state.logPage = 1;
+  reloadLogs().catch(console.error);
+}
+function setFilterEncoded(sig) { setFilter(decodeURIComponent(sig||'')); }
+function setLevel(lv) {
+  document.getElementById('level').value = lv;
+  state.logPage = 1;
+  reloadLogs().catch(console.error);
+}
+function resetFilter() {
+  document.getElementById('signature').value='';
+  document.getElementById('level').value='error,warn';
+  document.getElementById('keyword').value='';
+  state.onlyIssues = false;
+  updateOnlyIssuesUI();
+  state.logPage = 1;
+  reloadLogs().catch(console.error);
+}
+
+function applyLogCutoff() {
+  const raw = Array.isArray(state.latestLogsRaw) ? state.latestLogsRaw : [];
+  const cutoff = Number(state.logsCutoffTs) || 0;
+  state.latestLogsAll = cutoff
+    ? raw.filter((e) => Number(e?.ts || 0) >= cutoff)
+    : raw.slice();
+}
+
+function updateLogCutoffUI() {
+  const btn = byId('clearLogsBtn');
+  const cutoff = Number(state.logsCutoffTs) || 0;
+  if (btn) {
+    btn.classList.toggle('btn-active', cutoff > 0);
+    btn.textContent = cutoff > 0 ? '恢复全部日志' : '清除当前日志';
+  }
+  setText('logCutoffMeta', cutoff > 0
+    ? `基线: ${new Date(cutoff).toLocaleString()} 之后`
+    : '基线: 全部日志');
+}
+
+function toggleClearCurrentLogs() {
+  if (state.logsCutoffTs) {
+    state.logsCutoffTs = null;
+  } else {
+    state.logsCutoffTs = Date.now();
+  }
+  state.logPage = 1;
+  applyLogCutoff();
+  updateLogCutoffUI();
+  renderCurrentLogPage(curFilters().keyword || '');
+}
+
+function updateOnlyIssuesUI() {
+  const btn = byId('onlyIssuesBtn');
+  if (!btn) return;
+  btn.classList.toggle('btn-active', state.onlyIssues);
+  btn.textContent = state.onlyIssues ? '仅看异常: 开' : '仅看异常';
+}
+
+function toggleOnlyIssues() {
+  state.onlyIssues = !state.onlyIssues;
+  state.logPage = 1;
+  updateOnlyIssuesUI();
+  reloadLogs().catch(console.error);
+}
+
+/* ── Service card helpers ── */
+function applyCard(key, lvl, tag, detail) {
+  const cacheKey = `${lvl}|${tag}|${detail}`;
+  if (state.renderCache.cards[key] === cacheKey) return;
+  state.renderCache.cards[key] = cacheKey;
+
+  const card = byId(`svc-${key}-card`);
+  if (!card) return;
+  setCls(`svc-${key}-card`, `svc-card ${lvl}`);
+  setCls(`svc-${key}-dot`, `svc-dot ${lvl}`);
+  setCls(`svc-${key}-tag`, `svc-tag ${lvl}`);
+  setText(`svc-${key}-tag`, tag);
+  setText(`svc-${key}-detail`, detail);
+}
+
+function setServiceBadge(key, lvl, label) {
+  const safeLvl = lvl === 'ok' || lvl === 'warn' || lvl === 'bad' ? lvl : 'neutral';
+  setCls(`state-${key}`, `status-badge ${safeLvl}`);
+  setText(`state-${key}`, label);
+}
+
+function evalGateway(summary) {
+  const g = summary?.gateway || {};
+  const mg= summary?.metrics?.gateway || {};
+  const running = g.loaded && g.runtimeStatus === 'running';
+  if (!running) return {lvl:'bad', tag:'STOPPED', detail:`runtime=${g.runtimeStatus||'unknown'} loaded=${g.loaded}`};
+  const warns=[];
+  const cpu=toN(mg.cpuPercent), mem=toN(mg.memoryMB);
+  if (cpu!==null&&cpu>=85) warns.push(`CPU ${cpu.toFixed(1)}%`);
+  if (mem!==null&&mem>=1024) warns.push(`mem ${mem.toFixed(1)} MB`);
+  if (g.port&&mg.listening===false) warns.push('端口未监听');
+  const ep = g.port ? `${g.bindHost||'0.0.0.0'}:${g.port}` : '-';
+  if (warns.length) return {lvl:'warn', tag:'WARN', detail:`pid=${g.pid||'-'} | ${ep}\n${warns.join(' | ')}`};
+  return {lvl:'ok', tag:'RUNNING', detail:`pid=${g.pid||'-'} | ${ep}\nmodel=${summary?.model||'-'}`};
+}
+
+function evalAgentHealth(name, agent) {
+  if (!agent||!agent.exists) return {lvl:'bad',status:'not loaded'};
+  const running = agent.state==='running'||agent.jobState==='running';
+  if (running) return {lvl:'ok', status:'running', pid:agent.pid, runs:agent.runs};
+  if (name==='watchdog'&&agent.lastExitCode===0) return {lvl:'ok',status:'scheduled'};
+  if (agent.lastExitCode===0) return {lvl:'warn',status:`idle(${agent.state||'-'})`};
+  return {lvl:'bad',status:`failed(exit=${agent.lastExitCode??'-'})`};
+}
+
+function combineHealth(lvls) {
+  if (lvls.includes('bad')) return 'bad';
+  if (lvls.includes('warn')) return 'warn';
+  return 'ok';
+}
+
+function renderServicesFromState() {
+  const summary = state.latestSummary;
+  const agents  = state.latestAgents;
+
+  /* Gateway card */
+  if (summary) {
+    const gw = evalGateway(summary);
+    applyCard('gateway', gw.lvl, gw.tag, gw.detail);
+    setServiceBadge('gateway', gw.lvl, `Gateway: ${gw.tag}`);
+  }
+
+  /* LaunchAgents card */
+  if (agents) {
+    const gw = evalAgentHealth('gateway', agents.gateway);
+    const wd = evalAgentHealth('watchdog', agents.watchdog);
+    const mn = evalAgentHealth('monitor',  agents.monitor);
+    const lvl= combineHealth([gw.lvl, wd.lvl, mn.lvl]);
+    const ok = [gw,wd,mn].filter(a=>a.lvl==='ok').length;
+    const lines = [
+      `gateway:${gw.status}`,
+      `watchdog:${wd.status}`,
+      `monitor:${mn.status}`
+    ].join('\n');
+    applyCard('agents', lvl, `${ok}/3 OK`, lines);
+    setServiceBadge('watchdog', wd.lvl, `Watchdog: ${wd.status}`);
+    setServiceBadge('monitor', mn.lvl, `Monitor: ${mn.status}`);
+    setText('svcRefreshTime', new Date().toLocaleTimeString());
+  }
+
+  /* Resources card */
+  if (summary) {
+    const mg  = summary.metrics?.gateway || {};
+    const host= summary.metrics?.host    || {};
+    const resMem = toN(mg.memoryMB);
+    const macMemPct = toN(host.macStudioMemoryUsedPercent);
+    const warns=[];
+    if (resMem!==null&&resMem>=1024) warns.push('gw mem high');
+    if (macMemPct!==null&&macMemPct>=85) warns.push('host mem high');
+    const lvl = warns.length ? 'warn' : 'ok';
+    const lines = [
+      `gw.mem=${fmtMB(mg.memoryMB)} | virt=${fmtMB(mg.virtualMB)}`,
+      `conn=${fmtN(mg.connections)} | listen=${mg.listening?'yes':'no'}`,
+      `mac.mem=${fmtPct(host.macStudioMemoryUsedPercent)} | load=${fmtN(host.cpuLoad1,'-')}`,
+      `uptime=${mg.uptime||'-'}`
+    ].join('\n');
+    applyCard('res', lvl, lvl==='warn'?'WARN':'OK', lines);
+  }
+
+  /* acpx card */
+  if (summary) {
+    const acpx = summary.acpx || {};
+    const lvl = acpx.level === 'ok' || acpx.level === 'warn' || acpx.level === 'bad' ? acpx.level : 'warn';
+    const tag = lvl === 'ok' ? 'READY' : (lvl === 'warn' ? 'WARN' : 'DOWN');
+    const detail = [
+      `backend=${acpx.backend || '-'}`,
+      `plugin=${acpx.pluginEnabled === true ? 'enabled' : (acpx.pluginEnabled === false ? 'disabled' : 'unknown')}`,
+      `binary=${acpx.binaryExists ? 'yes' : 'no'}${acpx.ignoredBinaryExists ? ' (ignored exists)' : ''}`,
+      `version=${acpx.version || '-'}`
+    ].join('\n');
+    applyCard('acpx', lvl, tag, detail);
+    setServiceBadge('acpx', lvl, `acpx: ${acpx.status || '-'}`);
+  }
+}
+
+/* ── Alerts ── */
+function renderAlerts(alerts) {
+  const el = byId('alertStrip');
+  const items = alerts?.items || [];
+  const sig = alerts?.active ? JSON.stringify(items) : '';
+  if (state.renderCache.alerts === sig) return;
+  state.renderCache.alerts = sig;
+  if (!alerts?.active || !items.length) { el.classList.remove('show'); el.innerHTML=''; return; }
+  const chips = items.map(x=>`<span class="alert-chip chip-${esc(x.level)}">${esc(x.title)} · ${esc(x.detail)}</span>`).join('');
+  el.innerHTML=`<div class="alert-head">告警（${items.length}）</div><div class="alert-chips">${chips}</div>`;
+  el.classList.add('show');
+}
+
+/* ── Signature cloud ── */
+function renderSigCloud(bySig) {
+  const pairs = Object.entries(bySig||{}).sort((a,b)=>b[1]-a[1]).slice(0,18);
+  const sig = JSON.stringify(pairs);
+  if (state.renderCache.sigCloud === sig) return;
+  state.renderCache.sigCloud = sig;
+  setHtml('sigCloud', pairs.length
+    ? pairs.map(([k,v])=>`<span class="sig-pill" onclick="setFilterEncoded('${encodeURIComponent(k)}')">${esc(k)}: ${v}</span>`).join('')
+    : '<span style="font-size:11px;color:var(--muted)">暂无数据</span>');
+}
+
+/* ── MiniMax ── */
+function pickPrimaryModel(payload) {
+  const ms = Array.isArray(payload?.models) ? payload.models : [];
+  if (!ms.length) return null;
+  return ms.find(m=>String(m.modelName||'').toLowerCase()==='minimax-m2.5')||ms[0];
+}
+function renderMiniMax(payload) {
+  state.latestMiniMax = payload||null;
+  const model = pickPrimaryModel(payload);
+  const usagePct = Number(model?.usagePercent);
+  const lvl = minimaxHealthLvl(usagePct);
+  const lvlCls = lvl==='bad'?'c-err':(lvl==='warn'?'c-warn':'c-ok');
+
+  setText('mmStatusText', `${payload?.statusMsg||'-'}`);
+  setText('miniStatusMeta', payload?.error
+    ? `error: ${payload.error}`
+    : `source=${payload?.source||'-'} | status=${payload?.statusMsg||'-'}`);
+
+  if (!model) {
+    setText('miniUsageValue', '-');
+    setText('miniUsageMeta', '无模型数据');
+    byId('miniUsageBar').style.width='0%';
+    setText('miniCountdown', '-');
+    setText('miniWindowMeta', `window=${payload?.windowHours||5}h`);
+    setText('mmModelName', '主模型');
+    return;
+  }
+
+  setText('mmModelName', model.modelName||'主模型');
+  const uv = byId('miniUsageValue');
+  uv.textContent = Number.isFinite(usagePct) ? `${usagePct.toFixed(1)}%` : '-';
+  uv.className = `mm-val ${lvlCls}`;
+  const bar = byId('miniUsageBar');
+  bar.style.width = `${Math.max(0,Math.min(100,Number.isFinite(usagePct)?usagePct:0))}%`;
+  bar.className = `mm-bar-fill${lvl!=='ok'?' '+lvl:''}`;
+  setText('miniUsageMeta', `used ${model.usageCount??'-'} / total ${model.totalCount??'-'} | remain ${model.remainingCount??'-'}`);
+
+  const cd = byId('miniCountdown');
+  cd.textContent = fmtDur(model.remainsMs);
+  cd.className = `mm-val ${lvlCls}`;
+  setText('miniWindowMeta', `window=${payload?.windowHours||5}h\nstart=${fmtEpoch(model.startTime)}\nend=${fmtEpoch(model.endTime)}`);
+}
+async function reloadMiniMax(force=false) {
+  try {
+    const data = await getJSON(force?'/api/minimax-coding-plan?force=1':'/api/minimax-coding-plan');
+    setAuditSource('minimax', data);
+    renderMiniMax(data);
+  } catch (err) {
+    setAuditSourceError('minimax', err);
+    throw err;
+  } finally {
+    renderAuditPanel();
+  }
+}
+
+/* ── oMLX ── */
+function renderOmlx(payload) {
+  state.latestOmlx = payload || null;
+  const models = Array.isArray(payload?.models) ? payload.models : [];
+  const modalities = Array.isArray(payload?.modalities) ? payload.modalities : [];
+  const installedTypes = Array.isArray(payload?.installedModelTypes) ? payload.installedModelTypes : [];
+  setText('omlxStatusText', `${payload?.statusMsg || '-'}`);
+  setText('omlxModelCount', Number.isFinite(Number(payload?.count)) ? payload.count : models.length);
+  setText('omlxStatusMeta', payload?.error
+    ? `error: ${payload.error}`
+    : `source=${payload?.source || 'omlx'} | endpoint=${payload?.baseUrl || '-'} | ${new Date().toLocaleTimeString()}`);
+  setText('omlxVersionValue', payload?.version || '-');
+  setText('omlxVersionMeta', payload?.capabilityError
+    ? `openapi error: ${payload.capabilityError}`
+    : `openapi=${payload?.openapiUrl || '-'} | ${payload?.capabilityStatus || '-'}`);
+  setText('omlxModalMeta', `API模态 ${modalities.join(',') || '-'} | 已装类型 ${installedTypes.join(',') || '-'}`);
+
+  const pillsEl = byId('omlxModalityPills');
+  if (pillsEl) {
+    pillsEl.innerHTML = modalities.length
+      ? modalities.map((m) => `<span class="modality-pill">${esc(m)}</span>`).join('')
+      : '<span class="modality-pill">unknown</span>';
+  }
+
+  const rows = byId('omlxModelRows');
+  if (!rows) return;
+
+  if (!models.length) {
+    rows.innerHTML = `<div class="omlx-empty">${payload?.ok ? '暂无可用模型' : 'oMLX 暂不可用'}</div>`;
+    return;
+  }
+
+  rows.innerHTML = models.map((m) => `
+    <div class="omlx-item">
+      <span class="omlx-type">${esc(m?.type || 'unknown')}</span>
+      <span class="omlx-id">${esc(m?.id || '-')}</span>
+    </div>
+  `).join('');
+}
+
+async function reloadOmlx(force=false) {
+  try {
+    const data = await getJSON(force ? '/api/omlx-models?force=1' : '/api/omlx-models');
+    setAuditSource('omlx', data);
+    renderOmlx(data);
+  } catch (err) {
+    setAuditSourceError('omlx', err);
+    throw err;
+  } finally {
+    renderAuditPanel();
+  }
+}
+
+function updateCheckOmlxBtn() {
+  const btn = byId('checkOmlxUpdateBtn');
+  if (!btn) return;
+  btn.disabled = !!state.checkingOmlxUpdate;
+  btn.textContent = state.checkingOmlxUpdate ? '检查中...' : '检查 oMLX 更新';
+}
+
+function readOmlxRepo() {
+  const key = 'gatewayMonitor.omlxGithubRepo';
+  try {
+    const v = localStorage.getItem(key);
+    const s = String(v || '').trim();
+    return s || 'jundot/omlx';
+  } catch {
+    return 'jundot/omlx';
+  }
+}
+
+function writeOmlxRepo(repo) {
+  const key = 'gatewayMonitor.omlxGithubRepo';
+  try {
+    localStorage.setItem(key, repo);
+  } catch {
+    // ignore
+  }
+}
+
+function updateOmlxRepoMeta() {
+  setText('omlxRepoMeta', `repo: ${readOmlxRepo()}`);
+}
+
+function setOmlxRepo() {
+  const current = readOmlxRepo();
+  const next = prompt('输入 GitHub 仓库（owner/repo）', current);
+  if (next === null) return;
+  const repo = String(next || '').trim();
+  if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repo)) {
+    alert('仓库格式无效，请使用 owner/repo');
+    return;
+  }
+  writeOmlxRepo(repo);
+  updateOmlxRepoMeta();
+  setText('omlxUpdateMeta', '仓库已更新，点击“检查 oMLX 更新”开始检测');
+}
+
+function renderOmlxUpdate(payload) {
+  state.latestOmlxUpdate = payload || null;
+  if (!payload) {
+    setText('omlxUpdateMeta', '点击“检查 oMLX 更新”获取 GitHub 最新版本');
+    return;
+  }
+  if (!payload.ok) {
+    setText('omlxUpdateMeta', `更新检查失败: ${payload.error || payload.statusMsg || 'unknown'}`);
+    return;
+  }
+
+  const current = payload.currentVersion || state.latestOmlx?.version || '-';
+  const latest = payload.latestVersion || '-';
+  const releaseAt = payload.publishedAt ? new Date(payload.publishedAt).toLocaleString() : '-';
+  const releaseUrl = payload.releaseUrl || '-';
+
+  if (payload.updateAvailable === true) {
+    setText('omlxUpdateMeta', `发现新版本: ${current} -> ${latest} | 发布: ${releaseAt} | ${releaseUrl}`);
+    return;
+  }
+  if (payload.updateAvailable === false) {
+    setText('omlxUpdateMeta', `已是最新版本: ${current} | 最新发布: ${latest} | ${releaseAt}`);
+    return;
+  }
+  setText('omlxUpdateMeta', `已获取最新发布: ${latest} | 当前: ${current} | 无法自动比较版本`);
+}
+
+async function checkOmlxUpdate(force=false) {
+  if (state.checkingOmlxUpdate) return;
+  state.checkingOmlxUpdate = true;
+  updateCheckOmlxBtn();
+  try {
+    const localVersion = String(state.latestOmlx?.version || '').trim();
+    const repo = readOmlxRepo();
+    const query = new URLSearchParams({
+      ...(force ? { force: '1' } : {}),
+      ...(repo ? { repo } : {}),
+      ...(localVersion ? { localVersion } : {})
+    });
+    const url = `/api/omlx-update-check${query.toString() ? `?${query.toString()}` : ''}`;
+    const data = await getJSON(url);
+    renderOmlxUpdate(data);
+  } catch (err) {
+    renderOmlxUpdate({
+      ok: false,
+      error: err?.message || String(err)
+    });
+  } finally {
+    state.checkingOmlxUpdate = false;
+    updateCheckOmlxBtn();
+  }
+}
+
+/* ── Summary ── */
+function renderSummary(summary) {
+  state.latestSummary = summary;
+  const g   = summary.gateway  || {};
+  const ctx = summary.context  || {};
+  const mg  = summary.metrics?.gateway || {};
+  const host= summary.metrics?.host    || {};
+
+  setText('meta', [
+    `gw=${g.runtimeStatus||'?'}`,
+    `pid=${g.pid||'-'}`,
+    `port=${g.port||'-'}`,
+    `model=${summary.model||'?'}`,
+    `load1=${fmtN(host.cpuLoad1,'-')}`,
+    `macMem=${fmtPct(host.macStudioMemoryUsedPercent)}`,
+    `${new Date().toLocaleTimeString()}`
+  ].join(' | '));
+
+  setText('totalLogs', summary.totals?.logs ?? 0);
+  setText('totalError', summary.totals?.error ?? 0);
+  setText('totalWarn', summary.totals?.warn ?? 0);
+
+  /* Sessions */
+  const sc = Array.isArray(ctx.sessions) ? ctx.sessions.length : (toN(ctx.sessionCount) ?? null);
+  setText('sessionCount', sc !== null ? sc : '-');
+  setText('sessionSub', ctx.ok
+    ? `ctx ${fmtPct(ctx.percentUsed)} · 点击查看`
+    : '点击查看会话明细');
+
+  /* CPU / ctx */
+  const cpu = toN(mg.cpuPercent);
+  const cpuEl = byId('cpuNow');
+  cpuEl.textContent = fmtPct(cpu);
+  cpuEl.className = `kpi-val${cpu!==null&&cpu>=85?' c-err':cpu!==null&&cpu>=60?' c-warn':''}`;
+  setText('cpuSub', `uptime ${mg.uptime||'-'}`);
+
+  const macMemPct = toN(host.macStudioMemoryUsedPercent);
+  const macMemEl = byId('macMemNow');
+  macMemEl.textContent = fmtPct(macMemPct);
+  macMemEl.className = `kpi-val${macMemPct!==null&&macMemPct>=90?' c-err':macMemPct!==null&&macMemPct>=80?' c-warn':' c-ok'}`;
+  const macMemUsed = host?.macStudioMemory?.usedMB;
+  const macMemTotal = host?.macStudioMemory?.totalMB;
+  setText('macMemSub', Number.isFinite(Number(macMemUsed)) && Number.isFinite(Number(macMemTotal))
+    ? `${Number(macMemUsed).toFixed(0)}/${Number(macMemTotal).toFixed(0)} MB`
+    : 'vm_stat');
+
+  const ctxEl = byId('ctxNow');
+  ctxEl.textContent = fmtPct(ctx.percentUsed);
+  const ctxPct = toN(ctx.percentUsed);
+  ctxEl.className = `kpi-val${ctxPct!==null&&ctxPct>=85?' c-err':ctxPct!==null&&ctxPct>=70?' c-warn':' c-ok'}`;
+  setText('ctxSub', ctx.ok
+    ? `remain ${ctx.remainingTokens||0}`
+    : 'unavailable');
+
+  renderSigCloud(summary.bySignature||{});
+  renderAlerts(summary.alerts||{});
+  if (summary.minimax) {
+    setAuditSource('minimax', summary.minimax);
+    renderMiniMax(summary.minimax);
+  }
+  if (summary.omlx) {
+    setAuditSource('omlx', summary.omlx);
+    renderOmlx(summary.omlx);
+  }
+  renderServicesFromState();
+  renderAuditPanel();
+  renderSessionRows(ctx.sessions || []);
+}
+
+function renderSessionRows(sessions) {
+  const rows = byId('sessionRows');
+  if (!rows) return;
+  const list = Array.isArray(sessions) ? sessions : [];
+  setText('sessionPanelMeta', `${list.length} 个会话`);
+  if (!list.length) {
+    rows.innerHTML = '<tr><td colspan="5" style="color:var(--muted)">暂无会话数据</td></tr>';
+    return;
+  }
+  rows.innerHTML = list.slice(0, 12).map((s) => `
+    <tr>
+      <td>${esc(s.id || '-')}</td>
+      <td>${esc(s.model || '-')}</td>
+      <td>${fmtPct(s.percentUsed)}</td>
+      <td>${Number.isFinite(Number(s.totalTokens)) ? Number(s.totalTokens).toLocaleString() : '-'}</td>
+      <td>${s.lastActivityAt ? new Date(s.lastActivityAt).toLocaleString() : '-'}</td>
+    </tr>
+  `).join('');
+}
+
+function toggleSessionPanel() {
+  const panel = byId('sessionPanel');
+  if (!panel) return;
+  panel.classList.toggle('show');
+}
+
+/* ── Agents (launchd) ── */
+function renderAgentStatus(agents) {
+  state.latestAgents = agents || {};
+  renderServicesFromState();
+}
+
+async function reloadServices() {
+  const [sumData, agData] = await Promise.all([
+    getJSON('/api/summary').catch((err)=>{ setAuditSourceError('summary', err); return null; }),
+    getJSON('/api/launchd-status').catch((err)=>{ setAuditSourceError('launchd', err); return null; })
+  ]);
+  if (sumData) renderSummary(sumData);
+  if (sumData) setAuditSource('summary', { ok: true, statusMsg: 'ok' });
+  if (agData) renderAgentStatus(agData.agents||{});
+  if (agData) setAuditSource('launchd', { ok: true, statusMsg: 'ok' });
+  renderAuditPanel();
+}
+
+/* ── Logs ── */
+function renderLogsRows(items, kw='') {
+  state.latestLogs = items||[];
+  const renderKey = JSON.stringify([kw, state.latestLogs]);
+  if (state.renderCache.logsKey === renderKey) return;
+  state.renderCache.logsKey = renderKey;
+  const rows = state.latestLogs.map(e=>`<tr class="row-${esc(e.level)}">
+    <td>${new Date(e.ts).toLocaleString()}</td>
+    <td>${esc(e.level)}</td>
+    <td>${esc(e.signature)}</td>
+    <td><pre>${hlKw(e.message,kw)}</pre></td>
+  </tr>`).join('');
+  setHtml('rows', rows||'<tr><td colspan="4" style="color:var(--muted);padding:12px">无数据</td></tr>');
+  requestAnimationFrame(updateLogsTableScrollHint);
+}
+
+function renderLogPager(totalCount) {
+  const pageSize = Math.max(1, Number(state.logPageSize) || 50);
+  const totalPages = Math.max(1, Math.ceil((Number(totalCount) || 0) / pageSize));
+  if (state.logPage > totalPages) state.logPage = totalPages;
+  setText('logPageInfo', `第 ${state.logPage} 页 / 共 ${totalPages} 页 · 共 ${totalCount} 条`);
+}
+
+function renderCurrentLogPage(kw='') {
+  const all = Array.isArray(state.latestLogsAll) ? state.latestLogsAll : [];
+  const pageSize = Math.max(1, Number(state.logPageSize) || 50);
+  const totalPages = Math.max(1, Math.ceil(all.length / pageSize));
+  const safePage = Math.min(Math.max(1, state.logPage), totalPages);
+  state.logPage = safePage;
+  const start = (safePage - 1) * pageSize;
+  const end = start + pageSize;
+  renderLogsRows(all.slice(start, end), kw);
+  renderLogPager(all.length);
+}
+
+function setLogPageSize(v) {
+  const n = Number(v);
+  if (!Number.isFinite(n) || n <= 0) return;
+  state.logPageSize = n;
+  state.logPage = 1;
+  renderCurrentLogPage(curFilters().keyword || '');
+}
+
+function prevLogPage() {
+  if (state.logPage <= 1) return;
+  state.logPage -= 1;
+  renderCurrentLogPage(curFilters().keyword || '');
+}
+
+function nextLogPage() {
+  const totalPages = Math.max(1, Math.ceil((state.latestLogsAll || []).length / Math.max(1, Number(state.logPageSize) || 50)));
+  if (state.logPage >= totalPages) return;
+  state.logPage += 1;
+  renderCurrentLogPage(curFilters().keyword || '');
+}
+
+function updateLogsTableScrollHint() {
+  const wrap = byId('logsTableWrap');
+  const hint = byId('logScrollHint');
+  if (!wrap || !hint) return;
+  const hasOverflow = (wrap.scrollWidth - wrap.clientWidth) > 6;
+  hint.style.display = hasOverflow ? '' : 'none';
+  if (!hasOverflow) {
+    wrap.classList.remove('can-scroll-left', 'can-scroll-right');
+    return;
+  }
+  wrap.classList.toggle('can-scroll-left', wrap.scrollLeft > 4);
+  wrap.classList.toggle('can-scroll-right', (wrap.scrollLeft + wrap.clientWidth) < (wrap.scrollWidth - 4));
+}
+
+function bindLogsScrollHint() {
+  const wrap = byId('logsTableWrap');
+  if (!wrap) return;
+  wrap.addEventListener('scroll', updateLogsTableScrollHint, { passive: true });
+  // Use ResizeObserver to avoid flooding the event loop on resize
+  if (window.ResizeObserver) {
+    new ResizeObserver(() => requestAnimationFrame(updateLogsTableScrollHint)).observe(wrap);
+  } else {
+    window.addEventListener('resize', () => requestAnimationFrame(updateLogsTableScrollHint), { passive: true });
+  }
+  requestAnimationFrame(updateLogsTableScrollHint);
+}
+
+async function reloadLogs() {
+  const f = curFilters();
+  try {
+    const data = await getJSON('/api/logs?'+new URLSearchParams(f).toString());
+    setAuditSource('logs', { ok: true, statusMsg: `count=${data.count ?? (data.items||[]).length}` });
+    state.latestLogsRaw = Array.isArray(data.items) ? data.items : [];
+    applyLogCutoff();
+    renderCurrentLogPage(f.keyword || '');
+  } catch (err) {
+    setAuditSourceError('logs', err);
+    throw err;
+  } finally {
+    renderAuditPanel();
+  }
+}
+
+async function reloadSummary() {
+  try {
+    const s = await getJSON('/api/summary');
+    setAuditSource('summary', { ok: true, statusMsg: 'ok' });
+    renderSummary(s);
+  } catch (err) {
+    setAuditSourceError('summary', err);
+    throw err;
+  } finally {
+    renderAuditPanel();
+  }
+}
+
+async function reloadLaunchd() {
+  try {
+    const d = await getJSON('/api/launchd-status');
+    renderAgentStatus(d.agents || {});
+    setAuditSource('launchd', { ok: true, statusMsg: 'ok' });
+  } catch (err) {
+    setAuditSourceError('launchd', err);
+    throw err;
+  } finally {
+    renderAuditPanel();
+  }
+}
+
+/* ── Actions ── */
+async function copyRecoverCmd() {
+  const cmd = 'openclaw gateway status && openclaw gateway restart && openclaw gateway status';
+  try { await navigator.clipboard.writeText(cmd); alert('已复制恢复命令'); }
+  catch { alert(`手动执行:\n${cmd}`); }
+}
+async function copyDiagnostics() {
+  try {
+    const d = await getJSON('/api/diagnostics');
+    await navigator.clipboard.writeText(JSON.stringify(d, null, 2));
+    alert('已复制诊断快照');
+  } catch(err) { alert(`复制失败: ${err.message}`); }
+}
+
+async function restoreConfig() {
+  if (!confirm('⚠️ 危险操作！这将用最新备份覆盖当前 openclaw.json 配置文件。Gateway 可能需要重启。确定继续吗？')) {
+    return;
+  }
+  try {
+    const result = await getJSON('/api/restore-config?confirm=true');
+    if (result.ok) {
+      alert(`✅ 配置还原成功！\n备份文件: ${result.restored}\n${result.message}`);
+    } else {
+      alert(`❌ 还原失败: ${result.error || '未知错误'}\n${result.message || ''}`);
+    }
+  } catch(err) {
+    alert(`❌ 请求失败: ${err.message}`);
+  }
+}
+
+function updateRestartGatewayBtn() {
+  const btn = byId('restartGatewayBtn');
+  if (!btn) return;
+  btn.disabled = !!state.restartingGateway;
+  btn.textContent = state.restartingGateway ? '重启中...' : '重启 Gateway';
+}
+
+async function restartGateway() {
+  if (state.restartingGateway) return;
+  if (!confirm('确认重启 OpenClaw Gateway？此操作会短暂中断请求。')) return;
+
+  state.restartingGateway = true;
+  updateRestartGatewayBtn();
+  try {
+    const result = await getJSON('/api/gateway-restart?confirm=true');
+    if (!result.ok) {
+      throw new Error(result?.stderr || result?.message || 'restart failed');
+    }
+    alert('✅ Gateway 重启成功');
+    await Promise.all([
+      reloadSummary().catch(console.error),
+      reloadLaunchd().catch(console.error),
+      reloadLogs().catch(console.error)
+    ]);
+  } catch (err) {
+    alert(`❌ Gateway 重启失败: ${err.message}`);
+  } finally {
+    state.restartingGateway = false;
+    updateRestartGatewayBtn();
+  }
+}
+function exportLogs() {
+  const p = state.latestLogsAll||[];
+  if (!p.length) return;
+  const blob = new Blob([JSON.stringify(p,null,2)], {type:'application/json'});
+  const a = document.createElement('a');
+  const t = new Date();
+  a.href = URL.createObjectURL(blob);
+  a.download = `gateway-logs-${t.getFullYear()}${String(t.getMonth()+1).padStart(2,'0')}${String(t.getDate()).padStart(2,'0')}-${String(t.getHours()).padStart(2,'0')}${String(t.getMinutes()).padStart(2,'0')}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function toggleAutoRefresh() {
+  state.autoRefresh = !state.autoRefresh;
+  updateAutoRefreshUI();
+  if (state.autoRefresh) runAutoRefreshTick();
+}
+
+function updateAutoRefreshUI() {
+  const badge = byId('liveBadge');
+  const sec = Math.floor(state.autoRefreshIntervalMs / 1000);
+  badge.textContent = state.autoRefresh ? `● LIVE ${sec}s` : `⏸ PAUSED`;
+  badge.className = state.autoRefresh ? 'badge' : 'badge paused';
+  setText('refreshToggle', state.autoRefresh ? '暂停刷新' : '恢复刷新');
+  if (byId('refreshInterval').value !== String(state.autoRefreshIntervalMs)) {
+    byId('refreshInterval').value = String(state.autoRefreshIntervalMs);
+  }
+}
+
+function setRefreshInterval(ms) {
+  const n = Number(ms);
+  if (!Number.isFinite(n) || n <= 0) return;
+  state.autoRefreshIntervalMs = n;
+  startAutoRefreshCycle();
+  updateAutoRefreshUI();
+  if (state.autoRefresh) runAutoRefreshTick();
+}
+
+function startAutoRefreshCycle() {
+  if (state.refreshTimer) clearInterval(state.refreshTimer);
+  state.refreshTimer = setInterval(() => {
+    if (!state.autoRefresh) return;
+    runAutoRefreshTick();
+  }, state.autoRefreshIntervalMs);
+}
+
+function runAutoRefreshTick() {
+  return Promise.all([
+    reloadSummary().catch(console.error),
+    reloadLaunchd().catch(console.error),
+    reloadLogs().catch(console.error)
+  ]);
+}
+
+async function reloadAudit() {
+  await Promise.all([
+    reloadSummary().catch(console.error),
+    reloadLaunchd().catch(console.error),
+    reloadMiniMax().catch(console.error),
+    reloadOmlx().catch(console.error),
+    reloadLogs().catch(console.error)
+  ]);
+  renderAuditPanel();
+}
+
+/* ── Bootstrap ── */
+async function bootstrap() {
+  try {
+    const boot = await getJSON('/api/bootstrap');
+    if (boot.summary) renderSummary(boot.summary);
+    if (boot.agents) renderAgentStatus(boot.agents);
+    if (boot.logs?.items) {
+      state.latestLogsRaw = Array.isArray(boot.logs.items) ? boot.logs.items : [];
+      applyLogCutoff();
+      renderCurrentLogPage(curFilters().keyword||'');
+    }
+  } catch(e) { console.error(e); }
+  renderAuditPanel();
+  updateOnlyIssuesUI();
+  setTimeout(()=> reloadMiniMax().catch(console.error), 260);
+  setTimeout(()=> reloadOmlx().catch(console.error), 420);
+  setTimeout(()=> reloadLogs().catch(console.error), 450);
+}
+
+/* ── Key bindings ── */
+document.getElementById('keyword').addEventListener('keydown', e => {
+  if (e.key==='Enter') { state.logPage = 1; reloadLogs().catch(console.error); }
+});
+document.addEventListener('keydown', e => {
+  if (e.key!='/') return;
+  const a = document.activeElement;
+  if (a&&(a.tagName==='INPUT'||a.tagName==='TEXTAREA')) return;
+  e.preventDefault();
+  document.getElementById('keyword').focus();
+});
+
+/* ── Intervals ── */
+bootstrap().catch(console.error);
+bindLogsScrollHint();
+updateAutoRefreshUI();
+updateRestartGatewayBtn();
+updateCheckOmlxBtn();
+updateOmlxRepoMeta();
+updateLogCutoffUI();
+startAutoRefreshCycle();
+</script>
+</body>
+</html>

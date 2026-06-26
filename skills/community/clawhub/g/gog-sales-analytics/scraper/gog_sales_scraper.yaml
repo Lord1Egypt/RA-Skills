@@ -1,0 +1,18 @@
+name: gog-weekly-sales
+base_url: https://www.gog.com/en/games?priceDiscounted=true
+selectors:
+  games:
+    selector: ".product-tile"
+    children:
+      title: ".product-title::text"
+      original_price: ".price-value--original::text"
+      discounted_price: ".price-value--discounted::text"
+      discount_percent: ".discount-badge::text"
+      release_date: ".release-date::text"
+      game_id: "[data-product-id]::attr(data-product-id)"
+output:
+  format: json
+  path: "../data/weekly_sales_{date}.json"
+schedule: "0 0 * * 1"
+headers:
+  User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"

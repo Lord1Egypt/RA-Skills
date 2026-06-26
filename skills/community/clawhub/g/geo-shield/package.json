@@ -1,0 +1,26 @@
+{
+  "name": "geo-shield",
+  "version": "1.0.0",
+  "description": "GEO 投毒检测守护者 - 识别针对 AI 的虚假信息",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "geo",
+    "投毒检测",
+    "安全"
+  ],
+  "author": "Spark",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "ts-jest": "^29.0.0"
+  }
+}

@@ -1,0 +1,59 @@
+meta:
+  variant: sb2nov
+  display_name: RenderCV Sb2nov
+
+fonts:
+  links:
+    - https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Noto+Serif+SC:wght@400;500;700&display=swap
+  body_stack: '"Libre Baskerville","Noto Serif SC","Songti SC","STSong",serif'
+  heading_stack: '"Libre Baskerville","Noto Serif SC","Songti SC","STSong",serif'
+  section_stack: '"Libre Baskerville","Noto Serif SC","Songti SC","STSong",serif'
+
+colors:
+  name: "#111111"
+  headline: "#505050"
+  section: "#111111"
+  links: "#111111"
+  text: "#222222"
+  muted: "#696969"
+  muted_soft: "#b8b0a9"
+  rule: "#8f8f8f"
+  title: "#151515"
+  subtitle: "#4f4f4f"
+  bullet: "#2d2d2d"
+
+page:
+  top: "0.7in"
+  right: "0.7in"
+  bottom: "0.7in"
+  left: "0.7in"
+
+header:
+  align: center
+  show_icons: false
+  separator: "•"
+  social_display: url
+  website_display: full
+  name_size: "25pt"
+  name_weight: 700
+  headline_size: "9.7pt"
+  connection_size: "8.9pt"
+  gap: "0.48cm"
+
+section:
+  title_size: "16.5pt"
+  title_weight: 700
+  space_above: "0.5cm"
+
+entry:
+  layout: right-meta
+  meta_width: "3.45cm"
+  column_gap: "0.42cm"
+  gap: "0.48cm"
+  body_size: "9.6pt"
+  meta_size: "8.9pt"
+  bullet: "◦"
+  bullet_indent: "0.2cm"
+  bullet_text_gap: "0.33cm"
+  highlights_top: "0.1cm"
+  bullet_gap: "0.08cm"

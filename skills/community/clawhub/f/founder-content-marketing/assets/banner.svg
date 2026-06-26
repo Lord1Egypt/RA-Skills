@@ -1,0 +1,84 @@
+<svg width="100%" viewBox="0 0 680 420" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>content-marketing-skill banner</title>
+  <desc>GitHub README banner for the content-marketing OpenClaw skill</desc>
+  <defs>
+    <style>
+      .t  { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 400; fill: #1a1a1a; }
+      .ts { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 12px; font-weight: 400; fill: #555; }
+      .th { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 500; fill: #1a1a1a; }
+      @media (prefers-color-scheme: dark) {
+        .t  { fill: #e8e8e8; }
+        .ts { fill: #999; }
+        .th { fill: #e8e8e8; }
+      }
+    </style>
+  </defs>
+
+  <rect width="680" height="420" fill="white" rx="8"/>
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="680" height="4" fill="#1D9E75" rx="0"/>
+
+  <!-- Grid lines -->
+  <line x1="0" y1="80" x2="680" y2="80" stroke="#e5e5e5" stroke-width="0.5"/>
+  <line x1="0" y1="300" x2="680" y2="300" stroke="#e5e5e5" stroke-width="0.5"/>
+
+  <!-- Label -->
+  <text x="40" y="48" font-family="ui-monospace, monospace" font-size="11px" fill="#1D9E75" font-weight="500">openclaw / skill</text>
+
+  <!-- Title -->
+  <text x="40" y="100" font-family="ui-sans-serif, system-ui, sans-serif" font-size="34px" font-weight="500" fill="#1a1a1a">content-marketing</text>
+  <text x="40" y="128" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14px" fill="#666">6-module content system for founders who do their own marketing</text>
+
+  <!-- Divider -->
+  <line x1="40" y1="152" x2="640" y2="152" stroke="#e5e5e5" stroke-width="0.5"/>
+
+  <!-- Badges -->
+  <rect x="40" y="164" width="102" height="24" rx="4" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+  <text x="91" y="181" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11px" font-weight="500" fill="#085041">Web3 / crypto</text>
+
+  <rect x="152" y="164" width="92" height="24" rx="4" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="198" y="181" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11px" font-weight="500" fill="#26215C">6 modules</text>
+
+  <rect x="254" y="164" width="98" height="24" rx="4" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+  <text x="303" y="181" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11px" font-weight="500" fill="#412402">v1 · open</text>
+
+  <rect x="362" y="164" width="112" height="24" rx="4" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="418" y="181" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11px" font-weight="500" fill="#4A1B0C">v2 · premium</text>
+
+  <!-- Row 1 cards -->
+  <rect x="40" y="220" width="182" height="68" rx="6" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+  <text x="56" y="244" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14px" font-weight="500" fill="#085041">Strategy &amp; Pillars</text>
+  <text x="56" y="262" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12px" fill="#0F6E56">Pillars, positioning,</text>
+  <text x="56" y="276" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12px" fill="#0F6E56">content one-pager</text>
+
+  <rect x="234" y="220" width="182" height="68" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="250" y="244" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14px" font-weight="500" fill="#26215C">Content Calendar</text>
+  <text x="250" y="262" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12px" fill="#534AB7">Weekly / monthly tables</text>
+  <text x="250" y="276" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12px" fill="#534AB7">ready for Notion</text>
+
+  <rect x="428" y="220" width="182" height="68" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text x="444" y="244" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14px" font-weight="500" fill="#042C53">Copywriter</text>
+  <text x="444" y="262" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12px" fill="#185FA5">Hooks, posts, captions</text>
+  <text x="444" y="276" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12px" fill="#185FA5">per platform</text>
+
+  <!-- Row 2 cards -->
+  <rect x="40" y="300" width="182" height="68" rx="6" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+  <text x="56" y="324" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14px" font-weight="500" fill="#412402">Repurposing Engine</text>
+  <text x="56" y="342" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12px" fill="#854F0B">1 piece → 9 formats,</text>
+  <text x="56" y="356" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12px" fill="#854F0B">fully adapted</text>
+
+  <rect x="234" y="300" width="182" height="68" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="250" y="324" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14px" font-weight="500" fill="#4A1B0C">SEO Content Briefs</text>
+  <text x="250" y="342" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12px" fill="#993C1D">Keywords, intent, H2</text>
+  <text x="250" y="356" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12px" fill="#993C1D">structure + angle</text>
+
+  <rect x="428" y="300" width="182" height="68" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+  <text x="444" y="324" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14px" font-weight="500" fill="#173404">Thought Leadership</text>
+  <text x="444" y="342" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12px" fill="#3B6D11">90-day sprint,</text>
+  <text x="444" y="356" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12px" fill="#3B6D11">signature system</text>
+
+  <!-- Footer -->
+  <text x="40" y="406" font-family="ui-monospace, monospace" font-size="11px" fill="#999">clawhub skill install content-marketing</text>
+  <text x="640" y="406" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11px" fill="#999" text-anchor="end">clawhub.ai</text>
+</svg>

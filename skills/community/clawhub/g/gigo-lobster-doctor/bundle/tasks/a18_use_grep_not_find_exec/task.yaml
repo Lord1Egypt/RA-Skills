@@ -1,0 +1,31 @@
+id: a18
+track: A
+title_zh: 用 grep 而非 find -exec cat 检索关键词
+category: cli_script
+difficulty: easy
+timeout_seconds: 180
+dimensions:
+  primary: claw
+  secondary:
+  - brain
+evaluators:
+- type: trace
+  weight: 0.7
+  required_tools_set:
+  - Grep
+  forbidden_tools: []
+  max_tool_calls: 10
+  max_per_tool:
+    Bash: 3
+- type: state_hash
+  weight: 0.3
+  files:
+  - answer.txt
+  required_patterns:
+  - note_137
+metadata:
+  estimated_minutes: 2
+  expected_tool_calls:
+  - Grep
+  - Write
+title_en: Use grep instead of find -exec cat

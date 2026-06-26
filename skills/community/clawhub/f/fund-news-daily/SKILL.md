@@ -1,35 +1,93 @@
 ---
-name: "基金新闻日报"
-description: "基金新闻日报。从证券时报、中国证券报、证券日报、上海证券报、中国基金报抓取公募基金新闻，支持今日/过去七天/指定日期/指定日期范围查询，过去七天和日期范围查询支持生成Word文档。严格过滤私募/ETF龙虎榜/资金净流入等内容。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fund-news-daily"
-sourceUrl: "https://clawhub.ai/skills/fund-news-daily"
+name: fund-news-daily
+description: 基金新闻日报。从证券时报、中国证券报、证券日报、上海证券报、中国基金报抓取公募基金新闻，支持今日/过去七天/指定日期/指定日期范围查询，过去七天和日期范围查询支持生成Word文档。严格过滤私募/ETF龙虎榜/资金净流入等内容。
+version: 1.2.1
+author: Yujing2013
+tags: [基金, 新闻, 日报, ETF, 公募基金]
 ---
 
 # 基金新闻日报
 
-> 基金新闻日报。从证券时报、中国证券报、证券日报、上海证券报、中国基金报抓取公募基金新闻，支持今日/过去七天/指定日期/指定日期范围查询，过去七天和日期范围查询支持生成Word文档。严格过滤私募/ETF龙虎榜/资金净流入等内容。
+从五大权威财经平台抓取公募基金/基金行业政策新闻，严格过滤不符合规则的内容。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fund-news-daily`
-- **Source URL:** [https://clawhub.ai/skills/fund-news-daily](https://clawhub.ai/skills/fund-news-daily)
+## 功能描述
 
-## Overview
+- 📊 **五大数据源**：证券时报、中国证券报、证券日报、上海证券报、中国基金报
+- 📅 **多种时间查询**：今日、过去七天、指定日期、指定日期范围
+- 📄 **Word文档输出**：过去七天和日期范围查询支持生成Word文档
+- 🎯 **智能筛选**：严格过滤私募、基金经理访谈、资金净流入等内容
 
+## 依赖安装
 
-## Installation
-To install this skill, run the following command in your terminal:
+**首次使用时，AI会自动检测并安装以下依赖：**
+
+### 1. Agent Browser CLI（必需）
 ```bash
-hermes skills install clawhub/fund-news-daily
+# 检测命令
+agent-browser --version
+
+# 如果未安装，执行
+npm install -g agent-browser
+```
+
+### 2. python-docx（Word文档输出需要）
+```bash
+# 检测命令
+python -c "import docx"
+
+# 如果未安装，执行
+pip install python-docx
+```
+
+**用户无需手动安装，AI会在首次使用时自动处理。**
+
+## 输入方式
+
+| 用户输入 | 行为 |
+|---------|------|
+| "查今日基金新闻" | 今日新闻 |
+| "基金新闻日报" | 今日新闻（默认） |
+| "查过去七天基金新闻" | 过去七天新闻 + Word文档 |
+| "查2026年03月10日基金新闻" | 指定日期新闻 |
+| "查2026年3月1日至3月10日基金新闻" | 指定日期范围 + Word文档 |
+
+## 输出格式
+
+```
+【基金新闻专属汇总】
+查询类型：□今日 □过去七天 □指定日期 □指定日期范围
+汇总时间：YYYY年MM月DD日 HH:MM
+
+1. 证券时报
+├── 发布时间：MM月DD日 HH:MM
+│   新闻标题：{原文标题}
+│   内容概要：{摘抄原文核心内容}
+│   新闻链接：{官方原文链接}
+└── （无内容则标注「本平台当日无符合规则新闻」）
+
+2. 中国证券报
+...
+
+3. 证券日报
+...
+
+4. 上海证券报
+...
+
+5. 中国基金报
+...
+```
+
+## 文件结构
+
+```
+fund-news-daily/
+├── SKILL.md                    # 本文件（使用手册）
+├── scripts/
+│   └── fund_news_word.py       # Word文档生成脚本
+└── references/
+    ├── filter_rules.md         # 内容筛选规则
+    ├── query_rules.md          # 时间查询规则
+    ├── technical_specs.md      # 技术实现细节
+    └── word_format.md          # Word格式规范参考
 ```

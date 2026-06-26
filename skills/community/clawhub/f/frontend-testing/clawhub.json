@@ -1,0 +1,12 @@
+{
+  "name": "Frontend Testing (前端测试)",
+  "tagline": "设计测试策略，编写单元/组件/集成/E2E 测试，处理 mock 与覆盖率",
+  "description": "前端测试技能：测试分层与选型（单元/组件/集成/E2E）、用例设计、Mock 策略、写法与断言、覆盖率与维护。适用于前端测试、单元测试、组件测试、E2E、Jest、Vitest、Testing Library 等场景。",
+  "category": "development",
+  "tags": ["testing", "jest", "vitest", "rtl", "e2e", "playwright", "msw", "前端测试"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill"
+}

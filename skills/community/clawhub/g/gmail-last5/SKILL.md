@@ -1,35 +1,22 @@
 ---
-name: "Gmail Last5"
-description: "Retrieve and display the sender, subject, and date of the last 5 unique emails in the Gmail inbox using gog."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gmail-last5"
-sourceUrl: "https://clawhub.ai/skills/gmail-last5"
+name: gmail_last5
+summary: "Show the last 5 unique emails in the inbox using gog"
+command: gmail_last5
+command-dispatch: model
 ---
 
-# Gmail Last5
+# gmail_last5
 
-> Retrieve and display the sender, subject, and date of the last 5 unique emails in the Gmail inbox using gog.
+When the user runs `/skill gmail_last5`, do this:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gmail-last5`
-- **Source URL:** [https://clawhub.ai/skills/gmail-last5](https://clawhub.ai/skills/gmail-last5)
+1) Run a `gog gmail search` for the inbox, max 5 newest.
+2) Parse the JSON results.
+3) Reply with a concise list: sender + subject + date (if present).
 
-## Overview
+Use this command (account may be omitted if default is configured; prefer explicit):
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gmail-last5
+gog gmail search "in:inbox" --max 5 --json --results-only --account william.kettle@neuralshift.co.uk
 ```
+
+If the command fails, ask the user to confirm which Gmail account is authenticated in gog.

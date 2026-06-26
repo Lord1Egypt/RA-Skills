@@ -1,0 +1,62 @@
+{
+  "priority": ["label", "title", "branch", "repo", "classification", "default"],
+  "default_category": {
+    "category": "产品与体验",
+    "subcategory": "性能与稳定性"
+  },
+  "repo_rules": [
+    {
+      "match": ["chat", "assistant", "gateway", "api"],
+      "category": "核心平台能力",
+      "subcategory": "自动化与工具集成",
+      "notes": "适合对话主链路、工具调用、网关或 API 相关仓库"
+    },
+    {
+      "match": ["billing", "subscription", "pay", "checkout"],
+      "category": "业务与运营",
+      "subcategory": "商业化与支付"
+    },
+    {
+      "match": ["account", "user-center", "profile", "auth"],
+      "category": "业务与运营",
+      "subcategory": "账号与身份"
+    },
+    {
+      "match": ["frontend", "mobile", "ios", "android", "webapp"],
+      "category": "产品与体验",
+      "subcategory": "客户端与界面体验"
+    }
+  ],
+  "keyword_rules": [
+    {
+      "field": "title",
+      "match": ["chat", "message", "conversation", "会话", "消息", "render"],
+      "category": "核心平台能力",
+      "subcategory": "会话与交互流程"
+    },
+    {
+      "field": "title",
+      "match": ["memory", "context", "history", "recall", "summary", "记忆", "上下文"],
+      "category": "核心平台能力",
+      "subcategory": "上下文与记忆"
+    },
+    {
+      "field": "title",
+      "match": ["billing", "rate limit", "subscription", "计费", "套餐", "支付"],
+      "category": "业务与运营",
+      "subcategory": "商业化与支付"
+    },
+    {
+      "field": "label",
+      "match": ["agent", "tool", "plugin", "mcp"],
+      "category": "核心平台能力",
+      "subcategory": "自动化与工具集成"
+    },
+    {
+      "field": "branch",
+      "match": ["feat/chat", "feature/chat", "chat-", "billing-"],
+      "category": "核心平台能力",
+      "subcategory": "会话与交互流程"
+    }
+  ]
+}

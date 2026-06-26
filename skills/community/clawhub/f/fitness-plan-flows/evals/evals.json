@@ -1,0 +1,89 @@
+{
+  "skill_name": "fitness-plan-flows",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I sell resistance bands and elastic bands, AOV $80–200, mainly on standalone site + Shopify, using Klaviyo. I want to use 'training plans' for post-purchase and repurchase: send a beginner plan after purchase, then push an advanced plan a few weeks later to drive repurchase. Give me a set of actionable flow designs including triggers, timelines, plan names per flow, email structure, and how they map to Klaviyo.",
+      "expected_output": "Output includes: flow map listing all flows (post-purchase plan delivery, advancement plan for repurchase), per-flow specs with trigger, exit rules, timeline (T+), plan type and name, message subject/body structure/CTA, KPIs, and Klaviyo implementation mapping. Plan content list tying plans to products.",
+      "files": [],
+      "assertions": [
+        {
+          "name": "has_flow_map",
+          "description": "Output contains a 'Training plan flow overview' or Flow map section listing flow names and goals"
+        },
+        {
+          "name": "has_post_purchase_and_repurchase_flows",
+          "description": "At least includes post-purchase beginner plan delivery flow and advanced/repurchase flow specs"
+        },
+        {
+          "name": "each_flow_has_required_fields",
+          "description": "Each flow spec includes Goal, Trigger, Exit rules, Timeline, plan type, Messages structure, KPIs"
+        },
+        {
+          "name": "has_plan_content_list",
+          "description": "Output contains a 'Plan content list' with at least one plan and its applicable products/duration"
+        },
+        {
+          "name": "has_klaviyo_mapping",
+          "description": "Implementation mapping explicitly mentions Klaviyo or how to build in Klaviyo"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We sell yoga rings and foam rollers; repurchase rate is low. We want to use a '21-day challenge' for acquisition and send a 7-day beginner plan after first purchase to improve retention. Need: challenge flow for acquisition (unlock on lead capture or first order), post-purchase 7-day plan delivery flow, and simple segmentation (new vs post-first-purchase). Email primary; SMS only for key moments.",
+      "expected_output": "Output includes: flow map with challenge (acquisition) flow and post-purchase 7-day plan delivery flow; segment logic (new vs post-first-purchase); trigger/exit/timeline/message structure per flow; note that SMS is only for key moments; plan content list (21-day challenge, 7-day beginner) and product fit.",
+      "files": [],
+      "assertions": [
+        {
+          "name": "has_challenge_flow",
+          "description": "Includes acquisition flow spec with 21-day challenge / unlock on lead capture or first order"
+        },
+        {
+          "name": "has_7day_post_purchase_flow",
+          "description": "Includes post-purchase 7-day beginner plan delivery flow with 7-day/beginner plan type"
+        },
+        {
+          "name": "has_segment_logic",
+          "description": "Segment logic is clear: new vs post-first-purchase (or equivalent)"
+        },
+        {
+          "name": "sms_only_key_moments",
+          "description": "SMS usage is limited (e.g. key moments only)"
+        },
+        {
+          "name": "plan_list_fits_products",
+          "description": "Plan content list includes at least 21-day challenge and 7-day beginner, tied to yoga ring/foam roller"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Fitness accessory store with resistance band sets and single bands. We want to win back people who haven’t bought in 60 days using a 'new plan,' not heavy promotion upfront. Give one win-back flow: trigger, timeline, email subject and body framework, suggested plan type, and exit rules.",
+      "expected_output": "Output includes: one flow spec for win-back (60-day no purchase); trigger and exit rules; timeline (e.g. T+0 email with new plan); subject/hook and body structure emphasizing 'new plan' not heavy discount; suggested plan type (e.g. new weekly plan or short challenge); KPI and implementation note.",
+      "files": [],
+      "assertions": [
+        {
+          "name": "win_back_trigger",
+          "description": "Flow spec Trigger is 60-day no purchase or similar win-back definition"
+        },
+        {
+          "name": "has_exit_rules",
+          "description": "Exit rules are explicitly stated"
+        },
+        {
+          "name": "message_emphasizes_plan_not_discount",
+          "description": "Email subject or body framework focuses on 'new plan,' not heavy discount"
+        },
+        {
+          "name": "has_plan_type_suggestion",
+          "description": "Includes plan type suggestion (e.g. weekly plan, short challenge)"
+        },
+        {
+          "name": "has_timeline_and_kpi",
+          "description": "Includes timeline (e.g. T+0) and KPI or implementation note"
+        }
+      ]
+    }
+  ]
+}

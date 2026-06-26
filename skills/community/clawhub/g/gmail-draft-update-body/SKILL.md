@@ -1,35 +1,36 @@
 ---
-name: "Gmail Draft Update Body"
-description: "Atomic node skill to update the body text of an existing Gmail draft."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gmail-draft-update-body"
-sourceUrl: "https://clawhub.ai/skills/gmail-draft-update-body"
+name: Gmail Draft Update Body
+description: Atomic node skill to update the body text of an existing Gmail draft.
+os: all
+requires:
+  bins:
+    - gog
 ---
+## Lean Philosophy (Principles)
+- **Kaizen (改善):** This skill is an atomic node, strictly limited to updating the body of a draft, preventing complex multi-field string constructions.
+- **Standardized Work (Hyojun Sagyo):** This node represents the most efficient, standardized path for this specific task before automation.
+- **Jidoka (自働化):** This node includes autonomous defect detection.
 
 # Gmail Draft Update Body
 
-> Atomic node skill to update the body text of an existing Gmail draft.
+This skill allows the agent to update the body of an existing Gmail draft using the native CLI.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gmail-draft-update-body`
-- **Source URL:** [https://clawhub.ai/skills/gmail-draft-update-body](https://clawhub.ai/skills/gmail-draft-update-body)
+## Cognitive Directives
+WHEN [The body of a Gmail draft needs to be set or updated]
+THEN [Execute the native terminal command `gog gmail drafts update <draftId> --body "..." --json`]
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gmail-draft-update-body
+## Schema Example
+```json
+{
+  "command": "gog gmail drafts update draft_id_123 --body \"Please review the attached invoice.\" --json"
+}
 ```
+
+## Jidoka Validation Loop
+1. Try: Execute the command.
+2. Evaluate: Check the JSON response to confirm the body was updated.
+3. Correct/Fail: If it failed or hallucinated parameters, retry up to 3 times (max_retries=3).
+4. Proceed: Return the confirmation.
+
+## Expected Output
+A JSON object confirming the draft was updated.

@@ -1,0 +1,46 @@
+{
+  "name": "genvr-skills",
+  "version": "1.0.0",
+  "description": "Generate high-quality images and videos using the GenVR API Platform. Pure Node.js CLI.",
+  "main": "index.js",
+  "bin": {
+    "genvr": "bin/genvr.js"
+  },
+  "scripts": {
+    "list": "node bin/genvr.js list",
+    "generate": "node bin/genvr.js generate",
+    "status": "node bin/genvr.js status"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/genvrresearch/genvr-skills.git"
+  },
+  "keywords": [
+    "genvr",
+    "api",
+    "cli",
+    "ai",
+    "generation",
+    "agent-skills",
+    "openclaw"
+  ],
+  "author": "GenVR Research <support@genvrresearch.com> (https://genvrresearch.com)",
+  "license": "MIT",
+  "homepage": "https://api.genvrresearch.com",
+  "bugs": {
+    "url": "https://github.com/genvrresearch/genvr-skills/issues"
+  },
+  "files": [
+    "bin/",
+    "index.js",
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    ".claude-plugin/"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

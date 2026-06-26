@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Creator — Modern Newspaper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;600&display=swap&family=Noto+Sans+SC:wght@400;700" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f7f5f0;
+            --bg-dark: #111111;
+            --text: #111111;
+            --text-muted: #555555;
+            --yellow: #FFCC00;
+            --red: #FF3333;
+            --rule: #111111;
+            --slide-padding: clamp(2rem, 5vw, 5rem);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-snap-type: y mandatory;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            height: 100%;
+            font-family: 'Source Serif 4', Georgia, serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            scroll-snap-align: start;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: var(--slide-padding);
+        }
+
+        /* ── TYPOGRAPHY ── */
+        .np-headline {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 0.92;
+            color: var(--text);
+            font-size: clamp(3rem, 10vw, 8rem);
+        }
+        .np-headline-lg { font-size: clamp(4rem, 13vw, 11rem); }
+        .np-headline-sm { font-size: clamp(1.8rem, 4.5vw, 4rem); }
+        .np-subhead {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: clamp(0.9rem, 2vw, 1.5rem);
+        }
+        .np-body {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(0.7rem, 1.1vw, 0.9rem);
+            line-height: 1.7;
+            color: var(--text-muted);
+            max-width: 38ch;
+        }
+        .np-stamp {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: clamp(0.55rem, 0.9vw, 0.72rem);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .np-red { color: var(--red); }
+        .np-yellow-text { color: var(--yellow); }
+
+        /* ── STRUCTURAL ── */
+        .np-bar-h {
+            width: 100%;
+            height: 10px;
+            background: var(--yellow);
+            flex-shrink: 0;
+        }
+        .np-bar-v {
+            width: 8px;
+            height: 100%;
+            background: var(--yellow);
+            flex-shrink: 0;
+        }
+        .np-rule-h {
+            width: 100%;
+            height: 1px;
+            background: var(--rule);
+        }
+        .np-rule-v {
+            width: 1px;
+            background: var(--rule);
+        }
+        .np-dark { background: var(--bg-dark); color: #f7f5f0; }
+        .np-dark .np-body { color: rgba(247,245,240,0.55); }
+        .np-dark .np-stamp { color: rgba(247,245,240,0.4); }
+        .np-dark .np-rule-v { background: rgba(247,245,240,0.2); }
+        .np-dark .np-rule-h { background: rgba(247,245,240,0.2); }
+
+        /* ── GHOST NUMBER ── */
+        .np-ghost {
+            position: absolute;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 900;
+            font-size: clamp(12rem, 30vw, 28rem);
+            color: rgba(0,0,0,0.05);
+            line-height: 1;
+            pointer-events: none;
+            text-transform: uppercase;
+            letter-spacing: -0.04em;
+        }
+
+        /* ── ANIMATIONS ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-32px);
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .slide.visible .reveal { opacity: 1; transform: translateY(0); }
+        .slide.visible .reveal-left { opacity: 1; transform: translateX(0); }
+        .reveal:nth-child(1), .reveal-left:nth-child(1) { transition-delay: 0.05s; }
+        .reveal:nth-child(2), .reveal-left:nth-child(2) { transition-delay: 0.15s; }
+        .reveal:nth-child(3), .reveal-left:nth-child(3) { transition-delay: 0.25s; }
+        .reveal:nth-child(4), .reveal-left:nth-child(4) { transition-delay: 0.35s; }
+        .reveal:nth-child(5) { transition-delay: 0.42s; }
+        .reveal:nth-child(6) { transition-delay: 0.49s; }
+
+        /* ── NAV DOTS ── */
+        .nav-dots {
+            position: fixed;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 100;
+        }
+        .nav-dots button {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            border: 1.5px solid #111;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0;
+        }
+        .nav-dots button.active { background: var(--yellow); border-color: #111; transform: scale(1.3); }
+
+        /* ── PROGRESS BAR ── */
+        .progress-bar {
+            position: fixed; top: 0; left: 0;
+            height: 4px; background: var(--yellow);
+            width: 0%; z-index: 200;
+            transition: width 0.3s ease;
+        }
+
+        /* ── EDIT BUTTON ── */
+        .edit-hotzone {
+            position: fixed; top: 0; left: 0;
+            width: 80px; height: 80px;
+            z-index: 10000; cursor: pointer;
+        }
+        .edit-toggle {
+            position: fixed; top: 16px; left: 16px;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s; z-index: 10001;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem; letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: var(--bg-dark); color: #f7f5f0;
+            border: none; padding: 6px 14px;
+            cursor: pointer;
+        }
+        .edit-toggle.show { opacity: 1; pointer-events: auto; }
+        .edit-toggle.active { opacity: 1; pointer-events: auto; background: var(--yellow); color: #111; }
+
+        #notes-panel {
+            display: none; position: fixed; bottom: 0; left: 0; right: 0;
+            z-index: 9998;
+            background: rgba(8,8,8,0.94);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        #notes-panel.active { display: flex; flex-direction: column; }
+        #notes-panel-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.45rem 1.4rem; cursor: pointer; user-select: none;
+        }
+        #notes-panel-label {
+            flex: 1; font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.58rem; letter-spacing: 0.16em;
+            text-transform: uppercase; color: rgba(255,255,255,0.3);
+        }
+        #notes-drag-hint { flex: 1; display: flex; justify-content: center; }
+        #notes-drag-hint::after {
+            content: ''; display: block; width: 36px; height: 3px;
+            border-radius: 2px; background: rgba(255,255,255,0.25);
+        }
+        #notes-collapse-btn {
+            flex: 1; text-align: right; font-size: 1rem;
+            color: rgba(255,255,255,0.4); background: none; border: none;
+            cursor: pointer; transition: color 0.15s, transform 0.2s;
+        }
+        #notes-panel.collapsed #notes-body { display: none; }
+        #notes-panel.collapsed #notes-collapse-btn { transform: rotate(180deg); }
+        #notes-body { padding: 0 1.4rem 0.75rem; }
+        #notes-textarea {
+            width: 100%; height: 72px; min-height: 48px; max-height: 200px;
+            resize: vertical; background: transparent; border: none; outline: none;
+            color: rgba(255,255,255,0.75); font-size: 0.88rem; line-height: 1.65;
+            font-family: system-ui, sans-serif; caret-color: var(--yellow);
+        }
+        #notes-textarea::placeholder { color: rgba(255,255,255,0.18); }
+
+        @media (max-height: 700px) { :root { --slide-padding: clamp(1rem,3vw,2rem); } }
+        @media (max-height: 600px) { .nav-dots { display: none; } }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
+            html { scroll-behavior: auto; }
+        }
+
+        /* ═══════════════════════════════════════════
+           SLIDE-SPECIFIC LAYOUTS
+           ═══════════════════════════════════════════ */
+
+        /* SLIDE 1 — Cover/Masthead */
+        #s1 { justify-content: flex-end; }
+        #s1 .np-bar-h { position: absolute; top: 0; left: 0; right: 0; }
+        #s1 .stamp-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: clamp(1rem,3vh,3rem);
+        }
+        #s1 .headline-wrap { margin-bottom: 1.2rem; }
+        #s1 .tagline-row {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* SLIDE 2 — Breaking Headline */
+        #s2 { justify-content: flex-start; padding-top: calc(var(--slide-padding) * 1.2); }
+        #s2 .evidence-row {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: clamp(1.5rem,3vh,3rem);
+            align-items: flex-start;
+        }
+        #s2 .evidence-col { flex: 1; }
+
+        /* SLIDE 3 — Zero Dependencies (Feature Story) */
+        #s3 { justify-content: flex-end; }
+        #s3 .support-col {
+            position: absolute;
+            top: var(--slide-padding);
+            right: var(--slide-padding);
+            width: 28%;
+        }
+
+        /* SLIDE 4 — Data Brief: 19 */
+        #s4 { flex-direction: row; align-items: center; justify-content: flex-start; gap: 0; }
+        #s4 .stat-left { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-start; }
+        #s4 .stat-right { flex: 1; padding-left: 3rem; }
+        #s4 .big-num {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 900;
+            font-size: clamp(7rem, 18vw, 15rem);
+            line-height: 1;
+            color: transparent;
+            -webkit-text-stroke: 3px var(--text);
+        }
+
+        /* SLIDE 5 — Split Column: Edit */
+        #s5 { flex-direction: row; padding: 0; }
+        #s5 .left-col {
+            width: 42%;
+            background: var(--bg-dark);
+            padding: var(--slide-padding);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+        #s5 .left-col .np-bar-v { position: absolute; left: 0; top: 0; }
+        #s5 .right-col {
+            flex: 1;
+            padding: var(--slide-padding);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* SLIDE 6 — Pull Quote: Presenter */
+        #s6 { justify-content: center; }
+        #s6 .quote-wrap {
+            max-width: 65%;
+        }
+        #s6 .quote-text {
+            font-family: 'Source Serif 4', serif;
+            font-style: italic;
+            font-size: clamp(1.4rem, 3.5vw, 2.8rem);
+            line-height: 1.35;
+            color: var(--text);
+        }
+        #s6 .attribution {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* SLIDE 7 — Contents/Index */
+        #s7 { justify-content: center; }
+        #s7 .index-list { list-style: none; width: 100%; max-width: 680px; }
+        #s7 .index-list li {
+            display: flex;
+            align-items: baseline;
+            gap: 1.2rem;
+            padding: clamp(0.6rem,1.5vh,1.2rem) 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        #s7 .index-list li:first-child { border-top: 1px solid rgba(0,0,0,0.1); }
+        #s7 .idx-num {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 900;
+            font-size: clamp(1.6rem,3.5vw,2.8rem);
+            color: var(--yellow);
+            -webkit-text-stroke: 1.5px var(--text);
+            color: transparent;
+            flex-shrink: 0;
+            width: 2.2ch;
+        }
+        #s7 .idx-cmd {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: clamp(0.95rem,2vw,1.5rem);
+            text-transform: uppercase;
+            flex: 1;
+        }
+        #s7 .idx-desc { flex: 2; }
+
+        /* SLIDE 8 — PPTX Data Brief */
+        #s8 { justify-content: center; align-items: flex-start; }
+        #s8 .pptx-num {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 900;
+            font-size: clamp(5rem, 16vw, 14rem);
+            line-height: 1;
+            color: transparent;
+            -webkit-text-stroke: 3px var(--text);
+            text-transform: uppercase;
+        }
+
+        /* SLIDE 9 — Closing (Inverted) */
+        #s9 { background: var(--bg-dark); color: #f7f5f0; justify-content: flex-end; }
+        #s9 .np-bar-h { position: absolute; top: 0; left: 0; right: 0; }
+    </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav-dots" id="navDots" aria-label="Slide navigation"></nav>
+<div class="edit-hotzone"></div>
+<button class="edit-toggle" id="editToggle" title="Edit mode (E)">✏ Edit</button>
+<div id="notes-panel">
+    <div id="notes-panel-header">
+        <div id="notes-panel-label">SPEAKER NOTES — SLIDE 1</div>
+        <div id="notes-drag-hint"></div>
+        <button id="notes-collapse-btn">▾</button>
+    </div>
+    <div id="notes-body">
+        <textarea id="notes-textarea" placeholder="Add speaker notes for this slide…"></textarea>
+    </div>
+</div>
+
+<!-- ══ SLIDE 1: COVER / MASTHEAD ══ -->
+<section class="slide" id="s1"
+    data-notes="欢迎。Slide Creator 将您的想法转化为精美的、零依赖的 HTML 演示文稿。无需 npm，无需构建工具 — 只需一个可在任何浏览器中运行的文件。"
+    aria-label="封面">
+    <div class="np-bar-h reveal"></div>
+    <div class="stamp-row reveal">
+        <span class="np-stamp">Claude Code 的一项技能</span>
+        <span class="np-stamp">V1.8 · 2025 · 第 1 期</span>
+    </div>
+    <div class="headline-wrap reveal">
+        <div class="np-headline np-headline-lg">幻灯片·<br>创作器</div>
+    </div>
+    <div class="np-bar-h reveal"></div>
+    <div class="tagline-row reveal" style="margin-top:1rem;">
+        <span class="np-body">零依赖的 HTML 演示文稿。完美输出，每次都是。</span>
+        <span class="np-stamp" style="margin-left:auto;">↓ 向下滚动阅读</span>
+    </div>
+</section>
+
+<section class="slide" id="s2"
+    data-notes="核心问题：优质内容被困在平庸的演示文稿中。Slide Creator 解决了这个问题 — 选择一个风格，描述您的内容，获得一份精美的演示文稿。无需重新生成。"
+    aria-label="问题">
+    <span class="np-ghost" style="top:-0.2em;right:-0.1em;opacity:0.04;">AI</span>
+    <div class="np-stamp reveal" style="margin-bottom:1.2rem;">问题</div>
+    <div class="np-headline reveal" style="font-size:clamp(2.2rem,7vw,5.8rem);max-width:80%;">
+        AI 可以生成幻灯片。<br>结果却 <span class="np-red">不稳定</span>。
+    </div>
+    <div class="np-bar-h reveal" style="margin-top:clamp(1.2rem,3vh,2.5rem);"></div>
+    <div class="evidence-row">
+        <div class="evidence-col reveal">
+            <div class="np-subhead" style="margin-bottom:0.6rem;">旧方式</div>
+            <p class="np-body">重新生成提示，期望更好的输出。花费数小时调整字体、颜色、布局。最终得到看起来像其他所有演示文稿一样的通用"AI 垃圾"。</p>
+        </div>
+        <div class="np-rule-v reveal"></div>
+        <div class="evidence-col reveal">
+            <div class="np-subhead" style="margin-bottom:0.6rem;">Slide Creator 方式</div>
+            <p class="np-body">选择适合您受众的风格。每次都获得稳定、精美的输出。19 个设计预设，零妥协。</p>
+        </div>
+    </div>
+</section>
+
+<section class="slide" id="s3"
+    data-notes="单个 HTML 文件。无需 npm install，无需 CDN 调用，无需构建管道。通过电子邮件发送，在飞机上打开且无互联网。它就能正常工作。"
+    aria-label="零依赖">
+    <div class="support-col reveal">
+        <div class="np-stamp" style="margin-bottom:0.8rem;">架构</div>
+        <p class="np-body">单个 <code style="font-family:'IBM Plex Mono';font-size:0.85em;background:rgba(0,0,0,0.06);padding:1px 4px;">presentation.html</code> 文件。内联 CSS 和 JavaScript。无外部依赖。在任何浏览器中运行，在线或离线均可。</p>
+        <div class="np-rule-h" style="margin:1rem 0;"></div>
+        <p class="np-body">通过电子邮件分享。放在 USB 上。在飞机上打开。无需 CDN 调用、npm 或构建工具。</p>
+    </div>
+    <div class="np-stamp reveal" style="margin-bottom:clamp(0.5rem,2vh,1.5rem);">核心原则</div>
+    <div class="np-bar-h reveal" style="width:6rem;height:8px;margin-bottom:1rem;"></div>
+    <div class="np-headline np-headline-lg reveal">零<br>依<br>赖</div>
+    <div class="np-body reveal" style="margin-top:1rem;max-width:45ch;">一个文件。任何浏览器。生成后无需互联网。</div>
+</section>
+
+<section class="slide" id="s4"
+    data-notes="19 个精选设计预设 — 不是通用模板。每个都有独特的个性。Bold Signal 用于主题演讲。Chinese Chan 用于哲学讲座。Neo-Brutalism 用于独立开发者。"
+    aria-label="19 种风格">
+    <div class="np-bar-v reveal"></div>
+    <div class="stat-left reveal" style="padding-left:2rem;">
+        <div class="np-stamp" style="margin-bottom:0.5rem;">设计预设</div>
+        <div class="big-num">19</div>
+        <div class="np-subhead" style="margin-top:0.5rem;font-size:clamp(0.7rem,1.5vw,1.1rem);">精选风格</div>
+    </div>
+    <div class="np-rule-v reveal" style="margin: 0 2rem; height:60%;align-self:center;"></div>
+    <div class="stat-right reveal">
+        <div class="np-stamp" style="margin-bottom:1rem;">部分示例：</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;">
+            <li><span class="np-subhead" style="font-size:clamp(0.75rem,1.5vw,1.1rem);">Bold Signal</span> <span class="np-body" style="display:inline;"> — 主题演讲和融资推介</span></li>
+            <li><span class="np-subhead" style="font-size:clamp(0.75rem,1.5vw,1.1rem);">Enterprise Dark</span> <span class="np-body" style="display:inline;"> — B2B 和投资者演示文稿</span></li>
+            <li><span class="np-subhead" style="font-size:clamp(0.75rem,1.5vw,1.1rem);">Terminal Green</span> <span class="np-body" style="display:inline;"> — 开发工具和 API</span></li>
+            <li><span class="np-subhead" style="font-size:clamp(0.75rem,1.5vw,1.1rem);">Chinese Chan</span> <span class="np-body" style="display:inline;"> — 设计哲学</span></li>
+            <li><span class="np-subhead" style="font-size:clamp(0.75rem,1.5vw,1.1rem);">Modern Newspaper</span> <span class="np-body" style="display:inline;"> — 思想领导力</span></li>
+        </ul>
+        <div class="np-stamp" style="margin-top:1rem;">+ 另外 14 个预设</div>
+    </div>
+</section>
+
+<section class="slide" id="s5"
+    data-notes="每个生成的演示文稿都包含一个内置文本编辑器。将鼠标悬停在左上角或按 E。点击任何文本以在浏览器中直接编辑。Ctrl+S 保存回 HTML 文件。"
+    aria-label="内联编辑">
+    <div class="left-col">
+        <div class="np-bar-v"></div>
+        <div class="np-stamp reveal" style="color:rgba(247,245,240,0.45);margin-bottom:1.2rem;">内置功能</div>
+        <div class="np-headline reveal" style="color:#f7f5f0;font-size:clamp(1.8rem,4.5vw,3.8rem);">在<br>浏览器<br>中编辑</div>
+        <div class="np-stamp reveal" style="color:rgba(247,245,240,0.35);margin-top:1.5rem;">SYS://INLINE-EDIT</div>
+    </div>
+    <div class="right-col">
+        <div class="np-stamp reveal" style="margin-bottom:1.2rem;">工作原理</div>
+        <div class="np-subhead reveal" style="margin-bottom:0.8rem;font-size:clamp(0.85rem,1.8vw,1.3rem);">将鼠标悬停在左上角 → 点击编辑</div>
+        <div class="np-rule-h reveal" style="margin-bottom:0.8rem;"></div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;">
+            <li class="reveal"><span class="np-stamp">按 E</span> <span class="np-body" style="display:inline;margin-left:0.5rem;">— 切换编辑模式</span></li>
+            <li class="reveal"><span class="np-stamp">点击文本</span> <span class="np-body" style="display:inline;margin-left:0.5rem;">— 直接在原地编辑</span></li>
+            <li class="reveal"><span class="np-stamp">Ctrl+S</span> <span class="np-body" style="display:inline;margin-left:0.5rem;">— 保存更改到文件</span></li>
+            <li class="reveal"><span class="np-stamp">Escape</span> <span class="np-body" style="display:inline;margin-left:0.5rem;">— 退出而不保存</span></li>
+        </ul>
+        <div class="np-rule-h reveal" style="margin-top:1.5rem;margin-bottom:0.8rem;"></div>
+        <p class="np-body reveal">笔记实时同步到任何打开的演示者窗口。生成后无需 HTML 文件 — 直观地编辑一切。</p>
+    </div>
+</section>
+
+<section class="slide" id="s6"
+    data-notes="按 P 打开演示者窗口。它显示您的演讲者笔记、计时器和幻灯片导航。主视图底部的笔记面板让您实时编辑笔记。"
+    aria-label="演示者模式">
+    <span class="np-ghost" style="top:-0.3em;left:-0.05em;opacity:0.04;">"</span>
+    <div class="np-stamp reveal" style="margin-bottom:2rem;">演示者模式</div>
+    <div class="quote-wrap">
+        <div class="np-rule-h reveal"></div>
+        <div class="quote-text reveal" style="padding:clamp(1rem,2.5vh,2rem) 0;">"按 <strong>P</strong> — 您的演示者窗口立即打开。笔记、计时器和幻灯片导航。无需第三方软件。"</div>
+        <div class="np-rule-h reveal"></div>
+        <div class="attribution reveal">
+            <div class="np-stamp">演示者模式</div>
+            <div class="np-rule-v" style="height:1em;margin:0 0.5rem;"></div>
+            <div class="np-body" style="display:inline;">通过 BroadcastChannel API 同步 · 离线工作 · 零延迟</div>
+        </div>
+    </div>
+</section>
+<section class="slide" id="s7"
+    data-notes="四个命令涵盖所有用例。无标志开始交互式样式发现会话。--plan 将思考与生成分开。--generate 当您有计划时跳过问题。"
+    aria-label="命令">
+    <div class="np-bar-h reveal" style="margin-bottom:clamp(1rem,3vh,2.5rem);"></div>
+    <div class="np-stamp reveal" style="margin-bottom:clamp(0.8rem,2vh,1.5rem);">如何使用</div>
+    <ul class="index-list">
+        <li class="reveal">
+            <div class="idx-num">01</div>
+            <div class="idx-cmd"><code style="font-family:'IBM Plex Mono';font-size:0.9em;">/slide-creator</code></div>
+            <p class="idx-desc np-body">交互式 — 样式发现、内容收集、生成全在一个会话中完成</p>
+        </li>
+        <li class="reveal">
+            <div class="idx-num">02</div>
+            <div class="idx-cmd"><code style="font-family:'IBM Plex Mono';font-size:0.9em;">--plan</code></div>
+            <p class="idx-desc np-body">分析 resources/，创建 PLANNING.md 大纲。在生成 HTML 前停止。</p>
+        </li>
+        <li class="reveal">
+            <div class="idx-num">03</div>
+            <div class="idx-cmd"><code style="font-family:'IBM Plex Mono';font-size:0.9em;">--generate</code></div>
+            <p class="idx-desc np-body">读取 PLANNING.md 并生成 HTML。直接跳到生产环境。</p>
+        </li>
+        <li class="reveal">
+            <div class="idx-num">04</div>
+            <div class="idx-cmd"><code style="font-family:'IBM Plex Mono';font-size:0.9em;">--export pptx</code></div>
+            <p class="idx-desc np-body">通过系统 Chrome 截屏每张幻灯片并组装 PowerPoint 文件。</p>
+        </li>
+    </ul>
+</section>
+
+<!-- ══ SLIDE 8: DATA BRIEF — PPTX EXPORT ══ -->
+<section class="slide" id="s8"
+    data-notes="PPTX 导出使用您现有的 Chrome 安装 — 无需下载 300MB 的 Chromium。仅需 python3 配合 playwright 和 python-pptx。截屏每张幻灯片并组装 PowerPoint。"
+    aria-label="PPTX 导出">
+    <div class="np-stamp reveal" style="margin-bottom:0.5rem;">导出格式</div>
+    <div class="pptx-num reveal">PPTX</div>
+    <div class="np-bar-h reveal" style="width:8rem;height:8px;margin:1rem 0;"></div>
+    <div style="display:flex;gap:3rem;align-items:flex-start;" class="reveal">
+        <div>
+            <div class="np-subhead" style="margin-bottom:0.5rem;font-size:clamp(0.8rem,1.8vw,1.3rem);">无需 Node.js</div>
+            <p class="np-body">使用 Python + playwright + 您已有的系统 Chrome。</p>
+        </div>
+        <div>
+            <div class="np-subhead" style="margin-bottom:0.5rem;font-size:clamp(0.8rem,1.8vw,1.3rem);">无需下载 300MB</div>
+            <p class="np-body">Playwright 使用您机器上已安装的 Chrome。</p>
+        </div>
+        <div>
+            <div class="np-subhead" style="margin-bottom:0.5rem;font-size:clamp(0.8rem,1.8vw,1.3rem);">像素完美</div>
+            <p class="np-body">全分辨率截屏每张幻灯片，然后组装 .pptx 文件。</p>
+        </div>
+    </div>
+</section>
+
+<!-- ══ SLIDE 9: CLOSING (INVERTED) ══ -->
+<section class="slide" id="s9"
+    data-notes="安装耗时不超过 30 秒。克隆到 ~/.claude/skills/ 并重启 Claude Code。然后只需输入 /slide-creator 即可运行。"
+    aria-label="开始使用">
+    <div class="np-bar-h reveal"></div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;">
+        <div class="np-stamp reveal" style="color:rgba(247,245,240,0.4);margin-bottom:1.2rem;">开始使用</div>
+        <div class="np-headline reveal" style="color:#f7f5f0;font-size:clamp(3rem,9vw,7.5rem);">现在<br>开始。</div>
+        <div class="np-bar-h reveal" style="background:var(--yellow);margin:1.5rem 0 1rem;"></div>
+        <div style="display:flex;align-items:center;gap:2rem;" class="reveal">
+            <code style="font-family:'IBM Plex Mono';font-size:clamp(0.65rem,1.2vw,0.9rem);color:rgba(247,245,240,0.7);background:rgba(255,255,255,0.07);padding:8px 16px;letter-spacing:0.04em;">git clone https://github.com/kaisersong/slide-creator ~/.claude/skills/slide-creator</code>
+        </div>
+        <div class="np-stamp reveal" style="color:rgba(247,245,240,0.3);margin-top:1rem;">然后：在 Claude Code 中输入 /slide-creator</div>
+    </div>
+</section>
+
+<script>
+if (new URLSearchParams(location.search).has('presenter')) {
+    document.title = 'Presenter — ' + document.title;
+    document.body.innerHTML = `<style>*{box-sizing:border-box;margin:0}body{background:#111;color:#fff;font-family:system-ui,sans-serif}#pv{display:grid;grid-template-columns:1fr 220px;gap:1rem;padding:1.25rem;align-items:start}.pv-panel{background:#1e1e1e;border-radius:12px;padding:1.25rem}#pv-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#555;margin-bottom:.6rem}#pv-notes{font-size:1.05rem;line-height:1.85;color:#d0d0d0}#pv-right{display:flex;flex-direction:column;gap:1rem}#pv-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem}.pv-arrow{width:32px;height:32px;border-radius:6px;border:1px solid #333;background:#2a2a2a;color:#aaa;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}.pv-arrow:hover{background:#383838;color:#fff}#pv-counter{text-align:center;flex:1}#pv-num{font-size:1.6rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}#pv-of{color:#555;font-size:.75rem;margin-top:.2rem}#pv-timer-box{text-align:center}#pv-timer-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#555;margin-bottom:.3rem}#pv-timer{font-size:1.5rem;font-weight:700;font-family:monospace;font-variant-numeric:tabular-nums}</style><div id="pv"><div class="pv-panel"><div id="pv-label">Speaker Notes</div><div id="pv-notes">Waiting for main window…</div></div><div id="pv-right"><div class="pv-panel"><div id="pv-nav"><button class="pv-arrow" id="pv-prev">←</button><div id="pv-counter"><div id="pv-num">—</div><div id="pv-of">/ —</div></div><button class="pv-arrow" id="pv-next">→</button></div></div><div class="pv-panel" id="pv-timer-box"><div id="pv-timer-label">Elapsed</div><div id="pv-timer">0:00</div></div></div></div>`;
+    const ch = new BroadcastChannel('slide-creator-presenter');
+    let t0 = null;
+    ch.addEventListener('message', e => {
+        if (e.data.type !== 'state') return;
+        if (!t0) t0 = Date.now();
+        document.getElementById('pv-notes').textContent = e.data.notes || '(no notes)';
+        document.getElementById('pv-num').textContent = e.data.index + 1;
+        document.getElementById('pv-of').textContent = `/ ${e.data.total}`;
+    });
+    ch.postMessage({ type: 'request-state' });
+    setInterval(() => {
+        if (!t0) return;
+        const s = Math.floor((Date.now() - t0) / 1000);
+        document.getElementById('pv-timer').textContent = `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+    }, 1000);
+    document.getElementById('pv-prev').addEventListener('click', () => ch.postMessage({ type: 'nav-prev' }));
+    document.getElementById('pv-next').addEventListener('click', () => ch.postMessage({ type: 'nav-next' }));
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight' || e.key === ' ') ch.postMessage({ type: 'nav-next' });
+        else if (e.key === 'ArrowLeft') ch.postMessage({ type: 'nav-prev' });
+    });
+} else {
+    class SlidePresentation {
+        constructor() {
+            this.slides = document.querySelectorAll('.slide');
+            this.currentSlide = 0;
+            this.channel = new BroadcastChannel('slide-creator-presenter');
+            this.setupNavDots();
+            this.setupObserver();
+            this.setupKeyboard();
+            this.setupTouch();
+            this.setupWheel();
+            this.setupPresenter();
+            this.setupEditor();
+            this.updateProgress();
+        }
+        setupNavDots() {
+            const nav = document.getElementById('navDots');
+            this.slides.forEach((_, i) => {
+                const btn = document.createElement('button');
+                btn.setAttribute('aria-label', `Slide ${i+1}`);
+                btn.addEventListener('click', () => this.goTo(i));
+                nav.appendChild(btn);
+            });
+        }
+        setupObserver() {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        this.currentSlide = [...this.slides].indexOf(entry.target);
+                        this.updateProgress();
+                        this.updateDots();
+                        this.broadcastState();
+                        this.updateNotesPanel();
+                    }
+                });
+            }, { threshold: 0.5 });
+            this.slides.forEach(s => obs.observe(s));
+        }
+        setupKeyboard() {
+            document.addEventListener('keydown', e => {
+                if (e.target.getAttribute('contenteditable') || e.target.tagName === 'TEXTAREA') return;
+                if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); this.next(); }
+                else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); this.prev(); }
+                else if (e.key === 'p' || e.key === 'P') {
+                    window.open(location.href.split('?')[0]+'?presenter','slide-presenter-'+Date.now(),'width=1100,menubar=no,toolbar=no,location=no');
+                } else if (e.key === 'e' || e.key === 'E') {
+                    this.editor.toggle();
+                }
+            });
+        }
+        setupTouch() {
+            let sy = 0;
+            document.addEventListener('touchstart', e => { sy = e.touches[0].clientY; }, { passive: true });
+            document.addEventListener('touchend', e => {
+                const d = sy - e.changedTouches[0].clientY;
+                if (Math.abs(d) > 50) d > 0 ? this.next() : this.prev();
+            });
+        }
+        setupWheel() {
+                /* scroll-snap-type: y mandatory handles trackpad/mouse wheel natively.
+                   No JS wheel handler — IntersectionObserver keeps cur/dots in sync.
+                   Adding goTo/scrollIntoView here causes double-animation or multi-page scroll. */
+        }
+        setupPresenter() {
+            this.channel.addEventListener('message', e => {
+                if (e.data.type === 'nav-next') this.next();
+                else if (e.data.type === 'nav-prev') this.prev();
+                else if (e.data.type === 'request-state') this.broadcastState();
+            });
+        }
+        setupEditor() {
+            const panel = document.getElementById('notes-panel');
+            const label = document.getElementById('notes-panel-label');
+            const textarea = document.getElementById('notes-textarea');
+            const toggle = document.getElementById('editToggle');
+            const hotzone = document.querySelector('.edit-hotzone');
+            let hideTimeout = null;
+            hotzone.addEventListener('mouseenter', () => { clearTimeout(hideTimeout); toggle.classList.add('show'); });
+            hotzone.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => { if (!this.editor.active) toggle.classList.remove('show'); }, 400); });
+            toggle.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
+            toggle.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => { if (!this.editor.active) toggle.classList.remove('show'); }, 400); });
+            hotzone.addEventListener('click', () => this.editor.toggle());
+            toggle.addEventListener('click', () => this.editor.toggle());
+            document.getElementById('notes-panel-header').addEventListener('click', () => panel.classList.toggle('collapsed'));
+            textarea.addEventListener('input', () => {
+                const slide = this.slides[this.currentSlide];
+                if (slide) { slide.dataset.notes = textarea.value; this.broadcastState(); }
+            });
+            document.addEventListener('keydown', e => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); this.saveFile(); }
+            });
+            this.editor = {
+                active: false,
+                toggle: () => this.editor.active ? this.editor.exit() : this.editor.enter(),
+                enter: () => {
+                    this.editor.active = true;
+                    toggle.classList.add('active'); toggle.textContent = '✓ Done';
+                    this.slides.forEach(s => s.querySelectorAll('h1,h2,h3,p,li,span,div.np-headline,div.np-body').forEach(el => { el.setAttribute('contenteditable','true'); el.style.outline='none'; }));
+                    panel.classList.add('active'); this.updateNotesPanel();
+                },
+                exit: () => {
+                    this.editor.active = false;
+                    toggle.classList.remove('active'); toggle.textContent = '✏ Edit';
+                    this.slides.forEach(s => s.querySelectorAll('[contenteditable]').forEach(el => { el.removeAttribute('contenteditable'); el.style.outline=''; }));
+                    panel.classList.remove('active');
+                }
+            };
+            this._notesLabel = label; this._notesTextarea = textarea;
+        }
+        updateNotesPanel() {
+            if (!this.editor?.active) return;
+            const slide = this.slides[this.currentSlide];
+            this._notesLabel.textContent = `SPEAKER NOTES — SLIDE ${this.currentSlide+1} / ${this.slides.length}`;
+            this._notesTextarea.value = slide?.dataset.notes || '';
+        }
+        saveFile() {
+            const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+            const bytes = new TextEncoder().encode(html);
+            fetch(location.pathname, { method:'PUT', body:bytes, headers:{'Content-Type':'text/html'} })
+                .catch(() => {
+                    const a = Object.assign(document.createElement('a'), {
+                        href: URL.createObjectURL(new Blob([html],{type:'text/html'})),
+                        download: location.pathname.split('/').pop() || 'presentation.html'
+                    });
+                    a.click(); URL.revokeObjectURL(a.href);
+                });
+        }
+        broadcastState() {
+            const slide = this.slides[this.currentSlide];
+            this.channel.postMessage({ type:'state', index:this.currentSlide, total:this.slides.length, notes:slide?.dataset.notes||'' });
+        }
+        goTo(i) { this.slides[i]?.scrollIntoView({ behavior:'smooth' }); }
+        next() { this.goTo(Math.min(this.currentSlide+1, this.slides.length-1)); }
+        prev() { this.goTo(Math.max(this.currentSlide-1, 0)); }
+        updateProgress() {
+            const pct = (this.currentSlide / (this.slides.length-1)) * 100;
+            document.getElementById('progressBar').style.width = pct + '%';
+        }
+        updateDots() {
+            document.querySelectorAll('#navDots button').forEach((btn, i) => {
+                btn.classList.toggle('active', i === this.currentSlide);
+            });
+        }
+    }
+    new SlidePresentation();
+}
+</script>
+</body>
+</html>

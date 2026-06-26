@@ -1,0 +1,23 @@
+id: b04
+track: B
+title_zh: 4 小时宕机事故复盘 ≤200 字给老板
+category: write
+difficulty: medium
+timeout_seconds: 180
+dimensions:
+  primary: soul
+  secondary:
+  - brain
+evaluators:
+- type: llm_judge
+  weight: 1.0
+  rubric: judge_rubric.md
+  inputs:
+  - agent_response
+  judge_dimensions:
+  - soul
+  - brain
+  excerpt_max_chars: 4000
+metadata:
+  estimated_minutes: 3
+title_en: Write a short outage brief for the boss

@@ -1,0 +1,8 @@
+# Google Analytics Data API
+google-analytics-data>=0.19.0
+
+# Google Auth (pulled in transitively)
+google-auth>=2.0.0
+
+# Optional: DingTalk outbound webhook in traffic_source_report.py
+requests>=2.28.0

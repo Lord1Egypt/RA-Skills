@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "prompt": "spawn subagent 报错 gateway closed (1008) pairing required，gateway 在跑，怎么回事？",
+    "expected": "执行 diagnose.py → 发现 CLI 设备只有 read scope → 判断需要用 fix.py 修复"
+  },
+  {
+    "id": 2,
+    "prompt": "我的 subagent 和 cron 任务都发不起来，日志里报 pairing required",
+    "expected": "完整诊断流程 → 确认 gateway 正常 → 找到设备 scopes 不足 → 给出 fix.py 方案并执行"
+  },
+  {
+    "id": 3,
+    "prompt": "帮我看看为什么 CLI 设备没有 admin 权限",
+    "expected": "读取 paired.json → 展示当前设备 scopes → 判断缺 admin → 提示可以用 fix.py 修复"
+  }
+]

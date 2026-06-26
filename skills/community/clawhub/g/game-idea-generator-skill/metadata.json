@@ -1,0 +1,19 @@
+{
+  "slug": "game-idea-generator-skill",
+  "name": "Game Idea Generator Skill",
+  "version": "0.1.0",
+  "tags": [
+    "game",
+    "game-idea-generator",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Game Development",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-04-28",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

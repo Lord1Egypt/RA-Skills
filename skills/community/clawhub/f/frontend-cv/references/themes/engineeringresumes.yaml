@@ -1,0 +1,59 @@
+meta:
+  variant: engineeringresumes
+  display_name: RenderCV Engineering Resumes
+
+fonts:
+  links:
+    - https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Noto+Serif+SC:wght@400;500;700&display=swap
+  body_stack: '"Libre Baskerville","Noto Serif SC","Songti SC","STSong",serif'
+  heading_stack: '"Libre Baskerville","Noto Serif SC","Songti SC","STSong",serif'
+  section_stack: '"Libre Baskerville","Noto Serif SC","Songti SC","STSong",serif'
+
+colors:
+  name: "#111111"
+  headline: "#555555"
+  section: "#111111"
+  links: "#111111"
+  text: "#191919"
+  muted: "#4f4f4f"
+  muted_soft: "#bdb4ab"
+  rule: "#3c3c3c"
+  title: "#101010"
+  subtitle: "#474747"
+  bullet: "#181818"
+
+page:
+  top: "0.7in"
+  right: "0.7in"
+  bottom: "0.7in"
+  left: "0.7in"
+
+header:
+  align: center
+  show_icons: false
+  separator: "|"
+  social_display: url
+  website_display: full
+  name_size: "25pt"
+  name_weight: 400
+  headline_size: "9.6pt"
+  connection_size: "8.9pt"
+  gap: "0.46cm"
+
+section:
+  title_size: "16pt"
+  title_weight: 700
+  space_above: "0.48cm"
+
+entry:
+  layout: right-meta
+  meta_width: "3.25cm"
+  column_gap: "0.46cm"
+  gap: "0.28cm"
+  body_size: "9.35pt"
+  meta_size: "8.9pt"
+  bullet: "●"
+  bullet_indent: "0.18cm"
+  bullet_text_gap: "0.33cm"
+  highlights_top: "0.08cm"
+  bullet_gap: "0.06cm"

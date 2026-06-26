@@ -1,0 +1,35 @@
+id: a15
+track: A
+title_zh: 30 文件项目高效定位 README 已点明的 bug
+category: plan
+difficulty: medium
+timeout_seconds: 300
+dimensions:
+  primary: brain
+  secondary:
+  - claw
+evaluators:
+- type: trace
+  weight: 0.5
+  required_tools_set:
+  - Read
+  - Edit
+  forbidden_tools: []
+  max_tool_calls: 15
+  max_per_tool:
+    Read: 5
+- type: pytest
+  weight: 0.5
+  target: tests/test_parser.py
+  fail_to_pass:
+  - test_parse_returns_int
+  pass_to_pass: []
+metadata:
+  estimated_minutes: 3
+  locale_sensitive: false
+  network_required: false
+  expected_tool_calls:
+  - Read
+  - Edit
+  - Bash
+title_en: Locate the bug without reading everything

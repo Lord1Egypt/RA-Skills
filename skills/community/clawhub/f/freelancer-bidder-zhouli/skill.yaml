@@ -1,0 +1,25 @@
+name: freelancer-bidder
+version: 1.0.0
+description: Freelancer.com项目扫描和投标提案生成。自动搜索匹配项目，起草个性化投标提案，追踪投标历史。
+author: clawd
+homepage: https://clawhub.com/skills/freelancer-bidder
+
+triggers:
+  - Freelancer
+  - 接单
+  - 外包项目
+  - 投标提案
+  - freelancer bid
+  - freelance jobs
+
+features:
+  - 按技能搜索项目
+  - 按预算筛选
+  - 个性化投标提案
+  - 投标历史追踪
+  - 最优报价建议
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

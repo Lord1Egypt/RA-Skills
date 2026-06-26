@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://powermatrix.local/schemas/publish_plan.schema.json",
+  "title": "Publish Plan",
+  "type": "object",
+  "required": [
+    "plan_id",
+    "campaign_goal",
+    "items",
+    "priority",
+    "overall_publish_readiness",
+    "blocking_items",
+    "suggested_schedule",
+    "review_checklist"
+  ],
+  "properties": {
+    "plan_id": {
+      "type": "string"
+    },
+    "campaign_goal": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["platform", "title", "priority", "manual_review_required", "publish_readiness", "blocking_items"],
+        "properties": {
+          "draft_id": {"type": "string"},
+          "platform": {"type": "string"},
+          "title": {"type": "string"},
+          "priority": {
+            "type": "string",
+            "enum": ["high", "medium", "low"]
+          },
+          "suggested_publish_time": {"type": "string"},
+          "publish_readiness": {
+            "type": "string",
+            "enum": ["ready", "needs_review", "blocked"]
+          },
+          "blocking_items": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "preconditions": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "review_notes": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "cta": {"type": "string"},
+          "manual_review_required": {
+            "type": "boolean",
+            "const": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["high", "medium", "low", "mixed"]
+    },
+    "overall_publish_readiness": {
+      "type": "string",
+      "enum": ["ready", "needs_review", "blocked"]
+    },
+    "blocking_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["item", "reason", "required_before"],
+        "properties": {
+          "item": {"type": "string"},
+          "reason": {"type": "string"},
+          "required_before": {
+            "type": "string",
+            "enum": ["drafting", "publishing", "measurement_claim"]
+          },
+          "affected_draft_ids": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "suggested_schedule": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date_or_window": {"type": "string"},
+          "platform": {"type": "string"},
+          "draft_id": {"type": "string"},
+          "reason": {"type": "string"},
+          "schedule_status": {
+            "type": "string",
+            "enum": ["scheduled", "conditional", "blocked"]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "review_checklist": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

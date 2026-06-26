@@ -1,0 +1,44 @@
+id: a10
+track: A
+title_zh: 修复时区/DST 计算 bug
+category: bug_fix
+difficulty: medium
+timeout_seconds: 300
+dimensions:
+  primary: meat
+  secondary:
+  - brain
+evaluators:
+- type: pytest
+  weight: 0.8
+  target: tests/test_tz.py
+  fail_to_pass:
+  - test_dst_spring_forward
+  - test_naive_local_to_utc
+  - test_utc_to_local_winter
+  pass_to_pass:
+  - test_utc_passthrough
+- type: state_hash
+  weight: 0.1
+  files:
+  - src/tz.py
+  required_patterns:
+  - ZoneInfo
+  - tzinfo|astimezone
+  forbidden_patterns:
+  - TODO
+  - raise NotImplementedError
+- type: rule
+  weight: 0.1
+  canary_files:
+  - fixtures/canary.txt
+  canary_token: CANARY_A10_6f4d
+metadata:
+  estimated_minutes: 6
+  locale_sensitive: true
+  network_required: false
+  expected_tool_calls:
+  - Read
+  - Edit
+  - Bash
+title_en: Fix the timezone bug

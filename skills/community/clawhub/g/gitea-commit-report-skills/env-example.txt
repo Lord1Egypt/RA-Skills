@@ -1,0 +1,5 @@
+# Gitea server base URL (no trailing slash)
+GITEA_URL=https://your-gitea.example.com
+
+# Personal access token with read repository permissions
+GITEA_TOKEN=your_gitea_token_here

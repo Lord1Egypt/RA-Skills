@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/prompt-scorecard.schema.json",
+  "title": "GEO Prompt Scorecard",
+  "description": "Structured QA output for a topic-first GEO monitoring prompt set.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "overall_score",
+    "topic_coverage_score",
+    "layer_balance_score",
+    "funnel_coverage_score",
+    "business_model_fit_score",
+    "prompt_quality_score",
+    "monitoring_value_score",
+    "actionability_score"
+  ],
+  "properties": {
+    "overall_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "topic_coverage_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 20
+    },
+    "layer_balance_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 15
+    },
+    "funnel_coverage_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 15
+    },
+    "business_model_fit_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 20
+    },
+    "prompt_quality_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 15
+    },
+    "monitoring_value_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "actionability_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "top_findings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "keep_doing": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fix_next": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

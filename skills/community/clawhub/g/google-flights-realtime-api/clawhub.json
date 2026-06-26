@@ -1,0 +1,12 @@
+{
+  "name": "Google Flights Search",
+  "tagline": "Search Google Flights for real-time one-way and round-trip deals",
+  "description": "Search Google Flights in real time to find cheap one-way and round-trip flights between any airports worldwide. Filter by stops, airlines, departure/arrival times, price, and seat class. Returns structured flight data including prices, durations, and airline details — ready for comparison or booking.\n\nPowered by the Google Flights Live API on RapidAPI. A free tier with 50 requests/month is available to get started.",
+  "category": "utility",
+  "tags": ["flights", "travel", "google-flights", "api", "search", "booking"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://rapidapi.com/mtnrabi/api/google-flights-live-api",
+  "homepage": "https://rapidapi.com/mtnrabi/api/google-flights-live-api"
+}

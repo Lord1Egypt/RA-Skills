@@ -1,0 +1,35 @@
+{
+  "name": "gh-stock-deep-analysis",
+  "version": "1.1.2",
+  "description": "股票深度分析框架 4.1 - 基于八维深度分析的专业股票分析工具（数据必须最新最准确）",
+  "author": "投资助手",
+  "category": "金融分析",
+  "tags": ["股票", "深度分析", "投资", "金融", "A 股", "港股", "美股"],
+  "triggers": [
+    "股票名称",
+    "股票代码",
+    "分析.*股票",
+    "深度分析.*",
+    "[0-9]{6}",
+    "[0-9]{4}\\.HK",
+    "SH[0-9]{6}",
+    "SZ[0-9]{6}"
+  ],
+  "tools": [
+    "mx-data",
+    "mx-search",
+    "妙想资讯",
+    "妙想金融数据",
+    "Tavily",
+    "agent-browser"
+  ],
+  "output_format": "markdown",
+  "language": "zh-CN",
+  "data_requirements": {
+    "mx-data": "实时",
+    "mx-search": "7 天内",
+    "Tavily": "30 天内",
+    "cross_validation": true,
+    "source_citation": true
+  }
+}

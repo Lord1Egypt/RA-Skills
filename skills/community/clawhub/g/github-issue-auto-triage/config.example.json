@@ -1,0 +1,14 @@
+# GitHub Issue Auto Triage - 测试配置
+
+# GitHub 配置（示例）
+GITHUB_TOKEN="your_github_token_here"
+GITHUB_OWNER="openclaw"
+GITHUB_REPO="openclaw"
+
+# AI 配置（可选）
+DASHSCOPE_API_KEY="sk-your-key-here"
+
+# 使用说明：
+# 1. 复制此文件为 .env
+# 2. 填入真实的 Token
+# 3. 运行：source .env && python3 scripts/triage.py --dry-run

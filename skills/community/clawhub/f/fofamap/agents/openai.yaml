@@ -1,0 +1,10 @@
+interface:
+  display_name: "fofamap"
+  short_description: "FOFA recon, monitoring, local memory, live checks, exports, and report templates"
+  icon_small: "./assets/fofamap-small.svg"
+  icon_large: "./assets/fofamap.svg"
+  brand_color: "#0F766E"
+  default_prompt: "Use $fofamap to route a permission-aware recon or monitoring request into FOFA search, continuous paging, creative query branching, host profiling, stats, drift reporting, local self-reflection, live checks, exports, and profile-driven professional reports."
+
+policy:
+  allow_implicit_invocation: true

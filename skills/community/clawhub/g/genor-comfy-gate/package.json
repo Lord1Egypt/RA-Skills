@@ -1,0 +1,14 @@
+{
+  "name": "genor-comfy-gate",
+  "version": "1.0.0",
+  "description": "Unified ComfyUI API gateway with load balancing, priority routing, and API key auth",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

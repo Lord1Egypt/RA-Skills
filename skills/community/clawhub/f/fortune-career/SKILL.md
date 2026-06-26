@@ -1,35 +1,76 @@
----
-name: "职业与健康命理分析"
-description: "基于八字和紫微斗数为用户提供职业方向和健康状况的命理分析及具体建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fortune-career"
-sourceUrl: "https://clawhub.ai/skills/fortune-career"
+# fortune-career · 职业与健康命理分析
+
+## 功能概述
+
+基于**八字排盘** + **紫微斗数** + **大运流年**规则引擎，为应届生求职和职场人士提供职业方向和健康分析。支持完整报告和**一句话摘要**两种模式。
+
 ---
 
-# 职业与健康命理分析
+## 触发关键词
 
-> 基于八字和紫微斗数为用户提供职业方向和健康状况的命理分析及具体建议。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fortune-career`
-- **Source URL:** [https://clawhub.ai/skills/fortune-career](https://clawhub.ai/skills/fortune-career)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fortune-career
 ```
+算命 / 看命 / 命理 / 八字 / 职业分析 / 健康分析 / 看职业 / 看健康 / 大运 / 摘要
+```
+
+---
+
+## 输入格式
+
+支持自然语言，直接发送出生信息：
+
+```
+算命 1990年5月15日10时         ← 完整报告
+摘要 1990年5月15日10时         ← 一句话摘要（微信友好）
+职业分析 90年5月15日10时 女
+健康分析 1990 5 15 10
+农历1990年5月15日10时          ← 自动识别农历
+```
+
+---
+
+## 输出模式
+
+### 摘要模式（说"摘要"触发）
+压缩为5句话，适合微信快速阅读：
+1. 性格本质 + 最适合行业方向
+2. 当前大运质量 + 整体感受
+3. 今年流年 + 机危判断
+4. 健康重点提醒
+5. 行动建议（进攻/防守/维稳）
+
+### 完整报告模式
+- **大运走势** — 10步大运，🟢好运/🟡平缓/🔴低谷 + 每步具体解释
+- **近三年流年** — 六冲/六合/六害/三合/半三合完整覆盖
+- **职业分析** — 精确身强弱（藏干加权）+ 命宫星曜 + 五行行业
+- **健康分析** — 先天体质 + 疾厄宫 + 流年预警
+
+---
+
+## 技术架构
+
+```
+输入（自然语言，含农历识别）
+    ↓
+calc/bazi.py          # 八字排盘（sxtwl）
+calc/lunar.py         # 农历/阳历互转
+calc/ganzhi.py        # 藏干系统 + 精确身强弱
+calc/ziwei.py         # 紫微斗数（14正曜+12宫）
+calc/dayun_v2.py      # 大运（节气起运 + 定性）
+calc/liunian_v2.py    # 流年（六冲/六合/六害/三合）
+scripts/career_analysis.py
+scripts/health_analysis.py
+scripts/summary.py    # 一句话摘要生成（v2.1新增）
+    ↓
+输出（摘要5句 / 完整报告）
+```
+
+---
+
+## 版本历史
+
+| 版本 | 改进 |
+|------|------|
+| v1.0 | 基础框架（八字+紫微+职业/健康） |
+| v1.1 | 农历支持 + 大运流年基础 |
+| v2.0 | 藏干加权身强弱 / 节气起运 / 流年冲合害三合 / 大运定性 |
+| **v2.1** | **一句话摘要模式（5句版，微信友好）** |

@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "apiKey": {
+      "type": "string",
+      "description": "FitAPI authentication key. Get yours at https://fitapi.fitnessrec.com/dashboard"
+    }
+  },
+  "required": ["apiKey"]
+}

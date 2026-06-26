@@ -1,0 +1,10 @@
+{
+  "api_key": "",
+  "tavily_api_key": "",
+  "tracked_funds": [
+    {"code": "000001", "name": "示例混合型基金"},
+    {"code": "000003", "name": "示例债券型基金"},
+    {"code": "000004", "name": "示例黄金ETF联接"}
+  ],
+  "analysis_days": 90
+}

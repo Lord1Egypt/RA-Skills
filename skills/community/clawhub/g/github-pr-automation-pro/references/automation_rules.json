@@ -1,0 +1,43 @@
+{
+  "auto_label": {
+    "enabled": true,
+    "rules": {
+      "bug": ["fix", "bugfix", "hotfix"],
+      "feature": ["feat", "feature", "add"],
+      "docs": ["docs", "documentation"],
+      "refactor": ["refactor", "cleanup"],
+      "test": ["test", "testing"]
+    }
+  },
+  "auto_merge": {
+    "enabled": false,
+    "conditions": [
+      "ci_passed",
+      "reviews_approved",
+      "no_conflicts",
+      "branch_up_to_date"
+    ],
+    "min_approvals": 1,
+    "exclude_labels": ["wip", "do-not-merge"]
+  },
+  "reviewers": {
+    "auto_assign": true,
+    "rules": {
+      "backend/**": ["@backend-team"],
+      "frontend/**": ["@frontend-team"],
+      "docs/**": ["@docs-team"],
+      "*.md": ["@docs-team"]
+    }
+  },
+  "notifications": {
+    "slack": {
+      "enabled": false,
+      "webhook": ""
+    },
+    "telegram": {
+      "enabled": false,
+      "botToken": "",
+      "chatId": ""
+    }
+  }
+}

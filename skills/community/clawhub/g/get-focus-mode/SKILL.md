@@ -1,35 +1,27 @@
 ---
-name: "Get Focus Mode"
-description: "Get the current macOS Focus mode"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/get-focus-mode"
-sourceUrl: "https://clawhub.ai/skills/get-focus-mode"
+name: get-focus-mode
+description: Get the current macOS Focus mode
 ---
 
 # Get Focus Mode
 
-> Get the current macOS Focus mode
+Returns the name of the currently active macOS Focus mode.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/get-focus-mode`
-- **Source URL:** [https://clawhub.ai/skills/get-focus-mode](https://clawhub.ai/skills/get-focus-mode)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/get-focus-mode
+~/clawd/skills/get-focus-mode/get-focus-mode.sh
 ```
+
+## Output
+
+Prints the Focus mode name to stdout:
+- "No Focus" - Focus mode is off
+- "Office" - Office focus is active
+- "Sleep" - Sleep focus is active  
+- "Do Not Disturb" - DND is active
+
+## Requirements
+
+- macOS
+- `jq` installed

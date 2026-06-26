@@ -1,35 +1,55 @@
 ---
-name: "Firm Reliability Pack"
-description: "Reliability probing and documentation sync pack. Gateway health probing, documentation sync validation, channel audit, and ADR generation. 4 reliability tools."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/firm-reliability-pack"
-sourceUrl: "https://clawhub.ai/skills/firm-reliability-pack"
+name: firm-reliability-pack
+version: 1.0.0
+description: >
+  Reliability probing and documentation sync pack.
+  Gateway health probing, documentation sync validation, channel audit,
+  and ADR generation. 4 reliability tools.
+author: romainsantoli-web
+license: MIT
+metadata:
+  openclaw:
+    registry: ClawHub
+    requires:
+      - mcp-openclaw-extensions >= 3.0.0
+tags:
+  - reliability
+  - gateway
+  - adr
+  - documentation
+  - audit
 ---
 
-# Firm Reliability Pack
+# firm-reliability-pack
 
-> Reliability probing and documentation sync pack. Gateway health probing, documentation sync validation, channel audit, and ADR generation. 4 reliability tools.
+> ⚠️ Contenu généré par IA — validation humaine requise avant utilisation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/firm-reliability-pack`
-- **Source URL:** [https://clawhub.ai/skills/firm-reliability-pack](https://clawhub.ai/skills/firm-reliability-pack)
+## Purpose
 
-## Overview
+Ensures deployment reliability: Gateway health probing with latency tracking,
+documentation-code sync verification, channel configuration audit, and
+Architecture Decision Record (ADR) generation in MADR format.
 
+## Tools (4)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/firm-reliability-pack
+| Tool | Description |
+|------|-------------|
+| `openclaw_gateway_probe` | Gateway health probe with latency metrics |
+| `openclaw_doc_sync_check` | Documentation-code sync validation |
+| `openclaw_channel_audit` | Channel configuration audit |
+| `firm_adr_generate` | Generate ADR in MADR format |
+
+## Usage
+
+```yaml
+skills:
+  - firm-reliability-pack
+
+# Probe gateway and check docs:
+openclaw_gateway_probe config_path=/path/to/config.json
+openclaw_doc_sync_check config_path=/path/to/config.json
 ```
+
+## Requirements
+
+- `mcp-openclaw-extensions >= 3.0.0`

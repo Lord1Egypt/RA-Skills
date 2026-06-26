@@ -1,35 +1,43 @@
 ---
-name: "Tmp.3oQswsOl3G"
-description: "Use when the user asks to look up, search, or manage Google Contacts and the broader People API (Workspace directory). Triggers for contact lookups by name/e..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gogcli-mcp-contacts"
-sourceUrl: "https://clawhub.ai/skills/gogcli-mcp-contacts"
+name: gogcli-mcp-contacts
+description: Use when the user asks to look up, search, or manage Google Contacts and the broader People API (Workspace directory). Triggers for contact lookups by name/email/phone, Workspace user search, profile fields, manager/reports relations, or any People API query.
 ---
 
-# Tmp.3oQswsOl3G
+# gogcli-mcp-contacts
 
-> Use when the user asks to look up, search, or manage Google Contacts and the broader People API (Workspace directory). Triggers for contact lookups by name/e...
+Extended Google Contacts MCP server via [gogcli](https://github.com/openclaw/gogcli) — 15 tools: auth + 5 base Contacts + 5 extra People API tools.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gogcli-mcp-contacts`
-- **Source URL:** [https://clawhub.ai/skills/gogcli-mcp-contacts](https://clawhub.ai/skills/gogcli-mcp-contacts)
+- **Source:** [github.com/chrischall/gogcli-mcp](https://github.com/chrischall/gogcli-mcp)
 
-## Overview
+## Requirements
 
+- [gogcli](https://github.com/openclaw/gogcli) installed and authenticated
+- Node.js 18 or later
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gogcli-mcp-contacts
+## Setup
+
+```json
+{
+  "mcpServers": {
+    "gogcli-contacts": {
+      "command": "npx",
+      "args": ["-y", "gogcli-mcp-contacts"],
+      "env": {
+        "GOG_ACCOUNT": "you@gmail.com"
+      }
+    }
+  }
+}
 ```
+
+## Extra People Tools
+
+| Tool | What it does |
+|------|-------------|
+| `gog_people_me` | Show your own profile |
+| `gog_people_get` | Get a profile by resource name |
+| `gog_people_search` | Search the Workspace directory |
+| `gog_people_relations` | Manager/reports relations |
+| `gog_people_raw` | Raw People API JSON dump |
+
+Plus 5 auth tools and 5 base Contacts tools (`gog_contacts_search/list/get/create/run`). The base `gog_contacts_search` only sees your personal contacts; use `gog_people_search` for the full Workspace directory.

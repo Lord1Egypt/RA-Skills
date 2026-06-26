@@ -1,0 +1,63 @@
+{
+  "categories": [
+    {
+      "name": "SaaS",
+      "description": "Software subscriptions and tools",
+      "keywords": ["github", "vercel", "supabase", "figma", "notion", "slack", "linear", "stripe", "heroku", "netlify", "mongodb", "redis", "datadog", "sentry", "postman", "1password", "zapier", "airtable", "hubspot", "intercom", "twilio", "sendgrid", "mailchimp", "canva", "adobe", "openai", "anthropic", "cursor"],
+      "color": "#6366F1"
+    },
+    {
+      "name": "Infrastructure",
+      "description": "Cloud hosting, domains, CDN, servers",
+      "keywords": ["aws", "amazon web services", "google cloud", "gcp", "azure", "digitalocean", "cloudflare", "namecheap", "godaddy", "fly.io", "railway", "render", "linode", "vultr", "hetzner"],
+      "color": "#F59E0B"
+    },
+    {
+      "name": "Marketing",
+      "description": "Advertising, content, sponsorships, SEO",
+      "keywords": ["google ads", "facebook ads", "meta ads", "tiktok ads", "twitter ads", "linkedin ads", "influencer", "sponsorship", "seo", "content", "pr", "agency"],
+      "color": "#EC4899"
+    },
+    {
+      "name": "Payroll",
+      "description": "Salaries, contractors, freelancers",
+      "keywords": ["salary", "contractor", "freelancer", "deel", "remote", "gusto", "payroll", "bonus", "commission"],
+      "color": "#10B981"
+    },
+    {
+      "name": "Office",
+      "description": "Rent, equipment, supplies, coworking",
+      "keywords": ["rent", "coworking", "wework", "equipment", "desk", "chair", "monitor", "keyboard", "mouse", "supplies", "printer", "internet", "phone"],
+      "color": "#8B5CF6"
+    },
+    {
+      "name": "Travel",
+      "description": "Flights, hotels, meals, transport",
+      "keywords": ["flight", "hotel", "airbnb", "uber", "lyft", "taxi", "train", "meal", "restaurant", "conference", "airport"],
+      "color": "#06B6D4"
+    },
+    {
+      "name": "Professional",
+      "description": "Legal, accounting, consulting fees",
+      "keywords": ["lawyer", "legal", "accountant", "accounting", "consultant", "consulting", "audit", "tax", "incorporation", "trademark", "patent"],
+      "color": "#F97316"
+    },
+    {
+      "name": "Education",
+      "description": "Courses, books, conferences, training",
+      "keywords": ["course", "udemy", "coursera", "book", "conference", "workshop", "training", "certification", "masterclass"],
+      "color": "#14B8A6"
+    },
+    {
+      "name": "Other",
+      "description": "Uncategorized expenses",
+      "keywords": [],
+      "color": "#6B7280"
+    }
+  ],
+  "settings": {
+    "auto_categorize": true,
+    "allow_custom_categories": true,
+    "default_category": "Other"
+  }
+}

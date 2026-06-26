@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "description": "Boss直聘打招呼过滤规则，所有打招呼操作默认必须应用此规则",
+  "last_updated": "2026-05-07",
+  "company_blacklist": [
+    "阿里", "阿里巴巴", "百度", "腾讯", "字节", "字节跳动",
+    "京东", "美团", "拼多多", "网易", "滴滴", "快手",
+    "小米", "华为", "蚂蚁", "蚂蚁集团",
+    "BOSS直聘", "boss直聘"
+  ],
+  "job_blacklist": [
+    "算法", "机器学习", "深度学习", "大模型", "LLM", "NLP", "CV",
+    "视觉", "语音", "推荐", "广告", "AIGC", "AGI", "ChatGPT",
+    "生成式", "智能驾驶", "智能座舱", "AI工程师", "AI架构师",
+    "测试", "自动化测试", "测试工程师", "测试开发", "QA", "QC",
+    "产品经理", "产品助理", "产品主管", "产品总监", "产品负责人",
+    "初级", "校园招聘", "25届", "26届", "应届", "实习",
+    "中层管理"
+  ],
+  "search_keywords": [
+    "Java架构师", "Java技术经理", "Java软件工程师",
+    "微服务架构师", "Java技术专家",
+    "架构师", "技术经理", "软件工程师",
+    "技术负责人", "研发经理"
+  ],
+  "city_priority": ["上海", "北京", "苏州", "杭州", "无锡"],
+  "salary_preferred": "25-35K",
+  "experience": "5-10年",
+  "max_greets_per_day": 30,
+  "greet_interval_seconds": 3,
+  "anti_duplicate": {
+    "enabled": true,
+    "track_file": "logs/greeted_ids.txt",
+    "retention_days": 7
+  }
+}

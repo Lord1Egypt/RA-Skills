@@ -1,0 +1,19 @@
+{
+  "name": "monthly-travel-blindbox",
+  "version": "1.0.0",
+  "description": "本月轻松旅行盲盒 - 基于用户位置，自动推荐三个周末天气适宜的周边旅游目的地，附带往返交通安排",
+  "keywords": [
+    "travel",
+    "weekend",
+    "weather",
+    "blindbox",
+    "flyai",
+    "destination",
+    "transportation"
+  ],
+  "author": "wuyun",
+  "license": "MIT",
+  "dependencies": {
+    "@fly-ai/flyai-cli": "latest"
+  }
+}

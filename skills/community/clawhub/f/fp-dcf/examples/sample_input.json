@@ -1,0 +1,35 @@
+{
+  "ticker": "AAPL",
+  "market": "US",
+  "as_of_date": "2026-04-05",
+  "currency": "USD",
+  "statement_frequency": "A",
+  "valuation_model": "steady_state_single_stage",
+  "market_inputs": {
+    "market_price": 226.0
+  },
+  "market_implied_growth": {
+    "enabled": true
+  },
+  "assumptions": {
+    "effective_tax_rate": 0.187,
+    "terminal_growth_rate": 0.03,
+    "marginal_tax_rate": 0.21,
+    "risk_free_rate": 0.043,
+    "equity_risk_premium": 0.05,
+    "beta": 1.08,
+    "pre_tax_cost_of_debt": 0.032,
+    "equity_weight": 0.92,
+    "debt_weight": 0.08
+  },
+  "fundamentals": {
+    "ebit": 132000000000.0,
+    "da": 12500000000.0,
+    "capex": 10800000000.0,
+    "delta_nwc": 2800000000.0,
+    "delta_nwc_source": "OpNWC_delta",
+    "net_debt": 46000000000.0,
+    "shares_out": 15500000000.0,
+    "last_report_period": "2025-09-27"
+  }
+}

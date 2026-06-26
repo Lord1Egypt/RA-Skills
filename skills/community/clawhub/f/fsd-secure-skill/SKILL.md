@@ -1,35 +1,21 @@
 ---
-name: "PolaBea"
-description: "Full Self-Driving agent with highest safety standards (Camera-Only, Redundant Checks)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fsd-secure-skill"
-sourceUrl: "https://clawhub.ai/skills/fsd-secure-skill"
+name: fsd-secure
+description: Full Self-Driving agent with highest safety standards (Camera-Only, Redundant Checks).
+author: tempguest
+version: 0.1.0
+license: MIT
 ---
 
-# PolaBea
+# FSD Secure Skill
 
-> Full Self-Driving agent with highest safety standards (Camera-Only, Redundant Checks).
+This skill implements a **Camera-Only Full Self-Driving** agent designed for maximum safety.
+It runs in a simulated environment and uses **Dual-Pass Analysis** to verify clear paths.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fsd-secure-skill`
-- **Source URL:** [https://clawhub.ai/skills/fsd-secure-skill](https://clawhub.ai/skills/fsd-secure-skill)
+## Safety Features
+- **Dual-Pass Verification**: Two independent algorithms must agree the path is clear.
+- **Temporal Consistency**: Requires 3 consecutive safe frames before acceleration.
+- **Fail-Safe**: Any uncertainty triggers an immediate Emergency Stop.
 
-## Overview
+## Commands
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fsd-secure-skill
-```
+- `drive`: Start the autonomous driving simulation.

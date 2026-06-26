@@ -1,35 +1,37 @@
 ---
-name: "Skillforge"
-description: "Generate valid, ClawHub-ready SKILL.md files from product metadata. Give it a name, description, and instructions — get back a properly formatted SKILL.md wi..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gh-skillforge"
-sourceUrl: "https://clawhub.ai/skills/gh-skillforge"
+name: gh-skillforge
+description: "Generate valid, ClawHub-ready SKILL.md files from product metadata. Give it a name, description, and instructions — get back a properly formatted SKILL.md with YAML frontmatter, slug normalization, and optional env/bins declarations."
+metadata: {"openclaw":{"emoji":"🔨","requires":{"bins":["python"]},"install":[{"id":"pip","kind":"uv","packages":["fastapi","uvicorn","pydantic","pyyaml"]}]}}
 ---
 
-# Skillforge
+# SkillForge
 
-> Generate valid, ClawHub-ready SKILL.md files from product metadata. Give it a name, description, and instructions — get back a properly formatted SKILL.md wi...
+Generate a SKILL.md ready to publish on ClawHub.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gh-skillforge`
-- **Source URL:** [https://clawhub.ai/skills/gh-skillforge](https://clawhub.ai/skills/gh-skillforge)
+## Start the server
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/gh-skillforge
+uvicorn skillforge.app:app --port 8003
 ```
+
+## Generate a SKILL.md
+
+```bash
+curl -s -X POST http://localhost:8003/v1/forge-skill \
+  -H "Content-Type: application/json" \
+  -d '{"name": "My Cool Tool", "description": "Does cool things.", "instructions": "Step 1: Be cool."}' | jq
+```
+
+Returns `skill_md` (the complete SKILL.md content) and `slug` (ClawHub-compatible name like `my-cool-tool`).
+
+## With optional env vars and bins
+
+```bash
+curl -s -X POST http://localhost:8003/v1/forge-skill \
+  -H "Content-Type: application/json" \
+  -d '{"name": "API Client", "description": "Calls APIs.", "instructions": "Use curl.", "env_vars": ["API_KEY"], "bins": ["curl"]}' | jq '.skill_md' -r
+```
+
+## Slug rules
+
+Names are auto-converted to ClawHub slugs: lowercase, spaces to dashes, special chars removed. `"My Tool v2!"` becomes `my-tool-v2`.

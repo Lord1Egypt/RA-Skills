@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1776928145130" clover="3.2.0">
+  <project timestamp="1776928145131" name="All files">
+    <metrics statements="30" coveredstatements="30" conditionals="6" coveredconditionals="6" methods="6" coveredmethods="6" elements="42" coveredelements="42" complexity="0" loc="30" ncloc="30" packages="1" files="1" classes="1"/>
+    <file name="analyzer.js" path="/home/admin/openclaw/workspace/skills/first-principle-analyzer/src/analyzer.js">
+      <metrics statements="30" coveredstatements="30" conditionals="6" coveredconditionals="6" methods="6" coveredmethods="6"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="15" count="7" type="cond" truecount="4" falsecount="0"/>
+      <line num="16" count="2" type="stmt"/>
+      <line num="20" count="5" type="stmt"/>
+      <line num="23" count="5" type="stmt"/>
+      <line num="26" count="5" type="stmt"/>
+      <line num="29" count="5" type="stmt"/>
+      <line num="31" count="5" type="stmt"/>
+      <line num="45" count="8" type="stmt"/>
+      <line num="52" count="8" type="stmt"/>
+      <line num="53" count="64" type="cond" truecount="2" falsecount="0"/>
+      <line num="54" count="7" type="stmt"/>
+      <line num="58" count="1" type="stmt"/>
+      <line num="65" count="5" type="stmt"/>
+      <line num="68" count="5" type="stmt"/>
+      <line num="74" count="5" type="stmt"/>
+      <line num="80" count="5" type="stmt"/>
+      <line num="86" count="5" type="stmt"/>
+      <line num="93" count="5" type="stmt"/>
+      <line num="95" count="5" type="stmt"/>
+      <line num="101" count="5" type="stmt"/>
+      <line num="107" count="5" type="stmt"/>
+      <line num="113" count="5" type="stmt"/>
+      <line num="120" count="5" type="stmt"/>
+      <line num="122" count="5" type="stmt"/>
+      <line num="129" count="5" type="stmt"/>
+      <line num="136" count="5" type="stmt"/>
+      <line num="143" count="5" type="stmt"/>
+      <line num="146" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

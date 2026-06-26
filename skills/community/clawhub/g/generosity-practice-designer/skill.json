@@ -1,0 +1,24 @@
+{
+  "name": "Generosity Practice Designer",
+  "slug": "generosity-practice-designer",
+  "version": "1.0.0",
+  "description": "Designs sustainable generosity practices that align personal values with meaningful giving.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "generosity",
+    "giving",
+    "values",
+    "purpose"
+  ],
+  "trigger_keywords": [
+    "generosity practice",
+    "giving strategy",
+    "meaningful donations",
+    "altruism planning",
+    "generosity habits"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

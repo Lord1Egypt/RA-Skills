@@ -1,35 +1,19 @@
 ---
-name: "Fmt Tool"
-description: "Simple text formatting and reflow tool. Use for reformatting paragraphs, removing extra whitespace, and cleaning up text files."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fmt-tool"
-sourceUrl: "https://clawhub.ai/skills/fmt-tool"
+name: fmt-tool
+description: Simple text formatting and reflow tool. Use for reformatting paragraphs, removing extra whitespace, and cleaning up text files.
 ---
-
-# Fmt Tool
-
-> Simple text formatting and reflow tool. Use for reformatting paragraphs, removing extra whitespace, and cleaning up text files.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fmt-tool`
-- **Source URL:** [https://clawhub.ai/skills/fmt-tool](https://clawhub.ai/skills/fmt-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+# Fmt - Text Reformatting Utility
+Reformat paragraphs of text to a specified width, removing extra whitespace and producing clean, consistently formatted output.
+## Usage
 ```bash
-hermes skills install clawhub/fmt-tool
+fmt-tool [options] [file...]
+```
+## Options
+- `-w N`: Set output width (default: 75)
+- `-u`: Uniform spacing (one space between words)
+- `-s`: Split long lines only (don't join short ones)
+## Examples
+```bash
+fmt-tool -w 80 messy.txt
+fmt-tool -u notes.txt
 ```

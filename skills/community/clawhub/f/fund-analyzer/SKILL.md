@@ -1,35 +1,154 @@
 ---
-name: "fund-analyzer"
-description: "提供基金净值查询、历史走势、基金筛选排行、持仓分析等功能，数据来源于支付宝基金页面。用于用户查询基金信息、分析基金表现、筛选优质基金等场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fund-analyzer"
-sourceUrl: "https://clawhub.ai/skills/fund-analyzer"
+name: fund-analyzer
+description: 提供基金净值查询、历史走势、基金筛选排行、持仓分析等功能，数据来源于支付宝基金页面。用于用户查询基金信息、分析基金表现、筛选优质基金等场景。
 ---
 
-# fund-analyzer
+# Fund Analyzer Skill
 
-> 提供基金净值查询、历史走势、基金筛选排行、持仓分析等功能，数据来源于支付宝基金页面。用于用户查询基金信息、分析基金表现、筛选优质基金等场景。
+## 技能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fund-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/fund-analyzer](https://clawhub.ai/skills/fund-analyzer)
+本技能用于分析和管理基金投资，支持查询基金净值、查看历史走势、筛选排行、持仓分析等功能。数据主要来源于支付宝基金页面。
 
-## Overview
+## 使用场景
 
+当用户提出以下请求时，应使用本技能：
+- 查询某只基金的最新净值
+- 查看基金的历史收益率和走势
+- 筛选和比较基金的业绩排行
+- 分析基金的持仓情况
+- 推荐优质的基金产品
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fund-analyzer
+## 数据来源
+
+主要数据来源：**支付宝基金页面**
+- 基金主页: `https://fund.eastmoney.com/pingzhong.html?ft=type&fdm=0&fs=n&lcf=zqjj&fd=&rt=${fund_code}`
+- 天天基金: `https://fund.eastmoney.com/${fund_code}.html`
+- 基金排行: `https://fund.eastmoney.com/data/fundranking.html`
+
+备用数据源：
+- 天天基金网
+- 基金业协会官网
+
+## 核心功能
+
+### 1. 基金净值查询
+
+使用 `scripts/query_fund_nav.py` 脚本查询基金净值：
+
 ```
+python3 scripts/query_fund_nav.py <基金代码>
+```
+
+返回信息包括：
+- 最新净值
+- 日涨跌幅
+- 近1周/1月/3月/6月/1年/3年收益率
+- 基金类型
+- 基金管理人
+
+### 2. 历史走势查询
+
+使用 `scripts/query_fund_history.py` 脚本查询历史数据：
+
+```
+python3 scripts/query_fund_history.py <基金代码> --period <1m|3m|6m|1y|3y|5y>
+```
+
+返回信息包括：
+- 净值曲线数据
+- 各时间段收益率
+- 同类排名
+- 风险指标（夏普比率、最大回撤等）
+
+### 3. 基金筛选排行
+
+使用 `scripts/fund_screener.py` 脚本筛选基金：
+
+```
+python3 scripts/fund_screener.py --rank <近1年|近3年|近5年> --type <股票型|混合型|债券型|指数型> --top <数量>
+```
+
+筛选条件：
+- 基金类型
+- 收益率排行
+- 规模要求
+- 风险等级
+
+### 4. 持仓分析
+
+使用 `scripts/query_fund_holding.py` 脚本查询持仓：
+
+```
+python3 scripts/query_fund_holding.py <基金代码>
+```
+
+返回信息包括：
+- 前十大持仓股票
+- 持仓占比
+- 行业分布
+- 持仓变化（较上季度）
+
+## 基金代码格式
+
+- A股基金：6位数字（如 `161039`）
+- 指数基金：带后缀（如 `161039`）
+- 港股基金：5位数字（如 `47011`）
+
+## 使用示例
+
+### 查询单一基金
+```
+查询 161039 这只基金的最新净值和收益情况
+```
+
+### 对比多只基金
+```
+对比 161039 和 110011 这两只基金的表现
+```
+
+### 筛选基金
+```
+帮我筛选近一年收益排名前十的股票型基金
+```
+
+### 持仓分析
+```
+分析 161039 这只基金的持仓情况
+```
+
+## 输出格式
+
+基金分析结果应以清晰的表格或列表形式呈现，包含以下关键信息：
+
+| 指标 | 说明 |
+|------|------|
+| 基金代码 | 6位数字代码 |
+| 基金名称 | 基金全称 |
+| 最新净值 | 当日单位净值 |
+| 日涨跌 | 当日涨跌幅 |
+| 近1年收益 | 过去12个月收益率 |
+| 基金类型 | 股票型/混合型/债券型等 |
+| 规模 | 基金总资产规模 |
+
+## 注意事项
+
+1. **网络依赖**：所有数据需要联网获取，可能存在延迟
+2. **数据准确性**：建议多平台交叉验证
+3. **风险提示**：基金投资有风险，入市需谨慎
+4. **频率限制**：避免短时间内频繁请求，建议间隔1秒以上
+
+## 相关脚本
+
+| 脚本 | 功能 |
+|------|------|
+| query_fund_nav.py | 查询基金净值和基本信息 |
+| query_fund_history.py | 查询历史走势数据 |
+| fund_screener.py | 基金筛选和排行 |
+| query_fund_holding.py | 查询基金持仓明细 |
+| compare_funds.py | 对比多只基金 |
+
+## 维护建议
+
+- 定期更新数据源URL
+- 注意网页结构变化可能影响爬取逻辑
+- 添加缓存机制减少重复请求

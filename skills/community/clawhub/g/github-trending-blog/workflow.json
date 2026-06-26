@@ -1,0 +1,100 @@
+{
+  "name": "github-trending-blog",
+  "version": "1.0.0",
+  "description": "GitHub Trending 监控 → AI摘要分析 → 知识卡片生成 → 公众号技术博客一键创作",
+  "skills": [
+    "github",
+    "summarize",
+    "card-renderer",
+    "wechat-article-pro"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "name": "GitHub Trending 数据采集",
+      "skill": "github",
+      "description": "使用 gh api 采集 GitHub Trending 热门项目列表，支持按语言过滤",
+      "command": "gh api graphql -f query='{ search(query: \"language:{{language}} stars:>1000 pushed:>{{date}}\", type: REPOSITORY, first: 20) { nodes { ... on Repository { nameWithOwner description stargazerCount primaryLanguage url } } } }' --jq '.data.search.nodes[]'",
+      "inputs": {
+        "language": "Python",
+        "date": "2026-05-01"
+      },
+      "outputs": {
+        "repos": "Array<{nameWithOwner, description, stargazerCount, primaryLanguage, url}>"
+      }
+    },
+    {
+      "step": 2,
+      "name": "项目详情 AI 摘要",
+      "skill": "summarize",
+      "description": "对选定仓库的 README 和关键文件进行 AI 摘要，提取核心价值和使用场景",
+      "command": "summarize \"{{repo_url}}\" --extract-only",
+      "inputs": {
+        "repo_url": "https://github.com/owner/repo"
+      },
+      "outputs": {
+        "summary": "项目核心描述",
+        "key_features": ["特性1", "特性2", "特性3"],
+        "use_cases": ["场景1", "场景2"]
+      }
+    },
+    {
+      "step": 3,
+      "name": "开发者知识卡片生成",
+      "skill": "card-renderer",
+      "description": "将分析结果渲染为 VS Code 风格的开发者知识卡片（封面 + 详情页）",
+      "command": "python3 /root/.openclaw/workspace/skills/card-renderer/scripts/render_vscode_card.py \"{{project_name}}\" \"{{one_liner}}\" \"/tmp/readme_summary.md\" \"/tmp/output/\"",
+      "inputs": {
+        "project_name": "项目名称",
+        "one_liner": "一句话描述项目核心价值"
+      },
+      "outputs": {
+        "cover_path": "/tmp/output/cover.png",
+        "detail_pages": ["/tmp/output/detail_1.png"]
+      }
+    },
+    {
+      "step": 4,
+      "name": "技术博客撰写",
+      "skill": "wechat-article-pro",
+      "description": "根据摘要和卡片内容，撰写 3000-5000 字刘润风格技术博客",
+      "inputs": {
+        "topic": "GitHub Trending 项目深度解析",
+        "project_name": "{{project_name}}",
+        "summary": "{{summary}}",
+        "card_path": "{{cover_path}}"
+      },
+      "outputs": {
+        "blog_content": "3000-5000字 Markdown 格式技术博客",
+        "estimated_read_time": "8-12分钟"
+      }
+    },
+    {
+      "step": 5,
+      "name": "草稿保存",
+      "skill": "github",
+      "description": "将完整博客内容保存为 Markdown 文件，完成工作流",
+      "command": "cat > /tmp/github_blog_{{date}}.md << 'EOF'\n{{blog_content}}\nEOF\necho 'Blog saved to /tmp/github_blog_{{date}}.md'",
+      "inputs": {
+        "date": "2026-05-06"
+      },
+      "outputs": {
+        "blog_file": "/tmp/github_blog_2026-05-06.md"
+      }
+    }
+  ],
+  "triggers": [
+    "GitHub热门",
+    "GitHub Trending",
+    "技术博客",
+    "技术周报",
+    "技术日报",
+    "追踪开源趋势",
+    "开发者内容"
+  ],
+  "metadata": {
+    "author": "OpenClaw Agent",
+    "tags": ["github", "blog", "automation", "developer-content", "trending"],
+    "estimated_time": "10-15 分钟（人工介入主要在 Step 4 审稿环节）"
+  }
+}

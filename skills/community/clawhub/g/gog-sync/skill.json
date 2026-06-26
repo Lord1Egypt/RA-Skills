@@ -1,0 +1,14 @@
+{
+  "name": "gog-sync",
+  "version": "1.1.0",
+  "description": "Sync GOG game library, save files, and custom game configs across devices",
+  "author": "me",
+  "main": "sync.sh",
+  "dependencies": ["gogrepoc", "rsync"],
+  "commands": {
+    "sync": "Sync full library",
+    "sync-saves": "Sync only save files",
+    "sync-config": "Sync game custom configs (mods, keybinds, settings)",
+    "list-games": "List installed GOG games"
+  }
+}

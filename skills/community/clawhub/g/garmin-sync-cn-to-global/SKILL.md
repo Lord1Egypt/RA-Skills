@@ -1,35 +1,44 @@
----
-name: "Garmin Sync Cn To Global"
-description: "Sync activities from Garmin China to Garmin Global using local timestamps and distance to avoid duplicates in a one-way sync process."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/garmin-sync-cn-to-global"
-sourceUrl: "https://clawhub.ai/skills/garmin-sync-cn-to-global"
----
+# garmin-sync-cn-to-global
 
-# Garmin Sync Cn To Global
+Sync activities from **Garmin China** (garmin.cn) to **Garmin Global/International** (garmin.com).
 
-> Sync activities from Garmin China to Garmin Global using local timestamps and distance to avoid duplicates in a one-way sync process.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/garmin-sync-cn-to-global`
-- **Source URL:** [https://clawhub.ai/skills/garmin-sync-cn-to-global](https://clawhub.ai/skills/garmin-sync-cn-to-global)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/garmin-sync-cn-to-global
+# Install dependencies
+pip install garth
+
+# Set credentials (once, stored in ~/.config/garmin-sync/credentials.json)
+garmin-sync set-credentials --email your_email --password your_password
+
+# Sync new activities from CN to Global
+garmin-sync sync --new-only
 ```
+
+## Options
+
+- `--new-only` - Only sync records newer than last sync time (recommended for cron jobs)
+
+## Behavior
+
+- **Silent when no new activities**: If there are no activities to sync (and no failed retries), the script exits silently with no output. This is useful for cron jobs where you only want to be notified when there's actual work to do.
+- **English output**: All output is in English for consistency.
+
+## Requirements
+
+- Python 3.x
+- garth library (`pip install garth`)
+
+## Notes
+
+- One-way sync: CN → Global (not bidirectional)
+- Uses startTimeLocal + distance to detect duplicates (activity IDs differ between servers)
+- Skips conflicts automatically
+- Same email/password works for both Garmin CN and Garmin Global accounts
+
+## Security Considerations
+
+- Credentials are stored in plaintext at `~/.config/garmin-sync/credentials.json`
+- Set restrictive file permissions after first run: `chmod 600 ~/.config/garmin-sync/credentials.json`
+- Consider using a dedicated/sandbox account for testing
+- Review the code before running with your primary credentials

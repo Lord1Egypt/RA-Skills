@@ -1,35 +1,66 @@
 ---
-name: "flomo-archive"
-description: "获取 Flomo 指定月份的完整笔记并评估质量。当用户说"查看flomo XX年XX月的全部笔记"、"获取flomo某月笔记"、"拉取flomo历史记录"或"评估flomo笔记质量"时触发使用。支持智能三级降级策略（周→天）确保完整覆盖，内置质量评估规则自动标记低质量笔记。"
-category: "productivity"
-source: "ClawHub"
-tags: [archive, flomo, notes]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/flomo-archive"
-sourceUrl: "https://clawhub.ai/skills/flomo-archive"
+name: flomo-archive
+description: 获取 Flomo 指定月份的完整笔记并评估质量。当用户说"查看flomo XX年XX月的全部笔记"、"获取flomo某月笔记"、"拉取flomo历史记录"或"评估flomo笔记质量"时触发使用。支持智能三级降级策略（周→天）确保完整覆盖，内置质量评估规则自动标记低质量笔记。
 ---
 
-# flomo-archive
+# Flomo 笔记归档工具
 
-> 获取 Flomo 指定月份的完整笔记并评估质量。当用户说"查看flomo XX年XX月的全部笔记"、"获取flomo某月笔记"、"拉取flomo历史记录"或"评估flomo笔记质量"时触发使用。支持智能三级降级策略（周→天）确保完整覆盖，内置质量评估规则自动标记低质量笔记。
+## 功能
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/flomo-archive`
-- **Source URL:** [https://clawhub.ai/skills/flomo-archive](https://clawhub.ai/skills/flomo-archive)
+1. **完整获取** - 获取 Flomo 指定月份的所有笔记，处理 API 50条/次的限制
+2. **质量评估** - 自动评估笔记质量，标记低质量/碎片化记录
 
-## Overview
+## 核心策略
 
+Flomo 的 `memo_search` API 单次最多返回 50 条笔记。本工具采用智能分层策略：
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. **按周获取** - 默认粒度，大部分情况足够
+2. **降级按天** - 当某周返回 50 条时，降级为按天获取该周
+3. **ID 去重** - 处理周边界重叠，确保笔记不重复
+
+## 使用方法
+
+### 获取某月笔记（带质量评估）
+
 ```bash
-hermes skills install clawhub/flomo-archive
+python3 scripts/fetch_month.py <年> <月>
 ```
+
+示例：
+```bash
+python3 scripts/fetch_month.py 2025 7
+```
+
+### 仅评估已有数据
+
+```bash
+python3 scripts/evaluate_quality.py /tmp/flomo_YYYY_MM.json
+```
+
+## 质量评估规则
+
+| 规则 | 结果 | 说明 |
+|------|------|------|
+| 有标签 + 字数≥50 | 高质量 | 已分类且内容充实 |
+| 含链接/图片 | 高质量 | 有多媒体内容 |
+| 字数<20 | 低质量 | 字数过少 |
+| 无标签 + 字数<100 | 低质量 | 建议人工审阅 |
+| 疑似流水账关键词 | 低质量 | 如"起床了""晚安"等 |
+
+## 输出格式
+
+- 默认：统计摘要 + 质量报告 + 保存到 `/tmp/flomo_YYYY_MM.json`
+- JSON 模式：`--json` 输出完整 JSON
+- 详细模式：`-v` 显示每日获取进度
+
+## 技术细节
+
+- API 限制：单次最多 50 条
+- 调用频率：每次调用间隔 100ms
+- 数据已包含：content, tags, word_count, created_at 等完整字段
+- 无需额外 batch_get 调用
+
+## 注意事项
+
+- 需要 `mcporter` 已配置 flomo MCP 服务器
+- 结果文件保存在 `/tmp/` 目录，需及时转存

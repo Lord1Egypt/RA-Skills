@@ -1,0 +1,20 @@
+[
+  {
+    "id": "LEARN_1773523018458",
+    "what_failed": "Standard window.scrollBy() fails on Google Maps sidebar.",
+    "how_fixed": "Target the specific [role='feed'] container and use element.scrollTop.",
+    "lessons_learned": "Always check for scrollable sidebar containers before falling back to window scroll.",
+    "timestamp": "2026-03-14T21:16:58.458Z",
+    "context": "Google Maps Search",
+    "url": "https://www.google.com/maps/search/restaurants+in+Tiruchengode/@11.3838534,77.896059,14z/data=!4m2!2m1!6e5?entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "LEARN_1773691270701",
+    "what_failed": "LinkedIn profile extraction returned masked content (asterisks)",
+    "how_fixed": "Dismissed login modal, used custom eval on h2 tags",
+    "lessons_learned": "Public LinkedIn profiles restrict data (Experience/Education) for guests. Persistent automation requires save-session after manual login.",
+    "timestamp": "2026-03-16T20:01:10.701Z",
+    "context": "General",
+    "url": "https://in.linkedin.com/in/mathanraj-murugesan?trk=people-guest_people_search-card"
+  }
+]

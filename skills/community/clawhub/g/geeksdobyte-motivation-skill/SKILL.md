@@ -1,35 +1,31 @@
 ---
-name: "Motivation Skill"
-description: "Provides a daily motivational quote in response to requests for inspiration or quotes for today."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/geeksdobyte-motivation-skill"
-sourceUrl: "https://clawhub.ai/skills/geeksdobyte-motivation-skill"
+name: motivation-skill
+summary: Provide a daily motivational quote.
+tags: ["motivation","quotes","fun"]
 ---
 
 # Motivation Skill
 
-> Provides a daily motivational quote in response to requests for inspiration or quotes for today.
+## Description
+This skill lets the agent respond with a daily motivational quote when asked.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/geeksdobyte-motivation-skill`
-- **Source URL:** [https://clawhub.ai/skills/geeksdobyte-motivation-skill](https://clawhub.ai/skills/geeksdobyte-motivation-skill)
+## Usage
+When the user asks the agent for a motivational quote, this skill should provide a friendly response.
 
-## Overview
+Example:
+User: Give me a motivational quote for today.
+Assistant: "Success is not final; failure is not fatal: it is the courage to continue that counts." — Winston Churchill
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/geeksdobyte-motivation-skill
-```
+## Behavior
+If the user’s request mentions:
+- motivational quote
+- quote for today
+- inspiration
+
+then reply with a relevant prewritten motivational quote.
+
+## Quotes List
+- "The only way to do great work is to love what you do." — Steve Jobs  
+- "Success usually comes to those who are too busy to be looking for it." — Henry David Thoreau  
+- "It does not matter how slowly you go as long as you do not stop." — Confucius  

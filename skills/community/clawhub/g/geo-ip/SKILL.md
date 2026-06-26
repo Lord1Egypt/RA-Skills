@@ -1,35 +1,31 @@
 ---
-name: "Geo Ip"
+name: geo-ip
 description: "Look up geographic location for any IP address"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/geo-ip"
-sourceUrl: "https://clawhub.ai/skills/geo-ip"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🌍",
+        "requires": { "bins": ["curl"] },
+        "install": [],
+      },
+  }
 ---
 
-# Geo Ip
+# Geo IP
 
-> Look up geographic location for any IP address
+Look up the geographic location for any IP address using the ipinfo.io API. Returns city, region, country, coordinates, and ISP information.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/geo-ip`
-- **Source URL:** [https://clawhub.ai/skills/geo-ip](https://clawhub.ai/skills/geo-ip)
+## Commands
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/geo-ip
+# Look up location for a specific IP address
+geo-ip <ip-address>
+
+# Look up your own public IP location
+geo-ip me
 ```
+
+## Install
+
+No installation needed. `curl` is always present on the system. Uses the public ipinfo.io API.

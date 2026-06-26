@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.openclaw.ai)",
+      "WebFetch(domain:design.dev)",
+      "Bash(rsync:*)"
+    ]
+  }
+}

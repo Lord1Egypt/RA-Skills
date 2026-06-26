@@ -1,0 +1,22 @@
+interface:
+  display_name: "PR Review Loop"
+  short_description: "Iterate on GitHub PR comments until CI and review are green."
+  default_prompt: "Use $gh-pr-review-loop to handle review comments, amend fixes, push updates, and watch CI until the PR is clear."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "github"
+      description: "GitHub MCP server for PR comments, review threads, and reactions."
+
+requirements:
+  credentials:
+    - name: "GitHub repository access"
+      description: "Provided by the configured github MCP server, GitHub CLI auth, or the local git credential helper. Tokens should not be pasted into chat."
+  permissions:
+    - "Read and write only the user-requested repository, pull request, and PR head branch."
+    - "Use force-with-lease only on the active PR head branch when the requested history strategy requires it."
+
+policy:
+  allow_implicit_invocation: false
+  invocation_guardrail: "Use only for explicit PR review-loop requests with a scoped repository, PR, and branch."

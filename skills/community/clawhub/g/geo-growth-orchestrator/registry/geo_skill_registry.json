@@ -1,0 +1,250 @@
+{
+  "registry_version": "1.0.0",
+  "purpose": "Register adjacent GEO-related Skills that the PowerMatrix GEO Growth Orchestrator can route, inspect, or contract with. Paths are relative to powermatrix-geo-growth-orchestrator.",
+  "discovery_notes": [
+    {
+      "requested_path": "../Knowledge-base-Builder/SKILL.md",
+      "status": "missing",
+      "resolved_path": "../Knowledge-Base-Builder/brand-knowledge-base-builder/SKILL.md",
+      "note": "The parent folder exists as Knowledge-Base-Builder and the actual Skill lives one level deeper."
+    }
+  ],
+  "skills": [
+    {
+      "skill_id": "brand-knowledge-base-builder",
+      "display_name": "Brand Knowledge Base Builder",
+      "relative_path": "../Knowledge-Base-Builder/brand-knowledge-base-builder",
+      "role": "Build or refresh the brand single source of truth before GEO audit and content generation.",
+      "required_inputs": [
+        "brand_materials",
+        "company_profile",
+        "products_or_services",
+        "target_customers",
+        "selling_points",
+        "faq_seed",
+        "compliance_constraints"
+      ],
+      "expected_outputs": [
+        "brand_knowledge_base.json",
+        "brand_knowledge_base.md",
+        "brand_knowledge_base.yaml",
+        "faq.md",
+        "glossary.md",
+        "standard_messaging.md",
+        "llms.txt",
+        "analysis_report.md"
+      ],
+      "when_to_call": "Call when no reusable brand knowledge base exists, when the existing base is incomplete, or when the campaign depends on factual brand claims.",
+      "skip_conditions": [
+        "existing_brand_profile is provided and passes required-field validation",
+        "user only requests workflow planning without artifact generation"
+      ],
+      "fallback_behavior": "Create a minimal brand knowledge base contract with missing fields marked as 待确认; do not invent facts."
+    },
+    {
+      "skill_id": "doubao-geo-audit-skill",
+      "display_name": "Doubao GEO Audit Skill",
+      "relative_path": "../geo-analysis-doubao",
+      "role": "Evaluate whether Doubao can understand, summarize, and recommend the brand or category content.",
+      "required_inputs": [
+        "brand_knowledge_base",
+        "target_keywords",
+        "probe_questions",
+        "content_type",
+        "report_mode"
+      ],
+      "expected_outputs": [
+        "doubao_geo_audit_report.md"
+      ],
+      "when_to_call": "Call when target_models includes doubao, when the customer needs Chinese AI search visibility diagnostics, or when dual-model comparison is required.",
+      "skip_conditions": [
+        "target_models excludes doubao",
+        "user provides a fresh Doubao audit result covering the same keywords and probes"
+      ],
+      "fallback_behavior": "Produce a Doubao manual-check plan and mark the Doubao stage as partial; do not present inferred findings as live model results."
+    },
+    {
+      "skill_id": "deepseek-geo-audit-skill",
+      "display_name": "DeepSeek GEO Audit Skill",
+      "relative_path": "../deepseek-geo-audit-skill",
+      "role": "Evaluate DeepSeek-oriented brand understanding, recommendation readiness, and GEO content gaps.",
+      "required_inputs": [
+        "brand_knowledge_base",
+        "target_keywords",
+        "probe_questions",
+        "content_assets"
+      ],
+      "expected_outputs": [
+        "deepseek_geo_audit_report.md"
+      ],
+      "when_to_call": "Call when target_models includes deepseek or when the workflow needs a structured DeepSeek visibility assessment.",
+      "skip_conditions": [
+        "target_models excludes deepseek",
+        "a current DeepSeek audit already covers the same scope"
+      ],
+      "fallback_behavior": "Create a DeepSeek audit instruction set with expected artifacts and mark evidence as manual_check or inferred_estimate internally."
+    },
+    {
+      "skill_id": "deepseek-geo-tool",
+      "display_name": "GEO Tool DeepSeek",
+      "relative_path": "../GEO tool-deepseek",
+      "role": "Run API-based DeepSeek probing when credentials and runtime support are available.",
+      "required_inputs": [
+        "brand_name",
+        "category_keyword",
+        "deepseek_api_key",
+        "probe_questions"
+      ],
+      "expected_outputs": [
+        "deepseek_raw_api_results.json",
+        "deepseek_judge_results.json"
+      ],
+      "when_to_call": "Call only when API-based live probing is explicitly enabled and credentials are available.",
+      "skip_conditions": [
+        "API credentials are unavailable",
+        "the environment cannot call external APIs",
+        "user asks for planning only"
+      ],
+      "fallback_behavior": "Use the non-API DeepSeek audit Skill or prepare manual probes; keep API status in internal audit only."
+    },
+    {
+      "skill_id": "ai-geo-content-generator",
+      "display_name": "AI GEO Content Generator",
+      "relative_path": "../AI-geo-content-generator",
+      "role": "Generate reusable GEO-friendly content assets from the brand knowledge base and content task plan.",
+      "required_inputs": [
+        "brand_knowledge_base",
+        "content_task_plan",
+        "target_keywords",
+        "compliance_constraints"
+      ],
+      "expected_outputs": [
+        "website_faq.md",
+        "zhihu_answer.md",
+        "toutiao_article.md",
+        "llms.txt",
+        "quote_sentence_library.md"
+      ],
+      "when_to_call": "Call after the GEO Gap Matrix has been converted into a prioritized content task plan.",
+      "skip_conditions": [
+        "content_task_plan is empty",
+        "brand_knowledge_base is missing required factual fields"
+      ],
+      "fallback_behavior": "Generate a content brief and required-facts list instead of final content assets."
+    },
+    {
+      "skill_id": "zhihu-geo-draft-assistant",
+      "display_name": "Zhihu GEO Draft Assistant",
+      "relative_path": "../zhihu-geo-draft-assistant",
+      "role": "Adapt GEO content assets into Zhihu Q&A, article, title, topic, and checklist drafts.",
+      "required_inputs": [
+        "brand_profile",
+        "website_faq",
+        "zhihu_answer_seed",
+        "keyword_matrix",
+        "content_task_plan"
+      ],
+      "expected_outputs": [
+        "zhihu_questions.md",
+        "zhihu_answer_long.md",
+        "zhihu_answer_short.md",
+        "zhihu_no_ad_version.md",
+        "zhihu_article_version.md",
+        "zhihu_titles.md",
+        "zhihu_topics_tags.md",
+        "zhihu_publish_checklist.md",
+        "zhihu_draft_status.md"
+      ],
+      "when_to_call": "Call for decision questions, comparison topics, FAQ-style explainers, and most consumer or B2B trust-building workflows.",
+      "skip_conditions": [
+        "target_platforms excludes zhihu and routing rules do not recommend it",
+        "no Zhihu-suitable content task exists"
+      ],
+      "fallback_behavior": "Return a Zhihu-ready content brief and manual drafting checklist."
+    },
+    {
+      "skill_id": "toutiao-geo-draft-assistant",
+      "display_name": "Toutiao GEO Draft Assistant",
+      "relative_path": "../toutiao-geo-draft-assistant",
+      "role": "Adapt GEO content assets into Toutiao articles, titles, summaries, keywords, cover prompts, and checklist drafts.",
+      "required_inputs": [
+        "brand_profile",
+        "toutiao_article_seed",
+        "website_faq",
+        "keyword_matrix",
+        "content_task_plan"
+      ],
+      "expected_outputs": [
+        "toutiao_article.md",
+        "toutiao_titles.md",
+        "toutiao_summary.md",
+        "toutiao_cover_prompts.md",
+        "toutiao_micro_posts.md",
+        "toutiao_keywords.md",
+        "toutiao_publish_checklist.md",
+        "toutiao_draft_status.md"
+      ],
+      "when_to_call": "Call for consumer education, local services, travel, food, boss-readable content, and broad-market explanation topics.",
+      "skip_conditions": [
+        "target_platforms excludes toutiao and routing rules do not recommend it",
+        "topic is highly technical and better suited to CSDN or Juejin"
+      ],
+      "fallback_behavior": "Return a Toutiao article outline, title set, and manual publishing checklist."
+    },
+    {
+      "skill_id": "csdn-geo-draft-publisher",
+      "display_name": "CSDN GEO Draft Publisher",
+      "relative_path": "../csdn-geo-draft-publisher",
+      "role": "Adapt technical GEO assets into CSDN tutorial, architecture, deployment, and solution articles.",
+      "required_inputs": [
+        "brand_profile",
+        "website_faq",
+        "llms_txt",
+        "technical_content_tasks"
+      ],
+      "expected_outputs": [
+        "csdn_article.md",
+        "csdn_markdown_ready.md",
+        "csdn_titles.md",
+        "csdn_summary.md",
+        "csdn_tags.md",
+        "csdn_code_examples.md",
+        "csdn_publish_checklist.md",
+        "csdn_draft_status.md"
+      ],
+      "when_to_call": "Call for AI, SaaS, developer tools, infrastructure, enterprise software, and technical implementation topics.",
+      "skip_conditions": [
+        "industry is consumer, food, travel, medical beauty, or local service with no technical buyer angle",
+        "target_platforms excludes csdn and routing rules do not recommend it"
+      ],
+      "fallback_behavior": "Keep CSDN as skipped and document why in the platform distribution plan."
+    },
+    {
+      "skill_id": "juejin-geo-draft-publisher",
+      "display_name": "Juejin GEO Draft Publisher",
+      "relative_path": "../juejin-geo-draft-publisher",
+      "role": "Adapt technical GEO assets into developer-community practice and toolchain articles.",
+      "required_inputs": [
+        "brand_profile",
+        "website_faq",
+        "llms_txt",
+        "developer_content_tasks"
+      ],
+      "expected_outputs": [
+        "juejin_article.md",
+        "juejin_markdown_ready.md",
+        "juejin_titles.md",
+        "juejin_summary.md",
+        "juejin_tags.md",
+        "juejin_publish_checklist.md",
+        "juejin_draft_status.md"
+      ],
+      "when_to_call": "Call for developer tools, AI engineering, SaaS implementation, automation, and code-oriented content tasks.",
+      "skip_conditions": [
+        "industry is consumer, food, travel, medical beauty, or local service with no developer angle",
+        "target_platforms excludes juejin and routing rules do not recommend it"
+      ],
+      "fallback_behavior": "Keep Juejin as skipped and document why in the platform distribution plan."
+    }
+  ]
+}

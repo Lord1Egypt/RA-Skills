@@ -1,35 +1,42 @@
----
-name: "Gateway Monitor Auto Restart"
-description: "Monitors OpenClaw gateway every 3 hours, auto-restarts if unresponsive, diagnoses startup issues, and rotates logs with 7-day retention."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gateway-monitor-auto-restart"
-sourceUrl: "https://clawhub.ai/skills/gateway-monitor-auto-restart"
----
+# Gateway Monitor Auto-Restart Skill
 
-# Gateway Monitor Auto Restart
+Automatically monitors the OpenClaw gateway status and restarts it if it becomes unresponsive. Features 3-hour checks, smart restart logic, issue diagnosis, and 7-day log rotation.
 
-> Monitors OpenClaw gateway every 3 hours, auto-restarts if unresponsive, diagnoses startup issues, and rotates logs with 7-day retention.
+## Description
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gateway-monitor-auto-restart`
-- **Source URL:** [https://clawhub.ai/skills/gateway-monitor-auto-restart](https://clawhub.ai/skills/gateway-monitor-auto-restart)
+This skill provides comprehensive monitoring for the OpenClaw gateway with automatic restart capabilities. It includes:
 
-## Overview
+- Health checks every 3 hours
+- Smart restart mechanism when gateway is down
+- Issue diagnosis when startup fails
+- 7-day log rotation system
+- Fast recovery system that prioritizes quick gateway restart
 
+## Features
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gateway-monitor-auto-restart
-```
+- **Automatic Monitoring**: Checks gateway status every 3 hours
+- **Smart Restart**: Restarts gateway when it becomes unresponsive
+- **Issue Diagnosis**: Identifies and reports startup issues
+- **Fast Recovery**: Prioritizes quick gateway restart
+- **Log Management**: Maintains logs with 7-day rotation
+- **Error Handling**: Gracefully handles "already running" errors
+
+## Usage
+
+The skill automatically sets up a cron job that runs the monitoring script every 3 hours. The monitoring system will:
+
+1. Check if the gateway is responsive
+2. If unresponsive, attempt to restart it
+3. If restart fails, diagnose the issue
+4. Log all activities with timestamp
+5. Rotate logs older than 7 days
+
+## Requirements
+
+- OpenClaw gateway installed and configured
+- Proper permissions to manage gateway service
+- Cron access for scheduling checks
+
+## Configuration
+
+No additional configuration required. The skill automatically installs the monitoring system with optimal settings.

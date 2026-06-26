@@ -1,0 +1,55 @@
+{
+  "name": "YEST1N",
+  "bio": "健身爱好者",
+  "height": 180,
+  "currentWeight": 89.2,
+  "targetWeight": 85,
+  "targetDate": "2026-12-31",
+  "age": 30,
+  "gender": "male",
+  "activityLevel": "moderate",
+  "dietType": "carbon_cycling",
+  
+  "metabolism": {
+    "bmr": 1850,
+    "tdee": 2800,
+    "calculationMethod": "mifflin-st-jeor"
+  },
+  
+  "schedule": {
+    "monday": "low",
+    "tuesday": "medium",
+    "wednesday": "high",
+    "thursday": "medium",
+    "friday": "medium",
+    "saturday": "high",
+    "sunday": "low"
+  },
+  
+  "macroCalculator": {
+    "protein": {
+      "multiplier": 1.5,
+      "unit": "g/kg",
+      "note": "增肌1.5~2g/kg，减脂2~2.5g/kg"
+    },
+    "fat": {
+      "calculation": "remainder",
+      "note": "剩余热量给脂肪"
+    },
+    "carbon": {
+      "low": 1.0,
+      "medium": 1.5,
+      "high": 3.0,
+      "unit": "g/kg",
+      "note": "按体重倍数"
+    }
+  },
+  
+  "sleep": {
+    "window": "23:00 - 06:00",
+    "target": "23:00",
+    "average": "23:30"
+  },
+  
+  "lastUpdated": "2026-04-06"
+}

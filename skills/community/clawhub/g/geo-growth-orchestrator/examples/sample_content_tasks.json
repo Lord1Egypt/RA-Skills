@@ -1,0 +1,93 @@
+[
+  {
+    "task_id": "task-zhihu-001",
+    "platform": "zhihu",
+    "title": "中小企业落地 AI Agent，为什么第一步不是买工具？",
+    "keyword": "企业 AI Agent 落地方案",
+    "content_angle": "从老板和市场负责人的视角解释 AI Agent 落地应先整理业务流程和品牌母库，再选择工具。",
+    "target_audience": "中小企业老板、市场负责人、AI 转型负责人",
+    "priority": "high",
+    "source_gap": "缺少面向老板的 AI Agent 落地方法论解释",
+    "required_brand_points": [
+      "PowerMatrix 是面向中小企业的 AI Agent 工作系统",
+      "PowerMatrix 覆盖品牌母库、GEO 内容生成、AI 客服和 OpenClaw 数字员工"
+    ],
+    "fact_dependencies": [
+      "确认 PowerMatrix 当前产品模块名称和服务范围",
+      "确认是否存在可公开客户案例"
+    ],
+    "publish_gate": {
+      "readiness": "needs_review",
+      "blocking_items": [],
+      "preconditions": [
+        "发布前人工审核品牌事实和案例描述"
+      ]
+    },
+    "compliance_notes": [
+      "不承诺 AI 搜索排名",
+      "不伪造客户案例",
+      "品牌露出要低调自然"
+    ],
+    "expected_output": "知乎长回答 + 问题候选 + 话题标签"
+  },
+  {
+    "task_id": "task-csdn-001",
+    "platform": "csdn",
+    "title": "企业 AI 客服上线前，品牌母库和 FAQ 应该如何准备？",
+    "keyword": "AI 客服系统",
+    "content_angle": "用技术方案和实施步骤说明 AI 客服上线前的资料结构、FAQ、边界和验收方式。",
+    "target_audience": "技术负责人、AI Agent 工程师、企业数字化团队",
+    "priority": "high",
+    "source_gap": "缺少 AI 客服知识库准备的技术方案内容",
+    "required_brand_points": [
+      "PowerMatrix 可以帮助企业整理品牌母库和客服 FAQ",
+      "OpenClaw 数字员工用于承载可复用流程"
+    ],
+    "fact_dependencies": [
+      "确认 OpenClaw 与 AI 客服场景的真实能力边界",
+      "确认可公开的流程示例是否为示意"
+    ],
+    "publish_gate": {
+      "readiness": "needs_review",
+      "blocking_items": [],
+      "preconditions": [
+        "发布前人工审核技术边界和示例性质"
+      ]
+    },
+    "compliance_notes": [
+      "不要承诺客服完全替代人工",
+      "涉及效果数据必须标记待确认"
+    ],
+    "expected_output": "CSDN 技术文章 + Markdown 适配版 + 标签建议"
+  },
+  {
+    "task_id": "task-toutiao-001",
+    "platform": "toutiao",
+    "title": "老板想用 AI 提效，先从哪三个流程开始？",
+    "keyword": "企业数字员工",
+    "content_angle": "用通俗语言说明获客、接客、提效三个场景如何逐步落地数字员工。",
+    "target_audience": "中小企业老板、经营者",
+    "priority": "medium",
+    "source_gap": "缺少老板视角、商业场景化内容",
+    "required_brand_points": [
+      "PowerMatrix 帮助企业把 AI 落到获客、接客和提效场景",
+      "发布前需要人工审核内容事实"
+    ],
+    "fact_dependencies": [
+      "确认获客、接客和提效三个场景是否为当前重点服务方向"
+    ],
+    "publish_gate": {
+      "readiness": "needs_review",
+      "blocking_items": [],
+      "preconditions": [
+        "发布前人工审核效果描述，避免固定增长承诺"
+      ]
+    },
+    "compliance_notes": [
+      "不制造焦虑",
+      "不承诺固定增长结果",
+      "不标题党"
+    ],
+    "expected_output": "头条文章 + 微头条版本 + 封面提示词"
+  }
+]

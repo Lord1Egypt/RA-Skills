@@ -1,0 +1,33 @@
+{
+  "id": "ghostprint",
+  "name": "Ghostprint",
+  "description": "LLM fingerprint noise injector. Sends behaviorally realistic randomized queries to configured providers on a schedule to depersonalize your usage profile and prevent behavioral fingerprinting.",
+  "version": "3.0.0",
+  "main": "openclaw-plugin/index.ts",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled":               { "type": "boolean" },
+      "min_interval_minutes":  { "type": "number" },
+      "max_interval_minutes":  { "type": "number" },
+      "timezone_offset":       { "type": "number" },
+      "providers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name":     { "type": "string" },
+            "provider": { "type": "string" },
+            "base_url": { "type": "string" },
+            "api_key":  { "type": "string" },
+            "model":    { "type": "string" },
+            "style":    { "type": "string", "enum": ["openai", "anthropic"] },
+            "weight":   { "type": "number" }
+          },
+          "required": ["name", "base_url", "model"]
+        }
+      }
+    }
+  }
+}

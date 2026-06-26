@@ -1,0 +1,262 @@
+# Ghostclaw Stack Patterns — Machine-Readable Rules
+# This YAML defines architectural quality rules for different tech stacks.
+
+global:
+  rules:
+    - id: empty_codebase
+      type: metric
+      metric: files_analyzed
+      threshold: 0
+      condition: equals
+      message: "Empty codebase detected — no files found for analysis"
+
+node:
+  name: "Node.js / React / TypeScript"
+  rules:
+    # File size metrics
+    - id: average_file_size
+      type: metric
+      metric: average_lines
+      threshold: 200
+      condition: greater_than
+      message: "Average file size {value} lines — consider splitting"
+    - id: large_files
+      type: file_count_over_threshold
+      threshold: 400
+      message: "{count} files >{threshold} lines (ModuleGhosts)"
+    - id: god_components
+      type: file_size
+      threshold: 200
+      applies_to: [".tsx", ".jsx"]
+      message: "Component file >{threshold} LOC indicates God component"
+
+    # Naming conventions
+    - id: service_naming
+      type: naming
+      pattern: ".*[Ss]ervice\\.(ts|tsx|js|jsx)$"
+      message: "Service modules should use *Service naming"
+    - id: repository_naming
+      type: naming
+      pattern: ".*[Rr]epo\\.(ts|tsx|js|jsx)$"
+      message: "Repository modules should use *Repo naming"
+    - id: controller_naming
+      type: naming
+      pattern: ".*[Cc]ontroller\\.(ts|tsx|js|jsx)$"
+      message: "Controller modules should use *Controller naming"
+
+    # Layer structure (based on directory paths)
+    - id: layer_structure
+      type: directory_structure
+      allowed:
+        - "routes/.*"
+        - "controllers/.*"
+        - "services/.*"
+        - "repositories/.*"
+        - "models/.*"
+        - "utils/.*"
+      message: "Unknown top-level directory; follow standard layering"
+
+    # Coupling checks (will be validated against import graph)
+    - id: forbidden_imports
+      type: import_dependency
+      forbidden:
+        - "repositories -> controllers"
+        - "services -> routes"
+        - "controllers -> repositories"
+      message: "Forbidden dependency: {from} → {to} (layer violation)"
+
+    - id: instability_warning
+      type: metric_coupling
+      metric: instability
+      threshold: 0.8
+      condition: greater_than
+      message: "Module {module} is highly unstable (I={value:.2f}) — knows too many others"
+
+  thresholds:
+    large_file_lines: 400
+    acceptable_instability: 0.7
+
+python:
+  name: "Python (Django / FastAPI)"
+  rules:
+    # File size metrics
+    - id: average_file_size
+      type: metric
+      metric: average_lines
+      threshold: 180
+      condition: greater_than
+      message: "Average file size {value} lines — thick modules"
+    - id: large_files
+      type: file_count_over_threshold
+      threshold: 300
+      message: "{count} files >{threshold} lines (ModuleGhosts)"
+    - id: god_models
+      type: file_size
+      threshold: 300
+      applies_to: [".py"]
+      message: "Model file >{threshold} LOC indicates God model"
+
+    # Naming conventions (approximated by file paths)
+    - id: service_naming
+      type: naming
+      pattern: "services/.*\\.py$"
+      message: "Business logic should be in services/ module"
+    - id: view_naming
+      type: naming
+      pattern: "views/.*\\.py$"
+      message: "Views should be in views/ directory"
+    - id: model_naming
+      type: naming
+      pattern: "models/.*\\.py$"
+      message: "Data models should be in models/ directory"
+
+    # Coupling checks
+    - id: forbidden_imports
+      type: import_dependency
+      forbidden:
+        - "views -> models"  # Actually this is allowed, but direct DB access in views is not
+        # We'll refine this with more specific patterns
+      message: "Potential mixing of concerns: {from} → {to}"
+
+    - id: instability_warning
+      type: metric_coupling
+      metric: instability
+      threshold: 0.8
+      condition: greater_than
+      message: "Module {module} is highly unstable (I={value:.2f})"
+
+  thresholds:
+    large_file_lines: 300
+    acceptable_instability: 0.7
+
+go:
+  name: "Go (Production Architecture)"
+  rules:
+    # File size metrics
+    - id: average_file_size
+      type: metric
+      metric: average_lines
+      threshold: 250
+      condition: greater_than
+      message: "Average Go file size {value} lines — consider grouping into sub-packages"
+    - id: large_files
+      type: file_count_over_threshold
+      threshold: 500
+      message: "{count} Go files >{threshold} lines (HeavyPackages)"
+    
+    # Naming conventions
+    - id: test_naming
+      type: naming
+      pattern: ".*_test\\.go$"
+      message: "Go test files must follow _test.go convention"
+    - id: internal_packages
+      type: naming
+      pattern: "^internal/.*"
+      message: "Use internal/ directory for private module packages"
+    
+    # Directory Mapping
+    - id: standard_layout
+      type: directory_structure
+      allowed:
+        - "cmd/.*"
+        - "pkg/.*"
+        - "internal/.*"
+        - "api/.*"
+        - "web/.*"
+        - "configs/.*"
+        - "scripts/.*"
+        - "build/.*"
+        - "deployments/.*"
+        - "test/.*"
+      message: "Consider following the Standard Go Project Layout (cmd/, internal/, pkg/)"
+
+  thresholds:
+    large_file_lines: 500
+
+shell:
+  name: "Shell Scripts (Bash / Zsh)"
+  rules:
+    # File size metrics
+    - id: average_file_size
+      type: metric
+      metric: average_lines
+      threshold: 80
+      condition: greater_than
+      message: "Average script size {value} lines — consider modularizing into library scripts"
+    - id: large_files
+      type: file_count_over_threshold
+      threshold: 150
+      message: "{count} scripts >{threshold} lines (ScriptBloat)"
+    
+    # Naming and Location
+    - id: bin_location
+      type: naming
+      pattern: "^(bin/|scripts/|.*\\.sh$|.*\\.bash$|.*\\.zsh$)"
+      message: "Scripts should be in bin/ or scripts/ directories"
+
+  thresholds:
+    large_file_lines: 150
+
+typescript:
+  name: "TypeScript (Strict / Modern)"
+  rules:
+    # File size metrics
+    - id: average_file_size
+      type: metric
+      metric: average_lines
+      threshold: 150
+      condition: greater_than
+      message: "Average TS file size {value} lines — aim for higher modularity in typed codebabses"
+    - id: large_files
+      type: file_count_over_threshold
+      threshold: 350
+      message: "{count} TS files >{threshold} lines (HeavyTypes)"
+    
+    # Naming conventions
+    - id: interface_naming
+      type: naming
+      pattern: "^I[A-Z].*\\.ts$"
+      message: "Interface files should use 'I' prefix notation (standard convention)"
+    
+    # Directory mapping
+    - id: domain_structure
+      type: directory_structure
+      allowed:
+        - "domain/.*"
+        - "contracts/.*"
+        - "infrastructure/.*"
+        - "application/.*"
+        - "ui/.*"
+      message: "Consider using DDD structure (domain, contracts, infrastructure) for TS projects"
+
+  thresholds:
+    large_file_lines: 350
+
+docker:
+  name: "Docker (Infrastructure as Code)"
+  rules:
+    # Build hygiene
+    - id: multi_stage_build
+      type: content_search
+      pattern: "FROM .* AS .*"
+      message: "Dockerfile uses multi-stage builds (Architecture Vibes: Optimized)"
+    - id: dockerignore_presence
+      type: file_presence
+      file: ".dockerignore"
+      message: ".dockerignore missing — build context may be unoptimized"
+    
+    # Tagging and best practices
+    - id: tag_hygiene
+      type: content_search
+      pattern: ".*:latest"
+      inverted: true
+      message: "Avoid using ':latest' tag in production Dockerfiles for reproducibility"
+    
+    # Resource management
+    - id: healthcheck
+      type: content_search
+      pattern: "HEALTHCHECK"
+      message: "HEALTHCHECK instruction not found; consider adding for orchestration health monitoring"
+
+  thresholds:
+    large_file_lines: 100

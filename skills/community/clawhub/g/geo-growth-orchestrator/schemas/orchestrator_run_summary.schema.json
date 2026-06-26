@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://powermatrix.local/schemas/orchestrator_run_summary.schema.json",
+  "title": "Orchestrator Run Summary",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "run_id",
+    "input_summary",
+    "adjacent_skill_statuses",
+    "stage_statuses",
+    "output_artifacts",
+    "missing_outputs",
+    "final_report_sections"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "input_summary": {
+      "type": "object",
+      "required": [
+        "brand_name",
+        "category",
+        "target_market",
+        "target_keywords",
+        "target_platforms",
+        "target_models"
+      ],
+      "properties": {
+        "brand_name": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "target_market": {
+          "type": "string"
+        },
+        "target_keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "target_platforms": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "target_models": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "adjacent_skill_statuses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "skill_id",
+          "relative_path",
+          "status"
+        ],
+        "properties": {
+          "skill_id": {
+            "type": "string"
+          },
+          "relative_path": {
+            "type": "string",
+            "pattern": "^\\.\\./"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "planned",
+              "called",
+              "success",
+              "partial",
+              "failed",
+              "skipped",
+              "manual",
+              "future_skill"
+            ]
+          },
+          "expected_outputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "missing_outputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "stage_statuses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "stage",
+          "status"
+        ],
+        "properties": {
+          "stage": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "success",
+              "partial",
+              "failed",
+              "skipped",
+              "manual",
+              "future_skill"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "output_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "missing_outputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "final_report_sections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "retest_plan": {
+      "type": "object"
+    }
+  }
+}

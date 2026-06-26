@@ -1,0 +1,4 @@
+version: 1
+display_name: Flight Scout
+short_description: 调用远程航班搜索与甩尾票 API
+default_prompt: 使用配置好的 Flight Scout API 进行航班搜索、机场联想、价格日历或甩尾票查询，并返回结构化 JSON 结果。处理甩尾票时，根据是否需要同步结果、是否接受异步轮询以及调用额度消耗，直接选择 hidden-city-sync 或 hidden-city-job-create；不需要先做同步判断再决定是否发起异步任务。

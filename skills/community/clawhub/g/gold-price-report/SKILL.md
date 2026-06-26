@@ -1,35 +1,53 @@
 ---
-name: "Gold Price Report"
-description: "Gold/silver price lookup and market brief. Use when the user asks things like 查金价, 黄金多少钱, 今日金价, 白银价格, 品牌金价, 老凤祥/周大福/周生生金价, 沪金/沪银/comex黄金/comex白银, or wants a..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gold-price-report"
-sourceUrl: "https://clawhub.ai/skills/gold-price-report"
+name: gold-price-report
+description: "Gold/silver price lookup and market brief. Use when the user asks things like 查金价, 黄金多少钱, 今日金价, 白银价格, 品牌金价, 老凤祥/周大福/周生生金价, 沪金/沪银/comex黄金/comex白银, or wants a daily/scheduled gold-price report. Returns three panels: related spot products, physical gold brand prices, and precious-metals futures."
 ---
 
 # Gold Price Report
 
-> Gold/silver price lookup and market brief. Use when the user asks things like 查金价, 黄金多少钱, 今日金价, 白银价格, 品牌金价, 老凤祥/周大福/周生生金价, 沪金/沪银/comex黄金/comex白银, or wants a...
+Use the bundled script to fetch three quote panels from a real-time precious-metals quote source.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gold-price-report`
-- **Source URL:** [https://clawhub.ai/skills/gold-price-report](https://clawhub.ai/skills/gold-price-report)
+## What this skill returns
 
-## Overview
+- **Related spot products**: 现货黄金、现货白银、现货铂金、现货钯金、中国香港黄金、中国台湾黄金
+- **Physical gold brands**: 老凤祥、周大福、周生生、老庙、周六福、六福珠宝、周大生、菜百
+- **Precious-metals futures**: 沪金、沪银、comex黄金、comex白银、沪铜
 
+## Default workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. Run `scripts/fetch_gold_panels.py --format md` for a human-readable report.
+2. If the user wants structured output, run with `--format json`.
+3. If the user wants only one or two panels, use `--sections` with comma-separated values from:
+   - `related`
+   - `physical`
+   - `futures`
+4. Summarize in plain Chinese unless the user asks for raw data only.
+
+## Commands
+
+### Markdown report
+
 ```bash
-hermes skills install clawhub/gold-price-report
+python3 skills/gold-price-report/scripts/fetch_gold_panels.py --format md
 ```
+
+### JSON output
+
+```bash
+python3 skills/gold-price-report/scripts/fetch_gold_panels.py --format json
+```
+
+### Only selected panels
+
+```bash
+python3 skills/gold-price-report/scripts/fetch_gold_panels.py --sections related,physical --format md
+```
+
+## Notes
+
+- The underlying quote API is machine-readable.
+- Prices are fetched from a bundled real-time quote source (see script).
+- For the `related` and `physical` sections, display **latest price**.
+- For the `futures` section, display **latest price** and **change percent**.
+- If a quote is missing, report it as `----` rather than inventing a value.
+- For scheduled reports, prefer the markdown format and a concise summary.

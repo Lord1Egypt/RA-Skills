@@ -1,0 +1,53 @@
+{
+  "repository": {"full_name": "flowcreatebot/conspiracy-canvas"},
+  "workflow_runs": [
+    {
+      "id": 2201,
+      "run_number": 155,
+      "name": "Integration Tests",
+      "conclusion": "cancelled",
+      "head_branch": "main",
+      "actor": {"login": "qa-bot"},
+      "created_at": "2026-03-05T07:00:00Z",
+      "run_started_at": "2026-03-05T07:01:00Z",
+      "updated_at": "2026-03-05T07:38:00Z",
+      "html_url": "https://github.com/flowcreatebot/conspiracy-canvas/actions/runs/2201"
+    },
+    {
+      "id": 2202,
+      "run_number": 156,
+      "name": "Integration Tests",
+      "conclusion": "cancelled",
+      "head_branch": "feature/story-ui",
+      "actor": {"login": "qa-bot"},
+      "created_at": "2026-03-05T07:40:00Z",
+      "run_started_at": "2026-03-05T07:41:00Z",
+      "updated_at": "2026-03-05T08:11:00Z",
+      "html_url": "https://github.com/flowcreatebot/conspiracy-canvas/actions/runs/2202"
+    },
+    {
+      "id": 2203,
+      "run_number": 157,
+      "name": "Deploy Preview",
+      "conclusion": "timed_out",
+      "head_branch": "feature/story-ui",
+      "actor": {"login": "ops-bot"},
+      "created_at": "2026-03-05T08:20:00Z",
+      "run_started_at": "2026-03-05T08:21:00Z",
+      "updated_at": "2026-03-05T09:03:00Z",
+      "html_url": "https://github.com/flowcreatebot/conspiracy-canvas/actions/runs/2203"
+    },
+    {
+      "id": 2204,
+      "run_number": 158,
+      "name": "Typecheck",
+      "conclusion": "failure",
+      "head_branch": "main",
+      "actor": {"login": "qa-bot"},
+      "created_at": "2026-03-05T09:10:00Z",
+      "run_started_at": "2026-03-05T09:11:00Z",
+      "updated_at": "2026-03-05T09:20:00Z",
+      "html_url": "https://github.com/flowcreatebot/conspiracy-canvas/actions/runs/2204"
+    }
+  ]
+}

@@ -1,0 +1,211 @@
+{
+  "name": "github-health-diagnosis",
+  "version": "1.0.0",
+  "description": "GitHub 项目健康度诊断 — 输入仓库地址，AI 自动分析 Issues、代码质量、CI状态，生成诊断报告并发布到飞书 Wiki",
+  "combo": true,
+  "channels": ["feishu"],
+  "workflow": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "数据采集",
+        "skill": "github",
+        "action": "repo_diagnosis",
+        "inputs": {
+          "repo": "{{input_repo}}",
+          "time_range_days": 30
+        },
+        "outputs": [
+          "repo_info",
+          "issues_list",
+          "prs_list",
+          "recent_commits",
+          "contributors_count",
+          "workflows_status"
+        ],
+        "next_step": 2,
+        "on_error": "abort"
+      },
+      {
+        "step": 2,
+        "name": "代码质量分析",
+        "skill": "code-review-skill",
+        "action": "review_code",
+        "inputs": {
+          "repo": "{{input_repo}}",
+          "language": "{{step1.detected_language}}",
+          "dimensions": ["correctness", "security", "maintainability", "performance"],
+          "max_files": 10
+        },
+        "outputs": [
+          "quality_score",
+          "security_score",
+          "maintainability_score",
+          "performance_score",
+          "issues_list",
+          "risk_level"
+        ],
+        "next_step": 3,
+        "on_error": "skip_and_continue"
+      },
+      {
+        "step": 3,
+        "name": "多维度评分计算",
+        "skill": "internal",
+        "action": "calculate_health_score",
+        "inputs": {
+          "repo_info": "{{step1.repo_info}}",
+          "issues_list": "{{step1.issues_list}}",
+          "prs_list": "{{step1.prs_list}}",
+          "workflows_status": "{{step1.workflows_status}}",
+          "code_quality": "{{step2.quality_score}}",
+          "code_security": "{{step2.security_score}}",
+          "code_maintainability": "{{step2.maintainability_score}}",
+          "code_performance": "{{step2.performance_score}}"
+        },
+        "scoring": {
+          "code_quality_weight": 0.30,
+          "issue_activity_weight": 0.20,
+          "ci_cd_status_weight": 0.20,
+          "community_activity_weight": 0.15,
+          "security_risk_weight": 0.15
+        },
+        "outputs": [
+          "overall_score",
+          "health_rating",
+          "dimension_scores",
+          "diagnostic_summary"
+        ],
+        "next_step": 4,
+        "on_error": "abort"
+      },
+      {
+        "step": 4,
+        "name": "生成诊断卡片",
+        "skill": "card-renderer",
+        "action": "render_health_card",
+        "inputs": {
+          "repo_name": "{{step1.repo_info.name}}",
+          "overall_score": "{{step3.overall_score}}",
+          "health_rating": "{{step3.health_rating}}",
+          "dimension_scores": "{{step3.dimension_scores}}",
+          "top_issues": "{{step2.issues_list}}",
+          "diagnostic_summary": "{{step3.diagnostic_summary}}",
+          "styles": ["radar", "mac_pro"],
+          "aspect_ratio": "16:9",
+          "template": "health_report"
+        },
+        "outputs": [
+          "cover_card",
+          "detail_card"
+        ],
+        "next_step": 5,
+        "on_error": "skip_and_continue"
+      },
+      {
+        "step": 5,
+        "name": "发布到飞书 Wiki",
+        "skill": "feishu-wiki",
+        "action": "create",
+        "inputs": {
+          "title": "📊 GitHub 项目健康度诊断报告 - {{step1.repo_info.name}}",
+          "space_id": "{{input.wiki_space_id}}",
+          "parent_node_token": "{{input.wiki_parent_token}}",
+          "content": {
+            "repo_name": "{{step1.repo_info.name}}",
+            "repo_url": "{{step1.repo_info.url}}",
+            "diagnosis_date": "{{system.current_date}}",
+            "overall_score": "{{step3.overall_score}}",
+            "health_rating": "{{step3.health_rating}}",
+            "dimension_scores": "{{step3.dimension_scores}}",
+            "code_issues": "{{step2.issues_list}}",
+            "diagnostic_summary": "{{step3.diagnostic_summary}}",
+            "cover_card_url": "{{step4.cover_card}}",
+            "detail_card_url": "{{step4.detail_card}}"
+          },
+          "content_format": "markdown"
+        },
+        "outputs": [
+          "wiki_page_url",
+          "wiki_node_token"
+        ],
+        "next_step": null,
+        "on_error": "notify_only"
+      }
+    ],
+    "input_schema": {
+      "type": "object",
+      "required": ["repo"],
+      "properties": {
+        "repo": {
+          "type": "string",
+          "description": "GitHub 仓库地址，支持格式：owner/repo 或完整 URL",
+          "examples": [
+            "facebook/react",
+            "https://github.com/torvalds/linux"
+          ]
+        },
+        "wiki_space_id": {
+          "type": "string",
+          "description": "飞书 Wiki 空间 ID（可选，不填则使用默认空间）",
+          "required": false
+        },
+        "wiki_parent_token": {
+          "type": "string",
+          "description": "飞书 Wiki 父节点 token（可选，不填则在根目录创建）",
+          "required": false
+        },
+        "time_range_days": {
+          "type": "integer",
+          "description": "分析的时间范围（天），默认 30",
+          "default": 30,
+          "required": false
+        }
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "wiki_page_url": {
+          "type": "string",
+          "description": "飞书 Wiki 报告页面链接"
+        },
+        "cover_card": {
+          "type": "string",
+          "description": "诊断封面卡片图片路径"
+        },
+        "detail_card": {
+          "type": "string",
+          "description": "诊断详情卡片图片路径"
+        },
+        "overall_score": {
+          "type": "integer",
+          "description": "综合健康度评分（0-100）"
+        },
+        "health_rating": {
+          "type": "string",
+          "description": "健康度评级：优秀/良好/一般/危险"
+        },
+        "dimension_scores": {
+          "type": "object",
+          "description": "各维度详细评分"
+        }
+      }
+    }
+  },
+  "health_rating_rules": {
+    "excellent": {"min": 90, "max": 100, "emoji": "🟢", "label": "优秀"},
+    "good": {"min": 70, "max": 89, "emoji": "🟡", "label": "良好"},
+    "fair": {"min": 50, "max": 69, "emoji": "🟠", "label": "一般"},
+    "critical": {"min": 0, "max": 49, "emoji": "🔴", "label": "危险"}
+  },
+  "dependencies": {
+    "github": "获取仓库基础数据（Stars、Issues、PRs、Workflows）",
+    "code-review-skill": "执行多维度代码质量审查（正确性/安全性/可维护性/性能）",
+    "card-renderer": "生成可视化诊断卡片（封面卡 + 详情页）",
+    "feishu-wiki": "将诊断报告发布为飞书 Wiki 页面"
+  },
+  "tags": ["github", "code-review", "feishu-wiki", "card-renderer", "devops", "health-check", "automation"],
+  "author": "OpenClaw Agent",
+  "created": "2026-04-21"
+}

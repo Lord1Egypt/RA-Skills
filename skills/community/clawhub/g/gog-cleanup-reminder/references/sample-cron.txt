@@ -1,0 +1,5 @@
+Example host cron entry (outside OpenClaw):
+
+0 9 * * 1 /usr/bin/python3 /path/to/gog_cleanup_reminder.py >> /tmp/gog_cleanup_reminder.log 2>&1
+
+This runs every Monday at 09:00 local time.

@@ -1,0 +1,17 @@
+{
+  "current_step": 3,
+  "total_steps": 10,
+  "last_run": "2026-05-30T09:31:00+08:00",
+  "tasks": [
+    {"id": "H1", "name": "洞察审阅", "description": "检查新洞察，验证候选刺穿句"},
+    {"id": "H2", "name": "升级评估", "description": "评估覆盖度，提出改进建议"},
+    {"id": "H3", "name": "刺穿句优化", "description": "为场景新增刺穿句变体"},
+    {"id": "H4", "name": "诊断映射更新", "description": "新增症状-根源映射"},
+    {"id": "H5", "name": "元提示框架优化", "description": "新增模板和问题"},
+    {"id": "H6", "name": "场景覆盖检查", "description": "找出覆盖空白并补全"},
+    {"id": "H7", "name": "知识库交叉索引", "description": "建立关联，消除冗余"},
+    {"id": "H8", "name": "理论框架更新", "description": "更新理论的实践应用"},
+    {"id": "H9", "name": "质量自检", "description": "模拟回答，检查是否符合标准"},
+    {"id": "H10", "name": "新场景发现", "description": "搜索热点，发现新场景"}
+  ]
+}

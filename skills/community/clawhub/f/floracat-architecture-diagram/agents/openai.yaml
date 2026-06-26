@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architecture Diagram HTML/SVG"
+  short_description: "Create PPT-like architecture diagrams in standalone HTML/SVG."
+  default_prompt: "Use $floracat-architecture-diagram to produce or refine a standalone HTML/SVG architecture diagram with PPT-like styling, precise arrows, and publication-ready readability."

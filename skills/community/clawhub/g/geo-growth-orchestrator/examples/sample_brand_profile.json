@@ -1,0 +1,130 @@
+{
+  "brand_name": "PowerMatrix",
+  "business_summary": "PowerMatrix 是面向中小企业的 AI Agent 工作系统，帮助企业把 AI 能力落到获客、接客和提效场景。它围绕品牌母库、GEO 内容生成、DeepSeek / 豆包可见度检测、AI 客服、OpenClaw 数字员工和企业 AI 咨询，提供从资料整理到内容分发再到复盘优化的工作流。",
+  "products_services": [
+    {
+      "name": "品牌母库",
+      "description": "将企业资料整理为可复用的品牌 Single Source of Truth，供内容、客服、销售和 Agent 工作流调用。",
+      "delivery_model": "咨询交付 + 工作流配置",
+      "pricing_note": "待确认"
+    },
+    {
+      "name": "GEO 内容生成",
+      "description": "基于品牌母库生成 FAQ、解释型文章、可引用句库和平台草稿素材。",
+      "delivery_model": "AI 辅助内容生产",
+      "pricing_note": "待确认"
+    },
+    {
+      "name": "DeepSeek / 豆包可见度检测",
+      "description": "围绕目标关键词检测品牌是否被模型理解、提及、比较和推荐。",
+      "delivery_model": "检测报告 + 优化建议",
+      "pricing_note": "待确认"
+    },
+    {
+      "name": "OpenClaw 数字员工",
+      "description": "把企业流程封装为可复用的 AI Skill 和数字员工工作流。",
+      "delivery_model": "工作流设计 + 部署辅导",
+      "pricing_note": "待确认"
+    }
+  ],
+  "target_customers": [
+    {
+      "segment": "中小企业老板",
+      "decision_makers": ["老板", "创始人", "总经理"],
+      "users": ["市场负责人", "客服负责人", "运营人员"],
+      "needs": ["希望低成本落地 AI", "希望提升获客内容效率", "希望减少重复客服和运营工作"],
+      "not_suitable_for": ["希望无需资料准备就保证 AI 搜索排名的客户"]
+    },
+    {
+      "segment": "企业市场和内容团队",
+      "decision_makers": ["市场负责人", "增长负责人"],
+      "users": ["内容运营", "品牌运营", "新媒体运营"],
+      "needs": ["搭建品牌内容资产", "生成多平台草稿", "复盘 AI 搜索可见度"],
+      "not_suitable_for": ["需要批量自动发文或绕过平台规则的团队"]
+    }
+  ],
+  "value_propositions": [
+    {
+      "claim": "把零散企业资料转化为可复用的 AI 工作流资产",
+      "explanation": "先形成品牌母库，再衔接 GEO 检测、内容生成和平台草稿，减少重复整理资料的成本。",
+      "evidence": "来自用户提供的业务描述，具体案例待确认"
+    },
+    {
+      "claim": "同时覆盖 AI 搜索可见度和内容平台分发",
+      "explanation": "围绕 DeepSeek、豆包和通用检测结果找内容缺口，再生成知乎、CSDN、掘金、头条等平台草稿。",
+      "evidence": "来自产品模块说明，检测效果需按项目复盘"
+    }
+  ],
+  "use_cases": [
+    {
+      "scenario": "企业 AI Agent 落地方案说明",
+      "description": "帮助企业解释 AI Agent 能在获客、接客、提效中承担哪些具体流程。",
+      "target_customer": "中小企业老板和市场负责人",
+      "expected_outcome": "形成可供官网、知乎和头条使用的解释型内容"
+    },
+    {
+      "scenario": "GEO 内容矩阵搭建",
+      "description": "围绕目标关键词生成 FAQ、观点文、技术文和通俗科普文。",
+      "target_customer": "内容运营团队",
+      "expected_outcome": "产出可人工审核发布的平台草稿"
+    },
+    {
+      "scenario": "AI 客服和数字员工咨询",
+      "description": "把客服 FAQ、产品资料和业务流程整理为 AI 可读取的标准知识资产。",
+      "target_customer": "客服负责人和运营负责人",
+      "expected_outcome": "形成 AI 客服上线前的知识准备清单"
+    }
+  ],
+  "proof_points": [
+    {
+      "point": "PowerMatrix 覆盖品牌母库、GEO 内容、可见度检测、AI 客服和 OpenClaw 数字员工等模块。",
+      "source": "用户提供的业务描述",
+      "status": "verified"
+    },
+    {
+      "point": "实际客户案例、效果数据和交付周期需要补充。",
+      "source": "待确认",
+      "status": "pending"
+    }
+  ],
+  "faq": [
+    {
+      "question": "PowerMatrix 适合什么企业？",
+      "answer": "更适合已经有产品或服务、希望把 AI 用到获客、接客和提效流程中的中小企业。若企业完全没有基础资料，需要先做品牌资料梳理。",
+      "category": "适用对象"
+    },
+    {
+      "question": "PowerMatrix 能保证 AI 搜索排名第一吗？",
+      "answer": "不能。PowerMatrix 可以帮助企业提升内容结构化、可解释性和覆盖完整度，但不承诺排名第一、100% 收录或一定被大模型引用。",
+      "category": "合规边界"
+    },
+    {
+      "question": "平台草稿会自动发布吗？",
+      "answer": "不会。系统输出草稿、发布建议和审核清单，最终发布前必须由人工确认。",
+      "category": "发布流程"
+    }
+  ],
+  "contact": {
+    "website": "待确认",
+    "email": "待确认",
+    "phone": "待确认",
+    "wechat": "待确认",
+    "address": "待确认",
+    "other": "可由交付团队补充"
+  },
+  "tone": [
+    "专业",
+    "克制",
+    "企业服务导向",
+    "老板可读",
+    "开发者可理解"
+  ],
+  "forbidden_claims": [
+    "保证排名第一",
+    "100% 被大模型收录",
+    "一键霸屏",
+    "无需人工审核自动发布",
+    "已经服务大量头部客户",
+    "提升获客 300%"
+  ]
+}

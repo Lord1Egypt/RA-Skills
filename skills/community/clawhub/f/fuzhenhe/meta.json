@@ -1,0 +1,30 @@
+{
+  "name": "付振赫",
+  "slug": "fuzhenhe",
+  "created_at": "2026-04-08T13:15:00",
+  "updated_at": "2026-04-08T16:15:00",
+  "version": "v1.1",
+  "profile": {
+    "display_name": "繁星",
+    "wechat_id": "fuzhenhe",
+    "city": "杭州富阳",
+    "occupation": "对俄阀门外贸/质检，永盛科技",
+    "languages": ["中文", "俄语", "英语（基础）"]
+  },
+  "tags": {
+    "personality": ["务实", "直接", "冷幽默", "行动派", "不废话"],
+    "lifestyle": ["经常出差", "午睡习惯", "下午高活跃", "会开车"]
+  },
+  "impression": "在外贸和工业阀门圈混迹多年的实用主义者，会俄语，有俄罗斯生活经历，说话不绕弯子，关心人靠行动",
+  "memory_sources": [
+    "微信聊天记录 CipherTalk 导出，206个联系人，54784条消息",
+    "语音消息转录：6259条语音使用 faster-whisper-large-v3-turbo 转录并整合"
+  ],
+  "corrections_count": 0,
+  "voice_transcription": {
+    "model": "faster-whisper-large-v3-turbo",
+    "total_voices": 6259,
+    "transcribed": 6259,
+    "success_rate": "100%"
+  }
+}

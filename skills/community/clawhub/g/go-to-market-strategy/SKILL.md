@@ -1,35 +1,26 @@
----
-name: "Go-to-Market Strategy Playbook"
-description: "Comprehensive go-to-market strategy guide with planning frameworks, positioning, channel tactics, launch timelines, and post-launch growth for startups and p..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/go-to-market-strategy"
-sourceUrl: "https://clawhub.ai/skills/go-to-market-strategy"
----
-
 # Go-to-Market Strategy Playbook
 
-> Comprehensive go-to-market strategy guide with planning frameworks, positioning, channel tactics, launch timelines, and post-launch growth for startups and p...
+Complete GTM strategy guide for startups and product launches. Real case studies from Manus, Devin, AFFiNE (33k GitHub stars), and 30x Product Hunt #1 launches.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/go-to-market-strategy`
-- **Source URL:** [https://clawhub.ai/skills/go-to-market-strategy](https://clawhub.ai/skills/go-to-market-strategy)
+This skill redirects to the comprehensive **Gingiris Launch Playbook** which covers:
+- Go-to-market planning frameworks
+- Market positioning & messaging
+- Channel strategy (Product Hunt, Reddit, HN, Twitter)
+- Launch timeline & milestone planning
+- Post-launch growth tactics
 
-## Overview
+## Quick Start
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+Read the full playbook:
 ```bash
-hermes skills install clawhub/go-to-market-strategy
+cat ~/.openclaw/skills/gingiris-launch/SKILL.md
 ```
+
+## Resources
+
+- **GitHub**: https://github.com/Gingiris/launch
+- **Full Playbook**: Install `gingiris-launch` from ClawdHub
+
+🇨🇳 GTM 市场进入策略指南 | 🇯🇵 GTM 市場参入戦略ガイド | 🇰🇷 GTM 시장 진입 전략
+
+**Keywords**: go-to-market strategy, GTM strategy, GTM planning, market entry strategy, product positioning, launch strategy, startup GTM, go to market plan, GTM framework, 市场进入策略, GTM 战略

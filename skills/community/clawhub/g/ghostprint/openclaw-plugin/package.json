@@ -1,0 +1,7 @@
+{
+  "name": "@local/ghostprint",
+  "version": "1.0.0",
+  "description": "LLM fingerprint noise injector — depersonalize your usage profile",
+  "main": "index.ts",
+  "type": "module"
+}

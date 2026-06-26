@@ -1,0 +1,271 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "/home/vp/.openclaw/workspace",
+      "models": {
+        "openrouter/google/gemini-2.5-flash-lite": {"alias": "Gemini-2.5-Flash"},
+        "openrouter/auto": {"alias": "OpenRouter"}
+      },
+      "model": {
+        "primary": "openrouter/google/gemini-2.5-flash-lite",
+        "fallbacks": [
+		"openrouter/openai/gpt-oss-120b",
+		"openrouter/openai/gpt-5-nano",
+		"openrouter/deepseek/deepseek-v4-flash",
+		"openrouter/gpt-4o-mini",
+		"openrouter/google/gemma-4-26b-a4b-it",
+		"openrouter/openrouter/auto"
+	]
+      },
+      "heartbeat": {
+        "every": "0s"
+      }
+    }
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "872edbf803c37333bac0945a087af734cd78156a21d5e154"
+    },
+    "port": 18789,
+    "bind": "loopback",
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "controlUi": {
+      "allowInsecureAuth": true
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send",
+        "sms.search"
+      ]
+    }
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "tools": {
+    "profile": "coding",
+    "web": {
+      "search": {
+        "enabled": true,
+        "openaiCodex": {}
+      },
+      "fetch": {
+        "enabled": false
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "openrouter": {
+        "enabled": true
+      },
+      "telegram": {
+        "enabled": true
+      },
+      "google": {
+        "enabled": true,
+        "config": {
+          "webSearch": {
+            "apiKey": "AIzaSyCHQVt-SZn4gHuyeiEjiX4omexRog_T4DY"
+          }
+        }
+      },
+      "brave": {
+        "config": {
+          "webSearch": {
+            "apiKey": "brave-free"
+          }
+        }
+      },
+    }
+  },
+  "auth": {
+    "profiles": {
+      "openrouter:default": {
+        "provider": "openrouter",
+        "mode": "api_key"
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "groups": {
+        "*": {
+          "requireMention": true
+        }
+      },
+      "botToken": "8762299297:AAHxt3hve36c31mT9kiIsgAINz06rvc63_I"
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-05-05T19:59:12.680Z",
+    "lastRunVersion": "2026.5.3-1",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.5.3-1",
+    "lastTouchedAt": "2026-05-12T18:26:29.684Z"
+  },
+  "commands": {
+    "ownerAllowFrom": [
+      "telegram:8612962104"
+    ]
+  },
+  "messages": {
+    "groupChat": {
+      "visibleReplies": "message_tool"
+    }
+  },
+  "skills": {
+    "entries": {
+      "1password": {
+        "enabled": false
+      },
+      "apple-notes": {
+        "enabled": false
+      },
+      "apple-reminders": {
+        "enabled": false
+      },
+      "bear-notes": {
+        "enabled": false
+      },
+      "blogwatcher": {
+        "enabled": false
+      },
+      "blucli": {
+        "enabled": false
+      },
+      "bluebubbles": {
+        "enabled": false
+      },
+      "camsnap": {
+        "enabled": false
+      },
+      "clawhub": {
+        "enabled": false
+      },
+      "coding-agent": {
+        "enabled": false
+      },
+      "discord": {
+        "enabled": false
+      },
+      "eightctl": {
+        "enabled": false
+      },
+      "gemini": {
+        "enabled": false
+      },
+      "gh-issues": {
+        "enabled": false
+      },
+      "gifgrep": {
+        "enabled": false
+      },
+      "github": {
+        "enabled": false
+      },
+      "gog": {
+        "enabled": false
+      },
+      "goplaces": {
+        "enabled": false
+      },
+      "himalaya": {
+        "enabled": false
+      },
+      "imsg": {
+        "enabled": false
+      },
+      "mcporter": {
+        "enabled": false
+      },
+      "model-usage": {
+        "enabled": false
+      },
+      "nano-pdf": {
+        "enabled": false
+      },
+      "notion": {
+        "enabled": false
+      },
+      "obsidian": {
+        "enabled": false
+      },
+      "openai-whisper": {
+        "enabled": false
+      },
+      "openai-whisper-api": {
+        "enabled": false
+      },
+      "openhue": {
+        "enabled": false
+      },
+      "oracle": {
+        "enabled": false
+      },
+      "ordercli": {
+        "enabled": false
+      },
+      "peekaboo": {
+        "enabled": false
+      },
+      "sag": {
+        "enabled": false
+      },
+      "session-logs": {
+        "enabled": false
+      },
+      "sherpa-onnx-tts": {
+        "enabled": false
+      },
+      "slack": {
+        "enabled": false
+      },
+      "songsee": {
+        "enabled": false
+      },
+      "sonoscli": {
+        "enabled": false
+      },
+      "spotify-player": {
+        "enabled": false
+      },
+      "summarize": {
+        "enabled": false
+      },
+      "things-mac": {
+        "enabled": false
+      },
+      "trello": {
+        "enabled": false
+      },
+      "video-frames": {
+        "enabled": false
+      },
+      "voice-call": {
+        "enabled": false
+      },
+      "wacli": {
+        "enabled": false
+      },
+      "xurl": {
+        "enabled": false
+      }
+    }
+  },
+}

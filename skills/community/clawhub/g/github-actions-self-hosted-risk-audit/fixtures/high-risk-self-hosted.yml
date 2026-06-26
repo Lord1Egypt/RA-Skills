@@ -1,0 +1,13 @@
+name: high-risk-self-hosted
+on:
+  pull_request_target:
+  issue_comment:
+
+permissions: write-all
+
+jobs:
+  verify:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "run tests"

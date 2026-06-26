@@ -1,0 +1,25 @@
+{
+  "name": "football-predictor",
+  "version": "1.0.0",
+  "description": "足球预测与分析Agent",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "analyze": "node index.js",
+    "today": "node index.js 今日推荐",
+    "learn": "node index.js 学习",
+    "stats": "node index.js 统计"
+  },
+  "keywords": [
+    "football",
+    "prediction",
+    "betting",
+    "sports",
+    "analytics"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.13.6"
+  }
+}

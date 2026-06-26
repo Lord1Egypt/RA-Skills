@@ -1,0 +1,4 @@
+interface:
+  display_name: "模型可执行测试用例生成器"
+  short_description: "生成标准化 JSON 测试用例，可直接交给模型执行自动化测试"
+  default_prompt: "使用 $generate-model-ready-test-cases-cn，根据需求、原型或接口说明生成可直接执行的自动化测试用例。"

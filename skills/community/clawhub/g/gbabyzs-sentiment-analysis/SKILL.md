@@ -1,35 +1,37 @@
----
-name: "Sentiment Analysis"
-description: "Analyze social media sentiment related to stocks, providing sentiment scores, trend changes, discussion heat, and bot detection."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gbabyzs-sentiment-analysis"
-sourceUrl: "https://clawhub.ai/skills/gbabyzs-sentiment-analysis"
----
+# Sentiment Analysis - 情绪分析工具
 
-# Sentiment Analysis
+## 功能说明
 
-> Analyze social media sentiment related to stocks, providing sentiment scores, trend changes, discussion heat, and bot detection.
+分析股票相关社交媒体情绪，包括股吧、雪球评论。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gbabyzs-sentiment-analysis`
-- **Source URL:** [https://clawhub.ai/skills/gbabyzs-sentiment-analysis](https://clawhub.ai/skills/gbabyzs-sentiment-analysis)
+## 核心功能
 
-## Overview
+### 情绪指标
+- 情绪指数 (0-100)
+- 看涨/看跌比例
+- 情绪趋势变化
 
+### 热度分析
+- 讨论热度
+- 关注度变化
+- 舆情传播路径
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 水军识别
+- 异常评论检测
+- 机器人账号识别
+- 真实情绪过滤
+
+## 使用示例
+
+```python
+from sentiment_analysis import analyze_stock_sentiment
+
+# 分析情绪
+sentiment = analyze_stock_sentiment(stock_code="300308")
+```
+
+## 安装依赖
+
 ```bash
-hermes skills install clawhub/gbabyzs-sentiment-analysis
+pip install akshare pandas numpy jieba snownlp
 ```

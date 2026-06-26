@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://powermatrix.local/schemas/geo_gap_matrix.schema.json",
+  "title": "GEO Gap Matrix",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "brand_name",
+    "target_market",
+    "models_compared",
+    "gaps"
+  ],
+  "properties": {
+    "brand_name": {
+      "type": "string"
+    },
+    "target_market": {
+      "type": "string"
+    },
+    "models_compared": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "gap_id",
+          "scenario",
+          "gap_type",
+          "description",
+          "source_models",
+          "business_impact",
+          "priority",
+          "recommended_action"
+        ],
+        "properties": {
+          "gap_id": {
+            "type": "string"
+          },
+          "scenario": {
+            "type": "string",
+            "enum": [
+              "spontaneous_recommendation",
+              "competitor_comparison",
+              "buying_guide",
+              "direct_brand_awareness",
+              "price_and_channel",
+              "localized_consumption",
+              "xiaohongshu_douyin_seeding",
+              "local_supply_chain",
+              "other"
+            ]
+          },
+          "gap_type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "source_models": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence_level": {
+            "type": "string",
+            "enum": [
+              "verified_live_check",
+              "manual_check",
+              "inferred_estimate",
+              "unverified_assumption"
+            ]
+          },
+          "business_impact": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "recommended_action": {
+            "type": "string"
+          },
+          "required_client_inputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

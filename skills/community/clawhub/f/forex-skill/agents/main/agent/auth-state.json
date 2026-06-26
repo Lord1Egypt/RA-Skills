@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "lastGood": {
+    "openrouter": "openrouter:default"
+  },
+  "usageStats": {
+    "openrouter:default": {
+      "errorCount": 0,
+      "lastUsed": 1778727808601
+    }
+  }
+}

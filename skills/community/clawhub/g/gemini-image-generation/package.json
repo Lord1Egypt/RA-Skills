@@ -1,0 +1,8 @@
+{
+  "name": "gemini-image-generation",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@google/genai": "^1.44.0"
+  }
+}

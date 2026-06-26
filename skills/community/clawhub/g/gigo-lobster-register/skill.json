@@ -1,0 +1,22 @@
+{
+  "name": "gigo-lobster-register",
+  "entry": "run_register.py",
+  "runtime": "python",
+  "python_version": "3.11",
+  "triggers": {
+    "zh": [
+      "注册龙虾结果页",
+      "分享我的龙虾",
+      "龙虾上分享页但不上榜",
+      "只注册龙虾分享页",
+      "龙虾分享页"
+    ],
+    "en": [
+      "register lobster share page",
+      "share my lobster without leaderboard",
+      "lobster share only",
+      "register lobster result page",
+      "share lobster result"
+    ]
+  }
+}

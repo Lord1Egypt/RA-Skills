@@ -1,0 +1,22 @@
+{
+  "name": "gcoord-skill",
+  "version": "1.1.0",
+  "description": "Claude Code skill for converting geographic coordinates between WGS84/GCJ02/BD09 systems",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "claude-code-skill",
+    "coordinate",
+    "gcoord",
+    "wgs84",
+    "gcj02",
+    "bd09"
+  ],
+  "dependencies": {
+    "gcoord": "^1.0.7"
+  },
+  "author": "zhangyuting",
+  "license": "MIT"
+}

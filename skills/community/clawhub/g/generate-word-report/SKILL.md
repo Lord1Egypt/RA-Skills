@@ -1,35 +1,138 @@
 ---
-name: "生成每日金融市场 Word 日报"
-description: "根据采集的市场数据，直接生成每日金融市场 Word 日报（无模板依赖版）。 当用户要求"生成 Word 日报"、"生成日报 Word 文件"、"生成报告"、 或触发"生成每日金融日报"流程的第二步时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/generate-word-report"
-sourceUrl: "https://clawhub.ai/skills/generate-word-report"
+name: generate-word-report
+description: >
+  根据采集的市场数据，直接生成每日金融市场 Word 日报（无模板依赖版）。
+  当用户要求"生成 Word 日报"、"生成日报 Word 文件"、"生成报告"、
+  或触发"生成每日金融日报"流程的第二步时使用。
 ---
 
-# 生成每日金融市场 Word 日报
+# Word 报告生成 Skill（无模板依赖版）
 
-> 根据采集的市场数据，直接生成每日金融市场 Word 日报（无模板依赖版）。 当用户要求"生成 Word 日报"、"生成日报 Word 文件"、"生成报告"、 或触发"生成每日金融日报"流程的第二步时使用。
+**配置来源**：`workspace-yoyo/config.py`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/generate-word-report`
-- **Source URL:** [https://clawhub.ai/skills/generate-word-report](https://clawhub.ai/skills/generate-word-report)
+## 核心变更
 
-## Overview
+- **不依赖 M1.docx 模板**，直接用 `python-docx` 从零构建文档
+- 文档结构由模板段落序号驱动 → 由代码逻辑控制，段落位置完全可控
+- 每次运行生成**结构一致**的文档，不受模板文件修改影响
 
+## 输出路径
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/generate-word-report
+- 输出目录：`E:\daily\{YYYY-MM-DD}\`
+- 输出文件：`金融市场日报_{YYYYMMDD}.docx`
+
+## 文档结构
+
 ```
+金融市场日报 {YYYY年MM月DD日}
+报告日期：{REPORT_DATE}　　数据截至：{DATA_DATE}
+
+一、隔夜环球市场总结
+    （纯文字，无任何数字）
+
+二、市场表现方面
+    2.1  美国
+        · 美股（含市场结构 + 重要个股与板块动态）
+        · 美国经济情况
+        · 美债
+        · 美元指数
+        · 美国就业市场情况
+    2.2  中国及中国香港
+        · A股
+        · 港股
+    2.3  黄金
+
+三、政策方面
+    · 美国政策
+    · 欧洲政策
+    · 中国政策
+
+四、科技方面
+    · 每条新闻独立成段
+
+五、其他市场
+    · 欧洲股市
+    · 欧元区经济
+    · 亚太市场
+
+六、今日关注经济数据
+```
+
+## 数字格式规范
+
+| 类型 | 格式 | 示例 |
+|------|------|------|
+| 股指价格 | 统一保留两位小数 | 道指跌0.77%报49230.71点 |
+| 黄金价格 | 每盎司X美元，保留两位小数 | 每盎司4708.60美元 |
+| 美债收益率 | 保留两位小数 | 跌0.69个基点至4.31% |
+| 美元指数 | 保留两位小数 | 美元指数涨0.33%报98.38 |
+
+## 隔夜环球市场总结
+
+直接使用 `market_data.json` 中的完整 `环球市场速览.段落列表`（由 collect-market-data 生成）。
+
+**格式要求**：
+- 综合结论（"综合来看，全球主要市场..."）**必须放在最前面**
+- 后续展开说明各市场表现（美股、A股、港股、人民币、宏观数据、政策、市场情绪等）
+- **严禁出现任何数字**（百分比、价格、点数、基点均不可）
+- 采用定性描述：如"小幅收涨"、"整体承压"、"基本持平"
+
+**生成逻辑**（`build_global_summary`）：
+```python
+summary_data = mdata.get('环球市场速览', {})
+paragraphs = summary_data.get('段落列表', [])
+if paragraphs:
+    return "\n".join(paragraphs)  # 直接使用速览，不加工
+```
+
+如 market_data.json 中无环球市场速览数据，回退到原有合成逻辑。
+
+## 样式规范
+
+| 元素 | 字体 | 字号 | 颜色 |
+|------|------|------|------|
+| 文档标题 | 微软雅黑 | 18pt | 深蓝 #1F497D |
+| 一级标题 | 微软雅黑 | 14pt 加粗 | 深蓝 #1F497D |
+| 二级标题 | 微软雅黑 | 12pt 加粗 | 中蓝 #2E74B5 |
+| 三级标题 | 微软雅黑 | 10.5pt 加粗 | 黑色 |
+| 正文 | 微软雅黑 | 10.5pt | 黑色 |
+| 副标题/日期 | 微软雅黑 | 9pt | 灰色 #606060 |
+
+## 数字格式规范（市场表现部分）
+
+| 类型 | 格式 | 示例 |
+|------|------|------|
+| 股指涨跌 | 涨跌%报点数 | 道指跌0.77%报49,553点 |
+| 黄金价格 | 每盎司X美元 | 每盎司4,738.50美元 |
+| 美债收益率 | 涨跌X.XX个基点 | 跌0.69个基点至4.5218% |
+| 美元指数 | 美元指数涨0.33%报98.38 | — |
+
+## 涨跌文字规范
+
+- change > 0 → 涨/收涨/上涨/涨
+- change < 0 → 跌/收跌/下跌/跌
+- change ≈ 0 → 持稳/收盘持稳
+- 三大指数同向 → 集体收涨/集体收跌
+- 方向不一致 → 涨跌不一
+
+## 政策部分内容策略
+
+- **优先使用 `内容` 字段**：若内容字段疑似乱码（混入大量全角空格\u3000 或控制字符），则回退到 `标题` 字段
+- **清理媒体来源后缀**：标题末尾的 `_媒体名1_媒体名2` 模式会被正则去除（例如 `_财经头条__新浪财经` → 清洁标题）
+- **内容损坏判断**：全角空格>5个且占总字符>5%，或含连续不可打印ASCII字符 → 判定为乱码
+
+## 关键约束
+
+1. **隔夜环球市场总结**：严禁出现任何数字（百分比、价格、点数均不可）
+2. **内容生成函数**与**文档构建**完全解耦，新增模块只需在 `DocBuilder` 中添加方法
+3. **数据来源**：`E:\daily\{YYYY-MM-DD}\market_data.json`
+
+## 脚本
+
+执行：`scripts/generate_word.py`
+
+流程：
+1. 读取 `market_data.json`
+2. 调用各 `build_*()` 函数构建各模块内容
+3. 通过 `DocBuilder` 按文档结构顺序写入内容
+4. 保存为 `金融市场日报_{YYYYMMDD}.docx`

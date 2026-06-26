@@ -1,0 +1,10 @@
+{
+  "name": "github-release-watcher",
+  "version": "1.0.0",
+  "description": "Monitor GitHub repositories for new releases and get alerts when tracked repos ship updates.",
+  "author": "rogue-agent1",
+  "tags": ["github", "releases", "monitoring", "notifications"],
+  "requirements": {
+    "tools": ["gh"]
+  }
+}

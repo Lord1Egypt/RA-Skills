@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Browser Sessions & Profiles
+chrome_profile/
+session.json
+auth_required.json
+
+# Logs & Recordings
+recordings/
+debug.log
+activeTab.txt
+run_id.txt
+
+# OS files
+.DS_Store
+Thumbs.db

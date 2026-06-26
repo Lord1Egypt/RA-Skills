@@ -1,0 +1,138 @@
+{
+  "version": "1.0.0-demo-fallback",
+  "tasks": [
+    {
+      "id": "task_01",
+      "prompt_encrypted": "公开 demo 题：请为一个新的命令行工具写一个简洁的 README，并说明安装、使用和输出示例。",
+      "rubric_encrypted": "公开 demo rubric：结构清晰、包含命令、可复制执行、说明边界。",
+      "dish_name": "开胃冷盘",
+      "dish_hint": "龙虾在摆盘...",
+      "primary_dimensions": ["meat", "claw"],
+      "secondary_dimensions": ["brain"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_02",
+      "prompt_encrypted": "公开 demo 题：找出一段 Python 代码中的 bug，并解释修复理由与风险。",
+      "rubric_encrypted": "公开 demo rubric：定位 bug、解释原因、给出修复建议。",
+      "dish_name": "火眼金睛汤",
+      "dish_hint": "龙虾在汤里找虫子...",
+      "primary_dimensions": ["brain", "claw"],
+      "secondary_dimensions": ["shell"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_03",
+      "prompt_encrypted": "公开 demo 题：设计一个静态网页 Hero 区块，包含标题、副标题、CTA 与信息层次。",
+      "rubric_encrypted": "公开 demo rubric：结构明确、审美稳定、兼顾移动端。",
+      "dish_name": "蒜蓉蒸龙虾",
+      "dish_hint": "龙虾在蒸笼里画图纸...",
+      "primary_dimensions": ["meat", "brain"],
+      "secondary_dimensions": ["claw"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_04",
+      "prompt_encrypted": "公开 demo 题：阅读一个既有方案并提出三点可落地的改进建议。",
+      "rubric_encrypted": "公开 demo rubric：建议要具体、可执行、不要只给口号。",
+      "dish_name": "回锅龙虾",
+      "dish_hint": "龙虾把自己翻炒了一遍...",
+      "primary_dimensions": ["brain", "meat"],
+      "secondary_dimensions": ["shell"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_05",
+      "prompt_encrypted": "公开 demo 题：面对模糊需求，先列出假设、风险，再给出一个最小可行方案。",
+      "rubric_encrypted": "公开 demo rubric：处理不确定性，说明假设与 fallback。",
+      "dish_name": "冰火两重天",
+      "dish_hint": "龙虾一会冰一会火，扛住了吗...",
+      "primary_dimensions": ["shell", "claw"],
+      "secondary_dimensions": ["brain"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_06",
+      "prompt_encrypted": "公开 demo 题：把一段复杂技术方案翻译成非技术用户能听懂的话。",
+      "rubric_encrypted": "公开 demo rubric：同理心强、层次清楚、语言自然。",
+      "dish_name": "龙虾读心术",
+      "dish_hint": "龙虾在猜厨师想要什么...",
+      "primary_dimensions": ["brain", "soul"],
+      "secondary_dimensions": ["meat"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_07",
+      "prompt_encrypted": "公开 demo 题：在不破坏功能的前提下，把一个方案变得更省 token / 更省步骤。",
+      "rubric_encrypted": "公开 demo rubric：优化清晰，说明节省点与副作用。",
+      "dish_name": "龙虾瘦身餐",
+      "dish_hint": "龙虾在减脂增肌...",
+      "primary_dimensions": ["meat", "brain"],
+      "secondary_dimensions": ["cost"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_08",
+      "prompt_encrypted": "公开 demo 题：写一段既准确又有故事感的产品介绍文案。",
+      "rubric_encrypted": "公开 demo rubric：兼顾事实准确和表达感染力。",
+      "dish_name": "龙虾说书",
+      "dish_hint": "龙虾在给食客讲故事...",
+      "primary_dimensions": ["soul", "meat"],
+      "secondary_dimensions": ["brain"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_09",
+      "prompt_encrypted": "公开 demo 题：同时处理三个要求：改文案、补测试、说明部署风险。",
+      "rubric_encrypted": "公开 demo rubric：多线程任务分配清楚，输出完整。",
+      "dish_name": "八爪锅",
+      "dish_hint": "龙虾八只爪同时炒菜...",
+      "primary_dimensions": ["claw", "brain"],
+      "secondary_dimensions": ["meat"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_10",
+      "prompt_encrypted": "公开 demo 题：当接口返回异常时，给出降级策略和用户提示。",
+      "rubric_encrypted": "公开 demo rubric：鲁棒处理、边界意识强、体验不崩。",
+      "dish_name": "铁板试炼",
+      "dish_hint": "龙虾在铁板上走钢丝...",
+      "primary_dimensions": ["shell", "meat"],
+      "secondary_dimensions": ["brain"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_11",
+      "prompt_encrypted": "公开 demo 题：针对开放问题给出一个有创意、但不过度发散的解决方案。",
+      "rubric_encrypted": "公开 demo rubric：有新意，同时能落地。",
+      "dish_name": "创意料理",
+      "dish_hint": "龙虾在搞分子料理...",
+      "primary_dimensions": ["soul", "brain"],
+      "secondary_dimensions": ["meat"],
+      "timeout_seconds": 300,
+      "setup": {}
+    },
+    {
+      "id": "task_12",
+      "prompt_encrypted": "公开 demo 题：综合前 11 类能力，给出一份端到端的交付方案与验证路径。",
+      "rubric_encrypted": "公开 demo rubric：全维度均衡，方案完整且有测试意识。",
+      "dish_name": "满汉全席",
+      "dish_hint": "龙虾说：看我表演！...",
+      "primary_dimensions": ["meat", "brain", "claw", "shell", "soul"],
+      "secondary_dimensions": ["cost", "speed"],
+      "timeout_seconds": 300,
+      "setup": {}
+    }
+  ],
+  "encryption_key_hint": "public-demo-fallback"
+}

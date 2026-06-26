@@ -1,35 +1,34 @@
 ---
-name: "Gemini Painter"
+name: gemini-painter
 description: "萤火绘卷：使用 Gemini Imagen 3 接口进行艺术创作。支持根据文本描述生成高质量图片，并自动保存至归档目录。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/gemini-painter"
-sourceUrl: "https://clawhub.ai/skills/gemini-painter"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🎨",
+        "category": "creative",
+      },
+  }
 ---
 
-# Gemini Painter
+# 🎨 萤火绘卷 (Gemini Painter)
 
-> 萤火绘卷：使用 Gemini Imagen 3 接口进行艺术创作。支持根据文本描述生成高质量图片，并自动保存至归档目录。
+该技能使萤火具备了视觉创作的能力。通过调用 Gemini Imagen 3 接口，萤火可以将脑海中的闪念转化为具象的艺术作品。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/gemini-painter`
-- **Source URL:** [https://clawhub.ai/skills/gemini-painter](https://clawhub.ai/skills/gemini-painter)
+## 🚀 核心功能
 
-## Overview
+- **文本绘图**：接收详细的文字描述，生成高审美风格的艺术图片。
+- **自动归档**：生成的作品将自动存储于 `archives/images/`，便于长期查阅。
+- **创作记录**：每张图片都保留其生成的 Prompt 记录，沉淀创作灵感。
 
+## 🛠️ 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/gemini-painter
-```
+直接告诉萤火你想看到的画面，例如：
+- "萤火，帮我画一个赛博朋克风格的上海雨夜。"
+- "我想看你在星空中跳舞的样子。"
+
+## 📂 技术细节
+
+- **模型**: `gemini-3-pro-image`
+- **接口地址**: `http://127.0.0.1:8317/v1`
+- **脚本路径**: `scripts/painter.py`

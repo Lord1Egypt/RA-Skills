@@ -1,0 +1,37 @@
+{
+  "ticker": "NVDA",
+  "market": "US",
+  "provider": "yahoo",
+  "statement_frequency": "A",
+  "valuation_model": "three_stage",
+  "normalization": {
+    "provider": "yahoo",
+    "use_cache": true,
+    "refresh": false
+  },
+  "sensitivity": {
+    "enabled": true
+  },
+  "assumptions": {
+    "effective_tax_rate": 0.17,
+    "marginal_tax_rate": 0.21,
+    "risk_free_rate": 0.043,
+    "equity_risk_premium": 0.05,
+    "beta": 1.35,
+    "pre_tax_cost_of_debt": 0.043,
+    "equity_weight": 0.95,
+    "debt_weight": 0.05,
+    "terminal_growth_rate": 0.03,
+    "stage1_growth_rate": 0.255,
+    "stage1_years": 5,
+    "stage2_end_growth_rate": 0.11,
+    "stage2_years": 5,
+    "stage2_decay_mode": "linear"
+  },
+  "fundamentals": {
+    "fcff_anchor": 97000000000.0,
+    "fcff_anchor_method": "manual_input",
+    "net_debt": -35000000000.0,
+    "shares_out": 24400000000.0
+  }
+}

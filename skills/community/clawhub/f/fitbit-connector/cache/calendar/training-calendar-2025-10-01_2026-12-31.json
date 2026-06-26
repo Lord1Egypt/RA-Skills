@@ -1,0 +1,294 @@
+{
+  "events": [
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:36.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n29-10-25\nDeadlifts: 60kg 5,5 90kg 5 115kg 3 140kg 2 160kg 3 140kg 5,5\nBench press: 20kg 5,5, 40kg 5, 60kg 5, 70kg 5, 80kg 5,5,5\nLast rep of the last set of bench press was a limit rep.",
+      "end": {
+        "date": "2025-10-30"
+      },
+      "etag": "\"3547709406569918\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=MGtpdnFvMGc1NXAwbnI2N3FhaDBhYmlpbXMgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "0kivqo0g55p0nr67qah0abiims@google.com",
+      "id": "0kivqo0g55p0nr67qah0abiims",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2025-10-29"
+      },
+      "status": "confirmed",
+      "summary": "Training — Deadlift + Bench",
+      "updated": "2026-03-18T17:25:03.284Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:37.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n5-11-25\nDeadlifts:\n60kg 5,5 90kg 5 120kg 3, 140kg 2, 165kg 5, 145kg 5,5\nCable-chins: 60kg 5,5 70kg 5 80kg 5 90kg 5max,5,5fail",
+      "end": {
+        "date": "2025-11-06"
+      },
+      "etag": "\"3547712109219390\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=cnY5MHQycGV2MW0wbzRydTRkbGo0YjZnYmMgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "rv90t2pev1m0o4ru4dlj4b6gbc@google.com",
+      "id": "rv90t2pev1m0o4ru4dlj4b6gbc",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2025-11-05"
+      },
+      "status": "confirmed",
+      "summary": "Training — Deadlift + Cable-Chins",
+      "updated": "2026-03-18T17:47:34.609Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:38.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n6-11-25\nBench:\n20kg 5,5 40kg 5 60kg 5 70kg 5 75kg 5 80kg 5,5,5max",
+      "end": {
+        "date": "2025-11-07"
+      },
+      "etag": "\"3547709145388798\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=cjMxN2Y2dTZndmR1aDRpbW5iazF1a3FjcjAgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "r317f6u6gvduh4imnbk1ukqcr0@google.com",
+      "id": "r317f6u6gvduh4imnbk1ukqcr0",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2025-11-06"
+      },
+      "status": "confirmed",
+      "summary": "Training — Bench",
+      "updated": "2026-03-18T17:22:52.694Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:38.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n12-11-25\nLat pulldown machine (technogym)\n40kg 10 60kg 12 80kg 10 100kg 8,8,8\nSets at 100kg were done until form breakdown was inevitable\n— this machine looks like a seesaw design. The weights above are the weights I put on the machine, but it feels super light, not sure if I’m pulling on that actual weight or not…\nNow I’m going for treadmill…",
+      "end": {
+        "date": "2025-11-13"
+      },
+      "etag": "\"3547711388528126\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=NWtqNXI4Y2I1aHFtbmU1NTJnbXZjb2dvMWMgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "5kj5r8cb5hqmne552gmvcogo1c@google.com",
+      "id": "5kj5r8cb5hqmne552gmvcogo1c",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2025-11-12"
+      },
+      "status": "confirmed",
+      "summary": "Training — Lat Pulldown + Treadmill",
+      "updated": "2026-03-18T17:41:34.264Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:39.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n15-12-2025\nSquat: 20kg 5,5 50kg 5 100kg 5\nChin-ups: 60kg 10, 70kg 8, 80kg 4,5,5",
+      "end": {
+        "date": "2025-12-16"
+      },
+      "etag": "\"3547712110648478\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=dXRmbGlwYTQxN2c3cHZ2Zm81YXJ2cmM5bjAgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "utflipa417g7pvvfo5arvrc9n0@google.com",
+      "id": "utflipa417g7pvvfo5arvrc9n0",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2025-12-15"
+      },
+      "status": "confirmed",
+      "summary": "Training — Squat + Cable-Chins",
+      "updated": "2026-03-18T17:47:35.324Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:40.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n30-12-25\nDeadlifts: 60kg 5,5 80kg 5 100kg 5 120kg 5,5,5\nOverhead press:\n20kg 5,5 25kg 5 30kg 5 35kg 5,5,7 (last 3 reps with hips ie. Press 2.0)\nChins: 55kg 10 60kg 10 65kg 10 70kg 10 75kg 8",
+      "end": {
+        "date": "2025-12-31"
+      },
+      "etag": "\"3547709411380318\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=aHVjcW5ob2o1ODBzMDhyOW4wNXB0OGcybW8gMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "hucqnhoj580s08r9n05pt8g2mo@google.com",
+      "id": "hucqnhoj580s08r9n05pt8g2mo",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2025-12-30"
+      },
+      "status": "confirmed",
+      "summary": "Training — Deadlift + Press + Chins",
+      "updated": "2026-03-18T17:25:05.690Z"
+    },
+    {
+      "created": "2026-03-18T17:41:45.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n2-1-2025\n\nSquats:\n\n20kg 5,5 40kg 5, 60kg 5, 80kg 5, 100kg 5,5,5\n\nBench:\n\n20kg 10,5 30kg 5 40kg 5 60kg 5 70kg 5\n72.5kg 5 75kg 5,5\n\nCable-chins:\n\n55kg 5, 65kg 5 75kg 5 85kg 5 90kg 5,5 85kg \n\nNOTE: Apple Note title says 2-1-2025, but note creation date is 2026-01-02; imported here under 2026-01-02 as likely intended training date.",
+      "end": {
+        "date": "2026-01-03"
+      },
+      "etag": "\"3547712112724542\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=cnJjMm5zMmo2Mm1mZmswZzI1ZDdnOW92djQgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "rrc2ns2j62mffk0g25d7g9ovv4@google.com",
+      "id": "rrc2ns2j62mffk0g25d7g9ovv4",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-01-02"
+      },
+      "status": "confirmed",
+      "summary": "Training — Squat + Bench + Cable-Chins",
+      "updated": "2026-03-18T17:47:36.362Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:40.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n4-1-2026\nSquats:\n20kg 5,5 50kg 5 80kg 3 100kg 2 110kg 5,5,5\nPress:\n20kg 5,5 25kg 5 30kg 5 35kg 3 37.5kg 5,5,5\nDeadlift:\n60kg 5,5 80kg 5 100kg 3 120kg 2 130kg 5",
+      "end": {
+        "date": "2026-01-05"
+      },
+      "etag": "\"3547711635409694\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=cmFzNW5vNHNubTZxNzVyZmQ0bDdwbWF2NDggMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "ras5no4snm6q75rfd4l7pmav48@google.com",
+      "id": "ras5no4snm6q75rfd4l7pmav48",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-01-04"
+      },
+      "status": "confirmed",
+      "summary": "Training — Squat + Press + Deadlift",
+      "updated": "2026-03-18T17:43:37.704Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:41.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n7-1-2026\nCable row: 45kg 10 55kg 10 60kg 5 70kg 7,\nSquats:\n20kg 5,5 40kg 5 60kg 5 80kg 5 100kg 3 107.5 5,5,5\nBench:\n20kg 5,5 30kg 5 40kg 5 50kg 5 65kg 3 75kg 5 77.5kg 5,4 75kg 5",
+      "end": {
+        "date": "2026-01-08"
+      },
+      "etag": "\"3547712114207742\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=MGZvZmgwNTI0YTRodHIxdmMwZ3NsaDJicTggMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "0fofh0524a4htr1vc0gslh2bq8@google.com",
+      "id": "0fofh0524a4htr1vc0gslh2bq8",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-01-07"
+      },
+      "status": "confirmed",
+      "summary": "Training — Cable-Row + Squat + Bench",
+      "updated": "2026-03-18T17:47:37.103Z"
+    },
+    {
+      "colorId": "8",
+      "created": "2026-03-18T17:19:42.000Z",
+      "creator": {
+        "email": "joaodriessen@gmail.com"
+      },
+      "description": "SOURCE: Apple Notes / Workouts\n\n14-1-2026\nCable-chins: 50kg 5, 60kg 5, 70kg 5 75kg 8,8,10",
+      "end": {
+        "date": "2026-01-15"
+      },
+      "etag": "\"3547712115990878\"",
+      "eventType": "default",
+      "htmlLink": "https://www.google.com/calendar/event?eid=dWhxaWIwdWtzdGs3Z3IzMDMxYjA5bWVnYTQgMGQxOGU3YWRkNmFkMGZhZTYzYTU5NGU4ZGVhOTUyODM0MTExNDJlZDAxYzZlMWEzNWVhYjZjNWExMDVkYzNlYkBn",
+      "iCalUID": "uhqib0ukstk7gr3031b09mega4@google.com",
+      "id": "uhqib0ukstk7gr3031b09mega4",
+      "kind": "calendar#event",
+      "organizer": {
+        "displayName": "Training",
+        "email": "0d18e7add6ad0fae63a594e8dea95283411142ed01c6e1a35eab6c5a105dc3eb@group.calendar.google.com",
+        "self": true
+      },
+      "reminders": {},
+      "start": {
+        "date": "2026-01-14"
+      },
+      "status": "confirmed",
+      "summary": "Training — Cable-Chins",
+      "updated": "2026-03-18T17:47:37.995Z"
+    }
+  ],
+  "nextPageToken": "EiwKKhIoCgYI8JybywYSHgocChp1aHFpYjB1a3N0azdncjMwMzFiMDltZWdhNMA-AQ=="
+}

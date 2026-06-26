@@ -1,35 +1,23 @@
 ---
-name: "Git Hooks Generator"
-description: "生成 Git hooks 脚本，自动格式化代码、检查 lint、运行测试等。"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, devops, git, hooks]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/git-hooks-generator"
-sourceUrl: "https://clawhub.ai/skills/git-hooks-generator"
+name: git-hooks-generator
+description: 生成 Git hooks 脚本，自动格式化代码、检查 lint、运行测试等。
+metadata: {"clawdbot":{"emoji":"🪝","requires":{},"primaryEnv":""}}
 ---
 
 # Git Hooks Generator
 
-> 生成 Git hooks 脚本，自动格式化代码、检查 lint、运行测试等。
+自动生成 Git hooks，提升开发效率。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/git-hooks-generator`
-- **Source URL:** [https://clawhub.ai/skills/git-hooks-generator](https://clawhub.ai/skills/git-hooks-generator)
+## 功能
 
-## Overview
+- ✅ pre-commit 格式化
+- ✅ commit-msg 规范检查
+- ✅ pre-push 测试检查
+- ✅ 多种语言支持
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/git-hooks-generator
+git-hooks-generator init
+git-hooks-generator add --hook pre-commit --type lint
 ```

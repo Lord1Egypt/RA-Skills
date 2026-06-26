@@ -1,0 +1,15 @@
+{
+  "name": "gamified-habits",
+  "version": "1.0.0",
+  "description": "游戏化习惯养成 OpenClaw Skill",
+  "main": "src/index.js",
+  "bin": {
+    "habits": "./bin/habits.js"
+  },
+  "scripts": {
+    "test": "node bin/habits.js test"
+  },
+  "keywords": ["habits", "gamification", "openclaw", "skill"],
+  "author": "万万",
+  "license": "MIT"
+}

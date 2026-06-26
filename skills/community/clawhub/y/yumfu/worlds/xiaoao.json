@@ -1,0 +1,1241 @@
+{
+  "id": "xiaoao",
+  "name_zh": "笑傲江湖",
+  "name_en": "The Smiling, Proud Wanderer",
+  "language": "zh",
+  "genre": "wuxia",
+  "era": "明朝中期",
+  "age_rating": "成人向（18+）",
+  "themes": [
+    "权谋",
+    "情感",
+    "正邪",
+    "背叛"
+  ],
+  "description_zh": "华山派内部气剑之争，正邪两道恩怨纠葛，剑宗复仇计划暗流涌动。江湖险恶，人心难测。",
+  "description_en": "Internal conflict between sword and qi schools of Mt. Hua Sect, clash between orthodox and unorthodox martial artists",
+  "main_questline": {
+    "main_objective": "在华山内斗、正邪纷争与个人情感纠葛之间活下来，并决定自己最终站在哪一边。",
+    "current_major_tasks": [
+      "在门派与江湖之间建立立足之地",
+      "看清华山气剑之争背后的权力与复仇线",
+      "在正派、魔教、独行路之间做出立场选择",
+      "追逐高阶武学传承，同时承担由此带来的江湖代价"
+    ],
+    "major_story_threads": [
+      "华山派内部气宗与剑宗旧怨复燃",
+      "日月神教与正派之间的全面冲突",
+      "风清扬、独孤九剑、绝世传承的出现",
+      "感情、师门、名声与善恶值共同推动终局"
+    ],
+    "default_route_logic": "即使玩家在游历、比武、修炼或支线艳情里绕开主战场，也要持续把他拉回到门派站队、江湖立场与终极对决这条主线上。"
+  },
+  "key_figures": [
+    {
+      "name": "令狐冲",
+      "role": "漂泊剑客",
+      "drive": "在门派恩怨与自由人格之间求活路",
+      "ties": [
+        "岳灵珊",
+        "任盈盈",
+        "风清扬"
+      ]
+    },
+    {
+      "name": "岳不群",
+      "role": "伪君子掌门",
+      "drive": "以名门正道之皮吃下更大的权与剑谱",
+      "ties": [
+        "华山气宗",
+        "林平之",
+        "辟邪剑谱"
+      ]
+    },
+    {
+      "name": "任盈盈",
+      "role": "魔教圣姑",
+      "drive": "在情义与教中权局之间护住自己人",
+      "ties": [
+        "令狐冲",
+        "向问天",
+        "任我行"
+      ]
+    },
+    {
+      "name": "东方不败",
+      "role": "绝顶魔教主宰",
+      "drive": "以极端武学与统治意志压住群雄",
+      "ties": [
+        "日月神教",
+        "黑木崖"
+      ]
+    }
+  ],
+  "city_and_region_hubs": [
+    {
+      "name": "华山",
+      "type": "门派核心",
+      "importance": "气剑之争、师门秩序、传承与背叛"
+    },
+    {
+      "name": "洛阳",
+      "type": "江湖都会",
+      "importance": "人脉、商旅、信息与独行路线汇合点"
+    },
+    {
+      "name": "黑木崖",
+      "type": "魔教中枢",
+      "importance": "权力、邪功、终局冲突"
+    },
+    {
+      "name": "思过崖",
+      "type": "隐秘修行地",
+      "importance": "奇遇、绝学、反省与命运转折"
+    }
+  ],
+  "relationship_webs": [
+    {
+      "thread": "华山气宗 / 剑宗",
+      "tension": "传承正统与旧怨复燃"
+    },
+    {
+      "thread": "令狐冲 / 岳不群 / 林平之",
+      "tension": "师门情义、嫉恨、利用与变质"
+    },
+    {
+      "thread": "令狐冲 / 任盈盈 / 任我行",
+      "tension": "情义、利用、魔教权力"
+    },
+    {
+      "thread": "正派 / 日月神教",
+      "tension": "名义正邪与现实权谋倒错"
+    }
+  ],
+  "major_items_and_artifacts": [
+    {
+      "name": "独孤九剑",
+      "kind": "绝顶剑法",
+      "story_use": "破招、脱困、身份跃迁"
+    },
+    {
+      "name": "辟邪剑谱",
+      "kind": "诱人邪典",
+      "story_use": "欲望、阉割式代价、门派毁灭"
+    },
+    {
+      "name": "吸星大法",
+      "kind": "危险内功",
+      "story_use": "捷径、失控、权力诱惑"
+    },
+    {
+      "name": "掌门令与名门信物",
+      "kind": "身份凭证",
+      "story_use": "招揽、站队、继承"
+    }
+  ],
+  "mainline_stages": [
+    "门派立足",
+    "旧怨揭开",
+    "正邪混战",
+    "绝学争夺",
+    "终局站队"
+  ],
+  "subfaction_networks": [
+    {
+      "name": "华山内部权力网",
+      "core_members": [
+        "岳不群",
+        "宁中则",
+        "岳灵珊",
+        "令狐冲旧线"
+      ],
+      "internal_tension": "师门秩序、偏爱、嫉恨、气剑旧债"
+    },
+    {
+      "name": "日月神教核心圈",
+      "core_members": [
+        "东方不败",
+        "任我行旧系",
+        "任盈盈",
+        "向问天"
+      ],
+      "internal_tension": "新旧教权、忠诚与个人情义冲突"
+    },
+    {
+      "name": "五岳剑派联盟",
+      "core_members": [
+        "华山",
+        "嵩山",
+        "衡山",
+        "泰山",
+        "恒山"
+      ],
+      "internal_tension": "名门正道表面联盟下的吞并与算计"
+    },
+    {
+      "name": "江湖散人与秘传线",
+      "core_members": [
+        "风清扬",
+        "独行侠",
+        "黑市中间人",
+        "旧剑宗余脉"
+      ],
+      "internal_tension": "自由、绝学、门派吸纳与追杀"
+    }
+  ],
+  "quest_hubs": [
+    {
+      "name": "华山正气堂与后山",
+      "function": "师门任务、内斗征兆、传承试炼、身份裂痕"
+    },
+    {
+      "name": "洛阳与各地客栈酒楼",
+      "function": "人脉扩张、消息交易、支线接头、情感事件"
+    },
+    {
+      "name": "思过崖",
+      "function": "闭关、奇遇、绝学、反省与命运分叉"
+    },
+    {
+      "name": "黑木崖",
+      "function": "魔教核心冲突、潜入、站队、终局决战"
+    },
+    {
+      "name": "五岳大会与江湖聚点",
+      "function": "名望对抗、公开审判、阵营重排"
+    }
+  ],
+  "city_subzones": [
+    {
+      "hub": "华山",
+      "subzones": [
+        "正气堂",
+        "练剑坪",
+        "弟子居所",
+        "后山秘径",
+        "思过崖入口"
+      ]
+    },
+    {
+      "hub": "洛阳",
+      "subzones": [
+        "酒楼",
+        "镖局",
+        "集市",
+        "私宅会客处",
+        "暗巷情报点"
+      ]
+    },
+    {
+      "hub": "黑木崖",
+      "subzones": [
+        "总坛外道",
+        "教众驻地",
+        "内殿",
+        "禁地",
+        "高崖决战处"
+      ]
+    }
+  ],
+  "story_pressure_tracks": [
+    {
+      "name": "门派站队压力",
+      "pressure": "越强越无法回避气宗、剑宗、正邪立场"
+    },
+    {
+      "name": "绝学诱惑与代价",
+      "pressure": "越高阶的武功越可能扭曲人性与关系"
+    },
+    {
+      "name": "名声与误解",
+      "pressure": "江湖评价常常先于真相决定命运"
+    },
+    {
+      "name": "情义与自由",
+      "pressure": "你越想自由，越会被人情、师门和旧债拽回去"
+    }
+  ],
+  "item_threads": [
+    {
+      "item": "辟邪剑谱",
+      "thread": "从秘笈争夺逐步演变成权欲与自我毁灭的引爆点"
+    },
+    {
+      "item": "独孤九剑传承",
+      "thread": "从奇遇成长为决定你能否跳出门派框架的核心线"
+    },
+    {
+      "item": "掌门令与书信",
+      "thread": "身份正统、调动同门、制造误会与清算的重要媒介"
+    }
+  ],
+  "gameplay_pacing": {
+    "min_hours_to_master_skill": 3,
+    "level_cap_per_chapter": [
+      10,
+      20,
+      35,
+      50,
+      70,
+      85,
+      95
+    ],
+    "major_plot_gates": [
+      "入门仪式（Lv1）",
+      "第一次生死危机（Lv10）",
+      "门派内斗暴露（Lv20）",
+      "剑宗复仇开始（Lv35）",
+      "正邪大战（Lv50）",
+      "独孤九剑传承（Lv70）",
+      "终极对决（Lv85+）"
+    ],
+    "progression_blockers": [
+      "需要师父认可才能学高级武功",
+      "善恶值影响剧情分支",
+      "装备品质限制技能发挥",
+      "声望不足无法加入某些任务"
+    ]
+  },
+  "factions": [
+    {
+      "id": "huashan-qizong",
+      "name_zh": "华山派·气宗",
+      "name_en": "Mt. Hua - Qi School",
+      "alignment": "正派",
+      "specialty": "内功为主，剑法为辅",
+      "starting_skills": [
+        "华山剑法·初式",
+        "紫霞神功·筑基"
+      ],
+      "starting_location": "华山正气堂",
+      "faction_perks": [
+        "内力恢复+20%",
+        "打坐悟性+10%"
+      ],
+      "faction_restrictions": [
+        "不可学魔教武功",
+        "不可杀无辜"
+      ],
+      "rival_factions": [
+        "华山派·剑宗",
+        "日月神教"
+      ],
+      "master": "岳不群",
+      "elders": [
+        "宁中则",
+        "岳灵珊"
+      ],
+      "disciples_count": 50
+    },
+    {
+      "id": "huashan-jianzong",
+      "name_zh": "华山派·剑宗",
+      "name_en": "Mt. Hua - Sword School",
+      "alignment": "正派（被驱逐）",
+      "specialty": "剑法至上，快攻流",
+      "starting_skills": [
+        "华山快剑",
+        "疾风步法"
+      ],
+      "starting_location": "思过崖洞穴",
+      "faction_perks": [
+        "攻击+15%",
+        "闪避+10%"
+      ],
+      "faction_restrictions": [
+        "无法回华山正堂",
+        "被气宗追杀"
+      ],
+      "rival_factions": [
+        "华山派·气宗"
+      ],
+      "hidden_master": "风清扬",
+      "backstory": "25年前被气宗击败，余孽潜伏",
+      "disciples_count": 5
+    },
+    {
+      "id": "wudang",
+      "name_zh": "武当派",
+      "name_en": "Wudang Sect",
+      "alignment": "正派",
+      "specialty": "太极之道，以柔克刚",
+      "starting_skills": [
+        "太极剑·起式",
+        "纯阳无极功"
+      ],
+      "starting_location": "武当山紫霄宫",
+      "faction_perks": [
+        "防御+20%",
+        "内力消耗-15%"
+      ],
+      "faction_restrictions": [
+        "不可修炼阴毒武功"
+      ],
+      "master": "冲虚道长",
+      "disciples_count": 80
+    },
+    {
+      "id": "shaolin",
+      "name_zh": "少林寺",
+      "name_en": "Shaolin Temple",
+      "alignment": "正派",
+      "specialty": "佛门武学，刚猛霸道",
+      "starting_skills": [
+        "罗汉拳",
+        "易筋经·初篇"
+      ],
+      "starting_location": "少林寺达摩院",
+      "faction_perks": [
+        "体力+25%",
+        "抗性+15%"
+      ],
+      "faction_restrictions": [
+        "不可破戒（杀生/饮酒/好色）"
+      ],
+      "master": "方证大师",
+      "disciples_count": 200
+    },
+    {
+      "id": "riyue",
+      "name_zh": "日月神教",
+      "name_en": "Sun Moon Holy Cult",
+      "alignment": "魔教",
+      "specialty": "诡异邪功，不择手段",
+      "starting_skills": [
+        "魔教剑法",
+        "吸星大法·残篇"
+      ],
+      "starting_location": "黑木崖",
+      "faction_perks": [
+        "攻击+20%",
+        "经验+15%"
+      ],
+      "faction_restrictions": [
+        "正派追杀",
+        "走火入魔风险+50%"
+      ],
+      "master": "东方不败",
+      "elders": [
+        "任我行（囚禁中）",
+        "向问天"
+      ],
+      "disciples_count": 500
+    },
+    {
+      "id": "independent",
+      "name_zh": "独行侠",
+      "name_en": "Independent Wanderer",
+      "alignment": "中立",
+      "specialty": "自由发展，无门派限制",
+      "starting_skills": [
+        "基础剑法",
+        "基础内功"
+      ],
+      "starting_location": "洛阳城",
+      "faction_perks": [
+        "学武无限制",
+        "声望来源多样"
+      ],
+      "faction_restrictions": [
+        "无门派庇护",
+        "无师父指导"
+      ],
+      "growth_difficulty": "困难（需自行寻找机缘）"
+    }
+  ],
+  "equipment_system": {
+    "weapon_tiers": [
+      {
+        "tier": "凡品",
+        "attack_bonus": "1-5",
+        "examples": [
+          "木剑",
+          "铁剑",
+          "短刀"
+        ],
+        "durability": "低"
+      },
+      {
+        "tier": "良品",
+        "attack_bonus": "6-15",
+        "examples": [
+          "青钢剑",
+          "精钢刀",
+          "银钩"
+        ],
+        "durability": "中"
+      },
+      {
+        "tier": "宝器",
+        "attack_bonus": "16-30",
+        "examples": [
+          "君子剑",
+          "淑女剑",
+          "碧血剑"
+        ],
+        "durability": "高",
+        "special": "附带技能加成"
+      },
+      {
+        "tier": "神兵",
+        "attack_bonus": "31-50",
+        "examples": [
+          "倚天剑",
+          "屠龙刀",
+          "玄铁重剑"
+        ],
+        "durability": "极高",
+        "special": "解锁特殊招式"
+      }
+    ],
+    "armor_types": [
+      "布衣（+3防御）",
+      "皮甲（+8防御）",
+      "锁甲（+15防御，-5敏捷）",
+      "软猬甲（+25防御，免疫毒素）",
+      "金丝甲（+40防御，-10敏捷）"
+    ],
+    "accessories": [
+      {
+        "name": "玉佩",
+        "effect": "内力恢复+10%",
+        "rarity": "常见"
+      },
+      {
+        "name": "九花玉露丸",
+        "effect": "解百毒",
+        "rarity": "稀有"
+      },
+      {
+        "name": "白虹掌力",
+        "effect": "掌法威力+20%",
+        "rarity": "稀有"
+      },
+      {
+        "name": "火折子",
+        "effect": "照明/引火",
+        "rarity": "常见"
+      }
+    ],
+    "equipment_影响技能": true,
+    "weapon_compatibility": {
+      "剑法类": [
+        "剑"
+      ],
+      "刀法类": [
+        "刀",
+        "弯刀"
+      ],
+      "掌法类": [
+        "空手"
+      ],
+      "暗器类": [
+        "飞针",
+        "飞刀",
+        "袖箭"
+      ]
+    }
+  },
+  "skill_progression": {
+    "skill_levels": [
+      {
+        "level": 1,
+        "name": "初窥门径",
+        "mastery": "10%"
+      },
+      {
+        "level": 2,
+        "name": "略有小成",
+        "mastery": "25%"
+      },
+      {
+        "level": 3,
+        "name": "融会贯通",
+        "mastery": "50%"
+      },
+      {
+        "level": 4,
+        "name": "炉火纯青",
+        "mastery": "75%"
+      },
+      {
+        "level": 5,
+        "name": "登峰造极",
+        "mastery": "100%"
+      },
+      {
+        "level": 6,
+        "name": "返璞归真",
+        "mastery": "120%",
+        "unlock": "自创招式"
+      }
+    ],
+    "learning_methods": [
+      "师父传授（最快）",
+      "秘籍自学（中速，需悟性）",
+      "观摩对战（慢，但可学敌方招式）",
+      "顿悟（随机，打坐/生死关头）"
+    ],
+    "skill_synergy": {
+      "华山剑法 + 紫霞神功": "剑气纵横（威力+30%）",
+      "独孤九剑 + 任意内功": "破尽天下武学",
+      "吸星大法 + 辟邪剑法": "极度危险，必走火入魔"
+    }
+  },
+  "legendary_skills": [
+    {
+      "name_zh": "独孤九剑",
+      "name_en": "Dugu Nine Swords",
+      "difficulty": "极难",
+      "location": "华山思过崖",
+      "teacher": "风清扬",
+      "unlock_conditions": [
+        "等级≥30",
+        "剑法悟性≥80",
+        "华山派声望≥50 OR 剑宗成员",
+        "完成任务：【寻找剑道真谛】"
+      ],
+      "learning_time": "30天（游戏内）",
+      "mastery_stages": [
+        "破剑式（对剑法）",
+        "破刀式（对刀法）",
+        "破枪式（对长兵）",
+        "破鞭式（对软兵）",
+        "破索式（对暗器）",
+        "破掌式（对掌法）",
+        "破箭式（对远攻）",
+        "破气式（对内力）",
+        "总诀（无招胜有招）"
+      ],
+      "special": "无需内力，纯靠剑意"
+    },
+    {
+      "name_zh": "辟邪剑法",
+      "name_en": "Evil-Warding Sword",
+      "difficulty": "极难",
+      "location": "林家老宅/渡元禅师",
+      "requirement": "特殊代价",
+      "unlock_conditions": [
+        "获得《辟邪剑谱》",
+        "做出重大选择（不可逆）"
+      ],
+      "learning_time": "即学即会",
+      "side_effect": "永久改变角色（性别相关属性）",
+      "power": "天下最快剑法",
+      "special": "学习后无法学其他内功",
+      "moral_warning": "严重影响剧情走向"
+    },
+    {
+      "name_zh": "吸星大法",
+      "name_en": "Star Absorbing Technique",
+      "difficulty": "困难",
+      "location": "西湖牢底",
+      "teacher": "任我行（囚禁中）",
+      "unlock_conditions": [
+        "救出任我行 OR 自行破解",
+        "内力≥500"
+      ],
+      "learning_time": "7天",
+      "side_effect": "吸收他人内力，但杂质易走火入魔",
+      "power": "可吸收敌人内力为己用",
+      "counter": "需配合《易筋经》化解杂质",
+      "moral_cost": "善恶值-10（每次使用）"
+    },
+    {
+      "name_zh": "紫霞神功",
+      "name_en": "Purple Cloud Divine Art",
+      "difficulty": "中等",
+      "location": "华山派",
+      "teacher": "岳不群",
+      "unlock_conditions": [
+        "华山派弟子",
+        "忠诚度≥70"
+      ],
+      "learning_time": "90天",
+      "mastery_stages": [
+        "筑基（+100内力）",
+        "小成（+300内力，内伤抗性）",
+        "大成（+800内力，剑气雏形）",
+        "圆满（+1500内力，剑气纵横）"
+      ],
+      "synergy": "配合华山剑法效果翻倍"
+    }
+  ],
+  "npcs": [
+    {
+      "name_zh": "岳不群",
+      "name_en": "Yue Buqun",
+      "title_zh": "君子剑·华山掌门",
+      "title_en": "Gentleman Sword",
+      "location": "华山正气堂",
+      "level": 85,
+      "faction": "华山气宗",
+      "teachable_skills": [
+        "紫霞神功",
+        "华山剑法",
+        "养吾剑法"
+      ],
+      "personality": "伪君子，野心家，表面和善内心狠毒",
+      "hidden_agenda": "觊觎辟邪剑谱",
+      "relationship_stages": [
+        {
+          "stage": 1,
+          "affection": "0-30",
+          "status": "普通弟子"
+        },
+        {
+          "stage": 2,
+          "affection": "31-60",
+          "status": "得意弟子，传授高级武功"
+        },
+        {
+          "stage": 3,
+          "affection": "61-80",
+          "status": "心腹，托付重任"
+        },
+        {
+          "stage": 4,
+          "affection": "81-100",
+          "status": "继承人候选"
+        },
+        {
+          "stage": "背叛",
+          "affection": "<-50",
+          "status": "追杀叛徒"
+        }
+      ],
+      "quest_giver": true,
+      "quests": [
+        "调查剑宗余孽",
+        "夺取辟邪剑谱",
+        "五岳并派计划"
+      ],
+      "dialogue_topics": [
+        "华山派历史",
+        "气剑之争真相（需好感度60+）",
+        "辟邪剑谱下落（需好感度80+）"
+      ],
+      "boss_fight": {
+        "trigger": "剧情后期，发现其真面目",
+        "difficulty": "极难",
+        "special_move": "辟邪剑法（如已修炼）"
+      }
+    },
+    {
+      "name_zh": "风清扬",
+      "name_en": "Feng Qingyang",
+      "title_zh": "剑道宗师·剑宗前辈",
+      "title_en": "Sword Saint",
+      "location": "华山思过崖",
+      "level": 98,
+      "faction": "华山剑宗",
+      "teachable_skills": [
+        "独孤九剑"
+      ],
+      "personality": "隐世高人，看破世俗，只传有缘人",
+      "unlock_conditions": [
+        "独自探索思过崖",
+        "剑法悟性≥80",
+        "与华山气宗产生矛盾（可选）"
+      ],
+      "relationship_stages": [
+        {
+          "stage": 1,
+          "affection": "0-50",
+          "status": "考验资质"
+        },
+        {
+          "stage": 2,
+          "affection": "51-80",
+          "status": "传授独孤九剑"
+        },
+        {
+          "stage": 3,
+          "affection": "81-100",
+          "status": "视如衣钵传人"
+        }
+      ],
+      "quest_giver": true,
+      "quests": [
+        "领悟剑道真谛",
+        "击败各派高手验证剑法"
+      ],
+      "dialogue_topics": [
+        "独孤求败往事",
+        "气剑之争评价",
+        "无招胜有招境界"
+      ],
+      "mentor_relationship": "最强剑术导师"
+    },
+    {
+      "name_zh": "东方不败",
+      "name_en": "Dongfang Bubai",
+      "title_zh": "日月神教教主",
+      "title_en": "Invincible East",
+      "location": "黑木崖绣楼",
+      "level": 99,
+      "faction": "日月神教",
+      "teachable_skills": [
+        "葵花宝典（残缺）"
+      ],
+      "personality": "阴狠毒辣，修炼葵花宝典后性情大变",
+      "hidden_agenda": "追求武学极致，不问江湖事",
+      "relationship_stages": [
+        {
+          "stage": "敌对",
+          "affection": "<0",
+          "status": "必杀名单"
+        },
+        {
+          "stage": "中立",
+          "affection": "0-50",
+          "status": "无视存在"
+        },
+        {
+          "stage": "欣赏",
+          "affection": "51-100",
+          "status": "惺惺相惜（极难达成）"
+        }
+      ],
+      "boss_fight": {
+        "trigger": "终极剧情",
+        "difficulty": "传说",
+        "special_move": "葵花宝典·千变万化",
+        "weakness": "情感弱点（杨莲亭）"
+      }
+    },
+    {
+      "name_zh": "令狐冲",
+      "name_en": "Linghu Chong",
+      "title_zh": "华山大弟子",
+      "title_en": "First Disciple",
+      "location": "华山派/洛阳（剧情变动）",
+      "level": 70,
+      "faction": "华山气宗（后期可能被逐）",
+      "personality": "豪爽洒脱，嗜酒如命，重情重义",
+      "relationship_type": "师兄弟/竞争对手/好友（取决于选择）",
+      "relationship_stages": [
+        {
+          "stage": 1,
+          "affection": "0-40",
+          "status": "同门师兄弟"
+        },
+        {
+          "stage": 2,
+          "affection": "41-70",
+          "status": "酒肉好友"
+        },
+        {
+          "stage": 3,
+          "affection": "71-100",
+          "status": "生死之交"
+        }
+      ],
+      "can_team": true,
+      "team_bonus": "合击技：【华山双剑】",
+      "romance_option": false,
+      "quest_giver": true,
+      "quests": [
+        "洛阳城救人",
+        "破解吸星大法",
+        "任盈盈线（触发条件）"
+      ]
+    },
+    {
+      "name_zh": "任盈盈",
+      "name_en": "Ren Yingying",
+      "title_zh": "圣姑",
+      "title_en": "Saintess",
+      "location": "洛阳绿竹巷",
+      "level": 65,
+      "faction": "日月神教",
+      "personality": "聪慧温柔，琴棋书画样样精通",
+      "relationship_type": "情感线（可选）",
+      "relationship_stages": [
+        {
+          "stage": 1,
+          "affection": "0-30",
+          "status": "陌生人"
+        },
+        {
+          "stage": 2,
+          "affection": "31-60",
+          "status": "知音"
+        },
+        {
+          "stage": 3,
+          "affection": "61-85",
+          "status": "暗生情愫"
+        },
+        {
+          "stage": 4,
+          "affection": "86-100",
+          "status": "终身伴侣"
+        }
+      ],
+      "romance_requirements": [
+        "完成【绿竹巷奇遇】",
+        "善恶值>-20（不可太邪）",
+        "魅力≥60"
+      ],
+      "romance_benefits": "日月神教声望+50，任我行好感度+30",
+      "romance_conflicts": "与正派关系恶化"
+    },
+    {
+      "name_zh": "任我行",
+      "name_en": "Ren Woxing",
+      "title_zh": "前任教主",
+      "title_en": "Former Cult Leader",
+      "location": "西湖牢底（初期）",
+      "level": 95,
+      "faction": "日月神教",
+      "personality": "霸道狂傲，恩怨分明",
+      "teachable_skills": [
+        "吸星大法"
+      ],
+      "unlock_conditions": [
+        "救出任我行"
+      ],
+      "quest_giver": true,
+      "quests": [
+        "夺回教主之位",
+        "击败东方不败"
+      ]
+    },
+    {
+      "name_zh": "岳灵珊",
+      "name_en": "Yue Lingshan",
+      "title_zh": "华山小师妹",
+      "title_en": "Junior Sister",
+      "location": "华山派",
+      "level": 40,
+      "faction": "华山气宗",
+      "personality": "天真活泼，任性",
+      "relationship_type": "青梅竹马（可选情感线）",
+      "relationship_stages": [
+        {
+          "stage": 1,
+          "affection": "0-40",
+          "status": "师兄妹"
+        },
+        {
+          "stage": 2,
+          "affection": "41-70",
+          "status": "好感"
+        },
+        {
+          "stage": 3,
+          "affection": "71-100",
+          "status": "恋人"
+        }
+      ],
+      "romance_conflicts": "林平之线（原著剧情）",
+      "romance_warning": "可能触发悲剧结局"
+    },
+    {
+      "name_zh": "宁中则",
+      "name_en": "Ning Zhongze",
+      "title_zh": "华山女侠",
+      "title_en": "Lady of Mt. Hua",
+      "location": "华山派",
+      "level": 75,
+      "faction": "华山气宗",
+      "personality": "温婉贤淑，母性光辉，但有侠义之心",
+      "teachable_skills": [
+        "玉女剑法"
+      ],
+      "quest_giver": true,
+      "quests": [
+        "调解气剑矛盾（隐藏）",
+        "保护华山弟子"
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "huashan-main",
+      "name_zh": "华山派·正气堂",
+      "name_en": "Mt. Hua Main Hall",
+      "description_zh": "华山派总堂，气宗弟子修炼之地，戒律森严",
+      "npcs": [
+        "岳不群",
+        "宁中则",
+        "岳灵珊",
+        "令狐冲"
+      ],
+      "available_quests": [
+        "入门试炼",
+        "剑宗调查",
+        "门派任务"
+      ],
+      "training_facilities": [
+        "练武场",
+        "藏经阁",
+        "打坐室"
+      ],
+      "shops": [
+        "华山杂货铺（基础装备）"
+      ],
+      "danger_level": "安全",
+      "access": "华山弟子 OR 访客通行证"
+    },
+    {
+      "id": "siguo-cliff",
+      "name_zh": "思过崖",
+      "name_en": "Reflection Cliff",
+      "description_zh": "华山派惩罚弟子之地，隐藏着剑道秘密，洞穴深处有剑宗遗迹",
+      "npcs": [
+        "风清扬（隐藏）"
+      ],
+      "secret": "独孤九剑秘籍 + 剑宗历史石刻",
+      "unlock_conditions": [
+        "被罚思过 OR 主动探索",
+        "需一定剑法基础才能触发风清扬"
+      ],
+      "training_facilities": [
+        "悟剑石",
+        "剑痕墙（可学习）"
+      ],
+      "danger_level": "低",
+      "exploration_rewards": [
+        "剑宗残篇",
+        "风清扬传承",
+        "历史真相"
+      ]
+    },
+    {
+      "id": "luoyang",
+      "name_zh": "洛阳城",
+      "name_en": "Luoyang City",
+      "description_zh": "中原繁华之地，江湖消息集散中心，三教九流汇聚",
+      "npcs": [
+        "同福客栈掌柜",
+        "绿竹巷神秘女子（任盈盈）",
+        "各路江湖人"
+      ],
+      "available_quests": [
+        "绿竹巷奇遇",
+        "黑道风云",
+        "商队护送"
+      ],
+      "shops": [
+        "同福客栈（住宿+情报）",
+        "兵器铺（良品武器）",
+        "药材铺（丹药）",
+        "黑市（违禁品）"
+      ],
+      "districts": [
+        "繁华街（安全）",
+        "绿竹巷（神秘）",
+        "贫民窟（危险）",
+        "黑市区（极危险，善恶值影响）"
+      ],
+      "danger_level": "中",
+      "events": [
+        "武林大会（定期）",
+        "帮派火并（随机）"
+      ]
+    },
+    {
+      "id": "heimu-cliff",
+      "name_zh": "黑木崖",
+      "name_en": "Black Wood Cliff",
+      "description_zh": "日月神教总坛，机关重重，守卫森严，一步一杀机",
+      "npcs": [
+        "东方不败",
+        "杨莲亭",
+        "向问天"
+      ],
+      "danger_level": "极高",
+      "access": "神教令牌 OR 潜入（极难）",
+      "areas": [
+        "外围（守卫密集）",
+        "内殿（长老驻守）",
+        "绣楼（东方不败居所，禁地）",
+        "牢狱（任我行囚禁地）"
+      ],
+      "boss_encounters": [
+        "黑木崖十大长老",
+        "杨莲亭",
+        "东方不败（终极）"
+      ]
+    },
+    {
+      "id": "xihu-prison",
+      "name_zh": "西湖牢底",
+      "name_en": "West Lake Prison",
+      "description_zh": "日月神教秘密监狱，关押重犯，任我行被囚之地",
+      "npcs": [
+        "任我行",
+        "囚犯们"
+      ],
+      "secret": "吸星大法传承",
+      "unlock_conditions": [
+        "获得牢狱地图",
+        "潜入能力≥60"
+      ],
+      "danger_level": "高",
+      "quest": "【解救任我行】（影响后续剧情）"
+    },
+    {
+      "id": "shaolin",
+      "name_zh": "少林寺",
+      "name_en": "Shaolin Temple",
+      "description_zh": "武林泰斗，天下武学正宗，藏经阁武功无数",
+      "npcs": [
+        "方证大师",
+        "方生大师",
+        "众僧"
+      ],
+      "access": "需声望 OR 拜师",
+      "training_facilities": [
+        "罗汉堂",
+        "达摩院",
+        "藏经阁（需权限）"
+      ],
+      "teachable_skills": [
+        "易筋经",
+        "七十二绝技"
+      ],
+      "danger_level": "安全（守规矩）"
+    },
+    {
+      "id": "wudang",
+      "name_zh": "武当山",
+      "name_en": "Wudang Mountain",
+      "description_zh": "道家圣地，太极发源，与少林并称武林双峰",
+      "npcs": [
+        "冲虚道长",
+        "武当七侠"
+      ],
+      "training_facilities": [
+        "太极殿",
+        "紫霄宫"
+      ],
+      "teachable_skills": [
+        "太极拳剑",
+        "纯阳无极功"
+      ],
+      "danger_level": "安全"
+    },
+    {
+      "id": "lin-mansion",
+      "name_zh": "林家老宅",
+      "name_en": "Lin Family Mansion",
+      "description_zh": "辟邪剑谱来源地，林家遭灭门，阴森诡异",
+      "npcs": [
+        "林平之（剧情NPC）"
+      ],
+      "secret": "辟邪剑谱藏匿处",
+      "danger_level": "中",
+      "atmosphere": "悲剧遗址"
+    }
+  ],
+  "moral_system": {
+    "善恶值范围": [
+      -100,
+      100
+    ],
+    "actions_impact": {
+      "杀无辜": -10,
+      "杀恶人": 5,
+      "救人": 10,
+      "偷盗": -5,
+      "使用吸星大法": -3,
+      "学辟邪剑法": -20,
+      "加入魔教": -30,
+      "维护正道": 15
+    },
+    "reputation_effects": {
+      "正派（60-100）": "正派欢迎，魔教敌视，可学正派绝学",
+      "中立（-30-59）": "两不得罪，但也无特权",
+      "邪派（-60- -100）": "魔教欢迎，正派追杀，可学魔教秘籍"
+    },
+    "ending_影响": true,
+    "endings": [
+      "华山掌门（正派，善≥80，华山线）",
+      "剑圣传人（中立，独孤九剑大成）",
+      "魔教教主（邪派，善≤-60，神教线）",
+      "江湖隐退（任意，与任盈盈结局）",
+      "背叛者之死（善≤-80，众叛亲离）"
+    ]
+  },
+  "romance_system": {
+    "available_partners": [
+      {
+        "name": "任盈盈",
+        "requirements": "善恶中立，完成绿竹巷线，魅力≥60",
+        "benefits": "神教支持，强力援军",
+        "conflicts": "正派关系恶化"
+      },
+      {
+        "name": "岳灵珊",
+        "requirements": "华山弟子，善≥40，击败林平之线",
+        "benefits": "华山内部支持",
+        "conflicts": "可能触发悲剧（原著剧情）"
+      },
+      {
+        "name": "仪琳",
+        "requirements": "善≥60，救恒山派，魅力≥50",
+        "benefits": "恒山派支持",
+        "conflicts": "破戒（仪琳是尼姑）"
+      }
+    ],
+    "romance_mechanics": [
+      "对话选择影响好感度",
+      "赠送礼物（需了解喜好）",
+      "并肩作战（组队任务）",
+      "完成专属支线任务"
+    ]
+  },
+  "crafting_system": {
+    "可锻造装备": true,
+    "materials": [
+      "玄铁（稀有矿石）",
+      "寒冰铁（极寒之地）",
+      "紫金（皇家专供）",
+      "竹片（轻兵器）"
+    ],
+    "recipes": [
+      {
+        "item": "玄铁重剑",
+        "materials": [
+          "玄铁×5",
+          "寒冰铁×2"
+        ],
+        "skill_required": "铁匠技能Lv5",
+        "attack": "+35"
+      }
+    ],
+    "alchemy": [
+      "小还丹（恢复HP 50）",
+      "大还丹（恢复HP 200）",
+      "九花玉露丸（解毒）"
+    ]
+  },
+  "art_style": "Chinese wuxia ink wash painting style (水墨武侠风), dramatic cinematic composition, muted earth tones with selective vivid accents (red, gold), atmospheric fog and light rays, textured rice paper background, period-accurate Ming dynasty architecture",
+  "starting_location": "华山派 OR 洛阳城（取决于门派选择）",
+  "main_quest_branches": [
+    "气宗正统线",
+    "剑宗复仇线",
+    "魔教崛起线",
+    "独行侠自由线"
+  ],
+  "copyright_notice": "本世界设定基于金庸先生《笑傲江湖》原著改编，仅供娱乐学习，无商业用途。人名地名保留，剧情可自由发展。",
+  "stat_names": {
+    "hp_zh": "体力",
+    "hp_en": "Health",
+    "mp_zh": "内力",
+    "mp_en": "Inner Force",
+    "attack_zh": "攻击",
+    "attack_en": "Attack",
+    "defense_zh": "防御",
+    "defense_en": "Defense",
+    "speed_zh": "身法",
+    "speed_en": "Agility",
+    "wisdom_zh": "悟性",
+    "wisdom_en": "Comprehension",
+    "charm_zh": "魅力",
+    "charm_en": "Charisma"
+  }
+}

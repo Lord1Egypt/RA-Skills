@@ -1,0 +1,24 @@
+name = "memory-crystal-cloud"
+main = "dist/worker-mcp.js"
+compatibility_date = "2024-12-01"
+
+# D1 — OAuth tables + cloud storage (chunks, memories)
+[[d1_databases]]
+binding = "DB"
+database_name = "memory-crystal-cloud"
+database_id = "40ca6b73-3701-453e-adb3-7faf1a9964ad"  # fill after: wrangler d1 create memory-crystal-cloud
+
+# Vectorize — Semantic vector search (1024 dims, cosine)
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "memory-crystal-chunks"
+
+# R2 — Shared relay bucket (for Tier 1 sovereign drops)
+[[r2_buckets]]
+binding = "RELAY"
+bucket_name = "memory-crystal-relay"
+
+# Secrets (set via `wrangler secret put --config wrangler-mcp.toml`):
+#   OPENAI_API_KEY          — for embeddings (text-embedding-3-small)
+#   RELAY_ENCRYPTION_KEY    — base64, for Tier 1 relay encryption
+#   MCP_SIGNING_KEY         — for signing OAuth tokens

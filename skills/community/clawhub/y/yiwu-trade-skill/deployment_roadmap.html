@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>义乌小商品AI智能贸易系统 - 部署落地优化方案</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --accent-gold: #f0a500;
+            --accent-orange: #ff6b35;
+            --accent-blue: #58a6ff;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --border-color: #30363d;
+            --success: #3fb950;
+            --warning: #d29922;
+            --danger: #f85149;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 0 2rem;
+        }
+        
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+        
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(240, 165, 0, 0.1) 0%, transparent 50%);
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .hero h1 span {
+            color: var(--accent-gold);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+        
+        .principles {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .principle {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .principle:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+        
+        .principle strong {
+            color: var(--accent-gold);
+        }
+        
+        /* Section Styles */
+        .section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 2rem;
+            background: var(--accent-gold);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+        
+        /* Feature Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .feature-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-orange));
+        }
+        
+        .feature-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(240, 165, 0, 0.1);
+        }
+        
+        .feature-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .feature-priority {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+        }
+        
+        .feature-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-value {
+            color: var(--success);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-tech {
+            background: var(--bg-tertiary);
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Cost Section */
+        .cost-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .cost-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .cost-card:hover {
+            border-color: var(--accent-gold);
+        }
+        
+        .cost-card.mvp { border-top: 3px solid var(--success); }
+        .cost-card.growth { border-top: 3px solid var(--accent-blue); }
+        .cost-card.mature { border-top: 3px solid var(--accent-orange); }
+        
+        .cost-stage {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .cost-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .cost-period {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .cost-breakdown {
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+        
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+        
+        .cost-item:last-child {
+            border-bottom: none;
+        }
+        
+        /* Tech Stack Table */
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .tech-table th,
+        .tech-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .tech-table th {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+        
+        .tech-table tr:hover {
+            background: var(--bg-tertiary);
+        }
+        
+        .tech-table .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            background: var(--bg-tertiary);
+        }
+        
+        .tech-table .tag.recommended {
+            background: rgba(63, 185, 80, 0.2);
+            color: var(--success);
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding: 1.5rem 0 1.5rem 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 1.75rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+        }
+        
+        .timeline-phase {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Risk Matrix */
+        .risk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1rem;
+        }
+        
+        .risk-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .risk-level {
+            width: 8px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        
+        .risk-level.critical { background: var(--danger); }
+        .risk-level.high { background: var(--warning); }
+        .risk-level.medium { background: var(--accent-blue); }
+        
+        .risk-content h4 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .risk-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Action List */
+        .action-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .action-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        
+        .action-card h4 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        .action-card ul {
+            list-style: none;
+        }
+        
+        .action-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .action-card li::before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .principles {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">🚀 义乌AI贸易系统</div>
+            <ul class="nav-links">
+                <li><a href="#features">功能方向</a></li>
+                <li><a href="#cost">成本预算</a></li>
+                <li><a href="#tech">技术选型</a></li>
+                <li><a href="#timeline">迭代路线</a></li>
+                <li><a href="#risk">风险应对</a></li>
+                <li><a href="#action">执行清单</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>义乌小商品<span>AI智能贸易系统</span></h1>
+        <p class="hero-subtitle">部署落地优化方案 · 十六字方针驱动</p>
+        
+        <div class="principles">
+            <div class="principle"><strong>多研究</strong> 技术路线充分调研</div>
+            <div class="principle"><strong>多迭代</strong> MVP快速验证</div>
+            <div class="principle"><strong>多思考</strong> 难点预判充分</div>
+            <div class="principle"><strong>多进化</strong> 数据飞轮设计</div>
+            <div class="principle"><strong>多蒸馏</strong> 核心能力聚焦</div>
+            <div class="principle"><strong>多逆向</strong> 风险降级完备</div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <h2 class="section-title">四大功能方向</h2>
+        <p class="section-subtitle">按战略优先级排序，打造义乌外贸核心竞争力</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-priority">⭐⭐⭐⭐⭐</div>
+                </div>
+                <h3 class="feature-title">义乌商品AI智能匹配</h3>
+                <p class="feature-value">选品效率提升 60%</p>
+                <div class="feature-tech">
+                    <strong>技术栈：</strong>向量检索 + 协同过滤 + RAG增强<br>
+                    <strong>数据源：</strong>义乌购API + 15JIN + 1688
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">💬</div>
+                    <div class="feature-priority">⭐⭐⭐⭐⭐</div>
+                </div>
+                <h3 class="feature-title">WhatsApp+社媒联动</h3>
+                <p class="feature-value">客户响应速度提升 50%</p>
+                <div class="feature-tech">
+                    <strong>BSP：</strong>雨果出海（主）+ Twilio（备）<br>
+                    <strong>社媒：</strong>TikTok / Instagram / Facebook
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">🌍</div>
+                    <div class="feature-priority">⭐⭐⭐⭐</div>
+                </div>
+                <h3 class="feature-title">多语言AI内容生成</h3>
+                <p class="feature-value">内容生产效率提升 10倍</p>
+                <div class="feature-tech">
+                    <strong>主力模型：</strong>DeepSeek V4-Flash<br>
+                    <strong>目标语言：</strong>英/西/阿/俄 + 葡/法/印尼/印地
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">🔍</div>
+                    <div class="feature-priority">⭐⭐⭐⭐</div>
+                </div>
+                <h3 class="feature-title">采购意图识别</h3>
+                <p class="feature-value">线索转化率提升 40%</p>
+                <div class="feature-tech">
+                    <strong>架构：</strong>BERT快速分类 + LLM深度理解<br>
+                    <strong>意图类型：</strong>商品咨询/采购意向/样品需求/合作洽谈
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cost Section -->
+    <section class="section" id="cost">
+        <h2 class="section-title">成本预算</h2>
+        <p class="section-subtitle">精益创业，按阶段投入资源</p>
+        
+        <div class="cost-container">
+            <div class="cost-card mvp">
+                <div class="cost-stage">MVP期 (Month 1-3)</div>
+                <div class="cost-amount">¥64,800</div>
+                <div class="cost-period">/月</div>
+                <div class="cost-breakdown">
+                    <div class="cost-item"><span>云服务</span><span>¥2,000</span></div>
+                    <div class="cost-item"><span>AI API</span><span>¥1,500</span></div>
+                    <div class="cost-item"><span>数据服务</span><span>¥2,000</span></div>
+                    <div class="cost-item"><span>消息服务</span><span>¥4,300</span></div>
+                    <div class="cost-item"><span>研发人力</span><span>¥50,000</span></div>
+                    <div class="cost-item"><span>运营标注</span><span>¥5,000</span></div>
+                </div>
+            </div>
+            
+            <div class="cost-card growth">
+                <div class="cost-stage">成长期 (Month 4-9)</div>
+                <div class="cost-amount">¥120,000</div>
+                <div class="cost-period">/月</div>
+                <div class="cost-breakdown">
+                    <div class="cost-item"><span>云服务</span><span>¥5,000</span></div>
+                    <div class="cost-item"><span>AI API</span><span>¥5,000</span></div>
+                    <div class="cost-item"><span>数据服务</span><span>¥3,000</span></div>
+                    <div class="cost-item"><span>消息服务</span><span>¥12,000</span></div>
+                    <div class="cost-item"><span>研发人力</span><span>¥80,000</span></div>
+                    <div class="cost-item"><span>运营标注</span><span>¥15,000</span></div>
+                </div>
+            </div>
+            
+            <div class="cost-card mature">
+                <div class="cost-stage">成熟期 (Month 10+)</div>
+                <div class="cost-amount">¥212,000</div>
+                <div class="cost-period">/月</div>
+                <div class="cost-breakdown">
+                    <div class="cost-item"><span>云服务</span><span>¥12,000</span></div>
+                    <div class="cost-item"><span>AI API</span><span>¥15,000</span></div>
+                    <div class="cost-item"><span>数据服务</span><span>¥5,000</span></div>
+                    <div class="cost-item"><span>消息服务</span><span>¥30,000</span></div>
+                    <div class="cost-item"><span>研发人力</span><span>¥120,000</span></div>
+                    <div class="cost-item"><span>运营标注</span><span>¥30,000</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 2rem; text-align: center;">
+            <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; display: inline-block;">
+                <strong style="color: var(--accent-gold);">初期一次性投入：</strong>¥42,000
+                <span style="color: var(--text-secondary); font-size: 0.9rem; margin-left: 1rem;">
+                    (开发设备 + 域名证书 + SDK + 数据采购 + 合规咨询)
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="section" id="tech">
+        <h2 class="section-title">技术选型</h2>
+        <p class="section-subtitle">成本最优与性能平衡</p>
+        
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>组件</th>
+                    <th>选型</th>
+                    <th>成本</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>AI模型</strong></td>
+                    <td>
+                        <span class="tag recommended">DeepSeek V4-Flash</span>
+                        <span class="tag">GPT-4o (备)</span>
+                    </td>
+                    <td>¥1/MTok 输入<br>¥2/MTok 输出</td>
+                    <td>性价比最高，成本为Claude的1/105</td>
+                </tr>
+                <tr>
+                    <td><strong>向量数据库</strong></td>
+                    <td>
+                        <span class="tag recommended">Milvus 2.4+</span>
+                        <span class="tag">Qdrant (备)</span>
+                    </td>
+                    <td>开源自建</td>
+                    <td>业界成熟方案，淘宝京东同款</td>
+                </tr>
+                <tr>
+                    <td><strong>WhatsApp BSP</strong></td>
+                    <td>
+                        <span class="tag recommended">雨果出海</span>
+                        <span class="tag">Twilio (备)</span>
+                    </td>
+                    <td>¥800/月</td>
+                    <td>国内服务商，本地化支持优秀</td>
+                </tr>
+                <tr>
+                    <td><strong>关系数据库</strong></td>
+                    <td><span class="tag recommended">MySQL + Redis</span></td>
+                    <td>¥450/月</td>
+                    <td>热点数据缓存 + 关系存储</td>
+                </tr>
+                <tr>
+                    <td><strong>数据源</strong></td>
+                    <td>
+                        <span class="tag">义乌购API</span>
+                        <span class="tag recommended">15JIN</span>
+                        <span class="tag">1688</span>
+                    </td>
+                    <td>¥2,000/月</td>
+                    <td>MVP用15JIN快速接入，后期切换官方</td>
+                </tr>
+                <tr>
+                    <td><strong>翻译服务</strong></td>
+                    <td>
+                        <span class="tag recommended">DeepSeek</span>
+                        <span class="tag">阿里翻译</span>
+                    </td>
+                    <td>¥500/月</td>
+                    <td>DeepSeek通用 + 阿里电商专项优化</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="section" id="timeline">
+        <h2 class="section-title">版本迭代路线</h2>
+        <p class="section-subtitle">小步快跑，持续验证</p>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-phase">Phase 1 · Month 1-2</div>
+                <h4 class="timeline-title">商品AI智能匹配 MVP</h4>
+                <p class="timeline-desc">基础检索 + 简单推荐 + 用户行为埋点 → 验收：CTR > 8%</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-phase">Phase 2 · Month 2-3</div>
+                <h4 class="timeline-title">WhatsApp联动 + 意图识别</h4>
+                <p class="timeline-desc">AI客服接入 + 意图分类(5类) → 验收：回复率 > 70%，准确率 > 85%</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-phase">Phase 3 · Month 3-4</div>
+                <h4 class="timeline-title">多语言内容生成</h4>
+                <p class="timeline-desc">核心语言翻译 + 内容模板 → 验收：翻译准确率 > 90%</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-phase">v0.5 · Month 4-5</div>
+                <h4 class="timeline-title">智能化增强</h4>
+                <p class="timeline-desc">协同过滤 + 用户画像 + 实时特征 → 验收：CTR提升30%</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-phase">v1.0 · Month 5-6</div>
+                <h4 class="timeline-title">规模化能力</h4>
+                <p class="timeline-desc">RAG语义搜索 + 知识图谱 + A/B测试框架 → 验收：转化率提升25%</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Risk Section -->
+    <section class="section" id="risk">
+        <h2 class="section-title">风险应对</h2>
+        <p class="section-subtitle">多逆向思考，降级方案完备</p>
+        
+        <div class="risk-grid">
+            <div class="risk-item">
+                <div class="risk-level critical"></div>
+                <div class="risk-content">
+                    <h4>🔴 数据合规政策收紧</h4>
+                    <p>预防：合规先行，数据本地化存储，用户授权透明化</p>
+                </div>
+            </div>
+            <div class="risk-item">
+                <div class="risk-level critical"></div>
+                <div class="risk-content">
+                    <h4>🔴 核心API服务商涨价</h4>
+                    <p>预防：多供应商备份，签订长期锁定协议</p>
+                </div>
+            </div>
+            <div class="risk-item">
+                <div class="risk-level high"></div>
+                <div class="risk-content">
+                    <h4>🟠 技术团队流失</h4>
+                    <p>预防：知识库建设，关键人员备份，股权激励</p>
+                </div>
+            </div>
+            <div class="risk-item">
+                <div class="risk-level high"></div>
+                <div class="risk-content">
+                    <h4>🟠 竞品快速复制</h4>
+                    <p>预防：加速迭代，深耕义乌特色数据壁垒</p>
+                </div>
+            </div>
+            <div class="risk-item">
+                <div class="risk-level medium"></div>
+                <div class="risk-content">
+                    <h4>🔵 用户增长不及预期</h4>
+                    <p>预防：灵活定价策略，MVP快速验证市场需求</p>
+                </div>
+            </div>
+            <div class="risk-item">
+                <div class="risk-level medium"></div>
+                <div class="risk-content">
+                    <h4>🔵 系统安全事件</h4>
+                    <p>预防：安全审计，定期渗透测试，加密存储</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 2rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem;">
+            <h4 style="margin-bottom: 1rem; color: var(--accent-gold);">三级降级策略</h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <div>
+                    <strong style="color: var(--success);">Level 1 轻微</strong>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">关闭RAG增强，回退关键词搜索</p>
+                </div>
+                <div>
+                    <strong style="color: var(--warning);">Level 2 中度</strong>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">关闭个性化，显示全局热门</p>
+                </div>
+                <div>
+                    <strong style="color: var(--danger);">Level 3 重度</strong>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">返回静态页面，手动维护列表</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action List Section -->
+    <section class="section" id="action">
+        <h2 class="section-title">启动期行动清单</h2>
+        <p class="section-subtitle">Week 1-8 详细任务</p>
+        
+        <div class="action-list">
+            <div class="action-card">
+                <h4>Week 1-2：团队与基础设施</h4>
+                <ul>
+                    <li>组建核心团队(4-5人)</li>
+                    <li>确定技术栈和云服务商</li>
+                    <li>申请义乌购/1688数据接口</li>
+                    <li>注册WhatsApp Business账号</li>
+                    <li>制定MVP PRD</li>
+                </ul>
+            </div>
+            
+            <div class="action-card">
+                <h4>Week 3-4：开发准备</h4>
+                <ul>
+                    <li>开发环境搭建</li>
+                    <li>数据采集系统原型</li>
+                    <li>核心算法调研报告</li>
+                    <li>竞品分析报告</li>
+                    <li>里程碑计划确认</li>
+                </ul>
+            </div>
+            
+            <div class="action-card">
+                <h4>Week 5-8：MVP冲刺</h4>
+                <ul>
+                    <li>MVP开发冲刺</li>
+                    <li>首轮内测</li>
+                    <li>反馈收集与迭代</li>
+                    <li>种子用户招募</li>
+                    <li>验收标准确认</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="margin-top: 2rem; text-align: center;">
+            <div style="background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary)); border: 1px solid var(--accent-gold); border-radius: 12px; padding: 2rem; max-width: 600px; margin: 0 auto;">
+                <h4 style="color: var(--accent-gold); margin-bottom: 1rem;">🎯 成功关键因素</h4>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; text-align: left;">
+                    <div>📊 <strong>数据为王</strong><br><span style="color: var(--text-secondary); font-size: 0.9rem;">高质量商品数据是核心壁垒</span></div>
+                    <div>🔄 <strong>快速迭代</strong><br><span style="color: var(--text-secondary); font-size: 0.9rem;">小步快跑，数据驱动决策</span></div>
+                    <div>👥 <strong>客户共创</strong><br><span style="color: var(--text-secondary); font-size: 0.9rem;">深度绑定种子用户</span></div>
+                    <div>🔒 <strong>合规先行</strong><br><span style="color: var(--text-secondary); font-size: 0.9rem;">数据安全是底线</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>义乌小商品AI智能贸易系统 · 部署落地优化方案 v1.0</p>
+        <p style="margin-top: 0.5rem;">文档更新：2026年 · 下次评审：启动后2周</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll-based navbar background
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(13, 17, 23, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(13, 17, 23, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>

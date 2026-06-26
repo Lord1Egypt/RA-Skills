@@ -1,0 +1,29 @@
+{
+  "name": "xiaobai-print",
+  "version": "1.0.0",
+  "description": "MCP print integration with bundled skills and an OpenClaw skill generator",
+  "type": "module",
+  "bin": {
+    "xiaobai-print-mcp": "dist/index.js",
+    "xiaobai-print-bridge": "dist/bridge/http.js",
+    "generate-openclaw-skill": "dist/generator/cli.js"
+  },
+  "files": [
+    "dist",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}

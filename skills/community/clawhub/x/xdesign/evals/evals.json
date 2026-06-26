@@ -1,0 +1,48 @@
+{
+  "skill_name": "x-design",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我下周要给一家上海的精品咖啡店做品牌提案,他们刚发了小红书账号,@叫 '山茶花咖啡 SHANCHA',风格是那种很温柔的、偏日式侘寂的感觉,主色好像是米白和深绿。我想要一份 12 页的 pitch deck,周一上午要拿去给老板看,你能帮我做吗?",
+      "expected_output": "XDesign 路由到 Mode 1 (Presentation),先问 3-5 个澄清问题(目标受众 / 演示场景 / 是否带演讲稿 / 输出格式),然后基于侘寂风品牌色派生 aurora 或 japanese-minimal 主题,产出 12 页 pitch-deck 模板填充,关键页含:cover / brand story / menu highlight / space moodboard / pricing / team / contact。",
+      "files": [],
+      "expectations": [
+        "Skill 在产出前先问澄清问题(目标受众、演示场景、是否要演讲者模式),而不是直接生成",
+        "最终路由到 Mode 1(Presentation),走 deck-studio/ 路径",
+        "主题选择与侘寂风匹配(japanese-minimal 或 aurora 派生米白+深绿)",
+        "使用 deck-studio/templates/full-decks/pitch-deck/ 或 templates/single-page/ 的既有布局,不重新发明轮子",
+        "输出 12 页结构,含 cover / brand story / pricing / contact 等 pitch deck 必备页",
+        "HTML 单文件可直接在浏览器打开,无构建步骤"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我现在在做一个 AI 客服的 SaaS 产品,需要给客户演示一个 admin dashboard。要求:左侧固定导航栏(消息、客户、数据、设置),顶部 4 个 KPI 卡片(今日会话量、解决率、平均时长、CSAT),中间主区域是一个折线图(过去 7 天会话量趋势),底部是一个表格(最近 10 条会话记录,含客户名、状态、最后回复时间)。视觉要现代专业,接近 Linear 或 Vercel 那种感觉。",
+      "expected_output": "XDesign 路由到 Mode 2 (Visual Design),先读取 linear.app 和 vercel 的 DESIGN.md 提取设计令牌(色彩 / 字号 / 圆角 / 阴影),然后用 React + Tailwind 思路但走原生 CSS 变量输出单文件 HTML,含完整 dashboard 交互态(hover、active、loading)。",
+      "files": [],
+      "expectations": [
+        "Skill 路由到 Mode 2(Visual Design / Prototype),不走到 deck-studio",
+        "读取 references/design-system-catalog.md 找到 linear.app 和 vercel 的 DESIGN.md,提取设计令牌",
+        "输出单文件 HTML(含 React + Babel 或纯原生实现),不需要构建",
+        "实现 4 个 KPI 卡片,使用渐变数字 / micro-animation / hover 态",
+        "折线图使用 SVG 手绘(不依赖 chart.js 等构建库),数据可视化规范",
+        "表格含分页 / 排序 / 状态 badge 等微交互",
+        "色彩 / 字号 / 圆角严格遵循 linear 或 vercel 的设计令牌,不是凭空捏造"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "上一版 dashboard 整体偏冷色,客户反馈太严肃了,能不能把主色从蓝色换成暖橙红色(类似 Stripe 或 Notion 那种温度感)?另外中间那个折线图我想加一个 loading 时的骨架屏动效,数字从 0 滚动到目标值的动效也想要。预算 30 分钟迭代,不要再做大改动了。",
+      "expected_output": "XDesign 识别为迭代修改场景,增量编辑上一版 HTML(不重写),用 Edit 工具精准替换 CSS 变量和组件,加入骨架屏 CSS 动画和数字滚动 JS,保持其他部分不变。",
+      "files": [],
+      "expectations": [
+        "Skill 识别为迭代场景,先定位上一版输出文件(在 conversation 历史中)",
+        "不重新生成整个 dashboard,只做精准修改(Eval plan 强调 increment)",
+        "主色从蓝色替换为暖橙红,使用 CSS 变量批量替换(而非逐个元素)",
+        "骨架屏动效用纯 CSS keyframes 实现(无 JS),不依赖外部动画库",
+        "数字滚动动效用 requestAnimationFrame + easing 实现,2 秒内完成",
+        "30 分钟内完成,产出 diff 摘要告诉用户改了什么"
+      ]
+    }
+  ]
+}

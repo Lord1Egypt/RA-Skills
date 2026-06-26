@@ -1,0 +1,143 @@
+<!--
+  小红书 9 图视觉模板 · 研究风（Aki 风）
+  占位符用 {{FIELD}} 表示，由 Skill 在生成时替换。
+
+  必需占位：
+    {{CHANNEL_NAME}}    频道名，例如 "Zea 说 AI"
+    {{DATE_STR}}        日期字符串，例如 "2026-05-04" 或 "5 月 4 日"
+    {{COVER_TITLE}}     封面主标题（不超过 10 字，会显示为巨大衬线字）
+    {{COVER_SUB}}       封面副标题（红色，不超过 15 字）
+    {{COVER_HINT}}      封面下方 hint 文字，例如 "今日 AI 圈发生了什么"
+    {{INTRO_LEAD}}      导语引文（斜体，15-30 字）
+    {{INTRO_BODY}}      导语正文 HTML（可含 <b> <span class="hl"> <span class="rk">）
+    {{P01_TITLE}}       01 主角标题
+    {{P01_SUB}}         01 副标
+    {{P01_BULLETS}}     01 要点列表（<li>...</li> 多条）
+    {{P01_QUOTE}}       01 引用框 HTML
+    ...同理 P02 P03 P04 P05 P06 P07
+    {{CTA_HANDLE}}      @用户名，用于最后一页
+    {{NEXT_PREVIEW}}    明日预告 HTML
+  可选占位：
+    {{COVER_SVG}}       封面 SVG 插图（不传则留白）
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>{{CHANNEL_NAME}} · {{DATE_STR}}</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif; background: #0b0b0b; }
+  .slide { width: 1080px; height: 1440px; background: #0b0b0b; display: flex; justify-content: center; align-items: flex-start; padding: 70px 60px; page-break-after: always; }
+  .card { width: 100%; height: 100%; background: #ffffff; border-radius: 22px; padding: 90px 76px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .pn { position: absolute; top: 52px; right: 52px; background: #e8e8e8; color: #5a5a5a; font-size: 26px; font-weight: 500; padding: 8px 20px; border-radius: 22px; letter-spacing: 1px; }
+  .h1 { font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: 88px; line-height: 1.1; color: #111; padding-left: 30px; border-left: 8px solid #e63946; margin-bottom: 28px; }
+  .h1 .num { color: #111; font-weight: 900; margin-right: 18px; }
+  .sub { font-size: 40px; color: #8a8a8a; font-weight: 500; margin-bottom: 52px; line-height: 1.4; }
+  .serif-title { font-family: 'Noto Serif SC', serif; font-weight: 900; color: #111; line-height: 1.12; }
+  .underline { height: 6px; background: #111; margin: 36px 0 40px; }
+  .quote { background: #f3f3f3; border-radius: 14px; padding: 38px 44px; font-size: 40px; color: #2a2a2a; line-height: 1.55; font-weight: 500; margin: 30px 0; }
+  .quote.italic { font-style: italic; color: #444; border-left: 8px solid #e63946; border-radius: 0 14px 14px 0; padding-left: 34px; }
+  ul.bl { list-style: none; padding: 0; margin: 12px 0; }
+  ul.bl li { position: relative; padding-left: 36px; font-size: 42px; line-height: 1.65; color: #1a1a1a; margin-bottom: 18px; font-weight: 500; }
+  ul.bl li::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: #1a1a1a; position: absolute; left: 0; top: 28px; }
+  .rk { color: #e63946; font-weight: 900; }
+  .hl { background: linear-gradient(180deg, transparent 45%, #ffe265 45%, #ffe265 92%, transparent 92%); padding: 0 4px; font-weight: 900; color: #111; }
+  b, strong { color: #111; font-weight: 900; }
+
+  /* 封面特殊样式 */
+  .s1 .card { background: #f6eed8; padding: 0; align-items: center; justify-content: center; }
+  .cover-wrap { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; padding: 70px 50px 60px; position: relative; }
+  .cover-title { font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: 88px; color: #111; margin-bottom: 18px; letter-spacing: 2px; text-align: center; }
+  .cover-pn { position: absolute; top: 60px; right: 60px; background: rgba(0,0,0,.15); color: #fff; font-size: 26px; padding: 8px 20px; border-radius: 22px; }
+  .ice { flex: 1; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 10px; }
+  .ice svg { width: 100%; height: auto; max-height: 1050px; }
+  .cover-brand { position: absolute; bottom: 44px; right: 60px; font-size: 24px; color: rgba(0,0,0,.45); font-weight: 500; letter-spacing: 3px; }
+</style>
+</head>
+<body>
+
+<div class="slide s1" id="s1"><div class="card"><div class="cover-wrap">
+  <div class="cover-pn">1 / 9</div>
+  <div class="cover-title">{{COVER_TITLE}}</div>
+  <div style="font-family: 'Noto Serif SC'; font-weight:700; font-size:56px; color:#e63946; letter-spacing:4px; margin-bottom: 20px;">{{COVER_SUB}}</div>
+  <div style="font-size:30px; color:#555; letter-spacing:3px; margin-bottom: 40px;">{{DATE_STR}} · {{COVER_HINT}}</div>
+  <div class="ice">{{COVER_SVG}}</div>
+  <div class="cover-brand">{{CHANNEL_NAME}}</div>
+</div></div></div>
+
+<div class="slide s2" id="s2"><div class="card">
+  <div class="pn">2 / 9</div>
+  <div class="serif-title" style="font-size:92px;">{{P02_TITLE}}</div>
+  <div class="underline"></div>
+  <div class="quote italic" style="font-size:44px;">{{INTRO_LEAD}}</div>
+  <div style="font-size:38px; line-height:1.75; color:#1a1a1a; margin-top: 36px;">{{INTRO_BODY}}</div>
+</div></div>
+
+<div class="slide s3" id="s3"><div class="card">
+  <div class="pn">3 / 9</div>
+  <div class="h1"><span class="num">01</span> {{P03_TITLE}}</div>
+  <div class="sub">{{P03_SUB}}</div>
+  <ul class="bl">{{P03_BULLETS}}</ul>
+  <div class="quote">{{P03_QUOTE}}</div>
+</div></div>
+
+<div class="slide s4" id="s4"><div class="card">
+  <div class="pn">4 / 9</div>
+  <div class="h1"><span class="num">02</span> {{P04_TITLE}}</div>
+  <div class="sub">{{P04_SUB}}</div>
+  <ul class="bl">{{P04_BULLETS}}</ul>
+  <div class="quote italic">{{P04_QUOTE}}</div>
+</div></div>
+
+<div class="slide s5" id="s5"><div class="card">
+  <div class="pn">5 / 9</div>
+  <div class="h1"><span class="num">03</span> {{P05_TITLE}}</div>
+  <div class="sub">{{P05_SUB}}</div>
+  <div style="font-size:40px; color:#444; margin-top: 40px; line-height:1.8; font-weight:500;">{{P05_BODY}}</div>
+  <div class="quote">{{P05_QUOTE}}</div>
+</div></div>
+
+<div class="slide s6" id="s6"><div class="card">
+  <div class="pn">6 / 9</div>
+  <div class="h1"><span class="num">04</span> {{P06_TITLE}}</div>
+  <div class="sub">{{P06_SUB}}</div>
+  <ul class="bl">{{P06_BULLETS}}</ul>
+  <div class="quote italic">{{P06_QUOTE}}</div>
+</div></div>
+
+<div class="slide s7" id="s7"><div class="card">
+  <div class="pn">7 / 9</div>
+  <div class="h1"><span class="num">05</span> {{P07_TITLE}}</div>
+  <div class="sub">{{P07_SUB}}</div>
+  <ul class="bl">{{P07_BULLETS}}</ul>
+  <div class="quote">{{P07_QUOTE}}</div>
+</div></div>
+
+<div class="slide s8" id="s8"><div class="card">
+  <div class="pn">8 / 9</div>
+  <div class="h1"><span class="num">06</span> 记 住 这 句 话</div>
+  <div class="sub">如果今天只带走一句话</div>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div style="font-family:'Noto Serif SC'; font-weight:900; font-size:74px; color:#111; line-height:1.35;">{{PUNCHLINE}}</div>
+    <div style="font-size:38px; color:#666; margin-top: 60px; line-height:1.7; font-weight:500;">{{PUNCHLINE_FOOT}}</div>
+  </div>
+</div></div>
+
+<div class="slide s9" id="s9"><div class="card">
+  <div class="pn">9 / 9</div>
+  <div class="h1"><span class="num">07</span> 每 日 速 报</div>
+  <div class="sub">关注不错过</div>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div style="font-family:'Noto Serif SC'; font-weight:900; font-size:100px; color:#e63946; text-align:center; margin-bottom: 30px;">{{CTA_HANDLE}}</div>
+    <div style="font-size:32px; color:#666; text-align:center; margin-bottom: 80px;">关 注 · 不 错 过</div>
+    <div class="quote" style="text-align:center; font-size:34px;">
+      <b>明 日 预 告</b><br>
+      <span style="font-size:42px; color:#111;">{{NEXT_PREVIEW}}</span>
+    </div>
+  </div>
+</div></div>
+
+</body>
+</html>

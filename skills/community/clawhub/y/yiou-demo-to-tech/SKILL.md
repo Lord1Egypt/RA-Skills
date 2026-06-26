@@ -1,35 +1,161 @@
----
-name: "亿欧 Demo 转技术方案"
-description: "将业务 Demo 和需求描述转化为结构化技术方案文档，明确页面流程、字段、接口、验收标准及待确认问题，支持研发评估和排期。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yiou-demo-to-tech"
-sourceUrl: "https://clawhub.ai/skills/yiou-demo-to-tech"
----
+# Yiou DemoToTech
 
-# 亿欧 Demo 转技术方案
+## 描述
+亿欧 DemoToTech 是一个文档生成类 Skill，用于将业务 Demo、产品原型和需求描述转化为工程可执行的技术方案文档。该能力结合亿欧智库研究流程和数据平台产品交付经验，帮助团队梳理页面流程、模块字段、业务规则、接口需求、数据归属、待确认问题、开发任务与验收标准，将 Demo 展示内容推进到可评估、可拆解、可开发、可验收的实施规划。
 
-> 将业务 Demo 和需求描述转化为结构化技术方案文档，明确页面流程、字段、接口、验收标准及待确认问题，支持研发评估和排期。
+## 用途
+`Yiou DemoToTech` 将业务导向的 Demo 和需求描述转化为工程可执行的技术方案文档。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yiou-demo-to-tech`
-- **Source URL:** [https://clawhub.ai/skills/yiou-demo-to-tech](https://clawhub.ai/skills/yiou-demo-to-tech)
+该 Skill 不生成生产代码，主要输出可用于研发评估和排期的方案文档，并明确标注不确定内容、待确认问题、验收标准和开发任务拆解。
 
-## Overview
+## 适用场景
+当用户需要完成以下任务时使用该 Skill：
 
+- 将 Demo 或产品原型转成技术方案
+- 将业务语言整理为前端、后端、数据库可理解的开发文档
+- 在研发开始前识别缺失需求和待确认问题
+- 输出可用于研发评估、任务拆解和排期规划的结构化文档
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yiou-demo-to-tech
+典型触发语：
+
+- "把这个 Demo 转成技术方案"
+- "整理成前后端可开发文档"
+- "输出接口和数据结构"
+- "生成待确认问题和验收标准"
+- "把行业研究/产业链/企业扫描/投融资/市场洞察 Demo 转成开发文档"
+
+## 输入
+最小必填输入：
+
+- `business_description`: 业务目标、使用场景和预期价值
+
+建议输入：
+
+- `demo_code`: HTML/React/Vue/low-code snippets
+- `demo_screenshot`: 关键页面截图
+- `target_platform`: PC/H5/mini-program/admin
+
+可选输入：
+
+- `reference_docs`: 竞品页面或参考资料
+- `known_data_sources`: 已知系统、数据表或接口
+- `constraints`: 时间周期、合规要求、权限要求、兼容性要求
+
+建议输入 JSON：
+
+```json
+{
+  "business_description": "string, required",
+  "demo_code": "string, optional",
+  "demo_screenshot": "string or list, optional",
+  "reference_docs": "string or list, optional",
+  "target_platform": "PC | H5 | MiniProgram | Admin",
+  "known_data_sources": "string or list, optional",
+  "constraints": "string or list, optional"
+}
+```
+
+## 工作流
+按以下步骤执行：
+
+1. 理解业务目标、使用角色和核心场景。
+2. 将 Demo 拆解为页面清单、模块、字段、操作和流程。
+3. 提取显性和隐性的业务规则。
+4. 推断实体、字段和数据归属。
+5. 草拟接口需求。
+6. 补充边界、异常、权限和超时场景。
+7. 标注推断内容和未决事项。
+8. 生成最终技术文档、结构化 JSON、问题清单、任务拆解和验收标准。
+9. 评定文档成熟度等级（`L1`/`L2`/`L3`/`L4`）。
+
+## 输出要求
+该 Skill 必须输出五类内容。
+
+1) 主技术文档（Markdown）
+- 必须包含 `templates/tech_doc_template.md` 中的全部章节
+
+2) 结构化 JSON
+- 必须包含 `templates/structured_output_template.json` 中的全部字段
+
+3) 待确认问题表
+- 字段：question、impact_scope、priority、default_suggestion、owner
+
+4) 开发任务拆解
+- 字段：side(FE/BE/QA)、task、priority、notes
+
+5) 验收标准
+- 按功能、数据、交互、权限、导出分组
+
+## 来源标签（必填）
+每条关键规则、接口假设和数据推断都必须标注来源：
+
+- `业务提供`
+- `Demo 识别`
+- `模型推断，待确认`
+- `默认建议，待确认`
+
+## 接口状态规则（必填）
+每个接口项必须且只能使用以下一种状态：
+
+- `复用`
+- `新增`
+- `待确认`
+- `前端本地处理`
+
+不得编造“已有内部接口”。如果不确定，一律使用 `待确认`。
+
+## 质量门禁
+如果缺少任何必填项，文档不得标记为可进入开发。
+
+必填项：
+
+- 业务目标
+- 使用角色
+- 页面流程
+- 核心字段
+- 数据来源，或明确标记未知
+- 验收标准
+
+建议补充：
+
+- 权限规则
+- 边界和异常场景
+
+## 成熟度等级
+- `L1 概念说明`: 停留在想法层，暂不可评估
+- `L2 需求方案`: 页面和规则大体清楚，可粗略评估
+- `L3 技术方案`: 字段、接口、异常和验收标准清楚，可启动开发
+- `L4 开发任务`: 已拆分为可排期的开发任务
+
+成熟度评级必须包含：
+
+- `maturity_level`: `L1`/`L2`/`L3`/`L4` 之一
+- `maturity_reason`: 简要说明为什么评为该等级
+- `blocking_gaps`: 阻碍文档升级到下一等级的缺失信息或未决事项
+
+如果质量门禁的必填项缺失，必须写入 `blocking_gaps`，且不得评为 `L3` 或 `L4`。
+
+## 约束
+该 Skill 不得：
+
+- 声称 Demo 代码可直接用于生产
+- 绕过技术评审
+- 替业务方做最终业务决策
+- 编造已有接口或数据来源
+- 以输出“完整生产代码”作为主要目标
+
+## 默认输出风格
+- 优先使用简洁表格，避免大段叙述
+- 明确区分事实和推断
+- 将所有未决事项集中放入“待确认问题”章节
+- 明确区分前端、后端、数据库职责
+
+## 快速启动提示词
+调用该 Skill 时可使用以下短提示词：
+
+```text
+你是 Yiou DemoToTech skill。请把业务描述和 Demo 转成可评估、可拆解、可开发、可验收的技术方案文档。
+适用场景包括行业研究、产业链、企业扫描、投融资、数据分析、市场洞察、战略咨询等亿欧业务场景。
+必须输出：功能概述、页面流程、模块字段、业务规则、数据结构、接口需求（含状态）、权限与异常、前后端建议、验收标准、待确认问题、开发任务拆解、成熟度评级。
+成熟度评级必须包含等级、评级原因、阻塞缺口；凡是推断必须标注“模型推断，待确认”；接口不确定时一律标注“待确认”。
 ```

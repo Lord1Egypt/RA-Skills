@@ -1,0 +1,14 @@
+{
+  "openai": {
+    "api_key": "your-openai-api-key",
+    "base_url": "https://api.openai.com/v1",
+    "model": "dall-e-3"
+  },
+  "gemini": {
+    "api_key": "your-gemini-api-key",
+    "model": "gemini-2.0-flash-exp"
+  },
+  "default_provider": "openai",
+  "default_resolution": "2K",
+  "default_style": "default"
+}

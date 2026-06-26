@@ -1,0 +1,77 @@
+# OpenClaw Docker Compose 配置
+# 一键启动完整服务
+
+version: '3.8'
+
+services:
+  openclaw:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: openclaw:latest
+    container_name: openclaw
+    restart: unless-stopped
+    
+    ports:
+      - "18789:18789"
+    
+    environment:
+      - NODE_ENV=production
+      - TZ=Asia/Shanghai
+      - OPENCLAW_CONFIG=/app/config/openclaw.json
+    
+    volumes:
+      # 数据持久化
+      - openclaw-data:/app/data
+      - openclaw-logs:/app/logs
+      # 配置文件
+      - ./config:/app/config:ro
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:18789/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    networks:
+      - openclaw-network
+
+  # 可选：监控服务
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: openclaw-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    networks:
+      - openclaw-network
+
+  # 可选：日志聚合
+  loki:
+    image: grafana/loki:latest
+    container_name: openclaw-loki
+    restart: unless-stopped
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./monitoring/loki-config.yml:/etc/loki/local-config.yaml:ro
+      - loki-data:/loki
+    networks:
+      - openclaw-network
+
+volumes:
+  openclaw-data:
+  openclaw-logs:
+  prometheus-data:
+  loki-data:
+
+networks:
+  openclaw-network:
+    driver: bridge

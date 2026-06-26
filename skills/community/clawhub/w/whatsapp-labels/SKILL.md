@@ -1,35 +1,30 @@
 ---
-name: "WhatsApp Labels"
-description: "List and search WhatsApp Business labels/tags"
-category: "productivity"
-source: "ClawHub"
-tags: [baileys, business, labels, offline, tags, whatsapp]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/whatsapp-labels"
-sourceUrl: "https://clawhub.ai/skills/whatsapp-labels"
+name: whatsapp-labels
+description: List and search WhatsApp Business labels/tags
 ---
 
-# WhatsApp Labels
+# WhatsApp Labels Skill
 
-> List and search WhatsApp Business labels/tags
+Manage and search WhatsApp Business labels (tags) from the local session cache.
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/whatsapp-labels`
-- **Source URL:** [https://clawhub.ai/skills/whatsapp-labels](https://clawhub.ai/skills/whatsapp-labels)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/whatsapp-labels
 ```
+exec({ cmd: "node <skill_dir>/scripts/labels.js COMMAND [ARGS]" })
+```
+
+## Commands
+
+### List All Labels
+```
+exec({ cmd: "node <skill_dir>/scripts/labels.js list" })
+```
+
+### Find Chats by Label
+```
+exec({ cmd: "node <skill_dir>/scripts/labels.js chats \"VIP Client\"" })
+```
+
+## Note
+
+Requires a WhatsApp Business account for labels to be available.

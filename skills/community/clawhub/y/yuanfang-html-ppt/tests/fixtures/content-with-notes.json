@@ -1,0 +1,43 @@
+{
+  "brand": "产品团队",
+  "theme": "pitch-deck-vc",
+  "title": "带笔记的 PPT",
+  "author": "测试",
+  "date": "2026-06-07",
+  "slides": [
+    {
+      "layout": "cover",
+      "kicker": "KEYNOTE · 2026",
+      "title": "带笔记的 <span class=\"gradient-text\">演示</span>",
+      "subtitle": "Speaker notes 也能正常导出",
+      "tags": ["Demo", "Notes"],
+      "author": "测试",
+      "notes": "开场白：欢迎大家。今天我们演示 yuanfang 的 speaker notes 功能。这段笔记应该出现在 PPT 演讲者备注中。"
+    },
+    {
+      "layout": "section",
+      "kicker": "Part · 01",
+      "title": "<span class=\"gradient-text\">市场</span>洞察",
+      "subtitle": "为什么现在做",
+      "notes": "这一节是市场洞察。\n第一段：谈 AI 渗透率。\n第二段：谈开发者偏好。\n第三段：总结。"
+    },
+    {
+      "layout": "content",
+      "kicker": "Why now",
+      "title": "三个不变的趋势",
+      "lede": "产品方向根植于三个加速变化。",
+      "points": [
+        "AI Agent 渗透率从 8% 增长到 47%",
+        "企业从工具采购转向生态编排",
+        "开发者偏好一体化平台"
+      ],
+      "notes": "这里要重点讲趋势一：AI agent 渗透率。\n可以举例：客服 agent、代码 agent。"
+    },
+    {
+      "layout": "thanks",
+      "subtitle": "感谢聆听",
+      "points": ["test@yuanfang.dev", "2026 · MIT"],
+      "notes": "结尾 Q&A 引导。"
+    }
+  ]
+}

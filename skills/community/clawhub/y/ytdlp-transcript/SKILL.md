@@ -1,35 +1,38 @@
 ---
-name: "ytdlp-transcript — YouTube to Text via yt-dlp"
-description: "Fetch and summarize transcripts from any YouTube video. Paste a URL and your agent reads the video for you — summarize, translate, extract insights."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ytdlp-transcript"
-sourceUrl: "https://clawhub.ai/skills/ytdlp-transcript"
+name: youtube-transcript
+description: Fetch and summarize transcripts from any YouTube video. Paste a URL and your agent reads the video for you — summarize, translate, extract insights.
 ---
 
-# ytdlp-transcript — YouTube to Text via yt-dlp
+# youtube-transcript
 
-> Fetch and summarize transcripts from any YouTube video. Paste a URL and your agent reads the video for you — summarize, translate, extract insights.
+Fetch and summarize transcripts from any YouTube video using yt-dlp.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ytdlp-transcript`
-- **Source URL:** [https://clawhub.ai/skills/ytdlp-transcript](https://clawhub.ai/skills/ytdlp-transcript)
+## Usage
 
-## Overview
+Ask your agent:
+- "Get the transcript of [YouTube URL]"
+- "Summarize this video: [YouTube URL]"
+- "What is the main message of [YouTube URL]?"
+- "Translate and explain this video: [YouTube URL]"
 
+## How It Works
 
-## Installation
-To install this skill, run the following command in your terminal:
+Uses `yt-dlp` to download auto-generated or manual captions from YouTube.
+Supports all languages — defaults to Portuguese (pt), falls back to English (en).
+
+## Requirements
+
+- `yt-dlp` installed: `brew install yt-dlp`
+- Node.js 18+
+
+## Script
+
 ```bash
-hermes skills install clawhub/ytdlp-transcript
+node skills/youtube-transcript/transcript.js <youtube-url-or-id> [lang]
+```
+
+## Example
+
+```bash
+node skills/youtube-transcript/transcript.js https://www.youtube.com/watch?v=LAdJsmTe8LM pt
 ```

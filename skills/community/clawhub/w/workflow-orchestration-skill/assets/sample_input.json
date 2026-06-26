@@ -1,0 +1,14 @@
+{
+  "business_goal": "新员工入职流程：完成账号开通、设备采购、工位安排、入职培训",
+  "available_skills_manifest": [
+    {"skill_name": "hr-onboarding", "description": "员工入职流程管理", "allowed_context_scope": "full"},
+    {"skill_name": "it-provisioning", "description": "IT账号和设备开通", "allowed_context_scope": "full"},
+    {"skill_name": "facilities-booking", "description": "工位和设备采购", "allowed_context_scope": "read-only"},
+    {"skill_name": "notification-service", "description": "消息通知", "allowed_context_scope": "full"}
+  ],
+  "constraints": {
+    "max_nodes": 20,
+    "max_depth": 5,
+    "max_parallelism": 3
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "wechat": {
+    "appid": "你的微信公众号 AppID",
+    "appsecret": "你的微信公众号 AppSecret",
+    "_help": "在 微信公众平台 → 开发 → 基本配置 中获取"
+  },
+  "image_api": {
+    "api_key": "你的 API Key",
+    "api_base_url": "https://api.siliconflow.cn/v1/images/generations",
+    "model": "black-forest-labs/FLUX.1-schnell",
+    "_help": "支持任何兼容 OpenAI 格式的文生图 API，常见服务商见 README"
+  }
+}

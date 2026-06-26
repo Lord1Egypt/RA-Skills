@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fcfaf8"/>
+      <stop offset="100%" style="stop-color:#f9f6f2"/>
+    </linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <style>
+    text { font-family: 'Noto Sans CJK SC', system-ui, sans-serif; }
+    .title { font-size:16px; font-weight:600; fill:#1a1a2e; }
+    .header-left { font-size:13px; font-weight:600; fill:#fff; }
+    .header-right { font-size:13px; font-weight:600; fill:#fff; }
+    .label { font-size:13px; fill:#999; font-weight:500; }
+    .val-left { font-size:13px; fill:#333; }
+    .val-right { font-size:13px; fill:#333; }
+    .tag-accent { fill:#d4a574; font-weight:600; }
+  </style>
+  <rect width="700" height="380" rx="10" fill="url(#bg)"/>
+  
+  <!-- Title -->
+  <text x="40" y="38" class="title">传统搜索 vs AI 原生搜索</text>
+
+  <!-- Header row -->
+  <rect x="40" y="55" rx="6" width="290" height="32" fill="#1a1a2e"/>
+  <text x="185" y="76" text-anchor="middle" class="header-left">传统 AI 搜索</text>
+  
+  <rect x="370" y="55" rx="6" width="290" height="32" fill="#d4a574"/>
+  <text x="515" y="76" text-anchor="middle" class="header-right">AnySearch</text>
+
+  <!-- Row 1: 数据源 -->
+  <text x="20" y="125" class="label">数据源</text>
+  <rect x="40" y="105" rx="4" width="290" height="28" fill="#fff" filter="url(#shadow)"/>
+  <text x="185" y="124" text-anchor="middle" class="val-left">公开网页</text>
+  <rect x="370" y="105" rx="4" width="290" height="28" fill="#fdf7f0" filter="url(#shadow)"/>
+  <text x="515" y="124" text-anchor="middle" class="val-right">公开网页 + 专业垂直数据库</text>
+
+  <!-- Row 2: 结果 -->
+  <text x="20" y="170" class="label">结果</text>
+  <rect x="40" y="150" rx="4" width="290" height="28" fill="#fff" filter="url(#shadow)"/>
+  <text x="185" y="169" text-anchor="middle" class="val-left">链接、摘要、页面</text>
+  <rect x="370" y="150" rx="4" width="290" height="28" fill="#fdf7f0" filter="url(#shadow)"/>
+  <text x="515" y="169" text-anchor="middle" class="val-right">结构化数据、完整内容</text>
+
+  <!-- Row 3: 方式 -->
+  <text x="20" y="215" class="label">方式</text>
+  <rect x="40" y="195" rx="4" width="290" height="28" fill="#fff" filter="url(#shadow)"/>
+  <text x="185" y="214" text-anchor="middle" class="val-left">模拟人类搜索行为</text>
+  <rect x="370" y="195" rx="4" width="290" height="28" fill="#fdf7f0" filter="url(#shadow)"/>
+  <text x="515" y="214" text-anchor="middle" class="val-right">API 调用 + 垂直域路由</text>
+
+  <!-- Row 4: 专业数据 -->
+  <text x="20" y="260" class="label">专业数据</text>
+  <rect x="40" y="240" rx="4" width="290" height="28" fill="#fff" filter="url(#shadow)"/>
+  <text x="185" y="259" text-anchor="middle" class="val-left">搜不到（需认证登录）</text>
+  <rect x="370" y="240" rx="4" width="290" height="28" fill="#fdf7f0" filter="url(#shadow)"/>
+  <text x="515" y="259" text-anchor="middle" class="val-right">金融 / 法律 / 学术等已接入</text>
+
+  <!-- Row 5: 一句话 -->
+  <text x="20" y="305" class="label">一句话</text>
+  <rect x="40" y="285" rx="4" width="290" height="28" fill="#fff" filter="url(#shadow)"/>
+  <text x="185" y="304" text-anchor="middle" class="val-left">教 AI 模仿人怎么搜</text>
+  <rect x="370" y="285" rx="4" width="290" height="28" fill="#fdf7f0" filter="url(#shadow)"/>
+  <text x="515" y="304" text-anchor="middle" class="tag-accent">为 AI 设计专属搜索方式</text>
+
+  <!-- Source note -->
+  <text x="40" y="355" font-size="11" fill="#ccc"></text>
+</svg>

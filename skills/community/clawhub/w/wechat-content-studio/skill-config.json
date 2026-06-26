@@ -1,0 +1,13 @@
+{
+  "defaultSkill": "wechat-content-studio",
+  "skillPath": "/Users/yaohua.liu/.workbuddy/skills/wechat-content-studio",
+  "autoExecute": true,
+  "outputDir": "~/WorkBuddy/wechat-content-studio",
+  "commands": {
+    "search": "node scripts/main.js search \"{{keyword}}\" --count {{count:3}} --merge",
+    "grab": "node scripts/main.js links \"{{url}}\" --merge",
+    "rewrite": "node scripts/main.js rewrite \"{{file}}\" --generate-cover --publish",
+    "autoPublish": "node scripts/main.js auto-publish \"{{file}}\"",
+    "extract": "node scripts/main.js extract \"{{url}}\""
+  }
+}

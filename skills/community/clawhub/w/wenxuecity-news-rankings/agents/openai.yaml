@@ -1,0 +1,7 @@
+interface:
+  display_name: "Wenxuecity 24h Rankings"
+  short_description: "Fetch and format Wenxuecity News 24h hot/discussion rankings"
+  default_prompt: "Use $wenxuecity-news-rankings to fetch and format Wenxuecity 24-hour hot and discussion rankings."
+
+policy:
+  allow_implicit_invocation: true

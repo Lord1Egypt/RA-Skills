@@ -1,0 +1,7 @@
+{
+  "name": "moji-vocab",
+  "version": "1.0.0",
+  "description": "Moji辞書生词本管理与每日测试技能。支持读取日语收藏夹、按JLPT级别筛选、删除已掌握单词、自动生成测试题。",
+  "author": "Xiaolongxia_MaoNB",
+  "license": "MIT"
+}

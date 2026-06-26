@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Work Style Memory</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="sidebar-top">
+          <h1>Work Style Memory</h1>
+          <div class="actions">
+            <button id="new-workflow" class="button button-primary">New Workflow</button>
+            <button id="refresh-list" class="button button-ghost">Refresh</button>
+          </div>
+        </div>
+
+        <label class="search">
+          <span>Search</span>
+          <input id="search-input" type="search" placeholder="Name, summary, keyword" />
+        </label>
+
+        <div class="meta-row">
+          <div>
+            <span class="meta-label">Workflow Dir</span>
+            <strong id="workflow-dir">Loading...</strong>
+          </div>
+          <div>
+            <span class="meta-label">Count</span>
+            <strong id="workflow-count">0</strong>
+          </div>
+        </div>
+
+        <div id="workflow-list" class="workflow-list"></div>
+      </aside>
+
+      <main class="main">
+        <section class="hero">
+          <div>
+            <h2 id="editor-title">Create or update a workflow</h2>
+          </div>
+          <div class="hero-status" id="status-banner">Ready</div>
+        </section>
+
+        <section class="panel tabs">
+          <div class="tab-buttons">
+            <button class="tab-button is-active" data-tab="form">Form</button>
+            <button class="tab-button" data-tab="json">JSON Preview</button>
+          </div>
+
+          <div class="tab-panel is-active" data-panel="form">
+            <form id="workflow-form" class="editor-grid">
+              <section class="card">
+                <h3>Basic Info</h3>
+                <div class="field-grid">
+                  <label>
+                    <span>Name</span>
+                    <input name="name" type="text" placeholder="PR Review" required />
+                  </label>
+                </div>
+                <label class="summary-field">
+                  <span>Summary</span>
+                  <textarea name="summary" rows="3" placeholder="Describe the repeated task."></textarea>
+                </label>
+              </section>
+
+              <section class="card">
+                <h3>Triggers</h3>
+                <label>
+                  <span>Keywords</span>
+                  <input name="match_keywords" type="text" placeholder="pr, review, diff" />
+                </label>
+              </section>
+
+              <section class="card">
+                <div class="section-header">
+                  <h3>Steps</h3>
+                  <button type="button" class="button button-small" data-add-row="steps">
+                    Add
+                  </button>
+                </div>
+                <div id="steps" class="rows"></div>
+              </section>
+
+              <div class="footer-actions">
+                <button type="submit" class="button button-primary">Save Workflow</button>
+                <button type="button" id="reload-current" class="button button-ghost">Reload</button>
+                <button type="button" id="delete-workflow" class="button button-danger" disabled>Delete</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="tab-panel" data-panel="json">
+            <div class="card json-card">
+              <h3>JSON Preview</h3>
+              <pre id="json-preview">{}</pre>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="row-template-two">
+      <div class="row two">
+        <input data-field="first" type="text" />
+        <input data-field="second" type="text" />
+        <button type="button" class="button button-remove" data-remove-row>Remove</button>
+      </div>
+    </template>
+
+    <template id="row-template-three">
+      <div class="row step-row">
+        <div class="step-chip" data-step-label>Step 1</div>
+        <textarea data-field="second" rows="2"></textarea>
+        <input data-field="third" type="text" />
+        <button type="button" class="button button-remove" data-remove-row>Remove</button>
+      </div>
+    </template>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>

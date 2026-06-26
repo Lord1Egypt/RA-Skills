@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=1920">
+<title>Slide Deck</title>
+<style>
+/* yuanfang-design/base.css
+ * Token defaults for all themes.
+ *
+ * INHERITED FROM: lewislulu/html-ppt-skill (MIT) — hierarchical token structure,
+ *   card/grid/pill layout primitives. See references/upstream-html-ppt-skill.md.
+ *
+ * Themes override these via [data-theme="..."] selectors.
+ * No literal colors, sizes, or decorations allowed in layout rules below.
+ */
+
+:root {
+  /* ============================================================
+   * DESIGN TOKENS
+   *
+   * NEW hierarchical tokens (html-ppt-skill inspired).
+   * LEGACY tokens kept as aliases for backward compatibility.
+   * ============================================================ */
+
+  /* === Surface hierarchy === */
+  --bg: #FFFFFF;            /* outermost background */
+  --bg-soft: #F7F7F8;      /* soft background (was --bg-alt) */
+  --surface: #FFFFFF;       /* card / elevated surface */
+  --surface-2: #F2F2F4;    /* lower-contrast surface */
+  --bg-alt: var(--bg-soft); /* LEGACY alias */
+
+  /* === Border === */
+  --border: rgba(0,0,0,.08);
+  --border-strong: rgba(0,0,0,.16);
+
+  /* === Text hierarchy === */
+  --text: #0F172A;          /* LEGACY — maps to --text-1 */
+  --text-1: var(--text);    /* headings / primary text */
+  --text-2: #64748B;        /* body / secondary text (was --secondary) */
+  --text-3: #8A8F9E;       /* meta / tertiary text */
+  --secondary: var(--text-2); /* LEGACY alias */
+
+  /* === Accent hierarchy === */
+  --accent: #4F46E5;        /* primary accent */
+  --accent-2: #7A5CFF;     /* accent variant (purple shift) */
+  --accent-3: #FF5C8A;     /* accent variant (pink shift) */
+
+  /* === Semantic colors (good / warn / bad) === */
+  --good: #1AAF6C;
+  --warn: #F5A524;
+  --bad:  #E0445A;
+
+  /* === Gradients === */
+  --grad: linear-gradient(135deg, var(--accent), var(--accent-2) 55%, var(--accent-3));
+  --grad-soft: linear-gradient(135deg, #EEF2FF, #F5ECFF 55%, #FFEEF5);
+
+  /* === Type hierarchy === */
+  --font-sans: system-ui, -apple-system, "PingFang SC", "Outfit", sans-serif;
+  --font-serif: "Playfair Display", "Noto Serif SC", Georgia, serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", SFMono-Regular, Menlo, monospace;
+  --font-display: var(--font-sans);
+  --font-title: var(--font-display); /* LEGACY alias */
+  --font-body: var(--font-sans);     /* LEGACY alias */
+
+  /* === Letter spacing === */
+  --letter-tight: -.03em;
+  --letter-normal: -.01em;
+
+  /* === Size (per aspect ratio) — LEGACY: kept for html-image === */
+  --title-size-v: 130px;  /* 3:4 portrait + 9:16 tall */
+  --title-size-s: 96px;   /* 1:1 square */
+  --title-size-w: 88px;   /* 16:9 wide */
+  --title-size-c: 64px;   /* 2.35:1 cover + 1.9:1 OG */
+  --content-size: 38px;
+  --badge-size: 18px;
+  --source-size: 14px;
+
+  /* === Space (4-step rhythm) === */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 48px;
+
+  /* === Radius scale === */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 22px;
+
+  /* === Shadow scale === */
+  --shadow: 0 8px 32px rgba(0,0,0,.08);
+  --shadow-lg: 0 24px 60px rgba(18,24,40,.14);
+
+  /* === Decor (4 corners) — LEGACY === */
+  --decor-tl: none;
+  --decor-tr: none;
+  --decor-bl: none;
+  --decor-br: none;
+
+  /* === Feature flags (none | block) — LEGACY === */
+  --accent-line: none;       /* top 4px accent bar */
+  --accent-block: none;      /* right side accent block */
+  --terminal-bar: none;      /* terminal-style traffic light dots */
+  --grid-bg: none;           /* grid background */
+  --seal: "";                /* seal text */
+}
+
+/* === Base body reset === */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* === Cover layout — uses tokens only, zero literals === */
+.cover {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--space-4);
+  padding-inline-end: var(--cover-pad-right, var(--space-4));
+  overflow: hidden;
+}
+
+.cover__title {
+  font-family: var(--font-title);
+  font-weight: 900;
+  font-size: var(--title-size-v);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: var(--space-3);
+  max-width: 100%;
+  text-wrap: balance;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cover__content {
+  font-size: var(--content-size);
+  font-weight: 400;
+  line-height: 1.7;
+  text-wrap: pretty;
+  color: var(--secondary);
+  max-width: 88%;
+  margin-bottom: var(--space-3);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cover__badge {
+  font-size: var(--badge-size);
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+  opacity: 0.85;
+}
+
+.cover__points {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+.cover__points li {
+  font-size: calc(var(--content-size) - 8px);
+  color: var(--accent);
+  padding: var(--space-1) var(--space-2);
+  border-top: 1px solid var(--accent);
+  opacity: 0.85;
+}
+.cover__points:empty { display: none; }
+
+.cover__brand {
+  position: absolute;
+  bottom: var(--space-3);
+  left: var(--space-4);
+  display: flex;
+  align-items: center;
+  font-family: var(--font-title);
+  font-size: calc(var(--content-size) - 12px);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.85;
+  max-height: calc(var(--content-size) + 8px);
+}
+.cover__brand-img {
+  height: 40px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  display: block;
+  opacity: 0.92;
+}
+
+.cover__qr {
+  position: absolute;
+  bottom: var(--space-3);
+  left: var(--cover-center, 50%);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--bg);
+  padding: var(--space-1);
+  border-radius: var(--radius);
+}
+.cover__qr:empty { display: none; }
+.cover__qr-img {
+  display: block;
+  width: var(--qr-size, 80px);
+  height: var(--qr-size, 80px);
+  object-fit: contain;
+}
+
+.cover__decor {
+  position: absolute;
+  display: none;
+  pointer-events: none;
+}
+.cover__decor--tl { top: 0; left: 0; width: 40%; height: 40%; background: var(--decor-tl); }
+.cover__decor--tr { top: 0; right: 0; width: 40%; height: 40%; background: var(--decor-tr); }
+.cover__decor--bl { bottom: 0; left: 0; width: 40%; height: 40%; background: var(--decor-bl); }
+.cover__decor--br { bottom: 0; right: 0; width: 40%; height: 40%; background: var(--decor-br); }
+
+.cover__accent-line {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--accent);
+  display: var(--accent-line);
+}
+
+.cover__accent-block {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 24%;
+  background: var(--accent);
+  display: var(--accent-block);
+}
+
+.cover__terminal-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 32px;
+  background: var(--bg-alt);
+  display: var(--terminal-bar);
+  align-items: center;
+  padding: 0 var(--space-2);
+  gap: 6px;
+}
+.cover__terminal-bar span {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--secondary);
+}
+
+.cover__grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(0deg, transparent 0%, var(--secondary) 1px, transparent 1px),
+    linear-gradient(90deg, transparent 0%, var(--secondary) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.05;
+  display: var(--grid-bg);
+}
+
+.cover__seal {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: 64px; height: 64px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  display: var(--seal);
+  align-items: center;
+  justify-content: center;
+  font-size: var(--badge-size);
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+/* === Responsive: per-aspect font sizes, all centered === */
+
+/* 1:1 square (≤ 5/4) */
+@media (max-aspect-ratio: 5/4) {
+  .cover {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: var(--space-3);
+    padding-inline-end: var(--cover-pad-right, var(--space-3));
+  }
+  .cover__title { font-size: var(--title-size-s); max-width: 95%; margin-bottom: var(--space-2); }
+  .cover__content { text-align: center; max-width: 90%; margin-bottom: var(--space-2); }
+  .cover__points { justify-content: center; }
+}
+
+/* 16:9 wide (5/4 ≤ ar ≤ 16/9, width ≥ 1500) — Bilibili only */
+@media (min-aspect-ratio: 5/4) and (max-aspect-ratio: 16/9) and (min-width: 1500px) {
+  .cover {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: calc(var(--space-4) * 1.5) calc(var(--space-4) * 2);
+    padding-inline-end: var(--cover-pad-right, calc(var(--space-4) * 2));
+  }
+  .cover__title { font-size: calc(var(--title-size-w) * 1.5); max-width: 100%; margin-bottom: var(--space-2); line-height: 1.0; }
+  .cover__content { text-align: center; max-width: 75%; font-size: calc(var(--content-size) * 1.1); margin-bottom: 0; }
+  .cover__points { flex-direction: row; flex-wrap: wrap; justify-content: center; max-width: 100%; gap: var(--space-2); margin-top: var(--space-3); }
+  .cover__points li { font-size: calc(var(--content-size) * 1.1); }
+}
+
+/* 1.9:1 OG (width < 1500, 5/4 ≤ ar < 7/3) — Twitter/Weibo */
+@media (min-aspect-ratio: 5/4) and (max-aspect-ratio: 7/3) and (max-width: 1499px) {
+  .cover {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: var(--space-3) calc(var(--space-4) * 1.5);
+    padding-inline-end: var(--cover-pad-right, calc(var(--space-4) * 1.5));
+  }
+  .cover__title { font-size: var(--title-size-c); max-width: 95%; margin-bottom: var(--space-2); }
+  .cover__content { text-align: center; max-width: 80%; margin-bottom: var(--space-2); }
+  .cover__points { flex-direction: row; flex-wrap: wrap; justify-content: center; max-width: 100%; gap: var(--space-2); }
+  .cover__points li { font-size: calc(var(--content-size) - 14px); }
+}
+
+/* 2.35:1 cover (47/20) — WeChat head image */
+@media (aspect-ratio: 47/20) {
+  .cover {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: var(--space-2) calc(var(--space-4) * 1.5);
+    padding-inline-end: var(--cover-pad-right, calc(var(--space-4) * 1.5));
+  }
+  .cover__title { font-size: var(--title-size-c); max-width: 95%; margin-bottom: var(--space-1); }
+  .cover__content { text-align: center; font-size: calc(var(--content-size) * 0.75); max-width: 90%; margin-bottom: 0; }
+  .cover__points { display: none; }
+}
+
+/* very wide (≥ 7/3) */
+@media (min-aspect-ratio: 7/3) {
+  .cover {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: var(--space-2) calc(var(--space-4) * 2);
+    padding-inline-end: var(--cover-pad-right, calc(var(--space-4) * 2));
+  }
+  .cover__title { font-size: var(--title-size-c); max-width: 95%; margin-bottom: var(--space-1); }
+  .cover__content { text-align: center; max-width: 80%; margin-bottom: 0; font-size: calc(var(--content-size) * 0.85); }
+  .cover__points { display: none; }
+}
+
+/* 9:16 tall portrait (≤ 9/16) */
+@media (max-aspect-ratio: 9/16) {
+  .cover {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: var(--space-4);
+    padding-inline-end: var(--cover-pad-right, calc(var(--space-4) * 1.5));
+  }
+  .cover__title { font-size: var(--title-size-v); max-width: 100%; margin-bottom: var(--space-3); }
+  .cover__content { text-align: center; max-width: 90%; margin-bottom: var(--space-3); }
+}
+
+@media (max-height: 500px), (max-width: 400px) {
+  .cover__qr { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ============================================================
+ * LAYOUT PRIMITIVES
+ * Token-driven. Safe in any layout-type file or theme override.
+ * Inspired by lewislulu/html-ppt-skill (MIT).
+ * ============================================================ */
+
+/* === Stack (vertical rhythm) === */
+.stack > * + * { margin-top: var(--space-2); }
+.stack-lg > * + * { margin-top: var(--space-3); }
+
+/* === Row (horizontal flex) === */
+.row { display: flex; gap: var(--space-2); align-items: center; }
+.row.wrap { flex-wrap: wrap; }
+
+/* === Center === */
+.center { display: flex; align-items: center; justify-content: center; text-align: center; }
+
+/* === Grid === */
+.grid { display: grid; gap: var(--space-2); }
+.g2 { grid-template-columns: repeat(2, 1fr); }
+.g3 { grid-template-columns: repeat(3, 1fr); }
+.g4 { grid-template-columns: repeat(4, 1fr); }
+
+/* === Card === */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.card-soft { background: var(--surface-2); border-color: var(--border); }
+.card-outline { background: transparent; border-color: var(--border-strong); box-shadow: none; }
+.card-accent { border-top: 3px solid var(--accent); }
+
+/* === Pill / badge === */
+.pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--surface-2);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+}
+.pill-accent {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+/* === Typography helpers === */
+.kicker { font-size: 14px; font-weight: 600; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+.eyebrow { font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-2); }
+.lede { font-size: 22px; line-height: 1.55; color: var(--text-2); font-weight: 300; }
+.dim { color: var(--text-2); }
+.dim2 { color: var(--text-3); }
+.gradient-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--accent); }
+.serif { font-family: var(--font-serif); }
+.mono { font-family: var(--font-mono); }
+
+/* === Dividers === */
+.divider { height: 1px; background: var(--border); width: 100%; }
+.divider-accent { height: 3px; width: 72px; background: var(--accent); border-radius: 2px; margin: var(--space-2) 0; }
+.divider-accent.center-x { margin-left: auto; margin-right: auto; }
+
+/* === Spacing utilities === */
+.mt-s { margin-top: var(--space-1); }
+.mt-m { margin-top: var(--space-2); }
+.mt-l { margin-top: var(--space-3); }
+.mb-s { margin-bottom: var(--space-1); }
+.mb-m { margin-bottom: var(--space-2); }
+.mb-l { margin-bottom: var(--space-3); }
+.fill { flex: 1; }
+
+/* theme: editorial-serif — warm, serif, editorial */
+/* Upstream: lewislulu/html-ppt-skill (MIT) */
+:root {
+  --bg: #faf8f5; --bg-soft: #f5f1eb; --surface: #ffffff; --surface-2: #f5f1eb;
+  --border: rgba(30,20,10,.10); --border-strong: rgba(30,20,10,.20);
+  --text-1: #1a1410; --text-2: #5c5248; --text-3: #9a8e82;
+  --accent: #c0392b; --accent-2: #8e44ad; --accent-3: #d35400;
+  --good: #27ae60; --warn: #f39c12; --bad: #c0392b;
+  --grad: linear-gradient(135deg,#c0392b,#8e44ad);
+  --grad-soft: linear-gradient(135deg,#fdfcf9,#faf8f5);
+  --radius: 16px; --radius-sm: 10px; --radius-lg: 24px;
+  --shadow: 0 2px 8px rgba(30,20,10,.06), 0 8px 24px rgba(30,20,10,.04);
+  --shadow-lg: 0 8px 32px rgba(30,20,10,.08), 0 24px 60px rgba(30,20,10,.06);
+  --font-sans: 'Inter','Noto Sans SC',sans-serif;
+  --font-serif: 'Playfair Display','Noto Serif SC',Georgia,serif;
+  --font-display: 'Playfair Display','Noto Serif SC',Georgia,serif;
+  --text: var(--text-1); --secondary: var(--text-2); --bg-alt: var(--bg-soft);
+  --font-body: var(--font-sans); --font-title: var(--font-display);
+}
+
+:root {
+  --space-1:8px;--space-2:16px;--space-3:24px;--space-4:48px;
+  --letter-tight:-.03em;--letter-normal:-.01em;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;background:#1a1a1a;font-family:var(--font-sans)}
+/* Slides stack vertically — no transform on any ancestor (dom-to-pptx constraint) */
+#deck{display:flex;flex-direction:column;align-items:center;gap:24px;padding:24px 0}
+.slide{
+  width:1920px;height:1080px;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:88px 120px;background:var(--bg);color:var(--text-1);
+  font-family:var(--font-sans);flex-shrink:0
+}
+.slide.tc{text-align:center}
+.slide.center{align-items:center;justify-content:center}
+.deck-header{
+  position:absolute;top:24px;left:40px;right:40px;
+  display:flex;justify-content:space-between;pointer-events:none;
+  z-index:10
+}
+.deck-footer{
+  position:absolute;bottom:28px;left:40px;right:40px;
+  display:flex;justify-content:space-between;font-size:28px;color:var(--text-3);
+  z-index:10
+}
+/* Nav bar — fixed, NOT an ancestor of .slide (safe for dom-to-pptx) */
+#nav{position:fixed;bottom:24px;left:50%;margin-left:-180px;width:360px;
+  display:flex;align-items:center;justify-content:space-between;z-index:100;
+  background:rgba(0,0,0,.6);padding:10px 20px;border-radius:40px;box-sizing:border-box}
+#nav .dots{display:flex;gap:6px;flex:1;justify-content:center}
+#nav .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;flex-shrink:0}
+#nav .dot.active{background:#fff;width:14px;height:14px}
+#nav .counter{color:rgba(255,255,255,.6);font-size:14px;min-width:50px;text-align:center}
+#nav .arrow{color:rgba(255,255,255,.7);font-size:22px;cursor:pointer;padding:0 6px;user-select:none;flex-shrink:0}
+#nav .arrow:hover{color:#fff}
+/* PPTX-optimized sizes (dom-to-pptx maps 1920px→10in, ratio 192px/in)
+ * Target min body: 14pt → need 14/0.375 = 37px HTML */
+.eyebrow{font-size:30px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--text-3)}
+.kicker{font-size:32px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;color:var(--accent)}
+.h1{font-family:var(--font-display);font-size:80px;line-height:1.05;font-weight:800;letter-spacing:var(--letter-tight);color:var(--text-1);margin-bottom:20px}
+.h2{font-size:54px;line-height:1.1;font-weight:700;letter-spacing:var(--letter-tight);margin-bottom:12px}
+.h3{font-size:38px;line-height:1.2;font-weight:600;margin-bottom:8px}
+.lede{font-size:40px;line-height:1.5;color:var(--text-2);max-width:900px}
+.dim{color:var(--text-2)}
+.dim2{color:var(--text-3)}
+.gradient-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--accent)}
+.row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.grid{display:grid;gap:24px}
+.g1{grid-template-columns:1fr}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.card-line{position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent)}
+.pill{display:inline-block;padding:6px 16px;border-radius:999px;font-size:28px;font-weight:500;background:var(--surface-2);color:var(--text-2);border:1px solid var(--border)}
+.pill-accent{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 28%,transparent)}
+.divider-accent{height:3px;width:72px;background:var(--accent);border-radius:2px;margin:var(--space-2) 0}
+.tc .divider-accent{margin-left:auto;margin-right:auto}
+.mt-m{margin-top:var(--space-2)}
+.mt-l{margin-top:var(--space-3)}
+.mb-l{margin-bottom:var(--space-3)}
+.ml-m{margin-left:var(--space-2)}
+
+</style>
+</head>
+<body>
+<div id="deck">
+<section class="slide" data-title="完整 Deck 演示" data-index="0">
+  
+    <div class="deck-header">
+      <span class="eyebrow">Keynote · 2026</span>
+      <span class="eyebrow">html-ppt × dom-to-pptx</span>
+    </div>
+    <div style="max-width:100%">
+      
+      <h1 class="h1">完整 Deck 演示</h1>
+      <p class="lede">7 种布局全覆盖</p>
+      
+    </div>
+    <div class="deck-footer">
+      <span class="dim2">Author · </span>
+      <span class="dim2"></span>
+    </div>
+</section>
+
+<section class="slide tc center" data-title="战略方向" data-index="1">
+  
+    <div style="max-width:1400px;margin:0 auto;text-align:center">
+      
+      <h1 class="h1" style="font-size:96px">战略方向</h1>
+      <div class="divider-accent" style="margin:28px auto"></div>
+      
+    </div>
+</section>
+
+<section class="slide" data-title="核心目标" data-index="2">
+  
+    
+    <h2 class="h2">核心目标</h2>
+    
+    <div class="grid g1" style="gap:14px">
+        <div class="card"><div class="card-line"></div><div class="row" style="gap:18px;align-items:baseline;padding:0 28px">
+            <div style="font-size:40px;font-weight:800;color:var(--accent);min-width:90px">01</div>
+            <div style="font-size:32px;font-weight:500;color:var(--text-1);flex:1">用户增长 +30%</div>
+          </div></div><div class="card"><div class="card-line"></div><div class="row" style="gap:18px;align-items:baseline;padding:0 28px">
+            <div style="font-size:40px;font-weight:800;color:var(--accent);min-width:90px">02</div>
+            <div style="font-size:32px;font-weight:500;color:var(--text-1);flex:1">上线 5 个新功能</div>
+          </div></div><div class="card"><div class="card-line"></div><div class="row" style="gap:18px;align-items:baseline;padding:0 28px">
+            <div style="font-size:40px;font-weight:800;color:var(--accent);min-width:90px">03</div>
+            <div style="font-size:32px;font-weight:500;color:var(--text-1);flex:1">性能优化 &lt;200ms</div>
+          </div></div>
+      </div>
+</section>
+
+<section class="slide" data-title="竞品对比" data-index="3">
+  
+    
+    <h2 class="h2">竞品对比</h2>
+    <div class="grid g2 mt-l" style="align-items:start">
+      <div class="card">
+        <h3 class="h3">我们</h3>
+        <ul class="mt-m"><li style="margin-bottom:10px;font-size:34px;color:var(--text-2)">开源</li><li style="margin-bottom:10px;font-size:34px;color:var(--text-2)">可定制</li><li style="margin-bottom:10px;font-size:34px;color:var(--text-2)">低成本</li></ul>
+      </div>
+      <div class="card">
+        <div class="card-line"></div>
+        <h3 class="h3">竞品</h3>
+        <ul class="mt-m"><li style="margin-bottom:10px;font-size:34px;color:var(--text-2)">闭源</li><li style="margin-bottom:10px;font-size:34px;color:var(--text-2)">标准化</li><li style="margin-bottom:10px;font-size:34px;color:var(--text-2)">高成本</li></ul>
+      </div>
+    </div>
+</section>
+
+<section class="slide" data-title="关键指标" data-index="4">
+  
+    <p class="kicker">Metrics · 关键数字</p>
+    <h2 class="h2">关键指标</h2>
+    <div class="grid g3 mt-l anim-stagger-list">
+      
+        <div class="card">
+          <p class="eyebrow" style="font-size:28px">MAU</p>
+          <div style="font-size:64px;font-weight:800;line-height:1.1">120 万</div>
+          <p style="margin:8px 0 0;font-size:34px;color:var(--warn)">+15%</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow" style="font-size:28px">营收</p>
+          <div style="font-size:64px;font-weight:800;line-height:1.1">¥580 万</div>
+          <p style="margin:8px 0 0;font-size:34px;color:var(--warn)">+22%</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow" style="font-size:28px">NPS</p>
+          <div style="font-size:64px;font-weight:800;line-height:1.1">72</div>
+          <p style="margin:8px 0 0;font-size:34px;color:var(--warn)">+8pts</p>
+        </div>
+    </div>
+</section>
+
+<section class="slide" data-title="客户评价" data-index="5">
+  
+    
+    <h2 class="h2">客户评价</h2>
+    <div class="card" style="margin-top:24px;padding:40px;text-align:center">
+      <div style="font-size:64px;line-height:1;color:var(--accent);opacity:0.3;margin-bottom:8px">"</div>
+      <p style="font-size:40px;line-height:1.6;font-weight:500;max-width:1000px;margin:0 auto">这个平台彻底改变了我们的工作方式</p>
+      <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--border)">
+        <span class="pill-accent">张伟, CTO</span>
+      </div>
+    </div>
+</section>
+
+<section class="slide" data-title="下一步" data-index="6">
+  
+    <p class="kicker">Next · 下一步</p>
+    <h2 class="h2" style="margin-bottom:32px">下一步</h2>
+    <div class="grid g1" style="gap:20px;max-width:900px">
+      
+        <div class="row" style="gap:20px">
+          <div style="width:14px;height:14px;border-radius:50%;background:var(--accent)"></div>
+          <span style="font-size:38px;font-weight:500">7 月: Alpha 内测</span>
+        </div>
+        <div class="row" style="gap:20px">
+          <div style="width:14px;height:14px;border-radius:50%;background:var(--accent)"></div>
+          <span style="font-size:38px;font-weight:500">8 月: 公测</span>
+        </div>
+        <div class="row" style="gap:20px">
+          <div style="width:14px;height:14px;border-radius:50%;background:var(--accent)"></div>
+          <span style="font-size:38px;font-weight:500">9 月: 上线</span>
+        </div>
+    </div>
+</section>
+</div>
+<script>
+(function(){
+  var slides = document.querySelectorAll('.slide');
+  var total = slides.length, current = 0;
+  function goTo(n){
+    if (n < 0 || n >= total) return;
+    current = n;
+    slides[n].scrollIntoView({behavior:'smooth', block:'start'});
+    document.querySelectorAll('.dot').forEach(function(d,i){d.classList.toggle('active',i===n)});
+    document.getElementById('counter').textContent = (n+1)+' / '+total;
+  }
+  function build(){
+    var nav = document.createElement('div'); nav.id = 'nav';
+    var left = document.createElement('span'); left.className = 'arrow'; left.textContent = '◀';
+    left.onclick = function(){goTo(current-1)};
+    nav.appendChild(left);
+    var dd = document.createElement('div'); dd.className = 'dots';
+    for (var i=0;i<total;i++){
+      var d = document.createElement('span'); d.className = 'dot'+(i===0?' active':'');
+      d.onclick = (function(idx){return function(){goTo(idx)}})(i);
+      dd.appendChild(d);
+    }
+    nav.appendChild(dd);
+    var c = document.createElement('span'); c.className = 'counter'; c.id = 'counter';
+    c.textContent = '1 / '+total; nav.appendChild(c);
+    var r = document.createElement('span'); r.className = 'arrow'; r.textContent = '▶';
+    r.onclick = function(){goTo(current+1)}; nav.appendChild(r);
+    document.body.appendChild(nav);
+  }
+  build();
+  document.addEventListener('keydown',function(e){
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {e.preventDefault(); goTo(current-1);}
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {e.preventDefault(); goTo(current+1);}
+  });
+})();
+</script>
+</body></html>

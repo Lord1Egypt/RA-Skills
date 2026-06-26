@@ -1,0 +1,57 @@
+{
+  "koans": [
+    {
+      "id": 1,
+      "title_zh": "赵州狗子",
+      "title_en": "Zhaozhou's Dog",
+      "collection": "无门关",
+      "collection_en": "The Gateless Gate",
+      "case_number": 1,
+      "origin": "《无门关》第一则，赵州从谂禅师（778-897）",
+      "text_zh": "僧问赵州：「狗子还有佛性也无？」州云：「无。」",
+      "text_en": "A monk asked Zhaozhou, 'Does a dog have Buddha-nature or not?' Zhaozhou answered, 'Wu (No/Nothing).'",
+      "background_zh": "赵州从谂禅师（778-897）是唐代著名禅师，以平实直截的禅风著称。此公案出自《无门关》第一则，被誉为禅宗第一关。经典佛教教义认为一切众生皆有佛性，僧人提问看似简单，实则是要验证赵州对佛法的理解。",
+      "background_en": "Master Zhaozhou (778-897) was a renowned Tang Dynasty Zen master known for his direct and practical teaching style. This koan is the first case in 'The Gateless Gate.' Classical Buddhist doctrine states that all sentient beings possess Buddha-nature, so the monk's question appears simple but actually tests Zhaozhou's understanding of the Dharma.",
+      "interpretation_zh": "赵州答「无」，并非否定佛性，而是斩断概念思维。当你问「有无」时，已落入二元对立。「无」不是有无之无，而是超越有无的绝对——这个「无」字本身就是佛性的直接显现。禅宗不在言语文字上兜圈子，而要你当下见性。",
+      "interpretation_en": "Zhaozhou's 'Wu' does not deny Buddha-nature but cuts through conceptual thinking. When you ask 'does it exist or not,' you've already fallen into dualistic thinking. 'Wu' is not the 'no' of existence/non-existence, but the absolute that transcends both—this very word 'Wu' is the direct manifestation of Buddha-nature itself. Zen doesn't circle around words; it demands you see your nature right now.",
+      "modern_insight_zh": "现代人陷入「有用/无用」「成功/失败」的二元思维。这则公案提醒：真理不在概念分别中，而在当下直接体验。就像问「这杯茶好不好喝」，答案不在定义里，而在你喝下去的那一刻。放下分别心，直接活在此时此刻。",
+      "modern_insight_en": "Modern people are trapped in dualistic thinking: useful/useless, success/failure. This koan reminds us that truth lies not in conceptual distinctions but in direct present-moment experience. Like asking 'Is this tea good?' The answer isn't in definitions but in the moment you drink it. Drop the discriminating mind and live directly in the here and now.",
+      "visual_elements": ["dog", "bamboo", "moon", "emptiness"],
+      "mood": "serene, questioning, direct",
+      "difficulty": "beginner",
+      "school": "rinzai",
+      "tags": ["buddha-nature", "dualism", "wu", "直指人心"]
+    },
+    {
+      "id": 2,
+      "title_zh": "平常心是道",
+      "title_en": "Ordinary Mind is the Way",
+      "collection": "景德传灯录",
+      "collection_en": "Transmission of the Lamp",
+      "case_number": null,
+      "origin": "南泉普愿禅师（748-834），马祖道一弟子",
+      "text_zh": "赵州问南泉：「如何是道？」南泉云：「平常心是道。」州云：「还可趣向也无？」泉云：「拟向即乖。」州云：「不拟争知是道？」泉云：「道不属知，不属不知。知是妄觉，不知是无记。若真达不疑之道，犹如太虚，廓然荡豁，岂可强是非邪？」",
+      "text_en": "Zhaozhou asked Nanquan, 'What is the Way?' Nanquan said, 'Ordinary mind is the Way.' Zhaozhou asked, 'Should I try to direct myself toward it?' Nanquan said, 'If you try to direct yourself, you betray it.' Zhaozhou said, 'If I don't try, how can I know the Way?' Nanquan said, 'The Way does not belong to knowing or not knowing. Knowing is delusion; not knowing is blankness. If you truly reach the Way beyond doubt, it is like the great void—vast and boundless. How can you force right and wrong upon it?'",
+      "background_zh": "南泉普愿（748-834）是马祖道一的杰出弟子，与赵州从谂亦师亦友。此段对话展现了禅宗「无修无证」的核心理念——道不在外求，就在日用平常中。",
+      "background_en": "Nanquan Puyuan (748-834) was an outstanding disciple of Mazu Daoyi and both teacher and friend to Zhaozhou. This dialogue demonstrates Zen's core principle of 'no practice, no attainment'—the Way is not sought externally but found in ordinary daily life.",
+      "interpretation_zh": "「平常心」不是指平庸或无所用心，而是不造作、不分别的本然心。吃饭时吃饭，睡觉时睡觉，不加任何概念标签，这就是道。一旦你想「修道」「证道」，已经远离了。道不需要你去知道，因为你本来就在其中——这个「知道」的念头本身就是障碍。",
+      "interpretation_en": "'Ordinary mind' doesn't mean mediocrity or carelessness, but the natural mind without fabrication or discrimination. When eating, just eat; when sleeping, just sleep—without adding conceptual labels. This is the Way. Once you want to 'practice the Way' or 'attain the Way,' you've already departed from it. The Way doesn't need you to know it because you're already in it—this very thought of 'knowing' is the obstruction.",
+      "modern_insight_zh": "现代「成功学」让人不停追求、优化、进步。这则公案是一剂解药：你本来就是完整的，不需要成为「更好的自己」。倒杯水、看场雪、听风声，完全投入当下，不带目的——这就是最高的修行。",
+      "modern_insight_en": "Modern 'success culture' makes us constantly pursue, optimize, and improve. This koan is an antidote: you are already complete; you don't need to become 'a better you.' Pour water, watch snow, listen to the wind—fully present in the moment without agenda. This is the highest practice.",
+      "visual_elements": ["void", "sky", "simple landscape", "tea"],
+      "mood": "ordinary, profound, liberating",
+      "difficulty": "beginner",
+      "school": "rinzai",
+      "tags": ["ordinary-mind", "non-seeking", "平常心", "无修无证"]
+    }
+  ],
+  "_note": "Only 2 reference koans stored. Additional koans are generated dynamically by LLM based on classical Zen literature.",
+  "_generation_mode": "dynamic",
+  "_sources": [
+    "The Gateless Gate (无门关) - 48 cases",
+    "Blue Cliff Record (碧岩录) - 100 cases",
+    "Book of Serenity (从容录) - 100 cases",
+    "Transmission of the Lamp (景德传灯录)",
+    "Five Lamps Meeting at the Source (五灯会元)"
+  ]
+}

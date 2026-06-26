@@ -1,0 +1,4 @@
+interface:
+  display_name: "YouTube Cover Generator"
+  short_description: "Turn copy into prompts and thumbnail images"
+  default_prompt: "Use $youtube-cover-nano-banana to turn my title, hook, or script into a high-converting YouTube thumbnail concept, overlay text, prompt, and optional Nano Banana image."

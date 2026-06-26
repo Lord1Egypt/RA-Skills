@@ -1,0 +1,94 @@
+{
+  "plan_id": "plan_hr_onboard_001",
+  "plan_ir": {
+    "nodes": [
+      {
+        "node_id": "N1",
+        "target_skill": "hr-onboarding",
+        "purpose": "创建入职工单，收集员工信息",
+        "scoped_state_keys": [
+          "employee_info",
+          "onboarding_ticket_id"
+        ],
+        "timeout_seconds": 300
+      },
+      {
+        "node_id": "N2",
+        "target_skill": "it-provisioning",
+        "purpose": "开通IT账号，采购设备",
+        "scoped_state_keys": [
+          "employee_info",
+          "it_ticket_id"
+        ],
+        "input_mapping": {
+          "employee_info": "N1.employee_info"
+        },
+        "timeout_seconds": 600
+      },
+      {
+        "node_id": "N3",
+        "target_skill": "facilities-booking",
+        "purpose": "安排工位，配置门禁",
+        "scoped_state_keys": [
+          "employee_info",
+          "desk_assignment"
+        ],
+        "input_mapping": {
+          "employee_info": "N1.employee_info"
+        },
+        "timeout_seconds": 300
+      },
+      {
+        "node_id": "N4",
+        "target_skill": "notification-service",
+        "purpose": "通知员工入职安排",
+        "scoped_state_keys": [
+          "employee_info",
+          "it_ticket_id",
+          "desk_assignment"
+        ],
+        "input_mapping": {
+          "it_ticket_id": "N2.it_ticket_id",
+          "desk_assignment": "N3.desk_assignment"
+        },
+        "timeout_seconds": 60
+      }
+    ],
+    "edges": [
+      {
+        "from_node": "N1",
+        "to_node": "N2",
+        "condition_type": "on_success"
+      },
+      {
+        "from_node": "N1",
+        "to_node": "N3",
+        "condition_type": "on_success"
+      },
+      {
+        "from_node": "N2",
+        "to_node": "N4",
+        "condition_type": "on_success"
+      },
+      {
+        "from_node": "N3",
+        "to_node": "N4",
+        "condition_type": "on_success"
+      }
+    ],
+    "entry_nodes": [
+      "N1"
+    ],
+    "exit_nodes": [
+      "N4"
+    ]
+  },
+  "validation_report": {
+    "schema_valid": true,
+    "dag_valid": true,
+    "skills_bound": true,
+    "scope_valid": true,
+    "warnings": [],
+    "errors": []
+  }
+}

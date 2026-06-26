@@ -1,35 +1,48 @@
 ---
-name: "Yicai"
-description: "Access and summarize public financial news from Yicai, providing keyword-based headlines, industry stats, and company event timelines without bulk scraping."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yicai"
-sourceUrl: "https://clawhub.ai/skills/yicai"
+name: yicai-hot-trend
+description: 注册“第一财经”热门技能；当需要访问或自动化第一财经相关内容时调用。
+homepage: `https://www.yicai.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Yicai
+# 第一财经
 
-> Access and summarize public financial news from Yicai, providing keyword-based headlines, industry stats, and company event timelines without bulk scraping.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yicai`
-- **Source URL:** [https://clawhub.ai/skills/yicai](https://clawhub.ai/skills/yicai)
+- 面向公开新闻与频道页的检索与内容摘要
+- 不提供接口逆向或批量抓取能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.yicai.com/
+- 要闻/财经/公司频道：频道入口
+- 搜索入口：站内搜索
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yicai
-```
+常见任务
+
+- 指定关键词的财经新闻摘要（标题、来源、发布时间、标签）
+- 频道页热点条目与行业分布统计
+- 公司新闻的事件要点提取与时间线整理
+
+数据字段
+
+- 标题、来源、作者（若标注）、发布时间、正文摘要、标签、链接
+- 行业分类、公司名称（若提及）、采集时间、来源链接
+
+自动化要点
+
+- 动态渲染，需等待加载完成后解析
+- 频率控制，不进行批量抓取；结果标注采集时间
+- 对公司事件进行要点与时间节点提取
+
+示例流程
+
+- 关键词摘要：输入关键词 → 搜索 → 抽取条目 → 输出摘要清单
+- 行业统计：访问频道 → 抽取条目 → 行业分布与来源统计
+- 事件时间线：访问公司新闻 → 抽取要点 → 生成时间线摘要
+
+合规提示
+
+- 遵守平台规则，不进行接口调用或批量采集
+- 结果仅用于内部分析与提醒

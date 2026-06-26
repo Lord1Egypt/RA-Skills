@@ -1,0 +1,26 @@
+{
+  "name": "xiaohongshu-article-generator",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "小红书图文生成技能 - 基于热点话题自动生成小红书风格的图文内容",
+  "main": "index.js",
+  "scripts": {
+    "generate": "node index.js",
+    "test": "node index.js --topic 测试话题 --template gossip"
+  },
+  "keywords": [
+    "xiaohongshu",
+    "article",
+    "generator",
+    "openclaw",
+    "skill"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^21.0.0"
+  },
+  "peerDependencies": {
+    "html-pages-to-images": "file:../html-pages-to-images"
+  }
+}

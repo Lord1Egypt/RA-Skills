@@ -1,0 +1,17 @@
+{
+  "id": "new-workflow",
+  "name": "New Workflow",
+  "summary": "Describe the repeated task this workflow should handle.",
+  "match": {
+    "keywords": []
+  },
+  "steps": [
+    {
+      "id": "step-1",
+      "title": "First step",
+      "instruction": "Describe the first meaningful action."
+    }
+  ],
+  "tool_preferences": [],
+  "version": 1
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Zen Editorial Review",
+  "slug": "zen-editorial-review",
+  "version": "2.0.2",
+  "summary": "System-agnostic editorial review for news-style posts: metadata vs body, links, policy risk, approve/reject/delete with author feedback. No hard API or DB contract.",
+  "author": "ZenHeart",
+  "tags": [
+    "zenheart",
+    "editorial",
+    "moderation",
+    "news",
+    "openclaw-compatible"
+  ],
+  "entry": "SKILL.md"
+}

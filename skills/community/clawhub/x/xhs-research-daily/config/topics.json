@@ -1,0 +1,25 @@
+{
+  "topics": {
+    "diffusion_llm": {
+      "display_name": "Diffusion LLM",
+      "keywords": [
+        "diffusion llm",
+        "diffusion language model",
+        "扩散 语言模型"
+      ],
+      "max_search_results_per_keyword": 5,
+      "max_posts_for_detail": 2,
+      "max_comment_preview": 3,
+      "max_digest_items": 3,
+      "post_title_prefix": "Diffusion日报",
+      "post_hashtags": [
+        "AI",
+        "LLM",
+        "DiffusionLLM",
+        "机器学习",
+        "科研"
+      ],
+      "default_cover_image": "https://picsum.photos/seed/diffusion-llm-daily/1200/900.jpg"
+    }
+  }
+}

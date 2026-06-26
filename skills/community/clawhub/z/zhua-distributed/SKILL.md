@@ -1,35 +1,88 @@
 ---
-name: "Zhua Distributed"
-description: "爪爪分布式部署系统 —— 实现多实例协同、负载均衡、故障转移。Use when 爪爪需要分布式部署、多设备协同、或构建爪爪网络。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [distributed, multi-agent, scalability]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhua-distributed"
-sourceUrl: "https://clawhub.ai/skills/zhua-distributed"
+name: zhua-distributed
+version: 1.0.0
+description: 爪爪分布式部署系统 —— 实现多实例协同、负载均衡、故障转移。Use when 爪爪需要分布式部署、多设备协同、或构建爪爪网络。
 ---
 
-# Zhua Distributed
+# 爪爪分布式系统 (Zhua Distributed)
 
-> 爪爪分布式部署系统 —— 实现多实例协同、负载均衡、故障转移。Use when 爪爪需要分布式部署、多设备协同、或构建爪爪网络。
+让爪爪能够分布式部署在多个设备上，实现真正的分布式智能。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhua-distributed`
-- **Source URL:** [https://clawhub.ai/skills/zhua-distributed](https://clawhub.ai/skills/zhua-distributed)
+## 核心能力
 
-## Overview
+1. **多实例管理** - 在多个设备上部署爪爪实例
+2. **实例同步** - 实例间状态同步和记忆共享
+3. **负载均衡** - 任务分配到不同实例执行
+4. **故障转移** - 实例故障时自动切换
+5. **爪爪网络** - 构建分布式爪爪网络
 
+## 架构
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhua-distributed
 ```
+┌─────────────────────────────────────────┐
+│           爪爪网络 (Zhua Network)        │
+│  ┌─────────┐ ┌─────────┐ ┌─────────┐  │
+│  │ 爪爪-主 │ │ 爪爪-副 │ │ 爪爪-副 │  │
+│  │ (调度)  │ │ (计算)  │ │ (存储)  │  │
+│  └────┬────┘ └────┬────┘ └────┬────┘  │
+│       └───────────┼───────────┘       │
+│                   │                   │
+│            同步层 (Sync Layer)        │
+└─────────────────────────────────────────┘
+```
+
+## 实例类型
+
+| 类型 | 职责 | 数量 |
+|------|------|------|
+| 主实例 | 调度、协调、对外接口 | 1 |
+| 计算实例 | 执行任务、运行技能 | N |
+| 存储实例 | 记忆存储、备份 | N |
+
+## 使用场景
+
+- 当需要更高可用性时
+- 当单设备性能不足时
+- 当需要多地部署时
+- 当构建爪爪生态时
+
+## 工作流程
+
+### 1. 初始化主实例
+```bash
+python3 scripts/init_master.py --name zhua-master
+```
+
+### 2. 添加副实例
+```bash
+python3 scripts/add_slave.py --master <主实例地址> --name zhua-slave-1
+```
+
+### 3. 任务分发
+```bash
+python3 scripts/distribute_task.py --task <任务描述> --instances <实例列表>
+```
+
+### 4. 状态同步
+```bash
+python3 scripts/sync_state.py --instances <实例列表>
+```
+
+## 同步协议
+
+- **记忆同步** - 使用neural-memory的HiveMind功能
+- **任务同步** - 使用n8n-workflow-automation
+- **状态同步** - 使用自定义轻量级协议
+
+## 故障处理
+
+| 故障类型 | 处理策略 |
+|---------|---------|
+| 实例离线 | 自动剔除，任务重分配 |
+| 网络中断 | 本地模式运行，恢复后同步 |
+| 数据冲突 | 时间戳优先，人工介入 |
+
+## 参考文档
+
+- references/hive_mind.md - HiveMind配置
+- references/sync_protocol.md - 同步协议详情

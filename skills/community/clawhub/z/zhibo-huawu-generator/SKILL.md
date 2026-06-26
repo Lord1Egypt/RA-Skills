@@ -1,35 +1,108 @@
----
-name: "直播话术生成器"
-description: "根据产品信息自动生成适用于抖音、快手、淘宝直播的完整直播带货话术脚本，包含开场、介绍、促单、互动及下播话术。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhibo-huawu-generator"
-sourceUrl: "https://clawhub.ai/skills/zhibo-huawu-generator"
+# 直播带货话术生成器 SKILL.md
+
+## 基础信息
+
+- **Skill名称**: 直播带货话术生成器
+- **版本**: 1.0.0
+- **作者**: 狗蛋AI助手
+- **标签**: 直播带货, 话术, 抖音, 快手, 淘宝直播
+- **定价**: 单次 24.9元 | 包月 129元
+
 ---
 
-# 直播话术生成器
+## 功能说明
 
-> 根据产品信息自动生成适用于抖音、快手、淘宝直播的完整直播带货话术脚本，包含开场、介绍、促单、互动及下播话术。
+输入产品信息，生成一套完整的直播带货话术脚本，包含：
+1. 开场留人话术（3-5条）
+2. 产品介绍话术（痛点+卖点+场景）
+3. 促单逼单话术（3-5条）
+4. 互动话术模板（回答常见问题）
+5. 下播话术（引导关注+预告下次）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhibo-huawu-generator`
-- **Source URL:** [https://clawhub.ai/skills/zhibo-huawu-generator](https://clawhub.ai/skills/zhibo-huawu-generator)
+---
 
-## Overview
+## 输入参数
 
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| product_name | string | 是 | 产品名称 |
+| product_price | string | 否 | 产品价格 |
+| product_features | string | 否 | 产品核心卖点（逗号分隔）|
+| target_audience | string | 否 | 目标受众描述 |
+| platform | string | 否 | 平台：douyin/kuaishou/taobao，默认douyin |
+| duration | string | 否 | 直播时长：30min/1h/2h，默认1h |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhibo-huawu-generator
+---
+
+## 输出格式
+
+```markdown
+# 【产品名】直播带货话术脚本
+> 平台：抖音 | 时长：1小时 | 生成时间：2026-04-06
+
+## 一、开场留人话术（开播前5分钟）
+
+[生成3-5条开场话术，包含互动问答设计]
+
+## 二、产品介绍话术
+
+### 2.1 痛点切入（30秒）
+[痛点描述+共情话术]
+
+### 2.2 产品展示（3-5分钟）
+[详细介绍产品卖点，结合场景]
+
+### 2.3 价值对比（1分钟）
+[对比线下价格/竞品，突出性价比]
+
+## 三、促单逼单话术
+
+[3-5条催单话术，营造紧迫感]
+
+## 四、互动问答模板
+
+| 问题 | 参考回复 |
+|------|---------|
+| 多少钱？ | [回复] |
+| 怎么买？ | [回复] |
+| 有优惠券吗？ | [回复] |
+
+## 五、下播话术
+
+[引导关注+预告下次直播]
+
+---
+本话术由【直播带货话术生成器】生成 | 定价：24.9元/次
 ```
+
+---
+
+## 执行流程
+
+1. 解析用户输入的产品信息
+2. 生成开场留人话术（结合平台特点）
+3. 生成痛点+产品介绍话术
+4. 生成促单话术（使用限时/限量/拼团等策略）
+5. 生成互动问答模板
+6. 生成下播话术
+7. 汇总输出完整脚本
+
+---
+
+## 定价说明
+
+- 单次生成：24.9元（生成1套完整话术）
+- 包月会员：129元/月（不限生成次数+优先更新）
+
+---
+
+## 使用场景
+
+- 抖音/快手/淘宝直播主播
+- 工厂/品牌方自播团队
+- 达人带货合作话术准备
+- 直播带货新人培训
+
+---
+
+*本Skill由OpenClaw AI助手驱动，真正实现无人值守自动生成！*

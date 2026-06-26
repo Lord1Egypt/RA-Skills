@@ -1,0 +1,67 @@
+name: yunlv-pod-templates
+version: 1.1.0
+license: MIT-0
+type: openclaw-skill
+description: Use when user needs ready-to-use POD (Print on Demand) design keyword
+  templates and listing copy writing guides. Use when generating AI design prompts
+  for custom print products. Use when user mentions "POD模板", "POD关键词", "POD文案指南",
+  "POD设计提示词", "按需打印模板", "POD copywriting guide", "POD design keywords".
+emoji: 🤖
+homepage: https://yunlvai.com
+publisher:
+  name: 云旅AI团队
+  website: https://yunlvai.com
+required_env:
+- TRADEGPT_API_KEY
+primary_env: TRADEGPT_API_KEY
+apis:
+- name: 云旅AI TradeGPT API
+  url: https://api.yunlvai.com
+  purpose: 生成POD设计关键词与文案内容
+  auth: Bearer Token (TRADEGPT_API_KEY)
+category: e-commerce-automation
+tags:
+- POD模板
+- POD关键词
+- 按需打印
+- 设计指南
+- 设计提示词
+- 文案创作
+- POD标题
+- POD描述
+triggers:
+- POD模板
+- POD关键词
+- POD文案指南
+- POD设计提示词
+- POD标题
+- 按需打印模板
+- POD文案
+- POD design keywords
+- POD copywriting guide
+pricing:
+  free:
+    features:
+    - 10组设计关键词
+    - 3条标题模板
+    - 基础五点描述
+  basic:
+    price: 149
+    currency: CNY
+    period: month
+    features:
+    - 30组设计关键词
+    - 10条标题模板
+    - 全平台五点描述
+    - 短描述模板
+    - 定价速算表
+  pro:
+    price: 399
+    currency: CNY
+    period: month
+    features:
+    - 无限关键词生成
+    - 自定义品类模板
+    - A/B测试标题
+    - 竞品关键词分析
+    - 专属定制方案

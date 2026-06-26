@@ -1,0 +1,22 @@
+{
+  "name": "@wipcomputer/wip-license-guard",
+  "version": "1.9.68",
+  "description": "License compliance for your own repos. Ensures correct copyright, dual-license blocks, and LICENSE files.",
+  "type": "module",
+  "bin": {
+    "wip-license-guard": "./cli.mjs"
+  },
+  "claudeCode": {
+    "hook": {
+      "event": "PreToolUse",
+      "matcher": "Bash",
+      "timeout": 5
+    }
+  },
+  "license": "MIT AND AGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wipcomputer/wip-ai-devops-toolbox.git",
+    "directory": "tools/wip-license-guard"
+  }
+}

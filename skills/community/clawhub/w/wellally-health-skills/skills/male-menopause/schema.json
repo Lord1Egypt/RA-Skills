@@ -1,0 +1,227 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/male-menopause.json",
+  "title": "Male Menopause Health Record",
+  "description": "男性更年期健康记录，包括症状评估、睾酮监测、TRT治疗等",
+  "type": "object",
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "description": "记录唯一标识符",
+      "pattern": "^andropause_[0-9]{8}_[0-9]{3}$"
+    },
+    "record_type": {
+      "type": "string",
+      "enum": ["symptom", "testosterone_test", "adam_questionnaire", "trt_treatment", "monitoring", "status", "diagnosis"],
+      "description": "记录类型"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "记录日期"
+    },
+    "symptoms": {
+      "type": "object",
+      "description": "症状记录",
+      "properties": {
+        "sexual": {
+          "type": "object",
+          "properties": {
+            "libido": {
+              "type": "object",
+              "properties": {
+                "present": {"type": "boolean"},
+                "severity": {"type": "string", "enum": ["mild", "moderate", "severe"]},
+                "impact": {"type": "string"}
+              }
+            },
+            "erectile_function": {
+              "type": "object",
+              "properties": {
+                "present": {"type": "boolean"},
+                "severity": {"type": "string"},
+                "morning_erection": {"type": "string"}
+              }
+            }
+          }
+        },
+        "physical": {
+          "type": "object",
+          "properties": {
+            "fatigue": {
+              "type": "object",
+              "properties": {
+                "present": {"type": "boolean"},
+                "severity": {"type": "string"},
+                "impact_on_activities": {"type": "string"}
+              }
+            },
+            "muscle_mass": {
+              "type": "object",
+              "properties": {
+                "present": {"type": "boolean"},
+                "severity": {"type": "string"},
+                "changes": {"type": "string"}
+              }
+            },
+            "body_fat": {
+              "type": "object",
+              "properties": {
+                "present": {"type": "boolean"},
+                "severity": {"type": "string"},
+                "distribution": {"type": "string"}
+              }
+            },
+            "hot_flashes": {
+              "type": "object",
+              "properties": {
+                "present": {"type": "boolean"}
+              }
+            }
+          }
+        },
+        "psychological": {
+          "type": "object",
+          "properties": {
+            "mood": {
+              "type": "object",
+              "properties": {
+                "present": {"type": "boolean"},
+                "symptoms": {"type": "array", "items": {"type": "string"}},
+                "severity": {"type": "string"}
+              }
+            },
+            "memory": {
+              "type": "object",
+              "properties": {
+                "present": {"type": "boolean"},
+                "severity": {"type": "string"},
+                "complaints": {"type": "string"}
+              }
+            },
+            "concentration": {
+              "type": "object",
+              "properties": {
+                "present": {"type": "boolean"},
+                "severity": {"type": "string"},
+                "impact": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "testosterone_levels": {
+      "type": "object",
+      "properties": {
+        "total_testosterone": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"},
+            "reference": {"type": "string"},
+            "unit": {"type": "string", "enum": ["nmol/L"]},
+            "result": {"type": "string", "enum": ["normal", "low", "high"]},
+            "confirmed": {"type": "boolean"},
+            "repeat_count": {"type": "number"}
+          }
+        },
+        "free_testosterone": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"},
+            "reference": {"type": "string"},
+            "unit": {"type": "string", "enum": ["nmol/L"]},
+            "result": {"type": "string"}
+          }
+        },
+        "shbg": {
+          "type": "object",
+          "properties": {
+            "value": {"type": "number"},
+            "reference": {"type": "string"},
+            "unit": {"type": "string", "enum": ["nmol/L"]},
+            "result": {"type": "string"}
+          }
+        }
+      }
+    },
+    "questionnaire_scores": {
+      "type": "object",
+      "properties": {
+        "adam": {
+          "type": "object",
+          "properties": {
+            "questions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "q": {"type": "string"},
+                  "answer": {"type": "boolean"},
+                  "score": {"type": "number"}
+                }
+              }
+            },
+            "total_score": {"type": "number"},
+            "positive": {"type": "boolean"},
+            "interpretation": {"type": "string"}
+          }
+        }
+      }
+    },
+    "trt": {
+      "type": "object",
+      "properties": {
+        "on_treatment": {"type": "boolean"},
+        "medication": {"type": "string"},
+        "type": {"type": "string", "enum": ["gel", "injection", "oral", "patch"]},
+        "dose": {"type": "string"},
+        "frequency": {"type": "string"},
+        "route": {"type": "string"},
+        "start_date": {"type": "string", "format": "date"},
+        "duration_months": {"type": "number"},
+        "effectiveness": {"type": "string"},
+        "effectiveness_rating": {"type": "number"},
+        "side_effects": {"type": "array", "items": {"type": "string"}},
+        "side_effects_severity": {"type": "string"},
+        "quality_of_life_improvement": {"type": "string"},
+        "notes": {"type": "string"}
+      }
+    },
+    "monitoring": {
+      "type": "object",
+      "properties": {
+        "psa": {
+          "type": "object",
+          "properties": {
+            "baseline": {"type": "number"},
+            "current": {"type": "number"},
+            "change": {"type": "number"},
+            "date": {"type": "string", "format": "date"},
+            "interpretation": {"type": "string"}
+          }
+        },
+        "hematocrit": {
+          "type": "object",
+          "properties": {
+            "baseline": {"type": "number"},
+            "current": {"type": "number"},
+            "date": {"type": "string", "format": "date"},
+            "threshold": {"type": "number"},
+            "status": {"type": "string"}
+          }
+        },
+        "prostate_volume": {
+          "type": "object",
+          "properties": {
+            "baseline": {"type": "number"},
+            "current": {"type": "number"},
+            "date": {"type": "string", "format": "date"},
+            "change": {"type": "string"}
+          }
+        }
+      }
+    }
+  },
+  "required": ["record_id", "record_type", "date"]
+}

@@ -1,35 +1,292 @@
 ---
-name: "Wechat Publisher DraftGet"
-description: "Orchestrate the official WeChat draft publishing path for already-prepared article HTML or Markdown using md2wechat, with mandatory draft/get verification be..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-publisher-md2wechat-draftget"
-sourceUrl: "https://clawhub.ai/skills/wechat-publisher-md2wechat-draftget"
+name: wechat-publisher-md2wechat-draftget
+description: Orchestrate the official WeChat draft publishing path for already-prepared article HTML or Markdown using md2wechat, with mandatory draft/get verification before reporting success.
+homepage: https://github.com/geekjourneyx/md2wechat-skill
+metadata: {"clawdbot":{"emoji":"📱","requires":{"bins":["md2wechat","python3"],"env":["WECHAT_APPID","WECHAT_SECRET"]}}}
 ---
 
-# Wechat Publisher DraftGet
+# wechat-publisher-md2wechat-draftget
 
-> Orchestrate the official WeChat draft publishing path for already-prepared article HTML or Markdown using md2wechat, with mandatory draft/get verification be...
+Use `wechat-publisher-md2wechat-draftget` when the user wants to:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-publisher-md2wechat-draftget`
-- **Source URL:** [https://clawhub.ai/skills/wechat-publisher-md2wechat-draftget](https://clawhub.ai/skills/wechat-publisher-md2wechat-draftget)
+- push a prepared WeChat article into the Official Account draft box
+- turn Markdown into WeChat-compatible HTML and then create a draft
+- use a stable publishing wrapper instead of manually chaining `upload_image -> create_draft -> draft/get`
+- verify that a draft really exists in the WeChat backend before reporting success
+- troubleshoot the current `md2wechat create_draft` publishing chain
 
-## Overview
+## What This Skill Is For
 
+This skill is the **publishing execution layer** for WeChat Official Account drafts.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wechat-publisher-md2wechat-draftget
+It is responsible for:
+
+- config validation
+- Markdown → HTML conversion when needed
+- cover upload
+- `draft.json` generation
+- `md2wechat create_draft`
+- WeChat `draft/get` backend verification
+- outputting machine-readable verification artifacts
+
+It is **not** responsible for:
+
+- topic selection
+- long-form writing
+- AI-trace review
+- editorial approval
+- layout strategy decisions before HTML exists
+- archive / final content governance
+
+Those stay in the main production workflow.
+
+## Canonical Publish Path
+
+```text
+Prepared article HTML or Markdown
+→ md2wechat config validate
+→ inspect / preview / convert (if Markdown)
+→ md2wechat upload_image cover.*
+→ generate draft.json
+→ md2wechat create_draft draft.json
+→ call WeChat draft/get
+→ verify title / author / cover / content / visibility
 ```
+
+## Hard Rules
+
+1. `md2wechat create_draft` is the formal draft creation action.
+2. `test-draft` is only for chain testing, not formal publishing.
+3. `convert --mode ai` returning `CONVERT_AI_REQUEST_READY` does **not** mean a draft was created.
+4. AI-mode output must be materialized into real WeChat-compatible HTML before entering this skill.
+5. Command success is **not** task success.
+6. Final success requires backend verification.
+7. Preferred execution path is `scripts/publish.sh`, not an ad-hoc hand-built sequence.
+8. Local `preview` and local `convert` artifacts are not WeChat backend proof.
+9. If `create_draft` succeeds but `draft/get` fails, the result must be treated as unverified or blocked.
+10. `media_id` alone is only a submission receipt, not a success proof.
+
+## Inputs
+
+Preferred prepared package:
+
+```text
+wechat_package/
+  article.html
+  cover.png
+  images/
+  publish-checklist.md
+```
+
+Also supported:
+
+- `article.md` + cover image
+- `article.html` + cover image
+
+## Requirements
+
+The following must already be available:
+
+- `md2wechat`
+- `python3`
+
+Config file:
+
+```text
+~/.config/md2wechat/config.yaml
+```
+
+Expected WeChat credentials:
+
+```yaml
+wechat:
+  appid: "公众号 AppID"
+  secret: "公众号 AppSecret"
+```
+
+The current public IP must also be in the WeChat Official Account IP allowlist.
+
+## Validate Before Publish
+
+```bash
+md2wechat config validate --json
+```
+
+## Standard Execution
+
+Primary script:
+
+```bash
+skills/wechat-publisher/scripts/publish.sh
+```
+
+Usage:
+
+```bash
+./scripts/publish.sh <article.md|article.html> <cover-image> [title] [author] [digest]
+```
+
+Examples:
+
+```bash
+./scripts/publish.sh article.html cover.png "现在找工作，最累的不是被拒" "野哥" "找工作最累的不是被拒，而是一直没有回音。"
+./scripts/publish.sh article.md cover.png "标题" "野哥" "摘要"
+```
+
+## What The Script Does
+
+1. `md2wechat config validate --json`
+2. If input is Markdown:
+   - `md2wechat inspect ... --json`
+   - `md2wechat preview ... --json`
+   - `md2wechat convert ... --output ... --json`
+3. `md2wechat upload_image cover.png --json`
+4. Generate `*.md2wechat-create-draft.json`
+5. `md2wechat create_draft *.json --json`
+6. Call official WeChat `draft/get`
+7. Save verification output
+
+## Output Artifacts
+
+The script writes artifacts next to the article:
+
+```text
+*.md2wechat-inspect.json
+*.md2wechat-preview.json
+*.md2wechat-convert.json
+*.md2wechat-cover-upload.json
+*.md2wechat-create-draft.json
+*.md2wechat-create-draft-result.json
+*.md2wechat-create-draft-verify.json
+```
+
+The final source of truth is:
+
+```text
+*.md2wechat-create-draft-verify.json
+```
+
+## Success Criteria
+
+Only report **draft push success** when both are true:
+
+1. `md2wechat create_draft` returned success
+2. `draft/get` verification passed and the backend draft is really present
+
+Otherwise classify as one of:
+
+- submitted but unverified
+- verification failed
+- blocked by config / credential / IP / content issue
+
+## Draft JSON Shape
+
+```json
+{
+  "articles": [
+    {
+      "title": "标题",
+      "author": "野哥",
+      "digest": "摘要",
+      "content": "<section style=\"...\">正文 HTML</section>",
+      "thumb_media_id": "封面素材 media_id",
+      "show_cover_pic": 0
+    }
+  ]
+}
+```
+
+Constraints:
+
+- `articles` must not be empty
+- `title` required, recommended ≤ 32 chars
+- `author` recommended ≤ 16 chars
+- `digest` recommended ≤ 120–128 chars
+- `content` required and must be WeChat-compatible HTML
+- `thumb_media_id` must come from `md2wechat upload_image` or equivalent WeChat material upload
+
+## Verification Checklist
+
+At minimum verify:
+
+- draft really exists
+- `title` matches expected value
+- `author` matches expected value
+- `thumb_media_id` exists
+- content exists
+- no leaked local paths such as `/home/ye/` or `content-factory/`
+- content has inline styles or otherwise clearly matches publish-ready WeChat HTML
+- article images are actually present when the article uses body images
+- for Markdown input, the process did not stop at local preview/convert only
+- for AI mode upstream flows, the published content is real generated HTML, not the request-ready payload
+
+## Common Failure Modes
+
+### Invalid IP
+
+```text
+errcode=40164 invalid ip ... not in whitelist
+```
+
+Action: add the current public IP to the WeChat Official Account backend allowlist.
+
+### Invalid AppSecret
+
+```text
+errcode=40125 invalid appsecret
+```
+
+Action: fix `~/.config/md2wechat/config.yaml`.
+
+### AI mode only returned a request
+
+```json
+{
+  "code": "CONVERT_AI_REQUEST_READY",
+  "status": "action_required"
+}
+```
+
+This is not success. It only means the AI conversion request is ready. Continue by producing HTML, then run the draft chain.
+
+## Operational Guidance For Agents
+
+- Use this skill only when draft creation is actually requested.
+- Prefer this skill over improvising raw shell steps.
+- Never claim success from `media_id`, `preview`, or `convert` alone.
+- Treat verification as mandatory, not optional polish.
+- If verification fails, report the exact blocker instead of vague success language.
+
+## Related Files
+
+- `README.md` — quick operator-facing usage
+- `references/troubleshooting.md` — failure handling
+- `references/themes.md` — related publishing notes
+- `scripts/publish.sh` — canonical execution wrapper
+- `scripts/setup.sh` — environment setup helper
+
+## Experience Captured
+
+### 2026-05-14
+
+Verified working path using an older article:
+
+```text
+AI-ready HTML
+→ md2wechat upload_image
+→ draft.json
+→ md2wechat create_draft
+→ WeChat draft/get verification passed
+```
+
+Verified fields included title, author, digest, cover, content, inline styles, and no local path leakage.
+
+### 2026-05-15
+
+Key lessons added to the standard skill:
+
+- formal publishing should default to `scripts/publish.sh`
+- `media_id` is only a receipt
+- `CONVERT_AI_REQUEST_READY` is an action-required state, not a success state
+- `preview` / `convert` / `test-draft` can mislead people into thinking the draft is already in the backend
+- if backend draft verification fails, treat the run as unverified or blocked instead of assuming eventual consistency

@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellally.health/schemas/child-safety-tracker.json",
+  "title": "Child Safety Tracker",
+  "description": "Data structure for child safety tracking",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "child_profile": {
+      "type": "object",
+      "properties": {
+        "child_id": {"type": "string"},
+        "name": {"type": "string"},
+        "birth_date": {"type": "string", "format": "date"},
+        "gender": {"type": "string", "enum": ["male", "female"]}
+      },
+      "required": ["child_id", "name", "birth_date", "gender"]
+    },
+    "safety_assessments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "age": {"type": "string"},
+          "age_months": {"type": "integer"},
+          "area": {
+            "type": "string",
+            "enum": ["home", "car", "water", "food", "outdoor"]
+          },
+          "area_name": {"type": "string"},
+          "checklist": {
+            "type": "object",
+            "properties": {
+              "window_protection": {"type": "boolean"},
+              "outlet_covers": {"type": "boolean"},
+              "corner_guards": {"type": "boolean"},
+              "chemical_storage": {"type": "boolean"},
+              "bathroom_safety": {"type": "boolean"},
+              "stair_gates": {"type": "boolean", "nullable": true},
+              "car_seat": {"type": "boolean", "nullable": true},
+              "water_supervision": {"type": "boolean", "nullable": true}
+            }
+          },
+          "score": {
+            "type": "object",
+            "properties": {
+              "total_items": {"type": "integer"},
+              "safe_items": {"type": "integer"},
+              "percentage": {"type": "integer"},
+              "level": {
+                "type": "string",
+                "enum": ["excellent", "good", "needs_attention", "high_risk"]
+              }
+            }
+          },
+          "risks_identified": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item": {"type": "string"},
+                "risk_level": {
+                  "type": "string",
+                  "enum": ["low", "medium", "high", "critical"]
+                },
+                "description": {"type": "string"}
+              }
+            }
+          },
+          "recommendations": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        }
+      }
+    },
+    "risk_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "risk_type": {"type": "string"},
+          "description": {"type": "string"},
+          "resolved": {"type": "boolean"}
+        }
+      }
+    },
+    "emergency_contacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "phone": {"type": "string"},
+          "relationship": {"type": "string"}
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_assessments": {"type": "integer"},
+        "last_assessment_date": {"type": "string"},
+        "average_score": {"type": "integer"},
+        "areas_assessed": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    }
+  },
+  "required": ["created_at", "last_updated", "child_profile"]
+}

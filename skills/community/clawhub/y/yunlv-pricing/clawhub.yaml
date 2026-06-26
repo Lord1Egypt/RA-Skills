@@ -1,0 +1,67 @@
+name: yunlv-pricing
+version: 1.1.0
+license: MIT-0
+type: openclaw-skill
+description: Use when user needs to generate pricing strategy suggestions for B2B export
+  businesses. Use when preparing market pricing reference reports and competitive positioning
+  advice. Use when creating dynamic pricing recommendations based on market context.
+  Use when user mentions "定价策略", "价格参考", "价格趋势", "市场定价", "价格分析", "定价建议",
+  "pricing strategy", "pricing advice".
+emoji: 🤖
+homepage: https://yunlvai.com
+publisher:
+  name: 云旅AI团队
+  website: https://yunlvai.com
+required_env:
+- TRADEGPT_API_KEY
+primary_env: TRADEGPT_API_KEY
+apis:
+- name: 云旅AI TradeGPT API
+  url: https://api.yunlvai.com
+  purpose: 生成定价策略建议与市场参考分析
+  auth: Bearer Token (TRADEGPT_API_KEY)
+category: data-analysis
+tags:
+- 定价策略
+- 价格参考
+- 市场定价
+- 价格趋势
+- 定价策略
+- B2B定价
+- 市场参考
+triggers:
+- 定价策略
+- 价格参考
+- 价格趋势
+- 定价策略
+- 市场定价
+- 定价建议
+- 价格分析
+- pricing strategy
+- pricing advice
+- pricing recommendation
+pricing:
+  free:
+    features:
+    - 每周查询5次
+    - 基础价格数据
+    - 单产品分析
+  basic:
+    price: 299
+    currency: CNY
+    period: month
+    features:
+    - 每日智能查询
+    - 10个竞品追踪
+    - 价格趋势图
+    - 邮件提醒内容
+  pro:
+    price: 899
+    currency: CNY
+    period: month
+    features:
+    - 实时查询
+    - 无限竞品追踪
+    - 深度分析报告
+    - WhatsApp提醒内容
+    - 定价建议

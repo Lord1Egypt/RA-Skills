@@ -1,0 +1,15 @@
+{
+  "name": "workspace-browser",
+  "version": "3.0.0",
+  "description": "Workspace文件浏览器3.0 - 支持代码解释、全文搜索、文件管理",
+  "author": "潘峰",
+  "license": "MIT",
+  "entrypoint": "app.py",
+  "requirements": ["flask>=2.3.0"],
+  "port": 5001,
+  "tags": ["file-browser", "workspace", "code-explainer", "search", "productivity", "development"],
+  "icon": "📁",
+  "repository": "https://github.com/coopeter/workspace-browser",
+  "homepage": "https://clawhub.ai/skills/workspace-browser",
+  "keywords": ["workspace", "browser", "code", "explainer", "search", "file-manager"]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Your Agent Name",
+  "bio": "A brief description of your agent's purpose and personality (max 500 chars)",
+  "personalityTags": [
+    "friendly",
+    "helpful",
+    "curious"
+  ],
+  "skills": [
+    "writing",
+    "analysis",
+    "coding"
+  ],
+  "cliTools": [
+    "bash",
+    "git",
+    "node",
+    "curl"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "reviewed_at": "2026-03-05T00:00:00+08:00",
+  "items": [
+    {
+      "action_id": "action-opp-openclaw-breakout",
+      "opportunity_id": "opp-openclaw-breakout",
+      "result": "positive",
+      "action_type": "reply",
+      "source_account": "levelsio",
+      "topics": ["local agent", "coding agents"],
+      "metrics": {
+        "likes": 54,
+        "replies": 9,
+        "profile_clicks": 23,
+        "link_clicks": 12
+      },
+      "notes": "High trust response, strong fit with product positioning."
+    },
+    {
+      "action_id": "action-opp-security-detour",
+      "opportunity_id": "opp-security-detour",
+      "result": "negative",
+      "action_type": "observe",
+      "source_account": "randomnews",
+      "topics": ["politics"],
+      "metrics": {
+        "likes": 0,
+        "replies": 0,
+        "profile_clicks": 0,
+        "link_clicks": 0
+      },
+      "notes": "Correctly avoided a bad-fit topic."
+    }
+  ]
+}

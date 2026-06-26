@@ -1,0 +1,7 @@
+interface:
+  display_name: "Word Formula Converter"
+  short_description: "Convert Word formula text to editable equations"
+  brand_color: "#1E6EE8"
+  default_prompt: "Use $word-latex-formula to convert a Word manuscript's typed formulas into editable Word equations."
+policy:
+  allow_implicit_invocation: true

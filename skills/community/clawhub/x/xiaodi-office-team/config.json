@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "agents": {
+    "schedule_manager": {
+      "name": "日程管理师",
+      "icon": "📅",
+      "tools": ["schedule_manager.py"],
+      "description": "日程安排、提醒、日历管理"
+    },
+    "email_processor": {
+      "name": "邮件处理师",
+      "icon": "📧",
+      "tools": ["email_processor.py"],
+      "description": "邮件分类、自动回复、摘要生成"
+    },
+    "doc_manager": {
+      "name": "文档管理师",
+      "icon": "📄",
+      "tools": ["doc_manager.py"],
+      "description": "文档整理、格式转换、归档"
+    },
+    "meeting_helper": {
+      "name": "会议助手",
+      "icon": "🤝",
+      "tools": ["meeting_helper.py"],
+      "description": "会议安排、纪要生成、待办提取"
+    },
+    "task_coordinator": {
+      "name": "任务协调师",
+      "icon": "📊",
+      "tools": ["task_coordinator.py"],
+      "description": "待办跟踪、优先级排序、进度汇报"
+    }
+  },
+  "workflows": {
+    "daily_review": {
+      "name": "每日工作回顾",
+      "agents": ["schedule_manager", "email_processor", "task_coordinator"],
+      "description": "日程回顾 + 邮件摘要 + 待办整理"
+    },
+    "meeting_workflow": {
+      "name": "会议全流程",
+      "agents": ["schedule_manager", "meeting_helper", "task_coordinator"],
+      "description": "安排会议 → 生成纪要 → 提取待办"
+    },
+    "email_batch": {
+      "name": "邮件批量处理",
+      "agents": ["email_processor"],
+      "description": "分类 + 摘要 + 自动回复"
+    }
+  },
+  "settings": {
+    "timezone": "Asia/Shanghai",
+    "working_hours": {"start": 9, "end": 18},
+    "reminder_advance_minutes": 15
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "version": "1.0.0",
+  "name": "yaoyao-memory-modules",
+  "description": "模块化安装配置",
+
+  "modules": {
+    "core": {
+      "name": "核心模块",
+      "description": "记忆存取 + FTS5 搜索（必装）",
+      "required": true,
+      "scripts": [
+        "memory",
+        "search",
+        "batch_search",
+        "query_cache",
+        "semantic_cache",
+        "predictive_cache",
+        "auto_context",
+        "intelligent_recall",
+        "memory_timeline",
+        "memory_tags",
+        "memory_quality",
+        "paths",
+        "init_memory",
+        "cleanup"
+      ],
+      "size_estimate": "50KB"
+    },
+
+    "cloud_backup": {
+      "name": "云端备份",
+      "description": "备份记忆到 IMA 云端",
+      "required": false,
+      "scripts": [
+        "sync_ima",
+        "backup_manager",
+        "backup_restore"
+      ],
+      "size_estimate": "30KB"
+    },
+
+    "stats": {
+      "name": "统计面板",
+      "description": "可视化统计和趋势分析",
+      "required": false,
+      "scripts": [
+        "stats_dashboard",
+        "performance_monitor",
+        "memory_stats",
+        "heat_tracker",
+        "memory_trends",
+        "memory_insights",
+        "benchmark"
+      ],
+      "size_estimate": "80KB"
+    },
+
+    "summary": {
+      "name": "对话摘要",
+      "description": "自动摘要对话内容",
+      "required": false,
+      "scripts": [
+        "summarize",
+        "progressive_summary",
+        "conversation_summarizer"
+      ],
+      "size_estimate": "20KB"
+    },
+
+    "psychology": {
+      "name": "心理学画像",
+      "description": "用户心理画像分析",
+      "required": false,
+      "scripts": [
+        "psychology_adapter",
+        "persona_learner",
+        "behavior_learner"
+      ],
+      "size_estimate": "40KB"
+    },
+
+    "health_check": {
+      "name": "健康检测",
+      "description": "系统健康检查和自动修复（必装）",
+      "required": true,
+      "scripts": [
+        "health_check",
+        "auto_fixer"
+      ],
+      "size_estimate": "20KB"
+    },
+
+    "security": {
+      "name": "安全治理",
+      "description": "安全检查和权限管理（必装）",
+      "required": true,
+      "scripts": [
+        "security",
+        "context_guard",
+        "skills_guard",
+        "subagent_isolation",
+        "rbac",
+        "governance",
+        "audit",
+        "circuit_breaker"
+      ],
+      "size_estimate": "60KB"
+    },
+
+    "mcp": {
+      "name": "MCP 集成",
+      "description": "MCP Server 管理",
+      "required": false,
+      "scripts": [
+        "mcp_manager"
+      ],
+      "size_estimate": "15KB"
+    }
+  },
+
+  "dependencies": {
+    "cloud_backup": [],
+    "stats": ["core"],
+    "summary": ["core"],
+    "psychology": ["core"],
+    "security": ["core"],
+    "health_check": ["core"],
+    "mcp": ["core"]
+  }
+}

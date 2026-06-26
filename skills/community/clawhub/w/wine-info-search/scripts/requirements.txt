@@ -1,0 +1,11 @@
+# Wine Info Search - Dependencies (v1.6)
+# Core functionality uses Python standard library only (no third-party packages required)
+#
+# Standard library modules used:
+#   json, os, re, ssl, sys, time, urllib.parse, urllib.request, urllib.error, datetime
+#
+# Optional dependencies for image OCR (wine label recognition):
+# Install only when OCR is needed. Pin versions for supply-chain safety.
+pytesseract==0.3.13    # OCR engine wrapper (requires Tesseract-OCR installed on system)
+Pillow==11.2.1         # Image processing (required by pytesseract)
+easyocr==1.7.2         # Deep learning OCR (standalone, no external install needed)

@@ -1,0 +1,4 @@
+interface:
+  display_name: "微信公众号文章自动发布助手"
+  short_description: "智能创作、提取公众号文章、生成封面并自动发布到微信公众号草稿箱"
+  default_prompt: "Use $wechat-official-account-article-auto-publisher to write or rewrite a WeChat article, generate a cover, and publish it to the WeChat Official Account draft box."

@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "weekend-scout"
+version = "0.1.0"
+description = "Discover weekend outdoor events and deliver trip options to Telegram"
+requires-python = ">=3.10"
+dependencies = [
+    "pyyaml",
+    "requests",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+weekend-scout = "weekend_scout.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["weekend_scout*"]
+
+[tool.setuptools.package-data]
+"weekend_scout.skill_data" = ["**/*"]

@@ -1,35 +1,82 @@
 ---
-name: "Xiaomi Miot"
-description: "小米米家智能家居控制技能。通过小爱音箱、米家设备控制灯光、空调、扫地机器人等小米IoT设备。当用户说"开灯"、"关空调"、"让扫地机器人扫地"等智能家居控制指令时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaomi-miot-lan"
-sourceUrl: "https://clawhub.ai/skills/xiaomi-miot-lan"
+name: xiaomi-miot
+description: 小米米家智能家居控制技能。通过小爱音箱、米家设备控制灯光、空调、扫地机器人等小米IoT设备。当用户说"开灯"、"关空调"、"让扫地机器人扫地"等智能家居控制指令时使用。
 ---
 
-# Xiaomi Miot
+# 小米米家智能家居控制 (xiaomi-miot)
 
-> 小米米家智能家居控制技能。通过小爱音箱、米家设备控制灯光、空调、扫地机器人等小米IoT设备。当用户说"开灯"、"关空调"、"让扫地机器人扫地"等智能家居控制指令时使用。
+## 🎯 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaomi-miot-lan`
-- **Source URL:** [https://clawhub.ai/skills/xiaomi-miot-lan](https://clawhub.ai/skills/xiaomi-miot-lan)
+- ✅ 获取用户所有米家设备列表
+- ✅ 控制设备：开/关、调节亮度、温度等
+- ✅ 触发场景（如"离家模式"、"睡眠模式"）
+- ✅ 查询设备状态
 
-## Overview
+## 🔧 必需的环境变量
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 小米 OAuth2 凭证
 ```bash
-hermes skills install clawhub/xiaomi-miot-lan
+export XIAOMI_CLIENT_ID="2882303761517424859"        # 小米客户端 ID
+export XIAOMI_CLIENT_SECRET="你的客户端密钥"           # 小米客户端密钥
 ```
+
+### 2. 飞书应用凭证（用于发送登录卡片）
+```bash
+export FEISHU_APP_ID="你的飞书应用ID"
+export FEISHU_APP_SECRET="你的飞书应用密钥"
+```
+
+> ⚠️ **重要**：建议使用自己的飞书应用凭证，而非硬编码默认值。
+
+## 📱 全平台兼容登录流程
+
+本 skill 采用**纯文字交互**，支持所有平台：
+- 飞书、企业微信、钉钉
+- OpenClaw 网页端、终端 CLI
+
+### 登录步骤
+
+```
+用户: 帮我登录小米
+  ↓
+小蓝: 📱 请输入小米账号手机号：
+  ↓
+用户: 15393120163
+  ↓
+小蓝: 🔒 请输入密码：
+  ↓
+用户: ●●●●●●●●●●
+  ↓
+小蓝: 🔄 正在验证...
+  ↓
+如果需要验证码：
+  小蓝: 📱 请输入验证码：fkqdx
+  用户: fkqdx
+  ↓
+小蓝: ✅ 登录成功！找到 3 个设备：
+       • 小米路由器4A 🟢
+       • 小爱音箱 🔴
+       • 小爱音箱play 🔴
+```
+
+> 💡 Token 有效期 30 天，之后自动提示重新登录
+
+## 🔐 安全说明
+
+- **Token 存储**：macaroon token 缓存至 `~/.openclaw/skills/xiaomi-miot/data/token_cache.json`
+- **凭证管理**：敏感信息通过环境变量传递，不硬编码在代码中
+- **文件权限**：确保 `~/.openclaw` 目录权限安全（600 或 700）
+
+## ⚠️ 注意事项
+
+1. **验证码是必须的** — 小米安全机制要求新设备验证
+2. **设备离线时无法控制** — 需确保设备在线
+3. **限流机制** — 频繁登录可能触发临时限制
+
+## 🚀 安装
+
+```bash
+openclaw skills install xiaomi-miot-lan
+```
+
+安装后请配置上述环境变量。

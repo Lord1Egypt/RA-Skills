@@ -1,35 +1,19 @@
 ---
-name: "Zeh Hello Community"
-description: "Generate short Chinese notices for community teachers, grid workers, and public service staff."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zeh-hello-community"
-sourceUrl: "https://clawhub.ai/skills/zeh-hello-community"
+name: zeh-hello-community
+description: Generate short Chinese notices for community teachers, grid workers, and public service staff.
 ---
 
-# Zeh Hello Community
+# zeh-hello-community
 
-> Generate short Chinese notices for community teachers, grid workers, and public service staff.
+Use this skill when the user needs a short formal notice for community staff.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zeh-hello-community`
-- **Source URL:** [https://clawhub.ai/skills/zeh-hello-community](https://clawhub.ai/skills/zeh-hello-community)
+## Output format
+1. 标题
+2. 适用对象
+3. 正文
+4. 注意事项
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zeh-hello-community
-```
+## Rules
+- Reply in Chinese.
+- Keep it short and formal.
+- Do not invent policy details.

@@ -1,35 +1,64 @@
 ---
-name: "围棋记谱工具"
-description: "weiqi-recorder 围棋记谱工具 - 提供单文件网页版围棋记谱工具，支持棋盘显示、黑白轮流落子、提子、打劫规则、悔棋等功能。当用户需要"记谱工具"、"围棋记谱"、"网页记谱"或类似的围棋记录需求时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weiqi-recorder"
-sourceUrl: "https://clawhub.ai/skills/weiqi-recorder"
+name: 围棋记谱工具
+description: weiqi-recorder 围棋记谱工具 - 提供单文件网页版围棋记谱工具，支持棋盘显示、黑白轮流落子、提子、打劫规则、悔棋等功能。当用户需要"记谱工具"、"围棋记谱"、"网页记谱"或类似的围棋记录需求时使用此技能。
+tags: ["围棋", "weiqi", "go", "记谱", "棋盘", "网页工具"]
 ---
 
 # 围棋记谱工具
 
-> weiqi-recorder 围棋记谱工具 - 提供单文件网页版围棋记谱工具，支持棋盘显示、黑白轮流落子、提子、打劫规则、悔棋等功能。当用户需要"记谱工具"、"围棋记谱"、"网页记谱"或类似的围棋记录需求时使用此技能。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weiqi-recorder`
-- **Source URL:** [https://clawhub.ai/skills/weiqi-recorder](https://clawhub.ai/skills/weiqi-recorder)
-
-## Overview
+> **🔒 安全说明**: 本技能为纯前端工具，单 HTML 文件，无需服务器，无网络请求，所有数据仅在本地浏览器中处理。代码完全开源，可离线使用，无安全风险。
+>
+> **⚠️ VirusTotal 扫描说明**: 本技能使用 `setTimeout` 和 Web Audio API 播放围棋落子音效（模拟真实的围棋声音体验），这是**预期的正常功能**。代码中无 `eval`、`Function`、`document.write` 等危险操作，无网络请求，无数据上传。源代码完全公开可审计。
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weiqi-recorder
-```
+单文件 HTML 围棋记谱工具，无需服务器，直接在浏览器中运行。
+
+## 功能特点
+
+- **棋盘显示**：标准 19×19 路围棋棋盘
+- **轮流落子**：自动切换黑白双方
+- **提子处理**：自动检测并移除无气棋子
+- **打劫规则**：严格版打劫，标记禁入点，停一手/悔棋解除
+- **悔棋功能**：支持撤销上一步，恢复被提棋子
+- **手数显示**：实时显示当前手数
+- **响应式设计**：支持移动端触摸操作
+
+## 使用方法
+
+### 提供记谱工具给用户
+
+直接发送 `assets/weiqi_recorder.html` 文件给用户，或指导用户在浏览器中打开该文件。
+
+**注意**：由于 QQ 等 IM 工具的文件缓存机制，如果文件内容没有变化，可能会显示旧的文件名。如需避免缓存问题，可在发送前修改文件内容（如添加一个时间戳注释）。
+
+### 使用方式
+
+1. **落子**：点击棋盘交叉点落子
+2. **悔棋**：点击悔棋按钮撤销上一步
+3. **清空**：重新开始一盘新棋
+4. **打劫规则**：
+   - 单提形成打劫时会自动标记禁入点
+   - 停一手或悔棋可解除打劫状态
+
+## 技术说明
+
+- **纯前端**：单 HTML 文件，内嵌 CSS 和 JavaScript
+- **Canvas 绘制**：使用 HTML5 Canvas 绘制棋盘和棋子
+- **音效系统**：使用 Web Audio API 播放落子音效（`setTimeout` 用于音频时序控制）
+- **无依赖**：不依赖任何外部库
+- **离线可用**：保存到本地后无需网络连接
+- **无网络请求**：不访问任何外部服务器，所有代码本地执行
+
+## 触发关键词
+
+当用户说以下关键词时，应使用此技能：
+- "记谱工具"
+- "围棋记谱"
+- "网页记谱"
+- "给我记谱"
+- "发记谱工具"
+- "围棋记录"
+
+## 资源文件
+
+- `assets/weiqi_recorder.html` - 记谱工具网页（单文件，可直接在浏览器打开）

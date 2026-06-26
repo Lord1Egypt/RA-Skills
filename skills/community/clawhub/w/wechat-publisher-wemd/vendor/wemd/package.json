@@ -1,0 +1,19 @@
+{
+  "name": "wemd-renderer",
+  "private": true,
+  "dependencies": {
+    "juice": "^11.0.0",
+    "highlight.js": "^11.11.1",
+    "markdown-it": "^14.1.0",
+    "markdown-it-deflist": "^3.0.0",
+    "markdown-it-emoji": "^3.0.0",
+    "markdown-it-implicit-figures": "^0.12.0",
+    "markdown-it-mark": "^4.0.0",
+    "markdown-it-ruby": "^1.0.0",
+    "markdown-it-sub": "^2.0.0",
+    "markdown-it-sup": "^2.0.0",
+    "markdown-it-table-of-contents": "^0.8.0",
+    "markdown-it-task-lists": "^2.1.1",
+    "katex": "^0.16.0"
+  }
+}

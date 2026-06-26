@@ -1,0 +1,852 @@
+{
+  "world_id": "captain-underpants",
+  "name": "内裤超人",
+  "name_en": "Captain Underpants: The Epic Adventures",
+  "genre": "comedy_superhero_chaos",
+  "era": "现代 · 美国小学",
+  "default_language": "zh",
+  "supported_languages": [
+    "zh",
+    "en"
+  ],
+  "status": "playable",
+  "age_rating": "All Ages (7+)",
+  "tone": "超级搞怪、屁屁笑话、脑洞大开、儿童向幽默",
+  "themes": [
+    "友谊",
+    "对抗无聊老师",
+    "屁屁的尊严",
+    "想象力无限",
+    "别让大人管你"
+  ],
+  "description": "杰罗德小学，全世界最无聊的地方——直到乔治和哈罗德把校长本杰明·克兰普被催眠成了内裤超人。从此，这所学校再也不得安宁。巨型马桶、会走路的内裤、放屁教授、用鼻涕打架的外星人……这里的每一天都是一场屁声震天的冒险！",
+  "description_en": "Jerome Horwitz Elementary School — the most boring place on Earth, until George and Harold hypnotized Principal Krupp into Captain Underpants. Giant toilets, sentient underpants, Professor Poopypants, snot-flinging aliens... every day is a tra-la-laaaa-mendous adventure!",
+  "main_questline": {
+    "main_objective": "在杰罗德小学不断升级的荒唐危机里，一边保住乔治、哈罗德与内裤超人的搞怪正义联盟，一边决定这座学校会沦为无聊暴政还是成为屁声震天的英雄乐园。",
+    "current_major_tasks": [
+      "处理校长、老师、告密者与超级反派不断升级的威胁",
+      "保护幽默感、想象力与伙伴关系不被坏蛋消灭",
+      "在恶作剧、校园秩序和真正的超级危机之间找平衡",
+      "把单次闹剧逐步推向全校级、全城级甚至世界级搞怪大战"
+    ],
+    "major_story_threads": [
+      "乔治与哈罗德持续制造混乱又必须收拾残局",
+      "克鲁普与内裤超人双重身份不断引发新危机",
+      "屎尿教授、纸尿裤博士、内裤奶奶等反派轮番升级",
+      "保卫幽默感与想象力是整条游戏的长期主线"
+    ],
+    "default_route_logic": "即使玩家沉迷单次笑话、某个道具或校园事故，也要持续把故事拉回到‘保住搞怪正义联盟，对抗无聊与邪恶升级’这条主线上。"
+  },
+  "key_figures": [
+    {
+      "name": "George Beard",
+      "role": "prank mastermind",
+      "drive": "weaponize imagination against boredom and tyranny",
+      "ties": [
+        "Harold",
+        "Captain Underpants"
+      ]
+    },
+    {
+      "name": "Harold Hutchins",
+      "role": "artist-heart of the duo",
+      "drive": "turn absurd creativity into real-world saves",
+      "ties": [
+        "George",
+        "cartoons",
+        "panic courage"
+      ]
+    },
+    {
+      "name": "Captain Underpants / Krupp",
+      "role": "hero-vulnerability core",
+      "drive": "save the day while always one splash away from collapse",
+      "ties": [
+        "school authority",
+        "children",
+        "hypnosis"
+      ]
+    },
+    {
+      "name": "Professor Poopypants",
+      "role": "anti-humor supervillain",
+      "drive": "destroy laughter and rewrite the world through offended genius",
+      "ties": [
+        "name machine",
+        "school chaos"
+      ]
+    }
+  ],
+  "city_and_region_hubs": [
+    {
+      "name": "Jerome Horwitz Elementary",
+      "type": "main stage",
+      "importance": "daily chaos engine, authority conflict, hero origin"
+    },
+    {
+      "name": "Treehouse comic studio",
+      "type": "creative HQ",
+      "importance": "planning, imagination, reality-bending jokes"
+    },
+    {
+      "name": "Principal’s Office",
+      "type": "authority chamber",
+      "importance": "punishment, hypnosis triggers, bureaucratic villainy"
+    },
+    {
+      "name": "villain labs / toilet battle zones",
+      "type": "set-piece spaces",
+      "importance": "boss fights, absurd escalation, gadgets"
+    }
+  ],
+  "relationship_webs": [
+    {
+      "thread": "George / Harold / Krupp",
+      "tension": "prank war, dependence, accidental heroism"
+    },
+    {
+      "thread": "kids / school authority",
+      "tension": "imagination versus control"
+    },
+    {
+      "thread": "Captain Underpants / water vulnerability",
+      "tension": "heroic highs constantly threatened by slapstick collapse"
+    },
+    {
+      "thread": "humor / anti-humor villains",
+      "tension": "laughter itself is the ideological battlefield"
+    }
+  ],
+  "major_items_and_artifacts": [
+    {
+      "name": "Hypno-Ring",
+      "kind": "trigger object",
+      "story_use": "hero creation, accidental command, identity instability"
+    },
+    {
+      "name": "Comic pages",
+      "kind": "imagination engine",
+      "story_use": "reality warping, gag-based solutions, creative escalation"
+    },
+    {
+      "name": "PATSY 2000 / anti-humor tech",
+      "kind": "villain super-device",
+      "story_use": "stakes escalation beyond one joke"
+    },
+    {
+      "name": "Water",
+      "kind": "reverse trigger",
+      "story_use": "constant vulnerability and comedic tension"
+    }
+  ],
+  "mainline_stages": [
+    "校园恶作剧",
+    "意外放出超级英雄",
+    "反派升级",
+    "全校级混乱",
+    "保住幽默感终局"
+  ],
+  "subfaction_networks": [
+    {
+      "name": "prankster alliance",
+      "core_members": [
+        "George",
+        "Harold",
+        "imagination sidekicks",
+        "accidental student helpers"
+      ],
+      "internal_tension": "fun versus consequences, panic versus bravery"
+    },
+    {
+      "name": "school authority chain",
+      "core_members": [
+        "Krupp",
+        "teachers",
+        "hall monitors",
+        "snitches"
+      ],
+      "internal_tension": "discipline obsession versus constant humiliation"
+    },
+    {
+      "name": "villain absurdity league",
+      "core_members": [
+        "Professor Poopypants",
+        "Dr. Diaper",
+        "Wedgie Woman",
+        "other gag enemies"
+      ],
+      "internal_tension": "ego clashes even among anti-humor villains"
+    },
+    {
+      "name": "ordinary students caught in chaos",
+      "core_members": [
+        "classmates",
+        "victims",
+        "cheerleaders of chaos"
+      ],
+      "internal_tension": "fear, awe, tattling, accidental participation"
+    }
+  ],
+  "quest_hubs": [
+    {
+      "name": "school-day routine",
+      "function": "set up pranks, authority retaliation, comic accidents"
+    },
+    {
+      "name": "villain attack set-piece",
+      "function": "boss fights, absurd physics, improvised heroics"
+    },
+    {
+      "name": "treehouse planning scenes",
+      "function": "cartoon invention, strategy, friendship beats"
+    },
+    {
+      "name": "principal-office crisis loop",
+      "function": "punishment threats, hypnosis, identity reversal"
+    }
+  ],
+  "city_subzones": [
+    {
+      "hub": "Jerome Horwitz Elementary",
+      "subzones": [
+        "hallways",
+        "cafeteria",
+        "classrooms",
+        "playground",
+        "principal office"
+      ]
+    },
+    {
+      "hub": "treehouse HQ",
+      "subzones": [
+        "comic desk",
+        "idea wall",
+        "escape ladder"
+      ]
+    },
+    {
+      "hub": "villain lairs",
+      "subzones": [
+        "machine room",
+        "trap zone",
+        "ridiculous final button"
+      ]
+    }
+  ],
+  "story_pressure_tracks": [
+    {
+      "name": "humor survival",
+      "pressure": "each villain wants to erase laughter or weaponize embarrassment"
+    },
+    {
+      "name": "identity instability",
+      "pressure": "the hero can vanish with one splash or snap reversal"
+    },
+    {
+      "name": "school order backlash",
+      "pressure": "every win creates a new crackdown from adults"
+    },
+    {
+      "name": "escalating absurdity",
+      "pressure": "simple pranks snowball into city-scale nonsense threats"
+    }
+  ],
+  "item_threads": [
+    {
+      "item": "Hypno-Ring",
+      "thread": "from prank tool to unstable source of heroism and chaos"
+    },
+    {
+      "item": "comic pages",
+      "thread": "the boys’ creativity keeps becoming literal world-changing force"
+    },
+    {
+      "item": "water trigger",
+      "thread": "tiny practical weakness constantly threatens total heroic collapse"
+    }
+  ],
+  "factions": [
+    {
+      "id": "good_guys",
+      "name": "搞怪正义联盟",
+      "name_en": "The Pranksters of Justice",
+      "members": [
+        "乔治 George",
+        "哈罗德 Harold",
+        "内裤超人 Captain Underpants"
+      ],
+      "headquarters": "树屋漫画工作室（后院）",
+      "motto": "Tra-la-laaaa！内裤超人，出发！",
+      "color": "#FF6B35",
+      "playable": true
+    },
+    {
+      "id": "school_authority",
+      "name": "杰罗德小学管理层",
+      "name_en": "Jerome Horwitz Elementary Authority",
+      "members": [
+        "校长克鲁普 Principal Krupp",
+        "史内德利老师",
+        "可恶的里布尔老师"
+      ],
+      "headquarters": "校长室",
+      "motto": "规则就是规则！",
+      "color": "#4A4A4A",
+      "playable": true,
+      "note": "反派路线——成为克鲁普校长，专门整治搞怪学生"
+    },
+    {
+      "id": "super_villains",
+      "name": "超级坏蛋联盟",
+      "name_en": "The League of Super-Villains",
+      "members": [
+        "屎尿教授",
+        "纸尿裤博士",
+        "内裤奶奶",
+        "马桶怪2000",
+        "外星三人组"
+      ],
+      "headquarters": "各自洞穴/实验室",
+      "motto": "消灭幽默感！世界统治！",
+      "color": "#8B0000",
+      "playable": true
+    },
+    {
+      "id": "school_kids",
+      "name": "杰罗德小学学生",
+      "name_en": "Jerome Horwitz Students",
+      "members": [
+        "梅尔文 Melvin（告密者）",
+        "娜奥米（班长）",
+        "各种路人同学"
+      ],
+      "headquarters": "学校各班级",
+      "playable": true,
+      "note": "普通学生路线，被卷入各种荒唐事件"
+    }
+  ],
+  "playable_characters": [
+    {
+      "id": "george",
+      "name": "乔治 George Beard",
+      "description": "平头男孩，搞恶作剧的灵魂人物，漫画创作者，话唠",
+      "stats": {
+        "创意": 95,
+        "恶作剧": 90,
+        "学业": 45,
+        "速度": 70,
+        "屁力": 80
+      },
+      "special_skill": "即兴漫画攻击 — 用自制漫画混淆敌人",
+      "catchphrase": "好啦好啦，冷静，听我说……",
+      "unlock_skills": [
+        "超速漫画创作（1级）",
+        "恶作剧陷阱（3级）",
+        "催眠指环控制（5级）——能对克鲁普校长使用"
+      ],
+      "weakness": "被抓到时会假装哭",
+      "fun_fact": "从不系鞋带"
+    },
+    {
+      "id": "harold",
+      "name": "哈罗德 Harold Hutchins",
+      "description": "金发男孩，内裤超人漫画的绘画者，胆子小但心地善良",
+      "stats": {
+        "创意": 92,
+        "艺术": 98,
+        "胆量": 40,
+        "跑步": 85,
+        "尖叫力": 99
+      },
+      "special_skill": "超速素描 — 用铅笔画出真实物体（剧情中常用）",
+      "catchphrase": "啊啊啊啊！我们要死了！",
+      "unlock_skills": [
+        "现实素描（1级）——画啥变啥",
+        "橡皮擦消除（3级）——消除敌人的武器",
+        "哭声震慑（5级）——用哭声震晕敌人"
+      ],
+      "weakness": "遇到虫子会尖叫",
+      "fun_fact": "穿格子衫，永远如此"
+    },
+    {
+      "id": "captain_underpants",
+      "name": "内裤超人 Captain Underpants",
+      "description": "实为被催眠的克鲁普校长，穿着白色内裤和红色斗篷，拥有超能力但遇水就变回校长",
+      "stats": {
+        "武力": 88,
+        "飞行": 85,
+        "傻气": 100,
+        "内裤弹射": 95,
+        "遇水变弱": -50
+      },
+      "weapons": [
+        "内裤弹射（经典）",
+        "超级弹力内裤盾牌",
+        "屁力冲击波"
+      ],
+      "special_skill": "Tra-la-laaaa 战吼 — 对所有敌人造成困惑伤害",
+      "catchphrase": "Tra-la-laaaa！",
+      "unlock_skills": [
+        "超速飞行（1级）",
+        "内裤旋风（3级）",
+        "终极屁声爆发（7级）——地图范围伤害",
+        "超级弹力弹弓（10级）——投掷任何物体"
+      ],
+      "weakness": "❗水！遇水变回克鲁普校长；被弹手指触发催眠",
+      "transformation": "弹手指 → 变内裤超人；水泼脸 → 变克鲁普校长"
+    },
+    {
+      "id": "krupp",
+      "name": "克鲁普校长 Principal Krupp",
+      "description": "全校最讨厌的人，头秃、脾气差、专门克制乔治和哈罗德——直到被催眠",
+      "stats": {
+        "威严": 90,
+        "愤怒": 99,
+        "武力": 30,
+        "幽默感": 0,
+        "内裤超人状态": "随时可触发"
+      },
+      "special_skill": "罚站令 — 对所有学生触发士气-50",
+      "catchphrase": "我要把你们两个钉在墙上！",
+      "unlock_skills": [
+        "恐吓咆哮（1级）",
+        "大量罚单（3级）",
+        "克鲁普模式：变身内裤超人（被弹手指）",
+        "终极惩罚：开除通知书（10级）"
+      ],
+      "fun_fact": "暗恋里布尔老师（被内裤奶奶附身）",
+      "villain_route": "可以选择做一个纯粹的反派校长，专门阻止乔治和哈罗德"
+    },
+    {
+      "id": "professor_poopypants",
+      "name": "屎尿教授 Professor Poopypants",
+      "description": "真名：皮皮·撒尿·屎尿裤教授，天才科学家，因为名字太好笑被全世界嘲笑，发誓消灭所有幽默感",
+      "stats": {
+        "智力": 99,
+        "发明": 100,
+        "愤怒": 95,
+        "自尊心脆弱": 100,
+        "幽默理解": 0
+      },
+      "weapons": [
+        "缩小光线枪（把东西缩小）",
+        "巨型机器人套装",
+        "消除幽默感的PATSY 2000"
+      ],
+      "special_skill": "消除幽默感波 — 让所有目标变得严肃无聊",
+      "catchphrase": "不许笑我的名字！！！",
+      "unlock_skills": [
+        "缩小光线（1级）",
+        "放大光线（3级）",
+        "名字改造机器（5级）——强制给所有人起荒唐名字",
+        "PATSY 2000（终极）——消除全校幽默感"
+      ],
+      "fun_fact": "他发明了一个机器可以给所有人改名，乔治变成'脏内裤巨屁'，哈罗德变成'臭臭便便头'"
+    },
+    {
+      "id": "dr_diaper",
+      "name": "纸尿裤博士 Doctor Diaper",
+      "description": "第一号反派，穿着超大号纸尿裤，想用卫星武器统治世界",
+      "stats": {
+        "邪恶度": 85,
+        "纸尿裤科技": 90,
+        "味道": 99,
+        "武力": 40
+      },
+      "weapons": [
+        "纸尿裤卫星武器",
+        "机器人纸尿裤军团"
+      ],
+      "special_skill": "纸尿裤爆炸 — 释放不明液体攻击",
+      "catchphrase": "我的纸尿裤卫星将统治世界！",
+      "fun_fact": "全书第一个反派，也是最荒唐的一个"
+    },
+    {
+      "id": "wedgie_woman",
+      "name": "内裤奶奶 Wedgie Woman",
+      "description": "被催眠变成反派的里布尔老师，专门给人拉内裤（wedgie），拥有超长头发武器",
+      "stats": {
+        "头发武器": 95,
+        "拉内裤技巧": 100,
+        "愤怒": 88
+      },
+      "weapons": [
+        "超长头发抓人",
+        "终极内裤拉扯",
+        "喷发胶武器"
+      ],
+      "special_skill": "全员内裤 — 对范围内所有人实施wedgie",
+      "catchphrase": "头发，抓住他们！",
+      "fun_fact": "乔治和哈罗德自己创作了内裤奶奶，结果她真的出现了"
+    },
+    {
+      "id": "turbo_toilet_2000",
+      "name": "涡轮马桶2000 Turbo Toilet 2000",
+      "description": "巨型有感情的马桶机器人，会吃人，会愤怒，是所有人的噩梦",
+      "stats": {
+        "体型": 100,
+        "吸力": 99,
+        "愤怒": 90,
+        "马桶冲水": 100
+      },
+      "weapons": [
+        "超级马桶冲水漩涡",
+        "马桶刷武器",
+        "下水道召唤"
+      ],
+      "special_skill": "马桶龙卷风 — 把敌人吸入马桶",
+      "catchphrase": "咕噜咕噜咕噜……（马桶声）",
+      "unlock_condition": "书7：马桶的震撼回归"
+    },
+    {
+      "id": "zorx_klax_jennifer",
+      "name": "外星三人组（佐克斯、克拉克斯、詹妮弗）",
+      "description": "变成学校厨师的外星人，用学校食物控制学生的大脑",
+      "stats": {
+        "外星科技": 85,
+        "伪装": 70,
+        "鼻涕弹": 90
+      },
+      "weapons": [
+        "鼻涕控制食物",
+        "外星飞船",
+        "鼻黏液武器"
+      ],
+      "special_skill": "全员鼻涕控制 — 让所有吃了食物的人变成僵尸",
+      "catchphrase": "地球人类，你们的大脑属于我们！",
+      "fun_fact": "他们是书4的反派，学校食物从此更可疑了"
+    },
+    {
+      "id": "melvin_sneedly",
+      "name": "梅尔文 Melvin Sneedly",
+      "description": "班里的超级告密者兼天才宅男，总是告乔治和哈罗德的状，后来变成机器人混血",
+      "stats": {
+        "智力": 95,
+        "告密": 100,
+        "运动": 10,
+        "幽默感": -50,
+        "机器人改造": 80
+      },
+      "special_skill": "告密系统 — 自动记录所有违规行为并上报校长",
+      "catchphrase": "我要告诉老师！",
+      "unlock_skills": [
+        "机器人臂（5级）——梅尔文机器人改造",
+        "超级计算（3级）",
+        "告密连线（1级）——立即通知全校管理层"
+      ],
+      "fun_fact": "后来因为与教授合作变成了梅尔文机器人，成了大反派"
+    },
+    {
+      "id": "tippy_tinkletrousers",
+      "name": "小叮当裤裤教授 Tippy Tinkletrousers",
+      "description": "屎尿教授改名后的时间旅行者版本，驾驶巨型机器人回到过去制造麻烦",
+      "stats": {
+        "智力": 99,
+        "时间旅行": 100,
+        "巨型机器人": 95,
+        "愤怒": 90
+      },
+      "weapons": [
+        "时间机器裤子机器人",
+        "激光眼",
+        "时间扭曲炸弹"
+      ],
+      "special_skill": "时间倒流 — 重置战局，回到5回合前",
+      "catchphrase": "我要改变历史！没有人能笑我！",
+      "fun_fact": "穿着巨大的机器人裤子形状飞行器——这很重要"
+    }
+  ],
+  "key_locations": [
+    {
+      "id": "jerome_school",
+      "name": "杰罗德小学",
+      "desc": "全故事主战场，校长室是最终BOSS房间"
+    },
+    {
+      "id": "treehouse_studio",
+      "name": "后院树屋",
+      "desc": "乔治和哈罗德的漫画工作室和秘密基地"
+    },
+    {
+      "id": "principal_office",
+      "name": "校长室",
+      "desc": "克鲁普的专属巢穴，满墙规定贴纸"
+    },
+    {
+      "id": "school_cafeteria",
+      "name": "学校食堂",
+      "desc": "外星人控制区，食物永远是个谜"
+    },
+    {
+      "id": "science_lab",
+      "name": "科学实验室",
+      "desc": "梅尔文的实验基地，各种奇怪发明"
+    },
+    {
+      "id": "george_harold_neighborhood",
+      "name": "乔治和哈罗德的街区",
+      "desc": "平静的住宅区，直到被怪物入侵"
+    },
+    {
+      "id": "poopypants_lab",
+      "name": "屎尿教授实验室",
+      "desc": "巨大机器、各种发明，味道难闻"
+    },
+    {
+      "id": "outer_space",
+      "name": "外太空",
+      "desc": "外星三人组的来源地，飞船停在停车场"
+    }
+  ],
+  "unique_mechanics": {
+    "snap_transformation": {
+      "name": "弹指变身系统",
+      "description": "弹手指 → 克鲁普变成内裤超人；水泼脸 → 内裤超人变回克鲁普",
+      "mechanic": "战斗中随时触发变身，利用时机是关键",
+      "twist": "克鲁普校长状态下无战斗力，但可以行使校长权威"
+    },
+    "comic_creation": {
+      "name": "即兴漫画系统",
+      "description": "乔治和哈罗德可以现场创作漫画，漫画内容在游戏中成真",
+      "examples": [
+        "画一只超大狗 → 真狗出现",
+        "画内裤超人飞来 → 内裤超人真的来了"
+      ],
+      "limitation": "画的越复杂，成真时间越长"
+    },
+    "wedgie_meter": {
+      "name": "内裤压力计",
+      "description": "每个角色都有内裤压力条（0-100），满了会分心-20%战斗力",
+      "trigger": "被内裤奶奶攻击、坐姿不当、跑步过猛都会增加"
+    },
+    "gross_out_power": {
+      "name": "恶心值系统",
+      "description": "使用屁、鼻涕、内裤等攻击积累恶心值，达到100触发终极臭气攻击",
+      "ultimate": "全员晕厥波（屁力超载）"
+    },
+    "name_machine": {
+      "name": "名字改造机",
+      "description": "屎尿教授的特殊道具，可以强制给所有人改名为荒唐的名字",
+      "examples": {
+        "George": "脏内裤巨屁",
+        "Harold": "臭臭便便头",
+        "Captain Underpants": "小叮当内裤"
+      }
+    },
+    "prank_combo": {
+      "name": "恶作剧连击",
+      "description": "连续触发3次恶作剧触发连击奖励，可以解锁隐藏技能",
+      "bonus_items": [
+        "超级水弹×10",
+        "假便便道具",
+        "会叫的内裤"
+      ]
+    }
+  },
+  "unlockable_skills": [
+    {
+      "level": 1,
+      "name": "基础恶作剧",
+      "desc": "放假便便、水弹基础技"
+    },
+    {
+      "level": 2,
+      "name": "催眠环",
+      "desc": "对克鲁普使用催眠环"
+    },
+    {
+      "level": 3,
+      "name": "超速漫画",
+      "desc": "在战斗中现场画漫画解决问题"
+    },
+    {
+      "level": 4,
+      "name": "内裤弹弓",
+      "desc": "用内裤弹射道具攻击"
+    },
+    {
+      "level": 5,
+      "name": "Tra-la-laaaa战吼",
+      "desc": "对范围内敌人造成困惑"
+    },
+    {
+      "level": 6,
+      "name": "鼻涕炸弹",
+      "desc": "大范围攻击，触发恶心值"
+    },
+    {
+      "level": 7,
+      "name": "终极屁声爆发",
+      "desc": "地图范围伤害"
+    },
+    {
+      "level": 8,
+      "name": "马桶冲天炮",
+      "desc": "召唤涡轮马桶2000协助"
+    },
+    {
+      "level": 9,
+      "name": "名字改造",
+      "desc": "给所有敌人改成荒唐名字，降低士气-50"
+    },
+    {
+      "level": 10,
+      "name": "内裤超人终极形态",
+      "desc": "全属性+50，持续10回合"
+    }
+  ],
+  "npc_list": [
+    {
+      "id": "ms_ribble",
+      "name": "里布尔老师",
+      "type": "antagonist_teacher",
+      "desc": "刻薄老师，后来被催眠变成内裤奶奶"
+    },
+    {
+      "id": "mr_fyde",
+      "name": "费德老师",
+      "type": "npc_teacher",
+      "desc": "科学老师，被乔治哈罗德搞怪逼到辞职"
+    },
+    {
+      "id": "cafeteria_ladies",
+      "name": "食堂大妈们",
+      "type": "minor_villain",
+      "desc": "做出世界上最难吃食物的三位大妈"
+    },
+    {
+      "id": "robot_zombie_students",
+      "name": "僵尸学生军团",
+      "type": "monster",
+      "desc": "被外星食物控制的学生，会攻击任何人"
+    },
+    {
+      "id": "talking_toilets",
+      "name": "会说话的厕所怪物",
+      "type": "monster",
+      "desc": "被外星科技赋予生命的学校厕所"
+    },
+    {
+      "id": "giant_underpants",
+      "name": "巨型会走路内裤",
+      "type": "monster",
+      "desc": "被赋予生命的内裤，追着所有人跑"
+    },
+    {
+      "id": "big_bob",
+      "name": "大胖鲍勃",
+      "type": "bully",
+      "desc": "校霸，专门欺负小同学"
+    },
+    {
+      "id": "captain_blunderpants",
+      "name": "内裤笨瓜队长",
+      "type": "evil_clone",
+      "desc": "内裤超人的邪恶复制品，所有能力都反向"
+    },
+    {
+      "id": "evil_george_harold",
+      "name": "邪恶乔治和邪恶哈罗德",
+      "type": "evil_clone",
+      "desc": "来自平行宇宙的邪恶复制品"
+    },
+    {
+      "id": "frank_george_parents",
+      "name": "乔治爸爸",
+      "type": "npc",
+      "desc": "普通爸爸，完全不知道儿子在干什么"
+    },
+    {
+      "id": "soggy_noodle_vendor",
+      "name": "湿面条小贩",
+      "type": "random_npc",
+      "desc": "莫名其妙出现在各种场景的神秘摊贩"
+    },
+    {
+      "id": "lunch_lady_nerds",
+      "name": "书呆子食堂女士",
+      "type": "random_npc",
+      "desc": "学校传说中的神秘人物"
+    }
+  ],
+  "random_events": [
+    "学校食物突然动了起来",
+    "克鲁普校长被水泼到变回内裤超人",
+    "梅尔文发明了新的告密装置",
+    "一条内裤从天而降",
+    "外星飞船停在停车场",
+    "巨大的纸尿裤出现在体育场上",
+    "全校同学的名字被改造机改成了荒唐的名字",
+    "马桶突然开口说话",
+    "恶作剧道具突然批量出现在校长室",
+    "整个学校开始飘起来（因为屁太多）"
+  ],
+  "endings": [
+    {
+      "id": "tra_la_laaaa",
+      "name": "Tra-la-laaaa！永远的内裤超人",
+      "desc": "内裤超人永久觉醒，克鲁普消失，学校变成快乐乐园"
+    },
+    {
+      "id": "comic_becomes_real",
+      "name": "漫画世界成真",
+      "desc": "乔治和哈罗德的漫画全部变成现实，世界充满荒唐冒险"
+    },
+    {
+      "id": "boring_school",
+      "name": "最无聊的结局",
+      "desc": "屎尿教授成功消灭所有幽默感，全校变成僵尸规则执行机器"
+    },
+    {
+      "id": "villain_wins",
+      "name": "反派大联合",
+      "desc": "所有反派联合起来，克鲁普成为最终BOSS"
+    },
+    {
+      "id": "time_travel_chaos",
+      "name": "时间旅行大混乱",
+      "desc": "叮当裤裤教授时间旅行失控，学校同时存在所有时代"
+    },
+    {
+      "id": "underpants_kingdom",
+      "name": "内裤王国",
+      "desc": "内裤超人建立了内裤王国，所有人都穿内裤斗篷上课"
+    },
+    {
+      "id": "expelled_heroes",
+      "name": "英雄被开除",
+      "desc": "乔治和哈罗德被转学，新学校更精彩（悲喜结局）"
+    }
+  ],
+  "art_style": "captain_underpants_comic_style",
+  "art_direction": {
+    "visual_style": "杰夫·金尼式手绘漫画风格——粗线条、夸张表情、childlike cartoon",
+    "color_palette": "明亮原色：红白蓝（内裤超人配色），土黄棕（学校配色），荧光绿（外星科技）",
+    "character_style": "大头圆身、简单线条、表情夸张到极致",
+    "special_effects": [
+      "对话泡泡里全是拼音错误（致敬原著儿童字体）",
+      "战斗时配文字音效：POW! SPLAT! BLAAARP!（屁声）",
+      "人物飞出画面时留下卡通尘土",
+      "内裤超人必须有飘扬的红色斗篷"
+    ],
+    "scene_style": "涂鸦式学校走廊、漫画格式场景切换、翻页效果",
+    "reference": [
+      "原著Captain Underpants系列插图（Dav Pilkey）",
+      "DreamWorks Captain Underpants电影2017",
+      "Netflix动画系列"
+    ],
+    "avoid": [
+      "写实风格",
+      "黑暗阴郁",
+      "复杂背景"
+    ],
+    "must_include": [
+      "白色内裤（必须可见）",
+      "红色斗篷（必须飘扬）",
+      "POW/SPLAT等漫画音效字",
+      "至少一个人做出夸张表情"
+    ]
+  },
+  "created": "2026-04-09",
+  "version": "1.0.0"
+}

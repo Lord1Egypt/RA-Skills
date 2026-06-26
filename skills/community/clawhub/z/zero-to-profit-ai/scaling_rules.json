@@ -1,0 +1,4 @@
+{
+  "small_to_medium": {"reinvest_pct": 0.5, "scale_factor": 2},
+  "medium_to_large": {"reinvest_pct": 0.7, "scale_factor": 3}
+}

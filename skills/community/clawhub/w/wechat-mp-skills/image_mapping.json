@@ -1,0 +1,8 @@
+{
+  "_comment": "图片路径映射示例文件",
+  "_description": "将 Markdown 中的图片路径映射到实际文件路径",
+  "_example": {
+    "images/1.png": "/path/to/your/images/1.png",
+    "images/2.png": "/path/to/your/images/2.png"
+  }
+}

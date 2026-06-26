@@ -1,0 +1,24 @@
+pydantic==2.7.1
+playwright==1.44.0
+playwright-stealth==1.0.6
+chromadb==0.5.0
+beautifulsoup4==4.12.3
+# google-generativeai 0.5.4 does NOT include gemini-2.5-flash / gemini-2.5-pro in the
+# model registry and will reject those model strings at runtime.  0.8.3 is the
+# minimum version that ships with Gemini 2.x model support.
+google-generativeai>=0.8.3
+openai==1.30.1
+# anthropic 0.26.0 predates several stability fixes in the async client and the
+# messages.create() response schema used in logger.py.  Pin to 0.40+ for safety.
+anthropic>=0.40.0
+requests==2.31.0
+python-dotenv==1.0.1
+google-api-python-client==2.130.0
+google-auth==2.29.0
+# filelock provides a cross-process file lock used by setup.get_chroma_lock() to
+# serialize ChromaDB writes.  ChromaDB's embedded PersistentClient (SQLite + HNSW)
+# is not safe for concurrent writers; overlapping cron runs without this lock will
+# corrupt the vector index.  filelock is a zero-dependency stdlib wrapper — it adds
+# no transitive packages.
+filelock>=3.13.0
+ 

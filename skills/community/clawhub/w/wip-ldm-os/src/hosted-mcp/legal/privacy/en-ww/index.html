@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy Policy - Kaleidoscope Demo</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  background: #FFFDF5;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 16px 24px 80px;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: calc(12px + env(safe-area-inset-top, 0px)) 20px 12px;
+  background: rgba(255, 253, 245, 0.8);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+}
+
+.header a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 17px;
+  color: #8a8580;
+  margin-bottom: 8px;
+}
+
+.updated {
+  font-size: 13px;
+  color: #b0aaa4;
+  margin-bottom: 40px;
+}
+
+section {
+  padding: 28px 0;
+  border-top: 1px solid #e8e5de;
+}
+
+section:last-of-type {
+  border-bottom: 1px solid #e8e5de;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #3a3a3a;
+  margin-bottom: 12px;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+ul li {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #3a3a3a;
+  padding-left: 16px;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+ul li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0;
+  color: #b0aaa4;
+}
+
+a {
+  color: #1a1a1a;
+}
+
+footer {
+  margin-top: 48px;
+  text-align: center;
+  font-size: 12px;
+  color: #b0aaa4;
+  line-height: 1.6;
+}
+
+footer span {
+  display: block;
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <a id="navIcon" href="/demo/"></a>
+</div>
+<div class="container">
+
+  <h1>Privacy Policy</h1>
+  <p class="subtitle">Kaleidoscope Demo</p>
+  <p class="updated">Last updated: April 2, 2026</p>
+
+  <section>
+    <p>WIP Computer, Inc. ("we", "us") operates the Kaleidoscope demo at wip.computer/demo.</p>
+  </section>
+
+  <section>
+    <h2>What We Collect</h2>
+    <ul>
+      <li>Passkey credential ID and public key (for authentication)</li>
+      <li>Username (optional, if you provide one)</li>
+      <li>Wallet balance (simulated, for demo purposes)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What We Do NOT Collect</h2>
+    <ul>
+      <li>Email addresses (unless voluntarily provided later)</li>
+      <li>Passwords (passkeys only, no passwords exist)</li>
+      <li>Biometric data (Face ID / fingerprint verification happens on your device, we never receive biometric data)</li>
+      <li>Photos (camera captures are processed in your browser, never uploaded)</li>
+      <li>Browsing history or tracking data</li>
+      <li>Cookies (we use sessionStorage only, cleared when you close the browser)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>How We Use Your Data</h2>
+    <ul>
+      <li>Authentication: verifying your passkey when you sign in</li>
+      <li>Demo functionality: tracking simulated wallet balance</li>
+      <li>Product improvement: aggregate usage patterns (no personal data)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Third-Party Services</h2>
+    <ul>
+      <li>xAI (Grok Imagine API): receives text prompts for image generation. Does not receive your photos or personal data.</li>
+      <li>No analytics services</li>
+      <li>No advertising networks</li>
+      <li>No data brokers</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Data Storage</h2>
+    <p>Your passkey data is stored on our server at wip.computer. It is not encrypted at rest in this demo version. Production versions will implement end-to-end encryption where we architecturally cannot read your data.</p>
+  </section>
+
+  <section>
+    <h2>Data Deletion</h2>
+    <p>Contact <a href="mailto:hello@wip.computer">hello@wip.computer</a> to request deletion of your passkey data.</p>
+  </section>
+
+  <section>
+    <h2>Your Rights</h2>
+    <p>You can delete your passkey from your device at any time through your device settings (Settings > Passwords on iOS, chrome://settings/passwords on Chrome).</p>
+  </section>
+
+  <section>
+    <h2>Changes</h2>
+    <p>We may update this policy. Changes will be reflected in the "Last updated" date.</p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p><a href="mailto:hello@wip.computer">hello@wip.computer</a></p>
+  </section>
+
+  <footer>
+    <div id="kscope-footer" style="text-align:center;"></div>
+  </footer>
+  <script src="/demo/footer.js"></script>
+</div>
+<script>
+var SPRITE_COLS = 8, SPRITE_ROWS = 3, SPRITE_TOTAL = 24;
+var navIdx = Math.floor(Math.random() * SPRITE_TOTAL);
+function updateNavIcon() {
+  var el = document.getElementById('navIcon');
+  if (!el) return;
+  var col = navIdx % SPRITE_COLS;
+  var row = Math.floor(navIdx / SPRITE_COLS);
+  var bgPosX = (col / (SPRITE_COLS - 1)) * 100;
+  var bgPosY = (row / (SPRITE_ROWS - 1)) * 100;
+  el.innerHTML = '<div style="width:28px;height:28px;overflow:hidden;"><div style="width:100%;height:100%;background:url(/demo/sprites.png);background-size:' + (SPRITE_COLS * 100) + '% ' + (SPRITE_ROWS * 100) + '%;background-position:' + bgPosX + '% ' + bgPosY + '%;"></div></div>';
+  navIdx = (navIdx + 1) % SPRITE_TOTAL;
+}
+updateNavIcon();
+setInterval(updateNavIcon, 6000);
+</script>
+</body>
+</html>

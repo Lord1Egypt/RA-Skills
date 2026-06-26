@@ -1,35 +1,68 @@
 ---
-name: "Xiaohongshu Mcp Publisher"
-description: "小红书完整自动化流程：从新闻搜索到封面生成到发布。触发场景：(1) 发布小红书笔记，(2) 搜索新闻生成内容，(3) 生成封面图，(4) 完整自动化运营。关键词：小红书发布、xhs publish、小红书自动化、新闻发布。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-mcp-publisher"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-mcp-publisher"
+name: xiaohongshu-mcp-publisher
+description: 小红书完整自动化流程：从新闻搜索到封面生成到发布。触发场景：(1) 发布小红书笔记，(2) 搜索新闻生成内容，(3) 生成封面图，(4) 完整自动化运营。关键词：小红书发布、xhs publish、小红书自动化、新闻发布。
 ---
 
-# Xiaohongshu Mcp Publisher
+# 小红书完整发布流程
 
-> 小红书完整自动化流程：从新闻搜索到封面生成到发布。触发场景：(1) 发布小红书笔记，(2) 搜索新闻生成内容，(3) 生成封面图，(4) 完整自动化运营。关键词：小红书发布、xhs publish、小红书自动化、新闻发布。
+从搜索内容 → 生成封面 → 发布笔记的完整自动化流程。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-mcp-publisher`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-mcp-publisher](https://clawhub.ai/skills/xiaohongshu-mcp-publisher)
+## 完整工作流
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-mcp-publisher
 ```
+内容搜索 → 文案生成 → 封面生成 → MCP 发布
+```
+
+## 步骤详解
+
+### 1️⃣ 内容搜索
+
+使用 `web_search` 搜索新闻或热点话题，或用户指定主题。
+
+### 2️⃣ 文案生成
+
+AI 自动生成小红书风格文案：
+
+- **标题**: 关键词 + 表情 + 数字/痛点（≤20字）
+- **正文**: 痛点引入 → 核心内容 → 互动引导
+- **标签**: 5-8 个 hashtag
+
+### 3️⃣ 封面生成
+
+使用 PIL 生成纯文字封面：
+
+- 尺寸: 1080x1440 (3:4)
+- 纯色背景 + 白色卡片 + 黑色大字
+- 关键词高亮
+
+### 4️⃣ MCP 发布
+
+通过 xiaohongshu-mcp 服务发布笔记。
+
+**前提条件**:
+- MCP 服务已启动（默认端口 18060）
+- 已登录小红书账号
+
+**API 接口**:
+- 登录状态: `GET /api/v1/login/status`
+- 发布笔记: `POST /api/v1/publish`
+
+## 重要注意事项
+
+### 图片路径格式
+
+必须使用绝对路径，不能用 file:// 协议。
+
+### 发布超时
+
+发布需要 1-2 分钟，设置 timeout >= 180 秒。
+
+### 发布频率
+
+避免连续发布，间隔 ≥1 小时。
+
+---
+
+**相关 Skill**: `xiaohongshu-auto-operator`（更完整的自动化运营）
+
+**项目来源**: [xpzouying/xiaohongshu-mcp](https://github.com/xpzouying/xiaohongshu-mcp)

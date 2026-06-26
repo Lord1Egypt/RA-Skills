@@ -1,0 +1,25 @@
+{
+  "user_id": "0xtestuser123_sub",
+  "created_at": "2026-03-27T17:02:55.129019",
+  "free_quota": {
+    "total": 10,
+    "used": 0
+  },
+  "subscription": {
+    "active": true,
+    "started_at": "2026-03-27T17:02:55.129048",
+    "expires_at": "2026-04-26T17:02:55.129048",
+    "tx_hash": "0x00064dfdc44425d5"
+  },
+  "usage_history": [
+    {
+      "time": "2026-03-27T17:02:55.129185",
+      "action": "crawl",
+      "resource": "\u673a\u5668\u4e4b\u5fc3",
+      "count": 50,
+      "cost": 0,
+      "paid_by": "subscription",
+      "tx_hash": null
+    }
+  ]
+}

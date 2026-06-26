@@ -1,0 +1,87 @@
+{
+  "quota_settings": {
+    "user": "阿康",
+    "last_updated": "2026-03-22T12:45:00+08:00",
+    "description": "API使用配额配置 - 用于自动判断'够用/不够用'",
+    
+    "daily_quota": {
+      "calls": 1000,
+      "tokens": 1000000,
+      "cost_cny": 10.0,
+      "description": "每日配额限制"
+    },
+    
+    "weekly_quota": {
+      "calls": 5000,
+      "tokens": 5000000,
+      "cost_cny": 50.0,
+      "description": "每周配额限制"
+    },
+    
+    "monthly_quota": {
+      "calls": 20000,
+      "tokens": 20000000,
+      "cost_cny": 200.0,
+      "description": "每月配额限制"
+    },
+    
+    "alert_thresholds": {
+      "sufficient_percent": 80,
+      "good_percent": 50,
+      "warning_percent": 20,
+      "critical_percent": 10,
+      "description": "状态判断阈值（百分比）"
+    },
+    
+    "status_messages": {
+      "green": [
+        "✅ 充足 - 剩余量充足，可放心使用",
+        "🟢 充足 - 剩余量良好，继续使用"
+      ],
+      "yellow": [
+        "🟡 紧张 - 剩余量一般，建议适度使用"
+      ],
+      "orange": [
+        "🟠 不足 - 剩余量较低，请谨慎使用"
+      ],
+      "red": [
+        "🔴 耗尽 - 配额已用完，请停止使用"
+      ]
+    },
+    
+    "model_costs": {
+      "deepseek-ai": 0.001,
+      "glm-5": 0.0015,
+      "gpt-4": 0.03,
+      "gpt-3.5-turbo": 0.001,
+      "claude-3": 0.015,
+      "gemini-pro": 0.001,
+      "llama-3": 0.0008,
+      "default": 0.002,
+      "description": "模型成本（元/百万令牌）"
+    }
+  },
+  
+  "usage_history_summary": {
+    "total_days_monitored": 1,
+    "total_checks_performed": 2,
+    "average_daily_calls": 0,
+    "average_daily_tokens": 0,
+    "average_daily_cost": 0.0,
+    "sufficient_days_percent": 100.0,
+    "last_alert_date": null
+  },
+  
+  "recommendations": [
+    "根据当前使用情况，配额配置合理",
+    "建议定期检查使用趋势，适时调整配额",
+    "如频繁出现'不够用'状态，可适当增加配额或优化使用模式"
+  ],
+  
+  "auto_check_schedule": {
+    "enabled": true,
+    "interval_minutes": 30,
+    "next_check": "2026-03-22T13:15:00+08:00",
+    "last_check": "2026-03-22T12:45:00+08:00"
+  }
+}

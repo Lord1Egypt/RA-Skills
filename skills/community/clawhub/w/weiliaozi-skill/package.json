@@ -1,0 +1,52 @@
+{
+  "name": "weiliaozi-skill",
+  "version": "2.1.0",
+  "description": "尉缭子分析法 - 按本质、条件、得失、先后、对手进行结构化分析。五栏分析框架。",
+  "author": "phoenixlucky",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phoenixlucky/weiliaozi-skill.git"
+  },
+  "homepage": "https://github.com/phoenixlucky/weiliaozi-skill",
+  "bugs": {
+    "url": "https://github.com/phoenixlucky/weiliaozi-skill/issues"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "CHANGELOG.md",
+    "references/"
+  ],
+  "keywords": [
+    "weiliaozi",
+    "尉缭子",
+    "五栏分析",
+    "five-lens",
+    "决策框架",
+    "decision-framework",
+    "结构化分析",
+    "structured-analysis",
+    "战略分析",
+    "strategic-analysis",
+    "scenario-analysis",
+    "情景分析",
+    "trade-off-analysis",
+    "权衡分析",
+    "game-theory",
+    "博弈分析",
+    "essence-conditions-gainslosses-sequence-opponent",
+    "bilingual",
+    "中英双语",
+    "chinese-english",
+    "chinese-strategy",
+    "中国兵法",
+    "ancient-wisdom",
+    "warring-states",
+    "战国",
+    "reasonix-skill",
+    "clawhub",
+    "claude-hub",
+    "agent-skill"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "@wipcomputer/wip-repos",
+  "version": "1.9.68",
+  "type": "module",
+  "description": "Repo manifest reconciler. Single source of truth for repo organization. Like prettier for folder structure.",
+  "main": "core.mjs",
+  "bin": {
+    "wip-repos": "./cli.mjs"
+  },
+  "exports": {
+    ".": "./core.mjs"
+  },
+  "scripts": {
+    "test": "node cli.mjs --help"
+  },
+  "keywords": [
+    "repo-manifest",
+    "monorepo",
+    "toolbox",
+    "organization",
+    "enterprise",
+    "ai-dev-tools"
+  ],
+  "author": "Parker Todd Brooks",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wipcomputer/wip-ai-devops-toolbox.git",
+    "directory": "tools/wip-repos"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "version": "4.0.0",
+  "description": "yaoyao-memory 功能开关配置",
+  "features": {
+    "vector_search": {
+      "enabled": true,
+      "description": "向量搜索支持"
+    },
+    "cloud_sync": {
+      "enabled": false,
+      "description": "云端同步 (IMA + NAS)"
+    },
+    "auto_fix": {
+      "enabled": true,
+      "description": "自动修复"
+    },
+    "predictive_cache": {
+      "enabled": true,
+      "description": "预测缓存"
+    },
+    "forget_detection": {
+      "enabled": true,
+      "description": "遗忘检测"
+    },
+    "knowledge_graph": {
+      "enabled": true,
+      "description": "知识图谱"
+    },
+    "security": {
+      "enabled": true,
+      "description": "安全模块"
+    },
+    "auto_backup": {
+      "enabled": true,
+      "description": "自动备份"
+    }
+  },
+  "limits": {
+    "max_memory_size_mb": 100,
+    "max_query_results": 50,
+    "cache_ttl_seconds": 3600
+  },
+  "performance": {
+    "fts_enabled": true,
+    "fts_cache_size": 1000,
+    "batch_size": 100
+  },
+  "security": {
+    "context_guard_enabled": true,
+    "subagent_tool_filter": true,
+    "prompt_injection_detection": true
+  },
+  "push": {
+    "dual_channel": false
+  },
+  "memory": {
+    "auto_cleanup": true
+  }
+}

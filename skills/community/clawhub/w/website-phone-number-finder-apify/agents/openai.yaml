@@ -1,0 +1,4 @@
+interface:
+  display_name: "Website Phone Number Finder (Apify)"
+  short_description: "Run website phone number extraction through Apify"
+  default_prompt: "Use $website-phone-number-finder-apify to build a Website Phone Number Finder payload and run actor HE8ML7ZqmGI6OtyFU with APIFY_TOKEN."

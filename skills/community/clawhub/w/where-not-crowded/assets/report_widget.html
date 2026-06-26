@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>节假日出行判断报告</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    color: #182435;
+    background:
+      radial-gradient(circle at top left, rgba(255, 210, 170, 0.28), transparent 24%),
+      radial-gradient(circle at top right, rgba(160, 210, 255, 0.22), transparent 22%),
+      linear-gradient(180deg, #f4f7fb 0%, #ebf1f6 45%, #f9fbfc 100%);
+    line-height: 1.7;
+  }
+  .page { max-width: 1180px; margin: 0 auto; padding: 30px 20px 50px; }
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.76);
+    border: 1px solid rgba(117,138,162,0.18);
+    box-shadow: 0 10px 24px rgba(29,47,74,0.06);
+  }
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #16324c 0%, #2b6c8e 100%);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 900;
+  }
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .brand-text strong {
+    font-size: 14px;
+    color: #16324c;
+    letter-spacing: 0.02em;
+  }
+  .brand-text span {
+    font-size: 11px;
+    color: #6a7f92;
+  }
+  .top-note {
+    font-size: 12px;
+    color: #70869a;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.72);
+    border: 1px solid rgba(117,138,162,0.16);
+  }
+  .hero {
+    padding: 28px;
+    border-radius: 28px;
+    color: #fff;
+    background: linear-gradient(135deg, #122844 0%, #1d466e 52%, #2b6b8f 100%);
+    box-shadow: 0 26px 58px rgba(20, 46, 76, 0.18);
+  }
+  .eyebrow {
+    display: inline-flex;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.15);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .title { margin: 18px 0 8px; font-size: 34px; line-height: 1.12; font-weight: 800; }
+  .subtitle { color: rgba(239,246,255,0.84); font-size: 15px; max-width: 760px; }
+  .holiday-label { margin-top: 16px; color: rgba(239,246,255,0.72); font-size: 14px; }
+  .verdict-box {
+    margin-top: 20px;
+    border-radius: 22px;
+    padding: 18px 20px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.14);
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .hero-stat {
+    border-radius: 18px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.14);
+  }
+  .hero-stat .k {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: rgba(239,246,255,0.68);
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+  .hero-stat .v {
+    display: block;
+    font-size: 16px;
+    font-weight: 800;
+    color: #ffffff;
+  }
+  .verdict-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: rgba(239,246,255,0.68); }
+  .verdict-text { margin-top: 8px; font-size: 20px; line-height: 1.75; font-weight: 700; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 22px; }
+  .product-strip {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 16px;
+  }
+  .feature-panel {
+    border-radius: 24px;
+    padding: 22px;
+    background: rgba(255,255,255,0.88);
+    border: 1px solid rgba(117,138,162,0.16);
+    box-shadow: 0 14px 36px rgba(29,47,74,0.08);
+  }
+  .feature-panel h3 {
+    margin: 0 0 10px;
+    font-size: 19px;
+    color: #17324c;
+    letter-spacing: -0.02em;
+  }
+  .feature-panel p {
+    margin: 0;
+    color: #5f7387;
+    font-size: 14px;
+  }
+  .feature-stat {
+    margin-top: 14px;
+    display: grid;
+    gap: 10px;
+  }
+  .feature-pill {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 13px;
+    border-radius: 16px;
+    background: #f4f8fb;
+    border: 1px solid #e2eaf1;
+    color: #28445d;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .section {
+    border-radius: 24px;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(117,138,162,0.16);
+    box-shadow: 0 14px 36px rgba(29,47,74,0.08);
+  }
+  .inner { padding: 22px; }
+  .head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .head h2 { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
+  .chip { padding: 6px 10px; border-radius: 999px; background: #eef4f9; color: #5e7487; font-size: 12px; font-weight: 700; }
+  .card, .risk-card, .plan-card, .warning-card {
+    border-radius: 18px;
+    padding: 16px;
+    border: 1px solid #dfe7ef;
+    background: linear-gradient(180deg, #fff 0%, #f9fbfd 100%);
+  }
+  .default-title { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: #3f341b; }
+  .muted { font-size: 13px; color: #667b8f; margin: 12px 0 10px; }
+  .list { margin: 0; padding: 0; list-style: none; }
+  .list li { position: relative; padding-left: 16px; }
+  .list li + li { margin-top: 8px; }
+  .list li::before { content: ""; position: absolute; left: 0; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: #2f6ea7; }
+  .warning-card .list li::before { background: #d35151; }
+  .risk-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .risk-level { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .level-high { color: #d45454; }
+  .level-mid { color: #c48b24; }
+  .level-low { color: #188060; }
+  .table-shell { overflow: hidden; border-radius: 18px; border: 1px solid #dfe7ef; }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; padding: 12px 14px; background: #eef4f9; color: #62788a; font-size: 12px; font-weight: 800; letter-spacing: 0.04em; }
+  td { padding: 13px 14px; border-top: 1px solid #edf2f6; vertical-align: top; }
+  .matrix td:last-child, .costs td:last-child { color: #21415d; font-weight: 700; }
+  .choice-grid { display: grid; gap: 14px; }
+  .choice-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .pill { display: inline-flex; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 800; }
+  .pill-main { background: #def2ff; color: #0a5f94; }
+  .pill-alt { background: #eef3f7; color: #647688; }
+  .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .plan-stack { display: grid; gap: 10px; }
+  .plan-k { display: block; font-size: 11px; color: #6c8093; margin-bottom: 4px; }
+  .plan-v { display: block; font-size: 14px; color: #1f344a; font-weight: 700; }
+  .plan-note { border-radius: 14px; background: #eef6fb; padding: 10px 12px; font-size: 14px; color: #2f4a63; margin-top: 12px; }
+  .plan-note.warm { background: #f7f2e8; color: #5a4a28; }
+  .journey {
+    margin-top: 22px;
+    border-radius: 24px;
+    padding: 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(246,249,252,0.96) 100%);
+    border: 1px solid rgba(117,138,162,0.16);
+    box-shadow: 0 14px 36px rgba(29,47,74,0.08);
+  }
+  .journey-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .journey-track {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .journey-step {
+    position: relative;
+    padding: 16px 16px 18px;
+    border-radius: 18px;
+    background: #ffffff;
+    border: 1px solid #dfe7ef;
+  }
+  .journey-step::after {
+    content: "";
+    position: absolute;
+    top: 22px;
+    right: -14px;
+    width: 14px;
+    height: 2px;
+    background: #cfd9e4;
+  }
+  .journey-step:last-child::after {
+    display: none;
+  }
+  .journey-step .step-k {
+    font-size: 11px;
+    color: #6c8093;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .journey-step .step-v {
+    font-size: 16px;
+    font-weight: 800;
+    color: #19344f;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .journey-step .step-desc {
+    font-size: 13px;
+    color: #607588;
+  }
+  .final {
+    margin-top: 22px;
+    border-radius: 24px;
+    padding: 24px;
+    color: #fff;
+    background: linear-gradient(135deg, #15304c 0%, #20527a 100%);
+    box-shadow: 0 18px 40px rgba(20,46,78,0.2);
+  }
+  .final .label { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; color: rgba(239,246,255,0.68); }
+  .final .text { margin-top: 10px; font-size: 22px; line-height: 1.8; font-weight: 800; }
+  .footer { margin-top: 14px; text-align: center; font-size: 12px; color: #6a7f92; }
+  @media (max-width: 980px) {
+    .grid, .risk-grid, .plan-grid, .hero-stats, .product-strip, .journey-track { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .page { padding: 16px 12px 30px; }
+    .masthead { flex-direction: column; align-items: flex-start; }
+    .hero { padding: 20px 18px; border-radius: 22px; }
+    .title { font-size: 28px; }
+    .verdict-text { font-size: 18px; }
+    .section, .final { border-radius: 20px; }
+    .inner { padding: 18px; }
+    .choice-top { flex-direction: column; align-items: flex-start; }
+    .table-shell { display: block; overflow-x: auto; white-space: nowrap; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="masthead">
+    <div class="brand">
+      <div class="brand-mark">判</div>
+      <div class="brand-text">
+        <strong>去哪不挤</strong>
+        <span>节假日出行判断 skill</span>
+      </div>
+    </div>
+    <div class="top-note">先裁掉错误默认路径，再给一个更值的替代答案</div>
+  </div>
+  <section class="hero">
+    <div class="eyebrow">WHERE NOT CROWDED REPORT</div>
+    <div class="title">节假日出行判断报告</div>
+    <div class="subtitle">先判断默认热门路径值不值，再给出一个更优、更不挤、更值的替代方案。</div>
+    <div class="holiday-label" id="holidayLabel"></div>
+    <div class="verdict-box">
+      <div class="verdict-label">一句话结论</div>
+      <div class="verdict-text" id="verdictText"></div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="k">默认热门路径</span><span class="v" id="statDefaultName"></span></div>
+      <div class="hero-stat"><span class="k">这次主推荐</span><span class="v" id="statMainChoice"></span></div>
+      <div class="hero-stat"><span class="k">推荐玩几天</span><span class="v" id="statDuration"></span></div>
+    </div>
+  </section>
+
+  <section class="product-strip">
+    <div class="feature-panel">
+      <h3>这不是攻略页，是决策页</h3>
+      <p>它不让你在 10 个目的地里继续犹豫，而是先告诉你默认热门路线为什么不值，再给一个能直接照做的更优方案。</p>
+      <div class="feature-stat">
+        <div class="feature-pill"><span>默认路径</span><span id="featureDefault"></span></div>
+        <div class="feature-pill"><span>更优主推荐</span><span id="featureMain"></span></div>
+        <div class="feature-pill"><span>时间打法</span><span id="featureWindow"></span></div>
+      </div>
+    </div>
+    <div class="feature-panel">
+      <h3>判断维度</h3>
+      <p>人流趋势、热点加热、结构拥挤、机酒价格和总预算都会一起进入判断，不只看表面热度。</p>
+    </div>
+    <div class="feature-panel">
+      <h3>最终交付</h3>
+      <p>你拿到的不是灵感清单，而是一份已经替你裁掉错误选择的节假日出行报告。</p>
+    </div>
+  </section>
+
+  <div class="grid">
+    <section class="section">
+      <div class="inner">
+        <div class="head"><h2>默认路径判断</h2><span class="chip">先点破默认答案</span></div>
+        <div class="card">
+          <div class="default-title" id="defaultName"></div>
+          <div id="defaultSummary"></div>
+          <div class="muted">为什么大家会默认这么选</div>
+          <ul class="list" id="whyDefault"></ul>
+          <div class="muted">为什么它这次未必最优</div>
+          <ul class="list" id="whyNot"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="inner">
+        <div class="head"><h2>为什么不推荐</h2><span class="chip">人流 + 热点 + 结构</span></div>
+        <div class="risk-grid" id="riskGrid"></div>
+        <div class="muted">这次会挤的原因</div>
+        <ul class="list" id="crowdHotspots"></ul>
+        <div class="muted">历年规律 / 当前热点 / 结构影响</div>
+        <ul class="list" id="crowdMeta"></ul>
+      </div>
+    </section>
+  </div>
+
+  <section class="section" style="margin-top:22px;">
+    <div class="inner">
+      <div class="head"><h2>多维判断</h2><span class="chip">支持雷达图和评分卡</span></div>
+      <div class="table-shell">
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th>维度</th>
+              <th>默认路径</th>
+              <th>更优替代</th>
+              <th>判断</th>
+            </tr>
+          </thead>
+          <tbody id="matrixBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid">
+    <section class="section" style="margin-top:22px;">
+      <div class="inner">
+        <div class="head"><h2>推荐去哪</h2><span class="chip">主推荐 + 近程 + 远程</span></div>
+        <div class="choice-grid" id="choiceGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" style="margin-top:22px;">
+      <div class="inner">
+        <div class="head"><h2>国内外成本对比</h2><span class="chip">别默认国外更贵</span></div>
+        <div class="table-shell">
+          <table class="costs">
+            <thead>
+              <tr>
+                <th>方案</th>
+                <th>机票</th>
+                <th>酒店</th>
+                <th>总预算</th>
+                <th>判断</th>
+              </tr>
+            </thead>
+            <tbody id="costBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="grid">
+    <section class="section" style="margin-top:22px;">
+      <div class="inner">
+        <div class="head"><h2>最佳出行窗口建议</h2><span class="chip">哪天走 / 买几号票 / 玩几天</span></div>
+        <div class="plan-grid">
+          <div class="plan-card">
+            <div class="default-title" style="font-size:16px;color:#19344f;">怎么走更稳</div>
+            <div class="plan-stack">
+              <div><span class="plan-k">建议请假日期</span><span class="plan-v" id="leaveDate"></span></div>
+              <div><span class="plan-k">建议出发日期</span><span class="plan-v" id="departDate"></span></div>
+              <div><span class="plan-k">建议返程日期</span><span class="plan-v" id="returnDate"></span></div>
+              <div><span class="plan-k">推荐玩几天</span><span class="plan-v" id="durationText"></span></div>
+            </div>
+          </div>
+          <div class="plan-card">
+            <div class="default-title" style="font-size:16px;color:#19344f;">价格和订票判断</div>
+            <div class="plan-note" id="flightTip"></div>
+            <div class="plan-note" id="hotelTip"></div>
+            <div class="plan-note warm" id="windowReason"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="margin-top:22px;">
+      <div class="inner">
+        <div class="head"><h2>如果你不这么走</h2><span class="chip">后果预判</span></div>
+        <div class="warning-card">
+          <ul class="list" id="ifIgnore"></ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="journey">
+    <div class="journey-head">
+      <h2 style="margin:0;font-size:22px;font-weight:800;letter-spacing:-0.02em;color:#18324c;">推荐行程打法</h2>
+      <span class="chip">从请假到返程一页看完</span>
+    </div>
+    <div class="journey-track">
+      <div class="journey-step">
+        <span class="step-k">请假建议</span>
+        <span class="step-v" id="journeyLeave"></span>
+        <span class="step-desc">先把高峰前的一步拿到手。</span>
+      </div>
+      <div class="journey-step">
+        <span class="step-k">出发时点</span>
+        <span class="step-v" id="journeyDepart"></span>
+        <span class="step-desc">优先把首日拥挤从行程里切掉。</span>
+      </div>
+      <div class="journey-step">
+        <span class="step-k">返程时点</span>
+        <span class="step-v" id="journeyReturn"></span>
+        <span class="step-desc">尽量别把返程压到最后一天。</span>
+      </div>
+      <div class="journey-step">
+        <span class="step-k">最稳时长</span>
+        <span class="step-v" id="journeyDuration"></span>
+        <span class="step-desc">既够玩，也不把人累坏。</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="label">最终建议</div>
+    <div class="text" id="finalText"></div>
+  </section>
+
+  <div class="footer">本页为独立 HTML 报告文件，直接打开即可查看，不依赖任何外部环境。</div>
+</div>
+<script>
+/* __REPORT_DATA_PLACEHOLDER__ */
+var data = window.__WIDGET_DATA__ || {};
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function fillList(id, items){
+  var root=document.getElementById(id);
+  (items||[]).forEach(function(item){ var li=document.createElement('li'); li.innerHTML=esc(item); root.appendChild(li); });
+}
+document.getElementById('holidayLabel').textContent=data.holiday_label||'';
+document.getElementById('verdictText').textContent=data.verdict||'';
+document.getElementById('finalText').textContent=data.final_recommendation||'';
+if (data.default_path) {
+  document.getElementById('defaultName').textContent='默认路径：' + esc(data.default_path.name);
+  document.getElementById('statDefaultName').textContent=data.default_path.name||'';
+  document.getElementById('featureDefault').textContent=data.default_path.name||'';
+  document.getElementById('defaultSummary').textContent=data.default_path.summary||'';
+  fillList('whyDefault', data.default_path.why_default);
+  fillList('whyNot', data.default_path.why_not_optimal);
+}
+var riskRoot=document.getElementById('riskGrid');
+(data.risk_cards||[]).forEach(function(item){
+  var card=document.createElement('div');
+  card.className='risk-card';
+  card.innerHTML='<div class="risk-level '+esc(item.level_class)+'">'+esc(item.bucket)+'</div><div class="default-title" style="font-size:17px;color:#182e47;">'+esc(item.place)+'</div><div>'+esc(item.reason)+'</div>';
+  riskRoot.appendChild(card);
+});
+fillList('crowdHotspots', data.crowd_reasons.hotspots);
+fillList('crowdMeta', [data.crowd_reasons.history, data.crowd_reasons.structure]);
+var matrixBody=document.getElementById('matrixBody');
+(data.risk_matrix||[]).forEach(function(item){
+  var tr=document.createElement('tr');
+  tr.innerHTML='<td>'+esc(item.dimension)+'</td><td>'+esc(item.default_label)+'</td><td>'+esc(item.alternative_label)+'</td><td>'+esc(item.label)+'</td>';
+  matrixBody.appendChild(tr);
+});
+var choiceGrid=document.getElementById('choiceGrid');
+['main','near','far'].forEach(function(key, index){
+  var item=data.recommendations[key];
+  if(!item) return;
+  if(index===0){
+    document.getElementById('statMainChoice').textContent=item.name||'';
+    document.getElementById('featureMain').textContent=item.name||'';
+  }
+  var card=document.createElement('div');
+  card.className='card';
+  card.innerHTML='<div class="choice-top"><div class="default-title" style="font-size:17px;color:#18314a;">'+esc(item.name)+'</div><span class="pill '+(index===0?'pill-main':'pill-alt')+'">'+esc(item.role)+'</span></div><div class="muted" style="margin-top:0;">类型：'+esc(item.type)+'</div><ul class="list"><li>'+esc(item.why_better)+'</li><li>更适合谁：'+esc(item.fit_for)+'</li></ul>';
+  choiceGrid.appendChild(card);
+});
+var costBody=document.getElementById('costBody');
+(data.cost_comparison||[]).forEach(function(row){
+  var tr=document.createElement('tr');
+  tr.innerHTML='<td><strong>'+esc(row.option)+'</strong></td><td>'+esc(row.flight)+'</td><td>'+esc(row.hotel)+'</td><td>'+esc(row.total)+'</td><td>'+esc(row.verdict)+'</td>';
+  costBody.appendChild(tr);
+});
+if (data.travel_window) {
+  document.getElementById('statDuration').textContent=data.travel_window.duration||'';
+  document.getElementById('featureWindow').textContent=(data.travel_window.depart_date||'') + ' 出发';
+  document.getElementById('leaveDate').textContent=data.travel_window.leave_date||'';
+  document.getElementById('departDate').textContent=data.travel_window.depart_date||'';
+  document.getElementById('returnDate').textContent=data.travel_window.return_date||'';
+  document.getElementById('durationText').textContent=data.travel_window.duration||'';
+  document.getElementById('journeyLeave').textContent=data.travel_window.leave_date||'';
+  document.getElementById('journeyDepart').textContent=data.travel_window.depart_date||'';
+  document.getElementById('journeyReturn').textContent=data.travel_window.return_date||'';
+  document.getElementById('journeyDuration').textContent=data.travel_window.duration||'';
+  document.getElementById('flightTip').textContent='机票建议：' + (data.travel_window.flight_tip||'');
+  document.getElementById('hotelTip').textContent='酒店参考：' + (data.travel_window.hotel_tip||'');
+  document.getElementById('windowReason').textContent='为什么这个窗口更优：' + (data.travel_window.reason||'');
+}
+fillList('ifIgnore', data.if_ignore);
+</script>
+</body>
+</html>

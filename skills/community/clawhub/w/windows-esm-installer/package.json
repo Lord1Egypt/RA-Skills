@@ -1,0 +1,53 @@
+{
+  "name": "windows-esm-installer",
+  "version": "1.0.0",
+  "description": "Windows 一键安装修复工具 - 解决 ESM URL 报错、npm 超时等问题",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "windows",
+    "installer",
+    "fix",
+    "ESM"
+  ],
+  "author": "郑宇航",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "@types/node": "^20.19.39",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "typescript": "^5.9.3"
+  },
+  "clawhub": {
+    "category": "工具",
+    "tags": [
+      "Windows",
+      "安装",
+      "修复",
+      "工具"
+    ],
+    "features": [
+      "Windows 路径修复",
+      "npm 镜像源配置",
+      "系统依赖检测",
+      "一键安装脚本",
+      "安装报告生成"
+    ],
+    "commands": [
+      "/win-fix",
+      "/install-fix"
+    ],
+    "triggers": [
+      "Windows 安装",
+      "修复安装",
+      "ESM 报错",
+      "一键安装"
+    ]
+  }
+}

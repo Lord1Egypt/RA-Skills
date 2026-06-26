@@ -1,0 +1,104 @@
+# Feast User Profile
+# Created: 2026-03-17
+
+version: 1
+
+user:
+  name: "<your_name>"
+
+  location:
+    country: "CN"
+    region: "<your_city>"
+    timezone: "Asia/Shanghai"
+
+  household:
+    portions: 2
+    portionMultiplier: 1.0
+
+  schedule:
+    weekStart: "monday"
+    cookingDays: 3
+    cheatDay: null                  # 灵活安排，不固定
+    cheatDayFlexible: true
+
+  dietary:
+    phase: "maintenance"
+    restrictions: []
+    preferences: []
+    calorieTarget: null
+
+  cooking:
+    confidence: "intermediate"
+    equipment:
+      - "灶台"
+      - "空气炸锅"
+      - "微波炉"
+      - "高压锅"
+      - "电饭煲"
+    timeAvailable: "moderate"       # 30-60分钟
+    spiceTolerance: "medium-hot"    # 可以吃辣
+
+  preferences:
+    budget: "moderate"
+    stores: []                      # 待补充常去的超市/菜场
+    cuisinesFavourite:
+      - "中餐"
+      - "苏菜"
+      - "川菜"
+      - "湘菜"
+    cuisinesAvoid: []
+    explorationLevel: "adventurous"
+
+  units:
+    temperature: "celsius"
+    weight: "metric"
+    volume: "metric"
+
+# Notification schedule and preferences
+schedule:
+  notifications:
+    channel: "<channel>"
+
+    push:
+      enabled: false
+      method: null
+
+    quietHoursStart: "22:00"
+    quietHoursEnd: "08:00"
+
+  reminders:
+    planning:
+      dayOffset: -3                 # Thursday
+      time: "18:00"
+      enabled: true
+
+    confirmation:
+      dayOffset: -2                 # Friday
+      time: "18:00"
+      enabled: true
+
+    shopping:
+      dayOffset: -1                 # Saturday (but flexible)
+      time: "10:00"
+      enabled: true
+
+    dailyReveal:
+      time: "15:00"
+      enabled: true
+      hint:
+        enabled: false
+        time: "09:00"
+
+    weekReview:
+      dayOffset: 6
+      time: "20:00"
+      enabled: true
+
+  cronJobs:
+    planning: null
+    confirmation: null
+    shopping: null
+    dailyReveal: []
+    dailyHint: []
+    weekReview: null
+

@@ -1,0 +1,7 @@
+{
+  "name": "wechat-ip-checker",
+  "version": "1.0.0",
+  "description": "微信公众号 IP 检测与自动发布 Skill",
+  "author": "礼部尚书",
+  "trigger": ["检测微信公众号 IP", "发布公众号", "检查 IP", "wechat ip", "公众号发布"]
+}

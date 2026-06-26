@@ -1,0 +1,5 @@
+interface:
+  display_name: "Yacli Yandex"
+  short_description: "Yandex Mail, Disk, and Calendar"
+  default_prompt: "Use $yacli-yandex to work with Yandex Mail, Disk, or Calendar through a configured yacli MCP server."
+

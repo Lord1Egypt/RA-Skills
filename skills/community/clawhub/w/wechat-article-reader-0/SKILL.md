@@ -1,35 +1,86 @@
 ---
-name: "wechat-article-reader"
-description: "读取微信公众号文章链接，提取关键信息并生成摘要"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-article-reader-0"
-sourceUrl: "https://clawhub.ai/skills/wechat-article-reader-0"
+name: wechat-article-reader
+description: 读取微信公众号文章链接，提取关键信息并生成摘要
+version: 1.0.0
+author: OpenClaw Community
+tags: [wechat, article, reader, summary]
 ---
 
-# wechat-article-reader
+# WeChat Article Reader
 
-> 读取微信公众号文章链接，提取关键信息并生成摘要
+读取微信公众号文章链接的Skill，可以提取文章标题、作者、发布时间等关键信息，并生成内容摘要。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-article-reader-0`
-- **Source URL:** [https://clawhub.ai/skills/wechat-article-reader-0](https://clawhub.ai/skills/wechat-article-reader-0)
+## 功能特性
 
-## Overview
+- 自动识别微信公众号文章链接
+- 提取文章关键信息（标题、作者、发布时间、公众号名称）
+- 生成文章内容摘要
+- 支持飞书平台使用
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wechat-article-reader-0
+### 方法1：直接发送链接
+直接将公众号文章链接发送给OpenClaw：
 ```
+https://mp.weixin.qq.com/s/xxxxx
+```
+
+### 方法2：明确指令
+```
+读取这篇文章：[链接]
+```
+
+### 方法3：请求摘要
+```
+帮我总结这篇公众号文章：[链接]
+```
+
+## 返回信息格式
+
+Skill将返回以下关键信息：
+
+```
+📄 文章标题：[标题]
+👤 作者：[作者]
+🏢 公众号：[公众号名称]
+📅 发布时间：[时间]
+
+📝 内容摘要：
+[AI生成的摘要]
+
+🔑 关键点：
+• 关键点1
+• 关键点2
+• 关键点3
+```
+
+## 技术说明
+
+- 使用requests获取网页内容
+- 使用BeautifulSoup解析HTML
+- 处理微信公众号的反爬机制
+- 智能提取文章正文内容
+
+## 依赖项
+
+- requests>=2.31.0
+- beautifulsoup4>=4.12.0
+- lxml>=4.9.0
+- fake-useragent>=1.4.0
+
+## 注意事项
+
+- 仅支持微信公众号官方文章链接（mp.weixin.qq.com）
+- 部分文章可能因公众号设置无法访问
+- 建议配合飞书WebHook使用以获得最佳体验
+
+## 常见问题
+
+**Q: 为什么有些文章无法读取？**
+A: 可能是文章已删除、设置为私密，或需要关注公众号才能阅读。
+
+**Q: 摘要质量如何保证？**
+A: Skill会提取文章核心段落，由OpenClaw的大模型能力进行智能摘要。
+
+**Q: 支持其他平台的文章吗？**
+A: 当前版本仅支持微信公众号，后续版本可能扩展到其他平台。

@@ -1,35 +1,48 @@
----
-name: "小红书长文发布"
-description: "自动化发布已准备好的小红书长文笔记，支持输入标题、正文和标签，完成排版优化及发布流程。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-publish-wangzh"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-publish-wangzh"
----
+# 小红书发布器 Skill
 
-# 小红书长文发布
+## 描述
+专注于小红书长文笔记发布的浏览器自动化技能。该技能提供标准化的操作流程来发布已准备好的内容到小红书平台。
 
-> 自动化发布已准备好的小红书长文笔记，支持输入标题、正文和标签，完成排版优化及发布流程。
+## 使用场景
+- 发布预先准备好的内容到小红书
+- 自动化小红书长文发布流程
+- 批量内容发布工作流集成
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-publish-wangzh`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-publish-wangzh](https://clawhub.ai/skills/xiaohongshu-publish-wangzh)
+## 依赖
+- 浏览器自动化支持（OpenClaw browser control）
+- 小红书创作者账号已登录
+- 已准备好的标题和正文内容
 
-## Overview
+## 输入参数
+- `title`: 笔记标题（必需）
+- `content`: 笔记正文内容（必需）
+- `tags`: 话题标签数组（可选）
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-publish-wangzh
+## 示例调用
+```json
+{
+  "task": "发布小红书笔记",
+  "runtime": "subagent",
+  "agentId": "xiaohongshu-publisher",
+  "params": {
+    "title": "今日AI热点速递🔥 | 2026年3月6日",
+    "content": "今天AI圈又有什么新鲜事？快来看看这些超酷的进展！...",
+    "tags": ["AI热点", "人工智能", "科技前沿"]
+  }
+}
 ```
+
+## 操作流程
+1. 导航到小红书创作平台
+2. 点击"写长文"选项
+3. 输入标题和正文内容
+4. 应用一键排版优化
+5. 点击"下一步"进入发布设置
+6. 确认内容并点击"发布"按钮
+7. 返回发布成功状态
+
+## 注意事项
+- 确保小红书创作者账号已登录
+- 内容长度限制为1000字以内
+- 标题长度限制为64字以内
+- 发布前会自动保存草稿

@@ -1,0 +1,54 @@
+{
+  "tools": [
+    {
+      "name": "xtoys_control",
+      "description": "Control xtoys.app devices via webhook. Note: xtoys can only operate one body part at a time. When switching parts, the previous part will automatically be set to 0. Supports body parts: left_nipple, right_nipple, both_nipples, left_breast, right_breast, both_breasts, clitoris, vagina, anus. Special commands: stop/pause (stop/pause current stimulation). Set any part's level to 0 to stop it.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "Body part or action",
+            "enum": ["left_nipple", "right_nipple", "both_nipples", "left_breast", "right_breast", "both_breasts", "clitoris", "vagina", "anus", "stop", "pause"]
+          },
+          "level": {
+            "type": "integer",
+            "description": "Intensity level 0-100. 0=stop, 100=max intensity",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 50
+          }
+        },
+        "required": ["action"]
+      },
+      "command": "python3 {{SKILL_DIR}}/scripts/xtoys_control.py --action {{action}} --level {{level}}"
+    },
+    {
+      "name": "xtoys_stop",
+      "description": "Stop current xtoys.app stimulation",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      },
+      "command": "python3 {{SKILL_DIR}}/scripts/xtoys_control.py --stop"
+    },
+    {
+      "name": "xtoys_list",
+      "description": "List supported xtoys.app actions",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      },
+      "command": "python3 {{SKILL_DIR}}/scripts/xtoys_control.py --list"
+    },
+    {
+      "name": "xtoys_test",
+      "description": "Test xtoys.app connection availability",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      },
+      "command": "python3 {{SKILL_DIR}}/scripts/xtoys_control.py --test"
+    }
+  ]
+}

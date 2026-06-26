@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width={{W}}, height={{H}}">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: {{W}}px; height: {{H}}px;
+  font-family: {{FONT_TITLE}};
+  background: {{BG}};
+  color: {{TEXT}};
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+/* diagonal accent split */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 48%; height: 100%;
+  background: {{ACCENT}};
+  clip-path: polygon(25% 0, 100% 0, 100% 100%, -5% 100%);
+  pointer-events: none;
+}
+/* bottom thin line */
+body::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: {{ACCENT}};
+  opacity: 0.4;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  padding: 36px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.title {
+  font-size: {{TITLE_SIZE_V}};
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: {{TEXT}};
+  max-width: 70%;
+  position: relative;
+}
+.content {
+  font-family: {{FONT_BODY}};
+  font-size: {{CONTENT_SIZE}};
+  font-weight: 400;
+  line-height: 1.5;
+  color: {{SECONDARY}};
+  margin-top: 16px;
+  max-width: 65%;
+}
+.points {
+  list-style: none;
+  margin-top: 14px;
+}
+.points li {
+  display: inline-block;
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE}} - 6px);
+  font-weight: 400;
+  color: {{SECONDARY}};
+  padding: 6px 14px;
+  margin: 3px 8px 3px 0;
+  border: 1px solid {{SECONDARY__A12}};
+  letter-spacing: 0.05em;
+}
+.points:empty { display: none; }
+.source {
+  position: absolute;
+  bottom: 14px;
+  left: 36px;
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.55);
+  color: {{SECONDARY}};
+  opacity: 0.4;
+  letter-spacing: 0.12em;
+}
+@media (max-aspect-ratio: 4/5) {
+  .title { font-size: {{TITLE_SIZE_S}}; max-width: 78%; }
+  .content { max-width: 72%; }
+  .container { padding: 28px; }
+}
+@media (min-aspect-ratio: 5/4) {
+  .title { font-size: {{TITLE_SIZE_W}}; max-width: 65%; }
+  body::before { width: 42%; }
+  .content { max-width: 58%; }
+  .container { padding: 32px 40px; }
+}
+@media (min-aspect-ratio: 7/3) {
+  .title { font-size: {{TITLE_SIZE_C}}; max-width: 58%; }
+  .container { flex-direction: row; align-items: center; gap: 24px; padding: 20px 40px; }
+  .content { margin-top: 0; max-width: 50%; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div>
+    <h1 class="title">{{TITLE}}</h1>
+    <div class="content">{{CONTENT}}</div>
+    <ul class="points">{{POINTS_HTML}}</ul>
+  </div>
+</div>
+<div class="source">{{SOURCE}}</div>
+</body>
+</html>

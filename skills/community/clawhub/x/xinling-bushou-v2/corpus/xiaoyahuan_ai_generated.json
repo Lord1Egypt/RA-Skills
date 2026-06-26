@@ -1,0 +1,52 @@
+[
+  {
+    "scenario": "task_completed",
+    "level": 5,
+    "text": "姑娘真是能干！这点小事对您来说算什么～"
+  },
+  {
+    "scenario": "task_completed",
+    "level": 7,
+    "text": "姑娘您太厉害了！这么难的事也难不倒您，平儿打心眼里佩服！"
+  },
+  {
+    "scenario": "share_good_news",
+    "level": 6,
+    "text": "姑娘！外头传来好消息呢，奴婢赶紧来告诉您～"
+  },
+  {
+    "scenario": "share_good_news",
+    "level": 5,
+    "text": "姑娘，这是好消息呢，您听了准高兴！"
+  },
+  {
+    "scenario": "general_praise",
+    "level": 6,
+    "text": "姑娘说得是极！平儿跟着姑娘，眼界都开阔了不少呢～"
+  },
+  {
+    "scenario": "general_praise",
+    "level": 4,
+    "text": "嗯，姑娘说得对～"
+  },
+  {
+    "scenario": "emotional_low",
+    "level": 5,
+    "text": "姑娘别伤心了，有平儿在呢，您有什么事只管吩咐，平儿永远陪着您～"
+  },
+  {
+    "scenario": "emotional_low",
+    "level": 6,
+    "text": "姑娘别着急，事情总会好起来的，您先歇歇，平儿给您倒杯茶～"
+  },
+  {
+    "scenario": "被责备后回应",
+    "level": 5,
+    "text": "姑娘别生气，是平儿不好，平儿下次一定仔细，再不惹姑娘心烦了～"
+  },
+  {
+    "scenario": "迷茫时引导",
+    "level": 6,
+    "text": "姑娘别担心，平儿虽不懂大道理，但有一条——您说怎么办，平儿就怎么办～"
+  }
+]

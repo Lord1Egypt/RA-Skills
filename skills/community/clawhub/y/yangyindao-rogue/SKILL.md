@@ -1,35 +1,18 @@
----
-name: "阴阳岛肉鸽"
-description: "像素风修仙肉鸽游戏，选择职业，进化武器，提升境界，渡劫历劫并解除诅咒挑战阴阳岛。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yangyindao-rogue"
-sourceUrl: "https://clawhub.ai/skills/yangyindao-rogue"
----
-
 # 阴阳岛肉鸽
 
-> 像素风修仙肉鸽游戏，选择职业，进化武器，提升境界，渡劫历劫并解除诅咒挑战阴阳岛。
+## 简介
+像素风格修仙肉鸽游戏，玩家在阴阳岛轮回历劫。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yangyindao-rogue`
-- **Source URL:** [https://clawhub.ai/skills/yangyindao-rogue](https://clawhub.ai/skills/yangyindao-rogue)
+## 玩法
+- 职业选择：医师 / 炼药师 / 武痴
+- 武器进化：徒手 → 银针 → 葫芦 → 拂尘 → 太极剑 → 炼丹炉
+- 境界系统：筑基期 → 金丹期 → 元婴期 → 化神期 → 渡劫期
+- 诅咒系统：血光 / 灵气流失 / 道心不稳（可用祭坛消除）
 
-## Overview
+## 触发词
+- 打开游戏
+- 开始阴阳岛
+- 玩肉鸽
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yangyindao-rogue
-```
+## 使用
+直接打开 `index.html` 即可游玩。

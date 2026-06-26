@@ -1,0 +1,219 @@
+mod action_result;
+mod api;
+mod auth;
+mod cache;
+mod cli;
+mod client;
+mod commands;
+mod config;
+mod costs;
+mod errors;
+mod format;
+mod mcp;
+mod mcp_dispatcher;
+mod models;
+mod output_meta;
+mod policy;
+mod reliability;
+mod sentiment;
+mod spinner;
+mod tui;
+mod webhook;
+
+use anyhow::Result;
+use clap::Parser;
+
+use cli::{Cli, ColorChoice, Commands};
+use client::XClient;
+use config::Config;
+
+#[tokio::main]
+async fn main() -> Result<()> {
+    use std::io::IsTerminal;
+
+    let cli = Cli::parse();
+
+    // Color detection chain: NO_COLOR env > --color flag > TERM=dumb > TTY
+    let color_enabled = if std::env::var("NO_COLOR").is_ok() {
+        false
+    } else {
+        match cli.color {
+            ColorChoice::Never => false,
+            ColorChoice::Always => true,
+            ColorChoice::Auto => {
+                if std::env::var("TERM").ok().as_deref() == Some("dumb") {
+                    false
+                } else {
+                    std::io::stdout().is_terminal()
+                }
+            }
+        }
+    };
+    colored::control::set_override(color_enabled);
+
+    let config = Config::load()?;
+    let client = XClient::new()?;
+    let dry_run = cli.dry_run;
+
+    // Handle --describe and --schema introspection before command dispatch
+    if cli.describe || cli.schema {
+        let tools = mcp::MCPServer::get_tools_static();
+        let cmd_name = cli
+            .command
+            .as_ref()
+            .map(policy::command_name)
+            .unwrap_or("help");
+        let tool_name = format!("xint_{}", cmd_name);
+        if let Some(tool) = tools.iter().find(|t| t.name == tool_name) {
+            if cli.schema {
+                println!(
+                    "{}",
+                    serde_json::to_string_pretty(&tool.input_schema).unwrap_or_default()
+                );
+            } else {
+                let describe = serde_json::json!({
+                    "name": tool.name,
+                    "description": tool.description,
+                    "inputSchema": tool.input_schema,
+                    "outputSchema": tool.output_schema,
+                });
+                println!(
+                    "{}",
+                    serde_json::to_string_pretty(&describe).unwrap_or_default()
+                );
+            }
+        } else {
+            println!(
+                "{{\"error\":\"No schema found for command '{}'\"}}",
+                cmd_name
+            );
+        }
+        return Ok(());
+    }
+
+    if let Some(ref cmd) = cli.command {
+        let required = policy::required_mode(cmd);
+        if !policy::is_allowed(cli.policy, required) {
+            policy::emit_policy_denied(cmd, cli.policy, required);
+            std::process::exit(2);
+        }
+    }
+
+    if let Some(ref fields) = cli.fields {
+        // SAFETY: set once at startup before async command execution begins.
+        unsafe { std::env::set_var("XINT_FIELDS", fields) };
+    }
+
+    let metric_command = cli
+        .command
+        .as_ref()
+        .map(policy::command_name)
+        .map(ToString::to_string);
+    let started_at = std::time::Instant::now();
+
+    let result: Result<()> = match cli.command {
+        Some(Commands::Search(args)) => commands::search::run(&args, &config, &client).await,
+        Some(Commands::Watch(args)) => commands::watch::run(&args, &config, &client).await,
+        Some(Commands::Stream(args)) => commands::stream::run_stream(&args, &config, &client).await,
+        Some(Commands::StreamRules(args)) => {
+            commands::stream::run_stream_rules(&args, &config, &client).await
+        }
+        Some(Commands::Diff(args)) => commands::diff::run(&args, &config, &client).await,
+        Some(Commands::Report(args)) => commands::report::run(&args, &config, &client).await,
+        Some(Commands::Thread(args)) => commands::thread::run(&args, &config, &client).await,
+        Some(Commands::Profile(args)) => commands::profile::run(&args, &config, &client).await,
+        Some(Commands::Tweet(args)) => commands::tweet::run(&args, &config, &client).await,
+        Some(Commands::Reposts(args)) => commands::reposts::run(&args, &config, &client).await,
+        Some(Commands::Users(args)) => commands::users::run(&args, &config, &client).await,
+        Some(Commands::Media(args)) => commands::media::run(&args, &config, &client).await,
+        Some(Commands::Article(args)) => commands::article::run(&args, &config).await,
+        Some(Commands::Tui(args)) => commands::tui::run(&args, cli.policy).await,
+        Some(Commands::Bookmarks(args)) => commands::bookmarks::run(&args, &config, &client).await,
+        Some(Commands::Bookmark(args)) => {
+            commands::engagement::run_bookmark(&args, &config, &client, dry_run).await
+        }
+        Some(Commands::Unbookmark(args)) => {
+            commands::engagement::run_unbookmark(&args, &config, &client, dry_run).await
+        }
+        Some(Commands::Likes(args)) => {
+            commands::engagement::run_likes(&args, &config, &client).await
+        }
+        Some(Commands::Like(args)) => {
+            commands::engagement::run_like(&args, &config, &client, dry_run).await
+        }
+        Some(Commands::Unlike(args)) => {
+            commands::engagement::run_unlike(&args, &config, &client, dry_run).await
+        }
+        Some(Commands::Following(args)) => {
+            commands::engagement::run_following(&args, &config, &client).await
+        }
+        Some(Commands::Blocks(args)) => {
+            commands::moderation::run_blocks(&args, &config, &client).await
+        }
+        Some(Commands::Mutes(args)) => {
+            commands::moderation::run_mutes(&args, &config, &client).await
+        }
+        Some(Commands::Follow(args)) => {
+            commands::engagement::run_follow(&args, &config, &client, dry_run).await
+        }
+        Some(Commands::Unfollow(args)) => {
+            commands::engagement::run_unfollow(&args, &config, &client, dry_run).await
+        }
+        Some(Commands::Lists(args)) => commands::lists::run(&args, &config, &client).await,
+        Some(Commands::Trends(args)) => commands::trends::run(&args, &config, &client).await,
+        Some(Commands::Analyze(args)) => commands::analyze::run(&args, &config).await,
+        Some(Commands::Costs(args)) => commands::costs_cmd::run(&args, &config),
+        Some(Commands::Health(args)) => commands::health::run(&args, &config, &client).await,
+        Some(Commands::Capabilities(args)) => commands::capabilities::run(&args),
+        Some(Commands::Watchlist(args)) => commands::watchlist::run(&args, &config),
+        Some(Commands::Auth(args)) => commands::auth_cmd::run(&args, &config, &client).await,
+        Some(Commands::Cache(args)) => commands::cache_cmd::run(&args, &config),
+        Some(Commands::XSearch(args)) => commands::x_search::run(&args, &config).await,
+        Some(Commands::Collections(args)) => commands::collections::run(&args, &config).await,
+        Some(Commands::Analytics(args)) => commands::analytics::run(&args, &config, &client).await,
+        Some(Commands::Top(args)) => commands::top::run(&args, &config, &client).await,
+        Some(Commands::Growth(args)) => commands::growth::run(&args, &config).await,
+        Some(Commands::Timing(args)) => commands::timing::run(&args, &config, &client).await,
+        Some(Commands::ContentAudit(args)) => {
+            commands::content_audit::run(&args, &config, &client).await
+        }
+        Some(Commands::BookmarkKb(args)) => {
+            commands::bookmark_kb::run(&args, &config, &client).await
+        }
+        Some(Commands::Mcp(args)) => mcp::run(args, &config, cli.policy).await,
+        Some(Commands::Completions(args)) => {
+            use clap::CommandFactory;
+            clap_complete::generate(
+                args.shell,
+                &mut Cli::command(),
+                "xint",
+                &mut std::io::stdout(),
+            );
+            Ok(())
+        }
+        None => {
+            // Show help when no command provided
+            use clap::CommandFactory;
+            Cli::command().print_help()?;
+            println!();
+            Ok(())
+        }
+    };
+
+    if let Some(command) = metric_command {
+        let fallback = reliability::consume_command_fallback(&command);
+        let success = result.is_ok();
+        reliability::record_command_result(
+            &config.reliability_path(),
+            &command,
+            success,
+            started_at.elapsed().as_millis(),
+            reliability::ReliabilityMode::Cli,
+            fallback,
+        );
+    }
+
+    result?;
+
+    Ok(())
+}

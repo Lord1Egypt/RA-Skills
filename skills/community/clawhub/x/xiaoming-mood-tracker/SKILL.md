@@ -1,35 +1,40 @@
 ---
-name: "Mood Tracker"
-description: "情绪追踪 - 情绪记录、模式分析、改善建议"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaoming-mood-tracker"
-sourceUrl: "https://clawhub.ai/skills/xiaoming-mood-tracker"
+name: mood-tracker
+description: 情绪追踪 - 情绪记录、模式分析、改善建议
 ---
 
 # Mood Tracker
 
-> 情绪追踪 - 情绪记录、模式分析、改善建议
+情绪追踪工具，帮你了解和管理情绪。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaoming-mood-tracker`
-- **Source URL:** [https://clawhub.ai/skills/xiaoming-mood-tracker](https://clawhub.ai/skills/xiaoming-mood-tracker)
+## 功能
 
-## Overview
+- ✅ 情绪记录
+- ✅ 模式分析
+- ✅ 改善建议
+- ✅ 触发因素
+- ✅ 统计报告
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/xiaoming-mood-tracker
+# 记录情绪
+clawhub mood log --mood "happy" --note "完成了一个项目"
+
+# 模式分析
+clawhub mood pattern --days 30
+
+# 改善建议
+clawhub mood tips
+
+# 触发因素
+clawhub mood trigger --mood "anxious"
 ```
+
+## 定价
+
+| 版本 | 价格 | 功能 |
+|------|------|------|
+| 免费版 | ¥0 | 基础功能 |
+| Pro 版 | ¥29 | 全部功能 |
+| 订阅版 | ¥6/月 | Pro+ AI 分析 |

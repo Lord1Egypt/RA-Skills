@@ -1,0 +1,12 @@
+{
+  "name": "x-growth-operator-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.5",
+    "https-proxy-agent": "^7.0.5",
+    "socks-proxy-agent": "^8.0.4"
+  }
+}

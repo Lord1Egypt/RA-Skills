@@ -1,0 +1,28 @@
+{
+  "travel_health_management": {
+    "user_id": "user_placeholder",
+    "user_profile": {
+      "name": "用户姓名",
+      "date_of_birth": "YYYY-MM-DD",
+      "passport_number": "护照号码",
+      "nationality": "Chinese",
+      "blood_type": "未知",
+      "organ_donor": false,
+      "medical_conditions": [],
+      "allergies": [],
+      "chronic_medications": [],
+      "emergency_contacts": []
+    },
+    "travel_plans": [],
+    "vaccination_records": [],
+    "emergency_cards": [],
+    "alerts_subscriptions": [],
+    "post_trip_health_checks": [],
+    "metadata": {
+      "created_at": "2025-01-08T00:00:00.000Z",
+      "last_updated": "2025-01-08T00:00:00.000Z",
+      "data_sources": ["WHO", "CDC", "当地卫生部"],
+      "version": "1.0.0"
+    }
+  }
+}

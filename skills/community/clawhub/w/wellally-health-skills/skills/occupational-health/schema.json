@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/occupational-health.json",
+  "title": "OccupationalHealthRecord",
+  "description": "职业健康记录数据结构",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "记录时间戳 (ISO 8601 格式)"
+    },
+    "workType": {
+      "type": "string",
+      "enum": ["office_work", "manual_labor", "shift_work", "noisy_environment", "dust_chemical_environment", "other"],
+      "description": "工作类型"
+    },
+    "hoursPerDay": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 24,
+      "description": "每天工作小时数"
+    },
+    "daysPerWeek": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 7,
+      "description": "每周工作天数"
+    },
+    "healthIssues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["neck_pain", "shoulder_pain", "back_pain", "wrist_pain", "carpal_tunnel", "eye_strain", "headache", "fatigue", "stress", "sleep_disturbance", "other"],
+            "description": "健康问题类型"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["mild", "moderate", "severe"],
+            "description": "严重程度"
+          },
+          "frequency": {
+            "type": "string",
+            "enum": ["rare", "occasional", "often", "daily", "constant"],
+            "description": "发生频率"
+          },
+          "onsetTime": {
+            "type": "string",
+            "description": "开始时间"
+          }
+        },
+        "required": ["type"]
+      }
+    },
+    "riskAssessment": {
+      "type": "object",
+      "properties": {
+        "sedentaryRisk": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "description": "久坐风险"
+        },
+        "screenRisk": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "description": "视屏终端风险"
+        },
+        "shiftWorkRisk": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "description": "倒班工作风险"
+        },
+        "overallRisk": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "description": "综合风险等级"
+        }
+      }
+    },
+    "ergonomicScore": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "人机工程评分"
+    },
+    "notes": {
+      "type": "string",
+      "description": "备注"
+    }
+  },
+  "required": ["timestamp", "workType"],
+  "additionalProperties": false
+}

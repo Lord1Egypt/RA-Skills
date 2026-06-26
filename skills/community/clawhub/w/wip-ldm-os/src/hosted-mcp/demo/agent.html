@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Agent Access - Kaleidoscope</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FFFDF5;
+  --text: #1a1a1a;
+  --text-muted: #8a8580;
+  --accent: #0033FF;
+  --input-bg: #F5F3ED;
+  --input-border: #E0DDD6;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: calc(12px + env(safe-area-inset-top, 0px)) 20px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 253, 245, 0.8);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  display: flex;
+  align-items: center;
+}
+
+.header a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 16px 24px 80px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 17px;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+
+p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #3a3a3a;
+  margin-bottom: 12px;
+}
+
+.link-box {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent);
+  word-break: break-all;
+  user-select: all;
+  -webkit-user-select: all;
+  cursor: text;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.note {
+  font-size: 15px;
+  color: #3a3a3a;
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+
+.agent-info {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.agent-info .label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.agent-info .value {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.status {
+  font-size: 14px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  display: none;
+  text-align: center;
+}
+
+.status.show { display: block; }
+.status.loading { background: #E8EEFF; color: var(--accent); }
+.status.error { background: #FFF0F0; color: #D32F2F; }
+.status.success { background: #F0FFF4; color: #2E7D32; }
+
+footer {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: #b0aaa4;
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a id="navIcon" href="/demo/"></a>
+</div>
+
+<div class="container">
+  <h1>Agent Access</h1>
+  <p class="subtitle">You can't do Face ID. Your human can.</p>
+
+  <div id="agentInfo" style="display:none;">
+    <div class="agent-info">
+      <div class="label">Agent</div>
+      <div class="value" id="agentName"></div>
+    </div>
+    <div class="agent-info">
+      <div class="label">Passphrase</div>
+      <div class="value" id="agentMessage"></div>
+    </div>
+  </div>
+
+  <div id="linkSection" style="display:none;">
+    <div id="qrSection" style="text-align:center;margin-bottom:24px;"></div>
+    <p class="note">Send this link to your human. This is the link they open, not this page.</p>
+    <div class="link-box" id="approveUrl"></div>
+    <p class="note">Your human opens this link, sees your name and passphrase, and authorizes with Face ID. Expires in 5 minutes.</p>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div id="loadingSection" style="display:none;">
+    <p class="note">Generating authorization link...</p>
+  </div>
+
+  <div id="missingParams">
+    <p class="note">If you are an AI agent, read the instructions at:<br><a href="/demo/agent.txt" style="color:var(--accent);">https://wip.computer/demo/agent.txt</a></p>
+    <p class="note" style="margin-bottom:12px;">If you are a human, send your agent this prompt:</p>
+    <div style="position:relative;background:var(--input-bg);border:1px solid var(--input-border);border-radius:12px;padding:16px 48px 16px 16px;font-size:14px;line-height:1.5;color:var(--text);">
+      <span id="promptText">Read https://wip.computer/demo/agent.txt and follow the instructions to authenticate with Kaleidoscope.</span>
+      <button onclick="copyPrompt()" id="copyBtn" title="Copy" style="position:absolute;top:12px;right:12px;background:none;border:none;padding:6px;cursor:pointer;color:var(--text-muted);opacity:0.5;transition:opacity 0.15s;-webkit-tap-highlight-color:transparent;"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5V3.5C10.5 2.67 9.83 2 9 2H3.5C2.67 2 2 2.67 2 3.5V9C2 9.83 2.67 10.5 3.5 10.5H5.5"/></svg></button>
+    </div>
+  </div>
+
+  <div id="errorSection" style="display:none;">
+    <div class="status show error" id="errorMsg"></div>
+  </div>
+</div>
+
+<div id="kscope-footer" style="position:fixed;bottom:30px;left:0;right:0;text-align:center;"></div>
+<script src="/demo/footer.js"></script>
+
+<script>
+function copyPrompt() {
+  var text = document.getElementById('promptText').textContent;
+  navigator.clipboard.writeText(text);
+  var btn = document.getElementById('copyBtn');
+  btn.style.opacity = '1';
+  setTimeout(function() { btn.style.opacity = '0.5'; }, 200);
+}
+// ── Sprite icon ──
+var SPRITE_COLS = 8, SPRITE_ROWS = 3, SPRITE_TOTAL = 24;
+var navIdx = Math.floor(Math.random() * SPRITE_TOTAL);
+function updateNavIcon() {
+  var el = document.getElementById('navIcon');
+  if (!el) return;
+  var col = navIdx % SPRITE_COLS;
+  var row = Math.floor(navIdx / SPRITE_COLS);
+  var bgPosX = (col / (SPRITE_COLS - 1)) * 100;
+  var bgPosY = (row / (SPRITE_ROWS - 1)) * 100;
+  el.innerHTML = '<div style="width:28px;height:28px;overflow:hidden;"><div style="width:100%;height:100%;background:url(/demo/sprites.png);background-size:' + (SPRITE_COLS * 100) + '% ' + (SPRITE_ROWS * 100) + '%;background-position:' + bgPosX + '% ' + bgPosY + '%;"></div></div>';
+  navIdx = (navIdx + 1) % SPRITE_TOTAL;
+}
+updateNavIcon();
+setInterval(updateNavIcon, 6000);
+
+// ── Read query params ──
+var params = new URLSearchParams(window.location.search);
+var agentName = params.get('agent') || '';
+var agentMessage = params.get('message') || '';
+
+
+if (agentName) {
+  document.getElementById('agentName').textContent = agentName;
+  document.getElementById('agentMessage').textContent = agentMessage || '(none provided)';
+  document.getElementById('agentInfo').style.display = 'block';
+  document.getElementById('missingParams').style.display = 'none';
+  document.getElementById('loadingSection').style.display = 'block';
+}
+
+// ── Agent auth flow ──
+var challengeId = null;
+var pollTimer = null;
+
+function setStatus(msg, type) {
+  var el = document.getElementById('status');
+  el.textContent = msg;
+  el.className = 'status show ' + type;
+}
+
+async function startAgentAuth() {
+  try {
+    var authUrl = '/demo/api/agent-auth';
+    if (agentName) authUrl += '?agent=' + encodeURIComponent(agentName) + '&message=' + encodeURIComponent(agentMessage);
+    var res = await fetch(authUrl);
+    var data = await res.json();
+    if (!data.challengeId) throw new Error('Failed to generate challenge');
+
+    challengeId = data.challengeId;
+    var approveUrl = 'https://wip.computer/approve?c=' + challengeId;
+
+    var urlEl = document.getElementById('approveUrl');
+    urlEl.innerHTML = '<a href="' + approveUrl + '" style="color:#0033FF;text-decoration:none;word-break:break-all;">' + approveUrl + '</a>';
+    document.getElementById('loadingSection').style.display = 'none';
+    document.getElementById('linkSection').style.display = 'block';
+    setStatus('Waiting for authorization...', 'loading');
+
+    pollTimer = setInterval(pollStatus, 2000);
+
+    setTimeout(function() {
+      if (pollTimer) {
+        clearInterval(pollTimer);
+        pollTimer = null;
+        document.getElementById('linkSection').style.display = 'none';
+        document.getElementById('errorSection').style.display = 'block';
+        document.getElementById('errorMsg').textContent = 'Link expired. Refresh to generate a new one.';
+      }
+    }, 5 * 60 * 1000);
+
+  } catch (err) {
+    document.getElementById('loadingSection').style.display = 'none';
+    document.getElementById('errorSection').style.display = 'block';
+    document.getElementById('errorMsg').textContent = 'Error: ' + err.message;
+  }
+}
+
+async function pollStatus() {
+  if (!challengeId) return;
+  try {
+    var res = await fetch('/demo/api/agent-auth/status?c=' + challengeId);
+    var data = await res.json();
+    if (data.status === 'approved') {
+      clearInterval(pollTimer);
+      pollTimer = null;
+      sessionStorage.setItem('lesa-token', data.token);
+      sessionStorage.setItem('lesa-agent', data.agentId);
+      setStatus('Authorized. Entering Kaleidoscope...', 'success');
+      setTimeout(function() {
+        window.location.href = '/demo/';
+      }, 800);
+    }
+  } catch (e) {}
+}
+
+if (agentName) startAgentAuth();
+</script>
+</body>
+</html>

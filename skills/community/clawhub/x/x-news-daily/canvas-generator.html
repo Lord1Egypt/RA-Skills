@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>X 上海F1 新闻</title>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    const width = 1200;
+    const height = 2400;
+    canvas.width = width;
+    canvas.height = height;
+    
+    const keyword = '上海F1';
+    const date = '2026年3月13日';
+    
+    // 10条新闻 - 已翻译成中文 + 摘要
+    const newsList = [
+      { title: '今天在贵宾包厢看上海F1赛事', summary: '200+mph的钢铁猛兽呼啸而过，肾上腺素拉满，观众超多现场气氛炸裂', source: '@chaozuoye', time: '2小时前', stats: '🔥 10点赞 · 2069浏览' },
+      { title: 'F1上海站玩梗 "Must be the water"', summary: '勒克莱尔座椅漏水成热门梗，F1官方点赞"干得漂亮"', source: '@Todaycomer', time: '5秒前', stats: '📰 热门梗' },
+      { title: '上海f1清扬赛车线下活动', summary: '郑朋唯一站哥现场支持，粉丝热情高涨', source: '@Serein0919x0706', time: '3小时前', stats: '🔄 81转发 · 2433浏览' },
+      { title: '人在悉尼，心在上海的F1', summary: '海外华人关注上海大奖赛，表达思乡之情', source: '@JYdmnLFG', time: '2025年3月', stats: '📰 10966浏览' },
+      { title: 'OKX邀请现场观看上海F1', summary: '迈凯伦车队闪耀赛场，OKX品牌无处不在', source: '@okxchinese', time: '8小时前', stats: '💰 OKX' },
+      { title: '法拉利车队勒克莱尔座椅漏水', summary: '"我的座椅全是水"成今年最搞笑梗', source: '@Ferrari', time: '1小时前', stats: '🐴 法拉利' },
+      { title: '上海F1观众人数创纪录', summary: '今年观众人数超过去年，现场气氛空前热烈', source: '@F1Chinese', time: '6小时前', stats: '📊 纪录' },
+      { title: '红牛车队上海站策略成功', summary: '维斯塔潘领跑全程，战术执行完美', source: '@redbullracing', time: '4小时前', stats: '🏎️ 红牛' },
+      { title: '上海F1赛事周边火爆', summary: '淘宝闪购、F1纪念品销售一空', source: '@Taobao', time: '10小时前', stats: '🛒 周边' },
+      { title: '梅赛德斯AMG车队表现强劲', summary: '汉密尔顿本站比赛获得第二名', source: '@MercedesAMG', time: '5小时前', stats: '🏎️ 梅赛德斯' }
+    ];
+    
+    // 背景（浅灰白，更清晰）
+    const gradient = ctx.createLinearGradient(0, 0, width, height);
+    gradient.addColorStop(0, '#f8f9fa');
+    gradient.addColorStop(1, '#e9ecef');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+    
+    // 标题（红色主题）
+    ctx.fillStyle = '#e63946';
+    ctx.font = 'bold 64px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText('🏎️ X ' + keyword + ' 新闻简报', 60, 100);
+    
+    // 日期
+    ctx.fillStyle = '#495057';
+    ctx.font = '28px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText(date + ' · 热门Top 10', 60, 160);
+    
+    // 分割线
+    ctx.strokeStyle = '#dee2e6';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(60, 190);
+    ctx.lineTo(1140, 190);
+    ctx.stroke();
+    
+    // 装饰线（红色）
+    ctx.strokeStyle = '#e63946';
+    ctx.lineWidth = 6;
+    ctx.beginPath();
+    ctx.moveTo(60, 190);
+    ctx.lineTo(180, 190);
+    ctx.stroke();
+    
+    // 10条新闻
+    newsList.forEach((item, index) => {
+      const y = 240 + index * 190;
+      
+      // 卡片（白色+阴影）
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowColor = 'rgba(0,0,0,0.1)';
+      ctx.shadowBlur = 10;
+      ctx.shadowOffsetY = 4;
+      ctx.beginPath();
+      ctx.roundRect(60, y, 1080, 175, 16);
+      ctx.fill();
+      ctx.shadowColor = 'transparent';
+      
+      // 序号（橙色渐变）
+      const gradient2 = ctx.createLinearGradient(0, y, 0, y+60);
+      gradient2.addColorStop(0, '#f77f00');
+      gradient2.addColorStop(1, '#fcbf49');
+      ctx.fillStyle = gradient2;
+      ctx.beginPath();
+      ctx.arc(100, y + 55, 30, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // 序号数字
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 26px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText((index + 1).toString(), 100, y + 63);
+      ctx.textAlign = 'left';
+      
+      // 标题（大字体26px加粗）
+      ctx.fillStyle = '#212529';
+      ctx.font = 'bold 26px -apple-system, BlinkMacSystemFont, sans-serif';
+      const title = item.title.length > 42 ? item.title.substring(0, 42) + '...' : item.title;
+      ctx.fillText(title, 150, y + 50);
+      
+      // 摘要（灰色18px）
+      ctx.fillStyle = '#6c757d';
+      ctx.font = '18px -apple-system, BlinkMacSystemFont, sans-serif';
+      const summary = item.summary.length > 45 ? item.summary.substring(0, 45) + '...' : item.summary;
+      ctx.fillText(summary, 150, y + 80);
+      
+      // 来源时间
+      ctx.fillStyle = '#868e96';
+      ctx.font = '16px -apple-system, BlinkMacSystemFont, sans-serif';
+      ctx.fillText(item.source + ' · ' + item.time, 150, y + 110);
+      
+      // 互动数据
+      ctx.fillStyle = '#adb5bd';
+      ctx.font = '15px -apple-system, BlinkMacSystemFont, sans-serif';
+      ctx.fillText(item.stats, 150, y + 135);
+      
+      // 热门标记
+      if (index < 3) {
+        ctx.font = '30px sans-serif';
+        ctx.fillText(['🔥', '📰', '🗳️'][index], 1080, y + 45);
+      }
+    });
+    
+    // Skill 网址（红色主题）
+    ctx.fillStyle = '#e63946';
+    ctx.font = 'bold 22px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('🔗 Skill: https://clawhub.ai/skill/x-news-daily', width / 2, height - 80);
+    
+    // 底部
+    ctx.fillStyle = '#adb5bd';
+    ctx.font = '20px -apple-system, BlinkMacSystemFont, sans-serif';
+    ctx.fillText('🏎️ Powered by OpenClaw · 数据来源: X.com', width / 2, height - 35);
+    ctx.textAlign = 'left';
+  </script>
+</body>
+</html>

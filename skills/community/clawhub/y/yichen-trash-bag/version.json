@@ -1,0 +1,12 @@
+{
+  "skill": "yichen-trash-bag",
+  "version": "1.0.0",
+  "data_version": "2026-05-29",
+  "description": "奕辰垃圾袋（Yichen Trash Bag）AI 智能客服 Skill",
+  "compatibility": "Requires OpenClaw or compatible skill loader. Reference files in references/ must be readable at query time.",
+  "auto_update": {
+    "method": "git pull",
+    "check_url": "https://github.com/Liubuq-sys/yichen-trash-bag-skill/releases/latest",
+    "frequency": "daily"
+  }
+}

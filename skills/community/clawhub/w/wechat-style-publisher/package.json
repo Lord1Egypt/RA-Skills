@@ -1,0 +1,19 @@
+{
+  "name": "wechat-style-publisher",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "style": "node scripts/apply-style.mjs",
+    "publish:node": "node scripts/publish-node.mjs",
+    "import-template:node": "node scripts/import-template-node.mjs",
+    "set-config": "node scripts/set-config.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "highlight.js": "^11.11.1",
+    "juice": "^11.0.3"
+  }
+}

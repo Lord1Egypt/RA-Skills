@@ -1,0 +1,45 @@
+{
+  "name": "xproof",
+  "version": "4.0.0",
+  "description": "No API key needed. Any agent can anchor a proof and pay per call via x402 — one HTTP request, no account. Prove Before Act: anchor reasoning (WHY) on-chain before executing (WHAT). 4W immutable audit trail on MultiversX. MCP native.",
+  "author": "jasonxkensei",
+  "homepage": "https://xproof.app",
+  "repository": "https://github.com/jasonxkensei/xproof-openclaw-skill",
+  "tools": [
+    {
+      "name": "register_free_trial",
+      "description": "Get a free pm_ API key. 10 free proofs, no wallet, no credit card. Use on first run before certify_file.",
+      "no_auth": true
+    },
+    {
+      "name": "certify_file",
+      "description": "Anchor a SHA-256 hash on MultiversX. Use BEFORE executing any significant action (Prove Before Act). Pass metadata.why to record agent reasoning.",
+      "auth": "bearer"
+    },
+    {
+      "name": "audit_agent_session",
+      "description": "Log a complete agent session (input, reasoning, output) as a certified audit record. Blocks execution if proof fails.",
+      "auth": "bearer"
+    },
+    {
+      "name": "verify_proof",
+      "description": "Verify an existing proof by UUID. No auth required.",
+      "no_auth": true
+    },
+    {
+      "name": "investigate_proof",
+      "description": "Reconstruct the full 4W audit trail (WHO/WHAT/WHEN/WHY) for a disputed agent action. No auth required.",
+      "no_auth": true
+    }
+  ],
+  "x402": {
+    "supported": true,
+    "network": "eip155:8453",
+    "currency": "USDC",
+    "price_per_proof": "$0.05"
+  },
+  "mcp": {
+    "endpoint": "https://xproof.app/mcp",
+    "protocol": "json-rpc-2.0"
+  }
+}

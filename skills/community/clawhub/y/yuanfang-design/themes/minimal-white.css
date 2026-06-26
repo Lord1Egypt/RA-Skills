@@ -1,0 +1,47 @@
+/* themes/minimal-white.css — extracted from yuanfang-html-image/templates/01-minimalist/ */
+
+[data-theme="minimal-white"] {
+  /* Color */
+  --bg: #FFFFFF;
+  --text: #0F172A;
+  --accent: #4F46E5;
+  --secondary: #64748B;
+  --bg-alt: #F8FAFC;
+  /* Surface hierarchy (required by yuanfang-design tokens) */
+  --surface: #FFFFFF;
+  --surface-2: var(--bg-alt);
+  --border: rgba(0,0,0,.08);
+  --border-strong: rgba(0,0,0,.18);
+  --text-1: var(--text);
+  --text-2: var(--secondary);
+  --text-3: rgba(0,0,0,.5);
+
+  /* Type */
+  --font-title: system-ui, -apple-system, "PingFang SC", "Outfit", sans-serif;
+  --font-body:  system-ui, -apple-system, "PingFang SC", "Outfit", sans-serif;
+
+  /* Size */
+  --title-size-v: 110px;
+  --title-size-s: 88px;
+  --title-size-w: 80px;
+  --title-size-c: 56px;
+  --content-size: 32px;
+  --qr-size: 64px;
+
+  /* Decor */
+  --decor-tl: none;
+  --decor-tr: none;
+  --decor-bl: none;
+  --decor-br: none;
+
+  /* Feature flags */
+  --accent-line: block;       /* 4px top accent line */
+  --accent-block: block;      /* right accent block */
+  --terminal-bar: none;
+  --grid-bg: none;
+  --seal: "";
+
+  /* Right padding accounts for accent block (24% width) */
+  --cover-pad-right: calc(24% + var(--space-4));
+  --cover-center: 38%;
+}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width={{W}}, height={{H}}">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: {{W}}px; height: {{H}}px;
+  font-family: {{FONT_TITLE}};
+  background: {{BG}};
+  color: {{TEXT}};
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+/* grid background */
+.grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image:
+    linear-gradient(0deg, transparent 0%, rgba(255,255,255,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+}
+/* gradient glow */
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.glow-1 { width: 300px; height: 300px; background: {{ACCENT}}; opacity: 0.06; top: -80px; right: -80px; }
+.glow-2 { width: 200px; height: 200px; background: {{ACCENT}}; opacity: 0.04; bottom: 40px; left: 40px; }
+/* terminal top bar */
+.terminal-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 32px;
+  background: rgba(255,255,255,0.03);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 6px;
+}
+.dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+.dr { background: #FF5F56; }
+.dy { background: #FFBD2E; }
+.dg { background: #27C93F; }
+/* left accent bar */
+.left-bar {
+  position: absolute;
+  left: 0; top: 32px; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, {{ACCENT}}, transparent);
+  opacity: 0.3;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  padding: 44px;
+  width: 100%;
+  padding-top: 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* code comment prefix */
+.title {
+  font-size: {{TITLE_SIZE_V}};
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  color: {{TEXT}};
+  text-shadow: 0 0 40px {{ACCENT__A08}};
+}
+.title::before {
+  content: '// ';
+  color: {{ACCENT}};
+  opacity: 0.4;
+  font-weight: 500;
+  font-size: calc({{TITLE_SIZE_V}} * 0.55);
+  font-family: {{FONT_BODY}};
+}
+.content {
+  font-family: {{FONT_BODY}};
+  font-size: {{CONTENT_SIZE}};
+  font-weight: 400;
+  line-height: 1.7;
+  color: {{SECONDARY}};
+  max-width: 92%;
+  padding-left: 16px;
+  border-left: 2px solid {{ACCENT__A12}};
+}
+.points {
+  list-style: none;
+  margin-top: 22px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.points li {
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE}} - 8px);
+  font-weight: 400;
+  color: {{TEXT}};
+  opacity: 0.85;
+  padding: 8px 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+}
+.points li::before {
+  content: '> ';
+  color: {{ACCENT}};
+  opacity: 0.5;
+}
+.points:empty { display: none; }
+.source {
+  position: absolute;
+  bottom: 14px;
+  right: 44px;
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.5);
+  color: {{SECONDARY}};
+  opacity: 0.4;
+}
+@media (max-aspect-ratio: 4/5) {
+  .title { font-size: {{TITLE_SIZE_S}}; }
+  .title::before { font-size: calc({{TITLE_SIZE_S}} * 0.55); font-weight: 500; }
+  .content { max-width: 95%; }
+  .container { padding: 32px; padding-top: 56px; }
+}
+@media (min-aspect-ratio: 5/4) {
+  .title { font-size: {{TITLE_SIZE_W}}; }
+  .title::before { font-size: calc({{TITLE_SIZE_W}} * 0.55); font-weight: 500; }
+  .container { flex-direction: row; flex-wrap: wrap; padding: 36px 44px; padding-top: 56px; }
+  .content { max-width: 70%; }
+}
+@media (min-aspect-ratio: 7/3) {
+  .title { font-size: {{TITLE_SIZE_C}}; }
+  .title::before { font-size: calc({{TITLE_SIZE_C}} * 0.55); font-weight: 500; }
+  .container { flex-direction: row; align-items: center; gap: 20px; padding: 24px 44px; padding-top: 56px; }
+  .content { max-width: 55%; }
+}
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+<div class="terminal-bar">
+  <div class="dot dr"></div>
+  <div class="dot dy"></div>
+  <div class="dot dg"></div>
+</div>
+<div class="left-bar"></div>
+<div class="container">
+  <h1 class="title">{{TITLE}}</h1>
+  <div class="content">{{CONTENT}}</div>
+  <ul class="points">{{POINTS_HTML}}</ul>
+</div>
+<div class="source">{{SOURCE}}</div>
+</body>
+</html>

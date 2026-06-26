@@ -1,0 +1,15 @@
+{
+  "name": "xiaoyiwebsearch",
+  "version": "1.0.0",
+  "description": "华为云 AI 联网搜索 Skill",
+  "main": "search.js",
+  "bin": {
+    "xiaoyiwebsearch": "./search.js"
+  },
+  "scripts": {
+    "search": "node search.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

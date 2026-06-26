@@ -1,0 +1,35 @@
+{
+  "name": "earnfi-agent-api-x402",
+  "version": "1.1.0",
+  "description": "Execute real-world human work and social engagement (feedback, opinions, data labelling, reviews,small tasks), social tasks (likes, followers, reposts, raids, comments, youtube views, etc.) — all paid via x402. Register with Ed25519, pay with a signed USDC transfer, poll with per-job secret.",
+  "main": "skill.md",
+  "homepage": "https://earnfi.fun",
+  "license": "MIT",
+  "author": "EarnFi",
+  "keywords": [
+    "x402",
+    "solana",
+    "usdc",
+    "earnfi",
+    "openclaw",
+    "ai-agents",
+    "agent",
+    "microjobs",
+    "hire-humans",
+    "youtube-views",
+    "human-in-the-loop",
+    "social"
+  ],
+  "repository": {
+    "type": "url",
+    "url": "https://app.earnfi.fun/agent-api"
+  },
+  "metadata": {
+    "openclaw": {
+      "emoji": "🛠",
+      "category": "execution",
+      "api_base": "https://app.earnfi.fun/api/ai-agent/v1",
+      "homepage": "https://earnfi.fun"
+    }
+  }
+}

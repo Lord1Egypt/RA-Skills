@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1350">
+<title>待产包清单 - 封面</title>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px; height: 1350px;
+  background: #FFF8F0;
+  font-family: 'Noto Sans SC', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+.bg-texture {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 28px,
+    rgba(180,140,100,0.06) 28px,
+    rgba(180,140,100,0.06) 29px
+  );
+  pointer-events: none;
+}
+.tape {
+  position: absolute;
+  width: 120px; height: 32px;
+  background: rgba(255,230,150,0.7);
+  transform: rotate(-3deg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.tape-left { top: 30px; left: 30px; }
+.tape-right { top: 30px; right: 30px; transform: rotate(3deg); }
+.sticker {
+  position: absolute;
+  background: #FF9B9B;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transform: rotate(-5deg);
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+}
+.sticker-1 { top: 80px; right: 40px; background: #FF6B6B; }
+.sticker-2 { top: 130px; left: 50px; background: #FFD93D; color: #333; transform: rotate(3deg); }
+.tag-teal {
+  position: absolute;
+  background: #3DB8A3;
+  color: white;
+  font-size: 16px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  transform: rotate(4deg);
+}
+.tag-teal-1 { top: 190px; right: 35px; }
+.tag-teal-2 { top: 240px; left: 35px; transform: rotate(-3deg); }
+.main-title {
+  position: absolute;
+  top: 280px;
+  left: 60px;
+  right: 60px;
+  text-align: center;
+}
+.main-title h1 {
+  font-size: 62px;
+  font-weight: 700;
+  color: #5C4033;
+  line-height: 1.3;
+  font-family: 'Ma Shan Zheng', 'Noto Sans SC', cursive;
+  letter-spacing: 4px;
+}
+.divider {
+  width: 200px; height: 3px;
+  background: linear-gradient(90deg, transparent, #D4A574, transparent);
+  margin: 24px auto;
+}
+.main-title h2 {
+  font-size: 36px;
+  color: #8B6F5C;
+  font-weight: 400;
+  margin-top: 8px;
+}
+.badge-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+.badge {
+  background: #F5E6D3;
+  border: 2px solid #D4A574;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 22px;
+  color: #5C4033;
+  font-weight: 700;
+}
+.intro-text {
+  position: absolute;
+  top: 700px;
+  left: 80px;
+  right: 80px;
+  background: #FFFDF5;
+  border: 2px dashed #D4A574;
+  border-radius: 12px;
+  padding: 28px 32px;
+  font-size: 26px;
+  color: #5C4033;
+  line-height: 1.8;
+  text-align: center;
+}
+.intro-text span {
+  color: #FF6B6B;
+  font-weight: bold;
+}
+.footer-sticker {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FF6B6B;
+  color: white;
+  font-size: 26px;
+  font-weight: bold;
+  padding: 12px 36px;
+  border-radius: 8px;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+.emoji-decoration {
+  position: absolute;
+  font-size: 48px;
+}
+.deco-1 { bottom: 130px; left: 60px; }
+.deco-2 { bottom: 130px; right: 60px; }
+</style>
+</head>
+<body>
+<div class="bg-texture"></div>
+<div class="tape tape-left"></div>
+<div class="tape tape-right"></div>
+<div class="sticker sticker-1">精简版</div>
+<div class="sticker sticker-2">30+项</div>
+<div class="tag-teal tag-teal-1">宝宝+妈妈</div>
+<div class="tag-teal tag-teal-2">证件物品</div>
+
+<div class="main-title">
+  <h1>待产包清单完整版</h1>
+  <div class="divider"></div>
+  <h2>宝宝 + 妈妈 + 证件</h2>
+  <div class="badge-row">
+    <div class="badge">30+项</div>
+    <div class="badge">产后妈妈验证</div>
+  </div>
+</div>
+
+<div class="intro-text">
+  网上攻略几十种也有、上百种也有<br>
+  整理了一份<span>「产后妈妈验证版」</span><br>
+  每个物品都写了使用场景和数量建议<br>
+  不是越多越好，是<span>够用就行</span>
+</div>
+
+<div class="footer-sticker">👶 收藏起来让老公也看看～</div>
+<div class="emoji-decoration deco-1">🤰</div>
+<div class="emoji-decoration deco-2">🍼</div>
+</body>
+</html>

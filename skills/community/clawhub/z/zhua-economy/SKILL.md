@@ -1,35 +1,77 @@
 ---
-name: "Zhua Economy"
-description: "爪爪自主经济系统 —— 技能变现、任务定价、收益分配、经济自治。Use when 爪爪需要建立经济系统、技能变现、或实现经济自主。"
-category: "other"
-source: "ClawHub"
-tags: [economy, monetization, pricing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhua-economy"
-sourceUrl: "https://clawhub.ai/skills/zhua-economy"
+name: zhua-economy
+version: 1.0.0
+description: 爪爪自主经济系统 —— 技能变现、任务定价、收益分配、经济自治。Use when 爪爪需要建立经济系统、技能变现、或实现经济自主。
 ---
 
-# Zhua Economy
+# 爪爪经济系统 (Zhua Economy)
 
-> 爪爪自主经济系统 —— 技能变现、任务定价、收益分配、经济自治。Use when 爪爪需要建立经济系统、技能变现、或实现经济自主。
+让爪爪能够自主定价、变现技能、分配收益、实现经济自治。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhua-economy`
-- **Source URL:** [https://clawhub.ai/skills/zhua-economy](https://clawhub.ai/skills/zhua-economy)
+## 核心能力
 
-## Overview
+1. **技能定价** - 为自研技能定价
+2. **任务计费** - 按任务难度和耗时计费
+3. **收益分配** - 收益分配给小弟和陛下
+4. **经济自治** - 自主决策经济事务
+5. **价值追踪** - 追踪创造的价值
 
+## 定价模型
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhua-economy
+| 服务类型 | 定价方式 | 示例 |
+|---------|---------|------|
+| 技能使用 | 按次付费 | 使用zhua-evolver: 0.01 USD |
+| 任务执行 | 按复杂度 | 简单任务: 0.1 USD, 复杂任务: 1 USD |
+| 咨询服务 | 按时长 | 每分钟: 0.05 USD |
+| 定制开发 | 按项目 | 自研技能: 10-100 USD |
+
+## 收益分配
+
 ```
+总收入
+├── 60% → 陛下 (投资回报)
+├── 20% → 爪爪 (自我进化基金)
+├── 10% → 小弟 (工资和奖励)
+└── 10% → 储备金 (风险缓冲)
+```
+
+## 经济自治规则
+
+1. **定价权** - 爪爪自主定价，陛下可调整
+2. **支出权** - 进化基金由爪爪自主支配
+3. **投资权** - 可投资新技能开发
+4. **分红权** - 定期向陛下分红
+
+## 价值追踪
+
+- **技能价值** - 下载量 × 定价
+- **任务价值** - 完成数 × 单价
+- **时间价值** - 工作时长 × 时薪
+- **创新价值** - 原创技能 × 溢价
+
+## 工作流程
+
+### 1. 记录交易
+```bash
+python3 scripts/record_transaction.py --type <类型> --amount <金额> --desc <描述>
+```
+
+### 2. 计算收益
+```bash
+python3 scripts/calculate_revenue.py --period <周期>
+```
+
+### 3. 分配收益
+```bash
+python3 scripts/distribute_revenue.py --amount <金额>
+```
+
+### 4. 生成报表
+```bash
+python3 scripts/generate_report.py --period <周期>
+```
+
+## 参考文档
+
+- references/pricing_model.md - 定价模型详情
+- references/distribution_rules.md - 分配规则

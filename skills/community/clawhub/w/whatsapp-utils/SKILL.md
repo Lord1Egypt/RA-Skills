@@ -1,35 +1,41 @@
 ---
-name: "WhatsApp Utils"
-description: "Phone number formatting, cache inspection, contact export, and message ID generation"
-category: "other"
-source: "ClawHub"
-tags: [baileys, offline, phone, utilities, utils, whatsapp]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/whatsapp-utils"
-sourceUrl: "https://clawhub.ai/skills/whatsapp-utils"
+name: whatsapp-utils
+description: Phone number formatting, cache inspection, contact export, and message ID generation
 ---
 
-# WhatsApp Utils
+# WhatsApp Utils Skill
 
-> Phone number formatting, cache inspection, contact export, and message ID generation
+Miscellaneous utilities for WhatsApp automation.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/whatsapp-utils`
-- **Source URL:** [https://clawhub.ai/skills/whatsapp-utils](https://clawhub.ai/skills/whatsapp-utils)
+## Usage
 
-## Overview
+```
+exec({ cmd: "node <skill_dir>/scripts/utils.js COMMAND [ARGS]" })
+```
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/whatsapp-utils
+### Format Phone Number
+```
+exec({ cmd: "node <skill_dir>/scripts/utils.js format \"(11) 99999-9999\"" })
+```
+
+### Clean Phone Number
+```
+exec({ cmd: "node <skill_dir>/scripts/utils.js clean \"+55 (11) 99999-9999\"" })
+```
+
+### Cache Info
+```
+exec({ cmd: "node <skill_dir>/scripts/utils.js cache-info" })
+```
+
+### Export Contacts
+```
+exec({ cmd: "node <skill_dir>/scripts/utils.js export-contacts" })
+```
+
+### Generate Message ID
+```
+exec({ cmd: "node <skill_dir>/scripts/utils.js gen-id" })
 ```

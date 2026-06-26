@@ -1,0 +1,21 @@
+{
+  "name": "xiaozhi-channel",
+  "version": "1.0.0",
+  "description": "XiaoZhi AI ESP32 Channel Plugin for OpenClaw",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "ws": "^8.14.2",
+    "opusscript": "^0.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/ws": "^8.5.10",
+    "typescript": "^5.3.0"
+  }
+}

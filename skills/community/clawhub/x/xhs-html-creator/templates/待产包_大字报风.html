@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+/_ { margin:0; padding:0; box-sizing:border-box; }
+body { width:1080px; height:1350px; background:#fff; font-family:'PingFang SC','Microsoft YaHei',sans-serif; overflow:hidden; }
+.page { width:1080px; height:1350px; background:#fff; position:relative; overflow:hidden; }
+
+/_ 封面页 _/
+.cover-bg { position:absolute; top:0; left:0; right:0; height:1350px; background:linear-gradient(180deg,#4A90D9 0%, #6BA3D6 40%, #E8F4FC 100%); }
+.cover-title { position:absolute; bottom:180px; left:0; right:0; text-align:center; font-size:96px; font-weight:900; color:#fff; letter-spacing:-2px;
+    text-shadow: 4px 4px 0 #1a3a5c, 6px 6px 0 rgba(0,0,0,0.2); }
+.cover-sub { position:absolute; bottom:120px; left:0; right:0; text-align:center; font-size:28px; color:rgba(255,255,255,0.85); letter-spacing:8px; }
+.cover-swipe { position:absolute; bottom:50px; left:0; right:0; text-align:center; font-size:20px; color:rgba(255,255,255,0.6); letter-spacing:4px; }
+
+/_ 章节标题页 _/
+.section-header { width:1080px; height:1350px; position:relative; }
+.section-badge { position:absolute; top:0; left:0; right:0; height:12px; background:#4A90D9; }
+.section-title { position:absolute; top:80px; left:60px; font-size:72px; font-weight:900; color:#1d3a5c; letter-spacing:-1px; }
+.section-title span { display:block; font-size:24px; font-weight:400; color:#888; margin-top:10px; letter-spacing:2px; }
+.section-rule { position:absolute; top:220px; left:60px; right:60px; height:3px; background:linear-gradient(90deg,#4A90D9,#87CEEB); border-radius:2px; }
+.section-content { position:absolute; top:260px; left:50px; right:50px; bottom:60px; }
+
+/_ 物品卡片 _/
+.item-card { display:flex; align-items:flex-start; margin-bottom:24px; padding:16px 0; border-bottom:1px solid #f0f0f0; }
+.item-dot { width:36px; height:36px; border-radius:50%; background:#4A90D9; flex-shrink:0; margin-right:20px; margin-top:2px;
+    display:flex; align-items:center; justify-content:center; font-size:14px; color:#fff; font-weight:700; }
+.item-body { flex:1; }
+.item-name { font-size:26px; font-weight:700; color:#1d1d1f; line-height:1.3; }
+.item-desc { font-size:20px; color:#666; margin-top:4px; line-height:1.4; }
+.item-tag { display:inline-block; background:#fff3f0; color:#e85a1a; font-size:16px; padding:4px 12px; border-radius:20px; margin-top:6px; }
+
+/_ 分类标签 _/
+.cat-header { font-size:24px; font-weight:700; color:#4A90D9; margin:20px 0 12px 0; padding-bottom:8px; border-bottom:2px solid #E8F4FC; letter-spacing:2px; }
+
+/_ CTA结尾页 _/
+.cta-bg { position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(180deg,#4A90D9 0%, #1d3a5c 100%); }
+.cta-title { position:absolute; top:50%; left:0; right:0; text-align:center; transform:translateY(-50%);
+    font-size:80px; font-weight:900; color:#fff; letter-spacing:-1px;
+    text-shadow: 4px 4px 0 rgba(0,0,0,0.2); }
+.cta-sub { position:absolute; top:calc(50% + 100px); left:0; right:0; text-align:center;
+    font-size:28px; color:rgba(255,255,255,0.8); }
+.cta-tags { position:absolute; bottom:120px; left:40px; right:40px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+.cta-tag { background:rgba(255,255,255,0.15); color:#fff; padding:10px 20px; border-radius:24px; font-size:18px; border:1px solid rgba(255,255,255,0.3); }
+.cta-credit { position:absolute; bottom:50px; left:0; right:0; text-align:center; font-size:16px; color:rgba(255,255,255,0.4); letter-spacing:6px; }
+</style>
+</head>
+<body>
+<!-- 第1页：封面 -->
+<div class="page">
+  <div class="cover-bg"></div>
+  <div class="cover-title">待产包完整清单</div>
+  <div class="cover-sub">宝宝篇 · 妈妈篇 · 证件篇</div>
+  <div class="cover-swipe">← 左滑查看全部 →</div>
+</div>
+
+<!-- 第2页：宝宝篇 -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-badge"></div>
+    <div class="section-title">宝宝篇<span>住院必带 · 一个都不能少</span></div>
+    <div class="section-rule"></div>
+    <div class="section-content">
+      <div class="cat-header">【衣物类】</div>
+      <div class="item-card"><div class="item-dot">1</div><div class="item-body"><div class="item-name">半背衣 × 3件</div><div class="item-desc">52码，选开裆款，方便换纸尿裤</div></div></div>
+      <div class="item-card"><div class="item-dot">2</div><div class="item-body"><div class="item-name">包被 × 2条</div><div class="item-desc">1厚1薄，厚的进产房，薄款出院用</div></div></div>
+      <div class="item-card"><div class="item-dot">3</div><div class="item-body"><div class="item-name">胎帽 × 2顶</div><div class="item-desc">新生儿头部散热快，多备一顶换洗</div></div></div>
+      <div class="cat-header">【喂养类】</div>
+      <div class="item-card"><div class="item-dot">4</div><div class="item-body"><div class="item-name">奶瓶 × 2个</div><div class="item-desc">选宽口径，玻璃或PPSU材质都可以</div></div></div>
+      <div class="item-card"><div class="item-dot">5</div><div class="item-body"><div class="item-name">小罐奶粉 × 1罐</div><div class="item-tag">⚠️ 先确认医院是否允许自带</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 第3页：妈妈篇 -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-badge" style="background:#E85A6B"></div>
+    <div class="section-title" style="color:#E85A6B">妈妈篇<span>这些真的必备 · 用不上别怪我</span></div>
+    <div class="section-rule" style="background:linear-gradient(90deg,#E85A6B,#F4A0AA)"></div>
+    <div class="section-content">
+      <div class="item-card"><div class="item-dot" style="background:#E85A6B">1</div><div class="item-body"><div class="item-name">产褥垫 × 15片+</div><div class="item-desc">进产房就要铺上，产后恶露多也要用，多带没坏处</div></div></div>
+      <div class="item-card"><div class="item-dot" style="background:#E85A6B">2</div><div class="item-body"><div class="item-name">刀纸 × 3-4包</div><div class="item-desc">比产妇卫生巾透气，医生接生时也用这个</div></div></div>
+      <div class="item-card"><div class="item-dot" style="background:#E85A6B">3</div><div class="item-body"><div class="item-name">一次性内裤 × 15条+</div><div class="item-desc">用完直接扔，避免别人帮忙洗的尴尬</div></div></div>
+      <div class="item-card"><div class="item-dot" style="background:#E85A6B">4</div><div class="item-body"><div class="item-name">吸管杯 × 1个</div><div class="item-tag">⭐ 剖腹产必带</div><div class="item-desc">躺着也能喝水，非常重要！</div></div></div>
+      <div class="item-card"><div class="item-dot" style="background:#E85A6B">5</div><div class="item-body"><div class="item-name">乳头膏 × 1支</div><div class="item-desc">喂奶前涂，羊脂膏成分，喂完继续涂，哺乳期必备</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 第4页：结尾CTA -->
+<div class="page">
+  <div class="cta-bg"></div>
+  <div class="cta-title">收藏起来<br><span style="font-size:48px">让老公照着打包</span></div>
+  <div class="cta-tags">
+    <div class="cta-tag">#待产包清单</div>
+    <div class="cta-tag">#入院待产包</div>
+    <div class="cta-tag">#孕妈必备</div>
+    <div class="cta-tag">#新生儿好物</div>
+    <div class="cta-tag">#实用待产包分享</div>
+  </div>
+  <div class="cta-credit">小红书同名 · 关注不迷路</div>
+</div>
+</body>
+</html>

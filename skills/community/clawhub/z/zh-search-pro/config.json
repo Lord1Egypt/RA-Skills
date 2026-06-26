@@ -1,0 +1,29 @@
+{
+  "name": "zh-search-pro",
+  "version": "1.0.0",
+  "description": "中文搜索增强工具，整合百度、必应、微信、知乎等中文搜索引擎",
+  "author": "search-tools-dev",
+  "license": "MIT-0",
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "triggers": [
+    "中文搜索",
+    "百度搜索",
+    "微信搜索",
+    "知乎搜索",
+    "搜索",
+    "search chinese",
+    "search wechat",
+    "search zhihu"
+  ],
+  "capabilities": [
+    "web_search",
+    "web_fetch"
+  ],
+  "config": {
+    "defaultEngine": "baidu",
+    "maxResults": 10,
+    "timeout": 30000
+  }
+}

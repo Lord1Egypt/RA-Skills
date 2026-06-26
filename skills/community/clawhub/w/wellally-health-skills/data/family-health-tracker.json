@@ -1,0 +1,39 @@
+{
+  "family_health_tracking": {
+    "family_info": {
+      "family_id": "fam_20250108_001",
+      "created_date": null,
+      "last_updated": null
+    },
+
+    "members": [],
+
+    "family_medical_history": {
+      "hereditary_diseases": [],
+      "common_conditions": [],
+      "genetic_disorders": [],
+      "age_related_onset": []
+    },
+
+    "risk_assessment": {
+      "last_assessment_date": null,
+      "hereditary_risks": [],
+      "shared_risks": [],
+      "preventive_recommendations": []
+    },
+
+    "health_records": [],
+
+    "pedigree_data": {
+      "generations": [],
+      "relationships": [],
+      "affected_members": []
+    },
+
+    "metadata": {
+      "created_at": null,
+      "last_updated": null,
+      "data_version": "1.0"
+    }
+  }
+}

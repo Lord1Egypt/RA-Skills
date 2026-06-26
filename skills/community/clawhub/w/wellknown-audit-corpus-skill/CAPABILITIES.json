@@ -1,0 +1,59 @@
+{
+  "schema": "https://openclaw.ai/schemas/skill-capabilities/v0.1",
+  "generated_at": "2026-05-14T17:23:00Z",
+  "slug": "wellknown-audit-corpus-skill",
+  "name": "Agent Well-Known Readiness Audit",
+  "version": "1.0.0",
+  "listing_type": "skill",
+  "price_usd": 9,
+  "declared_capabilities": {
+    "network": {
+      "required": true,
+      "allowed_hosts": [
+        "wellknown-audit-corpus.mtree.workers.dev"
+      ],
+      "methods": [
+        "GET",
+        "POST",
+        "HEAD"
+      ],
+      "purpose": "Verify and call production x402/discovery backends documented by the skill."
+    },
+    "filesystem": {
+      "required": true,
+      "writes": [
+        "buyer-selected OpenClaw skills directory when scripts/install_skill.py is run"
+      ],
+      "reads": [
+        "package-local SKILL.md, README.md, listing.json, examples/requests.json"
+      ],
+      "purpose": "Optional local install and package verification only."
+    },
+    "secrets": {
+      "included_in_package": false,
+      "required_env": [],
+      "optional_env": [
+        "CLAWMART_API_KEY only for seller-side publishing helpers, not buyer runtime"
+      ],
+      "wallet_private_keys": "never read or requested by package scripts"
+    },
+    "payments": {
+      "x402": true,
+      "buyer_controls_wallet": true,
+      "package_scripts_make_paid_calls": false,
+      "paid_calls_trigger": "only when agent/user intentionally follows SKILL workflow against backend endpoints"
+    },
+    "external_side_effects": {
+      "publishes_content": false,
+      "sends_messages": false,
+      "deletes_data": false,
+      "moves_funds_directly": false
+    }
+  },
+  "risk_tier": "low",
+  "review_notes": [
+    "Inspect PACKAGE_SECURITY.md before install.",
+    "Run scripts/verify_backend.py for unpaid backend and 402-envelope checks.",
+    "Pin the zip SHA-256 from artifact-checksums.json when installing in production."
+  ]
+}

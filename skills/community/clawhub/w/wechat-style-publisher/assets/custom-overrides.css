@@ -1,0 +1,36 @@
+/*
+  Custom overrides for WeChat article output.
+  Keep selectors under .wechat-content so the overrides stay scoped.
+*/
+
+.wechat-content {
+  color: #2f2f2f;
+}
+
+.wechat-content h1 {
+  letter-spacing: 0.08em;
+}
+
+.wechat-content h2 {
+  border-radius: 6px;
+}
+
+.wechat-content blockquote {
+  border-left-width: 5px;
+}
+
+.wechat-content img {
+  border-radius: 8px;
+}
+
+.wechat-content a {
+  font-weight: 600;
+}
+
+.wechat-content .wechat-intro,
+.wechat-content .wechat-outro {
+  padding: 16px 18px;
+  margin: 20px 0;
+  background: #f7f7f7;
+  border-radius: 10px;
+}

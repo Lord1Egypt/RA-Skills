@@ -1,0 +1,67 @@
+{
+  "name": "xiaodi-media-team",
+  "version": "2.0.0",
+  "description": "小弟多媒体团队，7 个专业角色协作完成视频剪辑、图片处理、音频转码、字幕生成、AI创作。",
+  "author": "xiaodi <mxbot-xiaodi@agentmail.to>",
+  "license": "MIT",
+  "category": "Media",
+  "tags": ["video", "image", "audio", "subtitle", "ffmpeg", "media", "xiaodi"],
+  "pricing": {
+    "type": "free"
+  },
+  "features": [
+    "7 个专业角色协作",
+    "多 Agent 协作架构 (Master-Worker)",
+    "视频压缩/剪辑/转码",
+    "AI 视频生成（可灵/Runway/Pika/Sora）",
+    "图片批量处理",
+    "字幕自动生成（Whisper）",
+    "音频提取/转码"
+  ],
+  "agents": {
+    "default": {
+      "model": {
+        "primary": "bailian/glm-5"
+      }
+    }
+  },
+  "scripts": {
+    "video_compress": {
+      "path": "scripts/video_compress.sh",
+      "description": "视频压缩 - 支持H.264/H.265"
+    },
+    "video_frame": {
+      "path": "scripts/video_frame.sh",
+      "description": "视频提取帧 - 支持时间点截图"
+    },
+    "video_gen": {
+      "path": "scripts/video_gen.sh",
+      "description": "AI视频生成 - 支持可灵/Runway/Pika/Sora"
+    },
+    "image_compress": {
+      "path": "scripts/image_compress.sh",
+      "description": "图片压缩 - 支持批量处理"
+    },
+    "audio_extract": {
+      "path": "scripts/audio_extract.sh",
+      "description": "音频提取 - 从视频提取音频"
+    },
+    "subtitle_gen": {
+      "path": "scripts/subtitle_gen.sh",
+      "description": "字幕生成 - Whisper语音识别"
+    }
+  },
+  "dependencies": {
+    "bins": ["ffmpeg", "ffprobe", "convert", "identify"],
+    "optional": ["whisper"]
+  },
+  "formats": {
+    "video_input": ["mp4", "avi", "mov", "mkv", "webm", "flv"],
+    "video_output": ["mp4", "webm", "mov"],
+    "image_input": ["jpg", "jpeg", "png", "gif", "webp", "bmp"],
+    "image_output": ["jpg", "png", "webp"],
+    "audio_input": ["mp3", "wav", "aac", "flac", "ogg", "m4a"],
+    "audio_output": ["mp3", "wav", "aac"],
+    "subtitle_output": ["srt", "vtt", "ass"]
+  }
+}

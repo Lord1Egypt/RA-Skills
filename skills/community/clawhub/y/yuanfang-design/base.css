@@ -1,0 +1,462 @@
+/* yuanfang-design/base.css
+ * Token defaults for all themes.
+ *
+ * INHERITED FROM: lewislulu/html-ppt-skill (MIT) — hierarchical token structure,
+ *   card/grid/pill layout primitives. See references/upstream-html-ppt-skill.md.
+ *
+ * Themes override these via [data-theme="..."] selectors.
+ * No literal colors, sizes, or decorations allowed in layout rules below.
+ */
+
+:root {
+  /* ============================================================
+   * DESIGN TOKENS
+   *
+   * NEW hierarchical tokens (html-ppt-skill inspired).
+   * LEGACY tokens kept as aliases for backward compatibility.
+   * ============================================================ */
+
+  /* === Surface hierarchy === */
+  --bg: #FFFFFF;            /* outermost background */
+  --bg-soft: #F7F7F8;      /* soft background (was --bg-alt) */
+  --surface: #FFFFFF;       /* card / elevated surface */
+  --surface-2: #F2F2F4;    /* lower-contrast surface */
+  --bg-alt: var(--bg-soft); /* LEGACY alias */
+
+  /* === Border === */
+  --border: rgba(0,0,0,.08);
+  --border-strong: rgba(0,0,0,.16);
+
+  /* === Text hierarchy === */
+  --text: #0F172A;          /* LEGACY — maps to --text-1 */
+  --text-1: var(--text);    /* headings / primary text */
+  --text-2: #64748B;        /* body / secondary text (was --secondary) */
+  --text-3: #8A8F9E;       /* meta / tertiary text */
+  --secondary: var(--text-2); /* LEGACY alias */
+
+  /* === Accent hierarchy === */
+  --accent: #4F46E5;        /* primary accent */
+  --accent-2: #7A5CFF;     /* accent variant (purple shift) */
+  --accent-3: #FF5C8A;     /* accent variant (pink shift) */
+
+  /* === Semantic colors (good / warn / bad) === */
+  --good: #1AAF6C;
+  --warn: #F5A524;
+  --bad:  #E0445A;
+
+  /* === Gradients === */
+  --grad: linear-gradient(135deg, var(--accent), var(--accent-2) 55%, var(--accent-3));
+  --grad-soft: linear-gradient(135deg, #EEF2FF, #F5ECFF 55%, #FFEEF5);
+
+  /* === Type hierarchy === */
+  --font-sans: "Arial", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --font-serif: "Playfair Display", "Noto Serif SC", Georgia, serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", SFMono-Regular, Menlo, monospace;
+  --font-display: var(--font-sans);
+  --font-title: var(--font-display); /* LEGACY alias */
+  --font-body: var(--font-sans);     /* LEGACY alias */
+
+  /* === Letter spacing === */
+  --letter-tight: -.03em;
+  --letter-normal: -.01em;
+
+  /* === Size (per aspect ratio) — LEGACY: kept for html-image === */
+  --title-size-v: 130px;  /* 3:4 portrait + 9:16 tall */
+  --title-size-s: 96px;   /* 1:1 square */
+  --title-size-w: 88px;   /* 16:9 wide */
+  --title-size-c: 64px;   /* 2.35:1 cover + 1.9:1 OG */
+  --content-size: 38px;
+  --badge-size: 18px;
+  --source-size: 14px;
+
+  /* === Space (4-step rhythm) === */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 48px;
+
+  /* === Radius scale === */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 22px;
+
+  /* === Shadow scale === */
+  --shadow: 0 8px 32px rgba(0,0,0,.08);
+  --shadow-lg: 0 24px 60px rgba(18,24,40,.14);
+
+  /* === Decor (4 corners) — LEGACY === */
+  --decor-tl: none;
+  --decor-tr: none;
+  --decor-bl: none;
+  --decor-br: none;
+
+  /* === Feature flags (none | block) — LEGACY === */
+  --accent-line: none;       /* top 4px accent bar */
+  --accent-block: none;      /* right side accent block */
+  --terminal-bar: none;      /* terminal-style traffic light dots */
+  --grid-bg: none;           /* grid background */
+  --seal: "";                /* seal text */
+}
+
+/* === Base body reset === */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* === Cover layout — uses tokens only, zero literals === */
+.cover {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--space-4);
+  padding-inline-end: var(--cover-pad-right, var(--space-4));
+  overflow: hidden;
+}
+
+.cover__title {
+  font-family: var(--font-title);
+  font-weight: 900;
+  font-size: var(--title-size-v);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: var(--space-3);
+  max-width: 100%;
+  text-wrap: balance;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cover__content {
+  font-size: var(--content-size);
+  font-weight: 400;
+  line-height: 1.7;
+  text-wrap: pretty;
+  color: var(--secondary);
+  max-width: 88%;
+  margin-bottom: var(--space-3);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cover__badge {
+  font-size: var(--badge-size);
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+  opacity: 0.85;
+}
+
+.cover__points {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+.cover__points li {
+  font-size: calc(var(--content-size) - 8px);
+  color: var(--accent);
+  padding: var(--space-1) var(--space-2);
+  border-top: 1px solid var(--accent);
+  opacity: 0.85;
+}
+.cover__points:empty { display: none; }
+
+.cover__brand {
+  position: absolute;
+  bottom: var(--space-3);
+  left: var(--space-4);
+  display: flex;
+  align-items: center;
+  font-family: var(--font-title);
+  font-size: calc(var(--content-size) - 12px);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.85;
+  max-height: calc(var(--content-size) + 8px);
+}
+.cover__brand-img {
+  height: 40px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  display: block;
+  opacity: 0.92;
+}
+
+.cover__qr {
+  position: absolute;
+  bottom: var(--space-3);
+  left: var(--cover-center, 50%);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--bg);
+  padding: var(--space-1);
+  border-radius: var(--radius);
+}
+.cover__qr:empty { display: none; }
+.cover__qr-img {
+  display: block;
+  width: var(--qr-size, 80px);
+  height: var(--qr-size, 80px);
+  object-fit: contain;
+}
+
+.cover__decor {
+  position: absolute;
+  display: none;
+  pointer-events: none;
+}
+.cover__decor--tl { top: 0; left: 0; width: 40%; height: 40%; background: var(--decor-tl); }
+.cover__decor--tr { top: 0; right: 0; width: 40%; height: 40%; background: var(--decor-tr); }
+.cover__decor--bl { bottom: 0; left: 0; width: 40%; height: 40%; background: var(--decor-bl); }
+.cover__decor--br { bottom: 0; right: 0; width: 40%; height: 40%; background: var(--decor-br); }
+
+.cover__accent-line {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--accent);
+  display: var(--accent-line);
+}
+
+.cover__accent-block {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 24%;
+  background: var(--accent);
+  display: var(--accent-block);
+}
+
+.cover__terminal-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 32px;
+  background: var(--bg-alt);
+  display: var(--terminal-bar);
+  align-items: center;
+  padding: 0 var(--space-2);
+  gap: 6px;
+}
+.cover__terminal-bar span {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--secondary);
+}
+
+.cover__grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(0deg, transparent 0%, var(--secondary) 1px, transparent 1px),
+    linear-gradient(90deg, transparent 0%, var(--secondary) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.05;
+  display: var(--grid-bg);
+}
+
+.cover__seal {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: 64px; height: 64px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  display: var(--seal);
+  align-items: center;
+  justify-content: center;
+  font-size: var(--badge-size);
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+/* === Responsive: per-aspect font sizes, all centered === */
+
+/* 1:1 square (≤ 5/4) */
+@media (max-aspect-ratio: 5/4) {
+  .cover {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: var(--space-3);
+    padding-inline-end: var(--cover-pad-right, var(--space-3));
+  }
+  .cover__title { font-size: var(--title-size-s); max-width: 95%; margin-bottom: var(--space-2); }
+  .cover__content { text-align: center; max-width: 90%; margin-bottom: var(--space-2); }
+  .cover__points { justify-content: center; }
+}
+
+/* 16:9 wide (5/4 ≤ ar ≤ 16/9, width ≥ 1500) — Bilibili only */
+@media (min-aspect-ratio: 5/4) and (max-aspect-ratio: 16/9) and (min-width: 1500px) {
+  .cover {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: calc(var(--space-4) * 1.5) calc(var(--space-4) * 2);
+    padding-inline-end: var(--cover-pad-right, calc(var(--space-4) * 2));
+  }
+  .cover__title { font-size: calc(var(--title-size-w) * 1.5); max-width: 100%; margin-bottom: var(--space-2); line-height: 1.0; }
+  .cover__content { text-align: center; max-width: 75%; font-size: calc(var(--content-size) * 1.1); margin-bottom: 0; }
+  .cover__points { flex-direction: row; flex-wrap: wrap; justify-content: center; max-width: 100%; gap: var(--space-2); margin-top: var(--space-3); }
+  .cover__points li { font-size: calc(var(--content-size) * 1.1); }
+}
+
+/* 1.9:1 OG (width < 1500, 5/4 ≤ ar < 7/3) — Twitter/Weibo */
+@media (min-aspect-ratio: 5/4) and (max-aspect-ratio: 7/3) and (max-width: 1499px) {
+  .cover {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: var(--space-3) calc(var(--space-4) * 1.5);
+    padding-inline-end: var(--cover-pad-right, calc(var(--space-4) * 1.5));
+  }
+  .cover__title { font-size: var(--title-size-c); max-width: 95%; margin-bottom: var(--space-2); }
+  .cover__content { text-align: center; max-width: 80%; margin-bottom: var(--space-2); }
+  .cover__points { flex-direction: row; flex-wrap: wrap; justify-content: center; max-width: 100%; gap: var(--space-2); }
+  .cover__points li { font-size: calc(var(--content-size) - 14px); }
+}
+
+/* 2.35:1 cover (47/20) — WeChat head image */
+@media (aspect-ratio: 47/20) {
+  .cover {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: var(--space-2) calc(var(--space-4) * 1.5);
+    padding-inline-end: var(--cover-pad-right, calc(var(--space-4) * 1.5));
+  }
+  .cover__title { font-size: var(--title-size-c); max-width: 95%; margin-bottom: var(--space-1); }
+  .cover__content { text-align: center; font-size: calc(var(--content-size) * 0.75); max-width: 90%; margin-bottom: 0; }
+  .cover__points { display: none; }
+}
+
+/* very wide (≥ 7/3) */
+@media (min-aspect-ratio: 7/3) {
+  .cover {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: var(--space-2) calc(var(--space-4) * 2);
+    padding-inline-end: var(--cover-pad-right, calc(var(--space-4) * 2));
+  }
+  .cover__title { font-size: var(--title-size-c); max-width: 95%; margin-bottom: var(--space-1); }
+  .cover__content { text-align: center; max-width: 80%; margin-bottom: 0; font-size: calc(var(--content-size) * 0.85); }
+  .cover__points { display: none; }
+}
+
+/* 9:16 tall portrait (≤ 9/16) */
+@media (max-aspect-ratio: 9/16) {
+  .cover {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: var(--space-4);
+    padding-inline-end: var(--cover-pad-right, calc(var(--space-4) * 1.5));
+  }
+  .cover__title { font-size: var(--title-size-v); max-width: 100%; margin-bottom: var(--space-3); }
+  .cover__content { text-align: center; max-width: 90%; margin-bottom: var(--space-3); }
+}
+
+@media (max-height: 500px), (max-width: 400px) {
+  .cover__qr { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ============================================================
+ * LAYOUT PRIMITIVES
+ * Token-driven. Safe in any layout-type file or theme override.
+ * Inspired by lewislulu/html-ppt-skill (MIT).
+ * ============================================================ */
+
+/* === Stack (vertical rhythm) === */
+.stack > * + * { margin-top: var(--space-2); }
+.stack-lg > * + * { margin-top: var(--space-3); }
+
+/* === Row (horizontal flex) === */
+.row { display: flex; gap: var(--space-2); align-items: center; }
+.row.wrap { flex-wrap: wrap; }
+
+/* === Center === */
+.center { display: flex; align-items: center; justify-content: center; text-align: center; }
+
+/* === Grid === */
+.grid { display: grid; gap: var(--space-2); }
+.g2 { grid-template-columns: repeat(2, 1fr); }
+.g3 { grid-template-columns: repeat(3, 1fr); }
+.g4 { grid-template-columns: repeat(4, 1fr); }
+
+/* === Card === */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.card-soft { background: var(--surface-2); border-color: var(--border); }
+.card-outline { background: transparent; border-color: var(--border-strong); box-shadow: none; }
+.card-accent { border-top: 3px solid var(--accent); }
+
+/* === Pill / badge === */
+.pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--surface-2);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+}
+.pill-accent {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+/* === Typography helpers === */
+.kicker { font-size: 14px; font-weight: 600; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+.eyebrow { font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-2); }
+.lede { font-size: 22px; line-height: 1.55; color: var(--text-2); font-weight: 300; }
+.dim { color: var(--text-2); }
+.dim2 { color: var(--text-3); }
+.gradient-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--accent); }
+.serif { font-family: var(--font-serif); }
+.mono { font-family: var(--font-mono); }
+
+/* === Dividers === */
+.divider { height: 1px; background: var(--border); width: 100%; }
+.divider-accent { height: 3px; width: 72px; background: var(--accent); border-radius: 2px; margin: var(--space-2) 0; }
+.divider-accent.center-x { margin-left: auto; margin-right: auto; }
+
+/* === Spacing utilities === */
+.mt-s { margin-top: var(--space-1); }
+.mt-m { margin-top: var(--space-2); }
+.mt-l { margin-top: var(--space-3); }
+.mb-s { margin-bottom: var(--space-1); }
+.mb-m { margin-bottom: var(--space-2); }
+.mb-l { margin-bottom: var(--space-3); }
+.fill { flex: 1; }

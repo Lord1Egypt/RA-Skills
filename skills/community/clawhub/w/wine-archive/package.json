@@ -1,0 +1,29 @@
+{
+  "name": "wine-archive",
+  "version": "0.1.8",
+  "description": "Personal wine archive — tasting history, label storage, and natural-language recall via Claude / OpenClaw",
+  "type": "commonjs",
+  "scripts": {
+    "setup": "zsh setup.sh",
+    "wine:init": "node scripts/wine-service.js init",
+    "wine:add": "node scripts/wine-service.js add",
+    "wine:list": "node scripts/wine-service.js list",
+    "wine:query": "node scripts/wine-service.js query",
+    "wine:recall": "node scripts/wine-service.js recall",
+    "wine:parse-label": "node scripts/wine-service.js parse-label",
+    "wine:remove": "node scripts/wine-service.js remove",
+    "wine:chat": "node scripts/wine-chat.js",
+    "wine:telegram-bridge": "node scripts/wine-telegram-bridge.js",
+    "wine:send-label:telegram": "zsh scripts/wine-send-label-telegram.sh",
+    "wine:export": "node scripts/wine-export.js",
+    "wine:import": "node scripts/wine-import.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.55.0",
+    "better-sqlite3": "^11.8.1"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT"
+}

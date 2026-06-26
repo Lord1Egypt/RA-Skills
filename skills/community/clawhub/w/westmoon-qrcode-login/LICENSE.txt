@@ -1,0 +1,12 @@
+Copyright (c) 2026 Jader
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this skill and associated files, to use, copy, modify, and distribute the
+skill for internal automation and integration purposes, subject to the
+following conditions:
+
+1. This notice shall be included in all copies or substantial portions of the
+   skill.
+2. The skill is provided "as is", without warranty of any kind.
+3. Users are responsible for complying with Westmoon's service terms, privacy
+   requirements, and applicable laws when using this skill.

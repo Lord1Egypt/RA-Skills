@@ -1,35 +1,38 @@
 ---
-name: "微信公众号文章抓取"
-description: "Fetch complete content from WeChat public account articles (mp.weixin.qq.com). Use when extracting content from WeChat official account links, especially whe..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ye-weixin-web-fetch"
-sourceUrl: "https://clawhub.ai/skills/ye-weixin-web-fetch"
+name: weixin-web-fetch
+description: Fetch complete content from WeChat public account articles (mp.weixin.qq.com). Use when extracting content from WeChat official account links, especially when default web fetch gets incomplete content.
 ---
 
-# 微信公众号文章抓取
+# WeChat Web Fetch Skill
 
-> Fetch complete content from WeChat public account articles (mp.weixin.qq.com). Use when extracting content from WeChat official account links, especially whe...
+## Features
+- Specialized for WeChat public account articles (mp.weixin.qq.com)
+- Simulates browser request with proper headers to bypass login restrictions for public articles
+- Extracts clean content and converts to Markdown format
+- Based on Readability for accurate content extraction
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ye-weixin-web-fetch`
-- **Source URL:** [https://clawhub.ai/skills/ye-weixin-web-fetch](https://clawhub.ai/skills/ye-weixin-web-fetch)
+## Requirements
+- Python 3.7+
+- httpx
+- readability-lxml
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/ye-weixin-web-fetch
+{baseDir}/scripts/weixin_fetch.py <url>
+```
+
+## Output
+Returns JSON with:
+- `url`: Original URL
+- `final_url`: Final URL after redirects
+- `title`: Article title
+- `author`: Article author (if found)
+- `content`: Extracted content in Markdown
+- `length`: Content length
+- `truncated`: Whether content was truncated
+
+## Examples
+```bash
+# Fetch a WeChat article
+{baseDir}/scripts/weixin_fetch.py https://mp.weixin.qq.com/s/2o2s3owEDkZziyD0UCeq2w
 ```

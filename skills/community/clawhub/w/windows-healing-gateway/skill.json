@@ -1,0 +1,44 @@
+{
+  "name": "windows-healing-gateway",
+  "version": "1.0.0",
+  "description": "OpenClaw Gateway self-healing system for Windows with Task Scheduler, auto-repair, and monitoring",
+  "author": "Franco",
+  "license": "MIT-0",
+  "homepage": "https://github.com/franco-user/windows-healing-gateway",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/franco-user/windows-healing-gateway.git"
+  },
+  "keywords": [
+    "windows",
+    "healing",
+    "gateway",
+    "monitoring",
+    "auto-repair",
+    "task-scheduler",
+    "openclaw",
+    "skill"
+  ],
+  "tools": {
+    "healing.deploy": {
+      "description": "Deploy the healing system",
+      "command": "powershell -ExecutionPolicy Bypass -File scripts/deploy-windows-healing.ps1"
+    },
+    "healing.status": {
+      "description": "Check healing system status",
+      "command": "schtasks /Query /TN \"OpenClaw\\*\" /FO LIST"
+    },
+    "healing.repair": {
+      "description": "Trigger manual repair",
+      "command": "powershell -ExecutionPolicy Bypass -File scripts/openclaw-fix.ps1"
+    },
+    "healing.logs": {
+      "description": "View healing logs",
+      "command": "Get-Content ~/.openclaw/logs/monitor.log -Tail 20"
+    }
+  },
+  "dependencies": {
+    "os": "Windows 10/11",
+    "powershell": ">=5.1"
+  }
+}

@@ -1,0 +1,18 @@
+interface:
+  display_name: "Emm AI"
+  short_description: "Emm AI mission control — recalls preferences, runs the recurring task cycle, manages outputs and instructions"
+  icon_small: "./assets/emm-small.svg"
+  icon_large: "./assets/emm.png"
+  brand_color: "#3B82F6"
+  default_prompt: "Use Emm AI to recall my preferences and save anything worth remembering from this session. If the mission-control tools (agent_run, output_*, instruction_*) are available, also use them when I ask to do an agent run, run the cycle, drain my tasks, or review my dashboard."
+
+policy:
+  allow_implicit_invocation: true
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "emm"
+      description: "Emm AI MCP server (memory, standing instructions, output wiki)"
+      transport: "streamable_http"
+      url: "https://ai.actingweb.io/mcp"

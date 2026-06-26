@@ -1,0 +1,19 @@
+{
+  "name": "smart-web-scraper",
+  "version": "1.0.0",
+  "description": "智能网页数据采集器 - 自动识别网页结构批量抓取",
+  "main": "scraper.js",
+  "scripts": {
+    "start": "node scraper.js",
+    "test": "node scraper.js --config test-config.json"
+  },
+  "keywords": ["scraper", "crawler", "data", "automation"],
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^21.0.0",
+    "cheerio": "^1.0.0-rc.12",
+    "user-agents": "^2.2.1",
+    "json2csv": "^6.0.0-alpha.2",
+    "xlsx": "^0.18.5"
+  }
+}

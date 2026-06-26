@@ -1,35 +1,174 @@
----
-name: "xianyu-search"
-description: "提供基于预算、成色和信用筛选的闲鱼二手商品搜索，并支持多平台价格比对和推荐。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xianyu-search"
-sourceUrl: "https://clawhub.ai/skills/xianyu-search"
----
+# 闲鱼搜索技能 (xianyu-search)
 
-# xianyu-search
+## 📖 描述
+全网搜索闲鱼二手商品，根据预算、成色、信用等条件筛选推荐，支持多平台比对。
 
-> 提供基于预算、成色和信用筛选的闲鱼二手商品搜索，并支持多平台价格比对和推荐。
+## ⚠️ 重要边界说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xianyu-search`
-- **Source URL:** [https://clawhub.ai/skills/xianyu-search](https://clawhub.ai/skills/xianyu-search)
+**本技能的工作方式**：
+1. **生成搜索链接** - 根据用户输入生成平台搜索 URL
+2. **格式化输出** - 提供结构化的商品推荐列表（需配合浏览器自动化或手动点击）
+3. **购买建议** - 提供验机清单、砍价话术、注意事项
 
-## Overview
+**本技能不执行的操作**：
+- ❌ 不直接抓取闲鱼商品详情（反爬虫限制）
+- ❌ 不执行网络请求或外部 API 调用
+- ❌ 不上报用户数据或搜索历史
+- ❌ 不替代用户点击和决策
 
+**技术边界**：
+- `search.js` - 核心逻辑，可独立运行，生成搜索链接和推荐报告
+- `templates.js` - 纯模板模块，**无外部依赖**，所有配置内联定义
+- `utils.js` - 工具函数，无副作用
+- 各模块边界清晰，可独立测试和使用
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xianyu-search
+## 🔗 相关链接
+| 平台 | 官网链接 | 说明 |
+|------|----------|------|
+| 闲鱼 | [www.goofish.com](https://www.goofish.com) | 阿里巴巴旗下二手交易平台 |
+| 转转 | [www.zhuanzhuan.com](https://www.zhuanzhuan.com) | 58 同城旗下二手平台 |
+| 拍拍 | [www.paipai.com](https://www.paipai.com) | 京东旗下二手平台 |
+| 验货宝 | [yanhuobao.com](https://www.yanhuobao.com) | 第三方验机服务 |
+| ClawHub | [clawhub.ai/skills/xianyu-search](https://clawhub.ai/skills/xianyu-search) | 技能市场页面 |
+
+## 🎯 触发条件
+用户请求搜索二手商品，特别是：
+- "帮我找闲鱼上的 XXX"
+- "搜索二手 XXX 预算 XXX"
+- "闲鱼 XXX 价格"
+- "帮我看看闲鱼上有没有 XXX"
+
+## 使用方法
+
+### 基础搜索
 ```
+搜索闲鱼：MacBook Air M1 2020 预算 2300
+```
+
+### 带参数搜索
+```json
+{
+  "keyword": "MacBook Air M1 2020",
+  "budget": 2300,
+  "budgetMax": 2500,
+  "condition": "9 成新",
+  "batteryMin": 85,
+  "requireNoRepair": true,
+  "requireGoodCredit": true,
+  "platform": "xianyu"
+}
+```
+
+## 参数说明
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| keyword | string | ✅ | 搜索关键词 |
+| budget | number | ✅ | 预算上限（元） |
+| budgetMax | number | ❌ | 最高接受价格（默认=budget+200） |
+| condition | string | ❌ | 成色要求（9 成新/95 新/几乎全新） |
+| batteryMin | number | ❌ | 最低电池健康度%（仅电子产品） |
+| requireNoRepair | boolean | ❌ | 要求无拆修（默认 true） |
+| requireGoodCredit | boolean | ❌ | 要求卖家信用好（默认 true） |
+| platform | string | ❌ | 平台：xianyu/zhuanzhuan/paipai/all（默认 xianyu） |
+| location | string | ❌ | 优先地区（如"北京""上海"） |
+
+## 📤 输出格式
+
+### 完整输出示例
+```markdown
+## 🎯 闲鱼搜索结果：MacBook Air M1
+
+**🔗 搜索页面**：[https://www.goofish.com/search?q=MacBook%20Air%20M1](https://www.goofish.com/search?q=MacBook%20Air%20M1)
+
+### 🏆 预算内推荐（¥2300 以下）
+| 价格 | 配置 | 地区 | 信用 | 亮点 | 商品链接 |
+|------|------|------|------|------|----------|
+| **¥2150** | M1 电池 100% 循环 24 次 | 广东 | 百分百好评 | 电池超新，自用 | [查看商品](https://www.goofish.com/item?id=xxx) |
+| **¥2200** | M1 8+256G 电池 94% | 浙江 | 回复超快 | 企业 MDM 已绕过 | [查看商品](https://www.goofish.com/item?id=xxx) |
+
+### ✅ 预算附近（¥2300-2500）
+| 价格 | 配置 | 地区 | 信用 | 亮点 | 商品链接 |
+|------|------|------|------|------|----------|
+| **¥2350** | M1 8+256G | 四川 | 百分百好评 | 电池 95% | [查看商品](https://www.goofish.com/item?id=xxx) |
+
+### 🏅 最推荐 Top 3
+#### 🥇 首选推荐：¥2150 - 电池最新
+| 项目 | 详情 |
+|------|------|
+| **价格** | ¥2150（预算内省 150） |
+| **配置** | M1 8+256G 深空灰 |
+| **电池** | 健康度 100%，仅循环 24 次 ⭐ |
+| **成色** | 几乎全新 |
+| **信用** | 百分百好评 |
+| **地区** | 广东 |
+| **亮点** | 自用、电池超新、箱说全 |
+| **链接** | [立即查看](https://www.goofish.com/item?id=xxx) |
+
+**推荐理由**：电池状态是同价位最好的，循环次数仅 24 次，说明用得很少。
+
+#### 🥈 性价比之选：¥2299 - 成色好
+| 项目 | 详情 |
+|------|------|
+| **价格** | ¥2299（预算内） |
+| **配置** | M1 8+256G |
+| **电池** | 健康度 86% |
+| **成色** | 很顶，轻微使用痕迹 |
+| **亮点** | 无拆无修，ID 已退 |
+| **链接** | [立即查看](https://www.goofish.com/item?id=xxx) |
+
+#### 🥉 高配之选：¥2488 - 售后好
+| 项目 | 详情 |
+|------|------|
+| **价格** | ¥2488（超预算 188） |
+| **配置** | M1 8+256G |
+| **信用** | 闲鱼认证玩家，回复超快 |
+| **亮点** | 现货 103 台可选，支持验货 |
+| **链接** | [立即查看](https://www.goofish.com/item?id=xxx) |
+
+### ⚠️ 避坑提醒
+| 价格 | 问题 | 原因 |
+|------|------|------|
+| ¥1380 | 无头骑士（下半套） | 没有屏幕，需自备显示器 |
+| ¥2100 | 企业 MDM 机 | 需要绕过，有风险 |
+| ¥2350 | 指纹不可用 | 硬件故障，影响使用 |
+
+### 💡 购买建议
+**验机要点**：
+- [ ] 要求卖家提供电池健康度截图
+- [ ] 视频验机（屏幕、键盘、接口）
+- [ ] 确认无 ID 锁
+- [ ] 检查序列号（官网查询保修）
+
+**注意事项**：
+⚠️ 走平台担保交易，不要直接转账
+⚠️ 优先选择支持验货宝/面交的商品
+
+### 🔗 快速链接
+- [闲鱼首页](https://www.goofish.com)
+- [闲鱼安全中心](https://www.goofish.com/safety)
+- [验货宝服务](https://www.yanhuobao.com)
+- [12315 投诉](https://www.12315.cn)
+```
+
+## ⚠️ 注意事项
+1. **反爬虫限制**：闲鱼有强反爬虫机制，无法直接抓取详情，需用户自行点击链接查看
+2. **价格波动**：二手商品价格波动快，推荐结果仅供参考，建议尽快联系卖家
+3. **验货宝**：建议优先选择支持 [验货宝](https://www.yanhuobao.com) 或面交的商品
+4. **交易安全**：务必走平台担保交易，不要直接转账，保留聊天记录和交易凭证
+5. **信用核查**：优先选择信用极好的卖家，查看卖家历史评价
+
+## 📁 相关文件
+| 文件 | 说明 |
+|------|------|
+| `search.js` | 主搜索脚本，处理搜索逻辑和 URL 生成 |
+| `templates.js` | 输出模板，格式化商品推荐报告 |
+| `utils.js` | 工具函数，参数解析和验证 |
+| `SKILL.md` | 技能配置文件 |
+| `README.md` | 完整使用文档 |
+| `EXAMPLES.md` | 使用示例合集 |
+
+## 🛠️ 相关资源
+- [OpenClaw 文档](https://docs.openclaw.ai)
+- [ClawHub 技能市场](https://clawhub.ai)
+- [技能开发指南](https://docs.openclaw.ai/skills/creating)

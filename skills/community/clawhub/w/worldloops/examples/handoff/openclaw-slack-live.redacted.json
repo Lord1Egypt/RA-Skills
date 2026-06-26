@@ -1,0 +1,11 @@
+{
+  "source": "slack",
+  "sourceType": "message",
+  "externalWrite": false,
+  "text": "[REDACTED] Team member requesting review or decision on open item. Deadline approaching. No response recorded yet.",
+  "observedAt": "2026-05-21T09:00:00.000Z",
+  "summary": "[REDACTED] Slack message requiring review or decision",
+  "metadata": {
+    "note": "Place actual OpenClaw-read payload at .worldloops/inbox/openclaw-slack-live.json before running guard:slack"
+  }
+}

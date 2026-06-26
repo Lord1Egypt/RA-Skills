@@ -1,0 +1,18 @@
+defaults:
+  chunk_size_chars: 1200
+  chunk_overlap_chars: 150
+  top_k_chunks: 8
+  top_k_reply_pairs: 8
+  recency_boost_days: 60
+ranking:
+  prefer_reply_pairs_for_drafting: true
+  prefer_authored_docs_for_background: true
+  recency_weight: 0.2
+  source_weights:
+    gmail_thread: 1.0
+    google_doc: 0.9
+    whatsapp_export: 0.6
+deferred:
+  embedding_model: mlx-community/Qwen2.5-1.5B-Instruct-4bit  # used when embeddings enabled
+  reranker: none  # future: cross-encoder reranking
+  routing_policy: auto  # future: work/personal mode routing

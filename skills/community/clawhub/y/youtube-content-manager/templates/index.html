@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>YouTube内容管理后台</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: "Microsoft YaHei", Arial, sans-serif; 
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+        .tab-container { margin-bottom: 20px; }
+        .tabs { display: flex; border-bottom: 2px solid #eee; }
+        .tab { 
+            padding: 12px 24px; 
+            cursor: pointer; 
+            background-color: #fff; 
+            border: none; 
+            font-size: 16px;
+            margin-right: 4px;
+            border-radius: 8px 8px 0 0;
+        }
+        .tab.active { background-color: #3498db; color: #fff; }
+        .tab-content { background-color: #fff; padding: 30px; border-radius: 0 8px 8px 8px; display: none; }
+        .tab-content.active { display: block; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #34495e; }
+        input, textarea, select { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+            font-size: 14px;
+        }
+        .btn { 
+            background-color: #3498db; 
+            color: #fff; 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        .btn:hover { background-color: #2980b9; }
+        .btn-success { background-color: #27ae60; }
+        .btn-success:hover { background-color: #229954; }
+        .btn-warning { background-color: #f39c12; }
+        .btn-warning:hover { background-color: #e67e22; }
+        .btn-danger { background-color: #e74c3c; }
+        .btn-danger:hover { background-color: #c0392b; }
+        .topics-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .topic-card { 
+            background-color: #f8f9fa; 
+            padding: 16px; 
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        .topic-card.high-score { border-left-color: #27ae60; }
+        .topic-title { font-weight: bold; margin-bottom: 8px; font-size: 16px; }
+        .topic-meta { display: flex; justify-content: space-between; color: #666; font-size: 14px; }
+        .script-content { 
+            background-color: #f8f9fa; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin: 20px 0;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+        .titles-list { list-style: none; margin: 20px 0; }
+        .title-item { 
+            padding: 12px; 
+            background-color: #f8f9fa; 
+            margin-bottom: 8px; 
+            border-radius: 4px;
+        }
+        .title-item.best { border-left: 4px solid #27ae60; background-color: #e8f5e9; }
+        .seo-tag { 
+            display: inline-block; 
+            background-color: #e3f2fd; 
+            color: #1565c0; 
+            padding: 4px 10px; 
+            border-radius: 12px; 
+            margin: 4px; 
+            font-size: 13px;
+        }
+        .thumbnail-preview { 
+            width: 300px; 
+            height: 168px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-direction: column;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .thumbnail-main { font-size: 32px; font-weight: bold; margin-bottom: 8px; }
+        .thumbnail-sub { font-size: 18px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background-color: #f8f9fa; font-weight: bold; }
+        .analysis-item { 
+            background-color: #f8f9fa; 
+            padding: 16px; 
+            margin-bottom: 12px; 
+            border-radius: 8px;
+        }
+        .high-performance { 
+            background-color: #e8f5e9; 
+            border-left: 4px solid #27ae60;
+        }
+        .payment-note {
+            background-color: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .test-mode {
+            background-color: #e8f5e9;
+            padding: 10px;
+            border-radius: 4px;
+            color: #2e7d32;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 YouTube内容管理后台</h1>
+        
+        {% if test_mode %}
+        <div class="test-mode">
+            ✅ 当前处于测试模式，无需真实支付即可使用所有功能
+        </div>
+        {% else %}
+        <div class="payment-note">
+            <strong>💳 支付说明：</strong>每次使用本工具收取 0.001 USDT，请先完成支付验证
+            <br><a href="/pay" class="btn btn-warning" style="margin-top: 10px;">点击支付</a>
+        </div>
+        {% endif %}
+
+        <div class="tab-container">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('topic')">AI选题库</button>
+                <button class="tab" onclick="switchTab('script')">脚本生成</button>
+                <button class="tab" onclick="switchTab('publish')">发布记录</button>
+                <button class="tab" onclick="switchTab('analysis')">数据分析</button>
+            </div>
+
+            <!-- 选题库 -->
+            <div class="tab-content active" id="topic-tab">
+                <div class="form-group">
+                    <label for="niche">请输入内容领域（例如：科技、美食、职场、财经）：</label>
+                    <input type="text" id="niche" placeholder="例如：海外短视频创业">
+                </div>
+                <button class="btn btn-success" onclick="generateTopics()">🔍 生成30个选题</button>
+                
+                <div id="topics-container" style="margin-top: 30px;"></div>
+            </div>
+
+            <!-- 脚本生成 -->
+            <div class="tab-content" id="script-tab">
+                <div class="form-group">
+                    <label>选题：</label>
+                    <input type="text" id="selected-topic" placeholder="请先在选题库选择一个选题" readonly>
+                    <input type="hidden" id="selected-topic-id">
+                </div>
+                <button class="btn btn-success" onclick="generateScript()">📝 生成视频脚本</button>
+                
+                <div id="script-result" style="display: none; margin-top: 30px;">
+                    <h3>📄 视频脚本</h3>
+                    <div class="script-content" id="script-content"></div>
+
+                    <h3>🏷️ 标题选项</h3>
+                    <ul class="titles-list" id="titles-list"></ul>
+
+                    <h3>📝 SEO描述</h3>
+                    <div class="script-content" id="description"></div>
+
+                    <h3>🔖 标签</h3>
+                    <div id="tags-container"></div>
+
+                    <h3>🖼️ 缩略图方案</h3>
+                    <div id="thumbnail-preview"></div>
+                    <div id="thumbnail-suggestion"></div>
+                </div>
+            </div>
+
+            <!-- 发布记录 -->
+            <div class="tab-content" id="publish-tab">
+                <h3>新增发布记录</h3>
+                <div class="form-group">
+                    <label>选题：</label>
+                    <input type="text" id="publish-topic" placeholder="输入选题">
+                </div>
+                <div class="form-group">
+                    <label>标题：</label>
+                    <input type="text" id="publish-title" placeholder="输入视频标题">
+                </div>
+                <div class="form-group">
+                    <label>发布日期：</label>
+                    <input type="date" id="publish-date" value="{{ current_date }}">
+                </div>
+                <div class="form-group">
+                    <label>播放量：</label>
+                    <input type="number" id="publish-views" value="0">
+                </div>
+                <div class="form-group">
+                    <label>CTR(%)：</label>
+                    <input type="number" step="0.1" id="publish-ctr" value="0.0">
+                </div>
+                <div class="form-group">
+                    <label>点赞数：</label>
+                    <input type="number" id="publish-likes" value="0">
+                </div>
+                <div class="form-group">
+                    <label>评论数：</label>
+                    <input type="number" id="publish-comments" value="0">
+                </div>
+                <button class="btn btn-success" onclick="savePublish()">💾 保存记录</button>
+
+                <h3 style="margin-top: 40px;">历史发布记录</h3>
+                <div id="records-table"></div>
+            </div>
+
+            <!-- 数据分析 -->
+            <div class="tab-content" id="analysis-tab">
+                <button class="btn btn-success" onclick="loadAnalysis()">📊 生成数据分析报告</button>
+                <div id="analysis-result" style="margin-top: 30px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 切换标签
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            if (tabName === 'publish') loadRecords();
+        }
+
+        // 生成选题
+        async function generateTopics() {
+            const niche = document.getElementById('niche').value;
+            if (!niche) {
+                alert('请输入内容领域');
+                return;
+            }
+
+            const btn = event.target;
+            btn.disabled = true;
+            btn.textContent = '生成中...';
+
+            try {
+                const res = await fetch('/generate_topics', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `niche=${encodeURIComponent(niche)}`
+                });
+                const data = await res.json();
+                
+                let html = '';
+                data.topics.forEach(topic => {
+                    const highScore = topic.score >= 7 ? 'high-score' : '';
+                    html += `
+                        <div class="topic-card ${highScore}">
+                            <div class="topic-title">${topic.title}</div>
+                            <div class="topic-meta">
+                                <span>难度：${topic.difficulty}/10</span>
+                                <span>流量潜力：${topic.traffic_potential}/10</span>
+                                <span>综合得分：${topic.score.toFixed(1)}</span>
+                            </div>
+                            <button class="btn" style="margin-top: 10px; font-size: 14px; padding: 8px 16px;" 
+                                    onclick="selectTopic('${topic.id}', '${topic.title}')">
+                                选择此选题
+                            </button>
+                        </div>
+                    `;
+                });
+                document.getElementById('topics-container').innerHTML = html;
+            } catch (e) {
+                alert('生成失败，请重试');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '🔍 生成30个选题';
+            }
+        }
+
+        // 选择选题
+        function selectTopic(id, title) {
+            document.getElementById('selected-topic-id').value = id;
+            document.getElementById('selected-topic').value = title;
+            document.getElementById('publish-topic').value = title;
+            switchTab('script');
+        }
+
+        // 生成脚本
+        async function generateScript() {
+            const topicId = document.getElementById('selected-topic-id').value;
+            const topicTitle = document.getElementById('selected-topic').value;
+            if (!topicId || !topicTitle) {
+                alert('请先选择一个选题');
+                return;
+            }
+
+            const btn = event.target;
+            btn.disabled = true;
+            btn.textContent = '生成中...';
+
+            try {
+                const res = await fetch('/generate_script', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `topic_id=${topicId}&topic_title=${encodeURIComponent(topicTitle)}`
+                });
+                const data = await res.json();
+                
+                document.getElementById('script-content').textContent = data.content;
+                
+                let titlesHtml = '';
+                data.titles.forEach(title => {
+                    const bestClass = title.is_best ? 'best' : '';
+                    titlesHtml += `
+                        <li class="title-item ${bestClass}">
+                            ${title.title} 
+                            <span style="color: #27ae60; margin-left: 10px;">SEO得分：${title.seo_score}/100</span>
+                            ${title.is_best ? '<span style="color: #e74c3c; margin-left: 10px;">⭐ 推荐</span>' : ''}
+                        </li>
+                    `;
+                });
+                document.getElementById('titles-list').innerHTML = titlesHtml;
+                
+                document.getElementById('description').textContent = data.description;
+                
+                let tagsHtml = '';
+                data.tags.forEach(tag => {
+                    tagsHtml += `<span class="seo-tag">${tag}</span>`;
+                });
+                document.getElementById('tags-container').innerHTML = tagsHtml;
+                
+                const thumb = data.thumbnail;
+                document.getElementById('thumbnail-preview').innerHTML = `
+                    <div class="thumbnail-preview" style="background-color: ${thumb.color_scheme.bg}; color: ${thumb.color_scheme.text};">
+                        <div class="thumbnail-main">${thumb.main_text}</div>
+                        <div class="thumbnail-sub">${thumb.sub_text}</div>
+                    </div>
+                `;
+                document.getElementById('thumbnail-suggestion').innerHTML = `
+                    <p><strong>配色方案：</strong>背景色 ${thumb.color_scheme.bg}，文字色 ${thumb.color_scheme.text}</p>
+                `;
+                
+                document.getElementById('script-result').style.display = 'block';
+                document.getElementById('publish-title').value = data.titles[0].title;
+            } catch (e) {
+                alert('生成失败，请重试');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '📝 生成视频脚本';
+            }
+        }
+
+        // 保存发布记录
+        async function savePublish() {
+            const data = {
+                topic: document.getElementById('publish-topic').value,
+                title: document.getElementById('publish-title').value,
+                publish_date: document.getElementById('publish-date').value,
+                views: parseInt(document.getElementById('publish-views').value),
+                ctr: parseFloat(document.getElementById('publish-ctr').value),
+                likes: parseInt(document.getElementById('publish-likes').value),
+                comments: parseInt(document.getElementById('publish-comments').value)
+            };
+
+            if (!data.topic || !data.title) {
+                alert('请填写选题和标题');
+                return;
+            }
+
+            try {
+                const res = await fetch('/save_publish', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                if (result.success) {
+                    alert('保存成功');
+                    loadRecords();
+                }
+            } catch (e) {
+                alert('保存失败');
+            }
+        }
+
+        // 加载发布记录
+        async function loadRecords() {
+            try {
+                const res = await fetch('/get_records');
+                const data = await res.json();
+                
+                let html = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>选题</th>
+                                <th>标题</th>
+                                <th>发布日期</th>
+                                <th>播放量</th>
+                                <th>CTR(%)</th>
+                                <th>点赞</th>
+                                <th>评论</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+                data.records.forEach(record => {
+                    html += `
+                        <tr>
+                            <td>${record.topic}</td>
+                            <td>${record.title}</td>
+                            <td>${record.publish_date}</td>
+                            <td>${record.views}</td>
+                            <td>${record.ctr}</td>
+                            <td>${record.likes}</td>
+                            <td>${record.comments}</td>
+                        </tr>
+                    `;
+                });
+                html += '</tbody></table>';
+                document.getElementById('records-table').innerHTML = html;
+            } catch (e) {
+                alert('加载失败');
+            }
+        }
+
+        // 加载数据分析
+        async function loadAnalysis() {
+            const btn = event.target;
+            btn.disabled = true;
+            btn.textContent = '分析中...';
+
+            try {
+                const res = await fetch('/analyze');
+                const data = await res.json();
+                
+                let html = `
+                    <h3>📈 近30天选题表现分析</h3>
+                    <p><strong>总结：</strong>${data.summary}</p>
+                `;
+                
+                data.topic_analysis.forEach(item => {
+                    const highPerf = item.total_views > 10000 ? 'high-performance' : '';
+                    html += `
+                        <div class="analysis-item ${highPerf}">
+                            <h4>${item.topic}</h4>
+                            <p>总播放量：${item.total_views} | 平均CTR：${item.avg_ctr.toFixed(2)}%</p>
+                            <p><strong>建议：</strong>${item.suggestion}</p>
+                        </div>
+                    `;
+                });
+
+                if (data.high_performance_titles.length > 0) {
+                    html += `
+                        <h3 style="margin-top: 30px;">🏆 高流量标题参考</h3>
+                        <ul>
+                            ${data.high_performance_titles.map(title => `<li>${title}</li>`).join('')}
+                        </ul>
+                    `;
+                }
+
+                document.getElementById('analysis-result').innerHTML = html;
+            } catch (e) {
+                alert('分析失败');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '📊 生成数据分析报告';
+            }
+        }
+    </script>
+</body>
+</html>

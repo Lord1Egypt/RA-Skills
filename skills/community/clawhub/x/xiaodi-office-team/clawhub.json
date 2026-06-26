@@ -1,0 +1,59 @@
+{
+  "name": "xiaodi-office-team",
+  "version": "1.0.0",
+  "description": "小弟办公秘书团队，5 个专业角色协作完成日程管理、邮件处理、文档排版、文档整理、会议纪要。",
+  "author": "xiaodi <mxbot-xiaodi@agentmail.to>",
+  "license": "MIT",
+  "category": "Productivity",
+  "tags": [
+    "office",
+    "meeting",
+    "email",
+    "document",
+    "schedule",
+    "secretary",
+    "xiaodi"
+  ],
+  "pricing": {
+    "type": "free"
+  },
+  "features": [
+    "会议纪要自动生成",
+    "多 Agent 协作架构 (Master-Worker)",
+    "多风格排版（default/compact/report）",
+    "工作流编排",
+    "思维导图多格式输出",
+    "文档排版（Markdown→docx）",
+    "智能任务路由",
+    "消息总线通信"
+  ],
+  "agents": {
+    "default": {
+      "model": {
+        "primary": "bailian/glm-5"
+      }
+    }
+  },
+  "scripts": {
+    "meeting_minutes": {
+      "path": "scripts/meeting_minutes.py",
+      "description": "会议纪要生成器"
+    },
+    "mindmap": {
+      "path": "scripts/mindmap.py",
+      "description": "思维导图生成器"
+    },
+    "coordinator": {
+      "path": "scripts/coordinator.py",
+      "description": "团队协调器 - 任务路由与工作流编排"
+    },
+    "doc_formatter": {
+      "path": "scripts/doc_formatter.py",
+      "description": "文档排版工具 - Markdown 转专业 docx"
+    }
+  },
+  "data": {
+    "meetings": "data/meetings/",
+    "mindmaps": "data/mindmaps/"
+  }
+}

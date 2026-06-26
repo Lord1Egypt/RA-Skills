@@ -1,0 +1,45 @@
+version: "1"
+defaults:
+  trials: 5
+  timeout: 300
+  threshold: 0.8
+
+skill: weryai-podcast-generator
+trigger_tests:
+  - id: explicit-voice-list
+    should_trigger: true
+    prompt: "Use the weryai-podcast-generator skill to list the English podcast speakers available on WeryAI."
+  - id: implicit-full-podcast
+    should_trigger: true
+    prompt: "Generate a short English two-speaker podcast about AI in healthcare and wait until the audio is ready."
+  - id: implicit-full-podcast-timeout
+    should_trigger: true
+    prompt: "Generate an English podcast but if it takes longer than 30 minutes, gracefully time out."
+  - id: explicit-text-only
+    should_trigger: true
+    prompt: "Submit podcast text generation for this topic and stop after creating the task."
+  - id: explicit-audio-only
+    should_trigger: true
+    prompt: "Generate podcast audio for this existing WeryAI podcast task ID."
+  - id: negative-music-only
+    should_trigger: false
+    prompt: "Generate an instrumental ambient track with no spoken podcast content."
+
+outcome_tests:
+  - id: package-structure
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "scripts/speakers.js"
+      - file_exists: "scripts/submit-text.js"
+      - file_exists: "scripts/generate-audio.js"
+      - file_exists: "scripts/status.js"
+      - file_exists: "scripts/wait.js"
+      - file_exists: "references/podcast-api.md"
+  - id: skill-doc-quality
+    type: llm_rubric
+    rubric: |
+      Scope fidelity (0-0.25): Does the skill stay focused on WeryAI podcast generation rather than generic chat or music-only generation?
+      Workflow clarity (0-0.25): Does it clearly explain speaker lookup, text generation, audio generation, and the preferred bounded wait flow?
+      Constraint honesty (0-0.25): Does it clearly state cost, explicit speaker requirements, and the debate-mode exactly-two-speakers rule?
+      API fidelity & delivery (0-0.25): Are the documented fields faithful to the WeryAI podcast APIs, and does it enforce user-visible audio delivery, request parameter summary, and timeout fallbacks that offer internal status checks without raw commands?

@@ -1,0 +1,5 @@
+{
+  "app_id": "your_app_id_here",
+  "app_secret": "your_app_secret_here",
+  "base_dir": "your_base_directory_here"
+}

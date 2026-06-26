@@ -1,0 +1,21 @@
+{
+  "name": "X Research Kit",
+  "tagline": "Extract metadata, text, and engagement stats from any X/Twitter post — no API key needed",
+  "description": "A content research toolkit for X (Twitter). Extract tweet text, engagement stats, media info, user timelines, and X Spaces metadata — all powered by yt-dlp and gallery-dl locally. Perfect for social media analysts, content creators, and researchers who need structured X/Twitter data.",
+  "category": "data",
+  "tags": [
+    "x",
+    "twitter",
+    "social-media",
+    "research",
+    "metadata",
+    "tweets",
+    "content-analysis",
+    "yt-dlp"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/xuya227939/x-research-kit/issues",
+  "homepage": "https://snapvee.com"
+}

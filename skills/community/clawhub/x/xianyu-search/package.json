@@ -1,0 +1,24 @@
+{
+  "name": "xianyu-search-skill",
+  "version": "1.0.2",
+  "description": "闲鱼搜索技能 - 搜索二手商品，智能筛选推荐（v1.0.2 修复模块依赖问题）",
+  "main": "search.js",
+  "scripts": {
+    "test": "node test.js",
+    "search": "node cli.js"
+  },
+  "keywords": [
+    "xianyu",
+    "闲鱼",
+    "二手",
+    "搜索",
+    "openclaw",
+    "skill"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/tree/main/xianyu-search"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/allergies.json",
+  "title": "AllergyRecords",
+  "description": "Data structure definition for allergy history records",
+  "type": "object",
+  "properties": {
+    "allergies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier"
+          },
+          "allergen": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Allergen name"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["drug", "food", "environmental", "other"],
+                "description": "Allergy type code"
+              },
+              "type_category": {
+                "type": "string",
+                "description": "Allergy type category name"
+              },
+              "synonyms": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "List of synonyms"
+              }
+            }
+          },
+          "severity": {
+            "type": "object",
+            "properties": {
+              "level": {
+                "type": "string",
+                "enum": ["mild", "moderate", "severe", "anaphylaxis"],
+                "description": "Severity level code"
+              },
+              "level_code": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 4,
+                "description": "Severity level (1-4)"
+              },
+              "description": {
+                "type": "string",
+                "description": "Severity description"
+              }
+            }
+          },
+          "reactions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "reaction": {"type": "string"},
+                "onset_time": {"type": "string"},
+                "severity": {"type": "string"}
+              }
+            }
+          },
+          "discovery": {
+            "type": "object",
+            "properties": {
+              "date": {"type": "string", "format": "date"},
+              "age_at_discovery": {"type": "string"},
+              "circumstances": {"type": "string"}
+            }
+          },
+          "confirmation": {
+            "type": "object",
+            "properties": {
+              "method": {"type": "string"},
+              "method_name": {"type": "string"},
+              "confirmed_by": {"type": "string"}
+            }
+          },
+          "current_status": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": ["active", "resolved"]
+              },
+              "status_name": {"type": "string"}
+            }
+          },
+          "management": {
+            "type": "object",
+            "properties": {
+              "avoidance_strategy": {"type": "string"},
+              "emergency_plan": {"type": "string"},
+              "carries_epipen": {"type": "boolean"},
+              "medical_alert": {"type": "boolean"}
+            }
+          },
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_allergies": {"type": "integer"},
+        "active_allergies": {"type": "integer"},
+        "drug_allergies": {"type": "integer"},
+        "food_allergies": {"type": "integer"},
+        "environmental_allergies": {"type": "integer"},
+        "other_allergies": {"type": "integer"},
+        "severe_count": {"type": "integer"},
+        "anaphylaxis_count": {"type": "integer"},
+        "last_updated": {"type": "string", "format": "date-time"}
+      }
+    }
+  }
+}

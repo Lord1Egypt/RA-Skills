@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1350">
+<title>结尾页 v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1350px; background: #FFF8F0; font-family: 'Noto Sans SC', sans-serif; overflow: hidden; position: relative; }
+.bg-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(180,140,100,0.06) 28px, rgba(180,140,100,0.06) 29px); }
+.tape { position: absolute; width: 130px; height: 34px; background: rgba(255,230,150,0.8); transform: rotate(-3deg); box-shadow: 0 2px 5px rgba(0,0,0,0.12); }
+.tape-1 { top: 22px; left: 28px; }
+.tape-2 { top: 22px; right: 28px; transform: rotate(3deg); }
+.hero-title { position: absolute; top: 70px; left: 50%; transform: translateX(-50%); font-size: 60px; font-weight: 900; color: #3D2010; font-family: 'Ma Shan Zheng', cursive; letter-spacing: 6px; white-space: nowrap; }
+.divider { position: absolute; top: 150px; left: 50%; transform: translateX(-50%); width: 220px; height: 4px; background: linear-gradient(90deg, transparent, #D4853D, transparent); }
+.tips-section { position: absolute; top: 190px; left: 50px; right: 50px; background: #FFFDF5; border: 3px dashed #D4A574; border-radius: 16px; padding: 24px 30px; }
+.tips-title { font-size: 30px; font-weight: 900; color: #3D2010; margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+.tip-item { display: flex; align-items: flex-start; margin-bottom: 16px; font-size: 25px; color: #3D2010; line-height: 1.7; }
+.tip-icon { font-size: 28px; margin-right: 14px; flex-shrink: 0; }
+.outro-box { position: absolute; top: 630px; left: 50px; right: 50px; background: linear-gradient(135deg, #FFE5E5, #FFF0E8); border-radius: 16px; padding: 30px 36px; text-align: center; }
+.outro-text { font-size: 32px; color: #3D2010; line-height: 1.9; font-family: 'Ma Shan Zheng', cursive; }
+.emoji-row { display: flex; justify-content: center; gap: 36px; font-size: 58px; margin-top: 18px; }
+.cta-bar { position: absolute; bottom: 55px; left: 50px; right: 50px; background: #E84040; border-radius: 16px; padding: 22px 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(232,64,64,0.4); }
+.cta-text { font-size: 38px; font-weight: 900; color: white; letter-spacing: 4px; text-align: center; }
+.tag-row { display: flex; justify-content: center; gap: 14px; position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); }
+.tag { background: #F5E6D3; border: 2px solid #D4A574; border-radius: 20px; padding: 6px 18px; font-size: 19px; color: #5C3010; }
+</style>
+</head>
+<body>
+<div class="bg-texture"></div>
+<div class="tape tape-1"></div>
+<div class="tape tape-2"></div>
+<div class="hero-title">🔧 打包小技巧</div>
+<div class="divider"></div>
+
+<div class="tips-section">
+  <div class="tips-title">📦 三个原则</div>
+  <div class="tip-item"><span class="tip-icon">✓</span><span><b>分类装袋：</b>证件 / 宝宝 / 妈妈，分开装，紧急时一目了然</span></div>
+  <div class="tip-item"><span class="tip-icon">✓</span><span><b>产房包单独放：</b>宝宝1件半背衣 + 1片NB码纸尿裤 + 1条包被</span></div>
+  <div class="tip-item"><span class="tip-icon">✓</span><span><b>清单提前给老公看：</b>发动时他才知道东西放在哪里</span></div>
+</div>
+
+<div class="outro-box">
+  <div class="outro-text">
+    这份清单 30+ 种物品<br>
+    住院几天完全够用<br>
+    <b>精简但不将就</b>，祝顺利迎接宝宝 👶
+  </div>
+  <div class="emoji-row"><span>🤰</span><span>👶</span><span>🍼</span></div>
+</div>
+
+<div class="cta-bar">
+  <div class="cta-text">收藏起来让老公也看看～</div>
+</div>
+
+<div class="tag-row">
+  <div class="tag">#待产包清单</div>
+  <div class="tag">#孕妈必备</div>
+  <div class="tag">#新生儿好物</div>
+</div>
+</body>
+</html>

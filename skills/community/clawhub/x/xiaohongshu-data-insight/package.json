@@ -1,0 +1,30 @@
+{
+  "name": "xiaohongshu-data-insight",
+  "version": "1.0.0",
+  "description": "小红书数据洞察大师｜支持关键词搜索/笔记详情获取，无需登录您的小红书账号，可获取小红书笔记数据，轻松达成爆款挖掘、竞品分析、趋势洞察等",
+  "keywords": [
+    "小红书",
+    "爆款笔记",
+    "市场调研",
+    "数据挖掘",
+    "趋势监控",
+    "竞品分析",
+    "KOL营销",
+    "流量增长"
+  ],
+  "homepage": "https://github.com/um-why/xiaohongshu-openclaw-skill#readme",
+  "bugs": {
+    "url": "https://github.com/um-why/xiaohongshu-openclaw-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/xiaohongshu-openclaw-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "main": "src/xiaohongshu/search-cli.js",
+  "scripts": {
+    "search": "node src/xiaohongshu/search-cli.js",
+    "detail": "node src/xiaohongshu/detail-cli.js"
+  }
+}

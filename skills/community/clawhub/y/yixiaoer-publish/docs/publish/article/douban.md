@@ -1,0 +1,40 @@
+# 豆瓣文章发布参数 (DouBan Article)
+
+本平台文章发布通过 `contentPublishForm` 承载以下参数。
+
+## 1. contentPublishForm 参数定义
+
+| 字段名 | 类型 | 必填 | 说明 | 默认值 |
+| :--- | :--- | :--- | :--- | :--- |
+| `formType` | `string` | **是** | 固定值: `task` | `task` |
+| `title` | `string` | **是** | 文章标题 | - |
+| `type` | `number` | **是** | 创作类型: 0-非原创, 1-申明原创 | - |
+| `tags` | `string[]` | **是** | 标签 | - |
+
+## 2. Payload 完整示例
+
+```json
+{
+  "action": "publish",
+  "publishType": "article",
+  "platforms": ["豆瓣"],
+  "publishArgs": {
+    "content": "<h1>文章标题</h1><p>正文内容...</p>",
+    "accountForms": [
+      {
+        "platformAccountId": "acc_db_001",
+        "contentPublishForm": {
+          "formType": "task",
+          "title": "这是文章标题",
+          "type": 1,
+          "tags": ["影评", "生活"]
+        }
+      }
+    ]
+  }
+}
+```
+
+## 4. DTO 参考
+- 后端类: `DouBanArticleForm`
+- 文件路径: `apps/server-api/packages/yxr-open-platform/src/models/platform/douban.dto.ts`

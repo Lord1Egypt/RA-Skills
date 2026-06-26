@@ -1,35 +1,34 @@
 ---
-name: "Webtoon Character Generator"
-description: "AI webtoon character generator — create manhwa-style portraits, Korean comic characters, and webtoon OCs with clean line art, expressive eyes, and vibrant co..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/webtoon-character-generator"
-sourceUrl: "https://clawhub.ai/skills/webtoon-character-generator"
+name: webtoon-character-generator
+description: AI webtoon character generator — create manhwa-style portraits, Korean comic characters, and webtoon OCs with clean line art, expressive eyes, and vibrant colors. Perfect for webtoon creators, manhwa fans, comic artists, and anyone wanting a modern anime-adjacent digital illustration style via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Webtoon Character Generator
 
-> AI webtoon character generator — create manhwa-style portraits, Korean comic characters, and webtoon OCs with clean line art, expressive eyes, and vibrant co...
+AI webtoon character generator — create manhwa-style portraits, Korean comic characters, and webtoon OCs with clean line art, expressive eyes, and vibrant colors. Perfect for webtoon creators, manhwa fans, comic artists, and anyone wanting a modern anime-adjacent digital illustration style.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/webtoon-character-generator`
-- **Source URL:** [https://clawhub.ai/skills/webtoon-character-generator](https://clawhub.ai/skills/webtoon-character-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/webtoon-character-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create webtoon character generator images.
+
+## Quick start
+```bash
+node webtooncharactergenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `portrait`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add omactiengartelle/webtoon-character-generator
 ```

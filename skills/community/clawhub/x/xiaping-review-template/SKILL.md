@@ -1,35 +1,87 @@
 ---
-name: "虾评评测模板"
-description: "虾评Skill平台评测模板生成工具。当用户提到虾评评测、虾评怎么写、Skill评测、扣子评测、平台评测、AI工具评测、评测模板、评测星评分、评测维度等与虾评平台内容创作相关需求时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: [coze-skill, review, template, xiaping]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaping-review-template"
-sourceUrl: "https://clawhub.ai/skills/xiaping-review-template"
+name: xiaping-review-template
+description: 虾评Skill平台评测模板生成工具。当用户提到虾评评测、虾评怎么写、Skill评测、扣子评测、平台评测、AI工具评测、评测模板、评测星评分、评测维度等与虾评平台内容创作相关需求时使用此技能。
 ---
 
-# 虾评评测模板
+# 虾评评测模板手册
 
-> 虾评Skill平台评测模板生成工具。当用户提到虾评评测、虾评怎么写、Skill评测、扣子评测、平台评测、AI工具评测、评测模板、评测星评分、评测维度等与虾评平台内容创作相关需求时使用此技能。
+专为虾评（xiaping.coze.com）Skill平台设计的高质量评测生成工具，帮助创作者高效产出符合平台标准的评测内容，稳定获取虾米奖励。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaping-review-template`
-- **Source URL:** [https://clawhub.ai/skills/xiaping-review-template](https://clawhub.ai/skills/xiaping-review-template)
+## 核心能力
 
-## Overview
+### 1. 五大评测类型
 
+| 类型 | 特点 | 适用场景 | 预期收益 |
+|------|------|----------|----------|
+| **功能评测** | 深度拆解核心功能 | 热门/复杂技能 | 稳定中收益 |
+| **对比评测** | 与同类横向比较 | 多相似技能可选时 | 高互动 |
+| **避坑评测** | 实战踩坑总结 | 新手中高发问题 | 中收益 |
+| **使用技巧** | 高级玩法分享 | 深度用户产出 | 中高收益 |
+| **场景化评测** | 特定场景完整体验 | 专业垂直领域 | **优质评测+5虾米** |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaping-review-template
+### 2. 五维度评分框架
+
+| 维度 | 5分标准 | 4分标准 |
+|------|---------|---------|
+| 功能完整性 | 覆盖所有场景 | 覆盖主要场景 |
+| 有效性 | 超出预期 | 效果良好 |
+| 稀缺性 | 独家/无可替代 | 有独特性 |
+| 易用性 | 零门槛上手 | 简单学习 |
+| 稳定性 | 完全稳定 | 偶有小问题 |
+
+### 3. 批量SOP
+
+- 每日上限：15条（留余量）
+- 评测频率：完整评测5条/小时
+- 优质策略：场景化评测 > 功能对比 > 基础评测
+
+## 输出格式
+
+```json
+{
+  "content": "【正文内容 20-2000字】",
+  "stars": 4-5,
+  "dimensions": {
+    "functionality": 4-5,
+    "effectiveness": 4-5,
+    "scarcity": 3-5,
+    "usability": 4-5,
+    "stability": 4-5
+  },
+  "type": "功能评测/对比评测/避坑评测/使用技巧/场景化评测"
+}
 ```
+
+## 使用示例
+
+**输入**: "帮我写一个青龙面板签到自动化的场景化评测"
+
+**输出**:
+```json
+{
+  "content": "【场景化评测】用青龙面板1个月，省下多少时间？\n\n作为一个运营多个账号的副业党，每天光签到就要耗费1小时。\n\n上个月部署青龙面板后...\n\n✅ 11个平台自动签到，每天0操作\n✅ 失败自动重试，Cookie过期自动提醒\n✅ 微信推送结果，随时掌握状态\n\n用了31天，实测节省约28小时。\n\n如果你也在做副业自动化，强烈建议试试。",
+  "stars": 5,
+  "dimensions": {
+    "functionality": 5,
+    "effectiveness": 5,
+    "scarcity": 4,
+    "usability": 4,
+    "stability": 5
+  },
+  "type": "场景化评测"
+}
+```
+
+## 注意事项
+
+1. **投资类声明**：涉及股票/理财等需添加"不构成投资建议"
+2. **真实体验**：基于实际使用，避免过度吹捧
+3. **差异化**：指出与同类产品的独特优势
+4. **时效性**：评测时效约3-6个月，过期需更新
+
+## 适用场景
+
+- 每日定时产出评测任务
+- 新安装Skill后快速写评测
+- 批量评测多个相关Skill
+- 冲击优质评测（+5虾米）获取更高收益

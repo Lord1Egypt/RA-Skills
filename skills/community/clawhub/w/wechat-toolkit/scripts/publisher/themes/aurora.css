@@ -1,0 +1,136 @@
+:root {
+  --primary-color: #0f766e;
+  --secondary-color: #2563eb;
+  --text-color: #1f2937;
+  --muted-color: #6b7280;
+  --surface-color: #f8fafc;
+  --quote-bg: #ecfeff;
+  --inline-code-bg: #eff6ff;
+}
+
+#wenyan {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--text-color);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+#wenyan p,
+#wenyan ul,
+#wenyan ol {
+  margin: 1em 0;
+}
+
+#wenyan a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(37, 99, 235, 0.35);
+}
+
+#wenyan strong {
+  color: var(--primary-color);
+}
+
+#wenyan h1,
+#wenyan h2,
+#wenyan h3,
+#wenyan h4,
+#wenyan h5,
+#wenyan h6 {
+  margin: 1.25em 0 0.9em;
+  color: #0f172a;
+}
+
+#wenyan h1 {
+  text-align: center;
+  font-size: 1.7em;
+}
+
+#wenyan h1 span {
+  color: #0f172a;
+}
+
+#wenyan h2 {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 1.25em;
+  color: #ffffff;
+  background: linear-gradient(90deg, #0f766e 0%, #2563eb 100%);
+  box-shadow: 0 10px 20px rgba(15, 118, 110, 0.15);
+}
+
+#wenyan h3 {
+  padding-left: 12px;
+  border-left: 4px solid var(--primary-color);
+  font-size: 1.12em;
+}
+
+#wenyan blockquote {
+  margin: 1.2em 0;
+  padding: 14px 18px;
+  border-left: 4px solid var(--primary-color);
+  border-radius: 0 14px 14px 0;
+  background: var(--quote-bg);
+  color: #0f172a;
+}
+
+#wenyan p code,
+#wenyan li code {
+  padding: 2px 6px;
+  margin: 0 2px;
+  border-radius: 6px;
+  color: var(--secondary-color);
+  background: var(--inline-code-bg);
+  font-size: 0.88em;
+}
+
+#wenyan pre {
+  margin: 1.1em 0;
+  padding: 0.6em;
+  border-radius: 16px;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+}
+
+#wenyan img {
+  display: block;
+  max-width: 100%;
+  margin: 1.2em auto;
+  border-radius: 18px;
+}
+
+#wenyan table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.4em 0;
+  overflow: hidden;
+  border-radius: 12px;
+  table-layout: fixed;
+}
+
+#wenyan table th,
+#wenyan table td {
+  padding: 10px 12px;
+  border: 1px solid #dbeafe;
+  word-break: break-all;
+}
+
+#wenyan table th {
+  color: #ffffff;
+  background: linear-gradient(90deg, #0f766e 0%, #2563eb 100%);
+}
+
+#wenyan table tr:nth-child(odd) {
+  background: #f8fafc;
+}
+
+#wenyan hr {
+  border: 0;
+  height: 1px;
+  margin: 1.6em 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(37, 99, 235, 0.5) 50%, transparent 100%);
+}
+
+#wenyan .footnote {
+  color: var(--secondary-color);
+}

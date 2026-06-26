@@ -1,35 +1,240 @@
 ---
-name: "Xhs Writer"
-description: "小红书内容创作套件，离线生成爆款标题、正文、话题、评论和多卡图片Markdown，全方位支持多类型主题。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xhs-writer"
-sourceUrl: "https://clawhub.ai/skills/xhs-writer"
+name: xhs-writer
+description: 小红书完整内容创作套件。Use when the user wants to create a Xiaohongshu (小红书/REDnote) post from scratch. Generates the full publishing package in one pass: viral title + body copy + hashtags + first-comment hook + multi-card image Markdown with dynamic style parameters. Covers tech/AI, knowledge, lifestyle, travel, and general topics. Fully offline — no browser, no API, no cookies needed. Pure content creation.
+version: 1.0.0
+license: MIT-0
+metadata:
+  openclaw:
+    emoji: "📕"
 ---
 
-# Xhs Writer
+# 小红书内容创作套件 XHS Writer
 
-> 小红书内容创作套件，离线生成爆款标题、正文、话题、评论和多卡图片Markdown，全方位支持多类型主题。
+从话题到完整发布套件，一次生成全部内容。完全离线，不依赖任何外部工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xhs-writer`
-- **Source URL:** [https://clawhub.ai/skills/xhs-writer](https://clawhub.ai/skills/xhs-writer)
+- 爆款写作公式 → `references/copywriting.md`
+- 话题标签库 → `references/tags.md`
+- 动态样式系统 → `references/styles.md`
 
-## Overview
+## 触发时机
 
+- "帮我写一篇关于 XX 的小红书"
+- "我要发一篇 XX 话题的小红书，帮我生成完整内容"
+- "把这段内容改写成小红书风格"
+- 用户给出主题/关键词/草稿，需要完整的发布套件
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xhs-writer
+---
+
+## 输出结构（每次必须完整输出以下全部模块）
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📌 标题
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+（直接可复制粘贴使用）
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📝 正文描述
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+（图片下方文字，含话题标签）
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💬 评论区首条
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+（发布后立即置顶）
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🖼️ 图片卡片 Markdown
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+（多张卡片，--- 分隔，用于图片渲染）
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎨 样式参数
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+（主题 + 本次动态变量值）
+```
+
+---
+
+## Step 1：判断内容类型
+
+```
+含 AI/模型/工具/代码/开发/编程  → TECH
+含 方法/技巧/学习/成长/效率     → KNOWLEDGE
+含 穿搭/美食/护肤/家居/健身     → LIFESTYLE
+含 旅行/打卡/探店/景点/民宿     → TRAVEL
+无法明确判断                    → GENERAL
+                                  输出前先向用户确认方向
+```
+
+---
+
+## Step 2：生成标题
+
+从 `references/copywriting.md` 的对应类型中选取公式。
+
+每次根据内容特点，从以下五个角度中选择最匹配的一个，并在输出末尾标注本次使用的角度（防止连续使用同一角度）：
+
+```
+角度A【反差冲击】  把两个反差感强的词放在一起
+角度B【身份共鸣】  让目标受众看到自己，产生"说的就是我"感
+角度C【悬念缺口】  制造信息缺口，让人忍不住想看完
+角度D【具体数字】  数字带来可信度和可预期感
+角度E【结果前置】  把最吸引人的结果放在最前面
+```
+
+标题规范：
+- 20-25字符（含emoji），emoji 1-2个
+- 禁用词：干货、必看、收藏、超实用、良心、绝绝子、yyds、震惊（已失效）
+- 读完标题要有"这说的是我"或"这是什么"的感觉
+
+---
+
+## Step 3：生成正文描述
+
+**结构模板：**
+
+```
+第一行（钩子）：
+  不超过15字，必须让人想继续看
+  可以是：反常识结论 / 场景化问题 / 强共鸣陈述
+
+主体（3-5段）：
+  每段开头用 emoji 做视觉锚点
+  每段不超过4行
+  口语化，像朋友聊天，不像公众号推文
+  每个要点只说一件事，说清楚
+
+收尾（2-3行）：
+  总结升华或态度表达
+  以互动引导结尾：提问 or 邀请分享
+
+话题标签（紧跟正文末尾）：
+  5-8个，按 references/tags.md 规则选取
+```
+
+**写作红线：**
+```
+❌ 不用"首先/其次/最后"等正式连接词
+❌ 不用"干货满满/建议收藏/一定要看"等失效话术
+❌ 不超过800字
+❌ 不每篇都是"X个技巧"列表结构，要有变化
+❌ 不抄袭任何现有 skill 的文案模板
+```
+
+---
+
+## Step 4：生成评论区首条
+
+发布后立即置顶，目的是引导早期互动，提升笔记权重。
+
+根据内容类型选择策略：
+```
+TECH/KNOWLEDGE → 策略B（补充信息）或策略A（提问互动）
+LIFESTYLE      → 策略A（提问互动）
+TRAVEL         → 策略C（实用追问）
+```
+
+三种策略：
+```
+策略A【提问互动】
+  抛出一个与内容相关的开放问题
+  例："你们现在在用哪款 AI 工具？评论区告诉我～"
+
+策略B【补充信息】
+  图片没放下的重要内容，增加笔记价值
+  例："补充几个没放进图里的点：① ... ② ... ③ ..."
+
+策略C【实用追问】
+  预测读者最想追问的问题，主动回答
+  例："很多人会问XX，这里统一回答一下..."
+```
+
+---
+
+## Step 5：生成图片卡片 Markdown
+
+**卡片数量：**
+```
+内容篇幅少  → 1封面 + 1-2正文卡片（共2-3张）
+内容篇幅中  → 1封面 + 3-4正文卡片（共4-5张）
+内容篇幅多  → 1封面 + 5-6正文卡片（共6-7张，最多不超过9张）
+```
+
+**封面卡片格式：**
+```markdown
+# [核心关键词，5字以内]
+
+## [副标题，补充说明，10字以内]
+
+> [一句话钩子，制造读下去的理由]
+```
+
+**正文卡片格式：**
+```markdown
+---
+
+### [本卡片核心观点，emoji开头]
+
+[3-5行正文，聚焦单一观点，不分散]
+
+- [如需要列表，每条不超过2行]
+- [重点词用**加粗**]
+
+[可选：底部加一句过渡语引导看下一张]
+```
+
+**最后一张卡片（结尾卡）：**
+```markdown
+---
+
+### 总结一下 💡
+
+[1-3行总结，升华主题]
+
+**[有记忆点的金句，可以单独截图传播]**
+
+> 关注我，下次还有更多 [垂类方向] 内容 🌟
+```
+
+---
+
+## Step 6：输出样式参数
+
+从 `references/styles.md` 选取主题并生成本次的动态变量值。
+
+选取逻辑：
+```
+TECH       → 优先：tech-minimal / terminal / neo-grid
+KNOWLEDGE  → 优先：warm-paper / editorial / ink-wash
+LIFESTYLE  → 优先：pastel-bloom / botanical / soft-gradient
+TRAVEL     → 优先：golden-hour / film-grain / retro-postcard
+GENERAL    → 根据情绪基调自由选取，不重复上次使用的主题
+```
+
+输出格式：
+```
+主题：[theme-name]
+主色：[hex值，来自styles.md的本次随机选取]
+强调色：[hex值]
+字体风格：[来自styles.md的字体组合]
+分页模式：[separator / auto-split / dynamic]
+备注：[如有特殊参数说明]
+```
+
+---
+
+## 质量自检清单
+
+输出前对照检查，全部通过再输出：
+
+```
+□ 标题是否使用了禁用词？
+□ 正文第一行是否足够有钩子感？
+□ 每段是否都超过4行（如超过，拆分）？
+□ 话题标签是否5-8个？
+□ 评论区首条是否与正文互补而不是重复？
+□ 图片卡片内容与正文描述是否有差异（不能完全相同）？
+□ 本次标题角度是否与上次不同？
+□ 样式主题是否与上次不同？
 ```

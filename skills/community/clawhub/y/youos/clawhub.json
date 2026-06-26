@@ -1,0 +1,39 @@
+{
+  "name": "youos",
+  "version": "0.2.0b20",
+  "displayName": "YouOS \u2014 Personal Email Copilot",
+  "description": "Learns your writing style from Gmail/Docs/WhatsApp and drafts replies in your voice — by default on a local model fine-tuned on you (LoRA, served warm on Apple Silicon), self-improving nightly. Draft from the web UI or inside Gmail via the browser extension. The cloud is only a cold-start/fallback and can be disabled for strict local-only mode.",
+  "author": "DrBaher",
+  "homepage": "https://github.com/DrBaher/youos",
+  "repository": "https://github.com/DrBaher/youos",
+  "category": "productivity",
+  "tags": ["email", "drafting", "personal-ai", "local-model", "lora", "self-improving", "privacy", "apple-silicon", "gmail"],
+  "requires": {
+    "bins": ["gog", "python3"],
+    "platform": "darwin",
+    "arch": "arm64",
+    "minRam": "8GB"
+  },
+  "runtime": {
+    "packageType": "application",
+    "execution": "local-python",
+    "install": {
+      "kind": "manual",
+      "steps": [
+        "./scripts/install.sh    # creates .venv, installs YouOS (+ MLX on Apple Silicon), runs the doctor",
+        "source .venv/bin/activate",
+        "youos setup             # guided first-run: identity, ingestion, style analysis"
+      ]
+    }
+  },
+  "credentials": {
+    "required": [
+      "A Google ingestion backend for Gmail/Docs (ingestion.google_backend): gog CLI (default), Google's gws CLI, or the native Google-API backend (youos[google] extra + OAuth)"
+    ],
+    "optional": [
+      "Claude/API credentials only if external fallback is enabled"
+    ]
+  },
+  "emoji": "\u2709\ufe0f",
+  "license": "MIT"
+}

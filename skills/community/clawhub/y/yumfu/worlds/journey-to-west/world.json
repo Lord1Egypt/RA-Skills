@@ -1,0 +1,839 @@
+{
+  "world_id": "journey-to-west",
+  "name": "西游记",
+  "name_en": "Journey to the West",
+  "genre": "mythological_adventure",
+  "era": "唐朝 · 贞观年间（约627-649 AD）",
+  "default_language": "zh",
+  "supported_languages": [
+    "zh",
+    "en"
+  ],
+  "status": "playable",
+  "age_rating": "All Ages (10+)",
+  "themes": [
+    "修炼成仙",
+    "正邪之争",
+    "降妖除魔",
+    "权力与信仰",
+    "忠诚与背叛",
+    "自由与约束"
+  ],
+  "description": "大唐贞观年间，唐太宗派遣高僧唐三藏西天取经。一路上妖魔鬼怪，险阻重重，幸有齐天大圣孙悟空、天蓬元帅猪八戒、卷帘大将沙悟净护法。但这片天地，并不只属于取经队伍——玉皇大帝的天庭、如来佛祖的西天、各路妖王的洞府、女儿国的温柔陷阱……每一方势力都有自己的故事。",
+  "main_questline": {
+    "main_objective": "围绕取经大业、三界秩序与个人修行展开自己的命运线，并决定你是在成全西行、阻挠西行，还是借这场天命布局改写三界格局。",
+    "current_major_tasks": [
+      "确定自己站在取经队、天庭、灵山、妖王或地府哪一边",
+      "在每一难、每一国、每一洞府中争夺主动权与因果位置",
+      "处理修行、自由、忠诚、欲望与长生之间的冲突",
+      "把局部妖怪/神佛事件逐步推向三界层面的站队与终局"
+    ],
+    "major_story_threads": [
+      "唐僧西天取经与九九八十一难",
+      "天庭、灵山与各路妖王围绕取经布局博弈",
+      "孙悟空、牛魔王、白骨精、女儿国等线路不断分叉又回到天命主轴",
+      "修成正果、保住自由、逆天改命或沦为因果棋子构成终局分野"
+    ],
+    "default_route_logic": "即使玩家在某一难、某一国、某个妖洞或感情支线里停留，也要持续提醒：这一切都与西行主轴、三界秩序和个人修行终局相连。"
+  },
+  "key_figures": [
+    {
+      "name": "孙悟空",
+      "role": "齐天大圣",
+      "drive": "在自由、责任与紧箍咒之间寻找自己的位置",
+      "ties": [
+        "唐僧",
+        "牛魔王",
+        "天庭"
+      ]
+    },
+    {
+      "name": "唐三藏",
+      "role": "取经核心",
+      "drive": "完成西行使命却不断被人性与妖心撕扯",
+      "ties": [
+        "悟空",
+        "观音",
+        "诸妖"
+      ]
+    },
+    {
+      "name": "牛魔王",
+      "role": "妖王势力核心",
+      "drive": "守住火焰山体系与妖王尊严",
+      "ties": [
+        "铁扇公主",
+        "红孩儿",
+        "悟空旧交"
+      ]
+    },
+    {
+      "name": "观音菩萨",
+      "role": "布局者",
+      "drive": "保证西行大局推进，同时维持因果秩序",
+      "ties": [
+        "唐僧",
+        "悟空",
+        "灵山"
+      ]
+    }
+  ],
+  "city_and_region_hubs": [
+    {
+      "name": "长安 / 大唐",
+      "type": "人间起点",
+      "importance": "取经合法性、王朝使命、出发原点"
+    },
+    {
+      "name": "火焰山",
+      "type": "妖王战区",
+      "importance": "牛魔王线、芭蕉扇、强力阻断点"
+    },
+    {
+      "name": "女儿国",
+      "type": "情劫之地",
+      "importance": "欲望、停留、柔性陷阱"
+    },
+    {
+      "name": "灵山大雷音寺",
+      "type": "终点与终局秩序中心",
+      "importance": "真经、因果结算、正果判定"
+    }
+  ],
+  "relationship_webs": [
+    {
+      "thread": "唐僧 / 悟空 / 八戒 / 沙僧",
+      "tension": "取经团队里的忠诚、误解、抱怨与守护"
+    },
+    {
+      "thread": "天庭 / 灵山 / 妖王",
+      "tension": "秩序、布局、反抗与被收编"
+    },
+    {
+      "thread": "悟空 / 牛魔王系",
+      "tension": "旧义气与现站队的撕裂"
+    },
+    {
+      "thread": "唐僧 / 各路女色与人情试炼",
+      "tension": "慈悲、欲望、凡心、戒律"
+    }
+  ],
+  "major_items_and_artifacts": [
+    {
+      "name": "金箍",
+      "kind": "约束法器",
+      "story_use": "控制、责任、师徒裂痕"
+    },
+    {
+      "name": "金箍棒",
+      "kind": "神兵",
+      "story_use": "悟空身份与战力核心"
+    },
+    {
+      "name": "芭蕉扇",
+      "kind": "环境级神器",
+      "story_use": "地形控制、借扇主线"
+    },
+    {
+      "name": "真经",
+      "kind": "终局圣物",
+      "story_use": "西行合法目标与因果终点"
+    }
+  ],
+  "mainline_stages": [
+    "出发立愿",
+    "每一难磨心",
+    "神妖势力交锋",
+    "真假佛道与因果显形",
+    "灵山结算"
+  ],
+  "subfaction_networks": [
+    {
+      "name": "取经队伍内部",
+      "core_members": [
+        "唐僧",
+        "孙悟空",
+        "猪八戒",
+        "沙悟净",
+        "白龙马"
+      ],
+      "internal_tension": "忠诚、误会、抱怨、戒律与保护责任"
+    },
+    {
+      "name": "天庭官僚网",
+      "core_members": [
+        "玉帝体系",
+        "太上老君",
+        "哪吒",
+        "二郎神",
+        "太白金星"
+      ],
+      "internal_tension": "秩序维护、甩锅、面子与迟缓反应"
+    },
+    {
+      "name": "灵山布局网",
+      "core_members": [
+        "如来",
+        "观音",
+        "罗汉",
+        "菩萨系"
+      ],
+      "internal_tension": "慈悲表象下的深层布局与因果控制"
+    },
+    {
+      "name": "妖王联盟与家族线",
+      "core_members": [
+        "牛魔王系",
+        "地方妖王",
+        "洞府势力",
+        "被收编者"
+      ],
+      "internal_tension": "自由、称王、求生与被神佛收编"
+    }
+  ],
+  "quest_hubs": [
+    {
+      "name": "取经路上的每一难",
+      "function": "推进主线、磨人物、筛选站队"
+    },
+    {
+      "name": "天庭与灵山接口",
+      "function": "求援、审判、收妖、重新定义秩序"
+    },
+    {
+      "name": "妖洞 / 山场 / 国都",
+      "function": "局部势力战、诱惑、试炼、同盟或背叛"
+    },
+    {
+      "name": "人间王朝节点",
+      "function": "皇权合法性、民间苦难、佛道争夺解释权"
+    }
+  ],
+  "city_subzones": [
+    {
+      "hub": "长安",
+      "subzones": [
+        "皇城",
+        "僧院",
+        "使节起行点",
+        "市井消息场"
+      ]
+    },
+    {
+      "hub": "火焰山",
+      "subzones": [
+        "山前热风道",
+        "积雷山势力圈",
+        "芭蕉扇交涉地",
+        "妖兵路口"
+      ]
+    },
+    {
+      "hub": "女儿国",
+      "subzones": [
+        "王宫",
+        "国都街市",
+        "试情路线",
+        "蝎子精威胁区"
+      ]
+    },
+    {
+      "hub": "灵山",
+      "subzones": [
+        "大雷音寺",
+        "接引路径",
+        "果位判定场",
+        "真经领取线"
+      ]
+    }
+  ],
+  "story_pressure_tracks": [
+    {
+      "name": "取经正轨",
+      "pressure": "无论怎么分线，西行总会重新把人拖回主轴"
+    },
+    {
+      "name": "自由 versus 规训",
+      "pressure": "悟空与诸妖都不断被秩序要求驯化"
+    },
+    {
+      "name": "情劫与凡心",
+      "pressure": "柔软的人情经常比硬仗更能拖住脚步"
+    },
+    {
+      "name": "三界秩序",
+      "pressure": "局部冲突最终总会抬升到神佛妖三界平衡"
+    }
+  ],
+  "item_threads": [
+    {
+      "item": "紧箍咒 / 金箍",
+      "thread": "从控制手段发展成师徒关系最深的裂痕和羁绊"
+    },
+    {
+      "item": "芭蕉扇",
+      "thread": "一件环境级神器牵出家庭、旧交、地形与主线阻断"
+    },
+    {
+      "item": "真经",
+      "thread": "终点圣物同时也是所有势力争夺解释权的象征"
+    }
+  ],
+  "factions": [
+    {
+      "id": "tang_monk_team",
+      "name": "取经队伍",
+      "name_en": "Pilgrimage Party",
+      "leader": "唐三藏（唐僧）",
+      "members": [
+        "孙悟空",
+        "猪八戒",
+        "沙悟净",
+        "白龙马"
+      ],
+      "mission": "西天取经，普度众生",
+      "ideology": "佛法无边，慈悲为怀",
+      "strength": "孙悟空战力逆天，有观音菩萨庇佑",
+      "weakness": "唐僧肉身凡胎，善恶不分，爱听谗言",
+      "headquarters": "移动中（大唐→西天108000里）",
+      "color": "#F4A460",
+      "playable": true
+    },
+    {
+      "id": "heavenly_court",
+      "name": "天庭",
+      "name_en": "Heavenly Court",
+      "leader": "玉皇大帝（玉帝）",
+      "key_figures": [
+        "太上老君",
+        "太白金星",
+        "二郎神杨戬",
+        "哪吒三太子",
+        "四大天王",
+        "天兵天将十万"
+      ],
+      "mission": "维护三界秩序，镇压妖魔",
+      "ideology": "等级制度，论资排辈，天命不可违",
+      "strength": "十万天兵，法宝无数，诸神护法",
+      "weakness": "官僚体制，反应迟缓，斗不过大闹天宫的孙悟空",
+      "headquarters": "凌霄宝殿（天宫）",
+      "color": "#FFD700",
+      "playable": true,
+      "note": "玩家可扮演天庭中的小神仙、天将，甚至谋划成为新的掌权者"
+    },
+    {
+      "id": "western_paradise",
+      "name": "西天（灵山）",
+      "name_en": "Western Paradise",
+      "leader": "如来佛祖",
+      "key_figures": [
+        "观音菩萨",
+        "文殊菩萨",
+        "普贤菩萨",
+        "地藏菩萨",
+        "十八罗汉",
+        "五百金刚"
+      ],
+      "mission": "传播佛法，普度众生，布局取经大计",
+      "ideology": "因果轮回，慈悲智慧，一切皆在掌控",
+      "strength": "法力最高，布局最深，如来一掌镇孙悟空五百年",
+      "weakness": "手段迂回，凡事讲因果，不能直接插手",
+      "headquarters": "灵鹫山大雷音寺",
+      "color": "#E6E6FA",
+      "playable": true,
+      "note": "玩家可扮演菩萨弟子、罗汉，暗中布局保护取经队伍——或阻止"
+    },
+    {
+      "id": "bull_demon_faction",
+      "name": "牛魔王势力",
+      "name_en": "Bull Demon King Faction",
+      "leader": "牛魔王",
+      "key_figures": [
+        "铁扇公主（罗刹女）",
+        "红孩儿",
+        "银角大王",
+        "金角大王（被托塔天王管辖）"
+      ],
+      "mission": "称霸火焰山周边，对抗天庭与取经队",
+      "ideology": "妖王之道，强者为尊",
+      "strength": "牛魔王本体战力极强，铁扇公主芭蕉扇无敌，红孩儿三昧真火",
+      "weakness": "家庭内部矛盾（牛魔王有外室玉面狐狸），红孩儿被观音收走",
+      "headquarters": "火焰山·积雷山摩云洞",
+      "color": "#DC143C",
+      "playable": true,
+      "note": "玩家可扮演牛魔王手下，守护火焰山，对抗孙悟空借芭蕉扇"
+    },
+    {
+      "id": "white_bone_demon",
+      "name": "白骨精势力",
+      "name_en": "White Bone Demon Faction",
+      "leader": "白骨精（白骨夫人）",
+      "key_figures": [
+        "蜘蛛精（盘丝洞七位）",
+        "黄袍怪",
+        "蝎子精"
+      ],
+      "mission": "吃唐僧肉，长生不老",
+      "ideology": "弱肉强食，以智取胜",
+      "strength": "变化多端，专攻唐僧的软肋（善良）",
+      "weakness": "实力不及顶级妖王，难逃孙悟空金箍棒",
+      "headquarters": "白虎岭白骨洞",
+      "color": "#C0C0C0",
+      "playable": true,
+      "note": "最具挑战的路线：三次变形骗唐僧，让孙悟空被赶走——然后呢？"
+    },
+    {
+      "id": "womens_kingdom",
+      "name": "女儿国",
+      "name_en": "Kingdom of Women",
+      "leader": "女儿国国王",
+      "key_figures": [
+        "蝎子精（琵琶洞）",
+        "西凉女国守将"
+      ],
+      "mission": "留住唐僧，成就一段奇缘",
+      "ideology": "与世无争，只盼一人心",
+      "strength": "子母河迷魂水，国王美貌无双",
+      "weakness": "深情是弱点",
+      "headquarters": "西梁女国",
+      "color": "#FF69B4",
+      "playable": true,
+      "note": "最浪漫的支线——你能让唐僧留下吗？或者保护国王免受蝎子精侵害？"
+    },
+    {
+      "id": "chechi_kingdom",
+      "name": "车迟国三妖",
+      "name_en": "Chechi Kingdom Demons",
+      "leader": "虎力大仙",
+      "key_figures": [
+        "鹿力大仙",
+        "羊力大仙"
+      ],
+      "mission": "把持车迟国朝政，欺压和尚，推广道教",
+      "ideology": "道高一尺魔高一丈（他们认为的）",
+      "strength": "得到车迟国国王信任，呼风唤雨法力不弱",
+      "weakness": "本质是虎鹿羊，遇到孙悟空原形毕露",
+      "headquarters": "车迟国",
+      "color": "#8B4513",
+      "playable": true,
+      "note": "政治路线：操控国王，对抗佛教势力——直到取经队到来"
+    },
+    {
+      "id": "little_western_heaven",
+      "name": "小西天",
+      "name_en": "Little Western Heaven",
+      "leader": "黄眉老佛（弥勒佛徒弟）",
+      "key_figures": [
+        "黄眉怪手下众妖"
+      ],
+      "mission": "自称小西天，欺骗过往取经人",
+      "ideology": "冒充佛界，招摇撞骗",
+      "strength": "人种袋神器，可把人装进去，包括孙悟空",
+      "weakness": "终究是弥勒佛坐骑，被弥勒佛亲自收服",
+      "headquarters": "小西天（假冒）",
+      "color": "#9370DB",
+      "playable": true
+    },
+    {
+      "id": "underworld",
+      "name": "地府",
+      "name_en": "Underworld",
+      "leader": "阎罗王（十殿阎罗）",
+      "key_figures": [
+        "判官崔珏",
+        "牛头马面",
+        "孟婆"
+      ],
+      "mission": "管理亡魂，维持轮回",
+      "ideology": "生死有命，因果不爽",
+      "strength": "生死簿掌控一切生死",
+      "weakness": "孙悟空曾大闹地府，改了自己和猴族的生死簿",
+      "headquarters": "酆都城",
+      "color": "#2F2F2F",
+      "playable": true,
+      "note": "特殊路线：作为地府判官，你要追回孙悟空改过的生死簿"
+    }
+  ],
+  "roles": [
+    {
+      "id": "tang_monk",
+      "name": "唐三藏",
+      "name_en": "Tang Sanzang",
+      "faction": "tang_monk_team",
+      "description": "金蝉子转世，肉身凡胎，十世修行，吃一口可长生不老",
+      "stats": {
+        "法力": 99,
+        "武力": 1,
+        "智慧": 75,
+        "魅力": 90,
+        "运气": 999
+      },
+      "unique": "集天下妖怪觊觎于一身；紧箍咒控制孙悟空；观音直线保护",
+      "weakness": "武力为零，善恶不辨，爱听猪八戒谗言",
+      "playstyle": "全程被保护，靠道德和信念解决问题，核心是人心向背"
+    },
+    {
+      "id": "sun_wukong",
+      "name": "孙悟空",
+      "name_en": "Sun Wukong",
+      "faction": "tang_monk_team",
+      "description": "齐天大圣，大闹天宫，被压五行山五百年，如今护法西行",
+      "stats": {
+        "法力": 95,
+        "武力": 99,
+        "智慧": 88,
+        "速度": 100,
+        "变化": 72
+      },
+      "weapons": [
+        "如意金箍棒（重13500斤）"
+      ],
+      "skills": [
+        "筋斗云（十万八千里）",
+        "七十二变",
+        "火眼金睛（识破妖怪）",
+        "毫毛分身"
+      ],
+      "weakness": "头上金箍，唐僧念咒就头痛；不能杀人妖（会被赶走）",
+      "unique": "唯一战力担当，但受紧箍咒约束",
+      "playstyle": "硬打硬冲，遇到打不过的去搬救兵"
+    },
+    {
+      "id": "zhu_bajie",
+      "name": "猪八戒",
+      "name_en": "Zhu Bajie",
+      "faction": "tang_monk_team",
+      "description": "天蓬元帅转世，好色贪吃，但关键时刻靠得住",
+      "stats": {
+        "法力": 70,
+        "武力": 80,
+        "魅力": 20,
+        "贪吃": 100,
+        "好色": 100
+      },
+      "weapons": [
+        "九齿钉耙"
+      ],
+      "skills": [
+        "三十六变",
+        "天罡地煞之术（残缺）"
+      ],
+      "weakness": "贪吃好色，遇美色必败，爱挑拨唐僧赶走悟空",
+      "unique": "嘴欠但心不坏，关键时刻能背包跑路",
+      "playstyle": "辅助战斗，外交调解（失败居多），负责制造麻烦"
+    },
+    {
+      "id": "sha_wujing",
+      "name": "沙悟净",
+      "name_en": "Sha Wujing",
+      "faction": "tang_monk_team",
+      "description": "卷帘大将转世，沉默靠谱，挑担子打杂从不抱怨",
+      "stats": {
+        "法力": 65,
+        "武力": 75,
+        "耐力": 99,
+        "忠诚": 100
+      },
+      "weapons": [
+        "降妖宝杖"
+      ],
+      "unique": "最稳定的队员，流沙河神，脖子上挂着九个取经人的头骨",
+      "playstyle": "打辅助，挑担子，战斗不是强项但极其忠诚"
+    },
+    {
+      "id": "jade_emperor",
+      "name": "玉皇大帝",
+      "name_en": "Jade Emperor",
+      "faction": "heavenly_court",
+      "description": "三界最高统治者（表面上），历经一亿七千万年修行",
+      "stats": {
+        "法力": 90,
+        "权力": 100,
+        "政治": 95,
+        "战斗": 60
+      },
+      "unique": "调动十万天兵，但被孙悟空打得躲到桌子下面",
+      "playstyle": "政治路线，运筹帷幄，不亲自动手"
+    },
+    {
+      "id": "bull_king",
+      "name": "牛魔王",
+      "name_en": "Bull Demon King",
+      "faction": "bull_demon_faction",
+      "description": "大力牛魔王，孙悟空结拜大哥，铁扇公主之夫，红孩儿之父",
+      "stats": {
+        "法力": 85,
+        "武力": 92,
+        "变化": 80
+      },
+      "weapons": [
+        "混铁棍"
+      ],
+      "skills": [
+        "变化术（变成大白牛等）"
+      ],
+      "unique": "与孙悟空有结拜之情，却成仇敌",
+      "playstyle": "强攻路线，守护火焰山，家族复仇"
+    },
+    {
+      "id": "white_bone_spirit",
+      "name": "白骨精",
+      "name_en": "White Bone Spirit",
+      "faction": "white_bone_demon",
+      "description": "尸魔三变，三次化作村姑、老妇、老翁欺骗唐僧",
+      "stats": {
+        "法力": 55,
+        "变化": 95,
+        "智谋": 90,
+        "武力": 40
+      },
+      "unique": "唯一让孙悟空被赶走的妖怪（靠欺骗唐僧）",
+      "playstyle": "心理战，以弱胜强，利用唐僧的慈悲心"
+    },
+    {
+      "id": "guanyin",
+      "name": "观音菩萨",
+      "name_en": "Guanyin Bodhisattva",
+      "faction": "western_paradise",
+      "description": "慈悲救苦救难，取经计划的实际执行者",
+      "stats": {
+        "法力": 96,
+        "智慧": 98,
+        "外交": 100
+      },
+      "weapons": [
+        "净瓶杨柳枝"
+      ],
+      "unique": "给孙悟空戴上紧箍咒，收走红孩儿，是整个取经计划的幕后推手",
+      "playstyle": "幕后操控，关键时刻出现救场"
+    },
+    {
+      "id": "womens_king",
+      "name": "女儿国国王",
+      "name_en": "Queen of Women's Kingdom",
+      "faction": "womens_kingdom",
+      "description": "西梁女国之主，一见唐僧倾心，愿以江山换一段情",
+      "stats": {
+        "魅力": 100,
+        "政治": 80,
+        "武力": 30
+      },
+      "unique": "唯一让唐僧动过凡心的人（也许）",
+      "playstyle": "情感路线，以爱留住取经人"
+    },
+    {
+      "id": "custom_demon",
+      "name": "自创妖王",
+      "name_en": "Custom Demon Lord",
+      "faction": "custom",
+      "description": "在西游世界中创建自己的妖怪角色",
+      "creation_options": {
+        "origin": [
+          "天地精华所化",
+          "修炼千年的动物",
+          "被贬下凡的神仙",
+          "人类修炼成妖"
+        ],
+        "element": [
+          "金",
+          "木",
+          "水",
+          "火",
+          "土",
+          "雷",
+          "风",
+          "冰"
+        ],
+        "goal": [
+          "吃唐僧肉",
+          "称霸一方",
+          "对抗天庭",
+          "寻找前世因缘",
+          "保护某个地方"
+        ]
+      }
+    }
+  ],
+  "key_locations": [
+    {
+      "id": "great_tang",
+      "name": "大唐长安",
+      "desc": "出发点，李世民托付取经任务"
+    },
+    {
+      "id": "five_finger_mountain",
+      "name": "五行山",
+      "desc": "孙悟空被压处，取经路开始"
+    },
+    {
+      "id": "gaolao_village",
+      "name": "高老庄",
+      "desc": "猪八戒入伙之地"
+    },
+    {
+      "id": "flowing_sand_river",
+      "name": "流沙河",
+      "desc": "沙悟净入伙，水中战斗"
+    },
+    {
+      "id": "flame_mountain",
+      "name": "火焰山",
+      "desc": "八百里火焰，借芭蕉扇"
+    },
+    {
+      "id": "womens_kingdom",
+      "name": "西梁女国",
+      "desc": "子母河，国王深情"
+    },
+    {
+      "id": "chechi_kingdom",
+      "name": "车迟国",
+      "desc": "三妖斗法，国王信道压佛"
+    },
+    {
+      "id": "spider_cave",
+      "name": "盘丝洞",
+      "desc": "七蜘蛛精，温柔陷阱"
+    },
+    {
+      "id": "little_western_heaven",
+      "name": "小西天",
+      "desc": "黄眉怪冒充，人种袋困悟空"
+    },
+    {
+      "id": "thunder_sound_temple",
+      "name": "大雷音寺",
+      "desc": "终点，如来处取得真经"
+    },
+    {
+      "id": "heaven_palace",
+      "name": "天宫凌霄殿",
+      "desc": "玉帝居所，十万天兵驻守"
+    },
+    {
+      "id": "lingshan",
+      "name": "灵鹫山",
+      "desc": "如来真正驻地"
+    }
+  ],
+  "major_events": [
+    {
+      "id": "monkey_havoc_heaven",
+      "name": "大闹天宫",
+      "desc": "孙悟空造反，打遍天宫，如来压山"
+    },
+    {
+      "id": "tang_monk_departs",
+      "name": "唐僧出发",
+      "desc": "贞观十三年，西行取经"
+    },
+    {
+      "id": "three_bone_demon",
+      "name": "三打白骨精",
+      "desc": "最著名的回目，孙悟空被误解被赶走"
+    },
+    {
+      "id": "borrow_fan",
+      "name": "三借芭蕉扇",
+      "desc": "孙悟空三次借扇，牛魔王家族大战"
+    },
+    {
+      "id": "womens_kingdom_event",
+      "name": "女儿国之行",
+      "desc": "唐僧差点留下，蝎子精插手"
+    },
+    {
+      "id": "chechi_competition",
+      "name": "车迟国斗法",
+      "desc": "求雨、砍头、跳油锅，三妖被破"
+    },
+    {
+      "id": "true_scripture",
+      "name": "取得真经",
+      "desc": "历经九九八十一难，功德圆满"
+    }
+  ],
+  "unique_mechanics": {
+    "81_tribulations": {
+      "name": "九九八十一难",
+      "description": "取经路上必须经历81难，少一难不算功德圆满",
+      "player_impact": "某些选择可以避开一难，但如来会补上新的难题"
+    },
+    "demon_origins": {
+      "name": "妖怪来历系统",
+      "description": "大多数妖怪都有天庭背景，打败前要查清来历，否则救兵来了也白打",
+      "examples": [
+        "金角银角是太上老君的童子",
+        "黄袍怪是天庭奎木狼下凡",
+        "蜘蛛精背后有多目怪"
+      ]
+    },
+    "karmic_balance": {
+      "name": "因果系统",
+      "description": "杀死有来历的妖怪会引来天庭追责；放走妖怪可能积德",
+      "note": "有些妖怪不能杀，只能请菩萨来收"
+    },
+    "transformation": {
+      "name": "变化系统",
+      "description": "妖怪和神仙都可以变化，火眼金睛才能看穿",
+      "mechanic": "玩家需要通过线索判断真假，贸然攻击可能打错人"
+    },
+    "tang_monk_stubbornness": {
+      "name": "唐僧执念系统",
+      "description": "唐僧越固执，队伍越危险，但也代表佛心越纯",
+      "mechanic": "玩家选择（如孙悟空）有时要在服从唐僧和保护他之间选择"
+    }
+  },
+  "endings": [
+    {
+      "id": "true_scripture",
+      "name": "取得真经",
+      "desc": "四人成佛成神，功德圆满，九九八十一难全部经历"
+    },
+    {
+      "id": "abandoned_pilgrimage",
+      "name": "弃经归隐",
+      "desc": "孙悟空拒绝戴回紧箍咒，与唐僧分道扬镳"
+    },
+    {
+      "id": "demon_king",
+      "name": "妖王称霸",
+      "desc": "（妖怪路线）打败取经队，成为一方妖王"
+    },
+    {
+      "id": "heavenly_revolution",
+      "name": "天庭变革",
+      "desc": "（天庭路线）改变天庭秩序，成为新的统治者"
+    },
+    {
+      "id": "love_story",
+      "name": "女儿国留守",
+      "desc": "唐僧留在女儿国，取经计划失败，但得一段真情"
+    },
+    {
+      "id": "underworld_reform",
+      "name": "地府改革",
+      "desc": "（地府路线）修改生死簿，改变三界命运"
+    },
+    {
+      "id": "buddha_rebellion",
+      "name": "反出西天",
+      "desc": "（西天路线）揭露如来布局真相，三界大乱"
+    }
+  ],
+  "art_style": "journey_to_the_west_fairytale_classic",
+  "art_direction": {
+    "visual_style": "鲜亮、童话、朴素的经典西游记插画风，不走武侠修仙，不走厚重写实；更像老版西游记童话插图、少年读物封面、经典连环画神话场景",
+    "color_palette": "明快高饱和：金黄、朱红、青绿、天蓝、乳白、暖橙；整体清透鲜亮，不灰暗不肃杀",
+    "character_portraits": "神话人物造型夸张而亲切，线条干净，面相带童话感，服装与飘带简洁鲜明，云朵镶边、祥云纹、山石草木都带朴素装饰感",
+    "battle_scenes": "热闹神话童话风，法宝飞舞但不过度爆炸化，云雾与金光偏装饰感，画面鲜亮、灵动、清楚，像经典西游记故事插图",
+    "reference": [
+      "《西游记》人民美术出版社版插图",
+      "经典西游记童话插图",
+      "86版西游记电视剧美术",
+      "中国传统少儿神话绘本风格"
+    ]
+  },
+  "created": "2026-04-09",
+  "version": "1.0.0"
+}

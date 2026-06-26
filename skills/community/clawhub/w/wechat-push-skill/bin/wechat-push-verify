@@ -1,0 +1,131 @@
+#!/bin/bash
+# wechat-push-verify — 微信推送链路 5 跳自检
+#
+# 逐跳验证：openclaw CLI → 微信插件 → ilink → bot session → 真送达
+# 输出每跳的 OK/FAIL，最后给"通过/不通过"结论
+#
+# 用法：wechat-push-verify
+
+set -u
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PUSH="${SCRIPT_DIR}/../lib/wechat_push.py"
+PROBE="${SCRIPT_DIR}/../lib/ilink_probe.sh"
+
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+pass=0
+fail=0
+warn=0
+
+# 用函数替代 eval，避免管道退出码被 head 吃掉造成假通过
+check_cmd() {
+    local label="$1"
+    shift
+    echo -n "  $label ... "
+    if "$@" >/dev/null 2>&1; then
+        echo -e "${GREEN}✅ OK${NC}"
+        pass=$((pass+1))
+        return 0
+    else
+        echo -e "${RED}❌ FAIL${NC}"
+        fail=$((fail+1))
+        return 1
+    fi
+}
+
+warn_cmd() {
+    local label="$1"
+    shift
+    echo -n "  $label ... "
+    if "$@" >/dev/null 2>&1; then
+        echo -e "${GREEN}✅ OK${NC}"
+        pass=$((pass+1))
+    else
+        echo -e "${YELLOW}⚠️ WARN${NC}"
+        warn=$((warn+1))
+    fi
+}
+
+# 真实检查函数（替代 eval 字符串）
+check_openclaw_cli() {
+    command -v openclaw >/dev/null 2>&1
+}
+check_openclaw_version() {
+    openclaw --version >/dev/null 2>&1
+}
+check_accounts_dir() {
+    test -d ~/.openclaw/openclaw-weixin/accounts
+}
+check_bot_token_file() {
+    # 用 compgen -G 替代 ls|head：compgen 在无匹配时返 1，匹配返 0
+    compgen -G "$HOME/.openclaw/openclaw-weixin/accounts/*im-bot.json" >/dev/null
+}
+check_bot_json_valid() {
+    python3 -c "
+import json, os, glob
+files = glob.glob(os.path.expanduser('~/.openclaw/openclaw-weixin/accounts/*im-bot.json'))
+assert files, 'no bot found'
+for f in files:
+    json.load(open(f))
+" 2>/dev/null
+}
+check_message_send_help() {
+    openclaw message send --help >/dev/null 2>&1
+}
+check_probe_runs() {
+    test -f "$PROBE" && bash "$PROBE" >/dev/null 2>&1
+}
+check_probe_script_exists() {
+    test -f "$PROBE"
+}
+
+echo ""
+echo "=========================================="
+echo "  微信主动推送链路自检"
+echo "  $(date '+%Y-%m-%d %H:%M:%S %Z')"
+echo "=========================================="
+echo ""
+
+echo "跳 1: openclaw CLI 是否可用"
+check_cmd "  openclaw 在 PATH" check_openclaw_cli
+check_cmd "  openclaw --version" check_openclaw_version
+
+echo ""
+echo "跳 2: OpenClaw 微信插件配置"
+check_cmd "  微信插件账号目录存在" check_accounts_dir
+check_cmd "  至少有一个 bot token 文件" check_bot_token_file
+
+echo ""
+echo "跳 3: bot 账号 token 有效（不裸调 ilink，只查文件结构）"
+check_cmd "  bot token JSON 格式正确" check_bot_json_valid
+
+echo ""
+echo "跳 4: openclaw message send CLI 真的能调起来（不真推）"
+check_cmd "  openclaw message send --help" check_message_send_help
+
+echo ""
+echo "跳 5: 真实推送链路 silent 测试"
+check_cmd "  ilink_probe.sh 文件存在" check_probe_script_exists
+check_cmd "  ilink_probe.sh 跑通" check_probe_runs
+
+echo ""
+echo "=========================================="
+echo -e "  ${GREEN}通过: $pass${NC}  ${RED}失败: $fail${NC}  ${YELLOW}警告: $warn${NC}"
+echo "=========================================="
+
+if [ $fail -eq 0 ]; then
+    echo -e "${GREEN}✅ 链路健康，可以推送${NC}"
+    exit 0
+else
+    echo -e "${RED}❌ 链路不通过，请按以下顺序排查：${NC}"
+    echo ""
+    echo "  1. 确认 OpenClaw 安装并跑起来: openclaw status"
+    echo "  2. 确认微信插件已绑账号: http://127.0.0.1:18888/dashboard"
+    echo "  3. 重新跑 install.sh 重新探测 bot 账号"
+    echo "  4. 跑 wechat-push-doctor 详细排查"
+    exit 1
+fi

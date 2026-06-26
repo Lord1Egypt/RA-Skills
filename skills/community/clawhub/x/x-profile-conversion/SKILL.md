@@ -1,35 +1,62 @@
 ---
-name: "X Profile Conversion"
-description: "Improve X profile conversion. Use when profile clicks are not becoming follows, or when optimizing bio, pinned post, header, proof, and account promise."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/x-profile-conversion"
-sourceUrl: "https://clawhub.ai/skills/x-profile-conversion"
+name: x-profile-conversion
+description: Improve X profile conversion. Use when profile clicks are not becoming follows, or when optimizing bio, pinned post, header, proof, and account promise.
 ---
 
 # X Profile Conversion
 
-> Improve X profile conversion. Use when profile clicks are not becoming follows, or when optimizing bio, pinned post, header, proof, and account promise.
+Growth leaks when people click the profile and do not follow.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/x-profile-conversion`
-- **Source URL:** [https://clawhub.ai/skills/x-profile-conversion](https://clawhub.ai/skills/x-profile-conversion)
+## Five-Second Test
 
-## Overview
+A good profile answers:
 
+1. Who is this for?
+2. What do they post about?
+3. Why should I trust them?
+4. What will I get if I follow?
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/x-profile-conversion
+## Bio Formula
+
+```text
+Helping [specific audience] get [specific outcome] with [topic/method].
+Posting about [pillar 1], [pillar 2], [pillar 3].
+Proof/context: [credible detail].
 ```
+
+## Pinned Post Options
+
+Choose one:
+
+- start-here post
+- best framework
+- proof-of-work thread
+- origin story tied to the niche
+- useful free resource
+- strongest transformation or lesson
+
+## Audit
+
+Score 1-5:
+
+- niche clarity
+- account promise
+- credibility
+- pinned post strength
+- consistency with recent posts
+- follow reason
+
+## Output
+
+Return:
+
+- **Main conversion leak**
+- **3 bio options**
+- **Pinned post outline**
+- **Header idea**
+- **Follow promise**
+- **Next 5 posts to align profile and feed**
+
+## Operating Principle
+
+Treat the public X algorithm as a signal map, not a cheat code. Optimize for posts and replies that earn useful positive actions (dwell, replies, reposts, shares, profile clicks, follows) while avoiding negative actions (not interested, mute, block, report, fast skips).

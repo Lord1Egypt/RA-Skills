@@ -1,0 +1,189 @@
+name: booking_gym
+trigger:
+  intents: [booking, tour_inquiry, membership_inquiry]
+  confidence_threshold: 0.75
+response:
+  template: |
+    Hi {{customer_name}}! 👋
+
+    Thanks for reaching out to {{business_name}}.
+
+    I can help you book:
+    🏋️ A free trial session
+    📋 A membership consultation
+    🎯 A personal training intro
+
+    What time works for you? Our hours are:
+    Mon–Fri: 5:00 AM – 9:00 PM
+    Sat: 6:00 AM – 6:00 PM
+    Sun: 7:00 AM – 2:00 PM
+
+    Just tell me your preferred day and time and I'll check availability!
+
+    Or choose an option:
+    - "Book Trial" → I'll find the next available slot
+    - "See Pricing" → I'll send our membership options
+    - "Ask a Human" → A real person will contact you
+  actions:
+    - collect: preferred_date
+    - collect: preferred_time
+    - action: check_calendar_availability
+
+---
+name: booking_restaurant
+trigger:
+  intents: [booking, reservation]
+  confidence_threshold: 0.7
+response:
+  template: |
+    Hello {{customer_name}}! 🍽️
+
+    Thanks for choosing {{business_name}}!
+
+    To make your reservation, I need a few details:
+    📅 Date:
+    🕐 Time:
+    👥 Number of guests:
+    📝 Any special requests (dietary, allergies, celebrations)?
+
+    Our lunch service starts at 12:00, dinner from 18:00.
+
+    Let me know and I'll check availability for you!
+  actions:
+    - collect: reservation_date
+    - collect: reservation_time
+    - collect: party_size
+    - collect: special_requests
+    - action: check_restaurant_availability
+
+---
+name: booking_salon
+trigger:
+  intents: [booking, appointment]
+  confidence_threshold: 0.75
+response:
+  template: |
+    Hi {{customer_name}}! 💇‍♀️
+
+    Thanks for thinking of {{business_name}}!
+
+    Which service are you looking for?
+    ✂️ Haircut & Style — R250–R450
+    🎨 Colour & Highlights — R450–R1200
+    💅 Nails — R150–R350
+    💆 Facial & Skincare — R350–R700
+    ✨ Bridal & Special Occasion — From R800
+
+    Let me know what you'd like and your preferred day/time! We're open Tue–Sat.
+  actions:
+    - collect: service_type
+    - collect: preferred_date
+    - collect: preferred_time
+    - action: check_salon_availability
+
+---
+name: greeting_day
+trigger:
+  intents: [general]
+  context:
+    time_of_day: morning_afternoon
+response:
+  template: |
+    Good day! 👋 Welcome to {{business_name}}.
+
+    How can I help you today? You can ask me about:
+    • Our services and pricing
+    • Opening hours
+    • Booking an appointment
+    • Special offers
+
+    Just type your question and I'll get right back to you! 😊
+  actions: []
+
+---
+name: greeting_night
+trigger:
+  intents: [general]
+  context:
+    time_of_day: evening_night
+response:
+  template: |
+    Good evening! 🌙 Thanks for getting in touch with {{business_name}} after hours.
+
+    I'm {{assistant_name}}, your AI assistant. While our team is offline, I can:
+    • Answer questions about our services
+    • Help you book an appointment
+    • Capture your details for a callback tomorrow
+
+    What can I help you with?
+  actions: []
+
+---
+name: hours_inquiry
+trigger:
+  intents: [hours]
+  confidence_threshold: 0.8
+response:
+  template: |
+    {{business_name}} is open during these hours:
+
+    {{hours_display}}
+
+    We're located at {{address}}.
+
+    Would you like to book a visit? I can check availability right now!
+  actions:
+    - offer: booking
+
+---
+name: pricing_inquiry
+trigger:
+  intents: [pricing_inquiry]
+  confidence_threshold: 0.75
+response:
+  template: |
+    Great question! Here's a quick overview of our pricing at {{business_name}}:
+
+    {{pricing_summary}}
+
+    Prices may vary based on specific requirements. Want to book a consultation to get an exact quote? I can help!
+  actions:
+    - offer: consultation_booking
+
+---
+name: complaint_acknowledgement
+trigger:
+  intents: [complaint]
+  confidence_threshold: 0.7
+response:
+  template: |
+    I'm truly sorry to hear that, {{customer_name}} 😔
+
+    Thank you for bringing this to our attention. I want to make sure this gets handled properly.
+
+    Could you please share a bit more detail so I can escalate this to the right person?
+
+    Alternatively, I can have a manager reach out to you directly within 24 hours. Just say "Speak to a manager" and I'll arrange it.
+  actions:
+    - collect: complaint_details
+    - threshold: 3
+      action: escalate_to_human
+
+---
+name: out_of_hours
+trigger:
+  context:
+    is_after_hours: true
+response:
+  template: |
+    We're currently closed 🕐
+
+    Our hours are:
+    {{hours_display}}
+
+    Don't worry — I'm still here to help! Leave me your message and I'll make sure our team follows up as soon as we open at {{next_open_time}}.
+
+    Alternatively, tell me what you need and I'll get things ready for the team.
+  actions:
+    - collect: after_hours_message
+    - action: queue_for_review

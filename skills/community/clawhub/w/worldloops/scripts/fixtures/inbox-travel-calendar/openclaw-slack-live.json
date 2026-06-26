@@ -1,0 +1,12 @@
+{
+  "channel": "#general",
+  "channel_id": "C01ABC123",
+  "messages": [
+    {
+      "user": "team_member",
+      "text": "Safe travels! See you next week.",
+      "ts": "1716286800.000000"
+    }
+  ],
+  "count": 1
+}

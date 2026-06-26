@@ -1,0 +1,22 @@
+{
+  "name": "video-script-generator",
+  "version": "1.0.0",
+  "description": "AI-powered short video script generator",
+  "main": "index.js",
+  "bin": {
+    "video-script": "./cli.js"
+  },
+  "scripts": {
+    "start": "node cli.js"
+  },
+  "keywords": [
+    "video",
+    "script",
+    "short-video",
+    "douyin",
+    "tiktok",
+    "content-generator"
+  ],
+  "author": "",
+  "license": "MIT"
+}

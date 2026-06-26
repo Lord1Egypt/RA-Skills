@@ -1,35 +1,242 @@
 ---
-name: "A Share Guard"
-description: "A-Share Guard - 拒绝噪音，穿透迷雾。基于 OpenClaw 3.28 的金融专家级个股风险诊断系统。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaodi-a-share-guard"
-sourceUrl: "https://clawhub.ai/skills/xiaodi-a-share-guard"
+name: xiaodi-a-share-guard
+description: A-Share Guard - 拒绝噪音，穿透迷雾。基于 OpenClaw 3.28 的金融专家级个股风险诊断系统。
+version: "1.1.0"
+author: xiaodi
+homepage: https://clawhub.ai/skills/xiaodi-a-share-guard
+metadata:
+  openclaw:
+    emoji: 🛡️
+    requires:
+      tools: ["web_search", "web_fetch", "exec"]
 ---
 
-# A Share Guard
+# 🛡️ A股避雷针 (xiaodi A-Share Guard) v1.1.0
 
-> A-Share Guard - 拒绝噪音，穿透迷雾。基于 OpenClaw 3.28 的金融专家级个股风险诊断系统。
+> **拒绝噪音，穿透迷雾。基于 OpenClaw 3.28 的金融专家级个股风险诊断系统。**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaodi-a-share-guard`
-- **Source URL:** [https://clawhub.ai/skills/xiaodi-a-share-guard](https://clawhub.ai/skills/xiaodi-a-share-guard)
+---
 
-## Overview
+## 🚀 核心价值：为什么你需要它？
 
+普通的 AI 只会复读研报的"唱多"辞令，而 **A-Share Guard** 采用"冷热数据对冲"逻辑：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaodi-a-share-guard
+| 数据类型 | 来源 | 作用 |
+|----------|------|------|
+| **冷数据 (Hard Data)** | `ashare_audit.py` 穿透财报 | 商誉占比、质押率等红线监测 |
+| **热数据 (Hot Info)** | 实时联网抓取 | 股东减持、监管函、舆情负面 |
+| **共识裁决 (Consensus)** | 三方 Agent 闭门会审 | 硬指标踩红线 → 一票否决 |
+
+---
+
+## 🛠️ 三层架构 (Three-Layer Defense)
+
 ```
+┌─────────────────────────────────────────┐
+│         🛡️ 避雷针共识裁决系统            │
+│      冷热对冲，一票否决机制              │
+└──────────────┬──────────────────────────┘
+               │
+   ┌───────────┼───────────┬───────────┐
+   ▼           ▼           ▼           
+┌────────┐ ┌────────┐ ┌────────┐
+│ 📊 第一层│ │ 📰 第二层│ │ ⚖️ 第三层│
+│量化审计 │ │舆情穿透 │ │决策判官 │
+│Quant   │ │Sentiment│ │Consensus│
+└────────┘ └────────┘ └────────┘
+     │           │           │
+     ▼           ▼           ▼
+  冷数据扫描    热数据监控    共识裁决
+  (Python)     (Web搜索)    (逻辑判官)
+```
+
+| 角色 | 任务 | 核心工具 | 输出 |
+|------|------|----------|------|
+| **📊 量化审计员** | 60天K线/RSI/MA/财务红线扫描 | `exec ashare_audit.py` | 风险评分 + 红旗清单 |
+| **📰 舆情分析师** | 近7天减持/监管函/负面舆情 | `web_search` | 利空词频 + 情绪偏差 |
+| **⚖️ 首席风控官** | 判定"估值与基本面"背离 | **Consensus Logic** | 最终信号 + 避雷建议 |
+
+---
+
+## 📦 一键安装 (Install)
+
+```bash
+npx clawhub install xiaodi-a-share-guard
+```
+
+---
+
+## ⌨️ 快速开始
+
+### Slash Command（精确触发）
+
+```
+/guard 002460   # 赣锋锂业
+/guard sz002460 # 深市代码
+/guard 600519   # 贵州茅台
+```
+
+### 口语化触发（自然对话）
+
+```
+"扫描赣锋锂业的风险"
+"002460 有雷吗？"
+"帮我避雷比亚迪"
+"茅台财务有什么问题？"
+```
+
+两种方式效果相同：
+- `/guard` → Gateway 直接触发技能
+- 口语化 → Agent 理解意图 → 执行三层会审
+
+---
+
+## 📊 专业级输出报告
+
+### 信号表情化标准
+
+| 信号 | 表情 | 含义 |
+|------|------|------|
+| **SAFE** | 🟢 | 评级稳健：按需布局 |
+| **WARNING** | 🟡 | 谨慎持有：观察背离 |
+| **RISK** | ❌ | 红线触发：建议减仓 |
+| **CRITICAL** | 🔴 | 高度预警：立即规避 |
+
+### 输出模板示例
+
+```markdown
+# 🛡️ A股避雷针 · 个股深度诊断报告
+
+**标的：** 赣锋锂业 (002460) | **诊断时间：** 2026-03-31 22:49
+
+---
+
+### 🚨 风控官核心裁决：【🟢 SAFE】
+
+> **核心理由：** PE估值偏高但无财务红线，舆情平稳，可按需布局。
+
+---
+
+### 📉 第一层：量化审计 (Quantitative Audit)
+
+* **财务红线：** ✅ SAFE (商誉: N/A | 质押: N/A)
+* **估值水平：** PE-TTM 101.89 (偏高) | PB 3.64 (正常)
+* **技术形态：** RSI 64.98 (偏强) | MA20 支撑: 75.50
+* **评分：**
+  ```
+  基本面: [#########.] 85/100
+  技术面: [#######...] 70/100
+  ```
+
+---
+
+### 📰 第二层：舆情穿透 (Sentiment Analysis)
+
+* **关键动态：** 副总裁减持≤4万股（还股权激励贷款）
+* **风险隐患：** 无重大利空
+* **研报对齐：** ✅ 情绪与数值一致
+
+---
+
+### ⚖️ 第三层：决策判官 (Consensus Logic)
+
+```
+🟢 研报情绪：平稳 (无重大负面)
+   VS
+🟢 量化指标：SAFE (无红线触发)
+
+判官结论：无背离 → 稳健信号
+```
+
+---
+
+### 💡 风控官建议 (Advisory)
+
+* **操作指引：** 🟢 按需布局，关注估值回归风险
+* **技术防线：** 若有效跌破 **75.50 (MA20)** 位点，考虑减仓
+* **关键雷点：** PE-TTM 偏高（估值回归风险）
+
+---
+
+*声明：本报告由 OpenClaw 专家组自动生成，不构成投资建议。*
+```
+
+---
+
+## 🎯 背离检测逻辑 (The Disconnect)
+
+**核心卖点**：当研报情绪与量化指标冲突时，触发"背离预警"：
+
+```
+⚖️ 决策判官：逻辑背离确认
+
+🟢 研报：乐观 (80% 买入评级)
+   VS  
+🔴 量化：恶化 (现金流连续负值 -2.3亿)
+
+判官结论：机构在掩护出货 → 🔴 强烈避雷
+```
+
+**背离触发条件**：
+- 研报评分 < 30 (利好) + 量化评分 ≥ 50 (高危) → **CRITICAL_RISK**
+- 研报评分 < 50 + 量化评分 ≥ 70 → **WARNING**
+
+---
+
+## 📋 Slash Commands
+
+| 命令 | 功能 | 说明 |
+|------|------|------|
+| `/guard [代码]` | 一键扫描 | 三层会审输出报告 |
+| `/guard-watch [代码]` | 添加监控 | 每日自动扫描 |
+| `/guard-list` | 查看列表 | 显示监控股票清单 |
+
+---
+
+## 📊 数据源配置
+
+| 数据类型 | 数据源 | 状态 |
+|----------|--------|------|
+| **行情数据** | 东方财富 API | ✅ 可用 |
+| **K线数据** | 东方财富 API | ✅ 可用 |
+| **研报/新闻** | web_search | ✅ 可用 |
+| **商誉/质押** | 东方财富 F10 | ⚠️ 待 browserless |
+| **现金流** | 东方财富 F10 | ⚠️ 待 browserless |
+
+---
+
+## 🛠️ 技术架构
+
+### 核心脚本
+
+```
+scripts/
+├── ashare_audit.py    # 量化审计脚本（返回 JSON）
+├── f10_scraper.py     # F10 数据抓取（browserless CDP）
+└── consensus.py       # 共聚判官逻辑
+```
+
+### 输出数据结构
+
+```json
+{
+  "signal": "SAFE|WARNING|RISK|CRITICAL",
+  "score": {"base": 85, "tech": 70},
+  "risk": {"goodwill": null, "pledge": null, "cashflow": []},
+  "red_flags": ["PE-TTM偏高"],
+  "sentiment": {"score": 20, "bias": "neutral"},
+  "consensus": {"disconnect": false}
+}
+```
+
+---
+
+## ⚠️ 免责声明
+
+本技能提供的风险分析仅供参考，不构成投资建议。投资有风险，入市需谨慎。
+
+---
+
+**三层专家共识流：量化审计员 📊 | 舆情分析师 📰 | 首席风控官 ⚖️**
+
+*版本: 1.1.0 | 作者: xiaodi | 主页: https://clawhub.ai/skills/xiaodi-a-share-guard*

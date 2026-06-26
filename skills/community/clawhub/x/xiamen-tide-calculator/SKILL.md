@@ -1,35 +1,385 @@
 ---
-name: "Xiamen Tide Calculator"
-description: "厦门潮汐计算器v3.2，用于计算厦门海域潮汐时间和赶海建议。支持公历自动转农历、当前日期自动识别、闰月处理。根据日期计算高潮低潮时间、判断潮汐大小、提供赶海评分、地点推荐、装备建议和安全提醒。新功能：多窗口期分析、优缺点描述、推荐指数、整合窗口功能。触发场景：(1) "厦门今天潮汐"等潮汐查询，(2) "今天适合..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiamen-tide-calculator"
-sourceUrl: "https://clawhub.ai/skills/xiamen-tide-calculator"
+name: xiamen-tide-calculator
+description: 厦门潮汐计算器v3.2，用于计算厦门海域潮汐时间和赶海建议。支持公历自动转农历、当前日期自动识别、闰月处理。根据日期计算高潮低潮时间、判断潮汐大小、提供赶海评分、地点推荐、装备建议和安全提醒。新功能：多窗口期分析、优缺点描述、推荐指数、整合窗口功能。触发场景：(1) "厦门今天潮汐"等潮汐查询，(2) "今天适合赶海吗"、"赶海最佳时间"等赶海建议查询，(3) "未来一周哪天适合赶海"等多日比较，(4) 查询具体日期的潮汐信息。支持标准模式和赶海专门模式。
 ---
 
-# Xiamen Tide Calculator
+# 厦门潮汐计算器 v3.2
 
-> 厦门潮汐计算器v3.2，用于计算厦门海域潮汐时间和赶海建议。支持公历自动转农历、当前日期自动识别、闰月处理。根据日期计算高潮低潮时间、判断潮汐大小、提供赶海评分、地点推荐、装备建议和安全提醒。新功能：多窗口期分析、优缺点描述、推荐指数、整合窗口功能。触发场景：(1) "厦门今天潮汐"等潮汐查询，(2) "今天适合...
+## 版权声明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiamen-tide-calculator`
-- **Source URL:** [https://clawhub.ai/skills/xiamen-tide-calculator](https://clawhub.ai/skills/xiamen-tide-calculator)
+**作者**：柯英杰  
+**创建日期**：2026年4月2日  
+**最后更新**：2026年4月3日  
+**版本**：v3.2  
 
-## Overview
+### 许可协议
 
+本技能采用 **MIT License** 开源协议。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiamen-tide-calculator
 ```
+MIT License
+
+Copyright (c) 2026 柯英杰
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+### 免责声明
+
+1. **准确性说明**：本技能基于厦门海域标准潮汐计算公式，仅供参考。实际潮汐时间可能受天气、气压、地形等因素影响，建议结合实地观测或官方潮汐表使用。
+
+2. **安全警告**：赶海活动存在一定风险，请务必注意安全：
+   - 潮水上涨速度可能超出预期
+   - 礁石湿滑，容易摔倒
+   - 海洋生物可能造成伤害
+   - 天气变化可能带来危险
+
+3. **责任限制**：使用本技能进行赶海活动，用户需自行承担风险。开发者不对因使用本技能而产生的任何直接或间接损失承担责任。
+
+4. **数据来源**：
+   - 潮汐计算公式：基于厦门海域经验公式
+   - 农历转换：使用 zhdate 开源库
+   - 地点推荐：基于公开资料整理
+
+### 版本历史
+
+- **v3.2** (2026-04-03)：添加整合窗口功能，优化跨天窗口显示
+- **v3.1** (2026-04-02)：添加多窗口期分析和优缺点描述功能
+- **v3.0** (2026-04-02)：支持公历转农历、当前日期识别、闰月处理
+- **v2.0** (2026-04-02)：添加赶海专门模式、评分系统、多日比较
+- **v1.0** (2026-04-02)：初始版本，基础潮汐计算功能
+
+### 联系方式
+
+如有问题或建议，请通过 WorkBuddy 平台反馈。
+
+### 开源地址
+
+本技能已在 GitHub 开源，欢迎访问和贡献：
+
+**GitHub 仓库**：https://github.com/kingwingshome/xiamen-tide-calculator
+
+**开源内容**：
+- 完整源代码
+- 技能文档
+- 使用说明
+- 新功能指南
+
+**欢迎**：
+- ⭐ Star 支持
+- 🔄 Fork 改进
+- 📝 提交 Issue
+- 💡 贡献代码
+
+---
+
+## 工作流程
+
+当用户询问厦门潮汐时：
+
+1. **确定日期**：
+   - 支持公历日期（YYYY-MM-DD格式）自动转农历
+   - 支持当前日期自动识别（--today参数）
+   - 支持农历日期直接输入
+   - 自动检测闰月
+2. **判断模式**：根据用户问题判断使用标准模式还是赶海专门模式
+3. **计算潮汐**：调用 `scripts/tide_calculator.py` 计算潮汐和赶海建议
+4. **整合窗口**（可选）：使用--integrated参数整合前后一天窗口，显示当天所有可用窗口
+5. **输出结果**：使用相应模板返回信息
+
+## 模式选择
+
+### 标准模式
+使用场景：用户只询问潮汐时间
+- "厦门今天潮汐"
+- "厦门农历初五潮汐"
+- "2025年4月2日厦门潮汐"
+- "潮汐时间表"
+
+**调用方式**：
+```bash
+# 使用当前日期
+python scripts/tide_calculator.py --today
+
+# 使用公历日期
+python scripts/tide_calculator.py --solar-date 2025-04-02
+
+# 使用农历日期
+python scripts/tide_calculator.py --lunar-day 15 --lunar-month 3
+```
+
+### 赶海专门模式
+使用场景：用户询问赶海相关建议
+- "今天适合赶海吗"
+- "赶海最佳时间"
+- "赶海建议"
+- "哪里赶海好"
+
+**调用方式**：
+```bash
+# 当前日期赶海建议
+python scripts/tide_calculator.py --today --beach-mode
+
+# 指定日期赶海建议
+python scripts/tide_calculator.py --solar-date 2025-04-02 --beach-mode
+python scripts/tide_calculator.py --lunar-day 2 --lunar-month 3 --beach-mode
+
+# 整合窗口模式（推荐）⭐
+python scripts/tide_calculator.py --solar-date 2026-04-05 --beach-mode --integrated
+```
+
+## 新功能 v3.0 ⭐
+
+### 1. 公历自动转农历
+- 支持公历日期输入（YYYY-MM-DD格式）
+- 自动转换为农历日期进行潮汐计算
+- 集成zhdate库，准确转换
+
+### 2. 当前日期自动识别
+- 使用--today参数自动获取当前日期
+- 自动转换为农历
+- 适合快速查询今天的情况
+
+### 3. 闰月处理
+- 自动检测闰月
+- 闰月期间在输出中标注"闰X月"
+- 闰月期间在潮汐大小中标注"（闰月）"
+- 闰月期间在赶海评分中额外加分0.2分
+- 闰月期间提供特殊提示
+
+## 输出格式
+
+### 标准模式输出（支持闰月）
+```
+【厦门潮汐・农历 2025年3月5日】
+高潮 1：HH:MM
+高潮 2：HH:MM 或 次日 HH:MM
+低潮 1：HH:MM 或 前日 HH:MM
+低潮 2：HH:MM
+最佳赶海：HH:MM-HH:MM（窗口1）、HH:MM-HH:MM（窗口2）
+潮汐大小：大潮 / 中潮 / 小潮（闰月）
+赶海评分：X.X分（推荐等级）
+```
+
+### 赶海专门模式输出（支持闰月）
+```
+【厦门赶海建议・农历 2025年闰6月2日】
+
+🌊 赶海评分：X.X分（推荐等级）
+
+⏰ 最佳赶海时段：
+
+  【窗口1】HH:MM-HH:MM
+  └─ 时间类型：上午/下午/傍晚/清晨
+  └─ 优势：
+     ✅ 优势1
+     ✅ 优势2
+     ✅ 优势3
+  └─ 注意事项：
+     ❌ 缺点1
+     ❌ 缺点2
+  └─ ⭐ 推荐指数：⭐⭐⭐⭐⭐
+
+  【窗口2】HH:MM-HH:MM
+  └─ 时间类型：上午/下午/傍晚/清晨
+  └─ 优势：
+     ✅ 优势1
+     ✅ 优势2
+     ✅ 优势3
+  └─ 注意事项：
+     ❌ 缺点1
+     ❌ 缺点2
+  └─ ⭐ 推荐指数：⭐⭐⭐⭐
+
+📍 推荐地点：
+  - 地点1：描述
+  - 地点2：描述
+  - 注：闰月期间潮汐可能略有不同（闰月时显示）
+
+🐟 预期收获：
+  - 生物1, 生物2, 生物3
+
+🧰 装备建议：
+  - 必备：工具1, 工具2
+  - 推荐：工具3, 工具4
+
+⚠️ 安全提醒：
+  - 安全提示1
+  - 安全提示2
+
+📊 潮汐信息：
+  - 潮汐大小：大潮/中潮/小潮（闰月）
+  - 详细潮汐时间
+
+🌡️ 当前季节：
+  - 季节 - 季节描述
+
+💡 赶海提示：
+  - 赶海技巧和建议
+  - 闰月期间，潮汐可能略有不同，建议实地观察（闰月时显示）
+```
+
+## 赶海评分系统
+
+### 评分因素
+1. **潮汐大小**（权重40%）
+   - 大潮：4.0分
+   - 中潮：2.4分
+   - 小潮：0.8分
+
+2. **时间窗口**（权重30%）
+   - 窗口时长和质量
+
+3. **潮汐分布**（权重20%）
+   - 白天低潮加分
+
+4. **季节因素**（权重10%）
+   - 春秋季：1.0分
+   - 夏季：0.7分
+   - 冬季：0.4分
+
+5. **闰月因素**（额外加分）⭐
+   - 闰月期间：+0.2分
+
+### 推荐等级
+- **强烈推荐**（8.0-10.0分）：大潮 + 白天低潮 + 适宜季节
+- **推荐**（6.0-7.9分）：大潮或中潮 + 基本条件满足
+- **一般**（4.0-5.9分）：中潮 + 部分条件一般
+- **不推荐**（0.0-3.9分）：小潮或条件不佳
+
+## 潮汐大小判断
+
+- **大潮**：农历初二、初三、十七、十八（最适合赶海）
+- **中潮**：其他日期
+- **小潮**：农历初八、初九、廿三、廿四（不推荐赶海）
+- **闰月标注**：闰月期间在潮汐大小后标注"（闰月）" ⭐
+
+## 赶海窗口
+
+低潮前 2 小时 → 低潮后 1 小时，每个低潮点各一个窗口。
+
+## 多日比较查询
+
+当用户询问"未来一周哪天适合赶海"时：
+1. 计算每日赶海评分（支持闰月检测）
+2. 按评分排序
+3. 推荐评分最高的前3天
+4. 提供详细建议
+
+**调用方式**：
+```bash
+python scripts/compare_beach_days.py --lunar-month 3 --start-day 1 --days 10
+```
+
+## 注意事项
+
+- 时间使用24小时制，跨天标注"次日"或"前日"
+- 农历日期必须在1-30之间
+- 潮汐计算基于厦门海域标准公式
+- 赶海评分综合考虑潮汐、时间、季节、闰月等因素
+- 安全提醒非常重要，请务必遵守
+- 闰月期间潮汐可能略有不同，建议实地观察 ⭐
+
+## 新功能 v3.1 ⭐⭐
+
+### 多窗口期分析
+- 自动识别每个窗口的时间类型（上午、下午、傍晚、清晨）
+- 过滤非当天窗口，只显示当天可用的赶海窗口
+- 为每个窗口提供详细的优缺点分析
+- 根据时间类型给出推荐指数（⭐⭐⭐-⭐⭐⭐⭐⭐）
+
+### 时间窗口类型
+- **上午**（6:00-12:00）：光线充足，安全系数高，推荐指数⭐⭐⭐⭐⭐
+- **下午**（12:00-18:00）：光线良好，准备时间充足，推荐指数⭐⭐⭐⭐
+- **傍晚**（18:00-21:00）：气温凉爽，光线柔和，推荐指数⭐⭐⭐⭐⭐
+- **清晨**（4:00-6:00）：环境安静，海货最多，推荐指数⭐⭐⭐
+
+### 窗口优缺点描述
+每个窗口都提供：
+- **优势**：3-5条主要优点
+- **注意事项**：2-3条需要注意的缺点
+- **推荐指数**：根据时间类型自动评定
+
+### 实际应用场景
+- 帮助用户根据个人时间安排选择最佳窗口
+- 清晰了解每个窗口的优缺点，做出合理决策
+- 区分当天窗口和非当天窗口，避免误解
+
+## 新功能 v3.2 ⭐⭐⭐
+
+### 整合窗口功能
+- **问题**：单日潮汐计算中，部分窗口可能跨天显示为"前日"或"次日"
+- **解决**：计算前后一天的潮汐，整合出当天所有可用窗口
+- **效果**：用户看到的是完整的当天赶海窗口，而不是跨天窗口
+
+### 工作原理
+以查询4月5日为例：
+
+1. **计算4月4日潮汐**：
+   - 窗口1：前日 17:24-前日 20:24（非当天）
+   - 窗口2：05:48-08:48（清晨）
+
+2. **计算4月5日潮汐**：
+   - 窗口1：前日 18:12-前日 21:12（非当天）
+   - 窗口2：06:36-09:36（上午）
+
+3. **计算4月6日潮汐**：
+   - 窗口1：前日 19:00-前日 22:00（非当天）
+   - 窗口2：07:24-10:24（上午）
+
+4. **整合结果**：
+   - 4月5日的窗口2（06:36-09:36）来自当天
+   - 4月6日的窗口1（前日 19:00-前日 22:00）实际属于4月5日傍晚
+
+5. **最终输出**：
+   - 窗口1：06:36-09:36（上午）
+   - 窗口2：19:00-22:00（傍晚）⭐ 整合得到
+
+### 使用方式
+```bash
+# 启用整合窗口功能（推荐）
+python scripts/tide_calculator.py --solar-date 2026-04-05 --beach-mode --integrated
+```
+
+### 实际效果对比
+
+**不使用--integrated**：
+```
+4月5日赶海时间：
+  窗口1：前日 18:12-前日 21:12（非当天窗口）⚠️
+  窗口2：06:36-09:36（上午）
+```
+
+**使用--integrated**：
+```
+4月5日赶海时间：
+  窗口1：06:36-09:36（上午）
+  窗口2：19:00-22:00（傍晚）⭐ 来自4月6日
+```
+
+### 用户价值
+1. **信息更完整**：看到当天所有可用的赶海窗口，不遗漏
+2. **更符合直觉**：用户期望看到当天的时间，而不是跨天标注
+3. **决策更准确**：清楚知道当天有上午和傍晚两个窗口可选
+4. **避免误解**：不需要手动计算跨天窗口的对应关系
+
+## 依赖要求 ⭐
+
+- Python 3.6+
+- zhdate库（用于农历转换）：`pip install zhdate`

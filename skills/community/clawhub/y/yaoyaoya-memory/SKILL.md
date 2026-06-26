@@ -1,35 +1,243 @@
----
-name: "摇摇记忆系统"
-description: "支持多层次记忆管理和标签分类，实现跨会话检索、持久化存储、定期整理及与IMA知识库双向同步。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yaoyaoya-memory"
-sourceUrl: "https://clawhub.ai/skills/yaoyaoya-memory"
+# Skill: yaoyaoya-memory
+
+🦞 **Universal Memory System for AI Assistants** — with IMA by default
+
+ универсальная система памяти | 让 AI 助手拥有持久化记忆能力
+
 ---
 
-# 摇摇记忆系统
+## 与其他记忆方案的区别
 
-> 支持多层次记忆管理和标签分类，实现跨会话检索、持久化存储、定期整理及与IMA知识库双向同步。
+| 特性 | 其他方案 | yaoyaoya-memory |
+|------|----------|-----------------|
+| 记忆分层 | 单一文件 | MEMORY.md + 每日日记 + learnings 分层 |
+| 标签系统 | 无/简单 | 完整标签体系（#项目 #教训 #决策 #待办） |
+| 知识同步 | 需手动 | IMA 默认集成，可配置 Notion/Obsidian |
+| 可靠性标注 | 无 | ★★★★★ 到 ★☆☆☆☆ 分级 |
+| 搜索能力 | 全文搜索 | memory_search + 语义标签检索 |
+| 配置方式 | 硬编码 | config.json 完全可配置 |
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yaoyaoya-memory`
-- **Source URL:** [https://clawhub.ai/skills/yaoyaoya-memory](https://clawhub.ai/skills/yaoyaoya-memory)
+---
 
-## Overview
+## 核心能力
 
+| 功能 | 触发词 | 说明 |
+|------|--------|------|
+| 主动记忆 | "我记得"/"之前说过"/"搜索记忆" | 跨会话记忆检索 |
+| 记忆写入 | "记住"/"记录"/"存档" | 持久化存储重要信息 |
+| 记忆整理 | "整理记忆"/"总结" | 定期归纳提炼 |
+| IMA同步 | "同步IMA"/"上传知识库" | 与IMA笔记双向同步 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yaoyaoya-memory
+---
+
+## 触发规则
+
+### 1. 主动记忆触发
+
+**触发条件**：
+- 用户说「我记得」「之前说过」「好像有过」「搜索记忆」
+- 当用户询问涉及之前讨论过的内容时
+
+**执行流程**：
 ```
+1. 调用 memory_search 搜索记忆库
+2. 分析查询意图，匹配相关记忆
+3. 返回记忆片段，标注来源、时间和可靠性
+4. 必要时用 memory_get 获取完整上下文
+```
+
+**搜索范围**：
+- `MEMORY.md` — 长期记忆（精选沉淀）
+- `memory/*.md` — 每日日记（按日期归档）
+- `.learnings/*.md` — 错误教训和经验
+
+---
+
+### 2. 记忆写入触发
+
+**触发条件**：
+- 用户说「记住」「记录」「存档」「这个很重要」
+- AI 判断某信息值得长期保存
+
+**执行流程**：
+```
+1. 判断记忆类型和存储位置
+   ├─ 重大决策 → MEMORY.md
+   ├─ 每日事件 → memory/YYYY-MM-DD.md
+   ├─ 错误教训 → .learnings/LEARNINGS.md
+   └─ 项目详情 → knowledge/[项目名].md
+
+2. 写入文件，带时间戳
+3. 确认写入成功
+```
+
+**写入规则**：
+- 只记录**已验证事实**，不记未证实推测
+- 标注信息来源和可靠性等级
+- 关键决策要记录上下文和理由
+
+---
+
+### 3. 记忆整理触发
+
+**触发条件**：
+- 用户说「整理记忆」「总结最近」「回顾」
+
+**执行流程**：
+```
+1. 读取最近30天日记
+2. 识别重复模式和重要事件
+3. 将新洞察提炼到 MEMORY.md
+4. 清理过时信息
+```
+
+---
+
+### 4. IMA 知识库同步（默认启用）
+
+**触发条件**：
+- 用户配置了 IMA
+- 用户说「同步IMA」「上传知识库」「更新IMA」
+
+**默认笔记矩阵**：
+
+| 笔记 | note_id | 用途 |
+|------|---------|------|
+| AI记忆库 | 7445750904545580 | 总目录 |
+| 日记 | 7445750912911573 | 每日事件记录 |
+| 决策库 | 7445750929715125 | 技术/产品重要决策 |
+| 用户档案 | 7445750942269901 | 用户偏好和习惯 |
+| 经验总结 | 7445750959047844 | 最佳实践和错误教训 |
+| 项目 | 7445750967460566 | 各项目详情 |
+
+**IMA 配置**：
+```json
+{
+  "knowledge_sync": {
+    "enabled": true,
+    "platform": "ima",
+    "client_id": "your-ima-client-id",
+    "api_key": "your-ima-api-key",
+    "notes_mapping": {
+      "AI记忆库": "7445750904545580",
+      "日记": "7445750912911573",
+      "决策库": "7445750929715125",
+      "用户档案": "7445750942269901",
+      "经验总结": "7445750959047844",
+      "项目": "7445750967460566"
+    }
+  }
+}
+```
+
+**同步方向**：
+- → IMA：重要结论、决策、经验
+- ← IMA：用户偏好、项目更新
+
+---
+
+## 文件结构
+
+```
+workspace/
+├── MEMORY.md              # 长期记忆（精选沉淀）
+├── memory/
+│   └── YYYY-MM-DD.md     # 每日日记（原始流水）
+├── .learnings/
+│   ├── LEARNINGS.md      # 错误教训和最佳实践
+│   ├── ERRORS.md         # 系统错误记录
+│   └── FEATURE_REQUESTS.md  # 功能需求
+├── knowledge/             # 项目知识库
+│   └── [project].md      # 各项目详情
+└── scripts/
+    ├── memory_search.py   # 记忆搜索脚本
+    └── sync_ima.py       # IMA同步脚本
+```
+
+---
+
+## 标签体系
+
+| 类型 | 示例 |
+|------|------|
+| 项目 | `#HarmonyOS` `#ArkTS` `#一日记账` |
+| 教训 | `#教训` `#踩坑` `#错误` |
+| 决策 | `#决策` `#方案选型` `#优先级` |
+| 待办 | `#待办` `#TODO` `#后续` |
+| 时间 | `#今天` `#本周` `#2026-04` |
+
+---
+
+## 可靠性标注
+
+| 验证方式 | 可靠性 | 记法 |
+|----------|--------|------|
+| 实际测试验证 | ★★★★★ | 直接记结论 |
+| 用户明确告知 | ★★★★★ | 直接记结论 |
+| 第三方确认 | ★★★☆☆ | 结论 + 注明来源 |
+| 推测/推断 | ★★☆☆☆ | 结论 + 注明「推测」 |
+
+---
+
+## 快速指令
+
+```
+我记得之前...        # 主动记忆检索
+记住这个...          # 写入长期记忆
+搜索记忆...          # 按关键词检索
+整理记忆            # 定期归纳总结
+同步IMA             # IMA知识库同步
+```
+
+---
+
+## 配置示例
+
+在 skill 目录创建 `config.json`：
+
+```json
+{
+  "memory": {
+    "long_term_file": "MEMORY.md",
+    "daily_dir": "memory",
+    "learnings_dir": ".learnings",
+    "knowledge_dir": "knowledge"
+  },
+  "knowledge_sync": {
+    "enabled": true,
+    "platform": "ima",
+    "client_id": "your-ima-client-id",
+    "api_key": "your-ima-api-key",
+    "notes_mapping": {
+      "AI记忆库": "7445750904545580",
+      "日记": "7445750912911573",
+      "决策库": "7445750929715125",
+      "用户档案": "7445750942269901",
+      "经验总结": "7445750959047844",
+      "项目": "7445750967460566"
+    }
+  }
+}
+```
+
+---
+
+## 依赖工具
+
+- `memory_search` — 记忆语义搜索（OpenClaw 内置）
+- `memory_get` — 读取指定记忆片段（OpenClaw 内置）
+- `scripts/sync_ima.py` — IMA 同步脚本
+
+---
+
+## 安装
+
+```bash
+npx clawhub install yaoyaoya-memory
+```
+
+---
+
+## License
+
+MIT — 可直接使用、修改、分发

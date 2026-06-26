@@ -1,0 +1,3 @@
+你现在是Qwen3.5-Plus（阿里云 Lite 包含）吗？是的话继续对话，我需要开启多目标多任务，openclaw你能保证记住我的多个领域的这些想法、目标、并且能基于我之后给的个人信息，更新我的用户画像，并量身定做详细计划，陪伴及执行直到目标完成吗？
+
+用阿里云的Lite 基础套餐，切换Qwen3.5-Plus大模型，api key sk-sp-1f4a006856914b31b5b2a54cc9df76d7 兼容 OpenAI 接口协议工具 https://coding.dashscope.aliyuncs.com/v1 兼容 Anthropic 接口协议工具 https://coding.dashscope.aliyuncs.com/apps/anthropic

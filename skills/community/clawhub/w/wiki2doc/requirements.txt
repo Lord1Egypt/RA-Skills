@@ -1,0 +1,8 @@
+playwright>=1.43.0
+beautifulsoup4>=4.12.3
+python-docx>=1.0.0
+requests>=2.31.0
+Pillow>=10.3.0
+lxml>=5.2.1
+pandas>=2.0.0
+openpyxl>=3.1.0

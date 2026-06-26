@@ -1,0 +1,29 @@
+{
+  "name": "memory-v2",
+  "version": "0.1.0",
+  "description": "OpenClaw 记忆系统 v2 - 向量记忆 + 知识图谱 + 实体提取 + 自动管理",
+  "main": "src/memory-system.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test/memory.test.js",
+    "test:vector": "node test/vector-store.test.js",
+    "test:graph": "node test/graph-store.test.js",
+    "test:ner": "node test/ner-extractor.test.js",
+    "test:manager": "node test/memory-manager.test.js"
+  },
+  "dependencies": {
+    "@xenova/transformers": "^2.17.0",
+    "@lancedb/lancedb": "^0.10.0"
+  },
+  "keywords": [
+    "memory",
+    "vector-store",
+    "knowledge-graph",
+    "openclaw-skill"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

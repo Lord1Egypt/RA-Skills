@@ -1,0 +1,4 @@
+playwright
+playwright-stealth
+beautifulsoup4
+dnspython

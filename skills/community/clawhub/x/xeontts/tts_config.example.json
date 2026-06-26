@@ -1,0 +1,28 @@
+{
+  "qwen3_tts_0.6b_base_openvino": {
+    "label": "Qwen3-TTS-0.6B-Base(OpenVINO)",
+    "model_dir": "~/model/Qwen3-TTS-12Hz-0.6B-Base-OpenVINO-INT8",
+    "model_type": "Qwen3_TTS_OpenVINO",
+    "tts_model_type": "voice_clone",
+    "force_cpu": false,
+    "default_mode": "voice_clone_xvector",
+    "modes": ["voice_clone", "voice_clone_xvector"],
+    "device": "CPU",
+    "default_language": "Chinese",
+    "prompt_text": "",
+    "prompt_audio": ""
+  },
+  "qwen3_tts_0.6b_custom_openvino": {
+    "label": "Qwen3-TTS-0.6B-CustomVoice(OpenVINO)",
+    "model_dir": "~/model/Qwen3-TTS-12Hz-0.6B-CustomVoice-OpenVINO-INT8",
+    "model_type": "Qwen3_TTS_OpenVINO",
+    "tts_model_type": "custom_voice",
+    "force_cpu": false,
+    "default_mode": "custom_voice",
+    "modes": ["custom_voice"],
+    "device": "CPU",
+    "default_language": "Chinese",
+    "default_speaker": "Vivian",
+    "speakers": ["Vivian", "Serena", "Uncle_Fu", "Dylan", "Eric", "Ryan", "Aiden", "Ono_Anna", "Sohee"]
+  }
+}

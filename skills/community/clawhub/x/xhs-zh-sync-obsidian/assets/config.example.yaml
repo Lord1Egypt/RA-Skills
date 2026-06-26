@@ -1,0 +1,51 @@
+config_dir: "~/.config/social-favorites-to-obsidian"
+data_dir: "~/.local/share/social-favorites-to-obsidian"
+cookiecloud_env: "~/.config/social-favorites-to-obsidian/cookiecloud.env"
+
+obsidian:
+  # setup.py --init 会在首次安装时替换成随机创建的本地目录。
+  vault: "~/.local/share/social-favorites-to-obsidian/obsidian-vault-example"
+  base_dir: "互联网笔记"
+  # local-only 时不执行 ob sync；headless-sync 配置完成后改为 true。
+  run_ob_sync: false
+  asset_dirname: "_assets"
+  sync:
+    mode: "local-only"
+    headless_config_dir: "social-favorites-to-obsidian"
+    device_name: "social-favorites-to-obsidian"
+
+install:
+  # 其它 agent 判断是否首次安装时，优先运行:
+  # python scripts/setup.py --status --json
+  state_file: "~/.config/social-favorites-to-obsidian/install_state.json"
+
+hctec:
+  skills_root: "~/.openclaw/workspace/skills"
+  xhs_skill: "hctec-xiaohongshu-favorites"
+  zhihu_skill: "hctec-zhihu-favorites"
+  harvester_skill: "hctec-favorites-harvester"
+  python: ""
+
+platforms:
+  xhs:
+    enabled: true
+    # max_per_run 保持兼容旧配置；新配置优先使用下面两个字段。
+    max_per_run: 50
+    max_new_per_run: 50
+    max_scan_per_run: 50
+    detail_delay_seconds: 8
+    no_headless: false
+  zhihu:
+    enabled: true
+    collection_ids: []
+    collection_list_limit: 50
+    max_per_collection: 100
+    # max_per_run 保持兼容旧配置；新配置优先使用下面两个字段。
+    max_per_run: 100
+    max_new_per_run: 100
+    max_scan_per_run: 100
+
+classification:
+  rules_file: "~/.config/social-favorites-to-obsidian/classify_rules.yaml"
+  default_level1: "其他"
+  default_level2: "待整理"

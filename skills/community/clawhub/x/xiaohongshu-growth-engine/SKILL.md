@@ -1,35 +1,137 @@
----
-name: "小红书内容生成引擎"
-description: "科学化生成小红书高互动内容策略、选题日历及爆款文案，助力博主系统规划与粉丝增长。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-growth-engine"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-growth-engine"
----
+***
 
-# 小红书内容生成引擎
+**name: xiaohongshu-growth-                                                                                                              engine  version: 1.0.1                                                                                                                                description: >-**** 科学打造小红书流量博主的内容更新引擎，基于说服理论、情绪感染理论及平台实证研究， 自动生成高互动内容策略、选题日历和爆款文案。适用于需要系统化涨粉和内容规划的博主。 trigger-keywords: >- 小红书内容策略, 博主涨粉, 内容日历, 爆款内容生成, 科学选题, 流量博主打造, 小红书运营, 内容更新计划, xiaohongshu growth, content strategy author: Your Name license: MIT tags:
 
-> 科学化生成小红书高互动内容策略、选题日历及爆款文案，助力博主系统规划与粉丝增长。
+* xiaohongshu
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-growth-engine`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-growth-engine](https://clawhub.ai/skills/xiaohongshu-growth-engine)
+* content-marketing
 
-## Overview
+* growth-hacking
+
+* communication-science
+
+* social-media-strategy
+
+***
+
+# 📈 小红书流量博主内容科学引擎
+
+别再凭感觉发笔记了。
+本引擎将传播学中的**详尽可能性模型（ELM）**、**情绪感染理论**与**内容标签聚类分析**结合，
+帮你系统生成可测试的爆款内容假设、更新日历和文案骨架，并通过内置的 A/B 测试反馈循环持续优化。
+
+## 🧪 理论基础（为什么有效）
+
+* **ELM 双路径说服**：笔记结构同时铺设"中心路径"（干货/数据）和"边缘路径"（视觉/情绪钩子），最大化互动（Petty & Cacioppo, 1986）。
+
+* **高唤醒情绪驱动分享**：基于 Berger & Milkman (2012) 的实证发现——唤起高唤醒情绪（惊奇、愤怒、焦虑、兴奋）的内容显著更易被转发。
+
+* **信息型 vs. 情感型内容的平台适配**：Tellis et al. (2019) 证实，通用社交平台（Facebook、Twitter 等）更适合情感驱动内容。
+
+* **内容适配"最近发展区"**：选题难度恰好超出用户当前认知一点点，增加信息价值而避免完全陌生。
+
+* **周期性热点函数**：结合平台热搜周期词和用户活跃时段加权，给出最佳发布时间。
+
+## ⚙️ 工作流程
+
+1. **博主画像输入**
+   你只需提供：领域（如职场、护肤）、目标粉丝画像、内容形式偏好（图文/视频）、过往爆款笔记（可选）。
+
+2. **策略生成**
+   引擎基于你所在赛道的标签共现网络，输出三类核心选题：
+
+   * **信任背书型**（高收藏）：可复用的方法、清单、模板（ELM 中心路径）
+
+   * **情绪共鸣型**（高评论）：身份认同话题、争议观点（高唤醒情绪驱动）
+
+   * **时效热点型**（高曝光）：借势近期平台热词
+
+3. **内容日历自动排期**
+   按周推荐发布频率，并标注每篇的潜在信息增量、情绪曲线，避免内容疲劳。
+
+4. **单篇文案骨架生成**
+   对每个选题输出科学锚定的 hook → body → CTA 结构，并给出验证指标。
+
+5. **A/B 测试反馈**
+   选取同一选题两种不同框架（如情感强度高 vs. 低），提供测试代码片段（可选）以自动化分析互动差异。
+
+## 📝 生成示例（科学增强版）
+
+### 选题类型：信任背书型（中心路径为主）
+
+**理论锚点**：提供可执行步骤降低认知门槛，提升收藏率（ELM 中心路径）。
+
+**Hook**: "你早 C 晚 A 完全做反了！皮肤科医生不会告诉你的 3 个顺序（附打卡表）"
+**Body**:
+
+1. 为什么顺序错了会反黑——引用皮肤屏障原理（简洁版）
+
+2. 正确顺序表（图片清单）——认知阶梯，从易到难
+
+3. 我的 28 天早晚流程实录（证据）
+
+4. 常见翻车误区合集（边缘路径：配笑哭/崩溃表情）
+   **CTA**: "你现在的顺序对了吗？拍下你的护肤品，评论区帮你看看"
+   **情绪曲线**：轻度焦虑 → 知识获得 → 亲近信任
+   **Hashtags**: #早C晚A #护肤干货 #干货分享 #护肤顺序 #科学护肤
+
+### 选题类型：情绪共鸣型（高互动）
+
+**理论锚点**：高唤醒情绪（愤怒/焦虑/惊奇）通过生理唤醒驱动分享行为（Berger & Milkman, 2012）。
+
+**Hook**: "30岁后最该戒掉的不是奶茶，是'努力感'"
+**Body**:
+
+1. 三个朋友的真实故事（微调隐私）——引发"我也是"反应
+
+2. 为什么努力感会成瘾（一个心理学概念：可变奖励）
+
+3. 替代方案：用'80%完美'代替'120%拼命'
+   **CTA**: "哪个瞬间你决定不再卷自己了？来评论区抱团"
+   **Hashtags**: #职场情绪 #自我成长 #反内卷 #精神状态 #女性成长
+
+### 选题类型：时效热点型
+
+**理论锚点**：热门话题加速内容扩散，但需绑定博主独特观点以保持辨识度（Tellis et al., 2019）。
+
+**Hook**: "《某某热播剧》女主的穿搭，放在职场根本活不过 3 天"
+**Body**:
+
+1. 拆解剧中造型的三个职场 bug（专业视角）
+
+2. 同风格"可上班"改造方案
+
+3. 平价替代链接（若有）
+   **CTA**: "你追剧时试过同款穿搭吗？成功了吗？"
+   **Hashtags**: #热播剧穿搭 #职场穿搭 #通勤穿搭 #穿搭避雷 #OOTD
+
+## 📊 内置 A/B 测试框架（科学验证）
+
+对同一选题，引擎可生成两个版本：
+
+* **版本 A（高情感版本）**：标题"天哪！我终于找到不卡粉的方法了！"
+
+* **版本 B（高信息版本）**：标题"底妆不卡粉的 3 个物理原理，化妆师在用"
+
+发布后，用 `tools/ab_test_analysis.py`（可选）输入曝光、点赞、评论、收藏数据，自动计算贝叶斯后验概率，告诉你哪个信息框架更优。
+
+## ⚠️ 学术使用说明
+
+* 所有策略均基于经过同行评议的传播学与市场营销研究（见参考文献），但具体内容仍需博主结合自身风格二次创作。
+
+* 引擎推荐的标签和情绪强度基于历史数据归纳，不保证必然爆款；建议进行个性化微验证。
+
+* A/B 测试部分依赖数据采集，需遵守平台隐私政策。
+
+## 📚 参考文献
+
+* Berger, J., & Milkman, K. L. (2012). What makes online content viral? *Journal of Marketing Research*, *49*(2), 192–205.
+
+* Petty, R. E., & Cacioppo, J. T. (1986). *Communication and persuasion: Central and peripheral routes to attitude change*. Springer-Verlag.
+
+* Tellis, G. J., MacInnis, D. J., Tirunillai, S., & Zhang, Y. (2019). What drives virality (sharing) of online digital content? The critical role of information, emotion, and brand prominence. *Journal of Marketing*, *83*(4), 1–20.
+
+***
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-growth-engine
-```
+

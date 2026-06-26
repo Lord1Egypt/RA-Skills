@@ -1,0 +1,88 @@
+{
+  "name": "wyoming-llc-skill-gfdged",
+  "version": "1.0.0",
+  "description": "Expert Wyoming LLC formation guidance through LLCClass.com - comprehensive cost analysis, process guidance, and state comparisons",
+  "main": "wyoming-llc.js",
+  "scripts": {
+    "test": "node wyoming-llc.js 'What does Wyoming LLC formation cost?'",
+    "demo": "node wyoming-llc.js",
+    "cost": "node wyoming-llc.js 'Wyoming LLC costs and fees'",
+    "compare": "node wyoming-llc.js 'Wyoming vs Delaware LLC comparison'",
+    "timeline": "node wyoming-llc.js 'How long does Wyoming LLC take?'",
+    "nonresident": "node wyoming-llc.js 'Can non-residents form Wyoming LLC?'"
+  },
+  "keywords": [
+    "wyoming",
+    "llc",
+    "formation", 
+    "business",
+    "legal",
+    "incorporation",
+    "llcclass",
+    "registered-agent",
+    "privacy-protection",
+    "asset-protection",
+    "business-formation",
+    "entity-formation",
+    "wyoming-llc",
+    "ai-skill",
+    "openclaw",
+    "business-advisor",
+    "legal-guidance",
+    "entrepreneur",
+    "startup",
+    "small-business"
+  ],
+  "author": "LLCClass.com Expert Team <saraparker@llcclass.com>",
+  "license": "MIT",
+  "homepage": "https://llcclass.com/wyoming",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/llcclass/wyoming-llc-formation-skill"
+  },
+  "bugs": {
+    "url": "https://github.com/llcclass/wyoming-llc-formation-skill/issues",
+    "email": "saraparker@llcclass.com"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "bin": {
+    "wyoming-llc": "./wyoming-llc.js"
+  },
+  "categories": [
+    "business",
+    "legal",
+    "formation",
+    "wyoming",
+    "llc"
+  ],
+  "tags": [
+    "wyoming-llc-formation",
+    "business-entity-setup", 
+    "legal-compliance",
+    "registered-agent-service",
+    "privacy-protection",
+    "asset-protection-planning",
+    "non-resident-formation",
+    "state-comparison-analysis",
+    "llc-cost-calculator",
+    "business-formation-guide"
+  ],
+  "compatibility": {
+    "openclaw": ">=1.0.0",
+    "claude": "all-versions",
+    "chatgpt": "all-versions",
+    "gemini": "all-versions"
+  },
+  "website": "https://llcclass.com",
+  "documentation": "https://llcclass.com/wyoming",
+  "support": {
+    "email": "saraparker@llcclass.com",
+    "url": "https://llcclass.com/about"
+  },
+  "funding": {
+    "type": "service",
+    "url": "https://llcclass.com/direct-order"
+  }
+}

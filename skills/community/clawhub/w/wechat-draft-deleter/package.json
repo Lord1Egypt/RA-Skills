@@ -1,0 +1,15 @@
+{
+  "name": "wechat-draft-deleter",
+  "version": "1.0.0",
+  "description": "删除微信公众号草稿箱中的草稿",
+  "main": "scripts/delete_drafts.py",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["wechat", "draft", "delete", "公众号", "草稿"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "requests": ">=2.25.1"
+  }
+}

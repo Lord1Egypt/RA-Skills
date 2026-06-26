@@ -1,0 +1,17 @@
+{
+  "date": "2026-03-17",
+  "count": 2,
+  "lastChecked": "2026-03-17T01:01:00+08:00",
+  "lastEstimate": 2,
+  "note": "Qwen 系列模型 API 调用次数追踪（qwen-portal/* 或 aliyun/*）",
+  "history": [
+    {"date": "2026-03-11", "finalCount": 29},
+    {"date": "2026-03-12", "finalCount": 17},
+    {"date": "2026-03-13", "finalCount": 15},
+    {"date": "2026-03-14", "finalCount": 29},
+    {"date": "2026-03-15", "finalCount": 26},
+    {"date": "2026-03-16", "finalCount": 14},
+    {"time": "2026-03-17T00:00:00+08:00", "count": 1},
+    {"time": "2026-03-17T01:01:00+08:00", "count": 2}
+  ]
+}

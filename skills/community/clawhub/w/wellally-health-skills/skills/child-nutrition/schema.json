@@ -1,0 +1,194 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellally.health/schemas/child-nutrition-tracker.json",
+  "title": "Child Nutrition Tracker",
+  "description": "Data structure for child nutrition tracking",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "child_profile": {
+      "type": "object",
+      "properties": {
+        "child_id": {"type": "string"},
+        "name": {"type": "string"},
+        "birth_date": {"type": "string", "format": "date"},
+        "gender": {"type": "string", "enum": ["male", "female"]}
+      },
+      "required": ["child_id", "name", "birth_date", "gender"]
+    },
+    "dietary_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "age": {"type": "string"},
+          "age_months": {"type": "integer"},
+          "meals": {
+            "type": "object",
+            "properties": {
+              "breakfast": {
+                "type": "object",
+                "properties": {
+                  "time": {"type": "string"},
+                  "foods": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {"type": "string"},
+                        "amount": {"type": "string"},
+                        "category": {
+                          "type": "string",
+                          "enum": ["grain", "protein", "vegetable", "fruit", "dairy", "nuts", "other"]
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "lunch": {"$ref": "#/definitions/meal"},
+              "dinner": {"$ref": "#/definitions/meal"},
+              "snacks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {"type": "string"},
+                    "amount": {"type": "string"},
+                    "time": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "water_intake": {
+            "type": "object",
+            "properties": {
+              "amount_ml": {"type": "integer"},
+              "recommended_min": {"type": "integer"},
+              "recommended_max": {"type": "integer"},
+              "adequate": {"type": "boolean"}
+            }
+          },
+          "supplements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {"type": "string"},
+                "dosage": {"type": "string"},
+                "frequency": {"type": "string"}
+              }
+            }
+          },
+          "nutrition_assessment": {
+            "type": "object",
+            "properties": {
+              "calories": {"type": "string"},
+              "protein": {"type": "string"},
+              "calcium": {"type": "string"},
+              "iron": {"type": "string"},
+              "vitamin_d": {"type": "string"},
+              "zinc": {"type": "string"},
+              "vitamin_a": {"type": "string"},
+              "overall": {"type": "string"}
+            }
+          },
+          "food_variety": {
+            "type": "object",
+            "properties": {
+              "total_items": {"type": "integer"},
+              "categories_covered": {
+                "type": "array",
+                "items": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "picky_eating": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["none", "mild", "moderate", "severe"]
+        },
+        "refused_foods": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "preferred_foods": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "strategies_tried": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "improvement_notes": {"type": "string"}
+      }
+    },
+    "nutritional_assessment": {
+      "type": "object",
+      "properties": {
+        "protein_status": {"type": "string"},
+        "calcium_status": {"type": "string"},
+        "iron_status": {"type": "string"},
+        "zinc_status": {"type": "string"},
+        "vitamin_d_status": {"type": "string"},
+        "vitamin_a_status": {"type": "string"},
+        "vitamin_c_status": {"type": "string"},
+        "overall_status": {"type": "string"}
+      }
+    },
+    "allergies": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "intolerances": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_records": {"type": "integer"},
+        "average_calorie_intake": {"type": "string"},
+        "food_variety_score": {"type": "string"},
+        "picky_eating_trend": {"type": "string"}
+      }
+    }
+  },
+  "required": ["created_at", "last_updated", "child_profile"],
+  "definitions": {
+    "meal": {
+      "type": "object",
+      "properties": {
+        "time": {"type": "string"},
+        "foods": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "amount": {"type": "string"},
+              "category": {
+                "type": "string",
+                "enum": ["grain", "protein", "vegetable", "fruit", "dairy", "nuts", "other"]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

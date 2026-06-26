@@ -1,35 +1,112 @@
 ---
-name: "小红书内容自动化套件"
-description: "小红书内容自动化套件 - 爆款选题挖掘、文案生成、封面提示词、数据分析"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, content, xiaohongshu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-content-automation8"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-content-automation8"
+name: xiaohongshu-content-automation
+description: 小红书内容自动化套件 - 爆款选题挖掘、文案生成、封面提示词、数据分析
+version: 1.0.0
+tags:
+  - xiaohongshu
+  - content-creation
+  - automation
+  - copywriting
+  - social-media
 ---
 
 # 小红书内容自动化套件
 
-> 小红书内容自动化套件 - 爆款选题挖掘、文案生成、封面提示词、数据分析
+一套AI指令包，帮你自动化小红书内容创作全流程。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-content-automation8`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-content-automation8](https://clawhub.ai/skills/xiaohongshu-content-automation8)
+## 核心功能
 
-## Overview
+| 模块 | 功能 | 使用时机 |
+|------|------|----------|
+| 选题挖掘 | 分析爆款规律，生成10个选题 | 周一规划 |
+| 文案生成 | 3种模板（干货/故事/清单） | 内容创作 |
+| 封面提示词 | 生成Midjourney/DALL-E提示词 | 配图制作 |
+| 数据分析 | 复盘笔记数据，找出优化方向 | 周末复盘 |
 
+## 使用方法
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-content-automation8
+直接对AI说触发词：
+
 ```
+"帮我挖小红书选题"
+"写一篇小红书文案，选题是xxx"
+"生成小红书封面提示词"
+"分析最近10条笔记数据"
+```
+
+## 数据基准
+
+基于路标笔记实测数据：
+- CTR：22.6%
+- 完播率：36%
+
+---
+
+## 🎁 完整4个指令包免费获取
+
+本skill是精简入口版。**完整版包含**：
+
+- ✅ xiaohongshu-trend-mining（爆款选题挖掘完整流程）
+- ✅ xiaohongshu-copywriting（3种文案模板+检查清单）
+- ✅ xiaohongshu-cover-prompt（4种封面类型提示词库）
+- ✅ xiaohongshu-data-analysis（数据分析模板+优化建议）
+
+👉 **GitHub开源免费下载**：
+https://github.com/maomao52088/xiaohongshu-automation-skills
+
+Star一下支持作者 ⭐
+
+---
+
+## 快速开始
+
+### 选题挖掘流程
+
+1. 确定领域关键词（如"AI工具"、"个人成长"）
+2. 分析该领域爆款笔记共性
+3. 提取标题公式、封面特征、内容结构
+4. 生成10个选题 + 优先级排序
+5. 验证可行性
+
+### 爆款标题公式
+
+- 数字开头：`"坚持30天，我发生了什么变化"`
+- 对比反差：`"月薪3千vs月薪3万的人，区别在哪"`
+- 痛点直击：`"如果你也...一定要看这篇"`
+- 身份认同：`"写给所有...的人"`
+
+### 文案模板示例
+
+**干货型（高收藏）**：
+```
+【标题】数字+结果承诺
+
+开头：痛点直击 OR 结果预告
+
+正文：
+1. 第一点（核心方法）
+2. 第二点
+3. 第三点
+
+结尾：总结 + 互动提问
+```
+
+---
+
+## 适用人群
+
+- 小红书博主（个人成长/效率工具/AI测评方向）
+- 内容运营（需要批量产出）
+- 想做副业但没时间写内容的人
+
+## 注意事项
+
+1. 数据比直觉准 — 分析10条爆款胜过100条猜测
+2. 差异化是关键 — 同一话题，找一个新角度
+3. 时效性 — 热点24小时内发，干货长期有效
+
+---
+
+🦞 大龙猫制作 · 2026.04.15
+
+**觉得有用？GitHub上点个Star支持一下 ⭐**

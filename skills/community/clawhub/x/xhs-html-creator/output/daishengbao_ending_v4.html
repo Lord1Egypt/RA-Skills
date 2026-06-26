@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1350">
+<title>结尾页 v4</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1350px; background: #FFF8F0; font-family: 'Noto Sans SC', sans-serif; overflow: hidden; position: relative; }
+.bg-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(180,140,100,0.06) 28px, rgba(180,140,100,0.06) 29px); }
+.tape { position: absolute; width: 140px; height: 36px; background: rgba(255,230,150,0.85); transform: rotate(-3deg); box-shadow: 0 2px 5px rgba(0,0,0,0.12); }
+.tape-1 { top: 22px; left: 28px; }
+.tape-2 { top: 22px; right: 28px; transform: rotate(3deg); }
+.hero-title { position: absolute; top: 70px; left: 50%; transform: translateX(-50%); font-size: 72px; font-weight: 900; color: #1A0A00; letter-spacing: 6px; white-space: nowrap; }
+.divider { position: absolute; top: 162px; left: 50%; transform: translateX(-50%); width: 260px; height: 5px; background: linear-gradient(90deg, transparent, #D4853D, transparent); }
+.tips-section { position: absolute; top: 200px; left: 40px; right: 40px; background: #FFFDF5; border: 4px dashed #D4A574; border-radius: 18px; padding: 26px 32px; }
+.tips-title { font-size: 36px; font-weight: 900; color: #1A0A00; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.tip-item { display: flex; align-items: flex-start; margin-bottom: 18px; font-size: 30px; color: #1A0A00; line-height: 1.7; font-weight: bold; }
+.tip-icon { font-size: 34px; margin-right: 16px; flex-shrink: 0; }
+.outro-box { position: absolute; top: 640px; left: 40px; right: 40px; background: linear-gradient(135deg, #FFE5E5, #FFF0E8); border-radius: 18px; padding: 30px 40px; text-align: center; }
+.outro-text { font-size: 40px; color: #1A0A00; line-height: 1.9; font-weight: 900; }
+.emoji-row { display: flex; justify-content: center; gap: 40px; font-size: 64px; margin-top: 18px; }
+.cta-bar { position: absolute; bottom: 55px; left: 40px; right: 40px; background: #E84040; border-radius: 18px; padding: 24px 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(232,64,64,0.4); }
+.cta-text { font-size: 40px; font-weight: 900; color: white; letter-spacing: 4px; text-align: center; }
+.interact-box { position: absolute; bottom: 130px; left: 40px; right: 40px; background: #FFF9E0; border: 3px solid #FFD700; border-radius: 14px; padding: 16px 24px; font-size: 26px; color: #8B6914; text-align: center; font-weight: bold; line-height: 1.6; }
+.tag-row { display: flex; justify-content: center; gap: 14px; position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); }
+.tag { background: #1A0A00; color: white; border-radius: 20px; padding: 6px 18px; font-size: 20px; font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="bg-texture"></div>
+<div class="tape tape-1"></div>
+<div class="tape tape-2"></div>
+<div class="hero-title">🔧 打包通关秘籍</div>
+<div class="divider"></div>
+
+<div class="tips-section">
+  <div class="tips-title">📦 三条原则必记</div>
+  <div class="tip-item"><span class="tip-icon">🗂️</span><span><b>分类分装：</b>证件 / 宝宝 / 妈妈，分袋装，紧急时一目了然</span></div>
+  <div class="tip-item"><span class="tip-icon">🤱</span><span><b>产房包单独放：</b>1件半背衣 + 1片NB码 + 1条包被，紧急时直接拿</span></div>
+  <div class="tip-item"><span class="tip-icon">👨‍💼</span><span><b>清单提前给老公看：</b>发动时他才知道东西放在哪里</span></div>
+</div>
+
+<div class="outro-box">
+  <div class="outro-text">30+好物已精简，住院几日稳妥无忧！<br>祝顺利迎接宝宝 👶🎉</div>
+  <div class="emoji-row"><span>🤰</span><span>👶</span><span>🍼</span></div>
+</div>
+
+<div class="interact-box">
+  💬 你生之前觉得最应该准备的一样东西是什么？评论区聊聊！
+</div>
+
+<div class="cta-bar">
+  <div class="cta-text">👉 收藏好，急着出门不慌乱！</div>
+</div>
+
+<div class="tag-row">
+  <div class="tag">#待产包清单</div>
+  <div class="tag">#孕妈必备</div>
+  <div class="tag">#新生儿好物</div>
+</div>
+</body>
+</html>

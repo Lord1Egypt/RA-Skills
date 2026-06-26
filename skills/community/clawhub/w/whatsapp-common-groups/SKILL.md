@@ -1,35 +1,31 @@
 ---
-name: "WhatsApp Common Groups"
-description: "Find groups shared between contacts and check group membership"
-category: "other"
-source: "ClawHub"
-tags: [baileys, common, groups, offline, whatsapp]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/whatsapp-common-groups"
-sourceUrl: "https://clawhub.ai/skills/whatsapp-common-groups"
+name: whatsapp-common-groups
+description: Find groups shared between contacts and check group membership
 ---
 
-# WhatsApp Common Groups
+# WhatsApp Common Groups Skill
 
-> Find groups shared between contacts and check group membership
+Discover groups two contacts share, or verify if a number belongs to a specific group.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/whatsapp-common-groups`
-- **Source URL:** [https://clawhub.ai/skills/whatsapp-common-groups](https://clawhub.ai/skills/whatsapp-common-groups)
+## Usage
 
-## Overview
+```
+exec({ cmd: "node <skill_dir>/scripts/common.js COMMAND [ARGS]" })
+```
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/whatsapp-common-groups
+### Find Common Groups
+```
+exec({ cmd: "node <skill_dir>/scripts/common.js find \"5511999999999\"" })
+```
+
+### Check if Number is in Group
+```
+exec({ cmd: "node <skill_dir>/scripts/common.js check \"5511999999999\" \"groupId@g.us\"" })
+```
+
+### List All Known Members Across Groups
+```
+exec({ cmd: "node <skill_dir>/scripts/common.js all-members 50" })
 ```

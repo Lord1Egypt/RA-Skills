@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "defaults": {
+    "model": "base",
+    "lang": "zh",
+    "modelDir": "./assets/models",
+    "modelDirUser": "./assets/models",
+    "tempDir": "${TMPDIR:-/tmp}/whisper-transcribe"
+  },
+  "models": {
+    "tiny": "ggml-tiny.bin",
+    "base": "ggml-base.bin",
+    "small": "ggml-small.bin",
+    "medium": "ggml-medium.bin",
+    "large": "ggml-large-v3.bin"
+  },
+  "modelsSha256": {
+    "tiny": "",
+    "base": "",
+    "small": "",
+    "medium": "",
+    "large": ""
+  },
+  "downloadBaseUrl": "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/"
+}

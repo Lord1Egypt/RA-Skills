@@ -1,0 +1,152 @@
+{
+  "name": "wechat-md-publisher",
+  "version": "1.0.8",
+  "requiredEnvVars": [],
+  "optionalEnvVars": ["WECHAT_APP_ID", "WECHAT_APP_SECRET"],
+  "requires": {
+    "runtime": {
+      "node": ">=18.0.0"
+    },
+    "binaries": [
+      {
+        "name": "wechat-pub",
+        "providedBy": "wechat-md-publisher",
+        "install": "npm install -g wechat-md-publisher@1.0.7",
+        "verify": "node -e \"const m=require('wechat-md-publisher/package.json'); if(m.name!=='wechat-md-publisher'||m.version!=='1.0.7'){process.exit(1)}\""
+      }
+    ],
+    "packages": {
+      "global": [
+        "wechat-md-publisher@1.0.7"
+      ]
+    }
+  },
+  "skill": {
+    "name": "wechat-md-publisher",
+    "version": "1.0.8",
+    "enabled": true,
+    "autoInvoke": false
+  },
+  "commands": {
+    "publish": {
+      "script": "./scripts/run.js",
+      "args": ["publish"],
+      "description": "发布文章到微信公众号"
+    },
+    "draft": {
+      "script": "./scripts/run.js",
+      "args": ["draft"],
+      "description": "创建微信公众号草稿"
+    },
+    "wrapper": {
+      "script": "./scripts/run.js",
+      "args": ["wrapper"],
+      "description": "Wrapper 功能管理（文章开头/结尾固定图文）"
+    },
+    "list-drafts": {
+      "script": "./scripts/run.js",
+      "args": ["list-drafts"],
+      "description": "列出所有草稿"
+    },
+    "list-published": {
+      "script": "./scripts/run.js",
+      "args": ["list-published"],
+      "description": "列出已发布文章"
+    },
+    "themes": {
+      "script": "./scripts/run.js",
+      "args": ["themes"],
+      "description": "列出可用主题"
+    },
+    "help": {
+      "script": "./scripts/postinstall.js",
+      "args": [],
+      "description": "显示使用帮助"
+    }
+  },
+  "environment": {
+    "required": [
+      "NODE_VERSION>=18.0.0"
+    ],
+    "optional": [
+      "WECHAT_APP_ID",
+      "WECHAT_APP_SECRET"
+    ],
+    "note": "凭证可通过环境变量或 CLI 命令 (account add --app-id xxx --app-secret xxx) 提供"
+  },
+  "install": {
+    "type": "npm-global",
+    "package": "wechat-md-publisher",
+    "version": "1.0.7",
+    "versionPinning": "exact",
+    "execution": "npm install -g wechat-md-publisher@1.0.7",
+    "global": true,
+    "autoInstall": false,
+    "autoUpdate": false,
+    "riskLevel": "low",
+    "riskReason": "Skill 不再通过 npx 动态拉取或执行子进程；启动器以 in-process 动态 import 调用本机已安装的 wechat-md-publisher，并在 import 之前校验 manifest.name 与 manifest.version 是否与精确 pin 匹配；不再产生供应链运行时下载或 shell 调用。",
+    "requiresApproval": true,
+    "source": {
+      "type": "npm",
+      "registry": "https://registry.npmjs.org",
+      "package": "wechat-md-publisher",
+      "repository": "https://github.com/sipingme/wechat-md-publisher",
+      "license": "Apache-2.0",
+      "audit": "https://github.com/sipingme/wechat-md-publisher/blob/main/src/index.ts"
+    },
+    "verification": {
+      "command": "node -e \"const m=require('wechat-md-publisher/package.json'); if(m.name!=='wechat-md-publisher'||m.version!=='1.0.7'){process.exit(1)}\"",
+      "expectedOutput": "",
+      "note": "校验包名与精确版本号，避免被任意同名包替身"
+    },
+    "trustedResolutionRoots": [
+      "<node-prefix>/lib/node_modules",
+      "<node-prefix>/node_modules (Windows)",
+      "<skill-dir>/node_modules"
+    ],
+    "untrustedResolutionRoots": [
+      "process.cwd()/node_modules (intentionally excluded)"
+    ]
+  },
+  "dependencies": {
+    "npm": [
+      "wechat-md-publisher@1.0.7"
+    ],
+    "note": "依赖（jsdom, form-data-encoder, formdata-node）由 wechat-md-publisher 自带；版本必须精确等于 1.0.7，升级需重新审计并显式更新 REQUIRED_VERSION。"
+  },
+  "credentials": {
+    "required": [],
+    "optional": ["WECHAT_APP_ID", "WECHAT_APP_SECRET"],
+    "note": "凭证可通过环境变量或 CLI 命令提供（二选一）",
+    "storage": {
+      "location": "~/.config/wechat-md-publisher-nodejs/",
+      "encryption": "AES-256",
+      "handler": "wechat-md-publisher npm 包",
+      "handlerRepo": "https://github.com/sipingme/wechat-md-publisher",
+      "auditFile": "src/services/account.ts"
+    },
+    "securityNote": "凭证加密由上游 npm 包处理。使用前请审计 https://github.com/sipingme/wechat-md-publisher/blob/main/src/services/account.ts",
+    "bestPractices": [
+      "优先使用环境变量 WECHAT_APP_ID/WECHAT_APP_SECRET，不要把 --app-secret 写到命令行（会出现在 ps、shell history、CI 日志中）",
+      "保护 ~/.config/wechat-md-publisher-nodejs/ 目录权限（建议 0700），并将其排除在备份/同步/容器镜像之外",
+      "在条件允许时使用最小权限或测试公众号验证流程后，再切换到生产账号",
+      "如怀疑泄露，立即在微信公众平台重置 AppSecret 并删除本地缓存目录",
+      "AI / 自动化场景下，默认走 draft create + 人工确认路径，避免在未审阅的情况下直接 publish"
+    ]
+  },
+  "permissions": {
+    "filesystem": {
+      "read": ["*.md", "*.jpg", "*.png", "*.gif"],
+      "write": ["~/.config/wechat-md-publisher-nodejs/"]
+    },
+    "network": {
+      "domains": ["api.weixin.qq.com", "mp.weixin.qq.com"],
+      "note": "仅微信官方 API。使用 `theme add-remote` 配置的第三方主题端点不在默认网络白名单内，需用户明确授权与信任。"
+    },
+    "publishing": {
+      "autoPublishWithoutConfirmation": false,
+      "recommendedFlow": "draft-first",
+      "note": "AI 自动化默认应调用 draft create，并要求用户在公众平台预览/确认后再执行 publish create 或 publish submit。"
+    }
+  }
+}

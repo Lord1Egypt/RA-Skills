@@ -1,0 +1,330 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created_date": "2026-01-06",
+    "last_updated": "2026-01-06",
+    "language": "zh-CN",
+    "description": "食物分类体系"
+  },
+
+  "categories": [
+    {
+      "id": "CAT_001",
+      "code": "grains",
+      "name": "谷物类",
+      "name_en": "Grains",
+      "description": "包括全谷物、精制谷物、谷物制品",
+      "subcategories": [
+        {
+          "code": "whole_grains",
+          "name": "全谷物",
+          "name_en": "Whole Grains",
+          "examples": ["燕麦", "糙米", "藜麦", "全麦面包", "玉米"]
+        },
+        {
+          "code": "refined_grains",
+          "name": "精制谷物",
+          "name_en": "Refined Grains",
+          "examples": ["白米", "白面包", "面条", "馒头", "蛋糕"]
+        },
+        {
+          "code": "pseudocereals",
+          "name": "假谷物",
+          "name_en": "Pseudocereals",
+          "examples": ["藜麦", "荞麦", "苋菜籽"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_002",
+      "code": "vegetables",
+      "name": "蔬菜类",
+      "name_en": "Vegetables",
+      "description": "包括各类蔬菜",
+      "subcategories": [
+        {
+          "code": "leafy_greens",
+          "name": "叶菜类",
+          "name_en": "Leafy Greens",
+          "examples": ["菠菜", "生菜", "白菜", "油菜", "羽衣甘蓝"]
+        },
+        {
+          "code": "cruciferous",
+          "name": "十字花科",
+          "name_en": "Cruciferous",
+          "examples": ["西兰花", "菜花", "卷心菜", "小白菜"]
+        },
+        {
+          "code": "root_vegetables",
+          "name": "根茎类",
+          "name_en": "Root Vegetables",
+          "examples": ["胡萝卜", "土豆", "红薯", "山药", "洋葱"]
+        },
+        {
+          "code": "nightshades",
+          "name": "茄科",
+          "name_en": "Nightshades",
+          "examples": ["西红柿", "茄子", "青椒", "辣椒"]
+        },
+        {
+          "code": "cucurbits",
+          "name": "葫芦科",
+          "name_en": "Cucurbits",
+          "examples": ["黄瓜", "南瓜", "西葫芦", "冬瓜"]
+        },
+        {
+          "code": "allium",
+          "name": "葱蒜类",
+          "name_en": "Allium",
+          "examples": ["大蒜", "韭菜", "大葱", "洋葱"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_003",
+      "code": "fruits",
+      "name": "水果类",
+      "name_en": "Fruits",
+      "description": "包括各类水果",
+      "subcategories": [
+        {
+          "code": "citrus",
+          "name": "柑橘类",
+          "name_en": "Citrus",
+          "examples": ["橙子", "橘子", "柠檬", "葡萄柚", "柚子"]
+        },
+        {
+          "code": "berries",
+          "name": "浆果类",
+          "name_en": "Berries",
+          "examples": ["草莓", "蓝莓", "树莓", "黑莓", "桑葚"]
+        },
+        {
+          "code": "tropical",
+          "name": "热带水果",
+          "name_en": "Tropical",
+          "examples": ["香蕉", "芒果", "菠萝", "榴莲", "荔枝"]
+        },
+        {
+          "code": "temperate",
+          "name": "温带水果",
+          "name_en": "Temperate",
+          "examples": ["苹果", "梨", "桃子", "杏子", "李子"]
+        },
+        {
+          "code": "melons",
+          "name": "瓜类",
+          "name_en": "Melons",
+          "examples": ["西瓜", "哈密瓜", "甜瓜", "木瓜"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_004",
+      "code": "protein",
+      "name": "蛋白质来源",
+      "name_en": "Protein Sources",
+      "description": "包括动物性和植物性蛋白质",
+      "subcategories": [
+        {
+          "code": "meat",
+          "name": "肉类",
+          "name_en": "Meat",
+          "examples": ["牛肉", "猪肉", "羊肉", "瘦肉", "肥肉"]
+        },
+        {
+          "code": "poultry",
+          "name": "禽类",
+          "name_en": "Poultry",
+          "examples": ["鸡胸肉", "鸡腿肉", "鸭肉", "鹅肉"]
+        },
+        {
+          "code": "fish_seafood",
+          "name": "鱼虾贝类",
+          "name_en": "Fish & Seafood",
+          "examples": ["三文鱼", "金枪鱼", "虾", "蟹", "扇贝"]
+        },
+        {
+          "code": "eggs",
+          "name": "蛋类",
+          "name_en": "Eggs",
+          "examples": ["鸡蛋", "鸭蛋", "鹌鹑蛋"]
+        },
+        {
+          "code": "legumes",
+          "name": "豆类",
+          "name_en": "Legumes",
+          "examples": ["豆腐", "豆浆", "黑豆", "红豆", "绿豆"]
+        },
+        {
+          "code": "nuts_seeds",
+          "name": "坚果种子",
+          "name_en": "Nuts & Seeds",
+          "examples": ["杏仁", "核桃", "花生", "葵花籽", "奇亚籽"]
+        },
+        {
+          "code": "dairy",
+          "name": "乳制品",
+          "name_en": "Dairy",
+          "examples": ["牛奶", "酸奶", "奶酪", "奶粉"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_005",
+      "code": "fats_oils",
+      "name": "油脂类",
+      "name_en": "Fats & Oils",
+      "description": "包括烹饪油和脂肪来源",
+      "subcategories": [
+        {
+          "code": "vegetable_oils",
+          "name": "植物油",
+          "name_en": "Vegetable Oils",
+          "examples": ["橄榄油", "菜籽油", "大豆油", "花生油", "芝麻油"]
+        },
+        {
+          "code": "animal_fats",
+          "name": "动物脂肪",
+          "name_en": "Animal Fats",
+          "examples": ["黄油", "猪油", "牛油", "奶油"]
+        },
+        {
+          "code": "special_oils",
+          "name": "特种油脂",
+          "name_en": "Special Oils",
+          "examples": ["鱼油", "亚麻籽油", "椰子油", "MCT油"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_006",
+      "code": "beverages",
+      "name": "饮料类",
+      "name_en": "Beverages",
+      "description": "包括各类饮品",
+      "subcategories": [
+        {
+          "code": "non_sugar",
+          "name": "无糖饮料",
+          "name_en": "Sugar-free",
+          "examples": ["水", "茶", "黑咖啡", "气泡水"]
+        },
+        {
+          "code": "sugary",
+          "name": "含糖饮料",
+          "name_en": "Sugary",
+          "examples": ["果汁", "苏打水", "运动饮料", "奶茶"]
+        },
+        {
+          "code": "dairy_beverages",
+          "name": "乳制饮料",
+          "name_en": "Dairy Beverages",
+          "examples": ["牛奶", "豆浆", "杏仁奶", "燕麦奶"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_007",
+      "code": "snacks",
+      "name": "零食类",
+      "name_en": "Snacks",
+      "description": "包括各类零食",
+      "subcategories": [
+        {
+          "code": "healthy_snacks",
+          "name": "健康零食",
+          "name_en": "Healthy Snacks",
+          "examples": ["坚果", "酸奶", "水果干", "黑巧克力"]
+        },
+        {
+          "code": "processed_snacks",
+          "name": "加工零食",
+          "name_en": "Processed Snacks",
+          "examples": ["薯片", "饼干", "糖果", "蛋糕"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_008",
+      "code": "condiments",
+      "name": "调味品类",
+      "name_en": "Condiments",
+      "description": "包括各类调味品",
+      "subcategories": [
+        {
+          "code": "spices",
+          "name": "香料",
+          "name_en": "Spices",
+          "examples": ["盐", "胡椒", "辣椒粉", "桂皮", "孜然"]
+        },
+        {
+          "code": "sauces",
+          "name": "酱料",
+          "name_en": "Sauces",
+          "examples": ["番茄酱", "辣椒酱", "沙拉酱", "酱油"]
+        },
+        {
+          "code": "seasonings",
+          "name": "调味料",
+          "name_en": "Seasonings",
+          "examples": ["味精", "鸡精", "醋", "糖"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_009",
+      "code": "processed",
+      "name": "加工食品",
+      "name_en": "Processed Foods",
+      "description": "包括各类加工食品",
+      "subcategories": [
+        {
+          "code": "frozen_foods",
+          "name": "冷冻食品",
+          "name_en": "Frozen Foods",
+          "examples": ["冷冻水饺", "冷冻披萨", "冰淇淋"]
+        },
+        {
+          "code": "canned_foods",
+          "name": "罐装食品",
+          "name_en": "Canned Foods",
+          "examples": ["罐头鱼", "罐头水果", "罐头蔬菜"]
+        },
+        {
+          "code": "packaged_foods",
+          "name": "包装食品",
+          "name_en": "Packaged Foods",
+          "examples": ["方便面", "麦片", "能量棒"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_010",
+      "code": "traditional_chinese",
+      "name": "中式传统食品",
+      "name_en": "Traditional Chinese",
+      "description": "中式传统食品",
+      "subcategories": [
+        {
+          "code": "staple_foods",
+          "name": "主食",
+          "name_en": "Staple Foods",
+          "examples": ["馒头", "花卷", "包子", "油条", "煎饼"]
+        },
+        {
+          "code": "dim_sum",
+          "name": "点心",
+          "name_en": "Dim Sum",
+          "examples": ["饺子", "馄饨", "汤圆", "粽子", "月饼"]
+        },
+        {
+          "code": "traditional_dishes",
+          "name": "传统菜肴",
+          "name_en": "Traditional Dishes",
+          "examples": ["红烧肉", "糖醋里脊", "宫保鸡丁"]
+        }
+      ]
+    }
+  ]
+}

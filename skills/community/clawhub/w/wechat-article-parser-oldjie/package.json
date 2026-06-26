@@ -1,0 +1,23 @@
+{
+  "name": "wechat-article-parser",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oldjie/wechat-article-parser.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oldjie/wechat-article-parser/issues"
+  },
+  "homepage": "https://github.com/oldjie/wechat-article-parser#readme",
+  "dependencies": {
+    "clawhub": "^0.12.0"
+  }
+}

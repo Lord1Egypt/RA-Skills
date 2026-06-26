@@ -1,0 +1,8 @@
+# Word VBA Skill 依赖
+# 安装命令: pip install -r requirements.txt
+
+# 核心依赖
+pywin32>=227
+
+# 可选依赖
+# python-docx  # 如需与docx-tools协同使用

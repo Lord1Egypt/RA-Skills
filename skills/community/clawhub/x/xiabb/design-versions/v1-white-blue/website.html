@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>虾BB — 专为 Vibe Coding 设计的免费语音转文字</title>
+<meta name="description" content="虾BB (XiaBB) — 免费开源的 macOS 语音转文字工具。按住 Globe 键，说话，文字出现。专为 Vibe Coding 设计，中英混搭完美识别。">
+<meta property="og:title" content="虾BB — 免费语音转文字">
+<meta property="og:description" content="按住 Globe 键，说话，文字出现。专为 Vibe Coding 设计的免费开源 macOS 工具。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xiabb.lol">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>">
+<style>
+:root {
+  --red: #ef4444;
+  --red-dim: #dc2626;
+  --red-glow: rgba(239,68,68,0.15);
+  --red-subtle: rgba(239,68,68,0.06);
+  --green: #34d399;
+  --bg: #0a0a0f;
+  --bg2: #111118;
+  --bg3: #1a1a24;
+  --text: #e8e8f0;
+  --text-dim: #888898;
+  --text-faint: #555566;
+  --border: rgba(255,255,255,0.06);
+  --ff: 'Helvetica Neue', -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Fira Code', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--ff); line-height: 1.6; overflow-x: hidden; }
+::selection { background: var(--red); color: #fff; }
+body::before { content:''; position:fixed; inset:0; background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events:none; z-index:9999; }
+
+/* ─── Navbar ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 32px;
+  background: rgba(10,10,15,0.85);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff; font-weight:700; font-size:18px; }
+.nav-brand img { height:28px; }
+.nav-links { display:flex; align-items:center; gap:24px; }
+.nav-links a { color:var(--text-dim); text-decoration:none; font-size:14px; transition:color 0.2s; }
+.nav-links a:hover { color:#fff; }
+.nav-lang { background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:5px 12px; color:var(--text-dim); font-size:13px; cursor:pointer; transition:all 0.2s; }
+.nav-lang:hover { border-color:var(--red); color:#fff; }
+.nav-download { background:var(--red); color:#fff; padding:7px 18px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; transition:all 0.2s; }
+.nav-download:hover { background:var(--red-dim); transform:translateY(-1px); }
+
+/* ─── Sections ─── */
+section { max-width:1100px; margin:0 auto; padding:0 24px; }
+
+/* ─── Hero ─── */
+.hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; position:relative; padding-top:80px; }
+.hero::before { content:''; position:absolute; top:-20%; left:50%; transform:translateX(-50%); width:800px; height:800px; background:radial-gradient(ellipse,var(--red-glow) 0%,transparent 70%); filter:blur(80px); pointer-events:none; }
+
+.hero-logo { height:72px; margin-bottom:16px; filter:drop-shadow(0 0 30px var(--red-glow)); animation:fadeUp 0.8s ease 0.1s both; }
+
+.hero h1 { font-size:clamp(48px,8vw,88px); font-weight:800; letter-spacing:-2px; line-height:1; background:linear-gradient(135deg,#fff 0%,#fca5a5 50%,var(--red) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:20px; animation:fadeUp 0.8s ease 0.2s both; }
+
+.hero-tagline { font-size:clamp(18px,3vw,26px); color:var(--text-dim); max-width:600px; margin-bottom:8px; animation:fadeUp 0.8s ease 0.3s both; }
+.hero-sub { font-size:14px; color:var(--text-faint); font-style:italic; margin-bottom:32px; animation:fadeUp 0.8s ease 0.35s both; }
+
+.hero-cta { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; animation:fadeUp 0.8s ease 0.4s both; }
+.btn { display:inline-flex; align-items:center; gap:8px; padding:12px 28px; border-radius:10px; font-size:15px; font-weight:600; text-decoration:none; transition:all 0.2s; border:none; cursor:pointer; }
+.btn-primary { background:var(--red); color:#fff; box-shadow:0 4px 24px rgba(239,68,68,0.3); }
+.btn-primary:hover { background:var(--red-dim); transform:translateY(-2px); }
+.btn-secondary { background:var(--bg3); color:var(--text); border:1px solid var(--border); }
+.btn-secondary:hover { background:#222230; transform:translateY(-2px); }
+
+/* Video */
+.hero-video { margin-top:36px; width:100%; max-width:720px; animation:fadeUp 0.8s ease 0.5s both; }
+.hero-video-wrap { border-radius:14px; overflow:hidden; border:1px solid var(--border); box-shadow:0 20px 60px rgba(0,0,0,0.4); }
+.hero-video video, .hero-video img { width:100%; display:block; }
+
+/* Stats */
+.hero-stats { display:flex; gap:32px; margin-top:36px; animation:fadeUp 0.8s ease 0.6s both; }
+.stat { text-align:center; }
+.stat-value { font-size:26px; font-weight:800; color:#fff; font-family:var(--mono); }
+.stat-value span { font-size:14px; color:var(--text-faint); }
+.stat-label { font-size:11px; color:var(--text-faint); text-transform:uppercase; letter-spacing:1px; }
+
+/* ─── Why ─── */
+.why { padding:80px 24px; max-width:780px; margin:0 auto; }
+.why h2 { font-size:36px; font-weight:700; margin-bottom:20px; color:#fff; }
+.why p { font-size:17px; color:var(--text-dim); margin-bottom:14px; line-height:1.8; }
+.why .hl { color:var(--red); font-weight:600; }
+.why blockquote { margin:28px 0; padding:18px 22px; border-left:3px solid var(--red); background:var(--red-subtle); border-radius:0 12px 12px 0; font-size:17px; color:var(--text); }
+
+/* ─── Features ─── */
+.features { padding:60px 24px 80px; max-width:1100px; margin:0 auto; }
+.features h2 { font-size:34px; font-weight:700; text-align:center; margin-bottom:48px; color:#fff; }
+.features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.feature-card { padding:28px; border-radius:14px; background:var(--bg2); border:1px solid var(--border); transition:all 0.3s; }
+.feature-card:hover { border-color:rgba(239,68,68,0.2); transform:translateY(-3px); box-shadow:0 12px 40px rgba(0,0,0,0.3); }
+.feature-icon { font-size:36px; margin-bottom:14px; }
+.feature-card h3 { font-size:16px; font-weight:700; color:#fff; margin-bottom:6px; }
+.feature-card p { font-size:13px; color:var(--text-dim); line-height:1.6; }
+
+/* ─── Comparison ─── */
+.comparison { padding:60px 24px 80px; max-width:1100px; margin:0 auto; }
+.comparison h2 { font-size:34px; font-weight:700; text-align:center; margin-bottom:12px; color:#fff; }
+.comparison-sub { text-align:center; color:var(--text-dim); font-size:15px; margin-bottom:40px; }
+.table-wrap { overflow-x:auto; border-radius:14px; border:1px solid var(--border); background:var(--bg2); }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th,td { padding:12px 18px; text-align:left; border-bottom:1px solid var(--border); }
+th { font-weight:700; color:#fff; font-size:14px; background:var(--bg3); }
+th:first-child { color:var(--text-dim); font-weight:500; }
+td { color:var(--text-dim); }
+td:nth-child(2) { color:var(--red); font-weight:700; }
+tr:last-child td { border-bottom:none; }
+.check { color:var(--green); }
+
+/* ─── Install ─── */
+.install { padding:60px 24px 80px; max-width:680px; margin:0 auto; text-align:center; }
+.install h2 { font-size:34px; font-weight:700; margin-bottom:12px; color:#fff; }
+.install-sub { font-size:15px; color:var(--text-dim); margin-bottom:32px; }
+.code-block { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:18px 22px; text-align:left; font-family:var(--mono); font-size:13px; color:var(--text); position:relative; margin-bottom:14px; overflow-x:auto; }
+.code-block .prompt { color:var(--green); }
+.code-block .comment { color:var(--text-faint); }
+.copy-btn { position:absolute; top:10px; right:10px; background:var(--bg3); border:1px solid var(--border); border-radius:6px; padding:4px 10px; font-size:11px; color:var(--text-dim); cursor:pointer; }
+.copy-btn:hover { color:#fff; }
+
+/* ─── Footer ─── */
+footer { padding:50px 24px; text-align:center; border-top:1px solid var(--border); margin-top:40px; }
+footer img { height:32px; margin-bottom:10px; filter:brightness(0.6); }
+footer p { color:var(--text-faint); font-size:12px; margin-bottom:6px; }
+footer a { color:var(--text-dim); text-decoration:none; }
+footer a:hover { color:var(--red); }
+
+/* ─── Animations ─── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+.reveal { opacity:0; transform:translateY(28px); transition:opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ─── i18n ─── */
+[data-lang="en"] { display: none; }
+body.lang-en [data-lang="en"] { display: block; }
+body.lang-en [data-lang="zh"] { display: none; }
+body.lang-en [data-lang-inline="en"] { display: inline; }
+body.lang-en [data-lang-inline="zh"] { display: none; }
+[data-lang-inline="en"] { display: none; }
+[data-lang-inline="zh"] { display: inline; }
+
+/* ─── Responsive ─── */
+@media (max-width:768px) {
+  .features-grid { grid-template-columns:1fr; }
+  .hero-stats { flex-direction:column; gap:12px; }
+  nav { padding:10px 16px; }
+  .nav-links { gap:12px; }
+  .nav-links a { font-size:12px; }
+  th,td { padding:8px 10px; font-size:11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav>
+  <a href="#" class="nav-brand">
+    <img src="logo-white.png" alt="虾BB" style="height:24px">
+    <span data-lang-inline="zh">虾BB</span>
+    <span data-lang-inline="en">XiaBB</span>
+  </a>
+  <div class="nav-links">
+    <a href="#features" data-lang-inline="zh">功能</a><a href="#features" data-lang-inline="en">Features</a>
+    <a href="#comparison" data-lang-inline="zh">对比</a><a href="#comparison" data-lang-inline="en">Compare</a>
+    <a href="#install" data-lang-inline="zh">安装</a><a href="#install" data-lang-inline="en">Install</a>
+    <a href="https://github.com/dyz2102/xiabb">GitHub</a>
+    <button class="nav-lang" onclick="toggleLang()">EN / 中</button>
+    <a href="https://github.com/dyz2102/xiabb/releases/download/v1.1.3/XiaBB-v1.1.3-macOS-arm64.dmg" class="nav-download" data-lang-inline="zh">下载</a>
+    <a href="https://github.com/dyz2102/xiabb/releases/download/v1.1.3/XiaBB-v1.1.3-macOS-arm64.dmg" class="nav-download" data-lang-inline="en">Download</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <img src="logo-red.png" class="hero-logo" alt="虾BB">
+
+  <h1>
+    <span data-lang-inline="zh">虾BB</span>
+    <span data-lang-inline="en">XiaBB</span>
+  </h1>
+
+  <p class="hero-tagline">
+    <span data-lang-inline="zh">按住 Globe 键，说话，文字出现。</span>
+    <span data-lang-inline="en">Hold Globe. Speak. Text appears.</span>
+  </p>
+  <p class="hero-sub">
+    <span data-lang-inline="zh">专为 Vibe Coding 设计 · Powered by Google Gemini</span>
+    <span data-lang-inline="en">Built for Vibe Coding · Powered by Google Gemini</span>
+  </p>
+
+  <div class="hero-cta">
+    <a href="https://github.com/dyz2102/xiabb/releases/download/v1.1.3/XiaBB-v1.1.3-macOS-arm64.dmg" class="btn btn-primary">
+      <span data-lang-inline="zh">下载 XiaBB</span>
+      <span data-lang-inline="en">Download XiaBB</span>
+    </a>
+    <a href="https://github.com/dyz2102/xiabb" class="btn btn-secondary">
+      <span data-lang-inline="zh">查看源码</span>
+      <span data-lang-inline="en">View Source</span>
+    </a>
+  </div>
+
+  <div class="hero-video">
+    <div class="hero-video-wrap">
+      <video autoplay loop muted playsinline>
+        <source src="xiabb-intro.mp4" type="video/mp4">
+        <img src="xiabb-demo.gif" alt="XiaBB Demo" style="width:100%">
+      </video>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-value">341<span>KB</span></div><div class="stat-label"><span data-lang-inline="zh">安装体积</span><span data-lang-inline="en">App Size</span></div></div>
+    <div class="stat"><div class="stat-value">250<span>/day</span></div><div class="stat-label"><span data-lang-inline="zh">免费额度</span><span data-lang-inline="en">Free Quota</span></div></div>
+    <div class="stat"><div class="stat-value">0</div><div class="stat-label"><span data-lang-inline="zh">外部依赖</span><span data-lang-inline="en">Dependencies</span></div></div>
+    <div class="stat"><div class="stat-value">MIT</div><div class="stat-label"><span data-lang-inline="zh">开源协议</span><span data-lang-inline="en">License</span></div></div>
+  </div>
+</section>
+
+<!-- ═══ WHY ═══ -->
+<section class="why reveal">
+  <div data-lang="zh">
+    <h2>为什么做虾BB？</h2>
+    <p>如果你跟我一样每天 Vibe Coding 十个小时，你就知道一款免费、准确的语音转文字有多重要。</p>
+    <p>Vibe Coding 注定你说话时会夹大量英文 —— <span class="hl">"帮我把这个 component 的 onClick handler 改成 async 的"</span> —— 标点符号和断句对 AI 理解你的需求至关重要，而许多大模型要么语言能力单一，要么在封装起来的产品里需要收费。</p>
+    <p><strong>虾BB 只做一件事：你说话，文字出现在光标位置。</strong>纯粹、快速、免费。</p>
+    <blockquote>虾BB = 瞎BB —— 最好的想法，说出来的时候都像在瞎说。</blockquote>
+  </div>
+  <div data-lang="en">
+    <h2>Why XiaBB?</h2>
+    <p>If you vibe code 10 hours a day like me, you know how critical free, accurate voice-to-text is.</p>
+    <p>Vibe Coding means mixing languages constantly — <span class="hl">"change this component's onClick handler to async"</span> — punctuation and sentence breaks are crucial for AI to understand your intent. Most tools either can't handle bilingual input or charge $15/month.</p>
+    <p><strong>XiaBB does one thing: you speak, text appears at your cursor.</strong> Pure, fast, free.</p>
+    <blockquote>虾BB = 瞎BB ("talking nonsense") — the best ideas sound crazy when you say them out loud.</blockquote>
+  </div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section class="features reveal" id="features">
+  <h2 data-lang="zh">功能</h2>
+  <h2 data-lang="en">Features</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🌐</div>
+      <h3 data-lang="zh">Globe 键一键录音</h3><h3 data-lang="en">Globe Key Hotkey</h3>
+      <p data-lang="zh">按住键盘左下角 Globe 键说话，松开自动转写 + 粘贴。一个键搞定。</p>
+      <p data-lang="en">Hold Globe key to record, release to transcribe + auto-paste. One key does it all.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔴</div>
+      <h3 data-lang="zh">实时流式预览</h3><h3 data-lang="en">Live Streaming Preview</h3>
+      <p data-lang="zh">说话时文字实时出现在 HUD 上。Gemini Live API 流式传输，竞品很少有这个。</p>
+      <p data-lang="en">See text appear as you speak. Gemini Live API streaming — a rare feature among competitors.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌏</div>
+      <h3 data-lang="zh">中英完美混输</h3><h3 data-lang="en">Bilingual CN + EN</h3>
+      <p data-lang="zh">"帮我 schedule a meeting" → 完美识别。Vibe Coding 必备。</p>
+      <p data-lang="en">"帮我 schedule a meeting" → perfectly recognized. Essential for vibe coding.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧠</div>
+      <h3 data-lang="zh">LLM 而非 ASR</h3><h3 data-lang="en">LLM, Not ASR</h3>
+      <p data-lang="zh">用 Google Gemini 大语言模型理解语义，不是 Whisper 的声学匹配。标点完美，错别字少。</p>
+      <p data-lang="en">Google Gemini LLM understands meaning, not just sound. Perfect punctuation, fewer errors.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3 data-lang="zh">341KB 极致轻量</h3><h3 data-lang="en">341KB Ultra-Light</h3>
+      <p data-lang="zh">纯 Swift 原生。没有 Electron，没有 Python，没有 Node。</p>
+      <p data-lang="en">Pure Swift native. No Electron. No Python. No Node.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🆓</div>
+      <h3 data-lang="zh">完全免费</h3><h3 data-lang="en">Free Forever</h3>
+      <p data-lang="zh">Google Gemini 免费额度，每天 250 次。不需要注册，不需要信用卡。</p>
+      <p data-lang="en">Google Gemini free tier. 250/day. No signup. No credit card.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMPARISON ═══ -->
+<section class="comparison reveal" id="comparison">
+  <h2 data-lang="zh">竞品对比</h2>
+  <h2 data-lang="en">Comparison</h2>
+  <p class="comparison-sub" data-lang="zh">虾BB 用 LLM 理解语义，其他用 ASR 机械转换</p>
+  <p class="comparison-sub" data-lang="en">XiaBB uses LLM to understand meaning; others use ASR for mechanical conversion</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>虾BB</th><th>SuperWhisper</th><th>Typeless</th><th>Wispr Flow</th><th>MacWhisper</th></tr></thead>
+      <tbody>
+        <tr><td><span data-lang-inline="zh">价格</span><span data-lang-inline="en">Price</span></td><td>Free</td><td>$8.49/mo</td><td>$12/mo</td><td>$15/mo</td><td>$29</td></tr>
+        <tr><td><span data-lang-inline="zh">免费额度</span><span data-lang-inline="en">Free Quota</span></td><td>250/day</td><td>—</td><td>4000w/wk</td><td>—</td><td>Limited</td></tr>
+        <tr><td><span data-lang-inline="zh">安装体积</span><span data-lang-inline="en">App Size</span></td><td>341KB</td><td>~100MB</td><td>~50MB</td><td>~50MB</td><td>~50MB</td></tr>
+        <tr><td><span data-lang-inline="zh">内存占用</span><span data-lang-inline="en">RAM</span></td><td>~55MB</td><td>~500MB+</td><td>~200MB</td><td>~200MB</td><td>~4GB</td></tr>
+        <tr><td><span data-lang-inline="zh">中英混搭</span><span data-lang-inline="en">Bilingual</span></td><td>Great</td><td>OK</td><td>OK</td><td>Good</td><td>OK</td></tr>
+        <tr><td><span data-lang-inline="zh">实时预览</span><span data-lang-inline="en">Live Preview</span></td><td class="check">Yes</td><td>No</td><td>No</td><td class="check">Yes</td><td>No</td></tr>
+        <tr><td><span data-lang-inline="zh">开源</span><span data-lang-inline="en">Open Source</span></td><td class="check">Yes</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ INSTALL ═══ -->
+<section class="install reveal" id="install">
+  <h2 data-lang="zh">开始使用</h2>
+  <h2 data-lang="en">Get Started</h2>
+  <p class="install-sub" data-lang="zh">30 秒上手</p>
+  <p class="install-sub" data-lang="en">Up and running in 30 seconds</p>
+  <div style="margin-bottom:24px;display:flex;flex-direction:column;align-items:center;gap:12px">
+    <a href="https://github.com/dyz2102/xiabb/releases/download/v1.1.3/XiaBB-v1.1.3-macOS-arm64.dmg" class="btn btn-primary" style="font-size:18px;padding:16px 40px">
+      <span data-lang-inline="zh">下载 XiaBB v1.1.3</span>
+      <span data-lang-inline="en">Download XiaBB v1.1.3</span>
+    </a>
+    <p style="font-size:12px;color:var(--text-faint)"><span data-lang-inline="zh">仅支持 macOS · Apple Silicon · 已通过 Apple 公证 · 暂无 Windows / iOS / Android</span><span data-lang-inline="en">macOS only · Apple Silicon · Apple Notarized · No Windows / iOS / Android yet</span></p>
+  </div>
+  <div class="code-block">
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    <span class="comment"># Or build from source</span><br>
+    <span class="prompt">$</span> git clone https://github.com/dyz2102/xiabb.git && cd xiabb && bash install.sh
+  </div>
+  <p style="font-size:13px;color:var(--text-faint)">
+    <span data-lang-inline="zh">需要免费 Gemini API Key →</span>
+    <span data-lang-inline="en">Free Gemini API Key →</span>
+    <a href="https://aistudio.google.com/apikey" style="color:var(--red);text-decoration:none">aistudio.google.com/apikey</a>
+  </p>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <img src="logo-white.png" alt="虾BB" style="height:40px;opacity:0.7;display:block;margin:0 auto 14px">
+  <p style="font-size:14px;color:var(--text-dim)"><span data-lang-inline="zh">虾BB · 专为 Vibe Coder 设计的免费语音转文字</span><span data-lang-inline="en">XiaBB · Free voice-to-text built for Vibe Coders</span></p>
+  <p style="font-size:13px;margin-top:8px"><a href="https://github.com/dyz2102/xiabb">GitHub</a> · <a href="https://github.com/dyz2102/xiabb/releases/download/v1.1.3/XiaBB-v1.1.3-macOS-arm64.dmg"><span data-lang-inline="zh">下载</span><span data-lang-inline="en">Download</span></a> · MIT License</p>
+  <p style="margin-top:14px;font-size:11px;color:var(--text-faint)">by <a href="https://github.com/dyz2102">dyz2102</a> · <a href="https://xiabb.lol">xiabb.lol</a></p>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') }), {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Language toggle
+function toggleLang() {
+  document.body.classList.toggle('lang-en');
+  localStorage.setItem('lang', document.body.classList.contains('lang-en') ? 'en' : 'zh');
+}
+// Restore language preference
+if (localStorage.getItem('lang') === 'en') document.body.classList.add('lang-en');
+
+// Copy code
+function copyCode(btn) {
+  const block = btn.parentElement;
+  const text = block.textContent.replace('Copy','').replace('# Or build from source','').replace('$','').trim();
+  navigator.clipboard.writeText(text).then(() => { btn.textContent='✓'; setTimeout(()=>btn.textContent='Copy',1500); });
+}
+</script>
+</body>
+</html>

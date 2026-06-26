@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellally.health/schemas/child-illness-tracker.json",
+  "title": "Child Illness Tracker",
+  "description": "Data structure for child illness management",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "child_profile": {
+      "type": "object",
+      "properties": {
+        "child_id": {"type": "string"},
+        "name": {"type": "string"},
+        "birth_date": {"type": "string", "format": "date"},
+        "gender": {"type": "string", "enum": ["male", "female"]}
+      },
+      "required": ["child_id", "name", "birth_date", "gender"]
+    },
+    "illness_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "date": {"type": "string", "format": "date"},
+          "onset_date": {"type": "string", "format": "date"},
+          "recovery_date": {"type": "string", "format": "date"},
+          "days_illness": {"type": "integer"},
+          "condition": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "category": {
+                "type": "string",
+                "enum": ["respiratory", "gastrointestinal", "skin", "other"]
+              },
+              "type": {"type": "string"},
+              "severity": {
+                "type": "string",
+                "enum": ["mild", "moderate", "severe"]
+              },
+              "doctor_visit": {"type": "boolean"},
+              "diagnosis": {"type": "string"}
+            }
+          },
+          "symptoms": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {"type": "string"},
+                "severity": {"type": "string"},
+                "status": {"type": "string"}
+              }
+            }
+          },
+          "fever_tracking": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {"type": "string", "format": "date-time"},
+                "temperature": {"type": "number"},
+                "medication": {"type": "string"}
+              }
+            }
+          },
+          "medications": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {"type": "string"},
+                "dosage": {"type": "string"},
+                "frequency": {"type": "string"},
+                "times_given": {"type": "integer"}
+              }
+            }
+          },
+          "recovery_tracking": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "fever": {"type": "number"},
+                "cough": {"type": "string"},
+                "spirit": {"type": "string"}
+              }
+            }
+          },
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "symptom_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string"},
+          "symptom": {"type": "string"},
+          "severity": {"type": "string"}
+        }
+      }
+    },
+    "medication_log": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string"},
+          "medication": {"type": "string"},
+          "dosage": {"type": "string"}
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_illnesses": {"type": "integer"},
+        "total_days_ill": {"type": "integer"},
+        "most_common_condition": {"type": "string"},
+        "illnesses_last_12_months": {"type": "integer"},
+        "doctors_visits": {"type": "integer"},
+        "emergency_visits": {"type": "integer"}
+      }
+    }
+  },
+  "required": ["created_at", "last_updated", "child_profile"]
+}

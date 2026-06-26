@@ -1,0 +1,45 @@
+{
+  "name": "@sunfang2cn/social-favorites-to-obsidian",
+  "version": "0.1.1",
+  "description": "Sync Xiaohongshu and Zhihu favorites to Obsidian with CookieCloud, media export, and optional OpenClaw cron setup.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunfang1cn/social-favorites-to-obsidian.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sunfang1cn/social-favorites-to-obsidian/issues"
+  },
+  "homepage": "https://github.com/sunfang1cn/social-favorites-to-obsidian#readme",
+  "bin": {
+    "social-favorites-to-obsidian": "bin/social-favorites-to-obsidian.js",
+    "social-favorites-install": "bin/social-favorites-to-obsidian.js"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "install.py",
+    "requirements.txt",
+    "agents/*.yaml",
+    "assets/*.example",
+    "assets/*.yaml",
+    "assets/*.yml",
+    "references/*.md",
+    "scripts/*.py",
+    "bin/*.js"
+  ],
+  "keywords": [
+    "obsidian",
+    "xiaohongshu",
+    "zhihu",
+    "cookiecloud",
+    "codex-skill",
+    "openclaw"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

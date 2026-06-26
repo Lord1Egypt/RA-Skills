@@ -1,0 +1,62 @@
+[
+  {
+    "id": "demo-001",
+    "source": "gmail",
+    "sourceId": "gmail-demo-contract-review-001",
+    "observedBy": "openclaw",
+    "userQuery": "오늘 내가 할 일이 뭐야?",
+    "observationIntent": "new_loop",
+    "title": "Review and sign partnership contract with Acme Corp",
+    "text": "Hi, please review the attached contract and let us know by Friday if you have questions before we move forward.",
+    "timestamp": "2026-05-23T09:00:00Z",
+    "actor": "legal@acmecorp.example.com",
+    "dueAt": "2026-05-25T17:00:00Z",
+    "evidence": {
+      "subject": "Partnership contract — please review by Friday",
+      "from": "legal@acmecorp.example.com",
+      "snippet": "Please review the attached contract and let us know by Friday."
+    },
+    "confidence": 0.93,
+    "relatedContext": null
+  },
+  {
+    "id": "demo-002",
+    "source": "slack",
+    "sourceId": "slack-demo-deck-feedback-001",
+    "observedBy": "openclaw",
+    "userQuery": "뭐 빠진 거 없어?",
+    "observationIntent": "new_loop",
+    "title": "Send feedback on product roadmap deck to Mia",
+    "text": "Can you take a look at the deck and leave comments before Wednesday's standup?",
+    "timestamp": "2026-05-23T08:15:00Z",
+    "actor": "mia.choi",
+    "dueAt": "2026-05-28T10:00:00Z",
+    "evidence": {
+      "channel": "#product",
+      "user": "mia.choi",
+      "text": "Can you take a look at the deck and leave comments before Wednesday's standup?"
+    },
+    "confidence": 0.87,
+    "relatedContext": null
+  },
+  {
+    "id": "demo-003",
+    "source": "gmail",
+    "sourceId": "gmail-demo-newsletter-001",
+    "observedBy": "openclaw",
+    "userQuery": "어제 열린 루프 중 닫힌 거 있어?",
+    "observationIntent": "new_loop",
+    "title": "Weekly SaaS newsletter",
+    "text": "This week in SaaS: top 10 trends for 2026. Unsubscribe at any time.",
+    "timestamp": "2026-05-23T07:00:00Z",
+    "actor": "newsletter@saasweekly.example.com",
+    "dueAt": null,
+    "evidence": {
+      "subject": "This week in SaaS",
+      "from": "newsletter@saasweekly.example.com",
+      "snippet": "Top 10 SaaS trends for 2026. Unsubscribe anytime."
+    },
+    "confidence": 0.31,
+    "relatedContext": null
+  }
+]

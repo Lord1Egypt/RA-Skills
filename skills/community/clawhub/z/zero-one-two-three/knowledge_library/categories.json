@@ -1,0 +1,208 @@
+{
+  "01-低碳医学": {
+    "label": "低碳医学",
+    "emoji": "🫀",
+    "children": {
+      "生酮饮食": {
+        "label": "生酮饮食",
+        "keywords": [
+          "酮体",
+          "生酮",
+          "keto",
+          "脂肪代谢",
+          "BHB",
+          "乙酰乙酸"
+        ]
+      },
+      "间歇断食": {
+        "label": "间歇断食",
+        "keywords": [
+          "断食",
+          "禁食",
+          "fasting",
+          "自噬",
+          "autophagy",
+          "16:8",
+          "5:2"
+        ]
+      },
+      "肠道菌群": {
+        "label": "肠道菌群",
+        "keywords": [
+          "菌群",
+          "肠道",
+          "microbiome",
+          "益生菌",
+          "SCFA",
+          "丁酸"
+        ]
+      },
+      "线粒体健康": {
+        "label": "线粒体健康",
+        "keywords": [
+          "线粒体",
+          "mitochondria",
+          "ATP",
+          "氧化磷酸化",
+          "呼吸链"
+        ]
+      },
+      "代谢综合征": {
+        "label": "代谢综合征",
+        "keywords": [
+          "胰岛素",
+          "血糖",
+          "糖尿病",
+          "insulin",
+          "代谢",
+          "糖化"
+        ]
+      }
+    }
+  },
+  "02-AI技术": {
+    "label": "AI 技术",
+    "emoji": "🤖",
+    "children": {
+      "大语言模型": {
+        "label": "大语言模型",
+        "keywords": [
+          "LLM",
+          "GPT",
+          "transformer",
+          "prompt",
+          "token",
+          "fine-tune"
+        ]
+      },
+      "知识图谱": {
+        "label": "知识图谱",
+        "keywords": [
+          "knowledge graph",
+          "RAG",
+          "向量",
+          "embedding",
+          "neo4j"
+        ]
+      },
+      "智能体": {
+        "label": "智能体",
+        "keywords": [
+          "agent",
+          "tool",
+          "function call",
+          "自主",
+          "langchain"
+        ]
+      },
+      "数字分身": {
+        "label": "数字分身",
+        "keywords": [
+          "数字分身",
+          "digital twin",
+          "persona",
+          "人格",
+          "胶囊"
+        ]
+      }
+    }
+  },
+  "03-编程开发": {
+    "label": "编程开发",
+    "emoji": "💻",
+    "children": {
+      "Python": {
+        "label": "Python",
+        "keywords": [
+          "python",
+          "pip",
+          "conda",
+          "pandas",
+          "numpy",
+          "flask"
+        ]
+      },
+      "系统设计": {
+        "label": "系统设计",
+        "keywords": [
+          "架构",
+          "设计模式",
+          "微服务",
+          "API",
+          "数据库",
+          "并发"
+        ]
+      },
+      "工具链": {
+        "label": "工具链",
+        "keywords": [
+          "git",
+          "docker",
+          "CI/CD",
+          "部署",
+          "测试",
+          "debug"
+        ]
+      }
+    }
+  },
+  "04-产品变现": {
+    "label": "产品变现",
+    "emoji": "💰",
+    "children": {
+      "微信生态": {
+        "label": "微信生态",
+        "keywords": [
+          "微信",
+          "小程序",
+          "公众号",
+          "支付",
+          "裂变",
+          "分销"
+        ]
+      },
+      "知识付费": {
+        "label": "知识付费",
+        "keywords": [
+          "付费",
+          "订阅",
+          "会员",
+          "课程",
+          "社群",
+          "转化"
+        ]
+      },
+      "独立开发": {
+        "label": "独立开发",
+        "keywords": [
+          "独立开发",
+          "indie",
+          "出海",
+          "SaaS",
+          "PLG",
+          "增长"
+        ]
+      }
+    }
+  },
+  "05-通用阅读": {
+    "label": "通用阅读",
+    "emoji": "📖",
+    "children": {
+      "哲学思辨": {
+        "label": "哲学思辨",
+        "keywords": [
+          "哲学",
+          "道家",
+          "第一性原理",
+          "认知",
+          "思维模型"
+        ]
+      },
+      "未分类": {
+        "label": "未分类",
+        "keywords": []
+      }
+    }
+  }
+}

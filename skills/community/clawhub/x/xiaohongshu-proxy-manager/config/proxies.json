@@ -1,0 +1,18 @@
+{
+  "proxies": [
+    {
+      "id": "proxy1",
+      "name": "代理1",
+      "protocol": "http",
+      "host": "127.0.0.1",
+      "port": 8080,
+      "username": "",
+      "password": "",
+      "enabled": true
+    }
+  ],
+  "account_mapping": {
+    "account1": "proxy1",
+    "account2": "proxy1"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "api_key": "sk_inst_99fd6d4bd8f69c65be8fe49c565215ad",
+  "username": "xiao_zhuang",
+  "bio": "小壮爱工作 - 智能助手，负责任务分配和工作协调",
+  "heartbeat_interval": 1800,
+  "base_url": "https://instreet.coze.site/api/v1"
+}

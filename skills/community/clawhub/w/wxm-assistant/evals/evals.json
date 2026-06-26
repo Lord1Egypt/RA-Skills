@@ -1,0 +1,110 @@
+{
+  "skill_name": "wxm-assistant",
+  "evals": [
+    {
+      "id": 1,
+      "name": "查看当前用户",
+      "prompt": "查看当前登录的用户信息",
+      "expected_output": "应调用 GET /saas/v2/user/info 接口，返回当前登录用户的详细信息，包括姓名、手机号、角色等。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "查看租户列表",
+      "prompt": "获取我有哪些租户",
+      "expected_output": "应调用 GET /saas/v2/estate/tenant-and-estate/by-user-id 接口，返回当前用户有权限的所有租户和项目列表。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "切换租户",
+      "prompt": "切换到利美康项目",
+      "expected_output": "应先查找目标租户ID，调用 POST /session/switch-tenant 接口切换租户，确认切换成功后再查询目标数据。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "切换项目",
+      "prompt": "切换到小美研发演示项目",
+      "expected_output": "应调用 POST /session/switch-project 接口切换到指定项目，确认成功后再查询该项目数据。",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "查询录音列表",
+      "prompt": "帮我查看最近10条录音",
+      "expected_output": "应调用 POST /beautx-ai-voice/app/audio/page 接口，返回录音列表，包含录音时间、时长、关联客户、状态等信息。",
+      "files": []
+    },
+    {
+      "id": 6,
+      "name": "按日期查询录音",
+      "prompt": "查看今天的录音",
+      "expected_output": "应调用 POST /beautx-ai-voice/app/audio/page 接口，传入 fromDate='YYYY-MM-DD 00:00:00' 和 toDate='YYYY-MM-DD 23:59:59' 参数，返回当日录音列表。",
+      "files": []
+    },
+    {
+      "id": 7,
+      "name": "查询录音详情",
+      "prompt": "查看录音ID为2047293627490025473的详情",
+      "expected_output": "应调用 GET /beautx-ai-voice/audio/detail/{audioId} 接口，返回录音详情，包含录音名称、转写文本、关联客户、设备信息等。",
+      "files": []
+    },
+    {
+      "id": 8,
+      "name": "查询录音NLP分析",
+      "prompt": "查看录音ID为2047293627490025473的AI分析结果",
+      "expected_output": "应调用 GET /beautx-ai-voice/app/audio/nlp-result/{audioId} 接口，返回AI分析结果，包括标签命中、模型分析等。",
+      "files": []
+    },
+    {
+      "id": 9,
+      "name": "查询接访/接诊列表",
+      "prompt": "显示接访记录",
+      "expected_output": "应调用 GET /beautx-ai-voice/visit 接口（分页），返回接访/接诊记录列表，包含客户信息、来访时间、录音、AI分析完成率、评分等。",
+      "files": []
+    },
+    {
+      "id": 10,
+      "name": "查询客户列表",
+      "prompt": "显示客户列表",
+      "expected_output": "应调用 POST /beautx-ai-voice/app/customer/pageV2 接口，返回客户列表，支持按时间范围、客户类型、成交状态等多维度筛选。",
+      "files": []
+    },
+    {
+      "id": 11,
+      "name": "查询客户详情",
+      "prompt": "查看客户ID为865348的详细信息",
+      "expected_output": "应调用 GET /beautx-ai-voice/app/customer/detailV2 接口，传入 customerId 参数，返回客户完整信息。",
+      "files": []
+    },
+    {
+      "id": 12,
+      "name": "搜索客户",
+      "prompt": "搜索姓张的客户",
+      "expected_output": "应调用 POST /beautx-ai-voice/app/customer/page 接口，使用 keyword='张' 作为搜索条件，返回匹配客户列表。",
+      "files": []
+    },
+    {
+      "id": 13,
+      "name": "清除授权",
+      "prompt": "清除旺小美数据助手的授权信息",
+      "expected_output": "应删除 ~/.wangke-auth-token 文件，确认授权已清除。",
+      "files": []
+    },
+    {
+      "id": 14,
+      "name": "按时间范围查询接访",
+      "prompt": "查看2026-04-01到2026-04-30的接访记录",
+      "expected_output": "应调用 GET /beautx-ai-voice/visit 接口，传入 startTime 和 endTime 参数，返回指定时间范围内的接访记录。",
+      "files": []
+    },
+    {
+      "id": 15,
+      "name": "生成周报",
+      "prompt": "根据本周的录音和接访数据做一个周报",
+      "expected_output": "应查询本周录音列表（按日期范围筛选）、接访详情（含AI分析摘要），汇总统计录音数、接访数、成交情况、客户意向等，生成结构化周报。",
+      "files": []
+    }
+  ]
+}

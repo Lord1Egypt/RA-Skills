@@ -1,35 +1,48 @@
 ---
-name: "YouTube Video Abuse Report Reason"
-description: "Manage YouTube video abuse report reasons. Use this skill to list available abuse report reasons. Useful when working with YouTube video abuse report reason..."
-category: "other"
-source: "ClawHub"
-tags: [0.10.7-dev, 0.10.6-3]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/youtube-video-abuse-report-reason"
-sourceUrl: "https://clawhub.ai/skills/youtube-video-abuse-report-reason"
+name: youtube-video-abuse-report-reason
+description: "Manage YouTube video abuse report reasons. Use this skill to list available abuse report reasons. Useful when working with YouTube video abuse report reason — provides commands to list video abuse report reason via the yutu CLI. Includes setup and installation instructions for first-time users. Triggers: list video abuse report reasons, list video abuse report reason, list my video abuse report reason"
+metadata:
+  openclaw:
+    requires:
+      env:
+        - YUTU_CREDENTIAL
+        - YUTU_CACHE_TOKEN
+      bins:
+        - yutu
+      config:
+        - client_secret.json
+        - youtube.token.json
+    primaryEnv: YUTU_CREDENTIAL
+    emoji: "\U0001F3AC\U0001F430"
+    homepage: https://github.com/eat-pray-ai/yutu
+    install:
+      - kind: node
+        package: "@eat-pray-ai/yutu"
+        bins: [yutu]
 ---
 
 # YouTube Video Abuse Report Reason
 
-> Manage YouTube video abuse report reasons. Use this skill to list available abuse report reasons. Useful when working with YouTube video abuse report reason...
+Manage YouTube video abuse report reasons. Use this skill to list available abuse report reasons.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/youtube-video-abuse-report-reason`
-- **Source URL:** [https://clawhub.ai/skills/youtube-video-abuse-report-reason](https://clawhub.ai/skills/youtube-video-abuse-report-reason)
+## Before You Begin
 
-## Overview
+yutu requires Google Cloud Platform OAuth credentials and a cached token to access the YouTube API. If you haven't set up yutu yet, read the [setup guide](references/setup.md) first.
 
+## Operations
 
-## Installation
-To install this skill, run the following command in your terminal:
+Read the linked reference for full flag details and examples.
+
+| Operation | Description | Reference |
+|-----------|-------------|----------|
+| list | List video abuse report reasons | [details](references/videoAbuseReportReason-list.md) |
+
+## Quick Start
+
 ```bash
-hermes skills install clawhub/youtube-video-abuse-report-reason
+# Show all video abuse report reason commands
+yutu videoAbuseReportReason --help
+
+# List video abuse report reason
+yutu videoAbuseReportReason list
 ```

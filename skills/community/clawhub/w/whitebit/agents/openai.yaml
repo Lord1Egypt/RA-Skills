@@ -1,0 +1,13 @@
+interface:
+  display_name: "ClawHub WhiteBIT Trading"
+  short_description: "Guide WhiteBIT trading research, training, and API preparation via ClawHub"
+  default_prompt: "Use $clawhub-whitebit-trading to guide WhiteBIT trading research, training scenarios, API validation, and execution-ready request planning through ClawHub and OpenClaw."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "whitebit-docs"
+      description: "WhiteBIT documentation MCP server for endpoint and auth validation."
+      transport: "streamable_http"
+      url: "https://docs.whitebit.com/mcp"
+policy:
+  allow_implicit_invocation: true

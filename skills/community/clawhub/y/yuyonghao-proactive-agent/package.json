@@ -1,0 +1,19 @@
+{
+  "name": "proactive-agent",
+  "version": "0.1.0",
+  "description": "Transform AI agents from task-followers into proactive partners that anticipate needs and continuously improve",
+  "main": "SKILL.md",
+  "type": "module",
+  "scripts": {
+    "test": "echo 'Architecture skill - no tests required'"
+  },
+  "keywords": [
+    "proactive",
+    "agent",
+    "self-improving",
+    "wal-protocol",
+    "openclaw-skill"
+  ],
+  "author": "yuyonghao-123",
+  "license": "MIT"
+}

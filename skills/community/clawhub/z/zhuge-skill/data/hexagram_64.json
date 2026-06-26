@@ -1,0 +1,386 @@
+{
+  "000000": {
+    "bits": "000000",
+    "gua_name": "坤",
+    "football_meaning": "全维度劣势，毫无胜算",
+    "verdict": "必败无疑，放弃幻想"
+  },
+  "000001": {
+    "bits": "000001",
+    "gua_name": "复",
+    "football_meaning": "仅攻防占优，但整体低迷",
+    "verdict": "难有作为，凶多吉少"
+  },
+  "000010": {
+    "bits": "000010",
+    "gua_name": "师",
+    "football_meaning": "士气高涨但其他皆劣",
+    "verdict": "精神可嘉，实力不济"
+  },
+  "000011": {
+    "bits": "000011",
+    "gua_name": "临",
+    "football_meaning": "攻防士气佳，但其余皆劣",
+    "verdict": "局部优势，难挽大局"
+  },
+  "000100": {
+    "bits": "000100",
+    "gua_name": "谦",
+    "football_meaning": "仅伤停占优，整体疲软",
+    "verdict": "阵容完整，但难取胜"
+  },
+  "000101": {
+    "bits": "000101",
+    "gua_name": "明夷",
+    "football_meaning": "攻防伤停优，但士气主场差",
+    "verdict": "内部矛盾，前景暗淡"
+  },
+  "000110": {
+    "bits": "000110",
+    "gua_name": "升",
+    "football_meaning": "士气伤停优，但攻防主场劣",
+    "verdict": "状态回升，但基础薄弱"
+  },
+  "000111": {
+    "bits": "000111",
+    "gua_name": "泰",
+    "football_meaning": "攻防士气伤停皆优，但客场",
+    "verdict": "内部和谐，客场谨慎"
+  },
+  "001000": {
+    "bits": "001000",
+    "gua_name": "豫",
+    "football_meaning": "仅主场优势，其余皆劣",
+    "verdict": "主场之利，难掩颓势"
+  },
+  "001001": {
+    "bits": "001001",
+    "gua_name": "震",
+    "football_meaning": "攻防主场优，但士气伤停劣",
+    "verdict": "主场发力，但状态不稳"
+  },
+  "001010": {
+    "bits": "001010",
+    "gua_name": "解",
+    "football_meaning": "士气主场优，但攻防伤停劣",
+    "verdict": "主场气势足，但实力欠缺"
+  },
+  "001011": {
+    "bits": "001011",
+    "gua_name": "恒",
+    "football_meaning": "攻防士气主场优，伤停劣",
+    "verdict": "主场表现稳，但阵容不整"
+  },
+  "001100": {
+    "bits": "001100",
+    "gua_name": "小过",
+    "football_meaning": "伤停主场优，但攻防士气劣",
+    "verdict": "阵容齐整主场，但攻防差"
+  },
+  "001101": {
+    "bits": "001101",
+    "gua_name": "丰",
+    "football_meaning": "攻防伤停主场优，士气劣",
+    "verdict": "硬件俱佳，但士气低落"
+  },
+  "001110": {
+    "bits": "001110",
+    "gua_name": "归妹",
+    "football_meaning": "士气伤停主场优，攻防劣",
+    "verdict": "状态主场好，但攻防弱"
+  },
+  "001111": {
+    "bits": "001111",
+    "gua_name": "大壮",
+    "football_meaning": "攻防士气伤停主场全优",
+    "verdict": "全面占优，主场大胜可期"
+  },
+  "010000": {
+    "bits": "010000",
+    "gua_name": "无妄",
+    "football_meaning": "历史占优但整体低迷",
+    "verdict": "意外频发，难胜"
+  },
+  "010001": {
+    "bits": "010001",
+    "gua_name": "噬嗑",
+    "football_meaning": "攻防尚可但士气低落",
+    "verdict": "需克服困难，平局可能"
+  },
+  "010010": {
+    "bits": "010010",
+    "gua_name": "益",
+    "football_meaning": "士气高涨但整体不佳",
+    "verdict": "精神可嘉，难改败局"
+  },
+  "010011": {
+    "bits": "010011",
+    "gua_name": "颐",
+    "football_meaning": "攻防士气佳但客场伤停",
+    "verdict": "养精蓄锐，客场难胜"
+  },
+  "010100": {
+    "bits": "010100",
+    "gua_name": "屯",
+    "football_meaning": "伤停好转但攻防士气差",
+    "verdict": "开局艰难，宜守不宜攻"
+  },
+  "010101": {
+    "bits": "010101",
+    "gua_name": "随",
+    "football_meaning": "攻防伤停优但士气客场劣",
+    "verdict": "顺其自然，客场难赢"
+  },
+  "010110": {
+    "bits": "010110",
+    "gua_name": "复",
+    "football_meaning": "士气伤停佳但攻防客场劣",
+    "verdict": "状态回升，客场拿分难"
+  },
+  "010111": {
+    "bits": "010111",
+    "gua_name": "震",
+    "football_meaning": "攻防士气伤停皆优但客场劣",
+    "verdict": "雷厉风行，客场防冷"
+  },
+  "011000": {
+    "bits": "011000",
+    "gua_name": "明夷",
+    "football_meaning": "主场历史优但攻防士气伤停劣",
+    "verdict": "光明受损，主场难胜"
+  },
+  "011001": {
+    "bits": "011001",
+    "gua_name": "贲",
+    "football_meaning": "攻防主场历史优但士气伤停劣",
+    "verdict": "华而不实，主场防平"
+  },
+  "011010": {
+    "bits": "011010",
+    "gua_name": "家人",
+    "football_meaning": "士气主场历史优但攻防伤停劣",
+    "verdict": "主场团结，难掩实力不足"
+  },
+  "011011": {
+    "bits": "011011",
+    "gua_name": "离",
+    "football_meaning": "攻防士气主场历史优但伤停劣",
+    "verdict": "依附主场，伤停影响大"
+  },
+  "011100": {
+    "bits": "011100",
+    "gua_name": "革",
+    "football_meaning": "伤停主场历史优但攻防士气劣",
+    "verdict": "需变革调整，主场有望"
+  },
+  "011101": {
+    "bits": "011101",
+    "gua_name": "同人",
+    "football_meaning": "攻防伤停主场历史优但士气劣",
+    "verdict": "团队协作，主场可保不败"
+  },
+  "011110": {
+    "bits": "011110",
+    "gua_name": "丰",
+    "football_meaning": "士气伤停主场历史优但攻防劣",
+    "verdict": "主场盛大，攻防存隐患"
+  },
+  "011111": {
+    "bits": "011111",
+    "gua_name": "既济",
+    "football_meaning": "攻防士气伤停主场历史皆优",
+    "verdict": "万事俱备，主场取胜在望"
+  },
+  "100000": {
+    "bits": "100000",
+    "gua_name": "剥卦",
+    "football_meaning": "基本面全面劣势，仅赔率看好",
+    "verdict": "市场虚高，难逃败局"
+  },
+  "100001": {
+    "bits": "100001",
+    "gua_name": "颐卦",
+    "football_meaning": "攻防占优但其他皆劣，赔率看好",
+    "verdict": "实力尚存，但难挽颓势"
+  },
+  "100010": {
+    "bits": "100010",
+    "gua_name": "蒙卦",
+    "football_meaning": "士气高涨但基础差，赔率看好",
+    "verdict": "初生牛犊，恐经验不足"
+  },
+  "100011": {
+    "bits": "100011",
+    "gua_name": "蛊卦",
+    "football_meaning": "攻防士气佳，但伤停客场历史差",
+    "verdict": "内部尚可，外部因素不利"
+  },
+  "100100": {
+    "bits": "100100",
+    "gua_name": "晋卦",
+    "football_meaning": "伤停情况好，其余皆劣赔率优",
+    "verdict": "阵容齐整，但难敌整体劣势"
+  },
+  "100101": {
+    "bits": "100101",
+    "gua_name": "噬嗑卦",
+    "football_meaning": "攻防伤停优，士气客场历史劣",
+    "verdict": "硬实力有，但软环境拖累"
+  },
+  "100110": {
+    "bits": "100110",
+    "gua_name": "艮卦",
+    "football_meaning": "士气伤停佳，攻防客场历史差",
+    "verdict": "状态不错，但攻防是硬伤"
+  },
+  "100111": {
+    "bits": "100111",
+    "gua_name": "贲卦",
+    "football_meaning": "攻防士气伤停皆优，客场历史劣",
+    "verdict": "纸面华丽，客场恐难发挥"
+  },
+  "101000": {
+    "bits": "101000",
+    "gua_name": "观卦",
+    "football_meaning": "主场优势，其余皆劣赔率看好",
+    "verdict": "主场是唯一希望，但难乐观"
+  },
+  "101001": {
+    "bits": "101001",
+    "gua_name": "颐卦",
+    "football_meaning": "攻防主场优，其余皆劣赔率看好",
+    "verdict": "主场实力尚可，但整体堪忧"
+  },
+  "101010": {
+    "bits": "101010",
+    "gua_name": "涣卦",
+    "football_meaning": "士气主场佳，其余皆劣赔率看好",
+    "verdict": "主场气势足，但基础不牢"
+  },
+  "101011": {
+    "bits": "101011",
+    "gua_name": "中孚卦",
+    "football_meaning": "攻防士气主场优，伤停历史劣",
+    "verdict": "主场表现可信，但隐患存在"
+  },
+  "101100": {
+    "bits": "101100",
+    "gua_name": "渐卦",
+    "football_meaning": "伤停主场优，其余皆劣赔率看好",
+    "verdict": "主场阵容齐整，但进步缓慢"
+  },
+  "101101": {
+    "bits": "101101",
+    "gua_name": "家人卦",
+    "football_meaning": "攻防伤停主场优，士气历史劣",
+    "verdict": "主场硬实力足，但氛围不佳"
+  },
+  "101110": {
+    "bits": "101110",
+    "gua_name": "巽卦",
+    "football_meaning": "士气伤停主场优，攻防历史劣",
+    "verdict": "主场状态顺，但攻防是短板"
+  },
+  "101111": {
+    "bits": "101111",
+    "gua_name": "益卦",
+    "football_meaning": "攻防士气伤停主场皆优，历史劣",
+    "verdict": "主场全面占优，可弥补历史"
+  },
+  "110000": {
+    "bits": "110000",
+    "gua_name": "大过",
+    "football_meaning": "基础薄弱但市场看好，危机四伏",
+    "verdict": "慎防爆冷，交锋优势难兑现"
+  },
+  "110001": {
+    "bits": "110001",
+    "gua_name": "鼎",
+    "football_meaning": "攻防占优但状态低迷，市场支持",
+    "verdict": "需调整心态，可凭实力取胜"
+  },
+  "110010": {
+    "bits": "110010",
+    "gua_name": "恒",
+    "football_meaning": "士气高昂但攻防弱，市场看好",
+    "verdict": "依靠斗志弥补短板，有望不败"
+  },
+  "110011": {
+    "bits": "110011",
+    "gua_name": "巽",
+    "football_meaning": "攻防士气俱佳，但客场伤停多",
+    "verdict": "灵活应变，可延续交锋优势"
+  },
+  "110100": {
+    "bits": "110100",
+    "gua_name": "井",
+    "football_meaning": "伤停无忧但攻防士气差，市场热",
+    "verdict": "挖掘潜力，避免因轻敌而失分"
+  },
+  "110101": {
+    "bits": "110101",
+    "gua_name": "蛊",
+    "football_meaning": "攻防伤停优，士气低，市场看好",
+    "verdict": "内部需整顿，否则优势易流失"
+  },
+  "110110": {
+    "bits": "110110",
+    "gua_name": "升",
+    "football_meaning": "士气伤停佳，攻防弱，市场乐观",
+    "verdict": "借势而上，可超常发挥"
+  },
+  "110111": {
+    "bits": "110111",
+    "gua_name": "姤",
+    "football_meaning": "攻防士气伤停全优，但客场作战",
+    "verdict": "优势明显，谨防意外翻船"
+  },
+  "111000": {
+    "bits": "111000",
+    "gua_name": "夬",
+    "football_meaning": "主客场交锋优，但基础三项差",
+    "verdict": "果断决策，或可险中求胜"
+  },
+  "111001": {
+    "bits": "111001",
+    "gua_name": "大有",
+    "football_meaning": "攻防主场交锋优，士气伤停劣",
+    "verdict": "把握主场之利，有望收获"
+  },
+  "111010": {
+    "bits": "111010",
+    "gua_name": "小畜",
+    "football_meaning": "士气主场交锋优，攻防伤停劣",
+    "verdict": "积蓄力量，等待反击时机"
+  },
+  "111011": {
+    "bits": "111011",
+    "gua_name": "履",
+    "football_meaning": "攻防士气主场交锋优，伤停劣",
+    "verdict": "谨慎前行，避免因减员受挫"
+  },
+  "111100": {
+    "bits": "111100",
+    "gua_name": "需",
+    "football_meaning": "伤停主场交锋优，攻防士气劣",
+    "verdict": "耐心等待，机会在后期"
+  },
+  "111101": {
+    "bits": "111101",
+    "gua_name": "泰",
+    "football_meaning": "攻防伤停主场交锋优，士气劣",
+    "verdict": "形势通达，但需提振精神"
+  },
+  "111110": {
+    "bits": "111110",
+    "gua_name": "大畜",
+    "football_meaning": "士气伤停主场交锋优，攻防劣",
+    "verdict": "厚积薄发，防守反击制胜"
+  },
+  "111111": {
+    "bits": "111111",
+    "gua_name": "乾",
+    "football_meaning": "六项全优，完美状态",
+    "verdict": "强势碾压，取胜无悬念"
+  }
+}

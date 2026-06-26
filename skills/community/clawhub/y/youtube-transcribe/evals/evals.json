@@ -1,0 +1,22 @@
+[
+  {"prompt": "transcribe this YouTube video https://youtube.com/watch?v=abc123", "should_trigger": true},
+  {"prompt": "這個 YouTube 影片在說什麼 https://youtu.be/ZSnYlbIYpjs", "should_trigger": true},
+  {"prompt": "幫我把這個影片的內容抓下來 https://www.youtube.com/watch?v=dQw4w9WgXcQ", "should_trigger": true},
+  {"prompt": "get the transcript of this video https://youtube.com/watch?v=test123", "should_trigger": true},
+  {"prompt": "summarize this YouTube video for me", "should_trigger": true},
+  {"prompt": "what does this video say https://youtu.be/abc", "should_trigger": true},
+  {"prompt": "extract subtitles from this YouTube link", "should_trigger": true},
+  {"prompt": "幫我做個筆記，這影片的重點 https://youtube.com/watch?v=xyz", "should_trigger": true},
+  {"prompt": "convert this video to text", "should_trigger": true},
+  {"prompt": "can you get the captions from this YouTube video?", "should_trigger": true},
+  {"prompt": "幫我查今天天氣", "should_trigger": false},
+  {"prompt": "summarize this article https://medium.com/some-article", "should_trigger": false},
+  {"prompt": "transcribe this audio file recording.mp3", "should_trigger": false},
+  {"prompt": "download this YouTube video as mp4", "should_trigger": false},
+  {"prompt": "play this YouTube video", "should_trigger": false},
+  {"prompt": "search YouTube for cooking tutorials", "should_trigger": false},
+  {"prompt": "幫我寫一段 Python 程式", "should_trigger": false},
+  {"prompt": "translate this text to English", "should_trigger": false},
+  {"prompt": "read this PDF and summarize it", "should_trigger": false},
+  {"prompt": "幫我錄音然後轉文字", "should_trigger": false}
+]

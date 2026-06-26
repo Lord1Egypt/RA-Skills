@@ -1,0 +1,9 @@
+# Home Storage Skill Dependencies
+# ================================
+#
+# System Requirements:
+# - Python 3.7+ (must be installed on the OpenClaw server)
+#
+# No pip packages required
+# This skill uses only Python standard library modules:
+# - json, os, re, sys, uuid, datetime, pathlib, shutil, hashlib

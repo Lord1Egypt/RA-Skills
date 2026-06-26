@@ -1,35 +1,178 @@
 ---
-name: "Xiaohongshu Keyword Batch Autocomplete"
-description: "小红书关键词联想词批量采集工具 - 支持批量关键词导入、多轮次深度联想挖掘长尾词、自动去重、TXT/Excel双格式导出，适用于SEO优化、内容选题策划、种草关键词研究、竞品分析等场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-keyword-batch-autocomplete"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-keyword-batch-autocomplete"
+name: Xiaohongshu Keyword Batch Autocomplete
+description: 小红书关键词联想词批量采集工具 - 支持批量关键词导入、多轮次深度联想挖掘长尾词、自动去重、TXT/Excel双格式导出，适用于SEO优化、内容选题策划、种草关键词研究、竞品分析等场景。
+author: OpenClaw Assistant
+version: 1.0.0
+triggers:
+  - xiaohongshu
+  - keyword
+  - autocomplete
+  - batch
+  - SEO
+  - 小红书
+  - 关键词
+  - 联想词
+  - 选题
+  - 长尾词
 ---
 
-# Xiaohongshu Keyword Batch Autocomplete
+# 小红书关键词联想词批量采集工具
 
-> 小红书关键词联想词批量采集工具 - 支持批量关键词导入、多轮次深度联想挖掘长尾词、自动去重、TXT/Excel双格式导出，适用于SEO优化、内容选题策划、种草关键词研究、竞品分析等场景。
+一键批量获取小红书搜索框下拉推荐联想词，支持多轮次深度联想挖掘长尾词，自动去重+热度排序，TXT/Excel双格式导出，专为内容创作者、新媒体运营、SEO优化师打造。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-keyword-batch-autocomplete`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-keyword-batch-autocomplete](https://clawhub.ai/skills/xiaohongshu-keyword-batch-autocomplete)
+## 核心功能
 
-## Overview
+### 🚀 批量关键词导入
+- 支持命令行单个关键词输入
+- 支持批量文件导入（每行一个关键词）
+- 支持注释行（#开头自动跳过）
+- 内置10+热门行业示例关键词
 
+### 🔍 多轮次深度联想
+- 支持1-3层深度联想（联想词再联想）
+- 指数级拓展长尾关键词库
+- 挖掘用户真实搜索意图
+- 可自定义采集深度控制
 
-## Installation
-To install this skill, run the following command in your terminal:
+### ✨ 智能去重与排序
+- 自动识别重复词条并去重
+- 按搜索热度分数智能排序
+- 记录词条引用次数（出现频率）
+- 保留原始来源关键词信息
+
+### 📊 多格式导出
+- **TXT格式**：结构化报告，包含关键词分组、热度排名、热门汇总
+- **Excel格式**：多Sheet专业报告，包含详细数据表、去重汇总表、统计信息表
+- 自定义输出目录
+- 自动时间戳命名避免覆盖
+
+## 适用场景
+
+### 内容选题策划
+- 快速获取热门话题方向
+- 发现用户真实搜索需求
+- 拓展内容创作角度
+- 生成多维度选题矩阵
+
+### SEO关键词研究
+- 批量拓展长尾关键词
+- 分析关键词热度分布
+- 发现低竞争高流量词
+- 构建完整关键词库
+
+### 种草文案优化
+- 获取平台热门词汇
+- 匹配用户搜索习惯
+- 优化标题关键词布局
+- 提升笔记曝光率
+
+### 竞品与行业分析
+- 批量采集行业核心词
+- 分析用户关注点分布
+- 发现蓝海细分领域
+- 跟踪热门话题趋势
+
+## 使用说明
+
+### 基础用法（单个关键词）
 ```bash
-hermes skills install clawhub/xiaohongshu-keyword-batch-autocomplete
+python3 batch_keyword.py --keyword "夏季穿搭"
 ```
+
+### 批量采集（文件导入）
+```bash
+python3 batch_keyword.py --file keywords.txt
+```
+
+### 深度联想挖掘
+```bash
+python3 batch_keyword.py --keyword "护肤" --depth 2
+```
+
+### 导出Excel格式
+```bash
+python3 batch_keyword.py --keyword "美食" --format excel
+```
+
+### 完整参数示例
+```bash
+python3 batch_keyword.py \
+  --file keywords_sample.txt \
+  --depth 2 \
+  --format excel \
+  --output ./result \
+  --delay 0.5
+```
+
+## 参数说明
+
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| `--keyword` | 单个关键词采集 | - |
+| `--file` | 批量关键词文件路径（每行一个） | - |
+| `--depth` | 联想深度，支持1-3层，数值越大长尾词越多 | 1 |
+| `--format` | 输出格式：txt / excel | txt |
+| `--output` | 输出文件目录 | ./output |
+| `--delay` | 请求间隔（秒），防止请求过快 | 0.5 |
+| `--no-dedup` | 关闭自动去重功能 | - |
+
+## 输出示例
+
+```
+开始批量采集，共 10 个关键词，深度: 1
+============================================================
+深度 1: 夏季穿搭
+深度 1: 护肤
+深度 1: 美妆
+深度 1: 美食
+深度 1: 旅游
+深度 1: 健身
+深度 1: 家居
+深度 1: 数码
+深度 1: 宠物
+深度 1: 母婴
+============================================================
+采集完成: 原始 100 个，去重后 100 个
+
+结果预览（TOP 10）:
+----------------------------------------
+ 1. 夏季穿搭 2025 (热度: 100, 深度: 1)
+ 2. 护肤 2025 (热度: 100, 深度: 1)
+ 3. 美妆 2025 (热度: 100, 深度: 1)
+ 4. 美食 2025 (热度: 100, 深度: 1)
+ 5. 旅游 2025 (热度: 100, 深度: 1)
+ 6. 健身 2025 (热度: 100, 深度: 1)
+ 7. 家居 2025 (热度: 100, 深度: 1)
+ 8. 数码 2025 (热度: 100, 深度: 1)
+ 9. 宠物 2025 (热度: 100, 深度: 1)
+10. 母婴 2025 (热度: 100, 深度: 1)
+```
+
+## Excel报告结构
+
+导出的Excel文件包含3个专业Sheet：
+
+1. **详细数据表** - 所有采集到的原始数据，包含主关键词、联想词、热度分数、排名、采集深度、来源关键词、引用次数、采集时间
+2. **汇总（去重）** - 去重后的唯一词条列表，按热度排序，适合直接使用
+3. **统计信息** - 采集统计概览，包含采集时间、关键词数量、采集深度、原始词条数、去重后词条数、去重率等关键指标
+
+## 安装依赖
+
+```bash
+# 基础依赖（TXT导出）
+pip3 install requests
+
+# 完整功能（支持Excel导出）
+pip3 install requests pandas openpyxl
+```
+
+## 真实API对接说明
+
+当前版本使用模拟数据进行功能演示。如需对接小红书真实API，需要：
+
+1. 使用浏览器开发者工具抓包，访问小红书搜索页面
+2. 查找搜索推荐相关接口（通常包含suggest/recommend等关键字）
+3. 更新代码中的`_generate_mock_suggestions`方法为真实API调用
+4. 根据需要配置请求头、Cookie或认证Token
+
+注意：请遵守平台使用条款，合理控制请求频率，仅供学习研究使用。

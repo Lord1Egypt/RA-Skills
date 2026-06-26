@@ -1,0 +1,7 @@
+interface:
+  display_name: "Wise Read-Only"
+  short_description: "Read-only Wise API with PII-safe defaults"
+  default_prompt: "Use $wise-readonly to fetch Wise profiles, balances, transfers, recipients, or FX rates safely."
+
+policy:
+  allow_implicit_invocation: false

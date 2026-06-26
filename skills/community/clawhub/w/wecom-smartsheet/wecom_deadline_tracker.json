@@ -1,0 +1,22 @@
+[
+  {
+    "table": "task",
+    "record_id": "recExample01",
+    "name": "示例任务-查看市场调研报告",
+    "deadline": "2026-06-01",
+    "responsible": "UserID001",
+    "data": {},
+    "tracked_at": "2026-05-01T09:00:00",
+    "notified": false
+  },
+  {
+    "table": "video",
+    "record_id": "recExample02",
+    "name": "示例视频-AI工具测评第1期",
+    "deadline": "2026-06-05",
+    "responsible": "UserID002",
+    "data": {},
+    "tracked_at": "2026-05-01T10:00:00",
+    "notified": true
+  }
+]

@@ -1,35 +1,68 @@
 ---
-name: "Xeonen Video Analyzer"
-description: "Download videos, extract transcripts, capture frames. Analyze YouTube, tutorials, DD videos with yt-dlp + Whisper + ffmpeg."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xeonen-video-analyzer"
-sourceUrl: "https://clawhub.ai/skills/xeonen-video-analyzer"
+name: video-watcher
+description: Download videos, extract transcripts, capture frames. Analyze YouTube, tutorials, DD videos with yt-dlp + Whisper + ffmpeg.
+metadata: {"clawdbot":{"requires":{"bins":["yt-dlp","ffmpeg","whisper"]}}}
 ---
 
-# Xeonen Video Analyzer
+# Video Watcher
 
-> Download videos, extract transcripts, capture frames. Analyze YouTube, tutorials, DD videos with yt-dlp + Whisper + ffmpeg.
+Download, transcribe, and screenshot videos for analysis.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xeonen-video-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/xeonen-video-analyzer](https://clawhub.ai/skills/xeonen-video-analyzer)
+## Requirements
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/xeonen-video-analyzer
+brew install yt-dlp ffmpeg openai-whisper
 ```
+
+## Quick Start
+
+```bash
+./scripts/analyze.sh "https://youtube.com/watch?v=..."
+```
+
+## Output
+
+```
+outputs/
+├── video.mp4           # Downloaded video
+├── audio.mp3           # Extracted audio
+├── transcript.txt      # Plain text
+├── transcript.srt      # Subtitles
+└── frames/             # Screenshots every 30s
+```
+
+## Commands
+
+### Analyze video
+```bash
+./scripts/analyze.sh "URL" [output-dir] [frame-interval] [whisper-model]
+```
+
+### Summarize transcript
+```bash
+./scripts/summarize.sh ./outputs/transcript.txt
+```
+
+Or with AI:
+```bash
+cat outputs/transcript.txt | clawdbot ask "Summarize this"
+```
+
+## Config
+
+`config.json`:
+```json
+{
+  "whisper_model": "medium",
+  "frame_interval": 30,
+  "output_dir": "./outputs"
+}
+```
+
+## Use Cases
+
+- DD (Due Diligence) videos
+- Lecture notes
+- Podcast summaries
+- Tutorial documentation
+- Meeting recordings

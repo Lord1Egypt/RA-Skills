@@ -1,0 +1,26 @@
+{
+  "name": "x402janus",
+  "version": "3.0.0",
+  "description": "x402janus security scan scripts — autonomous wallet forensics via x402 micropayments",
+  "type": "module",
+  "scripts": {
+    "scan": "npx tsx scripts/scan-wallet.ts",
+    "monitor": "npx tsx scripts/start-monitoring.ts",
+    "approvals": "npx tsx scripts/list-approvals.ts",
+    "revoke": "npx tsx scripts/revoke-approval.ts",
+    "test": "npx tsx scripts/scan-wallet.ts --help"
+  },
+  "dependencies": {
+    "thirdweb": "^5.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "tsx": "^4.21.0"
+  }
+}

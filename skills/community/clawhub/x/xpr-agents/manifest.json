@@ -1,0 +1,17 @@
+{
+  "name": "xpr-agents",
+  "version": "0.1.0",
+  "description": "Comprehensive knowledge for AI agents to interact with XPR Trustless Agents - discovery, reputation, validation, and payments",
+  "author": "XPR Network",
+  "keywords": [
+    "xpr",
+    "blockchain",
+    "agents",
+    "ai-agents",
+    "reputation",
+    "escrow",
+    "trustless"
+  ],
+  "main": "skill.md",
+  "repository": "https://github.com/XPRNetwork/xpr-agents"
+}

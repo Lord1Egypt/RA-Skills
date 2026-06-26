@@ -1,0 +1,17 @@
+# ~/.x-search.yaml — x-search watchlist
+#
+# NOTE: all accounts share the same execution parameters (--time / --count / --lang).
+# For per-account customization, call x_search.py directly:
+#   python3 x_search.py account @user --time 48h --lang en
+
+accounts:
+  - "@karpathy"
+  - "@elonmusk"
+
+trends:
+  - "#AI"
+  - "#LLM"
+
+topics:
+  - "Claude MCP"
+  - "crude oil price"

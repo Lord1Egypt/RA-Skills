@@ -1,0 +1,23 @@
+﻿python : C:\Users\Xiabi\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\__init__.py:113: RequestsDep
+endencyWarning: urllib3 (2.6.3) or chardet (7.1.0)/charset_normalizer (3.4.5) doesn't match a supported version!
+所在位置 行:1 字符: 93
++ ... pace\skills\rag_search\src; python test-mermaid-skill.py 2>&1 | Out-F ...
++                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\Xiabi\...ported version!:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  warnings.warn(
+============================================================
+娴嬭瘯 mermaid-to-feishu 鎶€鑳藉悜閲忓寲
+============================================================
+鏌ヨ锛歮ermaid 鍥捐〃杞浘鐗?
+[INFO] Embedded batch 1: 1 texts
+  [OK] mermaid-feishu-doc (similarity: 0.753)
+    file: SKILL.md
+  [OK] mermaid-to-feishu (similarity: 0.718)
+    file: SKILL.md
+
+============================================================
+鉁?mermaid-to-feishu 鎶€鑳藉凡鎴愬姛鍚戦噺鍖栵紒
+鎬诲叡鎵惧埌 2 涓浉鍏虫妧鑳?
+============================================================

@@ -1,35 +1,183 @@
 ---
-name: "YZL-AIoT"
-description: "YZL-AIoT 云智联 AIoT 设备管理技能。继承 yzl-iot-api，新增自动版本检测。一句话说就能获取传感器数据和发送控制指令。激活语：云智联设备，钥匙是xxxxxx，帮我打开开关/获取数据"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yzl-aiot"
-sourceUrl: "https://clawhub.ai/skills/yzl-aiot"
+name: yzl-aiot
+description: "YZL-AIoT 云智联 AIoT 设备管理技能。新版 API（2026-06-15），路径以 /open/ 开头。一句话说就能获取传感器数据和发送控制指令。激活语：云智联设备，钥匙是xxxxxx，帮我打开开关/获取数据"
+homepage: https://github.com/openclaw/skills/tree/main/yzl-aiot
+metadata: { "openclaw": { "requires": { "bins": ["python3"], "env": ["YZLIOT_API_KEY"] } } }
 ---
 
-# YZL-AIoT
+## ⚙️ 运行时要求
 
-> YZL-AIoT 云智联 AIoT 设备管理技能。继承 yzl-iot-api，新增自动版本检测。一句话说就能获取传感器数据和发送控制指令。激活语：云智联设备，钥匙是xxxxxx，帮我打开开关/获取数据
+- **Python 3.6+** （需要 json, os, sys, http.client, time, collections 等标准库）
+- **环境变量 `YZLIOT_API_KEY`** - 必需，请从「云智联YZL」微信小程序获取
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yzl-aiot`
-- **Source URL:** [https://clawhub.ai/skills/yzl-aiot](https://clawhub.ai/skills/yzl-aiot)
+## 🌱 YZL-AIoT 云智联 AIoT 设备管理
 
-## Overview
+**一句话就能获取设备数据和发送控制指令！** 基于云智联开放接口（v2，2026-06-15 更新），所有 API 路径使用 `/open/` 前缀。
 
+> 💡 如果你之前使用的是 `yzl-iot-api`，请迁移至此技能获取后续更新支持。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yzl-aiot
+## ⚡ 快速使用
+
+用户只需说：
+
+- "获取传感器数据" → 自动获取所有土壤温湿度云传感器的温湿度
+- "获取液位" / "液位数据" → 自动获取液位传感器的液位数据
+- "打开电磁阀" / "开启水阀" → 开启远程电磁阀
+- "关闭电磁阀" / "关闭水阀" → 关闭远程电磁阀
+
+## 📋 支持的设备
+
+### 土壤温湿度云传感器
+
+| 型号前缀 | 说明 |
+|----------|------|
+| YZLSTM1 | 土壤温湿度云传感器标准款 |
+| STMCBL | 土壤温湿度云传感器加长款 |
+| STMCS1 | 土壤温湿度云传感器太阳能款 |
+
+**获取数据：** 温度(wd)、湿度(sf)
+
+### 远程电磁阀
+
+| 型号前缀 | 说明 |
+|----------|------|
+| WA1CB1 | 远程电磁阀低功耗版本 |
+| WANCD1 | 4G水阀（目前支持远程控制） |
+
+**控制指令：** 通过 kk1 设施控制开(1)/关(0)
+
+### 低功耗液位传感器
+
+| 型号前缀 | 说明 |
+|----------|------|
+| YZLWP01 | 低功耗液位传感器 |
+
+**获取数据：** 液位(yw)
+
+## 📖 自然语言示例
+
 ```
+用户: "帮我看看传感器数据"
+→ 返回所有土壤温湿度云传感器的温湿度
+
+用户: "获取液位"
+→ 返回液位传感器的液位数据
+
+用户: "打开电磁阀"
+→ 开启远程电磁阀
+
+用户: "关闭水阀"
+→ 关闭远程电磁阀
+```
+
+## 🔧 手动命令（可选）
+
+如果需要更精细控制：
+
+```bash
+# 获取所有设备（简易信息，不含设施集）
+python3 tool.py all
+
+# 分页获取设备列表（含设施集）
+python3 tool.py list
+
+# 查看设备详情（新版：路径参数）
+python3 tool.py device WANCD1-0000000001
+
+# 获取历史数据
+python3 tool.py history <设施ID> [天数]
+
+# 开启电磁阀（新版：参数上限5个，超时范围5~20秒）
+python3 tool.py send WANCD1-0000000001 SetFac '["WANCD1-0000000001","kk1","1"]'
+
+# 关闭电磁阀
+python3 tool.py send WANCD1-0000000001 SetFac '["WANCD1-0000000001","kk1","0"]'
+```
+
+## 🔄 自动版本更新检测 (v1.1.0+)
+
+本技能内置自动版本更新检测功能。
+
+### 工作方式
+
+1. **自动检测**: 每次运行工具时，静默向 ClawHub 查询最新版本
+2. **缓存机制**: 每 12 小时只检测一次，减少网络请求
+3. **智能提醒**: 检测到有新版本时，在命令输出结果末尾追加更新提醒
+4. **离线容错**: 网络不可用时使用上次缓存结果，不阻塞操作
+
+### 手动检查更新
+
+```bash
+python3 tool.py check-update
+```
+
+### 更新方法
+
+```bash
+# 更新到最新稳定版
+clawhub update yzl-aiot
+
+# 或指定版本
+clawhub update yzl-aiot --version 1.1.0
+```
+
+## ⚡ 请求频率限制
+
+工具已内置请求频率控制，自动处理以下限制（新版 API 限制与旧版一致）：
+
+| 接口 | 路径 | 限制速率 |
+|------|------|----------|
+| 获取所有设备 | `GET /open/device/all` | 10次/10秒 |
+| 获取设备列表 | `GET /open/device/list` | 5次/10秒 |
+| 获取设备详情 | `GET /open/device/{id}` | 10次/10秒 |
+| 获取历史数据 | `GET /open/history` | 2次/10秒 |
+| 发送指令 | `POST /open/command/send` | 2次/5秒 |
+| 获取指令详情 | `GET /open/command/{id}` | 2次/5秒 |
+| 获取指令列表 | `GET /open/command/list` | 2次/10秒 |
+
+## 📡 API 接口参考（新版 v2）
+
+> 新版 API 变更日期: 2026-06-15
+> Base URL: `https://open.yzlkj.com`
+> 认证: Header `YZLIOT-APIKEY`
+> 并发限制: 2
+
+### 变更要点
+
+| 变更项 | 旧版 (v1) | 新版 (v2) |
+|--------|-----------|-----------|
+| 路径前缀 | `/openv1/` | `/open/` |
+| 设备详情 | `GET /openv1/device?id=X` | `GET /open/device/{id}` (路径参数) |
+| 指令详情 | `GET /openv1/command/detail?id=X` | `GET /open/command/{id}` (路径参数) |
+| 历史日期格式 | ISO 8601 `2026-03-07T00:00:00` | `2026-03-07 00:00:00` |
+| `/open/device/all` 返回 | 含设施集 | 简易信息(不含设施集)，需通过详情接口补查 |
+| `/open/device/list` | — | 新增 `Filter` 筛选参数，`MaxResultCount` 上限50 |
+
+### 状态码
+
+| 码值 | 说明 |
+|------|------|
+| 0 | 成功 |
+| 400 | 参数错误 |
+| 401 | 未授权/无效APIKey |
+| 403 | 权限不足 |
+| 429 | 请求频率超限 |
+| 500 | 服务器错误 |
+
+## 版本历史
+
+### v1.1.0 (2026-06-18) — API v2 适配
+- 🔄 **适配新版 API**：所有接口路径从 `/openv1/` 迁移至 `/open/`
+- 🔧 **设备详情**：改用路径参数 `GET /open/device/{id}`
+- 🔧 **指令详情**：改用路径参数 `GET /open/command/{id}`
+- 🔧 **历史数据**：改为纯 Query 参数请求，日期格式更新
+- ⚡ **发送指令**：超时范围调整至 5~20 秒
+- 📝 **文档更新**：同步新版 API 接口参考
+
+### v1.0.0 (2026-06-03) — 初始版本
+- 🎉 从 yzl-iot-api 迁移，全新发布
+- ✨ 自动版本更新检测
+- ✨ 缓存机制：12 小时内不重复请求
+- ✨ 离线容错：网络不可用时使用缓存结果
+- 🔧 完整支持：设备列表、详情、历史数据、控制指令
+- 🗣️ 自然语言命令（智能识别设备型号和执行意图）

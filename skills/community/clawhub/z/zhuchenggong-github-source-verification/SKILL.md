@@ -1,35 +1,54 @@
----
-name: "GitHub可信来源验证"
-description: "验证GitHub中国开发者身份，搜索并核实其B站、抖音、小红书、知乎等平台账号和粉丝活跃度以判断可信度。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhuchenggong-github-source-verification"
-sourceUrl: "https://clawhub.ai/skills/zhuchenggong-github-source-verification"
----
+# github-source-verification
 
-# GitHub可信来源验证
+GitHub可信来源验证 - 验证国内开发者身份是否可信
 
-> 验证GitHub中国开发者身份，搜索并核实其B站、抖音、小红书、知乎等平台账号和粉丝活跃度以判断可信度。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhuchenggong-github-source-verification`
-- **Source URL:** [https://clawhub.ai/skills/zhuchenggong-github-source-verification](https://clawhub.ai/skills/zhuchenggong-github-source-verification)
+验证GitHub上中国开发者的真实身份，通过搜索其在B站、抖音、小红书、知乎等平台的存在来确认可信度。
 
-## Overview
+## 适用场景
 
+- "验证这个作者可信度"
+- "查一下这个开发者有没有其他平台账号"
+- "看看这个项目作者靠不靠谱"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhuchenggong-github-source-verification
+## 验证平台
+
+- B站（视频教程）
+- 抖音（短视频）
+- 小红书（图文）
+- 知乎（问答）
+- 掘金（文章）
+- CSDN（博客）
+
+## 输出格式
+
+| 作者 | GitHub | 验证平台 | 可信度 |
+|------|--------|----------|--------|
+| @JoeanAmier | TikTokDownloader | B站 794粉/19视频 | ✅ |
+
+## 验证标准
+
+- 各平台数据（中上水平）= 可信
+- B站：粉丝500+、有视频教程
+- 抖音/小红书：有发过相关内容
+
+## 工作流程
+
+1. 打开 GitHub Trending（中文项目）
+2. 选取目标作者
+3. 验证各平台账号（B站/抖音/小红书/知乎/掘金/CSDN）
+4. 给出可信度参考
+
+## 使用示例
+
 ```
+用户：帮我验证一下这个GitHub项目@xszyou/Fay靠不靠谱
+助手：正在验证@xszyou...
+- B站：space.bilibili.com/2111554564 粉丝3246/视频77
+- 结论：✅ 可信
+```
+
+## License
+
+MIT

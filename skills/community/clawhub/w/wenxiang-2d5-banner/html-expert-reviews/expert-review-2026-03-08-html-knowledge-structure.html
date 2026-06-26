@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 专家点评项目知识库 - 完整架构</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --purple: #9b59b6;
+            --bg: #ffffff;
+            --text: #2c3e50;
+            --border: #ecf0f1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .meta {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .rating-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .rating-item {
+            text-align: center;
+        }
+        
+        .rating-score {
+            font-size: 36px;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .rating-label {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        h2 {
+            font-size: 24px;
+            color: var(--primary);
+            border-left: 4px solid var(--secondary);
+            padding-left: 15px;
+            margin: 40px 0 20px;
+        }
+        
+        h3 {
+            font-size: 20px;
+            color: var(--primary);
+            margin: 30px 0 15px;
+        }
+        
+        .insight-card {
+            background: #f8f9fa;
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .insight-card::before {
+            content: "💡";
+            margin-right: 10px;
+        }
+        
+        .folder-tree {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 25px;
+            border-radius: 12px;
+            font-family: "Courier New", monospace;
+            font-size: 13px;
+            line-height: 2;
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        .folder-tree .folder {
+            color: #74b9ff;
+            font-weight: bold;
+        }
+        
+        .folder-tree .file {
+            color: #55efc4;
+        }
+        
+        .folder-tree .file-html {
+            color: #fdcb6e;
+        }
+        
+        .folder-tree .file-md {
+            color: #a29bfe;
+        }
+        
+        .folder-tree .indent {
+            padding-left: 20px;
+        }
+        
+        .mermaid {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 14px;
+        }
+        
+        th, td {
+            border: 1px solid var(--border);
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .status-done {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-skipped {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+        
+        .project-card {
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s;
+        }
+        
+        .project-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .project-card.p0 {
+            border-color: var(--accent);
+            background: #fff5f5;
+        }
+        
+        .project-card.p1 {
+            border-color: var(--secondary);
+            background: #f0f7ff;
+        }
+        
+        .project-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .priority-icon {
+            font-size: 16px;
+        }
+        
+        .project-meta {
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        
+        .project-html-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .project-html-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .project-html-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .html-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .html-link:hover {
+            text-decoration: underline;
+        }
+        
+        .action-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        
+        .action-box h3 {
+            color: white;
+            border: none;
+            margin-top: 0;
+        }
+        
+        .checklist {
+            list-style: none;
+            counter-reset: checklist-counter;
+        }
+        
+        .checklist li {
+            counter-increment: checklist-counter;
+            padding: 12px 0 12px 40px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .checklist li::before {
+            content: counter(checklist-counter);
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 28px;
+            height: 28px;
+            background: rgba(255,255,255,0.3);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .quote {
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #7f8c8d;
+            background: #fff5f5;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .comparison-card {
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .comparison-card.recommend {
+            border-color: var(--success);
+            background: #f0fff4;
+        }
+        
+        .comparison-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .comparison-card.recommend .comparison-title {
+            color: var(--success);
+        }
+        
+        .flow-step {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 5px;
+            font-weight: bold;
+        }
+        
+        .flow-arrow {
+            color: var(--secondary);
+            font-size: 20px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📊 HTML 专家点评项目知识库 - 完整架构</h1>
+        <div class="meta">
+            生成时间：2026-03-08 12:28 | 分析师：Claw | 版本：V1.0
+        </div>
+    </header>
+
+    <!-- 专家评分 -->
+    <div class="rating-box">
+        <div class="rating-item">
+            <span class="rating-score">12</span>
+            <span class="rating-label">HTML 文件总数</span>
+        </div>
+        <div class="rating-item">
+            <span class="rating-score">5</span>
+            <span class="rating-label">项目关联</span>
+        </div>
+        <div class="rating-item">
+            <span class="rating-score">83%</span>
+            <span class="rating-label">覆盖率</span>
+        </div>
+        <div class="rating-item">
+            <span class="rating-score">V1.0</span>
+            <span class="rating-label">架构版本</span>
+        </div>
+    </div>
+
+    <!-- 核心观点 -->
+    <h2>🎯 核心观点</h2>
+    <div class="insight-card">
+        <strong>结论先行：</strong>HTML 专家点评系统已完成基础架构，12 个 HTML 文件按项目分类归档，覆盖豆包自动化/任务管理/地理知识库/周报系统/通用 5 大领域。当前状态：基础架构完成（✅），项目关联部分完成（⚠️ 83%），自动化流程待完善。建议：建立 HTML 生成→归档→关联的自动化流程，确保每次生成后自动更新项目卡片和索引。
+    </div>
+
+    <!-- 文件夹结构 -->
+    <h2>📁 完整文件夹结构</h2>
+    <div class="folder-tree">
+<span class="folder">workspace/</span>
+├── <span class="folder">html-expert-reviews/</span>              <span class="file"># HTML 专家点评归档目录</span>
+│   ├── <span class="file file-html">README.md</span>                    <span class="file"># 索引文件（手动维护）</span>
+│   ├── <span class="file file-html">expert-review-user-profile-2026-03-08.html</span>  <span class="file"># 用户画像（26KB）</span>
+│   ├── <span class="file file-html">expert-review-2026-03-08-clawhub-skills.html</span>  <span class="file"># ClawHub 技能推荐（20KB）</span>
+│   ├── <span class="file file-html">expert-review-2026-03-08-data-governance.html</span>  <span class="file"># 数据治理项目（14KB）</span>
+│   ├── <span class="file file-html">expert-review-2026-03-08-knowledge-graph.html</span>   <span class="file"># 知识图谱（24KB）</span>
+│   ├── <span class="file file-html">expert-review-2026-03-08-knowledge-graph-final.html</span> <span class="file"># 知识图谱完成报告（14KB）</span>
+│   ├── <span class="file file-html">expert-review-2026-03-08-project-knowledge.html</span>   <span class="file"># 项目知识库系统（12KB）</span>
+│   ├── <span class="file file-html">expert-review-2026-03-08-projects-link.html</span>      <span class="file"># 项目知识库打通（11KB）</span>
+│   ├── <span class="file file-html">expert-review-2026-03-08-projects-memory-link.html</span> <span class="file"># projects↔MEMORY 链接（18KB）</span>
+│   ├── <span class="file file-html">expert-review-2026-03-08-html-index.html</span>        <span class="file"># HTML 索引页（13KB）</span>
+│   ├── <span class="file file-html">expert-review-2026-03-07-ai-basics.html</span>        <span class="file"># AI 基础知识（23KB）</span>
+│   ├── <span class="file file-html">expert-review-2026-03-07-workflow-atomic-architecture.html</span> <span class="file"># 工作流原子架构（15KB）</span>
+│   └── <span class="file file-html">expert-review-2026-03-07-知识卡片.html</span>       <span class="file"># 知识卡片（10KB）</span>
+│
+├── <span class="folder">tasks/projects/</span>                     <span class="file"># 项目卡片目录</span>
+│   ├── <span class="file file-md">豆包会话自动化.md</span>                  <span class="file"># 关联 2 个 HTML（待更新）</span>
+│   ├── <span class="file file-md">地理知识库.md</span>                    <span class="file"># 关联 0 个 HTML</span>
+│   ├── <span class="file file-md">周报系统.md</span>                      <span class="file"># 关联 0 个 HTML</span>
+│   ├── <span class="file file-md">任务管理.md</span>                      <span class="file"># 关联 3 个 HTML（已完成）</span>
+│   └── <span class="file file-md">数据治理 - 小米汽车.md</span>             <span class="file"># 关联 1 个 HTML（已完成）</span>
+│
+├── <span class="folder">memory/</span>                             <span class="file"># 记忆目录</span>
+│   ├── <span class="file file-md">2026-03-08.md</span>                    <span class="file"># 今日记忆（含 HTML 生成记录）</span>
+│   └── <span class="file file-md">triple-line-sync-log.md</span>          <span class="file"># 三线同步触发日志</span>
+│
+└── <span class="folder">skills/</span>                             <span class="file"># 技能目录</span>
+    ├── <span class="file file-md">README.md</span>                        <span class="file"># 技能索引（16 个技能）</span>
+    └── <span class="folder">html-expert-review/</span>                <span class="file"># HTML 生成技能</span>
+        └── <span class="file file-md">SKILL.md</span>                       <span class="file"># 技能说明</span>
+    </div>
+
+    <!-- 项目关联矩阵 -->
+    <h2>🔗 项目关联矩阵</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>项目名称</th>
+                <th>优先级</th>
+                <th>关联 HTML 数量</th>
+                <th>HTML 文件列表</th>
+                <th>关联状态</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>豆包会话自动化</strong></td>
+                <td>P1</td>
+                <td>2</td>
+                <td>
+                    • expert-review-2026-03-07-ai-basics.html<br>
+                    • expert-review-2026-03-07-workflow-atomic-architecture.html
+                </td>
+                <td><span class="status-badge status-pending">⚠️ 待关联</span></td>
+            </tr>
+            <tr>
+                <td><strong>地理知识库</strong></td>
+                <td>P1</td>
+                <td>0</td>
+                <td>（暂无，等项目启动后生成）</td>
+                <td><span class="status-badge status-skipped">⚪ 未开始</span></td>
+            </tr>
+            <tr>
+                <td><strong>周报系统</strong></td>
+                <td>P1</td>
+                <td>0</td>
+                <td>（暂无，等项目优化后生成）</td>
+                <td><span class="status-badge status-skipped">⚪ 未开始</span></td>
+            </tr>
+            <tr>
+                <td><strong>任务管理</strong></td>
+                <td>P0</td>
+                <td>3</td>
+                <td>
+                    • expert-review-2026-03-08-project-knowledge.html<br>
+                    • expert-review-2026-03-08-projects-link.html<br>
+                    • expert-review-2026-03-08-projects-memory-link.html
+                </td>
+                <td><span class="status-badge status-done">✅ 已完成</span></td>
+            </tr>
+            <tr>
+                <td><strong>数据治理 - 小米汽车</strong></td>
+                <td>P0</td>
+                <td>1</td>
+                <td>
+                    • expert-review-2026-03-08-data-governance.html
+                </td>
+                <td><span class="status-badge status-done">✅ 已完成</span></td>
+            </tr>
+            <tr>
+                <td><strong>通用/跨项目</strong></td>
+                <td>-</td>
+                <td>6</td>
+                <td>
+                    • expert-review-user-profile-2026-03-08.html<br>
+                    • expert-review-2026-03-08-clawhub-skills.html<br>
+                    • expert-review-2026-03-08-knowledge-graph.html<br>
+                    • expert-review-2026-03-08-knowledge-graph-final.html<br>
+                    • expert-review-2026-03-08-html-index.html<br>
+                    • expert-review-2026-03-07-知识卡片.html
+                </td>
+                <td><span class="status-badge status-done">✅ 无需关联</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 知识架构 -->
+    <h2>🏗️ HTML 生成与关联流程</h2>
+    <div class="mermaid">
+graph TD
+    A[触发事件] --> B{事件类型？}
+    B -->|豆包会话 | C[调用 doubao-expert-review]
+    B -->|项目更新 | D[调用 project-knowledge-expert]
+    B -->|技能分析 | E[调用 html-expert-review]
+    B -->|用户画像 | F[调用 user-profile-expert]
+    
+    C --> G[生成 HTML 文件]
+    D --> G
+    E --> G
+    F --> G
+    
+    G --> H[保存到 html-expert-reviews/]
+    H --> I[更新 README.md 索引]
+    I --> J{是否关联项目？}
+    J -->|是 | K[更新项目卡片.md]
+    J -->|否 | L[标记为通用]
+    K --> M[记录到 memory/日期.md]
+    L --> M
+    M --> N[完成]
+    
+    style G fill:#e74c3c,color:#fff
+    style K fill:#27ae60,color:#fff
+    style N fill:#3498db,color:#fff
+    </div>
+
+    <!-- 当前状态 -->
+    <h2>📊 当前状态分析</h2>
+    
+    <div class="comparison-grid">
+        <div class="comparison-card recommend">
+            <div class="comparison-title">✅ 已完成（优势）</div>
+            <ul>
+                <li>HTML 统一归档到 html-expert-reviews/</li>
+                <li>创建 README.md 索引文件</li>
+                <li>核心项目点评已关联（任务管理 3 个 + 数据治理 1 个）</li>
+                <li>HTML 格式标准化（科学杂志 + 小红书风格）</li>
+                <li>自动生成 Mermaid 知识架构图</li>
+                <li>支持 Chrome 自动打开预览</li>
+            </ul>
+        </div>
+        
+        <div class="comparison-card">
+            <div class="comparison-title">⚠️ 待完善（改进空间）</div>
+            <ul>
+                <li>豆包自动化项目关联 2 个 HTML（待更新项目卡片）</li>
+                <li>地理知识库/周报系统暂无 HTML（等项目启动）</li>
+                <li>README.md 索引手动维护（建议自动化）</li>
+                <li>缺少 HTML 生成统计（总数/按项目/按日期）</li>
+                <li>缺少 HTML 质量检查（大小/结构/链接）</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 深度洞察 -->
+    <h2>💡 深度洞察</h2>
+    
+    <div class="insight-card">
+        <h3>洞察 1：为什么 HTML 归档如此重要？</h3>
+        <p><strong>业务价值：</strong>知识沉淀与可视化</p>
+        <p><strong>核心原因：</strong>
+        <ul>
+            <li>HTML 比 Markdown 更适合可视化展示（图表/配色/布局）</li>
+            <li>统一归档便于查找和复用（html-expert-reviews/）</li>
+            <li>项目关联形成知识网络（项目卡片 ↔ HTML）</li>
+            <li>长期积累形成知识库资产（12 个 → 100 个 → 1000 个）</li>
+        </ul>
+        </p>
+        <p><strong>投资回报：</strong>极高（一次生成，永久复用）</p>
+    </div>
+    
+    <div class="insight-card">
+        <h3>洞察 2：项目关联的核心逻辑</h3>
+        <p><strong>关联原则：</strong>
+        <ul>
+            <li>项目特定的 HTML → 关联到项目卡片</li>
+            <li>跨项目/通用的 HTML → 标记为通用，无需关联</li>
+            <li>关联方式：项目卡片中添加"📄 专家点评"章节</li>
+            <li>链接格式：[HTML 标题](file://完整路径)</li>
+        </ul>
+        </p>
+        <p><strong>当前覆盖：</strong>5/12 = 42%（待提升到 80%+）</p>
+    </div>
+    
+    <div class="insight-card">
+        <h3>洞察 3：自动化流程的必要性</h3>
+        <p><strong>当前问题：</strong>
+        <ul>
+            <li>README.md 索引手动维护（易遗漏）</li>
+            <li>项目关联手动更新（易忘记）</li>
+            <li>缺少自动生成统计（无法追踪进展）</li>
+        </ul>
+        </p>
+        <p><strong>改进建议：</strong>
+        <ul>
+            <li>html-expert-review 技能自动更新 README.md</li>
+            <li>生成 HTML 后自动调用项目卡片更新</li>
+            <li>每小时统计 HTML 数量和覆盖率</li>
+        </ul>
+        </p>
+    </div>
+
+    <!-- 项目卡片详情 -->
+    <h2>📋 项目卡片详情</h2>
+    
+    <!-- P0 项目 -->
+    <div class="project-card p0">
+        <div class="project-title">
+            <span class="priority-icon">🔴</span>
+            P0 项目：数据治理（小米汽车）
+        </div>
+        <div class="project-meta">
+            目标：预警准确性>95% | 阶段：问题诊断 | 负责人：Xiabi
+        </div>
+        <p><strong>📄 专家点评（1 个）：</strong></p>
+        <ul class="project-html-list">
+            <li>
+                <a href="file://C:\Users\Xiabi\.openclaw\workspace\html-expert-reviews\expert-review-2026-03-08-data-governance.html" class="html-link">
+                    📄 expert-review-2026-03-08-data-governance.html
+                </a>
+                <br>
+                <small>14KB | 2026-03-08 | 问题诊断阶段专家点评</small>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="project-card p0">
+        <div class="project-title">
+            <span class="priority-icon">🔴</span>
+            P0 项目：任务管理
+        </div>
+        <div class="project-meta">
+            目标：四象限优先级 + 每小时提醒 | 阶段：系统完善 | 负责人：Claw
+        </div>
+        <p><strong>📄 专家点评（3 个）：</strong></p>
+        <ul class="project-html-list">
+            <li>
+                <a href="file://C:\Users\Xiabi\.openclaw\workspace\html-expert-reviews\expert-review-2026-03-08-project-knowledge.html" class="html-link">
+                    📄 expert-review-2026-03-08-project-knowledge.html
+                </a>
+                <br>
+                <small>12KB | 2026-03-08 | 项目知识库系统</small>
+            </li>
+            <li>
+                <a href="file://C:\Users\Xiabi\.openclaw\workspace\html-expert-reviews\expert-review-2026-03-08-projects-link.html" class="html-link">
+                    📄 expert-review-2026-03-08-projects-link.html
+                </a>
+                <br>
+                <small>11KB | 2026-03-08 | 项目知识库打通</small>
+            </li>
+            <li>
+                <a href="file://C:\Users\Xiabi\.openclaw\workspace\html-expert-reviews\expert-review-2026-03-08-projects-memory-link.html" class="html-link">
+                    📄 expert-review-2026-03-08-projects-memory-link.html
+                </a>
+                <br>
+                <small>18KB | 2026-03-08 | projects↔MEMORY 双向链接</small>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- P1 项目 -->
+    <div class="project-card p1">
+        <div class="project-title">
+            <span class="priority-icon">🟡</span>
+            P1 项目：豆包会话自动化
+        </div>
+        <div class="project-meta">
+            目标：自动读取会话 + 生成专家点评 | 阶段：系统完善 | 负责人：Claw
+        </div>
+        <p><strong>📄 专家点评（2 个，待关联）：</strong></p>
+        <ul class="project-html-list">
+            <li>
+                <span class="html-link">📄 expert-review-2026-03-07-ai-basics.html</span>
+                <br>
+                <small>23KB | 2026-03-07 | AI 基础知识</small>
+            </li>
+            <li>
+                <span class="html-link">📄 expert-review-2026-03-07-workflow-atomic-architecture.html</span>
+                <br>
+                <small>15KB | 2026-03-07 | 工作流原子架构</small>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="project-card p1">
+        <div class="project-title">
+            <span class="priority-icon">🟡</span>
+            P1 项目：地理知识库
+        </div>
+        <div class="project-meta">
+            目标：KML 导入 + 地点关联 + 可视化 | 阶段：基础建设 | 负责人：Xiabi + Thomas
+        </div>
+        <p><strong>📄 专家点评（0 个，等项目启动）：</strong></p>
+        <ul class="project-html-list">
+            <li><small>（暂无，等项目启动后生成）</small></li>
+        </ul>
+    </div>
+    
+    <div class="project-card p1">
+        <div class="project-title">
+            <span class="priority-icon">🟡</span>
+            P1 项目：周报系统
+        </div>
+        <div class="project-meta">
+            目标：每周三 15:00 自动生成 | 阶段：稳定运行 | 负责人：Claw
+        </div>
+        <p><strong>📄 专家点评（0 个，等项目优化）：</strong></p>
+        <ul class="project-html-list">
+            <li><small>（暂无，等项目优化后生成）</small></li>
+        </ul>
+    </div>
+
+    <!-- 行动建议 -->
+    <div class="action-box">
+        <h3>🚀 行动建议</h3>
+        
+        <h4>今天（P0）</h4>
+        <ul class="checklist">
+            <li>更新 tasks/projects/豆包会话自动化.md，添加 2 个 HTML 链接</li>
+            <li>更新 html-expert-reviews/README.md，标记关联状态</li>
+            <li>记录到 memory/2026-03-08.md</li>
+        </ul>
+        
+        <h4>本周（P1）</h4>
+        <ul class="checklist">
+            <li>优化 html-expert-review 技能，自动更新 README.md</li>
+            <li>添加 HTML 生成统计功能（总数/按项目/按日期）</li>
+            <li>设计 HTML 质量检查规则（大小/结构/链接）</li>
+        </ul>
+        
+        <h4>下周（P2）</h4>
+        <ul class="checklist">
+            <li>地理知识库项目启动后生成 HTML 点评</li>
+            <li>周报系统优化后生成 HTML 点评</li>
+            <li>建立 HTML 知识库搜索功能</li>
+        </ul>
+    </div>
+
+    <!-- 下一步 -->
+    <h2>📈 下一步</h2>
+    <div class="insight-card">
+        <strong>立即行动（现在）：</strong>
+        <ol>
+            <li>打开 tasks/projects/豆包会话自动化.md</li>
+            <li>添加"📄 专家点评"章节</li>
+            <li>添加 2 个 HTML 链接（ai-basics + workflow-atomic）</li>
+        </ol>
+        
+        <strong>今天完成：</strong>
+        <ul>
+            <li>更新所有项目卡片的 HTML 关联</li>
+            <li>更新 README.md 索引状态</li>
+            <li>记录到 memory/2026-03-08.md</li>
+        </ul>
+        
+        <strong>本周完成：</strong>
+        <ul>
+            <li>自动化 HTML 索引更新</li>
+            <li>自动化项目关联</li>
+            <li>HTML 生成统计功能</li>
+        </ul>
+    </div>
+
+    <div class="quote">
+        <strong>专家建议：</strong>HTML 专家点评是知识沉淀的核心载体。统一归档 + 项目关联 + 自动化流程 = 可持续的知识库系统。不要只生成不归档，不要只归档不关联，不要只关联不自动化。记住：知识不是拥有，而是复用。
+    </div>
+
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+</body>
+</html>

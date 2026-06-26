@@ -1,0 +1,46 @@
+{
+  "name": "yiliu",
+  "version": "1.2.3",
+  "description": "忆流 - 随时捕捉、自动整理、按需浮现的 AI 笔记知识库",
+  "main": "dist/index.js",
+  "type": "module",
+  "author": "董大明 (Daming Dong) <dmdong@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamingDong/yiliu.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DamingDong/yiliu/issues"
+  },
+  "homepage": "https://github.com/DamingDong/yiliu#readme",
+  "keywords": [
+    "ai",
+    "notes",
+    "knowledge",
+    "openclaw",
+    "skill",
+    "笔记",
+    "知识库",
+    "ai-notes"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "test": "node dist/test.js"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.14.0",
+    "@llm-tools/embedjs": "^0.1.31",
+    "@xenova/transformers": "^2.17.0",
+    "openai": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

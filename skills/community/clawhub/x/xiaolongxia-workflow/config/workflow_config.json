@@ -1,0 +1,41 @@
+{
+  "version": "0.3.0",
+  "project_base_dir": "/root/.openclaw/workspace/projects",
+  "max_decomposition_depth": 4,
+  "default_model": "deepseek-reasoner",
+  "max_input_tokens": 1000000,
+  "max_output_tokens": 8000,
+  "retry_policy": {
+    "max_retries": 3,
+    "backoff_factor": 2,
+    "initial_delay": 1
+  },
+  "email": {
+    "enabled": false,
+    "recipient": "",
+    "smtp_server": "",
+    "smtp_port": 587,
+    "use_tls": true
+  },
+  "backup": {
+    "enabled": false,
+    "local_backup_dir": "/root/.openclaw/backups",
+    "cloud_backup": false,
+    "git_repository": ""
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "workflow.log",
+    "max_size_mb": 10,
+    "backup_count": 5
+  },
+  "complexity_keywords": [
+    "系统设计",
+    "架构迁移",
+    "大规模数据处理",
+    "完整方案",
+    "复杂系统",
+    "多步骤",
+    "长期项目"
+  ]
+}

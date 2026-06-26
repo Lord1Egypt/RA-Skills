@@ -1,0 +1,90 @@
+{
+  "region": "cn",
+  "judge_model": "glm-5-judge",
+  "max_models": 2,
+  "depth": "simple",
+  "max_tokens": 8192,
+  "max_tokens_judge": 16384,
+
+  "models": {
+    "minimax-m2.5": {
+      "provider": "bailian",
+      "model_id": "minimax-m2.5:online",
+      "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "api_key_env": "DASHSCOPE_API_KEY",
+      "timeout": 60,
+      "roles": ["reasoning", "creative", "synthesis", "analysis"]
+    },
+    "qwen3.5": {
+      "provider": "bailian",
+      "model_id": "qwen3.5-35b-a3b:online",
+      "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "api_key_env": "DASHSCOPE_API_KEY",
+      "timeout": 60,
+      "roles": ["structured", "retrieval", "coding", "technical", "math"]
+    },
+    "kimi-k2.5": {
+      "provider": "bailian",
+      "model_id": "kimi-k2.5:online",
+      "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "api_key_env": "DASHSCOPE_API_KEY",
+      "timeout": 60,
+      "roles": ["longcontext", "retrieval", "current_events", "research", "factual"]
+    },
+    "deepseek-v3.2": {
+      "provider": "bailian",
+      "model_id": "deepseek-v3.2:online",
+      "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "api_key_env": "DASHSCOPE_API_KEY",
+      "timeout": 60,
+      "roles": ["coding", "technical", "reasoning", "analysis"]
+    },
+    "glm-5-judge": {
+      "provider": "bailian",
+      "model_id": "glm-5",
+      "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "api_key_env": "DASHSCOPE_API_KEY",
+      "timeout": 60,
+      "roles": ["judge"]
+    },
+    "qwen3.5-judge": {
+      "provider": "bailian",
+      "model_id": "qwen3.5-35b-a3b",
+      "api_base": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "api_key_env": "DASHSCOPE_API_KEY",
+      "timeout": 60,
+      "roles": ["judge"]
+    }
+  },
+
+  "routing": {
+    "financial": {
+      "models": ["kimi-k2.5", "qwen3.5"],
+      "judge_prompt": "judge_financial"
+    },
+
+    "technical": {
+      "models": ["qwen3.5", "deepseek-v3.2", "kimi-k2.5"]
+    },
+
+    "social": {
+      "models": ["kimi-k2.5", "minimax-m2.5"]
+    },
+
+    "current_events": {
+      "models": ["kimi-k2.5", "qwen3.5"]
+    },
+
+    "scientific": {
+      "models": ["qwen3.5", "deepseek-v3.2", "kimi-k2.5"]
+    },
+
+    "creative": {
+      "models": ["minimax-m2.5", "kimi-k2.5"]
+    },
+
+    "general": {
+      "models": ["kimi-k2.5", "minimax-m2.5"]
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "workday-calculator",
+  "version": "1.0.0",
+  "description": "计算时间区间内有多少个工作日的技能。支持排除中国的节假日和调休安排。",
+  "main": "scripts/workday_calculator.py",
+  "scripts": {
+    "test": "python3 scripts/workday_calculator.py 2025-01-01 2025-01-31",
+    "update": "python3 scripts/update_holidays.py",
+    "example": "python3 scripts/example_usage.py"
+  },
+  "keywords": [
+    "workday",
+    "holiday",
+    "calculator",
+    "china",
+    "productivity",
+    "openclaw",
+    "skill"
+  ],
+  "author": "OpenClaw User <hunterxysy@126.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0",
+    "python": ">=3.6.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/workday-calculator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/workday-calculator/issues"
+  },
+  "homepage": "https://github.com/yourusername/workday-calculator#readme"
+}

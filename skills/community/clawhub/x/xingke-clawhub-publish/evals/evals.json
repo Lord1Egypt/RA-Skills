@@ -1,0 +1,23 @@
+{
+  "skill_name": "clawhub-publish",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我把 shejian 这个skill发布到clawhub，版本1.0.3，changelog是「优化了进货录入的提示词」",
+      "expected_output": "运行 clawhub inspect shejian 确认当前版本，然后执行 clawhub publish 命令，显示发布成功的确认信息。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "发布skill",
+      "expected_output": "列出 ~/.claude/skills/ 下的可用skill，引导用户选择要发布的skill，询问版本号和changelog，最终执行发布。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "clawhub publish my-new-skill, it's the first release, version 1.0.0",
+      "expected_output": "找到或确认 my-new-skill 文件夹，读取 SKILL.md，执行 clawhub publish 命令发布 1.0.0 版本。",
+      "files": []
+    }
+  ]
+}

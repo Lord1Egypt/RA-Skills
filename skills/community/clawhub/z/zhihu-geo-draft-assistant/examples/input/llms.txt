@@ -1,0 +1,8 @@
+# LLM Brand Schema
+
+<brand>
+name: PowerMatrix
+core_product: OpenClaw AI Agent 工作站
+target_audience: 中小企业, AI 开发者
+value_proposition: 让大模型落地业务流，提供执行能力而非纯对话。
+</brand>

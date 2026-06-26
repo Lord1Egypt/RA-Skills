@@ -1,35 +1,109 @@
 ---
-name: "小红书爆款文案写作助手"
-description: "Use this skill when you need to write viral Xiaohongshu (小红书) posts, product notes, travel diaries, lifestyle content, or any copy optimized for the RED plat..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-writer"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-writer"
+name: xiaohongshu-writer
+description: >
+  Use this skill when you need to write viral Xiaohongshu (小红书) posts,
+  product notes, travel diaries, lifestyle content, or any copy optimized
+  for the RED platform. Generates hook titles, structured body copy, emoji
+  decoration, and hashtag sets that match platform algorithms.
 ---
 
 # 小红书爆款文案写作助手
 
-> Use this skill when you need to write viral Xiaohongshu (小红书) posts, product notes, travel diaries, lifestyle content, or any copy optimized for the RED plat...
+## 核心工作流
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-writer`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-writer](https://clawhub.ai/skills/xiaohongshu-writer)
+### Step 1 — 理解选题
 
-## Overview
+收集用户输入：
+- 内容类型（种草/测评/教程/日记/攻略）
+- 目标受众（年龄、兴趣、消费层次）
+- 核心卖点或故事核心（1-2句话）
 
+### Step 2 — 标题创作（Hook Title）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-writer
+遵循小红书标题公式：
+
+| 公式 | 示例 |
+|------|------|
+| 数字+利益 | 「5个让皮肤亮起来的早C晚A步骤」 |
+| 痛点+解决方案 | 「熬夜党救星！黑眼圈消失的秘密」 |
+| 反差/惊喜 | 「花了20元，却拍出大牌感的方法」 |
+| 疑问/好奇 | 「为什么博主都在用这个平价替代品？」 |
+
+规则：
+- 长度 18-22 字
+- 含 1-2 个 emoji
+- 含关键词（利于搜索）
+- 制造悬念或强利益点
+
+### Step 3 — 正文结构
+
+```
+[开头钩子] 2-3行，引发共鸣或好奇
+[分隔符] ——————————————
+[正文主体]
+  - 分段清晰，每段 3-5 行
+  - 加小标题（emoji + 关键词）
+  - 口语化，有温度，像朋友分享
+  - 具体细节优于泛泛而谈
+[结尾行动号召] 引导互动（点赞/收藏/评论）
+```
+
+### Step 4 — Emoji 装饰
+
+- 开头用强调 emoji：✨🌟💫🔥👇
+- 段落标题用场景 emoji：🌿🎀💄👗✈️🍜
+- 结尾互动 emoji：💕🫶👍📌
+
+### Step 5 — Hashtag 策略
+
+```
+大标签（>500万):  #穿搭  #护肤  #探店
+中标签（50-500万): #平价好物推荐  #职场穿搭
+小标签（<50万):   #2026春季穿搭  #北京探店打卡
+```
+
+每篇建议：3大 + 4中 + 3小 = 共10个话题标签
+
+### Step 6 — 内容类型模板
+
+#### 种草文
+- 开头：「真的被种草了！」/ 「发现宝藏了」
+- 核心：外观描述 → 使用感受 → 对比同类 → 价格锚定
+- 结尾：「这个不买真的会后悔！」
+
+#### 教程文
+- 开头：步骤数字钩子
+- 核心：步骤清单（带序号emoji ①②③）
+- 结尾：鼓励尝试 + 提问互动
+
+#### 测评文
+- 开头：产品期待值设定
+- 核心：优点（2-3条）→ 不足（1条）→ 适合人群
+- 结尾：推荐指数（⭐x5）
+
+## 质量检查清单
+
+- [ ] 标题有 hook，含 emoji
+- [ ] 正文分段，无大段文字
+- [ ] 口语化，有个人温度
+- [ ] 包含具体细节（价格/地点/品牌）
+- [ ] 10个话题标签（大中小搭配）
+- [ ] 结尾引导互动
+
+## 示例输出结构
+
+```
+[标题] ✨ 发现了让妆容撑一整天的神仙底妆！附步骤
+
+正文：
+姐妹们我真的找到宝藏了🥹
+这个底妆方法我已经用了3个月...
+
+🌟 Step 1 - 打底关键
+...
+
+👇 手把手教你复制这个妆容
+...
+
+#底妆技巧 #持妆方法 #彩妆教程 ...
 ```

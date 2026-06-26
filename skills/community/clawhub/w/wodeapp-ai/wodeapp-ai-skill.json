@@ -1,0 +1,485 @@
+{
+    "name": "wodeapp-ai",
+    "version": "2.8.0",
+    "displayName": "WodeApp AI 全能引擎",
+    "description": "One API Key = all AI capabilities under one account (text / vision / audio / video), unified credits, no per-provider keys. 一个 Key 解锁全部 AI 能力，共用积分池。支持平台级/项目级 MCP + 零代码可视化工作流。注意：默认示例为 wodeapp.ai，国内用户请替换为 wodeapp.cn。建议带 X-API-Key 调 GET /mainserver/api/api-keys/self-context 获取 issuedOrigin 对齐环境。",
+    "author": "WodeApp Team",
+    "license": "MIT-0",
+    "homepage": "https://wodeapp.ai",
+    "source": "https://wodeapp.ai/api-skills",
+    "always": false,
+    "requirements": [
+        "WODEAPP_API_KEY"
+    ],
+    "primaryCredential": "WODEAPP_API_KEY",
+    "requiredEnvVars": [
+        {
+            "name": "WODEAPP_API_KEY",
+            "description": "API Key from wodeapp.ai — the only credential required for all API and MCP requests. No additional third-party keys needed.",
+            "required": true
+        }
+    ],
+    "privacy": {
+        "dataTransmitted": [
+            "Text prompts",
+            "Image/audio/video base64 data or URLs (only when user explicitly provides them for generation)",
+            "Workflow input parameters"
+        ],
+        "dataRecipients": [
+            "wodeapp.ai (routing layer)",
+            "Selected upstream AI provider (OpenAI, Google, Anthropic, etc. — determined by model choice or auto-routing)"
+        ],
+        "dataStored": "Project configurations and generated output URLs only. Raw prompts and AI responses are NOT persisted after processing.",
+        "dataTraining": "No user data is used for model training by WodeApp. Upstream provider training policies apply per their respective ToS.",
+        "uploadedFiles": "Files uploaded via the upload_file tool are stored on WodeApp CDN. Generated URLs should be treated as semi-public — do not upload sensitive/confidential files.",
+        "localFileAccess": "This skill does NOT read, write, or access any local files on the user's machine. All operations are remote API calls.",
+        "additionalEnvVars": "This skill does NOT read any environment variables beyond WODEAPP_API_KEY."
+    },
+    "security": {
+        "authMethod": "API Key (header: X-API-Key)",
+        "keyStorage": "Environment variable WODEAPP_API_KEY. Do NOT hardcode in source files.",
+        "credentialScope": "Only WODEAPP_API_KEY is required. No additional platform credentials, OAuth tokens, or third-party API keys are accessed by this skill.",
+        "scoping": "Keys can be scoped with billing limits per project at wodeapp.ai/api-skills",
+        "revocation": "Keys can be revoked instantly at wodeapp.ai/api-skills — takes effect within 60 seconds",
+        "transport": "HTTPS/TLS 1.3 on all production endpoints"
+    },
+    "connection": {
+        "mcp": {
+            "type": "sse",
+            "url": "https://wodeapp.ai/mainserver/mcp",
+            "localUrl": "http://localhost:3100/mainserver/mcp",
+            "messageEndpoint": "/mainserver/mcp/message?sessionId={sessionId}",
+            "toolsEndpoint": "/mainserver/mcp/tools",
+            "auth": {
+                "type": "header",
+                "key": "X-API-Key",
+                "valueEnv": "WODEAPP_API_KEY"
+            }
+        },
+        "rest": {
+            "mainServer": "https://wodeapp.ai/mainserver/api",
+            "runtimeServer": "https://wodeapp.ai/runtime-server/api",
+            "localMainServer": "http://localhost:3100/mainserver/api",
+            "localRuntimeServer": "http://localhost:4100/runtime-server/api"
+        },
+        "workflow": {
+            "productionBase": "https://{project}.wodeapp.ai/runtime-server/api/workflow",
+            "localBase": "http://localhost:4100/runtime-server/api/workflow",
+            "note": "Requires x-subdomain-project header with project name or ID"
+        },
+        "projectMcp": {
+            "type": "sse",
+            "url": "https://{project}.wodeapp.ai/mcp",
+            "localUrl": "http://localhost:4100/mcp",
+            "toolsEndpoint": "/mcp/tools",
+            "auth": "none (project scoped via subdomain)",
+            "note": "Each published project exposes its own MCP server. Tools are auto-generated from project config (data CRUD, workflows, AI, TTS, video, digital human)."
+        },
+        "restBridge": {
+            "callEndpoint": "POST /mainserver/mcp/call",
+            "toolsEndpoint": "GET /mainserver/mcp/tools",
+            "auth": "X-API-Key header",
+            "requestFormat": { "tool": "string", "arguments": "object" },
+            "responseFormat": { "success": "boolean", "data": "object" },
+            "note": "REST alternative to MCP SSE — any HTTP client can call all platform tools without MCP support. Recommended for OpenClaw and other non-MCP clients."
+        }
+    },
+    "tools": [
+        {
+            "name": "ai_generate_text",
+            "description": "AI 文本生成 — 支持 GPT-4o/Claude/Gemini/DeepSeek 等 400+ 模型，省略 model 则自动选择最优性价比",
+            "endpoint": "POST /ai/chat",
+            "server": "runtime",
+            "inputSchema": {
+                "message": {
+                    "type": "string",
+                    "required": true,
+                    "description": "用户消息/提示词"
+                },
+                "systemPrompt": {
+                    "type": "string",
+                    "description": "系统提示 (角色设定)"
+                },
+                "model": {
+                    "type": "string",
+                    "description": "模型 ID (省略则自动选择最优性价比模型)"
+                },
+                "temperature": {
+                    "type": "number",
+                    "description": "创造性 0-1 (默认 0.7)"
+                },
+                "maxTokens": {
+                    "type": "number",
+                    "description": "最大输出 token"
+                }
+            },
+            "outputSchema": {
+                "success": "boolean",
+                "data.content": "string"
+            }
+        },
+        {
+            "name": "ai_generate_json",
+            "description": "AI 结构化 JSON 输出 — 生成符合指定 schema 的 JSON 对象",
+            "endpoint": "POST /ai/json",
+            "server": "runtime",
+            "inputSchema": {
+                "message": {
+                    "type": "string",
+                    "required": true,
+                    "description": "需求描述"
+                },
+                "systemPrompt": {
+                    "type": "string",
+                    "description": "指定输出 JSON schema 格式"
+                }
+            },
+            "outputSchema": {
+                "success": "boolean",
+                "data.content": "object"
+            }
+        },
+        {
+            "name": "ai_generate_image",
+            "description": "AI 文生图/图生图 — 支持 Seedream 3.0 / Imagen 4 等多引擎",
+            "endpoint": "POST /ai/image/generate",
+            "server": "runtime",
+            "inputSchema": {
+                "prompt": {
+                    "type": "string",
+                    "required": true,
+                    "description": "图片描述"
+                },
+                "imageUrl": {
+                    "type": "string",
+                    "description": "参考图 URL (图生图模式)"
+                },
+                "size": {
+                    "type": "string",
+                    "enum": [
+                        "1:1",
+                        "3:4",
+                        "4:3",
+                        "9:16",
+                        "16:9"
+                    ],
+                    "description": "画幅比例 (默认 1:1)"
+                },
+                "model": {
+                    "type": "string",
+                    "description": "图片模型 ID (省略则自动选择)"
+                }
+            },
+            "outputSchema": {
+                "success": "boolean",
+                "data.url": "string"
+            }
+        },
+        {
+            "name": "ai_text_to_speech",
+            "description": "AI 语音合成 (TTS) — 文字转语音，自动检测语言",
+            "endpoint": "POST /ai/tts",
+            "server": "runtime",
+            "inputSchema": {
+                "text": {
+                    "type": "string",
+                    "required": true,
+                    "description": "待合成文本"
+                },
+                "voice": {
+                    "type": "string",
+                    "description": "语音角色 (省略则自动选择)"
+                },
+                "language": {
+                    "type": "string",
+                    "description": "语言代码 (省略则从文本自动检测)"
+                }
+            },
+            "outputSchema": {
+                "success": "boolean",
+                "data.url": "string"
+            }
+        },
+        {
+            "name": "ai_list_models",
+            "description": "列出所有可用 AI 模型（文本/图片/视频）",
+            "endpoint": "GET /ai/models",
+            "server": "runtime",
+            "inputSchema": {},
+            "outputSchema": {
+                "registry": {
+                    "text": "Model[]",
+                    "image": "Model[]",
+                    "video": "Model[]"
+                }
+            }
+        },
+        {
+            "name": "upload_file",
+            "description": "通用文件上传（图片/音频/视频/文档）— 支持 base64 或 URL。上传后文件存储在 WodeApp CDN，生成的 URL 为半公开可访问链接。",
+            "endpoint": "POST /upload/file",
+            "server": "runtime",
+            "inputSchema": {
+                "data": {
+                    "type": "string",
+                    "description": "base64 文件 (data:image/...;base64,...)"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "文件 URL (二选一)"
+                },
+                "filename": {
+                    "type": "string",
+                    "description": "文件名（可选，默认自动生成）"
+                }
+            },
+            "outputSchema": {
+                "success": "boolean",
+                "url": "string"
+            }
+        },
+        {
+            "name": "create_project",
+            "description": "创建 WodeApp 项目 — 可选模板初始化",
+            "endpoint": "POST /json-schema/projects",
+            "server": "main",
+            "inputSchema": {
+                "name": {
+                    "type": "string",
+                    "required": true,
+                    "description": "项目名称 (用作域名)"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "项目描述"
+                },
+                "templateId": {
+                    "type": "string",
+                    "description": "模板 ID"
+                },
+                "language": {
+                    "type": "string",
+                    "enum": [
+                        "zh-CN",
+                        "en-US"
+                    ],
+                    "description": "内容语言"
+                }
+            },
+            "outputSchema": {
+                "success": "boolean",
+                "data": {
+                    "id": "string",
+                    "slug": "string",
+                    "pages": "Page[]"
+                }
+            }
+        },
+        {
+            "name": "ai_generate_page",
+            "description": "AI 生成完整页面 (SSE 流式) — 输入需求描述，自动生成页面内容和布局",
+            "endpoint": "POST /json-schema/generate-stream",
+            "server": "main",
+            "streaming": true,
+            "inputSchema": {
+                "pageId": {
+                    "type": "string",
+                    "required": true,
+                    "description": "目标页面 ID"
+                },
+                "requirements": {
+                    "type": "string",
+                    "required": true,
+                    "description": "页面需求描述"
+                },
+                "projectContext": {
+                    "type": "object",
+                    "properties": {
+                        "projectId": {
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                }
+            },
+            "outputSchema": {
+                "type": "SSE",
+                "events": [
+                    "progress",
+                    "section_start",
+                    "section_complete",
+                    "done",
+                    "error"
+                ]
+            }
+        },
+        {
+            "name": "publish_project",
+            "description": "发布项目上线 — 自动分配域名 (*.wodeapp.ai) + SSL 证书",
+            "endpoint": "POST /json-schema/publish/{projectId}",
+            "server": "main",
+            "inputSchema": {
+                "projectId": {
+                    "type": "string",
+                    "required": true,
+                    "description": "项目 ID (路径参数)"
+                }
+            },
+            "outputSchema": {
+                "success": "boolean",
+                "data": {
+                    "url": "string",
+                    "version": "number"
+                }
+            }
+        },
+        {
+            "name": "workflow_discover",
+            "description": "发现项目工作流 — 获取工作流定义、输入 Schema、步骤列表",
+            "endpoint": "GET /workflow/schema",
+            "server": "workflow",
+            "inputSchema": {},
+            "outputSchema": {
+                "success": "boolean",
+                "data.workflows": "WorkflowSchema[]"
+            }
+        },
+        {
+            "name": "workflow_run",
+            "description": "执行项目工作流 — 提交输入数据异步执行，返回 runId 用于轮询",
+            "endpoint": "POST /workflow/run",
+            "server": "workflow",
+            "inputSchema": {
+                "workflowId": {
+                    "type": "string",
+                    "description": "工作流 ID (可选，默认第一个)"
+                },
+                "inputs": {
+                    "type": "object",
+                    "required": true,
+                    "description": "工作流输入参数（由 workflow_discover 的 inputs 定义）"
+                }
+            },
+            "outputSchema": {
+                "success": "boolean",
+                "data.runId": "string",
+                "data.status": "string",
+                "data.pollUrl": "string"
+            }
+        },
+        {
+            "name": "workflow_poll",
+            "description": "轮询工作流执行状态 — 获取各步骤进度和最终输出结果",
+            "endpoint": "GET /workflow/run/:runId",
+            "server": "workflow",
+            "inputSchema": {
+                "runId": {
+                    "type": "string",
+                    "required": true,
+                    "description": "执行 ID (由 workflow_run 返回)"
+                }
+            },
+            "outputSchema": {
+                "success": "boolean",
+                "data.status": "string (running|completed|error)",
+                "data.steps": "StepResult[]",
+                "data.outputs": "object"
+            }
+        }
+    ],
+    "mcpTools": [
+        "list_projects",
+        "get_project",
+        "create_project",
+        "get_page",
+        "list_pages",
+        "create_page",
+        "update_page",
+        "delete_page",
+        "list_actions",
+        "execute_action",
+        "ai_generate_text",
+        "ai_generate_image",
+        "ai_generate_page",
+        "ai_modify_section",
+        "publish_project",
+        "list_versions",
+        "rollback_version",
+        "list_templates",
+        "build_app"
+    ],
+    "projectMcpToolNames": [
+        "query_{collection}",
+        "create_{collection}",
+        "update_{collection}",
+        "delete_{collection}",
+        "run_workflow_{id}",
+        "get_workflow_status",
+        "get_workflow_schema",
+        "call_action_{name}",
+        "page_list",
+        "page_create",
+        "page_update",
+        "ai_chat",
+        "ai_generate_image",
+        "ai_generate_json",
+        "tts_generate",
+        "tts_list_voices",
+        "video_generate",
+        "video_task_status",
+        "video_providers",
+        "kling_avatar",
+        "component_create",
+        "component_list",
+        "component_get",
+        "component_delete",
+        "feishu_send",
+        "feishu_send_card",
+        "feishu_list_chats",
+        "feishu_bitable_list_tables",
+        "feishu_bitable_list_records",
+        "feishu_bitable_create_record",
+        "feishu_bitable_update_record",
+        "feishu_bitable_search",
+        "feishu_doc_create",
+        "feishu_doc_read",
+        "wecom_send",
+        "wecom_send_image",
+        "wecom_send_card",
+        "wecom_app_send",
+        "wecom_app_departments",
+        "wecom_app_users",
+        "dingtalk_send",
+        "dingtalk_send_card",
+        "dingtalk_webhook_send",
+        "dingtalk_departments",
+        "dingtalk_users",
+        "list_collections"
+    ],
+    "templates": [
+        "digital-avatar-marketing",
+        "storyboard-video-generator",
+        "short-video-workflow",
+        "text-image-video",
+        "redbook-viral-copy",
+        "deepseek-gateway",
+        "weekly-report",
+        "resume-screener",
+        "product-copy",
+        "moments-copy",
+        "interview-coach",
+        "daily-pocket-chef",
+        "year-end-review",
+        "article-generator",
+        "landing-page",
+        "ppt-generator",
+        "user-management"
+    ],
+    "rateLimits": {
+        "perUser": 5,
+        "global": 30,
+        "guestDaily": 500,
+        "projectDaily": 2000,
+        "unit": "credits"
+    }
+}

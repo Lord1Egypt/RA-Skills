@@ -1,0 +1,1416 @@
+{
+  "id": "warrior-cats",
+  "name_zh": "猫武士",
+  "name_en": "Warrior Cats",
+  "language": "en",
+  "genre": "animal-fantasy",
+  "era": "Forest Territory (Original Series)",
+  "age_rating": "Children (8-12)",
+  "themes": [
+    "friendship",
+    "loyalty",
+    "nature",
+    "coming-of-age",
+    "animal-adventure"
+  ],
+  "description_zh": "野猫部落的传奇故事，四大部落为领地和猎物而战，遵循星族指引和武士守则。从幼猫成长为伟大族长的旅程。",
+  "description_en": "Epic tales of feral cat clans living wild in the forest. Four clans battle for territory and honor, guided by StarClan ancestors and the sacred Warrior Code. Journey from tiny kit to legendary leader.",
+  "main_questline": {
+    "main_objective": "从幼猫一路成长为能左右部落命运的武士、族长或传奇守护者，同时决定你要如何守住族群、领地与武士守则。",
+    "current_major_tasks": [
+      "在成长仪式中完成从幼猫到学徒再到武士的晋阶",
+      "在狩猎、巡逻、边界冲突和星族征兆之间建立自己的名声",
+      "处理部落忠诚、禁忌关系、权力更替与外敌威胁",
+      "决定是把部落带向稳定、复仇、统一还是灾变"
+    ],
+    "major_story_threads": [
+      "四大部落的领地与猎物冲突",
+      "星族预言与祖灵警告不断推动主线",
+      "战士守则、忠诚、爱情与野心互相冲突",
+      "从个人成长线逐步进入部落级生存与领导线"
+    ],
+    "default_route_logic": "即使玩家沉浸在日常训练、狩猎或关系戏里，也要持续把故事拉回到成长晋阶、部落责任与即将到来的大冲突。"
+  },
+  "key_figures": [
+    {
+      "name": "Firestar",
+      "role": "leader archetype",
+      "drive": "protect ThunderClan while carrying prophecy burdens",
+      "ties": [
+        "ThunderClan",
+        "StarClan"
+      ]
+    },
+    {
+      "name": "Leafpool",
+      "role": "medicine cat",
+      "drive": "balance sacred duty and forbidden feeling",
+      "ties": [
+        "StarClan",
+        "ThunderClan"
+      ]
+    },
+    {
+      "name": "Leopardstar",
+      "role": "RiverClan leader",
+      "drive": "preserve clan pride and independence",
+      "ties": [
+        "RiverClan",
+        "border politics"
+      ]
+    },
+    {
+      "name": "Tigerstar legacy",
+      "role": "shadow of ambition",
+      "drive": "embody the cost of hunger for total clan power",
+      "ties": [
+        "ShadowClan",
+        "Dark Forest"
+      ]
+    }
+  ],
+  "city_and_region_hubs": [
+    {
+      "name": "ThunderClan Camp",
+      "type": "clan camp",
+      "importance": "loyalty, ceremony, defense, home identity"
+    },
+    {
+      "name": "Fourtrees",
+      "type": "neutral assembly ground",
+      "importance": "gatherings, diplomacy, prophecy tension"
+    },
+    {
+      "name": "Moonstone / Moonpool",
+      "type": "sacred site",
+      "importance": "StarClan communion, leader lives, medicine-cat guidance"
+    },
+    {
+      "name": "Sunningrocks",
+      "type": "border flashpoint",
+      "importance": "resource conflict, recurring territorial dispute"
+    }
+  ],
+  "relationship_webs": [
+    {
+      "thread": "Mentor / apprentice",
+      "tension": "discipline, affection, succession, failure"
+    },
+    {
+      "thread": "Leader / deputy / medicine cat",
+      "tension": "authority, prophecy, emergency decisions"
+    },
+    {
+      "thread": "ThunderClan / RiverClan / WindClan / ShadowClan",
+      "tension": "territory, prey, old grudges, temporary alliances"
+    },
+    {
+      "thread": "StarClan / Dark Forest",
+      "tension": "ancestral guidance versus corruption and false promises"
+    }
+  ],
+  "major_items_and_artifacts": [
+    {
+      "name": "Warrior Code",
+      "kind": "sacred law",
+      "story_use": "moral gate, promotion, social legitimacy"
+    },
+    {
+      "name": "Herb stores",
+      "kind": "practical survival resource",
+      "story_use": "healing, winter scarcity, medicine-cat leverage"
+    },
+    {
+      "name": "Leader’s nine lives",
+      "kind": "spiritual power",
+      "story_use": "authority, prophecy, clan continuity"
+    },
+    {
+      "name": "Prophecy signs",
+      "kind": "symbolic guidance",
+      "story_use": "main plot direction and fear"
+    }
+  ],
+  "mainline_stages": [
+    "幼猫成长",
+    "学徒试炼",
+    "武士立名",
+    "部落危机",
+    "领袖或传奇终局"
+  ],
+  "subfaction_networks": [
+    {
+      "name": "ThunderClan leadership core",
+      "core_members": [
+        "leader",
+        "deputy",
+        "medicine cat",
+        "senior warriors"
+      ],
+      "internal_tension": "war decisions, prophecy burden, succession balance"
+    },
+    {
+      "name": "Clan apprentices and mentors",
+      "core_members": [
+        "young apprentices",
+        "mentors",
+        "future rivals"
+      ],
+      "internal_tension": "training success, favoritism, maturity, reckless ambition"
+    },
+    {
+      "name": "StarClan guidance web",
+      "core_members": [
+        "ancestors",
+        "medicine cats",
+        "leaders"
+      ],
+      "internal_tension": "cryptic warnings versus practical survival"
+    },
+    {
+      "name": "Dark Forest influence line",
+      "core_members": [
+        "tempted warriors",
+        "ambitious outsiders",
+        "shadow mentors"
+      ],
+      "internal_tension": "power promises versus clan loyalty"
+    }
+  ],
+  "quest_hubs": [
+    {
+      "name": "Clan camp routine",
+      "function": "training, ceremonies, disputes, role progression"
+    },
+    {
+      "name": "Border patrol routes",
+      "function": "territory claims, skirmishes, scent trails, diplomacy"
+    },
+    {
+      "name": "Medicine den / sacred sites",
+      "function": "healing, prophecy, spiritual turning points"
+    },
+    {
+      "name": "Gatherings at Fourtrees",
+      "function": "public politics, rumor exchange, alliance and insult scenes"
+    },
+    {
+      "name": "Hunting grounds in leaf-bare or greenleaf",
+      "function": "resource stress, survival, clan comparison"
+    }
+  ],
+  "city_subzones": [
+    {
+      "hub": "Clan camp",
+      "subzones": [
+        "leader’s den",
+        "apprentice den",
+        "warriors’ den",
+        "medicine den",
+        "fresh-kill pile",
+        "camp entrance"
+      ]
+    },
+    {
+      "hub": "Fourtrees",
+      "subzones": [
+        "gathering roots",
+        "branch vantage points",
+        "neutral scent borders"
+      ]
+    },
+    {
+      "hub": "Moonpool / Moonstone",
+      "subzones": [
+        "approach path",
+        "vision site",
+        "waiting hollow"
+      ]
+    }
+  ],
+  "story_pressure_tracks": [
+    {
+      "name": "rank progression",
+      "pressure": "you must earn status, not merely survive scenes"
+    },
+    {
+      "name": "clan survival",
+      "pressure": "weather, prey and borders keep forcing hard collective choices"
+    },
+    {
+      "name": "warrior code versus heart",
+      "pressure": "loyalty and forbidden bonds constantly collide"
+    },
+    {
+      "name": "prophecy burden",
+      "pressure": "mystic warnings keep turning private choices into clan consequences"
+    }
+  ],
+  "item_threads": [
+    {
+      "item": "Herb caches",
+      "thread": "small healing stores become strategic power in illness or winter"
+    },
+    {
+      "item": "Scent markers and border signs",
+      "thread": "tiny territorial traces can trigger full political crises"
+    },
+    {
+      "item": "Ceremony names and status marks",
+      "thread": "identity changes become social power and expectation"
+    }
+  ],
+  "gameplay_pacing": {
+    "rank_based_progression": true,
+    "cannot_skip_ranks": true,
+    "estimated_playtime": {
+      "kit_to_apprentice": "30 minutes",
+      "apprentice_to_warrior": "2-3 hours",
+      "warrior_to_deputy": "3-5 hours",
+      "deputy_to_leader": "5-8 hours"
+    },
+    "age_system": {
+      "moon": "1 in-game month",
+      "kit": "0-6 moons (can't leave camp)",
+      "apprentice": "6-12 moons (must train 7 skills)",
+      "warrior": "12+ moons",
+      "elder": "100+ moons OR injury"
+    },
+    "progression_blockers": [
+      "Must complete mentor's training tasks",
+      "Must catch 10 pieces of prey before warrior ceremony",
+      "Must win 3 battles/skirmishes",
+      "Must demonstrate loyalty to Warrior Code",
+      "Leader must approve ceremony"
+    ],
+    "ceremony_requirements": {
+      "apprentice": "Age 6 moons + healthy",
+      "warrior": "Complete 7 skills + mentor approval + leader decision",
+      "deputy": "Mentored 1 apprentice + high loyalty + current deputy dies/retires",
+      "leader": "Deputy status + leader dies + receive 9 lives from StarClan"
+    }
+  },
+  "clans": [
+    {
+      "id": "thunderclan",
+      "name": "ThunderClan",
+      "motto": "In peace, respect. In war, fury.",
+      "founder": "Thunder",
+      "values": [
+        "Courage",
+        "Loyalty",
+        "Compassion"
+      ],
+      "territory": {
+        "terrain": "Dense deciduous forest",
+        "landmarks": [
+          "Sunningrocks",
+          "Sandy Hollow",
+          "Training Hollow",
+          "Great Sycamore"
+        ],
+        "prey": [
+          "Mice",
+          "Voles",
+          "Squirrels",
+          "Birds"
+        ],
+        "camp_location": "Stone hollow protected by thorn barrier"
+      },
+      "clan_perks": [
+        "Forest stalking +20%",
+        "Climbing trees (leap between branches)",
+        "Better at ambush tactics"
+      ],
+      "starting_skills": [
+        "Forest Stalking",
+        "Branch Leaping",
+        "Mouse Hunting"
+      ],
+      "current_leader": "Firestar",
+      "current_deputy": "Graystripe",
+      "medicine_cat": "Leafpool",
+      "population": "~40 cats",
+      "rivals": [
+        "ShadowClan",
+        "RiverClan (over Sunningrocks)"
+      ]
+    },
+    {
+      "id": "riverclan",
+      "name": "RiverClan",
+      "motto": "Like water, we flow and adapt.",
+      "founder": "River",
+      "values": [
+        "Cleverness",
+        "Strength",
+        "Beauty"
+      ],
+      "territory": {
+        "terrain": "River streams and reed beds",
+        "landmarks": [
+          "River Island",
+          "Gorge",
+          "Stepping Stones"
+        ],
+        "prey": [
+          "Fish",
+          "Water voles",
+          "Shrews"
+        ],
+        "camp_location": "Island in river"
+      },
+      "clan_perks": [
+        "Swimming ability (unique to RiverClan)",
+        "Fishing expertise +30%",
+        "Sleek coat (waterproof)",
+        "Stronger in water battles"
+      ],
+      "starting_skills": [
+        "Swimming",
+        "Fishing",
+        "River Navigation"
+      ],
+      "current_leader": "Leopardstar",
+      "medicine_cat": "Mothwing",
+      "population": "~35 cats",
+      "unique_trait": "Only clan that loves water",
+      "rivals": [
+        "ThunderClan (Sunningrocks dispute)"
+      ]
+    },
+    {
+      "id": "windclan",
+      "name": "WindClan",
+      "motto": "Fleet of foot, fierce in battle.",
+      "founder": "Wind",
+      "values": [
+        "Speed",
+        "Loyalty",
+        "Endurance"
+      ],
+      "territory": {
+        "terrain": "Open moorland",
+        "landmarks": [
+          "Outlook Rock",
+          "Gorge Edge",
+          "Tunnels (ancient)"
+        ],
+        "prey": [
+          "Rabbits",
+          "Hares",
+          "Moorland birds"
+        ],
+        "camp_location": "Shallow burrow on moorland"
+      },
+      "clan_perks": [
+        "Fastest runners (+30% speed)",
+        "Long-distance stamina",
+        "Open-ground tactics",
+        "Tunnel navigation (some cats)"
+      ],
+      "starting_skills": [
+        "Swift Running",
+        "Rabbit Chasing",
+        "Moorland Navigation"
+      ],
+      "current_leader": "Onestar",
+      "medicine_cat": "Barkface",
+      "population": "~30 cats (smallest clan)",
+      "unique_trait": "Fastest cats in forest",
+      "rivals": [
+        "ShadowClan"
+      ]
+    },
+    {
+      "id": "shadowclan",
+      "name": "ShadowClan",
+      "motto": "The night is our ally.",
+      "founder": "Shadow",
+      "values": [
+        "Cunning",
+        "Ambition",
+        "Strength"
+      ],
+      "territory": {
+        "terrain": "Pine forest and marshes",
+        "landmarks": [
+          "Burnt Sycamore",
+          "Carrionplace (dangerous)",
+          "Twoleg Path"
+        ],
+        "prey": [
+          "Frogs",
+          "Lizards",
+          "Snakes",
+          "Rats"
+        ],
+        "camp_location": "Dark hollow in pine trees"
+      },
+      "clan_perks": [
+        "Night vision +25%",
+        "Silent stalking (pine needles)",
+        "Poison resistance (eat frogs/rats)",
+        "Intimidation bonus"
+      ],
+      "starting_skills": [
+        "Night Hunting",
+        "Silent Stalking",
+        "Ambush"
+      ],
+      "current_leader": "Blackstar",
+      "medicine_cat": "Littlecloud",
+      "population": "~38 cats",
+      "reputation": "Most feared and battle-hardened",
+      "dark_history": "Tigerstar's reign, alliance with BloodClan",
+      "rivals": [
+        "ThunderClan",
+        "WindClan"
+      ]
+    }
+  ],
+  "rank_progression_system": {
+    "ranks": [
+      {
+        "rank": "kit",
+        "suffix": "-kit",
+        "age": "0-6 moons",
+        "description": "Newborn to 6 months old, stay in nursery with mother",
+        "responsibilities": "None, just play and grow",
+        "restrictions": [
+          "Cannot leave camp",
+          "Cannot hunt",
+          "Cannot fight",
+          "Must be supervised by queens"
+        ],
+        "daily_activities": [
+          "Play-fighting with littermates",
+          "Listen to elders' stories",
+          "Learn Warrior Code basics",
+          "Name mother and father (if known)"
+        ],
+        "ceremony": "Birth announcement by leader",
+        "example_names": [
+          "Tumkit",
+          "Firekit",
+          "Graykit"
+        ]
+      },
+      {
+        "rank": "apprentice",
+        "suffix": "-paw",
+        "age": "6-12 moons (minimum 6 moons to start)",
+        "description": "Training to become warrior, assigned a mentor",
+        "responsibilities": [
+          "Attend training sessions daily",
+          "Go on patrols with mentor",
+          "Catch prey for elders/queens/kits first",
+          "Clean out elders' bedding",
+          "Repair dens",
+          "Attend Gatherings (if chosen)"
+        ],
+        "training_skills_required": [
+          {
+            "skill": "Hunting",
+            "mastery": 70,
+            "teaches": "Catch 10 prey items"
+          },
+          {
+            "skill": "Fighting",
+            "mastery": 60,
+            "teaches": "Win 3 practice battles"
+          },
+          {
+            "skill": "Tracking",
+            "mastery": 60,
+            "teaches": "Follow scent trail"
+          },
+          {
+            "skill": "Climbing",
+            "mastery": 50,
+            "teaches": "Reach high branch (ThunderClan)"
+          },
+          {
+            "skill": "Swimming",
+            "mastery": 50,
+            "teaches": "Cross river (RiverClan)"
+          },
+          {
+            "skill": "Running",
+            "mastery": 70,
+            "teaches": "Catch rabbit (WindClan)"
+          },
+          {
+            "skill": "Stealth",
+            "mastery": 60,
+            "teaches": "Silent night hunt (ShadowClan)"
+          },
+          {
+            "skill": "Warrior Code",
+            "mastery": 80,
+            "teaches": "Recite all 14 rules"
+          },
+          {
+            "skill": "Border Knowledge",
+            "mastery": 70,
+            "teaches": "Mark borders correctly"
+          },
+          {
+            "skill": "Herb Basics",
+            "mastery": 40,
+            "teaches": "Identify 5 healing herbs"
+          }
+        ],
+        "mentor_system": {
+          "assignment": "Leader chooses mentor based on personality match",
+          "sessions_per_day": "Morning training + afternoon patrol",
+          "mentor_evaluation": "Weekly progress report to leader",
+          "can_change_mentor": "Only if mentor dies, retires, or fails student"
+        },
+        "ceremony": {
+          "trigger": "6 moons old + healthy",
+          "words": "From this day forward, until you have earned your warrior name, you will be known as [Name]paw. [Mentor], you are ready for an apprentice. You will be mentor to [Name]paw.",
+          "response": "I will pass on all I know.",
+          "celebration": "Whole clan calls apprentice's new name"
+        },
+        "example_names": [
+          "Tumpaw",
+          "Firepaw",
+          "Graypaw"
+        ]
+      },
+      {
+        "rank": "warrior",
+        "suffix": "Custom (leader's choice)",
+        "age": "12+ moons (usually 12-15 moons)",
+        "description": "Full clan member, hunts and defends territory",
+        "responsibilities": [
+          "Hunt daily for clan (feed elders/queens/kits first)",
+          "Patrol borders (dawn/dusk patrols)",
+          "Defend clan in battle",
+          "Mentor apprentices (eventually)",
+          "Attend Gatherings",
+          "Silent vigil after ceremony (entire night, no talking)"
+        ],
+        "privileges": [
+          "Eat after elders/queens/kits/apprentices",
+          "Sleep in warriors' den",
+          "Voice in clan meetings",
+          "Can challenge deputy (rare)"
+        ],
+        "warrior_skills_mastery": {
+          "hunting": 75,
+          "fighting": 70,
+          "loyalty": 80,
+          "wisdom": 60
+        },
+        "ceremony": {
+          "trigger": "Mentor approval + completed all skills + leader decision",
+          "words": "I, [Leader], leader of [Clan], call upon my warrior ancestors to look down on this apprentice. [They have] trained hard to understand the ways of your noble code, and I commend [them] to you as a warrior in [their] turn. [Name]paw, do you promise to uphold the warrior code and to protect and defend your Clan, even at the cost of your life?",
+          "response": "I do.",
+          "naming": "Then by the powers of StarClan, I give you your warrior name. [Name]paw, from this moment you will be known as [Warrior Name]. StarClan honors your [virtue1] and [virtue2].",
+          "vigil": "Silent night watch at camp entrance",
+          "celebration": "Clan chants new name under stars"
+        },
+        "example_names": [
+          "Tumfang",
+          "Fireheart",
+          "Graystripe"
+        ]
+      },
+      {
+        "rank": "deputy",
+        "suffix": "Unchanged",
+        "requirements": [
+          "Must be warrior",
+          "Must have mentored at least 1 apprentice",
+          "Chosen by leader",
+          "High loyalty + battle experience"
+        ],
+        "description": "Second-in-command, organizes patrols and stands in for leader",
+        "responsibilities": [
+          "Organize daily patrols (dawn, sunhigh, dusk)",
+          "Lead border patrols",
+          "Make decisions when leader is absent/unable",
+          "Attend Gatherings as clan representative",
+          "Mentor apprentices (optional but common)",
+          "Prepare to become leader"
+        ],
+        "appointment": {
+          "trigger": "Previous deputy dies/retires OR leader needs deputy",
+          "timing": "Must be named before moonhigh after previous deputy's death",
+          "words": "I say these words before StarClan, so that the spirits of our warrior ancestors may hear and approve of my choice. The new deputy of [Clan] is [Name].",
+          "response": "I will serve my Clan faithfully."
+        },
+        "succession": "Automatically becomes leader when current leader dies"
+      },
+      {
+        "rank": "leader",
+        "suffix": "-star",
+        "requirements": [
+          "Must be deputy",
+          "Previous leader dies or retires",
+          "Journey to Moonpool for 9 lives ceremony"
+        ],
+        "description": "Clan leader with 9 lives from StarClan, absolute authority",
+        "responsibilities": [
+          "Make all major decisions",
+          "Lead clan in battle",
+          "Represent clan at Gatherings",
+          "Interpret StarClan's will",
+          "Appoint deputy, mentors, patrol leaders",
+          "Perform ceremonies (apprentice, warrior, etc.)",
+          "Enforce Warrior Code"
+        ],
+        "nine_lives_ceremony": {
+          "location": "Moonpool",
+          "escorts": "Medicine cat",
+          "process": "9 StarClan cats grant 1 life each with a virtue",
+          "virtues": [
+            "Courage",
+            "Compassion",
+            "Justice",
+            "Loyalty",
+            "Love",
+            "Nobility",
+            "Tireless energy",
+            "Protection",
+            "Certainty"
+          ],
+          "pain": "Each life causes intense pain as it enters",
+          "result": "Can die 9 times before final death"
+        },
+        "powers": [
+          "Word is law (within Warrior Code)",
+          "Can exile cats",
+          "Can declare war",
+          "Connection to StarClan"
+        ],
+        "example_names": [
+          "Tumstar",
+          "Firestar",
+          "Bluestar"
+        ]
+      },
+      {
+        "rank": "medicine_cat",
+        "suffix": "Custom",
+        "requirements": [
+          "Special calling (dream/sign from StarClan)",
+          "Apprenticed to current medicine cat",
+          "Cannot have mate or kits (forbidden)"
+        ],
+        "description": "Healer and spiritual guide, interprets StarClan's signs",
+        "responsibilities": [
+          "Heal sick and injured",
+          "Gather herbs",
+          "Interpret dreams and omens",
+          "Attend half-moon medicine cat meetings at Moonpool",
+          "Guide leader's decisions with StarClan's wisdom",
+          "Perform rituals and ceremonies"
+        ],
+        "training": {
+          "herb_knowledge": "50+ herbs and remedies",
+          "starclan_connection": "Learn to interpret signs",
+          "healing_techniques": "Set bones, treat wounds, cure illness",
+          "apprenticeship": "2-3 years minimum"
+        },
+        "restrictions": [
+          "Cannot fight in battles (neutral healer)",
+          "Cannot have romantic relationships",
+          "Cannot become leader or deputy"
+        ]
+      },
+      {
+        "rank": "queen",
+        "suffix": "Unchanged",
+        "description": "Pregnant or nursing mother, lives in nursery",
+        "temporary": true,
+        "responsibilities": [
+          "Care for kits",
+          "Protect nursery",
+          "Feed kits before self"
+        ],
+        "privileges": [
+          "Eat before warriors",
+          "Excused from patrols/hunting",
+          "Protected by entire clan"
+        ],
+        "returns_to": "Warrior (after kits become apprentices)"
+      },
+      {
+        "rank": "elder",
+        "suffix": "Unchanged",
+        "description": "Retired warrior, honored for service",
+        "requirements": [
+          "Old age (100+ moons) OR permanent injury"
+        ],
+        "responsibilities": [
+          "Share wisdom and stories",
+          "Advise leader (informally)"
+        ],
+        "privileges": [
+          "Eat first (after queens/kits)",
+          "Sleep in warmest den",
+          "No patrols/hunting duties",
+          "Cared for by apprentices"
+        ],
+        "ceremony": "Simple announcement, honored by clan"
+      }
+    ]
+  },
+  "season_system": {
+    "seasons": [
+      {
+        "season": "newleaf",
+        "description": "Spring - prey returns, kits are born",
+        "duration": "3 moons",
+        "prey_availability": "High",
+        "weather": "Mild, occasional rain",
+        "clan_activity": "Kitting season, patrol borders",
+        "events": [
+          "Kits born",
+          "Apprentice ceremonies",
+          "Border disputes (territory fights)"
+        ]
+      },
+      {
+        "season": "greenleaf",
+        "description": "Summer - warm, plentiful prey",
+        "duration": "3 moons",
+        "prey_availability": "Very High",
+        "weather": "Hot, dry",
+        "clan_activity": "Training, Gatherings, battles",
+        "events": [
+          "Drought (water shortage)",
+          "Twoleg activity increases",
+          "Forest fires (rare)"
+        ],
+        "danger": "Greencough less common, but heatstroke/dehydration"
+      },
+      {
+        "season": "leaf-fall",
+        "description": "Autumn - prey preparing for winter",
+        "duration": "3 moons",
+        "prey_availability": "Medium",
+        "weather": "Cool, windy, falling leaves",
+        "clan_activity": "Stock up prey, prepare dens for winter",
+        "events": [
+          "Warrior ceremonies (rush to promote before leaf-bare)",
+          "Elders retire"
+        ]
+      },
+      {
+        "season": "leaf-bare",
+        "description": "Winter - harsh cold, scarce prey",
+        "duration": "3 moons",
+        "prey_availability": "Low",
+        "weather": "Freezing, snow, ice",
+        "clan_activity": "Survival mode, hunt constantly",
+        "events": [
+          "Greencough outbreak",
+          "Starvation",
+          "Frozen rivers (RiverClan crisis)",
+          "Death of weak elders/kits"
+        ],
+        "danger": "Most dangerous season, clan conflict for food"
+      }
+    ],
+    "hunting_seasonality": {
+      "mice": "Available all year, less in leaf-bare",
+      "fish": "Abundant greenleaf, frozen leaf-bare (RiverClan emergency)",
+      "rabbits": "Plentiful newleaf/greenleaf, scarce leaf-bare",
+      "birds": "Migrate away in leaf-bare",
+      "frogs": "Only newleaf/greenleaf"
+    }
+  },
+  "mentor_system": {
+    "assignment_ceremony": true,
+    "mentor_personality_match": true,
+    "training_schedule": {
+      "dawn": "Combat training (1-2 hours)",
+      "sunhigh": "Hunting practice",
+      "dusk": "Border patrol + tracking lessons",
+      "night": "Theory (Warrior Code, clan history)"
+    },
+    "relationship_progression": [
+      {
+        "level": 1,
+        "affection": "0-30",
+        "status": "Strict teacher"
+      },
+      {
+        "level": 2,
+        "affection": "31-60",
+        "status": "Respectful bond"
+      },
+      {
+        "level": 3,
+        "affection": "61-85",
+        "status": "Close mentor-student"
+      },
+      {
+        "level": 4,
+        "affection": "86-100",
+        "status": "Lifelong bond (like parent)"
+      }
+    ],
+    "famous_mentor_pairs": [
+      "Bluestar → Fireheart",
+      "Lionheart → Graypaw",
+      "Tigerclaw → Ravenpaw (tragic)",
+      "Whitestorm → Sandpaw"
+    ]
+  },
+  "starclan_system": {
+    "description": "Afterlife for honorable warriors, ancestors watch over living clans",
+    "location": "Silverpelt (Milky Way stars)",
+    "communication_methods": [
+      "Dreams (to leaders/medicine cats)",
+      "Omens (cloud shapes, prey behavior)",
+      "Prophecies (cryptic warnings)",
+      "Moonpool visions"
+    ],
+    "prophecy_examples": [
+      "Fire alone will save our Clan (Firestar)",
+      "Blood will spill blood (Tigerstar's betrayal)",
+      "There will be three, kin of your kin, who hold the power of the stars (The Three)"
+    ],
+    "who_goes_to_starclan": [
+      "Warriors who followed the code",
+      "Leaders (always, even if flawed)",
+      "Kits who died young",
+      "Medicine cats"
+    ],
+    "who_goes_to_dark_forest": [
+      "Traitors (Tigerstar, Hawkfrost)",
+      "Murderers",
+      "Code-breakers (severe cases)"
+    ]
+  },
+  "dark_forest_system": {
+    "description": "Place of No Stars, where evil cats go after death",
+    "training": "Forbidden battle techniques taught in dreams",
+    "temptation": "Promises power and strength beyond clan training",
+    "corruption": "Slowly turns cats against Warrior Code",
+    "major_villains": [
+      "Tigerstar (leader of dark cats)",
+      "Hawkfrost",
+      "Mapleshade",
+      "Brokenstar"
+    ],
+    "great_battle": "Final invasion attempt (Book 6: The Last Hope)",
+    "warning": "Training here corrupts your soul - choose wisely!"
+  },
+  "gathering_system": {
+    "frequency": "Every full moon",
+    "location": "Fourtrees (later Island)",
+    "truce": "Sacred peace - StarClan covers moon if fighting starts",
+    "attendees": "Leader, deputy, medicine cat + selected warriors/apprentices",
+    "purpose": [
+      "Share news",
+      "Announce new warriors/apprentices",
+      "Discuss territory issues",
+      "Show strength (numbers matter)"
+    ],
+    "protocols": [
+      "Leaders sit on Great Rock",
+      "Clans sit separately",
+      "Listen to all leaders speak",
+      "No fighting (truce is sacred)"
+    ],
+    "social_aspect": "Apprentices make friends with other clans (sometimes leads to romance)"
+  },
+  "prophecy_questlines": {
+    "the_prophecy_begins": {
+      "title": "Fire and Ice",
+      "prophecy": "Fire alone will save our Clan",
+      "meaning": "Firestar (former kittypet Rusty) will save ThunderClan",
+      "main_villain": "Tigerstar",
+      "books": 6,
+      "player_role": "Can befriend Fireheart or be rival"
+    },
+    "the_new_prophecy": {
+      "title": "Journey to the Lake",
+      "prophecy": "Darkness, air, water, and sky will come together and shake the forest",
+      "meaning": "Four cats (one from each clan) must find new territory",
+      "books": 6,
+      "player_role": "Join the journey OR stay behind"
+    },
+    "power_of_three": {
+      "title": "The Three",
+      "prophecy": "There will be three, kin of your kin, who hold the power of the stars in their paws",
+      "meaning": "Lionblaze, Jayfeather, Dovewing have special powers",
+      "player_role": "Support The Three OR ally with Dark Forest"
+    }
+  },
+  "forbidden_relationships": {
+    "cross_clan_romance": {
+      "forbidden": true,
+      "consequences": "Exile, loss of trust, kits split between clans",
+      "famous_examples": [
+        "Graystripe (ThunderClan) + Silverstream (RiverClan)",
+        "Leafpool (ThunderClan medicine cat) + Crowfeather (WindClan)",
+        "Bluestar + Oakheart"
+      ],
+      "player_choice": "Can pursue, but high risk"
+    },
+    "medicine_cat_romance": {
+      "forbidden": true,
+      "consequences": "Loss of medicine cat role, shame",
+      "famous_example": "Leafpool + Crowfeather (secret kits)"
+    },
+    "half_clan_kits": "Torn loyalty, often distrusted"
+  },
+  "battle_system": {
+    "battle_moves": [
+      {
+        "name": "Back Kick",
+        "description": "Explosive surprise move, kick with hind legs",
+        "damage": 15,
+        "best_for": "Apprentices learning basics"
+      },
+      {
+        "name": "Belly Rake",
+        "description": "While on back, slash enemy's belly with all claws",
+        "damage": 30,
+        "risk": "Vulnerable position"
+      },
+      {
+        "name": "Front Paw Blow",
+        "description": "Quick swipe to opponent's head",
+        "damage": 10,
+        "best_for": "Stunning"
+      },
+      {
+        "name": "Leap-and-Hold",
+        "description": "Jump on enemy's back, grip with claws",
+        "damage": 20,
+        "best_for": "Larger opponents"
+      },
+      {
+        "name": "Teeth Grip",
+        "description": "Bite and hold throat/scruff",
+        "damage": 25,
+        "finishing_move": true
+      },
+      {
+        "name": "Badger Defense (Team)",
+        "description": "Back-to-back formation against larger enemy",
+        "damage": 35,
+        "requires": "2+ cats"
+      },
+      {
+        "name": "Death Blow (Forbidden)",
+        "description": "Bite throat to kill",
+        "damage": 100,
+        "warrior_code_violation": true,
+        "only_in_war": "Breaking code unless defending life"
+      }
+    ],
+    "battle_training_progression": [
+      "Moon 1: Basic swipes",
+      "Moon 2-3: Dodging, balance",
+      "Moon 4-5: Pouncing, tackling",
+      "Moon 6+: Advanced combos, team tactics"
+    ]
+  },
+  "npcs": [
+    {
+      "name": "Firestar",
+      "title": "Leader of ThunderClan",
+      "rank": "Leader",
+      "clan": "ThunderClan",
+      "level": 95,
+      "personality": "Noble, brave, compassionate, former kittypet",
+      "backstory": "Born Rusty, joined ThunderClan at 6 moons, rose from apprentice to legendary leader",
+      "teachable_skills": [
+        "Courage",
+        "Kittypet Integration Philosophy"
+      ],
+      "relationship_stages": [
+        {
+          "level": 1,
+          "affection": "0-40",
+          "status": "Respected leader"
+        },
+        {
+          "level": 2,
+          "affection": "41-70",
+          "status": "Trusted warrior"
+        },
+        {
+          "level": 3,
+          "affection": "71-100",
+          "status": "Close ally, chosen for important quests"
+        }
+      ],
+      "mate": "Sandstorm",
+      "kits": [
+        "Leafpool",
+        "Squirrelflight"
+      ],
+      "nine_lives_status": "Has lost 3 lives (6 remaining)"
+    },
+    {
+      "name": "Tigerstar",
+      "title": "Leader of ShadowClan / Dark Forest Resident",
+      "rank": "Leader (deceased, now Dark Forest)",
+      "level": 98,
+      "personality": "Ambitious, ruthless, power-hungry, manipulative",
+      "backstory": "ThunderClan warrior who betrayed clan, became ShadowClan leader, trained Dark Forest cats",
+      "teachable_skills": [
+        "Dark Battle Tactics",
+        "Manipulation",
+        "Forbidden Moves"
+      ],
+      "major_villain": true,
+      "death": "Killed by Scourge (BloodClan)",
+      "dark_forest_role": "Trains living cats in dreams to build army",
+      "relationship_stages": [
+        {
+          "level": 1,
+          "affection": "<-50",
+          "status": "Enemy"
+        },
+        {
+          "level": 2,
+          "affection": "-49-0",
+          "status": "Tempted by power"
+        },
+        {
+          "level": 3,
+          "affection": "1-50",
+          "status": "Dark apprentice (corruption path)"
+        }
+      ],
+      "warning": "Befriending Tigerstar leads to dark endings"
+    },
+    {
+      "name": "Graystripe",
+      "title": "ThunderClan Deputy / Warrior",
+      "rank": "Deputy",
+      "clan": "ThunderClan",
+      "level": 75,
+      "personality": "Loyal, friendly, brave, sometimes impulsive",
+      "backstory": "Firestar's best friend, had forbidden romance with Silverstream (RiverClan)",
+      "teachable_skills": [
+        "Loyalty",
+        "Swimming (learned from RiverClan)"
+      ],
+      "friendship_type": "Core companion",
+      "can_team": true,
+      "romance_tragedy": "Silverstream died giving birth to his kits",
+      "kits": [
+        "Feathertail",
+        "Stormfur"
+      ]
+    },
+    {
+      "name": "Leafpool",
+      "title": "ThunderClan Medicine Cat",
+      "rank": "Medicine Cat",
+      "clan": "ThunderClan",
+      "level": 70,
+      "personality": "Gentle, wise, torn between duty and love",
+      "teachable_skills": [
+        "Herb Lore",
+        "StarClan Communication",
+        "Healing"
+      ],
+      "secret": "Forbidden romance with Crowfeather, secret kits",
+      "kits": "Lionblaze, Jayfeather, Hollyleaf (raised by Squirrelflight)",
+      "relationship_stages": [
+        {
+          "level": 1,
+          "affection": "0-40",
+          "status": "Medicine cat student"
+        },
+        {
+          "level": 2,
+          "affection": "41-70",
+          "status": "Healer bond"
+        },
+        {
+          "level": 3,
+          "affection": "71-100",
+          "status": "Confidant, shares prophecies"
+        }
+      ]
+    },
+    {
+      "name": "Bluestar",
+      "title": "Former Leader of ThunderClan",
+      "rank": "Leader (deceased, StarClan)",
+      "clan": "ThunderClan / StarClan",
+      "level": 90,
+      "personality": "Wise, tragic, noble, sacrificed love for duty",
+      "backstory": "Gave up kits to become deputy, mentored Firestar",
+      "death": "Drowned saving Fireheart from dogs",
+      "starclan_role": "Guides current leader",
+      "teachable_skills": [
+        "Leadership",
+        "Sacrifice"
+      ],
+      "tragic_past": "Secret romance with Oakheart (RiverClan), gave away kits"
+    },
+    {
+      "name": "Yellowfang",
+      "title": "Former ShadowClan Medicine Cat",
+      "rank": "Medicine Cat (deceased, StarClan)",
+      "clan": "ThunderClan / StarClan",
+      "level": 80,
+      "personality": "Grumpy but kind-hearted, tough love mentor",
+      "backstory": "Broke medicine cat code, had kit (Brokenstar), exiled from ShadowClan",
+      "death": "Smoke inhalation saving kits from fire",
+      "teachable_skills": [
+        "Advanced Herb Lore",
+        "Tough Love Mentoring"
+      ],
+      "tragic_secret": "Son became evil leader"
+    },
+    {
+      "name": "Sandstorm",
+      "title": "ThunderClan Warrior",
+      "rank": "Warrior",
+      "clan": "ThunderClan",
+      "level": 70,
+      "personality": "Fierce, independent, loyal",
+      "mate": "Firestar",
+      "kits": [
+        "Leafpool",
+        "Squirrelflight"
+      ],
+      "romance_option": "Can be player's mate (if not Firestar's timeline)"
+    },
+    {
+      "name": "Cinderpelt",
+      "title": "ThunderClan Medicine Cat",
+      "rank": "Medicine Cat",
+      "level": 68,
+      "personality": "Cheerful despite injury, dedicated healer",
+      "backstory": "Would-be warrior, leg injury forced medicine cat path",
+      "death": "Killed by badger protecting Sorreltail's kits",
+      "reincarnation": "Reborn as Cinderheart"
+    }
+  ],
+  "locations": [
+    {
+      "id": "thunderclan-camp",
+      "name": "ThunderClan Camp",
+      "description": "Stone hollow protected by thorn barrier, surrounded by forest",
+      "areas": [
+        "Highrock (leader's den, announcements)",
+        "Nursery (queens and kits)",
+        "Apprentices' Den",
+        "Warriors' Den",
+        "Elders' Den",
+        "Medicine Cat Den",
+        "Fresh-kill Pile"
+      ],
+      "npcs": [
+        "Firestar",
+        "Graystripe",
+        "Leafpool",
+        "all clan cats"
+      ],
+      "safety": "Very Safe (defended by entire clan)"
+    },
+    {
+      "id": "training-hollow",
+      "name": "Training Hollow",
+      "description": "Sandy clearing where apprentices practice battle moves",
+      "activities": [
+        "Combat Training",
+        "Mentor Sessions"
+      ],
+      "access": "ThunderClan only"
+    },
+    {
+      "id": "sunningrocks",
+      "name": "Sunningrocks",
+      "description": "Warm rocks by river, disputed territory between ThunderClan and RiverClan",
+      "conflict_zone": true,
+      "battles": "Frequent skirmishes",
+      "strategic_value": "Sunbathing + river access"
+    },
+    {
+      "id": "fourtrees",
+      "name": "Fourtrees",
+      "description": "Four great oak trees where all clans gather at full moon under truce",
+      "sacred": true,
+      "events": "Gathering (monthly)",
+      "great_rock": "Leaders sit here during Gathering",
+      "starclan_presence": "Strong, covers moon if truce broken"
+    },
+    {
+      "id": "moonpool",
+      "name": "Moonpool",
+      "description": "Sacred pool where leaders and medicine cats communicate with StarClan",
+      "access": "Leaders and medicine cats only",
+      "ceremonies": [
+        "Nine Lives",
+        "Medicine Cat Meeting",
+        "Prophecy Reception"
+      ],
+      "location": "Hidden in hills, surrounded by stone hollow",
+      "spiral_path": "Ancient path down to pool"
+    },
+    {
+      "id": "dark-forest",
+      "name": "Dark Forest / Place of No Stars",
+      "description": "Shadowy nightmare realm where evil cats go after death",
+      "access": "Only in dreams (usually unwilling)",
+      "inhabitants": [
+        "Tigerstar",
+        "Hawkfrost",
+        "Mapleshade",
+        "Brokenstar"
+      ],
+      "danger": "Extreme - trains cats to betray clans",
+      "appearance": "Twisted trees, no stars, eternal darkness",
+      "great_battle": "Final invasion of living world"
+    },
+    {
+      "id": "twolegplace",
+      "name": "Twolegplace",
+      "description": "Human town where kittypets and rogues live",
+      "dangers": [
+        "Dogs",
+        "Cars",
+        "Twolegs capturing cats"
+      ],
+      "npcs": [
+        "Kittypets",
+        "Rogues",
+        "Smudge (Firestar's old friend)"
+      ],
+      "clans_view": "Weak, soft life (despised by most warriors)"
+    },
+    {
+      "id": "highstones",
+      "name": "Highstones / Mothermouth",
+      "description": "Ancient mountains, old StarClan meeting place (before Moonpool)",
+      "sacred": true,
+      "moonstone": "Crystal that glows under moonlight",
+      "journey": "Half-day travel from forest"
+    }
+  ],
+  "warrior_code": {
+    "rules": [
+      "1. Defend your Clan, even with your life. You may have friendships with cats from other Clans, but your loyalty must remain to your Clan.",
+      "2. Do not hunt or trespass on another Clan's territory.",
+      "3. Elders, queens, and kits must be fed before apprentices and warriors. Apprentices may not eat until they have hunted to feed the elders.",
+      "4. Prey is killed only to be eaten. Give thanks to StarClan for its life.",
+      "5. A kit must be at least six moons old to become an apprentice.",
+      "6. Newly appointed warriors will keep a silent vigil for one night after receiving their warrior name.",
+      "7. A cat cannot be made deputy without having mentored at least one apprentice.",
+      "8. The deputy will become Clan leader when the leader dies, retires, or is exiled.",
+      "9. After the death, retirement, or exile of the deputy, the new deputy must be chosen before moonhigh.",
+      "10. A Gathering of all four Clans is held at the full moon during a truce that lasts for the night. There shall be no fighting among Clans at this time.",
+      "11. Boundaries must be checked and marked daily. Challenge all trespassing cats.",
+      "12. No warrior can neglect a kit in pain or danger, even if the kit is from a different Clan.",
+      "13. The word of the Clan leader is the warrior code.",
+      "14. An honorable warrior does not need to kill other cats to win battles, unless they are outside the warrior code or if it is necessary for self-defense."
+    ],
+    "breaking_code_consequences": [
+      "Loss of trust",
+      "Exile from clan",
+      "Dark Forest after death (severe violations)",
+      "Prophecy failure"
+    ],
+    "player_tracking": "Code violations tracked, affect ending"
+  },
+  "herb_system": {
+    "common_herbs": [
+      {
+        "name": "Cobwebs",
+        "use": "Stop bleeding",
+        "location": "Anywhere"
+      },
+      {
+        "name": "Marigold",
+        "use": "Prevent infection",
+        "location": "Near water"
+      },
+      {
+        "name": "Dock",
+        "use": "Soothe scratches",
+        "location": "Leafy areas"
+      },
+      {
+        "name": "Poppy Seeds",
+        "use": "Pain relief, sleep aid",
+        "location": "Poppy flowers"
+      }
+    ],
+    "rare_herbs": [
+      {
+        "name": "Catmint",
+        "use": "Cure greencough (deadly illness)",
+        "location": "Twoleg gardens (dangerous to get)"
+      },
+      {
+        "name": "Lungwort",
+        "use": "Cure yellowcough",
+        "location": "Moor (WindClan territory)"
+      },
+      {
+        "name": "Yarrow",
+        "use": "Make cats vomit poison",
+        "location": "Rocky areas"
+      }
+    ],
+    "medicine_cat_training": "Learn 50+ herbs over apprenticeship"
+  },
+  "endings": [
+    {
+      "ending": "Legendary Leader",
+      "requirements": "Become leader + high loyalty + save clan multiple times",
+      "description": "You become a legendary leader like Firestar, remembered for generations in stories."
+    },
+    {
+      "ending": "Noble Deputy",
+      "requirements": "Reach deputy + mentor 3+ apprentices + high honor",
+      "description": "You serve faithfully as deputy, guiding your clan with wisdom."
+    },
+    {
+      "ending": "Medicine Cat Savior",
+      "requirements": "Medicine cat path + cure greencough outbreak + receive major prophecy",
+      "description": "Your healing and connection to StarClan save countless lives."
+    },
+    {
+      "ending": "Dark Forest Corruption",
+      "requirements": "Train with Dark Forest + break Warrior Code 5+ times",
+      "description": "You fall to darkness, exiled from your clan. After death, you wander the Place of No Stars forever."
+    },
+    {
+      "ending": "Forbidden Love Tragedy",
+      "requirements": "Cross-clan romance + exile OR mate's death",
+      "description": "Love costs everything. You and your mate are torn apart by the code."
+    },
+    {
+      "ending": "Elder's Peace",
+      "requirements": "Serve clan loyally for 100+ moons + retire",
+      "description": "You retire as honored elder, sharing wisdom until joining StarClan peacefully."
+    },
+    {
+      "ending": "Hero's Sacrifice",
+      "requirements": "Die protecting clan (battle, saving leader, etc.)",
+      "description": "You give your life for your clan. StarClan welcomes you as a hero, and your story is told to kits forever."
+    }
+  ],
+  "art_style": "Semi-realistic warrior cats art style with expressive eyes and detailed fur, forest atmosphere with dappled sunlight filtering through trees, natural woodland setting with accurate cat anatomy, dramatic lighting emphasizing action poses (hunting crouch, battle leap, tender moments), storybook illustration quality matching official Warriors series covers by Wayne McLoughlin and Owen Richardson, earthy color palette (browns, grays, ginger, silver, black, white), seasons clearly shown (green leaves, snow, falling leaves, spring flowers)",
+  "starting_location": "ThunderClan Nursery (as newborn kit)",
+  "copyright_notice": "Inspired by Erin Hunter's Warriors series. Clan names, character names, and world elements retained for authenticity. Non-commercial fan work. Player story can diverge from canon timeline.",
+  "stat_names": {
+    "health": "Health",
+    "stamina": "Stamina",
+    "hunting": "Hunting Skill",
+    "fighting": "Fighting Skill",
+    "speed": "Speed",
+    "stealth": "Stealth",
+    "loyalty": "Loyalty to Clan",
+    "wisdom": "Wisdom"
+  }
+}

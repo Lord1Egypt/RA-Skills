@@ -1,0 +1,63 @@
+name: yunlv-linkedin-writer
+version: 1.1.0
+license: MIT-0
+type: openclaw-skill
+description: Use when user needs to generate professional B2B outreach message content.
+  Use when creating professional B2B communication content and engagement.
+  Use when writing professional B2B outreach messages for prospects.
+  Use when user mentions "社媒开发信", "B2B联系", "联系消息", "社媒消息生成", "专业消息撰写".
+emoji: 🤖
+homepage: https://yunlvai.com
+publisher:
+  name: 云旅AI团队
+  website: https://yunlvai.com
+required_env:
+- TRADEGPT_API_KEY
+primary_env: TRADEGPT_API_KEY
+apis:
+- name: 云旅AI MatchGPT API
+  url: https://api.yunlvai.com
+  purpose: B2B专业消息内容生成
+  auth: Bearer Token (TRADEGPT_API_KEY)
+category: customer-development
+tags:
+- B2B社媒
+- 专业消息
+- B2B消息
+- B2B联系
+- 联系消息
+- 社媒消息
+triggers:
+- LinkedIn
+- 领英
+- 联系消息
+- LinkedIn消息
+- 专业消息撰写
+- 社媒开发
+- 社媒消息生成
+- B2B社媒
+- LinkedIn message
+pricing:
+  free:
+    features:
+    - 每天10条消息生成
+    - 基础话术模板
+    - 英文消息
+  basic:
+    price: 199
+    currency: CNY
+    period: month
+    features:
+    - 无限消息生成
+    - 15种语言支持
+    - 个性化定制
+    - 跟进序列生成
+  pro:
+    price: 599
+    currency: CNY
+    period: month
+    features:
+    - 多消息生成
+    - 高级序列设计
+    - A/B测试优化
+    - 回复分析

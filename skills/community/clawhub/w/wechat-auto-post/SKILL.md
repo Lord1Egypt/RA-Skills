@@ -1,35 +1,42 @@
 ---
-name: "Wechat Auto Post"
-description: "自动生成和发布微信公众号内容的技能，支持情感爆款、短剧推文等热门题材"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-auto-post"
-sourceUrl: "https://clawhub.ai/skills/wechat-auto-post"
+name: wechat-auto-post
+description: 自动生成和发布微信公众号内容的技能，支持情感爆款、短剧推文等热门题材
+metadata: { "version": "1.0.0", "author": "Skill Factory", "license": "MIT" }
 ---
 
-# Wechat Auto Post
+# 微信公众号自动发文
 
-> 自动生成和发布微信公众号内容的技能，支持情感爆款、短剧推文等热门题材
+自动生成和发布微信公众号内容的技能，支持情感爆款、短剧推文等热门题材
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-auto-post`
-- **Source URL:** [https://clawhub.ai/skills/wechat-auto-post](https://clawhub.ai/skills/wechat-auto-post)
+## 触发条件
 
-## Overview
+当用户要求：
+- 生成微信公众号文章
+- 写情感爆款文章
+- 写短剧推文
+- 创建社交媒体内容
 
+## 执行流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wechat-auto-post
-```
+1. 分析用户需求，确定文章类型和主题
+2. 搜索当前热门话题和趋势
+3. 生成文章大纲
+4. 撰写完整文章（含标题、正文、配图建议）
+5. 优化排版和格式
+6. 输出最终内容
+
+## 内容要求
+
+- 标题要有吸引力（使用数字、悬念、情感等技巧）
+- 开头要抓人（前3句话决定阅读完成率）
+- 正文要有价值（干货、情感共鸣、实用建议）
+- 结尾要有行动号召（关注、转发、评论）
+- 字数控制在 1500-3000 字
+- 适当使用 emoji 和排版符号
+
+## 注意事项
+
+- 不要生成敏感或违规内容
+- 确保内容原创性
+- 配图建议使用免费图库
+- 发布前检查格式和错别字

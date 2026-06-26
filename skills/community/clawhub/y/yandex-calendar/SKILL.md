@@ -1,35 +1,49 @@
----
-name: "yandex-calendar"
-description: "Управляйте Яндекс.Календарём через CalDAV: просматривайте, добавляйте и ищите события с синхронизацией через vdirsyncer и khal."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yandex-calendar"
-sourceUrl: "https://clawhub.ai/skills/yandex-calendar"
----
+# Яндекс.Календарь
 
-# yandex-calendar
+Управление Яндекс.Календарём через CalDAV (vdirsyncer + khal)
 
-> Управляйте Яндекс.Календарём через CalDAV: просматривайте, добавляйте и ищите события с синхронизацией через vdirsyncer и khal.
+## Доступные команды
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yandex-calendar`
-- **Source URL:** [https://clawhub.ai/skills/yandex-calendar](https://clawhub.ai/skills/yandex-calendar)
+### Показать события
+- `vdirsyncer sync && khal list today` - события на сегодня
+- `khal list today 7d` - события на неделю
+- `khal calendar` - календарь на месяц
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Добавить событие
 ```bash
-hermes skills install clawhub/yandex-calendar
+khal new "ДАТА ВРЕМЯ" "ДЛИТЕЛЬНОСТЬ" "НАЗВАНИЕ" && vdirsyncer sync
 ```
+
+Примеры:
+- `khal new "2026-02-10 15:00" "1h" "Встреча с клиентом"`
+- `khal new "завтра 14:00" "30m" "Звонок"`
+
+### Поиск
+```bash
+khal search "текст для поиска"
+```
+
+## Инструкции для бота
+
+Когда пользователь спрашивает про календарь, используй эти команды:
+
+**"Покажи события на сегодня"** или **"Что у меня сегодня?"**
+→ Выполни: `vdirsyncer sync && khal list today`
+→ Покажи результат пользователю
+
+**"Что у меня на этой неделе?"** или **"События на неделю"**
+→ Выполни: `khal list today 7d`
+
+**"Добавь встречу [дата] в [время]"**
+→ Выполни: `khal new "ДАТА ВРЕМЯ" "ДЛИТЕЛЬНОСТЬ" "НАЗВАНИЕ" && vdirsyncer sync`
+→ Примеры дат: "завтра 15:00", "2026-02-10 14:00"
+
+**"Найди событие про [тема]"**
+→ Выполни: `khal search "тема"`
+
+## Примечания
+
+- Всегда синхронизируй перед показом событий: `vdirsyncer sync`
+- После добавления события тоже синхронизируй: `&& vdirsyncer sync`
+- Если vdirsyncer выдаёт ошибку, используй только `khal` без синхронизации
+- Длительность: 30m (30 минут), 1h (1 час), 2h (2 часа)

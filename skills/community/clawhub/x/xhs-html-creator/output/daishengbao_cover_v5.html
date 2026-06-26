@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1350">
+<title>封面 v5</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1350px; background: #FFF5F0; font-family: 'Noto Sans SC', sans-serif; overflow: hidden; position: relative; }
+.tape { position: absolute; width: 160px; height: 40px; background: rgba(255,235,150,0.9); transform: rotate(-3deg); box-shadow: 0 2px 6px rgba(0,0,0,0.15); z-index: 10; }
+.tape-1 { top: 20px; left: 30px; }
+.tape-2 { top: 20px; right: 30px; transform: rotate(3deg); }
+.top-label { position: absolute; top: 75px; left: 50%; transform: translateX(-50%); font-size: 28px; font-weight: bold; color: #8B6914; background: #FFF9E0; border: 3px solid #FFD700; border-radius: 30px; padding: 8px 28px; white-space: nowrap; }
+.main-title { position: absolute; top: 155px; left: 50%; transform: translateX(-50%); font-size: 88px; font-weight: 900; color: #1A0A00; letter-spacing: 8px; white-space: nowrap; text-align: center; }
+.sub-title { position: absolute; top: 268px; left: 50%; transform: translateX(-50%); font-size: 36px; color: #5C3010; font-weight: bold; white-space: nowrap; }
+.cards-area { position: absolute; top: 330px; left: 40px; right: 40px; }
+.cards-row { display: flex; gap: 16px; justify-content: center; margin-bottom: 16px; }
+.card { flex: 1; background: white; border-radius: 18px; padding: 22px 18px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.card-icon { font-size: 48px; margin-bottom: 8px; }
+.card-title { font-size: 28px; font-weight: 900; color: #1A0A00; margin-bottom: 6px; }
+.card-count { font-size: 22px; color: #888; font-weight: bold; }
+.list-card { background: white; border-radius: 18px; padding: 22px 28px; display: flex; align-items: center; gap: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 12px; }
+.list-num { min-width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 900; color: white; flex-shrink: 0; }
+.list-text { flex: 1; font-size: 26px; font-weight: bold; color: #1A0A00; }
+.redblack-area { position: absolute; top: 820px; left: 40px; right: 40px; display: flex; gap: 20px; }
+.rb-card { flex: 1; border-radius: 18px; padding: 22px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+.rb-title { font-size: 30px; font-weight: 900; margin-bottom: 10px; }
+.rb-item { font-size: 22px; font-weight: bold; line-height: 1.8; }
+.cta-bar { position: absolute; bottom: 70px; left: 40px; right: 40px; background: #E84040; border-radius: 18px; padding: 28px 40px; display: flex; align-items: center; justify-content: center; gap: 16px; box-shadow: 0 8px 20px rgba(232,64,64,0.35); }
+.cta-icon { font-size: 52px; }
+.cta-text { font-size: 44px; font-weight: 900; color: white; letter-spacing: 4px; }
+</style>
+</head>
+<body>
+<div class="tape tape-1"></div>
+<div class="tape tape-2"></div>
+<div class="top-label">【无广 · 纯干货 · 10年经验整理】</div>
+<div class="main-title">精简待产包</div>
+<div class="sub-title">30+好物 · 住院几天刚刚好</div>
+
+<div class="cards-area">
+  <div class="cards-row">
+    <div class="card" style="border: 3px solid #D4853D;">
+      <div class="card-icon">📋</div>
+      <div class="card-title">证件篇</div>
+      <div class="card-count">5项</div>
+    </div>
+    <div class="card" style="border: 3px solid #5DC8A8;">
+      <div class="card-icon">👶</div>
+      <div class="card-title">宝宝篇</div>
+      <div class="card-count">14项</div>
+    </div>
+    <div class="card" style="border: 3px solid #E87A8A;">
+      <div class="card-icon">🤱</div>
+      <div class="card-title">妈妈篇</div>
+      <div class="card-count">12项</div>
+    </div>
+  </div>
+
+  <div class="list-card" style="border-left: 8px solid #D4853D;">
+    <div class="list-num" style="background:#D4853D;">📋</div>
+    <div class="list-text">证件 · 宝宝衣物 · 喂养 · 护理 · 妈妈衣物 · 护理 · 日用</div>
+  </div>
+  <div class="list-card" style="border-left: 8px solid #5DC8A8;">
+    <div class="list-num" style="background:#5DC8A8;">👶</div>
+    <div class="list-text">半背衣 · 包被 · 奶瓶 · 纸尿裤 · 护臀膏 · 湿巾棉柔</div>
+  </div>
+  <div class="list-card" style="border-left: 8px solid #E87A8A;">
+    <div class="list-num" style="background:#E87A8A;">🤱</div>
+    <div class="list-text">月子服 · 产褥垫 · 刀纸 · 吸管杯 · 乳头膏 · 安睡裤</div>
+  </div>
+</div>
+
+<div class="redblack-area">
+  <div class="rb-card" style="background: #FFF0F0; border: 3px solid #E84040;">
+    <div class="rb-title" style="color:#E84040;">❤️ 红榜 · 实测好用</div>
+    <div class="rb-item" style="color:#4A2020;">一次性内裤 · 安睡裤<br>吸管杯 · 哺乳枕</div>
+  </div>
+  <div class="rb-card" style="background: #F0F0F0; border: 3px solid #555;">
+    <div class="rb-title" style="color:#555;">⚫ 黑榜 · 避雷闲置</div>
+    <div class="rb-item" style="color:#2A2A2A;">产妇卫生巾（闷热）<br>婴儿手套（影响触觉）</div>
+  </div>
+</div>
+
+<div class="cta-bar">
+  <div class="cta-icon">👇</div>
+  <div class="cta-text">快发给老公 / 婆婆抄作业！</div>
+</div>
+</body>
+</html>

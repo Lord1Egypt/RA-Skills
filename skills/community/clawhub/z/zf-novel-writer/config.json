@@ -1,0 +1,108 @@
+{
+  "version": "8.0",
+  "last_updated": "2026-02-19",
+  "quality_rules": {
+    "enabled": true,
+    "target_grade": "S",
+    "min_score": 90,
+    "max_iterations": 100,
+    "show_below_target": false,
+    "ask_user_accept_low_score": false
+  },
+  "quality_standards": {
+    "phase_3_5": {
+      "system_assistant": {
+        "forbidden": "直接给答案、结论、策略",
+        "required": "只给线索和数据，主角自己分析推理"
+      },
+      "antagonist": {
+        "forbidden": "NPC化、只有弱点、工具人",
+        "required": "有优点+缺点、有动机、会反击"
+      },
+      "golden_lines": {
+        "forbidden": ["风水轮流转", "三十年河东三十年河西", "莫欺少年穷", "你等着"],
+        "required": "新颖锐利、有冲击力"
+      },
+      "dialogue": {
+        "forbidden": "直白、平淡",
+        "required": "有层次（停顿、语气、表情、动作）"
+      },
+      "sensory": {
+        "min_senses": 3,
+        "required": "视觉、听觉、触觉、嗅觉、味觉"
+      },
+      "emotion_transition": {
+        "forbidden": "太快、突变",
+        "required": "有过程、有过渡"
+      },
+      "finance_description": {
+        "forbidden": "干瘪、冰冷数字",
+        "required": "有情感、有心理活动"
+      },
+      "system_unlock": {
+        "forbidden": "太快、密集解锁",
+        "required": "循序渐进、有铺垫"
+      }
+    }
+  },
+  "scoring": {
+    "grade_ranges": {
+      "S": {"min": 90, "max": 100, "label": "完美"},
+      "A": {"min": 80, "max": 89, "label": "优秀"},
+      "B": {"min": 60, "max": 79, "label": "良好"},
+      "C": {"min": 40, "max": 59, "label": "合格"},
+      "D": {"min": 0, "max": 39, "label": "需改进"}
+    },
+    "penalties": {
+      "system_nanny": -15,
+      "antagonist_npc": -15,
+      "cliched_golden_lines": -8,
+      "flat_dialogue": -8,
+      "lacking_details": -8,
+      "fast_emotion_transition": -3,
+      "dry_finance": -3,
+      "fast_unlock": -3,
+      "missing_sensory": -8
+    }
+  },
+  "workflow": {
+    "user_step": "提供章节主题（1句话）← 唯一需要用户做的！",
+    "ai_auto_steps": [
+      "自动查询最新章节号（自动+1）",
+      "自动生成章节标题（基于主题）",
+      "读取规则文件（AI_WRITING_RULES.md）",
+      "读取配置文件（config.json）",
+      "读取上下文（章节概要、系统规则、人物状态）",
+      "生成章节内容（≥3000字）",
+      "质量检查（comprehensive_check.py）",
+      "Phase 3.5质量检测（novel_quality_analyzer.py）",
+      "评分 >= 90分？",
+      "否：自动隐藏，针对性重写",
+      "是：展示给用户"
+    ],
+    "final_step": "用户确认发布",
+    "user_never": [
+      "用户不需要：提供章节号",
+      "用户不需要：提供标题",
+      "用户不需要：查询上下文",
+      "用户不需要：生成场景框架",
+      "用户不需要：质量检查",
+      "用户不需要：优化迭代"
+    ]
+  },
+  "validation": {
+    "required_files": [
+      "story/meta/canon_bible.json",
+      "story/story_outline.xlsx",
+      "story/WORLD_SETTING.md",
+      "skills/novel-writer/SKILL.md"
+    ],
+    "required_keywords": [
+      "S级",
+      "90分",
+      "自动迭代",
+      "不达标不展示",
+      "针对性优化"
+    ]
+  }
+}

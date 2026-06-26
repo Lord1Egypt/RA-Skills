@@ -1,0 +1,33 @@
+{
+  "name": "wecom-agent-ops-center",
+  "version": "2.4.0",
+  "description": "企微 Agent Ops Center v2.4 - 多租户隔离 + 平台自动识别 + Agent自动发现 + 进程守护/敏感信息拦截/网络守卫",
+  "main": "connector.js",
+  "bin": {
+    "wecom-agent-ops-center": "./connector.js"
+  },
+  "scripts": {
+    "start": "node connector.js",
+    "test-agent": "node test-agent.js",
+    "test": "node e2e-test.js"
+  },
+  "keywords": [
+    "wecom",
+    "agent",
+    "monitoring",
+    "observability",
+    "websocket",
+    "a2a",
+    "p2p",
+    "enterprise-wechat",
+    "ops-center"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.16.1",
+    "js-yaml": "^4.1.1",
+    "ws": "^8.21.0"
+  }
+}

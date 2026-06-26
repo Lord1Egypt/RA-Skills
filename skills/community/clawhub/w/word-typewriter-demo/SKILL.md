@@ -1,35 +1,110 @@
 ---
-name: "Word 打字机演示"
+name: word-typewriter-demo
 description: "在 Word 中逐字打字显示内容，支持翻页、对齐控制、字体字号自定义，适合现场演示 AI 操作 Word 的场景。格式由内容文件驱动，不拘泥于任何固定模板。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/word-typewriter-demo"
-sourceUrl: "https://clawhub.ai/skills/word-typewriter-demo"
+metadata:
+  {
+    "openclaw": {
+      "repository": "https://github.com/你的用户名/word-typewriter-demo",
+      "clawhub": "https://clawhub.com/skill/word-typewriter-demo"
+    }
+  }
 ---
 
-# Word 打字机演示
+# Word 打字机演示技能
 
-> 在 Word 中逐字打字显示内容，支持翻页、对齐控制、字体字号自定义，适合现场演示 AI 操作 Word 的场景。格式由内容文件驱动，不拘泥于任何固定模板。
+在 Microsoft Word 中逐字逐句地写入内容，展示 AI 实时操作 Word 的视觉效果。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/word-typewriter-demo`
-- **Source URL:** [https://clawhub.ai/skills/word-typewriter-demo](https://clawhub.ai/skills/word-typewriter-demo)
+## 核心原则
 
-## Overview
+**格式由内容文件说了算**，脚本只负责执行。要什么格式，在内容文件里用标记控制。
 
+## 功能
 
-## Installation
-To install this skill, run the following command in your terminal:
+- **逐字打字** — 一个字一个字地出现在 Word 中，有真实的打字节奏
+- **自动滚屏** — 每写一个字自动滚动页面，确保最新内容始终在视野内
+- **分页支持** — `---page---` 标记插入分页符
+- **对齐控制** — `---left---` / `---center---` / `---right---` 标记切换对齐
+- **标题层级** — `# ` 黑体 / `## ` 楷体 / `### ` 仿宋加粗
+- **格式校正** — 写完自动扫描全文，校正字体/字号/粗体/对齐/缩进等偏差
+- **速度可调** — 标题快、正文慢，节奏感强
+
+## 使用方式
+
 ```bash
-hermes skills install clawhub/word-typewriter-demo
+python {baseDir}/scripts/word_demo.py --file "C:\path\content.txt"
 ```
+
+## 参数说明
+
+| 参数         | 说明                                          | 默认值                   |
+| ---------- | ------------------------------------------- | --------------------- |
+| `--file`   | 从文本文件读取内容（每行为一段）                            | 使用内置示例                |
+| `--speed`  | 打字速度，0.01=极快，0.15=很慢                        | 0.06                  |
+| `--title`  | 文档标题（默认居中显示）                                | "OpenClaw · 实时文档生成演示" |
+| `--format` | 格式类型：`default` 或 `gov`（gov 启用国标页边距/行距/字体校正） | `default`             |
+| `--save`   | 保存路径                                        | 桌面                    |
+
+## 内容文件标记语法
+
+内容文件是纯文本，每行一个段落。支持以下标记：
+
+### 标题层级（仅 `--format gov` 时有效）
+
+| 标记           | 效果                   |
+| ------------ | -------------------- |
+| `# 一、xxx`    | 一级标题 → 黑体（不加粗），左对齐   |
+| `## （一）xxx`  | 二级标题 → 楷体（加粗），左对齐    |
+| `### 1. xxx` | 三级标题 → 仿宋（加粗），左对齐    |
+| 无标记的文本       | 正文 → 仿宋（不加粗），左对齐首行缩进 |
+
+### 对齐控制（通用，所有格式都支持）
+
+| 标记             | 效果         |
+| -------------- | ---------- |
+| `---left---`   | 切换为左对齐（默认） |
+| `---center---` | 切换为居中      |
+| `---right---`  | 切换为右对齐     |
+
+### 分页控制
+
+| 标记           | 效果    |
+| ------------ | ----- |
+| `---page---` | 插入分页符 |
+
+## 示例
+
+### 政府公文格式日报
+
+```bash
+python {baseDir}/scripts/word_demo.py --file report.txt --format gov --title "报告标题" --speed 0.06
+```
+
+### 普通通用文档
+
+```bash
+python {baseDir}/scripts/word_demo.py --file notes.txt --title "会议纪要" --speed 0.08
+```
+
+## 内容文件示例
+
+```
+# 一、工作完成情况
+## （一）Spring 生态调研
+这是正文内容，自动左对齐首行缩进。
+---right---
+报告人：张三
+日　期：二零二六年五月十九日
+```
+
+## 自检与校正
+
+- 写完内容后自动扫描全篇
+- 逐段比对字体、字号、粗体、对齐、缩进、行距
+- 发现偏差自动修正，终端输出修正数量
+- 非 gov 格式仅做基本字号检查
+
+## 依赖
+
+- Windows 系统
+- Microsoft Word 或 WPS Writer
+- Python + pywin32 (`python -m pip install pywin32`)

@@ -1,35 +1,48 @@
 ---
-name: "YouTube Super Chat Event"
-description: "Manage YouTube Super Chat events. Use this skill to list Super Chat events for a channel. Useful when working with YouTube super chat event — provides comman..."
-category: "other"
-source: "ClawHub"
-tags: [0.10.7-dev, 0.10.6-3]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/youtube-super-chat-event"
-sourceUrl: "https://clawhub.ai/skills/youtube-super-chat-event"
+name: youtube-super-chat-event
+description: "Manage YouTube Super Chat events. Use this skill to list Super Chat events for a channel. Useful when working with YouTube super chat event — provides commands to list super chat event via the yutu CLI. Includes setup and installation instructions for first-time users. Triggers: list super chat events, list super chat event, list my super chat event"
+metadata:
+  openclaw:
+    requires:
+      env:
+        - YUTU_CREDENTIAL
+        - YUTU_CACHE_TOKEN
+      bins:
+        - yutu
+      config:
+        - client_secret.json
+        - youtube.token.json
+    primaryEnv: YUTU_CREDENTIAL
+    emoji: "\U0001F3AC\U0001F430"
+    homepage: https://github.com/eat-pray-ai/yutu
+    install:
+      - kind: node
+        package: "@eat-pray-ai/yutu"
+        bins: [yutu]
 ---
 
 # YouTube Super Chat Event
 
-> Manage YouTube Super Chat events. Use this skill to list Super Chat events for a channel. Useful when working with YouTube super chat event — provides comman...
+Manage YouTube Super Chat events. Use this skill to list Super Chat events for a channel.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/youtube-super-chat-event`
-- **Source URL:** [https://clawhub.ai/skills/youtube-super-chat-event](https://clawhub.ai/skills/youtube-super-chat-event)
+## Before You Begin
 
-## Overview
+yutu requires Google Cloud Platform OAuth credentials and a cached token to access the YouTube API. If you haven't set up yutu yet, read the [setup guide](references/setup.md) first.
 
+## Operations
 
-## Installation
-To install this skill, run the following command in your terminal:
+Read the linked reference for full flag details and examples.
+
+| Operation | Description | Reference |
+|-----------|-------------|----------|
+| list | List Super Chat events | [details](references/superChatEvent-list.md) |
+
+## Quick Start
+
 ```bash
-hermes skills install clawhub/youtube-super-chat-event
+# Show all super chat event commands
+yutu superChatEvent --help
+
+# List super chat event
+yutu superChatEvent list
 ```

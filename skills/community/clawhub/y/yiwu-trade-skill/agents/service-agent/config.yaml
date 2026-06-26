@@ -1,0 +1,92 @@
+# Service Agent Configuration
+agent:
+  name: service-agent
+  version: 1.0.0
+  description: 义乌小商品客服代理
+
+# Model Configuration
+model:
+  provider: openai
+  name: gpt-4o-mini
+  temperature: 0.7
+  max_tokens: 1000
+
+# Intent Classification Configuration
+intent_classification:
+  confidence_thresholds:
+    high: 0.85
+    medium: 0.60
+    low: 0.60
+  max_intents: 2
+  clarification:
+    enabled: true
+    max_attempts: 2
+
+# FAQ Configuration
+faq:
+  knowledge_base_path: ./skills/faq-handling/references/faq_knowledge.md
+  similarity_threshold: 0.75
+  max_results: 5
+  cache_ttl_seconds: 300
+
+# Complaint Handling Configuration
+complaint_handling:
+  severity_levels:
+    P3:
+      name: "普通"
+      response_time_minutes: 240
+      max_compensation: 50
+    P2:
+      name: "升级"
+      response_time_minutes: 120
+      max_compensation: 200
+    P1:
+      name: "严重"
+      response_time_minutes: 60
+      max_compensation: 500
+    P0:
+      name: "紧急"
+      response_time_minutes: 0
+      max_compensation: -1
+  escalation_rules:
+    auto_escalate_if:
+      - compensation_exceeds_threshold: true
+      - vip_customer: true
+      - legal_threat: true
+      - media_threat: true
+      - unresolved_after_attempts: 3
+
+# Sentiment Analysis Configuration
+sentiment:
+  emotion_levels:
+    - neutral: 0
+    - concerned: 1
+    - upset: 2
+    - angry: 3
+    - furious: 4
+  urgency_keywords:
+    en: ["urgent", "immediately", "asap", "emergency"]
+    zh: ["紧急", "立刻", "马上", "着急"]
+    ar: ["عاجل", "فورا"]
+
+# Ticket System Configuration
+ticket:
+  auto_create: true
+  prefix: "CMPT"
+  status_flow:
+    - open
+    - in_progress
+    - pending_customer
+    - resolved
+    - closed
+  sla:
+    first_response_minutes: 30
+    resolution_hours: 24
+
+# Performance Targets
+targets:
+  first_response_time_seconds: 30
+  resolution_rate: 0.85
+  customer_satisfaction: 4.5
+  escalation_rate: 0.10
+  faq_hit_rate: 0.70

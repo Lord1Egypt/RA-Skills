@@ -1,0 +1,11 @@
+# Python dependencies for xhs-rental-ocr
+
+# Image processing
+Pillow>=10.0.0
+
+# Excel export
+openpyxl>=3.1.0
+
+# macOS OCR (system framework, but needs Python bindings)
+pyobjc-framework-Vision>=10.0
+pyobjc-framework-Cocoa>=10.0

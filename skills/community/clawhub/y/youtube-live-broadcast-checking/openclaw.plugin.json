@@ -1,0 +1,219 @@
+{
+  "id": "youtube-live-broadcast-checking",
+  "name": "YouTube Live Broadcast Checking",
+  "description": "Checks next live broadcast times and current live status for YouTube channels using YouTube Data API v3.",
+  "version": "1.3.7",
+  "author": "Steven Ho <stevenho1394@users.noreply.github.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StevenHo1394/openclaw.git",
+    "directory": "skills/youtube-live-broadcast-checking"
+  },
+  "homepage": "https://github.com/StevenHo1394/openclaw/tree/main/skills/youtube-live-broadcast-checking",
+  "bugs": {
+    "url": "https://github.com/StevenHo1394/openclaw/issues"
+  },
+  "tools": [
+    {
+      "name": "add_channel",
+      "description": "Adds a channel to the watchlist; accepts channel ID, handle (@), or full URL",
+      "input": {
+        "type": "object",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "YouTube channel ID, handle (e.g., '@chan22'), or full channel URL"
+          }
+        },
+        "required": ["channel_id"]
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "status": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "remove_channel",
+      "description": "Removes a channel from the watchlist",
+      "input": {
+        "type": "object",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "Channel ID or handle to remove"
+          }
+        },
+        "required": ["channel_id"]
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "removed": { "type": "boolean" }
+        }
+      }
+    },
+    {
+      "name": "list_channels",
+      "description": "Lists all watched channels with names and timestamps",
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "output": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "name": { "type": "string" },
+            "added_at": { "type": "string", "format": "date-time" }
+          }
+        }
+      }
+    },
+    {
+      "name": "get_next_broadcast",
+      "description": "Fetches the earliest upcoming broadcast for a specified channel",
+      "input": {
+        "type": "object",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "Channel ID or handle to check"
+          }
+        },
+        "required": ["channel_id"]
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "channel_id": { "type": "string" },
+          "channel_name": { "type": "string" },
+          "video_id": { "type": "string" },
+          "title": { "type": "string" },
+          "scheduled_start_time": { "type": "string", "format": "date-time" },
+          "thumbnail_url": { "type": "string" },
+          "video_url": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "check_upcoming_broadcasts",
+      "description": "Fetches upcoming broadcasts for specified channels or all watchlist; results sorted by start time. Accepts channel IDs, handles (e.g., @chan22), or display names. Handles are resolved via YouTube API search.",
+      "input": {
+        "type": "object",
+        "properties": {
+          "channel_ids": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Optional array of channel IDs, handles, or display names (e.g., ['Sami Live HK', '@chan22']). If omitted, checks all watchlist channels."
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "channel_id": { "type": "string" },
+            "channel_name": { "type": "string" },
+            "video_id": { "type": "string" },
+            "title": { "type": "string" },
+            "scheduled_start_time": { "type": "string", "format": "date-time" },
+            "thumbnail_url": { "type": "string" },
+            "video_url": { "type": "string" }
+          }
+        }
+      }
+    },
+    {
+      "name": "get_live_broadcast",
+      "description": "Checks if a channel is currently live streaming; returns live video details or null if not live",
+      "input": {
+        "type": "object",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "Channel ID or handle to check"
+          }
+        },
+        "required": ["channel_id"]
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "channel_id": { "type": "string" },
+          "video_id": { "type": "string" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "thumbnail_url": { "type": "string" },
+          "video_url": { "type": "string" },
+          "actual_start_time": { "type": "string", "format": "date-time" },
+          "concurrent_viewers": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "check_full_status",
+      "description": "Checks both current live status and upcoming broadcasts for specified channels; returns live and upcoming results together",
+      "input": {
+        "type": "object",
+        "properties": {
+          "channel_ids": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Optional array of channel IDs, handles, or display names. If omitted, checks all watchlist channels."
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "channels": { "type": "array", "items": { "type": "string" } },
+          "live": {
+            "type": ["object", "null"],
+            "description": "Live broadcast details if currently live, otherwise null"
+          },
+          "upcoming": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "channel_id": { "type": "string" },
+                "channel_name": { "type": "string" },
+                "video_id": { "type": "string" },
+                "title": { "type": "string" },
+                "scheduled_start_time": { "type": "string", "format": "date-time" },
+                "thumbnail_url": { "type": "string" },
+                "video_url": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "check_live_status",
+      "description": "[Deprecated] Use check_upcoming_broadcasts instead.",
+      "input": {
+        "type": "object",
+        "properties": {}
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "error": { "type": "string" }
+        }
+      }
+    }
+  ],
+  "runtime": "node",
+  "main": "skill.js",
+  "installCommand": "npm install"
+}

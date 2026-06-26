@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRC 歌词创作工具</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/wavesurfer.js@7.7.3/dist/wavesurfer.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding-bottom: 1rem;
+        }
+
+        /* 顶部导航 */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .header h1 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .header-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 0.35rem 0.7rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .header-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .close-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 0.35rem 0.7rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .close-btn:hover {
+            background: #ff3742;
+        }
+
+        #fileInput, #lrcInput {
+            display: none;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1200px;
+            margin: 1rem auto;
+            padding: 0 2rem;
+        }
+
+        /* 文件信息 */
+        #fileInfo {
+            background: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* 波形区域 */
+        .waveform-section {
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            margin-bottom: 1rem;
+            position: sticky;
+            top: 60px;
+            z-index: 90;
+        }
+
+        #waveform {
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .controls {
+            display: flex;
+            gap: 0.7rem;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        .control-btn {
+            background: #f0f2f5;
+            color: #333;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .control-btn:hover {
+            background: #e5e7eb;
+        }
+
+        .control-btn.primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .control-btn.primary:hover {
+            background: #5a6fd8;
+        }
+
+        .control-btn.danger {
+            background: #ff4757;
+            color: white;
+        }
+
+        .control-btn.danger:hover {
+            background: #ff3742;
+        }
+
+        .time-display {
+            padding: 0.4rem 0.6rem;
+            background: #f0f2f5;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        /* 歌词列表区域 */
+        .lyrics-section {
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .lyrics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+            font-size: 0.95rem;
+        }
+
+        .lyrics-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .lyric-item {
+            display: grid;
+            grid-template-columns: 90px 90px 1fr 90px;
+            gap: 0.6rem;
+            align-items: center;
+            padding: 0.4rem 0.6rem;
+            border-bottom: 1px solid #f8f8f8;
+            transition: background 0.2s;
+            min-height: 36px;
+        }
+
+        .lyric-item:hover {
+            background: #fafbfc;
+        }
+
+        .lyric-item.active {
+            background: #e8f0fe;
+            border-left: 3px solid #667eea;
+        }
+
+        .time-input {
+            padding: 0.3rem 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            width: 100%;
+            height: 28px;
+        }
+
+        .lyric-input {
+            padding: 0.3rem 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            width: 100%;
+            resize: none;
+            height: 28px;
+            line-height: 22px;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        .item-btn {
+            padding: 0.2rem 0.4rem;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: background 0.2s;
+            height: 24px;
+            width: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .item-btn.up {
+            background: #f0f2f5;
+        }
+
+        .item-btn.down {
+            background: #f0f2f5;
+        }
+
+        .item-btn.delete {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .item-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .lyric-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                padding: 0.5rem;
+            }
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .header {
+                flex-direction: column;
+                gap: 0.8rem;
+                padding: 1rem;
+            }
+            .header-left {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .waveform-section {
+                position: relative;
+                top: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <h1>🎵 LRC 歌词创作工具</h1>
+            <div class="header-buttons">
+                <input type="file" id="fileInput" accept="audio/*">
+                <button class="header-btn" id="uploadBtn">📁 上传歌曲</button>
+                <input type="file" id="lrcInput" accept=".lrc">
+                <button class="header-btn" id="importLrcBtn">📝 导入LRC</button>
+                <button class="header-btn" id="exportBtn">💾 导出LRC</button>
+            </div>
+        </div>
+        <button class="close-btn" id="closeService">关闭服务</button>
+    </div>
+
+    <div class="container">
+        <!-- 文件信息 -->
+        <div id="fileInfo" style="display: none;">请上传歌曲开始创作</div>
+
+        <!-- 波形区域 -->
+        <div class="waveform-section">
+            <div id="waveform"></div>
+            <div class="controls">
+                
+                <button class="control-btn" id="playBtn">▶️ 播放 (空格)</button>
+
+                <button class="control-btn primary" id="markBtn">⏱️ 打点</button>
+                <button class="control-btn danger" id="clearBtn">🗑️ 清空</button>
+                <div class="time-display" id="currentTime">00:00.000</div>
+                <div class="time-display" id="duration">00:00.000</div>
+<button class="control-btn" id="prevBtn">⏪ 后退1s</button>
+                <button class="control-btn" id="nextBtn">⏩ 前进1s</button>
+            </div>
+        </div>
+
+        <!-- 歌词列表区域 -->
+        <div class="lyrics-section">
+            <div class="lyrics-header">
+                <h3>歌词列表</h3>
+                <span id="lyricCount">0 个条目</span>
+            </div>
+            <div id="lyricsList">
+                <!-- 歌词条目会动态插入这里 -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            let wavesurfer = null;
+            let lyrics = [];
+            let currentFile = null;
+            let saveTimer = null;
+
+            // 初始化WaveSurfer
+            function initWaveSurfer() {
+                if (wavesurfer) {
+                    wavesurfer.destroy();
+                }
+                wavesurfer = WaveSurfer.create({
+                    container: '#waveform',
+                    waveColor: '#667eea',
+                    progressColor: '#764ba2',
+                    cursorColor: '#ff4757',
+                    barWidth: 2,
+                    barRadius: 3,
+                    height: 70,
+                    barGap: 2,
+                    responsive: true
+                });
+
+                // 时间更新
+                wavesurfer.on('audioprocess', function() {
+                    const time = wavesurfer.getCurrentTime() * 1000;
+                    $('#currentTime').text(formatTime(time));
+                    highlightCurrentLyric(time);
+                });
+
+                // 加载完成
+                wavesurfer.on('ready', function() {
+                    const duration = wavesurfer.getDuration() * 1000;
+                    $('#duration').text(formatTime(duration));
+                });
+
+                // 播放状态变化
+                wavesurfer.on('play', function() {
+                    $('#playBtn').text('⏸️ 暂停 (空格)');
+                });
+
+                wavesurfer.on('pause', function() {
+                    $('#playBtn').text('▶️ 播放 (空格)');
+                });
+            }
+
+            // 格式化时间为 分钟:秒.毫秒
+            function formatTime(ms) {
+                const minutes = Math.floor(ms / 60000);
+                const seconds = Math.floor((ms % 60000) / 1000);
+                const milliseconds = Math.floor(ms % 1000);
+                return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(3, '0')}`;
+            }
+
+            // 解析时间字符串为毫秒
+            function parseTime(timeStr) {
+                const parts = timeStr.split(':');
+                const minutes = parseInt(parts[0]);
+                const secParts = parts[1].split('.');
+                const seconds = parseInt(secParts[0]);
+                const milliseconds = parseInt(secParts[1] || 0);
+                return minutes * 60000 + seconds * 1000 + milliseconds;
+            }
+
+            // 解析LRC时间标签
+            function parseLrcTime(tag) {
+                const match = tag.match(/\[(\d{2}):(\d{2})\.(\d{2,3})\]/);
+                if (match) {
+                    const minutes = parseInt(match[1]);
+                    const seconds = parseInt(match[2]);
+                    const milliseconds = parseInt(match[3].padEnd(3, '0'));
+                    return minutes * 60000 + seconds * 1000 + milliseconds;
+                }
+                return null;
+            }
+
+            // 高亮当前播放的歌词
+            function highlightCurrentLyric(currentTime) {
+                let activeIndex = -1;
+                for (let i = 0; i < lyrics.length; i++) {
+                    if (currentTime >= lyrics[i].start && currentTime < lyrics[i].end) {
+                        activeIndex = i;
+                        break;
+                    }
+                }
+                
+                $('.lyric-item').removeClass('active');
+                if (activeIndex >= 0) {
+                    $(`.lyric-item[data-index="${activeIndex}"]`).addClass('active');
+                    // 滚动到可见区域
+                    const activeItem = $(`.lyric-item[data-index="${activeIndex}"]`);
+                    if (activeItem.length) {
+                        const container = $('#lyricsList');
+                        const itemTop = activeItem.position().top;
+                        const containerScrollTop = container.scrollTop();
+                        const containerHeight = container.height();
+                        if (itemTop < 0 || itemTop > containerHeight - 40) {
+                            container.scrollTop(containerScrollTop + itemTop - 40);
+                        }
+                    }
+                }
+            }
+
+            // 自动保存到localStorage
+            function autoSave() {
+                if (saveTimer) {
+                    clearTimeout(saveTimer);
+                }
+                saveTimer = setTimeout(() => {
+                    const saveData = {
+                        lyrics: lyrics,
+                        fileName: currentFile ? currentFile.name : null
+                    };
+                    localStorage.setItem('lrc_editor_data', JSON.stringify(saveData));
+                }, 500);
+            }
+
+            // 从localStorage加载
+            function loadFromStorage() {
+                const saved = localStorage.getItem('lrc_editor_data');
+                if (saved) {
+                    try {
+                        const data = JSON.parse(saved);
+                        if (data.lyrics && Array.isArray(data.lyrics)) {
+                            lyrics = data.lyrics;
+                            renderLyrics();
+                            if (data.fileName) {
+                                $('#fileInfo').text(`当前歌曲: ${data.fileName}`).show();
+                            }
+                        }
+                    } catch (e) {
+                        console.error('加载保存数据失败', e);
+                    }
+                }
+            }
+
+            // 上传按钮点击
+            $('#uploadBtn').click(function() {
+                $('#fileInput').click();
+            });
+
+            // 导入LRC按钮点击
+            $('#importLrcBtn').click(function() {
+                $('#lrcInput').click();
+            });
+
+            // LRC文件选择
+            $('#lrcInput').change(function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const content = e.target.result;
+                    const lines = content.split('\n');
+                    const newLyrics = [];
+                    
+                    lines.forEach(line => {
+                        line = line.trim();
+                        if (!line) return;
+                        
+                        // 提取所有时间标签
+                        const timeTags = line.match(/\[(\d{2}):(\d{2})\.(\d{2,3})\]/g);
+                        if (!timeTags) return;
+                        
+                        // 提取歌词文本（去掉所有时间标签）
+                        const text = line.replace(/\[(\d{2}):(\d{2})\.(\d{2,3})\]/g, '').trim();
+                        if (!text) return;
+                        
+                        // 为每个时间标签创建歌词条目
+                        timeTags.forEach(tag => {
+                            const time = parseLrcTime(tag);
+                            if (time !== null) {
+                                newLyrics.push({
+                                    start: time,
+                                    end: time + 5000, // 默认5秒，后面自动调整
+                                    text: text
+                                });
+                            }
+                        });
+                    });
+                    
+                    // 按时间排序
+                    newLyrics.sort((a, b) => a.start - b.start);
+                    
+                    // 调整结束时间
+                    for (let i = 0; i < newLyrics.length; i++) {
+                        if (i < newLyrics.length - 1) {
+                            newLyrics[i].end = newLyrics[i + 1].start;
+                        } else if (wavesurfer) {
+                            newLyrics[i].end = wavesurfer.getDuration() * 1000;
+                        }
+                    }
+                    
+                    lyrics = newLyrics;
+                    renderLyrics();
+                    autoSave();
+                    alert(`成功导入 ${lyrics.length} 句歌词`);
+                };
+                reader.readAsText(file, 'utf-8');
+                $(this).val('');
+            });
+
+            // 音频文件选择
+            $('#fileInput').change(function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                currentFile = file;
+                $('#fileInfo').text(`当前歌曲: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`).show();
+
+                // 初始化波形
+                initWaveSurfer();
+                wavesurfer.loadBlob(file);
+
+                // 调整现有歌词的结束时间
+                wavesurfer.on('ready', function() {
+                    const duration = wavesurfer.getDuration() * 1000;
+                    if (lyrics.length > 0) {
+                        lyrics[lyrics.length - 1].end = duration;
+                        renderLyrics();
+                    }
+                });
+
+                autoSave();
+            });
+
+            // 后退1秒
+            $('#prevBtn').click(function() {
+                if (wavesurfer) {
+                    const current = wavesurfer.getCurrentTime();
+                    wavesurfer.seekTo(Math.max(0, current - 1) / wavesurfer.getDuration());
+                }
+            });
+
+            // 前进1秒
+            $('#nextBtn').click(function() {
+                if (wavesurfer) {
+                    const current = wavesurfer.getCurrentTime();
+                    const duration = wavesurfer.getDuration();
+                    wavesurfer.seekTo(Math.min(duration, current + 1) / duration);
+                }
+            });
+
+            // 播放/暂停
+            $('#playBtn').click(function() {
+                if (wavesurfer) {
+                    wavesurfer.playPause();
+                }
+            });
+
+            // 键盘快捷键
+            $(document).keydown(function(e) {
+                // 不在输入框中时响应快捷键
+                if ($('input:focus, textarea:focus').length === 0) {
+                    if (e.code === 'Space') {
+                        e.preventDefault();
+                        if (wavesurfer) {
+                            wavesurfer.playPause();
+                        }
+                    } else if (e.code === 'ArrowLeft') {
+                        e.preventDefault();
+                        if (wavesurfer) {
+                            const current = wavesurfer.getCurrentTime();
+                            wavesurfer.seekTo(Math.max(0, current - 1) / wavesurfer.getDuration());
+                        }
+                    } else if (e.code === 'ArrowRight') {
+                        e.preventDefault();
+                        if (wavesurfer) {
+                            const current = wavesurfer.getCurrentTime();
+                            const duration = wavesurfer.getDuration();
+                            wavesurfer.seekTo(Math.min(duration, current + 1) / duration);
+                        }
+                    }
+                }
+            });
+
+            // 打点
+            $('#markBtn').click(function() {
+                if (!wavesurfer) {
+                    alert('请先上传歌曲');
+                    return;
+                }
+
+                const currentTime = wavesurfer.getCurrentTime() * 1000;
+                // 计算结束时间（下一个打点的时间，或者如果是最后一个则到歌曲结束）
+                let endTime = wavesurfer.getDuration() * 1000;
+                if (lyrics.length > 0) {
+                    // 把上一个的结束时间设为当前时间
+                    lyrics[lyrics.length - 1].end = currentTime;
+                }
+
+                // 添加新的歌词条目
+                lyrics.push({
+                    start: currentTime,
+                    end: endTime,
+                    text: ''
+                });
+
+                renderLyrics();
+                autoSave();
+            });
+
+            // 渲染歌词列表
+            function renderLyrics() {
+                $('#lyricsList').empty();
+                $('#lyricCount').text(`${lyrics.length} 个条目`);
+
+                lyrics.forEach((item, index) => {
+                    const itemHtml = `
+                        <div class="lyric-item" data-index="${index}">
+                            <input type="text" class="time-input start-time" value="${formatTime(item.start)}">
+                            <input type="text" class="time-input end-time" value="${formatTime(item.end)}">
+                            <input type="text" class="lyric-input" placeholder="输入歌词..." value="${item.text.replace(/"/g, '&quot;')}">
+                            <div class="item-actions">
+                                <button class="item-btn up" title="上移">↑</button>
+                                <button class="item-btn down" title="下移">↓</button>
+                                <button class="item-btn delete" title="删除">×</button>
+                            </div>
+                        </div>
+                    `;
+                    $('#lyricsList').append(itemHtml);
+                });
+            }
+
+            // 开始时间修改
+            $(document).on('change', '.start-time', function() {
+                const index = $(this).closest('.lyric-item').data('index');
+                const timeStr = $(this).val();
+                try {
+                    const time = parseTime(timeStr);
+                    lyrics[index].start = time;
+                    // 同步上一个的结束时间
+                    if (index > 0) {
+                        lyrics[index - 1].end = time;
+                        $(`.lyric-item[data-index="${index-1}"] .end-time`).val(formatTime(time));
+                    }
+                    autoSave();
+                } catch (e) {
+                    alert('时间格式错误，请使用 00:00.000 格式');
+                    $(this).val(formatTime(lyrics[index].start));
+                }
+            });
+
+            // 结束时间修改
+            $(document).on('change', '.end-time', function() {
+                const index = $(this).closest('.lyric-item').data('index');
+                const timeStr = $(this).val();
+                try {
+                    const time = parseTime(timeStr);
+                    lyrics[index].end = time;
+                    // 同步下一个的开始时间
+                    if (index < lyrics.length - 1) {
+                        lyrics[index + 1].start = time;
+                        $(`.lyric-item[data-index="${index+1}"] .start-time`).val(formatTime(time));
+                    }
+                    autoSave();
+                } catch (e) {
+                    alert('时间格式错误，请使用 00:00.000 格式');
+                    $(this).val(formatTime(lyrics[index].end));
+                }
+            });
+
+            // 歌词修改
+            $(document).on('input', '.lyric-input', function() {
+                const index = $(this).closest('.lyric-item').data('index');
+                lyrics[index].text = $(this).val();
+                autoSave();
+            });
+
+            // 上移
+            $(document).on('click', '.up', function() {
+                const index = $(this).closest('.lyric-item').data('index');
+                if (index > 0) {
+                    [lyrics[index], lyrics[index - 1]] = [lyrics[index - 1], lyrics[index]];
+                    renderLyrics();
+                    autoSave();
+                }
+            });
+
+            // 下移
+            $(document).on('click', '.down', function() {
+                const index = $(this).closest('.lyric-item').data('index');
+                if (index < lyrics.length - 1) {
+                    [lyrics[index], lyrics[index + 1]] = [lyrics[index + 1], lyrics[index]];
+                    renderLyrics();
+                    autoSave();
+                }
+            });
+
+            // 删除
+            $(document).on('click', '.delete', function() {
+                const index = $(this).closest('.lyric-item').data('index');
+                if (confirm('确定要删除这个歌词条目吗？')) {
+                    lyrics.splice(index, 1);
+                    // 修复时间
+                    if (index < lyrics.length && index > 0) {
+                        lyrics[index - 1].end = lyrics[index].start;
+                    }
+                    renderLyrics();
+                    autoSave();
+                }
+            });
+
+            // 清空所有
+            $('#clearBtn').click(function() {
+                if (confirm('确定要清空所有歌词吗？')) {
+                    lyrics = [];
+                    localStorage.removeItem('lrc_editor_data');
+                    renderLyrics();
+                }
+            });
+
+            // 导出LRC
+            $('#exportBtn').click(function() {
+                if (lyrics.length === 0) {
+                    alert('没有歌词可以导出');
+                    return;
+                }
+
+                let lrcContent = '[ti:]\n[ar:]\n[al:]\n[by:LRC歌词创作工具]\n\n';
+                lyrics.forEach(item => {
+                    if (item.text.trim() === '') return;
+                    const timeStr = formatTime(item.start);
+                    lrcContent += `[${timeStr}]${item.text}\n`;
+                });
+
+                // 下载文件
+                const blob = new Blob([lrcContent], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = (currentFile ? currentFile.name.replace(/\.[^/.]+$/, '') : 'lyrics') + '.lrc';
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+
+            // 关闭服务
+            $('#closeService').click(function() {
+                if (confirm('确定要关闭后台服务吗？')) {
+                    $.post('/shutdown', function() {
+                        alert('服务已关闭，页面将自动关闭');
+                        window.close();
+                    }).fail(function() {
+                        alert('关闭失败，请手动停止服务');
+                    });
+                }
+            });
+
+            // 页面加载时读取localStorage
+            loadFromStorage();
+        });
+    </script>
+</body>
+</html>

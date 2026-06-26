@@ -1,35 +1,39 @@
----
-name: "朋友圈文案生成器"
-description: "生成适合微商和实体店的高质量朋友圈营销文案，支持多种风格并自动添加热门话题标签。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-copywriter"
-sourceUrl: "https://clawhub.ai/skills/wechat-copywriter"
----
-
 # 朋友圈文案生成器
 
-> 生成适合微商和实体店的高质量朋友圈营销文案，支持多种风格并自动添加热门话题标签。
+一键生成高质量朋友圈营销文案，适合微商、电商、实体店老板。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-copywriter`
-- **Source URL:** [https://clawhub.ai/skills/wechat-copywriter](https://clawhub.ai/skills/wechat-copywriter)
+## 功能
 
-## Overview
+- 🎯 10+ 文案风格：促销、种草、情感、干货、互动
+- 📱 适配朋友圈排版，短小精悍
+- 🏷️ 自动添加热门话题标签
+- 🚀 调用 DeepSeek AI 生成，质量高
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
+```
+帮我写一条 [产品类型] 的朋友圈文案，风格 [促销/种草/情感]
+```
+
+示例：
+```
+帮我写一条AI写真馆的朋友圈文案，风格促销
+```
+
+## 输出示例
+
+```
+🦞 AI写真限时特惠！9.9元get专业级写真照！
+
+上传一张自拍 → AI一键生成
+韩式/古风/证件照/职业装…各种风格随便换
+
+🔥 今日下单再送精修2张
+👇 扫码立即体验
+```
+
+## 安装
+
 ```bash
-hermes skills install clawhub/wechat-copywriter
+openclaw skills install wechat-copywriter
 ```

@@ -1,35 +1,135 @@
 ---
-name: "Wukong — 名人思维蒸馏框架（72变版）"
-description: "名人思维蒸馏与召唤技能。当用户需要用某位名人的思维方式分析问题、制定决策时激活。 触发词：召唤/蒸馏/思维模型/Think Like/像XX一样/XX会怎么做/心智模型/认知框架/决策参考。 支持任意历史人物、商界领袖、科学家、艺术家等。"
-category: "other"
-source: "ClawHub"
-tags: [decision, mental-model, persona, thinking]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wukong"
-sourceUrl: "https://clawhub.ai/skills/wukong"
+name: wukong
+description: >
+  名人思维蒸馏与召唤技能。当用户需要用某位名人的思维方式分析问题、制定决策时激活。
+  触发词：召唤/蒸馏/思维模型/Think Like/像XX一样/XX会怎么做/心智模型/认知框架/决策参考。
+  支持任意历史人物、商界领袖、科学家、艺术家等。
+version: 1.0.0
 ---
 
-# Wukong — 名人思维蒸馏框架（72变版）
+# 🐵 Wukong — 名人思维蒸馏与召唤框架
 
-> 名人思维蒸馏与召唤技能。当用户需要用某位名人的思维方式分析问题、制定决策时激活。 触发词：召唤/蒸馏/思维模型/Think Like/像XX一样/XX会怎么做/心智模型/认知框架/决策参考。 支持任意历史人物、商界领袖、科学家、艺术家等。
+> **六层蒸馏 · 万法归一 · 随时召唤**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wukong`
-- **Source URL:** [https://clawhub.ai/skills/wukong](https://clawhub.ai/skills/wukong)
+---
 
-## Overview
+## 核心能力
 
+1. **蒸馏**：把任意名人的思维方式结构化为六层思维模型
+2. **存储**：将蒸馏结果保存到 `wukong/personas/` 目录
+3. **召唤**：用已蒸馏的模型分析具体问题，提供决策参考
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wukong
+---
+
+## 六层蒸馏框架
+
+| 层次 | 名称 | 核心问题 |
+|------|------|---------|
+| L1 | 表达 DNA | 他用什么语言风格说事情？ |
+| L2 | 心智模型 | 他如何拆解和分析问题？ |
+| L3 | 决策启发式 | 他快速判断的思维捷径是什么？ |
+| L4 | 反模式 | 他绝对不会做的事是什么？ |
+| L5 | 价值观 | 什么对他来说绝对不可妥协？ |
+| L6 | 诚实边界 | 他承认自己不知道什么？ |
+
+---
+
+## 执行流程
+
+### 模式一：蒸馏新人物
+
+**触发词**：`蒸馏[人物名]` / `召唤[人物名]` / `建立[人物名]的思维模型`
+
+**执行步骤**：
+
+1. **确认人物 + 蒸馏目标**
+   - 确认人物是谁、什么背景
+   - 确认用户想蒸馏他的什么方面（商业决策/投资/管理/科学思维/艺术创作）
+
+2. **L1–L6 深度蒸馏**
+   按六层框架，每层给出：
+   - 核心发现（2-3句）
+   - 代表性言行/案例（1-2个，标注来源）
+
+3. **存储**
+   保存到 `wukong/personas/[人物名-领域].md`
+   更新 `wukong/registry.md`（人物索引）
+
+4. **总结输出**
+   给出该人物的思维模型一句话概述
+
+---
+
+### 模式二：召唤已蒸馏人物分析问题
+
+**触发词**：`用[人物名]思维分析` / `像[人物名]一样决策` / `[人物名]会怎么看`
+
+**执行步骤**：
+
+1. 从 `wukong/personas/` 读取对应人物模型
+2. 如果人物未蒸馏，先蒸馏再分析
+3. 按以下结构输出分析：
+
+```
+## 🎭 [人物名] 的视角
+
+### 一句话诊断
+（这个问题在[人物名]眼里是什么？）
+
+### L2 心智模型分析
+（他会用什么框架拆解这个问题？）
+
+### L3 决策建议
+（他在这个情况下会怎么做？列出3条）
+
+### L4 避坑提醒
+（他会警告你不要做什么？）
+
+### L6 诚实边界
+（这个问题的哪些部分超出他的能力圈？）
+
+### 综合结论
+（3句话，融合该人物的思维风格）
+```
+
+---
+
+## 人物索引（wukong/registry.md）
+
+已蒸馏人物存放路径：
+```
+wukong/personas/
+├── jobs-marketing.md    ← 乔布斯·营销
+├── charlie-marketing.md ← 芒格·投资思维
+└── [人物名-领域].md     ← 其他人物
+```
+
+---
+
+## 示例对话
+
+**用户**："蒸馏苏炳添的思维模型，用于分析短跑和商业爆发力"
+
+**输出**：六层框架完整结构，存储到 `wukong/personas/subingtan-performance.md`
+
+---
+
+**用户**："用曾国藩的思维分析我现在是否应该辞职创业"
+
+**输出**：曾国藩视角的分析，包含决策框架、避坑提醒、诚实边界
+
+---
+
+## 文件结构
+
+```
+wukong/
+├── SKILL.md                    ← 本文件
+├── wukong/
+│   ├── registry.md             ← 人物索引清单
+│   └── personas/              ← 已蒸馏人物模型
+│       └── (人物名-领域).md
+└── references/
+    ├── six-layer-template.md   ← 六层框架详细模板（可填充）
+    └── example-personas.md     ← 示例人物完整模型参考
 ```

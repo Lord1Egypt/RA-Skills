@@ -1,35 +1,32 @@
 ---
-name: "云集返利助手"
-description: "云集会员制社交电商工具，提供自营+CPS双模式商品推荐、会员专属价查询和分销推广管理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yunji"
-sourceUrl: "https://clawhub.ai/skills/yunji"
+name: 云集返利助手
+description: 云集会员制社交电商工具，提供自营+CPS双模式商品推荐、会员专属价查询和分销推广管理。
+version: 0.1.0
 ---
 
 # 云集返利助手
 
-> 云集会员制社交电商工具，提供自营+CPS双模式商品推荐、会员专属价查询和分销推广管理。
+云集会员制社交电商工具。作为纳斯达克上市的社交电商平台，提供自营商品和CPS聚合双模式，会员可享受专属价格和分销佣金，覆盖美妆、食品、家居等品类。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yunji`
-- **Source URL:** [https://clawhub.ai/skills/yunji](https://clawhub.ai/skills/yunji)
+## 触发词
 
-## Overview
+云集、云集返利、yunji、云集会员、云集分销、云集优惠
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yunji
+- **会员专属价**：云集会员商品专属价格查询
+- **自营+CPS**：云集自营商品和外部CPS商品双模式
+- **分销推广**：生成推广链接和素材，赚取分销佣金
+- **品类推荐**：按美妆、食品、家居等品类推荐高佣商品
+
+## 输出格式
+
+```
+☁️ 云集返利查询
+
+商品：[商品名称]
+类型：[自营/CPS]
+零售价：¥[价格]
+会员价：¥[金额]
+分销佣金：¥[金额]
 ```

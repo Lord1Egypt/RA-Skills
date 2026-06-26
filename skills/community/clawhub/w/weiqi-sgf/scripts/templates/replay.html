@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{GAME_NAME}}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: 0; }
+        .container { background: white; border-radius: 0; box-shadow: none; padding: 4px; max-width: 100%; width: 100%; min-height: 100vh; }
+        .header { text-align: center; margin-bottom: 8px; }
+        .header h1 { font-size: 15px; color: #333; margin-bottom: 2px; line-height: 1.2; }
+        .header .info { color: #666; font-size: 11px; line-height: 1.3; }
+        .board-container { display: flex; justify-content: center; margin: 10px 0; position: relative; width: 100%; }
+        #board { border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); max-width: 100%; width: 100%; height: auto; aspect-ratio: 1 / 1; display: block; }
+        .btn { width: 44px; height: 44px; border: none; border-radius: 50%; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; background: #f0f0f0; color: #333; }
+        .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        .btn:active:not(:disabled) { transform: scale(0.95); }
+        .btn-danger { background: #ff6b6b; color: white; }
+        .btn-variation { width: auto; min-width: 60px; padding: 6px 10px; height: 32px; font-size: 13px; border-radius: 6px; background: #667eea; color: white; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+        .btn-trial { background: #28a745; color: white; }
+        .stone-icon { width: 16px; height: 16px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+        .stone-icon.black { background: radial-gradient(circle at 30% 30%, #666, #000); }
+        .stone-icon.white { background: radial-gradient(circle at 30% 30%, #fff, #ccc); border: 1px solid #999; }
+        .status { text-align: center; margin: 10px 0; }
+        .move-info { font-size: 16px; font-weight: bold; color: #333; margin-bottom: 4px; }
+        .captured-info { font-size: 14px; color: #888; }
+        .legend { display: flex; justify-content: center; gap: 20px; margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #555; }
+        .stone-black, .stone-white { width: 20px; height: 20px; border-radius: 50%; }
+        .stone-black { background: radial-gradient(circle at 30% 30%, #666, #000); }
+        .stone-white { background: radial-gradient(circle at 30% 30%, #fff, #ccc); border: 1px solid #ddd; }
+        .variation-panel { margin: 8px 0; padding: 10px; background: #f8f9fa; border-radius: 8px; display: none; }
+        .variation-panel.visible { display: block; }
+        .variation-title { font-size: 12px; color: #666; margin-bottom: 8px; text-align: center; }
+        .variation-list { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+        .controls-row { display: flex; align-items: center; justify-content: space-between; gap: 4px; margin: 6px 0; flex-wrap: nowrap; padding: 0 2px; }
+        .variation-comment { font-size: 12px; color: #666; margin-right: 8px; white-space: nowrap; flex-shrink: 0; }
+        .controls-group { display: flex; align-items: center; gap: 8px; flex: 1; }
+        .slider-container { flex: 1; min-width: 60px; }
+        #moveSlider { width: 100%; height: 18px; }
+        .main-controls { gap: 24px; transition: gap 0.2s ease; }
+        .main-controls.expanded { gap: 8px; }
+        .extra-buttons { display: none; align-items: center; gap: 8px; }
+        .extra-buttons.visible { display: flex; }
+        #moreBtn { background: #f0f0f0; transition: all 0.2s ease; }
+        #moreBtn.active { background: #667eea; color: white; }
+        .controls-divider { width: 1px; height: 20px; background: #ddd; margin: 0 3px; flex-shrink: 0; }
+        #moveSlider { width: 100%; height: 18px; }
+        .trial-panel { display: none; margin: 6px 0; padding: 8px 12px; background: #e8f5e9; border-radius: 8px; border: 1px solid #4caf50; justify-content: center; gap: 24px; }
+        .trial-panel.visible { display: flex; }
+        .trial-info { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+        .trial-info span:first-child { font-weight: bold; color: #2e7d32; }
+        .trial-info span:last-child { color: #666; font-size: 12px; }
+        @media (min-width: 600px) { body { padding: 8px; } .container { max-width: 500px; padding: 20px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); } .header h1 { font-size: 20px; } .controls-group { gap: 12px; } }
+        @media (min-width: 900px) { .container { max-width: 700px; padding: 30px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 id="gameTitle">{{GAME_TITLE}}</h1>
+            <div class="info" id="gameInfo">{{GAME_INFO}}</div>
+        </div>
+        <div class="board-container"><canvas id="board"></canvas></div>
+        <div class="controls-row" id="mainControls">
+            <div class="controls-group">
+                <div id="variationComment" class="variation-comment"></div>
+                <div class="slider-container"><input type="range" id="moveSlider" min="0" max="0" value="0" oninput="goToMove(this.value)"></div>
+            </div>
+            <div class="controls-divider"></div>
+            <div class="controls-group main-controls" id="mainControlsGroup" style="flex: 0; margin-left: auto;">
+                <button class="btn" id="backToParentBtn" onclick="backToParent()" title="返回上级" style="width: 32px; height: 32px; font-size: 14px; display: none;">⬅</button>
+                <button class="btn" id="prevBtn" onclick="prevMove()" title="上一手" style="width: 32px; height: 32px; font-size: 14px;">◀</button>
+                <button class="btn" id="nextBtn" onclick="nextMove()" title="下一手" style="width: 32px; height: 32px; font-size: 14px;">▶</button>
+                <button class="btn" id="playBtn" onclick="togglePlay()" title="播放/暂停" style="width: 32px; height: 32px; font-size: 13px; font-weight: bold;">播</button>
+                <div class="extra-buttons" id="extraButtons">
+                    <button class="btn" id="soundToggleBtn" onclick="toggleSound()" title="音效开关" style="width: 32px; height: 32px; font-size: 14px;">🔊</button>
+                    <button class="btn" id="numToggleBtn" onclick="toggleNumbers()" title="显示/隐藏手数" style="width: 32px; height: 32px; font-size: 11px;">1️⃣</button>
+                    <button class="btn" onclick="downloadSGF()" title="下载SGF" style="width: 32px; height: 32px; font-size: 14px;">💾</button>
+                </div>
+                <button class="btn" id="moreBtn" onclick="toggleMorePanel()" title="更多" style="width: 32px; height: 32px; font-size: 14px;">⋮</button>
+            </div>
+        </div>
+        <div class="trial-panel" id="trialPanel">
+            <button class="btn" id="trialPrevBtn" onclick="trialPrev()" title="上一步" style="width: 32px; height: 32px; font-size: 14px; background: #667eea; color: white;">◀</button>
+            <button class="btn" onclick="exitTrial()" title="退出试下" style="width: 32px; height: 32px; font-size: 14px; background: #ff6b6b; color: white;">✕</button>
+            <button class="btn" id="trialNextBtn" onclick="trialNext()" title="下一步" style="width: 32px; height: 32px; font-size: 14px; background: #667eea; color: white;">▶</button>
+        </div>
+        <div class="variation-panel" id="variationPanel">
+            <div class="variation-list" id="variationList"></div>
+        </div>
+        <div class="status">
+            <div class="move-info" id="moveInfo">请选择分支开始</div>
+            <div class="captured-info" id="capturedInfo"></div>
+        </div>
+        <div class="legend">
+            <div class="legend-item"><div class="stone-black"></div><span id="blackName">{{BLACK_NAME}}</span></div>
+            <div class="legend-item"><div class="stone-white"></div><span id="whiteName">{{WHITE_NAME}}</span></div>
+        </div>
+    </div>
+    <script>
+        const tree = (() => { const textarea = document.createElement('textarea'); textarea.innerHTML = '{{TREE_JSON}}'; return JSON.parse(textarea.value); })();
+        const BOARD_SIZE = {{BOARD_SIZE}};
+        const handicapStones = {{HANDICAP_STONES}};
+        const DEFAULT_MOVE = {{DEFAULT_MOVE}};
+        
+        // 核心状态
+        const state = {
+            currentPath: [],
+            displayIndex: 0,
+            variationBaseMove: 0,
+            trialMode: false,
+            trialMoves: [],
+            trialStartPath: [],
+            trialStartIndex: 0
+        };
+        
+        let isPlaying = false, playInterval = null, showMoveNumbers = false, soundEnabled = true;
+        let currentBlackCaptured = 0, currentWhiteCaptured = 0;  // 全局变量，记录当前提子数
+        
+        function coordToDisplay(coord) {
+            if (!coord || coord.length < 2) return coord;
+            // 处理停一手 (pass)：tt 或空坐标
+            if (coord === 'tt' || coord === 'TT') return '停一手';
+            const x = coord.charCodeAt(0) - 97;
+            const y = coord.charCodeAt(1) - 97;
+            // 检查坐标是否在有效范围内
+            if (x < 0 || x >= BOARD_SIZE || y < 0 || y >= BOARD_SIZE) {
+                return coord; // 返回原坐标（可能是特殊标记）
+            }
+            const col = String.fromCharCode(65 + x + (x >= 8 ? 1 : 0));
+            const row = BOARD_SIZE - y;
+            return col + row;
+        }
+        
+        function getNodeAt(tree, path) {
+            let node = tree;
+            for (const index of path) {
+                if (!node.children || node.children.length <= index) return null;
+                node = node.children[index];
+            }
+            return node;
+        }
+        
+        function getCurrentNode() {
+            let node = getNodeAt(tree, state.currentPath);
+            if (!node) return null;
+            // 当 displayIndex > 0 时，表示已经在分支中显示了一些棋子
+            // 此时应该返回当前显示的最后一个节点，以便获取其子分支
+            for (let i = 0; i < state.displayIndex && node.children && node.children.length > 0; i++) {
+                node = node.children[0];
+            }
+            return node;
+        }
+        
+        function getNodeAtPathIndex() {
+            // 返回当前路径指向的节点（不考虑 displayIndex 推进）
+            return getNodeAt(tree, state.currentPath);
+        }
+        
+        function getCurrentChildren() {
+            const node = getCurrentNode();
+            return node ? (node.children || []) : [];
+        }
+        
+        function getDefaultPathDepth(node) {
+            if (!node) return 0;
+            let depth = 0;
+            let current = node;
+            while (current.children && current.children.length > 0) {
+                depth++;
+                current = current.children[0];
+            }
+            return depth;
+        }
+        
+        function isPassMove(coord) {
+            // 判断是否为停一手：空坐标、tt、或超出棋盘范围的坐标
+            if (!coord || coord === '' || coord === 'tt' || coord === 'TT') return true;
+            if (coord.length >= 2) {
+                const x = coord.charCodeAt(0) - 97;
+                const y = coord.charCodeAt(1) - 97;
+                if (x < 0 || x >= BOARD_SIZE || y < 0 || y >= BOARD_SIZE) return true;
+            }
+            return false;
+        }
+
+        function getMovesToCurrent() {
+            const moves = [];
+            let currentPathNode = tree;
+            for (let i = 0; i < state.currentPath.length; i++) {
+                const index = state.currentPath[i];
+                if (!currentPathNode.children || currentPathNode.children.length <= index) break;
+                currentPathNode = currentPathNode.children[index];
+                if (currentPathNode.color) {
+                    const isPass = isPassMove(currentPathNode.coord);
+                    moves.push({
+                        color: currentPathNode.color === 'B' ? 'black' : 'white',
+                        x: isPass ? -1 : currentPathNode.coord.charCodeAt(0) - 97,
+                        y: isPass ? -1 : currentPathNode.coord.charCodeAt(1) - 97,
+                        coord: currentPathNode.coord,
+                        isPass: isPass,
+                        name: currentPathNode.name,
+                        properties: currentPathNode.properties
+                    });
+                }
+            }
+            let current = currentPathNode;
+            for (let i = 0; i < state.displayIndex && current.children && current.children.length > 0; i++) {
+                current = current.children[0];
+                if (current.color) {
+                    const isPass = isPassMove(current.coord);
+                    moves.push({
+                        color: current.color === 'B' ? 'black' : 'white',
+                        x: isPass ? -1 : current.coord.charCodeAt(0) - 97,
+                        y: isPass ? -1 : current.coord.charCodeAt(1) - 97,
+                        coord: current.coord,
+                        isPass: isPass,
+                        name: current.name,
+                        properties: current.properties
+                    });
+                }
+            }
+            return moves;
+        }
+        
+        function isValidMove(x, y) {
+            const moves = getMovesToCurrent();
+            const board = createBoard();
+            for (const move of moves) {
+                board[move.y][move.x] = move.color;
+            }
+            for (const move of state.trialMoves) {
+                board[move.y][move.x] = move.color;
+            }
+            return x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE && board[y][x] === null;
+        }
+        
+        function hasStoneAt(x, y) {
+            // 使用 buildBoardFromMoves 来正确处理提子
+            const board = buildBoardFromMoves();
+            
+            // 如果是试下模式，还要应用当前已走的试下着法
+            if (state.trialMode) {
+                for (let i = 0; i < trialIndex && i < state.trialMoves.length; i++) {
+                    const m = state.trialMoves[i];
+                    board[m.y][m.x] = m.color;
+                    removeDeadStonesOnBoard(board, m.x, m.y, m.color);
+                }
+            }
+            
+            return board[y][x] !== null;
+        }
+        
+        function isInCurrentMoves(x, y) {
+            const moves = getMovesToCurrent();
+            return moves.some(move => move.x === x && move.y === y);
+        }
+        
+        function getBoardPosition(e) {
+            const rect = canvas.getBoundingClientRect();
+            const { margin, gridSize } = getGridParams();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const boardX = Math.round((x - margin) / gridSize);
+            const boardY = Math.round((y - margin) / gridSize);
+            return { x: boardX, y: boardY };
+        }
+        
+        const canvas = document.getElementById('board'), ctx = canvas.getContext('2d');
+        
+        function getGridParams() {
+            const baseMargin = canvas.width * 0.02;
+            const coordMargin = canvas.width * 0.018;
+            const margin = baseMargin + coordMargin;
+            const gridSize = (canvas.width - 2 * margin) / (BOARD_SIZE - 1);
+            return { margin, gridSize, baseMargin, coordMargin };
+        }
+        
+        function createBoard() {
+            const board = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(null));
+            if (handicapStones && handicapStones.length > 0) {
+                for (const stone of handicapStones) board[stone.y][stone.x] = 'black';
+            }
+            return board;
+        }
+        
+        function getNeighbors(x, y) {
+            const neighbors = [];
+            const dirs = [[0, 1], [0, -1], [1, 0], [-1, 0]];
+            for (const [dx, dy] of dirs) {
+                const nx = x + dx, ny = y + dy;
+                if (nx >= 0 && nx < BOARD_SIZE && ny >= 0 && ny < BOARD_SIZE) {
+                    neighbors.push([nx, ny]);
+                }
+            }
+            return neighbors;
+        }
+        
+        function getGroup(board, x, y, color, group = null) {
+            if (!group) group = new Set();
+            const key = x + ',' + y;
+            if (group.has(key)) return group;
+            if (board[y][x] !== color) return group;
+            group.add(key);
+            for (const [nx, ny] of getNeighbors(x, y)) {
+                getGroup(board, nx, ny, color, group);
+            }
+            return group;
+        }
+        
+        function getLiberties(board, x, y) {
+            const color = board[y][x];
+            const group = getGroup(board, x, y, color);
+            const liberties = new Set();
+            for (const key of group) {
+                const [gx, gy] = key.split(',').map(Number);
+                for (const [nx, ny] of getNeighbors(gx, gy)) {
+                    if (board[ny][nx] === null) liberties.add(nx + ',' + ny);
+                }
+            }
+            return liberties;
+        }
+        
+        function drawBoard() {
+            const { margin, gridSize, baseMargin, coordMargin } = getGridParams();
+            const size = canvas.width;
+            ctx.fillStyle = '#E3C16F';
+            ctx.fillRect(0, 0, size, size);
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < BOARD_SIZE; i++) {
+                ctx.beginPath();
+                ctx.moveTo(margin, margin + i * gridSize);
+                ctx.lineTo(size - margin, margin + i * gridSize);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(margin + i * gridSize, margin);
+                ctx.lineTo(margin + i * gridSize, size - margin);
+                ctx.stroke();
+            }
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold ' + Math.max(8, gridSize * 0.28) + 'px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            for (let i = 0; i < BOARD_SIZE; i++) {
+                const colLabel = String.fromCharCode(65 + i + (i >= 8 ? 1 : 0));
+                ctx.fillText(colLabel, margin + i * gridSize, baseMargin + coordMargin * 0.3);
+                ctx.fillText(colLabel, margin + i * gridSize, size - baseMargin - coordMargin * 0.3);
+                const rowLabel = (BOARD_SIZE - i).toString();
+                ctx.fillText(rowLabel, baseMargin + coordMargin * 0.3, margin + i * gridSize);
+                ctx.fillText(rowLabel, size - baseMargin - coordMargin * 0.3, margin + i * gridSize);
+            }
+            const stars = BOARD_SIZE === 19 ? [3, 9, 15] : [2, 6, 10];
+            ctx.fillStyle = '#333';
+            for (const x of stars) {
+                for (const y of stars) {
+                    ctx.beginPath();
+                    ctx.arc(margin + x * gridSize, margin + y * gridSize, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+        
+        function drawStone(x, y, color, isLast, moveNum) {
+            const { margin, gridSize } = getGridParams();
+            const cx = margin + x * gridSize;
+            const cy = margin + y * gridSize;
+            const radius = gridSize * 0.48;
+            ctx.beginPath();
+            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+            const gradient = ctx.createRadialGradient(
+                cx - radius * 0.3, cy - radius * 0.3, radius * 0.1,
+                cx, cy, radius
+            );
+            if (color === 'black') {
+                gradient.addColorStop(0, '#666');
+                gradient.addColorStop(1, '#000');
+            } else {
+                gradient.addColorStop(0, '#fff');
+                gradient.addColorStop(1, '#ccc');
+            }
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            if (moveNum !== null && moveNum !== undefined) {
+                ctx.fillStyle = color === 'black' ? '#fff' : '#000';
+                ctx.font = 'bold ' + Math.floor(gridSize * 0.55) + 'px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(moveNum.toString(), cx, cy);
+            } else if (isLast) {
+                ctx.beginPath();
+                ctx.arc(cx, cy, radius * 0.25, 0, Math.PI * 2);
+                ctx.fillStyle = color === 'black' ? '#fff' : '#000';
+                ctx.fill();
+            }
+        }
+        
+        function resizeCanvas() {
+            const container = document.querySelector('.board-container');
+            const isMobile = window.innerWidth < 768;
+            const margin = isMobile ? 4 : 20;
+            const availableWidth = Math.min(container.clientWidth, window.innerWidth) - margin;
+            const availableHeight = window.innerHeight - 250;
+            const maxSize = Math.min(availableWidth, availableHeight, isMobile ? 760 : 720);
+            const size = Math.max(isMobile ? 320 : 400, maxSize);
+            canvas.width = size;
+            canvas.height = size;
+            canvas.style.width = size + 'px';
+            canvas.style.height = size + 'px';
+            updateDisplay();
+        }
+        
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let audioUnlocked = false, noiseBuffer = null;
+        
+        function unlockAudio() {
+            if (!audioUnlocked && audioCtx.state === 'suspended') {
+                audioCtx.resume().then(() => { audioUnlocked = true; });
+            }
+            if (!noiseBuffer) noiseBuffer = createNoiseBuffer();
+        }
+        
+        function createNoiseBuffer() {
+            const bufferSize = audioCtx.sampleRate * 0.1;
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+            return buffer;
+        }
+        
+        document.addEventListener('click', unlockAudio, { once: true });
+        document.addEventListener('touchstart', unlockAudio, { once: true });
+        
+        function playStoneSound() {
+            // 落子声
+            if (!soundEnabled) return;
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            if (!noiseBuffer) noiseBuffer = createNoiseBuffer();
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = noiseBuffer;
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'bandpass';
+            filter.frequency.value = 2500;
+            filter.Q.value = 1;
+            const gain = audioCtx.createGain();
+            gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.06);
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+            noise.start(audioCtx.currentTime);
+            noise.stop(audioCtx.currentTime + 0.06);
+        }
+
+        function playCaptureSound() {
+            // 提子声 - 更短促、频率稍低
+            if (!soundEnabled) return;
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            if (!noiseBuffer) noiseBuffer = createNoiseBuffer();
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = noiseBuffer;
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'highpass';
+            filter.frequency.value = 1500;
+            filter.Q.value = 0.5;
+            const gain = audioCtx.createGain();
+            gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.04);
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+            noise.start(audioCtx.currentTime);
+            noise.stop(audioCtx.currentTime + 0.04);
+        }
+
+        function playUndoSound() {
+            // 撤销声 - 更低沉
+            if (!soundEnabled) return;
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            if (!noiseBuffer) noiseBuffer = createNoiseBuffer();
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = noiseBuffer;
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.value = 1200;
+            filter.Q.value = 1;
+            const gain = audioCtx.createGain();
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+            noise.start(audioCtx.currentTime);
+            noise.stop(audioCtx.currentTime + 0.05);
+        }
+        
+        function updateDisplay() {
+            drawBoard();
+            const board = createBoard();
+            let blackCaptured = 0, whiteCaptured = 0;
+            const moves = getMovesToCurrent();
+            for (let i = 0; i < moves.length; i++) {
+                const move = moves[i];
+                if (!move || move.isPass) continue;  // 跳过停一手
+                const opponent = move.color === 'black' ? 'white' : 'black';
+                board[move.y][move.x] = move.color;
+                for (const [nx, ny] of getNeighbors(move.x, move.y)) {
+                    if (board[ny][nx] === opponent) {
+                        const liberties = getLiberties(board, nx, ny);
+                        if (liberties.size === 0) {
+                            const group = getGroup(board, nx, ny, opponent);
+                            for (const key of group) {
+                                const [gx, gy] = key.split(',').map(Number);
+                                board[gy][gx] = null;
+                                if (opponent === 'white') blackCaptured++;
+                                else whiteCaptured++;
+                            }
+                        }
+                    }
+                }
+            }
+            if (state.trialMode) {
+                // 试下模式：构建完整棋盘状态（包含提子）
+                const trialBoard = buildBoardFromMoves();
+                // 应用试下着法到trialIndex位置
+                for (let i = 0; i < trialIndex && i < state.trialMoves.length; i++) {
+                    const m = state.trialMoves[i];
+                    trialBoard[m.y][m.x] = m.color;
+                    // 直接使用记录的被提棋子坐标来移除棋子，而不是重新检测
+                    if (m.capturedPositions) {
+                        for (const cap of m.capturedPositions) {
+                            trialBoard[cap.y][cap.x] = null;
+                        }
+                    }
+                }
+                // 收集试下棋子的位置
+                const trialPositions = new Set();
+                for (let i = 0; i < trialIndex && i < state.trialMoves.length; i++) {
+                    trialPositions.add(`${state.trialMoves[i].x},${state.trialMoves[i].y}`);
+                }
+                // 绘制所有棋子
+                for (let y = 0; y < BOARD_SIZE; y++) {
+                    for (let x = 0; x < BOARD_SIZE; x++) {
+                        if (trialBoard[y][x]) {
+                            const isTrial = trialPositions.has(`${x},${y}`);
+                            if (isTrial) {
+                                // 试下棋子 - 强制显示手数
+                                let moveIdx = -1;
+                                for (let i = 0; i < trialIndex && i < state.trialMoves.length; i++) {
+                                    if (state.trialMoves[i].x === x && state.trialMoves[i].y === y) {
+                                        moveIdx = i;
+                                        break;
+                                    }
+                                }
+                                const isLast = moveIdx === trialIndex - 1;
+                                drawStone(x, y, trialBoard[y][x], isLast, moveIdx + 1);
+                            } else {
+                                // 主分支棋子
+                                drawStone(x, y, trialBoard[y][x], false, null);
+                            }
+                        }
+                    }
+                }
+            } else {
+                const inMainBranch = isInMainBranch();
+                // 找到最后一个非停一手的着法，用于标记最后一手
+                const lastNonPassMove = moves.length > 0 && !moves[moves.length - 1].isPass ? moves[moves.length - 1] : null;
+                if (inMainBranch) {
+                    // 主分支：根据手数开关决定是否显示
+                    for (let y = 0; y < BOARD_SIZE; y++) {
+                        for (let x = 0; x < BOARD_SIZE; x++) {
+                            if (board[y][x]) {
+                                const isLast = lastNonPassMove &&
+                                    lastNonPassMove.x === x &&
+                                    lastNonPassMove.y === y;
+                                const moveNum = showMoveNumbers ? (moves.findIndex(m => m.x === x && m.y === y) + 1) : null;
+                                drawStone(x, y, board[y][x], isLast, moveNum);
+                            }
+                        }
+                    }
+                } else {
+                    // 变化图：强制显示手数
+                    for (let y = 0; y < BOARD_SIZE; y++) {
+                        for (let x = 0; x < BOARD_SIZE; x++) {
+                            if (board[y][x]) {
+                                const isLast = lastNonPassMove &&
+                                    lastNonPassMove.x === x &&
+                                    lastNonPassMove.y === y;
+                                let moveNum = null;
+                                const idx = moves.findIndex(m => m.x === x && m.y === y);
+                                if (idx >= state.variationBaseMove) {
+                                    moveNum = idx - state.variationBaseMove + 1;
+                                }
+                                drawStone(x, y, board[y][x], isLast, moveNum);
+                            }
+                        }
+                    }
+                }
+            }
+            // 更新全局提子数
+            currentBlackCaptured = blackCaptured;
+            currentWhiteCaptured = whiteCaptured;
+            
+            updateStatus(moves.length, blackCaptured, whiteCaptured);
+            updateControls();
+            updateVariationPanel();
+        }
+        
+        function updateStatus(moveCount, blackCaptured, whiteCaptured) {
+            const moveInfo = document.getElementById('moveInfo');
+            const capturedInfo = document.getElementById('capturedInfo');
+
+            // 试下模式时不修改状态栏，保持原有内容
+            if (state.trialMode) return;
+
+            // 获取当前着法信息，检查是否是停一手
+            const moves = getMovesToCurrent();
+            const lastMove = moves.length > 0 ? moves[moves.length - 1] : null;
+            const isLastPass = lastMove && lastMove.isPass;
+
+            if (state.currentPath.length === 0 && state.displayIndex === 0 && state.trialMoves.length === 0) {
+                moveInfo.textContent = '第 0 手';
+            } else {
+                let statusText = '第 ' + moveCount + ' 手';
+                if (isLastPass) {
+                    statusText += ' (' + (lastMove.color === 'black' ? '黑' : '白') + '停一手)';
+                }
+                moveInfo.textContent = statusText;
+            }
+            if (blackCaptured > 0 || whiteCaptured > 0) {
+                capturedInfo.textContent = '提子: 黑 ' + blackCaptured + ' 子, 白 ' + whiteCaptured + ' 子';
+            } else {
+                capturedInfo.textContent = '';
+            }
+        }
+        
+        function isInMainBranch() {
+            for (const idx of state.currentPath) {
+                if (idx !== 0) return false;
+            }
+            return true;
+        }
+
+        function backToParent() {
+            if (state.currentPath.length > 0) {
+                state.currentPath.pop();
+                
+                // 检查是否全是0
+                const allZeros = state.currentPath.every(idx => idx === 0);
+                if (allZeros) {
+                    state.displayIndex = state.currentPath.length;
+                    state.currentPath = [];
+                } else {
+                    state.displayIndex = 0;
+                }
+                
+                playUndoSound();
+                updateDisplay();
+            }
+        }
+
+        function updateControls() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slider = document.getElementById('moveSlider');
+            const sliderContainer = slider.parentElement;  // 获取 slider-container
+            const backBtn = document.getElementById('backToParentBtn');
+            const variationComment = document.getElementById('variationComment');
+            prevBtn.disabled = state.displayIndex === 0 && state.currentPath.length === 0;
+            const children = getCurrentChildren();
+            nextBtn.disabled = children.length === 0;
+            const inMainBranch = isInMainBranch();
+            // 非主分支时隐藏滑条及其容器
+            if (inMainBranch) {
+                const currentNode = getCurrentNode();
+                const currentDepth = (state.currentPath.length > 0 || state.displayIndex > 0) ? getMovesToCurrent().length : 0;
+                const remainingDepth = getDefaultPathDepth(currentNode);
+                slider.max = currentDepth + remainingDepth;
+                slider.value = currentDepth;
+                slider.disabled = false;  // 确保明确设置为可滑动
+                slider.style.display = 'block';
+                sliderContainer.style.display = 'block';  // 显示容器
+                // 主分支时清空注释
+                variationComment.textContent = '';
+            } else {
+                slider.style.display = 'none';
+                sliderContainer.style.display = 'none';  // 隐藏容器
+                slider.disabled = false;  // 修复：返回主分支后需要重新启用
+                // 非主分支时显示当前分支的注释
+                const currentNode = getNodeAtPathIndex();
+                if (currentNode && currentNode.properties && currentNode.properties.C) {
+                    variationComment.textContent = currentNode.properties.C;
+                } else {
+                    variationComment.textContent = '';
+                }
+            }
+            // 返回上级按钮仅在非主分支时显示
+            backBtn.style.display = !inMainBranch ? 'flex' : 'none';
+            // 更多按钮及其面板只在主分支显示
+            const moreBtn = document.getElementById('moreBtn');
+            const extraButtons = document.getElementById('extraButtons');
+            const mainControls = document.getElementById('mainControlsGroup');
+            moreBtn.style.display = inMainBranch ? 'flex' : 'none';
+            if (!inMainBranch) {
+                if (extraButtons.classList.contains('visible')) {
+                    extraButtons.classList.remove('visible');
+                    moreBtn.classList.remove('active');
+                    mainControls.classList.remove('expanded');
+                }
+            }
+        }
+        
+        function extractWinRate(comment) {
+            // 匹配 "jueyi白99.8%" 或 "jueyi黑0.4%"
+            const match = comment.match(/jueyi(黑|白)(\d+\.?\d*)%/);
+            if (match) {
+                return match[1] + ' ' + match[2] + '%';
+            }
+            return null;
+        }
+        
+        function updateVariationPanel() {
+            const panel = document.getElementById('variationPanel');
+            const list = document.getElementById('variationList');
+            const children = getCurrentChildren();
+            list.innerHTML = '';
+            if (state.trialMode) {
+                panel.classList.remove('visible');
+                return;
+            }
+            if (children.length <= 1) {
+                panel.classList.remove('visible');
+                return;
+            }
+            
+            panel.classList.add('visible');
+            
+            for (let index = 1; index < children.length; index++) {
+                const child = children[index];
+                const btn = document.createElement('button');
+                btn.className = 'btn btn-variation';
+                
+                // 标签逻辑：优先N属性，其次C属性中的胜率，最后默认
+                let label;
+                if (child.properties && child.properties.N) {
+                    label = child.properties.N;
+                } else if (child.properties && child.properties.C) {
+                    const winRate = extractWinRate(child.properties.C);
+                    label = winRate || '变化' + index;
+                } else {
+                    label = '变化' + index;
+                }
+                
+                // 判断标签是否包含"黑"或"白"
+                const hasColorText = label.includes('黑') || label.includes('白');
+                
+                // 只有标签不包含颜色文字时才显示图标
+                if (!hasColorText) {
+                    const stoneIcon = document.createElement('span');
+                    stoneIcon.className = 'stone-icon';
+                    if (child.color === 'B') stoneIcon.classList.add('black');
+                    else if (child.color === 'W') stoneIcon.classList.add('white');
+                    else stoneIcon.classList.add('black');
+                    btn.appendChild(stoneIcon);
+                }
+                
+                const textSpan = document.createElement('span');
+                textSpan.textContent = label;
+                btn.appendChild(textSpan);
+                btn.onclick = () => enterVariation(index);
+                list.appendChild(btn);
+            }
+        }
+        
+        function updateTrialInfo() {
+            if (!state.trialMode) return;
+            const trialMoveInfo = document.getElementById('trialMoveInfo');
+            const nextColor = trialIndex % 2 === 0 ? 
+                (getMovesToCurrent().length % 2 === 0 ? '黑' : '白') :
+                (state.trialMoves[trialIndex - 1].color === 'black' ? '白' : '黑');
+            trialMoveInfo.textContent = `试下 ${trialIndex + 1} - ${nextColor}棋`;
+        }
+        
+        function enterVariation(variationIndex) {
+            const children = getCurrentChildren();
+            if (variationIndex >= children.length) return;
+            
+            // 记录进入变化图前的手数（用于手数显示）
+            const baseMovesBefore = getMovesToCurrent();
+            state.variationBaseMove = baseMovesBefore.length;
+            
+            // 关键修复：先把 displayIndex 对应的默认路径加入 currentPath
+            for (let i = 0; i < state.displayIndex; i++) {
+                state.currentPath.push(0);
+            }
+            
+            // 然后添加选择的子分支
+            state.currentPath.push(variationIndex);
+            state.displayIndex = 0;
+
+            if (isPlaying) togglePlay();
+            playStoneSound();
+            updateDisplay();
+        }
+        
+        function prevMove() {
+            if (state.displayIndex > 0) {
+                state.displayIndex--;
+                playUndoSound();
+                updateDisplay();
+            } else if (state.currentPath.length > 0) {
+                state.currentPath.pop();
+                
+                // 检查是否全是0
+                const allZeros = state.currentPath.every(idx => idx === 0);
+                if (allZeros) {
+                    state.displayIndex = state.currentPath.length;
+                    state.currentPath = [];
+                } else {
+                    state.displayIndex = 0;
+                }
+                
+                if (state.currentPath.length === 0) {
+                    state.variationBaseMove = 0;
+                }
+                playUndoSound();
+                updateDisplay();
+            }
+        }
+        
+        function nextMove() {
+            const children = getCurrentChildren();
+            if (children.length === 0) return;
+            
+            const beforeBlack = currentBlackCaptured;
+            const beforeWhite = currentWhiteCaptured;
+            
+            state.displayIndex++;
+            updateDisplay();
+            
+            // 如果提子数增加了，说明有提子
+            if (currentBlackCaptured > beforeBlack || currentWhiteCaptured > beforeWhite) {
+                playCaptureSound();
+            } else {
+                playStoneSound();
+            }
+        }
+        
+        function goToMove(moveNum) {
+            const target = parseInt(moveNum);
+            const currentNode = getNodeAt(tree, state.currentPath);
+            const maxDepth = getDefaultPathDepth(currentNode);
+            const currentDepth = getMovesToCurrent().length;
+            if (target >= 0 && target <= maxDepth) {
+                const beforeBlack = currentBlackCaptured;
+                const beforeWhite = currentWhiteCaptured;
+                
+                state.displayIndex = target;
+                updateDisplay();
+                
+                // 根据方向播放声效
+                if (target > currentDepth) {
+                    // 向前且有提子
+                    if (currentBlackCaptured > beforeBlack || currentWhiteCaptured > beforeWhite) {
+                        playCaptureSound();
+                    } else {
+                        playStoneSound();
+                    }
+                } else if (target < currentDepth) {
+                    playUndoSound();
+                }
+            }
+        }
+        
+        function togglePlay() {
+            const btn = document.getElementById('playBtn');
+            if (isPlaying) {
+                clearInterval(playInterval);
+                isPlaying = false;
+                btn.textContent = '播';
+            } else {
+                const children = getCurrentChildren();
+                if (children.length === 0) return;
+                isPlaying = true;
+                btn.textContent = '停';
+                playInterval = setInterval(() => {
+                    const currentChildren = getCurrentChildren();
+                    if (currentChildren.length > 0) {
+                        state.displayIndex++;
+                        playStoneSound();
+                        updateDisplay();
+                    } else {
+                        togglePlay();
+                    }
+                }, 800);
+            }
+        }
+        
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const btn = document.getElementById('soundToggleBtn');
+            btn.textContent = soundEnabled ? '🔊' : '🔇';
+        }
+        
+        function toggleNumbers() {
+            showMoveNumbers = !showMoveNumbers;
+            updateDisplay();
+            const btn = document.getElementById('numToggleBtn');
+            btn.style.background = showMoveNumbers ? '#667eea' : '#f0f0f0';
+            btn.style.color = showMoveNumbers ? 'white' : '#333';
+        }
+        
+        function toggleMorePanel() {
+            const panel = document.getElementById('extraButtons');
+            const btn = document.getElementById('moreBtn');
+            const mainControls = document.getElementById('mainControlsGroup');
+            panel.classList.toggle('visible');
+            btn.classList.toggle('active');
+            mainControls.classList.toggle('expanded');
+        }
+        
+        // ==================== 试下功能相关函数 ====================
+        
+        function findGroupOnBoard(board, startX, startY, color) {
+            const group = [];
+            const visited = new Set();
+            const stack = [{x: startX, y: startY}];
+            while (stack.length > 0) {
+                const {x, y} = stack.pop();
+                const key = `${x},${y}`;
+                if (visited.has(key)) continue;
+                visited.add(key);
+                if (board[y][x] === color) {
+                    group.push({x, y});
+                    for (const [nx, ny] of getNeighbors(x, y)) {
+                        stack.push({x: nx, y: ny});
+                    }
+                }
+            }
+            return group;
+        }
+        
+        function countLibertiesOnBoard(board, group) {
+            const liberties = new Set();
+            for (const stone of group) {
+                const neighbors = getNeighbors(stone.x, stone.y);
+                for (const [nx, ny] of neighbors) {
+                    if (ny >= 0 && ny < BOARD_SIZE && nx >= 0 && nx < BOARD_SIZE) {
+                        if (board[ny][nx] === null) {
+                            liberties.add(`${nx},${ny}`);
+                        }
+                    }
+                }
+            }
+            return liberties.size;
+        }
+        
+        function removeDeadStonesOnBoard(board, x, y, color) {
+            const opponent = color === 'black' ? 'white' : 'black';
+            const captured = [];
+            const checked = new Set();
+            for (const [nx, ny] of getNeighbors(x, y)) {
+                if (board[ny][nx] === opponent) {
+                    const key = `${nx},${ny}`;
+                    if (checked.has(key)) continue;
+                    const group = findGroupOnBoard(board, nx, ny, opponent);
+                    for (const s of group) checked.add(`${s.x},${s.y}`);
+                    if (countLibertiesOnBoard(board, group) === 0) {
+                        for (const s of group) {
+                            captured.push({x: s.x, y: s.y});
+                            board[s.y][s.x] = null;
+                        }
+                    }
+                }
+            }
+            return captured;
+        }
+        
+        function isSuicideOnBoard(board, x, y, color) {
+            const opponent = color === 'black' ? 'white' : 'black';
+            
+            // 临时放置棋子
+            board[y][x] = color;
+            
+            // 检查能否提对方棋子（落子后对方相邻棋子是否没气）
+            let canCapture = false;
+            const checked = new Set();
+            const dirs = [[0, 1], [0, -1], [1, 0], [-1, 0]];
+            
+            for (const [dx, dy] of dirs) {
+                const nx = x + dx, ny = y + dy;
+                if (nx >= 0 && nx < BOARD_SIZE && ny >= 0 && ny < BOARD_SIZE) {
+                    if (board[ny][nx] === opponent) {
+                        const key = `${nx},${ny}`;
+                        if (!checked.has(key)) {
+                            const group = findGroupOnBoard(board, nx, ny, opponent);
+                            for (const s of group) checked.add(`${s.x},${s.y}`);
+                            if (countLibertiesOnBoard(board, group) === 0) {
+                                canCapture = true;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // 检查己方棋块的气（如果提了对方子，新棋子就有气了）
+            const myGroup = findGroupOnBoard(board, x, y, color);
+            const myLiberties = countLibertiesOnBoard(board, myGroup);
+            
+            // 恢复棋盘
+            board[y][x] = null;
+            
+            // 禁入点判定：己方没气 且 不能提对方子
+            return myLiberties === 0 && !canCapture;
+        }
+        
+        function checkKoOnBoard(board, x, y, color, captured) {
+            if (captured.length !== 1) return null;
+            const opponent = color === 'black' ? 'white' : 'black';
+            const capturedPos = captured[0];
+            board[capturedPos.y][capturedPos.x] = opponent;
+            const myGroup = findGroupOnBoard(board, x, y, color);
+            const myLiberties = countLibertiesOnBoard(board, myGroup);
+            const canBeCaptured = myLiberties === 0 && myGroup.length === 1;
+            board[capturedPos.y][capturedPos.x] = null;
+            if (canBeCaptured) return {x: capturedPos.x, y: capturedPos.y};
+            return null;
+        }
+        
+        function buildBoardFromMoves() {
+            const board = createBoard();
+            const moves = getMovesToCurrent();
+            for (const move of moves) {
+                board[move.y][move.x] = move.color;
+                removeDeadStonesOnBoard(board, move.x, move.y, move.color);
+            }
+            return board;
+        }
+        
+        let trialKoPosition = null;
+        let trialCapturedBlack = 0;
+        let trialCapturedWhite = 0;
+        let trialIndex = 0;
+
+        function enterTrial() {
+            state.trialStartPath = [...state.currentPath];
+            state.trialStartIndex = state.displayIndex;
+            state.trialMode = true;
+            state.trialMoves = [];
+            trialIndex = 0;
+            trialKoPosition = null;
+            trialCapturedBlack = 0;
+            trialCapturedWhite = 0;
+            document.getElementById('mainControls').style.display = 'none';
+            document.getElementById('trialPanel').classList.add('visible');
+            document.getElementById('variationPanel').classList.remove('visible');
+            updateTrialButtons();
+            updateDisplay();
+        }
+        
+        function exitTrial() {
+            state.currentPath = [...state.trialStartPath];
+            state.displayIndex = state.trialStartIndex;
+            state.trialMode = false;
+            state.trialMoves = [];
+            trialIndex = 0;
+            trialKoPosition = null;
+            trialCapturedBlack = 0;
+            trialCapturedWhite = 0;
+            document.getElementById('mainControls').style.display = 'flex';
+            document.getElementById('trialPanel').classList.remove('visible');
+            updateDisplay();
+        }
+        
+        function trialPrev() {
+            if (trialIndex > 0) {
+                trialIndex--;
+                const move = state.trialMoves[trialIndex];
+                if (move.color === 'black') trialCapturedWhite -= move.capturedCount || 0;
+                else trialCapturedBlack -= move.capturedCount || 0;
+                trialKoPosition = null;
+                playUndoSound();
+                updateTrialButtons();
+                updateDisplay();
+            }
+        }
+        
+        function trialNext() {
+            if (trialIndex < state.trialMoves.length) {
+                const move = state.trialMoves[trialIndex];
+                trialIndex++;
+                if (move.color === 'black') trialCapturedWhite += move.capturedCount || 0;
+                else trialCapturedBlack += move.capturedCount || 0;
+                playStoneSound();
+                updateTrialButtons();
+                updateDisplay();
+            }
+        }
+        
+        function updateTrialButtons() {
+            const prevBtn = document.getElementById('trialPrevBtn');
+            const nextBtn = document.getElementById('trialNextBtn');
+            prevBtn.disabled = trialIndex <= 0;
+            nextBtn.disabled = trialIndex >= state.trialMoves.length;
+        }
+        
+        function trialPlaceStone(x, y) {
+            const board = buildBoardFromMoves();
+            
+            // 应用已有的试下着法
+            for (let i = 0; i < trialIndex && i < state.trialMoves.length; i++) {
+                const m = state.trialMoves[i];
+                board[m.y][m.x] = m.color;
+                removeDeadStonesOnBoard(board, m.x, m.y, m.color);
+            }
+            
+            // 检查位置是否为空
+            if (board[y][x] !== null) return false;
+            
+            // 检查劫
+            if (trialKoPosition && trialKoPosition.x === x && trialKoPosition.y === y) return false;
+            
+            // 判断当前执子方
+            const currentColor = trialIndex % 2 === 0 ? 
+                (getMovesToCurrent().length % 2 === 0 ? 'black' : 'white') :
+                (state.trialMoves[trialIndex - 1].color === 'black' ? 'white' : 'black');
+            
+            // 检查自杀（禁入点）
+            if (isSuicideOnBoard(board, x, y, currentColor)) return false;
+            // 落子
+            board[y][x] = currentColor;
+            const captured = removeDeadStonesOnBoard(board, x, y, currentColor);
+            trialKoPosition = checkKoOnBoard(board, x, y, currentColor, captured);
+            if (currentColor === 'black') trialCapturedWhite += captured.length;
+            else trialCapturedBlack += captured.length;
+            // 添加到试下记录
+            state.trialMoves = state.trialMoves.slice(0, trialIndex);
+            state.trialMoves.push({
+                x, y,
+                color: currentColor,
+                capturedCount: captured.length,
+                capturedPositions: captured.map(c => ({x: c.x, y: c.y}))  // 记录被提棋子的坐标
+            });
+            trialIndex++;
+            // 有提子时播放提子声，否则播放落子声
+            if (captured.length > 0) {
+                playCaptureSound();
+            } else {
+                playStoneSound();
+            }
+            updateTrialButtons();
+            updateDisplay();
+            return true;
+        }
+        
+        canvas.addEventListener('click', (e) => {
+            const pos = getBoardPosition(e);
+            
+            // 检查是否已有棋子（hasStoneAt 已经正确处理了提子后的空位）
+            if (hasStoneAt(pos.x, pos.y)) return;
+            
+            // 如果不在试下模式，先进入试下模式
+            if (!state.trialMode) {
+                enterTrial();
+            }
+            
+            // 试下放子（包含提子逻辑）
+            trialPlaceStone(pos.x, pos.y);
+        });
+        
+        function downloadSGF() {
+            let sgf = '(;GM[1]FF[4]SZ[' + BOARD_SIZE + ']';
+            sgf += 'PB[' + (tree.properties.PB || '黑棋') + ']';
+            sgf += 'PW[' + (tree.properties.PW || '白棋') + ']';
+            if (handicapStones && handicapStones.length > 0) {
+                sgf += 'HA[' + handicapStones.length + ']';
+                for (const s of handicapStones) {
+                    sgf += 'AB[' + String.fromCharCode(97 + s.x) + String.fromCharCode(97 + s.y) + ']';
+                }
+            }
+            
+            const moves = getMovesToCurrent();
+            
+            if (moves.length === 0 && !state.trialMode) {
+                // 第0手且不在试下模式，下载整个棋谱（包含所有变化分支）
+                function appendMoves(node) {
+                    if (node.color && node.coord) {
+                        sgf += ';' + node.color + '[' + node.coord + ']';
+                    }
+                    if (node.children && node.children.length > 0) {
+                        if (node.children.length === 1) {
+                            appendMoves(node.children[0]);
+                        } else {
+                            for (const child of node.children) {
+                                sgf += '(';
+                                appendMoves(child);
+                                sgf += ')';
+                            }
+                        }
+                    }
+                }
+                appendMoves(tree);
+            } else {
+                // 下载当前局面的着法序列
+                for (const move of moves) {
+                    const color = move.color === 'black' ? 'B' : 'W';
+                    sgf += ';' + color + '[' + move.coord + ']';
+                }
+                // 如果是试下模式，追加试下着法
+                if (state.trialMode) {
+                    for (let i = 0; i < trialIndex; i++) {
+                        const m = state.trialMoves[i];
+                        const color = m.color === 'black' ? 'B' : 'W';
+                        sgf += ';' + color + '[' + String.fromCharCode(97 + m.x) + String.fromCharCode(97 + m.y) + ']';
+                    }
+                }
+            }
+            
+            sgf += ')';
+            const blob = new Blob([sgf], { type: 'application/x-go-sgf' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '{{DOWNLOAD_FILENAME}}';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevMove();
+            else if (e.key === 'ArrowRight') nextMove();
+            else if (e.key === ' ') togglePlay();
+        });
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        
+        // 页面加载后，如果设置了默认手数，跳转到该手数
+        // DEFAULT_MOVE = -1 表示跳转到最后一手（主分支终点）
+        if (DEFAULT_MOVE > 0 || DEFAULT_MOVE === -1) {
+            setTimeout(() => {
+                const currentNode = getNodeAt(tree, state.currentPath);
+                const maxDepth = getDefaultPathDepth(currentNode);
+                const targetMove = DEFAULT_MOVE === -1 ? maxDepth : Math.min(DEFAULT_MOVE, maxDepth);
+                if (targetMove > 0) {
+                    // 只设置 displayIndex，不修改 currentPath
+                    // 这样滑条控制才能正常工作
+                    state.displayIndex = targetMove;
+                    updateDisplay();
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>

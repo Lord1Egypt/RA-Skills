@@ -1,0 +1,12 @@
+{
+  "skill": "wenqisheng-ear-care",
+  "version": "1.1.0",
+  "data_version": "2026-05-15",
+  "description": "闻其声耳轻松可视采耳 AI 智能客服 Skill",
+  "compatibility": "Requires OpenClaw or compatible skill loader. Reference files in references/ must be readable at query time.",
+  "auto_update": {
+    "method": "git pull",
+    "check_url": "https://github.com/Liubuq-sys/wenqisheng-ear-care-skill/releases/latest",
+    "frequency": "daily"
+  }
+}

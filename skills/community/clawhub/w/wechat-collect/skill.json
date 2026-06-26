@@ -1,0 +1,9 @@
+{
+  "id": "wechat-collect",
+  "name": "WeChat Collect",
+  "layer": "collect",
+  "executor": "wechat_collect_v1",
+  "input_kind": "url_text",
+  "output_kind": "brief_markdown",
+  "description": "Fetch a public WeChat article URL and convert it into a stage-1 compatible brief in inbox/."
+}

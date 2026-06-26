@@ -1,0 +1,9 @@
+{
+  "name": "极简留白",
+  "description": "超多留白，精致小字，瑞士风排版，适合高端品牌/艺术/设计类内容",
+  "colors": { "background": "#FAFAFA", "text": "#1A1A2E", "accent": "#4F46E5", "secondary": "#9CA3AF", "bgLight": "#F3F4F6" },
+  "fonts": { "title": "\"Outfit\",\"PingFang SC\",-apple-system,sans-serif", "body": "\"Outfit\",\"PingFang SC\",-apple-system,sans-serif" },
+  "layout": { "titleSizeVertical": "72px", "titleSizeSquare": "60px", "titleSizeWide": "52px", "titleSizeCover": "42px", "contentSize": "20px" },
+  "brand": "极简留白",
+  "radius": "0px"
+}

@@ -1,35 +1,155 @@
 ---
-name: "会议纪要融合生成器"
-description: "会议纪要融合生成器 v2.0 — 从钉钉和/或得到(Get笔记)的会议纪要PDF中提取内容，自动校准ASR错别字，融合双源优势生成审美在线的10区块会议纪要HTML+PDF。适用于任何商务会议、团队讨论、合作洽谈的纪要整理。当用户提到会议纪要、meeting minutes、纪要模板、生成纪要、融合纪要、整理会议..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xygs-meeting-minutes"
-sourceUrl: "https://clawhub.ai/skills/xygs-meeting-minutes"
+name: meeting-minutes
+description: "会议纪要融合生成器 v2.0 — 从钉钉和/或得到(Get笔记)的会议纪要PDF中提取内容，自动校准ASR错别字，融合双源优势生成审美在线的10区块会议纪要HTML+PDF。适用于任何商务会议、团队讨论、合作洽谈的纪要整理。当用户提到会议纪要、meeting minutes、纪要模板、生成纪要、融合纪要、整理会议记录、钉钉纪要、得到录音、录音整理、会议总结时，请使用此技能。"
+version: "2.0"
 ---
 
-# 会议纪要融合生成器
+# 会议纪要融合生成器 v2.0
 
-> 会议纪要融合生成器 v2.0 — 从钉钉和/或得到(Get笔记)的会议纪要PDF中提取内容，自动校准ASR错别字，融合双源优势生成审美在线的10区块会议纪要HTML+PDF。适用于任何商务会议、团队讨论、合作洽谈的纪要整理。当用户提到会议纪要、meeting minutes、纪要模板、生成纪要、融合纪要、整理会议...
+从钉钉和/或得到 Get笔记的会议纪要中提取内容，自动校准 ASR 错别字，融合双源优势，生成设计精美的 10 区块会议纪要，输出 HTML + PDF。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xygs-meeting-minutes`
-- **Source URL:** [https://clawhub.ai/skills/xygs-meeting-minutes](https://clawhub.ai/skills/xygs-meeting-minutes)
+## 目录结构
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xygs-meeting-minutes
 ```
+meeting-minutes/
+├── SKILL.md              ← 你正在读的文件
+├── assets/
+│   ├── template.html     ← HTML 模板（设计系统 + 参考实例）
+│   └── term_corrections.json  ← ASR 术语校准词典
+└── scripts/
+    └── export_pdf.py     ← PDF 导出脚本（Playwright / WeasyPrint）
+```
+
+所有路径均相对于本 skill 目录，用 `<SKILL_DIR>` 表示。在执行时，先确定 SKILL.md 所在目录的绝对路径作为 `SKILL_DIR`。
+
+## 核心理念
+
+这个技能存在的原因：钉钉和得到各有所长，但都不完美。钉钉的结构化分类和视觉设计更好，得到的语音识别更准、内容更深。融合两者能得到比任何单一来源都更好的会议纪要——既有设计感，又有信息深度。
+
+## 10 区块模板结构
+
+| # | 区块 | 主来源 | 设计特征 |
+|---|------|--------|---------|
+| 1 | **封面 · 一图读懂** | 双源融合 | 深蓝渐变背景 + 业务架构流程图 + KPI 卡片 + 关键决策 |
+| 2 | **会议概览** | 得到(元信息) + 钉钉(背景) | 标签条 + 高亮摘要段落 |
+| 3 | **主题深度解读** | 得到(论据) + 钉钉(分类) | 彩色左边条卡片 + 时间戳 |
+| 4 | **关键决策与共识** | 钉钉 | 金色编号圆标 + 高亮区块 |
+| 5 | **金句精选** | 得到 | 暖金底引用卡片 + 大引号 + 标签 |
+| 6 | **行动项** | 钉钉(表格) + 得到(描述) | 深色表头 + 斑马纹 + 优先级色标 |
+| 7 | **章节概要** | 得到 | 金色时间轴 + 区块化卡片 |
+| 8 | **AI 洞察** | 钉钉 + 自行补充 | 蓝紫渐变图标 + 分析列表 |
+| 9 | **个人复盘** | 得到 | 2×2 卡片网格 + 时间日志条 |
+| 10 | **决策与待办提取** | 双源融合 | 深蓝全幅背景 + 4象限卡片（决策/方向/待办/风险/里程碑） |
+
+## 执行流程
+
+### Step 1: 确认输入
+
+向用户确认以下信息：
+- 有几份纪要 PDF？（钉钉 + 得到 = 最佳；只有一份也能处理）
+- 会议的核心主题是什么？
+- 是否有需要额外校准的术语？
+
+### Step 2: 读取 PDF 内容
+
+用 PDF 读取工具提取两份纪要的文本内容。具体工具名因环境而异：
+- 如有 `read_pdf_content` 相关的 MCP 工具，优先使用
+- 否则用 `Read` 工具直接读取 PDF
+- 或者用 `python3` + `pypdf` / `pdfplumber` 提取
+
+### Step 3: 术语校准
+
+读取 `<SKILL_DIR>/assets/term_corrections.json`，对提取的文本执行全局替换。
+
+词典中已包含囍悦公社体系的常见 ASR 误识别（15条），用户可以随时追加新的校准对。校准时注意：长字符串优先匹配，避免部分替换冲突。
+
+### Step 4: 内容融合
+
+两份纪要可能覆盖**重叠但不同**的内容：得到偏战略/情感/个人视角，钉钉偏运营/商业/数据视角。融合原则：
+
+| 内容类型 | 取自 |
+|---------|------|
+| 录音元信息（时间/时长/人数） | 得到 |
+| 会议背景段落 | 钉钉（更精炼） |
+| 主题深度论据 | 得到（更详细） |
+| 主题分类体系 | 钉钉（更结构化） |
+| 时间戳 | 得到（精确到秒） |
+| 关键决策 | 钉钉（独立区块，更清晰） |
+| 金句 | 得到（有原文引用） |
+| 行动项 | 钉钉(表格格式) + 得到(补充细节) |
+| AI 洞察 | 钉钉 + 自行补充战略分析 |
+| 个人复盘 | 得到（独有） |
+| 章节概要 | 得到（时间轴完整） |
+| 决策待办提取 | 双源汇总 |
+
+### Step 5: 生成 HTML
+
+以 `<SKILL_DIR>/assets/template.html` 为设计系统参考，生成新的 HTML 文件。
+
+模板中的设计令牌已经封装在 CSS 变量中，跨平台兼容：
+
+```
+主色：   --c-navy    #1B2838   深藏蓝
+强调色： --c-gold    #D4A853   暖金
+辅助色： --c-blue    rgb(142, 205, 232)  雾蓝
+字体：   PingFang SC → Microsoft YaHei → Noto Sans SC → Arial
+正文：   14px, line-height 1.8
+主题色条：8色循环 (蓝/绿/橙/紫/红/青/粉/靛)
+```
+
+**生成 HTML 时的要点：**
+- 将 `template.html` 中的示例数据替换为当前会议的实际数据
+- 封面的架构流程图和 KPI 卡片需根据会议内容定制
+- 金句需从转录原文中人工筛选有力表达
+- 行动项的优先级需根据上下文推断（高优/中优/持续）
+- 决策待办提取需汇总全文关键信息
+
+输出到用户的工作目录：`会议纪要-{主题简称}-{YYYYMMDD}.html`
+
+### Step 6: 导出 PDF
+
+运行导出脚本：
+
+```bash
+python3 <SKILL_DIR>/scripts/export_pdf.py <input.html> <output.pdf>
+```
+
+脚本自动检测可用后端（Playwright 优先，WeasyPrint 备选）。
+
+如果脚本不可用或环境受限，可以直接用 Python 内联：
+
+```python
+from playwright.sync_api import sync_playwright
+with sync_playwright() as p:
+    browser = p.chromium.launch()
+    page = browser.new_page()
+    page.goto(f'file://{html_path}')
+    page.wait_for_load_state('networkidle')
+    page.pdf(path=pdf_path, format='A4', print_background=True,
+             margin={'top':'20mm','right':'0mm','bottom':'20mm','left':'0mm'})
+    browser.close()
+```
+
+### Step 7: 验证交付
+
+1. 展示 PDF 给用户确认
+2. 检查术语校准是否完整（搜索原始误识别词应为零结果）
+3. 确认 10 个区块内容完整
+4. 如用户提出修改，直接编辑 HTML 后重新导出
+
+## 只有一份纪要时的处理
+
+如果用户只提供了一份纪要（只有钉钉或只有得到），同样使用 10 区块模板，但需要自行补充缺失来源的内容：
+- **只有得到**：从内容中提炼关键决策（得到不分离决策区块）；AI 洞察需完全自行撰写
+- **只有钉钉**：金句需从钉钉正文中筛选；个人复盘信息可能不足，可简化或省略
+
+## 环境兼容性
+
+| 依赖 | 用途 | 必需？ |
+|------|------|--------|
+| Python 3 | PDF 导出 | 推荐 |
+| playwright + chromium | PDF 导出（最佳效果） | 推荐 |
+| weasyprint | PDF 导出（备选） | 可选 |
+| PDF 读取工具 | 提取纪要内容 | 任一即可 |
+
+如果环境中没有 PDF 导出工具，也可以告知用户：在浏览器中打开 HTML → 打印 → 另存为 PDF（确保勾选"背景图形"）。

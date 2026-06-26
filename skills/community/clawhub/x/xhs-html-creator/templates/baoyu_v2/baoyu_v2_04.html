@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@400;700&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1080px; background:#f5f0e8; font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif; -webkit-font-smoothing:antialiased; }
+.page { width:1080px; height:1440px; background:#f5f0e8; position:relative; overflow:hidden; }
+.page::before { content:''; position:absolute; inset:0; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(200,185,160,0.06) 3px, rgba(200,185,160,0.06) 4px); pointer-events:none; z-index:0; }
+.edge { position:absolute; top:0; bottom:0; width:8px; background: linear-gradient(180deg, #d4a574 0%, #c49460 50%, #d4a574 100%); z-index:1; }
+.edge-l { left:0; border-radius:0 4px 4px 0; }
+.edge-r { right:0; border-radius:4px 0 0 4px; }
+.top-stripe { height:12px; background:linear-gradient(90deg, #d4a574, #e8c9a0, #d4a574); position:relative; z-index:2; }
+.hand-title { font-family:'ZCOOL KuaiLe', cursive, sans-serif; }
+.content-wrap { position:relative; z-index:2; padding:14px 48px 0; }
+
+.mt { text-align:center; margin-bottom:5px; padding-top:2px; }
+.mt1 { font-size:68px; color:#5a3e2b; font-weight:700; letter-spacing:2px; }
+.mt1 .pk { color:#e8919a; }
+.st { text-align:center; font-size:30px; color:#b8a090; letter-spacing:4px; margin-bottom:8px; }
+.dv { width:180px; height:2px; background:linear-gradient(90deg,transparent,#d4a574,transparent); margin:0 auto 8px; }
+
+.tp { background:#fff5f6; border:2px dashed #e8919a; border-radius:14px; padding:12px 16px; margin-bottom:9px; }
+.tp-tl { font-size:30px; color:#d4687a; font-weight:700; margin-bottom:8px; }
+.tp-its { display:flex; flex-wrap:wrap; gap:6px 10px; }
+.tp-it { background:#fff; border:1.5px solid #f5c4c4; border-radius:12px; padding:5px 14px; font-size:30px; color:#c96b7a; }
+
+.cf-box { background:#fff; border-radius:16px; padding:12px 16px; margin-bottom:9px; border:2px solid #e8c9a0; }
+.cf-tl { font-size:30px; color:#d4a574; font-weight:700; margin-bottom:8px; letter-spacing:2px; text-align:center; }
+.cf-g { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.cf-it { background:#fef9f0; border-radius:10px; padding:9px 12px; display:flex; align-items:center; gap:8px; }
+.cf-ic { width:30px; height:30px; background:#d4a574; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; color:#fff; font-weight:700; flex-shrink:0; }
+.cf-nm { font-size:30px; color:#5a3e2b; font-weight:700; }
+
+.gr { display:flex; gap:8px; margin-bottom:9px; }
+.gc { flex:1; border-radius:16px; padding:13px 12px; border:2px solid; }
+.gc.pk { border-color:#e8919a; background:#fff5f7; }
+.gc.bl { border-color:#7ba3c9; background:#f5f9ff; }
+.gc-tl { font-size:30px; font-weight:700; margin-bottom:7px; display:flex; align-items:center; gap:6px; }
+.gc.pk .gc-tl { color:#d4687a; }
+.gc.bl .gc-tl { color:#5a8ab5; }
+.gc-itms { font-size:30px; color:#5a3e2b; line-height:1.8; }
+.gc-itms span { display:block; }
+
+.lk-box { background:#fff5f6; border:2px solid #e8919a; border-radius:14px; padding:12px 16px; margin-bottom:9px; }
+.lk-tl { font-size:30px; color:#d4687a; font-weight:700; margin-bottom:8px; }
+.lk-its { display:flex; flex-wrap:wrap; gap:6px 10px; }
+.lk-it { background:#fff; border:1.5px solid #f5c4c4; border-radius:12px; padding:5px 14px; font-size:30px; color:#b87a8a; text-decoration:line-through; }
+
+.cta { background:#d4a574; border-radius:18px; padding:16px 20px; margin-bottom:8px; display:flex; align-items:center; gap:14px; }
+.cta-ic { font-size:50px; flex-shrink:0; }
+.cta-bd { flex:1; }
+.cta-tl { font-size:30px; color:#fff; font-weight:700; margin-bottom:4px; letter-spacing:1px; }
+.cta-tx { font-size:30px; color:#fef6f0; line-height:1.5; }
+
+.cm { background:#fff; border-radius:14px; padding:12px 16px; border:2px solid #e8c9a0; margin-bottom:6px; }
+.cm-tl { font-size:30px; color:#d4a574; font-weight:700; margin-bottom:4px; }
+.cm-tx { font-size:30px; color:#5a3e2b; line-height:1.5; font-weight:600; }
+
+.sg { text-align:center; font-size:14px; color:#b8a090; letter-spacing:3px; margin-bottom:6px; }
+
+.bt-bar { background:#d4a574; padding:13px 40px; display:flex; align-items:center; justify-content:center; position:absolute; bottom:0; left:0; right:0; }
+.bt-bar span { font-size:30px; color:#fff; letter-spacing:3px; font-weight:700; }
+</style>
+</head><body>
+<div class="page">
+  <div class="top-stripe"></div>
+  <div class="edge edge-l"></div>
+  <div class="edge edge-r"></div>
+  <div class="content-wrap">
+    <div class="mt">
+      <div class="mt1 hand-title">收藏备用 · 接<span class="pk">超顺产</span></div>
+    </div>
+    <div class="st">过来人真实复盘 · 仅供参考</div>
+    <div class="dv"></div>
+
+    <div class="tp">
+      <div class="tp-tl">&#9889; 进产房带这些</div>
+      <div class="tp-its">
+        <span class="tp-it">包单</span>
+        <span class="tp-it">胎帽</span>
+        <span class="tp-it">52码半背衣</span>
+        <span class="tp-it">纸尿裤 1片</span>
+        <span class="tp-it">小袜子</span>
+      </div>
+    </div>
+
+    <div class="cf-box">
+      <div class="cf-tl">&#128138; 产房篇 · 进这些就够了</div>
+      <div class="cf-g">
+        <div class="cf-it"><div class="cf-ic">妈</div><div class="cf-nm">一次性产褥垫 2张</div></div>
+        <div class="cf-it"><div class="cf-ic">妈</div><div class="cf-nm">安睡裤 1条</div></div>
+        <div class="cf-it"><div class="cf-ic">妈</div><div class="cf-nm">吸管水杯</div></div>
+        <div class="cf-it"><div class="cf-ic">宝</div><div class="cf-nm">纸尿裤 1片</div></div>
+        <div class="cf-it"><div class="cf-ic">宝</div><div class="cf-nm">胎帽 + 半背衣 + 袜子</div></div>
+        <div class="cf-it"><div class="cf-ic">宝</div><div class="cf-nm">包单 + 包被</div></div>
+      </div>
+    </div>
+
+    <div class="gr">
+      <div class="gc pk">
+        <div class="gc-tl">&#128147; 妈妈神器</div>
+        <div class="gc-itms">
+          <span>冲洗器 · 吸奶器</span>
+          <span>安睡裤 · 产褥垫</span>
+        </div>
+      </div>
+      <div class="gc bl">
+        <div class="gc-tl">&#128118; 宝宝神器</div>
+        <div class="gc-itms">
+          <span>便携恒温壶</span>
+          <span>棉柔巾 · 云柔巾</span>
+          <span>碘伏棉签 · 护脐贴</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lk-box">
+      <div class="lk-tl">&#9888; 避雷清单 · 这些真的不用带</div>
+      <div class="lk-its">
+        <span class="lk-it">刀纸</span>
+        <span class="lk-it">包被</span>
+        <span class="lk-it">半背衣</span>
+        <span class="lk-it">指甲套盒</span>
+        <span class="lk-it">安抚奶嘴</span>
+        <span class="lk-it">冷敷贴</span>
+        <span class="lk-it">哺乳内衣</span>
+        <span class="lk-it">防溢乳垫</span>
+      </div>
+    </div>
+
+    <div class="cta">
+      <div class="cta-ic">&#11088;</div>
+      <div class="cta-bd">
+        <div class="cta-tl hand-title">点个收藏，我也能接超顺产！</div>
+        <div class="cta-tx">帮助更多新手妈妈不踩雷，一起加油！</div>
+      </div>
+    </div>
+
+    <div class="cm">
+      <div class="cm-tl">&#128172; 评论区见</div>
+      <div class="cm-tx">快来说说，你待产包里最有用的神器是什么？最闲置的呢？</div>
+    </div>
+
+    <div class="sg">—— 过来人真实复盘 · 仅供参考 ——</div>
+  </div>
+  <div class="bt-bar"><span>&#128172; 收藏 + 评论，支持一下 &#128172;</span></div>
+</div>
+</body></html>

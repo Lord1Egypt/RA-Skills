@@ -1,0 +1,22 @@
+# Core
+requests>=2.31
+PyYAML>=6.0
+
+# Web / YouTube ingest
+yt-dlp>=2024.1.0
+youtube-transcript-api>=0.6.2     # optional fallback for YouTube transcripts
+beautifulsoup4>=4.12              # optional, cleaner HTML parsing than stdlib
+
+# Text-to-speech (Microsoft Edge online voices — free, no API key)
+edge-tts>=6.1.10
+imageio-ffmpeg>=0.4.9             # bundles ffmpeg binary for MP3 concat
+
+# Slide deck generation
+python-pptx>=0.6.23
+Pillow>=10.0                      # convert WEBP/AVIF → PNG for pptx embed
+
+# AI providers — install only what you need
+# openai>=1.30                    # OpenAI / Azure OpenAI / OpenAI-compatible
+# anthropic>=0.30                 # Anthropic Claude API
+# google-generativeai>=0.7        # Google Gemini API
+# ollama>=0.2                     # local Ollama runtime

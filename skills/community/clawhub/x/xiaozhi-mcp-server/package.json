@@ -1,0 +1,43 @@
+{
+  "name": "xiaozhi-mcp-server",
+  "version": "2.0.8",
+  "description": "Connect xiaozhi smart speaker to OpenClaw AI assistant - MCP Server with WebSocket support",
+  "main": "scripts/server.py",
+  "scripts": {
+    "start": "bash scripts/start.sh",
+    "stop": "bash scripts/stop.sh"
+  },
+  "keywords": [
+    "openclaw",
+    "xiaozhi",
+    "mcp",
+    "websocket",
+    "smart-speaker",
+    "voice-assistant"
+  ],
+  "author": "elegant1998",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elegant1998/xiaozhi-mcp-server"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "dependencies": {
+    "aiohttp": ">=3.8.0",
+    "pyyaml": ">=6.0"
+  },
+  "openclaw": {
+    "skillType": "integration",
+    "provides": [
+      "mcp-server",
+      "websocket-push"
+    ],
+    "configFile": "config.yaml",
+    "endpoints": {
+      "http": "/mcp",
+      "websocket": "/ws"
+    }
+  }
+}

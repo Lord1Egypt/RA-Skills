@@ -1,0 +1,280 @@
+{
+  "_description": "L0工具能力注册表 — skill全灭后的保底层。只用当L1技能路由返回'拒选'时才查这里。",
+  "_rule": "每个任务类型下按优先级排列。工具是保底，不是首选——superpowers原则：能用skill不用工具。",
+  "_version": "1.1.0",
+
+  "_fallback_chain": {
+    "description": "降级链路：L1 skill路由 → L0.5 AI保底 → L0 传统工具",
+    "order": ["ai_fallback", "literature_search", "literature_fetch", "web_search_general", "web_browse", "email_send", "chart_generate", "file_download", "pdf_process", "r_analysis", "gwas_data", "zotero_manage"]
+  },
+
+  "ai_fallback": {
+    "description": "AI智能保底 — skill路由拒选后，先试免费AI模型兜底，不行再走传统工具",
+    "tools": [
+      {
+        "name": "9Router Free AI",
+        "priority": 1,
+        "invocation": "curl -s http://localhost:20128/v1/chat/completions -H 'Content-Type: application/json' -d '{\"model\":\"kr/claude-sonnet-4.5\",\"messages\":[{\"role\":\"user\",\"content\":\"QUERY\"}]}' | jq -r '.choices[0].message.content'",
+        "strength": "免费AI模型兜底，40+提供商自动容灾，RTK省20-40% token",
+        "limitation": "需本地运行9Router (npm install -g 9router; 9router)",
+        "free": true,
+        "setup": "npm install -g 9router && 9router  # 启动后端口 :20128"
+      },
+      {
+        "name": "Direct LLM Fallback",
+        "priority": 2,
+        "invocation": "通过OpenClaw默认模型直接回复（无工具调用）",
+        "strength": "零配置，永远可用",
+        "limitation": "消耗API额度，无外部数据",
+        "free": false,
+        "notes": "9Router不可用时的最终AI保底"
+      }
+    ]
+  },
+
+  "literature_search": {
+    "description": "学术文献检索",
+    "tools": [
+      {
+        "name": "PubMed E-utilities",
+        "priority": 1,
+        "invocation": "exec: curl -s 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmax=20&api_key=${NCBI_API_KEY}&term=QUERY' | 然后 efetch 获取详情",
+        "strength": "医学文献金标准，完整元数据（PMID/DOI/作者/摘要）",
+        "limitation": "仅生物医学，无AI摘要",
+        "free": true,
+        "notes": "API Key 已在环境变量 NCBI_API_KEY"
+      },
+      {
+        "name": "Semantic Scholar API",
+        "priority": 2,
+        "invocation": "exec: curl -s -H 'x-api-key: ${SEMANTIC_SCHOLAR_API_KEY}' 'https://api.semanticscholar.org/graph/v1/paper/search?query=QUERY&limit=20&fields=title,authors,year,abstract,externalIds,citationCount'",
+        "strength": "AI推荐、引用分析、跨学科覆盖",
+        "limitation": "元数据不如PubMed完整",
+        "free": true
+      },
+      {
+        "name": "tavily_search",
+        "priority": 3,
+        "invocation": "tool: tavily_search(query=QUERY, search_depth='advanced', max_results=15)",
+        "strength": "AI深度搜索+摘要，适合非医学领域",
+        "limitation": "非学术专用，付费",
+        "free": false
+      },
+      {
+        "name": "TinyFish Search",
+        "priority": 4,
+        "invocation": "exec: curl -s -H 'X-API-Key: ${TINYFISH_API_KEY}' 'https://api.search.tinyfish.ai?query=QUERY'",
+        "strength": "免费备用",
+        "limitation": "仅返回10条，无AI摘要",
+        "free": true
+      }
+    ]
+  },
+
+  "literature_fetch": {
+    "description": "获取文献全文/详情",
+    "tools": [
+      {
+        "name": "PubMed efetch",
+        "priority": 1,
+        "invocation": "exec: curl -s 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=PMID&rettype=abstract&api_key=${NCBI_API_KEY}'",
+        "strength": "获取完整摘要、MeSH词、作者列表",
+        "limitation": "无全文PDF",
+        "free": true
+      },
+      {
+        "name": "Semantic Scholar Paper",
+        "priority": 2,
+        "invocation": "exec: curl -s -H 'x-api-key: ${SEMANTIC_SCHOLAR_API_KEY}' 'https://api.semanticscholar.org/graph/v1/paper/PMID?fields=title,abstract,authors,year,externalIds,citationCount,references'",
+        "strength": "获取引用链和推荐文献",
+        "limitation": "部分论文无摘要",
+        "free": true
+      },
+      {
+        "name": "web_fetch",
+        "priority": 3,
+        "invocation": "tool: web_fetch(url=URL, extractMode='markdown')",
+        "strength": "抓取任意网页内容",
+        "limitation": "无法处理JS渲染页面",
+        "free": true
+      },
+      {
+        "name": "TinyFish Fetch",
+        "priority": 4,
+        "invocation": "exec: curl -s -X POST -H 'Content-Type: application/json' -H 'X-API-Key: ${TINYFISH_API_KEY}' -d '{\"urls\":[\"URL\"],\"format\":\"markdown\"}' 'https://api.fetch.tinyfish.ai'",
+        "strength": "支持JS渲染页面",
+        "limitation": "一次最多10个URL",
+        "free": true
+      }
+    ]
+  },
+
+  "web_search_general": {
+    "description": "通用网页搜索",
+    "tools": [
+      {
+        "name": "tavily_search",
+        "priority": 1,
+        "invocation": "tool: tavily_search(query=QUERY, search_depth='basic', max_results=10)",
+        "strength": "AI摘要+结构化结果",
+        "free": false
+      },
+      {
+        "name": "web_search",
+        "priority": 2,
+        "invocation": "tool: web_search(query=QUERY, count=10)",
+        "strength": "通用搜索",
+        "free": true
+      },
+      {
+        "name": "TinyFish Search",
+        "priority": 3,
+        "invocation": "exec: curl -s -H 'X-API-Key: ${TINYFISH_API_KEY}' 'https://api.search.tinyfish.ai?query=QUERY'",
+        "strength": "免费备用",
+        "free": true
+      }
+    ]
+  },
+
+  "web_browse": {
+    "description": "浏览器自动化/JS渲染页面",
+    "tools": [
+      {
+        "name": "browser",
+        "priority": 1,
+        "invocation": "tool: browser(action='navigate', url=URL) → snapshot → act",
+        "strength": "完整浏览器控制，JS渲染",
+        "free": true
+      },
+      {
+        "name": "Scrapling",
+        "priority": 2,
+        "invocation": "exec: source venv-scrapling/bin/activate && python3 tools/scrapling_toutiao.py URL",
+        "strength": "反检测抓取框架",
+        "free": true
+      }
+    ]
+  },
+
+  "email_send": {
+    "description": "发送邮件",
+    "tools": [
+      {
+        "name": "send_mail.py",
+        "priority": 1,
+        "invocation": "exec: python3 tools/send_mail.py --to RECIPIENT --subject SUBJECT --body BODY",
+        "strength": "163.com SMTP，可带附件",
+        "free": true,
+        "notes": "发件人: 13350063319@163.com"
+      }
+    ]
+  },
+
+  "chart_generate": {
+    "description": "图表生成",
+    "tools": [
+      {
+        "name": "chart-image skill",
+        "priority": 1,
+        "invocation": "触发 chart-image skill",
+        "strength": "数据可视化",
+        "free": true
+      },
+      {
+        "name": "matplotlib/seaborn",
+        "priority": 2,
+        "invocation": "exec: python3 -c 'import matplotlib...'",
+        "strength": "Python原生成图",
+        "free": true
+      }
+    ]
+  },
+
+  "file_download": {
+    "description": "文件下载",
+    "tools": [
+      {
+        "name": "curl/wget",
+        "priority": 1,
+        "invocation": "exec: curl -L -o OUTPUT URL 或 wget URL",
+        "strength": "通用下载",
+        "free": true
+      },
+      {
+        "name": "yt-dlp",
+        "priority": 2,
+        "invocation": "exec: yt-dlp --write-sub --skip-download -o '/tmp/%(id)s' URL",
+        "strength": "视频/字幕下载(B站/YouTube)",
+        "free": true
+      }
+    ]
+  },
+
+  "pdf_process": {
+    "description": "PDF处理",
+    "tools": [
+      {
+        "name": "pdfplumber",
+        "priority": 1,
+        "invocation": "exec: python3 -c 'import pdfplumber; ...' 或 pdf 工具",
+        "strength": "文字提取+表格解析",
+        "free": true
+      },
+      {
+        "name": "pdf tool",
+        "priority": 2,
+        "invocation": "tool: pdf(pdf=PATH, prompt='...')",
+        "strength": "AI分析PDF内容",
+        "free": true
+      }
+    ]
+  },
+
+  "r_analysis": {
+    "description": "R统计分析",
+    "tools": [
+      {
+        "name": "RStudio Cloud",
+        "priority": 1,
+        "invocation": "通过 Posit Cloud API 远程执行R代码",
+        "strength": "完整R环境，25h/月免费",
+        "free": true,
+        "notes": "Client ID: E01AF7BAC2915CC6DEFE77A15408637100E16166F3991A13"
+      },
+      {
+        "name": "本地R",
+        "priority": 2,
+        "invocation": "exec: Rscript -e '...'",
+        "strength": "本地执行",
+        "free": true
+      }
+    ]
+  },
+
+  "gwas_data": {
+    "description": "GWAS数据查询",
+    "tools": [
+      {
+        "name": "OpenGWAS API",
+        "priority": 1,
+        "invocation": "exec: curl -H 'Authorization: Bearer JWT_TOKEN' 'https://api.opengwas.io/...'",
+        "strength": "IEU OpenGWAS数据查询",
+        "free": true,
+        "notes": "JWT见.env文件"
+      }
+    ]
+  },
+
+  "zotero_manage": {
+    "description": "文献库管理",
+    "tools": [
+      {
+        "name": "Zotero API",
+        "priority": 1,
+        "invocation": "exec: curl -H 'Zotero-API-Key: ${ZOTERO_API_KEY}' 'https://api.zotero.org/users/20502244/items'",
+        "strength": "文献库同步、导出、管理",
+        "free": true
+      }
+    ]
+  }
+}

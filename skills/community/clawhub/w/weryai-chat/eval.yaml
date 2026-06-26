@@ -1,0 +1,36 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 300
+  threshold: 0.8
+
+skill: weryai-chat
+trigger_tests:
+  - id: explicit-chat
+    should_trigger: true
+    prompt: "Use the weryai-chat skill to ask a WeryAI model a question and return the answer."
+  - id: explicit-models
+    should_trigger: true
+    prompt: "List the available WeryAI chat models and show their pricing."
+  - id: implicit-messages
+    should_trigger: true
+    prompt: "Send this messages array to the WeryAI chat completions API."
+  - id: negative-blog
+    should_trigger: false
+    prompt: "Write a publish-ready blog post about onboarding remote engineers."
+
+outcome_tests:
+  - id: package-layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "scripts/write.js"
+      - file_exists: "scripts/models.js"
+      - file_exists: "references/chat-api.md"
+  - id: doc-quality
+    type: llm_rubric
+    rubric: |
+      Scope fidelity (0-0.25): Does the skill stay focused on general chat rather than specialized writing deliverables?
+      Workflow clarity (0-0.25): Does it clearly explain when to use models.js versus write.js and how prompt versus messages input works?
+      Constraint honesty (0-0.25): Does it clearly state cost, dry-run support, and OpenAI-compatible message shape?
+      API fidelity (0-0.25): Are the documented request and response patterns faithful to the WeryAI chat APIs without inventing unsupported streaming or extra protocol features?

@@ -1,0 +1,92 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "youos"
+version = "0.2.0b20"
+description = "Your personal AI email copilot — learns your writing style from Gmail and drafts replies that sound like you."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "DrBaher" }]
+keywords = ["email", "drafting", "personal-ai", "local-model", "self-improving", "privacy", "apple-silicon", "mlx", "lora"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: MacOS :: MacOS X",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Communications :: Email",
+  "Topic :: Office/Business",
+]
+dependencies = [
+  "fastapi>=0.115,<1.0",
+  "uvicorn[standard]>=0.30,<1.0",
+  "pydantic>=2.8,<3.0",
+  "pydantic-settings>=2.4,<3.0",
+  "pyyaml>=6.0.2,<7.0",
+  "sqlmodel>=0.0.22,<0.1",
+  "httpx>=0.27,<1.0",
+  "python-dotenv>=1.0,<2.0",
+  "typer>=0.12,<1.0",
+  "rich>=13.0,<14.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3,<9.0",
+  "ruff>=0.6,<1.0",
+  "mypy>=1.11,<2.0"
+]
+# Cross-encoder reranker (off by default via `reranker_enabled: false` in
+# retrieval/defaults.yaml). Installing this extra is the precondition for
+# flipping that flag on — without it the reranker module logs a warning and
+# falls back to FTS+semantic order. See app/core/reranker.py.
+reranker = [
+  "sentence-transformers>=2.2,<4.0"
+]
+# Native Google-API ingestion backend (an alternative to the `gog`/`gws`
+# CLIs). Installing this extra is the precondition for
+# `ingestion.google_backend: native`; without it, NativeSource raises a clear
+# error pointing here. See app/ingestion/adapters.py (NativeSource).
+google = [
+  "google-api-python-client>=2.100,<3.0",
+  "google-auth-oauthlib>=1.2,<2.0",
+  "google-auth>=2.30,<3.0"
+]
+# Local model on Apple Silicon. MLX is the on-device generation/fine-tuning
+# engine — required for the local model, but Apple-Silicon-only, so it's an
+# extra rather than a base dep. `scripts/install.sh` installs it automatically
+# on Apple Silicon; without it, generation falls back to the cloud/Ollama model.
+mlx = [
+  "mlx-lm>=0.18,<1.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/DrBaher/youos"
+Repository = "https://github.com/DrBaher/youos"
+Changelog = "https://github.com/DrBaher/youos/blob/main/CHANGELOG.md"
+
+[project.scripts]
+youos = "app.cli:app"
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.ruff]
+line-length = 160
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

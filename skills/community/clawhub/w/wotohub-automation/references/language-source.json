@@ -1,0 +1,402 @@
+[
+  {
+    "dictValue": "英语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "en",
+    "orderNum": 1,
+    "id": 153206,
+    "extAttrs": "English"
+  },
+  {
+    "dictValue": "西班牙语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "es",
+    "orderNum": 2,
+    "id": 153207,
+    "extAttrs": "Spanish"
+  },
+  {
+    "dictValue": "葡萄牙语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "pt",
+    "orderNum": 3,
+    "id": 153208,
+    "extAttrs": "Portuguese"
+  },
+  {
+    "dictValue": "越南语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "vi",
+    "orderNum": 4,
+    "id": 153209,
+    "extAttrs": "Vietnamese"
+  },
+  {
+    "dictValue": "泰语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "th",
+    "orderNum": 5,
+    "id": 153210,
+    "extAttrs": "Thai"
+  },
+  {
+    "dictValue": "阿拉伯语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "ar",
+    "orderNum": 6,
+    "id": 153211,
+    "extAttrs": "Arabic"
+  },
+  {
+    "dictValue": "挪威语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "no",
+    "orderNum": 7,
+    "id": 153212,
+    "extAttrs": "Norwegian"
+  },
+  {
+    "dictValue": "罗马尼亚语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "ro",
+    "orderNum": 8,
+    "id": 153213,
+    "extAttrs": "Romanian"
+  },
+  {
+    "dictValue": "意大利语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "it",
+    "orderNum": 9,
+    "id": 153214,
+    "extAttrs": "Italian"
+  },
+  {
+    "dictValue": "俄语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "ru",
+    "orderNum": 10,
+    "id": 153215,
+    "extAttrs": "Russian"
+  },
+  {
+    "dictValue": "法语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "fr",
+    "orderNum": 11,
+    "id": 153216,
+    "extAttrs": "French"
+  },
+  {
+    "dictValue": "菲律宾语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "tl",
+    "orderNum": 12,
+    "id": 153217,
+    "extAttrs": "Tagalog"
+  },
+  {
+    "dictValue": "日语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "ja",
+    "orderNum": 13,
+    "id": 153218,
+    "extAttrs": "Japanese"
+  },
+  {
+    "dictValue": "威尔士语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "cy",
+    "orderNum": 14,
+    "id": 153219,
+    "extAttrs": "Welsh"
+  },
+  {
+    "dictValue": "土耳其语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "tr",
+    "orderNum": 15,
+    "id": 153220,
+    "extAttrs": "Turkish"
+  },
+  {
+    "dictValue": "加泰罗尼亚语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "ca",
+    "orderNum": 16,
+    "id": 153221,
+    "extAttrs": "Catalan"
+  },
+  {
+    "dictValue": "爱沙尼亚语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "et",
+    "orderNum": 17,
+    "id": 153222,
+    "extAttrs": "Estonian"
+  },
+  {
+    "dictValue": "德语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "de",
+    "orderNum": 18,
+    "id": 153223,
+    "extAttrs": "German"
+  },
+  {
+    "dictValue": "韩语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "ko",
+    "orderNum": 19,
+    "id": 153224,
+    "extAttrs": "Korean"
+  },
+  {
+    "dictValue": "瑞典语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "sv",
+    "orderNum": 20,
+    "id": 153225,
+    "extAttrs": "Swedish"
+  },
+  {
+    "dictValue": "索马里语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "so",
+    "orderNum": 21,
+    "id": 153226,
+    "extAttrs": "Somali"
+  },
+  {
+    "dictValue": "荷兰语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "nl",
+    "orderNum": 22,
+    "id": 153227,
+    "extAttrs": "Dutch"
+  },
+  {
+    "dictValue": "南非荷兰语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "af",
+    "orderNum": 23,
+    "id": 153228,
+    "extAttrs": "Afrikaans"
+  },
+  {
+    "dictValue": "丹麦语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "da",
+    "orderNum": 24,
+    "id": 153229,
+    "extAttrs": "Danish"
+  },
+  {
+    "dictValue": "波兰语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "pl",
+    "orderNum": 25,
+    "id": 153230,
+    "extAttrs": "Polish"
+  },
+  {
+    "dictValue": "芬兰语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "fi",
+    "orderNum": 26,
+    "id": 153231,
+    "extAttrs": "Finnish"
+  },
+  {
+    "dictValue": "孟加拉语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "bn",
+    "orderNum": 27,
+    "id": 153232,
+    "extAttrs": "Bengali"
+  },
+  {
+    "dictValue": "克罗地亚语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "hr",
+    "orderNum": 28,
+    "id": 153233,
+    "extAttrs": "Croatian"
+  },
+  {
+    "dictValue": "斯洛文尼亚语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "sl",
+    "orderNum": 29,
+    "id": 153234,
+    "extAttrs": "Slovenian"
+  },
+  {
+    "dictValue": "印地语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "hi",
+    "orderNum": 30,
+    "id": 153235,
+    "extAttrs": "Hindi"
+  },
+  {
+    "dictValue": "阿尔巴尼亚语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "sq",
+    "orderNum": 31,
+    "id": 153236,
+    "extAttrs": "Albanian"
+  },
+  {
+    "dictValue": "波斯语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "fa",
+    "orderNum": 32,
+    "id": 153237,
+    "extAttrs": "Persian"
+  },
+  {
+    "dictValue": "乌克兰语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "uk",
+    "orderNum": 33,
+    "id": 153238,
+    "extAttrs": "Ukrainian"
+  },
+  {
+    "dictValue": "保加利亚语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "bg",
+    "orderNum": 34,
+    "id": 153239,
+    "extAttrs": "Bulgarian"
+  },
+  {
+    "dictValue": "匈牙利语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "hu",
+    "orderNum": 35,
+    "id": 153240,
+    "extAttrs": "Hungarian"
+  },
+  {
+    "dictValue": "捷克语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "cs",
+    "orderNum": 36,
+    "id": 153241,
+    "extAttrs": "Czech"
+  },
+  {
+    "dictValue": "希伯来语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "he",
+    "orderNum": 37,
+    "id": 153242,
+    "extAttrs": "Hebrew"
+  },
+  {
+    "dictValue": "中文（简体）",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "zh-cn",
+    "orderNum": 38,
+    "id": 153243,
+    "extAttrs": "Chinese (Simplified)"
+  },
+  {
+    "dictValue": "中文（繁体）",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "zh-tw",
+    "orderNum": 39,
+    "id": 153244,
+    "extAttrs": "Chinese (Traditional)"
+  },
+  {
+    "dictValue": "希腊语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "el",
+    "orderNum": 40,
+    "id": 153245,
+    "extAttrs": "Greek"
+  },
+  {
+    "dictValue": "拉脱维亚语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "lv",
+    "orderNum": 41,
+    "id": 153246,
+    "extAttrs": "Latvian"
+  },
+  {
+    "dictValue": "马其顿语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "mk",
+    "orderNum": 42,
+    "id": 153247,
+    "extAttrs": "Macedonian"
+  },
+  {
+    "dictValue": "泰米尔语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "ta",
+    "orderNum": 43,
+    "id": 153248,
+    "extAttrs": "Tamil"
+  },
+  {
+    "dictValue": "尼泊尔语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "ne",
+    "orderNum": 44,
+    "id": 153249,
+    "extAttrs": "Nepali"
+  },
+  {
+    "dictValue": "马拉地语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "mr",
+    "orderNum": 45,
+    "id": 153250,
+    "extAttrs": "Marathi"
+  },
+  {
+    "dictValue": "乌尔都语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "ur",
+    "orderNum": 46,
+    "id": 153251,
+    "extAttrs": "Urdu"
+  },
+  {
+    "dictValue": "马拉雅拉姆语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "ml",
+    "orderNum": 47,
+    "id": 153252,
+    "extAttrs": "Malayalam"
+  },
+  {
+    "dictValue": "泰卢固语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "te",
+    "orderNum": 48,
+    "id": 153253,
+    "extAttrs": "Telugu"
+  },
+  {
+    "dictValue": "古吉拉特语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "gu",
+    "orderNum": 49,
+    "id": 153254,
+    "extAttrs": "Gujarati"
+  },
+  {
+    "dictValue": "卡纳达语",
+    "dictTypeCode": "dim_blog_lang",
+    "dictCode": "kn",
+    "orderNum": 50,
+    "id": 153255,
+    "extAttrs": "Kannada"
+  }
+]

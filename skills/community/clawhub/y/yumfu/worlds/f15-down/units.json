@@ -1,0 +1,428 @@
+{
+  "units": [
+    {
+      "id": "f35_stealth_fighter",
+      "name": "F-35 Lightning II",
+      "name_zh": "F-35闪电II战斗机",
+      "type": "air",
+      "class": "stealth_multirole_fighter",
+      "factions": ["western_alliance", "phoenix_state"],
+      
+      "stats": {
+        "combat_power": 95,
+        "stealth": 98,
+        "range": 2200,
+        "speed": 1900,
+        "cost": 100000
+      },
+      
+      "capabilities": [
+        "air_superiority",
+        "precision_strike",
+        "electronic_warfare",
+        "intelligence_gathering"
+      ],
+      
+      "weaknesses": [
+        "high_maintenance",
+        "expensive_operations",
+        "limited_payload"
+      ]
+    },
+    
+    {
+      "id": "shahed_drone",
+      "name": "Shahed-136 Loitering Munition",
+      "name_zh": "见证者-136巡飞弹",
+      "type": "air",
+      "class": "kamikaze_drone",
+      "factions": ["mountain_republic"],
+      
+      "stats": {
+        "combat_power": 60,
+        "stealth": 40,
+        "range": 2500,
+        "speed": 185,
+        "cost": 20
+      },
+      
+      "capabilities": [
+        "swarm_attack",
+        "cheap_mass_production",
+        "infrastructure_targeting",
+        "saturation_tactics"
+      ],
+      
+      "weaknesses": [
+        "slow_speed",
+        "low_stealth",
+        "vulnerable_to_air_defense"
+      ],
+      
+      "notes": "Used in Sky Fall attack (Day 7). 12 hit targets, 3 shot down."
+    },
+    
+    {
+      "id": "falcon_commandos",
+      "name": "Falcon Special Forces",
+      "name_zh": "猎鹰特种部队",
+      "type": "ground",
+      "class": "elite_special_forces",
+      "factions": ["phoenix_state"],
+      
+      "stats": {
+        "combat_power": 98,
+        "stealth": 95,
+        "mobility": 85,
+        "training": 99,
+        "cost": 50000
+      },
+      
+      "capabilities": [
+        "hostage_rescue",
+        "deep_infiltration",
+        "assassination",
+        "intelligence_gathering",
+        "precision_raids"
+      ],
+      
+      "weaknesses": [
+        "small_numbers",
+        "high_risk_operations",
+        "political_fallout_if_captured"
+      ],
+      
+      "notes": "Conducted Shadow Raid (Day 21) hostage rescue. 2 saved, 1 KIA."
+    },
+    
+    {
+      "id": "highland_corps_quds",
+      "name": "Highland Corps Quds Force",
+      "name_zh": "高地军团圣城旅",
+      "type": "ground",
+      "class": "elite_special_operations",
+      "factions": ["mountain_republic"],
+      
+      "stats": {
+        "combat_power": 85,
+        "stealth": 90,
+        "mobility": 80,
+        "training": 88,
+        "cost": 30000
+      },
+      
+      "capabilities": [
+        "proxy_warfare",
+        "unconventional_tactics",
+        "regional_influence",
+        "asymmetric_operations"
+      ],
+      
+      "weaknesses": [
+        "international_sanctions",
+        "limited_tech_access"
+      ],
+      
+      "notes": "Commander Hassan al-Qamar eliminated in Viper Strike (Day 1)."
+    },
+    
+    {
+      "id": "patriot_battery",
+      "name": "MIM-104 Patriot",
+      "name_zh": "爱国者导弹系统",
+      "type": "air_defense",
+      "class": "long_range_sam",
+      "factions": ["western_alliance", "desert_kingdom", "gulf_emirates"],
+      
+      "stats": {
+        "combat_power": 85,
+        "range": 160,
+        "accuracy": 90,
+        "reload_time": 30,
+        "cost": 150000
+      },
+      
+      "capabilities": [
+        "ballistic_missile_defense",
+        "aircraft_interception",
+        "cruise_missile_defense"
+      ],
+      
+      "weaknesses": [
+        "expensive_interceptors",
+        "limited_magazine",
+        "radar_visibility"
+      ]
+    },
+    
+    {
+      "id": "steel_shield",
+      "name": "Steel Shield Air Defense",
+      "name_zh": "钢盾防空系统",
+      "type": "air_defense",
+      "class": "layered_defense",
+      "factions": ["phoenix_state"],
+      
+      "stats": {
+        "combat_power": 92,
+        "range": 70,
+        "accuracy": 95,
+        "reload_time": 15,
+        "cost": 200000
+      },
+      
+      "capabilities": [
+        "short_range_interception",
+        "drone_swarm_defense",
+        "rocket_artillery_defense",
+        "multi_layer_protection"
+      ],
+      
+      "weaknesses": [
+        "saturation_vulnerability",
+        "high_operational_cost"
+      ],
+      
+      "notes": "Real-world Iron Dome equivalent. Crucial for PS survival."
+    },
+    
+    {
+      "id": "ballistic_missile",
+      "name": "Medium-Range Ballistic Missile",
+      "name_zh": "中程弹道导弹",
+      "type": "strategic",
+      "class": "surface_to_surface_missile",
+      "factions": ["mountain_republic"],
+      
+      "stats": {
+        "combat_power": 90,
+        "range": 2000,
+        "payload": 1000,
+        "accuracy": 50,
+        "cost": 80000
+      },
+      
+      "capabilities": [
+        "strategic_deterrence",
+        "infrastructure_strikes",
+        "terror_weapon",
+        "retaliation_capability"
+      ],
+      
+      "weaknesses": [
+        "limited_accuracy",
+        "long_launch_preparation",
+        "vulnerable_launch_sites",
+        "international_backlash"
+      ]
+    },
+    
+    {
+      "id": "carrier_strike_group",
+      "name": "Aircraft Carrier Strike Group",
+      "name_zh": "航母战斗群",
+      "type": "naval",
+      "class": "capital_ship_formation",
+      "factions": ["western_alliance"],
+      
+      "stats": {
+        "combat_power": 100,
+        "range": 5000,
+        "aircraft": 75,
+        "escorts": 8,
+        "cost": 5000000
+      },
+      
+      "capabilities": [
+        "power_projection",
+        "air_superiority",
+        "cruise_missile_strikes",
+        "amphibious_operations",
+        "sea_control"
+      ],
+      
+      "weaknesses": [
+        "vulnerable_to_swarm_attacks",
+        "high_value_target",
+        "limited_maneuverability"
+      ],
+      
+      "notes": "USS Endeavor deployed in Azure Strait."
+    },
+    
+    {
+      "id": "cyber_warfare_unit",
+      "name": "Cyber Warfare Division",
+      "name_zh": "网络战部队",
+      "type": "cyber",
+      "class": "electronic_warfare",
+      "factions": ["all"],
+      
+      "stats": {
+        "combat_power": 75,
+        "stealth": 99,
+        "speed": 100,
+        "cost": 100000
+      },
+      
+      "capabilities": [
+        "infrastructure_disruption",
+        "communications_jamming",
+        "intelligence_gathering",
+        "propaganda_warfare",
+        "drone_hijacking"
+      ],
+      
+      "weaknesses": [
+        "attribution_challenges",
+        "limited_physical_damage",
+        "international_law_gray_zone"
+      ]
+    },
+    
+    {
+      "id": "proxy_militia",
+      "name": "Proxy Militia Group",
+      "name_zh": "代理民兵组织",
+      "type": "ground",
+      "class": "irregular_forces",
+      "factions": ["mountain_republic"],
+      
+      "stats": {
+        "combat_power": 50,
+        "stealth": 70,
+        "mobility": 60,
+        "training": 40,
+        "cost": 5000
+      },
+      
+      "capabilities": [
+        "deniable_operations",
+        "asymmetric_warfare",
+        "human_shield_tactics",
+        "kidnapping",
+        "guerrilla_warfare"
+      ],
+      
+      "weaknesses": [
+        "low_discipline",
+        "unreliable",
+        "war_crimes_liability"
+      ],
+      
+      "notes": "Used in Border Town hostage incident (Day 21)."
+    },
+    
+    {
+      "id": "stealth_bomber",
+      "name": "B-21 Raider",
+      "name_zh": "B-21突袭者轰炸机",
+      "type": "air",
+      "class": "strategic_bomber",
+      "factions": ["western_alliance"],
+      
+      "stats": {
+        "combat_power": 98,
+        "stealth": 99,
+        "range": 10000,
+        "payload": 15000,
+        "cost": 500000
+      },
+      
+      "capabilities": [
+        "deep_penetration_strikes",
+        "bunker_busting",
+        "nuclear_capability",
+        "strategic_deterrence"
+      ],
+      
+      "weaknesses": [
+        "extremely_expensive",
+        "limited_numbers",
+        "high_political_cost"
+      ],
+      
+      "notes": "Used in Thunder Response (Day 14) to hit Highland Fortress."
+    },
+    
+    {
+      "id": "attack_submarine",
+      "name": "Virginia-class Attack Submarine",
+      "name_zh": "弗吉尼亚级攻击潜艇",
+      "type": "naval",
+      "class": "submarine",
+      "factions": ["western_alliance", "eastern_coalition"],
+      
+      "stats": {
+        "combat_power": 90,
+        "stealth": 95,
+        "range": 10000,
+        "weapons": 40,
+        "cost": 800000
+      },
+      
+      "capabilities": [
+        "surveillance",
+        "cruise_missile_strikes",
+        "anti_ship_warfare",
+        "special_operations_insertion"
+      ],
+      
+      "weaknesses": [
+        "slow_transit",
+        "vulnerable_in_shallow_water",
+        "limited_surface_support"
+      ]
+    },
+    
+    {
+      "id": "anti_ship_missile",
+      "name": "Hypersonic Anti-Ship Missile",
+      "name_zh": "高超音速反舰导弹",
+      "type": "naval",
+      "class": "cruise_missile",
+      "factions": ["mountain_republic", "eastern_coalition"],
+      
+      "stats": {
+        "combat_power": 85,
+        "range": 600,
+        "speed": 8000,
+        "stealth": 60,
+        "cost": 50000
+      },
+      
+      "capabilities": [
+        "carrier_killer",
+        "area_denial",
+        "swarm_attacks"
+      ],
+      
+      "weaknesses": [
+        "untested_in_combat",
+        "complex_targeting",
+        "limited_inventory"
+      ],
+      
+      "notes": "MR's asymmetric answer to WA carrier groups."
+    }
+  ],
+  
+  "unit_categories": {
+    "air": ["f35_stealth_fighter", "shahed_drone", "stealth_bomber"],
+    "ground": ["falcon_commandos", "highland_corps_quds", "proxy_militia"],
+    "naval": ["carrier_strike_group", "attack_submarine", "anti_ship_missile"],
+    "air_defense": ["patriot_battery", "steel_shield"],
+    "strategic": ["ballistic_missile"],
+    "cyber": ["cyber_warfare_unit"]
+  },
+  
+  "unit_interactions": {
+    "counters": {
+      "shahed_drone": ["steel_shield", "patriot_battery"],
+      "ballistic_missile": ["patriot_battery"],
+      "carrier_strike_group": ["anti_ship_missile", "attack_submarine"],
+      "stealth_bomber": ["advanced_air_defense"],
+      "proxy_militia": ["falcon_commandos", "intelligence_operations"]
+    }
+  }
+}

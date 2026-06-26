@@ -1,0 +1,26 @@
+Subject: 🎉 {{offer}} - Limited Time Only!
+
+Hi {{first_name}},
+
+Great news! We're offering {{discount}} on {{product_category}}.
+
+✨ What you get:
+• Premium quality products
+• Fast shipping
+• Excellent customer service
+• 30-day money-back guarantee
+
+⏰ Offer expires: {{expiry_date}}
+
+👉 Shop Now: {{shop_link}}
+
+Questions? Reply to this email!
+
+Best regards,
+{{store_name}} Team
+
+---
+ Taobao Store: {{taobao_link}}
+ Douyin Store: {{douyin_link}}
+
+Unsubscribe: {{unsubscribe_link}}

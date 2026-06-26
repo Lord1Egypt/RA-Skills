@@ -1,35 +1,52 @@
----
-name: "Agent Metacognition"
-description: "Enables agents to self-monitor execution, reflect on tasks, analyze errors, and adjust learning strategies through metacognitive processes."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yuyonghao-agent-metacognition"
-sourceUrl: "https://clawhub.ai/skills/yuyonghao-agent-metacognition"
----
-
 # Agent Metacognition
 
-> Enables agents to self-monitor execution, reflect on tasks, analyze errors, and adjust learning strategies through metacognitive processes.
+元认知系统，使 Agent 具备自我监控、反思能力和学习策略调整能力。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yuyonghao-agent-metacognition`
-- **Source URL:** [https://clawhub.ai/skills/yuyonghao-agent-metacognition](https://clawhub.ai/skills/yuyonghao-agent-metacognition)
+## 功能特性
 
-## Overview
+### 1. 自我监控
+- 执行状态监控
+- 决策过程追踪
+- 置信度评估
 
+### 2. 反思能力
+- 执行后反思
+- 错误分析
+- 经验积累
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 安装
+
 ```bash
-hermes skills install clawhub/yuyonghao-agent-metacognition
+npm install
 ```
+
+## 使用方法
+
+### MetacognitionSystem
+
+```javascript
+const { MetacognitionSystem } = require('./src');
+
+const meta = new MetacognitionSystem();
+
+// 监控执行
+const result = await meta.monitorExecution(async () => {
+  return await agent.process(task);
+}, { taskId: 'task-1' });
+
+// 反思
+const reflection = await meta.reflect('task-1');
+
+// 获取状态
+const state = meta.getMetacognitiveState();
+```
+
+## 测试
+
+```bash
+npm test
+```
+
+## License
+
+MIT

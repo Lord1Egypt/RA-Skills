@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF导出工具</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body {
+  width:100%; height:100%;
+  background:#0a0a1a;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  font-family:'Times New Roman', serif;
+  color:#fff;
+}
+#container {
+  width:960px; height:540px;
+  border:1px solid #333;
+  overflow:hidden;
+  background:#000;
+}
+iframe {
+  width:100%; height:100%;
+  border:none;
+  display:block;
+  transform-origin:top left;
+}
+#controls {
+  margin-top:20px;
+  text-align:center;
+}
+#controls h2 { font-size:20px; color:#ffc300; margin-bottom:8px; }
+#controls p { font-size:13px; color:#8ecae6; line-height:1.7; }
+.key {
+  display:inline-block;
+  background:#001d3d;
+  border:1px solid #ffc300;
+  border-radius:4px;
+  padding:2px 8px;
+  font-size:12px;
+  color:#ffc300;
+  font-family:monospace;
+}
+</style>
+</head>
+<body>
+<div id="container">
+  <iframe id="frame" src="TARGET_URL"></iframe>
+</div>
+<div id="controls">
+  <h2>PDF 导出工具</h2>
+  <p>
+    按 <span class="key">Ctrl + P</span>（Mac: <span class="key">Cmd + P</span>）打开打印窗口<br>
+    打印机选择 <strong>"另存为 PDF"</strong>，点击保存
+  </p>
+</div>
+<script>
+(function() {
+  // Auto-scale iframe to fit 960x540
+  function scaleFrame() {
+    var frame = document.getElementById('frame');
+    var container = document.getElementById('container');
+    if (!frame || !container) return;
+    var scaleX = container.clientWidth / 960;
+    var scaleY = container.clientHeight / 540;
+    var scale = Math.min(scaleX, scaleY);
+    frame.style.width = '960px';
+    frame.style.height = '540px';
+    frame.style.transform = 'scale(' + scale + ')';
+    frame.style.transformOrigin = 'top left';
+  }
+  window.addEventListener('load', scaleFrame);
+  window.addEventListener('resize', scaleFrame);
+  
+  // Override title with URL param if provided
+  var params = new URLSearchParams(window.location.search);
+  var title = params.get('title');
+  if (title) document.title = decodeURIComponent(title);
+  
+  var targetUrl = params.get('url');
+  if (targetUrl) {
+    document.getElementById('frame').src = decodeURIComponent(targetUrl);
+  }
+})();
+</script>
+</body>
+</html>

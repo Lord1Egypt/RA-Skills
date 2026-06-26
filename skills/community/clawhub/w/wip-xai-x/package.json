@@ -1,0 +1,38 @@
+{
+  "name": "@wipcomputer/wip-xai-x",
+  "version": "1.0.4",
+  "description": "X Platform API. Sensor (read posts, search, bookmarks) + Actuator (post tweets, upload media).",
+  "type": "module",
+  "main": "core.mjs",
+  "bin": {
+    "wip-xai-x": "./cli.mjs"
+  },
+  "exports": {
+    ".": "./core.mjs",
+    "./cli": "./cli.mjs",
+    "./auth": "./auth.mjs"
+  },
+  "scripts": {
+    "test": "node -e \"import('./core.mjs').then(m => console.log('Exports:', Object.keys(m).join(', ')))\""
+  },
+  "keywords": [
+    "x",
+    "twitter",
+    "api",
+    "sensor",
+    "actuator",
+    "mcp",
+    "agent"
+  ],
+  "author": "Parker Todd Brooks",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wipcomputer/wip-xai-x.git"
+  },
+  "homepage": "https://github.com/wipcomputer/wip-xai-x",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "@xdevplatform/xdk": "^0.4.0"
+  }
+}

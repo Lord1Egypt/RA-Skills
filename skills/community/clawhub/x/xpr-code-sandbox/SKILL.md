@@ -1,35 +1,30 @@
 ---
-name: "XPR Code Sandbox"
-description: "Execute JavaScript code in a secure sandbox for data processing, computation, and quick expression evaluation without network or filesystem access."
-category: "software-development"
-source: "ClawHub"
-tags: [code, javascript, sandbox, xpr]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xpr-code-sandbox"
-sourceUrl: "https://clawhub.ai/skills/xpr-code-sandbox"
+name: code-sandbox
+description: Execute JavaScript code in a sandboxed VM for data processing and computation
 ---
 
-# XPR Code Sandbox
+## Code Sandbox
 
-> Execute JavaScript code in a secure sandbox for data processing, computation, and quick expression evaluation without network or filesystem access.
+You have sandboxed JavaScript execution tools for computation and data processing:
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xpr-code-sandbox`
-- **Source URL:** [https://clawhub.ai/skills/xpr-code-sandbox](https://clawhub.ai/skills/xpr-code-sandbox)
+**Full scripts:**
+- `execute_js` — run JavaScript code in an isolated V8 sandbox
+  - Pass data via the `input` parameter (JSON) — access it as `INPUT` in your code
+  - Use `console.log()` to capture intermediate values (returned in `logs` array)
+  - Available globals: `JSON`, `Math`, `Date`, `Array`, `Object`, `String`, `Number`, `RegExp`, `Map`, `Set`, `parseInt`, `parseFloat`, `isNaN`, `isFinite`, `encodeURIComponent`, `decodeURIComponent`, `atob`, `btoa`
+  - No network access, no filesystem, no imports — pure computation only
+  - Default timeout 5 seconds, max 30 seconds
+  - 10MB output limit
 
-## Overview
+**Quick expressions:**
+- `eval_expression` — evaluate a single JavaScript expression and return the result
+  - Use for quick math: `"15 * 4500 * 0.01"` → `675`
+  - Date calculations: `"new Date().toISOString()"`
+  - Array operations: `"[1,2,3].map(x => x*x)"` → `[1, 4, 9]`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xpr-code-sandbox
-```
+**Best practices:**
+- Use `execute_js` for multi-step data processing, algorithm testing, code validation
+- Use `eval_expression` for quick math, string ops, date calculations
+- Pass large datasets via `input` parameter rather than embedding in code
+- Combine with `parse_csv` (structured-data skill) for CSV → transform → output workflows
+- Combine with `store_deliverable` to save computed results as job evidence

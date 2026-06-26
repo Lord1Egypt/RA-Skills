@@ -1,0 +1,6 @@
+interface:
+  display_name: "x402geo-skill"
+  short_description: "SEO and GEO optimization for search and AI visibility"
+  default_prompt: "Use $x402geo-skill for SEO, GEO, schema markup, and keyword research tasks."
+policy:
+  allow_implicit_invocation: false

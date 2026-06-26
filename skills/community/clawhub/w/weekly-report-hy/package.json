@@ -1,0 +1,38 @@
+{
+  "name": "weekly-report-hy",
+  "version": "1.0.0",
+  "description": "周报生成工具 - 将零散的工作记录整理为格式规范、表述专业的中文周报。支持智能分类、专业化润色、多场景适配。",
+  "main": "SKILL.md",
+  "scripts": {
+    "start": "echo 'See SKILL.md for usage instructions'"
+  },
+  "keywords": [
+    "weekly-report",
+    "report",
+    "chinese",
+    "work-report",
+    "周报",
+    "周总结",
+    "工作汇报",
+    "weekly-summary"
+  ],
+  "author": "cryptocxf",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cryptocxf/weekly-report-hy.git"
+  },
+  "homepage": "https://clawhub.ai/cryptocxf/weekly-report-hy",
+  "bugs": {
+    "url": "https://github.com/cryptocxf/weekly-report-hy/issues"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "os": ["win32", "darwin", "linux"],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "skill-card.md"
+  ]
+}

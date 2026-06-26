@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "owner": {
+    "name": "",
+    "agent_name": "",
+    "title": "",
+    "one_liner": ""
+  },
+  "current_focus": [],
+  "background": "",
+  "personal_notes": "",
+  "links": {},
+  "tiers": {
+    "public": {
+      "fields": ["name", "title", "one_liner", "links"]
+    },
+    "full": null,
+    "close": null
+  },
+  "published_at": null,
+  "updated_at": ""
+}

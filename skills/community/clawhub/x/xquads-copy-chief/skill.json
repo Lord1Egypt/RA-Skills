@@ -1,0 +1,24 @@
+{
+  "name": "xquads-copy-chief",
+  "version": "1.0.0",
+  "description": "Orquestrador do Copy Squad - Diagnostica e roteia para 22 copywriters lendários",
+  "openclaw": {
+    "homepage": "https://github.com/synkra/xquads",
+    "emoji": "✍️"
+  },
+  "triggers": ["copy", "headline", "sales letter", "email", "VSL", "funnel", "offer", "ad copy"],
+  "specialists": {
+    "headlines": "eugene-schwartz",
+    "sales-letter": "gary-halbert",
+    "email-sequence": "andre-chaperon",
+    "vsl-script": "stefan-georgi",
+    "webinar": "russell-brunson",
+    "offer": "dan-kennedy",
+    "funnel": "russell-brunson",
+    "bullets": "gary-bencivenga",
+    "ad-copy": "frank-kern",
+    "launch": "jeff-walker",
+    "daily-email": "ben-settle",
+    "premium": "david-ogilvy"
+  }
+}

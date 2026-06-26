@@ -1,0 +1,209 @@
+# 修仙类目标模板
+
+## 终极目标模板
+
+ultimate_goals:
+  - id: "ultimate_cultivation_001"
+    title: "成就无上大道"
+    description: "突破修仙极限，证道长生"
+    theme: "cultivation"
+    totalPhases: 5
+    phases:
+      - phase: 1
+        name: "筑基之路"
+        description: "从凡人到筑基，踏入修仙之门"
+      - phase: 2
+        name: "金丹大道"
+        description: "凝结金丹，成就一方强者"
+      - phase: 3
+        name: "元婴突破"
+        description: "元婴出窍，掌握生死之力"
+      - phase: 4
+        name: "化神之路"
+        description: "感悟天地法则，踏入化神之境"
+      - phase: 5
+        name: "渡劫飞升"
+        description: "渡过天劫，证得大道"
+
+  - id: "ultimate_cultivation_002"
+    title: "重建宗门"
+    description: "振兴没落宗门，重回巅峰"
+    theme: "cultivation"
+    totalPhases: 4
+
+  - id: "ultimate_cultivation_003"
+    title: "寻父之路"
+    description: "寻找失踪的父亲，揭开身世之谜"
+    theme: "mystery"
+    totalPhases: 4
+
+## 阶段目标模板
+
+phase_goals:
+  # 筑基期目标
+  - id: "phase_breakthrough_jichu"
+    title: "突破筑基"
+    description: "积累灵气，准备筑基丹，寻找灵地突破"
+    theme: "cultivation"
+    difficulty: 3
+    requirements:
+      - type: "cultivation"
+        target: "练气巅峰"
+      - type: "item"
+        target: "筑基丹"
+        count: 1
+      - type: "location"
+        target: "灵气充沛之地"
+    milestones:
+      - "达到练气巅峰"
+      - "获得筑基丹"
+      - "找到灵地"
+      - "成功突破"
+    rewards:
+      cultivation: "筑基初期"
+      stats:
+        hp: 500
+        mp: 1000
+
+  # 金丹期目标
+  - id: "phase_breakthrough_jindan"
+    title: "凝结金丹"
+    description: "积累底蕴，寻找金丹机缘"
+    theme: "cultivation"
+    difficulty: 5
+    requirements:
+      - type: "cultivation"
+        target: "筑基巅峰"
+      - type: "comprehension"
+        target: "功法大成"
+      - type: "opportunity"
+        target: "金丹机缘"
+    milestones:
+      - "达到筑基巅峰"
+      - "功法修炼大成"
+      - "获得金丹机缘"
+      - "凝结金丹成功"
+
+  # 元婴期目标
+  - id: "phase_breakthrough_yuanying"
+    title: "元婴出窍"
+    description: "碎丹成婴，踏入元婴之境"
+    theme: "cultivation"
+    difficulty: 7
+    requirements:
+      - type: "cultivation"
+        target: "金丹巅峰"
+      - type: "soul"
+        target: "神识强大"
+      - type: "danger"
+        target: "渡过心魔劫"
+    milestones:
+      - "达到金丹巅峰"
+      - "神识突破万里"
+      - "克服心魔"
+      - "元婴成形"
+
+  # 功法修炼目标
+  - id: "phase_skill_mastery"
+    title: "功法大成"
+    description: "将{skill_name}修炼至大成境界"
+    theme: "cultivation"
+    difficulty: 4
+    requirements:
+      - type: "comprehension"
+        target: "功法理解"
+      - type: "practice"
+        target: "实战历练"
+    milestones:
+      - "入门篇修炼完成"
+      - "小成境界"
+      - "大成境界"
+
+  # 秘境探索目标
+  - id: "phase_secret_realm"
+    title: "探索{realm_name}"
+    description: "进入秘境，获取传承或宝物"
+    theme: "cultivation"
+    difficulty: 6
+    requirements:
+      - type: "cultivation"
+        minLevel: "筑基中期"
+      - type: "item"
+        target: "秘境令牌"
+    milestones:
+      - "获得进入资格"
+      - "通过第一重试炼"
+      - "通过第二重试炼"
+      - "获取传承/宝物"
+      - "安全离开"
+
+## 小目标模板
+
+milestones:
+  - id: "milestone_learn_skill"
+    title: "学习{skill_name}"
+    description: "获得并学习一门新功法"
+    turnsToComplete: 5
+    requirements:
+      - type: "item"
+        target: "功法秘籍"
+      - type: "cultivation"
+        minLevel: "required_level"
+
+  - id: "milestone_gather_resources"
+    title: "收集修炼资源"
+    description: "收集{resource_name}用于修炼"
+    turnsToComplete: 3
+    requirements:
+      - type: "item"
+        target: "resource_name"
+        count: "required_count"
+
+  - id: "milestone_find_location"
+    title: "寻找{location_name}"
+    description: "探索并找到该地点"
+    turnsToComplete: 2
+    requirements:
+      - type: "info"
+        target: "地点线索"
+
+  - id: "milestone_defeat_enemy"
+    title: "击败{enemy_name}"
+    description: "在战斗中击败该敌人"
+    turnsToComplete: 1
+    requirements:
+      - type: "combat"
+        target: "enemy_id"
+
+  - id: "milestone_complete_quest"
+    title: "完成任务：{quest_name}"
+    description: "完成指定的任务"
+    turnsToComplete: 5
+    requirements:
+      - type: "quest"
+        target: "quest_id"
+
+## 日常目标模板
+
+daily_goals:
+  - id: "daily_cultivation"
+    title: "日常修炼"
+    description: "进行基础修炼，稳步提升修为"
+    turnsToComplete: 1
+    rewards:
+      cultivation: "微量提升"
+
+  - id: "daily_gather_herbs"
+    title: "采集灵草"
+    description: "在指定地点采集灵草"
+    turnsToComplete: 1
+    rewards:
+      items: ["灵草"]
+
+  - id: "daily_sect_task"
+    title: "宗门任务"
+    description: "完成宗门分配的日常任务"
+    turnsToComplete: 1
+    rewards:
+      gold: 50
+      reputation: 5

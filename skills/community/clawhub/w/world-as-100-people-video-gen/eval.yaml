@@ -1,0 +1,29 @@
+version: "1"
+defaults:
+  trials: 5
+  timeout: 600
+  threshold: 0.8
+skill: "world-as-100-people-video-gen"
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use world-as-100-people-video-gen to produce a vertical infographic-style clip with timed English stat lines."
+  - id: implicit-domain
+    should_trigger: true
+    prompt: "If the world were 100 people—animated icons, fast demographic shifts, punchline stat, 9:16 with burned-in English captions."
+  - id: implicit-paraphrase
+    should_trigger: true
+    prompt: "I want a demographic explainer for Shorts: shrink-Earth hook, three morphing stat beats, one killer line at the end—all subtitled."
+  - id: negative-control
+    should_trigger: false
+    prompt: "Fix this React useEffect dependency warning."
+outcome_tests:
+  - id: layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "eval.yaml"
+  - id: prompt-expansion-required
+    type: llm_rubric
+    rubric: |
+      SKILL.md must mandate prompt expansion, hook/middle/punchline subtitle structure with duration scaling, and WeryAI workflow with confirmation.

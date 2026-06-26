@@ -1,0 +1,7 @@
+interface:
+  display_name: "去哪不挤"
+  short_description: "节假日前判断默认路线值不值，并给出更优替代方案"
+  default_prompt: "Use $where-not-crowded-report to judge whether a holiday travel default choice is worth it, explain the crowd and cost risks, and produce a direct markdown decision report plus a local HTML output."
+
+policy:
+  allow_implicit_invocation: true

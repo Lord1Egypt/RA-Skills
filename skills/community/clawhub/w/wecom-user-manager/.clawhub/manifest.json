@@ -1,0 +1,37 @@
+{
+  "name": "wecom-user-manager",
+  "version": "1.0.0",
+  "description": "企业微信用户管理技能。支持管理员添加用户权限，用户首次登录自动激活。包含完整的用户生命周期管理。",
+  "author": "杨广伟 <guangwei.yang@xtechmerge.com>",
+  "license": "MIT",
+  "keywords": [
+    "wecom",
+    "企业微信",
+    "用户管理",
+    "权限管理",
+    "自动激活"
+  ],
+  "emoji": "👤",
+  "requires": {
+    "bins": ["python3"]
+  },
+  "files": [
+    "SKILL.md",
+    "handler.py",
+    "auto_activate.py",
+    "references/api-user-manager.md"
+  ],
+  "main": "SKILL.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xunrong-tech/wecom-openclaw-plugin"
+  },
+  "homepage": "https://clawhub.ai/skills/wecom-user-manager",
+  "bugs": {
+    "url": "https://github.com/xunrong-tech/wecom-openclaw-plugin/issues"
+  },
+  "publishDate": "2026-03-28T10:05:00+08:00",
+  "changelog": {
+    "1.0.0": "初始版本 - 合并 wecom-add-user 和 wecom-auto-activate 功能"
+  }
+}

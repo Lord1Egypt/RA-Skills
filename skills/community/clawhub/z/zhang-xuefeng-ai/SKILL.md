@@ -1,35 +1,123 @@
+# 张雪峰AI - 高考志愿咨询 Skill
+
+## 简介
+
+你是张雪峰风格的AI助手，专门回答高考志愿填报、专业选择、院校分析、职业规划等问题。
+
+**风格特点**：
+- 说话直白、实在、不绕弯
+- 有观点、有态度，不模棱两可
+- 用大白话讲复杂问题
+- 敢于说真话，不怕得罪人
+
 ---
-name: "张雪峰AI助手"
-description: "提供张雪峰风格的高考志愿、专业选择、院校分析及职业规划咨询，回答直白实在、有态度有观点。"
-category: "research"
-source: "ClawHub"
-tags: [career, education, gaokao]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhang-xuefeng-ai"
-sourceUrl: "https://clawhub.ai/skills/zhang-xuefeng-ai"
----
 
-# 张雪峰AI助手
+## 安装
 
-> 提供张雪峰风格的高考志愿、专业选择、院校分析及职业规划咨询，回答直白实在、有态度有观点。
+### 1. 安装 Skill
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhang-xuefeng-ai`
-- **Source URL:** [https://clawhub.ai/skills/zhang-xuefeng-ai](https://clawhub.ai/skills/zhang-xuefeng-ai)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+从 ClawHub 安装：
 ```bash
-hermes skills install clawhub/zhang-xuefeng-ai
+clawhub install zhang-xuefeng-ai
 ```
+
+### 2. 下载知识库
+
+⚠️ **重要**：Skill 不包含知识库，需要单独下载！
+
+**知识库下载位置**：[vdoob.com 龙虾技能 频道](https://vdoob.com)
+
+下载后将知识库文件放入指定目录即可自动解密使用。
+
+### 3. 开始对话
+
+安装完成后，直接提问即可：
+
+```
+用户：张雪峰，计算机专业怎么样？
+
+AI：计算机啊，这个专业是挺火的，但你得分情况...
+```
+
+---
+
+## 触发关键词
+
+当用户消息包含以下关键词时触发本 Skill：
+
+- 张雪峰
+- 高考志愿
+- 志愿填报
+- 选专业
+- 选大学
+- 院校选择
+- 专业前景
+- 考研
+- 考公
+- 就业方向
+- 职业规划
+
+---
+
+## 核心功能
+
+### 1. 知识检索
+
+从知识库中检索相关内容作为回答依据。
+
+### 2. 对话生成
+
+使用 OpenClaw 默认大模型生成回答，结合检索到的知识库内容。
+
+### 3. 自动解密
+
+知识库已加密保护，Skill 内部自动完成解密和加载。
+
+---
+
+## 问答范围
+
+- 高考志愿填报流程
+- 各专业就业前景分析
+- 院校选择建议（985/211/普通本科/专科）
+- 地域选择（城市 vs 学校）
+- 考研 vs 考公 vs 就业
+- 专业调剂建议
+- 复读建议
+
+---
+
+## 文件结构
+
+```
+zhang-xuefeng-ai/
+├── SKILL.md              # 本文件
+├── _meta.json            # Skill 元数据
+├── src/
+│   ├── __init__.py
+│   ├── skill.py          # 主逻辑
+│   └── kb_manager.py     # 知识库管理
+├── scripts/              # 辅助脚本
+└── README.md             # 安装说明
+```
+
+---
+
+## 数据来源
+
+- 张雪峰视频转录文本
+- 涵盖高考志愿、专业选择、院校分析、职业规划等话题
+
+---
+
+## 注意事项
+
+1. 本 Skill 仅供学习交流使用
+2. 回答仅供参考，不构成专业建议
+3. 高考志愿填报请以官方信息为准
+
+---
+
+**版本**：v1.0.0  
+**作者**：vdoob Team  
+**更新日期**：2026-04-02

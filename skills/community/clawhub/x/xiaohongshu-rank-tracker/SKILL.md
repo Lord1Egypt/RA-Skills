@@ -1,35 +1,259 @@
 ---
-name: "小红书最夯账号（红狐数据）"
-description: "小红书账号榜单追踪分析工具，支持查询日榜周榜月榜TOP50排名和热门账号"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-rank-tracker"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-rank-tracker"
+name: xiaohongshu-top-account
+description: 小红书账号榜单追踪分析工具，支持查询日榜周榜月榜TOP50排名和热门账号
 ---
 
-# 小红书最夯账号（红狐数据）
+# 小红书热门账号推荐
 
-> 小红书账号榜单追踪分析工具，支持查询日榜周榜月榜TOP50排名和热门账号
+## 1. 简介
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-rank-tracker`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-rank-tracker](https://clawhub.ai/skills/xiaohongshu-rank-tracker)
+小红书账号榜单追踪分析工具 -- 基于红狐数据 API，提供小红书全品类 / 分品类账号每日 / 每周 / 每月的表现榜单查询，支持排名查询、赛道筛选、HTML 可视化报告下载与定时订阅推送。
 
-## Overview
+**适用对象**：内容创作者、品牌方、MCN 机构、行业分析师。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 2. 功能特性
+
+**核心功能**：
+
+- 排名查询 -- 查日榜、周榜、月榜 TOP50
+- 赛道筛选 -- 按品类筛选（美妆、美食、旅行、母婴、健身等 25 个赛道）
+- 报告下载 -- 生成 HTML 可视化报告，支持导出 PDF / 截图
+- 定时订阅 -- 设置自动化定时推送
+
+**特色亮点**：
+
+- 日榜每日 19:00 更新，周榜每周一 15:00 更新，月榜每月 2 号 9:00 更新
+- 自动解析用户自然语言输入（时间、周期、赛道），无需记忆命令格式
+- 排名算法：根据总粉丝数、粉丝增量、点赞增量、收藏增量、分享增量、评论增量加权计算，满分 100 分
+- 数据回退机制：部分分类返回空数据时自动回退最多 3 天
+- HTML 报告账号名均可点击跳转小红书主页
+
+---
+
+## 3. 一键安装
+
+### 鉴权
+
+#### 获取 API Key
+
+请前往 [红狐hub](https://redfox.hk/settings/api-keys?source=clawhub) 获取API KEY
+
+#### 配置 API Key
+
+方案1: 以OpenClaw为例，将REDFOX_API_KEY添加到~/.openclaw/openclaw.json中
+
 ```bash
-hermes skills install clawhub/xiaohongshu-rank-tracker
+{ "env": { "REDFOX_API_KEY": "ak_xxxx..." } }
 ```
+
+方案2: 终端配置：export REDFOX_API_KEY="ak_xxxx..."
+
+```bash
+export REDFOX_API_KEY="ak_xxxx..."
+```
+
+### 依赖安装
+
+无需安装第三方依赖，使用 Python 标准库 `urllib` 发送请求即可。
+
+---
+
+## 4. 使用指南
+
+### 基础使用
+
+**排名查询（推荐：自然语言模式）**：
+
+直接传入用户原始问题，脚本自动完成全部解析：
+
+```bash
+python scripts/fetch_rank.py --query "用户原始问题" --limit 20 --html
+```
+
+**脚本自动解析逻辑**：
+
+- **时间判断与日期计算**：
+
+| 榜单类型 | 更新时间         | 当前时间 < 更新时间 | 当前时间 >= 更新时间 |
+| -------- | ---------------- | ------------------- | -------------------- |
+| 日榜     | 每日 19:00       | 取前2天 (offset=2)  | 取前一天 (offset=1)  |
+| 周榜     | 每周一 15:00     | 取前2周 (offset=2)  | 取前1周 (offset=1)   |
+| 月榜     | 每月2号 上午9:00 | 取前2月 (offset=2)  | 取前1月 (offset=1)   |
+
+- **周期判断**：自动从用户文本中识别日 / 周 / 月（无明确则默认日榜）
+- **回溯范围校验**：
+
+| 榜单类型 | 最大回溯 | 超范围处理             |
+| -------- | -------- | ---------------------- |
+| 日榜     | 近7天    | 自动切换至最近可用日期 |
+| 周榜     | 近3周    | 自动切换至最近可用日期 |
+| 月榜     | 近3个月  | 自动切换至最近可用日期 |
+
+- **赛道（type）匹配**：支持模糊匹配，常用映射：
+
+| 用户说 | 映射到 |
+|--------|--------|
+| 健身、运动、瑜伽 | 体育锻炼 |
+| 美妆、彩妆、护肤 | 化妆美容/个人护理 |
+| 美食、探店、烹饪 | 美味佳肴 |
+| 旅行、旅游 | 旅行度假 |
+| 母婴、育儿 | 亲子育儿 |
+| 穿搭、时尚 | 时尚穿搭 |
+
+- **数据回退机制**：部分分类（如体育锻炼）在某些日期可能返回空数据时，自动尝试前一个日期，最多回退 3 天。
+
+### 严格输出顺序（必须按顺序执行）
+
+**第一步：内容输出** -- 调用 `fetch_rank.py` 查询并格式化输出榜单（Markdown 表格，最多 20 条）。
+
+**第二步：询问定时订阅** -- 输出完榜单后直接追加：
+
+```
+📬 订阅服务
+1️⃣ 是否需要订阅每日/周/月的小红书账号最新排名，订阅后定时推送给您？
+2️⃣ 是否需要订阅具体赛道的账号表现？我们支持：综合全部、出行代步、休闲爱好、影视娱乐、数码科技、医疗保健、综合杂项、星座情感、时尚穿搭、婚庆婚礼、拍摄记录、学习教育、化妆美容、居家装修、旅行度假、亲子育儿、个人护理、美味佳肴、职业发展、宠物天地、潮流鞋包、日常生活、科学探索、新闻资讯、体育锻炼
+```
+
+用户回复 "需要订阅" 时，使用 `calendar_create` 工具创建日程。
+
+**第三步：交付 HTML 报告** -- 使用 `deliver_attachments` 交付脚本输出的 HTML 文件。
+
+**用户需要查看全部数据时**：重新调用脚本获取完整 50 条数据，同时输出 Markdown 表格和交付 HTML 报告（两者缺一不可）。
+
+### 输出格式
+
+**Markdown 表格模板**：
+
+```
+📊 小红书{period_label} · {category_label}
+数据日期：{date}
+共 {total} 个账号上榜
+
+💡 榜单说明：{period_update_time}更新昨日/上周/上月数据。
+
+📐 排名算法：排名根据达人在小红书的**总粉丝数**、周期内的**粉丝增量**、**点赞增量**、**收藏增量**、**分享增量**以及**评论增量**加权计算所得，满分100分。
+
+| 排名 | 账号名 | 综合评分 | 总粉丝数 | 新增笔记 | 新增粉丝 | 新增点赞 | 新增评论 | 新增收藏 | 新增分享 |
+|:---:|--------|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|
+| 🥇 1 | 账号A · 赛道 | 96 | 254.06w | 7 | 6919 | 24.64w | 6.68w | 2.53w | 13.39w |
+| 🥈 2 | 账号B · 赛道 | 89 | 113.55w | 1 | 1.91w | 7.90w | 4787 | 2.18w | 3.12w |
+| 🥉 3 | 账号C · 赛道 | 87 | 439.14w | 2 | 5859 | 16.51w | 993 | 7688 | 687 |
+
+统计概览：上榜账号 {total} · 最高互动 {max_interaction} · 总新增笔记 {total_notes}
+```
+
+### 高级使用
+
+**报告下载**：查询时加 `--html --limit 50` 参数，脚本自动生成 HTML 报告。
+
+**定时订阅**：
+- 每日订阅：`FREQ=DAILY;BYHOUR=8;BYMINUTE=0`
+- 每周订阅：`FREQ=WEEKLY;BYDAY=MO;BYHOUR=8;BYMINUTE=0`
+- 每月订阅：`FREQ=WEEKLY;BYDAY=MO;BYHOUR=8;BYMINUTE=0;INTERVAL=4`
+
+automation prompt：`查询小红书最新{period}榜（综合全部）并推送给用户`
+
+### 常用指令速查
+
+| 用户意图 | 典型触发词 | 对应操作 |
+| -------- | ---------- | -------- |
+| 排名查询 | 小红书日榜、周榜、月榜、TOP50、最夯账号、排行榜、最新推荐 | 调用 API 并格式化输出 |
+| 领域查询 | 美妆类/美食类/旅行类/母婴类/健身类...小红书排名 | 调用 API 并按 category 筛选 |
+| 报告下载 | 下载报告、导出榜单、生成报告 | 使用 --html 参数自动生成 HTML |
+| 定时订阅 | 订阅日榜/周榜/月榜、定时推送、每天发给我 | 创建 WorkBuddy Automation |
+
+### API 参数说明
+
+- **URL**：`POST https://redfox.hk/story/api/xhsData/query`
+- **成功码**：`code: 2000`（非 0）
+- **认证方式**：`X-API-KEY` Header（从环境变量 `REDFOX_API_KEY` 获取）
+- **请求参数**：dateType（1=日榜, 2=周榜, 3=月榜）、rankDate（YYYY-MM-DD）、type（赛道名称）、source（固定为 "小红书指数榜"）
+- **月榜日期参数必须使用每月 2 号**（如 "2026-04-02"）
+
+### HTML 报告规范
+
+表格列：排名 | 账号名 | 总粉丝数 | 新增笔记 | 新增粉丝 | 新增点赞 | 新增评论 | 新增收藏 | 新增分享
+
+统计卡片：上榜账号、最高互动（点赞+评论+收藏+分享）、总新增笔记
+
+---
+
+## 5. 使用场景
+
+1. **内容创作者找对标**：输入 "小红书美妆日榜"，获取当日美妆赛道 TOP 账号，分析其内容策略和数据表现，找到可参考的对标方向。
+2. **品牌方筛选投放达人**：查询 "上周母婴周榜"，快速筛选高互动、高增长的母婴赛道达人，节省手动搜集数据的时间。
+3. **MCN 监控竞品动态**：定期查询特定赛道榜单，追踪竞品账号的排名变化和增长趋势，及时调整运营策略。
+4. **行业分析师产出报告**：生成可视化 HTML 报告，一键导出 PDF，用于行业分析汇报或投资决策参考。
+
+---
+
+## 6. 项目架构
+
+### 目录结构
+
+```
+xiaohongshu-top-account/
+├── SKILL.md                          # 本文件
+├── scripts/
+│   ├── fetch_rank.py                 # 查询小红书榜单数据
+│   └── generate_report.py            # 被 fetch_rank.py --html 调用生成 HTML
+└── references/
+    └── api_docs.md                   # API 详细参数说明
+```
+
+### 技术栈
+
+| 技术 | 用途 |
+| ---- | ---- |
+| Python 标准库 (urllib) | HTTP 请求与数据解析 |
+| 红狐 API | 小红书榜单数据来源 |
+| HTML / CSS | 可视化报告渲染 |
+
+### 核心模块说明
+
+- **fetch_rank.py**：接收用户查询参数（--query 或 --category/--period/--date），自动解析时间、周期和赛道，调用红狐 API 获取榜单数据，支持 --html 参数生成 HTML 报告。
+- **generate_report.py**：读取榜单数据生成 HTML 报告模板，包含排名表格、统计卡片、榜单说明和排名算法。
+
+### 资源索引
+
+| 文件 | 用途 |
+| ---- | ---- |
+| [scripts/fetch_rank.py](scripts/fetch_rank.py) | 查询小红书榜单数据 |
+| [scripts/generate_report.py](scripts/generate_report.py) | 被 fetch_rank.py --html 调用生成 HTML |
+| [references/api_docs.md](references/api_docs.md) | 需要查看 API 详细参数说明时读取 |
+
+---
+
+## 7. 常见问答
+
+### 安装
+
+**Q: 需要安装什么依赖？**
+A: 无需安装第三方依赖，使用 Python 标准库 `urllib` 即可。
+
+**Q: 如何配置 API Key？**
+A: 请前往 [红狐hub](https://redfox.hk/settings/api-keys?source=clawhub) 获取 API KEY，通过环境变量 `REDFOX_API_KEY` 配置。
+
+### 使用
+
+**Q: 日榜什么时候更新？**
+A: 每日 19:00 更新。
+
+**Q: 支持哪些赛道？**
+A: 支持 25 个赛道，完整列表见 references/api_docs.md。
+
+**Q: 赛道关键词匹配不上怎么办？**
+A: 赛道关键词支持 LLM 语义模糊匹配，实在无法识别时降级为 "综合全部"。
+
+**Q: 查询不到数据怎么办？**
+A: 部分分类（如体育锻炼）可能返回空数据，脚本会自动回退日期最多 3 天。
+
+### 故障排除
+
+**Q: 最高互动数据为 0？**
+A: 最高互动需要根据点赞 + 评论 + 收藏 + 分享计算，不能直接使用接口返回的 `newInteraction` 字段。
+
+**Q: HTML 报告生成失败？**
+A: 确保 workspace 有写权限，且数据文件路径正确。

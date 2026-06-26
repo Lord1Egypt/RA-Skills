@@ -1,0 +1,27 @@
+{
+  "name": "wechat-article-extractor",
+  "version": "1.0.0",
+  "description": "Extract metadata and content from WeChat Official Account articles",
+  "main": "scripts/extract.js",
+  "bin": {
+    "wechat-extract": "./bin/wechat-extract.js"
+  },
+  "scripts": {
+    "extract": "node bin/wechat-extract.js",
+    "help": "node bin/wechat-extract.js --help"
+  },
+  "keywords": [
+    "wechat",
+    "weixin",
+    "article",
+    "extract",
+    "scraper"
+  ],
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "dayjs": "^1.11.19",
+    "lodash.unescape": "^4.0.1",
+    "qs": "^6.15.0",
+    "request-promise": "^4.2.6"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "messages": [
+    {
+      "id": "daily-brief-test-airport-gmail-001",
+      "threadId": "daily-brief-test-thread-airport-gmail-001",
+      "subject": "Safe travels — FYI",
+      "from": "Colleague <colleague@example.com>",
+      "snippet": "Just a heads-up that you're traveling tomorrow. No action needed on your end.",
+      "date": "2026-05-21T08:00:00.000Z",
+      "labelIds": ["INBOX"]
+    }
+  ],
+  "count": 1
+}

@@ -1,0 +1,20 @@
+{
+  "coding": {
+    "sessionKey": "agent:main:subagent:7befbde6-4264-4385-a2ff-d7f406462bd3",
+    "role": "coding",
+    "created_at": "2026-03-17T14:18:--Z",
+    "ttl_days": 1
+  },
+  "testing": {
+    "sessionKey": "agent:main:subagent:d2f8be27-a949-49b0-a26a-68afc662599d",
+    "role": "testing",
+    "created_at": "2026-03-17T14:18:--Z",
+    "ttl_days": 1
+  },
+  "runs": {
+    "wf-debug-0001": {
+      "coding_run": "agent:main:subagent:d361cb4b-bf6d-4d75-b5a1-3de0901101b2",
+      "created_at": "2026-03-17T14:43:--Z"
+    }
+  }
+}

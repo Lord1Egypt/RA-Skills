@@ -1,0 +1,55 @@
+meta:
+  author: Mars
+  github: Mars2003
+  date: 2026-04-28
+  version: 1.0.0
+  description: workspace-governance 默认适配配置（项目级）
+
+SKILL_ADAPT:
+  required_capabilities:
+    - file_inspection_and_manipulation
+    - logging_output
+    - user_confirmation
+  workspace_root: .
+  immutable_dirs:
+    - .git
+    - .cursor
+    - .claude
+    - node_modules
+  protected_files:
+    - ".env"
+    - ".env.*"
+    - "*.key"
+    - "*.pem"
+    - "*.p12"
+    - "*.pfx"
+    - "*.cer"
+    - "*.crt"
+    - "id_rsa"
+    - "*.mobileprovision"
+  cache_policy: separate
+  naming_policy: inherit
+  archive_policy:
+    mode: soft
+    archive_dir: archive
+    conflict_policy: no_overwrite
+  destructive_guard:
+    require_dry_run: true
+    require_explicit_confirm_for_delete: true
+    require_explicit_confirm_for_bulk_move: true
+    bulk_move_threshold: 20
+  execution:
+    batch_size: 20
+    stop_on_high_risk_pattern: true
+    ask_user_on_ambiguous_items: true
+  logging:
+    enabled: true
+    file: logs/workspace-governance.log
+    include_fields:
+      - date
+      - intent
+      - planned_changes
+      - executed_changes
+      - success_count
+      - failure_count
+      - pending_decisions

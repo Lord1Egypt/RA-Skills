@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/surgery-record.json",
+  "title": "SurgeryRecord",
+  "description": "个人手术历史记录的数据结构定义",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "手术记录唯一标识符",
+      "pattern": "^surgery_[0-9]{8}_[0-9]{6}$"
+    },
+    "basic_info": {
+      "type": "object",
+      "description": "手术基本信息",
+      "properties": {
+        "surgery_name": {"type": "string"},
+        "surgery_alias": {"type": "string"},
+        "surgery_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "preoperative_diagnosis": {"type": "string"},
+        "body_part": {
+          "type": "string",
+          "enum": ["头部", "颈部", "胸部", "腹部", "背部", "脊柱", "上肢", "下肢", "盆腔", "会阴", "全身", "其他"]
+        },
+        "surgery_type": {
+          "type": "string",
+          "enum": ["elective", "emergency", "day_surgery", "diagnostic", "therapeutic", "palliative", "reconstructive"]
+        },
+        "anesthesia_type": {
+          "type": "string",
+          "enum": ["general", "local", "spinal", "epidural", "nerve_block", "mac", "other"]
+        },
+        "duration_minutes": {"type": "integer"},
+        "blood_loss_ml": {"type": "integer"},
+        "surgeon": {"type": "string"},
+        "hospital": {"type": "string"},
+        "hospitalization_days": {"type": "integer"}
+      }
+    },
+    "implants": {
+      "type": "object",
+      "description": "植入物信息",
+      "properties": {
+        "has_implants": {"type": "boolean"},
+        "implants_list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "implant_name": {"type": "string"},
+              "model": {"type": "string"},
+              "location": {"type": "string"},
+              "quantity": {"type": "integer"},
+              "removal_plan": {"type": "string"},
+              "implant_date": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
+      }
+    },
+    "postoperative_info": {
+      "type": "object",
+      "description": "术后信息",
+      "properties": {
+        "complications": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "recovery_status": {"type": "string"},
+        "follow_up_plan": {"type": "string"},
+        "pathology_result": {"type": "string"}
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "备注信息"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "original_input": {
+      "type": "string",
+      "description": "用户原始输入"
+    }
+  },
+  "required": ["id", "basic_info", "implants"],
+  "additionalProperties": false
+}

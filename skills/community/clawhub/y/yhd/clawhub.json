@@ -1,0 +1,9 @@
+{
+  "name": "yhd",
+  "version": "2.0.0",
+  "description": "1号店购物助手 - 支持搜索、每日秒杀、生鲜选购、加购物车，支付环节留给用户",
+  "keywords": ["yhd", "1号店", "shopping", "grocery", "flash-sale"],
+  "author": "harrylabsj",
+  "license": "MIT",
+  "repository": "https://github.com/harrylabsj/yhd"
+}

@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-03-12T00:00:00.000Z",
+  "skillName": "search-docs-skill",
+  "description": "Use this skill when the user needs capabilities exposed by the local MCP bridge. It wraps 1 MCP tool behind a local Node.js wrapper.",
+  "bridge": {
+    "rawInputUrl": "http://localhost:8787",
+    "baseUrl": "http://localhost:8787",
+    "toolCatalogUrl": "http://localhost:8787/mcp/tools",
+    "toolInvokeBaseUrl": "http://localhost:8787/mcp/tools"
+  },
+  "tools": [
+    {
+      "name": "search_docs",
+      "description": "Search documents by keyword",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    }
+  ]
+}

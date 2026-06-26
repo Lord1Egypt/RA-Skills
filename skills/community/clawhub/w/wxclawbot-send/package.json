@@ -1,0 +1,51 @@
+{
+  "name": "@claw-lab/wxclawbot-cli",
+  "version": "0.5.2",
+  "description": "WeixinClawBot CLI - send text, images, video, and files to WeChat users",
+  "type": "module",
+  "bin": {
+    "wxclawbot": "dist/cli.js"
+  },
+  "exports": {
+    ".": "./dist/client.js",
+    "./accounts": "./dist/accounts.js",
+    "./media": "./dist/media.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "node --import tsx src/cli.ts",
+    "start": "node dist/cli.js",
+    "test": "node --import tsx --test src/accounts.test.ts src/media.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "dist/",
+    "LICENSE",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lroolle/wxclawbot-cli.git"
+  },
+  "keywords": [
+    "wechat",
+    "weixin",
+    "openclaw",
+    "clawbot",
+    "weixinclawbot",
+    "cli",
+    "proactive-messaging"
+  ],
+  "dependencies": {
+    "commander": "^13.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "license": "MIT"
+}

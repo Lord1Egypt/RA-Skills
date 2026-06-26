@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width={{W}}, height={{H}}">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: {{W}}px; height: {{H}}px;
+  font-family: {{FONT_TITLE}};
+  background: {{BG}};
+  color: {{TEXT}};
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+/* Subtle paper texture overlay */
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 30%, {{ACCENT__A02}} 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, {{ACCENT__A01}} 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+/* Top thin decorative border */
+body::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 8%; right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, {{ACCENT}}, transparent);
+  opacity: 0.18;
+  z-index: 2;
+}
+/* Watermark issue number */
+.watermark {
+  position: absolute;
+  bottom: 80px; right: 28px;
+  font-size: 200px;
+  font-weight: 900;
+  color: {{TEXT}};
+  opacity: 0.012;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.04em;
+  z-index: 0;
+}
+/* Decorative dots */
+.dot {
+  position: absolute;
+  border-radius: 50%;
+  background: {{ACCENT}};
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+.dot-1 {
+  top: 18px; left: 18px;
+  width: 5px; height: 5px;
+}
+.dot-2 {
+  top: 22px; right: 22px;
+  width: 4px; height: 4px;
+}
+.dot-3 {
+  bottom: 70px; left: 22px;
+  width: 6px; height: 6px;
+}
+/* Vertical accent bar (left edge) */
+.v-bar {
+  position: absolute;
+  top: 6%; bottom: 6%;
+  left: 20px;
+  width: 1px;
+  background: linear-gradient(180deg, transparent 5%, {{ACCENT}}, transparent 95%);
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
+/* Container */
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 48px 60px;
+  position: relative;
+  z-index: 1;
+}
+/* Small badge above title */
+.badge {
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.55);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: {{ACCENT}};
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+/* Main title */
+.title {
+  font-size: {{TITLE_SIZE_V}};
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: {{TEXT}};
+  max-width: 88%;
+  position: relative;
+}
+/* Decorative divider with dots */
+.divider {
+  position: relative;
+  width: 56px;
+  height: 2px;
+  background: {{ACCENT}};
+  margin: 18px 0 22px;
+  opacity: 0.22;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: {{ACCENT}};
+  transform: translateY(-50%);
+  opacity: 0.35;
+}
+.divider::before { left: -9px; }
+.divider::after { right: -9px; }
+/* Content */
+.content {
+  font-family: {{FONT_BODY}};
+  font-size: {{CONTENT_SIZE}};
+  font-weight: 400;
+  line-height: 1.7;
+  color: {{SECONDARY}};
+  max-width: 82%;
+}
+/* Points as subtle outline pills */
+.points {
+  list-style: none;
+  margin-top: 18px;
+}
+.points li {
+  display: inline-block;
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE}} - 10px);
+  font-weight: 500;
+  color: {{ACCENT}};
+  letter-spacing: 0.04em;
+  padding: 6px 18px;
+  margin: 4px 12px 4px 0;
+  border: 1px solid {{ACCENT}};
+  border-radius: 20px;
+  opacity: 0.4;
+}
+.points:empty { display: none; }
+/* Source */
+.source {
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.6);
+  color: {{SECONDARY}};
+  opacity: 0.4;
+  letter-spacing: 0.15em;
+  margin-top: 22px;
+}
+/* Bottom brand bar */
+.brand-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 48px;
+  background: {{TEXT}};
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 32px;
+  z-index: 2;
+}
+/* Light separator above brand bar */
+.brand-bar::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 8%, rgba(255,255,255,0.06) 50%, transparent 92%);
+}
+.brand-label {
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.5);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.5);
+}
+/* Portrait: larger title */
+@media (max-aspect-ratio: 4/5) {
+  .title { font-size: {{TITLE_SIZE_S}}; max-width: 92%; }
+  .container { padding: 32px 36px 56px; }
+  .content { max-width: 88%; }
+  .watermark { font-size: 150px; bottom: 68px; right: 24px; }
+  .badge { margin-bottom: 12px; }
+}
+/* Landscape: spread content horizontally */
+@media (min-aspect-ratio: 5/4) {
+  .title { font-size: {{TITLE_SIZE_W}}; }
+  .container { padding: 32px 56px 56px; }
+  .content { max-width: 72%; }
+  .watermark { font-size: 100px; bottom: 64px; }
+  .dot-3 { bottom: 64px; }
+}
+/* Panorama: row layout */
+@media (min-aspect-ratio: 7/3) {
+  .title { font-size: {{TITLE_SIZE_C}}; max-width: 70%; }
+  .container { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px 20px; padding: 16px 48px 52px; }
+  .badge { width: 100%; margin-bottom: 0; }
+  .divider { margin: 0; align-self: center; }
+  .content { max-width: 52%; margin-top: 0; }
+  .points { margin-top: 0; }
+  .watermark { display: none; }
+  .v-bar { display: none; }
+  .dot-3 { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="watermark">09</div>
+<div class="dot dot-1"></div>
+<div class="dot dot-2"></div>
+<div class="dot dot-3"></div>
+<div class="v-bar"></div>
+<div class="container">
+  <div class="badge">{{BADGE}}</div>
+  <h1 class="title">{{TITLE}}</h1>
+  <div class="divider"></div>
+  <div class="content">{{CONTENT}}</div>
+  <ul class="points">{{POINTS_HTML}}</ul>
+  <div class="source">{{SOURCE}}</div>
+</div>
+<div class="brand-bar">
+  <span class="brand-label">{{BRAND}}</span>
+</div>
+</body>
+</html>

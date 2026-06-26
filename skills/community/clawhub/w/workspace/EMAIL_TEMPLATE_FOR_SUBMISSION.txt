@@ -1,0 +1,68 @@
+Subject: ارسال پروژه پایانی کارشناسی - [عنوان پروژه]
+
+سلام بر استاد محترم/اداره آموزش،
+
+با سلام و احترام،
+
+بدین وسیله پروژه پایانی کارشناسی خود با عنوان:
+
+«[عنوان کامل پروژه]»
+
+را جهت بررسی و ارزیابی ارسال می‌کنم.
+
+مشخصات دانشجو:
+- نام و نام خانوادگی: [نام شما]
+- شماره دانشجویی: [شماره دانشجویی]
+- رشته: مهندسی کامپیوتر
+- مقطع: کارشناسی
+- استاد راهنما: [نام استاد راهنما]
+
+مشخصات پروژه:
+- عنوان: [عنوان پروژه]
+- مدت زمان اجرا: [مدت زمان]
+- تکنولوژی‌های استفاده شده: [فهرست تکنولوژی‌ها]
+- فایل‌های پیوست:
+  1. گزارش کامل پروژه (فایل Word)
+  2. [سایر فایل‌های مورد نیاز]
+
+لطفاً در صورت نیاز به اطلاعات بیشتر یا اصلاحات، مرا مطلع فرمایید.
+
+با تشکر
+[نام شما]
+[شماره تماس]
+[ایمیل]
+
+---
+English Version (if needed):
+
+Subject: Submission of BSc Final Project - [Project Title]
+
+Dear Professor/Academic Office,
+
+I am writing to submit my Bachelor's final project titled:
+
+"[Full Project Title]"
+
+for review and evaluation.
+
+Student Information:
+- Full Name: [Your Name]
+- Student ID: [Student ID]
+- Major: Computer Engineering
+- Degree: Bachelor's
+- Advisor: [Advisor's Name]
+
+Project Details:
+- Title: [Project Title]
+- Duration: [Duration]
+- Technologies Used: [List of Technologies]
+- Attached Files:
+  1. Complete project report (Word document)
+  2. [Other required files]
+
+Please let me know if you need any further information or revisions.
+
+Best regards,
+[Your Name]
+[Phone Number]
+[Email]

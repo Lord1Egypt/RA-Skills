@@ -1,0 +1,27 @@
+{
+  "name": "@wipcomputer/wip-branch-guard",
+  "version": "1.9.84",
+  "description": "Branch guard with PreToolUse blocking (main branch write protection), SessionStart warning (main-CWD detection after compaction), onboarding-before-first-write gate, equivalent-action bypass tracking, and external-PR create guard.",
+  "type": "module",
+  "scripts": {
+    "test": "bash test.sh"
+  },
+  "main": "guard.mjs",
+  "bin": {
+    "wip-branch-guard": "guard.mjs"
+  },
+  "claudeCode": {
+    "hooks": [
+      {
+        "event": "PreToolUse",
+        "matcher": "Read|Glob|Write|Edit|NotebookEdit|Bash",
+        "timeout": 5
+      },
+      {
+        "event": "SessionStart",
+        "timeout": 5
+      }
+    ]
+  },
+  "license": "MIT"
+}

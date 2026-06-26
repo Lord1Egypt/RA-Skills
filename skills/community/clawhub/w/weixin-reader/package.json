@@ -1,0 +1,12 @@
+{
+  "name": "weixin-reader",
+  "version": "1.1.0",
+  "description": "提取微信公众号文章内容，支持任意公众号文章链接的内容抓取和结构化输出",
+  "main": "extract.py",
+  "scripts": {
+    "test": "python extract.py"
+  },
+  "keywords": ["weixin", "微信公众号", "文章提取", "爬虫"],
+  "author": "nalin3166-collab",
+  "license": "MIT"
+}

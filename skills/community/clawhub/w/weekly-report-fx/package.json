@@ -1,0 +1,28 @@
+{
+  "name": "weekly-report-generator",
+  "version": "1.0.0",
+  "description": "AI-powered weekly report generator for OpenClaw",
+  "main": "scripts/generate-report.mjs",
+  "type": "module",
+  "bin": {
+    "weekly-report": "./scripts/generate-report.mjs"
+  },
+  "scripts": {
+    "start": "node scripts/generate-report.mjs",
+    "generate": "node scripts/generate-report.mjs",
+    "test": "node scripts/generate-report.mjs --dry-run"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "weekly-report",
+    "productivity",
+    "automation"
+  ],
+  "author": "fx-world888",
+  "license": "MIT",
+  "dependencies": {
+    "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5"
+  }
+}

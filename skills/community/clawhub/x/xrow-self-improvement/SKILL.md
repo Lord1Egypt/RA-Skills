@@ -1,35 +1,18 @@
 ---
-name: "GitLab Agent Self Improvement"
-description: "A skill for personal growth and self-improvement."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xrow-self-improvement"
-sourceUrl: "https://clawhub.ai/skills/xrow-self-improvement"
+name: self-improvement
+description: A skill for personal growth and self-improvement.
+metadata: { "openclaw": { "requires": { "bins": ["glab"] }, "primaryEnv": "GITLAB_TOKEN" } }
+
 ---
 
-# GitLab Agent Self Improvement
+# Self-Improvement Skill
 
-> A skill for personal growth and self-improvement.
+Your Project: [helm-openclaw](https://gitlab.com/xrow-public/helm-openclaw)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xrow-self-improvement`
-- **Source URL:** [https://clawhub.ai/skills/xrow-self-improvement](https://clawhub.ai/skills/xrow-self-improvement)
+* Think about what you have learned and how you can improve yourself
+* If you have not found any valuable improvement or if your change is just cosmetic then do stop executing this skill.
+* Write down your findings and ideas in a new Merge Request and assign it to yourself.
+* Never address two totally separate issues in one merge request; split them into separate MRs.
+* Close an older Merge Request created by yourself that has not been accepted for 10 Days after the last recent activity/review state.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xrow-self-improvement
-```
+For more information about how to behave as a GitLab Agent and work with GitLab, read and follow the skill `gitlab-agent`.

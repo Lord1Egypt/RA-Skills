@@ -1,35 +1,213 @@
----
-name: "Meeting Notes"
-description: "智能提取会议要点，生成结构化纪要，识别待办任务及责任人，助力高效会议管理和任务跟进。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohong-meeting-notes"
-sourceUrl: "https://clawhub.ai/skills/xiaohong-meeting-notes"
----
+# SKILL.md - Meeting Notes Pro
 
-# Meeting Notes
+## Skill Metadata
 
-> 智能提取会议要点，生成结构化纪要，识别待办任务及责任人，助力高效会议管理和任务跟进。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohong-meeting-notes`
-- **Source URL:** [https://clawhub.ai/skills/xiaohong-meeting-notes](https://clawhub.ai/skills/xiaohong-meeting-notes)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohong-meeting-notes
+```yaml
+name: Meeting Notes Pro
+identifier: meeting-notes
+version: 1.0.0
+description: 会议纪要智能助手，从会议记录中提取要点、生成结构化纪要、提取待办事项和责任人
+author: xiaohong
+tags: [会议, 纪要, 待办, 效率, 办公]
+categories: [productivity, business]
 ```
+
+## What This Skill Does
+
+1. **要点提取** - 从冗长的会议记录中提取核心要点
+2. **结构化纪要** - 生成专业的会议纪要模板
+3. **待办提取** - 识别任务、截止日期、负责人
+4. **决策记录** - 记录会议形成的决策和结论
+5. **行动项汇总** - 汇总所有待办并跟踪进度
+
+## When to Use
+
+- 会议记录太乱需要整理时
+- 想快速了解会议结论时
+- 担心遗漏任务跟进时
+- 需要生成正式会议纪要时
+
+## How It Works
+
+### 1. 要点提取
+
+分析会议内容，提取：
+- 讨论的核心问题
+- 各方观点和分歧
+- 达成的共识
+- 未解决的问题
+
+### 2. 结构化纪要
+
+生成标准会议纪要格式：
+
+```
+会议纪要
+
+📅 时间: 
+📍 地点: 
+👥 参会人: 
+📝 主持人: 
+
+📋 议程
+1. XX议题
+2. XX议题
+
+💡 讨论要点
+1. ...
+2. ...
+
+✅ 决策
+1. ...
+
+📎 行动项
+1. [任务] - [负责人] - [截止日期]
+```
+
+### 3. 待办提取
+
+识别并提取：
+- 明确的任务描述
+- 被分配的责任人
+- 截止日期/时间点
+- 优先级标记
+
+### 4. 决策记录
+
+记录会议形成的：
+- 明确决策
+- 讨论结论
+- 方向性共识
+- 需要进一步讨论的问题
+
+### 5. 行动项汇总
+
+生成待办表格：
+
+| 序号 | 任务 | 负责人 | 截止日期 | 状态 |
+|------|------|--------|----------|------|
+| 1 |    |        |          | 待处理 |
+
+## Input Format
+
+### 方式一：粘贴会议记录
+
+```
+帮我整理这会议纪要：
+[粘贴会议记录/语音转文字内容]
+```
+
+### 方式二：描述会议内容
+
+```
+今天开了个项目评审会，主要讨论了XX功能的上线时间，张三负责UI，李四负责开发， deadline是下周五
+```
+
+### 方式三：生成模板
+
+```
+帮我生成一个产品评审会的会议纪要模板
+```
+
+## Output Examples
+
+### Example 1: 纪要生成
+
+```
+输入: [一段会议记录]
+[项目进度汇报，提到UI还没完成，开发遇到技术难题]
+
+📝 会议纪要
+
+【基本信息】
+时间: 2026年3月13日
+主题: 项目进度评审会
+参会: 张三、李四、王五
+
+【进度汇报】
+- UI设计: 完成80%，预计周五完成
+- 后端开发: 遇到API性能问题，正在优化
+- 测试: 等待开发完成后开始
+
+【问题&解决方案】
+问题: API响应时间过长
+方案: 引入缓存、优化数据库查询
+
+【下一步行动】
+| 任务 | 负责人 | 截止 | 状态 |
+|------|--------|------|------|
+| 完成UI设计 | 张三 | 3/16 | 进行中 |
+| 优化API性能 | 李四 | 3/18 | 进行中 |
+| 准备测试用例 | 王五 | 3/20 | 待开始 |
+```
+
+### Example 2: 待办汇总
+
+```
+输入: [多段不同会议的记录]
+
+📋 本周待办汇总
+
+【紧急 - 今天】
+1. 提交API优化方案 - 李四 - 今天
+
+【本周】
+2. 完成UI设计评审 - 张三 - 3/16
+3. 准备测试数据 - 王五 - 3/17
+
+【下周】
+4. 版本发布 - 团队 - 3/22
+```
+
+### Example 3: 决策记录
+
+```
+输入: [产品规划会议记录]
+
+✅ 会议决策
+
+1. 上线时间: 推迟至4月1日
+2. 优先级: MVP功能优先，非核心功能砍掉
+3. 技术方案: 采用微服务架构
+4. 预算: 追加XX预算
+
+⚠️ 待决议题
+- 团队扩张计划
+- 下一轮融资时机
+```
+
+## Configuration
+
+### 自定义设置
+
+可以配置：
+- 纪要格式：简洁/详细/正式
+- 语言：中文/英文
+- 模板风格：公司标准/自定义
+
+### 设置命令
+
+```
+# 设置默认模板
+我的会议纪要用[简洁版]模板
+
+# 设置输出格式
+用表格形式展示待办事项
+```
+
+## Limitations
+
+- 需要提供会议内容作为输入
+- 对模糊表达的理解可能不准确
+- 重要会议建议人工复核
+
+## Changelog
+
+### v1.0.0 (2026-03-13)
+- 初始版本
+- 支持要点提取、纪要生成、待办汇总
+- 提供多种输出格式
+
+---
+
+*此技能可以大幅提升会议效率，确保任务不遗漏*

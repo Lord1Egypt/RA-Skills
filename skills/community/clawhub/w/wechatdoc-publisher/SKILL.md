@@ -1,35 +1,202 @@
 ---
-name: "微信公众号文章自动生成发布"
-description: "微信公众号一键发布技能。帮助用户将 Markdown 文章自动发布到公众号草稿箱， 包括：Access Token 获取、封面图生成与压缩、永久素材上传、草稿 JSON 构造与提交。 当用户要求"发布公众号"、"写公众号文章"、"公众号草稿"时触发。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechatdoc-publisher"
-sourceUrl: "https://clawhub.ai/skills/wechatdoc-publisher"
+name: wechat-publisher
+description: >
+  微信公众号一键发布技能。帮助用户将 Markdown 文章自动发布到公众号草稿箱，
+  包括：Access Token 获取、封面图生成与压缩、永久素材上传、草稿 JSON 构造与提交。
+  当用户要求"发布公众号"、"写公众号文章"、"公众号草稿"时触发。
+agent_created: true
 ---
 
-# 微信公众号文章自动生成发布
+# 微信公众号一键发布
 
-> 微信公众号一键发布技能。帮助用户将 Markdown 文章自动发布到公众号草稿箱， 包括：Access Token 获取、封面图生成与压缩、永久素材上传、草稿 JSON 构造与提交。 当用户要求"发布公众号"、"写公众号文章"、"公众号草稿"时触发。
+> 本技能帮助用户将 Markdown 格式的文章自动发布到微信公众号草稿箱。
+> 支持自定义账号配置，适合个人博主和内容创作者使用。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechatdoc-publisher`
-- **Source URL:** [https://clawhub.ai/skills/wechatdoc-publisher](https://clawhub.ai/skills/wechatdoc-publisher)
+---
 
-## Overview
+## 快速开始
 
+### 首次使用配置
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wechatdoc-publisher
+1. **获取公众号凭证**
+   - 登录 [微信公众平台](https://mp.weixin.qq.com)
+   - 进入「设置与开发」→「基本配置」
+   - 记录 AppID 和 AppSecret
+
+2. **添加 IP 白名单**
+   - 在同一页面找到「IP白名单」
+   - 添加服务器出口 IP：`112.8.202.216`
+   - 否则 API 会返回 40164 错误
+
+3. **创建凭证文件**
+   在工作目录创建 `wechat_credentials.json`：
+   ```json
+   {
+     "appid": "你的AppID",
+     "appsecret": "你的AppSecret"
+   }
+   ```
+
+---
+
+## 完整发布流程
+
+### Step 1：准备文章
+
+文章需为 Markdown 格式，建议结构：
+
+```markdown
+# 文章标题
+
+导语段落，简要介绍文章内容...
+
+## 小节标题1
+内容...
+
+## 小节标题2
+内容...
+
+---
+
+结语段落...
 ```
+
+**写作技巧**：
+- 主标题用 `# ` 开头
+- 小节用 `## ` 开头（会转换为加粗标题）
+- 列表项用 `- ` 开头
+- 分割线用 `---`
+- 重点用 `**文字**` 加粗
+
+### Step 2：生成封面图
+
+使用「多模态内容生成」技能生成封面图：
+
+```
+生成一张微信公众号封面图，[文章主题描述]，
+简洁大气，横版 1280×720，16:9比例，
+PNG格式，主色调 [颜色]，留文字排版空间
+```
+
+**要求**：
+- 分辨率必须为 **1280×720**（16:9横版）
+- 文件大小需 < 2MB
+- 如超过 2MB，使用 `scripts/compress_img.py` 压缩
+
+### Step 3：一键发布
+
+执行发布脚本：
+
+```bash
+python scripts/publish.py <文章.md路径> <封面图路径> [摘要]
+```
+
+脚本会自动完成：
+1. 读取凭证
+2. 获取 Access Token
+3. 上传封面图到永久素材
+4. 转换 Markdown 为微信 HTML
+5. 提交草稿到公众号
+
+**成功示例**：
+```
+Title: 文章标题
+Cover uploaded: media_id=xxx
+Draft created: media_id=xxx
+✅ 发布成功！去草稿箱预览吧
+```
+
+---
+
+## 封面图规范
+
+| 参数 | 要求 |
+|------|------|
+| 分辨率 | 1280×720（横版 16:9） |
+| 格式 | PNG/JPEG |
+| 大小 | < 2MB（永久素材限制） |
+| 内容 | 简洁大气，留文字空间 |
+
+**⚠️ 常见错误**：
+- 生成竖版图（9:16）→ 必须重新生成横版
+- 文件太大 → 用 `compress_img.py` 压缩
+- 模糊不清 → 提高生成分辨率
+
+### 压缩图片
+
+```bash
+python scripts/compress_img.py <原图路径> <输出路径> [quality]
+```
+
+默认 quality=85，逐步降低直到文件 < 500KB。
+
+---
+
+## API 调用说明
+
+详细 API 文档请参考 `references/api_ref.md`。
+
+### 核心端点
+
+| 功能 | 方法 | URL |
+|------|------|-----|
+| 获取 Token | GET | `/cgi-bin/token` |
+| 上传永久素材 | POST | `/cgi-bin/material/add_material` |
+| 新增草稿 | POST | `/cgi-bin/draft/add` |
+
+### Token 管理
+
+- 有效期：7200 秒（2小时）
+- 建议每次发布前重新获取
+- 返回 40001 时重新获取
+
+---
+
+## 常见问题
+
+### 错误码速查
+
+| errcode | 含义 | 解决方案 |
+|---------|------|---------|
+| 40164 | IP不在白名单 | mp后台添加 112.8.202.216 |
+| 40006 | 图片太大 | 压缩到 < 2MB |
+| 40007 | 无效 media_id | 用 add_material 永久素材接口 |
+| 40013 | AppID 不合法 | 检查 wechat_credentials.json |
+| 40001 | Token 过期 | 重新获取 |
+
+### 没有 AppID 怎么办？
+
+个人订阅号不支持获取 AppID，仅：
+- 已认证的服务号
+- 已认证的订阅号
+- 企业微信
+
+支持 API 发布。
+
+---
+
+## 脚本说明
+
+| 脚本 | 功能 |
+|------|------|
+| `publish.py` | 一键发布（自动执行全流程） |
+| `create_draft.py` | Markdown → 草稿 JSON |
+| `compress_img.py` | 压缩图片到指定大小 |
+| `upload_cover.py` | 仅上传封面图 |
+
+---
+
+## 与其他技能配合
+
+| 技能 | 配合方式 |
+|------|---------|
+| `wechat-official-account` | 获取选题建议、内容优化指导 |
+| `humanizer` | 去除 AI 写作痕迹 |
+| `多模态内容生成` | 生成封面图和配图 |
+| `baidu-search` | 搜索热门选题 |
+
+---
+
+## 版本记录
+
+- v1.0.0 (2026-05-12)：初始版本，一键发布到草稿箱

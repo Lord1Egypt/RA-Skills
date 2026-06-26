@@ -1,0 +1,6 @@
+interface:
+  display_name: "Xiaohongshu Collector"
+  short_description: "Collect Xiaohongshu posts, comments, and refresh flows"
+  default_prompt: "Use $xiaohongshu-collector to update Xiaohongshu post/comment collection, cookie handling, refresh flows, or the browser plugin integration."
+policy:
+  allow_implicit_invocation: true

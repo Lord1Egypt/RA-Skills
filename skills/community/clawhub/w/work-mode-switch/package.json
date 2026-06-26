@@ -1,0 +1,30 @@
+{
+  "name": "work-mode-switch",
+  "version": "2.0.0",
+  "description": "OpenClaw 智能体工作模式切换指南 - 12 种协作模式，支持灵活切换协作节奏",
+  "skill-author": "OpenClaw Community",
+  "license": "MIT-0",
+  "type": "documentation",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw"
+  },
+  "keywords": [
+    "work-mode",
+    "productivity",
+    "collaboration",
+    "agent-control",
+    "workflow",
+    "documentation"
+  ],
+  "category": "Productivity",
+  "tags": [
+    "模式切换",
+    "协作效率",
+    "工作流",
+    "智能体控制"
+  ],
+  "created": "2026-03-31",
+  "updated": "2026-03-31",
+  "min-openclaw-version": "2026.3.24"
+}

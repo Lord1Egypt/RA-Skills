@@ -1,0 +1,35 @@
+{
+  "skill_name": "xbridge-ext-helper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我需要在 xbridge3 框架中为泰国（TH）业务添加扩展字段，包括发票类型（映射到 idx_str1）、折扣金额（映射到 idx_number1）和支付方式（仅JSON存储）。请帮我生成完整的代码，包括 CommonExtension 类、Schema 配置类和 Processor 类。",
+      "expected_output": "完整的泰国扩展字段实现代码，包括：THCommonExtension.java（带 IndexedExtDataField 和 VirtualExtDataField 注解）、THTransactionExtension.java（带 @EntityExtensionSchema）、THTransactionProcessor.java（实现 EntityTableSchemaConfigProvider）",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "如何在 Validator 中读取越南（VN）扩展字段的发票类型并进行校验？请给我代码示例。",
+      "expected_output": "使用 ExtensionUtils.getExtension() 读取越南扩展字段，并校验 invoiceType 字段的完整代码示例",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我在 DAO 层创建交易时，扩展字段保存到 gbw_transaction 表了，但是 gbw_transaction_ext 表没有数据，怎么回事？",
+      "expected_output": "解释框架不会自动处理扩展表插入，需要手动调用 transactionExtMapper.insert() 的代码示例",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "请解释 IndexedExtDataField 和 VirtualExtDataField 的区别，以及 idx_str/idx_number 索引字段的分配建议。",
+      "expected_output": "清晰解释两种角色类型的区别（存储位置、查询方式）、索引字段配额（15个str、5个date、10个number）、分配建议",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "我需要在 Converter 中处理 Transaction 和 TransactionDTO 之间的扩展字段转换，应该怎么做？",
+      "expected_output": "说明扩展字段应该直接透传（setExtensions(source.getExtensions())），不要逐个字段转换的代码示例",
+      "files": []
+    }
+  ]
+}

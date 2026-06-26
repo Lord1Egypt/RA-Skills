@@ -1,0 +1,4 @@
+interface:
+  display_name: "X News Crawler"
+  short_description: "用 abs 抓取 X(Twitter) Top/Latest 并产出去重新闻 JSON"
+  default_prompt: "抓取关键词相关新闻，优先 Top 再补 Latest，并按时间输出结构化结果"

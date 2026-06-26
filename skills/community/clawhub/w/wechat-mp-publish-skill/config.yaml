@@ -1,0 +1,134 @@
+# 微信公众号配置
+wechat:
+  appid: "your-wechat-appid"
+  appsecret: "your-wechat-appsecret"
+  name: "your公众号名称"
+  api_base: "https://api.weixin.qq.com/cgi-bin"
+  token_cache_file: ".token_cache"
+  # 默认作者名称（可配置）
+  default_author: "your-author-name"
+
+# 图片生成配置
+image:
+  # ========== 配图策略配置 ==========
+  # 优先级列表（按顺序尝试，免费额度优先）
+  # 系统会自动跳过未配置 API Key、额度用完或被禁用的服务
+  # ========== 图片源优先级配置 ==========
+  # 按顺序尝试，自动跳过未配置/额度不足/不可用的服务
+  # 可用选项：unsplash, tongyi-wanxiang, baidu-yige, dall-e-3, bailian, volcengine, placeholder
+  provider_priority:
+    - "volcengine"        # 2. 火山方舟 AI 生成（免费额度）
+    - "bailian"           # 1. 阿里百炼 AI 生成（免费额度）
+    - "unsplash"          # 3. Unsplash 真实照片（推荐，免费，高质量）
+    - "tongyi-wanxiang"   # 4. 通义万相 AI 生成（免费 100 张/月）
+    - "baidu-yige"        # 5. 文心一格 AI 生成（免费 100 张/月）
+    - "dall-e-3"          # 6. DALL-E 3 AI 生成（付费，$0.04/张）
+    - "placeholder"       # 7. 占位图（最终降级方案）
+  
+  # 自动切换策略
+  auto_switch: true  # 是否自动切换到下一个可用服务
+  max_retries: 3     # 单个服务最大重试次数
+  
+  # ========== 各图片源详细配置 ==========
+  
+  # --- Unsplash 配置 ---
+  providers:
+    unsplash:
+      enabled: true  # ON=true, OFF=false
+      access_key: "your-unsplash-access-key"
+      orientation: "landscape"
+      per_page: 5
+      monthly_limit: 300  # null=无限制
+    
+    tongyi-wanxiang:
+      enabled: true  # ON=true, OFF=false
+      api_key: "your-tongyi-wanxiang-api-key"
+      api_url: "https://dashscope.aliyuncs.com/api/v1/services/aigc/image-generation/generation"
+      model: "wanx-v1"
+      size: "1024*1024"
+      style: "<auto>"  # <auto> | photography | illustration | anime | art
+      num_images: 1
+      monthly_limit: 100  # 每月免费额度（可配置）
+    
+    # ========== 阿里百炼 API 配置 ==========
+    bailian:
+      enabled: true  # ON=true, OFF=false
+      api_key: "your-bailian-api-key"
+      api_url: "https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation"
+      model: "qwen-image-plus"  # 千问模型
+      size: "1024*1024"
+      style: "<auto>"
+      num_images: 1
+      monthly_limit: 300  # 每月免费额度
+    
+    # ========== 火山方舟 API 配置 ==========
+    volcengine:
+      enabled: true  # ON=true, OFF=false
+      api_key: "your-volcengine-api-key"
+      api_secret: "your-volcengine-api-secret"
+      api_url: "https://ark.cn-beijing.volces.com/api/v3/images/generations"
+      model: "doubao-seedream-4-5-251128"  # 豆包绘画模型
+      size: "2048x2048"  # 最小 3686400 像素 (1920x1920 或更大)
+      style: "realistic"  # realistic | anime | art
+      num_images: 1
+      monthly_limit: 300  # 每月免费额度
+    
+    baidu-yige:
+      enabled: false  # ON=true, OFF=false
+      api_key: "your-baidu-api-key"
+      secret_key: "your-baidu-secret-key"
+      api_url: "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/text2image/sd_xl"
+      size: "1024,1024"
+      style: "Base"  # Base | 3D Cartoon | Japanese Anime | Realistic | etc.
+      monthly_limit: 100  # 每月免费额度（可配置）
+    
+    dall-e-3:
+      enabled: false  # ON=true, OFF=false
+      api_key: "your-dall-e-3-api-key"
+      model: "dall-e-3"
+      size: "1024x1024"
+      quality: "standard"
+      api_url: "https://api.openai.com/v1/images/generations"
+      monthly_limit: null  # null=无限制（付费）
+    
+    placeholder:
+      enabled: true  # 始终启用（降级方案）
+      monthly_limit: null  # 无限制
+  
+  # ========== 免费额度跟踪（每月重置） ==========
+  free_quota:
+    reset_day: 1  # 每月几号重置计数器
+  
+  # ========== 输出配置 ==========
+  output_width: 900
+  output_height: 383
+  output_format: "JPEG"
+  output_quality: 85
+  
+  # ========== 配图数量配置 ==========
+  max_images: 2  # 最多插入几张配图（不含封面）
+  min_words_per_image: 3000  # 最少多少字配一张图（3000 字约 2 张）
+  
+  # ========== 配图风格 ==========
+  style: "photorealistic"  # photorealistic（写实）| tech（科技）| business（商务）| abstract（抽象）
+
+# 模板配置
+templates:
+  default: "simple_minimal"
+  paths:
+    - "templates/simple_minimal.html"
+    - "templates/simple_clean.html"
+    - "templates/elite_business.html"
+    - "templates/professional_green.html"
+    - "templates/minimal_business.html"
+
+# 发布配置
+publish:
+  default_mode: "draft"
+  retry_times: 3
+  retry_delay: 5
+
+# 日志配置
+logging:
+  level: "INFO"
+  file: "logs/publish.log"

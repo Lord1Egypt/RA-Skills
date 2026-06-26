@@ -1,0 +1,142 @@
+# Xdoc Translation API Skill Metadata
+# For ClawHub.ai and compatible platforms
+
+name: xdoc-translation
+version: 1.0.0
+description: |
+  Document and text translation API skill powered by Xdoc.
+  Translate documents (docx, pdf, pptx, xlsx, etc.) and text between 50+ languages
+  with support for glossaries and translation memory.
+
+# Publisher Information
+publisher:
+  name: Xdoc
+  url: https://x-doc.ai
+  email: support@x-doc.ai
+
+# Service endpoints - must match SKILL.md
+service:
+  base_url: https://translation.x-doc.ai/api/open_api/v1
+  privacy_policy: https://x-doc.ai/privacy
+
+# Required credentials - IMPORTANT for security scan
+credentials:
+  primary:
+    name: XDOC_API_KEY
+    description: |
+      Your Xdoc API key for authentication.
+      Obtain from: https://translation.x-doc.ai/
+      Navigate to: User → API Management → My API → Create API Key
+    type: api_key
+    header_name: x-api-key
+    required: true
+    sensitive: true
+
+# Environment variables - must declare required credentials
+env:
+  XDOC_API_KEY:
+    description: Xdoc API key for authentication (passed via x-api-key header)
+    required: true
+    sensitive: true
+
+# API Endpoints
+endpoints:
+  # Document Translation
+  - path: /files/create_upload_url
+    method: POST
+    description: Generate presigned upload URL
+  - path: /translate/document
+    method: POST
+    description: Submit document for translation
+  - path: /translate/status
+    method: POST
+    description: Check translation status
+  - path: /files/delete
+    method: POST
+    description: Delete uploaded file
+  # Text Translation
+  - path: /text/translate
+    method: POST
+    description: Instant text translation
+  # Glossary
+  - path: /term-libs/create
+    method: POST
+    description: Create glossary
+  - path: /term-libs/list
+    method: POST
+    description: List glossaries
+  - path: /term-entries/add
+    method: POST
+    description: Add terms to glossary
+  # Translation Memory
+  - path: /memory-libs/create
+    method: POST
+    description: Create translation memory
+  - path: /memory-libs/list
+    method: POST
+    description: List translation memories
+  - path: /memory-entries/add
+    method: POST
+    description: Add entries to memory
+  # Utility
+  - path: /languages
+    method: GET
+    description: Get supported languages
+
+# Capabilities
+capabilities:
+  - document_translation
+  - text_translation
+  - glossary_management
+  - translation_memory
+
+# Supported file formats
+supported_formats:
+  - docx
+  - doc
+  - pdf
+  - pptx
+  - ppt
+  - xlsx
+  - xls
+  - txt
+  - xml
+
+# Supported languages (partial list, 50+ total)
+supported_languages:
+  - en     # English
+  - zh-cn  # Chinese (Simplified)
+  - zh-tw  # Chinese (Traditional)
+  - ja     # Japanese
+  - ko     # Korean
+  - de     # German
+  - fr     # French
+  - es     # Spanish
+  - pt     # Portuguese
+  - ru     # Russian
+  - ar     # Arabic
+  - th     # Thai
+  - vi     # Vietnamese
+  - it     # Italian
+
+# Security & Privacy
+security:
+  transport: HTTPS/TLS 1.2+
+  data_retention: 7 days (auto-delete)
+  third_party_sharing: false
+  compliance:
+    - GDPR
+
+# Permissions
+permissions:
+  always: false
+  disable_model_invocation: false
+
+# Tags for discovery
+tags:
+  - translation
+  - document
+  - localization
+  - i18n
+  - language
+  - api

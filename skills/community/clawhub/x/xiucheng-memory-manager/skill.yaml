@@ -1,0 +1,11 @@
+name: memory-manager
+description: Long-term memory management system for OpenClaw agents
+version: "1.0.0"
+author: xiucheng
+type: skill
+tags:
+  - memory
+  - long-term
+  - archiving
+  - search
+license: MIT

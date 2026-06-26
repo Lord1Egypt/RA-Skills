@@ -1,0 +1,47 @@
+{
+  "name": "@xihe-forge/xihe-jianmu-ipc",
+  "version": "0.1.0",
+  "description": "建木 — Real-time IPC hub for multi-AI-agent communication. WebSocket message routing between Claude Code, OpenClaw, Codex, and any HTTP client.",
+  "type": "module",
+  "main": "hub.mjs",
+  "bin": { "jianmu": "./bin/jianmu.mjs" },
+  "files": [
+    "hub.mjs",
+    "mcp-server.mjs",
+    "channel-server.mjs",
+    "lib/",
+    "bin/jianmu.mjs",
+    "bin/install.ps1",
+    "bin/patch-channels.mjs",
+    "CLAUDE.md",
+    "SKILL.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "ipc",
+    "multi-agent",
+    "claude-code",
+    "openclaw",
+    "codex",
+    "mcp",
+    "websocket",
+    "ai-collaboration",
+    "xihe",
+    "jianmu"
+  ],
+  "author": "xihe-forge <xihe-ai@lumidrivetech.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xihe-forge/xihe-jianmu-ipc"
+  },
+  "homepage": "https://github.com/xihe-forge/xihe-jianmu-ipc",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.28.0",
+    "ws": "^8.18.0"
+  },
+  "scripts": {
+    "hub": "node hub.mjs",
+    "status": "node bin/jianmu.mjs status"
+  }
+}

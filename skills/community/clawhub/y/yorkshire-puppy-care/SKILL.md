@@ -1,35 +1,70 @@
 ---
-name: "Yorkshire Puppy Care"
-description: "专为约克夏梗犬主人设计的智能养育顾问。自动提醒喂食、洗澡、驱虫、疫苗时间，分析狗狗行为情绪，并能联网回答宠物护理问题。"
-category: "other"
-source: "ClawHub"
-tags: [pets]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yorkshire-puppy-care"
-sourceUrl: "https://clawhub.ai/skills/yorkshire-puppy-care"
+name: yorkshire-puppy-care
+version: 1.0.0
+display_name: 约克夏小狗养育助手
+description: 专为约克夏梗犬主人设计的智能养育顾问。自动提醒喂食、洗澡、驱虫、疫苗时间，分析狗狗行为情绪，并能联网回答宠物护理问题。
+author: heidi1998
+language: zh-CN
+tags:
+  - pet
+  - dog
+  - yorkshire
+  - reminder
+  - care
+  - chinese
 ---
 
-# Yorkshire Puppy Care
+# 🐶 约克夏小狗养育助手
 
-> 专为约克夏梗犬主人设计的智能养育顾问。自动提醒喂食、洗澡、驱虫、疫苗时间，分析狗狗行为情绪，并能联网回答宠物护理问题。
+专为约克夏梗犬（Yorkshire Terrier）主人设计的全方位智能养育顾问。约克夏是一种娇小但个性鲜明的小型犬，需要细心的日常护理。这个 skill 就像一位随时待命的宠物医生朋友，帮你把养狗这件事做得井井有条。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yorkshire-puppy-care`
-- **Source URL:** [https://clawhub.ai/skills/yorkshire-puppy-care](https://clawhub.ai/skills/yorkshire-puppy-care)
+## 为什么需要这个 Skill？
 
-## Overview
+很多约克夏主人面临这些困扰：
+- 忘记该什么时候驱虫、打疫苗
+- 不知道狗狗不吃饭、一直叫是什么原因
+- 有问题不知道问谁，网上信息太杂太乱
+- 洗澡、剪毛频率不确定
 
+这个 skill 专门解决这些问题。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yorkshire-puppy-care
-```
+## 核心功能
+
+### 🗓️ 个性化护理时间表
+第一次使用时，你告诉助手狗狗的基本情况（名字、年龄、体重、上次洗澡驱虫时间），它会立刻生成一份专属护理时间表，包括：
+- 喂食时间（根据年龄决定每天几次）
+- 下次洗澡时间（约克夏建议每7-10天一次）
+- 体外驱虫提醒（每月一次）
+- 体内驱虫提醒（每3个月一次）
+- 疫苗接种提醒（年度加强针）
+
+### 😊 行为与情绪分析
+描述狗狗的异常行为，助手会分析原因并给出建议：
+- 不吃饭 → 区分挑食、生病、换粮应激
+- 一直叫 → 判断分离焦虑、需求表达、健康信号
+- 爱舔爪子 → 过敏、焦虑或皮肤问题的区别
+- 精神萎靡 → 识别需要就医的警示信号
+
+### 🔍 联网实时问答
+遇到任何约克夏相关问题，助手会联网搜索最新资料后回答，包括：
+- 最新疫苗接种指南
+- 推荐的狗粮品牌评测
+- 当地宠物医院查找
+- 特定症状的处理建议
+
+## 使用示例
+
+**你说：** 我家约克夏叫小豆，3个月大，上周刚洗过澡，还没打过疫苗
+
+**助手回应：** 生成小豆的护理时间表，提醒本周该带去打第一针疫苗，下次洗澡建议下周同一天
+
+---
+
+**你说：** 小豆今天不吃饭，还一直用爪子抓嘴
+
+**助手回应：** 分析可能原因（换牙期不适、口腔问题、异物），给出观察建议和就医时机判断
+
+## 注意事项
+- 本 skill 提供的建议仅供参考，不替代专业兽医诊断
+- 遇到紧急健康问题请立即就医
+- 建议配合 DeepSeek API 使用以启用联网搜索功能

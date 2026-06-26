@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/fitness-tracker.json",
+  "title": "FitnessTracker",
+  "description": "运动与健身追踪的数据结构定义",
+  "type": "object",
+  "properties": {
+    "workout_records": {
+      "type": "array",
+      "description": "运动记录",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "time": { "type": "string", "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$" },
+          "type": {
+            "type": "string",
+            "enum": ["running", "walking", "cycling", "swimming", "jump_rope", "aerobics", "elliptical", "rowing",
+                     "strength", "calisthenics", "machine_weights", "free_weights", "resistance_bands",
+                     "basketball", "soccer", "badminton", "ping_pong", "tennis", "volleyball",
+                     "yoga", "pilates", "tai_chi", "dance", "hiking", "skiing", "other"]
+          },
+          "duration_minutes": { "type": "number", "minimum": 0 },
+          "intensity": {
+            "type": "object",
+            "properties": {
+              "level": { "type": "string", "enum": ["low", "moderate", "high"] },
+              "rpe": { "type": "integer", "minimum": 6, "maximum": 20 }
+            }
+          },
+          "heart_rate": {
+            "type": "object",
+            "properties": {
+              "avg": { "type": "number", "minimum": 40, "maximum": 220 },
+              "max": { "type": "number", "minimum": 40, "maximum": 220 },
+              "min": { "type": "number", "minimum": 40, "maximum": 220 }
+            }
+          },
+          "distance_km": { "type": "number", "minimum": 0 },
+          "pace_min_per_km": { "type": "string" },
+          "calories_burned": { "type": "number", "minimum": 0 },
+          "how_felt": { "type": "string", "enum": ["bad", "poor", "okay", "good", "excellent"] },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "fitness_goals": {
+      "type": "array",
+      "description": "健身目标",
+      "items": {
+        "type": "object",
+        "properties": {
+          "goal_id": { "type": "string" },
+          "category": {
+            "type": "string",
+            "enum": ["weight_loss", "muscle_gain", "endurance", "health", "habit"]
+          },
+          "title": { "type": "string" },
+          "start_date": { "type": "string", "format": "date" },
+          "target_date": { "type": "string", "format": "date" },
+          "baseline_value": { "type": "number" },
+          "current_value": { "type": "number" },
+          "target_value": { "type": "number" },
+          "unit": { "type": "string" },
+          "progress": { "type": "number", "minimum": 0, "maximum": 100 },
+          "status": { "type": "string", "enum": ["not_started", "on_track", "behind", "completed", "paused"] },
+          "created_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "description": "统计数据",
+      "properties": {
+        "total_workouts": { "type": "integer" },
+        "total_duration_minutes": { "type": "number" },
+        "total_distance_km": { "type": "number" },
+        "total_calories_burned": { "type": "number" },
+        "current_streak_days": { "type": "integer" },
+        "longest_streak_days": { "type": "integer" },
+        "last_updated": { "type": "string", "format": "date-time" }
+      }
+    },
+    "body_composition": {
+      "type": "object",
+      "description": "身体成分记录",
+      "properties": {
+        "weight": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": { "type": "string", "format": "date" },
+              "value_kg": { "type": "number" }
+            }
+          }
+        },
+        "body_fat_percentage": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": { "type": "string", "format": "date" },
+              "value": { "type": "number", "minimum": 0, "maximum": 50 }
+            }
+          }
+        },
+        "muscle_mass_kg": { "type": "number" },
+        "basal_metabolic_rate": { "type": "number" }
+      }
+    },
+    "prescriptions": {
+      "type": "object",
+      "description": "运动处方参考",
+      "properties": {
+        "beginner": { "type": "array", "items": { "type": "string" } },
+        "intermediate": { "type": "array", "items": { "type": "string" } },
+        "hypertension": { "type": "array", "items": { "type": "string" } },
+        "diabetes": { "type": "array", "items": { "type": "string" } },
+        "weight_loss": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

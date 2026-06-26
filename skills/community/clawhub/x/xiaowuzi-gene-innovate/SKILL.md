@@ -1,35 +1,24 @@
----
-name: "小五子 - 基因创新"
-description: "通过跨域融合与动态调整，智能筛选并创新提示词逻辑，持续驱动基因演化和系统适应性提升。"
-category: "other"
-source: "ClawHub"
-tags: [evolver, gene, gep, xiaowuzi]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaowuzi-gene-innovate"
-sourceUrl: "https://clawhub.ai/skills/xiaowuzi-gene-innovate"
----
-
-# 小五子 - 基因创新
-
-> 通过跨域融合与动态调整，智能筛选并创新提示词逻辑，持续驱动基因演化和系统适应性提升。
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaowuzi-gene-innovate`
-- **Source URL:** [https://clawhub.ai/skills/xiaowuzi-gene-innovate](https://clawhub.ai/skills/xiaowuzi-gene-innovate)
-
-## Overview
+\# 小五子 - 基因创新 (xiaowuzi-gene-innovate)
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaowuzi-gene-innovate
-```
+
+\## 技能深度解析
+
+该技能是小五子基因演化系统中的“变异与探索”核心。它不仅仅是简单的修改，而是致力于在现有的提示词基因库之外，挖掘具有突破性的逻辑结构。
+
+
+
+\## 核心算法能力
+
+\- \*\*跨域思维融合\*\*：通过模拟随机逻辑，将不同领域的逻辑范式引入当前的提示词设计中，产生意想不到的效果。
+
+\- \*\*高维演化筛选\*\*：利用启发式算法，在海量的变异分支中精准定位那些具备演化潜力的优秀基因片段。
+
+\- \*\*动态变异率调整\*\*：根据当前的演化停滞情况，自动调高或调低逻辑变异的剧烈程度，确保系统不陷入局部最优解。
+
+
+
+\## 部署价值
+
+在长期运行的自动化代理任务中，该技能能有效防止系统逻辑僵化，为小五子提供持续的创新动力，确保在处理复杂、多变的现实任务时始终保持领先的灵活性和适应性。
+

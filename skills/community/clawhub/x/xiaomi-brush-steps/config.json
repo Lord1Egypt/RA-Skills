@@ -1,0 +1,10 @@
+{
+  "accounts": [],
+  "step": {
+    "min": 500,
+    "max": 600
+  },
+  "network": {
+    "use_fake_ip": false
+  }
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="#1a1a2e" stroke="#4a4e69" stroke-width="2"/>
+  
+  <!-- Power symbol -->
+  <path d="M50 20 L50 45" stroke="#00d9ff" stroke-width="6" stroke-linecap="round"/>
+  <path d="M50 50 A25 25 0 1 1 32 57" stroke="#00d9ff" stroke-width="6" stroke-linecap="round" fill="none"/>
+  
+  <!-- Network waves -->
+  <circle cx="50" cy="50" r="35" stroke="#00d9ff" stroke-width="2" fill="none" opacity="0.3"/>
+  <circle cx="50" cy="50" r="42" stroke="#00d9ff" stroke-width="2" fill="none" opacity="0.2"/>
+  
+  <!-- Glow effect -->
+  <circle cx="50" cy="50" r="30" fill="#00d9ff" opacity="0.1"/>
+</svg>

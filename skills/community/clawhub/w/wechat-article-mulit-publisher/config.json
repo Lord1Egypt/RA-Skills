@@ -1,0 +1,12 @@
+{
+  "default_account": "your_account",
+  "accounts": {
+    "your_account": {
+      "name": "你的公众号名称",
+      "app_id": "wx000000000000000000",
+      "app_secret": "your_app_secret_here",
+      "author": "作者名",
+      "default_template": "standard"
+    }
+  }
+}

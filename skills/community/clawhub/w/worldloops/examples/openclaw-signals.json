@@ -1,0 +1,31 @@
+{
+  "signals": [
+    {
+      "source": "slack",
+      "text": "Can you please review the PR before tomorrow?",
+      "createdAt": "2026-05-16T09:00:00.000Z"
+    },
+    {
+      "source": "gmail",
+      "text": "Follow-up on the proposal we discussed last week.",
+      "url": "https://mail.google.com/mail/u/0/#inbox/example",
+      "createdAt": "2026-05-15T14:30:00.000Z"
+    },
+    {
+      "source": "calendar",
+      "text": "Recurring standup has no agenda set for this week.",
+      "createdAt": "2026-05-16T08:00:00.000Z"
+    },
+    {
+      "source": "github",
+      "text": "PR #42 has been open for 5 days with no review.",
+      "url": "https://github.com/example/repo/pull/42",
+      "createdAt": "2026-05-11T10:00:00.000Z"
+    },
+    {
+      "source": "manual",
+      "text": "Need to send quarterly report to the leadership team.",
+      "createdAt": "2026-05-16T07:00:00.000Z"
+    }
+  ]
+}

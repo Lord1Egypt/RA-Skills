@@ -1,0 +1,54 @@
+# Business Profile
+name: "Your Business Name"
+type: "gym"  # Options: gym, restaurant, salon, clinic, service, retail, realestate, education, hotel, other
+location: "Johannesburg, South Africa"
+timezone: "Africa/Johannesburg"
+language: "en-ZA"
+
+# Business Hours (24h)
+hours:
+  monday:
+    open: "05:00"
+    close: "21:00"
+  tuesday:
+    open: "05:00"
+    close: "21:00"
+  wednesday:
+    open: "05:00"
+    close: "21:00"
+  thursday:
+    open: "05:00"
+    close: "21:00"
+  friday:
+    open: "05:00"
+    close: "20:00"
+  saturday:
+    open: "06:00"
+    close: "18:00"
+  sunday:
+    open: "07:00"
+    close: "14:00"
+
+# Out-of-hours defaults
+out_of_hours_message: "We're currently closed. We'll reply when we reopen at {next_open_time}. In the meantime, drop us your query!"
+emergency_contact: "+27XXXXXXXXX"
+
+# Lead scoring
+lead_scoring:
+  min_confidence: 0.6
+  auto_qualify_threshold: 0.85
+  follow_up_hours: [1, 24, 72, 168]  # Follow-up cadence in hours
+
+# Booking integration
+booking:
+  calendar_provider: "google"
+  calendar_id: ""
+  slot_duration_minutes: 30
+  buffer_between_slots: 10
+  max_bookings_per_day: 20
+
+# Escalation
+escalation:
+  auto_escalate_after: 3  # Number of failed auto-replies before human
+  escalation_channel: "slack"
+  escalation_webhook: "https://hooks.slack.com/services/..."

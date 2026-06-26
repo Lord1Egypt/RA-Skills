@@ -1,0 +1,18 @@
+{
+  "name": "xhs-content-generator",
+  "version": "1.0.0",
+  "description": "小红书内容生成助手 - 根据热点榜单生成爆款标题和内容框架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "xhs",
+    "xiaohongshu",
+    "content-generator",
+    "social-media",
+    "titles"
+  ],
+  "author": "Jarvis AI Team",
+  "license": "MIT"
+}

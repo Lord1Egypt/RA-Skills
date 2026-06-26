@@ -1,0 +1,28 @@
+{
+  "name": "websearch",
+  "version": "1.0.0",
+  "description": "Agent 专用搜索工具 - 基于 SearchAPI",
+  "main": "websearch.js",
+  "bin": {
+    "websearch": "./websearch.js"
+  },
+  "scripts": {
+    "search": "node websearch.js",
+    "test": "node websearch.js test",
+    "config": "node websearch.js config"
+  },
+  "keywords": [
+    "search",
+    "agent",
+    "ai",
+    "llm",
+    "searchapi",
+    "openclaw"
+  ],
+  "author": "WebSearch",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {}
+}

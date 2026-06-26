@@ -1,0 +1,108 @@
+{
+  "name": "multi-team-switcher",
+  "version": "1.0.1",
+  "description": "Multi-Team Switcher System - 4 teams (Finance/E-commerce/Media/Office) + Smart Switcher, 26 professional Agent roles",
+  "author": "xiaodi <mxbot-xiaodi@agentmail.to>",
+  "license": "MIT",
+  "category": "Multi-Agent",
+  "tags": ["multi-agent", "team", "finance", "ecommerce", "media", "office", "collaboration", "xiaodi"],
+  "pricing": {
+    "type": "free"
+  },
+  "requirements": {
+    "tools": [
+      "web_search",
+      "web_fetch",
+      "memory_search",
+      "exec",
+      "browser"
+    ],
+    "binaries": [
+      "ffmpeg",
+      "ffprobe",
+      "convert (ImageMagick)",
+      "whisper (optional)"
+    ],
+    "python_packages": [
+      "requests",
+      "akshare (optional, for financial data)"
+    ],
+    "system": [
+      "Linux/macOS",
+      "Minimum 4GB RAM for video processing"
+    ]
+  },
+  "optional_env_vars": [
+    {
+      "name": "KLING_API_KEY",
+      "description": "可灵 AI 视频生成 API Key",
+      "required": false
+    },
+    {
+      "name": "RUNWAY_API_KEY",
+      "description": "Runway Gen-3 视频生成 API Key",
+      "required": false
+    },
+    {
+      "name": "PIKA_API_KEY",
+      "description": "Pika Labs 视频生成 API Key",
+      "required": false
+    },
+    {
+      "name": "OPENAI_API_KEY",
+      "description": "OpenAI API Key (for Sora/DALL-E)",
+      "required": false
+    }
+  ],
+  "data_sources": {
+    "financial": {
+      "endpoints": ["eastmoney.com", "tencent.com", "sina.com.cn"],
+      "type": "public",
+      "auth_required": false
+    },
+    "ecommerce": {
+      "endpoints": ["amazon.com", "tiktok.com"],
+      "type": "public",
+      "auth_required": false
+    }
+  },
+  "features": [
+    "4 大功能团队 + 1 个智能切换器",
+    "26 个专业 Agent 角色",
+    "Master-Worker 协作架构",
+    "智能团队切换",
+    "完整工作流编排"
+  ],
+  "teams": {
+    "financial": {
+      "name": "金融团队",
+      "icon": "📊",
+      "members": 7,
+      "description": "股票分析、投资决策",
+      "data_sources": ["eastmoney", "tencent", "sina"]
+    },
+    "ecom": {
+      "name": "电商团队",
+      "icon": "🛒",
+      "members": 8,
+      "description": "选品、运营、定价"
+    },
+    "media": {
+      "name": "多媒体团队",
+      "icon": "🎬",
+      "members": 7,
+      "description": "视频、图片、音频处理",
+      "requires_binaries": ["ffmpeg", "ImageMagick"]
+    },
+    "office": {
+      "name": "办公团队",
+      "icon": "📋",
+      "members": 4,
+      "description": "日程、邮件、文档"
+    }
+  },
+  "total_agents": 26,
+  "homepage": "https://github.com/mx6315909/xiaodi-multi-team-skills",
+  "repository": "https://github.com/mx6315909/xiaodi-multi-team-skills",
+  "always": false
+}

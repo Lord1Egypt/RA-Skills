@@ -1,35 +1,172 @@
 ---
-name: "收支管理"
-description: "个人与店铺收支管理系统。用于记录日常生活开支和店铺经营数据。 触发场景： (1) 记录日常消费（吃饭、购物、交通、房租等） (2) 设置每月开支预算并监控超支 (3) 查看月度/年度开支报表 (4) 记录店铺商品进货和销售 (5) 计算商品毛利和店铺纯利润 (6) 生成店铺经营报表 (7) 询问"这个月花了多少钱..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wlrllr-finance-tracker"
-sourceUrl: "https://clawhub.ai/skills/wlrllr-finance-tracker"
+name: finance-tracker
+author: wlrllr
+description: |
+  个人与店铺收支管理系统。用于记录日常生活开支和店铺经营数据。
+  触发场景：
+  (1) 记录日常消费（吃饭、购物、交通、房租等）
+  (2) 设置每月开支预算并监控超支
+  (3) 查看月度/年度开支报表
+  (4) 记录店铺商品进货和销售
+  (5) 计算商品毛利和店铺纯利润
+  (6) 生成店铺经营报表
+  (7) 询问"这个月花了多少钱"、"今天吃饭花了多少"等
 ---
 
-# 收支管理
+# 收支管理技能
 
-> 个人与店铺收支管理系统。用于记录日常生活开支和店铺经营数据。 触发场景： (1) 记录日常消费（吃饭、购物、交通、房租等） (2) 设置每月开支预算并监控超支 (3) 查看月度/年度开支报表 (4) 记录店铺商品进货和销售 (5) 计算商品毛利和店铺纯利润 (6) 生成店铺经营报表 (7) 询问"这个月花了多少钱...
+## 数据存储
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wlrllr-finance-tracker`
-- **Source URL:** [https://clawhub.ai/skills/wlrllr-finance-tracker](https://clawhub.ai/skills/wlrllr-finance-tracker)
+所有数据存储在 `~/private_data/openclaw/workspace/data/finance/` 目录：
+- `personal_expenses.json` - 个人日常开支
+- `shop_purchases.json` - 店铺进货记录
+- `shop_sales.json` - 店铺销售记录
+- `settings.json` - 预算设置
 
-## Overview
+## 功能列表
 
+### 1. 个人日常开支
 
-## Installation
-To install this skill, run the following command in your terminal:
+**记录开支：**
+```
+用户：今天吃饭花了30元
+→ 记录：{date: 今天, category: 餐饮, amount: 30, note: 午餐}
+```
+
+支持分类：
+- 餐饮（早餐/午餐/晚餐/零食/外卖/堂食）
+- 购物（服装/日用品/电子产品/其他）
+- 交通（公交/打车/地铁/油费/停车）
+- 住房（房租/水电/物业/维修）
+- 医疗（药店/医院/体检）
+- 通讯（话费/网费）
+- 娱乐（电影/游戏/旅游/健身）
+- 教育（培训/书籍/课程）
+- 其他
+
+**预算设置：**
+```
+用户：设置每月预算5000元
+→ 保存到 settings.json
+```
+
+**超支提醒：**
+- 每日记录后计算当月累计
+- 达到80%预算时提醒"注意，超支风险"
+- 达到100%时提醒"已超支！"
+- 每日 heartbeat 时检查并主动提醒
+
+**查询统计：**
+- 按月查询：`这个月花了多少`
+- 按年查询：`今年总共花了多少`
+- 按分类查询：`这个月吃饭花了多少`
+- 趋势分析：`这个月和上个月对比`
+
+### 2. 店铺收支
+
+**记录进货：**
+```
+用户：进货 iPhone15 128G 5台 每台6000元
+→ 记录：{date, product: iPhone15-128G, quantity: 5, unitPrice: 6000, total: 30000}
+```
+
+**记录销售：**
+```
+用户：卖出 iPhone15 128G 2台 每台7000元
+→ 记录：{date, product: iPhone15-128G, quantity: 2, unitPrice: 7000, total: 14000}
+```
+
+**利润计算：**
+- 毛利 = 销售总收入 - 销售成本（按先进先出匹配进货）
+- 净利润 = 毛利 - 运营费用（可设置）
+- 单品利润 = 销售价 - 进货价
+
+**库存查询：**
+```
+用户：查一下 iPhone15 还有多少库存
+→ 显示当前库存数量和成本
+```
+
+**报表生成：**
+- 月度报表：销售额、成本、毛利、净利
+- 年度报表：同上，按月汇总
+- 按商品分类统计
+
+## 使用脚本
+
+数据操作通过 scripts/finance.py 处理：
+
 ```bash
-hermes skills install clawhub/wlrllr-finance-tracker
+# 记录个人开支
+python3 scripts/finance.py add-expense --category 餐饮 --amount 30 --note 午餐
+
+# 设置预算
+python3 scripts/finance.py set-budget --amount 5000
+
+# 查询本月开支
+python3 scripts/finance.py check-budget
+
+# 记录进货
+python3 scripts/finance.py add-purchase --product "iPhone15-128G" --qty 5 --price 6000
+
+# 记录销售
+python3 scripts/finance.py add-sale --product "iPhone15-128G" --qty 2 --price 7000
+
+# 查看店铺报表
+python3 scripts/finance.py shop-report --period month
+
+# 查看库存
+python3 scripts/finance.py stock
+```
+
+## 对话示例
+
+**记录消费：**
+- "今天早餐花了12块"
+- "买了件衣服300元"
+- "打车花了45"
+- "这个月房租2500"
+
+**查询：**
+- "我这个月花了多少钱？"
+- "上周吃饭花了多少"
+- "今年总支出是多少"
+- "帮我看看这个月和上个月的对比"
+
+**店铺：**
+- "今天进了10台小米手机，每台2000"
+- "卖出一台iPhone，8500"
+- "这个月赚了多少"
+- "查一下AirPods的库存"
+
+## 报表格式
+
+**个人月度报表：**
+```
+📊 2026年3月开支报告
+━━━━━━━━━━━━
+预算：5000元
+已花费：3850元 (77%)
+━━━━━━━━━━━━
+分类明细：
+  餐饮：1200元 (31%)
+  购物：800元 (21%)
+  交通：450元 (12%)
+  住房：2500元 (含在已花费中)
+  ...
+```
+
+**店铺月度报表：**
+```
+📈 2026年3月店铺报表
+━━━━━━━━━━━━
+销售额：125,000元
+成本：98,000元
+毛利：27,000元 (22%)
+运营费用：3,000元
+净利润：24,000元 (19%)
+━━━━━━━━━━━━
+热销商品：
+  iPhone15 128G：销售20台，利润20,000元
+  AirPods Pro：销售15台，利润4,500元
 ```

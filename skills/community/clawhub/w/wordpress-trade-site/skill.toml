@@ -1,0 +1,12 @@
+[skill]
+name = "WordPress Trade Site Builder"
+slug = "wordpress-trade-site"
+version = "1.0.0"
+description = "Interactive guide to deploy a production-ready WordPress site for international trade businesses. Docker-based, triple-layer cache, multilingual, SEO-optimized."
+author = "iPythoning"
+license = "MIT"
+
+[metadata]
+tags = ["wordpress", "trade", "b2b", "website", "deployment"]
+category = "automation"
+source_repo = "iPythoning/wordpress-trade-starter"

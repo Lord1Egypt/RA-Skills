@@ -1,35 +1,67 @@
 ---
-name: "Yandex Speechkit STT via Telegram Gateway"
-description: "Распознавание речи через Yandex SpeechKit API для голосовых сообщений в Telegram. Используй когда пользователь отправляет голосовые сообщения и хочет, чтобы..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yandex-speechkit-stt"
-sourceUrl: "https://clawhub.ai/skills/yandex-speechkit-stt"
+name: yandex-speechkit-stt
+description: Распознавание речи через Yandex SpeechKit API для голосовых сообщений в Telegram. Используй когда пользователь отправляет голосовые сообщения и хочет, чтобы они расшифровывались через Yandex SpeechKit.
+metadata:
+  {
+    "openclaw":
+      {
+        "requires": { "bins": ["ffmpeg", "python3"] },
+        "install":
+          [
+            {
+              "id": "pip",
+              "kind": "pip",
+              "packages": ["PyJWT", "cryptography", "requests"],
+            },
+          ],
+      },
+  }
 ---
 
-# Yandex Speechkit STT via Telegram Gateway
+# Yandex SpeechKit STT
 
-> Распознавание речи через Yandex SpeechKit API для голосовых сообщений в Telegram. Используй когда пользователь отправляет голосовые сообщения и хочет, чтобы...
+Скилл для быстрого и качественного распознавания голосовых сообщений через Yandex SpeechKit.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yandex-speechkit-stt`
-- **Source URL:** [https://clawhub.ai/skills/yandex-speechkit-stt](https://clawhub.ai/skills/yandex-speechkit-stt)
+## Настройка
 
-## Overview
+### Переменные окружения
 
+Создай `config.json` в папке скилла:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yandex-speechkit-stt
+```json
+{
+  "id": "your-key-id",
+  "service_account_id": "your-service-account-id",
+  "folder_id": "your-folder-id",
+  "private_key": "-----BEGIN PRIVATE KEY-----\n..."
+}
 ```
+
+## Использование
+
+### Из командной строки
+
+```bash
+python scripts/yandex_stt.py voice_message.ogg
+```
+
+### Из кода
+
+```python
+import sys
+sys.path.insert(0, 'scripts')
+from yandex_stt import speech_to_text, get_token_iam
+
+# Получить IAM токен
+iam_token = get_token_iam(folder_id, service_account_id, private_key, key_id)
+
+# Распознать речь
+result = speech_to_text("voice.ogg", folder_id, iam_token)
+print(result)
+```
+
+## Особенности
+
+- Автоматически обрезает аудио до 28 секунд (лимит Yandex)
+- IAM токен автоматически обновляется через service account
+- Работает с OggOpus, WAV, MP3

@@ -1,0 +1,18 @@
+# x-engagement manual reminder templates
+#
+# This file is informational only.
+# It does not modify crontab, launchd, or any other scheduler.
+#
+# Recommended manual routines:
+#
+# 1. Daily hotspot review
+#    Run manually when needed:
+#    cd "/Users/haochengwang/Desktop/hermes/x-engagement-src" && ./scripts/check-cron.sh
+#
+# 2. Memory cleanup preview
+#    cd "/Users/haochengwang/Desktop/hermes/x-engagement-src" && ./scripts/cleanup-memory.sh
+#
+# 3. Memory cleanup apply
+#    cd "/Users/haochengwang/Desktop/hermes/x-engagement-src" && ./scripts/cleanup-memory.sh --apply
+#
+# If you later decide to create OS-level reminders, do it manually after review.

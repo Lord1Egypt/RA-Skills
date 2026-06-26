@@ -1,0 +1,12 @@
+{
+  "commits": [
+    {"repo": "xuemi/habit-healing", "sha": "abc1234", "message": "优化蛙蛙养成系统交互", "author": "学密", "date": "2026-03-18"},
+    {"repo": "xuemi/habit-healing", "sha": "def5678", "message": "修复打卡统计bug", "author": "学密", "date": "2026-03-17"},
+    {"repo": "xuemi/habit-healing", "sha": "ghi9012", "message": "新增成就徽章功能", "author": "学密", "date": "2026-03-16"}
+  ],
+  "prs": [
+    {"repo": "xuemi/habit-healing", "number": 12, "title": "feat: 蛙蛙养成系统2.0", "author": "学密", "merged_at": "2026-03-18"},
+    {"repo": "xuemi/habit-healing", "number": 11, "title": "fix: 修复连续打卡问题", "author": "学密", "merged_at": "2026-03-15"}
+  ],
+  "issues": []
+}

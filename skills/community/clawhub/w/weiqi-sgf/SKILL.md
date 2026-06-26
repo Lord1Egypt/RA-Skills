@@ -1,35 +1,134 @@
 ---
-name: "围棋打谱工具"
-description: "SGF围棋棋谱转HTML打谱工具 - 将棋谱文件生成可在浏览器中交互回放的网页，支持多级变化分支、试下功能、真实音效。当用户需要"SGF转网页"、"打谱"、"棋谱查看"、"变化图浏览"时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weiqi-sgf"
-sourceUrl: "https://clawhub.ai/skills/weiqi-sgf"
+name: 围棋打谱工具
+description: SGF围棋棋谱转HTML打谱工具 - 将棋谱文件生成可在浏览器中交互回放的网页，支持多级变化分支、试下功能、真实音效。当用户需要"SGF转网页"、"打谱"、"棋谱查看"、"变化图浏览"时使用此技能。
+tags: ["围棋", "weiqi", "go", "棋谱", "SGF", "打谱", "HTML", "网页", "变化图"]
+version: 2.0.2
 ---
 
-# 围棋打谱工具
+# SGF 围棋打谱网页生成器
 
-> SGF围棋棋谱转HTML打谱工具 - 将棋谱文件生成可在浏览器中交互回放的网页，支持多级变化分支、试下功能、真实音效。当用户需要"SGF转网页"、"打谱"、"棋谱查看"、"变化图浏览"时使用此技能。
+将 SGF 格式的围棋棋谱转换为单文件 HTML 网页，支持本地浏览器打开进行交互式打谱。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weiqi-sgf`
-- **Source URL:** [https://clawhub.ai/skills/weiqi-sgf](https://clawhub.ai/skills/weiqi-sgf)
+## 功能亮点
 
-## Overview
+- 🎯 **多级变化分支** - 支持任意深度的嵌套变化图，可自由切换主分支和变化分支
+- 🔊 **真实音效系统** - 落子声、提子声、撤销声各有不同，Web Audio API 实时生成
+- ✋ **试下功能** - 在任意局面下自由试下，支持提子判断
+- 📱 **响应式设计** - 手机/平板/桌面端自适应，触屏滑动支持
+- 🌳 **树状结构解析** - 完整支持 SGF 树状结构，支持 MultiGo、野狐等多种格式
 
+## 安全说明 🔒
 
-## Installation
-To install this skill, run the following command in your terminal:
+本技能是**纯本地离线工具**，无任何网络依赖：
+
+| 安全项 | 说明 |
+|--------|------|
+| **网络访问** | ❌ 无任何网络请求 |
+| **文件系统** | 仅读写用户指定路径 |
+| **第三方依赖** | ❌ 零依赖，仅用 Python 标准库 |
+| **XSS防护** | ✅ `html.escape()` 转义所有 SGF 元数据 |
+| **JSON注入防护** | ✅ `json.dumps()` + `html.escape()` + DOM解码三重保护 |
+
+**代码审计路径**：
+- `replay.py:43-48` - 所有用户输入的 HTML 转义
+- `replay.py:58` - JSON 数据的安全编码
+- `replay.html` - JSON 解码使用 textarea.innerHTML 安全解码
+
+## 功能描述
+根据 SGF 格式的围棋棋谱数据，生成一个单文件 HTML 网页，支持本地浏览器打开进行交互式打谱。
+
+## 依赖
+**无第三方依赖** - 使用 Python 标准库（sys, re, os, json, html）
+
+## 核心文件
+
+| 文件 | 功能 |
+|------|------|
+| `scripts/replay.py` | SGF 转 HTML 主脚本 |
+| `scripts/sgf_parser.py` | SGF 树状解析模块 |
+| `scripts/templates/replay.html` | HTML 页面模板 |
+
+## 使用方法
+
 ```bash
-hermes skills install clawhub/weiqi-sgf
+# 基本用法
+python3 scripts/replay.py <输入.sgf> [输出.html]
+
+# 示例
+python3 scripts/replay.py game.sgf                    # 输出到 /tmp/sgf-viewer/
+python3 scripts/replay.py game.sgf mygame.html        # 指定输出文件名
+python3 scripts/replay.py game.sgf -o /path/to/dir    # 指定输出目录
 ```
+
+直接用浏览器打开生成的 HTML 文件即可打谱。
+
+### 快捷操作
+
+| 平台 | 操作 |
+|------|------|
+| 桌面端 | `←`/`→` 上一手/下一手，`空格` 播放/暂停 |
+| 移动端 | 左滑下一手，右滑上一手 |
+
+## 功能详解
+
+### 变化图浏览
+
+当棋谱包含 AI 变化图（如野狐围棋棋谱）时：
+- 显示变化图按钮（带胜率信息，如"黑62%"）
+- 点击进入变化图，自动显示手数标记
+- 支持多级嵌套变化分支
+
+### 试下功能
+
+在棋盘任意空点点击可进入试下模式：
+- 自由放置棋子，支持提子判断
+- 可撤销/前进试下着法
+- 点击 ✕ 退出试下，恢复原局面
+
+### 音效系统
+
+使用 Web Audio API 实时生成，无需加载音频文件：
+- 落子声 - 清脆的"嗒"
+- 提子声 - 短促的"啪"
+- 撤销声 - 低沉的反馈
+
+## SGF 格式支持
+
+| 格式 | 说明 |
+|------|------|
+| 标准格式 | `(;GM[1];B[pd];W[pp]...)` |
+| MultiGo | 多分支嵌套格式 |
+| 野狐格式 | 平面格式、带AI变化图 |
+| MULTIGOGM | 定式库多向变化 |
+
+## API 接口
+
+```python
+from sgf_parser import parse_sgf, parse_sgf_file
+
+# 解析 SGF 字符串
+result = parse_sgf(sgf_content)
+# 返回: {"game_info": {...}, "tree": {...}, "stats": {...}, "errors": [...]}
+
+# 解析 SGF 文件
+result = parse_sgf_file("game.sgf")
+```
+
+## 更新日志
+
+### v2.0.1 (2026-04-09)
+- 修复 JosekiDB 格式棋谱解析错误（支持分支起始处属性）
+- 修复打谱网页滑条在主分支模式下无法跳转的问题
+- 新增变化分支注释显示功能
+- 新增快速返回上级按钮（⬅）
+- 非主分支时自动隐藏音效按钮
+- 使用棋局名称作为网页标题
+
+### v2.0.0 (2026-04-08)
+- 重构打谱工具，支持嵌套变化图
+
+## 使用指令示例
+
+> "把 xxx.sgf 生成打谱网页"
+> "查看这盘棋的变化图"
+> "生成一个围棋打谱页面"

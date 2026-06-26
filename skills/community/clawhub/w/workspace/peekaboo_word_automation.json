@@ -1,0 +1,186 @@
+{
+  "name": "Word Chapter Merger Automation",
+  "description": "Automate adding chapters 4-7 to Word document following university format",
+  "steps": [
+    {
+      "action": "app",
+      "params": {
+        "command": "launch",
+        "app": "Microsoft Word",
+        "args": ["BSc-project-report-with-chapters5-7.docx"]
+      },
+      "description": "Open Word document"
+    },
+    {
+      "action": "sleep",
+      "params": {
+        "duration": 2000
+      },
+      "description": "Wait for Word to load"
+    },
+    {
+      "action": "see",
+      "params": {
+        "app": "Microsoft Word",
+        "annotate": true,
+        "path": "/tmp/word_snapshot.png"
+      },
+      "description": "Capture Word UI for targeting"
+    },
+    {
+      "action": "hotkey",
+      "params": {
+        "keys": "cmd,end"
+      },
+      "description": "Go to end of document (after chapter 4)"
+    },
+    {
+      "action": "hotkey",
+      "params": {
+        "keys": "cmd,enter"
+      },
+      "description": "Insert page break"
+    },
+    {
+      "action": "type",
+      "params": {
+        "text": "فصل ۵: پیاده‌سازی لایه سرویس‌های در سطح کاربر"
+      },
+      "description": "Type chapter 5 title"
+    },
+    {
+      "action": "sleep",
+      "params": {
+        "duration": 500
+      },
+      "description": "Wait for typing"
+    },
+    {
+      "action": "hotkey",
+      "params": {
+        "keys": "cmd,option,1"
+      },
+      "description": "Apply Heading 1 style"
+    },
+    {
+      "action": "press",
+      "params": {
+        "key": "enter",
+        "count": 2
+      },
+      "description": "Add blank lines"
+    },
+    {
+      "action": "app",
+      "params": {
+        "command": "launch",
+        "app": "TextEdit",
+        "args": ["chapter5_clean.txt"]
+      },
+      "description": "Open chapter 5 text file"
+    },
+    {
+      "action": "sleep",
+      "params": {
+        "duration": 1000
+      },
+      "description": "Wait for TextEdit"
+    },
+    {
+      "action": "hotkey",
+      "params": {
+        "keys": "cmd,a"
+      },
+      "description": "Select all text in chapter 5"
+    },
+    {
+      "action": "hotkey",
+      "params": {
+        "keys": "cmd,c"
+      },
+      "description": "Copy chapter 5 content"
+    },
+    {
+      "action": "app",
+      "params": {
+        "command": "switch",
+        "app": "Microsoft Word"
+      },
+      "description": "Switch back to Word"
+    },
+    {
+      "action": "hotkey",
+      "params": {
+        "keys": "cmd,v"
+      },
+      "description": "Paste chapter 5 content"
+    },
+    {
+      "action": "sleep",
+      "params": {
+        "duration": 1000
+      },
+      "description": "Wait for paste"
+    },
+    {
+      "action": "hotkey",
+      "params": {
+        "keys": "cmd,f"
+      },
+      "description": "Open Find dialog"
+    },
+    {
+      "action": "type",
+      "params": {
+        "text": "۵.۱"
+      },
+      "description": "Find section 5.1"
+    },
+    {
+      "action": "press",
+      "params": {
+        "key": "escape"
+      },
+      "description": "Close Find dialog"
+    },
+    {
+      "action": "hotkey",
+      "params": {
+        "keys": "cmd,option,2"
+      },
+      "description": "Apply Heading 2 style"
+    },
+    {
+      "action": "repeat": [
+        {
+          "action": "press",
+          "params": {
+            "key": "down"
+          }
+        },
+        {
+          "action": "hotkey",
+          "params": {
+            "keys": "cmd,option,2"
+          }
+        }
+      ],
+      "count": 8,
+      "description": "Apply Heading 2 to all section titles (5.1-5.8)"
+    },
+    {
+      "action": "press",
+      "params": {
+        "key": "enter",
+        "count": 2
+      },
+      "description": "Add space after chapter 5"
+    }
+  ],
+  "notes": [
+    "This script automates adding chapter 5 to Word document",
+    "Repeat similar steps for chapters 6 and 7",
+    "Make sure to check formatting against university PDF guide",
+    "Test on a copy of document first"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "subreddits": [
+    "r/apple",
+    "r/technology",
+    "r/gadgets",
+    "r/fitness",
+    "r/health",
+    "r/science",
+    "r/google",
+    "r/openai",
+    "r/GoogleGemini",
+    "r/China",
+    "r/China_irl",
+    "r/real_china_irl",
+    "r/openclaw",
+    "r/wearables",
+    "r/movies",
+    "r/photography",
+    "r/sony",
+    "r/canon",
+    "r/running",
+    "r/steam",
+    "r/NintendoSwitch",
+    "r/gaming",
+    "r/hardware",
+    "r/samsung",
+    "r/gym",
+    "r/weightlifting"
+  ],
+  "language": "zh-CN"
+}

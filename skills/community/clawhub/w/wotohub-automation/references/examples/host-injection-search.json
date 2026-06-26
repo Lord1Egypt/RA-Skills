@@ -1,0 +1,52 @@
+{
+  "requestId": "task-search-host-injected-1",
+  "action": "task",
+  "type": "search",
+  "input": {
+    "input": "帮我找美国 TikTok 健身达人，适合便携榨汁杯送样合作",
+    "hostAnalysis": {
+      "product": {
+        "productName": "Portable Blender",
+        "brand": "BlendGo",
+        "productType": "kitchen appliance",
+        "productSubtype": "portable blender",
+        "coreBenefits": ["portable", "easy cleaning"],
+        "functions": ["smoothie making", "protein shake mixing"],
+        "features": ["USB rechargeable", "travel-friendly"]
+      },
+      "marketing": {
+        "platformPreference": ["tiktok"],
+        "creatorTypes": ["fitness"],
+        "creatorIntent": ["product demo", "routine integration"],
+        "contentAngles": ["healthy lifestyle", "gym bag essential"]
+      },
+      "constraints": {
+        "regions": ["us"],
+        "languages": ["en"],
+        "minFansNum": 10000,
+        "maxFansNum": 200000,
+        "hasEmail": true
+      },
+      "searchPayloadHints": {
+        "platform": "tiktok",
+        "blogLangs": ["en"],
+        "minFansNum": 10000,
+        "maxFansNum": 200000,
+        "hasEmail": true,
+        "advancedKeywordList": [
+          {"value": "portable blender", "exclude": false},
+          {"value": "protein shake", "exclude": false}
+        ]
+      }
+    },
+    "productSummary": {
+      "productName": "Portable Blender",
+      "brand": "BlendGo",
+      "category": "Kitchen Appliance",
+      "keySellingPoints": ["portable", "easy cleaning", "USB rechargeable"]
+    }
+  },
+  "auth": {
+    "token": "YOUR_API_KEY"
+  }
+}

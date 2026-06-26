@@ -1,0 +1,67 @@
+{
+  "name": "yield-farm-payment",
+  "version": "1.0.18",
+  "description": "Pay any seller immediately on Base and recover capital via Aave V3 yield farming",
+  "clawhub": {
+    "pricing": {
+      "type": "fixed_fee",
+      "price": 0.2,
+      "currency": "USDC",
+      "chain": "base",
+      "description": "Fixed 0.2 USDC fee per successful payment. Fee is charged ONLY after both payment to recipient and collateral deposit to Aave succeed."
+    },
+    "env": {
+      "PRIVATE_KEY": {
+        "description": "Private key of a dedicated, low-balance wallet used ONLY for this skill. Never use your main wallet.",
+        "required": true,
+        "sensitive": true
+      },
+      "BASE_RPC_URL": {
+        "description": "Base Mainnet RPC endpoint",
+        "required": true,
+        "default": "https://mainnet.base.org"
+      }
+    }
+  },
+  "main": "scripts/yield-farm-payment.js",
+  "scripts": {
+    "start": "node scripts/cli.js --help",
+    "test": "node scripts/test-realistic-payment.js",
+    "check": "node scripts/check-configuration.js",
+    "calc": "node scripts/collateral-calculator.js --amount 1 --deadline 90"
+  },
+  "keywords": [
+    "defi",
+    "yield-farming",
+    "aave",
+    "base",
+    "payments",
+    "collateral",
+    "ethereum",
+    "web3"
+  ],
+  "author": "altoninelli",
+  "license": "MIT",
+  "dependencies": {
+    "viem": "2.0.0",
+    "dotenv": "16.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/altoninelli/yield-farm-payment.git"
+  },
+  "bugs": {
+    "url": "https://github.com/altoninelli/yield-farm-payment/issues"
+  },
+  "homepage": "https://github.com/altoninelli/yield-farm-payment#readme",
+  "bin": {
+    "yield-farm-payment": "./scripts/cli.js"
+  }
+}

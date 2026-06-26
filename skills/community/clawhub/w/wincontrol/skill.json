@@ -1,0 +1,14 @@
+{
+  "name": "wincontrol",
+  "version": "2.0.1",
+  "description": "AI remote control for Windows desktop. Capture screenshots and control mouse/keyboard via HTTP API.",
+  "author": "QQSHI13",
+  "license": "MIT-0",
+  "tags": ["windows", "automation", "desktop", "wsl", "remote-control", "screenshot"],
+  "homepage": "https://github.com/QQSHI13/nova-workspace/tree/main/skills/wincontrol",
+  "requirements": [
+    "WSL2 with Ubuntu",
+    "Python 3 on Windows",
+    "PowerShell access from WSL"
+  ]
+}

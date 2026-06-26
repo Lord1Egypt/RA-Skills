@@ -1,0 +1,109 @@
+{
+  "name": "wecom-task-manager",
+  "version": "1.2.0",
+  "description": "企业微信智能表格驱动的任务管理技能，支持目标分解、任务追踪、并发控制和访问控制",
+  "author": "大衍 <da-yan@openclaw.ai>",
+  "license": "MIT",
+  "homepage": "https://github.com/jhZheng222/openclaw-wecom-task-manager",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/wecom-task-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/wecom-task-manager/issues"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "task-management",
+    "enterprise-wechat",
+    "workflow",
+    "productivity"
+  ],
+  "platform": {
+    "name": "OpenClaw",
+    "version": ">=1.0.0"
+  },
+  "skills": {
+    "main": "scripts/task_manager.py",
+    "type": "python"
+  },
+  "dependencies": {
+    "python": ">=3.6",
+    "mcporter": ">=1.0.0"
+  },
+  "config": {
+    "file": "config.json",
+    "required": true,
+    "template": {
+      "accessControl": {
+        "enabled": true,
+        "allowedAgents": [
+          "da-yan",
+          "techlead",
+          "opsdirector",
+          "investment_coordinator",
+          "general_coordinator"
+        ]
+      },
+      "concurrency": {
+        "maxConcurrentTasks": 3
+      },
+      "enterpriseWeChat": {
+        "docId": "你的表格 docId",
+        "sheetId": "你的子表 sheetId"
+      }
+    }
+  },
+  "features": [
+    "任务全生命周期管理",
+    "目标分解与依赖管理",
+    "智能任务推荐",
+    "并发控制（可配置）",
+    "访问控制（白名单）",
+    "到期提醒",
+    "统计分析",
+    "CLI 命令（23 个）",
+    "Python API（20 个）"
+  ],
+  "tags": [
+    "task-management",
+    "productivity",
+    "enterprise",
+    "workflow",
+    "collaboration"
+  ],
+  "screenshots": [
+    "docs/screenshots/task-list.png",
+    "docs/screenshots/statistics.png",
+    "docs/screenshots/concurrency.png"
+  ],
+  "documentation": {
+    "quickstart": "QUICKSTART.md",
+    "config": "docs/config-guide.md",
+    "api": "docs/api-reference.md",
+    "examples": "docs/examples.md"
+  },
+  "scripts": {
+    "test": "cd scripts && python3 test_*.py",
+    "lint": "pylint scripts/*.py"
+  },
+  "publish": {
+    "platform": ["github", "clawhub"],
+    "visibility": "public",
+    "featured": true
+  },
+  "contributors": [
+    {
+      "name": "大衍",
+      "role": "maintainer",
+      "url": "https://github.com/da-yan"
+    }
+  ],
+  "changelog": {
+    "url": "docs/CHANGELOG.md"
+  },
+  "createdAt": "2026-03-26",
+  "updatedAt": "2026-03-26",
+  "publishedAt": null
+}

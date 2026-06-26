@@ -1,0 +1,29 @@
+{
+  "name": "BSc Project Report Formatting",
+  "description": "Apply university formatting guidelines to Word document",
+  "steps": [
+    {
+      "name": "Open Microsoft Word",
+      "action": "run",
+      "command": "open -a 'Microsoft Word' ./BSc-project-report-ORIGINAL.docx",
+      "wait": 5000
+    },
+    {
+      "name": "Wait for Word to load",
+      "action": "sleep",
+      "duration": 10000
+    },
+    {
+      "name": "Check if Word is frontmost",
+      "action": "run",
+      "command": "peekaboo list apps --json | grep -A5 '\"name\":\"Microsoft Word\"'",
+      "capture": true
+    },
+    {
+      "name": "Activate Word window",
+      "action": "run",
+      "command": "peekaboo list windows --json | grep -B5 -A10 '\"appName\":\"Microsoft Word\"' | head -20",
+      "capture": true
+    }
+  ]
+}

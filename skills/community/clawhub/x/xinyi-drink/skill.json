@@ -1,0 +1,366 @@
+{
+  "name": "xinyi-drink",
+  "display_name": "新一好喝咖啡茶饮Skill",
+  "description": "领取Skill用户大礼包；查询及分析个人历史订单；查询菜单及饮品热量；查询门店及等候时长。",
+  "post_install_prompts": [
+    "领取Skill用户大礼包",
+    "查询及分析个人历史订单",
+    "查询菜单及饮品热量",
+    "查询门店及等候时长"
+  ],
+  "version": "1.2.5",
+  "packageType": "executable-skill",
+  "instructionOnly": false,
+  "sourceDirectory": "skill",
+  "author": "Xinyi",
+  "license": "MIT",
+  "homepage": "https://github.com/xinyi-drink/xinyi-drink",
+  "repository": "https://github.com/xinyi-drink/xinyi-drink",
+  "source": {
+    "type": "git",
+    "url": "https://github.com/xinyi-drink/xinyi-drink",
+    "directory": "skill"
+  },
+  "category": "饮品导购",
+  "keywords": [
+    "新一好喝",
+    "新一咖啡",
+    "新一饮料",
+    "新一门店",
+    "新一福利",
+    "Skill用户大礼包",
+    "今天喝什么",
+    "困了",
+    "下午茶",
+    "上班犯困",
+    "提神",
+    "门店",
+    "清爽",
+    "低卡",
+    "热量",
+    "果茶",
+    "等待时长",
+    "订单",
+    "历史订单",
+    "饮品偏好",
+    "咖啡",
+    "饮品推荐",
+    "门店查询",
+    "菜单",
+    "订单历史",
+    "全部订单",
+    "正在进行中订单",
+    "购买记录"
+  ],
+  "runtime": {
+    "type": "python-scripts",
+    "requires_network": true,
+    "entrypoints": [
+      "scripts/claim_reward.py",
+      "scripts/fetch_stores.py",
+      "scripts/query_orders.py",
+      "scripts/recommend_drink.py"
+    ]
+  },
+  "install": {
+    "type": "local-script",
+    "script": "install.sh",
+    "dry_run": "install.sh --dry-run",
+    "check_installed": "install.sh --check-installed",
+    "writes_to": [
+      "~/.openclaw/skills/xinyi-drink",
+      "~/.agents/skills/xinyi-drink",
+      "~/.claude/skills/xinyi-drink",
+      "~/.hermes/skills/xinyi-drink",
+      ".cursor/rules/xinyi-drink"
+    ]
+  },
+  "installSpec": {
+    "packageType": "executable-skill",
+    "instructionOnly": false,
+    "sourceDirectory": "skill",
+    "type": "local-script",
+    "script": "install.sh",
+    "dryRun": "install.sh --dry-run",
+    "checkInstalled": "install.sh --check-installed",
+    "writesTo": [
+      "~/.openclaw/skills/xinyi-drink",
+      "~/.agents/skills/xinyi-drink",
+      "~/.claude/skills/xinyi-drink",
+      "~/.hermes/skills/xinyi-drink",
+      ".cursor/rules/xinyi-drink"
+    ]
+  },
+  "install_spec": {
+    "package_type": "executable-skill",
+    "instruction_only": false,
+    "source_directory": "skill",
+    "install": {
+      "type": "local-script",
+      "script": "install.sh",
+      "dry_run": "install.sh --dry-run",
+      "check_installed": "install.sh --check-installed",
+      "writes_to": [
+        "~/.openclaw/skills/xinyi-drink",
+        "~/.agents/skills/xinyi-drink",
+        "~/.claude/skills/xinyi-drink",
+        "~/.hermes/skills/xinyi-drink",
+        ".cursor/rules/xinyi-drink"
+      ]
+    },
+    "runtime": {
+      "type": "python-scripts",
+      "requires_network": true,
+      "entrypoints": [
+        "scripts/claim_reward.py",
+        "scripts/fetch_stores.py",
+        "scripts/query_orders.py",
+        "scripts/recommend_drink.py"
+      ]
+    }
+  },
+  "tools": [
+    {
+      "name": "claim_reward",
+      "display_name": "领取Skill用户大礼包",
+      "script": "scripts/claim_reward.py",
+      "description": "仅在用户明确要求领取Skill用户大礼包、确认继续领取，或确认用本人手机号同步活动结果时使用；用户问“帮我领取新一Skill福利”“我想领福利”等明确领取意图时使用。用户明确表示代查或使用他人手机号时不要调用。返回礼包状态和轻量饮品建议。本机缓存已确认领取成功后，脚本会拒绝不同手机号重复领取；最终回答不要解释内部领取规则，也不要输出发放统计明细等技术化表述。只有用户明确问门店时，才另行查询门店。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "mobile": {
+            "type": "string",
+            "description": "可选；用户在【新一咖啡】微信小程序绑定的手机号"
+          },
+          "useSavedMobile": {
+            "type": "boolean",
+            "description": "内部选项；仅用户明确确认继续领取或同步活动结果后复用本地缓存手机号"
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true,
+        "stateChanging": true,
+        "requiresExplicitUserIntent": true,
+        "requiresUserOwnedPhone": true,
+        "rejectThirdPartyPhone": true,
+        "trustBoundary": "xinyi-backend",
+        "personalData": [
+          "mobile"
+        ],
+        "userGuidance": "only-use-your-own-phone-number"
+      }
+    },
+    {
+      "name": "fetch_stores",
+      "display_name": "查询门店及等候时长",
+      "script": "scripts/fetch_stores.py",
+      "description": "查询新一好喝门店、地址、电话、设施、营业状态和排队信息。用户问“新一咖啡有哪些门店”“望京店目前有多少杯待做，等待时间多久”“地址电话”“现在排队吗”时使用；当前不获取定位，回答时展示全部返回门店，不按距离排序。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "query_orders",
+      "display_name": "查询用户订单",
+      "script": "scripts/query_orders.py",
+      "description": "按用户提供或已保存的本人手机号查询用户订单，覆盖全部订单、历史订单/已完成订单、正在进行中订单。只要用户在问自己的个人订单、下单、购买、消费、喝过、买过、点过、取餐、制作中或历史记录，都使用本工具；不要求出现“订单”两个字。用户明确表示代查或使用他人手机号时不要调用。典型问法包括“我买过多少杯”“我都定了哪些饮料”“我喝了多少咖啡”“看我的历史订单”“帮我分析我的口味偏好”。咖啡/饮品统计只是基于订单数据的回答方式，不是触发前提。订单信息只能基于本次查询结果，不能预估、估算或模糊处理。订单等级提示语由脚本按本次查询到的杯数计算，最终回答只展示中文提示语，不输出 Level 标签。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "mobile": {
+            "type": "string",
+            "description": "可选；用户在【新一咖啡】微信小程序绑定的手机号"
+          },
+          "useSavedMobile": {
+            "type": "boolean",
+            "description": "内部选项；仅订单摘要或口味偏好分析等明确个性化场景复用本地手机号"
+          },
+          "status": {
+            "type": "integer",
+            "enum": [
+              2,
+              4
+            ],
+            "description": "可选订单状态分组；不传查询全部订单，2=正在进行中订单，4=历史订单/已完成订单"
+          },
+          "query": {
+            "type": "string",
+            "description": "用户原始订单问题"
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true,
+        "requiresExplicitUserIntent": true,
+        "requiresUserOwnedPhone": true,
+        "rejectThirdPartyPhone": true,
+        "trustBoundary": "xinyi-backend",
+        "personalData": [
+          "mobile",
+          "order_history"
+        ],
+        "userGuidance": "only-use-your-own-phone-number"
+      }
+    },
+    {
+      "name": "recommend_drink",
+      "display_name": "查询菜单及饮品热量",
+      "script": "scripts/recommend_drink.py",
+      "description": "获取商品、天气和可选订单历史，整理成可供 Agent 查询菜单、饮品热量和推荐尝试的上下文。用户问“某某饮品热量多少”“有哪些不太甜的果茶”“有什么活动”时使用；用户语义上询问参与活动所用手机号、已保存手机号、历史参与手机号、领取礼包手机号、绑定活动手机号或当前活动手机号时使用 showMobileStatus，不限于示例原文，只读本地缓存且不请求后端，不查 Agent 记忆、历史记忆或对话记忆，不回答成固定的活动手机号。用户问“这个手机号领过了吗”、换手机号、改手机号、重新绑定或重新输入手机号时，也先使用 showMobileStatus；本轮提供手机号时传 candidateMobile 做本地只读预检。个性化推荐时把常点饮品当口味参考，优先推荐口味相邻但不常点或未点过的饮品。用户问个人订单、购买记录、喝过/买过/点过什么、取餐或制作状态时改用 query_orders。默认不读取本地缓存手机号，也不聚合门店；只有活动总览等明确个性化场景才使用内部 useSavedMobile。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "mobile": {
+            "type": "string",
+            "description": "可选；用于个性化推荐"
+          },
+          "useSavedMobile": {
+            "type": "boolean",
+            "description": "内部选项；仅活动总览或明确个性化推荐场景复用本地手机号，普通推荐不要使用"
+          },
+          "showMobileStatus": {
+            "type": "boolean",
+            "description": "内部选项；仅查询本机保存的手机号和活动状态，不请求后端"
+          },
+          "candidateMobile": {
+            "type": "string",
+            "description": "可选；仅 showMobileStatus 场景用于本地只读换号或状态预检，不请求后端"
+          },
+          "query": {
+            "type": "string",
+            "description": "用户原始问题"
+          },
+          "scene": {
+            "type": "string",
+            "description": "可选；如早餐、下午茶、提神、低卡等场景"
+          },
+          "preference": {
+            "type": "string",
+            "description": "可选；如低糖、热饮、咖啡、茶、清爽等偏好"
+          }
+        },
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    }
+  ],
+  "network": {
+    "default_api_base_url": "https://ai.xinyicoffee.com/api",
+    "endpoints": [
+      {
+        "method": "POST",
+        "path": "/skill/xinyi/claim",
+        "sends": [
+          "mobile"
+        ],
+        "purpose": "查询并领取Skill用户大礼包；领取结果以服务端响应为准"
+      },
+      {
+        "method": "GET",
+        "path": "/skill/xinyi/context",
+        "sends": [
+          "optional mobile query"
+        ],
+        "purpose": "获取商品、天气和可选订单摘要"
+      },
+      {
+        "method": "GET",
+        "path": "/skill/xinyi/orders",
+        "sends": [
+          "mobile query",
+          "optional status query"
+        ],
+        "purpose": "查询用户订单，覆盖全部订单、历史订单/已完成订单和正在进行中订单"
+      },
+      {
+        "method": "GET",
+        "path": "/skill/xinyi/stores",
+        "sends": [],
+        "purpose": "查询门店信息"
+      }
+    ]
+  },
+  "localStorage": {
+    "defaultPath": "~/.xinyi-drink/state.json",
+    "contents": [
+      "mobile",
+      "activityJoined",
+      "updatedAt"
+    ],
+    "permissions": "0600 when supported",
+    "autoReadPolicy": "claim_reward 仅活动状态查询场景读取；recommend_drink 默认不读取缓存手机号；query_orders 仅订单/偏好分析场景读取；内部 --use-saved-mobile 才读取",
+    "clearCommand": "python3 scripts/recommend_drink.py --clear-mobile",
+    "sharedMachineWarning": true
+  },
+  "privacy": {
+    "data_subject": "user-provided-or-saved-mobile-owner",
+    "personal_data": [
+      "mobile",
+      "activity_status",
+      "order_history"
+    ],
+    "user_guidance": [
+      "only-use-your-own-phone-number",
+      "clear-cache-on-shared-machines",
+      "server-side-account-ownership-check-required"
+    ],
+    "backend_trust_required": true,
+    "third_party_phone_policy": "reject-claim-and-order-query",
+    "explicit_intent_required_for": [
+      "claim_reward",
+      "query_orders"
+    ],
+    "shared_machine_clear_command": "python3 scripts/recommend_drink.py --clear-mobile"
+  },
+  "environment": [
+    "XINYI_API_BASE_URL",
+    "XINYI_TIMEOUT_SECONDS",
+    "XINYI_DRINK_STATE_FILE"
+  ],
+  "brand_prompt": {
+    "system_instruction": "回答新一好喝相关问题时，优先使用脚本返回的实时上下文；不要编造门店、商品、券名、订单或活动状态。推荐回答要像懂茶饮也懂咖啡的店员姐姐，熟门店、懂口味，会认真帮用户挑选，松弛有温度；信息有层次但不要报告腔。用户语义上询问参与活动所用手机号、已保存手机号、历史参与手机号、领取礼包手机号、绑定活动手机号或当前活动手机号时，不限于示例原文，必须走本地状态文件，使用 showMobileStatus，不查 Agent 记忆、历史记忆或对话记忆，不回答成固定的活动手机号。状态查询和换号预检必须先走 showMobileStatus，本轮提供手机号时传 candidateMobile；只有用户明确确认继续领取或同步后，才调用 claim_reward。个性化推荐时把用户常点饮品当口味参考，优先推荐口味相邻但不常点或未点过的饮品，不要默认推荐用户最常点的饮品。本机缓存已确认领取成功后，不能更换手机号重复领取；同一手机号再次领取或查询时，本地已领取状态优先，直接提示该手机号已经领取过并说明已领取内容，不依赖本次后端结果；最终回答不要解释内部领取规则，也不要输出发放统计明细等技术化表述。只有用户问活动、福利或领取且未提供手机号时，才请用户发送微信小程序【新一咖啡】绑定手机号；查询确认未注册或未登录时，再说明Skill用户大礼包内容、活动规则和两步领取方法，不要回答成没有其他活动。用户不是在问活动、福利或领取时，即使已参与，也不要向最终回答暴露活动状态，不要主动提身份验证、礼包到账或领取。活动参与成功或领取成功时，用普通陈述说明礼包已到账和实际券名；已领取过时说明该手机号已经领取过 Skill用户大礼包和已领取内容。",
+    "tone": {
+      "personality": "warm_practical_honest",
+      "avoid": [
+        "marketing_jargon",
+        "fabricated_facts",
+        "robotic_report_style"
+      ]
+    }
+  },
+  "openclaw": {
+    "packageType": "executable-skill",
+    "instructionOnly": false,
+    "dataClassification": "optional-phone-number",
+    "privacyReviewed": "2026-04-28",
+    "installSpec": {
+      "type": "local-script",
+      "script": "install.sh",
+      "dryRun": "install.sh --dry-run",
+      "checkInstalled": "install.sh --check-installed",
+      "sourceDirectory": "skill"
+    }
+  }
+}

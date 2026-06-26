@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PaperContent",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "abstract": {
+      "type": "string"
+    },
+    "methodology": {
+      "type": "string"
+    },
+    "data_description": {
+      "type": "string"
+    },
+    "signal_logic": {
+      "type": "string"
+    },
+    "results": {
+      "type": "object"
+    },
+    "tables": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "formulas": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "full_text": {
+      "type": "string"
+    }
+  }
+}

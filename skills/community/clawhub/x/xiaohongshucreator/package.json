@@ -1,0 +1,51 @@
+{
+  "name": "xiaoHongShu",
+  "version": "1.0.0",
+  "description": "小红书内容创作技能 - 帮助 AI 生成和优化小红书内容",
+  "author": "yangfan",
+  "main": "content-creator/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yangfan/xiaoHongShu-skill.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "xiaoHongShu",
+    "小红书",
+    "内容创作",
+    "content-creation",
+    "social-media",
+    "social-media-writing",
+    "social-media-marketing",
+    "ai-writing",
+    "ai-content",
+    "xiaoHongShu-ai",
+    "AI-writing",
+    "ai-content-creation",
+    "social-media-content"
+  ],
+  "maintainers": [
+    {
+      "name": "yangfan"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/yangfan/xiaoHongShu-skill/issues"
+  },
+  "homepage": "https://github.com/yangfan/xiaoHongShu-skill#readme",
+  "directories": {
+    "lib": "./content-creator"
+  },
+  "scripts": {
+    "install": "npm install",
+    "start": "node content-creator/index.js",
+    "optimize": "node content-creator/index.js optimize",
+    "generate": "node content-creator/index.js generate",
+    "titles": "node content-creator/index.js titles",
+    "hashtags": "node content-creator/index.js hashtags",
+    "analyze": "node content-creator/index.js analyze"
+  },
+  "dependencies": {
+    "@ai-sdk/google": "^1.0.0"
+  }
+}

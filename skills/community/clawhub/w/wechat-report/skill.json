@@ -1,0 +1,9 @@
+{
+  "id": "wechat-report",
+  "name": "WeChat Report",
+  "layer": "collect",
+  "executor": "wechat_report_v1",
+  "input_kind": "wechat_report_request_markdown",
+  "output_kind": "report_markdown",
+  "description": "Discover or accept multiple WeChat article URLs for one topic, extract structured article data, and write a comparison report plus raw JSON into content-production/inbox/, including rhetoric tags and reusable writing hooks."
+}

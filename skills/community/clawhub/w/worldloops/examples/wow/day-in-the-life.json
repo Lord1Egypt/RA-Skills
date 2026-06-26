@@ -1,0 +1,130 @@
+{
+  "_note": "Demo fixture for npm run wow. These are fictional signals used to illustrate how WorldLoops finds unfinished responsibilities across a typical day. No external systems are contacted. Nothing is sent or changed.",
+  "generatedBy": "worldloops-demo",
+  "demoLabel": "v1.6.0 — 5-Minute Wow Experience",
+  "version": "1.6.0",
+  "signals": [
+    {
+      "id": "demo-email-proposal",
+      "source": "email",
+      "sourceType": "message",
+      "externalWrite": false,
+      "text": "Thanks for the workshop. Could you send over the proposal by Friday?",
+      "observedAt": "2026-05-20T08:15:00.000Z",
+      "summary": "Follow-up request: proposal due by Friday",
+      "openLoop": {
+        "title": "Proposal follow-up",
+        "state": "To Do",
+        "whyItMatters": "David asked for a proposal by Friday.",
+        "suggestedNextStep": "Prepare or draft the proposal follow-up.",
+        "safety": "WorldLoops did not send an email."
+      },
+      "metadata": {
+        "from": "David",
+        "subject": "Re: Workshop follow-up"
+      }
+    },
+    {
+      "id": "demo-calendar-workshop",
+      "source": "calendar",
+      "sourceType": "event",
+      "externalWrite": false,
+      "text": "LG Executive Workshop — Tuesday 10:00 AM. Bring final materials and workshop canvas.",
+      "observedAt": "2026-05-20T08:00:00.000Z",
+      "summary": "Workshop scheduled — materials required",
+      "openLoop": {
+        "title": "Workshop preparation",
+        "state": "Preparing",
+        "whyItMatters": "A workshop is scheduled and materials are required.",
+        "missingItems": ["Final presentation materials", "Workshop canvas"],
+        "safety": "WorldLoops did not edit your calendar."
+      },
+      "metadata": {
+        "title": "LG Executive Workshop",
+        "scheduledFor": "Tuesday 10:00 AM",
+        "description": "Bring final materials and workshop canvas."
+      }
+    },
+    {
+      "id": "demo-chat-pricing",
+      "source": "chat",
+      "sourceType": "message",
+      "externalWrite": false,
+      "text": "Can you review the pricing plan before tomorrow's meeting?",
+      "observedAt": "2026-05-20T09:30:00.000Z",
+      "summary": "Review request: pricing plan needed before tomorrow's meeting",
+      "openLoop": {
+        "title": "Pricing plan review",
+        "state": "To Do",
+        "whyItMatters": "The request is time-sensitive.",
+        "suggestedNextStep": "Review the pricing plan or assign an owner.",
+        "safety": "WorldLoops did not post a reply."
+      },
+      "metadata": {
+        "channel": "#product",
+        "from": "Alex"
+      }
+    },
+    {
+      "id": "demo-document-roi",
+      "source": "document",
+      "sourceType": "file",
+      "externalWrite": false,
+      "text": "TODO: Add ROI assumptions before sending to the client.",
+      "observedAt": "2026-05-20T10:00:00.000Z",
+      "summary": "Unfinished TODO in proposal document — ROI assumptions missing",
+      "openLoop": {
+        "title": "Missing ROI assumptions",
+        "state": "Blocked",
+        "whyItMatters": "The proposal still has an unfinished TODO.",
+        "suggestedNextStep": "Add ROI assumptions before sending.",
+        "safety": "WorldLoops did not modify the document."
+      },
+      "metadata": {
+        "filename": "Client Proposal Draft.docx",
+        "section": "Financial Summary"
+      }
+    },
+    {
+      "id": "demo-pr-safety-check",
+      "source": "github",
+      "sourceType": "pull_request",
+      "externalWrite": false,
+      "text": "Ready for review: Add safety check before execution.",
+      "observedAt": "2026-05-20T11:00:00.000Z",
+      "summary": "Pull request awaiting review — safety check change",
+      "openLoop": {
+        "title": "Approval needed before release",
+        "state": "Waiting for review",
+        "whyItMatters": "A change is ready, but someone needs to review it before release.",
+        "suggestedNextStep": "Review or approve the change.",
+        "safety": "WorldLoops did not merge, approve, or change anything."
+      },
+      "metadata": {
+        "repo": "worldloops/core",
+        "pr": 42,
+        "status": "open"
+      }
+    },
+    {
+      "id": "demo-note-sarah",
+      "source": "meeting_note",
+      "sourceType": "note",
+      "externalWrite": false,
+      "text": "Follow up with Sarah about next steps after the demo.",
+      "observedAt": "2026-05-20T14:00:00.000Z",
+      "summary": "Customer follow-up: Sarah — next steps after demo",
+      "openLoop": {
+        "title": "Customer follow-up",
+        "state": "To Do",
+        "whyItMatters": "Sarah needs a follow-up after the demo.",
+        "suggestedNextStep": "Draft a follow-up message with next steps.",
+        "safety": "WorldLoops did not contact Sarah."
+      },
+      "metadata": {
+        "meeting": "Product Demo — May 20",
+        "contact": "Sarah"
+      }
+    }
+  ]
+}

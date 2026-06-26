@@ -1,0 +1,162 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/nutrition-tracker.json",
+  "title": "NutritionTracker",
+  "description": "营养分析与补充剂管理的数据结构定义",
+  "type": "object",
+  "properties": {
+    "meal_records": {
+      "type": "array",
+      "description": "饮食记录列表",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "meals": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["breakfast", "lunch", "dinner", "snack", "morning_snack", "afternoon_snack", "evening_snack", "late_night_snack"]
+                },
+                "time": {"type": "string"},
+                "foods": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                },
+                "calories": {"type": "number"},
+                "macronutrients": {
+                  "type": "object",
+                  "properties": {
+                    "protein_g": {"type": "number"},
+                    "carbs_g": {"type": "number"},
+                    "fat_g": {"type": "number"},
+                    "fiber_g": {"type": "number"}
+                  }
+                },
+                "micronutrients": {
+                  "type": "object",
+                  "properties": {
+                    "vitamin_a_mcg": {"type": "number"},
+                    "vitamin_c_mg": {"type": "number"},
+                    "vitamin_d_mcg": {"type": "number"},
+                    "vitamin_e_mg": {"type": "number"},
+                    "vitamin_k_mcg": {"type": "number"},
+                    "vitamin_b1_mg": {"type": "number"},
+                    "vitamin_b2_mg": {"type": "number"},
+                    "vitamin_b3_mg": {"type": "number"},
+                    "vitamin_b6_mg": {"type": "number"},
+                    "vitamin_b12_mcg": {"type": "number"},
+                    "folate_mcg": {"type": "number"},
+                    "calcium_mg": {"type": "number"},
+                    "iron_mg": {"type": "number"},
+                    "magnesium_mg": {"type": "number"},
+                    "phosphorus_mg": {"type": "number"},
+                    "potassium_mg": {"type": "number"},
+                    "sodium_mg": {"type": "number"},
+                    "zinc_mg": {"type": "number"},
+                    "selenium_mcg": {"type": "number"}
+                  }
+                },
+                "special_nutrients": {
+                  "type": "object",
+                  "properties": {
+                    "omega_3_g": {"type": "number"},
+                    "omega_6_g": {"type": "number"},
+                    "choline_mg": {"type": "number"},
+                    "fiber_soluble_g": {"type": "number"},
+                    "fiber_insoluble_g": {"type": "number"}
+                  }
+                }
+              }
+            },
+            "daily_summary": {
+              "type": "object",
+              "properties": {
+                "total_calories": {"type": "number"},
+                "total_macronutrients": {
+                  "type": "object",
+                  "properties": {
+                    "protein_g": {"type": "number"},
+                    "carbs_g": {"type": "number"},
+                    "fat_g": {"type": "number"},
+                    "fiber_g": {"type": "number"}
+                  }
+                },
+                "rda_achievement": {
+                  "type": "object",
+                  "additionalProperties": {"type": "number"}
+                },
+                "goal_achieved": {"type": "boolean"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "supplements": {
+      "type": "array",
+      "description": "补充剂列表",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "brand": {"type": "string"},
+          "dose": {"type": "string"},
+          "dose_value": {"type": "number"},
+          "dose_unit": {"type": "string"},
+          "frequency": {
+            "type": "string",
+            "enum": ["daily", "weekly", "as_needed", "other"]
+          },
+          "timing": {
+            "type": "string",
+            "enum": ["breakfast", "lunch", "dinner", "bedtime", "with_meal", "empty_stomach", "other"]
+          },
+          "indication": {"type": "string"},
+          "start_date": {"type": "string", "format": "date"},
+          "prescribing_doctor": {"type": "string"},
+          "status": {
+            "type": "string",
+            "enum": ["active", "paused", "discontinued"]
+          },
+          "interactions_checked": {"type": "boolean"},
+          "monitoring": {
+            "type": "object",
+            "properties": {
+              "baseline_test": {"type": "string", "format": "date"},
+              "current_level": {"type": "number"},
+              "target_level": {"type": "string"},
+              "next_test": {"type": "string", "format": "date"}
+            }
+          },
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "nutrition_goals": {
+      "type": "object",
+      "description": "营养目标",
+      "properties": {
+        "daily_calories": {"type": "integer"},
+        "protein_g": {"type": "integer"},
+        "carbs_g": {"type": "integer"},
+        "fat_g": {"type": "integer"},
+        "fiber_g": {"type": "integer"}
+      }
+    },
+    "food_database": {
+      "type": "string",
+      "description": "食物数据库引用路径",
+      "enum": ["data/food-database.json"]
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

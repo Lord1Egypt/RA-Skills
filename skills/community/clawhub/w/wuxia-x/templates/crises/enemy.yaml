@@ -1,0 +1,298 @@
+# 敌人危机模板
+
+## 危机定义
+
+敌人危机是由敌对势力或个人引发的挑战，通常涉及战斗、对抗或策略应对。
+
+---
+
+## 危机模板
+
+crises:
+  # 仇家上门危机
+  - id: "crisis_enemy_doorstep"
+    title: "仇家上门"
+    description: "{enemy_name}带人来到你所在之处，来者不善"
+    type: "enemy"
+    severity: 7
+    duration: 2
+    triggers:
+      - condition: "hasEnemy"
+        weight: 0.3
+      - condition: "playerReputation > 50"
+        weight: 0.2
+    consequences:
+      timeout: "仇家强行闯入，发生冲突"
+      success: "化解危机或击败敌人"
+      failure: "被迫逃离或受重伤"
+    options:
+      - id: "option_fight"
+        description: "正面迎战"
+        requirements:
+          - type: "cultivation"
+            min: "enemy_level"
+        successRate: 0.6
+        successEffect: "击败{enemy_name}，获得声望"
+        failureEffect: "战败受伤，被迫撤退"
+      - id: "option_negotiate"
+        description: "尝试谈判"
+        requirements:
+          - type: "charisma"
+            min: 50
+        successRate: 0.4
+        successEffect: "暂时化解矛盾"
+        failureEffect: "谈判失败，敌人更加嚣张"
+      - id: "option_flee"
+        description: "避其锋芒，暂时躲避"
+        requirements: []
+        successRate: 0.7
+        successEffect: "成功逃脱，但失去一些颜面"
+        failureEffect: "被追上，陷入更危险的境地"
+      - id: "option_call_help"
+        description: "寻求支援"
+        requirements:
+          - type: "ally"
+            nearby: true
+        successRate: 0.8
+        successEffect: "援军到达，敌人被迫撤退"
+        failureEffect: "支援来不及，独自面对"
+
+  # 追杀危机
+  - id: "crisis_hunted"
+    title: "千里追杀"
+    description: "{enemy_faction}派出杀手追杀你，形势危急"
+    type: "enemy"
+    severity: 8
+    duration: 6
+    triggers:
+      - condition: "offendedPowerfulEnemy"
+        weight: 0.5
+    consequences:
+      timeout: "被杀手追上，陷入苦战"
+      success: "摆脱追杀或消灭杀手"
+      failure: "被抓住或重伤"
+    options:
+      - id: "option_hide"
+        description: "隐匿行踪，躲避追杀"
+        requirements:
+          - type: "location"
+            type: "hideable"
+        successRate: 0.5
+        successEffect: "成功隐藏，杀手暂时失去线索"
+        failureEffect: "被发现，被迫战斗"
+      - id: "option_counter"
+        description: "设下陷阱，反杀追兵"
+        requirements:
+          - type: "preparation"
+            time: true
+        successRate: 0.6
+        successEffect: "成功反杀，获得战利品"
+        failureEffect: "陷阱失败，陷入包围"
+      - id: "option_seek_protection"
+        description: "寻求势力庇护"
+        requirements:
+          - type: "faction"
+            relation: "friendly"
+        successRate: 0.7
+        successEffect: "获得庇护，追兵不敢轻举妄动"
+        failureEffect: "庇护被拒绝，需要另寻出路"
+
+  # 资源争夺危机
+  - id: "crisis_resource_conflict"
+    title: "资源争夺"
+    description: "你发现的{resource_name}被{enemy_name}盯上"
+    type: "enemy"
+    severity: 5
+    duration: 3
+    triggers:
+      - condition: "foundRareResource"
+        weight: 0.4
+    consequences:
+      timeout: "资源被{enemy_name}抢走"
+      success: "保住资源或共享"
+      failure: "失去资源"
+    options:
+      - id: "option_share"
+        description: "提议平分"
+        requirements: []
+        successRate: 0.5
+        successEffect: "达成协议，各得一半"
+        failureEffect: "对方想要独占"
+      - id: "option_fight"
+        description: "武力争夺"
+        requirements:
+          - type: "cultivation"
+            min: "enemy_level"
+        successRate: 0.5
+        successEffect: "击败敌人，独占资源"
+        failureEffect: "战败，失去资源且受伤"
+      - id: "option_give_up"
+        description: "让出资源，避免冲突"
+        requirements: []
+        successRate: 1.0
+        successEffect: "和平解决，但失去资源"
+        failureEffect: "无"
+
+  # 势力围攻危机
+  - id: "crisis_faction_siege"
+    title: "势力围攻"
+    description: "{faction_name}对你所在之地形成包围之势"
+    type: "enemy"
+    severity: 9
+    duration: 8
+    triggers:
+      - condition: "offendedFaction"
+        weight: 0.4
+    consequences:
+      timeout: "被攻破，损失惨重"
+      success: "坚守成功或突围"
+      failure: "被击败，被迫投降或逃亡"
+    options:
+      - id: "option_defend"
+        description: "坚守待援"
+        requirements:
+          - type: "fortification"
+            exists: true
+        successRate: 0.4
+        successEffect: "成功坚守，援军到达"
+        failureEffect: "防守被突破，损失惨重"
+      - id: "option_breakout"
+        description: "趁夜突围"
+        requirements:
+          - type: "stealth"
+            min: 50
+        successRate: 0.5
+        successEffect: "成功突围，保存实力"
+        failureEffect: "突围失败，被困更紧"
+      - id: "option_negotiate"
+        description: "尝试谈判投降条件"
+        requirements: []
+        successRate: 0.3
+        successEffect: "达成屈辱条件，保全性命"
+        failureEffect: "对方不接受投降"
+      - id: "option_call_ally"
+        description: "请求盟友支援"
+        requirements:
+          - type: "ally_faction"
+            power: "enough"
+        successRate: 0.6
+        successEffect: "盟友势力介入，{faction_name}被迫退兵"
+        failureEffect: "盟友支援不足，局势恶化"
+
+  # 秘密暴露危机
+  - id: "crisis_secret_exposed"
+    title: "秘密暴露"
+    description: "你的某个秘密被{enemy_name}发现，正要公开"
+    type: "enemy"
+    severity: 7
+    duration: 3
+    triggers:
+      - condition: "playerHasSecret"
+        weight: 0.3
+    consequences:
+      timeout: "秘密被公开，造成巨大影响"
+      success: "阻止秘密公开或控制影响"
+      failure: "秘密公开，声誉受损"
+    options:
+      - id: "option_silence"
+        description: "灭口或威胁"
+        requirements:
+          - type: "cultivation"
+            min: "enemy_level"
+        successRate: 0.5
+        successEffect: "秘密被保守，但树立新敌人"
+        failureEffect: "行动失败，秘密更快暴露"
+      - id: "option_negotiate"
+        description: "谈判封口条件"
+        requirements:
+          - type: "resource"
+            enough: true
+        successRate: 0.6
+        successEffect: "付出代价，保守秘密"
+        failureEffect: "对方狮子大开口，条件无法接受"
+      - id: "option_own_up"
+        description: "主动承认，控制舆论"
+        requirements: []
+        successRate: 0.4
+        successEffect: "坦诚获得部分谅解，影响可控"
+        failureEffect: "承认后遭到更多攻击"
+
+  # 故人寻仇危机
+  - id: "crisis_old_enemy"
+    title: "故人寻仇"
+    description: "过去的仇人{enemy_name}找上门来"
+    type: "enemy"
+    severity: 6
+    duration: 4
+    triggers:
+      - condition: "hasPastEnemy"
+        weight: 0.3
+    consequences:
+      timeout: "仇怨加深，无法化解"
+      success: "了结恩怨或达成和解"
+      failure: "陷入缠斗，两败俱伤"
+    options:
+      - id: "option_fight"
+        description: "一决生死"
+        requirements:
+          - type: "cultivation"
+            min: "enemy_level"
+        successRate: 0.5
+        successEffect: "击败仇人，了结恩怨"
+        failureEffect: "战败，仇恨延续"
+      - id: "option_reconcile"
+        description: "尝试化解恩怨"
+        requirements:
+          - type: "charisma"
+            min: 60
+        successRate: 0.3
+        successEffect: "达成和解，化敌为友"
+        failureEffect: "和解失败，矛盾激化"
+      - id: "option_explain"
+        description: "说明当年的真相"
+        requirements:
+          - type: "truth"
+            available: true
+        successRate: 0.5
+        successEffect: "真相大白，误会解除"
+        failureEffect: "真相不被接受，仇恨更深"
+
+  # 诬陷危机
+  - id: "crisis_framed"
+    title: "蒙冤受屈"
+    description: "你被{enemy_name}诬陷，面临审判"
+    type: "enemy"
+    severity: 6
+    duration: 5
+    triggers:
+      - condition: "enemyInfluence > 50"
+        weight: 0.3
+    consequences:
+      timeout: "被判有罪，遭受惩罚"
+      success: "洗清冤屈"
+      failure: "无法证明清白，被定罪"
+    options:
+      - id: "option_prove"
+        description: "收集证据证明清白"
+        requirements:
+          - type: "investigation"
+            possible: true
+        successRate: 0.6
+        successEffect: "证据确凿，洗清冤屈，{enemy_name}反受惩罚"
+        failureEffect: "证据不足，无法自证"
+      - id: "option_witness"
+        description: "寻找证人作证"
+        requirements:
+          - type: "ally"
+            willing: true
+        successRate: 0.5
+        successEffect: "证人证词帮助洗清冤屈"
+        failureEffect: "无人愿意作证"
+      - id: "option_escape"
+        description: "逃离审判"
+        requirements:
+          - type: "stealth"
+            min: 60
+        successRate: 0.4
+        successEffect: "成功逃脱，但成为通缉犯"
+        failureEffect: "逃跑失败，罪加一等"

@@ -1,0 +1,16 @@
+{
+  "tournament": "WM 2026 (FIFA World Cup)",
+  "stage": "group_phase",
+  "date": "2026-06-11 bis 2026-07-19",
+  "groups": "A-H (16 Teams in 8 Gruppen)",
+  "games": [
+    {"date": "2026-06-11", "time_mesz": "03:00", "team1": "Mexiko", "team2": "Südafrika", "stadium": "Estadio Azteca", "city": "Mexiko-Stadt", "group": "A", "stage": "Gruppenphase"},
+    {"date": "2026-06-11", "time_mesz": "21:00", "team1": "Peru", "team2": "Brasilien", "stadium": "MetLife Stadium", "city": "East Rutherford", "group": "B", "stage": "Gruppenphase"},
+    {"date": "2026-06-12", "time_mesz": "03:00", "team1": "Nigeria", "team2": "Indonesien", "stadium": "AT&T Stadium", "city": "Arlington", "group": "C", "stage": "Gruppenphase"},
+    {"date": "2026-06-12", "time_mesz": "21:00", "team1": "Venezuela", "team2": "Ecuador", "stadium": "Levi's Stadium", "city": "Santa Clara", "group": "B", "stage": "Gruppenphase"},
+    {"date": "2026-06-13", "time_mesz": "03:00", "team1": "USA", "team2": "Kanada", "stadium": "SoFi Stadium", "city": "Inglewood", "group": "A", "stage": "Gruppenphase"},
+    {"date": "2026-06-13", "time_mesz": "21:00", "team1": "Spanien", "team2": "Korea", "stadium": "NRG Stadium", "city": "Houston", "group": "D", "stage": "Gruppenphase"},
+    {"date": "2026-06-14", "time_mesz": "03:00", "team1": "Niederlande", "team2": "Ungarn", "stadium": "MGM Grand Field", "city": "Las Vegas", "group": "E", "stage": "Gruppenphase"},
+    {"date": "2026-06-14", "time_mesz": "21:00", "team1": "Marokko", "team2": "Ägypten", "stadium": "Mercedes-Benz Stadium", "city": "Atlanta", "group": "F", "stage": "Gruppenphase"}
+  ]
+}

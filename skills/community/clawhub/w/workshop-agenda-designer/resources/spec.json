@@ -1,0 +1,37 @@
+{
+  "slug": "workshop-agenda-designer",
+  "title": "工作坊议程设计师",
+  "category": "meeting",
+  "categoryLabel": "会议与执行",
+  "mode": "structured_brief",
+  "summary": "把会议目标、参会人、时间与约束拆成可执行议程、分段脚本、产出物与会后跟进。",
+  "inputHint": "会议目标、参与者、时长、已知冲突点",
+  "sections": [
+    "目标与成功标准",
+    "议程分段",
+    "主持提示",
+    "材料准备",
+    "风险与备选方案",
+    "会后跟进"
+  ],
+  "useCases": [
+    "工作坊设计",
+    "客户共创会",
+    "内部对齐会"
+  ],
+  "positiveExamples": [
+    "为 90 分钟跨团队 workshop 设计议程",
+    "把目标和参与者整理成工作坊 runbook"
+  ],
+  "negativeExamples": [
+    "不要用来预订会议室",
+    "不要用来转写音频"
+  ],
+  "risk": "不会自动发出邀请，也不会修改日历。",
+  "tags": [
+    "meeting",
+    "agenda",
+    "facilitation",
+    "planning"
+  ]
+}

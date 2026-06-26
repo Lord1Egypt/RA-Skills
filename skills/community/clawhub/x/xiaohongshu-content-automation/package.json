@@ -1,0 +1,14 @@
+{
+  "name": "xiaohongshu-content-automation",
+  "version": "1.0.0",
+  "description": "小红书内容创作自动化工作流，从选题、撰写、排版到发布的一站式自动化方案",
+  "main": "SKILL.md",
+  "keywords": ["xiaohongshu", "content", "automation", "chinese", "social", "writing"],
+  "author": "xiatian5",
+  "license": "MIT",
+  "dependencies": {},
+  "peerDependencies": {
+    "xiaohongshu-cn": ">=1.0.0",
+    "copywriting": ">=0.1.0"
+  }
+}

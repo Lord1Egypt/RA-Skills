@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/profile.json",
+  "title": "UserProfile",
+  "description": "Data structure definition for user basic medical parameters",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date",
+      "description": "Creation date"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "Last updated date"
+    },
+    "basic_info": {
+      "type": "object",
+      "properties": {
+        "gender": {
+          "type": "string",
+          "enum": ["M", "F"],
+          "description": "Gender: M=Male, F=Female"
+        },
+        "height": {
+          "type": "number",
+          "minimum": 50,
+          "maximum": 250,
+          "description": "Height (cm)"
+        },
+        "height_unit": {
+          "type": "string",
+          "enum": ["cm"],
+          "description": "Height unit"
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 2,
+          "maximum": 300,
+          "description": "Weight (kg)"
+        },
+        "weight_unit": {
+          "type": "string",
+          "enum": ["kg"],
+          "description": "Weight unit"
+        },
+        "birth_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Birth date"
+        }
+      },
+      "required": ["gender", "height", "weight", "birth_date"]
+    },
+    "calculated": {
+      "type": "object",
+      "properties": {
+        "age": {
+          "type": "integer",
+          "description": "Age"
+        },
+        "age_years": {
+          "type": "integer",
+          "description": "Age (years)"
+        },
+        "bmi": {
+          "type": "number",
+          "description": "BMI index"
+        },
+        "bmi_status": {
+          "type": "string",
+          "enum": ["Underweight", "Normal", "Overweight", "Obese"],
+          "description": "BMI status"
+        },
+        "body_surface_area": {
+          "type": "number",
+          "description": "Body surface area (m²)"
+        },
+        "bsa_unit": {
+          "type": "string",
+          "enum": ["m²"],
+          "description": "Body surface area unit"
+        }
+      }
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "updated_at": {"type": "string", "format": "date"},
+          "height": {"type": "number"},
+          "weight": {"type": "number"}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "version": "v2.0.0",
+  "highlights": [
+    "Added project-local skill context support",
+    "Strengthened validation rules"
+  ],
+  "changes": [
+    "Added script/test conventions reference",
+    "Added behavioral validation checklist"
+  ],
+  "notes": [
+    "No database or migration changes"
+  ]
+}

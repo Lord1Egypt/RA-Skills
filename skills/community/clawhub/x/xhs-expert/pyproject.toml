@@ -1,0 +1,13 @@
+[project]
+name = "xhs-expert"
+version = "1.0.0"
+description = "XHS Expert - 小红书运营专家技能"
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.27.0",
+    "playwright>=1.40.0",
+    "click>=8.1.0",
+]
+
+[project.scripts]
+xhs = "scripts.cli:main"

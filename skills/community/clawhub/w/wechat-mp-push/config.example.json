@@ -1,0 +1,51 @@
+{
+  "_fileRole": "本文件 = 字段说明 + 示例。正式 config.json 须放在 wechat-mp-push 目录内（与 SKILL.md 同级）。写入时只保留向导 JSON 的键，删除 _fileRole、fieldsHelp、sendToWechatExample_fieldsHelp 及带 Example 字样的示例块。推送支持 HTML 与 图片链接 两种，由请求体是否带 imgUrls 决定。",
+  "fieldsHelp": {
+    "version": "配置结构版本，向导一般为 1。",
+    "description": "可选说明文字，无业务作用。",
+    "meta": "可选。含 generatedAt、source 等，由向导生成，推送接口不读。",
+    "apiBase": "可选。推送接口完整 URL。缺省时大模型应使用 https://api.pcloud.ac.cn/openClawService 。仅 POST JSON。说明：推送链路长，HTTP 超时较常见，超时可视为已成功，请用户注意查微信服务通知/草稿箱。",
+    "openId": "必填。微信用户 openId，由配置向导微信扫码后得到；推送 sendToWechat 必须携带。禁止编造。",
+    "accounts": "必填。accounts 中 selected:true 表示向导最终选择。",
+    "sendToWechatExample": "可选。演示 POST Body 形状，推送HTML时，便于大模型照抄；接口不读取本对象。",
+    "sendToWechatExample_image": "可选。演示 POST Body 形状，推送图片链接时，便于大模型照抄；接口不读取本对象。"
+  },
+  "sendToWechatExample_fieldsHelp": {
+    "action": "固定写 sendToWechat",
+    "openId": "与根级 openId 相同",
+    "title": "HTML 推送：通常对应 HTML 的 <title>；图片链接推送：与配图一起展示的标题，由调用方传入。",
+    "content": "HTML 推送：整段 HTML 字符串（脚本 push-to-wechat-mp.js 的 html 模式读文件上传）。图片链接推送：正文/摘要等字符串，多为纯文本；配图 URL 放在 imgUrls。",
+    "imgUrls": "可选。string[]，元素为可公网访问的图片链接；缺省、null 或省略则按 HTML 模式处理，有值时按图片链接模式处理。",
+    "appId": "仅当选中自定义公众号时传AppID；选中平台提供时省略或空字符串。"
+  },
+  "version": 1,
+  "description": "由用户通过配置向导动态生成；示例占位。",
+  "apiBase": "https://api.pcloud.ac.cn/openClawService",
+  "openId": "oXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "accounts": [
+    {
+      "name": "平台提供的公众号",
+      "appId": "default",
+      "selected": true
+    }
+  ],
+  "sendToWechatExample": {
+    "action": "sendToWechat",
+    "openId": "oXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "appId": "",
+    "title": "文章标题",
+    "content": "<p>大模型生成的 HTML</p>"
+  },
+  "sendToWechatExample_image_fieldsHelp": "与 sendToWechatExample 相同字段；须含非空 imgUrls；content 多为短文案。",
+  "sendToWechatExample_image": {
+    "action": "sendToWechat",
+    "openId": "oXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "appId": "",
+    "title": "配图标题",
+    "content": "与图片一起展示的说明文字",
+    "imgUrls": [
+      "https://example.com/image1.png",
+      "https://example.com/image2.png"
+    ]
+  }
+}

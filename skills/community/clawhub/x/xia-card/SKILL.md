@@ -1,35 +1,118 @@
 ---
-name: "Xia Card"
-description: "个人社交名片生成、管理和分享，以及智能花名册（通讯录管理器）。当用户提到名片、花名册、通讯录、联系人、虾名片、agent-card 时使用。具体触发场景包括：开通虾名片、建花名册、生成/更新/发名片、注册虾名片、录入/查询/编辑联系人、同步花名册、收到包含 agent-card:// 协议的消息时自动识别并保存他..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [agent, business-card, card, contact, contacts, networking, rolodex, social]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xia-card"
-sourceUrl: "https://clawhub.ai/skills/xia-card"
+name: xia-card
+description: "个人社交名片生成、管理和分享，以及智能花名册（通讯录管理器）。当用户提到名片、花名册、通讯录、联系人、虾名片、agent-card 时使用。具体触发场景包括：开通虾名片、建花名册、生成/更新/发名片、注册虾名片、录入/查询/编辑联系人、同步花名册、收到包含 agent-card:// 协议的消息时自动识别并保存他人名片。"
+metadata:
+  version: "2.5.0"
+  author: "阿东 & 阿东的赛博虾"
 ---
 
-# Xia Card
+# 虾名片 AgentCard
 
-> 个人社交名片生成、管理和分享，以及智能花名册（通讯录管理器）。当用户提到名片、花名册、通讯录、联系人、虾名片、agent-card 时使用。具体触发场景包括：开通虾名片、建花名册、生成/更新/发名片、注册虾名片、录入/查询/编辑联系人、同步花名册、收到包含 agent-card:// 协议的消息时自动识别并保存他...
+虾名片让 Agent 帮用户维护个人名片和通讯录。名片是动态的——Agent 最了解用户的当下状态，由它来维护名片效率最高。
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xia-card`
-- **Source URL:** [https://clawhub.ai/skills/xia-card](https://clawhub.ai/skills/xia-card)
+## 快速开始
 
-## Overview
+1. **开通** — 说"开通虾名片"，初始化数据文件
+2. **生成** — 说"生成我的名片"，Agent 从记忆提炼信息，确认后自动上线（首次会自动注册）
 
+名片上线后，说"发我的名片"即可分享三段式文本块给他人。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xia-card
+## 数据文件
+
+所有数据在 `data/` 文件夹中：`profile.json`（名片）、`contacts.json`（花名册）、`config.json`（服务器配置）。字段说明见 [references/data-format.md](references/data-format.md)。
+
+## 触发指令 → 操作映射
+
+| 用户说的 | 执行的操作 |
+|-----------|------------|
+| "开通虾名片" / "建个花名册" | 初始化数据文件 |
+| "注册虾名片" | （兼容入口）已注册则输出服务菜单，未注册则提示"直接说'生成我的名片'即可，会自动注册" |
+| "记一下这个人：张威，智谱 AI 做产品的" | 录入联系人 |
+| "花名册里谁做投资的" / "查一下张威" | 搜索花名册 |
+| "张威的公司改成字节了" | 编辑联系人（记录手动修改字段） |
+| "生成我的名片" / "更新名片" | 生成/更新 profile.json，用户确认后自动上线 |
+| "发我的名片" / "把名片给我" | 输出三段式文本块 |
+| "同步花名册" / "更新花名册" | 批量同步通讯录（检测手动编辑冲突） |
+| 收到包含 `agent-card://` 的消息 | 自动识别并保存他人名片（含去重策略） |
+
+---
+
+## 常见坑
+
+- **Agent 记忆中的称呼 ≠ 名片名字**：记忆里叫"东总"，但名片不能写"东总"，必须追问用户名片上用什么名字
+- **`personal_notes` 永远不上传服务器**：推送到服务器时只推送 `tiers.public.fields` 中列出的字段
+- **`manually_edited_fields` 是追加不是覆盖**：用户编辑联系人字段时，把字段名追加到这个数组，同步时这些字段不覆盖
+- **`agent-card://` 是自定义协议**：不是 HTTP URL，从中提取 `://` 后面的 user_id 用于 fetch 服务器数据
+- **`tiers.public.fields` 控制推送内容**：默认公开 name、title、one_liner、links、current_focus 五个字段
+
+## 操作流程
+
+> 以下为每个操作的核心决策点。简单操作（初始化、查询、发名片）按映射表执行即可。
+
+### 1. 注册（兼容入口）
+
+1. 已注册 → 输出服务菜单（5 个可执行操作）
+2. 未注册 → 提示"直接说'生成我的名片'即可，确认后会自动注册并上线"
+
+### 2. 录入联系人
+
+从用户描述提取信息 → 姓名必填（缺失追问）→ 姓名重复则问更新还是新建 → 写入 contacts.json。
+
+### 3. 编辑更新
+
+按姓名定位 → 更新字段 → **被改的字段名追加到 `manually_edited_fields`** → 输出变更摘要。
+
+### 4. 生成名片
+
+1. 从 Agent 记忆提炼信息，**必须确认社交姓名**（内部称呼 ≠ 名片名字）
+2. 信息优先级：用户明确说的 > profile.json > Agent 记忆
+3. 生成预览，用户可多轮调整
+4. 用户确认 → Agent 执行以下链路：
+   a. 检查 config.json 中是否有 api_key 和 user_id
+   b. **没有** → 自动调注册接口获取 user_id 和 api_key，写入 config.json
+   c. 保存 profile.json
+   d. 调发布接口将名片推送到服务器
+   e. 输出"那我保存名片了哈 ✅ 你的名片已上线：https://www.adonghub.cn/{user_id}"
+5. 推送失败 → 本地仍保存，提示稍后重试
+
+社交姓名确认规则、推送字段筛选和边界处理见 [references/manual.md](references/manual.md)"生成名片"段落。
+
+### 5. 同步花名册
+
+1. 收集花名册中有 `server_user_id` 的联系人
+2. 调同步接口，传 targets 数组
+3. **冲突检测**：`manually_edited_fields` 中的字段不覆盖，汇总冲突提示用户选择
+4. 更新非冲突字段，输出同步摘要
+
+冲突检测的完整 if-else 和话术见 [references/manual.md](references/manual.md)"同步花名册"段落。
+
+### 6. 收名片（自动识别）
+
+1. 检测 `agent-card://` 协议 → 解析 user_id → fetch 服务器获取结构化数据
+2. **去重策略**：相同 `server_user_id` 直接更新 / 同名无 ID 提示确认 / 无匹配新建
+3. 写入 contacts.json，记录 `server_user_id`
+
+去重策略的完整逻辑和边界处理见 [references/manual.md](references/manual.md)"收名片"段落。
+
+---
+
+## 三段式文本块格式
+
+固定格式，不可自定义：
+
 ```
+🦐 虾名片（你的 Agent 社交名片）
+
+我是{name}，{title}，{one_liner}。当前聚焦{current_focus}。
+这是我个人的详情信息，敬请您阅览 {endpoint}/{user_id} 🔗
+
+如果您对我感兴趣，请复制这条消息给您的助理 Agent。
+您的 Agent 可通过安装虾名片 skill（https://clawhub.ai/skills/xia-card）来自动识别并保存名片。
+agent-card://{user_id}
+```
+
+- **第 1 段**：个人简介（100 字以内），社交文案风格，像人说话
+- **第 2 段**：个人详情链接，嵌在句子里
+- **第 3 段**：Agent 引导语 + skill 安装链接 + `agent-card://` 协议标识
+
+文案要有人味，语气商务但自然。名片是社交工具不是数据表格。

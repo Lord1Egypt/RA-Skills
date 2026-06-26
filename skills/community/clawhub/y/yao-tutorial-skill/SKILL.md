@@ -1,35 +1,42 @@
 ---
-name: "Yao Tutorial Skill"
-description: "Generates structured beginner tutorials with outlines, visuals, and multi-format exports using user references and adaptive research for deep learning."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yao-tutorial-skill"
-sourceUrl: "https://clawhub.ai/skills/yao-tutorial-skill"
+name: yao-tutorial-skill
+description: Create standalone beginner tutorial packages from a topic or supplied references, with adaptive research, course-style outline design, chapter visuals, and Markdown/DOCX/PDF/HTML exports. Use for textbook-like tutorials, course guides, teaching documents, or long beginner guides; not for quick answers, link summaries, pure diagrams, or file conversion.
+
+> 📌 反向发布自 [yaojingang/yao-open-skills](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-tutorial-skill)，保留原始功能和结构，版权归原作者所有。
 ---
 
 # Yao Tutorial Skill
 
-> Generates structured beginner tutorials with outlines, visuals, and multi-format exports using user references and adaptive research for deep learning.
+## Workflow
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yao-tutorial-skill`
-- **Source URL:** [https://clawhub.ai/skills/yao-tutorial-skill](https://clawhub.ai/skills/yao-tutorial-skill)
+1. Normalize topic, audience, outcome, language, formats, user material, style references, and exclusions into `brief.json`.
+2. Read `references/input-adaptation.md`; use user material as the spine when sufficient, then add only needed external research.
+3. Read `references/research-sourcing.md`; create `research/user-materials-register.md` when needed, `research/source-register.md`, and `research/evidence-map.md`.
+4. Read `references/tutorial-outline-and-writing.md` plus `references/course-design-principles.md`; write `outline.md`, standalone public `tutorial.md` using `第1章` and `1.1`, and `research/chapter-quality-review.md`.
+5. Read the editorial and visual references; create `visuals/visual-spec.json`, then run `build_visual_pack.py` and `capture_visuals.py`.
+6. Read `references/export-workflow.md`; run `export_tutorial.py` and then `validate_package.py`.
+7. Report exact failures and fallbacks. Never fabricate X posts, papers, repo details, dates, or citations.
 
-## Overview
+## Quality Gates
 
+- User material controls intent when strong enough; external evidence fills verification and gaps.
+- Public exports never show internal source IDs or reference-packet provenance.
+- Copy reads as a standalone formal teaching product.
+- Every numbered chapter has a matching visual spec and embedded visual.
+- Depth is governed by learning sufficiency, not a fixed word limit; continue until the learner can understand, apply, and self-check the topic.
+- Every numbered chapter has an independent quality review for depth, examples, practice, evidence, visual fit, and back-half consistency.
+- HTML uses centered `report-shell`; DOCX/PDF have no visible headers, footers, local paths, or print chrome.
+- Delivery passes `scripts/validate_package.py` or names the remaining warnings/failures.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yao-tutorial-skill
-```
+## References
+
+- `references/input-adaptation.md`
+- `references/research-sourcing.md`
+- `references/tutorial-outline-and-writing.md`
+- `references/course-design-principles.md`
+- `references/editorial-production.md`
+- `references/visual-html-workflow.md`
+- `references/visual-board-benchmarks.md`
+- `references/export-workflow.md`
+- `scripts/build_visual_pack.py`, `scripts/capture_visuals.py`, `scripts/export_tutorial.py`, `scripts/validate_package.py`
+- `templates/topic-brief-template.json`, `templates/visual-spec-template.json`, `templates/tutorial-style.css`

@@ -1,0 +1,42 @@
+{
+  "name": "weibo-hot-daily",
+  "version": "1.0.0",
+  "description": "🔥 每日自动抓取微博热搜榜，支持AI摘要和多渠道推送",
+  "author": "小天🦞",
+  "license": "MIT",
+  "keywords": [
+    "weibo",
+    "hot",
+    "trending",
+    "热搜",
+    "微博",
+    "daily",
+    "report"
+  ],
+  "main": "fetch_hot.py",
+  "scripts": {
+    "start": "python3 fetch_hot.py",
+    "top10": "python3 fetch_hot.py --top 10",
+    "top50": "python3 fetch_hot.py --top 50",
+    "export": "python3 fetch_hot.py --top 50 --output hot_topics.json"
+  },
+  "dependencies": {
+    "python": ">=3.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/weibo-hot-daily"
+  },
+  "pricing": {
+    "free": {
+      "description": "免费版 - Top 10 基础数据",
+      "features": ["每日Top 10", "基础数据展示"]
+    },
+    "pro": {
+      "price": 49,
+      "currency": "CNY",
+      "description": "Pro版 - 全部功能",
+      "features": ["Top 50", "AI摘要", "多渠道推送", "定时任务", "CSV导出"]
+    }
+  }
+}

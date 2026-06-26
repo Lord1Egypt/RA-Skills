@@ -1,0 +1,714 @@
+{
+  "generated_at": "2026-03-16T11:16:48.060830",
+  "total_skills": 46,
+  "usage_statistics": {
+    "summarize": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "obsidian": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "md-to-feishu-doc": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "using-superpowers": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "mermaid-to-feishu": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "weda-integration": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "skill-vetting": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "README": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "doubao-expert-review": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "SKILL-DOUBAO-001": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "github": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "axiang-emoji-trigger": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "wechat-miniprogram-dev": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "send-html-to-feishu": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "voice-control-enhanced": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "feishu-emoji-trigger": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "calendar": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "create-feishu-doc": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "cron-task-manager": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "hourly-priority-reminder": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "tts-automation": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "skills-overview": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "atomic-action-doc-sync": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "html-expert-review": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "feishu-document-generation": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "doubao-session-archiver": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "multi-feishu-channel-guide": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "player-exp-system": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "project-progress-sync": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "feishu-doc-config-check": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "find-skills": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "project-summary-report": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "goodnight-memory-sync": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "unified-glossary": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "feishu-message-automation": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "weekly-report-generator": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "三线更新": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "weather": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "project-knowledge-expert": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "standard-project-initiation": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "mermaid-feishu-doc": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "self-improving-agent-cn": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "three-line-sync": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "emoji-usage": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "project-triple-sync": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    },
+    "rag_search": {
+      "count": 0,
+      "last_used": "从未使用",
+      "first_used": "未知",
+      "frequency": "未使用"
+    }
+  },
+  "skill_combinations": {},
+  "recommendations": {
+    "summarize": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "obsidian": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "md-to-feishu-doc": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "using-superpowers": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "mermaid-to-feishu": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合",
+        "存在1个高度相似技能（可能冗余）"
+      ],
+      "confidence": 0.9,
+      "score": 5
+    },
+    "weda-integration": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "skill-vetting": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "README": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "doubao-expert-review": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合",
+        "存在2个高度相似技能（可能冗余）"
+      ],
+      "confidence": 0.9,
+      "score": 5
+    },
+    "SKILL-DOUBAO-001": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合",
+        "存在3个高度相似技能（可能冗余）"
+      ],
+      "confidence": 0.9,
+      "score": 5
+    },
+    "github": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "axiang-emoji-trigger": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合",
+        "存在1个高度相似技能（可能冗余）"
+      ],
+      "confidence": 0.9,
+      "score": 5
+    },
+    "wechat-miniprogram-dev": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "send-html-to-feishu": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "voice-control-enhanced": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "feishu-emoji-trigger": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合",
+        "存在1个高度相似技能（可能冗余）"
+      ],
+      "confidence": 0.9,
+      "score": 5
+    },
+    "calendar": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "create-feishu-doc": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合",
+        "存在1个高度相似技能（可能冗余）"
+      ],
+      "confidence": 0.9,
+      "score": 5
+    },
+    "cron-task-manager": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "hourly-priority-reminder": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "tts-automation": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合",
+        "存在2个高度相似技能（可能冗余）"
+      ],
+      "confidence": 0.9,
+      "score": 5
+    },
+    "skills-overview": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "atomic-action-doc-sync": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合",
+        "存在1个高度相似技能（可能冗余）"
+      ],
+      "confidence": 0.9,
+      "score": 5
+    },
+    "html-expert-review": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "feishu-document-generation": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合",
+        "存在2个高度相似技能（可能冗余）"
+      ],
+      "confidence": 0.9,
+      "score": 5
+    },
+    "doubao-session-archiver": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合",
+        "存在1个高度相似技能（可能冗余）"
+      ],
+      "confidence": 0.9,
+      "score": 5
+    },
+    "multi-feishu-channel-guide": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "player-exp-system": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "project-progress-sync": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "feishu-doc-config-check": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "find-skills": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "project-summary-report": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "goodnight-memory-sync": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "unified-glossary": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "feishu-message-automation": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合",
+        "存在1个高度相似技能（可能冗余）"
+      ],
+      "confidence": 0.9,
+      "score": 5
+    },
+    "weekly-report-generator": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "三线更新": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合",
+        "存在2个高度相似技能（可能冗余）"
+      ],
+      "confidence": 0.9,
+      "score": 5
+    },
+    "weather": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "project-knowledge-expert": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "standard-project-initiation": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "mermaid-feishu-doc": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合",
+        "存在1个高度相似技能（可能冗余）"
+      ],
+      "confidence": 0.9,
+      "score": 5
+    },
+    "self-improving-agent-cn": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "three-line-sync": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合",
+        "存在2个高度相似技能（可能冗余）"
+      ],
+      "confidence": 0.9,
+      "score": 5
+    },
+    "emoji-usage": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    },
+    "project-triple-sync": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合",
+        "存在1个高度相似技能（可能冗余）"
+      ],
+      "confidence": 0.9,
+      "score": 5
+    },
+    "rag_search": {
+      "recommendation": "建议删除",
+      "reasons": [
+        "从未使用过",
+        "没有常用的技能组合"
+      ],
+      "confidence": 0.9,
+      "score": 15
+    }
+  }
+}

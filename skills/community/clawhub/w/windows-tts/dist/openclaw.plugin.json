@@ -1,0 +1,36 @@
+{
+    "name": "windows-tts",
+    "version": "1.0.0",
+    "description": "Push text notifications to Windows Azure TTS for audio broadcast via Bluetooth speakers",
+    "tools": [
+        "tts_notify",
+        "tts_get_status",
+        "tts_list_voices",
+        "tts_set_volume"
+    ],
+    "config": {
+        "url": {
+            "type": "string",
+            "required": true,
+            "description": "Windows TTS server URL (e.g., http://192.168.1.60:5000)"
+        },
+        "defaultVoice": {
+            "type": "string",
+            "required": false,
+            "default": "zh-CN-XiaoxiaoNeural",
+            "description": "Default Azure TTS voice to use"
+        },
+        "defaultVolume": {
+            "type": "number",
+            "required": false,
+            "default": 1.0,
+            "description": "Default volume level (0.0-1.0)"
+        },
+        "timeout": {
+            "type": "number",
+            "required": false,
+            "default": 10000,
+            "description": "HTTP request timeout in milliseconds"
+        }
+    }
+}

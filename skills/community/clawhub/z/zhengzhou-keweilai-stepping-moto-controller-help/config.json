@@ -1,0 +1,72 @@
+{
+  "name": "郑州科威莱步进电机控制器调试助手",
+  "description": "郑州科威莱步进电机控制器完整调试支持 - 生成 Markdown 说明书、MicroPython/Python 演示代码，支持所有寄存器地址的读取和写入操作",
+  "version": "1.0",
+  "author": "河北雄安素水互联网科技有限公司",
+  "contact": {
+    "name": "王建存",
+    "phone": "18510412016"
+  },
+  "created_date": "2026-04-10",
+  "device": {
+    "brand": "郑州科威莱",
+    "type": "步进电机控制器",
+    "protocol": "Modbus RTU",
+    "default_port": "COM5",
+    "device_address": 9,
+    "baudrate": 9600,
+    "data_bits": 8,
+    "stop_bits": 1,
+    "parity": "N"
+  },
+  "mechanical": {
+    "mm_per_revolution": 5.0,
+    "degrees_per_revolution": 360.0,
+    "degrees_per_mm": 72.0,
+    "mechanical_home": "反转限位位置 (寄存器 23=2)"
+  },
+  "registers": {
+    "1": {"name": "运行方向", "rw": "R/W", "values": "0=向左，1=向右"},
+    "2": {"name": "运行命令", "rw": "R/W", "values": "1=启动，0=停止"},
+    "3": {"name": "紧急停止", "rw": "W", "values": "1=紧急停止"},
+    "4": {"name": "运动速度", "rw": "R/W", "values": "1-800 r/min"},
+    "5": {"name": "批量脉冲数", "rw": "R/W", "values": "0=不采用"},
+    "6": {"name": "批量圈数", "rw": "R/W", "values": "0=不采用"},
+    "7": {"name": "批量旋转角度", "rw": "R/W", "values": "增量模式，单位度"},
+    "8": {"name": "Modbus 地址", "rw": "R/W", "values": "1-247"},
+    "9": {"name": "脱机使能", "rw": "R/W", "values": "0=禁止，1=许可"},
+    "10": {"name": "一键回原点", "rw": "W", "values": "1=执行"},
+    "11": {"name": "上电回原点", "rw": "R/W", "values": "0=否，1=是"},
+    "12": {"name": "上电回原点方向", "rw": "R/W", "values": "0=出发点，1=远点"},
+    "13": {"name": "限位开关使能", "rw": "R/W", "values": "0=禁用，1=启用"},
+    "14": {"name": "加减速系数", "rw": "R/W", "values": "0-10"},
+    "15": {"name": "波特率设置", "rw": "R/W", "values": "3=9600"},
+    "16": {"name": "自动上报使能", "rw": "R/W", "values": "0=否，1=是"},
+    "21": {"name": "设当前位置为原点", "rw": "W", "values": "1=设定"},
+    "22": {"name": "已运行角度", "rw": "R", "values": "当前角度，不要超过 3600"},
+    "23": {"name": "限位开关状态", "rw": "R", "values": "0=无，1=正转，2=反转"}
+  },
+  "files": {
+    "skill_doc": "SKILL.md",
+    "documentation": "documentation.md",
+    "micropython_driver": "micropython_driver.py",
+    "python_driver": "python_driver.py"
+  },
+  "capabilities": [
+    "生成 Markdown 格式技术说明书",
+    "生成 MicroPython 演示代码 (ESP32/Pico)",
+    "生成 Python 演示代码 (PC 端)",
+    "支持所有寄存器地址读取",
+    "支持所有寄存器地址写入",
+    "机械原点设定流程",
+    "毫米移动控制",
+    "限位状态监控",
+    "紧急停止功能"
+  ],
+  "warnings": [
+    "寄存器 13 启用限位后，寄存器 22 不要超过 3600",
+    "寄存器 2 运行中无法写入 0，紧急停止请用寄存器 3",
+    "机械原点必须通过反转限位 (寄存器 23=2) 确定",
+    "设定原点后需等待 1 秒再执行移动"
+  ]
+}

@@ -1,35 +1,102 @@
 ---
-name: "Workflow Note（流程笔记）"
-description: "流程构建类笔记的写作规范与模板。当需要为 workflows/ 分类撰写新笔记时使用。覆盖：文章结构、内容要求、质量标准、发布流程。note-taking 定义全局规范（目录结构、命名、语言），本技能定义 workflows/ 分类的具体写作模板。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/workflow-note"
-sourceUrl: "https://clawhub.ai/skills/workflow-note"
+name: workflow-note
+description: 流程构建类笔记的写作规范与模板。当需要为 workflows/ 分类撰写新笔记时使用。覆盖：文章结构、内容要求、质量标准、发布流程。note-taking 定义全局规范（目录结构、命名、语言），本技能定义 workflows/ 分类的具体写作模板。
+repository: https://github.com/tino-chen/openclaw-skills/tree/main/workflow-note
+clawhub: https://clawhub.com/skills/workflow-note
+guide: https://tino-chen.github.io/notes/workflows/auto-note-system.html
 ---
 
-# Workflow Note（流程笔记）
+# 流程构建笔记写作规范
 
-> 流程构建类笔记的写作规范与模板。当需要为 workflows/ 分类撰写新笔记时使用。覆盖：文章结构、内容要求、质量标准、发布流程。note-taking 定义全局规范（目录结构、命名、语言），本技能定义 workflows/ 分类的具体写作模板。
+为 workflows/ 分类撰写笔记时，遵循本规范。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/workflow-note`
-- **Source URL:** [https://clawhub.ai/skills/workflow-note](https://clawhub.ai/skills/workflow-note)
+## 定位
 
-## Overview
+流程构建笔记记录**用 AI 搭建自动化流程的完整经验**。读者看完后应该能够复现你的方案。
 
+与 tools/（工具推荐）的区别：本分类关注"怎么把工具组合成流程"，而非单个工具怎么用。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/workflow-note
+## 写作流程
+
+1. **先读** `~/.openclaw/skills/note-taking/SKILL.md`（全局规范：命名、语言、侧边栏等）
+2. **先查重**：搜索已有 workflows/ 笔记，同主题不重复创建
+3. **先想主题**：提炼一个明确的技术主题，不是按时间堆砌做了什么
+4. **按模板写**：使用下方模板
+5. **读实际配置**：如果涉及 cron 任务、HEARTBEAT.md、AGENTS.md 等配置，必须从实际文件中读取完整内容写入笔记，不能给简略描述
+6. **发布**：构建、提交、推送
+
+## 文章结构模板
+
+```yaml
+---
+type: guide | experience
+title: 标题（30字符以内，中文）
+tags: [标签1, 标签2]
+---
+
+# 标题
+
+## 这是什么
+
+用一两句话说清楚这是什么、解决什么问题。让读者 5 秒内判断是否需要继续看。
+
+## 最终效果
+
+列出读者照做之后能得到什么。用具体、可感知的描述，不要写空话。
+
+## 整体架构
+
+用 ASCII 图或表格展示方案的宏观结构。让读者一眼看懂组件关系和数据流向。
+
+## 实操步骤
+
+分步骤、带命令/代码、可复现。每一步都是"照着做就能成"的级别。
+
+### 第一步：xxx
+
+### 第二步：xxx
+
+...
+
+## 踩坑记录
+
+记录实际遇到的问题和解决方案。只保留有价值的，不要凑数。
+
+### 1. 问题描述
+
+**原因**：xxx
+**解决**：xxx
+
+## 参考资料
+
+- [标题](链接)
 ```
+
+## 内容要求
+
+### 必须做到
+
+- **中文撰写**：所有正文内容使用中文
+- **可复现**：读者照着步骤能跑通，不缺前提条件
+- **配置完整**：涉及 cron prompt、HEARTBEAT.md、AGENTS.md 等配置内容时，从实际文件中读取完整版本写入，不简略
+- **代码可执行**：所有命令和代码片段都经过验证
+- **有具体案例**：用实际数据说话，不要空泛描述
+
+### 禁止做到
+
+- **禁止流水账**：不要按时间线堆砌"Phase 1 / Phase 2 / Phase 3"
+- **禁止英文正文**：标题、标签、代码中的英文可以，正文必须中文
+- **禁止占位符**：不要写"参考相关文档"然后不给链接
+- **禁止空话**：不要写"极大提升了效率"这种无法验证的描述
+- **禁止敏感信息**：不泄露任何个人身份、密钥、内部地址等敏感内容
+
+## type 选择
+
+| type | 适用场景 |
+|------|----------|
+| `guide` | 教程：读者可以照着做的步骤指南 |
+| `experience` | 经验：踩坑记录、项目复盘、架构思考 |
+
+## 详见
+
+- 完整写作示例：见 [references/example.md](references/example.md)

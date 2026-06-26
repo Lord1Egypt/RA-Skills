@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Skeleton Skill — EdgeOne Pages</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 100%);
+      color: #e0e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      max-width: 640px;
+      width: 100%;
+      backdrop-filter: blur(10px);
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(96,165,250,0.15);
+      color: #60a5fa;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin: 0 4px 8px;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 2rem 0;
+      text-align: left;
+    }
+    .feature {
+      background: rgba(255,255,255,0.03);
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .feature .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .feature h3 { font-size: 0.95rem; color: #93c5fd; margin-bottom: 0.3rem; }
+    .feature p { font-size: 0.8rem; color: #94a3b8; }
+    .links { margin-top: 1.5rem; }
+    .links a {
+      display: inline-block;
+      padding: 10px 24px;
+      margin: 4px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: #3b82f6; color: #fff; }
+    .btn-primary:hover { background: #2563eb; }
+    .btn-ghost { background: transparent; color: #93c5fd; border: 1px solid rgba(147,197,253,0.3); }
+    .btn-ghost:hover { background: rgba(147,197,253,0.1); }
+    .footer { margin-top: 2rem; font-size: 0.75rem; color: #64748b; }
+    @media (max-width: 500px) {
+      .features { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Website Skeleton Skill</h1>
+    <p style="color:#94a3b8; margin-bottom:1rem;">
+      一句话建站 — AI 生成全栈网站，自动部署到 EdgeOne Pages
+    </p>
+    <div>
+      <span class="badge">v3.0</span>
+      <span class="badge">EdgeOne Pages</span>
+      <span class="badge">Multi-tenant SaaS</span>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="icon">🛒</div>
+        <h3>电商栈</h3>
+        <p>Auth + 购物车 + 微信/支付宝支付 + 订单管理</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🤖</div>
+        <h3>AI 栈</h3>
+        <p>SSE 流式对话 + 会话历史 + 限流保护</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📊</div>
+        <h3>管理后台</h3>
+        <p>RBAC 权限 + CRUD + 运营统计 + 审计日志</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🏗️</div>
+        <h3>多租户 SaaS</h3>
+        <p>D1 数据隔离 + KV 前缀 + 租户管理 API</p>
+      </div>
+    </div>
+
+    <div class="links">
+      <a class="btn-primary" href="https://github.com/liuboacean/website-skeleton-skill">GitHub</a>
+      <a class="btn-ghost" href="https://github.com/liuboacean/website-skeleton-skill/blob/main/SKILL.md">文档</a>
+    </div>
+
+    <div class="footer">
+      MIT · Powered by EdgeOne Pages · Phase 4 Multi-tenant SaaS
+    </div>
+  </div>
+</body>
+</html>

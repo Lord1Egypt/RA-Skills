@@ -1,0 +1,49 @@
+{
+  "name": "xquads-copy-squad",
+  "version": "1.0.0",
+  "description": "Elite squad de 23 agentes de copywriting - 22 copywriters lendários + 1 orchestrator",
+  "openclaw": {
+    "homepage": "https://github.com/synkra/xquads",
+    "emoji": "✍️"
+  },
+  "agents": [
+    "copy-chief",
+    "gary-halbert",
+    "eugene-schwartz",
+    "claude-hopkins",
+    "gary-bencivenga",
+    "robert-collier",
+    "john-carlton",
+    "jim-rutz",
+    "dan-kennedy",
+    "frank-kern",
+    "russell-brunson",
+    "todd-brown",
+    "stefan-georgi",
+    "jon-benson",
+    "ry-schwartz",
+    "ben-settle",
+    "andre-chaperon",
+    "dan-koe",
+    "joe-sugarman",
+    "david-ogilvy",
+    "clayton-makepeace",
+    "parris-lampropoulos",
+    "david-deutsch"
+  ],
+  "tasks": [
+    "write-headline",
+    "write-sales-letter",
+    "write-vsl-script",
+    "write-email-sequence",
+    "write-ad-copy",
+    "write-landing-page",
+    "write-bullets",
+    "create-offer",
+    "create-funnel-copy",
+    "analyze-copy",
+    "critique-copy",
+    "diagnose",
+    "review"
+  ]
+}

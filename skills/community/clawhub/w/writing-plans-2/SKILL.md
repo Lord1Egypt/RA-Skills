@@ -1,35 +1,100 @@
 ---
-name: "Writing Plans"
-description: "Break design into 2-5 minute tasks with verification steps."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/writing-plans-2"
-sourceUrl: "https://clawhub.ai/skills/writing-plans-2"
+name: writing-plans
+description: Break design into 2-5 minute tasks with verification steps.
 ---
 
-# Writing Plans
+# Writing Plans Skill
 
-> Break design into 2-5 minute tasks with verification steps.
+## When to Use
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/writing-plans-2`
-- **Source URL:** [https://clawhub.ai/skills/writing-plans-2](https://clawhub.ai/skills/writing-plans-2)
+After design approval (brainstorming complete).
 
-## Overview
+## Task Structure
 
+Each task must have:
+1. **Goal** (1 sentence)
+2. **Files** (exact paths)
+3. **Implementation** (code snippet or pseudo-code)
+4. **Verification** (command to run + expected output)
+5. **Estimated Time** (2-5 min ideal)
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Plan Template
+
+```markdown
+# Implementation Plan: [Feature Name]
+
+## Tasks
+
+### Task 1: [Goal]
+**Files:** `src/file.js`
+**Implementation:**
+```javascript
+// Add function here
+function cacheFetch(key) {
+  // ...
+}
+```
+**Verification:**
 ```bash
-hermes skills install clawhub/writing-plans-2
+npm test -- cache.test.js
+# Expected: 1 passing
+```
+**Estimated Time:** 3 min
+
+### Task 2: [Goal]
+[... repeat]
+```
+
+Save to: `docs/plans/YYYY-MM-DD-feature-name.md`
+
+## Quality Checklist
+
+Before finalizing plan:
+- [ ] Every task has exact file paths
+- [ ] Every task has verification command
+- [ ] No task >5 min (if yes, split)
+- [ ] Tasks are ordered (dependencies first)
+- [ ] Plan is reviewable (concrete, not vague)
+
+## Anti-Patterns
+
+❌ Vague tasks ("Improve caching")
+❌ No verification steps
+❌ Tasks without file paths
+❌ Monster tasks (>10 min)
+
+## Example
+
+Bad Task:
+```
+Task 1: Add caching
+- Implement cache layer
+```
+
+Good Task:
+```
+Task 1: Add in-memory cache for API responses
+**Files:** `src/cache.js` (new), `src/api.js` (modify)
+**Implementation:**
+```javascript
+// cache.js
+const cache = new Map();
+export function get(key) { return cache.get(key); }
+export function set(key, val, ttl) { 
+  cache.set(key, val);
+  setTimeout(() => cache.delete(key), ttl);
+}
+
+// api.js (modify fetchUser)
+const cached = cache.get(`user:${id}`);
+if (cached) return cached;
+// ... existing fetch logic
+cache.set(`user:${id}`, result, 60000);
+```
+**Verification:**
+```bash
+node -e "const c = require('./src/cache'); c.set('test', 42, 1000); console.log(c.get('test'));"
+# Expected: 42
+```
+**Estimated Time:** 4 min
 ```

@@ -1,35 +1,128 @@
 ---
-name: "Xiaohongshu Analyzer"
-description: "小红书笔记分析、爆文拆解、关键词挖掘、竞品监控。适合内容创作者、品牌运营、电商卖家。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-analyzer"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-analyzer"
+name: xiaohongshu-analyzer
+version: 1.0.0
+description: 小红书笔记分析、爆文拆解、关键词挖掘、竞品监控。适合内容创作者、品牌运营、电商卖家。
+homepage: https://github.com/openclaw/skills
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📕",
+        "requires": { "bins": ["python3", "curl"] },
+        "install":
+          [
+            {
+              "id": "requests",
+              "kind": "pip",
+              "package": "requests",
+              "label": "安装依赖：pip3 install requests",
+            },
+            {
+              "id": "beautifulsoup4",
+              "kind": "pip",
+              "package": "beautifulsoup4",
+              "label": "安装依赖：pip3 install beautifulsoup4",
+            },
+          ],
+      },
+  }
 ---
 
-# Xiaohongshu Analyzer
+# 小红书分析技能
 
-> 小红书笔记分析、爆文拆解、关键词挖掘、竞品监控。适合内容创作者、品牌运营、电商卖家。
+分析小红书笔记数据，拆解爆文公式，挖掘高价值关键词。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-analyzer](https://clawhub.ai/skills/xiaohongshu-analyzer)
+## 功能
 
-## Overview
+1. **笔记分析**: 获取点赞、收藏、评论数据，计算互动率
+2. **爆文拆解**: 分析标题、封面、内容结构，提取爆文公式
+3. **关键词挖掘**: 发现高热度、低竞争关键词
+4. **竞品监控**: 追踪对标账号的笔记表现
+5. **话题分析**: 发现热门话题和趋势
+6. **用户画像**: 分析目标受众的偏好和行为
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-analyzer
+**分析单篇笔记**:
 ```
+分析这篇小红书笔记 https://www.xiaohongshu.com/explore/xxx
+```
+
+**爆文拆解**:
+```
+帮我拆解这个爆文的写作公式
+```
+
+**关键词挖掘**:
+```
+帮我找护肤品类的高价值关键词
+```
+
+**竞品分析**:
+```
+分析这个账号的笔记数据 https://www.xiaohongshu.com/user/profile/xxx
+```
+
+**话题发现**:
+```
+最近美妆类有什么热门话题
+```
+
+## 输出示例
+
+```
+📕 小红书笔记分析
+
+笔记标题：25 岁后一定要知道的抗老精华！
+├─ 点赞：12.5k
+├─ 收藏：8.3k
+├─ 评论：1.2k
+└─ 互动率：17.6% 🔥（爆文）
+
+📊 爆文公式拆解：
+├─ 标题结构：年龄 + 痛点 + 解决方案
+├─ 封面类型：产品对比图
+├─ 内容框架：痛点引入→产品测评→使用效果→购买建议
+└─ 发布时段：20:00-22:00
+
+🔑 高价值关键词：
+├─ 抗老精华（热度 85, 竞争 62）
+├─ 25 岁护肤（热度 72, 竞争 45）⭐ 推荐
+└─ 平价精华（热度 90, 竞争 78）
+
+💡 优化建议：
+1. 标题加入具体年龄更精准
+2. 封面用前后对比图
+3. 加入价格信息提高转化
+```
+
+## 变现模式
+
+- 免费：每日 10 次分析
+- 付费 (¥79/月)：无限分析 + 关键词挖掘 + 竞品监控
+- 付费 (¥149/月)：+ 定制报告 + 数据导出
+
+## 目标用户
+
+- 内容创作者（博主、KOL）
+- 品牌运营（市场部、新媒体）
+- 电商卖家（站外引流）
+- MCN 机构（达人管理）
+- 广告代理商（投放优化）
+
+## 优势
+
+- ✅ 小红书数据公开度较高
+- ✅ 内容创作者付费意愿强
+- ✅ 可延伸至其他平台（抖音、B 站）
+- ✅ 数据可视化效果好
+
+## 注意事项
+
+- 遵守平台爬虫政策
+- 数据仅供参考，不保证实时性
+- 不存储用户隐私数据
+
+---
+
+**声明**: 数据来源于公开信息，仅供分析参考。

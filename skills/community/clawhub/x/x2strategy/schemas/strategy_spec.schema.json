@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StrategySpec",
+  "type": "object",
+  "properties": {
+    "strategy_name": {
+      "type": "string"
+    },
+    "strategy_type": {
+      "type": "string"
+    },
+    "asset_class": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "description": {
+      "type": "string"
+    },
+    "plan_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "strategy_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "backtest_id": {
+      "type": "string",
+      "nullable": true
+    },
+    "price_data": {
+      "type": "boolean"
+    },
+    "volume_data": {
+      "type": "boolean"
+    },
+    "fundamental_data": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "alternative_data": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lookback_period": {
+      "type": "integer"
+    },
+    "data_frequency": {
+      "type": "string"
+    },
+    "data_source": {
+      "type": "string"
+    },
+    "time_period": {
+      "type": "string"
+    },
+    "universe_assets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "universe_selection_criteria": {
+      "type": "string"
+    },
+    "expected_sharpe": {
+      "type": "number",
+      "nullable": true
+    },
+    "expected_return": {
+      "type": "number",
+      "nullable": true
+    },
+    "max_drawdown": {
+      "type": "number",
+      "nullable": true
+    },
+    "expected_performance": {
+      "type": "object"
+    },
+    "indicators": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Indicator"
+      }
+    },
+    "logic_pipeline": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/LogicStep"
+      }
+    },
+    "execution_plan": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ExecutionPlan"
+      }
+    },
+    "risk_management": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "Indicator": {
+      "type": "object",
+      "properties": {
+        "indicator_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "formula": {
+          "type": "string"
+        },
+        "latex": {
+          "type": "string"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "output_type": {
+          "type": "string"
+        }
+      }
+    },
+    "LogicStep": {
+      "type": "object",
+      "properties": {
+        "step_id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "function": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "group_by": {
+          "type": "string"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "parameters": {
+          "type": "object"
+        },
+        "expression": {
+          "type": "string"
+        },
+        "output": {
+          "type": "string"
+        },
+        "output_type": {
+          "type": "string"
+        }
+      }
+    },
+    "ExecutionTrigger": {
+      "type": "object",
+      "properties": {
+        "trigger_type": {
+          "type": "string"
+        },
+        "frequency": {
+          "type": "string"
+        },
+        "signal_lookup": {
+          "type": "string"
+        },
+        "delay_bars": {
+          "type": "integer"
+        },
+        "price_type": {
+          "type": "string"
+        }
+      }
+    },
+    "ExecutionAction": {
+      "type": "object",
+      "properties": {
+        "signal_source": {
+          "type": "string"
+        },
+        "logic": {
+          "type": "string"
+        },
+        "default_action": {
+          "type": "string"
+        }
+      }
+    },
+    "PositionSizing": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string"
+        },
+        "max_position_pct": {
+          "type": "number",
+          "nullable": true
+        },
+        "total_exposure": {
+          "type": "number"
+        },
+        "long_short": {
+          "type": "string"
+        }
+      }
+    },
+    "ExecutionPlan": {
+      "type": "object",
+      "properties": {
+        "plan_id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "trigger": {
+          "$ref": "#/$defs/ExecutionTrigger"
+        },
+        "action": {
+          "$ref": "#/$defs/ExecutionAction"
+        },
+        "position_sizing": {
+          "$ref": "#/$defs/PositionSizing"
+        }
+      }
+    }
+  }
+}

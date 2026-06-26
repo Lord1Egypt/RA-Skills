@@ -1,0 +1,17 @@
+{
+  "name": "x-daily-report",
+  "version": "1.0.0",
+  "description": "每日自动监控全球Top AI领域X/Twitter账号动态，生成结构化日报",
+  "main": "scripts/x-scraper-free.js",
+  "scripts": {
+    "start": "node scripts/x-scraper-free.js",
+    "api": "node scripts/x-monitor.js"
+  },
+  "dependencies": {
+    "@the-convocation/twitter-scraper": "^0.22.1",
+    "axios": "^1.6.0"
+  },
+  "keywords": ["x", "twitter", "scraper", "ai", "daily-report", "monitor"],
+  "author": "",
+  "license": "MIT"
+}

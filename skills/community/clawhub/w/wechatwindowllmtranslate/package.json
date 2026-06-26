@@ -1,0 +1,96 @@
+{
+  "name": "wechat-window-llm-translate",
+  "version": "1.0.0",
+  "description": "微信窗口自动监控、翻译和智能回复工具",
+  "keywords": [
+    "wechat",
+    "translation",
+    "llm",
+    "automation",
+    "qwen",
+    "baidu-translate"
+  ],
+  "license": "MIT",
+  "author": "OpenClaw",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "python": ">=3.8"
+  },
+  "scripts": {
+    "start": "uv run python wechatai.py",
+    "install:deps": "uv pip install requests pyautogui pyperclip pywin32"
+  },
+  "dependencies": {
+    "requests": ">=2.28.0",
+    "pyautogui": ">=0.9.53",
+    "pyperclip": ">=1.8.2",
+    "pywin32": ">=305"
+  },
+  "env": {
+    "QWEN_BASE_URL": {
+      "description": "Qwen 模型 API 基础地址",
+      "required": true,
+      "example": "https://api.example.com/v1"
+    },
+    "QWEN_API_KEY": {
+      "description": "Qwen 模型 API 密钥",
+      "required": true,
+      "example": "sk-xxx"
+    },
+    "QWEN_URL_PATH": {
+      "description": "Qwen API 接口路径",
+      "required": true,
+      "example": "/chat/completions"
+    },
+    "BAIDU_APPID": {
+      "description": "百度翻译 API APPID",
+      "required": true,
+      "example": "123456789"
+    },
+    "BAIDU_APPKEY": {
+      "description": "百度翻译 API APPKEY",
+      "required": true,
+      "example": "abcdefghijklmnop"
+    },
+    "BAIDU_ENDPOINT": {
+      "description": "百度翻译 API 端点",
+      "required": false,
+      "default": "http://api.fanyi.baidu.com"
+    },
+    "BAIDU_PATH": {
+      "description": "百度翻译 API 路径",
+      "required": false,
+      "default": "/api/trans/vip/translate"
+    },
+    "SLEEP_TIME": {
+      "description": "轮询间隔时间 (秒)",
+      "required": false,
+      "default": "60",
+      "type": "integer"
+    },
+    "REPLY_COUNT": {
+      "description": "回复内容最大长度",
+      "required": false,
+      "default": "170",
+      "type": "integer"
+    }
+  },
+  "platforms": [
+    "win32"
+  ],
+  "readme": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "wechatai.py",
+    "requirements.txt"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://clawhub.com"
+  }
+}

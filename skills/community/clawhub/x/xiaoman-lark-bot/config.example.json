@@ -1,0 +1,10 @@
+{
+  "example": "复制此文件为 .env 并填入真实配置",
+  "LARK_APP_ID": "",
+  "LARK_APP_SECRET": "",
+  "LARK_APP_TOKEN": "",
+  "LARK_TABLE_ID": "",
+  "LARK_SPACE_ID": "",
+  "LARK_CHAT_ID": "",
+  "LARK_WEBHOOK_PORT": "19800"
+}

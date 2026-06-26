@@ -1,0 +1,34 @@
+[project]
+name = "wechat-publish-pro"
+version = "0.1.0"
+description = "微信公众号文章发布工具，支持 Markdown 转换、多主题美化、一键发布到草稿箱"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.25.0",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    "pyyaml>=6.0",
+    "pillow>=10.0.0",
+    "typer>=0.9.0",
+    "rich>=13.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+wechat-publish-pro = "wechat_publish_pro.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/wechat_publish_pro"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src/wechat_publish_pro" = "wechat_publish_pro"

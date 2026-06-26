@@ -1,0 +1,23 @@
+{
+  "name": "yunxiao",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for Yunxiao (阿里云云效) integration - fetch work items, comments, and more",
+  "main": "scripts/yunxiao-mcp.cjs",
+  "bin": {
+    "yunxiao": "./scripts/yunxiao-mcp.cjs"
+  },
+  "scripts": {
+    "test": "node --test scripts/*.test.cjs"
+  },
+  "keywords": ["yunxiao", "aliyun", "devops", "openclaw", "skill", "work-item"],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git",
+    "directory": "skills/yunxiao"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

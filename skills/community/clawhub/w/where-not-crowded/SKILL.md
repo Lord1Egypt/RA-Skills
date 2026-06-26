@@ -1,35 +1,122 @@
 ---
-name: "去哪不挤"
-description: "去哪不挤：一个在节假日出行前，帮助用户判断“默认选择是否值得、哪里更不挤、更值、更适合去”的决策型 skill。 当用户询问“五一去哪不挤”“国庆想出去玩但不想人太多”“想去海边有没有比三亚更好的选择”“预算 5000 节假日去哪更值”等问题时触发。 它不是旅游攻略，不是泛推荐工具，而是基于人流趋势、热点变化、机..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/where-not-crowded"
-sourceUrl: "https://clawhub.ai/skills/where-not-crowded"
+name: where-not-crowded-report
+description: |
+  去哪不挤：一个在节假日出行前，帮助用户判断“默认选择是否值得、哪里更不挤、更值、更适合去”的决策型 skill。
+  当用户询问“五一去哪不挤”“国庆想出去玩但不想人太多”“想去海边有没有比三亚更好的选择”“预算 5000 节假日去哪更值”等问题时触发。
+  它不是旅游攻略，不是泛推荐工具，而是基于人流趋势、热点变化、机酒价格和总预算，对默认热门路径和更优替代路径做判断，并输出一份可直接照做的节假日出行报告。
 ---
 
-# 去哪不挤
+# Where Not Crowded Report
 
-> 去哪不挤：一个在节假日出行前，帮助用户判断“默认选择是否值得、哪里更不挤、更值、更适合去”的决策型 skill。 当用户询问“五一去哪不挤”“国庆想出去玩但不想人太多”“想去海边有没有比三亚更好的选择”“预算 5000 节假日去哪更值”等问题时触发。 它不是旅游攻略，不是泛推荐工具，而是基于人流趋势、热点变化、机...
+产品对外名建议继续使用「去哪不挤」。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/where-not-crowded`
-- **Source URL:** [https://clawhub.ai/skills/where-not-crowded](https://clawhub.ai/skills/where-not-crowded)
+## 一句话定义
 
-## Overview
+用户输入一个节假日出行意图，
+你自动生成一份包含：
 
+- 为什么不推荐默认选择
+- 推荐去哪（近程 / 远程）
+- 人流趋势判断
+- 国内外成本对比
+- 最佳出行窗口
+- 机票和酒店价格参考
+- 最终建议
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/where-not-crowded
-```
+的节假日出行决策报告。
+
+## 产品定位
+
+这不是“去哪玩” skill，而是“这次别按常规走”的节假日判断 skill。
+
+它解决的问题是：
+
+- 用户节假日想出去，但不想人挤人
+- 默认热门目的地往往价格高、体验差
+- 用户不缺攻略，缺的是一个已经权衡好的答案
+- 用户不想自己分析人流、时间、成本、目的地，只想知道这次怎么走更值
+
+所以它的本质是：
+
+**基于人流趋势、热点变化和成本对比，替用户做一轮节假日出行判断。**
+
+## 什么时候使用
+
+出现以下意图时触发：
+
+- 五一去哪不挤
+- 国庆想出去玩，但不想人太多
+- 想去海边，有没有比三亚更好的选择
+- 预算 5000，节假日去哪更值
+- 上海出发，五一想找个不拥挤的地方
+- 想去一个更舒服的替代目的地
+
+## 不适用场景
+
+- 已经定好目的地，只想订票 / 订酒店
+- 详细攻略和逐日行程
+- 签证办理、入境执行
+- 普通周末出游
+- 单纯机票比价工具
+
+## 输出原则
+
+不要输出攻略帖，不要列冷门地清单，不要“这些也不错”。
+
+每次都必须：
+
+1. 点破默认热门路径
+2. 说明为什么它这次不值
+3. 给出一个更优主推荐
+4. 再给一个近程替代和一个远程替代
+5. 补上时间怎么走、机票酒店参考、总预算判断
+6. 在对话里直接输出完整 Markdown 报告
+7. 同时在工作目录生成 `.md` 和 `.html` 成品
+
+## 对话交付规范
+
+调用这条 skill 时，主交付永远是：
+
+- 对话正文里的完整 Markdown 报告
+
+文件是补充交付，不是主交付。
+
+同时必须落地：
+
+- 一个中文文件名 Markdown
+- 一个中文文件名 HTML
+- 一个英文文件名 Markdown
+- 一个英文文件名 HTML
+- 一个固定英文别名 `where-not-crowded-report-latest.html`
+
+## 必读资源
+
+按需读取：
+
+- [references/report_template.md](./references/report_template.md)
+- [references/example_report.md](./references/example_report.md)
+- [references/widget_data_spec.md](./references/widget_data_spec.md)
+- [assets/destination_frames.json](./assets/destination_frames.json)
+
+## 本地生成脚本
+
+优先使用：
+
+- [scripts/generate_report.py](./scripts/generate_report.py)
+
+它会直接输出：
+
+- `conversation_markdown`
+- `.md` 文件
+- `.html` 文件
+- 固定别名 HTML 文件
+
+## 成功标准
+
+输出必须让用户立刻知道：
+
+- 默认热门路径为什么不值
+- 更优替代方案是什么
+- 哪天出发、哪天回、玩几天更稳
+- 机票和酒店大概什么价位
+- 最后到底该怎么走

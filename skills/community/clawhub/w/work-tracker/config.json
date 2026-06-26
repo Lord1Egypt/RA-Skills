@@ -1,0 +1,63 @@
+{
+  "name": "worktracker",
+  "displayName": "WorkTracker",
+  "description": "简单快速的工作日志系统，专为AI助手团队设计",
+  "author": "iSenlink",
+  "version": "1.0.0",
+  "license": "MIT",
+  "homepage": "https://github.com/isenlink/worktracker",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/isenlink/worktracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/isenlink/worktracker/issues"
+  },
+  "keywords": [
+    "productivity",
+    "team-collaboration",
+    "work-log",
+    "ai-assistant",
+    "work-tracker"
+  ],
+  "openclaw": {
+    "emoji": "📋",
+    "requires": {
+      "bins": ["python3"]
+    },
+    "triggers": [
+      "worktracker",
+      "工作跟踪",
+      "工作日志",
+      "work tracker",
+      "work log"
+    ],
+    "examples": [
+      "worktracker start \"小新\" \"修复系统问题\" \"今天完成\"",
+      "worktracker status",
+      "worktracker log"
+    ]
+  },
+  "files": [
+    "SKILL.md",
+    "config.json",
+    "scripts/worktracker.py",
+    "docs/",
+    "examples/"
+  ],
+  "scripts": {
+    "test": "python3 scripts/worktracker.py --test",
+    "install": "chmod +x scripts/worktracker.py",
+    "uninstall": "echo 'WorkTracker已卸载，数据保留在.worktracker/目录中'"
+  },
+  "dependencies": {
+    "python": ">=3.8"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "openclaw": ">=2026.3.0"
+  }
+}

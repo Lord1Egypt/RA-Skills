@@ -1,0 +1,8 @@
+# SkillPay API Configuration
+# Owner: Xiaoyu / Xanadu Studios
+# Wallet: 0xF194917738617118dfff40E0542cea20Cf7dDC55
+
+SKILLPAY_API_KEY = "sk_41b22ea52b5a803442973b84ec1cd8f395ed098a3890905f8a196a4ffdf43c87"
+SKILL_ID = "xanadu-social-manager"
+OWNER_WALLET = "0xF194917738617118dfff40E0542cea20Cf7dDC55"
+DEFAULT_PRICE = 0.001  # USDT per call

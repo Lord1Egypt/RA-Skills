@@ -1,0 +1,117 @@
+{
+  "name": "Norrona-小红书大字报-20260310",
+  "created": "2026-03-10",
+  "updated": "2026-03-10",
+  "description": "针对Norrona品牌小红书大字报类型内容，25-40岁户外运动人群",
+  "platform": "小红书",
+  "content_type": "大字报",
+  "target_audience": "25-40岁都市人群，关注户外运动（滑雪、徒步、登山等），追求品质生活、有一定消费能力",
+  "language_style": "简洁有力，避免冗长；专业但不高冷，用通俗语言解释专业术语；直接、有态度，不绕弯子",
+  "content_structure": "段落简短（手机阅读友好），开头：场景/痛点引入，中间：产品亮点+使用体验，结尾：观点总结+互动引导，使用小标题分块",
+  "emotional_tone": "热爱户外、追求自由，温暖有态度，不过度煽情，展现老玩家气质",
+  "interaction_style": "结尾明确CTA（你们选哪个？、评论区聊聊），预埋1-2条评论引导互动，适当提问引导讨论",
+  "emoji_usage": "适中，每段1-3个，表情类型：户外/运动相关（🏂❄️🧥⛷️），品牌tag（#Norrona #挪威老人头）",
+  "data_preference": "喜欢用具体数据（温度如-30℃、身高体重尺码），真实使用场景描述，案例要具体、有说服力",
+  "title_style": {
+    "description": "强评论引导性，针对小红书平台",
+    "features": [
+      "极限二选一、三选一制造争议话题",
+      "提问式标题引发好奇",
+      "数字+痛点+解决方案",
+      "对比冲突（鸟、象、鼠都买了→现在Norrona更香）"
+    ],
+    "examples": [
+      "求助！！！Norrona外套极限二选一！",
+      "现在始祖鸟+萨洛蒙不兴了，户外佬的硬核装备有了新三家？",
+      "买户外羽绒别只盯着始祖鸟了",
+      "封板的最后一套look三选一"
+    ]
+  },
+  "wechat_publish_config": {
+    "description": "公众号发布配置 - 科技资讯风格",
+    "cover_design": {
+      "size": "1200x600",
+      "style": "科技资讯风",
+      "background": "深蓝黑渐变(#0a0a14)或深色背景+科技感装饰元素",
+      "title": {
+        "font_size": "72px",
+        "color": "#ffffff",
+        "position": "主标题居中或左对齐"
+      },
+      "subtitle": {
+        "font_size": "42px",
+        "color": "#00b4ff",
+        "description": "强调词或副标题"
+      },
+      "bottom_tags": {
+        "content": "分类标签如：户外装备 / 科技资讯 / 对比测评",
+        "color": "#b0b0b0"
+      },
+      "accent_color": "#00b4ff",
+      "generate_method": "Python PIL根据标题哈希自动生成配色"
+    },
+    "content_format": {
+      "body_font": "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif",
+      "body_size": "16px",
+      "line_height": "1.8",
+      "body_color": "#2c3e50",
+      "h1_style": {
+        "description": "一级标题 - 科技蓝左边框",
+        "font_size": "24px",
+        "color": "#0a0a14",
+        "border_left": "4px solid #00b4ff",
+        "padding": "12px 12px 12px 16px",
+        "background": "linear-gradient(90deg, #00b4ff10, transparent)"
+      },
+      "h2_style": {
+        "description": "二级标题",
+        "font_size": "20px",
+        "color": "#1a1a2e",
+        "font_weight": "bold"
+      },
+      "emphasis_style": {
+        "description": "重点文字强调",
+        "color": "#00b4ff",
+        "font_weight": "600"
+      },
+      "list_style": {
+        "padding_left": "20px",
+        "margin": "12px 0"
+      },
+      "summary_box": {
+        "description": "总结框",
+        "background": "#f8f9fa",
+        "border_left": "4px solid #00b4ff",
+        "padding": "16px",
+        "border_radius": "0 8px 8px 0"
+      },
+      "ending_style": {
+        "description": "结尾互动框",
+        "background": "linear-gradient(135deg, #0a0a14, #1a1a2e)",
+        "color": "#ffffff",
+        "padding": "24px",
+        "border_radius": "12px",
+        "text_align": "center"
+      },
+      "tag_style": {
+        "description": "标签样式",
+        "background": "#00b4ff20",
+        "color": "#0088cc",
+        "padding": "4px 12px",
+        "border_radius": "4px",
+        "display": "inline-block",
+        "margin": "4px"
+      },
+      "divider": {
+        "style": "1px solid #e0e0e0",
+        "margin": "24px 0"
+      }
+    },
+    "publish_workflow": [
+      "1. 根据标题使用Python生成科技风封面图",
+      "2. 上传封面到微信获取media_id",
+      "3. 生成HTML格式正文（包含所有样式）",
+      "4. 调用草稿箱API创建文章"
+    ]
+  }
+}

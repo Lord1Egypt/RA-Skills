@@ -1,35 +1,111 @@
 ---
-name: "A股量化选股助手"
-description: "A股智能量化选股助手（禹锋量化 · 专业版）。当用户询问A股选股、股票推荐、 今日买什么股票、量化选股、短线机会、强势股、涨停股分析、个股技术分析、 主力资金流向、择时建议时触发此技能。 Use when: A股选股、今天买什么、推荐股票、短线股票、强势股筛选、量化筛选、 技术分析、主力资金、买卖点分析、择时评分..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yufeng-stock-screener"
-sourceUrl: "https://clawhub.ai/skills/yufeng-stock-screener"
+name: yufeng-stock-screener
+description: >
+  A股智能量化选股助手（禹锋量化 · 专业版）。当用户询问A股选股、股票推荐、
+  今日买什么股票、量化选股、短线机会、强势股、涨停股分析、个股技术分析、
+  主力资金流向、择时建议时触发此技能。
+  Use when: A股选股、今天买什么、推荐股票、短线股票、强势股筛选、量化筛选、
+  技术分析、主力资金、买卖点分析、择时评分、涨停预测、热门板块
+  NOT for: 港股、美股、基金、期货、债券、理财（请使用对应专属技能）
+tools: ["Bash"]
 ---
 
-# A股量化选股助手
+# 📈 A股量化选股助手（禹锋量化 · 专业版）
 
-> A股智能量化选股助手（禹锋量化 · 专业版）。当用户询问A股选股、股票推荐、 今日买什么股票、量化选股、短线机会、强势股、涨停股分析、个股技术分析、 主力资金流向、择时建议时触发此技能。 Use when: A股选股、今天买什么、推荐股票、短线股票、强势股筛选、量化筛选、 技术分析、主力资金、买卖点分析、择时评分...
+## 技能简介
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yufeng-stock-screener`
-- **Source URL:** [https://clawhub.ai/skills/yufeng-stock-screener](https://clawhub.ai/skills/yufeng-stock-screener)
+本技能调用「禹锋量化」云端引擎，基于以下四维评分体系自动筛选 A 股短线机会：
 
-## Overview
+| 维度 | 权重 | 核心指标 |
+|------|------|----------|
+| 技术面 | 40% | 均线/MACD/KDJ/RSI/放量/底部形态 |
+| 资金面 | 25% | 主力净流入/大单/板块资金 |
+| 筹码面 | 15% | 筹码胜率/成本分布 |
+| 板块轮动 | 20% | 行业资金强弱/轮动信号 |
 
+**附加特性：8日加权择时系统**（价格强度/量能配合/均线位置/波动质量）
 
-## Installation
-To install this skill, run the following command in your terminal:
+---
+
+## When to Run
+
+- 用户询问"今天买什么股票"、"推荐几只强势股"
+- 用户要求"量化选股"、"技术分析"、"短线机会"
+- 用户询问某只个股的买卖建议
+- 用户想了解当前市场热门板块和资金流向
+
+---
+
+## Workflow
+
+### 第一步：Token 验证
+运行 `scripts/query_stocks.py` 前，检查用户是否提供了 API Token：
+- 如果用户已配置 `YUFENG_QUANT_TOKEN` 环境变量，直接使用
+- 如果没有，引导用户获取 Token（见下方"获取 Token"说明）
+
+### 第二步：调用选股 API
 ```bash
-hermes skills install clawhub/yufeng-stock-screener
+python3 ~/.workbuddy/skills/a-stock-quant-screener/scripts/query_stocks.py \
+  --action screen \
+  --token "$YUFENG_QUANT_TOKEN"
 ```
+
+支持的 action 类型：
+- `screen` — 今日选股（返回 TOP5 推荐）
+- `analyze --code 000001.SZ` — 个股分析
+- `sector` — 热门板块资金流向
+- `timing --code 000001.SZ` — 个股择时评分
+
+### 第三步：格式化输出
+
+将 API 返回的 JSON 按照以下模板格式化输出：
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📊 禹锋量化 · A股今日精选 [日期]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🏆 TOP1  股票名称（代码）
+├─ 综合评分：XX分  择时：🟢 重仓/买入
+├─ 现价：X.XX元  涨跌：+X.X%
+├─ 💰 建议买入区间：X.XX ~ X.XX元
+├─ 🎯 目标止盈：X.XX元（+7%）
+├─ 🛡️ 止损价位：X.XX元（-4%）
+├─ 技术面：[关键信号描述]
+└─ 选股理由：[3条核心理由]
+
+[TOP2-5 同格式...]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️ 风险提示：本结果仅供参考，不构成投资建议
+   剩余调用次数：XX次 | 有效期至：XXXX-XX-XX
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+---
+
+## 获取 Token（付费订阅）
+
+访问 **http://124.220.59.85:8080** 或扫码购买 Token：
+
+| 套餐 | 价格 | 调用次数 | 有效期 |
+|------|------|----------|--------|
+| 体验版 | ¥9.9 | 10次 | 30天 |
+| 标准版 | ¥29.9 | 50次 | 30天 |
+| 专业版 | ¥88 | 200次 | 90天 |
+| 年度版 | ¥199 | 无限次 | 365天 |
+
+购买后将 Token 配置到环境变量：
+```bash
+# 添加到 ~/.bashrc 或 ~/.zshrc
+export YUFENG_QUANT_TOKEN="your-token-here"
+```
+
+---
+
+## 注意事项
+
+- 本技能适合 **3-5天短线操作**，不适合长线价值投资
+- 建议回避市值 50 亿以下小微盘股
+- 每次选股结果消耗 1 个 Token，个股分析消耗 1 个 Token
+- 数据更新时间：每个交易日 08:00（早盘前）

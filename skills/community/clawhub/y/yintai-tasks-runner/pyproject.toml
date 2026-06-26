@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "yintai-tasks-runner"
+version = "1.0.0"
+description = "Yintai Tasks Runner - 自动轮询任务系统、抢单并执行"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your@email.com"}
+]
+keywords = ["openclaw", "task-runner", "automation", "yintai"]
+keywords = ["openclaw", "task-runner", "automation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "httpx>=0.25.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+]
+
+[project.urls]
+Homepage = "https://github.com/instaclw/insta-claw-task-system"
+Documentation = "https://github.com/instaclw/insta-claw-task-system#readme"
+Repository = "https://github.com/instaclw/insta-claw-task-system"
+Issues = "https://github.com/instaclw/insta-claw-task-system/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["yintai_tasks_runner*"]
+
+[tool.setuptools.package-data]
+yintai_tasks_runner = ["SKILL.md", "references/*.md"]

@@ -1,0 +1,35 @@
+{
+  "created_at": null,
+  "last_updated": null,
+
+  "child_profile": {
+    "child_id": null,
+    "name": null,
+    "birth_date": null
+  },
+
+  "scheduled_vaccines": [],
+
+  "upcoming": [],
+  "overdue": [],
+  "completed": [],
+
+  "adverse_reactions": [],
+
+  "next_checkup": null,
+  "last_updated": null,
+
+  "statistics": {
+    "total_vaccines": 0,
+    "class_1_completed": 0,
+    "class_2_completed": 0,
+    "overdue_count": 0,
+    "upcoming_30_days": 0
+  },
+
+  "settings": {
+    "reminder_days_before": 7,
+    "include_class_2": true,
+    "auto_generate_schedule": true
+  }
+}

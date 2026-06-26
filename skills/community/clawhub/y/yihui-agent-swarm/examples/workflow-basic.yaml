@@ -1,0 +1,68 @@
+# Basic Multi-Agent Workflow Example
+# Covers: task routing → specialist execution → report → master delivery
+
+workflow:
+  name: "基础任务工作流"
+  description: "Router 解析 → Specialist 执行 → Master 汇总"
+
+  steps:
+    - id: step-1
+      agent: router          # Could be Master acting as router
+      action: parse_intent
+      input: "用户原始请求"
+      output:
+        intent_type: "ops | content | creative | unknown"
+        suggested_specialist: "agent_id"
+        confidence: 0.0-1.0
+
+    - id: step-2
+      agent: master
+      action: route_task
+      input: step-1.output
+      condition: "confidence >= 0.6"
+      output:
+        message:
+          type: task
+          from: master
+          to: "[suggested_specialist]"
+          task:
+            id: "[uuid]"
+            description: "[parsed intent]"
+            context: []
+          status:
+            state: pending
+
+    - id: step-3
+      agent: specialist
+      action: execute
+      input: message.task
+      output:
+        message:
+          type: report
+          from: specialist
+          to: master
+          status:
+            state: done
+            result:
+              summary: "[brief conclusion]"
+              key_facts: ["[things to write to memory]"]
+
+    - id: step-4
+      agent: master
+      action: review_and_deliver
+      input: specialist.report
+      condition: "confidence >= 0.6"
+      output:
+        user_visible: true
+        message_to_user: "[final answer]"
+
+# Example conversation flow:
+
+# User: "帮我检查一下 OpenClaw 的系统状态"
+# Master (router): [Parse intent → ops task, confidence 0.8]
+# Master: [Route to specialist-ops]
+#   Message: { type: task, to: specialist-ops, task: "检查 OpenClaw 系统状态" }
+# Specialist (大龙): [Run healthcheck, write to memory]
+#   Report: { type: report, result: { summary: "Gateway 正常，3个 pending tasks", key_facts: [...] } }
+# Master: [Review, confidence 0.9 → deliver directly]
+#   Output: "Gateway 正常运行中..."

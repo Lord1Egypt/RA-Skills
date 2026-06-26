@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kaleidoscope</title>
+<meta name="description" content="Kaleidoscope by WIP Computer, Inc. Every AI. One experience.">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FFFDF5;
+  --text: #1a1a1a;
+  --text-muted: #8a8580;
+  --accent: #0033FF;
+  --accent-hover: #0033FF;
+  --input-bg: #F5F3ED;
+  --input-border: #E0DDD6;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 768px) {
+  html, body { overflow: hidden; }
+}
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 24px;
+  padding-top: calc(24px + env(safe-area-inset-top, 0px));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.login-card {
+  position: relative;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+}
+
+.login-title {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.login-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.login-status {
+  margin-top: 16px;
+  font-size: 14px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  display: none;
+  text-align: left;
+}
+
+.login-status.show { display: block; }
+.login-status.loading { background: #E8EEFF; color: var(--accent); }
+.login-status.error { background: #FFF0F0; color: #D32F2F; }
+.login-status.success { background: #F0FFF4; color: #2E7D32; }
+</style>
+</head>
+<body>
+
+<div class="login-page" id="loginPage">
+  <div class="login-card">
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;margin-left:-6px;"><span id="loginIcon" style="width:34px;height:34px;flex-shrink:0;overflow:hidden;"></span><h1 class="login-title" style="margin-bottom:0;">Kaleidoscope</h1></div>
+    <p style="color:#8a8580;font-size:16px;margin:0 0 32px 0;letter-spacing:0.2px;">Every AI. One experience.</p>
+
+    <!-- Signup view (default) -->
+    <div id="signup-view">
+      <div class="login-buttons">
+        <button class="btn btn-primary" id="createBtn" onclick="doCreateAccount()">Enter the Kaleidoscope</button>
+      </div>
+      <div style="margin-top:12px;">
+        <input type="text" id="handleInput" name="kaleidoscope-handle" placeholder="What should Lēsa call you? (optional)" autocapitalize="none" autocorrect="off" autocomplete="off" spellcheck="false" data-1p-ignore="true" data-lpignore="true" onfocus="setTimeout(function(){document.getElementById('handleInput').scrollIntoView({behavior:'smooth',block:'center'})},300)" style="width:100%;padding:16px 18px;border:1px solid #E0DDD6;border-radius:12px;font-size:18px;font-family:var(--font);background:#F5F3ED;color:#1a1a1a;outline:none;text-align:center;" />
+      </div>
+      <p style="color:#b0aaa4;font-size:13px;font-style:italic;margin:16px 0 0;text-align:center;opacity:0.8;">Use your phone to securely create your account</p>
+      <div style="margin-top:12px;text-align:center;">
+        <a id="signInBtn" onclick="doSignIn()" style="color:var(--accent);font-size:16px;cursor:pointer;text-decoration:none;">Already have an account? Sign in.</a>
+      </div>
+    </div>
+
+    <!-- QR code view (Chrome desktop fallback) -->
+    <div id="qr-view" style="display:none">
+      <p style="color:#8a8580;font-size:16px;margin:0 0 24px 0;">Scan with your phone to continue.</p>
+      <div style="display:flex;justify-content:center;margin-bottom:24px;">
+        <img id="qr-image" style="width:200px;height:200px;border-radius:12px;background:#F5F3ED;" />
+      </div>
+      <p id="qr-status-text" style="color:var(--accent);font-size:14px;">Waiting for phone...</p>
+      <div style="margin-top:20px;">
+        <a onclick="cancelQrLogin()" style="color:var(--text-muted);font-size:14px;cursor:pointer;text-decoration:none;">Cancel</a>
+      </div>
+    </div>
+
+    <!-- Success view -->
+    <div id="success-view" style="display:none">
+      <p style="font-size:18px;margin-bottom:12px;color:var(--text);">Welcome, <span id="welcome-name"></span>.</p>
+      <p style="color:var(--text-muted);font-size:15px;margin-bottom:8px;">Your passkey has been saved to your phone.</p>
+      <p style="color:var(--text-muted);font-size:15px;margin-bottom:24px;">You can use it to sign in to any WIP Computer service.</p>
+      <div class="login-buttons">
+        <a href="/demo/" onclick="sessionStorage.clear();" class="btn btn-primary" style="text-decoration:none;text-align:center;">Try the Demo</a>
+      </div>
+    </div>
+
+    <div class="login-status" id="loginStatus" style="position:absolute;left:0;right:0;margin-top:16px;text-align:center;"></div>
+  </div>
+  </div>
+<div id="kscope-footer"></div>
+
+<script src="/demo/footer.js"></script>
+<script>
+// ── Random kaleidoscope icon from sprite sheet ──
+var SPRITE_COLS = 8;
+var SPRITE_ROWS = 3;
+var SPRITE_TOTAL = SPRITE_COLS * SPRITE_ROWS;
+
+function makeIconHTML(size) {
+  var idx = Math.floor(Math.random() * SPRITE_TOTAL);
+  var col = idx % SPRITE_COLS;
+  var row = Math.floor(idx / SPRITE_COLS);
+  var bgPosX = (col / (SPRITE_COLS - 1)) * 100;
+  var bgPosY = (row / (SPRITE_ROWS - 1)) * 100;
+  return '<div style="width:' + size + 'px;height:' + size + 'px;overflow:hidden;"><div style="width:100%;height:100%;background:url(/demo/sprites.png);background-size:' + (SPRITE_COLS * 100) + '% ' + (SPRITE_ROWS * 100) + '%;background-position:' + bgPosX + '% ' + bgPosY + '%;"></div></div>';
+}
+
+var loginIcon = document.getElementById('loginIcon');
+if (loginIcon) loginIcon.innerHTML = makeIconHTML(34);
+
+// Rotate icon every 3s
+var loginRotateIdx = Math.floor(Math.random() * SPRITE_TOTAL);
+setInterval(function() {
+  loginRotateIdx = (loginRotateIdx + 1) % SPRITE_TOTAL;
+  var col = loginRotateIdx % SPRITE_COLS;
+  var row = Math.floor(loginRotateIdx / SPRITE_COLS);
+  var bgPosX = (col / (SPRITE_COLS - 1)) * 100;
+  var bgPosY = (row / (SPRITE_ROWS - 1)) * 100;
+  if (loginIcon) loginIcon.innerHTML = '<div style="width:34px;height:34px;overflow:hidden;"><div style="width:100%;height:100%;background:url(/demo/sprites.png);background-size:' + (SPRITE_COLS * 100) + '% ' + (SPRITE_ROWS * 100) + '%;background-position:' + bgPosX + '% ' + bgPosY + '%;"></div></div>';
+}, 3000);
+
+// ── WebAuthn helpers ──
+function b64urlToBytes(b64) {
+  var bin = atob(b64.replace(/-/g, '+').replace(/_/g, '/') + '=='.slice(0, (4 - b64.length % 4) % 4));
+  return Uint8Array.from(bin, function(c) { return c.charCodeAt(0); });
+}
+function bytesToB64url(buf) {
+  return btoa(String.fromCharCode.apply(null, new Uint8Array(buf)))
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+}
+
+function setStatus(msg, type) {
+  var el = document.getElementById('loginStatus');
+  el.style.transition = '';
+  el.style.opacity = '';
+  el.textContent = msg;
+  el.className = msg ? 'login-status show ' + type : 'login-status';
+}
+
+function clearStatus() {
+  var el = document.getElementById('loginStatus');
+  el.style.transition = 'opacity 0.5s';
+  el.style.opacity = '0';
+  setTimeout(function() { el.className = 'login-status'; el.style.transition = ''; el.style.opacity = ''; }, 500);
+}
+
+// ── Browser detection ──
+function isMobileDevice() {
+  return navigator.maxTouchPoints > 0 && window.innerWidth < 768;
+}
+
+function isSafariDesktop() {
+  if (isMobileDevice()) return false;
+  return /Safari\//.test(navigator.userAgent) && !/Chrome\//.test(navigator.userAgent);
+}
+
+function needsCustomQR() {
+  return !isMobileDevice() && !isSafariDesktop() && !isLocalPasskeysOn();
+}
+
+// ── Local passkeys toggle (persisted in localStorage) ──
+function isLocalPasskeysOn() {
+  return localStorage.getItem('localPasskeys') === 'on';
+}
+
+function toggleLocalPasskeys() {
+  var on = isLocalPasskeysOn();
+  localStorage.setItem('localPasskeys', on ? 'off' : 'on');
+  updatePasskeysDot();
+}
+
+function updatePasskeysDot() {
+  var dot = document.getElementById('passkeys-dot');
+  var label = document.getElementById('passkeys-label');
+  if (!dot) return;
+  if (isLocalPasskeysOn()) {
+    dot.style.background = '#2E7D32';
+    dot.style.opacity = '1';
+    if (label) label.textContent = 'Local passkeys on';
+  } else {
+    dot.style.background = '#D32F2F';
+    dot.style.opacity = '0.4';
+    if (label) label.textContent = 'Local passkeys off';
+  }
+}
+
+// ── QR Login (Chrome desktop fallback) ──
+var qrLoginPollTimer = null;
+
+async function startQrLogin(handle, mode) {
+  var btn = document.getElementById('createBtn');
+  btn.disabled = true;
+  setStatus('', '');
+
+  try {
+    var res = await fetch('/api/qr-login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ handle: handle || undefined, mode: mode || 'register' }),
+    });
+    var data = await res.json();
+
+    // Switch to QR view
+    document.getElementById('signup-view').style.display = 'none';
+    document.getElementById('qr-view').style.display = 'block';
+    document.getElementById('qr-image').src = data.qrUrl;
+
+    // Start polling
+    qrLoginPollTimer = setInterval(function() {
+      pollQrLogin(data.sessionId);
+    }, 2000);
+
+    // Expire after 5 minutes
+    setTimeout(function() {
+      if (qrLoginPollTimer) {
+        cancelQrLogin();
+        setStatus('Session expired. Try again.', 'error');
+        setTimeout(clearStatus, 3000);
+      }
+    }, 5 * 60 * 1000);
+
+  } catch (err) {
+    setStatus('Error: ' + err.message, 'error');
+    btn.disabled = false;
+  }
+}
+
+async function pollQrLogin(sessionId) {
+  try {
+    var res = await fetch('/api/qr-login/status?s=' + sessionId);
+    if (res.status === 404) {
+      // Session expired on server
+      cancelQrLogin();
+      setStatus('Session expired. Try again.', 'error');
+      setTimeout(clearStatus, 3000);
+      return;
+    }
+    var data = await res.json();
+    if (data.status === 'approved') {
+      clearInterval(qrLoginPollTimer);
+      qrLoginPollTimer = null;
+      document.getElementById('qr-view').style.display = 'none';
+      document.getElementById('success-view').style.display = 'block';
+      document.getElementById('welcome-name').textContent = data.agentId || 'you';
+    }
+  } catch (err) {
+    // Network error, keep polling
+  }
+}
+
+function cancelQrLogin() {
+  if (qrLoginPollTimer) {
+    clearInterval(qrLoginPollTimer);
+    qrLoginPollTimer = null;
+  }
+  document.getElementById('qr-view').style.display = 'none';
+  document.getElementById('signup-view').style.display = 'block';
+  document.getElementById('createBtn').disabled = false;
+  document.getElementById('signInBtn').style.pointerEvents = 'auto';
+}
+
+// ── Phone-side QR session detection ──
+var urlParams = new URLSearchParams(window.location.search);
+var qrSessionId = urlParams.get('s');
+var qrHandle = urlParams.get('h');
+var qrMode = urlParams.get('m') || 'register';
+var qrSessionMode = !!qrSessionId;
+
+if (qrSessionMode) {
+  // Clean the URL so session ID doesn't persist
+  history.replaceState(null, '', '/login');
+  // Pre-fill handle if provided
+  if (qrHandle) document.getElementById('handleInput').value = qrHandle;
+  // Auto-start the right flow on phone (no extra tap needed)
+  setTimeout(function() {
+    if (qrMode === 'signin') {
+      doSignIn();
+    } else {
+      doCreateAccount();
+    }
+  }, 300);
+}
+
+// ── Create Account ──
+async function doCreateAccount() {
+  var username = (document.getElementById('handleInput').value || '').trim().replace(/^@/, '').toLowerCase().replace(/[^a-z0-9\-]/g, '').slice(0, 30);
+  var btn = document.getElementById('createBtn');
+  btn.disabled = true;
+
+  // Chrome desktop without local passkeys: use custom QR code
+  if (needsCustomQR() && !qrSessionMode) {
+    startQrLogin(username);
+    return;
+  }
+
+  setStatus('Preparing...', 'loading');
+
+  try {
+    var optRes = await fetch('/webauthn/register-options', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: username || undefined }),
+    });
+    var optData = await optRes.json();
+    var challengeId = optData.challengeId;
+    var options = optData.options;
+    if (!options) throw new Error('Server returned no options');
+
+    options.challenge = b64urlToBytes(options.challenge);
+    options.user.id = b64urlToBytes(options.user.id);
+    if (options.excludeCredentials) {
+      options.excludeCredentials = options.excludeCredentials.map(function(c) { return Object.assign({}, c, { id: b64urlToBytes(c.id) }); });
+    }
+
+    // Phone-first by default. If local passkeys toggled on, show all options.
+    // On mobile (including QR session mode), always use platform (Face ID directly).
+    var mobile = isMobileDevice();
+    var localOn = isLocalPasskeysOn();
+    if (!options.authenticatorSelection) options.authenticatorSelection = {};
+    if (mobile) {
+      options.authenticatorSelection.authenticatorAttachment = 'platform';
+    } else if (!localOn) {
+      options.authenticatorSelection.authenticatorAttachment = 'cross-platform';
+    }
+    options.authenticatorSelection.residentKey = 'preferred';
+    options.authenticatorSelection.userVerification = 'required';
+
+    setStatus(mobile ? 'Waiting for biometric...' : localOn ? 'Waiting for biometric...' : 'Scan the QR code with your phone...', 'loading');
+    var credential = await navigator.credentials.create({ publicKey: options });
+
+    var reqBody = {
+      challengeId: challengeId,
+      credential: {
+        id: credential.id,
+        rawId: bytesToB64url(credential.rawId),
+        type: credential.type,
+        response: {
+          attestationObject: bytesToB64url(credential.response.attestationObject),
+          clientDataJSON: bytesToB64url(credential.response.clientDataJSON),
+          transports: credential.response.getTransports ? credential.response.getTransports() : [],
+        },
+      },
+    };
+
+    setStatus('Verifying...', 'loading');
+    var verRes = await fetch('/webauthn/register-verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(reqBody),
+    });
+    var result = await verRes.json();
+
+    if (result.success) {
+      // If phone completing a desktop QR session, approve it
+      if (qrSessionMode && qrSessionId) {
+        await fetch('/api/qr-login/approve', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionId: qrSessionId, agentId: result.agentId, apiKey: result.apiKey }),
+        });
+      }
+      // Mark that user has an account (persists across sessions)
+      localStorage.setItem('kscope-has-account', 'true');
+      document.getElementById('signup-view').style.display = 'none';
+      document.getElementById('success-view').style.display = 'block';
+      document.getElementById('welcome-name').textContent = username || result.agentId || 'you';
+      setStatus('', '');
+    } else {
+      setStatus(result.error || 'Registration failed', 'error');
+      btn.disabled = false;
+    }
+  } catch (err) {
+    if (err.name === 'NotAllowedError') {
+      setStatus('Cancelled. Try again when ready.', 'error');
+      setTimeout(function() { clearStatus(); }, 3000);
+    } else {
+      setStatus('Error: ' + err.message, 'error');
+    }
+    btn.disabled = false;
+  }
+}
+
+async function doSignIn() {
+  document.getElementById('signInBtn').style.pointerEvents = 'none';
+  document.getElementById('createBtn').disabled = true;
+
+  // Chrome desktop without local passkeys: use QR code for sign-in.
+  // With local passkeys on, let Chrome show native dialog (supports YubiKey).
+  if (needsCustomQR() && !qrSessionMode) {
+    startQrLogin('', 'signin');
+    return;
+  }
+
+  setStatus('Preparing...', 'loading');
+
+  try {
+    var optRes = await fetch('/webauthn/auth-options', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: '{}',
+    });
+    var optData = await optRes.json();
+    var challengeId = optData.challengeId;
+    var options = optData.options;
+    if (!options) throw new Error('Server returned no options');
+
+    options.challenge = b64urlToBytes(options.challenge);
+    if (options.allowCredentials) {
+      options.allowCredentials = options.allowCredentials.map(function(c) { return Object.assign({}, c, { id: b64urlToBytes(c.id) }); });
+    }
+
+    setStatus('Waiting for biometric...', 'loading');
+    var assertion = await navigator.credentials.get({ publicKey: options });
+
+    var reqBody = {
+      challengeId: challengeId,
+      credential: {
+        id: assertion.id, rawId: bytesToB64url(assertion.rawId), type: assertion.type,
+        response: {
+          authenticatorData: bytesToB64url(assertion.response.authenticatorData),
+          clientDataJSON: bytesToB64url(assertion.response.clientDataJSON),
+          signature: bytesToB64url(assertion.response.signature),
+          userHandle: assertion.response.userHandle ? bytesToB64url(assertion.response.userHandle) : null,
+        },
+      },
+    };
+
+    setStatus('Verifying...', 'loading');
+    var verRes = await fetch('/webauthn/auth-verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(reqBody),
+    });
+    var result = await verRes.json();
+
+    if (result.success) {
+      // If phone completing a desktop QR session, approve it
+      if (qrSessionMode && qrSessionId) {
+        await fetch('/api/qr-login/approve', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionId: qrSessionId, agentId: result.agentId, apiKey: result.apiKey }),
+        });
+      }
+      document.getElementById('signup-view').style.display = 'none';
+      document.getElementById('success-view').style.display = 'block';
+      document.getElementById('welcome-name').textContent = result.agentId || 'you';
+      setStatus('', '');
+    } else {
+      setStatus(result.error || 'Authentication failed', 'error');
+      document.getElementById('signInBtn').style.pointerEvents = 'auto';
+      document.getElementById('createBtn').disabled = false;
+    }
+  } catch (err) {
+    if (err.name === 'NotAllowedError') {
+      setStatus('Cancelled. Try again when ready.', 'error');
+      setTimeout(function() { clearStatus(); }, 3000);
+    } else {
+      setStatus('Error: ' + err.message, 'error');
+    }
+    document.getElementById('signInBtn').style.pointerEvents = 'auto';
+    document.getElementById('createBtn').disabled = false;
+  }
+}
+
+// Enter key on handle input triggers create
+document.getElementById('handleInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doCreateAccount();
+});
+
+// Initialize footer dot
+updatePasskeysDot();
+</script>
+</body>
+</html>

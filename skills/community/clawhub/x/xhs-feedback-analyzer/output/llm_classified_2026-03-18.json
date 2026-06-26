@@ -1,0 +1,435 @@
+{
+  "https://www.xiaohongshu.com/explore/69b800250000000023007809": {
+    "sentiment": "positive",
+    "feedback_type": [
+      "好评/正面体验"
+    ]
+  },
+  "https://www.xiaohongshu.com/explore/69b87e8c00000000230114f0": {
+    "sentiment": "negative",
+    "feedback_type": [
+      "App体验/功能",
+      "客服/投诉处理"
+    ],
+    "perspective": "用户投诉"
+  },
+  "https://www.xiaohongshu.com/explore/69b9549b00000000230101bc": {
+    "sentiment": "positive",
+    "feedback_type": [
+      "使用攻略/教程"
+    ],
+    "perspective": "使用攻略"
+  },
+  "https://www.xiaohongshu.com/explore/69b85b3d000000002202b2c9": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "骑手/众包分享"
+    ],
+    "perspective": "其他"
+  },
+  "https://www.xiaohongshu.com/explore/69b7c9b3000000002202bab8": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "骑手/众包分享"
+    ],
+    "perspective": "骑手跑单分享"
+  },
+  "https://www.xiaohongshu.com/explore/69b7b90100000000210112b5": {
+    "sentiment": "negative",
+    "feedback_type": [
+      "价格/费用问题"
+    ],
+    "perspective": "用户投诉"
+  },
+  "https://www.xiaohongshu.com/explore/69b7b5870000000021013e5c": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "其他"
+    ],
+    "perspective": "其他"
+  },
+  "https://www.xiaohongshu.com/explore/69b6bc340000000023020549": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "骑手/众包分享"
+    ],
+    "perspective": "骑手跑单分享"
+  },
+  "https://www.xiaohongshu.com/explore/69b6f349000000002102f4c4": {
+    "sentiment": "negative",
+    "feedback_type": [
+      "骑手/众包分享",
+      "App体验/功能"
+    ],
+    "perspective": "骑手投诉"
+  },
+  "https://www.xiaohongshu.com/explore/69b4e700000000002102e31c": {
+    "sentiment": "positive",
+    "feedback_type": [
+      "骑手/众包分享"
+    ],
+    "perspective": "骑手跑单分享"
+  },
+  "https://www.xiaohongshu.com/explore/69b542db00000000230260bf": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "竞品比较/测评",
+      "使用攻略/教程"
+    ],
+    "perspective": "竞品测评"
+  },
+  "https://www.xiaohongshu.com/explore/69b4eba90000000021038fa2": {
+    "sentiment": "positive",
+    "feedback_type": [
+      "好评/正面体验"
+    ],
+    "perspective": "骑手跑单分享"
+  },
+  "https://www.xiaohongshu.com/explore/69b527c5000000001b002ed8": {
+    "sentiment": "positive",
+    "feedback_type": [
+      "好评/正面体验"
+    ],
+    "perspective": "好评分享"
+  },
+  "https://www.xiaohongshu.com/explore/69b61db70000000021039e48": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "其他"
+    ],
+    "perspective": "其他"
+  },
+  "https://www.xiaohongshu.com/explore/69b3ba600000000023004cf3": {
+    "sentiment": "negative",
+    "feedback_type": [
+      "客服/投诉处理",
+      "价格/费用问题"
+    ],
+    "perspective": "骑手投诉"
+  },
+  "https://www.xiaohongshu.com/explore/69b41c0f000000001b023cf2": {
+    "sentiment": "negative",
+    "feedback_type": [
+      "客服/投诉处理"
+    ],
+    "perspective": "用户投诉"
+  },
+  "https://www.xiaohongshu.com/explore/69b3b523000000001a030296": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "其他"
+    ],
+    "perspective": "其他"
+  },
+  "https://www.xiaohongshu.com/explore/69b3f5bc0000000021005fe9": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "骑手/众包分享"
+    ],
+    "perspective": "骑手跑单分享"
+  },
+  "https://www.xiaohongshu.com/explore/69b3a7df0000000022028361": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "其他"
+    ],
+    "perspective": "其他"
+  },
+  "https://www.xiaohongshu.com/explore/69b268e0000000001b017cfd": {
+    "sentiment": "negative",
+    "feedback_type": [
+      "价格/费用问题",
+      "客服/投诉处理"
+    ],
+    "perspective": "骑手投诉"
+  },
+  "https://www.xiaohongshu.com/explore/69b2b80f000000001502196b": {
+    "sentiment": "positive",
+    "feedback_type": [
+      "好评/正面体验",
+      "骑手服务态度"
+    ],
+    "perspective": "好评分享"
+  },
+  "https://www.xiaohongshu.com/explore/69ab6598000000001600833a": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "骑手/众包分享"
+    ],
+    "perspective": "骑手跑单分享"
+  },
+  "https://www.xiaohongshu.com/explore/69b18104000000001b01da22": {
+    "sentiment": "negative",
+    "feedback_type": [
+      "App体验/功能",
+      "客服/投诉处理"
+    ],
+    "perspective": "用户投诉"
+  },
+  "https://www.xiaohongshu.com/explore/69b22b640000000005033ab5": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "其他"
+    ],
+    "perspective": "其他"
+  },
+  "https://www.xiaohongshu.com/explore/69aed00600000000230397f5": {
+    "sentiment": "positive",
+    "feedback_type": [
+      "骑手/众包分享"
+    ],
+    "perspective": "骑手跑单分享"
+  },
+  "https://www.xiaohongshu.com/explore/69ae611d000000000e03c1ca": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "骑手/众包分享"
+    ],
+    "perspective": "骑手跑单分享"
+  },
+  "https://www.xiaohongshu.com/explore/69aeacf8000000002800b715": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "竞品比较/测评"
+    ],
+    "perspective": "竞品测评"
+  },
+  "https://www.xiaohongshu.com/explore/69adbfa2000000001d0265dc": {
+    "sentiment": "negative",
+    "feedback_type": [
+      "骑手/众包分享",
+      "App体验/功能"
+    ],
+    "perspective": "骑手投诉"
+  },
+  "https://www.xiaohongshu.com/explore/69ad57f5000000002603ee18": {
+    "sentiment": "positive",
+    "feedback_type": [
+      "骑手服务态度",
+      "好评/正面体验"
+    ],
+    "perspective": "好评分享"
+  },
+  "https://www.xiaohongshu.com/explore/69ac4cc20000000015023e1e": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "使用攻略/教程"
+    ],
+    "perspective": "使用攻略"
+  },
+  "https://www.xiaohongshu.com/explore/69ac06e6000000001503b7a9": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "骑手/众包分享"
+    ],
+    "perspective": "骑手跑单分享"
+  },
+  "https://www.xiaohongshu.com/explore/69aa2c05000000001a0330b8": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "其他"
+    ],
+    "perspective": "其他"
+  },
+  "https://www.xiaohongshu.com/explore/69aac75b000000001a0330a7": {
+    "sentiment": "positive",
+    "feedback_type": [
+      "好评/正面体验"
+    ]
+  },
+  "https://www.xiaohongshu.com/explore/69aa4662000000001503a369": {
+    "sentiment": "negative",
+    "feedback_type": [
+      "丢失/损坏",
+      "客服/投诉处理"
+    ],
+    "perspective": "用户投诉"
+  },
+  "https://www.xiaohongshu.com/explore/69aa46280000000023039aeb": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "骑手/众包分享"
+    ],
+    "perspective": "骑手跑单分享"
+  },
+  "https://www.xiaohongshu.com/explore/69a8ed3a000000002202d2f3": {
+    "sentiment": "negative",
+    "feedback_type": [
+      "价格/费用问题"
+    ],
+    "perspective": "用户投诉"
+  },
+  "https://www.xiaohongshu.com/explore/69a83e5f0000000028021545": {
+    "sentiment": "positive",
+    "feedback_type": [
+      "骑手/众包分享"
+    ],
+    "perspective": "骑手跑单分享"
+  },
+  "https://www.xiaohongshu.com/explore/69a7fc070000000015022fd0": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "其他"
+    ],
+    "perspective": "其他"
+  },
+  "https://www.xiaohongshu.com/explore/69a5a1e90000000022020f25": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "其他"
+    ],
+    "perspective": "其他"
+  },
+  "https://www.xiaohongshu.com/explore/69a7db04000000001a030c71": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "其他"
+    ],
+    "perspective": "其他"
+  },
+  "https://www.xiaohongshu.com/explore/69a7088500000000220307ea": {
+    "sentiment": "negative",
+    "feedback_type": [
+      "丢失/损坏",
+      "骑手服务态度"
+    ],
+    "perspective": "用户投诉"
+  },
+  "https://www.xiaohongshu.com/explore/69a70547000000002800a4ce": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "其他"
+    ],
+    "perspective": "其他"
+  },
+  "https://www.xiaohongshu.com/explore/69a5678f0000000022020d5b": {
+    "sentiment": "positive",
+    "feedback_type": [
+      "骑手/众包分享"
+    ],
+    "perspective": "骑手跑单分享"
+  },
+  "https://www.xiaohongshu.com/explore/69a4495e000000001a0318e6": {
+    "sentiment": "positive",
+    "feedback_type": [
+      "好评/正面体验"
+    ],
+    "perspective": "好评分享"
+  },
+  "https://www.xiaohongshu.com/explore/69a498c5000000002603392b": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "其他"
+    ],
+    "perspective": "其他"
+  },
+  "https://www.xiaohongshu.com/explore/69a2900d000000002801eac4": {
+    "sentiment": "positive",
+    "feedback_type": [
+      "骑手/众包分享"
+    ],
+    "perspective": "骑手跑单分享"
+  },
+  "https://www.xiaohongshu.com/explore/69a20ee8000000000d00a08f": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "竞品比较/测评"
+    ],
+    "perspective": "竞品测评"
+  },
+  "https://www.xiaohongshu.com/explore/69a18059000000002603d17b": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "骑手/众包分享"
+    ],
+    "perspective": "骑手跑单分享"
+  },
+  "https://www.xiaohongshu.com/explore/69a06e41000000001b01ef7a": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "使用攻略/教程"
+    ],
+    "perspective": "使用攻略"
+  },
+  "https://www.xiaohongshu.com/explore/69a152710000000015031ac4": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "其他"
+    ],
+    "perspective": "其他"
+  },
+  "https://www.xiaohongshu.com/explore/69a072810000000015020787": {
+    "sentiment": "positive",
+    "feedback_type": [
+      "好评/正面体验",
+      "使用攻略/教程"
+    ],
+    "perspective": "好评分享"
+  },
+  "https://www.xiaohongshu.com/explore/699f0f7400000000280206c3": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "其他"
+    ],
+    "perspective": "其他"
+  },
+  "https://www.xiaohongshu.com/explore/699eecc9000000000e00ddf0": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "客服/投诉处理"
+    ],
+    "perspective": "使用攻略"
+  },
+  "https://www.xiaohongshu.com/explore/699e537800000000260314c8": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "其他"
+    ],
+    "perspective": "其他"
+  },
+  "https://www.xiaohongshu.com/explore/699ed86d000000002303abb3": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "客服/投诉处理",
+      "使用攻略/教程"
+    ],
+    "perspective": "使用攻略"
+  },
+  "https://www.xiaohongshu.com/explore/699c6a71000000001503a22b": {
+    "sentiment": "positive",
+    "feedback_type": [
+      "好评/正面体验"
+    ],
+    "perspective": "好评分享"
+  },
+  "https://www.xiaohongshu.com/explore/6998bea1000000000e00c2e9": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "竞品比较/测评"
+    ],
+    "perspective": "竞品测评"
+  },
+  "https://www.xiaohongshu.com/explore/69970cba000000001a033eea": {
+    "sentiment": "negative",
+    "feedback_type": [
+      "骑手/众包分享",
+      "价格/费用问题"
+    ],
+    "perspective": "骑手投诉"
+  },
+  "https://www.xiaohongshu.com/explore/699594d7000000000e00e7f2": {
+    "sentiment": "negative",
+    "feedback_type": [
+      "骑手/众包分享",
+      "价格/费用问题"
+    ],
+    "perspective": "骑手投诉"
+  },
+  "https://www.xiaohongshu.com/explore/699594bf000000000d00b6ac": {
+    "sentiment": "neutral",
+    "feedback_type": [
+      "其他"
+    ],
+    "perspective": "其他"
+  }
+}

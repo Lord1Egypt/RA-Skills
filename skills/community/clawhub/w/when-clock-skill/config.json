@@ -1,0 +1,32 @@
+{
+  "devices": [
+    {
+      "id": "device1",
+      "name": "客厅时钟",
+      "clock_ip": "192.168.199.3",
+      "clock_port": 80,
+      "timeout": 5.0,
+      "alarm_defaults": {
+        "ring_id": 5,
+        "ring_duration_id": 7,
+        "volume": 20
+      }
+    },
+    {
+      "id": "device2",
+      "name": "卧室时钟",
+      "clock_ip": "192.168.199.16",
+      "clock_port": 80,
+      "timeout": 5.0,
+      "alarm_defaults": {
+        "ring_id": 1,
+        "ring_duration_id": 3,
+        "volume": 20
+      }
+    }
+  ],
+  "alarm_defaults_note": {
+    "ring_id_name": "WHEN Voice: 1=天气(1次), 2=天气(2次), 3=天气(3次), 4=Beep-1, 5=Reveille, 6=Rest Call, ... (共50种); WHEN: 1=beep1, 2=beep2, 3=beep3, 4=beep4, 5=beep5, 6=beep6",
+    "ring_duration_id_name": "1=10S, 2=20S, 3=30S, 4=40S, 5=50S, 6=1min, 7=2min, 8=3min, 9=5min, 10=10min, 11=15min, 12=20min"
+  }
+}

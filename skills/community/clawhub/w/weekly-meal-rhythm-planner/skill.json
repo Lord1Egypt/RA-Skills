@@ -1,0 +1,35 @@
+{
+  "name": "weekly-meal-rhythm-planner",
+  "displayName": "Weekly Meal Rhythm Planner",
+  "version": "1.0.1",
+  "license": "MIT-0",
+  "description": "Creates a simple 7-day meal rhythm card for people who want steadier eating without detailed dieting, calorie tracking, or rigid menus. Helps map weekly constraints, choose prep anchors, add fallback meals, make a prep list, and set a light review point.",
+  "triggerKeywords": [
+    "meal planning",
+    "routine",
+    "food",
+    "weekly planning",
+    "fallback meals"
+  ],
+  "tags": [
+    "health",
+    "routine",
+    "meal planning",
+    "home",
+    "planning"
+  ],
+  "healthSafety": "This skill provides general routine-planning support only. It is not medical nutrition advice, and users with medical conditions, eating disorders, pregnancy needs, allergies, or special diets should consult a qualified professional.",
+  "language": "en",
+  "promptOnly": true,
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "slug": "weekly-meal-rhythm-planner",
+  "document_only": true,
+  "runtime": "none"
+}

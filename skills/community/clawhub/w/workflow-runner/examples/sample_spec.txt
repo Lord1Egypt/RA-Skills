@@ -1,0 +1,6 @@
+title: hello-echo
+summary: Create a script that prints "hello world" and a test that asserts the output.
+language: bash
+steps:
+  - implement: echo script at scripts/hello.sh
+  - test: run script and assert output equals "hello world"

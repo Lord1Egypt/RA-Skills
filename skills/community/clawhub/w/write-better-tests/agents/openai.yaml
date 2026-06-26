@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Better Tests"
+  short_description: "Behavior-first tests that catch regressions"
+  default_prompt: "Use $write-better-tests to design or review tests for this change."

@@ -1,35 +1,68 @@
 ---
-name: "Yandex Archive Scraper"
-description: "Search and extract data from Yandex.Archive (Яндекс.Архив) — metric books, newspapers, directories. Bypasses bot protection via Scrapling."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yandex-archive-scraper"
-sourceUrl: "https://clawhub.ai/skills/yandex-archive-scraper"
+name: yandex-archive-scraper
+description: Search and extract data from Yandex.Archive (Яндекс.Архив) — metric books, newspapers, directories. Bypasses bot protection via Scrapling.
 ---
 
-# Yandex Archive Scraper
+# yandex-archive-scraper
 
-> Search and extract data from Yandex.Archive (Яндекс.Архив) — metric books, newspapers, directories. Bypasses bot protection via Scrapling.
+A powerful skill for searching and extracting data from Yandex.Archive (Яндекс.Архив) using `Scrapling` to bypass bot protection and Cloudflare Turnstile.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yandex-archive-scraper`
-- **Source URL:** [https://clawhub.ai/skills/yandex-archive-scraper](https://clawhub.ai/skills/yandex-archive-scraper)
+## Features
+- Converts natural language queries into optimized Yandex.Archive search URLs.
+- Uses `Scrapling` (StealthyFetcher) to bypass Yandex bot protection.
+- Extracts search results (document titles, text snippets, and direct links).
+- Supports pagination to collect multiple pages of results.
+- Can search across all three Yandex.Archive indexes:
+  - `archive` (Архивы) — Metric books, revision tales, confessional statements.
+  - `mass_media` (Периодика) — Old newspapers (e.g., "Senate Gazette", "Provincial Gazette").
+  - `directories` (Справочники) — Address calendars, lists of residents, memorable books.
 
-## Overview
+## Tools
 
+### `yandex_archive_search`
+Search Yandex.Archive based on a natural language query.
+**Parameters:**
+- `query` (string): The search query (e.g., "Александр Пушкин Москва").
+- `index` (string, optional): The index to search in. Options: `archive` (default), `mass_media`, `directories`.
+- `max_pages` (integer, optional): Maximum number of pages to scrape (default 1).
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yandex-archive-scraper
-```
+## Requirements
+- `scrapling`
+- `playwright`
+- `curl_cffi`
+- `patchright`
+- `msgspec`
+- `browserforge`
+
+---
+
+# yandex-archive-scraper (Русский)
+
+Мощный скилл для поиска и извлечения данных из Яндекс.Архива с использованием фреймворка `Scrapling` для обхода защиты от ботов и Cloudflare Turnstile.
+
+## Возможности
+- Преобразует запросы на естественном языке в оптимизированные URL для поиска по Яндекс.Архиву.
+- Использует `Scrapling` (StealthyFetcher) для обхода защиты Яндекса.
+- Извлекает результаты поиска (названия документов, текстовые фрагменты/сниппеты и прямые ссылки).
+- Поддерживает пагинацию для сбора нескольких страниц результатов.
+- Умеет искать по всем трем базам Яндекс.Архива:
+  - `archive` (Архивы) — Метрические книги, ревизские сказки, исповедные ведомости.
+  - `mass_media` (Периодика) — Старые газеты (например, "Сенатские ведомости", "Губернские ведомости").
+  - `directories` (Справочники) — Адрес-календари, списки жителей, памятные книжки.
+
+## Инструменты (Tools)
+
+### `yandex_archive_search`
+Поиск по Яндекс.Архиву на основе текстового запроса.
+**Параметры:**
+- `query` (string): Поисковый запрос (например, "Александр Пушкин Москва").
+- `index` (string, optional): Раздел для поиска. Варианты: `archive` (по умолчанию), `mass_media`, `directories`.
+- `max_pages` (integer, optional): Максимальное количество страниц для парсинга (по умолчанию 1).
+
+## Зависимости
+- `scrapling`
+- `playwright`
+- `curl_cffi`
+- `patchright`
+- `msgspec`
+- `browserforge`

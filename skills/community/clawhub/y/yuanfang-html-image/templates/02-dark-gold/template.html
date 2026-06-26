@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width={{W}}, height={{H}}">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: {{W}}px; height: {{H}}px;
+  font-family: {{FONT_TITLE}};
+  background: {{BG}};
+  color: {{TEXT}};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+/* Top gold line */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 10%, {{ACCENT}} 50%, transparent 90%);
+  opacity: 0.5;
+}
+/* Subtle grid texture overlay */
+body::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.5) 3px, rgba(255,255,255,0.5) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(255,255,255,0.5) 3px, rgba(255,255,255,0.5) 4px);
+  background-size: 8px 8px;
+  pointer-events: none;
+}
+/* Large decorative circle - behind title */
+.deco-glow {
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,168,67,0.08) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  pointer-events: none;
+}
+/* Small decorative circles */
+.deco-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid {{ACCENT}};
+  opacity: 0.08;
+  pointer-events: none;
+}
+.dr-1 { width: 300px; height: 300px; bottom: -80px; right: -60px; }
+.dr-2 { width: 140px; height: 140px; top: 48px; left: 48px; border-color: rgba(212,168,67,0.05); }
+/* Bottom-right decorative diagonal line */
+.accent-line {
+  position: absolute;
+  bottom: 120px;
+  right: 80px;
+  width: 200px;
+  height: 1px;
+  background: {{ACCENT}};
+  opacity: 0.12;
+  transform: rotate(-35deg);
+}
+.container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 64px;
+  max-width: 82%;
+}
+.badge {
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.4);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: {{ACCENT}};
+  margin-bottom: 32px;
+  opacity: 0.7;
+}
+.title {
+  font-size: {{TITLE_SIZE_V}};
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, {{TEXT}} 50%, {{ACCENT}} 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.divider {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, {{ACCENT}}, transparent);
+  margin: 0 auto 32px;
+  opacity: 0.5;
+}
+.content {
+  font-family: {{FONT_BODY}};
+  font-size: {{CONTENT_SIZE}};
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  color: {{SECONDARY}};
+  max-width: 80%;
+  margin: 0 auto;
+}
+.points {
+  list-style: none;
+  margin-top: 32px;
+}
+.points li {
+  display: inline-block;
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE}} - 10px);
+  font-weight: 500;
+  color: {{ACCENT}};
+  border: 1px solid rgba(212, 168, 67, 0.2);
+  padding: 8px 24px;
+  margin: 8px 8px;
+  letter-spacing: 0.05em;
+}
+.points:empty { display: none; }
+.brand {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: {{FONT_TITLE}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.55);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.6);
+}
+.brand::before {
+  content: '';
+  width: 22px; height: 22px;
+  background: rgba(255,255,255,0.5);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='10' rx='2'/%3E%3Ccircle cx='12' cy='5' r='2'/%3E%3Cpath d='M12 7v4'/%3E%3C/svg%3E") no-repeat center / contain;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='10' rx='2'/%3E%3Ccircle cx='12' cy='5' r='2'/%3E%3Cpath d='M12 7v4'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+}
+.source {
+  position: absolute;
+  bottom: 32px;
+  left: 48px;
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.5);
+  color: {{SECONDARY}};
+  opacity: 0.4;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+}
+@media (max-aspect-ratio: 4/5) {
+  .title { font-size: {{TITLE_SIZE_S}}; }
+  .container { padding: 48px; max-width: 90%; }
+  .deco-glow { width: 350px; height: 350px; }
+  .content { max-width: 90%; }
+  .dr-2 { top: 24px; left: 24px; width: 100px; height: 100px; }
+}
+@media (min-aspect-ratio: 5/4) {
+  .title { font-size: {{TITLE_SIZE_W}}; }
+  .container { max-width: 78%; padding: 48px 64px; }
+  .content { max-width: 76%; }
+  .accent-line { bottom: 80px; right: 60px; }
+}
+@media (min-aspect-ratio: 7/3) {
+  .title { font-size: {{TITLE_SIZE_C}}; }
+  .container { display: flex; flex-direction: row; align-items: center; gap: 32px; text-align: left; max-width: 86%; padding: 40px 64px; }
+  .container > div { flex: 1; }
+  .divider { margin: 8px 0; }
+  .content { max-width: 100%; margin: 0; }
+  .badge { margin-bottom: 16px; }
+  .points { margin-top: 16px; }
+  .deco-glow { width: 300px; height: 300px; }
+}
+</style>
+</head>
+<body>
+<div class="deco-glow"></div>
+<div class="deco-ring dr-1"></div>
+<div class="deco-ring dr-2"></div>
+<div class="accent-line"></div>
+<div class="container">
+  <div>
+    <div class="badge">{{BADGE}}</div>
+    <h1 class="title">{{TITLE}}</h1>
+    <div class="divider"></div>
+    <div class="content">{{CONTENT}}</div>
+    <ul class="points">{{POINTS_HTML}}</ul>
+  </div>
+</div>
+<div class="source">{{SOURCE}}</div>
+<div class="brand">{{BRAND}}</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "word-typewriter-demo",
+  "version": "1.0.0",
+  "description": "在 Word 中逐字打字显示内容，支持翻页、对齐控制、字体字号自定义，适合现场演示 AI 操作 Word 的场景。格式由内容文件驱动，不拘泥于任何固定模板。",
+  "author": "凉风辞叶",
+  "tags": ["Word", "打字机", "演示", "WPS", "逐字打字", "公文", "自动化"],
+  "repository": "https://github.com/2403861767/word-typewriter-demo",
+  "license": "MIT"
+}

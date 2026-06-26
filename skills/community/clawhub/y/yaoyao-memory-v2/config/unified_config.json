@@ -1,0 +1,132 @@
+{
+  "version": "2.0.0",
+  "description": "向量架构体系统一配置",
+  "progressive": {
+    "P0": {
+      "name": "核心优化",
+      "modules": [
+        "router",
+        "weights",
+        "rrf",
+        "dedup"
+      ],
+      "enabled": true
+    },
+    "P1": {
+      "name": "查询增强",
+      "modules": [
+        "understand",
+        "rewriter"
+      ],
+      "enabled": true
+    },
+    "P2": {
+      "name": "学习优化",
+      "modules": [
+        "feedback",
+        "history"
+      ],
+      "enabled": true
+    },
+    "P3": {
+      "name": "结果增强",
+      "modules": [
+        "explainer",
+        "summarizer"
+      ],
+      "enabled": true
+    }
+  },
+  "vector_search": {
+    "top_k": 20,
+    "max_distance": 0.8,
+    "description": "增加召回数量，放宽距离阈值",
+    "enabled": true
+  },
+  "llm_expand": {
+    "max_tokens": 150,
+    "temperature": 0.5,
+    "max_expansions": 5,
+    "description": "优化扩展词生成prompt"
+  },
+  "rewriter": {
+    "spelling_corrections": "extended",
+    "synonyms": "extended",
+    "semantic_expansions": "enabled",
+    "description": "扩展拼写纠正和同义词词典"
+  },
+  "cache": {
+    "ttl": 3600,
+    "compression": true,
+    "description": "增量缓存 + 压缩存储"
+  },
+  "coverage_monitor": {
+    "l1_min_coverage": 95.0,
+    "l0_min_coverage": 60.0,
+    "check_interval": 3600,
+    "auto_fix": true,
+    "alert_on_low": true
+  },
+  "smart_upgrade": {
+    "l0_to_l1": {
+      "min_conversations": 5,
+      "min_days": 3,
+      "min_importance": 0.6,
+      "keywords": [
+        "重要",
+        "记住",
+        "以后",
+        "偏好",
+        "规则",
+        "配置"
+      ]
+    },
+    "auto_upgrade": true,
+    "upgrade_interval": 86400
+  },
+  "persona_update": {
+    "update_interval": 86400,
+    "min_memories_for_update": 5,
+    "max_persona_length": 2000,
+    "auto_update": false,
+    "require_confirmation": true,
+    "backup_before_update": true,
+    "llm_assisted": true,
+    "_comment": "⚠️ auto_update 默认禁用，与 SKILL.md 声明一致"
+  },
+  "system_optimize": {
+    "optimize_interval": 604800,
+    "max_db_size_mb": 100,
+    "orphan_threshold": 10,
+    "auto_vacuum": true,
+    "auto_reindex": true,
+    "auto_cleanup_orphans": true,
+    "backup_before_optimize": true,
+    "auto_backup": true
+  },
+  "performance_targets": {
+    "cache_hit": "< 10ms",
+    "fast_mode": "< 2s",
+    "balanced_mode": "< 5s",
+    "full_mode": "< 15s",
+    "accuracy": "> 80%"
+  },
+  "embedding": {
+    "enabled": true,
+    "provider": "gitee",
+    "model": "Qwen3-Embedding-8B",
+    "dimensions": 1024
+  },
+  "knowledge_graph": {
+    "enabled": true,
+    "auto_build": true,
+    "update_interval": 3600,
+    "max_nodes": 1000,
+    "relationship_types": [
+      "related",
+      "causes",
+      "part_of",
+      "depends_on"
+    ]
+  }
+}

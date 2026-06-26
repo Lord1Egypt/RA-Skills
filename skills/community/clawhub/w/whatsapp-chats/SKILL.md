@@ -1,35 +1,31 @@
 ---
-name: "WhatsApp Chats"
-description: "List, search, and analyze WhatsApp conversations"
-category: "other"
-source: "ClawHub"
-tags: [baileys, chats, conversations, offline, whatsapp]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/whatsapp-chats"
-sourceUrl: "https://clawhub.ai/skills/whatsapp-chats"
+name: whatsapp-chats
+description: List, search, and analyze WhatsApp conversations
 ---
 
-# WhatsApp Chats
+# WhatsApp Chats Skill
 
-> List, search, and analyze WhatsApp conversations
+Browse and search WhatsApp conversations from the local Baileys session cache.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/whatsapp-chats`
-- **Source URL:** [https://clawhub.ai/skills/whatsapp-chats](https://clawhub.ai/skills/whatsapp-chats)
+## Usage
 
-## Overview
+```
+exec({ cmd: "node <skill_dir>/scripts/chats.js COMMAND [ARGS]" })
+```
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/whatsapp-chats
+### List Chats
+```
+exec({ cmd: "node <skill_dir>/scripts/chats.js list 30" })
+```
+
+### Search Chats
+```
+exec({ cmd: "node <skill_dir>/scripts/chats.js search \"John\"" })
+```
+
+### Chat Statistics
+```
+exec({ cmd: "node <skill_dir>/scripts/chats.js stats" })
 ```

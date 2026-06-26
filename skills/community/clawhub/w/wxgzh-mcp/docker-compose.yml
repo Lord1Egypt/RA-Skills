@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  wxgzh-mcp:
+    build: .
+    container_name: wxgzh-mcp
+    restart: unless-stopped
+    ports:
+      - "8765:8765"
+    volumes:
+      # Mount config file from host
+      - ./config.json:/app/config/config.json:ro
+      # Mount image folder for uploads
+      - ./uploads:/app/uploads:ro
+    environment:
+      - WECHAT_MCP_CONFIG=/app/config/config.json
+    networks:
+      - wxgzh-network
+
+networks:
+  wxgzh-network:
+    driver: bridge

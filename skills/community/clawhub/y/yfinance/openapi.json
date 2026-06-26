@@ -1,0 +1,225 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "OpenClaw YFinance Connector",
+    "description": "Fetch Yahoo Finance stock data for Indonesia (IDX .JK) and global markets. All tickers without a suffix are automatically treated as IDX stocks by appending .JK.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "OpenClaw YFinance Connector"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/price": {
+      "get": {
+        "operationId": "getStockPrice",
+        "summary": "Get real-time / latest stock price",
+        "description": "Returns the latest market price, change %, day range, and volume for a given ticker.",
+        "tags": ["Price"],
+        "parameters": [
+          {
+            "name": "ticker",
+            "in": "query",
+            "required": true,
+            "description": "Stock ticker symbol. For IDX stocks omit .JK suffix, e.g. BBCA",
+            "schema": { "type": "string", "example": "BBCA" }
+          },
+          {
+            "name": "auto_jk",
+            "in": "query",
+            "required": false,
+            "description": "Auto-append .JK for Indonesia stocks if no dot suffix present",
+            "schema": { "type": "boolean", "default": true }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Price data returned",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DualResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/history": {
+      "get": {
+        "operationId": "getStockHistory",
+        "summary": "Get historical OHLCV data",
+        "description": "Returns historical open/high/low/close/volume data. Use period OR start+end.",
+        "tags": ["History"],
+        "parameters": [
+          {
+            "name": "ticker",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "example": "BBCA" }
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "required": false,
+            "description": "One of: 1d 5d 1mo 3mo 6mo 1y 2y 5y 10y ytd max",
+            "schema": { "type": "string", "default": "1mo" }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "description": "Start date YYYY-MM-DD (overrides period)",
+            "schema": { "type": "string", "format": "date" }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "description": "End date YYYY-MM-DD",
+            "schema": { "type": "string", "format": "date" }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "required": false,
+            "description": "Data interval: 1m 5m 15m 30m 1h 1d 1wk 1mo",
+            "schema": { "type": "string", "default": "1d" }
+          },
+          {
+            "name": "auto_jk",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "boolean", "default": true }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Historical OHLCV data",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DualResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fundamentals": {
+      "get": {
+        "operationId": "getStockFundamentals",
+        "summary": "Get company fundamentals and financial ratios",
+        "description": "Returns P/E, P/B, EPS, market cap, ROE, ROA, dividends, and more.",
+        "tags": ["Fundamentals"],
+        "parameters": [
+          {
+            "name": "ticker",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "example": "BBCA" }
+          },
+          {
+            "name": "auto_jk",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "boolean", "default": true }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fundamentals returned",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DualResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dividends": {
+      "get": {
+        "operationId": "getDividendHistory",
+        "summary": "Get dividend payment history",
+        "tags": ["Corporate Actions"],
+        "parameters": [
+          {
+            "name": "ticker",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "example": "BBCA" }
+          },
+          {
+            "name": "auto_jk",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "boolean", "default": true }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dividend history returned",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DualResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/splits": {
+      "get": {
+        "operationId": "getSplitHistory",
+        "summary": "Get stock split history",
+        "tags": ["Corporate Actions"],
+        "parameters": [
+          {
+            "name": "ticker",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "example": "BBCA" }
+          },
+          {
+            "name": "auto_jk",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "boolean", "default": true }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Split history returned",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DualResponse" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DualResponse": {
+        "type": "object",
+        "description": "Every endpoint returns both structured JSON data and a human-readable formatted string.",
+        "properties": {
+          "json": {
+            "type": "object",
+            "description": "Structured data for programmatic use"
+          },
+          "formatted": {
+            "type": "string",
+            "description": "Human-readable text/table representation"
+          }
+        }
+      }
+    }
+  }
+}

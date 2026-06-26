@@ -1,35 +1,46 @@
 ---
-name: "Whisper Transcribe"
-description: "Transcribe audio files to text using OpenAI Whisper. Supports speech-to-text with auto language detection, multiple output formats (txt, srt, vtt, json), batch processing, and model selection (tiny to large). Use when transcribing audio recordings, podcasts, voice messages, le…"
-category: "media"
-source: "ClawHub"
-tags: [audio, speech-to-text, srt, subtitles, transcription, whisper]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/whisper-transcribe"
-sourceUrl: "https://clawhub.ai/skills/whisper-transcribe"
+name: whisper-transcribe
+description: Transcribe audio files to text using OpenAI Whisper. Supports speech-to-text with auto language detection, multiple output formats (txt, srt, vtt, json), batch processing, and model selection (tiny to large). Use when transcribing audio recordings, podcasts, voice messages, lectures, meetings, or any audio/video file to text. Handles mp3, wav, m4a, ogg, flac, webm, opus, aac formats.
 ---
 
 # Whisper Transcribe
 
-> Transcribe audio files to text using OpenAI Whisper. Supports speech-to-text with auto language detection, multiple output formats (txt, srt, vtt, json), batch processing, and model selection (tiny to large). Use when transcribing audio recordings, podcasts, voice messages, le…
+Transcribe audio with `scripts/transcribe.sh`:
 
-- **Category:** Media
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/whisper-transcribe`
-- **Source URL:** [https://clawhub.ai/skills/whisper-transcribe](https://clawhub.ai/skills/whisper-transcribe)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/whisper-transcribe
+# Basic (auto-detect language, base model)
+scripts/transcribe.sh recording.mp3
+
+# German, small model, SRT subtitles
+scripts/transcribe.sh --model small --language de --format srt lecture.wav
+
+# Batch process, all formats
+scripts/transcribe.sh --format all --output-dir ./transcripts/ *.mp3
+
+# Word-level timestamps
+scripts/transcribe.sh --timestamps interview.m4a
 ```
+
+## Models
+
+| Model | RAM | Speed | Accuracy | Best for |
+|-------|-----|-------|----------|----------|
+| tiny | ~1GB | ⚡⚡⚡ | ★★ | Quick drafts, known language |
+| base | ~1GB | ⚡⚡ | ★★★ | General use (default) |
+| small | ~2GB | ⚡ | ★★★★ | Good accuracy |
+| medium | ~5GB | 🐢 | ★★★★★ | High accuracy |
+| large | ~10GB | 🐌 | ★★★★★ | Best accuracy (slow on Pi) |
+
+## Output Formats
+
+- **txt** — Plain text transcript
+- **srt** — SubRip subtitles (for video)
+- **vtt** — WebVTT subtitles
+- **json** — Detailed JSON with timestamps and confidence
+- **all** — Generate all formats at once
+
+## Requirements
+
+- `whisper` CLI (`pip install openai-whisper`)
+- `ffmpeg` (for audio decoding)
+- First run downloads the model (~150MB for base)

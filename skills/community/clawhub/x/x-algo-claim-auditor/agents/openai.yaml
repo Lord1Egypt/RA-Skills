@@ -1,0 +1,4 @@
+interface:
+  display_name: "X Algo Claim Reviewer"
+  short_description: "Review public X algorithm claims with cautious source evidence."
+  default_prompt: "Use $x-algo-claim-auditor to review this public X algorithm claim and return a cautious source-backed verdict, boundary notes, and safer public wording."

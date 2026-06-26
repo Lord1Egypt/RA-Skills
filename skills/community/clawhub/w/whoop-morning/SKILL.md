@@ -1,35 +1,59 @@
 ---
-name: "WHOOP Morning"
-description: "Check WHOOP recovery/sleep/strain each morning and send suggestions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/whoop-morning"
-sourceUrl: "https://clawhub.ai/skills/whoop-morning"
+name: whoop-morning
+description: Check WHOOP recovery/sleep/strain each morning and send suggestions.
+metadata:
+  clawdbot:
+    config:
+      requiredEnv:
+        - WHOOP_CLIENT_ID
+        - WHOOP_CLIENT_SECRET
+        - WHOOP_REFRESH_TOKEN
 ---
 
-# WHOOP Morning
+# whoop-morning
 
-> Check WHOOP recovery/sleep/strain each morning and send suggestions.
+Morning WHOOP check-in:
+- fetches your latest WHOOP data (Recovery, Sleep, Cycle/Strain)
+- generates a short set of suggestions for the day
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/whoop-morning`
-- **Source URL:** [https://clawhub.ai/skills/whoop-morning](https://clawhub.ai/skills/whoop-morning)
+## Setup
 
-## Overview
+### 1) Create WHOOP OAuth credentials
 
+You already have:
+- `WHOOP_CLIENT_ID`
+- `WHOOP_CLIENT_SECRET`
 
-## Installation
-To install this skill, run the following command in your terminal:
+Store these in `~/.clawdbot/.env`.
+
+### 2) Authorize once (get refresh token)
+
+Run:
+
 ```bash
-hermes skills install clawhub/whoop-morning
+/home/claw/clawd/skills/whoop-morning/bin/whoop-auth --scopes offline read:recovery read:sleep read:cycles read:profile
 ```
+
+This prints an authorization URL.
+Open it in your browser, approve, and paste the `code` back into the terminal.
+
+The script will exchange it for tokens and write `WHOOP_REFRESH_TOKEN=...` to `~/.clawdbot/.env`.
+
+### 3) Run the morning report
+
+```bash
+/home/claw/clawd/skills/whoop-morning/bin/whoop-morning
+```
+
+## Automation
+
+Recommended: schedule with Gateway cron (daily, morning).
+The cron job should run `whoop-morning` and send its output as a message.
+
+## Notes
+
+- This skill uses WHOOP OAuth2:
+  - auth URL: `https://api.prod.whoop.com/oauth/oauth2/auth`
+  - token URL: `https://api.prod.whoop.com/oauth/oauth2/token`
+- WHOOP rotates refresh tokens; avoid running multiple refreshes in parallel.
+- API availability/fields can change; if WHOOP returns 401/400 during token refresh, re-run `whoop-auth`.

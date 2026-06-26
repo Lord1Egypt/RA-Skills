@@ -1,0 +1,19 @@
+{
+  "version": "test-fixture",
+  "phish_count": 100,
+  "ham_count": 100,
+  "tokens": {
+    "urgent":    {"phish": 78, "ham": 22, "p_phish": 0.78},
+    "wire":      {"phish": 71, "ham": 29, "p_phish": 0.71},
+    "invoice":   {"phish": 60, "ham": 40, "p_phish": 0.60},
+    "bitcoin":   {"phish": 85, "ham": 15, "p_phish": 0.85},
+    "quanta":    {"phish": 88, "ham": 12, "p_phish": 0.88},
+    "meeting":   {"phish": 15, "ham": 85, "p_phish": 0.15},
+    "project":   {"phish": 20, "ham": 80, "p_phish": 0.20},
+    "invitation":{"phish": 10, "ham": 90, "p_phish": 0.10},
+    "attached":  {"phish": 45, "ham": 55, "p_phish": 0.45},
+    "click":     {"phish": 65, "ham": 35, "p_phish": 0.65},
+    "verify":    {"phish": 72, "ham": 28, "p_phish": 0.72},
+    "inheritance":{"phish": 95, "ham": 5, "p_phish": 0.95}
+  }
+}

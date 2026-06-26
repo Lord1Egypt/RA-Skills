@@ -1,0 +1,412 @@
+{
+  "paper_title": "Value and Momentum Everywhere",
+  "num_detected": 2,
+  "strategies": [
+    {
+      "strategy_name": "Cross-Sectional Value Factor Strategy",
+      "strategy_type": "hybrid",
+      "asset_class": [
+        "equity",
+        "forex",
+        "bonds",
+        "commodities"
+      ],
+      "description": "Rank assets within each of eight asset classes based on a standardized value signal, then go long the top quintile (cheapest) and short the bottom quintile (most expensive). For stocks/indices, the signal is book-to-market ratio; for other asset classes, it is the negative of a 5-year past return.",
+      "plan_id": null,
+      "strategy_id": null,
+      "backtest_id": null,
+      "price_data": true,
+      "volume_data": false,
+      "fundamental_data": [
+        "Book-to-Market"
+      ],
+      "alternative_data": [
+        "CPI inflation data",
+        "10-year government bond yields"
+      ],
+      "lookback_period": 1260,
+      "data_frequency": "monthly",
+      "data_source": [
+        "CRSP",
+        "Compustat",
+        "Datastream",
+        "Worldscope",
+        "MSCI",
+        "Bloomberg",
+        "Morgan Markets",
+        "Consensus Economics",
+        "Futures Exchanges (LME, ICE, CME, CBOT, NYMEX, COMEX, NYBOT, TOCOM)"
+      ],
+      "time_period": "1972-07-2011",
+      "universe_assets": [
+        "U.S. Individual Stocks",
+        "U.K. Individual Stocks",
+        "European Individual Stocks",
+        "Japanese Individual Stocks",
+        "Global Equity Indices (18 developed markets)",
+        "Currencies (10 currencies)",
+        "Global Government Bonds (10 countries)",
+        "Commodity Futures (27 commodities)"
+      ],
+      "universe_selection_criteria": "For individual stocks: Exclude ADRs, REITs, financials, closed-end funds, foreign shares; exclude stocks with share price < $1 at month start; must have book value from Compustat/Worldscope in previous 6 months; must have ≥12 months of past return history; liquidity filter: include only stocks cumulatively accounting for 90% of total regional market capitalization. For other asset classes: Minimum securities available at sample start (e.g., min 8 equity indices, min 7 currencies, min 5 bonds, min 10 commodities).",
+      "expected_sharpe": null,
+      "expected_return": null,
+      "max_drawdown": null,
+      "expected_performance": {},
+      "indicators": [
+        {
+          "indicator_id": "book_to_market",
+          "name": "Book-to-Market Ratio",
+          "category": "fundamental",
+          "formula": "Book value of equity divided by market value of equity. For individual stocks, book values are lagged 6 months to ensure availability. For country equity indices, the previous month's BE/ME ratio for the MSCI country index is used.",
+          "latex": "BE/ME = \\frac{Book\\,Value_{t-6\\,months}}{Market\\,Value_t}",
+          "inputs": [
+            "book_value",
+            "market_cap"
+          ],
+          "parameters": {
+            "book_lag_months": 6
+          },
+          "scope": "cross_sectional",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "negative_5y_spot_return",
+          "name": "Negative 5-Year Spot Return",
+          "category": "technical",
+          "formula": "Negative of the 5-year spot return. Calculated as the log of the average spot price from 5.5 to 4.5 years ago minus the log of the current spot price. Specifically: log(Avg_Spot_Price_{t-5.5y to t-4.5y}) - log(Spot_Price_t).",
+          "latex": "V_t^{commodity} = \\log\\left(\\frac{1}{12}\\sum_{k=66}^{77} S_{t-k}\\right) - \\log(S_t)",
+          "inputs": [
+            "spot_price"
+          ],
+          "parameters": {
+            "lookback_years": 5,
+            "averaging_months": 12,
+            "averaging_offset_months": 66
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "negative_5y_real_fx_return",
+          "name": "Negative 5-Year Real Exchange Rate Return",
+          "category": "derived",
+          "formula": "Negative of the 5-year exchange rate return, adjusted for purchasing power parity (PPP). Calculated as: [log(Avg_Spot_{t-5.5y to t-4.5y}) - log(Spot_t)] - Δlog(CPI_foreign/USA)_{5y}. The CPI adjustment is the 5-year change in the log ratio of foreign to US CPI.",
+          "latex": "V_t^{currency} = \\left[\\log\\left(\\frac{1}{12}\\sum_{k=66}^{77} S_{t-k}\\right) - \\log(S_t)\\right] - \\left(\\log\\left(\\frac{CPI_{foreign,t}}{CPI_{US,t}}\\right) - \\log\\left(\\frac{CPI_{foreign,t-60}}{CPI_{US,t-60}}\\right)\\right)",
+          "inputs": [
+            "spot_exchange_rate",
+            "cpi_foreign",
+            "cpi_us"
+          ],
+          "parameters": {
+            "lookback_years": 5,
+            "averaging_months": 12,
+            "averaging_offset_months": 66,
+            "cpi_lookback_months": 60
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "negative_5y_bond_return_proxy",
+          "name": "Negative 5-Year Bond Return Proxy",
+          "category": "technical",
+          "formula": "Proxy for the negative 5-year return on government bonds, approximated by the 5-year change in the yields of 10-year government bonds. A positive change in yield corresponds to a negative past return.",
+          "latex": "V_t^{bond} \\propto - (Yield_{10y,t} - Yield_{10y,t-60})",
+          "inputs": [
+            "10y_bond_yield"
+          ],
+          "parameters": {
+            "lookback_months": 60
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "value_signal_standardized",
+          "name": "Standardized Value Signal",
+          "category": "derived",
+          "formula": "The raw value indicator (BE/ME for stocks/indices, negative 5-year return for others) is standardized cross-sectionally within each asset class each month. Assets are then ranked based on this standardized score.",
+          "latex": "V_{i,t}^{std} = \\frac{V_{i,t} - \\mu_t(V)}{\\sigma_t(V)}",
+          "inputs": [
+            "book_to_market",
+            "negative_5y_spot_return",
+            "negative_5y_real_fx_return",
+            "negative_5y_bond_return_proxy"
+          ],
+          "parameters": {},
+          "scope": "cross_sectional",
+          "output_type": "ranking"
+        }
+      ],
+      "logic_pipeline": [
+        {
+          "step_id": "step1",
+          "description": "Calculate asset-specific value signal based on asset class",
+          "function": "custom",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "book_to_market",
+            "negative_5y_spot_return",
+            "negative_5y_real_fx_return",
+            "negative_5y_bond_return_proxy"
+          ],
+          "parameters": {
+            "asset_class": "stocks/indices/commodities/currencies/bonds"
+          },
+          "expression": "IF asset_class IN ('individual_stocks', 'country_equity_indices') THEN value_raw = book_to_market ELSE IF asset_class = 'commodities' THEN value_raw = negative_5y_spot_return ELSE IF asset_class = 'currencies' THEN value_raw = negative_5y_real_fx_return ELSE IF asset_class = 'bonds' THEN value_raw = negative_5y_bond_return_proxy",
+          "output": "value_raw_signal",
+          "output_type": "scalar"
+        },
+        {
+          "step_id": "step2",
+          "description": "Standardize raw value signal cross-sectionally within each asset class",
+          "function": "z_score",
+          "scope": "cross_sectional",
+          "group_by": "asset_class",
+          "inputs": [
+            "value_raw_signal"
+          ],
+          "parameters": {},
+          "expression": "value_signal_standardized = (value_raw_signal - mean(value_raw_signal_within_asset_class)) / std(value_raw_signal_within_asset_class)",
+          "output": "value_signal_standardized",
+          "output_type": "scalar"
+        },
+        {
+          "step_id": "step3",
+          "description": "Sort assets into quintiles based on standardized value signal within each asset class",
+          "function": "quantile_sort",
+          "scope": "cross_sectional",
+          "group_by": "asset_class",
+          "inputs": [
+            "value_signal_standardized"
+          ],
+          "parameters": {
+            "n_quantiles": 5,
+            "breakpoint_methodology": "cross_sectional_within_asset_class"
+          },
+          "expression": "value_quintile = assign_quantile(value_signal_standardized, n=5) where Q1=lowest_signal (most expensive), Q5=highest_signal (cheapest)",
+          "output": "value_quintile",
+          "output_type": "label"
+        },
+        {
+          "step_id": "step4",
+          "description": "Generate final trade signal based on value quintile ranking",
+          "function": "condition",
+          "scope": "cross_sectional",
+          "group_by": "",
+          "inputs": [
+            "value_quintile"
+          ],
+          "parameters": {},
+          "expression": "IF value_quintile = 'Q5' THEN signal = 'long' ELSE IF value_quintile = 'Q1' THEN signal = 'short' ELSE signal = 'neutral'",
+          "output": "trade_signal",
+          "output_type": "label"
+        }
+      ],
+      "execution_plan": [
+        {
+          "plan_id": "exec_1",
+          "description": "Monthly rebalancing of cross-sectional value factor portfolios within each asset class",
+          "trigger": {
+            "trigger_type": "time_driven",
+            "frequency": "monthly",
+            "signal_lookup": null,
+            "delay_bars": 1,
+            "price_type": "close"
+          },
+          "action": {
+            "signal_source": "value_quintile",
+            "logic": "WHEN 'Q1': LONG; WHEN 'Q5': SHORT",
+            "default_action": "hold"
+          },
+          "position_sizing": {
+            "method": "equal_weight",
+            "max_position_pct": null,
+            "total_exposure": 1.0,
+            "long_short": "long_short"
+          }
+        }
+      ],
+      "risk_management": []
+    },
+    {
+      "strategy_name": "Cross-Sectional Momentum Factor Strategy (MOM2-12)",
+      "strategy_type": "technical",
+      "asset_class": [
+        "equity",
+        "forex",
+        "bonds",
+        "commodities"
+      ],
+      "description": "Rank assets within each of eight asset classes based on past 12-month return (skipping the most recent month), then go long the top quintile (winners) and short the bottom quintile (losers). The strategy uses a pure price momentum signal applied uniformly across all asset classes.",
+      "plan_id": null,
+      "strategy_id": null,
+      "backtest_id": null,
+      "price_data": true,
+      "volume_data": false,
+      "fundamental_data": [],
+      "alternative_data": [],
+      "lookback_period": 252,
+      "data_frequency": "monthly",
+      "data_source": [
+        "CRSP",
+        "Datastream",
+        "Worldscope",
+        "MSCI",
+        "Bloomberg",
+        "Morgan Markets",
+        "Futures Exchanges (LME, ICE, CME, CBOT, NYMEX, COMEX, NYBOT, TOCOM)"
+      ],
+      "time_period": "1972-07-2011-07",
+      "universe_assets": [
+        "U.S. Individual Stocks",
+        "U.K. Individual Stocks",
+        "European Individual Stocks",
+        "Japanese Individual Stocks",
+        "Global Equity Indices (18 developed markets)",
+        "Currencies (10 currencies)",
+        "Global Government Bonds (10 countries)",
+        "Commodity Futures (27 commodities)"
+      ],
+      "universe_selection_criteria": "For individual stocks: Exclude ADRs, REITs, financials, closed-end funds, foreign shares; price ≥ $1 at month start; must have book value in previous 6 months; must have ≥12 months return history; liquidity filter: include only stocks cumulatively accounting for 90% of total regional market cap. For other asset classes: Minimum securities available at sample start (e.g., min 8 equity indices, min 7 currencies, min 5 bonds, min 10 commodities).",
+      "expected_sharpe": null,
+      "expected_return": null,
+      "max_drawdown": null,
+      "expected_performance": {},
+      "indicators": [
+        {
+          "indicator_id": "mom2_12",
+          "name": "12-Month Momentum (Skipping Most Recent Month)",
+          "category": "technical",
+          "formula": "Cumulative raw return over the past 12 months, excluding the most recent month (month t-1). Calculated as the product of (1 + monthly returns) from month t-12 to month t-2, minus 1.",
+          "latex": "MOM2-12_{i,t} = \\prod_{k=2}^{12} (1 + r_{i,t-k}) - 1",
+          "inputs": [
+            "monthly_close",
+            "monthly_return"
+          ],
+          "parameters": {
+            "formation_months": 12,
+            "skip_months": 1
+          },
+          "scope": "time_series",
+          "output_type": "scalar"
+        },
+        {
+          "indicator_id": "cross_sectional_rank_mom2_12",
+          "name": "Cross-Sectional Rank by MOM2-12",
+          "category": "derived",
+          "formula": "Within each asset class at time t, rank all assets based on their MOM2-12 signal. Assets are sorted into quintiles (5 groups) using breakpoints determined from the cross-sectional distribution of the signal within that asset class.",
+          "latex": "Rank_{i,t} = \\text{Percentile Rank of } MOM2-12_{i,t} \\text{ within asset class at time t}",
+          "inputs": [
+            "mom2_12"
+          ],
+          "parameters": {
+            "number_of_groups": 5,
+            "breakpoint_method": "quintiles"
+          },
+          "scope": "cross_sectional",
+          "output_type": "ranking"
+        }
+      ],
+      "logic_pipeline": [
+        {
+          "step_id": "step1",
+          "description": "Calculate the 12-month momentum signal for each asset, skipping the most recent month",
+          "function": "arithmetic",
+          "scope": "time_series",
+          "group_by": "",
+          "inputs": [
+            "price_series"
+          ],
+          "parameters": {
+            "lookback_months": 12,
+            "skip_months": 1
+          },
+          "expression": "MOM2-12 = cumulative return from month t-12 to month t-2 (inclusive)",
+          "output": "mom2_12",
+          "output_type": "scalar"
+        },
+        {
+          "step_id": "step2",
+          "description": "Rank all assets within each asset class based on their MOM2-12 signal",
+          "function": "rank",
+          "scope": "cross_sectional",
+          "group_by": "asset_class",
+          "inputs": [
+            "mom2_12"
+          ],
+          "parameters": {
+            "method": "descending"
+          },
+          "expression": "For each asset class at time t: assign rank = 1 to highest MOM2-12 value, rank = N to lowest MOM2-12 value",
+          "output": "cross_sectional_rank_mom2_12",
+          "output_type": "ranking"
+        },
+        {
+          "step_id": "step3",
+          "description": "Sort assets within each asset class into quintiles based on MOM2-12 ranking",
+          "function": "quantile_sort",
+          "scope": "cross_sectional",
+          "group_by": "asset_class",
+          "inputs": [
+            "cross_sectional_rank_mom2_12"
+          ],
+          "parameters": {
+            "n_quantiles": 5,
+            "breakpoint_methodology": "equal_count_within_asset_class"
+          },
+          "expression": "Within each asset class: assign quintile labels (Q1, Q2, Q3, Q4, Q5) where Q1 = top 20% (highest MOM2-12), Q5 = bottom 20% (lowest MOM2-12)",
+          "output": "momentum_quintile",
+          "output_type": "label"
+        },
+        {
+          "step_id": "step4",
+          "description": "Generate final trade signals based on momentum quintile assignment",
+          "function": "condition",
+          "scope": "cross_sectional",
+          "group_by": "",
+          "inputs": [
+            "momentum_quintile"
+          ],
+          "parameters": {},
+          "expression": "IF momentum_quintile = 'Q1' THEN 'long_signal' ELSE IF momentum_quintile = 'Q5' THEN 'short_signal' ELSE 'no_trade'",
+          "output": "trade_signal",
+          "output_type": "label"
+        }
+      ],
+      "execution_plan": [
+        {
+          "plan_id": "exec_1",
+          "description": "Monthly rebalancing of cross-sectional momentum strategy based on MOM2-12 ranking within each asset class",
+          "trigger": {
+            "trigger_type": "time_driven",
+            "frequency": "monthly",
+            "signal_lookup": null,
+            "delay_bars": 1,
+            "price_type": "close"
+          },
+          "action": {
+            "signal_source": "momentum_quintile",
+            "logic": "WHEN 'top_quintile': LONG; WHEN 'bottom_quintile': SHORT",
+            "default_action": "hold"
+          },
+          "position_sizing": {
+            "method": "equal_weight",
+            "max_position_pct": null,
+            "total_exposure": 1.0,
+            "long_short": "long_short"
+          }
+        }
+      ],
+      "risk_management": [
+        "Liquidity filter: For individual stocks, restrict universe to stocks cumulatively accounting for 90% of total market capitalization in each region",
+        "Price filter: Exclude stocks with share price < $1 at beginning of each month",
+        "Minimum history: Assets must have at least 12 months of past return history",
+        "Asset class constraints: Portfolio constructed separately within each of eight asset classes",
+        "No explicit stop-loss or position limits mentioned in paper"
+      ]
+    }
+  ]
+}

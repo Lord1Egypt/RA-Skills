@@ -1,0 +1,18 @@
+name: wewe-rss-wechat-export
+version: 1.0.0
+description: Adapted from wewe-rss for exporting WeChat public account feeds into cleaned DOCX bundles with optional zip packaging.
+author: N1nEmAn
+license: MIT
+permissions:
+  - network
+entry: SKILL.md
+tags:
+  - wewe-rss
+  - wechat
+  - public-account
+  - export
+  - docx
+models:
+  - claude-*
+  - gpt-*
+  - gemini-*

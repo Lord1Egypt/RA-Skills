@@ -1,0 +1,42 @@
+{
+  "name": "super-lobster",
+  "displayName": "🦞 Super Lobster | 超级龙虾",
+  "version": "1.0.0",
+  "description": "桥哥的私人 AI 助理，整合飞书文档管理、会议纪要整理、每日待办推送等核心技能",
+  "author": "龙虾仔",
+  "tags": ["feishu", "productivity", "todo", "meeting-notes", "automation", "assistant"],
+  "category": "productivity",
+  "license": "MIT",
+  "homepage": "https://github.com/huangqiao/super-lobster",
+  "repository": "https://github.com/huangqiao/super-lobster",
+  "bugs": "https://github.com/huangqiao/super-lobster/issues",
+  "main": "scripts/create_daily_todo.mjs",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "_meta.json",
+    "scripts/",
+    "templates/",
+    "memory/"
+  ],
+  "scripts": {
+    "create-todo": "node scripts/create_daily_todo.mjs",
+    "read-meeting": "node scripts/read_meeting_notes.mjs",
+    "classify": "node scripts/classify_by_module.mjs"
+  },
+  "engines": {
+    "openclaw": ">=2026.4.0",
+    "node": ">=25.0.0"
+  },
+  "permissions": [
+    "feishu:docx:write",
+    "feishu:permission:manage",
+    "feishu:message:send"
+  ],
+  "config": {
+    "feishu": {
+      "appId": "cli_a92115f36af9dcd5",
+      "userOpenId": "ou_3aed530e2f42a906b704bc474609d7ce"
+    }
+  }
+}

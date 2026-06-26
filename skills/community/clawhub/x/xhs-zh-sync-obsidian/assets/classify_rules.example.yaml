@@ -1,0 +1,13 @@
+rules:
+  - level1: "科技-AI"
+    level2: "AI工具与工作流"
+    keywords: ["OpenClaw", "Claude", "Codex", "Agent", "智能体", "Obsidian", "工作流", "LLM", "大模型"]
+  - level1: "阅读-知识"
+    level2: "长文与观点"
+    keywords: ["书单", "读书", "论文", "研究", "观点", "方法论"]
+  - level1: "生活-旅行"
+    level2: "旅行与酒店"
+    keywords: ["旅行", "酒店", "攻略", "目的地", "航班", "签证"]
+  - level1: "生活-美食"
+    level2: "餐厅与菜品"
+    keywords: ["美食", "餐厅", "菜", "咖啡", "甜品", "零食"]

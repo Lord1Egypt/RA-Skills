@@ -1,0 +1,16 @@
+{
+  "name": "@website-skeleton/payment",
+  "version": "1.0.0",
+  "description": "Website Skeleton — payment module (wechat notify, order processing)",
+  "type": "module",
+  "main": "./src/index.js",
+  "files": ["src/"],
+  "license": "MIT",
+  "dependencies": {
+    "@website-skeleton/shared": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liuboacean/website-skeleton-skill.git"
+  }
+}

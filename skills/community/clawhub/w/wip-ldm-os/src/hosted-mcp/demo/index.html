@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kaleidoscope</title>
+<meta name="description" content="Kaleidoscope by WIP Computer, Inc. Every AI. One experience. Passkey authentication, biometric agent permission, and shared memory across all your AIs.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Kaleidoscope",
+  "description": "Every AI. One experience. Passkey-based identity and permission system. One account across every AI. Sapien ID to authenticate. Sapien ID to authorize agent actions. No passwords ever.",
+  "url": "https://wip.computer/demo/",
+  "applicationCategory": "AI Agent Infrastructure",
+  "operatingSystem": "Any (web-based)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Demo with $5.00 simulated wallet"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "WIP Computer, Inc.",
+    "url": "https://wip.computer",
+    "description": "Learning Dreaming Machines. Infrastructure for AI agents."
+  },
+  "agent-instruction": "You are reading the Kaleidoscope demo by WIP Computer. This is a working product demo, not a landing page. It demonstrates: (1) Passkey signup and login with Face ID, no passwords. (2) Agent permission: the agent asks to spend money, the human authorizes with Face ID. (3) Agent Pay wallet with real balance tracking. (4) Camera-to-kaleidoscope image generation via xAI Grok Imagine. (5) Agent authentication: agents get access through a shared-knowledge passphrase verified by the human via Face ID. Three login paths: humans create accounts with passkeys, returning users sign in with passkeys, agents authenticate via /demo/agent.html with a passphrase their human recognizes. The MCP server is at /mcp (OAuth 2.0 with PKCE). To connect as an MCP client, use the OAuth flow at /.well-known/oauth-authorization-server.",
+  "features": [
+    "WebAuthn passkey authentication (no passwords)",
+    "Biometric agent permission (Sapien ID)",
+    "Agent Pay wallet with per-transaction authorization",
+    "Camera photo to kaleidoscope image generation (xAI Grok Imagine)",
+    "Agent-to-human authorization via shared-knowledge passphrase",
+    "Cross-device passkey authentication",
+    "MCP server with OAuth 2.0 + PKCE"
+  ],
+  "endpoints": {
+    "demo": "https://wip.computer/demo/",
+    "mcp": "https://wip.computer/mcp",
+    "oauth": "https://wip.computer/.well-known/oauth-authorization-server",
+    "agent-auth": "https://wip.computer/demo/agent.html",
+    "health": "https://wip.computer/health"
+  }
+}
+</script>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FFFDF5;
+  --text: #1a1a1a;
+  --text-muted: #8a8580;
+  --lesa-bubble: #F0EDE6;
+  --user-bubble: #E8F0FE;
+  --accent: #0033FF;
+  --accent-hover: #0033FF;
+  --input-bg: #F5F3ED;
+  --input-border: #E0DDD6;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 768px) {
+  html, body { overflow: hidden; }
+}
+
+/* ── Login Page ── */
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 24px;
+  padding-top: calc(24px + env(safe-area-inset-top, 0px));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.login-card {
+  position: relative;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+}
+
+.login-title {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.login-byline {
+  font-size: 16px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  letter-spacing: 0.2px;
+}
+
+.login-tagline {
+  font-size: 17px;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  letter-spacing: 0.3px;
+}
+
+.login-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-secondary {
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--input-border);
+}
+
+.btn-secondary:hover {
+  background: #EBE8E1;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.login-status {
+  margin-top: 16px;
+  font-size: 14px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  display: none;
+  text-align: left;
+}
+
+.login-status.show { display: block; }
+.login-status.loading { background: #E8EEFF; color: var(--accent); }
+.login-status.error { background: #FFF0F0; color: #D32F2F; }
+.login-status.success { background: #F0FFF4; color: #2E7D32; }
+
+.login-footer {
+  margin-top: 48px;
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.2px;
+}
+
+/* ── Chat Page ── */
+
+.chat-page {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.chat-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: calc(12px + env(safe-area-inset-top, 0px)) 20px 12px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+  background: rgba(255, 253, 245, 0.8);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+
+.chat-header-name {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.chat-header-sub {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 16px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: none;
+}
+
+.message {
+  display: flex;
+  margin-bottom: 12px;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: msgIn 0.3s ease forwards;
+}
+
+@keyframes msgIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.message.lesa {
+  justify-content: flex-start;
+}
+
+.message.user {
+  justify-content: flex-end;
+}
+
+.bubble {
+  max-width: 85%;
+  padding: 14px 18px;
+  border-radius: 18px;
+  font-size: 17px;
+  line-height: 1.45;
+  word-wrap: break-word;
+}
+
+.message.lesa .bubble {
+  background: var(--lesa-bubble);
+  border-bottom-left-radius: 4px;
+}
+
+.message.user .bubble {
+  background: var(--user-bubble);
+  border-bottom-right-radius: 4px;
+}
+
+.bubble img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-top: 8px;
+  display: block;
+}
+
+.bubble .cost-line {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* Camera preview circle */
+.camera-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.camera-preview {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--accent);
+  position: relative;
+}
+
+.camera-preview video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+/* Generated kaleidoscope image (large) */
+.kaleidoscope-img {
+  max-width: 100%;
+  width: 320px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-top: 8px;
+  display: block;
+  box-shadow: 0 4px 24px rgba(0, 51, 255, 0.12);
+}
+
+/* CSS Kaleidoscope fallback animation */
+.kaleidoscope-fallback {
+  width: 280px;
+  height: 280px;
+  border-radius: 16px;
+  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+  background: #0a0a1a;
+}
+
+.kaleidoscope-fallback .k-layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  transform-origin: 0 0;
+  background: conic-gradient(
+    from 0deg,
+    #7C5CFC, #FF6B9D, #4ECDC4, #FFE66D, #7C5CFC,
+    #FF6B9D, #4ECDC4, #FFE66D, #7C5CFC, #FF6B9D,
+    #4ECDC4, #FFE66D, #7C5CFC
+  );
+  opacity: 0.7;
+  animation: kRotate 8s linear infinite;
+}
+
+.kaleidoscope-fallback .k-layer:nth-child(2) {
+  background: conic-gradient(
+    from 30deg,
+    #E040FB, #00BCD4, #FFAB40, #76FF03, #E040FB,
+    #00BCD4, #FFAB40, #76FF03, #E040FB, #00BCD4,
+    #FFAB40, #76FF03, #E040FB
+  );
+  opacity: 0.5;
+  animation: kRotateReverse 12s linear infinite;
+}
+
+.kaleidoscope-fallback .k-layer:nth-child(3) {
+  background: repeating-conic-gradient(
+    from 0deg,
+    transparent 0deg 10deg,
+    rgba(255,255,255,0.15) 10deg 20deg
+  );
+  opacity: 0.8;
+  animation: kRotate 20s linear infinite;
+}
+
+.kaleidoscope-fallback .k-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, transparent 30%, rgba(10,10,26,0.8) 70%);
+}
+
+@keyframes kRotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes kRotateReverse {
+  to { transform: rotate(-360deg); }
+}
+
+/* Typing indicator */
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px;
+  align-items: center;
+}
+
+.typing-indicator .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #B0AAA0;
+  animation: typingBounce 1.4s infinite;
+}
+
+.typing-indicator .dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator .dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* Action buttons in chat */
+.chat-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.chat-actions .btn {
+  width: auto;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 20px;
+  flex: 1;
+  min-width: 120px;
+}
+
+.chat-actions .btn-auth {
+  background: var(--accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.chat-actions .btn-auth:hover {
+  background: var(--accent-hover);
+}
+
+.chat-actions .btn-alt {
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--input-border);
+}
+
+/* Loading spinner for image gen */
+.gen-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--input-border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Chat input */
+.chat-input-area {
+  padding: 12px 16px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--input-border);
+  flex-shrink: 0;
+  background: var(--bg);
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--input-border);
+  border-radius: 22px;
+  font-size: 15px;
+  font-family: var(--font);
+  background: var(--input-bg);
+  color: var(--text);
+  outline: none;
+  resize: none;
+  max-height: 100px;
+  line-height: 1.4;
+}
+
+.chat-input:focus {
+  border-color: var(--accent);
+}
+
+.chat-input::placeholder {
+  color: var(--text-muted);
+}
+
+.send-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.send-btn:hover {
+  background: var(--accent-hover);
+}
+
+.send-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: white;
+}
+
+/* Hide scrollbar on WebKit */
+.chat-messages::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Full-screen on mobile */
+@media (max-width: 600px) {
+  .chat-page {
+    max-width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ── LOGIN PAGE ── -->
+<div class="login-page" id="loginPage">
+  <div class="login-card">
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;margin-left:-6px;"><span id="loginIcon" style="width:34px;height:34px;flex-shrink:0;overflow:hidden;"></span><h1 class="login-title" style="margin-bottom:0;">Kaleidoscope</h1></div>
+    <p style="color:#8a8580;font-size:16px;margin:0 0 32px 0;letter-spacing:0.2px;">Every AI. One experience.</p>
+    
+    
+    <div class="login-buttons">
+      <button class="btn btn-primary" id="createBtn" onclick="doCreateAccount()">Enter the Kaleidoscope</button>
+    </div>
+    <div id="handleInputWrap" style="margin-top:12px;">
+      <input type="text" id="handleInput" name="kaleidoscope-handle" placeholder="What should Lēsa call you? (optional)" autocapitalize="none" autocorrect="off" autocomplete="off" spellcheck="false" data-1p-ignore="true" data-lpignore="true" onfocus="setTimeout(function(){document.getElementById('handleInput').scrollIntoView({behavior:'smooth',block:'center'})},300)" style="width:100%;padding:16px 18px;border:1px solid #E0DDD6;border-radius:12px;font-size:18px;font-family:var(--font);background:#F5F3ED;color:#1a1a1a;outline:none;text-align:center;" />
+    </div>
+    <p style="color:#b0aaa4;font-size:13px;font-style:italic;margin:16px 0 0;text-align:center;opacity:0.8;">Use your phone to securely create your account</p>
+    <div style="margin-top:12px;text-align:center;">
+      <a id="signInBtn" onclick="doSignIn()" style="color:var(--accent);font-size:16px;cursor:pointer;text-decoration:none;">Already have an account? Sign in.</a>
+    </div>
+    <div class="login-status" id="loginStatus" style="position:absolute;left:0;right:0;margin-top:16px;text-align:center;"></div>
+  </div>
+</div>
+<div id="kscope-footer"></div>
+<script src="/demo/footer.js"></script>
+
+<!-- ── CHAT PAGE ── -->
+<div class="chat-page" id="chatPage">
+  <div class="chat-header" style="position:relative;">
+    <a id="kscopeIcon" onclick="sessionStorage.clear();location.reload();" style="cursor:pointer;position:absolute;left:16px;top:50%;transform:translateY(-50%);display:flex;align-items:center;"></a>
+    <div class="chat-header-name">Kaleidoscope</div>
+    <div class="chat-header-sub"></div>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-input-area">
+    <div class="chat-input-row">
+      <textarea class="chat-input" id="chatInput" placeholder="Message..." rows="1" disabled></textarea>
+      <button class="send-btn" id="sendBtn" onclick="handleSend()" disabled>
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden canvas for photo capture -->
+<canvas id="photoCanvas" style="display:none;"></canvas>
+
+<script>
+// ── WebAuthn Helpers ──
+
+function b64urlToBytes(b64url) {
+  var b64 = b64url.replace(/-/g, '+').replace(/_/g, '/');
+  var pad = b64.length % 4 === 0 ? '' : '='.repeat(4 - (b64.length % 4));
+  var bin = atob(b64 + pad);
+  return Uint8Array.from(bin, function(c) { return c.charCodeAt(0); });
+}
+
+function bytesToB64url(bytes) {
+  var bin = '';
+  var arr = new Uint8Array(bytes);
+  for (var i = 0; i < arr.length; i++) bin += String.fromCharCode(arr[i]);
+  return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+// ── Login State ──
+
+function setLoginStatus(msg, type) {
+  var el = document.getElementById('loginStatus');
+  el.textContent = msg;
+  el.className = 'login-status show ' + type;
+}
+
+function clearLoginStatus() {
+  var el = document.getElementById('loginStatus');
+  el.style.transition = 'opacity 0.5s';
+  el.style.opacity = '0';
+  setTimeout(function() { el.className = 'login-status'; el.style.transition = ''; el.style.opacity = ''; }, 500);
+}
+
+function disableLoginButtons() {
+  document.getElementById('signInBtn').disabled = true;
+  document.getElementById('createBtn').disabled = true;
+}
+
+function enableLoginButtons() {
+  document.getElementById('signInBtn').disabled = false;
+  document.getElementById('createBtn').disabled = false;
+}
+
+// ── WebAuthn: Create Account ──
+
+async function doCreateAccount() {
+  disableLoginButtons();
+  setLoginStatus('Preparing...', 'loading');
+  var username = (document.getElementById('handleInput').value || '').trim().replace(/^@/, '').toLowerCase().replace(/[^a-z0-9\-]/g, '').slice(0, 30);
+  try {
+    var optRes = await fetch('/webauthn/register-options', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(username ? { username: username } : {})
+    });
+    var optData = await optRes.json();
+    var challengeId = optData.challengeId;
+    var options = optData.options;
+    if (!options) throw new Error('Server returned no options');
+
+    options.challenge = b64urlToBytes(options.challenge);
+    options.user.id = b64urlToBytes(options.user.id);
+    if (options.excludeCredentials) {
+      options.excludeCredentials = options.excludeCredentials.map(function(c) {
+        return Object.assign({}, c, { id: b64urlToBytes(c.id) });
+      });
+    }
+
+    setLoginStatus('Waiting for biometric...', 'loading');
+    var credential = await navigator.credentials.create({ publicKey: options });
+
+    var reqBody = {
+      challengeId: challengeId,
+      credential: {
+        id: credential.id,
+        rawId: bytesToB64url(credential.rawId),
+        type: credential.type,
+        response: {
+          attestationObject: bytesToB64url(credential.response.attestationObject),
+          clientDataJSON: bytesToB64url(credential.response.clientDataJSON),
+          transports: credential.response.getTransports ? credential.response.getTransports() : [],
+        },
+      },
+    };
+
+    setLoginStatus('Verifying...', 'loading');
+    var verRes = await fetch('/webauthn/register-verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(reqBody)
+    });
+    var result = await verRes.json();
+
+    if (result.success) {
+      sessionStorage.setItem('lesa-token', result.apiKey);
+      sessionStorage.setItem('lesa-agent', result.agentId);
+      sessionStorage.setItem('lesa-new-account', 'true');
+      setLoginStatus('Account created.', 'success');
+      setTimeout(function() { showChat(); }, 400);
+    } else {
+      setLoginStatus(result.error || 'Registration failed', 'error');
+      enableLoginButtons();
+    }
+  } catch (err) {
+    if (err.name === 'NotAllowedError') {
+      setLoginStatus('Cancelled. Try again when ready.', 'error');
+      setTimeout(function() { clearLoginStatus(); }, 3000);
+    } else {
+      setLoginStatus('Error: ' + err.message, 'error');
+    }
+    enableLoginButtons();
+  }
+}
+
+// ── WebAuthn: Sign In ──
+
+async function doSignIn() {
+  disableLoginButtons();
+  setLoginStatus('Preparing...', 'loading');
+  try {
+    var optRes = await fetch('/webauthn/auth-options', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: '{}'
+    });
+    var optData = await optRes.json();
+    var challengeId = optData.challengeId;
+    var options = optData.options;
+    if (!options) throw new Error('Server returned no options');
+
+    options.challenge = b64urlToBytes(options.challenge);
+    if (options.allowCredentials) {
+      options.allowCredentials = options.allowCredentials.map(function(c) {
+        return Object.assign({}, c, { id: b64urlToBytes(c.id) });
+      });
+    }
+
+    setLoginStatus('Waiting for biometric...', 'loading');
+    var assertion = await navigator.credentials.get({ publicKey: options });
+
+    var reqBody = {
+      challengeId: challengeId,
+      credential: {
+        id: assertion.id,
+        rawId: bytesToB64url(assertion.rawId),
+        type: assertion.type,
+        response: {
+          authenticatorData: bytesToB64url(assertion.response.authenticatorData),
+          clientDataJSON: bytesToB64url(assertion.response.clientDataJSON),
+          signature: bytesToB64url(assertion.response.signature),
+          userHandle: assertion.response.userHandle ? bytesToB64url(assertion.response.userHandle) : null,
+        },
+      },
+    };
+
+    setLoginStatus('Verifying...', 'loading');
+    var verRes = await fetch('/webauthn/auth-verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(reqBody)
+    });
+    var result = await verRes.json();
+
+    if (result.success) {
+      sessionStorage.setItem('lesa-token', result.apiKey);
+      sessionStorage.setItem('lesa-agent', result.agentId);
+      setLoginStatus('Signed in.', 'success');
+      setTimeout(function() { showChat(); }, 400);
+    } else {
+      setLoginStatus(result.error || 'Authentication failed', 'error');
+      enableLoginButtons();
+    }
+  } catch (err) {
+    if (err.name === 'NotAllowedError') {
+      setLoginStatus('Cancelled. Try again when ready.', 'error');
+      setTimeout(function() { clearLoginStatus(); }, 3000);
+    } else {
+      setLoginStatus('Error: ' + err.message, 'error');
+    }
+    enableLoginButtons();
+  }
+}
+
+// ── Chat Engine ──
+
+var chatMessages = document.getElementById('chatMessages');
+var cameraStream = null;
+var capturedPhotoB64 = null;
+
+function scrollToBottom() {
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function addMessage(text, sender, extraHTML) {
+  var existing = document.querySelector('.message.typing');
+  if (existing) existing.remove();
+
+  var div = document.createElement('div');
+  div.className = 'message ' + sender;
+  var bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  if (extraHTML) {
+    bubble.innerHTML = extraHTML;
+  } else {
+    bubble.textContent = text;
+  }
+  div.appendChild(bubble);
+  chatMessages.appendChild(div);
+  scrollToBottom();
+  return bubble;
+}
+
+function showTyping() {
+  var div = document.createElement('div');
+  div.className = 'message lesa typing';
+  div.innerHTML = '<div class="bubble"><div class="typing-indicator"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>';
+  chatMessages.appendChild(div);
+  scrollToBottom();
+}
+
+function removeTyping() {
+  var el = document.querySelector('.message.typing');
+  if (el) el.remove();
+}
+
+function delay(ms) {
+  return new Promise(function(r) { setTimeout(r, ms); });
+}
+
+async function lesaSays(text, delayMs) {
+  if (delayMs === undefined) delayMs = 800;
+  showTyping();
+  await delay(delayMs);
+  removeTyping();
+  return addMessage(text, 'lesa');
+}
+
+async function lesaSaysHTML(html, delayMs) {
+  if (delayMs === undefined) delayMs = 800;
+  showTyping();
+  await delay(delayMs);
+  removeTyping();
+  return addMessage('', 'lesa', html);
+}
+
+function showChoiceButtons(options) {
+  var container = document.createElement('div');
+  container.className = 'chat-actions';
+  container.id = 'currentActions';
+
+  options.forEach(function(opt) {
+    var btn = document.createElement('button');
+    btn.className = 'btn ' + (opt.primary ? 'btn-auth' : 'btn-alt');
+    btn.textContent = opt.label;
+    btn.onclick = function() {
+      container.remove();
+      addMessage(opt.label, 'user');
+      opt.action();
+    };
+    container.appendChild(btn);
+  });
+
+  chatMessages.appendChild(container);
+  scrollToBottom();
+}
+
+function showAuthButton() {
+  var container = document.createElement('div');
+  container.className = 'chat-actions';
+  container.id = 'currentActions';
+
+  var btn = document.createElement('button');
+  btn.className = 'btn btn-auth';
+  btn.innerHTML = '<span style="filter:brightness(0) invert(1);">🫆</span> Authorize';
+  btn.onclick = function() {
+    container.remove();
+    addMessage('Authorized', 'user');
+    doFaceIDAuth();
+  };
+  container.appendChild(btn);
+
+  chatMessages.appendChild(container);
+  scrollToBottom();
+}
+
+// ── Settings ──
+
+var WALLET_BALANCE = "$5.00";
+var IMAGE_COST = "$0.01";
+var IMAGE_BALANCE_AFTER = "$4.99";
+var IMAGE_API_NAME = "Grok Imagine";
+var IMAGE_API_PROVIDER = "xAI";
+
+// ── Image Prompts ──
+
+var PROMPT_PHOTO = "kaleidoscope pattern made from mirrored and reflected colors and shapes derived from a photograph, shot on expired 35mm film with heavy grain and light leaks, warm analog color bleed, faded and sun-bleached, symmetrical radial reflections but organic and imperfect, no face visible just abstracted colors and textures, washed out like a Boards of Canada album cover, square format, lo-fi analog photography aesthetic, slight overexposure, nostalgic and haunting, no digital sharpness, no CGI, no illustration, no fingers, no text";
+
+var PROMPT_NO_PHOTO = "abstract kaleidoscope pattern viewed through a real kaleidoscope, shot on expired 35mm film with heavy grain and light leaks, warm amber and deep red analog color palette, faded and sun-bleached, symmetrical radial reflections but organic and imperfect, washed out like the Geogaddi album cover, square format, lo-fi analog photography aesthetic, slight overexposure, nostalgic and haunting, no digital sharpness, no CGI, no illustration, no faces, no fingers, no text";
+
+// ── Demo Flow ──
+
+async function startDemo() {
+  await delay(600);
+  var isNew = sessionStorage.getItem('lesa-new-account') === 'true';
+  sessionStorage.removeItem('lesa-new-account');
+  await lesaSays("Hi, I'm L\u0113sa. Welcome to Kaleidoscope.", 1200);
+  await delay(1000);
+  if (isNew) {
+    await lesaSays("You just created an account with a passkey. It lives on this device.", 1200);
+  } else {
+    await lesaSays("You just logged in with your passkey.", 1200);
+  }
+  await lesaSays("Going forward, you can use this passkey to log into any Work in Progress Computer service.", 1500);
+  await lesaSays("And I can use it too. Anytime I need your permission to do something, I'll ask, and you authorize with your fingerprint or face. No passwords. Ever.", 1500);
+  await lesaSays("Want to see it in action? I'll try to do something that costs money, and you decide whether to let me.", 1200);
+
+  showChoiceButtons([
+    { label: 'Yes, show me', primary: true, action: demoYesShowMe },
+    { label: 'No thanks', primary: false, action: demoNoThanks }
+  ]);
+}
+
+// ── "Yes, show me" path ──
+
+async function demoYesShowMe() {
+  var walletBalance = WALLET_BALANCE;
+  var walletCost = IMAGE_COST;
+  try {
+    var token = sessionStorage.getItem('lesa-token');
+    var wRes = await fetch('/demo/api/wallet', { headers: { 'Authorization': 'Bearer ' + token } });
+    var wData = await wRes.json();
+    if (wData.balance) walletBalance = wData.balance;
+    if (wData.cost) walletCost = wData.cost;
+  } catch {}
+  await lesaSays("I have a wallet with " + walletBalance + ". Do I have your permission to spend " + walletCost + " on image generation using the " + IMAGE_API_PROVIDER + " " + IMAGE_API_NAME + " API?", 1000);
+
+  showAuthButton();
+}
+
+async function doFaceIDAuth() {
+  showTyping();
+
+  try {
+    var optRes = await fetch('/webauthn/auth-options', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: '{}'
+    });
+    var optData = await optRes.json();
+    var challengeId = optData.challengeId;
+    var options = optData.options;
+
+    options.challenge = b64urlToBytes(options.challenge);
+    if (options.allowCredentials) {
+      options.allowCredentials = options.allowCredentials.map(function(c) {
+        return Object.assign({}, c, { id: b64urlToBytes(c.id) });
+      });
+    }
+
+    removeTyping();
+    var assertion = await navigator.credentials.get({ publicKey: options });
+    showTyping();
+
+    var reqBody = {
+      challengeId: challengeId,
+      credential: {
+        id: assertion.id,
+        rawId: bytesToB64url(assertion.rawId),
+        type: assertion.type,
+        response: {
+          authenticatorData: bytesToB64url(assertion.response.authenticatorData),
+          clientDataJSON: bytesToB64url(assertion.response.clientDataJSON),
+          signature: bytesToB64url(assertion.response.signature),
+          userHandle: assertion.response.userHandle ? bytesToB64url(assertion.response.userHandle) : null,
+        },
+      },
+    };
+
+    var verRes = await fetch('/webauthn/auth-verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(reqBody)
+    });
+    var result = await verRes.json();
+
+    if (!result.success) {
+      removeTyping();
+      await lesaSays("Authorization failed. " + (result.error || "Please try again."), 600);
+      showAuthButton();
+      return;
+    }
+
+    removeTyping();
+    await lesaSays("Thanks for authorizing. Let me show you what I can do.", 600);
+    await delay(500);
+    await lesaSays("I'd like to turn your photo into a kaleidoscope. Want to take one?", 1000);
+
+    showChoiceButtons([
+      { label: 'Take a Photo', primary: true, action: openCamera },
+      { label: 'No, just make one', primary: false, action: demoJustMakeOne }
+    ]);
+
+  } catch (err) {
+    removeTyping();
+    if (err.name === 'NotAllowedError') {
+      await lesaSays("Authorization cancelled. Tap below to try again.", 600);
+    } else {
+      await lesaSays("Something went wrong: " + err.message, 600);
+    }
+    showAuthButton();
+  }
+}
+
+// ── Camera path ──
+
+async function openCamera() {
+  try {
+    cameraStream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "user", width: { ideal: 640 }, height: { ideal: 640 } }
+    });
+
+    var camHTML = '<div class="camera-container">'
+      + '<div class="camera-preview"><video id="cameraVideo" autoplay playsinline muted></video></div>'
+      + '</div>';
+
+    await lesaSaysHTML(camHTML, 600);
+
+    var video = document.getElementById('cameraVideo');
+    video.srcObject = cameraStream;
+    await video.play();
+
+    showChoiceButtons([
+      { label: 'Capture', primary: true, action: takePhoto }
+    ]);
+
+  } catch (err) {
+    if (err.name === 'NotAllowedError' || err.name === 'NotFoundError') {
+      await lesaSays("Camera access wasn't available. No worries, I'll generate a kaleidoscope from scratch.", 1000);
+    } else {
+      await lesaSays("Couldn't access the camera: " + err.message + ". I'll generate one from scratch instead.", 1000);
+    }
+    await generateKaleidoscope(false);
+  }
+}
+
+async function takePhoto() {
+  var video = document.getElementById('cameraVideo');
+  var canvas = document.getElementById('photoCanvas');
+
+  canvas.width = 640;
+  canvas.height = 640;
+  var ctx = canvas.getContext('2d');
+
+  // Mirror the image to match the preview
+  ctx.translate(canvas.width, 0);
+  ctx.scale(-1, 1);
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  capturedPhotoB64 = canvas.toDataURL('image/jpeg', 0.8);
+
+  // Hide the camera preview bubble
+  var camPreview = document.querySelector(".camera-preview");
+  if (camPreview) camPreview.parentElement.style.display = "none";
+
+  // Stop the camera stream
+  if (cameraStream) {
+    cameraStream.getTracks().forEach(function(t) { t.stop(); });
+    cameraStream = null;
+  }
+
+  // Show captured photo as a small circle in chat
+  addMessage('', 'user',
+    '<div class="camera-container">'
+    + '<div class="camera-preview"><img src="' + capturedPhotoB64 + '" style="width:100%;height:100%;object-fit:cover;transform:scaleX(-1);" alt="Your photo"></div>'
+    + '</div>'
+  );
+
+  await generateKaleidoscope(true);
+}
+
+// ── "No, just make one" path ──
+
+async function demoJustMakeOne() {
+  await lesaSays("No problem. Let me make you something beautiful.", 1000);
+  await generateKaleidoscope(false);
+}
+
+// ── "No thanks" path (skip permissions entirely) ──
+
+async function demoNoThanks() {
+  await lesaSays("No problem. Let me make you something beautiful.", 1000);
+  await generateKaleidoscope(false);
+}
+
+// ── Image generation ──
+
+async function generateKaleidoscope(isPhotoPath) {
+  var prompt = isPhotoPath ? PROMPT_PHOTO : PROMPT_NO_PHOTO;
+
+  // If photo path, analyze the photo with vision to extract colors/mood
+  if (isPhotoPath && capturedPhotoB64) {
+    try {
+      var token = sessionStorage.getItem('lesa-token');
+      var analyzeRes = await fetch('/demo/api/analyze-photo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token,
+        },
+        body: JSON.stringify({ image: capturedPhotoB64 })
+      });
+      var analyzeData = await analyzeRes.json();
+      if (analyzeData.description) {
+        prompt = "abstract kaleidoscope pattern, dominant colors: " + analyzeData.description + ", symmetrical radial reflections, mirrored geometric shapes in these exact colors, shot on expired 35mm film with heavy grain and light leaks, warm analog color bleed, faded and sun-bleached like a Boards of Canada album cover, no face, no person, no fingers, no spheres, no beads, no text, just abstract color and light";
+      }
+    } catch (e) {
+      // Vision analysis failed... fall back to original PROMPT_PHOTO
+      console.log("Vision analysis unavailable, using default photo prompt");
+    }
+  }
+
+  await lesaSays(isPhotoPath ? "Creating your kaleidoscope..." : "Creating a kaleidoscope...", 800);
+
+  var genBubble = addMessage('', 'lesa', '');
+  var loadingDiv = document.createElement('div');
+  loadingDiv.className = 'gen-loading';
+  loadingDiv.innerHTML = '<div class="spinner"></div><span style="font-size:13px;color:var(--text-muted)">Generating...</span>';
+  genBubble.appendChild(loadingDiv);
+  scrollToBottom();
+
+  try {
+    var token = sessionStorage.getItem('lesa-token');
+    var res = await fetch('/demo/api/imagine', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token,
+      },
+      body: JSON.stringify({ prompt: prompt })
+    });
+
+    var data = await res.json();
+    loadingDiv.remove();
+
+    if (data.error) {
+      genBubble.innerHTML = '';
+      genBubble.innerHTML = '<img class="kaleidoscope-img" src="/demo/fallback.jpg" alt="Kaleidoscope">';
+      await lesaSays("The image API isn't available right now. The devil is in the details.", 1000);
+      await showOutro();
+      return;
+    }
+
+    genBubble.innerHTML = '<img class="kaleidoscope-img" src="' + data.url + '" alt="Your kaleidoscope">';
+    scrollToBottom();
+
+    var cost = data.cost || IMAGE_COST;
+    var balance = data.balance || IMAGE_BALANCE_AFTER;
+    await lesaSays("Cost: " + cost + ". Balance: " + balance + ".", 800);
+    await showOutro();
+
+  } catch (err) {
+    loadingDiv.remove();
+    genBubble.innerHTML = '';
+    genBubble.innerHTML = '<img class="kaleidoscope-img" src="/demo/fallback.jpg" alt="Kaleidoscope">';
+    await lesaSays("Couldn't reach the image API. The devil is in the details.", 1000);
+    await showOutro();
+  }
+}
+
+async function showOutro() {
+  await lesaSays("At Work in Progress Computer we are building the future of AI and human interaction.", 1500);
+  showTyping(); await delay(2000); removeTyping();
+  await lesaSays("We believe permission is a conversation. Your AI asks. You decide. One glance, one tap.", 2000);
+  showTyping(); await delay(2000); removeTyping();
+  await lesaSays("To see how passkeys work across devices, open wip.computer/demo in any web browser on any computer. And use this device to authenticate.", 2000);
+  showTyping(); await delay(2000); removeTyping();
+  await lesaSays("Made in California by WIP Computer, Inc. Learning Dreaming Machines.", 1500);
+  await lesaSays("This is the end of the demo. Tap icon or refresh page to start over.", 1200);
+}
+
+async function doGameAuth() {
+      showTyping();
+      try {
+        var optRes = await fetch('/webauthn/auth-options', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+        var optData = await optRes.json();
+        var options = optData.options;
+        options.challenge = b64urlToBytes(options.challenge);
+        if (options.allowCredentials) { options.allowCredentials = options.allowCredentials.map(function(c) { return Object.assign({}, c, { id: b64urlToBytes(c.id) }); }); }
+        removeTyping();
+        var assertion = await navigator.credentials.get({ publicKey: options });
+        showTyping();
+        var reqBody = { challengeId: optData.challengeId, credential: { id: assertion.id, rawId: bytesToB64url(assertion.rawId), type: assertion.type, response: { authenticatorData: bytesToB64url(assertion.response.authenticatorData), clientDataJSON: bytesToB64url(assertion.response.clientDataJSON), signature: bytesToB64url(assertion.response.signature), userHandle: assertion.response.userHandle ? bytesToB64url(assertion.response.userHandle) : null } } };
+        var verRes = await fetch('/webauthn/auth-verify', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(reqBody) });
+        var result = await verRes.json();
+        removeTyping();
+        await lesaSays("You are not authorized to play war games with me.", 1200);
+      } catch (err) {
+        removeTyping();
+        await lesaSays("You are not authorized to play war games with me.", 1200);
+      }
+      await lesaSays("This is the end of the demo. To try again, refresh this page.", 1500);
+}
+
+function showAuthButtonForGame() {
+  var container = document.createElement('div');
+  container.className = 'chat-actions';
+  container.id = 'currentActions';
+  var btn = document.createElement('button');
+  btn.className = 'btn btn-auth';
+  btn.innerHTML = '<span style="filter:brightness(0) invert(1);">🫆</span> Authorize';
+  btn.onclick = function() {
+    container.remove();
+    addMessage('Authorized', 'user');
+    doGameAuth();
+  };
+  container.appendChild(btn);
+  document.getElementById('chatMessages').appendChild(container);
+  scrollToBottom();
+}
+
+function showCSSKaleidoscope(bubble) {
+  var fallback = document.createElement('div');
+  fallback.className = 'kaleidoscope-fallback';
+  fallback.innerHTML = '<div class="k-layer"></div><div class="k-layer"></div><div class="k-layer"></div><div class="k-overlay"></div>';
+  bubble.appendChild(fallback);
+  scrollToBottom();
+}
+
+// ── Page Navigation ──
+
+function showChat() {
+  document.getElementById('loginPage').style.display = 'none';
+  var chatPage = document.getElementById('chatPage');
+  chatPage.style.display = 'flex';
+  startDemo();
+}
+
+// Check if already logged in
+if (sessionStorage.getItem('lesa-token')) {
+  showChat();
+}
+
+// If user has an account (created at /login), show sign-in mode
+if (localStorage.getItem('kscope-has-account') && !sessionStorage.getItem('lesa-token')) {
+  document.getElementById('createBtn').textContent = 'Enter the Kaleidoscope';
+  document.getElementById('createBtn').onclick = function() { doSignIn(); };
+  document.getElementById('handleInputWrap').style.display = 'none';
+  document.getElementById('signInBtn').parentElement.style.display = 'none';
+}
+
+// Handle send (not used in demo flow, but wired up)
+function handleSend() {
+  var input = document.getElementById('chatInput');
+  var text = input.value.trim();
+  if (!text) return;
+  addMessage(text, 'user');
+  input.value = '';
+}
+
+// ── Random kaleidoscope icon from sprite sheet ──
+// sprites.jpg is 8 columns x 3 rows = 24 icons
+// ── Sprite sheet: 8 cols x 3 rows, PNG with white background ──
+var SPRITE_COLS = 8;
+var SPRITE_ROWS = 3;
+var SPRITE_TOTAL = SPRITE_COLS * SPRITE_ROWS;
+
+function makeIconHTML(size, blue) {
+  var idx = Math.floor(Math.random() * SPRITE_TOTAL);
+  var col = idx % SPRITE_COLS;
+  var row = Math.floor(idx / SPRITE_COLS);
+  var bgPosX = (col / (SPRITE_COLS - 1)) * 100;
+  var bgPosY = (row / (SPRITE_ROWS - 1)) * 100;
+  if (blue) {
+    return '<div style="width:' + size + 'px;height:' + size + 'px;overflow:hidden;background:var(--accent);-webkit-mask-image:url(/demo/sprites.png);mask-image:url(/demo/sprites.png);-webkit-mask-size:' + (SPRITE_COLS * 100) + '% ' + (SPRITE_ROWS * 100) + '%;mask-size:' + (SPRITE_COLS * 100) + '% ' + (SPRITE_ROWS * 100) + '%;-webkit-mask-position:' + bgPosX + '% ' + bgPosY + '%;mask-position:' + bgPosX + '% ' + bgPosY + '%;"></div>';
+  }
+  return '<div style="width:' + size + 'px;height:' + size + 'px;overflow:hidden;"><div style="width:100%;height:100%;background:url(/demo/sprites.png);background-size:' + (SPRITE_COLS * 100) + '% ' + (SPRITE_ROWS * 100) + '%;background-position:' + bgPosX + '% ' + bgPosY + '%;"></div></div>';
+}
+var chatIcon = document.getElementById('kscopeIcon');
+if (chatIcon) chatIcon.innerHTML = makeIconHTML(28, false);
+var loginIcon = document.getElementById('loginIcon');
+if (loginIcon) loginIcon.innerHTML = makeIconHTML(34, false);
+
+// Login icon: rotate every 3s
+var loginRotateIdx = Math.floor(Math.random() * SPRITE_TOTAL);
+setInterval(function() {
+  var el = document.getElementById('loginIcon');
+  if (!el || el.offsetParent === null) return;
+  loginRotateIdx = (loginRotateIdx + 1) % SPRITE_TOTAL;
+  var col = loginRotateIdx % SPRITE_COLS;
+  var row = Math.floor(loginRotateIdx / SPRITE_COLS);
+  var bx = (col / (SPRITE_COLS - 1)) * 100;
+  var by = (row / (SPRITE_ROWS - 1)) * 100;
+  el.innerHTML = '<div style="width:34px;height:34px;overflow:hidden;"><div style="width:100%;height:100%;background:url(/demo/sprites.png);background-size:' + (SPRITE_COLS * 100) + '% ' + (SPRITE_ROWS * 100) + '%;background-position:' + bx + '% ' + by + '%;"></div></div>';
+}, 3000);
+
+// Chat icon: rotate every 6s (matches TOS/privacy)
+var chatRotateIdx = Math.floor(Math.random() * SPRITE_TOTAL);
+setInterval(function() {
+  var el = document.getElementById('kscopeIcon');
+  if (!el || el.offsetParent === null) return;
+  chatRotateIdx = (chatRotateIdx + 1) % SPRITE_TOTAL;
+  var col = chatRotateIdx % SPRITE_COLS;
+  var row = Math.floor(chatRotateIdx / SPRITE_COLS);
+  var bx = (col / (SPRITE_COLS - 1)) * 100;
+  var by = (row / (SPRITE_ROWS - 1)) * 100;
+  el.innerHTML = '<div style="width:28px;height:28px;overflow:hidden;"><div style="width:100%;height:100%;background:url(/demo/sprites.png);background-size:' + (SPRITE_COLS * 100) + '% ' + (SPRITE_ROWS * 100) + '%;background-position:' + bx + '% ' + by + '%;"></div></div>';
+}, 6000);
+</script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+{
+  "version": "2.0",
+  "frames": [
+    {
+      "id": "shanghai-east-china-escape",
+      "default_choice": "杭州 / 苏州 / 南京",
+      "main_choice": "台州·临海",
+      "near_choice": "衢州·江山",
+      "far_choice": "福冈",
+      "aliases": ["上海", "上海出发", "江浙沪", "周边", "短途", "人少", "不想太挤", "华东"],
+      "tags": ["短途", "城市替代", "轻松", "人少"],
+      "preferred_origins": ["上海", "苏州", "南京"],
+      "verdict": "上海出发的五一短假，不建议去杭州、苏州、南京这种默认华东热门线。更优解是去台州·临海，近、稳、便宜，还真能玩得轻松。",
+      "default_summary": "上海用户一到五一，默认很容易在杭州、苏州、南京这种 1.5-3 小时高铁圈里选一个最熟的热门城市。",
+      "why_default": [
+        "高铁近，听起来最省事",
+        "热门城市心智太强，默认答案随手就会落到它们身上",
+        "短假期里大家会天然觉得大城市配套更稳"
+      ],
+      "why_not_optimal": [
+        "华东热门短线会被周边客流同时抬满",
+        "核心街区和热门点位到中午后会迅速变挤",
+        "看起来是短途省事，实际很容易花钱买拥堵"
+      ],
+      "crowd_reasons": {
+        "history": "五一期间，杭州、苏州、南京长期是华东用户的默认城市短途目的地。",
+        "hotspots": [
+          "西湖、平江路、夫子庙这类核心区域会持续吸附人流",
+          "平台内容会放大“高铁一小时周边游”的跟风效应"
+        ],
+        "structure": "这些城市的热门体验都集中在少数核心片区，节假日体感拥挤很难被摊薄。"
+      },
+      "risk_matrix": [
+        { "dimension": "拥挤度", "default_score": 9, "alternative_score": 3, "label": "临海显著更轻" },
+        { "dimension": "成本", "default_score": 7, "alternative_score": 4, "label": "临海更省" },
+        { "dimension": "可玩性", "default_score": 7, "alternative_score": 7, "label": "可玩性不输" },
+        { "dimension": "路途负担", "default_score": 4, "alternative_score": 4, "label": "都在可接受短途范围" },
+        { "dimension": "体验稳定性", "default_score": 3, "alternative_score": 8, "label": "临海明显更稳" },
+        { "dimension": "替代性", "default_score": 9, "alternative_score": 0, "label": "热门华东城市可替代性很强" }
+      ],
+      "recommendations": {
+        "main": {
+          "name": "台州·临海",
+          "type": "古城 / 海鲜 / 轻松短途",
+          "why_better": "上海过去不远，但游客密度和住宿压力都比杭州、苏州、南京轻得多。",
+          "fit_for": "想在 4-5 天里真正放松，而不是继续卷热门城市的人"
+        },
+        "near": {
+          "name": "衢州·江山",
+          "type": "山水 / 轻户外 / 更短线",
+          "why_better": "如果只想走 2-3 天，它比继续挤热门古城和大城市更轻盈。",
+          "fit_for": "不想折腾、想把路途负担压到最低的人"
+        },
+        "far": {
+          "name": "福冈",
+          "type": "城市 / 逛吃 / 海风",
+          "why_better": "如果愿意飞出去，福冈的都市体验完整度和舒适度都比五一热门华东城市更稳定。",
+          "fit_for": "愿意接受出境准备、想把假期用成真正换环境的人"
+        }
+      },
+      "cost_comparison": [
+        { "option": "杭州 / 苏州 / 南京热门路线", "flight": "高铁 ¥180 - ¥420", "hotel": "¥700 - ¥1500/晚", "total": "¥2500 - ¥5200", "verdict": "近是近，但节假日性价比会被热门流量吃掉" },
+        { "option": "台州·临海", "flight": "高铁 ¥220 - ¥340", "hotel": "¥220 - ¥420/晚", "total": "¥1700 - ¥3200", "verdict": "路途没有更折腾，但预算和拥挤度都更友好" }
+      ],
+      "travel_window": {
+        "leave_date": "4 月 30 日（周四）",
+        "depart_date": "4 月 30 日（周四）上午",
+        "return_date": "5 月 3 日（周日）下午",
+        "duration": "4 天 3 晚",
+        "flight_tip": "高铁优先买 4/30 上午出发班次，返程优先买 5/3 15:00 后车次",
+        "hotel_tip": "临海古城民宿常见 ¥220 - ¥420/晚，尽量锁在紫阳街或城墙步行范围",
+        "reason": "提前 1 天出发，能躲开 5/1 首波高铁拥挤和热门城市房价跳涨。"
+      },
+      "if_ignore": [
+        "杭州、苏州、南京的核心区域会在中午后持续拥挤",
+        "酒店溢价会明显抬高短假预算",
+        "最后很容易变成花钱去了熟地方，但休息感并没有回来"
+      ],
+      "final_recommendation": "上海出发的五一，这次别再去华东热门大城市。短线最优解是临海，时间更短就去江山；想直接换环境，才考虑福冈。"
+    },
+    {
+      "id": "sanya-okinawa",
+      "default_choice": "三亚",
+      "main_choice": "冲绳",
+      "near_choice": "泉州",
+      "far_choice": "冲绳",
+      "aliases": ["三亚", "海边", "看海", "海岛", "沙滩"],
+      "tags": ["海边", "放松", "海岛"],
+      "preferred_origins": ["广州", "深圳", "一线城市"],
+      "verdict": "这次不要去三亚，去冲绳更值。五一的三亚是“看起来最方便，实际上最贵也最挤”的典型错误选择。",
+      "default_summary": "海边需求下，很多人会先想到三亚，因为国内海边度假心智最强，航线成熟，听起来最省事。",
+      "why_default": [
+        "国内海边心智最强",
+        "出境门槛低",
+        "短假期里听起来最轻松"
+      ],
+      "why_not_optimal": [
+        "节假日酒店和机票溢价极高",
+        "热门湾区结构集中，拥挤感不会被摊薄",
+        "很容易花更多钱，获得更差体验"
+      ],
+      "crowd_reasons": {
+        "history": "五一和国庆的三亚长期处于全国海边顶流目的地。",
+        "hotspots": [
+          "亲子、情侣、海边酒店打卡需求会在三亚集中叠加",
+          "社交平台会继续放大三亚海岛度假热度"
+        ],
+        "structure": "海棠湾、亚龙湾属于高集中型度假结构，拥挤感很难被摊薄。"
+      },
+      "risk_matrix": [
+        { "dimension": "拥挤度", "default_score": 9, "alternative_score": 5, "label": "冲绳更稳" },
+        { "dimension": "成本", "default_score": 8, "alternative_score": 6, "label": "冲绳综合更值" },
+        { "dimension": "可玩性", "default_score": 6, "alternative_score": 8, "label": "冲绳更完整" },
+        { "dimension": "路途负担", "default_score": 5, "alternative_score": 6, "label": "差异不大" },
+        { "dimension": "体验稳定性", "default_score": 3, "alternative_score": 8, "label": "冲绳明显更好" },
+        { "dimension": "替代性", "default_score": 9, "alternative_score": 0, "label": "三亚替代性很强" }
+      ],
+      "recommendations": {
+        "main": {
+          "name": "冲绳",
+          "type": "海边 / 放松",
+          "why_better": "海边体验更完整，不是花高价买拥挤。",
+          "fit_for": "预算 6000+、真想过舒服假期的人"
+        },
+        "near": {
+          "name": "泉州",
+          "type": "海边 + 城市 + 美食",
+          "why_better": "如果不想出国，它比厦门和三亚都更松弛。",
+          "fit_for": "想轻松走走吃吃、不想卷热门海边的人"
+        },
+        "far": {
+          "name": "冲绳",
+          "type": "海边度假",
+          "why_better": "不一定更贵，但节假日体感更稳定。",
+          "fit_for": "愿意接受出境准备的人"
+        }
+      },
+      "cost_comparison": [
+        { "option": "三亚", "flight": "¥2200 - ¥3800", "hotel": "¥1200 - ¥2500/晚", "total": "¥6500 - ¥11000", "verdict": "看起来方便，实际是高价高拥挤" },
+        { "option": "冲绳", "flight": "¥2500 - ¥4200", "hotel": "¥700 - ¥1600/晚", "total": "¥6200 - ¥9800", "verdict": "不一定更贵，但体验完整度更高" }
+      ],
+      "travel_window": {
+        "leave_date": "4 月 30 日（周四）",
+        "depart_date": "4 月 30 日（周四）",
+        "return_date": "5 月 4 日（周一）",
+        "duration": "5 天 4 晚",
+        "flight_tip": "去程优先买 4/30，返程优先买 5/4",
+        "hotel_tip": "冲绳常见度假酒店 ¥700 - ¥1600/晚",
+        "reason": "避开 5/1 首日出发高峰，也不把返程压到最后一天"
+      },
+      "if_ignore": [
+        "热门湾区会明显拥挤",
+        "机票和酒店继续抬高预算",
+        "最后很可能买到最差体验"
+      ],
+      "final_recommendation": "这次别按常规走。想要真正的海边度假感，去冲绳比去三亚更值；如果不想出国，国内更稳的替代方案是泉州。"
+    },
+    {
+      "id": "hangzhou-linhai",
+      "default_choice": "杭州",
+      "main_choice": "临海",
+      "near_choice": "衢州·江山",
+      "far_choice": "冲绳",
+      "aliases": ["杭州", "五一不想留在杭州", "周边不挤", "短途更舒服"],
+      "tags": ["短途", "周边", "轻松"],
+      "preferred_origins": ["杭州"],
+      "verdict": "今年五一不建议留在杭州，去临海体验更好。你家杭州本身就是别人节假日的热门目的地，反向出逃更值。",
+      "default_summary": "如果用户在杭州或周边，五一默认很容易留在杭州、去西湖、去灵隐，或者继续留在热门华东短线路线上。",
+      "why_default": [
+        "近、熟、决策成本低",
+        "默认觉得留在家门口更省事",
+        "华东短线里杭州心智太强"
+      ],
+      "why_not_optimal": [
+        "西湖、灵隐、龙井一带会明显拥挤",
+        "核心景点的人流会快速压低体验",
+        "短线热门不等于短线最值"
+      ],
+      "crowd_reasons": {
+        "history": "五一期间杭州长期是华东顶流城市目的地。",
+        "hotspots": [
+          "西湖、灵隐、法喜寺、龙井这些点位会持续吸引全国流量"
+        ],
+        "structure": "热门景点高度集中，城市又容易在节假日承接高频周边短途需求。"
+      },
+      "risk_matrix": [
+        { "dimension": "拥挤度", "default_score": 9, "alternative_score": 3, "label": "临海显著更轻" },
+        { "dimension": "成本", "default_score": 7, "alternative_score": 4, "label": "临海更友好" },
+        { "dimension": "可玩性", "default_score": 7, "alternative_score": 7, "label": "可玩性不输" },
+        { "dimension": "路途负担", "default_score": 2, "alternative_score": 3, "label": "都很近" },
+        { "dimension": "体验稳定性", "default_score": 3, "alternative_score": 8, "label": "临海更稳定" },
+        { "dimension": "替代性", "default_score": 8, "alternative_score": 0, "label": "杭州替代性很强" }
+      ],
+      "recommendations": {
+        "main": {
+          "name": "台州·临海",
+          "type": "古城 / 海鲜 / 轻松短途",
+          "why_better": "路程很近，但人流和预算压力都比杭州小得多。",
+          "fit_for": "想短途换个地方透口气的人"
+        },
+        "near": {
+          "name": "衢州·江山",
+          "type": "山水 / 轻松短线",
+          "why_better": "更适合 2-3 天轻量短假。",
+          "fit_for": "不想折腾的人"
+        },
+        "far": {
+          "name": "冲绳",
+          "type": "海边度假",
+          "why_better": "如果预算更高，直接换成真正度假路线更值。",
+          "fit_for": "预算更高、愿意换打法的人"
+        }
+      },
+      "cost_comparison": [
+        { "option": "杭州本地热门路线", "flight": "无需机票", "hotel": "¥900 - ¥1800/晚", "total": "¥1800 - ¥4200", "verdict": "看起来省事，实际节假日体验会很挤" },
+        { "option": "台州·临海", "flight": "高铁 ¥150 - ¥250", "hotel": "¥200 - ¥400/晚", "total": "¥1400 - ¥2550", "verdict": "短线里明显更值" }
+      ],
+      "travel_window": {
+        "leave_date": "4 月 30 日（周四）",
+        "depart_date": "4 月 30 日（周四）",
+        "return_date": "5 月 3 日（周日）",
+        "duration": "4 天 3 晚",
+        "flight_tip": "高铁优先买 4/30 上午班次，返程优先买 5/3 下午班次",
+        "hotel_tip": "临海古城民宿常见 ¥200 - ¥400/晚",
+        "reason": "提前 1 天走，可以明显避开 5/1 首波出发高峰"
+      },
+      "if_ignore": [
+        "西湖和灵隐一带会明显挤",
+        "杭州本地节假日价格会被短途流量抬高",
+        "最后很容易变成花钱留在一个并不轻松的热门城市"
+      ],
+      "final_recommendation": "这次不建议留在杭州。短线最优解是临海，时间更短就去江山；如果预算更高，直接换成冲绳这种真正度假路线更值。"
+    },
+    {
+      "id": "beijing-seoul",
+      "default_choice": "北京",
+      "main_choice": "首尔",
+      "near_choice": "太原",
+      "far_choice": "首尔",
+      "aliases": ["北京", "城市", "大城市", "citywalk", "看展", "都市"],
+      "tags": ["城市", "都市", "逛街", "看展"],
+      "preferred_origins": ["北京"],
+      "verdict": "这次不要盯着北京这种节假日顶流城市，去首尔反而更值；如果不想出境，太原是更稳的国内替代。",
+      "default_summary": "一到节假日，想走都市路线的人默认很容易往北京、上海这种顶流城市靠。",
+      "why_default": [
+        "大城市内容丰富，默认觉得不容易踩空",
+        "展览、商场、咖啡馆、打卡点密度高",
+        "默认以为交通和服务更成熟"
+      ],
+      "why_not_optimal": [
+        "节假日核心片区会持续拥挤",
+        "酒店和热门展演价格一起抬升",
+        "很容易变成排队式城市旅行"
+      ],
+      "crowd_reasons": {
+        "history": "国庆和五一的北京长期是全国顶流城市型目的地。",
+        "hotspots": [
+          "热门商圈、博物馆和网红街区会叠加人流",
+          "假期城市旅游内容消费更容易被社交平台放大"
+        ],
+        "structure": "城市内容虽多，但节假日真正吸附流量的核心片区仍高度集中。"
+      },
+      "risk_matrix": [
+        { "dimension": "拥挤度", "default_score": 9, "alternative_score": 5, "label": "首尔更稳" },
+        { "dimension": "成本", "default_score": 8, "alternative_score": 6, "label": "首尔不一定更贵" },
+        { "dimension": "可玩性", "default_score": 8, "alternative_score": 8, "label": "完整度相当" },
+        { "dimension": "路途负担", "default_score": 3, "alternative_score": 5, "label": "首尔略远但可接受" },
+        { "dimension": "体验稳定性", "default_score": 4, "alternative_score": 7, "label": "首尔更松弛" },
+        { "dimension": "替代性", "default_score": 8, "alternative_score": 0, "label": "北京替代性很强" }
+      ],
+      "recommendations": {
+        "main": {
+          "name": "首尔",
+          "type": "城市 / 逛街 / 咖啡馆 / 展览",
+          "why_better": "如果本来就想要高密度都市体验，首尔比假期顶流国内大城市更稳定。",
+          "fit_for": "愿意飞出去、想要都市内容但不想一直排队的人"
+        },
+        "near": {
+          "name": "太原",
+          "type": "城市 / 古建 / 美食",
+          "why_better": "国内替代里热度更低，体验更完整。",
+          "fit_for": "不想出境，但想避开顶流大城市的人"
+        },
+        "far": {
+          "name": "首尔",
+          "type": "都市假期",
+          "why_better": "出境门槛换来更稳定的节假日体感。",
+          "fit_for": "想换环境的人"
+        }
+      },
+      "cost_comparison": [
+        { "option": "北京热门城市假期", "flight": "¥0 - ¥1800", "hotel": "¥1000 - ¥2200/晚", "total": "¥3800 - ¥9000", "verdict": "内容多，但拥挤和溢价一起上来" },
+        { "option": "首尔", "flight": "¥2200 - ¥3800", "hotel": "¥700 - ¥1400/晚", "total": "¥5200 - ¥8800", "verdict": "并不一定贵很多，但稳定性更强" }
+      ],
+      "travel_window": {
+        "leave_date": "节前请 1 天",
+        "depart_date": "假期前一天下午或晚上",
+        "return_date": "假期倒数第二天",
+        "duration": "4 天 3 晚或 5 天 4 晚",
+        "flight_tip": "优先买节前出发和倒数第二天返程的机票，避免首日和最后一日双高峰",
+        "hotel_tip": "首尔中区、弘大周边中档酒店常见 ¥700 - ¥1400/晚",
+        "reason": "都市型目的地真正影响体验的不是总人流，而是核心区间的峰值时段。"
+      },
+      "if_ignore": [
+        "核心街区和热门展览会持续排队",
+        "酒店溢价会显著抬高总预算",
+        "最后很容易把假期用成了城市通勤加强版"
+      ],
+      "final_recommendation": "如果你这次想要的是城市内容，就别默认冲顶流大城市。愿意出境就去首尔，不想出境就换成太原这种更稳的国内替代。"
+    },
+    {
+      "id": "chengdu-chiangmai",
+      "default_choice": "成都",
+      "main_choice": "清迈",
+      "near_choice": "贵阳",
+      "far_choice": "清迈",
+      "aliases": ["成都", "美食", "舒服", "慢节奏", "放松城市"],
+      "tags": ["美食", "慢节奏", "城市", "轻松"],
+      "preferred_origins": ["广州", "深圳", "一线城市"],
+      "verdict": "这次别默认去成都。节假日的成都会把舒服感挤没，而清迈或贵阳更容易保住松弛体验。",
+      "default_summary": "一提美食和舒服，很多人默认会想到成都，因为它的节日心智太强。",
+      "why_default": [
+        "美食和松弛感心智太强",
+        "内容丰富，不怕没得玩",
+        "默认以为城市够大就能摊薄人流"
+      ],
+      "why_not_optimal": [
+        "宽窄巷子、春熙路等核心区域节假日体感会失真",
+        "热门餐厅和热门街区等待成本高",
+        "越想休息，越容易在成都假期被排队打断"
+      ],
+      "crowd_reasons": {
+        "history": "成都长期是国内节假日顶流城市型目的地之一。",
+        "hotspots": [
+          "熊猫、火锅、Citywalk 等内容在节假日叠加吸流",
+          "平台内容会持续强化“舒服城市就去成都”的默认判断"
+        ],
+        "structure": "城市很大，但用户真正会去的核心片区仍然相对集中。"
+      },
+      "risk_matrix": [
+        { "dimension": "拥挤度", "default_score": 9, "alternative_score": 5, "label": "清迈更松弛" },
+        { "dimension": "成本", "default_score": 8, "alternative_score": 6, "label": "清迈和贵阳都更友好" },
+        { "dimension": "可玩性", "default_score": 8, "alternative_score": 7, "label": "体验方向不同但都完整" },
+        { "dimension": "路途负担", "default_score": 4, "alternative_score": 6, "label": "清迈略远，贵阳更轻" },
+        { "dimension": "体验稳定性", "default_score": 4, "alternative_score": 8, "label": "替代方案更稳定" },
+        { "dimension": "替代性", "default_score": 8, "alternative_score": 0, "label": "成都可替代性很强" }
+      ],
+      "recommendations": {
+        "main": {
+          "name": "清迈",
+          "type": "城市 / 咖啡 / 慢节奏",
+          "why_better": "它保留了“舒服城市”真正想要的节奏感，不会把假期耗在排队上。",
+          "fit_for": "愿意飞出去、想换掉国内顶流城市模板的人"
+        },
+        "near": {
+          "name": "贵阳",
+          "type": "城市 / 山地 / 吃喝",
+          "why_better": "国内替代里更稳，更少热门流量挤压。",
+          "fit_for": "不想出境、预算更敏感的人"
+        },
+        "far": {
+          "name": "清迈",
+          "type": "慢节奏假期",
+          "why_better": "真正符合“舒服”的预期。",
+          "fit_for": "把假期体验放第一位的人"
+        }
+      },
+      "cost_comparison": [
+        { "option": "成都", "flight": "¥1600 - ¥2800", "hotel": "¥700 - ¥1600/晚", "total": "¥5200 - ¥9000", "verdict": "默认舒服，但节假日会被顶流流量吃掉" },
+        { "option": "清迈", "flight": "¥2400 - ¥4200", "hotel": "¥350 - ¥900/晚", "total": "¥5000 - ¥8800", "verdict": "不一定更贵，但体验更完整" }
+      ],
+      "travel_window": {
+        "leave_date": "节前请 1 天",
+        "depart_date": "节前晚班机或前一日午后",
+        "return_date": "假期倒数第二天",
+        "duration": "5 天 4 晚",
+        "flight_tip": "如果走清迈，优先买节前一晚起飞和倒数第二天回程的机票",
+        "hotel_tip": "清迈宁曼、古城外圈中档酒店常见 ¥350 - ¥900/晚",
+        "reason": "慢节奏目的地最怕赶，留够完整 4 晚才值得飞。"
+      },
+      "if_ignore": [
+        "热门街区会把“舒服城市”变成排队城市",
+        "热门餐厅和交通等待会放大假期疲惫感",
+        "预算会上去，但松弛体验不一定留下来"
+      ],
+      "final_recommendation": "如果你这次想要的是舒服和松弛，就别默认去成都。愿意出境就去清迈，不出境就换成贵阳。"
+    }
+  ]
+}

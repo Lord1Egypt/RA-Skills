@@ -1,0 +1,21 @@
+{
+  "name": "agent-swarm",
+  "version": "0.1.0",
+  "description": "Agent 群体智能核心系统 - 实现真正的群体智能能力",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node test/swarm.test.js"
+  },
+  "keywords": [
+    "swarm",
+    "multi-agent",
+    "distributed",
+    "coordination",
+    "emergent-behavior"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

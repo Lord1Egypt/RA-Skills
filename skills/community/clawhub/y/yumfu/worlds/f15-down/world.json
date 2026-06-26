@@ -1,0 +1,322 @@
+{
+  "world_id": "f15-down",
+  "name": "F15 Down: Azure Peninsula War",
+  "name_zh": "F15坠落：蔚蓝半岛战争",
+  "genre": "modern_military_strategy",
+  "setting": "alternative_2026_middle_east",
+  "theme": "geopolitical_conflict",
+  "description": "A realistic modern military strategy game set in a fictionalized Middle East. Choose your faction and navigate the complex web of alliances, proxy wars, and moral dilemmas in a region on the brink of total war.",
+  "description_zh": "设定在虚构中东的现代军事策略游戏。选择你的阵营，在这个濒临全面战争的地区中，应对复杂的联盟关系、代理人战争和道德困境。",
+  "main_questline": {
+    "main_objective": "在90天战役窗口内，让自己的阵营在军事、外交、资源与舆论四条线上活下来，并决定这场半岛战争会走向停火、霸权还是全面失控。",
+    "current_major_tasks": [
+      "稳住前线、空域、补给线与政治后方",
+      "在特种行动、代理人冲突与公开战役之间做取舍",
+      "控制升级节奏，避免被国际孤立或内部政变反噬",
+      "围绕最终停火条件、区域霸权或全面战争升级做主线抉择"
+    ],
+    "major_story_threads": [
+      "刺杀事件引爆地区连锁反应",
+      "各阵营的联盟、代理人与能源路线重组",
+      "火线战果与国际舆论同时决定战局",
+      "战争终局取决于军力、谈判与社会承受力的平衡"
+    ],
+    "default_route_logic": "即使玩家在单次行动、局部反击或特殊作战里打得很投入，也要持续提醒：所有行动都服务于整场90天战役的胜负与升级控制。"
+  },
+  "key_figures": [
+    {
+      "name": "Viper Strike planners",
+      "role": "war trigger bloc",
+      "drive": "use shock operations to seize initiative",
+      "ties": [
+        "initial_event",
+        "air campaign",
+        "proxy escalation"
+      ]
+    },
+    {
+      "name": "regional hardliners",
+      "role": "escalation faction",
+      "drive": "turn crisis into total strategic advantage",
+      "ties": [
+        "military prestige",
+        "domestic politics"
+      ]
+    },
+    {
+      "name": "ceasefire technocrats",
+      "role": "stability faction",
+      "drive": "stop collapse before economy and legitimacy fail",
+      "ties": [
+        "foreign pressure",
+        "resource management"
+      ]
+    },
+    {
+      "name": "special operations commanders",
+      "role": "shadow battlefield actors",
+      "drive": "win deniable gains without open-front disaster",
+      "ties": [
+        "fog of war",
+        "civilian risk"
+      ]
+    }
+  ],
+  "city_and_region_hubs": [
+    {
+      "name": "Azure Peninsula capital corridor",
+      "type": "political center",
+      "importance": "legitimacy, cabinet stability, coup risk"
+    },
+    {
+      "name": "frontline airbases",
+      "type": "military hubs",
+      "importance": "air superiority, strike tempo, prestige"
+    },
+    {
+      "name": "energy terminals and ports",
+      "type": "economic nodes",
+      "importance": "fuel, sanctions survival, war financing"
+    },
+    {
+      "name": "mountain border belts",
+      "type": "proxy war zone",
+      "importance": "insurgency, deniability, attrition"
+    }
+  ],
+  "relationship_webs": [
+    {
+      "thread": "military command / political cabinet",
+      "tension": "victory optics versus state survival"
+    },
+    {
+      "thread": "regional allies / proxy militias",
+      "tension": "useful escalation versus loss of control"
+    },
+    {
+      "thread": "domestic public / international pressure",
+      "tension": "security narrative versus legitimacy cost"
+    },
+    {
+      "thread": "special operations / conventional front",
+      "tension": "sharp covert wins versus wider strategic blowback"
+    }
+  ],
+  "major_items_and_artifacts": [
+    {
+      "name": "air-defense network",
+      "kind": "strategic system",
+      "story_use": "survival, deterrence, air campaign pacing"
+    },
+    {
+      "name": "satellite and ISR feeds",
+      "kind": "information asset",
+      "story_use": "fog-of-war reduction, target certainty, deception risk"
+    },
+    {
+      "name": "fuel and spare-parts reserves",
+      "kind": "war economy resource",
+      "story_use": "tempo, endurance, bargaining power"
+    },
+    {
+      "name": "ceasefire framework draft",
+      "kind": "political instrument",
+      "story_use": "late-game negotiated end or trap"
+    }
+  ],
+  "mainline_stages": [
+    "危机引爆",
+    "抢先手",
+    "前线与后方同步承压",
+    "升级或控火",
+    "战役结算"
+  ],
+  "subfaction_networks": [
+    {
+      "name": "hawks in command",
+      "core_members": [
+        "air-power advocates",
+        "hardline generals",
+        "retaliation planners"
+      ],
+      "internal_tension": "prestige victories versus strategic overreach"
+    },
+    {
+      "name": "civilian cabinet survivalists",
+      "core_members": [
+        "finance ministers",
+        "foreign desk",
+        "internal security",
+        "media handlers"
+      ],
+      "internal_tension": "war necessity versus state continuity"
+    },
+    {
+      "name": "proxy and special-ops web",
+      "core_members": [
+        "deniable militias",
+        "special operators",
+        "intelligence assets"
+      ],
+      "internal_tension": "short gains versus blowback and loss of control"
+    },
+    {
+      "name": "international mediation track",
+      "core_members": [
+        "external guarantors",
+        "energy stakeholders",
+        "backchannel envoys"
+      ],
+      "internal_tension": "ceasefire leverage versus imposed terms"
+    }
+  ],
+  "quest_hubs": [
+    {
+      "name": "war room cycle",
+      "function": "campaign choices, strike approvals, escalation thresholds"
+    },
+    {
+      "name": "frontline sectors",
+      "function": "attrition, morale, tactical reversals, battlefield heroics"
+    },
+    {
+      "name": "energy and logistics nodes",
+      "function": "sustainment, sabotage, sanctions pressure, bargaining chips"
+    },
+    {
+      "name": "backchannel diplomacy spaces",
+      "function": "quiet offers, prisoner swaps, ceasefire architecture"
+    }
+  ],
+  "city_subzones": [
+    {
+      "hub": "capital corridor",
+      "subzones": [
+        "cabinet rooms",
+        "broadcast centers",
+        "security perimeter",
+        "protest-sensitive districts"
+      ]
+    },
+    {
+      "hub": "airbase network",
+      "subzones": [
+        "hangars",
+        "runway control",
+        "fuel depots",
+        "command shelters"
+      ]
+    },
+    {
+      "hub": "energy ports",
+      "subzones": [
+        "terminal docks",
+        "storage tanks",
+        "checkpoint roads",
+        "contractor compounds"
+      ]
+    }
+  ],
+  "story_pressure_tracks": [
+    {
+      "name": "escalation ladder",
+      "pressure": "each success can trap the faction into a bigger war"
+    },
+    {
+      "name": "domestic legitimacy",
+      "pressure": "the home front may collapse before the military front does"
+    },
+    {
+      "name": "international isolation",
+      "pressure": "battlefield choices keep reshaping diplomatic oxygen"
+    },
+    {
+      "name": "civilian cost",
+      "pressure": "moral and narrative fallout keeps returning even after tactical wins"
+    }
+  ],
+  "item_threads": [
+    {
+      "item": "ISR feeds",
+      "thread": "better information creates both sharper strikes and sharper moral liability"
+    },
+    {
+      "item": "fuel reserves",
+      "thread": "tempo and endurance keep becoming more decisive than rhetoric"
+    },
+    {
+      "item": "ceasefire drafts",
+      "thread": "paper options become strategic weapons as important as missiles"
+    }
+  ],
+  "playable_factions": [
+    "western_alliance",
+    "phoenix_state",
+    "mountain_republic",
+    "gulf_emirates",
+    "eastern_coalition",
+    "desert_kingdom"
+  ],
+  "game_length": "90_days_campaign",
+  "difficulty": "hard",
+  "features": [
+    "strategic_decision_making",
+    "moral_dilemmas",
+    "resource_management",
+    "special_operations",
+    "diplomatic_options",
+    "consequences_system",
+    "fog_of_war",
+    "civilian_casualties"
+  ],
+  "art_style": "command_and_conquer_game_style",
+  "art_direction": {
+    "visual_style": "Command & Conquer RTS game aesthetic",
+    "color_palette": "Saturated military colors, red/blue faction coding",
+    "ui_style": "Tactical HUD overlays, minimap indicators",
+    "character_portraits": "C&C Generals style - dramatic 3D renders with tactical gear",
+    "location_maps": "Isometric battlefield view with unit icons and territory markers",
+    "combat_scenes": "Dynamic action shots like C&C cutscenes - explosions, vehicles, troops",
+    "reference_games": [
+      "Command & Conquer: Generals",
+      "Command & Conquer: Red Alert",
+      "DEFCON",
+      "World in Conflict"
+    ],
+    "avoid": [
+      "photorealistic military photography",
+      "gritty war documentary style",
+      "generic stock military photos"
+    ]
+  },
+  "start_date": "Day 1, 0600 Hours",
+  "initial_event": "viper_strike_assassination",
+  "win_conditions": [
+    "achieve_ceasefire_with_favorable_terms",
+    "eliminate_enemy_military_capability",
+    "gain_regional_hegemony",
+    "broker_lasting_peace_deal"
+  ],
+  "lose_conditions": [
+    "faction_collapse",
+    "international_isolation",
+    "economic_bankruptcy",
+    "domestic_coup",
+    "total_war_escalation"
+  ],
+  "content_warnings": [
+    "war_violence",
+    "civilian_casualties",
+    "moral_dilemmas",
+    "geopolitical_themes"
+  ],
+  "inspirations": [
+    "recent_middle_east_conflicts_2024_2026",
+    "command_modern_operations",
+    "this_war_of_mine",
+    "papers_please"
+  ],
+  "created": "2026-04-05",
+  "status": "development",
+  "local_only": true
+}

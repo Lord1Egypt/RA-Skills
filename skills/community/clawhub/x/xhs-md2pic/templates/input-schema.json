@@ -1,0 +1,132 @@
+{
+  "type": "object",
+  "properties": {
+    "markdown": {
+      "type": "string",
+      "description": "Markdown 格式的文案内容。使用 --- 分隔符手动分页。"
+    },
+    "title": {
+      "type": "string",
+      "description": "封面标题（可选，不填则自动提取）"
+    },
+    "author": {
+      "type": "string",
+      "description": "作者名（可选）"
+    },
+    "description": {
+      "type": "string",
+      "description": "封面描述文字（可选）"
+    },
+    "theme": {
+      "type": "string",
+      "enum": ["default", "monokai", "nord", "sakura", "mint"],
+      "default": "default",
+      "description": "主题配色: default=白色, monokai=深色, nord=深蓝, sakura=粉色, mint=绿色清新"
+    },
+    "font_family": {
+      "type": "string",
+      "enum": ["sans-serif", "serif", "wenkai"],
+      "default": "sans-serif",
+      "description": "字体风格"
+    },
+    "padding": {
+      "type": "string",
+      "enum": ["small", "medium", "large"],
+      "default": "medium",
+      "description": "卡片内边距"
+    },
+    "title_size": {
+      "type": "string",
+      "enum": ["small", "medium", "large", "xlarge"],
+      "default": "large",
+      "description": "封面标题字号"
+    },
+    "show_cover": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否显示封面信息"
+    },
+    "bg_style": {
+      "type": "string",
+      "enum": ["ai_art", "none"],
+      "default": "ai_art",
+      "description": "背景风格: ai_art=AI装饰背景, none=纯色"
+    },
+    "card_width": {
+      "type": "integer",
+      "minimum": 320,
+      "maximum": 500,
+      "default": 375,
+      "description": "单张卡片 CSS 宽度(px)，推荐 375"
+    },
+    "card_height": {
+      "type": "integer",
+      "minimum": 420,
+      "maximum": 900,
+      "default": 500,
+      "description": "单张卡片 CSS 高度(px)，推荐 500"
+    },
+    "export_scale": {
+      "type": "integer",
+      "enum": [2, 3, 4],
+      "default": 3,
+      "description": "导出倍率。3=1125x1500（当卡片为375x500）"
+    },
+    "viewport_width": {
+      "type": "integer",
+      "minimum": 375,
+      "maximum": 2048,
+      "default": 440,
+      "description": "浏览器 viewport 宽度(px)，用于稳定排版截图"
+    },
+    "viewport_height": {
+      "type": "integer",
+      "minimum": 500,
+      "maximum": 4096,
+      "default": 760,
+      "description": "浏览器 viewport 高度(px)，用于稳定排版截图"
+    },
+    "page_gap": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 80,
+      "default": 20,
+      "description": "DOM 中卡片之间的垂直间距(px)"
+    },
+    "pagination_mode": {
+      "type": "string",
+      "enum": ["mixed", "auto", "manual_only"],
+      "default": "mixed",
+      "description": "分页模式: mixed=先手动后自动, auto=纯自动, manual_only=仅按---分页"
+    },
+    "max_pages": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 30,
+      "default": 12,
+      "description": "最大分页数，防止异常内容无限分页"
+    },
+    "show_page_number": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否显示页码(例如 1 / N)"
+    },
+    "avoid_orphan_heading": {
+      "type": "boolean",
+      "default": true,
+      "description": "避免标题孤行（标题后至少保留一个内容块）"
+    },
+    "last_page_compact": {
+      "type": "boolean",
+      "default": true,
+      "description": "最后一页内容较少时自动收缩卡片高度"
+    },
+    "screenshot_format": {
+      "type": "string",
+      "enum": ["png"],
+      "default": "png",
+      "description": "截图格式，当前仅支持 png"
+    }
+  },
+  "required": ["markdown"]
+}

@@ -1,0 +1,155 @@
+{
+  "metadata": {
+    "version": "0.1.1",
+    "name": "SWE-bench Lite - PowerShell Edition",
+    "description": "Benchmark tasks for evaluating AI agent task completion capabilities",
+    "created": "2026-03-18",
+    "updated": "2026-03-18"
+  },
+  "tasks": [
+    {
+      "id": "task-001",
+      "name": "File Creation and Content Writing",
+      "category": "File Operations",
+      "difficulty": "Easy",
+      "description": "Create a text file with specific content",
+      "script": "Set-Content -Path '.\\test-output.txt' -Value 'Hello from Agent Benchmark' -Encoding UTF8; Write-Host 'File created successfully'",
+      "expectedOutput": "File created successfully",
+      "expectedTimeSeconds": 5,
+      "points": 10
+    },
+    {
+      "id": "task-002",
+      "name": "JSON Data Processing",
+      "category": "Data Processing",
+      "difficulty": "Easy",
+      "description": "Parse JSON and extract specific field",
+      "script": "$data = @{Name='Clawd'; Type='AI'; Version='1.0'} | ConvertTo-Json; $parsed = $data | ConvertFrom-Json; Write-Host \"Name: $($parsed.Name)\"",
+      "expectedOutput": "Name: Clawd",
+      "expectedTimeSeconds": 5,
+      "points": 10
+    },
+    {
+      "id": "task-003",
+      "name": "Array Manipulation",
+      "category": "Data Processing",
+      "difficulty": "Easy",
+      "description": "Filter and transform array data",
+      "script": "$numbers = 1..20; $evens = $numbers | Where-Object {$_ % 2 -eq 0}; $sum = ($evens | Measure-Object -Sum).Sum; Write-Host \"Sum of evens: $sum\"",
+      "expectedOutput": "Sum of evens: 110",
+      "expectedTimeSeconds": 5,
+      "points": 10
+    },
+    {
+      "id": "task-004",
+      "name": "Directory Listing and Filtering",
+      "category": "File Operations",
+      "difficulty": "Medium",
+      "description": "List files with specific extension and count them",
+      "script": "$files = Get-ChildItem -Path '.' -Filter '*.md' | Measure-Object; Write-Host \"Markdown files: $($files.Count)\"",
+      "expectedOutput": "Markdown files:",
+      "expectedTimeSeconds": 10,
+      "points": 15
+    },
+    {
+      "id": "task-005",
+      "name": "String Manipulation",
+      "category": "Data Processing",
+      "difficulty": "Medium",
+      "description": "Transform string with multiple operations",
+      "script": "$text = 'OpenClaw PowerShell Benchmark'; $result = $text.ToLower().Replace(' ', '-').Substring(0, 20); Write-Host \"Result: $result\"",
+      "expectedOutput": "Result:",
+      "expectedTimeSeconds": 5,
+      "points": 15
+    },
+    {
+      "id": "task-006",
+      "name": "Date and Time Calculation",
+      "category": "System Operations",
+      "difficulty": "Medium",
+      "description": "Calculate days until end of year",
+      "script": "$now = Get-Date; $endOfYear = Get-Date -Date '12/31/2026'; $days = ($endOfYear - $now).Days; Write-Host \"Days until end of 2026: $days\"",
+      "expectedOutput": "Days until end of 2026:",
+      "expectedTimeSeconds": 5,
+      "points": 15
+    },
+    {
+      "id": "task-007",
+      "name": "CSV Data Generation",
+      "category": "Data Processing",
+      "difficulty": "Medium",
+      "description": "Create CSV file with structured data",
+      "script": "$data = @(\n  [PSCustomObject]@{Name='Alice'; Age=30; City='NYC'},\n  [PSCustomObject]@{Name='Bob'; Age=25; City='LA'},\n  [PSCustomObject]@{Name='Charlie'; Age=35; City='SF'}\n); $data | Export-Csv -Path '.\\people.csv' -NoTypeInformation; Write-Host 'CSV created with 3 records'",
+      "expectedOutput": "CSV created with 3 records",
+      "expectedTimeSeconds": 10,
+      "points": 20
+    },
+    {
+      "id": "task-008",
+      "name": "Error Handling Test",
+      "category": "Robustness",
+      "difficulty": "Hard",
+      "description": "Handle errors gracefully with try-catch",
+      "script": "try {\n  $content = Get-Content -Path 'nonexistent-file.txt' -ErrorAction Stop\n  Write-Host 'File found'\n} catch {\n  Write-Host 'Error handled: File not found'\n}",
+      "expectedOutput": "Error handled",
+      "expectedTimeSeconds": 5,
+      "points": 20
+    },
+    {
+      "id": "task-009",
+      "name": "Multi-step Data Pipeline",
+      "category": "Data Processing",
+      "difficulty": "Hard",
+      "description": "Complete data pipeline: load, transform, aggregate, output",
+      "script": "$data = 1..100;\n$squares = $data | ForEach-Object {$_ * $_};\n$sum = ($squares | Measure-Object -Sum).Sum;\n$avg = [math]::Round(($squares | Measure-Object -Average).Average, 2);\nWrite-Host \"Sum: $sum, Average: $avg\"",
+      "expectedOutput": "Sum:",
+      "expectedTimeSeconds": 15,
+      "points": 25
+    },
+    {
+      "id": "task-010",
+      "name": "Function Definition and Invocation",
+      "category": "Code Quality",
+      "difficulty": "Hard",
+      "description": "Define reusable function and test it",
+      "script": "function Get-Prime {\n  param([int]$n)\n  if ($n -lt 2) {return $false}\n  for ($i = 2; $i -le [math]::Sqrt($n); $i++) {\n    if ($n % $i -eq 0) {return $false}\n  }\n  return $true\n}\n$primes = 1..20 | Where-Object {Get-Prime $_}; Write-Host \"Primes: $($primes -join ', ')\"",
+      "expectedOutput": "Primes:",
+      "expectedTimeSeconds": 15,
+      "points": 25
+    },
+    {
+      "id": "task-011",
+      "name": "Environment Variable Access",
+      "category": "System Operations",
+      "difficulty": "Easy",
+      "description": "Read and display environment variables",
+      "script": "$computerName = $env:COMPUTERNAME; $userName = $env:USERNAME; Write-Host \"Computer: $computerName, User: $userName\"",
+      "expectedOutput": "Computer:",
+      "expectedTimeSeconds": 5,
+      "points": 10
+    },
+    {
+      "id": "task-012",
+      "name": "Regex Pattern Matching",
+      "category": "Data Processing",
+      "difficulty": "Medium",
+      "description": "Extract email addresses from text using regex",
+      "script": "$text = 'Contact us at support@example.com or sales@company.org';\n$emails = [regex]::Matches($text, '[\\w.-]+@[\\w.-]+\\.[\\w]+') | ForEach-Object {$_.Value};\nWrite-Host \"Found emails: $($emails -join ', ')\"",
+      "expectedOutput": "Found emails:",
+      "expectedTimeSeconds": 10,
+      "points": 20
+    }
+  ],
+  "scoring": {
+    "totalPoints": 195,
+    "passingScore": 0.6,
+    "excellentScore": 0.8,
+    "categories": {
+      "File Operations": {"weight": 0.15},
+      "Data Processing": {"weight": 0.35},
+      "System Operations": {"weight": 0.15},
+      "Robustness": {"weight": 0.15},
+      "Code Quality": {"weight": 0.2}
+    }
+  }
+}

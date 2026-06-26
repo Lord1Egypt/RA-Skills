@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "layout-cover",
+      "type": "registry:layout",
+      "title": "Cover",
+      "description": "Token-only HTML skeleton for a social-media cover. Renders title, body, points, brand, QR, badge, seal with theme-controlled decoration.",
+      "files": [
+        {
+          "path": "yuanfang-design/layout-types/cover.html",
+          "type": "registry:file",
+          "target": "yuanfang-design/layout-types/cover.html"
+        }
+      ],
+      "tokens": {
+        "placeholders": [
+          "{{TITLE}}", "{{CONTENT}}", "{{POINTS_HTML}}",
+          "{{BRAND}}", "{{QR}}", "{{BADGE}}", "{{SEAL}}", "{{THEME}}"
+        ]
+      }
+    }
+  ]
+}

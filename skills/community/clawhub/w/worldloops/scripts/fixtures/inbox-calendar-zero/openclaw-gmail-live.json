@@ -1,0 +1,14 @@
+{
+  "messages": [
+    {
+      "id": "daily-brief-test-msg-001",
+      "threadId": "daily-brief-test-thread-001",
+      "subject": "Follow-up on the proposal",
+      "from": "Test Sender <sender@example.com>",
+      "snippet": "Please follow up on the proposal we discussed. Need a response before EOD.",
+      "date": "2026-05-21T09:00:00.000Z",
+      "labelIds": ["INBOX", "IMPORTANT"]
+    }
+  ],
+  "count": 1
+}

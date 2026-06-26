@@ -1,35 +1,34 @@
----
-name: "x402 Lotto"
-description: "Access lottery data and services via x402 payment protocol, including listing lotteries, fetching jackpots, purchasing tickets, and checking results."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/x402-lotto"
-sourceUrl: "https://clawhub.ai/skills/x402-lotto"
----
-
 # x402 Lotto
 
-> Access lottery data and services via x402 payment protocol, including listing lotteries, fetching jackpots, purchasing tickets, and checking results.
+API client for x402.lotto — lottery services via the x402 payment protocol.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/x402-lotto`
-- **Source URL:** [https://clawhub.ai/skills/x402-lotto](https://clawhub.ai/skills/x402-lotto)
+## Endpoints
 
-## Overview
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/lotteries` | GET | List lotteries |
+| `/api/jackpot/:name` | GET | Current jackpot |
+| `/api/tickets` | POST | Purchase ticket |
+| `/api/tickets/:id` | GET | Ticket status |
+| `/api/results/:name` | GET | Draw results |
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
+```javascript
+import { wrapFetchWithPayment, decryptKey } from '@x402/evm';
+
+const wallet = decryptKey(process.env.KEY);
+const fetch = wrapFetchWithPayment(wallet);
+
+const res = await fetch('https://x402.lotto/api/jackpot/eurojackpot');
+```
+
+## Payment
+
+Uses x402 protocol — EIP-712 off-chain signing, no gas fees. USDC on Base (8453).
+
+## Install
+
 ```bash
-hermes skills install clawhub/x402-lotto
+clawhub install x402-lotto
 ```

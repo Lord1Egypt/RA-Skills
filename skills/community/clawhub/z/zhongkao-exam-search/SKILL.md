@@ -1,35 +1,112 @@
 ---
-name: "中考真题检索"
+name: zhongkao-exam-search
 description: "搜索并下载全国各地中考真题试卷。触发词：中考真题、中考试卷、中考英语、中考数学、中考语文、中考物理、中考化学、真题下载、历年中考、中考备考、中考复习、湖南中考、长沙中考、北京中考、上海中考、各省中考真题下载"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhongkao-exam-search"
-sourceUrl: "https://clawhub.ai/skills/zhongkao-exam-search"
+description_zh: "搜索并下载全国各地中考真题试卷，支持各科各省各年份"
+description_en: "Search and download Zhongkao (Chinese high school entrance exam) test papers across China"
+version: 1.0.0
 ---
 
-# 中考真题检索
+# 中考真题检索 Skill
 
-> 搜索并下载全国各地中考真题试卷。触发词：中考真题、中考试卷、中考英语、中考数学、中考语文、中考物理、中考化学、真题下载、历年中考、中考备考、中考复习、湖南中考、长沙中考、北京中考、上海中考、各省中考真题下载
+搜索并下载全国各地中考真题试卷（中考/初中学业水平考试），支持各科、各省、各年份。从多个免费来源自动搜索、下载、验证试卷文件。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhongkao-exam-search`
-- **Source URL:** [https://clawhub.ai/skills/zhongkao-exam-search](https://clawhub.ai/skills/zhongkao-exam-search)
+## 工作流程
 
-## Overview
+### 第1步：明确需求
 
+确认以下信息：
+- **省份/城市**：如"湖南长沙"、"北京"、"上海"
+- **科目**：语文、数学、英语、物理、化学、道德与法治、历史、地理、生物
+- **年份**：如 2021-2025
+- **是否需要答案**：含答案 vs 原卷版
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 第2步：搜索资源
+
+**按来源优先级搜索**（详见 `references/sources.md`）：
+
+| 优先级 | 来源 | 适用范围 | 可靠度 |
+|--------|------|----------|--------|
+| 1 | 中考网 (zhongkao.com) | 全科 | ⭐⭐⭐ |
+| 2 | 中学英语网 (trjlseng.com) | 仅英语 | ⭐⭐⭐ |
+| 3 | 第一试卷网 (shijuan1.com) | 全科 | ⭐⭐ |
+| 4 | 中学学科网 (zxzyw.cn) | 全科 | ⭐⭐ |
+| 5 | 无忧考网 (51test.net) | 全科 | ⭐ |
+| 6 | 社交媒体（小红书/微信公众号） | 全科 | ⭐ |
+
+**搜索方法**：
+
 ```bash
-hermes skills install clawhub/zhongkao-exam-search
+# 使用搜索脚本获取各来源的搜索关键词和URL模式
+{baseDir}/scripts/search.sh "湖南长沙" "英语" 2024
 ```
+
+然后使用 `web_search` 工具按输出的 `query` 字段搜索，获取具体下载页面URL。
+
+### 第3步：下载文件
+
+**从中考网下载**（找到页面后提取files.eduuu.com下载链接）：
+
+```bash
+# 下载文件
+python3 {baseDir}/scripts/download.py \
+  "https://files.eduuu.com/ohr/2021/06/22/174543_60d1b147d1e67.rar" \
+  "/output/2021年湖南长沙中考英语真题.rar"
+```
+
+**解压文件**：
+
+```bash
+# ZIP文件
+python3 -c "import zipfile; zipfile.ZipFile('文件.zip').extractall('.')"
+
+# RAR文件（需要安装unar: brew install unar）
+unar -o /output/dir "文件.rar"
+```
+
+**特殊情况**（详见 `references/edge-cases.md`）：
+- 全省统一命题：搜索"XX省中考"而非"XX市中考"
+- 只有图片版：逐张下载PNG图片
+- RAR文件：需安装unar
+
+### 第4步：验证文件（关键步骤，不可跳过！）
+
+```bash
+# 验证文件的真实性和完整性
+python3 {baseDir}/scripts/verify.py \
+  "/path/to/2021年湖南长沙中考英语真题.docx" \
+  2021 "湖南长沙" "英语"
+```
+
+验证脚本自动检查：
+1. 文件大小（≥50KB）
+2. 文件格式与扩展名一致性
+3. docx内容关键词（"考试"、"注意事项"、学科关键词）
+4. 是否为扫描嵌入版
+5. HTML重定向检测（防止下载到登录页）
+
+**⚠️ 验证不通过禁止上传到知识库！**
+
+### 第5步：整理与交付
+
+- 统一文件命名：`{年份}年{省份}{城市}中考{科目}真题.{扩展名}`
+- 如有答案：`{年份}年{省份}{城市}中考{科目}真题(含答案).{扩展名}`
+- 记录来源网站和下载链接
+- 如需上传到IMA知识库，使用ima-skill的上传流程
+
+## 质量红线
+
+| 级别 | 规则 |
+|------|------|
+| 🔴 禁止 | 用搜索片段拼凑试卷 |
+| 🔴 禁止 | 上传未经验证的文件 |
+| 🔴 禁止 | 用AI编造/补全题目内容 |
+| 🟡 警告 | 扫描嵌入版docx文件较大是正常的 |
+| 🟡 警告 | 图片版试卷清晰度可能不足 |
+
+## 踩坑经验
+
+- **2024年湖南统一命题**：中考网只提供图片版无下载版，免费PDF/DOCX极难获取
+- **IMA不支持ZIP**：上传ZIP会报错，需逐个文件上传
+- **IMA无删除API**：上传错误文件需在客户端手动删除
+- **中学英语网**：部分资源需要注册登录，但注册免费
+- **中考网移动版**：m.zhongkao.com有时比www版更容易获取下载链接

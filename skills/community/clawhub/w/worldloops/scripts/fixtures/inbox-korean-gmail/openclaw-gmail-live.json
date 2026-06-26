@@ -1,0 +1,14 @@
+{
+  "messages": [
+    {
+      "id": "daily-brief-test-korean-001",
+      "threadId": "daily-brief-test-thread-korean-001",
+      "subject": "등록하신 문서를 다시 검토해주세요.",
+      "from": "Test Reviewer <reviewer@example.com>",
+      "snippet": "등록하신 문서를 다시 검토해주세요. 수정이 필요한 부분이 있습니다.",
+      "date": "2026-05-21T09:00:00.000Z",
+      "labelIds": ["INBOX"]
+    }
+  ],
+  "count": 1
+}

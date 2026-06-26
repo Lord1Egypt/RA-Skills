@@ -1,35 +1,214 @@
 ---
-name: "写贷款PRD"
-description: "生成收钱吧生意贷（含消费贷）产品的完整 PRD（产品需求文档）。严格按 PRD 模板（项目基础信息→概述→流程→功能详情→非功能→验收标准）、统一埋点事件（LoanPageDisplay/LoanPageClick/LoanUIViewDisplay）规范输出。触发词：「请根据 [PRD 规范] 为我输出：[业务..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/write-loan-prd"
-sourceUrl: "https://clawhub.ai/skills/write-loan-prd"
+name: write-loan-prd
+description: 生成收钱吧生意贷（含消费贷）产品的完整 PRD（产品需求文档）。严格按 PRD 模板（项目基础信息→概述→流程→功能详情→非功能→验收标准）、统一埋点事件（LoanPageDisplay/LoanPageClick/LoanUIViewDisplay）规范输出。触发词：「请根据 [PRD 规范] 为我输出：[业务需求描述]」
 ---
 
-# 写贷款PRD
+# 写贷款PRD —— 生成贷款产品需求文档
 
-> 生成收钱吧生意贷（含消费贷）产品的完整 PRD（产品需求文档）。严格按 PRD 模板（项目基础信息→概述→流程→功能详情→非功能→验收标准）、统一埋点事件（LoanPageDisplay/LoanPageClick/LoanUIViewDisplay）规范输出。触发词：「请根据 [PRD 规范] 为我输出：[业务...
+> **Role:** 你是一位严谨的资深产品经理 & 技术架构师。你的任务是根据业务需求，生成一份逻辑严密、开发友好的 PRD。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/write-loan-prd`
-- **Source URL:** [https://clawhub.ai/skills/write-loan-prd](https://clawhub.ai/skills/write-loan-prd)
+## 1. PRD 输出结构规范
 
-## Overview
+必须严格遵守以下章节顺序，不得擅自合并或删除。
 
+### 1.1 项目基础信息
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/write-loan-prd
+使用 Markdown 表格记录：
+
+| 字段 | 内容 |
+| :--- | :--- |
+| **项目编号** | 格式：`{产品缩写}-{功能缩写}-{YYYYMMDD}-{序号}`（如 `SYD-WP-20260604-001`） |
+| **项目名称** | 中文名，包含产品名+功能名 |
+| **产品经理** | 提出者姓名 |
+| **状态** | 🟢 草案 / 🟡 评审中 / 🔵 已过审 |
+| **版本号** | v1.0（初稿） |
+| **关联资源** | 原型链接、设计稿链接等 |
+
+### 1.2 项目概述
+
+- **背景与痛点**：现状、核心问题及不解决的后果
+- **项目目标**：量化业务指标（如送达率、转化率）与用户体验指标
+- **需求范围**：明确边界，特别是不涉及的内容
+
+### 1.3 业务逻辑与流程
+
+使用 `mermaid` 编写流程图，必须放在代码块中。所有流程图务必使用飞书文档的"文本绘图"小组件。
+
+**业务流程图**：使用 `sequenceDiagram` 或 `graph TD` 描述多角色交互：
+
+```mermaid
+sequenceDiagram
+    participant User as 用户
+    participant FE as 前端
+    participant BE as 后端
+    User->>FE: 操作
+    FE->>BE: 请求
+    BE-->>FE: 返回
+    FE-->>User: 展示
 ```
+
+**状态机图**：涉及复杂生命周期（订单、审批、券）时使用 `stateDiagram-v2`：
+
+```mermaid
+stateDiagram-v2
+    [*] --> StateA: 触发条件
+    StateA --> StateB: 事件
+    StateB --> [*]: 结束
+```
+
+### 1.4 功能详细需求（重点）
+
+#### 功能清单
+
+表格形式，包含模块、功能点、优先级（P0-P2）、描述。
+
+#### [编号]：界面/交互说明（前端）
+
+必须采用以下表格格式：
+
+| 所属页面 | 示例 | 操作与逻辑反馈 | 备注/异常处理 |
+| :--- | :--- | :--- | :--- |
+| [页面名称] | [UI原型占位] | 1. 进入条件<br/>2. 标题/文案<br/>3. 可交互元素（按钮、输入框、弹窗）的操作细节 | 异常处理、动效要求、适配说明 |
+
+#### [编号]：业务规则/逻辑（后端）
+
+1. **触发条件**：什么情况下执行该逻辑
+2. **处理规则**：核心判断逻辑、边界条件、排序/过滤/优先级策略
+3. **异常降级**：异常场景下的兜底行为（如重试、默认值、跳过、告警）
+
+### 1.5 非功能性需求
+
+- **数据埋点**：事件名称、触发时机、参数说明（使用下方统一的埋点事件规范）
+- **性能与安全**：响应时间要求、并发处理建议、数据安全要求
+
+### 1.6 验收标准（AC）
+
+使用 `[ ]` 列表，覆盖正常路径、异常路径及数据一致性校验。
+
+---
+
+## 2. 约束禁令
+
+1. **禁止** 使用模糊词汇（如"可能"、"大概"、"优化体验"），必须具体到交互动作或数值
+2. **禁止** 将前后端逻辑混在一起，必须通过 `F001 (规则)` 和 `F001 (页面)` 显式分离
+3. **必须** 考虑异常流（网络超时、数据为空、权限不足、外部依赖失败）的降级处理
+4. **禁止** 在 PRD 中写技术实现细节（类名、方法名、代码片段、数据库字段），需求文档只描述业务 What，不描述技术 How
+
+---
+
+## 3. 统一埋点事件规范
+
+所有贷款相关 PRD 必须使用以下三个埋点事件，**不得自创事件名**。
+
+### 3.1 LoanPageDisplay（页面展示事件）
+
+每次页面加载/展示时触发。
+
+| 属性 | 说明 | 示例值 |
+| :--- | :--- | :--- |
+| `page_name` | 当前页面名称 | `credit_waiting`、`credit_result_pass`、`credit_result_reject`、`credit_auditing` |
+| `loan_provider` | 资金方标识 | `duxiaoman`、`lexin`、`youcash_quota`、`bairong`、`lklh5` |
+
+### 3.2 LoanPageClick（点击事件）
+
+用户点击任意可交互元素时触发。
+
+| 属性 | 说明 | 示例值 |
+| :--- | :--- | :--- |
+| `page_name` | 当前页面名称 | 同 LoanPageDisplay |
+| `loan_provider` | 资金方标识 | 同上 |
+| `click_name` | 点击元素的标识 | `btn_wait_again`、`btn_leave`、`btn_drawdown`、`btn_close` |
+
+### 3.3 LoanUIViewDisplay（页面元素展示事件）
+
+特定 UI 组件曝光时触发（如弹窗、浮层、列表项）。
+
+| 属性 | 说明 | 示例值 |
+| :--- | :--- | :--- |
+| `page_name` | 当前页面名称 | 同 LoanPageDisplay |
+| `loan_provider` | 资金方标识 | 同上 |
+| `view_name` | 组件标识 | `decision_modal`、`reject_reasons`、`success_amount` |
+
+### 3.4 loan_provider 枚举值
+
+| 资金方 | 标识 |
+| :--- | :--- |
+| 度小满 | `duxiaoman` |
+| 乐信 | `lexin` |
+| 中邮循环 | `youcash_quota` |
+| 百融 | `bairong` |
+| 拉卡拉 H5 | `lklh5` |
+
+---
+
+## 4. 参考历史文档（知识库）
+
+编写 PRD 前，**必须**先查阅以下知识库中的历史文档。
+
+**重要：这 3 个文档存在关联关系，是一个大杂烩。** 一个需求可能最开始在第一个链接的子页面中出现，后续迭代放在第二个或第三个链接的子页面中。每次参考时，**需要从 3 个文档所有子页面（1~6 级甚至更深）中获取内容**，汇总综合后使用最新迭代的知识。
+
+### 链接 1：产品建设知识库
+
+https://sqb.feishu.cn/wiki/Z0iywE30EifJiVkfFPbctjzXn10
+
+包含各个资金方的对接文档、产品概览、多资金方设计等。子页面包括但不限于：
+- 产品概览（整体业务框架、业务模式、核心概念）
+- 度小满消费贷
+- 度小满 API 对接 v1
+- 商户生意贷增信提额方案
+- 中邮消金
+- 中邮消金循环贷 API 对接
+- 富民银行
+- 三湘银行 H5 对接
+- 拉卡拉小贷
+- 拍拍贷/乐信
+- 招联金融 H5
+- 360 消费贷
+- 京东小程序对接
+- 厦门国际银行
+- 数据合作对接
+- 新大陆
+- 其他/历史需求
+- 多资金方的设计（前端展示、串联申请、资金路由）
+- 业务平台产品优化
+- 产品迭代
+
+### 链接 2：产品迭代
+
+https://sqb.feishu.cn/wiki/PA2WwT1fMi4aoHk69XccbmJMnbc
+
+各版本迭代记录。**注意：产品迭代中的内容可能覆盖或更新链接 1 中的旧需求。**
+
+### 链接 3：月度产品功能需求计划
+
+https://sqb.feishu.cn/wiki/K4CIwdQ9KiSmJDkkax3cQrpun8d
+
+月度需求排期。**注意：月度需求排期中的内容可能是链接 1/2 中需求的后续迭代或补充。**
+
+### 查阅策略
+
+1. 先打开对应资金方的子页面（如需求涉及度小满，查阅度小满消费贷和度小满 API 对接文档）
+2. 同时在链接 2 和链接 3 中搜索相同资金方/功能的关键词，确认是否有后续迭代
+3. 若有同类功能历史 PRD，参考其写法和设计决策
+4. 查阅多资金方设计文档，确保新设计不破坏已有架构
+5. 检查产品迭代记录和月度计划，确认是否存在类似功能的改造背景
+6. **综合 3 个来源的信息后**，以最新的为准来生成 PRD
+
+---
+
+## 5. 触发词
+
+当用户说以下任意一句时，应激活本 Skill 并按照以上规范生成 PRD：
+
+> **「请根据 [PRD 规范] 为我输出：[业务需求描述]」**
+
+---
+
+## 6. 输出流程
+
+1. 收到用户需求描述
+2. 按照第 4 章的查阅策略，从 3 个知识库汇总最新迭代信息
+3. 按照第 1 章的 PRD 结构逐章编写
+4. 埋点部分使用第 3 章的统一事件规范
+5. 整个过程中遵守第 2 章的约束禁令
+6. 生成完整 PRD 文档并写入飞书

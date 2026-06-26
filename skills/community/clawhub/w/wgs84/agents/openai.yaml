@@ -1,0 +1,7 @@
+interface:
+  display_name: "WGS84"
+  short_description: "Validate and reason about GPS-style lon/lat coordinates."
+  default_prompt: "Use $wgs84 to validate a coordinate pair, determine its likely order, and recommend whether to keep EPSG:4326 or reproject."
+
+policy:
+  allow_implicit_invocation: true

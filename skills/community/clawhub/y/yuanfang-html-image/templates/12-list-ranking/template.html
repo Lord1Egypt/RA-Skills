@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width={{W}}, height={{H}}">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: {{W}}px; height: {{H}}px;
+  font-family: {{FONT_TITLE}};
+  background: {{BG}};
+  color: {{TEXT}};
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+/* subtle accent light wash at top */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 45%;
+  background: linear-gradient(180deg, {{ACCENT__A03}} 0%, transparent 100%);
+  pointer-events: none;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.title {
+  font-size: {{TITLE_SIZE_V}};
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: {{TEXT}};
+  margin-bottom: 8px;
+}
+.title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: {{ACCENT}};
+  margin-top: 10px;
+  border-radius: 2px;
+  opacity: 0.5;
+}
+.content {
+  font-family: {{FONT_BODY}};
+  font-size: {{CONTENT_SIZE}};
+  font-weight: 400;
+  line-height: 1.6;
+  color: {{SECONDARY}};
+  max-width: 90%;
+  margin-bottom: 16px;
+}
+.points {
+  list-style: none;
+  counter-reset: item;
+}
+.points li {
+  counter-increment: item;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid {{ACCENT__A05}};
+}
+.points li:last-child { border-bottom: none; }
+.points li::before {
+  content: counter(item, decimal-leading-zero);
+  font-family: {{FONT_TITLE}};
+  font-size: calc({{CONTENT_SIZE}} * 1.8);
+  font-weight: 800;
+  line-height: 1;
+  color: {{ACCENT}};
+  opacity: 0.4;
+  flex-shrink: 0;
+  min-width: calc({{CONTENT_SIZE}} * 1.2);
+  letter-spacing: -0.04em;
+}
+.points li span,
+.points li {
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE}} - 2px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: {{TEXT}};
+  opacity: 0.85;
+}
+.points:empty { display: none; }
+.source {
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.7);
+  color: {{SECONDARY}};
+  opacity: 0.5;
+  margin-top: 8px;
+}
+/* bottom brand bar */
+.brand-bar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 2.5em;
+  padding: 0 32px;
+  background: {{ACCENT}};
+  flex-shrink: 0;
+}
+.brand-text {
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.65);
+  font-weight: 500;
+  color: {{BG}};
+  opacity: 0.9;
+  letter-spacing: 0.08em;
+}
+/* vertical / portrait */
+@media (max-aspect-ratio: 4/5) {
+  .title { font-size: {{TITLE_SIZE_S}}; }
+  .content { max-width: 95%; }
+  .container { padding: 24px; }
+  .brand-bar { padding: 0 24px; }
+}
+/* landscape */
+@media (min-aspect-ratio: 5/4) {
+  .title { font-size: {{TITLE_SIZE_W}}; }
+  .container { padding: 28px 36px; flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .title { width: 100%; }
+  .content { max-width: 55%; margin-bottom: 0; padding-right: 20px; }
+  .points { width: 100%; margin-top: 12px; }
+  .points li { padding: 8px 0; }
+}
+/* very wide */
+@media (min-aspect-ratio: 7/3) {
+  .title { font-size: {{TITLE_SIZE_C}}; }
+  .container { flex-direction: row; flex-wrap: nowrap; align-items: center; gap: 20px; padding: 16px 36px; }
+  .title { width: auto; min-width: 180px; margin-bottom: 0; flex-shrink: 0; }
+  .title::after { margin-top: 6px; }
+  .content { max-width: 35%; margin-bottom: 0; }
+  .points { width: auto; flex: 1; margin-top: 0; }
+  .points li { padding: 6px 0; gap: 12px; }
+  .points li::before { font-size: calc({{CONTENT_SIZE}} * 1.4); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1 class="title">{{TITLE}}</h1>
+  <div class="content">{{CONTENT}}</div>
+  <ul class="points">{{POINTS_HTML}}</ul>
+  <div class="source">{{SOURCE}}</div>
+</div>
+<div class="brand-bar">
+  <span class="brand-text">{{BRAND}}</span>
+</div>
+</body>
+</html>

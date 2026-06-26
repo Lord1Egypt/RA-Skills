@@ -1,0 +1,93 @@
+# Research Task Workflow Example
+# Multi-specialist coordination for complex research tasks
+
+workflow:
+  name: "研究任务工作流"
+  description: "需要内容专家 + 运维专家协调的复杂任务"
+
+  steps:
+    # Phase 1: Router parses and splits
+    - id: phase-1-parse
+      agent: master
+      action: parse_and_decompose
+      input: "用户研究请求"
+      output:
+        subtasks:
+          - id: subtask-1
+            domain: content
+            description: "搜集相关行业资讯和动态"
+          - id: subtask-2
+            domain: ops
+            description: "检查相关系统/工具的状态和依赖"
+          - id: subtask-3
+            domain: master
+            description: "综合分析，形成报告"
+
+    # Phase 2: Parallel specialist execution
+    - id: phase-2a-specialist-content
+      agent: specialist-content
+      action: research_and_summarize
+      parallel_with: phase-2b-specialist-ops
+      input: subtask-1
+      context: ["relevant_memories"]
+      output:
+        message:
+          type: report
+          status:
+            state: done
+          result:
+            summary: "5 条关键资讯，关键发现3点"
+            sources: ["url1", "url2"]
+
+    - id: phase-2b-specialist-ops
+      agent: specialist-ops
+      action: system_check_and_analysis
+      parallel_with: phase-2a-specialist-content
+      input: subtask-2
+      context: ["relevant_memories"]
+      output:
+        message:
+          type: report
+          status:
+            state: done
+          result:
+            summary: "2个依赖有新版本，建议升级"
+            risks: ["version X has known CVE"]
+
+    # Phase 3: Master synthesizes
+    - id: phase-3-master-synthesize
+      agent: master
+      action: synthesize_reports
+      input:
+        - phase-2a-specialist-content.output
+        - phase-2b-specialist-ops.output
+      critics_check:
+        - "资讯来源可靠吗？"
+        - "风险评估准确吗？"
+      output:
+        user_visible: true
+        message_to_user: |
+          ## 研究报告
+
+          ### 行业动态
+          ...
+
+          ### 系统状态
+          ...
+
+          ### 行动建议
+          ...
+        memory:
+          - write_to: MemPalace
+            content: "关键研究结论和行动项"
+
+# Example conversation:
+
+# User: "帮我研究一下 AI Agent 赛道最近有什么新动向，同时看看我们的 OpenClaw 系统有没有需要注意的更新"
+# Master: [Parse → two subtasks: content research + system check]
+# Master → specialist-content: "研究 AI Agent 赛道动态"
+# Master → specialist-ops: "检查 OpenClaw 及相关工具更新"
+# [并行执行]
+# specialist-content: [Research, report: "5条资讯，新兴工具有3个"]
+# specialist-ops: [Check, report: "context-mode 有新版本，建议关注"]
+# Master: [Synthesize, deliver comprehensive report]

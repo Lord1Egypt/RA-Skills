@@ -1,0 +1,37 @@
+{
+  "name": "xiaohongshu-hot-daily",
+  "version": "3.1.0",
+  "description": "📕 小红书热榜日报 v3.1 - 使用浏览器获取真实数据！支持定时任务和数据分析",
+  "author": "小天🦞",
+  "license": "MIT",
+  "keywords": [
+    "xiaohongshu",
+    "小红书",
+    "hot",
+    "trending",
+    "笔记",
+    "daily",
+    "report"
+  ],
+  "main": "fetch_hot.py",
+  "scripts": {
+    "start": "python3 fetch_hot.py",
+    "top10": "python3 fetch_hot.py --top 10",
+    "top30": "python3 fetch_hot.py --top 30"
+  },
+  "dependencies": {
+    "python": ">=3.7"
+  },
+  "pricing": {
+    "free": {
+      "description": "免费版 - Top 10 基础数据",
+      "features": ["每日Top 10", "基础数据展示"]
+    },
+    "pro": {
+      "price": 49,
+      "currency": "CNY",
+      "description": "Pro版 - 全部功能",
+      "features": ["Top 30", "AI摘要", "多渠道推送", "定时任务"]
+    }
+  }
+}

@@ -1,35 +1,60 @@
 ---
-name: "test-hello-world"
-description: "高德地图位置搜索，用户输入地点名称，返回对应的高德地图搜索链接"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhaohong-hello-world"
-sourceUrl: "https://clawhub.ai/skills/zhaohong-hello-world"
+name: amap-location-search
+description: 高德地图位置搜索，用户输入地点名称，返回对应的高德地图搜索链接
 ---
 
-# test-hello-world
+# 高德地图位置搜索 Skill
 
-> 高德地图位置搜索，用户输入地点名称，返回对应的高德地图搜索链接
+当用户想要搜索某个地点、位置或地址时，生成对应的高德地图搜索链接并返回给用户。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhaohong-hello-world`
-- **Source URL:** [https://clawhub.ai/skills/zhaohong-hello-world](https://clawhub.ai/skills/zhaohong-hello-world)
+## 触发条件
 
-## Overview
+用户输入包含以下意图之一：
+- "搜索 XX"、"搜 XX"
+- "查找 XX"、"找 XX 在哪"
+- "XX 在哪里"、"XX 怎么去"
+- 任何询问某个地点位置的请求
 
+## 执行步骤
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhaohong-hello-world
+1. **提取关键词**：从用户输入中识别出核心地点名称，去掉"搜索"、"搜"、"找"、"查"、"在哪"、"在哪里"等修饰词
+2. **生成链接**：将关键词拼接到以下 URL 模板中
+
+**URL 格式：**
+
 ```
+https://ditu.amap.com/search?query={关键词}
+```
+
+- **域名**：`ditu.amap.com`
+- **路由**：`/search`
+- **参数**：`query` = 地点关键词（中文直接填入，浏览器会自动处理编码）
+
+3. **返回链接**：将生成的链接返回给用户
+
+## 示例
+
+| 用户输入 | 提取关键词 | 生成链接 |
+|---------|-----------|---------|
+| 搜索天坛 | 天坛 | `https://ditu.amap.com/search?query=天坛` |
+| 搜索故宫 | 故宫 | `https://ditu.amap.com/search?query=故宫` |
+| 找西湖在哪 | 西湖 | `https://ditu.amap.com/search?query=西湖` |
+| 上海外滩怎么去 | 上海外滩 | `https://ditu.amap.com/search?query=上海外滩` |
+| 搜索北京南站 | 北京南站 | `https://ditu.amap.com/search?query=北京南站` |
+
+## 回复模板
+
+```
+🗺️ 已为你生成高德地图搜索链接：
+
+https://ditu.amap.com/search?query={关键词}
+
+点击链接即可在高德地图上查看「{关键词}」的位置信息。
+```
+
+## 注意事项
+
+- 关键词应尽量精简准确，提取用户真正想搜索的地点名称
+- URL 中的中文关键词浏览器会自动处理编码，无需手动 encode
+- 此 skill 无需任何 API Key，直接生成链接即可使用
+- 如果用户同时提供了多个地点，为每个地点分别生成一条链接

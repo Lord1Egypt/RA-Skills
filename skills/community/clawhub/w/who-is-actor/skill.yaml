@@ -1,0 +1,142 @@
+name: who-is-actor
+version: 1.0.15
+description: >
+  A zero-*install*-dependency Git repository COLLABORATION-PATTERN analysis
+  skill. It produces an aggregate, repository-level report describing commit
+  cadence, churn, rework signals, conventional-commit compliance, and
+  bus-factor risk — not a personnel-evaluation tool.
+
+  Activation requires an explicit, opt-in user request that names a target
+  repository path. Vague conversational mentions of "code quality", "team
+  efficiency", "work habits", "engagement", or their Chinese equivalents
+  ("代码分析", "研发效率", "参与度") are NOT sufficient to trigger this
+  skill; the agent must first confirm the repository path, the user's
+  authority to analyze it, and (recommended) opt into Dry-Run preview
+  before any git command runs.
+
+  HR / personnel-decision use is OUT OF SCOPE and the agent MUST refuse.
+  The report is repository-level only and contains NO per-contributor
+  breakdown table, NO per-contributor metrics, NO per-contributor activity
+  scores or bands, NO rankings, and NO individualized commentary. It MUST
+  NOT be used for performance reviews, hiring/firing, layoffs,
+  compensation, ranking, or any other personnel-style judgment of
+  individuals.
+
+  "Zero dependency" means no Python/Node packages, no pip/npm installs, and
+  no custom scripts — however the skill DOES require standard system
+  binaries already present on most Unix-like hosts (see required_binaries
+  below for the full list: git, cut, sort, uniq, awk, grep, sed, wc, head).
+  It uses only native git READ-ONLY commands listed in the Command
+  Whitelist of SKILL.md.
+
+  Security: all user inputs are validated against strict allowlists; only
+  whitelisted git read-only subcommands are permitted (including
+  `rev-parse --is-inside-work-tree`, `rev-parse --show-toplevel`,
+  `shortlog -sn --all`, `log ...`, and `diff --stat ...`); no write/network
+  operations; no developer emails collected. A Dry-Run mode previews all
+  commands before execution.
+
+  Privacy (binding): commit messages and full file paths are LOCAL-ONLY
+  data. Raw commit message text and full file paths MUST NOT be forwarded
+  to the AI model — only aggregated metrics (counts, averages, ratios,
+  extension histograms) are eligible for model-bound prompts. Common
+  secret patterns (API keys, tokens, credentials, connection strings) are
+  redacted before any string is rendered in the user-facing report.
+  Run only on repositories you have permission to analyze; in team contexts,
+  inform analyzed contributors in advance.
+author: reky
+license: MIT
+acceptLicenseTerms: true
+tags:
+  - code-analysis
+  - git
+  - repository-collaboration-patterns
+  - zero-dependency
+  - commit-patterns
+  - bus-factor
+  - not-for-hr
+
+dependencies:
+  - git
+  - cut
+  - sort
+  - uniq
+  - awk
+  - grep
+  - sed
+  - wc
+  - head
+
+required_binaries:
+  - name: git
+    reason: Core dependency — all data collection uses native git read-only subcommands.
+  - name: cut
+    reason: Text processing — extracts fields from git output (e.g., hour from ISO timestamps).
+  - name: sort
+    reason: Text processing — sorts lines for frequency analysis.
+  - name: uniq
+    reason: Text processing — deduplicates sorted lines and counts occurrences.
+  - name: awk
+    reason: Text processing — aggregates numeric fields (lines added/deleted) and computes lengths.
+  - name: grep
+    reason: Text processing — filters lines by pattern (e.g., file extensions, bug-fix keywords).
+  - name: sed
+    reason: Text processing — extracts first/last lines for date range detection.
+  - name: wc
+    reason: Text processing — counts matching lines (e.g., number of bug-fix commits).
+  - name: head
+    reason: Text processing — limits output to top-N results.
+
+runtime: ai
+entry: SKILL.md
+
+parameters:
+  - name: repo_path
+    type: string
+    description: >
+      Absolute path to the Git repository to analyze.
+    required: true
+
+  - name: since
+    type: string
+    description: >
+      Start date for analysis (ISO format, e.g. '2024-01-01').
+    default: ""
+
+  - name: until
+    type: string
+    description: >
+      End date for analysis (ISO format, e.g. '2024-12-31').
+    default: ""
+
+  - name: branch
+    type: string
+    description: >
+      Branch to analyze. Defaults to the current active branch.
+    default: ""
+
+outputs:
+  - name: report
+    type: string
+    description: >
+      A strictly REPOSITORY-LEVEL Markdown report describing aggregate
+      collaboration patterns of the analyzed repository as a whole:
+      repository-wide commit-cadence histograms (hour-of-day, day-of-week,
+      active-day ratio), aggregate churn and rework signals, repository-wide
+      conventional-commit compliance rate, file-extension activity
+      histograms, and FILE/MODULE-level bus-factor risk alerts.
+
+      The report MUST NOT contain any per-contributor breakdown table, any
+      per-contributor metrics row, any per-contributor activity score or
+      band, any contributor ranking, any "best/worst" callouts, any
+      individualized commentary, any composite personal grade, any radar
+      chart, any one-line summary about a named individual, or any other
+      person-level output. Contributor display names NEVER appear in the
+      report. The file-level bus-factor section lists only file paths whose
+      distinct-historical-author count equals 1; author names are consumed
+      by local pipelines to compute that count and are dropped locally
+      before any value reaches the report or any AI prompt.
+
+      It is not a developer profile, report card, or HR/personnel artifact
+      and MUST NOT be used for performance reviews, ranking, hiring/firing,
+      layoffs, compensation, or any other personnel decision.

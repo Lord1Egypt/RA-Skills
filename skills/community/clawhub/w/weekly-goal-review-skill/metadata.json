@@ -1,0 +1,19 @@
+{
+  "slug": "weekly-goal-review-skill",
+  "name": "Weekly Goal Review Skill",
+  "version": "0.1.0",
+  "tags": [
+    "openclaw",
+    "planning",
+    "templates",
+    "weekly-goal-review"
+  ],
+  "category": "Planning & Productivity",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-17",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "youtube-transcribe",
+  "version": "1.0.0",
+  "description": "自动转录 YouTube 视频，生成带时间戳的文字稿",
+  "author": "Alex Bloomberg",
+  "repository": "https://github.com/BODYsuperman/Youtube-Transcriber-Skill",
+  "requirements": {
+    "python": ">=3.8.0",
+    "packages": ["yt-dlp", "faster-whisper"]
+  },
+  "files": {
+    "main": "transcribe.py",
+    "cli": "bin/transcribe.js"
+  },
+  "usage": {
+    "npx": "npx youtube-transcribe <URL> [language]",
+    "python": "python3 transcribe.py <URL> [language]",
+    "openclaw": "/youtube-transcribe <URL>"
+  },
+  "examples": [
+    "npx youtube-transcribe https://youtube.com/watch?v=VIDEO_ID",
+    "python3 transcribe.py https://youtube.com/watch?v=VIDEO_ID zh"
+  ],
+  "install": {
+    "auto": true,
+    "script": "install.sh",
+    "commands": [
+      "pip3 install -r requirements.txt"
+    ]
+  }
+}

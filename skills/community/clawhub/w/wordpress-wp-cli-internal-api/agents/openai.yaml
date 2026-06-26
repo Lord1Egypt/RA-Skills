@@ -1,0 +1,4 @@
+interface:
+  display_name: "WordPress WP-CLI Internal API"
+  short_description: "Build WP-CLI command code against the stable internal API"
+  default_prompt: "Use $wordpress-wp-cli-internal-api to build or review WP-CLI command code using the documented stable internal API methods."

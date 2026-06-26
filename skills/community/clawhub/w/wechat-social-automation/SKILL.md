@@ -1,35 +1,117 @@
----
-name: "WeChat Social Automation"
-description: "自动管理微信公众号和朋友圈内容，实现文章发布、定时推送、互动分析及粉丝管理功能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-social-automation"
-sourceUrl: "https://clawhub.ai/skills/wechat-social-automation"
----
-
 # WeChat Social Automation
 
-> 自动管理微信公众号和朋友圈内容，实现文章发布、定时推送、互动分析及粉丝管理功能。
+微信公众号 + 朋友圈自动化管理技能。支持文章自动发布、定时推送、互动分析、粉丝管理等功能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-social-automation`
-- **Source URL:** [https://clawhub.ai/skills/wechat-social-automation](https://clawhub.ai/skills/wechat-social-automation)
+## 触发词
 
-## Overview
+微信、公众号、发布、推送、朋友圈、自动发布、定时推送、weixin、wechat
 
+## 功能
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 微信公众号文章发布
+
+- 自动发布文章到公众号
+- 支持草稿箱管理
+- 定时推送功能
+- 多图文消息支持
+
+### 2. 朋友圈自动化
+
+- 自动发布朋友圈内容
+- 支持图片/视频/链接
+- 定时发布功能
+- 互动监控 (点赞/评论)
+
+### 3. 数据分析
+
+- 文章阅读量统计
+- 粉丝增长分析
+- 互动率计算
+- 最佳发布时间建议
+
+### 4. 客户管理
+
+- 粉丝标签管理
+- 自动回复配置
+- 关键词触发
+- 用户画像分析
+
+## 配置
+
+### 环境变量
+
 ```bash
-hermes skills install clawhub/wechat-social-automation
+WECHAT_APP_ID=你的公众号 AppID
+WECHAT_APP_SECRET=你的公众号 AppSecret
+WECHAT_TOKEN=微信验证 Token
 ```
+
+### 或使用配置文件
+
+在 `TOOLS.md` 中添加:
+
+```markdown
+### 微信公众号
+
+- AppID: [你的 AppID]
+- AppSecret: [你的 AppSecret]
+- 公众号名称：[你的公众号名称]
+```
+
+## 使用示例
+
+### 发布文章
+
+```
+发布一篇公众号文章，标题"如何月入过万"，内容是...
+```
+
+### 定时推送
+
+```
+明天上午 9 点推送这篇文章到公众号
+```
+
+### 查看数据
+
+```
+查看上周公众号文章阅读数据
+```
+
+### 粉丝分析
+
+```
+分析最近粉丝增长情况和互动率
+```
+
+## 定价
+
+- **基础版**: $9.99/月 - 每月 10 次发布 + 基础数据
+- **专业版**: $19.99/月 - 无限发布 + 高级分析 + 定时推送
+- **企业版**: $49.99/月 - 多账号管理 + API 访问 + 优先支持
+
+## 变现方式
+
+1. **SkillPay**: 通过 ClawHub 订阅收费
+2. **Gumroad**: 销售高级模板和工作流
+3. **定制服务**: 为企业客户定制开发
+
+## 开发状态
+
+- [x] 技能框架创建
+- [ ] 微信公众号 API 集成
+- [ ] 发布功能实现
+- [ ] 数据分析功能
+- [ ] 定时推送功能
+- [ ] 测试和优化
+- [ ] ClawHub 发布
+
+## 更新日志
+
+### v0.1.0 (2026-03-13)
+- 初始版本创建
+- 基础框架搭建
+
+---
+
+*本技能由周田田开发 💕*

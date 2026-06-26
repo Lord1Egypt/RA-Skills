@@ -1,0 +1,23 @@
+{
+  "name": "code-sandbox",
+  "version": "0.1.0",
+  "description": "Secure code execution sandbox with multi-language support",
+  "main": "src/sandbox.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test/sandbox.test.js",
+    "demo": "node src/sandbox.js"
+  },
+  "keywords": [
+    "sandbox",
+    "code-execution",
+    "security",
+    "docker",
+    "openclaw-skill"
+  ],
+  "author": "yuyonghao-123",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

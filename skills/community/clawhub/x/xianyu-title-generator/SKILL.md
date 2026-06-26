@@ -1,35 +1,62 @@
 ---
-name: "闲鱼爆款标题生成器"
-description: "闲鱼店铺爆款标题与运营话术生成工具。当用户提到闲鱼标题、闲鱼商品描述、闲鱼话术、闲鱼客服回复、闲鱼Q&A、闲鱼怎么写、闲鱼文案、闲鱼副业、AI简历闲鱼、扣子定制闲鱼等与闲鱼运营相关需求时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: [ai-tools, reselling, side-hustle, xianyu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xianyu-title-generator"
-sourceUrl: "https://clawhub.ai/skills/xianyu-title-generator"
+name: xianyu-title-generator
+description: 闲鱼店铺爆款标题与运营话术生成工具。当用户提到闲鱼标题、闲鱼商品描述、闲鱼话术、闲鱼客服回复、闲鱼Q&A、闲鱼怎么写、闲鱼文案、闲鱼副业、AI简历闲鱼、扣子定制闲鱼等与闲鱼运营相关需求时使用此技能。
 ---
 
-# 闲鱼爆款标题生成器
+# 闲鱼爆款选题库
 
-> 闲鱼店铺爆款标题与运营话术生成工具。当用户提到闲鱼标题、闲鱼商品描述、闲鱼话术、闲鱼客服回复、闲鱼Q&A、闲鱼怎么写、闲鱼文案、闲鱼副业、AI简历闲鱼、扣子定制闲鱼等与闲鱼运营相关需求时使用此技能。
+专为闲鱼AI简历定制（59元）和扣子技能定制（99元）服务设计的爆款标题与话术生成工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xianyu-title-generator`
-- **Source URL:** [https://clawhub.ai/skills/xianyu-title-generator](https://clawhub.ai/skills/xianyu-title-generator)
+## 核心能力
 
-## Overview
+### 1. 爆款标题生成
+根据服务类型和客户画像，生成高点击率标题：
+- 情绪前缀 + 核心卖点 + 人群痛点 + 信任背书
+- 支持直接替换模板中的【】内容
 
+### 2. 商品描述模板
+生成可直接使用的完整商品描述：
+- 包含服务亮点、交付内容、售后保障
+- 适配AI简历和扣子定制两种服务
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xianyu-title-generator
+### 3. 客服话术生成
+应对常见咨询的标准回复：
+- 价格咨询：「太贵了」「再看看」
+- 交付咨询：「多久出稿」「能改几次」
+- 效果咨询：「保证通过吗」「不会用怎么办」
+
+### 4. 竞品对比话术
+突出差异化优势，应对「别家更便宜」类问题
+
+## 输出格式
+
+### 标题格式
 ```
+【情绪词】核心卖点 | 附加价值 | 信任保障
+示例：【简历急救】专业HR帮你改简历 | 当天出稿 | 不过退全款
+```
+
+### 话术格式
+```
+[场景] 客户问题
+→ 标准回复
+→ 升级回复（可选）
+```
+
+## 使用示例
+
+**输入**: "帮我写一个AI简历的闲鱼标题，目标人群是应届生"
+
+**输出**:
+```
+【求职必备】专业HR定制简历 | 附赠面试话术 | 当天出稿
+【offer收割机】一对一简历优化 | 精准匹配岗位 | 不过退全款
+【限时特惠】应届生简历急救 | 快速提升竞争力 | 次日送达
+```
+
+## 适用场景
+
+- 新品上架时快速生成标题
+- 咨询量增加时批量生成回复话术
+- 优化现有商品描述提升转化率
+- 应对价格敏感客户的议价话术

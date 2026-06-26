@@ -1,35 +1,153 @@
 ---
-name: "XHS Daily Hot Content"
-description: "每日自动搜索全网热点，结合 AI教育+亲子育儿赛道定位，批量生成高质量小红书营销文案并追加到文案库。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xhs-daily-hot-content"
-sourceUrl: "https://clawhub.ai/skills/xhs-daily-hot-content"
+name: xiaohongshu-daily-content
+description: 每日自动搜索全网热点，结合 AI教育+亲子育儿赛道定位，批量生成高质量小红书营销文案并追加到文案库。
+version: 1.0.0
+author: cc
+permissions: 网络访问（搜索热点）、文件读写（操作 YAML 文案库）
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python3
 ---
 
-# XHS Daily Hot Content
+# 小红书每日热点营销文案生成器
 
-> 每日自动搜索全网热点，结合 AI教育+亲子育儿赛道定位，批量生成高质量小红书营销文案并追加到文案库。
+## Description
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xhs-daily-hot-content`
-- **Source URL:** [https://clawhub.ai/skills/xhs-daily-hot-content](https://clawhub.ai/skills/xhs-daily-hot-content)
+每日自动搜索前一天的全网热点内容（微博热搜、抖音热榜、小红书热门话题等），结合项目已有的 AI教育+亲子育儿 赛道定位，自动生成 10 条高质量小红书营销文案，追加到文案库最前面。
 
-## Overview
+适用场景：
+- 小红书内容运营者需要每日批量产出高质量营销文案
+- AI教育 / 亲子育儿赛道的内容创作者
+- 需要结合实时热点进行内容创作的营销团队
 
+## When to use
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xhs-daily-hot-content
+当用户说以下类似内容时触发此 Skill：
+- "更新文案"、"生成热点文案"、"每日文案"
+- "追加营销文案"、"搜索热点写文案"
+- "帮我写小红书文案"、"生成小红书内容"
+- "今天有什么热点可以写"
+
+## How to use
+
+### 前置准备
+- 工作目录中需有 `templates/posts.yaml` 文案数据文件
+- 可选：`templates/posts_example.yaml` 作为格式参考
+- 可选：`src/card_generator.py` 用于生成营销图卡封面
+
+### Step 1: 搜索前一天热点内容
+
+使用 web_search 工具搜索以下热点源，获取**前一天**的热门话题：
+
+**搜索关键词组合**（至少执行 3-5 次搜索）：
+1. `"小红书 热门话题 AI教育 今日"` — 小红书平台热点
+2. `"微博热搜 AI 教育 儿童 亲子"` — 微博相关热点
+3. `"AI教育 新闻 最新 儿童编程 少儿AI"` — 行业新闻
+4. `"育儿 AI工具 宝妈 热门 小红书"` — 目标人群热点
+5. `"ChatGPT 教育 孩子 趋势 2025 2026"` — AI教育大趋势
+
+**热点筛选标准**：
+- 必须与 **AI教育、亲子育儿、儿童编程、AI工具、教育政策** 相关
+- 优先选择有话题讨论度、能引发家长共鸣的内容
+- 如搜索结果不够，可扩大搜索范围到：教育内卷、屏幕时间管理、STEM教育、数字素养
+
+### Step 2: 生成 10 条营销文案
+
+基于搜索到的热点，生成 10 条符合项目风格的营销文案。每条文案必须严格遵循以下格式和风格要求：
+
+#### 文案数据结构（YAML 格式）
+```yaml
+- title: "标题（必须20字以内，含情绪钩子）"
+  content: "正文内容（800-1500字，小红书风格）"
+  tags:
+    - "标签1"
+    - "标签2"
+    - ... (8-10个标签)
+  cover: ""
+  status: pending
+  topic: "主题风格标签"
 ```
+
+#### 标题创作规则
+- **严格 ≤ 20 字**（小红书硬限制）
+- 必须包含情绪触发词（震惊/后悔/真香/别再/必看/实测 等）
+- 可使用 | 分隔结构，如 `"xxx | xxx"`
+- 参考现有标题风格：`"花了3万报编程班，不如我在家陪娃玩了3天AI"` `"被AI\"抽象\"到了 | 娃让AI画的龙虾战士长这样..."`
+
+#### 正文创作规则
+- **开头**：场景代入 / 痛点切入 / 热点事件引用（前3行决定用户是否继续看）
+- **中间**：故事化叙述 + emoji 分隔 + 具体步骤或案例
+- **结尾**：CTA 互动引导（评论区扣1 / 举手 / 晒一晒）
+- **语气**：宝妈视角，口语化，真实感，带吐槽和幽默
+- **格式**：每段之间空一行，使用 emoji 装饰但不过度，支持列表格式（·、1️⃣2️⃣3️⃣ 等）
+- **长度**：800-1500 字
+
+#### 标签规则
+- 8-10 个标签
+- 前 3 个标签与热点话题强相关
+- 中间 3-4 个标签与 AI教育/亲子赛道相关
+- 最后 2-3 个标签是流量通用标签（宝妈日常、育儿分享、成都生活 等）
+
+#### Topic 主题风格
+从以下主题风格中选择或组合：
+- `AI人格×主体性`、`AI人格×代入感`、`AI人格×柔软力`
+- `痛文化×反精致`、`痛文化×代入感`
+- `抽象力×活人感`
+- `活人感×代入感`
+- `边界感×主体性`
+- `柔软力×活人感`
+- `主体性×文化力`
+- `文化力×代入感`
+
+### Step 3: 追加到文案库
+
+**关键要求：新生成的文案必须排在最前面（列表顶部）**
+
+执行操作：
+1. 读取当前 `templates/posts.yaml` 文件
+2. 解析现有文案列表
+3. 将新生成的 10 条文案**插入到列表最前面**（prepend），现有文案往后排
+4. 保持 YAML 文件格式：
+   - 文件头注释：`# 小红书营销文案库\n# 文案按顺序发布，发布后会自动标记为已发布\n\n`
+   - 使用 `yaml.dump()` 写入，参数 `allow_unicode=True, default_flow_style=False, sort_keys=False`
+5. 写回文件
+
+### Step 4: 为新文案生成营销图卡（可选）
+
+如果项目中存在图卡生成器，对每条新文案创建封面：
+
+```python
+import sys
+sys.path.insert(0, '<project_root>')
+from src.card_generator import generate_card
+
+for post in new_posts:
+    output_path = generate_card(
+        title=post['title'],
+        content=post['content'],
+        tags=post['tags'],
+        template_id='classic',  # 可轮换: classic, magazine, minimal, infocard
+    )
+    post['cover'] = os.path.basename(output_path)
+```
+
+模板轮换规则：10 条文案按顺序使用 `classic → magazine → minimal → infocard → classic → ...` 循环分配。
+
+### Step 5: 输出报告
+
+完成后输出以下内容：
+- 搜索到的热点话题列表
+- 10 条新文案的标题预览
+- 每条文案对应的封面图卡文件名
+- 当前文案库总数（新增 + 原有）
+
+## Edge cases
+
+- 如果 `templates/posts.yaml` 不存在，创建新文件并写入新文案
+- 如果搜索到的热点不足 10 个方向，基于已有主题进行创意延伸
+- 如果图卡生成器不存在，跳过 Step 4，cover 字段留空
+- 每次生成的文案应该与已有文案有差异化，避免重复主题
+- 所有文案的 `status` 默认为 `pending`
+- 文案内容中的换行使用 `\n` 表示

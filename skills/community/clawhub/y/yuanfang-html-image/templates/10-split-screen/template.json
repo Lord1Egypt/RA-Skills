@@ -1,0 +1,9 @@
+{
+  "name": "左右分割",
+  "description": "左右双色背景，一侧品牌色一侧留白，适合对比/双语/产品展示",
+  "colors": { "background": "#FFFFFF", "text": "#0F172A", "accent": "#4F46E5", "secondary": "#94A3B8", "accentLight": "#EEF2FF" },
+  "fonts": { "title": "\"Outfit\",\"PingFang SC\",-apple-system,sans-serif", "body": "\"Outfit\",\"PingFang SC\",-apple-system,sans-serif" },
+  "layout": { "titleSizeVertical": "80px", "titleSizeSquare": "68px", "titleSizeWide": "56px", "titleSizeCover": "46px", "contentSize": "24px" },
+  "brand": "左右分割",
+  "radius": "0px"
+}

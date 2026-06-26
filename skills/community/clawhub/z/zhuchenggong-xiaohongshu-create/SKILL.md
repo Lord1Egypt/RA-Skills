@@ -1,35 +1,85 @@
 ---
-name: "小红书定制化创作"
-description: "小红书定制化创作技能 - 固定操作流程，提高发布成功率"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhuchenggong-xiaohongshu-create"
-sourceUrl: "https://clawhub.ai/skills/zhuchenggong-xiaohongshu-create"
+name: xiaohongshu-create
+description: 小红书定制化创作技能 - 固定操作流程，提高发布成功率
 ---
 
-# 小红书定制化创作
+# 小红书发布技能
 
-> 小红书定制化创作技能 - 固定操作流程，提高发布成功率
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhuchenggong-xiaohongshu-create`
-- **Source URL:** [https://clawhub.ai/skills/zhuchenggong-xiaohongshu-create](https://clawhub.ai/skills/zhuchenggong-xiaohongshu-create)
+固定化小红书发布操作流程，减少失败率。
 
-## Overview
+## 触发方式
 
+- "发布小红书"
+- "帮我发到小红书"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhuchenggong-xiaohongshu-create
+## 前置条件
+
+1. 浏览器已登录小红书创作者平台
+2. 文案已确认OK
+3. 图片素材准备好
+
+## 发布流程
+
+### 步骤 1：打开发布页
+
+**图文发布**：
 ```
+https://creator.xiaohongshu.com/publish/publish?target=image
+```
+
+**长文发布**：
+```
+https://creator.xiaohongshu.com/publish/publish?target=text
+```
+
+### 步骤 2：选择发布方式
+
+| 方式 | 操作 | 成功率 |
+|------|------|--------|
+| 文字配图 | 输入文案→生成配图→发布 | ★★★★★ 推荐 |
+| 上传图文 | 上传图片→粘贴文案→发布 | ★★★ 需要手动 |
+
+### 步骤 3：文字配图（推荐）
+
+1. 点击"文字配图"
+2. 在输入框粘贴文案
+3. 等待生成配图（几秒）
+4. 选择样式
+5. 点击"下一步"
+
+### 步骤 4：设置标题和话题
+
+1. 输入标题（可选）
+2. 添加话题标签（#开头）
+3. 点击"发布"
+
+### 步骤 5：确认成功
+
+1. 等待页面提示"发布成功"
+2. 记录到飞书"已发布内容库"
+
+## 常见问题
+
+### 问题1：Windows文件选择弹窗
+- **现象**：点击上传图片后弹不出对话框
+- **解决**：用"文字配图"方式，不需要手动上传
+
+### 问题2：登录失效
+- **现象**：跳转到登录页
+- **解决**：让用户重新扫码登录
+
+### 问题3：发布按钮点不了
+- **原因**：内容不合规 or 网络问题
+- **解决**：检查内容，刷新页面重试
+
+## 工具
+
+- browser：浏览网页
+- message：通知用户
+
+## 输出
+
+- 成功：发布成功提示 + 链接
+- 失败：报错原因 + 重试建议

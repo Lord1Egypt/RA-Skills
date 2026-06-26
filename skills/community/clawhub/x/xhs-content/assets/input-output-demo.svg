@@ -1,0 +1,28 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff6f9"/>
+      <stop offset="100%" stop-color="#f2f3ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <text x="92" y="88" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="46" font-weight="800" fill="#201827">xhs-content · Input → Output Demo</text>
+  <text x="92" y="130" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#6d6176">让人第一眼看懂：输入什么，能得到什么</text>
+  <rect x="92" y="180" rx="28" ry="28" width="470" height="430" fill="#ffffff" stroke="#ead7e3" stroke-width="3"/>
+  <text x="128" y="242" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="30" font-weight="700" fill="#ff4d8d">输入 / Input</text>
+  <text x="128" y="298" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#4b4154">帮我写一篇小红书，主题是：</text>
+  <text x="128" y="338" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#4b4154">我怎么用 AI 把周报时间</text>
+  <text x="128" y="378" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#4b4154">从 2 小时压到 20 分钟。</text>
+  <text x="128" y="454" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="22" fill="#7b6f82">也可以输入：热帖原文 / 草稿 / 关键词</text>
+  <rect x="650" y="180" rx="28" ry="28" width="540" height="430" fill="#ffffff" stroke="#dcdcf8" stroke-width="3"/>
+  <text x="688" y="242" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="30" font-weight="700" fill="#5a54ff">输出 / Output</text>
+  <text x="688" y="300" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#4b4154">• 3-5 个标题备选</text>
+  <text x="688" y="340" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#4b4154">• 1 个 ready-to-post 正文</text>
+  <text x="688" y="380" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#4b4154">• 15 个标签建议</text>
+  <text x="688" y="420" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#4b4154">• 3 张配图建议</text>
+  <text x="688" y="460" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#4b4154">• 必要时补充爆点拆解</text>
+  <rect x="688" y="506" rx="16" ry="16" width="312" height="54" fill="#5a54ff"/>
+  <text x="725" y="541" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" font-weight="700" fill="#ffffff">hot-post / AB title / draft</text>
+  <path d="M585 390 C615 390, 625 390, 655 390" stroke="#a7a0ff" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <polygon points="646,377 682,390 646,403" fill="#a7a0ff"/>
+</svg>

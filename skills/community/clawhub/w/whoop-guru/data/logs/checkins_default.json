@@ -1,0 +1,58 @@
+{
+  "checkins": [
+    {
+      "id": "checkin_20260405101359",
+      "user_id": "test_user_1775355239.89447",
+      "type": "卧推",
+      "completed": "完成",
+      "feedback": "良好",
+      "notes": "",
+      "timestamp": "2026-04-05T10:13:59.894505"
+    },
+    {
+      "id": "checkin_20260405101359",
+      "user_id": "test_user_1775355239.896207",
+      "type": "跑步",
+      "completed": "10.5km",
+      "feedback": "良好",
+      "notes": "配速5:43/km, 地形跑道",
+      "timestamp": "2026-04-05T10:13:59.896400"
+    },
+    {
+      "id": "checkin_20260405102249",
+      "user_id": "test_user_1775355769.818636",
+      "type": "卧推",
+      "completed": "完成",
+      "feedback": "良好",
+      "notes": "",
+      "timestamp": "2026-04-05T10:22:49.818662"
+    },
+    {
+      "id": "checkin_20260405102249",
+      "user_id": "test_user_1775355769.82062",
+      "type": "跑步",
+      "completed": "10.5km",
+      "feedback": "良好",
+      "notes": "配速5:43/km, 地形跑道",
+      "timestamp": "2026-04-05T10:22:49.820924"
+    },
+    {
+      "id": "checkin_20260405104941",
+      "user_id": "test_user_1775357381.182129",
+      "type": "卧推",
+      "completed": "完成",
+      "feedback": "良好",
+      "notes": "",
+      "timestamp": "2026-04-05T10:49:41.182154"
+    },
+    {
+      "id": "checkin_20260405104941",
+      "user_id": "test_user_1775357381.184004",
+      "type": "跑步",
+      "completed": "10.5km",
+      "feedback": "良好",
+      "notes": "配速5:43/km, 地形跑道",
+      "timestamp": "2026-04-05T10:49:41.184334"
+    }
+  ]
+}

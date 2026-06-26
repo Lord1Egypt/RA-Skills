@@ -1,0 +1,7 @@
+{
+  "remote_debugging_port": 9333,
+  "profile_dir": "",
+  "log_path": "",
+  "edge_exe_candidates": [],
+  "default_read_max_chars": 8000
+}

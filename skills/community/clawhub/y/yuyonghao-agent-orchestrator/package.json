@@ -1,0 +1,23 @@
+{
+  "name": "agent-orchestrator",
+  "version": "0.1.0",
+  "description": "Production-grade Agent orchestrator with lifecycle management, resource allocation, and task scheduling",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node test/orchestrator.test.js",
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "agent",
+    "orchestrator",
+    "scheduler",
+    "load-balancer",
+    "cluster",
+    "distributed"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

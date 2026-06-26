@@ -1,0 +1,132 @@
+{
+  "created_at": null,
+  "last_updated": null,
+
+  "andropause": {
+    "user_id": null,
+    "age": null,
+    "assessment_date": null,
+
+    "symptoms": {
+      "sexual": {
+        "libido": {},
+        "erectile_function": {},
+        "morning_erection": {}
+      },
+      "physical": {
+        "fatigue": {},
+        "muscle_mass": {},
+        "body_fat": {},
+        "hot_flashes": {},
+        "physical_performance": {}
+      },
+      "psychological": {
+        "mood": {},
+        "irritability": {},
+        "memory": {},
+        "concentration": {},
+        "sleep": {},
+        "motivation": {}
+      }
+    },
+
+    "symptom_history": [],
+
+    "testosterone_levels": {
+      "total_testosterone": {
+        "date": null,
+        "time": null,
+        "value": null,
+        "reference": "10-35",
+        "unit": "nmol/L",
+        "result": null,
+        "confirmed": null,
+        "repeat_count": null
+      },
+      "free_testosterone": {
+        "date": null,
+        "value": null,
+        "reference": "0.22-0.65",
+        "unit": "nmol/L",
+        "result": null
+      },
+      "shbg": {
+        "date": null,
+        "value": null,
+        "reference": "20-50",
+        "unit": "nmol/L",
+        "result": null
+      }
+    },
+
+    "questionnaire_scores": {
+      "adam": {
+        "date": null,
+        "questions": [],
+        "total_score": null,
+        "positive": null,
+        "interpretation": null
+      },
+      "ams": {
+        "date": null,
+        "score": null,
+        "severity": null
+      }
+    },
+
+    "trt": {
+      "on_treatment": null,
+      "medication": null,
+      "type": null,
+      "dose": null,
+      "frequency": null,
+      "route": null,
+      "start_date": null,
+      "duration_months": null,
+      "effectiveness": null,
+      "effectiveness_rating": null,
+      "effectiveness_notes": null,
+      "side_effects": [],
+      "side_effects_severity": null,
+      "quality_of_life_improvement": null,
+      "notes": ""
+    },
+
+    "monitoring": {
+      "psa": {
+        "baseline": null,
+        "current": null,
+        "change": null,
+        "date": null,
+        "interpretation": null
+      },
+      "hematocrit": {
+        "baseline": null,
+        "current": null,
+        "date": null,
+        "threshold": 54,
+        "status": null
+      },
+      "prostate_volume": {
+        "baseline": null,
+        "current": null,
+        "date": null,
+        "change": null
+      }
+    },
+
+    "recommendations": []
+  },
+
+  "statistics": {
+    "tracking_duration_months": 0,
+    "total_symptom_records": 0,
+    "trt_use": false,
+    "total_testosterone_tests": 0
+  },
+
+  "settings": {
+    "reminder_frequency": "monthly",
+    "monitoring_reminder": true
+  }
+}

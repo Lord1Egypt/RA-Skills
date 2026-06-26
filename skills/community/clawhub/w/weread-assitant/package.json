@@ -1,0 +1,14 @@
+{
+  "name": "weread-assistant",
+  "private": true,
+  "license": "MIT-0",
+  "type": "module",
+  "scripts": {
+    "weread:fetch-shelf": "node scripts/fetch-shelf.mjs",
+    "weread:fetch-book": "node scripts/fetch-book.mjs",
+    "weread:export-obsidian": "node scripts/export-obsidian.mjs",
+    "weread:publish-obsidian": "node scripts/publish-obsidian.mjs",
+    "weread:sync-book-by-title": "node scripts/sync-book-by-title.mjs",
+    "weread:add-reflection": "node scripts/add-book-reflection.mjs"
+  }
+}

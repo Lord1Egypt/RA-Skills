@@ -1,0 +1,38 @@
+/* themes/eastern.css — extracted from 08-eastern */
+
+[data-theme="eastern"] {
+  --bg: #F7F3EE;
+  --text: #3D2B1F;
+  --accent: #8D6E63;
+  --secondary: #A09080;
+  --bg-alt: #FFFFFF;
+  /* Surface hierarchy (required by yuanfang-design tokens) */
+  --surface: #FFFFFF;
+  --surface-2: var(--bg-alt);
+  --border: rgba(0,0,0,.08);
+  --border-strong: rgba(0,0,0,.18);
+  --text-1: var(--text);
+  --text-2: var(--secondary);
+  --text-3: rgba(0,0,0,.5);
+
+  --font-title: "Ma Shan Zheng", "Noto Serif SC", system-ui, -apple-system, "PingFang SC", serif;
+  --font-body: "Noto Serif SC", system-ui, -apple-system, "PingFang SC", sans-serif;
+
+  --title-size-v: 120px;
+  --title-size-s: 92px;
+  --title-size-w: 76px;
+  --title-size-c: 58px;
+  --content-size: 34px;
+  --qr-size: 64px;
+
+  --decor-tl: radial-gradient(circle at 40% 35%, rgba(141,110,99,.08), transparent 55%);
+  --decor-tr: none;
+  --decor-bl: none;
+  --decor-br: none;
+
+  --accent-line: none;
+  --accent-block: none;
+  --terminal-bar: none;
+  --grid-bg: none;
+  --seal: "远";
+}

@@ -1,0 +1,100 @@
+# Intent Definitions & Training Data
+
+intents:
+  - name: booking
+    aliases: [book, reserve, schedule, appointment, slot, session, booking]
+    examples:
+      - "Can I book a session for tomorrow?"
+      - "I want to make a reservation for 4 people"
+      - "Do you have any slots available on Saturday?"
+      - "I'd like to schedule a haircut please"
+      - "Book me in for a trial session"
+      - "Can I come in for a consultation this week?"
+      - "Is there availability for a massage?"
+      - "I want to book a table for dinner tonight"
+      - "Reserve a spot for the morning class"
+      - "Please book a slot for personal training"
+
+  - name: pricing_inquiry
+    aliases: [price, cost, how much, rates, fees, packages, specials, pricing]
+    examples:
+      - "How much is a membership?"
+      - "What are your prices for a haircut?"
+      - "Do you have any specials this month?"
+      - "What do you charge for a full set of nails?"
+      - "How much does a personal training session cost?"
+      - "What are your package deals?"
+      - "Is there a student discount?"
+      - "How much for a couples massage?"
+      - "What are your monthly rates?"
+      - "Do you have any bundle specials?"
+
+  - name: hours
+    aliases: [open, close, hours, operating hours, when are you open, location, address]
+    examples:
+      - "What time do you open?"
+      - "Are you open on Sundays?"
+      - "What are your hours?"
+      - "When do you close today?"
+      - "Where are you located?"
+      - "Do you open on public holidays?"
+      - "What time do you close on weekends?"
+      - "Are you open now?"
+      - "What's your address?"
+      - "How late are you open?"
+
+  - name: complaint
+    aliases: [complaint, unhappy, problem, issue, refund, cancel, bad, poor]
+    examples:
+      - "I'm unhappy with the service I received"
+      - "The product was damaged"
+      - "I want to cancel my booking"
+      - "This is not what I expected"
+      - "I had a bad experience"
+      - "The staff was rude"
+      - "I want a refund"
+      - "My appointment was rescheduled without telling me"
+      - "The quality was poor"
+      - "I've been waiting for a response for days"
+
+  - name: lead
+    aliases: [interested, tell me more, info, information, enquire, enquiry, quote]
+    examples:
+      - "I'm interested in joining"
+      - "Tell me more about your services"
+      - "Can you send me more information?"
+      - "I'm looking for a gym in the area"
+      - "I need a hairdresser for my wedding"
+      - "Do you cater for events?"
+      - "I want to know more before I book"
+      - "What do you offer?"
+      - "I'm new to the area, looking for a salon"
+      - "Can you send me a brochure?"
+
+  - name: general
+    aliases: [hello, hi, hey, thanks, thank you, ok, sure, yes, no]
+    examples:
+      - "Hi"
+      - "Hello"
+      - "Thanks!"
+      - "Okay cool"
+      - "Yes please"
+      - "No thanks"
+      - "Hey there"
+      - "Good morning"
+      - "Will do"
+      - "Perfect thanks"
+
+  - name: spam
+    aliases: [spam, scam, promotion, buy now, free, limited offer, click here]
+    examples:
+      - "BUY NOW!!! Limited offer!!"
+      - "Click here for free stuff"
+      - "You've won a prize"
+      - "Claim your reward now"
+      - "Investment opportunity!!!"
+      - "Make R10,000 a day from home"
+      - "Free airtime"
+      - "Loan offer for you"
+      - "Join my upline"
+      - "Cryptocurrency opportunity!!!"

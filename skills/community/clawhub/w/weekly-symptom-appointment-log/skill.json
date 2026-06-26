@@ -1,0 +1,41 @@
+{
+  "slug": "weekly-symptom-appointment-log",
+  "name": "Weekly Symptom Appointment Log",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Creates a seven-day symptom, trigger, question, and visit-note sheet before a clinician appointment, with urgent-care escalation for severe symptoms.",
+  "author": "OpenClaw Skill Builder",
+  "license": "MIT-0",
+  "category": "Health / Appointment Preparation",
+  "target_user": "Users preparing clear weekly health notes for a clinician visit.",
+  "tags": [
+    "health-log",
+    "appointment-prep",
+    "symptom-tracking",
+    "clinician-visit",
+    "weekly-note"
+  ],
+  "trigger_keywords": [
+    "weekly symptom log",
+    "doctor visit note",
+    "summarize symptoms for appointment",
+    "track symptoms this week",
+    "questions for my clinician"
+  ],
+  "use_cases": [
+    "Preparing a symptom summary before a medical appointment",
+    "Tracking seven days of symptoms and possible triggers",
+    "Drafting questions for a clinician",
+    "Creating a factual visit-note sheet"
+  ],
+  "language": "en",
+  "hasExecutableCode": false,
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "project": "daily-50-skills-2026-05-08",
+  "priority": "P2"
+}

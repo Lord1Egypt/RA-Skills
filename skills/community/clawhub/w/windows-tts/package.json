@@ -1,0 +1,25 @@
+{
+  "name": "windows-tts",
+  "version": "1.0.0",
+  "description": "Windows TTS notification skill for OpenClaw - push text to Windows Azure TTS service for audio broadcast",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "tts",
+    "notification",
+    "windows",
+    "azure"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "file-indexer",
+  "version": "1.0.0",
+  "description": "智能文件索引与检索系统 - 自动监控文件变化，快速查找代码文件、脚本和技能",
+  "author": "OpenClaw Agent",
+  "agentIds": ["main", "codeer", "writing", "vision", "analysis", "tester"],
+  "provides": ["file_search", "file_intent", "file_stats"],
+  "requires": [],
+  "triggers": [
+    "找文件",
+    "查找",
+    "搜索",
+    "文件在哪里",
+    "哪个文件",
+    "file",
+    "find",
+    "search",
+    "index",
+    "帮我找",
+    "有没有",
+    "在哪里"
+  ],
+  "settings": {
+    "workspace": "/home/t/cc_workspace/file_indexer",
+    "dbPath": "/home/t/cc_workspace/file_indexer/file_index.db"
+  }
+}

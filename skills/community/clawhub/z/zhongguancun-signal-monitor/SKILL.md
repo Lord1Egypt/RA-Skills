@@ -1,35 +1,99 @@
 ---
-name: "Zhongguancun Signal Monitor"
-description: "产学研合作主动扫描与信号监控。当用户要求扫描合作机会、监控企业动态、发现潜在合作方、查看本周有哪些值得接触的企业时触发。基于行业/公司列表，扫描融资、招标、产品发布、学术发表等信号，推断需求，输出Top N推荐。适用于周度/日度合作线索发现。配合 industry-research skill 使用：监控发现线索..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhongguancun-signal-monitor"
-sourceUrl: "https://clawhub.ai/skills/zhongguancun-signal-monitor"
+name: industry-signal-monitor
+description: 产学研合作主动扫描与信号监控。当用户要求扫描合作机会、监控企业动态、发现潜在合作方、查看本周有哪些值得接触的企业时触发。基于行业/公司列表，扫描融资、招标、产品发布、学术发表等信号，推断需求，输出Top N推荐。适用于周度/日度合作线索发现。配合 industry-research skill 使用：监控发现线索 → 深度调研 → 生成议程。
 ---
 
-# Zhongguancun Signal Monitor
+# 产学研合作信号监控
 
-> 产学研合作主动扫描与信号监控。当用户要求扫描合作机会、监控企业动态、发现潜在合作方、查看本周有哪些值得接触的企业时触发。基于行业/公司列表，扫描融资、招标、产品发布、学术发表等信号，推断需求，输出Top N推荐。适用于周度/日度合作线索发现。配合 industry-research skill 使用：监控发现线索...
+主动扫描外部企业动态，发现与中关村两院的潜在合作机会。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhongguancun-signal-monitor`
-- **Source URL:** [https://clawhub.ai/skills/zhongguancun-signal-monitor](https://clawhub.ai/skills/zhongguancun-signal-monitor)
+## 监控对象
 
-## Overview
+三层架构（详见 [references/seed-list.md](references/seed-list.md)）：
 
+| 层级 | 类型 | 监控频率 |
+|------|------|----------|
+| Tier 1 | 头部科技企业 | 每周，关注战略转向 |
+| Tier 2 | AI创业公司 | **每周**，融资=最明确窗口 |
+| Tier 3 | 垂直行业企业 | 每两周，按方向配对 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhongguancun-signal-monitor
+## 工作流程
+
+### 第一步：信号扫描
+
+使用搜索工具，按以下信号类型扫描目标企业近1-2周动态：
+
+| 信号类型 | 搜索关键词示例 | 信号含义 |
+|----------|---------------|----------|
+| 融资/上市 | "XX公司 融资/上市/轮" | 扩张期→有合作预算 |
+| 招标/采购 | "XX公司 招标/采购" | 有具体需求 |
+| 产品发布 | "XX公司 发布/上线/新品" | 方向调整→研发需求变化 |
+| 人事变动 | "XX公司 加入/任命/离职" | 高管调整→战略转向可能 |
+| 学术发表 | "XX公司 论文/ArXiv/顶会" | 技术路线→匹配度判断 |
+| 生态合作 | "XX公司 合作/联盟/合资" | 在找伙伴→时机窗口 |
+
+### 第二步：需求推断
+
+对每个有信号的企业，推断其可能需求：
+
+**头部企业推断逻辑：**
+- 融资/招标 → 有预算，需要技术/人才支撑
+- 产品发布 → 新方向需要研发投入
+- 生态合作 → 在找人，时机窗口
+
+**创业公司推断逻辑（更激进）：**
+- A轮融资 → **最佳窗口**，产品验证期，需要技术深度
+- B轮融资 → 规模扩张期，需要场景+数据+人才
+- 招聘方向 → 招什么人=要做什么（方向性信号）
+- 学术发表 → 秀肌肉+找合作者
+- 战略融资 → 大厂绑定，除非方向极匹配否则不推荐
+
+**融资轮次→合作可能性速判：**
+
+| 轮次 | 合作可能性 | 原因 |
+|------|-----------|------|
+| 天使/Pre-A | MAYBE | 早期不确定性高 |
+| A轮 | **YES** | 产品验证期，最佳窗口 |
+| B轮 | **YES** | 扩张期，需要多方资源 |
+| C轮+ | MAYBE | 偏合规品牌 |
+| 战略融资 | NO | 已有绑定 |
+
+### 第三步：匹配度评估
+
+三维打分（详见 [references/scoring.md](references/scoring.md)）：
+
+| 维度 | 高(2分) | 低(0分) |
+|------|--------|--------|
+| 方向匹配 | 与我方3个研究方向有明确交叉 | 不相关 |
+| 合作窗口 | 有明确信号（融资/招标/找人） | 无信号 |
+| 层级对等 | 对方研究院/部门级可落地 | 仅品牌/公关级 |
+
+- **4分以上 → YES**（本周值得接触）
+- **2-3分 → MAYBE**（持续观察）
+- **0-1分 → NO**（暂不投入）
+
+我方研究方向对照见 [references/our-research.md](references/our-research.md)（与 industry-research skill 共享）。
+
+### 第四步：输出报告
+
 ```
+📋 本周合作扫描报告（YYYY-MM-DD）
+
+🔥 值得接触（N家）
+
+1. XX公司
+   - 信号：B轮3亿融资，AI+教育方向
+   - 需求推断：认知诊断技术、教研数据
+   - 匹配度：YES（方向6+窗口4+层级2=12）
+   - 建议接触：合作发展部→对方研究院
+   - 下一步：可启动 industry-research 深度调研
+
+👀 持续观察（N家）
+- YY公司：新发大模型，但无合作信号
+
+❌ 本周暂无机会
+```
+
+## 与 industry-research 联动
+
+本 skill 发现线索后，用户说"调研一下这家"→ 触发 industry-research skill 进入深度调研+议程生成。

@@ -1,0 +1,20 @@
+name = "memory-crystal-relay"
+main = "dist/worker.js"
+compatibility_date = "2024-12-01"
+
+# R2 — Ephemeral blob storage (encrypted payloads, auto-cleaned after 24h)
+[[r2_buckets]]
+binding = "RELAY"
+bucket_name = "memory-crystal-relay"
+
+# Cron trigger: clean up expired blobs every hour
+[triggers]
+crons = ["0 * * * *"]
+
+# Secrets (set via `wrangler secret put`):
+#   AUTH_TOKEN_CC_AIR   — bearer token for cc-air (MacBook Air)
+#   AUTH_TOKEN_CC_MINI  — bearer token for cc-mini (Mac Mini)
+#   AUTH_TOKEN_LESA     — bearer token for lēsa-mini
+#
+# NO encryption keys here. NO API keys here.
+# The Worker cannot read what it holds.

@@ -1,0 +1,9 @@
+{
+  "source": "slack",
+  "sourceType": "message",
+  "externalWrite": false,
+  "text": "Hey, can you review the Q2 metrics dashboard before the planning meeting tomorrow? The numbers look off and we need a decision by EOD.",
+  "observedAt": "2026-05-19T10:30:00.000Z",
+  "url": "https://example.slack.com/archives/C01ABC123/p1716114600000000",
+  "summary": "Review request for Q2 metrics dashboard — decision needed before meeting"
+}

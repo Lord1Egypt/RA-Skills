@@ -1,0 +1,365 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "theme-minimal-white",
+      "type": "registry:theme",
+      "title": "Minimal White",
+      "description": "Clean white base with indigo accent block. Best for brand-general, tutorials, and informational content.",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/minimal-white.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/minimal-white.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#FFFFFF",
+          "--text": "#181E25",
+          "--accent": "#5856E9"
+        }
+      }
+    },
+    {
+      "name": "theme-dark-gold",
+      "type": "registry:theme",
+      "title": "Dark Gold",
+      "description": "Navy base with gold gradient. Cinematic. Best for big announcements and product launches.",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/dark-gold.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/dark-gold.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#1A1A2E",
+          "--text": "#F5E6D3",
+          "--accent": "#E2B714"
+        }
+      }
+    },
+    {
+      "name": "theme-editorial",
+      "type": "registry:theme",
+      "title": "Editorial",
+      "description": "Warm white with red accents and large quote marks. Best for deep analysis and interviews.",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/editorial.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/editorial.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#F5F0EB",
+          "--text": "#181E25",
+          "--accent": "#C0392B"
+        }
+      }
+    },
+    {
+      "name": "theme-warm-handdrawn",
+      "type": "registry:theme",
+      "title": "Warm Handdrawn",
+      "description": "Cream paper with handdrawn underlines and tape decorations. Best for personal stories.",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/warm-handdrawn.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/warm-handdrawn.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#FDF6EC",
+          "--text": "#181E25",
+          "--accent": "#D97706"
+        }
+      }
+    },
+    {
+      "name": "theme-tech-modern",
+      "type": "registry:theme",
+      "title": "Tech Modern",
+      "description": "Dark navy with terminal dots, grid background, glowing accents. Best for AI and tech content.",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/tech-modern.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/tech-modern.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#0F172A",
+          "--text": "#F1F5F9",
+          "--accent": "#4FACFE"
+        }
+      }
+    },
+    {
+      "name": "theme-bold-poster",
+      "type": "registry:theme",
+      "title": "Bold Poster",
+      "description": "Pure black with massive red corner block. High contrast. Best for quote explosions and event posters.",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/bold-poster.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/bold-poster.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#000000",
+          "--text": "#FFFFFF",
+          "--accent": "#FF3355"
+        }
+      }
+    },
+    {
+      "name": "theme-data-infographic",
+      "type": "registry:theme",
+      "title": "Data Infographic",
+      "description": "Light slate with data cards and progress bars. Best for rankings, reports, and data-driven content.",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/data-infographic.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/data-infographic.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#F8FAFC",
+          "--text": "#181E25",
+          "--accent": "#10B981"
+        }
+      }
+    },
+    {
+      "name": "theme-eastern",
+      "type": "registry:theme",
+      "title": "Eastern",
+      "description": "Cream base with ink-wash gradients and vertical CJK title. Best for culture, philosophy, poetry.",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/eastern.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/eastern.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#F7F3EE",
+          "--text": "#181E25",
+          "--accent": "#8D6E63"
+        }
+      }
+    },
+    {
+      "name": "theme-magazine-cover",
+      "type": "registry:theme",
+      "title": "Magazine Cover",
+      "description": "Warm white with full-bleed layout and oversized centered title. Best for feature articles.",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/magazine-cover.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/magazine-cover.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#F5F0EB",
+          "--text": "#181E25",
+          "--accent": "#4F46E5"
+        }
+      }
+    },
+    {
+      "name": "theme-split-screen",
+      "type": "registry:theme",
+      "title": "Split Screen",
+      "description": "50/50 left-right split: one side brand color, one side blank. Best for comparisons, bilingual, product showcases.",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/split-screen.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/split-screen.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#FFFFFF",
+          "--text": "#181E25",
+          "--accent": "#4F46E5"
+        }
+      }
+    },
+    {
+      "name": "theme-minimal-white-editorial",
+      "type": "registry:theme",
+      "title": "Minimal White Editorial",
+      "description": "Off-white Swiss-style with extra whitespace. Best for high-end brand and design content.",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/minimal-white-editorial.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/minimal-white-editorial.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#FAFAFA",
+          "--text": "#181E25",
+          "--accent": "#4F46E5"
+        }
+      }
+    },
+    {
+      "name": "theme-list-ranking",
+      "type": "registry:theme",
+      "title": "List Ranking",
+      "description": "Numbered list with large digit markers. Best for Top 10, ranking, step-by-step.",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/list-ranking.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/list-ranking.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#FFFFFF",
+          "--text": "#181E25",
+          "--accent": "#4F46E5"
+        }
+      }
+    },
+    {
+      "name": "theme-pitch-deck-vc",
+      "type": "registry:theme",
+      "title": "Pitch Deck VC",
+      "description": "YC-style venture pitch. Blue→purple gradient, clean white, VC-ready. From html-ppt-skill (MIT).",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/pitch-deck-vc.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/pitch-deck-vc.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#FFFFFF",
+          "--text": "#0B0D12",
+          "--accent": "#0070F3"
+        }
+      }
+    },
+    {
+      "name": "theme-corporate-clean",
+      "type": "registry:theme",
+      "title": "Corporate Clean",
+      "description": "Professional blue, polished, enterprise-ready. From html-ppt-skill (MIT).",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/corporate-clean.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/corporate-clean.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#FFFFFF",
+          "--text": "#0F172A",
+          "--accent": "#2563EB"
+        }
+      }
+    },
+    {
+      "name": "theme-tokyo-night",
+      "type": "registry:theme",
+      "title": "Tokyo Night",
+      "description": "Dark, neon, developer-friendly. Blue→purple on dark navy. From html-ppt-skill (MIT).",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/tokyo-night.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/tokyo-night.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#1A1B26",
+          "--text": "#C0CAF5",
+          "--accent": "#7AA2F7"
+        }
+      }
+    },
+    {
+      "name": "theme-editorial-serif",
+      "type": "registry:theme",
+      "title": "Editorial Serif",
+      "description": "Warm, serif, editorial. Playfair Display headlines, rich typography. From html-ppt-skill (MIT).",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/editorial-serif.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/editorial-serif.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#FAF8F5",
+          "--text": "#1A1410",
+          "--accent": "#C0392B"
+        }
+      }
+    },
+    {
+      "name": "theme-catppuccin-latte",
+      "type": "registry:theme",
+      "title": "Catppuccin Latte",
+      "description": "Warm, cozy, light. Pink→purple→orange gradient. From html-ppt-skill (MIT).",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/catppuccin-latte.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/catppuccin-latte.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#EFF1F5",
+          "--text": "#4C4F69",
+          "--accent": "#DD7878"
+        }
+      }
+    },
+    {
+      "name": "theme-catppuccin-mocha",
+      "type": "registry:theme",
+      "title": "Catppuccin Mocha",
+      "description": "Dark, rich, cozy. Pink→purple→red on dark. From html-ppt-skill (MIT).",
+      "files": [
+        {
+          "path": "yuanfang-design/themes/catppuccin-mocha.css",
+          "type": "registry:file",
+          "target": "yuanfang-design/themes/catppuccin-mocha.css"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "--bg": "#1E1E2E",
+          "--text": "#CDD6F4",
+          "--accent": "#F5C2E7"
+        }
+      }
+    }
+  ]
+}

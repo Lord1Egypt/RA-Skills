@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Data files
+data/queue.db
+data/logs/*.log
+data/images/*.jpg
+data/images/*.png
+data/images/*.jpeg
+!data/images/test_image.jpg
+
+# Config with sensitive info
+config.local.yaml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# ClawHub
+clawhub.token

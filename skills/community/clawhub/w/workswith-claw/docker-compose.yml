@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  workswith-claw:
+    build: .
+    container_name: workswith-claw
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config:/app/config
+      - ./data:/app/data
+    environment:
+      - HA_URL=http://192.168.1.x:8123
+      - HA_TOKEN=your_long_lived_token
+      - WORKSWITH_CLAW_API_KEY=
+    restart: unless-stopped
+    network_mode: host

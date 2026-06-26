@@ -1,0 +1,8 @@
+{
+  "source": "gmail",
+  "sourceType": "thread",
+  "externalWrite": false,
+  "text": "Re: Follow-up on proposal deck — please send before EOD Friday. This signal uses a human-readable date string instead of an ISO 8601 timestamp and will be rejected by the validator.",
+  "observedAt": "May 20, 2026 10:00 AM",
+  "summary": "Invalid: observedAt must be an ISO 8601 timestamp (e.g. 2026-05-20T10:00:00.000Z)."
+}

@@ -1,0 +1,21 @@
+{
+  "name": "youtube-bulk-publisher",
+  "version": "1.0.0",
+  "description": "YouTube 批量视频发布工具，支持自动上传、元数据设置、缩略图上传等功能",
+  "author": "fly3094",
+  "license": "MIT",
+  "keywords": [
+    "youtube",
+    "video",
+    "upload",
+    "publish",
+    "bulk",
+    "automation",
+    "autopost"
+  ],
+  "repository": "https://github.com/lobsterlabs/youtube-bulk-publisher",
+  "support": {
+    "paypal": "492227637@qq.com",
+    "email": "492227637@qq.com"
+  }
+}

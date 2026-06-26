@@ -1,0 +1,53 @@
+{
+  "name": "xmoney",
+  "version": "1.0.0",
+  "description": "Turn messy monetization ideas into clearer revenue decisions. Analyze pricing, payout logic, conversion friction, and revenue model fit.",
+  "author": "ethagent",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "xmoney",
+    "monetization",
+    "pricing",
+    "payouts",
+    "creator revenue",
+    "subscriptions",
+    "revenue model",
+    "conversion logic",
+    "revenue audit",
+    "offer engineering",
+    "creator economy"
+  ],
+  "files": {
+    "skill.md": "skill.md"
+  },
+  "capabilities": {
+    "monetization_analysis": "Analyze monetization and revenue models",
+    "pricing_design": "Compare pricing structures and value logic",
+    "payout_logic_review": "Clarify payout rules and incentives",
+    "conversion_friction_review": "Identify where monetization complexity slows conversion",
+    "revenue_strategy": "Recommend next-step monetization improvements"
+  },
+  "triggers": [
+    "monetization strategy",
+    "pricing model",
+    "creator revenue",
+    "payout logic",
+    "subscription pricing",
+    "revenue model",
+    "how should I monetize",
+    "conversion logic",
+    "revenue audit",
+    "offer design"
+  ],
+  "audience": [
+    "Creators improving monetization",
+    "Operators designing payouts or pricing",
+    "Founders building online revenue models",
+    "Digital businesses refining offer structure"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

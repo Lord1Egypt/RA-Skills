@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "xhs-auto-publisher · 账号配置",
+  "type": "object",
+  "required": ["channel_name", "domain", "visual_style", "post_time"],
+  "properties": {
+    "channel_name": {
+      "type": "string",
+      "description": "频道名/昵称，会出现在封面与 CTA 页",
+      "examples": ["Zea 说 AI", "AI 每日速报"]
+    },
+    "domain": {
+      "type": "string",
+      "description": "内容领域",
+      "examples": ["AI 资讯", "职场效率", "AI 工具", "科技财经"]
+    },
+    "audience": {
+      "type": "string",
+      "description": "目标受众",
+      "default": "泛关注该领域的打工人"
+    },
+    "visual_style": {
+      "type": "string",
+      "enum": ["research", "punchy", "geek", "custom"],
+      "description": "视觉风格预设",
+      "default": "research"
+    },
+    "post_time": {
+      "type": "string",
+      "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$",
+      "description": "每日触发时间，HH:MM",
+      "default": "08:35"
+    },
+    "post_frequency": {
+      "type": "string",
+      "enum": ["daily", "weekdays", "weekly"],
+      "default": "daily"
+    },
+    "data_sources": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "优先抓取的数据源白名单",
+      "default": ["机器之心", "36kr", "CSDN", "腾讯新闻", "网易科技", "央广科技"]
+    },
+    "blocked_topics": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "必须避开的话题/公司名",
+      "default": []
+    },
+    "language": {
+      "type": "string",
+      "enum": ["zh", "en", "bilingual"],
+      "default": "zh"
+    }
+  }
+}

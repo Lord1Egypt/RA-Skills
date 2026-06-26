@@ -1,35 +1,370 @@
 ---
-name: "Yunlv Pod Agent"
-description: "Use when user needs to build or optimize a POD (Print on Demand) business using AI Agents. Use when generating POD operation strategies and recommendations l..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yunlv-pod-agent"
-sourceUrl: "https://clawhub.ai/skills/yunlv-pod-agent"
+name: yunlv-pod-agent
+description: >-
+  Use when user needs to build or optimize a POD (Print on Demand) business using AI Agents.
+  Use when generating POD operation strategies and recommendations like product listing, design generation, and customer service.
+  Use when selecting AI tools for POD design, store optimization advice, or sales strategy.
+  Use when user mentions "POD策略", "按需打印", "AI辅助运营", "POD设计", "上架建议", "爆款裂变",
+  "POD智能体", "POD智能化", "print on demand AI".
+homepage: https://yunlvai.com
+license: MIT-0
+version: 1.0.3
+progressive:
+  layers:
+    - name: metadata
+      tokens: 200
+      loaded: startup
+      description: "技能基础配置、POD三大层面、工具矩阵"
+    - name: instructions
+      tokens: 4000
+      loaded: trigger
+      description: "POD全链路策略生成、工具选型、落地步骤"
+    - name: resources
+      tokens: variable
+      loaded: on-demand
+      description: "工具对比表、设计公式、店铺运营清单"
+  resource_paths:
+    - references/pod_tool_comparison.md
+    - references/pod_design_formula.md
+    - references/pod_operations_checklist.md
+metadata:
+  yunlv:
+    homepage: https://yunlvai.com
+    primaryEnv: TRADEGPT_API_KEY
+    category: e-commerce-automation
+    subCategory: pod-ai-agent
+    tags: ["POD", "按需打印", "AI Agent", "POD策略", "AI助手", "电商智能化", "POD设计", "店群策略"]
+    requires:
+      env:
+        - TRADEGPT_API_KEY
+    apis:
+      - name: 云旅AI TradeGPT API
+        url: https://api.yunlvai.com
+        purpose: "POD运营策略建议与工具推荐"
+        auth: Bearer Token (TRADEGPT_API_KEY)
+    emoji: "👕"
+    author: "云旅AI团队"
+    pricing:
+      free:
+        features: ["基础POD策略咨询", "工具推荐", "设计公式指南"]
+      basic:
+        price: 199
+        currency: CNY
+        period: month
+        features: ["完整工具矩阵", "运营清单", "设计优化建议"]
+      pro:
+        price: 599
+        currency: CNY
+        period: month
+        features: ["全链路搭建指导", "店群运营策略", "定制化方案"]
+triggers:
+  - "POD策略"
+  - "按需打印"
+  - "AI辅助运营"
+  - "POD设计"
+  - "上架建议"
+  - "爆款裂变"
+  - "POD智能体"
+  - "POD智能化"
+  - "print on demand"
+  - "POD AI agent"
 ---
 
-# Yunlv Pod Agent
+# POD策略顾问：从设计到发货的全链路建议
 
-> Use when user needs to build or optimize a POD (Print on Demand) business using AI Agents. Use when generating POD operation strategies and recommendations l...
+> 2026年的AI Agent已经不只是"陪聊"的客服机器人，而是进化成了能提供专业建议、辅助决策的"策略顾问"。在POD（按需打印）领域，AI Agent能辅助你制定从设计到发货的全链路策略，真正实现"你下需求，它出方案"。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yunlv-pod-agent`
-- **Source URL:** [https://clawhub.ai/skills/yunlv-pod-agent](https://clawhub.ai/skills/yunlv-pod-agent)
+---
 
-## Overview
+## 一、技能定位
 
+**解决什么问题**：POD卖家如何利用AI Agent实现"一个人就是一支队伍"的运营模式？
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yunlv-pod-agent
+**核心价值**：将POD三大核心环节（运营、设计、客服）的人工耗时压缩 **80%+**，让单人创业者也能管理20+店铺。
+
+---
+
+## 二、AI Agent在POD的三大层面
+
+### 层面1：核心运营 — 从"手动操作"到"智能建议"
+
+以前你需要手动上架商品、写标题、报活动，现在AI策略顾问可以辅助优化这些繁琐的重复性工作。
+
+| 工具 | 能力 | 效果 |
+|------|------|------|
+| **探域（TanYu）运营智能体** | 聊天框描述需求即可生成上架建议、素材配置方案、活动报名策略 | 200分钟决策→10分钟出方案 |
+| **阿里 Accio Work** | 输入创意，30分钟内自主完成市场分析、选品、店铺装修、供应商谈判 | 企业级全流程自动化 |
+| **店群管理AI** | 辅助库存评估、定价建议、活动策略，过滤侵权图案 | 一人策略指导20店 |
+
+**关键能力**：
+- 智能上架建议：描述需求，生成上架方案
+- 智能选品：AI分析市场趋势，辅助选品决策
+- 店群策略：多店铺统一运营建议，库存和定价参考同步
+- 侵权参考：AI辅助识别潜在侵权风险，降低法律风险
+
+### 层面2：视觉与设计 — POD的核心生产力
+
+POD的核心是设计，AI Agent在这里不仅是工具，更是"超级设计师"。
+
+| 工具 | 能力 | 价值 |
+|------|------|------|
+| **HICUSTOM** | 参考竞品爆款素材策略，AI辅助设计优化，套用数十种模板 | 爆款策略与设计优化 |
+| **李白人工智能实验室** | 生成虚拟模特和真实场景图 | 零模特费，提升点击率 |
+| **鹿小匠** | 分析粉丝画像，生成高转化周边设计 | 设计成本降为零 |
+
+**设计三大模式**：
+
+1. **爆款策略**：参考爆款策略 → 提取设计元素 → AI辅助创作 → 套用多品类模板
+2. **场景化生成**：印花图案"穿"在不同肤色、不同背景的虚拟模特身上
+3. **数据驱动设计**：基于粉丝画像和转化数据，AI辅助生成高转化设计
+
+### 层面3：客服与销售 — 24小时不打烊
+
+AI Agent在客服端的进化，让它能直接提升转化率，而不仅仅是回答问题。
+
+| 工具 | 能力 | 效果 |
+|------|------|------|
+| **多客（DuoKe）L4级客服** | 生成问题处理建议，包括查单策略、物流参考、退款方案 | 智能客服建议，媲美真人 |
+| **AgentiveAIQ** | 实时查库存，生成替代品推荐建议，识别VIP客户 | 降低购物车放弃率 |
+
+**客服进化路径**：
+- L1 规则客服：固定话术回复
+- L2 知识客服：基于FAQ库回答
+- L3 对话客服：理解上下文，多轮对话
+- L4 执行客服：直接执行操作（查单、退款、改地址）
+
+---
+
+## 三、POD AI Agent 组合搭建方案
+
+### 方案A：新手入门（月成本<500元）
+
+| 环节 | 工具 | 成本 |
+|------|------|------|
+| 设计与选品 | 鹿小匠 + HICUSTOM免费版 | 免费~199元 |
+| 店铺运营 | 手动 + AI辅助标题 | 免费 |
+| 客户服务 | 平台自带客服 + 多客基础版 | 免费~99元 |
+
+### 方案B：进阶运营（月成本500-2000元）
+
+| 环节 | 工具 | 成本 |
+|------|------|------|
+| 设计与选品 | HICUSTOM + 李白AI | 300-800元 |
+| 店铺运营 | 探域智能体 | 299-599元 |
+| 客户服务 | 多客L4客服 | 199-399元 |
+
+### 方案C：店群矩阵（月成本2000+元）
+
+| 环节 | 工具 | 成本 |
+|------|------|------|
+| 设计与选品 | HICUSTOM Pro + 李白AI + 鹿小匠 | 800-1500元 |
+| 店铺运营 | 探域 + 阿里Accio Work | 599-999元 |
+| 客户服务 | 多客 + AgentiveAIQ | 399-899元 |
+
+---
+
+## 四、落地步骤
+
+### 第1步：诊断当前痛点
+
+分析你的POD业务在哪个环节最耗时：
+- 设计环节：每天花多少时间做图？有爆款但裂变慢？
+- 运营环节：上架、报活动是否占用了大部分时间？
+- 客服环节：客服响应慢？退款处理不及时？
+
+### 第2步：选择AI Agent组合
+
+根据痛点选择对应层面的工具（参考上面三套方案）。
+
+### 第3步：逐层规划
+
+**不要一次性全上**，建议按以下顺序逐层规划：
+
+1. **第一层：设计自动化**（1-2周上线）
+   - 参考 HICUSTOM 或 鹿小匠等工具建议
+   - 建立设计素材库和模板库
+   - 测试AI辅助设计的转化率
+
+2. **第二层：运营自动化**（第3-4周）
+   - 参考探域智能体等工具建议
+   - 制定上架策略方案
+   - 设置库存和侵权过滤
+
+3. **第三层：客服自动化**（第5-6周）
+   - 参考多客L4客服等工具建议
+   - 整理客服话术参考
+   - 制定退款/查单处理方案
+
+### 第4步：验证与优化
+
+- 每周检查AI Agent执行结果
+- 对比人工 vs AI 的转化率差异
+- 根据数据调整工具组合
+
+---
+
+## 五、POD设计安全公式
+
+> **AI生成 + 人工精修 + 侵权排查 = 安全的POD设计**
+
+| 步骤 | 要点 | 工具建议 |
+|------|------|----------|
+| AI生成 | 用AI生成初稿，快速出图 | HICUSTOM/鹿小匠 |
+| 人工精修 | 微调细节，增加差异化 | Photoshop/Canva |
+| 侵权排查 | 检查图案是否涉及版权 | 平台侵权检测 + Google图片反搜 |
+
+**侵权红线**：
+- ❌ 直接使用迪士尼、漫威等IP形象
+- ❌ 使用名人肖像
+- ❌ 照搬竞品原图
+- ❌ 使用未经授权的字体做商业用途
+- ✅ AI生成原创图案 + 二次创作
+- ✅ 公共领域素材 + 创意改造
+- ✅ 购买商用授权素材 + AI再设计
+
+---
+
+## 六、适用场景
+
+| 场景 | 使用方式 |
+|------|----------|
+| 新手起步 | 从方案A开始，先用AI设计工具验证市场 |
+| 单店提效 | 接入方案B，重点优化上架和客服 |
+| 店群扩展 | 方案C，AI接管大部分重复工作 |
+| 爆款放大 | HICUSTOM裂变 + 探域上架建议 |
+| 客服升级 | 多客L4替换人工客服，24小时响应 |
+| 季节性运营 | AI辅助批量生成节日主题设计 |
+
+---
+
+## 七、资源索引
+
+- **POD工具详细对比表**: 见 `references/pod_tool_comparison.md`（何时读取：选择具体工具时参考功能和价格对比）
+- **POD设计安全公式**: 见 `references/pod_design_formula.md`（何时读取：创作设计时确保合规）
+- **POD店铺运营清单**: 见 `references/pod_operations_checklist.md`（何时读取：搭建或优化店铺时逐项检查）
+
+---
+
+## 八、注意事项
+
+### ⚠️ AI不是免责金牌
+- AI生成的内容仍需人工审核
+- 侵权排查不可省略，AI也可能生成近似版权的图案
+- 不同平台对AI生成内容的政策不同，需了解各平台规则
+
+### ⚠️ 工具选择要匹配阶段
+- 新手不要一上来就上全套，先验证最小可行方案
+- 店群规模<5店时，运营自动化优先级高于客服自动化
+- 设计是POD的核心，设计工具的投资回报率最高
+
+### ⚠️ 数据安全
+- 店铺API密钥需妥善保管
+- 客服AI的对话数据需符合隐私法规
+- 设计素材库定期备份
+
+---
+
+## 九、Common Rationalizations
+
+| Rationalization | Reality |
+|----------------|---------|
+| "AI能完全替代人工" | AI是强力辅助，但仍需人工审核和精修 |
+| "上了AI就能爆单" | AI提升效率，爆单还需选品和运营策略 |
+| "POD零成本创业" | 有设计工具、平台费用、样品成本，但确实比传统库存模式低很多 |
+| "AI设计不需要查侵权" | AI可能生成近似版权的图案，侵权排查不可省 |
+
+---
+
+## 十、Verification
+
+完成POD AI Agent搭建后：
+- [ ] 设计环节：AI辅助设计的转化率 ≥ 人工设计的70%
+- [ ] 运营环节：策略执行效率提升 ≥ 5倍
+- [ ] 客服环节：客服建议覆盖率 ≥ 80%的常见问题
+- [ ] 侵权排查：每个上架设计都经过侵权检测
+- [ ] 成本核算：AI工具月费 < 人工节省的时薪成本
+
+---
+
+## 十一、Security & Privacy
+
+### 存储根路径
 ```
+./data/yunlv-skills/podAgent/
+├── designs/          # AI生成的设计素材
+├── listings/         # 上架记录
+├── analytics/        # 转化数据分析
+└── logs/             # 运行日志（不含店铺API密钥）
+```
+
+### 数据流透明声明 (Data Flow Transparency)
+
+本技能的数据处理流程完全透明，所有数据传输均有明确目的：
+
+| 数据流 | 方向 | 内容 | 用途 | 保护措施 |
+|--------|------|------|------|----------|
+| 用户 → 本技能 | 输入 | POD运营需求（品类、店铺类型） | 构建策略请求 | 本地处理 |
+| 本技能 → 云旅AI API | 请求 | 品类+运营场景描述 | 获取POD策略建议 | TLS 1.3加密传输 |
+| 云旅AI API → 本技能 | 响应 | 工具推荐+策略方案 | 生成运营方案 | 服务端不存储请求 |
+| 本技能 → 用户 | 输出 | 格式化的策略方案+工具推荐 | 辅助POD运营决策 | 数据保留在用户环境 |
+
+**关键保证**：
+- 📌 **API仅用于策略生成**：云旅AI API接收运营场景描述，返回策略建议。不传输任何店铺运营数据
+- 📌 **不传输店铺敏感数据**：店铺API密钥、销售数据、客户信息等不发送到任何外部服务
+- 📌 **不自动操作店铺**：所有店铺操作指令需用户确认后手动执行，技能不直接调用店铺API
+- 📌 **策略结果仅用户可见**：生成的方案保存在用户本地目录，不自动同步
+
+### 数据保护措施
+
+- **加密传输**：所有API通信使用TLS 1.3加密，确保数据在传输过程中不被截获
+- **不存储原始数据**：API返回的策略建议仅用于当前方案生成，不持久化存储在日志或缓存中
+- **最小化留存**：运营记录保留30天，超期自动归档删除，日志中不记录API密钥
+- **本地优先**：所有策略方案和工具推荐保存在用户本地目录，不自动上传
+
+### 合规声明
+
+- **GDPR合规**：不处理欧盟公民个人数据，运营数据属于用户自有商业信息
+- **PIPL合规**：不收集或处理个人信息，店铺数据由用户自主管理
+- **版权合规**：AI生成的设计需经过侵权检测后才可上架，遵循各平台内容政策
+- **数据主权**：所有数据保留在用户自有环境中，用户对数据拥有完全控制权
+
+### 权限边界声明
+- ✅ **允许**：读取 `./skills/pod-ai-agent/references/` 下的参考文件
+- ✅ **允许**：调用云旅AI API获取策略建议和工具推荐
+- ✅ **允许**：写入 `./data/yunlv-skills/podAgent/` 用户自有数据
+- ✅ **允许**：生成店铺操作建议供用户确认后执行
+- ❌ **禁止**：未经用户确认直接操作店铺API
+- ❌ **禁止**：将店铺数据、API密钥共享给第三方
+- ❌ **禁止**：在日志或输出中记录店铺的API密钥或访问令牌
+- ❌ **禁止**：跨用户聚合店铺运营数据进行转售
+
+### 本技能不做的事 (What This Skill Does NOT Do)
+- ❌ 不直接连接或操作用户的电商平台店铺
+- ❌ 不自动上架、下架或修改商品（仅生成建议，由用户确认执行）
+- ❌ 不将店铺API密钥或销售数据发送到外部服务
+- ❌ 不建立跨用户的POD运营数据库
+- ❌ 不绕过平台的内容审核或侵权检测机制
+
+---
+
+## ⚠️ 不要在以下情况使用
+
+- 需要法律专业意见时（请咨询律师）
+- 涉及特殊行业监管时（请咨询行业专家）
+
+---
+
+## 交付标准
+
+- 方案结构完整，覆盖所有章节
+- 建议具体可执行，不含模糊表述
+- 内容适配用户提供的行业和场景
+- 输出格式清晰，便于直接使用
+
+---
+
+## 相关技能推荐
+
+- **yunlv-pod-templates** — POD模板，获取产品设计模板参考
+- **yunlv-product-desc** — 产品描述，为按需印刷产品定制专业描述
+- **yunlv-pricing** — 定价策略，按需印刷产品的定价方案

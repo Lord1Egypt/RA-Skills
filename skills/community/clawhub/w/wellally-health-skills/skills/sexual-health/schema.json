@@ -1,0 +1,320 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/sexual-health-tracker.json",
+  "title": "SexualHealthTracker",
+  "description": "性健康管理数据结构",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "创建时间"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "最后更新时间"
+    },
+    "sexual_health_tracking": {
+      "type": "object",
+      "properties": {
+        "last_updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "最后更新时间"
+        },
+        "male_assessment": {
+          "type": "object",
+          "properties": {
+            "iief5": {
+              "type": "object",
+              "properties": {
+                "last_assessed": {
+                  "type": ["string", "null"],
+                  "format": "date",
+                  "description": "最后评估日期"
+                },
+                "total_score": {
+                  "type": ["integer", "null"],
+                  "minimum": 0,
+                  "maximum": 25,
+                  "description": "IIEF-5总分（0-25）"
+                },
+                "risk_level": {
+                  "type": ["string", "null"],
+                  "enum": ["normal", "mild", "mild_moderate", "moderate", "moderate_severe", "severe", null],
+                  "description": "ED风险等级"
+                },
+                "q1_confidence": {
+                  "type": ["integer", "null"],
+                  "minimum": 0,
+                  "maximum": 5,
+                  "description": "问题1得分"
+                },
+                "q2_erection": {
+                  "type": ["integer", "null"],
+                  "minimum": 0,
+                  "maximum": 5,
+                  "description": "问题2得分"
+                },
+                "q3_penetration": {
+                  "type": ["integer", "null"],
+                  "minimum": 0,
+                  "maximum": 5,
+                  "description": "问题3得分"
+                },
+                "q4_maintenance": {
+                  "type": ["integer", "null"],
+                  "minimum": 0,
+                  "maximum": 5,
+                  "description": "问题4得分"
+                },
+                "q5_satisfaction": {
+                  "type": ["integer", "null"],
+                  "minimum": 0,
+                  "maximum": 5,
+                  "description": "问题5得分"
+                },
+                "score_history": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "date": {"type": "string", "format": "date"},
+                      "score": {"type": "integer"}
+                    }
+                  }
+                }
+              }
+            },
+            "libido": {
+              "type": "object",
+              "properties": {
+                "level": {
+                  "type": ["string", "null"],
+                  "enum": ["normal", "decreased", "very_low", "absent", null]
+                },
+                "change": {
+                  "type": ["string", "null"],
+                  "enum": ["stable", "improved", "declined", null]
+                },
+                "notes": {"type": "string"}
+              }
+            }
+          }
+        },
+        "female_assessment": {
+          "type": "object",
+          "properties": {
+            "fsfi": {
+              "type": "object",
+              "properties": {
+                "last_assessed": {
+                  "type": ["string", "null"],
+                  "format": "date"
+                },
+                "total_score": {
+                  "type": ["number", "null"]
+                },
+                "desire_score": {
+                  "type": ["number", "null"]
+                },
+                "arousal_score": {
+                  "type": ["number", "null"]
+                },
+                "lubrication_score": {
+                  "type": ["number", "null"]
+                },
+                "orgasm_score": {
+                  "type": ["number", "null"]
+                },
+                "satisfaction_score": {
+                  "type": ["number", "null"]
+                },
+                "pain_score": {
+                  "type": ["number", "null"]
+                },
+                "score_history": {
+                  "type": "array",
+                  "items": {"type": "object"}
+                }
+              }
+            }
+          }
+        },
+        "std_screening": {
+          "type": "object",
+          "properties": {
+            "last_screened": {
+              "type": ["string", "null"],
+              "format": "date"
+            },
+            "next_due": {
+              "type": ["string", "null"],
+              "format": "date"
+            },
+            "risk_level": {
+              "type": "string",
+              "enum": ["low", "moderate", "high"],
+              "default": "low"
+            },
+            "results": {
+              "type": "object",
+              "properties": {
+                "hiv": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": ["string", "null"],
+                      "enum": ["negative", "positive", "pending", null]
+                    },
+                    "date": {"type": ["string", "null"], "format": "date"}
+                  }
+                },
+                "syphilis": {
+                  "type": "object",
+                  "properties": {
+                    "status": {"type": ["string", "null"], "enum": ["negative", "positive", "pending", null]},
+                    "date": {"type": ["string", "null"], "format": "date"}
+                  }
+                },
+                "chlamydia": {
+                  "type": "object",
+                  "properties": {
+                    "status": {"type": ["string", "null"], "enum": ["negative", "positive", "pending", null]},
+                    "date": {"type": ["string", "null"], "format": "date"}
+                  }
+                },
+                "gonorrhea": {
+                  "type": "object",
+                  "properties": {
+                    "status": {"type": ["string", "null"], "enum": ["negative", "positive", "pending", null]},
+                    "date": {"type": ["string", "null"], "format": "date"}
+                  }
+                },
+                "hpv": {
+                  "type": "object",
+                  "properties": {
+                    "status": {"type": ["string", "null"], "enum": ["negative", "positive", "pending", null]},
+                    "date": {"type": ["string", "null"], "format": "date"}
+                  }
+                },
+                "hepatitis_b": {
+                  "type": "object",
+                  "properties": {
+                    "status": {"type": ["string", "null"], "enum": ["negative", "positive", "pending", null]},
+                    "date": {"type": ["string", "null"], "format": "date"}
+                  }
+                },
+                "herpes": {
+                  "type": "object",
+                  "properties": {
+                    "status": {"type": ["string", "null"], "enum": ["negative", "positive", "pending", null]},
+                    "date": {"type": ["string", "null"], "format": "date"}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "contraception": {
+          "type": "object",
+          "properties": {
+            "current_method": {
+              "type": ["string", "null"],
+              "enum": ["condom", "pill", "IUD", "implant", "injection", "withdrawal", "rhythm", "sterilization", "none", null]
+            },
+            "start_date": {"type": ["string", "null"], "format": "date"},
+            "effectiveness": {
+              "type": ["string", "null"],
+              "enum": ["high", "moderate", "low", null]
+            },
+            "side_effects": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "satisfaction": {
+              "type": ["string", "null"],
+              "enum": ["very_satisfied", "satisfied", "neutral", "dissatisfied", null]
+            },
+            "history": {
+              "type": "array",
+              "items": {"type": "object"}
+            }
+          }
+        },
+        "activity_log": {
+          "type": "object",
+          "properties": {
+            "frequency_weekly": {"type": ["number", "null"]},
+            "frequency_monthly": {"type": ["number", "null"]},
+            "satisfaction_average": {"type": ["number", "null"],
+            "protection_usage": {
+              "type": ["string", "null"],
+              "enum": ["always", "usually", "sometimes", "rarely", "never", null]
+            },
+            "last_activity": {"type": ["string", "null"], "format": "date-time"},
+            "logs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "date": {"type": "string", "format": "date"},
+                  "type": {"type": "string"},
+                  "protected": {"type": "boolean"},
+                  "satisfaction": {"type": "integer"},
+                  "notes": {"type": "string"}
+                }
+              }
+            }
+          }
+        },
+        "medication": {
+          "type": "object",
+          "properties": {
+            "pde5_inhibitors": {
+              "type": "object",
+              "properties": {
+                "current_use": {"type": "boolean"},
+                "medication": {"type": ["string", "null"]},
+                "dose": {"type": ["string", "null"]},
+                "frequency": {"type": ["string", "null"]},
+                "effectiveness": {
+                  "type": ["string", "null"],
+                  "enum": ["excellent", "good", "moderate", "poor", null]
+                },
+                "effectiveness_rating": {"type": ["integer", "null"], "minimum": 1, "maximum": 10},
+                "side_effects": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                },
+                "notes": {"type": "string"}
+              }
+            },
+            "other_medications": {
+              "type": "array",
+              "items": {"type": "object"}
+            }
+          }
+        },
+        "notes": {"type": "string"}
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_assessments": {"type": "integer"},
+        "total_std_screenings": {"type": "integer"},
+        "last_checkup": {"type": ["string", "null"], "format": "date"}
+      }
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "std_reminder_enabled": {"type": "boolean"},
+        "checkup_reminder_months": {"type": "integer", "default": 12}
+      }
+    }
+  },
+  "required": ["created_at", "last_updated"]
+}

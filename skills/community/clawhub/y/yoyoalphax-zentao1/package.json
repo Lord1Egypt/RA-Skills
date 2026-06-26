@@ -1,0 +1,24 @@
+{
+  "name": "zentao",
+  "version": "1.0.4",
+  "description": "ZenTao Project Management API Integration | 禅道-ZenTao 项目管理 API 集成",
+  "license": "MIT",
+  "dependencies": {
+    "python": ">=3.8",
+    "packages": ["requests", "beautifulsoup4"]
+  },
+  "config": {
+    "required_files": [
+      {
+        "path": "TOOLS.md",
+        "description": "禅道 API 凭证配置文件",
+        "required_sections": [
+          "## 禅道 API"
+        ],
+        "example_content": "## 禅道 API\n\n- **API 地址：** http://your-zentao-host/\n- **用户名：** your-username\n- **密码：** your-password"
+      }
+    ]
+  },
+  "keywords": ["zentao", "禅道", "project-management", "api"],
+  "author": "yoyoalphax"
+}

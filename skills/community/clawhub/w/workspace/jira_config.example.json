@@ -1,0 +1,13 @@
+{
+  "jira_url": "https://jira.neor.space",
+  "username": "your_username",
+  "api_token": "your_api_token_here",
+  "default_project": "YOUR_PROJECT_KEY",
+  "timezone": "Asia/Tehran"
+}
+
+# Instructions:
+# 1. Get your API token from: https://id.atlassian.com/manage/api-tokens
+# 2. Rename this file to jira_config.json
+# 3. Fill in your actual username and API token
+# 4. NEVER commit this file to version control!

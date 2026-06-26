@@ -1,35 +1,595 @@
 ---
-name: "Weread Digest"
-description: "微信读书笔记智能消化技能。 AI-powered reading note digestion for WeRead (微信读书). Generates weekly/monthly reading reports, synthesizes book highlights into structured summ..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weread-digest"
-sourceUrl: "https://clawhub.ai/skills/weread-digest"
+name: weread-digest
+description: >
+  微信读书笔记智能消化技能。
+  AI-powered reading note digestion for WeRead (微信读书).
+  Generates weekly/monthly reading reports, synthesizes book highlights into structured summaries,
+  explores themes across books, surfaces reading stats, and archives concepts to knowledge bases.
+  触发词 / Triggers: "读书报告"、"reading digest"、"总结笔记"、"summarize my notes"、
+  "这周读了什么"、"reading report"、"微信读书报告"、"notebook summary"、"读书回顾"、
+  "reading review"、"reading stats"、"读书统计"、"跨书主题"、"cross-book theme"、
+  "整理进知识库"、"archive to knowledge base"、"同步笔记到知识库"、"入库"
+metadata:
+  tags: [weread, reading, notes, digest, summary, knowledge-management, 微信读书]
 ---
 
-# Weread Digest
+# 微信读书笔记智能消化 / WeRead Note Digest
 
-> 微信读书笔记智能消化技能。 AI-powered reading note digestion for WeRead (微信读书). Generates weekly/monthly reading reports, synthesizes book highlights into structured summ...
+> Layer 2 skill — depends on `weread` skill for raw data. This skill provides the AI processing layer.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weread-digest`
-- **Source URL:** [https://clawhub.ai/skills/weread-digest](https://clawhub.ai/skills/weread-digest)
+把微信读书的划线+想法，变成有洞察的输出。不扩展 `weread` 的 API 能力，而是在已有数据上做 AI 加⼯。
 
-## Overview
+---
 
+## 前置依赖 / Prerequisites
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weread-digest
+本技能依赖 `weread` skill 的数据导出功能。执行任何操作前，先确保：
+
+1. `weread` skill 已安装且 Cookie 已配置
+2. 已运行过至少一次全量导出：`python3 ~/.openclaw/workspace/skills/weread/scripts/export_notes.py`
+
+数据文件位于：
 ```
+~/.weread/
+├── books.json          # 书籍索引
+├── notes/              # 单书笔记文件（<bookId>.json）
+└── notes_index.json    # 全量笔记索引（按时间排序）
+```
+
+### 快速检查
+
+```bash
+python3 ~/.openclaw/workspace/skills/weread/scripts/export_notes.py --stats
+```
+
+如果报错"未导出"，先帮用户配置 Cookie 并运行全量导出。
+
+---
+
+## 核心功能 / Core Features
+
+| # | 功能 | 触发示例 | 说明 |
+|---|------|---------|------|
+| 1 | 📊 阅读统计 | "读书统计"、"reading stats" | 书架概览、阅读时长、笔记分布 |
+| 2 | 📰 周期读书报告 | "本周读书报告"、"上月读书回顾" | 指定时间段的阅读摘要 + AI 洞察 |
+| 3 | 📖 单书笔记摘要 | "总结《XXX》的笔记" | 一本书所有笔记的结构化摘要 |
+| 4 | 🔗 跨书主题串联 | "我的笔记里有哪些共同主题" | 发现不同书之间的共同话题 |
+| 5 | 🧠 知识库归档 | "把《XXX》整理进知识库" | 从划线/笔记中提炼概念，按规则入库 |
+
+---
+
+## 功能一：阅读统计 / Reading Stats
+
+### 触发
+
+"读书统计"、"reading stats"、"看看我的阅读数据"
+
+### 工作流
+
+1. 检查 `~/.weread/books.json` 和 `~/.weread/notes_index.json` 是否存在
+2. 如果不存在 → 运行 `python3 ~/.openclaw/workspace/skills/weread/scripts/export_notes.py`
+3. 读取两个 JSON 文件
+4. 提取并展示：
+
+```
+📚 书架总览
+  总计 X 本 | 读完 Y 本 | 在读 Z 本 | 未读 W 本
+⏱ 总阅读时长：XX 小时 XX 分钟
+✏️ 总笔记数：N 条（M 本有笔记的书）
+📅 最近阅读：[最近读过且有进度的书 1-3 本]
+
+📊 笔记最多的书 TOP 5：
+  1. 《XXX》 — N 条笔记
+  2. ...
+
+📅 笔记时间分布：
+  2026: XX 条
+  2025: XX 条
+  ...
+```
+
+用 emoji 和简洁的排版，适合快速浏览。
+
+---
+
+## 功能二：周期读书报告 / Reading Digest
+
+### 触发
+
+- "本周读书报告" / "weekly reading digest"
+- "这个月的读书回顾" / "monthly reading review"
+- "最近两周的读书情况"
+- 也可以指定任意日期范围："看看 5 月份的读书报告"
+
+### 工作流
+
+**Step 1: 确定时间范围**
+
+- "本周" = 本周一到今天
+- "上周" = 上周一到上周日
+- "本月" = 本月 1 号到今天
+- "上月" = 上月 1 号到最后一天
+- 用户指定日期时按指定范围
+
+**Step 2: 获取数据**
+
+1. 读取 `~/.weread/notes_index.json`，筛选时间范围内的笔记
+2. 读取 `~/.weread/books.json`，获取相关书籍的元信息
+3. 如果需要更详细的阅读数据，运行 `python3 ~/.openclaw/workspace/skills/weread/scripts/weread_api.py shelf`
+
+**Step 3: 生成报告**
+
+报告结构（Markdown 格式）：
+
+```markdown
+# 📰 [时间段] 读书报告
+> 生成时间：YYYY-MM-DD
+
+## 📊 概览
+- 阅读 X 本书 | 新增 Y 条笔记 | 读完 Z 本
+- 累计阅读时长约 XX 小时
+
+## 📖 阅读书目
+| # | 书名 | 作者 | 笔记数 | 状态 |
+|---|------|------|--------|------|
+| 1 | 《XXX》 | 作者 | N 条 | 在读/读完 |
+（按笔记数降序排列，只列有笔记的书）
+
+## 💡 本周精华笔记（精选 5-8 条）
+> 从本期所有笔记中挑选最有深度、最具启发性的内容
+
+1. 📖「《书名》」
+   > 原文：...
+   > 💭 我的想法：...（如有）
+
+2. 📖「《书名》」
+   > 原文：...
+
+（挑选标准：笔记长度适中、观点鲜明、有独立价值）
+
+## 🧠 AI 洞察
+> 基于本周期笔记内容的综合分析
+
+- **阅读主题**：本期主要集中在 [领域A]、[领域B] 等话题
+- **思维模式**：[观察到的阅读倾向，如偏爱案例、关注方法论等]
+- **一个收获**：[最值得带走的一个核心观点]
+
+## 📈 趋势
+- 与上期对比：[笔记增减、阅读时长变化]
+- 连续阅读天数：X 天
+```
+
+**精选笔记的挑选原则：**
+- 优先选择有"想法"（用户自己写的）而非仅有划线的笔记
+- 内容有一定长度（至少 20 字），避免无上下文的短句
+- 覆盖不同书籍，每本书最多 2 条
+- 优先选择近期笔记
+
+**如果时间范围内没有笔记：**
+```
+📭 [时间段] 没有新增读书笔记。
+最近一次笔记：YYYY-MM-DD（《XXX》）
+要不要看看更早的？试试"上月读书报告"或"全部读书回顾"。
+```
+
+---
+
+## 功能三：单书笔记摘要 / Book Note Synthesis
+
+### 触发
+
+- "总结《XXX》的笔记" / "summarize my notes on XXX"
+- "帮我整理一下《XXX》的划线"
+- "《XXX》我都划了什么"
+
+### 工作流
+
+**Step 1: 定位书籍**
+
+1. 读取 `~/.weread/books.json`，模糊匹配书名
+2. 如果匹配到多本，列出让用户选
+3. 如果没找到 → 可能还没导出该书笔记，尝试运行 `export_notes.py --incremental` 或提示用户
+
+**Step 2: 获取该书笔记**
+
+1. 读取 `~/.weread/notes/<bookId>.json`
+2. 确认有多少条笔记（highlights + thoughts）
+
+**Step 3: 生成摘要**
+
+报告结构：
+
+```markdown
+# 📖 《书名》— 笔记摘要
+> 作者 | 阅读进度：XX% | 笔记 N 条 | 读完/在读
+
+## 🏷️ 核心主题
+（AI 将笔记按主题归类，3-6 个主题，每个 1-2 句话概括）
+
+- **主题A**：...
+- **主题B**：...
+- **主题C**：...
+
+## 📝 精华笔记（按主题整理）
+
+### 主题A
+1. > 原文：...
+   💭 我的想法：...（如有）
+2. > 原文：...
+
+### 主题B
+...
+
+## 🎯 关键收获
+（3-5 句话总结这本书给你留下的核心观点，基于笔记而非全书）
+
+## 📌 行动建议
+（基于笔记内容，提炼 1-3 条可付诸实践的建议）
+```
+
+**如果笔记很多（>50 条）：**
+- 先做主题归类，每个主题挑 3-5 条最有代表性的笔记
+- 告知用户总数和展示数，如"共 87 条笔记，展示精选 25 条"
+
+**如果笔记很少（<5 条）：**
+- 逐条展示，不做归类
+- 提示："笔记较少，可能刚开始读，建议多划线加深理解"
+
+**如果该书没有任何笔记：**
+```
+📭 《XXX》暂无划线或笔记。
+当前进度：XX%。要不要先去微信读书划线一些内容？
+```
+
+---
+
+## 功能四：跨书主题串联 / Cross-Book Theme Explorer
+
+### 触发
+
+- "我的笔记里有哪些共同主题"
+- "跨书主题分析"
+- "帮我找找不同书的笔记有什么关联"
+- "我的阅读关键词是什么"
+
+### 工作流
+
+**Step 1: 扫描全量笔记**
+
+1. 读取 `~/.weread/notes_index.json`
+2. 提取所有笔记的 content（想法）和 highlight（划线原文）
+
+**Step 2: AI 分析**
+
+对全量笔记进行主题聚类，输出：
+
+```markdown
+# 🔗 跨书阅读主题地图
+> 基于 N 本书、M 条笔记的分析
+
+## 🗺️ 你的阅读关键词
+
+🏷️ [关键词1] — X 本书 Y 条笔记
+🏷️ [关键词2] — X 本书 Y 条笔记
+🏷️ [关键词3] — X 本书 Y 条笔记
+...
+
+## 📚 主题 × 书籍矩阵
+
+| 主题 | 《书A》 | 《书B》 | 《书C》 |
+|------|--------|--------|--------|
+| 认知偏见 | 5条 | — | 8条 |
+| 决策方法 | 3条 | 12条 | 2条 |
+...
+
+（只展示出现 ≥2 本书的主题）
+
+## 🔗 有趣的连接
+
+1. 《书A》和《书B》都在讨论 [共同话题]，但角度不同：
+   - 《书A》认为：...
+   - 《书B》认为：...
+
+2. ...
+
+## 🧭 阅读偏好画像
+- 你的阅读集中在 [领域]
+- 你特别关注 [话题]
+- 你较少涉猎 [领域]（可考虑拓展）
+```
+
+**如果笔记 < 10 条：**
+```
+📭 笔记太少（当前仅 N 条），主题分析需要更多数据。
+建议多读几本书、多划线，积累到 30+ 条笔记后再做跨书分析。
+```
+
+---
+
+## 功能五：知识库归档 / Knowledge Base Archive
+
+### 触发
+
+- "把《XXX》的笔记整理进知识库" / "archive XXX to knowledge base"
+- "把最近读的书全部入库" / "batch archive recent books"
+- "同步微信读书笔记到知识库" / "sync reading notes to KB"
+- "入库"
+
+### 首次运行：配置引导 / First-Run Config
+
+首次触发此功能时，检查 `~/.weread/kb-config.json` 是否存在。若不存在，引导用户：
+
+```
+🧠 要把读书笔记转成知识库卡片，我需要知道：
+
+1. 你用什么知识库？
+   - Obsidian（默认，推荐）
+   - 纯 Markdown 文件夹
+   - Notion / Logseq / 其他
+
+2. 知识库路径是什么？
+   例：D:\\Obisidian\\MyVault\\
+
+3. 有没有知识库规则文件？
+   - 有的话给路径（如 WIKI-SCHEMA.md），我严格按规则执行
+   - 没有的话我用内置默认规则
+
+配置一次就行，以后说"入库"我就提取概念、列出清单等你确认。
+```
+
+**配置文件 `~/.weread/kb-config.json`：**
+
+```json
+{
+  "version": "1.0",
+  "knowledgeBase": {
+    "tool": "obsidian",
+    "path": "/path/to/vault/",
+    "schemaPath": "/path/to/WIKI-SCHEMA.md",
+    "language": "zh-en"
+  }
+}
+```
+
+### 工作流 / Workflow
+
+#### Step 1: 获取书籍笔记
+1. 从 `~/.weread/books.json` 匹配书名 → bookId
+2. 读取 `~/.weread/notes/<bookId>.json` 获取完整笔记
+3. 如果笔记文件不存在 → 提示先运行 `export_notes.py`
+
+#### Step 2: 识别书籍归属 / Classify Book
+
+判断书籍属于哪个知识库学科分类：
+
+| 书籍类型 | 对应知识库文件夹 |
+|---------|---------------|
+| 经济学/宏观/微观 | `06-经济学/` |
+| 投资/理财/K线 | `13-投资学/` |
+| AI/计算机/编程 | `05-人工智能与基础设施/` 或 `00-计算机科学与技术/` |
+| 哲学思想 | `09-哲学/` |
+| 心理学/认知 | `11-心理学/` |
+| 政治学 | `12-政治学/` |
+| 社会学 | `16-社会学/` |
+| 历史 | `22-历史学/` |
+| 思想史 | `14-思想史/` |
+| 文学/小说 | `19-文学/` |
+| 法律 | `08-法律基础/` |
+| 数据分析 | `10-数据分析/` |
+| 亲密关系/人际关系 | `11-心理学/` |
+| 个人成长/认知思维 | `11-心理学/` 或 `09-哲学/` |
+
+> 📌 **原则**：优先匹配现有文件夹，无匹配时才新建。新建文件夹格式：`{NN}-{学科名}/`
+
+#### Step 3: 概念提取与分流 / Extract & Route
+
+逐条处理笔记，按以下逻辑分流：
+
+- **A. 核心概念（创建新节点）**：书中定义的新术语、关键知识点、能独立成篇的洞见 → 创建 `.md` 文件
+- **B. 补充型内容（追加已有节点）**：具体案例、实操清单、对已有概念的补充 → 追加到已有文件
+- **C. 纯摘录（不建节点）**：仅划线无想法、过短、无独立概念价值 → 跳过或合入摘要
+
+#### Step 3.5: 用户确认 / User Confirmation ⚠️ 强制步骤
+
+**在创建任何文件之前，必须先将提取结果展示给用户确认。**
+
+展示格式：
+
+```
+📋 《XXX》概念提取结果，请确认：
+
+📁 归类：06-经济学/
+
+🆕 新建概念（X 个）：
+  1. 充分就业 — 宏观经济政策四大目标之一
+     → 文件：06-经济学/宏观经济学/05-充分就业.md
+  2. 理性人假设 — 所有市场参与者追求效用最大化
+     → 文件：06-经济学/微观基础/03-理性人假设.md
+
+📎 补充已有（Y 个）：
+  1. GDP — 追加 GNP 与 GDP 的区别说明
+     → 文件：06-经济学/宏观经济学/01-GDP.md
+
+⏭️ 跳过（Z 条）：
+  - "NI=NNP-间接税+企业补贴"（纯摘录无独立概念）
+  - "微调？"（过于简短）
+
+🔗 将建立的跨学科链接：
+  - [[理性人假设]] ↔ [[09-哲学/西方哲学/01-理性主义|理性主义]] 💡 思维模型类比
+
+---
+确认以上操作？回复"确认"开始归档，或指出需要调整的地方。
+```
+
+**规则：**
+- 用户说"确认"/"可以"/"OK" → 执行 Step 4-7
+- 用户要调整 → 按反馈修改后重新展示
+- 用户说"全部跳过" → 不创建任何文件
+- **绝不跳过此步骤直接创建文件**
+
+每个概念文件格式（Obsidian / Plain Markdown）：
+
+```markdown
+---
+aliases:
+  - EnglishName
+  - 中文别名
+---
+
+# ConceptName / 概念名
+
+> One-line summary. 一句话概述。
+> 📖 来源：《书名》— 作者
+
+## 核心内容 / Core Content
+
+（AI 基于划线内容提炼的核心知识点，2-5 段）
+
+## 💡 内容补充 / Supplements
+
+（后续同一主题的补充内容追加到这里）
+
+## 关联 / Related
+
+- [[path/to/related|Related Concept]] — 关联说明
+
+---
+
+**创建日期**：YYYY-MM-DD
+```
+
+**格式规则（严格遵循）：**
+
+1. **一个概念一个文件** — 绝不打包多个概念
+2. **数字前缀文件名** — `{NN}-{ConceptName}.md`
+3. **YAML frontmatter 含 aliases** — 英文名和中文别名
+4. **中英双语**（language=zh-en） — `# English / 中文`
+5. **Wikilink 规范**：`[[完整路径/文件名|显示名]]`，`|` 两边无空格
+6. **双向链接** — A↔B 互相引用
+7. **来源标注** — 每文件标注来源书籍
+
+#### Step 5: 去重检查 / Duplicate Detection
+
+创建前强制检查：
+1. 知识库中是否已有同名/相似概念（含 aliases）
+2. 已存在 → 建 wikilink 不重复建
+3. 部分重叠 → 补充到已有节点
+4. 内容矛盾 → 标记 `⚠️ 待确认`
+
+#### Step 6: 更新索引与总纲
+
+- 更新 `00_概念索引.md`
+- 更新学科总纲（如 `06-经济学总纲.md`）
+- 新学科文件夹 → 同时创建总纲文件
+- 如果知识库有断链检查脚本 → 运行
+
+#### Step 7: 完成汇报
+
+```
+🧠 《XXX》笔记已归档到知识库
+
+📊 统计：处理 N 条 | 新建 X 个 | 补充 Y 个 | 跳过 Z 条
+🆕 新建：充分就业、理性人假设…
+🔗 链接：[[A]] ↔ [[B]], 💡 跨学科…
+📋 索引已更新 | ⚠️ 0 个断链
+```
+
+### 批量归档 / Batch Archive
+
+触发："把最近读的书全部整理进知识库"
+
+1. 列出所有有笔记的书，逐本确认或全选
+2. 逐本执行 Step 1-7
+
+### 与 knowledge-digest 的分工
+
+| | knowledge-digest | weread-digest 归档 |
+|---|---|---|
+| 场景 | 上完课归档 | 读完书归档笔记 |
+| 数据源 | 课堂对话 | 微信读书划线 |
+| 知识库规则 | 相同 | 相同 |
+| 协同 | 共享知识库，去重互检 | 共享知识库，去重互检 |
+
+---
+
+## 常见工作流 / Common Workflows
+
+### 工作流 A：快速了解自己的阅读状况
+```
+用户："读书统计"
+→ 直接展示统计信息（功能一）
+```
+
+### 工作流 B：每周回顾
+```
+用户："本周读书报告"
+→ 如果 ~/.weread/ 数据不是最新的 → 先运行 export_notes.py
+→ 生成周报（功能二）
+```
+
+### 工作流 C：深入消化一本书
+```
+用户："总结《思考，快与慢》的笔记"
+→ 获取该书笔记 → 生成摘要（功能三）
+→ 主动问："要导出到知识库吗？"（如有知识库配置）
+```
+
+### 工作流 D：发现阅读模式
+```
+用户："帮我看看最近读了什么"
+→ 先展示统计 + 最近笔记（功能一 + 功能二精简版）
+→ 主动问："想看看跨书主题分析吗？"（链接功能四）
+```
+
+### 工作流 E：阅读→知识库闭环
+```
+用户："把《西方思想史十二讲》整理进知识库"
+→ 获取该书笔记 → 提取概念 → 按规则入库
+→ 汇报新建/更新/链接情况
+→ 断链检查 → 完成
+```
+
+---
+
+## 设计原则 / Design Principles
+
+1. **AI 加工，非 API 扩展** — 不做新的 API 调用，所有数据来自 `weread` skill 的导出
+2. **渐进深度** — 统计 → 报告 → 摘要 → 主题串联，由浅入深
+3. **人类可读** — 输出用自然语言和 emoji，不丢 JSON 原文
+4. **尊重隐私** — 笔记在本地处理，不上传第三方
+5. **容错友好** — 数据不足时给明确提示，不报错崩溃
+6. **保留出处** — 每条笔记都标注来源书籍，可追溯
+
+---
+
+## 与 weread skill 的分工 / Division of Labor
+
+| | weread skill | weread-digest skill |
+|---|---|---|
+| 获取书架 | ✅ | — |
+| 获取划线/笔记 | ✅ | — |
+| Cookie 管理 | ✅ | — |
+| 导出笔记到本地 | ✅ | — |
+| 浏览笔记内容 | — | ✅ |
+| 生成阅读报告 | — | ✅ |
+| AI 摘要和归类 | — | ✅ |
+| 跨书主题分析 | — | ✅ |
+| 阅读习惯洞察 | — | ✅ |
+| 知识库归档 | — | ✅ |
+
+---
+
+## 错误处理 / Error Handling
+
+| 情况 | 处理 |
+|------|------|
+| `~/.weread/` 目录不存在 | 提示先配置 weread skill 的 Cookie 并运行 `export_notes.py` |
+| Cookie 过期 | 委托 weread skill 的 Cookie 更新流程，完成后重新导出 |
+| 指定时间段无笔记 | 温和提示"这段时间没有笔记"，给出最近笔记时间 |
+| 书名匹配不到 | 列出现有书籍让用户选，或提示是否增量导出 |
+| 笔记文件损坏/格式异常 | 提示重新运行 `export_notes.py` |
+| 用户没有想法只有划线 | 正常处理，标注"💭 无想法"即可 |
+| 知识库未配置 | 首次触发 功能五 时自动引导配置 |
+| 知识库路径不存在 | 提示确认路径，或帮用户创建目录结构 |
+| 概念已存在 | 跳过新建，建立 wikilink + 补充内容到已有节点 |
+| 书籍无法归类 | 列出候选文件夹让用户选，或创建新文件夹 |

@@ -1,0 +1,18 @@
+[
+  {
+    "timestamp": "2026-02-03T10:30:00Z",
+    "bodyPart": "腹部",
+    "symptom": "肚子不舒服",
+    "painLevel": "2",
+    "severity": 2,
+    "tags": ["疼痛", "腹部"]
+  },
+  {
+    "timestamp": "2026-02-03T10:35:00Z",
+    "bodyPart": "腹部",
+    "symptom": "肚子不舒服",
+    "painLevel": "2",
+    "severity": 2,
+    "tags": ["疼痛", "腹部"]
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "name": "deployment-kit",
+  "version": "0.1.0",
+  "description": "OpenClaw 生产部署套件 - Docker + CI/CD + 健康检查",
+  "main": "src/deploy-manager.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test/deploy-test.js",
+    "docker:build": "docker build -t openclaw:latest .",
+    "docker:run": "docker run -d -p 18789:18789 --name openclaw openclaw:latest",
+    "health:check": "node scripts/health-check.js",
+    "deploy": "npm run docker:build && npm run docker:run"
+  },
+  "keywords": [
+    "deployment",
+    "docker",
+    "ci-cd",
+    "openclaw-skill"
+  ],
+  "author": "yuyonghao-123",
+  "license": "MIT"
+}

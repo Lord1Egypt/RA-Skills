@@ -1,0 +1,4 @@
+playwright>=1.40
+html2text>=2024.2.26
+requests>=2.31
+psutil>=5.9

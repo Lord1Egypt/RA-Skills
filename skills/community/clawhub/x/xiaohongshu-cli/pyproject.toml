@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "xiaohongshu-cli"
+version = "0.2.1"
+description = "A CLI for Xiaohongshu (Red) — search, read, interact via reverse-engineered API"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+authors = [{ name = "jackwener", email = "jakevingoo@gmail.com" }]
+keywords = ["xiaohongshu", "xhs", "redbook", "cli", "api"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "httpx>=0.27",
+    "click>=8.0",
+    "rich>=13.0",
+    "browser-cookie3>=0.19",
+    "pycryptodome>=3.20",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23", "ruff>=0.11.0", "mypy>=1.15.0"]
+
+[project.urls]
+Homepage = "https://github.com/jackwener/xiaohongshu-cli"
+Repository = "https://github.com/jackwener/xiaohongshu-cli"
+Issues = "https://github.com/jackwener/xiaohongshu-cli/issues"
+
+[project.scripts]
+xhs = "xhs_cli.cli:cli"
+
+[tool.hatch.build.targets.wheel]
+packages = ["xhs_cli"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+check_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-m 'not smoke'"
+markers = ["smoke: real-API integration tests (run with: pytest -m smoke)"]

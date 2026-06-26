@@ -1,0 +1,49 @@
+{
+  "name": "xhs-mcp-service",
+  "version": "1.0.0",
+  "description": "XiaoHongShu MCP Service - 小红书自动化助手，基于 Model Context Protocol",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "xhs-mcp-service": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "login": "node src/login.js",
+    "test": "node examples/01-基础示例.mjs"
+  },
+  "keywords": [
+    "xiaohongshu",
+    "red",
+    "xhs",
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "automation",
+    "puppeteer"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/xhs-mcp-service.git"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "express": "^4.18.2",
+    "puppeteer": "^24.0.0",
+    "qrcode": "^1.5.3",
+    "zod": "^3.22.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "src/**/*",
+    "examples/**/*",
+    "README.md",
+    "快速开始.md",
+    "文档导航.md"
+  ]
+}

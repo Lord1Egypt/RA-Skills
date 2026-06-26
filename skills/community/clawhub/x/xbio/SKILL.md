@@ -1,35 +1,25 @@
 ---
-name: "cleans and optimize Xbio cleaner"
-description: "X/Twitter CLI for reading, searching, and posting via cookies or Sweetistics."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xbio"
-sourceUrl: "https://clawhub.ai/skills/xbio"
+name: bird
+description: X/Twitter CLI for reading, searching, and posting via cookies or Sweetistics.
+homepage: https://bird.fast
+metadata: {"clawdbot":{"emoji":"🐦","requires":{"bins":["bird"]},"install":[{"id":"brew","kind":"brew","formula":"steipete/tap/bird","bins":["bird"],"label":"Install bird (brew)"}]}}
 ---
 
-# cleans and optimize Xbio cleaner
+# bird
 
-> X/Twitter CLI for reading, searching, and posting via cookies or Sweetistics.
+Use `bird` to read/search X and post tweets/replies.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xbio`
-- **Source URL:** [https://clawhub.ai/skills/xbio](https://clawhub.ai/skills/xbio)
+Quick start
+- `bird whoami`
+- `bird read <url-or-id>`
+- `bird thread <url-or-id>`
+- `bird search "query" -n 5`
 
-## Overview
+Posting (confirm with user first)
+- `bird tweet "text"`
+- `bird reply <id-or-url> "text"`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xbio
-```
+Auth sources
+- Browser cookies (default: Firefox/Chrome)
+- Sweetistics API: set `SWEETISTICS_API_KEY` or use `--engine sweetistics`
+- Check sources: `bird check`

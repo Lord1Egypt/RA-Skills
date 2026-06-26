@@ -1,0 +1,8 @@
+{
+  "name": "东方意境",
+  "description": "水墨圆形+竖排标题+印章+竹线，适合文化和哲思",
+  "colors": { "background": "#F7F3EE", "text": "#3D2B1F", "accent": "#8D6E63", "secondary": "#A09080" },
+  "fonts": { "title": "\"PingFang SC\",\"Microsoft YaHei\",\"Noto Serif SC\",serif", "body": "\"PingFang SC\",\"Microsoft YaHei\",-apple-system,sans-serif" },
+  "layout": { "titleSizeVertical": "120px", "titleSizeSquare": "92px", "titleSizeWide": "76px", "titleSizeCover": "58px", "contentSize": "34px" },
+  "seal": "远方"
+}

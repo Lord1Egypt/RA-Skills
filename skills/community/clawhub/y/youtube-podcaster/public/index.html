@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎙️ AI Podcast Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>🎙️ AI Podcast Studio</h1>
+
+    <div class="card">
+        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+            <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                <label>Gemini API Key (For Script)</label>
+                <input type="password" id="apiKey" placeholder="AIzaSy...">
+            </div>
+            <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                <label>OpenAI API Key (For Audio)</label>
+                <input type="password" id="openaiApiKey" placeholder="sk-proj-...">
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+            <div class="form-group" style="flex: 3; margin-bottom: 0;">
+                <label>YouTube URL</label>
+                <input type="url" id="url" placeholder="https://www.youtube.com/watch?v=...">
+            </div>
+            <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                <label>Transcript Lang</label>
+                <select id="transcriptLang" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 1em; background: white;">
+                    <option value="en" selected>English</option>
+                    <option value="es">Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="sq">Albanian</option>
+                    <option value="hi">Hindi</option>
+                    <option value="">Auto (Default)</option>
+                </select>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+            <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                <label>Host 1 (Female)</label>
+                <input type="text" id="host1" placeholder="Alex (Default)">
+            </div>
+            <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                <label>Host 2 (Male)</label>
+                <input type="text" id="host2" placeholder="Sam (Default)">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Target Language (Optional)</label>
+            <input type="text" id="targetLanguage" placeholder="e.g., Spanish, French, Japanese...">
+        </div>
+
+        <div class="btn-group">
+            <button type="button" id="btn-transcribe">Get Original Transcript</button>
+            <button type="button" id="btn-download-txt" class="secondary-btn" style="display: none;">💾 Download .txt</button>
+            <button type="button" id="btn-clear" style="background-color: #e74c3c; flex: 0.5;">Reset & Delete</button>
+        </div>
+    </div>
+
+    <div id="search-container" class="card" style="display: none;">
+        <h3>🔍 Semantic Search</h3>
+        <div class="form-group" style="display: flex; gap: 10px;">
+            <input type="text" id="search-query" placeholder="Search for a concept or quote...">
+            <button type="button" id="btn-search" style="flex: 0.3;">Search</button>
+        </div>
+        <div id="search-results"></div>
+    </div>
+
+    <div id="log-container">
+        <div id="log-messages"></div>
+        <div id="log-active-spinner" style="display: none; margin-top: 8px; color: #00ff00;">
+            <span class="spinner log-spinner"></span> <em>API working...</em>
+        </div>
+    </div>
+
+    <div id="editor-container" class="card" style="display: none;">
+        <h3>Edit Your Podcast Script</h3>
+        <div class="original-transcript-preview" id="yt-preview"></div>
+
+        <div style="text-align: right; margin-top: 5px; font-size: 0.85em;">
+            <a href="#" class="file-preview-link" data-file="original.txt" data-title="Original Transcript">📄 View original.txt</a> |
+            <a href="#" class="file-preview-link" data-file="original.vtt" data-title="Original Subtitles">🕒 View original.vtt</a>
+        </div>
+
+        <textarea id="script-editor" placeholder="Your AI-generated script will appear here..."></textarea>
+
+        <div class="btn-group">
+            <button type="button" id="btn-draft">Generate Podcast Script</button>
+            <button type="button" id="btn-download-script" class="secondary-btn" style="flex: 1;" disabled>💾 Save Script</button>
+            <button type="button" id="btn-generate-audio" style="flex: 2;" disabled>Finalize & Generate Audio</button>
+        </div>
+    </div>
+
+    <div id="result-container" class="card" style="display: none;">
+        <h2 style="color: #16a085;">✅ Production Complete</h2>
+
+        <audio id="audio-player" controls style="width: 100%;"></audio>
+
+        <div id="live-captions">
+            <em>Press play to see captions...</em>
+        </div>
+
+        <div style="margin-top: 20px; display: flex; gap: 15px; justify-content: center;">
+            <a id="download-podcast-vtt" href="#" class="secondary-btn" style="text-decoration: none; padding: 12px 20px; border-radius: 4px; color: white; display: inline-block; font-weight: bold; text-align: center;">📝 Download VTT Only</a>
+            <button type="button" id="btn-download-zip" class="secondary-btn" style="flex: unset; padding: 12px 20px;">📦 Download All (.zip)</button>
+        </div>
+
+        <div style="text-align: center; margin-top: 15px; font-size: 0.9em;">
+            <a href="#" class="file-preview-link" data-file="script.txt" data-title="Final Generated Script">📝 View script.txt</a> |
+            <a href="#" class="file-preview-link" data-file="podcast.vtt" data-title="Generated Audio Captions">💬 View podcast.vtt</a>
+        </div>
+    </div>
+
+    <div id="file-preview-modal" class="card" style="display: none; border-left: 5px solid #00ff00; margin-top: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <h3 id="preview-title" style="margin: 0; color: #00ff00; font-family: monospace;">File Preview</h3>
+
+            <div style="display: flex; gap: 10px;">
+                <button id="btn-copy-preview" style="background-color: #2ecc71; color: white; border: none; padding: 5px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; transition: 0.2s;">📋 Copy</button>
+                <button id="btn-close-preview" style="background: none; color: #e74c3c; padding: 5px 10px; font-weight: bold; cursor: pointer; border: none;">✖ Close</button>
+            </div>
+
+        </div>
+        <textarea id="preview-content" readonly style="width: 100%; min-height: 400px; margin-top: 15px; cursor: default; outline: none;"></textarea>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

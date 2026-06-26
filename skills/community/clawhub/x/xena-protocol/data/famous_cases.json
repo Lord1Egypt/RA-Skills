@@ -1,0 +1,50 @@
+[
+  {
+    "year": 1994,
+    "name": "AOHell",
+    "category": "Phishing",
+    "text": "URGENT: Please verify your AOL account. Send your username, password, and credit card number to customer service within 24 hours to avoid suspension. America Online billing department."
+  },
+  {
+    "year": 2007,
+    "name": "Nordea Bank",
+    "category": "Phishing",
+    "text": "Dear Nordea customer, we detected suspicious activity. Please download our new anti-spam security tool to protect your account. Install the attached update immediately or your account will be frozen."
+  },
+  {
+    "year": 2009,
+    "name": "Operation Phish Phry",
+    "category": "Phishing",
+    "text": "Your bank account has been temporarily locked. Click the link to verify your identity and unlock access. Your social security number, username, and password are required."
+  },
+  {
+    "year": 2011,
+    "name": "RSA Spear Phish",
+    "category": "Impersonation",
+    "text": "2011 Recruitment Plan attached. Please review the candidate shortlist. The Excel file contains HR-confidential compensation data. Open immediately and respond with approvals."
+  },
+  {
+    "year": 2014,
+    "name": "Dyre Malware",
+    "category": "Phishing",
+    "text": "Urgent tax consultation required. Your company may be audited. Download the attached document to review your tax obligations. Failure to respond will result in penalties."
+  },
+  {
+    "year": 2014,
+    "name": "Sony Apple ID Phish",
+    "category": "Phishing",
+    "text": "Your Apple ID has been used to sign in from a new device. Verify your identity now. Click here and enter your Apple ID password to secure your account. Urgent verification required."
+  },
+  {
+    "year": 2018,
+    "name": "Facebook+Google Quanta BEC",
+    "category": "BEC",
+    "text": "Please process the attached invoice for the Quanta Computer hardware order. Wire transfer required urgently to our updated bank account. SWIFT details below. The CFO is asking about this payment — please expedite."
+  },
+  {
+    "year": 2018,
+    "name": "World Cup 2018 Scam",
+    "category": "Phishing",
+    "text": "Congratulations! You won the FIFA World Cup lottery. To claim your prize ticket and apartment rental in Moscow, please send your passport number, credit card details, and a processing fee."
+  }
+]

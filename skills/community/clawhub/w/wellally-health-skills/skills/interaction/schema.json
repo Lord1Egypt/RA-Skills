@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/interaction-check.json",
+  "title": "InteractionCheckResult",
+  "description": "药物相互作用检查结果的数据结构定义",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "检查日期"
+    },
+    "check_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "检查时间"
+    },
+    "medications_count": {
+      "type": "integer",
+      "description": "当前用药数量"
+    },
+    "interactions_detected": {
+      "type": "object",
+      "properties": {
+        "total": {"type": "integer"},
+        "by_severity": {
+          "type": "object",
+          "properties": {
+            "X": {"type": "integer"},
+            "D": {"type": "integer"},
+            "C": {"type": "integer"},
+            "B": {"type": "integer"},
+            "A": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "interactions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["drug_drug", "drug_disease", "drug_dosage", "drug_food"]
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["A", "B", "C", "D", "X"]
+          },
+          "drugs": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "risk_description": {"type": "string"},
+          "mechanism": {"type": "string"},
+          "recommendations": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        }
+      }
+    }
+  }
+}

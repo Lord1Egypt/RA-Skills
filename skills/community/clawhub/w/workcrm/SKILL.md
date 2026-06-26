@@ -1,35 +1,42 @@
----
-name: "Workcrm"
-description: "A local-first CRM that drafts and requires explicit user confirmation before saving contact or record changes for auditability."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/workcrm"
-sourceUrl: "https://clawhub.ai/skills/workcrm"
----
+# WorkCRM (OpenClaw Skill)
 
-# Workcrm
+A lightweight, local-first CRM with an explicit confirmation gate.
 
-> A local-first CRM that drafts and requires explicit user confirmation before saving contact or record changes for auditability.
+Product constraints (locked):
+- Writes happen only after explicit confirmation: reply `记` to confirm, `不记` to reject.
+- Drafts are retained for auditability.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/workcrm`
-- **Source URL:** [https://clawhub.ai/skills/workcrm](https://clawhub.ai/skills/workcrm)
+## Chat usage (recommended)
 
-## Overview
+Use any of these to reliably trigger CRM behavior:
+- `crm: ...`
+- `记一下：...`
+- `先出草稿：...`
 
+Flow:
+1) You send a message.
+2) WorkCRM replies with a draft.
+3) You reply `记` or `不记`.
 
-## Installation
-To install this skill, run the following command in your terminal:
+Note: this alpha skill provides the core engine + storage. Chat routing glue depends on your OpenClaw agent config.
+
+## Local CLI (for verification/dev)
+
+### Generate a draft
+
 ```bash
-hermes skills install clawhub/workcrm
+python -m workcrm draft "crm: talked to Alice, follow up next week"
 ```
+
+This prints a JSON payload including a human message + pending draft id.
+
+## Storage
+
+- Default DB path: `~/.openclaw/workcrm/workcrm.sqlite3`
+- Override with env var: `WORKCRM_DB_PATH=/path/to/workcrm.sqlite3`
+- Or pass `--db /path/to/workcrm.sqlite3` to the CLI.
+
+## Implementation notes
+
+- Deterministic ordering is enforced for lists.
+- Schema migrations are applied automatically on first use.

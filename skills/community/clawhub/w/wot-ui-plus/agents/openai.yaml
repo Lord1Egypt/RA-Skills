@@ -1,0 +1,4 @@
+interface:
+  display_name: "Wot UI Plus"
+  short_description: "Help use the wot-ui-plus component library"
+  default_prompt: "Use $wot-ui-plus to answer usage questions about the wot-ui-plus component library with its bundled component docs."

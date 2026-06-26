@@ -1,0 +1,14 @@
+{
+  "source": "github",
+  "sourceType": "pull_request",
+  "externalWrite": false,
+  "text": "PR #142: Add adapter signal normalization for OpenClaw payloads. Requested review from @joshlee 18 hours ago. Blocking the v1.7.0 release branch. No review submitted yet.",
+  "observedAt": "2026-05-20T08:00:00.000Z",
+  "url": "https://github.com/example/worldloops/pull/142",
+  "summary": "PR review requested — blocking v1.7.0 release, 18 hours with no response",
+  "metadata": {
+    "expectedSeverity": "medium",
+    "expectedState": "review_requested",
+    "expectedExternalWrite": false
+  }
+}

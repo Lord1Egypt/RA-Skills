@@ -1,0 +1,94 @@
+{
+  "search_engines": [
+    {
+      "name": "Google Scholar",
+      "url": "https://scholar.google.com/",
+      "coverage": "Global",
+      "description": "Largest academic search engine covering all disciplines",
+      "advanced_syntax": {
+        "author": "author:",
+        "title": "allintitle:",
+        "year_range": "custom range filter",
+        "citation_search": "cited by linking"
+      }
+    },
+    {
+      "name": "Semantic Scholar",
+      "url": "https://www.semanticscholar.org/",
+      "coverage": "Global",
+      "description": "AI-powered academic search with citation graphs and influence scores"
+    },
+    {
+      "name": "PubMed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "coverage": "Global (Biomedical)",
+      "description": "37M+ biomedical citations from MEDLINE and life science journals"
+    },
+    {
+      "name": "arXiv",
+      "url": "https://arxiv.org/",
+      "coverage": "Global (Physics, Math, CS, etc.)",
+      "description": "2.4M+ open-access preprints in physics, mathematics, computer science"
+    },
+    {
+      "name": "SSRN",
+      "url": "https://www.ssrn.com/",
+      "coverage": "Global (Social Sciences)",
+      "description": "Social sciences and humanities research network"
+    },
+    {
+      "name": "ResearchGate",
+      "url": "https://www.researchgate.net/",
+      "coverage": "Global",
+      "description": "Professional network for scientists and researchers"
+    }
+  ],
+  "open_access_repositories": [
+    {"name": "CORE", "url": "https://core.ac.uk/", "records": "255M+"},
+    {"name": "Directory of Open Access Journals", "url": "https://doaj.org/", "records": "20K+ journals"},
+    {"name": "Paperity", "url": "https://paperity.org/", "records": "8M+"},
+    {"name": "Zenodo", "url": "https://zenodo.org/", "records": "Multi-discipline EU repository"},
+    {"name": "OSF Preprints", "url": "https://osf.io/preprints/", "records": "Multi-discipline preprint archive"}
+  ],
+  "citation_formats": ["APA 7th", "MLA 9th", "Chicago 17th", "Harvard", "IEEE", "Vancouver"],
+  "synthesis_methods": [
+    {
+      "method": "PRISMA",
+      "description": "Preferred Reporting Items for Systematic Reviews and Meta-Analyses - gold standard for literature review methodology",
+      "stages": ["Identification", "Screening", "Eligibility", "Included"]
+    },
+    {
+      "method": "Snowballing",
+      "description": "Forward and backward citation tracking to expand paper corpus from seed papers"
+    },
+    {
+      "method": "Thematic Analysis",
+      "description": "Identifying, analyzing, and reporting patterns (themes) across literature"
+    }
+  ],
+  "multi_language_support": {
+    "en": "English - primary research language",
+    "zh": "Chinese - CNKI, Wanfang, CSTPCD indexed journals",
+    "ja": "Japanese - J-STAGE, CiNii",
+    "ko": "Korean - KCI, RISS",
+    "de": "German - BASE, German National Library",
+    "fr": "French - HAL, Persée",
+    "es": "Spanish - SciELO, Dialnet",
+    "pt": "Portuguese - SciELO Brazil, RCAAP",
+    "ar": "Arabic - Al Manhal, Arab Research Platform",
+    "ru": "Russian - eLibrary.ru, CyberLeninka"
+  },
+  "quality_assessment": {
+    "journal_metrics": ["Impact Factor (JCR)", "CiteScore (Scopus)", "SJR (SCImago)", "h-index"],
+    "paper_metrics": ["Citation count", "Altmetric score", "Field-weighted citation impact"],
+    "predatory_checklist": [
+      "Rapid acceptance guarantee (< 1 week)",
+      "No peer review process described",
+      "Not indexed in DOAJ/Scopus/WoS",
+      "Aggressive email solicitation",
+      "Fake editorial board members",
+      "No ISSN or fake ISSN"
+    ]
+  }
+}
+（内容由AI生成，仅供参考）

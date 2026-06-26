@@ -1,0 +1,41 @@
+# YouTube to S3 Uploader Configuration
+# Copy to ~/.youtube-s3-uploader.yml and fill in your credentials
+
+# Default bucket to use when none specified
+default: video-storage
+
+# Bucket configurations
+buckets:
+  # Cloudflare R2 example
+  video-storage:
+    endpoint: https://YOUR_ACCOUNT_ID.r2.cloudflarestorage.com
+    access_key_id: YOUR_R2_ACCESS_KEY_ID
+    secret_access_key: YOUR_R2_SECRET_ACCESS_KEY
+    bucket_name: video-storage
+    region: auto
+    # Optional: Custom public URL (e.g., CDN domain)
+    # public_url: https://cdn.yourdomain.com
+  
+  # AWS S3 example
+  aws-backup:
+    endpoint: https://s3.us-east-1.amazonaws.com
+    access_key_id: YOUR_AWS_ACCESS_KEY_ID
+    secret_access_key: YOUR_AWS_SECRET_ACCESS_KEY
+    bucket_name: my-aws-video-bucket
+    region: us-east-1
+  
+  # MinIO / Self-hosted S3 example
+  minio-local:
+    endpoint: http://localhost:9000
+    access_key_id: minioadmin
+    secret_access_key: minioadmin
+    bucket_name: uploads
+    region: us-east-1
+  
+  # RustFS S3 example (like the creator's setup)
+  rustfs:
+    endpoint: https://s3.124678.xyz
+    access_key_id: YOUR_ACCESS_KEY
+    secret_access_key: YOUR_SECRET_KEY
+    bucket_name: s301
+    region: auto

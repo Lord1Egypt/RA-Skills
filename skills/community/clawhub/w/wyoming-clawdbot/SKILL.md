@@ -1,35 +1,40 @@
 ---
-name: "Wyoming Clawdbot"
-description: "Wyoming Protocol bridge for Home Assistant voice assistant integration with Clawdbot."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wyoming-clawdbot"
-sourceUrl: "https://clawhub.ai/skills/wyoming-clawdbot"
+name: wyoming-clawdbot
+description: Wyoming Protocol bridge for Home Assistant voice assistant integration with Clawdbot.
 ---
 
-# Wyoming Clawdbot
+# Wyoming-Clawdbot
 
-> Wyoming Protocol bridge for Home Assistant voice assistant integration with Clawdbot.
+Bridge Home Assistant Assist voice commands to Clawdbot via Wyoming Protocol.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wyoming-clawdbot`
-- **Source URL:** [https://clawhub.ai/skills/wyoming-clawdbot](https://clawhub.ai/skills/wyoming-clawdbot)
+## What it does
 
-## Overview
+- Receives voice commands from Home Assistant Assist
+- Forwards them to Clawdbot for processing  
+- Returns AI responses to be spoken by Home Assistant TTS
 
+## Setup
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. Clone and run the server:
 ```bash
-hermes skills install clawhub/wyoming-clawdbot
+git clone https://github.com/vglafirov/wyoming-clawdbot.git
+cd wyoming-clawdbot
+docker compose up -d
 ```
+
+2. Add Wyoming integration in Home Assistant:
+   - Settings → Devices & Services → Add Integration
+   - Search "Wyoming Protocol"
+   - Enter host:port (e.g., `192.168.1.100:10600`)
+
+3. Configure Voice Assistant pipeline to use "clawdbot" as Conversation Agent
+
+## Requirements
+
+- Clawdbot running on the same host
+- Home Assistant with Wyoming integration
+- Docker (recommended) or Python 3.11+
+
+## Links
+
+- GitHub: https://github.com/vglafirov/wyoming-clawdbot

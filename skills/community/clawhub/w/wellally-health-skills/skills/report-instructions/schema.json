@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/report-instructions.json",
+  "title": "ReportInstructions",
+  "description": "健康报告生成使用说明",
+  "type": "object",
+  "properties": {
+    "command": {
+      "type": "string",
+      "description": "命令格式"
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "examples": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        }
+      }
+    },
+    "date_ranges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "preset": {"type": "string"},
+          "description": {"type": "string"},
+          "examples": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {"type": "string"},
+          "name": {"type": "string"},
+          "description": {"type": "string"}
+        }
+      }
+    },
+    "troubleshooting": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "problem": {"type": "string"},
+          "cause": {"type": "string"},
+          "solution": {"type": "string"}
+        }
+      }
+    }
+  }
+}

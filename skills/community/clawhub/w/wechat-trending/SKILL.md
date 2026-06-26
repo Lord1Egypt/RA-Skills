@@ -1,35 +1,48 @@
 ---
-name: "Wechat"
-description: "Extract and summarize publicly accessible WeChat shared pages including announcements, app info, and group invite details without login or private data access."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-trending"
-sourceUrl: "https://clawhub.ai/skills/wechat-trending"
+name: wechat-hot-trend
+description: 注册“微信”热门技能；当需要访问或自动化微信相关内容时调用。
+homepage: `https://weixin.qq.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Wechat
+# 微信
 
-> Extract and summarize publicly accessible WeChat shared pages including announcements, app info, and group invite details without login or private data access.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-trending`
-- **Source URL:** [https://clawhub.ai/skills/wechat-trending](https://clawhub.ai/skills/wechat-trending)
+- 面向公开应用与分享页面的信息提取与摘要
+- 不提供账号登录、消息收发或权限绕过能力
+- 仅处理公开可访问页面
 
-## Overview
+关键入口
 
+- 主页：https://weixin.qq.com/
+- 公开应用页/公告页：由分享链接进入
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wechat-trending
-```
+常见任务
+
+- 公告分享页的标题/作者/更新时间与正文摘要
+- 公开应用页的功能说明、版本信息与链接整理
+- 公开群邀请页的基本说明与注意事项摘要
+
+数据字段
+
+- 标题、作者、更新时间、正文摘要、标签、来源链接
+- 应用名称、功能概述、版本信息、链接
+- 群邀请页描述与条款摘要
+
+自动化要点
+
+- 内容动态加载，需等待渲染完成后解析
+- 无账号鉴权能力，仅处理公开分享
+- 频率控制避免重复访问
+
+示例流程
+
+- 公告摘要：访问分享页 → 解析标题/作者/更新时间 → 抽取正文摘要
+- 应用整理：进入应用页 → 抽取功能/版本信息 → 输出链接清单
+- 群页面摘要：访问邀请页 → 抽取说明与条款 → 输出注意事项
+
+合规提示
+
+- 遵守平台与信息安全规定，不处理非公开内容
+- 输出仅用于内部分析与提醒

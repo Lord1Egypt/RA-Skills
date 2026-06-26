@@ -1,35 +1,40 @@
 ---
-name: "Xiao Habit Tracker"
-description: "习惯追踪器 - 习惯打卡、统计分析、成就系统"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiao-habit-tracker"
-sourceUrl: "https://clawhub.ai/skills/xiao-habit-tracker"
+name: habit-tracker
+description: 习惯追踪器 - 习惯打卡、统计分析、成就系统
 ---
 
-# Xiao Habit Tracker
+# Habit Tracker
 
-> 习惯追踪器 - 习惯打卡、统计分析、成就系统
+习惯追踪工具，帮助建立和保持好习惯。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiao-habit-tracker`
-- **Source URL:** [https://clawhub.ai/skills/xiao-habit-tracker](https://clawhub.ai/skills/xiao-habit-tracker)
+## 功能
 
-## Overview
+- ✅ 习惯打卡
+- ✅ 统计分析
+- ✅ 成就系统
+- ✅ 提醒通知
+- ✅ 数据导出
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/xiao-habit-tracker
+# 添加习惯
+clawhub habit add --name "早起" --frequency daily
+
+# 打卡
+clawhub habit checkin --name "早起"
+
+# 查看统计
+clawhub habit stats --name "早起" --days 30
+
+# 查看成就
+clawhub habit achievements
 ```
+
+## 定价
+
+| 版本 | 价格 | 功能 |
+|------|------|------|
+| 免费版 | ¥0 | 3 个习惯 |
+| Pro 版 | ¥29 | 无限习惯 |
+| 订阅版 | ¥6/月 | Pro+ 云同步 |

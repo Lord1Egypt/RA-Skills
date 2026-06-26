@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width={{W}}, height={{H}}">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: {{W}}px; height: {{H}}px;
+  font-family: {{FONT_TITLE}};
+  background: {{BG}};
+  color: {{TEXT}};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+/* paper texture via subtle gradient */
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 300px 200px at 20% 30%, {{ACCENT__A03}} 0%, transparent 70%),
+    radial-gradient(ellipse 400px 300px at 80% 70%, {{ACCENT__A02}} 0%, transparent 60%);
+  pointer-events: none;
+}
+/* masking tape top-left */
+.tape {
+  position: absolute;
+  width: 60px;
+  height: 20px;
+  background: rgba(255,255,255,0.6);
+  opacity: 0.5;
+  pointer-events: none;
+}
+.tape-tl { top: 10px; left: 28px; transform: rotate(-3deg); }
+.tape-tr { top: 10px; right: 28px; transform: rotate(2deg); }
+.container {
+  position: relative;
+  z-index: 1;
+  padding: 44px;
+  max-width: 92%;
+  display: flex;
+  flex-direction: column;
+}
+.badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.45);
+  font-weight: 600;
+  color: {{BG}};
+  background: {{ACCENT}};
+  padding: 4px 14px;
+  margin-bottom: 22px;
+  border-radius: 2px;
+  transform: rotate(-1deg);
+}
+.title {
+  font-size: {{TITLE_SIZE_V}};
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  position: relative;
+  display: block;
+  max-height: 65vh;
+  overflow: hidden;
+}
+.title::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%; height: 6px;
+  background: linear-gradient(90deg, {{ACCENT}}, transparent);
+  opacity: 0.15;
+  border-radius: 3px;
+}
+.content {
+  font-family: {{FONT_BODY}};
+  font-size: {{CONTENT_SIZE}};
+  font-weight: 400;
+  line-height: 1.7;
+  color: {{SECONDARY}};
+  margin-top: 16px;
+  max-width: 95%;
+}
+/* marker highlight on content */
+.content em {
+  font-style: normal;
+  background: linear-gradient(180deg, transparent 60%, {{ACCENT__A12}} 60%);
+}
+.points {
+  list-style: none;
+  margin-top: 16px;
+}
+.points li {
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE}} - 3px);
+  font-weight: 400;
+  color: {{TEXT}};
+  padding: 8px 0 8px 28px;
+  position: relative;
+  border-bottom: 1px dashed {{ACCENT__A16}};
+}
+.points li:last-child { border-bottom: none; }
+.points li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: {{ACCENT}};
+  font-size: 12px;
+  opacity: 0.6;
+}
+.points:empty { display: none; }
+.source {
+  position: absolute;
+  bottom: 14px;
+  left: 44px;
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.5);
+  color: {{SECONDARY}};
+  opacity: 0.4;
+  letter-spacing: 0.1em;
+}
+.brand {
+  position: absolute;
+  bottom: 14px;
+  right: 44px;
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.5);
+  color: {{SECONDARY}};
+  opacity: 0.4;
+  letter-spacing: 0.1em;
+}
+@media (max-aspect-ratio: 4/5) {
+  .title { font-size: {{TITLE_SIZE_S}}; max-height: 60vh; }
+  .container { max-width: 95%; padding: 32px; }
+  .content { max-width: 95%; }
+}
+@media (min-aspect-ratio: 5/4) {
+  .title { font-size: {{TITLE_SIZE_W}}; max-height: none; }
+  .container { padding: 32px 44px; flex-direction: row; flex-wrap: wrap; gap: 8px; }
+  .content { max-width: 75%; }
+  .badge { margin-bottom: 14px; }
+}
+@media (min-aspect-ratio: 7/3) {
+  .title { font-size: {{TITLE_SIZE_C}}; max-height: none; }
+  .container { flex-direction: row; align-items: center; gap: 20px; max-width: 92%; padding: 24px 44px; }
+  .content { max-width: 60%; margin-top: 0; }
+}
+</style>
+</head>
+<body>
+<div class="tape tape-tl"></div>
+<div class="tape tape-tr"></div>
+<div class="container">
+  <div class="badge">{{BADGE}}</div>
+  <h1 class="title">{{TITLE}}</h1>
+  <div class="content">{{CONTENT}}</div>
+  <ul class="points">{{POINTS_HTML}}</ul>
+</div>
+<div class="source">{{SOURCE}}</div>
+<div class="brand">{{BRAND}}</div>
+</body>
+</html>

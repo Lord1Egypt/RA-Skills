@@ -1,35 +1,48 @@
 ---
-name: "YouTube I18n Language"
-description: "Manage YouTube i18n languages. Use this skill to list available internationalization languages. Useful when working with YouTube i18n language — provides com..."
-category: "other"
-source: "ClawHub"
-tags: [0.10.7-dev, 0.10.6-3]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/youtube-i18n-language"
-sourceUrl: "https://clawhub.ai/skills/youtube-i18n-language"
+name: youtube-i18n-language
+description: "Manage YouTube i18n languages. Use this skill to list available internationalization languages. Useful when working with YouTube i18n language — provides commands to list i18n language via the yutu CLI. Includes setup and installation instructions for first-time users. Triggers: list i18n languages, list i18n language, list my i18n language"
+metadata:
+  openclaw:
+    requires:
+      env:
+        - YUTU_CREDENTIAL
+        - YUTU_CACHE_TOKEN
+      bins:
+        - yutu
+      config:
+        - client_secret.json
+        - youtube.token.json
+    primaryEnv: YUTU_CREDENTIAL
+    emoji: "\U0001F3AC\U0001F430"
+    homepage: https://github.com/eat-pray-ai/yutu
+    install:
+      - kind: node
+        package: "@eat-pray-ai/yutu"
+        bins: [yutu]
 ---
 
 # YouTube I18n Language
 
-> Manage YouTube i18n languages. Use this skill to list available internationalization languages. Useful when working with YouTube i18n language — provides com...
+Manage YouTube i18n languages. Use this skill to list available internationalization languages.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/youtube-i18n-language`
-- **Source URL:** [https://clawhub.ai/skills/youtube-i18n-language](https://clawhub.ai/skills/youtube-i18n-language)
+## Before You Begin
 
-## Overview
+yutu requires Google Cloud Platform OAuth credentials and a cached token to access the YouTube API. If you haven't set up yutu yet, read the [setup guide](references/setup.md) first.
 
+## Operations
 
-## Installation
-To install this skill, run the following command in your terminal:
+Read the linked reference for full flag details and examples.
+
+| Operation | Description | Reference |
+|-----------|-------------|----------|
+| list | List i18n languages | [details](references/i18nLanguage-list.md) |
+
+## Quick Start
+
 ```bash
-hermes skills install clawhub/youtube-i18n-language
+# Show all i18n language commands
+yutu i18nLanguage --help
+
+# List i18n language
+yutu i18nLanguage list
 ```

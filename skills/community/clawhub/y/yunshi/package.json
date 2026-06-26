@@ -1,0 +1,59 @@
+{
+  "name": "yunshi",
+  "version": "1.2.6",
+  "description": "All-in-one Chinese fortune-telling — BaZi (Four Pillars), ZiWei DouShu, QiMen DunJia, I Ching (Meihua + LiuYao), feng shui, marriage compatibility, plus daily horoscope push to Telegram/Feishu. Built on iztro + lunar-typescript, no external API.",
+  "keywords": [
+    "Chinese astrology",
+    "fortune telling",
+    "daily horoscope",
+    "divination",
+    "astrology",
+    "BaZi",
+    "Four Pillars",
+    "ZiWei DouShu",
+    "Purple Star Astrology",
+    "I Ching",
+    "feng shui",
+    "marriage compatibility",
+    "QiMen DunJia",
+    "Chinese zodiac",
+    "horoscope push",
+    "算命",
+    "八字",
+    "今日运势",
+    "紫微斗数",
+    "占卜",
+    "合婚",
+    "风水",
+    "命理",
+    "流年",
+    "운세",
+    "運勢",
+    "tử vi"
+  ],
+  "author": "MingLi Mentor Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "daily": "node scripts/daily-fortune.js",
+    "register": "node scripts/register.js",
+    "ziwei": "node scripts/ziwei.js",
+    "marriage": "node scripts/marriage.js",
+    "meihua": "node scripts/meihua.js",
+    "liuyao": "node scripts/liuyao.js",
+    "qimen": "node scripts/qimen.js",
+    "fengshui": "node scripts/fengshui.js",
+    "zhuanshi": "node scripts/zhuanshi.js",
+    "profile": "node scripts/profile.js"
+  },
+  "directories": {
+    "scripts": "scripts",
+    "data": "data",
+    "docs": "docs"
+  },
+  "dependencies": {
+    "iztro": "^2.5.8"
+  }
+}

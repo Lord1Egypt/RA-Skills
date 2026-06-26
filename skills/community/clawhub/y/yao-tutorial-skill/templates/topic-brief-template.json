@@ -1,0 +1,66 @@
+{
+  "topic": "",
+  "audience": {
+    "level": "beginner",
+    "role": "",
+    "prior_knowledge": "",
+    "target_outcome": ""
+  },
+  "language": "match user request",
+  "user_materials": {
+    "notes": [],
+    "urls": [],
+    "files": [],
+    "named_references": [],
+    "must_use": [],
+    "nice_to_use": [],
+    "do_not_use": [],
+    "style_references": [],
+    "sufficiency_tier": "auto: rich | moderate | thin"
+  },
+  "scope": {
+    "desired_length": "auto: as long as needed to teach the outcome; no fixed cap unless the user sets one",
+    "chapter_count": "auto",
+    "time_budget": "",
+    "must_include": [],
+    "avoid": []
+  },
+  "research": {
+    "priority_rule": "use user-provided material as the tutorial spine when it is strong enough; add external sources for verification, gaps, freshness, and counterexamples",
+    "source_layers": [
+      "x.com",
+      "papers",
+      "authoritative sharing sites",
+      "github"
+    ],
+    "required_domains": [],
+    "forbidden_domains": [],
+    "freshness_requirement": "verify current facts before writing",
+    "external_research_level": "auto: gap-check | targeted | full-source-ladder"
+  },
+  "visuals": {
+    "one_visual_per_chapter": true,
+    "preferred_types": [
+      "flow",
+      "layer",
+      "comparison",
+      "cycle",
+      "mindmap",
+      "matrix"
+    ],
+    "style_notes": "clear, instructional, screenshot-friendly"
+  },
+  "outputs": [
+    "markdown",
+    "docx",
+    "pdf",
+    "html",
+    "visual-html"
+  ],
+  "quality_control": {
+    "chapter_quality_review": true,
+    "review_file": "research/chapter-quality-review.md",
+    "depth_rule": "learning sufficiency, not fixed word count"
+  },
+  "citation_style": "public human-readable references; internal source IDs only in research files"
+}

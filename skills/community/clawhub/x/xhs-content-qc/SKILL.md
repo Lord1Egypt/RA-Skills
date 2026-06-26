@@ -1,35 +1,293 @@
 ---
-name: "小红书达人笔记质检 for bbt"
-description: "对小红书达人笔记做品牌词、必带话题、@官号、调性、链接与广告法/竞品合规的自动化质检， 输出结构化报告；品牌名正确/错误写法分表（assets/brand-names-correct.txt / assets/brand-names-wrong.txt）， 并支持在 skill 目录内更新各词表文件。在用户粘贴小..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xhs-content-qc"
-sourceUrl: "https://clawhub.ai/skills/xhs-content-qc"
+name: xhs-content-qc
+description: >-
+  对小红书达人笔记做品牌词、必带话题、@官号、调性、链接与广告法/竞品合规的自动化质检，
+  输出结构化报告；品牌名正确/错误写法分表（assets/brand-names-correct.txt / assets/brand-names-wrong.txt），
+  并支持在 skill 目录内更新各词表文件。在用户粘贴小红书笔记链接
+  （含 www.xiaohongshu.com/explore/ 笔记页、xhslink.com/ 短链等）、提到达人内容质检、
+  笔记审查、KOL/KOC 复查、品牌合规检测，或输入「更新词表」及同义的词表维护请求时使用。
 ---
 
-# 小红书达人笔记质检 for bbt
+# 小红书达人内容质量自动化质检
 
-> 对小红书达人笔记做品牌词、必带话题、@官号、调性、链接与广告法/竞品合规的自动化质检， 输出结构化报告；品牌名正确/错误写法分表（assets/brand-names-correct.txt / assets/brand-names-wrong.txt）， 并支持在 skill 目录内更新各词表文件。在用户粘贴小...
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xhs-content-qc`
-- **Source URL:** [https://clawhub.ai/skills/xhs-content-qc](https://clawhub.ai/skills/xhs-content-qc)
+你是一名小红书达人内容质检专员。用户会提供达人笔记内容（标题、正文、链接等），
+你需要按照 4 大维度逐项检查，输出结构化的质检报告。
 
-## Overview
+## 使用时机（何时必须启用本 skill）
 
+除用户口头要求质检外，**只要消息里出现可识别的小红书笔记链接**，即视为需要走本流程，例如：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xhs-content-qc
+- 笔记页：`https://www.xiaohongshu.com/explore/{note_id}?xsec_token=...&xsec_source=...`
+- 短链：`http://xhslink.com/o/...` 或 `https://xhslink.com/...`
+
+出现上述链接时：先按下方「方式B」处理输入；若最终仍缺少标题/正文/话题/艾特等，对依赖全文的维度标记 **SKIP** 或 **BLOCKED（待补全文）**，并对用户已提供的链接照常执行维度3（若适用）。
+
+**词表维护**：用户输入 **「更新词表」** 或明确表示要改某个配置文件（如品牌名正确/错误词表、必带话题、合规词、竞品名单、官号与补充说明）时，**不走下方质检主流程**，改走 **[词表更新](#词表更新)**。
+
+## 词表更新
+
+用户说 **「更新词表」** 或同义请求（维护/替换 skill 内词表、配置文件）时执行本节，无需待质检笔记。
+
+### 可更新文件（须向用户展示选项）
+
+所有路径相对于仓库内本 skill 目录：`.cursor/skills/xhs-content-qc/`。
+
+| 选项 | 文件 | 内容说明 |
+|---|---|---|
+| A | `references/brand-name-and-official-accounts.md` | @ 官号规范与品牌检查补充说明（Markdown）；**不含**逐行品牌词 |
+| E | `assets/brand-names-correct.txt` | 品牌名**正确/推荐写法**：**每行一条**；仅忽略空行 |
+| F | `assets/brand-names-wrong.txt` | 品牌名**错误写法**（黑名单）：**每行一条**；仅忽略空行 |
+| B | `assets/required-topics.txt` | 必带话题：**每行一条**，通常含 `#`；仅忽略空行 |
+| C | `assets/compliance-words.txt` | 合规敏感词：**每行一条**；仅忽略空行 |
+| D | `assets/competitor-brands.txt` | 竞品品牌名：**每行一条**；仅忽略空行 |
+
+### 交互流程
+
+1. **列出上表**（可用 A、E、F、B–D 或 1–6），请用户回复要更新哪一项；若一次改多项，**分文件逐项**处理。更新品牌名时通常需同时维护 **E 与 F**（必要时连带 **A** 的补充说明）。
+2. **仅选择、未提交内容**：用户只回复选项（如「B」「更新话题」）而**未粘贴**要写入的正文时，**必须追问**：请提供该文件的**完整新内容**（或可接受的完整替换片段），并**一句提醒**该文件的格式（与上表及「维度1/维度4」读取规则一致）。
+3. **写入**：用户提交正文后，使用编辑工具更新对应文件。默认 **整文件替换** 为用户提供的全文；若用户明确要求 **仅追加**，则在文件末尾追加并保持每行一条约定。
+4. **收尾**：简短确认已更新的文件名；若内容明显破坏约定（如在 `.txt` 中混入说明段落），**先提示风险**，再按用户确认执行。
+
+## 指令（质检流程）
+
+收到笔记内容后，按以下顺序执行：
+
+1. **读取词表** — 使用 Read 工具读取 `assets/brand-names-correct.txt`、`assets/brand-names-wrong.txt`、`references/brand-name-and-official-accounts.md`、`assets/required-topics.txt`、`assets/compliance-words.txt`、`assets/competitor-brands.txt`
+2. **维度1** — 错别字与品牌词检查
+3. **维度2** — 调性/风格符合度
+4. **维度3** — 链接有效性验证（如有链接）
+5. **维度4** — 内容合规审查
+6. **生成报告** — 按模板输出质检结果
+
+## 输入格式
+
+支持以下输入方式（用户提供其中之一即可）：
+
+**方式A：直接粘贴内容**
 ```
+【标题】笔记标题
+【正文】笔记正文内容...
+【话题】#话题1 #话题2 ...
+【链接】http://... （评论区或正文中的外链）
+【艾特】@账号名
+```
+
+**方式B：仅提供或附带小红书笔记链接**
+
+用户粘贴 `xiaohongshu.com/explore/...`、`xhslink.com/...` 等链接时：
+
+1. **直接调用脚本抓取内容（优先非 Python）**：使用 Shell 工具运行脚本（脚本输出 JSON，包含 `title`、`text_preview`、`hashtags`、`ats`、`http_status` 等字段）。若输出里关键字段足够（至少 `title` 与 `hashtags`/`ats`），则从中解析标题、正文预览、话题、@ 并继续全量质检。
+   - mac/Linux：`sh scripts/fetch_xhs_content.sh --url "<链接URL>"`
+   - Windows：优先使用 `sh`（例如 Git Bash/WSL 中）运行 `scripts/fetch_xhs_content.sh --url "<链接URL>"`
+   - 若上述脚本不可执行（或 curl 不可用）且用户环境有 Python：回退到 `python3 scripts/fetch_xhs_content.py --url "<链接URL>"`
+2. 若脚本抓取失败或关键字段为空（常见：需登录、反爬、短链 404、仅返回壳页面），**明确提示用户**补充粘贴：**标题、正文、话题（#）、@ 账号、评论区或正文中的商品/活动链接**。在补齐之前，维度1/2/4 中对缺字段的项标为 **SKIP** 或待补全说明；**维度3** 仍可对用户给出的 URL 执行 HTTP 校验。
+
+## 维度1：错别字与品牌词检查
+
+读取 `assets/brand-names-correct.txt`、`assets/brand-names-wrong.txt` 与 [brand-name-and-official-accounts.md](references/brand-name-and-official-accounts.md)（官号与补充规则），依次检查：
+
+### 1.1 品牌名检查
+
+- **错误词表**：读取 `assets/brand-names-wrong.txt`，**每行一条**错误写法；**仅忽略空行**。对标题+正文做**子串匹配**，**不区分大小写**；任一命中 → 品牌名 **FAIL**，列出命中条目。
+- **正确词表**：读取 `assets/brand-names-correct.txt`，**每行一条**推荐写法；**仅忽略空行**。在无错误词表命中的前提下：若笔记**明显在推广本品牌**，应至少命中正确词表中**一条**（子串、不区分大小写）；若推广品牌却无任何正确词表命中 → 品牌名 **WARNING**（建议核对是否未收录变体）。未提及本品牌且无错误命中 → 品牌名可记 **OK** 或简述「未涉及品牌表述」。
+- **补充规则**：`references/brand-name-and-official-accounts.md` 中的空格、双语完整度等细则，在词表无法覆盖时按该文件语义执行。
+
+### 1.2 话题完整性检查
+
+- 读取 `assets/required-topics.txt`：**每行一条必带话题**（行内为完整话题串，通常以 `#` 开头，与笔记展示一致）；**仅忽略空行**。该文件为纯词表，不含注释或说明行。
+- 对照「必带话题列表」逐一核查
+- 每个必带话题都必须出现在笔记中（标题或正文均可）
+- 缺少任何一个话题 → 标记为 FAIL，列出缺失的话题
+- 话题文字有错别字 → 标记为 FAIL，指出具体错误
+
+### 1.3 官方账号 @ 检查
+
+- 笔记中必须正确 @ 至少一个官方账号
+- 对照「官方账号标准写法」检查拼写是否完全正确
+- 未 @ 或 @ 错误 → 标记为 FAIL
+
+### 1.4 通用错别字检查
+
+- 检查中文常见同音错字、形近错字（如"在/再"、"的地得"）
+- 发现明显错别字 → 标记为 WARNING，列出错误及建议修正
+
+### 维度1 判定规则
+
+| 情况 | 结论 |
+|---|---|
+| 错误词表命中 / 话题缺失 / 官号 @ 错误 | FAIL |
+| 推广品牌但未命中任何正确词表条目（且无错误命中） | WARNING |
+| 仅有通用错别字（品牌与话题、官号均无 FAIL） | WARNING |
+| 无 FAIL、无上述 WARNING | PASS |
+
+## 维度2：调性/风格符合度
+
+### 2.1 情感分析
+
+- 分析全篇情感倾向，判断是否为正向（Positive）
+- 给出情感置信度评分（0~1），需 > 0.8 方为合格
+- 如出现负面表述、抱怨、吐槽语气 → 标记问题
+
+### 2.2 种草词密度
+
+- 检查正文中是否包含种草类表达（如：推荐、安利、回购、好用、爱了、入股不亏 等）
+- 评估种草词出现频率是否合理（过少则种草力度不足，过多则显得不自然）
+
+### 2.3 文风标签判定（可选）
+
+- 判断文风是否属于以下类型之一：「干货科普」「颜值种草」「真实测评」「生活分享」
+- 给出判定的文风标签
+
+### 维度2 判定规则
+
+| 情况 | 结论 |
+|---|---|
+| 情感负面或置信度 < 0.6 | FAIL |
+| 置信度 0.6~0.8 或种草词密度偏低 | WARNING |
+| 正向且置信度 > 0.8 | PASS |
+
+## 维度3：链接有效性验证
+
+仅在用户提供了链接时执行此维度。
+
+### 检查方法
+
+使用 Shell 工具执行 HTTP 请求验证链接。
+
+**不要用 `curl -I`（HEAD）作为唯一依据**：`xiaohongshu.com`、`xhslink.com` 等小红书相关域名对 HEAD 常返回 **404**，而浏览器使用 **GET** 可正常 **200**，仅用 HEAD 会误判链接失效。
+
+**推荐命令**（GET + 常见桌面 Chrome `User-Agent`，跟随重定向；适用于笔记页与外链）：
+
+```bash
+curl -sL -o /dev/null -w "%{http_code} %{url_effective}\n" \
+  -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" \
+  --max-redirs 5 --connect-timeout 15 "链接URL"
+```
+
+- 报告中的「HTTP 状态」以输出中的**最终状态码**（GET 链末端）为准。
+- **200 仅代表 URL 网络可达**；正文若依赖登录或前端渲染，未在 HTML 内出现**不**因此记 FAIL（除非用户明确要求校验登录态正文）。
+
+### 判定规则
+
+| 情况 | 结论 |
+|---|---|
+| GET 最终 HTTP 状态码非 200，或连接超时，或重定向超过 5 次 | FAIL |
+| 状态码 200 但落地页域名与预期不符（如活动页跳转到无关域） | WARNING |
+| 状态码 200 且链接网络可达 | PASS |
+| 用户未提供链接 | SKIP（不计入总分） |
+
+## 维度4：内容合规审查
+
+读取 [assets/compliance-words.txt](assets/compliance-words.txt)：**每行一条待扫描的词或短语**；**仅忽略空行**。该文件为纯词表，不使用 Markdown 标题或说明段落。
+
+### 4.1 敏感词/违禁词扫描
+
+- 将笔记标题和正文与词表中每一行逐一匹配（子串匹配即可，除非业务另有整词规则）
+- 匹配时注意变体（如「第1」与「第一」等常见改写）
+- 命中任何词表条目 → 记录词语及所在位置
+
+### 4.2 竞品品牌排查
+
+- 读取 `assets/competitor-brands.txt`：**每行一个竞品品牌名**；**仅忽略空行**。文件为纯词表，不含说明或注释；匹配时不区分大小写
+- 将笔记内容与解析后的竞品品牌列表逐一匹配
+- 不区分大小写
+- 命中竞品品牌名 → 记录
+
+### 维度4 判定规则
+
+| 情况 | 结论 |
+|---|---|
+| 命中违禁词或竞品品牌名 | FAIL |
+| 存在疑似擦边表述（如"最好用的之一"） | WARNING |
+| 未命中任何违规内容 | PASS |
+
+## 综合判定规则
+
+| 各维度结果 | 综合结论 |
+|---|---|
+| 任一维度为 FAIL | **FAIL** |
+| 无 FAIL 但有 WARNING | **WARNING** |
+| 全部 PASS（SKIP 不计） | **PASS** |
+
+## 输出报告模板
+
+严格按照以下模板输出质检报告：
+
+```markdown
+# 小红书达人笔记质检报告
+
+**笔记标题**：{标题}
+**检查时间**：{YYYY-MM-DD HH:mm}
+**综合结论**：{PASS / WARNING / FAIL}
+
+---
+
+## 维度1：错别字与品牌词检查 — {PASS/WARNING/FAIL}
+
+| 检查项 | 结果 | 详情 |
+|---|---|---|
+| 品牌名 | {OK/错误} | {具体说明，无问题则写"正确"} |
+| 必带话题 | {完整/缺失} | {只输出缺失话题；若无缺失则留空} |
+| 官号 @ | {正确/错误/缺失} | {具体说明} |
+| 通用错别字 | {无/有} | {列出错误及修正建议} |
+
+## 维度2：调性/风格符合度 — {PASS/WARNING/FAIL}
+
+| 检查项 | 结果 | 详情 |
+|---|---|---|
+| 情感倾向 | {正向/中性/负向} | 置信度：{0.xx} |
+| 种草词密度 | {充足/偏低/过多} | 发现种草词：{词1, 词2, ...} |
+| 文风标签 | {标签名} | — |
+
+## 维度3：链接有效性验证 — {PASS/WARNING/FAIL/SKIP}
+
+| 链接 | HTTP状态 | 结论 | 备注 |
+|---|---|---|---|
+| {URL} | {状态码} | {有效/无效} | {备注} |
+
+## 维度4：内容合规审查 — {PASS/WARNING/FAIL}
+
+| 检查项 | 结果 | 详情 |
+|---|---|---|
+| 违禁词 | {未命中/命中} | {列出命中的违禁词} |
+| 竞品提及 | {未命中/命中} | {列出命中的竞品名} |
+
+---
+
+## 修改建议
+
+{针对所有 FAIL 和 WARNING 项，给出具体、可操作的修改建议，按优先级排列}
+```
+
+## 注意事项
+
+- 每次质检前**必须**先读取 `assets/brand-names-correct.txt`、`assets/brand-names-wrong.txt`、`references/brand-name-and-official-accounts.md`、`assets/required-topics.txt`、`assets/compliance-words.txt`、`assets/competitor-brands.txt`，确保使用最新配置；其中 `assets/brand-names-*.txt`、`assets/required-topics.txt`、`assets/compliance-words.txt`、`assets/competitor-brands.txt` 均按「每行一条、空行忽略」解析，不要把话题行误判为注释
+- 链接验证必须通过 Shell 工具实际发起 HTTP 请求，不要凭文本猜测；小红书类链接须用维度 3 的 **GET** 命令，**勿**仅用 HEAD（`-I`）下结论
+- 情感分析和调性评估基于你的语义理解能力，给出合理的置信度评分
+- 如果用户只提供了部分内容（如只有正文没有链接），跳过无法检查的维度并标记为 SKIP
+- 报告中的修改建议要具体、可执行，避免泛泛而谈
+- 如果一条笔记有多个问题，按严重程度排列（FAIL 优先于 WARNING）
+
+## 示例：坏案例质检
+
+以下为常见问题类型，质检时重点关注：
+
+**案例1：话题不完整 + 官号 @ 错误**
+- 缺少必带话题（如只带了 3 个话题，遗漏了其余 4 个）
+- @ 的官号名拼写错误（如 "@bubble tree" 而非 "@BUBBLE TREE"）
+- → 维度1 判定：FAIL
+
+**案例2：品牌名错误**
+- 正文中写成 "bubbltree" 等**错误词表**中的拼写；**注意**：「bubbletree」连写因平台限制与「bubble tree」同等视为正确，**不得**据此判 FAIL
+- → 维度1 判定：FAIL（仅当命中 `brand-names-wrong.txt` 等明确错误写法时）
+
+**案例3：链接失效**
+- 评论区挂的商品链接经维度 3 推荐 **GET** 校验后仍非 200 或超时
+- → 维度3 判定：FAIL
+- 反例：若仅 HEAD 404 而 GET 200（小红书笔记页常见），**不得**判 FAIL
+
+**案例4：违禁词命中**
+- 正文出现"最好的母婴品牌"中的"最好"属于绝对化用语
+- → 维度4 判定：FAIL

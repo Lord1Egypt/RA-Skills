@@ -1,0 +1,20 @@
+{
+  "name": "小红书笔记搬运",
+  "slug": "xiaohongshu-transfer",
+  "version": "1.0.0",
+  "description": "自动化搬运小红书笔记到 Facebook 和 WordPress",
+  "author": "铁铁团队",
+  "license": "MIT",
+  "keywords": ["xiaohongshu", "小红书", "搬运", "facebook", "wordpress"],
+  "repository": "",
+  "created": "2026-03-31",
+  "scripts": [
+    "scripts/download_images.sh",
+    "scripts/prepare_upload.py",
+    "scripts/wp_publish.py"
+  ],
+  "references": [
+    "references/platforms.md",
+    "references/pitfalls.md"
+  ]
+}

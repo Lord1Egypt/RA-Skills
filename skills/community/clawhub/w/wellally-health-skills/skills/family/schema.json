@@ -1,0 +1,208 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/family-health.json",
+  "title": "FamilyHealth",
+  "description": "家庭健康管理和遗传风险评估的数据结构定义",
+  "type": "object",
+  "properties": {
+    "family_info": {
+      "type": "object",
+      "description": "家庭基本信息",
+      "properties": {
+        "family_id": {
+          "type": "string",
+          "description": "家庭唯一标识符",
+          "pattern": "^fam_[0-9]{8}_[0-9]{3}$"
+        },
+        "created_date": {
+          "type": "string",
+          "format": "date",
+          "description": "创建日期 (YYYY-MM-DD)"
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date",
+          "description": "最后更新日期"
+        }
+      }
+    },
+    "members": {
+      "type": "array",
+      "description": "家庭成员列表",
+      "items": {
+        "type": "object",
+        "properties": {
+          "member_id": {
+            "type": "string",
+            "pattern": "^mem_[0-9]{8}_[0-9]{3}$"
+          },
+          "name": {"type": "string"},
+          "relationship": {
+            "type": "string",
+            "enum": ["self", "father", "mother", "spouse", "son", "daughter", "brother", "sister", "paternal_grandfather", "paternal_grandmother", "maternal_grandfather", "maternal_grandmother", "half_brother", "half_sister", "adopted"]
+          },
+          "relationship_name": {"type": "string"},
+          "gender": {
+            "type": "string",
+            "enum": ["male", "female", "other"]
+          },
+          "birth_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "age": {"type": "integer"},
+          "blood_type": {
+            "type": "string",
+            "enum": ["A", "B", "AB", "O", "unknown"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["living", "deceased"]
+          },
+          "deceased_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "cause_of_death": {"type": "string"},
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "personal_health": {
+            "type": "object",
+            "properties": {
+              "chronic_conditions": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "allergies": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "medications": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "genetic_tests": {
+                "type": "array",
+                "items": {"type": "string"}
+              }
+            }
+          }
+        },
+        "required": ["member_id", "name", "relationship", "gender"]
+      }
+    },
+    "family_medical_history": {
+      "type": "object",
+      "description": "家族病史",
+      "properties": {
+        "hereditary_diseases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "disease_name": {"type": "string"},
+              "disease_category": {
+                "type": "string",
+                "enum": ["cardiovascular", "metabolic", "cancer", "respiratory", "autoimmune", "neurological", "psychiatric", "other"]
+              },
+              "affected_members": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "inheritance_pattern": {
+                "type": "string",
+                "enum": ["autosomal_dominant", "autosomal_recessive", "x_linked", "mitochondrial", "multifactorial", "unknown"]
+              },
+              "age_range": {
+                "type": "object",
+                "properties": {
+                  "min": {"type": "integer"},
+                  "max": {"type": "integer"},
+                  "avg": {"type": "number"}
+                }
+              }
+            }
+          }
+        },
+        "common_conditions": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "genetic_disorders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "disorder_name": {"type": "string"},
+              "affected_members": {"type": "array", "items": {"type": "string"}},
+              "genetic_pattern": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "risk_assessment": {
+      "type": "object",
+      "description": "遗传风险评估",
+      "properties": {
+        "last_assessment_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "hereditary_risks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "disease": {"type": "string"},
+              "risk_level": {
+                "type": "string",
+                "enum": ["high", "medium", "low"]
+              },
+              "confidence": {
+                "type": "string",
+                "enum": ["high", "medium", "low"]
+              },
+              "affected_members": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "risk_factors": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "risk_score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              }
+            }
+          }
+        },
+        "preventive_recommendations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "type": "string",
+                "enum": ["screening", "lifestyle", "medication", "monitoring", "vaccination"]
+              },
+              "action": {"type": "string"},
+              "frequency": {"type": "string"},
+              "start_age": {"type": "integer"},
+              "priority": {
+                "type": "string",
+                "enum": ["high", "medium", "low"]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["family_info", "members"],
+  "additionalProperties": false
+}

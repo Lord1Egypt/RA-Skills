@@ -1,0 +1,38 @@
+/* themes/editorial.css — extracted from 03-editorial */
+
+[data-theme="editorial"] {
+  --bg: #F5F0EB;
+  --text: #0F172A;
+  --accent: #C0392B;
+  --secondary: #64748B;
+  --bg-alt: #FFFFFF;
+  /* Surface hierarchy (required by yuanfang-design tokens) */
+  --surface: #FFFFFF;
+  --surface-2: var(--bg-alt);
+  --border: rgba(0,0,0,.08);
+  --border-strong: rgba(0,0,0,.18);
+  --text-1: var(--text);
+  --text-2: var(--secondary);
+  --text-3: rgba(0,0,0,.5);
+
+  --font-title: "Source Serif 4", "Source Serif Pro", system-ui, -apple-system, "PingFang SC", Georgia, serif;
+  --font-body:  system-ui, -apple-system, "PingFang SC", "Inter", sans-serif;
+
+  --title-size-v: 130px;
+  --title-size-s: 100px;
+  --title-size-w: 82px;
+  --title-size-c: 64px;
+  --content-size: 36px;
+  --qr-size: 64px;
+
+  --decor-tl: none;
+  --decor-tr: none;
+  --decor-bl: none;
+  --decor-br: none;
+
+  --accent-line: block;
+  --accent-block: none;
+  --terminal-bar: none;
+  --grid-bg: none;
+  --seal: "";
+}

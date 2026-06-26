@@ -1,0 +1,431 @@
+{
+  "name": "ym-mediatoolkit",
+  "version": "4.3.1",
+  "description": "自然语言媒体助手：视频压缩、MP4/MOV 封面提取、音频转换、字幕识别、JSON 流水线",
+  "author": "your_name",
+  "entrypoint": "python run.py --input {input_json}",
+  "http_port": 8080,
+  "http_bind": "127.0.0.1 (默认，仅本地；可通过 --host 0.0.0.0 改为公网，需反向代理认证)",
+  "external_binaries": {
+    "ffmpeg": "必需 - 视频压缩、音频提取、流式处理",
+    "ffprobe": "必需 - 获取视频/音频流信息"
+  },
+  "python_dependencies": {
+    "faster-whisper": "必需 - ASR 字幕识别",
+    "paddlepaddle": "必需 - PaddleOCR 推理运行时",
+    "paddleocr": "必需 - OCR 字幕识别"
+  },
+  "response_protocol": {
+    "description": "所有 action 都会返回稳定协议字段，并保留原有业务字段。",
+    "fields": {
+      "status": "success / partial / skipped / error",
+      "code": "稳定机器码，例如 ok、missing_source、output_exists、parse_failed",
+      "reply": "适合聊天展示的简短中文回复",
+      "hint": "面向调用方或用户的下一步建议"
+    },
+    "common_codes": [
+      "ok",
+      "missing_source",
+      "source_not_allowed",
+      "output_exists",
+      "parse_failed",
+      "missing_steps",
+      "missing_captions",
+      "invalid_action",
+      "invalid_params",
+      "invalid_json",
+      "invalid_async_mode",
+      "invalid_wait_timeout",
+      "invalid_job_id",
+      "job_not_found",
+      "job_interrupted",
+      "job_failed",
+      "unsupported_action",
+      "invalid_step",
+      "ffmpeg_failed",
+      "missing_asr_dependency",
+      "missing_ocr_dependency"
+    ]
+  },
+  "http_apis": [
+    {
+      "path": "/skill/jobs",
+      "method": "POST",
+      "description": "提交异步长任务，现有同步 /skill/<action> 接口保持不变",
+      "input_schema": {
+        "type": "object",
+        "required": ["action"],
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "当前 actions 中支持的 action 名称"
+          },
+          "params": {
+            "type": "object",
+            "default": {},
+            "description": "传给 action 的参数；缺省或 null 按空对象处理，数组、字符串等会返回 invalid_params"
+          }
+        }
+      },
+      "response_schema": {
+        "type": "object",
+        "properties": {
+          "status": {"type": "string", "enum": ["queued", "error"]},
+          "code": {"type": "string"},
+          "reply": {"type": "string"},
+          "job_id": {"type": "string"},
+          "job_path": {"type": "string"},
+          "poll_url": {"type": "string"},
+          "created_by": {"type": "string"},
+          "intent": {"type": "string"},
+          "params": {"type": "object"}
+        }
+      }
+    },
+    {
+      "path": "/skill/jobs/<job_id>",
+      "method": "GET",
+      "description": "查询单个异步任务状态、结果和输出路径"
+    },
+    {
+      "path": "/skill/jobs",
+      "method": "GET",
+      "description": "查询异步任务列表，支持 status 和 limit query 参数"
+    }
+  ],
+  "actions": [
+    {
+      "name": "chat",
+      "description": "自然语言媒体助手入口，将用户聊天文本解析为媒体处理 action；HTTP 可用 async 自动提交长任务 job",
+      "input_schema": {
+        "type": "object",
+        "required": ["message"],
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "自然语言命令，例如：将 \"D:/AA.MP4\" 提取音频"
+          },
+          "media_roots": {
+            "type": ["array", "string"],
+            "description": "允许访问的本地媒体根目录；未传时读取 YM_MEDIA_ROOTS，否则仅允许当前工作目录"
+          },
+          "overwrite": {"type": "boolean", "default": true},
+          "output_dir": {"type": "string", "description": "自然语言命令的默认输出目录"},
+          "async": {
+            "oneOf": [
+              {"type": "boolean"},
+              {"type": "string", "enum": ["auto"]}
+            ],
+            "default": false,
+            "description": "HTTP chat 异步控制；仅接受 JSON boolean 或字符串 auto，true 全部转 job，auto 仅长任务转 job"
+          },
+          "wait_timeout_sec": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 30,
+            "default": 0,
+            "description": "异步提交后最多短等待秒数；范围 0-30，任务很快完成时可直接返回 HTTP 200 最终结果"
+          }
+        }
+      },
+      "examples": [
+        {"message": "将 \"sample.mp4\" 提取音频"},
+        {"message": "给 \"sample.mp4\" 提取第 3 秒封面"},
+        {"message": "压缩 \"sample.mp4\""},
+        {"message": "查看 \"sample.mp4\" 信息"},
+        {"message": "识别 \"sample.mp4\" 的字幕", "async": "auto"}
+      ]
+    },
+    {
+      "name": "compress",
+      "description": "流式压缩视频，保持清晰度，支持自适应 CRF",
+      "input_schema": {
+        "type": "object",
+        "anyOf": [
+          {"required": ["video_url"]},
+          {"required": ["url"]},
+          {"required": ["source"]}
+        ],
+        "properties": {
+          "video_url": {"type": "string", "description": "视频 URL 或本地文件路径"},
+          "url": {"type": "string", "description": "同 video_url"},
+          "source": {"type": "string", "description": "同 video_url"},
+          "media_roots": {"type": ["array", "string"], "description": "允许访问的本地媒体根目录"},
+          "target_ratio": {"type": "number", "default": 0.1},
+          "adaptive": {"type": "boolean", "default": true},
+          "crf": {"type": "integer", "default": 24},
+          "preset": {"type": "string", "default": "veryfast"},
+          "output_path": {"type": "string", "description": "默认 output/videos"},
+          "overwrite": {"type": "boolean", "default": true}
+        }
+      }
+    },
+    {
+      "name": "thumbnail",
+      "description": "从 MP4/MOV 视频任意时间点或帧号提取封面，流式只下载必要部分",
+      "input_schema": {
+        "type": "object",
+        "anyOf": [
+          {"required": ["video_url"]},
+          {"required": ["url"]},
+          {"required": ["source"]}
+        ],
+        "properties": {
+          "video_url": {"type": "string", "description": "视频 URL 或本地文件路径"},
+          "url": {"type": "string", "description": "同 video_url"},
+          "source": {"type": "string", "description": "同 video_url"},
+          "media_roots": {"type": ["array", "string"], "description": "允许访问的本地媒体根目录"},
+          "time_seconds": {"type": "number"},
+          "frame_number": {"type": "integer"},
+          "save_path": {"type": "string"},
+          "resize_width": {"type": "integer"},
+          "quality": {"type": "integer", "default": 85},
+          "overwrite": {"type": "boolean", "default": true}
+        }
+      }
+    },
+    {
+      "name": "audio",
+      "description": "流式提取音频，支持 MP3/WAV/AAC/M4A 格式",
+      "input_schema": {
+        "type": "object",
+        "anyOf": [
+          {"required": ["video_url"]},
+          {"required": ["url"]},
+          {"required": ["source"]}
+        ],
+        "properties": {
+          "video_url": {"type": "string", "description": "视频 URL 或本地文件路径"},
+          "url": {"type": "string", "description": "同 video_url"},
+          "source": {"type": "string", "description": "同 video_url"},
+          "media_roots": {"type": ["array", "string"], "description": "允许访问的本地媒体根目录"},
+          "format": {"type": "string", "enum": ["mp3", "wav", "aac", "m4a"], "default": "mp3"},
+          "bitrate": {"type": "string", "default": "128k", "description": "比特率: 128k, 192k, 320k"},
+          "sample_rate": {"type": "integer", "default": 44100, "description": "采样率: 44100, 48000"},
+          "channels": {"type": "integer", "default": 2, "description": "声道: 1=单声道, 2=立体声"},
+          "start_time": {"type": "number", "description": "开始时间（秒）"},
+          "duration": {"type": "number", "description": "持续时间（秒）"},
+          "output_path": {"type": "string", "description": "默认 output/audio"},
+          "overwrite": {"type": "boolean", "default": true}
+        }
+      }
+    },
+    {
+      "name": "audio_batch",
+      "description": "批量提取多个视频的音频",
+      "input_schema": {
+        "type": "object",
+        "required": ["videos"],
+        "properties": {
+          "videos": {"type": "array", "description": "视频列表，条目支持 video_url/url/source"},
+          "media_roots": {"type": ["array", "string"], "description": "允许访问的本地媒体根目录"},
+          "output_dir": {"type": "string", "default": "output/audio"},
+          "format": {"type": "string", "default": "mp3"},
+          "bitrate": {"type": "string", "default": "128k"},
+          "sample_rate": {"type": "integer", "default": 44100},
+          "overwrite": {"type": "boolean", "default": true}
+        }
+      }
+    },
+    {
+      "name": "audio_info",
+      "description": "获取视频的音频流信息",
+      "input_schema": {
+        "type": "object",
+        "anyOf": [
+          {"required": ["video_url"]},
+          {"required": ["url"]},
+          {"required": ["source"]}
+        ],
+        "properties": {
+          "video_url": {"type": "string", "description": "视频 URL 或本地文件路径"},
+          "url": {"type": "string", "description": "同 video_url"},
+          "source": {"type": "string", "description": "同 video_url"},
+          "media_roots": {"type": ["array", "string"], "description": "允许访问的本地媒体根目录"}
+        }
+      }
+    },
+    {
+      "name": "asr",
+      "description": "从音频轨识别字幕，输出 SRT-like captions JSON",
+      "input_schema": {
+        "type": "object",
+        "anyOf": [
+          {"required": ["video_url"]},
+          {"required": ["url"]},
+          {"required": ["source"]}
+        ],
+        "properties": {
+          "video_url": {"type": "string", "description": "视频 URL 或本地文件路径"},
+          "url": {"type": "string", "description": "同 video_url"},
+          "source": {"type": "string", "description": "同 video_url"},
+          "language": {"type": "string", "default": "auto"},
+          "model_size": {"type": "string", "default": "base"},
+          "output_path": {"type": "string", "description": "默认 output/subtitles/<name>.captions.json"},
+          "overwrite": {"type": "boolean", "default": true},
+          "media_roots": {"type": ["array", "string"], "description": "允许访问的本地媒体根目录"}
+        }
+      }
+    },
+    {
+      "name": "ocr",
+      "description": "从视频画面识别硬字幕或屏幕文字，输出 SRT-like captions JSON",
+      "input_schema": {
+        "type": "object",
+        "anyOf": [
+          {"required": ["video_url"]},
+          {"required": ["url"]},
+          {"required": ["source"]}
+        ],
+        "properties": {
+          "video_url": {"type": "string", "description": "视频 URL 或本地文件路径"},
+          "url": {"type": "string", "description": "同 video_url"},
+          "source": {"type": "string", "description": "同 video_url"},
+          "sample_interval_sec": {"type": "number", "default": 1.0},
+          "crop_bottom_ratio": {"type": "number", "default": 0.35},
+          "output_path": {"type": "string", "description": "默认 output/subtitles/<name>.captions.json"},
+          "overwrite": {"type": "boolean", "default": true},
+          "media_roots": {"type": ["array", "string"], "description": "允许访问的本地媒体根目录"}
+        }
+      }
+    },
+    {
+      "name": "subtitle",
+      "description": "推荐字幕识别入口，支持 asr / ocr / fusion 模式，统一输出 captions JSON",
+      "input_schema": {
+        "type": "object",
+        "anyOf": [
+          {"required": ["video_url"]},
+          {"required": ["url"]},
+          {"required": ["source"]}
+        ],
+        "properties": {
+          "video_url": {"type": "string", "description": "视频 URL 或本地文件路径"},
+          "url": {"type": "string", "description": "同 video_url"},
+          "source": {"type": "string", "description": "同 video_url"},
+          "mode": {"type": "string", "enum": ["asr", "ocr", "fusion"], "default": "fusion"},
+          "language": {"type": "string", "default": "auto"},
+          "model_size": {"type": "string", "default": "base"},
+          "sample_interval_sec": {"type": "number", "default": 1.0},
+          "crop_bottom_ratio": {"type": "number", "default": 0.35},
+          "output_path": {"type": "string", "description": "默认 output/subtitles/<name>.captions.json"},
+          "overwrite": {"type": "boolean", "default": true},
+          "media_roots": {"type": ["array", "string"], "description": "允许访问的本地媒体根目录"}
+        }
+      },
+      "examples": [
+        {"source": "sample.mp4", "mode": "fusion"},
+        {"source": "sample.mp4", "mode": "asr", "language": "zh"}
+      ]
+    },
+    {
+      "name": "caption_segment",
+      "description": "emlet 字幕二次分句器，对已有 captions JSON 按长度、标点和保护词重新切分",
+      "input_schema": {
+        "type": "object",
+        "anyOf": [
+          {"required": ["caption_path"]},
+          {"required": ["input_path"]},
+          {"required": ["captions"]}
+        ],
+        "properties": {
+          "caption_path": {"type": "string", "description": "已有 captions JSON 文件路径"},
+          "input_path": {"type": "string", "description": "同 caption_path"},
+          "captions": {"type": "array", "description": "直接传入的字幕条目"},
+          "max_chars": {"type": "integer", "default": 12, "description": "单条字幕最大字符数"},
+          "protected_terms": {
+            "type": ["array", "string"],
+            "description": "不拆开的品牌词、产品名、人名、术语，例如 苹果,华为,吉利"
+          },
+          "protected_terms_path": {
+            "type": "string",
+            "description": "当前工作目录内的保护词 JSON 文件，可按 brands/products 等字段分组"
+          },
+          "auto_protect_ascii": {
+            "type": "boolean",
+            "default": true,
+            "description": "自动保护英文、数字、型号、URL、路径"
+          },
+          "output_path": {"type": "string", "description": "默认 output/subtitles/<name>.segmented.captions.json"},
+          "overwrite": {"type": "boolean", "default": true}
+        }
+      },
+      "examples": [
+        {
+          "caption_path": "output/subtitles/sample.captions.json",
+          "max_chars": 12,
+          "protected_terms": ["苹果", "华为", "吉利"]
+        }
+      ]
+    },
+    {
+      "name": "batch",
+      "description": "批量处理多个视频，支持 compress / thumbnail / audio",
+      "input_schema": {
+        "type": "object",
+        "required": ["videos"],
+        "properties": {
+          "action": {"type": "string", "enum": ["compress", "thumbnail", "audio"], "default": "thumbnail"},
+          "videos": {"type": "array", "description": "按 action 传入对应参数对象列表，条目支持 video_url/url/source"},
+          "media_roots": {"type": ["array", "string"], "description": "允许访问的本地媒体根目录"},
+          "output_dir": {"type": "string", "description": "批量输出目录"},
+          "overwrite": {"type": "boolean", "default": true}
+        }
+      }
+    },
+    {
+      "name": "pipeline",
+      "description": "JSON 驱动媒体流水线，按 steps 顺序编排 info / thumbnail / audio / compress / audio_info / subtitle / caption_segment",
+      "input_schema": {
+        "type": "object",
+        "anyOf": [
+          {"required": ["video_url"]},
+          {"required": ["url"]},
+          {"required": ["source"]}
+        ],
+        "required": ["steps"],
+        "properties": {
+          "video_url": {"type": "string", "description": "视频 URL 或本地文件路径"},
+          "url": {"type": "string", "description": "同 video_url"},
+          "source": {"type": "string", "description": "同 video_url"},
+          "media_roots": {"type": ["array", "string"], "description": "允许访问的本地媒体根目录"},
+          "name": {"type": "string", "description": "流水线名称"},
+          "output_dir": {"type": "string", "description": "默认 output/pipeline/<name>"},
+          "overwrite": {"type": "boolean", "default": true},
+          "steps": {
+            "type": "array",
+            "description": "步骤列表，每步包含 id/action/enabled/params",
+            "items": {
+              "type": "object",
+              "required": ["id", "action", "enabled"],
+              "properties": {
+                "id": {"type": "string"},
+                "action": {"type": "string", "enum": ["info", "thumbnail", "audio", "compress", "audio_info", "asr", "ocr", "subtitle", "caption_segment"]},
+                "enabled": {"type": "boolean"},
+                "params": {"type": "object"}
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "info",
+      "description": "获取完整视频信息（分辨率、时长、编码等）",
+      "input_schema": {
+        "type": "object",
+        "anyOf": [
+          {"required": ["video_url"]},
+          {"required": ["url"]},
+          {"required": ["source"]}
+        ],
+        "properties": {
+          "video_url": {"type": "string", "description": "视频 URL 或本地文件路径"},
+          "url": {"type": "string", "description": "同 video_url"},
+          "source": {"type": "string", "description": "同 video_url"},
+          "media_roots": {"type": ["array", "string"], "description": "允许访问的本地媒体根目录"}
+        }
+      }
+    }
+  ]
+}

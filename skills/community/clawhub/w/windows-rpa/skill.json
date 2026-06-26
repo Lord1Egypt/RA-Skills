@@ -1,0 +1,165 @@
+{
+  "name": "windows-rpa",
+  "version": "1.1.0",
+  "description": "Windows 桌面 RPA 自动化控制 - 鼠标键盘操作、窗口管理、应用启动",
+  "author": "qgyz9613",
+  "license": "MIT-0",
+  "os": ["win32", "windows"],
+  "requires": {
+    "bins": ["python"],
+    "python": [">=3.8"]
+  },
+  "install": [
+    {
+      "id": "pip-pyautogui",
+      "kind": "pip",
+      "package": "pyautogui pillow",
+      "label": "Install PyAutoGUI for mouse/keyboard automation"
+    },
+    {
+      "id": "pip-pywinauto",
+      "kind": "pip", 
+      "package": "pywinauto",
+      "label": "Install PyWinAuto for Windows UI Automation"
+    },
+    {
+      "id": "pip-pyperclip",
+      "kind": "pip",
+      "package": "pyperclip",
+      "label": "Install Pyperclip for clipboard operations"
+    }
+  ],
+  "implementation": {
+    "type": "python",
+    "entry": "scripts/rpa.py",
+    "files": ["scripts/rpa.py"]
+  },
+  "security": {
+    "permissions": ["screen_capture", "keyboard_input", "mouse_input", "clipboard_access", "shell_execution"],
+    "user_approval": "recommended",
+    "sensitive_operations": ["desktop_shell", "desktop_clipboard_get", "desktop_screenshot"],
+    "sandbox": "supported"
+  },
+  "tools": [
+    {
+      "name": "desktop_screenshot",
+      "description": "截取屏幕截图",
+      "sensitive": true,
+      "script": "scripts/rpa.py screenshot"
+    },
+    {
+      "name": "desktop_mouse_move",
+      "description": "移动鼠标到指定坐标",
+      "script": "scripts/rpa.py mouse_move --x {x} --y {y} --duration {duration}"
+    },
+    {
+      "name": "desktop_mouse_click",
+      "description": "鼠标点击",
+      "script": "scripts/rpa.py mouse_click --x {x} --y {y} --button {button} --clicks {clicks}"
+    },
+    {
+      "name": "desktop_mouse_drag",
+      "description": "鼠标拖拽",
+      "script": "scripts/rpa.py mouse_drag --start_x {start_x} --start_y {start_y} --end_x {end_x} --end_y {end_y}"
+    },
+    {
+      "name": "desktop_mouse_scroll",
+      "description": "鼠标滚轮",
+      "script": "scripts/rpa.py mouse_scroll --clicks {clicks}"
+    },
+    {
+      "name": "desktop_mouse_position",
+      "description": "获取鼠标位置",
+      "script": "scripts/rpa.py mouse_position"
+    },
+    {
+      "name": "desktop_keyboard_type",
+      "description": "键盘输入文本",
+      "script": "scripts/rpa.py keyboard_type --text \"{text}\""
+    },
+    {
+      "name": "desktop_keyboard_press",
+      "description": "按键",
+      "script": "scripts/rpa.py keyboard_press --key {key}"
+    },
+    {
+      "name": "desktop_keyboard_hotkey",
+      "description": "组合键",
+      "script": "scripts/rpa.py keyboard_hotkey --keys {keys}"
+    },
+    {
+      "name": "desktop_launch_app",
+      "description": "启动应用程序",
+      "script": "scripts/rpa.py launch --app {app} --args \"{args}\""
+    },
+    {
+      "name": "desktop_run_app",
+      "description": "运行命令",
+      "sensitive": true,
+      "script": "scripts/rpa.py run_app --command {command}"
+    },
+    {
+      "name": "desktop_shell",
+      "description": "执行 Shell 命令",
+      "sensitive": true,
+      "script": "scripts/rpa.py shell --command \"{command}\" --shell_type {shell_type}"
+    },
+    {
+      "name": "desktop_window_list",
+      "description": "列出所有窗口",
+      "script": "scripts/rpa.py window_list"
+    },
+    {
+      "name": "desktop_window_activate",
+      "description": "激活窗口",
+      "script": "scripts/rpa.py window_activate --title_pattern {title_pattern}"
+    },
+    {
+      "name": "desktop_find_window",
+      "description": "查找窗口",
+      "script": "scripts/rpa.py find_window --title_contains {title_contains}"
+    },
+    {
+      "name": "desktop_clipboard_get",
+      "description": "获取剪贴板内容",
+      "sensitive": true,
+      "script": "scripts/rpa.py clipboard_get"
+    },
+    {
+      "name": "desktop_clipboard_set",
+      "description": "设置剪贴板内容",
+      "script": "scripts/rpa.py clipboard_set --text \"{text}\""
+    },
+    {
+      "name": "desktop_check",
+      "description": "检查环境状态",
+      "script": "scripts/rpa.py check"
+    },
+    {
+      "name": "desktop_get_state",
+      "description": "获取完整桌面状态",
+      "sensitive": true,
+      "script": "scripts/rpa.py get_state --capture_screenshot {capture_screenshot}"
+    },
+    {
+      "name": "desktop_screen_size",
+      "description": "获取屏幕尺寸",
+      "script": "scripts/rpa.py screen_size"
+    },
+    {
+      "name": "desktop_locate_on_screen",
+      "description": "在屏幕上定位图像",
+      "script": "scripts/rpa.py locate_on_screen --image_path {image_path} --confidence {confidence}"
+    }
+  ],
+  "keywords": [
+    "windows",
+    "rpa",
+    "automation",
+    "desktop",
+    "mouse",
+    "keyboard",
+    "pyautogui",
+    "pywinauto"
+  ]
+}

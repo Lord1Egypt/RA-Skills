@@ -1,35 +1,85 @@
 ---
-name: "XRPL Transaction Builder"
-description: "Build, sign, and submit XRP Ledger transactions including payments, NFT minting/burning, with Xaman wallet integration."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xrpl-tx-builder"
-sourceUrl: "https://clawhub.ai/skills/xrpl-tx-builder"
+name: xrpl-tx-builder
+description: Build and sign XRP Ledger transactions. Use for: (1) Creating payment transactions, (2) Building NFT mint/burn transactions, (3) Signing with Xaman wallet, (4) Submitting to XRPL.
 ---
 
 # XRPL Transaction Builder
 
-> Build, sign, and submit XRP Ledger transactions including payments, NFT minting/burning, with Xaman wallet integration.
+## Setup
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xrpl-tx-builder`
-- **Source URL:** [https://clawhub.ai/skills/xrpl-tx-builder](https://clawhub.ai/skills/xrpl-tx-builder)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/xrpl-tx-builder
+npm install xrpl
 ```
+
+## Basic Payment
+
+```typescript
+import { Client, Wallet, Payment } from 'xrpl';
+
+const client = new Client('wss://xrplcluster.com');
+
+// Build payment tx
+const tx: Payment = {
+  TransactionType: 'Payment',
+  Account: wallet.address,
+  Destination: 'rDestinationAddress...',
+  Amount: '1000000', // drops (1 XRP = 1,000,000 drops)
+  DestinationTag: 12345 // optional
+};
+```
+
+## Submit Transaction (Xaman Signed)
+
+```typescript
+// After user signs with Xaman, submit:
+const txBlob = signedTransactionBlob; // from Xaman payload
+const result = await client.submit(txBlob);
+```
+
+## Common Transaction Types
+
+### Payment
+```typescript
+{
+  TransactionType: 'Payment',
+  Account: 'r...',
+  Destination: 'r...',
+  Amount: '1000000', // drops
+  DestinationTag: 123
+}
+```
+
+### NFTokenMint
+```typescript
+{
+  TransactionType: 'NFTokenMint',
+  Account: 'r...',
+  NFTokenTaxon: 0,
+  Issuer: 'r...',
+  TransferFee: 5000, // 5% royalty
+  Flags: 8, // burnable
+  URI: 'ipfs://...'
+}
+```
+
+### SetAccountRoot
+```typescript
+{
+  TransactionType: 'SetAccountRoot',
+  Account: 'r...',
+  EmailHash: 'abc123...',
+  Domain: 'example.com'
+}
+```
+
+## Key Concepts
+
+- **Drops**: 1 XRP = 1,000,000 drops
+- **Address**: Classic r-address (starts with 'r')
+- **Destination Tag**: Optional memo for payments
+- **Flags**: Transaction-specific options (see XRPL docs)
+
+## RPC Endpoints
+
+- `wss://xrplcluster.com` (public)
+- `wss://s1.ripple.com` (Ripple)

@@ -1,35 +1,33 @@
 ---
-name: "X Hourly Brief"
-description: "X Hourly Brief (Premium) — charge-first brief generation for high-value X posts. Supports Chinese/English output."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/x-hourly-brief-skill"
-sourceUrl: "https://clawhub.ai/skills/x-hourly-brief-skill"
+name: x-hourly-brief-skill
+description: X Hourly Brief (Premium) — charge-first brief generation for high-value X posts. Supports Chinese/English output.
 ---
 
-# X Hourly Brief
+# X Hourly Brief (Premium)
 
-> X Hourly Brief (Premium) — charge-first brief generation for high-value X posts. Supports Chinese/English output.
+Generate a concise hourly brief from X post URLs.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/x-hourly-brief-skill`
-- **Source URL:** [https://clawhub.ai/skills/x-hourly-brief-skill](https://clawhub.ai/skills/x-hourly-brief-skill)
+## Pricing
 
-## Overview
+- 0.001 USDT per call (1 token)
+- Charge-first
+- Low balance returns `PAYMENT_URL`
 
+## Run
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/x-hourly-brief-skill
+node scripts/run.js --urls "https://x.com/.../status/1,https://x.com/.../status/2" --user "<user-id>" --lang "auto"
 ```
+
+## Output
+
+- Per-post brief (key points)
+- Final digest summary
+- Supports `zh`, `en`, `auto`
+
+## Optional env overrides
+
+- `SKILLPAY_BILLING_URL`
+- `SKILL_BILLING_API_KEY`
+- `SKILL_ID`
+- `SKILLPAY_PRICE_TOKEN`

@@ -1,0 +1,484 @@
+{
+  "version": "china_2025",
+  "last_updated": "2025-01-02",
+  "description": "中国儿童免疫规划疫苗数据库 - 一类疫苗和二类疫苗",
+
+  "class_1_vaccines": [
+    {
+      "id": "hepb_b1",
+      "name": "乙肝疫苗",
+      "english_name": "Hepatitis B Vaccine",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第1针",
+      "scheduled_age": "birth",
+      "recommended_age": "0月龄",
+      "interval": null,
+      "route": "肌内注射",
+      "site": "大腿前外侧",
+      "disease_prevented": "乙型肝炎"
+    },
+    {
+      "id": "bcg",
+      "name": "卡介苗",
+      "english_name": "BCG Vaccine",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第1针",
+      "scheduled_age": "birth",
+      "recommended_age": "0月龄",
+      "interval": null,
+      "route": "皮内注射",
+      "site": "左上臂",
+      "disease_prevented": "结核病"
+    },
+    {
+      "id": "hepb_b2",
+      "name": "乙肝疫苗",
+      "english_name": "Hepatitis B Vaccine",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第2针",
+      "scheduled_age": "1_month",
+      "recommended_age": "1月龄",
+      "interval": "1_month_after_dose1",
+      "route": "肌内注射",
+      "site": "大腿前外侧",
+      "disease_prevented": "乙型肝炎"
+    },
+    {
+      "id": "polio_ipv1",
+      "name": "脊灰疫苗",
+      "english_name": "Polio Vaccine (IPV)",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第1针",
+      "scheduled_age": "2_months",
+      "recommended_age": "2月龄",
+      "interval": null,
+      "route": "肌内注射",
+      "site": "大腿前外侧",
+      "disease_prevented": "脊髓灰质炎",
+      "note": "灭活疫苗（IPV）"
+    },
+    {
+      "id": "polio_ipv2",
+      "name": "脊灰疫苗",
+      "english_name": "Polio Vaccine (IPV)",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第2针",
+      "scheduled_age": "3_months",
+      "recommended_age": "3月龄",
+      "interval": "1_month_after_dose1",
+      "route": "肌内注射",
+      "site": "大腿前外侧",
+      "disease_prevented": "脊髓灰质炎",
+      "note": "灭活疫苗（IPV）"
+    },
+    {
+      "id": "dtp1",
+      "name": "百白破疫苗",
+      "english_name": "DTaP Vaccine",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第1针",
+      "scheduled_age": "3_months",
+      "recommended_age": "3月龄",
+      "interval": null,
+      "route": "肌内注射",
+      "site": "大腿前外侧",
+      "disease_prevented": "白喉、破伤风、百日咳"
+    },
+    {
+      "id": "polio_ipv3",
+      "name": "脊灰疫苗",
+      "english_name": "Polio Vaccine (IPV)",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第3针",
+      "scheduled_age": "4_months",
+      "recommended_age": "4月龄",
+      "interval": "1_month_after_dose2",
+      "route": "肌内注射",
+      "site": "大腿前外侧",
+      "disease_prevented": "脊髓灰质炎",
+      "note": "灭活疫苗（IPV）"
+    },
+    {
+      "id": "dtp2",
+      "name": "百白破疫苗",
+      "english_name": "DTaP Vaccine",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第2针",
+      "scheduled_age": "4_months",
+      "recommended_age": "4月龄",
+      "interval": "1_month_after_dose1",
+      "route": "肌内注射",
+      "site": "大腿前外侧",
+      "disease_prevented": "白喉、破伤风、百日咳"
+    },
+    {
+      "id": "dtp3",
+      "name": "百白破疫苗",
+      "english_name": "DTaP Vaccine",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第3针",
+      "scheduled_age": "5_months",
+      "recommended_age": "5月龄",
+      "interval": "1_month_after_dose2",
+      "route": "肌内注射",
+      "site": "大腿前外侧",
+      "disease_prevented": "白喉、破伤风、百日咳"
+    },
+    {
+      "id": "hepb_b3",
+      "name": "乙肝疫苗",
+      "english_name": "Hepatitis B Vaccine",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第3针",
+      "scheduled_age": "6_months",
+      "recommended_age": "6月龄",
+      "interval": "5_months_after_dose2",
+      "route": "肌内注射",
+      "site": "大腿前外侧",
+      "disease_prevented": "乙型肝炎"
+    },
+    {
+      "id": "meningococcal_a1",
+      "name": "流脑A群",
+      "english_name": "Meningococcal A (Group A)",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第1针",
+      "scheduled_age": "6_months",
+      "recommended_age": "6月龄",
+      "interval": null,
+      "route": "皮下注射",
+      "site": "上臂外侧",
+      "disease_prevented": "A群脑膜炎球菌病"
+    },
+    {
+      "id": "mmr1",
+      "name": "麻腮风疫苗",
+      "english_name": "MMR Vaccine",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第1针",
+      "scheduled_age": "8_months",
+      "recommended_age": "8月龄",
+      "interval": null,
+      "route": "皮下注射",
+      "site": "上臂外侧",
+      "disease_prevented": "麻疹、流行性腮腺炎、风疹"
+    },
+    {
+      "id": "je_l1",
+      "name": "乙脑减毒活疫苗",
+      "english_name": "Japanese Encephalitis Vaccine (Live)",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第1针",
+      "scheduled_age": "8_months",
+      "recommended_age": "8月龄",
+      "interval": null,
+      "route": "皮下注射",
+      "site": "上臂外侧",
+      "disease_prevented": "流行性乙型脑炎"
+    },
+    {
+      "id": "meningococcal_a2",
+      "name": "流脑A群",
+      "english_name": "Meningococcal A (Group A)",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第2针",
+      "scheduled_age": "9_months",
+      "recommended_age": "9月龄",
+      "interval": "3_months_after_dose1",
+      "route": "皮下注射",
+      "site": "上臂外侧",
+      "disease_prevented": "A群脑膜炎球菌病"
+    },
+    {
+      "id": "dtp4",
+      "name": "百白破疫苗",
+      "english_name": "DTaP Vaccine",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第4针",
+      "scheduled_age": "18_months",
+      "recommended_age": "18月龄",
+      "interval": "1_year_after_dose3",
+      "route": "肌内注射",
+      "site": "大腿前外侧",
+      "disease_prevented": "白喉、破伤风、百日咳"
+    },
+    {
+      "id": "mmr2",
+      "name": "麻腮风疫苗",
+      "english_name": "MMR Vaccine",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第2针",
+      "scheduled_age": "18_months",
+      "recommended_age": "18月龄",
+      "interval": "10_months_after_dose1",
+      "route": "皮下注射",
+      "site": "上臂外侧",
+      "disease_prevented": "麻疹、流行性腮腺炎、风疹"
+    },
+    {
+      "id": "hepa_l",
+      "name": "甲肝减毒活疫苗",
+      "english_name": "Hepatitis A Vaccine (Live)",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第1针",
+      "scheduled_age": "18_months",
+      "recommended_age": "18月龄",
+      "interval": null,
+      "route": "皮下注射",
+      "site": "上臂外侧",
+      "disease_prevented": "甲型肝炎"
+    },
+    {
+      "id": "je_l2",
+      "name": "乙脑减毒活疫苗",
+      "english_name": "Japanese Encephalitis Vaccine (Live)",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第2针",
+      "scheduled_age": "2_years",
+      "recommended_age": "2周岁",
+      "interval": "1_year_after_dose1",
+      "route": "皮下注射",
+      "site": "上臂外侧",
+      "disease_prevented": "流行性乙型脑炎"
+    },
+    {
+      "id": "meningococcal_ac1",
+      "name": "流脑A+C群",
+      "english_name": "Meningococcal AC",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第1针",
+      "scheduled_age": "3_years",
+      "recommended_age": "3周岁",
+      "interval": null,
+      "route": "皮下注射",
+      "site": "上臂外侧",
+      "disease_prevented": "A群、C群脑膜炎球菌病"
+    },
+    {
+      "id": "polio_opv",
+      "name": "脊灰疫苗",
+      "english_name": "Polio Vaccine (OPV)",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第4针",
+      "scheduled_age": "4_years",
+      "recommended_age": "4周岁",
+      "interval": "after_ipv_series",
+      "route": "口服",
+      "site": "口服",
+      "disease_prevented": "脊髓灰质炎",
+      "note": "减毒活疫苗（OPV）"
+    },
+    {
+      "id": "dtp5",
+      "name": "百白破疫苗",
+      "english_name": "DTaP Vaccine",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第5针",
+      "scheduled_age": "6_years",
+      "recommended_age": "6周岁",
+      "interval": "after_dtp4",
+      "route": "肌内注射",
+      "site": "上臂外侧",
+      "disease_prevented": "白喉、破伤风、百日咳"
+    },
+    {
+      "id": "meningococcal_ac2",
+      "name": "流脑A+C群",
+      "english_name": "Meningococcal AC",
+      "category": "class_1",
+      "category_name": "一类疫苗（国家免疫规划）",
+      "dose": "第2针",
+      "scheduled_age": "6_years",
+      "recommended_age": "6周岁",
+      "interval": "3_years_after_dose1",
+      "route": "皮下注射",
+      "site": "上臂外侧",
+      "disease_prevented": "A群、C群脑膜炎球菌病"
+    }
+  ],
+
+  "class_2_vaccines": [
+    {
+      "id": "varicella",
+      "name": "水痘疫苗",
+      "english_name": "Varicella Vaccine",
+      "category": "class_2",
+      "category_name": "二类疫苗（自费、自愿）",
+      "doses": [
+        {"dose": "第1针", "scheduled_age": "12_months", "recommended_age": "12月龄"},
+        {"dose": "第2针", "scheduled_age": "4_years", "recommended_age": "4周岁", "interval": "3-4年"}
+      ],
+      "route": "皮下注射",
+      "site": "上臂外侧",
+      "disease_prevented": "水痘-带状疱疹病毒病",
+      "note": "自费疫苗，推荐接种"
+    },
+    {
+      "id": "pcv13",
+      "name": "13价肺炎疫苗",
+      "english_name": "PCV13 (Pneumococcal Conjugate Vaccine)",
+      "category": "class_2",
+      "category_name": "二类疫苗（自费、自愿）",
+      "doses": [
+        {"dose": "第1针", "scheduled_age": "2_months", "recommended_age": "2月龄"},
+        {"dose": "第2针", "scheduled_age": "4_months", "recommended_age": "4月龄", "interval": "2个月"},
+        {"dose": "第3针", "scheduled_age": "6_months", "recommended_age": "6月龄", "interval": "2个月"},
+        {"dose": "第4针", "scheduled_age": "12-15_months", "recommended_age": "12-15月龄", "interval": "6个月"}
+      ],
+      "route": "肌内注射",
+      "site": "大腿前外侧",
+      "disease_prevented": "肺炎球菌病",
+      "note": "自费疫苗，强烈推荐"
+    },
+    {
+      "id": "dtap_ipvib_hib",
+      "name": "五联疫苗",
+      "english_name": "DTaP-IPV/Hib",
+      "category": "class_2",
+      "category_name": "二类疫苗（自费、自愿）",
+      "doses": [
+        {"dose": "第1针", "scheduled_age": "2_months", "recommended_age": "2月龄"},
+        {"dose": "第2针", "scheduled_age": "3_months", "recommended_age": "3月龄", "interval": "1个月"},
+        {"dose": "第3针", "scheduled_age": "4_months", "recommended_age": "4月龄", "interval": "1个月"},
+        {"dose": "第4针", "scheduled_age": "18_months", "recommended_age": "18月龄", "interval": "14个月"}
+      ],
+      "route": "肌内注射",
+      "site": "大腿前外侧",
+      "disease_prevented": "白喉、破伤风、百日咳、脊髓灰质炎、Hib",
+      "note": "自费疫苗，可替代百白破+脊灰+Hib"
+    },
+    {
+      "id": "rotavirus",
+      "name": "轮状病毒疫苗",
+      "english_name": "Rotavirus Vaccine",
+      "category": "class_2",
+      "category_name": "二类疫苗（自费、自愿）",
+      "doses": [
+        {"dose": "第1剂", "scheduled_age": "2_months", "recommended_age": "2月龄"},
+        {"dose": "第2剂", "scheduled_age": "3_months", "recommended_age": "3月龄", "interval": "1个月"}
+      ],
+      "route": "口服",
+      "site": "口服",
+      "disease_prevented": "轮状病毒胃肠炎",
+      "note": "口服疫苗，自费"
+    },
+    {
+      "id": "influenza",
+      "name": "流感疫苗",
+      "english_name": "Influenza Vaccine",
+      "category": "class_2",
+      "category_name": "二类疫苗（自费、自愿）",
+      "doses": [
+        {"dose": "每年接种", "scheduled_age": "6_months_annual", "recommended_age": "6月龄起每年"}
+      ],
+      "route": "肌内注射",
+      "site": "上臂外侧",
+      "disease_prevented": "流行性感冒",
+      "note": "6月龄起每年接种，自费疫苗"
+    },
+    {
+      "id": "hib",
+      "name": "Hib疫苗",
+      "english_name": "Hib Vaccine",
+      "category": "class_2",
+      "category_name": "二类疫苗（自费、自愿）",
+      "doses": [
+        {"dose": "第1针", "scheduled_age": "2_months", "recommended_age": "2月龄"},
+        {"dose": "第2针", "scheduled_age": "3_months", "recommended_age": "3月龄", "interval": "1个月"},
+        {"dose": "第3针", "scheduled_age": "4_months", "recommended_age": "4月龄", "interval": "1个月"},
+        {"dose": "第4针", "scheduled_age": "18_months", "recommended_age": "18月龄", "interval": "14个月"}
+      ],
+      "route": "肌内注射",
+      "site": "大腿前外侧",
+      "disease_prevented": "b型流感嗜血杆菌病",
+      "note": "自费疫苗"
+    },
+    {
+      "id": "ev71",
+      "name": "EV71手足口疫苗",
+      "english_name": "EV71 Vaccine",
+      "category": "class_2",
+      "category_name": "二类疫苗（自费、自愿）",
+      "doses": [
+        {"dose": "第1针", "scheduled_age": "6_months", "recommended_age": "6月龄-5岁"},
+        {"dose": "第2针", "scheduled_age": "1_month_after", "recommended_age": "间隔1个月", "interval": "1个月"}
+      ],
+      "route": "肌内注射",
+      "site": "上臂外侧",
+      "disease_prevented": "EV71手足口病",
+      "note": "6月龄-5岁可接种，自费疫苗"
+    }
+  ],
+
+  "vaccination_schedule_summary": {
+    "birth": ["乙肝疫苗（第1针）", "卡介苗"],
+    "1_month": ["乙肝疫苗（第2针）"],
+    "2_months": ["脊灰疫苗（第1针）", "五联疫苗（可选）"],
+    "3_months": ["脊灰疫苗（第2针）", "百白破疫苗（第1针）", "五联疫苗（可选）"],
+    "4_months": ["脊灰疫苗（第3针）", "百白破疫苗（第2针）", "五联疫苗（可选）"],
+    "5_months": ["百白破疫苗（第3针）", "五联疫苗（可选）"],
+    "6_months": ["乙肝疫苗（第3针）", "流脑A群（第1针）"],
+    "8_months": ["麻腮风疫苗（第1针）", "乙脑减毒活疫苗（第1针）"],
+    "9_months": ["流脑A群（第2针）"],
+    "12_months": ["13价肺炎疫苗（可选）"],
+    "18_months": ["百白破疫苗（第4针）", "麻腮风疫苗（第2针）", "甲肝减毒活疫苗", "五联疫苗（可选）"],
+    "2_years": ["乙脑减毒活疫苗（第2针）"],
+    "3_years": ["流脑A+C群（第1针）"],
+    "4_years": ["脊灰疫苗（第4针）", "水痘疫苗（第2针，可选）"],
+    "6_years": ["百白破疫苗（第5针）", "流脑A+C群（第2针）"]
+  },
+
+  "adverse_reactions": {
+    "common": ["发热", "局部红肿", "局部疼痛", "食欲下降", "烦躁不安"],
+    "rare": ["过敏反应", "高热惊厥", "严重局部反应"],
+    "contraindications": ["急性发热期", "严重慢性疾病", "免疫缺陷", "对疫苗成分过敏", "神经系统疾病"]
+  },
+
+  "pre_vaccination_checklist": [
+    "检查儿童健康状况",
+    "询问过敏史",
+    "确认上次接种时间",
+    "测量体温（<37.3℃）",
+    "告知家长疫苗信息",
+    "签署知情同意书"
+  ],
+
+  "post_vaccination_care": {
+    "observation_period": "30分钟",
+    "care_instructions": [
+      "保持接种部位清洁干燥",
+      "避免剧烈运动24小时",
+      "体温监测",
+      "多饮水",
+      "如发热可用物理降温"
+    ],
+    "seek_medical_attention": [
+      "体温超过38.5℃",
+      "持续哭闹超过3小时",
+      "呼吸困难",
+      "皮疹、面部肿胀",
+      "抽搐、意识障碍"
+    ]
+  }
+}

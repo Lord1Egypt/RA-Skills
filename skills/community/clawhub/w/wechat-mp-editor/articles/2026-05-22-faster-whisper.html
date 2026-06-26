@@ -1,0 +1,292 @@
+<section style="padding:0;margin:0;background:#fff;word-break:normal;white-space:normal;">
+
+  <!-- Banner -->
+  <section style="width:100%;margin:0;padding:0;word-break:normal;white-space:normal;">
+    <img src="{BANNER_URL}" style="width:100%;display:block;" />
+  </section>
+
+  <!-- Header -->
+  <section style="padding:44px 20px 16px;text-align:center;word-break:normal;white-space:normal;">
+    <p style="font-size:13px;color:#b8b8b8;letter-spacing:4px;margin:0 0 18px;font-weight:300;">E S S A Y</p>
+    <p style="font-size:22px;font-weight:400;color:#1a1a2e;margin:0 0 8px;letter-spacing:2px;">语音播报验证加速 130 倍：我给 Whisper 换了个引擎</p>
+    <p style="font-size:13px;color:#aaa;margin:0;">2026 · 05 · 22</p>
+  </section>
+
+  <!-- Gold divider -->
+  <section style="text-align:center;padding:6px 20px;word-break:normal;white-space:normal;">
+    <span style="display:inline-block;width:32px;height:1px;background:#d4a574;"></span>
+  </section>
+
+  <!-- Body -->
+  <section style="padding:32px 20px 8px;word-break:normal;white-space:normal;">
+
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;">
+      我在做一个自动化测试程序，用来验证设备的语音播报是否正确。
+    </p>
+
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;">
+      工作流程是：设备播报一段语音 → 程序用语音识别（ASR）转成文字 → 跟期望的结果做比对。逻辑很简单，但执行的时候发现了一个瓶颈——语音识别这一步太慢了。
+    </p>
+
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;">
+      我用的是 OpenAI 的 <span style="color:#d4a574;font-weight:500;">Whisper</span>，一个开源的语音识别模型。Whisper 准确率很高，但速度不够快。一段十几秒的语音播报，转写需要等好几秒。几百个测试用例跑下来，大部分时间都耗在等转写结果上了。
+    </p>
+
+  </section>
+
+  <!-- Gold divider -->
+  <section style="text-align:center;padding:6px 20px;word-break:normal;white-space:normal;">
+    <span style="display:inline-block;width:32px;height:1px;background:#d4a574;"></span>
+  </section>
+
+  <!-- Hero image -->
+  <section style="padding:8px 20px;word-break:normal;white-space:normal;">
+    <img src="http://mmbiz.qpic.cn/sz_mmbiz_jpg/3bFXFTABiaBWwPQEXufzU5lzkznCibmXwRmlIZSv9J249DpQsyiaACHXJRCQ5ZxDOm39db0NRHI5hQP8p1TzlyEgrntERSj1HjKoGYQrAuuHfE/0?from=appmsg" style="width:100%;border-radius:8px;display:block;" />
+  </section>
+
+  <!-- Solution intro -->
+  <section style="padding:16px 20px 8px;word-break:normal;white-space:normal;">
+
+    <p style="font-size:22px;font-weight:400;color:#1a1a2e;margin:0 0 24px;letter-spacing:2px;text-align:center;">
+      问题的根源
+    </p>
+
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;">
+      Whisper 运行在 PyTorch 上。PyTorch 是一个通用的深度学习框架，能训练模型、能跑推理，功能很全面，但它不是专门为「把语音识别跑得最快」设计的。
+    </p>
+
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;">
+      2022 年底，一家法国公司 SYSTRAN 做了一个叫 <span style="color:#d4a574;font-weight:500;">faster-whisper</span> 的开源项目。思路很直接：不改 Whisper 的模型本身（参数一模一样），而是把运行模型底层的引擎换掉——从 PyTorch 换成 CTranslate2。
+    </p>
+
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;">
+      CTranslate2 是一个专门为 Transformer 模型推理优化的引擎。它不做训练，只做推理，所以在推理速度上可以做很多针对性优化。主要有三个方向：
+    </p>
+
+  </section>
+
+  <!-- Three optimizations -->
+  <section style="padding:4px 20px;word-break:normal;white-space:normal;">
+
+    <div style="background:#f8f6f3;border-left:3px solid #d4a574;padding:16px 20px;margin:0 0 14px;">
+      <p style="font-size:14px;color:#333;margin:0;line-height:1.9;letter-spacing:0.5px;">
+        <span style="font-weight:500;color:#d4a574;">1. 算子融合</span><br/>
+        原本推理过程中多个小步骤之间有频繁的显存读写，CTranslate2 把多个步骤合并成一个大步骤，减少了中间结果的存储和读取次数。
+      </p>
+    </div>
+
+    <div style="background:#f8f6f3;border-left:3px solid #d4a574;padding:16px 20px;margin:0 0 14px;">
+      <p style="font-size:14px;color:#333;margin:0;line-height:1.9;letter-spacing:0.5px;">
+        <span style="font-weight:500;color:#d4a574;">2. 权重量化</span><br/>
+        模型参数从 16 位浮点数压缩为 8 位整数，每个参数占用的空间从 2 字节降到 1 字节，模型大小减半，推理速度自然提升。精度损失约 0.3%，几乎不可感知。
+      </p>
+    </div>
+
+    <div style="background:#f8f6f3;border-left:3px solid #d4a574;padding:16px 20px;margin:0 0 0px;">
+      <p style="font-size:14px;color:#333;margin:0;line-height:1.9;letter-spacing:0.5px;">
+        <span style="font-weight:500;color:#d4a574;">3. 批量推理</span><br/>
+        原版一次处理一段音频，CTranslate2 可以把多段音频打包成一个批次同时处理，充分利用 GPU 的并行计算能力。
+      </p>
+    </div>
+
+  </section>
+
+  <!-- Gold divider -->
+  <section style="text-align:center;padding:12px 20px;word-break:normal;white-space:normal;">
+    <span style="display:inline-block;width:32px;height:1px;background:#d4a574;"></span>
+  </section>
+
+  <!-- SVG Diagram: three optimizations -->
+  <section style="padding:16px 20px 8px;word-break:normal;white-space:normal;">
+    <img src="http://mmbiz.qpic.cn/sz_mmbiz_png/3bFXFTABiaBV8kxZZDlPfribeYwugjdg8gbL8Y1LAPGVpRAyTfpFAY4xic0rWZBtpuePWE0AvzDGiawSOYF9uVWuQicyc9ELtdGdsfCicMqs1pE9Q/0?from=appmsg" style="width:100%;border-radius:8px;display:block;" />
+  </section>
+
+  <!-- My test results -->
+  <section style="padding:16px 20px 8px;word-break:normal;white-space:normal;">
+
+    <p style="font-size:22px;font-weight:400;color:#1a1a2e;margin:0 0 24px;letter-spacing:2px;text-align:center;">
+      我的实测对比
+    </p>
+
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;">
+      同一段测试音频，分别用三种方案跑了一遍，记录了首次加载和已加载后的识别时间。
+    </p>
+
+  </section>
+
+  <!-- First load table -->
+  <section style="padding:4px 20px;word-break:normal;white-space:normal;">
+    <p style="font-size:13px;color:#999;margin:0 0 8px;letter-spacing:1px;">首次加载 + 识别（含模型初始化）</p>
+    <table style="width:100%;border-collapse:collapse;font-size:14px;">
+      <tr style="background:#1a1a2e;">
+        <td style="padding:10px 12px;color:#d4a574;font-weight:500;border:1px solid #e0d5c8;">方案</td>
+        <td style="padding:10px 12px;color:#fff;text-align:center;border:1px solid #e0d5c8;">耗时</td>
+        <td style="padding:10px 12px;color:#fff;text-align:center;border:1px solid #e0d5c8;">对比原版</td>
+      </tr>
+      <tr style="background:#f8f6f3;">
+        <td style="padding:10px 12px;color:#333;border:1px solid #e0d5c8;">原版 PyTorch（CPU）</td>
+        <td style="padding:10px 12px;color:#333;text-align:center;border:1px solid #e0d5c8;">45.3 秒</td>
+        <td style="padding:10px 12px;color:#999;text-align:center;border:1px solid #e0d5c8;">—</td>
+      </tr>
+      <tr style="background:#fff;">
+        <td style="padding:10px 12px;color:#333;border:1px solid #e0d5c8;">faster-whisper（GPU）</td>
+        <td style="padding:10px 12px;color:#333;text-align:center;border:1px solid #e0d5c8;">2.9 秒</td>
+        <td style="padding:10px 12px;color:#333;text-align:center;border:1px solid #e0d5c8;">快 15 倍</td>
+      </tr>
+      <tr style="background:#f8f6f3;">
+        <td style="padding:10px 12px;color:#333;border:1px solid #e0d5c8;">faster-whisper（CPU）</td>
+        <td style="padding:10px 12px;color:#333;text-align:center;border:1px solid #e0d5c8;">1.5 秒</td>
+        <td style="padding:10px 12px;color:#333;text-align:center;border:1px solid #e0d5c8;">快 30 倍</td>
+      </tr>
+    </table>
+  </section>
+
+  <section style="padding:16px 20px 8px;word-break:normal;white-space:normal;">
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;">
+      首次加载包含模型下载、初始化等步骤，这部分耗时跟具体硬件有关。需要说明我测试用的是一台轻薄办公本，独显偏弱但 CPU 性能不错——所以出现了 CPU 版反而比 GPU 版快的结果。如果你的设备 GPU 性能足够（比如桌面级显卡），GPU 版会更有优势。
+    </p>
+  </section>
+
+  <!-- After loaded table -->
+  <section style="padding:4px 20px;word-break:normal;white-space:normal;">
+    <p style="font-size:13px;color:#999;margin:0 0 8px;letter-spacing:1px;">模型已加载后，单条识别耗时</p>
+    <table style="width:100%;border-collapse:collapse;font-size:14px;">
+      <tr style="background:#1a1a2e;">
+        <td style="padding:10px 12px;color:#d4a574;font-weight:500;border:1px solid #e0d5c8;">方案</td>
+        <td style="padding:10px 12px;color:#fff;text-align:center;border:1px solid #e0d5c8;">耗时</td>
+        <td style="padding:10px 12px;color:#fff;text-align:center;border:1px solid #e0d5c8;">对比原版</td>
+      </tr>
+      <tr style="background:#f8f6f3;">
+        <td style="padding:10px 12px;color:#333;border:1px solid #e0d5c8;">原版 PyTorch（CPU）</td>
+        <td style="padding:10px 12px;color:#333;text-align:center;border:1px solid #e0d5c8;">13.1 秒</td>
+        <td style="padding:10px 12px;color:#999;text-align:center;border:1px solid #e0d5c8;">—</td>
+      </tr>
+      <tr style="background:#fff;">
+        <td style="padding:10px 12px;color:#333;border:1px solid #e0d5c8;">faster-whisper（GPU）</td>
+        <td style="padding:10px 12px;color:#333;text-align:center;border:1px solid #e0d5c8;">0.10 秒</td>
+        <td style="padding:10px 12px;color:#333;text-align:center;border:1px solid #e0d5c8;">快 130 倍</td>
+      </tr>
+      <tr style="background:#f8f6f3;">
+        <td style="padding:10px 12px;color:#333;border:1px solid #e0d5c8;">faster-whisper（CPU）</td>
+        <td style="padding:10px 12px;color:#333;text-align:center;border:1px solid #e0d5c8;">0.10 秒</td>
+        <td style="padding:10px 12px;color:#333;text-align:center;border:1px solid #e0d5c8;">快 130 倍</td>
+      </tr>
+    </table>
+  </section>
+
+  <section style="padding:16px 20px 8px;word-break:normal;white-space:normal;">
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;">
+      模型加载完成后，差距更加明显。单条识别从 13.1 秒降到 0.1 秒，GPU 和 CPU 都能达到这个速度。在我的场景中，几百条测试用例的总耗时从几十分钟缩短到了几分钟。
+    </p>
+  </section>
+
+  <!-- Gold divider -->
+  <section style="text-align:center;padding:12px 20px;word-break:normal;white-space:normal;">
+    <span style="display:inline-block;width:32px;height:1px;background:#d4a574;"></span>
+  </section>
+
+  <!-- Usage -->
+  <section style="padding:16px 20px 8px;word-break:normal;white-space:normal;">
+
+    <p style="font-size:22px;font-weight:400;color:#1a1a2e;margin:0 0 24px;letter-spacing:2px;text-align:center;">
+      接入方式
+    </p>
+
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;">
+      替换成本很低。装一个包，改几行代码。
+    </p>
+
+  </section>
+
+  <section style="padding:4px 20px;word-break:normal;white-space:normal;">
+    <div style="background:#f8f6f3;border-left:3px solid #d4a574;padding:16px 20px;margin:0 0 14px;">
+      <p style="font-size:13px;color:#999;margin:0 0 4px;letter-spacing:1px;">安装</p>
+      <p style="font-size:14px;color:#333;margin:0;line-height:1.9;letter-spacing:0.5px;">
+        <span style="font-family:ui-monospace;font-size:13px;color:#1a1a2e;background:#fff;border:1px solid #ddd;border-radius:4px;padding:6px 10px;display:inline-block;margin:4px 0;">pip install faster-whisper</span>
+      </p>
+    </div>
+  </section>
+
+  <section style="padding:16px 20px 8px;word-break:normal;white-space:normal;">
+
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;">
+      使用上，原版和 faster-whisper 的代码结构几乎一样：
+    </p>
+
+  </section>
+
+  <!-- Code comparison card -->
+  <section style="padding:4px 20px;word-break:normal;white-space:normal;">
+    <div style="background:#f8f6f3;border-left:3px solid #d4a574;padding:16px 20px;margin:0 0 14px;">
+      <p style="font-size:13px;color:#999;margin:0 0 4px;letter-spacing:1px;">原版 Whisper</p>
+      <div style="background:#fff;border:1px solid #eee;border-radius:6px;padding:14px 16px;margin:8px 0 0;">
+        <p style="font-family:ui-monospace,monospace;font-size:11px;color:#1a1a2e;margin:0;line-height:1.6;letter-spacing:0;word-break:break-all;">import whisper<br/>model = whisper.load_model("large-v3")<br/>result = model.transcribe("audio.mp3")<br/>print(result["text"])</p>
+      </div>
+    </div>
+    <div style="background:#f8f6f3;border-left:3px solid #d4a574;padding:16px 20px;margin:0 0 0px;">
+      <p style="font-size:13px;color:#999;margin:0 0 4px;letter-spacing:1px;">faster-whisper</p>
+      <div style="background:#fff;border:1px solid #eee;border-radius:6px;padding:14px 16px;margin:8px 0 0;">
+        <p style="font-family:ui-monospace,monospace;font-size:11px;color:#1a1a2e;margin:0;line-height:1.6;letter-spacing:0;word-break:break-all;">from faster_whisper import WhisperModel<br/>model = WhisperModel("large-v3", device="cpu", compute_type="int8")<br/>segments, info = model.transcribe("audio.mp3")<br/>for segment in segments:<br/>  print(segment.text)</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:16px 20px 8px;word-break:normal;white-space:normal;">
+
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;">
+      faster-whisper 的 <span style="color:#d4a574;font-weight:500;">compute_type</span> 参数用于控制计算精度，可选 float16、int8、int8_float16 等。int8 量化后精度损失很小，但速度和内存有明显改善。另一个不同是它返回的是迭代器（segments），适合流式处理长音频，不会一次性把所有结果加载到内存中。
+    </p>
+
+    <p style="font-size:15px;line-height:2;color:#333;margin:0 0 24px;letter-spacing:1px;">
+      此外，faster-whisper 不需要单独安装 FFmpeg，音频解码依赖（PyAV）已经打包在库里了。
+    </p>
+
+  </section>
+
+  <!-- Gold divider -->
+  <section style="text-align:center;padding:12px 20px;word-break:normal;white-space:normal;">
+    <span style="display:inline-block;width:32px;height:1px;background:#d4a574;"></span>
+  </section>
+
+  <!-- Use cases -->
+  <section style="padding:16px 20px 8px;word-break:normal;white-space:normal;">
+
+    <p style="font-size:22px;font-weight:400;color:#1a1a2e;margin:0 0 24px;letter-spacing:2px;text-align:center;">
+      适用场景
+    </p>
+
+  </section>
+
+  <section style="padding:4px 20px;word-break:normal;white-space:normal;">
+    <div style="background:#f8f6f3;border-left:3px solid #d4a574;padding:16px 20px;margin:0 0 14px;">
+      <p style="font-size:14px;color:#333;margin:0;line-height:1.9;letter-spacing:0.5px;">
+        <span style="font-weight:500;color:#d4a574;">自动化测试中的语音验证</span><br/>
+        这是我用的场景。批量测试语音播报时，识别速度直接决定了整体测试时长。从 13 秒降到 0.1 秒后，几百条用例几分钟就跑完了。
+      </p>
+    </div>
+    <div style="background:#f8f6f3;border-left:3px solid #d4a574;padding:16px 20px;margin:0 0 14px;">
+      <p style="font-size:14px;color:#333;margin:0;line-height:1.9;letter-spacing:0.5px;">
+        <span style="font-weight:500;color:#d4a574;">实时语音交互</span><br/>
+        语音助手、语音对话 AI 这类产品中，响应速度直接影响用户体验。faster-whisper 可以把识别延迟从秒级降到百毫秒级。
+      </p>
+    </div>
+    <div style="background:#f8f6f3;border-left:3px solid #d4a574;padding:16px 20px;margin:0 0 0px;">
+      <p style="font-size:14px;color:#333;margin:0;line-height:1.9;letter-spacing:0.5px;">
+        <span style="font-weight:500;color:#d4a574;">批量语音转写 / CI 流程</span><br/>
+        会议录音转写、语音质检、音频归档等场景中，量化后的模型只需约 3GB 显存，普通服务器也能运行，适合集成到 CI/CD 流水线中。
+      </p>
+    </div>
+  </section>
+
+  <!-- Gold divider -->
+  <section style="text-align:center;padding:12px 20px;word-break:normal;white-space:normal;">
+    <span style="display:inline-block;width:32px;height:1px;background:#d4a574;"></span>
+  </section>
+
+  <!-- Footer -->
+  <section style="padding:36px 20px 40px;text-align:center;word-break:normal;white-space:normal;">
+    <p style="font-size:11px;color:#ccc;letter-spacing:2px;margin:0;">巡梦人</p>
+    <p style="font-size:10px;color:#e0d5c8;margin:8px 0 0;">从一颗星星开始，温暖整个宇宙</p>
+  </section>
+
+</section>

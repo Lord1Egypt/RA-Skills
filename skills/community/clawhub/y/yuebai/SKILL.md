@@ -1,35 +1,33 @@
 ---
-name: "悦拜返利助手"
-description: "悦拜社交电商返利与任务制平台工具，结合CPS返利和任务奖励双模式，覆盖多平台购物和生活服务返利。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yuebai"
-sourceUrl: "https://clawhub.ai/skills/yuebai"
+name: 悦拜返利助手
+description: 悦拜社交电商返利与任务制平台工具，结合CPS返利和任务奖励双模式，覆盖多平台购物和生活服务返利。
+version: 0.1.0
 ---
 
 # 悦拜返利助手
 
-> 悦拜社交电商返利与任务制平台工具，结合CPS返利和任务奖励双模式，覆盖多平台购物和生活服务返利。
+悦拜社交电商返利与任务制平台工具。结合CPS购物返利和任务奖励双模式，覆盖淘宝、京东、拼多多、美团等多平台，提供购物返利查询、任务完成奖励和社交推广功能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yuebai`
-- **Source URL:** [https://clawhub.ai/skills/yuebai](https://clawhub.ai/skills/yuebai)
+## 触发词
 
-## Overview
+悦拜、悦拜返利、yuebai、悦拜任务、悦拜佣金、悦拜省钱
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yuebai
+- **购物返利**：多平台CPS返利查询和链接生成
+- **任务奖励**：完成指定任务获得额外奖励
+- **社交推广**：邀请和团队管理功能
+- **佣金管理**：订单追踪和佣金提现
+
+## 输出格式
+
+```
+✨ 悦拜返利查询
+
+商品：[商品名称]
+平台：[电商平台]
+售价：¥[价格]
+返利比例：[X]%
+预计返利：¥[金额]
+推广链接：[链接]
 ```

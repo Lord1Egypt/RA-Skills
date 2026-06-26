@@ -1,0 +1,29 @@
+{
+  "name": "x-publisher-skill",
+  "version": "1.0.0",
+  "description": "X Expert - 智能 X (Twitter) 发布助手 for OpenClaw/NanoClaw",
+  "main": "index.js",
+  "scripts": {
+    "post-tweet": "node scripts/post-tweet.js",
+    "post-thread": "node scripts/post-thread.js",
+    "post-media": "node scripts/post-media.js",
+    "post-image": "node scripts/generate-image.js",
+    "collect-info": "node scripts/collect-info.js",
+    "generate-tweet": "node scripts/generate-tweet.js",
+    "delete-tweet": "node scripts/delete-tweet.js"
+  },
+  "keywords": [
+    "twitter",
+    "x",
+    "openclaw",
+    "nanoclaw",
+    "skill",
+    "publish",
+    "social-media"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "twitter-api-v2": "^1.17.0"
+  }
+}

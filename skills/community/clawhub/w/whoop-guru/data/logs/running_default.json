@@ -1,0 +1,46 @@
+{
+  "runs": [
+    {
+      "id": "run_20260405101359",
+      "user_id": "test_user_1775355239.896207",
+      "date": "2026-04-05",
+      "timestamp": "2026-04-05T10:13:59.896233",
+      "distance_km": 10.5,
+      "duration_min": 60,
+      "avg_pace": "5:43",
+      "avg_heart_rate": 145,
+      "max_heart_rate": 168,
+      "feeling": "良好",
+      "terrain": "跑道",
+      "notes": ""
+    },
+    {
+      "id": "run_20260405102249",
+      "user_id": "test_user_1775355769.82062",
+      "date": "2026-04-05",
+      "timestamp": "2026-04-05T10:22:49.820646",
+      "distance_km": 10.5,
+      "duration_min": 60,
+      "avg_pace": "5:43",
+      "avg_heart_rate": 145,
+      "max_heart_rate": 168,
+      "feeling": "良好",
+      "terrain": "跑道",
+      "notes": ""
+    },
+    {
+      "id": "run_20260405104941",
+      "user_id": "test_user_1775357381.184004",
+      "date": "2026-04-05",
+      "timestamp": "2026-04-05T10:49:41.184030",
+      "distance_km": 10.5,
+      "duration_min": 60,
+      "avg_pace": "5:43",
+      "avg_heart_rate": 145,
+      "max_heart_rate": 168,
+      "feeling": "良好",
+      "terrain": "跑道",
+      "notes": ""
+    }
+  ]
+}

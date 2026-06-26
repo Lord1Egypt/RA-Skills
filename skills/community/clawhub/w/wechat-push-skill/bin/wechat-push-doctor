@@ -1,0 +1,190 @@
+#!/bin/bash
+# wechat-push-doctor — 微信推送故障排查
+#
+# 用法：wechat-push-doctor           # 默认：纯静态检查，不真推
+#       wechat-push-doctor --probe   # 加测：会真推一条 silent（探活）
+#
+# 输出：逐项检查 + 修法建议
+
+set -u
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PUSH="${SCRIPT_DIR}/../lib/wechat_push.py"
+
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+# 解析参数
+DO_PROBE=0
+for arg in "$@"; do
+    case "$arg" in
+        --probe|-p) DO_PROBE=1 ;;
+        --help|-h)
+            echo "用法：wechat-push-doctor [--probe]"
+            echo ""
+            echo "默认：只做静态检查（不真推）"
+            echo "--probe：加做一次真推 silent 测试（会产生一条测试消息）"
+            exit 0
+            ;;
+    esac
+done
+
+echo ""
+echo -e "${BLUE}微信推送故障排查${NC}"
+echo "============================================"
+if [ "$DO_PROBE" -eq 1 ]; then
+    echo -e "${YELLOW}模式：带 probe（会真推一条 silent）${NC}"
+else
+    echo -e "模式：纯静态检查（不会推送）"
+    echo "  提示：加 --probe 做一次真推 silent 测试"
+fi
+echo "============================================"
+echo ""
+
+# 1. 假成功（默认静态；--probe 才真推）
+echo -e "${YELLOW}=== 检查 1: 假成功（脚本说 SUCCESS 但用户没收到）==="
+echo ""
+echo "原因：只判断 HTTP 200，不看业务 ret 字段"
+echo "症状：v1 时代——用 5/31 老账号 token，session expired"
+echo "修法：本 skill v2 已走 openclaw 内部通道，不会假成功"
+echo ""
+
+if [ "$DO_PROBE" -eq 1 ]; then
+    echo "正在跑一次真推 silent 测试（会真发一条消息）..."
+    OUT=$(python3 "$PUSH" --silent "test" 2>&1)
+    RC=$?
+    # 双条件：退出码 0 + stdout 含 "Sent via"
+    if [ "$RC" -eq 0 ] && echo "$OUT" | grep -q "Sent via"; then
+        echo -e "  ${GREEN}✅ 推送走的是 OpenClaw 内部通道（不会假成功）${NC}"
+    else
+        echo -e "  ${RED}❌ 推送失败：rc=$RC, out=$OUT${NC}"
+        echo "  修法：跑 install.sh 重装"
+    fi
+else
+    # 静态检查：看代码逻辑而不是真推
+    echo "静态检查中（未真推）..."
+    if grep -qE '"Sent via" in (stdout|result.stdout)' "$PUSH" && \
+       grep -qE '(result\.returncode|returncode) == 0' "$PUSH"; then
+        echo -e "  ${GREEN}✅ 代码含双条件校验（exit 0 + 'Sent via'）${NC}"
+    else
+        echo -e "  ${RED}❌ 代码缺双条件校验，存在假成功风险${NC}"
+        echo "  修法：检查 lib/wechat_push.py send_via_openclaw 函数"
+    fi
+fi
+echo ""
+
+# 2. 假活（纯静态）
+echo -e "${YELLOW}=== 检查 2: 假活（bot 账号 session 死了但代码不报错）==="
+echo ""
+ACCOUNTS_DIR=~/.openclaw/openclaw-weixin/accounts
+if [ -d "$ACCOUNTS_DIR" ]; then
+    for f in "$ACCOUNTS_DIR"/*im-bot.json; do
+        if [ -f "$f" ]; then
+            name=$(basename "$f" | sed 's/im-bot.json//')
+            age_days=$(( ($(date +%s) - $(stat -f %m "$f" 2>/dev/null)) / 86400 ))
+            # 看 sync.json 的 mtime（plugin 每 5 分钟 sync 活跃 bot）
+            sync_file="$ACCOUNTS_DIR/${name}-im-bot.sync.json"
+            if [ -f "$sync_file" ]; then
+                sync_age_min=$(( ($(date +%s) - $(stat -f %m "$sync_file" 2>/dev/null)) / 60 ))
+                if [ "$sync_age_min" -lt 30 ]; then
+                    echo -e "  ${GREEN}✅ $name: plugin $sync_age_min 分钟前还在 sync（活跃）${NC}"
+                elif [ "$sync_age_min" -lt 1440 ]; then
+                    echo -e "  ${YELLOW}⚠️ $name: plugin $((sync_age_min/60)) 小时前 sync（疑似不活）${NC}"
+                else
+                    echo -e "  ${RED}❌ $name: plugin $((sync_age_min/1440)) 天前 sync（已死）${NC}"
+                fi
+            else
+                # 没 sync.json = plugin 从没轮询过这个
+                echo -e "  ${RED}❌ $name: 没 sync.json（plugin 从没轮询）${NC}"
+            fi
+        fi
+    done
+    # 额外：找跟你有 context 的 bot
+    echo ""
+    echo "跟当前 openid 有 context_token 匹配的 bot："
+    CONFIG=~/.config/wechat-push/config
+    if [ -f "$CONFIG" ]; then
+        MY_OPENID=$(grep "^openid=" "$CONFIG" | cut -d= -f2)
+        if [ -n "$MY_OPENID" ] && [[ "$MY_OPENID" != *"<"*">"* ]]; then
+            for f in "$ACCOUNTS_DIR"/*-im-bot.context-tokens.json; do
+                if [ -f "$f" ]; then
+                    bot_id=$(basename "$f" | sed 's/-im-bot.context-tokens.json//')
+                    if grep -q "$MY_OPENID" "$f" 2>/dev/null; then
+                        echo -e "  ${GREEN}✅ $bot_id-im-bot 跟你有 context（应该用这个推）${NC}"
+                    fi
+                fi
+            done
+        fi
+    fi
+else
+    echo -e "  ${RED}❌ 账号目录不存在：$ACCOUNTS_DIR${NC}"
+    echo "  修法：先在 OpenClaw 微信插件完成首次扫码绑定"
+fi
+echo ""
+
+# 3. 裸 curl（纯静态）
+echo -e "${YELLOW}=== 检查 3: 裸 curl ilink 在 macOS 上的连通性 ==="
+echo ""
+echo "预期：在 macOS 上裸调 ilink 经常 HTTP 000（网络层/代理问题）"
+echo "      即使通了 ilink 也会拒绝非插件内部连接（返空 {}）"
+echo "结论：永远不要裸 curl ilink，必须走 openclaw message send"
+# 静态：检查代码里有没有用裸 curl
+if grep -q "ilinkai.weixin.qq.com" "$PUSH" 2>/dev/null; then
+    echo -e "  ${YELLOW}⚠️ wechat_push.py 里有 ilink URL，确认是不是只在注释/protocol-notes 里${NC}"
+else
+    echo -e "  ${GREEN}✅ wechat_push.py 不直接调 ilink（走 openclaw 内部通道）${NC}"
+fi
+echo ""
+
+# 4. 配置文件（纯静态）
+echo -e "${YELLOW}=== 检查 4: openid 配置 ==="
+echo ""
+CONFIG=~/.config/wechat-push/config
+if [ -f "$CONFIG" ]; then
+    OPENID=$(grep "^openid=" "$CONFIG" | cut -d= -f2)
+    if [ -z "$OPENID" ] || [[ "$OPENID" == *"<"*">"* ]]; then
+        echo -e "  ${RED}❌ openid 是占位符或空值：$OPENID${NC}"
+    else
+        echo -e "  ${GREEN}✅ openid 已配置：$OPENID${NC}"
+    fi
+else
+    echo -e "  ${YELLOW}⚠️ 配置文件不存在：$CONFIG${NC}"
+    echo "  修法：跑 install.sh 重新配置"
+fi
+echo ""
+
+# 5. 自动探测能选对你的 bot（默认静态；--probe 才需要）
+echo -e "${YELLOW}=== 检查 5: 自动探测能选对你的 bot ==="
+echo ""
+CONFIG=~/.config/wechat-push/config
+if [ -f "$CONFIG" ]; then
+    MY_OPENID=$(grep "^openid=" "$CONFIG" | cut -d= -f2)
+    if [ -n "$MY_OPENID" ] && [[ "$MY_OPENID" != *"<"*">"* ]]; then
+        DETECTED=$(python3 "$PUSH" --detect-account --to "$MY_OPENID" 2>&1)
+        echo "  自动探测结果：$DETECTED"
+        # 检查探测出的 bot 跟你的 openid 在 context_tokens 里有没有匹配
+        CT_FILE="$ACCOUNTS_DIR/${DETECTED}.context-tokens.json"
+        if [ -f "$CT_FILE" ] && grep -q "$MY_OPENID" "$CT_FILE"; then
+            echo -e "  ${GREEN}✅ 探测的 bot ($DETECTED) 跟你有 context，能真推${NC}"
+        else
+            echo -e "  ${RED}❌ 探测的 bot ($DETECTED) 跟你没 context（推了也假成功）${NC}"
+            echo "  修法：先发一条消息给 bot 触发 context，然后重跑 doctor；只有自动探测反复选错时才手动写 account=..."
+        fi
+    else
+        echo -e "  ${YELLOW}⚠️ openid 未配，跳过探测${NC}"
+    fi
+else
+    echo -e "  ${YELLOW}⚠️ 配置不存在，跳过探测${NC}"
+fi
+echo ""
+
+# 总结
+echo -e "${BLUE}============================================"
+echo "诊断完成"
+echo ""
+echo "如需重装：bash $SCRIPT_DIR/../install.sh"
+echo "如需验证链路：$SCRIPT_DIR/wechat-push-verify"
+echo "如需自检推送（真推一条）：$SCRIPT_DIR/wechat-push-doctor --probe"
+echo "============================================${NC}"

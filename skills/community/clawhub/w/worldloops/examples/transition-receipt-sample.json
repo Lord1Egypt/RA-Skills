@@ -1,0 +1,25 @@
+{
+  "id": "proposal-gmail-follow-up-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "createdAt": "2026-05-18T09:00:00.000Z",
+  "proposalId": "proposal-gmail-follow-up",
+  "sourceSignalsObserved": [
+    "[gmail] Just checking if you had a chance to review the proposal.",
+    "[calendar] Team sync tomorrow at 10:00 — no agenda set."
+  ],
+  "normalizedResponsibility": "email_thread",
+  "proposedTransition": {
+    "currentState": "awaiting_reply",
+    "proposedState": "acknowledged"
+  },
+  "reason": "Unanswered follow-up email detected in inbox; reply required to close loop.",
+  "adjudicationResult": "proposed",
+  "boundaryCrossed": "local_commit",
+  "externalWrite": false,
+  "actor": null,
+  "decision": "surfaced_for_review",
+  "unresolvedState": null,
+  "redactions": {
+    "applied": false,
+    "fields": []
+  }
+}

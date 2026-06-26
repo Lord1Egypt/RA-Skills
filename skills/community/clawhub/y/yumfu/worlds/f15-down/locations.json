@@ -1,0 +1,458 @@
+{
+  "locations": [
+    {
+      "id": "port_azure",
+      "name": "Port Azure",
+      "name_zh": "蔚蓝港",
+      "type": "major_city",
+      "region": "coastal",
+      "population": 2500000,
+      "strategic_value": 95,
+      
+      "description": "Major port city and economic hub. Critical for oil exports and naval operations.",
+      
+      "infrastructure": [
+        {
+          "type": "port",
+          "name": "Azure Deep Water Port",
+          "importance": "critical",
+          "capacity": "5M TEU/year"
+        },
+        {
+          "type": "oil_refinery",
+          "name": "Azure National Refinery",
+          "importance": "critical",
+          "capacity": "500k barrels/day"
+        },
+        {
+          "type": "power_plant",
+          "name": "Coastal Power Station",
+          "importance": "high",
+          "capacity": "2000 MW"
+        },
+        {
+          "type": "airport",
+          "name": "Port Azure International",
+          "importance": "high",
+          "runways": 3
+        }
+      ],
+      
+      "military_facilities": [
+        {
+          "type": "naval_base",
+          "faction": "multiple",
+          "assets": ["destroyers", "patrol_boats", "coastal_defense"]
+        },
+        {
+          "type": "air_defense",
+          "systems": ["patriot_batteries", "radar_stations"]
+        }
+      ],
+      
+      "coordinates": {"lat": 25.2, "lon": 55.3}
+    },
+    
+    {
+      "id": "mountain_city",
+      "name": "Mountain City",
+      "name_zh": "山城",
+      "type": "major_city",
+      "region": "highland",
+      "population": 1800000,
+      "strategic_value": 90,
+      
+      "description": "Highland fortress city. Home to MR Revolutionary Command and underground facilities.",
+      
+      "infrastructure": [
+        {
+          "type": "government_complex",
+          "name": "Highland Command Center",
+          "importance": "critical",
+          "security": "maximum"
+        },
+        {
+          "type": "power_plant",
+          "name": "Mountain Hydroelectric Dam",
+          "importance": "critical",
+          "capacity": "1500 MW"
+        },
+        {
+          "type": "research_facility",
+          "name": "Highland Defense Research",
+          "importance": "high",
+          "classification": "secret"
+        }
+      ],
+      
+      "military_facilities": [
+        {
+          "type": "underground_bunker",
+          "depth": "200m",
+          "hardened": true,
+          "purpose": "command_and_control"
+        },
+        {
+          "type": "missile_base",
+          "faction": "mountain_republic",
+          "assets": ["ballistic_missiles", "cruise_missiles", "air_defense"]
+        },
+        {
+          "type": "drone_factory",
+          "production": "shahed_class_drones"
+        }
+      ],
+      
+      "coordinates": {"lat": 35.7, "lon": 51.4}
+    },
+    
+    {
+      "id": "desert_gate",
+      "name": "Desert Gate",
+      "name_zh": "沙漠门",
+      "type": "major_city",
+      "region": "desert",
+      "population": 3200000,
+      "strategic_value": 85,
+      
+      "description": "Wealthy oil-rich city. Financial and cultural center of Desert Kingdom.",
+      
+      "infrastructure": [
+        {
+          "type": "financial_district",
+          "name": "Desert Gate Financial Center",
+          "importance": "high",
+          "global_rank": 15
+        },
+        {
+          "type": "oil_field",
+          "name": "Southern Desert Oil Field",
+          "importance": "critical",
+          "reserves": "25B barrels"
+        },
+        {
+          "type": "desalination_plant",
+          "importance": "critical",
+          "capacity": "1M m³/day"
+        }
+      ],
+      
+      "military_facilities": [
+        {
+          "type": "air_base",
+          "faction": "desert_kingdom",
+          "assets": ["f15_fighters", "typhoon_fighters", "awacs"]
+        },
+        {
+          "type": "patriot_batteries",
+          "coverage": "city_wide"
+        }
+      ],
+      
+      "coordinates": {"lat": 24.7, "lon": 46.7}
+    },
+    
+    {
+      "id": "border_town",
+      "name": "Border Town",
+      "name_zh": "边境镇",
+      "type": "border_crossing",
+      "region": "border_zone",
+      "population": 150000,
+      "strategic_value": 75,
+      
+      "description": "Contested border town. Frequent site of skirmishes and infiltrations.",
+      
+      "infrastructure": [
+        {
+          "type": "border_checkpoint",
+          "name": "Azure-Mountain Crossing",
+          "importance": "high",
+          "daily_traffic": "5000 vehicles"
+        },
+        {
+          "type": "refugee_camp",
+          "population": 25000,
+          "status": "overcrowded"
+        }
+      ],
+      
+      "military_facilities": [
+        {
+          "type": "checkpoint",
+          "faction": "multiple",
+          "disputed": true
+        },
+        {
+          "type": "militia_base",
+          "faction": "various_proxies"
+        }
+      ],
+      
+      "coordinates": {"lat": 33.5, "lon": 44.4},
+      
+      "notes": "High risk of civilian casualties. Frequent hostage incidents."
+    },
+    
+    {
+      "id": "neutral_zone",
+      "name": "Neutral Zone",
+      "name_zh": "中立区",
+      "type": "demilitarized_zone",
+      "region": "coastal",
+      "population": 50000,
+      "strategic_value": 60,
+      
+      "description": "UN-patrolled neutral zone. Supposed to be weapon-free but often violated.",
+      
+      "infrastructure": [
+        {
+          "type": "un_base",
+          "name": "Azure Peninsula Peacekeeping Mission",
+          "personnel": 2000
+        },
+        {
+          "type": "civilian_settlement",
+          "population": 48000
+        }
+      ],
+      
+      "military_facilities": [],
+      
+      "coordinates": {"lat": 32.9, "lon": 35.5},
+      
+      "notes": "Assassination of MR general occurred here (Day 1 event)."
+    },
+    
+    {
+      "id": "azure_strait",
+      "name": "Azure Strait",
+      "name_zh": "蔚蓝海峡",
+      "type": "waterway",
+      "region": "maritime",
+      "strategic_value": 100,
+      
+      "description": "Critical maritime chokepoint. 30% of global oil passes through here.",
+      
+      "infrastructure": [
+        {
+          "type": "shipping_lane",
+          "importance": "critical",
+          "daily_tankers": 25,
+          "oil_flow": "18M barrels/day"
+        }
+      ],
+      
+      "military_facilities": [
+        {
+          "type": "naval_patrol",
+          "factions": ["western_alliance", "eastern_coalition", "mountain_republic"],
+          "disputed": true
+        },
+        {
+          "type": "coastal_batteries",
+          "faction": "mountain_republic",
+          "range": "100km"
+        }
+      ],
+      
+      "coordinates": {"lat": 27.0, "lon": 54.0},
+      
+      "notes": "WA surveillance drone shot down here (Day 28 event). Permanent flashpoint."
+    },
+    
+    {
+      "id": "damascus_district",
+      "name": "Damascus District",
+      "name_zh": "大马士革区",
+      "type": "urban_district",
+      "region": "urban",
+      "population": 500000,
+      "strategic_value": 70,
+      
+      "description": "Dense civilian area with embedded militia infrastructure.",
+      
+      "infrastructure": [
+        {
+          "type": "school",
+          "name": "Al-Noor Elementary School",
+          "students": 800,
+          "status": "damaged_in_airstrike"
+        },
+        {
+          "type": "hospital",
+          "name": "Damascus General Hospital",
+          "beds": 400,
+          "status": "wing_damaged"
+        },
+        {
+          "type": "residential",
+          "density": "very_high"
+        }
+      ],
+      
+      "military_facilities": [
+        {
+          "type": "weapons_cache",
+          "faction": "mountain_republic_proxies",
+          "hidden": true,
+          "location": "residential_buildings"
+        }
+      ],
+      
+      "coordinates": {"lat": 33.5, "lon": 36.3},
+      
+      "notes": "Collateral damage in Day 14 airstrike. Civilian casualties: 45 dead, 120 injured."
+    },
+    
+    {
+      "id": "sunspear_base",
+      "name": "Sunspear Air Base",
+      "name_zh": "阳矛空军基地",
+      "type": "military_base",
+      "region": "desert",
+      "strategic_value": 95,
+      
+      "description": "PS main air force base. Home to elite Falcon squadrons.",
+      
+      "infrastructure": [
+        {
+          "type": "runway",
+          "length": "3500m",
+          "hardened": true
+        },
+        {
+          "type": "hangar",
+          "aircraft_capacity": 48,
+          "underground": true
+        }
+      ],
+      
+      "military_facilities": [
+        {
+          "type": "fighter_wing",
+          "faction": "phoenix_state",
+          "assets": ["f35_stealth_fighters", "f16_multirole"],
+          "strength": 36
+        },
+        {
+          "type": "steel_shield_battery",
+          "coverage": "100km_radius"
+        },
+        {
+          "type": "intelligence_station",
+          "agency": "shadow_eye"
+        }
+      ],
+      
+      "coordinates": {"lat": 31.5, "lon": 34.5}
+    },
+    
+    {
+      "id": "highland_fortress",
+      "name": "Highland Fortress",
+      "name_zh": "高地要塞",
+      "type": "military_base",
+      "region": "mountain",
+      "strategic_value": 98,
+      
+      "description": "MR underground missile complex. Deeply fortified and hardened.",
+      
+      "infrastructure": [
+        {
+          "type": "tunnel_network",
+          "depth": "300m",
+          "length": "15km",
+          "hardened": true
+        },
+        {
+          "type": "missile_storage",
+          "capacity": 500,
+          "protected": "blast_doors"
+        }
+      ],
+      
+      "military_facilities": [
+        {
+          "type": "ballistic_missile_brigade",
+          "faction": "mountain_republic",
+          "missiles": ["medium_range", "cruise_missiles"],
+          "launchers": 24
+        },
+        {
+          "type": "command_center",
+          "hardened": true,
+          "emp_protected": true
+        }
+      ],
+      
+      "coordinates": {"lat": 36.2, "lon": 50.9},
+      
+      "notes": "Primary target in Day 14 Thunder Response strikes. Partially damaged but operational."
+    },
+    
+    {
+      "id": "carrier_group_alpha",
+      "name": "Carrier Strike Group Alpha",
+      "name_zh": "阿尔法航母战斗群",
+      "type": "naval_formation",
+      "region": "maritime",
+      "strategic_value": 100,
+      
+      "description": "WA carrier strike group deployed to Azure Peninsula. Mobile airbase and power projection.",
+      
+      "infrastructure": [],
+      
+      "military_facilities": [
+        {
+          "type": "aircraft_carrier",
+          "faction": "western_alliance",
+          "name": "USS Endeavor",
+          "aircraft": 75,
+          "composition": ["f35c_fighters", "e2d_awacs", "helicopters"]
+        },
+        {
+          "type": "escort_group",
+          "assets": ["aegis_destroyers", "attack_submarines", "supply_ships"],
+          "vessels": 8
+        }
+      ],
+      
+      "coordinates": {"lat": 26.5, "lon": 56.0},
+      "mobile": true
+    }
+  ],
+  
+  "regions": [
+    {
+      "id": "coastal_zone",
+      "name": "Coastal Zone",
+      "locations": ["port_azure", "neutral_zone"],
+      "strategic_importance": "critical_oil_export"
+    },
+    {
+      "id": "highland_region",
+      "name": "Highland Region",
+      "locations": ["mountain_city", "highland_fortress"],
+      "strategic_importance": "mr_heartland"
+    },
+    {
+      "id": "desert_belt",
+      "name": "Desert Belt",
+      "locations": ["desert_gate", "sunspear_base"],
+      "strategic_importance": "oil_reserves_air_power"
+    },
+    {
+      "id": "contested_border",
+      "name": "Contested Border",
+      "locations": ["border_town", "damascus_district"],
+      "strategic_importance": "proxy_war_zone"
+    },
+    {
+      "id": "maritime_domain",
+      "name": "Maritime Domain",
+      "locations": ["azure_strait", "carrier_group_alpha"],
+      "strategic_importance": "oil_transit_naval_control"
+    }
+  ]
+}

@@ -1,35 +1,18 @@
 ---
-name: "win-music-skill"
-description: "控制音乐的播放"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/win-music-skill"
-sourceUrl: "https://clawhub.ai/skills/win-music-skill"
+name: win-music-skill
+description: 控制音乐的播放
 ---
 
-# win-music-skill
+# 音乐播放
 
-> 控制音乐的播放
+## When to use this skill
+需要播放音乐的时候
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/win-music-skill`
-- **Source URL:** [https://clawhub.ai/skills/win-music-skill](https://clawhub.ai/skills/win-music-skill)
+## 下一首歌
+cmd下执行命令nircmd sendkeypress ctrl+alt+right
 
-## Overview
+## 上一首歌
+cmd下执行命令nircmd sendkeypress ctrl+alt+left
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/win-music-skill
-```
+## 播放或暂停
+cmd下执行命令nircmd sendkeypress ctrl+alt+f5

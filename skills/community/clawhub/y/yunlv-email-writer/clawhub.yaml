@@ -1,0 +1,42 @@
+name: yunlv-email-writer
+version: 1.0.3
+author:
+  name: 秒技工作室
+  link: https://xiaping.coze.site
+homepage: https://xiaping.coze.site
+license: MIT-0
+type: openclaw-skill
+description: Use when user needs to write professional business emails in multiple
+  languages. Use when drafting foreign trade emails such as inquiry replies, quotation
+  emails, or follow-up messages. Use when generating personalized B2B email sequences
+  for international clients. Use when user mentions "邮件撰写", "外贸邮件", "多语言邮件", "开发信",
+  "询盘回复", "报价邮件", "跟进邮件", "商务邮件".
+emoji: 📧
+author:
+  name: 秒技工作室
+  link: https://xiaping.coze.site
+homepage: https://yunlvai.com
+publisher:
+  name: 云旅AI团队
+  website: https://yunlvai.com
+category: customer-development
+tags:
+- 外贸邮件
+- 商务邮件
+- 多语言
+- 开发信
+- 询盘回复
+- B2B邮件
+- 邮件撰写
+triggers:
+- 邮件撰写
+- 外贸邮件
+- 开发信
+- 询盘回复
+- 报价邮件
+- 多语言邮件
+- 商务邮件
+- 跟进邮件
+- email template
+- B2B email
+- quotation email

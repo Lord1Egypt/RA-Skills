@@ -1,35 +1,66 @@
 ---
-name: "weekly-report-writer"
-description: "用于撰写结构清晰的中文周报。只要用户提到“周报、weekly report、本周总结、工作复盘、下周计划、给老板汇报”，即使没有明确说“写周报”，也应主动使用此技能来生成可直接发送的周报内容。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weekly-report-writer"
-sourceUrl: "https://clawhub.ai/skills/weekly-report-writer"
+name: weekly-report-writer
+description: 用于撰写结构清晰的中文周报。只要用户提到“周报、weekly report、本周总结、工作复盘、下周计划、给老板汇报”，即使没有明确说“写周报”，也应主动使用此技能来生成可直接发送的周报内容。
 ---
 
-# weekly-report-writer
+# Weekly Report Writer
 
-> 用于撰写结构清晰的中文周报。只要用户提到“周报、weekly report、本周总结、工作复盘、下周计划、给老板汇报”，即使没有明确说“写周报”，也应主动使用此技能来生成可直接发送的周报内容。
+目标：把零散工作信息整理成可直接提交的周报，突出结果、风险和下周计划。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weekly-report-writer`
-- **Source URL:** [https://clawhub.ai/skills/weekly-report-writer](https://clawhub.ai/skills/weekly-report-writer)
+## 何时使用
 
-## Overview
+出现以下任一场景时使用：
+- 用户让你写周报或润色周报
+- 用户给了本周工作记录，希望整理成汇报
+- 用户需要给上级同步进展、风险、计划
 
+## 执行流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weekly-report-writer
+1. 先收集最小必要信息：本周完成、关键结果、问题风险、下周计划。
+2. 信息不完整时，先基于已有内容生成“可提交草稿”，并明确标注待补充项。
+3. 输出时优先结果导向，避免流水账，句子简洁可读。
+
+## 输出要求
+
+- 默认输出中文。
+- 每条工作内容优先使用“动作 + 结果 + 影响”表达。
+- 量化就量化（如完成数量、耗时、转化、缺陷数、上线时间）。
+- 风险必须包含“现状 + 影响 + 需要支持”。
+
+## 周报模板
+
+始终优先使用以下结构：
+
+```markdown
+# 第X周工作周报（YYYY-MM-DD ~ YYYY-MM-DD）
+
+## 1. 本周完成事项
+1. [事项]
+   - 结果：
+   - 业务/项目影响：
+
+## 2. 关键成果（可量化）
+1. ...
+2. ...
+
+## 3. 问题与风险
+1. [问题/风险]
+   - 当前状态：
+   - 影响范围：
+   - 需要支持：
+
+## 4. 下周计划
+1. [计划]
+   - 预期产出：
+   - 截止时间：
+
+## 5. 需协调事项（可选）
+1. ...
 ```
+
+## 语气与风格
+
+- 面向管理者：结论先行、简明、客观。
+- 不夸张，不使用口语化表达。
+- 未确认信息不要编造，使用“待补充”占位。
+

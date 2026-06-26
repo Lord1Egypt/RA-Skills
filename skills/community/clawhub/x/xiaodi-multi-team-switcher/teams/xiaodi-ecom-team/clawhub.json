@@ -1,0 +1,51 @@
+{
+  "name": "xiaodi-ecom-team",
+  "version": "2.0.0",
+  "description": "小弟电商团队，8 个专业角色协作完成选品、运营、定价、客服、数据分析、竞品监控、内容创作、广告投放。",
+  "author": "xiaodi <mxbot-xiaodi@agentmail.to>",
+  "license": "MIT",
+  "category": "E-commerce",
+  "tags": ["ecommerce", "amazon", "product-research", "listing", "competitor", "xiaodi"],
+  "pricing": {
+    "type": "free"
+  },
+  "features": [
+    "8 个专业角色协作",
+    "多 Agent 协作架构 (Master-Worker)",
+    "BSR转销量预估模型",
+    "利润计算器",
+    "Listing SEO生成",
+    "竞品价格/BSR监控",
+    "差评痛点分析",
+    "多平台数据整合"
+  ],
+  "agents": {
+    "default": {
+      "model": {
+        "primary": "bailian/glm-5"
+      }
+    }
+  },
+  "scripts": {
+    "product_research": {
+      "path": "scripts/product_research.py",
+      "description": "选品分析器 - BSR分析/销量预估/利润计算"
+    },
+    "listing_generator": {
+      "path": "scripts/listing_generator.py",
+      "description": "Listing生成器 - 标题/五点描述/SEO优化"
+    },
+    "competitor_monitor": {
+      "path": "scripts/competitor_monitor.py",
+      "description": "竞品监控器 - 价格追踪/差评分析"
+    }
+  },
+  "data": {
+    "monitor_data": "data/competitor_monitor.json"
+  },
+  "platforms": {
+    "domestic": ["taobao", "jd", "pdd", "douyin"],
+    "cross_border": ["amazon", "tiktok_shop", "shopee", "lazada"],
+    "social": ["xiaohongshu", "tiktok", "douyin"]
+  }
+}

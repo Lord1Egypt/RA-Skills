@@ -1,0 +1,45 @@
+{
+  "agents": {
+    "groups": {
+      "ashare_guard": {
+        "name": "A股避雷针",
+        "description": "一键扫描个股财务风险 + 研报语义对齐",
+        "members": ["analyst", "quant_auditor", "risk_officer"],
+        "workflow": "consensus"
+      }
+    },
+    "defaults": {
+      "model": {
+        "primary": "bailian/glm-5"
+      }
+    }
+  },
+  "slashCommands": [
+    {
+      "name": "guard",
+      "description": "一键扫描个股风险",
+      "handler": "a-share-guard"
+    },
+    {
+      "name": "guard-watch",
+      "description": "添加监控股票",
+      "handler": "a-share-guard"
+    },
+    {
+      "name": "guard-list",
+      "description": "查看监控列表",
+      "handler": "a-share-guard"
+    }
+  ],
+  "plugins": {
+    "entries": {
+      "browserless": {
+        "kind": "browserless",
+        "config": {
+          "cdpUrl": "http://192.168.3.120:3000",
+          "attachOnly": true
+        }
+      }
+    }
+  }
+}

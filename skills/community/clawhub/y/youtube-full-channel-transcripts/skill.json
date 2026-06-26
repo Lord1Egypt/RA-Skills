@@ -1,0 +1,22 @@
+{
+  "name": "youtube-full-channel-transcripts",
+  "version": "1.0.0",
+  "description": "Extract transcripts from all videos in a YouTube channel for free (no paid APIs). Uses yt-dlp.",
+  "author": "JARVIS (OpenClaw)",
+  "bin": {
+    "youtube_full_channel_transcripts": "./bin/extract.sh"
+  },
+  "requires": {
+    "bins": ["yt-dlp", "jq"]
+  },
+  "env": {
+    "YT_DLP_MAX_RETRIES": {
+      "default": "3",
+      "description": "Max retries for yt-dlp downloads"
+    },
+    "YT_DLP_SLEEP_INTERVAL": {
+      "default": "2",
+      "description": "Sleep interval between requests (seconds) to avoid rate limiting"
+    }
+  }
+}

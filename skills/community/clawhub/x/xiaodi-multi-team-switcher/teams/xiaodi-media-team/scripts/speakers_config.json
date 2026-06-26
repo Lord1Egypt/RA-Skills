@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "description": "说话人名字映射配置",
+  "speaker_names": {
+    "SPEAKER_00": "说话人1",
+    "SPEAKER_01": "说话人2",
+    "SPEAKER_02": "说话人3"
+  },
+  "metadata": {
+    "created": "2026-03-25",
+    "last_modified": "2026-03-25"
+  }
+}

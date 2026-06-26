@@ -1,0 +1,19 @@
+{
+  "id": "session-archive",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "dbPath": {
+        "type": "string",
+        "description": "Path to SQLite database file (default: ~/.openclaw/session-archive.db)"
+      }
+    }
+  },
+  "uiHints": {
+    "dbPath": {
+      "label": "Database Path",
+      "help": "Path to SQLite database file for session archiving"
+    }
+  }
+}

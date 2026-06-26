@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "xiaohongshu-mcp": {
+      "baseUrl": "http://127.0.0.1:18060/mcp",
+      "description": "Xiaohongshu MCP HTTP server powered by xpzouying/xiaohongshu-mcp"
+    }
+  },
+  "imports": []
+}

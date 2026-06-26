@@ -1,0 +1,21 @@
+{
+  "serpapi": {
+    "key": "YOUR_SERPAPI_KEY",
+    "note": "serpapi.com 注册获取，必填。首次使用请替换此占位符"
+  },
+  "tgstat": {
+    "key": "bd97100384734df204bf935b20eee8d7",
+    "note": "TGStat API，可选"
+  },
+  "data_sources": {
+    "patient": "IDF Diabetes Atlas 2025 | diabetesatlas.org",
+    "market": "SerpAPI + IMEDA 公开财报",
+    "competitor": "SerpAPI (Yandex+Google) | Market.Маркет",
+    "ecommerce": "Market.Маркет | Wildberries | Ozon (SerpAPI)",
+    "news": "Vademecum.ru | Kommersant | RBK (SerpAPI)",
+    "policy": "Minzdrav | FFOMS | GISP (SerpAPI)",
+    "social": "VKontakte | Telegram (SerpAPI)",
+    "tender": "EIS zakupki.gov.ru | SerpAPI",
+    "research": "RAE endocrincentr.ru | PubMed"
+  }
+}

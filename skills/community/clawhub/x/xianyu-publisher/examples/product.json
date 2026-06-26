@@ -1,0 +1,13 @@
+{
+  "title": "iPhone 13 Pro 256G 远峰蓝",
+  "price": 3999,
+  "description": "自用9成新，无任何划痕，配件齐全的原装盒子。电池健康度89%。",
+  "category": "手机",
+  "tags": ["苹果", "iPhone", "二手", "手机"],
+  "images": [
+    "/path/to/iphone1.jpg",
+    "/path/to/iphone2.jpg",
+    "/path/to/iphone3.jpg"
+  ],
+  "quantity": 1
+}

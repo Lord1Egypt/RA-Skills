@@ -1,35 +1,40 @@
----
-name: "WeChat Games Reporter"
-description: "Generates automated Feishu reports with real-time WeChat mini games ranking data, insights, and trends for market analysis and competitive intelligence."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-games-reporter"
-sourceUrl: "https://clawhub.ai/skills/wechat-games-reporter"
----
+# wechat-games-reporter
 
-# WeChat Games Reporter
+## Description
+Automated WeChat mini games ranking report generator. Scrapes real-time data from 应用宝 (sj.qq.com) and delivers structured insights via Feishu.
 
-> Generates automated Feishu reports with real-time WeChat mini games ranking data, insights, and trends for market analysis and competitive intelligence.
+## Usage Scenarios
+- Daily/weekly WeChat mini games trend reports
+- Market research for game industry analysis  
+- Competitive intelligence for mobile game developers
+- Investment opportunity identification in casual gaming sector
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-games-reporter`
-- **Source URL:** [https://clawhub.ai/skills/wechat-games-reporter](https://clawhub.ai/skills/wechat-games-reporter)
+## Workflow
+1. **Data Source**: Navigate to https://sj.qq.com/wechat-game
+2. **Extract Rankings**: Parse Hot, Revenue, and New Release leaderboards
+3. **Structure Data**: Format into standardized report with trend insights
+4. **Deliver**: Create Feishu document and send via direct message
 
-## Overview
+## Key Features
+- Real-time scraping from official Tencent application store
+- Multi-category analysis (Hot, Revenue, New Releases)
+- Trend identification and business insight generation
+- Automated Feishu delivery with proper formatting
 
+## Dependencies
+- Browser automation capability
+- Feishu document creation and messaging permissions
+- Markdown formatting support
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wechat-games-reporter
-```
+## Output Format
+Reports include:
+- Top 5 rankings for each category
+- Game categories and sub-genres
+- Trend analysis highlighting market movements
+- Direct source attribution
+
+## Best Practices
+- Run during business hours for most accurate real-time data
+- Always verify data source availability before execution
+- Include actionable insights beyond raw rankings
+- Maintain consistent formatting for historical comparison

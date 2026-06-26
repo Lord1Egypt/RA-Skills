@@ -1,0 +1,7 @@
+{
+  "name": "大字海报",
+  "description": "对角大幅红色色块+超大字重，适合金句引爆/活动宣传",
+  "colors": { "background": "#000000", "text": "#FFFFFF", "accent": "#FF3355", "secondary": "rgba(255,255,255,0.5)" },
+  "fonts": { "title": "\"PingFang SC\",\"Microsoft YaHei\",-apple-system,sans-serif", "body": "\"PingFang SC\",\"Microsoft YaHei\",-apple-system,sans-serif" },
+  "layout": { "titleSizeVertical": "160px", "titleSizeSquare": "120px", "titleSizeWide": "96px", "titleSizeCover": "72px", "contentSize": "40px" }
+}

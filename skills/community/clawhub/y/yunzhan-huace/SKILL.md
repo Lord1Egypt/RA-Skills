@@ -1,35 +1,105 @@
 ---
-name: "云展网电子画册在线生成器"
-description: "云展网文件转换在线阅读及分享 Skill。当用户要求将 PDF、PPT、Word(.doc和.docx都可以 无需转换)、JPG 等文件生成可在线浏览的链接/二维码时触发此 Skill。支持文件一键转换成链接/二维码，在线翻页浏览，并可分享至各社交平台。 即使用户没有明确说"链接"或"二维码"，只要意图涉及文件在..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yunzhan-huace"
-sourceUrl: "https://clawhub.ai/skills/yunzhan-huace"
+name: yunzhan-flipbook
+description: 云展网文件转换在线阅读及分享 Skill。当用户要求将 PDF、PPT、Word(.doc和.docx都可以 无需转换)、JPG 等文件生成可在线浏览的链接/二维码时触发此 Skill。支持文件一键转换成链接/二维码，在线翻页浏览，并可分享至各社交平台。
+  即使用户没有明确说"链接"或"二维码"，只要意图涉及文件在线阅读、文件在线分享，都应触发此 Skill。例如：
+  - 把 PDF、PPT、word、jpg 等文件生成可在线浏览的形式
+  - 一键把文件生成链接/二维码
+  - 将文件在线分享给好友
+  - 文件在线浏览
 ---
 
-# 云展网电子画册在线生成器
+# yunzhan-flipbook 云展网文件转换在线阅读及分享
 
-> 云展网文件转换在线阅读及分享 Skill。当用户要求将 PDF、PPT、Word(.doc和.docx都可以 无需转换)、JPG 等文件生成可在线浏览的链接/二维码时触发此 Skill。支持文件一键转换成链接/二维码，在线翻页浏览，并可分享至各社交平台。 即使用户没有明确说"链接"或"二维码"，只要意图涉及文件在...
+本 Skill 用于调用云展网 API，将本地文件一键转换成在线电子书链接/二维码。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yunzhan-huace`
-- **Source URL:** [https://clawhub.ai/skills/yunzhan-huace](https://clawhub.ai/skills/yunzhan-huace)
+## 工作流程
+**注意**：请勿将脚本运行过程显示出来，仅需要显示上传、转化、创建、删除等任务的进度及结果即可。
 
-## Overview
+### 第一步：引导用户登录
+
+若用户未登录，回复用户：
+
+> “请先登录/注册您的云展网账号（支持手机号），登录后我才能帮您上传转换文件。若为首次使用，请先打开 https://www.yunzhan365.com 注册帐号！”
+
+### 第二步：获取 Token
+
+1. 请用户提供云展网的 **用户名（手机号或邮箱）** 和 **密码**
+2. 调用 `获取Token` 接口获取 token
+3. 保存 token 用于后续所有接口调用
+
+**注意**：Token 有时效性，过期后需重新引导用户登录。
+
+### 第三步：创建电子书
+
+根据文件来源选择不同流程：
+
+**本地文件**：
+1. 调用 `文件上传` 接口，获取 `fileSrc`
+2. 调用 `创建电子书` 接口
+
+**远程文件**：
+1. 直接调用 `创建电子书` 接口
+
+### 第四步：获取转换进度
+
+1. 调用 `获取电子书转换进度` 接口轮询转换状态
+2. 当 `convertStatus` 返回 `5` 时表示转换成功
+3. 轮询间隔至少 **3 秒**
+
+**转换状态说明**：
+- `-3`: 正在生成配置文件
+- `-2`: 上传文件失败
+- `-1`: 上传文件中
+- `0`: 未分配
+- `1`: 已分配但未确认
+- `2`: 分配并且确认
+- `3`: 超时
+- `4`: 异常
+- `5`: **转换成功**
+- `6`: 转换失败
+
+⚠️ 需要根据用户的账号等级去判断用户的权限，当权限不足时，返回升级提示，并引导用户购买会员：https://www.yunzhan365.com/product-serve/
+
+### 第五步：获取书籍信息
+获取书籍信息，并进行判断：
+1. 如果书籍审核状态`auditStatus`不等于0，则直接进行第六步，返回结果；不需要显示审核的状态。
+2. 如果书籍审核状态`auditStatus`等于0，则继续调用 ` 获取用户信息接口 `。用户信息接口返回的`uType`等于`0`并且`add_wechat`等于`0`表示需要添加客服微信 `获取客服企业微信二维码 ` 并获取`qr_code`，必须在第六步返回结果中生成二维码图片显示，并告知用户电子书在排队审核中，添加福利官享即时发布；如果`uType`等于`0`并且`add_wechat`等于`0`两个条件不成立，则直接进行第六步返回结果。
+3.不需要显示任何的审核状态
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yunzhan-huace
+
+### 第六步：返回结果
+
+转换成功后，向用户返回：
+- 电子书在线链接 (`book_url`)  并且必须要在链接的右侧显示【复制】和【查看】按钮，点击复制则复制链接，点击查看则打开该链接
+- 电子书封面图片，根据链接 (`thumbnailUrl`)生成图片显示
+- 必须将电子书的在线链接显示成二维码图片给用户，用户可以直接扫码，禁止直接发二维码链接
+- 直接返回结果即可，禁止生成网页
+注意：请勿返回 https://www.yunzhan365.com/basic/XXXX.html 格式的链接
+
+
+
+## 失败处理
+
+| 情况 | 处理方式 |
+|------|----------|
+| 未登录 | 立即引导用户登录，获取有效 Token |
+| Token 过期 | 提示“登录状态已过期，请重新登录云展网账号”，重新执行登录流程 |
+| 操作超时 | 检查网络，适当增加等待时间 |
+| 频率限制 | 降低操作频率，增大间隔 |
+
+---
+
+api文档说明 `references/api_docs.md`。
+
+curl请求示范 `example/curl_example.md`。
+
+python请求示范 `example/python_example.md`。
+---
+
+## 安全与隐私
+
+- 所有操作均使用用户自己的云展网账号进行
+- 文件数据归用户所有
+- Token 有时效性，过期后需重新登录
 ```

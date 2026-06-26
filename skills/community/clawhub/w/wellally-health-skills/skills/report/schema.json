@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/health-report.json",
+  "title": "HealthReportConfig",
+  "description": "健康报告生成配置",
+  "type": "object",
+  "properties": {
+    "report_type": {
+      "type": "string",
+      "enum": ["comprehensive", "biochemical", "imaging", "medication", "custom"],
+      "description": "报告类型"
+    },
+    "date_range": {
+      "type": "object",
+      "properties": {
+        "start_date": {"type": "string", "format": "date"},
+        "end_date": {"type": "string", "format": "date"},
+        "preset": {
+          "type": "string",
+          "enum": ["all", "last_month", "last_quarter", "last_year"]
+        }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["profile", "biochemical", "imaging", "medication", "radiation", "allergies", "symptoms", "surgeries", "discharge"]
+      }
+    },
+    "output_file": {
+      "type": "string",
+      "description": "输出文件名"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "生成时间"
+    }
+  }
+}

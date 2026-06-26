@@ -1,35 +1,48 @@
 ---
-name: "YouTube Member"
-description: "Manage YouTube channel members. Use this skill to list information about channel members. Useful when working with YouTube member — provides commands to list..."
-category: "other"
-source: "ClawHub"
-tags: [0.10.7-dev, 0.10.6-3]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/youtube-member"
-sourceUrl: "https://clawhub.ai/skills/youtube-member"
+name: youtube-member
+description: "Manage YouTube channel members. Use this skill to list information about channel members. Useful when working with YouTube member — provides commands to list member via the yutu CLI. Includes setup and installation instructions for first-time users. Triggers: list channel members, list member, list my member"
+metadata:
+  openclaw:
+    requires:
+      env:
+        - YUTU_CREDENTIAL
+        - YUTU_CACHE_TOKEN
+      bins:
+        - yutu
+      config:
+        - client_secret.json
+        - youtube.token.json
+    primaryEnv: YUTU_CREDENTIAL
+    emoji: "\U0001F3AC\U0001F430"
+    homepage: https://github.com/eat-pray-ai/yutu
+    install:
+      - kind: node
+        package: "@eat-pray-ai/yutu"
+        bins: [yutu]
 ---
 
 # YouTube Member
 
-> Manage YouTube channel members. Use this skill to list information about channel members. Useful when working with YouTube member — provides commands to list...
+Manage YouTube channel members. Use this skill to list information about channel members.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/youtube-member`
-- **Source URL:** [https://clawhub.ai/skills/youtube-member](https://clawhub.ai/skills/youtube-member)
+## Before You Begin
 
-## Overview
+yutu requires Google Cloud Platform OAuth credentials and a cached token to access the YouTube API. If you haven't set up yutu yet, read the [setup guide](references/setup.md) first.
 
+## Operations
 
-## Installation
-To install this skill, run the following command in your terminal:
+Read the linked reference for full flag details and examples.
+
+| Operation | Description | Reference |
+|-----------|-------------|----------|
+| list | List channel members | [details](references/member-list.md) |
+
+## Quick Start
+
 ```bash
-hermes skills install clawhub/youtube-member
+# Show all member commands
+yutu member --help
+
+# List member
+yutu member list
 ```

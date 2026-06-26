@@ -1,0 +1,13 @@
+# 标题模板
+# 使用 {placeholders} 占位符，脚本会自动替换
+
+我用 AI 做副业，{days}天赚了 {amount} 块（附全流程）
+{count}个 AI 副业工具，让我月入 {monthly} 不是梦
+不会编程？用 {tool} 3步自动化赚钱（亲测有效）
+避开这 {mistakes} 个坑，AI 副业月入 {goal}+
+实测：AI 写 {platform}，{improve} 过稿率
+我用 OpenClaw 自动化，{time}省了 {hours} 小时
+AI 副业天花板？{tool} 让我的收入翻倍了
+从 0 到 {fans} 粉，{platform} 赚钱全记录
+AI 搞钱日记 Day {day}: {result}
+分享一个冷门但超赚的 AI 副业

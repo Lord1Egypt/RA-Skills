@@ -1,0 +1,11 @@
+{
+  "name": "wechat-ai-bridge",
+  "version": "1.0.0",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "express": "^4.18.0"
+  },
+  "scripts": {
+    "start": "node wechat_bridge.js"
+  }
+}

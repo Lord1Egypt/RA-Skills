@@ -1,0 +1,51 @@
+{
+  "id": "new-historical-case-id",
+  "title": "案例标题",
+  "dynasty": "朝代或时期",
+  "era": "历史阶段",
+  "year_range": "时间范围",
+  "main_figures": [
+    "关键人物甲",
+    "关键人物乙"
+  ],
+  "summary": "用 1-2 句话概括事件与局面。",
+  "situation_tags": [
+    "改革推进",
+    "联盟不稳"
+  ],
+  "decision_maker": "主要决策者",
+  "objective": "决策者想达成什么。",
+  "visible_information": [
+    "当时公开可见的条件 1",
+    "当时公开可见的条件 2"
+  ],
+  "hidden_constraints": [
+    "不易被外部直接看到的限制 1",
+    "不易被外部直接看到的限制 2"
+  ],
+  "options_available": [
+    "可选路径 1",
+    "可选路径 2"
+  ],
+  "chosen_action": "最终采取的动作。",
+  "short_term_outcome": "短期结果。",
+  "long_term_outcome": "中长期结果。",
+  "success_or_failure": "mixed",
+  "key_reasons": [
+    "成败原因 1",
+    "成败原因 2"
+  ],
+  "transferable_principles": [
+    "可迁移原则 1",
+    "可迁移原则 2"
+  ],
+  "non_transferable_factors": [
+    "不可直接照搬的因素 1",
+    "不可直接照搬的因素 2"
+  ],
+  "modern_analogy_keywords": [
+    "适用场景关键词 1",
+    "适用场景关键词 2"
+  ],
+  "source_note": "史料来源或用户提供的来源说明"
+}

@@ -1,0 +1,30 @@
+{
+  "skill_name": "xiaohongshu-ops",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "note-creation",
+      "prompt": "帮我写一篇小红书笔记，主题是'打工人的AI效率工具推荐'",
+      "expected_output": "应该生成小红书风格的笔记，包含emoji标题、口语化正文、话题标签",
+      "assertions": [
+        {"id": "emoji-title", "text": "标题包含emoji且符合小红书风格", "type": "format"},
+        {"id": "casual-tone", "text": "正文口语化、短句为主", "type": "quality"},
+        {"id": "hashtags", "text": "包含5-10个话题标签", "type": "format"},
+        {"id": "word-count", "text": "正文300-800字", "type": "format"},
+        {"id": "interaction-ending", "text": "结尾有互动引导（提问/投票/讨论）", "type": "quality"}
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "topic-research",
+      "prompt": "我想做一个关于AI产品测评的小红书账号，帮我分析一下定位和选题方向",
+      "expected_output": "应该提供账号定位分析、竞品对标、选题方向建议",
+      "assertions": [
+        {"id": "positioning", "text": "有账号定位/人设建议", "type": "quality"},
+        {"id": "competitor-analysis", "text": "有竞品/同类账号分析", "type": "quality"},
+        {"id": "topic-suggestions", "text": "给出具体的选题方向（至少5个）", "type": "quality"},
+        {"id": "controversy-points", "text": "提到争议点或差异化角度", "type": "quality"}
+      ]
+    }
+  ]
+}

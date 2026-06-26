@@ -1,0 +1,74 @@
+{
+  "_schema": "yunxiao-workflow-transitions-v1",
+  "_comment": [
+    "结构说明：",
+    "  projects[projectId].workitemTypes[workitemTypeId] = workflowId",
+    "  workflows[workflowId].statuses[statusId] = { displayName, nameEn }",
+    "  workflows[workflowId].transitions[statusId] = [nextStatusId, ...]",
+    "",
+    "所有 ID（projectId / workitemTypeId / workflowId / statusId）均为组织/项目特定值，",
+    "使用前必须按以下方式查询你自己的数据后填入。",
+    "",
+    "查工作项类型列表（含 workitemTypeId）：",
+    "  GET /oapi/v1/projex/organizations/{orgId}/workitemTypes",
+    "",
+    "查工作流 ID 和状态列表：",
+    "  GET /oapi/v1/projex/organizations/{orgId}/projects/{projectId}/workitemTypes/{typeId}/workflows",
+    "  返回 { id(=workflowId), name, defaultStatusId, statuses: [{id, displayName, nameEn}] }",
+    "",
+    "查合法流转（transitions，API 不返回，需浏览器抓包）：",
+    "  /projex/api/workitem/workitem/workflow/getActions/{workflowId}",
+    "  解析 result[].workflowStatus.identifier → result[].nextWorkflowStatus.identifier",
+    "",
+    "卡片状态变更按钮依赖此文件展示合法的下一步状态。",
+    "工作流配置变更后重新抓包更新此文件。"
+  ],
+
+  "projects": {
+    "your-project-id": {
+      "_name": "你的项目名",
+      "workitemTypes": {
+        "your-bug-type-id":  { "_name": "缺陷",     "workflowId": "your-bug-workflow-id" },
+        "your-task-type-id": { "_name": "任务",     "workflowId": "your-task-workflow-id" },
+        "your-req-type-id":  { "_name": "技术类需求", "workflowId": "your-req-workflow-id" }
+      }
+    }
+  },
+
+  "workflows": {
+    "your-task-workflow-id": {
+      "_name": "任务工作流（示例，替换为实际数据）",
+      "statuses": {
+        "status-todo-id":       { "displayName": "待处理", "nameEn": "To Do" },
+        "status-inprogress-id": { "displayName": "处理中", "nameEn": "In Progress" },
+        "status-done-id":       { "displayName": "已完成", "nameEn": "Done" },
+        "status-canceled-id":   { "displayName": "已取消", "nameEn": "Canceled" }
+      },
+      "transitions": {
+        "status-todo-id":       ["status-inprogress-id", "status-done-id", "status-canceled-id"],
+        "status-inprogress-id": ["status-done-id", "status-canceled-id", "status-todo-id"],
+        "status-done-id":       ["status-todo-id", "status-inprogress-id", "status-canceled-id"],
+        "status-canceled-id":   ["status-todo-id", "status-inprogress-id", "status-done-id"]
+      }
+    },
+    "your-bug-workflow-id": {
+      "_name": "缺陷工作流（示例，替换为实际数据）",
+      "statuses": {
+        "status-new-id":      { "displayName": "待确认",   "nameEn": "New" },
+        "status-inprog-id":   { "displayName": "处理中",   "nameEn": "In Progress" },
+        "status-fixed-id":    { "displayName": "已修复",   "nameEn": "Fixed" },
+        "status-reopen-id":   { "displayName": "再次打开", "nameEn": "Reopen" },
+        "status-wontfix-id":  { "displayName": "暂不修复", "nameEn": "Won't Fix" },
+        "status-closed-id":   { "displayName": "已关闭",   "nameEn": "Closed" }
+      },
+      "transitions": {
+        "status-new-id":     ["status-fixed-id", "status-inprog-id", "status-closed-id", "status-wontfix-id"],
+        "status-inprog-id":  ["status-fixed-id", "status-wontfix-id"],
+        "status-fixed-id":   ["status-closed-id", "status-reopen-id"],
+        "status-wontfix-id": ["status-closed-id", "status-reopen-id"],
+        "status-closed-id":  ["status-reopen-id"],
+        "status-reopen-id":  ["status-fixed-id", "status-wontfix-id", "status-inprog-id"]
+      }
+    }
+  }
+}

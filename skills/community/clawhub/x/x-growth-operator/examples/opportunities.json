@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-03-04T22:00:00+08:00",
+  "items": [
+    {
+      "id": "opp-openclaw-breakout",
+      "source_account": "levelsio",
+      "source_type": "kol",
+      "text": "Local AI coding agents are finally getting good. The winners will be inspectable, scriptable, and not trapped behind hosted black boxes.",
+      "url": "https://x.example/levelsio/1001",
+      "posted_at": "2026-03-04T21:52:00+08:00",
+      "likes": 180,
+      "replies": 34,
+      "reposts": 22,
+      "quotes": 7,
+      "views": 15000,
+      "growth_velocity": 0.92,
+      "sentiment": "positive",
+      "topics": ["local agent", "coding agents", "developer tools"]
+    },
+    {
+      "id": "opp-security-detour",
+      "source_account": "randomnews",
+      "source_type": "news",
+      "text": "Massive political fallout over an AI policy hearing. Everyone is arguing in circles.",
+      "url": "https://x.example/randomnews/1002",
+      "posted_at": "2026-03-04T21:20:00+08:00",
+      "likes": 4200,
+      "replies": 1100,
+      "reposts": 1800,
+      "quotes": 950,
+      "views": 430000,
+      "growth_velocity": 0.99,
+      "sentiment": "heated",
+      "topics": ["politics", "policy", "ai regulation"]
+    },
+    {
+      "id": "opp-claude-code-thread",
+      "source_account": "anthropicai",
+      "source_type": "brand",
+      "text": "Developers want agents that actually fit into existing tooling, not magic demos. The bar is reliability, transparency, and speed.",
+      "url": "https://x.example/anthropicai/1003",
+      "posted_at": "2026-03-04T21:40:00+08:00",
+      "likes": 860,
+      "replies": 90,
+      "reposts": 140,
+      "quotes": 50,
+      "views": 62000,
+      "growth_velocity": 0.78,
+      "sentiment": "positive",
+      "topics": ["claude code", "agents", "developer workflow"]
+    }
+  ]
+}

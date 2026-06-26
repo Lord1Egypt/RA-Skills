@@ -1,0 +1,28 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff4f8"/>
+      <stop offset="100%" stop-color="#f3f0ff"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fffafc"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <circle cx="1120" cy="120" r="120" fill="#ffd9e7" opacity="0.7"/>
+  <circle cx="170" cy="520" r="155" fill="#e5d9ff" opacity="0.72"/>
+  <rect x="84" y="66" rx="34" ry="34" width="1112" height="508" fill="url(#card)" stroke="#f0d9e5" stroke-width="3"/>
+  <text x="146" y="164" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="30" font-weight="700" fill="#ff4d8d">xhs-content</text>
+  <text x="146" y="248" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="68" font-weight="800" fill="#201827">小红书内容生成 Skill</text>
+  <text x="146" y="308" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="30" font-weight="500" fill="#63556d">Hot-post breakdowns · A/B titles · Ready-to-publish drafts</text>
+  <text x="146" y="370" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#6f6278">职场成长 / 副业探索 / AI 工具应用</text>
+  <rect x="146" y="426" rx="18" ry="18" width="250" height="56" fill="#ff4d8d"/>
+  <text x="182" y="462" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" font-weight="700" fill="#ffffff">bilingual README ready</text>
+  <rect x="846" y="150" rx="26" ry="26" width="286" height="272" fill="#fff" stroke="#ffd5e5" stroke-width="2"/>
+  <text x="880" y="208" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="28" font-weight="700" fill="#ff4d8d">Wave 4</text>
+  <text x="880" y="256" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="22" fill="#5c5262">双语 README</text>
+  <text x="880" y="292" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="22" fill="#5c5262">案例库</text>
+  <text x="880" y="328" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="22" fill="#5c5262">展示素材</text>
+  <text x="880" y="364" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="22" fill="#5c5262">GitHub metadata</text>
+</svg>

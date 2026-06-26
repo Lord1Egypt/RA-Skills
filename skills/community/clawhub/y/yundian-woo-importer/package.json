@@ -1,0 +1,9 @@
+{
+  "name": "yundian-woo-importer-skill",
+  "version": "1.0.0",
+  "description": "Yundian+ WooCommerce Importer Skill",
+  "main": "mcp-server.ts",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

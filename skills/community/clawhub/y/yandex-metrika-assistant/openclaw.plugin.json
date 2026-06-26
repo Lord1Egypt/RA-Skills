@@ -1,0 +1,40 @@
+{
+  "id": "yandex-metrika-assistant",
+  "name": "Yandex Metrika Assistant",
+  "version": "1.0.0",
+  "description": "Yandex Metrika Assistant — OpenClaw: API Яндекс.Метрики (stat, Logs, management, импорт, OAuth). Автоматизация аналитики и AI-агенты. Канал: https://t.me/maya_pro",
+  "skills": ["."],
+  "uiHints": {
+    "oauthToken": {
+      "label": "OAuth-токен Метрики",
+      "help": "access_token Яндекса (metrika:read / metrika:write)",
+      "sensitive": true
+    },
+    "defaultCounterId": {
+      "label": "ID счётчика по умолчанию",
+      "help": "Подставляется в ids=, если пользователь не указал счётчик"
+    },
+    "oauthClientId": {
+      "label": "OAuth Client ID",
+      "help": "Для ссылки authorize, если токена ещё нет"
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "oauthToken": {
+        "type": "string",
+        "description": "OAuth access_token Яндекса (metrika:read/write). Только секреты OpenClaw/окружение — не коммитить, не дублировать в чат."
+      },
+      "defaultCounterId": {
+        "type": "integer",
+        "description": "Если задан — подставляй в ids=/counterId, когда пользователь не указал счётчик."
+      },
+      "oauthClientId": {
+        "type": "string",
+        "description": "Опционально: Client ID приложения OAuth — для генерации ссылки authorize, если токена ещё нет."
+      }
+    }
+  }
+}

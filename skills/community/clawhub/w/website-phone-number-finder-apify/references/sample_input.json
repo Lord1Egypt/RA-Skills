@@ -1,0 +1,17 @@
+{
+  "domains": [
+    "alchemist.dk",
+    "disfrutarbarcelona.com",
+    "diverxo.com"
+  ],
+  "maxResults": 100,
+  "resultMode": "phonesOnly",
+  "maxPagesPerWebsite": 3,
+  "concurrency": 100,
+  "requestTimeoutSecs": 5,
+  "extractPhones": true,
+  "extractEmails": false,
+  "extractSocials": true,
+  "includePersonalData": true,
+  "sameDomainOnly": true
+}

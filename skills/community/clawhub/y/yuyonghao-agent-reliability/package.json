@@ -1,0 +1,22 @@
+{
+  "name": "agent-reliability",
+  "version": "0.1.0",
+  "description": "Agent reliability framework for multi-step workflow accuracy management",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node test/reliability.test.js"
+  },
+  "keywords": [
+    "agent",
+    "reliability",
+    "monitoring",
+    "fallback",
+    "consensus",
+    "confidence"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

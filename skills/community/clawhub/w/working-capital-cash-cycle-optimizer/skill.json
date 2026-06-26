@@ -1,0 +1,25 @@
+{
+  "name": "Working Capital Optimizer",
+  "slug": "working-capital-optimizer",
+  "version": "1.0.0",
+  "description": "Analyzes receivables, payables, inventory, and cash-cycle friction to suggest working-capital improvement moves.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "working-capital",
+    "cash-cycle",
+    "receivables",
+    "inventory"
+  ],
+  "trigger_keywords": [
+    "working capital improvement",
+    "cash conversion cycle",
+    "reduce receivable days",
+    "payables strategy",
+    "inventory cash tie-up"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

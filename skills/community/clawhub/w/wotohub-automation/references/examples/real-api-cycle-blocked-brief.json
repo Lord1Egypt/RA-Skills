@@ -1,0 +1,33 @@
+{
+  "campaignId": "REPLACE_WITH_REAL_CAMPAIGN_ID",
+  "product": {
+    "productName": "Portable Juicer",
+    "brandName": "JuiceGo",
+    "sellingPoints": ["portable", "easy cleaning", "travel-friendly"],
+    "productType": "kitchen appliance",
+    "targetMarket": "us",
+    "language": "en"
+  },
+  "search": {
+    "platform": "tiktok",
+    "regions": ["us"],
+    "languages": ["en"],
+    "keywordHints": ["portable juicer", "portable blender", "smoothie on the go"],
+    "categoryHints": ["kitchen gadgets", "healthy lifestyle"]
+  },
+  "outreach": {
+    "senderName": "REPLACE_WITH_SENDER_NAME",
+    "offerType": "sample",
+    "deliverable": "short TikTok video",
+    "ctaGoal": "confirm interest in trying the product"
+  },
+  "selectionRule": {
+    "type": "top_n",
+    "topN": 5
+  },
+  "draftPolicy": {
+    "mode": "host_model_per_cycle",
+    "allowFallbackDrafts": false,
+    "batchGeneration": true
+  }
+}

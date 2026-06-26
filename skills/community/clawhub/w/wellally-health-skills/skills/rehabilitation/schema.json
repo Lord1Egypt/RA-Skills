@@ -1,0 +1,184 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/rehabilitation-tracker.json",
+  "title": "RehabilitationTracker",
+  "description": "康复训练管理数据结构定义",
+  "type": "object",
+  "properties": {
+    "rehabilitation_management": {
+      "type": "object",
+      "properties": {
+        "user_profile": {
+          "type": "object",
+          "properties": {
+            "condition": {
+              "type": "string",
+              "enum": ["acl_reconstruction", "meniscus_surgery", "fracture", "joint_replacement", "spine_surgery", "ankle_sprain", "knee_injury", "shoulder_injury", "tennis_elbow", "muscle_strain", "stroke", "spinal_cord_injury", "parkinsons", "multiple_sclerosis", "cardiac_surgery", "copd", "pneumonia", "covid_rehab", "other"]
+            },
+            "injury_date": {"type": "string", "format": "date"},
+            "surgery_date": {"type": "string", "format": "date"},
+            "surgeon": {"type": "string"},
+            "therapist": {"type": "string"},
+            "current_phase": {"type": "string"},
+            "phase_start_date": {"type": "string", "format": "date"}
+          },
+          "required": ["condition"]
+        },
+        "rehabilitation_goals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "goal_id": {"type": "string"},
+              "category": {
+                "type": "string",
+                "enum": ["rom", "strength", "functional", "pain", "activity"]
+              },
+              "description": {"type": "string"},
+              "baseline": {"type": "number"},
+              "current": {"type": "number"},
+              "target": {"type": "number"},
+              "unit": {"type": "string"},
+              "status": {
+                "type": "string",
+                "enum": ["pending", "in_progress", "on_track", "behind", "achieved", "cancelled"]
+              },
+              "target_date": {"type": "string", "format": "date"}
+            },
+            "required": ["goal_id", "category", "description"]
+          }
+        },
+        "exercise_log": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {"type": "string"},
+              "date": {"type": "string", "format": "date"},
+              "time": {"type": "string", "pattern": "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"},
+              "exercise_name": {"type": "string"},
+              "exercise_category": {
+                "type": "string",
+                "enum": ["rom_exercises", "stretching", "strength", "balance", "functional"]
+              },
+              "sets": {"type": "integer", "minimum": 0},
+              "reps": {"type": "integer", "minimum": 0},
+              "duration_minutes": {"type": "number", "minimum": 0},
+              "resistance": {"type": "string"},
+              "pain_level": {"type": "integer", "minimum": 0, "maximum": 10},
+              "rpe": {"type": "integer", "minimum": 6, "maximum": 20},
+              "notes": {"type": "string"},
+              "created_at": {"type": "string", "format": "date-time"}
+            },
+            "required": ["id", "date", "exercise_name"]
+          }
+        },
+        "functional_assessments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "assessment_date": {"type": "string", "format": "date"},
+              "rom": {
+                "type": "object",
+                "properties": {
+                  "joint": {"type": "string"},
+                  "flexion": {"type": "integer", "minimum": -30, "maximum": 180},
+                  "extension": {"type": "integer", "minimum": -30, "maximum": 90},
+                  "abduction": {"type": "integer", "minimum": 0, "maximum": 180},
+                  "rotation": {"type": "integer", "minimum": -90, "maximum": 90},
+                  "target_range": {"type": "string"}
+                }
+              },
+              "muscle_strength": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string",
+                  "pattern": "^[0-5]/[5]$"
+                }
+              },
+              "pain_assessment": {
+                "type": "object",
+                "properties": {
+                  "vas_at_rest": {"type": "integer", "minimum": 0, "maximum": 10},
+                  "vas_with_activity": {"type": "integer", "minimum": 0, "maximum": 10},
+                  "location": {"type": "string"}
+                }
+              },
+              "balance": {
+                "type": "object",
+                "properties": {
+                  "test_type": {
+                    "type": "string",
+                    "enum": ["single_leg_stance", "berg_balance", "tug", "tinetti"]
+                  },
+                  "score": {"type": "number"},
+                  "duration_seconds": {"type": "number"},
+                  "notes": {"type": "string"}
+                }
+              },
+              "gait": {
+                "type": "object",
+                "properties": {
+                  "distance_meters": {"type": "number"},
+                  "description": {"type": "string"},
+                  "assistance": {"type": "string"}
+                }
+              },
+              "functional_tests": {
+                "type": "object",
+                "properties": {
+                  "adl_score": {"type": "integer", "minimum": 0, "maximum": 100},
+                  "lefs_score": {"type": "integer", "minimum": 0, "maximum": 80},
+                  "dash_score": {"type": "integer", "minimum": 0, "maximum": 100}
+                }
+              }
+            }
+          }
+        },
+        "phase_progression": {
+          "type": "object",
+          "properties": {
+            "current_phase": {"type": "string"},
+            "phases_completed": {"type": "array", "items": {"type": "string"}},
+            "phase_start_date": {"type": "string", "format": "date"},
+            "estimated_completion": {"type": "string", "format": "date"}
+          }
+        },
+        "pain_diary": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": {"type": "string", "format": "date"},
+              "pain_at_rest": {"type": "integer", "minimum": 0, "maximum": 10},
+              "pain_with_activity": {"type": "integer", "minimum": 0, "maximum": 10},
+              "pain_location": {"type": "string"},
+              "notes": {"type": "string"}
+            }
+          }
+        },
+        "statistics": {
+          "type": "object",
+          "properties": {
+            "rehabilitation_days": {"type": "integer"},
+            "exercises_completed": {"type": "integer"},
+            "exercises_planned": {"type": "integer"},
+            "adherence_rate": {"type": "number"},
+            "goals_achieved": {"type": "integer"},
+            "goals_total": {"type": "integer"},
+            "avg_pain_level": {"type": "number"}
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "created_at": {"type": "string", "format": "date-time"},
+            "updated_at": {"type": "string", "format": "date-time"}
+          }
+        }
+      },
+      "required": ["user_profile"]
+    }
+  }
+}

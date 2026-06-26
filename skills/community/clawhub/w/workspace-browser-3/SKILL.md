@@ -1,35 +1,53 @@
----
-name: "Release Package"
-description: "Browse and search workspace files with syntax-highlighted code and AI-generated explanations saved persistently in SQLite."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/workspace-browser-3"
-sourceUrl: "https://clawhub.ai/skills/workspace-browser-3"
----
+# Workspace浏览器3.0 Skill
 
-# Release Package
+## 🚀 功能特性
 
-> Browse and search workspace files with syntax-highlighted code and AI-generated explanations saved persistently in SQLite.
+### 核心功能
+- **文件树浏览**：马卡龙色系侧边栏，支持文件夹展开/收起
+- **代码查看**：语法高亮（Prism.js），双Tab系统（源代码 + AI解释）
+- **AI代码解释**：自动生成代码解释，保存到SQLite数据库
+- **全文搜索**：递归搜索整个workspace，实时结果显示
+- **文件操作**：下载文件、复制代码到剪贴板
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/workspace-browser-3`
-- **Source URL:** [https://clawhub.ai/skills/workspace-browser-3](https://clawhub.ai/skills/workspace-browser-3)
+### 高级功能
+- **持久化记忆**：代码解释自动保存，下次直接显示
+- **手动输入**：支持手动输入代码解释
+- **智能布局**：自适应界面，支持移动端
+- **状态管理**：搜索状态和文件查看状态分离
 
-## Overview
+## 📦 安装
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### 通过ClawHub安装
 ```bash
-hermes skills install clawhub/workspace-browser-3
+clawhub install workspace-browser-3
 ```
+
+### 手动安装
+1. 复制整个项目文件夹
+2. 安装依赖：`pip install flask`
+3. 运行：`./start.sh`
+
+## 🎯 使用方法
+
+### 基本使用
+1. **访问应用**：打开 http://localhost:5001
+2. **浏览文件**：点击侧边栏文件树中的文件
+3. **查看代码**：在源代码Tab中查看语法高亮的代码
+4. **获取解释**：点击解释Tab获取AI代码解释
+
+### 搜索功能
+1. **输入关键词**：在侧边栏搜索框中输入
+2. **触发搜索**：按回车键
+3. **查看结果**：在主工作区查看搜索结果
+4. **打开文件**：点击搜索结果中的文件
+
+## ⚙️ 配置
+- **端口**：默认5001，可在manifest.json中修改
+- **根目录**：当前workspace目录
+- **数据库**：SQLite3，自动创建
+
+## 📄 许可证
+MIT License
+
+## 👥 贡献
+欢迎提交Issue和Pull Request！

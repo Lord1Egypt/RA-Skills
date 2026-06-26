@@ -1,0 +1,13 @@
+{
+  "session_id": "",
+  "context_name": "xiaohongshu",
+  "image_id": "linux_latest",
+  "agentbay_api_key": "",
+  "agentbay_region_id": "",
+  "agentbay_endpoint": "",
+  "agentbay_timeout_ms": "30000",
+  "proxy": {},
+  "keywords": [],
+  "max_notes_per_keyword": 3,
+  "scroll_rounds": 10
+}

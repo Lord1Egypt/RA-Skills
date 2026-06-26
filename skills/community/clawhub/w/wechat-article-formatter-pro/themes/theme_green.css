@@ -1,0 +1,142 @@
+/* =========================================
+   微信公众号自动化排版 - 护眼绿主题
+                                        公众号:悟空极度舒适
+========================================= */
+
+/* 主体样式 */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.8;
+    color: #333;
+    max-width: 677px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+}
+
+/* 一级标题 */
+h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 30px 0 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #52C41A;
+    color: #000;
+}
+
+/* 二级标题：保留你提供的完美卡片设计 */
+h2 {
+    font-size: 17px;
+    font-weight: bold;
+    margin: 20px 0 12px;
+    padding: 12px 16px;
+    color: #52C41A;
+    background-color: #F6FFED;
+    border-radius: 8px;
+    border-left: 4px solid #52C41A;
+    font-family: "PingFang SC", system-ui, -apple-system, "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;
+    text-align: justify;
+    box-sizing: border-box !important;
+    overflow-wrap: break-word !important;
+}
+
+/* 三级标题 */
+h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 25px 0 15px;
+    color: #52C41A;
+}
+
+/* 段落和列表 */
+p {
+    margin: 15px 0;
+    text-align: justify;
+}
+
+ul, ol {
+    padding-left: 22px;
+    margin: 15px 0;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* 强调文字 */
+strong {
+    color: #52C41A;
+    font-weight: 600;
+}
+
+/* 行内代码 */
+code {
+    background: #F6FFED;
+    color: #52C41A;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 14px;
+}
+
+/* 代码块（多行）：保持极客黑底色 */
+pre {
+    background: #282c34; 
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 20px 0;
+    border-left: 3px solid #52C41A;
+}
+
+pre code {
+    background: none;
+    color: #abb2bf;
+    padding: 0;
+    border-radius: 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* 表格样式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px #e0e0e0;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #e0e0e0;
+}
+
+th {
+    background: #F6FFED;
+    color: #52C41A;
+    font-weight: 600;
+}
+
+/* 引用块样式 */
+blockquote {
+    border-left: 4px solid #52C41A;
+    margin: 20px 0;
+    color: #666;
+    background: #F6FFED;
+    padding: 12px 15px;
+    border-radius: 0 8px 8px 0;
+}
+
+blockquote p {
+    margin: 0;
+}
+
+/* 分隔线 */
+hr {
+    border: none;
+    border-top: 2px dashed #B7EB8F;
+    margin: 30px 0;
+}

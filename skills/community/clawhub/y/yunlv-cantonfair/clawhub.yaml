@@ -1,0 +1,64 @@
+name: yunlv-guangjiao
+version: 1.1.0
+license: MIT-0
+type: openclaw-skill
+description: Use when user needs to generate Canton Fair lead discovery strategies and outreach plans.
+  Use when generating trade show customer development strategies. Use when creating personalized
+  outreach content, product categories, booth information references. Use when user mentions
+  "广交会", "展会获客策略", "摊位号", "展商开发", "展会客户开发策略", "采购商开发策略".
+emoji: 🤖
+homepage: https://yunlvai.com
+publisher:
+  name: 云旅AI团队
+  website: https://yunlvai.com
+required_env:
+- TRADEGPT_API_KEY
+primary_env: TRADEGPT_API_KEY
+apis:
+- name: 云旅AI MatchGPT API
+  url: https://api.yunlvai.com
+  purpose: 生成展会获客策略与个性化开发内容
+  auth: Bearer Token (TRADEGPT_API_KEY)
+category: customer-development
+tags:
+- 广交会
+- 展会获客
+- 展商开发
+- B2B外贸
+- Canton Fair
+- 获客策略
+triggers:
+- 广交会
+- 展会获客策略
+- 展商开发策略
+- 采购商开发策略
+- 展会信息参考
+- Canton Fair
+- 参展商
+- 展会数据
+- 采购商名单
+- 展品分类
+pricing:
+  free:
+    features:
+    - 每期3次策略生成
+    - 基础展商信息
+    - 展品分类浏览
+  basic:
+    price: 299
+    currency: CNY
+    period: month
+    features:
+    - 每月100次策略生成
+    - 展商联系信息整理
+    - 邮件开发信内容生成
+    - WhatsApp消息内容模板
+  pro:
+    price: 999
+    currency: CNY
+    period: month
+    features:
+    - 无限策略生成
+    - 决策人信息整理
+    - 多期展会变化参考
+    - Priority邮件内容生成

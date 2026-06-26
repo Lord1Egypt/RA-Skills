@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width={{W}}, height={{H}}">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: {{W}}px; height: {{H}}px;
+  font-family: {{FONT_TITLE}};
+  background: {{BG}};
+  color: {{TEXT}};
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+/* top green bar */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, {{ACCENT}}, rgba(16, 185, 129, 0.2));
+}
+/* decorative chart line (pure CSS) */
+.chart-line {
+  position: absolute;
+  bottom: 40px; right: 30px;
+  pointer-events: none;
+  opacity: 0.04;
+}
+.chart-line svg { display: block; }
+.container {
+  position: relative;
+  z-index: 1;
+  padding: 32px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.title {
+  font-size: {{TITLE_SIZE_V}};
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.title::before {
+  content: '◆';
+  color: {{ACCENT}};
+  font-size: calc({{TITLE_SIZE_V}} * 0.4);
+  opacity: 0.5;
+}
+/* stat cards grid */
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.data-card {
+  background: {{TEXT}};
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+.data-num {
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 1.2);
+  font-weight: 800;
+  color: {{ACCENT}};
+  line-height: 1;
+}
+.data-label {
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.4);
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+  margin-top: 3px;
+  letter-spacing: 0.05em;
+}
+.content {
+  font-family: {{FONT_BODY}};
+  font-size: {{CONTENT_SIZE}};
+  font-weight: 400;
+  line-height: 1.6;
+  color: {{SECONDARY}};
+  max-width: 95%;
+}
+/* points as KPI metric lines */
+.points {
+  list-style: none;
+  margin-top: 8px;
+}
+.points li {
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE}} - 2px);
+  font-weight: 400;
+  color: {{TEXT}};
+  opacity: 0.85;
+  padding: 7px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(100, 116, 139, 0.06);
+}
+.points li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  background: {{ACCENT}};
+  border-radius: 2px;
+}
+.points:empty { display: none; }
+.source {
+  position: absolute;
+  bottom: 12px;
+  right: 32px;
+  font-family: {{FONT_BODY}};
+  font-size: calc({{CONTENT_SIZE__PRINT}} * 0.55);
+  color: {{SECONDARY}};
+  opacity: 0.4;
+}
+@media (max-aspect-ratio: 4/5) {
+  .title { font-size: {{TITLE_SIZE_S}}; }
+  .data-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .data-num { font-size: 24px; }
+  .content { max-width: 95%; }
+  .container { padding: 24px; }
+}
+@media (min-aspect-ratio: 5/4) {
+  .title { font-size: {{TITLE_SIZE_W}}; }
+  .container { flex-direction: row; flex-wrap: wrap; gap: 8px; padding: 28px 36px; }
+  .container > * { flex: 1 1 45%; }
+  .content { max-width: 100%; }
+  .data-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-aspect-ratio: 7/3) {
+  .title { font-size: {{TITLE_SIZE_C}}; }
+  .container { flex-direction: row; flex-wrap: nowrap; align-items: center; gap: 16px; padding: 16px 40px; }
+  .data-grid { grid-template-columns: repeat(3, 1fr); min-width: 280px; }
+  .data-num { font-size: 22px; }
+  .data-card { padding: 8px 12px; }
+  .points { margin-top: 0; }
+}
+</style>
+</head>
+<body>
+<div class="chart-line">
+  <svg width="120" height="60" viewBox="0 0 120 60"><polyline points="0,50 20,35 40,45 60,20 80,30 100,10 120,15" fill="none" stroke="{{ACCENT}}" stroke-width="1.5"/></svg>
+</div>
+<div class="container">
+  <h1 class="title">{{TITLE}}</h1>
+  <div class="data-grid">
+    <div class="data-card"><div class="data-num">{{METRIC_1}}</div><div class="data-label">{{METRIC_LABEL_1}}</div></div>
+    <div class="data-card"><div class="data-num">{{METRIC_2}}</div><div class="data-label">{{METRIC_LABEL_2}}</div></div>
+    <div class="data-card"><div class="data-num">{{METRIC_3}}</div><div class="data-label">{{METRIC_LABEL_3}}</div></div>
+  </div>
+  <div class="content">{{CONTENT}}</div>
+  <ul class="points">{{POINTS_HTML}}</ul>
+</div>
+<div class="source">{{SOURCE}}</div>
+</body>
+</html>

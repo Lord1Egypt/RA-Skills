@@ -1,35 +1,49 @@
 ---
-name: "Ximalaya"
-description: "提供喜马拉雅公开节目和主播页面的播放量、评论等数据摘要与榜单统计，辅助内容分析与提醒。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ximalaya"
-sourceUrl: "https://clawhub.ai/skills/ximalaya"
+name: ximalaya-hot-trend
+description: 注册“喜马拉雅”热门技能；当需要访问或自动化喜马拉雅相关内容时调用。
+homepage: `https://www.ximalaya.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Ximalaya
+# 喜马拉雅
 
-> 提供喜马拉雅公开节目和主播页面的播放量、评论等数据摘要与榜单统计，辅助内容分析与提醒。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ximalaya`
-- **Source URL:** [https://clawhub.ai/skills/ximalaya](https://clawhub.ai/skills/ximalaya)
+- 面向公开节目/专辑/主播页的检索与表现数据摘要
+- 不提供下载、接口逆向或突破风控能力
+- 仅用于公开页面的轻量分析与提醒
 
-## Overview
+关键入口
 
+- 主页：https://www.ximalaya.com/
+- 榜单/分类：站点入口
+- 搜索入口：https://www.ximalaya.com/search
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ximalaya
-```
+常见任务
+
+- 指定关键词/分类的节目列表摘要（播放量、收藏、评论）
+- 主播主页近期节目的交互表现对比
+- 榜单条目分布与题材统计
+
+数据字段
+
+- 节目名称、专辑/主播、时长、发布时间、播放量/收藏/评论、链接
+- 主播主页链接、近期节目交互指标摘要
+- 榜单名称、采集时间、来源链接
+
+自动化要点
+
+- 动态渲染与人机校验，建议人工打开后触发解析
+- 请求频率需控制，不进行批量抓取
+- 不进行下载或接口调用
+
+示例流程
+
+- 关键词摘要：输入关键词 → 搜索 → 抽取条目 → 输出表现摘要
+- 主播对比：访问主页 → 抽取近期节目 → 输出交互指标
+- 榜单统计：访问榜单 → 抽取条目 → 题材分布统计
+
+合规提示
+
+- 遵守平台规则，不进行下载、接口调用或批量采集
+- 结果仅用于内部分析与提醒

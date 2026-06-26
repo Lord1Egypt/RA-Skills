@@ -1,0 +1,150 @@
+{
+  "evals": [
+    {
+      "id": "wxb-001",
+      "description": "获取客户列表",
+      "query": "显示客户列表",
+      "expected_tool": "api-client.js",
+      "expected_command": "getCustomerList",
+      "expected_params": {
+        "page": 1,
+        "size": 20
+      }
+    },
+    {
+      "id": "wxb-002",
+      "description": "获取客户画像",
+      "query": "查看客户123的画像",
+      "expected_tool": "api-client.js",
+      "expected_command": "getCustomerDetail",
+      "expected_params": {
+        "customerId": "123"
+      }
+    },
+    {
+      "id": "wxb-003",
+      "description": "获取客户关注点",
+      "query": "查看客户123的关注点",
+      "expected_tool": "api-client.js",
+      "expected_command": "getFocusWangList",
+      "expected_params": {
+        "wangId": "123"
+      }
+    },
+    {
+      "id": "wxb-004",
+      "description": "获取客户抗性点",
+      "query": "查看客户123的抗性点",
+      "expected_tool": "api-client.js",
+      "expected_command": "getPointWangList",
+      "expected_params": {
+        "wangId": "123"
+      }
+    },
+    {
+      "id": "wxb-005",
+      "description": "获取客户轨迹",
+      "query": "查看客户123的来访轨迹",
+      "expected_tool": "api-client.js",
+      "expected_command": "getCustomerTrajectory",
+      "expected_params": {
+        "wangId": "123"
+      }
+    },
+    {
+      "id": "wxb-006",
+      "description": "获取用户信息",
+      "query": "查看当前登录的用户信息",
+      "expected_tool": "api-client.js",
+      "expected_command": "getUserInfo",
+      "expected_params": {}
+    },
+    {
+      "id": "wxb-007",
+      "description": "获取租户列表",
+      "query": "我有哪些租户和项目",
+      "expected_tool": "api-client.js",
+      "expected_command": "getTenantAndEstateList",
+      "expected_params": {}
+    },
+    {
+      "id": "wxb-008",
+      "description": "切换租户",
+      "query": "切换到租户123",
+      "expected_tool": "api-client.js",
+      "expected_command": "switchTenant",
+      "expected_params": {
+        "tenantId": "123"
+      }
+    },
+    {
+      "id": "wxb-009",
+      "description": "重新预测客户画像",
+      "query": "重新预测客户123的画像",
+      "expected_tool": "api-client.js",
+      "expected_command": "rePredict",
+      "expected_params": {
+        "wangId": "123"
+      }
+    },
+    {
+      "id": "wxb-010",
+      "description": "按日期查询客户",
+      "query": "查看2026-05-01到2026-05-15的新增客户",
+      "expected_tool": "api-client.js",
+      "expected_command": "getCustomerList",
+      "expected_params": {
+        "startTime": "2026-05-01 00:00:00",
+        "endTime": "2026-05-15 23:59:59",
+        "page": 1,
+        "size": 20
+      }
+    },
+    {
+      "id": "wxb-011",
+      "description": "获取录音详情",
+      "query": "查看录音123的详情",
+      "expected_tool": "api-client.js",
+      "expected_command": "getAudioBase",
+      "expected_params": {
+        "id": "123"
+      }
+    },
+    {
+      "id": "wxb-012",
+      "description": "获取录音文本",
+      "query": "查看录音123的文本内容",
+      "expected_tool": "api-client.js",
+      "expected_command": "getAudioBaseText",
+      "expected_params": {
+        "id": "123"
+      }
+    },
+    {
+      "id": "wxb-013",
+      "description": "获取录音摘要",
+      "query": "查看录音123的摘要",
+      "expected_tool": "api-client.js",
+      "expected_command": "getAudioSummaryAndQa",
+      "expected_params": {
+        "id": "123"
+      }
+    },
+    {
+      "id": "wxb-014",
+      "description": "获取今日代办统计",
+      "query": "今天还有多少待办",
+      "expected_tool": "api-client.js",
+      "expected_command": "virtuallyTodayTodoCount",
+      "expected_params": {}
+    },
+    {
+      "id": "wxb-015",
+      "description": "获取今日代办列表",
+      "query": "显示今天的待办列表",
+      "expected_tool": "api-client.js",
+      "expected_command": "virtuallyTodayTodoList",
+      "expected_params": {}
+    }
+  ]
+}

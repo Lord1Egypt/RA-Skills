@@ -1,0 +1,7 @@
+{
+    "name": "wordpress-publish-skill",
+    "version": "1.0.0",
+    "description": "WordPress文章发布助手 - 根据关键词生成文章并发布到WordPress网站，需要用户提供用户名和应用程序密码",
+    "author": "liuxc",
+    "created": "2026-05-25"
+}

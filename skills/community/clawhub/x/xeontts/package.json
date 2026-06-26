@@ -1,0 +1,22 @@
+{
+  "name": "xeon-tts",
+  "version": "1.0.0",
+  "description": "Xeon TTS 本地语音合成技能，面向 OpenClaw QQBOT 的音色克隆与风格化 TTS 工作流",
+  "main": "server.js",
+  "scripts": {
+    "install:all": "bash ./install.sh",
+    "self-check": "bash ./self_check.sh",
+    "start": "node server.js",
+    "start:tts": "xdp-tts-service --host 127.0.0.1 --port 5002 --config ./tts_config.json",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["xeon", "tts", "voice-clone", "speech", "qqbot", "openclaw", "openvino", "qwen3"],
+  "author": "aurora2035",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "formidable": "^3.5.4"
+  }
+}

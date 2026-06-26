@@ -1,0 +1,20 @@
+{
+  "name": "wechat-content-studio",
+  "version": "1.0.0",
+  "description": "微信公众号内容工作室 - 搜索、抓取、合并、改写、发布一站式工具",
+  "type": "module",
+  "scripts": {
+    "search": "node scripts/main.js search",
+    "links": "node scripts/main.js links",
+    "rewrite": "node scripts/main.js rewrite",
+    "publish": "node scripts/main.js publish",
+    "generate-cover": "node scripts/main.js generate-cover"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.2.0",
+    "commander": "^11.0.0",
+    "http-proxy-agent": "^7.0.2",
+    "https-proxy-agent": "^7.0.6"
+  }
+}

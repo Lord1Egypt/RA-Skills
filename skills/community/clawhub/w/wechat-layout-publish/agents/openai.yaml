@@ -1,0 +1,4 @@
+interface:
+  display_name: Welight 公众号排版发布
+  short_description: 以 Welight 风格将文章排版成公众号兼容内容，并走完草稿与一键发布流程
+  default_prompt: Use $welight-wechat-layout-publish as a standalone Welight skill to extract or accept an article, normalize it into Markdown when needed, list the built-in theme choices for user selection, apply the selected theme, and publish to WeChat Official Accounts as a draft or formal post when the runtime already has the required publishing prerequisites configured.

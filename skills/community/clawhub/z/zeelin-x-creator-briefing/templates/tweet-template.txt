@@ -1,0 +1,10 @@
+📊 AI Creator Briefing - {date}
+
+Top Updates:
+1. @{handle1}: {summary1}
+2. @{handle2}: {summary2}
+3. @{handle3}: {summary3}
+
+🔗 Full briefing: {briefing_url}
+
+#AI #OpenClaw #Agent

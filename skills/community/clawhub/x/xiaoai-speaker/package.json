@@ -1,0 +1,40 @@
+{
+  "name": "xiaoai-speaker",
+  "version": "1.0.0",
+  "description": "小爱音箱语音播报 - 通过环境变量配置，一句话控制小爱音箱",
+  "author": "zkfan",
+  "license": "MIT",
+  "repository": "https://github.com/zkfan/xiaoai-speaker",
+  "keywords": ["xiaomi", "xiaoai", "speaker", "tts", "voice", "智能家居"],
+  "commands": {
+    "xiaoai": {
+      "description": "小爱音箱控制（需设置 MI_USER/MI_PASS 环境变量）",
+      "subcommands": {
+        "say": {
+          "description": "播报消息",
+          "usage": "xiaoai say <消息> [--device <设备名>]",
+          "example": "xiaoai say '该喝水啦'"
+        },
+        "list": {
+          "description": "列出设备",
+          "usage": "xiaoai list",
+          "example": "xiaoai list"
+        },
+        "test": {
+          "description": "测试连接",
+          "usage": "xiaoai test",
+          "example": "xiaoai test"
+        },
+        "setup": {
+          "description": "显示环境变量配置说明",
+          "usage": "xiaoai setup",
+          "example": "xiaoai setup"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "pip": ["aiohttp"]
+  }
+}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7个AI概念一次搞懂：大模型、Agent、API、Skill、MCP、Token、OpenClaw</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .controls button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .card {
+            width: 414px;
+            height: 553px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-cover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        .card-cover h1 { font-size: 28px; margin-bottom: 15px; }
+        .card h2 { font-size: 22px; margin-bottom: 12px; border-bottom: 3px solid #667eea; padding-bottom: 8px; }
+        .card p, .card li { font-size: 14px; line-height: 1.6; margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="controls"><button onclick="downloadAllCards()">📸 下载卡片图</button></div>
+    <div id="cards-container">
+
+        <!-- 第1张：封面 -->
+        <div class="card card-cover" data-index="1">
+            <h1>7个AI概念一次搞懂：大模型、Agent、API、Skill、MCP、Token、OpenClaw</h1>
+            <p style="font-size: 16px; opacity: 0.9;">AI智能生成<br>LLM驱动的内容</p>
+        </div>
+
+        <!-- 第2张：一张图看懂关系 -->
+<div class="card" style="width:414px;height:553px;background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,0.28);padding:22px;box-sizing:border-box;color:#ffffff;font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', PingFang SC, 'Hiragino Sans GB', 'Microsoft Yahei', Arial, sans-serif;">
+  <!-- Header -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+    <div style="display:flex;align-items:center;">
+      <div style="width:46px;height:46px;border-radius:10px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;margin-right:12px;box-shadow:inset 0 -6px 12px rgba(255,255,255,0.02);">
+        <span style="font-size:22px;">📊</span>
+      </div>
+      <div>
+        <div style="font-size:22px;font-weight:700;line-height:1;">一张图看懂关系 ✨</div>
+        <div style="font-size:14px;color:rgba(255,255,255,0.92);margin-top:4px;">想象你要做一道菜 🍽️</div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.85);background:rgba(0,0,0,0.12);padding:6px 10px;border-radius:8px;">快速对照</div>
+  </div>
+
+  <!-- Divider -->
+  <div style="height:1px;background:rgba(255,255,255,0.08);border-radius:1px;margin:6px 0 14px;"></div>
+
+  <!-- Analogy list (icons + text) -->
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="display:flex;align-items:flex-start;background:rgba(255,255,255,0.06);padding:10px;border-radius:10px;">
+      <div style="font-size:26px;margin-right:12px;line-height:1;">👨‍🍳</div>
+      <div style="font-size:15px;color:#ffffff;">
+        <strong>大模型</strong> = 厨师的大脑（会思考、会创新）
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;background:rgba(255,255,255,0.06);padding:10px;border-radius:10px;">
+      <div style="font-size:26px;margin-right:12px;line-height:1;">📝</div>
+      <div style="font-size:15px;color:#ffffff;">
+        <strong>Token</strong> = 食材切成的块（处理信息的最小单位）
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;background:rgba(255,255,255,0.06);padding:10px;border-radius:10px;">
+      <div style="font-size:26px;margin-right:12px;line-height:1;">🚪</div>
+      <div style="font-size:15px;color:#ffffff;">
+        <strong>API</strong> = 厨房窗口（按规矩点菜取餐）
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;background:rgba(255,255,255,0.06);padding:10px;border-radius:10px;">
+      <div style="font-size:26px;margin-right:12px;line-height:1;">🔧</div>
+      <div style="font-size:15px;color:#ffffff;">
+        <strong>Skill / MCP</strong> = 厨具套装（刀、锅、铲子等具体工具）
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;background:rgba(255,255,255,0.06);padding:10px;border-radius:10px;">
+      <div style="font-size:26px;margin-right:12px;line-height:1;">🤖</div>
+      <div style="font-size:15px;color:#ffffff;">
+        <strong>Agent</strong> = 完整的厨师（有大脑 + 会规划 + 会用工具）
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;background:rgba(255,255,255,0.06);padding:10px;border-radius:10px;">
+      <div style="font-size:26px;margin-right:12px;line-height:1;">🏠</div>
+      <div style="font-size:15px;color:#ffffff;">
+        <strong>OpenClaw</strong> = 餐厅（让他们工作的平台 / 环境）
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer note -->
+  <div style="position:absolute;left:22px;bottom:20px;right:22px;font-size:12px;color:rgba(255,255,255,0.86);display:flex;justify-content:space-between;align-items:center;">
+    <div>快速记忆小技巧 ✍️</div>
+    <div style="background:linear-gradient(90deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));padding:6px 10px;border-radius:8px;font-weight:600;">一览即懂</div>
+  </div>
+</div>
+
+        <!-- 第3张：1️⃣ 大模型（Large Language Model） -->
+<div class="card" style="width:414px;height:553px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.25);padding:20px;box-sizing:border-box;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:#ffffff;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;">
+  <!-- Title -->
+  <div style="font-size:22px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;">
+    <span style="display:inline-block;background:rgba(255,255,255,0.12);padding:6px 10px;border-radius:8px;margin-right:10px;font-size:18px;">1️⃣</span>
+    <div>
+      <div style="line-height:1;"> <strong>大模型（Large Language Model）</strong> </div>
+    </div>
+  </div>
+
+  <!-- Definition Highlight Box -->
+  <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:12px;margin-bottom:12px;border-left:4px solid rgba(255,255,255,0.22);">
+    <div style="font-size:14px;line-height:1.4;">
+      <div style="margin-bottom:6px;font-weight:600;">一句话 ✨</div>
+      <div>AI的<span style="color:#fff;">"<strong>大脑</strong>"</span>，会思考、会说话、会创作的数字智能。</div>
+    </div>
+  </div>
+
+  <!-- Analogy: icon + text -->
+  <div style="display:flex;align-items:flex-start;background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));padding:10px;border-radius:10px;margin-bottom:12px;">
+    <div style="font-size:28px;margin-right:10px;line-height:1.1;">📚</div>
+    <div style="font-size:14px;line-height:1.4;">
+      <div style="font-weight:600;margin-bottom:6px;">生活类比 🧠</div>
+      <div>就像一个读完全世界所有书的<strong>超级学霸</strong>，你问什么他都能答，还能帮你写文章、编代码、分析数据。</div>
+    </div>
+  </div>
+
+  <!-- Common models list -->
+  <div style="flex-shrink:0;background:rgba(255,255,255,0.04);padding:10px;border-radius:10px;margin-bottom:12px;">
+    <div style="font-size:14px;font-weight:600;margin-bottom:8px;">常见的大模型 🔎</div>
+    <ul style="margin:0;padding-left:18px;font-size:14px;line-height:1.6;">
+      <li><strong>GPT-4</strong>（OpenAI）</li>
+      <li><strong>Claude</strong>（Anthropic）</li>
+      <li><strong>通义千问</strong>（阿里）</li>
+      <li><strong>DeepSeek</strong>（深度求索）</li>
+    </ul>
+  </div>
+
+  <!-- Key features -->
+  <div style="margin-top:auto;background:rgba(255,255,255,0.06);padding:12px;border-radius:10px;">
+    <div style="font-size:14px;font-weight:700;margin-bottom:8px;">关键特点 ✅❌</div>
+    <ul style="margin:0;padding:0;list-style:none;font-size:14px;line-height:1.6;">
+      <li style="display:flex;align-items:center;margin-bottom:6px;">
+        <div style="width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#28d79f,#06b783);display:flex;align-items:center;justify-content:center;margin-right:10px;font-weight:700;">✅</div>
+        <div><strong>通用性强</strong>，什么话题都能聊</div>
+      </li>
+      <li style="display:flex;align-items:center;margin-bottom:6px;">
+        <div style="width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#ffd166,#ff8a00);display:flex;align-items:center;justify-content:center;margin-right:10px;font-weight:700;">🗣️</div>
+        <div>能理解上下文，进行<span style="font-weight:600;">多轮对话</span></div>
+      </li>
+      <li style="display:flex;align-items:center;">
+        <div style="width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#ff6b6b,#ff3b30);display:flex;align-items:center;justify-content:center;margin-right:10px;font-weight:700;">❌</div>
+        <div><strong>不能自己上网</strong>、<strong>不能操作你的电脑</strong></div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+    </div>
+    <script>
+        async function downloadAllCards() {
+            const cards = document.querySelectorAll('.card');
+            for(let i=0; i<cards.length; i++) {
+                const canvas = await html2canvas(cards[i], {scale: 3});
+                const link = document.createElement('a');
+                link.download = 'xhs-card-' + String(i+1).padStart(2,'0') + '.png';
+                link.href = canvas.toDataURL();
+                link.click();
+                await new Promise(r=>setTimeout(r, 500));
+            }
+        }
+    </script>
+</body>
+</html>

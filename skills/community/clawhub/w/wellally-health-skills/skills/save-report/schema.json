@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/medical-test-report.json",
+  "title": "MedicalTestReport",
+  "description": "医疗检查单的数据结构定义",
+  "oneOf": [
+    {
+      "title": "BiochemicalTestReport",
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "type": {
+          "type": "string",
+          "enum": ["生化检查"]
+        },
+        "date": {"type": "string", "format": "date"},
+        "hospital": {"type": "string"},
+        "original_image": {"type": "string"},
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "value": {"type": "string"},
+              "unit": {"type": "string"},
+              "min_ref": {"type": "string"},
+              "max_ref": {"type": "string"},
+              "is_abnormal": {"type": "boolean"}
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "ImagingTestReport",
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "type": {
+          "type": "string",
+          "enum": ["影像检查"]
+        },
+        "subtype": {
+          "type": "string",
+          "enum": ["B超", "CT", "MRI", "X光", "内窥镜", "病理", "心电图", "乳腺钼靶", "PET-CT"]
+        },
+        "date": {"type": "string", "format": "date"},
+        "hospital": {"type": "string"},
+        "body_part": {"type": "string"},
+        "findings": {
+          "type": "object",
+          "properties": {
+            "description": {"type": "string"},
+            "targets": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {"type": "string"},
+                  "location": {"type": "string"},
+                  "size": {
+                    "type": "object",
+                    "properties": {
+                      "length": {"type": "number"},
+                      "width": {"type": "number"},
+                      "height": {"type": "number"},
+                      "unit": {"type": "string"}
+                    }
+                  },
+                  "characteristics": {
+                    "type": "object",
+                    "properties": {
+                      "morphology": {"type": "string"},
+                      "border": {"type": "string"},
+                      "density": {"type": "string"}
+                    }
+                  }
+                }
+              }
+            },
+            "conclusion": {"type": "string"}
+          }
+        },
+        "original_image": {"type": "string"}
+      }
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+# Product Agent Configuration
+agent:
+  name: product-agent
+  version: 1.0.0
+  description: 义乌小商品商品匹配代理
+
+# Model Configuration
+model:
+  provider: openai
+  name: gpt-4o-mini
+  temperature: 0.7
+  max_tokens: 2000
+
+# Vector Search Configuration
+vector_search:
+  model: text-embedding-3-small
+  dimension: 1536
+  top_k: 20
+  similarity_threshold: 0.75
+
+# Collaborative Filter Configuration
+collaborative_filter:
+  enabled: true
+  alpha: 0.7
+  beta: 0.3
+  cold_start_alpha: 1.0
+  cold_start_beta: 0.0
+
+# Price Analysis Configuration
+price_analysis:
+  currency: USD
+  default_moq: 50
+  discount_tiers:
+    - quantity: 200
+      discount: 0.05
+    - quantity: 500
+      discount: 0.10
+    - quantity: 1000
+      discount: 0.15
+
+# Supplier Evaluation Weights
+evaluation_weights:
+  price_competitiveness: 0.25
+  quality_stability: 0.30
+  delivery_reliability: 0.30
+  service_response: 0.15
+
+# Quality Thresholds
+quality_thresholds:
+  match_confidence_min: 0.5
+  supplier_rating_min: 3.5
+  blacklist_check: true
+
+# Response Configuration
+response:
+  max_products: 10
+  include_supplier_info: true
+  include_price_trend: true
+  language: auto
+
+# Cache Configuration
+cache:
+  product_data_ttl: 3600
+  price_data_ttl: 86400
+  supplier_data_ttl: 7200
+
+# Rate Limits
+rate_limits:
+  max_requests_per_minute: 60
+  max_batch_size: 20

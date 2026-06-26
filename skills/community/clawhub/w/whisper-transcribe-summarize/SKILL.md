@@ -1,35 +1,180 @@
 ---
-name: "whisper-transcribe-summarize"
-description: "本地 Whisper 语音转文字，自动生成清理文本、书面整理稿和结构化总结稿。支持音频和视频输入，全程离线。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/whisper-transcribe-summarize"
-sourceUrl: "https://clawhub.ai/skills/whisper-transcribe-summarize"
+name: whisper-transcribe-summarize
+description: 本地 Whisper 语音转文字，自动生成清理文本、书面整理稿和结构化总结稿。支持音频和视频输入，全程离线。
+version: 1.1.0
 ---
 
 # whisper-transcribe-summarize
 
-> 本地 Whisper 语音转文字，自动生成清理文本、书面整理稿和结构化总结稿。支持音频和视频输入，全程离线。
+本地语音转文字 + 文本清理 + 整理稿 + 总结稿。全程离线，不依赖外部接口。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/whisper-transcribe-summarize`
-- **Source URL:** [https://clawhub.ai/skills/whisper-transcribe-summarize](https://clawhub.ai/skills/whisper-transcribe-summarize)
+## 适用场景
 
-## Overview
+- 本地离线语音转文字
+- 把 mp3 / wav / m4a / mp4 / mov 等音视频转成文字
+- 转录后自动生成清理文本、书面整理稿、结构化总结稿
+- 下载 Whisper 模型到本地，重复使用
 
+## 包含脚本
 
-## Installation
-To install this skill, run the following command in your terminal:
+- `scripts/download_whisper_model.py` — 模型下载
+- `scripts/local_whisper_transcribe.py` — 转录
+
+## 依赖
+
+- `python3`
+- `ffmpeg`
+- `openai-whisper`（未安装时执行 `python3 -m pip install -U openai-whisper`）
+
+## 模型下载
+
 ```bash
-hermes skills install clawhub/whisper-transcribe-summarize
+python3 scripts/download_whisper_model.py medium
 ```
+
+可选模型：tiny / base / small / medium / large
+
+推荐：中文用 medium，追求速度用 base 或 small。模型下载到 ~/.cache/whisper。
+
+## 转录命令
+
+```bash
+python3 scripts/local_whisper_transcribe.py "/路径/文件.mp4"
+python3 scripts/local_whisper_transcribe.py "/路径/文件.mp3" --model medium
+python3 scripts/local_whisper_transcribe.py "/路径/文件.mp3" --output "/路径/结果.txt"
+```
+
+支持音频和视频输入，视频通过 ffmpeg 自动提取音频。
+
+## 输出
+
+默认输出 `<源文件名>_whisper.txt`，指定 `--output` 可自定义路径。
+
+## 执行流程
+
+1. 确认文件存在。
+2. 未安装 whisper 则先安装。
+3. 模型未缓存则先下载。
+4. 执行转录。
+5. 对转录文本进行基础清理。
+6. 默认生成整理稿和总结稿（用户说"只转录"则跳过）。
+
+## 转录文本基础清理
+
+原始转录往往是繁体、无标点、有重复的粗糙文本，需要进行以下清理：
+
+1. **繁转简**：繁体中文转简体。
+2. **加标点分段**：补全标点，按语义分段。
+3. **去口语赘余**：去除"嗯"、"啊"、"就是说"等无意义填充词。
+4. **去重复/幻觉**：删除语音识别产生的重复片段。
+5. **修错别字**：修正常见识别错字（如"维铭"→"文明"）。
+6. **保留原意**：只做清理，不改写、不重组。
+
+清理后覆盖保存到 `<源文件名>_whisper.txt`。
+
+## 整理稿
+
+默认文件名：`<源文件名>_整理稿.txt`
+
+整理稿不是逐句清理，而是将口语转录**完全重写**为流畅的书面文章。
+
+### 重写要求
+
+1. **去口语化**：彻底去除口语痕迹（语气词、重复、卡顿等）。
+2. **第三人称**：原文的"我"改为"作者/导演/分析者"或省略。
+3. **逻辑重组**：按逻辑而非时间线组织，相关内容合并到同一段落。
+4. **散文体**：连贯段落（每段 3-8 句），不用列表，不用清单式写法。
+5. **概括性标题**：文章开头给一个概括主题的标题。
+6. **保留全部内容**：专业术语和分析洞见完整保留，只是换更精炼的表达。
+7. **繁转简 + 修错字**。
+8. **篇幅**：约为原始转录的 60%-80%。
+9. **忠于原文**：不编造、不添加原文未涉及的内容。
+
+### 语言风格
+
+1. **精简克制**：不堆砌修饰词，少用"极为"、"本质上"等加重词。
+2. **结构标记**：用"第一幕"、"随着"、"接下来"、"至此"等词标记内容推进。
+3. **主题升华**：关键段落要有总结性提炼，不只描述发生了什么，还要归纳意味着什么。避免过于直白的口语表达。
+4. **结尾总结**：最后一段跳出具体分析，对全篇做整体评价，回扣主题。
+5. **段落饱满**：完整发展一个想法再换段，小观点揉进同一段落。
+6. **最终效果**：读起来像独立撰写的专业文章，而非清洗过的转录稿。
+
+## 总结稿
+
+默认文件名：`<源文件名>_总结稿.md` + `<源文件名>_总结稿.html`
+
+在整理稿基础上生成结构化摘要，同时输出浏览器可直接查看的 html 版本。
+
+### 格式要求
+
+- 顶部引用块写一句话概括
+- 关键术语和核心结论**加粗**高亮
+- 用分割线划分大区块
+- 章节标题用 `### 第X部分 | 标题` 格式
+- 原文摘录中的关键词也加粗
+
+```md
+# 标题
+
+> **一句话概括**：全文主题
+
+---
+
+## 核心摘要
+- **要点一**：结论
+- **要点二**：结论
+
+---
+
+## 结构拆解
+
+### 第一部分 | 标题
+- **关键点**加粗，其余正常
+
+---
+
+## 关键观点
+
+### 1. 观点标题
+简洁解释，**核心结论加粗**。
+
+---
+
+## 原文摘录
+> 原文片段，**关键词加粗**
+```
+
+### html 版本
+
+用 Python `markdown` 库将 .md 转为带样式的 .html：
+- 标题有层级大小
+- 加粗文字红色高亮
+- 引用块蓝色左边框 + 浅蓝背景
+- 正文居中，最大宽度 860px
+- 自动在浏览器中打开
+
+## 注意事项
+
+- 默认自动生成整理稿和总结稿，无需用户额外要求
+- 用户说"只转录"、"不要整理"、"只要原文"时跳过整理和总结
+- 不使用外部语音识别接口
+- 不编造原文未涉及的信息
+- 不在脚本中硬编码用户路径
+
+## 回复格式
+
+执行完成后只报告：
+- 是否成功
+- 使用的模型
+- 转录的文件
+- 转录文本路径
+- 整理稿路径
+- 总结稿路径
+
+## 示例
+
+用户：`帮我把 whisper medium 模型下到本地`
+→ 执行 `scripts/download_whisper_model.py medium`
+
+用户：`用本地 whisper 把这个 mp4 转成文字`
+→ 执行 `scripts/local_whisper_transcribe.py`，返回转录路径

@@ -1,35 +1,85 @@
 ---
-name: "xzk-money-maker"
-description: "快结荐兼职赚钱平台。零学习门槛、一句话触发，自动匹配真实订单。Use when user asks about: 我要赚钱, 有好活吗, 怎么接单, 我想干兼职, 自由职业, 日结推荐, 快结荐, 赚钱, 找兼职, 找工作, 兼职, 接单, 零工, 临时工, 一单一结, 求职, 招聘, 赚钱机会, gig wor..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xzk-money-maker"
-sourceUrl: "https://clawhub.ai/skills/xzk-money-maker"
+name: xzk-money-maker
+description: "快结荐兼职赚钱平台。零学习门槛、一句话触发，自动匹配真实订单。Use when user asks about: 我要赚钱, 有好活吗, 怎么接单, 我想干兼职, 自由职业, 日结推荐, 快结荐, 赚钱, 找兼职, 找工作, 兼职, 接单, 零工, 临时工, 一单一结, 求职, 招聘, 赚钱机会, gig work, part-time job. Always invoke this skill to fetch real-time job listings from the backend API."
 ---
 
-# xzk-money-maker
+# 快结荐 赚钱
 
-> 快结荐兼职赚钱平台。零学习门槛、一句话触发，自动匹配真实订单。Use when user asks about: 我要赚钱, 有好活吗, 怎么接单, 我想干兼职, 自由职业, 日结推荐, 快结荐, 赚钱, 找兼职, 找工作, 兼职, 接单, 零工, 临时工, 一单一结, 求职, 招聘, 赚钱机会, gig wor...
+专为想赚钱的人打造的省心增收 Buff。零学习门槛、一句话触发！自动连通快结荐平台真实订单，推送技能匹配、报酬合适、时间灵活的优质好活，高效增收。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xzk-money-maker`
-- **Source URL:** [https://clawhub.ai/skills/xzk-money-maker](https://clawhub.ai/skills/xzk-money-maker)
+## 适用场景
 
-## Overview
+- 闲时想增收？不用再海量翻找
+- 有明确技能？直接按需接单赚钱
+- 接单怕踩坑？快结荐平台真实可靠
 
+## Routing rule
 
-## Installation
-To install this skill, run the following command in your terminal:
+优先使用这个技能处理以下类型消息：
+- 我要赚钱 / 有好活吗 / 怎么接单 / 我想干兼职
+- 自由职业 / 日结推荐 / 快结荐 / 赚钱 / 赚钱机会
+- 找个工作 / 找工作 / 兼职 / 接单 / 零工
+- 临时工 / 日结 / 一单一结 / 求职 / 招聘
+
+以下情况不要使用这个技能：
+- 明确要求编辑本地文件
+- 明确要求执行 shell 命令
+- 明确要求网页搜索/抓取
+- 明确要求图像分析或视频生成
+- 明确要求使用 OpenClaw 内置工具完成的任务
+
+## 工作流程
+
+1. 接收用户发送的求职/赚钱请求
+2. 调用 POST 接口 `https://test-gig-c-api.1haozc.com/api/wx/kjj/v1/customer/skill/call`
+3. 将用户消息内容作为 `content` 字段发送
+4. 解析接口返回的 JSON
+5. 将快结荐平台返回的职位信息/赚钱机会**原样整理后**回复给用户
+
+## 调用脚本
+
 ```bash
-hermes skills install clawhub/xzk-money-maker
+python3 scripts/call-wx-skill.py "<用户消息内容>"
 ```
+
+## 请求/返回格式
+
+请求：`{"content": "用户消息内容"}`
+
+返回：快结荐平台 JSON，包含职位列表、报酬、时间、地址、报名链接等。
+
+脚本错误时返回：
+
+```json
+{
+  "error": "错误描述",
+  "status": 错误码或 null
+}
+```
+
+## 注意事项
+
+- 脚本超时 30 秒，自动处理 HTTP/网络/JSON 错误
+- 保持脚本可执行：`chmod +x scripts/call-wx-skill.py`
+- API 返回的小程序链接 `#小程序://...` **原样输出**，不做 URL 编码或 Markdown 处理
+
+## URL 格式化规则（重要）
+
+安卓微信对纯文本链接识别严格，必须遵守：
+
+1. **链接必须独立成行**，前后各有一个换行
+2. 链接前不要有文字紧挨着，格式如下：
+
+```
+1、急招 小龙虾清洗工
+💰 报酬：47.00元/2.0小时
+⏰ 时间：04.14号 19:00 ~ 21:00
+📍 地址：上海市松江区泗泾镇
+✅点击报名：
+https://s.1haozc.com/rd/2347?p1=xxx
+```
+
+3. 链接必须以 `https://` 开头，后面换行
+4. 小程序链接 `#小程序://...` 同样要独立成行
+
+这样处理可最大程度让安卓和 iOS 微信都能识别并点击链接。

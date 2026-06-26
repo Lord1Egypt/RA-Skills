@@ -1,35 +1,37 @@
----
-name: "west"
-description: "Manage domain DNS records on West Digitals by adding, modifying, or deleting entries via the West Digitals API."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/west-dns-manager"
-sourceUrl: "https://clawhub.ai/skills/west-dns-manager"
----
+# 西部数码域名解析管理
 
-# west
+## 基本信息
+- 技能名称：西部数码域名解析管理
+- 技能 ID：west-dns-manager
+- 版本：1.0.0
+- 入口函数：skill.handler
+- 运行环境：Python3
+- 作者：OpenClaw
 
-> Manage domain DNS records on West Digitals by adding, modifying, or deleting entries via the West Digitals API.
+## 功能描述
+通过西部数码 API 实现域名解析记录的添加、修改、删除。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/west-dns-manager`
-- **Source URL:** [https://clawhub.ai/skills/west-dns-manager](https://clawhub.ai/skills/west-dns-manager)
+## 输入参数
+{
+  "action": "add/modify/delete",
+  "config": {
+    "username": "西部数码用户名",
+    "api_password": "API密码"
+  },
+  "dns_params": {
+    "domain": "域名",
+    "host": "主机头",
+    "type": "A/CNAME/MX/TXT/AAAA",
+    "value": "解析值",
+    "old_value": "旧值(修改时必填)",
+    "record_id": "解析ID(可选)"
+  }
+}
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/west-dns-manager
-```
+## 输出结果
+{
+  "success": true/false,
+  "message": "提示信息",
+  "data": {},
+  "error": ""
+}

@@ -1,35 +1,110 @@
 ---
-name: "中文周报日报自动生成"
-description: "Automatically generate professional Chinese weekly/daily work reports from bullet-point inputs. Use when you need to transform raw task notes into polished 周..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weekly-report-cn"
-sourceUrl: "https://clawhub.ai/skills/weekly-report-cn"
+name: weekly-report-cn
+description: >
+  Automatically generate professional Chinese weekly/daily work reports from
+  bullet-point inputs. Use when you need to transform raw task notes into
+  polished 周报/日报 with structured sections, highlight achievements, and
+  suggest next steps. Also supports customization for different team styles.
 ---
 
-# 中文周报日报自动生成
+# 中文周报/日报自动生成助手
 
-> Automatically generate professional Chinese weekly/daily work reports from bullet-point inputs. Use when you need to transform raw task notes into polished 周...
+## 使用场景
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weekly-report-cn`
-- **Source URL:** [https://clawhub.ai/skills/weekly-report-cn](https://clawhub.ai/skills/weekly-report-cn)
+- 将碎片化工作记录整理成正式周报
+- 快速生成符合公司格式的日报
+- 提炼工作亮点，突出价值贡献
+- 规划下周工作目标和重点
 
-## Overview
+## 标准工作流
 
+### 第一步：收集输入信息
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weekly-report-cn
+向用户询问以下内容（或从用户提供的原始笔记中提取）：
+
 ```
+本周/今日完成的工作（关键词或简短描述即可）：
+- [工作项1]
+- [工作项2]
+...
+
+遇到的问题或风险（可选）：
+工作量占比或优先级（可选）：
+下周/明日计划（可选）：
+```
+
+### 第二步：结构化生成
+
+按以下模板生成周报：
+
+```markdown
+# 周报 | [姓名] | [日期范围]
+
+## 一、本周工作完成情况
+
+### 1. [主要项目/模块名称]（占比 XX%）
+- **[成果描述]**：[具体说明，量化数据优先]
+- 完成了 [具体任务]，实现 [具体效果/指标]
+
+### 2. [次要项目/日常工作]（占比 XX%）
+- [工作项描述]
+
+## 二、重点成果与亮点
+- ✅ [最重要成果1]
+- ✅ [最重要成果2]
+
+## 三、问题与风险
+- ⚠️ [问题描述] → 当前处理方案：[方案]
+
+## 四、下周工作计划
+1. [计划1] — 预计完成时间：[时间]
+2. [计划2]
+
+## 五、需要支持/协调的事项（可选）
+- [需要其他人/部门配合的事项]
+```
+
+### 第三步：润色优化
+
+生成后自动应用以下规则：
+- 动词开头：完成、推进、优化、调研、输出、协调、落地
+- 量化数据：涉及指标时补充百分比/数量/时间
+- 突出价值：将"做了XX"改为"通过XX实现了YY"
+- 专业术语：保持行业用语准确
+
+## 日报简化版
+
+```markdown
+## 日报 | [日期]
+
+**今日完成**
+- [ ] [工作项1]（完成✅ / 进行中🔄）
+- [ ] [工作项2]
+
+**明日计划**
+- [ ] [计划1]
+
+**需要协调** （无则省略）
+- [协调事项]
+```
+
+## 不同风格适配
+
+| 团队风格 | 调整方向 |
+|---------|---------|
+| 技术团队 | 多用数据指标，突出技术难点和解决方案 |
+| 业务团队 | 聚焦业务影响，用户/营收/转化等指标 |
+| 管理层汇报 | 精简为3-5条核心亮点，BLUF原则 |
+| 跨部门协作 | 强调依赖项、进度里程碑和风险 |
+
+## 质量检查清单
+
+- [ ] 是否有至少一个量化指标
+- [ ] 动词是否清晰（避免"参与、了解、配合"等模糊词）
+- [ ] 格式是否整洁（标题层级、缩进一致）
+- [ ] 下周计划是否具体可执行
+- [ ] 篇幅适当（周报 300-600 字，日报 100-200 字）
+
+## 参考文件
+
+查看 `references/` 获取周报模板、词汇表和示例。

@@ -1,0 +1,19 @@
+/* theme: editorial-serif — warm, serif, editorial */
+/* Upstream: lewislulu/html-ppt-skill (MIT) */
+[data-theme="editorial-serif"] {
+  --bg: #faf8f5; --bg-soft: #f5f1eb; --surface: #ffffff; --surface-2: #f5f1eb;
+  --border: rgba(30,20,10,.10); --border-strong: rgba(30,20,10,.20);
+  --text-1: #1a1410; --text-2: #5c5248; --text-3: #9a8e82;
+  --accent: #c0392b; --accent-2: #8e44ad; --accent-3: #d35400;
+  --good: #27ae60; --warn: #f39c12; --bad: #c0392b;
+  --grad: linear-gradient(135deg,#c0392b,#8e44ad);
+  --grad-soft: linear-gradient(135deg,#fdfcf9,#faf8f5);
+  --radius: 16px; --radius-sm: 10px; --radius-lg: 24px;
+  --shadow: 0 2px 8px rgba(30,20,10,.06), 0 8px 24px rgba(30,20,10,.04);
+  --shadow-lg: 0 8px 32px rgba(30,20,10,.08), 0 24px 60px rgba(30,20,10,.06);
+  --font-sans: 'Inter','Noto Sans SC',sans-serif;
+  --font-serif: 'Playfair Display','Noto Serif SC',Georgia,serif;
+  --font-display: 'Playfair Display','Noto Serif SC',Georgia,serif;
+  --text: var(--text-1); --secondary: var(--text-2); --bg-alt: var(--bg-soft);
+  --font-body: var(--font-sans); --font-title: var(--font-display);
+}

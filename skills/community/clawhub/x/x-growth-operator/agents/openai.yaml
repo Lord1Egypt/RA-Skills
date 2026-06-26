@@ -1,0 +1,25 @@
+interface:
+  display_name: "X Growth Operator / X 增长运营助手"
+  short_description: "Review-first X operations skill with explicit approval before live execution / 先审核后执行的 X 运营 Skill。"
+  default_prompt: "Use $x-growth-operator to turn my brief into an X mission, rank opportunities, and propose the best next action."
+
+runtime:
+  install_steps:
+    - "cd scripts && npm install"
+  required_environment_variables:
+    - "X_API_KEY"
+    - "X_API_SECRET"
+    - "X_ACCESS_TOKEN"
+    - "X_ACCESS_TOKEN_SECRET"
+  optional_environment_variables:
+    - "DESEARCH_API_KEY (needed only for live Desearch search/import)"
+  network_access:
+    - "https://api.twitter.com"
+    - "https://api.x.com"
+  uses_subprocesses: true
+  local_state_paths:
+    - "data/"
+    - "scripts/.env"
+
+policy:
+  allow_implicit_invocation: false

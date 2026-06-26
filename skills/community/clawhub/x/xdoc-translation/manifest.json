@@ -1,0 +1,43 @@
+{
+  "name": "xdoc-translation",
+  "version": "1.0.0",
+  "description": "Document and text translation API skill powered by Xdoc. Translate documents (docx, pdf, pptx, xlsx, etc.) and text between 50+ languages with support for glossaries and translation memory.",
+  "publisher": {
+    "name": "Xdoc",
+    "url": "https://x-doc.ai",
+    "email": "support@x-doc.ai"
+  },
+  "api": {
+    "base_url": "https://translation.x-doc.ai/api/open_api/v1"
+  },
+  "auth": {
+    "type": "api_key",
+    "header": "x-api-key"
+  },
+  "required_env_vars": [
+    {
+      "name": "XDOC_API_KEY",
+      "description": "Your Xdoc API key for authentication. Obtain from https://translation.x-doc.ai/ → User → API Management → My API",
+      "required": true,
+      "sensitive": true
+    }
+  ],
+  "credentials": {
+    "primary": "XDOC_API_KEY"
+  },
+  "capabilities": [
+    "document_translation",
+    "text_translation",
+    "glossary_management",
+    "translation_memory"
+  ],
+  "supported_formats": ["docx", "doc", "pdf", "pptx", "ppt", "xlsx", "xls", "txt", "xml"],
+  "privacy": {
+    "data_retention": "7 days",
+    "third_party_sharing": false,
+    "policy_url": "https://x-doc.ai/privacy"
+  },
+  "permissions": {
+    "always": false
+  }
+}

@@ -1,35 +1,36 @@
----
-name: "Youtube Outlier Skill"
-description: "Finds trending YouTube outlier videos by niche, analyzes key concepts, saves data to Google Sheets, and posts summaries to Discord."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/youtube-outlier-skill"
-sourceUrl: "https://clawhub.ai/skills/youtube-outlier-skill"
----
+# youtube-outlier-skill
 
-# Youtube Outlier Skill
+Finds outlier/trending YouTube videos by niche keyword, analyzes main concepts, and stores to Google Sheet. Posts summary to Discord.
 
-> Finds trending YouTube outlier videos by niche, analyzes key concepts, saves data to Google Sheets, and posts summaries to Discord.
+## Parameters Supported
+- `niche` (single or comma-separated list)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/youtube-outlier-skill`
-- **Source URL:** [https://clawhub.ai/skills/youtube-outlier-skill](https://clawhub.ai/skills/youtube-outlier-skill)
+## Usage
+Via Discord or API call:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/youtube-outlier-skill
 ```
+/ytoutlier AI news
+```
+
+## Discord Command Registration
+Add to your Discord/OpenClaw config, or copy below to your skill manifest:
+
+```yaml
+commands:
+  - name: ytoutlier
+    description: Find trending YouTube outlier videos in a niche.
+    usage: /ytoutlier <niche>
+    handler: youtube-outlier-skill
+```
+
+## Requirements
+- Google Sheets API credentials (edit access to your target sheet)
+- Discord bot token and channel ID
+- YouTube Data API key (if not handled by youtube-api-skill)
+
+## Environment variables
+See `.env.example` for all required variables.
+
+---
+
+Skill created for Danny by Soma 🧘‍♂️ (OpenClaw)

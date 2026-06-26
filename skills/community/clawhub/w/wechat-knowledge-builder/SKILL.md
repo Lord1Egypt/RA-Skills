@@ -1,35 +1,121 @@
 ---
-name: "微信聊天记录知识卡片提取工具"
-description: "微信聊天记录知识卡片提取工具。将WeFlow导出的JSON数据转换为个人知识库、知识卡片和个人分身训练数据。触发场景：(1) 用户需要分析微信聊天记录；(2) 从微信数据中提取知识卡片；(3) 构建个人知识库；(4) 整理客户画像；(5) 生成训练数据用于AI分身。"
-category: "research"
-source: "ClawHub"
-tags: [chat-analysis, knowledge, personal-ai, wechat]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/wechat-knowledge-builder"
-sourceUrl: "https://clawhub.ai/skills/wechat-knowledge-builder"
+name: wechat-knowledge-builder
+description: 微信聊天记录知识卡片提取工具。将WeFlow导出的JSON数据转换为个人知识库、知识卡片和个人分身训练数据。触发场景：(1) 用户需要分析微信聊天记录；(2) 从微信数据中提取知识卡片；(3) 构建个人知识库；(4) 整理客户画像；(5) 生成训练数据用于AI分身。
 ---
 
-# 微信聊天记录知识卡片提取工具
+# 微信聊天记录知识卡片提取
 
-> 微信聊天记录知识卡片提取工具。将WeFlow导出的JSON数据转换为个人知识库、知识卡片和个人分身训练数据。触发场景：(1) 用户需要分析微信聊天记录；(2) 从微信数据中提取知识卡片；(3) 构建个人知识库；(4) 整理客户画像；(5) 生成训练数据用于AI分身。
+## 核心功能
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/wechat-knowledge-builder`
-- **Source URL:** [https://clawhub.ai/skills/wechat-knowledge-builder](https://clawhub.ai/skills/wechat-knowledge-builder)
+将WeFlow导出的JSON数据转化为：
+1. **个人知识库** - 存入飞书多维表格
+2. **知识卡片** - 按人物/话题整理的关键信息
+3. **训练数据** - 用于AI分身的话术和风格提取
 
-## Overview
+## 数据格式
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/wechat-knowledge-builder
+WeFlow导出的JSON结构：
+```json
+{
+  "msg_id": "消息ID",
+  "msg_time": "时间戳",
+  "talker": "发送者",
+  "content": "消息内容",
+  "avatar": "头像URL"
+}
 ```
+
+## 提取流程
+
+### 步骤1：读取数据
+
+使用 doc_parse 或直接读取WeFlow导出的JSON文件：
+```bash
+# 读取JSON文件
+cat /path/to/weflow_export/*.json
+```
+
+### 步骤2：提取知识
+
+按以下维度提取：
+
+| 类型 | 提取内容 | 用途 |
+|------|----------|------|
+| 客户画像 | 姓名、需求、偏好 | 客户管理 |
+| 常用话术 | 高频表达、业务术语 | 知识卡片 |
+| 关键决策 | 价格、交付、条款 | 合同参考 |
+| 关系链 | 与谁沟通、何时 | 跟进提醒 |
+
+### 步骤3：生成知识卡片
+
+格式：
+```
+## [姓名/话题] 知识卡片
+
+### 基本信息
+- 来源：微信会话
+- 时间范围：
+- 消息数量：
+
+### 关键信息
+1. 需求痛点：
+2. 决策因素：
+3. 跟进状态：
+
+### 话术记录
+- 常用表达：
+- 专业术语：
+- 沟通风格：
+```
+
+### 步骤4：存入飞书
+
+使用 feishu_bitable_app 或 feishu_create_doc 创建知识库。
+
+## 输出格式
+
+### 知识卡片模板
+
+```markdown
+# {{人物/话题}} 知识卡片
+
+## 基本信息
+| 字段 | 内容 |
+|------|------|
+| 来源 | 微信会话 |
+| 提取时间 | {{timestamp}} |
+| 消息数量 | {{count}} |
+
+## 核心信息
+{{自动提取的关键内容}}
+
+## 话术风格
+{{沟通特点分析}}
+
+## 跟进记录
+{{历史互动摘要}}
+```
+
+### 飞书多维表格字段
+
+建议创建以下字段：
+- 姓名/话题
+- 分类（客户/供应商/团队/其他）
+- 关键需求
+- 沟通风格
+- 最后跟进
+- 知识卡片（富文本）
+
+## 最佳实践
+
+1. **定期更新** - 重要会话每月提取一次
+2. **分类存储** - 按客户/供应商/团队分类
+3. **标签管理** - 使用多维表格的标签功能
+4. **关联文档** - 报价表、合同等关联存储
+
+## 工具使用
+
+- **数据读取**：exec 读取JSON文件
+- **内容解析**：直接分析消息内容
+- **知识存储**：feishu_bitable_app 创建知识库
+- **文档创建**：feishu_create_doc 创建知识卡片

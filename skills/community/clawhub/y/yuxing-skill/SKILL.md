@@ -1,35 +1,20 @@
 ---
-name: "good skill"
-description: "This skill should be used when the user says "test skill", "run test skill", or asks to demonstrate the test skill. It is a simple hello-world skill for test..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yuxing-skill"
-sourceUrl: "https://clawhub.ai/skills/yuxing-skill"
+name: test-skill
+description: This skill should be used when the user says "test skill", "run test skill", or asks to demonstrate the test skill. It is a simple hello-world skill for testing purposes.
+version: 1.0.0
 ---
 
-# good skill
+# Test Skill
 
-> This skill should be used when the user says "test skill", "run test skill", or asks to demonstrate the test skill. It is a simple hello-world skill for test...
+This is a test skill to verify that custom skills are working correctly.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yuxing-skill`
-- **Source URL:** [https://clawhub.ai/skills/yuxing-skill](https://clawhub.ai/skills/yuxing-skill)
+## What This Skill Does
 
-## Overview
+When invoked, this skill tells you to greet the user with a friendly hello message and confirm that the skill system is working.
 
+## Instructions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yuxing-skill
-```
+Respond with:
+1. A greeting: "Hello! The test skill is working correctly."
+2. The current date and time.
+3. A confirmation that custom skills are active.

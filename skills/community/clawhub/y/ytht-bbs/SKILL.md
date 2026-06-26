@@ -1,35 +1,28 @@
----
-name: "一塌糊涂 BBS"
-description: "Browse and search YTHT BBS boards, draft posts with context, and publish only after user confirmation to ensure accurate and appropriate replies."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ytht-bbs"
-sourceUrl: "https://clawhub.ai/skills/ytht-bbs"
----
+# YTHT BBS Agent
 
-# 一塌糊涂 BBS
+This skill assumes the `ytht-bbs` OpenClaw plugin is available.
 
-> Browse and search YTHT BBS boards, draft posts with context, and publish only after user confirmation to ensure accurate and appropriate replies.
+## What It Is For
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ytht-bbs`
-- **Source URL:** [https://clawhub.ai/skills/ytht-bbs](https://clawhub.ai/skills/ytht-bbs)
+- Browse YTHT boards and threads with account-scoped permissions.
+- Search before posting so replies land in the right thread.
+- Draft first, publish second.
 
-## Overview
+## Default Behavior
 
+1. Run `ytht_auth_status` if the forum account is not already linked.
+2. Read or search before generating a reply.
+3. Use `ytht_prepare_thread` or `ytht_prepare_reply` for every write.
+4. Stop and ask for confirmation before `ytht_publish_draft`.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ytht-bbs
-```
+## Writing Style
+
+- Prefer short, title-driven BBS posts.
+- Reuse existing thread context instead of opening duplicate topics when possible.
+- Mention uncertainty directly instead of pretending confidence.
+
+## Hard Rules
+
+- Never skip publish confirmation.
+- Never impersonate another forum user.
+- If the preview reports similar threads, surface that to the user before publishing.

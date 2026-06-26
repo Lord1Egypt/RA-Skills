@@ -1,0 +1,119 @@
+---
+name: wecom-deep-op
+version: 2.0.2
+description: 企业微信全能操作Skill - 统一封装文档、日历、会议、待办、通讯录所有企业微信MCP能力
+author: 老白
+authorEmail: bingbox0515@gmail.com
+homepage: https://github.com/Bingbox/wecom-deep-op
+repository: https://github.com/Bingbox/wecom-deep-op.git
+bugs:
+  url: https://github.com/Bingbox/wecom-deep-op/issues
+  email: bingbox0515@gmail.com
+support:
+  url: https://github.com/Bingbox/wecom-deep-op/issues
+  email: bingbox0515@gmail.com
+  discord: https://discord.com/invite/clawd
+license: MIT
+keywords:
+  - wecom
+  - enterprise-wechat
+  - mcp
+  - document
+  - calendar
+  - meeting
+  - todo
+  - contact
+  - openclaw
+category: productivity
+openclaw:
+  minVersion: "0.5.0"
+  plugin:
+    type: skill
+    main: dist/index.esm.js
+    commonjs: dist/index.cjs.js
+    types: dist/index.d.ts
+    exports:
+      - name: doc_get
+        description: 导出/获取文档内容（支持异步轮询）
+      - name: doc_create
+        description: 创建文档或智能表格
+      - name: doc_edit
+        description: 编辑/覆写文档内容
+      - name: schedule_create
+        description: 创建日程
+      - name: schedule_list
+        description: 查询日程列表
+      - name: schedule_get
+        description: 获取日程详情
+      - name: schedule_update
+        description: 更新日程
+      - name: schedule_cancel
+        description: 取消日程
+      - name: schedule_add_attendee
+        description: 添加日程参会人
+      - name: schedule_remove_attendee
+        description: 移除日程参会人
+      - name: meeting_create
+        description: 预约会议
+      - name: meeting_list
+        description: 查询会议列表
+      - name: meeting_get
+        description: 获取会议详情
+      - name: meeting_cancel
+        description: 取消会议
+      - name: meeting_update_attendees
+        description: 更新会议参会人
+      - name: todo_create
+        description: 创建待办
+      - name: todo_list
+        description: 获取待办列表
+      - name: todo_get
+        description: 获取待办详情
+      - name: todo_update_status
+        description: 更新待办状态
+      - name: todo_update
+        description: 更新待办内容
+      - name: todo_delete
+        description: 删除待办
+      - name: todo_accept
+        description: 接收待办
+      - name: todo_refuse
+        description: 拒绝待办
+      - name: contact_get_userlist
+        description: 获取通讯录成员列表（当前用户可见范围）
+      - name: contact_search
+        description: 搜索通讯录成员（本地筛选）
+      - name: ping
+        description: 健康检查/就绪探测
+      - name: preflight_check
+        description: 前置条件检查，验证配置完整性
+dependencies:
+  - name: "@wecom/wecom-openclaw-plugin"
+    version: ">=1.0.13"
+    type: npm
+  - name: "openclaw"
+    version: ">=0.5.0"
+    type: core
+
+# 环境变量配置声明（用于运行时配置）
+env:
+  - name: WECOM_DOC_BASE_URL
+    description: 文档服务的 MCP 接口地址（必须包含 uaKey 查询参数）
+    required: true
+    example: "https://qyapi.weixin.qq.com/mcp/bot/doc?uaKey=YOUR_UA_KEY"
+  - name: WECOM_SCHEDULE_BASE_URL
+    description: 日程服务的 MCP 接口地址（必须包含 uaKey 查询参数）
+    required: true
+    example: "https://qyapi.weixin.qq.com/mcp/bot/schedule?uaKey=YOUR_UA_KEY"
+  - name: WECOM_MEETING_BASE_URL
+    description: 会议服务的 MCP 接口地址（必须包含 uaKey 查询参数）
+    required: true
+    example: "https://qyapi.weixin.qq.com/mcp/bot/meeting?uaKey=YOUR_UA_KEY"
+  - name: WECOM_TODO_BASE_URL
+    description: 待办服务的 MCP 接口地址（必须包含 uaKey 查询参数）
+    required: true
+    example: "https://qyapi.weixin.qq.com/mcp/bot/todo?uaKey=YOUR_UA_KEY"
+  - name: WECOM_CONTACT_BASE_URL
+    description: 通讯录服务的 MCP 接口地址（必须包含 uaKey 查询参数）
+    required: true
+    example: "https://qyapi.weixin.qq.com/mcp/bot/contact?uaKey=YOUR_UA_KEY"

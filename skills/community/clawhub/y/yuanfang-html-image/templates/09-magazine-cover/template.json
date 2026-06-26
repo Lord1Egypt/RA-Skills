@@ -1,0 +1,10 @@
+{
+  "name": "杂志封面",
+  "description": "全出血版式，超大标题居中，副标题+装饰线，右下角品牌，杂志封面质感",
+  "colors": { "background": "#F5F0EB", "text": "#1A1A2E", "accent": "#4F46E5", "secondary": "#6B7280", "bgDark": "#1A1A2E" },
+  "fonts": { "title": "\"Outfit\",\"PingFang SC\",-apple-system,sans-serif", "body": "\"Outfit\",\"PingFang SC\",-apple-system,sans-serif" },
+  "layout": { "titleSizeVertical": "120px", "titleSizeSquare": "96px", "titleSizeWide": "76px", "titleSizeCover": "60px", "contentSize": "28px" },
+  "brand": "杂志封面",
+  "badge": "STORY",
+  "radius": "0px"
+}

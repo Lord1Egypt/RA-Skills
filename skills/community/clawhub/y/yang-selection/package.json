@@ -1,0 +1,25 @@
+{
+  "name": "yang-selection",
+  "version": "1.0.0",
+  "description": "杨永兴尾盘选股法 - 腾讯财经实时筛选",
+  "main": "yang_selection.py",
+  "scripts": {
+    "run": "python3 yang_selection.py"
+  },
+  "keywords": [
+    "stock",
+    "selection",
+    "tail-pick",
+    "a-share",
+    "腾讯财经",
+    "杨永兴"
+  ],
+  "author": "飞书助手",
+  "license": "MIT",
+  "dependencies": {
+    "baostock": "^1.0",
+    "pandas": "^2.0",
+    "numpy": "^1.0",
+    "requests": "^2.0"
+  }
+}

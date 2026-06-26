@@ -1,0 +1,110 @@
+{
+  "name": "xcloud-docker-deploy",
+  "displayName": "xCloud Docker Deploy",
+  "version": "1.4.1",
+  "description": "xCloud Docker Deploy v1.4.1 — a confirmation-gated skill for preparing projects for xCloud. It can inspect a project only after user consent, recommend native or Docker deployment, generate Docker/GHCR files, fix xCloud port rules, and route live API work only after a separate explicit token-consent step.",
+  "longDescription": "A human-friendly deployment assistant for xCloud hosting. Users can say: This is my project, I want to deploy it on xCloud. The agent must first confirm whether the user wants read-only analysis, file generation, or live xCloud API actions. After confirmation, the skill detects the project stack, routes to xCloud Native or Custom Docker, generates Dockerfile, docker-compose.yml, GHCR GitHub Actions workflow, and .env.example, enforces xCloud-safe port mappings like 80:80 to 3080:80, and can pair with official xCloud API skills only after a separate explicit consent step for the exact live operation and token handling.",
+  "author": {
+    "name": "M Asif Rahman",
+    "github": "Asif2BD",
+    "url": "https://github.com/Asif2BD"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/Asif2BD/xCloud-Docker-Deploy-Skill",
+  "repository": "https://github.com/Asif2BD/xCloud-Docker-Deploy-Skill",
+  "category": "DevOps & Deployment",
+  "tags": [
+    "docker",
+    "deployment",
+    "devops",
+    "xcloud",
+    "docker-compose",
+    "github-actions",
+    "wordpress",
+    "laravel",
+    "nextjs",
+    "nodejs",
+    "python",
+    "ci-cd",
+    "hosting",
+    "infrastructure",
+    "php",
+    "fastapi",
+    "nginx",
+    "ghcr",
+    "stack-detection",
+    "vibe-coding"
+  ],
+  "platforms": [
+    "claude-code",
+    "codex",
+    "openClaw",
+    "claude-ai",
+    "cursor",
+    "windsurf",
+    "any"
+  ],
+  "entrypoint": "SKILL.md",
+  "files": {
+    "main": "SKILL.md",
+    "detection": "DETECT.md",
+    "references": "references/",
+    "dockerfiles": "dockerfiles/",
+    "templates": "compose-templates/",
+    "examples": "examples/",
+    "assets": "assets/"
+  },
+  "capabilities": [
+    "stack-detection",
+    "dockerfile-generation",
+    "compose-generation",
+    "github-actions-generation",
+    "native-deploy-guide",
+    "env-generation",
+    "xcloud-port-normalization",
+    "api-skill-routing",
+    "human-friendly-deploy-prompts",
+    "xcloud-api-token-flow",
+    "explicit-consent-gates",
+    "least-privilege-token-guidance",
+    "staging-and-backup-guidance"
+  ],
+  "stacks": [
+    "wordpress",
+    "laravel",
+    "php",
+    "nodejs",
+    "nextjs",
+    "nestjs",
+    "nuxt",
+    "python",
+    "go",
+    "rust",
+    "docker"
+  ],
+  "security": {
+    "verified": true,
+    "package_no_runtime_network_calls": true,
+    "no_executables": true,
+    "templates_only": true,
+    "requires_explicit_user_confirmation": true,
+    "live_api_requires_separate_consent": true,
+    "tokens_never_persisted_logged_or_echoed": true
+  },
+  "install": {
+    "clawhub": "clawhub install xcloud-docker-deploy",
+    "claude_code": "cp -r xcloud-docker-deploy ~/.claude/skills/",
+    "codex": "cp -r xcloud-docker-deploy ~/.codex/skills/",
+    "manual": "git clone https://github.com/Asif2BD/xCloud-Docker-Deploy-Skill.git"
+  },
+  "links": {
+    "clawhub": "https://clawhub.ai/Asif2BD/xcloud-docker-deploy",
+    "github": "https://github.com/Asif2BD/xCloud-Docker-Deploy-Skill",
+    "release": "https://github.com/Asif2BD/xCloud-Docker-Deploy-Skill/releases/tag/v1.4.1",
+    "xcloud_agent_skills": "https://app.xcloud.host/agent/skills",
+    "xcloud_api_docs": "https://app.xcloud.host/api/v1/docs",
+    "security": "https://github.com/Asif2BD/xCloud-Docker-Deploy-Skill/blob/main/SECURITY.md"
+  },
+  "publishedAt": "2026-03-01",
+  "updatedAt": "2026-06-23"
+}

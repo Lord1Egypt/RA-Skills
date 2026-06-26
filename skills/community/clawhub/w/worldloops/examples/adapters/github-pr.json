@@ -1,0 +1,15 @@
+{
+  "source": "github",
+  "sourceType": "pr",
+  "externalWrite": false,
+  "text": "PR #487: Add rate limiting to /api/v1/signals — review requested from @joshlee. Marked urgent by team lead. Open for 3 days with no response.",
+  "observedAt": "2026-05-19T11:45:00.000Z",
+  "url": "https://github.com/example-org/signals-api/pull/487",
+  "summary": "Urgent PR review request — rate limiting implementation, no response in 3 days",
+  "metadata": {
+    "prNumber": 487,
+    "repo": "example-org/signals-api",
+    "requestedReviewer": "joshlee",
+    "priority": "urgent"
+  }
+}

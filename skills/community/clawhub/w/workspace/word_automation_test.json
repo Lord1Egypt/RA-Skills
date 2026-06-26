@@ -1,0 +1,46 @@
+{
+  "name": "Word Automation Test",
+  "steps": [
+    {
+      "stepId": "activate_word",
+      "action": {
+        "type": "app",
+        "params": {
+          "generic": {
+            "_0": {
+              "appName": "Microsoft Word",
+              "operation": "activate"
+            }
+          }
+        }
+      }
+    },
+    {
+      "stepId": "wait_for_word",
+      "action": {
+        "type": "sleep",
+        "params": {
+          "duration": 3000
+        }
+      }
+    },
+    {
+      "stepId": "test_keystroke",
+      "action": {
+        "type": "hotkey",
+        "params": {
+          "keys": ["command", "s"]
+        }
+      }
+    },
+    {
+      "stepId": "completion",
+      "action": {
+        "type": "run",
+        "params": {
+          "command": "echo 'Test completed successfully'"
+        }
+      }
+    }
+  ]
+}

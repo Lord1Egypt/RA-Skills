@@ -1,0 +1,34 @@
+{
+  "name": "技能介绍-公众号-20260310",
+  "created": "2026-03-10",
+  "description": "公众号技能介绍类文章，给普通人介绍AI工具的价值",
+  "platform": "公众号",
+  "content_type": "技能介绍/种草文",
+  "target_audience": "25-40岁普通用户，对AI工具感兴趣但不太懂技术",
+  "language_style": "通俗易懂、亲切自然、避免专业术语、用故事和案例说明问题",
+  "content_structure": "开头痛点引入 → 解决方案介绍 → 具体案例 → 价值总结 → 互动引导",
+  "emotional_tone": "温暖、有帮助、不过度营销",
+  "interaction_style": "结尾引导留言/私信，解答读者疑问",
+  "emoji_usage": "适中，每段1-2个，增加亲切感",
+  "data_preference": "用具体数字说明效果（如：节省时间、效率提升等）",
+  "title_style": {
+    "description": "公众号技能介绍类标题",
+    "features": [
+      "痛点+解决方案",
+      "数字+效果",
+      "提问引发好奇"
+    ],
+    "examples": [
+      "我用AI工具写公众号，一篇文章只用了10分钟",
+      "普通人也能用的AI写作神器，终于找到了",
+      "这个技能让我每月多赚xxx元"
+    ]
+  },
+  "cover_design": {
+    "size": "1200x600",
+    "style": "简洁现代",
+    "background": "浅色渐变或纯色",
+    "title_color": "#333333",
+    "accent_color": "#007AFF"
+  }
+}

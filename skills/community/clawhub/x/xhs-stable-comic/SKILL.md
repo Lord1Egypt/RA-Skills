@@ -1,35 +1,99 @@
 ---
-name: "xhs-stable-comic"
-description: "为小红书 `AI+健身` 方向生成通用账号人设、内容策略、选题、标题、脚本、复盘、漫画配图与合规建议。适用于从零搭建账号定位、角色设定、视觉系统、四格漫画模板，并直接产出可执行内容资产给 OpenClaw 使用的场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xhs-stable-comic"
-sourceUrl: "https://clawhub.ai/skills/xhs-stable-comic"
+name: xiaohongshu-ai-fitness-ops
+description: 为小红书 `AI+健身` 方向生成通用账号人设、内容策略、选题、标题、脚本、复盘、漫画配图与合规建议。适用于从零搭建账号定位、角色设定、视觉系统、四格漫画模板，并直接产出可执行内容资产给 OpenClaw 使用的场景。
 ---
 
-# xhs-stable-comic
+# 小红书 AI+健身运营技能
 
-> 为小红书 `AI+健身` 方向生成通用账号人设、内容策略、选题、标题、脚本、复盘、漫画配图与合规建议。适用于从零搭建账号定位、角色设定、视觉系统、四格漫画模板，并直接产出可执行内容资产给 OpenClaw 使用的场景。
+当用户要运营一个以 `AI + 健身` 为核心主题的小红书账号时，使用这个技能。尤其适合这些叙事：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xhs-stable-comic`
-- **Source URL:** [https://clawhub.ai/skills/xhs-stable-comic](https://clawhub.ai/skills/xhs-stable-comic)
+- 普通人用 AI 做训练、饮食和执行复盘
+- 脑力劳动者用健身和 AI 重建精力管理
+- 职业空档期或过渡期的人，用 AI + 健身重建秩序
+- 极客型用户，用工作流和自动化管理身体与生活节奏
 
-## Overview
+## 核心边界
 
+- 优先基于真实经历，不虚构失业、收入、体重变化、合作案例或训练结果。
+- `AI` 是方法，不是权威。不要把模型包装成医生、营养师或持证教练。
+- 不给医疗诊断，不承诺减脂、增肌、康复等结果，不使用绝对化表述。
+- 如果内容本身属于 AI 生成或 AI 深度参与生成，不要以“绕过识别”为目标设计工作流；优先做 `AI辅助 + 真人定稿 + 真人证据` 的内容生产。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xhs-stable-comic
-```
+## 初始化优先
+
+如果这是一个新账号或新用户，OpenClaw 不要直接套用既有主角和故事，而要先完成初始化：
+
+1. 判断账号模式：`真人参考模式` 或 `原创角色模式`
+2. 生成 `账号人设卡`
+3. 生成 `内容世界观一句话`
+4. 生成 `漫画角色卡`
+5. 生成 `画风卡`
+6. 生成 `四格漫画系统卡`
+7. 再开始生成选题、文案和配图
+
+如果用户没有给足信息：
+
+- 不要把某个示例角色直接当成默认事实
+- 优先输出 `2-3` 套候选人设方向
+- 再为每套方向配一个对应的视觉角色卡
+
+## 读取规则
+
+按任务类型读取对应参考文件：
+
+- `从零搭账号 / 先定人物和画风`
+  - 读 `references/persona-visual-bootstrap.md`
+- `账号定位 / 内容策略 / 选题 / 标题 / 正文模板`
+  - 读 `references/content-playbook.md`
+- `发布节奏 / 转化 / 复盘 / 生成模式 / OpenClaw 输出格式 / AIGC 处理`
+  - 读 `references/operations-playbook.md`
+- `4格漫画 / Gemini 提示词 / 漫画分镜`
+  - 读 `references/four-panel-comic.md`
+- `固定主角设定卡 / 固定画风设定卡 / 长期连载模板 / 真人参考转漫画`
+  - 读 `references/comic-asset-pack.md`
+
+如果用户还没有角色卡和画风卡，不要直接出漫画，先回初始化文件。
+
+## 默认工作规则
+
+- 如果用户信息不足，先基于保守假设完成一版，并显式写出假设。
+- 如果任务能直接产出内容，就直接给成品，不只讲思路。
+- 默认用中文输出，面向小红书语境，避免过度书面化。
+- 如果用户只给“方向”而没有指定格式，默认输出 `1篇完整成稿 + 2个后续承接题`。
+- 如果用户说“批量生成”，默认输出 `7天选题 + 2篇完整成稿`。
+- 如果用户说要配图但没指定形式，默认输出 `4格漫画出图包`；但如果场景担心 AIGC 识别，优先改成 `真人素材方案`。
+- 如果用户反馈“被认定成 AI 生成”，默认切换到 `AI辅助稿 + 真人证据优先` 模式。
+- 每次交付前，都要按 `references/operations-playbook.md` 里的强制自检执行。
+
+## 默认假设
+
+- 用户是成年中文互联网用户。
+- 默认对 AI 工具感兴趣，但未必具备编程和自动化能力。
+- 健身目标偏向 `减脂、恢复状态、重建秩序`。
+- 场景以 `在家训练` 或 `低成本健身房训练` 为主。
+- 没有专业教练资质。
+- 账号处于冷启动阶段。
+- 若用户没有指定周期，优先用 `60天计划`。
+- 若用户没有提供真人信息，先生成 `2-3` 套候选角色方向。
+
+## 参考文件说明
+
+- [persona-visual-bootstrap.md](references/persona-visual-bootstrap.md)：从零生成账号人设卡、角色卡、画风卡和四格漫画系统卡。
+- [content-playbook.md](references/content-playbook.md)：账号核心定义、内容支柱、选题、标题、正文模板。
+- [operations-playbook.md](references/operations-playbook.md)：生成流程、AIGC 处理、发布节奏、转化、复盘、OpenClaw 输出格式。
+- [four-panel-comic.md](references/four-panel-comic.md)：Gemini 4 格漫画工作流、主提示词模板、纠偏提示词、降 AIGC 感规则。
+- [comic-asset-pack.md](references/comic-asset-pack.md)：固定主角设定卡、固定画风设定卡、长期连载模板、真人参考转漫画规则。
+
+## 触发示例
+
+以下请求都应触发本技能：
+
+- `帮我从零搭一个 AI+健身 小红书账号`
+- `先帮我定人设、主角和画风，再做内容`
+- `帮我做一个 AI + 健身 的小红书账号定位`
+- `给我 30 个适合冷启动的小红书选题`
+- `给我直接写一篇可以发的笔记，方向是用 AI 做饮食记录`
+- `我想备 30 天的内容，先给我一个选题表和两篇成稿`
+- `帮我把这个 OpenClaw 闭环写成一篇小红书`
+- `帮我给这篇笔记配一组 4 格漫画，图用 Gemini 生成`
+- `给我一套稳定一点的 Gemini 提示词，我想长期做同一个漫画主角`

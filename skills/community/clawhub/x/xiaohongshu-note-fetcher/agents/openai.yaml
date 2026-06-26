@@ -1,0 +1,4 @@
+interface:
+  display_name: "获取小红书笔记"
+  short_description: "根据小红书笔记链接提取结构化内容"
+  default_prompt: "请根据我提供的小红书笔记链接，调用脚本提取并输出结构化信息（JSON或Markdown）。"

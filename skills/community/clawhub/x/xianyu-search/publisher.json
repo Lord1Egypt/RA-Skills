@@ -1,0 +1,12 @@
+{
+  "name": "openclaw-community",
+  "displayName": "OpenClaw Community",
+  "description": "OpenClaw 技能社区 - 分享实用的 AI Agent 技能",
+  "website": "https://github.com/openclaw/skills",
+  "repository": "https://github.com/openclaw/skills",
+  "contact": {
+    "email": "community@openclaw.ai"
+  },
+  "verified": false,
+  "createdAt": "2026-03-23T14:49:00.000Z"
+}

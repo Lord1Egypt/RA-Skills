@@ -1,0 +1,13 @@
+#!/bin/bash
+# wechat-push — 微信主动推送主命令
+#
+# 装上 skill 后，从任何目录都能用：
+#   wechat-push "消息内容"
+#   wechat-push --to <openid> "消息"
+#   wechat-push --silent "消息"  # 不响通知（用于探活）
+#   wechat-push --dry-run "消息" # 只打印配置，不发送
+#   echo "消息" | wechat-push --from-file
+
+set -e
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+exec python3 "${SCRIPT_DIR}/../lib/wechat_push.py" "$@"

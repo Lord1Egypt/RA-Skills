@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1350">
+<title>宝宝物品篇</title>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px; height: 1350px;
+  background: #F0FFF9;
+  font-family: 'Noto Sans SC', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+.bg-texture {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(80,180,140,0.05) 28px, rgba(80,180,140,0.05) 29px);
+}
+.tape { position: absolute; width: 130px; height: 32px; background: rgba(150,220,190,0.75); transform: rotate(-2deg); box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+.tape-1 { top: 20px; left: 30px; }
+.tape-2 { top: 20px; right: 30px; transform: rotate(2deg); }
+.header-bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 110px;
+  background: linear-gradient(135deg, #5DC8A8, #3DB8A3);
+  display: flex; align-items: center; justify-content: center;
+}
+.header-bar h1 { font-size: 48px; color: white; font-family: 'Ma Shan Zheng', cursive; letter-spacing: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+.category-label {
+  position: absolute;
+  left: 40px;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  background: #3DB8A3;
+  padding: 6px 18px;
+  border-radius: 6px;
+  top: 130px;
+}
+.item-grid {
+  position: absolute;
+  top: 190px;
+  left: 40px;
+  right: 40px;
+}
+.item-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 14px;
+  background: #FFFDF5;
+  border-radius: 10px;
+  padding: 12px 16px;
+  border-left: 5px solid #5DC8A8;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.item-num {
+  min-width: 36px; height: 36px;
+  background: #5DC8A8; color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: bold;
+  margin-right: 14px; flex-shrink: 0;
+}
+.item-name { font-size: 24px; font-weight: 700; color: #2C6E5A; margin-bottom: 3px; }
+.item-desc { font-size: 18px; color: #5A8A7A; line-height: 1.4; }
+.item-qty {
+  margin-left: auto;
+  background: #E8F8F3;
+  color: #3DB8A3;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.tips-box {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  right: 40px;
+  background: #FFF9E0;
+  border: 2px dashed #D4A574;
+  border-radius: 10px;
+  padding: 14px 22px;
+  font-size: 20px;
+  color: #8B6914;
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+<div class="bg-texture"></div>
+<div class="tape tape-1"></div>
+<div class="tape tape-2"></div>
+<div class="header-bar"><h1>👶 宝宝物品篇</h1></div>
+<div class="category-label">🧸 衣物类</div>
+<div class="item-grid" style="top: 175px;">
+  <div class="item-row">
+    <div class="item-num">1</div>
+    <div><div class="item-name">半背衣</div><div class="item-desc">52码，选开裆款，方便换纸尿裤</div></div>
+    <div class="item-qty">× 3件</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">2</div>
+    <div><div class="item-name">包被</div><div class="item-desc">1厚1薄，厚的进产房用，薄款出院用</div></div>
+    <div class="item-qty">× 2条</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">3</div>
+    <div><div class="item-name">胎帽</div><div class="item-desc">新生儿头部散热快，多备一顶换洗</div></div>
+    <div class="item-qty">× 2顶</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">4</div>
+    <div><div class="item-name">袜子</div><div class="item-desc">选弹性好的，不勒脚</div></div>
+    <div class="item-qty">× 3双</div>
+  </div>
+</div>
+<div class="category-label" style="top: 435px;">🍼 喂养类</div>
+<div class="item-grid" style="top: 480px;">
+  <div class="item-row">
+    <div class="item-num">5</div>
+    <div><div class="item-name">奶瓶</div><div class="item-desc">选宽口径，玻璃或PPSU材质都可以</div></div>
+    <div class="item-qty">× 2个</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">6</div>
+    <div><div class="item-name">小罐奶粉</div><div class="item-desc">选0-6月一段，有些医院不让自带</div></div>
+    <div class="item-qty">× 1罐</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">7</div>
+    <div><div class="item-name">SS码奶嘴</div><div class="item-desc">新生儿流量小，S码可能流速太快</div></div>
+    <div class="item-qty">× 1-2个</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">8</div>
+    <div><div class="item-name">奶瓶刷</div><div class="item-desc">海绵刷外面、刷毛细的刷里面</div></div>
+    <div class="item-qty">× 1套</div>
+  </div>
+</div>
+<div class="category-label" style="top: 740px;">💧 护理类</div>
+<div class="item-grid" style="top: 785px;">
+  <div class="item-row">
+    <div class="item-num">9</div>
+    <div><div class="item-name">NB码纸尿裤</div><div class="item-desc">先买1包！宝宝长得快，很快要换S码</div></div>
+    <div class="item-qty">× 1包</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">10</div>
+    <div><div class="item-name">隔尿垫</div><div class="item-desc">换纸尿裤时垫着，防止弄湿包被和床单</div></div>
+    <div class="item-qty">× 3-4片</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">11</div>
+    <div><div class="item-name">湿巾</div><div class="item-desc">选无香无酒精的，给女宝宝用更安全</div></div>
+    <div class="item-qty">× 1包</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">12</div>
+    <div><div class="item-name">棉柔巾</div><div class="item-desc">沾温水擦屁屁，也可以当口水巾用</div></div>
+    <div class="item-qty">× 1包</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">13</div>
+    <div><div class="item-name">护臀膏</div><div class="item-desc">含氧化锌成分，预防红屁股</div></div>
+    <div class="item-qty">× 1支</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">14</div>
+    <div><div class="item-name">婴儿指甲剪</div><div class="item-desc">新生儿指甲长得快，3-5天要剪一次</div></div>
+    <div class="item-qty">× 1把</div>
+  </div>
+</div>
+<div class="tips-box">💡 NB码纸尿裤先买1包就好！宝宝长得快，很快要换S码，别囤多</div>
+</body>
+</html>

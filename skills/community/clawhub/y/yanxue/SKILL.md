@@ -1,35 +1,62 @@
 ---
-name: "yanxue"
-description: "📚 研学方案管理与智能生成技能。支持按城市、学段、景点、主题、时长生成完整的研学课程方案，并提供方案的保存、管理、Word 导出及文件导入导出功能。适用于中小学（1-9年级及高中）的研学旅行课程设计。"
-category: "other"
-source: "ClawHub"
-tags: [latest1]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yanxue"
-sourceUrl: "https://clawhub.ai/skills/yanxue"
+name: yanxue-course-manager
+description: 📚 研学方案管理与智能生成技能。支持按城市、学段、景点、主题、时长生成完整的研学课程方案，并提供方案的保存、管理、Word 导出及文件导入导出功能。适用于中小学（1-9年级及高中）的研学旅行课程设计。
 ---
 
-# yanxue
+# 研学方案管理与生成器
 
-> 📚 研学方案管理与智能生成技能。支持按城市、学段、景点、主题、时长生成完整的研学课程方案，并提供方案的保存、管理、Word 导出及文件导入导出功能。适用于中小学（1-9年级及高中）的研学旅行课程设计。
+本技能是一个全方位的研学方案工作站，旨在帮助研学导师、教师和机构高效地生成、管理和分发高质量的研学课程方案。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yanxue`
-- **Source URL:** [https://clawhub.ai/skills/yanxue](https://clawhub.ai/skills/yanxue)
+## 核心功能
 
-## Overview
+### 1. 🤖 智能方案生成
+根据用户提供的关键信息（城市、学段、景点、主题、时长），生成包含以下12个标准模块的完整方案：
+- **课程背景**：结合政策导向与资源优势。
+- **实施对象**：明确学校、年级及人数。
+- **课程主题**：对仗工整、富有教育意义的标题。
+- **课程地点**：真实景区及其教育价值说明。
+- **课程目标**：涵盖知识、能力、素养三个维度。
+- **课程安排**：详细的行程时间表。
+- **课程亮点**：聚焦核心 DIY 实践活动及其流程。
+- **课程内容**：分课时的教学设计与思考探究题。
+- **活动准备**：教师与学生的双向准备清单。
+- **安全注意事项**：行车、景区、回程全方位提示。
+- **课程考核评价**：学生自评、小组互评、教师评价。
+- **附件**：包含选择题、填空题和实践任务的研学任务单。
 
+### 2. 📚 方案保存与管理
+- **自动保存**：生成的方案可自动保存至 `/home/ubuntu/yanxue_courses/` 目录。
+- **列表查看**：使用 `scripts/manage_courses.py list` 查看已保存的方案。
+- **版本记录**：文件名包含时间戳，方便追溯。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yanxue
-```
+### 3. 📤 导出与分发
+- **Word 导出**：使用 `scripts/export_word.py` 将 Markdown 方案转换为标准的 `.docx` 文档。
+- **文件分发**：支持导出后通过飞书等平台发送给用户。
+
+## 使用指南
+
+### 生成方案流程
+1. **收集信息**：询问用户城市、学段（1-2年级、3-6年级、7-9年级、高中）、景点偏好、研学主题和时长。
+2. **参考案例**：在生成前，阅读 `references/` 目录下的相关案例，学习其语言风格（如：开篇诗意化、内容详实、结合 DIY 活动）。
+3. **调用模板**：参考 `templates/template.md` 的结构进行创作。
+4. **适配年级**：根据学段调整语言风格和任务难度（低年级侧重趣味，高年级侧重探究）。
+
+### 管理与导出操作
+- **保存方案**：
+  ```bash
+  python3 /home/ubuntu/skills/yanxue-course-manager/scripts/manage_courses.py save "方案名称" "方案文件路径"
+  ```
+- **导出 Word**：
+  ```bash
+  python3 /home/ubuntu/skills/yanxue-course-manager/scripts/export_word.py "输入.md" "输出.docx"
+  ```
+
+## 数据源与参考
+- **学校与景区**：优先从 `references/destinations.md` 中选取江浙沪地区的真实资源。
+- **政策背景**：参考 `references/policy-background.md` 引用权威政策。
+- **风格指南**：遵循 `references/style-guide.md` 中的核心风格要点。
+
+## 注意事项
+- 确保所有景区和学校名称真实存在。
+- DIY 活动必须与景区特色紧密结合。
+- 导出的 Word 文档应符合标准公文格式（宋体/仿宋，1.5倍行距）。

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Zilla+Slab:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-charcoal: #282828;
+  --color-coral: #EA6962;
+  --color-cream: #EBDBB2;
+  --color-green-accent: #A9B665;
+  --color-yellow-accent: #D8A657;
+  --color-surface: #32302F;
+
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Zilla Slab", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-charcoal text-cream font-sans antialiased;
+    scroll-behavior: smooth;
+  }
+
+  /* Subtle Grainy Texture Overlay */
+  body::before {
+    content: "";
+    @apply fixed inset-0 opacity-4 pointer-events-none z-[9999];
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+}
+
+@layer components {
+  .sketchy-box {
+    @apply border-2 border-cream rounded-[255px_15px_225px_15px/15px_225px_15px_255px];
+  }
+
+  .sketchy-button {
+    @apply border-2 border-cream rounded-[12px_3px_14px_4px/4px_14px_3px_12px] transition-all duration-200;
+  }
+
+  .sketchy-button:hover {
+    @apply border-coral text-coral;
+  }
+
+  .timeline-line {
+    background-image: linear-gradient(to bottom, #EBDBB2 50%, transparent 50%);
+    background-size: 2px 20px;
+    width: 2px;
+  }
+}

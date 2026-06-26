@@ -1,0 +1,210 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/health-goals.json",
+  "title": "HealthGoals",
+  "description": "健康目标与习惯管理的数据结构定义",
+  "type": "object",
+  "properties": {
+    "goals": {
+      "type": "array",
+      "description": "健康目标列表",
+      "items": {
+        "type": "object",
+        "properties": {
+          "goal_id": {
+            "type": "string",
+            "pattern": "^goal_[0-9]{8}_[0-9]{6}$"
+          },
+          "goal_type": {
+            "type": "string",
+            "enum": ["weight_loss", "weight_gain", "exercise", "diet", "sleep", "health_metric", "custom"]
+          },
+          "title": {"type": "string"},
+          "description": {"type": "string"},
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "target_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["active", "paused", "completed", "archived"]
+          },
+          "target_value": {
+            "type": "object",
+            "properties": {
+              "value": {"type": "number"},
+              "unit": {"type": "string"}
+            }
+          },
+          "current_value": {
+            "type": "object",
+            "properties": {
+              "value": {"type": "number"},
+              "unit": {"type": "string"}
+            }
+          },
+          "progress_percentage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "smart_validation": {
+            "type": "object",
+            "properties": {
+              "specific": {"type": "boolean"},
+              "measurable": {"type": "boolean"},
+              "achievable": {"type": "boolean"},
+              "relevant": {"type": "boolean"},
+              "time_bound": {"type": "boolean"}
+            }
+          },
+          "action_plan": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "milestones": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "milestone_id": {"type": "string"},
+                "title": {"type": "string"},
+                "target_value": {"type": "number"},
+                "target_date": {"type": "string", "format": "date"},
+                "achieved": {"type": "boolean"},
+                "achieved_date": {"type": "string", "format": "date"}
+              }
+            }
+          },
+          "progress_history": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {"type": "string", "format": "date-time"},
+                "value": {"type": "number"},
+                "notes": {"type": "string"}
+              }
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["goal_id", "goal_type", "title", "start_date", "target_date", "status"]
+      }
+    },
+    "habits": {
+      "type": "array",
+      "description": "习惯列表",
+      "items": {
+        "type": "object",
+        "properties": {
+          "habit_id": {
+            "type": "string",
+            "pattern": "^habit_[0-9]{8}_[0-9]{6}$"
+          },
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "habit_type": {
+            "type": "string",
+            "enum": ["daily", "weekly", "trigger_based"]
+          },
+          "trigger": {
+            "type": "string",
+            "description": "触发条件 (如'早餐后')"
+          },
+          "target_frequency": {
+            "type": "string",
+            "description": "目标频率 (如'每天1次')"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["active", "paused", "completed"]
+          },
+          "streak_count": {
+            "type": "integer",
+            "description": "连续打卡天数"
+          },
+          "longest_streak": {
+            "type": "integer",
+            "description": "最长连续天数"
+          },
+          "completion_rate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "完成率百分比"
+          },
+          "check_in_history": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {"type": "string", "format": "date"},
+                "completed": {"type": "boolean"},
+                "notes": {"type": "string"}
+              }
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["habit_id", "name", "habit_type", "status"]
+      }
+    },
+    "achievements": {
+      "type": "array",
+      "description": "成就列表",
+      "items": {
+        "type": "object",
+        "properties": {
+          "achievement_id": {"type": "string"},
+          "title": {"type": "string"},
+          "description": {"type": "string"},
+          "icon": {"type": "string"},
+          "category": {
+            "type": "string",
+            "enum": ["goal", "habit", "milestone", "special"]
+          },
+          "unlocked": {"type": "boolean"},
+          "unlocked_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "related_goal_id": {"type": "string"},
+          "related_habit_id": {"type": "string"}
+        }
+      }
+    },
+    "motivation_tracking": {
+      "type": "array",
+      "description": "动机追踪记录",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "score": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10
+          },
+          "notes": {"type": "string"}
+        }
+      }
+    }
+  },
+  "required": ["goals"],
+  "additionalProperties": false
+}

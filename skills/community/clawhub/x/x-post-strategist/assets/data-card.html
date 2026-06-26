@@ -1,0 +1,60 @@
+<!doctype html>
+<!--
+  Data / metric card — a starting template, not a rigid spec.
+  Edit the metrics and CSS variables. Render at 1080×1080:
+    node ../scripts/render-image.js data-card.html out.png --width=1080 --height=1080
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --ink: #0b1220;
+        --muted: #64748b;
+        --accent: #16a34a;
+        --line: #e2e8f0;
+      }
+      * { margin: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1080px; }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", Roboto, sans-serif;
+        padding: 96px;
+        display: flex;
+        flex-direction: column;
+      }
+      .eyebrow { font-size: 30px; font-weight: 600; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; }
+      h1 { font-size: 58px; font-weight: 800; line-height: 1.15; margin-top: 16px; letter-spacing: -1px; }
+      .metrics { margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px 56px; }
+      .metric .value { font-size: 92px; font-weight: 800; line-height: 1; letter-spacing: -2px; }
+      .metric .value .unit { font-size: 44px; color: var(--accent); }
+      .metric .label { font-size: 30px; color: var(--muted); margin-top: 14px; }
+      footer { margin-top: 72px; padding-top: 28px; border-top: 2px solid var(--line); font-size: 28px; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div class="eyebrow">Build in public · Q2</div>
+    <h1>What moved the needle this quarter</h1>
+    <div class="metrics">
+      <div class="metric">
+        <div class="value">310<span class="unit"> teams</span></div>
+        <div class="label">Paying teams (up from 40)</div>
+      </div>
+      <div class="metric">
+        <div class="value">−60<span class="unit">%</span></div>
+        <div class="label">p95 latency after the rewrite</div>
+      </div>
+      <div class="metric">
+        <div class="value">3<span class="unit">×</span></div>
+        <div class="label">Onboarding rebuilds before it stuck</div>
+      </div>
+      <div class="metric">
+        <div class="value">90<span class="unit"> days</span></div>
+        <div class="label">From 40 to 310 teams</div>
+      </div>
+    </div>
+    <footer>@your_handle · numbers are real, edit before publishing</footer>
+  </body>
+</html>

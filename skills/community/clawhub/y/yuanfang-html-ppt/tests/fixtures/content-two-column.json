@@ -1,0 +1,10 @@
+{
+  "brand": "tech-modern",
+  "theme": "tech-modern",
+  "layout": "two-column",
+  "title": "竞品对比",
+  "leftTitle": "我们",
+  "leftPoints": ["开源", "可定制", "低成本"],
+  "rightTitle": "竞品",
+  "rightPoints": ["闭源", "标准化", "高成本"]
+}

@@ -1,35 +1,41 @@
 ---
-name: "YouTube Content Manager"
-description: "YouTube内容管理后台，支持AI选题生成、脚本创作、标题优化、SEO描述生成、缩略图文案建议、发布记录管理和数据分析。集成SkillPay支付接口，每次调用收0.001USDT。"
-category: "creative"
-source: "ClawHub"
-tags: [content, management, monetization, youtube, ai, chinese, script, seo, siliconflow, skillpay]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/youtube-content-manager"
-sourceUrl: "https://clawhub.ai/skills/youtube-content-manager"
+name: youtube-content-manager
+description: YouTube内容管理后台，支持AI选题生成、脚本创作、标题优化、SEO描述生成、缩略图文案建议、发布记录管理和数据分析。集成SkillPay支付接口，每次调用收0.001USDT。
+license: MIT
 ---
 
-# YouTube Content Manager
+# YouTube内容管理后台
 
-> YouTube内容管理后台，支持AI选题生成、脚本创作、标题优化、SEO描述生成、缩略图文案建议、发布记录管理和数据分析。集成SkillPay支付接口，每次调用收0.001USDT。
+## 功能概述
+专为YouTube创作者打造的全流程内容生产工具，帮助创作者高效完成从选题到发布的全流程：
+1. **AI选题库**：输入领域，自动生成30个选题，按难度和潜在流量排序
+2. **视频脚本生成**：选中选题后自动生成5-8分钟视频完整脚本
+3. **标题生成**：每个脚本配5个标题选项，标注SEO友好度
+4. **SEO描述+标签**：自动生成500字SEO优化描述和30个相关标签
+5. **缩略图方案**：生成缩略图大字文案和配色建议
+6. **发布记录**：记录每个视频发布日期、播放量、CTR等数据
+7. **数据分析**：每周自动分析高流量选题特征，优化后续选题方向
+8. **全中文界面**，数据本地存储，安全可靠
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/youtube-content-manager`
-- **Source URL:** [https://clawhub.ai/skills/youtube-content-manager](https://clawhub.ai/skills/youtube-content-manager)
+## 支付说明
+每次使用本工具将收取0.001 USDT，支付接口由SkillPay.me提供，API Key：`sk_d11f398e77b6e892eb7a7d421fe912dde27322cf1792366b776b72bd459d3c2e`
 
-## Overview
+## 使用流程
+1. 完成支付验证
+2. 输入内容领域，生成选题库
+3. 选择心仪选题，生成视频脚本
+4. 选择标题、生成描述标签和缩略图方案
+5. 记录发布数据，查看数据分析报告
 
+## 依赖要求
+- Python 3.8+
+- Flask: Web框架
+- SQLite3: 本地数据存储
+- OpenAI: AI内容生成（需配置API Key）
+- pandas: 数据分析
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/youtube-content-manager
-```
+## 部署说明
+1. 安装依赖：`pip install flask pandas openai`
+2. 配置OpenAI API Key
+3. 启动服务：`python scripts/app.py`
+4. 访问 http://localhost:5000 即可使用

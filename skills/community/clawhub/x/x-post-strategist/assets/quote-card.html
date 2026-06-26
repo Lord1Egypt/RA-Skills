@@ -1,0 +1,64 @@
+<!doctype html>
+<!--
+  Quote card — a starting template, not a rigid spec.
+  Edit the text and the CSS variables. Render at 1080×1080:
+    node ../scripts/render-image.js quote-card.html out.png --width=1080 --height=1080
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root {
+        --bg: #0f172a;
+        --accent: #38bdf8;
+        --text: #f8fafc;
+        --muted: #94a3b8;
+      }
+      * { margin: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1080px; }
+      body {
+        background: radial-gradient(120% 120% at 0% 0%, #1e293b 0%, var(--bg) 60%);
+        color: var(--text);
+        font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", Roboto, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 110px 96px;
+      }
+      .mark {
+        font-size: 120px;
+        line-height: 1;
+        color: var(--accent);
+        font-weight: 800;
+        margin-bottom: 24px;
+      }
+      .quote {
+        font-size: 64px;
+        font-weight: 700;
+        line-height: 1.28;
+        letter-spacing: -0.5px;
+      }
+      .quote .hl { color: var(--accent); }
+      footer {
+        margin-top: 64px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        color: var(--muted);
+        font-size: 30px;
+      }
+      .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <div class="mark">“</div>
+    <p class="quote">
+      The developers who started using AI tools two years ago
+      are now being paid <span class="hl">very differently</span>.
+    </p>
+    <footer>
+      <span class="dot"></span>
+      <span>@your_handle</span>
+    </footer>
+  </body>
+</html>

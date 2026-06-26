@@ -1,0 +1,4 @@
+interface:
+  display_name: "ZeeLin-report-publisher"
+  short_description: "Publish 智灵报告网站 reports with PR workflow"
+  default_prompt: "Use $zeelin-report-publisher to publish a report to 智灵报告网站 through a pull request workflow."

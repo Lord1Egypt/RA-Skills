@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://worldloops.dev/schemas/openclaw-brief-output.schema.json",
+  "title": "OpenClaw Brief Output",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["ok", "brief", "openLoops", "proposalCandidates", "metadata", "safety"],
+      "additionalProperties": true,
+      "properties": {
+        "ok": {
+          "const": true
+        },
+        "brief": {
+          "type": "string"
+        },
+        "openLoops": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["source", "text", "reason"],
+            "additionalProperties": true,
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "proposalCandidates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "idempotencyKey",
+              "entityType",
+              "source",
+              "currentState",
+              "proposedState",
+              "reason",
+              "approvalRequired",
+              "actionHint"
+            ],
+            "additionalProperties": true,
+            "properties": {
+              "idempotencyKey": {
+                "type": "string"
+              },
+              "entityType": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "currentState": {
+                "type": "string"
+              },
+              "proposedState": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "approvalRequired": {
+                "type": "boolean"
+              },
+              "actionHint": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "required": ["endpoint", "auth", "signals"],
+          "additionalProperties": true,
+          "properties": {
+            "endpoint": {
+              "type": "string"
+            },
+            "auth": {
+              "type": "string"
+            },
+            "signals": {
+              "type": "number"
+            }
+          }
+        },
+        "safety": {
+          "type": "object",
+          "required": ["externalWrite"],
+          "additionalProperties": true,
+          "properties": {
+            "externalWrite": {
+              "const": false
+            },
+            "note": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": ["ok", "error", "safety"],
+      "additionalProperties": true,
+      "properties": {
+        "ok": {
+          "const": false
+        },
+        "error": {
+          "type": "object",
+          "required": ["code", "message"],
+          "additionalProperties": true,
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "INPUT_FILE_NOT_FOUND",
+                "INVALID_JSON",
+                "INVALID_INPUT_SHAPE",
+                "INVALID_SIGNAL_SOURCE",
+                "INVALID_SIGNAL_TEXT",
+                "BRIEF_API_UNAVAILABLE",
+                "BRIEF_FAILED"
+              ]
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        },
+        "safety": {
+          "type": "object",
+          "required": ["externalWrite"],
+          "additionalProperties": true,
+          "properties": {
+            "externalWrite": {
+              "const": false
+            },
+            "note": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

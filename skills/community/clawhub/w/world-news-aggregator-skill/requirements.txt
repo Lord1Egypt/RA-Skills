@@ -1,0 +1,29 @@
+# World News Aggregator Skill - Python Dependencies
+# Optional: Only needed if running standalone fetch scripts
+
+# HTTP Requests
+requests>=2.31.0
+urllib3>=2.0.0
+
+# RSS Feed Parsing
+feedparser>=6.0.10
+
+# HTML Parsing
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# JSON Processing
+json5>=0.9.0
+
+# Date/Time Handling
+python-dateutil>=2.8.2
+pytz>=2023.3
+
+# Optional: Browser Automation (for anti-bot sites)
+# playwright>=1.40.0
+
+# Optional: Markdown Output
+markdown>=3.5.0
+
+# Optional: CLI Interface
+# click>=8.1.0

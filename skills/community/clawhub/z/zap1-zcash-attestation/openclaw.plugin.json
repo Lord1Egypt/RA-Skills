@@ -1,0 +1,85 @@
+{
+  "id": "zap1",
+  "name": "openclaw-zap1",
+  "version": "0.2.0",
+  "description": "Zcash attestation layer for OpenClaw agents. 8 hooks, 14 tools, policy enforcement, session tracking, proof checkpoints anchored to Zcash mainnet.",
+  "author": "zk_nd3r",
+  "homepage": "https://github.com/Frontier-Compute/openclaw-zap1",
+  "repository": "https://github.com/Frontier-Compute/openclaw-zap1",
+  "tags": ["zcash", "attestation", "privacy", "zk", "blockchain", "policy", "audit"],
+  "contracts": {
+    "hooks": [
+      "message:sent",
+      "message:received",
+      "message:preprocessed",
+      "message:transcribed",
+      "agent:bootstrap",
+      "session:patch",
+      "gateway:startup",
+      "command"
+    ],
+    "tools": [
+      "zap1_protocol_info",
+      "zap1_stats",
+      "zap1_verify_proof",
+      "zap1_get_proof_bundle",
+      "zap1_anchor_status",
+      "zap1_anchor_history",
+      "zap1_recent_events",
+      "zap1_decode_memo",
+      "zap1_create_event",
+      "zap1_lifecycle",
+      "zap1_agent_status",
+      "zap1_cohort_stats",
+      "zap1_list_webhooks",
+      "zap1_create_api_key"
+    ]
+  },
+  "uiHints": {
+    "agentId": {
+      "label": "Agent ID",
+      "help": "Unique identifier for this agent. Used for attestation identity and lifecycle tracking."
+    },
+    "apiKey": {
+      "label": "ZAP1 API Key",
+      "help": "API key for write operations. Required for automatic attestation hooks.",
+      "sensitive": true
+    },
+    "apiUrl": {
+      "label": "ZAP1 API URL",
+      "help": "ZAP1 API endpoint (default: https://pay.frontiercompute.io)."
+    },
+    "policyRules": {
+      "label": "Policy Rules",
+      "help": "JSON with blockedTools and restrictedTools arrays."
+    },
+    "proofInterval": {
+      "label": "Proof Interval",
+      "help": "Actions between proof checkpoints. Default 10."
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "agentId": {
+        "type": "string",
+        "description": "Agent identifier for attestation"
+      },
+      "apiUrl": {
+        "type": "string"
+      },
+      "apiKey": {
+        "type": ["string", "object"]
+      },
+      "policyRules": {
+        "type": "object",
+        "description": "Agent policy rules"
+      },
+      "proofInterval": {
+        "type": "number",
+        "description": "Proof checkpoint interval"
+      }
+    }
+  }
+}

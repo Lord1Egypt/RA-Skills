@@ -1,0 +1,15 @@
+{
+  "source": "linear",
+  "sourceType": "issue",
+  "externalWrite": false,
+  "text": "Issue WL-291: Adapter SDK validation errors need better user-facing messages. Assigned to @joshlee 72 hours ago with no activity. Blocking v1.1.0 release.",
+  "observedAt": "2026-05-16T14:00:00.000Z",
+  "url": "https://linear.app/example/issue/WL-291",
+  "summary": "Stale assigned issue — blocking release, no activity for 72 hours",
+  "metadata": {
+    "issueId": "WL-291",
+    "priority": "high",
+    "assignee": "joshlee",
+    "hoursStale": 72
+  }
+}

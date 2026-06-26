@@ -1,0 +1,4466 @@
+meta:
+  id: finance-bp-128-v5.3
+  version: v6.1
+  blueprint_id: finance-bp-128
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-22T13:01:04.148127+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    - "[V6 READING ORDER]\nThis crystal contains the following V6 layers. Before answering any business question, the host\
+      \ MUST read them in order:\n  1. anti_patterns[] — cross-project anti-patterns (with AP-* ids)\n  2. cross_project_wisdom[]\
+      \ — cross-project wisdom (with CW-* ids)\n  3. domain_constraints_injected[] — domain constraints (SHARED-* ids)\n \
+      \ 4. known_use_cases[] — concrete business scenarios (KUC-* ids)\n  5. component_capability_map — AST component map\
+      \ (by module)\n\nWhen answering user questions, proactively cite relevant AP-*/CW-*/SHARED-*/KUC-* ids with source text.\
+      \ Examples: T+1 rules -> cite SHARED-* constraint; model comparison -> warn via AP-*; follow-holdings strategy -> cite\
+      \ KUC-* with example file."
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+  capability_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  upgraded_from: finance-bp-128-v1.seed.yaml
+  upgraded_at: '2026-04-22T13:20:35.588540+00:00'
+  v6_inputs:
+    ast_mind_map: knowledge/sources/finance/finance-bp-128--yfinance/v6_inputs/ast_mind_map.yaml
+    anti_patterns: null
+    cross_project_wisdom: null
+    examples_kuc: knowledge/sources/finance/finance-bp-128--yfinance/v6_inputs/examples_kuc.yaml
+    shared_pools_dir: knowledge/sources/finance/_shared
+anti_patterns:
+- id: AP-DATA-SOURCING-001
+  title: Missing or invalid User-Agent headers for SEC API requests
+  description: SEC EDGAR requires valid User-Agent identity with contact information in headers. Without this, requests are
+    rejected with 403 Forbidden errors, completely blocking all filing access. Both edgartools and edgar-crawler enforce this
+    constraint as fundamental to any data retrieval operation.
+  project_source: finance-bp-070--edgartools, finance-bp-114--edgar-crawler
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-002
+  title: Ignoring external API rate limits causing IP blocking
+  description: Multiple financial data sources (SEC EDGAR, Sina, Eastmoney, TuShare) enforce strict rate limits (10 req/sec,
+    120 calls/minute). Exceeding these triggers temporary IP blocks lasting 10-60 minutes, causing complete data unavailability.
+    Immediate retry attempts during blocks extend the block duration significantly.
+  project_source: finance-bp-070--edgartools, finance-bp-079--akshare, finance-bp-084--eastmoney, finance-bp-114--edgar-crawler
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-003
+  title: No HTTP timeout configuration causing indefinite hangs
+  description: HTTP requests to external financial data sources (Yahoo, Sina, Eastmoney) without timeout values can hang indefinitely
+    on blocked connections. This freezes the entire application and prevents data collection from all other sources, creating
+    cascading failures across the system.
+  project_source: finance-bp-079--akshare
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-004
+  title: Invalidating XBRL period types for balance sheet analysis
+  description: Balance sheets represent point-in-time snapshots (instant periods), not ranges (duration periods). Using duration
+    periods for balance sheet statements causes stockholder equity and other line items to show nonsensical date ranges, corrupting
+    financial calculations that depend on accurate period associations.
+  project_source: finance-bp-070--edgartools
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-005
+  title: Malformed or empty JSON responses causing silent failures
+  description: Financial API responses containing malformed JSON raise unhandled ValueError exceptions, crashing downstream
+    processing. Similarly, empty JSON responses (empty dict, list, null) masquerading as valid data cause silent failures
+    producing empty DataFrames or misleading results in financial analysis.
+  project_source: finance-bp-079--akshare
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-006
+  title: Source-specific symbol mapping errors causing data corruption
+  description: Stock symbols require source-specific formatting (sh/sz prefixes for Sina, numeric codes for THS, etc.). Incorrect
+    symbol mapping causes API calls to return empty results or wrong data, corrupting financial datasets with missing records
+    or entirely incorrect tickers being stored.
+  project_source: finance-bp-079--akshare
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-007
+  title: Using unsupported DataFrame types with time-series storage
+  description: ArcticDB does not support MultiIndex columns, PyArrow-backed pandas DataFrames, or timedelta64 columns. Attempting
+    to write these DataFrame types raises ArcticDbNotYetImplemented exceptions, causing write failures and permanent data
+    loss if not properly handled before storage operations.
+  project_source: finance-bp-103--ArcticDB
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-008
+  title: Non-atomic storage writes causing concurrent access corruption
+  description: Storage backends without atomic write_if_none operations can cause data corruption under concurrent multi-writer
+    access. Similarly, updating reference keys before atom keys complete allows readers to access incomplete or missing data,
+    breaking version chain integrity.
+  project_source: finance-bp-103--ArcticDB
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-009
+  title: Missing timezone-aware DatetimeIndex causing DST offset errors
+  description: Price history DataFrames returned without timezone-aware DatetimeIndex cause incorrect timestamp interpretation
+    when combined with other timezone-aware data. This leads to 23-25 hour offset errors during daylight saving time transitions,
+    corrupting historical price calculations.
+  project_source: finance-bp-128--yfinance
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-010
+  title: 8-K filing item numbering scheme mismatch for historical filings
+  description: 8-K filings use obsolete item numbering (1-12) before 2004-08-23 and new numbering (1.01-9.01) after. Using
+    the wrong numbering scheme causes no matches for historical filings, resulting in empty item sections and complete extraction
+    failure for pre-2004 data.
+  project_source: finance-bp-114--edgar-crawler
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-011
+  title: Yahoo Finance missing crumb authentication causing 401/403 errors
+  description: Yahoo Finance API requires crumb and cookie authentication with every request. Without proper crumb management,
+    API calls return 401 Unauthorized or HTML error pages instead of JSON data, breaking all downstream price and financial
+    data processing.
+  project_source: finance-bp-128--yfinance
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-012
+  title: Large document parsing without streaming causing OOM errors
+  description: SEC filings can exceed 160MB, and parsing large documents in memory without streaming causes OOM errors that
+    crash the entire service for all users. Documents exceeding 10MB require switching to streaming parsers to prevent extreme
+    memory usage.
+  project_source: finance-bp-070--edgartools
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-013
+  title: Column mapping length mismatch causing DataFrame errors
+  description: Column mapping constants with length mismatch against actual API response columns cause ValueError exceptions
+    during DataFrame construction. Raw field names (f1, f2, f12) must be mapped to meaningful names (最新价, 涨跌幅) with exact
+    column count alignment.
+  project_source: finance-bp-079--akshare
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+- id: AP-DATA-SOURCING-014
+  title: Pruning snapshot-protected versions breaking point-in-time recovery
+  description: Deleting or pruning versions that are referenced by existing snapshots breaks historical data access. Snapshots
+    provide point-in-time recovery capabilities, and removing their referenced versions causes read failures when users attempt
+    to access data from specific snapshots.
+  project_source: finance-bp-103--ArcticDB
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - data-sourcing
+  _source_file: anti-patterns/data-sourcing.yaml
+cross_project_wisdom:
+- wisdom_id: CW-DATA-SOURCING-001
+  source_project: finance-bp-079--akshare, finance-bp-114--edgar-crawler
+  pattern_name: Exponential backoff retry with rate limit detection
+  description: Implement retry logic with exponential backoff specifically for HTTP 429 rate limit responses. Retrying immediately
+    on rate limit errors worsens the block situation. Separate retry logic for transient network errors (TimeoutError, ConnectionError)
+    from permanent errors (ValueError, KeyError) prevents resource waste and masks underlying bugs.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+- wisdom_id: CW-DATA-SOURCING-002
+  source_project: finance-bp-070--edgartools, finance-bp-079--akshare, finance-bp-084--eastmoney
+  pattern_name: Strict date format validation and standardization
+  description: Validate date formats strictly (YYYY-MM-DD pattern with leap year and month-end checks) before processing XBRL
+    or API data. Convert date strings between formats (YYYYMMDD to YYYY-MM-DD) when storing to databases. Invalid dates corrupt
+    downstream financial calculations.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+- wisdom_id: CW-DATA-SOURCING-003
+  source_project: finance-bp-070--edgartools, finance-bp-114--edgar-crawler
+  pattern_name: XBRL fact attribute completeness enforcement
+  description: Extract and validate all essential XBRL fact attributes (concept, value, period, unit) from every fact. Missing
+    attributes cause financial analysis queries to return incomplete or misleading results. Period type (instant vs duration)
+    must be correctly distinguished for accurate balance sheet rendering.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+- wisdom_id: CW-DATA-SOURCING-004
+  source_project: finance-bp-070--edgartools, finance-bp-128--yfinance
+  pattern_name: Streaming parser threshold for large documents
+  description: Implement streaming parser activation when documents exceed configurable thresholds (10MB default). This prevents
+    OOM errors on large NPORT-P filings or bulk document downloads. Also require timezone information for time-series data
+    to prevent DST offset corruption.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+- wisdom_id: CW-DATA-SOURCING-005
+  source_project: finance-bp-079--akshare, finance-bp-128--yfinance, finance-bp-097--OpenBB
+  pattern_name: Data accuracy disclaimer requirements
+  description: Always present scraped or third-party financial data with proper caveats about accuracy limitations and delays.
+    Claims of guaranteed accuracy, real-time capabilities, or Yahoo/provider affiliation violate terms of service and can
+    lead to user financial losses from reliance on delayed or incorrect data.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+- wisdom_id: CW-DATA-SOURCING-006
+  source_project: finance-bp-103--ArcticDB
+  pattern_name: Atomic write ordering for versioned storage
+  description: Write atom keys (TABLE_DATA, TABLE_INDEX, VERSION) before updating mutable reference keys (VERSION_REF, SNAPSHOT_REF).
+    Never modify atom keys after writing to preserve content-addressed storage invariants. This prevents readers from accessing
+    incomplete data in multi-writer scenarios.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+- wisdom_id: CW-DATA-SOURCING-007
+  source_project: finance-bp-079--akshare, finance-bp-097--OpenBB
+  pattern_name: HTTP status code validation before data processing
+  description: Always validate HTTP response status codes before processing response data. Error responses (404, 500) may
+    contain HTML error pages that corrupt downstream JSON parsing. Explicitly check for HTTP 429 and raise RateLimitError
+    for proper handling by callers.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+- wisdom_id: CW-DATA-SOURCING-008
+  source_project: finance-bp-084--eastmoney
+  pattern_name: Quality gates for financial recommendations
+  description: Apply fundamental quality filters (ROE thresholds, OCF/Profit ratios, debt ratios) before generating financial
+    recommendations. Without quality gates, low-quality stocks may be recommended for positions, leading to investment losses.
+    Separate on-demand computation from scheduled pre-computation to handle API rate limits.
+  applicable_to_activity: data-sourcing
+  _source_file: cross-project-wisdom/data-sourcing.yaml
+domain_constraints_injected:
+- id: SHARED-DS-RL-001
+  statement: 'Rate Limit + 指数退避重试：所有外部数据 API 调用必须实施速率限制控制 和指数退避重试（Exponential Backoff with Jitter）。收到 429/503 响应后 立即重试是反模式，会加剧服务端压力并触发
+    IP 封禁。 最大重试次数 3-5 次，退避基数 1-2 秒，最大退避 60 秒。
+
+    '
+  severity: fatal
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: all external API calls must implement exponential backoff retry with jitter
+  evidence_refs:
+  - type: community_validated
+    ref: AWS《重试行为最佳实践》；akshare 文档限速说明；tushare 文档请求频率限制
+    url: https://docs.aws.amazon.com/general/latest/gr/api-retries.html
+  reference_code:
+    bad_example: "# BAD: 立即重试，不退避，加剧 429\nfor attempt in range(5):\n    try:\n        data = api.get(symbol)\n        break\n\
+      \    except RateLimitError:\n        time.sleep(0.1)  # 100ms 立即重试，会加剧问题\n"
+    good_example: "# GOOD: 指数退避 + Jitter 重试\nimport random\n\ndef fetch_with_retry(func, *args, max_retries=5, base_delay=1.0):\n\
+      \    for attempt in range(max_retries):\n        try:\n            return func(*args)\n        except (RateLimitError,\
+      \ TimeoutError) as e:\n            if attempt == max_retries - 1:\n                raise\n            delay = min(base_delay\
+      \ * (2 ** attempt), 60)\n            delay += random.uniform(0, delay * 0.1)  # +10% Jitter\n            time.sleep(delay)\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-RL-002
+  statement: '批量 API 调用必须控制并发数（max_workers），不可无限制并行。 免费 API（akshare/tushare 免费版）通常限制为 1-3 并发； 付费 API 也有并发上限（tushare 积分制，不同积分对应不同并发）。
+    超出并发限制会触发 429 或 IP 封禁。推荐使用 asyncio.Semaphore 或 ThreadPoolExecutor 的 max_workers 参数显式控制。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: concurrent API calls must be bounded by explicit max_workers/semaphore
+  evidence_refs:
+  - type: community_validated
+    ref: tushare 文档积分与频率限制；akshare 文档接口说明；MiniMax 并发踩坑记录（Doramagic内部记忆）
+  reference_code:
+    bad_example: "# BAD: 无并发限制，触发 429\nwith ThreadPoolExecutor() as executor:\n    results = list(executor.map(fetch_stock,\
+      \ stock_list))\n    # 默认 max_workers 可能创建几十个线程，立即触发 429\n"
+    good_example: "# GOOD: 显式限制并发（akshare 免费版建议 max_workers=2）\nfrom concurrent.futures import ThreadPoolExecutor\nMAX_WORKERS\
+      \ = 2  # 根据 API 文档调整\n\nwith ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:\n    results = list(executor.map(fetch_stock,\
+      \ stock_list))\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-RL-003
+  statement: 'API Token / 凭证安全：数据源 API key（tushare token / akshare 无需 token 但 其他商业数据源需要）不可硬编码在代码中，必须通过环境变量或配置文件读取。 硬编码 token
+    提交到 Git 会导致 token 泄露和费用损失。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: API tokens must be loaded from environment variables, not hardcoded
+  evidence_refs:
+  - type: community_validated
+    ref: tushare 文档 token 管理；GitHub Secret Scanning 最佳实践
+    url: https://tushare.pro/document/2
+  reference_code:
+    bad_example: '# BAD: Token 硬编码，提交到 Git 后泄露
+
+      ts.set_token(''abc123def456your_token_here'')
+
+      pro = ts.pro_api()
+
+      '
+    good_example: "# GOOD: 从环境变量读取 token\nimport os\ntoken = os.environ.get('TUSHARE_TOKEN')\nif not token:\n    raise ValueError(\"\
+      TUSHARE_TOKEN environment variable not set\")\nts.set_token(token)\npro = ts.pro_api()\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-RL-004
+  statement: '请求节流（Throttling）：对同一 API 的批量请求应在请求间插入最小间隔 （akshare 部分接口要求 ≥ 0.5s；tushare 免费版每分钟 200 次）。 纯代码 sleep 不如令牌桶（Token
+    Bucket）算法精确，推荐使用 ratelimit 或 slowapi 等成熟库。
+
+    '
+  severity: medium
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: per-request minimum interval must be enforced between API calls
+  evidence_refs:
+  - type: community_validated
+    ref: akshare 官方文档接口说明；知乎《量化数据采集：如何优雅处理限速》
+    url: https://akshare.akfamily.xyz/
+  reference_code:
+    bad_example: "# BAD: 固定 sleep 不准确，高并发下失效\nfor code in stock_list:\n    data = ak.stock_zh_a_hist(symbol=code)\n    time.sleep(0.1)\
+      \  # 可能不够，也可能太保守\n"
+    good_example: "# GOOD: 使用 ratelimit 装饰器精确控制\nfrom ratelimit import limits, sleep_and_retry\n\n@sleep_and_retry\n@limits(calls=200,\
+      \ period=60)  # tushare 免费版: 200次/分钟\ndef fetch_daily(code, start, end):\n    return ts.pro_bar(ts_code=code, start_date=start,\
+      \ end_date=end)\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-MISS-001
+  statement: '停牌日数据缺失策略：停牌股票在停牌期间无成交数据，数据库中会出现日期缺口。 缺失日期不可使用 forward-fill（会产生虚假成交量）； 应在数据库中以 is_suspended=True 标记，量和成交额填 0，价格保留前一日收盘价。
+    因子计算时必须过滤 is_suspended=True 的行。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+    - backtesting
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+    - data_filtering
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: suspended trading days must be explicitly marked with is_suspended=True, not silently forward-filled
+  evidence_refs:
+  - type: community_validated
+    ref: tushare 文档 daily 接口停牌标志；qlib 文档 suspended stock handling
+    url: https://tushare.pro/document/2?doc_id=28
+  reference_code:
+    bad_example: '# BAD: forward-fill 停牌日，量保持前一日非零值
+
+      df = df.reindex(all_trading_days).fillna(method=''ffill'')
+
+      # volume 被填充为非零值，停牌变"正常交易"
+
+      '
+    good_example: "# GOOD: 停牌日明确标记\nfull_index = pd.MultiIndex.from_product(\n    [all_stocks, all_trading_days], names=['stock',\
+      \ 'date'])\ndf_full = df.reindex(full_index)\ndf_full['is_suspended'] = df_full['volume'].isna()\ndf_full['volume']\
+      \ = df_full['volume'].fillna(0)\ndf_full['amount'] = df_full['amount'].fillna(0)\ndf_full['close'] = df_full['close'].fillna(method='ffill')\
+      \  # 价格 ffill\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-MISS-002
+  statement: '新上市股票的历史数据边界：新股上市首日开始在数据库中出现，但其上市前 无历史数据。若因子计算的 lookback 期超过上市天数，会产生所有 NaN 因子值。 采集时应记录每只股票的上市日期（list_date），采集逻辑应以上市日期为起点，
+    不以固定开始日期。
+
+    '
+  severity: medium
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: data collection start date must be bounded by stock listing date, not a fixed start date
+  evidence_refs:
+  - type: community_validated
+    ref: tushare stock_basic 接口 list_date 字段；akshare stock_info_a_code_name 接口
+    url: https://tushare.pro/document/2?doc_id=25
+  reference_code:
+    bad_example: "# BAD: 统一从 2010-01-01 开始，新股有大量 NaN\nfor code in stock_list:\n    df = fetch(code, start='2010-01-01', end=today)\n"
+    good_example: "# GOOD: 从上市日期开始采集\nstock_info = ts.get_stock_basics()  # 含 list_date\nfor code in stock_list:\n    list_date\
+      \ = stock_info.loc[code, 'list_date']\n    df = fetch(code, start=list_date, end=today)\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-MISS-003
+  statement: '退市股票的数据完整性：已退市股票在主流数据源（akshare/tushare）中依然 可以查询历史数据（退市前的历史），但退市日期后无数据。 历史股票池构建时必须包含已退市股票（否则幸存者偏差）， 且采集时需明确处理退市日截止边界。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+    - backtesting
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: delisted stocks must be included in historical universe; delist_date must be recorded
+  evidence_refs:
+  - type: community_validated
+    ref: tushare stock_basic 接口 delist_date 字段；qlib 文档 Delisted Stock Handling
+    url: https://tushare.pro/document/2?doc_id=25
+  reference_code:
+    bad_example: '# BAD: 只采集当前上市股票，遗漏已退市股票
+
+      stock_list = ts.get_stock_basics()  # 只含当前上市股票
+
+      '
+    good_example: "# GOOD: 采集全量股票（含已退市）\nall_stocks = pro.stock_basic(\n    exchange='', list_status='L',  # 上市\n)\ndelisted\
+      \ = pro.stock_basic(\n    exchange='', list_status='D',  # 退市\n)\nfull_universe = pd.concat([all_stocks, delisted])\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-MISS-004
+  statement: '多数据源数据对账（Cross-Source Reconciliation）：同一数据（如收盘价） 从不同数据源（akshare/tushare/baostock）获取可能存在细微差异 （不同复权方式/不同节假日处理/除息调整时间不同）。
+    应在 pipeline 中实施多源对账检查，差异超阈值（如 0.1%）时记录告警并人工确认。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: when using multiple data sources, cross-source price reconciliation must be performed
+  evidence_refs:
+  - type: community_validated
+    ref: 雪球量化社区《数据质量：多数据源对账实践》；知乎《量化数据质量保障》
+  reference_code:
+    bad_example: '# BAD: 切换数据源不做对账，静默吞下差异
+
+      df_primary = akshare_fetch(code)
+
+      df_backup = baostock_fetch(code)
+
+      # 如果主源失败，直接用备源，不验证一致性
+
+      '
+    good_example: "# GOOD: 双源对账，价格差异超 0.5% 告警\ntolerance = 0.005\nmerged = df_primary.join(df_backup, lsuffix='_ak', rsuffix='_bs')\n\
+      diff = (merged['close_ak'] - merged['close_bs']).abs() / merged['close_ak']\nanomalies = diff[diff > tolerance]\nif\
+      \ len(anomalies) > 0:\n    logger.warning(f\"Price discrepancy > {tolerance:.1%}: {len(anomalies)} rows\")\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-TIME-001
+  statement: '时间戳精度与类型一致性：数据库中时间戳应使用统一的数据类型 （timestamp 而非 varchar/int）。混用字符串日期（''2024-01-15''）和 Timestamp 对象是比较、索引、merge 出现细微
+    bug 的常见来源， 应在 pipeline 入口处强制转换。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: all date/time fields must be normalized to pd.Timestamp at data ingestion boundary
+  evidence_refs:
+  - type: community_validated
+    ref: pandas 文档 to_datetime 最佳实践；SQLAlchemy TIMESTAMP 类型说明
+    url: https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html
+  reference_code:
+    bad_example: '# BAD: 存储为字符串，比较出错
+
+      df[''date''] = ''2024-01-15''  # 字符串
+
+      latest = df[df[''date''] == ''2024-01-15'']  # 字符串比较，效率低
+
+      '
+    good_example: '# GOOD: 统一转换为 Timestamp
+
+      df[''date''] = pd.to_datetime(df[''date''])
+
+      latest = df[df[''date''] == pd.Timestamp(''2024-01-15'')]
+
+      '
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-TIME-002
+  statement: '交易时间与自然时间的区分：日线数据的"日期"通常对应交易日（T日）， 而新闻/公告数据的"时间"是自然时间。合并两类数据时，必须将自然时间 映射到下一个可用交易日（next available trading day），
+    否则会产生"公告在T日，但T日盘中已经可用"的 lookahead 问题。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+    - backtesting
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+    - data_filtering
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: announcement timestamps must be mapped to next trading day open, not announcement date
+  evidence_refs:
+  - type: community_validated
+    ref: 知乎《量化数据时间戳处理：交易日与自然日的转换》；qlib 文档 point-in-time data
+    url: https://qlib.readthedocs.io/
+  reference_code:
+    bad_example: '# BAD: 公告日当天即可用于交易信号（可能是盘后公告）
+
+      signals = df.merge(announcements, on=''date'')  # 公告日 = 交易日
+
+      '
+    good_example: "# GOOD: 盘后公告映射到下一交易日\nimport exchange_calendars as xcals\ncal = xcals.get_calendar('XSHG')\n\ndef announcement_to_trade_date(ann_dt,\
+      \ market_close_hour=15):\n    date = pd.Timestamp(ann_dt)\n    if date.hour >= market_close_hour:\n        # 盘后公告 →\
+      \ 下一交易日生效\n        return cal.next_session(date.date())\n    else:\n        return date.date()\n\nannouncements['trade_date']\
+      \ = announcements['ann_datetime'].apply(\n    announcement_to_trade_date)\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-TIME-003
+  statement: '夏令时（DST）处理：采集美股/欧洲股市数据时，夏令时切换日（3月/11月） 会导致同一 HH:MM 时刻对应不同的 UTC 时间，若未处理，当日时序数据 会出现1小时的漂移。应始终以 UTC 存储，展示时按市场本地时区转换。
+
+    '
+  severity: medium
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags:
+    markets:
+    - cn-astock
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: DST transitions must be handled when collecting US/EU market data; store as UTC
+  evidence_refs:
+  - type: community_validated
+    ref: pytz 文档 DST 处理；exchange_calendars 文档
+    url: https://pytz.sourceforge.net/
+  reference_code:
+    bad_example: '# BAD: 用 naive datetime，夏令时切换日漂移
+
+      df[''datetime''] = pd.to_datetime(df[''time_str''])  # no timezone
+
+      '
+    good_example: "# GOOD: 以 UTC 存储，展示时转本地时区\nimport pytz\neastern = pytz.timezone('America/New_York')\ndf['datetime_utc']\
+      \ = pd.to_datetime(df['time_str']\n    ).dt.tz_localize(eastern, ambiguous='NaT'\n    ).dt.tz_convert('UTC')\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-INCR-001
+  statement: '增量更新幂等性：数据更新脚本必须是幂等的（多次运行结果相同）。 若脚本因网络中断在中途失败，重新运行时不应产生重复数据或数据缺口。 实现方式：先写入临时表，校验后 UPSERT 到主表，不直接 INSERT/APPEND。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: 'data update scripts must be idempotent: use UPSERT, not INSERT/APPEND'
+  evidence_refs:
+  - type: community_validated
+    ref: SQLite UPSERT 文档（INSERT OR REPLACE）；知乎《量化数据库设计：幂等更新》
+    url: https://www.sqlite.org/lang_upsert.html
+  reference_code:
+    bad_example: '# BAD: 直接 APPEND，重跑产生重复数据
+
+      df_new.to_sql(''daily_prices'', con=engine, if_exists=''append'', index=False)
+
+      '
+    good_example: "# GOOD: UPSERT（主键冲突则更新）\nfor _, row in df_new.iterrows():\n    engine.execute(\"\"\"\n        INSERT OR\
+      \ REPLACE INTO daily_prices\n        (stock_code, date, open, high, low, close, volume)\n        VALUES (?, ?, ?, ?,\
+      \ ?, ?, ?)\n    \"\"\", row.to_list())\n# SQLAlchemy 版本：使用 on_conflict_do_update\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-INCR-002
+  statement: '数据完整性检验（数据校验和/行数检查）：每次数据更新后， 应对关键字段做完整性检验：行数是否在预期范围内、价格是否为正数、 日期是否连续（无缺失交易日）。缺少自动校验的数据管道是"沉默腐烂"的根源。
+
+    '
+  severity: high
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: 'post-update data quality checks must run automatically: row count, price positivity, date continuity'
+  evidence_refs:
+  - type: community_validated
+    ref: Great Expectations 文档；知乎《量化数据质量治理：如何发现数据腐烂》
+    url: https://docs.greatexpectations.io/
+  reference_code:
+    bad_example: '# BAD: 更新后不做任何检验
+
+      update_daily_prices(date=today)
+
+      print("Update done")  # 不知道是否成功，不知道有无缺漏
+
+      '
+    good_example: '# GOOD: 更新后自动校验
+
+      update_daily_prices(date=today)
+
+
+      # 检验1: 行数合理（A股约5000只股票）
+
+      row_count = db.count("SELECT COUNT(*) FROM daily_prices WHERE date = ?", today)
+
+      assert 4000 <= row_count <= 6000, f"Unexpected row count: {row_count}"
+
+
+      # 检验2: 无零价格或负价格
+
+      invalid = db.count("SELECT COUNT(*) FROM daily_prices WHERE close <= 0")
+
+      assert invalid == 0, f"Found {invalid} invalid prices"
+
+
+      # 检验3: 无日期缺口（检查最近 5 个交易日连续性）
+
+      check_no_date_gaps(db, last_n_trading_days=5)
+
+      '
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-INCR-003
+  statement: '数据版本化：数据管道的输出数据应版本化管理（data versioning）。 当数据源更新了历史数据（如修订调整后的财务数据）， 旧版本数据应保留可追溯，不应静默覆盖，以便对比版本间差异及复现历史回测。
+
+    '
+  severity: medium
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: historical data revisions must be versioned; silent overwrites are prohibited
+  evidence_refs:
+  - type: community_validated
+    ref: ArcticDB 文档数据版本化；DVC (Data Version Control) 文档
+    url: https://arcticdb.io/
+  reference_code:
+    bad_example: '# BAD: 覆盖写入，历史版本丢失
+
+      df_revised.to_csv(''financial_data.csv'', index=False)  # 覆盖旧版本
+
+      '
+    good_example: '# GOOD: 带时间戳的版本化存储（使用 ArcticDB 或简单目录版本）
+
+      version = datetime.now().strftime(''%Y%m%d_%H%M%S'')
+
+      df_revised.to_parquet(f''data/financial_data_v{version}.parquet'')
+
+      # 软链接指向最新版本
+
+      # ln -sf financial_data_v{version}.parquet financial_data_latest.parquet
+
+
+      # 或使用 ArcticDB（内置版本化）:
+
+      import arcticdb as adb
+
+      lib = adb.Arctic(''lmdb:///data/arctic_store'').get_library(''finance'')
+
+      lib.write(''financial_data'', df_revised)  # 自动版本化
+
+      '
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-INCR-004
+  statement: '数据对齐到交易日历边界：采集完成后，应验证所有股票/资产的数据覆盖 完整性与交易日历的一致性。每只股票在每个交易日都应有一行数据 （停牌标记，不是缺失）。通过 pivot_table 检查 NaN 比例是有效的快速诊断手段。
+
+    '
+  severity: medium
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+    - data_filtering
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: data completeness vs trading calendar must be verified after each ingestion
+  evidence_refs:
+  - type: community_validated
+    ref: qlib 文档 data quality inspection；tushare 文档 daily 接口完整性说明
+    url: https://qlib.readthedocs.io/
+  reference_code:
+    bad_example: '# BAD: 不检验数据完整性，静默忽略缺失
+
+      df = load_all_stocks(start_date, end_date)
+
+      run_backtest(df)
+
+      '
+    good_example: "# GOOD: pivot 矩阵检验覆盖率\nprice_matrix = df.pivot_table(\n    index='date', columns='stock_code', values='close')\n\
+      coverage = 1 - price_matrix.isna().mean().mean()\nprint(f\"Data coverage: {coverage:.1%}\")\nif coverage < 0.95:\n \
+      \   logger.warning(f\"Low coverage: {coverage:.1%}, check for missing stocks\")\n# 找出缺失严重的股票\nmissing_stocks = price_matrix.isna().mean()\n\
+      bad_stocks = missing_stocks[missing_stocks > 0.05].index.tolist()\nif bad_stocks:\n    logger.warning(f\"Stocks with\
+      \ >5% missing days: {bad_stocks}\")\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+- id: SHARED-DS-INCR-005
+  statement: '缓存策略（Caching）：频繁读取的静态/低频更新数据（如股票信息、行业分类、 指数成分股）应本地缓存，避免每次运行重复 API 调用。 缓存必须设置过期时间（TTL），防止使用过期的行业分类或已失效的成分股信息。
+
+    '
+  severity: medium
+  capability_tags:
+    activities:
+    - data-sourcing
+  applicable_conditions:
+    blueprint_has_stage:
+    - data_collection
+  incompatible_with_tags: {}
+  stage_id_remap_hints:
+  - from_stage: data_collection
+    constraint_context: static/low-frequency data must be cached locally with TTL to avoid unnecessary API calls
+  evidence_refs:
+  - type: community_validated
+    ref: akshare 文档建议本地缓存；functools.lru_cache 文档；joblib.Memory 文档
+    url: https://akshare.akfamily.xyz/
+  reference_code:
+    bad_example: "# BAD: 每次运行都重新获取行业分类（慢且消耗配额）\ndef get_industry(stock):\n    return ak.stock_board_industry_name_em()  #\
+      \ 每次调用 API\n"
+    good_example: "# GOOD: 缓存行业分类，每日刷新一次\nfrom joblib import Memory\nfrom datetime import date\n\ncache_dir = './data_cache'\n\
+      memory = Memory(cache_dir, verbose=0)\n\n@memory.cache\ndef get_industry_cached(cache_date: str):  # cache_date 作为缓存\
+      \ key\n    return ak.stock_board_industry_name_em()\n\n# 每日刷新：用今日日期作为 key，自动使旧缓存失效\nindustry_df = get_industry_cached(str(date.today()))\n"
+  provenance:
+    source: community_validated
+  _source_file: data-sourcing/constraints.yaml
+resources_injected: {}
+known_use_cases:
+- kuc_id: KUC-101
+  source_file: tests/test_utils.py
+  business_problem: Ensures date/timezone parsing and validation utilities work correctly for handling mixed timezone data
+    from financial APIs.
+  intent_keywords:
+  - timezone
+  - datetime
+  - validation
+  - parse
+  - utility
+  stage: data_collection
+  data_domain: mixed
+  type: data_pipeline
+- kuc_id: KUC-102
+  source_file: tests/test_screener.py
+  business_problem: Tests the ability to filter and screen stocks based on financial criteria like price thresholds and predefined
+    strategies.
+  intent_keywords:
+  - screen
+  - filter
+  - query
+  - criteria
+  - find stocks
+  stage: data_collection
+  data_domain: financial_data
+  type: screening
+- kuc_id: KUC-103
+  source_file: tests/test_search.py
+  business_problem: Allows users to find ticker symbols by searching company names or partial queries, including fuzzy matching
+    for misspellings.
+  intent_keywords:
+  - search
+  - find ticker
+  - symbol lookup
+  - company name
+  - fuzzy
+  stage: data_collection
+  data_domain: financial_data
+  type: research_analysis
+- kuc_id: KUC-104
+  source_file: tests/test_calendars.py
+  business_problem: Retrieves upcoming earnings dates and IPO information calendars to help investors track corporate events.
+  intent_keywords:
+  - earnings calendar
+  - IPO
+  - upcoming events
+  - corporate events
+  - dates
+  stage: data_collection
+  data_domain: financial_data
+  type: research_analysis
+- kuc_id: KUC-105
+  source_file: tests/test_prices.py
+  business_problem: Fetches historical price and volume data for securities across multiple intervals (daily, weekly, monthly)
+    and time periods.
+  intent_keywords:
+  - price history
+  - historical data
+  - OHLCV
+  - download
+  - chart data
+  stage: data_collection
+  data_domain: market_data
+  type: data_pipeline
+- kuc_id: KUC-106
+  source_file: tests/test_ticker.py
+  business_problem: Retrieves comprehensive metadata for a ticker including holder information, splits, recommendations, and
+    fundamental data.
+  intent_keywords:
+  - ticker info
+  - metadata
+  - holders
+  - recommendations
+  - splits
+  stage: data_collection
+  data_domain: financial_data
+  type: research_analysis
+- kuc_id: KUC-107
+  source_file: tests/test_price_repair.py
+  business_problem: Corrects corrupted or misaligned price data and resamples data between different time intervals while
+    maintaining data integrity.
+  intent_keywords:
+  - repair
+  - fix data
+  - resample
+  - corrupt
+  - clean data
+  stage: data_collection
+  data_domain: market_data
+  type: data_pipeline
+- kuc_id: KUC-108
+  source_file: tests/test_live.py
+  business_problem: Provides real-time cryptocurrency price streaming via WebSocket for trading applications and live market
+    monitoring.
+  intent_keywords:
+  - live
+  - real-time
+  - stream
+  - websocket
+  - crypto
+  stage: monitoring
+  data_domain: market_data
+  type: live_trading
+- kuc_id: KUC-109
+  source_file: tests/test_cache_noperms.py
+  business_problem: Handles cache storage gracefully when running in restricted environments without write permissions to
+    the filesystem.
+  intent_keywords:
+  - cache
+  - permissions
+  - fallback
+  - timezone storage
+  - restricted
+  stage: data_collection
+  data_domain: mixed
+  type: monitoring
+- kuc_id: KUC-110
+  source_file: tests/test_multi.py
+  business_problem: Downloads price data for multiple tickers concurrently with thread safety, ensuring results don't get
+    mixed between tickers.
+  intent_keywords:
+  - concurrent
+  - thread-safe
+  - multi-ticker
+  - parallel
+  - batch download
+  stage: data_collection
+  data_domain: market_data
+  type: data_pipeline
+- kuc_id: KUC-111
+  source_file: tests/test_lookup.py
+  business_problem: Looks up ticker symbols filtered by asset type (stocks, ETFs, mutual funds, indices) to find specific
+    securities.
+  intent_keywords:
+  - lookup
+  - ETF
+  - mutual fund
+  - index
+  - security type
+  stage: data_collection
+  data_domain: financial_data
+  type: research_analysis
+- kuc_id: KUC-112
+  source_file: tests/test_cache.py
+  business_problem: Caches timezone data for securities to reduce API calls and improve performance when fetching data for
+    frequently-used tickers.
+  intent_keywords:
+  - cache
+  - timezone
+  - storage
+  - performance
+  - optimize
+  stage: data_collection
+  data_domain: mixed
+  type: monitoring
+component_capability_map:
+  project: finance-bp-128--yfinance
+  scan_date: '2026-04-22'
+  stats:
+    total_files: 9
+    total_classes: 46
+    total_functions: 0
+    total_stages: 9
+  modules:
+    http_&_session_management:
+      class_count: 4
+      stage_id: http_layer
+      stage_order: 1
+      responsibility: Manages each HTTP requests, session handling, cookie authentication, and rate limiting. Singleton pattern
+        ensures shared session/cookies across each Ticker instances for efficiency and proper Yahoo API access.
+      classes:
+      - name: YfData.get_json
+        file: http_&_session_management/yfdata-get-json.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: YfData.post
+        file: http_&_session_management/yfdata-post.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: ConfigMgr.get_config
+        file: http_&_session_management/configmgr-get-config.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: session_backend
+        file: http_&_session_management/session-backend.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    price_history_retrieval_&_repair:
+      class_count: 7
+      stage_id: price_history
+      stage_order: 2
+      responsibility: Fetches OHLCV data from Yahoo Finance chart API, handles timezone detection, repairs common data errors
+        including currency unit mixups, missing prices, bad dividend adjustments, and capital gains double-counting. Most
+        complex module with 3000+ lines.
+      classes:
+      - name: PriceHistory.fetch
+        file: price_history_retrieval_&_repair/pricehistory-fetch.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: _reconstruct_intervals_batch
+        file: price_history_retrieval_&_repair/reconstruct-intervals-batch.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: _fix_unit_random_mixups
+        file: price_history_retrieval_&_repair/fix-unit-random-mixups.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: _fix_bad_div_adjust
+        file: price_history_retrieval_&_repair/fix-bad-div-adjust.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: _repair_capital_gains
+        file: price_history_retrieval_&_repair/repair-capital-gains.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: price_repair_strategy
+        file: price_history_retrieval_&_repair/price-repair-strategy.py
+        line: 0
+        kind: replaceable_point
+      - name: data_source
+        file: price_history_retrieval_&_repair/data-source.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 6
+    quote_&_financial_analysis:
+      class_count: 5
+      stage_id: quote_analysis
+      stage_order: 3
+      responsibility: Fetches quotes, analyst recommendations, earnings estimates, financial statements, sustainability data,
+        and fast market info. Separate scraper classes per data domain ensure isolation and independent evolution.
+      classes:
+      - name: Quote.fetch_info
+        file: quote_&_financial_analysis/quote-fetch-info.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Analysis.fetch_estimates
+        file: quote_&_financial_analysis/analysis-fetch-estimates.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Fundamentals.fetch_financials
+        file: quote_&_financial_analysis/fundamentals-fetch-financials.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: FastInfo.price
+        file: quote_&_financial_analysis/fastinfo-price.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: info_data_source
+        file: quote_&_financial_analysis/info-data-source.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 2
+    ticker_facade:
+      class_count: 8
+      stage_id: ticker_facade
+      stage_order: 4
+      responsibility: Main user-facing API combining each scrapers under single Ticker interface. Provides convenience methods,
+        property accessors, and automatic lazy loading of components for seamless data access.
+      classes:
+      - name: Ticker.history
+        file: ticker_facade/ticker-history.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Ticker.get_info
+        file: ticker_facade/ticker-get-info.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Ticker.income_stmt
+        file: ticker_facade/ticker-income-stmt.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Ticker.balance_sheet
+        file: ticker_facade/ticker-balance-sheet.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Ticker.cashflow
+        file: ticker_facade/ticker-cashflow.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Ticker.recommendations
+        file: ticker_facade/ticker-recommendations.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Ticker.get
+        file: ticker_facade/ticker-get.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: session_injection
+        file: ticker_facade/session-injection.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    batch_download_orchestration:
+      class_count: 4
+      stage_id: batch_download
+      stage_order: 5
+      responsibility: Downloads data for multiple tickers with optional multithreading, progress tracking, and error aggregation.
+        Returns MultiIndex DataFrame for efficient analysis.
+      classes:
+      - name: download
+        file: batch_download_orchestration/download.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: _download_one
+        file: batch_download_orchestration/download-one.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: ProgressBar
+        file: batch_download_orchestration/progressbar.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: threading_model
+        file: batch_download_orchestration/threading-model.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    domain_entities_(sector/industry):
+      class_count: 5
+      stage_id: domain_entities
+      stage_order: 6
+      responsibility: Provides sector and industry classification data, top companies, ETFs, and related information using
+        abstract base class pattern for consistent interface.
+      classes:
+      - name: Sector.top_companies
+        file: domain_entities_(sector/industry)/sector-top-companies.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Sector.etfs
+        file: domain_entities_(sector/industry)/sector-etfs.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Industry.top_companies
+        file: domain_entities_(sector/industry)/industry-top-companies.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Domain._fetch_and_parse
+        file: domain_entities_(sector/industry)/domain-fetch-and-parse.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: data_source
+        file: domain_entities_(sector/industry)/data-source.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 2
+    stock_screener:
+      class_count: 4
+      stage_id: screener
+      stage_order: 7
+      responsibility: Builds and executes stock screening queries based on financial criteria including PE ratio, market cap,
+        and other metrics with composable operator pattern.
+      classes:
+      - name: EquityQuery.add_filter
+        file: stock_screener/equityquery-add-filter.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: screen
+        file: stock_screener/screen.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: QueryBase.valid_fields
+        file: stock_screener/querybase-valid-fields.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: query_validation
+        file: stock_screener/query-validation.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 2
+    live_streaming_(websocket):
+      class_count: 4
+      stage_id: live_streaming
+      stage_order: 8
+      responsibility: Real-time price streaming via Yahoo Finance WebSocket API with separate sync and async implementations
+        for event loop compatibility.
+      classes:
+      - name: WebSocket.connect
+        file: live_streaming_(websocket)/websocket-connect.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: WebSocket.subscribe
+        file: live_streaming_(websocket)/websocket-subscribe.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: AsyncWebSocket.connect
+        file: live_streaming_(websocket)/asyncwebsocket-connect.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: websocket_url
+        file: live_streaming_(websocket)/websocket-url.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 2
+    caching_layer:
+      class_count: 5
+      stage_id: caching
+      stage_order: 9
+      responsibility: SQLite-based caching for timezone data, cookies, and ISIN lookups to reduce API calls and improve performance
+        across sessions.
+      classes:
+      - name: _TzCache.get
+        file: caching_layer/tzcache-get.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: _TzCache.set
+        file: caching_layer/tzcache-set.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: _ISINCache.lookup
+        file: caching_layer/isincache-lookup.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: _CookieCache.get
+        file: caching_layer/cookiecache-get.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: cache_backend
+        file: caching_layer/cache-backend.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 2
+  data_flow_hints: []
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: 1.0
+    evidence_verify_ratio: 0.2978723404255319
+    evidence_invalid: 33
+    evidence_verified: 14
+    evidence_auto_fixed: 0
+    audit_coverage: 23/23 (100%)
+    audit_pass_rate: 5/23 (21%)
+    audit_fail_total: 3
+    audit_finance_universal:
+      pass: 1
+      warn: 1
+      fail: 1
+    audit_subdomain_totals:
+      pass: 4
+      warn: 14
+      fail: 2
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-128. Evidence verify ratio
+    = 29.8% and audit fail total = 3. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-128-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-101
+    name: Utility Function Validation
+    positive_terms:
+    - timezone
+    - datetime
+    - validation
+    - parse
+    - utility
+    data_domain: mixed
+    negative_terms:
+    - price
+    - ticker
+    - search
+    - screen
+    - earnings
+    ambiguity_question: Are you looking for date/timezone parsing utilities or financial data retrieval (prices, search, screening)?
+  - uc_id: UC-102
+    name: Stock Screener Query Execution
+    positive_terms:
+    - screen
+    - filter
+    - query
+    - criteria
+    - find stocks
+    data_domain: financial_data
+    negative_terms:
+    - historical prices
+    - ticker info
+    - calendar
+    - search symbol
+    ambiguity_question: Do you want to screen stocks by criteria (e.g., price > $5) or search for specific ticker symbols?
+  - uc_id: UC-103
+    name: Ticker Symbol Search
+    positive_terms:
+    - search
+    - find ticker
+    - symbol lookup
+    - company name
+    - fuzzy
+    data_domain: financial_data
+    negative_terms:
+    - price history
+    - screening
+    - earnings
+    - live data
+    ambiguity_question: Are you searching for a ticker symbol by company name, or do you need historical price data for a
+      known ticker?
+  - uc_id: UC-104
+    name: Financial Calendar Retrieval
+    positive_terms:
+    - earnings calendar
+    - IPO
+    - upcoming events
+    - corporate events
+    - dates
+    data_domain: financial_data
+    negative_terms:
+    - price history
+    - screening
+    - search
+    - live trading
+    ambiguity_question: Do you need to track upcoming earnings/IPO dates, or are you looking for historical price data?
+  - uc_id: UC-105
+    name: Historical Price Data Retrieval
+    positive_terms:
+    - price history
+    - historical data
+    - OHLCV
+    - download
+    - chart data
+    data_domain: market_data
+    negative_terms:
+    - screening
+    - search
+    - ticker info
+    - earnings calendar
+    ambiguity_question: Do you need historical price/volume data for analysis or charting, or are you looking for other financial
+      data (earnings, info)?
+  - uc_id: UC-106
+    name: Ticker Information and Metadata
+    positive_terms:
+    - ticker info
+    - metadata
+    - holders
+    - recommendations
+    - splits
+    data_domain: financial_data
+    negative_terms:
+    - price history
+    - screening
+    - search
+    - calendar
+    ambiguity_question: Do you need detailed ticker metadata (info, holders, splits) or historical price/volume data?
+  - uc_id: UC-107
+    name: Price Data Repair and Resampling
+    positive_terms:
+    - repair
+    - fix data
+    - resample
+    - corrupt
+    - clean data
+    data_domain: market_data
+    negative_terms:
+    - ticker info
+    - search
+    - screening
+    - live data
+    ambiguity_question: Are you trying to fix corrupted price data, or do you need to retrieve or analyze existing price data?
+  - uc_id: UC-108
+    name: Live Cryptocurrency Price Streaming
+    positive_terms:
+    - live
+    - real-time
+    - stream
+    - websocket
+    - crypto
+    data_domain: market_data
+    negative_terms:
+    - historical
+    - batch download
+    - screening
+    - search
+    ambiguity_question: Do you need real-time streaming data for live trading, or historical price data for analysis?
+  - uc_id: UC-109
+    name: Cache Fallback on Read-Only Filesystem
+    positive_terms:
+    - cache
+    - permissions
+    - fallback
+    - timezone storage
+    - restricted
+    data_domain: mixed
+    negative_terms:
+    - price data
+    - search
+    - screening
+    - ticker info
+    ambiguity_question: Are you experiencing cache/write permission issues, or do you need to retrieve financial data?
+  - uc_id: UC-110
+    name: Concurrent Multi-Ticker Download
+    positive_terms:
+    - concurrent
+    - thread-safe
+    - multi-ticker
+    - parallel
+    - batch download
+    data_domain: market_data
+    negative_terms:
+    - single ticker
+    - live streaming
+    - screening
+    - search
+    ambiguity_question: Do you need to download data for multiple tickers simultaneously, or just a single ticker?
+  - uc_id: UC-111
+    name: Securities Symbol Lookup by Type
+    positive_terms:
+    - lookup
+    - ETF
+    - mutual fund
+    - index
+    - security type
+    data_domain: financial_data
+    negative_terms:
+    - price history
+    - screening
+    - earnings
+    - live data
+    ambiguity_question: Do you need to find a specific type of security (ETF, mutual fund, index), or other financial data?
+  - uc_id: UC-112
+    name: Timezone Cache Storage
+    positive_terms:
+    - cache
+    - timezone
+    - storage
+    - performance
+    - optimize
+    data_domain: mixed
+    negative_terms:
+    - price data
+    - search
+    - screening
+    - ticker info
+    ambiguity_question: Are you looking to optimize performance with caching, or do you need to retrieve financial data?
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 60
+    fatal_constraints_count: 31
+    non_fatal_constraints_count: 188
+    use_cases_count: 12
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 20 source groups: API Design(2),
+        Architecture(1), Documentation(1), batch_download(3), caching(2), default_value(2), and 14 more.'
+      key_decisions: 60 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-GAP-001
+      type: T/BA
+      summary: Library provides separate async and sync callback patterns for live data handling, enabling use in both concurrent
+        async frameworks and traditional synchronous applications
+    - id: BD-GAP-002
+      type: BA
+      summary: Message handlers use simple single-parameter callback signature (message) rather than structured context/environment
+        objects
+    - id: BD-GAP-003
+      type: BA
+      summary: Examples demonstrate standalone functions for message handling instead of class-based observers or strategy
+        pattern
+    - id: BD-GAP-004
+      type: DK/B
+      summary: Most example files (tickers.py, market.py, proxy.py, sector_industry.py, download.py, lookup.py, search.py,
+        sector_industry_ticker.py, ticker.py, funds_data.py, calendars.py) are empty stubs with no i
+    - id: BD-014
+      type: B/BA
+      summary: Multithreading enabled by default
+    - id: BD-015
+      type: M
+      summary: DEBUG logging disables threads
+    - id: BD-016
+      type: M/BA
+      summary: ignore_tz default based on interval
+    - id: BD-023
+      type: B/BA
+      summary: Dummy cache fallback
+    - id: BD-024
+      type: M/DK
+      summary: Peewee ORM for SQLite
+    - id: BD-040
+      type: BA/DK
+      summary: debug.hide_exceptions=True by default - errors silently swallowed unless debug.logging is enabled
+    - id: BD-042
+      type: BA
+      summary: actions=False in download() but actions=True in Ticker.history() - inconsistent default across APIs
+    - id: BD-017
+      type: B/DK
+      summary: Abstract base class pattern
+    - id: BD-018
+      type: BA
+      summary: SECTOR_INDUSTRY_MAPPING in const.py
+    - id: BD-044
+      type: B/BA
+      summary: 'INTERACTION: [BD-003] × [BD-005] → Silent data corruption amplified by default behavior'
+    - id: BD-045
+      type: BA
+      summary: 'INTERACTION: [BD-055] × [BD-057] → Contradiction: silent failures hide API inconsistency consequences'
+    - id: BD-046
+      type: B/BA
+      summary: 'INTERACTION: [BD-053] → [BD-054] → Hidden dependency of multiday interval fallback on pipeline ordering'
+    - id: BD-047
+      type: BA
+      summary: 'INTERACTION: [BD-002] × [BD-055] × [BD-057] → Risk cascade: silent failures obscure multiple failure modes'
+    - id: BD-048
+      type: B/BA
+      summary: 'INTERACTION: [BD-026] × [BD-027] × [BD-044] → Amplification: 100x unit error detection fails when rounding
+        misaligns with multiplier'
+    - id: BD-049
+      type: M
+      summary: 'INTERACTION: [BD-006] × [BD-035] → Redundant depth limits creating potential inconsistent enforcement'
+    - id: BD-050
+      type: B/BA
+      summary: 'INTERACTION: [BD-046] × [BD-047] → Contradiction: linear ratio and backward adjustment produce different historical
+        prices'
+    - id: BD-051
+      type: B/BA
+      summary: 'INTERACTION: [BD-030] × [BD-032] × [BD-043] → Risk cascade: multiple dividend thresholds create conflicting
+        flag conditions'
+    - id: BD-001
+      type: B
+      summary: Singleton pattern for YfData
+    - id: BD-002
+      type: BA
+      summary: hide_exceptions=True default
+    - id: BD-003
+      type: B
+      summary: curl_cffi impersonate=chrome
+    - id: BD-GAP-005
+      type: RC
+      summary: 'Missing: float vs Decimal for currency'
+    - id: BD-GAP-006
+      type: DK
+      summary: 'Missing: Random seed full coverage'
+    - id: BD-GAP-007
+      type: B
+      summary: 'Missing: 3'
+    - id: BD-GAP-008
+      type: DK
+      summary: 'Missing: Random seed full coverage'
+    - id: BD-GAP-009
+      type: B
+      summary: 'Missing: 3'
+    - id: BD-041
+      type: B/BA
+      summary: Capital gains double-counting detection - Yahoo pre-adds CG to dividends column, breaking Adj Close calculation
+    - id: BD-043
+      type: B/BA
+      summary: FX ticker suffix =X triggers special handling - volume always 0 and different validation logic
+    - id: BD-021
+      type: B
+      summary: Separate sync/async classes
+    - id: BD-022
+      type: B/RC
+      summary: Protobuf message decoding
+    - id: BD-038
+      type: B/BA
+      summary: 'Price repair pipeline MUST execute in specific order: standardize_currency → div_adjust → unit_mixups → stock_splits
+        → capital_gains → auto_adjust'
+    - id: BD-039
+      type: B
+      summary: When repair=True with multiday intervals (1wk,1mo,3mo), code auto-fetches 1d then resamples - documented as
+        'solves Yahoo's flawed div-adjusting'
+    - id: BD-025
+      type: B
+      summary: Fundamentals financials, earnings, shares as separate properties
+    - id: BD-004
+      type: B/BA
+      summary: Lazy loading PriceHistory
+    - id: BD-005
+      type: BA
+      summary: repair=False default
+    - id: BD-006
+      type: M
+      summary: Multi-interval reconstruction with max depth=2
+    - id: BD-007
+      type: M
+      summary: Sentinel value tag=-1.0 for repair
+    - id: BD-008
+      type: BA
+      summary: scipy only imported if repair=True
+    - id: BD-009
+      type: B
+      summary: Separate scraper classes per domain
+    - id: BD-010
+      type: B
+      summary: FastInfo lazy metadata fetching
+    - id: BD-026
+      type: B/BA
+      summary: 5% price change threshold for interday volume repair
+    - id: BD-027
+      type: B/BA
+      summary: 8% ratio threshold for phantom dividend detection
+    - id: BD-028
+      type: B/BA
+      summary: 66.6% double-count threshold for capital gains repair
+    - id: BD-029
+      type: B/BA
+      summary: 1x improvement threshold for dividend-too-small detection
+    - id: BD-030
+      type: B/BA
+      summary: 2x improvement threshold for dividend-too-big detection
+    - id: BD-031
+      type: B/BA
+      summary: 14-day lookback for dividend adjustment validation
+    - id: BD-034
+      type: B/BA
+      summary: 1.5x drop ratio to identify phantom dividend
+    - id: BD-019
+      type: B
+      summary: Operator pattern for queries
+    - id: BD-020
+      type: B
+      summary: Abstract base class with @abstractmethod
+    - id: BD-035
+      type: B/BA
+      summary: 1% relative tolerance for price repair test validation
+    - id: BD-036
+      type: B/BA
+      summary: 1e-7 relative tolerance for zero repair test validation
+    - id: BD-037
+      type: B/BA
+      summary: -32% volume match tolerance for resampling test
+    - id: BD-011
+      type: M/DK
+      summary: MIC code tuple support
+    - id: BD-012
+      type: B
+      summary: ISIN lookup caching
+    - id: BD-013
+      type: BA
+      summary: Alias methods (e.g., incomestmt->income_stmt)
+    - id: BD-032
+      type: B/BA
+      summary: Linear ratio adjustment for auto_adjust mode
+    - id: BD-033
+      type: B/BA
+      summary: Backward adjustment preserving historical price levels
+resources:
+  packages:
+  - name: pandas>=1.3.0
+    version_pin: latest
+  - name: numpy>=1.16.5
+    version_pin: latest
+  - name: requests>=2.31
+    version_pin: latest
+  - name: multitasking>=0.0.7
+    version_pin: latest
+  - name: platformdirs>=2.0.0
+    version_pin: latest
+  - name: pytz>=2022.5
+    version_pin: latest
+  - name: frozendict>=2.3.4
+    version_pin: latest
+  - name: peewee>=3.16.2
+    version_pin: latest
+  - name: beautifulsoup4>=4.11.1
+    version_pin: latest
+  - name: curl_cffi>=0.15
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install pandas>=1.3.0
+    - python3 -m pip install numpy>=1.16.5
+    - python3 -m pip install requests>=2.31
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: finance-C-001
+    when: When implementing HTTP session initialization for Yahoo API
+    action: Use curl_cffi.requests.Session with impersonate='chrome'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Yahoo's non-browser client blocking detects and rejects requests from standard HTTP libraries, resulting
+      in 403 Forbidden errors and complete data access failure
+    stage_ids:
+    - http_layer
+  - id: finance-C-002
+    when: When handling HTTP request errors for Yahoo API
+    action: Retry only transient errors (TimeoutError, socket.error, OSError, ConnectionError) and raise for permanent errors
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Retrying permanent errors like ValueError or KeyError wastes resources and masks underlying code bugs instead
+      of surfacing them for proper debugging
+    stage_ids:
+    - http_layer
+  - id: finance-C-004
+    when: When making HTTP requests to Yahoo API endpoints
+    action: Include crumb and cookie authentication with every request
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without proper crumb authentication, Yahoo API returns 401 Unauthorized or HTML error pages instead of JSON
+      data, breaking all downstream data processing
+    stage_ids:
+    - http_layer
+  - id: finance-C-007
+    when: When accessing Yahoo Finance API
+    action: Claim affiliation or endorsement from Yahoo, Inc.
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Misrepresenting affiliation with Yahoo violates their terms of service and exposes users to legal liability
+      for trademark infringement
+    stage_ids:
+    - http_layer
+  - id: finance-C-009
+    when: When setting up HTTP session with curl_cffi
+    action: Use requests_cache or requests_ratelimiter session wrappers
+    severity: fatal
+    kind: resource_boundary
+    modality: must_not
+    consequence: requests_cache and requests_ratelimiter are incompatible with curl_cffi (which is required for Yahoo API),
+      causing YFDataException crashes when attempting to use them
+    stage_ids:
+    - http_layer
+  - id: finance-C-015
+    when: When making direct HTTP calls bypassing YfData
+    action: Bypass YfData singleton's cookie and crumb management
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Direct HTTP calls without crumb authentication fail with 401/403 errors, breaking data access and causing
+      confusion about whether Yahoo is blocking access
+    stage_ids:
+    - http_layer
+  - id: finance-C-017
+    when: When returning price history DataFrame
+    action: Return DataFrame with timezone-aware DatetimeIndex by localizing to exchange timezone
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Timezone-naive index causes incorrect timestamp interpretation when combining with other timezone-aware data,
+      leading to 23-25 hour offset errors during DST transitions
+    stage_ids:
+    - price_history
+  - id: finance-C-019
+    when: When initializing PriceHistory class
+    action: Require non-None timezone parameter passed to constructor for data localization
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Missing timezone causes YFTzMissingError exception and returns empty DataFrame, breaking all downstream price
+      calculations
+    stage_ids:
+    - price_history
+  - id: finance-C-021
+    when: When repairing prices with repair=True
+    action: Use repair=True with interval='5d' because Yahoo's 5-day interval is fundamentally broken
+    severity: fatal
+    kind: resource_boundary
+    modality: must_not
+    consequence: Using repair=True with 5d interval causes ValueError crash due to nonsensical Yahoo 5d data structure
+    stage_ids:
+    - price_history
+  - id: finance-C-022
+    when: When repairing multi-day intervals (1wk, 1mo, 3mo) with repair=True
+    action: Fetch 1d interval data first, apply repairs, then resample to target interval
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: Direct repair of multi-day intervals fails because Yahoo's multi-day adjustment logic is fundamentally broken,
+      producing incorrect adjusted prices
+    stage_ids:
+    - price_history
+  - id: finance-C-023
+    when: When repairing prices with repair=True
+    action: Exceed max reconstruction depth of 2 levels to prevent infinite recursion
+    severity: fatal
+    kind: resource_boundary
+    modality: must_not
+    consequence: Exceeding depth 2 causes infinite recursion and stack overflow when attempting to reconstruct prices from
+      finer intervals
+    stage_ids:
+    - price_history
+  - id: finance-C-030
+    when: When repairing prices with repair=True
+    action: 'Execute repair pipeline in strict order: currency standardization, bad dividend adjust, zeroes fix, unit mixups,
+      bad splits, capital gains'
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: 'Incorrect repair order causes cascading errors: bad Adj Close corrupts 100x/split detection, and unit mixups
+      corrupt dividend calculations'
+    stage_ids:
+    - price_history
+  - id: finance-C-034
+    when: When using yfinance to make claims about data accuracy
+    action: Claim affiliation with Yahoo, Inc. since yfinance is an independent open-source project
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Falsely claiming Yahoo affiliation violates trademark rights and could lead to legal action
+    stage_ids:
+    - price_history
+  - id: finance-C-035
+    when: When presenting yfinance data to end users
+    action: Claim data is suitable for real-time trading since Yahoo Finance has ~15-30 minute delay
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users relying on delayed data for real-time trading suffer financial losses from stale quotes
+    stage_ids:
+    - price_history
+  - id: finance-C-036
+    when: When using yfinance data for backtesting
+    action: Present backtest returns as guaranteed future returns since past performance does not predict future results
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Investors making decisions based on backtest projections may experience significant financial losses when
+      live trading differs from historical simulation
+    stage_ids:
+    - price_history
+  - id: finance-C-063
+    when: When initializing a Ticker with a (symbol, MIC) tuple
+    action: validate that the tuple contains exactly 2 elements
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Passing a malformed tuple with incorrect number of elements will cause IndexError or unexpected behavior
+      when unpacking MIC-based exchange targeting
+    stage_ids:
+    - ticker_facade
+  - id: finance-C-064
+    when: When initializing a Ticker with a (symbol, MIC) tuple
+    action: validate that the MIC code exists in the _MIC_TO_YAHOO_SUFFIX mapping
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Invalid MIC codes will cause ValueError with unclear error message, preventing multi-market ticker resolution
+      for unsupported exchanges
+    stage_ids:
+    - ticker_facade
+  - id: finance-C-065
+    when: When initializing a Ticker with any input format
+    action: reject empty ticker strings with a ValueError
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Empty ticker strings will cause downstream API calls to Yahoo Finance to fail with generic errors, wasting
+      network resources and producing confusing error messages
+    stage_ids:
+    - ticker_facade
+  - id: finance-C-073
+    when: When presenting yfinance as a financial data source
+    action: claim affiliation with Yahoo! Inc. or present data as official Yahoo Finance data
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Claiming Yahoo affiliation violates trademark policy and could result in legal action; users may also misunderstand
+      data accuracy and licensing terms
+    stage_ids:
+    - ticker_facade
+  - id: finance-C-074
+    when: When claiming real-time data capability
+    action: present Yahoo Finance data as real-time streaming without disclosing the inherent delay
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Yahoo Finance data has 15-minute delay; presenting it as real-time could lead to trading decisions based
+      on stale prices and financial losses
+    stage_ids:
+    - ticker_facade
+  - id: finance-C-082
+    when: When implementing batch ticker downloads
+    action: Use the shared._LOCK around the download function call to prevent concurrent access to shared state
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without proper locking, concurrent calls to download() will corrupt shared._DFS, shared._ERRORS, and shared._TRACEBACKS
+      dictionaries causing incorrect results
+    stage_ids:
+    - batch_download
+  - id: finance-C-083
+    when: When implementing batch download orchestration
+    action: Reset shared._DFS, shared._ERRORS, and shared._TRACEBACKS before starting a new batch download
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Stale data from previous downloads will pollute current results, causing incorrect data to be returned for
+      some tickers
+    stage_ids:
+    - batch_download
+  - id: finance-C-099
+    when: When implementing Sector or Industry classes that inherit from Domain
+    action: implement the _fetch_and_parse() abstract method to fetch data from Yahoo API
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Domain subclass will raise NotImplementedError when accessing properties like name, symbol, or top_companies,
+      breaking all downstream functionality
+    stage_ids:
+    - domain_entities
+  - id: finance-C-114
+    when: When implementing EquityQuery, FundQuery, or ETFQuery
+    action: implement valid_fields and valid_values properties from QueryBase
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing implementation raises YFNotImplementedError, breaking the query validation chain
+    stage_ids:
+    - screener
+  - id: finance-C-129
+    when: When establishing WebSocket connection
+    action: Use synchronous WebSocket in async context or vice versa
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Cross-contamination of event loop paradigms causes blocking operations that freeze the application or corrupt
+      message ordering
+    stage_ids:
+    - live_streaming
+  - id: finance-C-138
+    when: When thinking async message handler error handling is optional
+    action: Skip wrapping message handler calls in exception handling
+    severity: fatal
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Uncaught exceptions in message handler crash the listening loop, terminating all subsequent price updates
+      permanently
+    stage_ids:
+    - live_streaming
+  - id: finance-C-140
+    when: When implementing cache lookup methods
+    action: check dummy flag before accessing database
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Cache lookup will fail with AttributeError or database errors if dummy flag is not checked first, causing
+      crashes when cache initialization previously failed
+    stage_ids:
+    - caching
+  - id: finance-C-141
+    when: When initializing cache database connections
+    action: use peewee Proxy pattern for deferred database binding
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Peewee models would fail to bind to database if created before database initialization, causing OperationalError
+      on any database operation
+    stage_ids:
+    - caching
+  - id: finance-C-155
+    when: When implementing HTTP requests to Yahoo Finance API
+    action: Pass curl_cffi session to HTTP layer, not requests session (requests_cache incompatible with curl_cffi)
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: HTTP requests will fail because requests_cache sessions cannot work with curl_cffi which is required for
+      Yahoo API access
+  - id: finance-C-188
+    when: When implementing multi-ticker download operations
+    action: Access the YfData singleton exclusively through its thread-safe singleton interface with locking
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Direct instantiation or bypassing the singleton pattern causes cookie/crumb state inconsistency across threads,
+      resulting in 401/403 authentication errors or corrupted data
+  - id: finance-C-189
+    when: When using yfinance data for financial decision-making
+    action: Claim or imply that yfinance is affiliated with, endorsed by, or vetted by Yahoo, Inc.
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Misrepresentation of the relationship with Yahoo violates trademark usage terms and may expose users to legal
+      liability under Yahoo's terms of service
+  regular:
+  - id: finance-C-003
+    when: When implementing retry logic for HTTP requests
+    action: Retry without exponential backoff between attempts
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Immediate retries without backoff overwhelm Yahoo's servers, increase likelihood of triggering rate limiting
+      (429 errors), and worsen overall throughput due to cascading failures
+    stage_ids:
+    - http_layer
+  - id: finance-C-005
+    when: When handling cookie consent redirects from Yahoo
+    action: Accept cookie consent form when redirected to consent.yahoo.com
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing cookie consent acceptance causes infinite redirect loops or incomplete authentication, resulting
+      in missing data fields and failed API calls
+    stage_ids:
+    - http_layer
+  - id: finance-C-006
+    when: When implementing the shared HTTP session for multiple Ticker instances
+    action: Use singleton pattern for YfData to share cookies across each tickers
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without singleton sharing, each Ticker independently fetches cookies causing redundant Yahoo API calls, faster
+      rate limit exhaustion, and 5-10x slower batch operations
+    stage_ids:
+    - http_layer
+  - id: finance-C-008
+    when: When presenting Yahoo Finance data results
+    action: Represent data as real-time when it has inherent delays
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Yahoo data has delays (15+ minutes for free tier), presenting it as real-time misleads trading decisions
+      and causes users to trade on stale prices
+    stage_ids:
+    - http_layer
+  - id: finance-C-010
+    when: When configuring network retry behavior
+    action: Set YfConfig.network.retries >= 1 for production use
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Default retries=0 means zero automatic retries for transient network failures, causing single timeout to
+      immediately fail entire data fetch operations
+    stage_ids:
+    - http_layer
+  - id: finance-C-011
+    when: When implementing rate limit handling
+    action: Raise YFRateLimitError for HTTP 429 responses and 'Too Many Requests' messages
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Silently ignoring rate limit responses causes repeated failed requests, faster IP blocking by Yahoo, and
+      extended service outages for users
+    stage_ids:
+    - http_layer
+  - id: finance-C-012
+    when: When using custom session objects with yfinance
+    action: Pass the same session instance to both Ticker and YfData
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Mismatched sessions cause authentication failures since YfData uses its own cookie/crumb management with
+      a different session than the Ticker instance
+    stage_ids:
+    - http_layer
+  - id: finance-C-013
+    when: When implementing batch downloads with multiple tickers
+    action: Share a single session across each tickers in batch operations
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Creating separate sessions per ticker exhausts Yahoo rate limits faster, causing 429 errors and slower overall
+      batch download performance
+    stage_ids:
+    - http_layer
+  - id: finance-C-014
+    when: When debugging HTTP request failures
+    action: Skip error investigation when hide_exceptions=True
+    severity: high
+    kind: rationalization_guard
+    modality: must_not
+    consequence: hide_exceptions=True silently suppresses errors making it impossible to diagnose intermittent Yahoo API failures,
+      rate limiting, or authentication issues
+    stage_ids:
+    - http_layer
+  - id: finance-C-016
+    when: When returning price history DataFrame
+    action: Set Volume column to int64 dtype after filling NaN with 0
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Float Volume with NaN values causes integer overflow in volume calculations and breaks downstream aggregations
+      that expect integer types
+    stage_ids:
+    - price_history
+  - id: finance-C-018
+    when: When repairing prices with repair=True
+    action: Add Repaired? boolean column indicating which rows were fixed, with no NaN values
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing or NaN Repaired? column prevents users from distinguishing repaired from unrepaired rows, causing
+      incorrect analysis of data quality
+    stage_ids:
+    - price_history
+  - id: finance-C-020
+    when: When ticker symbol ends with =X suffix
+    action: Return zero volume for FX tickers since foreign exchange markets have no volume
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Non-zero volume for FX tickers violates market structure assumptions and corrupts volume-based trading signals
+    stage_ids:
+    - price_history
+  - id: finance-C-024
+    when: When repairing prices with repair=True
+    action: Import scipy.ndimage unless repair=True, to avoid hard dependency
+    severity: medium
+    kind: resource_boundary
+    modality: must_not
+    consequence: Unconditional scipy import adds ~2-3x latency overhead for non-repair use cases and creates unnecessary dependency
+    stage_ids:
+    - price_history
+  - id: finance-C-025
+    when: When repairing intraday intervals (1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h)
+    action: 'Request data older than Yahoo''s lookback limits (1m: 30 days, other intraday: 60 days, 1h: 730 days)'
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: Requests beyond Yahoo's lookback limits return empty data, causing incomplete historical reconstructions
+    stage_ids:
+    - price_history
+  - id: finance-C-026
+    when: When using repair parameter
+    action: Default repair=False to avoid ~2-3x latency overhead on simple price fetches
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Enabling repair by default causes 2-3x slowdown for bulk data downloads where repair is not needed
+    stage_ids:
+    - price_history
+  - id: finance-C-027
+    when: When detecting 100x price errors in single-row DataFrames
+    action: Attempt 100x error detection on single-row tables since multiple rows are needed for median comparison
+    severity: high
+    kind: operational_lesson
+    modality: must_not
+    consequence: Single-row detection produces false positives/negatives because median_filter requires at least 2 rows to
+      compute local median
+    stage_ids:
+    - price_history
+  - id: finance-C-028
+    when: When processing dividend and split events
+    action: Apply stock splits to interday data (1d, 1wk, 1mo, 3mo) only, not intraday data
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Stock split adjustments on intraday data produce incorrect prices because splits are daily-level events
+    stage_ids:
+    - price_history
+  - id: finance-C-029
+    when: When resampling price data to different intervals
+    action: Aggregate Repaired? column using 'any' to indicate if any source row was repaired
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using sum/min/max for Repaired? aggregation loses information about which resampled rows contain repaired
+      data
+    stage_ids:
+    - price_history
+  - id: finance-C-031
+    when: When initializing TickerBase class
+    action: Use lazy loading pattern for PriceHistory to defer expensive network fetch until history() is called
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Eager initialization of PriceHistory causes network calls during Ticker instantiation, adding 0.5-2s latency
+      for simple metadata access
+    stage_ids:
+    - price_history
+  - id: finance-C-032
+    when: When repairing Adj Close values
+    action: Assume Adj Close is also corrupted when Close is corrupted, since Yahoo often misadjusts both together
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Reconstructing only Close but not Adj Close causes inconsistent price series that breaks backtesting calculations
+    stage_ids:
+    - price_history
+  - id: finance-C-033
+    when: When combining price data with dividend/split events
+    action: Handle ambiguous DST transition timestamps using ambiguous=True and nonexistent='shift_forward'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect DST handling causes timestamps to be incorrectly shifted by 1 hour, corrupting time-series alignment
+      between prices and events
+    stage_ids:
+    - price_history
+  - id: finance-C-037
+    when: When combining price data with dividend/split events
+    action: Apply auto_adjust=True by default to replace raw OHLC with adjusted prices using Close and dividends
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Unadjusted prices cause incorrect historical returns calculation because stock splits and dividends distort
+      price series
+    stage_ids:
+    - price_history
+  - id: finance-C-038
+    when: When fetching ticker info data from Yahoo Finance API
+    action: Fetch info from both quoteSummary and quoteResponse endpoints and merge the results
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: The info dict will be incomplete, missing critical fields like marketCap, trailingPE, and dividendYield that
+      require combining both API responses
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-039
+    when: When parsing Yahoo Finance JSON response for info data
+    action: Normalize maxAge values by converting from days to seconds when maxAge equals 1
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Time-sensitive calculations relying on maxAge will use incorrect time thresholds, causing stale data detection
+      failures
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-040
+    when: When creating financial statement DataFrames
+    action: Verify dates are parsed as datetime objects and columns are properly indexed
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Financial statement DataFrames will have incorrect datetime index, causing analysis functions to fail or
+      produce wrong results
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-041
+    when: When fetching recommendations data
+    action: Return a DataFrame with columns representing period and analyst grade counts (strongBuy, buy, hold, sell, strongSell)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Downstream analysis relying on recommendation trends will fail or produce unexpected results without the
+      expected column structure
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-042
+    when: When fetching upgrades_downgrades data
+    action: Return a DataFrame with columns GradeDate, Firm, ToGrade, FromGrade, and Action
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Code expecting specific column names like 'ToGrade' and 'FromGrade' will fail with KeyError
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-043
+    when: When processing earningsTrend data
+    action: Only extract raw numeric values from the nested dict structure using 'raw' key
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: EPS trend and other analyst estimate data will contain formatting strings instead of usable numeric values
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-044
+    when: When validating module names for quoteSummary API
+    action: Only accept module names that exist in the allowed quote_summary_valid_modules tuple
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Invalid module requests will either fail silently or raise an exception, preventing data retrieval
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-045
+    when: When fetching FastInfo data
+    action: Implement lazy loading to only fetch price history when actual values are requested
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Every ticker instantiation will trigger expensive price history API calls even when FastInfo values are never
+      accessed
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-046
+    when: When accessing the quote analysis data layer
+    action: Use YfData singleton as the single data entry point for each Yahoo API calls
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Multiple uncoordinated API connections may trigger Yahoo's rate limiting, causing data fetching to fail entirely
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-047
+    when: When parsing JSON responses from Yahoo Finance
+    action: Handle KeyError and IndexError exceptions when accessing nested quoteSummary result structures
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Uncaught exceptions will crash the application when Yahoo returns unexpected JSON structures
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-048
+    when: When handling empty or missing data from Yahoo API
+    action: Return an empty DataFrame instead of raising an exception for optional data fields
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Optional data like upgrade/downgrade history will cause application crashes when no history exists
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-049
+    when: When yfinance accesses Yahoo Finance public API
+    action: Accept Yahoo's terms of use for data usage as an unaffiliated open-source tool
+    severity: high
+    kind: claim_boundary
+    modality: must
+    consequence: Using Yahoo Finance API without acknowledging the non-affiliation disclaimer violates usage terms and creates
+      legal risk
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-050
+    when: When fetching financial data from Yahoo Finance
+    action: Claim that fetched data represents real-time or current market conditions without delay
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting Yahoo API data as real-time will mislead users about data freshness since Yahoo API has inherent
+      latency
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-051
+    when: When using yfinance for financial analysis
+    action: Present analyst estimates and recommendations as guaranteed predictions
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting analyst consensus estimates as certain outcomes will mislead users about investment risk
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-052
+    when: When implementing quote analysis data fetching
+    action: Use the lru_cache mechanism for cache_get to avoid redundant API calls within the same session
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Repeated API calls for the same ticker will hit Yahoo rate limits quickly and degrade performance
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-053
+    when: When handling HTTP 429 rate limit responses from Yahoo API
+    action: Raise YFRateLimitError to signal rate limiting occurred
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Silent rate limit failures will cause data fetching to appear to succeed while returning incomplete or stale
+      data
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-054
+    when: When fetching financial data for delisted or invalid tickers
+    action: Raise YFTickerMissingError with clear rationale about possible delisting
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Invalid tickers will return empty DataFrames silently, making debugging difficult
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-055
+    when: When configuring the cookie strategy for Yahoo API
+    action: Fallback to 'csrf' strategy when 'basic' strategy fails
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Yahoo API access will fail entirely when the primary cookie strategy becomes invalid
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-056
+    when: When handling transient network errors during data fetching
+    action: Implement exponential backoff retry with configurable number of attempts
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Temporary network issues will cause data fetching to fail immediately instead of recovering automatically
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-057
+    when: When processing timezone-aware price data for FastInfo
+    action: Convert each timestamps to UTC then apply the exchange timezone for consistency
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Price calculations and comparisons will be incorrect when mixing timezone-aware and naive datetime objects
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-058
+    when: When validating ticker ISIN numbers
+    action: Check ISIN format is exactly 2 letters followed by 9 alphanumeric characters
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Invalid ISIN numbers will be accepted, leading to incorrect securities identification
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-059
+    when: When scraping valuation measures from Yahoo key-statistics page
+    action: Return an empty DataFrame when the table cannot be found or parsed
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Parsing failures will raise exceptions instead of gracefully returning empty data
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-060
+    when: When requesting trailing frequency financial data
+    action: Only allow trailing frequency for income or cash-flow data, not balance sheet
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Balance sheet trailing data will return incorrect or meaningless values since balance sheets represent point-in-time
+      snapshots
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-061
+    when: When formatting financial statement row names
+    action: Apply camelCase to title case conversion with proper acronym handling for EBIT, EBITDA, EPS
+    severity: low
+    kind: operational_lesson
+    modality: must
+    consequence: Financial statement labels will remain in cryptic camelCase, reducing readability for users
+    stage_ids:
+    - quote_analysis
+  - id: finance-C-062
+    when: When initializing a Ticker with a string symbol
+    action: normalize the ticker symbol to uppercase via .upper()
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Yahoo Finance API may not recognize lowercase or mixed-case ticker symbols, resulting in failed data retrieval
+      and KeyError exceptions when accessing financial data
+    stage_ids:
+    - ticker_facade
+  - id: finance-C-066
+    when: When validating an ISIN input
+    action: 'validate ISIN format matches the ISO 6166 pattern: 2-letter country code + 9 alphanumeric characters + 1 digit'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Invalid ISIN formats will cause downstream ISIN-to-ticker lookups to fail or return incorrect ticker symbols,
+      leading to data corruption or mismatched financial data
+    stage_ids:
+    - ticker_facade
+  - id: finance-C-067
+    when: When resolving MIC codes for multi-market tickers
+    action: strip leading dots from MIC codes before lookup
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: MIC codes with leading dots (e.g., '.XPAR') will not match the _MIC_TO_YAHOO_SUFFIX mapping, causing ValueError
+      for valid European exchange tickers
+    stage_ids:
+    - ticker_facade
+  - id: finance-C-069
+    when: When performing ISIN-to-ticker lookups
+    action: cache resolved ISIN mappings in SQLite for subsequent lookups
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Without caching, repeated ISIN lookups trigger slow Business Insider scraping for each request, causing 500ms+
+      delays and potential rate limiting
+    stage_ids:
+    - ticker_facade
+  - id: finance-C-070
+    when: When initializing a Ticker instance
+    action: lazily load the _price_history component on first access, not during __init__
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Eager loading of PriceHistory during initialization causes unnecessary network calls and import overhead
+      when users only need fast-access metadata like get_info()
+    stage_ids:
+    - ticker_facade
+  - id: finance-C-071
+    when: When providing backward compatibility for pandas-datareader era
+    action: expose alias methods (e.g., incomestmt) that delegate to canonical method names (e.g., income_stmt)
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without alias methods, existing codebases using old method names will break with AttributeError, requiring
+      extensive refactoring
+    stage_ids:
+    - ticker_facade
+  - id: finance-C-072
+    when: When accessing financial data via Ticker properties
+    action: expose each data types through property accessors on the single Ticker instance
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without consistent property accessors, users must memorize different method call patterns (get_income_stmt()
+      vs .income_stmt property), increasing cognitive load and API inconsistency
+    stage_ids:
+    - ticker_facade
+  - id: finance-C-075
+    when: When handling ISIN resolution failures
+    action: raise ValueError with the specific ISIN when ISIN-to-ticker resolution returns empty string
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Silent failures or generic errors on ISIN resolution make debugging difficult; users cannot identify which
+      ISIN caused the lookup to fail
+    stage_ids:
+    - ticker_facade
+  - id: finance-C-076
+    when: When normalizing MIC codes for lookup
+    action: convert MIC codes to uppercase before checking against _MIC_TO_YAHOO_SUFFIX mapping
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Lowercase MIC codes (e.g., 'xpar' instead of 'XPAR') will not match the uppercase keys in _MIC_TO_YAHOO_SUFFIX,
+      causing 'Unknown MIC code' errors for valid exchanges
+    stage_ids:
+    - ticker_facade
+  - id: finance-C-077
+    when: When handling ISIN lookups with special characters in ticker
+    action: return '-' as ISIN when ticker contains '-' or '^' characters (indicating indices or special instruments)
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Indices and special instruments do not have ISINs; attempting to look them up causes unnecessary network
+      calls and confusing error responses
+    stage_ids:
+    - ticker_facade
+  - id: finance-C-078
+    when: When implementing batch download for multiple tickers
+    action: Normalize each ticker symbols to uppercase before sending requests to Yahoo API
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Lowercase or mixed-case ticker symbols will cause API lookup failures since Yahoo's internal symbols are
+      uppercase-only
+    stage_ids:
+    - batch_download
+  - id: finance-C-079
+    when: When downloading multiple tickers with threads=True
+    action: Cap thread count at min(len(tickers), cpu_count * 2) to avoid excessive resource consumption
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Exceeding the thread limit will cause resource exhaustion and degraded download performance, especially on
+      systems with many CPU cores
+    stage_ids:
+    - batch_download
+  - id: finance-C-080
+    when: When DEBUG logging is enabled during batch download
+    action: Use multi-threading as it causes interleaved log output that makes debugging difficult
+    severity: medium
+    kind: resource_boundary
+    modality: must_not
+    consequence: With DEBUG logging enabled, multi-threaded log messages will be interleaved making it impossible to trace
+      individual ticker download sequences
+    stage_ids:
+    - batch_download
+  - id: finance-C-081
+    when: When making parallel HTTP requests to Yahoo Finance API
+    action: Handle YFRateLimitError exceptions gracefully since Yahoo enforces per-IP rate limits
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Uncaught rate limit errors will crash the download process, leaving partial results inaccessible and requiring
+      manual retry
+    stage_ids:
+    - batch_download
+  - id: finance-C-084
+    when: When downloading tickers in parallel
+    action: Store each ticker's download result in shared._DFS keyed by its uppercase ticker symbol
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without consistent key naming (uppercase), the final DataFrame concatenation will miss data for tickers with
+      non-uppercase keys
+    stage_ids:
+    - batch_download
+  - id: finance-C-085
+    when: When aggregating download results into a DataFrame
+    action: Create a MultiIndex DataFrame with ticker symbols as the outer level for multi_level_index=True
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without proper MultiIndex structure, downstream analysis cannot distinguish between different tickers' price
+      columns
+    stage_ids:
+    - batch_download
+  - id: finance-C-086
+    when: When implementing threaded ticker downloads
+    action: Use the @_multitasking.task decorator for the thread function to verify proper task management
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without proper task management via @_multitasking.task, thread execution and progress tracking will not work
+      correctly
+    stage_ids:
+    - batch_download
+  - id: finance-C-087
+    when: When implementing batch download
+    action: Aggregate individual ticker errors into shared._ERRORS and expose them after completion
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without error aggregation, developers cannot diagnose which tickers failed or why, requiring manual retry
+      with single tickers
+    stage_ids:
+    - batch_download
+  - id: finance-C-088
+    when: When downloading tickers with ISIN identifiers
+    action: Convert ISIN to ticker symbol before download and store the mapping for column renaming
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Yahoo API requires ticker symbols, not ISINs. Without conversion, the download will fail for ISIN-formatted
+      inputs
+    stage_ids:
+    - batch_download
+  - id: finance-C-089
+    when: When setting ignore_tz parameter in batch download
+    action: Set ignore_tz=False for intraday intervals and ignore_tz=True for daily or longer intervals by default
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Wrong timezone handling will cause timestamp misalignment when combining data from tickers across different
+      timezones
+    stage_ids:
+    - batch_download
+  - id: finance-C-090
+    when: When returning results for a single ticker
+    action: Provide option to return a simple DataFrame without MultiIndex via multi_level_index=False
+    severity: low
+    kind: operational_lesson
+    modality: should
+    consequence: Users processing single-ticker data will need unnecessary MultiIndex operations, slowing down their analysis
+      pipeline
+    stage_ids:
+    - batch_download
+  - id: finance-C-091
+    when: When displaying progress during batch download
+    action: Write progress bar output to stderr to avoid interfering with stdout data output
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Progress output to stdout will corrupt DataFrame output when users capture both stdout and stderr streams
+    stage_ids:
+    - batch_download
+  - id: finance-C-092
+    when: When using batch download in threaded mode
+    action: Wait for each threads to complete by checking len(shared._DFS) < len(tickers) before proceeding
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Returning before all tickers complete will produce incomplete DataFrames with missing columns for unfinished
+      tickers
+    stage_ids:
+    - batch_download
+  - id: finance-C-093
+    when: When using batch download for historical market data
+    action: Claim or imply real-time streaming capability as the download function only fetches historical data
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users expecting real-time data from download() will receive stale data and make trading decisions based on
+      outdated prices
+    stage_ids:
+    - batch_download
+  - id: finance-C-094
+    when: When using yfinance batch download for any trading decisions
+    action: Present yfinance data as official Yahoo Finance data or claim any official endorsement
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Using Yahoo branding or claiming official endorsement violates Yahoo's terms of use and could result in legal
+      liability
+    stage_ids:
+    - batch_download
+  - id: finance-C-095
+    when: When using batch download results for backtesting
+    action: Claim or expect that downloaded historical data will have identical behavior to live Yahoo Finance data
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Yahoo's historical data API may return adjusted prices or include/exclude dividends differently than live
+      queries, causing backtest/live discrepancies
+    stage_ids:
+    - batch_download
+  - id: finance-C-096
+    when: When handling DataFrame concatenation failures
+    action: Call _realign_dfs() to realign DataFrames with misaligned indices before retrying concat
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without realignment, concatenation will fail or produce NaN columns for tickers with different date ranges
+    stage_ids:
+    - batch_download
+  - id: finance-C-097
+    when: When implementing ticker input parsing
+    action: Convert comma-separated string tickers to list format before processing
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Comma-separated input strings will be treated as single ticker names, causing download failures
+    stage_ids:
+    - batch_download
+  - id: finance-C-098
+    when: When processing timezone-aware ticker data
+    action: Finalize DataFrame index by converting to datetime with UTC flag matching ignore_tz setting
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without proper datetime conversion, timezone-aware timestamps may be misinterpreted causing overnight gap
+      calculations to be incorrect
+    stage_ids:
+    - batch_download
+  - id: finance-C-100
+    when: When fetching domain entity data from Yahoo Finance API
+    action: handle rate limiting by catching HTTP 429 status and waiting before retrying
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Continued requests without respecting rate limits will result in YFRateLimitError, preventing access to sector
+      and industry data
+    stage_ids:
+    - domain_entities
+  - id: finance-C-101
+    when: When parsing top companies data from Yahoo Finance API response
+    action: return None when the top_companies list is empty, not an empty DataFrame
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Returning an empty DataFrame instead of None causes inconsistent return types that break downstream type
+      checking and comparison logic
+    stage_ids:
+    - domain_entities
+  - id: finance-C-102
+    when: When accessing domain entity properties like name, symbol, overview, or top_companies
+    action: trigger lazy data fetching via _ensure_fetched() before returning the attribute
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Properties will return None even after data is fetched externally, causing missing data for all domain entity
+      queries
+    stage_ids:
+    - domain_entities
+  - id: finance-C-103
+    when: When constructing DataFrame columns for domain entity data
+    action: 'use consistent column names across each DataFrame returns: ''symbol'' as index, and lowercase space-separated
+      names for data columns'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Inconsistent column names break downstream analysis code that expects uniform DataFrame structure across
+      sector, industry, and company data
+    stage_ids:
+    - domain_entities
+  - id: finance-C-104
+    when: When implementing the Sector class industries property
+    action: filter out 'each Industries' entries from the API response to maintain data quality
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Including 'All Industries' placeholder entry pollutes industry DataFrames with invalid data that doesn't
+      correspond to actual industries
+    stage_ids:
+    - domain_entities
+  - id: finance-C-105
+    when: When fetching sector or industry data from Yahoo Finance
+    action: gracefully handle API failures by logging errors and suppressing exceptions when YfConfig.debug.hide_exceptions
+      is True
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Unhandled exceptions will crash applications using yfinance for sector/industry data during Yahoo API downtime
+    stage_ids:
+    - domain_entities
+  - id: finance-C-106
+    when: When using SECTOR_INDUSTY_MAPPING for sector/industry validation or documentation
+    action: use the hardcoded mapping from const.py instead of relying solely on Yahoo API for sector-industry relationships
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Yahoo API changes to sector-industry classifications break code that dynamically discovers relationships
+      without fallback mapping
+    stage_ids:
+    - domain_entities
+  - id: finance-C-107
+    when: When constructing query URLs for sector and industry data
+    action: 'use the correct URL pattern: /v1/finance/sectors/{key} for sectors and /v1/finance/industries/{key} for industries'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect URL patterns result in 404 errors from Yahoo API, making all sector and industry queries fail
+    stage_ids:
+    - domain_entities
+  - id: finance-C-108
+    when: When presenting sector or industry data to users
+    action: claim that the data represents real-time or official financial advice
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting Yahoo Finance data as real-time or official financial advice violates Yahoo's terms of use and
+      misleads users about data reliability
+    stage_ids:
+    - domain_entities
+  - id: finance-C-109
+    when: When initializing Industry class
+    action: reinitialize YfData instance that was already initialized in parent Domain class
+    severity: medium
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Creating a duplicate YfData instance wastes resources and may cause inconsistent session management across
+      domain entity operations
+    stage_ids:
+    - domain_entities
+  - id: finance-C-110
+    when: When parsing industry or sector overview data
+    action: extract nested 'raw' values from Yahoo API response dictionaries for market cap, market weight, and employee count
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Returning nested dictionary structures instead of raw numeric values breaks downstream numerical analysis
+      and comparison operations
+    stage_ids:
+    - domain_entities
+  - id: finance-C-111
+    when: When initializing a QueryBase subclass
+    action: provide a non-empty list operand and valid operator type
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Empty operand list or invalid operator causes ValueError/TypeError, breaking query construction before any
+      API call
+    stage_ids:
+    - screener
+  - id: finance-C-112
+    when: When using EQ operator in a query
+    action: 'provide exactly 2 operands: a valid field name and a value'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Wrong operand count for EQ causes ValueError, preventing the query from being built correctly
+    stage_ids:
+    - screener
+  - id: finance-C-113
+    when: When using BTWN operator in a query
+    action: 'provide exactly 3 operands: field name and two numeric bounds'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: BTWN with wrong operand count or non-numeric bounds causes ValueError/TypeError
+    stage_ids:
+    - screener
+  - id: finance-C-115
+    when: When validating query field names
+    action: verify field names exist in the query class's valid_fields
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Invalid field names cause ValueError and the query fails before API call
+    stage_ids:
+    - screener
+  - id: finance-C-116
+    when: When validating EQ and IS-IN operator values
+    action: verify values match allowed values for fields in valid_values
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Invalid values for restricted fields cause ValueError, preventing query execution
+    stage_ids:
+    - screener
+  - id: finance-C-117
+    when: When requesting screener results from Yahoo
+    action: request more than 250 results per query
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: 'count or size exceeding 250 causes ValueError: Yahoo limits query count to 250'
+    stage_ids:
+    - screener
+  - id: finance-C-118
+    when: When calling screen() function
+    action: pass either a predefined query string or a QueryBase subclass instance
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Invalid query type causes ValueError, query is rejected before API call
+    stage_ids:
+    - screener
+  - id: finance-C-119
+    when: When using different query classes
+    action: use EquityQuery for stocks, FundQuery for mutual funds, ETFQuery for ETFs
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Wrong query class causes validation errors as each class has different valid_fields and valid_values
+    stage_ids:
+    - screener
+  - id: finance-C-120
+    when: When composing AND/OR logical operators
+    action: provide more than 1 QueryBase operand of the same type
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: AND/OR with single operand or mixed types causes ValueError/TypeError
+    stage_ids:
+    - screener
+  - id: finance-C-121
+    when: When using GT/LT operators
+    action: 'provide exactly 2 operands: valid field name and a numeric value'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Wrong operand count or non-numeric comparison value causes validation error
+    stage_ids:
+    - screener
+  - id: finance-C-122
+    when: When fetching screener data from Yahoo Finance API
+    action: expect real-time data or claim real-time capability
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Yahoo Finance API data has approximately 15-minute delay; presenting it as real-time would be misleading
+    stage_ids:
+    - screener
+  - id: finance-C-123
+    when: When presenting screener results
+    action: claim Yahoo affiliation or endorsement
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: README explicitly states yfinance is not affiliated with Yahoo, Inc.; claiming otherwise violates legal disclaimers
+    stage_ids:
+    - screener
+  - id: finance-C-124
+    when: When using IS-IN operator
+    action: 'provide at least 2 operands: field name and one or more values'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: IS-IN with fewer than 2 operands causes ValueError
+    stage_ids:
+    - screener
+  - id: finance-C-125
+    when: When decoding WebSocket base64 messages
+    action: Handle invalid base64 input gracefully and return error structure
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Invalid base64 messages cause unhandled exceptions that crash the message listener loop, disrupting continuous
+      price streaming
+    stage_ids:
+    - live_streaming
+  - id: finance-C-126
+    when: When implementing async message handler
+    action: Detect coroutine functions using asyncio.iscoroutinefunction() and await appropriately
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Non-awaited coroutine functions cause silent failures where message handler logic never executes, leading
+      to missing price updates
+    stage_ids:
+    - live_streaming
+  - id: finance-C-127
+    when: When subscribing to WebSocket symbols
+    action: Normalize string symbol to list before updating subscription set
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: String symbols processed as iterable characters cause incorrect subscription state and failed message delivery
+    stage_ids:
+    - live_streaming
+  - id: finance-C-128
+    when: When using AsyncWebSocket in Jupyter notebook
+    action: Apply nest_asyncio.apply() before running async operations
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Nested event loop errors prevent async WebSocket operations from executing, blocking all price streaming
+    stage_ids:
+    - live_streaming
+  - id: finance-C-131
+    when: When relying on WebSocket for live price data
+    action: Claim the data is actual real-time unfiltered market data
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting Yahoo Finance WebSocket data as true real-time violates Yahoo's terms of use and misleads users
+      about data freshness
+    stage_ids:
+    - live_streaming
+  - id: finance-C-132
+    when: When using WebSocket streaming data for trading decisions
+    action: Present streaming prices as suitable for automated trading execution
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: WebSocket data lacks the reliability guarantees and latency specifications required for production trading
+      systems
+    stage_ids:
+    - live_streaming
+  - id: finance-C-133
+    when: When configuring WebSocket heartbeat interval
+    action: Set subscription re-send interval to 15 seconds to maintain server connection
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Without periodic subscription refresh, the Yahoo Finance WebSocket server closes the connection after approximately
+      15-30 seconds of inactivity
+    stage_ids:
+    - live_streaming
+  - id: finance-C-134
+    when: When handling WebSocket connection failures
+    action: Implement automatic reconnection with exponential backoff delay
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Connection drops without reconnection logic permanently terminate streaming, requiring manual intervention
+      to resume
+    stage_ids:
+    - live_streaming
+  - id: finance-C-135
+    when: When using default WebSocket URL
+    action: Assume the Yahoo Finance streaming endpoint is available 24/7
+    severity: medium
+    kind: resource_boundary
+    modality: must_not
+    consequence: The wss://streamer.finance.yahoo.com endpoint only operates during market hours, causing connection failures
+      outside trading sessions
+    stage_ids:
+    - live_streaming
+  - id: finance-C-136
+    when: When processing Protocol Buffer messages
+    action: Use MessageToDict with preserving_proto_field_name for consistent field names
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Inconsistent field naming between camelCase and snake_case causes downstream code failures when parsing price
+      data
+    stage_ids:
+    - live_streaming
+  - id: finance-C-137
+    when: When using debug.hide_exceptions configuration
+    action: Suppress critical WebSocket errors that indicate connection instability
+    severity: medium
+    kind: operational_lesson
+    modality: must_not
+    consequence: Hidden exceptions prevent users from diagnosing intermittent connection failures, leading to prolonged data
+      gaps
+    stage_ids:
+    - live_streaming
+  - id: finance-C-139
+    when: When believing WebSocket will auto-reconnect synchronously
+    action: Assume synchronous WebSocket automatically retries after connection drops
+    severity: high
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Synchronous WebSocket listen() exits on exception without reconnection, leaving applications without price
+      updates until manual restart
+    stage_ids:
+    - live_streaming
+  - id: finance-C-142
+    when: When creating SQLite database instances
+    action: set pragmas for journal_mode=wal and cache_size=-64
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Without WAL mode, SQLite defaults to DELETE journal causing slower concurrent access. Without negative cache_size,
+      default 2MB cache may cause disk thrashing
+    stage_ids:
+    - caching
+  - id: finance-C-143
+    when: When registering atexit handlers for database cleanup
+    action: wrap database close calls in try-except to suppress errors
+    severity: low
+    kind: domain_rule
+    modality: must
+    consequence: Python shutdown sequence can cause exceptions during cleanup, leading to traceback spam on console during
+      normal program exit
+    stage_ids:
+    - caching
+  - id: finance-C-144
+    when: When implementing multi-threaded cache access
+    action: use Lock to protect cache initialization from race conditions
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Multiple threads could simultaneously initialize cache, creating duplicate database connections or raising
+      database locking errors
+    stage_ids:
+    - caching
+  - id: finance-C-145
+    when: When handling peewee.OperationalError during table creation
+    action: fallback to without_rowid=False when WITHOUT ROWID is unsupported
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Table creation fails entirely if SQLite version doesn't support WITHOUT ROWID, causing cache to be completely
+      unavailable
+    stage_ids:
+    - caching
+  - id: finance-C-146
+    when: When validating cached timezone values
+    action: use is_valid_timezone() to verify timezone string before storing
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Invalid timezone strings stored in cache would cause datetime conversion errors during all subsequent price
+      history processing
+    stage_ids:
+    - caching
+  - id: finance-C-147
+    when: When handling cached cookie expiry
+    action: compare cookie expiry timestamp against current UTC time before use
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Expired cookies used for Yahoo API requests would cause authentication failures and data fetch errors
+    stage_ids:
+    - caching
+  - id: finance-C-148
+    when: When implementing SQLite-based caching
+    action: claim cache provides real-time or guaranteed-consistency data
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Cached timezone or ISIN data may be stale, and SQLite integrity depends on clean process shutdown. Presenting
+      cache as real-time would mislead users about data freshness
+    stage_ids:
+    - caching
+  - id: finance-C-149
+    when: When using platformdirs user cache directory
+    action: assume default cache location is always writable
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: On systems with restricted user directories or in containerized environments, the default cache path may
+      be read-only, causing cache initialization to fail silently
+    stage_ids:
+    - caching
+  - id: finance-C-150
+    when: When cleaning up stale ISIN cache entries
+    action: delete entries older than 1 week with same ticker value
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Stale ISIN mappings for delisted/reorganized securities would persist indefinitely, causing ticker resolution
+      to return incorrect symbols
+    stage_ids:
+    - caching
+  - id: finance-C-151
+    when: When migrating from legacy CSV cache format
+    action: remove old CSV cache file after SQLite migration
+    severity: low
+    kind: operational_lesson
+    modality: must
+    consequence: Legacy CSV file would persist on disk causing confusion about which data source is authoritative, and could
+      be re-read by older code versions
+    stage_ids:
+    - caching
+  - id: finance-C-152
+    when: When using pickle for cookie serialization
+    action: use pickle.HIGHEST_PROTOCOL for cross-python-version compatibility
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: Lower pickle protocol versions may not deserialize correctly across Python versions, causing cached cookies
+      to fail silently
+    stage_ids:
+    - caching
+  - id: finance-C-153
+    when: When handling IntegrityError during cache store
+    action: update existing record instead of raising when key already exists
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Duplicate key constraint violation would cause cache write to fail, leaving stale data in cache and preventing
+      updates for changed values
+    stage_ids:
+    - caching
+  - id: finance-C-154
+    when: When implementing ISODateTimeField for SQLite datetime
+    action: validate datetime format on both read and write operations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Invalid datetime strings from corrupted cache would cause ValueError during deserialization, crashing the
+      application
+    stage_ids:
+    - caching
+  - id: finance-C-156
+    when: When configuring session for Yahoo Finance API
+    action: Set session to impersonate='chrome' to satisfy Yahoo's browser fingerprinting requirements
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: API requests will be blocked or rate-limited by Yahoo if not impersonating a known browser
+  - id: finance-C-157
+    when: When transferring session configuration to HTTP layer
+    action: Pass singleton YfData instance to each data-fetching stages (price_history, quote_analysis, domain_entities, screener)
+      for shared cookie/crumb management
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Each stage will create separate sessions, causing cookie/crumb inconsistency and API authentication failures
+  - id: finance-C-158
+    when: When passing ticker symbols to ticker_facade
+    action: Convert ticker to uppercase string before passing, or use (symbol, MIC) tuple format for non-default exchanges
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Lowercase ticker symbols will not match Yahoo Finance's uppercase symbol database, causing data fetch failures
+  - id: finance-C-159
+    when: When looking up timezone for a ticker
+    action: Cache timezone in _TzCache using SQLite before passing to price_history to avoid repeated API fetches
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without caching, each ticker requires an additional API round-trip for timezone lookup, significantly degrading
+      batch download performance
+  - id: finance-C-160
+    when: When passing timezone from ticker_facade to price_history
+    action: Pass validated timezone string (pytz-compatible) or None, not invalid timezone values
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Invalid timezone will cause tz_localize/tz_convert failures in price_history, corrupting all timestamp handling
+  - id: finance-C-161
+    when: When processing price history with tag=-1 sentinels
+    action: Reconstruct missing price/volume values using finer-grained interval data before returning repaired DataFrame
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Price gaps with tag=-1 will propagate as invalid values, corrupting financial calculations and backtesting
+      results
+  - id: finance-C-162
+    when: When repairing Yahoo price data
+    action: 'Execute repair pipeline in strict order: bad_dividend_adjust → currency_standardize → unit_mixups → bad_stock_splits
+      → zeroes → capital_gains'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Out-of-order repairs will compound errors, leading to incorrect adjusted close values and flawed backtesting
+  - id: finance-C-163
+    when: When batch downloading multiple tickers
+    action: Acquire shared._LOCK before accessing shared._DFS for thread-safe multi-ticker download
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Concurrent access to shared._DFS without lock causes race conditions, resulting in data overwrites and missing
+      tickers
+  - id: finance-C-164
+    when: When combining DataFrames from multiple tickers
+    action: Use MultiIndex with ['Ticker', 'Price'] levels for column names to preserve per-ticker column structure
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without MultiIndex, columns from different tickers will be misaligned, corrupting multi-ticker analysis
+  - id: finance-C-165
+    when: When handling timezone-aware DataFrames from batch download
+    action: Use ignore_tz=True for daily+ intervals (tz-naive concatenation) and ignore_tz=False for intraday intervals (preserve
+      timezone)
+    severity: medium
+    kind: domain_rule
+    modality: should
+    consequence: Mixed timezone DataFrames without proper ignore_tz setting cause timestamp misalignment across tickers
+  - id: finance-C-166
+    when: When storing cookies for session persistence
+    action: Serialize cookie jar to _CookieCache with pickle before passing to caching layer
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without cookie caching, each ticker download requires fresh cookie acquisition, increasing API latency and
+      rate-limit risk
+  - id: finance-C-167
+    when: When loading cached cookies
+    action: Check cookie expiry timestamp before loading from cache; discard expired cookies
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Expired cookies cause API authentication failures, resulting in empty data responses
+  - id: finance-C-168
+    when: When fetching quote/financial data via quote_analysis
+    action: Convert raw JSON response to structured dict/DataFrame before passing to ticker_facade property accessors
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Unstructured JSON will cause attribute errors when user code accesses Ticker.info, .recommendations, etc.
+  - id: finance-C-169
+    when: When processing earnings trend data
+    action: Extract 'raw' values from nested dict structure before returning DataFrame to ticker_facade
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Nested dict values instead of raw numbers cause type errors in downstream financial calculations
+  - id: finance-C-170
+    when: When screening for tickers via screener
+    action: Limit result count to maximum 250 per Yahoo API constraint
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Requests exceeding 250 results are rejected by Yahoo API, causing ValueError exceptions
+  - id: finance-C-171
+    when: When streaming real-time prices via WebSocket
+    action: Decode base64-encoded protobuf message before passing dict to user callback
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Raw base64 strings passed to callback cause type errors in user trading logic
+  - id: finance-C-172
+    when: When parsing financial time series data
+    action: Convert Unix timestamps to pandas DatetimeIndex with UTC localization before DataFrame construction
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Unconverted Unix timestamps cause index misalignment in financial time series analysis
+  - id: finance-C-173
+    when: When handling domain entity data (sector/industry)
+    action: Parse API response with _parse_and_assign_common() to extract name, symbol, overview before accessing properties
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Raw API response without parsing causes AttributeError when accessing sector.name, sector.top_companies,
+      etc.
+  - id: finance-C-174
+    when: When presenting Yahoo Finance data to end users
+    action: Present data as official Yahoo Finance data or guarantee real-time accuracy (Yahoo has 15-minute delay)
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Misrepresenting delayed data as real-time violates Yahoo terms of use and misleads users in trading decisions
+  - id: finance-C-175
+    when: When describing yfinance's real-time capabilities
+    action: Claim true real-time streaming capability for WebSocket (it's still polling-based with subscription mechanism)
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Overstating real-time nature may lead users to make trading decisions based on stale data assumptions
+  - id: finance-C-176
+    when: When handling Volume column in price history
+    action: Fill NaN volumes with 0 and cast to np.int64 before returning DataFrame
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: NaN volumes cause dtype object instead of int64, breaking numerical operations and causing comparison errors
+  - id: finance-C-177
+    when: When dropping columns from price history
+    action: Use errors='ignore' parameter to handle optional columns (Dividends, Stock Splits, Capital Gains) gracefully
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Missing optional columns without errors='ignore' raises KeyError, breaking backward compatibility
+  - id: finance-C-178
+    when: When resampling price intervals
+    action: Apply 'left' label and 'left' closed when resampling to maintain temporal alignment with source data
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Wrong resample boundaries cause timestamp misalignment, corrupting multi-interval analysis
+  - id: finance-C-179
+    when: When limiting ticker download requests
+    action: Cap thread count to min([ticker_count, cpu_count * 2]) to prevent Yahoo rate limiting
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Unlimited parallel downloads trigger Yahoo rate limiting, causing 429 errors and data fetch failures
+  - id: finance-C-180
+    when: When caching financial data across stages
+    action: Use lru_cache_freezeargs decorator for functions accepting dict/list arguments to enable proper memoization
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without frozen arguments, lru_cache cannot hash mutable dict/list parameters, causing repeated API calls
+  - id: finance-C-181
+    when: When handling ISIN-to-ticker resolution
+    action: Store resolved ticker in ISIN cache before returning ticker symbol to user code
+    severity: low
+    kind: architecture_guardrail
+    modality: must
+    consequence: Repeated ISIN lookups without caching cause unnecessary API round-trips
+  - id: finance-C-182
+    when: When repairing intraday intervals
+    action: Limit reconstruction depth to 2 levels (e.g., 1d→1h→30m) to prevent infinite recursion
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Unlimited reconstruction depth causes excessive API calls and memory exhaustion
+  - id: finance-C-183
+    when: When removing duplicate index entries
+    action: Keep 'last' duplicate when deduplicating DataFrame index after batch download
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Keeping first duplicate loses most recent price data, corrupting time-series continuity
+  - id: finance-C-184
+    when: When combining OHLCV with dividend/split events
+    action: Set Stock Splits=0 to 1 before resampling to avoid zero-multiplier issues
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Zero stock splits cause price calculations to fail, resulting in incorrect adjusted prices
+  - id: finance-C-185
+    when: When initializing a Ticker object with a ticker symbol
+    action: Uppercase the ticker symbol to verify consistent lookup behavior
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Inconsistent ticker symbol casing causes Yahoo API lookup failures or returns incorrect data for mixed-case
+      symbols
+  - id: finance-C-186
+    when: When processing price history data returned from Yahoo Finance
+    action: Verify each returned DataFrames use timezone-aware DatetimeIndex
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Timezone-naive DataFrames cause incorrect temporal alignment when combining data from multiple tickers or
+      performing time-based operations
+  - id: finance-C-187
+    when: When fetching data from Yahoo Finance API for historical price data
+    action: Treat returned data as delayed by at least 15-30 minutes - this is NOT real-time data
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Systems claiming or relying on yfinance data as true real-time feed will experience incorrect trading signals
+      in time-sensitive applications, leading to suboptimal execution prices or missed opportunities
+  - id: finance-C-190
+    when: When presenting or reporting yfinance data capabilities to users
+    action: Represent data as suitable for production trading systems where data accuracy is mission-critical
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users deploy yfinance in live trading systems expecting guaranteed data integrity, but Yahoo API data can
+      have gaps, delays, or corrections that cause incorrect trades and financial losses
+  - id: finance-C-191
+    when: When using yfinance WebSocket streaming for real-time data
+    action: Recognize that the WebSocket uses a 15-second heartbeat subscription interval and is best-effort
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Applications expecting sub-second latency or guaranteed message delivery will experience missed updates and
+      stale prices during network interruptions
+  - id: finance-C-192
+    when: When making HTTP requests to Yahoo Finance API
+    action: Implement retry logic for transient errors (timeout, connection errors) as defined in config.network.retries
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without retry logic, transient network failures cause immediate data fetch failures, breaking downstream
+      pipelines
+  - id: finance-C-193
+    when: When the Yahoo Finance API rate limits requests
+    action: Propagate YFRateLimitError to caller and do NOT silently retry within the same request cycle
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Silently retrying after rate limit triggers account-level IP bans from Yahoo, causing complete data access
+      loss
+  - id: finance-C-194
+    when: When repairing price data using the repair pipeline
+    action: 'Execute repair steps in strict order: standardize_currency → div_adjust → unit_mixups → stock_splits → capital_gains
+      → auto_adjust'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Skipping or reordering repair steps causes incorrect adjusted prices, especially for ETFs and mutual funds
+      where capital gains processing affects the final adjusted close calculation
+  - id: finance-C-195
+    when: When using yfinance data for backtesting trading strategies
+    action: Present backtested results as proof of expected live trading performance
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Backtest results ignore market impact, slippage, financing costs, and execution delays. Users allocate capital
+      based on inflated backtest returns, leading to severe underperformance in live trading
+  - id: finance-C-196
+    when: When accessing FX ticker data (tickers with =X suffix)
+    action: Expect volume column to always be 0 - FX data does not include volume information
+    severity: low
+    kind: resource_boundary
+    modality: must
+    consequence: Code expecting non-zero volume for FX tickers will produce incorrect technical indicators or trading signals
+      based on zero-volume data
+  - id: finance-C-197
+    when: When running backtests or any stochastic strategy simulations
+    action: Assume the framework sets random seeds consistently across runs — the framework does not implement full random
+      seed coverage, leading to non-reproducible results between executions
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without random seed control, backtest results vary between runs due to stochastic elements in data sampling,
+      split decisions, or Monte Carlo simulations, making it impossible to verify strategy performance or compare parameter
+      changes
+    derived_from_bd_id: BD-GAP-006
+  - id: finance-C-198
+    when: When implementing backtest reproducibility features
+    action: Set random.seed() with explicit seed value at the start of each backtest run and document each stochastic operations
+      that require seeding (data sampling, Monte Carlo, split decisions)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing random seed coverage causes backtest results to be non-reproducible, preventing proper strategy validation
+      and parameter comparison across runs
+    derived_from_bd_id: BD-GAP-006
+  - id: finance-C-199
+    when: When implementing real-time streaming functionality in backtesting
+    action: Maintain separate synchronous and asynchronous class implementations for WebSocket connections — do not merge
+      AsyncWebSocket and WebSocket classes into a single implementation
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Mixing async and sync event loops in Python causes runtime errors or deadlocks; consolidated classes would
+      force async patterns on synchronous users or vice versa, breaking the streaming functionality entirely
+    derived_from_bd_id: BD-021
+  - id: finance-C-200
+    when: When validating dividend repairs where repaired value is greater than original
+    action: Apply a 1x improvement threshold — only flag dividends as too-small when the repaired dividend is at least double
+      (2x) the original reported amount
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Using a lower threshold (e.g., 0.5x) over-corrects rounding errors, inflating historical dividend yields
+      and causing backtests to show higher returns than actual historical performance
+    derived_from_bd_id: BD-029
+  - id: finance-C-201
+    when: When validating dividend repairs where repaired value is less than original
+    action: Apply a 2x improvement threshold — only flag dividends as too-big when the corrected dividend is at most half
+      (0.5x) the original reported amount
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Using a lower threshold (e.g., 1.5x) risks false positives from legitimate dividend reductions, distorting
+      historical dividend data and causing incorrect portfolio analytics
+    derived_from_bd_id: BD-030
+  - id: finance-C-202
+    when: When validating dividend adjustments by comparing pre-dividend price baselines
+    action: Use a 14-day lookback window prior to the ex-dividend date to establish the pre-dividend price baseline
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Using a shorter lookback (e.g., 5 days) includes noisy daily fluctuations causing incorrect adjustment validation;
+      using a longer lookback (e.g., 30 days) risks mixing different market regimes, leading to unreliable dividend adjustment
+      estimates
+    derived_from_bd_id: BD-031
+  - id: finance-C-203
+    when: When performing comparative analysis across yfinance APIs (download vs Ticker.history)
+    action: Explicitly set actions parameter to verify consistent dividend/split handling — do not rely on default values
+      as download() defaults to actions=False while Ticker.history() defaults to actions=True
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: API inconsistency means batch downloads omit dividends and splits by default while single-ticker access includes
+      them, causing portfolio analytics and backtests to show materially different results for the same underlying data
+    derived_from_bd_id: BD-042
+  - id: finance-C-204
+    when: When debugging missing dividends or splits in historical data
+    action: Temporarily disable hide_exceptions=True to reveal silent failures — check that actions parameter is explicitly
+      set and matches expectations before investigating further
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Silent failure mechanism combined with API inconsistency (download() vs Ticker.history()) means users receive
+      incomplete dividend data without any error indication, propagating incorrect financial data into backtests and analytics
+    derived_from_bd_id: BD-045
+  - id: finance-C-205
+    when: When diagnosing failures in historical data retrieval
+    action: Temporarily disable each silent failure modes (config hide_exceptions=False, debug hide_exceptions=False) to reveal
+      the full failure cascade before attempting fixes
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Risk cascade from multiple silent failure modes means multiple failure types can occur simultaneously without
+      notification — config errors, debug errors, and API inconsistencies all masked, making debugging nearly impossible
+    derived_from_bd_id: BD-047
+  - id: finance-C-206
+    when: When implementing live streaming message handlers for financial data
+    action: Consider implementing structured message context (timestamp, source, sequence_number) if message ordering, latency
+      tracking, or multi-source correlation is needed — simple single-parameter callbacks may not provide sufficient metadata
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Simple single-parameter callbacks lack metadata for traceability, making it impossible to correlate messages
+      across sources, detect sequence gaps, or measure latency — issues accumulate silently in high-frequency streaming scenarios
+    derived_from_bd_id: BD-GAP-002
+  - id: finance-C-207
+    when: When configuring yfinance for production trading or automated backtesting
+    action: Enable debug.logging=True when using the default hide_exceptions=True setting to detect silent failures; periodically
+      test with hide_exceptions=False to verify data completeness
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Silent failures from debug.hide_exceptions=True mask configuration errors, invalid API keys, and upstream
+      provider changes; without debug.logging enabled, users remain unaware that some ticker downloads are failing, corrupting
+      backtest results
+    derived_from_bd_id: debug.hide_exceptions=True by default
+  - id: finance-C-208
+    when: When using the SECTOR_INDUSTRY_MAPPING constant for sector/industry classification in backtesting or screening
+    action: Verify that the hardcoded sector/industry mapping in const.py is current and accurate for the target market and
+      time period; stale mappings may cause incorrect sector filtering
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Hardcoded sector mappings may become outdated due to company reclassifications, index reconstitution, or
+      market structure changes; stale mappings cause incorrect sector-based filtering, leading to wrong portfolio composition
+      in backtesting
+    derived_from_bd_id: BD-018
+  - id: finance-C-209
+    when: When implementing multi-interval price reconstruction or price repair algorithms
+    action: Limit reconstruction/repair depth to max_depth=2 (maximum 2 levels of iteration); exceeding this threshold indicates
+      potential algorithmic instability
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Exceeding max_depth=2 in price repair/reconstruction may cause infinite loops or exponential computation;
+      the algorithm was designed with depth=2 as the safe boundary for handling price gaps and errors
+    derived_from_bd_id: BD-049
+  - id: finance-C-210
+    when: When modifying reconstruction depth parameters in multi-interval logic or price repair logic
+    action: Verify any change to max_depth in interval reconstruction is mirrored to price repair depth and vice versa; maintain
+      consistency across both contexts (BD-006 and BD-035 must have matching depth limits)
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Modifying depth limits in one context without updating the other creates hidden inconsistency where price
+      repair and interval reconstruction operate at different depths for equivalent transformations, causing unexpected behavior
+      in edge cases
+    derived_from_bd_id: BD-049
+  - id: finance-C-211
+    when: When implementing FastInfo metadata fetching in backtesting frameworks using yfinance
+    action: Fetch price history lazily (only when needed for calculated metadata like 50-day average); avoid loading full
+      history for static metadata queries to prevent unnecessary API calls and performance degradation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Eager fetching of price history for simple metadata queries causes unnecessary API calls and network latency;
+      in backtesting scenarios with many symbols, this creates significant performance overhead and rate limiting issues
+    derived_from_bd_id: BD-010
+  - id: finance-C-212
+    when: When implementing or refactoring data repair logic for multiday intervals (1wk, 1mo, 3mo) in backtesting
+    action: Maintain the auto-fetch-and-resample behavior when repair=True with multiday intervals — do not optimize away
+      the daily data fetch and resampling step, as this is required for accurate dividend adjustment on Yahoo historical data
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Removing the auto-fetch-and-resample logic causes incorrect dividend adjustments on weekly/monthly data,
+      leading to materially wrong portfolio analytics for long-term investors who rely on accurate adjusted price calculations
+    derived_from_bd_id: BD-039
+  - id: finance-C-213
+    when: When depending on production reliability for this data source in backtesting
+    action: Assume this capability is available — the gap indicates this functionality is missing and only 22% coverage (4/18
+      applicable scenarios) exists
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Relying on an unimplemented capability causes production failures when the 78% of uncovered applicable scenarios
+      are encountered, leading to backtest interruptions and potential data gaps
+    derived_from_bd_id: BD-GAP-007
+  - id: finance-C-214
+    when: When addressing the production reliability gap in backtesting
+    action: Implement coverage for additional applicable scenarios to increase from 22% (4/18) toward 100% coverage, prioritizing
+      scenarios with highest frequency of occurrence in production workloads
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without expanding coverage, production workloads encounter uncovered scenarios causing failures, leading
+      to backtest interruptions and unreliable strategy validation results
+    derived_from_bd_id: BD-GAP-007
+  - id: finance-C-215
+    when: When implementing or configuring auto_adjust mode for price adjustment in backtesting
+    action: Use linear ratio adjustment (unadjusted_close / adjusted_close) to scale historical prices — verify the adjustment
+      algorithm applies cumulative ratio scaling rather than logarithmic or percentage-based approaches
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using non-linear adjustment (logarithmic or percentage-based) causes incorrect price scaling that distorts
+      historical price relationships, leading to wrong signal generation and strategy performance metrics
+    derived_from_bd_id: BD-032
+  - id: finance-C-216
+    when: When using backward adjustment for historical prices in backtesting
+    action: Verify that historical prices are interpreted as original levels observed at that time, not as forward-adjusted
+      values — verify the most recent price represents true unadjusted market value
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Misinterpreting backward-adjusted prices as forward-adjusted causes confusion about historical portfolio
+      values and risk metrics, leading to incorrect investment decisions based on misunderstood historical performance
+    derived_from_bd_id: BD-033
+  - id: finance-C-217
+    when: When implementing or configuring phantom dividend detection in backtesting
+    action: Apply the 1.5x threshold — flag any dividend as potentially phantom when price_drop > 1.5 * dividend_amount —
+      do not tighten below 1.2x or loosen above 2.0x without documented justification
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: 'Using incorrect threshold values causes phantom dividend misdetection: too tight (1.2x) increases false
+      positives from volatility; too loose (2.0x) misses subtle phantom dividend patterns, corrupting historical price data'
+    derived_from_bd_id: BD-034
+  - id: finance-C-218
+    when: When implementing or modifying the price repair pipeline ordering or stage sequence
+    action: Document and preserve the mandated pipeline execution order (standardize_currency → div_adjust → unit_mixups →
+      stock_splits → capital_gains → auto_adjust) — BD-054's multiday interval resampling fallback depends on this specific
+      sequence
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Pipeline stage reordering breaks BD-054's resampling fallback for multiday intervals, causing incorrect historical
+      price calculations that silently accumulate errors across historical data
+    derived_from_bd_id: BD-046
+  - id: finance-C-219
+    when: When implementing or modifying the unit error detection mechanisms (BD-026, BD-027, BD-044)
+    action: Verify that the 100x detection (BD-026), rounding to nearest 20 (BD-027), and 100x multiplier (BD-044) produce
+      consistent results for each ratio values — ratios like 95 or 85 that round to 100 may not align with exact-match expectations
+      in the multiplier
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: The three-mechanism 100x error detection system fails when rounding misaligns with multiplier expectations,
+      allowing 95x ratios to pass undetected while 80x ratios trigger wrong conversions, creating amplified financial data
+      corruption
+    derived_from_bd_id: BD-048
+  - id: finance-C-220
+    when: When implementing or modifying price adjustment logic for split/dividend-adjusted prices
+    action: Verify which adjustment mode (linear ratio from BD-046 auto_adjust vs backward adjustment from BD-047) is being
+      applied and verify consistent usage — mixing modes produces mathematically different adjusted price series
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Linear ratio and backward adjustment modes produce contradictory historical price series, causing users to
+      receive inconsistent adjusted prices depending on which mode is applied, leading to wrong performance attribution and
+      backtest results
+    derived_from_bd_id: BD-050
+  - id: finance-C-221
+    when: When implementing or modifying dividend flagging thresholds (BD-030 >3.5%, BD-032 >8%, BD-043 >10% annualized yield)
+    action: Verify that dividend thresholds do not create cascading conflicts for high-yield securities — REIT at 8% yield
+      legitimately triggers both BD-032 phantom dividend flag and BD-043 implied yield flag, potentially excluding valid dividends
+      from adjusted price calculations
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Multiple overlapping dividend thresholds create a risk cascade where legitimate high-yield securities trigger
+      multiple flags simultaneously, causing incorrect dividend exclusion and producing inaccurate adjusted price series
+    derived_from_bd_id: BD-051
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-128 / Utility Function Validation
+    version: v5.3
+    intent_keywords:
+    - timezone
+    - datetime
+    - validation
+    - parse
+    - utility
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: auto-grouped by UC.type (5 distinct values, balanced distribution)
+      groups:
+      - group_id: data_pipeline
+        name: Data Pipeline
+        description: ''
+        emoji: 📊
+        uc_count: 4
+        ucs:
+        - uc_id: UC-101
+          name: Utility Function Validation
+          short_description: Ensures date/timezone parsing and validation utilities work correctly for handling mixed timezone
+            data from financial APIs
+          sample_triggers:
+          - timezone
+          - datetime
+          - validation
+        - uc_id: UC-105
+          name: Historical Price Data Retrieval
+          short_description: Fetches historical price and volume data for securities across multiple intervals (daily, weekly,
+            monthly) and time periods
+          sample_triggers:
+          - price history
+          - historical data
+          - OHLCV
+        - uc_id: UC-107
+          name: Price Data Repair and Resampling
+          short_description: Corrects corrupted or misaligned price data and resamples data between different time intervals
+            while maintaining data integrity
+          sample_triggers:
+          - repair
+          - fix data
+          - resample
+        - uc_id: UC-110
+          name: Concurrent Multi-Ticker Download
+          short_description: Downloads price data for multiple tickers concurrently with thread safety, ensuring results don't
+            get mixed between tickers
+          sample_triggers:
+          - concurrent
+          - thread-safe
+          - multi-ticker
+      - group_id: screening
+        name: Screening
+        description: ''
+        emoji: 📦
+        uc_count: 1
+        ucs:
+        - uc_id: UC-102
+          name: Stock Screener Query Execution
+          short_description: Tests the ability to filter and screen stocks based on financial criteria like price thresholds
+            and predefined strategies
+          sample_triggers:
+          - screen
+          - filter
+          - query
+      - group_id: research_analysis
+        name: Research Analysis
+        description: ''
+        emoji: 📦
+        uc_count: 4
+        ucs:
+        - uc_id: UC-103
+          name: Ticker Symbol Search
+          short_description: Allows users to find ticker symbols by searching company names or partial queries, including
+            fuzzy matching for misspellings
+          sample_triggers:
+          - search
+          - find ticker
+          - symbol lookup
+        - uc_id: UC-104
+          name: Financial Calendar Retrieval
+          short_description: Retrieves upcoming earnings dates and IPO information calendars to help investors track corporate
+            events
+          sample_triggers:
+          - earnings calendar
+          - IPO
+          - upcoming events
+        - uc_id: UC-106
+          name: Ticker Information and Metadata
+          short_description: Retrieves comprehensive metadata for a ticker including holder information, splits, recommendations,
+            and fundamental data
+          sample_triggers:
+          - ticker info
+          - metadata
+          - holders
+        - uc_id: UC-111
+          name: Securities Symbol Lookup by Type
+          short_description: Looks up ticker symbols filtered by asset type (stocks, ETFs, mutual funds, indices) to find
+            specific securities
+          sample_triggers:
+          - lookup
+          - ETF
+          - mutual fund
+      - group_id: live_trading
+        name: Live Trading
+        description: ''
+        emoji: 📦
+        uc_count: 1
+        ucs:
+        - uc_id: UC-108
+          name: Live Cryptocurrency Price Streaming
+          short_description: Provides real-time cryptocurrency price streaming via WebSocket for trading applications and
+            live market monitoring
+          sample_triggers:
+          - live
+          - real-time
+          - stream
+      - group_id: monitoring
+        name: Monitoring
+        description: ''
+        emoji: 📦
+        uc_count: 2
+        ucs:
+        - uc_id: UC-109
+          name: Cache Fallback on Read-Only Filesystem
+          short_description: Handles cache storage gracefully when running in restricted environments without write permissions
+            to the filesystem
+          sample_triggers:
+          - cache
+          - permissions
+          - fallback
+        - uc_id: UC-112
+          name: Timezone Cache Storage
+          short_description: Caches timezone data for securities to reduce API calls and improve performance when fetching
+            data for frequently-used tickers
+          sample_triggers:
+          - cache
+          - timezone
+          - storage
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-101
+      beginner_prompt: Try utility function validation
+      auto_selected: true
+    - uc_id: UC-102
+      beginner_prompt: Try stock screener query execution
+      auto_selected: true
+    - uc_id: UC-103
+      beginner_prompt: Try ticker symbol search
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 12 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - Ticker Symbol Search
+    - Stock Screener Query Execution
+    - Utility Function Validation
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

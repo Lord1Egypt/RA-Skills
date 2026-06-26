@@ -1,0 +1,1 @@
+﻿{"author":"paudyyin","description":"每周一自动处理周例会Excel跟进表并发送到美信工作群。自动找最新文件、替换日期、插入列、文件上传+群消息发送。","name":"weekly-meeting-automation","version":"1.0.0","keywords":["weekly-meeting","excel","mx-im","cron","automation","smart-equipment"]}

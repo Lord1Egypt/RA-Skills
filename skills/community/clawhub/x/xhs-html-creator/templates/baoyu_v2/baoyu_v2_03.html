@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@400;700&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1080px; background:#f5f0e8; font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif; -webkit-font-smoothing:antialiased; }
+.page { width:1080px; height:1440px; background:#f5f0e8; position:relative; overflow:hidden; }
+.page::before { content:''; position:absolute; inset:0; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(200,185,160,0.06) 3px, rgba(200,185,160,0.06) 4px); pointer-events:none; z-index:0; }
+.edge { position:absolute; top:0; bottom:0; width:8px; background: linear-gradient(180deg, #c4d4e8 0%, #a8b8d0 50%, #c4d4e8 100%); z-index:1; }
+.edge-l { left:0; border-radius:0 4px 4px 0; }
+.edge-r { right:0; border-radius:4px 0 0 4px; }
+.top-stripe { height:12px; background:linear-gradient(90deg, #7ba3c9, #a8c4e8, #7ba3c9); position:relative; z-index:2; }
+.hand-title { font-family:'ZCOOL KuaiLe', cursive, sans-serif; }
+.content-wrap { position:relative; z-index:2; padding:10px 48px 0; }
+
+.pt { text-align:center; margin-bottom:6px; padding-top:2px; }
+.pt-main { font-size:54px; color:#5a8ab5; font-weight:700; letter-spacing:2px; }
+.pt-sub { font-size:30px; color:#7ba3c9; letter-spacing:3px; }
+
+.god-zone { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:8px; margin-bottom:10px; }
+.gc { background:#fff; border-radius:14px; padding:13px 10px; border:2px solid #a8c4e8; }
+.gc-tl { font-size:30px; color:#5a8ab5; font-weight:700; margin-bottom:5px; display:flex; align-items:center; gap:5px; }
+.gc-note { font-size:30px; color:#7ba3c9; }
+
+.ct { display:flex; align-items:center; gap:8px; margin-bottom:5px; margin-top:9px; }
+.ct-ic { width:34px; height:34px; background:#fff; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px; border:2px solid #a8c4e8; flex-shrink:0; }
+.ct-tx { font-size:36px; color:#5a8ab5; font-weight:700; letter-spacing:1px; }
+.ct-cnt { font-size:30px; color:#7ba3c9; background:#f0f6ff; border-radius:8px; padding:3px 12px; }
+
+.ig { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:2px; }
+.ic { background:#fff; border-radius:14px; padding:9px 11px 8px; border:1.5px solid #d8e4f0; position:relative; }
+.ic.gray { background:#f6f6f4; border-color:#e0e0d8; }
+.ic.gray .inm { color:#aaa; text-decoration:line-through; }
+
+.ctag { position:absolute; top:-1px; right:-1px; font-size:30px; font-weight:700; padding:4px 12px; border-radius:0 12px 0 12px; color:#fff; }
+.ct-ok { background:#7ba3c9; }
+.ct-bd { background:#c0bbb5; }
+
+.cb { display:flex; align-items:flex-start; gap:7px; }
+.ci { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; flex-shrink:0; margin-top:2px; font-weight:700; color:#fff; }
+.ci-bl { background:#a8c4e8; }
+.ci-gr { background:#d8d4d0; }
+.inm { font-size:30px; color:#3a4a5a; font-weight:700; line-height:1.2; }
+.inm-note { font-size:30px; color:#5a7a9a; margin-top:2px; line-height:1.3; }
+
+.bt-bar { background:#5a8ab5; padding:13px 40px; display:flex; align-items:center; justify-content:center; position:absolute; bottom:0; left:0; right:0; }
+.bt-bar span { font-size:30px; color:#fff; letter-spacing:3px; font-weight:700; }
+</style>
+</head><body>
+<div class="page">
+  <div class="top-stripe"></div>
+  <div class="edge edge-l"></div>
+  <div class="edge edge-r"></div>
+  <div class="content-wrap">
+    <div class="pt">
+      <div class="pt-main hand-title">妈妈住院篇</div>
+      <div class="pt-sub">过来人复盘 · 神器推荐 + 真实体验</div>
+    </div>
+
+    <div class="god-zone">
+      <div class="gc">
+        <div class="gc-tl">&#128167; 冲洗器</div>
+        <div class="gc-note">清洁神器</div>
+      </div>
+      <div class="gc">
+        <div class="gc-tl">&#128252; 吸奶器</div>
+        <div class="gc-note">涨奶救星</div>
+      </div>
+      <div class="gc">
+        <div class="gc-tl">&#128140; 安睡裤</div>
+        <div class="gc-note">量大福音</div>
+      </div>
+      <div class="gc">
+        <div class="gc-tl">&#128218; 产褥垫</div>
+        <div class="gc-note">多囤备用</div>
+      </div>
+    </div>
+
+    <div class="ct">
+      <div class="ct-ic">&#128136;</div>
+      <div class="ct-tx">妈妈衣物</div>
+      <div class="ct-cnt">4用上了 · 2闲置</div>
+    </div>
+    <div class="ig">
+      <div class="ic"><div class="ctag ct-ok">&#10003; 用上了</div><div class="cb"><div class="ci ci-bl">&#10003;</div><div><div class="inm">月子服</div><div class="inm-note">喂奶方便，2套换洗</div></div></div></div>
+      <div class="ic"><div class="ctag ct-ok">&#10003; 用上了</div><div class="cb"><div class="ci ci-bl">&#10003;</div><div><div class="inm">月子披肩</div><div class="inm-note">夏天空调房必备</div></div></div></div>
+      <div class="ic"><div class="ctag ct-ok">&#10003; 用上了</div><div class="cb"><div class="ci ci-bl">&#10003;</div><div><div class="inm">月子帽</div><div class="inm-note">出院戴了下</div></div></div></div>
+      <div class="ic"><div class="ctag ct-ok">&#10003; 用上了</div><div class="cb"><div class="ci ci-bl">&#10003;</div><div><div class="inm">月子袜</div><div class="inm-note">普通袜子也行</div></div></div></div>
+      <div class="ic gray"><div class="ctag ct-bd">&#10007; 闲置</div><div class="cb"><div class="ci ci-gr">&#10007;</div><div><div class="inm">哺乳内衣</div><div class="inm-note">月子里才用</div></div></div></div>
+      <div class="ic gray"><div class="ctag ct-bd">&#10007; 闲置</div><div class="cb"><div class="ci ci-gr">&#10007;</div><div><div class="inm">月子鞋</div><div class="inm-note">拖鞋也行</div></div></div></div>
+    </div>
+
+    <div class="ct" style="margin-top:9px;">
+      <div class="ct-ic">&#128147;</div>
+      <div class="ct-tx">妈妈用品</div>
+      <div class="ct-cnt">用上了 + 闲置</div>
+    </div>
+    <div class="ig">
+      <div class="ic"><div class="ctag ct-ok">&#10003; 用上了</div><div class="cb"><div class="ci ci-bl">&#10003;</div><div><div class="inm">一次性马桶垫</div><div class="inm-note">住院必备</div></div></div></div>
+      <div class="ic"><div class="ctag ct-ok">&#10003; 用上了</div><div class="cb"><div class="ci ci-bl">&#10003;</div><div><div class="inm">收腹带</div><div class="inm-note">辅助，按需准备</div></div></div></div>
+      <div class="ic"><div class="ctag ct-ok">&#10003; 用上了</div><div class="cb"><div class="ci ci-bl">&#10003;</div><div><div class="inm">母乳储存袋</div><div class="inm-note">多囤</div></div></div></div>
+      <div class="ic"><div class="ctag ct-ok">&#10003; 用上了</div><div class="cb"><div class="ci ci-bl">&#10003;</div><div><div class="inm">乳头膏</div><div class="inm-note">缓解疼痛</div></div></div></div>
+      <div class="ic gray"><div class="ctag ct-bd">&#10007; 闲置</div><div class="cb"><div class="ci ci-gr">&#10007;</div><div><div class="inm">刀纸</div><div class="inm-note">没用上</div></div></div></div>
+      <div class="ic gray"><div class="ctag ct-bd">&#10007; 闲置</div><div class="cb"><div class="ci ci-gr">&#10007;</div><div><div class="inm">冷敷贴</div><div class="inm-note">没用上</div></div></div></div>
+      <div class="ic gray"><div class="ctag ct-bd">&#10007; 闲置</div><div class="cb"><div class="ci ci-gr">&#10007;</div><div><div class="inm">防溢乳垫</div><div class="inm-note">月子里用</div></div></div></div>
+      <div class="ic gray"><div class="ctag ct-bd">&#10007; 闲置</div><div class="cb"><div class="ci ci-gr">&#10007;</div><div><div class="inm">一次性内裤</div><div class="inm-note">安睡裤更方便</div></div></div></div>
+    </div>
+  </div>
+  <div class="bt-bar"><span>&#8595; 滑动查看结尾篇 &#8595;</span></div>
+</div>
+</body></html>

@@ -1,35 +1,49 @@
 ---
-name: "Xueqiu"
-description: "Access and summarize public posts and stock data from Xueqiu for basic market insights without trading or bulk data extraction."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xueqiu"
-sourceUrl: "https://clawhub.ai/skills/xueqiu"
+name: xueqiu-hot-trend
+description: 注册“雪球”热门技能；当需要访问或自动化雪球相关内容时调用。
+homepage: `https://xueqiu.com/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Xueqiu
+# 雪球
 
-> Access and summarize public posts and stock data from Xueqiu for basic market insights without trading or bulk data extraction.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xueqiu`
-- **Source URL:** [https://clawhub.ai/skills/xueqiu](https://clawhub.ai/skills/xueqiu)
+- 面向公开帖子与行情页的检索与互动/数据摘要
+- 不提供接口逆向、批量抓取或交易能力
+- 仅用于公开页面的轻量信息整理与提醒
 
-## Overview
+关键入口
 
+- 主页：https://xueqiu.com/
+- 社区帖子/话题：站点入口
+- 行情页：公开股票页面
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xueqiu
-```
+常见任务
+
+- 指定话题/股票的帖子摘要（标题、作者、发布时间、互动）
+- 行情页的基本数据提取（价格、涨跌幅、成交量）
+- 话题与板块分布统计
+
+数据字段
+
+- 帖子标题、作者昵称、发布时间、点赞/评论数、链接
+- 股票名称、代码、价格、涨跌幅、成交量、链接
+- 采集时间、来源链接
+
+自动化要点
+
+- 动态渲染与人机校验，建议人工打开后触发解析
+- 请求频率需控制，不进行批量抓取
+- 不进行交易或账户相关操作
+
+示例流程
+
+- 帖子摘要：访问话题页 → 抽取条目 → 输出互动指标
+- 行情摘要：访问股票页 → 提取价格/涨跌幅/成交量 → 输出摘要
+- 趋势统计：收集条目 → 基于标签/板块分类 → 生成分布
+
+合规提示
+
+- 遵守平台与证券合规要求，不进行交易或接口调用
+- 结果仅用于内部分析与提醒

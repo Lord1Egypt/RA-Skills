@@ -1,0 +1,25 @@
+name: wechat-articles
+version: 1.0.0
+description: 微信公众号文章搜索与读取工具。支持关键词搜索、全文提取、内容分析。
+author: clawd
+homepage: https://clawhub.com/skills/wechat-articles
+
+triggers:
+  - 微信文章
+  - 公众号文章
+  - 搜索公众号
+  - 微信搜索
+  - 公众号搜索
+  - wechat article
+  - mp.weixin
+
+features:
+  - 关键词搜索公众号文章
+  - 全文提取和摘要
+  - 内容分析
+  - 支持mp.weixin.qq.com链接读取
+
+compatibility:
+  platforms:
+    - openclaw
+    - clawdbot

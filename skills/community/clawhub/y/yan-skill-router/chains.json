@@ -1,0 +1,296 @@
+{
+  "version": 2,
+  "description": "Skill Chain 定义 v2 — 含步骤间数据传递协议",
+  "chains": [
+    {
+      "id": "systematic_review",
+      "name": "系统综述/Meta分析",
+      "trigger_caps": ["systematic_review"],
+      "description": "文献检索 → Meta分析 → 引用整理",
+      "fallback_chain": "manual_review",
+      "steps": [
+        {
+          "capability": "literature_search",
+          "skill": "literature-search",
+          "description": "检索文献",
+          "depends_on": [],
+          "input_mapping": {"query": "$query"},
+          "output_key": "articles",
+          "skip_if_failed": false,
+          "retry_count": 1
+        },
+        {
+          "capability": "systematic_review",
+          "skill": "meta-maker",
+          "description": "Meta分析统计",
+          "depends_on": [0],
+          "input_mapping": {"articles": "0.articles"},
+          "output_key": "meta_result",
+          "skip_if_failed": true,
+          "retry_count": 0
+        },
+        {
+          "capability": "reference_citation",
+          "skill": "citation_manager",
+          "description": "引用格式整理",
+          "depends_on": [0, 1],
+          "input_mapping": {"articles": "0.articles", "meta": "1.meta_result"},
+          "output_key": "references",
+          "skip_if_failed": true,
+          "retry_count": 0
+        }
+      ],
+      "parallel_groups": [],
+      "output": "meta分析报告 + 参考文献列表"
+    },
+    {
+      "id": "bibliometric_paper",
+      "name": "文献计量论文",
+      "trigger_caps": ["bibliometric"],
+      "description": "文献检索 → 文献计量分析 → 可视化 → 引用整理",
+      "steps": [
+        {
+          "capability": "literature_search",
+          "skill": "pubmed-search",
+          "description": "检索文献",
+          "depends_on": [],
+          "input_mapping": {"query": "$query"},
+          "output_key": "raw_articles",
+          "retry_count": 1
+        },
+        {
+          "capability": "bibliometric",
+          "skill": "bibliometrician",
+          "description": "文献计量分析",
+          "depends_on": [0],
+          "input_mapping": {"articles": "0.raw_articles"},
+          "output_key": "bib_metrics"
+        },
+        {
+          "capability": "visualization",
+          "skill": "bio-data-visualization-multipanel-figures",
+          "description": "生成图表",
+          "depends_on": [1],
+          "input_mapping": {"metrics": "1.bib_metrics"},
+          "output_key": "figures"
+        },
+        {
+          "capability": "reference_citation",
+          "skill": "citation_manager",
+          "description": "引用格式整理",
+          "depends_on": [0],
+          "input_mapping": {"articles": "0.raw_articles"},
+          "output_key": "references"
+        }
+      ],
+      "parallel_groups": [[3]],
+      "output": "文献计量论文初稿 + 图表 + 参考文献"
+    },
+    {
+      "id": "paper_writing",
+      "name": "论文写作",
+      "trigger_caps": ["paper_writing", "literature_search"],
+      "description": "文献检索 → 论文写作 → 引用格式 → 发送",
+      "steps": [
+        {
+          "capability": "literature_search",
+          "skill": "literature-search",
+          "description": "检索相关文献",
+          "depends_on": [],
+          "output_key": "articles"
+        },
+        {
+          "capability": "paper_writing",
+          "skill": "scientific-writing",
+          "description": "撰写论文",
+          "depends_on": [0],
+          "input_mapping": {"articles": "0.articles"},
+          "output_key": "draft"
+        },
+        {
+          "capability": "reference_citation",
+          "skill": "citation_manager",
+          "description": "引用格式",
+          "depends_on": [0],
+          "input_mapping": {"articles": "0.articles"},
+          "output_key": "references"
+        },
+        {
+          "capability": "email",
+          "skill": "email-sender",
+          "description": "发送到邮箱",
+          "depends_on": [1, 2],
+          "input_mapping": {"draft": "1.draft", "references": "2.references"},
+          "output_key": "send_confirm"
+        }
+      ],
+      "parallel_groups": [[2]],
+      "output": "论文草稿 + 参考文献 + 邮件发送"
+    },
+    {
+      "id": "gene_expression",
+      "name": "基因表达分析",
+      "trigger_caps": ["data_analysis"],
+      "description": "GEO数据 → 差异表达 → 通路富集 → 可视化",
+      "steps": [
+        {
+          "capability": "data_analysis",
+          "skill": "geo-database",
+          "description": "下载GEO数据",
+          "depends_on": [],
+          "output_key": "geo_data"
+        },
+        {
+          "capability": "data_analysis",
+          "skill": "bio-de-visualization",
+          "description": "差异表达分析",
+          "depends_on": [0],
+          "input_mapping": {"data": "0.geo_data"},
+          "output_key": "deg_results"
+        },
+        {
+          "capability": "data_analysis",
+          "skill": "bio-pathway-gsea",
+          "description": "通路富集分析",
+          "depends_on": [1],
+          "input_mapping": {"genes": "1.deg_results"},
+          "output_key": "pathways"
+        },
+        {
+          "capability": "visualization",
+          "skill": "bio-pathway-enrichment-visualization",
+          "description": "结果可视化",
+          "depends_on": [2],
+          "input_mapping": {"pathways": "2.pathways"},
+          "output_key": "figures"
+        }
+      ],
+      "parallel_groups": [[2, 3]],
+      "output": "差异基因列表 + 富集通路 + 可视化图表"
+    },
+    {
+      "id": "search_and_email",
+      "name": "查文献发邮件",
+      "trigger_caps": ["literature_search", "email"],
+      "description": "搜索文献 → 整理 → 发送到邮箱",
+      "steps": [
+        {
+          "capability": "literature_search",
+          "skill": "pubmed-search",
+          "description": "搜索文献",
+          "depends_on": [],
+          "output_key": "articles"
+        },
+        {
+          "capability": "literature_search",
+          "skill": "literature-review",
+          "description": "整理文献摘要",
+          "depends_on": [0],
+          "input_mapping": {"articles": "0.articles"},
+          "output_key": "summary"
+        },
+        {
+          "capability": "email",
+          "skill": "email-sender",
+          "description": "发送到指定邮箱",
+          "depends_on": [1],
+          "input_mapping": {"content": "1.summary"},
+          "output_key": "send_confirm"
+        }
+      ],
+      "parallel_groups": [],
+      "output": "文献摘要 + 邮件发送确认"
+    },
+    {
+      "id": "guideline_review",
+      "name": "指南查询与综述",
+      "trigger_caps": ["guideline"],
+      "description": "检索指南 → 整理要点 → 输出报告",
+      "steps": [
+        {
+          "capability": "guideline",
+          "skill": "tooluniverse-clinical-guidelines",
+          "description": "检索最新指南",
+          "depends_on": [],
+          "output_key": "guidelines"
+        },
+        {
+          "capability": "literature_search",
+          "skill": "literature-review",
+          "description": "补充相关文献",
+          "depends_on": [],
+          "output_key": "articles"
+        },
+        {
+          "capability": "paper_writing",
+          "skill": "scientific-writing",
+          "description": "撰写综述",
+          "depends_on": [0, 1],
+          "input_mapping": {"guidelines": "0.guidelines", "articles": "1.articles"},
+          "output_key": "review_draft"
+        }
+      ],
+      "parallel_groups": [[0, 1]],
+      "output": "指南要点综述"
+    },
+    {
+      "id": "daily_research",
+      "name": "每日研究同步",
+      "trigger_caps": [],
+      "trigger_keywords": ["每日", "研究进展", "今日文献", "最新研究"],
+      "description": "检索最新文献 → 摘要整理 → 邮件通知",
+      "steps": [
+        {
+          "capability": "literature_search",
+          "skill": "pubmed-search",
+          "description": "检索今日新文献",
+          "depends_on": [],
+          "output_key": "new_articles"
+        },
+        {
+          "capability": "literature_search",
+          "skill": "literature-review",
+          "description": "生成文献摘要",
+          "depends_on": [0],
+          "input_mapping": {"articles": "0.new_articles"},
+          "output_key": "daily_summary"
+        },
+        {
+          "capability": "email",
+          "skill": "email-sender",
+          "description": "发送摘要到邮箱",
+          "depends_on": [1],
+          "input_mapping": {"content": "1.daily_summary"},
+          "output_key": "send_confirm"
+        }
+      ],
+      "parallel_groups": [],
+      "output": "今日文献简报 + 邮箱发送"
+    },
+    {
+      "id": "manual_review",
+      "name": "手动综述",
+      "trigger_caps": [],
+      "trigger_keywords": ["手动"],
+      "description": "systematic_review 回退链 — 降级为手动检索+手动分析",
+      "steps": [
+        {
+          "capability": "literature_search",
+          "skill": "literature-search",
+          "description": "手动检索文献",
+          "depends_on": [],
+          "output_key": "articles"
+        },
+        {
+          "capability": "paper_writing",
+          "skill": "scientific-writing",
+          "description": "手动撰写综述",
+          "depends_on": [0],
+          "input_mapping": {"articles": "0.articles"},
+          "output_key": "draft"
+        }
+      ],
+      "output": "手动撰写的综述草稿"
+    }
+  ]
+}

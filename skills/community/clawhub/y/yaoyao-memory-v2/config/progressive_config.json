@@ -1,0 +1,61 @@
+{
+  "version": "2.0.0",
+  "description": "渐进式启用配置",
+  "stages": {
+    "P0": {
+      "name": "核心优化",
+      "modules": ["router", "weights", "rrf", "dedup"],
+      "enabled": true,
+      "description": "智能路由 + 动态权重 + RRF融合 + 语义去重"
+    },
+    "P1": {
+      "name": "查询增强",
+      "modules": ["understand", "rewriter"],
+      "enabled": true,
+      "description": "查询理解 + 查询改写"
+    },
+    "P2": {
+      "name": "学习优化",
+      "modules": ["feedback", "history"],
+      "enabled": true,
+      "description": "反馈学习 + 查询历史"
+    },
+    "P3": {
+      "name": "结果增强",
+      "modules": ["explainer", "summarizer"],
+      "enabled": true,
+      "description": "结果解释 + 结果摘要"
+    }
+  },
+  "optimizations": {
+    "vector_search": {
+      "top_k": 20,
+      "max_distance": 0.8,
+      "description": "增加召回数量，放宽距离阈值"
+    },
+    "llm_expand": {
+      "max_tokens": 150,
+      "temperature": 0.5,
+      "max_expansions": 5,
+      "description": "优化扩展词生成prompt"
+    },
+    "rewriter": {
+      "spelling_corrections": "extended",
+      "synonyms": "extended",
+      "semantic_expansions": "enabled",
+      "description": "扩展拼写纠正和同义词词典"
+    },
+    "cache": {
+      "ttl": 3600,
+      "compression": true,
+      "description": "增量缓存 + 压缩存储"
+    }
+  },
+  "performance_targets": {
+    "cache_hit": "< 10ms",
+    "fast_mode": "< 2s",
+    "balanced_mode": "< 5s",
+    "full_mode": "< 15s",
+    "accuracy": "> 80%"
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/puberty-tracker.json",
+  "title": "PubertyTracker",
+  "description": "青春期发育评估数据结构",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "创建时间"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "最后更新时间"
+    },
+    "puberty_tracking": {
+      "type": "object",
+      "properties": {
+        "gender": {
+          "type": ["string", "null"],
+          "enum": ["female", "male", null],
+          "description": "性别"
+        },
+        "chronological_age": {
+          "type": ["number", "null"],
+          "description": "实际年龄（岁）"
+        },
+        "female_development": {
+          "type": "object",
+          "properties": {
+            "breast_stage": {
+              "type": ["string", "null"],
+              "enum": ["B1", "B2", "B3", "B4", "B5", null],
+              "description": "乳房发育分期"
+            },
+            "breast_stage_age": {
+              "type": ["number", "null"],
+              "description": "乳房发育开始年龄"
+            },
+            "pubic_hair_stage": {
+              "type": ["string", "null"],
+              "enum": ["P1", "P2", "P3", "P4", "P5", null],
+              "description": "阴毛发育分期"
+            },
+            "pubic_hair_stage_age": {
+              "type": ["number", "null"],
+              "description": "阴毛发育开始年龄"
+            },
+            "menarche": {
+              "type": "object",
+              "properties": {
+                "occurred": {
+                  "type": ["boolean", "null"],
+                  "description": "是否发生初潮"
+                },
+                "age_at_menarche": {
+                  "type": ["number", "null"],
+                  "description": "初潮年龄"
+                }
+              }
+            }
+          }
+        },
+        "male_development": {
+          "type": "object",
+          "properties": {
+            "testicular_volume": {
+              "type": "object",
+              "properties": {
+                "left": {
+                  "type": ["number", "null"],
+                  "description": "左侧睾丸体积（ml）"
+                },
+                "right": {
+                  "type": ["number", "null"],
+                  "description": "右侧睾丸体积（ml）"
+                },
+                "average": {
+                  "type": ["number", "null"],
+                  "description": "平均体积（ml）"
+                }
+              }
+            },
+            "genital_stage": {
+              "type": ["string", "null"],
+              "enum": ["G1", "G2", "G3", "G4", "G5", null],
+              "description": "生殖器发育分期"
+            },
+            "pubic_hair_stage": {
+              "type": ["string", "null"],
+              "enum": ["P1", "P2", "P3", "P4", "P5", null],
+              "description": "阴毛发育分期"
+            },
+            "penis_length": {
+              "type": ["number", "null"],
+              "description": "阴茎长度（cm）"
+            },
+            "voice_break": {
+              "type": ["boolean", "null"],
+              "description": "是否变声"
+            },
+            "voice_break_age": {
+              "type": ["number", "null"],
+              "description": "变声年龄"
+            }
+          }
+        },
+        "bone_age": {
+          "type": "object",
+          "properties": {
+            "chronological_age": {
+              "type": ["number", "null"],
+              "description": "实际年龄"
+            },
+            "bone_age": {
+              "type": ["number", "null"],
+              "description": "骨龄"
+            },
+            "difference": {
+              "type": ["string", "null"],
+              "description": "骨龄与实际年龄差"
+            },
+            "assessment_date": {
+              "type": ["string", "null"],
+              "format": "date",
+              "description": "评估日期"
+            }
+          }
+        },
+        "assessment": {
+          "type": ["string", "null"],
+          "enum": ["normal_progression", "precocious_puberty", "delayed_puberty", null],
+          "description": "发育评估"
+        },
+        "notes": {
+          "type": "string",
+          "description": "备注"
+        }
+      }
+    },
+    "history": {
+      "type": "array",
+      "items": {"type": "object"},
+      "description": "评估历史记录"
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "reminder_frequency": {"type": "string"},
+        "assessment_frequency": {"type": "string"}
+      }
+    }
+  },
+  "required": ["created_at", "last_updated"]
+}

@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-04-18T09:12:19.325Z",
+  "results": [
+    {
+      "check": "微信版本",
+      "required": ">= 8.0.70",
+      "status": "manual",
+      "message": "请手动检查微信版本：设置 → 关于微信",
+      "details": "微信8.0.70及以上版本支持OpenClaw插件"
+    },
+    {
+      "check": "OpenClaw安装",
+      "status": "passed",
+      "message": "OpenClaw已安装",
+      "details": "OpenClaw 2026.4.15-beta.2 (29427fe)"
+    },
+    {
+      "check": "OpenClaw版本",
+      "status": "passed",
+      "message": "OpenClaw版本符合要求",
+      "details": "OpenClaw 2026.4.15-beta.2 (29427fe)"
+    },
+    {
+      "check": "网关状态",
+      "status": "error",
+      "message": "检查失败: Command failed: openclaw gateway status\n",
+      "details": "命令执行错误"
+    },
+    {
+      "check": "Node.js版本",
+      "status": "passed",
+      "message": "Node.js版本符合要求"
+    },
+    {
+      "check": "npm可用性",
+      "status": "passed",
+      "message": "npm可用"
+    },
+    {
+      "check": "npx可用性",
+      "status": "passed",
+      "message": "npx可用"
+    },
+    {
+      "check": "网络-微信服务器",
+      "status": "failed",
+      "message": "无法访问微信服务器",
+      "details": "queryA ECONNREFUSED weixin.qq.com"
+    },
+    {
+      "check": "网络-npm仓库",
+      "status": "failed",
+      "message": "无法访问npm仓库",
+      "details": "queryA ECONNREFUSED registry.npmjs.org"
+    }
+  ],
+  "issues": [
+    "网关状态",
+    "网络-微信服务器",
+    "网络-npm仓库"
+  ],
+  "recommendations": [
+    "确保微信已更新到8.0.70或更高版本",
+    "在微信设置中启用插件功能",
+    "检查网络连接，确保可以访问weixin.qq.com",
+    "检查网络连接，确保可以访问registry.npmjs.org"
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 3,
+    "total": 9
+  }
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "小度控制"
+  short_description: "连接、验证并控制小度智能屏与 IoT 设备"
+  default_prompt: "使用 $xiaodu-control 检查小度 MCP 配置、列出设备，并按 references/capability-boundaries.md 的能力边界执行智能屏或 xiaodu-iot 控制；超出边界时明确拒绝并说明原因。"
+
+policy:
+  allow_implicit_invocation: false

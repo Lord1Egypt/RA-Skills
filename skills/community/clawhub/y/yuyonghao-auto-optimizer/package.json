@@ -1,0 +1,20 @@
+{
+  "name": "auto-optimizer",
+  "version": "0.1.0",
+  "description": "自动性能优化工具 - 监控、分析和优化 OpenClaw 技能性能",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node test/optimizer.test.js"
+  },
+  "keywords": [
+    "performance",
+    "optimization",
+    "monitoring",
+    "openclaw-skill"
+  ],
+  "author": "小蒲萄 (Clawd)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

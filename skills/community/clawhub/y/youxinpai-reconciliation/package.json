@@ -1,0 +1,8 @@
+{
+	"name": "youxinpai-reconciliation",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "优信拍月初对账技能 - 处理每月初与财务对优信拍业务保证金对账",
+	"author": "a58",
+	"license": "MIT"
+}

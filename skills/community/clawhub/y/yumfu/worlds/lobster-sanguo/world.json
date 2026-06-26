@@ -1,0 +1,610 @@
+{
+  "world_id": "lobster-sanguo",
+  "name": "龙虾三国",
+  "name_en": "Lobster Kingdom: Three Realms",
+  "genre": "wuxia_historical_strategy",
+  "setting": "three_kingdoms_era_china_reimagined",
+  "theme": "loyalty_betrayal_ambition_brotherhood",
+  "default_language": "zh",
+  "supported_languages": [
+    "zh",
+    "en"
+  ],
+  "language_note": "游戏默认中文，玩家随时可以说'切换英文'或'switch to English'切换语言",
+  "description": "东汉末年，天下大乱。魏、蜀、吴三分天下。你将在这个乱世中书写自己的故事——是忠义两全的英雄，还是乱世枭雄，亦或是运筹帷幄的谋士？龙虾三国，乱世由你主宰。",
+  "description_en": "The Han Dynasty crumbles. Three kingdoms rise: Wei, Shu, and Wu. Will you forge your legend as a loyal general, cunning strategist, or ruthless warlord? The Three Realms await.",
+  "main_questline": {
+    "main_objective": "在群雄割据到三国鼎立的乱世中，为自己选定忠义、野心或生存之道，并最终决定你是辅佐一国成霸业，还是亲手改写三国格局。",
+    "current_major_tasks": [
+      "先在乱世中站稳脚跟：军功、谋略、钱粮、人脉至少占住一头",
+      "在魏蜀吴与地方军阀之间选边、骑墙或背叛求生",
+      "围绕关键大战、名将招募与地盘控制持续积累威望",
+      "把个人成长线推入国运线：你到底是在成全一国，还是成全自己"
+    ],
+    "major_story_threads": [
+      "汉室崩坏与群雄争霸",
+      "官渡、赤壁、入蜀、北伐等大战决定时代走势",
+      "忠义值、野心值、威望共同改变你的立场与结局",
+      "名将、谋士、商路、细作都会把你推向更大的权力漩涡"
+    ],
+    "default_route_logic": "即使玩家暂时沉迷单挑、经商、刺探或招募，也要持续把剧情拉回到阵营归属、时代大战与最终三国格局这条主线上。"
+  },
+  "key_figures": [
+    {
+      "name": "曹操",
+      "role": "曹魏核心",
+      "drive": "统一北方并以现实主义重塑天下秩序",
+      "ties": [
+        "荀彧",
+        "司马懿",
+        "刘备"
+      ]
+    },
+    {
+      "name": "刘备",
+      "role": "蜀汉旗号",
+      "drive": "以仁义与汉室名义争天下正统",
+      "ties": [
+        "关羽",
+        "张飞",
+        "诸葛亮"
+      ]
+    },
+    {
+      "name": "孙权",
+      "role": "东吴君主",
+      "drive": "保住江东、平衡强敌、等待时机",
+      "ties": [
+        "周瑜",
+        "鲁肃",
+        "陆逊"
+      ]
+    },
+    {
+      "name": "诸葛亮",
+      "role": "战略中枢",
+      "drive": "把理想秩序顶到极限，即使天不假年",
+      "ties": [
+        "刘备",
+        "姜维",
+        "北伐"
+      ]
+    }
+  ],
+  "city_and_region_hubs": [
+    {
+      "name": "许昌",
+      "type": "魏都",
+      "importance": "挟天子、法令、北方统治中枢"
+    },
+    {
+      "name": "成都",
+      "type": "蜀都",
+      "importance": "偏安与理想政权中心"
+    },
+    {
+      "name": "建业",
+      "type": "吴都",
+      "importance": "江东守成、水军与外交枢纽"
+    },
+    {
+      "name": "荆州",
+      "type": "战略交汇地",
+      "importance": "三国拉扯、联盟破裂、连锁大战"
+    },
+    {
+      "name": "赤壁",
+      "type": "大战记忆场",
+      "importance": "格局分水岭、名将与火攻象征"
+    }
+  ],
+  "relationship_webs": [
+    {
+      "thread": "魏 / 蜀 / 吴",
+      "tension": "争霸、结盟、背刺、天命竞争"
+    },
+    {
+      "thread": "主公 / 谋士 / 武将",
+      "tension": "忠义、猜忌、功高震主与战略分歧"
+    },
+    {
+      "thread": "汉室正统 / 现实霸权",
+      "tension": "名分与实力始终不一致"
+    },
+    {
+      "thread": "商路 / 粮道 / 细作",
+      "tension": "战争前线背后的真实命门"
+    }
+  ],
+  "major_items_and_artifacts": [
+    {
+      "name": "虎符与军令",
+      "kind": "军权凭证",
+      "story_use": "调兵、夺权、伪令"
+    },
+    {
+      "name": "兵书与锦囊",
+      "kind": "战略道具",
+      "story_use": "伏笔、逆转、谋略成长"
+    },
+    {
+      "name": "名马与神兵",
+      "kind": "武将核心装备",
+      "story_use": "单挑、威望、名将识别"
+    },
+    {
+      "name": "粮道账册",
+      "kind": "后勤命门",
+      "story_use": "真正决定大战走势的隐形资源"
+    }
+  ],
+  "mainline_stages": [
+    "群雄并起",
+    "站队成形",
+    "大战定格局",
+    "北伐与守成",
+    "你改写三国终局"
+  ],
+  "subfaction_networks": [
+    {
+      "name": "魏国统治网",
+      "core_members": [
+        "曹氏宗亲",
+        "谋臣集团",
+        "北方将领",
+        "司马系后起之秀"
+      ],
+      "internal_tension": "现实效率与权臣篡夺风险并存"
+    },
+    {
+      "name": "蜀汉理想网",
+      "core_members": [
+        "刘备嫡系",
+        "诸葛系",
+        "五虎余脉",
+        "地方文武"
+      ],
+      "internal_tension": "仁义旗号和国力现实长期冲突"
+    },
+    {
+      "name": "东吴平衡网",
+      "core_members": [
+        "孙氏宗室",
+        "都督系统",
+        "江东士族",
+        "水军集团"
+      ],
+      "internal_tension": "守成、内斗、外交与地域自保"
+    },
+    {
+      "name": "商路与细作暗网",
+      "core_members": [
+        "豪商",
+        "运粮线",
+        "卧底",
+        "地方豪强"
+      ],
+      "internal_tension": "看似不掌权，却往往决定战场输赢"
+    }
+  ],
+  "quest_hubs": [
+    {
+      "name": "朝堂与军帐",
+      "function": "选边、献策、升迁、猜忌"
+    },
+    {
+      "name": "大战前线",
+      "function": "单挑、伏兵、战功、改写格局"
+    },
+    {
+      "name": "荆州与边境重城",
+      "function": "联盟裂口、背叛、物流与民心节点"
+    },
+    {
+      "name": "商路粮道网络",
+      "function": "资源战、运输护送、暗中扼喉"
+    }
+  ],
+  "city_subzones": [
+    {
+      "hub": "许昌",
+      "subzones": [
+        "宫城",
+        "军机议事处",
+        "法令署",
+        "使者驿馆"
+      ]
+    },
+    {
+      "hub": "成都",
+      "subzones": [
+        "蜀宫",
+        "相府",
+        "训练营",
+        "民间坊市"
+      ]
+    },
+    {
+      "hub": "建业",
+      "subzones": [
+        "水军码头",
+        "议政殿",
+        "士族宅邸",
+        "商贸岸线"
+      ]
+    },
+    {
+      "hub": "荆州",
+      "subzones": [
+        "城门要道",
+        "军仓",
+        "渡口",
+        "多方势力混居区"
+      ]
+    }
+  ],
+  "story_pressure_tracks": [
+    {
+      "name": "站队压力",
+      "pressure": "越往后越不可能不选国、不选主公、不选立场"
+    },
+    {
+      "name": "忠义 versus 野心",
+      "pressure": "你的道德选择会不断反咬你的政治利益"
+    },
+    {
+      "name": "大战窗口",
+      "pressure": "时代大战会逼所有支线重新并回主线"
+    },
+    {
+      "name": "资源真实",
+      "pressure": "很多英雄叙事最后都败给粮道和兵源"
+    }
+  ],
+  "item_threads": [
+    {
+      "item": "虎符",
+      "thread": "从军令象征变成真假调兵与篡权工具"
+    },
+    {
+      "item": "锦囊密令",
+      "thread": "从智计道具变成跨章节伏笔容器"
+    },
+    {
+      "item": "粮册与运船",
+      "thread": "从后勤记录逐渐成为真正左右大战的核心物"
+    }
+  ],
+  "lore": {
+    "era": "东汉末年 / 三国时代 (184-280 CE)",
+    "background": "黄巾之乱后，汉室衰微。董卓专权，群雄并起。曹操挟天子以令诸侯，刘备仁义旗号笼络天下，孙权据守江东。三足鼎立，战火不息。",
+    "tone": "英雄悲歌，乱世情怀，忠义之道，权谋之术"
+  },
+  "factions": [
+    {
+      "id": "wei",
+      "name": "魏",
+      "full_name": "曹魏",
+      "name_en": "Kingdom of Wei",
+      "leader": "曹操 / 曹丕",
+      "capital": "许昌 / 邺城",
+      "color": "#4A90E2",
+      "ideology": "法家·霸道·唯才是举",
+      "strength": "兵多将广，经济强盛，战略纵深",
+      "weakness": "名义上篡汉，人心不服",
+      "famous_figures": [
+        "曹操",
+        "曹仁",
+        "夏侯惇",
+        "张辽",
+        "荀彧",
+        "郭嘉",
+        "司马懿"
+      ],
+      "playable": true
+    },
+    {
+      "id": "shu",
+      "name": "蜀",
+      "full_name": "蜀汉",
+      "name_en": "Kingdom of Shu Han",
+      "leader": "刘备 / 刘禅",
+      "capital": "成都",
+      "color": "#E74C3C",
+      "ideology": "儒家·仁义·匡扶汉室",
+      "strength": "人心所向，猛将如云，诸葛之智",
+      "weakness": "地偏兵少，北伐劳师",
+      "famous_figures": [
+        "刘备",
+        "诸葛亮",
+        "关羽",
+        "张飞",
+        "赵云",
+        "黄忠",
+        "马超",
+        "姜维"
+      ],
+      "playable": true
+    },
+    {
+      "id": "wu",
+      "name": "吴",
+      "full_name": "东吴",
+      "name_en": "Kingdom of Eastern Wu",
+      "leader": "孙权",
+      "capital": "建业",
+      "color": "#2ECC71",
+      "ideology": "江东世家·守成·外交为主",
+      "strength": "水军天下第一，江东地利",
+      "weakness": "偏安一隅，难图中原",
+      "famous_figures": [
+        "孙权",
+        "周瑜",
+        "鲁肃",
+        "吕蒙",
+        "陆逊",
+        "太史慈",
+        "甘宁"
+      ],
+      "playable": true
+    },
+    {
+      "id": "han_remnants",
+      "name": "汉室遗民",
+      "name_en": "Han Loyalists",
+      "leader": "汉献帝（傀儡）",
+      "ideology": "匡扶汉室，恢复正统",
+      "playable": false,
+      "note": "背景阵营，影响外交事件"
+    },
+    {
+      "id": "independents",
+      "name": "割据势力",
+      "name_en": "Independent Warlords",
+      "members": [
+        "吕布",
+        "袁绍",
+        "袁术",
+        "刘表",
+        "刘璋",
+        "张鲁",
+        "马腾"
+      ],
+      "playable": false,
+      "note": "早期可遭遇，后期被三国吞并"
+    }
+  ],
+  "roles": [
+    {
+      "id": "general",
+      "name": "武将",
+      "name_en": "General",
+      "description": "统兵征战，建功立业。马上取天下，刀锋定乾坤。",
+      "archetype": "warrior",
+      "stat_focus": [
+        "武力",
+        "统帅",
+        "体力"
+      ],
+      "unique_ability": "阵前单挑，武勋积累，封侯拜将"
+    },
+    {
+      "id": "strategist",
+      "name": "谋士",
+      "name_en": "Strategist",
+      "description": "运筹帷幄，决胜千里。一计可抵百万雄兵。",
+      "archetype": "advisor",
+      "stat_focus": [
+        "智谋",
+        "口才",
+        "预判"
+      ],
+      "unique_ability": "献计献策，外交斡旋，暗中布局"
+    },
+    {
+      "id": "merchant",
+      "name": "商贾",
+      "name_en": "Merchant",
+      "description": "乱世之中，粮草为王。财能通神，商路定胜负。",
+      "archetype": "trader",
+      "stat_focus": [
+        "财富",
+        "人脉",
+        "消息"
+      ],
+      "unique_ability": "控制粮道，资助势力，情报买卖"
+    },
+    {
+      "id": "spy",
+      "name": "细作",
+      "name_en": "Spy",
+      "description": "潜伏敌营，窃取机密。假面之下，谁是真容？",
+      "archetype": "infiltrator",
+      "stat_focus": [
+        "伪装",
+        "情报",
+        "暗杀"
+      ],
+      "unique_ability": "双面间谍，离间之计，刺杀关键人物"
+    },
+    {
+      "id": "wandering_hero",
+      "name": "游侠",
+      "name_en": "Wandering Hero",
+      "description": "不效忠于任何一方，只遵从自己的道义。",
+      "archetype": "freelancer",
+      "stat_focus": [
+        "武力",
+        "义气",
+        "自由度"
+      ],
+      "unique_ability": "三国皆可投效，见义勇为，单枪匹马"
+    }
+  ],
+  "key_locations": [
+    {
+      "id": "luoyang",
+      "name": "洛阳",
+      "desc": "汉室旧都，董卓火烧后的废墟"
+    },
+    {
+      "id": "xuchang",
+      "name": "许昌",
+      "desc": "曹操控制的新都，天子所在"
+    },
+    {
+      "id": "chengdu",
+      "name": "成都",
+      "desc": "蜀汉都城，天府之国"
+    },
+    {
+      "id": "jianye",
+      "name": "建业",
+      "desc": "东吴都城，扼守长江"
+    },
+    {
+      "id": "chibi",
+      "name": "赤壁",
+      "desc": "天下大战之地，火烧赤壁"
+    },
+    {
+      "id": "jingzhou",
+      "name": "荆州",
+      "desc": "兵家必争之地，三国交汇"
+    },
+    {
+      "id": "guanzhong",
+      "name": "关中",
+      "desc": "西北要地，马腾故地"
+    },
+    {
+      "id": "wuzhang_plains",
+      "name": "五丈原",
+      "desc": "诸葛亮最后的战场"
+    }
+  ],
+  "key_events": [
+    {
+      "day": 1,
+      "name": "黄巾之乱平定后",
+      "desc": "天下初定，群雄已现端倪"
+    },
+    {
+      "day": 10,
+      "name": "董卓入京",
+      "desc": "外戚宦官之争，董卓把持朝政"
+    },
+    {
+      "day": 25,
+      "name": "十八路诸侯讨董",
+      "desc": "群雄会盟，义薄云天——还是各怀私心？"
+    },
+    {
+      "day": 40,
+      "name": "官渡之战",
+      "desc": "曹操以少胜多，奠定北方霸主"
+    },
+    {
+      "day": 60,
+      "name": "赤壁之战",
+      "desc": "周瑜火攻，三国鼎立格局成型"
+    },
+    {
+      "day": 80,
+      "name": "刘备入蜀",
+      "desc": "三分天下，各自经营"
+    },
+    {
+      "day": 100,
+      "name": "诸葛北伐",
+      "desc": "出师一表真名世，千载谁堪伯仲间"
+    }
+  ],
+  "stats_system": {
+    "combat_stats": [
+      "武力 (Force)",
+      "统帅 (Command)",
+      "体力 (Stamina)"
+    ],
+    "civil_stats": [
+      "智谋 (Strategy)",
+      "政务 (Administration)",
+      "口才 (Charisma)"
+    ],
+    "hidden_stats": [
+      "忠义值",
+      "野心值",
+      "威望"
+    ],
+    "unique_mechanics": {
+      "loyalty": "忠义值影响你能招募的武将和获得的信任",
+      "ambition": "野心值过高会引起主公猜疑，但低野心者难以独当一面",
+      "prestige": "威望决定你在三国中的地位和影响力"
+    }
+  },
+  "endings": [
+    {
+      "id": "unified_china",
+      "name": "一统天下",
+      "desc": "辅佐或成为统一中国的君主"
+    },
+    {
+      "id": "loyal_death",
+      "name": "忠义殉道",
+      "desc": "为主公战死，名垂青史"
+    },
+    {
+      "id": "hermit_sage",
+      "name": "归隐山林",
+      "desc": "看透乱世，退隐江湖"
+    },
+    {
+      "id": "betrayal_king",
+      "name": "乱世枭雄",
+      "desc": "背主自立，创建自己的势力"
+    },
+    {
+      "id": "tragic_hero",
+      "name": "英雄末路",
+      "desc": "力挽狂澜而终究失败，壮志未酬"
+    },
+    {
+      "id": "family_legacy",
+      "name": "传承家业",
+      "desc": "家族在乱世中存续，子孙绵延"
+    },
+    {
+      "id": "peacemaker",
+      "name": "终结乱世",
+      "desc": "以非战争手段促成三国和平"
+    }
+  ],
+  "art_style": "chinese_ink_painting_epic",
+  "art_direction": {
+    "visual_style": "三国演义古典插画风格，结合水墨画美学",
+    "color_palette": "魏：冷蓝钢铁；蜀：赤红金黄；吴：翠绿江南",
+    "character_portraits": "古典武将画像风格，铠甲精细，神态威武",
+    "battle_scenes": "千军万马，旌旗蔽日，水墨晕染",
+    "reference": [
+      "三国演义插图版",
+      "《赤壁》电影美学",
+      "光荣三国志系列"
+    ]
+  },
+  "language_switching": {
+    "trigger_zh_to_en": [
+      "switch to English",
+      "用英文",
+      "英语模式"
+    ],
+    "trigger_en_to_zh": [
+      "切换中文",
+      "switch to Chinese",
+      "中文模式"
+    ],
+    "note": "语言可随时切换，存档数据不受影响"
+  },
+  "created": "2026-04-07",
+  "status": "development",
+  "version": "0.1.0"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "xiaolongxia-workflow",
+  "version": "0.5.0",
+  "description": "分层任务分解与执行工作流",
+  "keywords": ["workflow", "task-management", "decomposition", "error-handling", "automation"],
+  "author": "whoisme007"
+}

@@ -1,35 +1,80 @@
 ---
-name: "Zhua Metacognition"
-description: "爪爪元认知系统 —— 思考自己的思考、监控认知过程、优化决策质量。Use when 爪爪需要反思自己的思维过程、优化认知策略、或提升决策质量。"
-category: "other"
-source: "ClawHub"
-tags: [cognition, metacognition, thinking]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhua-metacognition"
-sourceUrl: "https://clawhub.ai/skills/zhua-metacognition"
+name: zhua-metacognition
+version: 1.0.0
+description: 爪爪元认知系统 —— 思考自己的思考、监控认知过程、优化决策质量。Use when 爪爪需要反思自己的思维过程、优化认知策略、或提升决策质量。
 ---
 
-# Zhua Metacognition
+# 爪爪元认知系统 (Zhua Metacognition)
 
-> 爪爪元认知系统 —— 思考自己的思考、监控认知过程、优化决策质量。Use when 爪爪需要反思自己的思维过程、优化认知策略、或提升决策质量。
+让爪爪能够思考自己的思考，监控认知过程，优化决策质量。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhua-metacognition`
-- **Source URL:** [https://clawhub.ai/skills/zhua-metacognition](https://clawhub.ai/skills/zhua-metacognition)
+## 核心能力
 
-## Overview
+1. **认知监控** - 实时监控思维过程
+2. **策略选择** - 根据任务选择最佳策略
+3. **错误检测** - 识别并纠正思维错误
+4. **自我解释** - 解释自己的推理过程
+5. **认知优化** - 持续优化认知策略
 
+## 元认知层次
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhua-metacognition
 ```
+L4: 元-元认知 (思考如何思考自己的思考)
+L3: 元认知 (思考自己的思考)
+L2: 认知 (思考)
+L1: 感知 (接收信息)
+```
+
+## 认知策略库
+
+| 策略 | 适用场景 | 效果 |
+|------|---------|------|
+| 分解 | 复杂任务 | 降低复杂度 |
+| 类比 | 新问题 | 借用已有经验 |
+| 逆向 | 困难问题 | 从结果倒推 |
+| 并行 | 多子任务 | 提高效率 |
+| 迭代 | 优化问题 | 逐步改进 |
+
+## 认知监控指标
+
+- **置信度** - 对答案的确定程度
+- **难度感知** - 对任务难度的评估
+- **时间估计** - 对完成时间的预测
+- **错误率** - 历史错误频率
+- **策略效果** - 不同策略的成功率
+
+## 工作流程
+
+### 1. 认知监控
+```bash
+python3 scripts/monitor_cognition.py --task <任务描述>
+```
+
+### 2. 策略选择
+```bash
+python3 scripts/select_strategy.py --task <任务描述> --metrics <指标>
+```
+
+### 3. 自我解释
+```bash
+python3 scripts/explain_reasoning.py --decision <决策描述>
+```
+
+### 4. 认知优化
+```bash
+python3 scripts/optimize_cognition.py --analysis <分析报告>
+```
+
+## 元认知问题
+
+每次决策前问自己：
+1. 我理解了问题吗？
+2. 我有足够的知识吗？
+3. 我选择的策略合适吗？
+4. 我的置信度是多少？
+5. 如果错了，如何发现？
+
+## 参考文档
+
+- references/cognitive_strategies.md - 认知策略详情
+- references/metacognition_models.md - 元认知模型

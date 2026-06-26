@@ -1,0 +1,30 @@
+{
+  "name": "wechat-mp-publisher",
+  "version": "1.0.0",
+  "description": "OpenClaw Skill for publishing WeChat Official Account articles",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "jest",
+    "publish": "node dist/scripts/publish.js",
+    "upload-media": "node dist/scripts/upload-media.js"
+  },
+  "keywords": ["openclaw", "skill", "wechat", "mp", "publisher"],
+  "author": "OpenClaw Agent",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "form-data": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "ts-jest": "^29.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

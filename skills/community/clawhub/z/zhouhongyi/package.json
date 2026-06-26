@@ -1,0 +1,25 @@
+{
+  "name": "zhouhongyi",
+  "version": "1.0.0",
+  "description": "周鸿祎 - 红衣教主 · 360创始人 · AI布道者",
+  "keywords": [
+    "zhouhongyi",
+    "360",
+    "security",
+    "entrepreneur",
+    "AI",
+    "周鸿祎",
+    "红衣教主",
+    "安全",
+    "创业",
+    "大模型"
+  ],
+  "author": "LeoCryptoFlow",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "category": "people",
+    "languages": ["zh", "en"],
+    "acceptLicenseTerms": true
+  }
+}

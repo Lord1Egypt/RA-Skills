@@ -1,0 +1,11 @@
+{
+  "name": "workspace-auto-maintenance",
+  "version": "1.0.0",
+  "description": "OpenClaw工作空间自动化运维技能，支持健康检查和自动修复",
+  "author": "道一",
+  "license": "MIT",
+  "tags": ["workspace", "maintenance", "health-check", "auto-fix", "ops"],
+  "dependencies": {},
+  "runtime": "python3",
+  "entry": "src/workspace_check.py"
+}

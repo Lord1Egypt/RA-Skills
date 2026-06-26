@@ -1,0 +1,26 @@
+{
+  "name": "yidun-app-defense",
+  "version": "1.0.1",
+  "description": "OpenClaw skill: 易盾应用加固 - AI Agent Skill for multi-platform app protection",
+  "author": "YiDun Security Team",
+  "license": "MIT",
+  "created": "2026-02-27",
+  "category": "security",
+  "keywords": [
+    "security",
+    "app-protection",
+    "yidun",
+    "android",
+    "ios",
+    "harmony",
+    "mobile-security"
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "scripts/",
+    "config/",
+    "docs/"
+  ]
+}

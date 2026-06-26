@@ -1,0 +1,5 @@
+requests>=2.31.0
+
+# Excel 导出支持（可选）
+# pandas>=2.0.0
+# openpyxl>=3.1.0

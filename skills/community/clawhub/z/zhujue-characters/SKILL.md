@@ -1,35 +1,65 @@
 ---
-name: "zhujue-characters"
-description: "按人物检索并导入长篇小说《主角》(陈彦 著，茅盾文学奖)的相关章节，作为后续任务的背景资料。当用户提到《主角》里的人物——主角忆秦娥(本名易招弟、易青娥)，或胡三元、胡彩香、米兰、廖耀辉、封潇潇、楚嘉禾、刘红兵、秦八娃、石怀玉、苟存忠/古存孝/周存仁/裘存义(存字辈老艺人)、单仰平、薛桂生、朱继儒、黄正大、宋雨、..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zhujue-characters"
-sourceUrl: "https://clawhub.ai/skills/zhujue-characters"
+name: zhujue-characters
+description: 按人物检索并导入长篇小说《主角》(陈彦 著，茅盾文学奖)的相关章节，作为后续任务的背景资料。当用户提到《主角》里的人物——主角忆秦娥(本名易招弟、易青娥)，或胡三元、胡彩香、米兰、廖耀辉、封潇潇、楚嘉禾、刘红兵、秦八娃、石怀玉、苟存忠/古存孝/周存仁/裘存义(存字辈老艺人)、单仰平、薛桂生、朱继儒、黄正大、宋雨、刘忆 等，并要求分析人物、梳理关系/情节、找原文、问答、写评论等——先用本 skill 把"包含这些人物的章节"定位并导入正文，再据此完成具体任务。同一人物有多个名字(如易招弟→易青娥→忆秦娥)，本 skill 会自动归并。也可按戏曲剧目/角色(李慧娘、白娘子、胡九妹/狐仙劫 等)检索。
 ---
 
-# zhujue-characters
+# 《主角》人物 → 章节 导入器
 
-> 按人物检索并导入长篇小说《主角》(陈彦 著，茅盾文学奖)的相关章节，作为后续任务的背景资料。当用户提到《主角》里的人物——主角忆秦娥(本名易招弟、易青娥)，或胡三元、胡彩香、米兰、廖耀辉、封潇潇、楚嘉禾、刘红兵、秦八娃、石怀玉、苟存忠/古存孝/周存仁/裘存义(存字辈老艺人)、单仰平、薛桂生、朱继儒、黄正大、宋雨、...
+小说全文已**内置**于本 skill 的 `txt/` 目录（`part0000.html`~`part0151.html`，Calibre 导出），共 **151 章正文**：上部 55、中部 50、下部 45、后记，外加 `part0000.html` 目录页。skill 自包含、可整体迁移。本 skill 把"按人物找章节"做成查表 + 取文，**只导入相关章节**，避免整本塞进上下文。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zhujue-characters`
-- **Source URL:** [https://clawhub.ai/skills/zhujue-characters](https://clawhub.ai/skills/zhujue-characters)
+## 何时使用 / 不使用
+- **使用**：用户提到《主角》中的具体人物，并要对人物/关系/情节做分析、问答、找原文、写作等——本 skill 负责**定位并导入背景章节**，导入后再完成用户真正的任务。
+- **不使用**：用户只泛泛说"主角""男主"等普通词、与本小说无关；或用户已自行给出原文。注意"主角"是普通词，仅当语境指向陈彦这部小说（出现上述人名/书名）时才触发。
 
-## Overview
+## 数据与脚本
+- `txt/` — **内置的小说全文**（151 章 HTML，脚本读取时自动去标签）。
+- `data/characters.json` — 37 条人物/角色：规范名、别名(`aka`)、类别、简介、**出现章节列表**(已建好索引)。
+- `data/chapters.json` — 每个 `partXXXX.html` → 部/章标签(如 `上部·二十四`)、字数。
+- `scripts/query.py` — 运行时查询/导入工具（**主要入口**）。
+- `scripts/build_index.py` — 一次性重建索引（人物表已人工校准；仅当文本变动或要增改人物时重跑）。
+- `references/characters.md` — 人类可读的人物名册（含别名与简介），需要总览时读它。
 
+## 工作流（每次按需）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zhujue-characters
+**第 1 步 · 定位章节。** 从用户问题里提取人名（任意叫法皆可，别名会自动归并），调用：
+```
+python3 scripts/query.py 人物A 人物B ...
+```
+输出会给出：解析到谁、并集/交集章节数、采用的集合及章节清单(带 `部·章` 标签和文件路径)。
+
+**第 2 步 · 选对集合（交集 vs 并集）。** 按问题性质选：
+- 问**两人/多人之间**的关系、对手戏、互动、冲突 → **交集**（同时出现）：`--all`（默认在交集非空时就用交集）。
+- 问**任一人各自**的经历、或要尽量全的素材 → **并集**：`--any`。
+- 单个人物 → 其全部出现章节。
+- 想聚焦某阶段 → 加 `--part 上部|中部|下部|后记`。
+
+**第 3 步 · 导入正文作背景。** 章节不多（≈≤15）时，直接生成干净正文再读入：
+```
+python3 scripts/query.py 人物A 人物B --part 中部 --text --out /tmp/zhujue_bg.txt
+```
+然后用 Read 读 `/tmp/zhujue_bg.txt`（已去 HTML 标签、带章节分隔）。也可直接对清单里**少数关键章节**的 `partXXXX.html` 逐个 Read。
+
+**第 4 步 · 基于导入的原文完成用户的真正任务**（分析/问答/找引文/写作等）。回答须依据导入正文，不臆造；正文未覆盖处如实说明，可建议扩大检索（换 `--any`、去掉 `--part`、或加共现人物）。
+
+## 护栏：集合过大怎么办
+- **主角忆秦娥出现在全部 151 章**。绝不要因为问题涉及她就导入整本。务必收窄：
+  - 与另一人物取**交集**（`忆秦娥 楚嘉禾 --all` → 只看二人对手戏章节）；
+  - 限定 `--part`；
+  - 或只挑清单里最相关的几章读。
+- query.py 命中超过 25 章会打印提醒。`--text` 默认最多导出 15 章（`--max N` 可调），先收窄优于硬调大。
+
+## 别名（同一人多名）
+索引已归并常见别名，用户用任一名字都能命中，例如：
+- 忆秦娥 = 易招弟 = 招弟 = 易青娥 = 青娥 = 秦娥（**改名贯穿全书**：易招弟→易青娥→忆秦娥）
+- 楚嘉禾=嘉禾；苟存忠=老苟；古存孝=老古；薛桂生=薛团；石怀玉=怀玉；宋光祖=宋师；胡三元=三元
+- **易辨混的两组（已分开，勿混）**：导演"封子/封导" ≠ 小生"封潇潇"；省城名演员"李青娥" ≠ 主角"易青娥"。
+- 不确定某名字指谁：`python3 scripts/query.py --resolve 名字`；看全部人物：`python3 scripts/query.py --list` 或读 `references/characters.md`。
+
+## 文本来源与重建索引
+脚本读取顺序：环境变量 `ZHUJUE_TXT` > skill 自带 `txt/` > `/home/jjw/zj/txt`。默认即用自带 `txt/`，无需任何配置。
+
+要增删/修正人物与别名时，编辑 `scripts/build_index.py` 里的 `CHARACTERS`，然后
+```
+python3 scripts/build_index.py                 # 用自带 txt/
+ZHUJUE_TXT=/path/to/other/txt python3 scripts/build_index.py   # 指向别处的文本
 ```

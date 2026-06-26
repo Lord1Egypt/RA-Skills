@@ -1,0 +1,20 @@
+<svg width="1080" height="1350" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1350" fill="#fff7fb"/>
+  <rect x="78" y="82" rx="34" ry="34" width="924" height="1186" fill="#ffffff" stroke="#f0dce8" stroke-width="3"/>
+  <text x="132" y="182" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="34" font-weight="800" fill="#ff4d8d">xhs-content</text>
+  <text x="132" y="250" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="56" font-weight="800" fill="#1f1827">小红书内容生成 Skill</text>
+  <text x="132" y="314" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="28" fill="#65586c">热帖拆解 / 标题 A-B / ready-to-post drafts</text>
+  <rect x="132" y="376" rx="24" ry="24" width="816" height="220" fill="#fff4f8"/>
+  <text x="168" y="438" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="28" font-weight="700" fill="#ff4d8d">示例输入</text>
+  <text x="168" y="490" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#4b4254">帮我写一篇小红书：</text>
+  <text x="168" y="532" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#4b4254">我怎么用 AI 把周报时间从 2 小时压到 20 分钟</text>
+  <rect x="132" y="634" rx="24" ry="24" width="816" height="360" fill="#f6f5ff"/>
+  <text x="168" y="696" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="28" font-weight="700" fill="#5b55ff">你会得到</text>
+  <text x="168" y="752" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#4b4254">• 3-5 个标题</text>
+  <text x="168" y="796" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#4b4254">• 1 个正文主版本</text>
+  <text x="168" y="840" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#4b4254">• 15 个标签</text>
+  <text x="168" y="884" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#4b4254">• 3 张配图建议</text>
+  <text x="168" y="928" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="24" fill="#4b4254">• 可选爆点拆解</text>
+  <rect x="132" y="1048" rx="18" ry="18" width="316" height="60" fill="#ff4d8d"/>
+  <text x="174" y="1088" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="700" fill="#ffffff">built for clawHub listing</text>
+</svg>

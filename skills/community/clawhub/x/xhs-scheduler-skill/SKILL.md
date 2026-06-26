@@ -1,35 +1,164 @@
 ---
-name: "小红书智能排期发布器"
-description: "小红书智能排期发布器 - 帮助内容创作者实现自动化内容排期和定时发布。 Use when: - 用户需要批量管理小红书待发布内容 - 用户需要定时自动发布小红书笔记 - 用户需要智能推荐最佳发布时间 - 用户需要查看发布队列状态和历史记录 - 用户需要接收发布成功/失败通知 NOT for: - 非小红书平台的内..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xhs-scheduler-skill"
-sourceUrl: "https://clawhub.ai/skills/xhs-scheduler-skill"
+name: xhs-smart-scheduler
+description: >
+  小红书智能排期发布器 - 帮助内容创作者实现自动化内容排期和定时发布。
+  
+  Use when:
+  - 用户需要批量管理小红书待发布内容
+  - 用户需要定时自动发布小红书笔记
+  - 用户需要智能推荐最佳发布时间
+  - 用户需要查看发布队列状态和历史记录
+  - 用户需要接收发布成功/失败通知
+  
+  NOT for:
+  - 非小红书平台的内容发布
+  - 需要人工审核的敏感内容自动发布
+  - 违反小红书社区规范的内容发布
+  - 未经授权的账号操作
+  
+author: "Your Name"
+version: "1.0.0"
+tags: ["xiaohongshu", "social-media", "content-scheduler", "automation"]
 ---
 
 # 小红书智能排期发布器
 
-> 小红书智能排期发布器 - 帮助内容创作者实现自动化内容排期和定时发布。 Use when: - 用户需要批量管理小红书待发布内容 - 用户需要定时自动发布小红书笔记 - 用户需要智能推荐最佳发布时间 - 用户需要查看发布队列状态和历史记录 - 用户需要接收发布成功/失败通知 NOT for: - 非小红书平台的内...
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xhs-scheduler-skill`
-- **Source URL:** [https://clawhub.ai/skills/xhs-scheduler-skill](https://clawhub.ai/skills/xhs-scheduler-skill)
+本Skill帮助用户高效管理小红书内容发布流程，支持：
+- 内容队列管理（添加、编辑、删除、查看）
+- 智能排期推荐（基于粉丝活跃时间）
+- 定时自动发布
+- 发布状态追踪和通知
 
-## Overview
+## 前置要求
 
+1. **小红书MCP服务已启动**
+   ```bash
+   # 确保 xiaohongshu-mcp 服务运行在 localhost:18060
+   ```
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xhs-scheduler-skill
+2. **小红书账号已登录**
+   - 首次使用需要扫码登录
+   - Cookie会自动保存，后续无需重复登录
+
+3. **通知渠道配置（可选）**
+   - 飞书Webhook URL
+   - 或钉钉Webhook URL
+
+## 使用流程
+
+### 1. 检查登录状态
+
 ```
+检查小红书登录状态
+```
+
+Skill会调用 `check_login_status` 检查当前登录状态。
+- 如未登录，生成二维码供用户扫描
+- 如已登录，显示账号信息
+
+### 2. 添加内容到队列
+
+```
+添加小红书内容到发布队列
+标题：春季护肤的5个误区
+内容：春天到了，很多姐妹开始换护肤品...
+图片：/path/to/image1.jpg, /path/to/image2.jpg
+标签：护肤,春季,美妆
+建议发布时间：明天上午10点
+```
+
+Skill会：
+1. 将内容保存到本地队列数据库
+2. 分配唯一的任务ID
+3. 确认添加成功并显示队列状态
+
+### 3. 查看发布队列
+
+```
+查看我的小红书发布队列
+```
+
+显示当前队列中的所有内容：
+- 待发布（已排期）
+- 草稿（未排期）
+- 已发布（历史记录）
+
+### 4. 智能排期推荐
+
+```
+为队列中的内容推荐最佳发布时间
+```
+
+Skill会分析：
+- 内容类型（图文/视频）
+- 目标受众活跃时段
+- 当前队列分布
+
+推荐发布时间表并询问是否应用。
+
+### 5. 启动定时发布
+
+```
+启动小红书定时发布任务
+```
+
+Skill会：
+1. 检查队列中已到发布时间的任务
+2. 调用 `publish_content` 或 `publish_with_video` 发布
+3. 更新任务状态（成功/失败）
+4. 发送通知（如配置了Webhook）
+
+### 6. 查看发布统计
+
+```
+查看本周小红书发布统计
+```
+
+显示：
+- 本周发布数量
+- 成功率
+- 各时段发布分布
+- 失败任务列表
+
+## 命令速查
+
+| 命令 | 功能 |
+|:---|:---|
+| `检查登录状态` | 检查小红书账号登录状态 |
+| `添加内容 [标题] [内容] [图片路径]` | 添加内容到队列 |
+| `查看队列` | 显示所有待发布内容 |
+| `删除任务 [任务ID]` | 从队列删除指定任务 |
+| `智能排期` | 为队列内容推荐发布时间 |
+| `启动定时发布` | 开始定时发布任务 |
+| `查看统计` | 显示发布统计数据 |
+| `配置通知 [飞书/钉钉] [Webhook URL]` | 设置通知渠道 |
+
+## 技术实现
+
+本Skill依赖以下脚本：
+- `scripts/queue_manager.py` - 队列增删改查
+- `scripts/scheduler.py` - 定时任务调度
+- `scripts/smart_timing.py` - 智能排期算法
+- `scripts/publisher.py` - 发布执行
+- `scripts/notifier.py` - 通知发送
+
+## 注意事项
+
+1. **发布频率限制**：小红书对发布频率有限制，建议单账号每天不超过5-10篇
+2. **内容合规**：确保发布内容符合小红书社区规范
+3. **网络稳定**：发布时需要保持网络连接稳定
+4. **Cookie有效期**：登录状态通常保持30天，过期需重新登录
+
+## 定价
+
+- **免费版**：5篇/天，基础定时功能
+- **基础版**（$29/月）：20篇/天，智能排期，飞书通知
+- **专业版**（$49/月）：无限篇，多账号，数据分析
+
+## 支持与反馈
+
+如有问题或建议，请联系：
+- GitHub Issues: [your-repo]/xhs-scheduler-skill
+- 邮箱: sxzxlj@163.com

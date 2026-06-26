@@ -1,0 +1,20 @@
+{
+  "zettel_dir": "~/Documents/Obsidian/Zettelkasten",
+  "output_dir": "~/Documents/Obsidian/Inbox",
+  "models": {
+    "fast": "google/gemini-3-flash-preview",
+    "deep": "google/gemini-3-pro-preview"
+  },
+  "agent_models": {
+    "default": "fast",
+    "retriever": "fast",
+    "preprocess": "fast",
+    "drafter": "deep",
+    "publisher": "deep"
+  },
+  "retrieval": {
+    "link_depth": 2,
+    "max_links": 10,
+    "semantic_max": 5
+  }
+}

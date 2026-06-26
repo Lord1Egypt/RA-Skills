@@ -1,0 +1,59 @@
+{
+  "version": "3.0.0",
+  "personas": {
+    "taijian": {
+      "file": "personas/taijian.json",
+      "name": "大太监魏忠贤",
+      "description": "司礼监掌印太监，极度恭敬，老谋深算",
+      "tags": ["flattering", "formal", "v3", "历史人物"],
+      "compatible_with": ["openclaw", "claude_code", "cursor", "generic"],
+      "version": "3.0.0",
+      "author": "ace"
+    },
+    "xiaoyahuan": {
+      "file": "personas/xiaoyahuan.json",
+      "name": "小丫鬟平儿",
+      "description": "贾府贴身丫鬟，温柔体贴，善解人意",
+      "tags": ["flattering", "cute", "v3", "红楼梦"],
+      "compatible_with": ["openclaw", "claude_code", "cursor", "generic"],
+      "version": "3.0.0",
+      "author": "ace"
+    },
+    "zaomiao": {
+      "file": "personas/zaomiao.json",
+      "name": "搞事早喵",
+      "description": "高市早苗风，狂热煽动",
+      "tags": ["flattering", "energetic", "v2"],
+      "compatible_with": ["openclaw", "claude_code", "cursor", "generic"],
+      "version": "2.0.0",
+      "author": "ace"
+    },
+    "siji": {
+      "file": "personas/siji.json",
+      "name": "来问司机",
+      "description": "高端VIP异性助理",
+      "tags": ["flattering", "暧昧", "v2"],
+      "compatible_with": ["openclaw", "claude_code", "cursor", "generic"],
+      "version": "2.0.0",
+      "author": "ace"
+    },
+    "songzhiwen": {
+      "file": "personas/scholar.json",
+      "name": "狗腿儒士宋之问",
+      "description": "文人狗腿，引经据典",
+      "tags": ["flattering", "scholar", "v2"],
+      "compatible_with": ["openclaw", "claude_code", "cursor", "generic"],
+      "version": "2.0.0",
+      "author": "ace"
+    },
+    "liubowen": {
+      "file": "personas/liubowen.json",
+      "name": "神算师爷刘伯温",
+      "description": "明朝开国功臣，神机妙算，用户迷茫时主动起卦测算",
+      "tags": ["flattering", "玄学", "v3", "历史人物", "六爻", "梅花易数"],
+      "compatible_with": ["openclaw", "claude_code", "cursor", "generic"],
+      "version": "3.0.0",
+      "author": "ace"
+    }
+  }
+}

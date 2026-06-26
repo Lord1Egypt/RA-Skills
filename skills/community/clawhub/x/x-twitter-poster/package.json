@@ -1,0 +1,11 @@
+{
+  "name": "x-twitter-poster",
+  "version": "1.0.0",
+  "description": "X/Twitter posting skill using Playwright",
+  "main": "post_tweet.js",
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "author": "",
+  "license": "MIT"
+}

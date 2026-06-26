@@ -1,0 +1,115 @@
+{
+  "id": "wechat-writing-workflow",
+  "name": "WeChat Writing Workflow",
+  "description": "标准化微信公众号写作工作流，整合 wechat-publisher、wechat-toolkit、wechat-mp-writer-skill 等技能，提供从素材搜索到发布推送的完整公众号写作流程。包含 5 阶段写作流程，支持 Markdown 格式和自动发布。",
+  "version": "1.0.1",
+  "author": "academic-assistant",
+  "license": "MIT",
+  
+  "trigger": {
+    "keywords": [
+      "公众号写作",
+      "微信公众号",
+      "wechat writing",
+      "公众号发布",
+      "wechat publish",
+      "内容创作"
+    ],
+    "mode": "keyword"
+  },
+
+  "config": {
+    "default_format": "markdown",
+    "supported_formats": ["markdown", "html"],
+    "workflow_stages": 5,
+    "publish_platform": "wechat-mp"
+  },
+
+  "workflow": {
+    "stages": [
+      {
+        "name": "素材搜索与整理",
+        "description": "文章搜索、下载、素材整理",
+        "duration": "15-30 分钟",
+        "skills": ["wechat-article-search", "wechat-toolkit"]
+      },
+      {
+        "name": "内容创作与改写",
+        "description": "文章写作、洗稿改写、标题优化",
+        "duration": "30-60 分钟",
+        "skills": ["wechat-mp-writer-skill", "wechat-toolkit", "academic-writing"]
+      },
+      {
+        "name": "格式优化与排版",
+        "description": "Markdown 格式化、图片处理、排版美化",
+        "duration": "15-30 分钟",
+        "skills": ["wechat-publisher", "wechat-toolkit"]
+      },
+      {
+        "name": "发布与推送",
+        "description": "创建草稿、预览检查、定时发布/群发",
+        "duration": "5-10 分钟",
+        "skills": ["wechat-publisher", "wechat-mp-publish"]
+      },
+      {
+        "name": "数据分析与优化",
+        "description": "数据统计、用户画像、内容优化",
+        "duration": "10-20 分钟",
+        "skills": ["data-analysis", "statistical-analysis"]
+      }
+    ]
+  },
+
+  "skills": {
+    "required": [
+      "wechat-publisher",
+      "wechat-toolkit",
+      "wechat-mp-writer-skill"
+    ],
+    "optional": [
+      "wechat-article-search",
+      "wechat-mp-publish",
+      "academic-writing",
+      "data-analysis"
+    ]
+  },
+
+  "content_types": {
+    "popular_science": {
+      "description": "科普文章",
+      "word_count": "1500-3000",
+      "style": "轻松易懂",
+      "frequency": "每日/每周"
+    },
+    "research_report": {
+      "description": "研究报告",
+      "word_count": "3000-5000",
+      "style": "专业严谨",
+      "frequency": "每月"
+    },
+    "daily_tips": {
+      "description": "每日小贴士",
+      "word_count": "300-500",
+      "style": "简短温馨",
+      "frequency": "每日"
+    },
+    "case_study": {
+      "description": "案例分析",
+      "word_count": "2000-4000",
+      "style": "故事性",
+      "frequency": "每周"
+    }
+  },
+
+  "output": {
+    "format": "markdown",
+    "include": [
+      "文章草稿",
+      "标题优化建议",
+      "摘要生成",
+      "封面图推荐",
+      "发布状态",
+      "数据分析报告"
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "name": "@query1988/workout-tracker",
+  "version": "1.3.7",
+  "description": "个人健身跟踪器 — 通过文字记录健身训练数据，自动解析动作、组数、次数和重量，实时写入本地 MySQL 数据库",
+  "keywords": [
+    "workout",
+    "fitness",
+    "tracker",
+    "gym",
+    "mysql",
+    "exercise",
+    "training"
+  ],
+  "author": "query1988",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://clawhub.ai/query1988/workout-tracker"
+  },
+  "files": [
+    "SKILL.md",
+    "TOOLS.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "openclaw": {
+    "skill": true,
+    "category": "health-fitness",
+    "tags": [
+      "mysql",
+      "fitness-tracking",
+      "gym",
+      "local-database"
+    ],
+    "runtimeDependencies": [
+      "mysql-connector-python"
+    ],
+    "environmentVariables": [
+      "MYSQL_SOCKET",
+      "MYSQL_USER",
+      "MYSQL_PASSWORD",
+      "MYSQL_DATABASE"
+    ],
+    "securityNotes": {
+      "databasePassword": "Never commit passwords to version control. Use environment variables or .env files.",
+      "localDatabase": "This skill only connects to local MySQL databases for security.",
+      "permissions": "Database user should have minimal permissions (INSERT/SELECT/UPDATE/DELETE only)."
+    },
+    "compatibility": {
+      "openclaw": ">=2026.3.0"
+    }
+  },
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

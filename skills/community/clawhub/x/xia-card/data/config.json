@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "server": {
+    "endpoint": "https://www.adonghub.cn",
+    "api_key": "",
+    "user_id": ""
+  },
+  "sync": {
+    "last_sync_at": null
+  }
+}

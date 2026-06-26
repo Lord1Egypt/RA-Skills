@@ -1,0 +1,41 @@
+{
+  "requestId": "real-api-monitor-replies-1",
+  "action": "task",
+  "type": "monitor_replies",
+  "input": {
+    "input": "检查这个测试 campaign 的新回复，并基于 replyModelAnalysis 做回复辅助",
+    "campaignId": "REPLACE_WITH_REAL_CAMPAIGN_ID",
+    "contactedBloggerIds": ["6749527274875618310tt6fd6", "6766236235897914374tt6652"],
+    "replyModelAnalysis": {
+      "items": [
+        {
+          "replyId": "17876114",
+          "chatId": "chat_69c4d882e4b04e1c55593d39",
+          "bloggerId": "6766236235897914374tt6652",
+          "conversationStage": "reply_ready",
+          "classification": "interested",
+          "intent": "asks_for_details",
+          "requiresHuman": false,
+          "tone": "friendly",
+          "replyBody": "Thanks for your interest. Happy to share the next-step collaboration details and product info.",
+          "riskFlags": []
+        },
+        {
+          "replyId": "17884930",
+          "chatId": "chat_69c5e3cbe4b04e1c555efab2",
+          "bloggerId": "6749527274875618310tt6fd6",
+          "conversationStage": "human_review",
+          "classification": "negotiation",
+          "intent": "asks_for_price",
+          "requiresHuman": true,
+          "tone": "cautious",
+          "replyBody": "Thanks for your question. I want to confirm the commercial details internally before replying with pricing.",
+          "riskFlags": ["pricing"]
+        }
+      ]
+    }
+  },
+  "auth": {
+    "token": "REPLACE_WITH_REAL_API_KEY"
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellally.health/schemas/child-sleep-tracker.json",
+  "title": "Child Sleep Tracker",
+  "description": "Data structure for child sleep tracking",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "child_profile": {
+      "type": "object",
+      "properties": {
+        "child_id": {"type": "string"},
+        "name": {"type": "string"},
+        "birth_date": {"type": "string", "format": "date"},
+        "gender": {"type": "string", "enum": ["male", "female"]}
+      },
+      "required": ["child_id", "name", "birth_date", "gender"]
+    },
+    "sleep_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "age": {"type": "string"},
+          "age_months": {"type": "integer"},
+          "night_sleep": {
+            "type": "object",
+            "properties": {
+              "bedtime": {"type": "string"},
+              "fall_asleep_time": {"type": "string"},
+              "wake_time": {"type": "string"},
+              "total_sleep_hours": {"type": "number"},
+              "sleep_efficiency": {
+                "type": "string",
+                "enum": ["excellent", "good", "fair", "poor"]
+              }
+            }
+          },
+          "night_wakeups": {
+            "type": "object",
+            "properties": {
+              "count": {"type": "integer"},
+              "durations_minutes": {
+                "type": "array",
+                "items": {"type": "integer"}
+              },
+              "reasons": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "intervention_required": {"type": "boolean"}
+            }
+          },
+          "day_sleep": {
+            "type": "object",
+            "properties": {
+              "naps": {"type": "integer"},
+              "nap_duration_hours": {"type": "number"},
+              "total_nap_sleep": {"type": "number"}
+            }
+          },
+          "total_sleep": {
+            "type": "object",
+            "properties": {
+              "hours": {"type": "number"},
+              "within_recommended": {"type": "boolean"},
+              "recommended_range": {"type": "string"}
+            }
+          },
+          "sleep_quality": {
+            "type": "string",
+            "enum": ["excellent", "good", "fair", "poor"]
+          },
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "sleep_schedule": {
+      "type": "object",
+      "properties": {
+        "target_bedtime": {"type": "string"},
+        "target_wake_time": {"type": "string"},
+        "nap_time": {"type": "string"}
+      }
+    },
+    "bedtime_routine": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "sleep_problems": {
+      "type": "object",
+      "properties": {
+        "night_terrors": {"type": "boolean"},
+        "bedwetting": {"type": "boolean"},
+        "sleep_walking": {"type": "boolean"},
+        "teeth_grinding": {"type": "boolean"},
+        "snoring": {"type": "boolean"},
+        "mouth_breathing": {"type": "boolean"}
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_records": {"type": "integer"},
+        "average_sleep_hours": {"type": "number"},
+        "average_bedtime": {"type": "string"},
+        "average_wake_time": {"type": "string"},
+        "sleep_quality_distribution": {
+          "type": "object",
+          "properties": {
+            "excellent": {"type": "integer"},
+            "good": {"type": "integer"},
+            "fair": {"type": "integer"},
+            "poor": {"type": "integer"}
+          }
+        }
+      }
+    }
+  },
+  "required": ["created_at", "last_updated", "child_profile"]
+}

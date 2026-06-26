@@ -1,35 +1,33 @@
 ---
-name: "WhatsApp Image Send"
-description: "Send images, videos, audio, or documents via WhatsApp by downloading, copying to workspace, sending, and cleaning up temporary files."
-category: "creative"
-source: "ClawHub"
-tags: [image, media, whatsapp]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/whatsapp-image-send"
-sourceUrl: "https://clawhub.ai/skills/whatsapp-image-send"
+name: whatsapp-image-send
+description: Send images/files to WhatsApp. Use when user wants to send an image, photo, screenshot, video, audio or document via WhatsApp. Workflow: (1) Download to /tmp, (2) Copy to ~/.openclaw/workspace/, (3) Send via message tool with filePath, (4) Delete /tmp file. Required because WhatsApp plugin only allows workspace paths for media.
 ---
 
 # WhatsApp Image Send
 
-> Send images, videos, audio, or documents via WhatsApp by downloading, copying to workspace, sending, and cleaning up temporary files.
+## Workflow
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/whatsapp-image-send`
-- **Source URL:** [https://clawhub.ai/skills/whatsapp-image-send](https://clawhub.ai/skills/whatsapp-image-send)
+1. **Download**: Save file to `/tmp/<filename>`
+   ```bash
+   curl -o /tmp/<filename> <url>
+   ```
 
-## Overview
+2. **Copy to workspace**: WhatsApp requires workspace path
+   ```bash
+   cp /tmp/<filename> ~/.openclaw/workspace/
+   ```
 
+3. **Send to WhatsApp**
+   ```bash
+   message --channel whatsapp --target <phone> --filePath /home/seekey/.openclaw/workspace/<filename> --message "<caption>"
+   ```
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/whatsapp-image-send
-```
+4. **Cleanup**: Delete temp file
+   ```bash
+   rm /tmp/<filename>
+   ```
+
+## Notes
+
+- Phone format: +country + number (e.g., +14843124960)
+- Supported: jpg, png, gif, video, audio, document

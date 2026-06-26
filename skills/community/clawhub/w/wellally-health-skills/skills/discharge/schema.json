@@ -1,0 +1,301 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/discharge-summary.json",
+  "title": "DischargeSummary",
+  "description": "出院小结的数据结构定义",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "记录唯一ID"
+    },
+    "basic_info": {
+      "type": "object",
+      "description": "基础信息",
+      "properties": {
+        "hospital": { "type": "string", "description": "医院名称" },
+        "department": { "type": "string", "description": "住院科室" },
+        "admission_date": { "type": "string", "format": "date", "description": "入院日期" },
+        "discharge_date": { "type": "string", "format": "date", "description": "出院日期" },
+        "hospitalization_days": { "type": "integer", "description": "住院天数" },
+        "bed_number": { "type": "string", "description": "床号" },
+        "insurance_type": { "type": "string", "description": "医保类型" }
+      }
+    },
+    "diagnosis": {
+      "type": "object",
+      "description": "诊断信息",
+      "properties": {
+        "admission_diagnosis": {
+          "type": "object",
+          "properties": {
+            "main": { "type": "string", "description": "主要诊断" },
+            "secondary": { "type": "array", "items": { "type": "string" }, "description": "次要诊断" },
+            "icd_codes": {
+              "type": "object",
+              "properties": {
+                "main": { "type": "string" },
+                "secondary": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        },
+        "discharge_diagnosis": {
+          "type": "object",
+          "properties": {
+            "main": { "type": "string" },
+            "secondary": { "type": "array", "items": { "type": "string" } },
+            "icd_codes": {
+              "type": "object",
+              "properties": {
+                "main": { "type": "string" },
+                "secondary": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "treatment_summary": {
+      "type": "object",
+      "description": "治疗经过",
+      "properties": {
+        "main_treatments": { "type": "array", "items": { "type": "string" } },
+        "medications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "drug_name": { "type": "string", "description": "药品名称" },
+              "dosage": { "type": "string", "description": "剂量（如 0.5g、10mg）" },
+              "frequency": { "type": "string", "description": "用药频率（每日3次、q8h）" },
+              "route": { "type": "string", "description": "给药途径（口服、静脉滴注、肌肉注射）" },
+              "duration": { "type": "string", "description": "疗程（7天、遵医嘱）" },
+              "start_date": { "type": "string", "format": "date", "description": "用药开始日期" },
+              "end_date": { "type": "string", "format": "date", "description": "用药结束日期" },
+              "drug_category": { "type": "string", "description": "药物类别（抗生素、降压药、降糖药、止痛药、抗凝药等）" },
+              "indication": { "type": "string", "description": "适应症/用药目的" },
+              "notes": { "type": "string", "description": "备注" }
+            }
+          }
+        },
+        "infusion_therapy": {
+          "type": "array",
+          "description": "输液治疗记录",
+          "items": {
+            "type": "object",
+            "properties": {
+              "solution_name": { "type": "string", "description": "输液名称（如 0.9%氯化钠注射液、5%葡萄糖注射液）" },
+              "additives": { "type": "array", "items": { "type": "string" }, "description": "添加药物（如 头孢哌酮钠 2g、氯化钾 10ml）" },
+              "dosage": { "type": "string", "description": "剂量（如 250ml、500ml）" },
+              "frequency": { "type": "string", "description": "输液频率（每日1次、q12h、必要时）" },
+              "route": { "type": "string", "description": "给药途径（静脉滴注、静脉推注）" },
+              "duration": { "type": "string", "description": "持续天数" },
+              "start_date": { "type": "string", "format": "date", "description": "开始日期" },
+              "end_date": { "type": "string", "format": "date", "description": "结束日期" },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "non_drug_treatments": {
+          "type": "array",
+          "description": "非药物治疗记录",
+          "items": {
+            "type": "object",
+            "properties": {
+              "treatment_type": { "type": "string", "description": "治疗类型（物理治疗、中医治疗、氧疗、雾化吸入、透析等）" },
+              "treatment_name": { "type": "string", "description": "具体治疗名称（如 超短波治疗、针灸、低流量吸氧）" },
+              "parameters": { "type": "string", "description": "治疗参数（如 15min/次、2L/min、每日2次）" },
+              "duration": { "type": "string", "description": "治疗天数" },
+              "start_date": { "type": "string", "format": "date" },
+              "end_date": { "type": "string", "format": "date" },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "treatment_effectiveness": {
+          "type": "object",
+          "description": "治疗效果评估",
+          "properties": {
+            "overall_effect": { "type": "string", "enum": ["显效", "有效", "好转", "无效", "恶化"], "description": "总体疗效" },
+            "symptom_improvement": { "type": "string", "description": "症状改善描述" },
+            "adverse_reactions": { "type": "array", "items": { "type": "string" }, "description": "不良反应记录" },
+            "lab_improvements": { "type": "string", "description": "实验室指标改善情况" },
+            "notes": { "type": "string", "description": "其他评估说明" }
+          }
+        },
+        "radiotherapy": {
+          "type": "array",
+          "description": "放疗（放射治疗）记录",
+          "items": {
+            "type": "object",
+            "properties": {
+              "target_site": { "type": "string", "description": "放射部位（如胸部、头部、盆腔、全脑全脊髓等）" },
+              "radiation_type": { "type": "string", "description": "放射类型（如光子放疗、质子治疗、重离子治疗等）" },
+              "technique": { "type": "string", "description": "放疗技术（如IMRT、VMAT、3D-CRT、SBRT、伽马刀等）" },
+              "total_dose": { "type": "string", "description": "总剂量（如 60Gy、50.4Gy）" },
+              "dose_per_fraction": { "type": "string", "description": "每次剂量（如 2Gy/次）" },
+              "fractions": { "type": "integer", "description": "放疗次数" },
+              "frequency": { "type": "string", "description": "放疗频率（如每日1次）" },
+              "start_date": { "type": "string", "format": "date", "description": "开始日期" },
+              "end_date": { "type": "string", "format": "date", "description": "结束日期" },
+              "purpose": { "type": "string", "enum": ["根治性放疗", "辅助放疗", "姑息放疗", "新辅助放疗"], "description": "放疗目的" },
+              "toxicity": { "type": "string", "description": "放疗反应/毒性（如放射性皮炎、骨髓抑制等）" },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "chemotherapy": {
+          "type": "array",
+          "description": "化疗（化学治疗）记录",
+          "items": {
+            "type": "object",
+            "properties": {
+              "regimen_name": { "type": "string", "description": "化疗方案名称（如TP方案、AC-T方案、CHOP方案等）" },
+              "cycle_number": { "type": "integer", "description": "本次住院完成第几周期" },
+              "total_planned_cycles": { "type": "integer", "description": "计划总周期数" },
+              "medications": { "type": "array", "items": { "type": "string" }, "description": "本次化疗药物列表" },
+              "dosage_details": { "type": "string", "description": "剂量详情（如 紫杉醇240mg d1 + 顺铂120mg d1-2）" },
+              "route": { "type": "string", "description": "给药途径（静脉滴注、口服、动脉灌注等）" },
+              "cycle_start_date": { "type": "string", "format": "date", "description": "本周期开始日期" },
+              "cycle_end_date": { "type": "string", "format": "date", "description": "本周期结束日期" },
+              "next_cycle_date": { "type": "string", "format": "date", "description": "下一周期计划日期" },
+              "purpose": { "type": "string", "enum": ["根治性化疗", "辅助化疗", "姑息化疗", "新辅助化疗"], "description": "化疗目的" },
+              "adverse_events": { "type": "array", "items": { "type": "string" }, "description": "不良事件（如恶心呕吐、骨髓抑制、肝功能损害等）" },
+              "toxicity_grade": { "type": "string", "description": "毒性分级（CTCAE 1-5级）" },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "targeted_therapy": {
+          "type": "array",
+          "description": "靶向治疗记录",
+          "items": {
+            "type": "object",
+            "properties": {
+              "drug_name": { "type": "string", "description": "靶向药物名称（如吉非替尼、奥希替尼、贝伐珠单抗等）" },
+              "target": { "type": "string", "description": "靶点（如EGFR、ALK、VEGF等）" },
+              "dosage": { "type": "string", "description": "剂量" },
+              "frequency": { "type": "string", "description": "用药频率" },
+              "route": { "type": "string", "description": "给药途径" },
+              "start_date": { "type": "string", "format": "date" },
+              "end_date": { "type": "string", "format": "date" },
+              "adverse_events": { "type": "array", "items": { "type": "string" }, "description": "不良事件" },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "immunotherapy": {
+          "type": "array",
+          "description": "免疫治疗记录",
+          "items": {
+            "type": "object",
+            "properties": {
+              "drug_name": { "type": "string", "description": "免疫药物名称（如帕博利珠单抗、纳武利尤单抗、卡度尼利单抗等）" },
+              "drug_type": { "type": "string", "description": "药物类型（如PD-1抑制剂、PD-L1抑制剂、CTLA-4抑制剂等）" },
+              "dosage": { "type": "string", "description": "剂量" },
+              "frequency": { "type": "string", "description": "用药频率（如 每3周1次、Q3W）" },
+              "route": { "type": "string", "description": "给药途径" },
+              "start_date": { "type": "string", "format": "date" },
+              "end_date": { "type": "string", "format": "date" },
+              "adverse_events": { "type": "array", "items": { "type": "string" }, "description": "不良事件（如免疫相关不良反应）" },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "surgeries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "surgery_name": { "type": "string" },
+              "surgery_date": { "type": "string", "format": "date" },
+              "anesthesia": { "type": "string" },
+              "surgeon": { "type": "string" }
+            }
+          }
+        },
+        "examination_results": { "type": "string" }
+      }
+    },
+    "discharge_status": {
+      "type": "object",
+      "description": "出院情况",
+      "properties": {
+        "condition": { "type": "string", "enum": ["治愈", "好转", "未愈", "死亡", "其他"] },
+        "symptoms": { "type": "string" },
+        "vital_signs": {
+          "type": "object",
+          "properties": {
+            "blood_pressure": { "type": "string" },
+            "heart_rate": { "type": "string" },
+            "temperature": { "type": "string" },
+            "respiration": { "type": "string" }
+          }
+        },
+        "activity_level": { "type": "string" }
+      }
+    },
+    "discharge_orders": {
+      "type": "object",
+      "description": "出院医嘱",
+      "properties": {
+        "medication_instructions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "drug_name": { "type": "string" },
+              "dosage": { "type": "string" },
+              "frequency": { "type": "string" },
+              "route": { "type": "string" },
+              "duration": { "type": "string" },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "dietary_guidance": { "type": "string" },
+        "activity_guidance": { "type": "string" },
+        "wound_care": { "type": "string" },
+        "follow_up_plan": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item": { "type": "string" },
+              "timing": { "type": "string" },
+              "location": { "type": "string" },
+              "purpose": { "type": "string" }
+            }
+          }
+        },
+        "warnings": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "attending_physician": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "title": { "type": "string" }
+      }
+    },
+    "financial_info": {
+      "type": "object",
+      "properties": {
+        "total_cost": { "type": "number" },
+        "insurance_coverage": { "type": "number" },
+        "self_payment": { "type": "number" }
+      }
+    },
+    "original_source": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["image", "text"] },
+        "file_path": { "type": "string" },
+        "created_at": { "type": "string", "format": "date" }
+      }
+    },
+    "notes": { "type": "string" }
+  },
+  "required": ["id", "basic_info", "diagnosis"]
+}

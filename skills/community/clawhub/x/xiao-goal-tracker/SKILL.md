@@ -1,35 +1,40 @@
 ---
-name: "Xiao Goal Tracker"
-description: "目标追踪 - 目标设定、进度跟踪、里程碑庆祝"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiao-goal-tracker"
-sourceUrl: "https://clawhub.ai/skills/xiao-goal-tracker"
+name: goal-tracker
+description: 目标追踪 - 目标设定、进度跟踪、里程碑庆祝
 ---
 
-# Xiao Goal Tracker
+# Goal Tracker
 
-> 目标追踪 - 目标设定、进度跟踪、里程碑庆祝
+目标追踪工具，帮助你实现目标。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiao-goal-tracker`
-- **Source URL:** [https://clawhub.ai/skills/xiao-goal-tracker](https://clawhub.ai/skills/xiao-goal-tracker)
+## 功能
 
-## Overview
+- ✅ 目标设定
+- ✅ 进度跟踪
+- ✅ 里程碑庆祝
+- ✅ 提醒通知
+- ✅ 统计报告
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/xiao-goal-tracker
+# 设定目标
+clawhub goal set --title "减肥 10 斤" --deadline "2026-06-01"
+
+# 更新进度
+clawhub goal update --id 1 --progress 50
+
+# 查看进度
+clawhub goal progress --id 1
+
+# 里程碑
+clawhub goal milestone --id 1 --name "完成 50%"
 ```
+
+## 定价
+
+| 版本 | 价格 | 功能 |
+|------|------|------|
+| 免费版 | ¥0 | 3 个目标 |
+| Pro 版 | ¥39 | 无限目标 |
+| 订阅版 | ¥9/月 | Pro+ AI 建议 |

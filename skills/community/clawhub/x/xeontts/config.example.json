@@ -1,0 +1,21 @@
+{
+  "port": 9002,
+  "flaskTtsUrl": "http://127.0.0.1:5002/api/tts/synthesize",
+  "flaskHealthUrl": "http://127.0.0.1:5002/api/health",
+  "cloneModel": "qwen3_tts_0.6b_base_openvino",
+  "cloneMode": "voice_clone_xvector",
+  "customModel": "qwen3_tts_0.6b_custom_openvino",
+  "defaultSpeaker": "Vivian",
+  "defaultLanguage": "Chinese",
+  "minReferenceDurationSec": 3,
+  "maxReferenceDurationSec": 5,
+  "maxCloneOutputSeconds": 20,
+  "maxCustomOutputSeconds": 30,
+  "estimatedCharsPerSecond": 4,
+  "fileRetentionDays": 7,
+  "outputDir": "./outputs",
+  "referencesDir": "./references",
+  "runtimeDir": "./runtime",
+  "sessionStateFile": "./runtime/session_state.json",
+  "openclawSession": "default"
+}

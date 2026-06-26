@@ -1,35 +1,133 @@
 ---
-name: "小红书议题报告"
-description: "小红书议题报告生成工具。当用户说"小红书上关于XXX的议题，生成报告"或类似表达时触发。自动搜索小红书热帖 + 头部媒体资讯 + Twitter/X 推文，三源交叉验证去重，生成结构化舆情报告。如已配置飞书则发布到飞书文档，否则直接输出报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-report"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-report"
+name: xiaohongshu-report
+description: 小红书议题报告生成工具。当用户说"小红书上关于XXX的议题，生成报告"或类似表达时触发。自动搜索小红书热帖 + 头部媒体资讯 + Twitter/X 推文，三源交叉验证去重，生成结构化舆情报告。如已配置飞书则发布到飞书文档，否则直接输出报告。
 ---
 
 # 小红书议题报告
 
-> 小红书议题报告生成工具。当用户说"小红书上关于XXX的议题，生成报告"或类似表达时触发。自动搜索小红书热帖 + 头部媒体资讯 + Twitter/X 推文，三源交叉验证去重，生成结构化舆情报告。如已配置飞书则发布到飞书文档，否则直接输出报告。
+## 功能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-report`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-report](https://clawhub.ai/skills/xiaohongshu-report)
+### 依赖工具
 
-## Overview
+本 Skill 依赖以下 OpenClaw 工具，运行前需确认这些工具可用：
 
+| 工具 | 用途 | 备选方案 |
+|------|------|---------|
+| `browser`（profile=openclaw） | 小红书搜索抓取 | 如不可用则跳过小红书来源 |
+| `minimax-web-search` | 头部媒体 + Twitter 搜索 | 如不可用则降级为双源报告 |
+| `feishu_create_doc` | 飞书文档发布（可选） | 如不可用则对话内输出 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-report
+**说明**：如工具不可用或行为与预期不符（如 session 持久化、请求转发），Skill 会按降级逻辑处理，不会中断执行。
+
+---
+
+### 工作流程
+
+1. **小红书搜索**：使用 `browser`（profile=openclaw）访问小红书，搜索关键词，抓取帖子标题、点赞、发布时间、核心观点、热门评论
+2. **头部媒体搜索**：使用 `minimax-web-search` 搜索专业/权威媒体（财新、36kr、Reuters、FT 等），补充深度报道
+3. **Twitter/X 搜索**：使用 `minimax-web-search` 搜索 Twitter/X 上关于该议题的关键推文，用于交叉验证
+4. **交叉验证与去重**：比对三个来源的信息，合并重复内容，标注信息来源
+5. **报告生成**：按统一格式生成结构化舆情报告
+6. **输出方式**：
+   - 如已配置飞书（`FEISHU_APP_ID` + `FEISHU_APP_SECRET`）且 `feishu_create_doc` 可用 → 发布到飞书云文档，发送链接到群
+   - 如飞书不可用 → 直接在对话中输出完整报告
+
+---
+
+## 数据抓取范围
+
+### 小红书
+- **搜索范围**：关键词搜索结果前 10-15 篇热门帖子
+- **抓取内容**：帖子标题、正文摘要、点赞数、评论（取前 20 条高赞评论）
+- **不抓取**：用户私人信息、未公开发布的内容
+- **限制**：仅抓取公开可见内容，不绕过登录墙或付费墙
+
+### 头部媒体（专业信源）
+- **中文**：财新、36kr、虎嗅、澎湃、界面新闻、第一财经
+- **英文**：Reuters、FT、Bloomberg、CNN、BBC、The Guardian
+- **搜索方式**：关键词 + 站点限定，取前 5-8 篇
+
+### Twitter/X
+- **搜索方式**：`minimax-web-search` 搜索议题关键词
+- **筛选**：优先抓取蓝 V 认证账号、专业媒体、记者的推文
+
+---
+
+## 环境变量声明
+
+**飞书凭证**（可选，不配置则对话内直接输出报告）：
+
+| 环境变量 | 用途 | 必需 |
+|---------|------|------|
+| `FEISHU_APP_ID` | 飞书应用 App ID | 否 |
+| `FEISHU_APP_SECRET` | 飞书应用 Secret | 否 |
+
+**撤销方式**：在飞书管理后台删除应用即可。
+
+---
+
+## 浏览器 Profile 说明
+
+使用 `profile=openclaw`（OpenClaw 独立浏览器环境）：
+- 独立于用户本地登录态
+- 抓取公开内容无需登录
+- 如需访问受限制内容，用户需在 OpenClaw 浏览器中主动登录
+
+---
+
+## 交叉验证逻辑
+
+1. **同一事件多源报道 → 合并**，标注"多源确认"
+2. **小红书热帖 vs 媒体说法不一致 → 分开呈现**，标注"存疑"
+3. **Twitter 补充了媒体未报道的角度 → 单独列出**"网络视角"
+4. **重复内容去重后保留信息密度最高的版本**
+
+---
+
+## 合规与隐私
+
+- 仅抓取公开发布内容，不收集私人信息
+- 不抓取未公开/受权限保护的内容
+- 仅在用户主动触发时执行，不做自动持续监控
+- 数据仅用于当次报告生成，不做持久化存储
+
+---
+
+## 错误处理
+
+- 单个来源抓取失败 → 降级为双源或单源报告
+- 飞书发布失败 → 降级为对话内输出
+- Twitter 无相关内容 → 跳过该步骤
+- 工具不可用 → 按上述降级逻辑处理
+
+---
+
+## 报告格式
+
+```markdown
+# [议题] 小红书热点 × 头部媒体 × Twitter 舆情报告
+
+**整理时间：YYYY-MM-DD**
+
+## 一、小红书热帖速览
+| 帖子标题 | 点赞 | 发布时间 | 核心观点 | 媒体印证 |
+
+## 二、核心内容详细整理
+- 帖子内容摘要
+- 评论区精选观点
+- 热门讨论方向
+
+## 三、头部媒体深度报道
+来自专业媒体的重要信息（多源标注）
+
+## 四、Twitter/X 补充视角
+来自社交媒体的关键讨论与交叉验证
+
+## 五、舆情分析
+- 整体倾向（正面/中性/负面）
+- 主要争议点
+- 多源一致 vs 存疑内容
+- 值得关注的信息
+
+## 六、一句话总结
 ```

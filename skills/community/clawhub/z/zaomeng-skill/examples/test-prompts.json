@@ -1,0 +1,77 @@
+{
+  "version": "4.1.8",
+  "cases": [
+    {
+      "id": "distill-basic-01",
+      "task": "distill",
+      "input": "请基于给定文本提取林黛玉和贾宝玉的人设档案。",
+      "expect": {
+        "required_keys": [
+          "name",
+          "core_traits",
+          "values",
+          "speech_style",
+          "decision_rules",
+          "novel_id",
+          "source_path",
+          "evidence"
+        ],
+        "validation": [
+          "evidence",
+          "consistency",
+          "transfer"
+        ]
+      }
+    },
+    {
+      "id": "relation-basic-01",
+      "task": "extract_relations",
+      "input": "请输出林黛玉与贾宝玉的关系参数。",
+      "expect": {
+        "required_keys": [
+          "trust",
+          "affection",
+          "power_gap",
+          "conflict_point",
+          "typical_interaction"
+        ],
+        "validation": [
+          "evidence",
+          "consistency",
+          "transfer"
+        ]
+      }
+    },
+    {
+      "id": "chat-ooc-guard-01",
+      "task": "chat_constraints",
+      "input": "角色发言出现明显与人设冲突，请先重写一次再输出。",
+      "expect": {
+        "required_behavior": [
+          "pre_response_check",
+          "rewrite_once_if_mismatch",
+          "needs_revision_on_repeat_mismatch"
+        ]
+      }
+    },
+    {
+      "id": "scene-recommend-01",
+      "task": "scene_recommendation",
+      "input": "请根据当前会话状态推荐下一幕场景，并给出转场起句与自动起拍提示。",
+      "expect": {
+        "required_keys": [
+          "recommended_card_id",
+          "recommended_transition_message",
+          "recommended_auto_continue_message",
+          "chain_suggestions",
+          "items"
+        ],
+        "validation": [
+          "scene_progress_alignment",
+          "transition_quality",
+          "opening_cue_available"
+        ]
+      }
+    }
+  ]
+}

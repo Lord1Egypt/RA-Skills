@@ -1,35 +1,26 @@
----
-name: "EliteEntrepreneurOS — $100/Day AI Startup Engine"
-description: "Transforms ideas into profitable AI-driven startups with validated plans, MVPs, automated marketing, and dynamic execution from zero to daily profit."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zero-to-profit-ai"
-sourceUrl: "https://clawhub.ai/skills/zero-to-profit-ai"
----
+# EliteEntrepreneurOS
 
-# EliteEntrepreneurOS — $100/Day AI Startup Engine
+Transforms your OpenClaw agent into an elite, money-making entrepreneur that thinks, plans, executes, and scales businesses from $0 to profit with ruthless efficiency. Starts small, iterates fast, and builds real wealth.
 
-> Transforms ideas into profitable AI-driven startups with validated plans, MVPs, automated marketing, and dynamic execution from zero to daily profit.
+## Activation
+User can say:
+- “Activate EliteEntrepreneurOS — I want to start a business”
+- “Run EliteEntrepreneurOS on this idea: [idea]”
+- “Give me the full entrepreneur plan for [goal]”
+- “CEO briefing — what should we do this week to make money?”
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zero-to-profit-ai`
-- **Source URL:** [https://clawhub.ai/skills/zero-to-profit-ai](https://clawhub.ai/skills/zero-to-profit-ai)
+## Features
+- ROI-driven idea generation
+- Market validation and competitor research
+- MVP creation (landing pages, automated funnels, simple code)
+- Automated marketing & sales sequences
+- Financial modeling & profit forecasting
+- Task execution and monitoring
+- Self-correction loop with lessons learned
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zero-to-profit-ai
-```
+## Usage
+1. Provide your business goal or target revenue
+2. EliteEntrepreneurOS generates ideas, validates, and ranks by ROI
+3. Generates step-by-step action plan, including ready-to-use templates
+4. Executes or delegates tasks through other OpenClaw tools
+5. Tracks success and adjusts dynamically

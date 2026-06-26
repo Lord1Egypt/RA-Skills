@@ -1,0 +1,46 @@
+{
+  "name": "x-engagement-pro",
+  "version": "1.1.0",
+  "description": "X (Twitter) engagement system for AI image generation brands. Build authority through genuine engagement.",
+  "author": "NotPhilSledge",
+  "tags": ["x", "twitter", "engagement", "ai", "image-generation", "firefly"],
+  "readme": "README.md",
+  "homepage": "https://github.com/notphilsledge/x-engagement-pro",
+  "source": "https://github.com/notphilsledge/x-engagement-pro",
+  "requires": {
+    "env": {
+      "X_API_KEY": {
+        "type": "string",
+        "required": true,
+        "description": "X/Twitter API key for posting and engagement"
+      },
+      "ALIGNED_NEWS_API_KEY": {
+        "type": "string",
+        "required": false,
+        "description": "Aligned News API key for content discovery (Pro only)"
+      }
+    },
+    "channels": ["x"]
+  },
+  "permissions": {
+    "read": ["x", "alignednews"],
+    "write": ["x"]
+  },
+  "pricing": {
+    "free": {
+      "features": ["Basic monitoring", "5 keywords", "Manual engagement"],
+      "limits": {
+        "accounts": 5,
+        "postsPerDay": 10
+      }
+    },
+    "pro": {
+      "price": "9.99/month",
+      "features": ["Unlimited keywords", "Auto-posting", "Analytics", "Priority support", "Aligned News integration"],
+      "limits": {
+        "accounts": "unlimited",
+        "postsPerDay": "unlimited"
+      }
+    }
+  }
+}

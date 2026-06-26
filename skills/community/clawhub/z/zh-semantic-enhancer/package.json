@@ -1,0 +1,17 @@
+{
+  "name": "zh-semantic-enhancer",
+  "version": "1.0.0",
+  "description": "中文语义理解增强技能",
+  "main": "index.py",
+  "clawdbot": {
+    "runtime": "python3.9+",
+    "entry_point": "on_user_input"
+  },
+  "dependencies": {
+    "jieba": "^0.42.1",
+    "hanlp": "^2.1.0"
+  },
+  "scripts": {
+    "test": "python -m pytest tests/"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "source": "slack",
+  "sourceType": "message",
+  "externalWrite": false,
+  "text": "Hey, can you review the Q2 metrics dashboard before the planning meeting tomorrow? The numbers look off and we need a decision by EOD.",
+  "observedAt": "2026-05-19T10:30:00.000Z",
+  "summary": "Review request for Q2 metrics dashboard — decision needed before meeting",
+  "metadata": {
+    "expectedSeverity": "medium",
+    "expectedState": "waiting_for_review",
+    "expectedExternalWrite": false
+  }
+}

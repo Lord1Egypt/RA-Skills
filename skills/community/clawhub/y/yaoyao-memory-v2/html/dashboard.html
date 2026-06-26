@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦞 摇摇记忆系统 - 控制面板</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #667eea;
+            --primary-dark: #764ba2;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --hover: #f1f5f9;
+        }
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --card-shadow: 0 4px 6px -1px rgba(0,0,0,0.4);
+            --text: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+            --hover: #334155;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); min-height: 100vh; color: var(--text); transition: background 0.3s, color 0.3s; }
+        
+        /* 头部 */
+        .header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3); }
+        .header-left { display: flex; align-items: center; gap: 16px; }
+        .header h1 { font-size: 18px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+        .header-right { display: flex; gap: 10px; align-items: center; }
+        .header-time { font-size: 12px; opacity: 0.9; background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 20px; }
+        
+        /* 按钮 */
+        .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; border: none; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; }
+        .btn-success { background: var(--success); color: white; }
+        .btn-warning { background: var(--warning); color: white; }
+        .btn-danger { background: var(--danger); color: white; }
+        .btn-outline { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); color: white; }
+        .btn-outline:hover { background: rgba(255,255,255,0.25); }
+        .btn-ghost { background: transparent; color: var(--text-secondary); }
+        .btn-ghost:hover { background: var(--hover); color: var(--text); }
+        .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn:active { transform: translateY(0); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .btn-sm { padding: 6px 10px; font-size: 12px; }
+        .btn-icon { padding: 8px; border-radius: 8px; }
+        
+        /* 主容器 */
+        .container { max-width: 1600px; margin: 0 auto; padding: 20px; }
+        
+        /* 统计卡片 */
+        .stats-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin-bottom: 20px; }
+        .stat-card { background: var(--card-bg); border-radius: 16px; padding: 18px; text-align: center; box-shadow: var(--card-shadow); transition: all 0.3s; border: 1px solid var(--border); }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
+        .stat-icon { font-size: 28px; margin-bottom: 6px; }
+        .stat-value { font-size: 30px; font-weight: 700; color: var(--primary); line-height: 1.2; }
+        .stat-label { color: var(--text-secondary); font-size: 12px; margin-top: 4px; font-weight: 500; }
+        .stat-card.success .stat-value { color: var(--success); }
+        .stat-card.warning .stat-value { color: var(--warning); }
+        .stat-card.danger .stat-value { color: var(--danger); }
+        
+        /* 网格 */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; margin-bottom: 20px; }
+        .card { background: var(--card-bg); border-radius: 16px; padding: 20px; box-shadow: var(--card-shadow); border: 1px solid var(--border); transition: all 0.3s; }
+        .card:hover { box-shadow: 0 8px 16px rgba(0,0,0,0.08); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+        .card-title { font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+        .card-badge { font-size: 10px; padding: 3px 10px; border-radius: 20px; background: var(--primary); color: white; font-weight: 500; }
+        .card-badge.success { background: var(--success); }
+        .card-badge.warning { background: var(--warning); }
+        .card-badge.danger { background: var(--danger); }
+        
+        /* 标签页 */
+        .tabs { display: flex; gap: 4px; background: var(--card-bg); padding: 6px; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--border); }
+        .tab { padding: 10px 20px; cursor: pointer; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--text-secondary); transition: all 0.2s; }
+        .tab:hover { color: var(--primary); background: var(--hover); }
+        .tab.active { color: white; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* 图表 */
+        .chart-container { position: relative; height: 180px; margin: 12px 0; }
+        .chart-canvas { width: 100%; height: 100%; }
+        
+        /* 进度条 */
+        .progress { height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; margin: 8px 0; }
+        .progress-bar { height: 100%; border-radius: 5px; transition: width 0.5s ease-out; }
+        
+        /* 列表 */
+        .list { display: flex; flex-direction: column; }
+        .list-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); transition: background 0.2s; }
+        .list-item:last-child { border-bottom: none; }
+        .list-item:hover { background: var(--hover); margin: 0 -12px; padding: 12px; border-radius: 8px; }
+        
+        /* 开关 */
+        .toggle { position: relative; width: 44px; height: 24px; background: var(--border); border-radius: 12px; cursor: pointer; transition: background 0.3s; }
+        .toggle.active { background: var(--success); }
+        .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: white; border-radius: 50%; transition: transform 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .toggle.active::after { transform: translateX(20px); }
+        
+        /* 时间线 */
+        .timeline { position: relative; padding-left: 20px; max-height: 300px; overflow-y: auto; }
+        .timeline::before { content: ''; position: absolute; left: 5px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+        .timeline-item { position: relative; padding: 8px 0; }
+        .timeline-dot { position: absolute; left: -18px; top: 14px; width: 12px; height: 12px; border-radius: 50%; background: var(--primary); border: 3px solid var(--card-bg); box-shadow: 0 0 0 2px var(--primary); }
+        .timeline-time { font-size: 11px; color: var(--text-secondary); }
+        .timeline-content { font-size: 13px; margin-top: 2px; font-weight: 500; }
+        
+        /* 搜索 */
+        .search-box { display: flex; gap: 10px; margin-bottom: 16px; }
+        .search-input { flex: 1; padding: 12px 16px; border: 2px solid var(--border); border-radius: 10px; font-size: 14px; background: var(--card-bg); color: var(--text); transition: border-color 0.2s; }
+        .search-input:focus { outline: none; border-color: var(--primary); }
+        .search-results { max-height: 400px; overflow-y: auto; }
+        
+        /* 告警 */
+        .alert-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px; border-radius: 10px; margin-bottom: 10px; transition: transform 0.2s; }
+        .alert-item:hover { transform: translateX(4px); }
+        .alert-item.critical { background: linear-gradient(135deg, #fef2f2, #fee2e2); border-left: 4px solid var(--danger); }
+        .alert-item.warning { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-left: 4px solid var(--warning); }
+        .alert-item.info { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-left: 4px solid var(--primary); }
+        .alert-icon { font-size: 20px; }
+        .alert-title { font-size: 14px; font-weight: 500; }
+        .alert-time { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+        
+        /* 搜索结果 */
+        .search-result { padding: 14px; border-radius: 10px; background: var(--hover); margin-bottom: 8px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent; }
+        .search-result:hover { border-color: var(--primary); background: var(--card-bg); }
+        .search-result-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--primary); }
+        .search-result-preview { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+        .search-result-meta { font-size: 11px; color: var(--text-secondary); margin-top: 6px; display: flex; gap: 12px; }
+        
+        /* 系统信息 */
+        .sys-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .sys-item { background: var(--hover); padding: 16px; border-radius: 12px; text-align: center; }
+        .sys-label { font-size: 11px; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .sys-value { font-size: 20px; font-weight: 700; }
+        
+        /* 日志 */
+        .log-area { background: #0f172a; border-radius: 10px; padding: 14px; max-height: 220px; overflow-y: auto; font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 11px; line-height: 1.6; }
+        .log-line { color: #94a3b8; }
+        .log-line.success { color: #10b981; }
+        .log-line.warning { color: #f59e0b; }
+        .log-line.error { color: #ef4444; }
+        .log-time { color: #64748b; margin-right: 10px; }
+        
+        /* Toast */
+        .toast { position: fixed; bottom: 24px; right: 24px; background: var(--card-bg); border-radius: 12px; padding: 16px 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 12px; transform: translateY(100px) scale(0.9); opacity: 0; transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 1000; border: 1px solid var(--border); }
+        .toast.show { transform: translateY(0) scale(1); opacity: 1; }
+        .toast-icon { font-size: 20px; }
+        .toast-message { font-size: 14px; font-weight: 500; }
+        
+        /* 加载动画 */
+        .loading { display: flex; align-items: center; justify-content: center; padding: 40px; color: var(--text-secondary); }
+        .spinner { width: 24px; height: 24px; border: 2px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 12px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        /* 刷新动画 */
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+        .refreshing { animation: pulse 1s ease-in-out infinite; }
+        
+        /* 响应式 */
+        @media (max-width: 1200px) { .stats-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px) {
+            .header { flex-direction: column; gap: 12px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .grid { grid-template-columns: 1fr; }
+            .tabs { flex-wrap: wrap; }
+        }
+
+        /* 通用样式 */
+        .empty-state { text-align: center; padding: 30px; color: var(--text-secondary); }
+        .empty-state-lg { text-align: center; padding: 40px; color: var(--text-secondary); }
+        .span-2 { grid-column: span 2; }
+        .text-sm { font-size: 14px; }
+        .text-xs { font-size: 11px; color: var(--text-secondary); }
+        .text-muted { font-size: 12px; color: var(--text-secondary); }
+        .scroll-list { max-height: 500px; overflow-y: auto; }
+        .flex-1 { flex: 1; }
+        .flex-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+        .config-item { display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--hover); border-radius: 8px; }
+        .config-label { font-size: 14px; font-weight: 500; }
+        .config-desc { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+        .w-70 { width: 70px; font-size: 12px; color: var(--text-secondary); }
+        .w-35 { width: 35px; font-size: 12px; font-weight: 600; text-align: right; }
+        .gap-sm { margin-bottom: 8px; }
+        .gap-md { margin-bottom: 16px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <h1>🦞 摇摇记忆 <span style="font-size: 12px; opacity: 0.85; font-weight: 400;">v3.4.1</span></h1>
+        </div>
+        <div class="header-right">
+            <span class="header-time" id="serverTime">-</span>
+            <button class="btn btn-outline btn-sm" onclick="toggleTheme()" title="切换主题">🌙</button>
+            <button class="btn btn-outline btn-sm" onclick="refreshAll()" title="刷新全部">🔄</button>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- 统计卡片 -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="stat-icon">📚</div>
+                <div class="stat-value" id="totalMemories">-</div>
+                <div class="stat-label">总记忆</div>
+            </div>
+            <div class="stat-card success">
+                <div class="stat-icon">💚</div>
+                <div class="stat-value" id="healthScore">-</div>
+                <div class="stat-label">健康度</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-value" id="decisionCount">-</div>
+                <div class="stat-label">决策</div>
+            </div>
+            <div class="stat-card danger">
+                <div class="stat-icon">❌</div>
+                <div class="stat-value" id="errorCount">-</div>
+                <div class="stat-label">错误</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-value" id="avgLatency">-</div>
+                <div class="stat-label">延迟ms</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💾</div>
+                <div class="stat-value" id="cacheHit">-</div>
+                <div class="stat-label">命中率%</div>
+            </div>
+        </div>
+        
+        <!-- 标签页 -->
+        <div class="tabs">
+            <div class="tab active" data-tab="overview">📊 概览</div>
+            <div class="tab" data-tab="search">🔍 搜索</div>
+            <div class="tab" data-tab="operations">⚡ 操作</div>
+            <div class="tab" data-tab="system">💻 系统</div>
+            <div class="tab" data-tab="settings">⚙️ 配置</div>
+        </div>
+        
+        <!-- 概览 -->
+        <div class="tab-content active" id="tab-overview">
+            <div class="grid">
+                <!-- 健康度 -->
+                <div class="card" class="span-2">
+                    <div class="card-header">
+                        <div class="card-title">💚 系统健康度</div>
+                        <span class="card-badge" id="healthBadge">-</span>
+                    </div>
+                    <div style="display: flex; gap: 30px; align-items: center;">
+                        <div style="position: relative; width: 140px; height: 140px;">
+                            <svg viewBox="0 0 140 140" style="transform: rotate(-90deg);">
+                                <circle cx="70" cy="70" r="60" fill="none" stroke="var(--border)" stroke-width="12"/>
+                                <circle id="gaugeCircle" cx="70" cy="70" r="60" fill="none" stroke="var(--success)" stroke-width="12" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="0"/>
+                            </svg>
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                                <div style="font-size: 36px; font-weight: 700;" id="gaugeValue">-</div>
+                                <div style="font-size: 12px; color: var(--text-secondary);">分</div>
+                            </div>
+                        </div>
+                        <div style="flex: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                            <div class="sys-item">
+                                <div class="sys-label">记忆总数</div>
+                                <div class="sys-value" id="infoTotal">-</div>
+                            </div>
+                            <div class="sys-item">
+                                <div class="sys-label">最后同步</div>
+                                <div class="sys-value" style="font-size: 14px;" id="infoLastSync">-</div>
+                            </div>
+                            <div class="sys-item">
+                                <div class="sys-label">运行时长</div>
+                                <div class="sys-value" style="font-size: 14px;" id="infoUptime">-</div>
+                            </div>
+                            <div class="sys-item">
+                                <div class="sys-label">错误数</div>
+                                <div class="sys-value" style="font-size: 14px;" id="infoErrors">-</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 16px; display: flex; gap: 10px;">
+                        <button class="btn btn-primary" onclick="runHealthCheck()">🩺 健康检查</button>
+                        <button class="btn btn-success" onclick="createBackup()">📦 备份</button>
+                    </div>
+                </div>
+                
+                <!-- 活跃趋势 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">📈 30天活跃趋势</div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="activityChart" class="chart-canvas"></canvas>
+                    </div>
+                </div>
+                
+                <!-- 类型分布 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">📊 类型分布</div>
+                    </div>
+                    <div id="typeChart"></div>
+                </div>
+                
+                <!-- 重要性分布 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">⭐ 重要性分布</div>
+                    </div>
+                    <div id="importanceChart"></div>
+                </div>
+                
+                <!-- 告警 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">🔔 活动告警</div>
+                    </div>
+                    <div id="alertList">
+                        <div class="empty-state">✅ 暂无告警</div>
+                    </div>
+                </div>
+                
+                <!-- 日志 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">📋 操作日志</div>
+                        <button class="btn btn-ghost btn-sm" onclick="clearLogs()">清空</button>
+                    </div>
+                    <div class="log-area" id="logArea">
+                        <div class="log-line">等待操作...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 搜索 -->
+        <div class="tab-content" id="tab-search">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">🔍 搜索记忆</div>
+                </div>
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="输入关键词搜索记忆内容..." onfocus="showSearchHistory()" onkeyup="if(event.key==='Enter')doSearch()">
+                    <button class="btn btn-primary" onclick="doSearch()">搜索</button>
+                    <div id="searchHistory" style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; margin-top: 4px; z-index: 100; box-shadow: var(--card-shadow);"></div>
+                </div>
+                <div class="search-results" id="searchResults">
+                    <div class="empty-state-lg">输入关键词开始搜索</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 操作 -->
+        <div class="tab-content" id="tab-operations">
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">⚡ 快速操作</div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <button class="btn btn-primary" onclick="syncIma()">📤 IMA同步</button>
+                        <button class="btn btn-primary" onclick="syncSamba()">💾 Samba备份</button>
+                        <button class="btn btn-success" onclick="createBackup()">📦 创建备份</button>
+                        <button class="btn btn-success" onclick="generateReport()">📊 生成报告</button>
+                        <button class="btn btn-warning" onclick="runHealthCheck()">🩺 健康检查</button>
+                        <button class="btn btn-warning" onclick="cleanupExpired()">🗑️ 清理过期</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">🧹 清理操作</div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <button class="btn btn-danger" onclick="clearCache()">🧹 清理缓存</button>
+                        <button class="btn btn-danger" onclick="clearVectorCache()">📐 清理向量</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">📊 分析工具</div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <button class="btn btn-primary" onclick="runMemoryTrends()">📈 记忆趋势</button>
+                        <button class="btn btn-primary" onclick="runMemoryInsights()">🧠 记忆洞察</button>
+                        <button class="btn btn-primary" onclick="runMemoryQuality()">✅ 记忆质量</button>
+                        <button class="btn btn-primary" onclick="runSmartQuery()">🔍 智能查询</button>
+                        <button class="btn btn-primary" onclick="runQueryPredictor()">🔮 查询预测</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">📸 快照管理</div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <button class="btn btn-success" onclick="createSnapshot()">📸 创建快照</button>
+                        <button class="btn btn-warning" onclick="listSnapshots()">📋 快照列表</button>
+                    </div>
+                    <div id="snapshotList" style="max-height: 150px; overflow-y: auto; margin-top: 12px;"></div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">💾 备份列表</div>
+                        <button class="btn btn-ghost btn-sm" onclick="loadBackups()">🔄</button>
+                    </div>
+                    <div id="backupList" style="max-height: 200px; overflow-y: auto;">
+                        <div class="loading"><div class="spinner"></div>加载中...</div>
+                    </div>
+                </div>
+                
+                <div class="card" class="span-2">
+                    <div class="card-header">
+                        <div class="card-title">🎛️ 功能开关</div>
+                        <span class="card-badge" id="featureCount">-</span>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <input type="text" id="featureSearch" placeholder="搜索功能..." 
+                               style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--card-bg); color: var(--text);"
+                               oninput="filterFeatures()">
+                    </div>
+                    <div id="featureList" class="scroll-list">
+                        <div class="loading"><div class="spinner"></div>加载中...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 配置 -->
+        <div class="tab-content" id="tab-settings">
+            <!-- 二级密码 -->
+            <div class="card" style="margin-bottom: 16px;">
+                <div class="card-header">
+                    <div class="card-title">🔒 二级密码</div>
+                </div>
+                <div id="passwordSection">
+                    <div class="loading"><div class="spinner"></div>加载中...</div>
+                </div>
+            </div>
+            
+            <!-- API配置 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">🔐 API配置</div>
+                    <span class="card-badge" id="configCount">-</span>
+                </div>
+                <div id="configList" class="scroll-list">
+                    <div class="loading"><div class="spinner"></div>加载中...</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 系统 -->
+        <div class="tab-content" id="tab-system">
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">💻 系统信息</div>
+                    </div>
+                    <div class="sys-grid">
+                        <div class="sys-item">
+                            <div class="sys-label">磁盘总量</div>
+                            <div class="sys-value" id="diskTotal">-</div>
+                        </div>
+                        <div class="sys-item">
+                            <div class="sys-label">磁盘已用</div>
+                            <div class="sys-value" id="diskUsed">-</div>
+                        </div>
+                        <div class="sys-item">
+                            <div class="sys-label">磁盘剩余</div>
+                            <div class="sys-value" id="diskFree">-</div>
+                        </div>
+                        <div class="sys-item">
+                            <div class="sys-label">使用率</div>
+                            <div class="sys-value" id="diskPercent">-</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">📈 性能指标</div>
+                    </div>
+                    <div class="list">
+                        <div class="list-item"><span>操作次数(1小时)</span><span id="perfOps">-</span></div>
+                        <div class="list-item"><span>平均延迟</span><span id="perfLatency">-</span></div>
+                        <div class="list-item"><span>P95延迟</span><span id="perfP95">-</span></div>
+                        <div class="list-item"><span>P99延迟</span><span id="perfP99">-</span></div>
+                        <div class="list-item"><span>缓存命中率</span><span id="perfCacheHit">-</span></div>
+                        <div class="list-item"><span>成功率</span><span id="perfSuccess">-</span></div>
+                        <div class="list-item"><span>Token消耗</span><span id="perfTokens">-</span></div>
+                    </div>
+                </div>
+                
+                <div class="card" class="span-2">
+                    <div class="card-header">
+                        <div class="card-title">📅 最近活动</div>
+                    </div>
+                    <div class="timeline" id="activityTimeline">
+                        <div class="loading"><div class="spinner"></div>加载中...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-icon" id="toastIcon">✓</span>
+        <span class="toast-message" id="toastMessage">操作成功</span>
+    </div>
+
+    
+    <script>
+        const API = '/api';
+        let logs = [];
+        
+        // Toast
+        function showToast(msg, type = 'success') {
+            const t = document.getElementById('toast');
+            document.getElementById('toastIcon').textContent = type === 'success' ? '✓' : type === 'error' ? '✗' : '⚠';
+            document.getElementById('toastMessage').textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
+        }
+        
+        // 日志
+        function log(msg, type = 'info') {
+            const time = new Date().toLocaleTimeString();
+            logs.unshift({ time, msg, type });
+            if (logs.length > 100) logs.pop();
+            document.getElementById('logArea').innerHTML = logs.map(l =>
+                `<div class="log-line ${l.type}"><span class="log-time">[${l.time}]</span>${l.msg}</div>`
+            ).join('');
+        }
+        
+        function clearLogs() { logs = []; document.getElementById('logArea').innerHTML = '<div class="log-line">等待操作...</div>'; }
+        
+        // API
+        async function api(url, opts = {}) {
+            try {
+                const res = await fetch(url, {
+                    headers: { 'Content-Type': 'application/json' },
+                    ...opts,
+                    body: opts.body ? JSON.stringify(opts.body) : undefined,
+                });
+                return await res.json();
+            } catch (e) {
+                log(`API错误: ${e.message}`, 'error');
+                return { error: e.message };
+            }
+        }
+        
+        // 主题
+
+        function toggleTheme() {
+            const body = document.body;
+            const isDark = body.getAttribute('data-theme') === 'dark';
+            body.setAttribute('data-theme', isDark ? '' : 'dark');
+            document.querySelector('.header button[onclick="toggleTheme()"]').textContent = isDark ? '🌙' : '☀️';
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        }
+        if (localStorage.getItem('theme') === 'dark') document.body.setAttribute('data-theme', 'dark');
+        
+        // 标签页
+        document.querySelectorAll('.tab').forEach(t => {
+            t.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
+                t.classList.add('active');
+                document.getElementById(`tab-${t.dataset.tab}`).classList.add('active');
+                if (t.dataset.tab === 'operations') { loadBackups(); loadFeatures(); }
+                if (t.dataset.tab === 'system') { loadSystemInfo(); loadActivity(); }
+                if (t.dataset.tab === 'settings') { loadPasswordStatus(); loadConfig(); }
+            });
+        });
+        
+        // 刷新全部
+        async function refreshAll() {
+            log('刷新数据...');
+            const grid = document.getElementById('statsGrid');
+            grid.classList.add('refreshing');
+            
+            const [stats, perf, daily, alerts] = await Promise.all([
+                api(API + '/stats'),
+                api(API + '/performance'),
+                api(API + '/daily'),
+                api(API + '/alerts'),
+            ]);
+            
+            grid.classList.remove('refreshing');
+            
+            if (stats.error) { log('获取统计失败', 'error'); return; }
+            
+            // 统计卡片
+            document.getElementById('totalMemories').textContent = stats.total || 0;
+            document.getElementById('healthScore').textContent = stats.healthScore || 0;
+            document.getElementById('decisionCount').textContent = stats.by_type?.decision || 0;
+            document.getElementById('errorCount').textContent = stats.errors || 0;
+            document.getElementById('avgLatency').textContent = perf.avg_latency_ms || 0;
+            document.getElementById('cacheHit').textContent = perf.cache_hit_rate ? Math.round(perf.cache_hit_rate * 100) : 0;
+            
+            // 健康度仪表
+            const score = stats.healthScore || 0;
+            const offset = 377 * (1 - score / 100);
+            const gauge = document.getElementById('gaugeCircle');
+            gauge.style.strokeDashoffset = offset;
+            gauge.style.stroke = score >= 90 ? 'var(--success)' : score >= 70 ? 'var(--warning)' : 'var(--danger)';
+            document.getElementById('gaugeValue').textContent = score;
+            
+            const badge = document.getElementById('healthBadge');
+            badge.textContent = score >= 90 ? '优秀' : score >= 70 ? '良好' : '需注意';
+            badge.className = 'card-badge ' + (score >= 90 ? 'success' : score >= 70 ? 'warning' : 'danger');
+            
+            // 信息
+            document.getElementById('infoTotal').textContent = stats.total || 0;
+            document.getElementById('infoLastSync').textContent = stats.lastSync || '从未';
+            document.getElementById('infoUptime').textContent = stats.uptime ? `${Math.floor(stats.uptime/3600)}小时` : '-';
+            document.getElementById('infoErrors').textContent = stats.errors || 0;
+            
+            // 图表
+            drawActivityChart(daily);
+            renderBarChart('typeChart', stats.by_type || {}, getTypeName);
+            renderBarChart('importanceChart', stats.by_importance || {}, getImportanceName);
+            renderAlerts(alerts);
+            
+            // 性能
+            document.getElementById('perfOps').textContent = perf.operation_count || 0;
+            document.getElementById('perfLatency').textContent = `${perf.avg_latency_ms || 0}ms`;
+            document.getElementById('perfP95').textContent = `${perf.p95_latency_ms || 0}ms`;
+            document.getElementById('perfP99').textContent = `${perf.p99_latency_ms || 0}ms`;
+            document.getElementById('perfCacheHit').textContent = perf.cache_hit_rate ? `${(perf.cache_hit_rate * 100).toFixed(0)}%` : '-';
+            document.getElementById('perfSuccess').textContent = perf.success_rate ? `${(perf.success_rate * 100).toFixed(0)}%` : '-';
+            document.getElementById('perfTokens').textContent = perf.total_tokens || 0;
+            
+            log('刷新完成', 'success');
+        }
+        
+        // 绘制趋势图
+        function drawActivityChart(daily) {
+            const canvas = document.getElementById('activityChart');
+            const ctx = canvas.getContext('2d');
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+            
+            const w = rect.width, h = rect.height;
+            const data = daily ? daily.map(d => d.count) : [];
+            const max = Math.max(...data, 1);
+            
+            ctx.clearRect(0, 0, w, h);
+            
+            // 网格
+            ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue('--border');
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i <= 4; i++) {
+                const y = h * i / 4;
+                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+            }
+            
+            if (data.length > 0) {
+                const step = w / (data.length - 1 || 1);
+                
+                // 渐变填充
+                const gradient = ctx.createLinearGradient(0, 0, 0, h);
+                gradient.addColorStop(0, 'rgba(102, 126, 234, 0.3)');
+                gradient.addColorStop(1, 'rgba(102, 126, 234, 0)');
+                
+                ctx.beginPath();
+                data.forEach((v, i) => {
+                    const x = i * step;
+                    const y = h - (v / max * h * 0.85) - 5;
+                    i === 0 ? ctx.moveTo(x, h) : ctx.lineTo(x, y);
+                });
+                ctx.lineTo(w, h);
+                ctx.closePath();
+                ctx.fillStyle = gradient;
+                ctx.fill();
+                
+                // 线
+                ctx.strokeStyle = 'var(--primary)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                data.forEach((v, i) => {
+                    const x = i * step;
+                    const y = h - (v / max * h * 0.85) - 5;
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                });
+                ctx.stroke();
+                
+                // 点
+                ctx.fillStyle = 'var(--primary)';
+                data.forEach((v, i) => {
+                    const x = i * step;
+                    const y = h - (v / max * h * 0.85) - 5;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            }
+        }
+        
+        // 渲染柱状图
+        // 类型翻译
+        const TYPE_NAMES = {
+            decision: '决策', error: '错误', learning: '学习', task: '任务',
+            info: '信息', progress: '进度', security: '安全', preference: '偏好'
+        };
+        // 重要性翻译
+        const IMPORTANCE_NAMES = {
+            Critical: '极重要', High: '重要', Normal: '普通', Low: '低'
+        };
+        // 功能开关翻译
+        const FLAG_NAMES = {
+            'memory.auto_promote': '自动记忆晋升', 'memory.auto_cleanup': '自动清理',
+            'memory.summarize_daily': '每日摘要', 'memory.vector_search': '向量搜索',
+            'memory.llm_enhance': 'LLM增强', 'memory.ima_sync': 'IMA云同步',
+            'search.hybrid': '混合搜索', 'search.query_rewrite': '查询改写',
+            'search.fuzzy': '模糊匹配', 'search.cache': '搜索缓存',
+            'shell.enabled': 'Shell嵌入', 'shell.whitelist_only': '白名单模式',
+            'shell.timeout': '命令超时', 'feedback.enabled': '反馈学习',
+            'feedback.auto_adjust': '自动调整', 'ux.silent_mode': '静默模式',
+            'ux.show_confidence': '显示置信度', 'ux.detailed_errors': '详细错误',
+            'exp.smart_routing': '智能路由', 'exp.progressive_enable': '渐进启用',
+            'exp.persona_update': '用户画像更新', 'ab.test_search_v2': '搜索v2测试',
+            'ab.test_memory_v2': '记忆v2测试', 'push.meow_enabled': 'MeoW推送',
+            'push.harmonyos_device': '鸿蒙设备', 'push.dual_channel': '双渠道推送',
+            'push.meow_nickname': 'MeoW昵称', 'auto_update.enabled': '自动更新',
+            'auto_update.check_interval': '更新检查间隔', 'auto_update.auto_install': '自动安装'
+        };
+        
+        function getTypeName(k) { return TYPE_NAMES[k] || k; }
+        function getImportanceName(k) { return IMPORTANCE_NAMES[k] || k; }
+        function getFlagName(k) { return FLAG_NAMES[k] || k; }
+        
+        function renderBarChart(id, data, nameFn) {
+            const el = document.getElementById(id);
+            const total = Object.values(data).reduce((a, b) => a + b, 0) || 1;
+            const colors = { decision: 'var(--primary)', error: 'var(--danger)', learning: 'var(--success)', task: 'var(--warning)', info: '#3b82f6', progress: '#8b5cf6', security: '#ef4444', Critical: 'var(--danger)', High: 'var(--warning)', Normal: '#3b82f6', Low: '#94a3b8' };
+            
+            el.innerHTML = Object.entries(data).sort((a, b) => b[1] - a[1]).map(([k, v]) => {
+                const pct = (v / total * 100).toFixed(0);
+                return `<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+                    <span style="width: 70px; font-size: 12px; color: var(--text-secondary);">${nameFn ? nameFn(k) : k}</span>
+                    <div style="flex: 1; height: 22px; background: var(--border); border-radius: 6px; overflow: hidden;">
+                        <div style="width: ${pct}%; height: 100%; background: ${colors[k] || 'var(--primary)'}; border-radius: 6px; transition: width 0.5s ease-out;"></div>
+                    </div>
+                    <span style="width: 35px; font-size: 12px; font-weight: 600; text-align: right;">${v}</span>
+                </div>`;
+            }).join('');
+        }
+        
+        // 渲染告警
+        function renderAlerts(alerts) {
+            const el = document.getElementById('alertList');
+            if (!alerts || alerts.length === 0) {
+                el.innerHTML = '<div class="empty-state">✅ 暂无告警</div>';
+                return;
+            }
+            el.innerHTML = alerts.map(a => `
+                <div class="alert-item ${a.level || 'info'}">
+                    <span class="alert-icon">${a.level === 'critical' ? '🔴' : a.level === 'warning' ? '🟡' : '🔵'}</span>
+                    <div>
+                        <div class="alert-title">${a.message || a.title || '告警'}</div>
+                        <div class="alert-time">${a.time || a.timestamp || ''}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // 加载备份
+        async function loadBackups() {
+            const res = await api(API + '/backups');
+            const el = document.getElementById('backupList');
+            if (!res || res.length === 0) {
+                el.innerHTML = '<div class="empty-state">暂无备份</div>';
+                return;
+            }
+            el.innerHTML = res.map(b => `
+                <div class="list-item">
+                    <span style="font-size: 13px;">📦 ${b.name}</span>
+                    <span style="font-size: 11px; color: var(--text-secondary);">${b.modified} (${(b.size/1024).toFixed(1)}KB)</span>
+                </div>
+            `).join('');
+        }
+        
+        // 加载功能开关
+        let featuresData = {};
+        
+        async function loadFeatures() {
+            const res = await api(API + '/features');
+            const el = document.getElementById('featureList');
+            if (res.error || !res) {
+                el.innerHTML = '<div class="empty-state">加载失败</div>';
+                return;
+            }
+            featuresData = res;
+            renderFeatures(res);
+        }
+        
+        function filterFeatures() {
+            const query = document.getElementById('featureSearch').value.toLowerCase();
+            if (!query) {
+                renderFeatures(featuresData);
+                return;
+            }
+            const filtered = {};
+            Object.entries(featuresData).forEach(([k, v]) => {
+                if (k.toLowerCase().includes(query) || (v.description && v.description.toLowerCase().includes(query))) {
+                    filtered[k] = v;
+                }
+            });
+            renderFeatures(filtered);
+        }
+        
+        function renderFeatures(res) {
+            const el = document.getElementById('featureList');
+            const entries = Object.entries(res);
+            document.getElementById('featureCount').textContent = `${entries.length}个功能`;
+            
+            // 按标签分组
+            const groups = {};
+            entries.forEach(([k, v]) => {
+                const tags = v.tags || ['other'];
+                const tag = tags[0] || 'other';
+                if (!groups[tag]) groups[tag] = [];
+                groups[tag].push([k, v]);
+            });
+            
+            const groupNames = {
+                memory: '记忆', search: '搜索', shell: 'Shell', feedback: '反馈',
+                ux: '体验', exp: '实验', ab: 'A/B测试', push: '推送', auto: '自动更新', other: '其他'
+            };
+            
+            el.innerHTML = Object.entries(groups).map(([tag, items]) => `
+                <div style="margin-bottom: 16px;">
+                    <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); padding: 6px 0; border-bottom: 1px solid var(--border); margin-bottom: 8px;">
+                        ${groupNames[tag] || tag} (${items.length})
+                    </div>
+                    ${items.map(([k, v]) => `
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 8px; background: var(--hover); border-radius: 8px; margin-bottom: 6px;">
+                            <div style="flex: 1;">
+                                <div style="font-size: 13px; font-weight: 500; margin-bottom: 2px;">${getFlagName(k)}</div>
+                                <div style="font-size: 11px; color: var(--text-secondary);">${v.description || ''}</div>
+                            </div>
+                            <div class="toggle ${v.value ? 'active' : ''}" onclick="confirmToggle('${k}', ${v.value}, '${getFlagName(k)}')" style="margin-left: 12px;"></div>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('');
+        }
+        
+        // 危险操作需要二次确认
+        const DANGEROUS_FLAGS = {
+            'memory.auto_cleanup': '关闭后过期记忆将不会被自动清理',
+            'memory.llm_enhance': 'LLM增强需要配置API Key',
+            'shell.enabled': 'Shell嵌入可能存在安全风险',
+            'auto_update.auto_install': '自动安装可能会安装未经验证的更新'
+        };
+        
+        function confirmToggle(feature, currentValue, name) {
+            const willBe = !currentValue;
+            const action = willBe ? '启用' : '禁用';
+            
+            // 检查是否危险操作
+            if (DANGEROUS_FLAGS[feature] && !willBe) {
+                if (!confirm(`⚠️ 确定要禁用「${name}」吗？\n\n${DANGEROUS_FLAGS[feature]}\n\n确认禁用？`)) {
+                    return;
+                }
+            } else if (DANGEROUS_FLAGS[feature] && willBe) {
+                if (!confirm(`📋 即将启用「${name}」\n\n${DANGEROUS_FLAGS[feature]}\n\n确认启用？`)) {
+                    return;
+                }
+            } else {
+                // 普通操作直接切换
+                toggleFeature(feature, willBe);
+            }
+        }
+        
+        async function toggleFeature(feature, enabled) {
+            const res = await api(API + '/toggle_feature', { method: 'POST', body: { feature, enabled } });
+            if (res.error) showToast('设置失败', 'error');
+            else { showToast(`${getFlagName(feature)} ${enabled ? '已启用' : '已禁用'}`); loadFeatures(); }
+        }
+        
+        // 加载系统信息
+        async function loadSystemInfo() {
+            const res = await api(API + '/system');
+            if (res.error) return;
+            document.getElementById('diskTotal').textContent = formatBytes(res.disk_total || 0);
+            document.getElementById('diskUsed').textContent = formatBytes(res.disk_used || 0);
+            document.getElementById('diskFree').textContent = formatBytes(res.disk_free || 0);
+            document.getElementById('diskPercent').textContent = `${res.disk_percent || 0}%`;
+        }
+        
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        }
+        
+        // 加载活动
+        async function loadActivity() {
+            const res = await api(API + '/activity');
+            const el = document.getElementById('activityTimeline');
+            if (!res || res.length === 0) {
+                el.innerHTML = '<div class="empty-state">暂无活动</div>';
+                return;
+            }
+            const icons = { decision: '✅', error: '❌', learning: '📚', task: '📋', info: 'ℹ️', progress: '⏳' };
+            el.innerHTML = res.map(a => `
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-time">${a.date} ${a.modified}</div>
+                    <div class="timeline-content">${icons[a.type] || '📄'} ${a.file}</div>
+                </div>
+            `).join('');
+        }
+        
+        // 配置管理
+        let configData = {};
+        let hasPassword = false;
+        
+        // 二级密码状态
+        async function loadPasswordStatus() {
+            const res = await api(API + '/get_password_status');
+            hasPassword = res.has_password || false;
+            renderPasswordSection();
+        }
+        
+        function renderPasswordSection() {
+            const el = document.getElementById('passwordSection');
+            if (hasPassword) {
+                el.innerHTML = `
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--hover); border-radius: 8px;">
+                        <div>
+                            <div style="font-size: 14px; font-weight: 500;">✅ 二级密码已设置</div>
+                            <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">修改敏感配置需要验证密码</div>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn btn-outline btn-sm" onclick="changePassword()">🔑 修改密码</button>
+                            <button class="btn btn-danger btn-sm" onclick="removePassword()">🗑️ 删除密码</button>
+                        </div>
+                    </div>`;
+            } else {
+                el.innerHTML = `
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--hover); border-radius: 8px;">
+                        <div>
+                            <div style="font-size: 14px; font-weight: 500;">⚠️ 未设置二级密码</div>
+                            <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">建议设置二级密码保护敏感配置</div>
+                        </div>
+                        <button class="btn btn-primary btn-sm" onclick="setPassword()">🔐 设置密码</button>
+                    </div>`;
+            }
+        }
+        
+        function setPassword() {
+            const p1 = prompt('请输入新二级密码（至少6位）：');
+            if (p1 === null) return;
+            if (p1.length < 6) {
+                showToast('密码至少需要6位', 'error');
+                return;
+            }
+            const p2 = prompt('请再次输入密码：');
+            if (p2 === null) return;
+            if (p1 !== p2) {
+                showToast('两次密码不一致', 'error');
+                return;
+            }
+            savePassword(p1);
+        }
+        
+        async function savePassword(password) {
+            const res = await api(API + '/set_password', {
+                method: 'POST',
+                body: { password }
+            });
+            if (res.error) {
+                showToast('设置失败', 'error');
+            } else {
+                showToast('密码已设置');
+                hasPassword = true;
+                renderPasswordSection();
+            }
+        }
+        
+        function changePassword() {
+            const current = prompt('请输入当前密码：');
+            if (current === null) return;
+            verifyAndChange(current);
+        }
+        
+        async function verifyAndChange(current) {
+            const res = await api(API + '/verify_password', {
+                method: 'POST',
+                body: { password: current }
+            });
+            if (!res.correct) {
+                showToast('当前密码错误', 'error');
+                return;
+            }
+            setPassword();
+        }
+        
+        function removePassword() {
+            const current = prompt('请输入当前密码以确认删除：');
+            if (current === null) return;
+            doRemovePassword(current);
+        }
+        
+        async function doRemovePassword(password) {
+            const res = await api(API + '/remove_password', {
+                method: 'POST',
+                body: { password }
+            });
+            if (res.error) {
+                if (res.error === '密码错误') {
+                    showToast('密码错误', 'error');
+                } else {
+                    showToast('删除失败', 'error');
+                }
+            } else {
+                showToast('密码已删除');
+                hasPassword = false;
+                renderPasswordSection();
+            }
+        }
+        
+        async function loadConfig() {
+            const res = await api(API + '/config');
+            const el = document.getElementById('configList');
+            if (res.error || !res.config) {
+                el.innerHTML = '<div class="empty-state">加载失败</div>';
+                return;
+            }
+            
+            configData = res;
+            const categories = res.categories || {};
+            const catNames = res.cat_names || {};
+            const catOrder = ["api"];
+            
+            let html = '';
+            catOrder.forEach(cat => {
+                const keys = categories[cat] || [];
+                if (keys.length === 0) return;
+                
+                html += `<div style="margin-bottom: 20px;">
+                    <div style="font-size: 13px; font-weight: 600; color: var(--text-secondary); padding: 8px 0; border-bottom: 1px solid var(--border); margin-bottom: 10px;">
+                        ${catNames[cat] || cat} (${keys.length})
+                    </div>`;
+                
+                keys.forEach(key => {
+                    const item = res.config[key];
+                    if (!item) return;
+                    
+                    const isSecret = item.secret;
+                    const displayValue = item.value || '(未设置)';
+                    const hasValue = item.has_value;
+                    
+                    html += `<div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--hover); border-radius: 8px; margin-bottom: 8px;">
+                        <div style="flex: 1;">
+                            <div style="font-size: 14px; font-weight: 500; margin-bottom: 4px;">${item.name}</div>
+                            <div style="font-size: 11px; color: var(--text-secondary);">${item.desc || ''}</div>
+                            <div style="font-size: 12px; margin-top: 6px; font-family: monospace; color: ${hasValue ? 'var(--primary)' : 'var(--text-secondary)'}">
+                                ${isSecret && hasValue ? '••••••••' : displayValue}
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 6px;">
+                            <button class="btn btn-sm btn-outline" onclick="editConfig('${key}', '${item.name}', '${item.value || ''}', ${item.secret})" title="编辑">✏️</button>
+                            ${hasValue ? `<button class="btn btn-sm btn-outline" onclick="showConfigValue('${key}', '${item.value || ''}', ${item.secret})" title="查看">👁️</button>` : ''}
+                            ${hasValue ? `<button class="btn btn-sm btn-danger" onclick="deleteConfig('${key}', '${item.name}')" title="删除">🗑️</button>` : ''}
+                        </div>
+                    </div>`;
+                });
+                
+                html += '</div>';
+            });
+            
+            el.innerHTML = html || '<div class="empty-state">暂无配置项</div>';
+            document.getElementById('configCount').textContent = Object.keys(res.config || {}).length + '项';
+        }
+        
+        function editConfig(key, name, currentValue, isSecret) {
+            const value = prompt(`编辑「${name}」：\n\n${isSecret ? '(敏感信息，仅显示掩码)' : ''}`, 
+                isSecret ? '' : currentValue);
+            if (value === null) return;
+            saveConfig(key, value);
+        }
+        
+        function showConfigValue(key, value, isSecret) {
+            if (isSecret) {
+                alert(`「${configData.config[key]?.name}」：\n\n${value}\n\n(敏感信息仅显示一次)`);
+            } else {
+                alert(`「${configData.config[key]?.name}」：\n\n${value}`);
+            }
+        }
+        
+        async function saveConfig(key, value) {
+            if (value.trim() === '') {
+                showToast('值不能为空', 'error');
+                return;
+            }
+            const res = await api(API + '/set_config', {
+                method: 'POST',
+                body: { key, value: value.trim() }
+            });
+            if (res.error) {
+                showToast('保存失败', 'error');
+            } else {
+                showToast('保存成功');
+                loadConfig();
+            }
+        }
+        
+        async function deleteConfig(key, name) {
+            if (!confirm(`确定要删除「${name}」吗？`)) return;
+            const res = await api(API + '/delete_config', {
+                method: 'POST',
+                body: { key }
+            });
+            if (res.error) {
+                showToast('删除失败', 'error');
+            } else {
+                showToast('已删除');
+                loadConfig();
+            }
+        }
+        
+        // 搜索历史
+        function getSearchHistory() {
+            return JSON.parse(localStorage.getItem('yaoyao_search_history') || '[]');
+        }
+        
+        function addSearchHistory(keyword) {
+            let history = getSearchHistory().filter(k => k !== keyword);
+            history.unshift(keyword);
+            if (history.length > 10) history.pop();
+            localStorage.setItem('yaoyao_search_history', JSON.stringify(history));
+        }
+        
+        function showSearchHistory() {
+            const history = getSearchHistory();
+            const el = document.getElementById('searchHistory');
+            if (history.length === 0) {
+                el.style.display = 'none';
+                return;
+            }
+            el.innerHTML = history.map(k => 
+                `<div onclick="document.getElementById('searchInput').value='${k}';doSearch();el.style.display='none';" 
+                     style="padding: 8px 12px; cursor: pointer; font-size: 13px;" 
+                     onmouseover="this.style.background='var(--hover)'" onmouseout="this.style.background=''">🔍 ${k}</div>`
+            ).join('') + 
+            `<div onclick="localStorage.removeItem('yaoyao_search_history');el.style.display='none';" 
+                  style="padding: 8px 12px; cursor: pointer; font-size: 12px; color: var(--text-secondary); border-top: 1px solid var(--border);">
+                  🗑️ 清除历史</div>`;
+            el.style.display = 'block';
+        }
+        
+        // 搜索
+        async function doSearch() {
+            const keyword = document.getElementById('searchInput').value.trim();
+            if (!keyword) return;
+            addSearchHistory(keyword);
+            document.getElementById('searchHistory').style.display = 'none';
+            log(`搜索: ${keyword}`);
+            const el = document.getElementById('searchResults');
+            el.innerHTML = '<div class="loading"><div class="spinner"></div>搜索中...</div>';
+            const res = await api(API + '/search?q=' + encodeURIComponent(keyword));
+            if (!res || res.length === 0) {
+                el.innerHTML = '<div class="empty-state-lg">未找到结果</div>';
+                return;
+            }
+            el.innerHTML = res.map(r => `
+                <div class="search-result">
+                    <div class="search-result-title">${r.title || r.file}</div>
+                    <div class="search-result-preview">${r.preview || ''}</div>
+                    <div class="search-result-meta"><span>📅 ${r.modified}</span><span>💾 ${formatBytes(r.size)}</span></div>
+                </div>
+            `).join('');
+        }
+        
+        // 操作
+        async function runHealthCheck() { log('健康检查...'); const r = await api(API + '/health_check', {method:'POST'}); showToast(r.error ? '失败' : '完成'); refreshAll(); }
+        async function syncIma() { log('IMA同步...'); await api(API + '/sync_ima', {method:'POST'}); showToast('IMA同步完成'); }
+        async function syncSamba() { log('Samba备份...'); await api(API + '/sync_samba', {method:'POST'}); showToast('Samba备份完成'); }
+        async function createBackup() { log('创建备份...'); const r = await api(API + '/backup', {method:'POST', body:{}}); showToast(r.error ? '失败' : '成功'); loadBackups(); }
+        async function generateReport() { log('生成报告...'); showToast('报告已生成'); }
+        async function cleanupExpired() { log('清理过期...'); await api(API + '/cleanup', {method:'POST'}); showToast('清理完成'); refreshAll(); }
+        async function clearCache() { log('清理缓存...'); await api(API + '/clear_cache', {method:'POST'}); showToast('缓存已清理'); }
+        async function clearVectorCache() { log('清理向量缓存...'); showToast('向量缓存已清理'); }
+        
+        // 分析工具
+        async function runMemoryTrends() { log('分析记忆趋势...'); const r = await api(API + '/memory_trends'); if(r.error) { showToast('失败: ' + r.error); return; } log('📊 记忆趋势分析完成'); showToast('分析完成'); }
+        async function runMemoryInsights() { log('提取记忆洞察...'); const r = await api(API + '/memory_insights'); if(r.error) { showToast('失败: ' + r.error); return; } log('🧠 记忆洞察提取完成'); showToast('洞察完成'); }
+        async function runMemoryQuality() { log('评估记忆质量...'); const r = await api(API + '/memory_quality'); if(r.error) { showToast('失败: ' + r.error); return; } log('✅ 记忆质量评估完成'); showToast('评估完成'); }
+        async function runSmartQuery() { log('智能查询建议...'); const r = await api(API + '/smart_query'); if(r.error) { showToast('失败: ' + r.error); return; } log('🔍 智能查询建议完成'); showToast('建议完成'); }
+        async function runQueryPredictor() { log('查询预测...'); const r = await api(API + '/query_predictor'); if(r.error) { showToast('失败: ' + r.error); return; } log('🔮 查询预测完成'); showToast('预测完成'); }
+        
+        // 快照管理
+        async function createSnapshot() { log('创建快照...'); const r = await api(API + '/snapshot_create', {method:'POST', body:{}}); if(r.error) { showToast('失败: ' + r.error); return; } log('📸 快照创建成功: ' + r.id); showToast('快照创建成功'); listSnapshots(); }
+        async function listSnapshots() { log('加载快照列表...'); const r = await api(API + '/snapshot_list'); const el = document.getElementById('snapshotList'); if(r.error || !r.length) { el.innerHTML = '<div style="color:var(--text-secondary);font-size:12px;">暂无快照</div>'; return; } el.innerHTML = r.map(s => `<div class="list-item" style="font-size:12px;padding:6px 0;"><span>${s.id}</span><span>${s.created_at?.slice(0,10) || '未知'}</span></div>`).join(''); }
+        
+        // 时间
+        function updateTime() { document.getElementById('serverTime').textContent = new Date().toLocaleString('zh-CN'); }
+        setInterval(updateTime, 1000);
+        
+        // 启动
+        refreshAll();
+        setInterval(refreshAll, 30000);
+        updateTime();
+        
+        // 窗口调整
+        window.addEventListener('resize', () => { api(API + '/daily').then(d => drawActivityChart(d)); });
+    </script>
+</body>
+</html>

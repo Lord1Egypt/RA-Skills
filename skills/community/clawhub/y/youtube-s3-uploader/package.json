@@ -1,0 +1,43 @@
+{
+  "name": "youtube-s3-uploader",
+  "version": "3.0.5",
+  "description": "Download videos from YouTube, Twitter/X, TikTok, Douyin, Bilibili and upload to S3-compatible storage. Universal video downloader with smart quality selection and audio merging.",
+  "main": "index.js",
+  "bin": {
+    "youtube-s3-upload": "./index.js",
+    "video-s3-upload": "scripts/video-to-s3-universal.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node scripts/test-s3-connection-full.js",
+    "youtube-to-s3": "node scripts/youtube-to-s3.js",
+    "upload-video": "node scripts/upload-video-to-s3.js"
+  },
+  "keywords": [
+    "youtube",
+    "s3",
+    "r2",
+    "cloudflare",
+    "aws",
+    "storage",
+    "upload",
+    "download",
+    "video"
+  ],
+  "author": "\u897f\u7c73\u9732 (Simeilu)",
+  "license": "MIT-0",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1016.0",
+    "js-yaml": "^4.1.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "index.js",
+    "SKILL.md",
+    "README.md",
+    "example-config.yml",
+    "scripts/*.js"
+  ]
+}

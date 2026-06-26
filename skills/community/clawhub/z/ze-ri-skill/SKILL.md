@@ -1,35 +1,31 @@
 ---
-name: "择日学技能"
-description: "择日学技能。支持查询吉日凶日、建除十二神、黄道黑道、神煞吉凶，提供婚嫁、开业、动土、出行等择日建议。"
-category: "other"
-source: "ClawHub"
-tags: [chinese-culture, divination, i-ching]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ze-ri-skill"
-sourceUrl: "https://clawhub.ai/skills/ze-ri-skill"
+name: ze-ri-skill
+description: 择日学技能。支持查询吉日凶日、建除十二神、黄道黑道、神煞吉凶，提供婚嫁、开业、动土、出行等择日建议。
+version: 2.0.0
+author: 天工长老
 ---
 
-# 择日学技能
+# 择日学技能 v2.0.0
 
-> 择日学技能。支持查询吉日凶日、建除十二神、黄道黑道、神煞吉凶，提供婚嫁、开业、动土、出行等择日建议。
+> "择吉避凶，顺天应时。"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ze-ri-skill`
-- **Source URL:** [https://clawhub.ai/skills/ze-ri-skill](https://clawhub.ai/skills/ze-ri-skill)
+## 功能
 
-## Overview
+- ✅ 建除十二神查询
+- ✅ 黄道黑道日查询
+- ✅ 神煞吉凶查询
+- ✅ 宜忌事项查询
+- ✅ 冲煞查询（冲生肖/煞方位）
+- ✅ 分类择日（婚嫁/开业/动土/出行等）
+- ✅ 吉日推荐（月度/年度）
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/ze-ri-skill
+python3 scripts/ze_ri.py --date "2026-04-15"
+python3 scripts/ze_ri.py --month "2026-04" --event "婚嫁"
 ```
+
+## 变更
+
+v2.0.0: 分类择日、吉日评分、神煞查询

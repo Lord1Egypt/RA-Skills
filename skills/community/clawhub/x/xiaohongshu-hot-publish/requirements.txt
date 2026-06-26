@@ -1,0 +1,25 @@
+# 小红书热点发布系统依赖包
+# 版本: 1.1.0
+
+# 核心依赖
+python>=3.8
+
+# 开发依赖（可选）
+# pytest>=7.0.0
+# black>=23.0.0
+# flake8>=6.0.0
+# mypy>=1.0.0
+
+# 运行依赖
+# 本项目使用标准库，无需额外安装包
+
+# 可选依赖（用于扩展功能）
+# requests>=2.31.0  # 如果需要网络请求功能
+# beautifulsoup4>=4.12.0  # 如果需要网页解析
+# pillow>=10.0.0  # 如果需要图片处理
+
+# 安装命令:
+# pip install -r requirements.txt
+
+# 开发环境安装:
+# pip install -r requirements-dev.txt  # 如果有的话

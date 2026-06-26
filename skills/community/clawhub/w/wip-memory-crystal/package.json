@@ -1,0 +1,78 @@
+{
+  "name": "@wipcomputer/memory-crystal",
+  "version": "0.7.38",
+  "description": "Sovereign memory system — local-first with ephemeral encrypted relay. Your memory, your machine, your rules.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wipcomputer/memory-crystal-private.git"
+  },
+  "type": "module",
+  "main": "dist/core.js",
+  "openclaw": {
+    "extensions": [
+      "./dist/openclaw.js"
+    ]
+  },
+  "bin": {
+    "crystal": "dist/cli.js",
+    "crystal-mcp": "dist/mcp-server.js"
+  },
+  "files": [
+    "dist/",
+    "scripts/crystal-capture.sh",
+    "scripts/deploy-cloud.sh",
+    "scripts/migrate-lance-to-sqlite.mjs",
+    "skills/",
+    "migrations/",
+    "cloud/",
+    "openclaw.plugin.json",
+    "SKILL.md",
+    "TECHNICAL.md",
+    "README.md",
+    "LICENSE",
+    "CLA.md"
+  ],
+  "scripts": {
+    "prepublishOnly": "npm run build && npm run validate:bin-manifest",
+    "validate:bin-manifest": "node scripts/validate-bin-manifest.mjs",
+    "build": "tsup src/core.ts src/cli.ts src/mcp-server.ts src/openclaw.ts src/migrate.ts src/cc-hook.ts src/cc-poller.ts src/crypto.ts src/pair.ts src/poller.ts src/mirror-sync.ts src/file-sync.ts src/ldm.ts src/summarize.ts src/role.ts src/doctor.ts src/bridge.ts src/discover.ts src/bulk-copy.ts src/oc-backfill.ts src/dream-weaver.ts src/crystal-serve.ts src/staging.ts src/installer.ts --format esm --dts --outDir dist --no-splitting --clean && tsup src/worker.ts --format esm --outDir dist --no-dts --no-splitting && cp scripts/crystal-capture.sh dist/",
+    "build:local": "tsup src/core.ts src/cli.ts src/mcp-server.ts src/openclaw.ts src/migrate.ts src/cc-hook.ts src/cc-poller.ts src/crypto.ts src/pair.ts src/poller.ts src/mirror-sync.ts src/file-sync.ts src/ldm.ts src/summarize.ts src/role.ts src/doctor.ts src/bridge.ts src/discover.ts src/bulk-copy.ts src/oc-backfill.ts src/dream-weaver.ts src/crystal-serve.ts src/staging.ts src/installer.ts --format esm --dts --outDir dist --no-splitting --clean",
+    "build:worker": "tsup src/worker.ts --format esm --outDir dist --no-dts",
+    "build:cloud": "tsup src/worker-mcp.ts src/cloud-crystal.ts --format esm --outDir dist --no-dts",
+    "deploy:cloud": "bash -c 'git diff --quiet HEAD -- src/ wrangler-mcp.toml || (echo \"ERROR: uncommitted changes. commit before deploying.\" && exit 1)' && wrangler deploy --config wrangler-mcp.toml",
+    "build:demo": "tsup src/worker-demo.ts --format esm --outDir dist --no-dts",
+    "dev:demo": "wrangler dev --config wrangler-demo.toml",
+    "deploy:demo": "bash -c 'git diff --quiet HEAD -- src/ wrangler-demo.toml || (echo \"ERROR: uncommitted changes. commit before deploying.\" && exit 1)' && wrangler deploy --config wrangler-demo.toml",
+    "dev": "tsup src/core.ts src/cli.ts src/mcp-server.ts src/openclaw.ts src/migrate.ts src/cc-hook.ts src/crypto.ts --format esm --watch --outDir dist",
+    "check": "node dist/cli.js status",
+    "search": "node dist/cli.js search",
+    "migrate": "node dist/migrate.js",
+    "cloud:dev": "cd cloud && npx wrangler dev",
+    "cloud:deploy": "cd cloud && npx wrangler deploy",
+    "cloud:db:migrate": "cd cloud && npx wrangler d1 migrations apply memory-crystal-cloud --local",
+    "cloud:db:migrate:remote": "cd cloud && npx wrangler d1 migrations apply memory-crystal-cloud --remote"
+  },
+  "dependencies": {
+    "dream-weaver-protocol": "file:../dream-weaver-protocol-private",
+    "@lancedb/lancedb": "^0.15.0",
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "agents": "^0.7.2",
+    "apache-arrow": "^18.1.0",
+    "better-sqlite3": "^11.8.1",
+    "qrcode-terminal": "^0.12.0",
+    "sqlite-vec": "^0.1.7-alpha.2",
+    "zod": "^4.3.6"
+  },
+  "optionalDependencies": {
+    "sqlite-vec-darwin-arm64": "^0.1.7-alpha.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260228.1",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.0.0",
+    "@types/qrcode-terminal": "^0.12.2",
+    "tsup": "^8.0.0",
+    "typescript": "^5.7.0",
+    "wrangler": "^3.95.0"
+  }
+}

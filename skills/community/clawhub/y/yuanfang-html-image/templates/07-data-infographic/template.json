@@ -1,0 +1,7 @@
+{
+  "name": "数据信息",
+  "description": "数据卡片+进度条+线图装饰，适合排名/数据报告",
+  "colors": { "background": "#F8FAFC", "text": "#0F172A", "accent": "#10B981", "secondary": "#64748B" },
+  "fonts": { "title": "\"PingFang SC\",\"Microsoft YaHei\",-apple-system,sans-serif", "body": "\"PingFang SC\",\"Microsoft YaHei\",-apple-system,sans-serif" },
+  "layout": { "titleSizeVertical": "110px", "titleSizeSquare": "88px", "titleSizeWide": "70px", "titleSizeCover": "56px", "contentSize": "34px" }
+}

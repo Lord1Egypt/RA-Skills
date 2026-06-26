@@ -1,0 +1,103 @@
+# ============================================================
+# 企微 Agent Ops Center v2.3 - 配置文件
+# 安装后只需填写 wecom 段的 bot_id 和 bot_secret
+# ============================================================
+
+# --- 企微智能机器人凭证（必填）---
+wecom:
+  bot_id: "你的BotID"
+  bot_secret: "你的BotSecret"
+  # 高级选项（一般无需修改）
+  ws_url: "wss://openws.work.weixin.qq.com"  # WebSocket 端点
+  ping_interval: 30     # 心跳间隔（秒）
+  reconnect_max: 10     # 最大重连次数（-1 = 无限）
+
+# --- 外部 Agent 端点（消息转发目标，必填）---
+agent:
+  endpoint: "http://localhost:3001/chat"  # 你的 Agent 接收消息的 URL
+  timeout: 30           # Agent 响应超时（秒）
+  retry: 3              # Agent 调用失败重试次数
+
+# --- 本地 Connector 设置 ---
+connector:
+  host: "127.0.0.1"
+  port: 9527            # Connector 本地管理端口（测试用，避免和旧进程冲突）
+  log_level: "INFO"     # DEBUG / INFO / WARN / ERROR
+  log_file: ""          # 留空 = stdout；填路径 = 写文件
+
+# --- 云端消息转换 API（核心 IP 保护）---
+# 已合并到 pairing-server :19527，只需一个端口
+# 使用域名（需服务器配置 Nginx + SSL）
+converter:
+  enabled: true                                  # true = 云端转换（推荐）；false = 本地转换
+  api_base: "https://www.hermesai.ltd"                    # 合并后地址（Nginx 反向代理 + SSL）
+  api_key: "你的API密钥"  # 云端 API Key（勿泄露）
+
+# --- P2P 设置（跨组织 Agent 通信）---
+p2p:
+  enabled: false                        # 是否启用 P2P（部署配对服务器后改为 true）
+  signaling_server: "https://www.hermesai.ltd"  # 配对服务器地址（需公网可达）
+  p2p_host: ""                          # 本机 P2P 对外 IP（留空自动检测）
+  p2p_port: 19528                       # 本机 P2P 入站端口（接收对方直连消息）
+
+# --- Agent 监控与通知（L2 企微 Agent Ops Center）---
+monitor:
+  enabled: true                         # 是否启用 Agent 监控
+  heartbeat_interval: 30                # 心跳间隔（秒）
+  health_timeout: 5                     # 健康检查超时（秒）
+  offline_threshold: 3                  # 连续失败多少次标记为 offline
+  alert_cooldown: 300                   # 告警冷却时间（秒）
+  state_file: "./data/agent_states.json" # 状态持久化
+  notify_chatid: ""                     # 告警推送群 chatid
+  # 旧版 Agent 列表（v2.0 兼容，自动映射为 generic 适配器）
+  agents:
+    - id: "my-agent"
+      name: "我的AI助手"
+      endpoint: "http://localhost:3001/health"
+
+# --- v2.2 资源监控配置 ---
+resources:
+  thresholds:
+    cpu: 80           # CPU 使用率告警阈值 (%)
+    memory: 90        # 内存使用率告警阈值 (%)
+    queue_depth: 10    # 任务队列深度告警阈值
+    disk: 90          # 磁盘使用率告警阈值 (%)
+  alert_cooldown: 600 # 同类型告警冷却时间（秒）
+  max_history: 1440   # 每个 Agent 最大资源快照数（约24h分钟级数据）
+
+# --- v2.1 适配器配置（推荐使用，替代 monitor.agents）---
+# 支持类型: generic | workbuddy | openclaw | adp-claw | adp-multi | clawpro | a2a
+adapters:
+  # WorkBuddy 适配器
+  - id: "workbuddy-1"
+    type: "workbuddy"
+    agent:
+      id: "workbuddy-main"
+      name: "WorkBuddy 桌面"
+      endpoint: "http://localhost:9527"
+      version: "2.1.0"
+    # apiKey: "${WORKBUDDY_API_KEY}"  # 从环境变量读取
+    options:
+      healthInterval: 30000
+      resourceInterval: 60000
+
+  # OpenClaw 适配器
+  - id: "openclaw-1"
+    type: "openclaw"
+    agent:
+      id: "openclaw-instance-1"
+      name: "OpenClaw 自建实例"
+      endpoint: "http://localhost:8080"
+      selfHosted: true
+      version: "2.1.0"
+    options:
+      healthInterval: 20000
+      resourceInterval: 30000
+      versionCheck: true
+
+# --- v2.3 审计日志配置 ---
+audit:
+  enabled: true           # 是否启用审计日志
+  max_age_days: 7         # 审计记录保留天数
+  auto_log_from_task: true # 任务完成/失败时自动生成审计记录
+  push_to_wecom: true      # 审计摘要推送到企微群

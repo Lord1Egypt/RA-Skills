@@ -1,0 +1,307 @@
+{
+  "version": "2.0.0",
+  "architecture": {
+    "pattern": "master-worker",
+    "description": "电商总监作为协调者，分发任务给专业角色"
+  },
+  "coordinator": {
+    "id": "ecom-director",
+    "name": "电商总监",
+    "role": "任务协调与分发",
+    "responsibilities": [
+      "理解用户需求",
+      "分解复杂任务",
+      "分发给专业角色",
+      "整合分析结果",
+      "策略建议输出"
+    ],
+    "tools": {
+      "allowlist": [
+        "read", "write", "web_search", "web_fetch",
+        "browser", "memory_search", "message"
+      ]
+    }
+  },
+  "agents": {
+    "product-researcher": {
+      "name": "选品专家",
+      "role": "选品分析、爆款挖掘、趋势追踪",
+      "icon": "🔍",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["web_search", "web_fetch", "browser", "read", "write"]
+      },
+      "capabilities": [
+        "多平台数据分析",
+        "BSR 排名趋势追踪",
+        "销量预估模型",
+        "小红书/TikTok热度分析",
+        "利润计算"
+      ],
+      "scripts": ["product_research.py"]
+    },
+    "operations-specialist": {
+      "name": "运营专员",
+      "role": "店铺运营、数据分析、活动策划",
+      "icon": "📊",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "web_search", "cron"]
+      },
+      "capabilities": [
+        "店铺数据监控",
+        "流量来源分析",
+        "转化率优化",
+        "活动策划执行"
+      ]
+    },
+    "pricing-specialist": {
+      "name": "定价专员",
+      "role": "价格策略、利润计算、竞品定价追踪",
+      "icon": "💵",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "web_search", "exec"]
+      },
+      "capabilities": [
+        "动态定价策略",
+        "利润率计算",
+        "竞品价格监控",
+        "促销价格规划"
+      ],
+      "scripts": ["product_research.py"]
+    },
+    "customer-service": {
+      "name": "客服专员",
+      "role": "客户服务、投诉处理、评价管理",
+      "icon": "💬",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "message", "web_search"]
+      },
+      "capabilities": [
+        "智能回复模板",
+        "投诉处理流程",
+        "FAQ生成",
+        "评价监控回复"
+      ]
+    },
+    "data-analyst": {
+      "name": "数据分析师",
+      "role": "数据采集、报表生成、趋势预测",
+      "icon": "📈",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "web_search", "exec", "canvas"]
+      },
+      "capabilities": [
+        "多源数据整合",
+        "自动化报表",
+        "趋势预测模型",
+        "异常检测预警"
+      ]
+    },
+    "competitor-analyst": {
+      "name": "竞品分析师",
+      "role": "竞品监控、差异化分析、策略建议",
+      "icon": "🎯",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "web_search", "web_fetch", "browser"]
+      },
+      "capabilities": [
+        "竞品价格追踪",
+        "差评痛点挖掘",
+        "BSR监控",
+        "差异化策略"
+      ],
+      "scripts": ["competitor_monitor.py"]
+    },
+    "content-creator": {
+      "name": "内容创作者",
+      "role": "商品文案、Listing生成、SEO优化",
+      "icon": "✍️",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "web_search", "memory_search"]
+      },
+      "capabilities": [
+        "Listing标题生成",
+        "五点描述优化",
+        "SEO关键词埋词",
+        "详情页文案"
+      ],
+      "scripts": ["listing_generator.py"]
+    },
+    "ad-specialist": {
+      "name": "投放专员",
+      "role": "广告投放、ROI优化、预算管理",
+      "icon": "📢",
+      "model": {
+        "primary": "bailian/glm-5"
+      },
+      "tools": {
+        "allowlist": ["read", "write", "web_search", "exec"]
+      },
+      "capabilities": [
+        "多平台广告投放",
+        "ROI实时监控",
+        "预算分配优化",
+        "投放效果分析"
+      ]
+    }
+  },
+  "workflows": {
+    "product_selection": {
+      "name": "选品分析流程",
+      "steps": [
+        {
+          "id": "trend_analysis",
+          "agent": "product-researcher",
+          "action": "analyze_trends"
+        },
+        {
+          "id": "data_validation",
+          "agent": "data-analyst",
+          "action": "validate_data"
+        },
+        {
+          "id": "competitor_check",
+          "agent": "competitor-analyst",
+          "parallel": true,
+          "action": "analyze_competition"
+        },
+        {
+          "id": "profit_calc",
+          "agent": "pricing-specialist",
+          "action": "calculate_profit"
+        },
+        {
+          "id": "report",
+          "agent": "ecom-director",
+          "action": "generate_report"
+        }
+      ]
+    },
+    "listing_creation": {
+      "name": "Listing生成流程",
+      "steps": [
+        {
+          "id": "keyword_research",
+          "agent": "content-creator",
+          "action": "research_keywords"
+        },
+        {
+          "id": "generate_title",
+          "agent": "content-creator",
+          "action": "create_title"
+        },
+        {
+          "id": "generate_bullets",
+          "agent": "content-creator",
+          "action": "create_bullets"
+        },
+        {
+          "id": "generate_description",
+          "agent": "content-creator",
+          "action": "create_description"
+        },
+        {
+          "id": "compliance_check",
+          "agent": "content-creator",
+          "action": "check_compliance"
+        }
+      ]
+    },
+    "competitor_monitoring": {
+      "name": "竞品监控流程",
+      "steps": [
+        {
+          "id": "fetch_data",
+          "agent": "competitor-analyst",
+          "action": "fetch_competitor_data"
+        },
+        {
+          "id": "analyze_reviews",
+          "agent": "competitor-analyst",
+          "action": "analyze_reviews"
+        },
+        {
+          "id": "price_alert",
+          "agent": "pricing-specialist",
+          "condition": "${price_change} > 0.1",
+          "action": "generate_alert"
+        },
+        {
+          "id": "report",
+          "agent": "ecom-director",
+          "action": "generate_report"
+        }
+      ]
+    }
+  },
+  "data_sources": {
+    "domestic": {
+      "taobao": "淘宝热销数据",
+      "jd": "京东品牌分析",
+      "pdd": "拼多多价格监控",
+      "douyin": "抖音直播数据"
+    },
+    "cross_border": {
+      "amazon": "Amazon BSR/价格/评论",
+      "tiktok_shop": "TikTok Shop热度",
+      "shopee": "东南亚市场",
+      "lazada": "价格对比"
+    },
+    "social": {
+      "xiaohongshu": "小红书笔记/种草",
+      "tiktok": "TikTok视频热度",
+      "douyin": "抖音带货数据"
+    }
+  },
+  "bsr_sales_model": {
+    "description": "BSR转销量估算模型",
+    "ranges": [
+      {"bsr_range": "1-100", "monthly_sales": "2000-5000"},
+      {"bsr_range": "101-500", "monthly_sales": "1000-2000"},
+      {"bsr_range": "501-1000", "monthly_sales": "500-1000"},
+      {"bsr_range": "1001-5000", "monthly_sales": "200-500"},
+      {"bsr_range": "5001-10000", "monthly_sales": "100-200"},
+      {"bsr_range": "10001-20000", "monthly_sales": "50-100"},
+      {"bsr_range": "20001+", "monthly_sales": "10-50"}
+    ]
+  },
+  "profit_model": {
+    "amazon_us": {
+      "commission_rate": 0.15,
+      "fba_base_fee": 2.5,
+      "fba_per_lb": 0.5,
+      "ad_rate_range": "0.10-0.20"
+    },
+    "shipping": {
+      "air_freight": "3-6 USD/kg",
+      "sea_freight": "1-2 USD/kg"
+    }
+  },
+  "settings": {
+    "default_platform": "amazon_us",
+    "default_mode": "cross_border",
+    "price_alert_threshold": 0.1,
+    "bsr_check_frequency": "daily",
+    "review_analysis_limit": 100
+  }
+}

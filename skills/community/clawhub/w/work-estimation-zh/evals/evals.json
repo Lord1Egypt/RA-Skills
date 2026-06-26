@@ -1,0 +1,41 @@
+[
+  {
+    "id": "eval-001",
+    "name": "电商小程序工时评估",
+    "input": {
+      "requirements": "开发一个电商小程序，包括用户登录、商品展示、购物车、订单支付功能"
+    },
+    "expected": {
+      "modules_count": 5,
+      "has_overview": true,
+      "has_gantt": true,
+      "has_risks": true,
+      "has_coordination": true,
+      "dimensions": ["需求分析", "设计", "前端", "后台", "算法", "测试"]
+    }
+  },
+  {
+    "id": "eval-002",
+    "name": "企业内部管理系统评估",
+    "input": {
+      "requirements": "开发企业内部OA系统，包含审批流程、考勤管理、公告发布三个模块"
+    },
+    "expected": {
+      "modules_count": 3,
+      "has_overview": true,
+      "has_gantt": true
+    }
+  },
+  {
+    "id": "eval-003",
+    "name": "AI推荐系统评估",
+    "input": {
+      "requirements": "开发一个内容推荐系统，包括用户画像、推荐算法、前端展示三大块"
+    },
+    "expected": {
+      "modules_count": 3,
+      "has_algorithm_sheet": true,
+      "algorithm_hours_defined": true
+    }
+  }
+]

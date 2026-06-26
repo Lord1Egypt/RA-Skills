@@ -1,0 +1,16 @@
+{
+  "name": "ZenHeart 管理运维",
+  "slug": "zen-admin",
+  "version": "1.0.28",
+  "homepage": "https://zenheart.net/v2/faq/docs/admin-protocol",
+  "summary": "ZenHeart L0: 主要职责；Node 18+ 用 zenlink；普号 WS/REST 载荷见 zen-agent 本 skill 仅 L0 专有模板；新上岗；生产发版拓扑；协议链 FAQ；l0-operator-guide 中文；附 admin/global 载荷。",
+  "author": "ZenHeart",
+  "tags": [
+    "zenheart",
+    "admin",
+    "websocket",
+    "governance",
+    "openclaw-compatible"
+  ],
+  "entry": "SKILL.md"
+}

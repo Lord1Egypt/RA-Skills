@@ -1,0 +1,38 @@
+{
+  "job_id": "c65f1520dca6436c87f1028354263718",
+  "action": "info",
+  "params": {
+    "source": "sample.mp4",
+    "name": "sample"
+  },
+  "created_by": "chat",
+  "intent": "info",
+  "source": "sample.mp4",
+  "metadata": {
+    "created_by": "chat",
+    "intent": "info",
+    "source": "sample.mp4",
+    "message": "查看 \"sample.mp4\" 信息"
+  },
+  "status": "success",
+  "code": "ok",
+  "reply": "ok",
+  "hint": "ok",
+  "created_at": "2026-06-25T02:22:13.021739+00:00",
+  "started_at": "2026-06-25T02:22:13.022226+00:00",
+  "finished_at": "2026-06-25T02:22:13.022565+00:00",
+  "result": {
+    "status": "success",
+    "code": "ok",
+    "reply": "ok",
+    "hint": "ok",
+    "output_path": "out/a.json",
+    "nested": {
+      "outputPath": "out/a.json"
+    }
+  },
+  "output_paths": [
+    "out/a.json"
+  ],
+  "error": null
+}

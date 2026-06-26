@@ -1,35 +1,119 @@
 ---
-name: "File Indexer Publish"
-description: "智能文件索引与检索系统 - 自动监控文件变化，快速查找代码文件、脚本和技能。支持关键词搜索、意图推荐、文件统计。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zgbin-file-indexer"
-sourceUrl: "https://clawhub.ai/skills/zgbin-file-indexer"
+name: file-indexer
+description: 智能文件索引与检索系统 - 自动监控文件变化，快速查找代码文件、脚本和技能。支持关键词搜索、意图推荐、文件统计。
+Use when: 用户请求查找文件、搜索代码、定位脚本、询问"有没有 XXX 功能的代码"。
+NOT for: 文件内容编辑、代码编写、文件删除操作。
 ---
 
-# File Indexer Publish
+# File Indexer - 智能文件索引与检索
 
-> 智能文件索引与检索系统 - 自动监控文件变化，快速查找代码文件、脚本和技能。支持关键词搜索、意图推荐、文件统计。
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zgbin-file-indexer`
-- **Source URL:** [https://clawhub.ai/skills/zgbin-file-indexer](https://clawhub.ai/skills/zgbin-file-indexer)
+- **自动索引**: 实时监控文件变化，自动记录新建、修改、删除的文件
+- **快速搜索**: 根据文件名、内容摘要、描述等关键词查找
+- **意图理解**: 根据功能描述（如"加密"、"网络"）推荐相关文件
+- **实时同步**: 通过文件系统监控实时更新索引
+- **Agent 集成**: 可作为工具被其他 agent 自动调用
 
-## Overview
+## 使用场景
 
+### 1. 查找特定功能的代码
+用户："帮我找一下加密相关的代码文件"
+→ 自动搜索并返回 SM1 算法库等文件
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zgbin-file-indexer
+### 2. 发现相关脚本
+用户："有没有处理 CSV 的脚本？"
+→ 返回所有 CSV 处理相关的脚本
+
+### 3. 定位文件位置
+用户："我之前写过一个 SM1 加密算法，在哪里？"
+→ 返回文件路径和说明
+
+### 4. 项目文件管理
+用户："扫描一下我的工作区，看看有哪些新文件"
+→ 自动扫描并更新索引
+
+## 技术实现
+
+- **语言**: Python 3
+- **数据库**: SQLite3 (file_index.db)
+- **监控方式**: watchdog (实时) 或 轮询 (降级模式)
+- **索引字段**: 路径、文件名、类型、描述、内容摘要、标签、创建/修改时间
+- **搜索算法**: 关键词匹配 + 意图相似度评分
+
+## 包含文件
+
 ```
+file-indexer/
+├── indexer.py       # 核心索引管理模块
+├── searcher.py      # 文件搜索模块
+├── watcher.py       # 文件监控模块
+├── hook_handler.py  # Agent Hook 处理器
+├── __main__.py      # 主程序入口
+├── file_index.db    # SQLite 数据库 (自动创建)
+└── README.md        # 完整使用文档
+```
+
+## 安装与使用
+
+### 方式 1: 作为 OpenClaw 技能自动使用
+
+安装后，当用户说"找文件"、"搜索"、"帮我找一下 XXX"时，Agent 会自动调用此技能。
+
+### 方式 2: 命令行手动使用
+
+```bash
+# 查看统计
+python3 __main__.py stats
+
+# 搜索文件
+python3 __main__.py search "关键词"
+
+# 意图推荐
+python3 __main__.py intent "功能描述"
+
+# 添加文件到索引
+python3 __main__.py add /path/to/file
+
+# 扫描目录
+python3 __main__.py scan /dir/path
+
+# 标记删除
+python3 __main__.py delete /path/to/file
+```
+
+## 配置说明
+
+- **工作空间**: `/home/t/cc_workspace/file_indexer/`
+- **数据库路径**: `file_index.db` (自动创建)
+- **监控目录**:
+  - `/home/t/.openclaw/workspace/`
+  - `/home/t/cc_workspace/`
+  - 可自定义添加更多目录
+
+## 依赖要求
+
+- Python 3.8+
+- SQLite3 (Python 内置)
+- watchdog (可选，用于实时监控)
+
+## 注意事项
+
+1. **首次使用**: 需要扫描目录建立初始索引
+2. **性能**: 索引文件越多，搜索速度越快（使用 SQLite 全文索引）
+3. **自动监控**: 如未安装 watchdog，会降级为轮询模式（每分钟检查一次）
+4. **数据安全**: 所有索引数据存储在本地 SQLite 数据库，不上传云端
+
+## 最佳实践
+
+1. **定期扫描**: 使用 `scan` 命令确保索引最新
+2. **清理删除**: 使用 `delete` 标记删除的文件，保持索引准确
+3. **意图查询**: 优先使用 `intent` 而非 `search`，获得更精准的结果
+4. **批量操作**: 扫描整个项目目录比逐个添加文件更高效
+
+---
+
+**版本**: 1.0.0  
+**作者**: OpenClaw Agent  
+**许可证**: MIT  
+**适用场景**: 个人项目、团队协作、企业知识库管理

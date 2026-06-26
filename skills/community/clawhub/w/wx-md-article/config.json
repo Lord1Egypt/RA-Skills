@@ -1,0 +1,20 @@
+{
+  "appid": "wx5ef520c59474d914",
+  "appsecret": "a0784a1b1ade054bcbfc66f3a85db09f",
+  "default_author": "超哥",
+  "default_thumb_media_id": "4rmxDxsCcj2EzBow8i05RmXGlpLHAdlIFfmQZ_QfAt0gVgZU1uH8SXXptfdZUtor",
+  "style": {
+    "primary_color": "#07c160",
+    "text_color": "#333",
+    "secondary_text": "#666",
+    "light_bg": "#f8f9fa",
+    "border_color": "#eee"
+  },
+  "formatting_rules": {
+    "heading_style": "green_left_border",
+    "text_color": "black",
+    "emphasis_style": "bold_only",
+    "use_emoji": false,
+    "max_colors": 2
+  }
+}

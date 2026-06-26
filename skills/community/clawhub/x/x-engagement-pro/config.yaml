@@ -1,0 +1,51 @@
+# X Engagement Pro Configuration
+
+# ============================================
+# FREE TIER CONFIG
+# ============================================
+# Limits: 5 accounts, 5 keywords, 10 posts/day
+# No auto-post, no analytics, no Aligned News
+
+targetAccounts:
+  - "example_artist"
+
+keywords:
+  - "firefly"
+  - "AI art"
+
+engagementMode: "manual"  # manual, amplify, all
+
+autoPost: false
+
+contentMix:
+  ownWork: 30
+  othersWork: 20
+  insights: 25
+  engagement: 15
+  opinion: 10
+
+brandVoice:
+  tone: "direct"
+  emoji: false
+  firstPerson: true
+  noHype: true
+
+# ============================================
+# PRO TIER CONFIG ($9.99/month)
+# ============================================
+# Unlimited accounts, keywords, posts
+# Auto-post, analytics, Aligned News
+
+# Uncomment to enable Pro features:
+# proMode: true
+# alignedNewsApiKey: "alnw_your_key"
+# analyticsEnabled: true
+# autoPost: true
+# maxPostsPerDay: unlimited
+
+# Analytics (Pro only)
+# analytics:
+#   trackEngagement: true
+#   trackFollowers: true
+#   trackMentions: true
+#   weeklyReport: true

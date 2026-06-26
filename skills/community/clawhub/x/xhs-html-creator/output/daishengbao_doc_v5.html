@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1350">
+<title>证件物品篇 v5</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1350px; background: #FFF5EE; font-family: 'Noto Sans SC', sans-serif; overflow: hidden; position: relative; }
+.bg-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(200,120,60,0.05) 28px, rgba(200,120,60,0.05) 29px); }
+.tape { position: absolute; width: 150px; height: 36px; background: rgba(255,220,150,0.85); transform: rotate(-2deg); box-shadow: 0 2px 5px rgba(0,0,0,0.12); }
+.tape-1 { top: 18px; left: 28px; }
+.tape-2 { top: 18px; right: 28px; transform: rotate(2deg); }
+.header-bar { position: absolute; top: 0; left: 0; right: 0; height: 130px; background: linear-gradient(135deg, #D4853D, #B86A2E); display: flex; align-items: center; justify-content: center; }
+.header-bar h1 { font-size: 64px; color: white; font-weight: 900; letter-spacing: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+.page-num { position: absolute; top: 140px; right: 50px; font-size: 28px; color: #B86A2E; font-weight: 900; }
+.content-area { position: absolute; top: 148px; left: 40px; right: 40px; }
+.item-row { display: flex; align-items: center; margin-bottom: 14px; background: #FFFDF5; border-radius: 16px; padding: 16px 22px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+.item-num { min-width: 52px; height: 52px; background: #D4853D; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 900; margin-right: 20px; flex-shrink: 0; }
+.item-name { font-size: 38px; font-weight: 900; color: #1A1A1A; }
+.item-desc { font-size: 24px; color: #4A4A4A; line-height: 1.5; margin-top: 4px; }
+.tag { display: inline-block; background: #E84040; color: white; font-size: 20px; font-weight: bold; padding: 4px 14px; border-radius: 8px; margin-top: 6px; }
+.item-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.bottom-tip { position: absolute; bottom: 40px; left: 40px; right: 40px; background: #FFF9E0; border: 4px dashed #D4A574; border-radius: 16px; padding: 20px 28px; font-size: 26px; color: #8B6914; font-weight: bold; text-align: center; line-height: 1.7; }
+</style>
+</head>
+<body>
+<div class="bg-texture"></div>
+<div class="tape tape-1"></div>
+<div class="tape tape-2"></div>
+<div class="header-bar"><h1>📋 证件物品篇</h1></div>
+<div class="page-num">5项必备</div>
+
+<div class="content-area">
+  <div class="item-row">
+    <div class="item-num">1</div>
+    <div style="flex:1">
+      <div class="item-name">身份证（夫妻双方）</div>
+      <div class="item-desc">最好用保鲜袋装，防止墨迹脱落</div>
+    </div>
+    <div class="item-right">
+      <div class="tag">必带</div>
+    </div>
+  </div>
+
+  <div class="item-row">
+    <div class="item-num">2</div>
+    <div style="flex:1">
+      <div class="item-name">医保卡 / 挂号卡</div>
+      <div class="item-desc">顺产可报销，剖腹产必须带</div>
+    </div>
+    <div class="item-right">
+      <div class="tag">必带</div>
+    </div>
+  </div>
+
+  <div class="item-row">
+    <div class="item-num">3</div>
+    <div style="flex:1">
+      <div class="item-name">产检本（母子健康手册）</div>
+      <div class="item-desc">所有孕检记录全在里面，医生必看</div>
+    </div>
+    <div class="item-right">
+      <div class="tag">必带</div>
+    </div>
+  </div>
+
+  <div class="item-row">
+    <div class="item-num">4</div>
+    <div style="flex:1">
+      <div class="item-name">生育登记证明</div>
+      <div class="item-desc">顺产住院时登记用，回病房后补也来得及</div>
+    </div>
+    <div class="item-right">
+      <div class="tag" style="background:#B86A2E;">视情况</div>
+    </div>
+  </div>
+
+  <div class="item-row">
+    <div class="item-num">5</div>
+    <div style="flex:1">
+      <div class="item-name">银行卡 / 现金</div>
+      <div class="item-desc">住院押金常用刷卡，便民窗口可用现金</div>
+    </div>
+    <div class="item-right">
+      <div class="tag">必带</div>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-tip">💡 证件统一放档案袋，进产房前交给护士保管！</div>
+</body>
+</html>

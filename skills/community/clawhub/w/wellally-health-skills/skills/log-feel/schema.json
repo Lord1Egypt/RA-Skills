@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/health-feeling-log.json",
+  "title": "HealthFeelingLog",
+  "description": "健康感觉记录的数据结构定义",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "记录时间戳 (ISO 8601 格式)",
+      "examples": ["2026-02-03T10:30:00Z"]
+    },
+    "bodyPart": {
+      "type": "string",
+      "enum": [
+        "头部",
+        "颈部",
+        "肩部",
+        "背部",
+        "胸部",
+        "腹部",
+        "左腹",
+        "右腹",
+        "上腹",
+        "下腹",
+        "手臂",
+        "左手",
+        "右手",
+        "腿部",
+        "左腿",
+        "右腿",
+        "脚部",
+        "全身",
+        "其他"
+      ],
+      "description": "身体部位"
+    },
+    "symptom": {
+      "type": "string",
+      "description": "症状描述",
+      "minLength": 1,
+      "examples": ["肚子不舒服", "头痛", "恶心"]
+    },
+    "severity": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "严重程度 1(最轻)-10(最重)"
+    },
+    "painLevel": {
+      "type": "string",
+      "enum": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "description": "疼痛等级字符串"
+    },
+    "painType": {
+      "type": "string",
+      "enum": ["钝痛", "刺痛", "胀痛", "绞痛", "隐痛", "灼痛", "跳痛", "无"],
+      "description": "疼痛类型"
+    },
+    "duration": {
+      "type": "string",
+      "description": "持续时间",
+      "examples": ["2小时", "从昨天开始", "持续1天"]
+    },
+    "frequency": {
+      "type": "string",
+      "description": "发作频率",
+      "examples": ["持续", "间歇", "偶尔"]
+    },
+    "triggers": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "可能的诱因",
+      "examples": [["吃了生冷食物", "熬夜"]]
+    },
+    "reliefFactors": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "缓解因素",
+      "examples": [["休息后缓解", "热敷后好转"]]
+    },
+    "accompanyingSymptoms": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "伴随症状"
+    },
+    "notes": {
+      "type": "string",
+      "description": "额外备注"
+    },
+    "tags": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "标签",
+      "examples": [["疼痛", "腹部", "消化"]]
+    },
+    "mood": {
+      "type": "string",
+      "enum": ["正常", "焦虑", "烦躁", "低落", "平静"],
+      "description": "情绪状态"
+    },
+    "energyLevel": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "精力水平 1(很低)-5(很高)"
+    }
+  },
+  "required": ["timestamp", "symptom"],
+  "additionalProperties": false
+}

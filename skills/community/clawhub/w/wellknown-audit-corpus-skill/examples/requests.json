@@ -1,0 +1,28 @@
+{
+  "backend": "https://wellknown-audit-corpus.mtree.workers.dev",
+  "requests": [
+    {
+      "name": "readiness_report",
+      "method": "POST",
+      "path": "/v1/wellknowns/readiness_report",
+      "price": "$0.05 x402",
+      "body": {
+        "origin": "https://evm-tx-toolkit.mtree.workers.dev",
+        "include_evidence": true
+      }
+    },
+    {
+      "name": "compare",
+      "method": "POST",
+      "path": "/v1/wellknowns/compare",
+      "price": "$0.10 x402",
+      "body": {
+        "origins": [
+          "https://evm-tx-toolkit.mtree.workers.dev",
+          "https://agent-payment-error-corpus.mtree.workers.dev"
+        ],
+        "include_evidence": true
+      }
+    }
+  ]
+}

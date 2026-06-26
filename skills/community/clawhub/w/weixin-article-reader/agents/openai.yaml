@@ -1,0 +1,7 @@
+interface:
+  display_name: "Weixin Article Reader"
+  short_description: "Extract Weixin article text and metadata"
+  default_prompt: "Use $weixin-article-reader to extract the full content from this mp.weixin.qq.com article link."
+
+policy:
+  allow_implicit_invocation: true

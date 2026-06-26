@@ -1,0 +1,147 @@
+# Booking Workflow
+# Incoming "booking" intent → confirm → calendar check → confirmation
+
+steps:
+  - id: detect_intent
+    type: classifier
+    config:
+      prompt_ref: classifier_prompt
+      expected_intents: [booking, tour_inquiry, membership_inquiry]
+    on_match:
+      next: collect_details
+    on_mismatch:
+      next: route_to_appropriate
+
+  - id: collect_details
+    type: conversation
+    config:
+      questions:
+        - field: preferred_date
+          prompt: "What date works best for you?"
+          validation: date
+        - field: preferred_time
+          prompt: "What time would you prefer?"
+          validation: time
+        - field: contact_number
+          prompt: "Can I get your contact number to confirm?"
+          validation: phone_za
+    on_complete:
+      next: check_availability
+
+  - id: check_availability
+    type: calendar_check
+    config:
+      calendar_provider: google
+      slot_duration: 30
+      max_suggestions: 3
+    on_available:
+      next: propose_slots
+    on_unavailable:
+      next: suggest_alternatives
+
+  - id: propose_slots
+    type: send_message
+    config:
+      template: |
+        Great news {{customer_name}}! We have availability on {{preferred_date}}:
+
+        Available times:
+        {% for slot in available_slots %}
+        {{loop.index}}. {{slot.time}} ({{slot.duration}} min)
+        {% endfor %}
+
+        Which time works best for you?
+    on_reply:
+      next: confirm_booking
+
+  - id: suggest_alternatives
+    type: send_message
+    config:
+      template: |
+        Unfortunately {{preferred_date}} is fully booked. 😔
+
+        Here are the next available dates:
+        {% for alt in alternative_dates %}
+        {{loop.index}}. {{alt.date}} — {{alt.first_slot}}
+        {% endfor %}
+
+        Would any of these work for you?
+    on_reply:
+      next: propose_slots
+
+  - id: confirm_booking
+    type: calendar_create
+    config:
+      summary: "{{business_name}} — Booking: {{customer_name}}"
+      description: |
+        Customer: {{customer_name}}
+        Phone: {{contact_number}}
+        Source: WhatsApp
+      send_confirmation: true
+    on_success:
+      next: send_confirmation
+    on_failure:
+      next: escalate_to_human
+
+  - id: send_confirmation
+    type: send_message
+    config:
+      template: |
+        ✅ Confirmed! {{customer_name}}, you're booked for:
+
+        📅 {{preferred_date}}
+        🕐 {{preferred_time}}
+        📍 {{address}}
+
+        We'll send you a reminder closer to the time. See you soon! 🎉
+
+        Need to change or cancel? Just let me know.
+    on_complete:
+      next: save_lead
+
+  - id: save_lead
+    type: database
+    action: upsert
+    config:
+      table: leads
+      data:
+        name: "{{customer_name}}"
+        phone: "{{contact_number}}"
+        intent: booking
+        status: confirmed
+        booking_date: "{{preferred_date}}"
+        booking_time: "{{preferred_time}}"
+    on_complete:
+      next: schedule_follow_up
+
+  - id: schedule_follow_up
+    type: scheduler
+    config:
+      action: schedule
+      workflow: post_service_feedback
+      trigger:
+        delay_after_booking: 24h
+    on_complete:
+      end: true
+
+  - id: route_to_appropriate
+    type: router
+    config:
+      routing_table:
+        pricing_inquiry: pricing_workflow
+        hours: hours_workflow
+        complaint: complaint_workflow
+        lead: lead_workflow
+        general: general_reply
+      default: general_reply
+
+  - id: escalate_to_human
+    type: escalation
+    config:
+      channel: slack
+      message: |
+        🚨 *Booking Failed — Human Intervention Required*
+        Customer: {{customer_name}} ({{contact_number}})
+        Date: {{preferred_date}}
+        Error: Check logs for details
+      priority: high

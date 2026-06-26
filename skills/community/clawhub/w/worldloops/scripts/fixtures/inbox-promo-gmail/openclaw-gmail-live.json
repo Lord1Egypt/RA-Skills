@@ -1,0 +1,32 @@
+{
+  "messages": [
+    {
+      "id": "daily-brief-test-promo-001",
+      "threadId": "daily-brief-test-thread-promo-001",
+      "subject": "50% off this weekend only — limited offer!",
+      "from": "deals@shop.example.com",
+      "snippet": "Unsubscribe from this list. View in browser.",
+      "date": "2026-05-21T08:00:00.000Z",
+      "labelIds": ["INBOX"]
+    },
+    {
+      "id": "daily-brief-test-promo-002",
+      "threadId": "daily-brief-test-thread-promo-002",
+      "subject": "Your daily digest — top stories",
+      "from": "noreply@digest.example.com",
+      "snippet": "Here are today's top stories for you.",
+      "date": "2026-05-21T07:30:00.000Z",
+      "labelIds": ["INBOX"]
+    },
+    {
+      "id": "daily-brief-test-promo-003",
+      "threadId": "daily-brief-test-thread-promo-003",
+      "subject": "You earned 50 reward points",
+      "from": "rewards@points.example.com",
+      "snippet": "Check your rewards balance in the app.",
+      "date": "2026-05-21T07:00:00.000Z",
+      "labelIds": ["INBOX"]
+    }
+  ],
+  "count": 3
+}

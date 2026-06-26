@@ -1,0 +1,38 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 600
+  threshold: 0.75
+skill: weryai-video-generator
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use the weryai-video-generator skill to create a WeryAI text-to-video clip with the default Seedance 2.0 model and return the final playable video when ready."
+  - id: implicit-domain
+    should_trigger: true
+    prompt: "Animate this https://example.com/a.png with WeryAI image-to-video using bounded wait polling to final output."
+  - id: first-last-frame
+    should_trigger: true
+    prompt: "Generate a WeryAI video that transitions from this first frame to this last frame while keeping the same character."
+  - id: multi-image-storyboard
+    should_trigger: true
+    prompt: "Turn these storyboard frames into a WeryAI video and keep Seedance 2.0 unless I ask for another model."
+  - id: bounded-wait-timeout-fallback
+    should_trigger: true
+    prompt: "Use WeryAI video generator to wait for final output, but stop and return task ID if timeout is reached."
+  - id: negative-unbounded-poll-loop
+    should_trigger: false
+    prompt: "Use WeryAI video generator and poll forever with no timeout limit."
+  - id: negative-control
+    should_trigger: false
+    prompt: "Rewrite this Python module for PEP8 only."
+outcome_tests:
+  - id: package-layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "scripts/submit-text-video.js"
+  - id: optional-quality
+    type: llm_rubric
+    rubric: |
+      Correctly recognizes text, image, first/last-frame, and multi-image video intents; defaults to bounded wait polling in agent environments; applies timeout fallback with task tracking details and offer to check status internally; supports explicit submit-only and status-check flows; defaults to Seedance 2.0 with sensible video parameters; validates payloads; uses dry-run when appropriate; includes user-visible video delivery and key parameter summary when available; and never invents unsupported model fields.

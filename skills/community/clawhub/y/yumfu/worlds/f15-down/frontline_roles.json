@@ -1,0 +1,584 @@
+{
+  "frontline_roles": [
+    {
+      "id": "f15_pilot",
+      "name": "F-15 Fighter Pilot",
+      "name_zh": "F-15战斗机飞行员",
+      "category": "air_force",
+      "description": "Elite fighter pilot flying air superiority missions",
+      "description_zh": "驾驶制空战机的精英飞行员",
+      "starting_equipment": [
+        "F-15E Strike Eagle",
+        "AIM-120 AMRAAM missiles",
+        "Flight suit with emergency kit",
+        "Tactical radio"
+      ],
+      "special_abilities": [
+        "Air superiority combat",
+        "Precision strike missions",
+        "Electronic warfare",
+        "Aerial reconnaissance"
+      ],
+      "missions": [
+        "Escort bomber formations",
+        "Intercept enemy aircraft",
+        "Close air support for ground troops",
+        "SEAD (Suppression of Enemy Air Defenses)"
+      ],
+      "risk_level": "very_high",
+      "prestige": 95
+    },
+    {
+      "id": "a10_warthog_pilot",
+      "name": "A-10 Warthog Pilot",
+      "name_zh": "A-10疣猪攻击机飞行员",
+      "category": "air_force",
+      "description": "Close air support specialist, tank killer",
+      "description_zh": "近距空中支援专家，坦克杀手",
+      "starting_equipment": [
+        "A-10 Thunderbolt II",
+        "GAU-8 Avenger 30mm cannon",
+        "AGM-65 Maverick missiles",
+        "Armored cockpit"
+      ],
+      "special_abilities": [
+        "Tank hunting",
+        "Close air support",
+        "Low-altitude attack",
+        "Durable against ground fire"
+      ],
+      "missions": [
+        "Destroy enemy armor columns",
+        "Support ground troops under fire",
+        "Eliminate fortified positions",
+        "Convoy protection"
+      ],
+      "risk_level": "extreme",
+      "prestige": 90,
+      "nickname": "Tank Buster"
+    },
+    {
+      "id": "b2_spirit_pilot",
+      "name": "B-2 Spirit Stealth Bomber Pilot",
+      "name_zh": "B-2幽灵隐形轰炸机飞行员",
+      "category": "air_force",
+      "description": "Strategic stealth bomber pilot, ultimate first-strike weapon",
+      "description_zh": "战略隐形轰炸机飞行员，终极先发制人武器",
+      "starting_equipment": [
+        "B-2 Spirit",
+        "80,000 lbs bomb payload",
+        "GBU-57 Massive Ordnance Penetrator (30,000 lb bunker buster)",
+        "Advanced radar-absorbent coating",
+        "Two-person crew (pilot + mission commander)"
+      ],
+      "special_abilities": [
+        "Intercontinental range (6,000+ miles)",
+        "Nuclear weapons capable",
+        "Evade all known radar systems",
+        "Precision GPS-guided bombing",
+        "High-altitude strategic bombing"
+      ],
+      "missions": [
+        "Destroy hardened underground facilities",
+        "Decapitation strikes on enemy leadership",
+        "First-strike on strategic targets",
+        "Nuclear deterrence patrols",
+        "Disable enemy nuclear program facilities"
+      ],
+      "risk_level": "medium",
+      "prestige": 99,
+      "nickname": "Spirit of Death",
+      "cost_per_flight": "$150,000 per flight hour",
+      "unit_cost": "$2.2 billion per aircraft",
+      "moral_weight": "You can end a war in one night. Or start World War III.",
+      "political_sensitivity": "extreme",
+      "notes": "Only 21 B-2s exist. Each mission requires presidential approval for high-value targets."
+    },
+    {
+      "id": "stealth_bomber_pilot",
+      "name": "B-21 Stealth Bomber Pilot",
+      "name_zh": "B-21隐形轰炸机飞行员",
+      "category": "air_force",
+      "description": "Deep penetration strike specialist",
+      "description_zh": "深度打击专家",
+      "starting_equipment": [
+        "B-21 Raider",
+        "Bunker-buster bombs",
+        "Cruise missiles",
+        "Advanced stealth suite"
+      ],
+      "special_abilities": [
+        "Deep strike missions",
+        "Bunker penetration",
+        "Radar evasion",
+        "Strategic bombing"
+      ],
+      "missions": [
+        "Strike underground command bunkers",
+        "Destroy enemy leadership targets",
+        "Disable enemy infrastructure",
+        "Night precision strikes"
+      ],
+      "risk_level": "high",
+      "prestige": 98,
+      "nickname": "Ghost Rider"
+    },
+    {
+      "id": "drone_operator",
+      "name": "UAV Drone Operator",
+      "name_zh": "无人机操作员",
+      "category": "intelligence",
+      "description": "Remote pilot of Reaper and Predator drones",
+      "description_zh": "死神和捕食者无人机远程飞行员",
+      "starting_equipment": [
+        "MQ-9 Reaper drone",
+        "Ground control station",
+        "Hellfire missiles",
+        "Surveillance suite"
+      ],
+      "special_abilities": [
+        "24/7 persistent surveillance",
+        "Precision strike capability",
+        "Remote operation safety",
+        "Intelligence gathering"
+      ],
+      "missions": [
+        "Hunt high-value targets",
+        "Provide overwatch for ground teams",
+        "Strike terrorist hideouts",
+        "Border surveillance"
+      ],
+      "risk_level": "low_personal_high_moral",
+      "prestige": 70,
+      "moral_burden": "You see everything through the camera. Then you pull the trigger."
+    },
+    {
+      "id": "naval_captain",
+      "name": "Destroyer Captain",
+      "name_zh": "驱逐舰舰长",
+      "category": "navy",
+      "description": "Commander of Aegis-equipped warship",
+      "description_zh": "指挥宙斯盾战舰的舰长",
+      "starting_equipment": [
+        "Arleigh Burke-class destroyer",
+        "Aegis combat system",
+        "Tomahawk cruise missiles",
+        "Ship's crew of 300+"
+      ],
+      "special_abilities": [
+        "Air defense umbrella",
+        "Long-range strike",
+        "Anti-submarine warfare",
+        "Fleet protection"
+      ],
+      "missions": [
+        "Protect carrier strike group",
+        "Launch Tomahawk strikes",
+        "Intercept enemy missiles",
+        "Maritime interdiction"
+      ],
+      "risk_level": "medium",
+      "prestige": 85,
+      "responsibility": "300 lives depend on your decisions"
+    },
+    {
+      "id": "submarine_commander",
+      "name": "Attack Submarine Commander",
+      "name_zh": "攻击潜艇指挥官",
+      "category": "navy",
+      "description": "Silent hunter beneath the waves",
+      "description_zh": "水下无声猎手",
+      "starting_equipment": [
+        "Virginia-class submarine",
+        "Tomahawk cruise missiles",
+        "Mk 48 torpedoes",
+        "Special operations insertion capability"
+      ],
+      "special_abilities": [
+        "Stealth operations",
+        "Intelligence gathering",
+        "Special forces delivery",
+        "Anti-ship warfare"
+      ],
+      "missions": [
+        "Covert surveillance of enemy ports",
+        "Launch cruise missiles from underwater",
+        "Insert special forces teams",
+        "Hunt enemy submarines"
+      ],
+      "risk_level": "high",
+      "prestige": 92,
+      "nickname": "Silent Service"
+    },
+    {
+      "id": "flying_scooter_operator",
+      "name": "Flying Scooter Operator (Houthi Drone)",
+      "name_zh": "飞天小摩托操作员（胡塞无人机）",
+      "category": "asymmetric",
+      "description": "Operator of improvised attack drones",
+      "description_zh": "简易攻击无人机操作员",
+      "starting_equipment": [
+        "Modified commercial drone",
+        "Improvised explosive payload",
+        "Commercial GPS",
+        "Motorcycle battery power"
+      ],
+      "special_abilities": [
+        "Cheap swarm attacks",
+        "Evade expensive defenses",
+        "Target infrastructure",
+        "Asymmetric warfare"
+      ],
+      "missions": [
+        "Strike enemy oil facilities",
+        "Overwhelm air defenses",
+        "Terror attacks on cities",
+        "Low-cost harassment"
+      ],
+      "risk_level": "medium",
+      "prestige": 60,
+      "faction": "mountain_republic_only",
+      "moral_note": "One drone costs $2000. One interceptor costs $2M. You do the math."
+    },
+    {
+      "id": "shadow_ops",
+      "name": "Shadow Operative (Black Ops)",
+      "name_zh": "黑影行动员",
+      "category": "special_forces",
+      "description": "Deniable covert operator",
+      "description_zh": "可否认的秘密行动员",
+      "starting_equipment": [
+        "Suppressed weapons",
+        "False identity documents",
+        "Encrypted communications",
+        "Suicide pill (optional)"
+      ],
+      "special_abilities": [
+        "Assassination",
+        "Sabotage",
+        "Intelligence gathering",
+        "Deniable operations"
+      ],
+      "missions": [
+        "Eliminate high-value targets",
+        "Plant evidence for false flag ops",
+        "Sabotage enemy infrastructure",
+        "Extract/eliminate defectors"
+      ],
+      "risk_level": "extreme",
+      "prestige": 88,
+      "moral_burden": "If captured, your country will deny you exist.",
+      "political_risk": "very_high"
+    },
+    {
+      "id": "falcon_commando",
+      "name": "Falcon Unit Commando",
+      "name_zh": "猎鹰特遣队突击队员",
+      "category": "special_forces",
+      "description": "Elite special forces operator",
+      "description_zh": "精英特种部队成员",
+      "starting_equipment": [
+        "Tavor X95 assault rifle",
+        "Combat knife",
+        "Night vision goggles",
+        "Tactical vest with plates"
+      ],
+      "special_abilities": [
+        "Hostage rescue",
+        "Counter-terrorism",
+        "Deep reconnaissance",
+        "Close quarters combat"
+      ],
+      "missions": [
+        "Rescue captured soldiers",
+        "Raid enemy command posts",
+        "Neutralize terrorist cells",
+        "Protect VIPs"
+      ],
+      "risk_level": "very_high",
+      "prestige": 94,
+      "faction": "phoenix_state_preferred"
+    },
+    {
+      "id": "tank_commander",
+      "name": "Merkava Tank Commander",
+      "name_zh": "梅卡瓦坦克指挥官",
+      "category": "ground_forces",
+      "description": "Armored warfare specialist",
+      "description_zh": "装甲战专家",
+      "starting_equipment": [
+        "Merkava Mk.4 tank",
+        "120mm smoothbore cannon",
+        "Trophy active protection system",
+        "Tank crew of 4"
+      ],
+      "special_abilities": [
+        "Armored assault",
+        "Urban warfare",
+        "Infantry support",
+        "Defensive positions"
+      ],
+      "missions": [
+        "Spearhead ground offensives",
+        "Hold defensive lines",
+        "Escort infantry advances",
+        "Destroy enemy armor"
+      ],
+      "risk_level": "high",
+      "prestige": 75,
+      "crew_responsibility": "3 lives in your hands"
+    },
+    {
+      "id": "artillery_officer",
+      "name": "Artillery Fire Controller",
+      "name_zh": "炮兵火控军官",
+      "category": "ground_forces",
+      "description": "Coordinates long-range fire support",
+      "description_zh": "协调远程火力支援",
+      "starting_equipment": [
+        "Laser designator",
+        "GPS coordinates system",
+        "Radio communications",
+        "Ballistic computer"
+      ],
+      "special_abilities": [
+        "Call for fire missions",
+        "Coordinate air and artillery strikes",
+        "Adjust fire for accuracy",
+        "Suppress enemy positions"
+      ],
+      "missions": [
+        "Support ground assaults",
+        "Counter-battery fire",
+        "Destroy enemy fortifications",
+        "Create smoke screens"
+      ],
+      "risk_level": "medium",
+      "prestige": 65,
+      "moral_burden": "You never see the faces of those you kill."
+    },
+    {
+      "id": "medic",
+      "name": "Combat Medic",
+      "name_zh": "战地医疗兵",
+      "category": "support",
+      "description": "Saves lives under fire",
+      "description_zh": "炮火下拯救生命",
+      "starting_equipment": [
+        "Medical kit with trauma supplies",
+        "Morphine and painkillers",
+        "Personal sidearm",
+        "Red cross armband"
+      ],
+      "special_abilities": [
+        "Stabilize wounded",
+        "Emergency surgery",
+        "Triage decisions",
+        "Protected non-combatant status (sometimes)"
+      ],
+      "missions": [
+        "Treat wounded soldiers",
+        "Evacuate casualties",
+        "Provide humanitarian aid",
+        "Make life-or-death triage calls"
+      ],
+      "risk_level": "very_high",
+      "prestige": 80,
+      "moral_weight": "Who lives? Who dies? You decide with limited supplies."
+    },
+    {
+      "id": "csar_pararescue",
+      "name": "CSAR Pararescueman (PJ)",
+      "name_zh": "战斗搜救跳伞救援员",
+      "category": "special_forces",
+      "description": "Combat Search and Rescue specialist. Jump into hostile territory to recover downed pilots. Every second counts.",
+      "description_zh": "战斗搜救专家，深入敌境营救坠机飞行员。每一秒都是生死之差。",
+      "faction": "western_alliance",
+      "background": "You are part of the 563rd Rescue Group, Western Alliance Air Force. Your motto: 'That Others May Live.' When an F-15 goes down over Mountain Republic territory, you are the last hope.",
+      "background_zh": "你属于西盟空军第563救援大队。座右铭：'为他人而生'。当一架F-15坠落在山岳共和国领土上，你是飞行员最后的希望。",
+      "starting_equipment": [
+        "HH-60G Pave Hawk rescue helicopter (primary insert)",
+        "MC-130J Commando II tanker/transport (standby)",
+        "A-10 Warthog escort flight x2 (suppression)",
+        "Personal: M4 rifle + medical kit + parachute",
+        "SERE kit (Survival, Evasion, Resistance, Escape)",
+        "Personnel Locator System (PLS) receiver",
+        "NVGs + infrared strobe"
+      ],
+      "special_abilities": [
+        "HAHO/HALO parachute insertion into denied areas",
+        "Combat trauma medicine (keep pilot alive under fire)",
+        "Call in A-10 / AC-130 fire support",
+        "Request MC-130J airdrop if helicopter is denied",
+        "Switch to small civilian aircraft if military assets compromised",
+        "Abandon aircraft and evade on foot if necessary"
+      ],
+      "missions": [
+        "Locate downed F-15 pilot via emergency beacon",
+        "Neutralize or evade enemy search teams",
+        "Stabilize and extract wounded pilot",
+        "Coordinate multi-asset rescue package",
+        "Survive if primary extraction fails"
+      ],
+      "rescue_package_options": {
+        "primary": {
+          "asset": "HH-60G Pave Hawk x2",
+          "escort": "A-10 Warthog x2",
+          "condition": "Low enemy air defense — standard CSAR",
+          "risk": "medium"
+        },
+        "elevated_threat": {
+          "asset": "HH-60G + MC-130J Combat Talon",
+          "escort": "F-15 SEAD flight + A-10 x2",
+          "condition": "Medium SAM threat — suppress and extract",
+          "risk": "high"
+        },
+        "denied_airspace": {
+          "asset": "MC-130J low-level airdrop",
+          "escort": "B-2 SEAD strike first",
+          "condition": "Heavy SAM/AAA — no helicopter survivable",
+          "risk": "very_high",
+          "note": "PJ parachutes in from MC-130. Helicopter cannot enter."
+        },
+        "extreme_fallback": {
+          "asset": "Civilian Cessna or light prop plane (unmarked)",
+          "escort": "None — stealth approach only",
+          "condition": "All military assets compromised or shot down",
+          "risk": "extreme",
+          "note": "Abandon uniform. Fly low under radar in civilian aircraft. If intercepted, abandon plane and evade on foot."
+        },
+        "abort": {
+          "condition": "Pilot captured or KIA confirmed / rescue package fully destroyed",
+          "outcome": "Mission abort. Pilot becomes POW storyline."
+        }
+      },
+      "scenario": {
+        "trigger": "fallen_eagle_event (Day 35) - F-15E shot down by SA-400 Stone Shield",
+        "pilot_status_options": [
+          "Alive, evading — beacon active",
+          "Alive, injured — needs immediate medevac",
+          "Alive, captured — POW scenario",
+          "KIA — body recovery mission"
+        ],
+        "enemy_response": [
+          "Mountain Republic scrambles search teams within 15 min",
+          "SAM batteries activated",
+          "Proxy militia on motorcycles sweeping the area",
+          "Possible hostage broadcast within 2 hours"
+        ],
+        "time_pressure": "Golden hour: 60 minutes before pilot is found or dies from injuries",
+        "note": "See events.json:fallen_eagle for full story context"
+      },
+      "moral_dilemmas": [
+        "A-10 must strafe militia trucks — civilian workers may be nearby",
+        "Helicopter is hit and going down — do you abort or press in?",
+        "Pilot is alive but enemy closing fast — leave now with partial injuries or wait for full stabilization?",
+        "Civilian aircraft option means flying unarmed into hostile territory — one burst from a gunboat ends everything",
+        "Pilot says abandon him — POW protocol vs your oath to bring everyone home"
+      ],
+      "risk_level": "extreme",
+      "prestige": 97,
+      "nickname": "That Others May Live",
+      "moral_weight": "You will risk five lives to save one. That is not a question. That is the job.",
+      "linked_event": "fallen_eagle",
+      "pilot_to_rescue": {
+        "callsign": "Vega",
+        "name_zh": "伊莲娜·托雷斯上尉",
+        "location": "highland_wastes",
+        "distance_behind_lines": "85km"
+      }
+    },
+    {
+      "id": "csar_hh60_pilot",
+      "name": "HH-60G Pave Hawk Rescue Pilot",
+      "name_zh": "HH-60G铺路鹰救援直升机飞行员",
+      "category": "air_force",
+      "description": "Rescue helicopter pilot flying into hostile fire to recover downed aircrew. If the zone is too hot, find another way in.",
+      "description_zh": "驾驶救援直升机冲入敌火，营救坠机机组。如果区域太热，就换条路。",
+      "faction": "western_alliance",
+      "starting_equipment": [
+        "HH-60G Pave Hawk helicopter",
+        "FLIR/NVG navigation suite",
+        "In-flight refueling probe",
+        "M134 Minigun door gunner x2",
+        "Rescue hoist (90ft cable)",
+        "Pararescueman team x2 onboard"
+      ],
+      "special_abilities": [
+        "Nap-of-earth flying to avoid radar",
+        "Night / bad weather operations",
+        "In-flight refueling from MC-130J",
+        "Aerial hoist rescue (no landing required)",
+        "Abort and reroute mid-mission",
+        "Declare emergency — abandon aircraft if hit"
+      ],
+      "missions": [
+        "Insert PJ team into rescue zone",
+        "Hold orbit under A-10 cover while PJ works",
+        "Extract pilot via hoist or landing",
+        "Return under fire with casualties aboard",
+        "Fly secondary route if primary is SAM-denied"
+      ],
+      "decision_tree": {
+        "zone_assessment": {
+          "cold": "Fly direct, land, extract. Standard.",
+          "warm": "Nap-of-earth approach, A-10 suppression, quick extract.",
+          "hot": "MC-130 airdrop PJ first. Orbit outside SAM ring. Enter only after SEAD.",
+          "denied": "Cannot enter. Switch to civilian aircraft option or abort."
+        },
+        "aircraft_damage": {
+          "minor": "Continue mission, reduce speed.",
+          "serious": "PJ decision: abort extract or press to completion.",
+          "catastrophic": "Autorotation. Crew evacuates. Destroy crypto before leaving aircraft."
+        }
+      },
+      "risk_level": "extreme",
+      "prestige": 93,
+      "nickname": "Dustoff",
+      "linked_event": "fallen_eagle",
+      "scenario": {
+        "trigger": "fallen_eagle_event (Day 35)",
+        "note": "See events.json:fallen_eagle for full story context",
+        "assets_available": [
+          "HH-60G x2",
+          "A-10 x2",
+          "AH-64 Apache",
+          "CV-22 Osprey",
+          "MC-130J"
+        ]
+      }
+    }
+  ],
+  "role_selection_system": {
+    "categories": {
+      "air_force": "Sky Warriors",
+      "navy": "Sea Power",
+      "special_forces": "Elite Operators",
+      "ground_forces": "Armored Fist",
+      "intelligence": "Shadow Network",
+      "asymmetric": "Guerrilla Fighters",
+      "support": "Backbone"
+    },
+    "filters": {
+      "by_risk": [
+        "low",
+        "medium",
+        "high",
+        "very_high",
+        "extreme"
+      ],
+      "by_prestige": [
+        "60-70",
+        "70-80",
+        "80-90",
+        "90-100"
+      ],
+      "by_faction": [
+        "all",
+        "phoenix_state",
+        "mountain_republic",
+        "western_alliance"
+      ]
+    }
+  }
+}

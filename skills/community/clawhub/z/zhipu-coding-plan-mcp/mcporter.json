@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "zai-mcp-server": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@z_ai/mcp-server"],
+      "env": {
+        "Z_AI_API_KEY": "$env:ZAI_MCP_API_KEY",
+        "Z_AI_MODE": "ZHIPU"
+      }
+    },
+    "web-search-prime": {
+      "type": "http",
+      "url": "https://open.bigmodel.cn/api/mcp/web_search_prime/mcp",
+      "bearerTokenEnv": "ZAI_MCP_API_KEY"
+    },
+    "web-reader": {
+      "type": "http",
+      "url": "https://open.bigmodel.cn/api/mcp/web_reader/mcp",
+      "bearerTokenEnv": "ZAI_MCP_API_KEY"
+    },
+    "zread": {
+      "type": "http",
+      "url": "https://open.bigmodel.cn/api/mcp/zread/mcp",
+      "bearerTokenEnv": "ZAI_MCP_API_KEY"
+    }
+  }
+}

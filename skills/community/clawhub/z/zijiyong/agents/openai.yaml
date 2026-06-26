@@ -1,0 +1,4 @@
+interface:
+  display_name: "WOS 文献飞书助手"
+  short_description: "WoS 检索、筛选并写入飞书 Base"
+  default_prompt: "Use $wos-feishu-literature to search Web of Science literature for my topic, screen the important papers, and write them into Feishu Base with local lark-cli."

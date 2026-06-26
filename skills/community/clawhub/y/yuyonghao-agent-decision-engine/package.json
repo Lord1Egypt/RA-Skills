@@ -1,0 +1,13 @@
+{
+  "name": "agent-decision-engine",
+  "version": "0.1.0",
+  "description": "Autonomous decision engine with multi-objective optimization, risk assessment, decision trees and reinforcement learning",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node test/decision.test.js"
+  },
+  "keywords": ["openclaw", "skill", "decision", "optimization", "reinforcement-learning"],
+  "author": "",
+  "license": "MIT"
+}

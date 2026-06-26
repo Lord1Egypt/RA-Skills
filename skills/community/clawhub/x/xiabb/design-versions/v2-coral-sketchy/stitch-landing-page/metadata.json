@@ -1,0 +1,5 @@
+{
+  "name": "XiaBB",
+  "description": "A free macOS voice-to-text tool built for Vibe Coding, powered by Google's Gemini API.",
+  "requestFramePermissions": []
+}

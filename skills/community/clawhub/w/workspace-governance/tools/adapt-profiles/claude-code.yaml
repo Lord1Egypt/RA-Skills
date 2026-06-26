@@ -1,0 +1,46 @@
+meta:
+  author: Mars
+  github: Mars2003
+  date: 2026-04-28
+  version: 1.0.0
+  description: Claude Code platform lightweight overlay profile for workspace-governance.
+  claude_code_version:
+    min: "latest-1"
+    recommended: "latest"
+    max: "latest"
+
+platform_profile:
+  platform: claude-code
+
+  detection_signals:
+    - path: ".claude/"
+    - path: ".claude/skills/"
+    - env: "CLAUDECODE"
+
+  immutable_dirs:
+    - ".claude/"
+    - ".claude/skills/"
+
+  protected_files:
+    - ".claude/**/*.json"
+    - ".claude/**/*.yaml"
+    - ".claude/**/*.yml"
+    - ".env"
+    - ".env.*"
+    - "*.key"
+    - "*.pem"
+    - "*.p12"
+    - "*.pfx"
+
+  non_interactive_policy:
+    enforce_blocked_on_ask_user: true
+    enforce_fail_fast_on_unconfirmed_destructive: true
+
+  merge_rules:
+    immutable_dirs:
+      strategy: union
+    protected_files:
+      strategy: union
+    destructive_guard:
+      strategy: override
+      constraint: strict_only

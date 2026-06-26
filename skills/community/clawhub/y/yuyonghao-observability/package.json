@@ -1,0 +1,26 @@
+{
+  "name": "observability",
+  "version": "0.1.1",
+  "description": "Observability system for AI Agents - logging, metrics, and tracing",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/dashboard.js",
+    "test": "node test/observability.test.js"
+  },
+  "keywords": [
+    "observability",
+    "logging",
+    "metrics",
+    "tracing",
+    "monitoring",
+    "openclaw-skill"
+  ],
+  "author": "小蒲萄 (Clawd)",
+  "license": "MIT",
+  "dependencies": {
+    "winston": "^3.11.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,35 +1,260 @@
 ---
-name: "每周安排助理"
-description: "工作日日报与周记录整理工具，自动生成工作日报，梳理计划、完成、反思；当用户需要生成工作日报、管理周记录或查看总结时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/weekly-planner-skill"
-sourceUrl: "https://clawhub.ai/skills/weekly-planner-skill"
+name: weekly-planner
+description: 工作日日报与周记录整理工具，自动生成工作日报，梳理计划、完成、反思；当用户需要生成工作日报、管理周记录或查看总结时使用
+dependency:
+  python:
+    - python-dateutil>=2.8.0
+  system:
+    - mkdir -p ./weekly-plans
 ---
 
-# 每周安排助理
+# 周记录整理技能
 
-> 工作日日报与周记录整理工具，自动生成工作日报，梳理计划、完成、反思；当用户需要生成工作日报、管理周记录或查看总结时使用
+## 任务目标
+- 本技能用于：零散记录的系统化整理，包括计划、完成、反思三项
+- 能力包含：记录整理、灵活调整、按需查询、工作日报、定时总结、数据分析
+- 核心价值：将日常碎片化记录按时间、项目、类别系统化梳理
+- 触发条件：用户需要记录计划、完成情况、反思，生成工作日报，或查看本周进度、生成周总结时
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/weekly-planner-skill`
-- **Source URL:** [https://clawhub.ai/skills/weekly-planner-skill](https://clawhub.ai/skills/weekly-planner-skill)
+## 前置准备
+- 数据存储：周记录存储在 `./weekly-plans/` 目录下（每周一个JSON文件）
+- 使用场景：
+  - 每日记录：计划、完成、反思三项高频操作
+  - 灵活调整：修改计划、撤销完成、调整日期
+  - 按需查询：今日任务、本周进度、按项目查看
+  - 工作日报：工作日下午5点自动生成工作日报
+  - 定时总结：周日晚8点自动生成完整总结
+- 依赖说明：
+  - `python-dateutil>=2.8.0`：日期处理和计算
 
-## Overview
+## 操作步骤
 
+### 1. 日常记录（每天）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/weekly-planner-skill
-```
+#### 记录计划
+当用户提供计划需求时：
+1. 理解任务内容和优先级
+2. 识别任务类别（work/study/health/other）
+3. 智能分配到具体日期（或使用用户指定日期）
+4. 调用脚本保存：
+   ```bash
+   python scripts/weekly_planner.py add_plan --year <年份> --week <周次> --task "<任务>" --category "<类别>" --date "<日期>" --priority "<优先级>"
+   ```
+5. 确认保存，返回任务ID和分配结果
+
+#### 记录完成
+当用户反馈完成情况时：
+1. 识别完成的任务（通过任务描述或ID）
+2. 记录完成时间、进度、备注
+3. 调用脚本记录：
+   ```bash
+   python scripts/weekly_planner.py add_completion --year <年份> --week <周次> --task_id <ID> --notes "<备注>"
+   ```
+4. 确认记录，更新任务状态
+
+#### 记录反思
+当用户记录反思时：
+1. 理解反思内容和日期
+2. 调用脚本保存：
+   ```bash
+   python scripts/weekly_planner.py add_reflection --year <年份> --week <周次> --date "<日期>" --content "<反思内容>"
+   ```
+3. 确认已记录
+
+### 2. 灵活调整
+
+#### 修改计划
+当用户需要调整计划时：
+1. 识别要修改的任务和修改内容
+2. 调用脚本更新：
+   ```bash
+   python scripts/weekly_planner.py update_plan --year <年份> --week <周次> --task_id <ID> --field "<字段>" --value "<新值>"
+   ```
+3. 支持修改的字段：task, category, date, priority
+4. 确认更新完成
+
+#### 撤销完成
+当用户需要撤销完成记录时：
+1. 识别要撤销的任务
+2. 调用脚本撤销：
+   ```bash
+   python scripts/weekly_planner.py undo_completion --year <年份> --week <周次> --task_id <ID>
+   ```
+3. 确认撤销，任务状态恢复为pending
+
+#### 调整日期
+当用户需要调整任务日期时：
+1. 识别任务和新日期
+2. 调用脚本调整：
+   ```bash
+   python scripts/weekly_planner.py change_date --year <年份> --week <周次> --task_id <ID> --new_date "<日期>"
+   ```
+3. 验证新日期在周范围内
+4. 确认调整完成
+
+#### 删除计划
+当用户需要删除计划时：
+1. 识别要删除的任务
+2. 调用脚本删除：
+   ```bash
+   python scripts/weekly_planner.py delete_plan --year <年份> --week <周次> --task_id <ID>
+   ```
+3. 软删除标记（保留数据但标记为已删除）
+4. 确认删除完成
+
+### 3. 按需查询
+
+#### 查看今日
+当用户查看今日情况时：
+1. 确定当前日期
+2. 调用脚本查询：
+   ```bash
+   python scripts/weekly_planner.py query_today --year <年份> --week <周次> --date "<日期>"
+   ```
+3. 智能体整理结果，按时间顺序展示：
+   - 今日计划任务
+   - 今日完成记录
+   - 今日反思内容
+   - 完成进度统计
+
+#### 查看本周
+当用户查看本周整体情况时：
+1. 调用脚本查询：
+   ```bash
+   python scripts/weekly_planner.py query_week --year <年份> --week <周次>
+   ```
+2. 智能体整理结果：
+   - 按日期分组展示所有记录
+   - 计划、完成、反思分别梳理
+   - 完成率统计
+   - 任务分布分析
+
+#### 按项目查看
+当用户按类别/项目查看时：
+1. 识别要查询的类别
+2. 调用脚本查询：
+   ```bash
+   python scripts/weekly_planner.py query_by_category --year <年份> --week <周次> --category "<类别>"
+   ```
+3. 展示该类别的所有计划和完成情况
+
+### 4. 工作日报
+
+#### 自动触发（工作日下午5:00）
+1. 智能体检测当前时间和日期
+2. 如为工作日（周一至周五）下午5:00，自动触发日报流程
+3. 调用脚本生成日报：
+   ```bash
+   python scripts/weekly_planner.py generate_daily_report --year <年份> --week <周次> --date "<日期>"
+   ```
+4. 智能体生成工作日报，包含：
+   - **进度统计**：计划数、完成数、完成率
+   - **当日计划**：所有计划任务及状态
+   - **当日完成**：已完成任务及备注
+   - **当日反思**：反思内容
+   - **工作小结**：智能体生成的简要总结
+
+#### 手动触发
+用户也可随时请求当日日报：
+1. 理解用户需求
+2. 调用生成日报脚本
+3. 智能体生成并展示日报
+
+### 5. 周日总结
+
+#### 自动触发（周日晚8:00）
+1. 智能体检测当前时间
+2. 如为周日晚8:00，自动触发总结流程
+3. 调用脚本导出数据：
+   ```bash
+   python scripts/weekly_planner.py export_week_report --year <年份> --week <周次>
+   ```
+4. 智能体生成完整总结，包含：
+   - **计划梳理**：按日期、类别整理所有计划
+   - **完成梳理**：完成的任务、未完成的任务、完成率
+   - **反思汇总**：按时间线整理每日反思
+   - **数据分析**：任务分布、时间管理、效率评估
+   - **改进建议**：基于分析提出的具体建议
+
+#### 手动触发
+用户也可随时请求周总结：
+1. 理解用户需求
+2. 调用导出脚本
+3. 智能体生成总结报告
+
+## 资源索引
+- 数据脚本：见 [scripts/weekly_planner.py](scripts/weekly_planner.py)（用途：数据的增删改查和导出）
+- 数据格式：见 [references/data-format.md](references/data-format.md)（何时读取：需要了解数据结构时）
+- 查询模板：见 [references/query-templates.md](references/query-templates.md)（何时读取：生成查询结果时参考）
+- 日报模板：见 [references/daily-report-template.md](references/daily-report-template.md)（何时读取：生成工作日报时参考）
+- 周报模板：见 [references/weekly-report-template.md](references/weekly-report-template.md)（何时读取：生成周总结时参考）
+
+## 注意事项
+- 记录优先：每天的三项记录（计划、完成、反思）是核心功能
+- 灵活调整：支持随时修改、撤销、调整，适应实际变化
+- 系统梳理：智能体负责将零散记录按时间、项目、类别整理
+- 按需查询：用户可随时查看今日、本周或特定项目的情况
+- 工作日报：工作日下午5点自动触发，也可手动触发
+- 定时总结：周日晚8点自动触发，也可手动触发
+- 数据持久化：所有操作通过脚本完成，确保数据一致性
+
+## 使用示例
+
+### 示例1：每天记录三项
+用户："今天计划完成项目报告，下午写代码，晚上反思一天的工作"
+
+执行流程：
+1. 识别三项记录：
+   - 计划：项目报告（work）、写代码（work）
+   - 反思：一天的工作（今天）
+2. 调用脚本保存每个记录
+3. 确认保存，返回记录ID
+
+后续用户反馈："项目报告完成了，写代码只完成了一半"
+执行流程：
+1. 记录完成：项目报告完成
+2. 记录进度：写代码完成50%
+3. 更新任务状态
+
+### 示例2：随时调整计划
+用户："把今天下午的写代码任务改到明天上午"
+
+执行流程：
+1. 识别任务：写代码，原计划今天下午
+2. 调用脚本调整日期：`change_date --task_id 2 --new_date <明天日期>`
+3. 确认调整完成
+
+### 示例3：查看本周进度
+用户："帮我看看这周的情况"
+
+执行流程：
+1. 调用脚本查询本周数据
+2. 智能体整理并展示：
+   - 周一：计划3项，完成2项，反思...
+   - 周二：计划2项，完成2项，反思...
+   - ...
+   - 总体完成率：80%
+
+### 示例5：工作日报
+用户："生成今日工作日报" 或系统自动触发（工作日下午5:00）
+
+执行流程：
+1. 调用脚本生成日报数据
+2. 智能体生成工作日报：
+   - 进度统计：计划3项，完成2项，完成率67%
+   - 当日计划：项目报告（高优先级）、代码审查（中优先级）
+   - 当日完成：项目报告（提前完成）、代码审查（完成）
+   - 当日反思：效率较高，需注意休息
+   - 工作小结：今日工作顺利，完成了所有高优先级任务
+
+### 示例6：周日晚总结
+用户："生成本周总结" 或系统自动触发（周日晚8:00）
+
+执行流程：
+1. 调用脚本导出周数据
+2. 智能体分析并生成：
+   - 计划梳理：共15项计划，按类别分布...
+   - 完成梳理：完成12项，未完成3项...
+   - 反思汇总：每日反思要点...
+   - 数据分析：工作日完成率高于周末...
+   - 改进建议：建议提高周末执行力...

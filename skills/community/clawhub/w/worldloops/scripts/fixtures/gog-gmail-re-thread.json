@@ -1,0 +1,29 @@
+{
+  "messages": [
+    {
+      "id": "gmail-msg-re-001",
+      "threadId": "thread-re-001",
+      "subject": "Re: [패스트캠퍼스] 스노우 / 클로드 기반 AI Agent 과정 출강 요청드립니다",
+      "from": "recruitment@fastcampus.co.kr",
+      "snippet": "안녕하세요. 지난번에 보내드린 출강 요청 건에 대해 답변 부탁드립니다.",
+      "date": "2026-05-17T09:15:00.000Z"
+    },
+    {
+      "id": "gmail-msg-re-002",
+      "threadId": "thread-re-002",
+      "subject": "Re: Following up on the proposal review",
+      "from": "partner@external.com",
+      "snippet": "Could you please send the updated deck when you have a chance?",
+      "date": "2026-05-17T10:00:00.000Z"
+    },
+    {
+      "id": "gmail-msg-re-003",
+      "threadId": "thread-re-003",
+      "subject": "Re: Team offsite logistics",
+      "from": "alice@internal.com",
+      "snippet": "Just wanted to loop you in on the schedule change.",
+      "date": "2026-05-17T11:00:00.000Z"
+    }
+  ],
+  "count": 3
+}

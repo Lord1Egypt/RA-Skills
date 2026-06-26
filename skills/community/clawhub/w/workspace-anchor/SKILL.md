@@ -1,35 +1,13 @@
----
-name: "Workspace Anchor"
-description: "Manages multi-agent projects by discovering, listing, switching, and validating workspace anchors using environment paths to prevent context drift."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/workspace-anchor"
-sourceUrl: "https://clawhub.ai/skills/workspace-anchor"
----
+# ⚓ Workspace Anchor
 
-# Workspace Anchor
+Multi-agent workspace awareness and safety system. Discovers, lists, switches, and validates projects using environment-based naming to prevent agent drift.
 
-> Manages multi-agent projects by discovering, listing, switching, and validating workspace anchors using environment paths to prevent context drift.
+## 🤖 Agent Instruction (CRITICAL)
+Before using this skill, you MUST identify the correct absolute paths for the user's environment. Use `exec` to find `.project-lock` files if paths are ambiguous.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/workspace-anchor`
-- **Source URL:** [https://clawhub.ai/skills/workspace-anchor](https://clawhub.ai/skills/workspace-anchor)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/workspace-anchor
-```
+## 📝 CLI Commands
+- `discover`: Find all `.project-lock` files.
+- `list`: Show formatted list of anchors.
+- `create <path>`: Initialize a new anchor.
+- `switch <name>`: Change active context.
+- `validate <path>`: Check if path is within current anchor.

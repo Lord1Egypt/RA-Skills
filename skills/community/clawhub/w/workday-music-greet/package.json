@@ -1,0 +1,1 @@
+{"name": "workday-music-greet", "version": "1.0.0", "description": "Auto-switch music scenes by workday schedule with GIF greeting emails", "private": true, "dependencies": {"nodemailer": "^6.9.0", "dotenv": "^16.3.0"}}

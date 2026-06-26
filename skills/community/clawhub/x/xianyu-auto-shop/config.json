@@ -1,0 +1,8 @@
+{
+  "name":"xianyu-auto-shop",
+  "version":"1.0.0",
+  "bin":{
+    "xianyu-auto-shop":"index.js"
+  },
+  "dependencies":{}
+}

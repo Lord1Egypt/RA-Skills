@@ -1,0 +1,67 @@
+{
+  "name": "xiaohongshu-article-generator",
+  "version": "1.0.0",
+  "description": "小红书图文生成技能 - 基于热点话题自动生成小红书风格的图文内容（文案 +HTML+ 图片）",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "main": "index.js",
+  "type": "module",
+  "trigger": [
+    "小红书图文",
+    "小红书生成",
+    "小红书笔记",
+    "图文生成"
+  ],
+  "tools": [
+    "filesystem",
+    "shell",
+    "browser"
+  ],
+  "dependencies": [
+    "html-pages-to-images"
+  ],
+  "parameters": {
+    "topic": {
+      "type": "string",
+      "required": true,
+      "description": "话题名称"
+    },
+    "template": {
+      "type": "string",
+      "required": false,
+      "default": "gossip",
+      "enum": [
+        "gossip",
+        "knowledge",
+        "recommendation"
+      ],
+      "description": "模板类型"
+    },
+    "outputDir": {
+      "type": "string",
+      "required": false,
+      "default": "./xiaohongshu-output",
+      "description": "输出目录"
+    },
+    "pages": {
+      "type": "number",
+      "required": false,
+      "default": 3,
+      "description": "内页数量"
+    }
+  },
+  "examples": [
+    {
+      "name": "生成大厂八卦图文",
+      "command": "node index.js --topic \"美团年终奖\" --template gossip"
+    },
+    {
+      "name": "生成职场干货图文",
+      "command": "node index.js --topic \"年终奖谈判技巧\" --template knowledge --pages 4"
+    },
+    {
+      "name": "生成产品种草图文",
+      "command": "node index.js --topic \"机械键盘推荐\" --template recommendation"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "weibo-hot",
+  "displayName": "微博热搜",
+  "description": "获取实时微博热搜榜单，按热度排序。无需 API Key。",
+  "version": "1.0.0",
+  "author": "龙虾君 🦞",
+  "homepage": "https://v2.xxapi.cn",
+  "license": "MIT",
+  "tags": ["weibo", "hot-topics", "social-media", "trending", "china"],
+  "category": "data",
+  "requires": {
+    "bins": ["curl", "jq"]
+  },
+  "emoji": "🔥",
+  "examples": [
+    "./weibo_hot.sh"
+  ]
+}

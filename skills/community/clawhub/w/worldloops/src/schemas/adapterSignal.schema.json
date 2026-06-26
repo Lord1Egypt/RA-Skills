@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AdapterSignal",
+  "description": "Public input contract for WorldLoops Adapter SDK. External connectors use this schema to pass signals into the WorldLoops reconciliation pipeline.",
+  "type": "object",
+  "required": ["source", "sourceType", "externalWrite", "text", "observedAt"],
+  "properties": {
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Signal source identifier (e.g. slack, gmail, github, calendar, linear, notion)"
+    },
+    "sourceType": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Signal type within the source (e.g. message, thread, event, pr, issue, notification)"
+    },
+    "externalWrite": {
+      "type": "boolean",
+      "const": false,
+      "description": "Must be false. WorldLoops does not accept adapter signals that imply external writes."
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The signal content — the primary text that WorldLoops will normalize into an open-loop candidate"
+    },
+    "observedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the signal was observed by the connector (e.g. 2026-05-19T10:30:00.000Z)"
+    },
+    "url": {
+      "type": "string",
+      "description": "Optional reference URL to the source record"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Optional human-readable summary of the signal"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional additional metadata from the source connector",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

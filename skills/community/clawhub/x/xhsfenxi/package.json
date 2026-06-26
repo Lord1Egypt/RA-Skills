@@ -1,0 +1,35 @@
+{
+  "name": "xhsfenxi",
+  "version": "2.1.0",
+  "description": "xhsfenxi — Xiaohongshu creator-account analysis workflow with three-archetype classification (荒诞美学型/共鸣命名型/现实策略型), viral topic formula extraction, comparison studies, and Markdown/Word deliverables.",
+  "keywords": [
+    "xiaohongshu",
+    "RED",
+    "小红书",
+    "博主分析",
+    "账号拆解",
+    "爆款选题",
+    "三型博主",
+    "荒诞美学",
+    "共鸣命名",
+    "现实策略",
+    "topic-formula",
+    "creator-research",
+    "content-strategy",
+    "benchmark-analysis",
+    "archetype-classification",
+    "word-report",
+    "business-report"
+  ],
+  "author": "cosmofang",
+  "license": "MIT",
+  "scripts": {
+    "intake": "node scripts/intake.js",
+    "intake:json": "node scripts/intake.js --json",
+    "plan": "node scripts/report-plan.js",
+    "archetype": "node scripts/archetype.js",
+    "archetype:quick": "node scripts/archetype.js --quick",
+    "docx-plan": "node scripts/docx-plan.js",
+    "toc-fix": "node scripts/docx-plan.js --toc-fix"
+  }
+}

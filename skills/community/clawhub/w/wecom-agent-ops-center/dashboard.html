@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Ops Center — 监控仪表板</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0f1117;
+  color: #e1e4e8;
+  min-height: 100vh;
+  padding: 24px;
+}
+.header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 24px; padding-bottom: 16px;
+  border-bottom: 1px solid #2d333b;
+}
+.header h1 { font-size: 20px; font-weight: 600; }
+.header .status-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+.header .status-dot.ok { background: #3fb950; box-shadow: 0 0 6px #3fb950; }
+.header .status-dot.degraded { background: #d29922; box-shadow: 0 0 6px #d29922; }
+.header .status-dot.err { background: #f85149; box-shadow: 0 0 6px #f85149; }
+.refresh { font-size: 12px; color: #768390; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.stat-card {
+  background: #1c2128; border: 1px solid #2d333b; border-radius: 8px; padding: 16px;
+}
+.stat-card .label { font-size: 12px; color: #768390; margin-bottom: 4px; }
+.stat-card .value { font-size: 28px; font-weight: 700; }
+.stat-card .value.green { color: #3fb950; }
+.stat-card .value.yellow { color: #d29922; }
+.stat-card .value.red { color: #f85149; }
+.stat-card .value.blue { color: #58a6ff; }
+.section-title { font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #768390; text-transform: uppercase; letter-spacing: 0.5px; }
+.agent-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+.agent-table th, .agent-table td {
+  text-align: left; padding: 10px 12px; border-bottom: 1px solid #2d333b;
+  font-size: 13px;
+}
+.agent-table th { color: #768390; font-weight: 500; font-size: 11px; text-transform: uppercase; }
+.agent-table tr:hover { background: #1c2128; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 500; }
+.tag.healthy { background: rgba(63,185,80,0.15); color: #3fb950; }
+.tag.degraded { background: rgba(210,153,34,0.15); color: #d29922; }
+.tag.offline { background: rgba(248,81,73,0.15); color: #f85149; }
+.tag.unknown { background: rgba(118,131,144,0.15); color: #768390; }
+.events-list { max-height: 400px; overflow-y: auto; }
+.event-item {
+  display: flex; align-items: flex-start; gap: 10px; padding: 8px 0;
+  border-bottom: 1px solid #1c2128; font-size: 12px;
+}
+.event-item .ev-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.event-item .ev-time { color: #768390; flex-shrink: 0; width: 80px; }
+.event-item .ev-msg { color: #e1e4e8; }
+.event-item .ev-agent { color: #58a6ff; }
+.error-banner {
+  background: rgba(248,81,73,0.1); border: 1px solid rgba(248,81,73,0.3);
+  border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 13px; color: #f85149;
+}
+.empty-state { text-align: center; padding: 48px 0; color: #768390; font-size: 14px; }
+.footer { text-align: center; margin-top: 32px; padding-top: 16px; border-top: 1px solid #2d333b; color: #484f58; font-size: 11px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+@media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+.chart-area { background: #1c2128; border: 1px solid #2d333b; border-radius: 8px; padding: 16px; }
+.chart-area canvas { width: 100%; max-height: 200px; }
+/* Task styles (v2.1) */
+.task-table { width: 100%; border-collapse: collapse; }
+.task-table th, .task-table td {
+  text-align: left; padding: 8px 12px; border-bottom: 1px solid #2d333b;
+  font-size: 12px;
+}
+.task-table th { color: #768390; font-weight: 500; font-size: 11px; text-transform: uppercase; }
+.task-table tr:hover { background: #1c2128; }
+.tag.running { background: rgba(88,166,255,0.15); color: #58a6ff; }
+.tag.completed { background: rgba(63,185,80,0.15); color: #3fb950; }
+.tag.failed { background: rgba(248,81,73,0.15); color: #f85149; }
+.progress-bar {
+  width: 100%; height: 4px; background: #2d333b; border-radius: 2px; margin-top: 4px;
+}
+.progress-bar .fill { height: 100%; border-radius: 2px; transition: width 0.3s; }
+.progress-bar .fill.running { background: #58a6ff; animation: pulse 1.5s infinite; }
+.progress-bar .fill.completed { background: #3fb950; }
+.progress-bar .fill.failed { background: #f85149; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+/* Resource styles (v2.2) */
+.resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.resource-card {
+  background: #1c2128; border: 1px solid #2d333b; border-radius: 8px; padding: 14px 16px;
+  transition: border-color 0.3s;
+}
+.resource-card.alert-warning { border-color: #d29922; background: rgba(210,153,34,0.08); }
+.resource-card.alert-critical { border-color: #f85149; background: rgba(248,81,73,0.08); }
+.resource-card .r-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.resource-card .r-label { font-size: 12px; color: #768390; }
+.resource-card .r-value { font-size: 22px; font-weight: 700; }
+.resource-card .r-value.green { color: #3fb950; }
+.resource-card .r-value.yellow { color: #d29922; }
+.resource-card .r-value.red { color: #f85149; }
+.resource-card .r-value.blue { color: #58a6ff; }
+.resource-card .r-detail { font-size: 11px; color: #768390; margin-top: 2px; }
+.resource-card .r-bar-wrap { width: 100%; height: 6px; background: #2d333b; border-radius: 3px; margin-top: 8px; overflow: hidden; }
+.resource-card .r-bar { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
+.resource-card .r-bar.green { background: #3fb950; }
+.resource-card .r-bar.yellow { background: #d29922; }
+.resource-card .r-bar.red { background: #f85149; }
+.resource-card .r-bar.blue { background: #58a6ff; }
+.resource-card .r-sparkline { display: flex; align-items: flex-end; gap: 2px; height: 30px; margin-top: 8px; }
+.resource-card .r-sparkline .bar {
+  flex: 1; min-width: 2px; border-radius: 1px 1px 0 0; transition: height 0.3s;
+}
+.resource-card .r-threshold { font-size: 10px; color: #768390; margin-top: 4px; text-align: right; }
+/* Audit styles (v2.3) */
+.audit-search { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.audit-search input, .audit-search select {
+  background: #0f1117; border: 1px solid #2d333b; border-radius: 6px; padding: 6px 10px;
+  color: #e1e4e8; font-size: 12px; outline: none;
+}
+.audit-search input:focus, .audit-search select:focus { border-color: #58a6ff; }
+.audit-search input { flex: 1; min-width: 150px; }
+.audit-search select { min-width: 120px; }
+.audit-search button {
+  background: #238636; border: none; border-radius: 6px; padding: 6px 14px;
+  color: #fff; font-size: 12px; cursor: pointer; font-weight: 500;
+}
+.audit-search button:hover { background: #2ea043; }
+.audit-table { width: 100%; border-collapse: collapse; }
+.audit-table th, .audit-table td {
+  text-align: left; padding: 8px 12px; border-bottom: 1px solid #2d333b; font-size: 12px;
+}
+.audit-table th { color: #768390; font-weight: 500; font-size: 11px; text-transform: uppercase; }
+.audit-table tr:hover { background: #1c2128; cursor: pointer; }
+.audit-detail { display: none; padding: 16px; background: #1c2128; border: 1px solid #2d333b; border-radius: 8px; margin-top: 12px; font-size: 12px; line-height: 1.6; }
+.audit-detail.open { display: block; }
+.audit-detail .ad-section { margin-bottom: 12px; }
+.audit-detail .ad-section h4 { color: #58a6ff; font-size: 13px; margin-bottom: 6px; }
+.audit-detail .ad-decision { padding: 8px 12px; background: rgba(88,166,255,0.06); border-left: 2px solid #58a6ff; border-radius: 4px; margin-bottom: 8px; }
+.audit-detail .ad-decision .ad-choice { color: #3fb950; font-weight: 600; }
+.tag.needs-review { background: rgba(248,81,73,0.15); color: #f85149; }
+.audit-type-tag { display: inline-block; padding: 1px 6px; border-radius: 10px; font-size: 10px; font-weight: 500; }
+.audit-type-tag.task_complete { background: rgba(63,185,80,0.15); color: #3fb950; }
+.audit-type-tag.task_fail { background: rgba(248,81,73,0.15); color: #f85149; }
+.audit-type-tag.decision_point { background: rgba(88,166,255,0.15); color: #58a6ff; }
+.audit-type-tag.error { background: rgba(248,81,73,0.15); color: #f85149; }
+.audit-type-tag.handoff { background: rgba(210,153,34,0.15); color: #d29922; }
+.audit-meta { display: flex; gap: 16px; margin-top: 8px; font-size: 11px; color: #768390; }
+/* v2.4 Lifecycle / Secrets / Network styles */
+.action-btn {
+  display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 11px;
+  font-weight: 500; cursor: pointer; border: 1px solid; margin-right: 4px;
+  transition: all 0.15s;
+}
+.action-btn.start { background: rgba(63,185,80,0.15); color: #3fb950; border-color: #238636; }
+.action-btn.start:hover { background: #238636; color: #fff; }
+.action-btn.stop { background: rgba(248,81,73,0.15); color: #f85149; border-color: #da3633; }
+.action-btn.stop:hover { background: #da3633; color: #fff; }
+.action-btn.restart { background: rgba(88,166,255,0.15); color: #58a6ff; border-color: #1f6feb; }
+.action-btn.restart:hover { background: #1f6feb; color: #fff; }
+.action-btn.test { background: rgba(210,153,34,0.15); color: #d29922; border-color: #9e6a03; }
+.action-btn.test:hover { background: #9e6a03; color: #fff; }
+.test-input-group { display: flex; gap: 8px; margin-bottom: 8px; }
+.test-input-group input {
+  flex: 1; background: #0f1117; border: 1px solid #2d333b; border-radius: 6px;
+  padding: 6px 10px; color: #e1e4e8; font-size: 12px; outline: none;
+}
+.test-input-group input:focus { border-color: #58a6ff; }
+.test-result { font-size: 12px; padding: 8px 12px; border-radius: 6px; margin-top: 8px; display: none; }
+.test-result.blocked { background: rgba(248,81,73,0.1); color: #f85149; display: block; }
+.test-result.allowed { background: rgba(63,185,80,0.1); color: #3fb950; display: block; }
+.test-result.error { background: rgba(210,153,34,0.1); color: #d29922; display: block; }
+.status-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+.status-badge.on { background: rgba(63,185,80,0.15); color: #3fb950; }
+.status-badge.off { background: rgba(118,131,144,0.15); color: #768390; }
+.finding-item { padding: 6px 10px; background: rgba(248,81,73,0.06); border-left: 2px solid #f85149; border-radius: 4px; margin-bottom: 4px; font-size: 11px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>
+      <span class="status-dot ok" id="globalDot"></span>
+      企微 Agent Ops Center
+    </h1>
+  </div>
+  <div class="refresh" id="refreshInfo"></div>
+</div>
+
+<div id="errorBanner" class="error-banner" style="display:none"></div>
+
+<div class="stats-grid" id="statsGrid"></div>
+
+<div class="two-col">
+  <div>
+    <div class="section-title">📡 Agent 实时状态</div>
+    <table class="agent-table">
+      <thead><tr><th>Agent</th><th>状态</th><th>延迟</th><th>成功率</th><th>上次检查</th></tr></thead>
+      <tbody id="agentTableBody"></tbody>
+    </table>
+  </div>
+  <div>
+    <div class="section-title">📋 最近事件</div>
+    <div class="chart-area">
+      <div class="events-list" id="eventsList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- v2.2: Resource panel -->
+<div style="margin-bottom:24px">
+  <div class="section-title">⚡ 资源监控</div>
+  <div class="resource-grid" id="resourceGrid">
+    <div class="resource-card">
+      <div class="r-header"><span class="r-label">🔥 CPU</span></div>
+      <div class="r-value blue">—</div>
+      <div class="r-detail">等待数据...</div>
+      <div class="r-bar-wrap"><div class="r-bar blue" style="width:0%"></div></div>
+    </div>
+    <div class="resource-card">
+      <div class="r-header"><span class="r-label">💾 内存</span></div>
+      <div class="r-value blue">—</div>
+      <div class="r-detail">等待数据...</div>
+      <div class="r-bar-wrap"><div class="r-bar blue" style="width:0%"></div></div>
+    </div>
+    <div class="resource-card">
+      <div class="r-header"><span class="r-label">📊 任务队列</span></div>
+      <div class="r-value blue">—</div>
+      <div class="r-detail">等待数据...</div>
+      <div class="r-bar-wrap"><div class="r-bar blue" style="width:0%"></div></div>
+    </div>
+    <div class="resource-card" id="diskCard">
+      <div class="r-header"><span class="r-label">💿 磁盘</span></div>
+      <div class="r-value blue">—</div>
+      <div class="r-detail">等待数据...</div>
+      <div class="r-bar-wrap"><div class="r-bar blue" style="width:0%"></div></div>
+    </div>
+  </div>
+  <div id="resourceEmpty" class="empty-state" style="padding:24px 0;display:none">等待资源数据上报...（配置 WorkBuddy/OpenClaw 适配器后自动采集）</div>
+</div>
+<div style="margin-bottom:24px">
+  <div class="section-title">🚀 活跃任务</div>
+  <div class="chart-area">
+    <table class="task-table">
+      <thead><tr><th>任务</th><th>Agent</th><th>类型</th><th>状态</th><th>节点</th><th>开始时间</th></tr></thead>
+      <tbody id="taskTableBody"></tbody>
+    </table>
+    <div id="taskEmpty" class="empty-state" style="padding:24px 0">暂无活跃任务</div>
+  </div>
+</div>
+
+<!-- v2.3: 审计查询面板 -->
+<div style="margin-bottom:24px">
+  <div class="section-title">📝 审计查询</div>
+  <div class="chart-area">
+    <div class="audit-search">
+      <input type="text" id="auditKeyword" placeholder="关键词搜索..." onkeydown="if(event.key==='Enter')auditSearch()">
+      <select id="auditType" onchange="auditSearch()">
+        <option value="">全部类型</option>
+        <option value="task_complete">任务完成</option>
+        <option value="task_fail">任务失败</option>
+        <option value="decision_point">决策点</option>
+        <option value="error">错误</option>
+        <option value="handoff">移交</option>
+      </select>
+      <select id="auditAgent" onchange="auditSearch()">
+        <option value="">全部 Agent</option>
+      </select>
+      <button onclick="auditSearch()">🔍 搜索</button>
+    </div>
+    <table class="audit-table">
+      <thead><tr><th>时间</th><th>类型</th><th>Agent</th><th>摘要</th></tr></thead>
+      <tbody id="auditTableBody"></tbody>
+    </table>
+    <div id="auditEmpty" class="empty-state" style="padding:24px 0">暂无审计记录<br><small>任务完成/失败时自动采集</small></div>
+    <div id="auditDetail" class="audit-detail"></div>
+  </div>
+</div>
+
+<!-- v2.4: Lifecycle Manager 面板 -->
+<div style="margin-bottom:24px">
+  <div class="section-title">🔄 进程守护（Lifecycle）</div>
+  <div class="chart-area">
+    <table class="task-table">
+      <thead><tr><th>进程</th><th>状态</th><th>PID</th><th>运行时长</th><th>重启次数</th><th>操作</th></tr></thead>
+      <tbody id="lifecycleTableBody"></tbody>
+    </table>
+    <div id="lifecycleEmpty" class="empty-state" style="padding:24px 0">暂无被管进程<br><small>在 config.yaml 的 lifecycle.processes 中配置</small></div>
+  </div>
+</div>
+
+<!-- v2.4: Secrets Scanner 面板 -->
+<div class="two-col">
+  <div>
+    <div class="section-title">🔐 敏感信息扫描（Secrets）</div>
+    <div class="chart-area">
+      <div class="resource-grid" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr));margin-bottom:12px" id="secretsStatsGrid">
+        <div class="resource-card"><div class="r-header"><span class="r-label">已扫描</span></div><div class="r-value blue">—</div></div>
+        <div class="resource-card"><div class="r-header"><span class="r-label">已阻断</span></div><div class="r-value red">—</div></div>
+        <div class="resource-card"><div class="r-header"><span class="r-label">已脱敏</span></div><div class="r-value yellow">—</div></div>
+        <div class="resource-card"><div class="r-header"><span class="r-label">规则数</span></div><div class="r-value blue">—</div></div>
+      </div>
+      <div style="font-size:12px;margin-bottom:8px;color:#768390">模式：<span id="secretsMode">—</span></div>
+      <div style="margin-bottom:12px">
+        <div style="font-size:11px;color:#768390;margin-bottom:4px">✏️ 测试一段文本：</div>
+        <div class="test-input-group">
+          <input type="text" id="secretsTestInput" placeholder="输入测试文本，如：sk-abc123..." onkeydown="if(event.key==='Enter')secretsTest()">
+          <button class="action-btn test" onclick="secretsTest()">扫描</button>
+        </div>
+        <div id="secretsTestResult" class="test-result"></div>
+      </div>
+      <details style="font-size:11px;color:#768390">
+        <summary style="cursor:pointer;margin-bottom:8px">📋 启用规则列表</summary>
+        <div id="secretsRulesList" style="max-height:200px;overflow-y:auto">—</div>
+      </details>
+    </div>
+  </div>
+  <div>
+    <div class="section-title">🌐 网络守卫（NetworkGuard）</div>
+    <div class="chart-area">
+      <div class="resource-grid" style="grid-template-columns:repeat(auto-fit,minmax(100px,1fr));margin-bottom:12px" id="networkStatsGrid">
+        <div class="resource-card"><div class="r-header"><span class="r-label">总请求</span></div><div class="r-value blue">—</div></div>
+        <div class="resource-card"><div class="r-header"><span class="r-label">已放行</span></div><div class="r-value green">—</div></div>
+        <div class="resource-card"><div class="r-header"><span class="r-label">已阻断</span></div><div class="r-value red">—</div></div>
+      </div>
+      <div style="font-size:12px;margin-bottom:8px;color:#768390">模式：<span id="networkMode">—</span> | 状态：<span id="networkInstalled">—</span></div>
+      <div style="margin-bottom:12px">
+        <div style="font-size:11px;color:#768390;margin-bottom:4px">🔗 测试 URL / 域名：</div>
+        <div class="test-input-group">
+          <input type="text" id="networkTestInput" placeholder="如：https://api.openai.com 或 api.example.com" onkeydown="if(event.key==='Enter')networkTest()">
+          <button class="action-btn test" onclick="networkTest()">测试</button>
+        </div>
+        <div id="networkTestResult" class="test-result"></div>
+      </div>
+      <details style="font-size:11px;color:#768390">
+        <summary style="cursor:pointer;margin-bottom:8px">🛡️ 白名单（最近 5 条阻断记录）</summary>
+        <div id="networkBlockedLog" style="max-height:200px;overflow-y:auto">—</div>
+      </details>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Agent Ops Center v2.4 — 自动刷新（10秒）| <span id="serverInfo"></span>
+</div>
+
+<script>
+const API_BASE = window.location.origin;
+
+const STATUS_LABELS = { healthy: '正常', degraded: '降级', offline: '离线', unknown: '未知', registered: '待检查' };
+const STATUS_TAGS = { healthy: 'healthy', degraded: 'degraded', offline: 'offline', unknown: 'unknown', registered: 'unknown' };
+const STATUS_EMOJI = { healthy: '🟢', degraded: '🟡', offline: '🔴', unknown: '⚪', registered: '⚪' };
+const EVENT_EMOJI = { 'agent:online': '✅', 'agent:offline': '🚨', 'agent:degraded': '⚠️', 'agent:state_change': '📡' };
+
+let refreshCount = 0;
+let lastOk = true;
+
+async function fetchJSON(path) {
+  const resp = await fetch(API_BASE + path);
+  if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
+  return resp.json();
+}
+
+function formatTime(ts) {
+  if (!ts) return '—';
+  const d = new Date(ts);
+  return d.toLocaleTimeString('zh-CN', { hour12: false });
+}
+
+function formatDuration(ms) {
+  if (!ms || ms === 0) return '—';
+  if (ms < 1000) return Math.round(ms) + 'ms';
+  return (ms / 1000).toFixed(1) + 's';
+}
+
+function getSuccessRate(a) {
+  if (!a.totalChecks || a.totalChecks === 0) return '—';
+  const ok = a.totalChecks - (a.totalFailures || 0);
+  return ((ok / a.totalChecks) * 100).toFixed(0) + '%';
+}
+
+function renderStats(snapshot) {
+  const { total, healthy, degraded, offline } = snapshot;
+  document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card"><div class="label">总 Agent 数</div><div class="value blue">${total}</div></div>
+    <div class="stat-card"><div class="label">🟢 健康</div><div class="value green">${healthy}</div></div>
+    <div class="stat-card"><div class="label">🟡 降级</div><div class="value yellow">${degraded}</div></div>
+    <div class="stat-card"><div class="label">🔴 离线</div><div class="value red">${offline}</div></div>
+  `;
+
+  // Global dot
+  const dot = document.getElementById('globalDot');
+  dot.className = 'status-dot ' + (offline > 0 ? 'err' : degraded > 0 ? 'degraded' : 'ok');
+}
+
+function renderAgents(agents) {
+  const tbody = document.getElementById('agentTableBody');
+  if (!agents.length) {
+    tbody.innerHTML = '<tr><td colspan="5" class="empty-state">没有注册的 Agent<br><small>请在 config.yaml 的 monitor.agents 中添加</small></td></tr>';
+    return;
+  }
+  tbody.innerHTML = agents.map(a => `
+    <tr>
+      <td><strong>${esc(a.name)}</strong> <span style="color:#768390;font-size:11px">${esc(a.id)}</span></td>
+      <td><span class="tag ${STATUS_TAGS[a.status] || 'unknown'}">${STATUS_EMOJI[a.status] || ''} ${STATUS_LABELS[a.status] || a.status}</span></td>
+      <td>${formatDuration(a.avgLatency)}</td>
+      <td>${getSuccessRate(a)}</td>
+      <td>${formatTime(a.lastCheck)}</td>
+    </tr>
+  `).join('');
+}
+
+function renderEvents(events) {
+  const list = document.getElementById('eventsList');
+  if (!events.length) {
+    list.innerHTML = '<div class="empty-state">暂无事件</div>';
+    return;
+  }
+  list.innerHTML = events.map(e => `
+    <div class="event-item">
+      <span class="ev-icon">${EVENT_EMOJI[e.type] || '📡'}</span>
+      <span class="ev-time">${formatTime(e.timestamp)}</span>
+      <span class="ev-msg"><span class="ev-agent">${esc(e.agentName)}</span> — ${eventMsg(e)}</span>
+    </div>
+  `).join('');
+}
+
+function eventMsg(e) {
+  switch (e.type) {
+    case 'agent:online': return '已恢复在线';
+    case 'agent:offline': return `离线（连续失败 ${e.detail.failCount || '?'} 次）${e.detail.error ? ' — ' + e.detail.error : ''}`;
+    case 'agent:degraded': return `健康降级（连续失败 ${e.detail.failStreak || '?'} 次）`;
+    case 'agent:state_change': return `状态变更: ${STATUS_LABELS[e.detail.from] || e.detail.from} → ${STATUS_LABELS[e.detail.to] || e.detail.to}`;
+    default: return e.type;
+  }
+}
+
+function esc(s) { return String(s).replace(/[<>&"']/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'})[c]); }
+
+// ─── 任务面板（v2.1）───────────────────────────────────────
+const TASK_STATUS_TAGS = { running: 'running', completed: 'completed', failed: 'failed' };
+const TASK_STATUS_LABELS = { running: '执行中', completed: '已完成', failed: '失败', pending: '等待中' };
+
+function renderTasks(tasks) {
+  const tbody = document.getElementById('taskTableBody');
+  const empty = document.getElementById('taskEmpty');
+
+  if (!tasks || !tasks.length) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  tbody.innerHTML = tasks.map(t => {
+    const nodeCount = t.nodes ? t.nodes.length : 0;
+    const lastNode = t.nodes && t.nodes.length > 0 ? t.nodes[t.nodes.length - 1] : null;
+    const elapsed = formatDuration(Date.now() - t.startTime);
+    return `
+      <tr>
+        <td><strong>${esc(t.name)}</strong></td>
+        <td><span style="color:#58a6ff;font-size:11px">${esc(t.agentId)}</span></td>
+        <td><span style="color:#768390">${esc(t.type)}</span></td>
+        <td><span class="tag ${TASK_STATUS_TAGS[t.status] || ''}">${TASK_STATUS_LABELS[t.status] || t.status}</span></td>
+        <td>
+          ${nodeCount > 0 ? nodeCount + ' 个' : '—'}
+          ${lastNode ? ' <span style="color:#768390;font-size:10px">(' + esc(lastNode.name) + ')</span>' : ''}
+        </td>
+        <td><span style="color:#768390">${elapsed}</span></td>
+      </tr>
+    `;
+  }).join('');
+}
+
+async function refreshTasks() {
+  try {
+    const data = await fetchJSON('/api/tasks/active');
+    renderTasks(data.tasks || []);
+  } catch (err) {
+    console.debug('Task API unavailable:', err.message);
+  }
+}
+
+// ─── 资源面板（v2.2）───────────────────────────────────────
+const RESOURCE_THRESHOLDS = { cpu: 80, memory: 90, queueDepth: 10, disk: 90 };
+const RESOURCE_METRICS = [
+  { key: 'cpu', label: '🔥 CPU', unit: '%', threshold: 80 },
+  { key: 'memory', label: '💾 内存', unit: '%', threshold: 90 },
+  { key: 'queueDepth', label: '📊 任务队列', unit: ' 个', threshold: 10 },
+  { key: 'disk', label: '💿 磁盘', unit: '%', threshold: 90, diskMode: true },
+];
+
+function resourceValueColor(key, val) {
+  const t = RESOURCE_THRESHOLDS[key] || 80;
+  if (val > t * 1.1) return 'red';
+  if (val > t) return 'yellow';
+  return 'green';
+}
+
+function renderSparkline(history, key, maxLen) {
+  if (!history || history.length < 2) return '';
+  const values = history.map(h => h[key]).filter(v => v !== null && v !== undefined);
+  if (values.length < 2) return '';
+
+  const maxVal = Math.max(...values, RESOURCE_THRESHOLDS[key] || 100);
+  const minVal = 0;
+  const range = maxVal - minVal || 1;
+  const t = RESOURCE_THRESHOLDS[key] || 80;
+
+  return values.map(v => {
+    const h = Math.max(3, ((v - minVal) / range) * 30);
+    const color = v > t * 1.1 ? '#f85149' : v > t ? '#d29922' : '#3fb950';
+    const opacity = 0.6 + 0.4 * (v / (maxVal || 1));
+    return `<span class="bar" style="height:${h.toFixed(0)}px;background:${color};opacity:${opacity.toFixed(1)}"></span>`;
+  }).join('');
+}
+
+function renderResourceCards(resources) {
+  const grid = document.getElementById('resourceGrid');
+  const empty = document.getElementById('resourceEmpty');
+
+  // resources = { agentId: { latest: {...}, history: [...] } }
+  // Pick the first agent with resource data
+  let bestAgent = null;
+  let bestData = null;
+
+  if (resources && resources.byAgent) {
+    for (const [agentId, data] of Object.entries(resources.byAgent)) {
+      if (data.latest && (data.latest.cpu !== null || data.latest.memory !== null)) {
+        bestAgent = agentId;
+        bestData = data;
+        break;
+      }
+    }
+  }
+
+  if (!bestData || !bestData.latest) {
+    grid.style.display = 'none';
+    empty.style.display = 'block';
+    return;
+  }
+
+  grid.style.display = '';
+  empty.style.display = 'none';
+
+  const latest = bestData.latest;
+  const history = resources._historyCache?.[bestAgent] || [];
+
+  grid.innerHTML = RESOURCE_METRICS.map(m => {
+    const val = latest[m.key];
+    const hasData = val !== null && val !== undefined;
+
+    if (!hasData) {
+      return `<div class="resource-card">
+        <div class="r-header"><span class="r-label">${m.label}</span></div>
+        <div class="r-value blue">—</div>
+        <div class="r-detail">无数据</div>
+        <div class="r-bar-wrap"><div class="r-bar blue" style="width:0%"></div></div>
+      </div>`;
+    }
+
+    const color = m.diskMode && latest.disk ? resourceValueColor('disk', latest.disk.usedPercent) : resourceValueColor(m.key, val);
+    const displayVal = m.diskMode && latest.disk ? latest.disk.usedPercent.toFixed(0) : (typeof val === 'number' ? val.toFixed(0) : val);
+    const barPct = Math.min(100, (displayVal / (m.threshold || 100)) * 100);
+    const barColor = color === 'red' ? 'red' : color === 'yellow' ? 'yellow' : 'blue';
+    const cardClass = color === 'red' ? 'alert-critical' : color === 'yellow' ? 'alert-warning' : '';
+
+    let detail = '';
+    if (m.key === 'memory' && latest.memoryUsed && latest.memoryTotal) {
+      detail = `已用 ${latest.memoryUsed} / ${latest.memoryTotal} MB`;
+    } else if (m.key === 'queueDepth' && latest.concurrency !== null) {
+      detail = `并发: ${latest.concurrency}`;
+    } else if (m.diskMode && latest.disk) {
+      detail = `剩余 ${latest.disk.available} / ${latest.disk.size}`;
+    }
+
+    const sparkline = renderSparkline(history, m.key, 30);
+
+    return `<div class="resource-card ${cardClass}">
+      <div class="r-header">
+        <span class="r-label">${m.label}</span>
+        <span style="font-size:10px;color:#768390">${bestAgent}</span>
+      </div>
+      <div class="r-value ${color}">${displayVal}${m.unit}</div>
+      <div class="r-detail">${detail || '—'}</div>
+      <div class="r-bar-wrap">
+        <div class="r-bar ${barColor}" style="width:${barPct}%"></div>
+      </div>
+      ${sparkline ? '<div class="r-sparkline">' + sparkline + '</div>' : ''}
+      <div class="r-threshold">阈值: ${m.threshold}${m.unit}</div>
+    </div>`;
+  }).join('');
+}
+
+async function refreshResources() {
+  try {
+    const stats = await fetchJSON('/api/resources/stats');
+    if (stats && stats.byAgent) {
+      // Also fetch history for the first agent that has data
+      let cache = {};
+      for (const [agentId, data] of Object.entries(stats.byAgent)) {
+        if (data.latest) {
+          try {
+            const res = await fetchJSON(`/api/resources/${agentId}?limit=30`);
+            if (res && res.history) {
+              cache[agentId] = res.history;
+            }
+          } catch (e) { /* ignore */ }
+          break; // Only fetch first agent
+        }
+      }
+      stats._historyCache = cache;
+      renderResourceCards(stats);
+    }
+  } catch (err) {
+    console.debug('Resource API unavailable:', err.message);
+  }
+}
+
+// ─── v2.4 Lifecycle Manager ─────────────────────────────────
+const LIFE_STATE_EMOJI = { running: '🟢', stopped: '⚫', crashed: '🔴', starting: '🔄', stopping: '⏸️', restarting: '🔄' };
+const LIFE_STATE_LABELS = { running: '运行中', stopped: '已停止', crashed: '已崩溃', starting: '启动中', stopping: '停止中', restarting: '重启中' };
+
+async function refreshLifecycle() {
+  try {
+    const data = await fetchJSON('/api/lifecycle/processes');
+    renderLifecycle(data.processes || []);
+  } catch (err) {
+    console.debug('Lifecycle API unavailable:', err.message);
+  }
+}
+
+function renderLifecycle(processes) {
+  const tbody = document.getElementById('lifecycleTableBody');
+  const empty = document.getElementById('lifecycleEmpty');
+  if (!processes.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+  tbody.innerHTML = processes.map(p => {
+    const emoji = LIFE_STATE_EMOJI[p.state] || '⚪';
+    const label = LIFE_STATE_LABELS[p.state] || p.state;
+    const uptime = p.state === 'running' && p.uptime ? formatDuration(p.uptime) : '—';
+    const buttons = [];
+    if (p.state === 'running') {
+      buttons.push(`<button class="action-btn restart" onclick="lifecycleAction('${p.id}','restart')">🔄 重启</button>`);
+      buttons.push(`<button class="action-btn stop" onclick="lifecycleAction('${p.id}','stop')">⏹ 停止</button>`);
+    } else if (p.state === 'stopped' || p.state === 'crashed') {
+      buttons.push(`<button class="action-btn start" onclick="lifecycleAction('${p.id}','start')">▶ 启动</button>`);
+    }
+    return `<tr>
+      <td><strong>${esc(p.name || p.id)}</strong> <span style="color:#768390;font-size:11px">${esc(p.id)}</span></td>
+      <td>${emoji} ${label}</td>
+      <td>${p.pid || '—'}</td>
+      <td>${uptime}</td>
+      <td>${p.restartCount || 0}</td>
+      <td>${buttons.join(' ')}</td>
+    </tr>`;
+  }).join('');
+}
+
+async function lifecycleAction(procId, action) {
+  try {
+    await fetch(`${API_BASE}/api/lifecycle/${procId}/${action}`, { method: 'POST' });
+    setTimeout(refreshLifecycle, 500);
+  } catch (err) {
+    console.error(`Lifecycle ${action} failed:`, err.message);
+  }
+}
+
+// ─── v2.4 Secrets Scanner ───────────────────────────────────
+async function refreshSecrets() {
+  try {
+    const stats = await fetchJSON('/api/secrets/stats');
+    const grid = document.getElementById('secretsStatsGrid');
+    const modeEl = document.getElementById('secretsMode');
+    if (!stats) return;
+    grid.innerHTML = `
+      <div class="resource-card"><div class="r-header"><span class="r-label">已扫描</span></div><div class="r-value blue">${stats.totalScanned || 0}</div></div>
+      <div class="resource-card"><div class="r-header"><span class="r-label">已阻断</span></div><div class="r-value red">${stats.totalBlocked || 0}</div></div>
+      <div class="resource-card"><div class="r-header"><span class="r-label">已脱敏</span></div><div class="r-value yellow">${stats.totalRedacted || 0}</div></div>
+      <div class="resource-card"><div class="r-header"><span class="r-label">规则数</span></div><div class="r-value blue">${stats.ruleCount || stats.rules?.length || 0}</div></div>`;
+    modeEl.innerHTML = `<span class="status-badge ${stats.mode === 'block' ? 'on' : 'off'}">${stats.mode || 'block'}</span>`;
+    // Load rules
+    try {
+      const rulesData = await fetchJSON('/api/secrets/rules');
+      const list = document.getElementById('secretsRulesList');
+      if (!rulesData.rules || !rulesData.rules.length) { list.innerHTML = '<span style="color:#768390">无规则</span>'; return; }
+      list.innerHTML = rulesData.rules.map(r => {
+        const sevColor = r.severity === 'high' ? '#f85149' : r.severity === 'medium' ? '#d29922' : '#768390';
+        return `<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #2d333b">
+          <span>${esc(r.name)} <span style="color:#768390">(${r.category})</span></span>
+          <span style="color:${sevColor}">${r.severity}</span></div>`;
+      }).join('');
+    } catch (e) { /* ignore */ }
+  } catch (err) {
+    console.debug('Secrets API unavailable:', err.message);
+  }
+}
+
+async function secretsTest() {
+  const input = document.getElementById('secretsTestInput').value.trim();
+  const resultEl = document.getElementById('secretsTestResult');
+  if (!input) { resultEl.className = 'test-result error'; resultEl.innerHTML = '请输入测试文本'; return; }
+  try {
+    const resp = await fetch(`${API_BASE}/api/secrets/test`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: input, context: { source: 'dashboard_test' } })
+    });
+    const data = await resp.json();
+    if (data.blocked || !data.safe) {
+      resultEl.className = 'test-result blocked';
+      let html = `🚨 检测到 ${data.findings?.length || 0} 处敏感信息：`;
+      (data.findings || []).forEach(f => {
+        html += `<div class="finding-item"><strong>${esc(f.rule)}</strong> (${f.severity}) — 匹配: <code>${esc(f.matched || '')}</code></div>`;
+      });
+      if (data.blocked) html += '<div style="margin-top:4px;font-weight:600">⛔ 此消息会被阻断</div>';
+      resultEl.innerHTML = html;
+    } else {
+      resultEl.className = 'test-result allowed';
+      resultEl.innerHTML = '✅ 未检测到敏感信息，安全通过';
+    }
+  } catch (err) {
+    resultEl.className = 'test-result error';
+    resultEl.innerHTML = `❌ 测试失败: ${err.message}`;
+  }
+}
+
+// ─── v2.4 Network Guard ─────────────────────────────────────
+async function refreshNetwork() {
+  try {
+    const status = await fetchJSON('/api/network/status');
+    const grid = document.getElementById('networkStatsGrid');
+    const modeEl = document.getElementById('networkMode');
+    const installedEl = document.getElementById('networkInstalled');
+    const logEl = document.getElementById('networkBlockedLog');
+    if (!status) return;
+    grid.innerHTML = `
+      <div class="resource-card"><div class="r-header"><span class="r-label">总请求</span></div><div class="r-value blue">${status.total || 0}</div></div>
+      <div class="resource-card"><div class="r-header"><span class="r-label">已放行</span></div><div class="r-value green">${status.allowed || 0}</div></div>
+      <div class="resource-card"><div class="r-header"><span class="r-label">已阻断</span></div><div class="r-value red">${status.blockedCount || status.blocked || 0}</div></div>`;
+    modeEl.innerHTML = `<span class="status-badge ${status.mode === 'block' ? 'on' : 'off'}">${status.mode || 'block'}</span>`;
+    installedEl.textContent = status.installed ? '✅ 已激活' : '❌ 未激活';
+    const blockedLog = status.blockedLog || [];
+    if (!blockedLog.length) { logEl.innerHTML = '<span style="color:#3fb950">✅ 无阻断记录</span>'; return; }
+    logEl.innerHTML = blockedLog.slice(-5).reverse().map(b => {
+      const time = formatTime(b.timestamp);
+      return `<div style="padding:4px 0;border-bottom:1px solid #2d333b;font-size:11px">
+        <span style="color:#f85149">🚫</span> <strong>${esc(b.host)}</strong>
+        <span style="color:#768390;font-size:10px">${time}</span>
+        <div style="color:#768390;font-size:10px">${esc(b.reason || '')}</div></div>`;
+    }).join('');
+  } catch (err) {
+    console.debug('Network API unavailable:', err.message);
+  }
+}
+
+async function networkTest() {
+  const input = document.getElementById('networkTestInput').value.trim();
+  const resultEl = document.getElementById('networkTestResult');
+  if (!input) { resultEl.className = 'test-result error'; resultEl.innerHTML = '请输入 URL 或域名'; return; }
+  try {
+    const resp = await fetch(`${API_BASE}/api/network/test`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url: input })
+    });
+    const data = await resp.json();
+    if (data.allowed) {
+      resultEl.className = 'test-result allowed';
+      resultEl.innerHTML = `✅ ${esc(input)} — 允许通过`;
+    } else {
+      resultEl.className = 'test-result blocked';
+      resultEl.innerHTML = `🚫 ${esc(input)} — 被阻断<br><small>${esc(data.reason || '不在白名单中')}</small>`;
+    }
+  } catch (err) {
+    resultEl.className = 'test-result error';
+    resultEl.innerHTML = `❌ 测试失败: ${err.message}`;
+  }
+}
+
+async function refresh() {
+  try {
+    const [snap, events] = await Promise.all([
+      fetchJSON('/api/monitor/snapshot'),
+      fetchJSON('/api/monitor/events?limit=20')
+    ]);
+
+    renderStats(snap);
+    renderAgents(snap.agents);
+    renderEvents(events);
+    refreshTasks();      // v2.1
+    refreshResources();  // v2.2
+    refreshAudit();      // v2.3
+    refreshLifecycle();  // v2.4
+    refreshSecrets();    // v2.4
+    refreshNetwork();    // v2.4
+
+    document.getElementById('errorBanner').style.display = 'none';
+    document.getElementById('refreshInfo').textContent =
+      `上次刷新: ${formatTime(Date.now())}（第 ${++refreshCount} 次）| ${snap.total} 个 Agent`;
+    document.getElementById('serverInfo').textContent =
+      `快照时间: ${formatTime(snap.timestamp)} | 健康率: ${snap.total > 0 ? ((snap.healthy/snap.total)*100).toFixed(0) : 0}%`;
+    lastOk = true;
+  } catch (err) {
+    document.getElementById('errorBanner').style.display = 'block';
+    document.getElementById('errorBanner').textContent = `⚠️ 连接失败: ${err.message}（10秒后重试）`;
+    lastOk = false;
+  }
+}
+
+// v2.3: Audit
+
+const AUDIT_TYPE_LABELS = {
+  task_complete: '✅ 完成', task_fail: '💥 失败', decision_point: '🧠 决策',
+  error: '🚨 错误', handoff: '🤝 移交', state_change: '🔄 变化'
+};
+
+async function auditSearch() {
+  const keyword = document.getElementById('auditKeyword').value.trim();
+  const type = document.getElementById('auditType').value;
+  const agentId = document.getElementById('auditAgent').value;
+  const params = new URLSearchParams();
+  if (keyword) params.append('keyword', keyword);
+  if (type) params.append('type', type);
+  if (agentId) params.append('agentId', agentId);
+  params.append('limit', '30');
+
+  try {
+    const result = await fetchJSON('/api/audit/search?' + params.toString());
+    renderAuditTable(result.entries, result.total);
+  } catch (err) {
+    console.debug('Audit API unavailable:', err.message);
+  }
+}
+
+function renderAuditTable(entries, total) {
+  const tbody = document.getElementById('auditTableBody');
+  const empty = document.getElementById('auditEmpty');
+  const detail = document.getElementById('auditDetail');
+  detail.className = 'audit-detail';
+
+  if (!entries || entries.length === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+
+  empty.style.display = 'none';
+  tbody.innerHTML = entries.map(e => {
+    const typeLabel = AUDIT_TYPE_LABELS[e.type] || e.type;
+    const typeClass = e.type.replace(':', '_');
+    const time = formatTime(e.timestamp);
+    const summary = (e.summary || '').length > 60 ? e.summary.slice(0, 60) + '...' : (e.summary || '—');
+    const hasReview = e.needsHumanReview ? ' <span class="tag needs-review">需复核</span>' : '';
+    return `<tr onclick="showAuditDetail('${e.auditId}')">
+      <td style="color:#768390;font-size:11px">${time}</td>
+      <td><span class="audit-type-tag ${typeClass}">${typeLabel}</span></td>
+      <td style="color:#58a6ff">${e.agentId || '—'}</td>
+      <td>${summary}${hasReview}</td>
+    </tr>`;
+  }).join('');
+
+  // Also update agent dropdown if available
+  updateAuditAgentDropdown(entries);
+}
+
+function updateAuditAgentDropdown(entries) {
+  try {
+    const sel = document.getElementById('auditAgent');
+    const currentVal = sel.value;
+    const agents = new Set();
+    for (const e of entries) if (e.agentId) agents.add(e.agentId);
+    // Also try to add agents from current snapshot
+    sel.innerHTML = '<option value="">全部 Agent</option>';
+    for (const a of agents) {
+      sel.innerHTML += `<option value="${a}" ${currentVal === a ? 'selected' : ''}>${a}</option>`;
+    }
+  } catch (e) { /* ignore */ }
+}
+
+async function showAuditDetail(auditId) {
+  const detail = document.getElementById('auditDetail');
+  detail.className = 'audit-detail';
+  detail.innerHTML = '<div style="padding:24px;text-align:center;color:#768390">加载中...</div>';
+  detail.className = 'audit-detail open';
+
+  try {
+    // Fetch the audit entry (search with exact auditId) and any linked task
+    // We need to get the entry itself — search for it using the specific APIT
+    // Strategy: read entries from the rendered table data, or we could add an endpoint
+    // For now, use the search with auditId approach
+    const stats = await fetchJSON('/api/audit/stats');
+    // We don't have a single-entry endpoint yet, so let's rebuild from search
+    // Use a fresh search with the audit ID concept — or we can look it up by knowing the taskId
+    // Simpler: re-fetch the list and find by ID in JS
+    const result = await fetchJSON('/api/audit/search?limit=200');
+    const entry = result.entries.find(e => e.auditId === auditId);
+
+    if (!entry) {
+      detail.innerHTML = '<div class="ad-section">未找到审计记录</div>';
+      return;
+    }
+
+    const isFail = entry.type === 'task_fail';
+    const icon = isFail ? '💥' : '✅';
+
+    let html = '';
+    html += `<div class="ad-section"><h4>${icon} 审计记录详情</h4></div>`;
+    html += `<div class="audit-meta">`;
+    html += `<span>类型: <span class="audit-type-tag ${entry.type}">${AUDIT_TYPE_LABELS[entry.type] || entry.type}</span></span>`;
+    html += `<span>Agent: <span style="color:#58a6ff">${entry.agentId}</span></span>`;
+    if (entry.taskId) html += `<span>任务: <span style="color:#58a6ff">${entry.taskId}</span></span>`;
+    html += `<span>时间: ${formatTime(entry.timestamp)}</span>`;
+    html += `</div>`;
+
+    if (entry.summary) {
+      html += `<div class="ad-section"><h4>📝 摘要</h4><div>${entry.summary}</div></div>`;
+    }
+
+    // Decision points
+    if (entry.decisionPoints && entry.decisionPoints.length > 0) {
+      html += `<div class="ad-section"><h4>🧠 关键决策点</h4>`;
+      for (const dp of entry.decisionPoints) {
+        html += `<div class="ad-decision">`;
+        html += `<div style="font-weight:600;margin-bottom:4px">${dp.point}</div>`;
+        html += `<div>选择：<span class="ad-choice">${dp.choice}</span></div>`;
+        html += `<div style="color:#768390">理由：${dp.reason}</div>`;
+        if (dp.alternatives && dp.alternatives.length > 0) {
+          html += `<div style="color:#768390">备选：${dp.alternatives.join(' / ')}</div>`;
+        }
+        html += `</div>`;
+      }
+      html += `</div>`;
+    }
+
+    // Input / Output
+    if (entry.input && Object.keys(entry.input).length > 0) {
+      html += `<div class="ad-section"><h4>📥 输入</h4><pre style="font-size:11px;color:#768390;white-space:pre-wrap">${JSON.stringify(entry.input, null, 2)}</pre></div>`;
+    }
+    if (entry.output && Object.keys(entry.output).length > 0) {
+      html += `<div class="ad-section"><h4>📤 输出</h4><pre style="font-size:11px;color:#768390;white-space:pre-wrap">${JSON.stringify(entry.output, null, 2)}</pre></div>`;
+    }
+
+    if (entry.needsHumanReview) {
+      html += `<div style="margin-top:8px;padding:8px 12px;background:rgba(248,81,73,0.1);border-radius:6px;color:#f85149">⚠️ 需要人工复核</div>`;
+    }
+
+    detail.innerHTML = html;
+  } catch (err) {
+    detail.innerHTML = `<div style="color:#f85149">加载失败: ${err.message}</div>`;
+  }
+}
+
+// Initial audit load
+async function refreshAudit() {
+  try {
+    await auditSearch();
+    document.getElementById('auditEmpty').style.display = 'none';
+  } catch (err) {
+    console.debug('Audit refresh failed:', err.message);
+  }
+}
+
+refresh();
+setInterval(refresh, 10_000);
+</script>
+</body>
+</html>

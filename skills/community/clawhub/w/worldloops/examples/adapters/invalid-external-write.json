@@ -1,0 +1,8 @@
+{
+  "source": "slack",
+  "sourceType": "message",
+  "externalWrite": true,
+  "text": "This signal incorrectly sets externalWrite to true. WorldLoops will reject it because AdapterSignal requires externalWrite: false.",
+  "observedAt": "2026-05-20T10:00:00.000Z",
+  "summary": "Invalid: externalWrite must be false — signals that imply external writes are not accepted."
+}

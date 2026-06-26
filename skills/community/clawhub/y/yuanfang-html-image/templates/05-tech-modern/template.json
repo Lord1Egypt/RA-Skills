@@ -1,0 +1,7 @@
+{
+  "name": "现代科技",
+  "description": "终端点数+网格底+代码前缀+蓝色发光，适合AI/科技",
+  "colors": { "background": "#0F172A", "text": "#E2E8F0", "accent": "#4FACFE", "secondary": "#64748B" },
+  "fonts": { "title": "\"PingFang SC\",\"Microsoft YaHei\",-apple-system,sans-serif", "body": "\"PingFang SC\",\"Microsoft YaHei\",\"Courier New\",monospace" },
+  "layout": { "titleSizeVertical": "130px", "titleSizeSquare": "100px", "titleSizeWide": "82px", "titleSizeCover": "60px", "contentSize": "36px" }
+}

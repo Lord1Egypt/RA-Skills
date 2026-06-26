@@ -1,0 +1,177 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/vaccination.json",
+  "title": "VaccinationRecord",
+  "description": "疫苗接种记录和计划管理的数据结构定义",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "创建时间"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "最后更新时间"
+    },
+    "vaccination_records": {
+      "type": "array",
+      "description": "疫苗接种记录列表",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^vax_[0-9]{17}$"
+          },
+          "vaccine_info": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "type": {"type": "string"},
+              "trade_name": {"type": "string"},
+              "manufacturer": {"type": "string"},
+              "batch_number": {"type": "string"},
+              "dose_form": {
+                "type": "string",
+                "enum": ["injection", "oral", "nasal", "other"]
+              },
+              "dose_volume": {
+                "type": "object",
+                "properties": {
+                  "value": {"type": "number"},
+                  "unit": {"type": "string"}
+                }
+              },
+              "route": {
+                "type": "string",
+                "enum": ["intramuscular", "subcutaneous", "oral", "intranasal", "other"]
+              },
+              "route_name": {"type": "string"}
+            }
+          },
+          "series_info": {
+            "type": "object",
+            "properties": {
+              "is_series": {"type": "boolean"},
+              "series_type": {
+                "type": "string",
+                "enum": ["primary", "booster", "single"]
+              },
+              "total_doses": {"type": "integer"},
+              "current_dose": {"type": "integer"},
+              "schedule_type": {"type": "string"},
+              "schedule_name": {"type": "string"}
+            }
+          },
+          "doses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "dose_number": {"type": "integer"},
+                "scheduled_date": {"type": "string", "format": "date"},
+                "administered_date": {"type": "string", "format": "date"},
+                "administration_time": {"type": "string", "format": "date-time"},
+                "site": {
+                  "type": "string",
+                  "enum": ["left_arm", "right_arm", "left_thigh", "right_thigh", "buttock", "other"]
+                },
+                "site_name": {"type": "string"},
+                "facility": {"type": "string"},
+                "provider": {"type": "string"},
+                "lot_number": {"type": "string"},
+                "status": {
+                  "type": "string",
+                  "enum": ["completed", "scheduled", "missed", "cancelled"]
+                }
+              }
+            }
+          },
+          "adverse_reactions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "dose_number": {"type": "integer"},
+                "reactions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "reaction": {"type": "string"},
+                      "severity": {
+                        "type": "string",
+                        "enum": ["mild", "moderate", "severe"]
+                      },
+                      "onset_time": {"type": "string"},
+                      "duration": {"type": "string"},
+                      "treatment": {"type": "string"}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "safety_checks": {
+            "type": "object",
+            "properties": {
+              "allergy_warnings": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "drug_interactions": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "age_appropriate": {"type": "boolean"},
+              "contraindications": {
+                "type": "array",
+                "items": {"type": "string"}
+              }
+            }
+          },
+          "status": {
+            "type": "object",
+            "properties": {
+              "series_status": {
+                "type": "string",
+                "enum": ["pending", "in_progress", "completed", "cancelled"]
+              },
+              "completion_percentage": {"type": "number"},
+              "next_dose_due": {"type": "string", "format": "date"},
+              "is_overdue": {"type": "boolean"}
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "created_at": {"type": "string", "format": "date-time"},
+              "last_updated": {"type": "string", "format": "date-time"},
+              "notes": {"type": "string"}
+            }
+          }
+        },
+        "required": ["id", "vaccine_info", "series_info", "doses"]
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_vaccination_records": {"type": "integer"},
+        "total_doses_administered": {"type": "integer"},
+        "series_completed": {"type": "integer"},
+        "series_in_progress": {"type": "integer"},
+        "single_doses": {"type": "integer"},
+        "overdue_count": {"type": "integer"},
+        "upcoming_30_days": {"type": "integer"},
+        "adverse_reactions_count": {"type": "integer"},
+        "severe_reactions_count": {"type": "integer"},
+        "last_updated": {"type": "string", "format": "date-time"}
+      }
+    }
+  },
+  "required": ["vaccination_records"],
+  "additionalProperties": false
+}

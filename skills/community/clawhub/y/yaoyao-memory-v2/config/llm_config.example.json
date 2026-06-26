@@ -1,0 +1,31 @@
+{
+  "llm": {
+    "provider": "openai-compatible",
+    "base_url": "https://api.openai.com/v1",
+    "api_key": "YOUR_LLM_API_KEY",
+    "model": "gpt-4",
+    "max_tokens": 150,
+    "temperature": 0.5
+  },
+  "embedding": {
+    "provider": "openai-compatible",
+    "base_url": "https://api.openai.com/v1",
+    "api_key": "YOUR_EMBEDDING_API_KEY",
+    "model": "text-embedding-3-small",
+    "dimensions": 1536
+  },
+  "search": {
+    "top_k": 20,
+    "max_distance": 0.8,
+    "rrf_k": 60
+  },
+  "_comment": {
+    "providers": [
+      "openai-compatible (OpenAI, Azure, etc.)",
+      "anthropic",
+      "gitee (Gitee AI)",
+      "ollama (本地模型)"
+    ],
+    "note": "请将此文件复制为 llm_config.json 并填入您的 API 密钥"
+  }
+}

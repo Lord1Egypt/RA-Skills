@@ -1,0 +1,52 @@
+{
+  "created_at": "2025-01-02T00:00:00.000Z",
+  "last_updated": "2025-01-02T00:00:00.000Z",
+  "polypharmacy_management": {
+    "user_id": "user_001",
+    "age": null,
+    "assessment_date": null,
+
+    "medication_list": [],
+
+    "total_medications": 0,
+    "prescribed_medications": 0,
+    "otc_medications": 0,
+
+    "beers_criteria_violations": [],
+
+    "drug_interactions": [],
+
+    "disease_drug_interactions": [],
+
+    "anticholinergic_burden": {
+      "total_score": null,
+      "medications_contributing": [],
+      "interpretation": null,
+      "risks": []
+    },
+
+    "deprescribing_plan": [],
+
+    "medication_adherence": {
+      "overall_adherence": null,
+      "missed_doses_weekly": null,
+      "barriers": [],
+      "aids": []
+    },
+
+    "next_medication_review": null,
+    "recommendations": []
+  },
+  "statistics": {
+    "total_medications": 0,
+    "inappropriate_medications": 0,
+    "interaction_count": 0,
+    "high_risk_interactions": 0,
+    "anticholinergic_burden_score": 0,
+    "last_review_date": null
+  },
+  "settings": {
+    "review_months": 6,
+    "enabled": true
+  }
+}

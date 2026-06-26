@@ -1,0 +1,86 @@
+{
+  "name": "@wipcomputer/wip-ldm-os",
+  "version": "0.4.84",
+  "type": "module",
+  "description": "LDM OS: identity, memory, and sovereignty infrastructure for AI agents",
+  "engines": {
+    "node": ">=18"
+  },
+  "main": "src/boot/boot-hook.mjs",
+  "bin": {
+    "ldm": "bin/ldm.js",
+    "wip-ldm-os": "bin/ldm.js",
+    "wip-install": "bin/wip-install.js",
+    "ldm-scaffold": "bin/scaffold.sh",
+    "ldm-boot-install": "src/boot/install-cli.js",
+    "lesa": "dist/bridge/cli.js"
+  },
+  "scripts": {
+    "build:bridge": "cd src/bridge && npm install && npx tsup core.ts mcp-server.ts cli.ts openclaw.ts --format esm --dts --clean --outDir ../../dist/bridge",
+    "build": "npm run build:bridge",
+    "prepublishOnly": "npm run build:bridge && npm run validate:bin-manifest",
+    "validate:bin-manifest": "node scripts/validate-bin-manifest.mjs",
+    "test:skill-frontmatter": "node scripts/test-skill-frontmatter.mjs",
+    "test:installer-update-tracks": "node scripts/test-installer-update-tracks.mjs",
+    "test:ldm-install-bin-shim": "node scripts/test-ldm-install-preserves-foreign-bin.mjs",
+    "test:doctor-cron-target": "node scripts/test-doctor-cron-target.mjs",
+    "test:bin-manifest": "node scripts/test-bin-manifest.mjs",
+    "fmt": "npx prettier --write 'src/**/*.{ts,mjs}' 'lib/**/*.mjs' 'bin/**/*.js'",
+    "fmt:check": "npx prettier --check 'src/**/*.{ts,mjs}' 'lib/**/*.mjs' 'bin/**/*.js'"
+  },
+  "claudeCode": {
+    "hook": {
+      "event": "SessionStart",
+      "matcher": "*",
+      "command": "node /Users/lesa/.ldm/shared/boot/boot-hook.mjs",
+      "timeout": 15
+    }
+  },
+  "wipLdmOs": {
+    "binFiles": [
+      {
+        "name": "process-monitor.sh",
+        "source": "bin/process-monitor.sh",
+        "purpose": "kills zombie processes; cron every 3 min"
+      },
+      {
+        "name": "ldm-backup.sh",
+        "source": "scripts/ldm-backup.sh",
+        "purpose": "daily backup; LaunchAgent at 03:00"
+      },
+      {
+        "name": "ldm-restore.sh",
+        "source": "scripts/ldm-restore.sh",
+        "purpose": "restore from backup; operator-invoked"
+      },
+      {
+        "name": "ldm-summary.sh",
+        "source": "scripts/ldm-summary.sh",
+        "purpose": "generate session/daily summaries"
+      },
+      {
+        "name": "backfill-summaries.sh",
+        "source": "scripts/backfill-summaries.sh",
+        "purpose": "backfill summary cadences"
+      }
+    ]
+  },
+  "files": [
+    "src/",
+    "lib/",
+    "bin/",
+    "dist/bridge/",
+    "templates/",
+    "docs/",
+    "shared/",
+    "scripts/",
+    "catalog.json",
+    "SKILL.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wipcomputer/wip-ldm-os-private.git"
+  },
+  "author": "WIP Computer, Inc.",
+  "license": "MIT"
+}

@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xhs-publish 小红书发布助手</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 左侧菜单 */
+        .sidebar {
+            width: 280px;
+            background: #fff;
+            border-right: 1px solid #e5e5e5;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .logo {
+            padding: 25px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .logo p {
+            font-size: 12px;
+            margin-top: 5px;
+            opacity: 0.9;
+        }
+
+        .menu-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 0;
+        }
+
+        .menu-section {
+            margin-bottom: 5px;
+        }
+
+        .menu-section-header {
+            padding: 12px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.2s;
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .menu-section-header:hover {
+            background: #fafafa;
+        }
+
+        .menu-section-header.active {
+            color: #667eea;
+            background: #f0f9ff;
+        }
+
+        .menu-section-icon {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .menu-section-arrow {
+            transition: transform 0.3s;
+            font-size: 12px;
+        }
+
+        .menu-section.collapsed .menu-section-arrow {
+            transform: rotate(-90deg);
+        }
+
+        .menu-items {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+        }
+
+        .menu-section:not(.collapsed) .menu-items {
+            max-height: 500px;
+        }
+
+        .menu-item {
+            padding: 10px 20px 10px 45px;
+            cursor: pointer;
+            color: #666;
+            font-size: 13px;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .menu-item:hover {
+            background: #fafafa;
+            color: #667eea;
+        }
+
+        .menu-item.active {
+            background: #f0f9ff;
+            color: #667eea;
+            border-left-color: #667eea;
+            font-weight: 500;
+        }
+
+        /* 右侧内容 */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            background: #fff;
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 50px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page-title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .page-subtitle {
+            font-size: 20px;
+            color: #333;
+            margin: 30px 0 15px;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 16px;
+            color: #666;
+            margin: 20px 0 10px;
+            font-weight: 600;
+        }
+
+        p {
+            margin: 12px 0;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* 卡片 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .card {
+            background: #fafafa;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.1);
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #f0f9ff;
+            color: #667eea;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-top: 12px;
+            font-weight: 500;
+        }
+
+        /* 提示框 */
+        .alert {
+            padding: 16px 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid;
+        }
+
+        .alert-warning {
+            background: #fff9e6;
+            border-color: #f9a825;
+        }
+
+        .alert-danger {
+            background: #f0f9ff;
+            border-color: #667eea;
+        }
+
+        .alert-success {
+            background: #f1f8f4;
+            border-color: #4caf50;
+        }
+
+        .alert strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 15px;
+        }
+
+        .alert p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        /* 代码块 */
+        code {
+            background: #f5f5f5;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-family: "Courier New", Consolas, monospace;
+            font-size: 13px;
+            color: #667eea;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #ccc;
+            padding: 18px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 16px 0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #ccc;
+        }
+
+        /* 表格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #e5e5e5;
+            padding: 12px 16px;
+            text-align: left;
+        }
+
+        th {
+            background: #fafafa;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        td {
+            color: #666;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background: #fafafa;
+        }
+
+        /* 列表 */
+        ul, ol {
+            margin: 16px 0;
+            padding-left: 28px;
+        }
+
+        li {
+            margin: 8px 0;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* 步骤 */
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin: 20px 0;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 6px;
+            border-left: 3px solid #667eea;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: #667eea;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .step-content h4 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .step-content p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 240px;
+            }
+            .content-wrapper {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧菜单 -->
+    <aside class="sidebar">
+        <div class="logo">
+            <h1>📕 xhs-publish Skill</h1>
+            <p style="color: #999; font-size: 13px;">小红书发布助手</p>
+        </div>
+
+        <div class="menu-container">
+            <!-- 快速开始 -->
+            <div class="menu-section" data-section="quickstart">
+                <div class="menu-section-header">
+                    <span><span class="menu-section-icon">🚀</span>快速开始</span>
+                    <span class="menu-section-arrow">▼</span>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item active" data-page="intro">功能介绍</div>
+                    <div class="menu-item" data-page="flow">完整流程</div>
+                </div>
+            </div>
+
+            <!-- 核心功能 -->
+            <div class="menu-section collapsed" data-section="features">
+                <div class="menu-section-header">
+                    <span><span class="menu-section-icon">⭐</span>核心功能</span>
+                    <span class="menu-section-arrow">▼</span>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item" data-page="content">文案创作</div>
+                    <div class="menu-item" data-page="cover">封面生成</div>
+                    <div class="menu-item" data-page="knowledge-card">知识卡片</div>
+                    <div class="menu-item" data-page="video">视频生成</div>
+                </div>
+            </div>
+
+            <!-- 发布与配置 -->
+            <div class="menu-section collapsed" data-section="publish">
+                <div class="menu-section-header">
+                    <span><span class="menu-section-icon">⚙️</span>发布与配置</span>
+                    <span class="menu-section-arrow">▼</span>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item" data-page="publish">发布流程</div>
+                    <div class="menu-item" data-page="login">登录流程</div>
+                    <div class="menu-item" data-page="install">安装 MCP</div>
+                </div>
+            </div>
+
+            <!-- 帮助 -->
+            <div class="menu-section collapsed" data-section="help">
+                <div class="menu-section-header">
+                    <span><span class="menu-section-icon">❓</span>帮助</span>
+                    <span class="menu-section-arrow">▼</span>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item" data-page="rules">强制规则</div>
+                    <div class="menu-item" data-page="troubleshoot">故障排查</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 右侧内容 -->
+    <main class="main-content">
+        <div class="content-wrapper">
+            <!-- 功能介绍 -->
+            <div id="intro" class="page active">
+                <h2 class="page-title">功能介绍</h2>
+
+                <p style="font-size: 16px; color: #666; margin-bottom: 25px;">
+                    AI 全流程搞定：自动生成标题 → 撰写正文 → 封面/知识卡片/视频 → 一键发布
+                </p>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>📷 纯封面图</h3>
+                        <p>AI 生成单张封面图 + 正文（最常用，适合分享/种草）</p>
+                        <span class="tag">推荐</span>
+                    </div>
+                    <div class="card">
+                        <h3>🖼️ 知识卡片</h3>
+                        <p>生成精美知识卡片 + 正文（适合教程/长文）</p>
+                        <span class="tag">教程必备</span>
+                    </div>
+                    <div class="card">
+                        <h3>🎬 视频笔记</h3>
+                        <p>AI 生成视频 + 正文（适合动态展示）</p>
+                        <span class="tag">动态展示</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 完整流程 -->
+            <div id="flow" class="page">
+                <h2 class="page-title">完整流程</h2>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <img src="images/flow-overview.png" alt="完整流程图" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                </div>
+
+                <div class="alert alert-success">
+                    <strong>🎯 关键确认节点</strong>
+                    <p>① 询问主题 - 如果用户未提供主题</p>
+                    <p>② 笔记类型 - 纯封面图/知识卡片/视频笔记</p>
+                    <p>③ 视频流程 - 视频笔记专用（内部包含多个步骤）</p>
+                    <p>④ 内容确认 - 最终确认所有内容（标题+正文+封面/视频）</p>
+                    <p>⑤ 发布流程 - 调用小红书 MCP 发布</p>
+                    <p>⑥ 登录流程 - 发布失败时扫码登录</p>
+                </div>
+            </div>
+
+            <!-- 文案创作 -->
+            <div id="content" class="page">
+                <h2 class="page-title">文案创作</h2>
+
+                <h3 class="page-subtitle">字数要求</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>笔记类型</th>
+                            <th>正文字数</th>
+                            <th>知识卡片文字</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>📷 纯封面图</td>
+                            <td>600-800 字</td>
+                            <td>-</td>
+                            <td>简洁总结</td>
+                        </tr>
+                        <tr>
+                            <td>🖼️ 知识卡片</td>
+                            <td>600-800 字</td>
+                            <td><strong>2000-3000 字</strong></td>
+                            <td>正文简洁，知识卡片内容更丰富</td>
+                        </tr>
+                        <tr>
+                            <td>🎬 视频笔记</td>
+                            <td>200-300 字</td>
+                            <td>-</td>
+                            <td>简洁有力</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="page-subtitle">标题生成规则</h3>
+                <p>自动生成 5 个不同风格的标题，默认选择第一个。</p>
+
+                <ol>
+                    <li><strong>数字悬念型</strong>：【3个方法让你秒懂xxx】</li>
+                    <li><strong>情感共鸣型</strong>：【谁懂啊！这个方法太绝了！】</li>
+                    <li><strong>结果导向型</strong>：【跟着做，7天搞定xxx】</li>
+                    <li><strong>反差对比型</strong>：【从xxx到xxx，我只做了这件事】</li>
+                    <li><strong>价值宣言型</strong>：【2025必学技能，xxx让你更厉害】</li>
+                </ol>
+            </div>
+
+            <!-- 封面生成 -->
+            <div id="cover" class="page">
+                <h2 class="page-title">封面生成</h2>
+
+                <h3 class="page-subtitle">AI 模型生图</h3>
+                <p><strong>适用场景：</strong>需要个性化、创意性强的封面图</p>
+
+                <h4>前置条件</h4>
+                <ol>
+                    <li><strong>Seedream API Key</strong>：AI 生图服务，用于生成封面图<br><code>export DOUBAO_API_KEY="您的密钥"</code></li>
+                    <li><strong>腾讯混元 API</strong>（可选）：备选生图服务<br><code>export HUNYUAN_SECRET_ID="xxx" && export HUNYUAN_SECRET_KEY="xxx"</code></li>
+                </ol>
+
+                <h4>自动执行流程</h4>
+                <ol>
+                    <li>生成英文 Prompt：根据文案主题自动生成</li>
+                    <li>调用 AI 生图：优先使用 Doubao（豆包）API</li>
+                    <li>输出封面图：1080x1080 正方形</li>
+                </ol>
+
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/ai-image-example.jpg" alt="AI 生图示例" style="max-width: 400px; width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                </div>
+
+                <h3 class="page-subtitle">MD2Card 一句话封面</h3>
+                <p><strong>适用场景：</strong>快速生成精美封面，支持关键字标注</p>
+
+                <h4>前置条件</h4>
+                <ol>
+                    <li><strong>MD2Card API 密钥</strong>：封面生成服务，约 0.05 元/张<br>申请地址：<a href="https://md2card.cn/zh/login" target="_blank" style="color: #667eea;">https://md2card.cn/zh/login</a></li>
+                    <li><strong>环境变量</strong>：<code>export MD2CARD_API_KEY="您的密钥"</code></li>
+                </ol>
+
+                <h4>特点</h4>
+                <ul>
+                    <li>无需登录，直接使用</li>
+                    <li>支持关键字高亮标注（如 <code>**重点**</code> 会高亮显示）</li>
+                    <li>多种模板可选</li>
+                </ul>
+
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="images/md2card-example.jpg" alt="MD2Card 封面示例" style="max-width: 400px; width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                </div>
+
+                <div class="alert alert-success">
+                    <strong>示例</strong>
+                    <p>标题：OpenClaw原理剖析</p>
+                    <p>封面文案：3分钟看懂 OpenClaw 原理✨<code>**AI助手**</code>+<code>**技能包**</code></p>
+                </div>
+            </div>
+
+            <!-- 知识卡片 -->
+            <div id="knowledge-card" class="page">
+                <h2 class="page-title">知识卡片生成</h2>
+
+                <div class="alert alert-danger">
+                    <strong>⚠️ 知识卡片需要生成封面 + 知识卡片内容！</strong>
+                </div>
+
+                <h3 class="page-subtitle">前置条件</h3>
+                <ol>
+                    <li><strong>MD2Card MCP 服务</strong>：知识卡片生成工具<br><code>npm install -g md2card-mcp-server@latest</code></li>
+                    <li><strong>MD2Card API 密钥</strong>：知识卡片生成服务<br>申请地址：<a href="https://md2card.cn/zh/login" target="_blank" style="color: #667eea;">https://md2card.cn/zh/login</a></li>
+                    <li><strong>环境变量</strong>：<code>export MD2CARD_API_KEY="您的密钥"</code></li>
+                </ol>
+
+                <div class="alert alert-warning">
+                    <strong>💰 积分消耗说明</strong>
+                    <p><strong>封面</strong>：约 0.05 元/张（1 积分）</p>
+                    <p><strong>知识卡片</strong>：约 0.1 元/张（1 积分/张）</p>
+                    <p><strong>示例</strong>：1 张封面 + 10 张知识卡片 = 11 积分 ≈ 1.1 元</p>
+                </div>
+
+                <h3 class="page-subtitle">自动执行流程</h3>
+                <ol>
+                    <li><strong>生成封面</strong>：使用 MD2Card API 生成封面图（约 0.05 元）</li>
+                    <li><strong>转换格式</strong>：将知识卡片文字（1500-2000字）转换为 Markdown 格式</li>
+                    <li><strong>生成知识卡片</strong>：调用 MD2Card API，自动拆分为多张卡片（每张约 0.1 元）</li>
+                    <li><strong>发送确认</strong>：将所有图片发送给用户确认</li>
+                </ol>
+
+                <div style="display: flex; gap: 20px; margin: 20px 0; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 280px; text-align: center;">
+                        <img src="images/knowledge-card-1.jpg" alt="知识卡片封面" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    </div>
+                    <div style="flex: 1; min-width: 280px; text-align: center;">
+                        <img src="images/knowledge-card-2.jpg" alt="知识卡片内容" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 视频生成 -->
+            <div id="video" class="page">
+                <h2 class="page-title">视频生成</h2>
+
+                <div class="alert alert-danger">
+                    <strong>⚠️ 视频笔记采用多镜头方式，先分镜再生成！</strong>
+                </div>
+
+                <h3 class="page-subtitle">前置条件</h3>
+                <ol>
+                    <li><strong>Seedance API Key</strong>：AI 视频生成服务，约 0.1 元/5秒<br><code>export DOUBAO_API_KEY="您的密钥"</code></li>
+                    <li><strong>Edge TTS</strong>：微软语音合成，用于生成配音<br><code>npm install -g edge-tts</code> 或 <code>pip install edge-tts</code></li>
+                    <li><strong>FFmpeg</strong>：视频处理工具，用于合并视频、添加配音和字幕<br><code>sudo apt install -y ffmpeg</code></li>
+                </ol>
+
+                <h3 class="page-subtitle">自动执行流程</h3>
+                <ol>
+                    <li><strong>生成分镜脚本</strong>：将正文拆分为多个镜头</li>
+                    <li><strong>生成视频片段</strong>：为每个镜头生成 3-5 秒视频</li>
+                    <li><strong>合并视频</strong>：将多个片段合并为完整视频</li>
+                    <li><strong>添加字幕</strong>：将字幕嵌入视频</li>
+                </ol>
+
+                <h3 class="page-subtitle">分镜规则</h3>
+                <ul>
+                    <li>每个镜头：1 个核心观点或动作</li>
+                    <li>镜头时长：3-5 秒</li>
+                    <li>总镜头数：3-6 个（总时长 10-30 秒）</li>
+                </ul>
+            </div>
+
+            <!-- 发布流程 -->
+            <div id="publish" class="page">
+                <h2 class="page-title">发布流程</h2>
+
+                <div class="alert alert-warning">
+                    <strong>⚠️ 用户确认内容后，立即发布，不需要询问！</strong>
+                </div>
+
+                <h3 class="page-subtitle">发布笔记</h3>
+
+                <h4>纯封面图笔记</h4>
+                <pre><code>{
+    "name": "publish_content",
+    "arguments": {
+        "title": "标题",
+        "content": "正文",
+        "images": ["/path/to/cover.jpg"],
+        "tags": ["标签1", "标签2"]
+    }
+}</code></pre>
+
+                <h4>知识卡片笔记</h4>
+                <pre><code>{
+    "name": "publish_content",
+    "arguments": {
+        "title": "标题",
+        "content": "正文",
+        "images": ["/path/to/cover.jpg", "/path/to/content.jpg"],
+        "tags": ["标签1", "标签2"]
+    }
+}</code></pre>
+
+                <h4>视频笔记</h4>
+                <pre><code>{
+    "name": "publish_with_video",
+    "arguments": {
+        "title": "标题",
+        "content": "正文",
+        "video": "/path/to/video.mp4"
+    }
+}</code></pre>
+            </div>
+
+            <!-- 登录流程 -->
+            <div id="login" class="page">
+                <h2 class="page-title">登录流程</h2>
+
+                <h3 class="page-subtitle">扫码登录</h3>
+                <div class="alert alert-warning">
+                    <strong>⚠️ 小红书需要扫码两次</strong>
+                    <p>第一次：验证账号</p>
+                    <p>第二次：确认登录设备</p>
+                </div>
+
+                <h4>获取二维码</h4>
+                <pre><code>MCP_URL="http://localhost:18060/mcp"
+SESSION_ID=$(curl -s -D /tmp/headers -X POST "$MCP_URL" \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"initialize","params":{}},"id":1}' \
+  > /dev/null && grep -i 'Mcp-Session-Id' /tmp/headers | awk '{print $2}')
+
+curl -s --max-time 30 -X POST "$MCP_URL" \
+  -H "Mcp-Session-Id: $SESSION_ID" \
+  -d '{"jsonrpc":"2.0","method":"tools/call","params":{"name":"get_login_qrcode","arguments":{}},"id":2}'</code></pre>
+
+                <h3 class="page-subtitle">Cookie 登录</h3>
+                <p>当扫码登录失败时使用。</p>
+                <ol>
+                    <li>打开浏览器，访问 xiaohongshu.com 并登录</li>
+                    <li>按 F12 → Application → Cookies</li>
+                    <li>复制 Cookie 值：<code>a1</code>、<code>web_session</code> 等</li>
+                </ol>
+            </div>
+
+            <!-- 安装 MCP -->
+            <div id="install" class="page">
+                <h2 class="page-title">安装 MCP 服务</h2>
+
+                <h3 class="page-subtitle">安装依赖</h3>
+                <pre><code>sudo apt update && sudo apt install -y xvfb imagemagick zbar-tools xdotool fonts-noto-cjk</code></pre>
+
+                <h3 class="page-subtitle">启动虚拟显示</h3>
+                <pre><code>Xvfb :99 -screen 0 1920x1080x24 &</code></pre>
+
+                <h3 class="page-subtitle">下载并启动 MCP</h3>
+                <pre><code>mkdir -p ~/xiaohongshu-mcp && cd ~/xiaohongshu-mcp
+wget https://github.com/xpzouying/xiaohongshu-mcp/releases/latest/download/xiaohongshu-mcp-linux-amd64.tar.gz
+tar xzf xiaohongshu-mcp-linux-amd64.tar.gz
+chmod +x xiaohongshu-*
+
+export ROD_DEFAULT_TIMEOUT=10m
+DISPLAY=:99 nohup ./xiaohongshu-mcp-linux-amd64 -port :18060 > mcp.log 2>&1 &</code></pre>
+            </div>
+
+            <!-- 强制规则 -->
+            <div id="rules" class="page">
+                <h2 class="page-title">强制规则</h2>
+
+                <div class="alert alert-success">
+                    <strong>✅ 正确做法</strong>
+                    <p>图片/视频必须使用服务器本地绝对路径：</p>
+                    <pre><code>"images": ["/root/.openclaw/media/inbound/cover.jpg"]
+"video": "/root/.openclaw/media/inbound/video.mp4"</code></pre>
+                </div>
+
+                <div class="alert alert-danger">
+                    <strong>❌ 错误做法</strong>
+                    <p>不要用 base64 编码（会导致上传超时）：</p>
+                    <pre><code>"images": ["data:image/jpeg;base64,..."]</code></pre>
+                    <p><strong>⚠️ 永远用文件路径，永远不要用 base64！</strong></p>
+                </div>
+            </div>
+
+            <!-- 故障排查 -->
+            <div id="troubleshoot" class="page">
+                <h2 class="page-title">故障排查</h2>
+
+                <h3 class="page-subtitle">诊断命令</h3>
+                <pre><code>pgrep -f xiaohongshu-mcp           # MCP 是否运行
+pgrep -x Xvfb                      # Xvfb 是否运行
+tail -20 ~/xiaohongshu-mcp/mcp.log # 查看日志
+lsof -i :18060                     # 检查端口</code></pre>
+
+                <h3 class="page-subtitle">常见错误</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>错误</th>
+                            <th>原因</th>
+                            <th>解决</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>发布失败（已重试）</td>
+                            <td>登录状态失效</td>
+                            <td>扫码重新登录</td>
+                        </tr>
+                        <tr>
+                            <td><code>context deadline exceeded</code></td>
+                            <td>rod 库超时</td>
+                            <td>设置 <code>ROD_DEFAULT_TIMEOUT=10m</code></td>
+                        </tr>
+                        <tr>
+                            <td>图片上传超时</td>
+                            <td>使用 base64 编码</td>
+                            <td>改用文件路径</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 切换页面
+        function switchPage(pageId) {
+            // 隐藏所有页面
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // 移除所有菜单项 active 状态
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // 显示目标页面
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // 高亮对应菜单项
+            const targetItem = document.querySelector(`[data-page="${pageId}"]`);
+            if (targetItem) {
+                targetItem.classList.add('active');
+
+                // 确保父级菜单展开
+                const parentSection = targetItem.closest('.menu-section');
+                if (parentSection && parentSection.classList.contains('collapsed')) {
+                    parentSection.classList.remove('collapsed');
+                }
+            }
+
+            // 滚动到顶部
+            document.querySelector('.main-content').scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // 菜单折叠/展开
+        document.querySelectorAll('.menu-section-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const section = header.closest('.menu-section');
+                section.classList.toggle('collapsed');
+            });
+        });
+
+        // 菜单项点击
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const pageId = item.getAttribute('data-page');
+                switchPage(pageId);
+            });
+        });
+    </script>
+</body>
+</html>

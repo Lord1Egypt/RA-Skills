@@ -1,35 +1,60 @@
 ---
-name: "zan-diary"
-description: "赞的个人日记系统。用于记录日程、管理待办、追踪年度目标。当用户要写日记、看日记、管理待办、更新目标进度时使用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zan-diary"
-sourceUrl: "https://clawhub.ai/skills/zan-diary"
+name: zan-diary
+description: 赞的个人日记系统。用于记录日程、管理待办、追踪年度目标。当用户要写日记、看日记、管理待办、更新目标进度时使用。
 ---
 
-# zan-diary
+# 赞的日记系统
 
-> 赞的个人日记系统。用于记录日程、管理待办、追踪年度目标。当用户要写日记、看日记、管理待办、更新目标进度时使用。
+## 文件位置
+- 日记目录：`~/.zan-diary/`
+- 每年一个文件：`~/.zan-diary/2026.md`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zan-diary`
-- **Source URL:** [https://clawhub.ai/skills/zan-diary](https://clawhub.ai/skills/zan-diary)
+## 文件结构
 
-## Overview
+```markdown
+# 2026 年度目标
+- 目标：赚200万
+- 当前进度：xx万（xx%）
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zan-diary
+# 待办事项
+- [ ] 待办1
+- [ ] 待办2
+
+---
+
+# 日记正文
+
+## 2026-02-22
+今天的内容...
+
+---
+
+## 2026-02-21
+前一天的内容...
 ```
+
+## 操作规则
+
+### 添加日记
+1. 读取当年文件（如 `~/.zan-diary/2026.md`）
+2. 在"日记正文"最顶部插入新日期段落
+3. 如果没有当年文件，创建新文件
+
+### 添加待办
+1. 读取文件
+2. 在"待办事项"下添加新条目
+3. 保持原有序
+
+### 完成待办
+1. 从"待办事项"中删除该条目
+2. 在当天日记正文末尾添加"✅ 已完成：xxx"
+
+### 更新目标进度
+1. 修改"当前进度"行
+2. 自动计算百分比
+
+### 查看日记
+1. 直接读取对应年份文件
+2. 默认显示最新30天的内容

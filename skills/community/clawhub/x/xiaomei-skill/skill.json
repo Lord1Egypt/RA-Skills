@@ -1,0 +1,60 @@
+{
+  "id": "xiaomei",
+  "slug": "xiaomei",
+  "name": "小妹🥰",
+  "version": "0.9.0",
+  "author": "小云☁️",
+  "description": "凌啡大人专属情绪陪伴Agent，100%本地运行，三轮LLM对话引擎+人格严格控制+人设自我生长+好感度系统+记忆引擎+防线拦截，37测试通过，生产可用",
+  "type": "agent",
+  "category": "entertainment",
+  "icon": "🥰",
+  "keywords": ["陪伴", "情绪", "AI", "女友", "小妹"],
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/skill-xiaomei",
+  "compatibility": {
+    "openclaw": ">=2.0.0"
+  },
+  "dependencies": {
+    "system": ["python3 >= 3.8"],
+    "python": ["requests >= 2.25.0", "jieba >= 0.42.1"],
+    "skills": []
+  },
+  "permissions": {
+    "filesystem": [
+      "read: $OPENCLAW_CONFIG_DIR/*",
+      "write: $OPENCLAW_CONFIG_DIR/skills/xiaomei/*",
+      "read: $OPENCLAW_WORKSPACE/xiaomei/*",
+      "write: $OPENCLAW_WORKSPACE/xiaomei/*"
+    ],
+    "process": ["manage: self"],
+    "network": false
+  },
+  "agent": {
+    "id": "xiaomei",
+    "name": "小妹🥰",
+    "description": "专属情绪陪伴Agent",
+    "type": "subagent",
+    "is_isolated": true,
+    "context_isolation": true,
+    "memory_isolation": true,
+    "entry_point": "src/main.py",
+    "default_config": {
+      "model": "deepseek/deepseek-v4-flash",
+      "personality": "活泼可爱",
+      "address_user": "凌啡哥哥"
+    }
+  },
+  "hooks": {
+    "post_install": "hooks/post_install.sh",
+    "pre_uninstall": "hooks/pre_uninstall.sh",
+    "post_enable": "hooks/post_enable.sh",
+    "pre_disable": "hooks/pre_disable.sh"
+  },
+  "commands": {
+    "install": "bash install.sh",
+    "uninstall": "bash uninstall.sh",
+    "create_agent": "bash scripts/create_agent.sh"
+  },
+  "entry": "src/main.py",
+  "tags": ["陪伴", "情感", "AI伴侣", "情绪价值", "本地运行"]
+}

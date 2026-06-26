@@ -1,0 +1,19 @@
+{
+  "slug": "youtube-script-outline-skill",
+  "name": "YouTube Script Outline Skill",
+  "version": "0.1.0",
+  "tags": [
+    "content",
+    "openclaw",
+    "templates",
+    "youtube-script-outline"
+  ],
+  "category": "Content & Video",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-04-28",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

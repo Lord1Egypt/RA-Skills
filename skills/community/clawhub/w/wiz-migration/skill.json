@@ -1,0 +1,15 @@
+{
+  "name": "wiz-migration",
+  "description": "为知笔记迁移辅助技能，提供自动检测存储目录、导出操作引导、附件批量迁移等完整迁移流程",
+  "version": "1.0.0",
+  "author": "Awam Wang",
+  "homepage": "https://github.com/awamwang/wiz-migration",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/awamwang/wiz-migration.git"
+  },
+  "supported_models": ["*"],
+  "tags": ["migration", "wiz", "notes", "data-migration"],
+  "license": "MIT",
+  "min_claw_version": "2025.1.0"
+}

@@ -1,0 +1,36 @@
+{
+  "text_llm": {
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "api_key": "sk-your-text-api-key",
+    "base_url": "https://api.deepseek.com"
+  },
+  "image_llm": {
+    "provider": "qwen",
+    "model": "wanx-v1",
+    "api_key": "sk-your-image-api-key",
+    "base_url": "https://dashscope.aliyuncs.com/api/v1"
+  },
+  "wechat": {
+    "appid": "wx-your-appid",
+    "appsecret": "your-appsecret"
+  },
+  "defaults": {
+    "default_count": 3,
+    "image_width": 1024,
+    "image_height": 1024,
+    "output_dir": "./output",
+    "font_path": "./fonts/custom-font.ttf",
+    "publisher_name": "心枢ai研习社",
+    "publisher_tagline": "AI 内容生产、漫画创作与公众号排版",
+    "cover_width": 900,
+    "cover_height": 500,
+    "cover_max_kb": 64,
+    "caption_font_size": 34,
+    "caption_line_spacing": 12,
+    "caption_padding_x": 42,
+    "caption_padding_y": 30,
+    "dashscope_poll_interval": 10,
+    "dashscope_timeout_seconds": 300
+  }
+}

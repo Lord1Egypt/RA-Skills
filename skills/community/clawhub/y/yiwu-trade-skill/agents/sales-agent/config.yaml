@@ -1,0 +1,88 @@
+# Sales Agent Configuration
+agent:
+  name: sales-agent
+  version: 1.0.0
+  description: 义乌小商品销售代理
+
+# Model Configuration
+model:
+  provider: openai
+  name: gpt-4o-mini
+  temperature: 0.7
+  max_tokens: 1500
+
+# WhatsApp BSP Configuration
+whatsapp:
+  provider: hugobsp
+  api_endpoint: https://api.hugobsp.com
+  rate_limit:
+    messages_per_second: 5
+    messages_per_hour: 500
+  retry:
+    max_attempts: 3
+    backoff_seconds: 30
+
+# Quote Configuration
+quote:
+  default_validity_days: 7
+  default_currency: USD
+  default_incoterms: FOB
+  default_port: Ningbo
+  payment_terms: "T/T 30% deposit"
+  supported_languages:
+    - en
+    - es
+    - ar
+    - fr
+    - zh
+  export_formats:
+    - pdf
+    - excel
+
+# Customer Profiling Configuration
+customer_profiling:
+  activity_window_days: 30
+  churn_window_days: 90
+  clv_tiers:
+    vip:
+      min_annual_gmv: 50000
+    premium:
+      min_annual_gmv: 10000
+    regular:
+      min_annual_gmv: 1000
+  tags:
+    sources:
+      - facebook_lead
+      - alibaba_inquiry
+      - google_ad
+      - referral
+      - trade_show
+    identities:
+      - retailer
+      - wholesaler
+      - importer
+      - amazon_seller
+      - ebay_seller
+      - dropshipper
+
+# Message Templates
+templates:
+  path: ./skills/whatsapp-outreach/references/templates.md
+  supported_languages:
+    - en
+    - es
+    - ar
+    - fr
+
+# Follow-up Rules
+followup:
+  quote_reminder_days: 3
+  inactivity_warning_days: 7
+  churn_rescue_days: 90
+
+# Performance Targets
+targets:
+  message_delivery_rate: 0.90
+  inquiry_conversion_rate: 0.15
+  quote_response_time_minutes: 30
+  customer_satisfaction: 4.5

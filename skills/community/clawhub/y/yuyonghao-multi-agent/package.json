@@ -1,0 +1,18 @@
+{
+  "name": "multi-agent",
+  "version": "0.1.0",
+  "description": "OpenClaw 多智能体协作系统 - Agent 团队 + 任务规划 + 角色分配",
+  "main": "src/index.js",
+  
+  "scripts": {
+    "test": "node test/simple-test.js"
+  },
+  "keywords": [
+    "multi-agent",
+    "agent-team",
+    "orchestration",
+    "openclaw-skill"
+  ],
+  "author": "yuyonghao-123",
+  "license": "MIT"
+}

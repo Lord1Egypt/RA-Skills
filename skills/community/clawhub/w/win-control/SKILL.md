@@ -1,35 +1,33 @@
----
-name: "Win Control"
-description: "Control Windows mouse clicks and keyboard inputs via PowerShell scripts, supporting text, shortcuts, and customizable click actions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/win-control"
-sourceUrl: "https://clawhub.ai/skills/win-control"
----
+# Windows 鼠标键盘控制
 
-# Win Control
+## 功能
+通过 PowerShell 脚本控制 Windows 鼠标和键盘操作。
 
-> Control Windows mouse clicks and keyboard inputs via PowerShell scripts, supporting text, shortcuts, and customizable click actions.
+## 可用命令
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/win-control`
-- **Source URL:** [https://clawhub.ai/skills/win-control](https://clawhub.ai/skills/win-control)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/win-control
+### 鼠标控制
+```powershell
+# 点击鼠标
+powershell -ExecutionPolicy Bypass -File skills/win-control/scripts/mouse-click.ps1 -X 500 -Y 300 -ClickType Left
 ```
+
+### 键盘控制
+```powershell
+# 发送文本
+powershell -ExecutionPolicy Bypass -File skills/win-control/scripts/send-keys.ps1 -Text "Hello World"
+
+# 发送快捷键
+powershell -ExecutionPolicy Bypass -File skills/win-control/scripts/send-keys.ps1 -Keys "CTRL+C,CTRL+V"
+```
+
+## 支持的快捷键
+- ENTER, ESC, TAB
+- CTRL+C, CTRL+V, CTRL+A
+- ALT+TAB, WIN
+- F1-F12
+- BACKSPACE, DELETE, HOME, END
+
+## ⚠️ 安全提示
+- 鼠标键盘控制可能影响当前操作
+- 建议在测试环境先验证
+- 避免在生产环境自动化关键操作

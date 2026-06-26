@@ -1,0 +1,7 @@
+interface:
+  display_name: "Social Favorites to Obsidian"
+  short_description: "同步小红书和知乎收藏到 Obsidian"
+  brand_color: "#2563EB"
+  default_prompt: "使用 $social-favorites-to-obsidian 帮我配置小红书和知乎收藏同步到 Obsidian，并设置每日定时增量同步。"
+policy:
+  allow_implicit_invocation: true

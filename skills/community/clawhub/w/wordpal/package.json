@@ -1,0 +1,12 @@
+{
+  "name": "wordpal",
+  "version": "0.1.0",
+  "description": "嵌入聊天入口的个性化英语学习 companion",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "test": "echo \"no tests yet\""
+  }
+}

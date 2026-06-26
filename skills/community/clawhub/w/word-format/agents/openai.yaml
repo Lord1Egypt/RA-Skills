@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Word Format Standardize"
+  short_description: "Convert DOCX files into a fixed official format."
+  default_prompt: "Use $word_format_standardize to convert the provided Word document into the bundled standard format and stop with a missing-font notice if required fonts are unavailable."

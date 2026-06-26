@@ -1,35 +1,66 @@
 ---
-name: "ZeeLin MeetingDirectives"
-description: "从会议转写文本中，为“指定成员”抽取领导/导师的行动要求（Action Items）、截止时间/里程碑与关键原话，并输出结构化行动清单（支持中英文会议记录）。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zeelin-meetingdirectives"
-sourceUrl: "https://clawhub.ai/skills/zeelin-meetingdirectives"
+name: zeelin-meetingdirectives
+description: 从会议转写文本中，为“指定成员”抽取领导/导师的行动要求（Action Items）、截止时间/里程碑与关键原话，并输出结构化行动清单（支持中英文会议记录）。
+metadata:
+  {
+    "openclaw": {
+      "emoji": "📋"
+    }
+  }
 ---
 
-# ZeeLin MeetingDirectives
+# ZeeLin MeetingDirectives（会议指示与行动清单提取）
 
-> 从会议转写文本中，为“指定成员”抽取领导/导师的行动要求（Action Items）、截止时间/里程碑与关键原话，并输出结构化行动清单（支持中英文会议记录）。
+把一段会议转写（腾讯会议/飞书会议/钉钉会议/Zoom 等）变成**可执行的个人待办清单**：聚焦“领导/导师对某个成员说了什么要做、什么时候做、做到什么标准”。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zeelin-meetingdirectives`
-- **Source URL:** [https://clawhub.ai/skills/zeelin-meetingdirectives](https://clawhub.ai/skills/zeelin-meetingdirectives)
+## 适用场景
+- 组会/周会/项目会：整理**领导对某位成员**的任务与要求  
+- 导师指导：汇总**导师对学生**的下一步研究建议与行动计划  
+- 复盘与跟进：快速产出“谁要做什么、截止到哪天、关键原话依据是什么”
 
-## Overview
+## 你提供什么
+- 会议转写文本（可含发言人标记/时间戳；没有也可以）
+- 目标成员：例如“滕婕”
+- 可选：领导/导师姓名或发言人标记（例如“张总”“王老师”）
 
+## 你会得到什么（核心输出）
+1) **结构化行动清单（Action Items）**  
+   - 任务描述（可直接复制进 To‑Do）  
+   - 截止时间/里程碑（如有提及）  
+   - 优先级（高/中/低）  
+   - 证据：对应的**关键原话**与简短上下文
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zeelin-meetingdirectives
+2) **关键原话摘录（3–5 条）**  
+   - 保留口语风格，标注说话人/时间点（如有）
+
+3) **方向与标准（可选）**  
+   - 应该做/不建议做的方向  
+   - 质量标准/验收口径（“做到什么程度算完成”）
+
+## 输出格式（示例）
 ```
+# 领导对【成员】的行动清单
+
+## Action Items（按优先级）
+1. 🔴 任务：……
+   截止：……
+   说明：……
+   证据原话：「……」（时间/场景）
+
+2. 🟡 任务：……
+   截止：……
+   证据原话：「……」
+
+## 关键原话（Top Quotes）
+- 「……」——（时间/场景）
+- 「……」——（时间/场景）
+
+## 方向与标准（如有）
+- 方向：……
+- 标准：……
+```
+
+## 触发示例（用户常用说法）
+- “提取会议指导/领导对XX的要求”
+- “整理组会待办 / action items”
+- “会议里老师对我说了什么要做、什么时候交”

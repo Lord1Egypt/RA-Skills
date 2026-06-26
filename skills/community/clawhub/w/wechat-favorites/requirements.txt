@@ -1,0 +1,4 @@
+# wechat-favorites 依赖
+pycryptodome>=3.19
+zstandard>=0.22
+# LLM 分类使用 urllib（标准库），无需额外依赖

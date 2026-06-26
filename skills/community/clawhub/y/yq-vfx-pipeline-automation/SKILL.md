@@ -1,35 +1,229 @@
 ---
-name: "Yq Vfx Pipeline Automation"
-description: "VFX特效自动化工作流技能。主人的专属VFX素材生产流水线。触发词：特效工作流、自动化VFX、制作特效素材、古风VFX、游戏特效自动化。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yq-vfx-pipeline-automation"
-sourceUrl: "https://clawhub.ai/skills/yq-vfx-pipeline-automation"
+name: yq-vfx-pipeline-automation
+description: VFX特效自动化工作流技能。主人的专属VFX素材生产流水线。触发词：特效工作流、自动化VFX、制作特效素材、古风VFX、游戏特效自动化。
+version: 1.0.0
+---
+# VFX特效自动化工作流技能
+
+> 主人的专属VFX素材生产流水线。触发词：特效工作流、自动化VFX、制作特效素材、古风VFX、游戏特效自动化。
+
 ---
 
-# Yq Vfx Pipeline Automation
+## 技能信息
 
-> VFX特效自动化工作流技能。主人的专属VFX素材生产流水线。触发词：特效工作流、自动化VFX、制作特效素材、古风VFX、游戏特效自动化。
+- **版本：** 1.1.0（修复版）
+- **类型：** 自动化工作流（串联技能）
+- **触发词：** 特效工作流 / 自动化VFX / 制作特效素材 / 古风VFX / 游戏特效自动化
+- **适用场景：** 需要批量生产特效概念图、分镜、视频素材时
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yq-vfx-pipeline-automation`
-- **Source URL:** [https://clawhub.ai/skills/yq-vfx-pipeline-automation](https://clawhub.ai/skills/yq-vfx-pipeline-automation)
+---
 
-## Overview
+## ⚠️ 最高优先级规则：所有视频生成必须确认后才能触发
 
+**主人已明确要求（2026-04-03）：**
+> "以后所有的视频生成都需要和我确认后才能触发"
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yq-vfx-pipeline-automation
+**适用范围：**
+- batch_text_to_video（文字转视频）
+- batch_image_to_video（图像转视频）
+- gen_videos（任何含视频生成的任务）
+- 任何技能内的视频生成步骤
+
+**规则：**
+- Step 4（视频生成）→ 必须展示选项 → 用户明确选择 → 才执行
+- 不得在用户未确认的情况下自动生成任何视频
+- 此规则为最高优先级，优先级高于工作流的"自动化"原则
+
+---
+
+## ⚠️ 关键规则：必须确认的节点
+
+**Step 3（图像生成）完成后必须停下来给用户确认，不得自动跳步。**
+**Step 4（视频生成）完成后必须停下来给用户确认，不得自动跳步。**
+
+### 确认节点A：图像生成之后
+图像生成完成后 → 展示图像给用户 → 用户确认满意 → 才进入视频步骤
+
+### 确认节点B：视频生成之前
+展示方案选项：
 ```
+Step 4 视频生成 — 请选择：
+A. 生成6秒视频（768P）
+B. 生成10秒视频（768P）
+C. 不需要视频，结束
+
+当前概念图已保存，您满意吗？
+```
+
+---
+
+## 工作流设计
+
+```
+第1步：需求解析 + 风格定义（自动）
+第2步：MJ提示词生成（自动）→ 输出提示词给用户看
+第3步：图像生成（自动）→ 【暂停确认】→ 展示图像
+第4步：视频生成 → 【确认节点B】→ 用户选择后执行
+第5步：生成执行报告
+```
+
+---
+
+## 第1步：需求解析
+
+收到任务后，提取关键信息：
+
+1. **特效类型：** 粒子系统 / 冲击波 / 光效 / 天气氛围 / UI动效 / 魔法特效 / 古风特效
+2. **游戏引擎：** Unreal Engine / Unity / 通用
+3. **风格：** 国风仙侠 / 科幻赛博 / 西式魔幻 / 暗黑哥特 / 日式清新
+4. **情绪关键词：** 震撼 / 轻盈 / 诡异 / 华丽 / 简洁
+5. **参考素材：** 有无参考图（可上传）
+
+---
+
+## 第2步：MJ提示词生成
+
+调用 `mj-prompt-optimizer`，将中文需求转化为英文MJ提示词。
+
+**输出后展示给用户：**
+```
+🔧 MJ优化提示词：
+[原始需求]
+↓
+[优化后的英文提示词]
+```
+
+---
+
+## 第3步：图像生成（暂停确认）
+
+使用 `image-creator` 生成2-4张概念图。
+
+**参数：**
+- 分辨率：2K
+- 风格：根据用户选择的风格
+- 输出目录：`/workspace/vfx-output/YYYY-MM-DD/images/`
+
+**图像命名：**
+```
+{特效类型}_{序号}.png
+例：sword_light_01.png
+```
+
+**完成后：**
+展示图像给用户 → 用户确认满意 → 才进入第4步
+
+---
+
+## 第4步：视频生成（必须确认）
+
+展示选项：
+```
+🎬 第4步：视频生成 — 请选择：
+
+A. 6秒视频 · 768P（默认选项）
+B. 10秒视频 · 768P
+C. 不需要视频，结束
+
+当前概念图：[描述已生成的图]
+```
+
+等待用户选择 → 执行选中的选项：
+
+### 4A：6秒视频 · 768P
+### 4B：10秒视频 · 768P
+### 4C：跳过
+
+**执行时：**
+- 有参考图 → 用 `batch_image_to_video`（reference_type: first_frame）
+- 无参考图 → 用 `batch_text_to_video`
+
+---
+
+## 第5步：执行报告
+
+生成 `report.md`：
+
+```markdown
+# VFX工作流执行报告
+日期：YYYY-MM-DD
+
+## 需求摘要
+[特效类型 / 风格 / 情绪]
+
+## 第2步：MJ提示词
+[优化后的提示词]
+
+## 第3步：图像生成
+| 文件名 | 说明 |
+|--------|------|
+| sword_light_01.png | 正面全景 |
+| sword_light_02.png | 特写细节 |
+
+## 第4步：视频生成
+| 文件名 | 时长 | 分辨率 | 参考图 |
+|--------|------|--------|--------|
+| sword_light_01.mp4 | 6秒 | 768P | sword_light_01.png |
+
+## 文件位置
+/workspace/vfx-output/YYYY-MM-DD/images/
+/workspace/vfx-output/YYYY-MM-DD/videos/
+```
+
+---
+
+## 输出目录结构
+
+```
+/workspace/vfx-output/YYYY-MM-DD/
+├── images/          # 第3步生成的图
+├── videos/          # 第4步生成的视频
+├── prompts/         # 原始需求 + MJ提示词
+└── report.md        # 执行报告
+```
+
+---
+
+## 质量控制
+
+1. **图像生成后：** 用 images_understand 检查构图是否正确，不正确则重新生成
+2. **视频完成后：** 检查是否有明显缺陷
+3. **失败处理：** 某步失败 → 记录原因 → 继续后续步骤 → 报告中标注
+
+---
+
+## 适用示例
+
+**示例：国风剑光特效**
+```
+用户：做一个国风剑光特效
+
+我：✅ 收到！开始执行工作流。
+
+第1步：需求解析
+→ 类型=剑光/光效，风格=国风仙侠，情绪=史诗
+
+第2步：MJ提示词
+→ Epic sword light slash in Chinese xianxia style, blue energy...
+
+第3步：图像生成
+→ 生成4张概念图 [展示图像]
+→ ✅ 图像已生成，请确认是否满意？
+
+用户：可以
+
+第4步：视频生成
+→ A. 6秒视频 768P
+→ B. 10秒视频 768P
+→ C. 不需要视频
+
+用户：A
+
+→ 生成6秒视频 [展示结果]
+
+第5步：执行报告 ✅ 完成
+```
+
+---
+
+_雨晴 v3.0 · 2026-04-03 v1.1.0_

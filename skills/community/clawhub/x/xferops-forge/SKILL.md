@@ -1,35 +1,13 @@
----
-name: "XferOps Forge"
-description: "Manage projects and tasks with the Forge project management API via MCP. Use when creating, updating, or searching tasks/tickets, managing projects and colum..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xferops-forge"
-sourceUrl: "https://clawhub.ai/skills/xferops-forge"
----
+# Forge Skills
 
-# XferOps Forge
+The Forge MCP skill has been split into three focused skills. Use the one that matches your intent:
 
-> Manage projects and tasks with the Forge project management API via MCP. Use when creating, updating, or searching tasks/tickets, managing projects and colum...
+| Skill | When to use |
+|-------|-------------|
+| [`forge-dev-workflow`](./forge-dev-workflow/SKILL.md) | Picking up tickets, moving them through columns, linking PRs, commenting — the daily dev loop |
+| [`forge-board-admin`](./forge-board-admin/SKILL.md) | Managing projects, columns, and team membership |
+| [`forge-setup`](./forge-setup/SKILL.md) | First-time install and configuration, or when health check fails |
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xferops-forge`
-- **Source URL:** [https://clawhub.ai/skills/xferops-forge](https://clawhub.ai/skills/xferops-forge)
+## Why three skills?
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xferops-forge
-```
+Loading 26 tools + docs for every ticket comment is wasteful. Each skill now covers only the tools and workflow guidance relevant to a specific intent, keeping context lean and guidance actionable.

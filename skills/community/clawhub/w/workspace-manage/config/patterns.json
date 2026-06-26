@@ -1,0 +1,10 @@
+{
+  "temp_extensions": [".tmp", ".bak", ".log", ".skill", ".cache", ".temp"],
+  "temp_patterns": ["*~", "#*#", ".*.swp", "._*", ".DS_Store", "*.pyc", "__pycache__"],
+  "image_extensions": [".png", ".jpg", ".jpeg", ".gif", ".webp", ".bmp", ".svg"],
+  "protected_dirs": ["memory", "skills", "subagents", ".git", "Workspace_Human", "Workspace_Agent", "secret", "archive"],
+  "protected_files": ["MEMORY.md", "SOUL.md", "USER.md", "AGENTS.md", "HEARTBEAT.md", "TOOLS.md", "IDENTITY.md"],
+  "skip_dirs": ["node_modules", ".venv", "venv", "__pycache__", ".git", ".github"],
+  "large_file_threshold_mb": 10,
+  "archive_age_days": 7
+}

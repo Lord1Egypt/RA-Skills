@@ -1,35 +1,92 @@
 ---
-name: "工作流验证器"
-description: "工作流验证器 - 在执行前验证工作流的正确性、安全性和完整性。基于Karpathy法则，强调先思考、保持简单、目标驱动的原则。适用于代码审查、工作流执行、任务规划等场景。"
-category: "productivity"
-source: "ClawHub"
-tags: [safety-check, verification, workflow]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/workflow-verifier"
-sourceUrl: "https://clawhub.ai/skills/workflow-verifier"
+name: workflow-verifier
+description: 工作流验证器 - 在执行前验证工作流的正确性、安全性和完整性。基于Karpathy法则，强调先思考、保持简单、目标驱动的原则。适用于代码审查、工作流执行、任务规划等场景。
+metadata: {"openclaw": {"requires": {}, "install": []}}
+tags: [verification, workflow, safety-check, code-review, quality]
+version: 1.0.0
+author: laosi
+source: local
 ---
 
-# 工作流验证器
+# ⚠️ 发布规则
 
-> 工作流验证器 - 在执行前验证工作流的正确性、安全性和完整性。基于Karpathy法则，强调先思考、保持简单、目标驱动的原则。适用于代码审查、工作流执行、任务规划等场景。
+**所有发布到ClawHub的技能必须严格测试，确定没有问题再发布**
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/workflow-verifier`
-- **Source URL:** [https://clawhub.ai/skills/workflow-verifier](https://clawhub.ai/skills/workflow-verifier)
+---
 
-## Overview
+## 技能测试验证清单
 
+- [x] frontmatter格式正确
+- [x] 验证流程完整
+- [x] 安全检查覆盖
+- [x] 触发条件明确
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/workflow-verifier
+---
+
+# Workflow Verifier - 工作流验证器
+
+> 基于Karpathy法则的工作流审查系统
+> 激活词: 验证工作流 / 检查安全 / 工作流审查
+
+## 核心问题检查
+
+### 1. 假设问题
+- [ ] 明确说明了假设条件
+- [ ] 不确定的地方已询问
+- [ ] 多种解释已列出
+
+### 2. 复杂度问题
+- [ ] 代码行数合理 (最小实现)
+- [ ] 没有过度抽象
+- [ ] 没有不必要的灵活性
+
+### 3. 改动范围
+- [ ] 只修改必要的文件
+- [ ] 没有连带修改无关代码
+- [ ] 风格匹配现有代码
+
+### 4. 验证闭环
+- [ ] 有明确的测试或检查点
+- [ ] 成功标准已定义
+- [ ] 可以自动验证
+
+## 验证流程
+
 ```
+1. 读取需求/任务
+2. 检查假设是否明确
+3. 检查复杂度是否最小
+4. 检查改动范围
+5. 检查验证闭环
+6. 报告问题或批准执行
+```
+
+## 输出格式
+
+```markdown
+## 验证结果: ✅通过 / ❌问题
+
+### 问题列表
+- [ ] 问题1描述
+- [ ] 问题2描述
+
+### 建议
+1. 建议1
+2. 建议2
+
+### 决策
+- [ ] 批准执行
+- [ ] 需要修改后重试
+- [ ] 拒绝执行
+```
+
+## 应用场景
+
+1. **代码生成前** - 验证需求明确性
+2. **Bug修复前** - 确保有测试复现
+3. **工作流执行** - 安全检查
+4. **PR审查** - 质量把控
+
+## 来���
+
+- 融合Karpathy法则 + 质量检查最佳实践

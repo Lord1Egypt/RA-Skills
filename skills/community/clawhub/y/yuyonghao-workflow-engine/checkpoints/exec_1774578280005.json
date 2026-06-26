@@ -1,0 +1,1 @@
+{"executionId":"exec_1774578280005","dagId":"dag_1774578280005","status":"failed","context":{},"completedNodes":["start"],"failedNodes":["failing_task"],"nodeResults":[["start",{"started":true}]],"startTime":1774578280005,"endTime":1774578280006,"duration":1}

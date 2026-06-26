@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1350">
+<title>宝宝物品篇 2/2 v5</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1350px; background: #F0FFF9; font-family: 'Noto Sans SC', sans-serif; overflow: hidden; position: relative; }
+.bg-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(80,180,140,0.05) 28px, rgba(80,180,140,0.05) 29px); }
+.tape { position: absolute; width: 150px; height: 36px; background: rgba(150,220,190,0.85); transform: rotate(-2deg); box-shadow: 0 2px 5px rgba(0,0,0,0.12); }
+.tape-1 { top: 18px; left: 28px; }
+.tape-2 { top: 18px; right: 28px; transform: rotate(2deg); }
+.header-bar { position: absolute; top: 0; left: 0; right: 0; height: 130px; background: linear-gradient(135deg, #5DC8A8, #3DB8A3); display: flex; align-items: center; justify-content: center; }
+.header-bar h1 { font-size: 64px; color: white; font-weight: 900; letter-spacing: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+.page-num { position: absolute; top: 140px; right: 50px; font-size: 28px; color: #3DB8A3; font-weight: 900; }
+.content-area { position: absolute; top: 148px; left: 40px; right: 40px; }
+.cat-label { display: inline-block; font-size: 24px; font-weight: 900; color: white; background: #3DB8A3; padding: 7px 22px; border-radius: 10px; margin-bottom: 10px; }
+.item-row { display: flex; align-items: center; margin-bottom: 10px; background: #FFFDF5; border-radius: 14px; padding: 12px 18px; border-left: 8px solid #5DC8A8; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+.item-num { min-width: 42px; height: 42px; background: #5DC8A8; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 900; margin-right: 16px; flex-shrink: 0; }
+.item-name { font-size: 30px; font-weight: 900; color: #1A5C48; }
+.item-desc { font-size: 20px; color: #3A5A4A; line-height: 1.5; margin-top: 2px; }
+.item-qty { margin-left: auto; background: #E8F8F3; color: #3DB8A3; font-size: 20px; font-weight: 900; padding: 4px 14px; border-radius: 12px; white-space: nowrap; flex-shrink: 0; }
+.section-gap { height: 12px; }
+.bottom-tip { position: absolute; bottom: 40px; left: 40px; right: 40px; background: #FFF0E0; border: 4px solid #D4A574; border-radius: 16px; padding: 18px 26px; }
+</style>
+</head>
+<body>
+<div class="bg-texture"></div>
+<div class="tape tape-1"></div>
+<div class="tape tape-2"></div>
+<div class="header-bar"><h1>👶 宝宝物品篇</h1></div>
+<div class="page-num">2/2 · 喂养+护理</div>
+
+<div class="content-area">
+  <div class="cat-label">🍼 喂养类</div>
+
+  <div class="item-row">
+    <div class="item-num">5</div>
+    <div style="flex:1"><div class="item-name">奶瓶</div><div class="item-desc">选宽口径，玻璃或PPSU都可以</div></div>
+    <div class="item-qty">× 2个</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">6</div>
+    <div style="flex:1"><div class="item-name">小罐奶粉</div><div class="item-desc">选0-6月一段，部分医院不让自带</div></div>
+    <div class="item-qty">× 1罐</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">7</div>
+    <div style="flex:1"><div class="item-name">SS码奶嘴</div><div class="item-desc">新生儿流量小，S码流速可能太快</div></div>
+    <div class="item-qty">× 1-2个</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">8</div>
+    <div style="flex:1"><div class="item-name">奶瓶刷</div><div class="item-desc">海绵刷外面、刷毛细的里面</div></div>
+    <div class="item-qty">× 1套</div>
+  </div>
+
+  <div class="section-gap"></div>
+  <div class="cat-label">💧 护理类</div>
+
+  <div class="item-row">
+    <div class="item-num">9</div>
+    <div style="flex:1"><div class="item-name">NB码纸尿裤</div><div class="item-desc">少囤！宝宝长得快，几天就换S码</div></div>
+    <div class="item-qty">× 1包</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">10</div>
+    <div style="flex:1"><div class="item-name">隔尿垫</div><div class="item-desc">换纸尿裤时垫着，防弄湿包被床单</div></div>
+    <div class="item-qty">× 3-4片</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">11</div>
+    <div style="flex:1"><div class="item-name">婴儿湿巾</div><div class="item-desc">选无香无酒精，成分安全更放心</div></div>
+    <div class="item-qty">× 1包</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">12</div>
+    <div style="flex:1"><div class="item-name">棉柔巾</div><div class="item-desc">沾温水擦屁屁，用途超广</div></div>
+    <div class="item-qty">× 1包</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">13</div>
+    <div style="flex:1"><div class="item-name">护臀膏</div><div class="item-desc">红屁屁克星！温和修护超好用</div></div>
+    <div class="item-qty">× 1支</div>
+  </div>
+  <div class="item-row">
+    <div class="item-num">14</div>
+    <div style="flex:1"><div class="item-name">婴儿指甲剪</div><div class="item-desc">圆头安全款，新生儿3-5天要剪</div></div>
+    <div class="item-qty">× 1把</div>
+  </div>
+</div>
+
+<div class="bottom-tip">
+  <div style="font-size:28px;color:#5C3010;font-weight:900;margin-bottom:8px;">💡 妈妈经验</div>
+  <div style="font-size:22px;color:#8B6F5C;line-height:1.7;">NB码先买1包就好！选弹性和透气好的，不追求最贵。护臀膏选氧化锌成分的更好用。</div>
+</div>
+</body>
+</html>

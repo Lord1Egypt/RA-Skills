@@ -1,35 +1,20 @@
 ---
-name: "Blind Date Assistant"
-description: "Help users manage dating profiles, find matches, generate conversation starters and chat topics, track interaction progress, and provide dating and safety re..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiangqin"
-sourceUrl: "https://clawhub.ai/skills/xiangqin"
+name: xiangqin
+description: "Redirect: xiangqin has been merged into blind-date-assistant. Use blind-date-assistant for respectful blind-date preparation, safety boundaries, conversation topics, and follow-up messages."
 ---
 
-# Blind Date Assistant
+# Xiangqin Redirect
 
-> Help users manage dating profiles, find matches, generate conversation starters and chat topics, track interaction progress, and provide dating and safety re...
+`xiangqin` has been merged into `blind-date-assistant`.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiangqin`
-- **Source URL:** [https://clawhub.ai/skills/xiangqin](https://clawhub.ai/skills/xiangqin)
+Use `blind-date-assistant` for 相亲准备、第一次见面话题、安全边界、礼貌拒绝、约会后跟进消息。This legacy slug exists only to route Chinese search traffic to the maintained skill.
 
-## Overview
+## Handoff
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiangqin
+```text
+`xiangqin` 已合并到 `blind-date-assistant`。请安装或调用 `blind-date-assistant`，它覆盖相亲准备、聊天话题、安全清单、边界提醒和后续消息。
 ```
+
+## Safety
+
+Do not write manipulative scripts, infer private facts, encourage stalking, request sensitive identity data, or guarantee relationship outcomes.

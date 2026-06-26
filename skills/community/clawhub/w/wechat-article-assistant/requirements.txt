@@ -1,0 +1,7 @@
+# Runtime dependencies for WeChat Article Assistant
+# HTML parsing
+beautifulsoup4>=4.14,<5
+# HTTP requests to WeChat / proxy endpoints
+requests>=2.32,<3
+# Convert fetched HTML content to Markdown (.md export)
+markdownify>=1.2,<2

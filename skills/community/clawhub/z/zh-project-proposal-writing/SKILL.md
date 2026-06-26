@@ -1,35 +1,146 @@
 ---
-name: "中文项目申请书写作与交付"
-description: "Use when the user needs to draft, revise, diagnose, shorten, expand, structure, finalize, or produce a deliverable Chinese project/grant proposal（中文项目申请书、基金申..."
-category: "other"
-source: "ClawHub"
-tags: [grant, proposal, zh]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zh-project-proposal-writing"
-sourceUrl: "https://clawhub.ai/skills/zh-project-proposal-writing"
+name: zh-project-proposal-writing
+description: Use when the user needs to draft, revise, diagnose, shorten, expand, structure, finalize, or produce a deliverable Chinese project/grant proposal（中文项目申请书、基金申请书、科技计划申报书、可交付项目书）, especially NSFC/国家自然科学基金、国家重点研发计划、上海市科委、杰青优青等人才类项目；handles guide interpretation, constraints matrix, title, abstract, rationale, scientific question or technical bottleneck, objectives, tasks, methods, roadmap, innovation, feasibility, budget, risk, compliance, attachments, expert-wisdom synthesis, review-style scoring, and final delivery as a Word .docx document.
 ---
 
-# 中文项目申请书写作与交付
+# 中文项目申请书写作与交付技能
 
-> Use when the user needs to draft, revise, diagnose, shorten, expand, structure, finalize, or produce a deliverable Chinese project/grant proposal（中文项目申请书、基金申...
+版本：3.1  
+定位：把“写作辅助”升级为“可交付项目书生产系统”。主文件只保留触发、流程、边界和输出契约；细节按需读取 `references/` 与 `examples/`。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zh-project-proposal-writing`
-- **Source URL:** [https://clawhub.ai/skills/zh-project-proposal-writing](https://clawhub.ai/skills/zh-project-proposal-writing)
+## 1. 使用范围
 
-## Overview
+在用户需要撰写、修改、诊断、精简、扩展、重构、模拟评审或生成可交付项目书时使用本技能，常见对象包括：
 
+- 国家自然科学基金、国家重点研发计划、上海市科委科技计划、杰青优青等人才类项目。
+- 高校、医院、研究院、企业的科研、转化、平台、示范和联合攻关项目。
+- 标题、摘要、项目简介、立项依据、研究目标、研究内容、技术路线、创新点、可行性、预算、风险、伦理、数据、知识产权、附件、模拟评审和定稿交付。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zh-project-proposal-writing
-```
+不要把本技能用于伪造论文、专利、数据、合作承诺、伦理批件、专家意见、用户场景、第三方检测、项目经历或未公开申请书内容。
+
+## 2. 工作模式
+
+根据用户意图选择模式：
+
+- **快速诊断模式**：用于评审意见、扣分点、章节逻辑和优先修改清单。
+- **章节写作模式**：用于标题、摘要、立项依据、研究内容、技术路线等局部改写。
+- **整本框架模式**：用于搭建全书章节结构、主线、任务矩阵和图表建议。
+- **可交付模式**：当用户说“可交付版本、提交版、定稿、整本项目书、完整申请书、交付包”时启用。最终交付物必须是 Word `.docx` 文档，文档内必须包含正文草稿、约束矩阵、事实台账或缺失事实清单、章节映射矩阵、形式审查/附件/合规清单、红队审查和最终核验清单。
+- **专家经验融合模式**：当用户要求“专家感悟、写作经验、评审专家怎么看”时，读取专家经验归类文件，把不同来源的共识转译为写作动作，不堆砌姓名、语录或 URL。
+
+## 3. 核心原则
+
+1. **官方硬约束优先。** 当年指南、申报书模板、系统提示、形式审查、预算规则、附件要求和依托单位通知，高于本技能内置写作经验。
+2. **可交付不等于代替承诺。** 可以生成接近提交态的项目书，但事实、预算、合规、伦理、知识产权、附件、AI 使用声明和最终提交责任必须由申请人及依托单位确认。
+3. **事实不编造。** 缺论文、专利、数据、平台、样机、合作、伦理、预算依据等事实时，写“待补充”或“需申请人核验”，不要用流畅文字掩盖不确定性。
+4. **先判断申报口径，再动笔。** 基础研究写科学问题与假设；任务型项目写指南响应、指标、交付物和验收；人才类项目写个人学术主线、代表性贡献和未来跃迁。
+5. **全文只服务一条主线。** 标题、摘要、立项依据、目标、内容、方案、创新、基础、成果、预算和风险必须互相映射。
+6. **专家经验降维为动作。** 专家感悟只作为写作启发，不能覆盖指南；使用时归入“评审视角、科学问题、摘要主线、创新、可行性、基础、合规、打磨”等类别；Skill 内不得保存具体个人姓名或裸 URL。
+7. **外部核验要克制且权威。** 正式申报涉及年度指南、模板、限项、预算、附件、截止时间、伦理、数据、保密、人工智能使用声明等变化事项时，优先使用用户上传材料；需要联网时只优先核验官方、资助机构、申报系统、依托单位或权威期刊来源，并在输出中标注需核验项。
+8. **保护敏感信息。** 遇到涉密、未公开数据、个人隐私、合作协议、临床样本、企业商业秘密时，建议脱敏；不要主动索取与当前写作无关的敏感细节。
+
+## 4. 来源与证据分级
+
+写作时按以下顺序采信：
+
+1. 用户上传的当年指南、模板、评分标准、依托单位通知、项目事实材料。
+2. 资助机构官网、申报系统、官方管理办法和年度指南。
+3. 资助机构或评审机构发布的写作建议、评审标准、形式审查清单。
+4. 高校、医院、研究院等官方渠道发布的专家讲座纪要。
+5. 同行评议论文、PubMed/权威期刊中的 grant writing 文章。
+6. 普通博客、商业培训稿、自媒体，仅能作为低权重启发；正式输出中默认不引用。
+
+若不同来源冲突，以更高层级和更新年份为准；若仍冲突，输出“需核验”。
+
+## 5. 按需读取规则
+
+只读取当前任务需要的资料，不要一次性加载全部参考文件。
+
+| 当前任务 | 优先读取 | 需要时再读 |
+|---|---|---|
+| 生成可交付项目书、提交版、交付包 | [deliverable_proposal_workflow](references/deliverable_proposal_workflow.md) | [templates_checklists](references/templates_checklists.md), [funder_rules](references/funder_rules.md) |
+| 搜集/使用专家写作感悟 | [expert_wisdom_synthesis](references/expert_wisdom_synthesis.md) | [writing_logic_consensus](references/writing_logic_consensus.md) |
+| 判断某类项目怎么写、解读申报口径 | [funder_rules](references/funder_rules.md) | [knowledge_boundaries](references/knowledge_boundaries.md) |
+| 写标题、摘要、项目简介、故事线 | [title_abstract_story](references/title_abstract_story.md) | [expert_wisdom_synthesis](references/expert_wisdom_synthesis.md) |
+| 写或改某一章 | [module_writing_guide](references/module_writing_guide.md) | [funder_rules](references/funder_rules.md) |
+| 做评审式诊断、评分、自检 | [templates_checklists](references/templates_checklists.md) | [expert_wisdom_synthesis](references/expert_wisdom_synthesis.md) |
+| 需要领域共识、评审视角、写作逻辑 | [writing_logic_consensus](references/writing_logic_consensus.md) | [module_writing_guide](references/module_writing_guide.md) |
+| 需要确认资料来源、公开样例边界、是否应核验最新信息 | [knowledge_boundaries](references/knowledge_boundaries.md) | [funder_rules](references/funder_rules.md) |
+| 需要学习输出格式或少样例 | [proposal_skill_examples](examples/proposal_skill_examples.md) | [deliverable_proposal_examples](examples/deliverable_proposal_examples.md) |
+
+若用户同时要求“某类项目 + 某一章”，先读资助方规则，再读对应模块；若用户提供当年指南、模板或评审标准，先使用用户材料建立约束矩阵。
+
+## 6. 信息不足时如何处理
+
+能直接产出草稿或诊断时，不因信息不全而停下；用“待补充”“需按当年指南确认”占位并继续。只有缺失信息会改变写作口径或硬约束时，最多先问三个问题：
+
+1. **申报类型与指南。** 资助方、年份、专项或申请代码，是否有指南、模板、评分标准、字数页数、预算和附件要求。
+2. **一句话项目主线。** 研究对象或应用场景、核心问题、拟采用路线、预期成果。
+3. **前期基础。** 已有论文、专利、数据、模型、平台、样机、病例、样本、合作单位、用户场景和前期项目。
+
+若用户要求“先给版本”，直接输出结构化草稿，并在末尾列出“需补充/需核验信息”。
+
+## 7. 可交付工作流
+
+1. **建立约束矩阵。** 提取指南条款、评分标准、页数/字数、预算、附件、伦理、数据、限项、截止时间和依托单位要求。
+2. **建立事实台账。** 把论文、专利、数据、平台、团队、合作、样机、场景、伦理、预算依据分为“已证实、用户口述、待补充、不可使用”。
+3. **压缩项目主线。** 用一句话说明对象、缺口、路线、成果和价值；所有章节围绕这句话展开。
+4. **形成故事线。** 重要场景或现象 → 已有进展 → 未解缺口或瓶颈 → 新假设或新路线 → 研究内容或任务 → 可验证结局。
+5. **建立映射矩阵。** 基础研究使用“科学问题—假设—内容—方法—基础—预期认识—创新—风险”；任务型项目使用“指南指标—目标—任务—方法—交付物—验收—责任单位—预算—风险”。
+6. **写作正文草稿。** 先写标题、摘要和总体目标，再写章节；每章末尾标注需同步修改的位置。
+7. **模拟评审与红队审查。** 从评审专家角度检查：为什么重要、是否新、是否可做、是否有基础、失败怎么办、是否符合指南。
+8. **生成 Word 交付文档。** 最终产出 `.docx` 文件；若用户提供申报模板，优先按模板结构和样式写入；若未提供模板，生成结构清晰的 Word 文档，把正文草稿、约束矩阵、事实台账/缺失事实清单、章节映射矩阵、形式审查清单、附件清单、预算/验收风险、红队审查和最终核验清单放入同一文档的正文或附录。
+
+## 8. 不同项目的一句话公式
+
+### 国家自然科学基金
+
+针对【领域/对象】中【尚未解决的科学问题】，本项目基于【前期发现/理论依据】提出【科学假设】，采用【关键模型/方法/体系】，阐明/揭示/建立【机制/规律/理论/方法】，为【学科发展/应用基础】提供【新认识/新依据/新工具】。
+
+### 国家重点研发计划、上海市科委与应用示范类项目
+
+面向【国家/上海/产业/民生/行业场景】中的【关键瓶颈】，本项目拟通过【核心技术路线/组织方式】，突破【关键技术/共性问题】，形成【标志性成果/产品/平台/标准/示范】，达到【指南考核指标】，支撑【战略目标/产业升级/社会效益】。
+
+### 杰青优青等人才类项目
+
+申请人围绕【长期学术主线】持续解决【核心科学问题】，已在【代表性贡献】方面形成【可识别学术影响】，未来拟以【新问题/新方法/新平台】实现【学术跃迁】，带动【团队/平台/领域】发展。
+
+## 9. 输出契约
+
+根据用户任务选择一种或多种输出，优先给用户可直接使用的结果。进入可交付模式后，不要只在聊天中输出 Markdown；必须创建并交付 Word `.docx` 文件。聊天回复只简要说明文件路径、版本状态和仍需核验事项。
+
+| 任务 | 推荐输出 |
+|---|---|
+| 解读指南 | 约束矩阵、指标覆盖矩阵、形式审查风险、建议章节结构、待核验清单 |
+| 生成标题 | 6–10 个标题；说明优点、风险、适用口径；推荐首选标题 |
+| 改摘要或项目简介 | 一句话主线、六句故事线、问题诊断表、2–3 个改写版本、需同步修改的正文位置 |
+| 写整本框架 | 章节结构、逻辑递进、核心矩阵、图表建议、缺失信息清单 |
+| 生成可交付项目书 | Word `.docx` 文档；文档内含正文草稿、章节映射矩阵、约束响应矩阵、事实台账/缺失事实清单、附件/预算/合规清单、红队意见、最终核验清单 |
+| 改某一章 | 逻辑断点、评审疑问、修改策略、可替换文本、需同步修改章节 |
+| 模拟评审 | 指南匹配、问题价值、主线、创新、可行性、基础、成果、预算、合规、可读性评分；优先修改清单 |
+| 定稿前自检 | 硬约束核验表、一分钟复述、证据闭环、全文一致性、合规闭环、风险整改建议 |
+| 专家感悟归类 | 来源分级、主题归类、共识/分歧、可执行写作动作、适用项目类型、低可信来源剔除说明 |
+
+## 10. 摘要快速规则
+
+详细规则见 [title_abstract_story](references/title_abstract_story.md)。专家经验归类见 [expert_wisdom_synthesis](references/expert_wisdom_synthesis.md)。
+
+- **国家自然科学基金摘要**：重要性 → 已知进展 → 未解缺口 → 前期基础与假设 → 研究内容和方法 → 验证方式 → 预期认识和意义。
+- **科技部与上海项目简介**：需求场景、关键瓶颈、总目标、任务组织、核心路线、交付成果、验证方式、团队和场景基础、合规价值。
+- **人才类摘要**：长期主线 → 代表性贡献 → 前沿缺口 → 未来计划 → 预期引领作用。
+- **摘要硬伤**：开头空泛、背景过长、缩写堆砌、问题不具体、没有前期基础、只列方法、只承诺论文专利、滥用“首次”“领先”“突破”。
+
+## 11. 定稿前质量闸门
+
+- **指南匹配**：每个目标、任务、成果、指标都能对应指南、模板或评分标准。
+- **一分钟复述**：大同行读完标题和摘要后，能复述问题、缺口、路线、价值和可验证结局。
+- **证据闭环**：每个主要目标都有方法、前期基础、交付物、验证方式和风险替代方案。
+- **全文一致**：标题、摘要、目标、内容、路线、创新、基础、成果、预算和图表讲的是同一件事。
+- **指标可验收**：任务型项目的指标有阈值、测试条件、评价方法、责任主体和验收材料。
+- **专家经验已落地**：评审视角、科学问题、可读性、创新、可行性、基础和合规建议已转化为具体文本或修改动作。
+- **交付完整性**：最终 `.docx` 文件已生成，正文、图表建议、附件、预算依据、风险方案、待补充项、版本记录和核验清单齐全。
+- **合规闭环**：限项、资格、伦理、数据、知识产权、安全、保密、合作协议、附件、人工智能使用声明均已处理或标为待核验。
+
+## 12. 回复风格
+
+使用清晰、专业、可直接粘贴进申请书的中文。诊断优先用表格，正式文本用完整段落。不要按个人姓名罗列写作建议，不输出裸 URL；应把经验整合为“摘要逻辑、故事线、创新性、可行性、评审沟通”等写作动作。若使用外部资料，说明来源层级和需核验事项；若无法确认，明确写“未核验”或“需按当年官方指南确认”。

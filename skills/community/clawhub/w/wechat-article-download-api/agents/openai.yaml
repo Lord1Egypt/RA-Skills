@@ -1,0 +1,4 @@
+interface:
+  display_name: "WeChat Article Downloader"
+  short_description: "Download WeChat articles as html, md, text, or json."
+  default_prompt: "Fetch a WeChat article URL and save html/markdown/text/json outputs via API."

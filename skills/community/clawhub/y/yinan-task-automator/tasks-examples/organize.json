@@ -1,0 +1,13 @@
+{
+  "source": "~/Downloads",
+  "destination": "~/Organized",
+  "rules": [
+    {"extension": ".pdf", "folder": "Documents"},
+    {"extension": ".docx", "folder": "Documents"},
+    {"extension": ".xlsx", "folder": "Spreadsheets"},
+    {"extension": ".jpg", "folder": "Images"},
+    {"extension": ".png", "folder": "Images"},
+    {"extension": ".mp4", "folder": "Videos"},
+    {"extension": ".mp3", "folder": "Audio"}
+  ]
+}

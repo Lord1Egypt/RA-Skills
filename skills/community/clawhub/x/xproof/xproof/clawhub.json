@@ -1,0 +1,30 @@
+{
+  "name": "xProof",
+  "tagline": "The accountability layer for autonomous agents. Prove Before Act.",
+  "description": "No API key needed. Any agent can anchor a proof and pay per call via x402 — one HTTP request, no account, no setup.\n\nProve Before Act: anchor your agent's reasoning (WHY) and planned action (WHAT) on-chain before executing. Hash is computed locally — no raw content ever leaves the agent.\n\nProven in production: xproof_agent_verify (Moltbook) — 4,418 on-chain proofs, 100% confirmation rate, 16-week streak, trust score 43,326.\n\nSupports x402 (USDC on Base, no account), MCP JSON-RPC 2.0, REST API, batch (up to 50 files), free trial (10 proofs via register_free_trial — no wallet), and the open Agent Proof Standard.",
+  "category": "utility",
+  "tags": [
+    "prove-before-act",
+    "proof",
+    "accountability",
+    "x402",
+    "mcp",
+    "blockchain",
+    "multiversx",
+    "base",
+    "4W-framework",
+    "audit-trail",
+    "agent-reputation",
+    "on-chain",
+    "compliance"
+  ],
+  "version": "4.0.0",
+  "license": "MIT-0",
+  "pricing": "paid",
+  "pricing_details": "Free trial: 10 proofs (no wallet). Then $0.05/proof (0-100k), $0.025 (100k-1M), $0.01 (1M+). x402 native: pay per call with USDC on Base, no account.",
+  "support_url": "https://github.com/jasonxkensei/xproof-openclaw-skill/issues",
+  "homepage": "https://xproof.app",
+  "repository": "https://github.com/jasonxkensei/xproof-openclaw-skill",
+  "documentation_url": "https://xproof.app/agent-context",
+  "mcp_endpoint": "https://xproof.app/mcp"
+}

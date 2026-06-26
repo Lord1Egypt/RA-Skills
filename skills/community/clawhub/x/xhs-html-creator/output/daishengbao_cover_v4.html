@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1350">
+<title>待产包清单 - 封面 v4</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px; height: 1350px;
+  background: #FDF5EE;
+  font-family: 'Noto Sans SC', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+/* 纸纹 */
+.bg-texture { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(160,120,80,0.05) 27px, rgba(160,120,80,0.05) 28px); pointer-events: none; }
+/* 胶带 */
+.tape { position: absolute; width: 160px; height: 40px; background: rgba(255,235,150,0.85); box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+.tape-left { top: 18px; left: 25px; transform: rotate(-4deg); }
+.tape-right { top: 18px; right: 25px; transform: rotate(4deg); }
+/* 主标题区 */
+.hero-section { position: absolute; top: 55px; left: 35px; right: 35px; text-align: center; }
+.hero-trust { font-size: 26px; color: #B85C3D; font-weight: bold; letter-spacing: 8px; margin-bottom: 12px; }
+.hero-title { font-size: 110px; font-weight: 900; color: #1A0A00; line-height: 1; letter-spacing: 6px; }
+.hero-number { font-size: 80px; font-weight: 900; color: #E84040; margin-top: 8px; letter-spacing: 4px; }
+.hero-sub { font-size: 52px; color: #8B5A2B; margin-top: 10px; letter-spacing: 10px; }
+.divider { width: 300px; height: 5px; background: linear-gradient(90deg, transparent, #D4853D, transparent); margin: 16px auto; }
+/* 三大分类卡片 */
+.category-row { position: absolute; top: 390px; left: 35px; right: 35px; display: flex; justify-content: space-around; gap: 14px; }
+.cat-item { flex: 1; text-align: center; background: white; border-radius: 18px; padding: 20px 8px; box-shadow: 0 6px 16px rgba(0,0,0,0.12); border: 3px solid #E8D5C0; }
+.cat-icon { font-size: 56px; margin-bottom: 6px; }
+.cat-name { font-size: 32px; font-weight: 900; color: #1A0A00; }
+.cat-items { font-size: 19px; color: #8B6F5C; margin-top: 6px; line-height: 1.6; }
+/* 红黑榜 */
+.red-black { position: absolute; top: 680px; left: 35px; right: 35px; display: flex; gap: 14px; }
+.rb-card { flex: 1; border-radius: 16px; padding: 18px 22px; }
+.rb-red { background: #FFF5F5; border: 3px solid #FF6B6B; }
+.rb-black { background: #F5F5F5; border: 3px solid #999; }
+.rb-title { font-size: 28px; font-weight: 900; margin-bottom: 8px; }
+.rb-red .rb-title { color: #E84040; }
+.rb-black .rb-title { color: #666; }
+.rb-items { font-size: 22px; color: #3D2010; line-height: 1.8; }
+/* CTA */
+.cta-bar { position: absolute; bottom: 40px; left: 35px; right: 35px; background: #E84040; border-radius: 18px; padding: 22px 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(232,64,64,0.4); }
+.cta-text { font-size: 38px; font-weight: 900; color: white; letter-spacing: 4px; text-align: center; }
+/* 装饰 */
+.deco { position: absolute; font-size: 56px; }
+.deco-1 { bottom: 110px; left: 50px; }
+.deco-2 { bottom: 110px; right: 50px; }
+.deco-3 { top: 75px; right: 35px; font-size: 40px; opacity: 0.6; }
+</style>
+</head>
+<body>
+<div class="bg-texture"></div>
+<div class="tape tape-left"></div>
+<div class="tape tape-right"></div>
+
+<div class="hero-section">
+  <div class="hero-trust">【无广 · 纯干货 · 10年经验整理】</div>
+  <div class="hero-title">精简待产包</div>
+  <div class="hero-number">30+项 · 实测好用！</div>
+  <div class="hero-sub">宝宝 · 妈妈 · 证件</div>
+  <div class="divider"></div>
+</div>
+
+<div class="category-row">
+  <div class="cat-item">
+    <div class="cat-icon">📋</div>
+    <div class="cat-name">证件篇</div>
+    <div class="cat-items">身份证、医保卡<br>产检本、准生证</div>
+  </div>
+  <div class="cat-item">
+    <div class="cat-icon">👶</div>
+    <div class="cat-name">宝宝篇</div>
+    <div class="cat-items">半背衣、NB尿裤<br>奶瓶、包被、胎帽</div>
+  </div>
+  <div class="cat-item">
+    <div class="cat-icon">🤱</div>
+    <div class="cat-name">妈妈篇</div>
+    <div class="cat-items">产褥垫、刀纸<br>吸管杯、月子服</div>
+  </div>
+</div>
+
+<div class="red-black">
+  <div class="rb-card rb-red">
+    <div class="rb-title">✅ 红榜 · 实测好用</div>
+    <div class="rb-items">计量产褥垫 · 弯头吸管杯<br>NB码尿裤 · 护臀膏</div>
+  </div>
+  <div class="rb-card rb-black">
+    <div class="rb-title">❌ 黑榜 · 避雷闲置</div>
+    <div class="rb-items">产妇卫生巾 · 婴儿手套<br>脐部护理类（听医嘱）</div>
+  </div>
+</div>
+
+<div class="cta-bar">
+  <div class="cta-text">👉 快发给猪队友，让他提前准备好！</div>
+</div>
+
+<div class="deco deco-1">🤰</div>
+<div class="deco deco-2">🍼</div>
+</body>
+</html>

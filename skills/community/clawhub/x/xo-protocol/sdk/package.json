@@ -1,0 +1,16 @@
+{
+  "name": "@xo-protocol/sdk",
+  "version": "0.1.0",
+  "description": "Official SDK for the XO Protocol Dating Intelligence API",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "keywords": ["xo-protocol", "dating", "identity", "trust", "reputation"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xo-protocol/xo-protocol"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

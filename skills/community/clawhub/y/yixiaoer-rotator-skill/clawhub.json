@@ -1,0 +1,25 @@
+{
+  "name": "yixiaoer-rotator-skill",
+  "version": "1.0.3",
+  "description": "蚁小二账号轮询管理器 - 多账号矩阵自动轮询发布，支持按平台独立维护索引、状态持久化",
+  "author": "lsx1205",
+  "license": "MIT",
+  "repository": "https://github.com/lsx1205/yixiaoer-rotator-skill",
+  "keywords": [
+    "yixiaoer",
+    "蚁小二",
+    "账号管理",
+    "轮询",
+    "新媒体",
+    "多平台发布"
+  ],
+  "dependencies": [
+    "yixiaoer-skill"
+  ],
+  "scripts": [
+    "scripts/account-rotator.js"
+  ],
+  "references": [
+    "references/config.md"
+  ]
+}

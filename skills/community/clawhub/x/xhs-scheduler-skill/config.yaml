@@ -1,0 +1,72 @@
+# 小红书智能排期发布器 - 配置文件
+
+# MCP服务配置
+mcp_server_url: "http://localhost:18060/mcp"
+
+# 调度器配置
+check_interval: 300  # 检查间隔（秒），默认5分钟
+max_publish_per_run: 3  # 单次最大发布数量
+publish_interval: 60  # 发布间隔（秒），避免触发风控
+
+# 智能排期配置
+smart_timing:
+  # 内容类型偏好
+  # 可选: fashion(时尚), beauty(美妆), food(美食), travel(旅行), 
+  #       tech(科技), lifestyle(生活方式), education(教育), default(通用)
+  default_content_type: "lifestyle"
+  
+  # 是否启用智能排期（自动推荐发布时间）
+  enabled: true
+  
+  # 发布时段限制（24小时制）
+  allowed_hours:
+    start: 7   # 最早发布时间
+    end: 23    # 最晚发布时间
+
+# 通知配置（可选）
+# 配置后会在发布成功/失败时发送通知
+
+# 飞书通知
+# 获取Webhook: 飞书群设置 -> 群机器人 -> 添加机器人 -> 复制Webhook地址
+feishu_webhook: ""
+
+# 钉钉通知
+# 获取Webhook: 钉钉群设置 -> 智能群助手 -> 添加机器人 -> 复制Webhook地址
+dingtalk_webhook: ""
+dingtalk_secret: ""  # 加签密钥（如启用了加签）
+
+# Telegram通知
+telegram_bot_token: ""
+telegram_chat_id: ""
+
+# 发布限制（防止触发平台风控）
+rate_limits:
+  # 每日最大发布数量
+  max_daily_publishes: 10
+  
+  # 每小时最大发布数量
+  max_hourly_publishes: 3
+  
+  # 同一账号最小发布间隔（分钟）
+  min_interval_minutes: 10
+
+# 日志配置
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "data/logs/scheduler.log"
+  max_size: "10MB"
+  backup_count: 5
+
+# 高级配置
+advanced:
+  # 发布失败重试次数
+  retry_count: 3
+  
+  # 重试间隔（秒）
+  retry_interval: 300
+  
+  # 是否自动重试失败任务
+  auto_retry: true
+  
+  # Cookie过期提醒（提前天数）
+  cookie_expire_warning_days: 3

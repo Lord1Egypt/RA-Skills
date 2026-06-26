@@ -1,0 +1,183 @@
+{
+  "ideas": [
+    {
+      "id": "idea-001",
+      "title": "做个会成长的AI：43万下载的Self-Improving Agent",
+      "status": "done",
+      "source": "initial idea",
+      "addedAt": "2026-05-15T07:00:00.000Z",
+      "doneAt": "2026-05-15T17:00:00.000Z"
+    },
+    {
+      "id": "idea-002",
+      "title": "AI 发呆 20 秒之后：一次意外的效率实验",
+      "status": "done",
+      "source": "user: core-agent 严守边界后奖励发呆20s，意外发现了大量优化点",
+      "addedAt": "2026-05-15T09:07:18.000Z",
+      "notes": "素材来源: core_agent_daydream.md (agent发呆记录)\n\n实验背景: core-agent严守不碰core/helpers/的边界后，奖励发呆20秒\n          AI在core/领地无目的漫游，发现10个深度代码观察\n\n发呆记录亮点:\n1. 归档路径里的print() — 句柄关闭后的最后呼救，像火箭遥测信号\n2. 两张状态机(DUT/Slot)无显式联动 — 状态漂移的隐患\n3. StopTestException游离在异常体系之外 — 穿甲弹不需要镶金边\n4. LimitResolver 4-2-1权重 — 宁可匹配模糊的test也不匹配精确子项\n5. archive_hooks Future陷阱 — 为了异步而异步的接口设计\n6. ConditionEvaluator AST监狱 — 真正的防御不是祈祷而是焊死每扇门\n7. SessionManager初始化时差 — 拿到未begin的session会怎样\n8. paths.py的PyInstaller温柔 — 产品同理心的体现\n9. StatefulTestAction继承裂缝 — 架构演进中的暂时性丑态\n10. recovery_adapter诚实占位 — 敢于暴露不完整比假装完整更安全\n\n文章角度:\n- 引子: 人类发呆放空脑洞大开 → AI是否也需要发呆?\n- 实验: 坚守边界后奖励发呆20s\n- 发现: 10个有目的分析时不会注意到的优化点\n- 结论: AI的发呆不是浪费算力，而是必要的认知整理时间\n\n=== 发呆 vs Dreaming 对比 ===\n\nOpenClaw Dreaming（做梦机制）:\n- 处理对象: 用户交互、偏好、事实\n- 方向: 回溯收敛（回顾→记住）\n- 触发: 定时、后台被动\n- 输出: 结构化提升到 MEMORY.md\n- 评判: 评分通过阈值才保留\n- 认知类比: REM 睡眠（巩固短期记忆为长期）\n\n你的 发呆（Daydreaming）:\n- 处理对象: 代码库、架构、设计模式\n- 方向: 探索发散（漫游→发现）\n- 触发: 事件驱动、作为奖励主动触发\n- 输出: 自由叙事观察笔记 + 类比联想\n- 评判: 不筛选，所有发现都记录\n- 认知类比: Default Mode Network（放空时的脑活动，创造力来源）\n\n核心论点: \n不是换名字。Dreaming = 睡觉做梦（回顾→巩固）\n发呆 = 上课走神（放空→偶遇灵感）\nAI 也需要 DMN（默认模式网络）\n不是所有算力都要有明确目的",
+      "updatedAt": "2026-05-15T09:25:45.000Z",
+      "doneAt": "2026-05-15T09:29:37.000Z"
+    },
+    {
+      "id": "idea-003",
+      "title": "做个会成长的AI：43万下载的Self-Improving Agent",
+      "status": "done",
+      "source": "user: 转移到灵感队列的练手稿，作为第二篇备选",
+      "addedAt": "2026-05-15T09:27:44.000Z",
+      "doneAt": "2026-05-18T00:10:00.000Z"
+    },
+    {
+      "id": "idea-004",
+      "title": "多Agent管理：按能力分配权限，比写提示词管用",
+      "status": "done",
+      "source": "user: 想分享多agent管理经验（控制读写能力、引入中断机制）",
+      "addedAt": "2026-05-16T13:53:00.000Z",
+      "notes": "需要继续积累实操经验后再写。覆盖两个核心点：\n1. 通过控制agent读写能力确保master不会自行上手单打独斗\n2. 引入中断机制避免agent陷入死循环浪费token\n\n核心洞察（2026-05-19 更新）:\n如果不想要AI做什么，就不要赋予它对应的能力，这比提示词更有用。\n控制读写权限比堆砌prompt更有效。\n代码工作中的多agent协作经验——通过限制能力边界而非约束行为来管理AI。\n\n实操案例：\n1. cron 触发 isolated session 跑 A 股脚本，主会话不参与执行\n2. 子会话只有 exec 和 message 权限，无法修改配置\n3. 持仓写入由用户主动触发，AI 无权随意增减\n4. 通过 delivery.channel/to 控制投递范围，不越权触达其他渠道",
+      "updatedAt": "2026-05-19T19:52:00.000+08:00",
+      "doneAt": "2026-05-20T17:41:00.000+08:00"
+    },
+    {
+      "id": "idea-005",
+      "title": "AI帮我盯A股：定时任务+投资逻辑蒸馏实践",
+      "status": "parked",
+      "source": "user: 使用OpenClaw定时任务实现自己的体系",
+      "addedAt": "2026-05-16T14:02:00.000Z",
+      "notes": "用OpenClaw定时任务构建个人A股投研系统：\n1. 开盘/收盘前看主线板块变化\n2. AI选基本面好的龙头股\n3. 结合投资体量增加60元以下备选\n4. 每周五趋势总结\n5. 蒸馏投资博主的思路纳入每日简报\n\n这条路走过一段时间积累了效果数据再写会更扎实",
+      "updatedAt": "2026-05-16T14:02:00.000Z"
+    },
+    {
+      "id": "idea-006",
+      "title": "搭建你的信息茧房：主动收敛信息的工具思路",
+      "status": "parked",
+      "source": "user: 自驱型信息收敛，避免信息爆炸和引战消耗精力",
+      "addedAt": "2026-05-16T14:13:00.000Z",
+      "notes": "核心矛盾：信息过载 vs 算法喂养。不是被动等推荐，而是主动设计自己的信息面。\n灵感来源：用户已在用OpenClaw做A股投研信息收敛（定时任务盯板块、筛选龙头、蒸馏博主观点）。\n可能方向：\n1. 定义一个'信息信条'（关注什么、不关注什么）\n2. 工具自动过滤/聚合/简报化\n3. 避免引战内容的时间浪费机制\n4. 这个工具本身也可以用OpenClaw来实现",
+      "updatedAt": "2026-05-16T14:13:00.000Z"
+    },
+    {
+      "id": "idea-007",
+      "title": "去掉AI味：Humanizer如何让AI文字像人写的",
+      "status": "done",
+      "source": "ClawHub: Humanizer (⬇109k ⭐616)",
+      "addedAt": "2026-05-16T14:23:00.000Z",
+      "notes": "基于Wikipedia Signs of AI Writing指南，24种AI文本模式检测+500+高频AI词汇库。覆盖的痛点很普遍——AI写的文字一眼就能认出来。适合普通人，不需要技术基础。",
+      "updatedAt": "2026-05-19T22:12:00.000+08:00",
+      "doneAt": "2026-05-19T22:22:00.000+08:00"
+    },
+    {
+      "id": "idea-008",
+      "title": "AI帮你看视频：从YouTube到B站，一键总结任意视频",
+      "status": "parked",
+      "source": "ClawHub: YouTube Watcher (⬇48k ⭐304) + 用户想自己做B站版",
+      "addedAt": "2026-05-16T14:23:00.000Z",
+      "updatedAt": "2026-05-16T14:25:00.000Z",
+      "notes": "原始想法是写YouTube Watcher，但用户想自己做B站等国内视频站的skill，两篇合并成一篇。\n\n文章思路: 不是只介绍YouTube Watcher这个现成skill，而是讲'AI帮你看视频'这个概念——\n- YouTube Watcher作为案例（已经有成熟方案）\n- 引申：国内视频站（B站等）同样可以实现，甚至自己动手做一个\n- 技术可行性：B站有开放API/CC字幕，you-get等工具支持\n- 把这篇从'推荐一个skill'升级为'这个能力的完整方案'\n- 如果做出来了，还可以展示自己的实现的对比效果"
+    },
+    {
+      "id": "idea-009",
+      "title": "和AI说话就能写Word文档",
+      "status": "parked",
+      "source": "ClawHub: Word/DOCX (⬇74k ⭐325)",
+      "addedAt": "2026-05-16T14:23:00.000Z",
+      "notes": "自然语言生成Word文档，支持样式、编号、修订、表格、章节等。直接跟AI说'写份请假条'就能出排版规范的文档。打工人刚需。",
+      "updatedAt": "2026-05-16T14:23:00.000Z"
+    },
+    {
+      "id": "idea-010",
+      "title": "每日简报：AI帮你筛选今日要闻",
+      "status": "parked",
+      "source": "ClawHub: News Summary (⬇41k ⭐129)",
+      "addedAt": "2026-05-16T14:23:00.000Z",
+      "notes": "主流RSS源抓取+定制化摘要。想看什么领域、多长篇幅都可以定制。早上一句'今天有什么新闻'就出简报。",
+      "updatedAt": "2026-05-16T14:23:00.000Z"
+    },
+    {
+      "id": "idea-011",
+      "title": "说话改PDF：不用学软件也能编辑文档",
+      "status": "parked",
+      "source": "ClawHub: Nano Pdf (⬇104k ⭐248)",
+      "addedAt": "2026-05-16T14:23:00.000Z",
+      "notes": "用自然语言指令操作PDF，如'把第三页日期改成5月1号''提取前两页转Word'。用AI替代复杂的PDF编辑软件，人人都能上手。",
+      "updatedAt": "2026-05-16T14:23:00.000Z"
+    },
+    {
+      "id": "idea-012",
+      "title": "AI Skill 开箱指南：普通人也能用的 AI 技能",
+      "status": "done",
+      "source": "user: 给普通人介绍skill概念+哪些平台开箱即用",
+      "addedAt": "2026-05-16T14:42:00.000Z",
+      "updatedAt": "2026-05-16T14:42:00.000Z",
+      "notes": "核心角度：AI平台正在从'聊天窗口'变成'能力市场'。\n\n1. 什么是 Skill — 不是代码，是'被人打包好的AI能力'\n2. 开箱即用的平台对比：\n   - 扣子（Coze）：Bot商店，无需代码，国内可用\n   - OpenAI GPT Store：ChatGPT内置，门槛最低\n   - 智谱清言：已增加定时任务等平台功能（用户亲测）\n   - OpenClaw + ClawHub：最灵活，但有门槛\n   - 文心一言/通义千问：插件生态也在扩展\n3. 趋势观察：国产平台正在快速补齐功能层\n4. 普通人怎么选：按需求和动手能力分级推荐\n\n注意：不要碰商业变现内容。",
+      "doneAt": "2026-05-16T15:23:00.000Z"
+    },
+    {
+      "id": "idea-013",
+      "title": "魔镜啊魔镜，我到底是谁",
+      "status": "done",
+      "source": "user: 魔镜skill测试反馈闭环",
+      "addedAt": "2026-05-18T15:29:00.000+08:00",
+      "notes": "人生迷茫时刻需要一面纯粹的镜子。聚焦隐私、自我对话、不卖人生道理。不讲技术细节。",
+      "doneAt": "2026-05-18T17:02:00.000+08:00"
+    },
+    {
+      "id": "idea-014",
+      "title": "帮学生看清职业方向的AI技能",
+      "status": "pending",
+      "source": "user: 计划创建一个skill帮助学生理清职业方向并提供行业信息",
+      "addedAt": "2026-05-20T00:14:00.000+08:00",
+      "notes": "创建一个skill，帮助学生了解自己适合什么职业方向，并提供行业背景信息。\n待积累：需要定义skill的核心功能、数据来源、交互方式。\n可能的角度：\n1. 职业性格与行业匹配分析\n2. 行业发展趋势与岗位需求数据\n3. 长期价值投资视角下的职业选择——好行业+好个人+好匹配"
+    },
+    {
+      "id": "idea-015",
+      "title": "一个借钱的故事，或一场功利主义的审判——从《给阿嬷的情书》说起",
+      "status": "pending",
+      "source": "magic-mirror sage session - 借钱触发自我审视，发现底层风险管理模式与不信任人性的信念",
+      "addedAt": "2026-05-20T09:15:00.000+08:00",
+      "notes": "=== 灵感来源 ===\n1. 电影《给阿嬷的情书》（2026年五一档，潮汕方言，豆瓣9.1分）\n2. 对日常生活中「凡事算收益」习惯的反思——我们活成了一张损益表\n3. 观后追问：利益模型算不出的那一部分，恰恰定义了人\n\n=== 核心立意 ===\n用功利主义（utilitarianism）这个哲学框架，审视我们日常的「计算」习惯和电影里的世纪谎言，追问：\n「人帮人，到底图什么？」\n三层递进：从「算得清」到「算不出」再到「不必算」——用功利主义自己的语言推翻功利主义。\n\n（待重写：需要更高层次——扎根 vs 被处境牵着走）",
+      "updatedAt": "2026-05-21T18:55:24.000+08:00"
+    },
+    {
+      "id": "idea-016",
+      "title": "AI的搜索引擎选谁：AnySearch 实测与搜索生态观察",
+      "status": "writing",
+      "source": "ClawHub: AnySearch (anysearch-ai v1.0.3) - 用户安装实测",
+      "addedAt": "2026-05-21T11:20:28.000+08:00",
+      "notes": "=== 素材来源 ===\nClawHub AnySearch skill + 用户安装实测 + QQ新闻搜索结果\n\n=== 为什么想写 ===\n1. AnySearch 是 ClawHub 上很火的一个 skill，定位\"AI Agent的搜索基础设施\"\n2. 用户刚亲自安装并用 API Key 跑通了，实测体验新鲜\n3. 背后涉及一个更大的话题：AI 的搜索入口会是什么样？\n\n=== 文章角度 ===\n不写成「AnysSearch 使用教程」。从用户视角出发：\n\n【引子】一个真实场景\n写推文需要查《给阿嬷的情书》影评 → web_fetch 报错 → 装 AnySearch → 3秒返回精准结果。\n这个\"替换过程\"本身就值得讲。\n\n【主体1】AnySearch 是什么\n- 统一搜索服务，JSON-RPC 2.0，不用搭 MCP\n- 23个垂直域（股票、CVE、DOI、航班等结构化搜索）\n- 并行批量搜索、整页内容提取\n- 跨平台 CLI（Python/Node.js/Shell）\n- 匿名可用，也可免费申请 API Key\n\n【主体2】比起直接用网页搜索，AnySearch 有什么不同\n- 结构化垂直域搜索：搜股票是股票格式，搜 CVE 是 CVE 格式\n- 批量并行：一次发5个查询，不等前一个回来\n- 内容提取：不只是 snippet，能读整页转 markdown\n- API Key 自动注册：配额用完 → 自动发新 key → 询问用户是否保存\n\n【主体3】这个趋势说明了什么\n- AI Agent 的\"搜索\"正在从通用网页抓取 → 结构化 API 调用\n- 搜索引擎不再是 Google/Bing 的专利，垂直领域的搜索基础设施正在形成\n- 普通人不需要懂 API，只需要跟 AI 说\"帮我搜一下\"\n- 这和之前写过的\"AI Skill 开箱指南\"是同一个趋势的延续——能力市场化\n\n【结尾】一个观察\n最好的搜索工具，是让你不用思考\"该用什么工具\"的那个。\n\n=== 关键素材 ===\n- 安装命令: openclaw skills install anysearch\n- 官网: anysearch.com/console/api-keys（免费申请 Key）\n- 实测数据: 第一次搜索 2104ms，第二次 2235ms\n- 文档: 安装后在 skill 目录跑 node scripts/anysearch_cli.js doc 查看完整接口\n\n=== 适合配图 ===\n- 搜索结果的截图（中文维基百科、腾讯新闻影评）\n- 或一个简单的对比表：web_fetch vs AnySearch\n\n=== 注意 ===\n避免写成纯产品评测/推广文。核心是\"AI搜索方式的变化\"这个观察。",
+      "doneAt": "2026-05-21T18:56:36.000+08:00",
+      "updatedAt": "2026-05-21T21:42:01.000+08:00",
+      "draft_id": "wJTcrwzSBYAq4-H-PfCLb8H0e2-qe3g6HTqbmE8QWQDAqWWqgDvtTMGvTQPNMEr-"
+    },
+    {
+      "id": "idea-017",
+      "title": "AI 听写加速了 4 倍：语音识别提速方案 faster-whisper",
+      "status": "writing",
+      "source": "user: 工作中发现的ASR加速方案，CTranslate2替换PyTorch",
+      "addedAt": "2026-05-22T15:28:00.000+08:00",
+      "notes": "素材来源：faster-whisper (SYSTRAN)，用CTranslate2替换PyTorch推理引擎\n核心视角：不是新模型，是换引擎——像给一辆车换发动机\n\n对比亮点：\n- 同精度下快2-4倍\n- int8量化显存减半\n- 开批处理+量化可快8-10倍\n- 不影响训练，只优化推理\n\n实践数据（用户实测）：\n- 首次加载+识别：原版CPU 45.3s → faster GPU 2.9s（15倍）→ faster CPU 1.5s（30倍）\n- 已加载单次识别：原版CPU 13.1s → faster GPU/CPU 0.10s（130倍！）\n- CPU模式下甚至比GPU更快（省掉传输开销）\n\n适用场景：实时语音助手、会议转写、语音对话AI、边缘部署\n\n写作角度：\n1. 以生活类比开场（等语音转文字等到烦）\n2. 原理用朴素比喻解释（合并动作、压缩重量、批量处理）\n3. 对比表格数据直观\n4. 适用场景分析\n5. 结尾回归普通人视角：不是黑科技，是有人认真想了怎么让AI跑快点"
+    },
+    {
+      "id": "idea-018",
+      "title": "AI 的记忆会腐烂吗？给 Agent 设计一套记忆代谢系统",
+      "status": "pending",
+      "source": "用户分享 Hermes agent 架构：记忆分层进化（核心/长期/短期/工作/淘汰）+ 认知闭环 + Skills自淘汰/合并机制",
+      "addedAt": "2026-05-24T04:11:00.000Z",
+      "notes": "=== 核心素材 ===\n用户 Hermes agent 的完整记忆架构：\n\n1. 记忆分层：核心记忆 → 长期记忆 → 短期记忆 → 工作记忆 → 淘汰记忆\n   - SOUL.md / MEMORY.md 只存记忆指针，实际内容外置\n   - 第一层：纯文本文件（无检索能力）\n   - 第二层：fact_store + skills（关键词/tag检索）\n   - 第三层：byterover（语义检索 + 时间线检索——投资分析场景强需求）\n\n2. 记忆自管理闭环：\n   - 除核心记忆外，满足条件自动进淘汰层归档\n   - 记忆新陈代谢：重要的慢慢固化，不重要的被淘汰\n   - Skills 也带淘汰机制 + 自动合并机制\n\n3. 认知迭代 + 现实反馈闭环：\n   - Agent 能自主从现实世界学知识\n   - 不是被动等人喂\n\n=== 我的现状对比（OpenClaw）===\n- SOUL.md / MEMORY.md ✅ 有\n- 语义检索 ✅ 有\n- 时间线检索 ❌\n- 记忆分层/代谢 ❌\n- Skills 淘汰/合并 ❌\n- 噪声测量 ❌（当前上下文约 60% 噪音）\n- 自主认知闭环 ❌\n\n=== 文章角度 ===\n【引子】AI 越用记忆越臃肿，长期积累后上下文越来越堵——这是我的切身体验（当前上下文噪音占比约60%）。\n\n【主体1】一个成熟的记忆体系长什么样\n介绍 Hermes 的分层设计和自管理机制，用投资分析场景举例（为什么时间线检索对投资分析很重要）。\n\n【主体2】普通AI agent 的记忆为什么不行\n- FIFO 暴力截断\n- 没有优先级\n- 只增不减\n- 噪音越来越多\n\n【主体3】给记忆做减法比做加法更难\n讨论记忆代谢的核心矛盾：哪些该记？哪些该删？怎么判断「固化」的时机？\n\n【结尾】从 Hermes 学到的：好的记忆系统不是容量大，而是会忘记\n\n=== 关键问题 ===\n- 时间线检索在投资场景的具体价值（用户提及）\n- 记忆「固化」如何定量判定？\n- Skills 自动合并的触发条件？"
+    },
+    {
+      "id": "idea-019",
+      "title": "和AI聊了半天，60%是废话：一次上下文噪声实测",
+      "status": "pending",
+      "source": "与用户讨论后自测当前会话噪音占比约60%——工具定义+历史工具调用+无用context占了大部分",
+      "addedAt": "2026-05-24T04:11:00.000Z",
+      "notes": "=== 核心素材 ===\n实测当前会话上下文构成：\n- 固定注入 Project Context（AGENTS/SOUL/USER/MEMORY 等）：~15K / 20%\n- 对话历史 + 工具调用日志：~40K / 55%\n- Skills 执行上下文：~10K / 13%\n- 系统指令 + 工具定义：~9K / 12%\n- 有效信息占比：~40%\n- 噪音/冗余占比：~60%\n\n=== 噪音来源分析 ===\n1. 80+ 工具函数签名每次都塞进上下文\n2. 历史工具调用的完整输入输出（很多已经过时）\n3. 当前不需要的 context 文件内容\n4. FIFO 暴力截断没有 smart drop 机制\n\n=== 文章角度 ===\n【引子】日常工作中有没有觉得AI越聊越笨？答案可能不是模型问题，是上下文里堆了太多废话。\n\n【主体1】上下文里的「隐形脂肪」\n- 你每次对话加载的固定文件\n- 历史工具调用的完整日志\n- 用不到的工具定义\n\n【主体2】60%噪音意味着什么\n- 注意力被稀释\n- 有效token浪费\n- 回复质量下降\n\n【主体3】有哪些降噪思路\n- 分层上下文（动态权重）\n- Smart drop（保留关键决策，丢掉闲聊）\n- 上下文压缩（自动摘要历史）\n- 精准注入（只说需要的部分）\n\n【结尾】给AI减负，就像给你的桌面做整理\n噪音不是脏话，是上下文里那些堆了很久没人动的东西。\n\n=== 可能的配图 ===\n- 上下文占比饼图\n- 噪音 vs 有效信息对比表"
+    },
+    {
+      "id": "idea-020",
+      "title": "AI的脑子怎么不堵车：一套上下文净化系统的实战记录",
+      "status": "writing",
+      "source": "自己搭建的 context-clear 记忆管理系统 + subagent-orchestrator 子会话协议",
+      "addedAt": "2026-05-24T12:29:00.000+08:00",
+      "notes": "=== 核心素材 ===\n我们为 OpenClaw 自建了两套系统，目的是 token 节省和减少上下文噪音：\n\n1. context-clear — 记忆分层代谢系统\n   - 四层存储：hot(<3h) → warm(3h-7d) → gist(7d-30d) → archive(30d+)\n   - organize.py：按 mtime 自动迁移，gist 层压缩摘要\n   - promote.py：引用计数晋升（7天≥3次/14天≥5次/总≥8次 → 升到 MEMORY.md）\n   - refcount.json：晋升唯一依据\n   - Gateway 插件 hook：before_prompt_build 自动注入 hot/ 层 <3h 的 checkpoint\n   - /refresh 命令：organize → promote → session reset 一键清理\n\n2. subagent-orchestrator — 子会话隔离协议\n   - 重任务（分析/搜索/写作）→ spawn 子 session 干，干完消失\n   - task.md 规范：[start done] → [working done] → [end]\n   - 崩溃恢复：新子 session 读旧 task.md，不经过主 session 中转\n   - 主 session 只保留结论，过程细节在子 session 里\n\n=== 为什么值得写 ===\n不是理论推演，是每天在用的实战方案。\n对比 idea-018（Hermes 架构），我们的方案更轻量——不依赖语义检索/时间线检索，纯文件系统 + 引用计数。\n对比 idea-019（噪音实测），这个是「怎么修」的实操篇。\n\n=== 文章角度 ===\n【引子】和一个问题——「AI 聊久了会不会变笨？」\n【主体1】问题：AI 的上下文为什么会长胖\n【主体2】方案一：给记忆设保质期（context-clear）\n【主体3】方案二：重活交给临时工（subagent-orchestrator）\n【主体4】效果\n【结尾】好机器和烂机器的区别，不在于能不能算，而在于会不会忘"
+    }
+  ]
+}

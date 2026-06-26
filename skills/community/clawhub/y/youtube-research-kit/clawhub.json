@@ -1,0 +1,22 @@
+{
+  "name": "YouTube Research Kit",
+  "tagline": "Extract metadata, transcripts, and comments from any YouTube video — no API key needed",
+  "description": "A complete YouTube content research toolkit for AI agents. Extract video metadata (title, stats, tags, thumbnails), download subtitles/transcripts in any language, retrieve top comments sorted by popularity, analyze playlists and channels — all powered by yt-dlp locally. Perfect for content creators, researchers, and anyone who needs structured YouTube data for analysis, summarization, or content planning.",
+  "category": "data",
+  "tags": [
+    "youtube",
+    "video",
+    "research",
+    "transcript",
+    "subtitles",
+    "metadata",
+    "comments",
+    "content-analysis",
+    "yt-dlp"
+  ],
+  "version": "1.2.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/nickeljiangjiang/youtube-research-kit/issues",
+  "homepage": "https://snapvee.com"
+}

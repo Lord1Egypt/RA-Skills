@@ -1,0 +1,3428 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created_date": "2026-01-06",
+    "last_updated": "2026-01-06",
+    "total_foods": 50,
+    "data_source": "中国食物成分表(第6版) + USDA FoodData Central",
+    "language": "zh-CN"
+  },
+
+  "foods": [
+    {
+      "id": "FD_001",
+      "name": "燕麦",
+      "name_en": "Oats",
+      "aliases": ["燕麦片", "oats", "rolled oats"],
+      "category": "grains",
+      "subcategory": "whole_grains",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 389,
+        "protein_g": 16.9,
+        "carbs_g": 66.3,
+        "fat_g": 6.9,
+        "fiber_g": 10.6,
+        "sugar_g": 0.99,
+        "saturated_fat_g": 1.4,
+        "monounsaturated_fat_g": 2.5,
+        "polyunsaturated_fat_g": 2.9,
+        "trans_fat_g": 0,
+        "water_g": 8.9,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 1.1,
+        "vitamin_k_mcg": 1.9,
+        "thiamine_mg": 0.763,
+        "riboflavin_mg": 0.139,
+        "niacin_mg": 6.921,
+        "vitamin_b6_mg": 0.165,
+        "folate_mcg": 56,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 54,
+        "iron_mg": 4.72,
+        "magnesium_mg": 177,
+        "phosphorus_mg": 523,
+        "potassium_mg": 429,
+        "sodium_mg": 2,
+        "zinc_mg": 3.97,
+        "selenium_mcg": 2.8
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.685,
+        "omega_6_g": 1.428,
+        "choline_mg": 43.4
+      },
+
+      "glycemic_index": {
+        "value": 55,
+        "level": "低",
+        "glycemic_load": 11
+      },
+
+      "common_portions": [
+        {
+          "amount": 30,
+          "unit": "g",
+          "description": "1/4杯",
+          "approximate_volume": "1/4 cup"
+        },
+        {
+          "amount": 40,
+          "unit": "g",
+          "description": "1/3杯",
+          "approximate_volume": "1/3 cup"
+        }
+      ],
+
+      "health_tags": ["高纤维", "低GI", "无麸质选项", "心脏健康"],
+      "suitable_for": ["素食者", "高血压", "糖尿病", "高血脂"],
+      "notes": "富含β-葡聚糖,有助于降低胆固醇"
+    },
+    {
+      "id": "FD_002",
+      "name": "糙米",
+      "name_en": "Brown Rice",
+      "aliases": ["糙米", "brown rice", "全粒米"],
+      "category": "grains",
+      "subcategory": "whole_grains",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克生米"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 370,
+        "protein_g": 7.9,
+        "carbs_g": 77.2,
+        "fat_g": 2.9,
+        "fiber_g": 3.5,
+        "sugar_g": 0.6,
+        "saturated_fat_g": 0.6,
+        "monounsaturated_fat_g": 1.1,
+        "polyunsaturated_fat_g": 1.1,
+        "trans_fat_g": 0,
+        "water_g": 10.4,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.6,
+        "vitamin_k_mcg": 1.5,
+        "thiamine_mg": 0.413,
+        "riboflavin_mg": 0.043,
+        "niacin_mg": 5.091,
+        "vitamin_b6_mg": 0.509,
+        "folate_mcg": 20,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 23,
+        "iron_mg": 1.47,
+        "magnesium_mg": 143,
+        "phosphorus_mg": 333,
+        "potassium_mg": 223,
+        "sodium_mg": 5,
+        "zinc_mg": 2.02,
+        "selenium_mcg": 5.8
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.05,
+        "omega_6_g": 1.05,
+        "choline_mg": 20
+      },
+
+      "glycemic_index": {
+        "value": 68,
+        "level": "中",
+        "glycemic_load": 16
+      },
+
+      "common_portions": [
+        {
+          "amount": 150,
+          "unit": "g",
+          "description": "1杯生米",
+          "approximate_volume": "1 cup"
+        },
+        {
+          "amount": 200,
+          "unit": "g",
+          "description": "煮熟1杯",
+          "notes": "煮熟后重量增加"
+        }
+      ],
+
+      "health_tags": ["全谷物", "高纤维", "富含B族维生素"],
+      "suitable_for": ["素食者", "减肥", "糖尿病", "心脏病"],
+      "notes": "保留米糠层,营养更丰富"
+    },
+    {
+      "id": "FD_003",
+      "name": "白米",
+      "name_en": "White Rice",
+      "aliases": ["白米", "精米", "white rice", "大米"],
+      "category": "grains",
+      "subcategory": "refined_grains",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克生米"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 357,
+        "protein_g": 7.1,
+        "carbs_g": 79.3,
+        "fat_g": 0.4,
+        "fiber_g": 0.4,
+        "sugar_g": 0.1,
+        "saturated_fat_g": 0.1,
+        "monounsaturated_fat_g": 0.1,
+        "polyunsaturated_fat_g": 0.1,
+        "trans_fat_g": 0,
+        "water_g": 12,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.1,
+        "vitamin_k_mcg": 0,
+        "thiamine_mg": 0.06,
+        "riboflavin_mg": 0.02,
+        "niacin_mg": 1.6,
+        "vitamin_b6_mg": 0.15,
+        "folate_mcg": 8,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 11,
+        "iron_mg": 0.6,
+        "magnesium_mg": 25,
+        "phosphorus_mg": 97,
+        "potassium_mg": 86,
+        "sodium_mg": 5,
+        "zinc_mg": 1.1,
+        "selenium_mcg": 7.5
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.02,
+        "omega_6_g": 0.08,
+        "choline_mg": 10
+      },
+
+      "glycemic_index": {
+        "value": 73,
+        "level": "高",
+        "glycemic_load": 20
+      },
+
+      "common_portions": [
+        {
+          "amount": 150,
+          "unit": "g",
+          "description": "1杯生米",
+          "approximate_volume": "1 cup"
+        }
+      ],
+
+      "health_tags": ["易消化", "低脂"],
+      "suitable_for": ["胃病", "消化不良"],
+      "notes": "精制加工,营养素大量流失"
+    },
+    {
+      "id": "FD_004",
+      "name": "全麦面包",
+      "name_en": "Whole Wheat Bread",
+      "aliases": ["全麦面包", "whole wheat bread", "黑面包"],
+      "category": "grains",
+      "subcategory": "whole_grains",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 265,
+        "protein_g": 9.4,
+        "carbs_g": 49.4,
+        "fat_g": 3.4,
+        "fiber_g": 6.5,
+        "sugar_g": 5.2,
+        "saturated_fat_g": 0.7,
+        "monounsaturated_fat_g": 1.5,
+        "polyunsaturated_fat_g": 1,
+        "trans_fat_g": 0,
+        "water_g": 37,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.4,
+        "vitamin_k_mcg": 1.2,
+        "thiamine_mg": 0.4,
+        "riboflavin_mg": 0.2,
+        "niacin_mg": 4.5,
+        "vitamin_b6_mg": 0.1,
+        "folate_mcg": 35,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 120,
+        "iron_mg": 2.5,
+        "magnesium_mg": 75,
+        "phosphorus_mg": 250,
+        "potassium_mg": 230,
+        "sodium_mg": 450,
+        "zinc_mg": 1.5,
+        "selenium_mcg": 25
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.1,
+        "omega_6_g": 0.9,
+        "choline_mg": 25
+      },
+
+      "glycemic_index": {
+        "value": 53,
+        "level": "低",
+        "glycemic_load": 10
+      },
+
+      "common_portions": [
+        {
+          "amount": 30,
+          "unit": "g",
+          "description": "1片"
+        },
+        {
+          "amount": 60,
+          "unit": "g",
+          "description": "2片"
+        }
+      ],
+
+      "health_tags": ["全谷物", "高纤维", "富含B族维生素"],
+      "suitable_for": ["素食者", "减肥", "心脏病"],
+      "notes": "选用100%全麦面粉制作"
+    },
+    {
+      "id": "FD_005",
+      "name": "鸡蛋",
+      "name_en": "Egg",
+      "aliases": ["鸡蛋", "洋鸡蛋", "土鸡蛋", "egg"],
+      "category": "protein",
+      "subcategory": "eggs",
+
+      "standard_portion": {
+        "amount": 1,
+        "unit": "个",
+        "weight_g": 50,
+        "description": "1个大号鸡蛋"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 143,
+        "protein_g": 12.6,
+        "carbs_g": 1.1,
+        "fat_g": 9.5,
+        "fiber_g": 0,
+        "sugar_g": 1.1,
+        "saturated_fat_g": 3.3,
+        "monounsaturated_fat_g": 3.8,
+        "polyunsaturated_fat_g": 1.4,
+        "trans_fat_g": 0,
+        "water_g": 75,
+        "vitamin_a_mcg": 149,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 2,
+        "vitamin_e_mg": 1.1,
+        "vitamin_k_mcg": 0.3,
+        "thiamine_mg": 0.066,
+        "riboflavin_mg": 0.44,
+        "niacin_mg": 0.075,
+        "vitamin_b6_mg": 0.13,
+        "folate_mcg": 47,
+        "vitamin_b12_mcg": 1.1,
+        "calcium_mg": 56,
+        "iron_mg": 1.75,
+        "magnesium_mg": 12,
+        "phosphorus_mg": 198,
+        "potassium_mg": 138,
+        "sodium_mg": 124,
+        "zinc_mg": 1.29,
+        "selenium_mcg": 30.7
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.05,
+        "omega_6_g": 1.1,
+        "choline_mg": 294,
+        "lutein_mcg": 503,
+        "zeaxanthin_mcg": 0
+      },
+
+      "glycemic_index": {
+        "value": 0,
+        "level": "无"
+      },
+
+      "common_portions": [
+        {
+          "amount": 1,
+          "unit": "个",
+          "weight_g": 50,
+          "description": "1个大号鸡蛋"
+        },
+        {
+          "amount": 2,
+          "unit": "个",
+          "weight_g": 100,
+          "description": "2个鸡蛋"
+        }
+      ],
+
+      "health_tags": ["高蛋白", "完全蛋白", "高胆碱", "高胆固醇"],
+      "suitable_for": ["素食者(蛋奶)", "儿童", "孕妇", "老年人"],
+      "notes": "完全蛋白来源,含所有必需氨基酸"
+    },
+    {
+      "id": "FD_006",
+      "name": "鸡胸肉",
+      "name_en": "Chicken Breast",
+      "aliases": ["鸡胸肉", "鸡胸", "chicken breast"],
+      "category": "protein",
+      "subcategory": "poultry",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克生肉"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 165,
+        "protein_g": 31,
+        "carbs_g": 0,
+        "fat_g": 3.6,
+        "fiber_g": 0,
+        "sugar_g": 0,
+        "saturated_fat_g": 1,
+        "monounsaturated_fat_g": 1.5,
+        "polyunsaturated_fat_g": 0.8,
+        "trans_fat_g": 0,
+        "water_g": 65,
+        "vitamin_a_mcg": 8,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0.1,
+        "vitamin_e_mg": 0.3,
+        "vitamin_k_mcg": 0,
+        "thiamine_mg": 0.07,
+        "riboflavin_mg": 0.14,
+        "niacin_mg": 14.7,
+        "vitamin_b6_mg": 0.99,
+        "folate_mcg": 4,
+        "vitamin_b12_mcg": 0.34,
+        "calcium_mg": 15,
+        "iron_mg": 1,
+        "magnesium_mg": 29,
+        "phosphorus_mg": 228,
+        "potassium_mg": 256,
+        "sodium_mg": 74,
+        "zinc_mg": 1,
+        "selenium_mcg": 20.6
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.1,
+        "omega_6_g": 0.7,
+        "choline_mg": 85
+      },
+
+      "glycemic_index": {
+        "value": 0,
+        "level": "无"
+      },
+
+      "common_portions": [
+        {
+          "amount": 120,
+          "unit": "g",
+          "description": "1份鸡胸肉"
+        },
+        {
+          "amount": 200,
+          "unit": "g",
+          "description": "大份鸡胸肉"
+        }
+      ],
+
+      "health_tags": ["高蛋白", "低脂", "瘦肉"],
+      "suitable_for": ["减肥", "增肌", "高血压", "糖尿病"],
+      "notes": "优质低脂蛋白来源"
+    },
+    {
+      "id": "FD_007",
+      "name": "三文鱼",
+      "name_en": "Salmon",
+      "aliases": ["三文鱼", "鲑鱼", "salmon"],
+      "category": "protein",
+      "subcategory": "fish_seafood",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克生鱼片"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 208,
+        "protein_g": 20,
+        "carbs_g": 0,
+        "fat_g": 13,
+        "fiber_g": 0,
+        "sugar_g": 0,
+        "saturated_fat_g": 3.1,
+        "monounsaturated_fat_g": 5.5,
+        "polyunsaturated_fat_g": 3.8,
+        "trans_fat_g": 0,
+        "water_g": 65,
+        "vitamin_a_mcg": 30,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 11,
+        "vitamin_e_mg": 1.5,
+        "vitamin_k_mcg": 0.1,
+        "thiamine_mg": 0.2,
+        "riboflavin_mg": 0.3,
+        "niacin_mg": 8,
+        "vitamin_b6_mg": 0.8,
+        "folate_mcg": 10,
+        "vitamin_b12_mcg": 3,
+        "calcium_mg": 15,
+        "iron_mg": 0.5,
+        "magnesium_mg": 29,
+        "phosphorus_mg": 200,
+        "potassium_mg": 363,
+        "sodium_mg": 59,
+        "zinc_mg": 0.6,
+        "selenium_mcg": 22.5
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 2.3,
+        "omega_6_g": 0.4,
+        "choline_mg": 75
+      },
+
+      "glycemic_index": {
+        "value": 0,
+        "level": "无"
+      },
+
+      "common_portions": [
+        {
+          "amount": 120,
+          "unit": "g",
+          "description": "1份鱼片"
+        },
+        {
+          "amount": 200,
+          "unit": "g",
+          "description": "大份鱼片"
+        }
+      ],
+
+      "health_tags": ["高Omega-3", "高蛋白", "富含维生素D"],
+      "suitable_for": ["心脏病", "高血压", "抑郁症", "关节炎"],
+      "notes": "野生三文鱼Omega-3含量更高"
+    },
+    {
+      "id": "FD_008",
+      "name": "豆腐",
+      "name_en": "Tofu",
+      "aliases": ["豆腐", "bean curd", "豆干"],
+      "category": "protein",
+      "subcategory": "legumes",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 76,
+        "protein_g": 8.1,
+        "carbs_g": 1.9,
+        "fat_g": 4.8,
+        "fiber_g": 0.4,
+        "sugar_g": 0.6,
+        "saturated_fat_g": 0.7,
+        "monounsaturated_fat_g": 1,
+        "polyunsaturated_fat_g": 2.6,
+        "trans_fat_g": 0,
+        "water_g": 84,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0.1,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0,
+        "vitamin_k_mcg": 2,
+        "thiamine_mg": 0.08,
+        "riboflavin_mg": 0.04,
+        "niacin_mg": 0.2,
+        "vitamin_b6_mg": 0.1,
+        "folate_mcg": 15,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 350,
+        "iron_mg": 5.4,
+        "magnesium_mg": 30,
+        "phosphorus_mg": 97,
+        "potassium_mg": 121,
+        "sodium_mg": 7,
+        "zinc_mg": 0.8,
+        "selenium_mcg": 9.3
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.3,
+        "omega_6_g": 2.3,
+        "choline_mg": 25,
+        "isoflavones_mg": 20
+      },
+
+      "glycemic_index": {
+        "value": 15,
+        "level": "极低"
+      },
+
+      "common_portions": [
+        {
+          "amount": 100,
+          "unit": "g",
+          "description": "1块豆腐"
+        },
+        {
+          "amount": 200,
+          "unit": "g",
+          "description": "大块豆腐"
+        }
+      ],
+
+      "health_tags": ["高蛋白", "高钙", "植物蛋白", "异黄酮"],
+      "suitable_for": ["素食者", "乳糖不耐症", "减肥"],
+      "notes": "含大豆异黄酮,有助于女性健康"
+    },
+    {
+      "id": "FD_009",
+      "name": "牛奶",
+      "name_en": "Milk",
+      "aliases": ["牛奶", "milk", "鲜奶", "牛乳"],
+      "category": "protein",
+      "subcategory": "dairy",
+
+      "standard_portion": {
+        "amount": 250,
+        "unit": "ml",
+        "description": "1杯"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 64,
+        "protein_g": 3.3,
+        "carbs_g": 4.8,
+        "fat_g": 3.6,
+        "fiber_g": 0,
+        "sugar_g": 4.8,
+        "saturated_fat_g": 2.3,
+        "monounsaturated_fat_g": 1,
+        "polyunsaturated_fat_g": 0.2,
+        "trans_fat_g": 0,
+        "water_g": 87,
+        "vitamin_a_mcg": 28,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0.1,
+        "vitamin_e_mg": 0.1,
+        "vitamin_k_mcg": 0.1,
+        "thiamine_mg": 0.05,
+        "riboflavin_mg": 0.18,
+        "niacin_mg": 0.1,
+        "vitamin_b6_mg": 0.05,
+        "folate_mcg": 5,
+        "vitamin_b12_mcg": 0.45,
+        "calcium_mg": 120,
+        "iron_mg": 0.03,
+        "magnesium_mg": 13,
+        "phosphorus_mg": 93,
+        "potassium_mg": 150,
+        "sodium_mg": 44,
+        "zinc_mg": 0.4,
+        "selenium_mcg": 3.5
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.02,
+        "omega_6_g": 0.05,
+        "choline_mg": 15
+      },
+
+      "glycemic_index": {
+        "value": 27,
+        "level": "低"
+      },
+
+      "common_portions": [
+        {
+          "amount": 250,
+          "unit": "ml",
+          "description": "1杯"
+        },
+        {
+          "amount": 500,
+          "unit": "ml",
+          "description": "2杯"
+        }
+      ],
+
+      "health_tags": ["高钙", "高蛋白", "富含维生素D"],
+      "suitable_for": ["儿童", "青少年", "老年人", "孕妇"],
+      "notes": "优质钙和蛋白质来源,乳糖不耐症患者慎用"
+    },
+    {
+      "id": "FD_010",
+      "name": "酸奶",
+      "name_en": "Yogurt",
+      "aliases": ["酸奶", "yogurt", "优格"],
+      "category": "protein",
+      "subcategory": "dairy",
+
+      "standard_portion": {
+        "amount": 200,
+        "unit": "g",
+        "description": "1杯"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 59,
+        "protein_g": 10,
+        "carbs_g": 3.6,
+        "fat_g": 0.4,
+        "fiber_g": 0,
+        "sugar_g": 3.6,
+        "saturated_fat_g": 0.2,
+        "monounsaturated_fat_g": 0.1,
+        "polyunsaturated_fat_g": 0,
+        "trans_fat_g": 0,
+        "water_g": 85,
+        "vitamin_a_mcg": 2,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0.1,
+        "vitamin_e_mg": 0,
+        "vitamin_k_mcg": 0.1,
+        "thiamine_mg": 0.03,
+        "riboflavin_mg": 0.25,
+        "niacin_mg": 0.1,
+        "vitamin_b6_mg": 0.05,
+        "folate_mcg": 5,
+        "vitamin_b12_mcg": 0.5,
+        "calcium_mg": 110,
+        "iron_mg": 0.05,
+        "magnesium_mg": 11,
+        "phosphorus_mg": 135,
+        "potassium_mg": 141,
+        "sodium_mg": 36,
+        "zinc_mg": 0.5,
+        "selenium_mcg": 2
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.01,
+        "omega_6_g": 0.03,
+        "choline_mg": 15,
+        "probiotics": 1
+      },
+
+      "glycemic_index": {
+        "value": 15,
+        "level": "极低"
+      },
+
+      "common_portions": [
+        {
+          "amount": 200,
+          "unit": "g",
+          "description": "1杯"
+        },
+        {
+          "amount": 400,
+          "unit": "g",
+          "description": "2杯"
+        }
+      ],
+
+      "health_tags": ["高蛋白", "高钙", "益生菌", "低脂"],
+      "suitable_for": ["减肥", "消化不良", "乳糖不耐症"],
+      "notes": "含益生菌,有助于肠道健康"
+    },
+    {
+      "id": "FD_011",
+      "name": "菠菜",
+      "name_en": "Spinach",
+      "aliases": ["菠菜", "spinach", "菠薐"],
+      "category": "vegetables",
+      "subcategory": "leafy_greens",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克生菠菜"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 23,
+        "protein_g": 2.9,
+        "carbs_g": 3.6,
+        "fat_g": 0.4,
+        "fiber_g": 2.2,
+        "sugar_g": 0.4,
+        "saturated_fat_g": 0.1,
+        "monounsaturated_fat_g": 0,
+        "polyunsaturated_fat_g": 0.2,
+        "trans_fat_g": 0,
+        "water_g": 91,
+        "vitamin_a_mcg": 9377,
+        "vitamin_c_mg": 28,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 2,
+        "vitamin_k_mcg": 483,
+        "thiamine_mg": 0.08,
+        "riboflavin_mg": 0.19,
+        "niacin_mg": 0.7,
+        "vitamin_b6_mg": 0.2,
+        "folate_mcg": 194,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 99,
+        "iron_mg": 2.7,
+        "magnesium_mg": 79,
+        "phosphorus_mg": 49,
+        "potassium_mg": 558,
+        "sodium_mg": 79,
+        "zinc_mg": 0.5,
+        "selenium_mcg": 1
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.1,
+        "omega_6_g": 0.1,
+        "choline_mg": 25,
+        "lutein_mcg": 12198,
+        "zeaxanthin_mcg": 0,
+        "beta_carotene_mcg": 5626
+      },
+
+      "glycemic_index": {
+        "value": 15,
+        "level": "极低"
+      },
+
+      "common_portions": [
+        {
+          "amount": 100,
+          "unit": "g",
+          "description": "1碗生菠菜"
+        },
+        {
+          "amount": 180,
+          "unit": "g",
+          "description": "1份熟菠菜",
+          "notes": "煮熟后体积缩小"
+        }
+      ],
+
+      "health_tags": ["高铁", "高维生素K", "高叶酸", "抗氧化"],
+      "suitable_for": ["贫血", "孕妇", "减肥", "生酮饮食"],
+      "notes": "含草酸,影响钙吸收,建议焯水后食用"
+    },
+    {
+      "id": "FD_012",
+      "name": "西兰花",
+      "name_en": "Broccoli",
+      "aliases": ["西兰花", "绿花菜", "broccoli"],
+      "category": "vegetables",
+      "subcategory": "cruciferous",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 34,
+        "protein_g": 2.8,
+        "carbs_g": 7,
+        "fat_g": 0.4,
+        "fiber_g": 2.6,
+        "sugar_g": 1.5,
+        "saturated_fat_g": 0,
+        "monounsaturated_fat_g": 0,
+        "polyunsaturated_fat_g": 0.2,
+        "trans_fat_g": 0,
+        "water_g": 89,
+        "vitamin_a_mcg": 31,
+        "vitamin_c_mg": 89.2,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.8,
+        "vitamin_k_mcg": 102,
+        "thiamine_mg": 0.07,
+        "riboflavin_mg": 0.12,
+        "niacin_mg": 0.6,
+        "vitamin_b6_mg": 0.18,
+        "folate_mcg": 63,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 47,
+        "iron_mg": 0.7,
+        "magnesium_mg": 21,
+        "phosphorus_mg": 66,
+        "potassium_mg": 316,
+        "sodium_mg": 33,
+        "zinc_mg": 0.4,
+        "selenium_mcg": 1.5
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.05,
+        "omega_6_g": 0.15,
+        "choline_mg": 18,
+        "beta_carotene_mcg": 361,
+        "sulforaphane_mg": 44
+      },
+
+      "glycemic_index": {
+        "value": 10,
+        "level": "极低"
+      },
+
+      "common_portions": [
+        {
+          "amount": 150,
+          "unit": "g",
+          "description": "1份西兰花"
+        },
+        {
+          "amount": 200,
+          "unit": "g",
+          "description": "大份西兰花"
+        }
+      ],
+
+      "health_tags": ["高维生素C", "高纤维", "低GI", "抗癌", "抗氧化"],
+      "suitable_for": ["素食者", "生酮饮食", "糖尿病", "减肥"],
+      "notes": "含萝卜硫素,强效抗氧化剂"
+    },
+    {
+      "id": "FD_013",
+      "name": "胡萝卜",
+      "name_en": "Carrot",
+      "aliases": ["胡萝卜", "红萝卜", "carrot"],
+      "category": "vegetables",
+      "subcategory": "root_vegetables",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 41,
+        "protein_g": 0.9,
+        "carbs_g": 9.6,
+        "fat_g": 0.2,
+        "fiber_g": 2.8,
+        "sugar_g": 4.7,
+        "saturated_fat_g": 0.04,
+        "monounsaturated_fat_g": 0.01,
+        "polyunsaturated_fat_g": 0.1,
+        "trans_fat_g": 0,
+        "water_g": 88,
+        "vitamin_a_mcg": 835,
+        "vitamin_c_mg": 6,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.7,
+        "vitamin_k_mcg": 13.2,
+        "thiamine_mg": 0.07,
+        "riboflavin_mg": 0.04,
+        "niacin_mg": 0.9,
+        "vitamin_b6_mg": 0.2,
+        "folate_mcg": 19,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 33,
+        "iron_mg": 0.3,
+        "magnesium_mg": 12,
+        "phosphorus_mg": 35,
+        "potassium_mg": 320,
+        "sodium_mg": 69,
+        "zinc_mg": 0.2,
+        "selenium_mcg": 0.6
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0,
+        "omega_6_g": 0.1,
+        "choline_mg": 8,
+        "beta_carotene_mcg": 8285,
+        "lutein_mcg": 256,
+        "zeaxanthin_mcg": 0
+      },
+
+      "glycemic_index": {
+        "value": 35,
+        "level": "低"
+      },
+
+      "common_portions": [
+        {
+          "amount": 100,
+          "unit": "g",
+          "description": "1根中等胡萝卜"
+        },
+        {
+          "amount": 150,
+          "unit": "g",
+          "description": "1份胡萝卜"
+        }
+      ],
+
+      "health_tags": ["高维生素A", "高纤维", "抗氧化"],
+      "suitable_for": ["视力保护", "减肥", "糖尿病患者"],
+      "notes": "富含β-胡萝卜素,对眼睛健康有益"
+    },
+    {
+      "id": "FD_014",
+      "name": "西红柿",
+      "name_en": "Tomato",
+      "aliases": ["西红柿", "番茄", "tomato"],
+      "category": "vegetables",
+      "subcategory": "nightshades",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 18,
+        "protein_g": 0.9,
+        "carbs_g": 3.9,
+        "fat_g": 0.2,
+        "fiber_g": 1.2,
+        "sugar_g": 2.6,
+        "saturated_fat_g": 0.03,
+        "monounsaturated_fat_g": 0.03,
+        "polyunsaturated_fat_g": 0.08,
+        "trans_fat_g": 0,
+        "water_g": 95,
+        "vitamin_a_mcg": 42,
+        "vitamin_c_mg": 14,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.5,
+        "vitamin_k_mcg": 7.9,
+        "thiamine_mg": 0.04,
+        "riboflavin_mg": 0.02,
+        "niacin_mg": 0.6,
+        "vitamin_b6_mg": 0.08,
+        "folate_mcg": 15,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 10,
+        "iron_mg": 0.3,
+        "magnesium_mg": 11,
+        "phosphorus_mg": 24,
+        "potassium_mg": 237,
+        "sodium_mg": 5,
+        "zinc_mg": 0.1,
+        "selenium_mcg": 0
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0,
+        "omega_6_g": 0.08,
+        "choline_mg": 6,
+        "beta_carotene_mcg": 449,
+        "lycopene_mg": 2.6
+      },
+
+      "glycemic_index": {
+        "value": 10,
+        "level": "极低"
+      },
+
+      "common_portions": [
+        {
+          "amount": 100,
+          "unit": "g",
+          "description": "1个中等西红柿"
+        },
+        {
+          "amount": 150,
+          "unit": "g",
+          "description": "1份西红柿"
+        }
+      ],
+
+      "health_tags": ["高番茄红素", "高维生素C", "抗氧化"],
+      "suitable_for": ["心脏病", "前列腺癌", "减肥"],
+      "notes": "富含番茄红素,强效抗氧化剂"
+    },
+    {
+      "id": "FD_015",
+      "name": "苹果",
+      "name_en": "Apple",
+      "aliases": ["苹果", "apple"],
+      "category": "fruits",
+      "subcategory": "temperate",
+
+      "standard_portion": {
+        "amount": 1,
+        "unit": "个",
+        "weight_g": 150,
+        "description": "1个中等苹果"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 52,
+        "protein_g": 0.3,
+        "carbs_g": 14,
+        "fat_g": 0.2,
+        "fiber_g": 2.4,
+        "sugar_g": 10,
+        "saturated_fat_g": 0.03,
+        "monounsaturated_fat_g": 0.01,
+        "polyunsaturated_fat_g": 0.05,
+        "trans_fat_g": 0,
+        "water_g": 84,
+        "vitamin_a_mcg": 3,
+        "vitamin_c_mg": 4.6,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.2,
+        "vitamin_k_mcg": 2.2,
+        "thiamine_mg": 0.02,
+        "riboflavin_mg": 0.02,
+        "niacin_mg": 0.1,
+        "vitamin_b6_mg": 0.04,
+        "folate_mcg": 3,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 6,
+        "iron_mg": 0.1,
+        "magnesium_mg": 5,
+        "phosphorus_mg": 12,
+        "potassium_mg": 107,
+        "sodium_mg": 1,
+        "zinc_mg": 0,
+        "selenium_mcg": 0
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.01,
+        "omega_6_g": 0.04,
+        "choline_mg": 3,
+        "beta_carotene_mcg": 27,
+        "quercetin_mg": 4
+      },
+
+      "glycemic_index": {
+        "value": 36,
+        "level": "低"
+      },
+
+      "common_portions": [
+        {
+          "amount": 150,
+          "unit": "g",
+          "description": "1个中等苹果"
+        },
+        {
+          "amount": 200,
+          "unit": "g",
+          "description": "1个大苹果"
+        }
+      ],
+
+      "health_tags": ["高纤维", "高果胶", "抗氧化", "心脏健康"],
+      "suitable_for": ["减肥", "心脏病", "糖尿病"],
+      "notes": "富含果胶,有助于降低胆固醇"
+    },
+    {
+      "id": "FD_016",
+      "name": "香蕉",
+      "name_en": "Banana",
+      "aliases": ["香蕉", "banana"],
+      "category": "fruits",
+      "subcategory": "tropical",
+
+      "standard_portion": {
+        "amount": 1,
+        "unit": "根",
+        "weight_g": 120,
+        "description": "1根中等香蕉"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 89,
+        "protein_g": 1.1,
+        "carbs_g": 23,
+        "fat_g": 0.3,
+        "fiber_g": 2.6,
+        "sugar_g": 12,
+        "saturated_fat_g": 0.1,
+        "monounsaturated_fat_g": 0.1,
+        "polyunsaturated_fat_g": 0.1,
+        "trans_fat_g": 0,
+        "water_g": 75,
+        "vitamin_a_mcg": 3,
+        "vitamin_c_mg": 8.7,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.1,
+        "vitamin_k_mcg": 0.5,
+        "thiamine_mg": 0.03,
+        "riboflavin_mg": 0.1,
+        "niacin_mg": 0.7,
+        "vitamin_b6_mg": 0.4,
+        "folate_mcg": 20,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 5,
+        "iron_mg": 0.3,
+        "magnesium_mg": 27,
+        "phosphorus_mg": 22,
+        "potassium_mg": 358,
+        "sodium_mg": 1,
+        "zinc_mg": 0.2,
+        "selenium_mcg": 0.3
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.02,
+        "omega_6_g": 0.09,
+        "choline_mg": 10,
+        "tryptophan_mg": 12
+      },
+
+      "glycemic_index": {
+        "value": 51,
+        "level": "低"
+      },
+
+      "common_portions": [
+        {
+          "amount": 120,
+          "unit": "g",
+          "description": "1根中等香蕉"
+        },
+        {
+          "amount": 150,
+          "unit": "g",
+          "description": "1根大香蕉"
+        }
+      ],
+
+      "health_tags": ["高钾", "高能量", "富含维生素B6"],
+      "suitable_for": ["运动后恢复", "高血压", "低血糖"],
+      "notes": "含色氨酸,有助于睡眠"
+    },
+    {
+      "id": "FD_017",
+      "name": "橙子",
+      "name_en": "Orange",
+      "aliases": ["橙子", "橘子", "orange"],
+      "category": "fruits",
+      "subcategory": "citrus",
+
+      "standard_portion": {
+        "amount": 1,
+        "unit": "个",
+        "weight_g": 130,
+        "description": "1个中等橙子"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 47,
+        "protein_g": 0.9,
+        "carbs_g": 12,
+        "fat_g": 0.1,
+        "fiber_g": 2.4,
+        "sugar_g": 9,
+        "saturated_fat_g": 0.02,
+        "monounsaturated_fat_g": 0.02,
+        "polyunsaturated_fat_g": 0.03,
+        "trans_fat_g": 0,
+        "water_g": 87,
+        "vitamin_a_mcg": 11,
+        "vitamin_c_mg": 53,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.2,
+        "vitamin_k_mcg": 0,
+        "thiamine_mg": 0.06,
+        "riboflavin_mg": 0.04,
+        "niacin_mg": 0.4,
+        "vitamin_b6_mg": 0.08,
+        "folate_mcg": 25,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 40,
+        "iron_mg": 0.1,
+        "magnesium_mg": 10,
+        "phosphorus_mg": 14,
+        "potassium_mg": 181,
+        "sodium_mg": 0,
+        "zinc_mg": 0.1,
+        "selenium_mcg": 0.3
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0,
+        "omega_6_g": 0.03,
+        "choline_mg": 8,
+        "beta_carotene_mcg": 71,
+        "hesperidin_mg": 20
+      },
+
+      "glycemic_index": {
+        "value": 40,
+        "level": "低"
+      },
+
+      "common_portions": [
+        {
+          "amount": 130,
+          "unit": "g",
+          "description": "1个中等橙子"
+        },
+        {
+          "amount": 200,
+          "unit": "ml",
+          "description": "1杯橙汁",
+          "notes": "建议选择100%纯果汁"
+        }
+      ],
+
+      "health_tags": ["高维生素C", "高纤维", "抗氧化"],
+      "suitable_for": ["免疫力提升", "心脏病", "高血压"],
+      "notes": "完整水果比果汁更健康"
+    },
+    {
+      "id": "FD_018",
+      "name": "草莓",
+      "name_en": "Strawberry",
+      "aliases": ["草莓", "strawberry"],
+      "category": "fruits",
+      "subcategory": "berries",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 32,
+        "protein_g": 0.7,
+        "carbs_g": 7.7,
+        "fat_g": 0.3,
+        "fiber_g": 2,
+        "sugar_g": 4.9,
+        "saturated_fat_g": 0.02,
+        "monounsaturated_fat_g": 0.01,
+        "polyunsaturated_fat_g": 0.15,
+        "trans_fat_g": 0,
+        "water_g": 91,
+        "vitamin_a_mcg": 12,
+        "vitamin_c_mg": 59,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.3,
+        "vitamin_k_mcg": 2.2,
+        "thiamine_mg": 0.02,
+        "riboflavin_mg": 0.02,
+        "niacin_mg": 0.4,
+        "vitamin_b6_mg": 0.05,
+        "folate_mcg": 24,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 16,
+        "iron_mg": 0.4,
+        "magnesium_mg": 13,
+        "phosphorus_mg": 24,
+        "potassium_mg": 153,
+        "sodium_mg": 1,
+        "zinc_mg": 0.1,
+        "selenium_mcg": 0.4
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.08,
+        "omega_6_g": 0.15,
+        "choline_mg": 6,
+        "beta_carotene_mcg": 7,
+        "anthocyanins_mg": 30,
+        "ellagic_acid_mg": 15
+      },
+
+      "glycemic_index": {
+        "value": 40,
+        "level": "低"
+      },
+
+      "common_portions": [
+        {
+          "amount": 100,
+          "unit": "g",
+          "description": "1碗草莓"
+        },
+        {
+          "amount": 150,
+          "unit": "g",
+          "description": "1份草莓"
+        }
+      ],
+
+      "health_tags": ["高维生素C", "高抗氧化", "低GI"],
+      "suitable_for": ["减肥", "糖尿病", "心脏病"],
+      "notes": "抗氧化能力最强水果之一"
+    },
+    {
+      "id": "FD_019",
+      "name": "杏仁",
+      "name_en": "Almonds",
+      "aliases": ["杏仁", "almonds", "巴旦木"],
+      "category": "protein",
+      "subcategory": "nuts_seeds",
+
+      "standard_portion": {
+        "amount": 30,
+        "unit": "g",
+        "description": "1把(约23颗)"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 579,
+        "protein_g": 21,
+        "carbs_g": 22,
+        "fat_g": 50,
+        "fiber_g": 12,
+        "sugar_g": 4,
+        "saturated_fat_g": 3.8,
+        "monounsaturated_fat_g": 31,
+        "polyunsaturated_fat_g": 12,
+        "trans_fat_g": 0,
+        "water_g": 5,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 26,
+        "vitamin_k_mcg": 0,
+        "thiamine_mg": 0.2,
+        "riboflavin_mg": 1.1,
+        "niacin_mg": 3.6,
+        "vitamin_b6_mg": 0.14,
+        "folate_mcg": 49,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 269,
+        "iron_mg": 3.7,
+        "magnesium_mg": 270,
+        "phosphorus_mg": 481,
+        "potassium_mg": 733,
+        "sodium_mg": 1,
+        "zinc_mg": 3.1,
+        "selenium_mcg": 2.5
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 1.2,
+        "omega_6_g": 10.8,
+        "choline_mg": 52
+      },
+
+      "glycemic_index": {
+        "value": 0,
+        "level": "无"
+      },
+
+      "common_portions": [
+        {
+          "amount": 30,
+          "unit": "g",
+          "description": "1把"
+        },
+        {
+          "amount": 60,
+          "unit": "g",
+          "description": "大把"
+        }
+      ],
+
+      "health_tags": ["高维生素E", "高钙", "高纤维", "心脏健康"],
+      "suitable_for": ["素食者", "心脏病", "减肥"],
+      "notes": "含大量不饱和脂肪酸,有益心脏健康"
+    },
+    {
+      "id": "FD_020",
+      "name": "核桃",
+      "name_en": "Walnuts",
+      "aliases": ["核桃", "walnuts", "胡桃"],
+      "category": "protein",
+      "subcategory": "nuts_seeds",
+
+      "standard_portion": {
+        "amount": 30,
+        "unit": "g",
+        "description": "1把(约7个半核桃)"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 654,
+        "protein_g": 15,
+        "carbs_g": 14,
+        "fat_g": 65,
+        "fiber_g": 7,
+        "sugar_g": 2.6,
+        "saturated_fat_g": 6,
+        "monounsaturated_fat_g": 9,
+        "polyunsaturated_fat_g": 47,
+        "trans_fat_g": 0,
+        "water_g": 4,
+        "vitamin_a_mcg": 1,
+        "vitamin_c_mg": 1,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.7,
+        "vitamin_k_mcg": 2.7,
+        "thiamine_mg": 0.34,
+        "riboflavin_mg": 0.15,
+        "niacin_mg": 1.1,
+        "vitamin_b6_mg": 0.54,
+        "folate_mcg": 98,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 98,
+        "iron_mg": 2.9,
+        "magnesium_mg": 158,
+        "phosphorus_mg": 346,
+        "potassium_mg": 441,
+        "sodium_mg": 2,
+        "zinc_mg": 3.1,
+        "selenium_mcg": 4.9
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 6.5,
+        "omega_6_g": 40.5,
+        "choline_mg": 39
+      },
+
+      "glycemic_index": {
+        "value": 0,
+        "level": "无"
+      },
+
+      "common_portions": [
+        {
+          "amount": 30,
+          "unit": "g",
+          "description": "1把"
+        },
+        {
+          "amount": 60,
+          "unit": "g",
+          "description": "大把"
+        }
+      ],
+
+      "health_tags": ["极高Omega-3", "大脑健康", "心脏健康"],
+      "suitable_for": ["脑力工作者", "心脏病", "抑郁症"],
+      "notes": "植物性Omega-3最佳来源之一"
+    },
+    {
+      "id": "FD_021",
+      "name": "红薯",
+      "name_en": "Sweet Potato",
+      "aliases": ["红薯", "地瓜", "番薯", "sweet potato"],
+      "category": "grains",
+      "subcategory": "whole_grains",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 86,
+        "protein_g": 1.6,
+        "carbs_g": 20,
+        "fat_g": 0.1,
+        "fiber_g": 3,
+        "sugar_g": 4.2,
+        "saturated_fat_g": 0.02,
+        "monounsaturated_fat_g": 0,
+        "polyunsaturated_fat_g": 0.07,
+        "trans_fat_g": 0,
+        "water_g": 77,
+        "vitamin_a_mcg": 709,
+        "vitamin_c_mg": 2.4,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.3,
+        "vitamin_k_mcg": 1.8,
+        "thiamine_mg": 0.08,
+        "riboflavin_mg": 0.06,
+        "niacin_mg": 0.6,
+        "vitamin_b6_mg": 0.2,
+        "folate_mcg": 11,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 30,
+        "iron_mg": 0.6,
+        "magnesium_mg": 25,
+        "phosphorus_mg": 47,
+        "potassium_mg": 337,
+        "sodium_mg": 5,
+        "zinc_mg": 0.3,
+        "selenium_mcg": 0.6
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0,
+        "omega_6_g": 0.07,
+        "choline_mg": 12,
+        "beta_carotene_mcg": 8509
+      },
+
+      "glycemic_index": {
+        "value": 61,
+        "level": "中"
+      },
+
+      "health_tags": ["高维生素A", "高纤维", "抗氧化"],
+      "suitable_for": ["减肥", "糖尿病患者", "素食者"],
+      "notes": "比白薯营养丰富,GI相对较低"
+    },
+    {
+      "id": "FD_022",
+      "name": "土豆",
+      "name_en": "Potato",
+      "aliases": ["土豆", "马铃薯", "potato"],
+      "category": "grains",
+      "subcategory": "refined_grains",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 77,
+        "protein_g": 2,
+        "carbs_g": 17,
+        "fat_g": 0.1,
+        "fiber_g": 2.2,
+        "sugar_g": 0.8,
+        "saturated_fat_g": 0.03,
+        "monounsaturated_fat_g": 0,
+        "polyunsaturated_fat_g": 0.04,
+        "trans_fat_g": 0,
+        "water_g": 79,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 20,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.01,
+        "vitamin_k_mcg": 1.9,
+        "thiamine_mg": 0.08,
+        "riboflavin_mg": 0.05,
+        "niacin_mg": 1.4,
+        "vitamin_b6_mg": 0.3,
+        "folate_mcg": 15,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 12,
+        "iron_mg": 0.8,
+        "magnesium_mg": 23,
+        "phosphorus_mg": 57,
+        "potassium_mg": 425,
+        "sodium_mg": 6,
+        "zinc_mg": 0.4,
+        "selenium_mcg": 0.3
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0,
+        "omega_6_g": 0.04,
+        "choline_mg": 13
+      },
+
+      "glycemic_index": {
+        "value": 78,
+        "level": "高"
+      },
+
+      "health_tags": ["高钾", "高维生素C", "饱腹感强"],
+      "suitable_for": ["高血压", "运动员"],
+      "notes": "皮含大量营养,建议带皮食用"
+    },
+    {
+      "id": "FD_023",
+      "name": "玉米",
+      "name_en": "Corn",
+      "aliases": ["玉米", "corn", "苞谷"],
+      "category": "grains",
+      "subcategory": "whole_grains",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 96,
+        "protein_g": 3.4,
+        "carbs_g": 21,
+        "fat_g": 1.5,
+        "fiber_g": 2.4,
+        "sugar_g": 4.5,
+        "saturated_fat_g": 0.2,
+        "monounsaturated_fat_g": 0.4,
+        "polyunsaturated_fat_g": 0.7,
+        "trans_fat_g": 0,
+        "water_g": 73,
+        "vitamin_a_mcg": 9,
+        "vitamin_c_mg": 7,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.1,
+        "vitamin_k_mcg": 0.3,
+        "thiamine_mg": 0.2,
+        "riboflavin_mg": 0.06,
+        "niacin_mg": 1.8,
+        "vitamin_b6_mg": 0.1,
+        "folate_mcg": 42,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 2,
+        "iron_mg": 0.5,
+        "magnesium_mg": 37,
+        "phosphorus_mg": 89,
+        "potassium_mg": 270,
+        "sodium_mg": 15,
+        "zinc_mg": 0.5,
+        "selenium_mcg": 0.6
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.02,
+        "omega_6_g": 0.68,
+        "choline_mg": 23,
+        "beta_carotene_mcg": 47,
+        "lutein_mcg": 644
+      },
+
+      "glycemic_index": {
+        "value": 55,
+        "level": "低"
+      },
+
+      "health_tags": ["全谷物", "高纤维", "富含叶黄素"],
+      "suitable_for": ["减肥", "心脏病", "眼健康"],
+      "notes": "含叶黄素,对眼睛有益"
+    },
+    {
+      "id": "FD_024",
+      "name": "牛肉",
+      "name_en": "Beef",
+      "aliases": ["牛肉", "beef"],
+      "category": "protein",
+      "subcategory": "meat",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克生牛肉"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 250,
+        "protein_g": 26,
+        "carbs_g": 0,
+        "fat_g": 15,
+        "fiber_g": 0,
+        "sugar_g": 0,
+        "saturated_fat_g": 6,
+        "monounsaturated_fat_g": 7,
+        "polyunsaturated_fat_g": 0.8,
+        "trans_fat_g": 0.5,
+        "water_g": 58,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0.1,
+        "vitamin_e_mg": 0.4,
+        "vitamin_k_mcg": 1.5,
+        "thiamine_mg": 0.07,
+        "riboflavin_mg": 0.2,
+        "niacin_mg": 4.5,
+        "vitamin_b6_mg": 0.4,
+        "folate_mcg": 6,
+        "vitamin_b12_mcg": 2.5,
+        "calcium_mg": 18,
+        "iron_mg": 2.6,
+        "magnesium_mg": 23,
+        "phosphorus_mg": 200,
+        "potassium_mg": 350,
+        "sodium_mg": 60,
+        "zinc_mg": 7,
+        "selenium_mcg": 22
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.04,
+        "omega_6_g": 0.6,
+        "choline_mg": 75,
+        "creatine_mg": 350
+      },
+
+      "glycemic_index": {
+        "value": 0,
+        "level": "无"
+      },
+
+      "health_tags": ["高蛋白", "高铁", "高锌", "高B12"],
+      "suitable_for": ["贫血", "肌肉增长", "儿童发育"],
+      "notes": "选择瘦肉部位更健康"
+    },
+    {
+      "id": "FD_025",
+      "name": "猪肉",
+      "name_en": "Pork",
+      "aliases": ["猪肉", "pork"],
+      "category": "protein",
+      "subcategory": "meat",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克生猪肉"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 242,
+        "protein_g": 27,
+        "carbs_g": 0,
+        "fat_g": 14,
+        "fiber_g": 0,
+        "sugar_g": 0,
+        "saturated_fat_g": 5,
+        "monounsaturated_fat_g": 6,
+        "polyunsaturated_fat_g": 1.5,
+        "trans_fat_g": 0,
+        "water_g": 58,
+        "vitamin_a_mcg": 2,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0.5,
+        "vitamin_e_mg": 0.3,
+        "vitamin_k_mcg": 0,
+        "thiamine_mg": 0.9,
+        "riboflavin_mg": 0.2,
+        "niacin_mg": 5,
+        "vitamin_b6_mg": 0.5,
+        "folate_mcg": 5,
+        "vitamin_b12_mcg": 0.7,
+        "calcium_mg": 6,
+        "iron_mg": 1.5,
+        "magnesium_mg": 26,
+        "phosphorus_mg": 215,
+        "potassium_mg": 340,
+        "sodium_mg": 62,
+        "zinc_mg": 2.5,
+        "selenium_mcg": 30
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.05,
+        "omega_6_g": 1.4,
+        "choline_mg": 70
+      },
+
+      "glycemic_index": {
+        "value": 0,
+        "level": "无"
+      },
+
+      "health_tags": ["高蛋白", "高硫胺素", "高锌"],
+      "suitable_for": ["能量补充", "肌肉增长"],
+      "notes": "含硫胺素(维生素B1)丰富"
+    },
+    {
+      "id": "FD_026",
+      "name": "虾",
+      "name_en": "Shrimp",
+      "aliases": ["虾", "虾米", "shrimp"],
+      "category": "protein",
+      "subcategory": "fish_seafood",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克生虾"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 99,
+        "protein_g": 24,
+        "carbs_g": 0.2,
+        "fat_g": 0.3,
+        "fiber_g": 0,
+        "sugar_g": 0,
+        "saturated_fat_g": 0.1,
+        "monounsaturated_fat_g": 0.05,
+        "polyunsaturated_fat_g": 0.1,
+        "trans_fat_g": 0,
+        "water_g": 75,
+        "vitamin_a_mcg": 10,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 1.3,
+        "vitamin_k_mcg": 0.1,
+        "thiamine_mg": 0.03,
+        "riboflavin_mg": 0.02,
+        "niacin_mg": 2,
+        "vitamin_b6_mg": 0.15,
+        "folate_mcg": 8,
+        "vitamin_b12_mcg": 1.5,
+        "calcium_mg": 70,
+        "iron_mg": 0.5,
+        "magnesium_mg": 35,
+        "phosphorus_mg": 220,
+        "potassium_mg": 220,
+        "sodium_mg": 120,
+        "zinc_mg": 1,
+        "selenium_mcg": 33
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.1,
+        "omega_6_g": 0.02,
+        "choline_mg": 65,
+        "astaxanthin_mg": 1.5
+      },
+
+      "glycemic_index": {
+        "value": 0,
+        "level": "无"
+      },
+
+      "health_tags": ["高蛋白", "低脂", "高硒", "虾青素"],
+      "suitable_for": ["减肥", "增肌", "甲状腺健康"],
+      "notes": "含虾青素,强效抗氧化剂"
+    },
+    {
+      "id": "FD_027",
+      "name": "白菜",
+      "name_en": "Chinese Cabbage",
+      "aliases": ["白菜", "大白菜", "chinese cabbage"],
+      "category": "vegetables",
+      "subcategory": "leafy_greens",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 17,
+        "protein_g": 1.5,
+        "carbs_g": 3.2,
+        "fat_g": 0.1,
+        "fiber_g": 1.2,
+        "sugar_g": 1.8,
+        "saturated_fat_g": 0.01,
+        "monounsaturated_fat_g": 0.01,
+        "polyunsaturated_fat_g": 0.05,
+        "trans_fat_g": 0,
+        "water_g": 94,
+        "vitamin_a_mcg": 30,
+        "vitamin_c_mg": 31,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.1,
+        "vitamin_k_mcg": 43,
+        "thiamine_mg": 0.03,
+        "riboflavin_mg": 0.03,
+        "niacin_mg": 0.4,
+        "vitamin_b6_mg": 0.1,
+        "folate_mcg": 50,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 49,
+        "iron_mg": 0.5,
+        "magnesium_mg": 13,
+        "phosphorus_mg": 28,
+        "potassium_mg": 170,
+        "sodium_mg": 10,
+        "zinc_mg": 0.2,
+        "selenium_mcg": 0.3
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.02,
+        "omega_6_g": 0.05,
+        "choline_mg": 13
+      },
+
+      "glycemic_index": {
+        "value": 10,
+        "level": "极低"
+      },
+
+      "health_tags": ["高维生素C", "高纤维", "低热量"],
+      "suitable_for": ["减肥", "糖尿病患者", "素食者"],
+      "notes": "中国北方冬季主要蔬菜"
+    },
+    {
+      "id": "FD_028",
+      "name": "黄瓜",
+      "name_en": "Cucumber",
+      "aliases": ["黄瓜", "cucumber"],
+      "category": "vegetables",
+      "subcategory": "cucurbits",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 16,
+        "protein_g": 0.7,
+        "carbs_g": 3.6,
+        "fat_g": 0.1,
+        "fiber_g": 0.5,
+        "sugar_g": 1.7,
+        "saturated_fat_g": 0.02,
+        "monounsaturated_fat_g": 0,
+        "polyunsaturated_fat_g": 0.05,
+        "trans_fat_g": 0,
+        "water_g": 95,
+        "vitamin_a_mcg": 5,
+        "vitamin_c_mg": 2.8,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.03,
+        "vitamin_k_mcg": 7.4,
+        "thiamine_mg": 0.02,
+        "riboflavin_mg": 0.02,
+        "niacin_mg": 0.1,
+        "vitamin_b6_mg": 0.04,
+        "folate_mcg": 7,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 16,
+        "iron_mg": 0.3,
+        "magnesium_mg": 13,
+        "phosphorus_mg": 24,
+        "potassium_mg": 147,
+        "sodium_mg": 2,
+        "zinc_mg": 0.2,
+        "selenium_mcg": 0.3
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.02,
+        "omega_6_g": 0.05,
+        "choline_mg": 6
+      },
+
+      "glycemic_index": {
+        "value": 15,
+        "level": "极低"
+      },
+
+      "health_tags": ["高水分", "低热量", "清凉"],
+      "suitable_for": ["减肥", "夏季消暑", "补水"],
+      "notes": "含水量高达95%"
+    },
+    {
+      "id": "FD_029",
+      "name": "青椒",
+      "name_en": "Green Bell Pepper",
+      "aliases": ["青椒", "甜椒", "green pepper"],
+      "category": "vegetables",
+      "subcategory": "nightshades",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 20,
+        "protein_g": 0.9,
+        "carbs_g": 4.6,
+        "fat_g": 0.2,
+        "fiber_g": 1.7,
+        "sugar_g": 2.4,
+        "saturated_fat_g": 0.02,
+        "monounsaturated_fat_g": 0.02,
+        "polyunsaturated_fat_g": 0.09,
+        "trans_fat_g": 0,
+        "water_g": 94,
+        "vitamin_a_mcg": 18,
+        "vitamin_c_mg": 80,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.4,
+        "vitamin_k_mcg": 7.4,
+        "thiamine_mg": 0.05,
+        "riboflavin_mg": 0.03,
+        "niacin_mg": 0.5,
+        "vitamin_b6_mg": 0.2,
+        "folate_mcg": 10,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 10,
+        "iron_mg": 0.3,
+        "magnesium_mg": 12,
+        "phosphorus_mg": 20,
+        "potassium_mg": 175,
+        "sodium_mg": 3,
+        "zinc_mg": 0.2,
+        "selenium_mcg": 0.1
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.02,
+        "omega_6_g": 0.08,
+        "choline_mg": 6,
+        "beta_carotene_mcg": 201
+      },
+
+      "glycemic_index": {
+        "value": 10,
+        "level": "极低"
+      },
+
+      "health_tags": ["极高维生素C", "抗氧化", "低热量"],
+      "suitable_for": ["免疫力提升", "减肥", "素食者"],
+      "notes": "维生素C含量最高蔬菜之一"
+    },
+    {
+      "id": "FD_030",
+      "name": "茄子",
+      "name_en": "Eggplant",
+      "aliases": ["茄子", "eggplant"],
+      "category": "vegetables",
+      "subcategory": "nightshades",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 25,
+        "protein_g": 1,
+        "carbs_g": 5.9,
+        "fat_g": 0.2,
+        "fiber_g": 3,
+        "sugar_g": 2.4,
+        "saturated_fat_g": 0.03,
+        "monounsaturated_fat_g": 0.02,
+        "polyunsaturated_fat_g": 0.08,
+        "trans_fat_g": 0,
+        "water_g": 92,
+        "vitamin_a_mcg": 3,
+        "vitamin_c_mg": 2.2,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.3,
+        "vitamin_k_mcg": 3.5,
+        "thiamine_mg": 0.04,
+        "riboflavin_mg": 0.02,
+        "niacin_mg": 0.6,
+        "vitamin_b6_mg": 0.09,
+        "folate_mcg": 22,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 9,
+        "iron_mg": 0.2,
+        "magnesium_mg": 14,
+        "phosphorus_mg": 24,
+        "potassium_mg": 229,
+        "sodium_mg": 2,
+        "zinc_mg": 0.2,
+        "selenium_mcg": 0.3
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.02,
+        "omega_6_g": 0.08,
+        "choline_mg": 9,
+        "nasunin_mg": 5
+      },
+
+      "glycemic_index": {
+        "value": 15,
+        "level": "极低"
+      },
+
+      "health_tags": ["高纤维", "抗氧化", "心脏健康"],
+      "suitable_for": ["减肥", "心脏病", "糖尿病"],
+      "notes": "皮含花青素,强效抗氧化剂"
+    },
+    {
+      "id": "FD_031",
+      "name": "生菜",
+      "name_en": "Lettuce",
+      "aliases": ["生菜", "lettuce"],
+      "category": "vegetables",
+      "subcategory": "leafy_greens",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 15,
+        "protein_g": 1.4,
+        "carbs_g": 2.9,
+        "fat_g": 0.2,
+        "fiber_g": 1.3,
+        "sugar_g": 0.8,
+        "saturated_fat_g": 0.02,
+        "monounsaturated_fat_g": 0.02,
+        "polyunsaturated_fat_g": 0.07,
+        "trans_fat_g": 0,
+        "water_g": 95,
+        "vitamin_a_mcg": 370,
+        "vitamin_c_mg": 13,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.3,
+        "vitamin_k_mcg": 103,
+        "thiamine_mg": 0.06,
+        "riboflavin_mg": 0.08,
+        "niacin_mg": 0.4,
+        "vitamin_b6_mg": 0.09,
+        "folate_mcg": 38,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 36,
+        "iron_mg": 0.9,
+        "magnesium_mg": 13,
+        "phosphorus_mg": 29,
+        "potassium_mg": 194,
+        "sodium_mg": 28,
+        "zinc_mg": 0.2,
+        "selenium_mcg": 0.2
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.06,
+        "omega_6_g": 0.1,
+        "choline_mg": 13,
+        "beta_carotene_mcg": 4443
+      },
+
+      "glycemic_index": {
+        "value": 10,
+        "level": "极低"
+      },
+
+      "health_tags": ["高维生素A", "高维生素K", "低热量"],
+      "suitable_for": ["减肥", "沙拉", "三明治"],
+      "notes": "常见沙拉蔬菜"
+    },
+    {
+      "id": "FD_032",
+      "name": "梨",
+      "name_en": "Pear",
+      "aliases": ["梨", "pear"],
+      "category": "fruits",
+      "subcategory": "temperate",
+
+      "standard_portion": {
+        "amount": 1,
+        "unit": "个",
+        "weight_g": 180,
+        "description": "1个中等梨"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 57,
+        "protein_g": 0.4,
+        "carbs_g": 15,
+        "fat_g": 0.1,
+        "fiber_g": 3.1,
+        "sugar_g": 10,
+        "saturated_fat_g": 0.01,
+        "monounsaturated_fat_g": 0.01,
+        "polyunsaturated_fat_g": 0.05,
+        "trans_fat_g": 0,
+        "water_g": 84,
+        "vitamin_a_mcg": 2,
+        "vitamin_c_mg": 4,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.1,
+        "vitamin_k_mcg": 4,
+        "thiamine_mg": 0.01,
+        "riboflavin_mg": 0.03,
+        "niacin_mg": 0.1,
+        "vitamin_b6_mg": 0.03,
+        "folate_mcg": 7,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 9,
+        "iron_mg": 0.2,
+        "magnesium_mg": 5,
+        "phosphorus_mg": 12,
+        "potassium_mg": 116,
+        "sodium_mg": 1,
+        "zinc_mg": 0.1,
+        "selenium_mcg": 0.1
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.01,
+        "omega_6_g": 0.05,
+        "choline_mg": 5
+      },
+
+      "glycemic_index": {
+        "value": 38,
+        "level": "低"
+      },
+
+      "health_tags": ["高纤维", "高果胶", "低热量"],
+      "suitable_for": ["减肥", "心脏病", "糖尿病"],
+      "notes": "含大量可溶性纤维"
+    },
+    {
+      "id": "FD_033",
+      "name": "蓝莓",
+      "name_en": "Blueberry",
+      "aliases": ["蓝莓", "blueberry"],
+      "category": "fruits",
+      "subcategory": "berries",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 57,
+        "protein_g": 0.7,
+        "carbs_g": 14,
+        "fat_g": 0.3,
+        "fiber_g": 2.4,
+        "sugar_g": 10,
+        "saturated_fat_g": 0.03,
+        "monounsaturated_fat_g": 0.05,
+        "polyunsaturated_fat_g": 0.15,
+        "trans_fat_g": 0,
+        "water_g": 84,
+        "vitamin_a_mcg": 3,
+        "vitamin_c_mg": 9.7,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.6,
+        "vitamin_k_mcg": 19,
+        "thiamine_mg": 0.04,
+        "riboflavin_mg": 0.04,
+        "niacin_mg": 0.4,
+        "vitamin_b6_mg": 0.06,
+        "folate_mcg": 6,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 6,
+        "iron_mg": 0.3,
+        "magnesium_mg": 6,
+        "phosphorus_mg": 12,
+        "potassium_mg": 77,
+        "sodium_mg": 1,
+        "zinc_mg": 0.2,
+        "selenium_mcg": 0.1
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.08,
+        "omega_6_g": 0.15,
+        "choline_mg": 6,
+        "anthocyanins_mg": 160,
+        "resveratrol_mg": 0.2
+      },
+
+      "glycemic_index": {
+        "value": 40,
+        "level": "低"
+      },
+
+      "health_tags": ["超高抗氧化", "花青素之王", "大脑健康"],
+      "suitable_for": ["记忆力提升", "抗衰老", "眼健康"],
+      "notes": "抗氧化能力最强水果之一"
+    },
+    {
+      "id": "FD_034",
+      "name": "猕猴桃",
+      "name_en": "Kiwi",
+      "aliases": ["猕猴桃", "奇异果", "kiwi"],
+      "category": "fruits",
+      "subcategory": "temperate",
+
+      "standard_portion": {
+        "amount": 1,
+        "unit": "个",
+        "weight_g": 75,
+        "description": "1个中等猕猴桃"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 61,
+        "protein_g": 1.1,
+        "carbs_g": 15,
+        "fat_g": 0.5,
+        "fiber_g": 3,
+        "sugar_g": 9,
+        "saturated_fat_g": 0.1,
+        "monounsaturated_fat_g": 0.05,
+        "polyunsaturated_fat_g": 0.3,
+        "trans_fat_g": 0,
+        "water_g": 83,
+        "vitamin_a_mcg": 4,
+        "vitamin_c_mg": 93,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 1.5,
+        "vitamin_k_mcg": 40,
+        "thiamine_mg": 0.02,
+        "riboflavin_mg": 0.02,
+        "niacin_mg": 0.3,
+        "vitamin_b6_mg": 0.1,
+        "folate_mcg": 25,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 34,
+        "iron_mg": 0.3,
+        "magnesium_mg": 17,
+        "phosphorus_mg": 34,
+        "potassium_mg": 312,
+        "sodium_mg": 3,
+        "zinc_mg": 0.1,
+        "selenium_mcg": 0.2
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.1,
+        "omega_6_g": 0.2,
+        "choline_mg": 8,
+        "actinidin_mg": 1.5
+      },
+
+      "glycemic_index": {
+        "value": 47,
+        "level": "低"
+      },
+
+      "health_tags": ["极高维生素C", "高纤维", "助消化"],
+      "suitable_for": ["免疫力提升", "消化不良", "维生素C缺乏"],
+      "notes": "含猕猴桃酶,有助于蛋白质消化"
+    },
+    {
+      "id": "FD_035",
+      "name": "芒果",
+      "name_en": "Mango",
+      "aliases": ["芒果", "mango"],
+      "category": "fruits",
+      "subcategory": "tropical",
+
+      "standard_portion": {
+        "amount": 1,
+        "unit": "个",
+        "weight_g": 200,
+        "description": "1个中等芒果"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 60,
+        "protein_g": 0.8,
+        "carbs_g": 15,
+        "fat_g": 0.4,
+        "fiber_g": 1.6,
+        "sugar_g": 14,
+        "saturated_fat_g": 0.09,
+        "monounsaturated_fat_g": 0.08,
+        "polyunsaturated_fat_g": 0.12,
+        "trans_fat_g": 0,
+        "water_g": 83,
+        "vitamin_a_mcg": 54,
+        "vitamin_c_mg": 36,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.9,
+        "vitamin_k_mcg": 4,
+        "thiamine_mg": 0.03,
+        "riboflavin_mg": 0.04,
+        "niacin_mg": 0.7,
+        "vitamin_b6_mg": 0.12,
+        "folate_mcg": 43,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 11,
+        "iron_mg": 0.2,
+        "magnesium_mg": 10,
+        "phosphorus_mg": 14,
+        "potassium_mg": 168,
+        "sodium_mg": 1,
+        "zinc_mg": 0.1,
+        "selenium_mcg": 0.6
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.05,
+        "omega_6_g": 0.1,
+        "choline_mg": 8,
+        "beta_carotene_mcg": 640
+      },
+
+      "glycemic_index": {
+        "value": 51,
+        "level": "低"
+      },
+
+      "health_tags": ["高维生素A", "高维生素C", "热带水果"],
+      "suitable_for": ["免疫力提升", "眼健康"],
+      "notes": "果王之称,营养丰富"
+    },
+    {
+      "id": "FD_036",
+      "name": "西瓜",
+      "name_en": "Watermelon",
+      "aliases": ["西瓜", "watermelon"],
+      "category": "fruits",
+      "subcategory": "melons",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 30,
+        "protein_g": 0.6,
+        "carbs_g": 8,
+        "fat_g": 0.1,
+        "fiber_g": 0.4,
+        "sugar_g": 6,
+        "saturated_fat_g": 0.02,
+        "monounsaturated_fat_g": 0.03,
+        "polyunsaturated_fat_g": 0.05,
+        "trans_fat_g": 0,
+        "water_g": 92,
+        "vitamin_a_mcg": 28,
+        "vitamin_c_mg": 8,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.05,
+        "vitamin_k_mcg": 0.1,
+        "thiamine_mg": 0.03,
+        "riboflavin_mg": 0.02,
+        "niacin_mg": 0.2,
+        "vitamin_b6_mg": 0.05,
+        "folate_mcg": 3,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 7,
+        "iron_mg": 0.2,
+        "magnesium_mg": 10,
+        "phosphorus_mg": 11,
+        "potassium_mg": 112,
+        "sodium_mg": 1,
+        "zinc_mg": 0.1,
+        "selenium_mcg": 0.4
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.02,
+        "omega_6_g": 0.05,
+        "choline_mg": 4,
+        "lycopene_mg": 4.5
+      },
+
+      "glycemic_index": {
+        "value": 72,
+        "level": "高"
+      },
+
+      "health_tags": ["高水分", "含番茄红素", "夏季消暑"],
+      "suitable_for": ["夏季补水", "运动后恢复"],
+      "notes": "含水量高达92%"
+    },
+    {
+      "id": "FD_037",
+      "name": "葡萄",
+      "name_en": "Grape",
+      "aliases": ["葡萄", "grape"],
+      "category": "fruits",
+      "subcategory": "temperate",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 69,
+        "protein_g": 0.7,
+        "carbs_g": 18,
+        "fat_g": 0.2,
+        "fiber_g": 0.9,
+        "sugar_g": 15,
+        "saturated_fat_g": 0.05,
+        "monounsaturated_fat_g": 0.01,
+        "polyunsaturated_fat_g": 0.05,
+        "trans_fat_g": 0,
+        "water_g": 81,
+        "vitamin_a_mcg": 3,
+        "vitamin_c_mg": 3,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.2,
+        "vitamin_k_mcg": 15,
+        "thiamine_mg": 0.07",
+        "riboflavin_mg": 0.07,
+        "niacin_mg": 0.2,
+        "vitamin_b6_mg": 0.09,
+        "folate_mcg": 2,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 10,
+        "iron_mg": 0.4,
+        "magnesium_mg": 7,
+        "phosphorus_mg": 20,
+        "potassium_mg": 191,
+        "sodium_mg": 1,
+        "zinc_mg": 0.07,
+        "selenium_mcg": 0.1
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.03,
+        "omega_6_g": 0.1,
+        "choline_mg": 6,
+        "resveratrol_mg": 0.5
+      },
+
+      "glycemic_index": {
+        "value": 43,
+        "level": "低"
+      },
+
+      "health_tags": ["抗氧化", "含白藜芦醇", "心脏健康"],
+      "suitable_for": ["心脏病", "抗衰老"],
+      "notes": "葡萄皮含大量抗氧化物质"
+    },
+    {
+      "id": "FD_038",
+      "name": "花生",
+      "name_en": "Peanut",
+      "aliases": ["花生", "落花生", "peanut"],
+      "category": "protein",
+      "subcategory": "nuts_seeds",
+
+      "standard_portion": {
+        "amount": 30,
+        "unit": "g",
+        "description": "1把"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 567,
+        "protein_g": 25,
+        "carbs_g": 16,
+        "fat_g": 49,
+        "fiber_g": 8.5,
+        "sugar_g": 4,
+        "saturated_fat_g": 7,
+        "monounsaturated_fat_g": 24,
+        "polyunsaturated_fat_g": 16,
+        "trans_fat_g": 0,
+        "water_g": 7,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 8,
+        "vitamin_k_mcg": 0,
+        "thiamine_mg": 0.6,
+        "riboflavin_mg": 0.1,
+        "niacin_mg": 12,
+        "vitamin_b6_mg": 0.3,
+        "folate_mcg": 145,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 92,
+        "iron_mg": 4.6,
+        "magnesium_mg": 168,
+        "phosphorus_mg": 376,
+        "potassium_mg": 705,
+        "sodium_mg": 18,
+        "zinc_mg": 3.3,
+        "selenium_mcg": 7.2
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.4,
+        "omega_6_g": 15.6,
+        "choline_mg": 52,
+        "resveratrol_mg": 0.3
+      },
+
+      "glycemic_index": {
+        "value": 7,
+        "level": "极低"
+      },
+
+      "health_tags": ["高蛋白", "高叶酸", "富含烟酸"],
+      "suitable_for": ["素食者", "心脏病", "减肥"],
+      "notes": "实际上属于豆类,不是坚果"
+    },
+    {
+      "id": "FD_039",
+      "name": "奇亚籽",
+      "name_en": "Chia Seeds",
+      "aliases": ["奇亚籽", "chia seeds"],
+      "category": "protein",
+      "subcategory": "nuts_seeds",
+
+      "standard_portion": {
+        "amount": 28,
+        "unit": "g",
+        "description": "2汤匙"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 486,
+        "protein_g": 16.5,
+        "carbs_g": 42,
+        "fat_g": 31,
+        "fiber_g": 34,
+        "sugar_g": 0,
+        "saturated_fat_g": 3.3,
+        "monounsaturated_fat_g": 2,
+        "polyunsaturated_fat_g": 24,
+        "trans_fat_g": 0,
+        "water_g": 6,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.5,
+        "vitamin_k_mcg": 0,
+        "thiamine_mg": 0.6,
+        "riboflavin_mg": 0.2,
+        "niacin_mg": 8.8,
+        "vitamin_b6_mg": 0.1,
+        "folate_mcg": 49,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 631,
+        "iron_mg": 7.7,
+        "magnesium_mg": 335,
+        "phosphorus_mg": 860,
+        "potassium_mg": 407,
+        "sodium_mg": 16,
+        "zinc_mg": 4.6,
+        "selenium_mcg": 38.5
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 17.5,
+        "omega_6_g": 5.8,
+        "choline_mg": 0
+      },
+
+      "glycemic_index": {
+        "value": 1,
+        "level": "极低"
+      },
+
+      "health_tags": ["极高Omega-3", "极高纤维", "高钙"],
+      "suitable_for": ["素食者", "心脏病", "减肥"],
+      "notes": "植物性Omega-3最佳来源"
+    },
+    {
+      "id": "FD_040",
+      "name": "橄榄油",
+      "name_en": "Olive Oil",
+      "aliases": ["橄榄油", "olive oil"],
+      "category": "fats_oils",
+      "subcategory": "vegetable_oils",
+
+      "standard_portion": {
+        "amount": 15,
+        "unit": "ml",
+        "description": "1汤匙"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 884,
+        "protein_g": 0,
+        "carbs_g": 0,
+        "fat_g": 100,
+        "fiber_g": 0,
+        "sugar_g": 0,
+        "saturated_fat_g": 14,
+        "monounsaturated_fat_g": 73,
+        "polyunsaturated_fat_g": 11,
+        "trans_fat_g": 0,
+        "water_g": 0,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 14,
+        "vitamin_k_mcg": 60,
+        "thiamine_mg": 0,
+        "riboflavin_mg": 0,
+        "niacin_mg": 0,
+        "vitamin_b6_mg": 0,
+        "folate_mcg": 0,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 1,
+        "iron_mg": 0.6,
+        "magnesium_mg": 0,
+        "phosphorus_mg": 0,
+        "potassium_mg": 1,
+        "sodium_mg": 2,
+        "zinc_mg": 0,
+        "selenium_mcg": 0
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.8,
+        "omega_6_g": 10,
+        "oleic_acid_g": 70,
+        "polyphenols_mg": 50
+      },
+
+      "glycemic_index": {
+        "value": 0,
+        "level": "无"
+      },
+
+      "health_tags": ["高单不饱和脂肪", "心脏健康", "地中海饮食"],
+      "suitable_for": ["心脏病", "高血压", "糖尿病"],
+      "notes": "地中海饮食核心油脂"
+    },
+    {
+      "id": "FD_041",
+      "name": "三文鱼油",
+      "name_en": "Salmon Oil",
+      "aliases": ["三文鱼油", "鱼油", "salmon oil"],
+      "category": "fats_oils",
+      "subcategory": "special_oils",
+
+      "standard_portion": {
+        "amount": 5,
+        "unit": "ml",
+        "description": "1茶匙"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 900,
+        "protein_g": 0,
+        "carbs_g": 0,
+        "fat_g": 100,
+        "fiber_g": 0,
+        "sugar_g": 0,
+        "saturated_fat_g": 20,
+        "monounsaturated_fat_g": 35,
+        "polyunsaturated_fat_g": 45,
+        "trans_fat_g": 0,
+        "water_g": 0,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 10,
+        "vitamin_e_mg": 20,
+        "vitamin_k_mcg": 0,
+        "thiamine_mg": 0,
+        "riboflavin_mg": 0,
+        "niacin_mg": 0,
+        "vitamin_b6_mg": 0,
+        "folate_mcg": 0,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 0,
+        "iron_mg": 0,
+        "magnesium_mg": 0,
+        "phosphorus_mg": 0,
+        "potassium_mg": 0,
+        "sodium_mg": 0,
+        "zinc_mg": 0,
+        "selenium_mcg": 0
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 30,
+        "omega_6_g": 3,
+        "epa_g": 12,
+        "dha_g": 12
+      },
+
+      "glycemic_index": {
+        "value": 0,
+        "level": "无"
+      },
+
+      "health_tags": ["极高Omega-3", "EPA/DHA", "心脏大脑健康"],
+      "suitable_for": ["心脏病", "抑郁症", "关节炎"],
+      "notes": "优质Omega-3补充剂来源"
+    },
+    {
+      "id": "FD_042",
+      "name": "黑巧克力",
+      "name_en": "Dark Chocolate",
+      "aliases": ["黑巧克力", "dark chocolate"],
+      "category": "snacks",
+      "subcategory": "healthy_snacks",
+
+      "standard_portion": {
+        "amount": 30,
+        "unit": "g",
+        "description": "1块"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 598,
+        "protein_g": 7.8,
+        "carbs_g": 46,
+        "fat_g": 43,
+        "fiber_g": 11,
+        "sugar_g": 24,
+        "saturated_fat_g": 25,
+        "monounsaturated_fat_g": 13,
+        "polyunsaturated_fat_g": 3,
+        "trans_fat_g": 0,
+        "water_g": 1,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.5,
+        "vitamin_k_mcg": 0,
+        "thiamine_mg": 0.08,
+        "riboflavin_mg": 0.1,
+        "niacin_mg": 0.8,
+        "vitamin_b6_mg": 0.1,
+        "folate_mcg": 8,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 30,
+        "iron_mg": 12,
+        "magnesium_mg": 230,
+        "phosphorus_mg": 200,
+        "potassium_mg": 360,
+        "sodium_mg": 20,
+        "zinc_mg": 3,
+        "selenium_mcg": 4
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.2,
+        "omega_6_g": 1.2,
+        "choline_mg": 30,
+        "theobromine_mg": 450,
+        "flavanols_mg": 200
+      },
+
+      "glycemic_index": {
+        "value": 25,
+        "level": "低"
+      },
+
+      "health_tags": ["高抗氧化", "高镁", "心脏健康"],
+      "suitable_for": ["心脏病", "压力缓解", "镁缺乏"],
+      "notes": "选择70%以上可可含量"
+    },
+    {
+      "id": "FD_043",
+      "name": "绿茶",
+      "name_en": "Green Tea",
+      "aliases": ["绿茶", "green tea"],
+      "category": "beverages",
+      "subcategory": "non_sugar",
+
+      "standard_portion": {
+        "amount": 250,
+        "unit": "ml",
+        "description": "1杯"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 1,
+        "protein_g": 0,
+        "carbs_g": 0,
+        "fat_g": 0,
+        "fiber_g": 0,
+        "sugar_g": 0,
+        "saturated_fat_g": 0,
+        "monounsaturated_fat_g": 0,
+        "polyunsaturated_fat_g": 0,
+        "trans_fat_g": 0,
+        "water_g": 100,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0,
+        "vitamin_k_mcg": 0,
+        "thiamine_mg": 0,
+        "riboflavin_mg": 0,
+        "niacin_mg": 0,
+        "vitamin_b6_mg": 0,
+        "folate_mcg": 0,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 0,
+        "iron_mg": 0,
+        "magnesium_mg": 0,
+        "phosphorus_mg": 0,
+        "potassium_mg": 10,
+        "sodium_mg": 5,
+        "zinc_mg": 0,
+        "selenium_mcg": 0
+      },
+
+      "special_nutrients": {
+        "caffeine_mg": 25,
+        "egcg_mg": 50,
+        "l_theanine_mg": 5
+      },
+
+      "glycemic_index": {
+        "value": 0,
+        "level": "无"
+      },
+
+      "health_tags": ["高抗氧化", "儿茶素", "代谢提升"],
+      "suitable_for": ["减肥", "心脏病", "癌症预防"],
+      "notes": "含EGCG,强效抗氧化剂"
+    },
+    {
+      "id": "FD_044",
+      "name": "黑咖啡",
+      "name_en": "Black Coffee",
+      "aliases": ["黑咖啡", "black coffee"],
+      "category": "beverages",
+      "subcategory": "non_sugar",
+
+      "standard_portion": {
+        "amount": 250,
+        "unit": "ml",
+        "description": "1杯"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 1,
+        "protein_g": 0.1,
+        "carbs_g": 0,
+        "fat_g": 0,
+        "fiber_g": 0,
+        "sugar_g": 0,
+        "saturated_fat_g": 0,
+        "monounsaturated_fat_g": 0,
+        "polyunsaturated_fat_g": 0,
+        "trans_fat_g": 0,
+        "water_g": 99,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0,
+        "vitamin_k_mcg": 0,
+        "thiamine_mg": 0,
+        "riboflavin_mg": 0,
+        "niacin_mg": 0.2,
+        "vitamin_b6_mg": 0,
+        "folate_mcg": 0,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 2,
+        "iron_mg": 0,
+        "magnesium_mg": 3,
+        "phosphorus_mg": 3,
+        "potassium_mg": 49,
+        "sodium_mg": 2,
+        "zinc_mg": 0,
+        "selenium_mcg": 0
+      },
+
+      "special_nutrients": {
+        "caffeine_mg": 40
+      },
+
+      "glycemic_index": {
+        "value": 0,
+        "level": "无"
+      },
+
+      "health_tags": ["提神", "代谢提升", "抗氧化"],
+      "suitable_for": ["运动前", "提升注意力"],
+      "notes": "适量饮用,避免过量"
+    },
+    {
+      "id": "FD_045",
+      "name": "低脂酸奶",
+      "name_en": "Low-Fat Yogurt",
+      "aliases": ["低脂酸奶", "low-fat yogurt"],
+      "category": "protein",
+      "subcategory": "dairy",
+
+      "standard_portion": {
+        "amount": 200,
+        "unit": "g",
+        "description": "1杯"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 56,
+        "protein_g": 10,
+        "carbs_g": 4.7,
+        "fat_g": 0.4,
+        "fiber_g": 0,
+        "sugar_g": 4.7,
+        "saturated_fat_g": 0.2,
+        "monounsaturated_fat_g": 0.1,
+        "polyunsaturated_fat_g": 0,
+        "trans_fat_g": 0,
+        "water_g": 85,
+        "vitamin_a_mcg": 10,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0.1,
+        "vitamin_e_mg": 0,
+        "vitamin_k_mcg": 0,
+        "thiamine_mg": 0.04,
+        "riboflavin_mg": 0.25,
+        "niacin_mg": 0.1,
+        "vitamin_b6_mg": 0.05,
+        "folate_mcg": 5,
+        "vitamin_b12_mcg": 0.5,
+        "calcium_mg": 120,
+        "iron_mg": 0.05,
+        "magnesium_mg": 12,
+        "phosphorus_mg": 140,
+        "potassium_mg": 160,
+        "sodium_mg": 40,
+        "zinc_mg": 0.6,
+        "selenium_mcg": 3
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.01,
+        "omega_6_g": 0.03,
+        "choline_mg": 15,
+        "probiotics": 1
+      },
+
+      "glycemic_index": {
+        "value": 15,
+        "level": "极低"
+      },
+
+      "health_tags": ["高蛋白", "高钙", "益生菌", "低脂"],
+      "suitable_for": ["减肥", "消化不良", "乳糖不耐症"],
+      "notes": "选择无糖或低糖版本"
+    },
+    {
+      "id": "FD_046",
+      "name": "藜麦",
+      "name_en": "Quinoa",
+      "aliases": ["藜麦", "quinoa"],
+      "category": "grains",
+      "subcategory": "pseudocereals",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克生藜麦"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 368,
+        "protein_g": 14,
+        "carbs_g": 64,
+        "fat_g": 6,
+        "fiber_g": 7,
+        "sugar_g": 0,
+        "saturated_fat_g": 0.7,
+        "monounsaturated_fat_g": 1.6,
+        "polyunsaturated_fat_g": 3.3,
+        "trans_fat_g": 0,
+        "water_g": 13,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 2.4,
+        "vitamin_k_mcg": 0,
+        "thiamine_mg": 0.4,
+        "riboflavin_mg": 0.2,
+        "niacin_mg": 1.5,
+        "vitamin_b6_mg": 0.5,
+        "folate_mcg": 184,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 47,
+        "iron_mg": 4.6,
+        "magnesium_mg": 197,
+        "phosphorus_mg": 457,
+        "potassium_mg": 563,
+        "sodium_mg": 5,
+        "zinc_mg": 3.1,
+        "selenium_mcg": 8.5
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.8,
+        "omega_6_g": 3,
+        "choline_mg": 50
+      },
+
+      "glycemic_index": {
+        "value": 53,
+        "level": "低"
+      },
+
+      "health_tags": ["完全蛋白", "无麸质", "高纤维"],
+      "suitable_for": ["素食者", "乳糜泻", "减肥"],
+      "notes": "少数植物完全蛋白来源之一"
+    },
+    {
+      "id": "FD_047",
+      "name": "红豆",
+      "name_en": "Red Beans",
+      "aliases": ["红豆", "赤小豆", "red beans"],
+      "category": "protein",
+      "subcategory": "legumes",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克干豆"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 330,
+        "protein_g": 20,
+        "carbs_g": 58,
+        "fat_g": 0.5,
+        "fiber_g": 15,
+        "sugar_g": 2,
+        "saturated_fat_g": 0.1,
+        "monounsaturated_fat_g": 0.1,
+        "polyunsaturated_fat_g": 0.2,
+        "trans_fat_g": 0,
+        "water_g": 12,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.1,
+        "vitamin_k_mcg": 5,
+        "thiamine_mg": 0.5,
+        "riboflavin_mg": 0.1,
+        "niacin_mg": 2,
+        "vitamin_b6_mg": 0.4,
+        "folate_mcg": 380,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 80,
+        "iron_mg": 6,
+        "magnesium_mg": 140,
+        "phosphorus_mg": 380,
+        "potassium_mg": 1200,
+        "sodium_mg": 15,
+        "zinc_mg": 2,
+        "selenium_mcg": 2
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.1,
+        "omega_6_g": 0.2,
+        "choline_mg": 60
+      },
+
+      "glycemic_index": {
+        "value": 25,
+        "level": "低"
+      },
+
+      "health_tags": ["高蛋白", "高纤维", "高叶酸", "低脂"],
+      "suitable_for": ["素食者", "减肥", "糖尿病患者"],
+      "notes": "中医认为红豆有利尿消肿作用"
+    },
+    {
+      "id": "FD_048",
+      "name": "扁豆",
+      "name_en": "Lentils",
+      "aliases": ["扁豆", "lentils"],
+      "category": "protein",
+      "subcategory": "legumes",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克干扁豆"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 352,
+        "protein_g": 26,
+        "carbs_g": 60,
+        "fat_g": 1,
+        "fiber_g": 11,
+        "sugar_g": 2,
+        "saturated_fat_g": 0.1,
+        "monounsaturated_fat_g": 0.1,
+        "polyunsaturated_fat_g": 0.5,
+        "trans_fat_g": 0,
+        "water_g": 10,
+        "vitamin_a_mcg": 2,
+        "vitamin_c_mg": 4,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.2,
+        "vitamin_k_mcg": 2,
+        "thiamine_mg": 0.5,
+        "riboflavin_mg": 0.2,
+        "niacin_mg": 2.5,
+        "vitamin_b6_mg": 0.5,
+        "folate_mcg": 479,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 56,
+        "iron_mg": 6.5,
+        "magnesium_mg": 122,
+        "phosphorus_mg": 451,
+        "potassium_mg": 677,
+        "sodium_mg": 6,
+        "zinc_mg": 3.3,
+        "selenium_mcg": 0.6
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.1,
+        "omega_6_g": 0.5,
+        "choline_mg": 75
+      },
+
+      "glycemic_index": {
+        "value": 30,
+        "level": "低"
+      },
+
+      "health_tags": ["高蛋白", "高叶酸", "高纤维"],
+      "suitable_for": ["素食者", "孕妇", "糖尿病患者"],
+      "notes": "叶酸含量极高"
+    },
+    {
+      "id": "FD_049",
+      "name": "糙米饭",
+      "name_en": "Brown Rice (Cooked)",
+      "aliases": ["糙米饭", "brown rice cooked"],
+      "category": "grains",
+      "subcategory": "whole_grains",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克熟糙米饭"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 112,
+        "protein_g": 2.6,
+        "carbs_g": 24,
+        "fat_g": 0.9,
+        "fiber_g": 1.8,
+        "sugar_g": 0.4,
+        "saturated_fat_g": 0.2,
+        "monounsaturated_fat_g": 0.3,
+        "polyunsaturated_fat_g": 0.3,
+        "trans_fat_g": 0,
+        "water_g": 71,
+        "vitamin_a_mcg": 0,
+        "vitamin_c_mg": 0,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.2,
+        "vitamin_k_mcg": 0.5,
+        "thiamine_mg": 0.1,
+        "riboflavin_mg": 0.01,
+        "niacin_mg": 1.5,
+        "vitamin_b6_mg": 0.15,
+        "folate_mcg": 6,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 7,
+        "iron_mg": 0.4,
+        "magnesium_mg": 43,
+        "phosphorus_mg": 100,
+        "potassium_mg": 67,
+        "sodium_mg": 1,
+        "zinc_mg": 0.6,
+        "selenium_mcg": 1.5
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.01,
+        "omega_6_g": 0.3,
+        "choline_mg": 6
+      },
+
+      "glycemic_index": {
+        "value": 68,
+        "level": "中"
+      },
+
+      "health_tags": ["全谷物", "高纤维", "富含B族维生素"],
+      "suitable_for": ["减肥", "糖尿病", "心脏病"],
+      "notes": "糙米:水=1:2.5煮熟"
+    },
+    {
+      "id": "FD_050",
+      "name": "鹰嘴豆",
+      "name_en": "Chickpeas",
+      "aliases": ["鹰嘴豆", "chickpeas", "鸡豆豆"],
+      "category": "protein",
+      "subcategory": "legumes",
+
+      "standard_portion": {
+        "amount": 100,
+        "unit": "g",
+        "description": "100克干豆"
+      },
+
+      "nutrition_per_100g": {
+        "calories": 364,
+        "protein_g": 20,
+        "carbs_g": 61,
+        "fat_g": 6,
+        "fiber_g": 18,
+        "sugar_g": 10,
+        "saturated_fat_g": 0.7,
+        "monounsaturated_fat_g": 1.4,
+        "polyunsaturated_fat_g": 2.7,
+        "trans_fat_g": 0,
+        "water_g": 11,
+        "vitamin_a_mcg": 4,
+        "vitamin_c_mg": 4,
+        "vitamin_d_mcg": 0,
+        "vitamin_e_mg": 0.6,
+        "vitamin_k_mcg": 9,
+        "thiamine_mg": 0.5,
+        "riboflavin_mg": 0.15,
+        "niacin_mg": 1.5,
+        "vitamin_b6_mg": 0.5,
+        "folate_mcg": 557,
+        "vitamin_b12_mcg": 0,
+        "calcium_mg": 150,
+        "iron_mg": 5,
+        "magnesium_mg": 115,
+        "phosphorus_mg": 380,
+        "potassium_mg": 875,
+        "sodium_mg": 24,
+        "zinc_mg": 3,
+        "selenium_mcg": 0
+      },
+
+      "special_nutrients": {
+        "omega_3_g": 0.2,
+        "omega_6_g": 2.5,
+        "choline_mg": 80
+      },
+
+      "glycemic_index": {
+        "value": 33,
+        "level": "低"
+      },
+
+      "health_tags": ["高蛋白", "极高纤维", "高叶酸"],
+      "suitable_for": ["素食者", "减肥", "糖尿病患者"],
+      "notes": "制作鹰嘴豆泥(hummus)的主要原料"
+    }
+  ]
+}

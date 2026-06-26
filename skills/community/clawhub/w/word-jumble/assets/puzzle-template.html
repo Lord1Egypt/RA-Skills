@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Word Jumble</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 900px;
+    overflow: hidden;
+  }
+
+  body {
+    font-family: 'Georgia', serif;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* Left column: four clue words */
+  .puzzle-col {
+    padding: 24px 20px 24px 36px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  /* Right column: final clue → cartoon → solution boxes */
+  .cartoon-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 28px 20px 28px 12px;
+    gap: 14px;
+    min-height: 0;
+  }
+
+  /* Final clue — prominent, above the cartoon */
+  .final-clue {
+    font-size: 14px;
+    color: #111;
+    font-style: italic;
+    line-height: 1.5;
+    flex-shrink: 0;
+    border-left: 3px solid #000;
+    padding-left: 10px;
+  }
+
+  .cartoon-col img {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    max-height: 680px;
+    object-fit: contain;
+    object-position: right top;
+    background: #fff;
+    display: block;
+  }
+
+  /* Solution boxes — centered at bottom, no border box */
+  .final-section {
+    flex-shrink: 0;
+  }
+
+  .final-letters {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+
+  .final-box {
+    width: 28px;
+    height: 28px;
+    border: 2.5px solid #000;
+    flex-shrink: 0;
+  }
+
+  .space-gap { width: 10px; flex-shrink: 0; }
+
+  /* Left column word styles */
+  .word-block { }
+
+  .scrambled {
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 4px;
+  }
+
+  .clue {
+    font-size: 15px;
+    color: #444;
+    font-style: italic;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .letter-row {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .letter-box {
+    width: 34px;
+    height: 34px;
+    border: 2px solid #aaa;
+    flex-shrink: 0;
+  }
+
+  .letter-box.circled {
+    border: 2.5px solid #000;
+    border-radius: 50%;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+  }
+
+  .answer-key {
+    position: fixed;
+    bottom: 10px;
+    right: 14px;
+    font-size: 11px;
+    color: #555;
+    transform: rotate(180deg);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+  <div class="puzzle-col" id="puzzle-area"></div>
+  <div class="cartoon-col" id="cartoon-col">
+    <img src="__CARTOON_IMAGE__" alt="Puzzle hint illustration" />
+  </div>
+</div>
+
+<script>
+const puzzle = __PUZZLE_JSON__;
+
+// Answer key — upside-down, tiny, bottom-right
+// Solution is ROT13-encoded so it's not plaintext in the DOM
+const answerKey = document.createElement('div');
+answerKey.className = 'answer-key';
+answerKey.textContent = 'Answer: ' + puzzle.final_puzzle.solution.join('');
+document.body.appendChild(answerKey);
+
+// Left column: four clue words
+const area = document.getElementById('puzzle-area');
+puzzle.scrambles.forEach((word, wi) => {
+  const block = document.createElement('div');
+  block.className = 'word-block';
+
+  const scrambledDiv = document.createElement('div');
+  scrambledDiv.className = 'scrambled';
+  scrambledDiv.textContent = word.scrambled.join(' ');
+  block.appendChild(scrambledDiv);
+
+  const clueDiv = document.createElement('div');
+  clueDiv.className = 'clue';
+  clueDiv.textContent = word.clue;
+  block.appendChild(clueDiv);
+
+  const row = document.createElement('div');
+  row.className = 'letter-row';
+  word.unscrambled.forEach((_, i) => {
+    const box = document.createElement('div');
+    box.className = 'letter-box' + (word.circled.includes(i + 1) ? ' circled' : '');
+    row.appendChild(box);
+  });
+  block.appendChild(row);
+  area.appendChild(block);
+
+  if (wi < puzzle.scrambles.length - 1) {
+    const hr = document.createElement('hr');
+    hr.className = 'divider';
+    area.appendChild(hr);
+  }
+});
+
+// Right column: insert final clue BEFORE the image, solution boxes AFTER
+const cartoonCol = document.getElementById('cartoon-col');
+const img = cartoonCol.querySelector('img');
+
+// Final clue — above cartoon
+const finalClue = document.createElement('div');
+finalClue.className = 'final-clue';
+finalClue.textContent = puzzle.final_puzzle.clue;
+cartoonCol.insertBefore(finalClue, img);
+
+// Solution boxes — below cartoon
+const finalSection = document.createElement('div');
+finalSection.className = 'final-section';
+
+const finalLetters = document.createElement('div');
+finalLetters.className = 'final-letters';
+puzzle.final_puzzle.solution.forEach(ch => {
+  if (ch === ' ') {
+    const gap = document.createElement('div');
+    gap.className = 'space-gap';
+    finalLetters.appendChild(gap);
+  } else {
+    const box = document.createElement('div');
+    box.className = 'final-box';
+    finalLetters.appendChild(box);
+  }
+});
+
+finalSection.appendChild(finalLetters);
+cartoonCol.appendChild(finalSection);
+</script>
+</body>
+</html>

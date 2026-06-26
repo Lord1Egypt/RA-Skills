@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XO Trust Badge — Integration Example</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f7; color: #1d1d1f; padding: 40px 20px; }
+    h1 { text-align: center; margin-bottom: 8px; font-size: 24px; }
+    p.subtitle { text-align: center; color: #86868b; margin-bottom: 40px; }
+
+    .demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
+
+    /* ── XO Trust Badge Styles ── */
+    .xo-trust-badge {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      transition: box-shadow 0.2s;
+    }
+    .xo-trust-badge:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+
+    .xo-trust-badge__header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: #86868b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .xo-trust-badge__header svg { width: 16px; height: 16px; }
+
+    .xo-trust-badge__status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .xo-trust-badge__dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #34c759;
+    }
+    .xo-trust-badge__dot--unverified { background: #ff3b30; }
+    .xo-trust-badge__label { font-weight: 600; font-size: 16px; }
+
+    .xo-trust-badge__metrics { display: flex; gap: 16px; flex-wrap: wrap; }
+    .xo-trust-badge__metric {
+      flex: 1;
+      min-width: 80px;
+      background: #f5f5f7;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+    .xo-trust-badge__metric-value { font-size: 20px; font-weight: 700; color: #1d1d1f; }
+    .xo-trust-badge__metric-label { font-size: 11px; color: #86868b; margin-top: 2px; }
+
+    .xo-trust-badge__bar {
+      margin-top: 16px;
+      background: #e5e5ea;
+      border-radius: 4px;
+      height: 6px;
+      overflow: hidden;
+    }
+    .xo-trust-badge__bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #34c759, #30d158);
+      transition: width 0.6s ease;
+    }
+
+    .xo-trust-badge__footer {
+      margin-top: 12px;
+      text-align: right;
+      font-size: 11px;
+      color: #aeaeb2;
+    }
+    .xo-trust-badge__footer a { color: #aeaeb2; text-decoration: none; }
+    .xo-trust-badge__footer a:hover { color: #1d1d1f; }
+
+    /* Code block */
+    .code-section { max-width: 900px; margin: 48px auto 0; }
+    .code-section h2 { font-size: 18px; margin-bottom: 12px; }
+    pre {
+      background: #1d1d1f;
+      color: #f5f5f7;
+      border-radius: 12px;
+      padding: 20px;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .kw { color: #ff7eb3; }
+    .fn { color: #7ec8e3; }
+    .str { color: #a8e6a3; }
+    .cmt { color: #636366; }
+  </style>
+</head>
+<body>
+
+  <h1>XO Trust Badge</h1>
+  <p class="subtitle">Embed verified trust scores in your app. Copy the code below.</p>
+
+  <div class="demo-grid">
+
+    <!-- Example 1: Verified user with high trust -->
+    <div class="xo-trust-badge" id="badge-verified">
+      <div class="xo-trust-badge__header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#86868b" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Verified by XO Protocol
+      </div>
+      <div class="xo-trust-badge__status">
+        <div class="xo-trust-badge__dot"></div>
+        <span class="xo-trust-badge__label">Identity Verified</span>
+      </div>
+      <div class="xo-trust-badge__metrics">
+        <div class="xo-trust-badge__metric">
+          <div class="xo-trust-badge__metric-value">100%</div>
+          <div class="xo-trust-badge__metric-label">Trust Score</div>
+        </div>
+        <div class="xo-trust-badge__metric">
+          <div class="xo-trust-badge__metric-value">Gold</div>
+          <div class="xo-trust-badge__metric-label">Reputation</div>
+        </div>
+        <div class="xo-trust-badge__metric">
+          <div class="xo-trust-badge__metric-value">78%</div>
+          <div class="xo-trust-badge__metric-label">Engagement</div>
+        </div>
+      </div>
+      <div class="xo-trust-badge__bar">
+        <div class="xo-trust-badge__bar-fill" style="width: 100%"></div>
+      </div>
+      <div class="xo-trust-badge__footer">
+        <a href="https://xoxo.space/protocol" target="_blank">Powered by XO Protocol</a>
+      </div>
+    </div>
+
+    <!-- Example 2: New user with low data -->
+    <div class="xo-trust-badge" id="badge-new">
+      <div class="xo-trust-badge__header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#86868b" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Verified by XO Protocol
+      </div>
+      <div class="xo-trust-badge__status">
+        <div class="xo-trust-badge__dot xo-trust-badge__dot--unverified"></div>
+        <span class="xo-trust-badge__label">Not Yet Verified</span>
+      </div>
+      <div class="xo-trust-badge__metrics">
+        <div class="xo-trust-badge__metric">
+          <div class="xo-trust-badge__metric-value">12%</div>
+          <div class="xo-trust-badge__metric-label">Trust Score</div>
+        </div>
+        <div class="xo-trust-badge__metric">
+          <div class="xo-trust-badge__metric-value">Novice</div>
+          <div class="xo-trust-badge__metric-label">Reputation</div>
+        </div>
+        <div class="xo-trust-badge__metric">
+          <div class="xo-trust-badge__metric-value">—</div>
+          <div class="xo-trust-badge__metric-label">Engagement</div>
+        </div>
+      </div>
+      <div class="xo-trust-badge__bar">
+        <div class="xo-trust-badge__bar-fill" style="width: 12%"></div>
+      </div>
+      <div class="xo-trust-badge__footer">
+        <a href="https://xoxo.space/protocol" target="_blank">Powered by XO Protocol</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Integration code example -->
+  <div class="code-section">
+    <h2>Integration (5 lines)</h2>
+    <pre><code><span class="kw">import</span> { <span class="fn">XOClient</span> } <span class="kw">from</span> <span class="str">'@xo-protocol/sdk'</span>
+
+<span class="kw">const</span> xo = <span class="kw">new</span> <span class="fn">XOClient</span>({ <span class="str">apiKey</span>: <span class="str">'your-api-key'</span> })
+xo.<span class="fn">setAccessToken</span>(userToken)
+
+<span class="cmt">// One call to get everything you need for the badge</span>
+<span class="kw">const</span> { identity, reputation, socialSignals } = <span class="kw">await</span> xo.<span class="fn">getTrustProfile</span>()
+
+<span class="cmt">// Use the data</span>
+badge.<span class="fn">render</span>({
+  verified:   identity.verified,
+  trustScore: identity.trust_score,
+  tier:       reputation.tier,
+  engagement: socialSignals.engagement_score,
+})</code></pre>
+  </div>
+
+  <!-- Inline JS to show dynamic rendering -->
+  <script>
+    // This demonstrates how you'd render a badge dynamically.
+    // In production, you'd call xo.getTrustProfile() and use real data.
+    function renderBadge(container, data) {
+      const badge = document.querySelector(container);
+      if (!badge) return;
+
+      const dot = badge.querySelector('.xo-trust-badge__dot');
+      const label = badge.querySelector('.xo-trust-badge__label');
+      const values = badge.querySelectorAll('.xo-trust-badge__metric-value');
+      const bar = badge.querySelector('.xo-trust-badge__bar-fill');
+
+      if (data.verified) {
+        dot.classList.remove('xo-trust-badge__dot--unverified');
+        label.textContent = 'Identity Verified';
+      } else {
+        dot.classList.add('xo-trust-badge__dot--unverified');
+        label.textContent = 'Not Yet Verified';
+      }
+
+      values[0].textContent = Math.round(data.trustScore * 100) + '%';
+      values[1].textContent = data.tier.charAt(0).toUpperCase() + data.tier.slice(1);
+      values[2].textContent = data.engagement != null
+        ? Math.round(data.engagement * 100) + '%'
+        : '—';
+
+      bar.style.width = Math.round(data.trustScore * 100) + '%';
+    }
+
+    // Demo: render with sample data
+    renderBadge('#badge-verified', {
+      verified: true,
+      trustScore: 1.0,
+      tier: 'gold',
+      engagement: 0.78,
+    });
+
+    renderBadge('#badge-new', {
+      verified: false,
+      trustScore: 0.12,
+      tier: 'novice',
+      engagement: null,
+    });
+  </script>
+</body>
+</html>

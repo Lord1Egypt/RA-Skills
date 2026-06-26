@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/ai-analysis.json",
+  "title": "AIAnalysisResult",
+  "description": "Data structure definition for AI health analysis results",
+  "type": "object",
+  "properties": {
+    "analysis_id": {
+      "type": "string",
+      "description": "Analysis ID"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Analysis time"
+    },
+    "time_range": {
+      "type": "object",
+      "properties": {
+        "start_date": {"type": "string", "format": "date"},
+        "end_date": {"type": "string", "format": "date"},
+        "days": {"type": "integer"}
+      }
+    },
+    "overall_health_score": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "grade": {
+          "type": "string",
+          "enum": ["Excellent", "Good", "Fair", "Needs Attention"]
+        }
+      }
+    },
+    "risk_predictions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "risk_type": {"type": "string"},
+          "probability": {"type": "number"},
+          "level": {"type": "string"},
+          "factors": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        }
+      }
+    },
+    "trends": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "metric": {"type": "string"},
+          "direction": {"type": "string", "enum": ["up", "down", "stable"]},
+          "change_value": {"type": "number"},
+          "change_percent": {"type": "number"}
+        }
+      }
+    },
+    "correlations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "metric1": {"type": "string"},
+          "metric2": {"type": "string"},
+          "correlation": {"type": "number"},
+          "significance": {"type": "string"}
+        }
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "level": {"type": "integer", "minimum": 1, "maximum": 3},
+          "category": {"type": "string"},
+          "action": {"type": "string"}
+        }
+      }
+    }
+  }
+}

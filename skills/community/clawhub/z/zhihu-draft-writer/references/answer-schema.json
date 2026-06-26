@@ -1,0 +1,33 @@
+{
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "answer_text": {
+          "type": "string",
+          "minLength": 200,
+          "maxLength": 800,
+          "description": "Generated answer body in Chinese. Must be 180–700 characters, no markdown title, no AI meta-wording."
+        }
+      },
+      "required": ["answer_text"],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["failed"]
+        },
+        "error": {
+          "type": "string",
+          "enum": ["unsafe_content"],
+          "description": "Reason the answer could not be generated safely."
+        }
+      },
+      "required": ["status", "error"],
+      "additionalProperties": false
+    }
+  ]
+}

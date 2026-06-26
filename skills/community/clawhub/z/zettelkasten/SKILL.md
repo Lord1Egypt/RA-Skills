@@ -1,35 +1,57 @@
 ---
-name: "Zettelkasten - 卡片笔记"
-description: "Zettelkasten - Card box note taking system with AI insights"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/zettelkasten"
-sourceUrl: "https://clawhub.ai/skills/zettelkasten"
+name: zettelkasten
+description: Zettelkasten - Card box note taking system with AI insights
+keywords: note-taking,knowledge-management,zettelkasten,ai,insights
+metadata:
+  openclaw:
+    emoji: "📝"
+    bins: ["python"]
+    pip: []
+    os:
+      - darwin
+      - linux
+      - windows
+    requires: []
 ---
 
-# Zettelkasten - 卡片笔记
+# Zettelkasten Card Box System
 
-> Zettelkasten - Card box note taking system with AI insights
+## Description
+A complete implementation of the Zettelkasten note-taking method, featuring:
+- Idea capture and organization
+- AI-generated insights and suggestions
+- Automatic connection detection
+- Daily review capabilities
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/zettelkasten`
-- **Source URL:** [https://clawhub.ai/skills/zettelkasten](https://clawhub.ai/skills/zettelkasten)
+## Usage
 
-## Overview
+### Record Idea
+```
+Record Idea: [Your idea content here]
+```
 
+Example:
+```
+Record Idea: I found that meditating 10 minutes daily improves focus and sleep quality
+```
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/zettelkasten
+## Features
+1. **Idea Capture**: Automatically generates structured cards with metadata
+2. **AI Insights**: Provides extended suggestions and research directions
+3. **Connection Detection**: Finds relationships between different ideas
+4. **Daily Review**: Random card review for knowledge consolidation
+
+## Output Format
+```markdown
+---
+ID: [timestamp]
+Tags: #tag1 #tag2 #tag3
+Type: Flash
+Date: [date]
+---
+
+## [Title]
+[Content]
+
+> AI Insight: [Generated insight]
 ```

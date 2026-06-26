@@ -1,0 +1,200 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wellallyhealth.com/schemas/cycle-tracker.json",
+  "title": "CycleTracker",
+  "description": "Women's health cycle tracking data structure",
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation time"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last updated time"
+    },
+    "user_settings": {
+      "type": "object",
+      "properties": {
+        "average_cycle_length": {
+          "type": "integer",
+          "minimum": 21,
+          "maximum": 40,
+          "description": "Average cycle length (days)",
+          "default": 28
+        },
+        "average_period_length": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 10,
+          "description": "Average period length (days)",
+          "default": 5
+        },
+        "pregnancy_planning": {
+          "type": "boolean",
+          "description": "Pregnancy planning mode",
+          "default": false
+        }
+      }
+    },
+    "cycles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "cycle_id": {
+            "type": "string",
+            "description": "Cycle ID, format: cycle_YYYYMMDD"
+          },
+          "period_start": {
+            "type": "string",
+            "format": "date",
+            "description": "Period start date"
+          },
+          "period_end": {
+            "type": ["string", "null"],
+            "format": "date",
+            "description": "Period end date"
+          },
+          "cycle_length": {
+            "type": ["integer", "null"],
+            "description": "Cycle length (days)"
+          },
+          "period_length": {
+            "type": ["integer", "null"],
+            "description": "Period length (days)"
+          },
+          "flow_pattern": {
+            "type": "object",
+            "description": "Flow pattern",
+            "additionalProperties": {
+              "type": "string",
+              "enum": ["spotting", "light", "medium", "heavy", "very_heavy"]
+            }
+          },
+          "pms_symptoms": {
+            "type": "object",
+            "properties": {
+              "start_date": {
+                "type": ["string", "null"],
+                "format": "date"
+              },
+              "symptoms": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                }
+              }
+            }
+          },
+          "daily_logs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {"type": "string"},
+                "date": {"type": "string", "format": "date"},
+                "cycle_day": {"type": "integer"},
+                "phase": {
+                  "type": "string",
+                  "enum": ["menstrual", "follicular", "ovulation", "luteal"]
+                },
+                "flow": {
+                  "type": "object",
+                  "properties": {
+                    "intensity": {
+                      "type": "string",
+                      "enum": ["spotting", "light", "medium", "heavy", "very_heavy"]
+                    },
+                    "description": {"type": "string"}
+                  }
+                },
+                "symptoms": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                },
+                "mood": {"type": "string"},
+                "energy_level": {
+                  "type": "string",
+                  "enum": ["high", "medium", "low"]
+                },
+                "medication_taken": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                },
+                "notes": {"type": "string"},
+                "created_at": {"type": "string", "format": "date-time"}
+              }
+            }
+          },
+          "ovulation_date": {
+            "type": ["string", "null"],
+            "format": "date"
+          },
+          "predictions": {
+            "type": "object",
+            "description": "Prediction data"
+          },
+          "notes": {"type": "string"},
+          "created_at": {"type": "string", "format": "date-time"},
+          "completed": {"type": "boolean"}
+        },
+        "required": ["cycle_id", "period_start", "created_at", "completed"]
+      }
+    },
+    "current_cycle": {
+      "type": ["object", "null"],
+      "properties": {
+        "period_start": {"type": "string", "format": "date"},
+        "period_end": {"type": ["string", "null"], "format": "date"},
+        "cycle_length": {"type": ["integer", "null"]},
+        "predicted_ovulation": {"type": ["string", "null"], "format": "date"},
+        "days_since_start": {"type": "integer"}
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "properties": {
+        "total_cycles_tracked": {"type": "integer"},
+        "average_cycle_length": {"type": "number"},
+        "cycle_length_range": {
+          "type": "array",
+          "items": {"type": "integer"}
+        },
+        "average_period_length": {"type": "number"},
+        "most_common_symptoms": {
+          "type": "object",
+          "properties": {
+            "luteal": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "menstrual": {
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          }
+        },
+        "regularity_score": {"type": "number"}
+      }
+    },
+    "predictions": {
+      "type": "object",
+      "properties": {
+        "next_period": {"type": "string", "format": "date"},
+        "next_period_confidence": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "very_high"]
+        },
+        "fertile_window_start": {"type": "string", "format": "date"},
+        "fertile_window_end": {"type": "string", "format": "date"},
+        "ovulation_date": {"type": "string", "format": "date"},
+        "prediction_confidence": {"type": "number"}
+      }
+    }
+  },
+  "required": ["created_at", "last_updated"]
+}

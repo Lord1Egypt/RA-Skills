@@ -1,0 +1,16 @@
+Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+$screen = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
+$bmp = New-Object System.Drawing.Bitmap($screen.Width, $screen.Height)
+$g = [System.Drawing.Graphics]::FromImage($bmp)
+$g.CopyFromScreen($screen.Location, [System.Drawing.Point]::Empty, $screen.Size)
+# Use environment variable for cross-platform compatibility
+$openclaw_media = $env:OPENCLAW_MEDIA_DIR
+if (-not $openclaw_media) {
+  $openclaw_media = Join-Path $env:USERPROFILE ".openclaw\media"
+}
+if (!(Test-Path $openclaw_media)) { New-Item -ItemType Directory -Path $openclaw_media | Out-Null }
+$path = Join-Path $openclaw_media ("screenshot_$(Get-Date -Format 'yyyyMMdd_HHmmss').png")
+$bmp.Save($path)
+$g.Dispose()
+$bmp.Dispose()
+Write-Output "MEDIA:$path"

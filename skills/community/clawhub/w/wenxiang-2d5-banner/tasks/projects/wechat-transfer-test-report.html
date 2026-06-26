@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微信转账测试报告 - "给我老婆转 3 块钱红包"</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Microsoft YaHei"; background: linear-gradient(135deg, #fef9f3, #f8f4e8); padding: 40px 20px; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 26px; color: #2c3e50; margin-bottom: 10px; }
+        .meta { color: #7f8c8d; font-size: 13px; }
+        .container { max-width: 1200px; margin: 0 auto; background: #fff; border-radius: 20px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .section { margin: 30px 0; }
+        .section-title { font-size: 20px; color: #2c3e50; border-left: 4px solid #3498db; padding-left: 15px; margin-bottom: 20px; }
+        .test-step { background: #f8f9fa; border-radius: 12px; padding: 20px; margin: 15px 0; border-left: 4px solid #27ae60; }
+        .test-step.pending { border-left-color: #95a5a6; }
+        .test-step.paused { border-left-color: #f39c12; }
+        .step-number { display: inline-block; width: 30px; height: 30px; border-radius: 50%; background: #27ae60; color: #fff; text-align: center; line-height: 30px; font-weight: bold; margin-right: 10px; }
+        .step-title { font-size: 16px; font-weight: bold; color: #2c3e50; }
+        .step-desc { color: #7f8c8d; margin-top: 10px; }
+        .mermaid { background: #fff; padding: 20px; margin: 20px 0; }
+        .summary-box { background: #e8f6f3; border-left: 4px solid #1abc9c; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .warning-box { background: #fff3cd; border-left: 4px solid #f39c12; padding: 20px; border-radius: 8px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🧧 微信转账测试报告</h1>
+        <div class="meta">测试场景："给我老婆转 3 块钱红包" | 时间：2026-03-08 13:27</div>
+    </header>
+
+    <div class="container">
+        <!-- 测试流程图 -->
+        <div class="section">
+            <h2 class="section-title">🗺️ 测试流程</h2>
+            <div class="mermaid">
+graph LR
+    A[用户语音指令] --> B[飞书确认卡片]
+    B --> C{用户确认？}
+    C -->|是 | D[打开微信 PC 版]
+    C -->|否 | E[取消]
+    D --> F[搜索联系人 李婉瑜]
+    F --> G[输入消息]
+    G --> H[打开红包界面]
+    H --> I[填入金额¥3]
+    I --> J[用户手动发红包]
+    style A fill:#3498db,color:#fff
+    style J fill:#e74c3c,color:#fff,stroke:#c0392b,stroke-width:3px
+            </div>
+        </div>
+
+        <!-- 测试步骤 -->
+        <div class="section">
+            <h2 class="section-title">📋 测试步骤</h2>
+            
+            <div class="test-step">
+                <span class="step-number">1</span>
+                <span class="step-title">检测微信进程</span>
+                <div class="step-desc">✅ 通过 - WeChatAppEx (PID: 3188, 内存：49.4 MB)</div>
+            </div>
+
+            <div class="test-step">
+                <span class="step-number">2</span>
+                <span class="step-title">激活微信窗口</span>
+                <div class="step-desc">⏳ 待实现 - 使用 UI Automation 激活微信</div>
+            </div>
+
+            <div class="test-step">
+                <span class="step-number">3</span>
+                <span class="step-title">搜索联系人"李婉瑜"</span>
+                <div class="step-desc">⏳ 待实现 - 使用 UI Automation 搜索并点击联系人</div>
+            </div>
+
+            <div class="test-step">
+                <span class="step-number">4</span>
+                <span class="step-title">输入消息</span>
+                <div class="step-desc">⏳ 待实现 - SendKeys 输入"给你转了 3 块钱红包，请查收~"</div>
+            </div>
+
+            <div class="test-step">
+                <span class="step-number">5</span>
+                <span class="step-title">打开红包界面</span>
+                <div class="step-desc">⏳ 待实现 - 模拟点击红包按钮</div>
+            </div>
+
+            <div class="test-step paused">
+                <span class="step-number">6</span>
+                <span class="step-title">填入金额 ¥3</span>
+                <div class="step-desc">⚠️ 安全暂停 - 用户手动点击"发红包"按钮（安全红线）</div>
+            </div>
+        </div>
+
+        <!-- 测试总结 -->
+        <div class="summary-box">
+            <h3>📊 测试总结</h3>
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li><strong>测试场景：</strong>"给我老婆转 3 块钱红包"</li>
+                <li><strong>收款人：</strong>李婉瑜（老婆）</li>
+                <li><strong>金额：</strong>¥3 元</li>
+                <li><strong>微信状态：</strong>✅ 已运行（PID: 3188）</li>
+                <li><strong>飞书卡片：</strong>✅ 已发送（messageId: om_x100b55e4c44a2ca0c116a35db7f64f1）</li>
+                <li><strong>自动化状态：</strong>🟡 框架已建，待实现 UI Automation 细节</li>
+            </ul>
+        </div>
+
+        <!-- 下一步行动 -->
+        <div class="section">
+            <h2 class="section-title">🎯 下一步行动</h2>
+            <div class="mermaid">
+graph TD
+    A[当前：框架完成] --> B[实现 UI Automation]
+    B --> C[微信窗口激活]
+    B --> D[联系人搜索定位]
+    B --> E[红包界面操作]
+    C --> F[完整流程测试]
+    D --> F
+    E --> F
+    F --> G[1 元小额测试]
+    G --> H{测试通过？}
+    H -->|是 | I[用户验收]
+    H -->|否 | B
+    style A fill:#f39c12,color:#fff
+    style I fill:#27ae60,color:#fff
+            </div>
+        </div>
+
+        <!-- 安全提示 -->
+        <div class="warning-box">
+            <h3>⚠️ 安全提示</h3>
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li>❌ <strong>不集成微信支付 API</strong> - 风险太高（私钥泄露、语音误识别）</li>
+                <li>✅ <strong>最后一步手动确认</strong> - 你点击"发红包"按钮（资金安全防线）</li>
+                <li>✅ <strong>飞书记录可追溯</strong> - 所有转账请求有审批记录</li>
+                <li>✅ <strong>小额测试优先</strong> - 先用 1 元测试完整流程</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'base' });
+    </script>
+</body>
+</html>

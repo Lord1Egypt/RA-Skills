@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pair codex-daemon ... wip.computer</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #FFFDF5;
+    --text: #1a1a1a;
+    --text-muted: #8a8580;
+    --accent: #0033FF;
+    --input-bg: #F5F3ED;
+    --input-border: #E0DDD6;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  }
+  html, body { height: 100%; font-family: var(--font); background: var(--bg); color: var(--text); }
+  .page { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
+  .card { max-width: 420px; width: 100%; text-align: center; }
+  h1 { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .sub { font-size: 16px; color: var(--text-muted); margin-bottom: 32px; }
+  input[type="text"] {
+    width: 100%; padding: 18px; font-size: 22px; font-weight: 600;
+    text-align: center; letter-spacing: 0.4em;
+    border: 2px solid var(--input-border); border-radius: 12px;
+    background: var(--input-bg); color: var(--text);
+    text-transform: uppercase; font-family: ui-monospace, "SF Mono", monospace;
+  }
+  input[type="text"]:focus { border-color: var(--accent); outline: none; }
+  .btn { display: block; width: 100%; padding: 18px; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; font-family: var(--font); cursor: pointer; margin-top: 16px; }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .status { margin-top: 18px; font-size: 14px; min-height: 1.4em; color: var(--text-muted); }
+  .status.error { color: #b00020; }
+  .status.success { color: #007e33; }
+  .footer { margin-top: 32px; font-size: 13px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="card">
+    <h1>Pair your Mac</h1>
+    <div class="sub">Type the code printed by <code>codex-daemon link</code></div>
+    <input id="codeInput" type="text" maxlength="6" autocomplete="off" autocapitalize="characters" inputmode="text" placeholder="ABC123">
+    <button id="pairBtn" class="btn btn-primary" type="button">Pair</button>
+    <div id="status" class="status"></div>
+    <div class="footer">Signed in as <span id="handle">...</span> ... <a href="#" id="signout">sign out</a></div>
+  </div>
+</div>
+<script>
+function getApiKey() {
+  return sessionStorage.getItem("wip_api_key");
+}
+function getHandle() {
+  return sessionStorage.getItem("wip_handle") || "(unknown)";
+}
+function setStatus(msg, kind) {
+  const el = document.getElementById("status");
+  el.textContent = msg;
+  el.className = "status" + (kind ? " " + kind : "");
+}
+function ensureSignedIn() {
+  if (!getApiKey()) {
+    location.href = "/app/login.html?next=" + encodeURIComponent("/pair");
+    return false;
+  }
+  document.getElementById("handle").textContent = getHandle();
+  return true;
+}
+
+document.getElementById("signout").addEventListener("click", (ev) => {
+  ev.preventDefault();
+  sessionStorage.removeItem("wip_api_key");
+  sessionStorage.removeItem("wip_handle");
+  location.href = "/app/login.html?next=" + encodeURIComponent("/pair");
+});
+
+async function pair() {
+  const input = document.getElementById("codeInput");
+  const code = input.value.trim().toUpperCase();
+  if (code.length !== 6) {
+    setStatus("Enter the 6-character code shown on your Mac.", "error");
+    return;
+  }
+  const btn = document.getElementById("pairBtn");
+  btn.disabled = true;
+  setStatus("Pairing...");
+  try {
+    const res = await fetch("/api/codex-relay/pair-complete", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + getApiKey(),
+      },
+      body: JSON.stringify({ code }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Pairing failed");
+    setStatus("Paired. Your Mac will pick this up in a few seconds.", "success");
+    btn.textContent = "Done";
+  } catch (err) {
+    setStatus(err.message || String(err), "error");
+    btn.disabled = false;
+  }
+}
+
+if (ensureSignedIn()) {
+  document.getElementById("pairBtn").addEventListener("click", pair);
+  document.getElementById("codeInput").addEventListener("keydown", (ev) => {
+    if (ev.key === "Enter") pair();
+  });
+  document.getElementById("codeInput").focus();
+}
+</script>
+</body>
+</html>

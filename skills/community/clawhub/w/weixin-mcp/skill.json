@@ -1,0 +1,19 @@
+{
+  "name": "weixin-mcp",
+  "version": "1.2.0",
+  "description": "Send and receive WeChat messages via weixin-mcp CLI. Use for WeChat bot integration, sending messages, checking inbox, and real-time webhook setup.",
+  "triggers": [
+    "weixin",
+    "wechat",
+    "微信",
+    "send wechat",
+    "发微信",
+    "weixin bot",
+    "微信机器人"
+  ],
+  "dependencies": [],
+  "author": "bkmashiro",
+  "homepage": "https://github.com/bkmashiro/weixin-mcp",
+  "repository": "https://github.com/bkmashiro/weixin-mcp",
+  "npmPackage": "weixin-mcp"
+}

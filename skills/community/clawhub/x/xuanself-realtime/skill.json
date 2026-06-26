@@ -1,0 +1,100 @@
+{
+  "name": "xuanself-realtime",
+  "display_name": "俄罗斯血糖检测设备市场调研（即时版）",
+  "version": "3.0.0",
+  "description": "俄罗斯血糖检测设备市场调研（即时版）v3.0 —— 2026-04-09 实战验证版。整合 Python 脚本化报告生成 + SerpAPI 实时搜索 + ast.literal_eval 智能解析 + Xuanself 10章节标准结构，输出可直接交付的 Word 报告。专为 Russia Country Manager 设计，彻底规避 Error 10004（Token 溢出）问题。",
+  "author": "WorkBuddy Custom",
+  "homepage": "https://github.com/workbuddy/xuanself-realtime",
+  "license": "MIT",
+  "language": "zh-CN",
+  "emoji": "🩸",
+  "categories": [
+    "research",
+    "market-intelligence",
+    "medical-device",
+    "multilingual",
+    "report-generation",
+    "russia-market"
+  ],
+  "tags": [
+    "医疗器械",
+    "俄罗斯市场",
+    "血糖检测设备",
+    "血糖仪",
+    "俄罗斯 Country Manager",
+    "医疗器械报告",
+    "医学进展",
+    "多语种调研",
+    "糖尿病",
+    "Word报告",
+    "实时数据",
+    "IDF",
+    "SerpAPI",
+    "市场调研",
+    "俄语",
+    "深度调研",
+    "竞品分析",
+    "进口替代",
+    "医保报销",
+    "招标数据",
+    "Wildberries",
+    "Ozon",
+    "Error 10004"
+  ],
+  "platforms": ["win32", "linux", "darwin"],
+  "requires": {
+    "bins": ["python3", "pip3"],
+    "python_pkgs": [
+      "requests>=2.28.0",
+      "beautifulsoup4>=4.11.0",
+      "lxml>=4.9.0",
+      "python-docx>=0.8.11"
+    ],
+    "external_apis": [
+      {
+        "name": "SerpAPI",
+        "url": "https://serpapi.com",
+        "required": true,
+        "note": "SerpAPI Key 配置于本技能 data/data_sources.json（必填，首次使用请替换 YOUR_SERPAPI_KEY 占位符）"
+      }
+    ]
+  },
+  "install": {
+    "pip": "pip3 install requests beautifulsoup4 lxml python-docx"
+  },
+  "trigger_words": [
+    "生成俄罗斯血糖检测设备市场报告",
+    "俄罗斯血糖仪市场调研即时版",
+    "俄罗斯血糖检测实时报告",
+    "生成俄罗斯血糖设备调研报告",
+    "俄罗斯血糖仪实战报告",
+    "俄罗斯医疗器械实时调研"
+  ],
+  "skills_used": [],
+  "entry_point": "scripts/run_report.py",
+  "readme": "README.md",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "skill.json",
+    "MANIFEST.json",
+    "requirements.txt",
+    "scripts/data_parser.py",
+    "scripts/report_generator.py",
+    "scripts/run_report.py",
+    "scripts/word_exporter.py",
+    "scripts/_rep_hdr.py",
+    "scripts/_rep_body1.py",
+    "scripts/_rep_body2.py",
+    "scripts/_rep_body3.py",
+    "scripts/_rep_body4.py",
+    "scripts/_rep_footer.py",
+    "data/data_sources.json",
+    "data/demo.json"
+  ],
+  "changelog": {
+    "3.0.0": "2026-04-09 — 实战验证版：Python 脚本化报告生成彻底规避 Error 10004；ast.literal_eval 智能解析兜底；BOM 清理机制；Xuanself 10章节标准结构；本技能完全自包含，无需额外安装 report-gama；",
+    "2.0.0": "2026-04-08 — 13维度报告框架，SerpAPI Key 内置",
+    "1.0.0": "2026-04-05 — 初始版本"
+  }
+}

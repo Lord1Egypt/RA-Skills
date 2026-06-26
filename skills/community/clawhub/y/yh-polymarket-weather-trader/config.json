@@ -1,0 +1,23 @@
+{
+  "max_position_usd": 10.0,
+  "longtail_ev_penalty": 0.2,
+  "longtail_price_cutoff": 0.2,
+  "use_kelly_sizing": true,
+  "kelly_multiplier": 0.25,
+  "noaa_win_probability": 0.85,
+  "bayesian_trigger_pnl_pct": -0.1,
+  "bayesian_close_threshold_pct": -0.15,
+  "entry_threshold": 0.50,
+  "exit_threshold": 0.45,
+  "ev_min_threshold": 0.05,
+  "locations": "NYC,Chicago,Tokyo",
+  "max_trades_per_run": 5,
+  "sizing_pct": 0.10,
+  "binary_only": false,
+  "slippage_max": 0.25,
+  "min_liquidity": 0.0,
+  "circuit_breaker_threshold": 5,
+  "circuit_breaker_cooldown_hours": 6,
+  "use_smart_money": true,
+  "smart_money_min_score": 7
+}

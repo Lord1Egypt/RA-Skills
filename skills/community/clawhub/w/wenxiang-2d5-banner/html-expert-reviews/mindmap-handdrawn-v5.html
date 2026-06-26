@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 专家点评项目知识库 - 手绘风格思维导图</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(135deg, #fef9f3 0%, #f8f4e8 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 26px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+        
+        .meta {
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+        
+        .diagram-container {
+            background: #fff;
+            border: 3px solid #2c3e50;
+            border-radius: 20px;
+            padding: 60px;
+            margin: 30px auto;
+            max-width: 1200px;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.1),
+                inset 0 0 60px rgba(0,0,0,0.02);
+            position: relative;
+        }
+        
+        .diagram-container::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #2c3e50, #3498db, #2c3e50);
+            z-index: -1;
+            border-radius: 20px;
+            opacity: 0.1;
+        }
+        
+        .mermaid {
+            background: transparent;
+            margin: 0;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 15px 30px;
+            border: 3px solid #2c3e50;
+            border-radius: 50px;
+            min-width: 130px;
+            background: #fff;
+            box-shadow: 4px 4px 0 rgba(44,62,80,0.15);
+            transition: all 0.3s;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 6px 6px 0 rgba(44,62,80,0.2);
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-top: 5px;
+            display: block;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        .legend {
+            background: #fff;
+            border: 2px solid #2c3e50;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 600px;
+        }
+        
+        .legend-title {
+            text-align: center;
+            font-size: 16px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            font-size: 14px;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        .legend-shape {
+            width: 40px;
+            height: 30px;
+            border: 2px solid #2c3e50;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .legend-ellipse {
+            border-radius: 50%;
+            background: #fff;
+        }
+        
+        .legend-rect {
+            border-radius: 10px;
+            background: #f9f6f0;
+        }
+        
+        .legend-line {
+            width: 40px;
+            height: 3px;
+            background: #2c3e50;
+            margin-right: 15px;
+            flex-shrink: 0;
+            position: relative;
+        }
+        
+        .legend-line-curve {
+            height: 20px;
+            background: transparent;
+            border: none;
+            border-top: 3px solid #2c3e50;
+            border-radius: 50% 50% 0 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📊 HTML 专家点评项目知识库</h1>
+        <div class="meta">生成时间：2026-03-08 12:39 | 手绘风格 V5.0</div>
+    </header>
+
+    <!-- 统计 -->
+    <div class="stats">
+        <div class="stat-item">
+            <span class="stat-number">13</span>
+            <span class="stat-label">HTML 文件</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">~220KB</span>
+            <span class="stat-label">总大小</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">5</span>
+            <span class="stat-label">项目关联</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">4</span>
+            <span class="stat-label">主目录</span>
+        </div>
+    </div>
+
+    <!-- 手绘风格思维导图 -->
+    <div class="diagram-container">
+        <div class="mermaid">
+graph TD
+    Root[("📊 HTML 专家点评<br/>项目知识库")]
+    
+    subgraph D1[html-expert-reviews]
+        direction TB
+        N1[13 个 HTML 文件<br/>~220KB]
+    end
+    
+    subgraph D2[tasks/projects]
+        direction TB
+        N2[5 个项目卡片<br/>豆包/地理/周报/任务/数据]
+    end
+    
+    subgraph D3[memory]
+        direction TB
+        N3[记忆文件<br/>今日记忆 + 同步日志]
+    end
+    
+    subgraph D4[skills]
+        direction TB
+        N4[技能文件<br/>16 个技能索引]
+    end
+    
+    Root --> D1
+    Root --> D2
+    Root --> D3
+    Root --> D4
+    
+    classDef root fill:#fff,stroke:#2c3e50,stroke-width:3px,font-size:16px,font-family:"Microsoft YaHei";
+    classDef folder fill:#f9f6f0,stroke:#2c3e50,stroke-width:2px,font-size:14px,font-family:"Microsoft YaHei",rx:10,ry:10;
+    classDef node fill:#fff,stroke:#2c3e50,stroke-width:2px,font-size:13px,font-family:"Microsoft YaHei",rx:15,ry:15;
+    
+    class Root root;
+    class D1,D2,D3,D4 folder;
+    class N1,N2,N3,N4 node;
+        </div>
+    </div>
+
+    <!-- 图例说明 -->
+    <div class="legend">
+        <div class="legend-title">🎨 手绘风格说明</div>
+        <div class="legend-item">
+            <div class="legend-shape legend-ellipse"></div>
+            <span>椭圆形节点 - 根节点和文件夹</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-shape legend-rect"></div>
+            <span>圆角矩形 - 内容节点</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-line"></div>
+            <span>曲线连接 - 自然流畅的线条</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-shape" style="border-radius: 20px; background: #fff;"></div>
+            <span>手绘边框 - 3px 粗线条 + 圆角</span>
+        </div>
+        <div class="legend-item">
+            <span style="font-family: Microsoft YaHei; font-size: 14px;">文字统一用微软雅黑，清晰易读</span>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                fontFamily: 'Microsoft YaHei, sans-serif',
+                primaryColor: '#fff',
+                primaryTextColor: '#2c3e50',
+                primaryBorderColor: '#2c3e50',
+                lineColor: '#2c3e50',
+                secondaryColor: '#f9f6f0',
+                tertiaryColor: '#fef9f3',
+                mainBkg: '#fff',
+                nodeBorder: '#2c3e50',
+                clusterBkg: '#fff',
+                clusterBorder: '#2c3e50',
+                fontSize: '14px'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                curve: 'basis',
+                rankSpacing: 100,
+                nodeSpacing: 80,
+                padding: 30,
+                defaultRenderer: 'dagre-d3'
+            }
+        });
+    </script>
+</body>
+</html>

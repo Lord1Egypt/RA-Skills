@@ -1,0 +1,6 @@
+{
+  "idea_generation": "Generate business ideas for {{user_skills}} that have expected gain >= {{min_gain}}",
+  "market_validation": "Check if {{idea_name}} has demand with low competition",
+  "mvp_creation": "Create a minimal landing page and CTA for {{idea_name}}",
+  "execution_steps": "List step-by-step actions for {{idea_name}} with ROI above {{roi_threshold}}"
+}

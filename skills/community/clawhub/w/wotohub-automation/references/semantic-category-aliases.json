@@ -1,0 +1,18 @@
+{
+  "cleanser": ["洁面", "洗面奶", "洁面乳", "洁面啫喱", "facial cleanser", "face wash", "cleansing foam"],
+  "skincare": ["护肤", "护肤品", "skincare", "skin care"],
+  "serum": ["精华", "精华液", "serum", "essence"],
+  "oral care": ["口腔护理", "oral care", "口腔", "牙齿护理"],
+  "mouthwash": ["漱口水", "mouthwash", "mouth wash"],
+  "electric toothbrush": ["电动牙刷", "electric toothbrush", "toothbrush"],
+  "sunscreen": ["防晒", "防晒霜", "防晒乳", "sunscreen", "sun cream", "spf"],
+  "face mask": ["面膜", "补水面膜", "修复面膜", "facial mask", "face mask", "sheet mask"],
+  "beauty": ["美妆", "beauty", "makeup"],
+  "lifestyle": ["生活方式", "lifestyle", "vlog", "日常博主"],
+  "technology": ["科技", "数码", "tech", "technology", "科技类", "数码类"],
+  "software": ["software", "saas", "软件", "工具软件", "productivity software"],
+  "app": ["app", "应用", "应用软件", "mobile app"],
+  "ai": ["ai", "人工智能", "ai tool", "ai tools", "人工智能工具"],
+  "automation": ["automation", "自动化", "workflow automation", "自动化工作流"],
+  "creator tools": ["creator tools", "创作者工具", "content tools", "内容工具"]
+}

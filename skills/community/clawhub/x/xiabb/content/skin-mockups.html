@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>ClawBB / 虾BB — Skin Mockups</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #1a1a2e; font-family: -apple-system, system-ui, sans-serif; padding: 40px; color: #fff; }
+h1 { text-align: center; font-size: 36px; margin-bottom: 10px; }
+.subtitle { text-align: center; color: #888; margin-bottom: 50px; font-size: 16px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; max-width: 1200px; margin: 0 auto; }
+.skin-card { background: rgba(255,255,255,0.03); border-radius: 20px; padding: 36px; border: 1px solid rgba(255,255,255,0.06); }
+.skin-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.skin-desc { font-size: 12px; color: #666; margin-bottom: 20px; }
+.states { display: flex; flex-direction: column; gap: 14px; }
+.state-label { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+
+/* HUD base */
+.hud {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 16px; font-size: 14px; font-weight: 500;
+  min-width: 340px; position: relative;
+}
+.hud .logo { width: 28px; height: 28px; object-fit: contain; flex-shrink: 0; }
+.hud .bars { display: flex; align-items: center; gap: 2px; height: 22px; }
+.hud .bar { width: 2.5px; border-radius: 2px; animation: pulse 0.8s ease-in-out infinite alternate; }
+.hud .bar:nth-child(1) { height: 5px; animation-delay: 0s; }
+.hud .bar:nth-child(2) { height: 10px; animation-delay: 0.15s; }
+.hud .bar:nth-child(3) { height: 15px; animation-delay: 0.3s; }
+.hud .bb {
+  position: absolute; top: 2px; right: auto; left: 30px;
+  font-size: 7px; font-weight: 900; font-family: 'Futura', sans-serif;
+  transform: rotate(-12deg);
+}
+.hud .logo.glow { filter: drop-shadow(0 0 8px currentColor); }
+
+@keyframes pulse { 0% { transform: scaleY(0.3); } 100% { transform: scaleY(1); } }
+
+/* SKINS */
+
+/* 1. Lobster Red */
+.s-lobster .hud { background: rgba(30,12,12,0.93); border: 1px solid rgba(239,68,68,0.15); border-radius: 12px; }
+.s-lobster .recording .bar { background: #ef4444; }
+.s-lobster .recording .text { color: #fff; }
+.s-lobster .done .text { color: #fff; }
+.s-lobster .done .bb { color: #34d399; }
+.s-lobster .done .hud { border-color: rgba(52,211,153,0.2); }
+
+/* 2. Ocean Blue */
+.s-ocean .hud { background: rgba(8,18,42,0.94); border: 1px solid rgba(56,130,255,0.15); border-radius: 14px; box-shadow: 0 8px 32px rgba(0,80,200,0.12); }
+.s-ocean .recording .bar { background: #60a5fa; }
+.s-ocean .recording .text { color: #c7dfff; }
+.s-ocean .done .text { color: #c7dfff; }
+.s-ocean .done .bb { color: #34d399; }
+.s-ocean .done .hud { border-color: rgba(52,211,153,0.2); }
+
+/* 3. Sunset Orange */
+.s-sunset .hud { background: linear-gradient(135deg, rgba(40,16,8,0.94), rgba(50,22,10,0.94)); border: 1px solid rgba(251,146,60,0.15); border-radius: 14px; box-shadow: 0 8px 32px rgba(200,80,0,0.08); }
+.s-sunset .recording .bar { background: #fb923c; }
+.s-sunset .recording .text { color: #fef3c7; }
+.s-sunset .done .text { color: #fef3c7; }
+.s-sunset .done .bb { color: #a3e635; }
+.s-sunset .done .hud { border-color: rgba(163,230,53,0.2); }
+
+/* 4. Chill Green */
+.s-chill .hud { background: rgba(10,28,16,0.92); border: 1px solid rgba(52,211,153,0.12); border-radius: 16px; box-shadow: 0 8px 32px rgba(0,150,80,0.06); }
+.s-chill .recording .bar { background: #34d399; }
+.s-chill .recording .text { color: #d1fae5; }
+.s-chill .done .text { color: #d1fae5; }
+.s-chill .done .bb { color: #a78bfa; }
+.s-chill .done .hud { border-color: rgba(167,139,250,0.2); }
+
+/* 5. Minimal Light */
+.s-minimal .hud { background: rgba(248,248,250,0.96); border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.s-minimal .recording .bar { background: #dc2626; }
+.s-minimal .recording .text { color: #1e1e2e; }
+.s-minimal .done .text { color: #1e1e2e; }
+.s-minimal .done .bb { color: #16a34a; }
+
+/* 6. Cyberpunk */
+.s-cyber .hud { background: rgba(10,0,30,0.95); border: 1px solid rgba(168,85,247,0.25); border-radius: 6px; box-shadow: 0 0 20px rgba(168,85,247,0.12), inset 0 0 20px rgba(168,85,247,0.04); }
+.s-cyber .recording .bar { background: #e879f9; box-shadow: 0 0 6px #e879f9; }
+.s-cyber .recording .text { color: #e0f2fe; font-family: 'SF Mono', 'Fira Code', monospace; letter-spacing: 0.5px; }
+.s-cyber .done .text { color: #e0f2fe; font-family: 'SF Mono', 'Fira Code', monospace; }
+.s-cyber .done .bb { color: #4ade80; }
+.s-cyber .done .hud { border-color: rgba(74,222,128,0.25); box-shadow: 0 0 20px rgba(74,222,128,0.08); }
+
+/* 7. Glassmorphism */
+.s-glass .hud { background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+.s-glass .recording .bar { background: rgba(248,113,113,0.8); }
+.s-glass .recording .text { color: rgba(255,255,255,0.9); }
+.s-glass .done .text { color: rgba(255,255,255,0.9); }
+.s-glass .done .bb { color: #4ade80; }
+
+/* 8. Kawaii Pink */
+.s-kawaii .hud { background: linear-gradient(135deg, rgba(50,15,35,0.94), rgba(40,10,30,0.94)); border: 1px solid rgba(244,114,182,0.2); border-radius: 18px; box-shadow: 0 8px 32px rgba(200,50,120,0.08); }
+.s-kawaii .recording .bar { background: #f472b6; border-radius: 3px; }
+.s-kawaii .recording .text { color: #fce7f3; }
+.s-kawaii .done .text { color: #fce7f3; }
+.s-kawaii .done .bb { color: #c084fc; }
+.s-kawaii .done .hud { border-color: rgba(192,132,252,0.2); }
+
+/* === LIGHT / WHITE SERIES === */
+
+/* Paper */
+.s-paper .hud { background: rgba(252,250,245,0.96); border: 1px solid rgba(160,130,80,0.12); border-radius: 14px; box-shadow: 0 4px 16px rgba(100,80,40,0.06); }
+.s-paper .recording .bar { background: #92400e; }
+.s-paper .recording .text { color: #44403c; }
+.s-paper .done .text { color: #44403c; }
+.s-paper .done .bb { color: #92400e; }
+
+/* Snow */
+.s-snow .hud { background: rgba(245,248,255,0.97); border: 1px solid rgba(148,163,184,0.15); border-radius: 16px; box-shadow: 0 4px 16px rgba(100,120,150,0.06); }
+.s-snow .recording .bar { background: #3b82f6; }
+.s-snow .recording .text { color: #334155; }
+.s-snow .done .text { color: #334155; }
+.s-snow .done .bb { color: #3b82f6; }
+
+/* Milk Tea */
+.s-milk .hud { background: rgba(255,250,240,0.96); border: 1px solid rgba(180,150,100,0.12); border-radius: 18px; box-shadow: 0 4px 16px rgba(120,90,40,0.05); }
+.s-milk .recording .bar { background: #b45309; }
+.s-milk .recording .text { color: #3f3f46; }
+.s-milk .done .text { color: #3f3f46; }
+.s-milk .done .bb { color: #b45309; }
+
+/* === PINK SERIES === */
+
+/* Rose */
+.s-rose .hud { background: rgba(45,12,25,0.94); border: 1px solid rgba(255,143,171,0.18); border-radius: 16px; box-shadow: 0 8px 32px rgba(200,60,100,0.08); }
+.s-rose .recording .bar { background: #ff8fab; }
+.s-rose .recording .text { color: #fce7f3; }
+.s-rose .done .text { color: #fce7f3; }
+.s-rose .done .bb { color: #c4b5fd; }
+
+/* Coral */
+.s-coral .hud { background: rgba(42,18,15,0.93); border: 1px solid rgba(255,111,97,0.15); border-radius: 14px; box-shadow: 0 8px 32px rgba(200,70,60,0.08); }
+.s-coral .recording .bar { background: #ff6f61; }
+.s-coral .recording .text { color: #fef2f2; }
+.s-coral .done .text { color: #fef2f2; }
+.s-coral .done .bb { color: #34d399; }
+
+/* Hot Pink */
+.s-hotpink .hud { background: rgba(40,5,20,0.95); border: 1px solid rgba(255,64,129,0.2); border-radius: 10px; box-shadow: 0 0 20px rgba(255,64,129,0.1); }
+.s-hotpink .recording .bar { background: #ff4081; box-shadow: 0 0 4px #ff4081; }
+.s-hotpink .recording .text { color: #fce4ec; }
+.s-hotpink .done .text { color: #fce4ec; }
+.s-hotpink .done .bb { color: #ba93ff; }
+
+/* Peach */
+.s-peach .hud { background: rgba(48,20,14,0.93); border: 1px solid rgba(255,183,148,0.15); border-radius: 16px; box-shadow: 0 8px 32px rgba(200,100,50,0.06); }
+.s-peach .recording .bar { background: #ffb794; }
+.s-peach .recording .text { color: #fff7ed; }
+.s-peach .done .text { color: #fff7ed; }
+.s-peach .done .bb { color: #c084fc; }
+
+/* === SPECIAL === */
+
+/* Claude */
+.s-claude .hud { background: rgba(42,36,30,0.95); border: 1px solid rgba(217,119,62,0.2); border-radius: 14px; box-shadow: 0 8px 32px rgba(180,90,30,0.1); }
+.s-claude .recording .bar { background: #d9773e; }
+.s-claude .recording .text { color: #fcf5eb; }
+.s-claude .done .text { color: #fcf5eb; }
+.s-claude .done .bb { color: #4ade80; }
+</style>
+</head>
+<body>
+
+<h1><img src="logos/logo-white.png" style="height:36px;vertical-align:middle"> 虾BB / ClawBB — Skin Mockups</h1>
+<p class="subtitle">HUD 皮肤设计方案 — 录音状态 + 完成状态 | 使用产品 logo，非 emoji</p>
+
+<div class="grid">
+
+<!-- TEMPLATE MACRO via JS -->
+</div>
+
+<script>
+const skins = [
+  // === DARK SERIES ===
+  { id:'lobster', name:'🦞 Lobster Red / 龙虾红', desc:'Default — 经典品牌色', recLogo:'red', doneLogo:'green', cardBg:'' },
+  { id:'ocean', name:'🌊 Ocean Blue / 大海蓝', desc:'深邃宁静', recLogo:'blue', doneLogo:'green', cardBg:'' },
+  { id:'sunset', name:'🌅 Sunset Orange / 夏日橙', desc:'温暖活力', recLogo:'orange', doneLogo:'lime', cardBg:'' },
+  { id:'chill', name:'🌿 Chill Green / 休闲绿', desc:'自然放松', recLogo:'green', doneLogo:'purple', cardBg:'' },
+  { id:'cyber', name:'💜 Cyberpunk / 赛博朋克', desc:'霓虹光效', recLogo:'purple', doneLogo:'cyan', cardBg:'' },
+  { id:'glass', name:'🪟 Glass / 毛玻璃', desc:'半透明磨砂', recLogo:'red', doneLogo:'cyan', cardBg:'background:linear-gradient(135deg,rgba(100,50,150,0.3),rgba(50,100,200,0.3))' },
+
+  // === LIGHT / WHITE SERIES ===
+  { id:'minimal', name:'⬜ Minimal / 极简白', desc:'Apple 极简风', recLogo:'red', doneLogo:'dark', cardBg:'background:rgba(255,255,255,0.06)' },
+  { id:'paper', name:'📄 Paper / 纸白', desc:'温暖纸张质感', recLogo:'brown', doneLogo:'dark', cardBg:'background:rgba(255,255,255,0.06)' },
+  { id:'snow', name:'❄️ Snow / 雪白', desc:'冷色调纯白', recLogo:'blue', doneLogo:'slate', cardBg:'background:rgba(255,255,255,0.06)' },
+  { id:'milk', name:'🥛 Milk Tea / 奶茶白', desc:'温柔米色底', recLogo:'brown', doneLogo:'charcoal', cardBg:'background:rgba(255,255,255,0.06)' },
+
+  // === PINK / GIRLY SERIES ===
+  { id:'kawaii', name:'🌸 Kawaii Pink / 可爱粉', desc:'软萌少女心', recLogo:'pink', doneLogo:'purple', cardBg:'' },
+  { id:'rose', name:'🌹 Rose / 玫瑰粉', desc:'优雅玫瑰色', recLogo:'rose', doneLogo:'lavender', cardBg:'' },
+  { id:'coral', name:'🐚 Coral / 珊瑚粉', desc:'清新珊瑚色', recLogo:'coral', doneLogo:'cyan', cardBg:'' },
+  { id:'hotpink', name:'💗 Hot Pink / 辣粉', desc:'大胆亮粉', recLogo:'hotpink', doneLogo:'lavender', cardBg:'' },
+  { id:'peach', name:'🍑 Peach / 蜜桃粉', desc:'甜蜜蜜桃色', recLogo:'peach', doneLogo:'purple', cardBg:'' },
+
+  // === SPECIAL ===
+  { id:'claude', name:'🤖 Claude / AI 助手', desc:'Anthropic 品牌配色', recLogo:'claude-orange', doneLogo:'cyan', cardBg:'' },
+];
+
+const grid = document.querySelector('.grid');
+skins.forEach(s => {
+  grid.innerHTML += `
+  <div class="skin-card s-${s.id}" ${s.cardBg ? 'style="'+s.cardBg+'"' : ''}>
+    <div class="skin-name">${s.name}</div>
+    <div class="skin-desc">${s.desc}</div>
+    <div class="states">
+      <div>
+        <div class="state-label">Recording 录音中</div>
+        <div class="recording">
+          <div class="hud">
+            <img class="logo glow" src="logos/logo-${s.recLogo}.png" alt="logo">
+            <div class="bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+            <div class="bars" style="transform:scaleX(-1)"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+            <span class="text">帮我查一下 OpenClaw 有什么新的...</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="state-label">Done 完成</div>
+        <div class="done">
+          <div class="hud">
+            <img class="logo" src="logos/logo-${s.doneLogo}.png" alt="logo">
+            <span class="bb">BB!</span>
+            <span class="text">帮我查一下 OpenClaw 有什么新的 skills</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+});
+</script>
+
+<p style="text-align:center; color:#555; margin-top:50px; font-size:13px;">
+  虾BB / ClawBB — Skin System v1<br>
+  Each skin: background, corner radius, text color, recording color, success color, bar style, logo tint
+</p>
+
+</body>
+</html>

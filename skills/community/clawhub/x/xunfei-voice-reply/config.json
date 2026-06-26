@@ -1,0 +1,18 @@
+{
+  "voice": "x4_xiaoyan",
+  "availableVoices": {
+    "x4_xiaoyan": "讯飞晓燕",
+    "x4_yezi": "讯飞小露",
+    "aisjiuxu": "讯飞许久",
+    "aisjinger": "讯飞小婧",
+    "aisbabyxu": "讯飞许小宝"
+  },
+  "audio": {
+    "aue": "raw",
+    "auf": "audio/L16;rate=16000",
+    "tte": "UTF8",
+    "outputBitrate": "24k",
+    "outputSampleRate": 24000
+  },
+  "timeout": 60000
+}

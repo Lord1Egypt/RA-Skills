@@ -1,35 +1,83 @@
 ---
-name: "Xiaohongshu Content Creator"
-description: "小紅書內容創作技能 - 爆款筆記標題、內容模板、hashtag策略、發布時間優化。適合博主、品牌、MCN。觸發詞：小紅書、紅書、xiaohongshu、筆記、種草、爆款、小紅書文案、筆記標題。"
-category: "creative"
-source: "ClawHub"
-tags: [chinese, content, marketing, social-media, xiaohongshu]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/xiaohongshu-content"
-sourceUrl: "https://clawhub.ai/skills/xiaohongshu-content"
+name: Xiaohongshu Content Creator
+description: 小紅書內容創作技能 - 爆款筆記標題、內容模板、hashtag策略、發布時間優化。適合博主、品牌、MCN。觸發詞：小紅書、紅書、xiaohongshu、筆記、種草、爆款、小紅書文案、筆記標題。
+version: 1.0.0
+author: psy仔
+slug: xiaohongshu-content
 ---
 
 # Xiaohongshu Content Creator
 
-> 小紅書內容創作技能 - 爆款筆記標題、內容模板、hashtag策略、發布時間優化。適合博主、品牌、MCN。觸發詞：小紅書、紅書、xiaohongshu、筆記、種草、爆款、小紅書文案、筆記標題。
+小紅書內容創作技能，幫你打造爆款筆記。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/xiaohongshu-content`
-- **Source URL:** [https://clawhub.ai/skills/xiaohongshu-content](https://clawhub.ai/skills/xiaohongshu-content)
+## 核心功能
 
-## Overview
+### 1. 爆款標題生成
+公式化標題：
+- 痛點 + 解決方案
+- 數字 + 好奇心
+- 對比 + 反差
+- 身份認同
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/xiaohongshu-content
+### 2. 內容結構
+黃金結構：
 ```
+【標題】吸引眼球
+【開頭】痛點共鳴
+【正文】乾貨分享
+【結尾】互動引導
+【標籤】精準hashtag
+```
+
+### 3. Hashtag 策略
+- 熱門標籤 (流量大)
+- 精準標籤 (轉化高)
+- 長尾標籤 (競爭小)
+
+### 4. 發布時間
+最佳發布時段：
+- 7:00-9:00 早高峰
+- 12:00-14:00 午休
+- 18:00-22:00 晚高峰
+
+## 熱門賽道
+
+| 賽道 | 特點 |
+|------|------|
+| 女性成長 | 高互動、知識付費 |
+| 美妝護膚 | 高轉化、品牌合作 |
+| 穿搭 | 視覺導向、電商 |
+| 美食 | 生活化、易爆款 |
+| 旅行 | 季節性、廣告價值高 |
+| AI工具 | 新興、專業博主少 |
+
+## 使用方式
+
+**生成標題：**
+```
+幫我寫10個小紅書標題，主題是：[主題]
+```
+
+**完整筆記：**
+```
+幫我寫一篇小紅書筆記，關於：[主題]，風格：[專業/日常/種草]
+```
+
+**Hashtag推薦：**
+```
+推薦小紅書hashtag，主題：[主題]
+```
+
+## 變現路徑
+
+1. **蒲公英平台** - 品牌合作
+2. **店鋪帶貨** - 電商轉化
+3. **知識付費** - 課程/諮詢
+4. **私域引流** - 微信轉化
+
+## 注意事項
+
+- 避免敏感詞
+- 圖文並茂效果更好
+- 保持真實感
+- 持續更新累積權重

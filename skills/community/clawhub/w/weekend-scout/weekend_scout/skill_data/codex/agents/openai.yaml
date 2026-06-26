@@ -1,0 +1,6 @@
+interface:
+  display_name: "Weekend Scout"
+  short_description: "Scout weekend outdoor events near your city"
+  brand_color: "#4CAF50"
+policy:
+  allow_implicit_invocation: false

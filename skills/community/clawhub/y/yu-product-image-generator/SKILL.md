@@ -1,35 +1,91 @@
 ---
-name: "Yu Product Image Generator"
-description: "AI 商品图生成器 - 多方案选择、12 种语言、分镜规划与批量生成"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/yu-product-image-generator"
-sourceUrl: "https://clawhub.ai/skills/yu-product-image-generator"
+name: yu-product-image-generator
+version: 1.0.1
+description: AI 商品图生成器 - 多方案选择、12 种语言、分镜规划与批量生成
+author: master-yu
 ---
 
-# Yu Product Image Generator
+# product-image-generator - AI 商品图生成器（完整版）
 
-> AI 商品图生成器 - 多方案选择、12 种语言、分镜规划与批量生成
+## 功能概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/yu-product-image-generator`
-- **Source URL:** [https://clawhub.ai/skills/yu-product-image-generator](https://clawhub.ai/skills/yu-product-image-generator)
+为画师设计的 AI 商品图生成技能，支持：
+- 多方案选择（3 个不同风格）
+- 12 种语言支持
+- 分镜规划与编辑
+- 设计规范系统
+- 批量生成与下载
 
-## Overview
+## 使用方式
 
+### 对话式交互流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/yu-product-image-generator
+**Step 1: 上传产品图**
 ```
+用户：[发送 1-6 张产品图]
+画师：收到！正在分析产品特征...
+```
+
+**Step 2: 选择方案**
+```
+画师：生成 3 个方案：
+
+方案 1：治愈系温馨风 🌿
+- 视觉：柔和光线、木质背景、温暖色调
+- 文案风格：自然清新、居家氛围
+
+方案 2：简约商务风 📦
+- 视觉：白底、极简、专业感
+- 文案风格：品质保证、批量供应
+
+方案 3：时尚潮流风 ✨
+- 视觉：撞色背景、年轻化、ins 风
+- 文案风格：网红同款、送礼佳品
+
+请选择（1/2/3）：
+```
+
+**Step 3: 选择语言**
+```
+用户：1（治愈系温馨风）
+画师：已选择：治愈系温馨风
+
+请选择语言：
+1. 中文
+2. 英文
+3. 日文
+4. 韩文
+...
+12. 无文字
+
+用户：1（中文）
+```
+
+**Step 4: 确认分镜规划**
+```
+画师：分镜规划：
+
+图 1：首页主图
+- 构图：产品居中，木质背景
+- 文案：自然清新，居家必备
+
+图 2：细节特写
+- 构图：叶片特写，展示质感
+- 文案：精选品质，匠心工艺
+
+图 3：场景图
+- 构图：客厅摆放，生活场景
+- 文案：点缀生活，温馨相伴
+
+确认吗？（确认/调整）
+```
+
+**Step 5: 生成图片**
+```
+画师：开始生成，预计 2-3 分钟...
+[进度显示]
+
+✅ 生成完成！
+- 首页主图（1200×1200）✓
+- 细节特写（1200×1200）✓
+- 场景图（1200×1200）✓

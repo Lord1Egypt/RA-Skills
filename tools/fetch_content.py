@@ -13,6 +13,7 @@ Set GITHUB_TOKEN env var for higher GitHub API rate limits.
 import os, json, sys, re, io, zipfile, base64, urllib.request, urllib.parse, urllib.error
 
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
+CLAWHUB_TOKEN = os.environ.get("CLAWHUB_TOKEN", "")
 CLAWHUB_API = "https://clawhub.ai/api/v1"
 LOBEHUB_RAW = "https://raw.githubusercontent.com/lobehub/lobe-chat-agents/main/src"
 GITHUB_API = "https://api.github.com"
@@ -64,37 +65,62 @@ def github_get_file(repo, path, timeout=20):
         return http_get(dl_url, headers=gh_headers())
     return None
 
+def clawhub_headers():
+    h = {"User-Agent": "Mozilla/5.0 (compatible; RA-Skills/2.0)"}
+    if CLAWHUB_TOKEN:
+        h["Authorization"] = f"Bearer {CLAWHUB_TOKEN}"
+    return h
+
+def clawhub_build_skill_md(meta):
+    skill = meta.get("skill", meta)
+    desc = (skill.get("description") or "").strip()
+    if not desc:
+        return None
+    if desc.lstrip().startswith("---"):
+        return desc + "\n"
+    slug = skill.get("slug", "")
+    name = skill.get("displayName") or slug
+    summary = (skill.get("summary") or "").replace('"', "'").strip()
+    tags = skill.get("tags") or []
+    if isinstance(tags, dict):
+        tags = [k for k in tags.keys() if k != "latest"]
+    tags_str = ", ".join(str(t) for t in tags) if tags else ""
+    lv = meta.get("latestVersion")
+    version = lv.get("version") if isinstance(lv, dict) else ""
+    return (
+        f"---\nname: {slug}\ndescription: \"{summary}\"\n"
+        f"source: ClawHub\nversion: {version}\ntags: [{tags_str}]\n"
+        f"compatible: [claude-code, openai-agents, hermes-agent, any-llm]\n---\n\n"
+        f"# {name}\n\n{desc}\n"
+    )
+
 def fetch_clawhub(slug):
-    print(f"Fetching ClawHub metadata for '{slug}'...")
-    meta = http_get(f"{CLAWHUB_API}/skills/{slug}",
-                    headers={"User-Agent": "Mozilla/5.0"}, as_json=True)
+    print(f"Fetching ClawHub skill '{slug}'{' (authenticated)' if CLAWHUB_TOKEN else ''}...")
+    meta = http_get(f"{CLAWHUB_API}/skills/{urllib.parse.quote(slug)}",
+                    headers=clawhub_headers(), as_json=True)
     if not isinstance(meta, dict):
         print("Error: Could not reach ClawHub API.")
         return None
+    content = clawhub_build_skill_md(meta)
+    if content and len(content.strip()) >= 50:
+        return content
+    # Fallback: legacy ZIP download
     skill = meta.get("skill", meta)
     lv = meta.get("latestVersion") or skill.get("latestVersion")
-    version = None
-    if isinstance(lv, dict):
-        version = lv.get("version")
+    version = lv.get("version") if isinstance(lv, dict) else None
     if not version:
-        tags = skill.get("tags", {})
-        version = tags.get("latest") if isinstance(tags, dict) else None
-    if not version:
-        print("Error: Could not determine version.")
+        print("Error: No content in metadata and no version to download.")
         return None
     print(f"Downloading ZIP (slug={slug}, version={version})...")
     data = http_get(
         f"{CLAWHUB_API}/download?slug={slug}&version={urllib.parse.quote(str(version))}",
-        headers={"User-Agent": "Mozilla/5.0"},
-        timeout=40,
-        as_bytes=True,
+        headers=clawhub_headers(), timeout=40, as_bytes=True,
     )
     if not data:
         print("Error: Download failed.")
         return None
     try:
         with zipfile.ZipFile(io.BytesIO(data)) as zf:
-            print(f"ZIP contains: {zf.namelist()}")
             for candidate in ("SKILL.md", "skill.md"):
                 if candidate in zf.namelist():
                     return zf.read(candidate).decode("utf-8", errors="replace")

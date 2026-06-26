@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ra-skills"
+version = "1.0.0"
+description = "Search 90,896 Hermes Agent skills offline — instant CLI + API over the RA-Skills registry"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "Lord1Egypt" }]
+keywords = ["ai", "agents", "skills", "hermes", "claude-code", "registry", "search", "offline"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://github.com/Lord1Egypt/RA-Skills"
+Repository = "https://github.com/Lord1Egypt/RA-Skills"
+Issues = "https://github.com/Lord1Egypt/RA-Skills/issues"
+
+[project.scripts]
+ra-skills = "ra_skills.cli:main"
+ra = "ra_skills.cli:main"
+
+[tool.setuptools]
+packages = ["ra_skills"]
+
+[tool.setuptools.package-data]
+ra_skills = ["_data/registry.json"]

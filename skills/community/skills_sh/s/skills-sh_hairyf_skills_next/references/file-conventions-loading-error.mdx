@@ -1,0 +1,154 @@
+---
+name: file-conventions-loading-error
+description: Loading and error handling with loading.tsx and error.tsx files
+---
+
+# Loading and Error Files
+
+Next.js provides special files for handling loading states and errors: `loading.tsx` and `error.tsx`.
+
+## Loading Files
+
+Create `loading.tsx` to show loading UI while a route segment is loading:
+
+```tsx
+// app/dashboard/loading.tsx
+export default function Loading() {
+  return <div>Loading dashboard...</div>
+}
+```
+
+### Behavior
+
+- Automatically wraps `page.tsx` and children in a `<Suspense>` boundary
+- Shows immediately on navigation
+- Prefetched for instant feedback
+- Navigation is interruptible
+- Shared layouts remain interactive
+
+### Loading Skeletons
+
+Create meaningful loading states:
+
+```tsx
+// app/dashboard/loading.tsx
+export default function Loading() {
+  return (
+    <div className="space-y-4">
+      <div className="h-8 bg-gray-200 rounded w-3/4 animate-pulse"></div>
+      <div className="h-4 bg-gray-200 rounded w-1/2 animate-pulse"></div>
+      <div className="h-4 bg-gray-200 rounded w-2/3 animate-pulse"></div>
+    </div>
+  )
+}
+```
+
+## Error Files
+
+Create `error.tsx` to handle runtime errors:
+
+```tsx
+'use client' // Error boundaries must be Client Components
+
+import { useEffect } from 'react'
+
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string }
+  reset: () => void
+}) {
+  useEffect(() => {
+    // Log error to error reporting service
+    console.error(error)
+  }, [error])
+
+  return (
+    <div>
+      <h2>Something went wrong!</h2>
+      <button onClick={() => reset()}>Try again</button>
+    </div>
+  )
+}
+```
+
+### Error Props
+
+- `error`: The error object that was thrown
+- `reset`: Function to reset the error boundary and retry rendering
+
+### Error Boundary Scope
+
+`error.tsx` wraps the route segment and its nested children. Errors bubble up to the nearest error boundary.
+
+### Re-throwing Errors
+
+To bubble errors up to parent boundaries:
+
+```tsx
+'use client'
+
+export default function Error({ error, reset }: ErrorProps) {
+  // Re-throw to bubble up
+  if (error.message.includes('critical')) {
+    throw error
+  }
+
+  return (
+    <div>
+      <h2>Something went wrong!</h2>
+      <button onClick={reset}>Try again</button>
+    </div>
+  )
+}
+```
+
+## Not Found Files
+
+Create `not-found.tsx` to handle 404 errors:
+
+```tsx
+// app/not-found.tsx
+export default function NotFound() {
+  return (
+    <div>
+      <h2>Not Found</h2>
+      <p>Could not find requested resource</p>
+    </div>
+  )
+}
+```
+
+Or use the `notFound()` function:
+
+```tsx
+import { notFound } from 'next/navigation'
+
+export default async function Page({ params }: { params: { id: string } }) {
+  const post = await getPost(params.id)
+
+  if (!post) {
+    notFound()
+  }
+
+  return <div>{post.title}</div>
+}
+```
+
+## Key Points
+
+- `loading.tsx` creates loading UI with Suspense boundaries
+- `error.tsx` must be a Client Component
+- `error.tsx` receives `error` and `reset` props
+- `not-found.tsx` handles 404 errors
+- Use `notFound()` function to trigger 404
+- Loading states are prefetched for instant feedback
+- Error boundaries wrap route segments and children
+
+<!--
+Source references:
+- https://nextjs.org/docs/app/api-reference/file-conventions/loading
+- https://nextjs.org/docs/app/api-reference/file-conventions/error
+- https://nextjs.org/docs/app/api-reference/file-conventions/not-found
+-->

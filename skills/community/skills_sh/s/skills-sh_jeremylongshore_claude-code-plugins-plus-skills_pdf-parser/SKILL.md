@@ -1,35 +1,73 @@
 ---
 name: "pdf-parser"
-description: "Indexed by skills.sh from jeremylongshore/claude-code-plugins-plus-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "jeremylongshore"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/jeremylongshore/claude-code-plugins-plus-skills/pdf-parser"
-sourceUrl: "https://skills.sh/jeremylongshore/claude-code-plugins-plus-skills/pdf-parser"
+description: |
+  Configure and manage - Parse pdf parser operations. Auto-activating skill for Business Automation.
+  Triggers on: pdf parser, pdf parser
+  Part of the Business Automation skill category. Use when working with pdf parser functionality. Trigger with phrases like "pdf parser", "pdf parser", "pdf".
+allowed-tools: "Read, Write, Edit, Bash(cmd:*)"
+version: 1.0.0
+license: MIT
+author: "Jeremy Longshore <jeremy@intentsolutions.io>"
+compatible-with: claude-code
 ---
 
-# pdf-parser
-
-> Indexed by skills.sh from jeremylongshore/claude-code-plugins-plus-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** jeremylongshore
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/jeremylongshore/claude-code-plugins-plus-skills/pdf-parser`
-- **Source URL:** [https://skills.sh/jeremylongshore/claude-code-plugins-plus-skills/pdf-parser](https://skills.sh/jeremylongshore/claude-code-plugins-plus-skills/pdf-parser)
+# Pdf Parser
 
 ## Overview
 
+This skill provides automated assistance for pdf parser tasks within the Business Automation domain.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/jeremylongshore/claude-code-plugins-plus-skills/pdf-parser
-```
+## When to Use
+
+This skill activates automatically when you:
+- Mention "pdf parser" in your request
+- Ask about pdf parser patterns or best practices
+- Need help with business automation skills covering workflow automation, email processing, spreadsheet operations, and business process optimization.
+
+## Instructions
+
+1. Provides step-by-step guidance for pdf parser
+2. Follows industry best practices and patterns
+3. Generates production-ready code and configurations
+4. Validates outputs against common standards
+
+## Examples
+
+**Example: Basic Usage**
+Request: "Help me with pdf parser"
+Result: Provides step-by-step guidance and generates appropriate configurations
+
+
+## Prerequisites
+
+- Relevant development environment configured
+- Access to necessary tools and services
+- Basic understanding of business automation concepts
+
+
+## Output
+
+- Generated configurations and code
+- Best practice recommendations
+- Validation results
+
+
+## Error Handling
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| Configuration invalid | Missing required fields | Check documentation for required parameters |
+| Tool not found | Dependency not installed | Install required tools per prerequisites |
+| Permission denied | Insufficient access | Verify credentials and permissions |
+
+
+## Resources
+
+- Official documentation for related tools
+- Best practices guides
+- Community examples and tutorials
+
+## Related Skills
+
+Part of the **Business Automation** skill category.
+Tags: automation, workflow, spreadsheets, email, business

@@ -1,0 +1,185 @@
+---
+name: core-navigation
+description: Navigation, linking, prefetching, and client-side transitions in Next.js
+---
+
+# Navigation and Linking
+
+Next.js provides optimized navigation with prefetching, streaming, and client-side transitions using the `<Link>` component.
+
+## Using the Link Component
+
+Use Next.js `<Link>` component for client-side navigation:
+
+```tsx
+import Link from 'next/link'
+
+export default function Navigation() {
+  return (
+    <nav>
+      <Link href="/">Home</Link>
+      <Link href="/about">About</Link>
+      <Link href="/blog">Blog</Link>
+    </nav>
+  )
+}
+```
+
+## Prefetching
+
+Next.js automatically prefetches routes linked with `<Link>` when they enter the viewport:
+
+```tsx
+import Link from 'next/link'
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <nav>
+      {/* Automatically prefetched */}
+      <Link href="/blog">Blog</Link>
+      {/* Not prefetched */}
+      <a href="/contact">Contact</a>
+    </nav>
+  )
+}
+```
+
+Prefetching behavior:
+- **Static routes**: Full route is prefetched
+- **Dynamic routes**: Prefetching is skipped or partial (if `loading.tsx` exists)
+
+## Disabling Prefetching
+
+Disable prefetching for specific links:
+
+```tsx
+<Link href="/dashboard" prefetch={false}>
+  Dashboard
+</Link>
+```
+
+## Streaming with loading.tsx
+
+Create `loading.tsx` to enable streaming for dynamic routes:
+
+```tsx
+// app/dashboard/loading.tsx
+export default function Loading() {
+  return <div>Loading dashboard...</div>
+}
+```
+
+This allows:
+- Immediate navigation feedback
+- Partial prefetching of layouts and loading states
+- Better Core Web Vitals (TTFB, FCP, TTI)
+
+## Client-Side Transitions
+
+`<Link>` performs client-side transitions:
+- No full page reload
+- Preserves React state
+- Updates URL without server roundtrip
+- Works with browser back/forward buttons
+
+## Programmatic Navigation
+
+Use `useRouter` hook in Client Components:
+
+```tsx
+'use client'
+
+import { useRouter } from 'next/navigation'
+
+export default function Button() {
+  const router = useRouter()
+
+  return (
+    <button onClick={() => router.push('/dashboard')}>
+      Go to Dashboard
+    </button>
+  )
+}
+```
+
+Navigation methods:
+- `router.push(href)` - Navigate to route
+- `router.replace(href)` - Replace current route
+- `router.back()` - Go back
+- `router.forward()` - Go forward
+- `router.refresh()` - Refresh current route
+
+## Dynamic Routes
+
+Link to dynamic routes:
+
+```tsx
+<Link href={`/blog/${post.slug}`}>
+  {post.title}
+</Link>
+```
+
+Or use template literals:
+
+```tsx
+<Link href={`/shop/${category}/${item}`}>
+  View Item
+</Link>
+```
+
+## Search Parameters
+
+Link with search parameters:
+
+```tsx
+<Link href="/search?q=nextjs&sort=date">
+  Search
+</Link>
+```
+
+Or use URL object:
+
+```tsx
+<Link
+  href={{
+    pathname: '/search',
+    query: { q: 'nextjs', sort: 'date' },
+  }}
+>
+  Search
+</Link>
+```
+
+## Hash Links
+
+Link to hash fragments:
+
+```tsx
+<Link href="/about#team">About Team</Link>
+```
+
+## Scroll Behavior
+
+Control scroll behavior:
+
+```tsx
+<Link href="/about" scroll={false}>
+  About (no scroll)
+</Link>
+```
+
+## Key Points
+
+- Use `<Link>` for all internal navigation
+- Prefetching happens automatically for static routes
+- Use `loading.tsx` for better dynamic route navigation
+- Client-side transitions preserve state and are faster
+- `useRouter` provides programmatic navigation
+- Links support dynamic routes, search params, and hashes
+
+<!--
+Source references:
+- https://nextjs.org/docs/app/getting-started/linking-and-navigating
+- https://nextjs.org/docs/app/api-reference/components/link
+- https://nextjs.org/docs/app/api-reference/functions/use-router
+-->

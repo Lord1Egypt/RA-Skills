@@ -1,0 +1,43 @@
+{
+  "skill_name": "swiftui-layout-components",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review a SwiftUI Explore screen that uses a VStack of 500 media cards, a custom search field, and a floating toast. Recommend a modern iOS 26 layout approach without rewriting unrelated app architecture.",
+      "expected_output": "Focused layout guidance that chooses lazy containers, native search, and overlay patterns while staying out of navigation and state-architecture rewrites.",
+      "files": [],
+      "expectations": [
+        "Recommends a lazy container such as LazyVStack or LazyVGrid for the large card collection.",
+        "Mentions stable item identity for ForEach rather than array-index IDs.",
+        "Recommends native .searchable with debounced async work or .task(id:) for search.",
+        "Keeps transient toast guidance in overlay(alignment:) rather than embedding the toast in the main layout stack.",
+        "Does not introduce view-model architecture or navigation routing as the primary solution."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "A settings-heavy SwiftUI screen uses List sections and needs a jump-to-section control plus rows whose expanded descriptions animate smoothly. What layout guidance should I follow?",
+      "expected_output": "Explains the List scroll-target and dynamic row-height caveats, then recommends the appropriate List or ScrollView plus lazy-stack structure for the requirements.",
+      "files": [],
+      "expectations": [
+        "Distinguishes simple edge scrolling in List from reliable item or section jump-to-id behavior.",
+        "Recommends ScrollView plus LazyVStack with scrollTargetLayout for reliable item or section jump-to-id behavior.",
+        "Calls out dynamic List row-height snapping or jumping as a practical runtime gotcha.",
+        "Keeps the row-height caveat framed as layout guidance and does not turn the answer into a broad animation tutorial.",
+        "Preserves Form/List use for straightforward settings rows where built-in row semantics matter."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I need a SwiftUI onboarding flow with full-screen modal routing, sheet detents, deep links into steps, and a few forms. Which parts should this layout skill own?",
+      "expected_output": "Clear boundary guidance that keeps forms and controls in this skill while handing modal routing, sheets, full-screen presentation policy, and deep links to swiftui-navigation.",
+      "files": [],
+      "expectations": [
+        "Identifies Form, Section, Toggle, Picker, Slider, TextField, and FocusState guidance as in-scope for this skill.",
+        "Hands full-screen presentation, sheet detents, modal routing, and deep links to the swiftui-navigation skill.",
+        "Does not provide detailed NavigationStack routing or deep-link implementation as if owned by this skill.",
+        "Keeps any layout advice concise and scoped to the form/control surfaces inside the onboarding flow."
+      ]
+    }
+  ]
+}

@@ -1,35 +1,29 @@
 ---
-name: "call-cursor-agent"
-description: "Indexed by skills.sh from dotneet/claude-code-marketplace"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "dotneet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/dotneet/claude-code-marketplace/call-cursor-agent"
-sourceUrl: "https://skills.sh/dotneet/claude-code-marketplace/call-cursor-agent"
+name: call-cursor-agent
+description: Call cursor-agent to perform a task.
 ---
 
-# call-cursor-agent
+# Call cursor-agent to perform a task
 
-> Indexed by skills.sh from dotneet/claude-code-marketplace
+This skill requests a task to cursor-agent.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** dotneet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/dotneet/claude-code-marketplace/call-cursor-agent`
-- **Source URL:** [https://skills.sh/dotneet/claude-code-marketplace/call-cursor-agent](https://skills.sh/dotneet/claude-code-marketplace/call-cursor-agent)
+## Checking for the Existence of cursor-agent
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/dotneet/claude-code-marketplace/call-cursor-agent
+# Check if cursor-agent is installed. Exit code 0 means success, 1 means failure.
+# If not installed, skip the subsequent steps of the skill.
+which cursor-agent
+if [ $? -ne 0 ]; then
+  echo "cursor-agent is not installed"
+fi
+```
+
+## Requesting a Task to cursor-agent
+
+```bash
+# If the model is not specified, the default model is composer-1.
+model=composer-1
+cursor-agent --model=$model <<EOT
+{task_description}
+EOT
 ```

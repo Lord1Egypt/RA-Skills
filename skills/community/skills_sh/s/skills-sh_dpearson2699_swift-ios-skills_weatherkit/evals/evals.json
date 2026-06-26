@@ -1,0 +1,54 @@
+{
+  "skill_name": "weatherkit",
+  "evals": [
+    {
+      "id": 0,
+      "name": "forecast-dashboard-review",
+      "prompt": "Review this WeatherKit dashboard plan for an iOS app: fetch every dataset with `weather(for:)` on every view appearance, cache for exactly 10 minutes, show current temperature and alert summaries, string-interpolate `current.temperature`, print `alert.region`, skip alert detail links, treat WeatherAvailability as a broad support matrix for all datasets, and put attribution on a separate settings screen. What should change?",
+      "expected_output": "Flags the WeatherKit correctness issues: fetch only displayed datasets, cache against model metadata expiration dates, make alert region nil-safe, link each alert's non-optional detailsURL, display Apple Weather attribution alongside weather data, and use WeatherAvailability only for alerts and minute forecasts.",
+      "files": [],
+      "expectations": [
+        "The output recommends selective WeatherQuery requests instead of fetching all datasets with weather(for:) for a narrow dashboard.",
+        "The output rejects unconditional network fetches from every onAppear or .task and recommends a model, cache, loadIfNeeded, or explicit refresh boundary.",
+        "The output says cache expiry should use WeatherMetadata.expirationDate rather than a fixed 10-minute interval.",
+        "The output states WeatherAlert.region is optional and should be handled nil-safely.",
+        "The output states WeatherAlert.detailsURL is non-optional and should be linked for alert details or attribution.",
+        "The output requires Apple Weather attribution to appear wherever weather data is displayed, not only in a separate settings screen.",
+        "The output limits WeatherAvailability to alert and minute forecast availability rather than treating it as a broad dataset support matrix.",
+        "The output recommends Measurement.formatted() or equivalent locale-aware Measurement formatting for displayed temperatures."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "historical-statistics-modernization",
+      "prompt": "Modernize this WeatherKit statistics snippet for iOS 18+: `let stats = try await service.dailyStatistics(for: location, forDaysIn: range, including: [.temperature, .precipitation]); for day in stats { print(day.statistics(for: .temperature)?.mean) }`. Include a monthly example too.",
+      "expected_output": "Replaces the stale array-style statistics code with iOS 18+ variadic APIs where `including: .precipitation, .temperature` returns typed tuple values in the same order. It iterates DailyWeatherStatistics and MonthlyWeatherStatistics collections and uses documented properties such as averageHighTemperature, averageLowTemperature, averagePrecipitationAmount, day, and month.",
+      "files": [],
+      "expectations": [
+        "The output does not use `including: [.temperature, .precipitation]` for WeatherKit statistics queries.",
+        "The output does not call a nonexistent or stale `statistics(for:)` helper on returned statistics elements.",
+        "The output explicitly states that variadic statistics tuple result order matches the `including:` query argument order.",
+        "The output uses documented daily statistics properties such as `day`, `averageHighTemperature`, `averageLowTemperature`, or `averagePrecipitationAmount`.",
+        "The output shows or describes monthlyStatistics returning typed MonthlyWeatherStatistics collections and uses documented properties such as `month`, `averageLowTemperature`, or `averagePrecipitationAmount`.",
+        "The output gates statistics APIs with iOS 18+ availability or explicitly states they require iOS 18+."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "context-queries-and-ranges",
+      "prompt": "I want a WeatherKit feature that explains whether tomorrow's weather is unusual, can look back at forecast history, and avoids unsupported minute forecasts. Which queries should I use and what range or availability constraints should the code enforce?",
+      "expected_output": "Uses iOS 18+ `.changes` and `.historicalComparisons` optional queries for context, daily/hourly date-range queries for historical forecast data from August 1, 2021, enforces future and per-request limits, and checks WeatherAvailability before minute forecasts.",
+      "files": [],
+      "expectations": [
+        "The output recommends `.changes` for significant upcoming weather changes and notes the result is optional.",
+        "The output recommends `.historicalComparisons` for comparing current weather to historical averages and notes the result is optional.",
+        "The output states `.changes` and `.historicalComparisons` require iOS 18+ or equivalent platform availability.",
+        "The output shows or describes fetching tomorrow with a dated `.daily(startDate:endDate:)` day interval rather than minute forecasts.",
+        "The output states daily and hourly range queries can access historical data from August 1, 2021.",
+        "The output states forecast range requests are limited to 10 days in the future and at most 10 daily days or about 240 hourly hours per request.",
+        "The output states WeatherKit date-range query startDate is inclusive and endDate is exclusive.",
+        "The output checks WeatherAvailability before relying on minute forecast data and handles a nil minute forecast."
+      ]
+    }
+  ]
+}

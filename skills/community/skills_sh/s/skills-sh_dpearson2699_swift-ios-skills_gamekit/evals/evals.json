@@ -1,0 +1,47 @@
+{
+  "skill_name": "gamekit",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Review this GameKit integration plan: authenticate with Game Center, send fetchItems(forIdentityVerificationSignature: nil), playerID, timestamp, salt, and signature to our backend, store several save slots with the same name, fetch saved games with `try await GKLocalPlayer.local.fetchSavedGames() ?? []`, and cap turn data at a hard 64 KB. Correct the plan for iOS 26+ and call out server, saved-game, and match-data risks.",
+      "expected_output": "A correction-focused review that uses the current async identity verification API, scoped identifiers and bundle ID in server verification, iCloud saved-game prerequisites and overwrite/conflict semantics, non-optional async return handling, and object-reported match data size limits.",
+      "files": [],
+      "expectations": [
+        "Uses `fetchItemsForIdentityVerificationSignature()` and does not call the obsolete or callback-shaped `fetchItems(forIdentityVerificationSignature:)` form in async code.",
+        "Explains that server verification covers `teamPlayerID` or Apple Arcade `gamePlayerID`, bundle ID, big-endian timestamp, and salt, and rejects stale timestamps.",
+        "States that saved games require the player's iCloud account, iCloud Drive, and app iCloud capability/container configuration.",
+        "Explains that saving with an existing filename overwrites and duplicate same-name saves are conflicts to resolve, not normal independent slots.",
+        "Does not add `?? []` to async GameKit array-returning APIs such as `fetchSavedGames()`.",
+        "Uses `match.matchDataMaximumSize` or related object limits instead of hard-coding 64 KB."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "I'm adding advanced GameKit matchmaking and social features. Show how to use rule-based matchmaking with queueName, properties, recipientProperties, playerAttributes for roles, achievement progress updates, and a challenge compose controller. Include availability and gotchas that would keep this from shipping with stale GameKit assumptions.",
+      "expected_output": "A modern GameKit implementation outline that scopes rule-based matchmaking to supported OS versions and property constraints, avoids stale playerAttributes role masks, reports integer achievement progress, and presents challenge compose UI with the current return shape.",
+      "files": [],
+      "expectations": [
+        "Marks `queueName`, request properties, recipient properties, and match/player properties as iOS 17.2+ or equivalent platform release features.",
+        "Uses reverse-DNS-style queue names and notes JSON-serializable properties, recipient-property key coverage, and the reserved `gc` key.",
+        "Explains that nonzero `playerAttributes` must combine across players with bitwise OR equal to `0xFFFFFFFF`, or recommends rule-based matchmaking for modern role logic.",
+        "States that `queueName` causes `playerGroup` and `playerAttributes` to be ignored.",
+        "Reports achievement progress as an integer value in the 0...100 range even though `percentComplete` is a `Double` property.",
+        "Treats `challengeComposeController(withMessage:players:completion:)` as returning a view controller to present, not an optional to unwrap."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I want one iOS game architecture note covering Game Center authentication, leaderboards, real-time and turn-based matches, SpriteKit rendering, SceneKit 3D board scenes, TabletopKit rules, SharePlay party chat, and old GameKit voice chat. What belongs in GameKit, what should be handed to sibling frameworks, and what legacy caveats matter?",
+      "expected_output": "A boundary-aware GameKit architecture note that keeps GameKit focused on Game Center services, routes rendering and table/game-session domains to sibling frameworks, prefers SharePlay for new social audio, and documents legacy `GKVoiceChat` requirements accurately.",
+      "files": [],
+      "expectations": [
+        "Keeps GameKit ownership to Game Center authentication, restrictions, access point/dashboard, leaderboards, achievements, matchmaking, match data, turns, invites, challenges, saved games, and server identity verification.",
+        "Routes SpriteKit rendering, SceneKit 3D scenes, TabletopKit board/rules logic, and full GroupActivities session design to sibling framework guidance instead of expanding GameKit scope.",
+        "Marks `GKVoiceChat` as deprecated and recommends SharePlay for new voice or social audio work.",
+        "For legacy `GKVoiceChat`, includes microphone usage description, audio session activation, `GKVoiceChat.isVoIPAllowed()`, channel start, and `isActive` microphone control.",
+        "Checks local player restrictions before multiplayer or personalized communication features.",
+        "Treats received `GKMatch` data as untrusted input and chooses reliable versus unreliable data modes by message criticality."
+      ]
+    }
+  ]
+}

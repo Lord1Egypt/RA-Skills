@@ -1,35 +1,52 @@
 ---
-name: "gws-script-push"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/gws-script-push"
-sourceUrl: "https://skills.sh/googleworkspace/cli/gws-script-push"
+name: gws-script-push
+description: "Google Apps Script: Upload local files to an Apps Script project."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "productivity"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws script +push --help"
 ---
 
-# gws-script-push
+# script +push
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/gws-script-push`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/gws-script-push](https://skills.sh/googleworkspace/cli/gws-script-push)
+Upload local files to an Apps Script project
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/googleworkspace/cli/gws-script-push
+gws script +push --script <ID>
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--script` | ✓ | — | Script Project ID |
+| `--dir` | — | — | Directory containing script files (defaults to current dir) |
+
+## Examples
+
+```bash
+gws script +push --script SCRIPT_ID
+gws script +push --script SCRIPT_ID --dir ./src
+```
+
+## Tips
+
+- Supports .gs, .js, .html, and appsscript.json files.
+- Skips hidden files and node_modules automatically.
+- This replaces ALL files in the project.
+
+> [!CAUTION]
+> This is a **write** command — confirm with the user before executing.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-script](../gws-script/SKILL.md) — All manage google apps script projects commands

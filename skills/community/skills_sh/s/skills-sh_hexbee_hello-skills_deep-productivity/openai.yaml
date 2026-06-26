@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deep Productivity"
+  short_description: "Build sustainable deep work with 1 hour daily"
+  default_prompt: "Design a deep productivity system for me using Building, Maintenance, and Recovery, with a practical weekly plan and lever tasks."

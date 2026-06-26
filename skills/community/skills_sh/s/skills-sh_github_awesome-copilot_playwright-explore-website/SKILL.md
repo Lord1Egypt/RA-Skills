@@ -1,35 +1,17 @@
 ---
-name: "playwright-explore-website"
-description: "Indexed by skills.sh from github/awesome-copilot"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "github"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/github/awesome-copilot/playwright-explore-website"
-sourceUrl: "https://skills.sh/github/awesome-copilot/playwright-explore-website"
+name: playwright-explore-website
+description: 'Website exploration for testing using Playwright MCP'
 ---
 
-# playwright-explore-website
+# Website Exploration for Testing
 
-> Indexed by skills.sh from github/awesome-copilot
+Your goal is to explore the website and identify key functionalities.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** github
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/github/awesome-copilot/playwright-explore-website`
-- **Source URL:** [https://skills.sh/github/awesome-copilot/playwright-explore-website](https://skills.sh/github/awesome-copilot/playwright-explore-website)
+## Specific Instructions
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/github/awesome-copilot/playwright-explore-website
-```
+1. Navigate to the provided URL using the Playwright MCP Server. If no URL is provided, ask the user to provide one.
+2. Identify and interact with 3-5 core features or user flows.
+3. Document the user interactions, relevant UI elements (and their locators), and the expected outcomes.
+4. Close the browser context upon completion.
+5. Provide a concise summary of your findings.
+6. Propose and generate test cases based on the exploration.

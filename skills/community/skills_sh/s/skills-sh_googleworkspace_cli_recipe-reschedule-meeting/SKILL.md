@@ -1,35 +1,27 @@
 ---
-name: "recipe-reschedule-meeting"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-reschedule-meeting"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-reschedule-meeting"
+name: recipe-reschedule-meeting
+description: "Move a Google Calendar event to a new time and automatically notify all attendees."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "scheduling"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-calendar
 ---
 
-# recipe-reschedule-meeting
+# Reschedule a Google Calendar Meeting
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-calendar`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-reschedule-meeting`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-reschedule-meeting](https://skills.sh/googleworkspace/cli/recipe-reschedule-meeting)
+Move a Google Calendar event to a new time and automatically notify all attendees.
 
-## Overview
+## Steps
 
+1. Find the event: `gws calendar +agenda`
+2. Get event details: `gws calendar events get --params '{"calendarId": "primary", "eventId": "EVENT_ID"}'`
+3. Update the time: `gws calendar events patch --params '{"calendarId": "primary", "eventId": "EVENT_ID", "sendUpdates": "all"}' --json '{"start": {"dateTime": "2025-01-22T14:00:00", "timeZone": "America/New_York"}, "end": {"dateTime": "2025-01-22T15:00:00", "timeZone": "America/New_York"}}'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-reschedule-meeting
-```

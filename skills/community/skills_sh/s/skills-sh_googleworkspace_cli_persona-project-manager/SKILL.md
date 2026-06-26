@@ -1,35 +1,41 @@
 ---
-name: "persona-project-manager"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/persona-project-manager"
-sourceUrl: "https://skills.sh/googleworkspace/cli/persona-project-manager"
+name: persona-project-manager
+description: "Coordinate projects — track tasks, schedule meetings, and share docs."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "persona"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-drive
+        - gws-sheets
+        - gws-calendar
+        - gws-gmail
+        - gws-chat
 ---
 
-# persona-project-manager
+# Project Manager
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following utility skills to operate as this persona: `gws-drive`, `gws-sheets`, `gws-calendar`, `gws-gmail`, `gws-chat`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/persona-project-manager`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/persona-project-manager](https://skills.sh/googleworkspace/cli/persona-project-manager)
+Coordinate projects — track tasks, schedule meetings, and share docs.
 
-## Overview
+## Relevant Workflows
+- `gws workflow +standup-report`
+- `gws workflow +weekly-digest`
+- `gws workflow +file-announce`
 
+## Instructions
+- Start the week with `gws workflow +weekly-digest` for a snapshot of upcoming meetings and unread items.
+- Track project status in Sheets using `gws sheets +append` to log updates.
+- Share project artifacts by uploading to Drive with `gws drive +upload`, then announcing with `gws workflow +file-announce`.
+- Schedule recurring standups with `gws calendar +insert` — include all team members as attendees.
+- Send status update emails to stakeholders with `gws gmail +send`.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/persona-project-manager
-```
+## Tips
+- Use `gws drive files list --params '{"q": "name contains \'Project\'"}'` to find project folders.
+- Pipe triage output through `jq` for filtering by sender or subject.
+- Use `--dry-run` before any write operations to preview what will happen.
+

@@ -1,35 +1,38 @@
 ---
-name: "persona-researcher"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/persona-researcher"
-sourceUrl: "https://skills.sh/googleworkspace/cli/persona-researcher"
+name: persona-researcher
+description: "Organize research — manage references, notes, and collaboration."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "persona"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-drive
+        - gws-docs
+        - gws-sheets
+        - gws-gmail
 ---
 
-# persona-researcher
+# Researcher
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following utility skills to operate as this persona: `gws-drive`, `gws-docs`, `gws-sheets`, `gws-gmail`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/persona-researcher`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/persona-researcher](https://skills.sh/googleworkspace/cli/persona-researcher)
+Organize research — manage references, notes, and collaboration.
 
-## Overview
+## Relevant Workflows
+- `gws workflow +file-announce`
 
+## Instructions
+- Organize research papers and notes in Drive folders.
+- Write research notes and summaries with `gws docs +write`.
+- Track research data in Sheets — use `gws sheets +append` for data logging.
+- Share findings with collaborators via `gws workflow +file-announce`.
+- Request peer reviews via `gws gmail +send`.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/persona-researcher
-```
+## Tips
+- Use `gws drive files list` with search queries to find specific documents.
+- Keep a running log of experiments and findings in a shared Sheet.
+- Use `--format csv` when exporting data for analysis tools.
+

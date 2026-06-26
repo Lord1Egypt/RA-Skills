@@ -1,0 +1,44 @@
+{
+  "skill_name": "core-bluetooth",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm building an iOS heart-rate monitor screen that scans for service 180D, connects, subscribes to 2A37, parses the BPM, and sends a small command to a writable characteristic. Show the Core Bluetooth manager code and the safety checks I should include.",
+      "expected_output": "Guidance creates a CBCentralManager, waits for poweredOn, checks Bluetooth authorization, scans with service UUID 180D, retains the discovered peripheral, sets the peripheral delegate before discovery, subscribes to notify characteristics, parses heart-rate data with byte-count guards, and chooses write types using characteristic properties plus maximumWriteValueLength and canSendWriteWithoutResponse.",
+      "files": [],
+      "assertions": [
+        "The output checks Bluetooth authorization and gates BLE operations on the manager reaching poweredOn.",
+        "The output scans for service UUID 180D rather than using a nil production scan.",
+        "The output retains the discovered CBPeripheral and sets its delegate before service discovery.",
+        "The output parses heart-rate measurement data with explicit guards for the flags byte and 16-bit BPM payload length.",
+        "The output checks characteristic write properties, maximumWriteValueLength(for:), and canSendWriteWithoutResponse before using writeValue."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this BLE background plan: scan for all peripherals with nil services while in the background, rely on allowDuplicates for live RSSI, advertise a local name from the phone, skip bluetooth-peripheral because the service was added before suspension, and restore only the peripheral identifier after relaunch.",
+      "expected_output": "Review flags each background/state-restoration issue. It explains that background central scans require explicit service UUIDs and scan options have no effect; background peripheral advertising omits the local name and puts service UUIDs in overflow; published service contents are disabled without bluetooth-peripheral; and restoration should use Core Bluetooth restoration identifiers plus restored state dictionaries for peripherals, scan services/options, services, and advertisement data.",
+      "files": [],
+      "assertions": [
+        "The output rejects nil-service background scanning and requires explicit service UUIDs for bluetooth-central background scans.",
+        "The output states scan options such as allowDuplicates have no effect while scanning in the background.",
+        "The output states background peripheral advertising does not include the local name and service UUIDs are discoverable only through explicit service scans.",
+        "The output states published service contents are disabled in the background without bluetooth-peripheral mode.",
+        "The output recommends Core Bluetooth restoration identifiers and restored state dictionary keys instead of restoring only an app-stored peripheral identifier."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We need a privacy-preserving first-run picker for a BLE thermostat, then after the user picks it we need to read and write GATT characteristics. Should this be handled entirely by Core Bluetooth, entirely by AccessorySetupKit, or split? Give the implementation boundary.",
+      "expected_output": "The answer splits responsibility: AccessorySetupKit owns the privacy-preserving picker/discovery/authorization step, and Core Bluetooth owns post-setup GATT communication using the selected accessory identifier. It avoids broadening Core Bluetooth into picker setup and avoids using AccessorySetupKit for characteristic read/write logic.",
+      "files": [],
+      "assertions": [
+        "The output routes the first-run privacy-preserving accessory picker to AccessorySetupKit.",
+        "The output routes post-selection GATT reads, writes, notifications, services, and characteristics to Core Bluetooth.",
+        "The output does not recommend broad direct Core Bluetooth scanning for the initial privacy-preserving picker use case.",
+        "The output does not expand AccessorySetupKit into characteristic read/write implementation.",
+        "The output describes the handoff from selected accessory identity to Core Bluetooth communication."
+      ]
+    }
+  ]
+}

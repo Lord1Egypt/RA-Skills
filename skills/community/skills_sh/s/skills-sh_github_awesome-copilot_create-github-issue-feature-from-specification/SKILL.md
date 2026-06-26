@@ -1,35 +1,28 @@
 ---
-name: "create-github-issue-feature-from-specification"
-description: "Indexed by skills.sh from github/awesome-copilot"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "github"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/github/awesome-copilot/create-github-issue-feature-from-specification"
-sourceUrl: "https://skills.sh/github/awesome-copilot/create-github-issue-feature-from-specification"
+name: create-github-issue-feature-from-specification
+description: 'Create GitHub Issue for feature request from specification file using feature_request.yml template.'
 ---
 
-# create-github-issue-feature-from-specification
+# Create GitHub Issue from Specification
 
-> Indexed by skills.sh from github/awesome-copilot
+Create GitHub Issue for the specification at `${file}`.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** github
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/github/awesome-copilot/create-github-issue-feature-from-specification`
-- **Source URL:** [https://skills.sh/github/awesome-copilot/create-github-issue-feature-from-specification](https://skills.sh/github/awesome-copilot/create-github-issue-feature-from-specification)
+## Process
 
-## Overview
+1. Analyze specification file to extract requirements
+2. Check existing issues using `search_issues`
+3. Create new issue using `create_issue` or update existing with `update_issue`
+4. Use `feature_request.yml` template (fallback to default)
 
+## Requirements
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/github/awesome-copilot/create-github-issue-feature-from-specification
-```
+- Single issue for the complete specification
+- Clear title identifying the specification
+- Include only changes required by the specification
+- Verify against existing issues before creation
+
+## Issue Content
+
+- Title: Feature name from specification
+- Description: Problem statement, proposed solution, and context
+- Labels: feature, enhancement (as appropriate)

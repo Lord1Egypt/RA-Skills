@@ -1,35 +1,41 @@
 ---
-name: "persona-event-coordinator"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/persona-event-coordinator"
-sourceUrl: "https://skills.sh/googleworkspace/cli/persona-event-coordinator"
+name: persona-event-coordinator
+description: "Plan and manage events — scheduling, invitations, and logistics."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "persona"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-calendar
+        - gws-gmail
+        - gws-drive
+        - gws-chat
+        - gws-sheets
 ---
 
-# persona-event-coordinator
+# Event Coordinator
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following utility skills to operate as this persona: `gws-calendar`, `gws-gmail`, `gws-drive`, `gws-chat`, `gws-sheets`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/persona-event-coordinator`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/persona-event-coordinator](https://skills.sh/googleworkspace/cli/persona-event-coordinator)
+Plan and manage events — scheduling, invitations, and logistics.
 
-## Overview
+## Relevant Workflows
+- `gws workflow +meeting-prep`
+- `gws workflow +file-announce`
+- `gws workflow +weekly-digest`
 
+## Instructions
+- Create event calendar entries with `gws calendar +insert` — include location and attendee lists.
+- Prepare event materials and upload to Drive with `gws drive +upload`.
+- Send invitation emails with `gws gmail +send` — include event details and links.
+- Announce updates in Chat spaces with `gws workflow +file-announce`.
+- Track RSVPs and logistics in Sheets with `gws sheets +append`.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/persona-event-coordinator
-```
+## Tips
+- Use `gws calendar +agenda --days 30` for long-range event planning.
+- Create a dedicated calendar for each major event series.
+- Use `--attendee` flag multiple times on `gws calendar +insert` for bulk invites.
+

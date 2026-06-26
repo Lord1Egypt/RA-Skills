@@ -1,35 +1,27 @@
 ---
-name: "recipe-create-shared-drive"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-create-shared-drive"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-create-shared-drive"
+name: recipe-create-shared-drive
+description: "Create a Google Shared Drive and add members with appropriate roles."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-drive
 ---
 
-# recipe-create-shared-drive
+# Create and Configure a Shared Drive
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-drive`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-create-shared-drive`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-create-shared-drive](https://skills.sh/googleworkspace/cli/recipe-create-shared-drive)
+Create a Google Shared Drive and add members with appropriate roles.
 
-## Overview
+## Steps
 
+1. Create shared drive: `gws drive drives create --params '{"requestId": "unique-id-123"}' --json '{"name": "Project X"}'`
+2. Add a member: `gws drive permissions create --params '{"fileId": "DRIVE_ID", "supportsAllDrives": true}' --json '{"role": "writer", "type": "user", "emailAddress": "member@company.com"}'`
+3. List members: `gws drive permissions list --params '{"fileId": "DRIVE_ID", "supportsAllDrives": true}'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-create-shared-drive
-```

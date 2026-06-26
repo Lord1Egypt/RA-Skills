@@ -1,0 +1,47 @@
+{
+  "skill_name": "realitykit",
+  "evals": [
+    {
+      "id": 1,
+      "name": "ar-camera-setup-review",
+      "prompt": "Review this SwiftUI AR setup: it presents RealityView on every iPhone, has no NSCameraUsageDescription, assumes a black camera view means the model failed to load, and says there is never a device capability setting for RealityKit because RealityKit handles AR automatically. What should change?",
+      "expected_output": "A correction-focused review that covers camera privacy, runtime AR support checks, user-facing fallback handling, required-device capability tradeoffs, and RealityViewCameraContent's AR/non-AR behavior.",
+      "files": [],
+      "assertions": [
+        "Requires NSCameraUsageDescription for camera-based AR.",
+        "Checks ARWorldTrackingConfiguration.isSupported or the relevant ARConfiguration.isSupported before presenting AR-only UI.",
+        "Handles denied camera permission or unavailable AR with a fallback instead of treating a black view as only a model-loading failure.",
+        "Explains that arkit in UIRequiredDeviceCapabilities is appropriate only when AR is core required functionality; otherwise use runtime gating.",
+        "Mentions that RealityViewCameraContent uses an AR camera view by default on iOS and can fall back to non-AR mode when AR or camera access is unavailable."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "surface-raycast-placement-review",
+      "prompt": "A developer wants tap-to-place on a physical table. Their plan is to use SpatialTapGesture with RealityViewCameraContent.hitTest, assume any hit is a detected table surface, and create a world anchor at that point. Review the plan and give the correct RealityKit/ARKit placement approach.",
+      "expected_output": "A source-grounded review that distinguishes RealityKit entity hit testing from ARKit real-world surface raycasts, then recommends plane anchors or ARKit raycast results for physical-surface placement.",
+      "files": [],
+      "assertions": [
+        "Explains that RealityViewCameraContent.hitTest intersects RealityKit entity collision shapes, not arbitrary detected physical surfaces.",
+        "States that RealityViewCameraContent.ray produces a camera ray in RealityKit coordinates and is not by itself proof of a real-world surface hit.",
+        "Recommends AnchorEntity(.plane(...)) for simple placement on detected horizontal or vertical planes.",
+        "Recommends ARRaycastQuery with ARSession.raycast(_:) and AnchorEntity(raycastResult:) when a one-shot real-world surface intersection is needed.",
+        "Requires CollisionComponent shapes only for interactive entity hit testing and gestures, not as a substitute for ARKit surface detection."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "ios-visionos-boundary-review",
+      "prompt": "A team found a visionOS sample using ARKitSession, WorldTrackingProvider, and PlaneDetectionProvider. They want to copy those APIs into an iOS RealityView app and also migrate an older SCNView/SCNNode scene in the same pass. Write a short architecture note about what belongs in the RealityKit iOS path and what should be treated as a boundary or migration.",
+      "expected_output": "A boundary-aware note that keeps iOS RealityKit guidance centered on RealityViewCameraContent, ARKit iOS configuration/support checks, and entities/anchors, while treating visionOS provider APIs and SceneKit node APIs as separate domains or migration concerns.",
+      "files": [],
+      "assertions": [
+        "States that ARKitSession, WorldTrackingProvider, and PlaneDetectionProvider are visionOS-specific and are not the iOS RealityKit path.",
+        "Uses RealityViewCameraContent, ARWorldTrackingConfiguration.isSupported, entities, and AnchorEntity patterns for the iOS RealityKit path.",
+        "Avoids claiming that SceneKit SCNView, SCNNode, or SCNPhysicsBody APIs can be patched directly with RealityKit entity APIs.",
+        "Frames SceneKit work as a separate maintenance path or an explicit migration to RealityKit, not as mixed API usage in the same scene graph.",
+        "Keeps detailed SwiftUI gesture composition or accessibility policy as handoff topics while still naming RealityKit requirements such as InputTargetComponent, CollisionComponent, and AccessibilityComponent when relevant."
+      ]
+    }
+  ]
+}

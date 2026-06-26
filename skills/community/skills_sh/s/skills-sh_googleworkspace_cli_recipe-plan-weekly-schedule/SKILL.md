@@ -1,35 +1,28 @@
 ---
-name: "recipe-plan-weekly-schedule"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-plan-weekly-schedule"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-plan-weekly-schedule"
+name: recipe-plan-weekly-schedule
+description: "Review your Google Calendar week, identify gaps, and add events to fill them."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "scheduling"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-calendar
 ---
 
-# recipe-plan-weekly-schedule
+# Plan Your Weekly Google Calendar Schedule
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-calendar`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-plan-weekly-schedule`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-plan-weekly-schedule](https://skills.sh/googleworkspace/cli/recipe-plan-weekly-schedule)
+Review your Google Calendar week, identify gaps, and add events to fill them.
 
-## Overview
+## Steps
 
+1. Check this week's agenda: `gws calendar +agenda`
+2. Check free/busy for the week: `gws calendar freebusy query --json '{"timeMin": "2025-01-20T00:00:00Z", "timeMax": "2025-01-25T00:00:00Z", "items": [{"id": "primary"}]}'`
+3. Add a new event: `gws calendar +insert --summary 'Deep Work Block' --start '2026-01-21T14:00:00' --end '2026-01-21T16:00:00'`
+4. Review updated schedule: `gws calendar +agenda`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-plan-weekly-schedule
-```

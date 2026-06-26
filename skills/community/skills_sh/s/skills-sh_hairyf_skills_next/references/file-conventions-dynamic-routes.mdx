@@ -1,0 +1,198 @@
+---
+name: file-conventions-dynamic-routes
+description: Dynamic route segments, catch-all routes, and route parameters
+---
+
+# Dynamic Routes
+
+Dynamic routes allow you to create routes from dynamic data that are filled in at request time or prerendered at build time.
+
+## Dynamic Segments
+
+Create dynamic segments by wrapping folder names in square brackets: `[folderName]`
+
+```tsx
+// app/blog/[slug]/page.tsx
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  return <div>Post: {slug}</div>
+}
+```
+
+| Route | URL | `params` |
+|-------|-----|----------|
+| `app/blog/[slug]/page.tsx` | `/blog/a` | `{ slug: 'a' }` |
+| `app/blog/[slug]/page.tsx` | `/blog/b` | `{ slug: 'b' }` |
+
+## Multiple Dynamic Segments
+
+Use multiple dynamic segments:
+
+```tsx
+// app/shop/[category]/[item]/page.tsx
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ category: string; item: string }>
+}) {
+  const { category, item } = await params
+  return <div>Category: {category}, Item: {item}</div>
+}
+```
+
+| Route | URL | `params` |
+|-------|-----|----------|
+| `app/shop/[category]/[item]/page.tsx` | `/shop/electronics/phone` | `{ category: 'electronics', item: 'phone' }` |
+
+## Catch-All Segments
+
+Catch all subsequent segments with `[...folderName]`:
+
+```tsx
+// app/shop/[...slug]/page.tsx
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string[] }>
+}) {
+  const { slug } = await params
+  // slug is an array: ['a'] for /shop/a
+  // slug is an array: ['a', 'b'] for /shop/a/b
+  return <div>Slug: {slug.join('/')}</div>
+}
+```
+
+| Route | URL | `params` |
+|-------|-----|----------|
+| `app/shop/[...slug]/page.tsx` | `/shop/a` | `{ slug: ['a'] }` |
+| `app/shop/[...slug]/page.tsx` | `/shop/a/b` | `{ slug: ['a', 'b'] }` |
+| `app/shop/[...slug]/page.tsx` | `/shop/a/b/c` | `{ slug: ['a', 'b', 'c'] }` |
+
+## Optional Catch-All Segments
+
+Make catch-all segments optional with `[[...folderName]]`:
+
+```tsx
+// app/docs/[[...slug]]/page.tsx
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug?: string[] }>
+}) {
+  const { slug } = await params
+  // Matches /docs (slug is undefined)
+  // Matches /docs/guide (slug is ['guide'])
+  // Matches /docs/guide/getting-started (slug is ['guide', 'getting-started'])
+  return <div>Docs: {slug?.join('/') || 'home'}</div>
+}
+```
+
+| Route | URL | `params` |
+|-------|-----|----------|
+| `app/docs/[[...slug]]/page.tsx` | `/docs` | `{ slug: undefined }` |
+| `app/docs/[[...slug]]/page.tsx` | `/docs/guide` | `{ slug: ['guide'] }` |
+
+## Accessing Params in Client Components
+
+In Client Component pages, use the `use` hook:
+
+```tsx
+'use client'
+
+import { use } from 'react'
+
+export default function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = use(params)
+  return <div>Post: {slug}</div>
+}
+```
+
+Or use `useParams` hook anywhere in the Client Component tree:
+
+```tsx
+'use client'
+
+import { useParams } from 'next/navigation'
+
+export default function BlogPostPage() {
+  const params = useParams()
+  const slug = params.slug as string
+  return <div>Post: {slug}</div>
+}
+```
+
+## Generating Static Params
+
+Pre-render dynamic routes at build time with `generateStaticParams`:
+
+```tsx
+// app/blog/[slug]/page.tsx
+export async function generateStaticParams() {
+  const posts = await fetch('https://api.example.com/posts').then((r) =>
+    r.json()
+  )
+
+  return posts.map((post: { slug: string }) => ({
+    slug: post.slug,
+  }))
+}
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const post = await fetch(`https://api.example.com/posts/${slug}`).then(
+    (r) => r.json()
+  )
+  return <div>{post.title}</div>
+}
+```
+
+## Route Segment Config
+
+Control rendering behavior with route segment config:
+
+```tsx
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
+// Force static rendering
+export const dynamic = 'force-static'
+
+// Auto (default)
+export const dynamic = 'auto'
+```
+
+```tsx
+// Revalidate at intervals
+export const revalidate = 3600
+
+// Revalidate on-demand
+export const revalidate = false
+```
+
+## Key Points
+
+- Use `[folderName]` for single dynamic segments
+- Use `[...folderName]` for catch-all segments
+- Use `[[...folderName]]` for optional catch-all segments
+- `params` is a Promise in Next.js 15+ (use `await` or `use()`)
+- Use `generateStaticParams` to pre-render dynamic routes
+- Use `useParams` in Client Components to access params
+- Configure rendering with `dynamic` and `revalidate` exports
+
+<!--
+Source references:
+- https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes
+- https://nextjs.org/docs/app/api-reference/functions/generate-static-params
+-->

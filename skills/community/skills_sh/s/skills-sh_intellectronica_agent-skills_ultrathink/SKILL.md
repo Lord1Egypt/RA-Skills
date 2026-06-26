@@ -1,35 +1,14 @@
 ---
-name: "ultrathink"
-description: "Indexed by skills.sh from intellectronica/agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "intellectronica"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/intellectronica/agent-skills/ultrathink"
-sourceUrl: "https://skills.sh/intellectronica/agent-skills/ultrathink"
+name: ultrathink
+description: Display colorful ANSI art of the word "ultrathink". Use when the user says "ultrathink" or invokes /ultrathink.
 ---
 
-# ultrathink
+# Ultrathink
 
-> Indexed by skills.sh from intellectronica/agent-skills
+When this skill is invoked, run this Bash command to display colourful ANSI art:
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** intellectronica
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/intellectronica/agent-skills/ultrathink`
-- **Source URL:** [https://skills.sh/intellectronica/agent-skills/ultrathink](https://skills.sh/intellectronica/agent-skills/ultrathink)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/intellectronica/agent-skills/ultrathink
+printf '\n  \033[1;31m╦ ╦\033[1;33m╦  \033[1;32m╔╦╗\033[1;36m╦═╗\033[1;34m╔═╗\033[1;35m╔╦╗\033[1;31m╦ ╦\033[1;33m╦\033[1;32m╔╗╔\033[1;36m╦╔═\033[0m\n  \033[1;31m║ ║\033[1;33m║   \033[1;32m║ \033[1;36m╠╦╝\033[1;34m╠═╣\033[1;35m ║ \033[1;31m╠═╣\033[1;33m║\033[1;32m║║║\033[1;36m╠╩╗\033[0m\n  \033[1;31m╚═╝\033[1;33m╩═╝\033[1;32m ╩ \033[1;36m╩╚═\033[1;34m╩ ╩\033[1;35m ╩ \033[1;31m╩ ╩\033[1;33m╩\033[1;32m╝╚╝\033[1;36m╩ ╩\033[0m\n\n'
 ```
+
+Do not add any other output or commentary.

@@ -1,0 +1,47 @@
+{
+  "skill_name": "appmigrationkit",
+  "evals": [
+    {
+      "id": 0,
+      "name": "extension-entitlement-setup",
+      "prompt": "I'm adding AppMigrationKit to move our app's documents from Android to iOS during onboarding. Show the extension setup, entitlement value, export/import protocol choices, and what the containing app should check on first launch.",
+      "expected_output": "A source-grounded setup guide that treats AppMigrationKit as system-orchestrated one-time migration, configures the extension entitlement as a one-item array containing the containing app bundle ID, uses AppMigrationExtension child protocols for export/import, and checks MigrationStatus after import.",
+      "files": [],
+      "assertions": [
+        "States AppMigrationKit uses a system-orchestrated app extension and does not have the app manage the device-to-device network session.",
+        "Names `com.apple.developer.app-migration.data-container-access` and shows its value as a one-item string array containing the containing app's bundle identifier.",
+        "Mentions the entitlement availability separately as iOS/iPadOS/Mac Catalyst 26.1+ while AppMigrationKit APIs are iOS/iPadOS 26.0+.",
+        "Uses `ResourcesExportingWithOptions` or `ResourcesExporting` for export and `ResourcesImporting` for import.",
+        "Checks `MigrationStatus.importStatus` on first launch and calls `MigrationStatus.clearImportStatus()` after notifying the user."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "progress-and-error-review",
+      "prompt": "Review this AppMigrationKit import/export plan: create `var resourcesImportProgress: Progress { Progress(totalUnitCount: 100) }`, catch CancellationError from ResourcesArchiver so we can log it, convert the database to a temporary JSON before export, and write app group data as we import without clearing it first. What should change?",
+      "expected_output": "A correction-focused review that uses a stable import Progress object, lets archiver cancellation propagate, avoids intermediate export conversion, and clears app group data before import because the system clears only the app container after import errors.",
+      "files": [],
+      "assertions": [
+        "Rejects returning a fresh `Progress` from `resourcesImportProgress` and recommends updating a stable Progress instance during import.",
+        "States `ResourcesArchiver` cancellation errors should not be caught or swallowed.",
+        "Recommends exporting transportable files as-is through `appendItem(at:pathInArchive:)` rather than creating intermediate converted files.",
+        "States app group containers are not cleared by the migration system on import error.",
+        "Recommends clearing relevant app group data before writing imported content."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "testing-boundary",
+      "prompt": "I want unit tests for an AppMigrationKit round trip and a way to manually trigger a real migration from the shipping app. Sketch the safe test approach and call out what must not ship.",
+      "expected_output": "Testing guidance that uses AppMigrationTester only from containing-app-hosted unit tests, exercises export/import controllers, registers import completion, and avoids using tester APIs in production or pretending the app can trigger real system migrations directly.",
+      "files": [],
+      "assertions": [
+        "Uses `AppMigrationTester` from async unit tests hosted by the containing app.",
+        "Exercises `exportController.exportResources` and `importController.importResources` with optional migration/import requests.",
+        "Calls `registerImportCompletion(with:)` in test flows that need to verify MigrationStatus behavior.",
+        "States `AppMigrationTester` is test-only and must not be used in production code.",
+        "Avoids claiming the shipping app can directly start or manage a real AppMigrationKit device-to-device migration session."
+      ]
+    }
+  ]
+}

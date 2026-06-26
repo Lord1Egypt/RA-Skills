@@ -1,35 +1,46 @@
 ---
-name: "gws-forms"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/gws-forms"
-sourceUrl: "https://skills.sh/googleworkspace/cli/gws-forms"
+name: gws-forms
+description: "Read and write Google Forms."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "productivity"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws forms --help"
 ---
 
-# gws-forms
+# forms (v1)
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/gws-forms`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/gws-forms](https://skills.sh/googleworkspace/cli/gws-forms)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/googleworkspace/cli/gws-forms
+gws forms <resource> <method> [flags]
 ```
+
+## API Resources
+
+### forms
+
+  - `batchUpdate` — Change the form with a batch of updates.
+  - `create` — Create a new form using the title given in the provided form message in the request. *Important:* Only the form.info.title and form.info.document_title fields are copied to the new form. All other fields including the form description, items and settings are disallowed. To create a new form and add items, you must first call forms.create to create an empty form with a title and (optional) document title, and then call forms.update to add the items.
+  - `get` — Get a form.
+  - `setPublishSettings` — Updates the publish settings of a form. Legacy forms aren't supported because they don't have the `publish_settings` field.
+  - `responses` — Operations on the 'responses' resource
+  - `watches` — Operations on the 'watches' resource
+
+## Discovering Commands
+
+Before calling any API method, inspect it:
+
+```bash
+# Browse resources and methods
+gws forms --help
+
+# Inspect a method's required params, types, and defaults
+gws schema forms.<resource>.<method>
+```
+
+Use `gws schema` output to build your `--params` and `--json` flags.
+

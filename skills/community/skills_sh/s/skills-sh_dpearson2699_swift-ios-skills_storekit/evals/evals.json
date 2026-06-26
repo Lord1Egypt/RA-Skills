@@ -1,0 +1,44 @@
+{
+  "skill_name": "storekit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build a SwiftUI StoreKit 2 paywall for an iOS 26 app with monthly and yearly subscriptions. Include product loading, purchase handling, entitlement checks, restore purchases, transaction updates, and what to do for Ask to Buy or refunds.",
+      "expected_output": "A current StoreKit 2 subscription paywall plan that uses StoreKit views or PurchaseAction, verifies transactions, starts Transaction.updates at launch, handles current entitlements correctly, and exposes restore and policy links.",
+      "files": [],
+      "assertions": [
+        "Uses `SubscriptionStoreView`, `StoreView`, or SwiftUI `PurchaseAction` as the preferred purchase path instead of defaulting only to `product.purchase(options:)`.",
+        "Starts a `Transaction.updates` listener at app launch using a non-throwing task and notes that updates can deliver Ask to Buy approvals, refunds, renewals, and unfinished transactions.",
+        "Verifies `VerificationResult` before granting access and calls `transaction.finish()` after content delivery.",
+        "Explains that `Transaction.currentEntitlements` covers non-consumables, active or grace-period auto-renewable subscriptions, and non-renewing subscriptions, but not consumable delivery history.",
+        "Handles `.pending`, `.userCancelled`, refunds or revocations, restore purchases, and subscription policy links."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this StoreKit subscription-offer code plan: use `Product.SubscriptionInfo.Status.status(for:)`, show every `winBackOffers` entry to cancelled users, use `.subscriptionPromotionalOffer(offer: signature:)`, and inspect `transaction.offerType` / `transaction.offerID` on purchase. Correct the API and eligibility mistakes.",
+      "expected_output": "A correction-focused answer that updates stale StoreKit offer APIs, filters win-back offers through renewal eligibility, and verifies applied offers through the current transaction offer model.",
+      "files": [],
+      "assertions": [
+        "Replaces `Product.SubscriptionInfo.Status.status(for:)` with `Product.SubscriptionInfo.status(for:)`.",
+        "Explains that `product.subscription?.winBackOffers` is a raw list and must be filtered through verified `renewalInfo.eligibleWinBackOfferIDs` before display or purchase.",
+        "Uses the iOS 26 SwiftUI `subscriptionPromotionalOffer` closure plus `compactJWS` closure for StoreKit views, or clearly separates it from lower-level signed purchase options.",
+        "Uses `transaction.offer?.type` and `transaction.offer?.id` instead of stale `transaction.offerType` and `transaction.offerID`.",
+        "Mentions StoreKit configuration or sandbox testing for promotional, win-back, offer code, Ask to Buy, and renewal-state flows."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Use StoreKit guidance to review an iOS app that sells premium app features, has a reader-account sign-up link, and also wants App Store keywords and privacy manifest checks. Keep the answer scoped: what belongs in StoreKit, what belongs in App Store Review or ASO, and what IAP compliance caveats should be called out?",
+      "expected_output": "A boundary-aware response that keeps StoreKit focused on IAP implementation, routes broader submission and metadata work to sibling skills, and states current IAP/external-link rules without overclaiming.",
+      "files": [],
+      "assertions": [
+        "Keeps StoreKit guidance focused on IAP products, paywalls, purchase flows, transaction verification, restore, and entitlement handling.",
+        "Routes privacy manifests, ATT, screenshot, metadata rejection, and full submission readiness to the `app-store-review` skill.",
+        "Routes keyword strategy, ranking, screenshot-caption optimization, and conversion work to the `app-store-optimization` skill.",
+        "States that digital features generally require IAP unless a current guideline exception, storefront rule, or approved entitlement applies.",
+        "Avoids a blanket claim that all external purchase links are always rejected and instead calls out reader-app and regional or storefront-sensitive rules."
+      ]
+    }
+  ]
+}

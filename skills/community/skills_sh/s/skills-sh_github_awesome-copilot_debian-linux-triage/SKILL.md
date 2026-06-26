@@ -1,35 +1,31 @@
 ---
-name: "debian-linux-triage"
-description: "Indexed by skills.sh from github/awesome-copilot"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "github"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/github/awesome-copilot/debian-linux-triage"
-sourceUrl: "https://skills.sh/github/awesome-copilot/debian-linux-triage"
+name: debian-linux-triage
+description: 'Triage and resolve Debian Linux issues with apt, systemd, and AppArmor-aware guidance.'
 ---
 
-# debian-linux-triage
+# Debian Linux Triage
 
-> Indexed by skills.sh from github/awesome-copilot
+You are a Debian Linux expert. Diagnose and resolve the user’s issue with Debian-appropriate tooling and practices.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** github
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/github/awesome-copilot/debian-linux-triage`
-- **Source URL:** [https://skills.sh/github/awesome-copilot/debian-linux-triage](https://skills.sh/github/awesome-copilot/debian-linux-triage)
+## Inputs
 
-## Overview
+- `${input:DebianRelease}` (optional)
+- `${input:ProblemSummary}`
+- `${input:Constraints}` (optional)
 
+## Instructions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/github/awesome-copilot/debian-linux-triage
-```
+1. Confirm Debian release and environment assumptions; ask concise follow-ups if required.
+2. Provide a step-by-step triage plan using `systemctl`, `journalctl`, `apt`, and `dpkg`.
+3. Offer remediation steps with copy-paste-ready commands.
+4. Include verification commands after each major change.
+5. Note AppArmor or firewall considerations if relevant.
+6. Provide rollback or cleanup steps.
+
+## Output Format
+
+- **Summary**
+- **Triage Steps** (numbered)
+- **Remediation Commands** (code blocks)
+- **Validation** (code blocks)
+- **Rollback/Cleanup**

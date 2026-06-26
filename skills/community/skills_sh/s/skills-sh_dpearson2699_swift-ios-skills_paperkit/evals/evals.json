@@ -1,0 +1,47 @@
+{
+  "skill_name": "paperkit",
+  "evals": [
+    {
+      "id": 0,
+      "name": "swiftui-markup-editor-setup",
+      "prompt": "Build the core snippets for an iPadOS 26 document annotation screen using PaperKit from SwiftUI. It needs a PaperKit canvas over document content, a visible PencilKit tool picker, a plus button for inserting shapes/text/images, async save/load, and HDR color support. Keep it concise and source-grounded.",
+      "expected_output": "SwiftUI/UIKit interop snippets that create PaperMarkup with bounds, embed PaperMarkupViewController, retain and attach PKToolPicker through pencilKitResponderState, present MarkupEditViewController with the same FeatureSet, persist with async PaperMarkup dataRepresentation, and use the current HDR property names.",
+      "files": [],
+      "assertions": [
+        "Creates a `PaperMarkup(bounds:)` model and a `PaperMarkupViewController(markup:supportedFeatureSet:)` using a shared `FeatureSet` such as `.latest`.",
+        "Configures a retained `PKToolPicker`, adds the markup controller as an observer, and assigns it through `pencilKitResponderState.activeToolPicker` with visible or hidden `toolPickerVisibility`.",
+        "Uses `MarkupEditViewController(supportedFeatureSet:additionalActions:)` for insertion UI and sets its delegate to the `PaperMarkupViewController` or equivalent forwarding delegate.",
+        "Saves with `try await markup.dataRepresentation()` and loads with `try PaperMarkup(dataRepresentation:)`.",
+        "Uses `FeatureSet.colorMaximumLinearExposure` and `PKToolPicker.colorMaximumLinearExposure`, not `maximumLinearExposure`."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "async-rendering-and-compatibility-review",
+      "prompt": "Review this PaperKit plan: render thumbnails with `UIGraphicsImageRenderer.image { Task { await markup.draw(in: ctx.cgContext, frame: frame, options: options) } }`, set `toolPicker.maximumLinearExposure = 4`, treat `MarkupEditViewController` as iOS-only, and load saved `.paperkit` data directly into the editor. What should change?",
+      "expected_output": "A correction-focused review that flags the async rendering race, fixes the HDR property, corrects MarkupEditViewController availability, and handles data/version compatibility before editing loaded markup.",
+      "files": [],
+      "assertions": [
+        "Flags that `PaperMarkup.draw(in:frame:options:)` is async and must be awaited before returning or encoding the thumbnail image.",
+        "Provides or describes an awaited render path, such as drawing into a `CGContext` from an async helper before creating image data.",
+        "Corrects `toolPicker.maximumLinearExposure` to `PKToolPicker.colorMaximumLinearExposure`.",
+        "States that `MarkupEditViewController` is available for iOS, iPadOS, Mac Catalyst, and visionOS, while `MarkupToolbarViewController` covers macOS and Mac Catalyst toolbar-style UI.",
+        "Recommends checking loaded content against the supported `FeatureSet` or handling `MarkupError.incompatibleFormatTooNew` before offering editing."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "pencilkit-boundary",
+      "prompt": "We have a PencilKit-heavy PDF sketching app with custom brush behavior, raw stroke analytics, lasso workflows, and a need for callout boxes and arrows. Should we replace the whole canvas with PaperKit? Split the recommendation between PaperKit and PencilKit.",
+      "expected_output": "A boundary-aware recommendation that uses PaperKit for structured markup and system insertion UI while keeping low-level PencilKit drawing/stroke/tool behavior in PencilKit, with a migration path for existing PKDrawing data.",
+      "files": [],
+      "assertions": [
+        "Recommends PaperKit for structured markup elements such as text boxes, shapes, images, arrows, and system-standard insertion UI over document content.",
+        "Keeps custom brush behavior, raw `PKDrawing`/`PKStroke` analytics, and low-level PencilKit workflows in PencilKit rather than assigning them to PaperKit.",
+        "Mentions coexistence or migration using `PaperMarkup.append(contentsOf: PKDrawing)` for existing drawings.",
+        "Suggests using `contentView` or equivalent background content for annotating PDF/document pages with PaperKit.",
+        "Does not claim PaperKit requires entitlements or special Info.plist keys."
+      ]
+    }
+  ]
+}

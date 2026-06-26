@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Pulse"
+  short_description: "Inspect AI-agent sessions, tokens, model costs, and health."
+  default_prompt: "Use $agent-pulse to summarize my recent AI-agent sessions, token usage, model costs, health, and forecast."

@@ -1,0 +1,199 @@
+---
+name: api-components
+description: Next.js built-in components: Link, Image, Script, and Font
+---
+
+# Built-in Components
+
+Next.js provides optimized components for common web patterns.
+
+## Link Component
+
+Use `<Link>` for client-side navigation:
+
+```tsx
+import Link from 'next/link'
+
+export default function Navigation() {
+  return (
+    <nav>
+      <Link href="/">Home</Link>
+      <Link href="/about">About</Link>
+    </nav>
+  )
+}
+```
+
+### Link Props
+
+- `href`: Path or URL (required)
+- `prefetch`: Enable/disable prefetching (default: `true`)
+- `replace`: Replace current history entry
+- `scroll`: Scroll to top on navigation (default: `true`)
+
+```tsx
+<Link href="/dashboard" prefetch={false} scroll={false}>
+  Dashboard
+</Link>
+```
+
+## Image Component
+
+Optimized image component with automatic optimization:
+
+```tsx
+import Image from 'next/image'
+
+export default function Page() {
+  return (
+    <Image
+      src="/profile.png"
+      width={500}
+      height={500}
+      alt="Profile picture"
+    />
+  )
+}
+```
+
+### Image Props
+
+- `src`: Image source (required)
+- `alt`: Alt text (required)
+- `width` / `height`: Dimensions (required unless using `fill`)
+- `fill`: Fill parent container
+- `sizes`: Responsive image sizes
+- `quality`: Image quality (1-100, default: 75)
+- `placeholder`: Placeholder type (`blur` or `empty`)
+- `blurDataURL`: Base64 blur placeholder
+
+```tsx
+<Image
+  src="/hero.jpg"
+  fill
+  sizes="(max-width: 768px) 100vw, 50vw"
+  alt="Hero image"
+  placeholder="blur"
+  blurDataURL="data:image/jpeg;base64,..."
+/>
+```
+
+### Remote Images
+
+Configure remote images in `next.config.js`:
+
+```js
+module.exports = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'example.com',
+        pathname: '/images/**',
+      },
+    ],
+  },
+}
+```
+
+## Script Component
+
+Optimize third-party scripts:
+
+```tsx
+import Script from 'next/script'
+
+export default function Page() {
+  return (
+    <>
+      <Script
+        src="https://example.com/script.js"
+        strategy="afterInteractive"
+      />
+    </>
+  )
+}
+```
+
+### Script Strategies
+
+- `beforeInteractive`: Load before page becomes interactive
+- `afterInteractive`: Load after page becomes interactive (default)
+- `lazyOnload`: Load during idle time
+- `worker`: Load in a web worker
+
+```tsx
+<Script
+  src="https://example.com/analytics.js"
+  strategy="afterInteractive"
+  onLoad={() => {
+    // Script loaded
+  }}
+/>
+```
+
+## Font Component
+
+Optimize font loading:
+
+```tsx
+import { Inter } from 'next/font/google'
+
+const inter = Inter({ subsets: ['latin'] })
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en" className={inter.className}>
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+### Font Options
+
+- `subsets`: Font subsets to load
+- `weight`: Font weights
+- `style`: Font styles
+- `variable`: CSS variable name
+- `display`: Font display strategy
+
+```tsx
+import { Roboto } from 'next/font/google'
+
+const roboto = Roboto({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-roboto',
+})
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className={roboto.variable}>
+      {children}
+    </div>
+  )
+}
+```
+
+## Key Points
+
+- Use `<Link>` for all internal navigation
+- Use `<Image>` for optimized images
+- Use `<Script>` for third-party scripts
+- Use `next/font` for optimized font loading
+- Configure remote images in `next.config.js`
+- Choose appropriate script loading strategies
+- Fonts are automatically optimized and self-hosted
+
+<!--
+Source references:
+- https://nextjs.org/docs/app/api-reference/components/link
+- https://nextjs.org/docs/app/api-reference/components/image
+- https://nextjs.org/docs/app/api-reference/components/script
+- https://nextjs.org/docs/app/api-reference/components/font
+-->

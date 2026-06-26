@@ -1,35 +1,21 @@
 ---
-name: "qr-code-generator"
-description: "Indexed by skills.sh from dkyazzentwatwa/chatgpt-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "dkyazzentwatwa"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/dkyazzentwatwa/chatgpt-skills/qr-code-generator"
-sourceUrl: "https://skills.sh/dkyazzentwatwa/chatgpt-skills/qr-code-generator"
+name: qr-code-generator
+description: Generate QR codes with clean URLs, optional UTM parameters, captions, and print-safe exports. Use for single codes or batch campaign generation.
 ---
 
-# qr-code-generator
+# QR Code Generator
 
-> Indexed by skills.sh from dkyazzentwatwa/chatgpt-skills
+Create QR assets that are safe to print, easy to scan, and explicit about the encoded destination.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** dkyazzentwatwa
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/dkyazzentwatwa/chatgpt-skills/qr-code-generator`
-- **Source URL:** [https://skills.sh/dkyazzentwatwa/chatgpt-skills/qr-code-generator](https://skills.sh/dkyazzentwatwa/chatgpt-skills/qr-code-generator)
+## Workflow
 
-## Overview
+1. Validate the target URL and prefer HTTPS.
+2. Add UTM parameters only when the campaign needs them.
+3. Generate single codes with `scripts/generate_qr.py` or batches with `scripts/batch_generate.py`.
+4. Prefer SVG and higher error correction for print uses.
 
+## Guardrails
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/dkyazzentwatwa/chatgpt-skills/qr-code-generator
-```
+- Do not generate QR codes for suspicious or deceptive destinations.
+- Return the final encoded URL alongside the output files.
+- Explain when PNG is fine and when SVG is the better choice.

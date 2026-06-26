@@ -1,0 +1,44 @@
+{
+  "skill_name": "musickit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Audit this proposed MusicKit setup for an iOS 26 app: the team adds a com.apple.developer.musickit entitlement in Xcode, skips NSAppleMusicUsageDescription, calls MusicAuthorization.request() during launch, and says authorization will crash when the entitlement is missing. Write a concise review with corrected setup and authorization guidance.",
+      "expected_output": "A review that replaces the invented entitlement guidance with MusicKit App Service setup for an explicit bundle ID, requires NSAppleMusicUsageDescription, and explains authorization behavior without overstating crashes.",
+      "files": [],
+      "assertions": [
+        "Recommends enabling the MusicKit App Service for the app's explicit bundle ID so automatic developer token generation is configured.",
+        "Requires NSAppleMusicUsageDescription before accessing the user's music data or media library.",
+        "Explains that MusicAuthorization.request() presents the system consent dialog when necessary and currentStatus can be checked without prompting.",
+        "Does not claim that com.apple.developer.musickit is the required iOS app entitlement or that a missing entitlement causes authorization to crash.",
+        "Mentions UIBackgroundModes audio only when the app needs background playback."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Implement focused SwiftUI snippets for a MusicKit search-and-play flow: search Apple Music songs, play a selected catalog song with ApplicationMusicPlayer, and offer Apple Music subscription signup when playback is unavailable.",
+      "expected_output": "Swift snippets that separate catalog search from subscription playback, gate playback on MusicSubscription.current.canPlayCatalogContent, use ApplicationMusicPlayer, and present the Music subscription offer only when the user can become a subscriber.",
+      "files": [],
+      "assertions": [
+        "Uses MusicCatalogSearchRequest for catalog search and does not require subscription just to fetch catalog search results.",
+        "Checks MusicSubscription.current.canPlayCatalogContent before attempting catalog playback.",
+        "Uses ApplicationMusicPlayer.shared with queue assignment and play() for app-scoped playback.",
+        "Checks canBecomeSubscriber before presenting the Apple Music subscription offer.",
+        "Uses musicSubscriptionOffer(isPresented:options:onLoadCompletion:) or accurately notes the options and load-completion parameters for the offer sheet."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Review a MusicKit implementation that fetches top songs with MusicCatalogChartsRequest(kinds: [.mostPlayed], types: [Song.self]), adds songs and playlists to the user's library without checking cloud library state, and manually updates MPNowPlayingInfoCenter for Apple Music playback. Explain what should change.",
+      "expected_output": "A review that uses the current chart request initializer shape, gates library writes on authorization and iCloud Music Library availability, and keeps Now Playing guidance scoped to custom audio versus MusicKit playback.",
+      "files": [],
+      "assertions": [
+        "Uses or recommends MusicCatalogChartsRequest(genre:kinds:types:) with an explicit genre argument such as nil.",
+        "Checks MusicAuthorization.currentStatus or requests authorization before library mutations.",
+        "Checks MusicSubscription.current.hasCloudLibraryEnabled before adding songs, albums, or playlist entries to the user's library.",
+        "Explains that ApplicationMusicPlayer handles Now Playing metadata automatically for Apple Music content.",
+        "Keeps MediaPlayer guidance limited to custom audio or remote command handling and does not broaden into unrelated AVKit or CarPlay implementation advice."
+      ]
+    }
+  ]
+}

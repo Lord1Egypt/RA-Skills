@@ -1,0 +1,44 @@
+{
+  "skill_name": "carplay",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm adding CarPlay support to our turn-by-turn navigation app on iOS 26. Show the entitlement, Info.plist scene manifest, scene delegate, root template setup, map rendering boundary, and simulator test matrix.",
+      "expected_output": "Guidance requests the navigation CarPlay entitlement, declares CPTemplateApplicationSceneSessionRoleApplication in UIApplicationSceneManifest, implements the navigation CPTemplateApplicationSceneDelegate didConnect method with CPWindow, renders only map content in the CPWindow root view controller, sets CPMapTemplate as the root template, and includes CarPlay Simulator sizes plus real-hardware locked-iPhone/Siri/audio caveats.",
+      "files": [],
+      "assertions": [
+        "The output uses com.apple.developer.carplay-maps and notes that Apple grants CarPlay entitlements by app category.",
+        "The output includes a CarPlay scene manifest using CPTemplateApplicationSceneSessionRoleApplication, CPTemplateApplicationScene, and UISceneDelegateClassName.",
+        "The output implements the navigation delegate method templateApplicationScene(_:didConnect:to:) and retains both CPInterfaceController and CPWindow.",
+        "The output states CPWindow is for map rendering only and that controls, alerts, overlays, and navigation UI must use CarPlay templates.",
+        "The output sets CPMapTemplate as the root template and includes simulator configurations beyond the default 800 x 480 @2x.",
+        "The output mentions testing locked-iPhone behavior and at least one simulator limitation that requires real CarPlay hardware or an aftermarket unit."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this CarPlay communication code for iOS 26: it builds CPMessageListItem with CPMessageListItem.LeadingConfiguration, CPMessageListItem.TrailingConfiguration, trailingImage, and a custom selection handler that opens our message detail screen. What should change?",
+      "expected_output": "Review flags stale or invalid CPMessageListItem API shapes, uses CPMessageListItemLeadingConfiguration and CPMessageListItemTrailingConfiguration with CPMessageLeadingItem/CPMessageTrailingItem values, explains that CPMessageListItem selection invokes Siri message flows instead of a custom handler, and keeps the advice within the communication entitlement domain.",
+      "files": [],
+      "assertions": [
+        "The output replaces nested LeadingConfiguration/TrailingConfiguration types with CPMessageListItemLeadingConfiguration and CPMessageListItemTrailingConfiguration.",
+        "The output uses CPMessageLeadingItem and CPMessageTrailingItem enum values instead of fabricated text-style accessory objects.",
+        "The output uses the current CPMessageListItem initializer shape with detailText and trailingText rather than trailingImage on the list item initializer.",
+        "The output states CPMessageListItem does not use a custom selection handler; CarPlay invokes Siri message compose, read, or reply flows based on the item configuration.",
+        "The output keeps the guidance within CarPlay communication messaging APIs and does not expand the solution into a custom message-detail UI."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want our delivery app's Live Activity and a small widget to appear on the CarPlay Home Screen and CarPlay Ultra. Should the CarPlay skill own this, or should we build it with CarPlay templates?",
+      "expected_output": "Answer routes Live Activities to ActivityKit and widgets to WidgetKit while explaining that the CarPlay skill owns CarPlay framework template apps, scenes, entitlements, and simulator testing. It does not invent a CarPlay template implementation for widgets or Live Activities, and it mentions CarPlay-specific validation only as a handoff concern.",
+      "files": [],
+      "assertions": [
+        "The output says ActivityKit owns Live Activities and WidgetKit owns widgets for CarPlay Home Screen or CarPlay Ultra surfaces.",
+        "The output limits the CarPlay framework skill to template-based CarPlay apps, scene lifecycle, category entitlements, and CarPlay Simulator/testing.",
+        "The output does not implement Live Activities or widgets using CPTemplate, CPListTemplate, CPMapTemplate, or another CarPlay template.",
+        "The output recommends validating compact CarPlay layouts and driver-appropriate behavior without moving WidgetKit or ActivityKit guidance into the CarPlay skill."
+      ]
+    }
+  ]
+}

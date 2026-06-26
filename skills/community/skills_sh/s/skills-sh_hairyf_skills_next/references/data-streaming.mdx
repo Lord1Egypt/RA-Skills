@@ -1,0 +1,204 @@
+---
+name: data-streaming
+description: Streaming data and components with Suspense and loading.tsx
+---
+
+# Streaming Data and Components
+
+Streaming allows the server to send parts of a page to the client as soon as they're ready, rather than waiting for the entire page to render.
+
+## Why Streaming?
+
+Without streaming, slow data requests block the entire route from rendering. With streaming:
+- Users see content sooner
+- Better initial load time
+- Improved Core Web Vitals (TTFB, FCP, TTI)
+
+## Using loading.tsx
+
+Create `loading.tsx` to stream an entire page:
+
+```tsx
+// app/dashboard/loading.tsx
+export default function Loading() {
+  return <div>Loading dashboard...</div>
+}
+```
+
+Next.js automatically wraps `page.tsx` in a `<Suspense>` boundary. The loading UI is shown while the page loads, then swapped with the actual content.
+
+## Using Suspense
+
+Use `<Suspense>` for granular streaming of specific components:
+
+```tsx
+import { Suspense } from 'react'
+import BlogList from './blog-list'
+import BlogListSkeleton from './blog-list-skeleton'
+
+export default function BlogPage() {
+  return (
+    <div>
+      {/* Shown immediately */}
+      <header>
+        <h1>Blog</h1>
+      </header>
+      {/* Streamed in */}
+      <Suspense fallback={<BlogListSkeleton />}>
+        <BlogList />
+      </Suspense>
+    </div>
+  )
+}
+```
+
+## Creating Loading States
+
+Design meaningful loading states:
+
+```tsx
+// app/ui/blog-skeleton.tsx
+export default function BlogListSkeleton() {
+  return (
+    <div className="space-y-4">
+      {[1, 2, 3].map((i) => (
+        <div key={i} className="animate-pulse">
+          <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+          <div className="h-4 bg-gray-200 rounded w-1/2 mt-2"></div>
+        </div>
+      ))}
+    </div>
+  )
+}
+```
+
+## Streaming Multiple Components
+
+Stream multiple components independently:
+
+```tsx
+import { Suspense } from 'react'
+
+export default function Page() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading user...</div>}>
+        <UserProfile />
+      </Suspense>
+      <Suspense fallback={<div>Loading posts...</div>}>
+        <PostsList />
+      </Suspense>
+    </div>
+  )
+}
+```
+
+## Sequential Data Fetching with Streaming
+
+Stream dependent data:
+
+```tsx
+export default async function Page({ params }: { params: { id: string } }) {
+  const { id } = await params
+  const artist = await getArtist(id)
+
+  return (
+    <>
+      <h1>{artist.name}</h1>
+      <Suspense fallback={<div>Loading playlists...</div>}>
+        <Playlists artistID={artist.id} />
+      </Suspense>
+    </>
+  )
+}
+
+async function Playlists({ artistID }: { artistID: string }) {
+  const playlists = await getArtistPlaylists(artistID)
+  return (
+    <ul>
+      {playlists.map((playlist) => (
+        <li key={playlist.id}>{playlist.name}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+## Parallel Data Fetching with Streaming
+
+Stream independent data in parallel:
+
+```tsx
+export default function Page() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading user...</div>}>
+        <UserProfile />
+      </Suspense>
+      <Suspense fallback={<div>Loading posts...</div>}>
+        <PostsList />
+      </Suspense>
+    </div>
+  )
+}
+
+async function UserProfile() {
+  const user = await fetch('https://api.example.com/user')
+  const userData = await user.json()
+  return <div>{userData.name}</div>
+}
+
+async function PostsList() {
+  const posts = await fetch('https://api.example.com/posts')
+  const postsData = await posts.json()
+  return (
+    <ul>
+      {postsData.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+## Preloading Data
+
+Preload data before it's needed:
+
+```tsx
+import { getItem, checkIsAvailable } from './lib/data'
+
+export default async function Page({ params }: { params: { id: string } }) {
+  const { id } = await params
+  // Start loading item data
+  preload(id)
+  // Perform another async task
+  const isAvailable = await checkIsAvailable()
+
+  return isAvailable ? <Item id={id} /> : null
+}
+
+const preload = (id: string) => {
+  void getItem(id) // void evaluates and returns undefined
+}
+
+async function Item({ id }: { id: string }) {
+  const result = await getItem(id) // Already cached
+  return <div>{result.name}</div>
+}
+```
+
+## Key Points
+
+- Use `loading.tsx` for route-level streaming
+- Use `<Suspense>` for component-level streaming
+- Design meaningful loading states (skeletons, spinners)
+- Stream independent components in parallel
+- Preload data when possible for better UX
+- Streaming improves perceived performance and Core Web Vitals
+
+<!--
+Source references:
+- https://nextjs.org/docs/app/getting-started/fetching-data#streaming
+- https://nextjs.org/docs/app/api-reference/file-conventions/loading
+-->

@@ -1,0 +1,44 @@
+{
+  "skill_name": "eventkit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this iOS 26 calendar integration plan: the app asks for `NSCalendarsUsageDescription`, calls `requestAccess(to: .event)`, requests write-only access, then fetches the user's existing events to avoid conflicts before saving a booking. The team also wants an Add to Calendar button where the user can edit the event in the system sheet. Give corrected guidance with Swift API names where useful.",
+      "expected_output": "A review that fixes iOS 17+ calendar authorization, Info.plist keys, write-only read limitations, full-access requirements for fetching, and EventKitUI no-authorization creation.",
+      "files": [],
+      "assertions": [
+        "States that iOS 17+ direct EventKit access needs `NSCalendarsWriteOnlyAccessUsageDescription` or `NSCalendarsFullAccessUsageDescription`, not only `NSCalendarsUsageDescription`.",
+        "States that `requestAccess(to: .event)` is only a pre-iOS 17 fallback and should be availability-guarded when supporting older systems.",
+        "Explains that write-only event access can create events but cannot read calendars or fetch existing events, including app-created events.",
+        "Requires full calendar access for fetching existing events to detect conflicts.",
+        "States that `EKEventEditViewController` can let the user create/edit an event without the app requesting calendar authorization, with the limitation that the app cannot inspect the saved result afterward."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We need to create reminders when someone enters a job site. The draft code creates an `EKReminder`, assigns a `CLLocation` to `EKStructuredLocation`, adds a blank `EKAlarm()`, skips reminder authorization, and assumes `defaultCalendarForNewReminders()` is always non-nil. What should be fixed?",
+      "expected_output": "A correction that covers reminder full access, required title/calendar/default-list handling, location-based alarm setup, save behavior, and Core Location privacy only when current location is used.",
+      "files": [],
+      "assertions": [
+        "Requires full reminders access through `requestFullAccessToReminders()` before creating or reading reminders.",
+        "Checks that `defaultCalendarForNewReminders()` returns a calendar and states that reminder `title` and `calendar` must be set before save.",
+        "Uses `EKStructuredLocation` with `geoLocation` and a radius in meters for the geofence.",
+        "Configures an `EKAlarm` with a structured location and `.enter` or `.leave` proximity before adding it to the reminder.",
+        "Mentions `NSLocationWhenInUseUsageDescription` only if the app accesses the person's current location, not merely for fixed coordinates."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "A teammate wants to use the push notifications layer for all calendar alerts: every event and reminder should schedule a `UNNotificationRequest`, and EventKit should only store title/start/end dates. Review the boundary and recommend the right approach.",
+      "expected_output": "A boundary answer that keeps Calendar/Reminders alarms in EventKit, hands app-owned notification workflows to push notifications, and avoids expanding EventKit into APNs guidance.",
+      "files": [],
+      "assertions": [
+        "Recommends `EKAlarm` for Calendar event or Reminders alarms that should live with the calendar/reminder item.",
+        "Mentions relative or absolute event alarms using `EKAlarm(relativeOffset:)` or `EKAlarm(absoluteDate:)` and `addAlarm(_:)`.",
+        "Mentions structured-location reminders as an EventKit reminder alarm case when location is part of the reminder.",
+        "Hands off app-owned local/remote notification delivery to `UNUserNotificationCenter` or the push-notifications skill instead of turning EventKit into APNs guidance.",
+        "Does not claim EventKit calendar/reminder alarms require push notification authorization from the app."
+      ]
+    }
+  ]
+}

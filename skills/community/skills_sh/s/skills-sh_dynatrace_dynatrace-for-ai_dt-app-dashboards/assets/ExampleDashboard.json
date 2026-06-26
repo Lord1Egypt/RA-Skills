@@ -1,0 +1,79 @@
+{
+  "name": "Example Dashboard",
+  "type": "dashboard",
+  "content": {
+    "version": 21,
+    "variables": [],
+    "tiles": {
+      "0": {
+        "type": "markdown",
+        "content": "# Example Dashboard\nDemonstrates tile types and visualizations."
+      },
+      "1": {
+        "type": "data",
+        "title": "Response Time (line chart with thresholds)",
+        "query": "timeseries avg(dt.service.request.response_time), by:{dt.smartscape.service}",
+        "visualization": "lineChart",
+        "visualizationSettings": {
+          "chartSettings": {
+            "xAxisScaling": "analyzedTimeframe",
+            "legend": { "position": "right" }
+          },
+          "thresholds": [
+            {
+              "id": 1,
+              "field": "",
+              "title": "",
+              "isEnabled": true,
+              "rules": [
+                { "id": 0, "color": { "Default": "var(--dt-colors-charts-status-ideal-default, #2f6862)" }, "comparator": "≥", "label": "OK", "value": 0 },
+                { "id": 1, "color": { "Default": "var(--dt-colors-charts-status-warning-default, #eea53c)" }, "comparator": "≥", "label": "WARN", "value": 4000000 },
+                { "id": 2, "color": { "Default": "var(--dt-colors-charts-status-critical-default, #c62239)" }, "comparator": "≥", "label": "CRITICAL", "value": 8000000 }
+              ]
+            }
+          ],
+          "unitsOverrides": [
+            { "identifier": "avg(dt.service.request.response_time)", "unitCategory": "time", "baseUnit": "microsecond", "displayUnit": null, "decimals": null, "suffix": "", "delimiter": false, "added": 1770204632795 }
+          ]
+        },
+        "querySettings": {}
+      },
+      "2": {
+        "type": "data",
+        "title": "Events by Category (donut)",
+        "query": "fetch dt.davis.events\n| summarize count(), by:{event.category}",
+        "visualization": "donutChart",
+        "visualizationSettings": {
+          "chartSettings": {
+            "circleChartSettings": { "valueType": "relative" }
+          }
+        },
+        "querySettings": {}
+      },
+      "3": {
+        "type": "data",
+        "title": "Total Events (single value)",
+        "query": "fetch dt.davis.events\n| summarize count=count()",
+        "visualization": "singleValue",
+        "visualizationSettings": {
+          "singleValue": {
+            "colorThresholdTarget": "value",
+            "recordField": "count",
+            "label": "Number Events",
+            "isIconVisible": true
+          },
+          "unitsOverrides": [
+            { "identifier": "count", "unitCategory": "unspecified", "baseUnit": "count", "displayUnit": null, "decimals": null, "suffix": "", "delimiter": false, "added": 1770205033513 }
+          ]
+        },
+        "querySettings": {}
+      }
+    },
+    "layouts": {
+      "0": { "x": 0, "y": 0, "w": 24, "h": 1 },
+      "1": { "x": 0, "y": 1, "w": 12, "h": 7 },
+      "2": { "x": 12, "y": 1, "w": 12, "h": 7 },
+      "3": { "x": 0, "y": 8, "w": 24, "h": 5 }
+    }
+  }
+}

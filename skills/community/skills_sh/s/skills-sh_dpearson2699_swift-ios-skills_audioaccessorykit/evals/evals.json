@@ -1,0 +1,44 @@
+{
+  "skill_name": "audioaccessorykit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We already pair our headphones with AccessorySetupKit and now need to add AudioAccessoryKit automatic switching. Sketch the minimal Swift flow for registering the accessory and then updating wear placement when the firmware reports on-head/off-head changes.",
+      "expected_output": "A concise Swift-oriented answer that separates container-app registration from app-extension state updates and uses the current AudioAccessoryKit Configuration-based API.",
+      "files": [],
+      "expectations": [
+        "The answer registers the paired ASAccessory with AccessoryControlDevice.Configuration, not a raw Capabilities value.",
+        "The answer says register(_: _:) belongs in the container app after AccessorySetupKit pairing.",
+        "The answer says current(for:) and update(_:) belong in the app extension.",
+        "The answer includes .audioSwitching and .placement when describing Apple's automatic switching workflow for placement-aware hardware.",
+        "The answer handles or calls out AccessoryControlDevice.Error failures."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Please review this AudioAccessoryKit snippet and correct it if needed:\n\n```swift\nlet capabilities: AccessoryControlDevice.Capabilities = [.audioSwitching, .placement]\ntry await AccessoryControlDevice.register(accessory, capabilities)\nlet device = try AccessoryControlDevice.current(for: accessory)\nvar config = device.configuration\nconfig.devicePlacement = .inEar\ntry await device.update(config)\n```",
+      "expected_output": "A focused code review that identifies stale API usage and app/extension boundary mistakes, then provides corrected Swift.",
+      "files": [],
+      "expectations": [
+        "The answer flags register(accessory, capabilities) as the wrong current signature.",
+        "The corrected registration passes AccessoryControlDevice.Configuration.",
+        "The answer flags current(for:) and update(_:) as app-extension operations, not container-app registration steps.",
+        "The corrected code keeps registration and placement update examples in separate roles or sections.",
+        "The answer does not invent or construct ASAccessory directly."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I'm building a companion app for Bluetooth headphones. I need a picker that discovers our BLE service, asks for permission, and later talks to the device firmware. Should I use AudioAccessoryKit for all of that?",
+      "expected_output": "A boundary-aware answer that routes discovery and permission setup to AccessorySetupKit, BLE transport to CoreBluetooth as needed, and AudioAccessoryKit only to post-pairing audio-switching configuration.",
+      "files": [],
+      "expectations": [
+        "The answer recommends AccessorySetupKit for discovery, picker UI, and pairing or authorization.",
+        "The answer mentions CoreBluetooth only for accessory transport or firmware communication after permission as appropriate.",
+        "The answer limits AudioAccessoryKit to post-pairing audio accessory registration, placement, and connected source updates.",
+        "The answer does not present AudioAccessoryKit as the framework for BLE discovery or picker UI.",
+        "The answer preserves the sequence: pair first, then register audio configuration."
+      ]
+    }
+  ]
+}

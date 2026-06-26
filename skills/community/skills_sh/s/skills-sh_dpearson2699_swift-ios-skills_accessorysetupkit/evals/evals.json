@@ -1,0 +1,43 @@
+{
+  "skill_name": "accessorysetupkit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm adding setup for our BLE environmental sensor on iOS 18+. It advertises service UUID 12345678-1234-1234-1234-123456789ABC and name prefix EnviroTag. Show the Info.plist entries, ASDiscoveryDescriptor, picker presentation, and what to do after the user picks the accessory without triggering broad Bluetooth permission.",
+      "expected_output": "Guidance uses AccessorySetupKit for the picker, declares matching Info.plist Bluetooth support/service/name values, creates an ASDiscoveryDescriptor with the service UUID and name substring, activates ASAccessorySession before showPicker, handles accessoryAdded/pickerDidDismiss ordering, and uses the ASAccessory.bluetoothIdentifier with CoreBluetooth after selection.",
+      "files": [],
+      "assertions": [
+        "The output uses AccessorySetupKit and ASAccessorySession rather than direct CoreBluetooth scanning for initial discovery.",
+        "The output includes NSAccessorySetupSupports with Bluetooth and declares Bluetooth discovery values that match the descriptor.",
+        "The output creates an ASDiscoveryDescriptor with the provided service UUID and EnviroTag name matching.",
+        "The output activates the session before presenting the picker and handles accessoryAdded before pickerDidDismiss when continuing setup UI.",
+        "The output connects after selection using ASAccessory.bluetoothIdentifier and CoreBluetooth, and states broad Bluetooth permission is not required for AccessorySetupKit-only discovery."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this accessory setup plan for crash risks: one ASDiscoveryDescriptor sets ssid = \"ThermoHub-123\" and ssidPrefix = \"ThermoHub-\"; another Bluetooth descriptor uses manufacturer data mask bytes but no company identifier; the plist only declares Bluetooth support, not Wi-Fi. What should change?",
+      "expected_output": "Review flags invalid Wi-Fi descriptor configuration, missing Wi-Fi support declaration, and incomplete Bluetooth manufacturer-data matching. It recommends choosing either ssid or ssidPrefix, declaring WiFi in NSAccessorySetupSupports when discovering Wi-Fi, declaring matching Bluetooth identifiers in Info.plist, and pairing manufacturer data with a company identifier plus same-length blob/mask.",
+      "files": [],
+      "assertions": [
+        "The output flags setting both ssid and ssidPrefix as a runtime crash risk and recommends using exactly one non-empty value.",
+        "The output flags missing Wi-Fi support in NSAccessorySetupSupports for Wi-Fi discovery.",
+        "The output states Bluetooth manufacturer-data matching requires a bluetoothCompanyIdentifier.",
+        "The output states manufacturer data blob and mask must be provided together and have matching lengths.",
+        "The output recommends keeping Bluetooth descriptor values aligned with Info.plist declarations."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I'm building a smart-home Matter onboarding flow that adds lights to rooms, reads HMAccessory characteristics, and creates automations. It mentions accessories, setup, and Bluetooth nearby discovery in a few places. Which skill/domain should own the implementation guidance, and what should AccessorySetupKit not try to cover?",
+      "expected_output": "The answer routes smart-home/Matter/HomeKit implementation to the HomeKit/Matter domain, not AccessorySetupKit. It clearly limits AccessorySetupKit to privacy-scoped Bluetooth/Wi-Fi accessory discovery, authorization, picker/session events, and migration before communication through CoreBluetooth or NetworkExtension.",
+      "files": [],
+      "assertions": [
+        "The output says HomeKit/Matter guidance owns smart-home homes, rooms, HMAccessory characteristics, automations, and Matter onboarding.",
+        "The output does not expand AccessorySetupKit into HomeKit accessory management or Matter ecosystem implementation.",
+        "The output defines AccessorySetupKit's boundary as Bluetooth/Wi-Fi discovery, picker authorization, session events, and migration.",
+        "The output mentions post-setup communication belongs to CoreBluetooth/NetworkExtension rather than HomeKit automation logic."
+      ]
+    }
+  ]
+}

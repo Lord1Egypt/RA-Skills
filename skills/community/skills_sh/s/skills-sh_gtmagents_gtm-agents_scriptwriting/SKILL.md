@@ -1,35 +1,30 @@
 ---
-name: "scriptwriting"
-description: "Indexed by skills.sh from gtmagents/gtm-agents"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "gtmagents"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/gtmagents/gtm-agents/scriptwriting"
-sourceUrl: "https://skills.sh/gtmagents/gtm-agents/scriptwriting"
+name: scriptwriting
+description: Use when crafting scripts, storyboards, and messaging for video content.
 ---
 
-# scriptwriting
+# Video Scriptwriting Systems Skill
 
-> Indexed by skills.sh from gtmagents/gtm-agents
+## When to Use
+- Developing scripts for explainer, testimonial, thought leadership, or product videos.
+- Aligning scripts with positioning, CTA, and voice/tone guidelines.
+- Iterating on scripts based on feedback or performance data.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** gtmagents
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/gtmagents/gtm-agents/scriptwriting`
-- **Source URL:** [https://skills.sh/gtmagents/gtm-agents/scriptwriting](https://skills.sh/gtmagents/gtm-agents/scriptwriting)
+## Framework
+1. **Hook** – capture attention in first 5 seconds (question, stat, bold claim).
+2. **Problem/Insight** – relate to audience pain or opportunity.
+3. **Solution Story** – product capability or narrative proof with visuals.
+4. **Proof** – customer quote, metric, analyst validation.
+5. **CTA** – single next step (demo, trial, download, subscribe).
 
-## Overview
+## Templates
+- Script template with columns for VO/dialogue, visuals, motion notes, duration.
+- Storyboard grid with frame, description, audio, graphics, CTA.
+- Tone/voice checklist (personality traits, jargon allowances, compliance notes).
 
+## Tips
+- Write for ear: short sentences, contractions, conversational tone.
+- Add direction for B-roll, overlays, animations, and text callouts.
+- Plan variant clips (15s teaser, 6s bumper, square stories) from the start.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/gtmagents/gtm-agents/scriptwriting
-```
+---

@@ -1,35 +1,32 @@
 ---
-name: "recipe-save-email-to-doc"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-save-email-to-doc"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-save-email-to-doc"
+name: recipe-save-email-to-doc
+description: "Save a Gmail message body into a Google Doc for archival or reference."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-gmail
+        - gws-docs
 ---
 
-# recipe-save-email-to-doc
+# Save a Gmail Message to Google Docs
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-gmail`, `gws-docs`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-save-email-to-doc`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-save-email-to-doc](https://skills.sh/googleworkspace/cli/recipe-save-email-to-doc)
+Save a Gmail message body into a Google Doc for archival or reference.
 
-## Overview
+## Steps
 
+1. Find the message: `gws gmail users messages list --params '{"userId": "me", "q": "subject:important from:boss@company.com"}' --format table`
+2. Get message content: `gws gmail users messages get --params '{"userId": "me", "id": "MSG_ID"}'`
+3. Create a doc with the content: `gws docs documents create --json '{"title": "Saved Email - Important Update"}'`
+4. Write the email body: `gws docs +write --document-id DOC_ID --text 'From: boss@company.com
+Subject: Important Update
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-save-email-to-doc
-```
+[EMAIL BODY]'`
+

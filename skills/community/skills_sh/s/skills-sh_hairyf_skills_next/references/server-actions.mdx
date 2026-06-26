@@ -1,0 +1,271 @@
+---
+name: server-actions
+description: Server Functions and Server Actions for updating data in Next.js
+---
+
+# Server Actions
+
+Server Actions are async functions that run on the server. They can be called from the client through network requests. When used for mutations (forms, buttons), they're called Server Actions.
+
+## Creating Server Actions
+
+Add the `"use server"` directive to mark a function as a Server Action:
+
+```ts
+// app/lib/actions.ts
+'use server'
+
+export async function createPost(formData: FormData) {
+  const title = formData.get('title')
+  const content = formData.get('content')
+
+  // Update database
+  await db.post.create({ data: { title, content } })
+
+  // Revalidate cache
+  revalidatePath('/posts')
+}
+```
+
+Or add the directive to individual functions:
+
+```ts
+export async function createPost(formData: FormData) {
+  'use server'
+  // ...
+}
+
+export async function deletePost(formData: FormData) {
+  'use server'
+  // ...
+}
+```
+
+## Inline Server Actions
+
+Define Server Actions directly in Server Components:
+
+```tsx
+// app/page.tsx
+export default function Page() {
+  async function createPost(formData: FormData) {
+    'use server'
+    // ...
+  }
+
+  return <form action={createPost}>{/* ... */}</form>
+}
+```
+
+## Using Server Actions in Forms
+
+Pass Server Actions to form `action` prop:
+
+```tsx
+// app/ui/form.tsx
+import { createPost } from '@/app/actions'
+
+export function Form() {
+  return (
+    <form action={createPost}>
+      <input type="text" name="title" />
+      <input type="text" name="content" />
+      <button type="submit">Create</button>
+    </form>
+  )
+}
+```
+
+```ts
+// app/actions.ts
+'use server'
+
+export async function createPost(formData: FormData) {
+  const title = formData.get('title') as string
+  const content = formData.get('content') as string
+
+  await db.post.create({ data: { title, content } })
+  revalidatePath('/posts')
+}
+```
+
+## Using Server Actions in Buttons
+
+Use `formAction` prop on buttons:
+
+```tsx
+'use client'
+
+import { deletePost } from './actions'
+
+export function DeleteButton({ id }: { id: string }) {
+  return (
+    <form>
+      <button formAction={() => deletePost(id)}>Delete</button>
+    </form>
+  )
+}
+```
+
+## Using Server Actions in Event Handlers
+
+Invoke Server Actions from Client Component event handlers:
+
+```tsx
+'use client'
+
+import { incrementLike } from './actions'
+import { useState } from 'react'
+
+export function LikeButton({ initialLikes }: { initialLikes: number }) {
+  const [likes, setLikes] = useState(initialLikes)
+
+  return (
+    <button
+      onClick={async () => {
+        const updatedLikes = await incrementLike()
+        setLikes(updatedLikes)
+      }}
+    >
+      Like ({likes})
+    </button>
+  )
+}
+```
+
+## Pending States
+
+Use `useActionState` to show loading states:
+
+```tsx
+'use client'
+
+import { useActionState } from 'react'
+import { createPost } from './actions'
+
+export function Form() {
+  const [state, formAction, pending] = useActionState(createPost, null)
+
+  return (
+    <form action={formAction}>
+      <input type="text" name="title" disabled={pending} />
+      <button type="submit" disabled={pending}>
+        {pending ? 'Creating...' : 'Create'}
+      </button>
+      {state?.error && <p>{state.error}</p>}
+    </form>
+  )
+}
+```
+
+## Optimistic Updates
+
+Use `useOptimistic` for optimistic UI updates:
+
+```tsx
+'use client'
+
+import { useOptimistic } from 'react'
+import { updatePost } from './actions'
+
+export function Post({ post }: { post: Post }) {
+  const [optimisticPost, addOptimisticPost] = useOptimistic(
+    post,
+    (state, newPost: Post) => ({ ...state, ...newPost })
+  )
+
+  async function handleUpdate(formData: FormData) {
+    addOptimisticPost({ title: formData.get('title') as string })
+    await updatePost(formData)
+  }
+
+  return (
+    <form action={handleUpdate}>
+      <input name="title" defaultValue={optimisticPost.title} />
+      <button type="submit">Update</button>
+    </form>
+  )
+}
+```
+
+## Error Handling
+
+Handle errors in Server Actions:
+
+```ts
+'use server'
+
+export async function createPost(formData: FormData) {
+  try {
+    const title = formData.get('title') as string
+    if (!title) {
+      return { error: 'Title is required' }
+    }
+
+    await db.post.create({ data: { title } })
+    revalidatePath('/posts')
+    return { success: true }
+  } catch (error) {
+    return { error: 'Failed to create post' }
+  }
+}
+```
+
+## Redirecting
+
+Use `redirect` to navigate after mutations:
+
+```ts
+'use server'
+
+import { redirect } from 'next/navigation'
+
+export async function createPost(formData: FormData) {
+  const post = await db.post.create({
+    data: { title: formData.get('title') as string },
+  })
+
+  redirect(`/posts/${post.id}`)
+}
+```
+
+## Revalidating Cache
+
+Revalidate cache after mutations:
+
+```ts
+'use server'
+
+import { revalidatePath, revalidateTag } from 'next/cache'
+
+export async function updatePost(id: string, formData: FormData) {
+  await db.post.update({
+    where: { id },
+    data: { title: formData.get('title') as string },
+  })
+
+  // Revalidate specific path
+  revalidatePath(`/posts/${id}`)
+
+  // Or revalidate by tag
+  revalidateTag('posts', 'max')
+}
+```
+
+## Key Points
+
+- Server Actions are async functions with `"use server"` directive
+- Can be used in forms (`action` prop) and buttons (`formAction` prop)
+- Can be invoked from event handlers in Client Components
+- Use `useActionState` for pending states
+- Use `useOptimistic` for optimistic updates
+- Handle errors and return appropriate responses
+- Use `redirect` to navigate after mutations
+- Revalidate cache with `revalidatePath` or `revalidateTag`
+- Server Actions use POST method and are called sequentially
+
+<!--
+Source references:
+- https://nextjs.org/docs/app/getting-started/updating-data
+- https://nextjs.org/docs/app/api-reference/directives/use-server
+-->

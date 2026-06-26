@@ -1,35 +1,29 @@
 ---
-name: "recipe-post-mortem-setup"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-post-mortem-setup"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-post-mortem-setup"
+name: recipe-post-mortem-setup
+description: "Create a Google Docs post-mortem, schedule a Google Calendar review, and notify via Chat."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "engineering"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-docs
+        - gws-calendar
+        - gws-chat
 ---
 
-# recipe-post-mortem-setup
+# Set Up Post-Mortem
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-docs`, `gws-calendar`, `gws-chat`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-post-mortem-setup`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-post-mortem-setup](https://skills.sh/googleworkspace/cli/recipe-post-mortem-setup)
+Create a Google Docs post-mortem, schedule a Google Calendar review, and notify via Chat.
 
-## Overview
+## Steps
 
+1. Create post-mortem doc: `gws docs +write --title 'Post-Mortem: [Incident]' --body '## Summary\n\n## Timeline\n\n## Root Cause\n\n## Action Items'`
+2. Schedule review meeting: `gws calendar +insert --summary 'Post-Mortem Review: [Incident]' --attendee team@company.com --start '2026-03-16T14:00:00' --end '2026-03-16T15:00:00'`
+3. Notify in Chat: `gws chat +send --space spaces/ENG_SPACE --text '🔍 Post-mortem scheduled for [Incident].'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-post-mortem-setup
-```

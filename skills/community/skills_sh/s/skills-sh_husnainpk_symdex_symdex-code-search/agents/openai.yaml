@@ -1,0 +1,7 @@
+interface:
+  display_name: "SymDex Code Search"
+  short_description: "Use SymDex first for indexed code navigation"
+  default_prompt: "Use $symdex-code-search to explore this repository with SymDex before broad file reads."
+
+policy:
+  allow_implicit_invocation: true

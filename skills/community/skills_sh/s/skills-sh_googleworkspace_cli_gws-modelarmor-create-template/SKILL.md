@@ -1,35 +1,54 @@
 ---
-name: "gws-modelarmor-create-template"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/gws-modelarmor-create-template"
-sourceUrl: "https://skills.sh/googleworkspace/cli/gws-modelarmor-create-template"
+name: gws-modelarmor-create-template
+description: "Google Model Armor: Create a new Model Armor template."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "security"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws modelarmor +create-template --help"
 ---
 
-# gws-modelarmor-create-template
+# modelarmor +create-template
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/gws-modelarmor-create-template`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/gws-modelarmor-create-template](https://skills.sh/googleworkspace/cli/gws-modelarmor-create-template)
+Create a new Model Armor template
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/googleworkspace/cli/gws-modelarmor-create-template
+gws modelarmor +create-template --project <PROJECT> --location <LOCATION> --template-id <ID>
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--project` | ✓ | — | GCP project ID |
+| `--location` | ✓ | — | GCP location (e.g. us-central1) |
+| `--template-id` | ✓ | — | Template ID to create |
+| `--preset` | — | — | Use a preset template: jailbreak |
+| `--json` | — | — | JSON body for the template configuration (overrides --preset) |
+
+## Examples
+
+```bash
+gws modelarmor +create-template --project P --location us-central1 --template-id my-tmpl --preset jailbreak
+gws modelarmor +create-template --project P --location us-central1 --template-id my-tmpl --json '{...}'
+```
+
+## Tips
+
+- Defaults to the jailbreak preset if neither --preset nor --json is given.
+- Use the resulting template name with +sanitize-prompt and +sanitize-response.
+
+> [!CAUTION]
+> This is a **write** command — confirm with the user before executing.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-modelarmor](../gws-modelarmor/SKILL.md) — All filter user-generated content for safety commands

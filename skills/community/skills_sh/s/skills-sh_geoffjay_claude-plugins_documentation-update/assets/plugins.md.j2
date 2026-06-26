@@ -1,0 +1,88 @@
+# Plugin Directory
+
+Complete catalog of all plugins available in the marketplace.
+
+## Overview
+
+- **Total Plugins**: {{ stats.total_plugins }}
+- **Total Agents**: {{ stats.total_agents }}
+- **Total Commands**: {{ stats.total_commands }}
+- **Total Skills**: {{ stats.total_skills }}
+- **Last Updated**: {{ now }}
+
+---
+
+{% for category, plugins in plugins_by_category.items() %}
+## {{ category|title }}
+
+{% for plugin in plugins %}
+### {{ plugin.name }}
+
+{{ plugin.description }}
+
+**Version**: {{ plugin.version }}
+
+**Author**: {% if plugin.author %}{{ plugin.author.name }}{% else %}{{ marketplace.owner.name }}{% endif %}
+
+**License**: {{ plugin.license }}
+
+{% if plugin.keywords %}
+**Keywords**: {{ plugin.keywords|join(', ') }}
+{% endif %}
+
+**Components**:
+{% if plugin.agents %}
+- **Agents**: {{ plugin.agents|length }}
+{% endif %}
+{% if plugin.commands %}
+- **Commands**: {{ plugin.commands|length }}
+{% endif %}
+{% if plugin.skills %}
+- **Skills**: {{ plugin.skills|length }}
+{% endif %}
+
+**Location**: `{{ plugin.source }}`
+
+{% if plugin.homepage %}
+**Homepage**: {{ plugin.homepage }}
+{% endif %}
+
+{% if plugin.repository %}
+**Repository**: {{ plugin.repository }}
+{% endif %}
+
+---
+
+{% endfor %}
+{% endfor %}
+
+## Plugin Architecture
+
+Each plugin follows these principles:
+
+- **Single Responsibility**: One plugin does one thing well
+- **Composability**: Mix and match plugins based on needs
+- **Context Efficiency**: Smaller tools for better LLM performance
+- **Maintainability**: Isolated updates, clear boundaries
+
+## Installation
+
+All plugins are included in this marketplace. To use a plugin:
+
+1. Ensure the plugin directory exists in `plugins/`
+2. Use agents via the Task tool
+3. Use commands via slash commands
+4. Skills are automatically loaded when needed
+
+## Categories
+
+Plugins are organized into the following categories:
+
+{% for category in plugins_by_category.keys() %}
+- **{{ category|title }}**: {{ plugins_by_category[category]|length }} plugin(s)
+{% endfor %}
+
+---
+
+*This documentation is automatically generated from the marketplace catalog.*
+*Last updated: {{ now }}*

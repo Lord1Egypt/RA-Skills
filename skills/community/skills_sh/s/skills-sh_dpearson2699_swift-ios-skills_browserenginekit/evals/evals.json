@@ -1,0 +1,44 @@
+{
+  "skill_name": "browserenginekit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this proposed iOS alternative browser engine setup: the app has only com.apple.developer.web-browser-engine.host, three generic extensions with no type-specific entitlements, no UIRequiredDeviceCapabilities entry, and it launches a content process before connecting networking/rendering. Write a concise setup review with corrected entitlements, Info.plist/build settings, and process-bootstrap guidance.",
+      "expected_output": "A BrowserEngineKit setup review that names the host and extension entitlements, required device capability and arm64e distribution settings, and the host-brokered XPC bootstrap sequence.",
+      "files": [],
+      "assertions": [
+        "Names com.apple.developer.web-browser-engine.host for the browser app and the webcontent, networking, and rendering entitlements for their respective extension targets.",
+        "Requires UIRequiredDeviceCapabilities to include web-browser-engine and explains arm64e is required for iOS device distribution but not Simulator.",
+        "Explains that the host app launches the extension processes and brokers anonymous XPC endpoints so the web content extension can communicate with networking and rendering.",
+        "Mentions using BEAvailability instead of hard-coded region checks for device eligibility.",
+        "Does not recommend using WKWebView or SwiftUI WebKit as the alternative engine implementation."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Fix these BrowserEngineKit snippets for iOS 26: a WebContentExtension is declared as `final class MyWebContentExtension: WebContentExtension { override func handle(...) }`; the XPC handler calls xpc_connection_resume; file access sends a .withSecurityScope bookmark and calls startAccessingSecurityScopedResource; memory transfer entitlements are set to true; and rendering enables .coreML without availability checks.",
+      "expected_output": "A correction review that updates extension conformance, XPC activation, file bookmark handling, memory attribution entitlement values, and Core ML feature availability.",
+      "files": [],
+      "assertions": [
+        "Corrects WebContentExtension to be a protocol conformance with handle(xpcConnection:) and no override.",
+        "Uses xpc_connection_activate for BrowserEngineKit XPC connection handling.",
+        "Uses a minimal bookmark from the host app and resolves it with .withoutUI in the extension, then stops accessing the security-scoped resource.",
+        "States memory transfer_send and transfer_accept entitlement values should be the host browser app bundle identifier rather than true.",
+        "Guards RenderingExtensionFeature.coreML / enableFeature(.coreML) with iOS 26.2+ availability."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "A product team asks whether they should use BrowserEngineKit for an ordinary SwiftUI in-app help center that renders bundled HTML, intercepts app links, and supports OAuth sign-in. They are not building a browser engine. Give routing guidance and say which Apple APIs or sibling skills are more appropriate.",
+      "expected_output": "Boundary guidance that avoids BrowserEngineKit for ordinary embedded web content, points to SwiftUI WebKit or authentication APIs, and keeps BrowserEngineKit scoped to approved alternative browser engines.",
+      "files": [],
+      "assertions": [
+        "Says BrowserEngineKit is not the right tool for an ordinary in-app help center or OAuth flow when the app is not implementing an approved alternative browser engine.",
+        "Recommends SwiftUI WebKit/WebView or WKWebView-style embedded web APIs for app-owned HTML content.",
+        "Recommends ASWebAuthenticationSession or authentication-focused guidance for OAuth rather than embedded browser-engine plumbing.",
+        "Explains that BrowserEngineKit is for entitlement-approved alternative browser engines with separate web content, networking, and rendering processes.",
+        "Does not tell the team to request BrowserEngineKit entitlements or create BrowserEngineKit extensions for the help center."
+      ]
+    }
+  ]
+}

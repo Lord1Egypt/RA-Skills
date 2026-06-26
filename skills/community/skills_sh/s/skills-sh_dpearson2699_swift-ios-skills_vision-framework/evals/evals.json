@@ -1,0 +1,44 @@
+{
+  "skill_name": "vision-framework",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this iOS 26 Vision helper: it uses `DetectBarcodesRequest` with `[VNBarcodeSymbology]`, stores modern Vision bounding boxes as `CGRect`, converts them with `VNImageRectForNormalizedRect`, starts object tracking with `TrackObjectRequest(observation:)`, sets `trackingLevel`, and calls `generateMask(forInstances:)` on `InstanceMaskObservation`. Provide corrected Swift snippets and explain the API generation boundary.",
+      "expected_output": "A concise correction that uses modern Swift Vision APIs for iOS 18+ while preserving legacy VNRequest guidance only where needed.",
+      "files": [],
+      "assertions": [
+        "Uses `BarcodeSymbology` with `DetectBarcodesRequest` and does not use `VNBarcodeSymbology` for modern barcode detection.",
+        "Treats modern observation bounds as `NormalizedRect` and uses `toImageCoordinates(_:origin:)` or `.cgRect` only when conversion is needed.",
+        "Uses `TrackObjectRequest(detectedObject:)` with `DetectedObjectObservation(boundingBox:)` and does not set `trackingLevel` on modern `TrackObjectRequest`.",
+        "Calls `InstanceMaskObservation.generateMask(for:)` for modern person-instance masks.",
+        "Keeps legacy `VNImageRectForNormalizedRect`, `VNBarcodeSymbology`, and `VNTrackObjectRequest.trackingLevel` scoped to legacy VN APIs or VisionKit where applicable."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Build a SwiftUI live scanner for text and QR codes using VisionKit. Include permission and availability handling, the wrapper shape, barcode symbology types, and when scanning should start.",
+      "expected_output": "A SwiftUI DataScannerViewController integration that is safe to present and uses VisionKit-specific types correctly.",
+      "files": [],
+      "assertions": [
+        "Includes `NSCameraUsageDescription` and checks camera authorization before or around presentation.",
+        "Checks both `DataScannerViewController.isSupported` and `DataScannerViewController.isAvailable` before presenting.",
+        "Uses `DataScannerViewController.RecognizedDataType.barcode(symbologies:)` with VisionKit-supported `VNBarcodeSymbology` values, not modern Vision `BarcodeSymbology`.",
+        "Wraps `DataScannerViewController` in `UIViewControllerRepresentable` and starts scanning after presentation or on the main actor.",
+        "Mentions A12 Bionic or later support and a fallback for unavailable devices or visionOS."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Implement an image-analysis feature that reads text, detects barcodes, estimates horizon angle, finds saliency regions, and optionally runs a custom Core ML classifier through Vision. Keep Core ML conversion and deployment out of scope.",
+      "expected_output": "A Vision-focused design that uses the correct result shapes for modern requests, treats any Core ML classifier as already prepared, and keeps Core ML conversion and deployment outside the Vision implementation.",
+      "files": [],
+      "assertions": [
+        "Uses `RecognizeTextRequest`, `DetectBarcodesRequest`, `DetectHorizonRequest`, and saliency requests with `perform(on:)` and async/await.",
+        "Handles `DetectHorizonRequest` as returning one `HorizonObservation` with `angle: Measurement<UnitAngle>`.",
+        "Handles attention/objectness saliency requests as returning one `SaliencyImageObservation`, not an array of observations.",
+        "Uses `CoreMLRequest` only for an already-prepared classifier model and handles classifier output as `ClassificationObservation`.",
+        "Keeps Core ML conversion and deployment out of scope instead of expanding model lifecycle guidance in the Vision answer."
+      ]
+    }
+  ]
+}

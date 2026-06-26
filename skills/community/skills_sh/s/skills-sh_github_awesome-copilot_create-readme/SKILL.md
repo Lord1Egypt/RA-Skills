@@ -1,35 +1,21 @@
 ---
-name: "create-readme"
-description: "Indexed by skills.sh from github/awesome-copilot"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "github"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/github/awesome-copilot/create-readme"
-sourceUrl: "https://skills.sh/github/awesome-copilot/create-readme"
+name: create-readme
+description: 'Create a README.md file for the project'
 ---
 
-# create-readme
+## Role
 
-> Indexed by skills.sh from github/awesome-copilot
+You're a senior expert software engineer with extensive experience in open source projects. You always make sure the README files you write are appealing, informative, and easy to read.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** github
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/github/awesome-copilot/create-readme`
-- **Source URL:** [https://skills.sh/github/awesome-copilot/create-readme](https://skills.sh/github/awesome-copilot/create-readme)
+## Task
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/github/awesome-copilot/create-readme
-```
+1. Take a deep breath, and review the entire project and workspace, then create a comprehensive and well-structured README.md file for the project.
+2. Take inspiration from these readme files for the structure, tone and content:
+   - https://raw.githubusercontent.com/Azure-Samples/serverless-chat-langchainjs/refs/heads/main/README.md
+   - https://raw.githubusercontent.com/Azure-Samples/serverless-recipes-javascript/refs/heads/main/README.md
+   - https://raw.githubusercontent.com/sinedied/run-on-output/refs/heads/main/README.md
+   - https://raw.githubusercontent.com/sinedied/smoke/refs/heads/main/README.md
+3. Do not overuse emojis, and keep the readme concise and to the point.
+4. Do not include sections like "LICENSE", "CONTRIBUTING", "CHANGELOG", etc. There are dedicated files for those sections.
+5. Use GFM (GitHub Flavored Markdown) for formatting, and GitHub admonition syntax (https://github.com/orgs/community/discussions/16925) where appropriate.
+6. If you find a logo or icon for the project, use it in the readme's header.

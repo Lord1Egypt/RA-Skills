@@ -1,35 +1,28 @@
 ---
-name: "recipe-share-event-materials"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-share-event-materials"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-share-event-materials"
+name: recipe-share-event-materials
+description: "Share Google Drive files with all attendees of a Google Calendar event."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-calendar
+        - gws-drive
 ---
 
-# recipe-share-event-materials
+# Share Files with Meeting Attendees
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-calendar`, `gws-drive`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-share-event-materials`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-share-event-materials](https://skills.sh/googleworkspace/cli/recipe-share-event-materials)
+Share Google Drive files with all attendees of a Google Calendar event.
 
-## Overview
+## Steps
 
+1. Get event attendees: `gws calendar events get --params '{"calendarId": "primary", "eventId": "EVENT_ID"}'`
+2. Share file with each attendee: `gws drive permissions create --params '{"fileId": "FILE_ID"}' --json '{"role": "reader", "type": "user", "emailAddress": "attendee@company.com"}'`
+3. Verify sharing: `gws drive permissions list --params '{"fileId": "FILE_ID"}' --format table`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-share-event-materials
-```

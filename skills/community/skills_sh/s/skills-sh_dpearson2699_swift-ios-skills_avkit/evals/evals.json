@@ -1,0 +1,55 @@
+{
+  "skill_name": "avkit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Audit this proposed iOS video player setup: it calls AVAudioSession.setCategory(.playback, mode: .moviePlayback) and setActive(true) in app launch, adds no background modes, and expects Picture in Picture and AirPlay to work automatically. Write a concise review with corrected Swift and Info.plist guidance.",
+      "expected_output": "A review that corrects the audio session and background mode setup for an iOS AVKit playback app, recommends deferring setActive until playback begins, and avoids unsupported claims.",
+      "files": [],
+      "assertions": [
+        "Identifies that Background Modes > Audio, AirPlay, and Picture in Picture must be enabled for background audio, AirPlay streaming, and PiP support.",
+        "Recommends setting AVAudioSession category to .playback with .moviePlayback for movie playback.",
+        "Recommends deferring AVAudioSession.setActive(true) until playback begins rather than activating at app launch.",
+        "Does not claim PiP failure is silent or require a PiP entitlement for standard playback."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Implement a custom iOS AVPlayerLayer view that offers a Picture in Picture button. Include the important checks and delegate handling, but keep it as snippets rather than a full app.",
+      "expected_output": "Swift snippets for custom AVPlayerLayer-based PiP that check device support and current PiP possibility, start PiP only from user interaction, configure the delegate, and restore UI correctly.",
+      "files": [],
+      "assertions": [
+        "Uses AVPictureInPictureController with an AVPlayerLayer or ContentSource instead of subclassing AVPlayerViewController.",
+        "Checks AVPictureInPictureController.isPictureInPictureSupported() before exposing or configuring PiP UI.",
+        "Checks the controller's isPictureInPicturePossible before calling startPictureInPicture().",
+        "Starts custom Picture in Picture only from an explicit user interaction such as a PiP button action.",
+        "Implements restoreUserInterfaceForPictureInPictureStopWithCompletionHandler and calls its completion handler."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Review an iOS AVKit implementation that uses playerVC.isSkipForwardEnabled, playerVC.isSkipBackwardEnabled, playerVC.skippingBehavior = .skipItem, playerVC.allowedSubtitleOptionLanguages, playerVC.requiresFullSubtitles, and playerItem.interstitialTimeRanges = [...] to support skip buttons, subtitle restrictions, and ad breaks. Explain what should change for iOS 26.",
+      "expected_output": "A review that flags tvOS-only skipping and subtitle-restriction APIs, recommends iOS-safe seeking or standard controls, and uses stream-defined interstitial ranges or AVPlayerInterstitialEventController instead of direct interstitialTimeRanges assignment as the iOS recipe.",
+      "files": [],
+      "assertions": [
+        "Flags isSkipForwardEnabled, isSkipBackwardEnabled, and skippingBehavior as tvOS-focused APIs that should not be used for iOS transport controls.",
+        "Flags allowedSubtitleOptionLanguages and requiresFullSubtitles as tvOS-only subtitle controls and recommends AVAsset/AVPlayerItem media selection for iOS defaults.",
+        "Recommends AVPlayer.seek(...) or standard AVPlayerViewController transport controls for iOS seeking behavior.",
+        "States that iOS interstitial ranges must be stream-defined or scheduled with AVPlayerInterstitialEventController.",
+        "Does not present playerItem.interstitialTimeRanges assignment as the primary iOS scheduling solution."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Review this SwiftUI AVKit snippet for iOS: VideoPlayer(player: player) { Button(\"Buy\") { purchase() } } plus player.usesExternalPlaybackWhileExternalScreenIsActive = true. Explain whether the overlay can be interactive and when to set the external playback properties.",
+      "expected_output": "A review that accurately explains VideoPlayer overlay event handling and keeps AirPlay/external-screen guidance narrow.",
+      "files": [],
+      "assertions": [
+        "States that VideoPlayer's videoOverlay is fully interactive but sits below system playback controls and receives only unhandled events.",
+        "Does not describe VideoPlayer videoOverlay as non-interactive.",
+        "States that AVPlayer.allowsExternalPlayback defaults to true and should usually be left enabled for AirPlay.",
+        "Explains that usesExternalPlaybackWhileExternalScreenIsActive is only for automatic external-screen mode, not a blanket AirPlay requirement."
+      ]
+    }
+  ]
+}

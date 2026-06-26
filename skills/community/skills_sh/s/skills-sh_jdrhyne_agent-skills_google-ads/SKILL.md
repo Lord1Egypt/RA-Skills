@@ -1,35 +1,209 @@
 ---
-name: "google-ads"
-description: "Indexed by skills.sh from jdrhyne/agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "jdrhyne"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/jdrhyne/agent-skills/google-ads"
-sourceUrl: "https://skills.sh/jdrhyne/agent-skills/google-ads"
+name: google-ads
+description: "Query, audit, and optimize Google Ads campaigns. Supports two modes: (1) API mode for bulk operations with the google-ads Python SDK, (2) attached-browser mode for users without API access. Use when asked to check ad performance, pause campaigns or keywords, find wasted spend, audit conversion tracking, or optimize Google Ads accounts."
+permissions:
+  - credential_access: "Reads locally configured Google Ads API credentials when the user wants API mode."
+  - network: "Uses the Google Ads API or the attached browser session against ads.google.com."
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📊",
+        "requires":
+          {
+            "anyBins": ["python3"],
+            "config": ["~/.google-ads.yaml"],
+          },
+      },
+  }
 ---
 
-# google-ads
+# Google Ads Skill
 
-> Indexed by skills.sh from jdrhyne/agent-skills
+Manage Google Ads accounts via API or an attached browser session.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** jdrhyne
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/jdrhyne/agent-skills/google-ads`
-- **Source URL:** [https://skills.sh/jdrhyne/agent-skills/google-ads](https://skills.sh/jdrhyne/agent-skills/google-ads)
+## Mode Selection
 
-## Overview
+**Check which mode to use:**
 
+1. **API Mode** - If user has `google-ads.yaml` configured or `GOOGLE_ADS_*` env vars
+2. **Browser Mode** - If user says "I don't have API access" or just wants quick checks
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/jdrhyne/agent-skills/google-ads
+# Check for API config
+ls ~/.google-ads.yaml 2>/dev/null || ls google-ads.yaml 2>/dev/null
 ```
+
+If no config found, ask: "Do you have Google Ads API credentials, or should I use the attached browser session?"
+
+---
+
+## Browser Mode (Universal)
+
+**Requirements:** User logged into ads.google.com in browser
+
+### Setup
+1. User opens ads.google.com and logs in
+2. User clicks Clawdbot Browser Relay toolbar icon (badge ON)
+3. Use `browser` tool with `profile="chrome"`
+
+### Common Workflows
+
+#### Get Campaign Performance
+```
+1. Navigate to: ads.google.com/aw/campaigns
+2. Set date range (top right date picker)
+3. Snapshot the campaigns table
+4. Parse: Campaign, Status, Budget, Cost, Conversions, Cost/Conv
+```
+
+#### Find Zero-Conversion Keywords (Wasted Spend)
+```
+1. Navigate to: ads.google.com/aw/keywords
+2. Click "Add filter" → Conversions → Less than → 1
+3. Click "Add filter" → Cost → Greater than → [threshold, e.g., $500]
+4. Sort by Cost descending
+5. Snapshot table for analysis
+```
+
+#### Pause Keywords/Campaigns
+```
+1. Navigate to keywords or campaigns view
+2. Check boxes for items to pause
+3. Click "Edit" dropdown → "Pause"
+4. Confirm action
+```
+
+#### Download Reports
+```
+1. Navigate to desired view (campaigns, keywords, etc.)
+2. Click "Download" icon (top right of table)
+3. Select format (CSV recommended)
+4. File downloads to user's Downloads folder
+```
+
+**For detailed browser selectors:** Load `browser-workflows.md` from this skill's `references` folder.
+
+---
+
+## API Mode (Power Users)
+
+**Requirements:** Google Ads API developer token plus locally configured client credentials
+
+### Setup Check
+```bash
+# Verify google-ads SDK
+python -c "from google.ads.googleads.client import GoogleAdsClient; print('OK')"
+
+# Check config
+cat ~/.google-ads.yaml
+```
+
+### Common Operations
+
+#### Query Campaign Performance
+```python
+from google.ads.googleads.client import GoogleAdsClient
+
+client = GoogleAdsClient.load_from_storage()
+ga_service = client.get_service("GoogleAdsService")
+
+query = """
+    SELECT campaign.name, campaign.status,
+           metrics.cost_micros, metrics.conversions,
+           metrics.cost_per_conversion
+    FROM campaign
+    WHERE segments.date DURING LAST_30_DAYS
+    ORDER BY metrics.cost_micros DESC
+"""
+
+response = ga_service.search(customer_id=CUSTOMER_ID, query=query)
+```
+
+#### Find Zero-Conversion Keywords
+```python
+query = """
+    SELECT ad_group_criterion.keyword.text,
+           campaign.name, metrics.cost_micros
+    FROM keyword_view
+    WHERE metrics.conversions = 0
+      AND metrics.cost_micros > 500000000
+      AND segments.date DURING LAST_90_DAYS
+    ORDER BY metrics.cost_micros DESC
+"""
+```
+
+#### Pause Keywords
+```python
+operations = []
+for keyword_id in keywords_to_pause:
+    operation = client.get_type("AdGroupCriterionOperation")
+    operation.update.resource_name = f"customers/{customer_id}/adGroupCriteria/{ad_group_id}~{keyword_id}"
+    operation.update.status = client.enums.AdGroupCriterionStatusEnum.PAUSED
+    operations.append(operation)
+
+service.mutate_ad_group_criteria(customer_id=customer_id, operations=operations)
+```
+
+**For full API reference:** Load `api-setup.md` from this skill's `references` folder.
+
+---
+
+## Audit Checklist
+
+Quick health check for any Google Ads account:
+
+| Check | Browser Path | What to Look For |
+|-------|--------------|------------------|
+| Zero-conv keywords | Keywords → Filter: Conv<1, Cost>$500 | Wasted spend |
+| Empty ad groups | Ad Groups → Filter: Ads=0 | No creative running |
+| Policy violations | Campaigns → Status column | Yellow warning icons |
+| Optimization Score | Overview page (top right) | Below 70% = action needed |
+| Conversion tracking | Tools → Conversions | Inactive/no recent data |
+
+---
+
+## Output Formats
+
+When reporting findings, use tables:
+
+```markdown
+## Campaign Performance (Last 30 Days)
+| Campaign | Cost | Conv | CPA | Status |
+|----------|------|------|-----|--------|
+| Branded  | $5K  | 50   | $100| ✅ Good |
+| SDK Web  | $10K | 2    | $5K | ❌ Pause |
+
+## Recommended Actions
+1. **PAUSE**: SDK Web campaign ($5K CPA)
+2. **INCREASE**: Branded budget (strong performer)
+```
+
+---
+
+## Troubleshooting
+
+## Safety Boundaries
+
+- Do not pause campaigns, keywords, or budgets without explicit confirmation from the user.
+- Do not export or summarize account data beyond the account, date range, and entities the user requested.
+- Do not expose API credentials, downloaded reports, or account identifiers in chat output.
+- Do not use browser mode unless the user has attached the correct logged-in ads.google.com session.
+
+### Browser Mode Issues
+- **Can't see data**: Check user is on correct account (top right account selector)
+- **Slow loading**: Google Ads UI is heavy; wait for tables to fully load
+- **Session expired**: User needs to re-login to ads.google.com
+
+### API Mode Issues
+- **Authentication failed**: Refresh OAuth token, check `google-ads.yaml`
+- **Developer token rejected**: Ensure token is approved (not test mode)
+- **Customer ID error**: Use 10-digit ID without dashes
+
+## Security & Change-Control Addendum
+
+- Default mode is read-only audit/reporting.
+- Any mutating action (pause/enable/edit bids/budgets) requires explicit confirmation listing impacted entities first.
+- Browser mode must be user-attended for account-affecting actions.
+- Protect `~/.google-ads.yaml` permissions and never echo tokens/secrets in terminal output.
+

@@ -1,0 +1,45 @@
+{
+  "skill_name": "homekit",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I'm building a HomeKit app that should create a nightly Good Night automation at 10:30 PM. Sketch the Swift guidance for creating the action set, adding a timer trigger that repeats daily, attaching the scene, and enabling the trigger. Call out the HomeKit setup prerequisites and any timing gotchas.",
+      "expected_output": "HomeKit automation guidance that uses a single HMHomeManager, creates an HMActionSet, creates an HMTimerTrigger with a first fire date at 22:30 and a daily recurrence interval, attaches the action set, enables the trigger, and lists HomeKit capability/usage-description prerequisites.",
+      "files": [],
+      "expectations": [
+        "Uses HomeKit/HMHomeManager, HMHome, HMActionSet, and HMTimerTrigger rather than routing the task to MatterSupport or AccessorySetupKit.",
+        "Computes the first fire date from hour/minute components such as 22:30.",
+        "Uses a recurrence interval such as DateComponents(day: 1) for daily repeat instead of reusing hour/minute wall-clock components as the recurrence.",
+        "Adds the trigger to the home, adds the action set to the trigger, and enables the trigger.",
+        "Mentions the HomeKit capability and NSHomeKitUsageDescription, and does not access homes before homeManagerDidUpdateHomes."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "We need to add Matter lights into our own smart-home ecosystem from an iOS app. Write the setup checklist and Swift-oriented commissioning outline, including discovery configuration, the extension handler callbacks, optional setup-code handling, and what the app should do after perform() succeeds.",
+      "expected_output": "MatterSupport commissioning guidance that adds the MatterSupport extension, declares Matter Bonjour services, uses MatterAddDeviceRequest with topology and isSupported, explains conditional setup-payload entitlement/MTRSetupPayload usage, and outlines the extension handler callbacks for credential validation, rooms, commissioning, configuration, and optional network selection.",
+      "files": [],
+      "expectations": [
+        "Adds or verifies a MatterSupport extension target with a MatterAddDeviceExtensionRequestHandler principal handler.",
+        "Includes NSBonjourServices entries for _matter._tcp, _matterc._udp, and _matterd._udp.",
+        "Checks MatterAddDeviceRequest.isSupported and builds a topology with ecosystem name and homes before perform().",
+        "Limits com.apple.developer.matter.allow-setup-payload to callers that provide setup codes programmatically and mentions MTRSetupPayload from the Matter framework for that case.",
+        "Names extension callbacks such as validateDeviceCredential(_:), rooms(in:), commissionDevice(in:onboardingPayload:commissioningID:), configureDevice(named:in:), and optional Wi-Fi/Thread network selection.",
+        "Does not present MatterSupport commissioning as ordinary HMHome accessory setup or a lower-level AccessorySetupKit picker flow."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "A product proposal says one Apple accessory guide should cover Matter light onboarding, HomeKit rooms and automations, BLE discovery for a setup-only accessory, GATT control after selection, and joining a temporary Wi-Fi setup network. Write a routing note that assigns each part to the right framework domain and explains what belongs in the HomeKit skill.",
+      "expected_output": "A boundary-aware routing note that assigns HomeKit/MatterSupport to homes, rooms, HMAccessory characteristics, action sets, triggers, and Matter onboarding; AccessorySetupKit to Bluetooth/Wi-Fi discovery, picker authorization, session events, and migration; CoreBluetooth/GATT to BLE communication after selection; and NetworkExtension to Wi-Fi setup-network joins.",
+      "files": [],
+      "expectations": [
+        "Identifies HomeKit/MatterSupport as the owner for homes, rooms, HMAccessory services/characteristics, action sets, triggers, automations, and Matter commissioning.",
+        "Limits AccessorySetupKit to Bluetooth/Wi-Fi discovery descriptors, privacy-preserving picker authorization, or ASAccessorySession setup events.",
+        "Routes post-selection BLE service and characteristic communication to CoreBluetooth/GATT.",
+        "Routes joining or configuring a temporary Wi-Fi setup network to NetworkExtension.",
+        "Does not collapse lower-level accessory discovery, GATT communication, or Wi-Fi network joins into HomeKit automation guidance."
+      ]
+    }
+  ]
+}

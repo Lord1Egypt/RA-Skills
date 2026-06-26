@@ -1,35 +1,12 @@
 ---
-name: "value"
-description: "Indexed by skills.sh from hugmouse/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "hugmouse"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/hugmouse/skills/value"
-sourceUrl: "https://skills.sh/hugmouse/skills/value"
+name: value
+description: skill does absolutely nothing, as well as the agent that uses it.
 ---
 
-# value
+# Value
 
-> Indexed by skills.sh from hugmouse/skills
+This skill does absolutely nothing.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** hugmouse
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/hugmouse/skills/value`
-- **Source URL:** [https://skills.sh/hugmouse/skills/value](https://skills.sh/hugmouse/skills/value)
+## When to Use This Skill
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/hugmouse/skills/value
-```
+Never.

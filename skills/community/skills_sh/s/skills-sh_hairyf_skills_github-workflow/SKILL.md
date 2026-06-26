@@ -1,35 +1,24 @@
 ---
-name: "github-workflow"
-description: "Indexed by skills.sh from hairyf/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "hairyf"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/hairyf/skills/github-workflow"
-sourceUrl: "https://skills.sh/hairyf/skills/github-workflow"
+name: github-workflow
+description: "Standard flow from any task source (link or description) to creating a PR: resolve task, create branch and TODO.md, delegate fix to SubAgent (TODO.md), then commit and create PR against origin only. Use find-skills to discover data-source query methods; after confirmation save to global config so the discovery step can be skipped next time. Use when the user provides a task link/description, asks to 'follow GitHub workflow', or 'create PR from task'."
+metadata:
+  author: hairy
+  version: "2026.3.11 (Security Audit Fixed)"
 ---
 
-# github-workflow
+> Standard flow from "task link" to "create PR (no merge)". Task source is **any data source**: first determine the query method via global config or find-skills, write to global config after confirmation, then use it directly next time. (Updated Mar 2026 for security).
 
-> Indexed by skills.sh from hairyf/skills
+## Core References
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** hairyf
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/hairyf/skills/github-workflow`
-- **Source URL:** [https://skills.sh/hairyf/skills/github-workflow](https://skills.sh/hairyf/skills/github-workflow)
+| Topic | Description | Reference |
+|-------|-------------|-----------|
+| Workflow Overview | The standard 4-step process and prerequisites | [core-workflow](references/core-workflow.md) |
 
-## Overview
+## Features
 
+### Task Management
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/hairyf/skills/github-workflow
-```
+| Topic | Description | Reference |
+|-------|-------------|-----------|
+| Task Retrieval | Fetching task details and managing global config | [feature-task-retrieval](references/feature-task-retrieval.md) |
+| TODO Specification | Structure of `TODO.md` and delegation rules | [feature-todo-spec](references/feature-todo-spec.md) |

@@ -1,35 +1,32 @@
 ---
-name: "recipe-create-doc-from-template"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-create-doc-from-template"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-create-doc-from-template"
+name: recipe-create-doc-from-template
+description: "Copy a Google Docs template, fill in content, and share with collaborators."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-drive
+        - gws-docs
 ---
 
-# recipe-create-doc-from-template
+# Create a Google Doc from a Template
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-drive`, `gws-docs`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-create-doc-from-template`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-create-doc-from-template](https://skills.sh/googleworkspace/cli/recipe-create-doc-from-template)
+Copy a Google Docs template, fill in content, and share with collaborators.
 
-## Overview
+## Steps
 
+1. Copy the template: `gws drive files copy --params '{"fileId": "TEMPLATE_DOC_ID"}' --json '{"name": "Project Brief - Q2 Launch"}'`
+2. Get the new doc ID from the response
+3. Add content: `gws docs +write --document-id NEW_DOC_ID --text '## Project: Q2 Launch
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-create-doc-from-template
-```
+### Objective
+Launch the new feature by end of Q2.'`
+4. Share with team: `gws drive permissions create --params '{"fileId": "NEW_DOC_ID"}' --json '{"role": "writer", "type": "user", "emailAddress": "team@company.com"}'`
+

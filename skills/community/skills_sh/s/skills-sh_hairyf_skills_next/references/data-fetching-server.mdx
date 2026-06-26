@@ -1,0 +1,199 @@
+---
+name: data-fetching-server
+description: Fetching data in Server Components with fetch API, ORMs, and databases
+---
+
+# Data Fetching in Server Components
+
+Server Components can fetch data directly using `fetch`, ORMs, databases, or filesystem APIs. Server Components are async by default.
+
+## Using the Fetch API
+
+Fetch data in Server Components by making the component async:
+
+```tsx
+export default async function Page() {
+  const res = await fetch('https://api.example.com/posts')
+  const posts = await res.json()
+
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+## Fetch Caching
+
+By default, `fetch` requests are not cached. Next.js will pre-render routes with fetch requests and cache the HTML.
+
+To cache fetch requests:
+
+```tsx
+const res = await fetch('https://api.example.com/data', {
+  cache: 'force-cache', // Cache the request
+})
+```
+
+To opt out of caching:
+
+```tsx
+const res = await fetch('https://api.example.com/data', {
+  cache: 'no-store', // Don't cache, always fetch fresh
+})
+```
+
+## Time-Based Revalidation
+
+Revalidate cached data after a time period:
+
+```tsx
+const res = await fetch('https://api.example.com/data', {
+  next: { revalidate: 3600 }, // Revalidate every hour
+})
+```
+
+## Cache Tagging
+
+Tag fetch requests for on-demand revalidation:
+
+```tsx
+const res = await fetch('https://api.example.com/posts', {
+  next: { tags: ['posts'] },
+})
+```
+
+Then revalidate with `revalidateTag`:
+
+```tsx
+import { revalidateTag } from 'next/cache'
+
+export async function updatePost() {
+  // Update post...
+  revalidateTag('posts')
+}
+```
+
+## Using ORMs and Databases
+
+Query databases directly in Server Components:
+
+```tsx
+import { db } from '@/lib/db'
+
+export default async function Page() {
+  const posts = await db.query.posts.findMany()
+
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+## Request Memoization
+
+Next.js automatically deduplicates `fetch` requests with the same URL and options in a single render pass:
+
+```tsx
+// Both calls are deduplicated into one request
+const data1 = await fetch('https://api.example.com/data')
+const data2 = await fetch('https://api.example.com/data')
+```
+
+## Using React.cache
+
+For non-fetch data sources, use `React.cache` to deduplicate:
+
+```tsx
+import { cache } from 'react'
+import { db } from '@/lib/db'
+
+export const getPost = cache(async (id: string) => {
+  return await db.query.posts.findFirst({ where: { id } })
+})
+```
+
+Multiple calls to `getPost` in the same request return the cached result.
+
+## Parallel Data Fetching
+
+Start multiple requests in parallel:
+
+```tsx
+export default async function Page() {
+  // Start both requests in parallel
+  const userPromise = fetch('https://api.example.com/user')
+  const postsPromise = fetch('https://api.example.com/posts')
+
+  // Wait for both to complete
+  const [userRes, postsRes] = await Promise.all([
+    userPromise,
+    postsPromise,
+  ])
+
+  const user = await userRes.json()
+  const posts = await postsRes.json()
+
+  return (
+    <div>
+      <h1>{user.name}</h1>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+```
+
+## Sequential Data Fetching
+
+When one request depends on another:
+
+```tsx
+export default async function Page({ params }: { params: { id: string } }) {
+  const artist = await fetch(`https://api.example.com/artists/${params.id}`)
+  const artistData = await artist.json()
+
+  const albums = await fetch(
+    `https://api.example.com/artists/${artistData.id}/albums`
+  )
+  const albumsData = await albums.json()
+
+  return (
+    <div>
+      <h1>{artistData.name}</h1>
+      <ul>
+        {albumsData.map((album) => (
+          <li key={album.id}>{album.title}</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+```
+
+## Key Points
+
+- Server Components are async by default
+- `fetch` requests are not cached by default (but HTML is pre-rendered)
+- Use `cache: 'force-cache'` to cache fetch requests
+- Use `next.revalidate` for time-based revalidation
+- Use `next.tags` for on-demand revalidation
+- Request memoization deduplicates fetch calls automatically
+- Use `React.cache` for non-fetch data sources
+- Fetch in parallel with `Promise.all` when possible
+
+<!--
+Source references:
+- https://nextjs.org/docs/app/getting-started/fetching-data
+- https://nextjs.org/docs/app/api-reference/functions/fetch
+-->

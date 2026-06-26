@@ -1,35 +1,28 @@
 ---
-name: "pytest-coverage"
-description: "Indexed by skills.sh from github/awesome-copilot"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "github"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/github/awesome-copilot/pytest-coverage"
-sourceUrl: "https://skills.sh/github/awesome-copilot/pytest-coverage"
+name: pytest-coverage
+description: 'Run pytest tests with coverage, discover lines missing coverage, and increase coverage to 100%.'
 ---
 
-# pytest-coverage
+The goal is for the tests to cover all lines of code.
 
-> Indexed by skills.sh from github/awesome-copilot
+Generate a coverage report with:
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** github
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/github/awesome-copilot/pytest-coverage`
-- **Source URL:** [https://skills.sh/github/awesome-copilot/pytest-coverage](https://skills.sh/github/awesome-copilot/pytest-coverage)
+pytest --cov --cov-report=annotate:cov_annotate
 
-## Overview
+If you are checking for coverage of a specific module, you can specify it like this:
 
+pytest --cov=your_module_name --cov-report=annotate:cov_annotate
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/github/awesome-copilot/pytest-coverage
-```
+You can also specify specific tests to run, for example:
+
+pytest tests/test_your_module.py --cov=your_module_name --cov-report=annotate:cov_annotate
+
+Open the cov_annotate directory to view the annotated source code.
+There will be one file per source file. If a file has 100% source coverage, it means all lines are covered by tests, so you do not need to open the file.
+
+For each file that has less than 100% test coverage, find the matching file in cov_annotate and review the file.
+
+If a line starts with a ! (exclamation mark), it means that the line is not covered by tests.
+Add tests to cover the missing lines.
+
+Keep running the tests and improving coverage until all lines are covered.

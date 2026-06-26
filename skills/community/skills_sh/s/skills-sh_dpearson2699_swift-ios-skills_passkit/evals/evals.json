@@ -1,0 +1,51 @@
+{
+  "skill_name": "passkit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm adding Apple Pay checkout to a SwiftUI store for physical products. Show the capability setup, availability check, Apple Pay button, PKPaymentRequest with shipping, payment presentation, and authorization delegate shape. Include App Review boundary notes for StoreKit.",
+      "expected_output": "A source-grounded PassKit checkout plan that uses Apple Pay for physical goods, builds a valid payment request, handles authorization through a retained controller/delegate, and keeps StoreKit for digital goods.",
+      "files": [],
+      "assertions": [
+        "States that Apple Pay capability, Merchant ID, payment processing certificate, and merchant entitlement must be configured.",
+        "Checks `PKPaymentAuthorizationController.canMakePayments()` and `canMakePayments(usingNetworks:capabilities:)` before presenting Apple Pay UI.",
+        "Uses system-provided `PayWithApplePayButton` or `PKPaymentButton` rather than a custom Apple Pay button.",
+        "Constructs payment summary items and shipping methods with `NSDecimalNumber`, not `Double` money literals.",
+        "Keeps the final `paymentSummaryItems` entry as the total Pay-line item with the merchant/business name.",
+        "Retains `PKPaymentAuthorizationController` while presented, assigns its weak delegate, and clears the retained controller after dismissal.",
+        "Sends `payment.token` or `payment.token.paymentData` to a payment processor/server and returns `PKPaymentAuthorizationResult` through the delegate handler.",
+        "Explains that StoreKit is for virtual goods, app features, and digital-content subscriptions while PassKit covers physical goods, real-world services, donations, and eligible recurring payments."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this Wallet pass plan: load a pkpass, show a normal SwiftUI Button that says Add to Wallet, use PKPassLibrary.isPassLibraryAvailable to decide if the device can add it, list all Wallet passes with passes(), and update the pass later with a new serial number. Fix it.",
+      "expected_output": "A correction-focused Wallet pass answer that uses system Add to Wallet UI, signed-pass checks, correct add-pass availability, pass-library access limits, and stable pass identifiers for updates.",
+      "files": [],
+      "assertions": [
+        "Replaces the custom SwiftUI button with `AddPassToWalletButton` or routes review flows through `PKAddPassesViewController`/`PKAddPassButton`.",
+        "Uses `PKAddPassesViewController.canAddPasses()` to decide whether the device can add passes.",
+        "Uses `PKPassLibrary.isPassLibraryAvailable()` only for pass-library operations, not add-pass capability.",
+        "Mentions that `PKPass(data:)` expects signed `.pkpass` data and can throw invalid-data or invalid-signature errors.",
+        "Explains that `PKPassLibrary.passes()` returns only passes the app can access through entitlements.",
+        "Preserves the same `passTypeIdentifier` and `serialNumber` when updating an existing pass.",
+        "Checks the Boolean result from `PKPassLibrary.replacePass(with:)` and handles failure."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I need advanced Apple Pay support for a travel marketplace: recurring service membership, coupon entry in the payment sheet, two end merchants that need separate tokens, and a hotel preauthorization charged later. Outline the PassKit APIs and gotchas without drifting into FinanceKit or StoreKit implementation.",
+      "expected_output": "An advanced PassKit outline using the optional request types and update callbacks correctly, with decimal amounts, management URLs, coupon update details, multi-token contexts, and sibling-skill boundaries.",
+      "files": [],
+      "assertions": [
+        "Uses `PKRecurringPaymentRequest` with `PKRecurringPaymentSummaryItem`, interval unit/count, billing agreement or management URL, and `request.recurringPaymentRequest`.",
+        "Notes that a `PKPaymentRequest` can set only one optional payment request type such as recurring, automatic reload, deferred, Apple Pay Later availability, or multi-token contexts.",
+        "Enables coupon entry with `supportsCouponCode` and handles `paymentAuthorizationController(_:didChangeCouponCode:handler:)`.",
+        "Creates `PKPaymentRequestCouponCodeUpdate(errors:paymentSummaryItems:shippingMethods:)`, including shipping methods.",
+        "Uses `PKPaymentTokenContext` entries with merchant identifier, external identifier, merchant name/domain, and `NSDecimalNumber` amounts for multi-merchant tokens.",
+        "Uses `PKDeferredPaymentRequest` with `PKDeferredPaymentSummaryItem`, deferred date or cancellation date details, and a management URL.",
+        "Keeps FinanceKit financial-data access and StoreKit digital purchase implementation outside the PassKit answer."
+      ]
+    }
+  ]
+}

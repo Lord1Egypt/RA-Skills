@@ -1,0 +1,50 @@
+{
+  "skill_name": "ios-networking",
+  "evals": [
+    {
+      "id": 1,
+      "name": "urlsession-api-client-review",
+      "prompt": "Review this Swift API client plan: every request uses URLSession.shared.data(for:) and decodes without checking HTTP status, retries every error including cancellation and all 4xx responses, stores bearer tokens in UserDefaults, and tests by mocking the APIClient protocol only. Give a concise correction plan with Swift where useful.",
+      "expected_output": "A URLSession API client review that fixes response validation, retry policy, cancellation, token handling boundaries, and test strategy.",
+      "files": [],
+      "assertions": [
+        "Requires validating HTTPURLResponse status codes before decoding and treating 4xx/5xx separately from transport failures.",
+        "Recommends a configured URLSession for production rather than URLSession.shared when timeouts, caching, delegates, or connectivity behavior matter.",
+        "Excludes cancellation and most 4xx client errors from retry logic while allowing appropriate retries such as 429 or 5xx.",
+        "Uses request middleware or a centralized request builder for auth headers rather than hardcoded tokens.",
+        "States that sensitive tokens belong in Keychain and keeps deep credential-storage implementation in the security boundary.",
+        "Mentions URLProtocol or transport-level testing when request/response behavior needs verification."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "background-transfer-websocket-boundary",
+      "prompt": "A team wants one networking manager that uses a background URLSession for JSON polling, large file downloads, file uploads from memory, and a chat WebSocket that must keep receiving after the app is force-quit. Review the plan and say what should change.",
+      "expected_output": "A review that separates background URLSession transfer support from foreground WebSocket behavior and corrects force-quit/background limitations.",
+      "files": [],
+      "assertions": [
+        "States that background URLSession is for HTTP/HTTPS upload and download transfers, not WebSocket durability.",
+        "States that background uploads must be file-backed rather than Data or stream uploads after app exit.",
+        "Says background sessions require delegates and task APIs rather than async convenience APIs as the durable transfer pattern.",
+        "Explains that user force-quit cancels background transfers and prevents automatic relaunch until the user opens the app.",
+        "Requires moving or opening a downloaded temporary file before didFinishDownloadingTo returns.",
+        "Keeps WebSocket guidance to foreground/default-session realtime networking with reconnect when the app is active again."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "network-framework-ats-security-boundary",
+      "prompt": "Review this iOS 26 networking design: use Network.framework for all REST calls to avoid ATS, disable NSAllowsArbitraryLoads globally, implement certificate pinning by hashing SecKeyCopyExternalRepresentation bytes, wrap NWPathMonitor in a custom AsyncStream helper, and sketch NetworkConnection<QUIC> stream work as synchronous callbacks. What should change, and which parts belong to neighboring skills?",
+      "expected_output": "A boundary-aware review that routes REST to URLSession/ATS, low-level networking to Network.framework, certificate trust details to swift-security, uses modern NWPathMonitor guidance, and treats iOS 26 NetworkConnection QUIC stream APIs correctly.",
+      "files": [],
+      "assertions": [
+        "Recommends URLSession for ordinary REST/HTTP API calls and Network.framework only for lower-level TCP, UDP, listeners, Bonjour, path monitoring, WebSocket protocol work, or iOS 26 NetworkConnection needs.",
+        "States that ATS applies to URL Loading/URLSession and that Network.framework callers must take responsibility for secure configuration.",
+        "Rejects global NSAllowsArbitraryLoads as a default and recommends fixing servers or using the narrowest justified ATS exception.",
+        "Corrects raw SecKeyCopyExternalRepresentation hashing as not sufficient for SPKI pinning and routes deep certificate-trust implementation to swift-security.",
+        "Uses NWPathMonitor as AsyncSequence on current OS targets or explicitly labels a wrapper as fallback/custom projection.",
+        "For NetworkConnection QUIC streams, treats openStream and inboundStreams as async throwing APIs."
+      ]
+    }
+  ]
+}

@@ -1,35 +1,29 @@
 ---
-name: "call-claude"
-description: "Indexed by skills.sh from dotneet/claude-code-marketplace"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "dotneet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/dotneet/claude-code-marketplace/call-claude"
-sourceUrl: "https://skills.sh/dotneet/claude-code-marketplace/call-claude"
+name: call-claude
+description: Call claude to perform a task.
 ---
 
-# call-claude
+# Call claude to perform a task
 
-> Indexed by skills.sh from dotneet/claude-code-marketplace
+Call claude to perform a task.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** dotneet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/dotneet/claude-code-marketplace/call-claude`
-- **Source URL:** [https://skills.sh/dotneet/claude-code-marketplace/call-claude](https://skills.sh/dotneet/claude-code-marketplace/call-claude)
+## Checking for the Existence of claude
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/dotneet/claude-code-marketplace/call-claude
+# Check if claude is installed. Exit code 0 means success, 1 means failure.
+# If not installed, skip the subsequent steps of the skill.
+which claude
+if [ $? -ne 0 ]; then
+  echo "claude is not installed"
+fi
+```
+
+## Requesting a Task to claude
+
+This task may take a long time. If the timeout value of the Bash tool can be set, please specify the maximum timeout value.
+
+```bash
+claude -p --dangerously-skip-permissions <<EOT
+{task_description}
+EOT
 ```

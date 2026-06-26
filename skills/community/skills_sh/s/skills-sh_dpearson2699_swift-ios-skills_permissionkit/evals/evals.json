@@ -1,0 +1,47 @@
+{
+  "skill_name": "permissionkit",
+  "evals": [
+    {
+      "id": 0,
+      "name": "availability-imessage-review",
+      "prompt": "Review this PermissionKit setup for an app that supports iOS 26.0 and iPadOS 26.0: the team uses PermissionButton and AskCenter everywhere without availability checks, says PermissionKit can route child approval through our own in-app DM system, and wants to add a made-up PermissionKit entitlement. Write the corrected implementation guidance.",
+      "expected_output": "A concise PermissionKit setup review that distinguishes 26.0/26.1/26.2 API availability, preserves the iMessage-only communication-experience limitation, and avoids invented entitlement requirements.",
+      "files": [],
+      "assertions": [
+        "States that core PermissionKit topic, handle, question, response, choice, and CommunicationLimits APIs are available starting in iOS/iPadOS 26.0.",
+        "States that AskError starts in iOS/iPadOS 26.1 and AskCenter, AskCenter ask/responses APIs, PermissionButton, and SignificantAppUpdateTopic require iOS/iPadOS 26.2 or appropriate availability checks.",
+        "Says PermissionKit communication experiences are available only through iMessage and should not be presented as an arbitrary in-app DM routing framework.",
+        "Rejects inventing a PermissionKit entitlement key and says to verify current Apple docs/Xcode capabilities before adding signing requirements.",
+        "Keeps the answer focused on PermissionKit rather than turning it into a general chat moderation or family-account architecture."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "known-handle-response-flow",
+      "prompt": "Fix this PermissionKit flow: before showing an Ask button we call `isKnownHandle(_:)` and treat `false` as proof that communication limits are enabled, then call `AskCenter.shared.ask` without handling `communicationLimitsNotEnabled`, and our UI waits forever for a PermissionResponse after every tap. Give corrected Swift-level guidance and pseudocode.",
+      "expected_output": "A corrected PermissionKit communication flow that separates known-handle lookup from enabled-limits handling, catches AskError cases, tracks pending questions, and accounts for child cancellation.",
+      "files": [],
+      "assertions": [
+        "Explains that isKnownHandle(_:) and knownHandles(in:) classify system-known handles and do not prove communication limits are enabled.",
+        "Mentions that knownHandles(in:) requires a non-nil, nonempty app bundle identifier.",
+        "Handles AskError.communicationLimitsNotEnabled from AskCenter.shared.ask as the normal fallback when communication limits are not active.",
+        "Uses AskCenter.shared.responses(for: CommunicationTopic.self) to observe parent decisions rather than deprecated CommunicationLimits ask/update APIs.",
+        "Models pending, retry, cancellation, or expiration because child cancellation of the iMessage send flow may produce no PermissionResponse."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "significant-update-boundary",
+      "prompt": "A children’s app wants to use `SignificantAppUpdateTopic(description: \"We improved the app\")` on devices running iOS 26.0, skip response observation, and use the same flow for every terms-of-service wording tweak. Review the plan and provide the minimal corrected PermissionKit guidance.",
+      "expected_output": "A significant-app-update PermissionKit review that guards iOS/iPadOS 26.2 APIs, requires concrete descriptions, explains the developer/regulatory significance decision, and observes responses.",
+      "files": [],
+      "assertions": [
+        "States that SignificantAppUpdateTopic and the matching AskCenter ask/responses flow require iOS/iPadOS 26.2+ availability.",
+        "Says the app developer determines whether an update is significant based on applicable regulations rather than using the topic for every small wording tweak.",
+        "Replaces vague descriptions like \"We improved the app\" with concise, understandable text describing concrete user-visible changes.",
+        "Observes AskCenter.shared.responses(for: SignificantAppUpdateTopic.self) and handles approval, denial, and missing response states.",
+        "Keeps legal/regulatory discussion at the boundary and does not provide jurisdiction-specific legal advice."
+      ]
+    }
+  ]
+}

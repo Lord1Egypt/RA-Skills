@@ -1,35 +1,67 @@
 ---
-name: "eve-project-bootstrap"
-description: "Indexed by skills.sh from incept5/eve-skillpacks"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "incept5"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/incept5/eve-skillpacks/eve-project-bootstrap"
-sourceUrl: "https://skills.sh/incept5/eve-skillpacks/eve-project-bootstrap"
+name: eve-project-bootstrap
+description: Bootstrap an Eve-compatible project with org/project setup, profile defaults, repo linkage, and first deploy.
 ---
 
-# eve-project-bootstrap
+# Eve Project Bootstrap
 
-> Indexed by skills.sh from incept5/eve-skillpacks
+Use this flow to connect an existing repo to Eve and get the first deploy running.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** incept5
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/incept5/eve-skillpacks/eve-project-bootstrap`
-- **Source URL:** [https://skills.sh/incept5/eve-skillpacks/eve-project-bootstrap](https://skills.sh/incept5/eve-skillpacks/eve-project-bootstrap)
+## Set the API Target
 
-## Overview
+- Get the staging API URL from your admin.
+- Create and use a profile:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/incept5/eve-skillpacks/eve-project-bootstrap
+eve profile create staging --api-url https://api.eve.example.com
+eve profile use staging
 ```
+
+## Create Org and Project
+
+```bash
+eve org ensure my-org --slug myorg
+eve project ensure --name "My App" --slug my-app --repo-url git@github.com:me/my-app.git --branch main
+```
+
+**URL impact:** These slugs determine your deployment URLs and K8s namespaces:
+- URL: `{service}.{orgSlug}-{projectSlug}-{env}.{domain}` (e.g., `api.myorg-my-app-staging.eve.example.com`)
+- Namespace: `eve-{orgSlug}-{projectSlug}-{env}` (e.g., `eve-myorg-my-app-staging`)
+
+Slugs are immutable — choose short, meaningful values.
+
+Set defaults:
+
+```bash
+eve profile set --org org_xxx --project proj_xxx
+```
+
+## Add the Manifest
+
+- Ensure `.eve/manifest.yaml` is present and uses `schema: eve/compose/v1`.
+- Use the `eve-manifest-authoring` skill for structure details.
+
+## First Deploy
+
+```bash
+# Create environment if needed
+eve env create staging --project proj_xxx --type persistent
+
+# Deploy (requires --ref with 40-char SHA or a ref resolved against --repo-dir)
+eve env deploy staging --ref main --repo-dir .
+
+# If the environment has a pipeline configured, this triggers the pipeline.
+# Use --direct to bypass pipeline and deploy directly:
+eve env deploy staging --ref main --repo-dir . --direct
+```
+
+## Verify
+
+```bash
+eve system health
+eve job list --phase active
+eve job follow <job-id>
+eve job result <job-id>
+```
+
+Access apps via `{service}.{orgSlug}-{projectSlug}-{env}.{domain}`.

@@ -1,0 +1,3 @@
+display_name: 'Document Converter Suite'
+short_description: 'Convert documents and run focused PDF or table utilities.'
+default_prompt: 'Help me convert or extract content from a document.'

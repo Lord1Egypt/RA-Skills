@@ -1,35 +1,26 @@
 ---
-name: "fivem-nui"
-description: "Indexed by skills.sh from germanfndez/fiveai-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "germanfndez"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/germanfndez/fiveai-skills/fivem-nui"
-sourceUrl: "https://skills.sh/germanfndez/fiveai-skills/fivem-nui"
+name: fivem-nui
+description: FiveM NUI (New User Interface) development for creating graphical elements and user interfaces. Use when creating or editing NUI interfaces, HTML/CSS/JS for FiveM, or handling NUI callbacks.
 ---
 
-# fivem-nui
+# FiveM NUI Development
 
-> Indexed by skills.sh from germanfndez/fiveai-skills
+Best practices for FiveM NUI development — fullscreen UIs, NUI callbacks, messaging, and UI integration. Use this skill whenever you are dealing with FiveM user interfaces to obtain domain-specific knowledge.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** germanfndez
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/germanfndez/fiveai-skills/fivem-nui`
-- **Source URL:** [https://skills.sh/germanfndez/fiveai-skills/fivem-nui](https://skills.sh/germanfndez/fiveai-skills/fivem-nui)
+## When to use
 
-## Overview
+- User asks how to create a UI for FiveM.
+- Creating or editing HTML/CSS/JS files for FiveM resources.
+- Setting up `ui_page` in fxmanifest.lua.
+- Questions about NUI callbacks, SendNUIMessage, or SetNUIFocus.
+- Need to look up natives → point to https://docs.fivem.net/natives/.
 
+## How to use
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/germanfndez/fiveai-skills/fivem-nui
-```
+Read individual rule files for detailed explanations and examples:
+
+- **rules/setup.md** — Setting up NUI in a resource: ui_page, files entry, folder structure.
+- **rules/fullscreen-nui.md** — Creating fullscreen NUI pages: SEND_NUI_MESSAGE, SET_NUI_FOCUS, developer tools, referencing assets.
+- **rules/nui-callbacks.md** — NUI callbacks: RegisterNUICallback, fetch requests, data handling, security.
+- **rules/best-practices.md** — Best practices: performance, security, communication patterns, error handling.
+- **rules/reference-links.md** — Official docs and natives reference.

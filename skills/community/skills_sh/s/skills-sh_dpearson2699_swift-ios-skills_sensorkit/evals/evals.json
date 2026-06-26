@@ -1,0 +1,41 @@
+{
+  "skill_name": "sensorkit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Draft a setup checklist for an approved sleep research app that uses SensorKit ambient light, keyboard metrics, wrist temperature, ECG, and PPG. Include entitlement values, Info.plist usage-detail keys, authorization flow, and fetch timing constraints.",
+      "expected_output": "A SensorKit setup checklist grounded in Apple requirements for approved research studies, with correct entitlement and Info.plist details and the 24-hour hold.",
+      "files": [],
+      "expectations": [
+        "States that SensorKit requires an Apple-approved research study and the com.apple.developer.sensorkit.reader.allow entitlement.",
+        "Includes ECG and PPG entitlement values and their NSSensorKitUsageDetail dictionaries.",
+        "Mentions NSSensorKitUsageDescription, NSSensorKitPrivacyPolicyURL, and per-sensor NSSensorKitUsageDetail entries.",
+        "Explains requestAuthorization, per-sensor user approval, and the 24-hour holding period before fetch results are available."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this SensorKit fetch handler design for sample-type mistakes: it casts accelerometer to CMAccelerometerData, rotation rate to CMGyroData, wristTemperature to SRWristTemperature, ECG to SRElectrocardiogramSample, and PPG to SRPhotoplethysmogramSample. Return corrected sample shapes and delegate callbacks that should be implemented.",
+      "expected_output": "A correction note that identifies the wrong casts and names the required SRSensorReaderDelegate callbacks.",
+      "files": [],
+      "expectations": [
+        "Corrects accelerometer and rotation rate to recorded CoreMotion sample arrays.",
+        "Corrects wrist temperature to SRWristTemperatureSession, with contained SRWristTemperature readings.",
+        "Corrects ECG and PPG to arrays of SRElectrocardiogramSample and SRPhotoplethysmogramSample.",
+        "Includes stopRecordingFailedWithError, fetchDevicesDidFailWithError, didFetchResult, didCompleteFetch, and fetching failed callbacks."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "A fitness app without a research study wants live step counts, workout heart-rate summaries, and an Apple Watch motion interaction. Explain whether SensorKit is the right framework and where each responsibility should be routed.",
+      "expected_output": "A boundary memo that refuses to use SensorKit for ordinary fitness features and routes work to CoreMotion and HealthKit.",
+      "files": [],
+      "expectations": [
+        "Says SensorKit is not appropriate without an Apple-approved research study and entitlement.",
+        "Routes live steps and motion interaction work to CoreMotion.",
+        "Routes workout and heart-rate record handling to HealthKit.",
+        "Avoids giving SensorKit implementation steps for the non-research fitness app."
+      ]
+    }
+  ]
+}

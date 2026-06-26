@@ -1,0 +1,165 @@
+---
+name: core-routing
+description: Next.js file-system based routing with layouts and pages
+---
+
+# File-System Based Routing
+
+Next.js uses file-system based routing, where folders and files in the `app` directory define routes. Routes are composed of segments, and each segment can have a layout and page.
+
+## Route Structure
+
+Routes are defined by the folder structure in the `app` directory:
+
+```
+app/
+├── page.tsx          # Route: /
+├── layout.tsx         # Root layout (required)
+├── about/
+│   └── page.tsx      # Route: /about
+└── blog/
+    ├── layout.tsx    # Layout for /blog/*
+    └── [slug]/
+        └── page.tsx  # Route: /blog/[slug]
+```
+
+## Creating Pages
+
+A page is UI rendered on a specific route. Create a page by default exporting a React component from a `page.tsx` file:
+
+```tsx
+// app/page.tsx
+export default function HomePage() {
+  return <h1>Home</h1>
+}
+```
+
+```tsx
+// app/about/page.tsx
+export default function AboutPage() {
+  return <h1>About</h1>
+}
+```
+
+## Creating Layouts
+
+A layout is UI shared between multiple pages. Layouts preserve state on navigation and don't rerender.
+
+```tsx
+// app/layout.tsx (Root layout - required)
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+```tsx
+// app/dashboard/layout.tsx
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <section>
+      <nav>Dashboard Navigation</nav>
+      <main>{children}</main>
+    </section>
+  )
+}
+```
+
+## Nested Routes
+
+Routes are nested by folder structure. Each segment can have its own layout:
+
+```
+app/
+├── layout.tsx         # Root layout
+├── dashboard/
+│   ├── layout.tsx    # Layout for /dashboard/*
+│   ├── page.tsx      # /dashboard
+│   └── settings/
+│       └── page.tsx  # /dashboard/settings
+```
+
+## Dynamic Routes
+
+Use brackets `[]` for dynamic route segments:
+
+```tsx
+// app/blog/[slug]/page.tsx
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  return <h1>Post: {slug}</h1>
+}
+```
+
+Catch-all routes use `[...slug]`:
+
+```tsx
+// app/shop/[...slug]/page.tsx
+export default async function ShopPage({
+  params,
+}: {
+  params: Promise<{ slug: string[] }>
+}) {
+  const { slug } = await params
+  // slug is an array: ['category', 'item'] for /shop/category/item
+}
+```
+
+Optional catch-all routes use `[[...slug]]`:
+
+```tsx
+// app/docs/[[...slug]]/page.tsx
+// Matches both /docs and /docs/guide/getting-started
+```
+
+## Route Groups
+
+Use parentheses `()` to organize routes without affecting the URL:
+
+```
+app/
+├── (marketing)/
+│   ├── about/
+│   └── contact/
+└── (shop)/
+    ├── products/
+    └── cart/
+```
+
+Route groups allow you to:
+- Organize routes with shared layouts
+- Apply different layouts to route groups
+- Use parallel routes and intercepting routes
+
+## Key Points
+
+- Pages are Server Components by default
+- Layouts wrap pages and nested layouts
+- Root layout must include `<html>` and `<body>` tags
+- `params` is a Promise in Next.js 15+ (use `await` or `use()`)
+- File names determine routes, not folder names
+- Special files: `layout.tsx`, `page.tsx`, `loading.tsx`, `error.tsx`, `not-found.tsx`
+
+<!--
+Source references:
+- https://nextjs.org/docs/app/getting-started/layouts-and-pages
+- https://nextjs.org/docs/app/api-reference/file-conventions/page
+- https://nextjs.org/docs/app/api-reference/file-conventions/layout
+- https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes
+- https://nextjs.org/docs/app/api-reference/file-conventions/route-groups
+-->

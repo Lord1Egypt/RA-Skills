@@ -1,35 +1,52 @@
 ---
-name: "gws-gmail-read"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/gws-gmail-read"
-sourceUrl: "https://skills.sh/googleworkspace/cli/gws-gmail-read"
+name: gws-gmail-read
+description: "Gmail: Read a message and extract its body or headers."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "productivity"
+    requires:
+      bins:
+        - gws
+    cliHelp: "gws gmail +read --help"
 ---
 
-# gws-gmail-read
+# gmail +read
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Read `../gws-shared/SKILL.md` for auth, global flags, and security rules. If missing, run `gws generate-skills` to create it.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/gws-gmail-read`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/gws-gmail-read](https://skills.sh/googleworkspace/cli/gws-gmail-read)
+Read a message and extract its body or headers
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/googleworkspace/cli/gws-gmail-read
+gws gmail +read --id <ID>
 ```
+
+## Flags
+
+| Flag | Required | Default | Description |
+|------|----------|---------|-------------|
+| `--id` | ✓ | — | The Gmail message ID to read |
+| `--headers` | — | — | Include headers (From, To, Subject, Date) in the output |
+| `--format` | — | text | Output format (text, json) |
+| `--html` | — | — | Return HTML body instead of plain text |
+| `--dry-run` | — | — | Show the request that would be sent without executing it |
+
+## Examples
+
+```bash
+gws gmail +read --id 18f1a2b3c4d
+gws gmail +read --id 18f1a2b3c4d --headers
+gws gmail +read --id 18f1a2b3c4d --format json | jq '.body'
+```
+
+## Tips
+
+- Converts HTML-only messages to plain text automatically.
+- Handles multipart/alternative and base64 decoding.
+
+## See Also
+
+- [gws-shared](../gws-shared/SKILL.md) — Global flags and auth
+- [gws-gmail](../gws-gmail/SKILL.md) — All send, read, and manage email commands

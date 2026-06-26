@@ -1,0 +1,47 @@
+{
+  "skill_name": "natural-language",
+  "evals": [
+    {
+      "id": 0,
+      "name": "text-analysis-pipeline",
+      "prompt": "I'm adding an iOS 26 inbox feature that detects the message language, tokenizes words, extracts people and organizations, computes a sentiment score, and finds semantically similar keywords for search suggestions. Sketch the NaturalLanguage implementation and review checklist.",
+      "expected_output": "A NaturalLanguage implementation outline that uses NLTokenizer, NLLanguageRecognizer, NLTagger, and NLEmbedding accurately, handles language/support limits, and avoids thread-safety and per-token tagger mistakes.",
+      "files": [],
+      "expectations": [
+        "Uses NLTokenizer with the correct token unit and keeps tokenizer/tagger instances confined to one thread or dispatch queue at a time.",
+        "Uses NLLanguageRecognizer with languageConstraints or languageHints when text is short or expected languages are known.",
+        "Uses NLTagger with .nameType, .sentimentScore, and appropriate options such as .omitWhitespace, .omitPunctuation, and .joinNames.",
+        "Treats sentiment and tags as optional and handles unsupported languages or missing tag schemes instead of force-unwrapping.",
+        "Checks NLEmbedding word or sentence embedding availability and does not assume embeddings exist for every language."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "translation-availability-review",
+      "prompt": "Review this SwiftUI translation plan: use the system translation popover on iOS 17.4, use TranslationSession and .translationTask for programmatic batch translation on the same deployment target, prefer .highFidelity because it can use a server, and ignore errors because the framework downloads languages automatically.",
+      "expected_output": "A correction-focused Translation framework review that splits API availability, keeps translation on-device, handles language availability and throwing APIs, and explains SwiftUI and direct-session usage safely.",
+      "files": [],
+      "expectations": [
+        "Separates translationPresentation availability from TranslationSession, translationTask, LanguageAvailability, and batch translation availability.",
+        "Corrects highFidelity/lowLatency guidance without claiming TranslationSession sends content to a server.",
+        "Uses LanguageAvailability status checks and handles .installed, .supported, and .unsupported.",
+        "Wraps TranslationSession throwing calls such as translate, translations(from:), and prepareTranslation in error handling.",
+        "Explains that direct TranslationSession(installedSource:target:) outside SwiftUI requires installed languages, while SwiftUI translationTask can request downloads."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "sibling-boundary-routing",
+      "prompt": "I have one feature request: scan text from a receipt image, transcribe a spoken note, tokenize and identify the language of the resulting text, detect names and sentiment, find semantically similar keywords with embeddings, maybe add a custom text classifier/tagger, translate a summary to Spanish, localize UI strings with String Catalogs (.xcstrings), plurals, RTL, date and currency formatting, and maybe use Apple Intelligence to generate the summary. Which parts belong in the NaturalLanguage skill and which should be handed to sibling skills?",
+      "expected_output": "A boundary-aware routing answer that keeps NaturalLanguage/Translation responsible for text analysis and translation, and routes OCR, speech transcription, localization, and generative summarization to the appropriate sibling skills.",
+      "files": [],
+      "expectations": [
+        "Keeps tokenization, language identification, named entity recognition, sentiment analysis, embeddings, and in-app translation in the natural-language scope.",
+        "Routes receipt-image OCR to the Vision framework skill rather than treating NaturalLanguage as OCR.",
+        "Routes spoken-note transcription to the Speech framework skill rather than treating NaturalLanguage as speech recognition.",
+        "Routes UI strings, String Catalogs, pluralization, and locale-aware formatting to the iOS localization skill.",
+        "Routes Apple Intelligence or generative summarization to the on-device AI skill rather than presenting NaturalLanguage as a generative LLM framework."
+      ]
+    }
+  ]
+}

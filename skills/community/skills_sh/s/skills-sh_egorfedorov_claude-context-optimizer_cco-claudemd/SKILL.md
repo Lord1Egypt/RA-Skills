@@ -1,35 +1,28 @@
 ---
-name: "cco-claudemd"
-description: "Indexed by skills.sh from egorfedorov/claude-context-optimizer"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "egorfedorov"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/egorfedorov/claude-context-optimizer/cco-claudemd"
-sourceUrl: "https://skills.sh/egorfedorov/claude-context-optimizer/cco-claudemd"
+name: cco-claudemd
+description: Analyze CLAUDE.md files for token bloat and suggest optimizations
+license: MIT
+allowed-tools: [Bash, Read]
 ---
 
-# cco-claudemd
+# CLAUDE.md Analyzer
 
-> Indexed by skills.sh from egorfedorov/claude-context-optimizer
+Analyze CLAUDE.md files in the current project for token bloat and optimization opportunities.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** egorfedorov
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/egorfedorov/claude-context-optimizer/cco-claudemd`
-- **Source URL:** [https://skills.sh/egorfedorov/claude-context-optimizer/cco-claudemd](https://skills.sh/egorfedorov/claude-context-optimizer/cco-claudemd)
+Run the analyzer:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/egorfedorov/claude-context-optimizer/cco-claudemd
+node ${CLAUDE_PLUGIN_ROOT}/src/claudemd-analyzer.js "${CWD}"
 ```
+
+Present the output to the user. The analyzer checks for:
+- **Overall size** — files over 2K tokens get flagged
+- **Large sections** — sections over 1K tokens
+- **Duplicate lines** — repeated content
+- **Verbose patterns** — "please make sure to", "it is important that", etc.
+- **Long code blocks** — examples over 20 lines
+- **Excessive whitespace** — empty lines eating tokens
+
+For each issue found, explain the savings potential and suggest a concrete fix.
+
+If the user wants to apply fixes, help them edit the CLAUDE.md directly using the Edit tool.

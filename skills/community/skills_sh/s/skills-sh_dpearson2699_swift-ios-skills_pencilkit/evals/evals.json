@@ -1,0 +1,44 @@
+{
+  "skill_name": "pencilkit",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I'm building a SwiftUI drawing screen for iPad with Apple Pencil and optional finger drawing. Sketch the PencilKit wrapper, tool picker setup, save/load path, and the lifecycle details that prevent stale tools or update loops.",
+      "expected_output": "A SwiftUI PencilKit implementation plan that wraps PKCanvasView, retains and observes PKToolPicker, chooses an appropriate drawingPolicy, serializes PKDrawing with dataRepresentation()/PKDrawing(data:), and avoids binding update loops.",
+      "files": [],
+      "expectations": [
+        "Wraps PKCanvasView with UIViewRepresentable and uses a Coordinator as PKCanvasViewDelegate.",
+        "Retains PKToolPicker outside a local scope and adds the canvas as an observer before showing the picker or becoming first responder.",
+        "Explains the difference between .default, .anyInput, and .pencilOnly enough to choose one for Pencil-primary versus finger-drawing modes.",
+        "Persists drawings using PKDrawing.dataRepresentation() and reloads with PKDrawing(data:).",
+        "Avoids SwiftUI update loops by checking whether the canvas drawing already matches the binding before assigning."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Review this PencilKit compatibility plan: let users pick watercolor, crayon, and reed, save the PKDrawing bytes to CloudKit, and set canvasView.maximumSupportedContentVersion = .version2 so iPadOS 16 clients can open every drawing. What should change?",
+      "expected_output": "A correction-focused review that explains PencilKit content versions, unsupported-ink load failures, the need to set maximumSupportedContentVersion on both canvas and tool picker, and the version boundary for iPadOS 17 and iOS 26 inks.",
+      "files": [],
+      "expectations": [
+        "States that unsupported newer inks cause older systems to fail when loading PKDrawing data rather than guaranteeing compatibility.",
+        "Correctly maps version1 to marker/pen/pencil-era compatibility, version2 to iPadOS 17 inks, version3 to barrel-roll angle data, and version4 to reed.",
+        "Explains that .version2 does not make drawings loadable by iPadOS 16 clients; use .version1 or a fallback for pre-iPadOS 17 compatibility.",
+        "Sets maximumSupportedContentVersion on both PKCanvasView and PKToolPicker when restricting new content.",
+        "Calls out .reed as iOS/iPadOS/macOS/visionOS 26+ and custom tool picker items as iOS/iPadOS 18+ or visionOS 2+."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need an annotation experience with freehand Apple Pencil signatures, movable text boxes, arrows, image stickers, and a standard markup toolbar. Which parts should stay in PencilKit and when should I switch to PaperKit?",
+      "expected_output": "A boundary-aware answer that keeps freeform drawing, tool picker, stroke inspection, image export, and PKDrawing serialization in PencilKit while routing structured markup and toolbar needs to PaperKit.",
+      "files": [],
+      "expectations": [
+        "Keeps PencilKit scope to PKCanvasView, PKToolPicker, PKDrawing serialization/export, stroke inspection, and signature/freehand drawing.",
+        "Routes shapes, arrows, text boxes, images/stickers, loupes, and system-standard markup toolbar work to PaperKit.",
+        "Mentions the verified bridge points: PaperMarkupViewController.drawingTool accepts a PKTool and PaperMarkup can append PKDrawing.",
+        "Does not claim PencilKit directly owns structured markup elements such as movable text boxes or stickers.",
+        "Preserves a practical handoff plan between saved PKDrawing content and a PaperKit markup workflow."
+      ]
+    }
+  ]
+}

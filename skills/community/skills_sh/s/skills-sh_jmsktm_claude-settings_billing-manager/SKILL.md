@@ -1,35 +1,44 @@
 ---
-name: "billing-manager"
-description: "Indexed by skills.sh from jmsktm/claude-settings"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "jmsktm"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/jmsktm/claude-settings/billing-manager"
-sourceUrl: "https://skills.sh/jmsktm/claude-settings/billing-manager"
+name: Billing Manager
+slug: billing-manager
+description: Manage billing operations including invoice generation, payment tracking, and subscription lifecycle
+category: business
+complexity: intermediate
+version: "1.0.0"
+author: "ID8Labs"
+triggers:
+  - "create invoice"
+  - "billing cycle"
+  - "manage subscriptions"
+tags:
+  - billing
+  - invoicing
+  - subscriptions
 ---
 
-# billing-manager
+# Billing Manager
 
-> Indexed by skills.sh from jmsktm/claude-settings
+Take control of billing operations with workflows for invoice generation, payment tracking, and subscription management. Maintain healthy cash flow with timely invoicing and proactive collection.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** jmsktm
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/jmsktm/claude-settings/billing-manager`
-- **Source URL:** [https://skills.sh/jmsktm/claude-settings/billing-manager](https://skills.sh/jmsktm/claude-settings/billing-manager)
+## Core Workflows
 
-## Overview
+### Workflow 1: Invoice Generation
+1. **Gather Billables** - Collect billable items, hours, or usage
+2. **Apply Pricing** - Calculate amounts based on rate cards
+3. **Add Taxes** - Apply appropriate tax rates
+4. **Generate Invoice** - Create professional invoice
+5. **Track Status** - Monitor open, paid, overdue
 
+### Workflow 2: Subscription Billing
+1. **Setup** - Configure plan, billing cycle, terms
+2. **Recurring Charges** - Process automatic billing
+3. **Failed Payment Handling** - Retry logic and dunning
+4. **Renewal Notices** - Send reminders
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/jmsktm/claude-settings/billing-manager
-```
+## Quick Reference
+
+| Action | Command |
+|--------|---------|
+| Create invoice | "Generate invoice for [customer]" |
+| Check status | "Show outstanding invoices" |
+| Process subscription | "Bill [customer] subscription" |

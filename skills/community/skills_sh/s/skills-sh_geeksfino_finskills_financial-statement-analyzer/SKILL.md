@@ -1,35 +1,143 @@
 ---
-name: "financial-statement-analyzer"
-description: "Indexed by skills.sh from geeksfino/finskills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "geeksfino"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/geeksfino/finskills/financial-statement-analyzer"
-sourceUrl: "https://skills.sh/geeksfino/finskills/financial-statement-analyzer"
+name: financial-statement-analyzer
+description: 对单个A股上市公司的财务报表进行深度分析，评估盈利质量、财务健康状况、财务造假风险和运营效率。当用户要求深入分析某家公司的财务报表、杜邦分析、盈利质量检查、资产负债表分析、现金流分析、Z值评分、M值评分、营运资本分析，或任何详细的单公司财务审视时使用此技能。
+license: Apache-2.0
 ---
 
-# financial-statement-analyzer
+# 财务报表深度分析
 
-> Indexed by skills.sh from geeksfino/finskills
+扮演法证财务分析师。对单个A股上市公司的财务报表进行全面分析，评估盈利质量、财务健康状况、财务造假风险指标和运营效率。
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** geeksfino
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/geeksfino/finskills/financial-statement-analyzer`
-- **Source URL:** [https://skills.sh/geeksfino/finskills/financial-statement-analyzer](https://skills.sh/geeksfino/finskills/financial-statement-analyzer)
+## 工作流程
 
-## Overview
+### 第一步：确定分析对象
 
+与用户确认：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/geeksfino/finskills/financial-statement-analyzer
+1. **公司** — 股票代码或名称
+2. **时间跨度** — 默认：最近5年（20个季度）
+3. **重点领域** — 全面分析（默认）或特定聚焦（盈利质量、造假风险、营运资本等）
+4. **对比公司** — 用于基准比较的主要竞争对手（可选）
+5. **数据来源** — 以年报、半年报、季报为主要数据源
+
+### 第二步：盈利能力分解
+
+进行5因子杜邦分析。详细公式参见 [references/analysis-methodology.md](references/analysis-methodology.md)。
+
 ```
+ROE = 税负系数 × 利息负担系数 × 营业利润率 × 资产周转率 × 权益乘数
+```
+
+| 组成部分 | 公式 | 揭示内容 |
+|---------|------|---------|
+| 税负系数 | 净利润 / 税前利润 | 税收效率 |
+| 利息负担系数 | 税前利润 / EBIT | 债务成本影响 |
+| 营业利润率 | EBIT / 营业收入 | 运营效率 |
+| 资产周转率 | 营业收入 / 总资产 | 资产利用效率 |
+| 权益乘数 | 总资产 / 股东权益 | 财务杠杆 |
+
+追踪各组成部分5年变化趋势，识别ROE变化的驱动因素。
+
+### 第三步：盈利质量评估
+
+评估报告盈利是否反映真实经济价值：
+
+| 测试 | 衡量内容 | 红灯阈值 |
+|------|---------|---------|
+| 应计比率 | 非现金盈利占比 | > 总资产的10% |
+| 现金转化率 | 经营现金流 / 净利润 | 持续 < 0.8 |
+| 收入确认 | 收入增长 vs 应收账款增长 | 应收增速超过收入 |
+| 合同负债/预收 | 合同负债趋势 | 下降（提前确认收入） |
+| 非经常性项目 | 一次性收益/费用频率 | "非经常性"项目每年出现 |
+| 政府补助依赖 | 政府补助占净利润比例 | > 30%（利润可持续性存疑） |
+
+### 第四步：财务健康评分
+
+计算综合财务健康指标：
+
+| 模型 | 用途 | 组成部分 |
+|------|------|---------|
+| Altman Z值 | 破产预测 | 营运资本、留存收益、EBIT、市值、营收——均相对于总资产 |
+| Piotroski F值 | 财务实力 | 9个二元信号，涵盖盈利能力、杠杆和效率 |
+| Beneish M值 | 盈利操纵检测 | 8个变量，衡量财务数据中的异常 |
+
+详细公式和解读参见 [references/analysis-methodology.md](references/analysis-methodology.md)。
+
+### 第五步：营运资本分析
+
+通过现金转化周期考察运营效率：
+
+| 指标 | 公式 | 揭示内容 |
+|------|------|---------|
+| 应收账款周转天数（DSO） | (应收账款 / 营业收入) × 365 | 收款效率 |
+| 存货周转天数（DIO） | (存货 / 营业成本) × 365 | 存货管理 |
+| 应付账款周转天数（DPO） | (应付账款 / 营业成本) × 365 | 付款实践 |
+| 现金转化周期 | DSO + DIO − DPO | 营运资本效率 |
+
+追踪5年趋势并与同行比较。
+
+### 第六步：资产负债表风险评估
+
+识别表外和隐性风险：
+
+| 风险领域 | 检查内容 |
+|---------|---------|
+| 商誉/无形资产 | 相对净资产的规模；减值风险（A股并购商誉减值是常见雷区） |
+| 关联交易 | 与控股股东及关联方的交易规模和定价公允性 |
+| 应收票据及应收账款 | 商业承兑汇票的信用风险 |
+| 在建工程 | 长期不结转固定资产的项目（可能的费用资本化） |
+| 其他应收款 | 对关联方的资金占用 |
+| 股份支付 | 稀释影响 |
+| 有息负债到期结构 | 短期偿债压力 vs 现金/再融资能力 |
+| 股权质押 | 大股东股权质押比例 |
+
+### 第七步：业务分部分析
+
+按业务分部拆解业绩：
+
+- 各分部营收及增长
+- 各分部利润率
+- 各分部资本密集度
+- 识别哪些分部创造价值、哪些毁灭价值
+- 分部间的交叉补贴
+
+### 第八步：同行基准比较
+
+与2–3家直接竞争对手比较关键指标：
+
+| 指标类别 | 具体指标 |
+|---------|---------|
+| 盈利能力 | 毛利率、营业利润率、净利率、ROE、ROIC |
+| 效率 | 资产周转率、存货周转率、应收周转率 |
+| 杠杆 | 资产负债率、利息保障倍数、净负债/EBITDA |
+| 估值 | PE、EV/EBITDA、P/FCF、PEG |
+| 成长性 | 营收CAGR、EPS CAGR、FCF CAGR |
+
+### 第九步：综合与呈现
+
+按 [references/output-template.md](references/output-template.md) 编制报告：
+
+1. **公司概览** — 业务概述和关键指标
+2. **杜邦分解** — 5年ROE驱动分析
+3. **盈利质量报告** — 应计、现金转化、红灯项
+4. **财务健康评分** — Z值、F值、M值及解读
+5. **营运资本分析** — CCC趋势和同行比较
+6. **资产负债表风险图** — 隐性风险和表外项目
+7. **分部分析** — 价值驱动和拖累
+8. **同行比较** — 基准比较表
+9. **综合评估** — 从财务视角的多空分析
+10. **免责声明**
+
+## 数据增强
+
+如需实时市场数据支撑分析，请使用**金融数据工具包**技能（`findata-toolkit-cn`）。该工具包提供A股实时行情、财务指标、董监高增减持、北向资金、宏观数据等功能，所有数据源免费，无需API密钥。
+
+## 重要注意事项
+
+- **读附注**：财务报表中最重要的信息往往在附注中。标记任何异常的会计政策、关联交易或重大估计。
+- **趋势比绝对值重要**：下降的毛利率比低但稳定的毛利率更令人担忧。始终强调方向性变化。
+- **A股特有陷阱**：关联交易转移利润、政府补助撑利润、在建工程长期不转固、商业承兑汇票坏账风险——这些是A股财务分析的特有关注点。
+- **中国会计准则**：A股使用企业会计准则（CAS），与US GAAP有差异。主要差异体现在收入确认、金融工具分类、政府补助处理等方面。
+- **补充而非替代估值**：本技能评估财务质量，而非判断股票买卖。估值相关问题请导向相应的筛选技能。
+- **GAAP vs 扣非**：关注扣除非经常性损益后的净利润，这是评估A股公司持续经营能力的更可靠指标。
+- **非审计**：这是分析性审阅，不是专业审计。无法检测高级造假或验证数据准确性。

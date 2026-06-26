@@ -1,35 +1,27 @@
 ---
-name: "recipe-create-classroom-course"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-create-classroom-course"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-create-classroom-course"
+name: recipe-create-classroom-course
+description: "Create a Google Classroom course and invite students."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "education"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-classroom
 ---
 
-# recipe-create-classroom-course
+# Create a Google Classroom Course
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-classroom`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-create-classroom-course`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-create-classroom-course](https://skills.sh/googleworkspace/cli/recipe-create-classroom-course)
+Create a Google Classroom course and invite students.
 
-## Overview
+## Steps
 
+1. Create the course: `gws classroom courses create --json '{"name": "Introduction to CS", "section": "Period 1", "room": "Room 101", "ownerId": "me"}'`
+2. Invite a student: `gws classroom invitations create --json '{"courseId": "COURSE_ID", "userId": "student@school.edu", "role": "STUDENT"}'`
+3. List enrolled students: `gws classroom courses students list --params '{"courseId": "COURSE_ID"}' --format table`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-create-classroom-course
-```

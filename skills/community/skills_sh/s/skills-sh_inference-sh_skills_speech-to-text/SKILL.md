@@ -1,35 +1,140 @@
 ---
-name: "speech-to-text"
-description: "Indexed by skills.sh from inference-sh/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "inference-sh"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/inference-sh/skills/speech-to-text"
-sourceUrl: "https://skills.sh/inference-sh/skills/speech-to-text"
+name: speech-to-text
+description: "Transcribe audio to text with ElevenLabs Scribe and Whisper models via inference.sh CLI. Models: ElevenLabs Scribe v2 (98%+ accuracy, diarization), Fast Whisper Large V3, Whisper V3 Large. Capabilities: transcription, translation, multi-language, timestamps, speaker diarization, audio event tagging. Use for: meeting transcription, subtitles, podcast transcripts, voice notes. Triggers: speech to text, transcription, whisper, audio to text, transcribe audio, voice to text, stt, automatic transcription, subtitles generation, transcribe meeting, audio transcription, whisper ai, elevenlabs stt, scribe, eleven labs transcribe"
+allowed-tools: Bash(belt *)
 ---
 
-# speech-to-text
+> **Install the belt CLI skill:** `npx skills add belt-sh/cli`
 
-> Indexed by skills.sh from inference-sh/skills
+# Speech-to-Text
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** inference-sh
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/inference-sh/skills/speech-to-text`
-- **Source URL:** [https://skills.sh/inference-sh/skills/speech-to-text](https://skills.sh/inference-sh/skills/speech-to-text)
+Transcribe audio to text via [inference.sh](https://inference.sh) CLI.
 
-## Overview
+![Speech-to-Text](https://cloud.inference.sh/u/4mg21r6ta37mpaz6ktzwtt8krr/01jz025e88nkvw55at1rqtj5t8.png)
 
+## Quick Start
 
-## Installation
-To install this skill, run the following command in your terminal:
+> Requires inference.sh CLI (`belt`). [Install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+
 ```bash
-hermes skills install skills-sh/inference-sh/skills/speech-to-text
+belt login
+
+belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://audio.mp3"}'
 ```
+
+
+## Available Models
+
+| Model | App ID | Best For |
+|-------|--------|----------|
+| ElevenLabs Scribe v2 | `elevenlabs/stt` | 98%+ accuracy, diarization, 90+ languages |
+| Fast Whisper V3 | `infsh/fast-whisper-large-v3` | Fast transcription |
+| Whisper V3 Large | `infsh/whisper-v3-large` | Highest accuracy |
+
+## Examples
+
+### Basic Transcription
+
+```bash
+belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "https://meeting.mp3"}'
+```
+
+### With Timestamps
+
+```bash
+belt app sample infsh/fast-whisper-large-v3 --save input.json
+
+# {
+#   "audio_url": "https://podcast.mp3",
+#   "timestamps": true
+# }
+
+belt app run infsh/fast-whisper-large-v3 --input input.json
+```
+
+### Translation (to English)
+
+```bash
+belt app run infsh/whisper-v3-large --input '{
+  "audio_url": "https://french-audio.mp3",
+  "task": "translate"
+}'
+```
+
+### From Video
+
+```bash
+# Extract audio from video first
+belt app run infsh/video-audio-extractor --input '{"video_url": "https://video.mp4"}' > audio.json
+
+# Transcribe the extracted audio
+belt app run infsh/fast-whisper-large-v3 --input '{"audio_url": "<audio-url>"}'
+```
+
+## Workflow: Video Subtitles
+
+```bash
+# 1. Transcribe video audio
+belt app run infsh/fast-whisper-large-v3 --input '{
+  "audio_url": "https://video.mp4",
+  "timestamps": true
+}' > transcript.json
+
+# 2. Use transcript for captions
+belt app run infsh/caption-videos --input '{
+  "video_url": "https://video.mp4",
+  "captions": "<transcript-from-step-1>"
+}'
+```
+
+## Supported Languages
+
+Whisper supports 99+ languages including:
+English, Spanish, French, German, Italian, Portuguese, Chinese, Japanese, Korean, Arabic, Hindi, Russian, and many more.
+
+## Use Cases
+
+- **Meetings**: Transcribe recordings
+- **Podcasts**: Generate transcripts
+- **Subtitles**: Create captions for videos
+- **Voice Notes**: Convert to searchable text
+- **Interviews**: Transcription for research
+- **Accessibility**: Make audio content accessible
+
+## Output Format
+
+Returns JSON with:
+- `text`: Full transcription
+- `segments`: Timestamped segments (if requested)
+- `language`: Detected language
+
+## Related Skills
+
+```bash
+# ElevenLabs STT (98%+ accuracy, diarization)
+npx skills add inference-sh/skills@elevenlabs-stt
+
+# ElevenLabs TTS (reverse direction)
+npx skills add inference-sh/skills@elevenlabs-tts
+
+# Full platform skill (all 250+ apps)
+npx skills add inference-sh/skills@infsh-cli
+
+# Text-to-speech (reverse direction)
+npx skills add inference-sh/skills@text-to-speech
+
+# Video generation (add captions)
+npx skills add inference-sh/skills@ai-video-generation
+
+# AI avatars (lipsync with transcripts)
+npx skills add inference-sh/skills@ai-avatar-video
+```
+
+Browse all audio apps: `belt app store --category audio`
+
+## Documentation
+
+- [Running Apps](https://inference.sh/docs/apps/running) - How to run apps via CLI
+- [Audio Transcription Example](https://inference.sh/docs/examples/audio-transcription) - Complete transcription guide
+- [Apps Overview](https://inference.sh/docs/apps/overview) - Understanding the app ecosystem
+

@@ -1,0 +1,49 @@
+{
+  "skill_name": "core-motion",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Build a concise SwiftUI tilt-control service for an iOS game. It should read device motion at a reasonable rate, avoid wasting battery, and clean up correctly when the view disappears.",
+      "expected_output": "A Core Motion implementation outline that uses one CMMotionManager, includes NSMotionUsageDescription, checks availability/reference frames, starts device-motion or accelerometer updates at a suitable interval, handles errors/queues, and stops updates on lifecycle exit.",
+      "files": [],
+      "expectations": [
+        "Adds or calls out NSMotionUsageDescription before accessing motion data.",
+        "Uses a single shared CMMotionManager instead of one manager per view.",
+        "Checks isDeviceMotionAvailable or the relevant sensor availability before starting updates.",
+        "Chooses a modest update interval based on the interaction instead of defaulting to the highest possible rate.",
+        "Stops the matching updates when the view or service is no longer active.",
+        "Checks available attitude reference frames before requesting a north-based frame."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Review this plan for a hiking app: use CMPedometer for daily steps, CMMotionActivityManager to switch walking/driving modes, and CMAltimeter for elevation. The team says absolute altitude is GPS-based, activity flags are mutually exclusive, and only activity recognition needs motion permission.",
+      "expected_output": "A correction-focused review that covers NSMotionUsageDescription and authorization checks for pedometer/activity/altimeter, nonexclusive CMMotionActivity flags with confidence, and absolute altitude as sea-level altitude on supported hardware rather than GPS-based data.",
+      "files": [],
+      "expectations": [
+        "Requires NSMotionUsageDescription for the Core Motion APIs in the plan.",
+        "Checks CMAuthorizationStatus through the relevant pedometer, activity, or altimeter manager APIs before relying on data.",
+        "Explains that CMMotionActivity flags are not mutually exclusive and should be interpreted with confidence.",
+        "Describes absolute altitude as altitude relative to sea level, not GPS-based altitude.",
+        "Mentions that absolute altitude requires supported hardware such as iPhone 12 or later or Apple Watch Series 6/SE or later.",
+        "Keeps the answer in Core Motion scope rather than turning it into a HealthKit workout or SensorKit research guide."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need advanced motion guidance for a watchOS app that analyzes golf swings with batched accelerometer data, tracks AirPods head motion during coaching, and supports shallow dive depth on Apple Watch Series 10/Ultra. What setup and API pitfalls should I avoid?",
+      "expected_output": "An advanced Core Motion guide that uses CMBatchedSensorManager safely without assigning read-only frequency properties, covers CMHeadphoneMotionManager privacy/connection behavior, and sets up CMWaterSubmersionManager with availability checks, motion usage text, Shallow Depth and Pressure or full entitlement, and underwater-depth background mode.",
+      "files": [],
+      "expectations": [
+        "Uses CMBatchedSensorManager only after checking support and authorization.",
+        "Does not assign accelerometerDataFrequency or deviceMotionDataFrequency and instead treats them as reported read-only frequencies.",
+        "Mentions watchOS 10+ async batched update sequences or otherwise gates batched update APIs by availability.",
+        "Includes NSMotionUsageDescription for headphone motion and submersion access.",
+        "Uses CMHeadphoneMotionManager delegate or connection-status updates for connect/disconnect behavior.",
+        "Checks CMWaterSubmersionManager.waterSubmersionAvailable before instantiating the manager.",
+        "Distinguishes Shallow Depth and Pressure capability for 6-meter dives from the full Submerged Depth and Pressure entitlement for 40-meter dives.",
+        "Adds WKBackgroundModes with underwater-depth for dive sessions/autolaunch and does not claim only Apple Watch Ultra can support shallow depth."
+      ]
+    }
+  ]
+}

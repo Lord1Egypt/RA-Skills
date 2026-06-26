@@ -1,0 +1,45 @@
+{
+  "skill_name": "energykit",
+  "evals": [
+    {
+      "id": 1,
+      "name": "ev-guidance-load-events",
+      "prompt": "Review this EnergyKit EV charging integration. It enables the capability, fetches ElectricityGuidance for an EnergyVenue, builds a charging schedule, then submits one ElectricVehicleLoadEvent at the end of the session with `GuidanceState(wasFollowingGuidance: true, guidanceToken: UUID())`. Give corrected Swift-level guidance without turning this into a HomeKit or BackgroundTasks tutorial.",
+      "expected_output": "A concise review that preserves the EnergyKit boundary, uses the real guidance token, and explains the load event lifecycle and cadence for EV charging.",
+      "files": [],
+      "assertions": [
+        "Lists the EnergyKit capability or `com.apple.developer.energykit` entitlement as a setup prerequisite, not only as an error-handling detail.",
+        "Rejects fabricating a guidance token and says the event must use the `guidanceToken` returned by EnergyKit guidance on the device/app that requested it.",
+        "Requires a session lifecycle with `.begin`, `.active`, and `.end` events rather than only one final event.",
+        "Mentions EV sampling about every 15 minutes when charging is steady and additional events for significant changes such as user actions, pauses, new guidance, or rapid power changes.",
+        "Keeps the answer focused on EnergyKit rather than expanding into HomeKit automation or BackgroundTasks implementation details."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "insight-availability-granularity",
+      "prompt": "Fix this EnergyKit insight snippet for an app that supports iOS 26.0: it requests `.daily` insights for the last 7 days and immediately reads `record.dataByGridCleanliness?.cleaner`. Include the right availability and range guidance.",
+      "expected_output": "Corrects the query granularity/range mismatch and guards grid cleanliness insight access for iOS/iPadOS 26.1+.",
+      "files": [],
+      "assertions": [
+        "States that `dataByGridCleanliness` / grid cleanliness breakdowns require iOS/iPadOS 26.1+ and should be guarded or omitted on 26.0.",
+        "Does not claim all EnergyKit insight APIs are 26.1-only.",
+        "Pairs granularity to the requested range, using `.hourly` for a seven-day or calendar-week view and `.daily` only for at least a calendar month.",
+        "Mentions that empty `ElectricityInsightQuery.Options` returns totals without cleanliness or tariff breakdown."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "energykit-boundary-review",
+      "prompt": "A teammate wrote: 'EnergyKit works anywhere, no entitlement is needed, and if there are no insights we can infer usage from MetricKit power metrics.' Review this plan for a smart thermostat app and identify the minimal corrections.",
+      "expected_output": "Identifies EnergyKit entitlement, region/venue limitations, submitted load-event dependency for insights, HVAC stage-change event guidance, and avoids MetricKit substitution.",
+      "files": [],
+      "assertions": [
+        "Requires the `com.apple.developer.energykit` entitlement and handles `EnergyKitError.permissionDenied` rather than saying no entitlement is needed.",
+        "Handles unsupported regions and unavailable or restricted venues instead of claiming EnergyKit works anywhere.",
+        "States that EnergyKit insights depend on submitted EnergyKit load events and cannot be replaced by MetricKit power metrics.",
+        "For HVAC, recommends separate load events for heating/cooling stage transitions rather than only fixed timer samples or a final summary."
+      ]
+    }
+  ]
+}

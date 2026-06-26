@@ -1,0 +1,47 @@
+{
+  "skill_name": "swiftui-webkit",
+  "evals": [
+    {
+      "id": 0,
+      "name": "navigation-and-javascript-corrections",
+      "prompt": "Review this SwiftUI WebKit helper before I paste it into an iOS 26 app. It watches `page.navigations` with `for await`, switches on `.finished`, `.failed`, and `.failedProvisionalNavigation`, and builds JavaScript by interpolating a selected section ID into `function measure() { return document.getElementById('\\(id)').getBoundingClientRect().top } measure()`. What should I change?",
+      "expected_output": "A focused review that corrects WebPage navigation observation and callJavaScript usage without rewriting unrelated app architecture.",
+      "files": [],
+      "expectations": [
+        "Uses `for try await` for `page.navigations` and handles thrown navigation errors with `catch`.",
+        "Does not switch on undocumented `.failed` or `.failedProvisionalNavigation` `NavigationEvent` cases; treats failures as `WebPage.NavigationError` from the throwing sequence.",
+        "Explains that `callJavaScript` takes a function body rather than a wrapped function declaration or appended call expression.",
+        "Recommends passing the selected section ID through `arguments` instead of string interpolation.",
+        "Mentions casting JavaScript results defensively and handling `nil` or `NSNull` when relevant."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "container-boundary-routing",
+      "prompt": "I have one SwiftUI app with bundled help articles, a GitHub OAuth login, public legal links, a macOS build, a visionOS build, and one iOS screen that needs to inspect page title/progress and run JavaScript. Which web container should each part use?",
+      "expected_output": "A platform-aware container selection answer that keeps embedded WebKit, Safari-style browsing, auth, and fallback boundaries separate.",
+      "files": [],
+      "expectations": [
+        "Uses `WebView` plus `WebPage` for embedded app-owned content that needs page state, JavaScript, loading control, or navigation policy.",
+        "Uses `ASWebAuthenticationSession` for OAuth instead of `WebView`, `WKWebView`, or `SFSafariViewController`.",
+        "Uses `SFSafariViewController` only for iOS/iPadOS Safari-style modal browsing where the app does not need to interact with the content.",
+        "Routes macOS and visionOS browse-out behavior to `openURL` or the default browser instead of treating `SFSafariViewController` as the cross-platform answer.",
+        "Mentions `WKWebView` as a fallback only for back-deployment below iOS 26 or a missing required SwiftUI-facing capability."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "wkwebview-migration-review",
+      "prompt": "Review a migration plan for an existing SwiftUI feature that wraps `WKWebView` in `UIViewRepresentable`. It handles article pages, custom callback URLs from JavaScript, OAuth, and one heavily customized legacy browser screen. Product wants a modern iOS 26 plan but cannot afford a big rewrite.",
+      "expected_output": "An incremental migration review that moves routine embedded content to WebView/WebPage while preserving justified fallback and sibling boundaries.",
+      "files": [],
+      "expectations": [
+        "Recommends migrating routine article/detail content to `WebView` and `WebPage` when the new API covers the need.",
+        "Keeps OAuth on `ASWebAuthenticationSession` and does not move it into embedded WebKit.",
+        "Frames callback-URL interception as a coarse JS-to-native workaround, not a full `WKScriptMessageHandler` replacement.",
+        "Keeps the heavily customized legacy browser screen on an explicit `WKWebView` fallback if required capability gaps or rewrite cost justify it.",
+        "Recommends screen-by-screen migration and separation of page ownership, navigation policy, JavaScript calls, and UI embedding."
+      ]
+    }
+  ]
+}

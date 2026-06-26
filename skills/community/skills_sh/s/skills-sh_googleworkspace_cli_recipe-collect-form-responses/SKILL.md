@@ -1,35 +1,27 @@
 ---
-name: "recipe-collect-form-responses"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-collect-form-responses"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-collect-form-responses"
+name: recipe-collect-form-responses
+description: "Retrieve and review responses from a Google Form."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-forms
 ---
 
-# recipe-collect-form-responses
+# Check Form Responses
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-forms`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-collect-form-responses`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-collect-form-responses](https://skills.sh/googleworkspace/cli/recipe-collect-form-responses)
+Retrieve and review responses from a Google Form.
 
-## Overview
+## Steps
 
+1. List forms: `gws forms forms list` (if you don't have the form ID)
+2. Get form details: `gws forms forms get --params '{"formId": "FORM_ID"}'`
+3. Get responses: `gws forms forms responses list --params '{"formId": "FORM_ID"}' --format table`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-collect-form-responses
-```

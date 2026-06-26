@@ -1,0 +1,4 @@
+interface:
+  display_name: "GPT Image 2"
+  short_description: "Complete GPT Image 2 skill for generations, edits, and responses."
+  default_prompt: "Use $gpt-image-2 to generate, edit, or stream GPT Image 2 outputs through an OpenAI-compatible API."

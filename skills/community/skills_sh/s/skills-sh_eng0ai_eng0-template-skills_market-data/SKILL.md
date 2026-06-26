@@ -1,35 +1,27 @@
----
-name: "market-data"
-description: "Indexed by skills.sh from eng0ai/eng0-template-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "eng0ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/eng0ai/eng0-template-skills/market-data"
-sourceUrl: "https://skills.sh/eng0ai/eng0-template-skills/market-data"
----
+# Market Data Skills
 
-# market-data
+Two skills for accessing financial market data from the Rebyte runtime.
 
-> Indexed by skills.sh from eng0ai/eng0-template-skills
+## Skills
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** eng0ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/eng0ai/eng0-template-skills/market-data`
-- **Source URL:** [https://skills.sh/eng0ai/eng0-template-skills/market-data](https://skills.sh/eng0ai/eng0-template-skills/market-data)
+| Skill | Purpose | Triggers |
+|-------|---------|----------|
+| [xyznot-historical-data](./xyznot-historical-data.md) | Bulk historical queries, backtesting, analysis | "historical data", "price history", "backtesting" |
+| [xyznot-data-points](./xyznot-data-points.md) | Specific lookups: latest price, news, fundamentals | "current price", "latest news on", "fundamentals for" |
 
-## Overview
+## Data Available
 
+| Dataset | Rows | Content |
+|---------|------|---------|
+| `bars_1m` | ~2B | 1-min OHLCV, 5 years |
+| `fundamentals` | ~492K | SEC XBRL filings |
+| `news` | ~803K | Financial news articles |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/eng0ai/eng0-template-skills/market-data
-```
+## Architecture
+
+| Interface | URL | Use |
+|-----------|-----|-----|
+| MCP (schema) | `mcp.xyznot.com/v1/mcp` | `list_datasets`, `table_schema` |
+| HTTP SQL (data) | `mcp.xyznot.com/v1/sql` | All SQL queries |
+
+**Rule**: Always use HTTP SQL for data. MCP `sql` tool times out.

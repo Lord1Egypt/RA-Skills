@@ -1,0 +1,42 @@
+{
+  "skill_name": "pdfkit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this PDFKit page-navigation code for iOS: `if let page = document.page(at: selectedIndex) { pdfView.go(to: page) }`, plus remove/exchange buttons that call `removePage(at:)` and `exchangePage(at:withPageAt:)` directly. What should change?",
+      "expected_output": "A concise PDFKit review that explains zero-based page indices, guards page access and page mutations before calling PDFDocument APIs, and supplies corrected Swift snippets.",
+      "files": [],
+      "assertions": [
+        "States that PDFDocument page indices are zero-based and that page(at:), insert(_:at:), removePage(at:), and exchangePage(at:withPageAt:) must be called only with valid bounds.",
+        "Corrects the page navigation snippet by checking selectedIndex is greater than or equal to zero and less than document.pageCount before calling page(at:).",
+        "Corrects remove or exchange operations with pageCount-based guards instead of relying on optional binding or catching nil.",
+        "Does not claim page(at:) safely returns nil for out-of-range indices."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I'm adding a PencilKit-style drawing layer over a PDFView using PDFPageOverlayViewProvider. Sketch the PDFKit-side structure for provider ownership, visible-page lifecycle, and saving the edits back into the PDF.",
+      "expected_output": "A PDFKit overlay plan that keeps the overlay provider strongly owned, uses PDFPageOverlayViewProvider lifecycle callbacks to persist per-page overlay state, and explains that overlay views must be converted to PDF annotations or burned in before saving.",
+      "files": [],
+      "assertions": [
+        "Notes that PDFView.pageOverlayViewProvider is weak and the provider must be strongly retained by a controller, coordinator, or other owner.",
+        "Uses pdfView(_:overlayViewFor:) for creating page overlay views and willEndDisplayingOverlayView to capture state before a page overlay leaves display.",
+        "States that overlay views are not automatically saved as PDF content.",
+        "Recommends converting overlay data into annotations, custom annotation appearance streams, or rendered/burned-in page content before write(to:) or dataRepresentation().",
+        "Keeps PencilKit drawing details as a handoff rather than turning the answer into a general PencilKit tutorial."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Which skill should handle a feature that displays a PDF, fills text and checkbox fields, shows thumbnails, and wraps the view in SwiftUI? Mention any sibling-skill handoffs for broader SwiftUI or drawing behavior.",
+      "expected_output": "A boundary-aware answer that activates PDFKit for PDFView, PDFDocument, widget annotations, thumbnails, and PDF-specific SwiftUI wrapping while routing broad interop and drawing-tool concerns to sibling skills.",
+      "files": [],
+      "assertions": [
+        "Keeps PDF display, form widgets, text extraction/search, annotations, thumbnails, and PDFDocument save behavior in the PDFKit skill.",
+        "Routes general UIViewRepresentable architecture beyond the PDFView wrapper to swiftui-uikit-interop when needed.",
+        "Routes freehand drawing tool behavior to PencilKit or PaperKit when the task is about drawing tools rather than PDF overlay lifecycle.",
+        "Does not claim PDFKit itself provides the full PencilKit drawing tool model or PaperKit markup UI."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "skill_name": "mapkit",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I'm building a SwiftUI store locator for iOS 18. Sketch the MapKit implementation for a searchable map with autocomplete, markers for results, marker selection that shows details, a route overlay to the selected store, and a user-location button. Include the privacy and cancellation details that matter.",
+      "expected_output": "A SwiftUI MapKit implementation plan that uses Map, Marker or Annotation, MapCameraPosition, MKLocalSearchCompleter plus MKLocalSearch, Map selection tags, MKDirections and MapPolyline, UserAnnotation or MapUserLocationButton, and CoreLocation authorization/task cancellation guidance.",
+      "files": [],
+      "expectations": [
+        "Uses SwiftUI MapKit APIs such as Map, Marker or Annotation, MapCameraPosition, map controls, and MapPolyline rather than defaulting to MKMapView.",
+        "Describes MKLocalSearchCompleter for autocomplete and MKLocalSearch.Request(completion:) or naturalLanguageQuery for full search results, with debounced input.",
+        "Handles map selection with a binding and tags whose type matches the selected value.",
+        "Builds directions with MKDirections.Request and displays the selected route with MapPolyline(route.polyline).",
+        "Includes NSLocationWhenInUseUsageDescription and a denied-location UI path such as a Settings deep link.",
+        "Cancels or scopes live location/search tasks to the view lifecycle and avoids running location updates indefinitely."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Review this location feature plan: create a CLMonitor every time the view appears, monitor 45 circular regions for coupons, request Always location on launch, start liveUpdates forever, and use background location without a Live Activity or CLBackgroundActivitySession. What should I change for iOS 18+?",
+      "expected_output": "A correction-focused CoreLocation review that uses CLServiceSession only for active user-facing features, limits CLMonitor conditions, keeps monitor/event subscriptions stable, uses CLLocationUpdate.liveUpdates with filtering and cancellation, and explains the background-location requirements.",
+      "files": [],
+      "expectations": [
+        "Rejects requesting Always authorization on launch and recommends when-in-use first, with CLServiceSession scoped to the feature lifetime on iOS 18+.",
+        "States that CLMonitor condition monitoring is limited to 20 conditions per app and the app must prioritize or rotate regions.",
+        "Warns against rapidly recreating CLMonitor instances with the same name and recommends a long-lived monitor plus add/remove diffing.",
+        "Uses CLLocationUpdate.liveUpdates() as an async sequence and filters invalid or inaccurate locations while cancelling the task when not needed.",
+        "Explains that background updates require the Location updates background mode and either a CLBackgroundActivitySession or Live Activity, with active update or monitor subscriptions.",
+        "Mentions handling denied/global-denied/location-unavailable diagnostics or degraded behavior instead of silently failing."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need a navigation experience that shows a map inside CarPlay, opens a small App Clip from a place card, and pairs a BLE beacon when the user enters a geofence. Which parts belong in this MapKit skill, and where should the other pieces go?",
+      "expected_output": "A boundary-aware answer that keeps MapKit/CoreLocation responsibilities in scope while routing CarPlay templates, App Clip invocation, and BLE accessory setup to the appropriate sibling skills or frameworks.",
+      "files": [],
+      "expectations": [
+        "Keeps MapKit/CoreLocation scope to maps, annotations, routes, geocoding/search, user location, CLMonitor geofencing, and background location constraints.",
+        "Routes CarPlay map templates, navigation alerts, and CarPlay-specific UI to the CarPlay skill or CarPlay framework guidance.",
+        "Routes App Clip invocation, size limits, and handoff behavior to the App Clips skill.",
+        "Routes BLE beacon pairing or accessory onboarding to Core Bluetooth or AccessorySetupKit rather than expanding MapKit scope.",
+        "Does not claim MapKit handles CarPlay templates, App Clip launch infrastructure, or BLE pairing directly.",
+        "Still explains the handoff points between geofence events, routes/search results, and the adjacent frameworks."
+      ]
+    }
+  ]
+}

@@ -1,35 +1,28 @@
 ---
-name: "recipe-email-drive-link"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-email-drive-link"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-email-drive-link"
+name: recipe-email-drive-link
+description: "Share a Google Drive file and email the link with a message to recipients."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-drive
+        - gws-gmail
 ---
 
-# recipe-email-drive-link
+# Email a Google Drive File Link
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-drive`, `gws-gmail`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-email-drive-link`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-email-drive-link](https://skills.sh/googleworkspace/cli/recipe-email-drive-link)
+Share a Google Drive file and email the link with a message to recipients.
 
-## Overview
+## Steps
 
+1. Find the file: `gws drive files list --params '{"q": "name = '\''Quarterly Report'\''"}'`
+2. Share the file: `gws drive permissions create --params '{"fileId": "FILE_ID"}' --json '{"role": "reader", "type": "user", "emailAddress": "client@example.com"}'`
+3. Email the link: `gws gmail +send --to client@example.com --subject 'Quarterly Report' --body 'Hi, please find the report here: https://docs.google.com/document/d/FILE_ID'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-email-drive-link
-```

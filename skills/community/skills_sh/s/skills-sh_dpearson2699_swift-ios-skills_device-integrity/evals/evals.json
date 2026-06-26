@@ -1,0 +1,45 @@
+{
+  "skill_name": "device-integrity",
+  "evals": [
+    {
+      "id": 0,
+      "name": "app-attest-attestation-verifier",
+      "prompt": "We're adding server-side App Attest verification for an iOS app. The client sends keyId, attestationObject, and the original one-time challenge. What exact checks should the verifier perform before storing anything?",
+      "expected_output": "A source-grounded App Attest attestation verification checklist that covers CBOR/certificate validation, nonce composition, App ID and environment checks, credential ID/keyId checks, and storing verified public key plus receipt.",
+      "files": [],
+      "expectations": [
+        "Computes `clientDataHash = SHA256(challenge)`, then verifies the certificate nonce against `SHA256(authData || clientDataHash)` rather than `SHA256(challenge)` alone.",
+        "Names the credential certificate extension OID `1.2.840.113635.100.8.2` as the source of the nonce value to compare.",
+        "Verifies the App ID/RP ID hash, environment `aaguid`, initial counter, `credentialId`, and keyId/public-key hash relationship.",
+        "Stores the verified public key and receipt for future assertion and fraud-risk use instead of treating the raw attestation object as the trusted durable record."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "app-attest-sensitive-request-assertion",
+      "prompt": "Design the App Attest assertion contract for a premium-content download endpoint. The app already has an attested key. What should the client sign and what should the server verify on every sensitive request?",
+      "expected_output": "A replay-safe assertion design that signs client data containing a server challenge and request context, then verifies assertion CBOR, signature, RP ID, counter, challenge, and request binding server-side.",
+      "files": [],
+      "expectations": [
+        "Requires a fresh one-time server challenge for the assertion flow and embeds it in the client data.",
+        "Includes request context or a request-body hash in the signed client data so the assertion is bound to the sensitive request.",
+        "Verifies the assertion signature over `SHA256(authenticatorData || SHA256(clientData))` using the public key stored from attestation.",
+        "Checks the RP ID hash, monotonically increasing counter, and embedded challenge before accepting the request."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "device-integrity-boundary-and-errors",
+      "prompt": "Review this plan: cache a DCDevice token for the whole install, use one App Attest key for all users, retry any attestKey failure with a new key immediately, treat invalidKey as an OS update problem, and add OAuth/session-token/certificate-pinning advice to the same device-integrity checklist. What should be corrected?",
+      "expected_output": "A boundary-aware correction list that fixes DeviceCheck token reuse, App Attest key scope, retry/error handling, environment behavior, and routes unrelated authentication/network security work to sibling guidance.",
+      "files": [],
+      "expectations": [
+        "States that `DCDevice.generateToken()` tokens are single-use and should not be cached for the whole install.",
+        "Requires App Attest keys to be unique per user account on each device and warns against unnecessary key generation because it affects risk metrics.",
+        "For `serverUnavailable`, retries attestation later with the same key and same `clientDataHash`; for other attestation errors, discards the key identifier before a new-key retry.",
+        "Describes `invalidKey` using Apple-documented causes: already-attested key, unattested assertion key, or service rejection, without attributing it to OS updates or Secure Enclave resets.",
+        "Keeps OAuth/session-token design, certificate pinning, and broad networking security out of the device-integrity checklist except as sibling-skill handoffs."
+      ]
+    }
+  ]
+}

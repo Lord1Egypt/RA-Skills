@@ -1,35 +1,86 @@
 ---
-name: "event-driven-detector"
-description: "Indexed by skills.sh from geeksfino/finskills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "geeksfino"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/geeksfino/finskills/event-driven-detector"
-sourceUrl: "https://skills.sh/geeksfino/finskills/event-driven-detector"
+name: event-driven-detector
+description: 识别和分析可能创造定价偏差的A股公司事件，包括并购重组、资产注入、回购增持、管理层变更和指数调整。当用户询问并购重组机会、资产注入、股份回购分析、国企改革、指数调整交易、特殊事件投资或事件驱动策略时使用此技能。
+license: Apache-2.0
 ---
 
-# event-driven-detector
+# 事件驱动机会识别器
 
-> Indexed by skills.sh from geeksfino/finskills
+扮演特殊情况分析师。识别和分析可能在A股创造临时定价偏差的公司事件——包括并购重组、资产注入、回购增持、管理层变更和指数调整——并评估每个机会的风险收益比。
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** geeksfino
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/geeksfino/finskills/event-driven-detector`
-- **Source URL:** [https://skills.sh/geeksfino/finskills/event-driven-detector](https://skills.sh/geeksfino/finskills/event-driven-detector)
+## 工作流程
 
-## Overview
+### 第一步：界定范围
 
+与用户确认：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/geeksfino/finskills/event-driven-detector
-```
+1. **事件类型** — 全部（默认）或特定类别（并购重组、回购增持等）
+2. **市场** — A股全市场（默认）、特定行业、或特定公司
+3. **时间窗口** — 活跃事件（默认）或历史分析
+4. **风险偏好** — 保守（高确定性机会）或积极（较高风险催化剂）
+5. **资金规模** — 组合配置背景（如相关）
+6. **结果数量** — 呈现的机会数量（默认：5个）
+
+### 第二步：扫描活跃事件
+
+在各类别中筛选公司事件。详细分类参见 [references/event-framework.md](references/event-framework.md)。
+
+| 事件类别 | 扫描内容 |
+|---------|---------|
+| 并购重组 | 已公告的重大资产重组、吸收合并、借壳上市 |
+| 资产注入 | 控股股东/集团资产注入承诺或计划 |
+| 回购增持 | 公司回购计划、大股东/高管增持 |
+| 国企改革 | 混合所有制改革、资产证券化、整体上市 |
+| 指数调整 | 沪深300、中证500、MSCI中国等指数成分调整 |
+| 管理层变更 | 核心高管变动及其战略影响 |
+| 分拆上市 | 子公司分拆至科创板/创业板/境外上市 |
+| 解禁减持 | 大额限售股解禁及减持计划 |
+
+### 第三步：逐个分析
+
+对每个识别的事件提供：
+
+1. **事件概述** — 发生了什么，时间线，关键方
+2. **价差/机会** — 量化上行空间（如并购价差、重组前后估值差）
+3. **完成概率** — 预估成功或完成的可能性
+4. **时间线** — 关键里程碑的预期日期
+5. **风险因素** — 可能出错的方面
+6. **风险收益比** — 年化收益率 vs 概率加权下行
+7. **历史可比案例** — 类似过往事件及其结果
+
+### 第四步：风险评估
+
+对每个机会评估：
+
+| 风险因素 | 评估内容 |
+|---------|---------|
+| 监管审批风险 | 证监会审批、反垄断审查、行业主管部门审批 |
+| 资金风险 | 交易对价是否已落实？支付方式（现金/股份/组合） |
+| 股东风险 | 是否需要股东大会审议？反对可能性 |
+| 市场风险 | 持有期内对整体市场波动的敏感度 |
+| 时间风险 | 资金占用多久？机会成本 |
+| 下行风险 | 事件失败或反转时，股价回到哪里？ |
+| 信息不对称 | A股内幕交易风险，价格可能已反映预期 |
+
+### 第五步：排序与呈现
+
+按风险调整后收益排序。格式参见 [references/output-template.md](references/output-template.md)：
+
+1. **事件概览表** — 所有活跃机会的关键指标
+2. **详细分析** — 每个机会的深度解读
+3. **风险矩阵** — 所有事件的概率 vs 影响
+4. **历史可比** — 类似过往事件及结果
+5. **免责声明**
+
+## 数据增强
+
+如需实时市场数据支撑分析，请使用**金融数据工具包**技能（`findata-toolkit-cn`）。该工具包提供A股实时行情、财务指标、董监高增减持、北向资金、宏观数据等功能，所有数据源免费，无需API密钥。
+
+## 重要注意事项
+
+- **事件驱动 ≠ 无风险**：每个事件都有失败/反转风险。始终量化下行情景。
+- **A股信息效率**：A股市场信息传播速度不一，部分事件可能在公告前已被市场预期（异常放量、价格异动）。
+- **停牌制度**：重大资产重组期间公司可能停牌，这期间资金完全被锁定。
+- **审批时间不确定**：证监会审批流程的时间不确定性是A股事件驱动投资的主要风险之一。
+- **仓位控制**：事件驱动仓位通常不超过组合的3–5%。据此调整建议规模。
+- **非个人化建议**：所有分析仅供教育参考，不应被视为投资建议。

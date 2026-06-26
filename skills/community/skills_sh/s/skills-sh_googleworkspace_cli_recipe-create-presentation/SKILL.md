@@ -1,35 +1,27 @@
 ---
-name: "recipe-create-presentation"
-description: "Indexed by skills.sh from googleworkspace/cli"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "googleworkspace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/googleworkspace/cli/recipe-create-presentation"
-sourceUrl: "https://skills.sh/googleworkspace/cli/recipe-create-presentation"
+name: recipe-create-presentation
+description: "Create a new Google Slides presentation and add initial slides."
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-slides
 ---
 
-# recipe-create-presentation
+# Create a Google Slides Presentation
 
-> Indexed by skills.sh from googleworkspace/cli
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-slides`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** googleworkspace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/googleworkspace/cli/recipe-create-presentation`
-- **Source URL:** [https://skills.sh/googleworkspace/cli/recipe-create-presentation](https://skills.sh/googleworkspace/cli/recipe-create-presentation)
+Create a new Google Slides presentation and add initial slides.
 
-## Overview
+## Steps
 
+1. Create presentation: `gws slides presentations create --json '{"title": "Quarterly Review Q2"}'`
+2. Get the presentation ID from the response
+3. Share with team: `gws drive permissions create --params '{"fileId": "PRESENTATION_ID"}' --json '{"role": "writer", "type": "user", "emailAddress": "team@company.com"}'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/googleworkspace/cli/recipe-create-presentation
-```

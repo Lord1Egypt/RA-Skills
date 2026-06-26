@@ -1,0 +1,404 @@
+# Rules manifest for the harper-best-practices skill.
+#
+# Declarative source of truth for rule taxonomy, sources, and generation mode.
+# Owned by humans; the generator reads this file and writes derived artifacts
+# (rule bodies, AGENTS.md). See docs/plans-archive/docs-driven-skills.md for the
+# full schema definition and Manifest ↔ frontmatter reconciliation semantics.
+#
+# Phase 2 flipped vector-indexing to mode: generate.
+# Phase 3 flips 7 obvious 1:1 rules to mode: generate (automatic-apis,
+# querying-rest-apis, real-time-apps, checking-authentication, logging,
+# deploying-to-harper-fabric, caching). All others remain synthesized.
+# Phase 4 migrates schema-design-tooling and typescript-type-stripping to
+# mode: generate. creating-harper-apps stays synthesized pending dedicated
+# create-harper CLI documentation.
+
+rules:
+  # ===========================================================================
+  # Schema & Data Design (priority 1 — HIGH)
+  # ===========================================================================
+
+  - rule: adding-tables-with-schemas
+    description: Guidelines for adding tables to a Harper database using GraphQL schemas.
+    category: schema
+    priority: 1
+    order: 1
+    mode: synthesized
+
+  - rule: schema-design-tooling
+    description: Best practices for Harper schema design, including core directives and GraphQL tooling configuration.
+    category: schema
+    priority: 1
+    order: 2
+    mode: generate
+    sources:
+      - path: reference/v5/database/schema.md
+        section: 'Overview'
+        role: primary
+      - path: reference/v5/database/schema.md
+        section: 'Type Directives'
+        role: primary
+      - path: reference/v5/database/schema.md
+        section: 'Field Directives'
+        role: primary
+    must_cover:
+      - '@table'
+      - '@export'
+      - '@primaryKey'
+      - '@indexed'
+      - 'graphqlSchema'
+
+  - rule: defining-relationships
+    description: How to define and use relationships between tables in Harper using GraphQL.
+    category: schema
+    priority: 1
+    order: 3
+    mode: generate
+    sources:
+      - path: reference/v5/database/schema.md
+        section: 'Relationships'
+        role: primary
+      - path: reference/v5/rest/querying.md
+        section: 'Relationships and Joins'
+        role: supplemental
+    must_cover:
+      - '@relationship'
+      - 'from'
+      - 'to'
+      - 'one-to-many'
+      - 'many-to-one'
+
+  - rule: vector-indexing
+    description: How to enable and query vector indexes for similarity search in Harper.
+    category: schema
+    priority: 1
+    order: 4
+    mode: generate
+    sources:
+      - path: reference/v5/database/schema.md
+        section: 'Vector Indexing'
+        role: primary
+    must_cover:
+      - '@indexed(type: "HNSW")'
+      - 'sort'
+      - 'target'
+      - 'cosine'
+      - 'efConstruction'
+    cross_links:
+      - adding-tables-with-schemas
+
+  - rule: using-blob-datatype
+    description: How to use the Blob data type for efficient binary storage in Harper.
+    category: schema
+    priority: 1
+    order: 5
+    mode: generate
+    sources:
+      - path: reference/v5/database/schema.md
+        section: 'Blob Type'
+        role: primary
+      - path: reference/v5/database/api.md
+        section: 'Streaming'
+        role: supplemental
+      - path: reference/v5/database/api.md
+        section: '`BlobOptions`'
+        role: supplemental
+      - path: reference/v5/database/api.md
+        section: 'Blob Coercion'
+        role: supplemental
+    must_cover:
+      - 'Blob'
+      - 'createBlob'
+      - 'saveBeforeCommit'
+      - '.bytes()'
+    cross_links:
+      - handling-binary-data
+
+  - rule: handling-binary-data
+    description: How to store and serve binary data like images or audio in Harper.
+    category: schema
+    priority: 1
+    order: 6
+    mode: generate
+    sources:
+      - path: reference/v5/database/api.md
+        section: 'Accepting Binary in JSON Requests'
+        role: primary
+      - path: reference/v5/database/api.md
+        section: 'Serving Binary from a Resource'
+        role: primary
+      - path: reference/v5/rest/content-types.md
+        section: 'Storing Arbitrary Content Types'
+        role: supplemental
+    must_cover:
+      - 'createBlob'
+      - 'Content-Type'
+      - 'application/octet-stream'
+      - 'base64'
+    cross_links:
+      - using-blob-datatype
+
+  # ===========================================================================
+  # API & Communication (priority 2 — HIGH)
+  # ===========================================================================
+
+  - rule: automatic-apis
+    description: How to use Harper's automatically generated REST and WebSocket APIs.
+    category: api
+    priority: 2
+    order: 1
+    mode: generate
+    sources:
+      - path: reference/v5/rest/overview.md
+        role: primary
+      - path: reference/v5/rest/websockets.md
+        role: supplemental
+    must_cover:
+      - 'rest: true'
+      - '@export'
+      - 'WebSocket'
+    cross_links:
+      - querying-rest-apis
+      - real-time-apps
+
+  - rule: querying-rest-apis
+    description: How to use query parameters to filter, sort, and paginate Harper REST APIs.
+    category: api
+    priority: 2
+    order: 2
+    mode: generate
+    sources:
+      - path: reference/v5/rest/querying.md
+        role: primary
+    must_cover:
+      - '=gt='
+      - '=lt='
+      - 'select('
+      - 'sort('
+      - 'limit('
+    cross_links:
+      - automatic-apis
+
+  - rule: real-time-apps
+    description: How to build real-time features in Harper using WebSockets and Pub/Sub.
+    category: api
+    priority: 2
+    order: 3
+    mode: generate
+    sources:
+      - path: reference/v5/rest/websockets.md
+        role: primary
+    must_cover:
+      - 'WebSocket'
+      - 'connect('
+    cross_links:
+      - automatic-apis
+
+  - rule: checking-authentication
+    description: How to handle user authentication and sessions in Harper Resources.
+    category: api
+    priority: 2
+    order: 4
+    mode: generate
+    sources:
+      - path: reference/v5/resources/resource-api.md
+        section: '`getCurrentUser(): User | undefined`'
+        role: primary
+      - path: reference/v5/resources/resource-api.md
+        section: 'Session and Login from a Resource'
+        role: primary
+      - path: reference/v5/security/jwt-authentication.md
+        role: supplemental
+    must_cover:
+      - 'getCurrentUser()'
+      - 'getContext()'
+      - 'context.login'
+      - 'enableSessions'
+    cross_links:
+      - custom-resources
+
+  # ===========================================================================
+  # Logic & Extension (priority 3 — MEDIUM)
+  # ===========================================================================
+
+  - rule: custom-resources
+    description: How to define custom REST endpoints with JavaScript or TypeScript in Harper.
+    category: logic
+    priority: 3
+    order: 1
+    mode: generate
+    sources:
+      - path: reference/v5/resources/overview.md
+        section: 'Custom External Data Source'
+        role: primary
+      - path: reference/v5/resources/overview.md
+        section: 'Exporting Resources as Endpoints'
+        role: primary
+      - path: reference/v5/components/javascript-environment.md
+        section: 'Module Loading'
+        role: supplemental
+    must_cover:
+      - 'extends Resource'
+      - 'export class'
+      - 'server.resources.set('
+      - 'static'
+
+  - rule: extending-tables
+    description: How to add custom logic to automatically generated table resources in Harper.
+    category: logic
+    priority: 3
+    order: 2
+    mode: generate
+    sources:
+      - path: reference/v5/resources/overview.md
+        section: 'Extending a Table'
+        role: primary
+      - path: reference/v5/resources/resource-api.md
+        section: 'Throwing Errors'
+        role: supplemental
+    must_cover:
+      - 'extends tables.'
+      - 'super.'
+      - '@export'
+      - 'statusCode'
+
+  - rule: programmatic-table-requests
+    description: How to interact with Harper tables programmatically using the `tables` object.
+    category: logic
+    priority: 3
+    order: 3
+    mode: generate
+    sources:
+      - path: reference/v5/database/api.md
+        section: '`tables`'
+        role: primary
+      - path: reference/v5/resources/resource-api.md
+        section: 'Query Object'
+        role: primary
+      - path: reference/v5/database/api.md
+        section: '`transaction(context?, callback)`'
+        role: supplemental
+      - path: reference/v5/resources/resource-api.md
+        section: '`update(target: RequestTarget | Id, updates?: object): Promise<Resource>`'
+        role: supplemental
+      - path: reference/v5/resources/resource-api.md
+        section: '`addTo(property: string, value: number)`'
+        role: supplemental
+      - path: reference/v5/components/javascript-environment.md
+        section: 'Module Loading'
+        role: supplemental
+    must_cover:
+      - 'tables'
+      - 'conditions'
+      - 'search('
+      - 'addTo'
+      - 'select'
+
+  - rule: typescript-type-stripping
+    description: How to run TypeScript files directly in Harper without a build step.
+    category: logic
+    priority: 3
+    order: 4
+    mode: generate
+    sources:
+      - path: reference/v5/components/javascript-environment.md
+        section: 'TypeScript Support'
+        role: primary
+    must_cover:
+      - '.ts'
+      - 'jsResource'
+      - 'Node.js 22.6'
+      - 'type stripping'
+
+  - rule: caching
+    description: How to implement integrated data caching in Harper from external sources.
+    category: logic
+    priority: 3
+    order: 5
+    mode: generate
+    sources:
+      - path: learn/developers/caching-with-harper.md
+        role: primary
+    must_cover:
+      - 'expiration'
+      - 'sourcedFrom'
+      - '@table'
+    cross_links:
+      - custom-resources
+      - automatic-apis
+
+  # ===========================================================================
+  # Infrastructure & Ops (priority 4 — MEDIUM)
+  # ===========================================================================
+
+  - rule: deploying-to-harper-fabric
+    description: How to deploy a Harper application to the Harper Fabric cloud.
+    category: ops
+    priority: 4
+    order: 1
+    mode: generate
+    sources:
+      - path: reference/v5/components/applications.md
+        section: 'Remote Management'
+        role: primary
+      - path: fabric/cluster-creation-management.md
+        section: 'Connecting the Harper CLI to a Cluster'
+        role: supplemental
+    must_cover:
+      - 'harper deploy'
+      - 'harper login'
+    cross_links:
+      - creating-a-fabric-account-and-cluster
+
+  - rule: creating-a-fabric-account-and-cluster
+    description: How to create a Harper Fabric account, organization, and cluster.
+    category: ops
+    priority: 4
+    order: 2
+    mode: synthesized
+
+  - rule: creating-harper-apps
+    description: How to initialize a new Harper application using the CLI.
+    category: ops
+    priority: 4
+    order: 3
+    mode: synthesized
+
+  - rule: serving-web-content
+    description: How to serve static files and integrated Vite/React applications in Harper.
+    category: ops
+    priority: 4
+    order: 4
+    mode: synthesized
+
+  - rule: logging
+    description: Best practices for logging in Harper, including console capture, the granular logger interface, and programmatic log retrieval.
+    category: ops
+    priority: 4
+    order: 5
+    mode: generate
+    sources:
+      - path: reference/v5/logging/overview.md
+        role: primary
+      - path: reference/v5/logging/api.md
+        role: primary
+    must_cover:
+      - 'console.log'
+      - 'logger'
+      - 'withTag('
+
+  - rule: load-env
+    description: How to load environment variables from .env files into a Harper application using the loadEnv plugin.
+    category: ops
+    priority: 4
+    order: 6
+    mode: generate
+    sources:
+      - path: reference/v5/environment-variables/overview.md
+        role: primary
+    must_cover:
+      - 'loadEnv'
+      - 'files'
+      - 'process.env'
+      - 'override'
+      - 'config.yaml'

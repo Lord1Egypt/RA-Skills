@@ -1,0 +1,47 @@
+{
+  "skill_name": "cloudkit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this iOS 26 CloudKit sync plan: a CKSyncEngine is configured against the public database, the app only enables iCloud + CloudKit, handleEvent and nextRecordZoneChangeBatch are implemented synchronously, nextRecordZoneChangeBatch returns every pending record-zone change, and the team expects automatic sync to run immediately after each local edit. Write concise corrected guidance with Swift snippets where useful.",
+      "expected_output": "A review that corrects CKSyncEngine database scope, Remote notifications setup, async delegate signatures, context-scoped change batches, state persistence, and automatic sync timing.",
+      "files": [],
+      "assertions": [
+        "States that CKSyncEngine is for private or shared databases and must not sync the public database.",
+        "States that CloudKit plus Remote notifications background mode are required for CKSyncEngine/background delivery.",
+        "Uses async CKSyncEngineDelegate signatures for handleEvent and nextRecordZoneChangeBatch.",
+        "Filters pending record-zone changes to the send context scope, such as context.options.zoneIDs.",
+        "Explains that automatic sync timing is indeterminate and immediate sync requires fetchChanges or sendChanges.",
+        "Mentions persisting CKSyncEngine stateSerialization across launches."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review this SwiftData model for CloudKit sync: it uses @Unique on an email field, has a nonoptional @Relationship(deleteRule: .deny) to Owner, stores a large image Data property without .externalStorage, and the reviewer says every scalar property must be optional. Explain what should change and what should not be overcorrected.",
+      "expected_output": "A review that flags SwiftData CloudKit schema incompatibilities without incorrectly requiring every scalar property to become optional.",
+      "files": [],
+      "assertions": [
+        "Flags @Unique or unique constraints as unsupported by SwiftData CloudKit sync.",
+        "Flags nonoptional relationships as incompatible and recommends optional relationships.",
+        "Flags the .deny relationship delete rule as incompatible with CloudKit sync.",
+        "Recommends @Attribute(.externalStorage) for large Data fields.",
+        "Does not claim every scalar property must be optional.",
+        "Mentions CloudKit production schemas are additive or require schema promotion care."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Review this CloudKit data/query plan: the app stores sensitive profile fields in record.encryptedValues in the public database, adds a new encrypted field to an already-deployed field name, sorts and filters CKQuery results by that encrypted field, uses title CONTAINS 'road' for substring search, and stores image files as CKAsset. Give corrected guidance.",
+      "expected_output": "A review that corrects encrypted field limits, query predicate semantics, and CKAsset handling.",
+      "files": [],
+      "assertions": [
+        "States that encryptedValues are not available for public database records.",
+        "States that CloudKit can encrypt only new schema fields, not convert an existing field name to encrypted storage.",
+        "States that encrypted fields cannot be indexed, queried, or sorted.",
+        "Explains that CKQuery CONTAINS is list membership except self CONTAINS tokenized full-text search.",
+        "Recommends BEGINSWITH or self CONTAINS where appropriate instead of title CONTAINS for substring search.",
+        "States that CKAsset data is already encrypted by default or does not need encryptedValues."
+      ]
+    }
+  ]
+}

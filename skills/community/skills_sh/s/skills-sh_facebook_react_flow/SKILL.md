@@ -1,35 +1,30 @@
 ---
-name: "flow"
-description: "Indexed by skills.sh from facebook/react"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "facebook"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/facebook/react/flow"
-sourceUrl: "https://skills.sh/facebook/react/flow"
+name: flow
+description: Use when you need to run Flow type checking, or when seeing Flow type errors in React code.
 ---
 
-# flow
+# Flow Type Checking
 
-> Indexed by skills.sh from facebook/react
+Arguments:
+- $ARGUMENTS: Renderer to check (default: dom-node)
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** facebook
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/facebook/react/flow`
-- **Source URL:** [https://skills.sh/facebook/react/flow](https://skills.sh/facebook/react/flow)
+## Renderers
 
-## Overview
+| Renderer | When to Use |
+|----------|-------------|
+| `dom-node` | Default, recommended for most changes |
+| `dom-browser` | Browser-specific DOM code |
+| `native` | React Native |
+| `fabric` | React Native Fabric |
 
+## Instructions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/facebook/react/flow
-```
+1. Run `yarn flow $ARGUMENTS` (use `dom-node` if no argument)
+2. Report type errors with file locations
+3. For comprehensive checking (slow), use `yarn flow-ci`
+
+## Common Mistakes
+
+- **Running without a renderer** - Always specify or use default `dom-node`
+- **Ignoring suppressions** - Check if `$FlowFixMe` comments are masking real issues
+- **Missing type imports** - Ensure types are imported from the correct package

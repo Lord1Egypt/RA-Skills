@@ -1,0 +1,16 @@
+{
+  "name": "playwright-bot-bypass",
+  "version": "2.2.0",
+  "type": "module",
+  "description": "Bypass bot detection using rebrowser-playwright with stealth patches",
+  "scripts": {
+    "test": "node scripts/bot-detection-test.mjs",
+    "ab-test": "node examples/ab-test.mjs"
+  },
+  "dependencies": {
+    "rebrowser-playwright": "^1.52.0"
+  },
+  "optionalDependencies": {
+    "playwright": "^1.52.0"
+  }
+}

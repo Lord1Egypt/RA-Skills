@@ -1,0 +1,2 @@
+# Minimal dependencies - uses system tools only
+# Python standard library only (subprocess, time, argparse, shutil, etc.)

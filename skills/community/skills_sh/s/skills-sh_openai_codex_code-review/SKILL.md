@@ -1,35 +1,14 @@
 ---
-name: "code-review"
-description: "Indexed by skills.sh from openai/codex"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "openai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/openai/codex/code-review"
-sourceUrl: "https://skills.sh/openai/codex/code-review"
+name: code-review
+description: Run a final code review on a pull request
 ---
 
-# code-review
+Use subagents to review code using all code-review-* skills in this repository other than this orchestrator. One subagent per skill. Pass full skill path to subagents. Use xhigh reasoning.
 
-> Indexed by skills.sh from openai/codex
+You must return every single issue from every subagent. You can return an unlimited number of findings.
+Use raw Markdown to report findings.
+Number findings for ease of reference.
+Each finding must include a specific file path and line number.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** openai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/openai/codex/code-review`
-- **Source URL:** [https://skills.sh/openai/codex/code-review](https://skills.sh/openai/codex/code-review)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/openai/codex/code-review
-```
+If the GitHub user running the review is the owner of the pull request add a `code-reviewed` label.
+Do not leave GitHub comments unless explicitly asked.

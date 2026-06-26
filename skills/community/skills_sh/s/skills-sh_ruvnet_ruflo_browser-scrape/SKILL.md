@@ -1,35 +1,36 @@
 ---
-name: "browser-scrape"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/browser-scrape"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/browser-scrape"
+name: browser-scrape
+description: DEPRECATED in v0.2.0 -- use browser-extract instead; this is a thin shim for backward compatibility, removed in v0.3.0
+argument-hint: "<url>"
+allowed-tools: Bash Read
 ---
 
-# browser-scrape
+# Browser Scrape (deprecated)
 
-> Indexed by skills.sh from ruvnet/ruflo
+> **Deprecated since plugin v0.2.0.** Removed in v0.3.0.
+>
+> Use [`browser-extract`](../browser-extract/SKILL.md) instead. It provides the same scraping capability plus:
+>
+> - RVF cognitive container per session (replayable, federatable)
+> - Mandatory AIDefence PII + prompt-injection gates
+> - Persistent `browser-templates` namespace for reusable recipes
+> - Automatic `browser-selectors` namespace updates so DOM drift is recoverable
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/browser-scrape`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/browser-scrape](https://skills.sh/ruvnet/ruflo/browser-scrape)
+## Migration
 
-## Overview
+| v0.1 invocation | v0.2 equivalent |
+|-----------------|-----------------|
+| `/browser-scrape <url>` | `/browser-extract <url>` |
+| `/browser-scrape <url>` (with template intent) | `/browser-extract <url> --template <name>` |
+| Manual selector storage in `browser-patterns` namespace | Automatic — `browser-extract` writes to `browser-templates` and `browser-selectors` |
 
+## Behavior of this shim
 
-## Installation
-To install this skill, run the following command in your terminal:
+This skill delegates to `browser-extract`. Calling it emits a deprecation notice and proceeds.
+
 ```bash
-hermes skills install skills-sh/ruvnet/ruflo/browser-scrape
+# This skill is intentionally minimal — it just points the agent at the new skill.
+echo "browser-scrape is deprecated; running browser-extract instead." >&2
 ```
+
+The deprecation notice is captured in the agent's transcript so callers see the remediation. There is no behavior preserved here beyond the redirect — if you depended on a specific extraction shape, port to `browser-extract` and use `--template` to encode it.

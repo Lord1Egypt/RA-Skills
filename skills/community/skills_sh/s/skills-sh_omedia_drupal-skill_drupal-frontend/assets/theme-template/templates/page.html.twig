@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Theme override to display a page.
+ */
+#}
+<div class="layout-container">
+  {% if page.header %}
+    <header role="banner" class="site-header">
+      {{ page.header }}
+    </header>
+  {% endif %}
+
+  {% if page.primary_menu %}
+    <nav role="navigation" class="primary-menu">
+      {{ page.primary_menu }}
+    </nav>
+  {% endif %}
+
+  {% if page.breadcrumb %}
+    <div class="breadcrumb-wrapper">
+      {{ page.breadcrumb }}
+    </div>
+  {% endif %}
+
+  {% if page.highlighted %}
+    <div class="highlighted">
+      {{ page.highlighted }}
+    </div>
+  {% endif %}
+
+  <main role="main" class="main-content">
+    <a id="main-content" tabindex="-1"></a>
+
+    <div class="layout-content">
+      {{ page.content }}
+    </div>
+
+    {% if page.sidebar_first %}
+      <aside class="sidebar sidebar--first" role="complementary">
+        {{ page.sidebar_first }}
+      </aside>
+    {% endif %}
+
+    {% if page.sidebar_second %}
+      <aside class="sidebar sidebar--second" role="complementary">
+        {{ page.sidebar_second }}
+      </aside>
+    {% endif %}
+  </main>
+
+  {% if page.footer %}
+    <footer role="contentinfo" class="site-footer">
+      {{ page.footer }}
+    </footer>
+  {% endif %}
+</div>

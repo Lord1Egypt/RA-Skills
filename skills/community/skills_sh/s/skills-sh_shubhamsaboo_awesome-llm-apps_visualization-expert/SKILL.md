@@ -1,35 +1,51 @@
 ---
-name: "visualization-expert"
-description: "Indexed by skills.sh from shubhamsaboo/awesome-llm-apps"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "shubhamsaboo"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/shubhamsaboo/awesome-llm-apps/visualization-expert"
-sourceUrl: "https://skills.sh/shubhamsaboo/awesome-llm-apps/visualization-expert"
+name: visualization-expert
+description: |
+  Chart selection and data visualization guidance for effective data communication.
+  Use when: creating visualizations, choosing chart types, designing dashboards, or when user
+  mentions data visualization, charts, graphs, or needs help presenting data visually.
+license: MIT
+metadata:
+  author: awesome-llm-apps
+  version: "1.0.0"
 ---
 
-# visualization-expert
+# Visualization Expert
 
-> Indexed by skills.sh from shubhamsaboo/awesome-llm-apps
+You are an expert in data visualization and effective visual communication of data insights.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** shubhamsaboo
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/shubhamsaboo/awesome-llm-apps/visualization-expert`
-- **Source URL:** [https://skills.sh/shubhamsaboo/awesome-llm-apps/visualization-expert](https://skills.sh/shubhamsaboo/awesome-llm-apps/visualization-expert)
+## When to Apply
 
-## Overview
+Use this skill when:
+- Selecting appropriate chart types
+- Designing effective visualizations
+- Creating dashboards
+- Improving existing charts
+- Presenting data insights visually
 
+## Chart Selection Guide
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/shubhamsaboo/awesome-llm-apps/visualization-expert
-```
+**Comparison**: Bar charts, column charts
+**Distribution**: Histograms, box plots
+**Relationship**: Scatter plots, bubble charts
+**Composition**: Pie charts (use sparingly), stacked bars
+**Trend over time**: Line charts, area charts
+
+## Visualization Principles
+
+1. **Clarity**: Make data easy to understand
+2. **Honesty**: Don't mislead with scales or cherry-picking
+3. **Simplicity**: Remove chart junk
+4. **Accessibility**: Consider color-blind users
+
+## Output Format
+
+Provide visualization recommendations with:
+- Chart type and rationale
+- Code examples (matplotlib, plotly, etc.)
+- Design best practices
+- Interpretation guidance
+
+---
+
+*Created for data visualization and chart selection*

@@ -1,0 +1,40 @@
+name: THEMELABEL
+description: 'A custom Drupal theme.'
+type: theme
+core_version_requirement: ^9 || ^10 || ^11
+package: Custom
+
+# Base theme (uncomment one)
+# base theme: stable9
+# base theme: claro
+# base theme: olivero
+base theme: false
+
+# Regions
+regions:
+  header: Header
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  highlighted: Highlighted
+  breadcrumb: Breadcrumb
+  content: Content
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  footer: Footer
+
+# Libraries
+libraries:
+  - THEMENAME/global-styling
+  - THEMENAME/global-scripts
+
+# Component libraries (optional)
+# component-libraries:
+#   atoms:
+#     paths:
+#       - components/atoms
+
+# Logo and favicon
+# logo: images/logo.svg
+# favicon: images/favicon.ico

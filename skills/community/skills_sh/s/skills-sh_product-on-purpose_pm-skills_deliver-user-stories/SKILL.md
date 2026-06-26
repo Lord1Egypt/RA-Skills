@@ -1,35 +1,76 @@
 ---
-name: "deliver-user-stories"
-description: "Indexed by skills.sh from product-on-purpose/pm-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "product-on-purpose"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/product-on-purpose/pm-skills/deliver-user-stories"
-sourceUrl: "https://skills.sh/product-on-purpose/pm-skills/deliver-user-stories"
+name: deliver-user-stories
+description: Generates user stories in the standard persona, action, benefit story format from product requirements or feature descriptions. Use when breaking a feature into stories for sprint planning, writing tickets, or communicating scope to engineering. For testable Given/When/Then acceptance criteria on a story, use deliver-acceptance-criteria; for boundary and failure scenarios, use deliver-edge-cases.
+license: Apache-2.0
+metadata:
+  phase: deliver
+  version: "2.1.0"
+  updated: 2026-06-10
+  category: specification
+  frameworks: [triple-diamond, lean-startup, design-thinking]
+  author: product-on-purpose
 ---
+<!-- PM-Skills | https://github.com/product-on-purpose/pm-skills | Apache 2.0 -->
+# User Stories
 
-# deliver-user-stories
+User stories are concise descriptions of functionality from the user's perspective. They capture who needs something, what they need, and why - without prescribing how to build it. Good user stories enable teams to break large features into estimable, deliverable increments while maintaining focus on user value.
 
-> Indexed by skills.sh from product-on-purpose/pm-skills
+## When to Use
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** product-on-purpose
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/product-on-purpose/pm-skills/deliver-user-stories`
-- **Source URL:** [https://skills.sh/product-on-purpose/pm-skills/deliver-user-stories](https://skills.sh/product-on-purpose/pm-skills/deliver-user-stories)
+- After PRD approval, when breaking down features for implementation
+- During sprint planning to create actionable work items
+- When writing tickets for engineering teams
+- When communicating requirements to stakeholders in accessible terms
+- When prioritizing a backlog based on user value
 
-## Overview
+## When NOT to Use
 
+- You need deeper, QA-ready Given/When/Then coverage for a single story or slice -> use `deliver-acceptance-criteria`
+- You need the feature-wide catalog of boundary conditions and failure scenarios -> use `deliver-edge-cases`
+- The feature itself is not yet specified -> use `deliver-prd` first; stories should trace back to documented requirements
+- You want refinement-session outcomes (estimates, scope decisions, open questions) -> use `iterate-refinement-notes`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/product-on-purpose/pm-skills/deliver-user-stories
-```
+## Instructions
+
+When asked to create user stories, follow these steps:
+
+1. **Understand the Feature Context**
+   Review the PRD or feature description. Understand the overall goal, target users, and scope boundaries. User stories should trace back to documented requirements.
+
+2. **Identify User Personas**
+   Determine which users interact with this feature. Each story should be written for a specific persona, not generic "users." Different personas may need different stories for the same feature.
+
+3. **Break Down by User Goal**
+   Decompose the feature into distinct user goals. Each story should deliver a complete, valuable capability - something the user can actually do when the story is done.
+
+4. **Write Story Statements**
+   Use the format: "As a [persona], I want [action] so that [benefit]." The benefit clause is critical - it explains why this matters and helps prioritize.
+
+5. **Define Acceptance Criteria**
+   Write specific, testable criteria using Given/When/Then format. Acceptance criteria define "done" - if all criteria pass, the story is complete.
+
+6. **Apply INVEST Criteria**
+   Validate each story against INVEST: Independent, Negotiable, Valuable, Estimable, Small, Testable. Revise stories that don't meet these criteria.
+
+7. **Add Context and Notes**
+   Include relevant design references, technical considerations, and dependencies. These help implementers understand the full picture.
+
+## Output Format
+
+Use the template in `references/TEMPLATE.md` to structure the output. A complete output carries, per story: Story Header; User Story Statement; Context & Background; Acceptance Criteria; Design Notes; Technical Notes; Dependencies; Out of Scope; and Open Questions where any remain. Multi-story documents nest these sections under one heading per story, as the example shows.
+
+## Quality Checklist
+
+Before finalizing, verify:
+
+- [ ] Each story follows "As a... I want... so that..." format
+- [ ] Stories are independent (can be built in any order)
+- [ ] Acceptance criteria use Given/When/Then format
+- [ ] Each criterion is testable (someone can verify pass/fail)
+- [ ] Stories are small enough to complete in one sprint
+- [ ] No implementation details in the story statement
+- [ ] Benefit clause explains why this matters to the user
+
+## Examples
+
+See `references/EXAMPLE.md` for a completed example.

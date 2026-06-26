@@ -1,35 +1,33 @@
 ---
-name: "alphaear-news"
-description: "Indexed by skills.sh from rkiding/awesome-finance-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "rkiding"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/rkiding/awesome-finance-skills/alphaear-news"
-sourceUrl: "https://skills.sh/rkiding/awesome-finance-skills/alphaear-news"
+name: alphaear-news
+description: Fetch hot finance news, unified trends, and prediction financial market data. Use when the user needs real-time financial news, trend reports from multiple finance sources (Weibo, Zhihu, WallstreetCN, etc.), or Polymarket finance market prediction data.
 ---
 
-# alphaear-news
-
-> Indexed by skills.sh from rkiding/awesome-finance-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** rkiding
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/rkiding/awesome-finance-skills/alphaear-news`
-- **Source URL:** [https://skills.sh/rkiding/awesome-finance-skills/alphaear-news](https://skills.sh/rkiding/awesome-finance-skills/alphaear-news)
+# AlphaEar News Skill
 
 ## Overview
 
+Fetch real-time hot news, generate unified trend reports, and retrieve Polymarket prediction data.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/rkiding/awesome-finance-skills/alphaear-news
-```
+## Capabilities
+
+### 1. Fetch Hot News & Trends
+
+Use `scripts/news_tools.py` via `NewsNowTools`.
+
+-   **Fetch News**: `fetch_hot_news(source_id, count)`
+    -   See [sources.md](references/sources.md) for valid `source_id`s (e.g., `cls`, `weibo`).
+-   **Unified Report**: `get_unified_trends(sources)`
+    -   Aggregates top news from multiple sources.
+
+### 2. Fetch Prediction Markets
+
+Use `scripts/news_tools.py` via `PolymarketTools`.
+
+-   **Market Summary**: `get_market_summary(limit)`
+    -   Returns a formatted report of active prediction markets.
+
+## Dependencies
+
+-   `requests`, `loguru`
+-   `scripts/database_manager.py` (Local DB)

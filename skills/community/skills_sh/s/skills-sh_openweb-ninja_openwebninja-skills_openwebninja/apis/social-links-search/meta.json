@@ -1,0 +1,11 @@
+{
+  "api_id": "social-links-search",
+  "portal_api_id": "social_links_search",
+  "rapidapi_host": "social-links-search.p.rapidapi.com",
+  "notes": "Returns all social profile links in a single response. No pagination.",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/social_links_search.yaml",
+  "last_updated_yaml": "2026-03-14T22:49:40.453Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/social-links-search",
+  "openwebninja_url": "https://www.openwebninja.com/api/social-links-search"
+}

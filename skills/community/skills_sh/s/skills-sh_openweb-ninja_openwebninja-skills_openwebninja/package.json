@@ -1,0 +1,22 @@
+{
+  "name": "openwebninja",
+  "version": "1.0.0",
+  "description": "Claude Code skill — extract data from 35+ public web APIs using natural language",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "scraper",
+    "web-data",
+    "serp",
+    "leads",
+    "openwebninja"
+  ],
+  "author": "OpenWeb Ninja <hello@openwebninja.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/OpenWeb-Ninja/openwebninja-skills",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenWeb-Ninja/openwebninja-skills.git"
+  },
+  "dependencies": {}
+}

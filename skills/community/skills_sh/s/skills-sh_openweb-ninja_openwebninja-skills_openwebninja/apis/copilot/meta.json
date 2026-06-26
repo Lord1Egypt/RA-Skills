@@ -1,0 +1,11 @@
+{
+  "api_id": "copilot",
+  "portal_api_id": "copilot",
+  "rapidapi_host": "copilot5.p.rapidapi.com",
+  "notes": "Single conversational response per call. Use conversation_id for multi-turn context.",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/copilot.yaml",
+  "last_updated_yaml": "2026-03-14T22:49:40.453Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/copilot5",
+  "openwebninja_url": "https://www.openwebninja.com/api/copilot"
+}

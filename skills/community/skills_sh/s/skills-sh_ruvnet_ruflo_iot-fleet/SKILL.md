@@ -1,35 +1,13 @@
 ---
-name: "iot-fleet"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/iot-fleet"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/iot-fleet"
+name: iot-fleet
+description: Create and manage Cognitum Seed device fleets with firmware policies
+allowed-tools: Bash(npx *) mcp__claude-flow__memory_store mcp__claude-flow__memory_search Read
+argument-hint: "<create|list|add|remove|delete> [options]"
 ---
+Manage device fleets. Parse subcommand from arguments.
 
-# iot-fleet
-
-> Indexed by skills.sh from ruvnet/ruflo
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/iot-fleet`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/iot-fleet](https://skills.sh/ruvnet/ruflo/iot-fleet)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/iot-fleet
-```
+**create**: `npx -y -p @claude-flow/plugin-iot-cognitum@latest cognitum-iot fleet create --name NAME`
+**list**: `npx -y -p @claude-flow/plugin-iot-cognitum@latest cognitum-iot fleet list`
+**add**: `npx -y -p @claude-flow/plugin-iot-cognitum@latest cognitum-iot fleet add FLEET_ID DEVICE_ID`
+**remove**: `npx -y -p @claude-flow/plugin-iot-cognitum@latest cognitum-iot fleet remove FLEET_ID DEVICE_ID`
+**delete**: `npx -y -p @claude-flow/plugin-iot-cognitum@latest cognitum-iot fleet delete FLEET_ID`

@@ -1,0 +1,11 @@
+{
+  "api_id": "job-salary-data",
+  "portal_api_id": "job_salary_data",
+  "rapidapi_host": "job-salary-data.p.rapidapi.com",
+  "notes": "No pagination — each call returns salary estimates for the given job title and location. Use location_type to control geo scope.",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/job_salary_data.yaml",
+  "last_updated_yaml": "2026-03-30T00:00:00.000Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/job-salary-data",
+  "openwebninja_url": "https://www.openwebninja.com/api/job-salary-data"
+}

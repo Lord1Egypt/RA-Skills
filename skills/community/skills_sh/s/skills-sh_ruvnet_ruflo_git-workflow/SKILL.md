@@ -1,35 +1,45 @@
 ---
-name: "git-workflow"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/git-workflow"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/git-workflow"
+name: git-workflow
+description: Advanced git workflows with branch management, conflict resolution, and PR lifecycle
+argument-hint: "<branch|pr|merge|rebase> [options]"
+allowed-tools: mcp__claude-flow__analyze_diff mcp__claude-flow__analyze_diff-risk mcp__claude-flow__analyze_diff-stats mcp__claude-flow__github_pr_manage mcp__claude-flow__github_repo_analyze mcp__claude-flow__github_metrics Bash
 ---
 
-# git-workflow
+# Git Workflow
 
-> Indexed by skills.sh from ruvnet/ruflo
+Advanced git workflow automation for branch management and PR lifecycle.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/git-workflow`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/git-workflow](https://skills.sh/ruvnet/ruflo/git-workflow)
+## When to use
 
-## Overview
+When managing complex git operations — multi-branch workflows, release branching, conflict resolution, or PR coordination.
 
+## Steps
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. **Analyze repo** — call `mcp__claude-flow__github_repo_analyze` for repository health metrics
+2. **Check diff risk** — call `mcp__claude-flow__analyze_diff-risk` before merging
+3. **Manage PRs** — call `mcp__claude-flow__github_pr_manage` for PR lifecycle operations
+4. **View metrics** — call `mcp__claude-flow__github_metrics` for merge frequency, review times, etc.
+
+## Common workflows
+
+### Feature branch
 ```bash
-hermes skills install skills-sh/ruvnet/ruflo/git-workflow
+git checkout -b feat/my-feature
+# ... make changes ...
+# analyze diff before PR
+# create PR with risk assessment
+```
+
+### Release branch
+```bash
+git checkout -b release/v1.2.0
+# cherry-pick fixes
+# analyze all diffs for risk
+# merge when risk score is acceptable
+```
+
+## CLI alternative
+
+```bash
+npx @claude-flow/cli@latest hooks pre-task --description "git workflow"
 ```

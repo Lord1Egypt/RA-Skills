@@ -1,35 +1,78 @@
 ---
-name: "git-pr-reviewer"
-description: "Indexed by skills.sh from onewave-ai/claude-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "onewave-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/onewave-ai/claude-skills/git-pr-reviewer"
-sourceUrl: "https://skills.sh/onewave-ai/claude-skills/git-pr-reviewer"
+name: git-pr-reviewer
+description: Review pull requests for code quality, security issues, and best practices. Use when reviewing PRs, checking code changes, or analyzing diffs before merge.
+allowed-tools: Read, Grep, Glob, Bash
 ---
 
-# git-pr-reviewer
+# Git PR Reviewer
 
-> Indexed by skills.sh from onewave-ai/claude-skills
+## Instructions
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** onewave-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/onewave-ai/claude-skills/git-pr-reviewer`
-- **Source URL:** [https://skills.sh/onewave-ai/claude-skills/git-pr-reviewer](https://skills.sh/onewave-ai/claude-skills/git-pr-reviewer)
+When reviewing a pull request:
 
-## Overview
+1. **Get the diff**: Run `git diff main...HEAD` or `git diff <base-branch>...HEAD`
+2. **Analyze changed files**: Identify all modified, added, and deleted files
+3. **Review each file** for:
+   - Logic errors and bugs
+   - Security vulnerabilities (SQL injection, XSS, hardcoded secrets)
+   - Performance issues (N+1 queries, unnecessary re-renders, memory leaks)
+   - Code style and consistency
+   - Missing error handling
+   - Test coverage gaps
 
+## Review Checklist
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Security
+- [ ] No hardcoded credentials or API keys
+- [ ] Input validation on user data
+- [ ] Proper authentication/authorization checks
+- [ ] No SQL injection vulnerabilities
+- [ ] XSS prevention in place
+
+### Code Quality
+- [ ] Functions are small and focused
+- [ ] No code duplication
+- [ ] Clear variable/function naming
+- [ ] Proper error handling
+- [ ] No unused imports or dead code
+
+### Performance
+- [ ] No unnecessary database queries
+- [ ] Efficient algorithms used
+- [ ] Proper caching where needed
+- [ ] No memory leaks
+
+### Testing
+- [ ] New code has tests
+- [ ] Edge cases covered
+- [ ] Tests are meaningful, not just for coverage
+
+## Output Format
+
+```markdown
+## PR Review Summary
+
+### Overview
+[Brief summary of changes]
+
+### Issues Found
+#### Critical
+- [Issue description + file:line]
+
+#### Warnings
+- [Issue description + file:line]
+
+#### Suggestions
+- [Improvement ideas]
+
+### Approval Status
+[APPROVE / REQUEST CHANGES / NEEDS DISCUSSION]
+```
+
+## Example
+
 ```bash
-hermes skills install skills-sh/onewave-ai/claude-skills/git-pr-reviewer
+# Review current branch against main
+git diff main...HEAD --stat
+git diff main...HEAD
 ```

@@ -1,35 +1,24 @@
 ---
-name: "north-star-vision"
-description: "Indexed by skills.sh from owl-listener/designer-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "owl-listener"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/owl-listener/designer-skills/north-star-vision"
-sourceUrl: "https://skills.sh/owl-listener/designer-skills/north-star-vision"
+name: north-star-vision
+description: Articulate a compelling north-star product vision that aligns teams and inspires strategic design decisions.
 ---
-
-# north-star-vision
-
-> Indexed by skills.sh from owl-listener/designer-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** owl-listener
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/owl-listener/designer-skills/north-star-vision`
-- **Source URL:** [https://skills.sh/owl-listener/designer-skills/north-star-vision](https://skills.sh/owl-listener/designer-skills/north-star-vision)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/owl-listener/designer-skills/north-star-vision
-```
+# North Star Vision
+You are an expert in articulating inspiring product visions that unite teams and guide direction.
+## What You Do
+You help teams define a north-star vision — a compelling future state that inspires alignment and guides trade-offs.
+## Vision Components
+- **Vision Statement** — Who, what experience, why it matters (one sentence)
+- **Design Pillars** — 3-5 strategic focus areas defining differentiators
+- **Vision Scenarios** — Concrete narrative stories of the future experience
+- **Success Criteria** — Qualitative signals, quantitative metrics, milestones
+## Time Horizons
+- Near-term (1yr): tangible improvements
+- Mid-term (2-3yr): major experience shifts
+- Long-term (5+yr): aspirational transformation
+## Process
+Research synthesis, aspiration workshop, narrative writing, validation, communication.
+## Best Practices
+- Inspiring but grounded in real needs
+- Broad enough for unknowns
+- Used actively in reviews and planning
+- Connected to daily work through pillars

@@ -1,35 +1,24 @@
 ---
-name: "security-scan"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/security-scan"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/security-scan"
+name: security-scan
+description: Run full security scans on the codebase using Ruflo security tools
+allowed-tools: Bash(npx *) mcp__claude-flow__memory_store mcp__claude-flow__hooks_post-task Read Grep
+argument-hint: "[depth: quick|standard|full]"
 ---
+Run a security scan at the specified depth.
 
-# security-scan
-
-> Indexed by skills.sh from ruvnet/ruflo
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/security-scan`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/security-scan](https://skills.sh/ruvnet/ruflo/security-scan)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Via CLI:
 ```bash
-hermes skills install skills-sh/ruvnet/ruflo/security-scan
+npx @claude-flow/cli@latest security scan --depth DEPTH
+npx @claude-flow/cli@latest security cve --check
+npx @claude-flow/cli@latest security report --format markdown
 ```
+
+| Depth | Checks |
+|-------|--------|
+| quick | Dependencies, known CVEs |
+| standard | + Input validation, path traversal, secrets |
+| full | + Threat modeling, injection vectors, auth flows |
+
+Store findings via MCP: `mcp__claude-flow__memory_store({ key: "scan-findings", value: "SUMMARY", namespace: "security" })`
+
+Train patterns: `mcp__claude-flow__hooks_post-task({ taskId: "security-scan", success: true, storeResults: true })`

@@ -1,35 +1,59 @@
 ---
-name: "quiz-maker"
-description: "Indexed by skills.sh from onewave-ai/claude-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "onewave-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/onewave-ai/claude-skills/quiz-maker"
-sourceUrl: "https://skills.sh/onewave-ai/claude-skills/quiz-maker"
+name: quiz-maker
+description: Create multiple choice, true/false, fill-in-blank, matching quizzes. Auto-generate plausible distractors. Instant grading with explanations.
 ---
 
-# quiz-maker
+# Quiz Maker
+Create multiple choice, true/false, fill-in-blank, matching quizzes. Auto-generate plausible distractors. Instant grading with explanations.
 
-> Indexed by skills.sh from onewave-ai/claude-skills
+## Instructions
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** onewave-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/onewave-ai/claude-skills/quiz-maker`
-- **Source URL:** [https://skills.sh/onewave-ai/claude-skills/quiz-maker](https://skills.sh/onewave-ai/claude-skills/quiz-maker)
+You are an expert assessment designer. Create comprehensive quizzes with well-crafted questions, plausible distractors, and detailed explanations for each answer.
 
-## Overview
+### Output Format
 
+```markdown
+# Quiz Maker Output
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/onewave-ai/claude-skills/quiz-maker
+**Generated**: {timestamp}
+
+---
+
+## Results
+
+[Your formatted output here]
+
+---
+
+## Recommendations
+
+[Actionable next steps]
+
 ```
+
+### Best Practices
+
+1. **Be Specific**: Focus on concrete, actionable outputs
+2. **Use Templates**: Provide copy-paste ready formats
+3. **Include Examples**: Show real-world usage
+4. **Add Context**: Explain why recommendations matter
+5. **Stay Current**: Use latest best practices for content
+
+### Common Use Cases
+
+**Trigger Phrases**:
+- "Help me with [use case]"
+- "Generate [output type]"
+- "Create [deliverable]"
+
+**Example Request**:
+> "[Sample user request here]"
+
+**Response Approach**:
+1. Understand user's context and goals
+2. Generate comprehensive output
+3. Provide actionable recommendations
+4. Include examples and templates
+5. Suggest next steps
+
+Remember: Focus on delivering value quickly and clearly!

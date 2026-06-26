@@ -1,0 +1,126 @@
+{
+  "$comment": "SAP BTP HTTP Destination Templates - Example configurations for various authentication types. This is a template file with placeholder values, not a JSON Schema.",
+
+  "destinations": [
+    {
+      "$comment": "======== INTERNET DESTINATION WITH OAUTH2 CLIENT CREDENTIALS ========",
+      "Name": "my-api-destination",
+      "Type": "HTTP",
+      "URL": "https://api.example.com/v1",
+      "ProxyType": "Internet",
+      "Authentication": "OAuth2ClientCredentials",
+      "Description": "Connection to external API with OAuth2",
+
+      "$comment_auth": "OAuth2ClientCredentials Authentication Properties",
+      "clientId": "<your-client-id>",
+      "clientSecret": "<your-client-secret>",
+      "tokenServiceURL": "https://auth.example.com/oauth/token",
+      "tokenServiceURLType": "Dedicated",
+
+      "$comment_optional": "Optional OAuth Properties",
+      "scope": "read write",
+
+      "$comment_timeouts": "Optional Timeout Settings (numeric values)",
+      "URL.connectionTimeoutInSeconds": 30,
+      "URL.socketReadTimeoutInSeconds": 60
+    },
+    {
+      "$comment": "======== OAUTH2 SAML BEARER (USER PROPAGATION) ========",
+      "Name": "successfactors-destination",
+      "Type": "HTTP",
+      "URL": "https://api.successfactors.com/odata/v2",
+      "ProxyType": "Internet",
+      "Authentication": "OAuth2SAMLBearerAssertion",
+      "Description": "User propagation to SuccessFactors",
+
+      "$comment_auth": "OAuth2SAMLBearerAssertion Properties",
+      "audience": "www.successfactors.com",
+      "clientKey": "<your-client-key>",
+      "tokenServiceURL": "https://api.successfactors.com/oauth/token",
+      "companyId": "<your-company-id>",
+      "KeyStoreLocation": "<certificate-name>.p12",
+      "KeyStorePassword": "<keystore-password>",
+
+      "$comment_optional": "Optional SAML Properties",
+      "nameIdFormat": "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
+      "authnContextClassRef": "urn:oasis:names:tc:SAML:2.0:ac:classes:X509"
+    },
+    {
+      "$comment": "======== OAUTH2 JWT BEARER ========",
+      "Name": "jwt-bearer-destination",
+      "Type": "HTTP",
+      "URL": "https://api.example.com",
+      "ProxyType": "Internet",
+      "Authentication": "OAuth2JWTBearer",
+      "Description": "Token exchange destination - exchanges user JWT for new access token",
+
+      "$comment_auth": "OAuth2JWTBearer Authentication Properties (Required)",
+      "clientId": "<your-client-id>",
+      "clientSecret": "<your-client-secret>",
+      "tokenServiceURL": "https://auth.example.com/oauth/token",
+
+      "$comment_optional": "Optional Properties - uncomment if needed",
+      "$_tokenServiceURLType": "Dedicated"
+    },
+    {
+      "$comment": "======== BASIC AUTHENTICATION ========",
+      "Name": "basic-auth-destination",
+      "Type": "HTTP",
+      "URL": "https://api.example.com",
+      "ProxyType": "Internet",
+      "Authentication": "BasicAuthentication",
+      "Description": "Simple username/password authentication",
+
+      "User": "<username>",
+      "Password": "<password>"
+    },
+    {
+      "$comment": "======== CLIENT CERTIFICATE ========",
+      "Name": "cert-auth-destination",
+      "Type": "HTTP",
+      "URL": "https://api.example.com",
+      "ProxyType": "Internet",
+      "Authentication": "ClientCertificateAuthentication",
+      "Description": "X.509 certificate authentication",
+
+      "KeyStoreLocation": "<certificate-name>.p12",
+      "KeyStorePassword": "<keystore-password>"
+    },
+    {
+      "$comment": "======== MULTI-TENANT (COMMON TOKEN URL) ========",
+      "Name": "multitenant-destination",
+      "Type": "HTTP",
+      "URL": "https://api.example.com",
+      "ProxyType": "Internet",
+      "Authentication": "OAuth2ClientCredentials",
+      "Description": "Multi-tenant destination with Common token URL",
+
+      "clientId": "<your-client-id>",
+      "clientSecret": "<your-client-secret>",
+      "tokenServiceURL": "https://{tenant}.auth.example.com/oauth/token",
+      "tokenServiceURLType": "Common"
+    }
+  ],
+
+  "$usage": {
+    "instructions": [
+      "1. Copy the appropriate destination configuration",
+      "2. Replace all <placeholder> values with actual values",
+      "3. Remove $comment fields before import",
+      "4. Import via BTP Cockpit or Destination Service REST API"
+    ],
+    "import_via_cockpit": [
+      "1. Navigate to Connectivity > Destinations",
+      "2. Select Import Destination",
+      "3. Upload JSON file"
+    ],
+    "import_via_api": "POST /destination-configuration/v1/subaccountDestinations",
+    "security_best_practices": [
+      "NEVER commit actual secrets (clientSecret, KeyStorePassword) to version control",
+      "Use environment variables or secrets management for sensitive values",
+      "Store KeyStore files (.p12, .jks) in secure locations only",
+      "Rotate credentials regularly according to security policies",
+      "Use service-specific credentials with minimal required permissions"
+    ]
+  }
+}

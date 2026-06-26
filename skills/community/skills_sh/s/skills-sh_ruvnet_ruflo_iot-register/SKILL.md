@@ -1,35 +1,18 @@
 ---
-name: "iot-register"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/iot-register"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/iot-register"
+name: iot-register
+description: Register a Cognitum Seed device by endpoint and establish agent bridge
+allowed-tools: Bash(npx *) mcp__claude-flow__memory_store Read
+argument-hint: "[endpoint] [--token PAIRING_TOKEN]"
 ---
+Register a Cognitum Seed device. Creates a SeedClient connection, fetches identity, and assigns initial trust level.
 
-# iot-register
+Default endpoint: `http://169.254.42.1/` — the Cognitum Seed link-local USB Ethernet address. Use this when no endpoint is supplied.
 
-> Indexed by skills.sh from ruvnet/ruflo
+Steps:
+1. Resolve ENDPOINT: use the user-supplied value, or default to `http://169.254.42.1/`.
+2. `npx -y -p @claude-flow/plugin-iot-cognitum@latest cognitum-iot register ENDPOINT`
+3. If pairing token provided: `npx -y -p @claude-flow/plugin-iot-cognitum@latest cognitum-iot pair DEVICE_ID`
+4. Show device status: `npx -y -p @claude-flow/plugin-iot-cognitum@latest cognitum-iot status DEVICE_ID`
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/iot-register`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/iot-register](https://skills.sh/ruvnet/ruflo/iot-register)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/iot-register
-```
+Store registration event:
+`mcp__claude-flow__memory_store({ key: "iot-register-DEVICEID", value: "Registered at ENDPOINT", namespace: "iot-devices" })`

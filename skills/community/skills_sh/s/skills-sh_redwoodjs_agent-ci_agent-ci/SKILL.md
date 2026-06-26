@@ -1,35 +1,50 @@
 ---
-name: "agent-ci"
-description: "Indexed by skills.sh from redwoodjs/agent-ci"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "redwoodjs"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/redwoodjs/agent-ci/agent-ci"
-sourceUrl: "https://skills.sh/redwoodjs/agent-ci/agent-ci"
+name: agent-ci
+description: Run GitHub Actions CI locally with Agent CI to validate changes before pushing. Use when testing, running checks, or validating code changes.
+license: MIT
+compatibility: Requires Node.js 18+ and Docker
+metadata:
+  author: redwoodjs
+  version: "1.0.0"
 ---
 
-# agent-ci
+# Agent CI
 
-> Indexed by skills.sh from redwoodjs/agent-ci
+Run the full CI pipeline locally before pushing. CI was green before you started — any failure is caused by your changes.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** redwoodjs
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/redwoodjs/agent-ci/agent-ci`
-- **Source URL:** [https://skills.sh/redwoodjs/agent-ci/agent-ci](https://skills.sh/redwoodjs/agent-ci/agent-ci)
+## Run
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/redwoodjs/agent-ci/agent-ci
+npx @redwoodjs/agent-ci run --quiet --all --pause-on-failure
 ```
+
+Pipes are safe — pause-on-failure works through `| tee log`, `> log.txt`, etc. When stdout isn't a TTY the launcher detaches the run and the foreground process exits **77** the moment a step pauses, freeing the pipe while the container stays paused for `retry`.
+
+## Retry
+
+When a step fails, the run pauses automatically. Fix the issue, then retry:
+
+```bash
+npx @redwoodjs/agent-ci retry --name <runner-name>
+```
+
+To re-run from an earlier step:
+
+```bash
+npx @redwoodjs/agent-ci retry --name <runner-name> --from-step <N>
+```
+
+Repeat until all jobs pass. Do not push to trigger remote CI when agent-ci can run it locally.
+
+## Machine-readable output (`--json`)
+
+For programmatic monitoring, add `--json` (or set `AGENT_CI_JSON=1`) to emit an NDJSON event stream on stdout — one JSON object per line. Events:
+
+- `run.start` (with `schemaVersion: 1`, `runId`)
+- `job.start`, `job.finish` (`status: passed|failed`)
+- `step.start`, `step.finish` (`status: passed|failed|skipped`)
+- `run.paused` (carries `runner` + `retry_cmd`)
+- `run.finish` (`status: passed|failed`)
+- `diagnostic`
+
+`--json` is decoupled from `--quiet`, and the diff renderer is auto-suppressed under `--json` so ANSI sequences don't collide with the stream. Combined with the exit-77 pause signal above, this gives agents a robust contract: parse `run.paused` events, react, and call `retry` — no plaintext grep required.

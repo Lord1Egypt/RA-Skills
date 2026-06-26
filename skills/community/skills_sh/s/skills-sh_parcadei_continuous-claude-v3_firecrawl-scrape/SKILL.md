@@ -1,35 +1,43 @@
 ---
-name: "firecrawl-scrape"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/firecrawl-scrape"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/firecrawl-scrape"
+name: firecrawl-scrape
+description: Scrape web pages and extract content via Firecrawl MCP
+allowed-tools: [Bash, Read]
 ---
 
-# firecrawl-scrape
+# Firecrawl Scrape Skill
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+## When to Use
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/firecrawl-scrape`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/firecrawl-scrape](https://skills.sh/parcadei/continuous-claude-v3/firecrawl-scrape)
+- Scrape content from any URL
+- Extract structured data from web pages
+- Search the web and get content
 
-## Overview
+## Instructions
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/firecrawl-scrape
+uv run python -m runtime.harness scripts/mcp/firecrawl_scrape.py \
+    --url "https://example.com" \
+    --format "markdown"
 ```
+
+### Parameters
+
+- `--url`: URL to scrape
+- `--format`: Output format - `markdown`, `html`, `text` (default: markdown)
+- `--search`: (alternative) Search query instead of direct URL
+
+### Examples
+
+```bash
+# Scrape a page
+uv run python -m runtime.harness scripts/mcp/firecrawl_scrape.py \
+    --url "https://docs.python.org/3/library/asyncio.html"
+
+# Search and scrape
+uv run python -m runtime.harness scripts/mcp/firecrawl_scrape.py \
+    --search "Python asyncio best practices 2024"
+```
+
+## MCP Server Required
+
+Requires `firecrawl` server in mcp_config.json with FIRECRAWL_API_KEY.

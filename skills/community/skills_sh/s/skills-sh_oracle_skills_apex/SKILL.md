@@ -1,35 +1,33 @@
 ---
-name: "apex"
-description: "Indexed by skills.sh from oracle/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "oracle"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/oracle/skills/apex"
-sourceUrl: "https://skills.sh/oracle/skills/apex"
+name: apex
+description: Oracle APEX skills for Oracle APEX application development.
 ---
 
-# apex
+# APEXLang Skills
 
-> Indexed by skills.sh from oracle/skills
+This domain contains Oracle APEX skills for Oracle APEX application development.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** oracle
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/oracle/skills/apex`
-- **Source URL:** [https://skills.sh/oracle/skills/apex](https://skills.sh/oracle/skills/apex)
+## How to Use This Domain
 
-## Overview
+1. Start with the routing table below.
+2. Read only the specific file or category you need.
 
+## Directory Structure
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/oracle/skills/apex
+```text
+apex/
+├── apexlang/
 ```
+
+## Category Routing
+
+
+| Topic                                     | Directory       |
+| ----------------------------------------- | --------------- |
+| Generate APEX applications using APEXlang | `apex/apexlang` |
+
+
+## Key Starting Points
+
+- `apex/apexlang/references/workflows/apex-generation.md`
+- `apex/apexlang/references/domains/README.md`

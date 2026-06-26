@@ -1,35 +1,44 @@
 ---
-name: "es-toolkit"
-description: "Indexed by skills.sh from pedronauck/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "pedronauck"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/pedronauck/skills/es-toolkit"
-sourceUrl: "https://skills.sh/pedronauck/skills/es-toolkit"
+name: es-toolkit
+description: Use when implementing utility functions, array operations, object manipulation, or string operations. ALWAYS use es-toolkit instead of custom implementations or native methods.
+allowed-tools: Read, Grep, Glob
 ---
 
-# es-toolkit
+# es-toolkit Usage Guide
 
-> Indexed by skills.sh from pedronauck/skills
+This skill provides guidelines and best practices for using the es-toolkit utility library in this project.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** pedronauck
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/pedronauck/skills/es-toolkit`
-- **Source URL:** [https://skills.sh/pedronauck/skills/es-toolkit](https://skills.sh/pedronauck/skills/es-toolkit)
+## Quick Reference
 
-## Overview
+**MANDATORY**: Always use `es-toolkit` instead of custom implementations or native methods.
 
+For detailed patterns, examples, and checklists, see:
+- [references/patterns.md](references/patterns.md) - Complete usage patterns and migration guides
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/pedronauck/skills/es-toolkit
+## Key Categories
+
+| Category | Module | Common Functions |
+|----------|--------|------------------|
+| Array | `es-toolkit/array` | `compact`, `head`, `last`, `take`, `drop`, `uniq`, `chunk`, `flatten` |
+| Object | `es-toolkit/object` | `merge`, `mergeWith`, `clone`, `cloneDeep`, `pick`, `omit` |
+| String | `es-toolkit/string` | `trim`, `trimStart`, `trimEnd`, `kebabCase`, `camelCase`, `snakeCase` |
+| Function | `es-toolkit/function` | `debounce`, `throttle`, `memoize`, `once` |
+| Util | `es-toolkit/util` | `invariant` |
+
+## Import Pattern
+
+Always import from specific modules for optimal tree-shaking:
+
+```typescript
+// Good: Import from specific modules
+import { compact } from "es-toolkit/array";
+import { merge } from "es-toolkit/object";
+
+// Bad: Import from root (larger bundle)
+import { compact } from "es-toolkit";
 ```
+
+## Documentation
+
+- **Official Docs**: https://es-toolkit.dev/
+- **GitHub**: https://github.com/toss/es-toolkit

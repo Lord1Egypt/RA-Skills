@@ -1,35 +1,33 @@
 ---
-name: "skill-development"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/skill-development"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/skill-development"
+name: skill-development
+description: Skill Development Rules
+user-invocable: false
 ---
 
-# skill-development
+# Skill Development Rules
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+When working with files in `.claude/skills/`:
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/skill-development`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/skill-development](https://skills.sh/parcadei/continuous-claude-v3/skill-development)
+## SKILL.md Structure
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/skill-development
+```yaml
 ```
+
+## DO
+- Keep SKILL.md concise (< 200 lines)
+- Include clear "When to Use" section
+- Provide copy-paste bash commands
+- Reference scripts/ for MCP operations
+- Add triggers to skill-rules.json
+
+## DON'T
+- Include implementation details in SKILL.md
+- Duplicate content across skills
+- Create skills without corresponding trigger in skill-rules.json
+- Use allowed-tools that aren't needed
+
+## MCP Wrapper Skills
+For skills that wrap MCP scripts:
+- Use `allowed-tools: [Bash, Read]` to restrict capabilities
+- Point to the script in scripts/ directory
+- Include parameter documentation

@@ -1,35 +1,65 @@
 ---
-name: "hive-mind"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/hive-mind"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/hive-mind"
+name: hive-mind
+description: >
+  Byzantine fault-tolerant consensus and distributed coordination. Queen-led hierarchical swarm management with multiple consensus strategies.
+  Use when: distributed coordination, fault-tolerant operations, multi-agent consensus, collective decision making.
+  Skip when: single-agent tasks, simple operations, local-only work.
 ---
 
-# hive-mind
+# Hive-Mind Skill
 
-> Indexed by skills.sh from ruvnet/ruflo
+## Purpose
+Byzantine fault-tolerant consensus and distributed swarm coordination.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/hive-mind`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/hive-mind](https://skills.sh/ruvnet/ruflo/hive-mind)
+## When to Trigger
+- Multi-agent distributed tasks
+- Fault-tolerant operations needed
+- Collective decision making
+- Complex coordination patterns
 
-## Overview
+## Topologies
 
+| Topology | Description | Use Case |
+|----------|-------------|----------|
+| `hierarchical` | Queen controls workers | Default, anti-drift |
+| `mesh` | Fully connected peers | Research, exploration |
+| `hierarchical-mesh` | Hybrid | Recommended for complex |
+| `adaptive` | Dynamic based on load | Auto-scaling |
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Consensus Strategies
+
+| Strategy | Tolerance | Use Case |
+|----------|-----------|----------|
+| `byzantine` | f < n/3 faulty | Untrusted environment |
+| `raft` | f < n/2 faulty | Leader-based, consistent |
+| `gossip` | Eventual | Large scale, availability |
+| `crdt` | Conflict-free | Concurrent updates |
+| `quorum` | Configurable | Tunable consistency |
+
+## Commands
+
+### Initialize Hive-Mind
 ```bash
-hermes skills install skills-sh/ruvnet/ruflo/hive-mind
+npx claude-flow hive-mind init --topology hierarchical-mesh --consensus raft
 ```
+
+### Spawn Queen
+```bash
+npx claude-flow hive-mind spawn --role queen --name coordinator
+```
+
+### Check Consensus Status
+```bash
+npx claude-flow hive-mind consensus --status
+```
+
+### View Sessions
+```bash
+npx claude-flow hive-mind sessions --active
+```
+
+## Best Practices
+1. Use hierarchical for coding tasks (anti-drift)
+2. Use raft consensus for consistency
+3. Keep agent count under 8 for coordination
+4. Run frequent checkpoints

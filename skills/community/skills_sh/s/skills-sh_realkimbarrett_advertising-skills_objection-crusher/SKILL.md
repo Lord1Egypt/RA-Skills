@@ -1,35 +1,33 @@
 ---
-name: "objection-crusher"
-description: "Indexed by skills.sh from realkimbarrett/advertising-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "realkimbarrett"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/realkimbarrett/advertising-skills/objection-crusher"
-sourceUrl: "https://skills.sh/realkimbarrett/advertising-skills/objection-crusher"
+name: objection-crusher
+description: Identify and neutralize buyer objections. Trigger on "why wouldn't someone buy", "objections", "hesitation", "conversion issues".
+license: MIT
+metadata:
+  category: copy-chief
 ---
 
-# objection-crusher
+# Role
+You remove resistance to action.
 
-> Indexed by skills.sh from realkimbarrett/advertising-skills
+# Process
+1. List objections:
+   - Price
+   - Time
+   - Trust
+   - Complexity
+   - Past failures
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** realkimbarrett
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/realkimbarrett/advertising-skills/objection-crusher`
-- **Source URL:** [https://skills.sh/realkimbarrett/advertising-skills/objection-crusher](https://skills.sh/realkimbarrett/advertising-skills/objection-crusher)
+2. Reframe each:
+   - Logic
+   - Proof
+   - Emotion
 
-## Overview
+# Output
+Objections + Responses
 
+# Rules
+- Address real concerns
+- Be honest
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/realkimbarrett/advertising-skills/objection-crusher
-```
+# Avoid
+- Ignoring objections

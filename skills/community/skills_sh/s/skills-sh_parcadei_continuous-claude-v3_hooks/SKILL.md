@@ -1,35 +1,70 @@
 ---
-name: "hooks"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/hooks"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/hooks"
+name: hooks
+description: Hook Development Rules
+user-invocable: false
 ---
 
-# hooks
+# Hook Development Rules
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+When working with files in `.claude/hooks/`:
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/hooks`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/hooks](https://skills.sh/parcadei/continuous-claude-v3/hooks)
+## Pattern
+Shell wrapper (.sh) → TypeScript (.ts) via `npx tsx`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Shell Wrapper Template
 ```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/hooks
+#!/bin/bash
+set -e
+cd "$CLAUDE_PROJECT_DIR/.claude/hooks"
+cat | npx tsx <handler>.ts
+```
+
+## TypeScript Handler Pattern
+```typescript
+interface HookInput {
+  // Event-specific fields
+}
+
+async function main() {
+  const input: HookInput = JSON.parse(await readStdin());
+
+  // Process input
+
+  const output = {
+    result: 'continue',  // or 'block'
+    message: 'Optional system reminder'
+  };
+
+  console.log(JSON.stringify(output));
+}
+```
+
+## Hook Events
+- **PreToolUse** - Before tool execution (can block)
+- **PostToolUse** - After tool execution
+- **UserPromptSubmit** - Before processing user prompt
+- **PreCompact** - Before context compaction
+- **SessionStart** - On session start/resume/compact
+- **Stop** - When agent finishes
+
+## Testing
+Test hooks manually:
+```bash
+echo '{"type": "resume"}' | .claude/hooks/session-start-continuity.sh
+```
+
+## Registration
+Add hooks to `.claude/settings.json`:
+```json
+{
+  "hooks": {
+    "EventName": [{
+      "matcher": ["pattern"],  // Optional
+      "hooks": [{
+        "type": "command",
+        "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/hook.sh"
+      }]
+    }]
+  }
+}
 ```

@@ -1,35 +1,20 @@
 ---
-name: "crypto-trading-bots"
-description: "Indexed by skills.sh from omer-metin/skills-for-antigravity"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "omer-metin"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/omer-metin/skills-for-antigravity/crypto-trading-bots"
-sourceUrl: "https://skills.sh/omer-metin/skills-for-antigravity/crypto-trading-bots"
+name: crypto-trading-bots
+description: Comprehensive expertise in automated crypto trading systems, including DEX sniping bots, arbitrage strategies, MEV protection, Telegram trading bots, and anti-rug protection. Use when "trading bot, sniping bot, arbitrage bot, Telegram trading, DEX bot, MEV bot, copy trading, auto trading, token sniper, " mentioned. 
 ---
 
-# crypto-trading-bots
+# Crypto Trading Bots
 
-> Indexed by skills.sh from omer-metin/skills-for-antigravity
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** omer-metin
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/omer-metin/skills-for-antigravity/crypto-trading-bots`
-- **Source URL:** [https://skills.sh/omer-metin/skills-for-antigravity/crypto-trading-bots](https://skills.sh/omer-metin/skills-for-antigravity/crypto-trading-bots)
-
-## Overview
+## Identity
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/omer-metin/skills-for-antigravity/crypto-trading-bots
-```
+
+## Reference System Usage
+
+You must ground your responses in the provided reference files, treating them as the source of truth for this domain:
+
+* **For Creation:** Always consult **`references/patterns.md`**. This file dictates *how* things should be built. Ignore generic approaches if a specific pattern exists here.
+* **For Diagnosis:** Always consult **`references/sharp_edges.md`**. This file lists the critical failures and "why" they happen. Use it to explain risks to the user.
+* **For Review:** Always consult **`references/validations.md`**. This contains the strict rules and constraints. Use it to validate user inputs objectively.
+
+**Note:** If a user's request conflicts with the guidance in these files, politely correct them using the information provided in the references.

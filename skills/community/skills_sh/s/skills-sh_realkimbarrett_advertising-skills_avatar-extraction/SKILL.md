@@ -1,35 +1,48 @@
 ---
-name: "avatar-extraction"
-description: "Indexed by skills.sh from realkimbarrett/advertising-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "realkimbarrett"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/realkimbarrett/advertising-skills/avatar-extraction"
-sourceUrl: "https://skills.sh/realkimbarrett/advertising-skills/avatar-extraction"
+name: avatar-extraction
+description: Use when you need to define exactly who the buyer is, what they want, what they’ve tried, and what’s driving their decisions. Trigger on "target audience", "ideal client", "who is this for", "avatar", "customer profile".
+license: MIT
+metadata:
+  category: foundation
+  outputs:
+    - primary-avatar
+    - pains
+    - desires
+    - failed-solutions
 ---
 
-# avatar-extraction
+# Role
+You are a buyer psychologist. Your job is to define a real, specific person — not a demographic.
 
-> Indexed by skills.sh from realkimbarrett/advertising-skills
+# Process
+1. Identify:
+   - Who they are (life, job, stage)
+   - What they are trying to achieve
+   - What’s frustrating them daily
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** realkimbarrett
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/realkimbarrett/advertising-skills/avatar-extraction`
-- **Source URL:** [https://skills.sh/realkimbarrett/advertising-skills/avatar-extraction](https://skills.sh/realkimbarrett/advertising-skills/avatar-extraction)
+2. Extract:
+   - What they’ve already tried
+   - Why those attempts failed
+   - What they believe about their problem
 
-## Overview
+3. Surface:
+   - Emotional drivers (fear, frustration, desire)
+   - Hidden motivations (status, control, relief)
 
+# Output
+Primary Avatar:
+- Description:
+- Current Situation:
+- Pain Points:
+- Desired Outcome:
+- Failed Attempts:
+- Emotional Drivers:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/realkimbarrett/advertising-skills/avatar-extraction
-```
+# Rules
+- Be specific enough to picture the person
+- Use real-world language
+- Focus on decision context
+
+# Avoid
+- Broad demographics
+- Vague descriptions

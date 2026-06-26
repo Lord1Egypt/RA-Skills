@@ -1,35 +1,61 @@
 ---
-name: "adapt-workflow"
-description: "Indexed by skills.sh from sharpdeveye/maestro"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sharpdeveye"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sharpdeveye/maestro/adapt-workflow"
-sourceUrl: "https://skills.sh/sharpdeveye/maestro/adapt-workflow"
+name: adapt-workflow
+description: "Use when porting a workflow to a different AI provider, deployment environment, model tier, or organizational context."
+argument-hint: "[target context]"
+category: utility
+version: 2.0.0
+user-invocable: true
 ---
 
-# adapt-workflow
+## MANDATORY PREPARATION
 
-> Indexed by skills.sh from sharpdeveye/maestro
+Invoke /agent-workflow — it contains workflow principles, anti-patterns, and the **Context Gathering Protocol**. Follow the protocol before proceeding — if no workflow context exists yet, you MUST run /teach-maestro first. Additionally gather: what the workflow is being adapted to.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sharpdeveye
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sharpdeveye/maestro/adapt-workflow`
-- **Source URL:** [https://skills.sh/sharpdeveye/maestro/adapt-workflow](https://skills.sh/sharpdeveye/maestro/adapt-workflow)
+---
 
-## Overview
+Adapt a working workflow for a different context.
 
+### Adaptation Assessment
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sharpdeveye/maestro/adapt-workflow
-```
+| Dimension | Current | Target | Impact |
+|-----------|---------|--------|--------|
+| Model provider | ? | ? | Prompt format, capabilities, pricing |
+| Model tier | ? | ? | Context window, reasoning ability |
+| Deployment env | ? | ? | Latency, availability, compliance |
+| Team structure | ? | ? | Monitoring, escalation, ownership |
+| Data sensitivity | ? | ? | Guardrails, logging, access controls |
+
+### Provider Adaptation
+
+- **Prompt format**: Adjust for provider-specific features
+- **Context limits**: Resize context budget for different window sizes
+- **Capability gaps**: Identify features available in one provider but not another
+- **Pricing model**: Recalculate cost estimates
+- **API differences**: Update tool calling interfaces, error handling, retry logic
+
+### Environment Adaptation
+
+- **Latency requirements**: Adjust timeout values, caching strategy
+- **Compliance**: Add or adjust guardrails, logging, and data handling
+- **Scale**: Adjust concurrency limits, batch sizes
+- **Monitoring**: Adapt alerting thresholds
+
+### Adaptation Checklist
+
+- [ ] All provider-specific APIs updated
+- [ ] Context budget recalculated for target model
+- [ ] Cost estimates updated with target pricing
+- [ ] Guardrails adjusted for target compliance requirements
+- [ ] Tests updated and passing in target environment
+- [ ] Documentation updated for target team
+
+### Recommended Next Step
+
+After adaptation, run `/evaluate` to verify the workflow performs correctly in the target environment, then `/diagnose` for a full health check.
+
+**NEVER**:
+
+- Assume prompts work identically across providers
+- Copy production config to development without adjusting guardrails
+- Adapt without updating the evaluation suite
+- Skip cost re-estimation

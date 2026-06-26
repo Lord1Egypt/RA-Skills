@@ -1,0 +1,166 @@
+{
+  "schema": "2.0",
+  "config": {
+    "update_multi": true,
+    "enable_forward": true,
+    "width_mode": "fill",
+    "streaming_mode": true,
+    "streaming_config": {
+      "print_frequency_ms": {
+        "default": 30,
+        "android": 25,
+        "ios": 40,
+        "pc": 50
+      },
+      "print_step": {
+        "default": 2,
+        "android": 3,
+        "ios": 4,
+        "pc": 5
+      },
+      "print_strategy": "fast"
+    },
+    "summary": {
+      "content": "__SUMMARY_CONTENT__（聊天列表里显示的预览文案，如：AI 生成中...）"
+    }
+  },
+  "header": {
+    "template": "violet",
+    "title": {
+      "tag": "plain_text",
+      "content": "✨ __ASSISTANT_NAME__"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "__TASK_DESCRIPTION__"
+    },
+    "text_tag_list": [
+      {
+        "tag": "text_tag",
+        "text": { "tag": "plain_text", "content": "生成中" },
+        "color": "violet"
+      }
+    ]
+  },
+  "body": {
+    "direction": "vertical",
+    "vertical_spacing": "medium",
+    "elements": [
+      {
+        "tag": "markdown",
+        "element_id": "streaming_content",
+        "content": "__INITIAL_CONTENT__（这里是流式更新的落点，后端通过 element_id 增量推送内容到这里）"
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "div",
+        "fields": [
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**🤖 模型**\n`__MODEL_NAME__`" }
+          },
+          {
+            "is_short": true,
+            "text": { "tag": "lark_md", "content": "**🧠 思考深度**\n__EFFORT_LEVEL__" }
+          }
+        ]
+      },
+      {
+        "tag": "collapsible_panel",
+        "expanded": false,
+        "element_id": "thinking_panel",
+        "header": {
+          "title": { "tag": "markdown", "content": "🧠 **思考过程（点击展开）**" },
+          "background_color": "grey",
+          "padding": "4px 8px 4px 8px",
+          "icon": {
+            "tag": "standard_icon",
+            "token": "down-small-ccm_outlined",
+            "size": "16px 16px"
+          },
+          "icon_position": "right",
+          "icon_expanded_angle": -180
+        },
+        "elements": [
+          {
+            "tag": "markdown",
+            "element_id": "thinking_content",
+            "text_size": "notation",
+            "content": "<font color='grey'>__THINKING_CONTENT__（同样可以流式更新）</font>"
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "horizontal_spacing": "8px",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "center",
+            "elements": [
+              {
+                "tag": "button",
+                "element_id": "btn_stop",
+                "text": { "tag": "plain_text", "content": "⏹ 停止生成" },
+                "type": "default",
+                "width": "fill",
+                "behaviors": [
+                  { "type": "callback", "value": { "action": "stop", "session_id": "__SESSION_ID__" } }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "center",
+            "elements": [
+              {
+                "tag": "button",
+                "element_id": "btn_retry",
+                "text": { "tag": "plain_text", "content": "🔄 重新生成" },
+                "type": "default",
+                "width": "fill",
+                "behaviors": [
+                  { "type": "callback", "value": { "action": "retry", "session_id": "__SESSION_ID__" } }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "center",
+            "elements": [
+              {
+                "tag": "button",
+                "element_id": "btn_copy",
+                "text": { "tag": "plain_text", "content": "📋 复制" },
+                "type": "default",
+                "width": "fill",
+                "behaviors": [
+                  { "type": "callback", "value": { "action": "copy", "session_id": "__SESSION_ID__" } }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "text_size": "notation",
+        "content": "<font color='grey'>📡 由 __ASSISTANT_NAME__ 驱动 · Session: `__SESSION_ID__`</font>"
+      }
+    ]
+  }
+}

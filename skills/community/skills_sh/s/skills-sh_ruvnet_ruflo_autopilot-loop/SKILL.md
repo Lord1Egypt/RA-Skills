@@ -1,35 +1,27 @@
 ---
-name: "autopilot-loop"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/autopilot-loop"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/autopilot-loop"
+name: autopilot-loop
+description: Run an autonomous /loop iteration -- check progress, work on next task, schedule next wake
+argument-hint: ""
+allowed-tools: mcp__claude-flow__autopilot_status mcp__claude-flow__autopilot_predict mcp__claude-flow__autopilot_log mcp__claude-flow__autopilot_progress mcp__claude-flow__autopilot_disable ScheduleWakeup Agent
 ---
+Run one autopilot iteration using Claude Code's native /loop:
 
-# autopilot-loop
+1. Check status: `mcp__claude-flow__autopilot_status`
+2. If all tasks complete or max iterations reached, call `mcp__claude-flow__autopilot_disable` and stop
+3. Get prediction: `mcp__claude-flow__autopilot_predict` for the optimal next action
+4. Execute the predicted task (spawn agent, edit code, run tests, etc.)
+5. Log via `mcp__claude-flow__autopilot_log`
+6. Schedule next: `ScheduleWakeup({ delaySeconds: 270, reason: "next autopilot iteration" })`
 
-> Indexed by skills.sh from ruvnet/ruflo
+### Cache-Aware Scheduling
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/autopilot-loop`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/autopilot-loop](https://skills.sh/ruvnet/ruflo/autopilot-loop)
+Always use delay 270s (under 300s cache TTL) to keep the prompt cache warm between iterations.
 
-## Overview
+### Task Sources
 
+Autopilot discovers tasks from:
+- **team-tasks**: Claude Code TaskList entries
+- **swarm-tasks**: MCP task_list entries
+- **file-checklist**: Markdown checkbox items in tracked files
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/autopilot-loop
-```
+Configure: `mcp__claude-flow__autopilot_config({ taskSources: ["team-tasks", "swarm-tasks"] })`

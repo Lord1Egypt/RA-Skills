@@ -1,35 +1,39 @@
 ---
-name: "content-experimentation-best-practices"
-description: "Indexed by skills.sh from sanity-io/agent-toolkit"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sanity-io"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sanity-io/agent-toolkit/content-experimentation-best-practices"
-sourceUrl: "https://skills.sh/sanity-io/agent-toolkit/content-experimentation-best-practices"
+name: content-experimentation-best-practices
+description: Content experimentation and A/B testing guidance covering experiment design, hypotheses, metrics, sample size, statistical foundations, CMS-managed variants, and common analysis pitfalls. Use this skill when planning experiments, setting up variants, choosing success metrics, interpreting statistical results, or building experimentation workflows in a CMS or frontend stack.
 ---
 
-# content-experimentation-best-practices
+# Content Experimentation Best Practices
 
-> Indexed by skills.sh from sanity-io/agent-toolkit
+Principles and patterns for running effective content experiments to improve conversion rates, engagement, and user experience.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sanity-io
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sanity-io/agent-toolkit/content-experimentation-best-practices`
-- **Source URL:** [https://skills.sh/sanity-io/agent-toolkit/content-experimentation-best-practices](https://skills.sh/sanity-io/agent-toolkit/content-experimentation-best-practices)
+## When to Apply
 
-## Overview
+Reference these guidelines when:
+- Setting up A/B or multivariate testing infrastructure
+- Designing experiments for content changes
+- Analyzing and interpreting test results
+- Building CMS integrations for experimentation
+- Deciding what to test and how
 
+## Core Concepts
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sanity-io/agent-toolkit/content-experimentation-best-practices
-```
+### A/B Testing
+Comparing two variants (A vs B) to determine which performs better.
+
+### Multivariate Testing
+Testing multiple variables simultaneously to find optimal combinations.
+
+### Statistical Significance
+The confidence level that results aren't due to random chance.
+
+### Experimentation Culture
+Making decisions based on data rather than opinions (HiPPO avoidance).
+
+## References
+
+Start with the reference that matches the current problem, such as design, statistics, CMS integration, or pitfalls. See `references/` for detailed guidance:
+- `references/experiment-design.md` — Hypothesis framework, metrics, sample size, and what to test
+- `references/statistical-foundations.md` — p-values, confidence intervals, power analysis, Bayesian methods
+- `references/cms-integration.md` — CMS-managed variants, field-level variants, external platforms
+- `references/common-pitfalls.md` — 17 common mistakes across statistics, design, execution, and interpretation

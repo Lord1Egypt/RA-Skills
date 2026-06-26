@@ -1,35 +1,24 @@
 ---
-name: "qdrant-search-quality"
-description: "Indexed by skills.sh from qdrant/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "qdrant"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/qdrant/skills/qdrant-search-quality"
-sourceUrl: "https://skills.sh/qdrant/skills/qdrant-search-quality"
+name: qdrant-search-quality
+description: "Diagnoses and improves Qdrant search relevance. Use when someone reports 'search results are bad', 'wrong results', 'low precision', 'low recall', 'irrelevant matches', 'missing expected results', or asks 'how to improve search quality?', 'which embedding model?', 'should I use hybrid search?', 'should I use reranking?', 'how to measure retrieval quality?', 'build a golden set', 'ground truth dataset', or 'how to score recall@k?'. Also use when search quality degrades after quantization, model change, or data growth."
+allowed-tools:
+  - Read
+  - Grep
+  - Glob
 ---
 
-# qdrant-search-quality
+# Qdrant Search Quality
 
-> Indexed by skills.sh from qdrant/skills
+First determine whether the problem is the embedding model, Qdrant configuration, or the query strategy. Most quality issues come from the model or data, not from Qdrant itself. If search quality is low, inspect how chunks are being passed to Qdrant before tuning any parameters. Splitting mid-sentence can drop quality 30-40%.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** qdrant
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/qdrant/skills/qdrant-search-quality`
-- **Source URL:** [https://skills.sh/qdrant/skills/qdrant-search-quality](https://skills.sh/qdrant/skills/qdrant-search-quality)
-
-## Overview
+- Start by testing with exact search to isolate the problem [Search API](https://skills.qdrant.tech/md/documentation/search/search/?s=search-api)
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/qdrant/skills/qdrant-search-quality
-```
+## Diagnosis and Tuning
+
+Isolate the source of quality issues, establish labeled baselines to measure recall and relevance, tune HNSW parameters, and choose the right embedding model. [Diagnosis and Tuning](diagnosis/SKILL.md)
+
+
+## Search Strategies
+
+Hybrid search, reranking, relevance feedback, and exploration APIs for improving result quality. [Search Strategies](search-strategies/SKILL.md)

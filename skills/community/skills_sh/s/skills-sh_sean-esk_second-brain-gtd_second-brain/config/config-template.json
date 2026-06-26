@@ -1,0 +1,11 @@
+{
+  "vaultPath": "/path/to/your/obsidian/vault",
+  "setupComplete": false,
+  "userName": "",
+  "userContext": "Permanent Notes/Assisting-User-Context.md",
+  "preferences": {
+    "defaultCaptureType": "inbox",
+    "proactiveCapture": true,
+    "inboxThreshold": 5
+  }
+}

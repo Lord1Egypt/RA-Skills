@@ -1,35 +1,94 @@
 ---
-name: "voice-batch-runner"
-description: "Indexed by skills.sh from postplusai/postplus-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "postplusai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/postplusai/postplus-skills/voice-batch-runner"
-sourceUrl: "https://skills.sh/postplusai/postplus-skills/voice-batch-runner"
+name: voice-batch-runner
+description: Generate and manage persona-aware voice assets for short-form video production, including voice design, script-specific audio takes, and future reusable voice identities. Use this when persona registries and scripts already exist and you need local audio assets, voice manifests, and reviewable voice iterations without losing continuity across many videos.
+metadata:
+  postplus:
+    familyId: media-production
+    familyName: Media and Creative Production
 ---
 
-# voice-batch-runner
+# Voice Batch Runner
 
-> Indexed by skills.sh from postplusai/postplus-skills
+## Use When
+- Persona, concept, and script inputs already exist and the next step is hosted
+  voice design, cloned voice take generation, or polling.
+- The voice should remain a durable persona asset across scripts, not a one-off
+  audio byproduct.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** postplusai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/postplusai/postplus-skills/voice-batch-runner`
-- **Source URL:** [https://skills.sh/postplusai/postplus-skills/voice-batch-runner](https://skills.sh/postplusai/postplus-skills/voice-batch-runner)
+## Do Not Use When
+- The task belongs to ideation, QA, or another released skill listed in the handoff section.
+- Required inputs are missing and guessing would change the result.
+- Voice strategy, task class, translation policy, or lip-sync intent is still
+  unresolved. Use `audio-generation` first.
 
-## Overview
+## Execution Boundary
+- This runner validates and executes normalized voice requests. It must not make
+  creative strategy, voice-policy, or reference-policy decisions.
+- Separate the workflow into voice profile, optional voice identity, and concrete
+  voice take. The script text can change; persona voice continuity should not.
+- Voice design is for an initial persona-aligned sound from `text`,
+  `voice_description`, and `language`.
+- Voice clone is for new script takes when approved reference `audio` and an
+  optional `reference_text` should preserve timbre and speaking style.
 
+## Source And Path
+- Ground requests in the active project persona registry, voice baseline, script
+  text, and video purpose/lane.
+- Use the active project/client folder first; do not assume one client directory
+  is the source base for all voice work.
+- Keep internal request/response/run state under `.postplus` when it is not the
+  user-facing handoff. Keep final audio and review files in the active voice
+  asset folder, or state the chosen workspace path.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/postplusai/postplus-skills/voice-batch-runner
+## Request Boundary
+- Voice design synthesizes a persona voice from spoken `text`, a free-text
+  `voice_description`, and an optional `language` (defaults to auto).
+- Voice clone reproduces an approved voice from spoken `text`, an `audio`
+  reference URL, an optional `reference_text` transcript, and optional `language`.
+- Exact field names, requiredness, and defaults are discovered from
+  `postplus media schema --json` and the generated example below; do not hard-code
+  a private request envelope here.
+
+## Review And Handoff
+- Before generation, verify persona registry, voice baseline, script stability,
+  route (`voice_design` or `voice_clone_take`), source basis, and output path.
+- After generation, review realism, persona fit, pacing, ad-like delivery,
+  reuse potential, and for cloned output, timbre/accent drift from the reference.
+- If pending, return the saved request path, manifest path, the `output.data.id`
+  generation handle, and the poll command
+  `postplus media poll --handle <output.data.id>`. Do not keep polling in the
+  conversation.
+
+## Stop Conditions
+- Stop when required user intent, source evidence, or owned input artifacts are
+  missing and guessing would change the result.
+- If an owned CLI or script command fails, report the exact error and stop. Do
+  not bypass the failure with metadata-only answers, readiness probing, local
+  payload rewrites, fallback providers, or unpublished tools.
+
+## Public Command Boundary
+
+- Choose the smallest matching command or workflow from the user input and run
+  it directly.
+- Readiness diagnostics: `postplus doctor --skill voice-batch-runner`.
+- Poll a pending voice take: `postplus media poll --handle <output.data.id>`.
+- If an owned CLI or script command fails, report the exact error and stop. Do
+  not bypass the failure with metadata-only answers, readiness probing, local
+  payload rewrites, fallback providers, or unpublished tools.
+- Use `postplus media schema --json` only when constructing or repairing an unknown request shape.
+- Run the hosted submit with the generated command below; do not call provider APIs directly.
+
+<!-- BEGIN GENERATED EXECUTION EXAMPLE -->
+```json
+{
+  "text": "<text>",
+  "voice_description": "<voice_description>"
+}
 ```
+
+```bash
+postplus media create voice-design --request request.json --output result.json
+```
+<!-- END GENERATED EXECUTION EXAMPLE -->
+
+- If the CLI returns a quote-confirmation challenge, run `postplus quote confirm --json --challenge-file <challenge.json>` and retry with the returned token.

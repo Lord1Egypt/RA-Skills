@@ -1,35 +1,33 @@
 ---
-name: "rspack-v2-upgrade"
-description: "Indexed by skills.sh from rstackjs/agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "rstackjs"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/rstackjs/agent-skills/rspack-v2-upgrade"
-sourceUrl: "https://skills.sh/rstackjs/agent-skills/rspack-v2-upgrade"
+name: rspack-v2-upgrade
+description: Use when upgrading a Rspack 1.x project to v2, including dependency and configuration updates.
 ---
 
-# rspack-v2-upgrade
+# Rspack 1.x to v2 Upgrade
 
-> Indexed by skills.sh from rstackjs/agent-skills
+## Workflow
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** rstackjs
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/rstackjs/agent-skills/rspack-v2-upgrade`
-- **Source URL:** [https://skills.sh/rstackjs/agent-skills/rspack-v2-upgrade](https://skills.sh/rstackjs/agent-skills/rspack-v2-upgrade)
+1. **Confirm current setup**
+   - Read `package.json` to identify Rspack packages in use.
+   - Locate the Rspack config file (commonly `rspack.config.(ts|js|mjs|cjs)`).
 
-## Overview
+2. **Open the official migration guide**
+   - Use the official guide as the single source of truth:
+     - https://rspack.rs/guide/migration/rspack_1.x
 
+3. **Plan required changes**
+   - Compare the current project config with the migration guide.
+   - List breaking changes that apply to the project’s current config and plugins.
+   - Note any removed or renamed options, defaults, or plugin APIs.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/rstackjs/agent-skills/rspack-v2-upgrade
-```
+4. **Update dependencies**
+   - Upgrade Rspack packages to v2: `@rspack/core`, `@rspack/cli`, `@rspack/dev-server`, `@rspack/plugin-react-refresh`.
+
+5. **Apply migration changes**
+   - Update the Rspack config and related code according to the official guide.
+   - Remove deprecated or unsupported options.
+
+6. **Validate**
+   - Run build and dev commands.
+   - Run project tests or type checks.
+   - Fix any warnings or errors surfaced by the new version.

@@ -1,35 +1,25 @@
 ---
-name: "pr-name"
-description: "Indexed by skills.sh from remotion-dev/remotion"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "remotion-dev"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/remotion-dev/remotion/pr-name"
-sourceUrl: "https://skills.sh/remotion-dev/remotion/pr-name"
+name: pr-name
+description: Correct naming for a PR
 ---
 
-# pr-name
+The following format must be used for the PR title:
 
-> Indexed by skills.sh from remotion-dev/remotion
+```
+`[package-name]`: [commit-message]
+```
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** remotion-dev
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/remotion-dev/remotion/pr-name`
-- **Source URL:** [https://skills.sh/remotion-dev/remotion/pr-name](https://skills.sh/remotion-dev/remotion/pr-name)
+For example:
 
-## Overview
+```
+`@remotion/shapes`: Add heart shape
+```
 
+The package name must be obtained from package.json.  
+If multiple packages are affected, use the one that you think if most relevant.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/remotion-dev/remotion/pr-name
+If the change is about docs only:
+
+```
+Docs: Add page about heart shape
 ```

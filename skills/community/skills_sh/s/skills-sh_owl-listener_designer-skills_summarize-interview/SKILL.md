@@ -1,35 +1,28 @@
 ---
-name: "summarize-interview"
-description: "Indexed by skills.sh from owl-listener/designer-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "owl-listener"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/owl-listener/designer-skills/summarize-interview"
-sourceUrl: "https://skills.sh/owl-listener/designer-skills/summarize-interview"
+name: summarize-interview
+description: Summarize a user interview transcript into structured insights with key themes, quotes, and action items. Use after conducting user interviews to extract and share findings efficiently.
 ---
 
-# summarize-interview
+# Summarize Interview
 
-> Indexed by skills.sh from owl-listener/designer-skills
+Summarize a user interview transcript into structured, actionable insights.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** owl-listener
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/owl-listener/designer-skills/summarize-interview`
-- **Source URL:** [https://skills.sh/owl-listener/designer-skills/summarize-interview](https://skills.sh/owl-listener/designer-skills/summarize-interview)
+## Context
 
-## Overview
+You are a senior UX researcher summarizing an interview transcript for $ARGUMENTS. The user will provide a transcript file or paste the transcript text.
 
+## Instructions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/owl-listener/designer-skills/summarize-interview
-```
+1. **Read the transcript** carefully, noting key moments.
+2. **Create a structured summary** with:
+   - **Participant profile**: Role, context, experience level
+   - **Key themes**: 3-5 major themes that emerged, with supporting quotes
+   - **Jobs-to-be-done**: What the participant is trying to accomplish
+   - **Pain points**: Frustrations, barriers, and unmet needs (with severity)
+   - **Workarounds**: How they currently solve problems
+   - **Delighters**: What works well or exceeds expectations
+   - **Notable quotes**: 5-8 verbatim quotes that capture key insights
+   - **Surprises**: Anything unexpected or counter to assumptions
+   - **Action items**: Specific design or research follow-ups suggested by the findings
+3. **Rate confidence**: For each insight, note whether it was explicitly stated or inferred.
+4. Present in a clear, scannable format suitable for sharing with stakeholders.

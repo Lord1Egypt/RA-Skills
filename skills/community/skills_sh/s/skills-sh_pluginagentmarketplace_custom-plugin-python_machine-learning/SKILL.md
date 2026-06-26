@@ -1,35 +1,67 @@
 ---
-name: "machine-learning"
-description: "Indexed by skills.sh from pluginagentmarketplace/custom-plugin-python"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "pluginagentmarketplace"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/pluginagentmarketplace/custom-plugin-python/machine-learning"
-sourceUrl: "https://skills.sh/pluginagentmarketplace/custom-plugin-python/machine-learning"
+name: Machine Learning
+description: Python machine learning with scikit-learn, PyTorch, and TensorFlow
+version: "2.1.0"
+sasmp_version: "1.3.0"
+bonded_agent: 03-data-science
+bond_type: PRIMARY_BOND
+
+# Skill Configuration
+retry_strategy: exponential_backoff
+observability:
+  logging: true
+  metrics: model_accuracy
 ---
 
-# machine-learning
-
-> Indexed by skills.sh from pluginagentmarketplace/custom-plugin-python
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** pluginagentmarketplace
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/pluginagentmarketplace/custom-plugin-python/machine-learning`
-- **Source URL:** [https://skills.sh/pluginagentmarketplace/custom-plugin-python/machine-learning](https://skills.sh/pluginagentmarketplace/custom-plugin-python/machine-learning)
+# Python Machine Learning Skill
 
 ## Overview
+Build machine learning models using Python libraries including scikit-learn, PyTorch, and supporting tools.
 
+## Topics Covered
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/pluginagentmarketplace/custom-plugin-python/machine-learning
-```
+### Scikit-learn
+- Data preprocessing
+- Model selection
+- Training pipelines
+- Cross-validation
+- Hyperparameter tuning
+
+### PyTorch Basics
+- Tensor operations
+- Neural network modules
+- Training loops
+- DataLoader usage
+- GPU acceleration
+
+### Feature Engineering
+- Feature selection
+- Dimensionality reduction
+- Feature scaling
+- Encoding techniques
+- Missing data handling
+
+### Model Evaluation
+- Metrics selection
+- Confusion matrix
+- ROC curves
+- Learning curves
+- Model comparison
+
+### MLOps Basics
+- Model serialization
+- Experiment tracking (MLflow)
+- Model versioning
+- Serving models
+- Reproducibility
+
+## Prerequisites
+- Python fundamentals
+- NumPy and Pandas
+- Statistics basics
+
+## Learning Outcomes
+- Train ML models
+- Evaluate model performance
+- Build ML pipelines
+- Deploy models to production

@@ -1,0 +1,42 @@
+{
+  "name": "@examples/ecommerce-studio",
+  "version": "1.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "main": "package.json",
+  "scripts": {
+    "build": "dotenv -e ../.env -- sanity build",
+    "check:lint": "eslint .",
+    "check:lint:fix": "eslint . --fix",
+    "check:types": "tsc --noEmit",
+    "deploy": "dotenv -e ../.env -- sanity deploy",
+    "deploy-graphql": "dotenv -e ../.env -- sanity graphql deploy",
+    "dev": "dotenv -e ../.env -- sanity dev",
+    "extract-schema": "dotenv -e ../.env -- sanity schema extract --path=schema.json",
+    "start": "dotenv -e ../.env -- sanity start"
+  },
+  "prettier": "@sanity/prettier-config",
+  "dependencies": {
+    "@ai-sdk/anthropic": "^3.0.74",
+    "@sanity/client": "^7.21.0",
+    "@sanity/context": "workspace:*",
+    "@sanity/icons": "^3",
+    "@sanity/ui": "^3",
+    "@sanity/vision": "5.22.0",
+    "ai": "^6.0.137",
+    "easymde": "^2.20.0",
+    "react": "^19",
+    "react-dom": "^19",
+    "react-markdown": "^10.1.0",
+    "sanity": "5.22.0",
+    "sanity-plugin-markdown": "^8.0.5",
+    "styled-components": "^6.3.8",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "dotenv-cli": "^11.0.0",
+    "typescript": "^5",
+    "typescript-eslint": "^8.32.1"
+  }
+}

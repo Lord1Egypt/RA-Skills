@@ -1,35 +1,67 @@
 ---
-name: "morph-search"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/morph-search"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/morph-search"
+name: morph-search
+description: Fast codebase search via WarpGrep (20x faster than grep)
+allowed-tools: [Bash, Read]
 ---
 
-# morph-search
+# Morph Codebase Search
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+Fast, AI-powered codebase search using WarpGrep. 20x faster than traditional grep.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/morph-search`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/morph-search](https://skills.sh/parcadei/continuous-claude-v3/morph-search)
+## When to Use
 
-## Overview
+- Search codebase for patterns, function names, variables
+- Find code across large codebases quickly
+- Edit files programmatically
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Search for code patterns
 ```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/morph-search
+uv run python -m runtime.harness scripts/mcp/morph_search.py \
+    --search "authentication" --path "."
 ```
+
+### Search with regex
+```bash
+uv run python -m runtime.harness scripts/mcp/morph_search.py \
+    --search "def.*login" --path "./src"
+```
+
+### Edit a file
+```bash
+uv run python -m runtime.harness scripts/mcp/morph_search.py \
+    --edit "/path/to/file.py" --content "new content"
+```
+
+## Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| `--search` | Search query/pattern |
+| `--path` | Directory to search (default: `.`) |
+| `--edit` | File path to edit |
+| `--content` | New content for file (use with `--edit`) |
+
+## Examples
+
+```bash
+# Find all async functions
+uv run python -m runtime.harness scripts/mcp/morph_search.py \
+    --search "async def" --path "./src"
+
+# Search for imports
+uv run python -m runtime.harness scripts/mcp/morph_search.py \
+    --search "from fastapi import" --path "."
+```
+
+## vs ast-grep
+
+| Tool | Best For |
+|------|----------|
+| **morph/warpgrep** | Fast text/regex search (20x faster) |
+| **ast-grep** | Structural code search (understands syntax) |
+
+## MCP Server Required
+
+Requires `morph` server in mcp_config.json with `MORPH_API_KEY`.

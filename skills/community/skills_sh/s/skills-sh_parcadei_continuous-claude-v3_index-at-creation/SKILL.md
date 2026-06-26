@@ -1,35 +1,27 @@
 ---
-name: "index-at-creation"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/index-at-creation"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/index-at-creation"
+name: index-at-creation
+description: Index at Creation Time
+user-invocable: false
 ---
 
-# index-at-creation
+# Index at Creation Time
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+Index artifacts when they're created, not at batch boundaries.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/index-at-creation`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/index-at-creation](https://skills.sh/parcadei/continuous-claude-v3/index-at-creation)
+## Pattern
 
-## Overview
+If downstream logic depends on artifacts being queryable, index immediately at write time.
 
+## DO
+- Index handoffs in PostToolUse Write hook (immediately after creation)
+- Use `--file` flag for fast single-file indexing
+- Trigger indexing from the same event that creates the artifact
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/index-at-creation
-```
+## DON'T
+- Wait for SessionEnd to batch-index
+- Rely on cron/scheduled jobs for time-sensitive data
+- Assume data will be available "soon enough"
+
+## Source Sessions
+- a541f08a: "Index at artifact creation time, not at SessionEnd"
+- 1c21e6c8: "If downstream logic depends on artifacts, index at the moment they're created"

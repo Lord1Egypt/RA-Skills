@@ -1,0 +1,4 @@
+interface:
+  display_name: "Graft"
+  short_description: "Build and refine Graft apps and proxies"
+  default_prompt: "Use $graft to plan, build, or document a Graft app or proxy surface."

@@ -1,0 +1,20 @@
+{
+  "version": "1.0.7",
+  "organization": "Airbnb Engineering / Apple HIG",
+  "technology": "iOS Design System (SwiftUI, iOS 26 / Swift 6.2)",
+  "date": "February 2026",
+  "abstract": "Airbnb-aligned design system engineering for SwiftUI iOS 26 / Swift 6.2 apps. Contains 50 rules across 8 categories: Token Architecture (CRITICAL), Color System Engineering (CRITICAL), Typography Scale (HIGH), Spacing & Sizing (HIGH), Component Style Library (CRITICAL), Asset Management (MEDIUM-HIGH), Theme & Brand Infrastructure (MEDIUM), and Consistency & Governance (HIGH). Mandates @Equatable on every view, @Observable state, DLS-style protocols for component styling, and automated governance via SwiftLint and SPM package boundaries, aligned with modular MVVM-C feature boundaries. Aligned with the iOS 26 / Swift 6.2 clinic modular MVVM-C architecture.",
+  "references": [
+    "https://medium.com/airbnb-engineering/unlocking-swiftui-at-airbnb-ea58f50cde49",
+    "https://airbnb.tech/uncategorized/understanding-and-improving-swiftui-performance/",
+    "https://github.com/airbnb/swift",
+    "https://developer.apple.com/design/human-interface-guidelines/",
+    "https://developer.apple.com/design/human-interface-guidelines/color",
+    "https://developer.apple.com/design/human-interface-guidelines/typography",
+    "https://developer.apple.com/videos/play/wwdc2024/10150/",
+    "https://developer.apple.com/videos/play/wwdc2023/10115/",
+    "https://movingparts.io/styling-components-in-swiftui",
+    "https://fatbobman.com/en/posts/custom-button-style-in-swiftui/",
+    "https://www.magnuskahr.dk/posts/2025/06/swiftui-design-system-considerations-semantic-colors/"
+  ]
+}

@@ -1,35 +1,26 @@
 ---
-name: "autopilot-predict"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/autopilot-predict"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/autopilot-predict"
+name: autopilot-predict
+description: Use learned patterns and current state to predict the optimal next action
+argument-hint: ""
+allowed-tools: mcp__claude-flow__autopilot_predict mcp__claude-flow__autopilot_progress mcp__claude-flow__autopilot_learn mcp__claude-flow__autopilot_history
 ---
+Predict what to work on next using Ruflo autopilot intelligence:
 
-# autopilot-predict
+1. Call `mcp__claude-flow__autopilot_predict` for the recommended next action
+2. If confidence > 0.7, execute the prediction directly
+3. If confidence < 0.7, check `mcp__claude-flow__autopilot_progress` for task breakdown
+4. Pick the highest-priority incomplete task
+5. After completing work, call `mcp__claude-flow__autopilot_learn` to update patterns
 
-> Indexed by skills.sh from ruvnet/ruflo
+### Learning Pipeline
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/autopilot-predict`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/autopilot-predict](https://skills.sh/ruvnet/ruflo/autopilot-predict)
+- `mcp__claude-flow__autopilot_learn` -- discover success patterns from completed tasks
+- `mcp__claude-flow__autopilot_history({ query: "KEYWORD" })` -- search past completions
+- Patterns are stored in AgentDB for cross-session recall
 
-## Overview
+### Integration with /loop
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/autopilot-predict
-```
+When running inside a `/loop`, the predict skill guides each iteration:
+- High confidence prediction -> execute immediately
+- Low confidence -> fall back to task list priority order
+- No tasks remaining -> disable autopilot and exit loop

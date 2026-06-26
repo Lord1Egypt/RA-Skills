@@ -1,35 +1,17 @@
 ---
-name: "test-gaps"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/test-gaps"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/test-gaps"
+name: test-gaps
+description: Detect missing test coverage and generate test suggestions
+argument-hint: "[--path PATH] [--limit N]"
+allowed-tools: Bash(npx *) mcp__claude-flow__hooks_worker-dispatch Read Grep
 ---
-
-# test-gaps
-
-> Indexed by skills.sh from ruvnet/ruflo
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/test-gaps`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/test-gaps](https://skills.sh/ruvnet/ruflo/test-gaps)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Find test coverage gaps via CLI:
 ```bash
-hermes skills install skills-sh/ruvnet/ruflo/test-gaps
+npx @claude-flow/cli@latest hooks coverage-gaps --format table --limit 20
+npx @claude-flow/cli@latest hooks coverage-route --task "add auth tests"
+npx @claude-flow/cli@latest hooks coverage-suggest --path src/
 ```
+
+Or dispatch the testgaps worker via MCP:
+`mcp__claude-flow__hooks_worker-dispatch({ trigger: "testgaps" })`
+
+For continuous detection, use `/loop` with the `loop-worker` skill targeting the `testgaps` worker.

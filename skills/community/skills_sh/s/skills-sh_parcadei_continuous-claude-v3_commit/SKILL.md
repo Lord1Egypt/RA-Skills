@@ -1,35 +1,51 @@
 ---
-name: "commit"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/commit"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/commit"
+name: commit
+description: Create git commits with user approval and no Claude attribution
 ---
 
-# commit
+# Commit Changes
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+You are tasked with creating git commits for the changes made during this session.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/commit`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/commit](https://skills.sh/parcadei/continuous-claude-v3/commit)
+## Process:
 
-## Overview
+1. **Think about what changed:**
+   - Review the conversation history and understand what was accomplished
+   - Run `git status` to see current changes
+   - Run `git diff` to understand the modifications
+   - Consider whether changes should be one commit or multiple logical commits
 
+2. **Plan your commit(s):**
+   - Identify which files belong together
+   - Draft clear, descriptive commit messages
+   - Use imperative mood in commit messages
+   - Focus on why the changes were made, not just what
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/commit
-```
+3. **Present your plan to the user:**
+   - List the files you plan to add for each commit
+   - Show the commit message(s) you'll use
+   - Ask: "I plan to create [N] commit(s) with these changes. Shall I proceed?"
+
+4. **Execute upon confirmation:**
+   - Use `git add` with specific files (never use `-A` or `.`)
+   - Create commits with your planned messages
+   - Show the result with `git log --oneline -n [number]`
+
+5. **Generate reasoning (after each commit):**
+   - Run: `bash "$CLAUDE_PROJECT_DIR/.claude/scripts/generate-reasoning.sh" <commit-hash> "<commit-message>"`
+   - This captures what was tried during development (build failures, fixes)
+   - The reasoning file helps future sessions understand past decisions
+   - Stored in `.git/claude/commits/<hash>/reasoning.md`
+
+## Important:
+- **NEVER add co-author information or Claude attribution**
+- Commits should be authored solely by the user
+- Do not include any "Generated with Claude" messages
+- Do not add "Co-Authored-By" lines
+- Write commit messages as if the user wrote them
+
+## Remember:
+- You have the full context of what was done in this session
+- Group related changes together
+- Keep commits focused and atomic when possible
+- The user trusts your judgment - they asked you to commit

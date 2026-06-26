@@ -1,0 +1,28 @@
+# utility-pm-skill-builder - Version History
+
+| Version | Date | Release | Effort | Type | Summary |
+|---------|------|---------|--------|------|---------|
+| 1.1.2 | 2026-06-23 | v2.29.0 | M-34 | patch | Collision-probe checklist now points to the key-free `pm-skill-router` path (`--emit-tasks` + the sub-agent); the Messages-API path is the unattended-CI alternative. No flow change. |
+| 1.1.1 | 2026-06-20 | v2.28.0 | - | patch | Doc-currency: added `foundation-stakeholder-briefings` to the Current Library Reference foundation table (foundation 9 to 10) so gap analysis sees the full v2.28.0 inventory. No flow change. |
+| 1.1.0 | 2026-06-15 | - | C-1..C-4 | minor | New skills ship eval-ready: added a Step 4.5 "Eval Readiness" (neighbors + reciprocal boundary pointers + output-eval family rubric), scaffolded `evals/trigger-fixtures.json` (C-1) and `evals/output-scenarios/{id}.md` (C-4) into the packet/staging/promotion, a Step 7 collision probe (C-2), and the eval contract in the Output Contract + Quality Checklist. Refreshed the stale "When NOT to Use" pointers (pm-skill-iterate/validate now exist). |
+| 1.0.0 | 2026-03-22 | - | - | baseline | Prior published version: guided skill creation (gap analysis, Why Gate, classification, staged packet, promotion). |
+
+## 1.1.1 (2026-06-20)
+
+Doc-currency patch for the v2.28.0 release (new foundation skill `foundation-stakeholder-briefings`): added its row to the "Current Library Reference" foundation table and bumped the count 9 to 10, so the builder's gap analysis sees the full inventory. No change to the create-a-skill flow.
+
+## 1.1.0 (2026-06-15)
+
+Eval-contract integration (v2.27.0 eval program, plan items C-1 through C-4): the builder now produces eval-ready skills so routing and output-quality coverage never falls behind the catalog.
+
+- **Step 4.5 Eval Readiness (new):** name nearest neighbors (C-2), require reciprocal "When NOT to Use" boundary pointers and a `COLLISION_PAIRS` entry for strong overlaps (C-3), and assign an output-eval family rubric via a phase/category mapping table (C-4).
+- **Packet + staging + promotion:** added `evals/trigger-fixtures.json` (the B-4 routing-fixture contract: >=16 queries, >=8/class, >=2 neighbor near-misses, train/validation split) and `evals/output-scenarios/{id}.md` (the B-7 output-scenario contract: scenario/skill/family frontmatter + a >=100-char brief). Promotion now runs the eval-asset gates + the `check-new-skill-collision.mjs` probe (C-2) and regenerates the catalog surfaces.
+- **Output Contract + Quality Checklist:** the eval assets are now required outputs with a dedicated checklist tier.
+- Refreshed the stale "When NOT to Use" section (the planned validate/iterate utilities now exist as `utility-pm-skill-validate` / `utility-pm-skill-iterate`).
+- Refreshed the "Current Library Reference" table to the live catalog (domain 30 / foundation 9 / utility 12; added the 11 missing rows) per the 2026-06-15 doc-currency audit, so gap analysis sees the full inventory.
+
+No change to the core create-a-skill flow (Steps 1-4, 5-7); the eval contract is additive.
+
+## 1.0.0 (2026-03-22)
+
+Baseline row for the prior published version; see git history for its changes.

@@ -1,35 +1,22 @@
 ---
-name: "woocommerce-copy-guidelines"
-description: "Indexed by skills.sh from secondsky/claude-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "secondsky"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/secondsky/claude-skills/woocommerce-copy-guidelines"
-sourceUrl: "https://skills.sh/secondsky/claude-skills/woocommerce-copy-guidelines"
+name: woocommerce-copy-guidelines
+description: Guidelines for UI text and copy in WooCommerce. Use when writing user-facing text, labels, buttons, messages, or documentation in WooCommerce projects.
+license: MIT
 ---
 
-# woocommerce-copy-guidelines
+# WooCommerce Copy Guidelines
 
-> Indexed by skills.sh from secondsky/claude-skills
+This skill provides guidelines for writing user-facing copy in WooCommerce, including UI text, labels, buttons, messages, and documentation.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** secondsky
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/secondsky/claude-skills/woocommerce-copy-guidelines`
-- **Source URL:** [https://skills.sh/secondsky/claude-skills/woocommerce-copy-guidelines](https://skills.sh/secondsky/claude-skills/woocommerce-copy-guidelines)
+## Instructions
 
-## Overview
+Follow these guidelines when writing any user-facing text:
 
+1. **Sentence case**: See [sentence-case.md](sentence-case.md) for rules on using sentence case for all UI text
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/secondsky/claude-skills/woocommerce-copy-guidelines
-```
+## Key Principles
+
+- Always use sentence case for UI text, not title case
+- Keep copy concise and action-oriented
+- Use clear, simple language
+- Be consistent with existing WooCommerce copy patterns

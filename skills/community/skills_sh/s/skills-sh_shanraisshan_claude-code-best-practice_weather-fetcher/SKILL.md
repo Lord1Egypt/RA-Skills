@@ -1,35 +1,47 @@
 ---
-name: "weather-fetcher"
-description: "Indexed by skills.sh from shanraisshan/claude-code-best-practice"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "shanraisshan"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/shanraisshan/claude-code-best-practice/weather-fetcher"
-sourceUrl: "https://skills.sh/shanraisshan/claude-code-best-practice/weather-fetcher"
+name: weather-fetcher
+description: Instructions for fetching current weather temperature data for Dubai, UAE from Open-Meteo API
+user-invocable: false
+allowed-tools:
+  - "WebFetch(*)"
 ---
 
-# weather-fetcher
+# Weather Fetcher Skill
 
-> Indexed by skills.sh from shanraisshan/claude-code-best-practice
+This skill provides instructions for fetching current weather data.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** shanraisshan
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/shanraisshan/claude-code-best-practice/weather-fetcher`
-- **Source URL:** [https://skills.sh/shanraisshan/claude-code-best-practice/weather-fetcher](https://skills.sh/shanraisshan/claude-code-best-practice/weather-fetcher)
+## Task
 
-## Overview
+Fetch the current temperature for Dubai, UAE in the requested unit (Celsius or Fahrenheit).
 
+## Instructions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/shanraisshan/claude-code-best-practice/weather-fetcher
+1. **Fetch Weather Data**: Use the WebFetch tool to get current weather data for Dubai from the Open-Meteo API.
+
+   For **Celsius**:
+   - URL: `https://api.open-meteo.com/v1/forecast?latitude=25.2048&longitude=55.2708&current=temperature_2m&temperature_unit=celsius`
+
+   For **Fahrenheit**:
+   - URL: `https://api.open-meteo.com/v1/forecast?latitude=25.2048&longitude=55.2708&current=temperature_2m&temperature_unit=fahrenheit`
+
+2. **Extract Temperature**: From the JSON response, extract the current temperature:
+   - Field: `current.temperature_2m`
+   - Unit label is in: `current_units.temperature_2m`
+
+3. **Return Result**: Return the temperature value and unit clearly.
+
+## Expected Output
+
+After completing this skill's instructions:
 ```
+Current Dubai Temperature: [X]°[C/F]
+Unit: [Celsius/Fahrenheit]
+```
+
+## Notes
+
+- Only fetch the temperature, do not perform any transformations or write any files
+- Open-Meteo is free, requires no API key, and uses coordinate-based lookups for reliability
+- Dubai coordinates: latitude 25.2048, longitude 55.2708
+- Return the numeric temperature value and unit clearly
+- Support both Celsius and Fahrenheit based on the caller's request

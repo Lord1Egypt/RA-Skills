@@ -1,35 +1,13 @@
 ---
-name: "explaining-code"
-description: "Indexed by skills.sh from patricio0312rev/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "patricio0312rev"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/patricio0312rev/skills/explaining-code"
-sourceUrl: "https://skills.sh/patricio0312rev/skills/explaining-code"
+name: explaining-code
+description: Explains code with visual diagrams and analogies. Use when explaining how code works, teaching about a codebase, or when the user asks "how does this work?"
 ---
 
-# explaining-code
+When explaining code, always include:
 
-> Indexed by skills.sh from patricio0312rev/skills
+1. **Start with an analogy**: Compare the code to something from everyday life
+2. **Draw a diagram**: Use ASCII art to show the flow, structure, or relationships
+3. **Walk through the code**: Explain step-by-step what happens
+4. **Highlight a gotcha**: What's a common mistake or misconception?
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** patricio0312rev
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/patricio0312rev/skills/explaining-code`
-- **Source URL:** [https://skills.sh/patricio0312rev/skills/explaining-code](https://skills.sh/patricio0312rev/skills/explaining-code)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/patricio0312rev/skills/explaining-code
-```
+Keep explanations conversational. For complex concepts, use multiple analogies.

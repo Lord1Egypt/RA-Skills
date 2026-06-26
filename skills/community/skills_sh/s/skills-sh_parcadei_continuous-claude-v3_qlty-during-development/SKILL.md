@@ -1,35 +1,45 @@
 ---
-name: "qlty-during-development"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/qlty-during-development"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/qlty-during-development"
+name: qlty-during-development
+description: QLTY During Development
+user-invocable: false
 ---
 
-# qlty-during-development
+# QLTY During Development
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+Run QLTY checks during code writing to catch issues early.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/qlty-during-development`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/qlty-during-development](https://skills.sh/parcadei/continuous-claude-v3/qlty-during-development)
+## When to Run
 
-## Overview
+Run QLTY after significant code changes:
+- After completing a new file
+- After substantial edits to existing files
+- Before committing changes
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/qlty-during-development
+# Quick lint check
+qlty check
+
+# Format code
+qlty fmt
+
+# Check specific files
+qlty check src/sdk/providers.ts
+
+# Auto-fix issues
+qlty check --fix
 ```
+
+## Integration Pattern
+
+After writing code:
+1. Run `qlty check` on changed files
+2. If errors, fix them before proceeding
+3. Run `qlty fmt` to ensure formatting
+
+## Don't Run When
+
+- Just reading/exploring code
+- Making single-line typo fixes
+- In the middle of multi-file refactoring (run at end)

@@ -1,0 +1,13 @@
+{
+  "api_id": "local-business-data",
+  "portal_api_id": "local_business_data",
+  "rapidapi_host": "local-business-data.p.rapidapi.com",
+  "rate_limit_per_second": 5,
+  "pricing_note": "The API charges a \"Business\" credit for each business, review, or photo returned by the API. When extract_emails_and_contacts=true is used, the API charges 1 extra credit per business that has at least one email, phone number, or social profile match.",
+  "notes": "limit param controls results per call (max 500). No pagination — one call returns all results up to limit.",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/local_business_data.yaml",
+  "last_updated_yaml": "2026-03-14T22:49:40.453Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/local-business-data",
+  "openwebninja_url": "https://www.openwebninja.com/api/local-business-data"
+}

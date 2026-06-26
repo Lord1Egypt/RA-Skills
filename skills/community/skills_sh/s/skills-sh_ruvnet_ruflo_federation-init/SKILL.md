@@ -1,35 +1,15 @@
 ---
-name: "federation-init"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/federation-init"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/federation-init"
+name: federation-init
+description: Initialize federation on this node — generate keypair and configure peers
+allowed-tools: Bash(npx *) mcp__claude-flow__memory_store mcp__claude-flow__hooks_post-task Read Write
+argument-hint: "[--compliance hipaa|soc2|gdpr|none]"
 ---
+Initialize this node for federation. Generates an ed25519 keypair, creates the federation config, and optionally sets a compliance mode.
 
-# federation-init
+Steps:
+1. `npx -y -p @claude-flow/plugin-agent-federation@latest ruflo-federation init`
+2. If a compliance mode is specified, configure it: `npx -y -p @claude-flow/plugin-agent-federation@latest ruflo-federation config --compliance MODE`
+3. Show the node's public key and endpoint for sharing with peers
 
-> Indexed by skills.sh from ruvnet/ruflo
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/federation-init`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/federation-init](https://skills.sh/ruvnet/ruflo/federation-init)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/federation-init
-```
+Store init event:
+`mcp__claude-flow__memory_store({ key: "federation-init", value: "Node initialized", namespace: "federation" })`

@@ -1,35 +1,96 @@
 ---
-name: "accelerate"
-description: "Indexed by skills.sh from sharpdeveye/maestro"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sharpdeveye"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sharpdeveye/maestro/accelerate"
-sourceUrl: "https://skills.sh/sharpdeveye/maestro/accelerate"
+name: accelerate
+description: "Use when the workflow is too slow, too expensive, or both and needs latency, cost, or token usage optimization."
+argument-hint: "[target metric]"
+category: enhancement
+version: 2.0.0
+user-invocable: true
 ---
 
-# accelerate
+## MANDATORY PREPARATION
 
-> Indexed by skills.sh from sharpdeveye/maestro
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sharpdeveye
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sharpdeveye/maestro/accelerate`
-- **Source URL:** [https://skills.sh/sharpdeveye/maestro/accelerate](https://skills.sh/sharpdeveye/maestro/accelerate)
-
-## Overview
+Invoke /agent-workflow — it contains workflow principles, anti-patterns, and the **Context Gathering Protocol**. Follow the protocol before proceeding — if no workflow context exists yet, you MUST run /teach-maestro first.
+Consult the context-management reference in the agent-workflow skill for window optimization and budget strategies.
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sharpdeveye/maestro/accelerate
+---
+
+Make the workflow faster and cheaper without sacrificing quality. Measure before and after.
+
+### Performance Audit
+
+Measure current performance:
+
+```text
+Current metrics:
+  Latency (p50): ___ms
+  Latency (p95): ___ms
+  Cost per request: $___
+  Token usage (avg): ___ input / ___ output
+  Error rate: ___%
 ```
+
+### Acceleration Strategies
+
+**Reduce Token Usage**
+
+- Shorten system prompts (remove redundant instructions)
+- Compress few-shot examples to minimum viable length
+- Use structured output schemas instead of verbose text
+- Summarize context instead of passing raw documents
+- Reduce output length requirements
+
+**Model Cascading**
+
+- Route simple tasks to cheaper/faster models
+- Escalate only complex tasks to capable models
+- Use classification to determine complexity
+
+**Caching**
+
+- Cache responses for identical or near-identical inputs
+- Cache tool results with appropriate TTL
+- Cache embeddings for frequently-queried documents
+- Use semantic caching for similar (not identical) queries
+
+**Parallelization**
+
+- Run independent tool calls in parallel
+- Run independent agent steps in parallel
+- Use streaming to start processing before full response
+
+**Context Optimization**
+
+- Retrieve less, retrieve better (improve retrieval precision)
+- Use context compression techniques
+- Implement sliding window for long conversations
+
+### Acceleration Report
+
+For each optimization:
+
+1. **What changed**: Specific modification
+2. **Before**: Latency/cost/tokens before
+3. **After**: Latency/cost/tokens after
+4. **Quality impact**: Any quality change (verify with golden tests)
+5. **Trade-off**: What was sacrificed for the improvement
+
+### Acceleration Checklist
+
+- [ ] Baseline metrics recorded before any changes
+- [ ] Each optimization measured with before/after comparison
+- [ ] Quality impact verified (golden tests still pass)
+- [ ] Trade-offs documented for each change
+- [ ] Cost/latency improvements quantified
+
+### Recommended Next Step
+
+After optimization, run `/evaluate` to verify quality didn't degrade, or `/iterate` to set up continuous monitoring.
+
+**NEVER**:
+
+- Optimize without measuring first (you need a baseline)
+- Sacrifice quality for speed without explicit user approval
+- Cache outputs that depend on real-time data
+- Skip the quality check after optimization
+- Optimize prematurely (make it correct first, then make it fast)

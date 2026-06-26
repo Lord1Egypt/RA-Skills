@@ -1,35 +1,49 @@
 ---
-name: "angular-destroyref"
-description: "Indexed by skills.sh from oguzhan18/angular-ecosystem-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "oguzhan18"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/oguzhan18/angular-ecosystem-skills/angular-destroyref"
-sourceUrl: "https://skills.sh/oguzhan18/angular-ecosystem-skills/angular-destroyref"
+name: angular-destroyref
+description: "ALWAYS use when working with Angular DestroyRef, takeUntilDestroyed, or cleanup in Angular."
+metadata:
+  version: 21.0.0
+  generated_by: oguzhancart
+  generated_at: 2026-02-19
 ---
 
-# angular-destroyref
+# Angular DestroyRef
 
-> Indexed by skills.sh from oguzhan18/angular-ecosystem-skills
+**Version:** Angular 16+ (2025)
+**Tags:** DestroyRef, Cleanup, takeUntilDestroyed
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** oguzhan18
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/oguzhan18/angular-ecosystem-skills/angular-destroyref`
-- **Source URL:** [https://skills.sh/oguzhan18/angular-ecosystem-skills/angular-destroyref](https://skills.sh/oguzhan18/angular-ecosystem-skills/angular-destroyref)
+**References:** [DestroyRef](https://angular.io/api/core/DestroyRef)
 
-## Overview
+## Best Practices
 
+- Use takeUntilDestroyed
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/oguzhan18/angular-ecosystem-skills/angular-destroyref
+```ts
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+@Component({})
+export class MyComponent {
+  private destroyRef = inject(DestroyRef);
+  
+  ngOnInit() {
+    this.data$.pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe();
+  }
+}
+```
+
+- Use in service
+
+```ts
+@Injectable({ providedIn: 'root' })
+export class DataService {
+  private destroyRef = inject(DestroyRef);
+  
+  getData() {
+    return this.http.get('/api/data').pipe(
+      takeUntilDestroyed(this.destroyRef)
+    );
+  }
+}
 ```

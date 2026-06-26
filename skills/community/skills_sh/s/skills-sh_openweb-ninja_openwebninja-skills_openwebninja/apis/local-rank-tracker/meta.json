@@ -1,0 +1,11 @@
+{
+  "api_id": "local-rank-tracker",
+  "portal_api_id": "local_rank_tracker",
+  "rapidapi_host": "local-rank-tracker.p.rapidapi.com",
+  "notes": "Returns full rank results in a single call. No pagination.",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/local_rank_tracker.yaml",
+  "last_updated_yaml": "2026-03-14T22:49:40.453Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/local-rank-tracker",
+  "openwebninja_url": "https://www.openwebninja.com/api/local-rank-tracker"
+}

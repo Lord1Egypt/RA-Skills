@@ -1,35 +1,9 @@
 ---
-name: "nx-plugins"
-description: "Indexed by skills.sh from nrwl/nx-ai-agents-config"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "nrwl"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/nrwl/nx-ai-agents-config/nx-plugins"
-sourceUrl: "https://skills.sh/nrwl/nx-ai-agents-config/nx-plugins"
+name: nx-plugins
+description: Find and add Nx plugins. USE WHEN user wants to discover available plugins, install a new plugin, or add support for a specific framework or technology to the workspace.
 ---
 
-# nx-plugins
+## Finding and Installing new plugins
 
-> Indexed by skills.sh from nrwl/nx-ai-agents-config
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** nrwl
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/nrwl/nx-ai-agents-config/nx-plugins`
-- **Source URL:** [https://skills.sh/nrwl/nx-ai-agents-config/nx-plugins](https://skills.sh/nrwl/nx-ai-agents-config/nx-plugins)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/nrwl/nx-ai-agents-config/nx-plugins
-```
+- List plugins: `pnpm nx list`
+- Install plugins `pnpm nx add <plugin>`. Example: `pnpm nx add @nx/react`.

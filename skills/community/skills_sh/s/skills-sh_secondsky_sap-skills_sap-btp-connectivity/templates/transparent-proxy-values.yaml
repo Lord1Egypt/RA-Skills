@@ -1,0 +1,225 @@
+# SAP BTP Transparent Proxy for Kubernetes - Helm Values Template
+# Source: https://github.com/SAP-docs/btp-connectivity
+#
+# Installation:
+#   helm install transparent-proxy \
+#     oci://registry-1.docker.io/sapse/transparent-proxy \
+#     --version <version> \
+#     --namespace <namespace> \
+#     -f transparent-proxy-values.yaml
+
+# ============================================================
+# IMAGE CONFIGURATION
+# ============================================================
+image:
+  registry: docker.io/sapse
+  repository: transparent-proxy
+  tag: ""  # Uses chart version if empty
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+
+# ============================================================
+# REPLICA AND SCALING
+# ============================================================
+replicaCount:
+  # HTTP proxy replicas
+  http: 2
+  # TCP proxy replicas (for non-HTTP protocols)
+  tcp: 1
+
+# Horizontal Pod Autoscaler
+autoscaling:
+  http:
+    enabled: false
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 80
+  tcp:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 80
+
+# Pod disruption budget
+podDisruptionBudget:
+  http:
+    enabled: true
+    minAvailable: 1
+  tcp:
+    enabled: true
+    minAvailable: 1
+
+# ============================================================
+# RESOURCE LIMITS
+# ============================================================
+resources:
+  http:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+  tcp:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
+# ============================================================
+# DESTINATION SERVICE INTEGRATION
+# ============================================================
+config:
+  integration:
+    destinationService:
+      # Name of Kubernetes secret containing service credentials
+      serviceCredentialsKey: destination-service-key
+
+    # Connectivity Proxy integration (required for on-premise)
+    connectivityProxy:
+      enabled: true
+      # Service name of Connectivity Proxy in cluster
+      serviceName: connectivity-proxy
+      # Namespace (if different from Transparent Proxy)
+      # namespace: connectivity-namespace
+
+# ============================================================
+# TENANT MODE
+# ============================================================
+  tenantMode: shared  # shared or dedicated
+  # shared: Single destination service instance serves all tenants
+  # dedicated: Tenant-specific destination service instances
+
+# ============================================================
+# LOGGING
+# ============================================================
+  logging:
+    level: info  # debug, info, warn, error
+
+# ============================================================
+# MANAGED NAMESPACES
+# ============================================================
+  # List of namespaces where Transparent Proxy creates services
+  # Empty = all namespaces
+  managedNamespaces: []
+  # - namespace1
+  # - namespace2
+
+# ============================================================
+# SERVICE CONFIGURATION
+# ============================================================
+service:
+  http:
+    type: ClusterIP
+    port: 80
+  tcp:
+    type: ClusterIP
+
+# ============================================================
+# mTLS CONFIGURATION
+# ============================================================
+  security:
+    # Enable mTLS between components
+    mtls:
+      enabled: false
+      # Certificate manager settings (if not using Istio)
+      certManager:
+        enabled: true
+        issuer: ""  # Name of cert-manager issuer
+
+# ============================================================
+# ISTIO INTEGRATION
+# ============================================================
+# istio:
+#   enabled: true
+#   # Disable internal mTLS when Istio handles it
+#   config:
+#     security:
+#       mtls:
+#         enabled: false
+
+# ============================================================
+# POD CONFIGURATION
+# ============================================================
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+
+# ============================================================
+# HEALTH CHECKS
+# ============================================================
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    path: /readyz
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 5
+
+# ============================================================
+# SERVICE ACCOUNT
+# ============================================================
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+# RBAC for managing Destination Custom Resources
+rbac:
+  create: true
+
+# ============================================================
+# DESTINATION SERVICE SECRET TEMPLATE
+# ============================================================
+# Create this secret before installing the chart:
+#
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: destination-service-key
+#   namespace: <namespace>
+# type: Opaque
+# stringData:
+#   destination_key: |
+#     {
+#       "clientid": "...",
+#       "clientsecret": "...",
+#       "url": "...",
+#       "uri": "..."
+#     }
+
+# ============================================================
+# DESTINATION CUSTOM RESOURCE EXAMPLE
+# ============================================================
+# After installation, create Destination resources to expose BTP destinations:
+#
+# apiVersion: destination.connectivity.api.sap/v1
+# kind: Destination
+# metadata:
+#   name: my-api-destination
+#   namespace: default
+# spec:
+#   destinationRef:
+#     name: my-btp-destination  # Name in BTP Destination Service
+#
+# Access via: http://my-api-destination.default/api/endpoint

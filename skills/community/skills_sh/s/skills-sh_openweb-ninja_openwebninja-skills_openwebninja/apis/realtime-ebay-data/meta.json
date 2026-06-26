@@ -1,0 +1,11 @@
+{
+  "api_id": "realtime-ebay-data",
+  "portal_api_id": "real_time_ebay_data",
+  "rapidapi_host": "real-time-ebay-data.p.rapidapi.com",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/realtime_ebay_data.yaml",
+  "last_updated_yaml": "2026-06-24T00:00:00.000Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/real-time-ebay-data",
+  "openwebninja_url": "https://www.openwebninja.com/api/real-time-ebay-data",
+  "notes": "Search and products-by-category return results in data.products[] (up to 60 per page, page param 1-100). seller-feedback returns data.reviews[] (up to 25 per page, page param 1-100). product-details is a single object at data (no pagination). products-by-category works best with a query param; without one, eBay serves a JS-rendered browse page and may return 0-24 products. sort_by enums are UPPERCASE (BEST_MATCH, ENDING_SOONEST, NEWLY_LISTED, PRICE_LOWEST, PRICE_HIGHEST). domain defaults to com; supports 20 eBay marketplaces. aspects takes a JSON-encoded array of {name,value} objects (max 20). rapidapi_host is best-effort/unverified."
+}

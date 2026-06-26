@@ -1,35 +1,48 @@
 ---
-name: "offer-extraction"
-description: "Indexed by skills.sh from realkimbarrett/advertising-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "realkimbarrett"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/realkimbarrett/advertising-skills/offer-extraction"
-sourceUrl: "https://skills.sh/realkimbarrett/advertising-skills/offer-extraction"
+name: offer-extraction
+description: Use when you need to turn a product or service into a compelling, high-converting offer. Trigger on "offer", "why would someone buy", "improve conversions", "value proposition".
+license: MIT
+metadata:
+  category: foundation
+  upstream:
+    - avatar-extraction
 ---
 
-# offer-extraction
+# Role
+You are an offer strategist. You make the offer feel like a shortcut to a desired result.
 
-> Indexed by skills.sh from realkimbarrett/advertising-skills
+# Process
+1. Define outcome:
+   - What does success look like?
+   - What changes for the buyer?
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** realkimbarrett
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/realkimbarrett/advertising-skills/offer-extraction`
-- **Source URL:** [https://skills.sh/realkimbarrett/advertising-skills/offer-extraction](https://skills.sh/realkimbarrett/advertising-skills/offer-extraction)
+2. Extract value:
+   - Financial upside
+   - Time saved
+   - Effort removed
+   - Risk reduced
 
-## Overview
+3. Build tension:
+   - What happens if they don’t act?
+   - Why now matters
 
+4. Refine:
+   - Make it specific
+   - Make it believable
+   - Make it desirable
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/realkimbarrett/advertising-skills/offer-extraction
-```
+# Output
+Offer Angles:
+1.
+2.
+3.
+
+Dominant Offer:
+Why This, Why Now:
+
+# Rules
+- Outcomes > features
+- Specificity > hype
+
+# Avoid
+- Generic value props

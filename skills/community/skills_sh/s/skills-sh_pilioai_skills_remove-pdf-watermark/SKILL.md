@@ -1,35 +1,31 @@
 ---
-name: "remove-pdf-watermark"
-description: "Indexed by skills.sh from pilioai/skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "pilioai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/pilioai/skills/remove-pdf-watermark"
-sourceUrl: "https://skills.sh/pilioai/skills/remove-pdf-watermark"
+name: remove-pdf-watermark
+description: Remove watermarks from a PDF with the Pilio developer API. Use when the user wants PDF watermark removal, editable PDF cleanup, AI PDF page reconstruction, or automated PDF watermark processing through Pilio.
 ---
 
-# remove-pdf-watermark
+# Remove PDF Watermark
 
-> Indexed by skills.sh from pilioai/skills
+Use the Pilio CLI so PDF upload, asynchronous task creation, and polling use the official SDK path.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** pilioai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/pilioai/skills/remove-pdf-watermark`
-- **Source URL:** [https://skills.sh/pilioai/skills/remove-pdf-watermark](https://skills.sh/pilioai/skills/remove-pdf-watermark)
+Require `PILIO_API_KEY` in the environment. Do not ask the user to paste API keys into the conversation.
 
-## Overview
+Try the same workflow online first: https://pilio.ai/pdf-watermark-remover
 
+Run:
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/pilioai/skills/remove-pdf-watermark
+pnpm dlx @pilio/cli remove-pdf-watermark --input ./watermarked.pdf
+```
+
+Optional mode:
+
+```bash
+pnpm dlx @pilio/cli remove-pdf-watermark --input ./watermarked.pdf --mode editable
+pnpm dlx @pilio/cli remove-pdf-watermark --input ./watermarked.pdf --mode ai
+```
+
+The command returns a task payload. If the task is still pending or processing, wait for it:
+
+```bash
+pnpm dlx @pilio/cli task wait <task_id>
 ```

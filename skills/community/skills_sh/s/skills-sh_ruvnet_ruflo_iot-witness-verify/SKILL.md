@@ -1,35 +1,14 @@
 ---
-name: "iot-witness-verify"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/iot-witness-verify"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/iot-witness-verify"
+name: iot-witness-verify
+description: Verify witness chain integrity and detect provenance gaps
+allowed-tools: Bash(npx *) mcp__claude-flow__memory_store Read
+argument-hint: "<device-id>"
 ---
+Verify the witness chain integrity for a Cognitum Seed device.
 
-# iot-witness-verify
-
-> Indexed by skills.sh from ruvnet/ruflo
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/iot-witness-verify`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/iot-witness-verify](https://skills.sh/ruvnet/ruflo/iot-witness-verify)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/iot-witness-verify
-```
+Steps:
+1. `npx -y -p @claude-flow/plugin-iot-cognitum@latest cognitum-iot witness verify DEVICE_ID`
+2. Check for epoch gaps and hash chain breaks
+3. Report integrity score (0.0–1.0)
+4. If gaps found, store for audit trail:
+   `mcp__claude-flow__memory_store({ key: "iot-witness-gap-DEVICEID", value: "Gap from EPOCH to EPOCH", namespace: "iot-audit" })`

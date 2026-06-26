@@ -1,35 +1,21 @@
 ---
-name: "result"
-description: "Indexed by skills.sh from parallel-web/parallel-agent-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parallel-web"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parallel-web/parallel-agent-skills/result"
-sourceUrl: "https://skills.sh/parallel-web/parallel-agent-skills/result"
+name: result
+description: Get completed research task result by run ID
+user-invocable: true
+argument-hint: <run_id>
+allowed-tools: Bash(parallel-cli:*)
+metadata:
+  author: parallel
 ---
 
-# result
+# Get Research Result
 
-> Indexed by skills.sh from parallel-web/parallel-agent-skills
+## Run ID: $ARGUMENTS
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parallel-web
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parallel-web/parallel-agent-skills/result`
-- **Source URL:** [https://skills.sh/parallel-web/parallel-agent-skills/result](https://skills.sh/parallel-web/parallel-agent-skills/result)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/parallel-web/parallel-agent-skills/result
+parallel-cli research poll "$ARGUMENTS" --json
 ```
+
+Present results in a clear, organized format.
+
+If CLI not found, tell user to run `/parallel:parallel-cli-setup`.

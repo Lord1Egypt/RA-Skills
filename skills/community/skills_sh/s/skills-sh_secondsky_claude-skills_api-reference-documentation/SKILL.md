@@ -1,35 +1,94 @@
 ---
-name: "api-reference-documentation"
-description: "Indexed by skills.sh from secondsky/claude-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "secondsky"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/secondsky/claude-skills/api-reference-documentation"
-sourceUrl: "https://skills.sh/secondsky/claude-skills/api-reference-documentation"
+name: api-reference-documentation
+description: Creates professional API documentation using OpenAPI specifications with endpoints, authentication, and interactive examples. Use when documenting REST APIs, creating SDK references, or building developer portals.
+license: MIT
 ---
 
-# api-reference-documentation
+# API Reference Documentation
 
-> Indexed by skills.sh from secondsky/claude-skills
+Create comprehensive API documentation for developer integration.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** secondsky
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/secondsky/claude-skills/api-reference-documentation`
-- **Source URL:** [https://skills.sh/secondsky/claude-skills/api-reference-documentation](https://skills.sh/secondsky/claude-skills/api-reference-documentation)
+## OpenAPI 3.0 Specification
 
-## Overview
+```yaml
+openapi: 3.0.3
+info:
+  title: E-Commerce API
+  version: 1.0.0
+  description: API for managing products and orders
+  contact:
+    email: api@example.com
 
+servers:
+  - url: https://api.example.com/v1
+    description: Production
+  - url: https://staging-api.example.com/v1
+    description: Staging
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/secondsky/claude-skills/api-reference-documentation
+security:
+  - bearerAuth: []
+
+paths:
+  /products:
+    get:
+      summary: List products
+      tags: [Products]
+      parameters:
+        - name: limit
+          in: query
+          schema: { type: integer, default: 20 }
+        - name: category
+          in: query
+          schema: { type: string }
+      responses:
+        '200':
+          description: Product list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductList'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Product:
+      type: object
+      required: [id, name, price]
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string, maxLength: 200 }
+        price: { type: number, minimum: 0 }
+        description: { type: string }
 ```
+
+## Documentation Checklist
+
+- [ ] All endpoints documented with examples
+- [ ] Authentication methods explained
+- [ ] Error responses specified
+- [ ] Rate limits documented
+- [ ] Pagination explained
+- [ ] Webhooks documented (if applicable)
+- [ ] SDK examples in multiple languages
+
+## Best Practices
+
+- Use OpenAPI 3.0+ specification
+- Include request/response examples
+- Document all parameters and headers
+- Provide authentication examples
+- Enable interactive API exploration
+- Maintain version documentation
+- Include migration guides for breaking changes
+
+## Tools
+
+- Swagger Editor / Swagger UI
+- Redoc
+- Postman Documentation
+- Stoplight

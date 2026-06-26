@@ -1,35 +1,15 @@
 ---
-name: "federation-status"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/federation-status"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/federation-status"
+name: federation-status
+description: Show federation health — peers, sessions, trust levels, and message metrics
+allowed-tools: Bash(npx *) mcp__claude-flow__memory_search Read
+argument-hint: ""
 ---
+Show the current state of the federation.
 
-# federation-status
+Steps:
+1. `npx -y -p @claude-flow/plugin-agent-federation@latest ruflo-federation status` -- overall health
+2. `npx -y -p @claude-flow/plugin-agent-federation@latest ruflo-federation peers` -- list peers with trust levels and scores
+3. Summarize: active sessions, messages exchanged, PII redactions, threat detections
 
-> Indexed by skills.sh from ruvnet/ruflo
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/federation-status`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/federation-status](https://skills.sh/ruvnet/ruflo/federation-status)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/federation-status
-```
+Search memory for federation history:
+`mcp__claude-flow__memory_search({ query: "federation peer trust", namespace: "federation" })`

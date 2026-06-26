@@ -1,35 +1,13 @@
 ---
-name: "code-review-context"
-description: "Indexed by skills.sh from openai/codex"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "openai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/openai/codex/code-review-context"
-sourceUrl: "https://skills.sh/openai/codex/code-review-context"
+name: code-review-context
+description: Model visible context
 ---
 
-# code-review-context
+Codex maintains a context (history of messages) that is sent to the model in inference requests.
 
-> Indexed by skills.sh from openai/codex
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** openai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/openai/codex/code-review-context`
-- **Source URL:** [https://skills.sh/openai/codex/code-review-context](https://skills.sh/openai/codex/code-review-context)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/openai/codex/code-review-context
-```
+1. No history rewrite - the context must be built up incrementally.
+2. Avoid frequent changes to context that cause cache misses.
+3. No unbounded items - everything injected in the model context must have a bounded size and a hard cap. 
+4. No items larger than 10K tokens.
+5. Highlight new individual items that can cross >1k tokens as P0. These need an additional manual review.
+6. All injected fragments must be defined as structs in `core/context` and implement ContextualUserFragment trait

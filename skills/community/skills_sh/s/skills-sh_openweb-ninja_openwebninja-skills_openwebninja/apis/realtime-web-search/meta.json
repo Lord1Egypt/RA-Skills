@@ -1,0 +1,11 @@
+{
+  "api_id": "realtime-web-search",
+  "portal_api_id": "realtime_web_search",
+  "rapidapi_host": "real-time-web-search.p.rapidapi.com",
+  "notes": "Offset-based pagination using 'start' param. Use 'num' param to control results per page (default 10).",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/realtime_web_search.yaml",
+  "last_updated_yaml": "2026-03-26T11:05:03.896Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/real-time-web-search",
+  "openwebninja_url": "https://www.openwebninja.com/api/real-time-web-search"
+}

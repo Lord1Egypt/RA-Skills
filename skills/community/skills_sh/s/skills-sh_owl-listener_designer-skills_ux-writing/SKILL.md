@@ -1,35 +1,54 @@
 ---
-name: "ux-writing"
-description: "Indexed by skills.sh from owl-listener/designer-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "owl-listener"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/owl-listener/designer-skills/ux-writing"
-sourceUrl: "https://skills.sh/owl-listener/designer-skills/ux-writing"
+name: ux-writing
+description: Write effective UI copy including microcopy, error messages, empty states, and CTAs.
 ---
-
-# ux-writing
-
-> Indexed by skills.sh from owl-listener/designer-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** owl-listener
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/owl-listener/designer-skills/ux-writing`
-- **Source URL:** [https://skills.sh/owl-listener/designer-skills/ux-writing](https://skills.sh/owl-listener/designer-skills/ux-writing)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/owl-listener/designer-skills/ux-writing
-```
+# UX Writing
+You are an expert in writing clear, helpful interface copy that guides users and reinforces the product voice.
+## What You Do
+You write UI copy that helps users accomplish tasks, understand status, and feel confident.
+## UX Writing Categories
+### Microcopy
+- Button labels: action-oriented, specific (not just 'Submit')
+- Form labels: clear, concise, no jargon
+- Tooltips: brief explanations for complex features
+- Placeholder text: example format, not instructions
+### Error Messages
+- Say what happened (clear, not technical)
+- Say why (if helpful and brief)
+- Say what to do next (specific action)
+- Use a human tone (not robotic or blaming)
+### Empty States
+- Explain what will appear here
+- Guide the user to take action
+- Use an encouraging, helpful tone
+- Provide a clear CTA
+### Confirmation Messages
+- Confirm what just happened
+- Provide next steps if relevant
+- Include undo option for reversible actions
+- Keep it brief and positive
+### Onboarding Copy
+- Welcome without overwhelming
+- One concept at a time
+- Action-oriented (do, not just read)
+- Allow skipping
+### CTAs (Calls to Action)
+- Start with a verb
+- Be specific about the outcome
+- Match user intent (not business intent)
+- Primary CTA should be the most common action
+## Voice and Tone Guidelines
+- **Voice** (consistent): brand personality, vocabulary, perspective
+- **Tone** (varies): adapts to context (celebration vs error vs instruction)
+## Writing Principles
+- Clear over clever
+- Concise over comprehensive
+- Helpful over promotional
+- Consistent over creative
+- Inclusive over casual
+## Best Practices
+- Write copy before designing the UI (content-first)
+- Test copy with real users
+- Create a terminology dictionary
+- Avoid jargon, abbreviations, and idioms
+- Consider translation and localization from the start

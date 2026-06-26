@@ -1,35 +1,33 @@
 ---
-name: "no-task-output"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/no-task-output"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/no-task-output"
+name: no-task-output
+description: Never Use TaskOutput
+user-invocable: false
 ---
 
-# no-task-output
+# Never Use TaskOutput
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+TaskOutput floods the main context window with agent transcripts (70k+ tokens).
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/no-task-output`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/no-task-output](https://skills.sh/parcadei/continuous-claude-v3/no-task-output)
+## Rule
 
-## Overview
+NEVER use `TaskOutput` tool. Use `Task` tool with synchronous mode instead.
 
+## Why
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/no-task-output
+- TaskOutput reads full agent transcript into context
+- This causes mid-conversation compaction
+- Defeats the purpose of agent context isolation
+
+## Pattern
+
 ```
+# WRONG - floods context
+Task(run_in_background=true)
+TaskOutput(task_id="...")  // 70k tokens dumped
+
+# RIGHT - isolated context, returns summary
+Task(run_in_background=false)  // Agent runs, returns summary
+```
+
+## Source
+- Session where TaskOutput caused context overflow

@@ -1,35 +1,29 @@
 ---
-name: "cognitive-pattern"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/cognitive-pattern"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/cognitive-pattern"
+name: cognitive-pattern
+description: Define and manage cognitive patterns for agent reasoning and decision-making
+argument-hint: "<pattern-name>"
+allowed-tools: mcp__claude-flow__daa_cognitive_pattern mcp__claude-flow__daa_workflow_create mcp__claude-flow__daa_workflow_execute mcp__claude-flow__daa_knowledge_share mcp__claude-flow__daa_learning_status Bash
 ---
 
-# cognitive-pattern
+# Cognitive Pattern
 
-> Indexed by skills.sh from ruvnet/ruflo
+Define cognitive patterns that guide agent reasoning and decision-making.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/cognitive-pattern`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/cognitive-pattern](https://skills.sh/ruvnet/ruflo/cognitive-pattern)
+## When to use
 
-## Overview
+When you want to codify reasoning strategies, decision trees, or problem-solving approaches that agents can use and improve over time.
 
+## Steps
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/cognitive-pattern
-```
+1. **Define pattern** — call `mcp__claude-flow__daa_cognitive_pattern` with the pattern structure and triggers
+2. **Create workflow** — call `mcp__claude-flow__daa_workflow_create` to embed the pattern in an executable workflow
+3. **Execute** — call `mcp__claude-flow__daa_workflow_execute` to run the cognitive workflow
+4. **Evaluate** — call `mcp__claude-flow__daa_learning_status` to see how the pattern performs
+5. **Share** — call `mcp__claude-flow__daa_knowledge_share` to propagate successful patterns
+
+## Pattern types
+
+- **Decision trees** — structured if/then reasoning
+- **Chain of thought** — step-by-step problem decomposition
+- **Analogy mapping** — solve new problems by referencing similar solved ones
+- **Consensus patterns** — multi-perspective evaluation before deciding

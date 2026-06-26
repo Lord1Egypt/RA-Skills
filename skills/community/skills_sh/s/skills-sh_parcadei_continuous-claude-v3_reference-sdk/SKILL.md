@@ -1,35 +1,53 @@
 ---
-name: "reference-sdk"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/reference-sdk"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/reference-sdk"
+name: reference-sdk
+description: Check reference SDK implementations using btca ask
+user-invocable: false
 ---
 
-# reference-sdk
+# Reference SDK Check
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+When implementing SDK features or debugging provider-specific issues, check reference implementations.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/reference-sdk`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/reference-sdk](https://skills.sh/parcadei/continuous-claude-v3/reference-sdk)
+## When to Use
 
-## Overview
+- Implementing SDK features
+- Debugging provider-specific issues
+- Understanding how other libraries solve similar problems
+- "How does Vercel AI SDK do X?"
+- "Check Anthropic SDK for Y"
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+Use `btca ask` to check how reference SDKs implement similar features:
+
 ```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/reference-sdk
+# Check Vercel AI SDK for streaming patterns
+btca ask -r vercel-ai -q "How does streamObject work?"
+
+# Check Anthropic SDK for tool calling
+btca ask -r anthropic-sdk -q "How are tools defined and called?"
+
+# Check Zod for validation patterns
+btca ask -r zod -q "How does safeParse handle errors?"
 ```
+
+## Configured Resources
+
+- `vercel-ai` - Streaming, tool calling, structured output
+- `anthropic-sdk` - Anthropic API patterns
+- `zod` - Schema validation
+
+Add more: `btca config resources add -n <name> -t git -u <url> -b <branch>`
+
+## When to Check
+
+1. **Before implementing** - See how others solved similar problems
+2. **When debugging** - Find how reference code handles edge cases
+3. **Multi-provider support** - Compare implementations across SDKs
+4. **Validation patterns** - Check idiomatic approaches
+
+## Don't Use For
+
+- Documentation lookups (use /nia-docs instead)
+- Simple API questions (use WebSearch)
+- Project-specific patterns (use Grep/Glob)

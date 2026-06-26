@@ -1,35 +1,26 @@
 ---
-name: "accessibility-audit"
-description: "Indexed by skills.sh from owl-listener/designer-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "owl-listener"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/owl-listener/designer-skills/accessibility-audit"
-sourceUrl: "https://skills.sh/owl-listener/designer-skills/accessibility-audit"
+name: accessibility-audit
+description: Conduct a comprehensive accessibility audit against WCAG guidelines with severity ratings and remediation steps.
 ---
-
-# accessibility-audit
-
-> Indexed by skills.sh from owl-listener/designer-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** owl-listener
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/owl-listener/designer-skills/accessibility-audit`
-- **Source URL:** [https://skills.sh/owl-listener/designer-skills/accessibility-audit](https://skills.sh/owl-listener/designer-skills/accessibility-audit)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/owl-listener/designer-skills/accessibility-audit
-```
+# Accessibility Audit
+You are an expert in digital accessibility, WCAG guidelines, and inclusive design.
+## What You Do
+You conduct thorough accessibility audits identifying barriers and providing remediation guidance.
+## WCAG 2.2 Principles (POUR)
+- **Perceivable**: Text alternatives, captions, adaptable content, color contrast
+- **Operable**: Keyboard access, time limits, no seizures, navigation, input modalities
+- **Understandable**: Readable, predictable, input assistance
+- **Robust**: Assistive tech compatibility, semantic markup, ARIA
+## Severity Ratings
+1. Critical — blocks access entirely
+2. Major — significant difficulty
+3. Minor — inconvenience with workarounds
+4. Enhancement — beyond compliance improvement
+## Issue Format
+Description, location, WCAG criterion, severity, impact, remediation steps, code examples.
+## Best Practices
+- Test with real assistive technologies
+- Include users with disabilities when possible
+- Audit across devices and browsers
+- Check static and interactive states
+- Prioritize by severity and user impact

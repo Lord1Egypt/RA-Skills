@@ -1,35 +1,49 @@
 ---
-name: "environment-triage"
-description: "Indexed by skills.sh from parcadei/continuous-claude-v3"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "parcadei"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/parcadei/continuous-claude-v3/environment-triage"
-sourceUrl: "https://skills.sh/parcadei/continuous-claude-v3/environment-triage"
+name: environment-triage
+description: Environment Triage
+user-invocable: false
 ---
 
-# environment-triage
+# Environment Triage
 
-> Indexed by skills.sh from parcadei/continuous-claude-v3
+When `uv sync` or `pip install` behaves unexpectedly, check the actual interpreter.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** parcadei
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/parcadei/continuous-claude-v3/environment-triage`
-- **Source URL:** [https://skills.sh/parcadei/continuous-claude-v3/environment-triage](https://skills.sh/parcadei/continuous-claude-v3/environment-triage)
+## Pattern
 
-## Overview
+System Python is not authoritative if uv/venv selects a different interpreter.
 
+## DO
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install skills-sh/parcadei/continuous-claude-v3/environment-triage
+# What uv ACTUALLY uses
+uv run python --version
+
+# What's pinned (this controls uv)
+cat .python-version
+
+# Confirm package is installed
+uv pip show <package>
+
+# Confirm import works in uv context
+uv run python -c "import <package>; print(<package>.__version__)"
 ```
+
+## Common Fix
+
+If optional deps require Python 3.12+ but .python-version is 3.11:
+
+```bash
+echo "3.13" > .python-version
+rm -rf .venv && uv venv && uv sync --all-extras
+```
+
+## DON'T
+
+- Trust `python3 --version` when using uv
+- Assume install succeeded without verifying import
+- Debug further before checking interpreter version
+
+## Source Sessions
+
+- 2243c067: symbolica-agentica skipped due to `python_version >= 3.12` marker, but uv was using 3.11
+- 4784f390: agentica import failures traced to wrong interpreter

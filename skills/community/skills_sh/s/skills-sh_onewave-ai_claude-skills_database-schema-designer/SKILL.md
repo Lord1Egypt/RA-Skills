@@ -1,35 +1,40 @@
 ---
-name: "database-schema-designer"
-description: "Indexed by skills.sh from onewave-ai/claude-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "onewave-ai"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/onewave-ai/claude-skills/database-schema-designer"
-sourceUrl: "https://skills.sh/onewave-ai/claude-skills/database-schema-designer"
+name: database-schema-designer
+description: Design optimized database schemas for SQL and NoSQL databases including tables, relationships, indexes, and constraints. Creates ERD diagrams, migration scripts, and data modeling best practices. Use when users need database design, schema optimization, or data architecture planning.
 ---
 
-# database-schema-designer
+# Database Schema Designer
 
-> Indexed by skills.sh from onewave-ai/claude-skills
+Design optimized, scalable database schemas with proper relationships and indexes.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** onewave-ai
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/onewave-ai/claude-skills/database-schema-designer`
-- **Source URL:** [https://skills.sh/onewave-ai/claude-skills/database-schema-designer](https://skills.sh/onewave-ai/claude-skills/database-schema-designer)
+## Contents
 
-## Overview
+- `references/schema-templates.md` — SQL/NoSQL schema templates, ASCII ERD, and migration script templates.
+- `references/output-format.md` — labeled section structure for the final deliverable.
+- `references/best-practices.md` — naming, data types, indexes, relationships, SQL/NoSQL design rules, and the output quality checklist.
 
+## Workflow
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/onewave-ai/claude-skills/database-schema-designer
-```
+1. Gather requirements. Determine the database engine (PostgreSQL, MySQL, MongoDB, etc.), application domain, main entities, most common queries, expected data volume and growth, performance requirements, and any compliance constraints.
+
+2. Design the schema. Apply the engine-appropriate rules in `references/best-practices.md` (SQL Database Design or NoSQL Database Design).
+
+3. Generate the complete schema. Produce CREATE TABLE statements or collection documents using the templates in `references/schema-templates.md`.
+
+4. Create the entity relationship diagram in text format following the ERD template in `references/schema-templates.md`.
+
+5. Provide migration scripts with both up and down (rollback) paths, per the migration template in `references/schema-templates.md`.
+
+6. Format the complete output using the labeled sections in `references/output-format.md`.
+
+7. Verify the result against the output quality checklist in `references/best-practices.md`.
+
+## Example Triggers
+
+- "Design a database schema for an e-commerce platform"
+- "Create SQL tables for a blog system"
+- "Help me design a MongoDB schema for a social network"
+- "Optimize this database schema for performance"
+- "Generate migration scripts for my schema"
+
+Generate production-ready, optimized database schemas that scale.

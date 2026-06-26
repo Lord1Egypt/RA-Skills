@@ -1,35 +1,28 @@
 ---
-name: "commit"
-description: "Indexed by skills.sh from owainlewis/blueprint"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "owainlewis"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/owainlewis/blueprint/commit"
-sourceUrl: "https://skills.sh/owainlewis/blueprint/commit"
+name: commit
+description: "Stage intended changes and create one Conventional Commit."
+user-invocable: true
+argument-hint: "[optional commit message]"
 ---
 
-# commit
+# Commit
 
-> Indexed by skills.sh from owainlewis/blueprint
+Create one Conventional Commit for the intended current changes.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** owainlewis
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/owainlewis/blueprint/commit`
-- **Source URL:** [https://skills.sh/owainlewis/blueprint/commit](https://skills.sh/owainlewis/blueprint/commit)
+## Workflow
 
-## Overview
+1. Inspect `git status`, `git diff`, and `git diff --cached`.
+2. Read recent commit messages for scopes and local phrasing.
+3. If there is nothing worth committing, stop.
+4. Stage only intended files.
+5. Use the user's message if provided. Otherwise write a Conventional Commit message: `type(scope): subject`. Imperative subject, 72 characters or fewer, no trailing period.
+6. Create the commit and report the hash and message.
 
+## Rules
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/owainlewis/blueprint/commit
-```
+- Prefer staging specific files over broad adds.
+- Do not commit `.env`, credentials, or keys.
+- If the diff is not understood, stop.
+- Prefer `feat`, `fix`, `refactor`, `test`, `docs`, or `chore`.
+- The subject should say what changed. Add a body when the why, risk, or verification matters.
+- Never bypass hooks with `--no-verify`. If a hook fails, fix the cause or stop and report.

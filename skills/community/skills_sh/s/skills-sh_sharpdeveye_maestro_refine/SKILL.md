@@ -1,35 +1,85 @@
 ---
-name: "refine"
-description: "Indexed by skills.sh from sharpdeveye/maestro"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "sharpdeveye"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/sharpdeveye/maestro/refine"
-sourceUrl: "https://skills.sh/sharpdeveye/maestro/refine"
+name: refine
+description: "Use when the workflow works but needs polish, or as the final step in a diagnose → fix → refine cycle before shipping."
+argument-hint: "[target area]"
+category: fix
+version: 2.0.0
+user-invocable: true
 ---
 
-# refine
+## MANDATORY PREPARATION
 
-> Indexed by skills.sh from sharpdeveye/maestro
+Invoke /agent-workflow — it contains workflow principles, anti-patterns, and the **Context Gathering Protocol**. Follow the protocol before proceeding — if no workflow context exists yet, you MUST run /teach-maestro first.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** sharpdeveye
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/sharpdeveye/maestro/refine`
-- **Source URL:** [https://skills.sh/sharpdeveye/maestro/refine](https://skills.sh/sharpdeveye/maestro/refine)
+---
 
-## Overview
+This is the final quality pass. The workflow works — now make it excellent.
 
+### Refinement Checklist
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/sharpdeveye/maestro/refine
-```
+**Prompts**
+
+- [ ] Every prompt follows the 4-zone pattern (role, context, instructions, output)
+- [ ] Output schemas are explicit and validated
+- [ ] Negative instructions clarify what NOT to do
+- [ ] No contradictory instructions
+- [ ] Few-shot examples included for ambiguous tasks
+- [ ] Chain-of-thought used for multi-step reasoning tasks
+
+**Tool Descriptions**
+
+- [ ] Every tool has a multi-line description: what, when to use, when NOT to use, returns
+- [ ] Input parameters have descriptions and types
+- [ ] Error responses are documented
+- [ ] At least one example input/output in the description
+
+**Error Messages**
+
+- [ ] Error messages are specific (not "an error occurred")
+- [ ] Error messages suggest corrective action
+- [ ] Errors include context (what was being attempted)
+- [ ] Errors are structured (code + message + details)
+
+**Logging**
+
+- [ ] Every model call is logged (input tokens, output tokens, latency, cost)
+- [ ] Tool calls are logged with inputs and outputs
+- [ ] Errors are logged with full context
+- [ ] PII is redacted from logs
+- [ ] Workflow ID traces through all log entries
+
+**Configuration**
+
+- [ ] All magic numbers are named constants
+- [ ] Environment-specific values are in config, not code
+- [ ] Defaults are sensible — config is for overrides
+- [ ] Cost ceilings are set
+- [ ] Timeout values are set for all external calls
+
+### Output
+
+For each checklist item that fails, provide:
+
+1. What's wrong (specific finding)
+2. Where it is (file, line, or component)
+3. How to fix it (concrete suggestion)
+4. Priority (critical / important / nice-to-have)
+
+### Priority Matrix
+
+| Priority | Criteria | Maestro Action |
+|----------|---------|----------------|
+| Critical | Affects correctness or safety | `/fortify` or `/guard` before shipping |
+| Important | Affects quality or maintainability | `/calibrate` in current cycle |
+| Nice-to-have | Cosmetic or minor inconsistency | Note for next `/refine` pass |
+
+### Recommended Next Step
+
+After refinement is complete, run `/evaluate` to verify the polished workflow against realistic scenarios.
+
+**NEVER**:
+
+- Skip the checklist — go through every item
+- Mark items as passing without checking
+- Suggest changes that alter behavior (this is polish, not redesign)
+- Refine before the workflow is functionally correct (fix first, refine last)

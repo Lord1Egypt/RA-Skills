@@ -1,35 +1,61 @@
 ---
-name: "product-led-growth"
-description: "Indexed by skills.sh from pmprompt/claude-plugin-product-management"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "pmprompt"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/pmprompt/claude-plugin-product-management/product-led-growth"
-sourceUrl: "https://skills.sh/pmprompt/claude-plugin-product-management/product-led-growth"
+name: product-led-growth
+description: Use when asked about "product-led growth", "PLG strategy", "self-serve growth", "freemium model", "free trial design", "product-led sales", "PQL", or "bottoms-up growth". Helps design and optimize product-led growth motions where the product drives acquisition, activation, and monetization. Based on frameworks from Elena Verna and Hila Qu.
 ---
 
-# product-led-growth
+## Domain Context
 
-> Indexed by skills.sh from pmprompt/claude-plugin-product-management
+This skill implements a proven product management framework. The approach combines best practices from industry leaders and is designed for practical application in day-to-day PM work.
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** pmprompt
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/pmprompt/claude-plugin-product-management/product-led-growth`
-- **Source URL:** [https://skills.sh/pmprompt/claude-plugin-product-management/product-led-growth](https://skills.sh/pmprompt/claude-plugin-product-management/product-led-growth)
+## Input Requirements
 
-## Overview
+- Context about your product, feature, or problem
+- Relevant data, research, or constraints (recommended but optional)
+- Clear articulation of what you're trying to achieve
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/pmprompt/claude-plugin-product-management/product-led-growth
-```
+# Product-Led Growth (PLG)
+
+## What It Is
+
+Product-Led Growth is a go-to-market strategy where the product itself drives acquisition, activation, retention, and monetization. Instead of relying on sales to close deals before users can try the product, PLG lets users experience value first and buy later.
+
+The core insight: **In PLG, the product does the selling.** Users sign up, experience value through self-serve, and either convert themselves or become qualified leads for sales.
+
+PLG is fundamentally **Data-Led Growth (DLG)**. When you give away a free product, you get two things in exchange: broader reach (lower barrier to entry) and usage data that tells you which features correlate with conversion and retention. Without this data foundation, you're giving away your product for nothing.
+
+## When to Use It
+
+Use PLG frameworks when you need to:
+
+- **Design a freemium or free trial model** for a B2B SaaS product
+- **Add self-serve to a sales-led product** to expand reach
+- **Optimize conversion** from free to paid users
+- **Define product-qualified leads (PQLs)** for your sales team
+- **Reduce customer acquisition cost** through self-serve
+- **Build a hybrid PLG + sales motion** (product-led sales)
+- **Diagnose why free users aren't converting** to paid
+
+## When Not to Use It
+
+- **Highly complex products requiring customization**
+- **Very small addressable market**
+- **No individual use case exists**
+- **You lack data infrastructure**
+- **You want instant revenue impact** — PLG takes 12+ months
+
+## Resources
+
+**People to follow:**
+- Elena Verna (Substack, LinkedIn) — PLG, PLS, growth strategy
+- Hila Qu — PLG implementation, activation, growth teams
+
+**Tools mentioned:**
+- Product analytics: Amplitude, Mixpanel, PostHog
+- Experimentation: Optimizely, Amplitude Experiment, Eppo
+- PLS platforms: Pocus, Endgame, Correlated
+
+
+## Further Reading
+
+- [Product Led Growth](https://www.productcompass.pm/p/product-led-growth)

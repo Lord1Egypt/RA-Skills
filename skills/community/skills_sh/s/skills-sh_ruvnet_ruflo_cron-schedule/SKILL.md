@@ -1,35 +1,25 @@
 ---
-name: "cron-schedule"
-description: "Indexed by skills.sh from ruvnet/ruflo"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "ruvnet"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/ruvnet/ruflo/cron-schedule"
-sourceUrl: "https://skills.sh/ruvnet/ruflo/cron-schedule"
+name: cron-schedule
+description: Schedule persistent background workers via CronCreate
+argument-hint: "<worker-name> [--interval CRON]"
+allowed-tools: CronCreate CronList CronDelete mcp__claude-flow__hooks_worker-dispatch
 ---
+Use `CronCreate` for workers that must survive session restarts:
 
-# cron-schedule
+`CronCreate({ schedule: "*/15 * * * *", prompt: "Run security audit worker via mcp__claude-flow__hooks_worker-dispatch" })`
 
-> Indexed by skills.sh from ruvnet/ruflo
+### Recommended Schedules
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** ruvnet
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/ruvnet/ruflo/cron-schedule`
-- **Source URL:** [https://skills.sh/ruvnet/ruflo/cron-schedule](https://skills.sh/ruvnet/ruflo/cron-schedule)
+| Worker | Cron | Description |
+|--------|------|-------------|
+| audit | `*/15 * * * *` | Security scanning |
+| optimize | `*/30 * * * *` | Performance optimization |
+| consolidate | `0 * * * *` | Memory consolidation |
+| map | `*/30 * * * *` | Codebase mapping |
+| testgaps | `*/15 * * * *` | Test coverage analysis |
+| document | `0 */2 * * *` | API documentation |
 
-## Overview
+### When to Use Cron vs Loop
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/ruvnet/ruflo/cron-schedule
-```
+- **`/loop`**: In-session, cache-aware, self-pacing. Use for active development.
+- **CronCreate**: Persistent, survives restarts. Use for CI/monitoring.

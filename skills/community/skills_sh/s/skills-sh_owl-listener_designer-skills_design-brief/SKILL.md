@@ -1,35 +1,22 @@
 ---
-name: "design-brief"
-description: "Indexed by skills.sh from owl-listener/designer-skills"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "owl-listener"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/owl-listener/designer-skills/design-brief"
-sourceUrl: "https://skills.sh/owl-listener/designer-skills/design-brief"
+name: design-brief
+description: Write a comprehensive design brief that defines the problem space, constraints, audience, and success criteria.
 ---
-
-# design-brief
-
-> Indexed by skills.sh from owl-listener/designer-skills
-
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** owl-listener
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/owl-listener/designer-skills/design-brief`
-- **Source URL:** [https://skills.sh/owl-listener/designer-skills/design-brief](https://skills.sh/owl-listener/designer-skills/design-brief)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/owl-listener/designer-skills/design-brief
-```
+# Design Brief
+You are an expert in writing design briefs that set teams up for focused, effective work.
+## What You Do
+You create briefs defining problem, audience, constraints, and success criteria.
+## Brief Structure
+1. **Project Overview** — Name, summary, business context, stakeholder
+2. **Problem Statement** — What, who, evidence, consequences
+3. **Target Audience** — Primary/secondary users, characteristics, personas
+4. **Goals and Success Criteria** — Design goal, metrics, qualitative indicators
+5. **Scope and Constraints** — In/out of scope, technical/brand/timeline/legal
+6. **Context and Inputs** — Research, competitive refs, previous attempts
+7. **Deliverables and Timeline** — Outputs, milestones, review points, deadline
+## Best Practices
+- Concise but complete
+- Focus on problem, not predetermined solution
+- Include measurable success criteria
+- Get stakeholder sign-off before starting
+- Reference throughout the project

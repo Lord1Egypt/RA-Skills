@@ -1,0 +1,11 @@
+{
+  "api_id": "realtime-news-data",
+  "portal_api_id": "realtime_news_data",
+  "rapidapi_host": "real-time-news-data.p.rapidapi.com",
+  "notes": "Offset-based pagination using 'start' param. Use 'limit' param to control page size.",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/realtime_news_data.yaml",
+  "last_updated_yaml": "2026-03-14T22:49:40.453Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/real-time-news-data",
+  "openwebninja_url": "https://www.openwebninja.com/api/real-time-news-data"
+}

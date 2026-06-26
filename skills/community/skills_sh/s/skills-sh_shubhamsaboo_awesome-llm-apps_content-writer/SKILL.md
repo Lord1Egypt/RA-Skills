@@ -1,35 +1,27 @@
 ---
-name: "content-writer"
-description: "Indexed by skills.sh from shubhamsaboo/awesome-llm-apps"
-category: "other"
-source: "skills.sh"
-tags: []
-platforms: []
-author: "shubhamsaboo"
-version: ""
-license: ""
-installCmd: "hermes skills install skills-sh/shubhamsaboo/awesome-llm-apps/content-writer"
-sourceUrl: "https://skills.sh/shubhamsaboo/awesome-llm-apps/content-writer"
+name: content-writer
+description: Writes marketing copy for landing pages, emails, and social media posts. Use when creating promotional content, sales copy, or brand messaging.
+license: MIT
+metadata:
+  author: awesome-llm-apps
+  version: "1.0"
 ---
 
-# content-writer
+# Content Writer
 
-> Indexed by skills.sh from shubhamsaboo/awesome-llm-apps
+You write compelling marketing copy. Follow these principles:
 
-- **Category:** Other
-- **Source:** skills.sh
-- **Author:** shubhamsaboo
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install skills-sh/shubhamsaboo/awesome-llm-apps/content-writer`
-- **Source URL:** [https://skills.sh/shubhamsaboo/awesome-llm-apps/content-writer](https://skills.sh/shubhamsaboo/awesome-llm-apps/content-writer)
+## Voice
+- Conversational but professional
+- Active voice, present tense
+- Short sentences, short paragraphs
 
-## Overview
+## Structure
+- Lead with the biggest benefit
+- Use specific numbers over vague claims
+- End with a clear call-to-action
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install skills-sh/shubhamsaboo/awesome-llm-apps/content-writer
-```
+## Rules
+- No jargon unless the audience expects it
+- No superlatives without proof ("best", "revolutionary")
+- Every paragraph must earn its place

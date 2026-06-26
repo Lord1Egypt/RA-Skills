@@ -1,0 +1,11 @@
+{
+  "api_id": "realtime-wayfair-data",
+  "portal_api_id": "real_time_wayfair_data",
+  "rapidapi_host": "real-time-wayfair-data.p.rapidapi.com",
+  "spec_url": "https://openwebninja.s3.us-east-1.amazonaws.com/portal/openapi/realtime_wayfair_data.yaml",
+  "last_updated_yaml": "2026-06-24T00:00:00.000Z",
+  "update_interval_seconds": 86400,
+  "rapidapi_url": "https://rapidapi.com/letscrape-6bRBa3QguO5/api/real-time-wayfair-data",
+  "openwebninja_url": "https://www.openwebninja.com/api/real-time-wayfair-data",
+  "notes": "Search pagination is page_number (param: page) with items_per_page in {24, 48, 96} (default 48). /search products live at data.products[]; total_pages reported in data.total_pages. Either query OR manufacturer_id required for /search. /product-details and /product-reviews require sku. /product-reviews is paginated (10 per page) and includes an AI summary + aspect sentiments. rapidapi_host is best-effort (no '1' suffix) — VERIFY against the live RapidAPI listing before relying on it for RAPIDAPI_KEY calls; OWN ak_ keys route via slug 'real-time-wayfair-data' and are unaffected."
+}

@@ -1,0 +1,9 @@
+{
+  "name": "family-conflict-mediator",
+  "slug": "family-conflict-mediator",
+  "version": "0.1.0",
+  "description": "auto-generated skeleton",
+  "author": "Harry",
+  "tags": ["lifestyle"],
+  "handler": "handler.py"
+}

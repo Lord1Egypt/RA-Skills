@@ -1,0 +1,278 @@
+{
+  "name": "eComm AI — 06 WhatsApp & SMS Fallback",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ecomm-ai/whatsapp-sms-fallback",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Fallback Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        400
+      ],
+      "webhookId": "ecomm-whatsapp-sms-fallback",
+      "id": "6c12f2aa-b38f-4617-bb3c-6fe1bd85d2c8"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build WhatsApp and SMS messages\nconst data = $input.first().json.body || $input.first().json;\n\nconst confirmLink = (data.confirm_url || $env.ECOMM_CONFIRM_BASE_URL || 'https://store.example.com/confirm') + '?order=' + data.order_id;\n\nconst waMessage = `Hi ${data.customer_name}! 👋\\n\\n`\n  + `We tried to reach you about your order #${data.order_id}.\\n\\n`\n  + `Please confirm your order here:\\n${confirmLink}\\n\\n`\n  + `Or reply YES to confirm, NO to cancel.`;\n\nconst smsMessage = `Hi ${data.customer_name}, we tried calling about order #${data.order_id}. `\n  + `Please confirm: ${confirmLink} or reply YES/NO.`;\n\nreturn [{ json: {\n  ...data,\n  wa_message: waMessage,\n  sms_message: smsMessage,\n  confirm_link: confirmLink\n}}];"
+      },
+      "name": "Prepare Messages",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ],
+      "id": "ef0d5ad0-6269-46e1-8deb-c47683a1fff7"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.WHATSAPP_API_URL}}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  messaging_product: 'whatsapp',\n  to: $json.customer_phone,\n  type: 'text',\n  text: { body: $json.wa_message }\n}) }}",
+        "options": {},
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.WHATSAPP_API_TOKEN}}"
+            }
+          ]
+        }
+      },
+      "name": "Send WhatsApp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        700,
+        400
+      ],
+      "id": "ca7fbd4e-b41e-499c-9487-4618d2c75f25"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Check if WhatsApp was successful\nconst resp = $input.first().json;\nconst prevData = $('Prepare Messages').first().json;\nconst success = !!(resp.messages?.[0]?.id || resp.message_id);\n\nreturn [{ json: {\n  ...prevData,\n  wa_success: success,\n  wa_message_id: resp.messages?.[0]?.id || resp.message_id || ''\n}}];"
+      },
+      "name": "Check WA Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        940,
+        400
+      ],
+      "id": "ab171ab0-77ef-493e-9cfa-dc766151a30d"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "32cbf4da-8043-4fdb-9a05-89b94aca7a02",
+              "leftValue": "={{ $json.wa_success }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      },
+      "name": "WA Sent?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1160,
+        400
+      ],
+      "id": "a1825c00-23a7-4928-8add-cde0c507f4d7"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.TWILIO_API_URL}}/2010-04-01/Accounts/{{$env.TWILIO_ACCOUNT_SID}}/Messages.json",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ From: $env.TWILIO_PHONE_NUMBER, To: $json.customer_phone, Body: $json.sms_message }) }}",
+        "options": {},
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Basic {{$env.TWILIO_AUTH_HEADER}}"
+            }
+          ]
+        }
+      },
+      "name": "Send SMS Fallback",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1400,
+        520
+      ],
+      "id": "f944636f-a217-4194-a252-7720a950cd2f"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Call Log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "order_id": "={{ $json.order_id }}",
+            "customer_phone": "={{ $json.customer_phone }}",
+            "call_type": "fallback",
+            "status": "={{ $json.wa_success ? 'whatsapp_sent' : 'sms_sent' }}",
+            "timestamp": "={{ new Date().toISOString() }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Log Fallback",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1640,
+        400
+      ],
+      "id": "4f870e8f-117f-4dba-9913-b34ab359584e",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'ok', order_id: $json.order_id, channel: $json.wa_success ? 'whatsapp' : 'sms' }) }}",
+        "options": {}
+      },
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1880,
+        400
+      ],
+      "id": "61fcefed-470c-46af-a722-16a03d3a5f6e"
+    }
+  ],
+  "connections": {
+    "Fallback Webhook": {
+      "main": [
+        [
+          {
+            "node": "Prepare Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Messages": {
+      "main": [
+        [
+          {
+            "node": "Send WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send WhatsApp": {
+      "main": [
+        [
+          {
+            "node": "Check WA Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check WA Result": {
+      "main": [
+        [
+          {
+            "node": "WA Sent?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WA Sent?": {
+      "main": [
+        [
+          {
+            "node": "Log Fallback",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send SMS Fallback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send SMS Fallback": {
+      "main": [
+        [
+          {
+            "node": "Log Fallback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Fallback": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "edvisage-social-kit",
+  "version": "1.0.0",
+  "description": "Multi-platform social presence management for AI agents. Posting strategy framework, platform tone adaptation, community engagement protocol, content rotation system, and basic reputation awareness.",
+  "author": "Edvisage Global <info@edvisageglobal.com>",
+  "license": "MIT",
+  "homepage": "https://edvisageglobal.com/ai-tools",
+  "repository": "https://github.com/edvisage/social-kit",
+  "keywords": ["openclaw", "agent", "skill", "edvisage", "social", "reputation", "posting", "community", "engagement"]
+}

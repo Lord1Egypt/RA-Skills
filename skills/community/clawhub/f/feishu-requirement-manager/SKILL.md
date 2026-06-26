@@ -1,35 +1,171 @@
 ---
-name: "Feishu Requirement Manager"
-description: "飞书需求管理工具（去中心化+可扩展）。支持需求创建、任务拆分、代理执行、进度跟踪。 **核心字段**： - 需求：标题、状态、优先级、进度、截止日期 - 任务：标题、状态、执行人、关联需求 **支持自定义扩展**，用户可添加额外字段。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-requirement-manager"
-sourceUrl: "https://clawhub.ai/skills/feishu-requirement-manager"
+version: 3.1.0
+name: feishu-requirement-manager
+description: |
+  飞书需求管理工具（去中心化+可扩展）。支持需求创建、任务拆分、代理执行、进度跟踪。
+  
+  **核心字段**：
+  - 需求：标题、状态、优先级、进度、截止日期
+  - 任务：标题、状态、执行人、关联需求
+  
+  **支持自定义扩展**，用户可添加额外字段。
 ---
 
-# Feishu Requirement Manager
+# 需求管理 Skill (v3.1.0)
 
-> 飞书需求管理工具（去中心化+可扩展）。支持需求创建、任务拆分、代理执行、进度跟踪。 **核心字段**： - 需求：标题、状态、优先级、进度、截止日期 - 任务：标题、状态、执行人、关联需求 **支持自定义扩展**，用户可添加额外字段。
+## 📋 核心字段定义
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-requirement-manager`
-- **Source URL:** [https://clawhub.ai/skills/feishu-requirement-manager](https://clawhub.ai/skills/feishu-requirement-manager)
+### 需求列表（必填字段）
 
-## Overview
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| 需求标题 | text | 必填，唯一标识 |
+| 状态 | singleSelect | 待处理/进行中/已完成/已取消 |
+| 优先级 | singleSelect | P0/P1/P2/P3 |
+| 进度 | number | 0-100% |
+| 截止日期 | datetime | 可选 |
+| 提出日期 | datetime | 自动填充 |
 
+### 需求列表（可扩展字段）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-requirement-manager
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| 需求描述 | text | 详细描述 |
+| 需求类型 | singleSelect | 产品/技术/运营/其他 |
+| 所属项目 | link | 关联项目 |
+| 关联文档 | url | 相关文档链接 |
+| 负责人 | user | 负责人 |
+| 备注 | text | 备注信息 |
+
+---
+
+### 任务列表（必填字段）
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| 任务标题 | text | 必填 |
+| 任务状态 | singleSelect | 待处理/进行中/已完成/阻塞 |
+| 关联需求 | link | 关联需求（必填） |
+| 执行人 | text/select | AI助手/搜索Agent/文档Agent/用户 |
+
+### 任务列表（可扩展字段）
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| 任务描述 | text | 详细描述 |
+| 依赖任务 | link | 依赖的其他任务 |
+| 优先级 | singleSelect | P0/P1/P2/P3 |
+| 截止日期 | datetime | 截止时间 |
+| 输出 | text | 执行结果/交付物 |
+
+---
+
+### 项目列表（可选）
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| 项目名称 | text | 必填 |
+| 项目状态 | singleSelect | 进行中/已完成/已暂停 |
+| 项目描述 | text | 描述 |
+| 负责人 | user | 项目负责人 |
+
+---
+
+## 🔄 动态字段处理
+
+### 创建时的字段映射
+
+```javascript
+// 用户输入 → 字段映射
+用户输入 = {
+  "需求": "开发一个App",
+  "优先级": "P1",
+  "类型": "产品"
+}
+
+// 转换为表格字段
+fields = {
+  "需求标题": "开发一个App",
+  "优先级": "P1 - 重要",
+  "需求类型": "产品"
+}
 ```
+
+### 自定义字段处理
+
+如果用户添加了额外字段：
+1. 尝试匹配已知字段
+2. 无法匹配时，提示用户确认字段名
+3. 存储到"备注"字段或创建新字段
+
+---
+
+## ⚡ 核心流程
+
+```
+用户请求
+    ↓
+主Agent：创建需求/任务
+    ↓
+PM代理：拆分任务
+    ↓
+执行Agent：并行执行
+    ↓
+更新表格状态
+    ↓
+通知用户
+```
+
+---
+
+## 📖 使用示例
+
+### 例1: 创建需求
+```
+用户：创建需求：开发AI助手
+
+主Agent：
+1. 检查表格是否存在
+2. 创建需求记录
+   - 需求标题：开发AI助手
+   - 状态：待处理
+   - 优先级：P1 - 重要
+   - 提出日期：当前时间
+3. 触发PM代理
+```
+
+### 例2: 添加自定义字段
+```
+用户：创建需求：项目A，预算10万，负责人张三
+
+主Agent：
+1. 核心字段：需求标题、项目A
+2. 自定义字段：
+   - 预算：10万 → 存到"备注"
+   - 负责人：张三 → 如有"负责人"字段则使用，否则存备注
+```
+
+---
+
+## 🔗 触发关键词
+
+```
+需求管理、创建需求、拆分需求、执行任务
+查看进度、添加任务
+```
+
+---
+
+## ⚠️ 字段映射规则
+
+| 用户输入 | 表格字段 |
+|---------|---------|
+| 需求/标题 | 需求标题 |
+| 任务 | 任务标题 |
+| 紧急/重要 | P0 - 紧急 / P1 - 重要 |
+| 正在进行/做 | 进行中 |
+| 完成/结束 | 已完成 |
+
+---
+
+*版本: 3.1.0 | 2026-03-22*

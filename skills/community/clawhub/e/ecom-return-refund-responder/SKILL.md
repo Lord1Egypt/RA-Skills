@@ -1,35 +1,81 @@
 ---
-name: "电商客服退换货应答模板"
-description: "电商客服退换货标准化应答提示词模板。当买家发起退货、换货、仅退款等售后咨询时，自动生成符合平台售后规则、语气友好且信息准确的客服应答。适用于淘宝/天猫/京东/拼多多等国内电商平台及跨境平台。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ecom-return-refund-responder"
-sourceUrl: "https://clawhub.ai/skills/ecom-return-refund-responder"
+name: ecom-return-refund-responder
+description: 电商客服退换货标准化应答提示词模板。当买家发起退货、换货、仅退款等售后咨询时，自动生成符合平台售后规则、语气友好且信息准确的客服应答。适用于淘宝/天猫/京东/拼多多等国内电商平台及跨境平台。
 ---
 
 # 电商客服退换货应答模板
 
-> 电商客服退换货标准化应答提示词模板。当买家发起退货、换货、仅退款等售后咨询时，自动生成符合平台售后规则、语气友好且信息准确的客服应答。适用于淘宝/天猫/京东/拼多多等国内电商平台及跨境平台。
+## 调用方式
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ecom-return-refund-responder`
-- **Source URL:** [https://clawhub.ai/skills/ecom-return-refund-responder](https://clawhub.ai/skills/ecom-return-refund-responder)
+按以下输入字段填写后，将模板中 `{{字段名}}` 替换为实际值，即可生成标准化应答。
 
-## Overview
+## 输入字段
 
+| 字段 | 必填 | 说明 |
+|---|---|---|
+| buyer_intent | 是 | 买家意图：退货/换货/仅退款/补发 |
+| order_no | 是 | 订单编号 |
+| item_name | 是 | 商品名称 |
+| reason | 是 | 买家申请原因（如：质量问题/尺码不合/七天无理由/发错货等） |
+| days_since_receive | 是 | 签收后天数 |
+| platform | 否 | 平台名称，默认"本平台" |
+| has_photo | 否 | 买家是否已提供凭证照片，默认"未提供" |
+| sku_info | 否 | 换货时的新规格/尺码 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ecom-return-refund-responder
+## 应答模板
+
 ```
+{{buyer_greeting}}！
+
+关于您的订单 {{order_no}}（{{item_name}}），我们已收到您的{{buyer_intent}}申请，原因：{{reason}}。
+
+{{policy_paragraph}}
+
+{{next_step_paragraph}}
+
+{{closing_remark}}
+
+如需进一步帮助，欢迎随时联系客服，我们将竭诚为您服务！😊
+```
+
+### 子模板片段
+
+**buyer_greeting**（根据买家会员等级/昵称）：
+- 默认：亲爱的买家
+
+**policy_paragraph**（根据 reason + days_since_receive 自动匹配）：
+- 质量问题 & ≤7天：根据平台售后政策，商品签收7天内如存在质量问题，支持退货退款，运费由卖家承担。
+- 质量问题 & >7天 & ≤15天：商品签收超过7天，如确认质量问题，我们可协助申请售后维权，请提供清晰凭证照片。
+- 七天无理由 & ≤7天：根据《消费者权益保护法》，商品签收7天内支持无理由退货，请确保商品未使用、不影响二次销售。
+- 七天无理由 & >7天：很抱歉，商品签收已超过7天无理由退货期限，如商品存在问题请联系我们另行处理。
+- 发错货/少发：非常抱歉给您带来不便！我们将立即为您{{换发正确商品/补发缺少商品}}，运费由我方承担。
+- 尺码不合 & ≤7天：支持7天内换货，请提供期望换购的尺码/规格，确认库存后为您安排。
+- 尺码不合 & >7天：已超出换货期限，如商品完好可联系协商处理方案。
+
+**next_step_paragraph**：
+- 退货：请您在订单详情页提交退货申请，选择退货方式后寄回商品。收到退货后我们将在{{平台规定时效}}内完成退款。
+- 换货：请您确认换购规格为 {{sku_info}}，提交换货申请后将原商品寄回，我们验收后立即为您发出新商品。
+- 仅退款：我们正在核实您的申请，预计{{1-3}}个工作日内给出处理结果，请留意消息通知。
+- 补发：我们将在{{24}}小时内为您安排补发，届时会推送物流单号，请注意查收。
+
+**closing_remark**：
+- 感谢您的理解与配合，祝您生活愉快！
+- 给您带来不便深表歉意，我们会持续改进服务！
+
+## 边界与转人工规则
+
+1. 涉及法律争议、投诉工商/消协 → 立即转人工
+2. 买家情绪激烈或使用威胁性语言 → 转人工，不可模板回复
+3. 订单金额 > 5000元 或 批量售后（≥5单同一买家）→ 转人工审核
+4. 平台规则冲突或无法判定 → 回复"已为您升级处理，客服专员将在30分钟内联系您"并转人工
+5. 不对买家做出超出平台规则的承诺（如"一定赔偿"等）
+6. 不得泄露卖家内部信息（如进货价、利润率）
+
+## 质量检查清单
+
+- [ ] 订单号、商品名准确
+- [ ] 签收天数与政策段落一致
+- [ ] 下一步操作明确可执行
+- [ ] 语气友好无生硬感
+- [ ] 未超出平台售后规则承诺
+- [ ] 需要凭证时已提醒买家提供

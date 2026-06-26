@@ -1,35 +1,62 @@
 ---
-name: "Email Template"
+version: "2.0.0"
+name: email-template
 description: "邮件模板库。欢迎邮件、Newsletter、事务邮件、冷启动邮件、跟进邮件、催款邮件模板生成。Email template library with welcome, newsletter, transactional, cold outreach, follow-up."
-category: "productivity"
-source: "ClawHub"
-tags: [chinese, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-template"
-sourceUrl: "https://clawhub.ai/skills/email-template"
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
 ---
+# email-template
 
-# Email Template
+邮件模板库。欢迎邮件、Newsletter、事务邮件、冷启动邮件、跟进邮件、催款邮件模板生成。Email template library with welcome, newsletter, transactional, cold outreach, follow-up, and collection templates.
 
-> 邮件模板库。欢迎邮件、Newsletter、事务邮件、冷启动邮件、跟进邮件、催款邮件模板生成。Email template library with welcome, newsletter, transactional, cold outreach, follow-up.
+## 常见问题
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-template`
-- **Source URL:** [https://clawhub.ai/skills/email-template](https://clawhub.ai/skills/email-template)
+**Q: 这个工具适合谁用？**
+A: 任何需要email-template的人，无论是个人还是企业用户。
 
-## Overview
+**Q: 输出格式是什么？**
+A: 主要输出Markdown格式，方便复制和编辑。
 
+## 命令列表
 
-## Installation
-To install this skill, run the following command in your terminal:
+| 命令 | 功能 |
+|------|------|
+| `welcome` | welcome |
+| `newsletter` | newsletter |
+| `transactional` | transactional |
+| `cold` | cold |
+| `followup` | followup |
+| `collection` | collection |
+
+## 专业建议
+
+- Identify which type: welcome / newsletter / transactional / cold / followup / collection
+- Run: `bash scripts/emailtpl.sh <type> [industry] [tone]`
+- Present the generated template to the user
+- Offer customization: subject line variants, CTA options, tone adjustment
+- Subject lines matter** — provide 3-5 variants with open-rate optimization tips
+
+---
+*email-template by BytesAgain*
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com
+
+## Examples
+
 ```bash
-hermes skills install clawhub/email-template
+# Show help
+email-template help
+
+# Run
+email-template run
 ```
+
+## Commands
+
+Run `email-template help` to see all available commands.
+
+## Requirements
+- bash 4+
+- python3 (standard library only)

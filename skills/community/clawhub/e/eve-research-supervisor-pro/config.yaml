@@ -1,0 +1,33 @@
+name: research-supervisor-pro
+version: 2.0.0
+description: Full-stack autonomous AI research supervisor for literature search, gap analysis, idea generation, experiment planning, and survey writing.
+
+entry: SKILL.md
+
+tools:
+  - web_search
+  - web_fetch
+  - memory
+  - exec
+
+capabilities:
+  - reasoning
+  - planning
+  - summarization
+  - research
+  - latex
+
+memory:
+  enabled: true
+  path: ~/.openclaw/workspace/research-supervisor-pro/memory/
+
+scripts:
+  base: ~/.openclaw/workspace/research-supervisor-pro/scripts/
+
+llm:
+  default_model: gpt-4o
+  base_url: "${OPENAI_BASE_URL:-https://api.openai-hk.com/v1}"
+  api_key: "${OPENAI_API_KEY:-}"
+
+author: Zain Ul Abdeen
+license: MIT

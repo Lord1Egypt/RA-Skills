@@ -1,0 +1,50 @@
+{
+  "name": "emoPAD-universe",
+  "version": "2.0.0",
+  "description": "emoPAD Universe - 情绪宇宙技能。帮助用户在情绪 PAD（Pleasure-Arousal-Dominance）坐标系中定位情绪，并提供 emoNebula 功能：持续实时监测情绪 PAD，每隔 5 分钟生成并发送情绪星云图。安装后自动启动服务和自动报告。",
+  "author": "emowave",
+  "license": "MIT",
+  "entry_point": "emopad_cli.py",
+  "install_script": "install.py",
+  "auto_start": true,
+  "requirements": [
+    "mne",
+    "heartpy",
+    "neurokit2",
+    "bleak",
+    "pyvista",
+    "pyserial",
+    "scipy",
+    "numpy",
+    "PyWavelets",
+    "fastapi",
+    "uvicorn",
+    "pillow",
+    "requests",
+    "pyyaml"
+  ],
+  "supported_hardware": [
+    {
+      "type": "EEG",
+      "model": "KSEEG102",
+      "connection": "BLE"
+    },
+    {
+      "type": "PPG",
+      "model": "Cheez PPG",
+      "connection": "Serial"
+    },
+    {
+      "type": "GSR",
+      "model": "Sichiray GSR V2",
+      "connection": "Serial"
+    }
+  ],
+  "future_hardware": [
+    "Muse 系列脑电设备",
+    "Emotiv 脑电设备",
+    "Oura Ring 智能戒指",
+    "Whoop 智能手环"
+  ],
+  "notes": "目前情绪 PAD 的计算是启发式的，根据大量文献总结的，暂时无法体现个性化。未来版本将加入个性化校准训练模块，真正实现个性化。安装后自动启动服务和emoNebula自动报告。"
+}

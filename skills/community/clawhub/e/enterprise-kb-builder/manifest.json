@@ -1,0 +1,97 @@
+{
+  "version": "1.0.0",
+  "name": "enterprise-kb-builder",
+  "displayName": "企业级智能客服知识库构建器",
+  "displayNameEn": "Enterprise Customer Service Knowledge Base Builder",
+  "description": "上传产品文档/FAQ/历史对话，自动生成结构化知识库。支持多意图识别、话术优化、场景分类、敏感词过滤、多轮对话设计。适合企业客服团队、产品经理使用。",
+  "descriptionEn": "Upload product docs/FAQ/chat logs to auto-generate structured knowledge base. Intent recognition, dialogue optimization, scenario classification.",
+  "author": "上海冰月网络科技有限公司",
+  "authorEn": "Shanghai Bingyue Network Technology Co., Ltd.",
+  "category": "企业/客服",
+  "tags": ["智能客服", "知识库", "意图识别", "话术优化", "企业级", "多轮对话"],
+  "tagsEn": ["customer-service", "knowledge-base", "intent-recognition", "enterprise"],
+  "price": {
+    "cny": 129,
+    "usd": 49.99,
+    "type": "one-time"
+  },
+  "pricingOptions": [
+    {
+      "name": "单次构建",
+      "priceCny": 19.9,
+      "priceUsd": 6.99,
+      "description": "构建 1 个知识库（限 50 个问答对）"
+    },
+    {
+      "name": "月度会员",
+      "priceCny": 129,
+      "priceUsd": 49.99,
+      "description": "无限次构建 + 高级分析 + API 接入"
+    },
+    {
+      "name": "企业版",
+      "priceCny": 399,
+      "priceUsd": 129,
+      "description": "团队协作 + 自定义模板 + 专属支持"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "raw_content",
+      "type": "string",
+      "required": true,
+      "description": "原始内容（产品文档/FAQ/历史对话记录）"
+    },
+    {
+      "name": "industry",
+      "type": "string",
+      "required": false,
+      "description": "行业类型（电商/SaaS/教育/金融/医疗/旅游/通用）",
+      "default": "通用"
+    },
+    {
+      "name": "tone",
+      "type": "string",
+      "required": false,
+      "description": "话术语气（专业/亲切/正式/活泼）",
+      "default": "专业"
+    },
+    {
+      "name": "output_format",
+      "type": "string",
+      "required": false,
+      "description": "输出格式（JSON/CSV/Markdown）",
+      "default": "JSON"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "knowledge_entries",
+      "type": "array",
+      "description": "结构化知识条目（意图/问题/答案/关键词/场景）"
+    },
+    {
+      "name": "intent_map",
+      "type": "object",
+      "description": "意图分类图谱（主意图/子意图/关联意图）"
+    },
+    {
+      "name": "dialogue_flows",
+      "type": "array",
+      "description": "多轮对话流程设计"
+    },
+    {
+      "name": "coverage_analysis",
+      "type": "object",
+      "description": "知识库覆盖度分析"
+    },
+    {
+      "name": "sensitive_words",
+      "type": "array",
+      "description": "敏感词过滤列表"
+    }
+  ],
+  "compliance": "本工具仅用于辅助构建知识库，不构成专业客服培训建议。",
+  "createdAt": "2026-04-15",
+  "updatedAt": "2026-04-15"
+}

@@ -1,0 +1,57 @@
+{
+  "id": "fec-component-testing",
+  "name": "组件测试",
+  "category": "testing",
+  "tags": [
+    "rtl",
+    "vue-test-utils",
+    "component-test",
+    "user-event",
+    "regression"
+  ],
+  "summary": "Frontend Craft skill for 组件测试.",
+  "version": "2.5.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "testing",
+    "rtl",
+    "vue-test-utils",
+    "component-test",
+    "user-event",
+    "regression"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when authoring or reviewing frontend unit, component, or light integration tests close to UI code, including React Testing Library, Vue Test Utils, hooks/composables, props/emits, callbacks, accessible queries, user-event interactions, mocks, loading/error/empty states, and regression coverage. For layer planning, real-browser journeys, or existing validation failures, choose the matching testing or validation workflow first; Chinese triggers include 组件测试, 组件单测, 单元测试, 轻量集成测试.",
+  "source": "skills/fec-component-testing",
+  "references": [],
+  "relations": {
+    "relatedSkills": [
+      "fec-testing-strategy",
+      "fec-e2e-testing",
+      "fec-storybook-component-doc",
+      "fec-accessibility-check",
+      "fec-validation-fix"
+    ],
+    "boundaryWorkflows": [
+      "Use a testing strategy workflow before choosing between static, unit, component, integration, E2E, visual, or specialty quality layers.",
+      "Use an E2E workflow for real-browser cross-page journeys, login state, and CI artifacts.",
+      "Use a validation workflow when the task is to run or repair existing lint, typecheck, test, or build failures."
+    ],
+    "capabilityTags": [
+      "testing",
+      "component-test",
+      "ui-quality"
+    ]
+  }
+}

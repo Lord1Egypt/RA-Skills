@@ -1,0 +1,18 @@
+{
+  "name": "fetch",
+  "version": "1.0.0",
+  "description": "Public web retrieval and clean extraction engine for public URLs.",
+  "entrypoints": [],
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "scripts/init_storage.py",
+    "scripts/fetch_url.py",
+    "scripts/save_output.py",
+    "scripts/list_jobs.py",
+    "scripts/show_job.py",
+    "scripts/lib/storage.py",
+    "scripts/lib/extract.py",
+    "references/philosophy.md"
+  ]
+}

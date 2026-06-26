@@ -1,0 +1,55 @@
+{
+  "name": "family-partner",
+  "version": "1.0.0",
+  "description": "Family Partner - AI-Powered Family Assistant Skills Suite. A comprehensive collection of 11 family management skills including calendar, tasks, memory, labor tracking, milestones, anniversaries, voting, challenges, and more.",
+  "author": "AI-PlusPlus",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "skills",
+    "family",
+    "home-management",
+    "ai-assistant",
+    "calendar",
+    "tasks",
+    "shopping",
+    "memory",
+    "labor-tracking",
+    "milestones",
+    "anniversaries",
+    "voting",
+    "challenges",
+    "morning-briefing",
+    "family-time"
+  ],
+  "engines": {
+    "node": ">=22.0.0",
+    "openclaw": ">=0.8.0"
+  },
+  "files": [
+    "family-partner/",
+    "SKILL.md",
+    "init.sql",
+    "README.md",
+    "README_CN.md",
+    "LICENSE.txt",
+    "scripts/"
+  ],
+  "clawhub": {
+    "category": "Productivity",
+    "tags": [
+      "family",
+      "home",
+      "management",
+      "calendar",
+      "tasks",
+      "ai",
+      "assistant",
+      "all-in-one"
+    ],
+    "skills": [
+      "family-partner"
+    ]
+  }
+}

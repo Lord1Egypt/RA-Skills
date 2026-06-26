@@ -1,0 +1,170 @@
+{
+  "category": "行业主题",
+  "sub_category": "基础设施",
+  "description": "理财通行业主题-基础设施指数名单",
+  "count": 27,
+  "indices": [
+    {
+      "code": "000692.SH",
+      "name": "上证科创板新能源主题指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000692"
+    },
+    {
+      "code": "000827.SH",
+      "name": "中证环保产业指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000827"
+    },
+    {
+      "code": "000941.CSI",
+      "name": "中证内地新能源主题指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000941"
+    },
+    {
+      "code": "000945.CSI",
+      "name": "中证内地运输主题指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000945"
+    },
+    {
+      "code": "000977.CSI",
+      "name": "中证内地低碳经济主题指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000977"
+    },
+    {
+      "code": "000995.CSI",
+      "name": "中证全指公用事业指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000995"
+    },
+    {
+      "code": "399266.SZ",
+      "name": "创业板新能源指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399266"
+    },
+    {
+      "code": "399412.SZ",
+      "name": "国证新能源指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399412"
+    },
+    {
+      "code": "399433.SZ",
+      "name": "国证交通运输",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399433"
+    },
+    {
+      "code": "399438.SZ",
+      "name": "国证绿色电力指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399438"
+    },
+    {
+      "code": "399806.SZ",
+      "name": "中证环境治理指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399806"
+    },
+    {
+      "code": "399808.SZ",
+      "name": "中证新能源指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399808"
+    },
+    {
+      "code": "399995.SZ",
+      "name": "中证基建工程指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399995"
+    },
+    {
+      "code": "930608.CSI",
+      "name": "中证基建指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930608"
+    },
+    {
+      "code": "930614.CSI",
+      "name": "中证环保产业50指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930614"
+    },
+    {
+      "code": "930716.CSI",
+      "name": "中证现代物流指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930716"
+    },
+    {
+      "code": "931151.CSI",
+      "name": "中证光伏产业指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931151"
+    },
+    {
+      "code": "931733.CSI",
+      "name": "中证绿色能源指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931733"
+    },
+    {
+      "code": "931755.CSI",
+      "name": "中证上海环交所碳中和指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931755"
+    },
+    {
+      "code": "931798.CSI",
+      "name": "中证光伏龙头30指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931798"
+    },
+    {
+      "code": "931897.CSI",
+      "name": "中证绿色电力指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931897"
+    },
+    {
+      "code": "931994.CSI",
+      "name": "中证电网设备主题指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931994"
+    },
+    {
+      "code": "932037.CSI",
+      "name": "中证国新央企现代能源指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=932037"
+    },
+    {
+      "code": "995020.SSI",
+      "name": "华证清洁能源主题指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=995020"
+    },
+    {
+      "code": "h30171.CSI",
+      "name": "中证全指运输指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30171"
+    },
+    {
+      "code": "h30199.CSI",
+      "name": "中证全指电力与电网指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30199"
+    },
+    {
+      "code": "HSCAUPG.HI",
+      "name": "恒生A股电网设备指数",
+      "sub_category": "基础设施",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=HSCAUPG"
+    }
+  ]
+}

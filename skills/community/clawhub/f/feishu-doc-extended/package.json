@@ -1,0 +1,19 @@
+{
+  "name": "feishu-doc-extended",
+  "version": "1.0.0",
+  "description": "飞书文档扩展工具 - 图片下载和 OCR 识别",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "feishu",
+    "openclaw",
+    "ocr",
+    "document"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

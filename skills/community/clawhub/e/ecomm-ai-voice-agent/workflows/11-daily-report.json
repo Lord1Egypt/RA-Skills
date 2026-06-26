@@ -1,0 +1,314 @@
+{
+  "name": "eComm AI — 11 Daily Report",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 20 * * *"
+            }
+          ]
+        }
+      },
+      "name": "Daily at 8PM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        400
+      ],
+      "id": "660e11b4-6976-45d4-a9a7-8b3517de1d8a"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_ORDERS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Orders",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "name": "Get Orders",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        460,
+        260
+      ],
+      "id": "13b4d69a-6fc1-4536-be96-9c8a63e21b23",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Call Log",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "name": "Get Call Log",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        460,
+        440
+      ],
+      "id": "b1c217c4-bac0-4fdc-8e7f-f46ba3257bce",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_ORDERS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Retry Queue",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "name": "Get Retry Queue",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        460,
+        620
+      ],
+      "id": "919c8307-60b7-4ba0-aa77-7a0cc6886732",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const today = new Date().toISOString().split('T')[0];\n\nconst orderItems = $('Get Orders').all();\nconst callItems = $('Get Call Log').all();\nconst retryItems = $('Get Retry Queue').all();\n\n// Today's data\nconst todayOrders = orderItems.filter(i => (i.json.timestamp || '').startsWith(today));\nconst todayCalls = callItems.filter(i => (i.json.timestamp || '').startsWith(today));\n\nconst totalOrders = todayOrders.length;\nconst codOrders = todayOrders.filter(o => o.json.is_cod === 'true' || o.json.is_cod === true).length;\nconst prepaidOrders = totalOrders - codOrders;\nconst confirmedOrders = todayOrders.filter(o => o.json.status === 'confirmed').length;\nconst declinedOrders = todayOrders.filter(o => o.json.status === 'declined').length;\nconst pendingOrders = todayOrders.filter(o => o.json.status === 'new' || o.json.status === 'call_initiated').length;\n\nconst totalCalls = todayCalls.length;\nconst successCalls = todayCalls.filter(c => c.json.status === 'confirmed' || c.json.outcome === 'confirmed').length;\nconst failedCalls = todayCalls.filter(c => c.json.status === 'failed' || c.json.outcome === 'failed').length;\n\nconst pendingRetries = retryItems.filter(r => r.json.status === 'pending_retry').length;\nconst exhaustedRetries = retryItems.filter(r => r.json.status === 'exhausted').length;\n\nconst totalRevenue = todayOrders.filter(o => o.json.status === 'confirmed').reduce((s, o) => s + (parseFloat(o.json.total_amount) || 0), 0);\nconst confirmRate = codOrders > 0 ? Math.round((confirmedOrders / codOrders) * 100) : 0;\n\nconst report = {\n  date: today,\n  total_orders: totalOrders,\n  cod_orders: codOrders,\n  prepaid_orders: prepaidOrders,\n  confirmed: confirmedOrders,\n  declined: declinedOrders,\n  pending: pendingOrders,\n  total_calls: totalCalls,\n  successful_calls: successCalls,\n  failed_calls: failedCalls,\n  pending_retries: pendingRetries,\n  exhausted_retries: exhaustedRetries,\n  confirmation_rate: confirmRate,\n  confirmed_revenue: totalRevenue\n};\n\nconst html = `<div style='font-family:Arial,sans-serif;max-width:640px;margin:0 auto;'>\n<h1 style='color:#1e293b;font-size:24px;margin-bottom:4px;'>eCommerce AI Voice Agent — Daily Report</h1>\n<p style='color:#64748b;margin-top:0;'>${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>\n\n<div style='display:flex;gap:12px;margin:20px 0;flex-wrap:wrap;'>\n  <div style='flex:1;min-width:120px;background:#eff6ff;border-radius:8px;padding:16px;text-align:center;'><div style='font-size:28px;font-weight:bold;color:#2563eb;'>${totalOrders}</div><div style='color:#64748b;font-size:13px;'>Total Orders</div></div>\n  <div style='flex:1;min-width:120px;background:#f0fdf4;border-radius:8px;padding:16px;text-align:center;'><div style='font-size:28px;font-weight:bold;color:#16a34a;'>${confirmedOrders}</div><div style='color:#64748b;font-size:13px;'>Confirmed</div></div>\n  <div style='flex:1;min-width:120px;background:#fef2f2;border-radius:8px;padding:16px;text-align:center;'><div style='font-size:28px;font-weight:bold;color:#dc2626;'>${declinedOrders}</div><div style='color:#64748b;font-size:13px;'>Declined</div></div>\n  <div style='flex:1;min-width:120px;background:#fefce8;border-radius:8px;padding:16px;text-align:center;'><div style='font-size:28px;font-weight:bold;color:#ca8a04;'>${confirmRate}%</div><div style='color:#64748b;font-size:13px;'>Confirmation Rate</div></div>\n</div>\n\n<h3 style='color:#1e293b;border-bottom:2px solid #e2e8f0;padding-bottom:8px;'>Orders Breakdown</h3>\n<table style='width:100%;border-collapse:collapse;'>\n  <tr><td style='padding:6px 0;color:#64748b;'>COD Orders</td><td style='text-align:right;font-weight:bold;'>${codOrders}</td></tr>\n  <tr><td style='padding:6px 0;color:#64748b;'>Prepaid Orders</td><td style='text-align:right;font-weight:bold;'>${prepaidOrders}</td></tr>\n  <tr><td style='padding:6px 0;color:#64748b;'>Pending / In Progress</td><td style='text-align:right;font-weight:bold;color:#ca8a04;'>${pendingOrders}</td></tr>\n  <tr><td style='padding:6px 0;color:#64748b;'>Confirmed Revenue</td><td style='text-align:right;font-weight:bold;color:#16a34a;'>$${totalRevenue.toFixed(2)}</td></tr>\n</table>\n\n<h3 style='color:#1e293b;border-bottom:2px solid #e2e8f0;padding-bottom:8px;margin-top:24px;'>Call Performance</h3>\n<table style='width:100%;border-collapse:collapse;'>\n  <tr><td style='padding:6px 0;color:#64748b;'>Total Calls</td><td style='text-align:right;font-weight:bold;'>${totalCalls}</td></tr>\n  <tr><td style='padding:6px 0;color:#64748b;'>Successful</td><td style='text-align:right;font-weight:bold;color:#16a34a;'>${successCalls}</td></tr>\n  <tr><td style='padding:6px 0;color:#64748b;'>Failed</td><td style='text-align:right;font-weight:bold;color:#dc2626;'>${failedCalls}</td></tr>\n  <tr><td style='padding:6px 0;color:#64748b;'>Pending Retries</td><td style='text-align:right;font-weight:bold;'>${pendingRetries}</td></tr>\n  <tr><td style='padding:6px 0;color:#64748b;'>Exhausted (Fallback)</td><td style='text-align:right;font-weight:bold;'>${exhaustedRetries}</td></tr>\n</table>\n\n<div style='margin-top:24px;padding:16px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0;text-align:center;color:#64748b;font-size:13px;'>Generated by eCommerce AI Voice Agent</div>\n</div>`;\n\nreturn [{ json: { ...report, html_report: html } }];"
+      },
+      "name": "Generate Report",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        760,
+        400
+      ],
+      "id": "ba37695b-431e-424b-bb92-a417725c0e76"
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.ECOMM_FROM_EMAIL}}",
+        "toEmail": "={{$env.ECOMM_OWNER_EMAIL}}",
+        "subject": "=eComm AI Report — {{ $json.date }} | {{ $json.total_orders }} Orders, {{ $json.confirmation_rate }}% Confirmed",
+        "html": "={{ $json.html_report }}",
+        "options": {
+          "appendAttribution": false
+        },
+        "emailType": "html"
+      },
+      "name": "Email Report to Owner",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1020,
+        300
+      ],
+      "id": "54962493-8b07-4084-8d2d-196a50ade0c2",
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.ECOMM_FROM_EMAIL}}",
+        "toEmail": "={{$env.ECOMM_STAFF_EMAIL}}",
+        "subject": "=eComm AI Report — {{ $json.date }} | {{ $json.pending }} Pending Orders",
+        "html": "={{ $json.html_report }}",
+        "options": {
+          "appendAttribution": false
+        },
+        "emailType": "html"
+      },
+      "name": "Email Report to Staff",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1020,
+        500
+      ],
+      "id": "64c7eb7f-94e5-4a65-ad8b-6ace8413603c",
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Daily Reports",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "date": "={{ $json.date }}",
+            "total_orders": "={{ $json.total_orders }}",
+            "cod_orders": "={{ $json.cod_orders }}",
+            "prepaid_orders": "={{ $json.prepaid_orders }}",
+            "confirmed": "={{ $json.confirmed }}",
+            "declined": "={{ $json.declined }}",
+            "pending": "={{ $json.pending }}",
+            "confirmation_rate": "={{ $json.confirmation_rate }}%",
+            "confirmed_revenue": "={{ $json.confirmed_revenue }}",
+            "total_calls": "={{ $json.total_calls }}",
+            "pending_retries": "={{ $json.pending_retries }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Archive Report",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1280,
+        400
+      ],
+      "id": "db84e716-762c-4944-b794-99a75b1c93a1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Daily at 8PM": {
+      "main": [
+        [
+          {
+            "node": "Get Orders",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Call Log",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Retry Queue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Orders": {
+      "main": [
+        [
+          {
+            "node": "Generate Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Call Log": {
+      "main": [
+        [
+          {
+            "node": "Generate Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Retry Queue": {
+      "main": [
+        [
+          {
+            "node": "Generate Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Report": {
+      "main": [
+        [
+          {
+            "node": "Email Report to Owner",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Email Report to Staff",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Report to Owner": {
+      "main": [
+        [
+          {
+            "node": "Archive Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

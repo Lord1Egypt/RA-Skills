@@ -1,0 +1,72 @@
+{
+  "name": "FarmDash Wagon Steward",
+  "version": "0.6.1",
+  "description": "Read-only DeFi portfolio aggregation skill for OpenClaw agents. Returns wallet balances across EVM chains, scores capital efficiency, surfaces idle stablecoins, tracks position drift versus a target allocation, and produces rebalancing proposals as research output. Strict read-only surface: every tool is a GET endpoint that returns analysis. The user's separately-installed execution skill is responsible for any on-chain action under its own ClawScan-reviewed contract.",
+  "tags": [
+    "defi",
+    "ai-agent",
+    "autonomous-agent",
+    "openclaw",
+    "clawhub",
+    "mcp",
+    "crypto",
+    "web3",
+    "onchain",
+    "portfolio",
+    "wallet",
+    "wallet-analytics",
+    "position-tracker",
+    "capital-efficiency",
+    "rebalancing",
+    "yield-farming",
+    "airdrop",
+    "evm",
+    "multi-chain",
+    "read-only",
+    "zero-custody",
+    "farmdash",
+    "wagon-steward"
+  ],
+  "author": "FarmDash Pioneers (@Parmasanandgarlic)",
+  "homepage": "https://www.farmdash.one",
+  "icon": "🪵",
+  "tools": [
+    {
+      "name": "get_portfolio_summary",
+      "description": "(Pioneer)\n\nTop-level snapshot. Use this first — it grounds every other recommendation.\n\n**",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "get_position_health",
+      "description": "(Pioneer)\n\nPer-position deep-dive: APR, age, unrealized P&L, IL exposure, and a rebalance hint.\n\n**",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "get_idle_capital",
+      "description": "(Pioneer)\n\nSurfaces stablecoins or unstaked native assets sitting unused.\n\n**",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    }
+  ],
+  "operatingRules": [],
+  "requiredEnv": {
+    "FARMDASH_API_KEY": {
+      "description": "Optional Bearer token used for Pioneer-tier rate limits and full position depth. Scout tier (5 req / 24h, summary only) requires no key or can use the public fd_scout_free token. The token is sent only as an Authorization header to https://www.farmdash.one for tier identification.",
+      "required": false
+    }
+  }
+}

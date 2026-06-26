@@ -1,35 +1,44 @@
 ---
-name: "entr"
-description: "Run arbitrary commands when files change. Useful for watching files and triggering builds or tests."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/entr"
-sourceUrl: "https://clawhub.ai/skills/entr"
+name: entr
+description: Run arbitrary commands when files change. Useful for watching files and triggering builds or tests.
 ---
 
-# entr
+# entr (Event Notify Test Runner)
 
-> Run arbitrary commands when files change. Useful for watching files and triggering builds or tests.
+A utility for running arbitrary commands when files change.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/entr`
-- **Source URL:** [https://clawhub.ai/skills/entr](https://clawhub.ai/skills/entr)
+## Usage
 
-## Overview
+`entr` takes a list of filenames from standard input and executes the utility specified as the first argument.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Syntax
 ```bash
-hermes skills install clawhub/entr
+<file_listing_command> | entr <utility> [arguments]
 ```
+
+### Options
+- `-c`: Clear the screen before invoking the utility.
+- `-r`: Reload a persistent child process (e.g., a server).
+- `-s`: Evaluate the first argument using the interpreter specified by `SHELL`.
+
+## Examples
+
+**Rebuild project when sources change:**
+```bash
+find src/ -name "*.c" | entr make
+```
+
+**Run tests when JS files change:**
+```bash
+git ls-files | grep '\.js$' | entr npm test
+```
+
+**Auto-reload a Node server:**
+```bash
+ls *.js | entr -r node app.js
+```
+
+## Agent Notes
+`entr` blocks the terminal. When using it as an agent:
+1. Use `process` tool to run it in the background if you need to do other things.
+2. Or use it for a quick "watch mode" session where you intend to monitor output for a while.

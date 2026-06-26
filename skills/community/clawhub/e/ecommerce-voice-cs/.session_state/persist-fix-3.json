@@ -1,0 +1,21 @@
+{
+  "mode": "sales",
+  "stage": "active",
+  "after_sales": {
+    "api_key": "",
+    "voice_id": "child_0001_b",
+    "refund_policy": "",
+    "unboxing_allowed": null,
+    "shipping_fee_by": "",
+    "audio_output_path": ""
+  },
+  "sales": {
+    "api_key": "k",
+    "voice_id": "male_0018_a",
+    "audio_output_path": "D:/tmp",
+    "product_name": "???????",
+    "product_features": "???????????????????????",
+    "product_advantages": "???????????????????????",
+    "discount_range": "10%~30%"
+  }
+}

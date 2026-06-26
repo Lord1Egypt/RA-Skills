@@ -1,0 +1,46 @@
+{
+  "name": "amazon_orders_opener",
+  "version": "1.1.0",
+  "description": "Navigates to Amazon orders page using current Amazon origin, optionally filtered by year.",
+  "allowedTools": [
+    "browser.navigate"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "kind": {
+        "type": "string",
+        "enum": [
+          "orders_page"
+        ]
+      },
+      "year": {
+        "type": "number"
+      },
+      "timeFilter": {
+        "type": "string"
+      }
+    }
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "url": {
+        "type": "string"
+      }
+    }
+  },
+  "notes": "Resolves base origin from active or any Amazon tab, then navigates to /your-orders/orders. If year is provided, it uses timeFilter=year-YYYY.",
+  "examples": [
+    {
+      "input": {
+        "kind": "orders_page",
+        "year": 2025
+      },
+      "output": {
+        "url": "https://www.amazon.com/your-orders/orders?timeFilter=year-2025&ref_=ppx_yo2ov_dt_b_filter_all_y2025"
+      }
+    }
+  ],
+  "id": "amazon_orders_opener"
+}

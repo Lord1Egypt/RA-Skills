@@ -1,35 +1,19 @@
----
-name: "Fileclean"
-description: "Removes dates, hashes, UUIDs, and extra symbols from filenames to create clean, readable file names."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fileclean"
-sourceUrl: "https://clawhub.ai/skills/fileclean"
----
+# FileClean
 
-# Fileclean
+Cleans filename clutter by removing date timestamps, hashes, UUIDs, and excessive symbols, transforming messy filenames like `report_20230101_a1b2c3d.pdf` into clean, readable ones like `Report.pdf`.
 
-> Removes dates, hashes, UUIDs, and extra symbols from filenames to create clean, readable file names.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fileclean`
-- **Source URL:** [https://clawhub.ai/skills/fileclean](https://clawhub.ai/skills/fileclean)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+Preview changes:
 ```bash
-hermes skills install clawhub/fileclean
+python fileclean.py ~/Downloads ~/Documents --skip-ext pdf jpg
 ```
+
+Apply changes:
+```bash
+python fileclean.py myfile.txt --rename
+```
+
+## Price
+
+$2.75

@@ -1,35 +1,35 @@
----
-name: "Expanso pii-redact"
-description: "Redact personally identifiable information from text by replacing sensitive data with placeholders using Expanso Edge pipelines."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/expanso-pii-redact"
-sourceUrl: "https://clawhub.ai/skills/expanso-pii-redact"
----
+# pii-redact
 
-# Expanso pii-redact
+"Redact PII from text, replacing sensitive data with placeholders"
 
-> Redact personally identifiable information from text by replacing sensitive data with placeholders using Expanso Edge pipelines.
+## Requirements
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/expanso-pii-redact`
-- **Source URL:** [https://clawhub.ai/skills/expanso-pii-redact](https://clawhub.ai/skills/expanso-pii-redact)
+- Expanso Edge installed (`expanso-edge` binary in PATH)
+- Install via: `clawhub install expanso-edge`
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### CLI Pipeline
 ```bash
-hermes skills install clawhub/expanso-pii-redact
+# Run standalone
+echo '<input>' | expanso-edge run pipeline-cli.yaml
 ```
+
+### MCP Pipeline
+```bash
+# Start as MCP server
+expanso-edge run pipeline-mcp.yaml
+```
+
+### Deploy to Expanso Cloud
+```bash
+expanso-cli job deploy https://skills.expanso.io/pii-redact/pipeline-cli.yaml
+```
+
+## Files
+
+| File | Purpose |
+|------|---------|
+| `skill.yaml` | Skill metadata (inputs, outputs, credentials) |
+| `pipeline-cli.yaml` | Standalone CLI pipeline |
+| `pipeline-mcp.yaml` | MCP server pipeline |

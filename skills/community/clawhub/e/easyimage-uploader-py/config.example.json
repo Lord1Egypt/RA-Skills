@@ -1,0 +1,6 @@
+{
+  "server": "https://img.example.com",
+  "token": "replace-with-your-easyimage-token",
+  "allow_model_image_input": false,
+  "temp_dir": "./temp"
+}

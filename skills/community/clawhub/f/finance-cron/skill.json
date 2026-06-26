@@ -1,0 +1,42 @@
+{
+  "name": "finance-cron",
+  "version": "1.0.0",
+  "description": "Trading-day calendar utilities for financial markets (US, CN, HK). Identifies trading days and helps plan schedules - use with /loop for actual task execution.",
+  "type": "skill",
+  "commands": [
+    {
+      "name": "check",
+      "description": "Check if a date is a trading day for a market",
+      "usage": "/finance-cron check <market> [date]",
+      "example": "/finance-cron check US 2024-12-25"
+    },
+    {
+      "name": "next",
+      "description": "Show next N trading days for a market",
+      "usage": "/finance-cron next <market> [n]",
+      "example": "/finance-cron next CN 5"
+    },
+    {
+      "name": "sync",
+      "description": "Sync latest trading calendar from data sources",
+      "usage": "/finance-cron sync [market]",
+      "example": "/finance-cron sync US"
+    },
+    {
+      "name": "add",
+      "description": "Plan a trading-day-aware task (shows next run time, use /loop for actual execution)",
+      "usage": "/finance-cron add <market> <time> <command>",
+      "example": "/finance-cron add US 09:30 echo 'US market open'"
+    },
+    {
+      "name": "list",
+      "description": "List all planned tasks",
+      "usage": "/finance-cron list"
+    }
+  ],
+  "markets": ["US", "CN", "HK"],
+  "config": {
+    "dataPath": "./data",
+    "cacheExpiryDays": 30
+  }
+}

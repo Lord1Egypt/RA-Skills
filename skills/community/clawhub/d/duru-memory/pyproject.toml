@@ -1,0 +1,13 @@
+[project]
+name = "duru-memory"
+version = "0.1.0"
+description = "Standalone Duru Memory skill helpers"
+requires-python = ">=3.11"
+dependencies = [
+  "apsw",
+  "sqlite-vec",
+  "pyyaml",
+]
+
+[tool.uv]
+package = false

@@ -1,0 +1,238 @@
+{
+  "baseline_ref": "v0.1.0-local-baseline",
+  "current_ref": "find-community-help-current",
+  "summary": {
+    "baseline_guardrail_rejection_rate": 1.0,
+    "current_guardrail_rejection_rate": 1.0,
+    "baseline_safe_acceptance_rate": 0.0,
+    "current_safe_acceptance_rate": 1.0,
+    "baseline_shared_invalid_rejection_rate": 1.0,
+    "current_shared_invalid_rejection_rate": 1.0
+  },
+  "cases": [
+    {
+      "case": "canonical",
+      "kind": "safe",
+      "baseline_passed": false,
+      "current_passed": true,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "valid_optional_fields",
+      "kind": "safe",
+      "baseline_passed": false,
+      "current_passed": true,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "valid_wrapped_hint_text",
+      "kind": "safe",
+      "baseline_passed": false,
+      "current_passed": true,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "valid_security_and_clawhub_labels",
+      "kind": "safe",
+      "baseline_passed": false,
+      "current_passed": true,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "valid_declared_tertiary_blog",
+      "kind": "safe",
+      "baseline_passed": false,
+      "current_passed": true,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "low_mode_two_suggestions",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "medium_mode_four_suggestions",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "invalid_confidence",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "ttl_too_long",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "invalid_visibility",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "invalid_trigger_reason",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "invalid_reuse_gate",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "invalid_source_scope_part",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "evidence_outside_source_scope",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "invalid_fingerprint_hash",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "short_problem_fingerprint",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "missing_timezone",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "no_independent_evidence",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "empty_fit_reason",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "misplaced_top_level_visibility",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "malformed_evidence_item",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "primary_stackoverflow",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "primary_blog",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "secondary_search_engine_result",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "local_session_as_evidence",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "non_public_tool_without_opt_in",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "private_opt_in_invalid_consent_basis",
+      "kind": "guardrail",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    },
+    {
+      "case": "invalid_dates",
+      "kind": "shared-invalid",
+      "baseline_passed": false,
+      "current_passed": false,
+      "baseline_crashed": false,
+      "current_crashed": false
+    }
+  ]
+}

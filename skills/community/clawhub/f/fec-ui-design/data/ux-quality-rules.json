@@ -1,0 +1,91 @@
+[
+  {
+    "category": "accessibility",
+    "priority": "critical",
+    "checks": ["Text contrast meets WCAG AA", "Focus rings are visible", "Icon-only controls have names", "Keyboard order follows visual order"],
+    "avoid": ["Removing outlines globally", "Color-only error or success states"]
+  },
+  {
+    "category": "interaction",
+    "priority": "critical",
+    "checks": ["Primary controls respond within 100ms", "Touch targets are at least 44x44px", "Disabled states are semantic and visible"],
+    "avoid": ["Hover-only primary actions", "Tap targets packed without spacing"]
+  },
+  {
+    "category": "performance",
+    "priority": "high",
+    "checks": ["Images reserve dimensions", "Large lists are virtualized", "Animations use transform/opacity", "Heavy visual work is deferred or moved off main thread"],
+    "avoid": ["Animating layout properties", "Unbounded chart or table rendering"]
+  },
+  {
+    "category": "layout",
+    "priority": "high",
+    "checks": ["375/768/1024/1440px layouts are checked", "No horizontal overflow", "Fixed headers/footers reserve content space"],
+    "avoid": ["Desktop-first max-width fixes", "Nested scroll regions without reason"]
+  },
+  {
+    "category": "typography",
+    "priority": "medium",
+    "checks": ["Body text stays readable", "Line length is controlled", "Numbers use tabular figures where alignment matters"],
+    "avoid": ["Tiny low-contrast labels", "Negative tracking on body text"]
+  },
+  {
+    "category": "animation",
+    "priority": "medium",
+    "checks": ["Micro-interactions are 150-300ms", "Exit is faster than enter", "Reduced motion is respected"],
+    "avoid": ["Decorative motion without cause", "Blocking input during transitions"]
+  },
+  {
+    "category": "forms",
+    "priority": "medium",
+    "checks": ["Labels are persistent", "Errors appear near fields", "Submit has loading/success/error feedback", "First invalid field receives focus"],
+    "avoid": ["Placeholder-only labels", "Error summary without field recovery"]
+  },
+  {
+    "category": "navigation",
+    "priority": "high",
+    "checks": ["Current location is visible", "Back behavior preserves state", "Primary navigation remains reachable"],
+    "avoid": ["Mixing multiple primary nav systems", "Using modals for primary navigation"]
+  },
+  {
+    "category": "charts",
+    "priority": "medium",
+    "checks": ["Chart type matches data question", "Units and legends are visible", "Data has text/table fallback", "Color is supplemented by shape or labels"],
+    "avoid": ["Pie charts for many categories", "Color-only series distinction"]
+  },
+  {
+    "category": "first-viewport",
+    "label": "First viewport",
+    "priority": "high",
+    "checks": ["Hero or workspace fits common laptop heights", "Primary CTA or task entry is visible without scrolling", "Desktop navigation stays on one line", "The next section leaves a readable cue when the page is promotional"],
+    "avoid": ["Oversized top padding", "Hero copy pushing actions below the fold", "Two-line desktop nav"]
+  },
+  {
+    "category": "cta-quality",
+    "label": "CTA quality",
+    "priority": "high",
+    "checks": ["CTA text contrast meets WCAG AA", "Primary CTA label stays on one line at desktop", "Each CTA intent uses one consistent label", "Ghost buttons remain visible over media backgrounds"],
+    "avoid": ["White text on light buttons", "Multiple contact labels for the same action", "Transparent buttons over busy imagery"]
+  },
+  {
+    "category": "section-variety",
+    "label": "Section variety",
+    "priority": "medium",
+    "checks": ["Adjacent sections use distinct layout jobs", "Bento cell count matches real content", "Feature grids have clear visual priority", "Small uppercase eyebrow labels are used sparingly"],
+    "avoid": ["Three equal cards as the default rhythm", "Three or more zigzag sections in a row", "Empty bento cells for decoration"]
+  },
+  {
+    "category": "media-authenticity",
+    "label": "Media authenticity",
+    "priority": "high",
+    "checks": ["Visual pages use real or generated assets with a clear role", "Product pages show inspectable product or state", "Screenshots represent real UI or are labeled as concepts", "Images reserve aspect ratio and have meaningful alt text when informative"],
+    "avoid": ["Text-only promotional pages", "Fake dashboard rectangles", "Blurred stock atmosphere as the main subject"]
+  },
+  {
+    "category": "state-completeness",
+    "label": "State completeness",
+    "priority": "critical",
+    "checks": ["Loading shape matches final layout", "Empty states include a useful next action", "Errors are recoverable and close to the source", "Selected, invalid, disabled, hover, focus, and reduced-motion states are covered"],
+    "avoid": ["Generic spinners everywhere", "Empty states that only say no data", "Disabled controls communicated only by opacity"]
+  }
+]

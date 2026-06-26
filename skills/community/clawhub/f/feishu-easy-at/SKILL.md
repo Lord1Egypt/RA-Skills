@@ -1,35 +1,76 @@
 ---
-name: "Complete mention skill for Feishu"
-description: "处理飞书消息中正确 @ 人的问题。用于解释为什么直接写 @xxx 不会生效、指导使用 post 富文本消息进行 @ 提及，以及说明如何获取 user_id 或 open_id。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-easy-at"
-sourceUrl: "https://clawhub.ai/skills/feishu-easy-at"
+name: feishu-at
+description: 处理飞书消息中正确 @ 人的问题。用于解释为什么直接写 @xxx 不会生效、指导使用 post 富文本消息进行 @ 提及，以及说明如何获取 user_id 或 open_id。
 ---
 
-# Complete mention skill for Feishu
+# 飞书 @ 人
 
-> 处理飞书消息中正确 @ 人的问题。用于解释为什么直接写 @xxx 不会生效、指导使用 post 富文本消息进行 @ 提及，以及说明如何获取 user_id 或 open_id。
+当用户想在飞书里真正 `@` 某个人，或遇到“写了 `@xxx` 但没有高亮提醒”的情况时，使用这个技能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-easy-at`
-- **Source URL:** [https://clawhub.ai/skills/feishu-easy-at](https://clawhub.ai/skills/feishu-easy-at)
+## 核心结论
 
-## Overview
+- 直接写 `@xxx` 只是普通文本，不会触发飞书的提醒和高亮。
+- 默认推荐使用 `msg_type: "post"` 的富文本消息来实现真正的 `@`。
+- 构造 `@` 节点前，必须先拿到对方的 `user_id` 或 `open_id`。
 
+## 默认处理方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-easy-at
+如果用户只是问“怎么在飞书里 @ 某人”，优先按下面的思路回答：
+
+1. 先明确问题根因：直接写 `@xxx` 不会生效，只是普通文本。
+2. 给出推荐方案：改用富文本 `post` 消息。
+3. 提醒必须准备对方的 `user_id/open_id`。
+4. 再提供一个可以直接套用的 JSON 示例。
+
+除非用户明确要求别的消息格式，否则不要优先展开卡片消息或其他格式。
+
+## 飞书 @ 人的正确方式
+
+### 问题
+
+直接写 `@xxx` 不会高亮提醒，只是普通文本。
+
+### 解决方案
+
+使用富文本 `post` 消息格式，并在内容中放入 `tag: "at"` 节点。
+
+### 获取 `user_id` 的方法
+
+1. 从群成员列表获取：使用 `feishu_chat_members`
+   - 适合已经知道对方真实姓名的场景
+   - 注意：通常只能拿到真实姓名，不能保证拿到群昵称
+2. 从消息记录获取：查看已经包含 `@xxx` 的消息
+   - 从消息里的 `mentions` 数组中读取 `id` 字段
+   - 这是定位某个实际被提及用户最稳妥的方法之一
+
+### 发送富文本消息示例
+
+```json
+{
+  "msg_type": "post",
+  "content": "{\"zh_cn\":{\"title\":\"标题\",\"content\":[[{\"tag\":\"at\",\"user_id\":\"ou_xxx\",\"text\":\"@用户名\"},{\"tag\":\"text\",\"text\":\" 消息内容\"}]]}}"
+}
+```
+
+### 关键点
+
+- `tag: "at"` 表示这是一个真正的 @ 提及节点
+- `user_id: "ou_xxx"` 是被提及人的用户标识
+- `text: "@用户名"` 是消息里展示给人看的文本
+
+## 回答时要强调的注意事项
+
+- 不能只把 `@用户名` 当普通字符串拼进去，否则不会触发提醒。
+- 没有 `user_id/open_id` 时，不能保证真正 @ 到指定用户。
+- 如果用户只提供了昵称，先提示其补充可映射到账号的标识，或建议从历史消息的 `mentions` 中反查。
+
+## 推荐回答模板
+
+需要真正 `@` 某人的话，不能直接写 `@xxx`，那样只是普通文本。飞书里应当使用 `post` 富文本消息，并在内容里放一个 `tag: "at"` 节点；同时需要先拿到对方的 `user_id/open_id`。如果你还没有这个 ID，可以先从 `feishu_chat_members` 查群成员，或者从历史消息的 `mentions` 数组里取 `id`。
+
+```json
+{
+  "msg_type": "post",
+  "content": "{\"zh_cn\":{\"title\":\"标题\",\"content\":[[{\"tag\":\"at\",\"user_id\":\"ou_xxx\",\"text\":\"@用户名\"},{\"tag\":\"text\",\"text\":\" 消息内容\"}]]}}"
+}
 ```

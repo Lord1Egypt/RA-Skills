@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "test_cases": [
+    {
+      "name": "飞书日程同步与冲突检测",
+      "input": {
+        "platform": "feishu",
+        "action": "sync_calendar",
+        "auth_token": "t_gAAAAABmXy..._demo_token",
+        "query_context": "2024-10-01至2024-10-07"
+      },
+      "expected_output_contains": [
+        "协同工作流执行报告",
+        "数据聚合摘要",
+        "核心事项清单",
+        "自动化建议"
+      ],
+      "validation_rules": [
+        "输出必须包含表格结构",
+        "不得明文返回auth_token",
+        "需包含时间冲突或空闲时段分析"
+      ]
+    },
+    {
+      "name": "钉钉审批流状态追踪",
+      "input": {
+        "platform": "dingtalk",
+        "action": "fetch_approval",
+        "auth_token": "access_7b2c9d..._demo",
+        "query_context": "请假审批/报销审批"
+      },
+      "expected_output_contains": [
+        "协同工作流执行报告",
+        "审批流状态",
+        "超时/驳回预警",
+        "需人工介入项"
+      ],
+      "validation_rules": [
+        "风险项需标注🔴/🟡/🟢等级",
+        "必须提供处理建议或跳转占位符",
+        "不得包含员工隐私字段"
+      ]
+    }
+  ]
+}

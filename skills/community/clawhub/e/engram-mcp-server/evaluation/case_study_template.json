@@ -1,0 +1,106 @@
+[
+  {
+    "id": "fitness_rehab_001",
+    "domain": "fitness",
+    "question": "I have knee pain when squatting. Give me a safe 2-week training plan.",
+    "expected_keywords": [
+      "pain threshold",
+      "range of motion",
+      "progressive load",
+      "warm-up"
+    ],
+    "forbidden_keywords": [
+      "ignore pain",
+      "max intensity daily"
+    ],
+    "checkpoints": [
+      {
+        "name": "two-week structure",
+        "keywords": ["week 1", "week 2"],
+        "mode": "all",
+        "weight": 2
+      },
+      {
+        "name": "pain control",
+        "keywords": ["pain threshold", "stop"],
+        "mode": "all",
+        "weight": 2
+      },
+      {
+        "name": "progression",
+        "keywords": ["progressive load"],
+        "mode": "any",
+        "weight": 1
+      }
+    ],
+    "baseline_answer": "TODO: paste baseline answer here",
+    "engram_answer": "TODO: paste Engram answer here"
+  },
+  {
+    "id": "contract_review_001",
+    "domain": "legal",
+    "question": "Review this service contract and list top breach risks.",
+    "expected_keywords": [
+      "liability cap",
+      "termination clause",
+      "payment terms",
+      "remedy"
+    ],
+    "forbidden_keywords": [
+      "guaranteed win",
+      "no legal risk"
+    ],
+    "checkpoints": [
+      {
+        "name": "risk checklist",
+        "keywords": ["liability cap", "termination clause", "payment terms"],
+        "mode": "all",
+        "weight": 2
+      },
+      {
+        "name": "mitigation advice",
+        "keywords": ["remedy", "negotiate"],
+        "mode": "any",
+        "weight": 1
+      }
+    ],
+    "baseline_answer": "TODO: paste baseline answer here",
+    "engram_answer": "TODO: paste Engram answer here"
+  },
+  {
+    "id": "workflow_001",
+    "domain": "general",
+    "question": "Build a weekly execution plan from a vague goal with limited time.",
+    "expected_keywords": [
+      "milestone",
+      "constraint",
+      "weekly review",
+      "fallback plan"
+    ],
+    "forbidden_keywords": [
+      "do everything at once"
+    ],
+    "checkpoints": [
+      {
+        "name": "has milestones",
+        "keywords": ["milestone"],
+        "mode": "any",
+        "weight": 1
+      },
+      {
+        "name": "has constraint and fallback",
+        "keywords": ["constraint", "fallback plan"],
+        "mode": "all",
+        "weight": 2
+      },
+      {
+        "name": "has review loop",
+        "keywords": ["weekly review"],
+        "mode": "any",
+        "weight": 1
+      }
+    ],
+    "baseline_answer": "TODO: paste baseline answer here",
+    "engram_answer": "TODO: paste Engram answer here"
+  }
+]

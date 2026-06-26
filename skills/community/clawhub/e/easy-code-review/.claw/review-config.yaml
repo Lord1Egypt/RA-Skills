@@ -1,0 +1,48 @@
+# 代码审核助手配置文件示例
+# 将此文件复制到项目根目录的 .claw/review-config.yaml
+
+review:
+  # 审核严格程度
+  # strict: 严格模式，会检查更多细节
+  # normal: 标准模式，平衡的审核标准
+  # loose: 宽松模式，仅检查关键问题
+  strictness: normal
+  
+  # 关注的审核维度
+  focus_areas:
+    - requirement_alignment    # 需求符合性检查
+    - unnecessary_changes      # 非必要修改检测
+    - code_quality            # 代码质量检查
+    - security                # 安全问题检查
+    - performance             # 性能问题检查
+  
+  # 忽略的文件模式
+  ignore_patterns:
+    - "*.test.ts"
+    - "*.test.tsx"
+    - "*.spec.js"
+    - "*.spec.ts"
+    - "dist/**"
+    - "build/**"
+    - "node_modules/**"
+    - ".git/**"
+    - "*.lock"
+    - "*.log"
+  
+  # 自定义审核规则
+  custom_rules:
+    - "不允许修改.env文件，应使用.env.example"
+    - "package.json修改依赖时需要确认版本兼容性"
+    - "禁止删除现有的测试文件"
+    - "核心配置文件修改需要团队确认"
+    - "新增文件需要添加适当的注释"
+  
+  # 输出配置
+  output:
+    format: markdown  # markdown | json | html
+    save_to_file: false
+    
+  # 风险阈值设置
+  risk_threshold:
+    high: 8      # 分数>=8为高风险
+    medium: 4    # 分数>=4为中风险

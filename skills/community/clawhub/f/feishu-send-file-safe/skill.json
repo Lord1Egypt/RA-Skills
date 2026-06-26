@@ -1,0 +1,15 @@
+{
+  "name": "feishu-send-file",
+  "version": "2.0.0",
+  "description": "飞书文件、图片和语音消息发送工具，支持完整的两步流程（上传+发送）",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "homepage": "https://open.feishu.cn/document/server-docs/im-v1/message/create",
+  "requirements": {
+    "bins": ["curl", "jq"]
+  },
+  "tags": ["feishu", "lark", "file", "image", "audio", "voice", "api"],
+  "clawdis": {
+    "emoji": "📤"
+  }
+}

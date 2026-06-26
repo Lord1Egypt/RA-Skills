@@ -1,0 +1,58 @@
+# Feishu Agent Team 配置
+# ========================
+# 修改此文件来自定义你的 AI 团队
+
+coordinator:
+  name: "Coordinator"
+  description: "调度中心，接收所有消息并智能分发"
+  # 在 Feishu 群里 @ 此名称触发
+  mention_name: "coordinator"
+
+specialists:
+  - name: "Analyst"
+    description: "商业分析专家"
+    keywords:
+      - "分析"
+      - "市场"
+      - "投资"
+      - "趋势"
+      - "研究"
+      - "报告"
+      - "数据"
+      - "竞品"
+    session_key: "agent:analyst:main"
+    
+  - name: "Developer"
+    description: "技术开发专家"
+    keywords:
+      - "代码"
+      - "开发"
+      - "bug"
+      - "技术"
+      - "架构"
+      - "API"
+      - "数据库"
+      - "部署"
+    session_key: "agent:developer:main"
+    
+  - name: "Marketer"
+    description: "市场推广专家"
+    keywords:
+      - "推广"
+      - "增长"
+      - "内容"
+      - "运营"
+      - "社交媒体"
+      - "粉丝"
+      - "广告"
+    session_key: "agent:marketer:main"
+
+# 可添加更多专家...
+#  - name: "Designer"
+#    description: "UI设计专家"
+#    keywords:
+#      - "设计"
+#      - "界面"
+#      - "UI"
+#      - "海报"
+#    session_key: "agent:designer:main"

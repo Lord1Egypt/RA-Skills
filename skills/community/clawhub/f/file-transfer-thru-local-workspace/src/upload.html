@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件上传 - OpenClaw</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .drop-zone {
+            border: 2px dashed #667eea;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9ff;
+        }
+        .drop-zone:hover, .drop-zone.dragover {
+            border-color: #764ba2;
+            background: #f0f2ff;
+        }
+        .drop-zone-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .drop-zone-text {
+            color: #666;
+            font-size: 14px;
+        }
+        .drop-zone-text strong {
+            color: #667eea;
+        }
+        #fileInput { display: none; }
+        .upload-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        .upload-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: none;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+            display: block;
+        }
+        .progress-bar {
+            height: 4px;
+            background: #e9ecef;
+            border-radius: 2px;
+            margin-top: 15px;
+            overflow: hidden;
+            display: none;
+        }
+        .progress-bar.show { display: block; }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        /* 文件列表样式 */
+        .file-list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .file-list-header h2 {
+            color: #333;
+            font-size: 18px;
+        }
+        .refresh-btn {
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .refresh-btn:hover {
+            background: #764ba2;
+        }
+        .file-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: #f8f9ff;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .file-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+        .file-icon {
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        .file-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .file-name {
+            color: #333;
+            font-weight: 500;
+            word-break: break-all;
+            margin-bottom: 4px;
+        }
+        .file-meta {
+            color: #999;
+            font-size: 12px;
+        }
+        .file-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        .delete-btn {
+            background: #fee;
+            color: #c00;
+        }
+        .delete-btn:hover {
+            background: #fcc;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 上传区域 -->
+        <div class="card">
+            <h1>📁 文件上传</h1>
+            <p class="subtitle">上传文件到 OpenClaw 用户目录</p>
+
+            <div class="drop-zone" id="dropZone">
+                <div class="drop-zone-icon">📤</div>
+                <p class="drop-zone-text">
+                    拖拽文件到此处，或 <strong>点击选择文件</strong>
+                </p>
+            </div>
+            <input type="file" id="fileInput" multiple>
+
+            <button class="upload-btn" id="uploadBtn" disabled>上传文件</button>
+
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="status" id="status"></div>
+        </div>
+
+        <!-- 文件列表 -->
+        <div class="card">
+            <div class="file-list-header">
+                <h2>📂 我的文件</h2>
+                <button class="refresh-btn" id="refreshBtn">🔄 刷新</button>
+            </div>
+            <div class="file-list" id="fileList">
+                <div class="loading">
+                    <span class="spinner"></span>
+                    <p>加载中...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 技能包列表 -->
+        <div class="card">
+            <div class="file-list-header">
+                <h2>🎁 技能包</h2>
+                <button class="refresh-btn" id="refreshSkillsBtn">🔄 刷新</button>
+            </div>
+            <div class="file-list" id="skillsList">
+                <div class="loading">
+                    <span class="spinner"></span>
+                    <p>加载中...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const status = document.getElementById('status');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const skillsList = document.getElementById('skillsList');
+        const refreshSkillsBtn = document.getElementById('refreshSkillsBtn');
+
+        // 从 URL 获取 token
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token') || '';
+
+        let selectedFiles = [];
+
+        // 加载技能列表
+        async function loadSkillsList() {
+            skillsList.innerHTML = `
+                <div class="loading">
+                    <span class="spinner"></span>
+                    <p>加载中...</p>
+                </div>
+            `;
+
+            try {
+                let url = '/api/skills';
+                if (token) {
+                    url += '?token=' + encodeURIComponent(token);
+                }
+
+                const response = await fetch(url);
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    renderSkillsList(result.skills);
+                } else {
+                    skillsList.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">⚠️</div>
+                            <p>加载失败：${result.error || '未知错误'}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                skillsList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">⚠️</div>
+                        <p>加载失败：${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // 渲染技能列表
+        function renderSkillsList(skills) {
+            if (skills.length === 0) {
+                skillsList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <p>暂无技能包</p>
+                        <p style="font-size: 12px; margin-top: 10px;">安装的技能将显示在这里</p>
+                    </div>
+                `;
+                return;
+            }
+
+            skillsList.innerHTML = skills.map(skill => {
+                const safeName = skill.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                return `
+                <div class="file-item">
+                    <div class="file-icon">🎁</div>
+                    <div class="file-info">
+                        <div class="file-name">${escapeHtml(skill.name)}</div>
+                        <div class="file-meta">
+                            更新于：${formatDate(skill.modified)}
+                            ${skill.hasClawhub ? ' · 📋 clawhub.json' : ''}
+                        </div>
+                    </div>
+                    <div class="file-actions">
+                        <button class="action-btn download-btn" onclick="downloadSkill('${safeName}')"
+                           style="background: #764ba2; color: white;">
+                            📥 下载
+                        </button>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        // 下载技能包（使用与文件下载相同的实现方式）
+        function downloadSkill(skillName) {
+            console.log('Downloading skill:', skillName);
+            const encodedName = encodeURIComponent(skillName);
+            const downloadUrl = `/api/skills/${encodedName}${token ? '?token=' + encodeURIComponent(token) : ''}`;
+            
+            // 创建隐藏的 iframe 来触发下载，避免弹窗拦截
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = downloadUrl;
+            document.body.appendChild(iframe);
+            
+            // 3 秒后移除 iframe
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+            }, 3000);
+        }
+        
+        // 确保函数在全局作用域可访问
+        window.downloadSkill = downloadSkill;
+
+        // 加载文件列表
+        async function loadFileList() {
+            fileList.innerHTML = `
+                <div class="loading">
+                    <span class="spinner"></span>
+                    <p>加载中...</p>
+                </div>
+            `;
+
+            try {
+                let url = '/api/files';
+                if (token) {
+                    url += '?token=' + encodeURIComponent(token);
+                }
+
+                const response = await fetch(url);
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    renderFileList(result.files);
+                } else {
+                    fileList.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">⚠️</div>
+                            <p>加载失败：${result.error || '未知错误'}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                fileList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">⚠️</div>
+                        <p>加载失败：${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // 渲染文件列表
+        function renderFileList(files) {
+            if (files.length === 0) {
+                fileList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <p>暂无文件</p>
+                        <p style="font-size: 12px; margin-top: 10px;">上传的文件将显示在这里</p>
+                    </div>
+                `;
+                return;
+            }
+
+            fileList.innerHTML = files.map(file => `
+                <div class="file-item">
+                    <div class="file-icon">${getFileIcon(file.name)}</div>
+                    <div class="file-info">
+                        <div class="file-name">${escapeHtml(file.name)}</div>
+                        <div class="file-meta">
+                            ${file.sizeFormatted} · ${formatDate(file.modified)}
+                        </div>
+                    </div>
+                    <div class="file-actions">
+                        <button class="action-btn download-btn" onclick="downloadFile('${escapeHtml(file.name)}')"
+                           style="background: #667eea; color: white;">
+                            📥 下载
+                        </button>
+                        <button class="action-btn delete-btn" onclick="deleteFile('${escapeHtml(file.name)}')">
+                            🗑️ 删除
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 获取文件图标
+        function getFileIcon(filename) {
+            const ext = filename.split('.').pop().toLowerCase();
+            const icons = {
+                pdf: '📄',
+                doc: '📄',
+                docx: '📄',
+                txt: '📄',
+                md: '📝',
+                xls: '📊',
+                xlsx: '📊',
+                csv: '📊',
+                jpg: '🖼️',
+                jpeg: '🖼️',
+                png: '🖼️',
+                gif: '🖼️',
+                svg: '🖼️',
+                mp3: '🎵',
+                mp4: '🎬',
+                zip: '📦',
+                rar: '📦',
+                tar: '📦',
+                gz: '📦',
+                js: '💻',
+                py: '💻',
+                java: '💻',
+                cpp: '💻',
+                c: '💻',
+                h: '💻',
+                html: '🌐',
+                css: '🎨',
+                json: '📋',
+                xml: '📋',
+                yaml: '📋',
+                yml: '📋'
+            };
+            return icons[ext] || '📁';
+        }
+
+        // 格式化日期
+        function formatDate(isoString) {
+            const date = new Date(isoString);
+            const now = new Date();
+            const diff = now - date;
+            
+            if (diff < 60000) return '刚刚';
+            if (diff < 3600000) return `${Math.floor(diff / 60000)}分钟前`;
+            if (diff < 86400000) return `${Math.floor(diff / 3600000)}小时前`;
+            if (diff < 604800000) return `${Math.floor(diff / 86400000)}天前`;
+            
+            return date.toLocaleDateString('zh-CN');
+        }
+
+        // HTML 转义
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // 下载文件
+        function downloadFile(filename) {
+            console.log('Downloading file:', filename);
+            const encodedFilename = encodeURIComponent(filename);
+            const downloadUrl = `/api/files/${encodedFilename}${token ? '?token=' + encodeURIComponent(token) : ''}`;
+            
+            // 创建隐藏的 iframe 来触发下载，避免弹窗拦截
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = downloadUrl;
+            document.body.appendChild(iframe);
+            
+            // 3 秒后移除 iframe
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+            }, 3000);
+        }
+        
+        // 确保函数在全局作用域可访问
+        window.downloadFile = downloadFile;
+
+        // 删除文件
+        async function deleteFile(filename) {
+            if (!confirm(`确定要删除 "${filename}" 吗？`)) return;
+
+            try {
+                let url = `/api/files/${encodeURIComponent(filename)}`;
+                if (token) {
+                    url += '?token=' + encodeURIComponent(token);
+                }
+
+                const response = await fetch(url, {
+                    method: 'DELETE'
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    showStatus(`✅ ${filename} 已删除`, 'success');
+                    loadFileList();
+                } else {
+                    showStatus(`❌ 删除失败：${result.error}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ 删除失败：${error.message}`, 'error');
+            }
+        }
+
+        // 拖拽事件
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            addFiles(files);
+        });
+
+        dropZone.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            addFiles(e.target.files);
+        });
+
+        function addFiles(files) {
+            for (let file of files) {
+                selectedFiles.push(file);
+            }
+            renderSelectedFiles();
+            uploadBtn.disabled = selectedFiles.length === 0;
+        }
+
+        function renderSelectedFiles() {
+            // 简单显示数量
+            if (selectedFiles.length > 0) {
+                status.textContent = `已选择 ${selectedFiles.length} 个文件`;
+                status.className = 'status info';
+            }
+        }
+
+        function showStatus(message, type) {
+            status.textContent = message;
+            status.className = 'status ' + type;
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 5000);
+        }
+
+        uploadBtn.addEventListener('click', async () => {
+            if (selectedFiles.length === 0) return;
+
+            uploadBtn.disabled = true;
+            progressBar.classList.add('show');
+            progressFill.style.width = '0%';
+            showStatus('正在上传...', 'info');
+
+            for (let i = 0; i < selectedFiles.length; i++) {
+                const file = selectedFiles[i];
+                const formData = new FormData();
+                formData.append('file', file);
+
+                try {
+                    const progress = ((i) / selectedFiles.length) * 100;
+                    progressFill.style.width = progress + '%';
+
+                    let url = '/api/upload';
+                    if (token) {
+                        url += '?token=' + encodeURIComponent(token);
+                    }
+
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        showStatus(`✅ ${file.name} 上传成功！`, 'success');
+                    } else {
+                        showStatus(`❌ ${file.name} 上传失败：${result.error}`, 'error');
+                    }
+                } catch (error) {
+                    showStatus(`❌ ${file.name} 上传失败：${error.message}`, 'error');
+                }
+            }
+
+            progressFill.style.width = '100%';
+            uploadBtn.disabled = false;
+            selectedFiles = [];
+            renderSelectedFiles();
+            
+            // 刷新文件列表
+            loadFileList();
+        });
+
+        refreshBtn.addEventListener('click', loadFileList);
+
+        // 刷新技能列表
+        refreshSkillsBtn.addEventListener('click', () => {
+            loadSkillsList();
+        });
+
+        // 页面加载时获取文件列表和技能列表
+        loadFileList();
+        loadSkillsList();
+    </script>
+</body>
+</html>

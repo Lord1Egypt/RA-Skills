@@ -1,0 +1,40 @@
+{
+  "name": "@bovinphang/fec-web-workers",
+  "version": "2.6.0",
+  "description": "Use when moving expensive browser work off the main thread with Web Workers, SharedWorker, worker pools, Comlink, transferable objects, Vite/Webpack worker integration, or UI responsiveness fixes. Do not use for lightweight synchronous work or DOM manipulation; Chinese triggers include Web Worker, 后台线程, 主线程阻塞.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-web-workers"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "implementation-capability",
+    "worker",
+    "background-thread",
+    "comlink",
+    "transferable",
+    "performance"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

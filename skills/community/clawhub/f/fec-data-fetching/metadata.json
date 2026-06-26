@@ -1,0 +1,58 @@
+{
+  "id": "fec-data-fetching",
+  "name": "TanStack Query 数据获取",
+  "category": "implementation-capability",
+  "tags": [
+    "react-query",
+    "tanstack",
+    "caching",
+    "optimistic-update",
+    "server-state"
+  ],
+  "summary": "Frontend Craft skill for TanStack Query 数据获取.",
+  "version": "2.6.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "implementation-capability",
+    "react-query",
+    "tanstack",
+    "caching",
+    "optimistic-update",
+    "server-state"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when implementing or reviewing frontend server-state flows: typed queries, request caching, invalidation, mutations, optimistic updates, infinite queries, prefetch, SSR hydration, or API-layer integration. Do not use for local UI state or Service Worker caching; Chinese triggers include 数据获取, 缓存, 乐观更新.",
+  "source": "skills/fec-data-fetching",
+  "references": [
+    "references/query-patterns.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-state-management",
+      "fec-form-handling",
+      "fec-pwa-implementation",
+      "fec-list-virtualization"
+    ],
+    "boundaryWorkflows": [
+      "Use a form workflow for form state, validation, and submit UI.",
+      "Use a PWA workflow for Service Worker and offline cache policy.",
+      "Use a virtualization workflow for DOM rendering performance in infinite lists."
+    ],
+    "capabilityTags": [
+      "data-fetching",
+      "server-state",
+      "cache"
+    ]
+  }
+}

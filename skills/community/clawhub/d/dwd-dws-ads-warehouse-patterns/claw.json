@@ -1,0 +1,25 @@
+{
+  "name": "dwd-dws-ads-warehouse-patterns",
+  "version": "1.0.0",
+  "description": "Production-tested SQL patterns for the DWD/DWS/ADS layered data warehouse architecture. Covers multi-period aggregation, dimension explosion, OLAP multi-select deduplication, and historical period freezing — widely used in large-scale Chinese tech companies.",
+  "author": "zeqiangfun",
+  "license": "MIT",
+  "homepage": "https://zeqiang.fun",
+  "tags": [
+    "data-warehouse",
+    "data-modeling",
+    "dwd",
+    "dws",
+    "ads",
+    "sql",
+    "hive",
+    "maxcompute",
+    "olap",
+    "etl",
+    "data-engineering",
+    "analytics"
+  ],
+  "permissions": [],
+  "always": false,
+  "disable-model-invocation": false
+}

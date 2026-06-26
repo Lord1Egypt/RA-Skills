@@ -1,0 +1,32 @@
+{
+  "name": "feishu-cache-guardian",
+  "version": "1.0.0",
+  "description": "飞书缓存配置守护工具 - 自动检查和修复 OpenClaw 飞书插件的缓存配置，避免 API 配额被快速耗尽",
+  "main": "scripts/check-and-fix.js",
+  "scripts": {
+    "check": "node scripts/check-and-fix.js"
+  },
+  "keywords": [
+    "openclaw",
+    "feishu",
+    "cache",
+    "guardian",
+    "api-quota",
+    "optimization"
+  ],
+  "author": "张红松",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhanghongsong/feishu-cache-guardian"
+  },
+  "bugs": {
+    "url": "https://github.com/zhanghongsong/feishu-cache-guardian/issues"
+  },
+  "homepage": "https://github.com/zhanghongsong/feishu-cache-guardian#readme",
+  "openclaw": {
+    "skill": true,
+    "category": "feishu",
+    "tags": ["feishu", "cache", "optimization", "api-quota"]
+  }
+}

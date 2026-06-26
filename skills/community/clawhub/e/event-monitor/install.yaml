@@ -1,0 +1,35 @@
+# install.yaml
+name: event-monitor
+version: "1.0.3"
+description: Predictive monitoring skill that monitors system resources and predicts future CPU spikes based on past data using Random Forest.
+author: Muhammad Hakim
+license: MIT
+
+platforms:
+  - windows
+  - linux
+  - darwin
+
+files:
+  - monitoring.py
+  - requirements.txt
+
+dependencies:
+  - python3
+  - pip
+
+permissions:
+  - read: system-info
+
+install_path: ~/.npm-global/lib/node_modules/openclaw/skills/event-monitor
+
+commands:
+  - name: collect-metrics
+    script: python monitoring.py
+    description: Triggers a collection of CPU and Memory metrics.
+  - name: predict-usage
+    script: python monitoring.py --predict
+    description: Predicts CPU spikes using ML model.
+  - name: generate-report
+    script: python monitoring.py
+    description: Generates system report.

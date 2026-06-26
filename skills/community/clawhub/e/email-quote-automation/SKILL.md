@@ -1,35 +1,105 @@
 ---
-name: "email-quote-automation"
-description: "自动收取奖牌定制客户询价邮件，翻译非中文内容，计算报价并生成专业回复模板，支持本地存档和定时处理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-quote-automation"
-sourceUrl: "https://clawhub.ai/skills/email-quote-automation"
+name: medal-email-quote
+description:奖牌定制电商邮件自动处理技能，定时收取客户询价邮件，自动翻译非中文邮件，根据报价公式和材质参数表格生成报价回复模板并保存到本地。Use when需要处理奖牌定制询价邮件、定时收邮件、自动翻译和生成报价回复。
 ---
 
-# email-quote-automation
+# 奖牌定制询价邮件自动处理技能
 
-> 自动收取奖牌定制客户询价邮件，翻译非中文内容，计算报价并生成专业回复模板，支持本地存档和定时处理。
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-quote-automation`
-- **Source URL:** [https://clawhub.ai/skills/email-quote-automation](https://clawhub.ai/skills/email-quote-automation)
+本技能用于奖牌定制企业电商渠道的邮件询价自动化处理：
+1. **定时收取邮件** - 从邮箱收取新的客户询价邮件
+2. **自动翻译** - 非中文邮件自动翻译为中文
+3. **保存归档** - 原始邮件和翻译内容保存到本地
+4. **生成报价** - 根据报价公式和材质参数表自动计算价格生成回复模板
 
-## Overview
+## 核心功能
 
+### 1. 邮件收取
+- 支持IMAP协议连接邮箱服务器
+- 支持SSL/TLS加密连接
+- 可配置定时检查间隔（默认每30分钟检查一次）
+- 只处理未读邮件，标记已处理
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/email-quote-automation
+### 2. 自动翻译
+- 检测邮件内容语言
+- 非中文内容调用翻译API翻译为简体中文
+- 保存原文和译文两份文件
+
+### 3. 本地存储结构
 ```
+email_storage/
+├── raw/           # 原始邮件（.eml格式）
+├── text/          # 提取文本内容
+├── translated/    # 翻译后的中文内容
+└── quotes/        # 生成的报价回复模板
+```
+
+### 4. 报价计算
+- 根据材质、尺寸、数量、工艺计算价格
+- 应用阶梯折扣政策
+- 自动生成专业报价回复邮件模板
+
+## 配置说明
+
+在使用前需要编辑 `scripts/config.py` 设置：
+- 邮箱IMAP服务器地址、端口、用户名、密码
+- 翻译API配置（可选使用百度翻译、Google翻译等）
+- 本地存储路径
+- 报价数据文件路径
+
+## 使用方法
+
+### 手动运行一次检查
+```bash
+python scripts/email_check.py
+```
+
+### 启动定时服务
+```bash
+python scripts/email_daemon.py
+```
+
+## 报价规则参考
+
+报价数据文件已内置在技能中:
+- 材质参数表：`shopdata/材质报价参数信息表.xlsx`
+- 报价公式：`shopdata/报价公式.txt`
+
+### 核心计算公式
+**最终价格 = 基础单价 × 尺寸系数 + 工艺附加费**
+
+然后根据订单数量应用阶梯折扣：
+- 1-5个：原价
+- 6-20个：9.5折
+- 21-100个：8.5折
+- 101个以上：7折起
+
+### 尺寸系数
+- S (15cm以下): 0.8
+- M (15-25cm): 1.0
+- L (25-40cm): 1.5
+- XL (40cm以上): 单独核价
+
+### 材质基础单价
+| 材质系列 | 零售单价 | 批量单价 |
+|---------|---------|---------|
+| 金箔/实木类 | ¥85 起 | ¥45 起 |
+| 水晶/琉璃类 | ¥120 起 | ¥65 起 |
+| 金属开模类 | ¥180 起 | ¥90 起 (需模具费) |
+| 亚克力/复合类 | ¥55 起 | ¥28 起 |
+
+## 脚本说明
+
+### scripts/
+- `config.py` - 配置文件（需要用户配置）
+- `email_check.py` - 单次检查新邮件
+- `email_daemon.py` - 定时后台服务
+- `email_utils.py` - 邮件处理工具函数
+- `translator.py` - 翻译模块
+- `quote_calculator.py` - 报价计算模块
+
+### references/
+- `pricing_data.json` - 缓存的报价参数数据
+- `email_template.html` - 回复邮件HTML模板
+

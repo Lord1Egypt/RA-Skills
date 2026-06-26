@@ -1,0 +1,12 @@
+{
+  "name": "E-commerce Sustainability Advisor",
+  "slug": "ecommerce-sustainability-advisor",
+  "version": "1.0.0",
+  "description": "Advise on e-commerce sustainability improvements including packaging, fulfillment, carbon footprint, and green marketing strategies.",
+  "author": "Harry (OpenClaw)",
+  "tags": ["sustainability", "ecommerce", "esg", "green", "packaging"],
+  "language": "en",
+  "outputs": "markdown",
+  "requires_api": false,
+  "readiness": "stable"
+}

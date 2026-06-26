@@ -1,0 +1,59 @@
+{
+  "id": "fec-responsive-layout",
+  "name": "响应式布局",
+  "category": "design-ui",
+  "tags": [
+    "responsive",
+    "layout",
+    "container-query",
+    "mobile-first",
+    "touch-target"
+  ],
+  "summary": "Responsive frontend layout strategy for mobile-first breakpoints, container queries, fluid grids, data-dense screens, touch targets, and cross-device verification.",
+  "version": "2.5.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "design-ui",
+    "responsive",
+    "layout",
+    "container-query",
+    "mobile-first",
+    "touch-target"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when designing, implementing, or reviewing responsive frontend layouts, mobile-first breakpoints, container queries, fluid grids, data-dense tables, touch targets, safe areas, orientation changes, viewport overflow, or cross-device UI behavior; Chinese triggers include 响应式布局, 移动端适配, 断点, 容器查询, 横竖屏, 触摸目标.",
+  "source": "skills/fec-responsive-layout",
+  "references": [
+    "references/responsive-layout-patterns.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-ui-design",
+      "fec-accessibility-check",
+      "fec-performance-optimization",
+      "fec-tailwind-design-system"
+    ],
+    "boundaryWorkflows": [
+      "Use UI design when the task is visual direction, product identity, hierarchy, or polish beyond layout behavior.",
+      "Use accessibility check for keyboard, focus, semantics, screen reader behavior, and contrast concerns.",
+      "Use performance optimization when responsive behavior exposes rendering, image, bundle, or main-thread bottlenecks."
+    ],
+    "capabilityTags": [
+      "responsive",
+      "layout",
+      "container-query",
+      "mobile-first"
+    ]
+  }
+}

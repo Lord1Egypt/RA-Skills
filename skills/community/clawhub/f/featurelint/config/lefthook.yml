@@ -1,0 +1,42 @@
+# ==============================================================================
+# FeatureLint - Lefthook Git Hooks Configuration
+# Feature flag hygiene checks on pre-commit and pre-push
+# ==============================================================================
+
+pre-commit:
+  parallel: true
+  commands:
+    featurelint-staged:
+      glob: "*.{js,jsx,ts,tsx,py,rb,java,kt,go,rs,cs,php,swift,dart,vue,svelte,ex,sh}"
+      run: >-
+        bash {root}/scripts/dispatcher.sh staged
+        --severity error
+        --format text
+        --tier "${FEATURELINT_TIER:-free}"
+      fail_text: |
+        FeatureLint found feature flag issues in staged files.
+        Fix errors before committing or use --no-verify to skip.
+      stage_fixed: true
+
+pre-push:
+  parallel: true
+  commands:
+    featurelint-full:
+      glob: "*.{js,jsx,ts,tsx,py,rb,java,kt,go,rs,cs,php,swift,dart,vue,svelte,ex,sh}"
+      run: >-
+        bash {root}/scripts/dispatcher.sh scan
+        --severity warning
+        --format text
+        --tier "${FEATURELINT_TIER:-free}"
+        {root}
+      fail_text: |
+        FeatureLint found feature flag warnings or errors.
+        Review the report before pushing.
+
+commit-msg:
+  commands:
+    featurelint-flag-ref:
+      run: >-
+        grep -qiE "(flag|feature[_-]?flag|toggle)" {1}
+        && echo "Commit references feature flags — run featurelint scan to verify."
+        || true

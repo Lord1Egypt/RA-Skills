@@ -1,0 +1,46 @@
+{
+  "name": "event-orchestrator",
+  "version": "0.1.0",
+  "displayName": "Event Orchestrator - 事件编排器",
+  "description": "基于事件驱动架构 (EDA) 的技能编排器，支持多技能协同、事件订阅发布、中间件链处理",
+  "author": "王的奴隶 · 严谨专业版",
+  "license": "MIT",
+  "keywords": [
+    "event-driven",
+    "orchestrator",
+    "skill",
+    "EDA",
+    "middleware",
+    "state-machine"
+  ],
+  "category": "工具",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "lint": "eslint src/ tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/tree/main/event-orchestrator"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skills/issues"
+  },
+  "homepage": "https://clawhub.ai/skills/event-orchestrator",
+  "engines": {
+    "node": ">=14.0.0",
+    "openclaw": ">=1.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "eslint": "^8.0.0"
+  },
+  "clawhub": {
+    "icon": "🔔",
+    "featured": false,
+    "pricing": "free",
+    "downloadCount": 0,
+    "rating": 0,
+    "tags": ["编排", "事件驱动", "中间件", "状态机"]
+  }
+}

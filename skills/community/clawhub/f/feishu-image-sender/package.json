@@ -1,0 +1,12 @@
+{
+  "name": "feishu-image-sender",
+  "version": "1.0.0",
+  "description": "Send images to Feishu. Activate when user mentions sending images to Feishu, or when message contains image file paths/names (.png, .jpg, .jpeg, .gif, .webp).",
+  "keywords": [
+    "feishu",
+    "image",
+    "media",
+    "messaging"
+  ],
+  "license": "MIT"
+}

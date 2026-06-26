@@ -1,0 +1,37 @@
+{
+  "slug": "execution-plan-splitter",
+  "title": "执行计划拆解器",
+  "category": "meeting",
+  "categoryLabel": "会议与执行",
+  "mode": "structured_brief",
+  "summary": "把大目标拆为 30/60/90 天执行路径、阶段成果、资源需求与放弃条件。",
+  "inputHint": "长期目标、资源约束、时间窗口",
+  "sections": [
+    "30天目标",
+    "60天目标",
+    "90天目标",
+    "阶段里程碑",
+    "资源需求",
+    "放弃条件"
+  ],
+  "useCases": [
+    "季度规划",
+    "转型项目",
+    "新岗位上任"
+  ],
+  "positiveExamples": [
+    "把目标拆成 30/60/90 天计划",
+    "给我一个可执行路线图"
+  ],
+  "negativeExamples": [
+    "不要承诺无法验证的收益",
+    "不要替代正式预算审批"
+  ],
+  "risk": "适合作为启动版计划，后续需按实际进展迭代。",
+  "tags": [
+    "execution-plan",
+    "roadmap",
+    "90-day",
+    "delivery"
+  ]
+}

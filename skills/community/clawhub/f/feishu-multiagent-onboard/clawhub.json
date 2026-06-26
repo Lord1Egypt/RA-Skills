@@ -1,0 +1,26 @@
+{
+  "name": "feishu-multiagent-onboard",
+  "displayName": "飞书多 Agent 配置助手",
+  "version": "1.0.0",
+  "description": "一键完成 OpenClaw 多 Agent 飞书通道配置，包含交互式向导、配置验证和故障诊断工具",
+  "author": "墨墨",
+  "license": "MIT",
+  "tags": ["feishu", "multiagent", "onboarding", "configuration"],
+  "category": "tools",
+  "main": "index.js",
+  "repository": "https://github.com/wh1ko/feishu-multiagent-onboard",
+  "docs": {
+    "guide": "docs/guide.md",
+    "faq": "docs/faq.md"
+  },
+  "commands": [
+    {
+      "name": "feishu-multiagent-onboard",
+      "description": "飞书多 Agent 配置向导"
+    }
+  ],
+  "requirements": {
+    "openclaw": ">=2026.3.2",
+    "node": ">=22"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id": "fec-list-virtualization",
+  "name": "列表虚拟化优化",
+  "category": "implementation-capability",
+  "tags": [
+    "virtualization",
+    "windowing",
+    "react-window",
+    "tanstack-virtual",
+    "performance"
+  ],
+  "summary": "Frontend Craft skill for 列表虚拟化优化.",
+  "version": "2.6.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "implementation-capability",
+    "virtualization",
+    "windowing",
+    "react-window",
+    "tanstack-virtual",
+    "performance"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when optimizing or reviewing large lists, virtual scrolling, windowing, react-window, TanStack Virtual, variable-height rows, dynamic measurement, infinite scroll, grid virtualization, or scroll performance; Chinese triggers include 虚拟列表, 大列表优化, 滚动性能.",
+  "source": "skills/fec-list-virtualization",
+  "references": [
+    "references/virtualization-patterns.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-data-fetching",
+      "fec-web-workers",
+      "fec-accessibility-check"
+    ],
+    "boundaryWorkflows": [
+      "Use a data-fetching workflow for pagination and cache behavior in infinite lists.",
+      "Use a worker workflow when expensive item computation blocks scrolling.",
+      "Use an accessibility workflow for keyboard and screen reader behavior in virtualized lists."
+    ],
+    "capabilityTags": [
+      "performance",
+      "virtualization",
+      "large-lists"
+    ]
+  }
+}

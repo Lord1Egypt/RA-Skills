@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>{{ shared_css }}</style>
+</head>
+<body>
+    <div class="report-container">
+        <div class="report-header" style="background:linear-gradient(135deg, #0f172a 0%, #164e63 40%, #0891b2 70%, #22d3ee 100%);">
+            <h1>{{ title }}</h1>
+            <p class="subtitle">多股对比分析 · 核心指标 · 估值与风险</p>
+            <div class="header-meta">
+                <span class="header-meta-item">📅 {{ date }}</span>
+                <span class="header-meta-item">⏱ {{ generation_time }}</span>
+                <span class="header-meta-item">🔬 {{ analyst }}</span>
+            </div>
+        </div>
+
+        <nav class="report-nav" id="main-nav">
+            <div class="nav-inner">
+                {% if ai_brief_html %}<a href="#conclusion" class="nav-item">🎯 对比结论</a><span class="nav-divider"></span>{% endif %}
+                <a href="#compare" class="nav-item">📊 指标对比</a>
+                <span class="nav-divider"></span>
+                {% if ai_events_html or ai_deep_html %}<a href="#analysis" class="nav-item">🧠 AI 分析</a><span class="nav-divider"></span>{% endif %}
+                <a href="#appendix" class="nav-item">📜 免责声明</a>
+            </div>
+        </nav>
+
+        <!-- PANEL 1: 对比结论 -->
+        {% if ai_brief_html %}
+        <div class="report-section section-conclusion" id="conclusion">
+            <div class="section-header">
+                <div class="section-icon green">🎯</div>
+                <h2>对比结论</h2>
+                <span class="section-tag">CONCLUSION</span>
+            </div>
+            <div class="section-body">{{ ai_brief_html }}</div>
+        </div>
+        {% endif %}
+
+        <!-- PANEL 2: 核心指标对比 -->
+        <div class="report-section section-market" id="compare">
+            <div class="section-header">
+                <div class="section-icon cyan">📊</div>
+                <h2>核心指标对比</h2>
+                <span class="section-tag">COMPARISON</span>
+            </div>
+            <div class="section-body">
+                {{ compare_html }}
+                {% if returns_html %}
+                <div class="sub-block">{{ returns_html }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- PANEL 3: AI 分析 -->
+        {% if ai_events_html or ai_deep_html %}
+        <div class="report-section section-intelligence" id="analysis">
+            <div class="section-header">
+                <div class="section-icon amber">🧠</div>
+                <h2>AI 对比分析</h2>
+                <span class="section-tag">AI ANALYSIS</span>
+            </div>
+            <div class="section-body">
+                {% if ai_events_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title"><span class="sub-icon" style="background:#dbeafe;">⚡</span>关键差异分析</div>
+                    {{ ai_events_html }}
+                </div>
+                {% endif %}
+                {% if ai_deep_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title"><span class="sub-icon" style="background:#dbeafe;">🧠</span>深度分析</div>
+                    {{ ai_deep_html }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- PANEL 4: 免责声明 -->
+        <div class="report-section section-appendix" id="appendix">
+            <div class="section-header">
+                <div class="section-icon slate">📜</div>
+                <h2>免责声明</h2>
+                <span class="section-tag">DISCLAIMER</span>
+            </div>
+            <div class="section-body">
+                <div class="disclaimer-inner">
+                    <h3>⚠️ 风险提示与免责声明</h3>
+                    <ul>
+                        <li>本报告基于历史数据和客观指标自动生成，<strong>不构成投资建议</strong></li>
+                        <li>对比结果仅为量化数据对比，不代表任何推荐排名</li>
+                        <li>股市有风险，投资需谨慎</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-footer">
+            <div class="divider"></div>
+            <p>报告生成时间：{{ generation_time }}</p>
+            <p style="margin-top:8px;color:#d1d5db;">Financial Data Analyzer — Multi-Stock Comparison</p>
+        </div>
+    </div>
+
+    <script>{{ nav_scroll_js }}</script>
+</body>
+</html>

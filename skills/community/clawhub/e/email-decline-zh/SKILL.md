@@ -1,35 +1,41 @@
 ---
-name: "Email Decline Zh"
-description: "专业撰写婉拒邮件/拒绝函，适用于拒绝合作邀约、供应商报价、项目外包、 演讲邀请、赞助请求等各类职场场景。在清晰传达拒绝立场的同时，措辞得体、 语气温和，有效维护双方关系。支持多种拒绝理由（预算不足、时间冲突、 方向不符、内部政策等），可生成正式或半正式风格的 decline email / 拒绝函 / 礼貌拒绝回..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-decline-zh"
-sourceUrl: "https://clawhub.ai/skills/email-decline-zh"
+name: email-decline-zh
+description: >
+  专业撰写婉拒邮件/拒绝函，适用于拒绝合作邀约、供应商报价、项目外包、
+  演讲邀请、赞助请求等各类职场场景。在清晰传达拒绝立场的同时，措辞得体、
+  语气温和，有效维护双方关系。支持多种拒绝理由（预算不足、时间冲突、
+  方向不符、内部政策等），可生成正式或半正式风格的 decline email /
+  拒绝函 / 礼貌拒绝回复 / 婉拒信，一键输出可直接发送的完整邮件正文。
+tags: [婉拒邮件, 拒绝函, 礼貌拒绝, 拒绝合作, decline-email, 职场沟通, 商务邮件, 邮件写作]
 ---
 
-# Email Decline Zh
+# 婉拒邮件生成器
 
-> 专业撰写婉拒邮件/拒绝函，适用于拒绝合作邀约、供应商报价、项目外包、 演讲邀请、赞助请求等各类职场场景。在清晰传达拒绝立场的同时，措辞得体、 语气温和，有效维护双方关系。支持多种拒绝理由（预算不足、时间冲突、 方向不符、内部政策等），可生成正式或半正式风格的 decline email / 拒绝函 / 礼貌拒绝回...
+一句话简介：用专业、得体的措辞撰写各类职场婉拒邮件，清晰表达拒绝立场的同时维护良好关系。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-decline-zh`
-- **Source URL:** [https://clawhub.ai/skills/email-decline-zh](https://clawhub.ai/skills/email-decline-zh)
+## Tools Required
+- read
+- write
 
-## Overview
+## Usage
+- "帮我写一封婉拒供应商报价的邮件，对方价格太高但我不想彻底关闭合作可能"
+- "我需要拒绝一个合作邀约，对方是同行，请帮我写一封礼貌的拒绝函，理由是今年资源已排满"
+- "帮我写 decline email，婉拒对方邀请我去做主题演讲，语气要客气但态度要明确"
+- "供应商第三次跟进报价了，帮我写封邮件礼貌拒绝，同时不让对方觉得被敷衍"
+- "帮我写一封拒绝外包合作的邮件，原因是项目已决定内部消化，要维持好关系"
 
+## Examples
+输入：拒绝一家广告公司的合作提案，原因是预算有限且方向不符，希望保持未来合作可能
+输出：
+  主题：关于合作提案的回复
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/email-decline-zh
-```
+  您好，
+
+  感谢贵司提交详尽的合作提案，团队认真研读后深感用心。经内部评估，
+  受限于本阶段预算规划及当前业务重心，我们暂时无法推进此次合作。
+  这与贵司方案质量无关，仅因双方时机尚未契合。
+
+  期待未来有合适机会再度探讨合作可能，届时将主动与您联系。
+  再次感谢您的时间与努力，祝业务顺利。
+
+  此致

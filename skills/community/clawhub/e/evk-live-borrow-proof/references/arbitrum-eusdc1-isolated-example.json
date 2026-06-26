@@ -1,0 +1,96 @@
+{
+  "chainLabel": "arbitrum",
+  "rpcUrl": "https://arb1.arbitrum.io/rpc",
+  "accountAddress": "0x000000000000000000000000000000000000dEaD",
+  "signerEnvName": "LIVE_SIGNER_ENV",
+  "operatorAck": "SET_REQUIRED_LIVE_SEND_ACKNOWLEDGEMENT_PHRASE",
+  "approvalPolicy": {
+    "mode": "exact"
+  },
+  "tokens": {
+    "wrappedNative": {
+      "symbol": "WETH",
+      "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+      "decimals": 18
+    },
+    "borrowAsset": {
+      "symbol": "WETH",
+      "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+      "decimals": 18
+    },
+    "collateralAsset": {
+      "symbol": "USDC",
+      "address": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+      "decimals": 6
+    }
+  },
+  "vaults": {
+    "borrowVault": {
+      "label": "eWETH-11",
+      "address": "0x9dB604761a4664002629873f5985386904C3D5Fe"
+    },
+    "collateralVault": {
+      "label": "eUSDC-1",
+      "address": "0x0a1eCC5Fe8C9be3C809844fcBe615B46A869b899"
+    },
+    "disableCollateral": [
+      {
+        "label": "eWETH-1",
+        "address": "0x78E3E051D32157AACD550fBB78458762d8f7edFF"
+      }
+    ]
+  },
+  "evc": {
+    "address": "0x6302ef0F34100CDDFb5489fbcB6eE1AA95CD1066",
+    "enableController": false,
+    "controllersToDisable": []
+  },
+  "actions": {
+    "repayExistingDebt": true,
+    "depositFullCollateralBalance": true,
+    "borrowAmount": "0.00005"
+  },
+  "repayTopUp": {
+    "enabled": true,
+    "mode": "wrap-native",
+    "amount": "0.0002"
+  },
+  "repaySwap": {
+    "enabled": false,
+    "routerAddress": "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45",
+    "tokenIn": {
+      "symbol": "WETH",
+      "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+      "decimals": 18,
+      "isWrappedNative": true
+    },
+    "tokenOut": {
+      "symbol": "WETH",
+      "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+      "decimals": 18
+    },
+    "fee": 100,
+    "amountIn": "0",
+    "amountOutMinimum": "0.000001",
+    "wrapNativeAmount": "0"
+  },
+  "collateralSwap": {
+    "enabled": true,
+    "routerAddress": "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45",
+    "tokenIn": {
+      "symbol": "WETH",
+      "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+      "decimals": 18,
+      "isWrappedNative": true
+    },
+    "tokenOut": {
+      "symbol": "USDC",
+      "address": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+      "decimals": 6
+    },
+    "fee": 100,
+    "amountIn": "0.0015",
+    "amountOutMinimum": "0.1",
+    "wrapNativeAmount": "0.0015"
+  }
+}

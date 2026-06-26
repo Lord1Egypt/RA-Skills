@@ -1,0 +1,7 @@
+interface:
+  display_name: "Feedback Controller"
+  short_description: "Diagnose drift and choose the right correction path."
+  default_prompt: "Use $feedback-controller to compare the target state with the current output and decide whether to retry, switch approach, or escalate."
+
+policy:
+  allow_implicit_invocation: true

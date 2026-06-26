@@ -1,35 +1,136 @@
 ---
-name: "飞书文档翻译助手"
+name: feishu-doc-translator
 description: "飞书文档翻译助手 — 在飞书文档之间进行中英文互译，支持全文翻译、段落翻译、双语对照。当用户需要翻译飞书文档、英文文档转中文、中文文档转英文、或创建双语版本文档时使用。触发词：翻译飞书文档、文档翻译、中英互译、双语文档、translate feishu doc、飞书英文。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-doc-translator"
-sourceUrl: "https://clawhub.ai/skills/feishu-doc-translator"
 ---
 
 # 飞书文档翻译助手
 
-> 飞书文档翻译助手 — 在飞书文档之间进行中英文互译，支持全文翻译、段落翻译、双语对照。当用户需要翻译飞书文档、英文文档转中文、中文文档转英文、或创建双语版本文档时使用。触发词：翻译飞书文档、文档翻译、中英互译、双语文档、translate feishu doc、飞书英文。
+让 AI Agent 成为你的飞书文档翻译官，一键中英互译，保留 Markdown 格式。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-doc-translator`
-- **Source URL:** [https://clawhub.ai/skills/feishu-doc-translator](https://clawhub.ai/skills/feishu-doc-translator)
+## 核心能力
 
-## Overview
+### 1. 全文翻译
+- 读取飞书文档完整内容（通过 `feishu_doc read`）
+- 中文 → 英文 或 英文 → 中文
+- 保留所有 Markdown 格式（标题、表格、列表、代码块）
+- 输出到新文档或原文档下方
 
+### 2. 段落级翻译
+- 翻译文档中指定段落/章节
+- 适用场景：更新产品文档、翻译公告通知
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-doc-translator
+### 3. 双语对照模式
+- 中英对照双栏输出（原文 + 译文交替显示）
+- 适合技术文档、API 文档、产品说明书
+
+### 4. 格式智能处理
+- 表格：保持行列结构，仅翻译文字
+- 代码块：仅翻译注释，保留代码
+- 链接：保留 URL，仅翻译显示文字
+- 图片描述：翻译 alt 文本
+
+---
+
+## 使用场景
+
+### 场景 1：产品文档国际化
 ```
+用户："帮我把这篇飞书产品文档翻译成英文"
+→ 读原文 → 英译 → 新建英文版文档（同级目录）
+```
+
+### 场景 2：英文技术文档本土化
+```
+用户："这个英文 API 文档需要中文版"
+→ 读原文档 → 中译 → 创建中文版（保留代码块）
+```
+
+### 场景 3：会议纪要双语
+```
+用户："把这篇会议纪要做成中英对照版"
+→ 读原文 → 双语对照格式 → 写入新文档
+```
+
+### 场景 4：批量文档翻译
+```
+用户："把这个知识库里的 3 篇文章都翻译成英文"
+→ 遍历文档列表 → 逐个翻译 → 命名规则：原名_en
+```
+
+---
+
+## 工作流程
+
+### 标准翻译流程
+1. **确认源文档** — 获取 doc_token，读取全文内容
+2. **确认目标语言** — 中→英 或 英→中（或其他语言）
+3. **翻译** — 按段落翻译，保留 Markdown 结构
+4. **输出** — 默认创建新文档（格式：`原文档名_en` 或 `原文档名_zh`）
+5. **通知用户** — 发送新文档链接
+
+### 双语对照流程
+1. 读取原文
+2. 创建新文档，标题为 `[Bilingual] 原文标题`
+3. 交替写入：`## 🇨🇳 中文` → 中文内容 → `## 🇬🇧 English` → 英文内容
+4. 或使用飞书表格实现双栏对照
+
+---
+
+## 翻译质量保证
+
+| 要素 | 处理方式 |
+|------|---------|
+| 技术术语 | 保持一致性（如 "多维表格" → "Bitable"） |
+| 产品名称 | 保持原名（飞书→Feishu/Lark，多维表格→Bitable） |
+| 代码 | 不翻译，仅翻译注释 |
+| URL | 保留不变 |
+| 数字/日期 | 适配目标语言格式 |
+| 文化引用 | 本地化改写（如 "画蛇添足" → "gilding the lily"） |
+
+---
+
+## 定价（ClawHub 免费技能）
+
+**免费发布**，作为引流产品：
+- 吸引飞书国际化企业用户
+- 展示 AI 翻译能力 → 引导付费定制服务
+- 与其他 3 个付费模板产品形成产品矩阵
+
+---
+
+## 技术实现
+
+使用的 OpenClaw 工具：
+- `feishu_doc read` — 读取飞书文档内容
+- `feishu_doc create` — 创建新翻译文档
+- `feishu_doc write` — 写入翻译内容
+- `feishu_doc list_blocks` — 获取文档块结构（高级）
+- `feishu_drive list` — 批量处理文档
+
+---
+
+## 限制与注意事项
+
+- 翻译质量依赖底层 AI 模型能力
+- 超长文档（>10000 字）建议分段翻译
+- 从右到左语言（阿拉伯语等）暂不支持
+- 图片中的文字无法翻译（需 OCR）
+- 飞书特有格式（如多维表格嵌入、投票）无法完全保留
+
+---
+
+## 与其他技能的关系
+
+| 技能 | 关系 |
+|------|------|
+| feishu-doc-ai-writer | 互补 — Writer 创作新文档，Translator 翻译已有文档 |
+| feishu-bitable-butler | 无关 — 但配合使用时可以翻译 Bitable 说明文档 |
+| feishu-chat-bot | 互补 — Bot 回答群聊问题，Translator 处理文档翻译 |
+
+---
+
+## 版本历史
+
+| 版本 | 日期 | 变更 |
+|------|------|------|
+| v1.0.0 | 2026-05-07 | 初始发布：中英互译 + 双语对照 |

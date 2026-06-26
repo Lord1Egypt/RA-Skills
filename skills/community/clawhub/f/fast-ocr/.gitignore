@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# 测试文件
+test_*.py
+*_test.py
+
+# 临时文件
+*.tmp
+*.log
+*.txt
+
+# 模型文件（首次运行自动下载）
+~/.rapidocr/
+*.onnx
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

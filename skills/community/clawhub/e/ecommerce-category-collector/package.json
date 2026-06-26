@@ -1,0 +1,26 @@
+{
+  "name": "ecommerce-category-collector",
+  "version": "1.0.0",
+  "description": "电商分类链接批量采集工具 for Audtools",
+  "main": "scripts/collector.js",
+  "scripts": {
+    "test": "node scripts/collector.js test/sample.csv --test",
+    "start": "node scripts/collector.js",
+    "validate": "node -e \"const { validateCSV } = require('./scripts/collector.js'); console.log(validateCSV('test/sample.csv'));\""
+  },
+  "keywords": [
+    "ecommerce",
+    "category",
+    "collector",
+    "audtools",
+    "automation"
+  ],
+  "author": "OpenClaw Assistant",
+  "license": "MIT",
+  "dependencies": {
+    "csv-parse": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

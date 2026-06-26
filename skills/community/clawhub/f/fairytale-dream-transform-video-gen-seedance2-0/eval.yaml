@@ -1,0 +1,21 @@
+version: "1"
+defaults:
+  trials: 3
+  timeout: 600
+  threshold: 0.75
+skill: "fairytale-dream-transform-video-gen-seedance2.0"
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use the fairytale-dream-transform-video-gen-seedance2.0 skill to transform a boring commute into a styled vertical clip."
+  - id: implicit-domain
+    should_trigger: true
+    prompt: "Pastel fairytale dream look for a picnic scene, soft particles, vertical."
+  - id: negative-control
+    should_trigger: false
+    prompt: "Refactor my Rust crate and add property-based tests only."
+outcome_tests:
+  - id: layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"

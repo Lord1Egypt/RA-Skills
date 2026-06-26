@@ -1,35 +1,29 @@
 ---
-name: "Eightctl"
-description: "Control Eight Sleep pods (status, temperature, alarms, schedules)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eightctl"
-sourceUrl: "https://clawhub.ai/skills/eightctl"
+name: eightctl
+description: Control Eight Sleep pods (status, temperature, alarms, schedules).
+homepage: https://eightctl.sh
+metadata: {"clawdbot":{"emoji":"🎛️","requires":{"bins":["eightctl"]},"install":[{"id":"go","kind":"go","module":"github.com/steipete/eightctl/cmd/eightctl@latest","bins":["eightctl"],"label":"Install eightctl (go)"}]}}
 ---
 
-# Eightctl
+# eightctl
 
-> Control Eight Sleep pods (status, temperature, alarms, schedules).
+Use `eightctl` for Eight Sleep pod control. Requires auth.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eightctl`
-- **Source URL:** [https://clawhub.ai/skills/eightctl](https://clawhub.ai/skills/eightctl)
+Auth
+- Config: `~/.config/eightctl/config.yaml`
+- Env: `EIGHTCTL_EMAIL`, `EIGHTCTL_PASSWORD`
 
-## Overview
+Quick start
+- `eightctl status`
+- `eightctl on|off`
+- `eightctl temp 20`
 
+Common tasks
+- Alarms: `eightctl alarm list|create|dismiss`
+- Schedules: `eightctl schedule list|create|update`
+- Audio: `eightctl audio state|play|pause`
+- Base: `eightctl base info|angle`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/eightctl
-```
+Notes
+- API is unofficial and rate-limited; avoid repeated logins.
+- Confirm before changing temperature or alarms.

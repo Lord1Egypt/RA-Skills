@@ -1,0 +1,38 @@
+{
+  "name": "@frontend-craft/fec-legacy-web-standard",
+  "version": "2.4.0",
+  "description": "Use when maintaining or safely modifying existing non-framework frontend code: vanilla JavaScript, jQuery, HTML/CSS, MPA pages, server-rendered templates, legacy plugins, or long-lived code that should stay in its current stack. Use migration skill when planning a move to React/Vue/TypeScript; Chinese triggers include 传统前端, 原生 JS, jQuery.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-legacy-web-standard"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "legacy-migration",
+    "jquery",
+    "mpa",
+    "legacy",
+    "vanilla-js"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

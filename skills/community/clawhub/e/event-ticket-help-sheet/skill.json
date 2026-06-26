@@ -1,0 +1,45 @@
+{
+  "slug": "event-ticket-help-sheet",
+  "name": "Event Ticket Help Sheet",
+  "displayName": "Event Ticket Help Sheet",
+  "version": "1.0.1",
+  "type": "prompt-flow",
+  "description": "Build an urgent ticket support action sheet with ticket facts, proof bundle, official contact paths, arrival plan, and on-site script for venue entry problems.",
+  "author": "Golden Bean / code",
+  "license": "MIT-0",
+  "category": "Urgent Admin and Logistics",
+  "triggerKeywords": [
+    "event ticket problem",
+    "concert entry checklist",
+    "mobile ticket help",
+    "QR code not loading",
+    "ticket transfer pending",
+    "venue entry issue",
+    "box office help",
+    "ticket support message"
+  ],
+  "tags": [
+    "tickets",
+    "events",
+    "urgent-logistics",
+    "venue-entry",
+    "support",
+    "proof-bundle"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "file_count": 3,
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "ACCEPTANCE.md"
+  ],
+  "project": "daily-50-skills-2026-05-08",
+  "priority": "P2"
+}

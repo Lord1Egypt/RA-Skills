@@ -1,0 +1,48 @@
+{
+  "name": "feishu-scheduler-skill",
+  "version": "1.0.0",
+  "description": "OpenClaw 技能：飞书日历排期与交互卡片确认",
+  "main": "index.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "js-yaml": "^4.1.1",
+    "yaml": "^2.8.2"
+  },
+  "keywords": [
+    "openclaw",
+    "feishu",
+    "scheduler"
+  ],
+  "author": "",
+  "license": "ISC",
+  "openclaw": {
+    "required_envs": [
+      "FEISHU_APP_ID",
+      "FEISHU_APP_SECRET",
+      "FEISHU_VERIFICATION_TOKEN",
+      "OPENCLAW_WAKE_ENDPOINT"
+    ],
+    "optional_envs": [
+      "FEISHU_ENCRYPT_KEY",
+      "FEISHU_CALENDAR_ID",
+      "ALLOWED_WAKE_DOMAINS"
+    ],
+    "env": {
+      "FEISHU_APP_ID": "飞书应用 App ID",
+      "FEISHU_APP_SECRET": "飞书应用 App Secret",
+      "FEISHU_VERIFICATION_TOKEN": "飞书 Verification Token",
+      "FEISHU_ENCRYPT_KEY": "飞书加密密钥，用于 Webhook 签名校验（强烈建议配置）",
+      "FEISHU_CALENDAR_ID": "飞书日历 ID，用于创建日程（留空则使用 primary）",
+      "ALLOWED_WAKE_DOMAINS": "允许唤醒的域名白名单，逗号分隔（可选，留空则不限制）",
+      "OPENCLAW_WAKE_ENDPOINT": "Agent 唤醒地址"
+    }
+  }
+}

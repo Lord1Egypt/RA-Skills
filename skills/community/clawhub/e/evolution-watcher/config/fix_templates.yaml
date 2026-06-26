@@ -1,0 +1,219 @@
+# 适配器修复模板库 - 第二阶段增强版
+version: "2.0"
+description: "适配器变更自动修复模板库（第二阶段增强）"
+
+templates:
+  # 1. 函数重命名
+  - id: "function_rename"
+    name: "函数重命名"
+    description: "检测函数名称变更并生成替换建议"
+    detection_patterns:
+      - type: "changelog_keyword"
+        patterns: ["renamed function", "函数重命名", "改名", "rename", "renaming"]
+      - type: "diff_pattern"
+        patterns: ["def\\s+[a-zA-Z_][a-zA-Z0-9_]*\\s*\\(|function\\s+[a-zA-Z_][a-zA-Z0-9_]*"]
+    extraction:
+      - source: "changelog"
+        regex: "(?:renamed|重命名)\\s+(?:function|函数)\\s+['\"]?([a-zA-Z_][a-zA-Z0-9_]*)['\"]?\\s+(?:to|为)\\s+['\"]?([a-zA-Z_][a-zA-Z0-9_]*)['\"]?"
+        groups: ["old_name", "new_name"]
+    fix_action:
+      type: "text_replace"
+      scope: "adapter_file"
+      pattern: "{old_name}\\("
+      replacement: "{new_name}("
+      description: "将函数调用 {old_name}(...) 替换为 {new_name}(...)"
+    risk_level: "medium"
+    confidence: 0.8
+
+  # 2. 导入路径变更
+  - id: "import_path_change"
+    name: "导入路径变更"
+    description: "检测Python导入路径变更"
+    detection_patterns:
+      - type: "changelog_keyword"
+        patterns: ["import", "导入", "module", "模块", "package", "包", "import path"]
+      - type: "diff_pattern"
+        patterns: ["from\\s+[a-zA-Z0-9_.]+\\s+import"]
+    extraction:
+      - source: "changelog"
+        regex: "(?:changed|变更)\\s+(?:import|导入)\\s+(?:path|路径)\\s+(?:from|从)\\s+['\"]?([a-zA-Z0-9_.]+)['\"]?\\s+(?:to|到)\\s+['\"]?([a-zA-Z0-9_.]+)['\"]?"
+        groups: ["old_path", "new_path"]
+    fix_action:
+      type: "text_replace"
+      scope: "adapter_file"
+      pattern: "from {old_path} import"
+      replacement: "from {new_path} import"
+      description: "将导入路径从 {old_path} 更新为 {new_path}"
+    risk_level: "low"
+    confidence: 0.9
+
+  # 3. 参数添加
+  - id: "parameter_add"
+    name: "参数添加"
+    description: "检测函数参数添加"
+    detection_patterns:
+      - type: "changelog_keyword"
+        patterns: ["added parameter", "添加参数", "new argument", "参数添加"]
+      - type: "diff_pattern"
+        patterns: ["\\(.*\\)\\s*:", "\\(.*,\\s*[a-zA-Z_][a-zA-Z0-9_]*\\s*="]
+    extraction:
+      - source: "changelog"
+        regex: "(?:added|添加)\\s+(?:parameter|参数)\\s+['\"]?([a-zA-Z_][a-zA-Z0-9_]*)['\"]?\\s+(?:with|，)?\\s*(?:default|默认)?\\s*(?:value|值)?\\s*['\"]?([^'\"]*)['\"]?"
+        groups: ["param_name", "default_value"]
+    fix_action:
+      type: "parameter_add"
+      scope: "adapter_file"
+      description: "在函数调用中添加参数 {param_name}，默认值: {default_value}"
+    risk_level: "medium"
+    confidence: 0.6
+
+  # 4. 参数移除
+  - id: "parameter_remove"
+    name: "参数移除"
+    description: "检测函数参数移除"
+    detection_patterns:
+      - type: "changelog_keyword"
+        patterns: ["removed parameter", "移除参数", "deprecated argument", "参数移除"]
+      - type: "diff_pattern"
+        patterns: ["\\(.*,\\s*[a-zA-Z_][a-zA-Z0-9_]*\\s*="]
+    extraction:
+      - source: "changelog"
+        regex: "(?:removed|移除)\\s+(?:parameter|参数)\\s+['\"]?([a-zA-Z_][a-zA-Z0-9_]*)['\"]?"
+        groups: ["param_name"]
+    fix_action:
+      type: "parameter_remove"
+      scope: "adapter_file"
+      description: "从函数调用中移除参数 {param_name}"
+    risk_level: "high"
+    confidence: 0.7
+
+  # 5. 配置键变更
+  - id: "config_key_change"
+    name: "配置键变更"
+    description: "检测配置文件键名变更"
+    detection_patterns:
+      - type: "changelog_keyword"
+        patterns: ["config", "配置", "key", "键", "setting", "设置"]
+      - type: "diff_pattern"
+        patterns: ["[a-zA-Z_][a-zA-Z0-9_]*\\s*:"]
+    extraction:
+      - source: "changelog"
+        regex: "(?:changed|变更)\\s+(?:config|配置)\\s+(?:key|键)\\s+['\"]?([a-zA-Z_][a-zA-Z0-9_]*)['\"]?\\s+(?:to|为)\\s+['\"]?([a-zA-Z_][a-zA-Z0-9_]*)['\"]?"
+        groups: ["old_key", "new_key"]
+    fix_action:
+      type: "text_replace"
+      scope: "adapter_file"
+      pattern: "'{old_key}'\\s*:"
+      replacement: "'{new_key}':"
+      description: "将配置键 {old_key} 替换为 {new_key}"
+    risk_level: "low"
+    confidence: 0.8
+
+  # 6. 类重命名
+  - id: "class_rename"
+    name: "类重命名"
+    description: "检测类名称变更"
+    detection_patterns:
+      - type: "changelog_keyword"
+        patterns: ["renamed class", "类重命名", "class rename"]
+      - type: "diff_pattern"
+        patterns: ["class\\s+[a-zA-Z_][a-zA-Z0-9_]*"]
+    extraction:
+      - source: "changelog"
+        regex: "(?:renamed|重命名)\\s+(?:class|类)\\s+['\"]?([a-zA-Z_][a-zA-Z0-9_]*)['\"]?\\s+(?:to|为)\\s+['\"]?([a-zA-Z_][a-zA-Z0-9_]*)['\"]?"
+        groups: ["old_class", "new_class"]
+    fix_action:
+      type: "text_replace"
+      scope: "adapter_file"
+      pattern: "\\b{old_class}\\b"
+      replacement: "{new_class}"
+      description: "将类名 {old_class} 替换为 {new_class}"
+    risk_level: "high"
+    confidence: 0.7
+
+  # 7. 方法签名变更
+  - id: "method_signature_change"
+    name: "方法签名变更"
+    description: "检测方法签名变更（参数顺序或类型变化）"
+    detection_patterns:
+      - type: "changelog_keyword"
+        patterns: ["signature change", "签名变更", "method signature", "方法签名"]
+      - type: "diff_pattern"
+        patterns: ["def\\s+[a-zA-Z_][a-zA-Z0-9_]*\\s*\\(.*\\)\\s*:"]
+    extraction:
+      - source: "changelog"
+        regex: "(?:signature|签名)\\s+(?:change|变更)\\s+for\\s+['\"]?([a-zA-Z_][a-zA-Z0-9_]*)['\"]?"
+        groups: ["method_name"]
+    fix_action:
+      type: "signature_change"
+      scope: "adapter_file"
+      description: "更新方法 {method_name} 的调用签名"
+    risk_level: "high"
+    confidence: 0.5
+
+  # 8. 返回值类型变更
+  - id: "return_type_change"
+    name: "返回值类型变更"
+    description: "检测函数返回值类型变更"
+    detection_patterns:
+      - type: "changelog_keyword"
+        patterns: ["return type", "返回值类型", "返回类型", "type change", "类型变更"]
+      - type: "diff_pattern"
+        patterns: ["->\\s*[a-zA-Z_][a-zA-Z0-9_]*\\s*:"]
+    extraction:
+      - source: "changelog"
+        regex: "(?:return|返回)\\s+(?:type|类型)\\s+(?:change|变更)\\s+(?:from|从)\\s+['\"]?([a-zA-Z_][a-zA-Z0-9_<>, ]+)['\"]?\\s+(?:to|到)\\s+['\"]?([a-zA-Z_][a-zA-Z0-9_<>, ]+)['\"]?"
+        groups: ["old_type", "new_type"]
+    fix_action:
+      type: "text_replace"
+      scope: "adapter_file"
+      pattern: "-> {old_type}"
+      replacement: "-> {new_type}"
+      description: "将返回值类型 {old_type} 替换为 {new_type}"
+    risk_level: "medium"
+    confidence: 0.7
+
+  # 9. 装饰器变更
+  - id: "decorator_change"
+    name: "装饰器变更"
+    description: "检测装饰器变更"
+    detection_patterns:
+      - type: "changelog_keyword"
+        patterns: ["decorator", "装饰器", "annotation", "注解", "@"]
+      - type: "diff_pattern"
+        patterns: ["@[a-zA-Z_][a-zA-Z0-9_]*"]
+    extraction:
+      - source: "changelog"
+        regex: "(?:decorator|装饰器)\\s+(?:change|变更)\\s+(?:from|从)\\s+['\"]?@?([a-zA-Z_][a-zA-Z0-9_]*)['\"]?\\s+(?:to|到)\\s+['\"]?@?([a-zA-Z_][a-zA-Z0-9_]*)['\"]?"
+        groups: ["old_decorator", "new_decorator"]
+    fix_action:
+      type: "text_replace"
+      scope: "adapter_file"
+      pattern: "@{old_decorator}"
+      replacement: "@{new_decorator}"
+      description: "将装饰器 @{old_decorator} 替换为 @{new_decorator}"
+    risk_level: "low"
+    confidence: 0.8
+
+# 适用范围配置
+scopes:
+  adapter_files:
+    - "**/*_adapter.py"
+    - "**/adapter/*.py"
+    - "**/integration/*.py"
+  config_files:
+    - "**/*.json"
+    - "**/*.yaml"
+    - "**/*.yml"
+
+# 模板匹配优先级（高风险优先）
+match_priority:
+  - "class_rename"
+  - "method_signature_change"
+  - "parameter_remove"
+  - "function_rename"
+  - "parameter_add"
+  - "config_key_change"
+  - "import_path_change"
+  - "return_type_change"
+  - "decorator_change"

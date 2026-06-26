@@ -1,0 +1,59 @@
+{
+  "id": "fec-motion-interaction",
+  "name": "交互动效",
+  "category": "design-ui",
+  "tags": [
+    "motion",
+    "framer-motion",
+    "gsap",
+    "lottie",
+    "reduced-motion"
+  ],
+  "summary": "Frontend interaction motion strategy, tool selection, performance budgets, and accessible reduced-motion behavior.",
+  "version": "2.5.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "design-ui",
+    "motion",
+    "framer-motion",
+    "gsap",
+    "lottie",
+    "reduced-motion"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when designing, implementing, or reviewing frontend interaction motion, page transitions, scroll animation, Framer Motion, GSAP, Lottie, CSS animation, motion intensity, animation performance, reduced-motion behavior, or cinematic but accessible UI motion. Do not use for SVG-only path drawing, Canvas/WebGL rendering, or ordinary hover states; Chinese triggers include 动效设计, 交互动效, 页面转场, 滚动动画, Framer Motion, GSAP.",
+  "source": "skills/fec-motion-interaction",
+  "references": [
+    "references/motion-patterns.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-ui-design",
+      "fec-svg-animation",
+      "fec-canvas-threejs",
+      "fec-accessibility-check"
+    ],
+    "boundaryWorkflows": [
+      "Use a UI design workflow to decide visual direction, page hierarchy, and whether motion is appropriate for the product context.",
+      "Use an SVG animation workflow for SVG-only path drawing, icon motion, and illustration motion details.",
+      "Use a Canvas/Three.js workflow for WebGL, shader, 3D, particle, and canvas-rendered animation."
+    ],
+    "capabilityTags": [
+      "motion",
+      "interaction",
+      "animation",
+      "accessibility"
+    ]
+  }
+}

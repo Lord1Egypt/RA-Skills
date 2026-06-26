@@ -1,0 +1,42 @@
+{
+    "adapter_path": "adapters",
+    "batch_size": 1,
+    "completion_feature": "completion",
+    "config": "configs/train_qwen3_8b.yaml",
+    "data": "data/sft_token_limited",
+    "fine_tune_type": "lora",
+    "grad_accumulation_steps": 8,
+    "grad_checkpoint": true,
+    "iters": 1000,
+    "learning_rate": 1e-05,
+    "lora_parameters": {
+        "rank": 4,
+        "dropout": 0.05,
+        "scale": 20.0
+    },
+    "lr_schedule": null,
+    "mask_prompt": false,
+    "max_seq_length": 1024,
+    "model": "Qwen/Qwen3-8B-MLX-4bit",
+    "num_layers": 8,
+    "optimizer": "adam",
+    "optimizer_config": {
+        "adam": {},
+        "adamw": {},
+        "muon": {},
+        "sgd": {},
+        "adafactor": {}
+    },
+    "project_name": null,
+    "prompt_feature": "prompt",
+    "report_to": null,
+    "resume_adapter_file": "adapters/0000600_adapters.safetensors",
+    "save_every": 100,
+    "seed": 42,
+    "steps_per_eval": 100,
+    "steps_per_report": 10,
+    "test": false,
+    "test_batches": 500,
+    "train": true,
+    "val_batches": 20
+}

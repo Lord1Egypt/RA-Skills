@@ -1,0 +1,6 @@
+{
+  "name": "find-moments",
+  "version": "1.0.0",
+  "description": "Find specific moments in a video based on a natural language query using WayinVideo API.",
+  "commands": []
+}

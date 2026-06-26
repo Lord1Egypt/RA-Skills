@@ -1,0 +1,35 @@
+{
+  "msg_type": "interactive",
+  "card": {
+    "header": {
+      "title": {
+        "tag": "plain_text",
+        "content": "{{title}}"
+      },
+      "template": "blue"
+    },
+    "elements": [
+      {
+        "tag": "div",
+        "text": {
+          "tag": "lark_md",
+          "content": "{{message}}"
+        }
+      },
+      {
+        "tag": "action",
+        "actions": [
+          {
+            "tag": "button",
+            "text": {
+              "tag": "plain_text",
+              "content": "查看详情"
+            },
+            "url": "{{link}}",
+            "type": "primary"
+          }
+        ]
+      }
+    ]
+  }
+}

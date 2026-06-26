@@ -1,0 +1,48 @@
+{
+  "name": "feishu-process-feedback",
+  "version": "1.0.0",
+  "description": "飞书消息自动处理与进度反馈技能 - 后台监听、实时进度追踪、进程隔离管理",
+  "main": "scripts/listener.js",
+  "scripts": {
+    "start": "node scripts/listener.js",
+    "start:verbose": "FEISHU_VERBOSE=true node scripts/listener.js",
+    "test": "node scripts/process_task.js \"测试任务：1. 步骤一 2. 步骤二 3. 步骤三\" test_001",
+    "status": "node -e \"console.log(require('./package.json'))\""
+  },
+  "keywords": [
+    "feishu",
+    "lark",
+    "process",
+    "feedback",
+    "progress",
+    "task",
+    "openclaw",
+    "skill",
+    "automation"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/feishu-process-feedback"
+  },
+  "homepage": "https://clawhub.com/skills/feishu-process-feedback",
+  "bugs": {
+    "url": "https://github.com/your-org/feishu-process-feedback/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "config": {
+    "pollInterval": 5000,
+    "maxRetries": 3,
+    "maxConcurrent": 5,
+    "processTimeout": 300000
+  },
+  "files": [
+    "SKILL.md",
+    "scripts/",
+    "package.json",
+    "README.md"
+  ]
+}

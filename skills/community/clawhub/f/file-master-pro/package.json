@@ -1,0 +1,58 @@
+{
+  "name": "file-master-pro",
+  "version": "1.0.0",
+  "description": "强大的文件批量处理工具，支持重命名、整理、搜索、转换等操作",
+  "main": "file_master.py",
+  "scripts": {
+    "install": "python install.py install",
+    "test": "python install.py test",
+    "start": "python file_master.py"
+  },
+  "keywords": [
+    "file",
+    "management",
+    "automation",
+    "batch",
+    "rename",
+    "organize",
+    "search",
+    "productivity"
+  ],
+  "author": "阿策自动化工作室",
+  "license": "MIT",
+  "dependencies": {
+    "PyYAML": ">=6.0"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/file-master-pro/file-master.git"
+  },
+  "bugs": {
+    "url": "https://github.com/file-master-pro/file-master/issues"
+  },
+  "homepage": "https://file-master.pro",
+  "openclaw": {
+    "skill": true,
+    "category": "productivity",
+    "price": 9.99,
+    "currency": "USD",
+    "tags": ["file-management", "automation", "batch-processing"],
+    "compatibility": {
+      "windows": true,
+      "macos": true,
+      "linux": true
+    },
+    "requirements": {
+      "python": "3.8+",
+      "memory": "512MB",
+      "disk": "50MB"
+    },
+    "installation": {
+      "command": "python install.py install",
+      "timeout": 300
+    }
+  }
+}

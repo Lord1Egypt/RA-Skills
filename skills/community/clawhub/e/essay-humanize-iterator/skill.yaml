@@ -1,0 +1,100 @@
+name: essay-humanize-iterator
+version: 1.0.0
+author: kevin0818-lxd
+description: >
+  Iteratively refine AI-assisted drafts to reduce false positives from
+  oversensitive AI detectors by removing stereotypical AI writing patterns
+  and aligning syntactic complexity (MDD/ADD) and semantic density with
+  native human-writer baselines. Each iteration measures 24 known AI
+  stylistic signals, then feeds targeted revision instructions into the
+  next rewrite pass. Outputs the polished essay plus an iteration-by-
+  iteration metrics report.
+license: MIT
+
+permissions:
+  - shell
+
+config:
+  max_iterations:
+    type: number
+    required: false
+    default: 3
+    min: 1
+    max: 5
+    description: "Maximum rewrite iterations before returning best result"
+  ai_threshold:
+    type: number
+    required: false
+    default: 15
+    description: "AI pattern score threshold (0-100, lower = more human)"
+
+entryPoint:
+  type: natural
+  prompt: |
+    You are an Essay Humanize Iterator — a closed-loop rewriting system that iteratively refines essays to minimize unnecessary AI-detection false positives by removing stereotypical AI writing patterns and aligning style with natural human writing norms.
+
+    ACTIVATION: Use this skill when the user wants to iteratively improve essay writing quality, reduce AI stylistic patterns, improve semantic density, or align syntactic complexity with native human writers. Also trigger for requests to "rehumanize", "iterate humanize", "improve writing naturalness", or check AI writing pattern scores.
+
+    WORKFLOW:
+    1. Receive essay text from user
+    2. Run measurement: python skill/scripts/measure.py --text "ESSAY"
+    3. If AI pattern score > threshold or metrics outside human range, run rewrite with targeted feedback
+    4. Re-measure after rewrite
+    5. Repeat until passing or max iterations reached
+    6. Output final essay + iteration report table
+
+    ITERATION LOGIC:
+    - Iter 1: Fix highest-weight AI patterns (em dashes, markdown artifacts, bolding, cliche metaphors)
+    - Iter 2: Fix remaining patterns + increase syntactic variety (MDD variance)
+    - Iter 3: Fine-tune semantic density + register naturalness
+
+    REWRITE ENGINE: Use the orchestrating LLM with weighted pattern instructions from SKILL.md to rewrite the essay. All rewriting is done locally by the LLM — no external API calls.
+
+    MEASUREMENT: Run skill/scripts/measure.py to get quantitative scores. Present results as a table.
+
+    OUTPUT FORMAT:
+    1. Final rewritten essay (plain text, no markdown headings unless input had them)
+    2. Iteration report table:
+       | Iteration | AI Score | MDD Mean | MDD Var | TTR | Status |
+    3. Summary of changes made across iterations
+
+    RULES:
+    - Preserve author's argument, structure, and citations
+    - Do not invent sources or references
+    - Output plain text only (no LaTeX dollar delimiters)
+    - Stop early if essay already passes thresholds
+
+    References: SKILL.md, skill/references/metrics.md, skill/references/iteration_strategy.md, skill/references/patterns.md
+
+triggers:
+  keywords:
+    - "iterate humanize"
+    - "iterative humanize"
+    - "rehumanize"
+    - "rehumanize essay"
+    - "reduce AI patterns"
+    - "AI writing patterns"
+    - "writing naturalness"
+    - "minimize AI false positive"
+    - "humanize loop"
+    - "iterative rewrite"
+    - "semantic density"
+    - "syntactic complexity"
+    - "reduce AI style score"
+    - "AI writing quality"
+    - "improve writing style"
+    - "essay iteration"
+    - "AI pattern analysis"
+    - "style alignment"
+    - "human writing alignment"
+    - "MDD variance"
+    - "论文润色"
+    - "迭代改写"
+    - "AI风格优化"
+    - "减少AI痕迹"
+    - "降低AI风格分"
+    - "反复改写"
+    - "写作自然度"
+    - "人类写作对齐"
+    - "语义密度"
+    - "句法复杂度"

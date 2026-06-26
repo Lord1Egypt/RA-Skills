@@ -1,0 +1,59 @@
+# 示例提示词合集
+
+## 场景1：简单卡片组件
+"从选中的卡片Frame生成React组件。使用Card组件作为容器，内部的Button映射到Button组件。间距使用spacing token，颜色使用colors token。"
+
+## 场景2：表单页面
+"为选中的登录表单生成React组件。包含：
+- 邮箱和密码输入框（使用Input组件）
+- 记住密码复选框（使用Checkbox组件）
+- 登录按钮（Button组件，variant="primary"）
+- 表单验证逻辑（提交前验证非空和邮箱格式）
+- 使用FormField包装每个表单项
+- 所有样式值映射到design tokens"
+
+## 场景3：导航栏
+"生成响应式导航栏组件：
+- 桌面端：Logo左侧，导航链接居中，用户头像右侧
+- 移动端：折叠为汉堡菜单
+- 使用flex和gap实现间距
+- 映射颜色token，悬停状态用primary.600"
+
+## 场景4：数据表格
+"从选中的表格Frame生成Table组件：
+- 列定义从Figma的表头提取
+- 数据行循环渲染
+- 添加loading状态（骨架屏）
+- 空状态展示占位提示
+- 操作列包含编辑和删除按钮（带确认对话框）"
+
+## 场景5：模态框
+"生成Modal组件：
+- 标题从Figma顶部提取
+- 内容区域保持
+- 底部按钮：取消(secondary)和确认(primary)
+- 点击确认后调用onConfirm回调并关闭
+- 点击取消调用onClose
+- 按ESC键也触发关闭"
+
+## 场景6：多状态组件
+"为这个按钮生成代码，它有三种状态：default、hover、disabled。
+- default状态用primary.500
+- hover状态用primary.600
+- disabled状态用neutral.300
+- 使用theme来访问这些颜色"
+
+## 场景7：使用Code Connect模板
+"按照Figma Code Connect模板格式[citation:9]，为这个组件生成.figma.js文件：
+- 从Figma实例读取属性值
+- 映射到组件props
+- 包含import语句
+- 设置正确的metadata"
+
+## 场景8：复杂映射
+"这个Figma组件包含嵌套的子组件（按钮内的图标）。
+生成代码时：
+1. 找到图标实例，用Icon组件渲染
+2. 按钮本身用Button组件
+3. 将图标的size和color传递给Icon组件
+4. 整体作为组合组件导出"

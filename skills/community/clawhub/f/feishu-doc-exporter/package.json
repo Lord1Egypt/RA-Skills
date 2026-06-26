@@ -1,0 +1,22 @@
+{
+  "name": "feishu-doc-exporter",
+  "version": "1.0.0",
+  "description": "Feishu Document Exporter - Batch export Feishu docs to markdown/PDF",
+  "main": "index.js",
+  "bin": {
+    "feishu-doc-exporter": "./index.js"
+  },
+  "keywords": [
+    "feishu",
+    "document",
+    "export",
+    "markdown",
+    "pdf",
+    "openclaw-skill"
+  ],
+  "author": "铲子",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.0.0"
+  }
+}

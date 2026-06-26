@@ -1,0 +1,12 @@
+{
+  "name": "editor",
+  "version": "2.2.0",
+  "description": "The final publishing layer for anything you write.",
+  "entrypoints": [],
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "scripts/render_output.py",
+    "references/principles.md"
+  ]
+}

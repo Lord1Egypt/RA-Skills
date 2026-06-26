@@ -1,0 +1,19 @@
+{
+  "name": "eth-price-predictor",
+  "version": "1.0.0",
+  "description": "ETH价格预测 - 日/周级别涨跌方向",
+  "main": "scripts/predict.js",
+  "scripts": {
+    "predict": "node scripts/predict.js",
+    "weekly": "node scripts/predict.js weekly"
+  },
+  "keywords": [
+    "ethereum",
+    "eth",
+    "prediction",
+    "trading",
+    "skillpay"
+  ],
+  "author": "小白",
+  "license": "MIT"
+}

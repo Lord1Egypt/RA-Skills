@@ -1,0 +1,8 @@
+{
+  "name": "feishu-quickstart-cn",
+  "version": "1.0.0",
+  "description": "飞书快速集成配置 - 5分钟连接 OpenClaw 与飞书，解锁文档管理、知识库、自动化工作流",
+  "author": "yang1002378395-cmyk",
+  "license": "MIT",
+  "keywords": ["feishu", "lark", "enterprise", "integration", "chinese", "openclaw"]
+}

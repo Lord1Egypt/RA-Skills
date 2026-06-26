@@ -1,0 +1,12 @@
+{
+  "name": "feishu-edge-tts",
+  "version": "1.0.0",
+  "description": "使用微软 Edge TTS（免费）生成语音，发送到飞书",
+  "author": "司幼 (SiYou)",
+  "license": "MIT",
+  "tags": ["feishu", "voice", "audio", "tts", "edge-tts", "microsoft", "free", "chinese"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/feishu-edge-tts"
+  }
+}

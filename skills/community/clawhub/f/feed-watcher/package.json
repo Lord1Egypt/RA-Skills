@@ -1,0 +1,33 @@
+{
+  "name": "feed-watcher",
+  "version": "0.0.1",
+  "description": "Monitor RSS/Atom feeds and send notifications when new content appears",
+  "main": "index.js",
+  "bin": {
+    "feed-watcher": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "rss",
+    "atom",
+    "feed",
+    "monitor",
+    "watcher",
+    "notification",
+    "youtube",
+    "reddit",
+    "github"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "rss-parser": "^3.13.0",
+    "dotenv": "^16.3.1",
+    "node-fetch": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

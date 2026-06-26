@@ -1,0 +1,3 @@
+# Feishu Skill Python Dependencies
+
+requests>=2.31.0

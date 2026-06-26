@@ -1,0 +1,30 @@
+{
+  "name": "evidence-organizer",
+  "version": "1.0.0",
+  "description": "Organize and structure evidence for legal proceedings",
+  "main": "scripts/evidence-organizer.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "evidence",
+    "legal",
+    "证据整理"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "openclaw": {
+    "skill": true,
+    "category": "legal",
+    "triggers": [
+      "证据整理",
+      "证据清单",
+      "证据链",
+      "怎么组织证据",
+      "准备证据",
+      "证据目录"
+    ]
+  }
+}

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EML 郵件索引查詢 (V7.0.0)</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; padding-top: 20px; }
+        .card-container { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 25px; }
+        .email-row:hover { background-color: #f1f3f5; cursor: pointer; }
+        .badge-count { font-size: 0.9rem; margin-left: 10px; }
+        .load-more-btn { margin-top: 20px; width: 100%; padding: 10px; }
+        .nav-tabs { margin-bottom: 20px; border-bottom: 2px solid #dee2e6; }
+        .nav-link { font-weight: bold; color: #6c757d; }
+        .nav-link.active { color: #0d6efd !important; border-bottom: 3px solid #0d6efd !important; border: none; }
+        .ip-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #f1f3f5; border-radius: 6px; margin-bottom: 8px; }
+        .config-label { font-weight: 600; font-size: 0.9rem; }
+        .delete-btn { color: #dc3545; cursor: pointer; padding: 5px 10px; border-radius: 4px; }
+        .delete-btn:hover { background-color: #ffeef0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mb-4 text-center">📧 EML 郵件索引查詢</h2>
+        
+        <ul class="nav nav-tabs" id="mainTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="search-tab" data-bs-toggle="tab" data-bs-target="#search-content" type="button" role="tab">🔍 郵件查詢</button>
+            </li>
+            {% if show_admin %}
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="admin-tab" data-bs-toggle="tab" data-bs-target="#admin-content" type="button" role="tab">⚙️ 系統設定</button>
+            </li>
+            {% endif %}
+        </ul>
+
+        <div class="tab-content" id="mainTabsContent">
+            <div class="tab-pane fade show active" id="search-content" role="tabpanel">
+                <div class="card-container">
+                    <form id="searchForm" class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">關鍵字 (主旨/內文)</label>
+                            <input type="text" class="form-control" id="query" placeholder="輸入關鍵字 (不分大小寫)...">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">寄件者</label>
+                            <input type="text" class="form-control" id="sender" placeholder="部分姓名或 Email...">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">收件者</label>
+                            <input type="text" class="form-control" id="recipient" placeholder="部分姓名或 Email...">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">開始日期</label>
+                            <input type="date" class="form-control" id="startDate">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">結束日期</label>
+                            <input type="date" class="form-control" id="endDate">
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end gap-2">
+                            <button type="submit" class="btn btn-primary flex-grow-1 py-2">🔍 搜尋</button>
+                            <button type="button" id="exportBtn" class="btn btn-success py-2">📊 匯出 Excel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card-container">
+                    <h5 class="mb-3">搜尋結果 <span id="resultCount" class="badge bg-secondary badge-count">0 封</span></h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 180px;">寄發時間</th>
+                                    <th style="width: 250px;">寄件者</th>
+                                    <th>主旨</th>
+                                    {% if show_admin %}
+                                    <th style="width: 80px;">操作</th>
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody id="resultsBody"></tbody>
+                        </table>
+                    </div>
+                    <div id="noResults" class="text-center py-5 d-none">找不到符合條件的郵件。</div>
+                    <div id="loading" class="text-center py-5 d-none">
+                        <div class="spinner-border text-primary" role="status"></div>
+                    </div>
+                    <button id="loadMoreBtn" class="btn btn-outline-primary load-more-btn d-none">載入更多...</button>
+                </div>
+            </div>
+
+            {% if show_admin %}
+            <div class="tab-pane fade" id="admin-content" role="tabpanel">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card-container">
+                            <h5 class="mb-3">🛡️ IP 存取控制</h5>
+                            <p class="text-muted small">設定允許存取此網頁的 IP 位址。Localhost 永遠被允許。</p>
+                            <div id="ipList" class="mb-3"></div>
+                            <div class="input-group">
+                                <input type="text" id="newIp" class="form-control" placeholder="輸入新 IP (例如 192.168.1.10)">
+                                <button id="addIpBtn" class="btn btn-success">➕ 新增</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-container">
+                            <h5 class="mb-3">⏰ 自動備份設定</h5>
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <label class="config-label">備份週期 (天)</label>
+                                    <input type="number" id="backupInterval" class="form-control" value="{{ config.backup_interval_days }}" min="1">
+                                </div>
+                                <div class="col-6">
+                                    <label class="config-label">備份時間 (時)</label>
+                                    <input type="number" id="backupHour" class="form-control" value="{{ config.backup_hour }}" min="0" max="23">
+                                </div>
+                                <div class="col-6">
+                                    <label class="config-label">保留份數 (循環)</label>
+                                    <input type="number" id="maxBackups" class="form-control" value="{{ config.max_backups }}" min="1">
+                                </div>
+                                <div class="col-6 d-flex align-items-end">
+                                    <button id="saveConfigBtn" class="btn btn-primary w-100">💾 儲存設定</button>
+                                </div>
+                            </div>
+                            <hr>
+                            <h5 class="mb-3">📦 手動備份與還原</h5>
+                            <div class="d-grid gap-2">
+                                <button id="backupBtn" class="btn btn-outline-primary">建立並下載備份 (ZIP)</button>
+                                <button id="restoreBtn" class="btn btn-outline-warning">上傳 ZIP 還原資料庫</button>
+                                <input type="file" id="restoreFile" accept=".zip" style="display: none;">
+                            </div>
+                            <p class="text-muted x-small mt-2 mb-0">上次自動備份：{{ config.last_backup_date or '無' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script>
+        const searchForm = document.getElementById('searchForm');
+        const resultsBody = document.getElementById('resultsBody');
+        const noResults = document.getElementById('noResults');
+        const loading = document.getElementById('loading');
+        const resultCount = document.getElementById('resultCount');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const exportBtn = document.getElementById('exportBtn');
+
+        let currentPage = 1;
+        const perPage = 50;
+        const showAdmin = {{ 'true' if show_admin else 'false' }};
+
+        // 共用處理 401 授權錯誤
+        function handleAuthError(response) {
+            if (response.status === 401) {
+                alert('需要管理員權限，系統將重新整理以便您輸入帳號密碼。');
+                window.location.reload();
+                return true;
+            }
+            return false;
+        }
+
+        searchForm.onsubmit = async (e) => {
+            e.preventDefault();
+            currentPage = 1;
+            resultsBody.innerHTML = '';
+            await performSearch();
+        };
+
+        loadMoreBtn.onclick = async () => {
+            currentPage++;
+            await performSearch(true);
+        };
+
+        exportBtn.onclick = () => {
+            const params = getSearchParams();
+            window.location.href = `/export_excel?${params.toString()}`;
+        };
+
+        function getSearchParams() {
+            return new URLSearchParams({
+                q: document.getElementById('query').value,
+                sender: document.getElementById('sender').value,
+                recipient: document.getElementById('recipient').value,
+                start_date: document.getElementById('startDate').value,
+                end_date: document.getElementById('endDate').value
+            });
+        }
+
+        async function performSearch(isLoadMore = false) {
+            if (!isLoadMore) {
+                noResults.classList.add('d-none');
+                loading.classList.remove('d-none');
+                resultCount.innerText = '搜尋中...';
+                loadMoreBtn.classList.add('d-none');
+            }
+            const params = getSearchParams();
+            params.append('page', currentPage);
+            params.append('per_page', perPage);
+
+            try {
+                const response = await fetch(`/search?${params.toString()}`);
+                const data = await response.json();
+                loading.classList.add('d-none');
+                resultCount.innerText = `共 ${data.total_count} 封`;
+                
+                if (data.results.length === 0 && !isLoadMore) {
+                    noResults.classList.remove('d-none');
+                } else {
+                    data.results.forEach(email => {
+                        const row = document.createElement('tr');
+                        row.className = 'email-row';
+                        let html = `
+                            <td class="text-muted small" onclick="window.open('/email/${email.id}', '_blank')">${email.sent_time}</td>
+                            <td class="text-truncate" style="max-width: 250px;" onclick="window.open('/email/${email.id}', '_blank')">${email.sender}</td>
+                            <td class="fw-medium" onclick="window.open('/email/${email.id}', '_blank')">${email.subject}</td>
+                        `;
+                        if (showAdmin) {
+                            html += `<td><span class="delete-btn" onclick="deleteEmail(event, ${email.id})">🗑️</span></td>`;
+                        }
+                        row.innerHTML = html;
+                        resultsBody.appendChild(row);
+                    });
+                    if (data.has_more) { loadMoreBtn.classList.remove('d-none'); loadMoreBtn.innerText = '載入更多...'; }
+                    else { loadMoreBtn.classList.add('d-none'); }
+                }
+            } catch (error) { console.error('搜尋失敗:', error); }
+        }
+
+        async function deleteEmail(event, id) {
+            event.stopPropagation();
+            if (!confirm('確定要永久刪除此郵件及其原始檔案嗎？此操作無法復原。')) return;
+            
+            try {
+                const response = await fetch(`/delete_email/${id}`, { method: 'DELETE' });
+                if (handleAuthError(response)) return;
+                
+                const data = await response.json();
+                if (data.success) {
+                    alert('刪除成功');
+                    searchForm.dispatchEvent(new Event('submit'));
+                } else {
+                    alert('刪除失敗: ' + data.message);
+                }
+            } catch (error) {
+                alert('刪除時發生錯誤');
+            }
+        }
+
+        {% if show_admin %}
+        let config = {{ config | tojson }};
+        const ipList = document.getElementById('ipList');
+        const newIpInput = document.getElementById('newIp');
+        const addIpBtn = document.getElementById('addIpBtn');
+        const saveConfigBtn = document.getElementById('saveConfigBtn');
+
+        function renderIpList() {
+            ipList.innerHTML = '';
+            config.allowed_ips.forEach(ip => {
+                const div = document.createElement('div');
+                div.className = 'ip-item';
+                const isFixed = ['127.0.0.1', 'localhost', '::1'].includes(ip);
+                div.innerHTML = `<span>${ip} ${isFixed ? '<small class="text-muted">(系統)</small>' : ''}</span>
+                                 ${isFixed ? '' : `<button class="btn btn-sm btn-danger" onclick="removeIp('${ip}')">移除</button>`}`;
+                ipList.appendChild(div);
+            });
+        }
+
+        async function updateConfig(payload) {
+            const response = await fetch('/api/config', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if (handleAuthError(response)) return;
+
+            const data = await response.json();
+            config = data.config;
+            renderIpList();
+            alert('設定已更新');
+        }
+
+        addIpBtn.onclick = () => {
+            const ip = newIpInput.value.trim();
+            if (ip && !config.allowed_ips.includes(ip)) {
+                updateConfig({ allowed_ips: [...config.allowed_ips, ip] });
+                newIpInput.value = '';
+            }
+        };
+
+        window.removeIp = (ip) => {
+            if (confirm(`確定要移除 IP ${ip} 嗎？`)) {
+                updateConfig({ allowed_ips: config.allowed_ips.filter(i => i !== ip) });
+            }
+        };
+
+        saveConfigBtn.onclick = () => {
+            updateConfig({
+                backup_interval_days: parseInt(document.getElementById('backupInterval').value),
+                backup_hour: parseInt(document.getElementById('backupHour').value),
+                max_backups: parseInt(document.getElementById('maxBackups').value)
+            });
+        };
+
+        document.getElementById('backupBtn').onclick = () => window.location.href = '/api/backup';
+        document.getElementById('restoreBtn').onclick = () => document.getElementById('restoreFile').click();
+        document.getElementById('restoreFile').onchange = async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const formData = new FormData();
+            formData.append('file', file);
+            const response = await fetch('/api/restore', { method: 'POST', body: formData });
+            if (handleAuthError(response)) return;
+            
+            const data = await response.json();
+            alert(data.message || data.error);
+            location.reload();
+        };
+
+        renderIpList();
+        {% endif %}
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{
+  "name": "openclaw-skill-fco-monitor",
+  "version": "1.0.0",
+  "description": "FC Online官网监控Skill - 自动监控FC Online官网活动，发现新活动时及时通知",
+  "main": "openclaw-integration.js",
+  "scripts": {
+    "test": "node openclaw-integration.js test",
+    "start": "node openclaw-integration.js check-now"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "fconline",
+    "fc-online",
+    "monitor",
+    "game",
+    "soccer",
+    "football",
+    "tencent",
+    "china"
+  ],
+  "author": "OpenClaw Assistant",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skill-fco-monitor"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/skill-fco-monitor/issues"
+  },
+  "homepage": "https://clawhub.com/skills/fco-monitor",
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "openclaw": {
+    "skill": true,
+    "name": "fco-monitor",
+    "displayName": "FC Online官网监控",
+    "description": "自动监控FC Online官网活动，发现新活动时及时通知",
+    "version": "1.0.0",
+    "author": "OpenClaw Assistant",
+    "category": "游戏工具",
+    "tags": ["游戏", "监控", "FC Online", "足球游戏", "腾讯游戏"],
+    "compatibility": {
+      "openclaw": ">=1.0.0"
+    },
+    "requirements": ["curl", "jq"],
+    "icon": "⚽",
+    "screenshots": [],
+    "documentation": "SKILL.md"
+  }
+}

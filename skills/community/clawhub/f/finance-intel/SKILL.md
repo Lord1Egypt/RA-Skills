@@ -1,35 +1,76 @@
 ---
-name: "财经情报局"
-description: "财经情报局——专业的财经新闻情报中心；聚合12+权威财经源，智能分析利好利空信号，评估对个股/行业/大盘的影响级别，生成专业投资决策参考；当用户需要财经新闻、市场分析、行业动态或个股研究时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/finance-intel"
-sourceUrl: "https://clawhub.ai/skills/finance-intel"
+name: finance-intel
+description: 财经情报局——专业的财经新闻情报中心；聚合12+权威财经源，智能分析利好利空信号，评估对个股/行业/大盘的影响级别，生成专业投资决策参考；当用户需要财经新闻、市场分析、行业动态或个股研究时使用
+dependency:
+  python:
+    - requests==2.31.0
+    - beautifulsoup4==4.12.2
 ---
 
-# 财经情报局
+# Finance Intel - 财经情报局
 
-> 财经情报局——专业的财经新闻情报中心；聚合12+权威财经源，智能分析利好利空信号，评估对个股/行业/大盘的影响级别，生成专业投资决策参考；当用户需要财经新闻、市场分析、行业动态或个股研究时使用
+## 任务目标
+- 本 Skill 用于：财经新闻聚合与专业投资简报生成
+- 能力包含：12+ 财经源抓取、情感分析（利好/利空/中性）、影响评估（市场/行业/公司三级）、个股关联识别（A/H/N股）、操作建议
+- 触发条件：用户提到"财经新闻"、"股市"、"市场动态"、"投资简报"、具体股票/行业名时激活
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/finance-intel`
-- **Source URL:** [https://clawhub.ai/skills/finance-intel](https://clawhub.ai/skills/finance-intel)
+## 前置准备
+- 依赖说明：requests、beautifulsoup4
+- 工作目录下创建 `finance-news/` 用于存放缓存和报告
 
-## Overview
+## 操作步骤
 
+### 标准流程
+1. **分析用户需求** — 识别关键词（市场/A股/港股/美股/个股/行业）
+2. **调用抓取脚本** — 根据需求指定参数
+   - 脚本调用示例：`python scripts/fetch_news.py --keyword "宁德时代,比亚迪" --limit 20`
+   - 按市场筛选：`python scripts/fetch_news.py --market A`（A股）/ `--market HK`（港股）/ `--market US`（美股）
+   - 指定数据源：`python scripts/fetch_news.py --source cls,wallstreet,eastmoney`
+3. **解析 JSON 输出** — 脚本返回结构化新闻列表，包含 sentiment/impact_level/related_stocks/operation_advice
+4. **生成投资简报** — 按模板组织输出（见下方输出格式）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/finance-intel
-```
+### 情感分析逻辑
+| 情感 | 关键词示例 |
+|------|-----------|
+| 利好（positive） | 政策扶持、超预期、订单、合作、回购、增持、重组 |
+| 利空（negative） | 监管处罚、亏损、减持、调查、诉讼、限制、降价 |
+| 中性（neutral） | 人事变动、常规公告、会议、数据发布无惊喜 |
+
+### 影响评估规则
+- 市场级：涉及"央行、美联储、国务院、GDP、CPI、利率、降准降息、战争、贸易"等宏观词
+- 行业级：涉及"行业、板块、新能源、芯片、科技、金融"等
+- 公司级：上述均无时，判定为公司级
+
+### 操作建议规则
+| 情感 | 市场影响 | 行业影响 | 公司影响 |
+|------|---------|---------|---------|
+| 利好 | 关注 | 关注相关板块 | 关注 |
+| 利空 | 谨慎 | 谨慎/回避 | 谨慎 |
+| 中性 | 观望 | 观望 | 观望 |
+
+## 使用示例
+
+### 示例 1：获取 A 股新能源板块简报
+- 场景/输入：用户说"帮我看看今天新能源有什么财经新闻"
+- 预期产出：包含宁德时代、比亚迪等新能源个股的财经简报
+- 关键要点：使用 `--keyword "新能源,宁德时代,比亚迪"` 筛选，A股市场自动关联
+
+### 示例 2：港美股开盘前速览
+- 场景/输入：用户说"美股开盘前有什么要关注的"
+- 预期产出：美股相关新闻摘要，包含英伟达、特斯拉等个股动态
+- 关键要点：使用 `--market US --source seekingalpha,futunn`
+
+### 示例 3：监控特定股票新闻
+- 场景/输入：用户说"腾讯和阿里最近有什么消息"
+- 预期产出：腾讯(0700.HK)、阿里巴巴(9988.HK)相关新闻汇总
+- 关键要点：使用 `--keyword "腾讯,阿里,阿里巴巴"`
+
+## 资源索引
+- 脚本：见 [scripts/fetch_news.py](scripts/fetch_news.py)（用途：抓取财经源并生成带情感分析的JSON；参数：--source/--keyword/--market/--limit/--outdir）
+- 参考：见 [references/sentiment-rules.md](references/sentiment-rules.md)（何时读取：需要扩展情感分析关键词或调整股票映射表时）
+- 参考：见 [references/sources-config.md](references/sources-config.md)（何时读取：需要添加新数据源或调整抓取配置时）
+
+## 注意事项
+- 脚本依赖浏览器或 HTTP 请求库抓取网页，确保网络可达
+- 情感分析基于关键词匹配，准确率约 70-80%，复杂语境需人工复核
+- 操作建议仅供参考，不构成投资建议

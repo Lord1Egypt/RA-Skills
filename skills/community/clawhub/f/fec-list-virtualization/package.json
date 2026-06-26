@@ -1,0 +1,40 @@
+{
+  "name": "@bovinphang/fec-list-virtualization",
+  "version": "2.6.0",
+  "description": "Use when optimizing or reviewing large lists, virtual scrolling, windowing, react-window, TanStack Virtual, variable-height rows, dynamic measurement, infinite scroll, grid virtualization, or scroll performance; Chinese triggers include 虚拟列表, 大列表优化, 滚动性能.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-list-virtualization"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "implementation-capability",
+    "virtualization",
+    "windowing",
+    "react-window",
+    "tanstack-virtual",
+    "performance"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "env-diff-explainer",
+  "title": "环境差异解释器",
+  "category": "engineering",
+  "categoryLabel": "研发与测试",
+  "mode": "pattern_audit",
+  "summary": "比较 dev/staging/prod 配置差异，并把技术差异翻译成业务风险。",
+  "inputHint": "多个环境配置文件或文本",
+  "sections": [
+    "差异摘要",
+    "高风险差异",
+    "潜在业务影响",
+    "建议对齐项",
+    "可接受差异",
+    "验证步骤"
+  ],
+  "useCases": [
+    "环境排查",
+    "发布前审查",
+    "配置治理"
+  ],
+  "positiveExamples": [
+    "比较 dev 和 prod 的配置差异",
+    "解释这些差异会造成什么影响"
+  ],
+  "negativeExamples": [
+    "不要输出敏感密钥值",
+    "不要直接覆盖配置"
+  ],
+  "risk": "报告会尽量掩码疑似敏感信息。",
+  "tags": [
+    "env",
+    "config",
+    "diff",
+    "ops"
+  ]
+}

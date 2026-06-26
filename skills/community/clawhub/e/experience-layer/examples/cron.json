@@ -1,0 +1,31 @@
+{
+  "type": "skill",
+  "name": "cron",
+  "lastUpdated": "2026-03-18T22:02:51+08:00",
+  "totalExecutions": 1,
+  "successCount": 1,
+  "failureCount": 0,
+  "experiences": [
+    {
+      "id": "exp_cron_001",
+      "timestamp": "2026-03-18T22:02:51+08:00",
+      "context": "定时任务执行完成通知",
+      "lesson": "delivery mode 控制是否发送完成通知：announce=发送通知，silent=只执行不通知",
+      "severity": "medium",
+      "timesRepeated": 0,
+      "prevention": "脚本已经输出内容需要发送给用户的任务，delivery mode 设为 silent 避免重复发送通知"
+    }
+  ],
+  "patterns": {
+    "commonMistakes": [
+      "report-send 任务用 announce 模式，导致发送报告后又发一遍发送完成通知",
+      "不需要用户交互的后台任务也发通知打扰用户"
+    ],
+    "bestPractices": [
+      "脚本会直接输出报告内容 → delivery mode = silent",
+      "纯agentTurn需要发送消息给用户 → delivery mode = announce",
+      "后台检查任务不需要通知 → delivery mode = silent",
+      "修改cron jobs后验证JSON格式正确再保存"
+    ]
+  }
+}

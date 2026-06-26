@@ -1,35 +1,46 @@
----
-name: "Finance Automation"
-description: "Automates payments, invoices, expenses, and financial reports with Stripe webhooks and real-time Telegram notifications for streamlined finance management."
-category: "domain"
-source: "ClawHub"
-tags: [finance, invoice, payment]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/finance-automation"
-sourceUrl: "https://clawhub.ai/skills/finance-automation"
----
-
 # Finance Automation
 
-> Automates payments, invoices, expenses, and financial reports with Stripe webhooks and real-time Telegram notifications for streamlined finance management.
+Automate payments, invoices, expenses, and financial reports.
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/finance-automation`
-- **Source URL:** [https://clawhub.ai/skills/finance-automation](https://clawhub.ai/skills/finance-automation)
+## Features
+- **Payments**: Real-time payment recording via Stripe/Lemon Squeezy webhooks
+- **Invoices**: CRUD with auto-numbering, tax calculation, send/paid status management
+- **Expenses**: Submit, approve, reject expenses with category analytics
+- **Reports**: Daily/monthly revenue, MRR, profit reports
+- **Notifications**: Real-time Telegram alerts
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Quick Start
 ```bash
-hermes skills install clawhub/finance-automation
+cd finance-automation
+cp .env.example .env
+# Edit .env with your API keys
+npm install
+npm run db:init
+npm run dev
 ```
+
+## API Endpoints
+```
+POST   /api/invoices              Create invoice
+GET    /api/invoices              List invoices
+POST   /api/invoices/:id/send     Send invoice
+POST   /api/invoices/:id/mark-paid Mark as paid
+
+POST   /api/expenses              Add expense
+POST   /api/expenses/:id/approve  Approve expense
+POST   /api/expenses/:id/reject   Reject expense
+
+GET    /api/reports/daily          Daily revenue + expenses
+GET    /api/reports/monthly        Monthly report
+GET    /api/reports/summary        Period summary
+GET    /api/reports/mrr            Monthly Recurring Revenue
+GET    /api/reports/profit         Profit report
+```
+
+## Requirements
+- Node.js >= 18
+- SQLite3 (default) or PostgreSQL
+- Stripe account (for payment webhooks)
+
+## Tags
+finance, payment, invoice, expense, report, stripe, automation

@@ -1,0 +1,8 @@
+{
+  "name": "fast-ocr",
+  "version": "1.1.0",
+  "description": "专业票据 OCR 识别工具 - 支持火车票、发票等各类票据识别",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "main": "rapidocr_optimized.py"
+}

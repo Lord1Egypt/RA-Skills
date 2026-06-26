@@ -1,0 +1,18 @@
+{
+  "_说明": "联系人方言偏好库 - 请按实际情况填写",
+  "_示例格式": {
+    "open_id": "ou_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "name": "称呼",
+    "dialect": "哈尔滨话 | 普通话 | 其他方言",
+    "remark": "备注"
+  },
+  "contacts": [
+    {
+      "open_id": "<open_id>",
+      "name": "你的用户称呼",
+      "dialect": "哈尔滨话",
+      "remark": "默认哈尔滨话"
+    }
+  ],
+  "_普通话用户": []
+}

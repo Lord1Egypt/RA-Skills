@@ -1,0 +1,40 @@
+{
+  "name": "@bovinphang/fec-data-fetching",
+  "version": "2.6.0",
+  "description": "Use when implementing or reviewing frontend server-state flows: typed queries, request caching, invalidation, mutations, optimistic updates, infinite queries, prefetch, SSR hydration, or API-layer integration. Do not use for local UI state or Service Worker caching; Chinese triggers include 数据获取, 缓存, 乐观更新.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-data-fetching"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "implementation-capability",
+    "react-query",
+    "tanstack",
+    "caching",
+    "optimistic-update",
+    "server-state"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

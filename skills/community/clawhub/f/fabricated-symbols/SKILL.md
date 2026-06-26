@@ -1,35 +1,27 @@
 ---
-name: "Fabricated Symbols"
-description: "Code calls functions, classes, or methods that don't exist — either on project types or on third-party library APIs."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fabricated-symbols"
-sourceUrl: "https://clawhub.ai/skills/fabricated-symbols"
+name: fabricated-symbols
+description: Code calls functions, classes, or methods that don't exist — either on project types or on third-party library APIs.
+emoji: 👻
+metadata:
+  clawdis:
+    os: [macos, linux, windows]
 ---
 
-# Fabricated Symbols
+# fabricated-symbols
 
-> Code calls functions, classes, or methods that don't exist — either on project types or on third-party library APIs.
+The agent invokes a symbol that isn't defined. Most often this is a plausible-looking method on a third-party object, or a utility "I'm sure we have one of those" that the project actually lacks.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fabricated-symbols`
-- **Source URL:** [https://clawhub.ai/skills/fabricated-symbols](https://clawhub.ai/skills/fabricated-symbols)
+## Symptoms
 
-## Overview
+- Generated code calls `someLibrary.convenientHelper(...)` where the library has no such method.
+- Invented method signatures on framework objects (wrong argument order, wrong return type).
+- References to utility functions the project doesn't have.
+- Runtime `AttributeError` / `TypeError: X is not a function` / `undefined is not a function`.
 
+## What to do
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fabricated-symbols
-```
+- For every symbol you invoke on a third-party library, check the library's real API — docs, source, or type definitions — before writing code.
+- For every symbol you invoke on a project type, grep the codebase to confirm it exists. Don't assume.
+- If a helper is missing, either add it explicitly (and say you're adding it) or use what the project actually has.
+- Prefer the library's documented API over clever-looking shortcuts. Invented methods often look like what the library "should" have.
+- When refactoring, run the type-checker after every meaningful change. Invented methods sometimes type-check against `any` but fail at runtime.

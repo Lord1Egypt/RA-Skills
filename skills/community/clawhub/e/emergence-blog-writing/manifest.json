@@ -1,0 +1,17 @@
+{
+  "name": "emergence-blog-writing",
+  "version": "1.0.0",
+  "description": "High-rigor agentic writing skill based on Communication Science and the Agentic Information-Gain Orchestration (AIGO) framework.",
+  "author": "Emergence Science",
+  "license": "MIT",
+  "tags": [
+    "writing",
+    "communication-science",
+    "aigo",
+    "seo",
+    "aeo",
+    "information-gain"
+  ],
+  "site": "https://emergence.science",
+  "repository": "https://github.com/emergencescience/emergence-blog-writing"
+}

@@ -1,0 +1,8 @@
+Hello, World!
+
+This is a test file for the Share It CLI tool.
+You can upload this file to test the basic functionality:
+
+  node file-upload-cli.js examples/test.txt
+
+The tool should upload this file to 0x0.st and return a shareable URL.

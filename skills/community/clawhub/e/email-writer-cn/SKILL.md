@@ -1,35 +1,121 @@
 ---
-name: "中文商务邮件写作助手"
-description: "Use when writing or polishing Chinese business emails: drafting from scratch, adjusting tone (formal/casual/assertive), structuring requests, follow-ups, apo..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-writer-cn"
-sourceUrl: "https://clawhub.ai/skills/email-writer-cn"
+name: email-writer-cn
+description: >
+  Use when writing or polishing Chinese business emails: drafting from scratch,
+  adjusting tone (formal/casual/assertive), structuring requests, follow-ups,
+  apologies, proposals, and internal communications. Optimized for Mandarin
+  professional context with proper etiquette.
 ---
 
 # 中文商务邮件写作助手
 
-> Use when writing or polishing Chinese business emails: drafting from scratch, adjusting tone (formal/casual/assertive), structuring requests, follow-ups, apo...
+## 适用场景
+- 从零起草商务邮件（请求、通知、跟进、道歉、合作提案）
+- 润色已有邮件（改语气、精简内容、纠正表达）
+- 内部沟通邮件（跨部门协作、汇报、会议通知）
+- 对外邮件（客户、供应商、合作伙伴、政府机构）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-writer-cn`
-- **Source URL:** [https://clawhub.ai/skills/email-writer-cn](https://clawhub.ai/skills/email-writer-cn)
+## 核心工作流
 
-## Overview
+### 第一步：信息收集
+使用前需确认：
+1. **目标读者**：内部/外部？级别（平级/上级/客户/政府）？
+2. **邮件目的**：告知 / 请求 / 道歉 / 跟进 / 提案？
+3. **语气要求**：正式 / 专业友好 / 简洁直接？
+4. **核心内容**：关键事实/数字/时间节点是什么？
+5. **期望行动**：读者需要做什么？截止时间？
 
+### 第二步：结构框架
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/email-writer-cn
 ```
+主题行（Subject）
+  ↓
+称呼语（Greeting）
+  ↓
+开场白（Context / Purpose）
+  ↓
+正文（Body: 背景 → 要点 → 细节）
+  ↓
+行动呼吁（Call to Action）
+  ↓
+礼貌结语（Closing）
+  ↓
+签名（Signature）
+```
+
+### 第三步：常用模板
+
+**请求类**
+```
+主题：关于[事项]的请求/申请
+
+尊敬的[姓名/职位]：
+
+您好！
+
+[背景：一句话说明来意]
+
+[请求内容：具体说明请求什么，为什么需要，时间要求]
+
+如有需要，我可以[提供额外支持]。
+
+烦请在[时间]前告知，感谢您的支持与配合！
+
+此致
+敬礼
+
+[姓名]
+[职位 | 部门 | 联系方式]
+```
+
+**跟进类**
+```
+主题：跟进：[原邮件主题]
+
+[称呼]，您好：
+
+[上次沟通时间]，我曾就[事项]与您联系。
+
+目前[进展/状态]，想再次确认[具体问题]，以便我们[下一步推进]。
+
+如您方便，请在[时间]前回复，非常感谢！
+
+[结语+签名]
+```
+
+**道歉类**
+```
+主题：致歉：关于[事项]
+
+[称呼]，您好：
+
+首先，对于[问题/失误]给您带来的不便，我深表歉意。
+
+[客观说明原因，不推脱]
+
+我们已采取以下措施：
+1. [补救措施1]
+2. [补救措施2]
+
+我们将确保此类情况不再发生。再次为此向您诚挚道歉。
+
+[结语+签名]
+```
+
+### 第四步：语气调整指南
+
+| 场景 | 建议用词 |
+|------|---------|
+| 对上级/客户 | 敬请、烦请、不胜感激、恳请指正 |
+| 平级合作 | 麻烦、请、感谢配合、期待合作 |
+| 催促但不失礼 | 如您方便、期望在XX前、如有进展请随时告知 |
+| 拒绝请求 | 非常感谢您的信任，由于...，暂时无法...，建议... |
+
+### 第五步：质量检查清单
+- [ ] 主题行是否清晰说明邮件目的（5-15字）
+- [ ] 称呼是否正确（姓名/职位拼写无误）
+- [ ] 一封邮件只聚焦一个核心请求
+- [ ] 关键信息是否加粗/分点（避免大段文字）
+- [ ] 行动呼吁是否明确（谁、做什么、什么时间）
+- [ ] 语气是否符合关系和场景
+- [ ] 是否有错别字/语法问题

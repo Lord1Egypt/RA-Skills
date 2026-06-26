@@ -1,0 +1,40 @@
+{
+  "name": "@bovinphang/fec-motion-interaction",
+  "version": "2.5.0",
+  "description": "Use when designing, implementing, or reviewing frontend interaction motion, page transitions, scroll animation, Framer Motion, GSAP, Lottie, CSS animation, motion intensity, animation performance, reduced-motion behavior, or cinematic but accessible UI motion. Do not use for SVG-only path drawing, Canvas/WebGL rendering, or ordinary hover states; Chinese triggers include 动效设计, 交互动效, 页面转场, 滚动动画, Framer Motion, GSAP.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-motion-interaction"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "design-ui",
+    "motion",
+    "framer-motion",
+    "gsap",
+    "lottie",
+    "reduced-motion"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,79 @@
+version: 1
+
+# =============================================================================
+# feeds-digest Konfiguration
+# Kopiere nach ~/.config/feeds-digest/config.yaml und passe an.
+# =============================================================================
+# Hinweis (Stand 2026-06-07):
+#   - Microsoft Tech Community hat RSS im 2025er Redesign abgeschaltet.
+#   - blog.fabric.microsoft.com exponiert keinen RSS-Feed mehr.
+#   - Stattdessen: Generic-RSS für offizielle Blogs, GitHub-Releases für Repos.
+#   - Siehe references/data-sources-2026.md für die aktuelle Liste.
+# =============================================================================
+
+feeds:
+  youtube:
+    # IDs siehe references/youtube-channel-discovery.md
+    - name: "Microsoft Dynamics 365"
+      channel_id: "REPLACE_ME"
+      enabled: false
+      topics: [bc, dynamics]
+
+  generic_rss:
+    # === Offizielle Microsoft-Blogs (verifiziert 2026-06-07) ===
+    - name: "Dynamics 365 Blog"
+      url: "https://cloudblogs.microsoft.com/dynamics365/feed/"
+      enabled: true
+      topics: [bc, dynamics, business-central]
+
+    - name: "Power BI Blog"
+      url: "https://powerbi.microsoft.com/en-us/blog/feed/"
+      enabled: true
+      topics: [powerbi, bi, analytics]
+
+    # - name: "Fabric Updates Blog"   # JS-rendered, RSS nicht abrufbar
+    #   url: "https://community.fabric.microsoft.com/..."
+    #   enabled: false
+    #   topics: [fabric]
+
+    # - name: "MS Tech Community"     # RSS 2025 abgeschaltet
+    #   url: "https://techcommunity.microsoft.com/..."
+    #   enabled: false
+    #   topics: [bc, fabric]
+
+  github_releases:
+    # === Microsoft Fabric Repos ===
+    - name: "fabric-samples"
+      repo: "microsoft/fabric-samples"
+      enabled: true
+      topics: [fabric, data, samples]
+
+    - name: "fabric-toolbox"
+      repo: "microsoft/fabric-toolbox"
+      enabled: true
+      topics: [fabric, tools]
+
+    # === OpenClaw & verwandte Tools ===
+    - name: "OpenClaw"
+      repo: "openclaw/openclaw"
+      enabled: true
+      topics: [openclaw]
+
+    - name: "yt-dlp"
+      repo: "yt-dlp/yt-dlp"
+      enabled: true
+      topics: [tools, media]
+
+defaults:
+  since: "7d"                       # 3d, 1w, 2w, 1m
+  topics: []                        # leer = alle
+  max_per_source: 10
+  llm: false
+  output_format: "markdown"         # markdown | json
+
+llm:
+  provider: "perplexity"            # perplexity | openai | ollama
+  model: "sonar-pro"
+  prompt_file: "prompts/summary.md"
+  max_tokens: 800
+  temperature: 0.2

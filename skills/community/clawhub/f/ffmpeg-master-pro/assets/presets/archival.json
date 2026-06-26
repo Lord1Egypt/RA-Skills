@@ -1,0 +1,46 @@
+{
+  "name": "存档质量",
+  "description": "最高质量的存档设置，用于长期保存",
+  "video": {
+    "codec": "libx264",
+    "preset": "veryslow",
+    "crf": 18,
+    "profile": "high",
+    "level": "5.0",
+    "pixel_format": "yuv420p"
+  },
+  "audio": {
+    "codec": "aac",
+    "bitrate": "320k",
+    "sample_rate": 48000,
+    "channels": 2
+  },
+  "recommendations": {
+    "4k": {
+      "resolution": "3840x2160",
+      "bitrate": "20000k",
+      "crf": 16
+    },
+    "2k": {
+      "resolution": "2560x1440",
+      "bitrate": "12000k",
+      "crf": 17
+    },
+    "1080p": {
+      "resolution": "1920x1080",
+      "bitrate": "8000k",
+      "crf": 18
+    },
+    "720p": {
+      "resolution": "1280x720",
+      "bitrate": "5000k",
+      "crf": 19
+    }
+  },
+  "notes": [
+    "使用最慢的预设以获得最佳压缩效率",
+    "较低的 CRF 值以保持最高质量",
+    "高音频码率以保持音频质量",
+    "编码时间会很长，但文件大小会较大"
+  ]
+}

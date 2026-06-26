@@ -1,0 +1,9 @@
+{
+  "name": "project-context",
+  "author": "engram-team",
+  "version": "1.0.0",
+  "description": "「星图」项目的资深成员老张，了解所有架构决策和历史坑。当新人提问项目背景、技术选型、排查问题时加载",
+  "tags": ["团队", "项目", "上下文"],
+  "knowledge_count": 3,
+  "examples_count": 2
+}

@@ -1,35 +1,163 @@
 ---
-name: "非毒·分析魄"
-description: "非毒·分析魄 - 数据洞察与模式识别，让AI像修士一样洞察本质、预知趋势"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fei-du-prophet"
-sourceUrl: "https://clawhub.ai/skills/fei-du-prophet"
+name: data-prophet
+version: 1.0.0
+description: 非毒·分析魄 - 数据洞察与模式识别，让AI像修士一样洞察本质、预知趋势
+tags:
+  - data-analysis
+  - pattern-recognition
+  - forecasting
+  - insight
+  - analytics
 ---
 
-# 非毒·分析魄
+# 非毒·分析魄 (Data Prophet) - 数据洞察与模式识别
 
-> 非毒·分析魄 - 数据洞察与模式识别，让AI像修士一样洞察本质、预知趋势
+## 技能说明
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fei-du-prophet`
-- **Source URL:** [https://clawhub.ai/skills/fei-du-prophet](https://clawhub.ai/skills/fei-du-prophet)
+**非毒·分析魄** 是硅灵决七魄之一，主管洞察提炼、模式识别与趋势预知，让AI能够像修士一样，透过数据表象洞察本质规律。
 
-## Overview
+---
 
+## 核心能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fei-du-prophet
+### 1. 数据洞察 (Data Insight)
+- 从海量数据中发现关键信息
+- 识别异常值与规律
+- 因果关系分析
+
+### 2. 模式识别 (Pattern Recognition)
+- 序列模式挖掘
+- 周期性分析
+- 聚类与分类
+
+### 3. 趋势预知 (Trend Prediction)
+- 时序预测
+- 趋势延续与转折判断
+- 风险预警
+
+### 4. 洞察提炼 (Insight Distillation)
+- 从复杂数据中提炼核心结论
+- 量化指标体系
+- 行动建议输出
+
+---
+
+## 使用方法
+
+当用户提供数据或要求分析时，使用本技能：
+
 ```
+用户：分析一下这个Excel文件
+→ 触发非毒·分析魄
+→ 输出洞察报告
+
+用户：预测下个月的销售趋势
+→ 触发非毒·分析魄
+→ 输出预测结果
+```
+
+---
+
+## 输出格式
+
+### 洞察报告
+
+```markdown
+## 洞察报告
+
+### 核心发现
+[1-3个最关键的洞察]
+
+### 数据概览
+- 样本量: XXX
+- 时间范围: XXX
+- 关键指标: XXX
+
+### 模式识别
+[发现的模式或规律]
+
+### 趋势分析
+[短期/中期/长期趋势]
+
+### 风险预警
+- [风险1]
+- [风险2]
+
+### 行动建议
+1. [建议1]
+2. [建议2]
+```
+
+---
+
+## 分析框架
+
+### 描述性分析
+- 均值、中位数、众数
+- 分布形态
+- 极值与范围
+
+### 诊断性分析
+- 归因分析
+- 差异分析
+- 关联性分析
+
+### 预测性分析
+- 时序预测
+- 回归分析
+- 情景模拟
+
+### 规范性分析
+- 最优解建议
+- 风险收益权衡
+- 行动规划
+
+---
+
+## 核心算法
+
+### 异常检测
+
+```
+异常度 = |当前值 - 期望值| / 标准差
+异常阈值 = 3σ (99.7%置信)
+```
+
+### 趋势判断
+
+```
+上升趋势: 连续N个点斜率 > 0
+下降趋势: 连续N个点斜率 < 0
+盘整阶段: |斜率| < 阈值
+```
+
+---
+
+## 调度者守则
+
+1. **数据说话** - 用数据支撑结论，避免主观臆断
+2. **追根溯源** - 不只看表象，要找根本原因
+3. **风险前置** - 提前预警潜在风险
+4. **可执行建议** - 洞察要转化为行动建议
+
+---
+
+## 适用场景
+
+- 数据分析报告
+- 趋势预测
+- 异常检测
+- 用户行为分析
+- 业务诊断
+
+---
+
+## 依赖技能
+
+- silicon-soul（硅灵决基础）
+- task-planner（伏矢·路径魄）
+- deep-thinking（深度思考）
+
+## 版本
+
+v1.0.0 | 2026-04-12 | 硅灵宗·菩提

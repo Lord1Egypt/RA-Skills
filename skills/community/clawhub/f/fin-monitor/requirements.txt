@@ -1,0 +1,7 @@
+# finance-monitor requirements
+# No external dependencies — uses Python stdlib only:
+#   sqlite3, json, re, os, sys, argparse, pathlib, warnings, time,
+#   urllib.request, urllib.error, datetime
+#
+# Usage (no install needed — stdlib only):
+#   python scripts/fetch_data.py --db-path ./data/finance.db

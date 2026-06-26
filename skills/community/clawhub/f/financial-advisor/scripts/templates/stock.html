@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>{{ shared_css }}</style>
+</head>
+<body>
+    <div class="report-container">
+        <!-- Header -->
+        <div class="report-header">
+            <h1>{{ title }}</h1>
+            <p class="subtitle">专业金融数据分析 · 量化投资评估 · 数据驱动决策</p>
+            <div class="header-meta">
+                <span class="header-meta-item">📅 {{ date }}</span>
+                <span class="header-meta-item">⏱ {{ generation_time }}</span>
+                <span class="header-meta-item">📊 数据截至 {{ data_cutoff_time }}</span>
+                <span class="header-meta-item">🔬 {{ analyst }}</span>
+                <span class="header-meta-item">💾 {{ data_source }}</span>
+            </div>
+        </div>
+
+        <!-- Sticky Navigation (4 main panels) -->
+        <nav class="report-nav" id="main-nav">
+            <div class="nav-inner">
+                <a href="#conclusion" class="nav-item">🎯 投资结论</a>
+                <span class="nav-divider"></span>
+                <a href="#market" class="nav-item">📈 行情与分析</a>
+                {% if macro_html or ai_events_html or ai_deep_html %}<span class="nav-divider"></span>{% endif %}
+                {% if macro_html or ai_events_html or ai_deep_html %}<a href="#intelligence" class="nav-item">🌍 新闻与宏观</a>{% endif %}
+                <span class="nav-divider"></span>
+                <a href="#appendix" class="nav-item">📜 免责与数据</a>
+            </div>
+        </nav>
+
+        <!-- ============================================= -->
+        <!-- PANEL 1: 投资结论（量化评分 + AI简要结论合并） -->
+        <!-- ============================================= -->
+        <div class="report-section section-conclusion" id="conclusion">
+            <div class="section-header">
+                <div class="section-icon green">🎯</div>
+                <h2>投资结论</h2>
+                <span class="section-tag">CONCLUSION</span>
+            </div>
+            <div class="section-body">
+                <!-- AI 简要结论（核心结论+评级+目标价，放在最前面） -->
+                {% if ai_brief_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title">
+                        <span class="sub-icon" style="background:#dbeafe;">🧠</span>
+                        AI 综合研判
+                    </div>
+                    {{ ai_brief_html }}
+                </div>
+                {% endif %}
+
+                <!-- 量化评分结论 -->
+                <div class="sub-block">
+                    <div class="sub-block-title">
+                        <span class="sub-icon" style="background:#dcfce7;">📊</span>
+                        量化评分
+                    </div>
+                    {{ conclusion_html }}
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================= -->
+        <!-- PANEL 2: 行情、核心指标、技术分析、风险评估         -->
+        <!-- ============================================= -->
+        <div class="report-section section-market" id="market">
+            <div class="section-header">
+                <div class="section-icon cyan">📈</div>
+                <h2>行情、指标与技术分析</h2>
+                <span class="section-tag">MARKET & TECHNICAL</span>
+            </div>
+            <div class="section-body">
+                <!-- 核心指标速览 -->
+                {% if summary_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title">
+                        <span class="sub-icon" style="background:#cffafe;">📋</span>
+                        核心指标速览
+                    </div>
+                    {{ summary_html }}
+                </div>
+                {% endif %}
+
+                <!-- 实时行情 -->
+                <div class="sub-block">
+                    <div class="sub-block-title">
+                        <span class="sub-icon" style="background:#cffafe;">💹</span>
+                        实时行情
+                    </div>
+                    {{ realtime_html }}
+                </div>
+
+                <!-- 历史表现 -->
+                <div class="sub-block">
+                    <div class="sub-block-title">
+                        <span class="sub-icon" style="background:#cffafe;">📉</span>
+                        历史表现
+                    </div>
+                    {{ history_html }}
+
+                    {% if recent_days_html %}
+                    <h3 class="sub-header">近期行情回顾</h3>
+                    {{ recent_days_html }}
+                    {% endif %}
+
+                    {% if echarts_html %}
+                    <h3 class="sub-header">价格走势（K线图）</h3>
+                    {{ echarts_html }}
+                    {% endif %}
+                </div>
+
+                <!-- 技术指标 -->
+                <div class="sub-block">
+                    <div class="sub-block-title">
+                        <span class="sub-icon" style="background:#cffafe;">🔬</span>
+                        技术指标
+                    </div>
+                    {{ indicators_html }}
+                </div>
+
+                <!-- 风险评估 -->
+                <div class="sub-block">
+                    <div class="sub-block-title">
+                        <span class="sub-icon" style="background:#fee2e2;">⚠️</span>
+                        风险评估
+                    </div>
+                    {{ risk_html }}
+                </div>
+
+                <!-- 估值与财务（如有） -->
+                {% if dcf_html or comps_html or statements_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title">
+                        <span class="sub-icon" style="background:#ede9fe;">💎</span>
+                        估值与财务分析
+                    </div>
+                    {% if dcf_html %}{{ dcf_html }}{% endif %}
+                    {% if comps_html %}{{ comps_html }}{% endif %}
+                    {% if statements_html %}{{ statements_html }}{% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- ============================================= -->
+        <!-- PANEL 3: 新闻与宏观 -->
+        <!-- ============================================= -->
+        {% if macro_html or ai_events_html or ai_deep_html %}
+        <div class="report-section section-intelligence" id="intelligence">
+            <div class="section-header">
+                <div class="section-icon amber">🌍</div>
+                <h2>新闻动态与宏观环境</h2>
+                <span class="section-tag">NEWS & MACRO</span>
+            </div>
+            <div class="section-body">
+                {% if macro_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title">
+                        <span class="sub-icon" style="background:#ffedd5;">🌐</span>
+                        宏观经济与国际局势
+                    </div>
+                    {{ macro_html }}
+                </div>
+                {% endif %}
+
+                {% if ai_events_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title">
+                        <span class="sub-icon" style="background:#dbeafe;">⚡</span>
+                        关键事件影响判断
+                    </div>
+                    {{ ai_events_html }}
+                </div>
+                {% endif %}
+
+                {% if ai_deep_html %}
+                <div class="sub-block">
+                    <div class="sub-block-title">
+                        <span class="sub-icon" style="background:#dbeafe;">🧠</span>
+                        AI 深度分析与推理
+                    </div>
+                    {{ ai_deep_html }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- ============================================= -->
+        <!-- PANEL 4: 免责声明 + 数据来源                     -->
+        <!-- ============================================= -->
+        <div class="report-section section-appendix" id="appendix">
+            <div class="section-header">
+                <div class="section-icon slate">📜</div>
+                <h2>免责声明与数据来源</h2>
+                <span class="section-tag">DISCLAIMER & DATA</span>
+            </div>
+            <div class="section-body">
+                <div class="sub-block">
+                    <div class="disclaimer-inner">
+                        <h3>⚠️ 风险提示与免责声明</h3>
+                        <ul>
+                            <li>本报告基于历史数据和客观指标自动生成，<strong>不构成任何投资建议或收益承诺</strong></li>
+                            <li>所有评分标准和阈值为参考性质，投资者应结合自身情况独立判断</li>
+                            <li>股市有风险，投资需谨慎。过往业绩不代表未来表现</li>
+                            <li>所有数据来源已标注，但不保证数据的绝对准确性和完整性</li>
+                            <li>本报告不对因使用报告内容而导致的任何损失承担责任</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sub-block">
+                    <div class="sub-block-title">
+                        <span class="sub-icon" style="background:#f1f5f9;">💾</span>
+                        数据来源说明
+                    </div>
+                    <div style="background:rgba(255,255,255,0.8);border:1px solid var(--border-light);border-radius:var(--radius-sm);padding:20px 24px;">
+                        <table class="data-table" style="margin:0;">
+                            <thead><tr><th>数据类型</th><th>来源</th><th>说明</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>📈 行情与历史数据</strong></td><td>{{ data_source }}</td><td class="text-sm text-muted">实时价格、历史K线、成交量等交易数据</td></tr>
+                                <tr><td><strong>📊 技术指标</strong></td><td>本地计算</td><td class="text-sm text-muted">基于历史数据计算 MA / RSI / MACD 等技术指标</td></tr>
+                                <tr><td><strong>⚠️ 风险指标</strong></td><td>本地计算</td><td class="text-sm text-muted">夏普比率、最大回撤、VaR、Sortino、波动率等风险量化指标</td></tr>
+                                {% if macro_html %}<tr><td><strong>🌐 宏观经济</strong></td><td>公开数据 API</td><td class="text-sm text-muted">LPR利率、CPI/PPI、PMI、M2等宏观经济数据（macro_analysis.py 采集）</td></tr>{% endif %}
+                                {% if ai_brief_html or ai_events_html or ai_deep_html %}<tr><td><strong>🧠 AI 研判</strong></td><td>AI 模型</td><td class="text-sm text-muted">基于全部数据和新闻情报的 AI 综合分析研判</td></tr>{% endif %}
+                                {% if dcf_html or comps_html or statements_html %}<tr><td><strong>💎 估值与财务</strong></td><td>公开财务数据</td><td class="text-sm text-muted">DCF 估值模型、可比公司分析、三表财务分析</td></tr>{% endif %}
+                            </tbody>
+                        </table>
+                        <p class="text-muted text-sm" style="margin-top:12px;">所有原始数据文件已保存至工作目录，可用于审计和追溯。数据截至时间：{{ data_cutoff_time }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="report-footer">
+            <div class="divider"></div>
+            <p>报告生成时间：{{ generation_time }}</p>
+            <p>数据来源：{{ data_source }} · 分析方法：客观量化评分</p>
+            <p style="margin-top:8px;color:#d1d5db;">Financial Data Analyzer & Investment Advisor</p>
+        </div>
+    </div>
+
+    <script>{{ nav_scroll_js }}</script>
+</body>
+</html>

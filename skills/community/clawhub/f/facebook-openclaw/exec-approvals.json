@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "socket": {
+    "path": "C:\\Users\\OS/.openclaw/exec-approvals.sock",
+    "token": ""
+  },
+  "defaults": {
+    "security": "allowlist",
+    "autoAllowSkills": true
+  },
+  "agents": {
+    "main": {
+      "security": "allowlist",
+      "ask": "on-miss",
+      "askFallback": "deny",
+      "autoAllowSkills": true,
+      "allowlist": [
+      ]
+    }
+  }
+}

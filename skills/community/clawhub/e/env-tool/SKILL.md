@@ -1,35 +1,34 @@
 ---
-name: "Env Tool"
-description: "Display, set, and manage environment variables in shell sessions. Use when inspecting or modifying the runtime environment."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/env-tool"
-sourceUrl: "https://clawhub.ai/skills/env-tool"
+name: env-tool
+description: Display, set, and manage environment variables in shell sessions. Use when inspecting or modifying the runtime environment.
 ---
 
-# Env Tool
+# Environment Variable Manager
 
-> Display, set, and manage environment variables in shell sessions. Use when inspecting or modifying the runtime environment.
+View and control environment variables available to shell processes. Supports listing all variables, querying specific values, and temporary variable assignment.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/env-tool`
-- **Source URL:** [https://clawhub.ai/skills/env-tool](https://clawhub.ai/skills/env-tool)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/env-tool
+env-tool [options]
+```
+
+## Common Operations
+
+- List all environment variables with values
+- Show value of a specific variable (e.g. PATH, HOME, USER)
+- Check if a variable is set without showing its value
+- Run a command with modified environment
+
+## Examples
+
+```bash
+# List all environment variables
+env-tool
+
+# Show a specific variable
+env-tool | grep PATH
+
+# Check variable exists
+env-tool | grep ^HOME=
 ```

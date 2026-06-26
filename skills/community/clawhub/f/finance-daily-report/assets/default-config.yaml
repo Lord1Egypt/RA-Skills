@@ -1,0 +1,197 @@
+# finance-report-config.yaml — 默认配置
+# 用户可在工作区创建同名文件覆盖此配置
+# 新增模块：复制任意模块块，修改 id/name/fetch_urls/search_keywords/collector_prompt
+
+report_title: "全球财经日报"
+timezone: "Asia/Shanghai"
+
+modules:
+  # ── 模块 1：市场主线 ──
+  - id: market_theme
+    name: 市场主线
+    enabled: true
+    priority: 1
+    data_strategy: fetch
+    fetch_urls:
+      - url: "https://tradingeconomics.com/united-states/stock-market"
+        maxChars: 5000
+        extract: analysis
+      - url: "https://tradingeconomics.com/commodity/crude-oil"
+        maxChars: 4000
+        extract: analysis
+    search_keywords:
+      - "global markets {date}"
+    collector_prompt: |
+      提取 {date} 全球市场核心叙事。重点关注：当日最大的 2-3 个主线、央行动态、关键数据发布、重大地缘事件。
+
+  # ── 模块 2：全球宏观速览 ──
+  - id: global_macro
+    name: 全球宏观速览
+    enabled: true
+    priority: 2
+    data_strategy: both
+    fetch_urls:
+      - url: "https://www.jin10.com/"
+        maxChars: 8000
+        extract: raw
+    search_keywords:
+      - "{date} 宏观经济 央行"
+      - "US economy {date}"
+    collector_prompt: |
+      提取 {date} 全球宏观经济数据和事件。分美国/欧洲/亚太/地缘四个子板块。
+    sub_sections:
+      - id: us
+        name: 美国
+      - id: europe
+        name: 欧洲
+      - id: asia_pacific
+        name: 亚太
+      - id: geopolitics
+        name: 地缘政治
+
+  # ── 模块 3：汇率与美元 ──
+  - id: fx_usd
+    name: 汇率与美元
+    enabled: true
+    priority: 3
+    data_strategy: fetch
+    fetch_urls:
+      - url: "https://tradingeconomics.com/currencies"
+        maxChars: 5000
+        extract: table
+      - url: "https://tradingeconomics.com/united-states/currency"
+        maxChars: 4000
+        extract: analysis
+      - url: "https://tradingeconomics.com/china/currency"
+        maxChars: 4000
+        extract: analysis
+    collector_prompt: |
+      提取 {date} 汇率数据：DXY, EUR/USD, GBP/USD, USD/JPY, USD/CNY, AUD/USD。需要收盘价和涨跌幅。
+
+  # ── 模块 4：全球利率与美债 ──
+  - id: rates_bonds
+    name: 全球利率与美债
+    enabled: true
+    priority: 4
+    data_strategy: fetch
+    fetch_urls:
+      - url: "https://tradingeconomics.com/bonds"
+        maxChars: 5000
+        extract: table
+      - url: "https://tradingeconomics.com/united-states/government-bond-yield"
+        maxChars: 4000
+        extract: analysis
+    collector_prompt: |
+      提取 {date} 美国国债收益率（2Y/5Y/10Y/30Y）及分析。关注美联储政策预期。
+
+  # ── 模块 5：核心股市表现 ──
+  - id: equity_indices
+    name: 核心股市表现
+    enabled: true
+    priority: 5
+    data_strategy: fetch
+    fetch_urls:
+      - url: "https://tradingeconomics.com/stocks"
+        maxChars: 6000
+        extract: table
+      - url: "https://www.eastmoney.com/"
+        maxChars: 5000
+        extract: raw
+      - url: "https://www.cnbc.com/quotes/.DJI/"
+        maxChars: 3000
+        extract: raw
+    collector_prompt: |
+      提取 {date} 全球主要股指收盘数据。美股：道琼斯/标普500/纳斯达克。欧洲：DAX/CAC40/FTSE100。亚太：上证/深证/创业板/恒生/日经225。
+
+  # ── 模块 6：商品与核心资产 ──
+  - id: commodities
+    name: 商品与核心资产
+    enabled: true
+    priority: 6
+    data_strategy: fetch
+    fetch_urls:
+      - url: "https://tradingeconomics.com/commodities"
+        maxChars: 6000
+        extract: table
+      - url: "https://tradingeconomics.com/commodity/gold"
+        maxChars: 4000
+        extract: analysis
+      - url: "https://tradingeconomics.com/commodity/silver"
+        maxChars: 3000
+        extract: analysis
+    collector_prompt: |
+      提取 {date} 商品价格：WTI/Brent 原油、黄金、白银、铜、铁矿石。需要收盘价和涨跌幅。
+
+  # ── 模块 7：中国市场与流动性 ──
+  - id: china_liquidity
+    name: 中国市场与流动性
+    enabled: true
+    priority: 7
+    data_strategy: both
+    fetch_urls:
+      - url: "https://www.jin10.com/"
+        maxChars: 5000
+        extract: raw
+    search_keywords:
+      - "{date} 央行公开市场 逆回购"
+      - "{date} 北向资金 两融"
+      - "{date} Shibor"
+    collector_prompt: |
+      提取 {date} 中国市场流动性数据：央行 OMO、Shibor、DR007、北向资金、两融余额、A 股成交额。
+
+  # ── 模块 8：行业热点 ──
+  - id: industry_highlights
+    name: 行业热点
+    enabled: true
+    priority: 8
+    data_strategy: both
+    fetch_urls:
+      - url: "https://www.jin10.com/"
+        maxChars: 5000
+        extract: raw
+    search_keywords:
+      - "{date} 公募基金 ETF 新发"
+      - "{date} 证监会 基金"
+    collector_prompt: |
+      提取 {date} 公募基金行业核心事件：新发/募集、监管政策、ETF 申赎、头部公司动作。每条必须有具体公告或报道链接。
+
+  # ── 模块 9：明日重点前瞻 ──
+  - id: next_day_preview
+    name: 明日重点前瞻
+    enabled: true
+    priority: 9
+    data_strategy: fetch
+    fetch_urls:
+      - url: "https://www.cls.cn/"
+        maxChars: 8000
+        extract: raw
+    search_keywords:
+      - "economic calendar {tomorrow_date}"
+      - "{tomorrow_date} 财经日历"
+    collector_prompt: |
+      提取 {tomorrow_date} 已确认的事件和数据发布。只允许写可核验的官方日历/已公布事件，禁止推测。
+
+  # ══════════════════════════════════════════════
+  # 以下为示例自定义模块（默认关闭，用户可启用）
+  # ══════════════════════════════════════════════
+
+  # ── 自定义模块示例：AI Agent 资管应用动态 ──
+  - id: ai_agent_asset_mgmt
+    name: AI Agent 资管应用动态
+    enabled: false  # ← 改为 true 即可启用
+    priority: 10
+    data_strategy: search
+    fetch_urls: []
+    search_keywords:
+      - "AI agent asset management {date}"
+      - "AI agent 资管 基金 {date}"
+      - "autonomous agent portfolio management"
+      - "AI投顾 智能投研 {date}"
+    collector_prompt: |
+      搜索 {date} AI Agent 在资产管理行业的最新应用动态：
+      - 新产品/新工具发布（如 AI 投研助手、智能投顾）
+      - 头部资管机构的 AI Agent 部署案例
+      - 监管对 AI Agent 投顾/交易的政策态度
+      - AI Agent 资管创业公司融资动态
+      - 技术突破（多 Agent 协作、RAG+金融知识库等）
+      每条事件必须有具体来源链接。

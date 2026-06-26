@@ -1,0 +1,8 @@
+{
+  "name": "feishu-plugin-conflict-fix",
+  "version": "1.0.0",
+  "description": "飞书插件工具冲突修复工具",
+  "author": "郑宇航",
+  "license": "MIT-0",
+  "keywords": ["feishu", "plugin", "conflict", "fix"]
+}

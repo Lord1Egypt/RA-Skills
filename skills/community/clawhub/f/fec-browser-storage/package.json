@@ -1,0 +1,40 @@
+{
+  "name": "@bovinphang/fec-browser-storage",
+  "version": "2.5.0",
+  "description": "Use when choosing, implementing, or reviewing browser storage such as localStorage, sessionStorage, IndexedDB, cookies, client persistence, offline data, secure storage, or cleanup strategy; Chinese triggers include 浏览器存储, 客户端持久化.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-browser-storage"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "implementation-capability",
+    "storage",
+    "localStorage",
+    "indexedDB",
+    "cookie",
+    "client-persistence"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

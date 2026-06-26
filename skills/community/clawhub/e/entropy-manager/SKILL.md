@@ -1,35 +1,164 @@
 ---
-name: "熵管理系统"
-description: "熵管理系统 - 原创技能。用于管理和控制AI会话中的熵（无序度），包括上下文精简、状态重置、注意力聚焦等功能。适用于长时间会话、复杂任务、多步骤工作流等场景。"
-category: "other"
-source: "ClawHub"
-tags: [entropy, focus, optimization, state-management]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/entropy-manager"
-sourceUrl: "https://clawhub.ai/skills/entropy-manager"
+name: entropy-manager
+description: 熵管理系统 - 原创技能。用于管理和控制AI会话中的熵（无序度），包括上下文精简、状态重置、注意力聚焦等功能。适用于长时间会话、复杂任务、多步骤工作流等场景。
+metadata: {"openclaw": {"requires": {}, "install": []}}
+tags: [entropy, state-management, focus, optimization, session-control]
+version: 1.0.0
+author: laosi
+source: original
 ---
 
-# 熵管理系统
+# ⚠️ 发布规则
 
-> 熵管理系统 - 原创技能。用于管理和控制AI会话中的熵（无序度），包括上下文精简、状态重置、注意力聚焦等功能。适用于长时间会话、复杂任务、多步骤工作流等场景。
+**所有发布到ClawHub的技能必须严格测试，确定没有问题再发布**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/entropy-manager`
-- **Source URL:** [https://clawhub.ai/skills/entropy-manager](https://clawhub.ai/skills/entropy-manager)
+---
 
-## Overview
+## 技能测试验证清单
 
+- [x] frontmatter格式正确
+- [x] 功能原创且实用
+- [x] 工作流程完整
+- [x] 触发条件明确
+- [x] 无语法错误
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/entropy-manager
+---
+
+# Entropy Manager - 熵管理系统
+
+> 原创技能 | 激活词: 熵管理 / 精简上下文 / 重置状态
+
+## 核心概念
+
+### 什么是熵 (Entropy)?
+
+熵 = 无序度/不确定性
+
+在AI会话中：
+- **上下文熵**: 历史记录过多导致注意力分散
+- **状态熵**: 当前状态不清晰导致错误决策
+- **任务熵**: 目标不明确导致方向迷失
+
+### 熵的症状
+
+- 回复开始重复或跑题
+- 忘记之前的决定
+- 越来越难聚焦核心问题
+- 输出质量下降
+
+## 熵管理四大策略
+
+### 1. 上下文精简 (Context Pruning)
+
+当上下文超过阈值时触发：
+- 保留核心决策和结论
+- 删除中间过程和废话
+- 压缩相似对话为摘要
+
 ```
+触发条件: 对话超过20轮 或 上下文超过80K tokens
+执行动作: 生成摘要，替换原始对话
+```
+
+### 2. 状态重置 (State Reset)
+
+当状态混乱时触发：
+- 明确当前任务目标
+- 列出已完成的部分
+- 确定下一步行动
+
+```
+触发条件: 任务切换 / 迷失方向 / 错误累积
+执行动作: 生成状态卡片，聚焦核心
+```
+
+### 3. 注意力聚焦 (Attention Focus)
+
+当注意力分散时触发：
+- 识别当前核心问题
+- 排除干扰项
+- 设定明确边界
+
+```
+触发条件: 同时处理多��问题 / 任务过于复杂
+执行动作: 分解任务，一次只做一件
+```
+
+### 4. 熵预警 (Entropy Alert)
+
+持续监控熵值变化：
+- 上下文增长速率
+- 状态一致性
+- 目标清晰度
+
+```
+指标: 
+- ctx_rate: 上下文增长速度
+- state_coherence: 状态一致性 (0-1)
+- goal_clarity: 目标清晰度 (0-1)
+```
+
+## 熵管理流程
+
+```
+1. 检测 → 监控熵值指标
+2. 预警 → 达到阈值时提醒
+3. 精简 → 执行上下文压缩
+4. 重置 → 状态聚焦
+5. 验证 → 确保熵值降低
+```
+
+## 输出格式
+
+### 熵状态报告
+
+```markdown
+## 熵状态报告
+
+### 当前指标
+- 上下文长度: XXX tokens
+- 会话轮数: XX轮
+- 状态一致性: X.X
+- 目标清晰度: X.X
+
+### 熵等级: 🟢低 / 🟡中 / 🔴高
+
+### 建议操作
+1. [ ] 精简上下文
+2. [ ] 重置状态
+3. [ ] 聚焦任务
+
+### 执行结果
+[执行后更新指标]
+```
+
+## 应用场景
+
+1. **长时间会话** - 防止上下文无限增长
+2. **复杂多步骤任务** - 保持状态清晰
+3. **任务切换** - 快速重置注意力
+4. **错误恢复** - 从混乱状态中脱离
+
+## 与Karpathy法则的结合
+
+熵管理与Karpathy法则完美互补：
+
+| Karpathy法则 | 熵管理对应 |
+|--------------|-----------|
+| 先思考 | 降低决策熵 |
+| 保持简单 | 降低复杂度熵 |
+| 精准修改 | 降低改动熵 |
+| 目标驱动 | 消除目标熵 |
+
+## 原创性声明
+
+本技能为原创，融合了：
+- 热力学熵概念
+- 系统论状态管理
+- 认知科学注意力理论
+- AI会话优化实践
+
+---
+
+**作者**: laosi
+**创建日期**: 2026-04-28

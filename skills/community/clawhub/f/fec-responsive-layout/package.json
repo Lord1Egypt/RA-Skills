@@ -1,0 +1,40 @@
+{
+  "name": "@bovinphang/fec-responsive-layout",
+  "version": "2.5.0",
+  "description": "Use when designing, implementing, or reviewing responsive frontend layouts, mobile-first breakpoints, container queries, fluid grids, data-dense tables, touch targets, safe areas, orientation changes, viewport overflow, or cross-device UI behavior; Chinese triggers include 响应式布局, 移动端适配, 断点, 容器查询, 横竖屏, 触摸目标.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-responsive-layout"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "design-ui",
+    "responsive",
+    "layout",
+    "container-query",
+    "mobile-first",
+    "touch-target"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "embeddingProvider": "dashscope",
+  "embeddingModel": "text-embedding-v3",
+  "embeddingBaseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "chunkSize": 500,
+  "chunkOverlap": 50,
+  "retrievalTopK": 5,
+  "collectionName": "enterprise_kb",
+  "vectorDimension": 1024,
+  "metricType": "COSINE"
+}

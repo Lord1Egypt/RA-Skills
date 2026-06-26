@@ -1,0 +1,40 @@
+{
+  "name": "@bovinphang/fec-storybook-component-doc",
+  "version": "2.6.0",
+  "description": "Use when setting up or reviewing Storybook component documentation, design-system presentation, isolated component state previews, stories, addons, decorators, MDX docs, component-state interaction checks, visual baselines, or Chromatic. For real-browser cross-page journeys or broader coverage planning, choose the matching testing workflow first; Chinese triggers include Storybook, 组件文档, Design System, 视觉回归.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-storybook-component-doc"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "design-ui",
+    "storybook",
+    "design-system",
+    "component-doc",
+    "visual-testing",
+    "mdx"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Skill capability radar",
+  "chartType": "radar",
+  "categoryField": "agent",
+  "dataset": [
+    { "agent": "Codex", "reasoning": 88, "delivery": 92, "speed": 85, "reliability": 90 },
+    { "agent": "OpenClaw", "reasoning": 76, "delivery": 80, "speed": 91, "reliability": 78 }
+  ],
+  "indicators": [
+    { "name": "reasoning", "max": 100 },
+    { "name": "delivery", "max": 100 },
+    { "name": "speed", "max": 100 },
+    { "name": "reliability", "max": 100 }
+  ]
+}

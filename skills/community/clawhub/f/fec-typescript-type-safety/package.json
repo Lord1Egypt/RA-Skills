@@ -1,0 +1,41 @@
+{
+  "name": "@bovinphang/fec-typescript-project-standard",
+  "version": "2.7.0",
+  "description": "Use when creating, configuring, reviewing, or debugging TypeScript project standards across frontend apps, libraries, SDKs, CLIs, monorepo packages, tsconfig, strictness, module/moduleResolution, path aliases, project references, declaration files, package exports, public API types, DTOs, advanced generics, discriminated unions, type guards, type narrowing, or type-level regressions. Prefer framework project skills for React/Vue/Next/Nuxt component architecture; Chinese triggers include TypeScript 项目规范, TS 项目规范, TypeScript 类型安全, 类型建模, 泛型, 判别联合, 类型收窄, tsconfig, 声明文件.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-typescript-project-standard"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "project-standard",
+    "typescript",
+    "type-safety",
+    "tsconfig",
+    "declarations",
+    "generics",
+    "dto"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

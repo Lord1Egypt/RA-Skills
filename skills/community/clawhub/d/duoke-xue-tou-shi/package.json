@@ -1,0 +1,24 @@
+{
+  "name": "duoke-xue-tou-shi",
+  "version": "1.0.0",
+  "description": "多科学透视 — 用多个学科的视角透视任意想法，发现"未知的未知"，拓展认知边界。",
+  "license": "MIT",
+  "author": "小爪君",
+  "keywords": [
+    "多科学透视",
+    "多维分析",
+    "认知光谱",
+    "深度思考",
+    "头脑风暴",
+    "跨学科",
+    "openclaw",
+    "skill"
+  ],
+  "clawhub": {
+    "acceptLicenseTerms": true
+  },
+  "openclaw": {
+    "minVersion": "0.1.0",
+    "requires": {}
+  }
+}

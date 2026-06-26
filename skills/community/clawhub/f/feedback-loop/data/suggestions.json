@@ -1,0 +1,104 @@
+[
+  {
+    "id": "fb_1773279533859_utd9mo3qt",
+    "timestamp": "2026-03-12T01:38:53.859Z",
+    "status": "pending",
+    "title": "Address recurring issues in general",
+    "description": "2 negative feedback items identified in this category. Review and improve related functionality.",
+    "category": "general",
+    "priority": "high",
+    "actionItems": [
+      "Analyze general related interactions",
+      "Identify root causes of negative feedback",
+      "Implement targeted improvements",
+      "Monitor feedback for this category"
+    ],
+    "expectedImpact": "Reduce negative feedback and improve user satisfaction",
+    "sourcePattern": "recurring_issues"
+  },
+  {
+    "id": "fb_1773279533859_y8da80wrc",
+    "timestamp": "2026-03-12T01:38:53.859Z",
+    "status": "pending",
+    "title": "Reduce negative feedback through proactive improvements",
+    "description": "33% of feedback is negative. Focus on addressing common pain points.",
+    "category": "general",
+    "priority": "high",
+    "actionItems": [
+      "Review all negative feedback comments",
+      "Identify top 3 pain points",
+      "Create improvement plan",
+      "Set up monitoring for negative trends"
+    ],
+    "expectedImpact": "Increase overall satisfaction score",
+    "sourcePattern": "sentiment_analysis"
+  },
+  {
+    "id": "fb_1773279533859_ka5dtohhi",
+    "timestamp": "2026-03-12T01:38:53.859Z",
+    "status": "pending",
+    "title": "Address high_retry_rate behavior",
+    "description": "1 instances of high_retry_rate detected. Users may be struggling with this aspect.",
+    "category": "usability",
+    "priority": "medium",
+    "actionItems": [
+      "Investigate causes of high_retry_rate",
+      "Simplify related workflows",
+      "Add helpful guidance or hints",
+      "Test improvements with users"
+    ],
+    "expectedImpact": "Reduced friction and improved completion rates",
+    "sourcePattern": "behavioral_patterns"
+  },
+  {
+    "id": "fb_1773279545472_tcshuo2v4",
+    "timestamp": "2026-03-12T01:39:05.472Z",
+    "status": "pending",
+    "title": "Address recurring issues in general",
+    "description": "4 negative feedback items identified in this category. Review and improve related functionality.",
+    "category": "general",
+    "priority": "high",
+    "actionItems": [
+      "Analyze general related interactions",
+      "Identify root causes of negative feedback",
+      "Implement targeted improvements",
+      "Monitor feedback for this category"
+    ],
+    "expectedImpact": "Reduce negative feedback and improve user satisfaction",
+    "sourcePattern": "recurring_issues"
+  },
+  {
+    "id": "fb_1773279545474_smddhez4t",
+    "timestamp": "2026-03-12T01:39:05.474Z",
+    "status": "pending",
+    "title": "Reduce negative feedback through proactive improvements",
+    "description": "44% of feedback is negative. Focus on addressing common pain points.",
+    "category": "general",
+    "priority": "high",
+    "actionItems": [
+      "Review all negative feedback comments",
+      "Identify top 3 pain points",
+      "Create improvement plan",
+      "Set up monitoring for negative trends"
+    ],
+    "expectedImpact": "Increase overall satisfaction score",
+    "sourcePattern": "sentiment_analysis"
+  },
+  {
+    "id": "fb_1773279545475_nvcev95rd",
+    "timestamp": "2026-03-12T01:39:05.475Z",
+    "status": "pending",
+    "title": "Address high_retry_rate behavior",
+    "description": "2 instances of high_retry_rate detected. Users may be struggling with this aspect.",
+    "category": "usability",
+    "priority": "medium",
+    "actionItems": [
+      "Investigate causes of high_retry_rate",
+      "Simplify related workflows",
+      "Add helpful guidance or hints",
+      "Test improvements with users"
+    ],
+    "expectedImpact": "Reduced friction and improved completion rates",
+    "sourcePattern": "behavioral_patterns"
+  }
+]

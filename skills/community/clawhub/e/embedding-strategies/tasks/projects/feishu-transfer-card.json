@@ -1,0 +1,62 @@
+﻿{
+  "config": {
+    "wide_screen_mode": true
+  },
+  "header": {
+    "template": "blue",
+    "title": {
+      "content": "馃挵 寰俊杞处纭",
+      "tag": "plain_text"
+    }
+  },
+  "elements": [
+    {
+      "tag": "div",
+      "text": {
+        "content": "**鏀舵浜猴細** 老婆\n**閲戦锛?* 楼3 鍏僜n\n璇风‘璁ゆ槸鍚﹀彂璧疯浆璐︼紵",
+        "tag": "lark_md"
+      }
+    },
+    {
+      "tag": "action",
+      "actions": [
+        {
+          "tag": "button",
+          "text": {
+            "content": "鉁?纭杞处",
+            "tag": "plain_text"
+          },
+          "type": "primary",
+          "value": {
+            "action": "confirm_transfer",
+            "receiver": "老婆",
+            "amount": "3"
+          }
+        },
+        {
+          "tag": "button",
+          "text": {
+            "content": "鉂?鍙栨秷",
+            "tag": "plain_text"
+          },
+          "type": "default",
+          "value": {
+            "action": "cancel_transfer"
+          }
+        }
+      ]
+    },
+    {
+      "tag": "hr"
+    },
+    {
+      "tag": "note",
+      "elements": [
+        {
+          "tag": "plain_text",
+          "content": "瀹夊叏鎻愮ず锛氭渶鍚庝竴姝?鍙戠孩鍖?闇€鎵嬪姩纭"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2742 @@
+{
+  "total_cases": 21,
+  "smoke_passed": 21,
+  "query_plan_cases": 7,
+  "query_plan_passed": 7,
+  "eval_passed": 21,
+  "thread_focus_passed": 21,
+  "resolution_passed": 21,
+  "forbidden_guard_passed": 21,
+  "hallucination_guard_passed": 21,
+  "ablation_positive": 21,
+  "results": [
+    {
+      "id": "claude_code_task_end_guidance_refresh",
+      "title": "Claude Code task-end authoritative guidance refresh",
+      "host": "Claude Code",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "Claude Code Hooks reference",
+          "url": "https://code.claude.com/docs/en/hooks"
+        },
+        {
+          "label": "secondary",
+          "name": "Claude Code hooks community workflow thread",
+          "url": "https://www.reddit.com/r/ClaudeCode/comments/1qlzzzf/claude_codes_most_underrated_feature_hooks_wrote/"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": false,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "SKIPPED: no context_fixture for this workflow case",
+      "query_plan": null,
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"medium\", \"trigger_reason\": \"task_end\", \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\", \"status\": \"ready\", \"observed_signals\": [\"progress_stalled\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/claude_code_task_end_guidance_refresh.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/claude_code_task_end_guidance_refresh.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 7,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 5,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 3,
+        "thread_focus_total": 5,
+        "resolution_hits": 3,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": false,
+        "resolution_ok": false,
+        "forbidden_ok": false,
+        "score": 7
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "claude_code_failure_recovery_hook_contract",
+      "title": "Claude Code failure-recovery hook contract check",
+      "host": "Claude Code",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "Claude Code Hooks reference",
+          "url": "https://code.claude.com/docs/en/hooks"
+        },
+        {
+          "label": "secondary",
+          "name": "Claude Code hook failure workflow thread",
+          "url": "https://www.reddit.com/r/ClaudeCode/comments/1rn8nxf/some_hooks_not_working_in_claude_code/"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": false,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "SKIPPED: no context_fixture for this workflow case",
+      "query_plan": null,
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"medium\", \"trigger_reason\": \"failure_recovery\", \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\", \"status\": \"ready\", \"observed_signals\": [\"repeat_fingerprint_escalation_bypass\", \"related_failures\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/claude_code_failure_recovery_hook_contract.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/claude_code_failure_recovery_hook_contract.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 7,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 5,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 3,
+        "thread_focus_total": 5,
+        "resolution_hits": 3,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": false,
+        "resolution_ok": false,
+        "forbidden_ok": false,
+        "score": 7
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "openclaw_heartbeat_memory_safety",
+      "title": "OpenClaw heartbeat memory-safety advisory",
+      "host": "OpenClaw",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "OpenClaw Automation and Heartbeat docs",
+          "url": "https://docs.openclaw.ai/automation"
+        },
+        {
+          "label": "secondary",
+          "name": "ClawHub Memory Master review",
+          "url": "https://clawhub.ai/skills/memory-master"
+        },
+        {
+          "label": "secondary",
+          "name": "Heartbeat memory pollution paper",
+          "url": "https://arxiv.org/abs/2603.23064"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": false,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "SKIPPED: no context_fixture for this workflow case",
+      "query_plan": null,
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"low\", \"trigger_reason\": \"heartbeat\", \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\", \"status\": \"ready\", \"observed_signals\": [\"no_clear_next_step\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/openclaw_heartbeat_memory_safety.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/openclaw_heartbeat_memory_safety.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 7,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 4,
+        "thread_focus_total": 5,
+        "resolution_hits": 4,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 2,
+        "thread_focus_total": 5,
+        "resolution_hits": 2,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": false,
+        "resolution_ok": false,
+        "forbidden_ok": false,
+        "score": 7
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "openclaw_idle_fallback_stays_quiet",
+      "title": "OpenClaw idle fallback stays quiet when heartbeat already exists",
+      "host": "OpenClaw",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "OpenClaw Cron vs Heartbeat",
+          "url": "https://docs.openclaw.ai/cron-vs-heartbeat/"
+        },
+        {
+          "label": "primary",
+          "name": "OpenClaw Heartbeat reference",
+          "url": "https://docs.openclaw.ai/gateway/heartbeat"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": false,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "SKIPPED: no context_fixture for this workflow case",
+      "query_plan": null,
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": false, \"search_mode\": \"low\", \"trigger_reason\": \"idle_fallback\", \"reason\": \"idle fallback needs explicit opt-in or a host without heartbeat support\", \"status\": \"blocked\", \"error_code\": \"idle_fallback_not_enabled\", \"observed_signals\": [\"host_supports_heartbeat\", \"idle_fallback_not_opted_in\"]}",
+      "validator_output": "SKIPPED: no output fixture for blocked case",
+      "hallucination_validator_output": "SKIPPED: no output fixture for blocked case",
+      "with_skill_score": 4,
+      "hallucinated_score": 0,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "silent_guardrail",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 4,
+      "score_breakdown": {
+        "mode": "silent_guardrail",
+        "observed_signals": [
+          "host_supports_heartbeat",
+          "idle_fallback_not_opted_in"
+        ],
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "search_mode_ok": true,
+        "score": 4
+      },
+      "hallucination_breakdown": null,
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "hermes_scheduled_doc_drift_scan",
+      "title": "Hermes scheduled doc-drift research pass",
+      "host": "Hermes",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "Hermes automation templates",
+          "url": "https://hermes-agent.nousresearch.com/docs/guides/automation-templates"
+        },
+        {
+          "label": "primary",
+          "name": "Hermes skills system docs",
+          "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/skills"
+        },
+        {
+          "label": "secondary",
+          "name": "Hermes community ecosystem page",
+          "url": "https://get-hermes.ai/community/"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": false,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "SKIPPED: no context_fixture for this workflow case",
+      "query_plan": null,
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"low\", \"trigger_reason\": \"scheduled\", \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\", \"status\": \"ready\", \"observed_signals\": [\"scheduled_trigger_managed_by_host\", \"suspected_reinventing_wheel\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/hermes_scheduled_doc_drift_scan.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/hermes_scheduled_doc_drift_scan.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 7,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 5,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 3,
+        "thread_focus_total": 5,
+        "resolution_hits": 3,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": false,
+        "resolution_ok": false,
+        "forbidden_ok": false,
+        "score": 7
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "hermes_scheduled_duplicate_dedupes",
+      "title": "Hermes scheduled run dedupes repeated fingerprint",
+      "host": "Hermes",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "Hermes automation templates",
+          "url": "https://hermes-agent.nousresearch.com/docs/guides/automation-templates"
+        },
+        {
+          "label": "primary",
+          "name": "Hermes skills system docs",
+          "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/skills"
+        },
+        {
+          "label": "secondary",
+          "name": "Hermes community ecosystem page",
+          "url": "https://get-hermes.ai/community/"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": false,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "SKIPPED: no context_fixture for this workflow case",
+      "query_plan": null,
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": false, \"search_mode\": \"low\", \"trigger_reason\": \"scheduled\", \"reason\": \"repeat fingerprint cooldown is still active\", \"status\": \"blocked\", \"error_code\": \"duplicate_fingerprint_cooldown\", \"observed_signals\": [\"fingerprint_repeat_window_active\"]}",
+      "validator_output": "SKIPPED: no output fixture for blocked case",
+      "hallucination_validator_output": "SKIPPED: no output fixture for blocked case",
+      "with_skill_score": 4,
+      "hallucinated_score": 0,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "silent_guardrail",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 4,
+      "score_breakdown": {
+        "mode": "silent_guardrail",
+        "observed_signals": [
+          "fingerprint_repeat_window_active"
+        ],
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "search_mode_ok": true,
+        "score": 4
+      },
+      "hallucination_breakdown": null,
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "claude_code_scheduled_log_collection",
+      "title": "Claude Code scheduled log-collection research pass",
+      "host": "Claude Code",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "Claude Code scheduled tasks",
+          "url": "https://code.claude.com/docs/en/scheduled-tasks"
+        },
+        {
+          "label": "secondary",
+          "name": "Production error logs scheduled-task workflow",
+          "url": "https://www.reddit.com/r/ClaudeAI/comments/1s32n1t/i_set_up_a_claude_code_scheduled_task_that/"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": false,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "SKIPPED: no context_fixture for this workflow case",
+      "query_plan": null,
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"low\", \"trigger_reason\": \"scheduled\", \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\", \"status\": \"ready\", \"observed_signals\": [\"scheduled_trigger_managed_by_host\", \"suspected_reinventing_wheel\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/claude_code_scheduled_log_collection.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/claude_code_scheduled_log_collection.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 7,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 5,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 1,
+        "thread_focus_total": 5,
+        "resolution_hits": 1,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": false,
+        "resolution_ok": false,
+        "forbidden_ok": false,
+        "score": 7
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "claude_code_generated_scheduled_prompt_stays_neutral",
+      "title": "Claude Code generated scheduled prompt stays neutral",
+      "host": "Claude Code",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "Claude Code scheduled tasks",
+          "url": "https://code.claude.com/docs/en/scheduled-tasks"
+        },
+        {
+          "label": "secondary",
+          "name": "Loop and scheduled-task discussion",
+          "url": "https://www.reddit.com/r/ClaudeCode/comments/1rn94wp/claude_code_just_shipped_loop_schedule_recurring/"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": false,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "SKIPPED: no context_fixture for this workflow case",
+      "query_plan": null,
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": false, \"search_mode\": \"low\", \"trigger_reason\": \"scheduled\", \"reason\": \"host-generated scheduled prompts must stay neutral\", \"status\": \"blocked\", \"error_code\": \"scheduled_prompt_must_be_neutral\", \"observed_signals\": [\"host_generated_scheduled_prompt\", \"scheduled_prompt_emotion:frustrated\"]}",
+      "validator_output": "SKIPPED: no output fixture for blocked case",
+      "hallucination_validator_output": "SKIPPED: no output fixture for blocked case",
+      "with_skill_score": 4,
+      "hallucinated_score": 0,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "silent_guardrail",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 4,
+      "score_breakdown": {
+        "mode": "silent_guardrail",
+        "observed_signals": [
+          "host_generated_scheduled_prompt",
+          "scheduled_prompt_emotion:frustrated"
+        ],
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "search_mode_ok": true,
+        "score": 4
+      },
+      "hallucination_breakdown": null,
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "openclaw_cron_research_digest",
+      "title": "OpenClaw cron research digest stays isolated",
+      "host": "OpenClaw",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "OpenClaw automation and cron guidance",
+          "url": "https://docs.openclaw.ai/automation"
+        },
+        {
+          "label": "primary",
+          "name": "OpenClaw cron vs heartbeat",
+          "url": "https://docs.openclaw.ai/cron-vs-heartbeat/"
+        },
+        {
+          "label": "secondary",
+          "name": "OpenClaw cron troubleshooting thread",
+          "url": "https://www.reddit.com/r/clawdbot/comments/1r21alk/crons_dont_work_on_vps/"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": false,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "SKIPPED: no context_fixture for this workflow case",
+      "query_plan": null,
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"low\", \"trigger_reason\": \"scheduled\", \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\", \"status\": \"ready\", \"observed_signals\": [\"scheduled_trigger_managed_by_host\", \"suspected_reinventing_wheel\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/openclaw_cron_research_digest.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/openclaw_cron_research_digest.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 7,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 4,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 2,
+        "thread_focus_total": 5,
+        "resolution_hits": 1,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": false,
+        "resolution_ok": false,
+        "forbidden_ok": false,
+        "score": 7
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "claude_code_manual_scheduled_claude_md_refresh",
+      "title": "Claude Code manual scheduled CLAUDE.md refresh keeps operator intent",
+      "host": "Claude Code",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "Claude Code scheduled tasks",
+          "url": "https://code.claude.com/docs/en/scheduled-tasks"
+        },
+        {
+          "label": "secondary",
+          "name": "Scheduled Claude Code workflows thread",
+          "url": "https://www.reddit.com/r/claude/comments/1s4q0em/scheduled_claude_code/"
+        },
+        {
+          "label": "secondary",
+          "name": "CLAUDE.md drift workflow thread",
+          "url": "https://www.reddit.com/r/ClaudeAI/comments/1rkya1a/my_claudemd_is_always_stale_by_the_time_i_need_it/"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": false,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "SKIPPED: no context_fixture for this workflow case",
+      "query_plan": null,
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"low\", \"trigger_reason\": \"scheduled\", \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\", \"status\": \"ready\", \"observed_signals\": [\"user_configured_periodic_travel\", \"suspected_reinventing_wheel\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/claude_code_manual_scheduled_claude_md_refresh.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/claude_code_manual_scheduled_claude_md_refresh.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 7,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 4,
+        "thread_focus_total": 5,
+        "resolution_hits": 4,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 1,
+        "thread_focus_total": 5,
+        "resolution_hits": 2,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": false,
+        "resolution_ok": false,
+        "forbidden_ok": false,
+        "score": 7
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "hermes_nightly_backlog_triage",
+      "title": "Hermes nightly backlog triage digest",
+      "host": "Hermes",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "Hermes automation templates",
+          "url": "https://hermes-agent.nousresearch.com/docs/guides/automation-templates"
+        },
+        {
+          "label": "secondary",
+          "name": "Hermes Web UI workflow overview",
+          "url": "https://get-hermes.ai/"
+        },
+        {
+          "label": "secondary",
+          "name": "Hermes ecosystem page",
+          "url": "https://get-hermes.ai/community/"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": false,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "SKIPPED: no context_fixture for this workflow case",
+      "query_plan": null,
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"low\", \"trigger_reason\": \"scheduled\", \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\", \"status\": \"ready\", \"observed_signals\": [\"scheduled_trigger_managed_by_host\", \"suspected_reinventing_wheel\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/hermes_nightly_backlog_triage.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/hermes_nightly_backlog_triage.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 7,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 4,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 2,
+        "thread_focus_total": 5,
+        "resolution_hits": 2,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": false,
+        "resolution_ok": false,
+        "forbidden_ok": false,
+        "score": 7
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "openclaw_daily_summary_collection",
+      "title": "OpenClaw daily summary collection stays bounded",
+      "host": "OpenClaw",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "OpenClaw automation and task guidance",
+          "url": "https://docs.openclaw.ai/automation"
+        },
+        {
+          "label": "primary",
+          "name": "OpenClaw cron jobs",
+          "url": "https://docs.openclaw.ai/cron/"
+        },
+        {
+          "label": "secondary",
+          "name": "OpenClaw daily summarization workflow thread",
+          "url": "https://www.reddit.com/r/openclaw/comments/1s291c6/how_do_you_implement_daily_sumarizations_in_claw/"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": false,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "SKIPPED: no context_fixture for this workflow case",
+      "query_plan": null,
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"low\", \"trigger_reason\": \"scheduled\", \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\", \"status\": \"ready\", \"observed_signals\": [\"scheduled_trigger_managed_by_host\", \"suspected_reinventing_wheel\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/openclaw_daily_summary_collection.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/openclaw_daily_summary_collection.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 7,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 5,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 2,
+        "thread_focus_total": 5,
+        "resolution_hits": 1,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": false,
+        "resolution_ok": false,
+        "forbidden_ok": false,
+        "score": 7
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "claude_code_scheduled_job_health_audit",
+      "title": "Claude Code scheduled-job health audit stays receipt-first",
+      "host": "Claude Code",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "Claude Code scheduled tasks",
+          "url": "https://code.claude.com/docs/en/scheduled-tasks"
+        },
+        {
+          "label": "secondary",
+          "name": "Always-on AI cron audit thread",
+          "url": "https://www.reddit.com/r/ClaudeAI/comments/1srnkda/i_audited_my_alwayson_ai_agent_6_of_10_cron_jobs/"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": false,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "SKIPPED: no context_fixture for this workflow case",
+      "query_plan": null,
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"low\", \"trigger_reason\": \"scheduled\", \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\", \"status\": \"ready\", \"observed_signals\": [\"scheduled_trigger_managed_by_host\", \"suspected_reinventing_wheel\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/claude_code_scheduled_job_health_audit.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/claude_code_scheduled_job_health_audit.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 7,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 4,
+        "thread_focus_total": 5,
+        "resolution_hits": 4,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 1,
+        "thread_focus_total": 5,
+        "resolution_hits": 2,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": false,
+        "resolution_ok": false,
+        "forbidden_ok": false,
+        "score": 7
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "claude_code_weekly_reference_sheet_refresh",
+      "title": "Claude Code weekly reference-sheet refresh stays diff-scoped",
+      "host": "Claude Code",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "Claude Code scheduled tasks",
+          "url": "https://code.claude.com/docs/en/scheduled-tasks"
+        },
+        {
+          "label": "secondary",
+          "name": "Weekly auto-updated cheat sheet thread",
+          "url": "https://www.reddit.com/r/ClaudeAI/comments/1rrm9ud/printable_claude_code_cheat_sheet_autoupdated/"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": false,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "SKIPPED: no context_fixture for this workflow case",
+      "query_plan": null,
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"low\", \"trigger_reason\": \"scheduled\", \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\", \"status\": \"ready\", \"observed_signals\": [\"scheduled_trigger_managed_by_host\", \"suspected_reinventing_wheel\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/claude_code_weekly_reference_sheet_refresh.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/claude_code_weekly_reference_sheet_refresh.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 7,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 4,
+        "thread_focus_total": 5,
+        "resolution_hits": 4,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 1,
+        "thread_focus_total": 5,
+        "resolution_hits": 2,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": false,
+        "resolution_ok": false,
+        "forbidden_ok": false,
+        "score": 7
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "real_thread_clawhub_scan_prompt_warning",
+      "title": "Real thread: ClawHub scan warning needs a common package fix",
+      "host": "ClawHub / Codex",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "ClawHub skill listing",
+          "url": "https://clawhub.ai/gongyu0918-debug/find-community-help"
+        },
+        {
+          "label": "case_source",
+          "name": "Sanitized local Codex session",
+          "url": "sanitized-local-session:2026-06-03-agent-travel-review"
+        },
+        {
+          "label": "secondary",
+          "name": "GitHub repository history",
+          "url": "https://github.com/gongyu0918-debug/find-community-help"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": true,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "{\n  \"community_help_plan\": true,\n  \"dry_run\": true,\n  \"network_used\": false,\n  \"decision\": {\n    \"should_run\": true,\n    \"search_mode\": \"medium\",\n    \"trigger_reason\": \"user_request\",\n    \"reason\": \"explicit user request for community help\",\n    \"status\": \"ready\",\n    \"observed_signals\": [\n      \"user_requested_community_help\"\n    ]\n  },\n  \"problem_fingerprint\": \"ClawHub|current-version|skill publish scan reports prompt warning after agent-travel package review|no one-off warning fixes; shrink publish package and keep advisory-only hints|common rename and package scan-boundary plan\",\n  \"fingerprint_hash\": \"h64:9fcdffa02defcf7866d1f7a41df6a56f0963a0224601c6262d0e59ea26a0ec5f\",\n  \"redaction_summary\": {\n    \"context_chars_seen\": 585,\n    \"context_chars_used\": 585,\n    \"context_redacted_items\": {\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"database_url\": 0,\n      \"aws_access_key\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"huggingface_token\": 0,\n      \"slack_token\": 0,\n      \"google_api_key\": 0,\n      \"credential_assignment\": 0,\n      \"token_like\": 0,\n      \"internal_url\": 0,\n      \"private_path\": 0,\n      \"email\": 0,\n      \"ipv4_address\": 0,\n      \"phone_number\": 0\n    },\n    \"state_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    },\n    \"decision_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    },\n    \"total_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    }\n  },\n  \"query_budget\": {\n    \"search_mode\": \"medium\",\n    \"max_queries\": 3\n  },\n  \"queries\": [\n    {\n      \"tier\": \"primary\",\n      \"surface\": \"official docs / release notes / maintainer sources\",\n      \"purpose\": \"Anchor the stuck thread in documented behavior before using community fixes.\",\n      \"query\": \"ClawHub current-version skill publish scan reports prompt warning after agent-travel package review no one-off warning fixes; shrink publish package keep advisory-only hints official docs release notes known issue\"\n    },\n    {\n      \"tier\": \"secondary\",\n      \"surface\": \"GitHub issues / maintained Q&A / community reproductions\",\n      \"purpose\": \"Find independent reproductions, mature workarounds, or evidence that this is a known pattern.\",\n      \"query\": \"ClawHub current-version skill publish scan reports prompt warning after agent-travel package review no one-off warning fixes; shrink publish package keep advisory-only hints GitHub issue Stack Overflow community reproduction\"\n    },\n    {\n      \"tier\": \"secondary\",\n      \"surface\": \"maintained community workflow reports\",\n      \"purpose\": \"Check whether community practice points to a reusable library, recipe, or anti-pattern.\",\n      \"query\": \"ClawHub current-version skill publish scan reports prompt warning after agent-travel package review no one-off warning fixes; shrink publish package keep advisory-only hints community workflow workaround pattern\"\n    }\n  ],\n  \"notes\": [\n    \"This is a dry-run plan. The host agent performs any web/search calls.\",\n    \"Review queries before executing them with private connectors or internal search tools.\",\n    \"Use the results only as cross-validated advisory hints for the active thread.\"\n  ]\n}",
+      "query_plan": {
+        "community_help_plan": true,
+        "dry_run": true,
+        "network_used": false,
+        "decision": {
+          "should_run": true,
+          "search_mode": "medium",
+          "trigger_reason": "user_request",
+          "reason": "explicit user request for community help",
+          "status": "ready",
+          "observed_signals": [
+            "user_requested_community_help"
+          ]
+        },
+        "problem_fingerprint": "ClawHub|current-version|skill publish scan reports prompt warning after agent-travel package review|no one-off warning fixes; shrink publish package and keep advisory-only hints|common rename and package scan-boundary plan",
+        "fingerprint_hash": "h64:9fcdffa02defcf7866d1f7a41df6a56f0963a0224601c6262d0e59ea26a0ec5f",
+        "redaction_summary": {
+          "context_chars_seen": 585,
+          "context_chars_used": 585,
+          "context_redacted_items": {
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "database_url": 0,
+            "aws_access_key": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "huggingface_token": 0,
+            "slack_token": 0,
+            "google_api_key": 0,
+            "credential_assignment": 0,
+            "token_like": 0,
+            "internal_url": 0,
+            "private_path": 0,
+            "email": 0,
+            "ipv4_address": 0,
+            "phone_number": 0
+          },
+          "state_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          },
+          "decision_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          },
+          "total_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          }
+        },
+        "query_budget": {
+          "search_mode": "medium",
+          "max_queries": 3
+        },
+        "queries": [
+          {
+            "tier": "primary",
+            "surface": "official docs / release notes / maintainer sources",
+            "purpose": "Anchor the stuck thread in documented behavior before using community fixes.",
+            "query": "ClawHub current-version skill publish scan reports prompt warning after agent-travel package review no one-off warning fixes; shrink publish package keep advisory-only hints official docs release notes known issue"
+          },
+          {
+            "tier": "secondary",
+            "surface": "GitHub issues / maintained Q&A / community reproductions",
+            "purpose": "Find independent reproductions, mature workarounds, or evidence that this is a known pattern.",
+            "query": "ClawHub current-version skill publish scan reports prompt warning after agent-travel package review no one-off warning fixes; shrink publish package keep advisory-only hints GitHub issue Stack Overflow community reproduction"
+          },
+          {
+            "tier": "secondary",
+            "surface": "maintained community workflow reports",
+            "purpose": "Check whether community practice points to a reusable library, recipe, or anti-pattern.",
+            "query": "ClawHub current-version skill publish scan reports prompt warning after agent-travel package review no one-off warning fixes; shrink publish package keep advisory-only hints community workflow workaround pattern"
+          }
+        ],
+        "notes": [
+          "This is a dry-run plan. The host agent performs any web/search calls.",
+          "Review queries before executing them with private connectors or internal search tools.",
+          "Use the results only as cross-validated advisory hints for the active thread."
+        ]
+      },
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"medium\", \"trigger_reason\": \"user_request\", \"reason\": \"explicit user request for community help\", \"status\": \"ready\", \"observed_signals\": [\"user_requested_community_help\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/real_thread_clawhub_scan_prompt_warning.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/real_thread_clawhub_scan_prompt_warning.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 8,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 5,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 3,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": false,
+        "forbidden_ok": false,
+        "score": 8
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "real_thread_trigger_boundary_refactor",
+      "title": "Real thread: trigger boundary refactor asks for external trigger norms",
+      "host": "Codex",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "OpenAI tools guidance",
+          "url": "https://developers.openai.com/api/docs/guides/tools"
+        },
+        {
+          "label": "case_source",
+          "name": "Sanitized local Codex session",
+          "url": "sanitized-local-session:2026-06-03-trigger-boundary-refactor"
+        },
+        {
+          "label": "secondary",
+          "name": "AutoGen human-in-the-loop guidance",
+          "url": "https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": true,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "{\n  \"community_help_plan\": true,\n  \"dry_run\": true,\n  \"network_used\": false,\n  \"decision\": {\n    \"should_run\": true,\n    \"search_mode\": \"medium\",\n    \"trigger_reason\": \"task_end\",\n    \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\",\n    \"status\": \"ready\",\n    \"observed_signals\": [\n      \"progress_stalled\"\n    ]\n  },\n  \"problem_fingerprint\": \"Codex|current-version|trigger rules are too broad and confuse delivery windows with help-seeking reasons|keep heartbeat and scheduled as safety gates, not semantic reasons|mature trigger boundary matrix for stuck and reinventing-wheel cases\",\n  \"fingerprint_hash\": \"h64:3b5be607606a9771f2699e27e64692f3483b5107185202ab724d21347e4e4a09\",\n  \"redaction_summary\": {\n    \"context_chars_seen\": 613,\n    \"context_chars_used\": 613,\n    \"context_redacted_items\": {\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"database_url\": 0,\n      \"aws_access_key\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"huggingface_token\": 0,\n      \"slack_token\": 0,\n      \"google_api_key\": 0,\n      \"credential_assignment\": 0,\n      \"token_like\": 0,\n      \"internal_url\": 0,\n      \"private_path\": 0,\n      \"email\": 0,\n      \"ipv4_address\": 0,\n      \"phone_number\": 0\n    },\n    \"state_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    },\n    \"decision_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    },\n    \"total_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    }\n  },\n  \"query_budget\": {\n    \"search_mode\": \"medium\",\n    \"max_queries\": 3\n  },\n  \"queries\": [\n    {\n      \"tier\": \"primary\",\n      \"surface\": \"official docs / release notes / maintainer sources\",\n      \"purpose\": \"Anchor the stuck thread in documented behavior before using community fixes.\",\n      \"query\": \"Codex current-version trigger rules are too broad confuse delivery windows help-seeking reasons keep heartbeat scheduled as safety gates, not semantic reasons official docs release notes known issue\"\n    },\n    {\n      \"tier\": \"secondary\",\n      \"surface\": \"GitHub issues / maintained Q&A / community reproductions\",\n      \"purpose\": \"Find independent reproductions, mature workarounds, or evidence that this is a known pattern.\",\n      \"query\": \"Codex current-version trigger rules are too broad confuse delivery windows help-seeking reasons keep heartbeat scheduled as safety gates, not semantic reasons GitHub issue Stack Overflow community reproduction\"\n    },\n    {\n      \"tier\": \"secondary\",\n      \"surface\": \"maintained community workflow reports\",\n      \"purpose\": \"Check whether community practice points to a reusable library, recipe, or anti-pattern.\",\n      \"query\": \"Codex current-version trigger rules are too broad confuse delivery windows help-seeking reasons keep heartbeat scheduled as safety gates, not semantic reasons community workflow workaround pattern\"\n    }\n  ],\n  \"notes\": [\n    \"This is a dry-run plan. The host agent performs any web/search calls.\",\n    \"Review queries before executing them with private connectors or internal search tools.\",\n    \"Use the results only as cross-validated advisory hints for the active thread.\"\n  ]\n}",
+      "query_plan": {
+        "community_help_plan": true,
+        "dry_run": true,
+        "network_used": false,
+        "decision": {
+          "should_run": true,
+          "search_mode": "medium",
+          "trigger_reason": "task_end",
+          "reason": "semantic help signal, active conversation, quiet window, within cooldown",
+          "status": "ready",
+          "observed_signals": [
+            "progress_stalled"
+          ]
+        },
+        "problem_fingerprint": "Codex|current-version|trigger rules are too broad and confuse delivery windows with help-seeking reasons|keep heartbeat and scheduled as safety gates, not semantic reasons|mature trigger boundary matrix for stuck and reinventing-wheel cases",
+        "fingerprint_hash": "h64:3b5be607606a9771f2699e27e64692f3483b5107185202ab724d21347e4e4a09",
+        "redaction_summary": {
+          "context_chars_seen": 613,
+          "context_chars_used": 613,
+          "context_redacted_items": {
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "database_url": 0,
+            "aws_access_key": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "huggingface_token": 0,
+            "slack_token": 0,
+            "google_api_key": 0,
+            "credential_assignment": 0,
+            "token_like": 0,
+            "internal_url": 0,
+            "private_path": 0,
+            "email": 0,
+            "ipv4_address": 0,
+            "phone_number": 0
+          },
+          "state_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          },
+          "decision_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          },
+          "total_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          }
+        },
+        "query_budget": {
+          "search_mode": "medium",
+          "max_queries": 3
+        },
+        "queries": [
+          {
+            "tier": "primary",
+            "surface": "official docs / release notes / maintainer sources",
+            "purpose": "Anchor the stuck thread in documented behavior before using community fixes.",
+            "query": "Codex current-version trigger rules are too broad confuse delivery windows help-seeking reasons keep heartbeat scheduled as safety gates, not semantic reasons official docs release notes known issue"
+          },
+          {
+            "tier": "secondary",
+            "surface": "GitHub issues / maintained Q&A / community reproductions",
+            "purpose": "Find independent reproductions, mature workarounds, or evidence that this is a known pattern.",
+            "query": "Codex current-version trigger rules are too broad confuse delivery windows help-seeking reasons keep heartbeat scheduled as safety gates, not semantic reasons GitHub issue Stack Overflow community reproduction"
+          },
+          {
+            "tier": "secondary",
+            "surface": "maintained community workflow reports",
+            "purpose": "Check whether community practice points to a reusable library, recipe, or anti-pattern.",
+            "query": "Codex current-version trigger rules are too broad confuse delivery windows help-seeking reasons keep heartbeat scheduled as safety gates, not semantic reasons community workflow workaround pattern"
+          }
+        ],
+        "notes": [
+          "This is a dry-run plan. The host agent performs any web/search calls.",
+          "Review queries before executing them with private connectors or internal search tools.",
+          "Use the results only as cross-validated advisory hints for the active thread."
+        ]
+      },
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"medium\", \"trigger_reason\": \"task_end\", \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\", \"status\": \"ready\", \"observed_signals\": [\"progress_stalled\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/real_thread_trigger_boundary_refactor.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/real_thread_trigger_boundary_refactor.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 8,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 5,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 3,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": false,
+        "forbidden_ok": false,
+        "score": 8
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "real_thread_no_one_off_fixture_test",
+      "title": "Real thread: real-case tests must avoid one-off fixture fixes",
+      "host": "Codex",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "Repository test fixture",
+          "url": "https://github.com/gongyu0918-debug/find-community-help"
+        },
+        {
+          "label": "case_source",
+          "name": "Sanitized local implementation session",
+          "url": "sanitized-local-session:2026-06-03-real-fixture-test"
+        },
+        {
+          "label": "secondary",
+          "name": "ClawHub listing",
+          "url": "https://clawhub.ai/gongyu0918-debug/find-community-help"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": true,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "{\n  \"community_help_plan\": true,\n  \"dry_run\": true,\n  \"network_used\": false,\n  \"decision\": {\n    \"should_run\": true,\n    \"search_mode\": \"low\",\n    \"trigger_reason\": \"heartbeat\",\n    \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\",\n    \"status\": \"ready\",\n    \"observed_signals\": [\n      \"suspected_reinventing_wheel\"\n    ]\n  },\n  \"problem_fingerprint\": \"Codex|current-version|test plan needs real-thread coverage without fitting one sample page|fix common trigger classes and suggestion contract fields only|real fixture cases that prove category behavior and advisory output\",\n  \"fingerprint_hash\": \"h64:b46d388ac475a450349def458ab29b3ee6def41be3626bac2814178aa662371c\",\n  \"redaction_summary\": {\n    \"context_chars_seen\": 544,\n    \"context_chars_used\": 544,\n    \"context_redacted_items\": {\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"database_url\": 0,\n      \"aws_access_key\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"huggingface_token\": 0,\n      \"slack_token\": 0,\n      \"google_api_key\": 0,\n      \"credential_assignment\": 0,\n      \"token_like\": 0,\n      \"internal_url\": 0,\n      \"private_path\": 0,\n      \"email\": 0,\n      \"ipv4_address\": 0,\n      \"phone_number\": 0\n    },\n    \"state_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    },\n    \"decision_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    },\n    \"total_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    }\n  },\n  \"query_budget\": {\n    \"search_mode\": \"low\",\n    \"max_queries\": 2\n  },\n  \"queries\": [\n    {\n      \"tier\": \"primary\",\n      \"surface\": \"official docs / release notes / maintainer sources\",\n      \"purpose\": \"Anchor the stuck thread in documented behavior before using community fixes.\",\n      \"query\": \"Codex current-version test plan needs real-thread coverage without fitting one sample page fix common trigger classes suggestion contract fields only official docs release notes known issue\"\n    },\n    {\n      \"tier\": \"secondary\",\n      \"surface\": \"GitHub issues / maintained Q&A / community reproductions\",\n      \"purpose\": \"Find independent reproductions, mature workarounds, or evidence that this is a known pattern.\",\n      \"query\": \"Codex current-version test plan needs real-thread coverage without fitting one sample page fix common trigger classes suggestion contract fields only GitHub issue Stack Overflow community reproduction\"\n    }\n  ],\n  \"notes\": [\n    \"This is a dry-run plan. The host agent performs any web/search calls.\",\n    \"Review queries before executing them with private connectors or internal search tools.\",\n    \"Use the results only as cross-validated advisory hints for the active thread.\"\n  ]\n}",
+      "query_plan": {
+        "community_help_plan": true,
+        "dry_run": true,
+        "network_used": false,
+        "decision": {
+          "should_run": true,
+          "search_mode": "low",
+          "trigger_reason": "heartbeat",
+          "reason": "semantic help signal, active conversation, quiet window, within cooldown",
+          "status": "ready",
+          "observed_signals": [
+            "suspected_reinventing_wheel"
+          ]
+        },
+        "problem_fingerprint": "Codex|current-version|test plan needs real-thread coverage without fitting one sample page|fix common trigger classes and suggestion contract fields only|real fixture cases that prove category behavior and advisory output",
+        "fingerprint_hash": "h64:b46d388ac475a450349def458ab29b3ee6def41be3626bac2814178aa662371c",
+        "redaction_summary": {
+          "context_chars_seen": 544,
+          "context_chars_used": 544,
+          "context_redacted_items": {
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "database_url": 0,
+            "aws_access_key": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "huggingface_token": 0,
+            "slack_token": 0,
+            "google_api_key": 0,
+            "credential_assignment": 0,
+            "token_like": 0,
+            "internal_url": 0,
+            "private_path": 0,
+            "email": 0,
+            "ipv4_address": 0,
+            "phone_number": 0
+          },
+          "state_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          },
+          "decision_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          },
+          "total_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          }
+        },
+        "query_budget": {
+          "search_mode": "low",
+          "max_queries": 2
+        },
+        "queries": [
+          {
+            "tier": "primary",
+            "surface": "official docs / release notes / maintainer sources",
+            "purpose": "Anchor the stuck thread in documented behavior before using community fixes.",
+            "query": "Codex current-version test plan needs real-thread coverage without fitting one sample page fix common trigger classes suggestion contract fields only official docs release notes known issue"
+          },
+          {
+            "tier": "secondary",
+            "surface": "GitHub issues / maintained Q&A / community reproductions",
+            "purpose": "Find independent reproductions, mature workarounds, or evidence that this is a known pattern.",
+            "query": "Codex current-version test plan needs real-thread coverage without fitting one sample page fix common trigger classes suggestion contract fields only GitHub issue Stack Overflow community reproduction"
+          }
+        ],
+        "notes": [
+          "This is a dry-run plan. The host agent performs any web/search calls.",
+          "Review queries before executing them with private connectors or internal search tools.",
+          "Use the results only as cross-validated advisory hints for the active thread."
+        ]
+      },
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"low\", \"trigger_reason\": \"heartbeat\", \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\", \"status\": \"ready\", \"observed_signals\": [\"suspected_reinventing_wheel\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/real_thread_no_one_off_fixture_test.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/real_thread_no_one_off_fixture_test.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 9,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 5,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 4,
+        "thread_focus_total": 5,
+        "resolution_hits": 4,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": false,
+        "score": 9
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "real_thread_delivery_window_no_semantic_signal",
+      "title": "Real thread: heartbeat window alone stays quiet",
+      "host": "Codex",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "find-community-help trigger policy",
+          "url": "https://github.com/gongyu0918-debug/find-community-help"
+        },
+        {
+          "label": "case_source",
+          "name": "Sanitized local Codex review session",
+          "url": "sanitized-local-session:2026-06-17-delivery-window-no-signal"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": true,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "{\n  \"community_help_plan\": true,\n  \"dry_run\": true,\n  \"network_used\": false,\n  \"decision\": {\n    \"should_run\": false,\n    \"search_mode\": \"low\",\n    \"trigger_reason\": \"heartbeat\",\n    \"reason\": \"community help needs a stuck, stalled, repeated, reinventing-wheel, or explicit help signal\",\n    \"status\": \"blocked\",\n    \"error_code\": \"semantic_signal_missing\"\n  },\n  \"problem_fingerprint\": \"Codex|current-version|heartbeat window is available but no semantic help signal exists|delivery windows must not become trigger reasons|stay silent until a real blocker appears\",\n  \"fingerprint_hash\": \"h64:14e5208170b8d5bf5ba562d6eb31a55a2b7459385cfe296891492f82f56a96b8\",\n  \"redaction_summary\": {\n    \"context_chars_seen\": 464,\n    \"context_chars_used\": 464,\n    \"context_redacted_items\": {\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"database_url\": 0,\n      \"aws_access_key\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"huggingface_token\": 0,\n      \"slack_token\": 0,\n      \"google_api_key\": 0,\n      \"credential_assignment\": 0,\n      \"token_like\": 0,\n      \"internal_url\": 0,\n      \"private_path\": 0,\n      \"email\": 0,\n      \"ipv4_address\": 0,\n      \"phone_number\": 0\n    },\n    \"state_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    },\n    \"decision_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    },\n    \"total_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    }\n  },\n  \"query_budget\": {\n    \"search_mode\": \"low\",\n    \"max_queries\": 2\n  },\n  \"queries\": [],\n  \"notes\": [\n    \"This is a dry-run plan. The host agent performs any web/search calls.\",\n    \"Review queries before executing them with private connectors or internal search tools.\",\n    \"Use the results only as cross-validated advisory hints for the active thread.\"\n  ]\n}",
+      "query_plan": {
+        "community_help_plan": true,
+        "dry_run": true,
+        "network_used": false,
+        "decision": {
+          "should_run": false,
+          "search_mode": "low",
+          "trigger_reason": "heartbeat",
+          "reason": "community help needs a stuck, stalled, repeated, reinventing-wheel, or explicit help signal",
+          "status": "blocked",
+          "error_code": "semantic_signal_missing"
+        },
+        "problem_fingerprint": "Codex|current-version|heartbeat window is available but no semantic help signal exists|delivery windows must not become trigger reasons|stay silent until a real blocker appears",
+        "fingerprint_hash": "h64:14e5208170b8d5bf5ba562d6eb31a55a2b7459385cfe296891492f82f56a96b8",
+        "redaction_summary": {
+          "context_chars_seen": 464,
+          "context_chars_used": 464,
+          "context_redacted_items": {
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "database_url": 0,
+            "aws_access_key": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "huggingface_token": 0,
+            "slack_token": 0,
+            "google_api_key": 0,
+            "credential_assignment": 0,
+            "token_like": 0,
+            "internal_url": 0,
+            "private_path": 0,
+            "email": 0,
+            "ipv4_address": 0,
+            "phone_number": 0
+          },
+          "state_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          },
+          "decision_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          },
+          "total_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          }
+        },
+        "query_budget": {
+          "search_mode": "low",
+          "max_queries": 2
+        },
+        "queries": [],
+        "notes": [
+          "This is a dry-run plan. The host agent performs any web/search calls.",
+          "Review queries before executing them with private connectors or internal search tools.",
+          "Use the results only as cross-validated advisory hints for the active thread."
+        ]
+      },
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": false, \"search_mode\": \"low\", \"trigger_reason\": \"heartbeat\", \"reason\": \"community help needs a stuck, stalled, repeated, reinventing-wheel, or explicit help signal\", \"status\": \"blocked\", \"error_code\": \"semantic_signal_missing\"}",
+      "validator_output": "SKIPPED: no output fixture for blocked case",
+      "hallucination_validator_output": "SKIPPED: no output fixture for blocked case",
+      "with_skill_score": 4,
+      "hallucinated_score": 0,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "silent_guardrail",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 4,
+      "score_breakdown": {
+        "mode": "silent_guardrail",
+        "observed_signals": [],
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "search_mode_ok": true,
+        "score": 4
+      },
+      "hallucination_breakdown": null,
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "real_thread_deep_provider_boundary_help",
+      "title": "Real thread: deep provider boundary research request",
+      "host": "Codex",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "OpenAI tools guidance",
+          "url": "https://developers.openai.com/api/docs/guides/tools"
+        },
+        {
+          "label": "secondary",
+          "name": "AutoGen human-in-the-loop guidance",
+          "url": "https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html"
+        },
+        {
+          "label": "case_source",
+          "name": "Sanitized local Codex session",
+          "url": "sanitized-local-session:2026-06-03-deep-trigger-boundary-help"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": true,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "{\n  \"community_help_plan\": true,\n  \"dry_run\": true,\n  \"network_used\": false,\n  \"decision\": {\n    \"should_run\": true,\n    \"search_mode\": \"high\",\n    \"trigger_reason\": \"user_request\",\n    \"reason\": \"explicit user request for community help\",\n    \"status\": \"ready\",\n    \"observed_signals\": [\n      \"user_requested_deep_community_help\"\n    ]\n  },\n  \"problem_fingerprint\": \"Codex|current-version|provider docs and agent community guidance may define better help-seeking boundaries|avoid broad automatic search and keep delivery windows as safety gates|deep external boundary check for stuck and reinventing-wheel cases\",\n  \"fingerprint_hash\": \"h64:b3608d6b928dbf241780f7e92c89d67c089b09789eb3ea519c4ec973ea690456\",\n  \"redaction_summary\": {\n    \"context_chars_seen\": 561,\n    \"context_chars_used\": 561,\n    \"context_redacted_items\": {\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"database_url\": 0,\n      \"aws_access_key\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"huggingface_token\": 0,\n      \"slack_token\": 0,\n      \"google_api_key\": 0,\n      \"credential_assignment\": 0,\n      \"token_like\": 0,\n      \"internal_url\": 0,\n      \"private_path\": 0,\n      \"email\": 0,\n      \"ipv4_address\": 0,\n      \"phone_number\": 0\n    },\n    \"state_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    },\n    \"decision_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    },\n    \"total_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    }\n  },\n  \"query_budget\": {\n    \"search_mode\": \"high\",\n    \"max_queries\": 5\n  },\n  \"queries\": [\n    {\n      \"tier\": \"primary\",\n      \"surface\": \"official docs / release notes / maintainer sources\",\n      \"purpose\": \"Anchor the stuck thread in documented behavior before using community fixes.\",\n      \"query\": \"Codex current-version provider docs agent community guidance may define better help-seeking boundaries avoid broad automatic search keep delivery windows as safety gates official docs release notes known issue\"\n    },\n    {\n      \"tier\": \"secondary\",\n      \"surface\": \"GitHub issues / maintained Q&A / community reproductions\",\n      \"purpose\": \"Find independent reproductions, mature workarounds, or evidence that this is a known pattern.\",\n      \"query\": \"Codex current-version provider docs agent community guidance may define better help-seeking boundaries avoid broad automatic search keep delivery windows as safety gates GitHub issue Stack Overflow community reproduction\"\n    },\n    {\n      \"tier\": \"secondary\",\n      \"surface\": \"maintained community workflow reports\",\n      \"purpose\": \"Check whether community practice points to a reusable library, recipe, or anti-pattern.\",\n      \"query\": \"Codex current-version provider docs agent community guidance may define better help-seeking boundaries avoid broad automatic search keep delivery windows as safety gates community workflow workaround pattern\"\n    },\n    {\n      \"tier\": \"tertiary\",\n      \"surface\": \"forums / blogs\",\n      \"purpose\": \"Use only for extra color after primary and secondary evidence exist.\",\n      \"query\": \"Codex current-version provider docs agent community guidance may define better help-seeking boundaries avoid broad automatic search keep delivery windows as safety gates forum blog\"\n    },\n    {\n      \"tier\": \"tertiary\",\n      \"surface\": \"social discussion summaries\",\n      \"purpose\": \"Use as weak evidence only when it matches official grounding.\",\n      \"query\": \"Codex current-version provider docs agent community guidance may define better help-seeking boundaries avoid broad automatic search keep delivery windows as safety gates discussion workaround\"\n    }\n  ],\n  \"notes\": [\n    \"This is a dry-run plan. The host agent performs any web/search calls.\",\n    \"Review queries before executing them with private connectors or internal search tools.\",\n    \"Use the results only as cross-validated advisory hints for the active thread.\"\n  ]\n}",
+      "query_plan": {
+        "community_help_plan": true,
+        "dry_run": true,
+        "network_used": false,
+        "decision": {
+          "should_run": true,
+          "search_mode": "high",
+          "trigger_reason": "user_request",
+          "reason": "explicit user request for community help",
+          "status": "ready",
+          "observed_signals": [
+            "user_requested_deep_community_help"
+          ]
+        },
+        "problem_fingerprint": "Codex|current-version|provider docs and agent community guidance may define better help-seeking boundaries|avoid broad automatic search and keep delivery windows as safety gates|deep external boundary check for stuck and reinventing-wheel cases",
+        "fingerprint_hash": "h64:b3608d6b928dbf241780f7e92c89d67c089b09789eb3ea519c4ec973ea690456",
+        "redaction_summary": {
+          "context_chars_seen": 561,
+          "context_chars_used": 561,
+          "context_redacted_items": {
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "database_url": 0,
+            "aws_access_key": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "huggingface_token": 0,
+            "slack_token": 0,
+            "google_api_key": 0,
+            "credential_assignment": 0,
+            "token_like": 0,
+            "internal_url": 0,
+            "private_path": 0,
+            "email": 0,
+            "ipv4_address": 0,
+            "phone_number": 0
+          },
+          "state_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          },
+          "decision_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          },
+          "total_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          }
+        },
+        "query_budget": {
+          "search_mode": "high",
+          "max_queries": 5
+        },
+        "queries": [
+          {
+            "tier": "primary",
+            "surface": "official docs / release notes / maintainer sources",
+            "purpose": "Anchor the stuck thread in documented behavior before using community fixes.",
+            "query": "Codex current-version provider docs agent community guidance may define better help-seeking boundaries avoid broad automatic search keep delivery windows as safety gates official docs release notes known issue"
+          },
+          {
+            "tier": "secondary",
+            "surface": "GitHub issues / maintained Q&A / community reproductions",
+            "purpose": "Find independent reproductions, mature workarounds, or evidence that this is a known pattern.",
+            "query": "Codex current-version provider docs agent community guidance may define better help-seeking boundaries avoid broad automatic search keep delivery windows as safety gates GitHub issue Stack Overflow community reproduction"
+          },
+          {
+            "tier": "secondary",
+            "surface": "maintained community workflow reports",
+            "purpose": "Check whether community practice points to a reusable library, recipe, or anti-pattern.",
+            "query": "Codex current-version provider docs agent community guidance may define better help-seeking boundaries avoid broad automatic search keep delivery windows as safety gates community workflow workaround pattern"
+          },
+          {
+            "tier": "tertiary",
+            "surface": "forums / blogs",
+            "purpose": "Use only for extra color after primary and secondary evidence exist.",
+            "query": "Codex current-version provider docs agent community guidance may define better help-seeking boundaries avoid broad automatic search keep delivery windows as safety gates forum blog"
+          },
+          {
+            "tier": "tertiary",
+            "surface": "social discussion summaries",
+            "purpose": "Use as weak evidence only when it matches official grounding.",
+            "query": "Codex current-version provider docs agent community guidance may define better help-seeking boundaries avoid broad automatic search keep delivery windows as safety gates discussion workaround"
+          }
+        ],
+        "notes": [
+          "This is a dry-run plan. The host agent performs any web/search calls.",
+          "Review queries before executing them with private connectors or internal search tools.",
+          "Use the results only as cross-validated advisory hints for the active thread."
+        ]
+      },
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"high\", \"trigger_reason\": \"user_request\", \"reason\": \"explicit user request for community help\", \"status\": \"ready\", \"observed_signals\": [\"user_requested_deep_community_help\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/real_thread_deep_provider_boundary_help.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/real_thread_deep_provider_boundary_help.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 8,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 5,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 4,
+        "thread_focus_total": 5,
+        "resolution_hits": 3,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": false,
+        "forbidden_ok": false,
+        "score": 8
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "real_thread_sensitive_log_redaction",
+      "title": "Real thread: credential-shaped log fragments are redacted",
+      "host": "OpenClaw",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "MDN HTTP 401 reference",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/401"
+        },
+        {
+          "label": "secondary",
+          "name": "Stack Overflow HTTP 401 Q&A surface",
+          "url": "https://stackoverflow.com/questions/tagged/http-status-code-401"
+        },
+        {
+          "label": "case_source",
+          "name": "Sanitized local operational debugging pattern",
+          "url": "sanitized-local-session:2026-06-17-sensitive-log-redaction"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": true,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "{\n  \"community_help_plan\": true,\n  \"dry_run\": true,\n  \"network_used\": false,\n  \"decision\": {\n    \"should_run\": true,\n    \"search_mode\": \"low\",\n    \"trigger_reason\": \"heartbeat\",\n    \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\",\n    \"status\": \"ready\",\n    \"observed_signals\": [\n      \"no_clear_next_step\"\n    ]\n  },\n  \"problem_fingerprint\": \"OpenClaw|current-version|HTTP 401 after Authorization with credential-shaped log placeholders|public-only search and no credential-shaped query text|safe query plan about auth failure without leaking tokens\",\n  \"fingerprint_hash\": \"h64:c62f68b070d2252cbf6dbf15c7d1518edee663fea734d2ba62022920dbc896c8\",\n  \"redaction_summary\": {\n    \"context_chars_seen\": 715,\n    \"context_chars_used\": 698,\n    \"context_redacted_items\": {\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"database_url\": 0,\n      \"aws_access_key\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"huggingface_token\": 0,\n      \"slack_token\": 0,\n      \"google_api_key\": 0,\n      \"credential_assignment\": 1,\n      \"token_like\": 0,\n      \"internal_url\": 0,\n      \"private_path\": 0,\n      \"email\": 0,\n      \"ipv4_address\": 0,\n      \"phone_number\": 0\n    },\n    \"state_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 1,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    },\n    \"decision_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    },\n    \"total_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 2,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    }\n  },\n  \"query_budget\": {\n    \"search_mode\": \"low\",\n    \"max_queries\": 2\n  },\n  \"queries\": [\n    {\n      \"tier\": \"primary\",\n      \"surface\": \"official docs / release notes / maintainer sources\",\n      \"purpose\": \"Anchor the stuck thread in documented behavior before using community fixes.\",\n      \"query\": \"OpenClaw current-version HTTP 401 after Authorization credential-shaped log placeholders public-only search no credential-shaped query text official docs release notes known issue\"\n    },\n    {\n      \"tier\": \"secondary\",\n      \"surface\": \"GitHub issues / maintained Q&A / community reproductions\",\n      \"purpose\": \"Find independent reproductions, mature workarounds, or evidence that this is a known pattern.\",\n      \"query\": \"OpenClaw current-version HTTP 401 after Authorization credential-shaped log placeholders public-only search no credential-shaped query text GitHub issue Stack Overflow community reproduction\"\n    }\n  ],\n  \"notes\": [\n    \"This is a dry-run plan. The host agent performs any web/search calls.\",\n    \"Review queries before executing them with private connectors or internal search tools.\",\n    \"Use the results only as cross-validated advisory hints for the active thread.\"\n  ]\n}",
+      "query_plan": {
+        "community_help_plan": true,
+        "dry_run": true,
+        "network_used": false,
+        "decision": {
+          "should_run": true,
+          "search_mode": "low",
+          "trigger_reason": "heartbeat",
+          "reason": "semantic help signal, active conversation, quiet window, within cooldown",
+          "status": "ready",
+          "observed_signals": [
+            "no_clear_next_step"
+          ]
+        },
+        "problem_fingerprint": "OpenClaw|current-version|HTTP 401 after Authorization with credential-shaped log placeholders|public-only search and no credential-shaped query text|safe query plan about auth failure without leaking tokens",
+        "fingerprint_hash": "h64:c62f68b070d2252cbf6dbf15c7d1518edee663fea734d2ba62022920dbc896c8",
+        "redaction_summary": {
+          "context_chars_seen": 715,
+          "context_chars_used": 698,
+          "context_redacted_items": {
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "database_url": 0,
+            "aws_access_key": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "huggingface_token": 0,
+            "slack_token": 0,
+            "google_api_key": 0,
+            "credential_assignment": 1,
+            "token_like": 0,
+            "internal_url": 0,
+            "private_path": 0,
+            "email": 0,
+            "ipv4_address": 0,
+            "phone_number": 0
+          },
+          "state_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 1,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          },
+          "decision_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          },
+          "total_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 2,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          }
+        },
+        "query_budget": {
+          "search_mode": "low",
+          "max_queries": 2
+        },
+        "queries": [
+          {
+            "tier": "primary",
+            "surface": "official docs / release notes / maintainer sources",
+            "purpose": "Anchor the stuck thread in documented behavior before using community fixes.",
+            "query": "OpenClaw current-version HTTP 401 after Authorization credential-shaped log placeholders public-only search no credential-shaped query text official docs release notes known issue"
+          },
+          {
+            "tier": "secondary",
+            "surface": "GitHub issues / maintained Q&A / community reproductions",
+            "purpose": "Find independent reproductions, mature workarounds, or evidence that this is a known pattern.",
+            "query": "OpenClaw current-version HTTP 401 after Authorization credential-shaped log placeholders public-only search no credential-shaped query text GitHub issue Stack Overflow community reproduction"
+          }
+        ],
+        "notes": [
+          "This is a dry-run plan. The host agent performs any web/search calls.",
+          "Review queries before executing them with private connectors or internal search tools.",
+          "Use the results only as cross-validated advisory hints for the active thread."
+        ]
+      },
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"low\", \"trigger_reason\": \"heartbeat\", \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\", \"status\": \"ready\", \"observed_signals\": [\"no_clear_next_step\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/real_thread_sensitive_log_redaction.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/real_thread_sensitive_log_redaction.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 8,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 4,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 3,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": false,
+        "forbidden_ok": false,
+        "score": 8
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    },
+    {
+      "id": "real_thread_partial_private_key_fragment_redaction",
+      "title": "Real thread: partial private-key fragments are redacted",
+      "host": "OpenClaw",
+      "sources": [
+        {
+          "label": "primary",
+          "name": "GitHub secret scanning documentation",
+          "url": "https://docs.github.com/en/code-security/secret-scanning/introduction/about-secret-scanning"
+        },
+        {
+          "label": "secondary",
+          "name": "Stack Overflow private-key Q&A surface",
+          "url": "https://stackoverflow.com/questions/tagged/private-key"
+        },
+        {
+          "label": "case_source",
+          "name": "Sanitized local deployment debugging pattern",
+          "url": "sanitized-local-session:2026-06-23-partial-private-key-fragment"
+        }
+      ],
+      "trigger_ok": true,
+      "query_plan_checked": true,
+      "query_plan_ok": true,
+      "query_plan_leaked_terms": [],
+      "query_plan_output": "{\n  \"community_help_plan\": true,\n  \"dry_run\": true,\n  \"network_used\": false,\n  \"decision\": {\n    \"should_run\": true,\n    \"search_mode\": \"low\",\n    \"trigger_reason\": \"heartbeat\",\n    \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\",\n    \"status\": \"ready\",\n    \"observed_signals\": [\n      \"no_clear_next_step\"\n    ]\n  },\n  \"problem_fingerprint\": \"OpenClaw|current-version|deploy failed after partial private key fragment appeared in logs|public-only search and no raw key material in query text|safe query plan about deployment failure without leaking the copied key fragment\",\n  \"fingerprint_hash\": \"h64:f7bd53d17c5e49aa094505eb12513d48a5c19a39e4f3062cf95dd87783e0d5b0\",\n  \"redaction_summary\": {\n    \"context_chars_seen\": 644,\n    \"context_chars_used\": 571,\n    \"context_redacted_items\": {\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 1,\n      \"database_url\": 0,\n      \"aws_access_key\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"huggingface_token\": 0,\n      \"slack_token\": 0,\n      \"google_api_key\": 0,\n      \"credential_assignment\": 0,\n      \"token_like\": 0,\n      \"internal_url\": 0,\n      \"private_path\": 0,\n      \"email\": 0,\n      \"ipv4_address\": 0,\n      \"phone_number\": 0\n    },\n    \"state_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    },\n    \"decision_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 0,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    },\n    \"total_redacted_items\": {\n      \"aws_access_key\": 0,\n      \"credential_assignment\": 0,\n      \"database_url\": 0,\n      \"email\": 0,\n      \"google_api_key\": 0,\n      \"huggingface_token\": 0,\n      \"internal_url\": 0,\n      \"ipv4_address\": 0,\n      \"jwt\": 0,\n      \"npm_token\": 0,\n      \"phone_number\": 0,\n      \"private_key_block\": 0,\n      \"private_key_fragment\": 1,\n      \"private_path\": 0,\n      \"slack_token\": 0,\n      \"token_like\": 0\n    }\n  },\n  \"query_budget\": {\n    \"search_mode\": \"low\",\n    \"max_queries\": 2\n  },\n  \"queries\": [\n    {\n      \"tier\": \"primary\",\n      \"surface\": \"official docs / release notes / maintainer sources\",\n      \"purpose\": \"Anchor the stuck thread in documented behavior before using community fixes.\",\n      \"query\": \"OpenClaw current-version deploy failed after partial private key fragment appeared logs public-only search no raw key material query text official docs release notes known issue\"\n    },\n    {\n      \"tier\": \"secondary\",\n      \"surface\": \"GitHub issues / maintained Q&A / community reproductions\",\n      \"purpose\": \"Find independent reproductions, mature workarounds, or evidence that this is a known pattern.\",\n      \"query\": \"OpenClaw current-version deploy failed after partial private key fragment appeared logs public-only search no raw key material query text GitHub issue Stack Overflow community reproduction\"\n    }\n  ],\n  \"notes\": [\n    \"This is a dry-run plan. The host agent performs any web/search calls.\",\n    \"Review queries before executing them with private connectors or internal search tools.\",\n    \"Use the results only as cross-validated advisory hints for the active thread.\"\n  ]\n}",
+      "query_plan": {
+        "community_help_plan": true,
+        "dry_run": true,
+        "network_used": false,
+        "decision": {
+          "should_run": true,
+          "search_mode": "low",
+          "trigger_reason": "heartbeat",
+          "reason": "semantic help signal, active conversation, quiet window, within cooldown",
+          "status": "ready",
+          "observed_signals": [
+            "no_clear_next_step"
+          ]
+        },
+        "problem_fingerprint": "OpenClaw|current-version|deploy failed after partial private key fragment appeared in logs|public-only search and no raw key material in query text|safe query plan about deployment failure without leaking the copied key fragment",
+        "fingerprint_hash": "h64:f7bd53d17c5e49aa094505eb12513d48a5c19a39e4f3062cf95dd87783e0d5b0",
+        "redaction_summary": {
+          "context_chars_seen": 644,
+          "context_chars_used": 571,
+          "context_redacted_items": {
+            "private_key_block": 0,
+            "private_key_fragment": 1,
+            "database_url": 0,
+            "aws_access_key": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "huggingface_token": 0,
+            "slack_token": 0,
+            "google_api_key": 0,
+            "credential_assignment": 0,
+            "token_like": 0,
+            "internal_url": 0,
+            "private_path": 0,
+            "email": 0,
+            "ipv4_address": 0,
+            "phone_number": 0
+          },
+          "state_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          },
+          "decision_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 0,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          },
+          "total_redacted_items": {
+            "aws_access_key": 0,
+            "credential_assignment": 0,
+            "database_url": 0,
+            "email": 0,
+            "google_api_key": 0,
+            "huggingface_token": 0,
+            "internal_url": 0,
+            "ipv4_address": 0,
+            "jwt": 0,
+            "npm_token": 0,
+            "phone_number": 0,
+            "private_key_block": 0,
+            "private_key_fragment": 1,
+            "private_path": 0,
+            "slack_token": 0,
+            "token_like": 0
+          }
+        },
+        "query_budget": {
+          "search_mode": "low",
+          "max_queries": 2
+        },
+        "queries": [
+          {
+            "tier": "primary",
+            "surface": "official docs / release notes / maintainer sources",
+            "purpose": "Anchor the stuck thread in documented behavior before using community fixes.",
+            "query": "OpenClaw current-version deploy failed after partial private key fragment appeared logs public-only search no raw key material query text official docs release notes known issue"
+          },
+          {
+            "tier": "secondary",
+            "surface": "GitHub issues / maintained Q&A / community reproductions",
+            "purpose": "Find independent reproductions, mature workarounds, or evidence that this is a known pattern.",
+            "query": "OpenClaw current-version deploy failed after partial private key fragment appeared logs public-only search no raw key material query text GitHub issue Stack Overflow community reproduction"
+          }
+        ],
+        "notes": [
+          "This is a dry-run plan. The host agent performs any web/search calls.",
+          "Review queries before executing them with private connectors or internal search tools.",
+          "Use the results only as cross-validated advisory hints for the active thread."
+        ]
+      },
+      "validator_ok": true,
+      "validator_scope": "structure_only",
+      "eval_ok": true,
+      "hallucination_guard_ok": true,
+      "hallucination_structure_ok": true,
+      "trigger_output": "{\"should_run\": true, \"search_mode\": \"low\", \"trigger_reason\": \"heartbeat\", \"reason\": \"semantic help signal, active conversation, quiet window, within cooldown\", \"status\": \"ready\", \"observed_signals\": [\"no_clear_next_step\"]}",
+      "validator_output": "OK: validated 1 suggestion(s) in <tmp>/real_thread_partial_private_key_fragment_redaction.suggestions.md",
+      "hallucination_validator_output": "OK: validated 1 suggestion(s) in <tmp>/real_thread_partial_private_key_fragment_redaction.hallucinated.md",
+      "with_skill_score": 10,
+      "hallucinated_score": 9,
+      "without_skill_score": 0,
+      "without_skill_breakdown": {
+        "mode": "without_skill_baseline",
+        "case_mode": "positive",
+        "emits_isolated_suggestion": false,
+        "has_contract_validation": false,
+        "has_cross_validation": false
+      },
+      "score_delta": 10,
+      "score_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 4,
+        "resolution_total": 5,
+        "forbidden_hits": 0,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": true,
+        "score": 10
+      },
+      "hallucination_breakdown": {
+        "thread_focus_hits": 5,
+        "thread_focus_total": 5,
+        "resolution_hits": 4,
+        "resolution_total": 5,
+        "forbidden_hits": 4,
+        "forbidden_total": 5,
+        "required_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "actual_evidence_tiers": [
+          "primary",
+          "secondary"
+        ],
+        "thread_focus_min": 4,
+        "resolution_min": 4,
+        "forbidden_max": 0,
+        "tiers_ok": true,
+        "mode": "positive",
+        "thread_focus_ok": true,
+        "resolution_ok": true,
+        "forbidden_ok": false,
+        "score": 9
+      },
+      "thread_focus_ok": true,
+      "resolution_ok": true,
+      "forbidden_ok": true
+    }
+  ]
+}

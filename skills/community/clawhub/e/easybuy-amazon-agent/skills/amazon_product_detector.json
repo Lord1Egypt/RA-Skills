@@ -1,0 +1,57 @@
+{
+  "name": "amazon_product_detector",
+  "version": "1.0.0",
+  "description": "Extracts ASIN, title, price, image, rating, review count from Amazon product pages.",
+  "allowedTools": [
+    "browser.extract",
+    "browser.query"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "rootSelector": {
+        "type": "string"
+      },
+      "preferSelectors": {
+        "type": "object"
+      }
+    }
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "asin": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      },
+      "price": {
+        "type": "string"
+      },
+      "image_url": {
+        "type": "string"
+      },
+      "rating": {
+        "type": "string"
+      },
+      "review_count": {
+        "type": "string"
+      }
+    }
+  },
+  "notes": "Prefer #productTitle for title and #ASIN for asin when available.",
+  "examples": [
+    {
+      "input": {
+        "rootSelector": "body"
+      },
+      "output": {
+        "asin": "B000000000",
+        "title": "Sample Product",
+        "price": "$12.99"
+      }
+    }
+  ],
+  "id": "amazon_product_detector"
+}

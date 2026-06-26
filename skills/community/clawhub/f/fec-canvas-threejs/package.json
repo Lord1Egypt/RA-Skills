@@ -1,0 +1,41 @@
+{
+  "name": "@bovinphang/fec-canvas-threejs",
+  "version": "2.5.0",
+  "description": "Use when building or reviewing Canvas 2D, Three.js/WebGL, React Three Fiber, GLSL shaders, ShaderToy-to-WebGL adaptation, 2D/3D visualization, game rendering, animation loops, GPU resource cleanup, or rendering performance. Do not use for standard DOM UI, charts already covered by a chart library, or non-graphical performance work; Chinese triggers include Canvas, Three.js, WebGL, GLSL, Shader, 3D, 数据可视化, 游戏.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-canvas-threejs"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "implementation-capability",
+    "canvas",
+    "webgl",
+    "three.js",
+    "3d",
+    "visualization",
+    "r3f"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

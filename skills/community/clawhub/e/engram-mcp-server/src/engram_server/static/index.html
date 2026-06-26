@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engram — 专家记忆管理</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: { 50:'#eef2ff',100:'#e0e7ff',200:'#c7d2fe',300:'#a5b4fc',400:'#818cf8',500:'#6366f1',600:'#4f46e5',700:'#4338ca',800:'#3730a3',900:'#312e81' },
+            surface: { 50:'#f8fafc',100:'#f1f5f9',800:'#1e293b',850:'#172033',900:'#0f172a',950:'#020617' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-surface-950 text-gray-100 font-sans min-h-screen" x-data="app()">
+
+  <!-- Top nav -->
+  <nav class="sticky top-0 z-50 border-b border-white/5 bg-surface-950/80 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white font-bold text-sm">E</div>
+        <span class="text-lg font-semibold tracking-tight">Engram</span>
+        <span class="text-xs text-gray-500 hidden sm:inline">专家记忆管理</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button @click="view='list'" :class="view==='list'?'text-brand-400':'text-gray-500 hover:text-gray-300'" class="text-sm font-medium transition">全部 Engram</button>
+        <button @click="view='stats'" :class="view==='stats'?'text-brand-400':'text-gray-500 hover:text-gray-300'" class="text-sm font-medium transition">统计</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+
+    <!-- List view -->
+    <template x-if="view==='list'">
+      <div>
+        <div class="mb-6 flex items-center gap-3">
+          <input type="text" x-model="search" placeholder="搜索 Engram..."
+            class="flex-1 bg-surface-900 border border-white/10 rounded-xl px-4 py-2.5 text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40 transition">
+          <button @click="loadEngrams()" class="px-4 py-2.5 bg-surface-900 border border-white/10 rounded-xl text-sm text-gray-400 hover:text-white hover:border-white/20 transition">
+            刷新
+          </button>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="engram-grid">
+          <template x-for="e in filteredEngrams" :key="e.name">
+            <div @click="selectEngram(e.name)"
+              class="group relative bg-surface-900 border border-white/5 rounded-2xl p-5 cursor-pointer hover:border-brand-500/30 hover:bg-surface-850 transition-all duration-200">
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="font-semibold text-white group-hover:text-brand-300 transition" x-text="e.name"></h3>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-400 font-medium" x-show="e.extends" x-text="'← '+e.extends"></span>
+              </div>
+              <p class="text-sm text-gray-400 line-clamp-2 mb-4" x-text="e.description || '暂无描述'"></p>
+              <div class="flex items-center gap-3 text-xs text-gray-500">
+                <span x-text="'知识 '+(e.knowledge_count||0)"></span>
+                <span x-text="'案例 '+(e.examples_count||0)"></span>
+              </div>
+            </div>
+          </template>
+        </div>
+        <p x-show="filteredEngrams.length===0" class="text-center text-gray-500 py-12">暂无 Engram</p>
+      </div>
+    </template>
+
+    <!-- Detail view -->
+    <template x-if="view==='detail'">
+      <div>
+        <button @click="view='list'" class="mb-4 text-sm text-gray-500 hover:text-white transition flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          返回列表
+        </button>
+        <div class="flex flex-col lg:flex-row gap-6" x-show="currentEngram">
+          <!-- Sidebar: file tree -->
+          <div class="w-full lg:w-64 shrink-0">
+            <div class="bg-surface-900 border border-white/5 rounded-2xl p-4">
+              <h2 class="font-semibold text-white mb-3" x-text="currentEngram?.name"></h2>
+              <p class="text-xs text-gray-500 mb-4" x-text="currentEngram?.description"></p>
+              <div class="space-y-0.5">
+                <template x-for="f in files" :key="f.path">
+                  <button @click="openFile(f.path)"
+                    :class="activeFile===f.path ? 'bg-brand-500/10 text-brand-300' : 'text-gray-400 hover:text-white hover:bg-white/5'"
+                    class="w-full text-left text-xs px-3 py-1.5 rounded-lg transition truncate block"
+                    x-text="f.path">
+                  </button>
+                </template>
+              </div>
+            </div>
+          </div>
+          <!-- Editor -->
+          <div class="flex-1 min-w-0">
+            <div class="bg-surface-900 border border-white/5 rounded-2xl overflow-hidden">
+              <div class="flex items-center justify-between px-4 py-3 border-b border-white/5">
+                <span class="text-sm font-medium text-gray-300" x-text="activeFile || '选择文件'"></span>
+                <div class="flex items-center gap-2" x-show="activeFile">
+                  <span x-show="dirty" class="text-xs text-amber-400">未保存</span>
+                  <button @click="saveFile()" x-show="dirty"
+                    class="px-3 py-1 text-xs bg-brand-600 hover:bg-brand-500 text-white rounded-lg transition">保存</button>
+                </div>
+              </div>
+              <textarea x-model="fileContent" @input="dirty=true"
+                x-show="activeFile"
+                @keydown.meta.s.prevent="saveFile()"
+                @keydown.ctrl.s.prevent="saveFile()"
+                class="w-full bg-transparent text-sm text-gray-200 p-4 font-mono leading-relaxed resize-none focus:outline-none"
+                style="min-height:60vh"
+                spellcheck="false"></textarea>
+              <div x-show="!activeFile" class="p-12 text-center text-gray-600 text-sm">
+                点击左侧文件开始编辑
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- Stats view -->
+    <template x-if="view==='stats'">
+      <div x-init="loadStats()">
+        <h2 class="text-lg font-semibold mb-4">统计概览</h2>
+        <div x-show="!stats" class="text-gray-500 text-sm py-12 text-center">加载中...</div>
+        <template x-if="stats">
+          <div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+              <div class="stat-card">
+                <div class="text-xs text-gray-500 mb-1">Engram 总数</div>
+                <div class="stat-value" x-text="stats.total_engrams"></div>
+              </div>
+              <div class="stat-card">
+                <div class="text-xs text-gray-500 mb-1">知识文件</div>
+                <div class="stat-value" x-text="stats.total_knowledge_files"></div>
+              </div>
+              <div class="stat-card">
+                <div class="text-xs text-gray-500 mb-1">案例文件</div>
+                <div class="stat-value" x-text="stats.total_examples_files"></div>
+              </div>
+              <div class="stat-card">
+                <div class="text-xs text-gray-500 mb-1">记忆条目</div>
+                <div class="stat-value" x-text="stats.total_memory_entries"></div>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <template x-for="e in stats.engram_stats" :key="e.name">
+                <div class="bg-surface-900 border border-white/5 rounded-xl p-4 flex items-center justify-between">
+                  <div>
+                    <span class="font-medium text-white" x-text="e.name"></span>
+                    <span class="text-xs text-gray-500 ml-2" x-text="e.description"></span>
+                  </div>
+                  <div class="flex gap-4 text-xs text-gray-500">
+                    <span x-text="'知识 '+e.knowledge_count"></span>
+                    <span x-text="'案例 '+e.examples_count"></span>
+                    <span x-text="'记忆 '+(e.memory_entry_count||0)"></span>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </template>
+      </div>
+    </template>
+
+  </main>
+
+  <script src="/static/app.js"></script>
+
+  <!-- Toast -->
+  <div x-show="toast" x-transition class="toast"
+    :class="toast?.type==='error'?'bg-red-900/90 text-red-200 border border-red-700/50':'bg-emerald-900/90 text-emerald-200 border border-emerald-700/50'"
+    x-text="toast?.msg">
+  </div>
+</body>
+</html>

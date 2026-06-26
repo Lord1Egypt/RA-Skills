@@ -1,0 +1,39 @@
+{
+  "name": "@frontend-craft/fec-nextjs-project-standard",
+  "version": "2.4.0",
+  "description": "Use when creating or reviewing Next.js 14+ App Router projects, file routes, layouts, server/client component boundaries, SSR/SSG/ISR, streaming, metadata, middleware, server actions, or Next-specific data fetching. For generic client React component architecture, apply the project's React conventions separately; Chinese triggers include Next.js, App Router.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-nextjs-project-standard"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "project-standard",
+    "nextjs",
+    "app-router",
+    "ssr",
+    "rsc",
+    "react"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

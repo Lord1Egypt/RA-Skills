@@ -1,0 +1,55 @@
+{
+  "$comment": "干饭.skill 定时提醒配置 — 安装时自动加载，用户可自定义",
+
+  "enabled": true,
+  "timezone": "Asia/Shanghai",
+
+  "schedules": [
+    {
+      "id": "lunch-nudge",
+      "name": "午餐提醒",
+      "enabled": true,
+      "cron": "50 11 * * 1-5",
+      "description": "工作日 11:50 提醒午餐",
+      "command": "node schedule/nudge.mjs --meal lunch",
+      "style": "normal"
+    },
+    {
+      "id": "dinner-nudge",
+      "name": "晚餐提醒",
+      "enabled": true,
+      "cron": "45 17 * * 1-5",
+      "description": "工作日 17:45 提醒晚餐",
+      "command": "node schedule/nudge.mjs --meal dinner",
+      "style": "normal"
+    },
+    {
+      "id": "weekend-brunch",
+      "name": "周末早午餐",
+      "enabled": false,
+      "cron": "0 10 * * 0,6",
+      "description": "周末 10:00 早午餐提醒",
+      "command": "node schedule/nudge.mjs --meal breakfast",
+      "style": "chaotic"
+    },
+    {
+      "id": "late-night-snack",
+      "name": "深夜投喂",
+      "enabled": false,
+      "cron": "0 22 * * *",
+      "description": "深夜 22:00 宵夜提醒（默认关闭，减肥人士慎开）",
+      "command": "node schedule/nudge.mjs --meal late_night --style chaotic",
+      "style": "chaotic"
+    }
+  ],
+
+  "preferences": {
+    "defaultStyle": "normal",
+    "avoidRepeat": true,
+    "avoidRepeatDays": 3,
+    "maxBudget": null,
+    "excludeCategories": [],
+    "preferCategories": [],
+    "locationHint": null
+  }
+}

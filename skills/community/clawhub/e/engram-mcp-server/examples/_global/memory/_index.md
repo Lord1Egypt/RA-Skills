@@ -1,0 +1,3 @@
+- `memory/user-profile.md` [2026-02-25 10:00] [fact] 用户名叫 Jammy，32岁，佛山
+- `memory/user-profile.md` [2026-02-25 10:01] [fact] 职业：独立开发者，做 AI 工具
+- `memory/user-profile.md` [2026-02-25 10:02] [preference] 偏好中文交流，技术术语可英文

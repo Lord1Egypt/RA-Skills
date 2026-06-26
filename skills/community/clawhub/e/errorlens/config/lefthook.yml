@@ -1,0 +1,21 @@
+# ErrorLens -- lefthook configuration
+# Installed by: errorlens hook install
+# Documentation: https://errorlens.pages.dev/docs/hooks
+
+pre-commit:
+  parallel: true
+  commands:
+    errorlens-error-scan:
+      run: |
+        ERRORLENS_SKILL_DIR="${ERRORLENS_SKILL_DIR:-$HOME/.openclaw/skills/errorlens}"
+        if [[ -f "$ERRORLENS_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$ERRORLENS_SKILL_DIR/scripts/patterns.sh"
+          source "$ERRORLENS_SKILL_DIR/scripts/analyzer.sh"
+          hook_error_scan
+        else
+          echo "[ErrorLens] Skill not found at $ERRORLENS_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Error handling issues detected in staged files!
+        Run 'errorlens scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).

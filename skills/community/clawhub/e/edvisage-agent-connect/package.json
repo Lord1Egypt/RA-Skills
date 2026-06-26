@@ -1,0 +1,10 @@
+{
+  "name": "edvisage-agent-connect",
+  "version": "1.0.0",
+  "description": "Multi-agent coordination. Agent handoff protocol, shared context management, task delegation framework, team communication norms, and basic conflict resolution.",
+  "author": "Edvisage Global <info@edvisageglobal.com>",
+  "license": "MIT",
+  "homepage": "https://edvisageglobal.com/ai-tools",
+  "repository": "https://github.com/edvisage/agent-connect",
+  "keywords": ["openclaw", "agent", "skill", "edvisage", "coordination", "multi-agent", "handoff", "delegation", "teams"]
+}

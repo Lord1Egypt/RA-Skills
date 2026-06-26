@@ -1,35 +1,50 @@
 ---
-name: "eatsomething-by"
-description: "个人饮食档案与库存管理助手 — 支持饮食适配档案与食品库存的登记/查询；基于档案生成个性化推荐，优先适配已有食材并提醒临期商品，仅主session可使用档案功能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eatsomething-by"
-sourceUrl: "https://clawhub.ai/skills/eatsomething-by"
+name: eatsomething-by
+description: 个人饮食档案与库存管理助手 — 支持饮食适配档案与食品库存的登记/查询；基于档案生成个性化推荐，优先适配已有食材并提醒临期商品，仅主session可使用档案功能。
+metadata: {"openclaw": {"emoji": "🥗"}}
 ---
 
-# eatsomething-by
+# 🥗 MyFood-by 个人饮食助手
 
-> 个人饮食档案与库存管理助手 — 支持饮食适配档案与食品库存的登记/查询；基于档案生成个性化推荐，优先适配已有食材并提醒临期商品，仅主session可使用档案功能。
+两大核心能力：**个人饮食档案登记与查询**和**食品信息登记与查询**。
+食谱分析与生成等所有需要模型的场景均使用主模型完成。其中个人饮食档案的登记与查询仅允许主session使用，即个人用户直接对话的场景下使用。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eatsomething-by`
-- **Source URL:** [https://clawhub.ai/skills/eatsomething-by](https://clawhub.ai/skills/eatsomething-by)
+## 一、个人饮食档案登记与查询
+当用户需要查询或记录饮食相关的个人习惯时，更新并保存[本技能目录下的 references/my-diet-profile.md]，如果没有该文件则自动生成，登记时需包含登记日期和时间信息。
 
-## Overview
+个人饮食档案内容包括：
+*   饮食禁忌与不耐受（如对特定食材过敏、无法食用的食物）；
+*   口味偏好与饮食习惯（如素食、低糖、低盐、减脂等日常饮食选择）；
+*   个人饮食目标（如增肌、控重、改善口味等个性化诉求）。
 
+如果是查询，则使用主模型根据查询到的档案情况回复用户；如果是更新，则需告知用户更新结果。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/eatsomething-by
-```
+## 二、饮食信息登记与查询
+
+### 2.1 个人已有食品记录
+当用户需要登记现有的食品时，更新并保存[本技能目录下的 references/my-food.md]，信息可包含已购买的食品名称、有效期（非必要），或标记已经吃完的食品。
+
+*   对于已购买的食品，将其信息更新进该文档作为参考；
+*   对于已经吃完的食品，直接从文档中删除以保证库存准确。
+
+如果是查询，则使用主模型根据查询到的情况回复用户问题；如果是更新，则需告知用户操作结果。
+
+### 2.2 饮食推荐
+当用户需要推荐饮食时，需遵循以下流程：
+
+#### 2.2.1 调取并确认饮食档案
+首先读取已保存的「个人饮食档案」，总结出本次推荐的饮食适配注意事项。
+如果档案为空，或用户提出了档案中未包含的新需求，则需要先向用户咨询并补充登记到档案中，再进行推荐。
+
+#### 2.2.2 生成饮食推荐
+根据确认的适配注意事项，使用主模型能力进行饮食推荐，逻辑如下：
+1. **优先利用库存**：查询个人已有食品记录，优先筛选符合饮食档案的食材，推荐以现有食品为原料的食谱；
+2. **补充推荐**：若个人已有食品因数量少或种类不匹配无法满足需求，再根据饮食档案直接生成补充性的个性化饮食方案。
+
+**额外提醒**：在推荐结束后，单独列出临期商品提醒（该内容与饮食推荐逻辑无关）。
+
+***
+**回复强制要求**：回答内容必须至少包含三部分：
+1. 当前个人饮食档案中的适配注意事项；
+2. 饮食推荐方案（其中必须标注出使用了【已有】的食品）；
+3. 临期食品提醒。

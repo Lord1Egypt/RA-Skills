@@ -1,35 +1,69 @@
 ---
-name: "Stock Quote"
+name: eagerbots-stock-quote
 description: "Get real-time stock, ETF, and crypto prices. Compare tickers, check market cap and volume. Uses Yahoo Finance — no API key required."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eagerbots-stock-quote"
-sourceUrl: "https://clawhub.ai/skills/eagerbots-stock-quote"
+version: 1.0.0
+metadata:
+  openclaw:
+    emoji: "📈"
+  requires:
+    bins:
+      - python3
+  homepage: https://github.com/josephflu/clawhub-skills
 ---
 
-# Stock Quote
+# stock-quote
 
-> Get real-time stock, ETF, and crypto prices. Compare tickers, check market cap and volume. Uses Yahoo Finance — no API key required.
+Get real-time stock, ETF, and crypto prices via Yahoo Finance — no API key needed.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eagerbots-stock-quote`
-- **Source URL:** [https://clawhub.ai/skills/eagerbots-stock-quote](https://clawhub.ai/skills/eagerbots-stock-quote)
+## Trigger phrases
 
-## Overview
+- "What's Apple stock at?"
+- "What's the price of TSLA?"
+- "How is NVDA doing today?"
+- "Compare AAPL MSFT GOOG"
+- "What's BTC at?"
+- "Show me SPY and QQQ"
+- "Is the market up today?"
+- "How's the market doing?"
+- "Quote for [TICKER]"
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
+Run `uv run scripts/quote.py` with one or more ticker symbols:
+
 ```bash
-hermes skills install clawhub/eagerbots-stock-quote
+# Single ticker
+uv run scripts/quote.py AAPL
+
+# Crypto
+uv run scripts/quote.py BTC-USD
+
+# Multiple tickers (comparison table)
+uv run scripts/quote.py AAPL MSFT GOOG NVDA
+
+# Detailed view
+uv run scripts/quote.py AAPL --detail
 ```
+
+## Output
+
+**Single ticker:**
+```
+╭─────────────────────────────────────────╮
+│ 🍎 Apple Inc. (AAPL) NASDAQ            │
+│ $213.49 ▲ +2.31 (+1.09%) ● Market Open │
+├─────────────────────────────────────────┤
+│ 52W Range $164.08 ──────●──── $237.23  │
+│ Volume 45.2M (avg 52.1M)               │
+│ Market Cap $3.21T                       │
+╰─────────────────────────────────────────╯
+```
+
+**Multiple tickers:** Rich comparison table with Ticker, Name, Price, Change, % Change, Market Cap — green for gains, red for losses.
+
+## Notes
+
+- Uses Yahoo Finance's unofficial API (free, no key required)
+- Crypto tickers use `-USD` suffix: `BTC-USD`, `ETH-USD`, `SOL-USD`
+- See `references/common-tickers.md` for popular symbols
+- Market status (open/closed) shown automatically

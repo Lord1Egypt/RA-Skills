@@ -1,0 +1,91 @@
+{
+  "name": "designkit-ecommerce-skills",
+  "version": "1.1.2",
+  "author": "designkit",
+  "description": "Background removal, image restoration, and ecommerce listing image generation from a product photo.",
+  "license": "MIT-0",
+  "entry": "SKILL.md",
+  "tags": [
+    "designkit",
+    "designkit-official",
+    "ecommerce-image-tools",
+    "ai-image-editing",
+    "background-removal",
+    "remove-background",
+    "matting",
+    "transparent-background",
+    "white-background",
+    "image-restoration",
+    "blur-photo-fix",
+    "image-enhancement",
+    "product-photo-enhancement",
+    "ecommerce-listing-images",
+    "listing-images",
+    "amazon-listing-images",
+    "product-image-set",
+    "product-hero-images",
+    "product-detail-images",
+    "marketplace-product-images"
+  ],
+  "models": ["claude-*", "gpt-*", "gemini-*"],
+  "permissions": ["network", "filesystem", "shell"],
+  "triggers": {
+    "keywords": [
+      "remove background",
+      "background removal",
+      "remove product background",
+      "transparent background",
+      "white background",
+      "cutout",
+      "matting",
+      "extract subject",
+      "remove background ai",
+      "image background remover",
+      "image restoration",
+      "restore blurry image",
+      "restore product photo",
+      "enhance image quality",
+      "enhance product image",
+      "sharpen product photo",
+      "super resolution",
+      "sharpen photo",
+      "generate listing image set",
+      "ecommerce image set",
+      "product image set",
+      "product hero image",
+      "product detail image",
+      "listing hero image",
+      "listing image pack",
+      "listing detail image",
+      "amazon listing images",
+      "amazon listing pack",
+      "tiktok shop listing images",
+      "temu listing pack",
+      "aliexpress listing images",
+      "marketplace product images",
+      "designkit product images"
+    ]
+  },
+  "config": {
+    "DESIGNKIT_OPENCLAW_AK": {
+      "type": "string",
+      "description": "API key used to authenticate Designkit OpenClaw requests for all bundled workflows.",
+      "required": true
+    },
+    "DESIGNKIT_OPENCLAW_AK_URL": {
+      "type": "string",
+      "description": "Optional credits or billing URL shown in user-facing guidance. Default: https://www.designkit.com/openClaw.",
+      "required": false
+    }
+  },
+  "skills": {
+    "designkit-edit-tools": {
+      "entry": "skills/designkit-edit-tools/SKILL.md",
+      "status": "active"
+    },
+    "designkit-ecommerce-product-kit": {
+      "entry": "skills/designkit-ecommerce-product-kit/SKILL.md",
+      "status": "active"
+    }
+  }
+}

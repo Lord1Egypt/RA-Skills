@@ -1,0 +1,23 @@
+{
+  "name": "feishu-sheet-links",
+  "version": "1.0.0",
+  "description": "Extract all hyperlinks from a public Feishu spreadsheet across all sheet tabs using Chrome DevTools Protocol",
+  "type": "module",
+  "scripts": {
+    "extract": "bun scripts/main.ts",
+    "download": "bun scripts/download.ts"
+  },
+  "keywords": [
+    "feishu",
+    "lark",
+    "scraper",
+    "cdp",
+    "chrome-devtools-protocol",
+    "hyperlinks",
+    "automation"
+  ],
+  "license": "MIT",
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}

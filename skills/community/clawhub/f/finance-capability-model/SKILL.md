@@ -1,35 +1,79 @@
----
-name: "Finance Capability Model"
-description: "提供基于六大金融能力维度的集团财务金融能力模型，支持结构化检索和人才评估系统应用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/finance-capability-model"
-sourceUrl: "https://clawhub.ai/skills/finance-capability-model"
----
+# Skill: 集团财务金融能力模型速查
 
-# Finance Capability Model
+## 基础信息
+- **Slug**: finance-capability-model
+- **Version**: 1.0.0
+- **名称**: 集团财务金融能力模型速查
+- **描述**: 基于六大金融能力维度，生成结构化的集团财务金融能力模型，用于AI知识库检索或人才评估系统
+- **作者**: 户部 (hubu)
+- **标签**: 财务, 能力模型, HR, 招聘
 
-> 提供基于六大金融能力维度的集团财务金融能力模型，支持结构化检索和人才评估系统应用。
+## 能力维度
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/finance-capability-model`
-- **Source URL:** [https://clawhub.ai/skills/finance-capability-model](https://clawhub.ai/skills/finance-capability-model)
+### 1. 资金管理与流动性风险驾驭能力
+- 现金流预测与管理
+- 资金池运营
+- 流动性风险管控
+- 现金管理工具使用
 
-## Overview
+### 2. 资本结构与融资筹划能力
+- 股权融资与债务融资
+- 资本结构优化
+- 融资渠道管理
+- 成本控制
 
+### 3. 全面预算与战略资源配置能力
+- 年度预算编制
+- 预算执行监控
+- 资源配置优化
+- 绩效预算管理
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/finance-capability-model
+### 4. 资产管控与资本运作能力
+- 固定资产管理
+- 投资决策分析
+- 并购重组
+- 资产剥离与处置
+
+### 5. 经营分析与决策支持能力
+- 财务分析报表
+- 杜邦分析
+- 价值链分析
+- 战略决策支持
+
+### 6. 数字化金融与合规风控能力
+- 财务数字化系统
+- 合规管理
+- 内控体系建设
+- 数据分析与可视化
+
+## 使用方法
+
+### 输入参数
+无（直接使用六大能力维度）
+
+### 输出格式
+JSON格式，每个能力维度包含：
+- capability_name: 能力名称
+- sub_capabilities: 子能力列表
+- key_tools_metrics: 关键工具与指标
+- key_deliverables: 核心输出物
+- assessment_questions: 评估问题
+
+## 示例输出
+```json
+{
+  "capability_name": "资金管理与流动性风险驾驭能力",
+  "sub_capabilities": ["现金流预测", "资金池运营", "流动性风险管控"],
+  "key_tools_metrics": ["现金周期", "流动比率", "速动比率"],
+  "key_deliverables": ["日资金计划", "流动性分析报告"],
+  "assessment_questions": ["请描述一次成功的资金集中管理经历"]
+}
 ```
+
+## 触发关键词
+- 能力模型
+- 财务能力
+- 能力维度
+- 金融能力
+- 人才评估
+- 能力词典

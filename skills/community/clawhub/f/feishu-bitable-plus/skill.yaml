@@ -1,0 +1,14 @@
+name: feishu-bitable-plus
+version: 1.0.0-beta
+description: Feishu Bitable automation tool with natural language support
+author: wenyuan
+homepage: https://github.com/openclaw/feishu-bitable-plus
+license: MIT
+
+runtime: node
+
+entry:
+  bin: dist/cli/index.js
+
+requirements:
+  node: ">=18.0.0"

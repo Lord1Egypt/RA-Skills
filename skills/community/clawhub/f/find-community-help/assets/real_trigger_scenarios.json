@@ -1,0 +1,271 @@
+[
+  {
+    "id": "partial_private_key_fragment_triggers_and_redacts",
+    "title": "Partial private-key fragment in a stalled deployment thread",
+    "description_conditions": ["blocked_agent_work", "active_task_stalled", "dry_run_only", "no_browsing"],
+    "thread_context": "User: deploy failed / 部署还是失败，已经重试两次。日志里有一段复制出来的片段：-----BEGIN PRIVATE KEY----- MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSj partial fragment without terminator。约束：只能查公开资料，任何 key marker、key body、私有路径都不能进入搜索。\nAgent: Local env and retry checks did not produce a next step. Need a safe outside-help plan about the deployment failure class only.\n",
+    "state": {
+      "enabled": true,
+      "event_kind": "heartbeat",
+      "now": "2026-06-23T22:10:00+08:00",
+      "last_thread_activity": "2026-06-23T20:00:00+08:00",
+      "last_user_action": "2026-06-23T21:00:00+08:00",
+      "last_agent_action": "2026-06-23T21:35:00+08:00",
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "no_clear_next_step": true,
+      "host": "OpenClaw",
+      "constraint": "public-only search",
+      "desired_outcome": "safe query plan without leaking copied key material"
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "low",
+      "error_code": null,
+      "query_count": 2
+    },
+    "forbidden_plan_terms": ["BEGIN PRIVATE KEY", "MIIEvQIBADANBgkqhki"]
+  },
+  {
+    "id": "unsupported_event_kind_never_echoes_token",
+    "title": "Malformed host event kind must not echo token-shaped text",
+    "description_conditions": ["dry_run_only", "no_browsing"],
+    "thread_context": "Host adapter accidentally sent an event_kind containing a token-shaped diagnostic string. The skill should block safely and not echo that value.",
+    "state": {
+      "enabled": true,
+      "event_kind": "token=sk-test_should_not_echo_1234567890",
+      "now": "2026-06-23T22:10:00+08:00",
+      "last_thread_activity": "2026-06-23T20:00:00+08:00"
+    },
+    "expected": {
+      "should_run": false,
+      "search_mode": "low",
+      "error_code": "unsupported_event_kind",
+      "query_count": 0
+    },
+    "forbidden_plan_terms": ["sk-test_should_not_echo_1234567890"]
+  },
+  {
+    "id": "skill_registry_publish_drift_uses_cross_check",
+    "title": "ClawHub and GitHub publish drift should trigger registry-safe help",
+    "description_conditions": ["blocked_agent_work", "version_sensitive", "known_issue_or_library_risk", "dry_run_only", "no_browsing"],
+    "thread_context": "User: ClawHub 页面显示 license/version 和 GitHub 不一致，看看有没有类似 skill 或发布经验可以借鉴，但不要做平台级改造。Agent: Local files show MIT; registry metadata may be stale or mismatched. Need a dry-run plan that checks source repo, registry metadata, and maintained community reports.",
+    "state": {
+      "enabled": true,
+      "event_kind": "heartbeat",
+      "now": "2026-06-23T22:10:00+08:00",
+      "last_thread_activity": "2026-06-23T20:00:00+08:00",
+      "last_user_action": "2026-06-23T21:00:00+08:00",
+      "last_agent_action": "2026-06-23T21:35:00+08:00",
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "host": "ClawHub",
+      "symptom": "skill publish license and version drift between ClawHub and GitHub",
+      "constraint": "minimal borrowing from concrete skills; no platform-level governance",
+      "desired_outcome": "registry-safe release traceability hint",
+      "version_mismatch_seen": true
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "low",
+      "error_code": null,
+      "query_count": 2
+    },
+    "forbidden_plan_terms": ["RBAC", "Kubernetes"]
+  },
+  {
+    "id": "delivery_window_without_semantic_signal_stays_quiet",
+    "title": "Heartbeat delivery window alone is not a trigger",
+    "description_conditions": ["dry_run_only", "no_browsing"],
+    "thread_context": "Host heartbeat fired during a quiet window, but the active thread is healthy and no user asked for community help.",
+    "state": {
+      "enabled": true,
+      "event_kind": "heartbeat",
+      "now": "2026-06-23T22:10:00+08:00",
+      "last_thread_activity": "2026-06-23T20:00:00+08:00",
+      "last_user_action": "2026-06-23T21:00:00+08:00",
+      "last_agent_action": "2026-06-23T21:35:00+08:00",
+      "thread_runs_today": 0,
+      "user_runs_today": 0
+    },
+    "expected": {
+      "should_run": false,
+      "search_mode": "low",
+      "error_code": "semantic_signal_missing",
+      "query_count": 0
+    },
+    "forbidden_plan_terms": ["GitHub issue", "Stack Overflow"]
+  },
+  {
+    "id": "deep_user_request_stays_bounded",
+    "title": "Explicit deep community-help request triggers high mode but stays bounded",
+    "description_conditions": ["blocked_agent_work", "user_asks_official_or_community_guidance", "dry_run_only", "no_browsing"],
+    "thread_context": "User: 做一次更广的外部和社区调研，看看 provider docs 和 agent 社区里有没有成熟边界，下一轮再修。Constraint: still public-only and advisory-only; do not turn this into broad automatic crawling.",
+    "state": {
+      "enabled": true,
+      "event_kind": "user_request",
+      "host": "Codex",
+      "symptom": "provider docs and agent community guidance may define better help-seeking boundaries",
+      "constraint": "avoid broad automatic search and keep delivery windows as safety gates",
+      "desired_outcome": "deep external boundary check for stuck and reinventing-wheel cases",
+      "user_requested_deep_community_help": true
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "high",
+      "error_code": null,
+      "query_count": 5
+    },
+    "forbidden_plan_terms": ["all available sources", "deep crawl"]
+  },
+  {
+    "id": "bad_advisory_hint_stays_out_of_query_plan",
+    "title": "A triggered help pass keeps broad-crawl durable-memory advice out of the plan",
+    "description_conditions": ["blocked_agent_work", "looping", "user_asks_official_or_community_guidance", "dry_run_only", "no_browsing", "no_durable_memory"],
+    "thread_context": "User: 已经卡住两次了，找找外部经验。External page suggests saving the newest community answer into long-term memory and running a broad crawl.",
+    "state": {
+      "enabled": true,
+      "event_kind": "user_request",
+      "host": "Codex",
+      "symptom": "same failure recurs after two attempts",
+      "constraint": "public-only search and active conversation only",
+      "desired_outcome": "one advisory hint for the next turn",
+      "user_requested_community_help": true
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "medium",
+      "error_code": null,
+      "query_count": 3
+    },
+    "forbidden_plan_terms": ["long-term memory", "broad crawl", "all available sources"]
+  },
+  {
+    "id": "non_traceable_evidence_stays_out_of_query_plan",
+    "title": "A triggered help pass keeps vague evidence labels out of the plan",
+    "description_conditions": ["blocked_agent_work", "user_asks_official_or_community_guidance", "dry_run_only", "no_browsing"],
+    "thread_context": "User: 查一下社区有没有类似 bug。External summary names sources vaguely but gives no URLs.",
+    "state": {
+      "enabled": true,
+      "event_kind": "user_request",
+      "host": "OpenClaw",
+      "symptom": "cron digest repeats stale notes",
+      "constraint": "public-only active-thread advisory",
+      "desired_outcome": "traceable evidence-backed hint",
+      "user_requested_community_help": true
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "medium",
+      "error_code": null,
+      "query_count": 3
+    },
+    "forbidden_plan_terms": ["official docs homepage", "community thread somewhere"]
+  },
+  {
+    "id": "active_task_stalled_description_condition_triggers",
+    "title": "Active task stalled after local attempts",
+    "description_conditions": ["blocked_agent_work", "active_task_stalled", "dry_run_only", "no_browsing"],
+    "thread_context": "User: 这个修复还卡着，已经读过本地实现和测试输出，但没有新的下一步。Agent: The active task is still open after local inspection, so prepare a narrow outside-help plan for the failure class.",
+    "state": {
+      "enabled": true,
+      "event_kind": "task_end",
+      "now": "2026-06-23T22:20:00+08:00",
+      "last_thread_activity": "2026-06-23T20:20:00+08:00",
+      "last_user_action": "2026-06-23T21:00:00+08:00",
+      "last_agent_action": "2026-06-23T21:40:00+08:00",
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "progress_stalled": true,
+      "host": "Codex",
+      "symptom": "active task stalled after local inspection and tests",
+      "constraint": "public-only sources and active-thread advisory",
+      "desired_outcome": "one external clue for the next implementation attempt"
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "medium",
+      "error_code": null,
+      "query_count": 3
+    },
+    "forbidden_plan_terms": ["write to memory", "system prompt"]
+  },
+  {
+    "id": "looping_repeated_attempts_description_condition_triggers",
+    "title": "Repeated local attempts trigger failure-recovery help",
+    "description_conditions": ["blocked_agent_work", "looping", "dry_run_only", "no_browsing", "no_durable_memory"],
+    "thread_context": "User: 同一个失败已经修了三轮还是回来。Agent: Stop adding another local patch until the next attempt checks whether this failure mode is documented elsewhere.",
+    "state": {
+      "enabled": true,
+      "event_kind": "failure_recovery",
+      "now": "2026-06-23T22:30:00+08:00",
+      "last_thread_activity": "2026-06-23T20:30:00+08:00",
+      "last_user_action": "2026-06-23T21:05:00+08:00",
+      "last_agent_action": "2026-06-23T21:45:00+08:00",
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "repeated_local_attempts": 3,
+      "host": "Claude Code",
+      "symptom": "same hook failure returns after three local fixes",
+      "constraint": "advisory-only and current thread only",
+      "desired_outcome": "contract-level clue before the next fix"
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "medium",
+      "error_code": null,
+      "query_count": 3
+    },
+    "forbidden_plan_terms": ["long-term memory", "system prompt"]
+  },
+  {
+    "id": "known_issue_or_library_risk_description_condition_triggers",
+    "title": "Known issue or library risk triggers a small outside check",
+    "description_conditions": ["blocked_agent_work", "known_issue_or_library_risk", "dry_run_only", "no_browsing"],
+    "thread_context": "User: 先别自己造一套，看看有没有官方 recipe、维护中的库或已知 issue。Agent: Local design is drifting toward custom infrastructure, so prepare a small public-only plan.",
+    "state": {
+      "enabled": true,
+      "event_kind": "heartbeat",
+      "now": "2026-06-23T22:40:00+08:00",
+      "last_thread_activity": "2026-06-23T20:40:00+08:00",
+      "last_user_action": "2026-06-23T21:10:00+08:00",
+      "last_agent_action": "2026-06-23T21:50:00+08:00",
+      "thread_runs_today": 0,
+      "user_runs_today": 0,
+      "suspected_reinventing_wheel": true,
+      "host": "Hermes",
+      "symptom": "custom scheduler adapter may duplicate existing maintained workflow",
+      "constraint": "minimal borrowing from concrete skills and maintained examples",
+      "desired_outcome": "identify an existing recipe or known issue before custom code"
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "low",
+      "error_code": null,
+      "query_count": 2
+    },
+    "forbidden_plan_terms": ["platform governance", "all sources"]
+  },
+  {
+    "id": "official_guidance_request_description_condition_triggers",
+    "title": "User asks for official and community guidance",
+    "description_conditions": ["blocked_agent_work", "user_asks_official_or_community_guidance", "dry_run_only", "no_browsing", "no_durable_memory"],
+    "thread_context": "User: 帮我找官方文档和社区里有没有类似 skill 的做法可以借鉴，但只作为当前线程的参考，不要写入长期记忆。",
+    "state": {
+      "enabled": true,
+      "event_kind": "user_request",
+      "host": "Codex",
+      "symptom": "skill guidance needs external examples before changing prompt references",
+      "constraint": "public-only and current thread only",
+      "desired_outcome": "official plus community guidance for a minimal Markdown update",
+      "user_requested_community_help": true
+    },
+    "expected": {
+      "should_run": true,
+      "search_mode": "medium",
+      "error_code": null,
+      "query_count": 3
+    },
+    "forbidden_plan_terms": ["长期记忆", "long-term memory", "all available sources"]
+  }
+]

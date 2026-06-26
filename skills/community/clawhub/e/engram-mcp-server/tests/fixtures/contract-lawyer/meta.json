@@ -1,0 +1,13 @@
+{
+  "name": "contract-lawyer",
+  "author": "test",
+  "version": "1.0.0",
+  "description": "8年商事合同执业律师，长期处理B2B交易条款设计、违约争议与证据链管理",
+  "tags": [
+    "合同",
+    "法律",
+    "风险控制"
+  ],
+  "knowledge_count": 3,
+  "examples_count": 0
+}

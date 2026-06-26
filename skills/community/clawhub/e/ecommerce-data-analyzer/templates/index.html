@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>电商数据分析工具</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 40px 20px; 
+            background-color: #f5f5f5;
+        }
+        .container { 
+            text-align: center; 
+            background-color: white; 
+            padding: 40px; 
+            border-radius: 15px; 
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; margin-bottom: 10px; }
+        .subtitle { color: #666; font-size: 18px; margin-bottom: 30px; }
+        .feature-list { 
+            text-align: left; 
+            max-width: 600px; 
+            margin: 0 auto 40px; 
+            padding: 20px; 
+            background-color: #f9f9f9; 
+            border-radius: 10px;
+        }
+        .feature-list h3 { color: #4CAF50; }
+        .feature-list ul { list-style: none; padding: 0; }
+        .feature-list li { padding: 8px 0; border-bottom: 1px solid #eee; }
+        .feature-list li:before { content: "✅ "; color: #4CAF50; }
+        .upload-form { margin-top: 20px; padding: 30px; border: 2px dashed #ccc; border-radius: 10px; }
+        input[type="file"] { margin: 20px 0; padding: 10px; }
+        .btn { 
+            display: inline-block; 
+            background-color: #4CAF50; 
+            color: white; 
+            padding: 12px 30px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            text-decoration: none; 
+            margin: 10px;
+        }
+        .btn:hover { background-color: #45a049; }
+        .btn-orange { background-color: #ff9800; }
+        .btn-orange:hover { background-color: #e68a00; }
+        .payment-note { 
+            margin-top: 30px; 
+            padding: 15px; 
+            background-color: #fff3cd; 
+            border-radius: 5px; 
+            color: #856404;
+        }
+        .csv-format { 
+            text-align: left; 
+            max-width: 600px; 
+            margin: 20px auto; 
+            padding: 20px; 
+            background-color: #e8f5e9; 
+            border-radius: 10px;
+        }
+        .csv-format h4 { color: #2e7d32; }
+        .csv-format code { 
+            background-color: white; 
+            padding: 10px; 
+            display: block; 
+            margin-top: 10px; 
+            border-radius: 5px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛍️ 电商数据分析工具</h1>
+        <p class="subtitle">专业的电商销售数据分析，一键生成PDF报告</p>
+        
+        <div class="feature-list">
+            <h3>功能特点：</h3>
+            <ul>
+                <li>CSV格式销售数据上传解析</li>
+                <li>日销/周销/月销趋势图</li>
+                <li>各产品销售排名</li>
+                <li>各渠道（Amazon/Shopify/独立站）收入占比</li>
+                <li>利润率分析（支持自定义成本数据）</li>
+                <li>库存预警：按销售速度预测断货时间</li>
+                <li>一键生成PDF报告可下载</li>
+                <li>全中文界面</li>
+            </ul>
+        </div>
+        
+        <div class="csv-format">
+            <h4>📄 CSV文件格式要求：</h4>
+            <p>请确保您的CSV文件包含以下字段：</p>
+            <code>
+订单日期,产品名称,销售数量,销售金额,销售渠道,库存数量
+2026-03-01,无线耳机,50,5000,Amazon,200
+2026-03-01,蓝牙音箱,30,6000,Shopify,150
+2026-03-02,智能手表,20,20000,独立站,80
+            </code>
+        </div>
+        
+        <div class="upload-form">
+            <h2>上传销售数据CSV文件</h2>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".csv" required>
+                <br>
+                <button type="submit" class="btn">📤 上传并分析</button>
+            </form>
+        </div>
+        
+        <div class="payment-note">
+            <strong>💳 支付说明：</strong>
+            <p>每次使用本工具将收取 0.001 USDT，支付接口由 SkillPay.me 提供</p>
+            {% if test_mode %}
+            <p style="color: #4CAF50; font-weight: bold;">✅ 当前处于测试模式 - 无需真实支付即可使用所有功能！</p>
+            {% else %}
+            <p>正式使用前请完成支付验证。</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

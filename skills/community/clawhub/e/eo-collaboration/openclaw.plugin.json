@@ -1,0 +1,68 @@
+{
+  "id": "eo-collaboration",
+  "name": "Everything Openclaw (EO)",
+  "version": "2.2.0",
+  "description": "Multi-expert collaboration plugin for OpenClaw - 141 experts, 9 standardized commands, skill compatibility layer",
+  "author": "467718584",
+  "license": "MIT",
+  "homepage": "https://github.com/467718584/everything-openclaw",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/467718584/everything-openclaw.git"
+  },
+  "openclaw": {
+    "version": ">=2026.3.0"
+  },
+  "extensions": [
+    {
+      "kind": "Tool",
+      "id": "eo_collab",
+      "name": "eo_collab",
+      "description": "Main multi-expert collaboration tool - coordinates team of experts for complex tasks"
+    },
+    {
+      "kind": "Tool",
+      "id": "eo_list_experts",
+      "name": "eo_list_experts",
+      "description": "List available experts in the EO expert library"
+    },
+    {
+      "kind": "Tool",
+      "id": "eo_plan",
+      "name": "eo_plan",
+      "description": "Create project plan with Planner expert - generates WBS, milestones, team composition"
+    },
+    {
+      "kind": "Tool",
+      "id": "eo_architect",
+      "name": "eo_architect",
+      "description": "Design system architecture with Architect expert - tech stack, modules, risks"
+    },
+    {
+      "kind": "Tool",
+      "id": "eo_verify",
+      "name": "eo_verify",
+      "description": "Verify checkpoint with QA expert - validate stage deliverables"
+    },
+    {
+      "kind": "Tool",
+      "id": "eo_code_review",
+      "name": "eo_code_review",
+      "description": "Code review with CodeReviewer expert - security, performance, style analysis"
+    }
+  ],
+  "hooks": [
+    {
+      "id": "eo-expert-hook",
+      "name": "eo-expert",
+      "event": "before_tool_call",
+      "description": "EO Expert coordination hook - triggers multi-expert workflow when needed"
+    }
+  ],
+  "skills": [
+    {
+      "path": "./skills/commands",
+      "description": "EO Standardized Commands - 9 expert commands"
+    }
+  ]
+}

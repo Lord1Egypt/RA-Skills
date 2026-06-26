@@ -1,0 +1,51 @@
+{
+  "name": "Bilibili 优化",
+  "description": "B站上传的最佳设置",
+  "version": "1.0",
+  "video": {
+    "codec": "libx264",
+    "preset": "medium",
+    "crf": 23,
+    "profile": "high",
+    "level": "4.1",
+    "pixel_format": "yuv420p"
+  },
+  "audio": {
+    "codec": "aac",
+    "bitrate": "192k",
+    "sample_rate": 48000,
+    "channels": 2
+  },
+  "recommendations": {
+    "1080p60": {
+      "resolution": "1920x1080",
+      "fps": 60,
+      "bitrate": "6000k",
+      "audio_bitrate": "192k"
+    },
+    "1080p": {
+      "resolution": "1920x1080",
+      "fps": 30,
+      "bitrate": "3000k",
+      "audio_bitrate": "192k"
+    },
+    "720p60": {
+      "resolution": "1280x720",
+      "fps": 60,
+      "bitrate": "3000k",
+      "audio_bitrate": "128k"
+    },
+    "720p": {
+      "resolution": "1280x720",
+      "fps": 30,
+      "bitrate": "1500k",
+      "audio_bitrate": "128k"
+    }
+  },
+  "requirements": {
+    "max_bitrate": "6000k",
+    "supported_codecs": ["H.264", "H.265"],
+    "max_file_size": "8GB",
+    "supported_containers": ["mp4", "mkv"]
+  }
+}

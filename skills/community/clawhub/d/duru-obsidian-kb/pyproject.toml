@@ -1,0 +1,16 @@
+[project]
+name = "duru-obsidian-kb"
+version = "0.1.0"
+description = "Markdown-first Obsidian knowledge-base scripts (ingest/build/search/ask/lint/chart)."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "pandas>=2.0",
+  "matplotlib>=3.8",
+  "openpyxl>=3.1",
+  "pypdf>=4.0",
+  "pdfplumber>=0.11",
+]
+
+[tool.uv]
+package = false

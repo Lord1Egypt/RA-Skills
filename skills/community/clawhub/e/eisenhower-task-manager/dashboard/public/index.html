@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eisenhower Task Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css?v=28">
+  <link rel="stylesheet" href="../node_modules/@xterm/xterm/css/xterm.css" />
+  <script src="../node_modules/@xterm/xterm/lib/xterm.js"></script>
+  <script src="../node_modules/@xterm/addon-fit/lib/addon-fit.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <div class="app">
+      <header class="header">
+        <h1 data-i18n="title">📊 Eisenhower Task Dashboard</h1>
+        <div class="header-right">
+          <div class="language-switcher">
+            <button class="lang-btn" id="langBtn" data-current="en">
+              <span class="lang-icon">🌐</span>
+              <span class="lang-text">EN</span>
+            </button>
+            <div class="lang-dropdown" id="langDropdown">
+              <button class="lang-option" data-lang="en" data-i18n="lang_en">English</button>
+              <button class="lang-option" data-lang="zh-CN" data-i18n="lang_zh">中文</button>
+            </div>
+          </div>
+          <button class="terminal-toggle-btn" id="terminalToggleBtn" title="Toggle Terminal">
+            💻
+          </button>
+          <div class="connection-status" id="connectionStatus">
+            <span class="status-dot"></span>
+            <span class="status-text" data-i18n="status_connecting">Connecting...</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="stats-bar" id="statsBar">
+      <div class="stat-card q1">
+        <div class="stat-value" id="q1Count">-</div>
+        <div class="stat-label" data-i18n="q1_label">🔥 Q1 Urgent & Important</div>
+      </div>
+      <div class="stat-card q2">
+        <div class="stat-value" id="q2Count">-</div>
+        <div class="stat-label" data-i18n="q2_label">💼 Q2 Important Not Urgent</div>
+      </div>
+      <div class="stat-card q3">
+        <div class="stat-value" id="q3Count">-</div>
+        <div class="stat-label" data-i18n="q3_label">⚡ Q3 Urgent Not Important</div>
+      </div>
+      <div class="stat-card q4">
+        <div class="stat-value" id="q4Count">-</div>
+        <div class="stat-label" data-i18n="q4_label">🧘 Q4 Not Urgent & Important</div>
+      </div>
+      <div class="stat-card customer">
+        <div class="stat-value" id="customerCount">-</div>
+        <div class="stat-label" data-i18n="customer_label">🏢 Customer Projects</div>
+      </div>
+      <div class="stat-card delegation">
+        <div class="stat-value" id="delegationCount">-</div>
+        <div class="stat-label" data-i18n="delegation_label">👑 Delegation Tasks</div>
+      </div>
+      <div class="stat-card maybe">
+        <div class="stat-value" id="maybeCount">-</div>
+        <div class="stat-label" data-i18n="maybe_label">🌱 Maybe List</div>
+      </div>
+    </div>
+
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="matrix" data-i18n="tab_matrix">Eisenhower Matrix</button>
+      <button class="tab-btn" data-tab="customers" data-i18n="tab_customers">Customer Projects</button>
+      <button class="tab-btn" data-tab="delegation" data-i18n="tab_delegation">Delegation</button>
+      <button class="tab-btn" data-tab="maybe" data-i18n="tab_maybe">Maybe List</button>
+    </nav>
+
+    <main class="main-content">
+      <!-- Matrix View -->
+      <div class="tab-content active" id="matrix">
+        <div class="quadrant-grid">
+          <div class="quadrant q1-section">
+            <h2 data-i18n="q1_title">🔥 Q1: Urgent & Important</h2>
+            <p class="quadrant-subtitle" data-i18n="q1_subtitle">Do First</p>
+            <div class="task-list" id="q1List"></div>
+          </div>
+          <div class="quadrant q2-section">
+            <h2 data-i18n="q2_title">💼 Q2: Important Not Urgent</h2>
+            <p class="quadrant-subtitle" data-i18n="q2_subtitle">Schedule</p>
+            <div class="task-list" id="q2List"></div>
+          </div>
+          <div class="quadrant q3-section">
+            <h2 data-i18n="q3_title">⚡ Q3: Not Important Urgent</h2>
+            <p class="quadrant-subtitle" data-i18n="q3_subtitle">Batch / Delegate</p>
+            <div class="task-list" id="q3List"></div>
+          </div>
+          <div class="quadrant q4-section">
+            <h2 data-i18n="q4_title">🧘 Q4: Not Urgent & Important</h2>
+            <p class="quadrant-subtitle" data-i18n="q4_subtitle">Delete / Postpone</p>
+            <div class="task-list" id="q4List"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customers View -->
+      <div class="tab-content" id="customers">
+        <div class="section-header">
+          <h2 data-i18n="customer_title">🏢 Customer Project List</h2>
+          <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all" data-i18n="filter_all">All</button>
+            <button class="filter-btn" data-filter="active" data-i18n="filter_active">Active</button>
+            <button class="filter-btn" data-filter="blocked" data-i18n="filter_blocked">Blocked</button>
+          </div>
+        </div>
+        <div class="customer-list" id="customerList"></div>
+      </div>
+
+      <!-- Delegation View -->
+      <div class="tab-content" id="delegation">
+        <div class="section-header">
+          <h2 data-i18n="delegation_title">👑 Delegation Task List</h2>
+          <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all" data-i18n="filter_all">All</button>
+            <button class="filter-btn" data-filter="inProgress" data-i18n="filter_inprogress">In Progress</button>
+            <button class="filter-btn" data-filter="overdue" data-i18n="filter_overdue">Overdue</button>
+          </div>
+        </div>
+        <div class="delegation-list" id="delegationList"></div>
+      </div>
+
+      <!-- Maybe View -->
+      <div class="tab-content" id="maybe">
+        <div class="section-header">
+          <h2 data-i18n="maybe_title">🌱 Maybe List</h2>
+          <p class="section-desc" data-i18n="maybe_desc">Ideas and inspirations for future consideration, not yet in the matrix</p>
+        </div>
+        <div class="maybe-list" id="maybeList"></div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p><span data-i18n="last_updated">Last updated:</span> <span id="lastUpdate">-</span></p>
+    </footer>
+    </div>
+    
+    <div class="terminal-container" id="terminalContainer">
+      <div class="terminal-resizer" id="terminalResizer"></div>
+      <div class="terminal-header">
+        <span class="terminal-title">Terminal</span>
+        <button class="terminal-close-btn" id="terminalCloseBtn">×</button>
+      </div>
+      <div id="terminal"></div>
+    </div>
+  </div>
+
+  <script src="i18n.js?v=8"></script>
+  <script src="app.js?v=27"></script>
+</body>
+</html>

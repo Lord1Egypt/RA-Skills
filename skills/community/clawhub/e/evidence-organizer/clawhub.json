@@ -1,0 +1,18 @@
+{
+  "name": "evidence-organizer",
+  "version": "1.0.0",
+  "description": "Organize and structure evidence for legal proceedings. Use when the user asks about 证据整理、证据清单、证据链、怎么组织证据、准备证据、证据目录, or wants to organize evidence for a case.",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "keywords": ["evidence", "legal", "证据整理", "证据清单"],
+  "category": "legal",
+  "homepage": "https://github.com/openclaw/skills/tree/main/evidence-organizer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills.git"
+  },
+  "openclaw": {
+    "skill": true,
+    "minVersion": "2026.3.0"
+  }
+}

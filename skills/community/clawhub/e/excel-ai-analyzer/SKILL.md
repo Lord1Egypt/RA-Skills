@@ -1,35 +1,47 @@
----
-name: "Excel AI Analyzer"
-description: "Automatically analyze Excel data files to generate statistical summaries, detect anomalies, create visual charts, and provide analysis reports and suggestions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/excel-ai-analyzer"
-sourceUrl: "https://clawhub.ai/skills/excel-ai-analyzer"
----
-
 # Excel AI Analyzer
 
-> Automatically analyze Excel data files to generate statistical summaries, detect anomalies, create visual charts, and provide analysis reports and suggestions.
+智能 Excel 数据分析技能 - 自动分析数据、生成统计报告、创建可视化图表。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/excel-ai-analyzer`
-- **Source URL:** [https://clawhub.ai/skills/excel-ai-analyzer](https://clawhub.ai/skills/excel-ai-analyzer)
+## 功能
 
-## Overview
+- 📊 **自动数据分析**：读取 Excel 文件，自动识别数据类型和结构
+- 📈 **统计分析**：计算均值、中位数、标准差、趋势分析
+- 🔍 **异常检测**：识别数据中的异常值和离群点
+- 📝 **报告输出**：生成 Markdown 格式的分析报告
+- 💡 **智能建议**：基于数据特征给出分析建议
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/excel-ai-analyzer
 ```
+帮我分析这个 Excel 文件
+上传：data.xlsx
+```
+
+或
+
+```
+分析 /path/to/file.xlsx 的销售数据
+```
+
+## 输出示例
+
+- 数据概览（行数、列数、数据类型）
+- 统计摘要（均值、最大/最小值、分布）
+- 趋势分析（时间序列数据）
+- 异常值标记
+- 可视化图表
+- 分析结论和建议
+
+## 依赖
+
+- xlsx (Excel 文件解析)
+- chartjs-node-canvas (图表生成)
+- markdown 生成
+
+## 作者
+
+倒里牢数 · 严谨专业版
+
+## 版本
+
+1.0.0

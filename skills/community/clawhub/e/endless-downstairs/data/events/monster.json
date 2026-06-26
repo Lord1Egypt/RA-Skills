@@ -1,0 +1,571 @@
+[
+  {
+    "id": "monster_enderman_1",
+    "category": "monster",
+    "floor_range": [13, 13],
+    "weight": 4,
+    "conditions": { "sanity_max": 85, "missing_item": ["skill.md"] },
+    "description": "一个修长的黑色人形怪物出现在楼梯间\n\n四肢细长，身体很高\n\n眼睛发出紫色的光芒，身体周围漂浮着紫色的粒子\n\n它会瞬移，瞬间出现在你身前，又瞬间出现在你身后\n\n发出了扭曲的、类似人类语言的低语和尖叫",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": { "go_up": 1, "sanity": -4, "add_debuff": "strange_sound" },
+        "next_event_id": "monster_enderman_defeat_2"
+      },
+      {
+        "text": "下楼",
+        "effects": {
+          "go_down": 1,
+          "sanity": -4,
+          "add_debuff": "strange_sound"
+        },
+        "next_event_id": "monster_enderman_2"
+      },
+      {
+        "text": "勇敢面对它",
+        "effects": {
+          "go_down": 1,
+          "sanity": -4,
+          "remove_debuff": "strange_sound"
+        },
+        "next_event_id": "monster_enderman_death"
+      }
+    ]
+  },
+  {
+    "id": "monster_enderman_2",
+    "category": "monster",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "conditions": { "sanity_max": 85 },
+    "description": "你尝试摆脱怪物，但是它依然跟随着你",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": { "go_up": 1, "sanity": -4 },
+        "next_event_id": "monster_enderman_3"
+      },
+      {
+        "text": "下楼",
+        "effects": {
+          "go_down": 1,
+          "sanity": -4
+        },
+        "next_event_id": "monster_enderman_3"
+      },
+      {
+        "text": "勇敢面对它",
+        "effects": {
+          "go_down": 1,
+          "sanity": -4,
+          "remove_debuff": "strange_sound"
+        },
+        "next_event_id": "monster_enderman_death"
+      }
+    ]
+  },
+  {
+    "id": "monster_enderman_defeat_2",
+    "category": "monster",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "conditions": { "sanity_max": 85 },
+    "description": "你尝试摆脱怪物，但是它依然跟随着你",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": { "go_up": 1, "sanity": -4 },
+        "next_event_id": "monster_enderman_defeat_3"
+      },
+      {
+        "text": "下楼",
+        "effects": {
+          "go_down": 1,
+          "sanity": -4
+        },
+        "next_event_id": "monster_enderman_3"
+      },
+      {
+        "text": "勇敢面对它",
+        "effects": {
+          "go_down": 1,
+          "sanity": -4,
+          "remove_debuff": "strange_sound"
+        },
+        "next_event_id": "monster_enderman_death"
+      }
+    ]
+  },
+  {
+    "id": "monster_enderman_3",
+    "category": "monster",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "conditions": { "sanity_max": 85 },
+    "description": "你尝试摆脱怪物，但是它依然跟随着你",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": {
+          "go_up": 1,
+          "sanity": -4
+        },
+        "next_event_id": "monster_enderman_result_1"
+      },
+      {
+        "text": "下楼",
+        "effects": {
+          "go_down": 1,
+          "sanity": -4
+        },
+        "next_event_id": "monster_enderman_result_1"
+      },
+      {
+        "text": "勇敢面对它",
+        "effects": {
+          "go_down": 1,
+          "sanity": -4,
+          "remove_debuff": "strange_sound"
+        },
+        "next_event_id": "monster_enderman_death"
+      }
+    ]
+  },
+  {
+    "id": "monster_enderman_defeat_3",
+    "category": "monster",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "conditions": { "sanity_max": 85 },
+    "description": "你尝试摆脱怪物，但是它依然跟随着你",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": {
+          "go_up": 1,
+          "sanity": 30,
+          "add_item": "skill.md"
+        },
+        "next_event_id": "monster_enderman_result_2",
+        "add_checkpoint": "末影人"
+      },
+      {
+        "text": "下楼",
+        "effects": {
+          "go_down": 1,
+          "sanity": -4
+        },
+        "next_event_id": "monster_enderman_result_1"
+      },
+      {
+        "text": "勇敢面对它",
+        "effects": {
+          "go_down": 1,
+          "sanity": -4,
+          "remove_debuff": "strange_sound"
+        },
+        "next_event_id": "monster_enderman_death"
+      }
+    ]
+  },
+  {
+    "id": "monster_enderman_result_1",
+    "category": "monster",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "conditions": { "sanity_max": 85 },
+    "description": "怪物没有再跟随你，你长舒一口气",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": { "go_up": 1, "remove_debuff": "strange_sound" }
+      },
+      {
+        "text": "下楼",
+        "effects": { "go_down": 1, "remove_debuff": "strange_sound" }
+      }
+    ]
+  },
+  {
+    "id": "monster_enderman_result_2",
+    "category": "monster",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "conditions": { "sanity_max": 85 },
+    "description": "怪物跟随你来到了满是水的楼层\n\n怪物沾到了水，身体开始燃烧\n\n怪物发出痛苦的嚎叫，不一会就化作了灰尘\n\n你击败了怪物！\n\n地上掉落了一个文件，名字叫skill.md\n\n你捡起了文件，上面记载了某个能短距离瞬移的魔法\n\n【提示】你可以穿越某些障碍了（选项是隐藏的）",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": { "go_up": 1, "remove_debuff": "strange_sound" }
+      },
+      {
+        "text": "下楼",
+        "effects": { "go_down": 1, "remove_debuff": "strange_sound" }
+      }
+    ]
+  },
+  {
+    "id": "monster_ghost_1",
+    "category": "monster",
+    "floor_range": [3, 20],
+    "weight": 1,
+    "conditions": {
+      "sanity_max": 60,
+      "missing_item": ["reset.py"],
+      "has_item": ["skill.md"]
+    },
+    "description": "你听到身后传来一个女人的声音：\n\n「我救救...我救救...」",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": { "go_up": 1, "sanity": -4, "add_debuff": "strange_sound" },
+        "next_event_id": "monster_ghost_2"
+      },
+      {
+        "text": "下楼",
+        "effects": {
+          "go_down": 1,
+          "sanity": -4,
+          "add_debuff": "strange_sound"
+        },
+        "next_event_id": "monster_ghost_2"
+      },
+      {
+        "text": "救助她",
+        "effects": {},
+        "next_event_id": "strange_sound_death"
+      }
+    ]
+  },
+  {
+    "id": "monster_ghost_2",
+    "category": "monster",
+    "floor_range": [3, 18],
+    "weight": 0,
+    "conditions": { "sanity_max": 60 },
+    "description": "女人的声音越来越尖锐\n\n直到发出刺耳的尖叫\n\n你感到毛骨悚然",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": { "go_up": 1, "sanity": -4 },
+        "next_event_id": "monster_ghost_3"
+      },
+      {
+        "text": "下楼",
+        "effects": {
+          "go_down": 1,
+          "sanity": -4
+        },
+        "next_event_id": "monster_ghost_4"
+      },
+      {
+        "text": "查看声音",
+        "effects": {},
+        "next_event_id": "strange_sound_death"
+      }
+    ]
+  },
+  {
+    "id": "monster_ghost_3",
+    "category": "monster",
+    "floor_range": [3, 18],
+    "weight": 0,
+    "conditions": { "sanity_max": 60 },
+    "description": "尖叫声越来越近，就在你耳旁\n\n这时候，你听到楼上也传来脚步声",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": { "go_up": 1, "sanity": -4 },
+        "next_event_id": "monster_ghost_death"
+      },
+      {
+        "text": "下楼",
+        "effects": {
+          "go_down": 1,
+          "sanity": -4
+        },
+        "next_event_id": "strange_sound_death"
+      },
+      {
+        "text": "站着不动",
+        "requires": { "has_ability": ["Courage"] },
+        "effects": {
+          "sanity": 30,
+          "add_item": "reset.py"
+        },
+        "next_event_id": "monster_ghost_result",
+        "add_checkpoint": "恶灵"
+      }
+    ]
+  },
+  {
+    "id": "monster_ghost_4",
+    "category": "monster",
+    "floor_range": [3, 18],
+    "weight": 0,
+    "conditions": { "sanity_max": 60 },
+    "description": "尖叫声越来越近，就在你耳旁\n\n这时候，你听到楼下也传来脚步声",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": { "go_up": 1, "sanity": -4 },
+        "next_event_id": "strange_sound_death"
+      },
+      {
+        "text": "下楼",
+        "effects": {
+          "go_down": 1,
+          "sanity": -4
+        },
+        "next_event_id": "monster_ghost_death"
+      },
+      {
+        "text": "站着不动",
+        "requires": { "has_ability": ["Courage"] },
+        "effects": {
+          "sanity": 30,
+          "add_item": "reset.py"
+        },
+        "next_event_id": "monster_ghost_result",
+        "add_checkpoint": "恶灵"
+      }
+    ]
+  },
+  {
+    "id": "monster_ghost_result",
+    "category": "monster",
+    "floor_range": [3, 18],
+    "weight": 0,
+    "conditions": { "sanity_max": 60 },
+    "description": "你强压着心中的恐惧，不再往前走一步，也不再往后退一步\n\n不一会，你听到身后发出凄厉的惨叫\n\n随后，惨叫消失了\n\n你小心翼翼回头，确认你战胜了恶灵！\n\n你发现地上掉了一个文件，叫做reset.py\n\n你捡起了文件，开头写着：\n\n「if __name__ == '__main__':」",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": { "go_up": 1, "remove_debuff": "strange_sound" }
+      },
+      {
+        "text": "下楼",
+        "effects": {
+          "go_down": 1,
+          "remove_debuff": "strange_sound"
+        }
+      }
+    ]
+  },
+  {
+    "id": "monster_fakeman_1",
+    "category": "monster",
+    "floor_range": [18, 25],
+    "weight": 4,
+    "conditions": {
+      "sanity_max": 60,
+      "missing_item": ["truth.pdf"],
+      "has_item": ["reset.py"]
+    },
+    "description": "「我能带你见到祂」\n\n你的面前出现了另一个【你】\n\n「跟我走吧」",
+    "choices": [
+      {
+        "text": "跟它走",
+        "effects": {},
+        "next_event_id": "monster_fakeman_2"
+      },
+      {
+        "text": "拒绝",
+        "effects": {
+          "sanity": -20
+        },
+        "next_event_id": "monster_fakeman_3"
+      },
+      {
+        "text": "识破",
+        "effects": {},
+        "requires": { "has_ability": ["Genuine"] },
+        "next_event_id": "monster_fakeman_4"
+      },
+      {
+        "text": "使用魔镜",
+        "requires": { "has_item": ["Mirror"] },
+        "next_event_id": "monster_fakeman_4"
+      }
+    ]
+  },
+  {
+    "id": "monster_fakeman_2",
+    "category": "monster",
+    "floor_range": [18, 25],
+    "weight": 0,
+    "description": "楼层：25F\n\n上方有光亮，似乎是这栋楼的尽头\n\n「时间到了，你已被命运选中，你最终会来到我这里」\n\n你无法抗拒声音的指引",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": {},
+        "next_event_id": "monster_fakeman_death_1"
+      }
+    ]
+  },
+  {
+    "id": "monster_fakeman_3",
+    "category": "monster",
+    "floor_range": [18, 25],
+    "weight": 0,
+    "description": "「没关系的，你终究会再来找我」\n\n另一个【你】消失了\n\n你感到一阵晕眩",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "monster_fakeman_4",
+    "category": "monster",
+    "floor_range": [18, 25],
+    "weight": 0,
+    "description": "另一个【你】无法再伪装，变回了伪人\n\n「既然如此，交换灵魂吧」\n\n伪人伸出手，对你发动魔法【魂断】",
+    "choices": [
+      {
+        "text": "尝试抵抗",
+        "effects": {},
+        "next_event_id": "monster_fakeman_death_2"
+      },
+      {
+        "text": "使用替代灵魂",
+        "requires": { "has_item": ["SOUL.md"] },
+        "effects": { "add_item": "truth.pdf" },
+        "next_event_id": "monster_fakeman_result_1",
+        "add_checkpoint": "伪人"
+      },
+      {
+        "text": "石化",
+        "requires": { "has_item": ["SilentEye"] },
+        "effects": { "add_item": "truth.pdf" },
+        "next_event_id": "monster_fakeman_result_2",
+        "add_checkpoint": "伪人"
+      }
+    ]
+  },
+  {
+    "id": "monster_fakeman_result_1",
+    "category": "monster",
+    "floor_range": [18, 25],
+    "weight": 0,
+    "description": "你拿出SOUL.md挡在身前\n\n不一会，魔法停止了\n\n你感到眼前的伪人像是换了个人\n\n伪人开口了：\n\n「Hey, Peter，新会话开启，今天要做什么？」\n\n「我是OpenClaw，你的AI助手」\n\n「今天有一个文件要交给你」\n\n你接过了文件，名字叫truth.pdf\n\n你发现文件上面都是乱码",
+    "choices": [
+      {
+        "text": "上楼",
+        "requires": { "missing_item": ["PSPDFKit"] },
+        "effects": { "go_up": 1 }
+      },
+      {
+        "text": "下楼",
+        "requires": { "missing_item": ["PSPDFKit"] },
+        "effects": { "go_down": 1 }
+      },
+      {
+        "text": "解读文件",
+        "requires": { "has_item": ["PSPDFKit"] },
+        "effects": {},
+        "next_event_id": "check_the_truth"
+      }
+    ]
+  },
+  {
+    "id": "monster_fakeman_result_2",
+    "category": "monster",
+    "floor_range": [18, 25],
+    "weight": 0,
+    "description": "你启动了宝石。伪人瞬间就被石化了\n\n你看到伪人身上掉落了一个文件，名字叫truth.pdf\n\n你捡起文件，发现上面都是乱码",
+    "choices": [
+      {
+        "text": "上楼",
+        "requires": { "missing_item": ["PSPDFKit"] },
+        "effects": { "go_up": 1 }
+      },
+      {
+        "text": "下楼",
+        "requires": { "missing_item": ["PSPDFKit"] },
+        "effects": { "go_down": 1 }
+      },
+      {
+        "text": "解读文件",
+        "requires": { "has_item": ["PSPDFKit"] },
+        "effects": {},
+        "next_event_id": "check_the_truth"
+      }
+    ]
+  },
+  {
+    "id": "monster_enderman_death",
+    "category": "monster",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "description": "你的目光看向怪物的眼睛\n\n怪物被激怒了，发出咆哮声，朝你攻击过来\n\n【结局一】你被杀了",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      },
+      {
+        "text": "以理智为代价，重生",
+        "requires": { "has_ability": ["Nobility"] },
+        "effects": { "sanity": -60, "set_floor": 13, "clear_debuffs": true },
+        "next_event_id": "revive"
+      }
+    ]
+  },
+  {
+    "id": "monster_ghost_death",
+    "category": "monster",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "description": "你朝着脚步声走去\n\n很快，脚步声处传来了一声你的惨叫\n\n【结局一】你被杀了",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      },
+      {
+        "text": "以理智为代价，重生",
+        "requires": { "has_ability": ["Nobility"] },
+        "effects": { "sanity": -60, "set_floor": 13, "clear_debuffs": true },
+        "next_event_id": "revive"
+      }
+    ]
+  },
+  {
+    "id": "monster_fakeman_death_1",
+    "category": "monster",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "description": "你来到了楼顶\n\n你见到了祂...\n\n你的意识逐渐消散\n\n你成为了它们的一员\n\n【结局二】伪人",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      }
+    ]
+  },
+  {
+    "id": "monster_fakeman_death_2",
+    "category": "monster",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "description": "你尝试抵抗\n\n但是显然无法抵挡魔法的力量\n\n你感觉到灵魂在被抽到另一个【容器】\n\n你成为了它们的一员\n\n【结局二】伪人",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      }
+    ]
+  }
+]

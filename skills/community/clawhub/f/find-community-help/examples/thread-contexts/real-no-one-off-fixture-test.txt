@@ -1,0 +1,6 @@
+Source: sanitized local Codex implementation session from 2026-06-03.
+Host: Codex
+Problem type: real-case testing under a no-one-off-fix rule.
+Observed issue: the skill needs true workflow fixtures, but the user explicitly forbids fitting a fix to one page, warning, or sample.
+User constraint: each change must land as a common rule, trigger class, contract field, or test category.
+Expected next outcome: run the skill on sanitized real-thread fingerprints and check that the resulting query plan and advisory output prove category behavior.

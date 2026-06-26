@@ -1,0 +1,60 @@
+{
+  "id": "fec-dependency-upgrade",
+  "name": "依赖升级",
+  "category": "review-quality",
+  "tags": [
+    "dependency-upgrade",
+    "lockfile",
+    "cve",
+    "migration",
+    "peer-dependency"
+  ],
+  "summary": "Frontend dependency upgrade planning, lockfile risk review, major-version migration, CVE remediation, peer dependency handling, and CI verification.",
+  "version": "2.5.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "review-quality",
+    "dependency-upgrade",
+    "lockfile",
+    "cve",
+    "migration",
+    "peer-dependency"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when planning, implementing, or reviewing frontend dependency upgrades, package migrations, lockfile changes, major framework version bumps, CVE remediation, peer dependency conflicts, ESM/CJS shifts, build-tool compatibility, or CI verification matrices; Chinese triggers include 依赖升级, 版本升级, lockfile, peer dependency, CVE 修复, 大版本迁移.",
+  "source": "skills/fec-dependency-upgrade",
+  "references": [
+    "references/dependency-upgrade-workflow.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-source-driven-development",
+      "fec-validation-fix",
+      "fec-refactor-clean",
+      "fec-security-review",
+      "fec-monorepo-project-standard"
+    ],
+    "boundaryWorkflows": [
+      "Use source-driven development for official release notes, migration guides, version-sensitive behavior, and project facts before deciding an upgrade path.",
+      "Use validation fix when the task is to repair concrete lint, typecheck, test, build, or CI failures after an upgrade.",
+      "Use refactor clean for proven unused dependency removal; keep version migration and lockfile risk in the dependency upgrade workflow."
+    ],
+    "capabilityTags": [
+      "dependency-upgrade",
+      "lockfile",
+      "cve",
+      "migration"
+    ]
+  }
+}

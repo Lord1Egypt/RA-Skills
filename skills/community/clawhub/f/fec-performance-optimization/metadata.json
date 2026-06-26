@@ -1,0 +1,62 @@
+{
+  "id": "fec-performance-optimization",
+  "name": "前端性能优化",
+  "category": "review-quality",
+  "tags": [
+    "performance",
+    "web-vitals",
+    "bundle",
+    "runtime",
+    "lighthouse"
+  ],
+  "summary": "Frontend performance workflow for Core Web Vitals, bundle size, rendering cost, memory leaks, network waterfalls, budgets, and evidence-based optimization.",
+  "version": "2.7.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "review-quality",
+    "performance",
+    "web-vitals",
+    "bundle",
+    "runtime",
+    "lighthouse"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when diagnosing or improving frontend performance, Core Web Vitals, bundle size, runtime rendering cost, network waterfalls, memory leaks, long tasks, Lighthouse findings, or performance budgets; Chinese triggers include 性能优化, 页面卡顿, 首屏慢, 包体积, Web Vitals.",
+  "source": "skills/fec-performance-optimization",
+  "references": [
+    "references/framework-performance-patterns.md",
+    "references/report-template.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-validation-fix",
+      "fec-code-review",
+      "fec-list-virtualization",
+      "fec-web-workers",
+      "fec-vite-project-standard",
+      "fec-responsive-layout"
+    ],
+    "boundaryWorkflows": [
+      "Use a validation workflow to run build, typecheck, tests, and performance-related scripts after optimization changes.",
+      "Use a code review workflow when performance findings overlap architecture, rendering correctness, or maintainability.",
+      "Use list virtualization or worker workflows only for their specific DOM or main-thread bottlenecks."
+    ],
+    "capabilityTags": [
+      "performance",
+      "web-vitals",
+      "bundle",
+      "runtime"
+    ]
+  }
+}

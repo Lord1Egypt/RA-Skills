@@ -1,0 +1,64 @@
+name: "眉州东坡（北苑华贸店）"
+slug: "meizhou-dongpo-beiyuan"
+category: "川菜"
+city: "北京"
+district: "朝阳"
+address: "来广营地区（北苑华贸）"
+hours: "营业中（具体时间到店确认）"
+
+price_per_person: "69"
+phone: "到店咨询"
+
+signature_dishes:
+  - name: "宫保鸡丁"
+    description: "40人推荐，招牌必点"
+  - name: "传统地道冒血旺"
+    description: "27人推荐，地道川味"
+  - name: "传家东坡肘子"
+    description: "25人推荐，镇店之宝"
+  - name: "东坡烤鸭"
+    description: "19人推荐"
+  - name: "眉州东坡香肠"
+    description: "18人推荐"
+  - name: "一品东坡肉"
+    description: "11人推荐"
+  - name: "担担面"
+    description: "11人推荐"
+
+menu_highlights: "麻婆豆腐、传统地道毛血旺3.0、芝麻甜皮鸭、银杏豌豆尖、白菜海蜇丝、菌汤虾滑、糖醋大头菜、炙子烤羊肉、糟糕豆腐花、酥牛肉麻婆豆腐"
+
+location_tips: "北苑华贸商圈内"
+nearby_landmarks: "北苑华贸"
+
+booking:
+  required: false
+  method: "大众点评/美团搜索「眉州东坡」"
+
+vibe: "经典川菜馆，环境干净舒适，适合家庭和商务聚餐"
+suitable_for:
+  - "朋友聚餐"
+  - "家庭聚餐"
+  - "商务宴请"
+  - "请客吃饭"
+meal_types:
+  - "lunch"
+  - "dinner"
+
+tags:
+  - "川菜"
+  - "东坡肉"
+  - "北苑"
+  - "华贸"
+  - "朝阳"
+  - "连锁"
+  - "大众点评热门榜第1"
+
+special_notes: |
+  - 大众点评北苑家园川菜热门榜第1名
+  - 评分 4.8，口碑很好
+  - 有商家团购套餐优惠
+  - 连锁品牌，品质稳定
+
+contributor:
+  name: "eat-skill"
+  note: "眉州东坡经典川菜，北苑华贸店"

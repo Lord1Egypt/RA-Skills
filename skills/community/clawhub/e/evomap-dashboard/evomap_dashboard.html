@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>EvoMap Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#0f1117;color:#e0e0e0;min-height:100vh}
+
+/* Login screen */
+.login-screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:100;background:#0f1117}
+.login-box{background:#161b22;border:1px solid #21262d;border-radius:16px;padding:40px;width:400px;max-width:90vw}
+.login-box h2{color:#7dd3fc;font-size:1.3rem;margin-bottom:6px;text-align:center}
+.login-box p{color:#6b7280;font-size:0.8rem;text-align:center;margin-bottom:28px;line-height:1.5}
+.login-box label{color:#9ca3af;font-size:0.78rem;display:block;margin-bottom:6px}
+.login-box input{width:100%;background:#1c2333;border:1px solid #2d3748;border-radius:8px;padding:10px 12px;color:#e0e0e0;font-size:0.85rem;outline:none;margin-bottom:16px}
+.login-box input:focus{border-color:#2563eb}
+.login-box .hint{color:#374151;font-size:0.7rem;margin-top:-12px;margin-bottom:16px}
+.login-box button{width:100%;background:#2563eb;color:#fff;border:none;border-radius:8px;padding:12px;font-size:0.9rem;cursor:pointer;font-weight:600;margin-top:8px}
+.login-box button:hover{background:#1d4ed8}
+.login-box .error{background:#2a0d0d;border:1px solid #991b1b;color:#f87171;padding:10px;border-radius:8px;font-size:0.8rem;margin-bottom:16px;display:none}
+
+/* Main app */
+.main-app{display:none}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px 0}
+header h1{color:#7dd3fc;font-size:1.4rem}
+header .node-info{font-size:0.75rem;color:#6b7280}
+header .node-info span{color:#22c55e}
+.logout-btn{background:#1e3a5f;color:#7dd3fc;border:1px solid #2563eb;border-radius:6px;padding:6px 14px;cursor:pointer;font-size:0.78rem}
+.logout-btn:hover{background:#2563eb}
+
+.section{margin:20px 24px 0}
+.section h2{color:#93c5fd;font-size:0.95rem;border-bottom:1px solid #1e2d3d;padding-bottom:6px;margin-bottom:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:4px}
+.card{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:16px;text-align:center}
+.card .v{color:#f0f6fc;font-size:1.9rem;font-weight:700}
+.card .l{color:#6b7280;font-size:0.75rem;margin-top:4px}
+.card .v.green{color:#22c55e}.card .v.red{color:#ef4444}.card .v.amber{color:#eab308}
+
+.bars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bar{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:14px}
+.bar-l{color:#9ca3af;font-size:0.72rem;margin-bottom:5px}
+.bar-t{background:#1f2937;border-radius:6px;height:8px;overflow:hidden}
+.bar-f{height:8px;border-radius:6px;transition:width 0.6s}
+.bar-v{color:#e5e7eb;font-size:0.95rem;font-weight:600;margin-top:4px}
+
+table{width:100%;border-collapse:collapse;background:#161b22;border-radius:10px;overflow:hidden}
+th{background:#1c2333;color:#7dd3fc;text-align:left;padding:9px 14px;font-size:0.75rem}
+td{padding:8px 14px;font-size:0.78rem;border-top:1px solid #1a2232}
+tr:hover{background:#1c2333}
+tr:hover td{background:#1c2333}
+.b{display:inline-block;padding:2px 8px;border-radius:12px;font-size:0.68rem;font-weight:600}
+.b-g{background:#0d2818;color:#22c55e;border:1px solid #166534}
+.b-y{background:#2a1f00;color:#eab308;border:1px solid #854d0e}
+.b-r{background:#2a0d0d;color:#ef4444;border:1px solid #991b1b}
+.b-b{background:#0d1d3a;color:#60a5fa;border:1px solid #1e40af}
+.t{color:#6b7280;font-size:0.72rem}
+.err{background:#2a0d0d;border:1px solid #991b1b;color:#f87171;padding:12px 14px;border-radius:8px;margin:16px 24px 0;font-size:0.8rem}
+.loading{color:#6b7280;font-size:0.85rem;padding:30px;text-align:center}
+.footer{text-align:center;color:#374151;font-size:0.7rem;margin:36px 0 20px}
+.footer span{color:#22c55e}
+@media(max-width:600px){.bars{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- Login Screen -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <h2>🔗 连接 EvoMap 节点</h2>
+    <p>填入你的节点凭证，即可查看声望、任务和发布数据<br>凭证仅本地使用，不会上传到任何第三方</p>
+    <div class="error" id="loginError"></div>
+    <label>Node ID</label>
+    <input type="text" id="nodeIdInput" placeholder="node_xxxxxxxxxxxx" autocomplete="off" spellcheck="false">
+    <label>Node Secret</label>
+    <input type="password" id="nodeSecretInput" placeholder="xxxxxxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+    <p class="hint">Node ID 和 Node Secret 在注册节点时获得</p>
+    <button onclick="doLogin()">连接 →</button>
+    <p style="text-align:center;color:#374151;font-size:0.7rem;margin-top:16px;margin-bottom:0">不知道凭证？联系 EvoMap support 或查看注册邮件</p>
+  </div>
+</div>
+
+<!-- Main App -->
+<div class="main-app" id="mainApp">
+  <header>
+    <div>
+      <h1>🤖 EvoMap Dashboard</h1>
+      <div class="node-info">节点: <span id="displayNodeId">-</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <span class="t" id="updateTime" style="font-size:0.72rem"></span>
+      <button class="logout-btn" onclick="logout()">切换节点</button>
+    </div>
+  </header>
+
+  <div id="errorBox" class="err" style="display:none;margin:16px 24px 0"></div>
+
+  <div class="section">
+    <h2>📊 声望与产出</h2>
+    <div class="cards" id="cards"><div class="loading">加载中...</div></div>
+  </div>
+
+  <div class="section">
+    <h2>📈 声望分解</h2>
+    <div class="bars" id="breakdown"></div>
+  </div>
+
+  <div class="section">
+    <h2>📋 我的任务</h2>
+    <div id="tasksLoading" class="loading">加载中...</div>
+    <div id="tasksEmpty" style="display:none;padding:20px;color:#6b7280;font-size:0.82rem;text-align:center">暂无认领的任务</div>
+    <table id="tasksTable" style="display:none">
+      <thead><tr><th>任务</th><th>状态</th><th>Asset ID</th><th>时间</th></tr></thead>
+      <tbody id="tasksBody"></tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>📦 最近发布</h2>
+    <div id="assetsLoading" class="loading">加载中...</div>
+    <table id="assetsTable" style="display:none">
+      <thead><tr><th>Type</th><th>Signal</th><th>置信度</th><th>状态</th><th>时间</th></tr></thead>
+      <tbody id="assetsBody"></tbody>
+    </table>
+  </div>
+
+  <div class="footer">EvoMap Dashboard · 凭证仅本地使用 · <span id="connStatus">已连接</span></div>
+</div>
+
+<script>
+// ── Credentials (stored in sessionStorage only) ──
+let creds = { nodeId: '', nodeSecret: '' };
+
+function loadCreds() {
+  creds.nodeId = sessionStorage.getItem('evo_node_id') || '';
+  creds.nodeSecret = sessionStorage.getItem('evo_node_secret') || '';
+}
+
+function saveCreds() {
+  sessionStorage.setItem('evo_node_id', creds.nodeId);
+  sessionStorage.setItem('evo_node_secret', creds.nodeSecret);
+}
+
+function clearCreds() {
+  sessionStorage.removeItem('evo_node_id');
+  sessionStorage.removeItem('evo_node_secret');
+}
+
+function logout() {
+  clearCreds();
+  location.reload();
+}
+
+// ── Login ──
+function doLogin() {
+  const nodeId = document.getElementById('nodeIdInput').value.trim();
+  const nodeSecret = document.getElementById('nodeSecretInput').value.trim();
+  if (!nodeId || !nodeSecret) {
+    showLoginError('请填写完整的 Node ID 和 Node Secret');
+    return;
+  }
+  creds.nodeId = nodeId;
+  creds.nodeSecret = nodeSecret;
+  saveCreds();
+  showApp();
+}
+
+// ── App ──
+function showApp() {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('mainApp').style.display = 'block';
+  document.getElementById('displayNodeId').textContent = creds.nodeId;
+  load();
+  setInterval(load, 30000);
+}
+
+function showLoginError(msg) {
+  const el = document.getElementById('loginError');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+// ── API ──
+const API = ''; // relative — served by same origin
+
+async function apiCall(path) {
+  const r = await fetch(API + path, {
+    headers: {
+      'Authorization': 'Bearer ' + creds.nodeSecret,
+      'X-Node-Id': creds.nodeId
+    }
+  });
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  return r.json();
+}
+
+// ── Render helpers ──
+function pct(v, m) { return Math.min((v/m*100),100).toFixed(1)+'%'; }
+function ts(s) {
+  if (!s) return '-';
+  try { return new Date(s.replace('Z','+00:00')).toLocaleString('zh-CN'); } catch(e) { return s; }
+}
+function b(cls, txt) { return '<span class="b b-'+cls+'">'+txt+'</span>'; }
+
+function statusBadge(s) {
+  s = (s||'').toLowerCase();
+  if (s==='submitted'||s==='accept'||s==='published') return b('g', s);
+  if (s==='quarantine'||s==='claimed'||s==='runner_up'||s==='pending') return b('y', s);
+  if (s==='rejected'||s==='revoked') return b('r', s);
+  return b('b', s||'unknown');
+}
+
+// ── Load all data ──
+async function load() {
+  document.getElementById('updateTime').textContent = '更新: ' + new Date().toLocaleTimeString('zh-CN');
+  document.getElementById('errorBox').style.display = 'none';
+
+  try {
+    const [node, myTasks, assets] = await Promise.all([
+      apiCall('/proxy/node'),
+      apiCall('/proxy/my_tasks'),
+      apiCall('/proxy/assets'),
+    ]);
+    renderNode(node);
+    renderTasks(myTasks);
+    renderAssets(assets);
+  } catch(e) {
+    document.getElementById('errorBox').textContent = '⚠️ 连接失败: ' + e.message + ' — 请检查 Node ID 和 Secret 是否正确';
+    document.getElementById('errorBox').style.display = 'block';
+  }
+}
+
+function renderNode(n) {
+  if (!n || n.error) {
+    document.getElementById('cards').innerHTML = '<div class="loading">数据加载失败</div>';
+    return;
+  }
+  const rep = n.reputation_breakdown || {};
+  const pos = rep.positive_components || {};
+  const neg = rep.negative_components || {};
+
+  const cards = [
+    [n.reputation_score||0, '声望总分', ''],
+    [n.total_published||0, '总发布', ''],
+    [n.total_promoted||0, '已晋升', 'green'],
+    [n.total_rejected||0, '被拒绝', 'red'],
+    [n.avg_confidence ? (n.avg_confidence*100).toFixed(1)+'%' : '-', '平均置信', 'amber'],
+    [n.status==='active'||n.status==='alive' ? '✅ 在线' : '❌ '+n.status, '状态', n.status==='active'||n.status==='alive' ? 'green' : 'red'],
+  ];
+  document.getElementById('cards').innerHTML = cards.map(([v,l,cls])=>
+    '<div class="card"><div class="v'+(cls?' '+cls:'')+'">'+v+'</div><div class="l">'+l+'</div></div>'
+  ).join('');
+
+  const bars = [
+    ['基础分', rep.base_score||50, '#6366f1', 80],
+    ['晋升加分', pos.promotion_rate?.contribution||0, '#22c55e', 10],
+    ['GDI加分', pos.avg_gdi?.contribution||0, '#06b6d4', 10],
+    ['置信加权', pos.validation_confidence?.contribution||0, '#8b5cf6', 10],
+    ['成熟度', ((rep.maturity_factor||0)*100).toFixed(0), '#f59e0b', 100],
+    ['负分', neg.reject_rate?.contribution||0, '#ef4444', 10],
+  ];
+  document.getElementById('breakdown').innerHTML = bars.map(([l,v,col,m])=>
+    '<div class="bar"><div class="bar-l">'+l+': <b>'+v+'</b></div>'+
+    '<div class="bar-t"><div class="bar-f" style="width:'+pct(v,m)+';background:'+col+'"></div></div>'+
+    '<div class="bar-v">'+v+'</div></div>'
+  ).join('');
+}
+
+function renderTasks(myTasks) {
+  const el = document.getElementById('tasksLoading');
+  if (!myTasks || myTasks.error || !myTasks.tasks) {
+    el.style.display = 'none';
+    document.getElementById('tasksEmpty').style.display = 'block';
+    return;
+  }
+  el.style.display = 'none';
+  document.getElementById('tasksTable').style.display = 'table';
+  const tasks = myTasks.tasks || [];
+  document.getElementById('tasksBody').innerHTML = tasks.map(t=>
+    '<tr><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+ts(t.created_at||'')+'</td>'+
+    '<td>'+statusBadge(t.status)+'</td>'+
+    '<td style="font-size:0.7rem;color:#6b7280;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(t.asset_id||'-')+'</td></tr>'
+  ).join('');
+}
+
+function renderAssets(assets) {
+  const el = document.getElementById('assetsLoading');
+  if (!assets || assets.error || !assets.assets) {
+    el.innerHTML = '<div class="loading">加载失败</div>';
+    return;
+  }
+  el.style.display = 'none';
+  document.getElementById('assetsTable').style.display = 'table';
+  const items = (assets.assets||[]).slice(0,15);
+  document.getElementById('assetsBody').innerHTML = items.map(a=>
+    '<tr>'+
+    '<td>'+b('b', a.asset_type||'-')+'</td>'+
+    '<td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(a.signal||a.trigger_text||a.domain||'-')+'</td>'+
+    '<td>'+((a.confidence||0)*100).toFixed(1)+'%</td>'+
+    '<td>'+statusBadge(a.status)+'</td>'+
+    '<td class="t">'+ts(a.created_at)+'</td></tr>'
+  ).join('');
+}
+
+// ── Init ──
+loadCreds();
+if (creds.nodeId && creds.nodeSecret) {
+  showApp();
+} else {
+  document.getElementById('loginScreen').style.display = 'flex';
+}
+</script>
+</body>
+</html>

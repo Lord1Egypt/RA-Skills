@@ -1,35 +1,56 @@
 ---
-name: "环评知识库提炼"
-description: "环评报告知识库提炼工具 - 从环评报告表中提取结构化知识库文件，支持PDF/DOCX解析"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eia-knowledge-extractor"
-sourceUrl: "https://clawhub.ai/skills/eia-knowledge-extractor"
+name: eia-knowledge-extractor
+description: 环评报告知识库提炼工具 - 从环评报告表中提取结构化知识库文件，支持PDF/DOCX解析
+license: MIT
+version: "2.3"
 ---
 
 # 环评知识库提炼
 
-> 环评报告知识库提炼工具 - 从环评报告表中提取结构化知识库文件，支持PDF/DOCX解析
+从环境影响评价报告表中自动提取环境数据，生成结构化知识库文件。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eia-knowledge-extractor`
-- **Source URL:** [https://clawhub.ai/skills/eia-knowledge-extractor](https://clawhub.ai/skills/eia-knowledge-extractor)
+## 输入
 
-## Overview
+环评报告表文件（支持PDF、DOCX、DOC、TXT格式）
 
+## 输出
 
-## Installation
-To install this skill, run the following command in your terminal:
+生成5个知识库CSV文件：
+
+### 1. 污染因子知识库（19字段）
+污染物ID、行业、区域、产污工段、产污设施、原辅材料、污染物条件1-3、污染物名称、污染因子名称、污染物种类、排放位置、标准条件1-3、适用标准、标准限值-浓度/速率/高度/其他、备注、出处
+
+### 2. 废气源强核算知识库（15字段）
+污染物ID、污染物种类、污染因子种类、行业、区域、核算污染因子、产生量核算方法类型/依据/方法、核算公式、所需参数、产污系数、类比项目规模信息/污染物量、出处
+
+### 3. 废水源强核算知识库（15字段）
+同上
+
+### 4. 固废源强核算知识库（16字段）
+污染物ID、污染物种类、污染因子种类、固废类型、危废代码、行业、区域、核算污染因子、产生量核算方法类型/依据/方法、核算公式、所需参数、产污系数、类比项目规模信息/污染物量、出处
+
+### 5. 噪声源强核算知识库（13字段）
+污染物ID、污染物种类、污染因子种类、行业、区域、噪声源、规格型号、声源类型、计量单位/方式、声源源强值、降噪措施、降噪后源强值、出处
+
+## 数据规范
+
+- **污染物ID格式**：`行业_原辅料_产污工段_其他条件_污染物`
+- **示例**：`通用设备制造业_铸件_抛丸_/_抛丸粉尘`
+- **污染物种类**：废气、废水、固废、噪声
+- **空值**：用 `/` 表示
+
+## 质量核查
+
+生成后需核查：文件完整性（5个CSV）、命名规则、字段完整性（19/15/15/16/13）、与原报告一致性（不可缩写/缩减/缺漏）
+
+## 使用方法
+
 ```bash
-hermes skills install clawhub/eia-knowledge-extractor
+python scripts/main.py report.pdf -o output_dir
+```
+
+## 依赖
+
+```bash
+pip install pymupdf pandas python-docx
 ```

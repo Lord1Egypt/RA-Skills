@@ -1,0 +1,333 @@
+{
+  "name": "eComm AI — 05 Retry Engine",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "*/30 * * * *"
+            }
+          ]
+        }
+      },
+      "name": "Every 30 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        400
+      ],
+      "id": "9ffe6638-0131-4c0f-85f0-7b7a8cd9476b"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_ORDERS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Retry Queue",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "name": "Read Retry Queue",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        460,
+        400
+      ],
+      "id": "207b5e97-e330-4e58-be0b-ffb613e23d4f",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Filter retries: pending, < 3 attempts, > 30 min since last\nconst items = $input.all();\nconst now = Date.now();\nconst eligible = [];\n\nfor (const item of items) {\n  const d = item.json;\n  if (d.status !== 'pending_retry') continue;\n  const attempts = parseInt(d.attempts) || 0;\n  if (attempts >= 3) continue;\n  const lastAttempt = new Date(d.last_attempt).getTime();\n  if (now - lastAttempt < 30 * 60 * 1000) continue;\n  eligible.push({ json: { ...d, attempts: attempts + 1 } });\n}\n\nif (eligible.length === 0) return [{ json: { _empty: true, count: 0 } }];\nreturn eligible;"
+      },
+      "name": "Filter Eligible Retries",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        400
+      ],
+      "id": "17e996bd-e7f3-47a0-a11e-23f0dbb56582"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "65a225f3-c0c3-425e-8805-d47bec542fdd",
+              "leftValue": "={{ $json._empty }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "notEquals"
+              }
+            }
+          ]
+        }
+      },
+      "name": "Has Eligible?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        940,
+        400
+      ],
+      "id": "ef6e38cf-8249-49c0-bf50-5800fcfeab16"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "cbba34ac-c523-4c91-87d8-73e149bae749",
+              "leftValue": "={{ $json.attempts }}",
+              "rightValue": 3,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ]
+        }
+      },
+      "name": "Max Retries?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1180,
+        300
+      ],
+      "id": "58680fd6-c780-4954-a114-09ae67f5ceb1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.N8N_WEBHOOK_BASE}}/webhook/ecomm-ai/whatsapp-sms-fallback",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ order_id: $json.order_id, customer_phone: $json.customer_phone, customer_name: $json.customer_name, reason: 'max_retries' }) }}",
+        "options": {}
+      },
+      "name": "→ WhatsApp/SMS Fallback",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1420,
+        200
+      ],
+      "id": "6e4c714e-8c11-49e2-add3-4589f29bc945"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.VAPI_API_URL}}/call/phone",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  assistantId: $env.VAPI_COD_ASSISTANT_ID,\n  customer: { number: $json.customer_phone, name: $json.customer_name },\n  assistantOverrides: {\n    metadata: { order_id: $json.order_id, type: 'cod_retry', attempt: $json.attempts }\n  }\n}) }}",
+        "options": {},
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.VAPI_API_KEY}}"
+            }
+          ]
+        }
+      },
+      "name": "Vapi Retry Call",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1420,
+        420
+      ],
+      "id": "1c93ee28-f018-473c-a6fd-bcc15f114e5d"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_ORDERS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Retry Queue",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "order_id": "={{ $json.order_id }}",
+            "attempts": "={{ $json.attempts }}",
+            "last_attempt": "={{ new Date().toISOString() }}",
+            "status": "={{ $json.attempts >= 3 ? 'exhausted' : 'pending_retry' }}"
+          },
+          "matchingColumns": [
+            "order_id"
+          ],
+          "schema": [
+            {
+              "id": "order_id",
+              "displayName": "order_id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Update Retry Record",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1660,
+        400
+      ],
+      "id": "6af56df8-5b1b-472f-96d5-f6c84a071ba9",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "name": "No Retries Due",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        560
+      ],
+      "id": "40a9c715-9195-4060-988e-5c248d39c011"
+    }
+  ],
+  "connections": {
+    "Every 30 Minutes": {
+      "main": [
+        [
+          {
+            "node": "Read Retry Queue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Retry Queue": {
+      "main": [
+        [
+          {
+            "node": "Filter Eligible Retries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Eligible Retries": {
+      "main": [
+        [
+          {
+            "node": "Has Eligible?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Eligible?": {
+      "main": [
+        [
+          {
+            "node": "Max Retries?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Retries Due",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Max Retries?": {
+      "main": [
+        [
+          {
+            "node": "→ WhatsApp/SMS Fallback",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Vapi Retry Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "→ WhatsApp/SMS Fallback": {
+      "main": [
+        [
+          {
+            "node": "Update Retry Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vapi Retry Call": {
+      "main": [
+        [
+          {
+            "node": "Update Retry Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "预览质量",
+  "description": "快速预览的低质量设置，适合快速审核视频内容",
+  "version": "1.0",
+  "video": {
+    "codec": "libx264",
+    "preset": "ultrafast",
+    "crf": 35,
+    "profile": "baseline",
+    "level": "3.0",
+    "pixel_format": "yuv420p"
+  },
+  "audio": {
+    "codec": "aac",
+    "bitrate": "64k",
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "recommendations": {
+    "720p": {
+      "resolution": "1280x720",
+      "bitrate": "800k",
+      "audio_bitrate": "64k"
+    },
+    "480p": {
+      "resolution": "854x480",
+      "bitrate": "500k",
+      "audio_bitrate": "64k"
+    }
+  },
+  "use_cases": ["快速预览", "内容审核", "带宽受限环境"],
+  "requirements": {
+    "encoding_speed": "优先",
+    "file_size": "最小化",
+    "quality": "可接受"
+  }
+}

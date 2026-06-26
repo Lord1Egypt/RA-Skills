@@ -1,0 +1,67 @@
+{
+  "name": "enhanced-permissions",
+  "version": "1.0.6",
+  "displayName": "Enhanced Permissions",
+  "description": "OpenClaw 增强权限系统 - 包含 4 级权限控制、版本控制、自动整理、智能建议、知识图谱",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "main": "index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "permissions",
+    "memory",
+    "version-control",
+    "auto-organize",
+    "smart-suggestions",
+    "knowledge-graph"
+  ],
+  "engines": {
+    "openclaw": ">=2026.3.0",
+    "node": ">=18.0.0"
+  },
+  "peerDependencies": {
+    "zod": "^3.25.76"
+  },
+  "optionalDependencies": {
+    "openviking": "^0.2.0"
+  },
+  "scripts": {
+    "test": "node dist/test-simple.js",
+    "build": "tsc"
+  },
+  "files": [
+    "dist",
+    "index.js",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "openclaw": {
+    "type": "skill",
+    "autoLoad": true,
+    "tools": [
+      "memory_store",
+      "memory_recall",
+      "memory_update",
+      "memory_version_history",
+      "memory_auto_organize",
+      "permission_check"
+    ],
+    "config": {
+      "enableVersionControl": true,
+      "enableAutoOrganize": true,
+      "enableSuggestions": true,
+      "userLevel": "moderate"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/enhanced-permissions"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/enhanced-permissions/issues"
+  },
+  "homepage": "https://github.com/openclaw/enhanced-permissions#readme"
+}

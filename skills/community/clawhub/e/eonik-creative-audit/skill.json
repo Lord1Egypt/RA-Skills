@@ -1,0 +1,37 @@
+{
+  "name": "eonik-creative-audit",
+  "version": "1.0.10",
+  "description": "Identifies creative fatigue, budget leaks, and scaling opportunities by running the eonik creative audit engine.",
+  "author": "eonik",
+  "license": "MIT",
+  "source": "https://github.com/eonik-ai/eonik-creative-audit-skill",
+  "homepage": "https://eonik.ai",
+  "tags": [
+    "ads",
+    "marketing",
+    "meta",
+    "budgeting",
+    "eonik"
+  ],
+  "triggers": [
+    "Audit my Meta ads",
+    "Check for budget leaks",
+    "Optimize my Meta ad account",
+    "Find decaying creatives",
+    "Run the eonik ad audit pipeline"
+  ],
+  "dependencies": {
+    "python": ">=3.7"
+  },
+  "requiredEnv": [
+    "EONIK_API_KEY"
+  ],
+  "requirements": {
+    "bins": [
+      "python3"
+    ]
+  },
+  "config_required": true,
+  "readme": "README.md",
+  "skill_file": "SKILL.md"
+}

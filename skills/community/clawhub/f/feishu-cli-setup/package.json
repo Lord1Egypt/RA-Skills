@@ -1,0 +1,18 @@
+{
+  "name": "feishu-cli-setup",
+  "version": "1.0.0",
+  "description": "AI agent guide for installing and configuring lark-cli (飞书/Lark CLI) — handles npm install, Feishu app config, and OAuth login flow.",
+  "main": "scripts/setup.js",
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "check": "node scripts/check.js",
+    "install": "node scripts/install.js",
+    "config": "node scripts/config.js",
+    "auth": "node scripts/auth.js",
+    "verify": "node scripts/verify.js",
+    "learn": "node scripts/learn.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

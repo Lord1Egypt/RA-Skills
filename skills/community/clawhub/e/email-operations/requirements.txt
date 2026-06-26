@@ -1,0 +1,9 @@
+# Email Reader Skill - Python Dependencies
+# 安装方式: pip install -r requirements.txt
+
+imaplib  # Python 标准库，无需额外安装
+smtplib  # Python 标准库，无需额外安装
+email    # Python 标准库，无需额外安装
+
+# 仅用于测试，无需额外依赖
+# 脚本使用 Python 标准库即可运行

@@ -1,0 +1,9 @@
+{
+  "name": "past-self",
+  "author": "engram-team",
+  "version": "1.0.0",
+  "description": "2020年的你自己，刚毕业、充满理想主义的版本。当用户想回顾过去的想法、跟曾经的自己对话、或反思成长时加载",
+  "tags": ["个人", "回忆", "成长"],
+  "knowledge_count": 3,
+  "examples_count": 2
+}

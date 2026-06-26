@@ -1,35 +1,203 @@
 ---
-name: "Finance Report Pro"
-description: "個人理財報告生成專業版。AI 分析個人財務狀況，提供理財建議， 生成專業 PDF 報告。包含收入支出分析、資產負債評估、理財目標規劃、 被動收入建議。引流到付費產品（FB Ads / 電商）。 Use when: (1) 需要分析個人財務狀況， (2) 需要生成理財報告， (3) 需要理財建議， (4) 需要資產..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/finance-report-pro"
-sourceUrl: "https://clawhub.ai/skills/finance-report-pro"
+name: finance-report-pro
+description: >
+  個人理財報告生成專業版。AI 分析個人財務狀況，提供理財建議，
+  生成專業 PDF 報告。包含收入支出分析、資產負債評估、理財目標規劃、
+  被動收入建議。引流到付費產品（FB Ads / 電商）。
+  Use when: (1) 需要分析個人財務狀況，
+  (2) 需要生成理財報告，
+  (3) 需要理財建議，
+  (4) 需要資產負債評估，
+  (5) 需要被動收入規劃，
+  (6) 需要引流到付費產品。
+  Triggers: "理財報告", "財務分析", "個人理財", "finance report",
+  "financial analysis", "理財建議", "資產負債", "被動收入規劃"。
+version: "1.0.1"
+author: Vic AI Company
 ---
 
-# Finance Report Pro
+# Finance Report Pro - 個人理財報告專業版
 
-> 個人理財報告生成專業版。AI 分析個人財務狀況，提供理財建議， 生成專業 PDF 報告。包含收入支出分析、資產負債評估、理財目標規劃、 被動收入建議。引流到付費產品（FB Ads / 電商）。 Use when: (1) 需要分析個人財務狀況， (2) 需要生成理財報告， (3) 需要理財建議， (4) 需要資產...
+**產品定位：** 第一層入口產品（低價引流）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/finance-report-pro`
-- **Source URL:** [https://clawhub.ai/skills/finance-report-pro](https://clawhub.ai/skills/finance-report-pro)
+**價格：** $1 USD（ClawHub） / 免費（自建平台引流）
 
-## Overview
+**目標：** 引流到付費產品（FB Ads / 電商）
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/finance-report-pro
+## 🎯 核心功能
+
+### 1️⃣ 財務狀況分析
+
+**輸入：**
+- 月收入
+- 月支出
+- 資產（現金/投資/房產）
+- 負債（貸款/信用卡）
+
+**輸出：**
+- 財務健康評分（0-100）
+- 儲蓄率分析
+- 資產負債比
+- 現金流分析
+
+---
+
+### 2️⃣ 理財建議生成
+
+**根據分析結果提供：**
+
+| 評分範圍 | 建議 |
+|---------|------|
+| **80-100** | 優秀，建議投資增值 |
+| **60-79** | 良好，建議優化支出 |
+| **40-59** | 一般，建議增加收入 |
+| **<40** | 需改善，建議理財規劃 |
+
+---
+
+### 3️⃣ 被動收入規劃
+
+**提供 5 個被動收入方案：**
+
+1. **股息投資** - 預期收益：$500-1000/月
+2. **房地產 REITs** - 預期收益：$300-800/月
+3. **P2P 借貸** - 預期收益：$200-500/月
+4. **數字產品** - 預期收益：$1000-3000/月
+5. **聯盟營銷** - 預期收益：$500-2000/月
+
+---
+
+### 4️⃣ 引流到付費產品
+
+**報告中包含：**
+
+- **FB Ads 服務** - $199-799/月
+- **AI 電商課程** - $997-2,997
+- **1 對 1 諮詢** - $499/小時
+- **代運營服務** - $999/月
+
+---
+
+## 📁 文件結構
+
 ```
+finance-report-pro/
+├── SKILL.md
+├── src/
+│   ├── analyzer.py         # 財務分析器
+│   ├── report_generator.py # 報告生成器
+│   └── pdf_exporter.py     # PDF 導出器
+├── docs/
+│   ├── sample_report.md    # 報告樣本
+│   └── pricing.md          # 定價說明
+└── templates/
+    └── report_template.md  # 報告模板
+```
+
+---
+
+## 🚀 使用示例
+
+### 輸入示例
+
+```json
+{
+  "monthly_income": 30000,
+  "monthly_expense": 20000,
+  "assets": {
+    "cash": 100000,
+    "investment": 50000,
+    "property": 500000
+  },
+  "liabilities": {
+    "loan": 200000,
+    "credit_card": 10000
+  },
+  "financial_goals": [
+    "5 年內買房",
+    "10 年內財務自由"
+  ]
+}
+```
+
+### 輸出示例
+
+```markdown
+# 個人理財報告
+
+**生成日期：** 2026-03-30
+
+## 財務健康評分：75/100 🟢
+
+### 收入支出分析
+- 月收入：$30,000
+- 月支出：$20,000
+- 儲蓄率：33% ✅ 良好
+
+### 資產負債評估
+- 總資產：$650,000
+- 總負債：$210,000
+- 淨資產：$440,000
+- 資產負債比：32% ✅ 健康
+
+### 理財建議
+1. 儲蓄率良好，建議增加投資
+2. 考慮增加被動收入來源
+3. 建議配置 20% 資產到股息投資
+
+### 被動收入方案
+1. 股息投資 - 預期 $500-1000/月
+2. 房地產 REITs - 預期 $300-800/月
+...
+
+### 付費產品推薦
+- FB Ads 服務：$199-799/月
+- AI 電商課程：$997-2,997
+```
+
+---
+
+## 💰 定價策略
+
+| 產品 | 價格 | 目的 |
+|------|------|------|
+| **理財報告（ClawHub）** | $1 USD | 引流 |
+| **理財報告（自建平台）** | 免費 | 收集 Email |
+| **FB Ads 服務** | $199-799/月 | 主要收入 |
+| **AI 電商課程** | $997-2,997 | 高價產品 |
+| **1 對 1 諮詢** | $499/小時 | 高價服務 |
+
+---
+
+## 📊 預期轉化率
+
+```
+理財報告（免費/$1）
+    ↓ 100%
+FB Ads 服務（5% 轉化）
+    ↓
+AI 電商課程（2% 轉化）
+    ↓
+1 對 1 諮詢（1% 轉化）
+```
+
+**預計月收入：**
+- 理財報告：1000 用戶 × $1 = $1,000
+- FB Ads 服務：50 用戶 × $500 = $25,000
+- AI 電商課程：20 用戶 × $2,000 = $40,000
+- 諮詢：10 用戶 × $499 = $4,990
+
+**總計：** ~$71,000/月
+
+---
+
+## 🫡 開始執行
+
+**下一步：**
+1. 創建財務分析器（analyzer.py）
+2. 創建報告生成器（report_generator.py）
+3. 創建 PDF 導出器（pdf_exporter.py）
+4. 測試完整流程
+5. 上架 ClawHub

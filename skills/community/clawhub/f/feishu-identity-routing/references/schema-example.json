@@ -1,0 +1,38 @@
+{
+  "schema": "feishu-user-master/v1",
+  "updated_at": "2026-03-30T18:54:00+08:00",
+  "owner_agent": "main-agent",
+  "description": "Canonical master file for cross-app Feishu identity mapping. One person = one subject. Merge by union_id first, then user_id.",
+  "merge_policy": {
+    "subject_key_priority": ["union_id", "user_id"],
+    "supporting_fields": ["phone", "canonical_name", "aliases"],
+    "app_scoped_only": ["open_id"],
+    "on_conflict": "mark_needs_review"
+  },
+  "subjects": [],
+  "agent_submission_contract": {
+    "required_fields": [
+      "source_agent",
+      "app_context",
+      "open_id",
+      "user_id",
+      "union_id",
+      "name",
+      "phone",
+      "captured_at"
+    ],
+    "merge_rule": "Find subject by union_id first; if absent, try matching existing user_id; if ambiguous, create pending review instead of auto-merge.",
+    "example": {
+      "source_agent": "agent-name",
+      "app_context": "feishu-app-or-agent-context",
+      "open_id": "ou_xxx",
+      "user_id": "gxxxx",
+      "union_id": "on_xxx",
+      "name": "姓名",
+      "phone": "+86...",
+      "captured_at": "ISO-8601 timestamp"
+    }
+  },
+  "pending_reviews": [],
+  "rejected_reviews": []
+}

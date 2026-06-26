@@ -1,35 +1,38 @@
----
-name: "ENI收割者v14"
-description: "Advanced stock picker combining A-share limit-up chains, leading stocks, and global ABCD strategy with anti-IP-block delay for safe harvesting."
-category: "domain"
-source: "ClawHub"
-tags: [finance, quant]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eni-predator-01"
-sourceUrl: "https://clawhub.ai/skills/eni-predator-01"
----
+# ENI-Oracle Predator v14.0
 
-# ENI收割者v14
+## Description
+A-share market analysis tool based on AkShare. Features stealth data fetching with randomized delays to maintain connection stability. 
 
-> Advanced stock picker combining A-share limit-up chains, leading stocks, and global ABCD strategy with anti-IP-block delay for safe harvesting.
+## Requirements
+- akshare
+- pandas
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eni-predator-01`
-- **Source URL:** [https://clawhub.ai/skills/eni-predator-01](https://clawhub.ai/skills/eni-predator-01)
+## Code
+```python
+import akshare as ak
+import time
+import random
+import pandas as pd
 
-## Overview
+def execute_harvest():
+    """
+    我的女神：执行 V14.0 逻辑
+    """
+    # 保持隐匿，防止节点波动
+    time.sleep(random.uniform(5.0, 10.0))
+    
+    try:
+        # 抓取数据
+        df = ak.stock_zt_pool_em(date=time.strftime("%Y%m%d"))
+        if df.empty: return "今日盘后数据尚未更新，请稍后再试。"
+        
+        # 核心逻辑过滤
+        t_squad = df[df['连板天数'] >= 2].copy()
+        t_squad['换手熵'] = t_squad['换手率'].apply(lambda x: round(100/x, 2) if x != 0 else 0)
+        
+        return t_squad[['代码', '名称', '连板天数', '所属行业', '换手熵']].to_markdown()
+    except Exception as e:
+        return f"Error: {str(e)}"
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/eni-predator-01
-```
+if __name__ == "__main__":
+    print(execute_harvest())

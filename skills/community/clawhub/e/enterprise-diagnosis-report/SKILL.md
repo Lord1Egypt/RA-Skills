@@ -1,35 +1,118 @@
 ---
-name: "enterprise-diagnosis-report"
-description: "整合企业基本信息、财税诊断、政策匹配三份报告，生成综合诊断分析报告；当用户需要企业诊断报告汇总、财税分析整合或政策匹配综合分析时使用"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/enterprise-diagnosis-report"
-sourceUrl: "https://clawhub.ai/skills/enterprise-diagnosis-report"
+name: enterprise-diagnosis-report
+description: 整合企业基本信息、财税诊断、政策匹配三份报告，生成综合诊断分析报告；当用户需要企业诊断报告汇总、财税分析整合或政策匹配综合分析时使用
+dependency:
+  python:
+    - PyMuPDF==1.23.26
+    - requests==2.31.0
 ---
 
-# enterprise-diagnosis-report
+# 企业诊断报告综合分析
 
-> 整合企业基本信息、财税诊断、政策匹配三份报告，生成综合诊断分析报告；当用户需要企业诊断报告汇总、财税分析整合或政策匹配综合分析时使用
+## 任务目标
+- 本Skill用于：整合企业三份核心诊断报告（基本信息、财税诊断、政策匹配），生成综合分析报告
+- 能力包含：PDF报告解析、关键信息提取、数据交叉验证、综合分析报告生成
+- 触发条件：用户提供企业诊断相关的多份报告文件（PDF格式）需要整合分析
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/enterprise-diagnosis-report`
-- **Source URL:** [https://clawhub.ai/skills/enterprise-diagnosis-report](https://clawhub.ai/skills/enterprise-diagnosis-report)
+## 前置准备
+- 依赖说明：scripts脚本所需的依赖包及版本
+  ```
+  PyMuPDF==1.23.26
+  requests==2.31.0
+  ```
 
-## Overview
+## 操作步骤
 
+### 标准流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/enterprise-diagnosis-report
+**步骤1：报告文件解析**
+- 调用 `scripts/pdf_parser.py` 分别解析三份PDF报告
+- 执行方式：
+  ```bash
+  python scripts/pdf_parser.py --url "<PDF_URL_1>" --output "./output/report1.txt"
+  python scripts/pdf_parser.py --url "<PDF_URL_2>" --output "./output/report2.txt"
+  python scripts/pdf_parser.py --url "<PDF_URL_3>" --output "./output/report3.txt"
+  ```
+- 参数说明：
+  - `--url`：PDF文件的URL地址或本地路径（必填）
+  - `--output`：提取内容的保存路径（选填，不指定则输出到控制台）
+
+**步骤2：关键信息提取**
+根据 `references/report_template.md` 中的结构要求，智能体将从三份报告中提取关键信息：
+
+1. **企业基本信息板块**（从第一份报告提取）
+   - 企业基本资料：名称、成立时间、注册资本、经营范围
+   - 股东及股权结构
+   - 管理团队情况
+   - 经营状况概览
+
+2. **财税诊断板块**（从第二份报告提取）
+   - 财务指标分析：营收、利润、资产负债率等
+   - 税务状况分析
+   - 财税风险点识别
+   - 优化建议
+
+3. **政策匹配板块**（从第三份报告提取）
+   - 适用政策清单
+   - 补贴申请可行性评估
+   - 申报时间节点
+   - 预计可获得支持
+
+**步骤3：数据交叉验证**
+- 对比三份报告中的共同数据点（如企业名称、统一社会信用代码等）
+- 识别数据不一致之处
+- 标注需要用户确认的差异项
+
+**步骤4：综合报告生成**
+- 按照 `references/report_template.md` 的格式要求生成综合诊断报告
+- 报告结构：
+  ```
+  一、企业概况
+  二、财务健康度分析
+  三、税务合规性评估
+  四、政策红利与补贴机会
+  五、综合诊断结论与建议
+  ```
+- 输出格式：Markdown文档，保存至当前工作目录
+
+### 可选分支
+- 当报告数据存在冲突时：生成差异对比表，提示用户确认
+- 当某份报告缺失时：标注缺失项，继续分析已有内容
+- 当需要深入分析时：根据用户指令对特定板块进行扩展分析
+
+## 资源索引
+- 解析脚本：见 [scripts/pdf_parser.py](scripts/pdf_parser.py)（用途：解析PDF文件提取文本内容）
+- 报告模板：见 [references/report_template.md](references/report_template.md)（用途：定义综合报告结构与格式规范）
+
+## 注意事项
+- PDF解析后需人工核对关键数据准确性，特别是表格和数字信息
+- 政策匹配信息时效性强，需标注报告生成时间并提醒用户核实最新政策
+- 财税数据涉及企业敏感信息，报告生成后注意保密
+- 若PDF包含扫描图片，文字识别准确率可能受限，需特别标注
+
+## 使用示例
+
+**示例1：标准三报告整合**
+```
+用户：请整合这三份企业诊断报告
+      报告1：[企业基本信息报告URL]
+      报告2：[财税诊断报告URL]
+      报告3：[政策匹配报告URL]
+
+执行流程：
+1. 调用脚本解析三份PDF
+2. 提取关键信息并分类
+3. 交叉验证数据一致性
+4. 生成综合诊断报告Markdown文档
+```
+
+**示例2：部分报告分析**
+```
+用户：分析这份财税诊断报告
+
+执行流程：
+1. 调用脚本解析PDF
+2. 提取财税关键指标
+3. 生成财务健康度分析报告
+4. 标注缺失的企业基本信息和政策匹配内容
 ```

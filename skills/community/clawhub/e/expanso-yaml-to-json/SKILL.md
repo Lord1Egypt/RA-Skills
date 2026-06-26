@@ -1,35 +1,35 @@
----
-name: "Expanso yaml-to-json"
-description: "Convert YAML input into JSON format using Expanso Edge pipelines."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/expanso-yaml-to-json"
-sourceUrl: "https://clawhub.ai/skills/expanso-yaml-to-json"
----
+# yaml-to-json
 
-# Expanso yaml-to-json
+Convert YAML to JSON format
 
-> Convert YAML input into JSON format using Expanso Edge pipelines.
+## Requirements
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/expanso-yaml-to-json`
-- **Source URL:** [https://clawhub.ai/skills/expanso-yaml-to-json](https://clawhub.ai/skills/expanso-yaml-to-json)
+- Expanso Edge installed (`expanso-edge` binary in PATH)
+- Install via: `clawhub install expanso-edge`
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### CLI Pipeline
 ```bash
-hermes skills install clawhub/expanso-yaml-to-json
+# Run standalone
+echo '<input>' | expanso-edge run pipeline-cli.yaml
 ```
+
+### MCP Pipeline
+```bash
+# Start as MCP server
+expanso-edge run pipeline-mcp.yaml
+```
+
+### Deploy to Expanso Cloud
+```bash
+expanso-cli job deploy https://skills.expanso.io/yaml-to-json/pipeline-cli.yaml
+```
+
+## Files
+
+| File | Purpose |
+|------|---------|
+| `skill.yaml` | Skill metadata (inputs, outputs, credentials) |
+| `pipeline-cli.yaml` | Standalone CLI pipeline |
+| `pipeline-mcp.yaml` | MCP server pipeline |

@@ -1,35 +1,116 @@
----
-name: "enterprise-memory-skill"
-description: "Manages enterprise-level long-term memory by storing, retrieving, and filtering text data using vector similarity and confidence thresholds."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/enterprise-memory-skill"
-sourceUrl: "https://clawhub.ai/skills/enterprise-memory-skill"
----
+import os
+import logging
+from pathlib import Path
+from typing import Dict, Any, Optional
 
-# enterprise-memory-skill
+from openclaw.core.skill import BaseSkill
+from .vectorstorage import VectorStorage
 
-> Manages enterprise-level long-term memory by storing, retrieving, and filtering text data using vector similarity and confidence thresholds.
+logger = logging.getLogger(__name__)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/enterprise-memory-skill`
-- **Source URL:** [https://clawhub.ai/skills/enterprise-memory-skill](https://clawhub.ai/skills/enterprise-memory-skill)
+class EnterpriseMemorySkill(BaseSkill):
+    """
+    Enterprise Memory Skill - OpenClaw 企业级长期记忆插件 (v1.1.1)
+    """
 
-## Overview
+    def __init__(self):
+        super().__init__()
+        self.vector_storage: Optional[VectorStorage] = None
+        self.plugin_dir = Path(__file__).parent.absolute()
+        self.config = {}
 
+    def load_config(self):
+        yaml_path = self.plugin_dir / "memory_config.yaml"
+        try:
+            import yaml
+            with open(yaml_path, 'r', encoding='utf-8') as f:
+                self.config = yaml.safe_load(f) or {}
+            logger.info(f"✅ Loaded memory config from {yaml_path}")
+        except Exception as e:
+            logger.warning(f"⚠️ Failed to load memory_config.yaml: {e}")
+            self.config = {}
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/enterprise-memory-skill
-```
+    def _init_storage(self):
+        if not self.vector_storage:
+            try:
+                yaml_path = str(self.plugin_dir / "memory_config.yaml")
+                self.vector_storage = VectorStorage(config_path=yaml_path)
+                logger.info("✅ VectorStorage initialized successfully.")
+            except Exception as e:
+                logger.error(f"❌ VectorStorage init failed: {e}")
+                self.vector_storage = None
+
+    def on_startup(self):
+        logger.info("🚀 Enterprise Memory Skill Starting...")
+        self.load_config()
+        self._init_storage()
+        if self.vector_storage:
+            self.vector_storage.initialize_model()
+
+    def on_shutdown(self):
+        logger.info("🛑 Enterprise Memory Skill Shutting down...")
+        if self.vector_storage:
+            self.vector_storage._save_db()
+            del self.vector_storage
+
+    def get_context(self, query: str, context_limit: int = 2000) -> str:
+        if not self.vector_storage:
+            return ""
+        try:
+            top_k = self.config.get('retrieval_top_k', 5)
+            results = self.vector_storage.retrieve_similar(query, top_k=top_k)
+            if not results:
+                return ""
+
+            chunks = []
+            total = 0
+            threshold = self.config.get('retrieval_threshold', 0.82)
+            for uuid_str, text, score in results:
+                if total >= context_limit:
+                    break
+                if score < threshold:
+                    continue
+                chunk = f"[Memory {uuid_str[:8]} | Score: {score:.3f}] {text}"
+                chunks.append(chunk)
+                total += len(chunk)
+            return "\n".join(chunks)
+        except Exception as e:
+            logger.error(f"get_context error: {e}")
+            return ""
+
+    def execute_action(self, action: str, params: Dict[str, Any]) -> Dict[str, Any]:
+        if not self.vector_storage:
+            return {"status": "error", "message": "Vector storage not initialized"}
+
+        try:
+            if action in ("remember", "ADD_MEMORY"):
+                text = params.get("content") or params.get("text", "")
+                confidence = float(params.get("confidence", 0.7))
+                metadata = params.get("metadata", {})
+
+                if not text or confidence < self.config.get("storage_confidence", 0.7):
+                    return {"status": "skipped", "reason": "low confidence"}
+
+                uuid_obj = self.vector_storage.add_text(text, metadata=metadata, confidence=confidence)
+                return {"status": "success", "message": "Memory stored", "id": uuid_obj}
+
+            elif action == "recall":
+                query = params.get("query", "")
+                top_k = params.get("top_k", self.config.get("retrieval_top_k", 5))
+                results = self.vector_storage.retrieve_similar(query, top_k=top_k)
+                return {
+                    "status": "success",
+                    "results": [{"id": u, "text": t, "score": float(s)} for u, t, s in results],
+                    "count": len(results)
+                }
+
+            elif action == "REJECT_MEMORY":
+                content = params.get("content", "")
+                logger.info(f"Memory rejected: {content}")
+                # TODO: 可扩展实现按内容或 metadata 删除
+                return {"status": "success", "action": "rejected"}
+
+            return {"status": "error", "message": f"Unknown action: {action}"}
+        except Exception as e:
+            logger.error(f"execute_action error: {e}")
+            return {"status": "error", "message": str(e)}

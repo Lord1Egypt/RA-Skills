@@ -1,0 +1,33 @@
+{
+  "name": "feishu-doc-sender",
+  "version": "1.0.0",
+  "description": "Send Word (.docx) and PDF documents to Feishu/Lark users and groups. Automatically detects document files in workspace and delivers them with proper formatting.",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "tags": [
+    "feishu",
+    "lark",
+    "document",
+    "pdf",
+    "word",
+    "sender",
+    "office"
+  ],
+  "skills": [
+    {
+      "name": "feishu-doc-sender",
+      "entry": "SKILL.md"
+    }
+  ],
+  "triggers": [
+    "发送文档",
+    "发Word",
+    "发PDF",
+    "把文件发给",
+    "send document",
+    "send pdf",
+    "send word"
+  ],
+  "dependencies": [],
+  "minOpenclawVersion": "0.9.0"
+}

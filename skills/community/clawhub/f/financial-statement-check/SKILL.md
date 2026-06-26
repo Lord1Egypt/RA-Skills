@@ -1,35 +1,345 @@
 ---
-name: "financial-statement-check"
-description: "企业财报三表（资产负债表 / 利润表 / 纳税申报表）勾稽检查技能包。当用户上传财报PDF/图片、或要求进行财报审核、三表勾稽校验时，应自动调用此技能。支持从财报PDF/图片中结构化抽取三表关键数据，自动统一单位（万元）与币种（必要时按实时汇率折算为CNY），执行时间一致性/字段完整性/核心税会差异/跨表校验，并..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/financial-statement-check"
-sourceUrl: "https://clawhub.ai/skills/financial-statement-check"
+name: financial-statement-check
+description: 企业财报三表（资产负债表 / 利润表 / 纳税申报表）勾稽检查技能包。当用户上传财报PDF/图片、或要求进行财报审核、三表勾稽校验时，应自动调用此技能。支持从财报PDF/图片中结构化抽取三表关键数据，自动统一单位（万元）与币种（必要时按实时汇率折算为CNY），执行时间一致性/字段完整性/核心税会差异/跨表校验，并按规则输出标准审核报告。适用于银行信贷审批、企业财报初审、财务尽调等场景。
 ---
 
-# financial-statement-check
+# 企业财报三表勾稽检查（资产负债表 / 利润表 / 纳税申报表）
 
-> 企业财报三表（资产负债表 / 利润表 / 纳税申报表）勾稽检查技能包。当用户上传财报PDF/图片、或要求进行财报审核、三表勾稽校验时，应自动调用此技能。支持从财报PDF/图片中结构化抽取三表关键数据，自动统一单位（万元）与币种（必要时按实时汇率折算为CNY），执行时间一致性/字段完整性/核心税会差异/跨表校验，并...
+## 用途
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/financial-statement-check`
-- **Source URL:** [https://clawhub.ai/skills/financial-statement-check](https://clawhub.ai/skills/financial-statement-check)
+对企业财报（PDF/图片）进行结构化抽取与三表勾稽校验，帮助银行/风控/财务人员加速财报初审。
 
-## Overview
+核心能力：
+- **智能页码定位**：先用 PyMuPDF 提取PDF文本，通过关键词快速定位三表所在页码，避免对无关页面调用OCR
+- **表格OCR识别**：调用腾讯云高精度表格识别接口（RecognizeTableAccurateOCR）
+- **并行OCR调用**：多页PDF自动并行调用OCR API，大幅缩短等待时间（内置PDF→PNG转换）
+- **三表智能识别**：识别并区分 **资产负债表 / 利润表 / 纳税申报表**
+- **单位与币种统一**：所有金额统一为 **万元**；三表币种不一致时按实时汇率折算为 **CNY**，并在输出中标注币种
+- **时间一致性 / 字段完整性 / 核心指标 / 跨表校验**：按规则引擎执行校验，区分"必输出"与"仅异常时输出"
+- **用户自定义检查项**：支持用户在调用 skill 时附带其他关注点，以自然语言形式在输出末尾追加补充分析
 
+## 📚 可用资源
 
-## Installation
-To install this skill, run the following command in your terminal:
+### References（场景化指引）
+- `references/cross-check-rules.md` — 时间检查 / 字段完整性 / 原始指标 / 核心指标 / 跨表校验 / 用户自定义检查 的规则与输出条件
+- `references/field-mapping.md` — 三表科目字段映射、必填字段清单、单位与币种统一规则、报告期与申报类型识别
+
+### Scripts（可执行脚本）
+- `scripts/table_ocr.py` — 腾讯云表格OCR识别脚本，支持PDF/图片输入，返回结构化表格数据
+
+## 使用时机
+
+当用户提出以下需求时触发此技能：
+- 用户上传了财报PDF或图片，要求进行财报审核或数据提取
+- 用户提到"三表勾稽"、"勾稽检查"、"勾稽校验"、"财报校验"等关键词
+- 用户要求从财报中提取资产负债表、利润表、纳税申报表（增值税/企业所得税）数据
+- 用户要求对财报数据进行税会一致性 / 跨表一致性校验
+- 涉及银行信贷审批中的财报初审场景
+- 用户提到"财务报表"、"年报"、"财报"、"纳税申报"并要求进行数据分析或校验
+
+### 🤖 自动触发指引（面向大模型）
+
+当检测到以下信号时，应**自动调用**此技能：
+1. **用户上传了PDF/图片**：文件名包含"财报"、"年报"、"资产负债"、"利润表"、"纳税申报"等关键词
+2. **用户意图关键词**："勾稽"、"三表"、"财报审核"、"财报校验"、"资产负债表"、"利润表"、"纳税申报表"、"税会一致性"
+3. **场景关键词**："信贷审批"、"财报初审"、"财务尽调"、"增值税申报"、"企业所得税申报"
+
+## 环境要求
+
+- Python 3.6+
+- 依赖：
+  - `tencentcloud-sdk-python`（`pip install tencentcloud-sdk-python`）
+  - `PyMuPDF`（`pip install PyMuPDF`）
+- 环境变量：
+  - `TENCENTCLOUD_SECRET_ID`：腾讯云API密钥ID
+  - `TENCENTCLOUD_SECRET_KEY`：腾讯云API密钥Key
+
+## 完整工作流程
+
+```
+用户上传财报 PDF / 图片
+        │
+        ▼
+  Step 0: 【智能页码定位】用 PyMuPDF 提取PDF全文文本
+        │  根据关键词定位 资产负债表 / 利润表 / 纳税申报表 所在页码（~2秒，无需OCR）
+        ▼
+  Step 1: 调用 scripts/table_ocr.py --pdf --pdf-pages 并行表格OCR
+        ▼
+  Step 2: 获取结构化表格数据（HTML/JSON）
+        ▼
+  Step 3: 大模型根据 field-mapping.md 识别三表类型、映射标准字段名
+        ▼
+  Step 4: 数值提取 + 单位统一（万元） + 币种一致性检查与汇率折算（必要时）
+        ▼
+  Step 5: 按 cross-check-rules.md 执行：
+          ① 时间检查（必输出）
+          ② 字段完整性检查（仅异常时输出）
+          ③ 原始指标输出（必输出）
+          ④ 核心指标检查（仅异常时输出）
+          ⑤ 跨表校验（仅异常时输出）
+          ⑥ 用户自定义检查项（如有）
+        ▼
+  Step 6: 按"输出格式"章节模板生成审核报告
+```
+
+### Step 0: 智能页码定位（PDF专用，⭐性能关键步骤）
+
+对PDF文件**必须先执行此步骤**以减少不必要的OCR调用。
+
+```python
+import fitz  # PyMuPDF
+
+doc = fitz.open("/path/to/report.pdf")
+for page_num in range(len(doc)):
+    text = doc[page_num].get_text()
+    print(f"--- 第{page_num + 1}页 ---")
+    print(text[:500])
+doc.close()
+```
+
+**页码定位关键词**：
+- 资产负债表："资产负债表"、"资产合计"、"负债合计"、"所有者权益"
+- 利润表："利润表"、"营业收入"、"净利润"、"营业利润"
+- 纳税申报表："纳税申报表"、"应税销售额"、"销项税额"、"进项税额"、"应纳税所得额"、"税款所属期"
+
+> 💡 大模型应分析每页文本，判断哪些页包含三表数据，仅将这些页码传给 Step 1。对于图片输入，跳过此步骤。
+
+### Step 1: 表格OCR识别
+
 ```bash
-hermes skills install clawhub/financial-statement-check
+# 【推荐】识别PDF指定页码（内置PDF→PNG + 并行OCR）
+python scripts/table_ocr.py --pdf /path/to/report.pdf --pdf-pages 6,7,8,9
+
+# 识别页码范围 / 混合指定
+python scripts/table_ocr.py --pdf /path/to/report.pdf --pdf-pages 1-5
+python scripts/table_ocr.py --pdf /path/to/report.pdf --pdf-pages 1,3-5,8
+
+# 识别图片
+python scripts/table_ocr.py --image-url "https://example.com/financial_report.jpg"
+python scripts/table_ocr.py --image-base64 ./financial_report.jpg
+```
+
+### Step 2-4: 三表识别、字段映射、单位与币种统一
+
+加载 `references/field-mapping.md` 参考文档，按以下 Prompt 完成：
+
+```
+你是一位资深财务审计专家，精通中国会计准则（CAS）与税法。
+请根据以下OCR识别出的财报表格数据，完成三表识别、字段映射、单位/币种统一。
+
+## 三表范围
+- 资产负债表（Balance Sheet）
+- 利润表（Income Statement）
+- 纳税申报表（增值税 / 企业所得税 Tax Return）
+
+## 任务要求
+1. 三表识别：根据表头/关键词判定每个表格归属
+2. 字段映射：参考 field-mapping.md 的映射表，将 OCR 科目名称统一映射为标准字段名
+3. 数值提取 & 单位统一：统一为"万元"（保留2位小数）；括号视为负数；去千分位逗号
+4. 币种一致性：
+   - 识别三表币种
+   - 若不一致：按当前实时汇率将非CNY科目折算为CNY，**并在输出时标注币种与汇率**
+5. 报告期识别：
+   - 发生时间窗口（起止日）
+   - 是否与自然年错位
+   - 申报类型（月度/季度/年度，依据税款所属期跨度）
+6. 空值处理："—"/空白 → null，"0" → 0
+
+## OCR表格数据
+---
+{ocr_tables_data}
+---
+
+## 字段映射参考
+---
+{field_mapping_content}
+---
+
+请以 JSON 输出抽取结果。
+```
+
+### Step 5: 规则校验
+
+加载 `references/cross-check-rules.md`，按其中定义执行六类检查。**区分必输出项与仅异常时输出项**。
+
+### Step 6: 输出结果
+
+按下方"输出格式"章节模板输出给用户。
+
+## 输出格式
+
+### 结构化数据输出（JSON，供下游系统使用）
+
+```json
+{
+  "meta": {
+    "report_period": "2024-01-01 ~ 2024-12-31",
+    "is_fiscal_year_aligned": true,
+    "declaration_type": "年度",
+    "unit": "万元",
+    "currency": "CNY",
+    "currency_conversion_note": null
+  },
+  "balance_sheet": {
+    "total_assets": 100000.00,
+    "total_liabilities": 60000.00,
+    "owners_equity": 40000.00,
+    "current_liabilities": 35000.00,
+    "cash_and_equivalents": 12000.00,
+    "short_term_borrowings": 10000.00,
+    "revenue": 80000.00
+  },
+  "income_statement": {
+    "revenue": 80000.00,
+    "revenue_last_period": 72000.00,
+    "operating_cost": 50000.00,
+    "operating_profit": 18000.00,
+    "total_profit": 17000.00,
+    "net_profit": 14000.00,
+    "accounting_depreciation": 3000.00,
+    "actual_employee_compensation": 6000.00
+  },
+  "tax_return": {
+    "taxable_sales": 82000.00,
+    "output_tax": 10660.00,
+    "input_tax": 8500.00,
+    "vat_payable": 2160.00,
+    "vat_paid": 2150.00,
+    "tax_revenue": 80000.00,
+    "tax_total_profit": 17000.00,
+    "tax_adjustment_increase": 500.00,
+    "taxable_income": 17500.00,
+    "income_tax_payable": 4375.00,
+    "income_tax_paid": 4300.00,
+    "tax_depreciation": 3100.00,
+    "deductible_employee_compensation": 5900.00
+  }
+}
+```
+
+### 审核报告输出（Markdown，交付给用户）
+
+**注意**：以下区块按条件输出。带 ⭐"必输出"的区块始终展示；其余区块**仅在存在异常/用户提问时**展示。
+
+````markdown
+# 📊 企业财报三表勾稽检查报告
+
+---
+
+## ⏱ 一、时间检查 ⭐必输出
+
+| 项目 | 内容 |
+|------|------|
+| 发生时间窗口 | 2024-01-01 ~ 2024-12-31 |
+| 三表时间一致性 | 一致 / 不一致 |
+| 是否与自然年错位 | 错位 / 无错位 |
+| 申报类型 | 月度 / 季度 / 年度 |
+
+---
+
+## ❗ 二、字段完整性检查（仅异常时输出）
+
+> 本区块仅在存在缺失字段时展示。
+
+| 报表 | 缺失字段 | 说明（≤50字） | 查验引导 |
+|------|---------|--------------|----------|
+| 资产负债表 | 货币资金 | 未识别到该科目金额 | 资产负债表·流动资产首行，PDF第3页 |
+
+---
+
+## 📑 三、原始指标输出 ⭐必输出
+
+> 金额单位：**万元**，币种：**CNY**（若存在折算，此处会注明"已由XXX按汇率X.XX折算为CNY"）
+
+### 3.1 资产负债表
+
+| 类目 | 金额（万元） |
+|------|------------|
+| 【负债表】总资产 | 100,000.00 |
+| 【负债表】总负债 | 60,000.00 |
+| 【负债表】流动负债合计 | 35,000.00 |
+
+### 3.2 利润表 — 经营结果
+
+| 类目 | 金额（万元） |
+|------|------------|
+| 【利润表】本期营业收入 | 80,000.00 |
+| 【利润表】上期营业收入 | 72,000.00 |
+| 【利润表】营业成本 | 50,000.00 |
+| 【利润表】利润总额 | 17,000.00 |
+| 【利润表】净利润 | 14,000.00 |
+
+### 3.3 利润表 — 税务指标
+
+| 类目 | 金额（万元） |
+|------|------------|
+| 【利润表】应税销售额 | 82,000.00 |
+| 【利润表】实缴增值税额 | 2,150.00 |
+| 【利润表】企业应纳税所得额 | 17,500.00 |
+| 【利润表】实缴企业所得税额 | 4,300.00 |
+| 【利润表】企业纳税调增金额 | 500.00 |
+
+> 未识别/未匹配的科目，金额栏标注：⚠️ 异常（未识别/未匹配）
+
+---
+
+## 🔍 四、核心指标检查（仅异常时输出）
+
+> 本区块仅在下列任一项结果为"否/异常"时展示。
+
+| # | 检查项 | 结果 | 说明（≤50字） | 查验引导 |
+|---|--------|------|--------------|----------|
+| C-01 | 增值税应税收入 = 会计收入？ | 否 | 应税收入较会计收入低12%，疑漏申报 | 增值税申报表主表第1行 / 利润表第1行 |
+| C-02 | 应纳税所得额 = 利润总额？ | 否 | 差异属正常税会调整，请核对调整明细 | A105000 纳税调整明细表 |
+| C-03 | 税法折旧 ?= 会计折旧？ | 否 | 差异来自加速折旧优惠 | 附注·固定资产 / A105080 |
+| C-04 | 税表可扣除职工薪酬 = 实际计提？ | 否 | 税前扣除低于实际计提，存在调增 | A105050 职工薪酬扣除明细 |
+
+---
+
+## 🔗 五、跨表校验（仅异常时输出）
+
+> 本区块仅在下列任一项结果为"异常/否"时展示。
+
+| # | 校验项 | 结果 | 说明（≤50字） | 查验引导 |
+|---|--------|------|--------------|----------|
+| X-01 | 增值税应税销售额 ≥ 营业收入 且差异 ≤ ±10% | 符合预期 / 异常 | 差异幅度 15%，建议核对视同销售与价外费用 | 增值税申报表 / 利润表 |
+| X-02a | 所得税申报表营业收入 ≈ 利润表营业收入 | 是 / 否 | —— | A100000 与 利润表第1行 |
+| X-02b | 所得税申报表利润总额 ≈ 利润表利润总额 | 是 / 否 | —— | A100000 与 利润表 |
+| X-03 | 应纳所得税额 ≈ 利润总额 × 法定税率 - 减免 - 抵免 | 是 / 否 | 偏离显著，建议核对税率适用与优惠 | A100000 主表 |
+
+---
+
+## 📝 六、补充分析（用户自定义检查项，可选）
+
+> 本区块仅在用户调用时附带了其他问题时展示，以自然语言形式作为补充。
+
+---
+
+> ⚠️ **免责声明**：本报告基于OCR识别结果自动生成，仅供初审参考，不构成审计或税务意见。最终结论以人工审核为准。
+````
+
+## 密钥配置
+
+### Step 1: 获取 API 密钥
+
+🔗 **[腾讯云 API 密钥管理](https://console.cloud.tencent.com/cam/capi)**
+
+### Step 2: 获取/购买 OCR 服务
+
+🔗 **[腾讯云文字识别 OCR 购买页](https://buy.cloud.tencent.com/iai_ocr)**
+
+在购买页面中选择 **表格识别（高精度版）** 完成购买。
+
+### Step 3: 设置环境变量
+
+**Linux / macOS：**
+```bash
+export TENCENTCLOUD_SECRET_ID="你的SecretId"
+export TENCENTCLOUD_SECRET_KEY="你的SecretKey"
+```
+
+**Windows (PowerShell)：**
+```powershell
+$env:TENCENTCLOUD_SECRET_ID = "你的SecretId"
+$env:TENCENTCLOUD_SECRET_KEY = "你的SecretKey"
 ```

@@ -1,35 +1,15 @@
----
-name: "Fanqie Novel AI Video Drama Batch Generator"
-description: "Batch generates complete AI video dramas from multi-chapter novels with covers, titles, tags, and outputs for TikTok serialization."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, batch, digital-human, drama, fanqie, manhua, novel, video]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fanqie-ai-video-drama"
-sourceUrl: "https://clawhub.ai/skills/fanqie-ai-video-drama"
----
+# 番茄小说AI短剧·批量终极版
+最强功能：
+✅ 粘贴多章小说 → 自动拆分成第1集、第2集、第3集…
+✅ 每集独立生成完整视频
+✅ 每集自带封面+标题+标签
+✅ 批量输出，直接发布抖音连载
 
-# Fanqie Novel AI Video Drama Batch Generator
+输入：
+- 多章小说文本（用“第1章”“第2章”分隔）
+- type: manhua / zhenren
+- style: 赘婿 / 古风 / 现言 / 玄幻 / 甜宠
 
-> Batch generates complete AI video dramas from multi-chapter novels with covers, titles, tags, and outputs for TikTok serialization.
-
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fanqie-ai-video-drama`
-- **Source URL:** [https://clawhub.ai/skills/fanqie-ai-video-drama](https://clawhub.ai/skills/fanqie-ai-video-drama)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fanqie-ai-video-drama
-```
+输出：
+- 文件夹：第1集、第2集、第3集…
+- 每集包含：final_video.mp4 + cover.jpg + info.json + 脚本

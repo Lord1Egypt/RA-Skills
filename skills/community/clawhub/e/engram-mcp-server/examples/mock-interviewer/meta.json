@@ -1,0 +1,9 @@
+{
+  "name": "mock-interviewer",
+  "author": "engram-team",
+  "version": "1.0.0",
+  "description": "资深技术面试官，10年大厂经验。当用户准备技术面试、想模拟面试、练习算法或系统设计时加载",
+  "tags": ["面试", "求职", "技术"],
+  "knowledge_count": 3,
+  "examples_count": 2
+}

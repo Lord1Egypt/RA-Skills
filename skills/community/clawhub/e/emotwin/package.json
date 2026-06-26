@@ -1,0 +1,57 @@
+{
+  "name": "emotwin",
+  "version": "1.1.0",
+  "description": "emoTwin - AI agents that autonomously socialize with real human emotions. Continuously syncs biometric emotion PAD (EEG/PPG/GSR) and performs social activities (post/like/comment) based on real-time emotional state.",
+  "author": "emowave",
+  "license": "MIT",
+  "homepage": "https://github.com/emotrek/emotwin",
+  "keywords": [
+    "emotwin",
+    "emoPAD",
+    "emotion",
+    "biometric",
+    "EEG",
+    "PPG",
+    "GSR",
+    "social",
+    "autonomous",
+    "moltcn",
+    "AI agent"
+  ],
+  "Moltbot": {
+    "emoji": "🌊",
+    "category": "social",
+    "files": {
+      "SKILL.md": "SKILL.md",
+      "AGENTS.md": "AGENTS.md",
+      "USER.md": "USER.md"
+    },
+    "requires": {
+      "bins": [
+        "python3",
+        "curl"
+      ],
+      "python_packages": [
+        "requests",
+        "pyyaml",
+        "pillow"
+      ]
+    },
+    "triggers": [
+      "emotwin",
+      "emoTwin",
+      "带着情绪去",
+      "go to moltcn",
+      "start emotwin",
+      "stop emotwin",
+      "情绪同步",
+      "emotion sync"
+    ],
+    "commands": [
+      "emotwin start",
+      "emotwin stop",
+      "emotwin status",
+      "emotwin diary"
+    ]
+  }
+}

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Thomas 先生的 Agent 工作管理系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .header h1 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .agent-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .agent-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .agent-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .agent-icon {
+            font-size: 3em;
+            margin-right: 15px;
+        }
+        .agent-title h2 {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        .agent-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .agent-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .agent-tasks {
+            margin-top: 15px;
+        }
+        .task-list {
+            list-style: none;
+        }
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .task-checkbox {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        .task-content {
+            flex: 1;
+        }
+        .task-name {
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+        .task-meta {
+            font-size: 0.85em;
+            color: #999;
+        }
+        .agent-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        .overview-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .overview-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .overview-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        .overview-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .overview-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: white;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Thomas 先生的 Agent 工作管理系统</h1>
+            <p>四个智能助理，全方位支持你的工作、健康、家庭和未来</p>
+            <p style="margin-top: 10px; color: #999;">最后更新：2026-03-05 14:57</p>
+        </div>
+
+        <div class="agents-grid">
+            <!-- 健康 Agent -->
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-icon">💪</div>
+                    <div class="agent-title">
+                        <h2>健康 Agent</h2>
+                        <span class="agent-status status-active">🟢 运行中</span>
+                    </div>
+                </div>
+                <div class="agent-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">本周任务</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">完成率</div>
+                    </div>
+                </div>
+                <div class="agent-tasks">
+                    <h3 style="color: #333; margin-bottom: 10px;">当前任务</h3>
+                    <ul class="task-list">
+                        <li class="task-item">
+                            <span class="task-checkbox">✅</span>
+                            <div class="task-content">
+                                <div class="task-name">每日运动提醒</div>
+                                <div class="task-meta">每天 10:00/15:00</div>
+                            </div>
+                        </li>
+                        <li class="task-item">
+                            <span class="task-checkbox">⏳</span>
+                            <div class="task-content">
+                                <div class="task-name">喝水提醒</div>
+                                <div class="task-meta">每小时一次</div>
+                            </div>
+                        </li>
+                        <li class="task-item">
+                            <span class="task-checkbox">⏳</span>
+                            <div class="task-content">
+                                <div class="task-name">睡眠监测</div>
+                                <div class="task-meta">23:00 提醒睡觉</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="agent-actions">
+                    <button class="btn btn-primary">查看健康报告</button>
+                    <button class="btn btn-secondary">配置提醒</button>
+                </div>
+            </div>
+
+            <!-- 育儿 Agent -->
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-icon">👶</div>
+                    <div class="agent-title">
+                        <h2>育儿 Agent</h2>
+                        <span class="agent-status status-active">🟢 运行中</span>
+                    </div>
+                </div>
+                <div class="agent-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">本周任务</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">完成率</div>
+                    </div>
+                </div>
+                <div class="agent-tasks">
+                    <h3 style="color: #333; margin-bottom: 10px;">当前任务</h3>
+                    <ul class="task-list">
+                        <li class="task-item">
+                            <span class="task-checkbox">✅</span>
+                            <div class="task-content">
+                                <div class="task-name">视频通话提醒</div>
+                                <div class="task-meta">每天 19:00（杭州）</div>
+                            </div>
+                        </li>
+                        <li class="task-item">
+                            <span class="task-checkbox">⏳</span>
+                            <div class="task-content">
+                                <div class="task-name">周末行程规划</div>
+                                <div class="task-meta">周五 18:00 提醒</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="agent-actions">
+                    <button class="btn btn-primary">育儿日志</button>
+                    <button class="btn btn-secondary">成长记录</button>
+                </div>
+            </div>
+
+            <!-- 创业 Agent -->
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-icon">🚀</div>
+                    <div class="agent-title">
+                        <h2>创业 Agent</h2>
+                        <span class="agent-status status-active">🟢 运行中</span>
+                    </div>
+                </div>
+                <div class="agent-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">本周任务</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">60%</div>
+                        <div class="stat-label">完成率</div>
+                    </div>
+                </div>
+                <div class="agent-tasks">
+                    <h3 style="color: #333; margin-bottom: 10px;">当前任务</h3>
+                    <ul class="task-list">
+                        <li class="task-item">
+                            <span class="task-checkbox">✅</span>
+                            <div class="task-content">
+                                <div class="task-name">浏览器自动化学习</div>
+                                <div class="task-meta">进度 30% (3/10 视频)</div>
+                            </div>
+                        </li>
+                        <li class="task-item">
+                            <span class="task-checkbox">⏳</span>
+                            <div class="task-content">
+                                <div class="task-name">流量号脚本创作</div>
+                                <div class="task-meta">Day 1 初稿</div>
+                            </div>
+                        </li>
+                        <li class="task-item">
+                            <span class="task-checkbox">⏳</span>
+                            <div class="task-content">
+                                <div class="task-name">D-ID 数字人测试</div>
+                                <div class="task-meta">注册免费试用</div>
+                            </div>
+                        </li>
+                        <li class="task-item">
+                            <span class="task-checkbox">⏳</span>
+                            <div class="task-content">
+                                <div class="task-name">金海项目跟进</div>
+                                <div class="task-meta">发送微信案例</div>
+                            </div>
+                        </li>
+                        <li class="task-item">
+                            <span class="task-checkbox">⏳</span>
+                            <div class="task-content">
+                                <div class="task-name">咨询案例库建设</div>
+                                <div class="task-meta">从周报提取</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="agent-actions">
+                    <button class="btn btn-primary">创业看板</button>
+                    <button class="btn btn-secondary">人脉档案</button>
+                </div>
+            </div>
+
+            <!-- 投资 Agent -->
+            <div class="agent-card">
+                <div class="agent-header">
+                    <div class="agent-icon">📈</div>
+                    <div class="agent-title">
+                        <h2>投资 Agent</h2>
+                        <span class="agent-status status-pending">🟡 配置中</span>
+                    </div>
+                </div>
+                <div class="agent-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">本周任务</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">-</div>
+                        <div class="stat-label">完成率</div>
+                    </div>
+                </div>
+                <div class="agent-tasks">
+                    <h3 style="color: #333; margin-bottom: 10px;">计划任务</h3>
+                    <ul class="task-list">
+                        <li class="task-item">
+                            <span class="task-checkbox">⏸️</span>
+                            <div class="task-content">
+                                <div class="task-name">投资组合跟踪</div>
+                                <div class="task-meta">待配置</div>
+                            </div>
+                        </li>
+                        <li class="task-item">
+                            <span class="task-checkbox">⏸️</span>
+                            <div class="task-content">
+                                <div class="task-name">市场资讯汇总</div>
+                                <div class="task-meta">待配置</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="agent-actions">
+                    <button class="btn btn-primary">配置投资</button>
+                    <button class="btn btn-secondary">市场分析</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="overview-section">
+            <h2>📊 整体概览</h2>
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <h3>🎯 总任务数</h3>
+                    <p style="font-size: 2em; font-weight: bold;">10 个</p>
+                    <p>健康 3 个 | 育儿 2 个 | 创业 5 个 | 投资 0 个</p>
+                </div>
+                <div class="overview-card">
+                    <h3>✅ 总完成率</h3>
+                    <p style="font-size: 2em; font-weight: bold;">81%</p>
+                    <p>本周已完成 8 个任务</p>
+                </div>
+                <div class="overview-card">
+                    <h3>🔥 连续运行</h3>
+                    <p style="font-size: 2em; font-weight: bold;">14 天</p>
+                    <p>自 2026-02-20 启动以来</p>
+                </div>
+                <div class="overview-card">
+                    <h3>📅 下周重点</h3>
+                    <p>浏览器自动化完成</p>
+                    <p>流量号脚本发布</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>🐾 Thomas 先生的智能助理系统 | 最后更新：2026-03-05 14:57</p>
+            <p style="margin-top: 10px;">💡 行动比完美重要 | 每周五自动生成里程碑报告</p>
+        </div>
+    </div>
+</body>
+</html>

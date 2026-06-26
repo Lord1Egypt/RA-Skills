@@ -1,0 +1,19 @@
+[
+  {
+    "user_id": "user_001",
+    "type": "PERSONAL",
+    "sign_type": "POSITION",
+    "page": 1,
+    "x": 100,
+    "y": 200,
+    "order": 1
+  },
+  {
+    "user_id": "corp_001",
+    "type": "CORP",
+    "sign_type": "KEYWORD",
+    "keyword": "甲方盖章",
+    "match_strategy": "FIRST",
+    "order": 2
+  }
+]

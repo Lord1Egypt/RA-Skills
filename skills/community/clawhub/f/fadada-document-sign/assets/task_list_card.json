@@ -1,0 +1,85 @@
+{
+  "type": "list",
+  "title": "签署任务列表",
+  "emptyText": "暂无签署任务",
+  "columns": [
+    {
+      "key": "taskName",
+      "label": "任务名称",
+      "width": "30%"
+    },
+    {
+      "key": "status",
+      "label": "状态",
+      "width": "15%"
+    },
+    {
+      "key": "createTime",
+      "label": "创建时间",
+      "width": "25%"
+    },
+    {
+      "key": "taskId",
+      "label": "任务ID",
+      "width": "30%"
+    }
+  ],
+  "statusOptions": {
+    "draft": { "label": "草稿", "color": "default" },
+    "waiting": { "label": "待提交", "color": "warning" },
+    "signing": { "label": "签署中", "color": "processing" },
+    "finished": { "label": "已完成", "color": "success" },
+    "cancelled": { "label": "已撤销", "color": "default" },
+    "abolished": { "label": "已作废", "color": "error" },
+    "expired": { "label": "已过期", "color": "default" }
+  },
+  "rowActions": [
+    {
+      "label": "查看详情",
+      "type": "action",
+      "action": "viewDetail"
+    },
+    {
+      "label": "撤回",
+      "type": "action",
+      "action": "cancel",
+      "visibleWhen": {
+        "status": ["draft", "waiting", "signing"]
+      }
+    },
+    {
+      "label": "下载",
+      "type": "action",
+      "action": "download",
+      "visibleWhen": {
+        "status": ["finished"]
+      }
+    }
+  ],
+  "pagination": {
+    "enabled": true,
+    "pageSize": 10,
+    "showSizeChanger": true
+  },
+  "filters": [
+    {
+      "key": "status",
+      "label": "状态筛选",
+      "type": "select",
+      "options": [
+        { "value": "", "label": "全部" },
+        { "value": "draft", "label": "草稿" },
+        { "value": "waiting", "label": "待提交" },
+        { "value": "signing", "label": "签署中" },
+        { "value": "finished", "label": "已完成" },
+        { "value": "cancelled", "label": "已撤销" }
+      ]
+    },
+    {
+      "key": "keyword",
+      "label": "关键词搜索",
+      "type": "input",
+      "placeholder": "输入任务名称搜索"
+    }
+  ]
+}

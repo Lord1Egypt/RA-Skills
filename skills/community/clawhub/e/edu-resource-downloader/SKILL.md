@@ -1,35 +1,266 @@
----
-name: "教育资源下载助手"
-description: "提供合规的国家免费教育平台资源下载方案，辅助配置开源工具，实现半自动个人学习用途下载，不涉及生成爬虫代码。"
-category: "research"
-source: "ClawHub"
-tags: [download, education, learning, resource, smartedu, xuetangx]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/edu-resource-downloader"
-sourceUrl: "https://clawhub.ai/skills/edu-resource-downloader"
----
-
 # 教育资源下载助手
 
-> 提供合规的国家免费教育平台资源下载方案，辅助配置开源工具，实现半自动个人学习用途下载，不涉及生成爬虫代码。
+> 国家免费教育平台 · 半自动下载方案 · 合规使用指南
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/edu-resource-downloader`
-- **Source URL:** [https://clawhub.ai/skills/edu-resource-downloader](https://clawhub.ai/skills/edu-resource-downloader)
+---
 
-## Overview
+## 一、核心定位
 
+本技能提供**合规、稳妥**的国家免费教育平台资源下载方案，采用「现成工具 + AI辅助配置」的半自动模式。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/edu-resource-downloader
+⚠️ **原则**：仅供个人学习使用，不传播、不商用。选择已有开源工具，不生成完整爬虫代码。
+
+---
+
+## 二、两大目标平台
+
+### 2.1 国家中小学智慧教育平台
+
+| 项目 | 详情 |
+|------|------|
+| **网址** | basic.smartedu.cn |
+| **资源类型** | 视频课程 · PDF课件 · 习题 |
+| **免费** | ✅ 完全免费（国家公益平台） |
+
+### 2.2 学堂在线
+
+| 项目 | 详情 |
+|------|------|
+| **网址** | xuetangx.com |
+| **资源类型** | 大学课程 · 视频 · 课件 |
+| **免费** | ✅ 部分课程免费 |
+
+---
+
+## 三、为什么不能全自动？
+
+| 原因 | 说明 |
+|------|------|
+| 🚫 **版权红线** | 国家公益平台资源受版权保护，AI不能生成攻击性爬虫 |
+| ⚠️ **技术动态性** | 平台防爬机制频繁更新，通用脚本极易失效 |
+| 🔒 **账号风险** | 批量爬取可能触发平台封号 |
+
+**AI 的正确角色**：帮你解读配置文档 + 解决技术报错，而非生成爬虫代码。
+
+---
+
+## 四、推荐工具与 AI 辅助方式
+
+### 4.1 国家中小学智慧教育平台
+
+| 工具 | 用途 | AI 能帮你做什么 |
+|------|------|--------------|
+| **knowledge-grab** | 批量下载智慧教育平台资源 | 解读 config.yaml，修改保存路径、线程数等参数 |
+| **FlyEduDownloader** | 另一个开源下载器 | 解决 FFmpeg 环境问题 |
+| **IDM + 浏览器插件** | 辅助抓取视频流 | 配置 User-Agent 和抓取规则 |
+
+### 4.2 学堂在线
+
+| 工具 | 用途 | AI 能帮你做什么 |
+|------|------|--------------|
+| **xuetangx-downloader** | 课程视频批量下载 | 写批处理脚本（.bat）实现一键启动 |
+| **yt-dlp** | 通用 m3u8 视频流下载 | 配置下载参数、处理报错 |
+| **IDM** | 浏览器集成下载 | 配置浏览器抓取规则 |
+
+### 4.3 通用方案
+
+| 工具 | 适用平台 | AI 能帮你做什么 |
+|------|---------|--------------|
+| **yt-dlp** | 通用视频流（m3u8） | 写下载命令、处理 FFmpeg 报错 |
+| **IDM** | 浏览器内嵌视频 | 配置 User-Agent、批量任务 |
+| **JDownloader2** | 多平台批量下载 | 配置连接数、文件类型过滤 |
+
+---
+
+## 五、AI 辅助配置提示词模板
+
+### 5.1 解读配置文件
+
 ```
+你是一个配置专家。请帮我解读 [工具名] 的配置文件（config.yaml），
+我需要修改以下参数：
+- 保存路径：D:\MyCourses
+- 并发线程数：3
+- 文件格式过滤：mp4/pdf
+
+请告诉我具体需要修改哪些字段。
+```
+
+### 5.2 解决 FFmpeg 环境问题
+
+```
+我在使用 [工具名] 时遇到 FFmpeg 报错：
+[粘贴错误信息]
+
+我的环境是 Windows 11，请给出解决步骤。
+```
+
+### 5.3 写批处理脚本
+
+```
+请帮我写一个 Windows 批处理脚本（.bat），实现：
+1. 调用 xuetangx-downloader 下载课程
+2. 指定保存路径：D:\Courses\xuetangx
+3. 指定并发数：2
+4. 下载完成后自动关闭
+
+请给出完整脚本。
+```
+
+### 5.4 配置 IDM 抓取规则
+
+```
+请教我如何在 IDM（Internet Download Manager）中：
+1. 配置 User-Agent 模拟浏览器
+2. 设置自动抓取 [平台名] 的视频链接
+3. 配置批量任务队列
+
+请给出详细步骤。
+```
+
+---
+
+## 六、快速上手流程
+
+### 6.1 第一步：环境准备
+
+```bash
+# 1. 安装 Python 3.10+
+python --version
+
+# 2. 安装 FFmpeg（视频流处理必需）
+# Windows: 下载 ffmpeg-release-essentials.zip，解压到 C:\ffmpeg
+# 添加到 PATH：setx PATH "%PATH%;C:\ffmpeg\bin"
+
+# 3. 安装 yt-dlp
+pip install yt-dlp
+
+# 4. 安装 git（克隆开源工具）
+git --version
+```
+
+### 6.2 第二步：克隆工具
+
+```bash
+# 智慧教育平台下载器（示例）
+git clone https://github.com/xxx/knowledge-grab.git
+cd knowledge-grab
+pip install -r requirements.txt
+
+# 学堂在线下载器（示例）
+git clone https://github.com/xxx/xuetangx-downloader.git
+cd xuetangx-downloader
+pip install -r requirements.txt
+```
+
+### 6.3 第三步：AI 辅助配置
+
+```
+用上面的提示词模板，让 AI 帮你：
+1. 解读 config.yaml
+2. 修改保存路径和线程数
+3. 解决环境问题
+```
+
+### 6.4 第四步：执行下载
+
+```bash
+# 智慧教育平台（示例）
+python knowledge-grab/main.py --url "课程URL" --output "D:\MyCourses"
+
+# 学堂在线（示例）
+python xuetangx-downloader/main.py --url "课程URL" --output "D:\Courses"
+```
+
+---
+
+## 七、合规使用声明
+
+```
+✅ 允许：
+- 个人学习用途离线观看
+- 课堂教育用途
+- 学术研究用途
+
+🚫 禁止：
+- 公开传播或二次分享
+- 商业用途
+- 批量爬取导致平台服务受影响
+```
+
+---
+
+## 八、常见报错与 AI 求助模板
+
+| 报错 | 可能原因 | AI 求助模板 |
+|------|---------|-----------|
+| `FFmpeg not found` | FFmpeg 未安装或未加入 PATH | 见 5.2 节 |
+| `403 Forbidden` | 被平台防爬拦截 | "我的 IP 被封了吗？如何解决？" |
+| `Login failed` | Cookie 过期 | "如何更新登录态 Cookie？" |
+| `m3u8 parse error` | 视频流加密 | "这个平台用了什么加密？如何处理？" |
+| `Rate limit exceeded` | 请求频率过高 | "如何降低请求频率？" |
+
+**通用报错求助模板**：
+
+```
+我在使用 [工具名] 下载 [平台名] 课程时遇到报错：
+[粘贴完整错误信息]
+
+我的环境：
+- 操作系统：Windows 11
+- Python 版本：3.x
+- 网络环境：[公司网络/家庭宽带/代理]
+
+请帮我分析原因并给出解决步骤。
+```
+
+---
+
+## 九、工具清单
+
+### 9.1 推荐工具列表
+
+| 工具 | 平台 | 地址 |
+|------|------|------|
+| **knowledge-grab** | 智慧教育平台 | GitHub 搜索 |
+| **FlyEduDownloader** | 智慧教育平台 | GitHub 搜索 |
+| **xuetangx-downloader** | 学堂在线 | GitHub 搜索 |
+| **yt-dlp** | 通用 m3u8 | `pip install yt-dlp` |
+| **IDM** | 通用浏览器下载 | idmchina.net |
+| **JDownloader2** | 多平台批量 | jdownloader.org |
+
+### 9.2 备选方案
+
+| 场景 | 方案 |
+|------|------|
+| 临时下载单课 | 浏览器开发者工具 → Network → 找 m3u8 链接 → yt-dlp 下载 |
+| 无代码能力 | IDM 浏览器插件自动拦截 + 手动添加任务 |
+| 遇到技术报错 | 用第六节的 AI 求助模板咨询 |
+
+---
+
+## 十、使用方式
+
+### 触发场景
+
+```
+用户说「下载教育课程」→ 展示平台和工具选项
+用户说「帮我配置 knowledge-grab」→ 执行 AI 辅助配置流程
+用户说「解决 FFmpeg 报错」→ 按 5.2 节模板回答
+用户说「写一个下载脚本」→ 按 5.3 节模板生成
+用户说「遇到报错：[信息]」→ 按第八节模板分析解决
+```
+
+### 组合使用
+
+```
+用户：「我想下载智慧教育平台的初中数学课程」
+→ 确认平台（智慧教育平台）
+→ 推荐工具（knowledge-grab 或 IDM）
+→ 引导 AI 辅助配置
+→ 提供合规使用声明
+```
+
+---
+
+*本技能帮助合规、稳妥地获取国家免费教育资源*

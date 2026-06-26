@@ -1,0 +1,64 @@
+{
+  "schema": "v1",
+  "name": "ergonomic-bag-pack-check",
+  "version": "1.0.1",
+  "displayName": "Ergonomic Bag Pack Check",
+  "description": "Create a practical carry audit for a backpack, work bag, school bag, purse, tote, or messenger bag that causes discomfort, including contents, weight, fit, balance, repacking, and weekly reset steps.",
+  "categories": [
+    "health",
+    "routine",
+    "home-admin"
+  ],
+  "promptOnly": true,
+  "license": "MIT-0",
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "author": {
+    "name": "OpenClaw Skills"
+  },
+  "usage": {
+    "triggers": [
+      "my backpack hurts my shoulders",
+      "audit my work bag",
+      "make my school bag lighter",
+      "daily carry checklist",
+      "bag packing ergonomic check"
+    ],
+    "inputRequirements": [
+      "Bag type and how it is worn",
+      "Contents list and known or estimated weight",
+      "Carry duration and setting",
+      "Discomfort points and timing",
+      "Must-carry constraints such as medication, safety, school, work, or accessibility needs"
+    ],
+    "outputDeliverables": [
+      "Bag weight and contents audit",
+      "Non-diagnostic discomfort map",
+      "Fit and balance checklist",
+      "Repacking and removal plan",
+      "Weekly reset routine and one-week test plan"
+    ]
+  },
+  "constraints": {
+    "noCredentials": true,
+    "noExternalNetwork": true,
+    "noExecution": true,
+    "safetyNotice": "This prompt-only skill provides practical carry organization support, not medical diagnosis or treatment. Severe pain, numbness, weakness, injury signs, or persistent symptoms should be routed to medical care or qualified professional evaluation."
+  },
+  "triggerKeywords": [
+    "ergonomicBagCheck",
+    "bagPackAudit",
+    "backpackErgonomicCheck",
+    "bagWeightCheck",
+    "carryComfortCheck",
+    "bagFitAudit",
+    "ergonomicPackReview"
+  ],
+  "execution": "noExec",
+  "requires_api": false,
+  "no_network": true,
+  "no_credentials": true,
+  "no_code_execution": true
+}

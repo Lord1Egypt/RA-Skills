@@ -1,0 +1,22 @@
+{
+  "name": "echarts-ai-skill",
+  "version": "0.1.4",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "recommend": "node dist/cli/recommend-chart.js",
+    "generate": "node dist/cli/generate-chart.js",
+    "render": "node dist/cli/render-chart.js",
+    "check": "tsc --noEmit",
+    "test": "npm run check && npm run build"
+  },
+  "dependencies": {
+    "echarts": "^5.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "typescript": "^5.8.2"
+  }
+}
+

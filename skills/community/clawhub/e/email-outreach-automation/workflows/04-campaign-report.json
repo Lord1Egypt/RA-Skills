@@ -1,0 +1,128 @@
+{
+  "name": "Outreach — Campaign Report",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "n1",
+      "name": "Daily Schedule",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_OUTREACH_SHEET_ID",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Prospects",
+          "mode": "list"
+        },
+        "options": {}
+      },
+      "id": "n2",
+      "name": "Read Prospects",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        440,
+        300
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const prospects = $input.all().map(i => i.json);\nconst now = new Date();\nconst oneDayAgo = new Date(now - 24 * 60 * 60 * 1000);\n\nconst total = prospects.length;\nconst inSequence = prospects.filter(p => p.status === 'in_sequence').length;\nconst replied = prospects.filter(p => p.replied === 'true' || p.replied === true).length;\nconst bounced = prospects.filter(p => p.bounced === 'true' || p.bounced === true).length;\nconst completed = prospects.filter(p => p.status === 'completed').length;\nconst newProspects = prospects.filter(p => p.status === 'new').length;\n\n// Emails sent today\nconst sentToday = prospects.filter(p => {\n  if (!p.last_sent_at) return false;\n  return new Date(p.last_sent_at) >= oneDayAgo;\n}).length;\n\nconst replyRate = total > 0 ? Math.round((replied / total) * 100) : 0;\nconst bounceRate = total > 0 ? Math.round((bounced / total) * 100) : 0;\n\n// By campaign\nconst campaigns = {};\nfor (const p of prospects) {\n  const c = p.campaign || 'default';\n  if (!campaigns[c]) campaigns[c] = { total: 0, replied: 0, bounced: 0 };\n  campaigns[c].total++;\n  if (p.replied === 'true' || p.replied === true) campaigns[c].replied++;\n  if (p.bounced === 'true' || p.bounced === true) campaigns[c].bounced++;\n}\n\nconst campaignSummary = Object.entries(campaigns)\n  .map(([name, stats]) => `${name}: ${stats.total} total, ${stats.replied} replied (${Math.round(stats.replied/stats.total*100)}%)`)\n  .join('<br>');\n\n// Step distribution\nconst stepCounts = [0, 0, 0, 0, 0];\nfor (const p of prospects) {\n  const step = parseInt(p.step || '0', 10);\n  if (step >= 0 && step <= 4) stepCounts[step]++;\n}\n\nreturn [{\n  json: {\n    total,\n    new_prospects: newProspects,\n    in_sequence: inSequence,\n    replied,\n    bounced,\n    completed,\n    sent_today: sentToday,\n    reply_rate: replyRate,\n    bounce_rate: bounceRate,\n    campaign_summary: campaignSummary,\n    step_distribution: `Not started: ${stepCounts[0]}, Step 1: ${stepCounts[1]}, Step 2: ${stepCounts[2]}, Step 3: ${stepCounts[3]}, Step 4: ${stepCounts[4]}`,\n    report_date: now.toISOString().split('T')[0]\n  }\n}];"
+      },
+      "id": "n3",
+      "name": "Calculate Metrics",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $env.OUTREACH_ADMIN_EMAIL || 'YOUR_NOTIFICATION_EMAIL' }}",
+        "subject": "=Outreach Report — {{ $json.report_date }}",
+        "message": "=<h2>Email Outreach Report</h2><p><strong>Date:</strong> {{ $json.report_date }}</p><table border='1' cellpadding='8' cellspacing='0'><tr><td><strong>Total Prospects</strong></td><td>{{ $json.total }}</td></tr><tr><td><strong>New (Not Started)</strong></td><td>{{ $json.new_prospects }}</td></tr><tr><td><strong>In Sequence</strong></td><td>{{ $json.in_sequence }}</td></tr><tr><td><strong>Replied</strong></td><td>{{ $json.replied }} ({{ $json.reply_rate }}%)</td></tr><tr><td><strong>Bounced</strong></td><td>{{ $json.bounced }} ({{ $json.bounce_rate }}%)</td></tr><tr><td><strong>Completed</strong></td><td>{{ $json.completed }}</td></tr><tr><td><strong>Sent Today</strong></td><td>{{ $json.sent_today }}</td></tr></table><h3>Step Distribution</h3><p>{{ $json.step_distribution }}</p><h3>By Campaign</h3><p>{{ $json.campaign_summary }}</p>",
+        "options": {}
+      },
+      "id": "n4",
+      "name": "Send Report",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        880,
+        300
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "YOUR_SMTP_CREDENTIAL_ID",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Daily Schedule": {
+      "main": [
+        [
+          {
+            "node": "Read Prospects",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Prospects": {
+      "main": [
+        [
+          {
+            "node": "Calculate Metrics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Metrics": {
+      "main": [
+        [
+          {
+            "node": "Send Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

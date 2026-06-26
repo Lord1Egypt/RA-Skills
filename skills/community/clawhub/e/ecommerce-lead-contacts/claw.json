@@ -1,0 +1,41 @@
+{
+  "name": "ecommerce-lead-contacts",
+  "version": "1.0.9",
+  "description": "Free, one-click access to verified LinkedIn profiles and business emails for 14M+ ecommerce stores. Input the store URL and instantly retrieve decision-maker contact information — powered by ECcompass REST API.",
+  "author": "eccompass.ai",
+  "license": "Proprietary",
+  "permissions": [
+    "network"
+  ],
+  "credentials": {
+    "APEX_TOKEN": {
+      "description": "ECcompass API access token. Sign up at https://eccompass.ai, then go to Dashboard → API Access → Create Token.",
+      "required": true
+    }
+  },
+  "requires": {
+    "bins": [
+      "python3"
+    ],
+    "env": [
+      "APEX_TOKEN"
+    ]
+  },
+  "entry": "SKILL.md",
+  "tags": [
+    "ecommerce",
+    "analytics",
+    "market-intelligence",
+    "domain-research",
+    "shopify",
+    "dtc"
+  ],
+  "models": [
+    "claude-*",
+    "gpt-*",
+    "gemini-*"
+  ],
+  "pricing": "free",
+  "support_url": "https://eccompass.ai",
+  "homepage": "https://eccompass.ai"
+}

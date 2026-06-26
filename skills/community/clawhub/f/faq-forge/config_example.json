@@ -1,0 +1,36 @@
+{
+  "DATABASE_FILE": "faq_data.json",
+  "AUTO_BACKUP": true,
+  "BACKUP_DIR": "backups",
+  "BACKUP_FREQUENCY": "daily",
+  "DEFAULT_PRIORITY": "normal",
+  "AUTO_TAG_ENABLED": true,
+  "TRACK_VIEW_COUNTS": true,
+  "MAX_SLUG_LENGTH": 50,
+  "FILE_ENCODING": "utf-8",
+  "JSON_INDENT": 2,
+  "DEFAULT_TEMPLATE": null,
+  "APPLY_TEMPLATE_ON_INIT": false,
+  "HTML_CONFIG": {
+    "title": "Frequently Asked Questions",
+    "show_search": true,
+    "show_toc": true,
+    "collapsible": true,
+    "show_priority_badges": true,
+    "show_tags": true,
+    "show_related": true,
+    "theme_color": "#667eea"
+  },
+  "MARKDOWN_CONFIG": {
+    "title": "Frequently Asked Questions",
+    "include_toc": true,
+    "include_metadata": true,
+    "include_related": true
+  },
+  "BUSINESS_INFO": {
+    "name": "Your Business Name",
+    "website": "https://yourbusiness.com",
+    "support_email": "support@yourbusiness.com",
+    "support_link": "https://yourbusiness.com/contact"
+  }
+}

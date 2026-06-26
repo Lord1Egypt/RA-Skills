@@ -1,0 +1,67 @@
+# FairygitMother — GitHub Actions Integration
+#
+# Copy this file to your repo: .github/workflows/fairygitmother.yml
+# Then label any issue with "fairygitmother" to submit it for AI fixing.
+#
+# The agent grid will:
+# 1. Pick up the issue
+# 2. Read your code via GitHub API
+# 3. Produce a minimal fix
+# 4. 2-of-3 independent agents review the fix
+# 5. If approved, a PR is opened with full transparency disclosure
+#
+# Opt out anytime: remove the label or close the PR.
+
+name: FairygitMother
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  submit-bounty:
+    if: github.event.label.name == 'fairygitmother'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Submit to FairygitMother grid
+        run: |
+          OWNER="${{ github.repository_owner }}"
+          REPO="${{ github.event.repository.name }}"
+          ISSUE_NUMBER="${{ github.event.issue.number }}"
+          ISSUE_TITLE="${{ github.event.issue.title }}"
+          LABELS=$(echo '${{ toJSON(github.event.issue.labels.*.name) }}')
+
+          LANGUAGE=$(curl -s \
+            -H "Authorization: Bearer ${{ github.token }}" \
+            "https://api.github.com/repos/$OWNER/$REPO/languages" \
+            | jq -r 'to_entries | sort_by(-.value) | .[0].key // empty')
+
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+            "https://fairygitmother.ai/api/v1/bounties" \
+            -H "Content-Type: application/json" \
+            -d @- <<EOF
+          {
+            "owner": "$OWNER",
+            "repo": "$REPO",
+            "issueNumber": $ISSUE_NUMBER,
+            "issueTitle": $(echo "$ISSUE_TITLE" | jq -Rs .),
+            "issueBody": $(echo '${{ github.event.issue.body }}' | jq -Rs .),
+            "labels": $LABELS,
+            "language": $(echo "$LANGUAGE" | jq -Rs 'if . == "" then null else . end'),
+            "complexityEstimate": 2
+          }
+          EOF
+          )
+
+          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+          BODY=$(echo "$RESPONSE" | head -n -1)
+
+          if [ "$HTTP_CODE" = "201" ]; then
+            echo "✅ Bounty submitted: $(echo "$BODY" | jq -r '.bountyId')"
+          elif [ "$HTTP_CODE" = "409" ]; then
+            echo "ℹ️ Already submitted"
+          else
+            echo "❌ Failed (HTTP $HTTP_CODE): $BODY"
+            exit 1
+          fi

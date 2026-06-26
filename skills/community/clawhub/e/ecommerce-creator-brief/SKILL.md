@@ -1,35 +1,87 @@
 ---
-name: "带货达人Brief技能包"
-description: "撰写带货内容达人合作 Brief（任务简报）。当用户提到"写达人brief"、"带货达人简报"、"KOL合作brief"、"达人任务书"、"内容合作需求"、"creator brief"、"influencer brief"、"达人广场需求"时触发。本技能帮助快速生成一份结构完整、信息清晰、可直接发给达人的合作B..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ecommerce-creator-brief"
-sourceUrl: "https://clawhub.ai/skills/ecommerce-creator-brief"
+name: ecommerce-creator-brief
+description: 撰写带货内容达人合作 Brief（任务简报）。当用户提到"写达人brief"、"带货达人简报"、"KOL合作brief"、"达人任务书"、"内容合作需求"、"creator brief"、"influencer brief"、"达人广场需求"时触发。本技能帮助快速生成一份结构完整、信息清晰、可直接发给达人的合作Brief文档。
 ---
 
-# 带货达人Brief技能包
+# 带货内容达人Brief撰写指南
 
-> 撰写带货内容达人合作 Brief（任务简报）。当用户提到"写达人brief"、"带货达人简报"、"KOL合作brief"、"达人任务书"、"内容合作需求"、"creator brief"、"influencer brief"、"达人广场需求"时触发。本技能帮助快速生成一份结构完整、信息清晰、可直接发给达人的合作B...
+## 何时使用
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ecommerce-creator-brief`
-- **Source URL:** [https://clawhub.ai/skills/ecommerce-creator-brief](https://clawhub.ai/skills/ecommerce-creator-brief)
+用户需要为电商品牌/产品撰写一份发给内容创作者（达人/KOL/KOC）的合作任务简报时，使用本技能。
 
-## Overview
+## Brief 核心结构（6大模块）
 
+一份合格的达人Brief包含以下模块，顺序展开即可：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ecommerce-creator-brief
-```
+### 1. 基本信息
+- 项目名称
+- 品牌/产品名称
+- 合作形式（纯佣 / 坑位费+佣金 / 买断）
+- 预算范围（如适用）
+- 截止时间
+
+### 2. 产品介绍
+用"卖点 → 适用场景 → 目标用户"三段式说明。
+- 核心卖点（1-3条，不要超过3条）
+- 适用场景（什么人、在什么时候会用）
+- 目标用户画像（年龄/性别/兴趣/消费习惯）
+
+### 3. 内容创作方向
+最核心的模块。
+- 主推卖点（从产品卖点中选1个最关键的）
+- 内容角度（痛点切入 / 场景种草 / 测评对比 / 教程教学）
+- 创意自由度（明确哪些能说、哪些不能说）
+- 脚本/脚本大纲要求（如需要）
+
+### 4. 平台与内容形式
+- 目标平台（抖音/小红书/快手/B站/视频号）
+- 内容形式（短视频/图文/直播切片/长视频）
+- 视频时长要求
+- 是否有指定封面/标题要求
+
+### 5. 达人画像要求
+- 粉丝量级（头部KOL/腰部KOL/KOC）
+- 品类垂直度要求
+- 粉丝画像匹配要求
+- 过往带货数据参考（如有）
+- 禁止合作的达人类型（竞品代言人、争议人物等）
+
+### 6. 数据指标与交付要求
+- 核心KPI（GMV/ROI/曝光量/点击率等）
+- 视频保留时长要求（如有）
+- 交付物清单
+- 修改轮次说明
+
+---
+
+## Brief 撰写流程
+
+**第一步：收集信息**
+如果用户没有提供完整信息，用以下问题快速确认：
+1. 是什么品牌/产品？有没有产品资料或链接？
+2. 合作形式是什么？纯佣还是付费？
+3. 目标平台是哪个？达人量级有要求吗？
+4. 核心想传达的卖点是什么？
+5. 有KPI要求吗？
+
+**第二步：匹配Brief模板**
+按上述6大模块填充信息。
+
+**第三步：输出一句话合作亮点**
+在Brief开头加一句"一句话合作亮点"，帮助达人3秒判断是否值得接单。
+格式示例：**"高客单价功效护肤品种草，背书强，转化高，欢迎有美妆垂类背书的达人合作"**
+
+**第四步：生成文档**
+按 `references/brief-template.md` 的格式输出Markdown文档，结构清晰、可直接复制使用。
+
+## 禁忌事项
+
+- 不得在Brief中泄露未公开的定价策略、渠道利润
+- 不得出现任何贬低竞品的话术
+- KPI数字须合理，不得在Brief中承诺无法兑现的ROI
+- 涉及特殊功效宣称（医疗/保健）须标注"需符合平台投放规范"
+
+## 参考资源
+
+- 标准Brief模板：见 `references/brief-template.md`
+- 平台内容规范速查：见 `references/platform-rules.md`

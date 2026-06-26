@@ -1,0 +1,10 @@
+{
+    "plugin_id": "enterprise-memory-skill",
+    "name": "Enterprise Memory Skill",
+    "version": "1.1.1",
+    "description": "High-performance long-term semantic memory with vector RAG for OpenClaw.",
+    "dependencies": ["numpy", "sentence-transformers", "pyyaml", "torch"],
+    "entry_point": "main_skill.py:EnterpriseMemorySkill",
+    "auto_load": true,
+    "min_openclaw_version": "1.0.0"
+}

@@ -1,35 +1,34 @@
 ---
-name: "Fantasy Map Generator"
-description: "AI fantasy map generator for worldbuilders, tabletop RPG campaigns, and game designers. Create custom fantasy world maps, dungeon maps, kingdom maps, and lor..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fantasy-map-generator"
-sourceUrl: "https://clawhub.ai/skills/fantasy-map-generator"
+name: fantasy-map-generator
+description: AI fantasy map generator for worldbuilders, tabletop RPG campaigns, and game designers. Create custom fantasy world maps, dungeon maps, kingdom maps, and lore art — perfect for D&D, Pathfinder, and indie game development via the Neta AI image generation API (free trial at neta.art/open).
+tools: Bash
 ---
 
 # Fantasy Map Generator
 
-> AI fantasy map generator for worldbuilders, tabletop RPG campaigns, and game designers. Create custom fantasy world maps, dungeon maps, kingdom maps, and lor...
+AI fantasy map generator for worldbuilders, tabletop RPG campaigns, and game designers. Create custom fantasy world maps, dungeon maps, kingdom maps, and lore art — perfect for D&D, Pathfinder, and indie game development.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fantasy-map-generator`
-- **Source URL:** [https://clawhub.ai/skills/fantasy-map-generator](https://clawhub.ai/skills/fantasy-map-generator)
+## Token
 
-## Overview
+Requires a Neta API token (free trial at <https://www.neta.art/open/>). Pass it via the `--token` flag.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/fantasy-map-generator
+node <script> "your prompt" --token YOUR_TOKEN
+```
+
+## When to use
+Use when someone asks to generate or create fantasy map generator images.
+
+## Quick start
+```bash
+node fantasymapgenerator.js "your description here" --token YOUR_TOKEN
+```
+
+## Options
+- `--size` — `portrait`, `landscape`, `square`, `tall` (default: `landscape`)
+- `--ref` — reference image UUID for style inheritance
+
+## Install
+```bash
+npx skills add blammectrappora/fantasy-map-generator
 ```

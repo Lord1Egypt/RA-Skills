@@ -1,0 +1,12 @@
+# Self-Evolution 配置
+
+# 反思综合
+pending_threshold: 5           # pending 积累多少条信号后触发综合
+max_silent_hours: 24           # pending 不为空时，最长静默多少小时后强制综合
+report_style: detailed         # 反思报告风格：detailed / brief
+
+# 记忆容量
+l1_limit: 1000                 # L1 原则层条目上限
+
+# 保鲜检查
+freshness_check_interval: 30d  # L1 原则保鲜检查周期

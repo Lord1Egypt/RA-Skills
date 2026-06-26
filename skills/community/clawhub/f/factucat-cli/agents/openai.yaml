@@ -1,0 +1,8 @@
+interface:
+  display_name: "FactuCat CLI"
+  short_description: "Operate FactuCat CLI for CFDI 4.0"
+  brand_color: "#7F13EC"
+  default_prompt: "Use $factucat-cli to install, authenticate, and operate the FactuCat CLI for Mexican CFDI 4.0 invoicing on factucat.com."
+
+policy:
+  allow_implicit_invocation: true

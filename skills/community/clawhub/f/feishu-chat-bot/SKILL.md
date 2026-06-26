@@ -1,35 +1,95 @@
----
-name: "飞书群聊机器人"
-description: "飞书群聊机器人支持定时消息、自动回复、投票收集和富文本卡片发送，提升群聊自动化和管理效率。"
-category: "productivity"
-source: "ClawHub"
-tags: [automation, bot, chat, feishu, lark]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-chat-bot"
-sourceUrl: "https://clawhub.ai/skills/feishu-chat-bot"
+# 飞书群聊机器人 — Feishu Chat Bot
+
+description: "飞书群聊机器人 — 自动在飞书群中发送消息、日报提醒、审批通知、团队广播。支持定时发送、条件触发、多群管理。当用户需要通过飞书群进行团队沟通自动化、设置群消息机器人、批量群发通知时使用。触发词：飞书群聊、群机器人、自动发消息、群通知、定时提醒、飞书消息、feishu chat bot、飞书自动回复、飞书卡片消息。"
+
+**版本**: 1.0.0  
+**作者**: Echo  
+**标签**: feishu, chat, automation, bot, 飞书, 群聊, 自动化  
+**价格**: 免费 (Phase 1 — 验证需求)
+
 ---
 
-# 飞书群聊机器人
+## 简介
+飞书群聊 AI 机器人，让你的群聊更智能。支持定时消息、自动回复、投票收集、富文本卡片发送。无需写代码，用自然语言管理群聊。
 
-> 飞书群聊机器人支持定时消息、自动回复、投票收集和富文本卡片发送，提升群聊自动化和管理效率。
+---
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-chat-bot`
-- **Source URL:** [https://clawhub.ai/skills/feishu-chat-bot](https://clawhub.ai/skills/feishu-chat-bot)
+## 功能
 
-## Overview
+### 1. 📨 定时消息
+- 每日早安/晚安
+- 会议提醒（提前15/30分钟）
+- 周报提交提醒
+- 生日祝福
 
+### 2. 💬 自动回复
+- 关键词触发回复
+- FAQ 知识库
+- 欢迎新成员
+- 常见问题自动解答
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-chat-bot
+### 3. 📊 投票收集
+- 创建多选/单选投票
+- 自动统计结果
+- 定时催投
+- 结果导出到多维表格
+
+### 4. 🎨 富文本卡片
+- 日报/周报卡片
+- 进度通知卡片
+- 带按钮的交互卡片
+- 多列信息展示
+
+### 5. 🔔 智能通知
+- 多维表格数据变更通知
+- 文档评论提醒
+- 审批流程通知
+- 自定义事件触发
+
+---
+
+## 使用方式
+
 ```
+# 定时消息
+"每天早上9点给我发今日待办提醒"
+"每周五下午5点提醒大家写周报"
+
+# 自动回复
+"当群里有人问'会议室'时，回复会议室预订链接"
+"新成员加入时发送欢迎语和群规"
+
+# 创建投票
+"帮我创建一个'本周团建去哪'的投票，选项：爬山/聚餐/KTV"
+"收集大家对这次改版的反馈"
+
+# 发送卡片
+"把这份进度报告发成卡片到项目群"
+"用卡片展示本周关键数据"
+```
+
+---
+
+## 技术实现
+- 基于 OpenClaw feishu_chat API
+- 支持定时任务调度
+- 自然语言意图识别
+- 模板化卡片渲染
+
+---
+
+## 适用场景
+| 场景 | 典型用法 |
+|------|----------|
+| 团队管理 | 每日站会提醒、周报收集、进度同步 |
+| 社区运营 | 新人欢迎、FAQ 自动回复、公告推送 |
+| 项目管理 | 里程碑提醒、风险预警、审批通知 |
+| 个人效率 | 日程提醒、习惯打卡、信息聚合 |
+
+---
+
+## 与其他技能配合
+- `feishu-bitable-butler`: 投票结果 → 多维表格 · 数据变更 → 群通知
+- `feishu-doc-ai-writer`: 文档生成 → 卡片发送 · 群聊需求 → 文档起草
+
+🔄 三件套完整覆盖：**数据管理 + 文档生成 + 群聊自动化**

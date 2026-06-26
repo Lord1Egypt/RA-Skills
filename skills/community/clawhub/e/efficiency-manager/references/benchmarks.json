@@ -1,0 +1,91 @@
+{
+  "categories": {
+    "work": {
+      "globalAvg": 2.5,
+      "expertAvg": 1.8,
+      "description": "单次工作任务的平均时长"
+    },
+    "study": {
+      "globalAvg": 1.5,
+      "expertAvg": 1.0,
+      "description": "学习/深度工作平均时长"
+    },
+    "exercise": {
+      "globalAvg": 1.0,
+      "expertAvg": 0.75,
+      "description": "运动/健身平均时长"
+    },
+    "social": {
+      "globalAvg": 2.0,
+      "expertAvg": 1.5,
+      "description": "社交/聚会平均时长"
+    },
+    "family": {
+      "globalAvg": 1.8,
+      "expertAvg": 1.5,
+      "description": "家庭相关事务平均时长"
+    },
+    "rest": {
+      "globalAvg": 0.5,
+      "expertAvg": 0.3,
+      "description": "休息/小憩平均时长"
+    },
+    "entertainment": {
+      "globalAvg": 1.5,
+      "expertAvg": 1.2,
+      "description": "娱乐/休闲平均时长"
+    },
+    "chores": {
+      "globalAvg": 1.2,
+      "expertAvg": 1.0,
+      "description": "家务平均时长"
+    },
+    "other": {
+      "globalAvg": 1.0,
+      "expertAvg": 0.8,
+      "description": "其他活动平均时长"
+    }
+  },
+  "timeSlots": {
+    "morning": {
+      "work": 1.8,
+      "study": 1.2,
+      "exercise": 0.8,
+      "social": 1.5,
+      "family": 1.5,
+      "rest": 0.3,
+      "entertainment": 1.0,
+      "chores": 1.0
+    },
+    "afternoon": {
+      "work": 2.2,
+      "study": 1.5,
+      "exercise": 1.0,
+      "social": 2.0,
+      "family": 1.8,
+      "rest": 0.5,
+      "entertainment": 1.2,
+      "chores": 1.2
+    },
+    "evening": {
+      "work": 2.5,
+      "study": 1.8,
+      "exercise": 1.2,
+      "social": 2.5,
+      "family": 2.0,
+      "rest": 0.5,
+      "entertainment": 1.5,
+      "chores": 1.0
+    },
+    "night": {
+      "work": 3.0,
+      "study": 2.0,
+      "exercise": 1.5,
+      "social": 3.0,
+      "family": 2.2,
+      "rest": 0.8,
+      "entertainment": 2.0,
+      "chores": 1.5
+    }
+  }
+}

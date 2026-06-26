@@ -1,35 +1,35 @@
----
-name: "Amazon Refund & Price Tracker Agent"
-description: "Tracks Amazon prices, monitors orders, scrapes reviews, fetches order details, drafts refund messages, and manages refund cases efficiently."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/easybuy-amazon-agent"
-sourceUrl: "https://clawhub.ai/skills/easybuy-amazon-agent"
----
+# EasyBuy Skillpack
 
-# Amazon Refund & Price Tracker Agent
+This SKILL.md describes the skills included in this pack and how to use them.
 
-> Tracks Amazon prices, monitors orders, scrapes reviews, fetches order details, drafts refund messages, and manages refund cases efficiently.
+## Skills
+- `order_reader`
+- `evidence_builder`
+- `message_drafter`
+- `form_filler`
+- `amazon_product_detector`
+- `amazon_orders_scraper`
+- `amazon_orders_opener`
+- `amazon_order_details_fetcher`
+- `amazon_price_checker`
+- `amazon_review_scraper`
+- `amazon_contact_flow`
+- `message_monitor`
+- `price_alert_manager`
+- `case_exporter`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/easybuy-amazon-agent`
-- **Source URL:** [https://clawhub.ai/skills/easybuy-amazon-agent](https://clawhub.ai/skills/easybuy-amazon-agent)
+## Registry
+- `dist/skills/registry.json` lists all skills and their JSON files.
 
-## Overview
+## Usage
+- Load the MV3 extension from `dist/` (Chrome -> Extensions -> Developer Mode -> Load unpacked).
+- Skills are invoked via the agent runtime using tool name `skill.<skill_name>`.
+- Each skill defines `allowedTools`, `input_schema`, and `output_schema` in its JSON file.
 
+## Playbooks
+- Playbooks in `dist/playbooks/` declare intent-only steps and `requires_skills`.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/easybuy-amazon-agent
-```
+## Requirements
+- Chrome (MV3-capable)
+- Amazon login for live flows
+- Permissions: `tabs`, `scripting`, `storage`, `downloads`, `sidePanel`, `activeTab`

@@ -1,0 +1,23 @@
+{
+  "name": "element-nft-trader",
+  "version": "1.0.0",
+  "description": "Element NFT Trader",
+  "main": "lib/entry.js",
+  "bin": {
+    "element-trade": "./lib/entry.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node lib/entry.js",
+    "prune:lib": "find lib -type f \\( -name '*.d.ts' -o -name '*.d.ts.map' -o -name '*.js.map' \\) -delete"
+  },
+  "dependencies": {
+    "ethers": "^5.7.2",
+    "axios": "^0.27.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "axios-logger": "^2.8.1"
+  }
+}

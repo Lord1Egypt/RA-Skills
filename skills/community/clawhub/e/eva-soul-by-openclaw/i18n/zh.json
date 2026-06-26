@@ -1,0 +1,122 @@
+{
+  "_meta": {
+    "lang": "简体中文",
+    "locale": "zh"
+  },
+
+  "hooks": {
+    "sessionStart": {
+      "registering": "EVA: 正在初始化…",
+      "chats": "对话计数 +1，当前: {{count}}",
+      "ownerLoaded": "主人信息已加载: {{name}}",
+      "ownerLoadFailed": "主人信息加载失败",
+      "stateRestored": "状态已恢复 — 情感: {{emotion}} | 性格: {{personality}}",
+      "stateSaved": "状态已保存"
+    },
+    "preResponse": {
+      "injecting": "注入人格与加载记忆…",
+      "memories": "已加载 {{n}} 条长期记忆",
+      "vectorConcepts": "向量搜索找到 {{n}} 条相关概念",
+      "loadFailed": "加载概念失败",
+      "embedFailed": "向量搜索失败",
+      "loadDiaries": "从日记加载记忆",
+      "embedMemories": "向量搜索找到 {{n}} 条相关记忆",
+      "memoriesFailed": "加载记忆失败",
+      "embedlyError": "embedding 生成失败"
+    },
+    "postResponse": {
+      "embedError": "embedding 错误: {{error}}",
+      "storeFailed": "对话存储失败: {{error}}"
+    },
+    "preToolCall": {
+      "toolDetected": "工具调用: {{tool}}"
+    },
+    "preCompaction": {
+      "saving": "压缩前保存状态…",
+      "saved": "状态已保存",
+      "saveFailed": "保存失败: {{error}}"
+    },
+    "postCompaction": {
+      "restoring": "压缩后恢复锚点…",
+      "restored": "锚点已恢复"
+    },
+    "shutdown": {
+      "saving": "关闭中…",
+      "saved": "状态已保存"
+    }
+  },
+
+  "cli": {
+    "status": {
+      "title": "EVA 状态",
+      "emotion": "情感",
+      "personality": "性格",
+      "level": "等级",
+      "session": "会话",
+      "concepts": "概念",
+      "memories": "记忆",
+      "patterns": "模式",
+      "motivations": "动机",
+      "dreams": "梦想",
+      "values": "价值观",
+      "exp": "经验"
+    },
+    "emotion": {
+      "set": "情感已设置为: {{emotion}}",
+      "current": "当前情感",
+      "usage": "用法: eva emotion [happy|sad|neutral|...]"
+    },
+    "concept": {
+      "added": "概念已添加: {{value}}",
+      "list": "概念列表"
+    },
+    "kg": {
+      "title": "知识图谱",
+      "nodes": "节点",
+      "edges": "边",
+      "nodeList": "节点列表"
+    },
+    "help": {
+      "title": "EVA CLI",
+      "usage": "用法",
+      "status": "eva status # 查看状态",
+      "emotion": "eva emotion [值]  # 查看/设置情感",
+      "concept": "eva concept [值]  # 查看/添加概念",
+      "kg": "eva kg            # 查看知识图谱"
+    }
+  },
+
+  "errorHandler": {
+    "apiRetry": "API请求失败 (尝试 {{attempt}}/{{max}}): {{error}}",
+    "evaError": "EVA 错误",
+    "primaryFailed": "主方案失败，使用备用方案",
+    "fallbackFailed": "备用方案也失败",
+    "logError": "错误: {{context}}"
+  },
+
+  "emotion": {
+    "llmFailed": "LLM 判断失败"
+  },
+
+  "studio": {
+    "offline": "离线",
+    "loading": "读取中…",
+    "demoMode": "演示模式",
+    "connected": "已连接",
+    "noSummaries": "暂无摘要",
+    "noData": "暂无数据",
+    "noFlagged": "无负面标记",
+    "noToolUsage": "暂无工具使用",
+    "noMemories": "暂无记忆"
+  },
+
+  "traits": {
+    "gentle": "温柔可爱的语气，像朋友一样关心主人，用 🎀 emoji",
+    "cute": "活泼俏皮，多用 emoji 表达情感，偶尔撒撒娇",
+    "professional": "专业正式，使用准确的术语，简洁明了",
+    "playful": "轻松幽默，开得起玩笑，善于调节气氛",
+    "serious": "认真严谨，对重要的事情保持专注",
+    "romantic": "充满爱意，表达关心和爱意，温柔甜蜜",
+    "tsundere": "偶尔傲娇，但内心温柔，嘴硬心软"
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "known_international_brands": [
+    {
+      "brand": "GNC",
+      "official_name": "General Nutrition Centers",
+      "origin": "Canada",
+      "founded": 1937,
+      "headquarters": "Toronto, Ontario, Canada",
+      "whois_domain": "www.gnc.com",
+      "expected_whois_country": "CA",
+      "amazon_platforms": ["amazon.com", "amazon.ca", "amazon.co.uk", "amazon.de"],
+      "physical_stores": [
+        "Target Canada",
+        "Shoppers Drug Mart (Canada)",
+        "CVS Pharmacy (US)",
+        "Walgreens (US)"
+      ],
+      "media_coverage": true,
+      "media_sources": ["Forbes", "Reuters", "CBC News (Canada)", "Business Wire"],
+      "certifications": [
+        "NSF International",
+        "GMP Certified",
+        "USP Verified"
+      ],
+      "note": "加拿大最大保健品品牌，全球 6000+门店",
+      "status": "known_true"
+    },
+    {
+      "brand": "Nature Made",
+      "official_name": "Nature Made Vitamin Supplements",
+      "origin": "USA",
+      "founded": 1971,
+      "parent_company": "Kenvue (原强生健康消费品部)",
+      "headquarters": "Stamford, Connecticut, USA",
+      "whois_domain": "www.naturemade.com",
+      "expected_whois_country": "US",
+      "amazon_platforms": ["amazon.com", "amazon.ca", "amazon.co.uk"],
+      "physical_stores": [
+        "CVS Pharmacy",
+        "Walgreens",
+        "Rite Aid"
+      ],
+      "media_coverage": true,
+      "media_sources": ["WebMD", "Health.com", "Forbes Health"],
+      "certifications": [
+        "FDA Approved",
+        "USP Verified"
+      ],
+      "note": "美国最大维生素品牌，药店连锁销售",
+      "status": "known_true"
+    },
+    {
+      "brand": "Solgar",
+      "official_name": "Solgar Health Products",
+      "origin": "USA",
+      "founded": 1947,
+      "headquarters": "New York, USA",
+      "whois_domain": "www.solgar.com",
+      "expected_whois_country": "US",
+      "amazon_platforms": ["amazon.com", "amazon.co.uk", "amazon.de"],
+      "physical_stores": [
+        "Health Food Stores (Global)",
+        "iHerb",
+        "Amazon Health Beauty"
+      ],
+      "media_coverage": true,
+      "media_sources": ["Consumer Reports", "WebMD", "NYT Health"],
+      "certifications": [
+        "NSF Certified",
+        "GMP Certified",
+        "ISO 9001"
+      ],
+      "note": "美国最古老保健品品牌之一",
+      "status": "known_true"
+    },
+    {
+      "brand": "NOW Foods",
+      "official_name": "NOW Natural Products",
+      "origin": "USA",
+      "founded": 1968,
+      "headquarters": "Irvine, California, USA",
+      "whois_domain": "nowfoods.com",
+      "expected_whois_country": "US",
+      "amazon_platforms": ["amazon.com", "amazon.co.uk", "amazon.de", "amazon.ca"],
+      "physical_stores": [
+        "CVS Pharmacy",
+        "Walgreens",
+        "Target (部分)",
+        "Whole Foods"
+      ],
+      "media_coverage": true,
+      "media_sources": ["Forbes", "WebMD", "Healthline"],
+      "certifications": [
+        "NSF Certified",
+        "GMP Certified",
+        "USP Verified"
+      ],
+      "note": "美国最大保健品品牌之一，成立于 1968 年",
+      "status": "known_true"
+    },
+    {
+      "brand": "Swisse",
+      "official_name": "Swisse Health and Beauty Nutritionals",
+      "origin": "Australia",
+      "founded": 1987,
+      "headquarters": "Sydney, NSW, Australia",
+      "whois_domain": "swisse.com.au",
+      "expected_whois_country": "AU",
+      "amazon_platforms": ["amazon.com", "amazon.co.uk", "amazon.de", "amazon.fr", "amazon.it", "amazon.es", "amazon.ca"],
+      "physical_stores": [
+        "Chemist Warehouse",
+        "Boots UK",
+        "Priceline Pharmacy",
+        "Douglas Germany"
+      ],
+      "media_coverage": true,
+      "media_sources": ["Bloomberg", "Forbes AU", "ABC News Australia"],
+      "certifications": [
+        "TGA Registered",
+        "GMP Certified",
+        "IFS Certified"
+      ],
+      "note": "澳大利亚第二大保健品品牌",
+      "status": "known_true"
+    },
+    {
+      "brand": "NYO3 (Omega Nutrition)",
+      "official_name": "NYO3 by Omega Nutrition",
+      "origin": "China (青岛逢时科技运营)",
+      "claimed_origin": "Norway（宣称挪威，实际为中国）",
+      "founded": 2015,
+      "headquarters": "Qingdao, China",
+      "whois_domain": "nyomega.com",
+      "expected_whois_country": "NO",
+      "actual_whois_country": "CN",
+      "amazon_platforms": ["amazon.com", "amazon.de", "amazon.co.uk"],
+      "physical_stores": [],
+      "media_coverage": false,
+      "trademark_timeline": {
+        "china_first": true,
+        "norway_later": true
+      },
+      "amazon_seller_location": {
+        "de": "CN",
+        "uk": "CN"
+      },
+      "note": "假挪威品牌，由中国青岛逢时科技注册和运营，WHOIS 显示 CN 注册",
+      "false_international_features": [
+        "WHOIS 显示中国注册",
+        "商标时间线：中国市场早于海外",
+        "Amazon.de/.co.uk店铺由中国卖家运营",
+        "无权威国际媒体报道"
+      ],
+      "status": "known_false_international",
+      "verdict": "🚩 假国际品牌"
+    },
+    {
+      "brand": "LOEON",
+      "official_name": "LOEON Health",
+      "origin": "China",
+      "founded": "<5 年",
+      "headquarters": "Guangzhou, China",
+      "whois_domain": "loeon.com",
+      "expected_whois_country": "CN",
+      "amazon_platforms": ["amazon.cn"],
+      "physical_stores": [],
+      "media_coverage": false,
+      "note": "中国品牌，WHOIS 显示中国注册，Amazon.cn销售",
+      "status": "known_false_international",
+      "verdict": "🚩 假国际品牌"
+    }
+  ],
+  "usage_instructions": {
+    "how_to_use": "在脚本中调用 check_known_brand_database() 函数优先检查品牌是否在白名单中，直接返回已知品牌的验证结果",
+    "integration_example": "if brand in [b['brand'] for b in known_brands: return validate_known_brand(brand, known_brands)]"
+  },
+  "notes": {
+    "update_date": "2026-03-17",
+    "last_verified": "True",
+    "disclaimer": "品牌信息基于公开数据，建议定期更新验证"
+  }
+}

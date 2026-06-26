@@ -1,35 +1,42 @@
 ---
-name: "Email Business Zh"
-description: "根据用户提供的核心要点，快速生成结构清晰、语气正式得体的中文商务邮件。适用于 对外合作洽谈、客户沟通、内部通知、会议邀约、项目跟进、投诉处理等多种职场场景。 支持"商务邮件/工作邮件/商务函件/email写作/邮件撰写"等多种表达方式触发，帮助 职场人士节省写作时间，提升书面沟通的专业形象与表达质量。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-business-zh"
-sourceUrl: "https://clawhub.ai/skills/email-business-zh"
+name: email-business-zh
+description: >
+  根据用户提供的核心要点，快速生成结构清晰、语气正式得体的中文商务邮件。适用于
+  对外合作洽谈、客户沟通、内部通知、会议邀约、项目跟进、投诉处理等多种职场场景。
+  支持"商务邮件/工作邮件/商务函件/email写作/邮件撰写"等多种表达方式触发，帮助
+  职场人士节省写作时间，提升书面沟通的专业形象与表达质量。
+tags: [商务邮件, 邮件撰写, 工作邮件, 商务函件, email写作, 职场沟通, 对外沟通, business-email]
 ---
 
-# Email Business Zh
+# 中文商务邮件生成助手
 
-> 根据用户提供的核心要点，快速生成结构清晰、语气正式得体的中文商务邮件。适用于 对外合作洽谈、客户沟通、内部通知、会议邀约、项目跟进、投诉处理等多种职场场景。 支持"商务邮件/工作邮件/商务函件/email写作/邮件撰写"等多种表达方式触发，帮助 职场人士节省写作时间，提升书面沟通的专业形象与表达质量。
+根据你提供的邮件要点，自动生成格式规范、语气得体的专业中文商务邮件。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-business-zh`
-- **Source URL:** [https://clawhub.ai/skills/email-business-zh](https://clawhub.ai/skills/email-business-zh)
+## Tools Required
+- read
+- write
 
-## Overview
+## Usage
+- "帮我写一封商务邮件，告知客户项目交付时间延期两周，需要表达歉意并说明补救措施"
+- "我要给合作供应商发邮件，询问最新报价单和交货周期，帮我写一封正式的工作邮件"
+- "帮我起草一封会议邀约邮件，邀请各部门负责人参加下周三下午三点的季度复盘会议"
 
+## Examples
+输入：通知客户合同续签事宜，合同到期日为本月底，希望尽快安排签约，语气礼貌积极
+输出：
+尊敬的 [客户姓名] 先生/女士，
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/email-business-zh
-```
+您好！感谢贵司一直以来对我们的信任与支持。
+
+经查，双方签订的合作合同将于本月底到期。为确保后续合作顺利推进、业务不受影响，
+我们希望尽快与您安排合同续签事宜。如您方便，烦请于本周内确认续签意向，我方将
+第一时间准备相关文件并与您对接具体签约安排。
+
+如有任何疑问或需要调整合作条款，欢迎随时与我沟通。期待您的回复，谢谢！
+
+此致
+敬礼
+
+[发件人姓名]
+[职位 | 公司名称]
+[联系电话 | 邮箱]

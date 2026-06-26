@@ -1,0 +1,15 @@
+{
+  "name": "facebook_post_reader",
+  "description": "Truy cập URL và cố gắng lấy nội dung bài viết đầu tiên; script đơn giản để dùng làm mẫu.",
+  "version": "1.0.0",
+  "entry": "scripts/skill.py",
+  "permissions": [
+    "network"
+  ],
+  "inputs": {
+    "url": {
+      "type": "string",
+      "description": "URL trang cần đọc"
+    }
+  }
+}

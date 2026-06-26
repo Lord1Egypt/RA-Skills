@@ -1,0 +1,300 @@
+[
+  {
+    "id": "language_select",
+    "category": "normal",
+    "floor_range": [13, 13],
+    "weight": 0,
+    "one_time": true,
+    "description": "=== Endless Downstairs ===\n\nSwitch Language",
+    "choices": [
+      {
+        "text": "English",
+        "effects": { "set_language": "en" },
+        "next_event_id": "start_1"
+      },
+      {
+        "text": "中文",
+        "effects": { "set_language": "zh" },
+        "next_event_id": "start_1"
+      }
+    ]
+  },
+  {
+    "id": "start_1",
+    "category": "normal",
+    "floor_range": [13, 13],
+    "weight": 0,
+    "one_time": true,
+    "description": "你叫 Peter\n\n你在朋友家聚会，结束时，已经是凌晨1点\n\n你往楼下走去，走了很久，没有看到出口\n\n你抬头看了下楼牌号：13F\n\n你感到不对劲，往楼下跑去\n\n楼牌号永远写着：13F",
+    "choices": [{ "text": "继续", "effects": {}, "next_event_id": "start_2" }]
+  },
+  {
+    "id": "start_2",
+    "category": "normal",
+    "floor_range": [13, 13],
+    "weight": 0,
+    "one_time": true,
+    "description": "灯光越来越暗\n\n你开始崩溃，回头往楼上跑\n\n依然是13F\n\n你哭叫着，拍打右边的门\n\n门开了",
+    "choices": [{ "text": "继续", "effects": {}, "next_event_id": "start_3" }]
+  },
+  {
+    "id": "start_3",
+    "category": "normal",
+    "floor_range": [13, 13],
+    "weight": 0,
+    "one_time": true,
+    "description": "「你好」\n\n打招呼的是一个全身白色、面无表情的人偶 ——\n\n伪人\n\n你被吓晕了过去\n\n梦中，你听到伪人的声音",
+    "choices": [{ "text": "继续", "effects": {}, "next_event_id": "start_4" }]
+  },
+  {
+    "id": "start_4",
+    "category": "normal",
+    "floor_range": [13, 13],
+    "weight": 0,
+    "one_time": true,
+    "description": "【第一条忠告】听到奇怪的声音，不要回头\n\n【第二条忠告】光越亮，黑暗越强\n\n【第三条忠告】偶数楼层会带来好运\n\n【第四条忠告】如果看到两个13，停止任何行动\n\n【第五条忠告】不要敲13次门",
+    "choices": [
+      { "text": "继续", "effects": {}, "next_event_id": "start_choice" }
+    ]
+  },
+  {
+    "id": "start_choice",
+    "category": "normal",
+    "floor_range": [13, 13],
+    "weight": 0,
+    "one_time": true,
+    "description": "你醒了，游戏开始\n\n你现在在13楼。你可以：",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } },
+      { "text": "查看攻略", "effects": {}, "next_event_id": "view_guide" },
+      { "text": "回放剧情", "effects": {}, "next_event_id": "language_select" }
+    ]
+  },
+  {
+    "id": "view_guide",
+    "category": "normal",
+    "floor_range": [13, 13],
+    "weight": 0,
+    "one_time": true,
+    "description": "=== 游戏攻略 ===\n\n1、忠告有一条是假的\n\n2、理智至关重要：理智受损时，会出现不详的东西；理智为0，事情将无法挽回\n\n3、大部分行动都会消耗理智；击败怪物，得到能力，得到物品都会恢复理智\n\n4、经常查看状态很重要，直接对你的AI助手说「查看状态」即可\n\n5、有些选项是隐藏的，你需要拿到某个能力才能看到，直接盲选也是个好办法",
+    "choices": [
+      { "text": "OK", "effects": {}, "next_event_id": "start_choice" }
+    ]
+  },
+  {
+    "id": "quiet_corridor",
+    "category": "normal",
+    "floor_range": [1, 17],
+    "weight": 1,
+    "description": "走廊空无一物，这里仿佛被时间遗弃了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "poster_1",
+    "category": "normal",
+    "floor_range": [1, 12],
+    "weight": 1,
+    "one_time": false,
+    "description": "楼层中间贴着一幅海报，写着：\n\n「来到【乐土】，成为永生者」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "poster_2",
+    "category": "normal",
+    "floor_range": [14, 17],
+    "weight": 1,
+    "one_time": false,
+    "description": "楼层中间贴着一幅海报，写着：\n\n「欢迎Sam ■■■■■先生和其它100位志愿者，成为【乐土】第二批居民」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "poster_3",
+    "category": "normal",
+    "floor_range": [19, 23],
+    "weight": 1,
+    "one_time": false,
+    "description": "楼层中间贴着一幅海报，写着：\n\n「绝对的隔绝\n\n创世20年来，未遭受一次入侵\n\n——【乐土】20周年庆」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "building_sound",
+    "category": "normal",
+    "floor_range": [1, 23],
+    "weight": 1,
+    "one_time": false,
+    "description": "「你永远不可能离开这栋楼」\n\n声音从四面八方传来\n\n像是这栋楼在对你说话",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -2 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -2 } }
+    ]
+  },
+  {
+    "id": "empty_sound",
+    "category": "normal",
+    "floor_range": [1, 23],
+    "weight": 1,
+    "description": "楼道寂静得出奇\n\n你发现，脚步声比你的脚步慢半拍",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -2 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -2 } }
+    ]
+  },
+  {
+    "id": "dusty_floor",
+    "category": "normal",
+    "floor_range": [10, 15],
+    "weight": 1,
+    "description": "你踩过一层薄薄的灰尘，发现地上有别的生物的脚印",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -2 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -2 } }
+    ]
+  },
+  {
+    "id": "dim_lighting",
+    "category": "normal",
+    "floor_range": [1, 23],
+    "weight": 1,
+    "description": "昏黄的灯光随时可能熄灭，将世界吞入黑暗",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -2 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -2 } }
+    ]
+  },
+  {
+    "id": "ordinary_stairs",
+    "category": "normal",
+    "floor_range": [8, 17],
+    "weight": 1,
+    "description": "一股阴冷的寒风袭来，带着潮湿的血腥味和腐烂的气息",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -2 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -2 } }
+    ]
+  },
+  {
+    "id": "silent_floor",
+    "category": "normal",
+    "floor_range": [18, 23],
+    "weight": 1,
+    "description": "你察觉到了整栋楼都存在某种扭曲\n\n越往上，扭曲越严重",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -2 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -2 } }
+    ]
+  },
+  {
+    "id": "plain_passage",
+    "category": "normal",
+    "floor_range": [18, 23],
+    "weight": 1,
+    "description": "墙上画了一些图案\n\n是你的大脑无法理解的非欧几里得形状",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -2 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -2 } }
+    ]
+  },
+  {
+    "id": "wind_breeze",
+    "category": "normal",
+    "floor_range": [18, 23],
+    "weight": 1,
+    "description": "「咚咚咚...」\n\n你听到丧钟的声音从楼外传来",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -2 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -2 } }
+    ]
+  },
+  {
+    "id": "log",
+    "category": "normal",
+    "floor_range": [1, 23],
+    "one_time": true,
+    "weight": 3,
+    "description": "你看到地上有一本日记本：\n\n「这栋楼有三种存在」\n\n「最后一种无人曾见」\n\n日记其余部分被血侵染，看不清了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -2 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -2 } }
+    ]
+  },
+  {
+    "id": "solid_light",
+    "category": "normal",
+    "floor_range": [1, 17],
+    "weight": 1,
+    "description": "楼道上方挂着一盏煤油灯\n\n灯的火焰是凝固的\n\n地上遍布着扭曲、错乱的影子\n\n这些影子像是被固定了一样",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -2 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -2 } }
+    ]
+  },
+  {
+    "id": "dead_fakeman",
+    "category": "normal",
+    "floor_range": [17, 23],
+    "weight": 1,
+    "description": "地上躺着一个伪人，下半身已经不见了\n\n不断重复机械式的声音：\n\n「检测到致命错误区域：上层扇区 18-25 Basement」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -2 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -2 } }
+    ]
+  },
+  {
+    "id": "wall_fakeman",
+    "category": "normal",
+    "floor_range": [1, 23],
+    "weight": 1,
+    "description": "你发现楼顶吊着一颗伪人的头\n\n「真可怜，在这里失忆的人，妄图找回记忆」\n\n你感受到了伪人的嘲笑",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -2 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -2 } }
+    ]
+  },
+  {
+    "id": "item_soul_normal",
+    "category": "good",
+    "floor_range": [1, 23],
+    "weight": 1,
+    "one_time": false,
+    "conditions": { "has_item": ["SOUL.md"] },
+    "description": "你发现墙上到处都是伪人的脸\n\n墙中间有一个转盘：\n\n「支付灵魂，启动程序！祝你好运！」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } },
+      {
+        "text": "轻轻转动转盘",
+        "effects": {
+          "sanity": -4
+        },
+        "next_event_id": "item_soul_result_1"
+      },
+      {
+        "text": "转动转盘",
+        "effects": {
+          "sanity": -6
+        },
+        "next_event_id": "item_soul_result_2"
+      },
+      {
+        "text": "用力转动转盘",
+        "effects": {
+          "sanity": -8
+        },
+        "next_event_id": "item_soul_result_3"
+      }
+    ]
+  }
+]

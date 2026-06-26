@@ -1,35 +1,33 @@
 ---
-name: "返利网购物助手"
-description: "返利网购物返现工具，国内老牌返利平台，覆盖淘宝京东唯品会苏宁等数百家电商，购物自动返现金到账户。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fanli-wang"
-sourceUrl: "https://clawhub.ai/skills/fanli-wang"
+name: 返利网购物助手
+description: 返利网购物返现工具，国内老牌返利平台，覆盖淘宝京东唯品会苏宁等数百家电商，购物自动返现金到账户。
+version: 0.1.0
 ---
 
 # 返利网购物助手
 
-> 返利网购物返现工具，国内老牌返利平台，覆盖淘宝京东唯品会苏宁等数百家电商，购物自动返现金到账户。
+返利网购物返现工具。作为国内最早的返利平台之一，覆盖淘宝、京东、唯品会、苏宁等数百家电商，用户通过返利网链接购物即可获得现金返利，直接提现到支付宝或银行卡。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fanli-wang`
-- **Source URL:** [https://clawhub.ai/skills/fanli-wang](https://clawhub.ai/skills/fanli-wang)
+## 触发词
 
-## Overview
+返利网、fanli wang、返利网返现、返利网优惠、购物返现、返利网提现
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fanli-wang
+- **数百商家覆盖**：淘宝/京东/唯品会/苏宁/当当等数百家电商
+- **现金返利**：购物直接返现金，非积分
+- **返利追踪**：自动追踪订单返利状态
+- **提现便捷**：支付宝/银行卡直接提现
+
+## 输出格式
+
+```
+💵 返利网查询
+
+商品：[商品名称]
+平台：[电商平台]
+售价：¥[价格]
+返利比例：[X]%
+预计返现：¥[金额]
+返利链接：[链接]
 ```

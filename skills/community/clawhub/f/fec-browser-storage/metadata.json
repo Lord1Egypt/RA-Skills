@@ -1,0 +1,58 @@
+{
+  "id": "fec-browser-storage",
+  "name": "浏览器存储",
+  "category": "implementation-capability",
+  "tags": [
+    "storage",
+    "localStorage",
+    "indexedDB",
+    "cookie",
+    "client-persistence"
+  ],
+  "summary": "Frontend Craft skill for 浏览器存储.",
+  "version": "2.5.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "implementation-capability",
+    "storage",
+    "localStorage",
+    "indexedDB",
+    "cookie",
+    "client-persistence"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when choosing, implementing, or reviewing browser storage such as localStorage, sessionStorage, IndexedDB, cookies, client persistence, offline data, secure storage, or cleanup strategy; Chinese triggers include 浏览器存储, 客户端持久化.",
+  "source": "skills/fec-browser-storage",
+  "references": [
+    "references/storage-patterns.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-security-review",
+      "fec-pwa-implementation",
+      "fec-state-management",
+      "fec-data-fetching"
+    ],
+    "boundaryWorkflows": [
+      "Use a security review workflow for token, private data, and XSS read risks.",
+      "Use a PWA workflow for Service Worker offline caches and installability.",
+      "Use a data-fetching workflow for server state and API cache behavior."
+    ],
+    "capabilityTags": [
+      "storage",
+      "security",
+      "offline-cache"
+    ]
+  }
+}

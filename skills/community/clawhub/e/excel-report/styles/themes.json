@@ -1,0 +1,62 @@
+{
+  "manufacturing": {
+    "name": "制造业",
+    "primary": "#1565C0",
+    "secondary": "#F57C00",
+    "accent": "#2E7D32",
+    "chart_colors": ["#1565C0", "#F57C00", "#2E7D32", "#C62828", "#6A1B9A", "#00838F"],
+    "header_bg": "1565C0",
+    "header_font": "FFFFFF",
+    "kpi_bg": "E3F2FD"
+  },
+  "retail": {
+    "name": "零售业",
+    "primary": "#E65100",
+    "secondary": "#00897B",
+    "accent": "#F9A825",
+    "chart_colors": ["#E65100", "#00897B", "#F9A825", "#5E35B1", "#D81B60", "#1B5E20"],
+    "header_bg": "E65100",
+    "header_font": "FFFFFF",
+    "kpi_bg": "FFF3E0"
+  },
+  "finance": {
+    "name": "金融业",
+    "primary": "#0D47A1",
+    "secondary": "#B71C1C",
+    "accent": "#1B5E20",
+    "chart_colors": ["#0D47A1", "#B71C1C", "#1B5E20", "#F57F17", "#4A148C", "#006064"],
+    "header_bg": "0D47A1",
+    "header_font": "FFFFFF",
+    "kpi_bg": "E8EAF6"
+  },
+  "internet": {
+    "name": "互联网",
+    "primary": "673AB7",
+    "secondary": "00BCD4",
+    "accent": "FF5722",
+    "chart_colors": ["#673AB7", "#00BCD4", "#FF5722", "#4CAF50", "#FFC107", "#E91E63"],
+    "header_bg": "673AB7",
+    "header_font": "FFFFFF",
+    "kpi_bg": "EDE7F6"
+  },
+  "medical": {
+    "name": "医疗",
+    "primary": "00796B",
+    "secondary": "0277BD",
+    "accent": "AD1457",
+    "chart_colors": ["#00796B", "#0277BD", "#AD1457", "#FF8F00", "#4527A0", "#2E7D32"],
+    "header_bg": "00796B",
+    "header_font": "FFFFFF",
+    "kpi_bg": "E0F2F1"
+  },
+  "general": {
+    "name": "通用",
+    "primary": "37474F",
+    "secondary": "1976D2",
+    "accent": "388E3C",
+    "chart_colors": ["#1976D2", "#F57C00", "#388E3C", "#D32F2F", "#7B1FA2", "#00796B"],
+    "header_bg": "37474F",
+    "header_font": "FFFFFF",
+    "kpi_bg": "ECEFF1"
+  }
+}

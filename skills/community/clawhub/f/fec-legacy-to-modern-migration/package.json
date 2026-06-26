@@ -1,0 +1,41 @@
+{
+  "name": "@bovinphang/fec-legacy-to-modern-migration",
+  "version": "2.7.0",
+  "description": "Use when planning or implementing an intentional migration from JavaScript, jQuery, HTML/CSS, server-rendered templates, MPA legacy frontend code, or older framework code toward a modern frontend stack while preserving behavior. Do not use for routine legacy bug fixes that stay in the old stack; Chinese triggers include 遗留项目, 技术栈升级, jQuery 迁移.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-legacy-to-modern-migration"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "legacy-migration",
+    "migration",
+    "jquery",
+    "mpa",
+    "react",
+    "vue",
+    "modernization"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

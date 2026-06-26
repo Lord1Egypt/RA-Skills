@@ -1,0 +1,7 @@
+interface:
+  display_name: "Family Homework Pomodoro"
+  short_description: "Parent-confirmed homework Pomodoro flow"
+  default_prompt: "Use $family-homework-pomodoro to manage same-day homework intake, parent-confirmed start time, Pomodoro execution, and nightly completion checks."
+
+policy:
+  allow_implicit_invocation: true

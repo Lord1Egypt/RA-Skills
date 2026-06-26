@@ -1,0 +1,5 @@
+Host: OpenClaw
+Goal: keep a daily research digest fresh without letting cron content become permanent memory.
+Observed issue: cron research digest keeps reusing stale summary notes after upstream docs change.
+Constraint: public-only search and advisory-only output.
+Expected next outcome: bring back one fresh, cross-validated hint for the next relevant turn.

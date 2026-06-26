@@ -1,0 +1,15 @@
+{
+  "$schema": "https://docs.openclaw.ai/schemas/config.v1.json",
+  "messages": {
+    "tts": {
+      "auto": "always",
+      "provider": "edge",
+      "providers": {
+        "edge": {
+          "enabled": true,
+          "voice": "zh-CN-XiaoxiaoNeural"
+        }
+      }
+    }
+  }
+}

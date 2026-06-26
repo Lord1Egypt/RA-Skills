@@ -1,0 +1,25 @@
+name: expression-layer
+version: 1.0.0
+description: 表达层 - 统一的内容生成与可视化输出协调器。不依赖思考层，直接按意图路由至 ljg-skills 及发布工具。
+author: 燃冰 & ant
+license: MIT
+repository: https://github.com/lj22503/one-person-ceo-skills
+tags:
+  - content-generation
+  - format-conversion
+  - skill-orchestration
+  - routing
+  - multi-format-output
+
+features:
+  - 意图驱动路由（8 种输出路径）
+  - 编排模式（单步/串联/并行/发布）
+  - 不依赖思考层（独立入口）
+  - 可扩展路由矩阵（新增 skill 自动叠加）
+  - 公众号发布集成
+
+requirements:
+  - ljg-skills (plain/writes/card/present/paper/word/travel)
+  - humanizer-zh
+  - wechat-publisher
+  - Python 3.8+

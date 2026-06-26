@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw Agent Creator"
+  short_description: "Create and wire a new OpenClaw agent for multi-agent setups."
+  default_prompt: "Create a new OpenClaw agent and update openclaw.json bindings."

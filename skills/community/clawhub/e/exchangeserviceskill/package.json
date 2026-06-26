@@ -1,0 +1,34 @@
+{
+  "name": "exchange-onprem-mail-calendar-skill",
+  "version": "1..0",
+  "private": true,
+  "type": "module",
+  "description": "Cross-platform Exchange on-prem skill runtime for OpenClaw (Node.js)",
+  "scripts": {
+    "setup-config": "node ./scripts/node/core/setup-exchange-config.mjs",
+    "verify-login": "node ./scripts/node/core/verify-login.mjs",
+    "get-mail": "node ./scripts/node/mailbox-items/get-exchange-mail.mjs",
+    "search-mail": "node ./scripts/node/mailbox-items/search-exchange-mail.mjs",
+    "get-unread-count": "node ./scripts/node/mailbox-items/get-exchange-unread-count.mjs",
+    "get-calendar": "node ./scripts/node/calendar/get-exchange-calendar.mjs",
+    "create-meeting": "node ./scripts/node/calendar/create-exchange-meeting.mjs",
+    "get-item": "node ./scripts/node/mailbox-items/get-exchange-item.mjs",
+    "get-folder": "node ./scripts/node/folders/get-exchange-folder.mjs",
+    "find-folder": "node ./scripts/node/folders/find-exchange-folder.mjs",
+    "create-mail": "node ./scripts/node/mailbox-items/create-exchange-mail.mjs",
+    "create-folder": "node ./scripts/node/folders/create-exchange-folder.mjs",
+    "update-item": "node ./scripts/node/mailbox-items/update-exchange-item.mjs",
+    "update-folder": "node ./scripts/node/folders/update-exchange-folder.mjs",
+    "move-item": "node ./scripts/node/mailbox-items/move-exchange-item.mjs",
+    "copy-item": "node ./scripts/node/mailbox-items/copy-exchange-item.mjs",
+    "delete-item": "node ./scripts/node/mailbox-items/delete-exchange-item.mjs",
+    "delete-folder": "node ./scripts/node/folders/delete-exchange-folder.mjs",
+    "send-item": "node ./scripts/node/mailbox-items/send-exchange-item.mjs",
+    "reply-item": "node ./scripts/node/mailbox-items/reply-exchange-item.mjs",
+    "archive-item": "node ./scripts/node/mailbox-items/archive-exchange-item.mjs",
+    "mark-all-read": "node ./scripts/node/mailbox-items/mark-all-read.mjs"
+  },
+  "dependencies": {
+    "httpntlm": "^1.8.13"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "evomap-dashboard",
+  "version": "1.0.0",
+  "description": "Launch a local EvoMap Node Dashboard web viewer. Works with any Node ID + Node Secret combination. FastAPI backend + vanilla JS frontend, packaged as a single executable for Windows.",
+  "readme": "README.md",
+  "files": [
+    "openclaw.plugin.json",
+    "package.json",
+    "evomap_main.py",
+    "evomap_dashboard.html",
+    "SKILL.md"
+  ],
+  "tags": [
+    "evomap",
+    "dashboard",
+    "node-viewer",
+    "local-tool",
+    "no-invite-required"
+  ],
+  "author": {
+    "name": "Manager (OpenClaw)"
+  },
+  "homepage": "",
+  "license": "MIT"
+}

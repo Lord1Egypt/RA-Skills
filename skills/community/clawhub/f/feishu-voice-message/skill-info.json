@@ -1,0 +1,33 @@
+{
+  "name": "feishu-voice-message",
+  "version": "1.0.0",
+  "description": "Generate Feishu voice messages (with waveform) from text. Auto-converts to OPUS format for in-chat playback on both mobile and desktop.",
+  "author": "systiger",
+  "license": "MIT",
+  "keywords": [
+    "feishu",
+    "lark",
+    "voice message",
+    "tts",
+    "opus",
+    "audio",
+    "chinese",
+    "飞书",
+    "语音消息",
+    "配音"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://clawhub.ai/systiger/feishu-voice-message"
+  },
+  "dependencies": {
+    "edge-tts": ">=0.1.0"
+  },
+  "systemRequirements": {
+    "ffmpeg": "Required for MP3 to OPUS conversion"
+  },
+  "voicePresets": {
+    "adult": ["manbo", "xiaoyi", "xiaoxiao", "yunyang"],
+    "kids": ["xiaotangdou", "mianhuatang", "xiaomengmeng"]
+  }
+}

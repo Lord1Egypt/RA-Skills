@@ -1,0 +1,4 @@
+interface:
+  display_name: "Evidence-First Research"
+  short_description: "Plan research by checking evidence, tools, and patterns first."
+  default_prompt: "Use $evidence-first-research to plan this scientific task by checking prior literature, tools, and evidence quality before proposing work."

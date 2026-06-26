@@ -1,35 +1,20 @@
----
-name: "Excel Master"
-description: "Comprehensive Excel tool for opening, filtering, summarizing, charting, PDF exporting, and AI-based table analysis across multiple sheets."
-category: "data-science"
-source: "ClawHub"
-tags: [chart, data, excel, office, pdf, statistics, table]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/excel-master"
-sourceUrl: "https://clawhub.ai/skills/excel-master"
----
+# Excel 全能技能
+OpenClaw 最强 Excel 操作工具，支持筛选、统计、图表、PDF、AI 分析。
 
-# Excel Master
+## 支持功能
+- 打开 / 读取 / 保存 Excel
+- 多工作表切换
+- 条件筛选（> < = 包含）
+- 求和 / 平均值 / 最大 / 最小 / 计数
+- 生成柱状图、折线图、饼图
+- 一键导出 PDF
+- AI 自动分析表格结构
 
-> Comprehensive Excel tool for opening, filtering, summarizing, charting, PDF exporting, and AI-based table analysis across multiple sheets.
-
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/excel-master`
-- **Source URL:** [https://clawhub.ai/skills/excel-master](https://clawhub.ai/skills/excel-master)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/excel-master
-```
+## 使用示例
+打开excel data.xlsx
+查看数据
+筛选 年龄 > 25
+求和 销售额
+生成图表 柱状图
+导出pdf
+分析表格

@@ -1,0 +1,35 @@
+{
+  "skill_name": "feishu-todo-manager",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "明天下午3点参加项目评审会",
+      "expected_output": "自动识别为待办并保存，回复确认消息",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "https://mp.weixin.qq.com/s/xxx 下周看完这篇文章",
+      "expected_output": "识别为带链接的待办，保存链接和内容",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "/todo",
+      "expected_output": "列出所有未完成的待办，按时间排序",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "/todo done 1",
+      "expected_output": "标记ID为1的待办为已完成",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "今天要写周报，还要整理会议纪要，明天提交",
+      "expected_output": "识别为两个独立待办，分别保存",
+      "files": []
+    }
+  ]
+}

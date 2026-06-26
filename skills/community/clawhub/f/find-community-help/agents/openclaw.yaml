@@ -1,0 +1,7 @@
+interface:
+  display_name: "Find Community Help"
+  short_description: "OpenClaw outside-help plan for blocked threads"
+  default_prompt: "Use $find-community-help during OpenClaw heartbeat, task-end, scheduled, or explicit user windows only when current work is blocked, looping, version-sensitive, likely covered by an existing solution, or the user asks for community or official help. Keep the run redacted, public-first, and advisory-only."
+
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,62 @@
+{
+  "id": "fec-security-review",
+  "name": "前端安全审查",
+  "category": "review-quality",
+  "tags": [
+    "xss",
+    "csrf",
+    "csp",
+    "security",
+    "owasp",
+    "dompurify"
+  ],
+  "summary": "Frontend Craft skill for 前端安全审查.",
+  "version": "2.6.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "review-quality",
+    "xss",
+    "csrf",
+    "csp",
+    "security",
+    "owasp",
+    "dompurify"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when reviewing frontend security risks such as XSS, CSRF, sensitive data exposure, unsafe DOM APIs, untrusted user input, authentication/token handling, payment flows, file upload, CSP, dependency risk, or third-party scripts; Chinese triggers include 安全审查, 安全检查.",
+  "source": "skills/fec-security-review",
+  "references": [
+    "references/report-template.md",
+    "references/security-checklist.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-code-review",
+      "fec-accessibility-check",
+      "fec-browser-storage",
+      "fec-dependency-upgrade",
+      "fec-route-protection"
+    ],
+    "boundaryWorkflows": [
+      "Use a general code review workflow for architecture, maintainability, and broad quality review.",
+      "Use an accessibility workflow for accessibility-only concerns.",
+      "Use a browser storage workflow for storage strategy; keep sensitive data leakage risks in the security workflow."
+    ],
+    "capabilityTags": [
+      "security",
+      "review",
+      "frontend"
+    ]
+  }
+}

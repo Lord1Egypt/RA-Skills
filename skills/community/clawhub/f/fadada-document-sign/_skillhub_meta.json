@@ -1,0 +1,98 @@
+{
+  "name": "fadada-document-sign",
+  "version": "1.0.1",
+  "displayName": "法大大文件签署",
+  "description": "基于法大大FASC API 5.0的签署Skill，支持上传合同文件或使用模板发起签署，查询任务状态等。核心功能：上传文件、发起签署、查询模板、查询任务详情。适合HR合同、销售合同、协议签署等场景",
+  "author": "FADADA",
+  "license": "MIT",
+  "tags": [
+    "电子签",
+    "法大大",
+    "合同签署",
+    "电子合同",
+    "FASC",
+    "HR",
+    "销售",
+    "合同管理"
+  ],
+  "categories": [
+    "企业服务",
+    "电子签章",
+    "合同管理"
+  ],
+  "capabilities": [
+    "上传合同文件",
+    "发起签署",
+    "查询模板",
+    "查询签署任务详情",
+    "个人签署",
+    "企业签署"
+  ],
+  "config": {
+    "required": [
+      "FADADA_APP_ID",
+      "FADADA_APP_SECRET"
+    ],
+    "optional": [
+      "FADADA_OPEN_CORP_ID",
+      "FADADA_ENV"
+    ]
+  },
+  "publishConfig": {
+    "public": true,
+    "marketplace": "workbuddy",
+    "featured": true,
+    "featuredPosition": "popular"
+  },
+  "screenshots": [],
+  "examples": [
+    {
+      "scenario": "上传文件并发起个人签署",
+      "commands": [
+        "python scripts/upload_file.py --file-path '/path/to/contract.pdf' --file-name '劳动合同.pdf'",
+        "python scripts/initiate_sign.py --task-name '劳动合同签署' --file-ids '[\"file_id\"]' --signers '[{\"name\":\"张三\",\"phone\":\"13800138000\",\"actorType\":\"person\"}]'"
+      ]
+    },
+    {
+      "scenario": "使用模板发起企业签署",
+      "commands": [
+        "python scripts/list_templates.py",
+        "python scripts/get_template_detail.py --template-id 'template_id'",
+        "python scripts/initiate_sign.py --task-name '采购合同签署' --template-id 'template_id' --signers '[{\"name\":\"杭州科技有限公司\",\"contactName\":\"李经理\",\"phone\":\"13800138000\",\"actorType\":\"corp\",\"participantId\":\"xxx\"}]'"
+      ]
+    },
+    {
+      "scenario": "查询签署任务详情",
+      "commands": [
+        "python scripts/query_sign_status.py --task-id 'task_id'"
+      ]
+    }
+  ],
+  "notes": {
+    "apiLimitations": "部分接口（批量查询任务列表、撤回任务、下载合同）可能因账户权限不同而返回404错误，建议使用前验证可用性"
+  },
+  "createdAt": "2024-05-14",
+  "updatedAt": "2026-05-18",
+  "changelog": [
+    {
+      "version": "1.0.1",
+      "date": "2026-05-18",
+      "changes": [
+        "修复接口路径：批量查询、撤回任务、下载合同接口路径更新",
+        "新增 OpenCorpId 自动获取功能",
+        "支持通过 API 获取应用归属企业信息"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-05-18",
+      "changes": [
+        "初始版本发布 V1.0.0",
+        "支持上传合同文件并发起个人/企业签署",
+        "支持基于模板发起签署",
+        "支持查询签署模板列表和详情",
+        "支持查询签署任务详情"
+      ]
+    }
+  ]
+}

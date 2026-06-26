@@ -1,0 +1,11 @@
+{
+  "name": "edge-tts-kids",
+  "version": "1.0.0",
+  "description": "Edge TTS 中文定制版 - 包含儿童配音预设，生成后自动发送到对话",
+  "author": "systiger",
+  "license": "MIT",
+  "dependencies": {
+    "edge-tts": "latest"
+  },
+  "tags": ["tts", "voice", "kids", "chinese", "配音", "儿童"]
+}

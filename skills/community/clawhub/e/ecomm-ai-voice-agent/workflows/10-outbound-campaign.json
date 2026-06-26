@@ -1,0 +1,245 @@
+{
+  "name": "eComm AI — 10 Outbound Campaign",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9,11,13,15,17,19 * * *"
+            }
+          ]
+        }
+      },
+      "name": "Every 2 Hours (9AM-7PM)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        400
+      ],
+      "id": "8b64dc82-21f3-4f05-9782-b870847bce83"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_ORDERS_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Orders",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "name": "Read Unconfirmed Orders",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        460,
+        400
+      ],
+      "id": "0fde7ca4-9549-459a-b9b3-57a8206e795b",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Filter: COD orders, status=new, created > 1 hour ago, < 24 hours\nconst items = $input.all();\nconst now = Date.now();\nconst eligible = [];\n\nfor (const item of items) {\n  const d = item.json;\n  if (d.status !== 'new') continue;\n  if (d.is_cod !== 'true' && d.is_cod !== true) continue;\n  if (!d.customer_phone) continue;\n\n  const created = new Date(d.timestamp).getTime();\n  const age = now - created;\n  // Between 1 hour and 24 hours old\n  if (age < 60 * 60 * 1000 || age > 24 * 60 * 60 * 1000) continue;\n\n  eligible.push({ json: d });\n}\n\nif (eligible.length === 0) return [{ json: { _empty: true, count: 0 } }];\nreturn eligible;"
+      },
+      "name": "Filter Eligible Orders",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        400
+      ],
+      "id": "82a601b7-f757-4a68-81b3-f46ebc1040a3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "5ea6b4c4-753d-4ecc-ab23-cbfb21831675",
+              "leftValue": "={{ $json._empty }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "notEquals"
+              }
+            }
+          ]
+        }
+      },
+      "name": "Has Orders?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        940,
+        400
+      ],
+      "id": "690d972d-db8d-4139-afac-c3639ebd993e"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.VAPI_API_URL}}/call/phone",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  assistantId: $env.VAPI_COD_ASSISTANT_ID,\n  customer: { number: $json.customer_phone, name: $json.customer_name },\n  assistantOverrides: {\n    metadata: { order_id: $json.order_id, order_number: $json.order_number, type: 'outbound_campaign' }\n  }\n}) }}",
+        "options": {},
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.VAPI_API_KEY}}"
+            }
+          ]
+        }
+      },
+      "name": "Vapi Campaign Call",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1180,
+        300
+      ],
+      "id": "ca5fd0e2-c1a1-4f0b-a781-82712adda5a7"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Call Log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "order_id": "={{ $json.order_id }}",
+            "customer_phone": "={{ $json.customer_phone }}",
+            "call_type": "outbound_campaign",
+            "status": "initiated",
+            "timestamp": "={{ new Date().toISOString() }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Log Campaign Call",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1420,
+        300
+      ],
+      "id": "8ce565ad-a385-44b1-beed-ae116bb2e80d",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "name": "No Orders to Call",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        520
+      ],
+      "id": "eb781b64-02ac-4647-9579-cf187d8a1bb4"
+    }
+  ],
+  "connections": {
+    "Every 2 Hours (9AM-7PM)": {
+      "main": [
+        [
+          {
+            "node": "Read Unconfirmed Orders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Unconfirmed Orders": {
+      "main": [
+        [
+          {
+            "node": "Filter Eligible Orders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Eligible Orders": {
+      "main": [
+        [
+          {
+            "node": "Has Orders?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Orders?": {
+      "main": [
+        [
+          {
+            "node": "Vapi Campaign Call",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Orders to Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vapi Campaign Call": {
+      "main": [
+        [
+          {
+            "node": "Log Campaign Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

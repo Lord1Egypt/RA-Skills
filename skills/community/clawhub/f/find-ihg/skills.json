@@ -1,0 +1,105 @@
+{
+  "schema": "openclaw.skill.v1",
+  "skills": [
+    {
+      "id": "find-ihg",
+      "name": "find-ihg",
+      "action": "find",
+      "object": "ihg",
+      "icon": "🏨",
+      "description": "查找江浙沪地区IHG酒店积分房。支持按距离、品牌筛选，透明显示数据质量，智能推荐高性价比&家庭友好选择",
+      "brief": "IHG家庭度假助手 · 数据透明 · 智能推荐",
+      "examples": [
+        "查一下上海周边IHG积分房",
+        "找有行政酒廊的华邑酒店",
+        "推荐几个近距离皇冠假日酒店",
+        "IHG有什么优惠活动",
+        "查看杭州市内IHG酒店"
+      ],
+      "version": "2.2",
+      "compatibility": {
+        "minVersion": "2026.4.2",
+        "maxVersion": "2026.5.x"
+      },
+      "inputs": [
+        {
+          "name": "query",
+          "type": "string",
+          "description": "传统查询模式关键词：'上海周边'、'上海浦东'、'优惠信息'，或者JSON格式的高级查询",
+          "required": false,
+          "default": ""
+        },
+        {
+          "name": "distance_category",
+          "type": "string",
+          "description": "距离分类：'上海市内'(仅上海行政区)、'近距离'(≤100km/≤1h)、'中等距离'(100-200km/1-2h)、'远距离'(200-300km/2-3h)、'全部'",
+          "required": false,
+          "default": "全部",
+          "enum": ["上海市内", "近距离", "中等距离", "远距离", "全部"]
+        },
+        {
+          "name": "brand_type", 
+          "type": "string",
+          "description": "品牌类型：'洲际'、'丽晶'、'皇冠'、'华邑'、'voco'、'even'、'英迪格'、'金普顿'、'全部'",
+          "required": false,
+          "default": "全部",
+          "enum": ["洲际", "丽晶", "皇冠", "华邑", "voco", "even", "英迪格", "金普顿", "全部"]
+        },
+        {
+          "name": "executive_lounge",
+          "type": "string",
+          "description": "行政酒廊筛选：'true'(必须有)、'false'(必须无)、'不限'",
+          "required": false, 
+          "default": "不限",
+          "enum": ["true", "false", "不限"]
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": "返回推荐数量：3-4家精品酒店",
+          "required": false,
+          "default": 4,
+          "minimum": 1,
+          "maximum": 10
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "string",
+          "description": "格式化查询结果，包含酒店详情、价值比分析、推荐建议"
+        }
+      ],
+      "exec": {
+        "command": "python3",
+        "args": [
+          "./scripts/query.py",
+          "{{query}}"
+        ],
+        "env": {
+          "PYTHONUNBUFFERED": "1"
+        }
+      },
+      "metadata": {
+    "version_label": "v2.2 透明信任里程碑版",
+        "category": "travel",
+        "tags": ["IHG", "酒店", "积分房", "优惠", "旅行", "酒店预订", "find", "查询"],
+        "author": "BobClaw",
+        "created": "2026-04-07",
+        "updated": "2026-04-08",
+        "development_path": "/home/node/.openclaw/workspace/skills/find-ihg-dev/",
+        "keywords": ["IHG", "酒店", "积分房", "优惠", "查找", "搜索", "查询", "预订", "上海", "江浙沪", "近距离", "上海市内"],
+        "patterns": [
+          "^查一下?.*IHG.*(积分房|酒店)",
+          "^查找.*IHG.*酒店$",
+          "^推荐.*IHG.*积分$",
+          "^IHG.*优惠.*活动?$"
+        ]
+      },
+      "permissions": {
+        "files": ["./scripts/hotels.json"],
+        "exec": ["python3"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+# 日志文件
+*.log
+*.logs
+
+# 状态文件
+.listener_state.json
+.state.json
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 依赖
+node_modules/
+
+# 临时文件
+tmp/
+temp/
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 测试
+coverage/
+.nyc_output/

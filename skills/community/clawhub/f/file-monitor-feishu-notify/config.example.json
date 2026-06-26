@@ -1,0 +1,11 @@
+{
+  "watch_dir": "D:\\你的监控目录",
+  "notify_file": ".data/.pending_notify.md",
+  "feishu": {
+    "app_id": "cli_xxx",
+    "app_secret": "xxx",
+    "chat_id": "oc_xxx"
+  },
+  "check_interval": 2,
+  "log_file": "logs/auto-send.log"
+}

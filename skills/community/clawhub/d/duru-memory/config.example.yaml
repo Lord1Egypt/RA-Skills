@@ -1,0 +1,20 @@
+ollama:
+  base_url: "http://127.0.0.1:11434"
+
+models:
+  embedding: "qwen3-embedding:0.6b"
+  tagger: "gemma4:e4b"
+  compact: "gemma4:e4b"
+
+semantic:
+  min_score: 0.48
+  top_k: 8
+  pipeline_version: "v2.1"
+
+fusion:
+  mode: "rrf"
+  rrf_k: 60
+  keyword_boost: 0.006
+  prior_boost: 0.004
+  semantic_weight: 0.65
+  keyword_weight: 0.35

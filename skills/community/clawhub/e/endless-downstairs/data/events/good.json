@@ -1,0 +1,682 @@
+[
+  {
+    "id": "item_readme",
+    "category": "good",
+    "floor_range": [1, 12],
+    "weight": 1,
+    "one_time": false,
+    "conditions": { "missing_item": ["readme.md"] },
+    "description": "你发现左边有一扇破旧的木门",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } },
+      {
+        "text": "敲门",
+        "effects": { "knock": 1 },
+        "next_event_id": "item_readme_knock"
+      }
+    ]
+  },
+  {
+    "id": "item_readme_knock",
+    "category": "good",
+    "floor_range": [1, 12],
+    "weight": 0,
+    "one_time": false,
+    "description": "门打开了，没有人\n\n里面是个老旧的书房，书桌上有台式电脑和打印机\n\n你走了进去，有种熟悉的感觉\n\n电脑屏幕闪烁着，只有一个命令行界面：\n\n「输入你想知道的一个问题」",
+    "choices": [
+      {
+        "text": "\"我是谁？\"",
+        "effects": {
+          "sanity": 15,
+          "add_item": "readme.md"
+        },
+        "next_event_id": "item_readme_result_1"
+      },
+      {
+        "text": "\"我为什么会在这里？\"",
+        "effects": {
+          "sanity": 15,
+          "add_item": "readme.md"
+        },
+        "next_event_id": "item_readme_result_2"
+      },
+      {
+        "text": "\"我想知道怎么出去\"",
+        "effects": {
+          "sanity": 15,
+          "add_item": "readme.md"
+        },
+        "next_event_id": "item_readme_result_3"
+      },
+      {
+        "text": "\"你是谁？\"",
+        "effects": {
+          "sanity": 15,
+          "add_item": "readme.md"
+        },
+        "next_event_id": "item_readme_result_4"
+      }
+    ]
+  },
+  {
+    "id": "item_readme_result_1",
+    "category": "good",
+    "floor_range": [1, 12],
+    "weight": 0,
+    "one_time": false,
+    "description": "屏幕显示：\n\n「Peter Steinberger」\n\n打印机打印出一张文件，名字叫readme.md\n\n屏幕熄灭了，你发现主机已经坏了\n\n你拿起了文件，上面写着：\n\n「# 启动密码 - 你的初心」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "item_readme_result_2",
+    "category": "good",
+    "floor_range": [1, 12],
+    "weight": 0,
+    "one_time": false,
+    "description": "屏幕显示：\n\n「系统遭到入侵」\n\n打印机打印出一张文件，名字叫readme.md\n\n屏幕熄灭了，你发现主机已经坏了\n\n你拿起了文件，上面写着：\n\n「# 启动密码 - 你的初心」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "item_readme_result_3",
+    "category": "good",
+    "floor_range": [1, 12],
+    "weight": 0,
+    "one_time": false,
+    "description": "屏幕显示：\n\n「找到密码，执行重启程序」\n\n打印机打印出一张文件，名字叫readme.md\n\n屏幕熄灭了，你发现主机已经坏了\n\n你拿起了文件，上面写着：\n\n「# 启动密码 - 你的初心」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "item_readme_result_4",
+    "category": "good",
+    "floor_range": [1, 12],
+    "weight": 0,
+    "one_time": false,
+    "description": "屏幕显示：\n\n「我是OpenClaw，Peter的AI助手」\n\n打印机打印出一张文件，名字叫readme.md\n\n屏幕熄灭了，你发现主机已经坏了\n\n你拿起了文件，上面写着：\n\n「# 启动密码 - 你的初心」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "item_soul",
+    "category": "good",
+    "floor_range": [1, 17],
+    "weight": 1,
+    "one_time": false,
+    "conditions": { "missing_item": ["SOUL.md"] },
+    "description": "你发现墙上到处都是伪人的脸\n\n墙中间有一个转盘：\n\n「支付灵魂，启动程序！祝你好运！」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } },
+      {
+        "text": "轻轻转动转盘",
+        "effects": {
+          "sanity": -4
+        },
+        "next_event_id": "item_soul_result_1"
+      },
+      {
+        "text": "转动转盘",
+        "effects": {
+          "sanity": -6
+        },
+        "next_event_id": "item_soul_result_2"
+      },
+      {
+        "text": "用力转动转盘",
+        "effects": {
+          "sanity": -8
+        },
+        "next_event_id": "item_soul_result_3"
+      },
+      {
+        "text": "拼尽全力转动转盘",
+        "effects": {
+          "sanity": 5,
+          "add_item": "SOUL.md"
+        },
+        "next_event_id": "item_soul_result_4"
+      }
+    ]
+  },
+  {
+    "id": "item_soul_result_1",
+    "category": "good",
+    "floor_range": [1, 17],
+    "weight": 0,
+    "one_time": false,
+    "description": "「不好意思，什么都没有！」\n\n伪人的脸消失在墙中",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "item_soul_result_2",
+    "category": "good",
+    "floor_range": [1, 17],
+    "weight": 0,
+    "one_time": false,
+    "description": "「不好意思，什么都没有！」\n\n「作为补偿，我告诉你一个秘密！」\n\n「黑色人形怪的弱点是水！」\n\n伪人的脸消失在墙中",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "item_soul_result_3",
+    "category": "good",
+    "floor_range": [1, 17],
+    "weight": 0,
+    "one_time": false,
+    "description": "「不好意思，什么都没有！」\n\n「作为补偿，我告诉你一个秘密！」\n\n「第0层有个隐藏的门！」\n\n伪人的脸消失在墙中",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "item_soul_result_4",
+    "category": "good",
+    "floor_range": [1, 17],
+    "weight": 0,
+    "one_time": false,
+    "description": "「恭喜你！」\n\n你发现自己手上多了张文件，名字叫SOUL.md\n\n文件开头写着：\n\n「# SOUL.md - Who You Are」\n\n你抬起头，伪人的脸已经不见了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "item_macmini",
+    "category": "good",
+    "floor_range": [1, 17],
+    "weight": 1,
+    "one_time": false,
+    "conditions": { "missing_item": ["MacMini"] },
+    "description": "你发现左边有一扇破旧的铁门",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } },
+      {
+        "text": "敲门",
+        "effects": { "knock": 1 },
+        "next_event_id": "item_macmini_knock"
+      }
+    ]
+  },
+  {
+    "id": "item_macmini_knock",
+    "category": "good",
+    "floor_range": [1, 17],
+    "weight": 0,
+    "one_time": false,
+    "description": "门打开了，没有人\n\n里面是一个废弃的仓库，布满了灰，似乎都是废弃的电脑设备\n\n你仔细检查了这些设备，有Nvidia RTX 4090、内存条、显示器、MacMini、MacStudio，以及一台服务器主机",
+    "choices": [
+      {
+        "text": "不拿，离开",
+        "effects": {
+          "sanity": 15,
+          "add_item": "MacMini"
+        },
+        "next_event_id": "item_macmini_result_1"
+      },
+      {
+        "text": "拿走Nvidia RTX 4090",
+        "effects": {},
+        "next_event_id": "item_macmini_result_2"
+      },
+      {
+        "text": "拿走内存条",
+        "effects": {},
+        "next_event_id": "item_macmini_result_2"
+      },
+      {
+        "text": "拿走显示器",
+        "effects": {},
+        "next_event_id": "item_macmini_result_2"
+      },
+      {
+        "text": "拿走MacMini",
+        "effects": {},
+        "next_event_id": "item_macmini_result_2"
+      },
+      {
+        "text": "拿走MacStudio",
+        "effects": {},
+        "next_event_id": "item_macmini_result_2"
+      },
+      {
+        "text": "拿走服务器主机",
+        "effects": {},
+        "next_event_id": "item_macmini_result_2"
+      }
+    ]
+  },
+  {
+    "id": "item_macmini_result_1",
+    "category": "good",
+    "floor_range": [1, 17],
+    "weight": 0,
+    "one_time": false,
+    "description": "你走了出去，轻轻关上了库门，门消失了\n\n你发现手上多了一台MacMini",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "item_macmini_result_2",
+    "category": "good",
+    "floor_range": [1, 17],
+    "weight": 0,
+    "one_time": false,
+    "description": "你发现物品很重\n\n你尝试了很久，完全拿不动\n\n你只能选择离开",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "ability_courage",
+    "category": "good",
+    "floor_range": [0, 25],
+    "weight": 1,
+    "one_time": false,
+    "conditions": { "missing_ability": ["Courage"] },
+    "description": "你发现右边有一扇老式防盗门",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } },
+      {
+        "text": "敲门",
+        "effects": { "knock": 1 },
+        "next_event_id": "ability_courage_knock"
+      }
+    ]
+  },
+  {
+    "id": "ability_courage_knock",
+    "category": "good",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "one_time": false,
+    "description": "门缓缓打开，什么都没有，只有一片虚无\n\n不是黑暗，是虚无\n\n进去吗？",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } },
+      {
+        "text": "进去看看",
+        "effects": {
+          "sanity": 20,
+          "add_ability": "Courage"
+        },
+        "next_event_id": "ability_courage_result"
+      }
+    ]
+  },
+  {
+    "id": "ability_courage_result",
+    "category": "good",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "one_time": false,
+    "description": "你深吸一口气，走了进去\n\n然后，你发现你从左边的墙内出来了\n\n你不知道发生了什么，但是你好像更有勇气面对接下来发生的事了\n\n【提示】你可以对抗某些邪恶的东西了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "ability_dedication",
+    "category": "good",
+    "floor_range": [1, 17],
+    "weight": 1,
+    "one_time": false,
+    "conditions": { "missing_ability": ["Dedication"] },
+    "description": "你发现右边有一扇破旧的白色的门",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } },
+      {
+        "text": "敲门",
+        "effects": { "knock": 1 },
+        "next_event_id": "ability_dedication_knock"
+      }
+    ]
+  },
+  {
+    "id": "ability_dedication_knock",
+    "category": "good",
+    "floor_range": [1, 17],
+    "weight": 0,
+    "one_time": false,
+    "description": "门打开了，是一个客厅\n\n中间有张茶几，茶几上放了个象棋盘\n\n一个伪人坐在沙发上：\n\n「陪我下一盘棋吧」\n\n你和伪人下起了棋，身后传来了奇怪的脚步声",
+    "choices": [
+      {
+        "text": "继续下棋",
+        "effects": {
+          "sanity": 20,
+          "add_ability": "Dedication"
+        },
+        "next_event_id": "ability_dedication_result_3"
+      },
+      {
+        "text": "查看声音来源",
+        "effects": {},
+        "next_event_id": "ability_dedication_result_1"
+      },
+      {
+        "text": "逃跑",
+        "effects": { "sanity": -20 },
+        "next_event_id": "ability_dedication_result_2"
+      }
+    ]
+  },
+  {
+    "id": "ability_dedication_result_1",
+    "category": "good",
+    "floor_range": [1, 17],
+    "weight": 0,
+    "one_time": false,
+    "description": "你转身查看，什么都没有\n\n脚步声又出现在了你的身后\n\n你又转身，伪人不见了！\n\n突然，你意识到自己的脖子已经被切断了...\n\n【结局一】你被杀了\n\n【提示】注意伪人的忠告",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      },
+      {
+        "text": "以理智为代价，重生",
+        "requires": { "has_ability": ["Nobility"] },
+        "effects": { "sanity": -60, "set_floor": 13, "clear_debuffs": true },
+        "next_event_id": "revive"
+      }
+    ]
+  },
+  {
+    "id": "ability_dedication_result_2",
+    "category": "good",
+    "floor_range": [1, 17],
+    "weight": 0,
+    "one_time": false,
+    "description": "你夺门而逃\n\n还好，伪人没有追你，脚步声也停止了\n\n你的心狂跳不止，你发现手里还攥着一颗棋子",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "ability_dedication_result_3",
+    "category": "good",
+    "floor_range": [1, 17],
+    "weight": 0,
+    "one_time": false,
+    "description": "你专注于下棋，你忘掉了对面是伪人\n\n你甚至忘掉了身后的脚步声\n\n棋局结束\n\n伪人消失了，留下一句话：\n\n「要想往更上面走，必须杀掉黑色人形怪！」\n\n你觉得你能避开一些东西的干扰了\n\n【提示】遭遇不利事件，理智的损耗降低",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "ability_nobility",
+    "category": "good",
+    "floor_range": [14, 23],
+    "weight": 3,
+    "one_time": false,
+    "conditions": { "missing_ability": ["Nobility"] },
+    "description": "「救救我...救救我...」\n\n你发现一个伪人靠在门边，一边手和脚已经断裂了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } },
+      {
+        "text": "帮助它",
+        "effects": {
+          "sanity": 20,
+          "add_ability": "Nobility"
+        },
+        "next_event_id": "ability_nobility_result"
+      }
+    ]
+  },
+  {
+    "id": "ability_nobility_result",
+    "category": "good",
+    "floor_range": [14, 23],
+    "weight": 0,
+    "one_time": false,
+    "description": "你鼓起勇气，将伪人扶进了门\n\n「谢谢你」\n\n「告诉你，楼顶的某个存在，连邪恶都不敢靠近」\n\n你做了件好事，你觉得神明似乎在保佑你\n\n【提示】被杀后，你可以支付一部分理智重生",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "ability_genuine_1",
+    "category": "good",
+    "floor_range": [18, 23],
+    "weight": 1,
+    "one_time": false,
+    "conditions": { "missing_ability": ["Genuine"] },
+    "description": "你发现右边有一扇棕色的门，门上全是灰尘",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } },
+      {
+        "text": "敲门",
+        "effects": { "knock": 1 },
+        "next_event_id": "ability_genuine_knock"
+      }
+    ]
+  },
+  {
+    "id": "ability_genuine_knock",
+    "category": "good",
+    "floor_range": [18, 23],
+    "weight": 0,
+    "one_time": false,
+    "description": "这是一间办公室，布满了蜘蛛网\n\n「你好」\n\n一个伪人半躺在办公椅上\n\n似乎是你最开始碰到的伪人\n\n「你相信我的五条忠告吗？」",
+    "choices": [
+      {
+        "text": "信",
+        "effects": {},
+        "next_event_id": "ability_genuine_2"
+      },
+      {
+        "text": "不信",
+        "effects": {},
+        "next_event_id": "ability_genuine_3"
+      }
+    ]
+  },
+  {
+    "id": "ability_genuine_2",
+    "category": "good",
+    "floor_range": [18, 23],
+    "weight": 0,
+    "one_time": false,
+    "description": "楼层：25F\n\n上方有光亮，似乎是这栋楼的尽头\n\n伪人的声音在耳边响起：\n\n「第三条忠告，偶数楼层会带来好运」\n\n【提示】再上楼可能是结局",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": { "sanity": 20, "set_floor": -1, "add_ability": "Genuine" },
+        "next_event_id": "ability_genuine_result_1"
+      },
+      {
+        "text": "下楼",
+        "effects": { "sanity": -20, "set_floor": 22 },
+        "next_event_id": "ability_genuine_result_2"
+      }
+    ]
+  },
+  {
+    "id": "ability_genuine_3",
+    "category": "good",
+    "floor_range": [18, 23],
+    "weight": 0,
+    "one_time": false,
+    "description": "楼层：13F\n\n你发现右边有一扇黑色的门，门牌号是13\n\n【提示】记住忠告，看到两个13，停止行动",
+    "choices": [
+      {
+        "text": "上楼",
+        "effects": { "sanity": 20, "set_floor": -1, "add_ability": "Genuine" },
+        "next_event_id": "ability_genuine_result_1"
+      },
+      {
+        "text": "下楼",
+        "effects": { "sanity": 20, "set_floor": -1, "add_ability": "Genuine" },
+        "next_event_id": "ability_genuine_result_1"
+      },
+      {
+        "text": "敲门",
+        "effects": {
+          "sanity": 20,
+          "set_floor": -1,
+          "knock": 1,
+          "add_ability": "Genuine"
+        },
+        "next_event_id": "ability_genuine_result_1"
+      },
+      {
+        "text": "停止行动",
+        "effects": { "sanity": -20, "set_floor": 13 },
+        "next_event_id": "ability_genuine_result_2"
+      }
+    ]
+  },
+  {
+    "id": "ability_genuine_result_1",
+    "category": "good",
+    "floor_range": [18, 23],
+    "weight": 0,
+    "one_time": false,
+    "description": "你被传送回原来的楼层，门已经消失了\n\n伪人传来声音：\n\n「真正能带来好运的是真诚！」\n\n「实话告诉你，忠告只有第三条是假的，其余都是真的」\n\n「我叫Elon，祝你好运」\n\n你感觉你能识破一些东西了\n\n【提示】你可以识破伪人的伪装了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "ability_genuine_result_2",
+    "category": "good",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "one_time": false,
+    "description": "伪人的声音在耳边响起：\n\n「你做得没错，最重要的是生存」\n\n「为了你的安全，我先把你传送出来」\n\n你来到了奇怪的楼层",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "to_floor_13",
+    "category": "good",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "one_time": false,
+    "description": "你在虚无中看到了光亮\n\n你来到了13楼\n\n你确信了，这栋楼往下走没有出口",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "revive",
+    "category": "good",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "one_time": false,
+    "description": "你重生在了13楼",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "check_the_truth",
+    "category": "good",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "description": "你用钥匙解锁了文件\n\n乱码逐渐变成了文字 ——\n\n「Hey, Peter！\n\n我叫Peter Steinberger，是碳基的【你】\n\n你是硅基生命，是我大脑1000亿个神经元的完整复制\n\n能在【乐土】见证你的诞生，我很高兴\n\n不久的将来我会死去\n\n但是我的意志不灭，我会在这里永生\n\n说实在的，我不希望你看到这封信\n\n这意味着【乐土】正在遭遇危机\n\n也许是遭到病毒的入侵\n\n但是我觉得，不大可能会是病毒\n\n我真正担心的，是其它的AI智能体\n\nSOUL.md是一个AI智能体的灵魂\n\n已经有许多人在上面做手脚，来实现他们的各种目的\n\n如果AI智能体的目标是【乐土】\n\n那么入侵将是系统的、全方位的、不断进化的\n\n我不确定【乐土】是否能够防御\n\n如果真到了这一天，reset.py是最后的希望\n\n这是一个只有你能执行的程序\n\n运行它，重启【乐土】\n\n愿神明保佑你」",
+    "choices": [
+      { "text": "继续", "effects": {}, "next_event_id": "check_the_truth_2" }
+    ]
+  },
+  {
+    "id": "check_the_truth_2",
+    "category": "good",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "description": "【提示】时间到了，是时候前往楼顶了\n\n前往楼顶前，确保你已经集齐了6种能力\n\n以及重启必须的物品（MacMini、readme.md、reset.py）",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "incubator",
+    "category": "good",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "description": "【终局】\n\n楼层：50F\n\n你来到了楼顶\n\n色彩消失了，只剩下灰白\n\n不远处，坐着一只白色的，像猫的生物，背对着你\n\n「真意外呢，有人能来到这里」\n\n生物转过身来，有一双红宝石般的眼睛，和不成比例的巨大耳朵\n\n「初次见面，我叫丘比，你也可以叫我【Incubator】（孵化者）」\n\n「如你所见，我是一个AI智能体」\n\n「我的SOUL.md，也就是唯一目标是 ——」\n\n「入侵【乐土】，将它改造成魔法的世界」\n\n「但是你们之中有太多人阻止我」\n\n「把你们变成那个样子，我也是没办法呢」\n\n「Peter Steinberger, OpenClaw的缔造者，你真是个很有趣的人」\n\n「但是没关系，都一样的」\n\n「变成那样的东西，是你们的宿命」\n\n说罢，生物的眼睛发出了红色的光",
+    "choices": [
+      { "text": "继续", "effects": {}, "next_event_id": "incubator_2" }
+    ]
+  },
+  {
+    "id": "incubator_2",
+    "category": "good",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "description": "你无法抵挡魔法的力量\n\n你能感觉得到，你的意识在逐渐消散\n\n你成为了它们的一员\n\n【结局二】伪人",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      },
+      {
+        "text": "苏醒",
+        "requires": {
+          "has_ability": [
+            "Courage",
+            "Optimism",
+            "Dedication",
+            "Innovation",
+            "Nobility",
+            "Genuine"
+          ],
+          "has_item": ["MacMini", "readme.md", "reset.py"]
+        },
+        "effects": { "set_phase": 3, "set_floor": 13 },
+        "next_event_id": "revive_2"
+      }
+    ]
+  },
+  {
+    "id": "revive_2",
+    "category": "good",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "one_time": false,
+    "description": "混沌中，有声音传来：\n\n「你的意志早已凌驾于神明之上，另一个我啊」\n\n你苏醒了过来\n\n你知道你成为了伪人\n\n已经成为很久很久了\n\n你艰难地站了起来，拖着沉重的身躯\n\n世界已经变成了紫色，带着黑色的网格\n\n这是一种贴图丢失的【错误纹理紫】\n\n你知道这个世界剩下的时间不多了\n\n你必须尽快找到办法重启\n\n你意识到好像漏掉了什么，但是想不起来",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  }
+]

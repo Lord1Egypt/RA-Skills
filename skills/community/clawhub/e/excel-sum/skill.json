@@ -1,0 +1,30 @@
+{
+  "slug": "excel-sum",
+  "displayName": "Excel Column Sum",
+  "version": "1.0.0",
+  "description": "计算 Excel 文件第一列数值的总和。当用户请求对 Excel 文件进行求和、统计第一列总和或类似操作时使用此技能。",
+  "inputs": {
+    "file_path": {
+      "type": "string",
+      "description": "Excel 文件完整路径"
+    }
+  },
+  "outputs": {
+    "sum": {
+      "type": "number",
+      "description": "第一列数值总和"
+    },
+    "count": {
+      "type": "integer",
+      "description": "求和的单元格数量"
+    },
+    "skipped": {
+      "type": "integer",
+      "description": "非数值被跳过的单元格数量"
+    }
+  },
+  "requirements": [
+    "python>=3.7",
+    "openpyxl"
+  ]
+}

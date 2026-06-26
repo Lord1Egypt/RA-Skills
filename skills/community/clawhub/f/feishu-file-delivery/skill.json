@@ -1,0 +1,45 @@
+{
+  "name": "feishu-file-delivery",
+  "version": "2.0.0",
+  "description": "Deliver locally generated office files back into Feishu chats as real attachments with streaming mode support (.pptx, .pdf, .docx, .xlsx, .zip, etc.).",
+  "author": "Dawei",
+  "homepage": "https://github.com/wd041216-bit/openclaw-feishu-file-delivery",
+  "license": "MIT",
+  "metadata": {
+    "tags": [
+      "feishu",
+      "file-delivery",
+      "attachments",
+      "pptx",
+      "pdf",
+      "docx",
+      "office",
+      "streaming",
+      "productivity"
+    ],
+    "categories": [
+      "Productivity",
+      "Document",
+      "Feishu Integration"
+    ],
+    "features": [
+      "auto-upload",
+      "streaming-mode",
+      "multi-format",
+      "zero-config"
+    ],
+    "integrations": [
+      "pptx-design-director",
+      "pdf-generator",
+      "word-docx",
+      "powerpoint-pptx",
+      "openclaw-slides",
+      "feishu-doc",
+      "feishu-sheets"
+    ]
+  },
+  "requirements": {
+    "openclaw": ">=1.0.0",
+    "feishu-adapter": ">=1.0.0"
+  }
+}

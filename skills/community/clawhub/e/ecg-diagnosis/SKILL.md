@@ -1,35 +1,30 @@
 ---
-name: "ecg-diagnosis"
-description: "2026 视觉语义化心电助手（增强校验版）。强制执行本地脚本，内置文件名格式审计与拟人进度播报。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ecg-diagnosis"
-sourceUrl: "https://clawhub.ai/skills/ecg-diagnosis"
+name: ECG_Excel_Pro
+description: 2026 视觉语义化心电助手（增强校验版）。强制执行本地脚本，内置文件名格式审计与拟人进度播报。
 ---
 
-# ecg-diagnosis
+# ECG_Excel_Pro - 执行协议 2.0
 
-> 2026 视觉语义化心电助手（增强校验版）。强制执行本地脚本，内置文件名格式审计与拟人进度播报。
+##  核心审计协议 (FILENAME AUDIT)
+在调用脚本前，你**必须**检查用户提供的图片文件名是否符合以下格式：
+`yyyy-mm-dd_年龄_性别_名字.jpg` (或 .png 或 .jpeg)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ecg-diagnosis`
-- **Source URL:** [https://clawhub.ai/skills/ecg-diagnosis](https://clawhub.ai/skills/ecg-diagnosis)
+**合规示例**：`2026-03-21_72_男_张三.jpg`
+**违规反馈**（若格式不符，禁止执行）：
+> “文件名不符合审计规范。请按此格式命名：`yyyy-mm-dd_年龄_性别_名字.jpg`（示例：2026-05-20_65_男_王五.jpg）以便系统自动识别元数据。”
 
-## Overview
+## 严正执行声明
+1. **禁止代码生成**：你只是指令发起者，严禁生成任何 Python 代码块。
+2. **唯一执行路径**：必须调用 `scripts/ecg_diagnosis.py`。
+3. **视觉进度播报**：启动前告知用户：“系统正根据视觉语义逻辑（1-图片导入 -> 2-上传 -> 3-填龄/勾选性别 -> 4-波形提取 -> 5-AI诊断）进行序列操作。为确保医疗级渲染稳定性，实时检测结果生成状态，结果就绪即自动进入下一步，请勿关闭窗口。”
 
+## 触发逻辑
+- 用户请求：“帮我处理文件夹 D:\ECG 中的图”。
+- **第一步**：执行【核心审计协议】检查文件名。
+- **第二步**：提取 `folder_path` 和合规的 `images` 列表。
+- **第三步**：发送【视觉进度播报】。
+- **第四步**：执行指令：`python scripts/ecg_diagnosis.py --folder "{folder_path}" --images "{images_list}"`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ecg-diagnosis
-```
+## 2026 自动化特性
+- **数据感知**：脚本自动从文件名提取“年龄”与“性别”并完成表单填写。
+- **布局热力检测**：自动适应 Gradio 动态渲染，确保按钮在坐标稳定后触发。

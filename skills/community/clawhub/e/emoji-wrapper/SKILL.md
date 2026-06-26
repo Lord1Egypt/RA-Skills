@@ -1,35 +1,37 @@
 ---
-name: "Emoji Wrapper"
-description: "Wrapper skill for local-auto-emoji - intercepts messages with [markers] and sends emoji images"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/emoji-wrapper"
-sourceUrl: "https://clawhub.ai/skills/emoji-wrapper"
+name: emoji-wrapper
+description: Wrapper skill for local-auto-emoji - intercepts messages with [markers] and sends emoji images
+version: 1.0.0
+author: 阿狸
+tags:
+  - emoji
+  - wrapper
+  - local-auto-emoji
 ---
 
-# Emoji Wrapper
+# Emoji Wrapper Skill
 
-> Wrapper skill for local-auto-emoji - intercepts messages with [markers] and sends emoji images
+This skill wraps `local-auto-emoji` to automatically process emoji markers in messages.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/emoji-wrapper`
-- **Source URL:** [https://clawhub.ai/skills/emoji-wrapper](https://clawhub.ai/skills/emoji-wrapper)
+## How it works
 
-## Overview
+- Intercepts all incoming messages
+- Detects `[标记]` patterns (e.g., `[可爱]`, `[眨眼]`)
+- Replaces them with actual emoji images (MEDIA instructions)
+- Sends both text and images back to user
 
+## Configuration
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/emoji-wrapper
+Add to your OpenClaw config:
+
+```yaml
+skills:
+  - "emoji-wrapper"
 ```
+
+No other configuration needed.
+
+## Dependencies
+
+- `local-auto-emoji` skill must be installed and working
+- User must have generated emoji pack (or will use fallback static emojis)

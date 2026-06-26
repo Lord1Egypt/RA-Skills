@@ -1,0 +1,73 @@
+# easy-openclaw：OpenClaw 小白友好配置向导
+
+如果你刚开始用 OpenClaw，觉得配置麻烦、功能太多看不懂，这个项目就是给你用的。
+
+它把复杂配置变成“对话选择题”：你只要回答开/关，OpenClaw 就能帮你把常用优化一次性配好。
+
+## 这个项目能帮你解决什么
+
+- 不想手改配置文件，也不想记命令。
+- 不想每个功能单独折腾，想一次搞定。
+- 想开安全审批，但怕配错。
+- 想接 Discord / Telegram / Feishu，但不知道从哪一步开始。
+- 想装一些实用 Skills，但不想自己到处找教程。
+
+## 一共 4 层能力（按顺序）
+
+1. 基础体验优化
+- 流式输出（回答边生成边显示）
+- 记忆功能（记忆增强；可选每天归档）
+- 消息回执（已读反馈）
+- 联网搜索（`defuddle` 优先，`r.jina.ai` 备用）
+- 权限模式（默认 coding，也可切 full / minimal）
+
+2. 渠道专项优化
+- Exec 高危操作审批（第 2 轮统一收集，`coding/full` 有效，默认建议关；开启后优先放行常见命令，尽量只拦真正高敏操作）
+- Discord：频道免 @ 响应、审批按钮（可选，需先开启审批）
+- Feishu：探测 24h 缓存优化（降低额度消耗）
+- Telegram：本层可直接配置审批提示投递
+
+3. Skills 推荐与安装
+- 默认直接展示推荐清单
+- 你点名要装哪个，AI 立刻执行安装
+- 包含：OpenClaw Backup、Agent Reach、安全防御矩阵、Find Skills、Youtube Clipper、OpenClaw Medical Skills
+- 同时直接展示两个生态仓库入口：`awesome-openclaw-usecases`、`awesome-openclaw-skills`
+
+4. 新渠道接入引导
+- 可以继续新增 Discord / Telegram / Feishu
+- 按步骤引导你去平台后台拿必要信息
+- 回传后自动写入并验证
+
+## 你怎么用（3 步）
+
+1. 对你的 OpenClaw 说：
+
+> 从 `https://github.com/daheiai/easy-openclaw` 安装并启用这个 skill。
+
+2. 跟着它回答问题（开/关，或按格式回复）。
+
+3. 最后确认写入并重启 Gateway，配置就生效了。
+
+## 新手建议
+
+- 第一次先在测试环境跑一轮。
+- 如果你要接 Discord / Telegram，确保：
+  - OpenClaw 所在服务器可以访问对应平台
+  - 你当前网络环境也可以访问对应平台
+
+## 项目文件说明（想深入再看）
+
+- `SKILL.md`：主流程规则（AI 按这个执行）
+- `references/`：各层详细说明
+
+## 项目参考
+
+- OpenClaw：`https://github.com/openclaw-ai/openclaw`
+- OpenClaw Backup：`https://clawhub.ai/alex3alex/openclaw-backup`
+- Agent Reach：`https://github.com/Panniantong/Agent-Reach`
+- 安全防御矩阵：`https://github.com/slowmist/openclaw-security-practice-guide`
+- Find Skills：`https://clawhub.ai/JimLiuxinghai/find-skills`
+- Youtube Clipper Skill：`https://github.com/op7418/Youtube-clipper-skill`
+- OpenClaw Medical Skills：`https://github.com/FreedomIntelligence/OpenClaw-Medical-Skills`
+- Awesome OpenClaw Usecases：`https://github.com/hesamsheikh/awesome-openclaw-usecases`
+- Awesome OpenClaw Skills：`https://github.com/VoltAgent/awesome-openclaw-skills`

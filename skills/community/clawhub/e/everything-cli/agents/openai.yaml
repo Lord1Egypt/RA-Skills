@@ -1,0 +1,7 @@
+interface:
+  display_name: "Everything CLI"
+  short_description: "Fast indexed local search on Windows"
+  default_prompt: "Use $everything-cli to bootstrap `ev` and handle local indexed file or path lookup on Windows."
+
+policy:
+  allow_implicit_invocation: true

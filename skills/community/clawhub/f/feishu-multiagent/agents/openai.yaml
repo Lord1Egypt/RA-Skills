@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feishu Multi-Agent Setup"
+  short_description: "Configure Feishu multi-agent routing plus MEMORY/memory embedding hardening"
+  default_prompt: "Use $openclaw-feishu-multi-agent-setup to create or repair Feishu multi-agent routing, ensure each agent has its own MEMORY.md, and fix memory embedding provider issues."

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>郵件詳情 - {{ email.subject }}</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; padding: 20px; }
+        .email-detail { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); max-width: 900px; margin: 0 auto; }
+        .email-header { border-bottom: 1px solid #dee2e6; margin-bottom: 20px; padding-bottom: 15px; }
+        .email-body { white-space: pre-wrap; background: #fdfdfd; padding: 20px; border: 1px solid #eee; border-radius: 4px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; }
+        .meta-label { font-weight: bold; color: #6c757d; width: 80px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="email-detail">
+            <div class="email-header">
+                <h3 class="mb-3">{{ email.subject }}</h3>
+                <div class="mb-1"><span class="meta-label">寄件者:</span> {{ email.sender }}</div>
+                <div class="mb-1"><span class="meta-label">收件者:</span> {{ email.recipient }}</div>
+                <div class="mb-1"><span class="meta-label">時間:</span> {{ email.sent_time }}</div>
+                <div class="mb-1"><span class="meta-label">路徑:</span> <small class="text-muted">{{ email.file_path }}</small></div>
+            </div>
+            <div class="email-body">{{ email.body }}</div>
+            <div class="mt-4 text-center">
+                <button class="btn btn-secondary" onclick="window.close()">關閉視窗</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+# Finance News Pro - 依赖说明
+
+## Python 依赖
+
+本技能使用纯 Python 实现，无需额外依赖（使用标准库）。
+
+```bash
+# 无需安装额外包，使用 Python 3.8+ 即可
+python --version  # 需要 3.8+
+```
+
+## 可选依赖（增强功能）
+
+### 1. HTTP 请求（如果不用浏览器抓取）
+```bash
+pip install requests
+pip install httpx  # 更快，支持异步
+```
+
+### 2. HTML 解析
+```bash
+pip install beautifulsoup4
+pip install lxml  # 更快的解析器
+```
+
+### 3. RSS 解析
+```bash
+pip install feedparser
+```
+
+### 4. 数据处理
+```bash
+pip install pandas  # 数据分析
+pip install jq  # JSON 处理
+```
+
+## 浏览器依赖
+
+如果使用浏览器抓取（推荐），需要确保：
+1. OpenClaw 浏览器工具可用
+2. Chromium/Chrome 已安装
+
+## 验证安装
+
+```bash
+# 测试脚本
+python fetch_news.py --help
+
+# 测试抓取（单源）
+python fetch_news.py --source cls --limit 5 --no-save
+```
+
+## 故障排除
+
+### 问题 1：抓取失败
+```
+错误：无法连接到网站
+解决：检查网络连接，或切换到其他源
+```
+
+### 问题 2：中文乱码
+```
+错误：输出乱码
+解决：确保终端支持 UTF-8，Windows 使用 chcp 65001
+```
+
+### 问题 3：股票识别失败
+```
+错误：未识别到股票
+解决：检查 config.json 中的 stocks 映射表，添加缺失股票
+```

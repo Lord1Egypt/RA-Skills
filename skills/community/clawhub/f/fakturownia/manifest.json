@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "name": "fakturownia",
+  "slug": "fakturownia",
+  "display_name": "Fakturownia CLI",
+  "description": "Generated skill bundle for the fakturownia CLI, covering authentication, schema discovery, diagnostics, and the main Fakturownia API areas through a stable agent-first command contract.",
+  "version": "0.6.7",
+  "author": {
+    "name": "sixers",
+    "url": "https://github.com/sixers"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sixers/fakturownia-cli.git",
+    "path": "skills/fakturownia",
+    "default_branch": "master"
+  },
+  "homepage": "https://github.com/sixers/fakturownia-cli/tree/master/skills/fakturownia",
+  "documentation": {
+    "entry": "https://github.com/sixers/fakturownia-cli/blob/master/skills/fakturownia/SKILL.md",
+    "index": "https://github.com/sixers/fakturownia-cli/blob/master/skills/fakturownia/references/skills-index.md",
+    "recipes": "https://github.com/sixers/fakturownia-cli/blob/master/skills/fakturownia/recipes/index.md"
+  },
+  "release": {
+    "tag": "v0.6.7",
+    "url": "https://github.com/sixers/fakturownia-cli/releases/tag/v0.6.7"
+  },
+  "entrypoint": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "manifest.json",
+    "CHANGELOG.md",
+    "references/skills-index.md",
+    "recipes",
+    "subskills"
+  ],
+  "requirements": {
+    "binaries": [
+      "fakturownia"
+    ],
+    "platforms": [
+      "darwin",
+      "linux"
+    ],
+    "architectures": [
+      "amd64",
+      "arm64"
+    ]
+  },
+  "execution": {
+    "type": "binary",
+    "command": "fakturownia --help"
+  },
+  "keywords": [
+    "agent-skill",
+    "cli",
+    "fakturownia",
+    "invoicing",
+    "golang",
+    "codex",
+    "claude-code",
+    "cursor"
+  ]
+}

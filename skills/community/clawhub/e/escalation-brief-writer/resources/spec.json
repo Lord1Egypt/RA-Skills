@@ -1,0 +1,37 @@
+{
+  "slug": "escalation-brief-writer",
+  "title": "升级说明撰写器",
+  "category": "success",
+  "categoryLabel": "客户成功与协作",
+  "mode": "structured_brief",
+  "summary": "把复杂问题整理成升级说明，减少来回追问，突出背景、影响、已尝试和诉求。",
+  "inputHint": "问题背景、影响、已做尝试、诉求",
+  "sections": [
+    "背景",
+    "影响",
+    "已尝试",
+    "当前阻塞",
+    "需要支持",
+    "附加证据"
+  ],
+  "useCases": [
+    "客服升级",
+    "内部求援",
+    "跨团队协同"
+  ],
+  "positiveExamples": [
+    "帮我写一份升级说明",
+    "减少来回追问"
+  ],
+  "negativeExamples": [
+    "不要省略关键信息",
+    "不要把个人情绪写成事实"
+  ],
+  "risk": "强调事实、影响和诉求分离。",
+  "tags": [
+    "escalation",
+    "support",
+    "brief",
+    "incident"
+  ]
+}

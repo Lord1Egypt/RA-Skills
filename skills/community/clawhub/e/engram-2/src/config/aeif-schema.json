@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AEIF v1.0 Capsule Schema",
+  "type": "object",
+  "required": [
+    "capsuleId",
+    "schemaVersion",
+    "category",
+    "createdAt",
+    "trustScore",
+    "useCount",
+    "triggerSignature",
+    "environment",
+    "actionSequence",
+    "verificationCriterion"
+  ],
+  "properties": {
+    "capsuleId": {
+      "type": "string",
+      "description": "UUID, unique across the system"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "enum": ["1.0"],
+      "description": "AEIF protocol version"
+    },
+    "category": {
+      "type": "string",
+      "description": "Category for the experience (e.g., api_debugging, dependency_fix)"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "trustScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "useCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "triggerSignature": {
+      "type": "object",
+      "required": ["errorPattern", "taskIntent", "embedding"],
+      "properties": {
+        "errorPattern": { "type": "string" },
+        "taskIntent": { "type": "string" },
+        "embedding": {
+          "type": "array",
+          "items": { "type": "number" }
+        }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "required": ["os", "runtime", "compatibility"],
+      "properties": {
+        "os": { "type": "string" },
+        "runtime": { "type": "string" },
+        "dependencies": { "type": "object" },
+        "compatibility": { "type": "string", "enum": ["cross-platform", "os-specific"] }
+      }
+    },
+    "actionSequence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step", "type", "instruction", "rationale"],
+        "properties": {
+          "step": { "type": "integer" },
+          "type": { "type": "string", "enum": ["diagnosis", "patch", "config", "workaround"] },
+          "instruction": { "type": "string" },
+          "codeDiff": { "type": "string" },
+          "rationale": { "type": "string" }
+        }
+      }
+    },
+    "verificationCriterion": { "type": "string" },
+    "antipatternWarning": { "type": ["string", "null"] },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "@bovinphang/fec-form-handling",
+  "version": "2.6.0",
+  "description": "Use when building or reviewing substantial forms with React Hook Form, Zod schemas, typed validation, dynamic fields, controlled third-party inputs, file upload, multi-step flows, dependent validation, or form performance. Do not use for trivial 1-3 field forms without validation; Chinese triggers include 表单, 表单校验, 动态字段.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-form-handling"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "implementation-capability",
+    "react-hook-form",
+    "zod",
+    "validation",
+    "dynamic-forms",
+    "file-upload"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "YouTube 优化",
+  "description": "YouTube 上传的最佳设置",
+  "video": {
+    "codec": "libx264",
+    "preset": "slow",
+    "crf": 23,
+    "profile": "high",
+    "level": "4.1",
+    "pixel_format": "yuv420p"
+  },
+  "audio": {
+    "codec": "aac",
+    "bitrate": "192k",
+    "sample_rate": 48000,
+    "channels": 2
+  },
+  "recommendations": {
+    "1080p": {
+      "resolution": "1920x1080",
+      "bitrate": "8000k",
+      "audio_bitrate": "192k"
+    },
+    "720p": {
+      "resolution": "1280x720",
+      "bitrate": "5000k",
+      "audio_bitrate": "128k"
+    },
+    "480p": {
+      "resolution": "854x480",
+      "bitrate": "2500k",
+      "audio_bitrate": "128k"
+    }
+  }
+}

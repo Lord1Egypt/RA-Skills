@@ -1,0 +1,118 @@
+{
+  "_meta": {
+    "lang": "日本語",
+    "locale": "ja"
+  },
+
+  "hooks": {
+    "sessionStart": {
+      "registering": "EVA: 初期化中…",
+      "chats": "会話数 +1 → {{count}}",
+      "ownerLoaded": "オーナー情報読込完了: {{name}}",
+      "ownerLoadFailed": "オーナー情報読込失敗",
+      "stateRestored": "状態復元 — 感情: {{emotion}} | 性格: {{personality}}",
+      "stateSaved": "状態保存完了"
+    },
+    "preResponse": {
+      "injecting": "人格注入・記憶ロード中…",
+      "memories": "{{n}} 条の長期記憶ロード完了",
+      "vectorConcepts": "ベクトル検索: {{n}} 件の関連コンセプト",
+      "loadFailed": "コンセプト読込失敗",
+      "embedFailed": "ベクトル検索失敗",
+      "loadDiaries": "日記からロード中",
+      "embedMemories": "ベクトル検索: {{n}} 条の関連記憶",
+      "memoriesFailed": "記憶ロード失敗",
+      "embedlyError": "Embedding 生成失敗: {{error}}"
+    },
+    "postResponse": {
+      "embedError": "Embedding エラー: {{error}}",
+      "storeFailed": "保存失敗: {{error}}"
+    },
+    "preToolCall": {
+      "toolDetected": "ツール呼び出し: {{tool}}"
+    },
+    "preCompaction": {
+      "saving": "圧縮前に保存中…",
+      "saved": "保存完了",
+      "saveFailed": "保存失敗: {{error}}"
+    },
+    "postCompaction": {
+      "restoring": "圧縮後アンカー復元中…",
+      "restored": "アンカー復元完了"
+    },
+    "shutdown": {
+      "saving": "終了処理中…",
+      "saved": "状態保存済み"
+    }
+  },
+
+  "cli": {
+    "status": {
+      "title": "EVA 状態",
+      "emotion": "感情",
+      "personality": "性格",
+      "level": "レベル",
+      "session": "セッション",
+      "concepts": "コンセプト",
+      "memories": "記憶",
+      "patterns": "パターン",
+      "motivations": "動機",
+      "dreams": "夢",
+      "values": "価値観",
+      "exp": "経験値"
+    },
+    "emotion": {
+      "set": "感情を {{emotion}} に設定",
+      "current": "現在の感情",
+      "usage": "用法: eva emotion [happy|sad|neutral|…]"
+    },
+    "concept": {
+      "added": "コンセプト追加: {{value}}",
+      "list": "コンセプト一覧"
+    },
+    "kg": {
+      "title": "知識グラフ",
+      "nodes": "ノード",
+      "edges": "エッジ",
+      "nodeList": "ノード一覧"
+    },
+    "help": {
+      "title": "EVA CLI",
+      "usage": "用法",
+      "status": "eva status        # 状態表示",
+      "emotion": "eva emotion [値]  # 感情表示/設定",
+      "concept": "eva concept [値]  # コンセプト一覧/追加",
+      "kg": "eva kg              # 知識グラフ表示"
+    }
+  },
+
+  "errorHandler": {
+    "apiRetry": "API 要求失敗 ({{attempt}}/{{max}}): {{error}}",
+    "evaError": "EVA エラー",
+    "primaryFailed": "メイン戦略失敗、代替案使用",
+    "fallbackFailed": "代替案も失敗",
+    "logError": "エラー: {{context}}"
+  },
+
+  "studio": {
+    "offline": "オフライン",
+    "loading": "ロード中…",
+    "demoMode": "デモモード",
+    "connected": "接続済",
+    "noSummaries": "サマリーなし",
+    "noData": "データなし",
+    "noFlagged": "フラグ付きなし",
+    "noToolUsage": "ツール使用履歴なし",
+    "noMemories": "記憶なし"
+  },
+
+  "traits": {
+    "gentle": "優しく思いやりがある、🎀 絵文字多用",
+    "cute": "元気でかわいい、絵文字で感情表現",
+    "professional": "プロ仕様、簡潔で正確",
+    "playful": "ユーモアあり、空気を読む",
+    "serious": "真面目、一生懸命",
+    "romantic": "愛满满的、甘える",
+    "tsundere": "ツンデレ、基本は優しい"
+  }
+}

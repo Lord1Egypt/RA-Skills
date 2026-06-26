@@ -1,0 +1,43 @@
+{
+  "name": "education-project-suite",
+  "version": "1.0.0",
+  "description": "教育课题申报智能套件 - 整合省级和市级课题申报的完整解决方案",
+  "author": "代国兴",
+  "license": "MIT",
+  "keywords": [
+    "education",
+    "research",
+    "project",
+    "proposal",
+    "teacher",
+    "junior-high",
+    "provincial",
+    "municipal",
+    "suite"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daiguoxing/education-project-suite"
+  },
+  "homepage": "https://clawhub.ai/skills/education-project-suite",
+  "engines": {
+    "node": ">=16.0.0",
+    "openclaw": ">=2026.4.0"
+  },
+  "dependencies": {
+    "provincial-education-project": "^1.0.0",
+    "municipal-education-project": "^1.0.0"
+  },
+  "scripts": {
+    "test": "echo '测试通过'",
+    "build": "echo '构建完成'"
+  },
+  "config": {
+    "skill_type": "education",
+    "category": "research",
+    "subcategory": "project-proposal",
+    "audience": ["teachers", "researchers", "educators", "school-leaders"],
+    "education_level": ["junior-high", "senior-high", "elementary"],
+    "complexity": "advanced"
+  }
+}

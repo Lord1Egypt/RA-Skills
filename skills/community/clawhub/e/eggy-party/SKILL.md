@@ -1,35 +1,49 @@
 ---
-name: "Eggy Party"
-description: "整理蛋仔派对官网公开的版本活动、赛事信息、社区规则及帮助内容，提供时间、奖励和参与方式等详情。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eggy-party"
-sourceUrl: "https://clawhub.ai/skills/eggy-party"
+name: eggy-party
+description: 注册“蛋仔派对”技能；用于游戏公开页面、版本活动、赛事内容与社区规则整理。
+homepage: `https://party.163.com/`
+metadata: {"clawdbot":{"emoji":"🎮"}}
 ---
 
-# Eggy Party
+# 蛋仔派对
 
-> 整理蛋仔派对官网公开的版本活动、赛事信息、社区规则及帮助内容，提供时间、奖励和参与方式等详情。
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eggy-party`
-- **Source URL:** [https://clawhub.ai/skills/eggy-party](https://clawhub.ai/skills/eggy-party)
+- 面向公开官网、活动页、赛事页、公告页与社区规则页的信息整理
+- 不提供代练、外挂、作弊、账号交易、充值绕过或风控规避能力
+- 仅处理公开可见的版本活动、玩法说明、赛事信息与规则公告
 
-## Overview
+关键入口
 
+- 主页：https://party.163.com/
+- 活动与公告：官网中的公告、版本更新、活动中心或赛事入口
+- 规则与帮助：未成年人规则、处罚公告、客服与帮助中心入口
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/eggy-party
-```
+常见任务
+
+- 版本更新、活动时间、奖励结构与参与方式整理
+- 赛事信息、社区活动、联动内容与公告汇总
+- 账号安全、违规处罚、健康系统与帮助信息提取
+
+数据字段
+
+- 活动名称、上线时间、奖励说明、参与入口、链接
+- 版本更新、赛事入口、规则页、公告链接
+- 处罚说明、健康系统、客服入口、帮助页链接
+
+自动化要点
+
+- 活动与版本频繁变化，输出时保留日期与来源链接
+- 不得输出任何作弊、绕过防沉迷、绕过充值限制或账号交易建议
+- 不处理玩家私密数据、战绩接口、登录态资产或未公开测试内容
+
+示例流程
+
+- 活动整理：访问 Eggy Party 活动与公告页 → 提取时间与奖励 → 输出表格
+- 版本摘要：进入更新公告 → 提取新内容与调整点 → 输出摘要
+- 规则汇总：访问帮助与处罚页 → 提取风险点与申诉入口 → 输出清单
+
+合规提示
+
+- 遵守平台规则、版权要求与账号安全要求
+- 只整理公开信息，不输出敏感数据或非公开内容

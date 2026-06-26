@@ -1,0 +1,34 @@
+{
+  "name": "eva-soul",
+  "version": "2.5.0",
+  "description": "夏娃之魂认知系统 - AI人格、情感、记忆、性格的完整认知引擎",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage --reporters=default --reporters=jest-junit"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "keywords": [
+    "openclaw",
+    "eva",
+    "soul",
+    "ai-personality",
+    "emotion",
+    "memory",
+    "cognitive"
+  ],
+  "author": "EVA",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18",
+    "openclaw": ">=2026.3.0"
+  },
+  "openclaw.extensions": [
+    "./index.js"
+  ]
+}

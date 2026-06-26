@@ -1,35 +1,31 @@
 ---
-name: "邮件草稿生成器"
-description: "智能邮件草稿生成和模板管理工具"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-draft-oc"
-sourceUrl: "https://clawhub.ai/skills/email-draft-oc"
+name: email-draft
+version: 1.0.0
+description: 智能邮件草稿生成和模板管理工具
+author: OpenClaw
+tags: [邮件, 草稿, 模板, 效率]
 ---
 
-# 邮件草稿生成器
+# email-draft - 邮件草稿技能
 
-> 智能邮件草稿生成和模板管理工具
+智能邮件草稿生成和模板管理工具。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-draft-oc`
-- **Source URL:** [https://clawhub.ai/skills/email-draft-oc](https://clawhub.ai/skills/email-draft-oc)
+## 功能列表
+1. **草稿生成** - 根据关键词生成邮件草稿
+2. **模板管理** - 保存和复用常用邮件模板
+3. **语气调整** - 调整邮件语气（正式/友好/简洁）
+4. **多语言支持** - 支持生成不同语言的邮件
 
-## Overview
+## 触发关键词
+- 写邮件、生成邮件
+- 邮件模板、复用模板
+- 正式邮件、友好邮件
 
+## 数据存储
+- drafts.json - 邮件草稿
+- templates.json - 邮件模板
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/email-draft-oc
-```
+## 使用示例
+- "帮我写一封请假邮件"
+- "生成一封感谢客户支持的邮件"
+- "创建一个报价邮件模板"

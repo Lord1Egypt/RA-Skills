@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "generate_java_code",
+  "type": "object",
+  "required": [
+    "db_connection",
+    "generation_config"
+  ],
+  "properties": {
+    "db_connection": {
+      "type": "object",
+      "required": [
+        "db_type",
+        "url",
+        "user",
+        "pass"
+      ],
+      "properties": {
+        "db_type": {
+          "type": "string",
+          "enum": [
+            "mysql",
+            "postgresql",
+            "oracle",
+            "sqlserver"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1
+        },
+        "user": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pass": {
+          "type": "string",
+          "minLength": 1
+        },
+        "driver_jar": {
+          "type": "string",
+          "description": "Optional absolute path to JDBC driver jar"
+        },
+        "driver_class": {
+          "type": "string",
+          "description": "Optional JDBC driver class name"
+        }
+      },
+      "additionalProperties": false
+    },
+    "generation_config": {
+      "type": "object",
+      "required": [
+        "table_names",
+        "author",
+        "base_package",
+        "template_group"
+      ],
+      "properties": {
+        "table_names": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "author": {
+          "type": "string",
+          "minLength": 1
+        },
+        "base_package": {
+          "type": "string",
+          "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*(\\.[a-zA-Z_][a-zA-Z0-9_]*)*$"
+        },
+        "template_group": {
+          "type": "string",
+          "enum": [
+            "MyBatisPlus",
+            "Custom-V2",
+            "Custom-V3"
+          ]
+        },
+        "project_root": {
+          "type": "string"
+        },
+        "output_root": {
+          "type": "string",
+          "default": "src/main/java"
+        },
+        "project_format_command": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "description": "Optional formatter command(s) executed in project_root after generation, e.g. './gradlew spotlessApply'"
+        },
+        "type_mapping": {
+          "type": "object",
+          "description": "Optional JDBC to Java type preference overrides",
+          "properties": {
+            "number_default": {
+              "type": "string",
+              "enum": [
+                "Long",
+                "BigDecimal"
+              ],
+              "default": "Long"
+            },
+            "time_default": {
+              "type": "string",
+              "enum": [
+                "Date",
+                "LocalDateTime"
+              ],
+              "default": "Date"
+            }
+          },
+          "additionalProperties": false
+        },
+        "table_columns": {
+          "type": "object",
+          "description": "Optional per-table column metadata for full Velocity rendering",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "comment": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "java_type": {
+                  "type": "string"
+                },
+                "short_type": {
+                  "type": "string"
+                },
+                "sql_type": {
+                  "type": "string"
+                },
+                "is_pk": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,38 @@
+name: feishu-send-media
+version: 1.0.0
+description: 飞书媒体发送器 — 上传图片或视频并以媒体消息发送到飞书聊天中，支持预览和播放。| Feishu Media Sender — Upload & send images/videos via Feishu OpenAPI with in-chat preview/playback.
+author:
+  name: jimi
+license: MIT
+type: utility
+
+runtime:
+  requires_binaries: true
+  requires_credentials: true
+  requires_network: true
+
+runtime_binaries:
+  required:
+    - python3
+
+runtime_credentials:
+  required:
+    - OpenClaw config: ~/.openclaw/openclaw.json
+  notes:
+    - Reads channels.feishu.accounts.*.appId (or channels.feishu.appId)
+    - Reads channels.feishu.accounts.*.appSecret (or channels.feishu.appSecret)
+
+security:
+  install_time_executes_code: false
+  runtime_agent_executes_code: true
+  runtime_agent_network_access: true
+  reads_local_config: true
+
+tags:
+  - feishu
+  - image
+  - video
+  - media
+  - upload
+  - openapi
+  - messaging

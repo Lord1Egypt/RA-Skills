@@ -1,0 +1,112 @@
+{
+  "id": "general_kpi_monthly",
+  "name": "月度KPI考核报表",
+  "name_en": "Monthly KPI Assessment Report",
+  "industry": "general",
+  "scene": "绩效考核",
+  "description": "员工/部门KPI达成情况分析，适配企业人力资源、部门管理场景",
+  "sheets": [
+    {
+      "name": "原始数据",
+      "type": "data_input",
+      "columns": [
+        {"field": "month", "label": "月份", "type": "string", "required": true, "aliases": ["月份", "month"]},
+        {"field": "entity", "label": "部门/员工", "type": "string", "aliases": ["部门/员工", "entity", "部门", "员工", "姓名"]},
+        {"field": "kpi_name", "label": "KPI指标", "type": "string", "aliases": ["KPI指标", "kpi_name", "指标名称", "考核指标"]},
+        {"field": "target", "label": "目标值", "type": "number", "aliases": ["目标值", "target", "目标", "指标值"]},
+        {"field": "actual", "label": "实际值", "type": "number", "aliases": ["实际值", "actual", "完成值", "实际完成"]},
+        {"field": "weight", "label": "权重", "type": "percent", "aliases": ["权重", "weight", "权重占比"]},
+        {"field": "deduction", "label": "扣分", "type": "number", "aliases": ["扣分", "deduction", "扣分情况"]},
+        {"field": "deduction_reason", "label": "扣分原因", "type": "string", "aliases": ["扣分原因", "deduction_reason", "原因"]}
+      ]
+    },
+    {
+      "name": "分析看板",
+      "type": "dashboard",
+      "kpis": [
+        {
+          "id": "overall_rate",
+          "label": "整体达成率",
+          "formula": "SUM(actual)/SUM(target)",
+          "format": "percent",
+          "style": "gauge",
+          "target": 1.0
+        },
+        {
+          "id": "excellent_count",
+          "label": "优秀(≥100%)数量",
+          "formula": "COUNT_IF(achievement_rate, >=1.0)",
+          "format": "number",
+          "style": "card"
+        },
+        {
+          "id": "avg_deduction",
+          "label": "平均扣分",
+          "formula": "AVG(deduction)",
+          "format": "number",
+          "decimals": 1,
+          "style": "card"
+        },
+        {
+          "id": "entity_count",
+          "label": "考核对象数",
+          "formula": "COUNT_DISTINCT(entity)",
+          "format": "number",
+          "style": "card"
+        }
+      ],
+      "charts": [
+        {
+          "id": "entity_radar",
+          "type": "radar",
+          "title": "各部门/员工KPI多维度对比",
+          "dimension": "entity",
+          "metrics": ["achievement_rate"],
+          "position": {"row": 1, "col": 1, "width": 12, "height": 10}
+        },
+        {
+          "id": "achievement_rank",
+          "type": "bar",
+          "title": "KPI达成率排名",
+          "x": "entity",
+          "y": ["achievement_rate"],
+          "series_names": ["达成率"],
+          "format": "percent",
+          "position": {"row": 1, "col": 14, "width": 16, "height": 10}
+        },
+        {
+          "id": "deduction_pie",
+          "type": "pie",
+          "title": "扣分原因占比",
+          "dimension": "deduction_reason",
+          "metric": "deduction",
+          "position": {"row": 12, "col": 1, "width": 10, "height": 8}
+        },
+        {
+          "id": "kpi_distribution",
+          "type": "bar",
+          "title": "各KPI指标达成情况",
+          "x": "kpi_name",
+          "y": ["target", "actual"],
+          "series_names": ["目标", "实际"],
+          "position": {"row": 12, "col": 12, "width": 14, "height": 8}
+        }
+      ]
+    },
+    {
+      "name": "考核明细",
+      "type": "detail",
+      "source": "原始数据",
+      "computed_fields": [
+        {"field": "achievement_rate", "label": "达成率", "formula": "actual / target", "format": "percent"},
+        {"field": "weighted_score", "label": "加权得分", "formula": "achievement_rate * weight", "format": "percent"}
+      ],
+      "sort_by": ["entity", "kpi_name"],
+      "conditional_formatting": [
+        {"field": "achievement_rate", "condition": "<0.8", "format": "red_fill"},
+        {"field": "achievement_rate", "condition": ">=1.0", "format": "green_fill"}
+      ]
+    }
+  ],
+  "output_filename": "通用-KPI月度考核报表-{month}.xlsx"
+}

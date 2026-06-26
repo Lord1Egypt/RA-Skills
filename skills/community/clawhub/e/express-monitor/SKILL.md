@@ -1,35 +1,57 @@
 ---
-name: "express-monitor"
+name: express-monitor
 description: "快递监控Skill - 查询快递物流、绑定手机号自动获取快递、同步到飞书"
-category: "other"
-source: "ClawHub"
-tags: [express, logistics, tracking]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/express-monitor"
-sourceUrl: "https://clawhub.ai/skills/express-monitor"
+version: 1.0.0
 ---
 
-# express-monitor
+# 快递监控Skill
 
-> 快递监控Skill - 查询快递物流、绑定手机号自动获取快递、同步到飞书
+## 能力概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/express-monitor`
-- **Source URL:** [https://clawhub.ai/skills/express-monitor](https://clawhub.ai/skills/express-monitor)
+本Skill用于查询快递物流信息，支持：
+- 快递单号查询物流轨迹
+- 绑定手机号自动获取待收快递
+- 快递状态统计（运输中、已签收等）
+- 定时汇报新快递
 
-## Overview
+## 使用方法
 
+### 1. 查询快递单号
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/express-monitor
 ```
+查询快递 1234567890
+```
+
+### 2. 绑定手机号
+
+```
+绑定快递手机号 13800138000
+```
+
+### 3. 查看待收快递
+
+```
+查看我的快递
+```
+
+### 4. 快递统计
+
+```
+快递统计
+```
+
+## 数据存储
+
+- 快递记录保存在 `~/.openclaw/workspace/data/express/` 目录
+- 手机号绑定信息单独加密存储
+- 支持历史快递查询
+
+## 支持的快递公司
+
+顺丰、圆通、中通、韵达、申通、极兔、邮政、京东、德邦等主流快递公司
+
+## 注意事项
+
+- 爬虫方式可能被限制，建议使用官方API
+- 手机号查询可能有延迟
+- 大量查询请申请快递鸟API Key

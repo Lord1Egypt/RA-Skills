@@ -1,0 +1,15 @@
+{
+  "name": "feishu-file-sender",
+  "version": "1.2.0",
+  "description": "飞书文件发送助手 - 通过临时目录解决OpenClaw飞书发送文件路径白名单问题",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["feishu", "openclaw", "file", "upload", "image"],
+  "author": "寇助理",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

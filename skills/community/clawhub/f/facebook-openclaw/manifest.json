@@ -1,0 +1,153 @@
+{
+  "name": "facebook-posting",
+  "version": "1.0.0",
+  "description": "OpenClaw skill for posting to Facebook Pages from the terminal",
+  "commands": {
+    "fb-post-setup": {
+      "description": "Configure Facebook Page posting",
+      "usage": "openclaw fb-post-setup <page_id> <access_token> [page_name]",
+      "args": [
+        {
+          "name": "page_id",
+          "type": "string",
+          "required": true,
+          "description": "Your Facebook Page ID"
+        },
+        {
+          "name": "access_token",
+          "type": "string",
+          "required": true,
+          "description": "Your Facebook Page Access Token"
+        },
+        {
+          "name": "page_name",
+          "type": "string",
+          "required": false,
+          "description": "Optional: Your Page name (will be fetched if not provided)"
+        }
+      ]
+    },
+    "fb-post-setup-help": {
+      "description": "Display the complete setup guide",
+      "usage": "openclaw fb-post-setup-help"
+    },
+    "fb-post-test": {
+      "description": "Test your Facebook Page connection and permissions",
+      "usage": "openclaw fb-post-test"
+    },
+    "fb-post": {
+      "description": "Post a message immediately",
+      "usage": "openclaw fb-post \"<message>\"",
+      "args": [
+        {
+          "name": "message",
+          "type": "string",
+          "required": true,
+          "description": "The message content to post"
+        }
+      ]
+    },
+    "fb-post-image": {
+      "description": "Post an image with a caption",
+      "usage": "openclaw fb-post-image \"<caption>\" \"<image_url>\"",
+      "args": [
+        {
+          "name": "caption",
+          "type": "string",
+          "required": true,
+          "description": "The caption text for the image post"
+        },
+        {
+          "name": "image_url",
+          "type": "string",
+          "required": true,
+          "description": "Publicly accessible URL of the image to post"
+        }
+      ]
+    },
+    "fb-post-schedule": {
+      "description": "Schedule a post for later publication",
+      "usage": "openclaw fb-post-schedule \"<message>\" \"<time>\"",
+      "args": [
+        {
+          "name": "message",
+          "type": "string",
+          "required": true,
+          "description": "The message content to schedule"
+        },
+        {
+          "name": "time",
+          "type": "string",
+          "required": true,
+          "description": "Schedule time (natural language or ISO format)"
+        }
+      ]
+    },
+    "fb-post-schedule-list": {
+      "description": "List all scheduled posts",
+      "usage": "openclaw fb-post-schedule-list [--limit <n>]",
+      "options": [
+        {
+          "name": "limit",
+          "type": "integer",
+          "default": 50,
+          "description": "Maximum number of scheduled posts to show"
+        }
+      ]
+    },
+    "fb-post-schedule-delete": {
+      "description": "Cancel a scheduled post",
+      "usage": "openclaw fb-post-schedule-delete <post_id>",
+      "args": [
+        {
+          "name": "post_id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the scheduled post to cancel"
+        }
+      ]
+    },
+    "fb-post-drafts": {
+      "description": "List draft posts on your Page",
+      "usage": "openclaw fb-post-drafts [--limit <n>]",
+      "options": [
+        {
+          "name": "limit",
+          "type": "integer",
+          "default": 50,
+          "description": "Maximum number of drafts to show"
+        }
+      ]
+    },
+    "fb-post-delete": {
+      "description": "Delete a post permanently",
+      "usage": "openclaw fb-post-delete <post_id> [--confirm]",
+      "args": [
+        {
+          "name": "post_id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the post to delete"
+        }
+      ],
+      "options": [
+        {
+          "name": "confirm",
+          "type": "boolean",
+          "default": false,
+          "description": "Skip confirmation prompt"
+        }
+      ]
+    }
+  },
+  "required_inputs": {
+    "config_file": "facebook-posting.json",
+    "description": "Configuration file containing page_id, access_token, and page_name"
+  },
+  "security_notes": [
+    "Never share your access token",
+    "Page tokens last 60 days",
+    "Regenerate if compromised",
+    "Use Page tokens, not User tokens"
+  ]
+}

@@ -1,0 +1,277 @@
+{
+  "name": "eComm AI — 03 Prepaid Confirmation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ecomm-ai/prepaid-confirm",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Prepaid Order Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        400
+      ],
+      "webhookId": "ecomm-prepaid-confirm",
+      "id": "01959e7e-0799-4f41-898c-b13e1109586b"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build confirmation SMS for prepaid orders\nconst order = $input.first().json;\n\nconst smsBody = `Hi ${order.customer_name}! Your order #${order.order_number} is confirmed. `\n  + `Items: ${order.items_summary}. Total: ${order.currency} ${order.total_amount}. `\n  + `Thank you for your purchase! Reply HELP for support.`;\n\nreturn [{ json: {\n  ...order,\n  sms_body: smsBody\n}}];"
+      },
+      "name": "Prepare SMS",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ],
+      "id": "56a60460-9e02-4cbf-828e-11482902900f"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.TWILIO_API_URL}}/2010-04-01/Accounts/{{$env.TWILIO_ACCOUNT_SID}}/Messages.json",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ From: $env.TWILIO_PHONE_NUMBER, To: $json.customer_phone, Body: $json.sms_body }) }}",
+        "options": {},
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Basic {{$env.TWILIO_AUTH_HEADER}}"
+            }
+          ]
+        }
+      },
+      "name": "Send Confirmation SMS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        700,
+        400
+      ],
+      "id": "3f1109f4-359a-4f93-b533-b2701f499227"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "c070c2f0-e8a3-4ac6-a0f7-02c106609c7e",
+              "leftValue": "={{ $json.is_high_value }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      },
+      "name": "High Value?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        940,
+        400
+      ],
+      "id": "887dbb6a-6498-4b3d-a1e2-e31e24e52382"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.VAPI_API_URL}}/call/phone",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  assistantId: $env.VAPI_COD_ASSISTANT_ID,\n  customer: { number: $json.customer_phone, name: $json.customer_name },\n  assistantOverrides: {\n    firstMessage: 'Hello ' + $json.customer_name + ', thank you for your order #' + $json.order_number + '. We just wanted to personally confirm your purchase and let you know it is being processed. Is there anything you need help with?',\n    metadata: { order_id: $json.order_id, type: 'prepaid_highvalue' }\n  }\n}) }}",
+        "options": {},
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.VAPI_API_KEY}}"
+            }
+          ]
+        }
+      },
+      "name": "Vapi High-Value Call",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1180,
+        300
+      ],
+      "id": "aa71300d-b180-4963-b924-9c49e80bc215"
+    },
+    {
+      "parameters": {},
+      "name": "Standard Value — Skip Call",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        500
+      ],
+      "id": "8043ac9d-8756-4ac6-9c0d-3b127091d0b0"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Call Log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "order_id": "={{ $json.order_id }}",
+            "order_number": "={{ $json.order_number }}",
+            "customer_phone": "={{ $json.customer_phone }}",
+            "call_type": "prepaid_confirmation",
+            "status": "sms_sent",
+            "timestamp": "={{ new Date().toISOString() }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Log Prepaid Confirmation",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1420,
+        400
+      ],
+      "id": "c8cdb111-3528-4f47-b038-7147a056ae54",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'ok', order_id: $json.order_id, type: 'prepaid' }) }}",
+        "options": {}
+      },
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1660,
+        400
+      ],
+      "id": "c392bd2f-5e39-4819-acfc-58c2994d6926"
+    }
+  ],
+  "connections": {
+    "Prepaid Order Webhook": {
+      "main": [
+        [
+          {
+            "node": "Prepare SMS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare SMS": {
+      "main": [
+        [
+          {
+            "node": "Send Confirmation SMS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Confirmation SMS": {
+      "main": [
+        [
+          {
+            "node": "High Value?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "High Value?": {
+      "main": [
+        [
+          {
+            "node": "Vapi High-Value Call",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Standard Value — Skip Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vapi High-Value Call": {
+      "main": [
+        [
+          {
+            "node": "Log Prepaid Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Standard Value — Skip Call": {
+      "main": [
+        [
+          {
+            "node": "Log Prepaid Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Prepaid Confirmation": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,35 +1,214 @@
 ---
-name: "Error Recovery"
-description: "系统化错误恢复 — 当工具失败时提供结构化的诊断、重试和汇报流程。防止静默失败、无限重试、错误升级。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/error-recovery-xiaobai"
-sourceUrl: "https://clawhub.ai/skills/error-recovery-xiaobai"
+name: error-recovery
+description: 系统化错误恢复 — 当工具失败时提供结构化的诊断、重试和汇报流程。防止静默失败、无限重试、错误升级。
+triggers:
+  - "错误"
+  - "失败"
+  - "重试"
+  - "error"
+  - "恢复"
 ---
 
-# Error Recovery
+# Error Recovery - 系统化错误恢复 🩹
 
-> 系统化错误恢复 — 当工具失败时提供结构化的诊断、重试和汇报流程。防止静默失败、无限重试、错误升级。
+> 失败不可怕，可怕的是假装成功
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/error-recovery-xiaobai`
-- **Source URL:** [https://clawhub.ai/skills/error-recovery-xiaobai](https://clawhub.ai/skills/error-recovery-xiaobai)
+## Skill职责
 
-## Overview
+当AI Agent遇到工具失败、网络超时、权限错误等问题时，提供**结构化的恢复流程**，防止：
 
+- ❌ 静默失败 — 命令返回错误但假装成功
+- ❌ 无限重试 — 同一错误反复尝试不停止
+- ❌ 错误升级 — 用错误的方法修复错误
+- ❌ 丢失上下文 — 忘记错误发生在什么场景下
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/error-recovery-xiaobai
+## 触发场景
+
+任何工具调用返回以下情况时激活：
+- 返回码非0
+- HTTP状态码非200
+- 超时（timeout）
+- 权限拒绝（permission denied）
+- 文件不存在（file not found）
+- API错误（rate limit, auth failure等）
+
+## 核心流程：4R法则
+
+### 1️⃣ Record — 记录错误
+
+```markdown
+**错误记录：**
+- 时间: [精确时间]
+- 工具: [哪个工具/命令]
+- 错误类型: [timeout/auth/file-not-found/...]
+- 错误信息: [原始错误]
+- 上下文: [在做什么时出错]
 ```
+
+### 2️⃣ Reason — 分析原因
+
+**不要跳过这一步！** 常见错误类型和原因：
+
+| 错误类型 | 常见原因 | 快速诊断 |
+|---------|---------|---------|
+| timeout | 网络慢/服务器忙 | 换个时段/换API |
+| 401/403 | Token过期/权限不足 | 检查认证 |
+| 404 | 路径错误/资源不存在 | 检查URL/路径 |
+| 429 | Rate limit | 等待后重试 |
+| 500 | 服务器错误 | 等待或换方式 |
+| ENOENT | 文件不存在 | `ls`确认路径 |
+| EACCES | 权限不足 | 检查chmod |
+| SIGKILL | 进程被杀 | 超时/内存不足 |
+
+### 3️⃣ Recover — 尝试恢复（最多3次）
+
+**恢复策略树：**
+
+```
+工具失败
+├── 能否换工具？
+│   ├── curl失败 → 尝试fetch/gh api
+│   ├── git push失败 → 尝试API上传
+│   └── 搜索失败 → 尝试不同关键词
+├── 能否换方式？
+│   ├── 网络超时 → 增加timeout/减少数据量
+│   ├── 权限错误 → 用sudo或修改权限
+│   └── 文件路径错误 → 用绝对路径
+└── 能否换思路？
+    ├── 本地安装失败 → 用远程API
+    ├── push失败 → 用GitHub API直接上传
+    └── CLI报错 → 改用SDK
+```
+
+**重试规则：**
+- 同一方法最多重试 **3次**
+- 每次重试**必须改变**参数/方法（不能原样重试）
+- 3次失败后**停止**，向上汇报
+
+### 4️⃣ Report — 汇报结果
+
+**成功恢复：**
+```markdown
+✅ 错误已恢复
+
+**原始错误**: [错误信息]
+**原因分析**: [分析]
+**恢复方法**: [用了什么方法]
+**重试次数**: [N/3]
+
+**教训**: [下次如何避免]
+```
+
+**恢复失败（3次后）：**
+```markdown
+❌ 错误未解决 — 需要人工干预
+
+**错误**: [错误信息]
+**已尝试**:
+1. [方法1] → [失败原因]
+2. [方法2] → [失败原因]
+3. [方法3] → [失败原因]
+
+**建议**: [人工应该做什么]
+**影响**: [对当前任务的影响]
+```
+
+## 使用方法
+
+### 方式1：手动执行
+遇到错误时按4R流程处理。
+
+### 方式2：脚本辅助
+```bash
+# 诊断错误
+node scripts/error-diagnose.mjs --error "ENOENT" --context "读取配置文件"
+
+# 记录错误到日志
+node scripts/error-log.mjs --tool git --error "timeout" --message "push超时"
+
+# 查看错误历史
+node scripts/error-log.mjs --history
+```
+
+### 方式3：集成到EVR
+```markdown
+## EVR扩展（含错误恢复）
+
+🔧 **Execute**
+[执行命令]
+
+❌ **失败** → 激活 error-recovery
+
+1️⃣ Record: [记录错误]
+2️⃣ Reason: [分析原因]
+3️⃣ Recover: [尝试恢复]
+4️⃣ Report: [汇报结果]
+
+回到 EVR:
+✅ **Verify**: 验证恢复成功
+📋 **Report**: 完整汇报
+```
+
+## 经典案例
+
+### 案例1：Git Push超时
+
+**错误**: `git push` 在腾讯云到GitHub之间超时
+
+**恢复过程**:
+```
+尝试1: git push --verbose (增加verbose看详情)
+       → 仍然超时 (20s)
+尝试2: GIT_CURL_VERBOSE=1 git push (调试)
+       → 确认是网络问题
+尝试3: 用gh api直接上传文件
+       → ✅ 成功！
+
+教训: 网络不稳定时，避免git操作，用GitHub API替代
+```
+
+### 案例2：进程被SIGKILL
+
+**错误**: 后台进程被系统杀死
+
+**恢复过程**:
+```
+尝试1: 重新执行相同命令
+       → 又被杀死 (OOM?)
+尝试2: 减少内存使用（分批处理）
+       → ✅ 成功
+       
+教训: 大数据量操作要分批
+```
+
+### 案例3：文件路径不存在
+
+**错误**: 读取`memory/YYYY-MM-DD.md`返回ENOENT
+
+**恢复过程**:
+```
+尝试1: 用ls检查目录
+       → 发现文件名是YYYY-MM-DD-addendum.md
+尝试2: 读取addendum文件
+       → ✅ 找到了遗漏的信息！
+
+教训: 永远不要假设文件名，用ls确认
+```
+
+## 与其他Skill的配合
+
+| Skill | 配合方式 |
+|-------|---------|
+| evr | 错误恢复是EVR的扩展 |
+| time-anchor | 错误恢复后重新检查时间 |
+| memory-guard | 将错误教训写入记忆 |
+| session-handoff | 错误记录纳入交接文档 |
+
+## License
+
+MIT
+
+---
+
+*Created by 小白* 🤍
+*"失败不可怕，可怕的是假装成功"*

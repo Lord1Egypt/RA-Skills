@@ -1,0 +1,14 @@
+{
+  "invoice_id": "TIC-2026-0411",
+  "type": "in",
+  "counterparty_name": "Brico Depot Ajaccio",
+  "amount": 89.90,
+  "total_ht": 74.92,
+  "tva_amount": 14.98,
+  "tva_rate_pct": 20,
+  "issued_date": "2026-04-11",
+  "due_date": "2026-04-11",
+  "currency": "EUR",
+  "source": "llm_vision",
+  "confidence": 0.82
+}

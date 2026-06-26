@@ -1,0 +1,22 @@
+{
+  "name": "feishu-weekly-generator",
+  "version": "1.0.0",
+  "description": "Generate professional weekly work reports for Feishu/Lark users",
+  "main": "scripts/generate-weekly.mjs",
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate-weekly.mjs"
+  },
+  "keywords": [
+    "feishu",
+    "lark",
+    "weekly-report",
+    "work-report",
+    "automation"
+  ],
+  "author": "摸鱼大总管",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

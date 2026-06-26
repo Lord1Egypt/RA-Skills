@@ -1,0 +1,8 @@
+{
+  "student": "张三",
+  "items": [
+    {"id":"Q1","type":"MC","points":2,"student_answer":"B","question":"下列哪个是哺乳动物?A.鸟 B.狗 C.鱼"},
+    {"id":"Q2","type":"FIB","points":3,"student_answer":"叶绿素","question":"植物进行光合作用的主要色素是____"},
+    {"id":"Q3","type":"SA","points":10,"student_answer":"光合作用是植物利用叶绿体把二氧化碳和水合成有机物释放氧气的过程","question":"简述光合作用"}
+  ]
+}

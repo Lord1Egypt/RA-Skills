@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "description": "evolution-watcher 监控源配置",
+  "clawhub": {
+    "enabled": true,
+    "check_frequency_hours": 24,
+    "plugins": []
+  },
+  "github": {
+    "enabled": true,
+    "repositories": [
+      {
+        "owner": "openclaw",
+        "repo": "openclaw",
+        "branch": "main"
+      }
+    ],
+    "check_frequency_hours": 24,
+    "token": ""
+  },
+  "report": {
+    "output_dir": "reports",
+    "keep_reports_days": 30,
+    "format": [
+      "console",
+      "markdown",
+      "json"
+    ]
+  },
+  "notifications": {
+    "enabled": false,
+    "webhook_url": ""
+  },
+  "ignored_plugins": [
+    "memory-sync-enhanced",
+    "self-improving",
+    "ontology"
+  ]
+}

@@ -1,0 +1,297 @@
+# 设计规范与Token
+
+本文件基于项目中实际使用的Figma变量Token生成，包含颜色、间距、圆角、字体等设计规范。
+
+## 🎨 颜色系统 (Colors)
+
+### 基础色板 (Base Colors)
+
+#### 灰色系 (Gray)
+| Token名称 | 色值 | 用途 |
+|-----------|------|------|
+| `Colors.Base.Gray.1` | #F6F6F9 | 背景色、卡片背景 |
+| `Colors.Base.Gray.2` | #EDEFF1 | 次级背景、悬停背景、边框浅色 |
+| `Colors.Base.Gray.3` | #E2E4E9 | 默认边框 |
+| `Colors.Base.Gray.4` | #D0D3D9 | 强边框、禁用状态、图标三级 |
+| `Colors.Base.Gray.5` | #B7BCC3 | - |
+| `Colors.Base.Gray.6` | #9EA2AB | 辅助文本、图标二级 |
+| `Colors.Base.Gray.7` | #868B95 | - |
+| `Colors.Base.Gray.8` | #505764 | 次要文本、图标主要 |
+| `Colors.Base.Gray.9` | #202429 | 主要文本 |
+
+#### 主色 - 蓝色 (Primary)
+| Token名称 | 色值 | 用途 |
+|-----------|------|------|
+| `Colors.Base.primary.1` | #ECF4FF | 信息背景色 |
+| `Colors.Base.primary.2` | #DCEAFF | 信息背景悬停 |
+| `Colors.Base.primary.3` | #CAE0FF | - |
+| `Colors.Base.primary.4` | #99C3FF | 信息禁用状态 |
+| `Colors.Base.primary.5` | #6BA7FF | - |
+| `Colors.Base.primary.6` | #4792FE | 信息悬停状态 |
+| `Colors.Base.primary.7` | #0A6EFF | 主要信息色、主按钮 |
+| `Colors.Base.primary.8` | #0458D2 | 信息激活状态 |
+
+#### 绿色系 (Green)
+| Token名称 | 色值 | 用途 |
+|-----------|------|------|
+| `Colors.Base.Green.1` | #E8FFEA | 成功背景色 |
+| `Colors.Base.Green.2` | #AFF0B5 | 成功背景悬停 |
+| `Colors.Base.Green.3` | #7BE188 | - |
+| `Colors.Base.Green.4` | #62D975 | 成功禁用状态 |
+| `Colors.Base.Green.5` | #49D160 | - |
+| `Colors.Base.Green.6` | #23C343 | 成功悬停状态 |
+| `Colors.Base.Green.7` | #00B42A | 成功色 |
+| `Colors.Base.Green.8` | #009A29 | 成功激活状态 |
+
+#### 橙色系 (Orange)
+| Token名称 | 色值 | 用途 |
+|-----------|------|------|
+| `Colors.Base.Orange.1` | #FFF7E8 | 警告背景色 |
+| `Colors.Base.Orange.2` | #FFE4BA | 警告背景悬停 |
+| `Colors.Base.Orange.3` | #FFCF8B | - |
+| `Colors.Base.Orange.4` | #FFC273 | 警告禁用状态 |
+| `Colors.Base.Orange.5` | #FFB459 | - |
+| `Colors.Base.Orange.6` | #FF9A2E | 警告悬停状态 |
+| `Colors.Base.Orange.7` | #FF7D00 | 警告色 |
+| `Colors.Base.Orange.8` | #D25F00 | 警告激活状态 |
+
+#### 红色系 (Red)
+| Token名称 | 色值 | 用途 |
+|-----------|------|------|
+| `Colors.Base.Red.1` | #FFECE8 | 错误背景色 |
+| `Colors.Base.Red.2` | #FDCDC5 | 错误背景悬停 |
+| `Colors.Base.Red.3` | #FBACA3 | - |
+| `Colors.Base.Red.4` | #FB9D94 | 错误禁用状态 |
+| `Colors.Base.Red.5` | #FB8B83 | - |
+| `Colors.Base.Red.6` | #F76560 | 错误悬停状态 |
+| `Colors.Base.Red.7` | #F53F3F | 错误色 |
+| `Colors.Base.Red.8` | #CB2634 | 错误激活状态 |
+
+#### 金色系 (Gold)
+| Token名称 | 色值 |
+|-----------|------|
+| `Colors.Base.Gold.1` | #FFFCE8 |
+| `Colors.Base.Gold.2` | #FDF4BF |
+| `Colors.Base.Gold.3` | #FCE996 |
+| `Colors.Base.Gold.4` | #FADC6D |
+| `Colors.Base.Gold.5` | #F9CC45 |
+| `Colors.Base.Gold.6` | #F7BA1E |
+| `Colors.Base.Gold.7` | #CC9213 |
+| `Colors.Base.Gold.8` | #A26D0A |
+
+### 基础色值 (Default)
+| Token名称 | 色值 | 用途 |
+|-----------|------|------|
+| `Colors.Default.white` | #FFFFFF | 白色背景、反白文字 |
+| `Colors.Default.black` | #121518 | 黑色文字（基于Slate 12） |
+
+### 语义色板 (Brand)
+
+#### 信息色 (Info)
+| Token名称 | 引用 | 用途 |
+|-----------|------|------|
+| `Colors.Brand.Info.primaryBg` | {Colors.Base.primary.1} | 信息背景色 |
+| `Colors.Brand.Info.primaryBgHover` | {Colors.Base.primary.2} | 信息背景悬停 |
+| `Colors.Brand.Info.disabled` | {Colors.Base.primary.4} | 信息禁用状态 |
+| `Colors.Brand.Info.hover` | {Colors.Base.primary.6} | 信息悬停 |
+| `Colors.Brand.Info.primary` | {Colors.Base.primary.7} | 主要信息色 |
+| `Colors.Brand.Info.active` | {Colors.Base.primary.8} | 信息激活 |
+
+#### 成功色 (Success)
+| Token名称 | 引用 | 用途 |
+|-----------|------|------|
+| `Colors.Brand.Success.successBg` | {Colors.Base.Green.1} | 成功背景色 |
+| `Colors.Brand.Success.successBgHover` | {Colors.Base.Green.2} | 成功背景悬停 |
+| `Colors.Brand.Success.disabled` | {Colors.Base.Green.4} | 成功禁用状态 |
+| `Colors.Brand.Success.hover` | {Colors.Base.Green.6} | 成功悬停 |
+| `Colors.Brand.Success.success` | {Colors.Base.Green.7} | 成功色 |
+| `Colors.Brand.Success.active` | {Colors.Base.Green.8} | 成功激活 |
+
+#### 警告色 (Warning)
+| Token名称 | 引用 | 用途 |
+|-----------|------|------|
+| `Colors.Brand.Warning.warningBg` | {Colors.Base.Orange.1} | 警告背景色 |
+| `Colors.Brand.Warning.warningBgHover` | {Colors.Base.Orange.2} | 警告背景悬停 |
+| `Colors.Brand.Warning.disabled` | {Colors.Base.Orange.4} | 警告禁用状态 |
+| `Colors.Brand.Warning.hover` | {Colors.Base.Orange.6} | 警告悬停 |
+| `Colors.Brand.Warning.warning` | {Colors.Base.Orange.7} | 警告色 |
+| `Colors.Brand.Warning.active` | {Colors.Base.Orange.8} | 警告激活 |
+
+#### 错误色 (Error)
+| Token名称 | 引用 | 用途 |
+|-----------|------|------|
+| `Colors.Brand.Error.errorBg` | {Colors.Base.Red.1} | 错误背景色 |
+| `Colors.Brand.Error.errorBgHover` | {Colors.Base.Red.2} | 错误背景悬停 |
+| `Colors.Brand.Error.disabled` | {Colors.Base.Red.4} | 错误禁用状态 |
+| `Colors.Brand.Error.hover` | {Colors.Base.Red.6} | 错误悬停 |
+| `Colors.Brand.Error.error` | {Colors.Base.Red.7} | 错误色 |
+| `Colors.Brand.Error.active` | {Colors.Base.Red.8} | 错误激活 |
+
+### 中性色 (Neutral)
+
+#### 文本色
+| Token名称 | 引用 | 用途 |
+|-----------|------|------|
+| `Colors.Neutral.text.text` | {Colors.Base.Gray.9} | 主要文本 |
+| `Colors.Neutral.text.textSecondary` | {Colors.Base.Gray.8} | 次要文本 |
+| `Colors.Neutral.text.textTertiary` | {Colors.Base.Gray.6} | 三级文本 |
+| `Colors.Neutral.text.textQuaternary` | {Colors.Base.Gray.4} | 四级文本（占位符） |
+| `Colors.Neutral.text.textInverse` | #FFFFFF | 反白文本 |
+
+#### 图标色
+| Token名称 | 引用 | 用途 |
+|-----------|------|------|
+| `Colors.Neutral.icon.iconPrimary` | {Colors.Base.Gray.8} | 主要图标 |
+| `Colors.Neutral.icon.iconSecondary` | {Colors.Base.Gray.6} | 次要图标 |
+| `Colors.Neutral.icon.iconTertiary` | {Colors.Base.Gray.4} | 三级图标 |
+
+#### 边框色
+| Token名称 | 引用 | 用途 |
+|-----------|------|------|
+| `Colors.Neutral.border.borderSubtle` | {Colors.Base.Gray.2} | 浅边框 |
+| `Colors.Neutral.border.borderDefault` | {Colors.Base.Gray.3} | 默认边框 |
+| `Colors.Neutral.border.borderStrong` | {Colors.Base.Gray.4} | 强边框 |
+
+---
+
+## 📏 间距系统 (Spacing)
+
+基于 `Sizing.tokens.json` 中的 spacing 和 icon 定义：
+
+### 通用间距 (spacing)
+| Token名称 | 值 | 用途 |
+|-----------|-----|------|
+| `spacing.0` | 0px | 无间距 |
+| `spacing.1` | 2px | 极细微间距 |
+| `spacing.2` | 4px | 极小间距、图标与文字间距 |
+| `spacing.3` | 6px | 小间距 |
+| `spacing.4` | 8px | 小间距、内边距紧凑模式 |
+| `spacing.5` | 12px | 中间距紧凑 |
+| `spacing.6` | 16px | 中间距、卡片内边距 |
+| `spacing.7` | 20px | 中大间距 |
+| `spacing.8` | 24px | 大间距、区块间距 |
+| `spacing.9` | 28px | 大间距 |
+| `spacing.10` | 32px | 极大间距、页面留白 |
+| `spacing.11` | 36px | 超大间距 |
+| `spacing.12` | 40px | 超大间距 |
+| `spacing.13` | 48px | 巨大间距、大区块分隔 |
+
+### 图标尺寸 (icon)
+| Token名称 | 值 | 用途 |
+|-----------|-----|------|
+| `icon.xs` | 12px | 超小图标 |
+| `icon.sm` | 14px | 小图标 |
+| `icon.base` | 16px | 默认图标尺寸 |
+| `icon.lg` | 20px | 大图标 |
+| `icon.xl` | 24px | 超大图标 |
+| `icon.2xl` | 28px | 双倍大图标 |
+| `icon.3xl` | 32px | 三倍大图标 |
+| `icon.4xl` | 40px | 四倍大图标 |
+| `icon.5xl` | 48px | 五倍大图标 |
+| `icon.6xl` | 56px | 六倍大图标 |
+
+### 描边宽度 (stroke)
+| Token名称 | 值 | 用途 |
+|-----------|-----|------|
+| `stroke.base` | 1px | 默认描边 |
+| `stroke.lg` | 2px | 粗描边 |
+
+---
+
+## ⭕ 圆角系统 (Radius)
+
+基于 `Radius.tokens.json` 定义：
+
+| Token名称 | 值 | 用途 |
+|-----------|-----|------|
+| `Radius.0` | 0px | 无圆角 |
+| `Radius.1` | 2px | 极小圆角 |
+| `Radius.2` | 4px | 小圆角、输入框 |
+| `Radius.3` | 8px | 中圆角、卡片、按钮 |
+| `Radius.4` | 12px | 大圆角、模态框 |
+| `Radius.max` | 999px | 圆形、胶囊 |
+
+---
+
+## 🔤 排版系统 (Typography)
+
+基于 `Typography.tokens.json` 定义：
+
+### 字体家族
+| Token名称 | 值 |
+|-----------|-----|
+| `font-family.font-family` | "Source Han Sans SC" |
+
+### 字重
+| Token名称 | 值 | 用途 |
+|-----------|-----|------|
+| `font-weight.regular` | "Regular" (400) | 普通正文 |
+| `font-weight.medium` | "Medium" (500) | 强调文本、小标题 |
+
+### 字号
+| Token名称 | 值 | 用途 |
+|-----------|-----|------|
+| `font-size.xs` | 12px | 辅助文字、标签 |
+| `font-size.sm` | 13px | 小号正文 |
+| `font-size.base` | 14px | 默认正文 |
+| `font-size.lg` | 16px | 大号正文、小标题 |
+| `font-size.xl` | 20px | 中等标题 |
+| `font-size.2xl` | 24px | 大标题 |
+| `font-size.3xl` | 28px | 超大标题 |
+| `font-size.4xl` | 32px | 巨大标题 |
+
+### 行高
+| Token名称 | 值 | 用途 |
+|-----------|-----|------|
+| `line-height.xs` | 18px | 辅助文字行高 |
+| `line-height.sm` | 20px | 小号正文行高 |
+| `line-height.base` | 22px | 默认正文行高 |
+| `line-height.lg` | 24px | 大号正文行高 |
+| `line-height.xl` | 28px | 标题行高 |
+| `line-height.2xl` | 32px | 大标题行高 |
+| `line-height.3xl` | 36px | 超大标题行高 |
+| `line-height.4xl` | 40px | 巨大标题行高 |
+
+### 组合Token（建议在代码中定义）
+为了方便使用，建议在代码中定义以下组合样式：
+
+| 建议Token名称 | 组合 | 用途 |
+|--------------|------|------|
+| `typography.body.regular` | font-size.base + font-weight.regular + line-height.base | 普通正文 |
+| `typography.body.medium` | font-size.base + font-weight.medium + line-height.base | 强调正文 |
+| `typography.body.small` | font-size.sm + font-weight.regular + line-height.sm | 辅助说明 |
+| `typography.heading.large` | font-size.3xl + font-weight.medium + line-height.3xl | 页面主标题 |
+| `typography.heading.medium` | font-size.2xl + font-weight.medium + line-height.2xl | 区块标题 |
+| `typography.heading.small` | font-size.xl + font-weight.medium + line-height.xl | 卡片标题 |
+| `typography.label` | font-size.xs + font-weight.regular + line-height.xs | 标签文字 |
+
+---
+
+## 💡 使用示例
+
+### 在React组件中使用
+
+```jsx
+import { useTheme } from 'your-theme-system';
+
+const MyComponent = () => {
+  const theme = useTheme();
+  
+  return (
+    <div style={{
+      padding: theme.spacing[6], // 16px
+      borderRadius: theme.radius[3], // 8px
+      backgroundColor: theme.colors.Base.Gray[1],
+      border: `${theme.stroke.base} solid ${theme.colors.Neutral.border.borderDefault}`
+    }}>
+      <p style={{
+        fontSize: theme.fontSize.base,
+        fontWeight: theme.fontWeight.regular,
+        lineHeight: theme.lineHeight.base,
+        color: theme.colors.Neutral.text.text
+      }}>
+        示例文本
+      </p>
+    </div>
+  );
+};

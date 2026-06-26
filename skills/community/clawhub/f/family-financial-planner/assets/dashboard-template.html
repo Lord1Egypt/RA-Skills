@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>家庭财务全景分析 · __USER_NAME__</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ===== Carbon Design System Tokens ===== */
+  :root {
+    --cds-background: #f4f4f4;
+    --cds-background-hover: #e8e8e8;
+    --cds-layer-01: #ffffff;
+    --cds-layer-02: #f4f4f4;
+    --cds-layer-hover-01: #e8e8e8;
+    --cds-border-subtle: #e0e0e0;
+    --cds-border-strong: #8d8d8d;
+    --cds-text-primary: #161616;
+    --cds-text-secondary: #525252;
+    --cds-text-placeholder: #a8a8a8;
+    --cds-text-helper: #6f6f6f;
+    --cds-text-on-color: #ffffff;
+    --cds-link-primary: #0f62fe;
+    --cds-link-primary-hover: #0043ce;
+    --cds-interactive: #0f62fe;
+    --cds-support-error: #da1e28;
+    --cds-support-success: #198038;
+    --cds-support-warning: #f1c21b;
+    --cds-support-info: #0043ce;
+    /* Financial semantic (中国股市：涨红跌绿) */
+    --fin-up: #da1e28;
+    --fin-down: #198038;
+    --fin-danger: #da1e28;
+    --fin-success: #198038;
+    --fin-warning: #f1c21b;
+    --fin-info: #0043ce;
+    --fin-purple: #8a3ffc;
+    --fin-teal: #009d9a;
+    --fin-magenta: #d02670;
+    /* Spacing */
+    --cds-spacing-03: 8px;
+    --cds-spacing-04: 12px;
+    --cds-spacing-05: 16px;
+    --cds-spacing-06: 24px;
+    --cds-spacing-07: 32px;
+    /* Compat aliases */
+    --primary: var(--cds-interactive);
+    --primary-light: #edf5ff;
+    --success: var(--fin-success);
+    --warning: #b28600;
+    --danger: var(--fin-danger);
+    --text-title: var(--cds-text-primary);
+    --text-body: var(--cds-text-secondary);
+    --text-secondary: var(--cds-text-helper);
+    --bg: var(--cds-background);
+    --card: var(--cds-layer-01);
+    --border: var(--cds-border-subtle);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", sans-serif;
+    background: var(--cds-background);
+    color: var(--cds-text-primary);
+    line-height: 1.5;
+    min-height: 100vh;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Carbon Header */
+  .app-header {
+    background: #161616;
+    color: var(--cds-text-on-color);
+    padding: var(--cds-spacing-07) var(--cds-spacing-06) var(--cds-spacing-06);
+    text-align: center;
+    border-bottom: 3px solid var(--cds-interactive);
+  }
+  .app-header h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .app-header p { font-size: 14px; opacity: 0.7; }
+  .app-header .date-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.1);
+    padding: 4px 16px;
+    font-size: 12px;
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: var(--cds-spacing-06) var(--cds-spacing-05) 80px; }
+
+  /* Carbon Tabs */
+  .tab-nav {
+    display: flex;
+    gap: 0;
+    background: var(--cds-layer-01);
+    margin-bottom: var(--cds-spacing-06);
+    border-bottom: 2px solid var(--cds-border-subtle);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 12px 16px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--cds-text-secondary);
+    cursor: pointer;
+    transition: all 0.15s;
+    min-width: 80px;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    white-space: nowrap;
+  }
+  .tab-btn.active {
+    color: var(--cds-text-primary);
+    border-bottom-color: var(--cds-interactive);
+    font-weight: 600;
+  }
+  .tab-btn:hover:not(.active) {
+    color: var(--cds-text-primary);
+    background: var(--cds-background-hover);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Carbon Card / Tile */
+  .card {
+    background: var(--cds-layer-01);
+    padding: var(--cds-spacing-06);
+    margin-bottom: var(--cds-spacing-05);
+  }
+  .card h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: var(--cds-spacing-05);
+    padding-bottom: var(--cds-spacing-04);
+    border-bottom: 1px solid var(--cds-border-subtle);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: var(--cds-spacing-05) 0 var(--cds-spacing-03);
+  }
+
+  /* Dashboard Stat Cards */
+  .dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--cds-spacing-05);
+    margin-bottom: var(--cds-spacing-06);
+  }
+  .stat-card {
+    background: var(--cds-layer-01);
+    padding: var(--cds-spacing-05);
+    text-align: left;
+    border-left: 3px solid var(--cds-interactive);
+    transition: background 0.15s;
+  }
+  .stat-card:hover { background: var(--cds-layer-hover-01); }
+  .stat-card .label { font-size: 12px; color: var(--cds-text-helper); margin-bottom: var(--cds-spacing-03); text-transform: uppercase; letter-spacing: 0.32px; font-weight: 500; }
+  .stat-card .value { font-size: 24px; font-weight: 600; }
+  .stat-card .sub { font-size: 12px; color: var(--cds-text-helper); margin-top: 4px; }
+  .positive { color: var(--fin-up); }
+  .negative { color: var(--fin-down); }
+  .neutral { color: var(--cds-interactive); }
+
+  /* Data Table */
+  .detail-table { width: 100%; border-collapse: collapse; margin-top: var(--cds-spacing-04); font-size: 14px; }
+  .detail-table th, .detail-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--cds-border-subtle); vertical-align: top; }
+  .detail-table th { background: var(--cds-layer-02); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.32px; border-bottom: 1px solid var(--cds-border-strong); }
+  .detail-table tbody tr:hover td { background: var(--cds-background-hover); }
+  .detail-table .total-row { font-weight: 600; background: var(--cds-layer-02); border-top: 2px solid var(--cds-border-strong); }
+
+  /* Progress Bar */
+  .progress-wrap { margin: 12px 0; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--cds-text-secondary); margin-bottom: 6px; }
+  .progress-bar { height: 8px; background: var(--cds-border-subtle); overflow: hidden; }
+  .progress-bar .fill { height: 100%; transition: width 0.5s ease; }
+  .fill-safe { background: var(--fin-success); }
+  .fill-warn { background: var(--fin-warning); }
+  .fill-danger { background: var(--fin-danger); }
+
+  /* Verdict / Notification */
+  .verdict-box { padding: var(--cds-spacing-06); text-align: center; margin: var(--cds-spacing-06) 0; }
+  .verdict-box.safe { background: #defbe6; border-left: 4px solid var(--fin-success); text-align: left; }
+  .verdict-box.caution { background: #fff8e1; border-left: 4px solid #b28600; text-align: left; }
+  .verdict-box.risky { background: #fff1f1; border-left: 4px solid var(--fin-danger); text-align: left; }
+  .verdict-box .verdict-icon { font-size: 32px; margin-bottom: 8px; }
+  .verdict-box .verdict-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .verdict-box .verdict-desc { font-size: 14px; color: var(--cds-text-secondary); line-height: 1.7; max-width: 800px; }
+
+  /* Scenario Grid */
+  .scenario-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--cds-spacing-05); }
+  .scenario-card { padding: var(--cds-spacing-05); border-left: 3px solid var(--cds-border-subtle); background: var(--cds-layer-01); }
+  .scenario-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .scenario-card .scenario-val { font-size: 28px; font-weight: 600; margin: 6px 0; }
+
+  /* Bar Chart */
+  .wf-row { display: flex; align-items: center; margin-bottom: 6px; }
+  .wf-label { width: 110px; font-size: 12px; text-align: right; padding-right: 12px; color: var(--cds-text-secondary); flex-shrink: 0; }
+  .wf-bar-wrap { flex: 1; height: 24px; position: relative; }
+  .wf-bar { height: 100%; position: absolute; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #fff; min-width: 55px; transition: all 0.4s ease; }
+
+  /* Info Banner */
+  .info-banner { background: #edf5ff; border-left: 3px solid var(--cds-interactive); padding: var(--cds-spacing-05); margin-bottom: var(--cds-spacing-05); font-size: 14px; }
+  .info-banner strong { font-weight: 600; }
+
+  /* Tax Highlight */
+  .tax-highlight { background: #fff8e1; border-left: 3px solid #b28600; padding: var(--cds-spacing-05); margin: var(--cds-spacing-05) 0; }
+  .tax-highlight h4 { color: #b28600; font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .tax-highlight p { font-size: 14px; color: var(--cds-text-secondary); line-height: 1.7; }
+
+  .key-number { display: inline-block; background: #edf5ff; padding: 2px 8px; font-weight: 600; color: var(--cds-interactive); font-size: 14px; font-family: 'IBM Plex Mono', monospace; }
+
+  .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--cds-spacing-05); }
+
+  /* Compare Table */
+  .compare-table { width: 100%; border-collapse: collapse; margin-top: var(--cds-spacing-04); font-size: 14px; }
+  .compare-table th, .compare-table td { padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--cds-border-subtle); }
+  .compare-table th { font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.32px; }
+  .compare-table th:first-child, .compare-table td:first-child { text-align: left; }
+  .compare-table .col-now { background: #fff1f1; }
+  .compare-table .col-jul { background: #defbe6; }
+  .compare-table .col-diff { background: #edf5ff; }
+  .compare-table .header-now { background: var(--fin-danger); color: #fff; }
+  .compare-table .header-jul { background: var(--fin-success); color: #fff; }
+  .compare-table .header-diff { background: var(--cds-interactive); color: #fff; }
+  .compare-table .header-label { background: var(--cds-layer-02); text-align: left; }
+  .compare-table .total-row { font-weight: 600; background: var(--cds-layer-02); }
+  .compare-table .highlight-row { background: #fff8e1; font-weight: 600; font-size: 15px; }
+
+  .diff-badge { display: inline-block; padding: 2px 8px; font-size: 12px; font-weight: 600; font-family: 'IBM Plex Mono', monospace; }
+  .diff-positive { background: #defbe6; color: var(--fin-success); }
+  .diff-negative { background: #fff1f1; color: var(--fin-danger); }
+
+  /* Big Comparison */
+  .big-comparison { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; margin: var(--cds-spacing-06) 0; }
+  .big-comparison .comp-box { padding: var(--cds-spacing-06) var(--cds-spacing-05); text-align: center; }
+  .big-comparison .comp-box.now-box { background: #fff1f1; border-left: 4px solid var(--fin-danger); }
+  .big-comparison .comp-box.jul-box { background: #defbe6; border-left: 4px solid var(--fin-success); }
+  .big-comparison .comp-vs { display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: var(--cds-text-placeholder); }
+  .comp-box .comp-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .comp-box .comp-val { font-size: 36px; font-weight: 600; margin: 6px 0; }
+  .comp-box .comp-sub { font-size: 12px; color: var(--cds-text-secondary); line-height: 1.6; }
+
+  /* Responsive */
+  @media (max-width: 672px) {
+    .dashboard { grid-template-columns: 1fr 1fr; }
+    .scenario-grid { grid-template-columns: 1fr; }
+    .split-grid { grid-template-columns: 1fr; }
+    .big-comparison { grid-template-columns: 1fr; gap: 10px; }
+    .big-comparison .comp-vs { padding: 6px 0; }
+    .tab-btn { font-size: 13px; padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!--
+  ========================================
+  TEMPLATE USAGE INSTRUCTIONS
+  ========================================
+  
+  This is a structural template for the Family Financial Planner dashboard.
+  
+  To use this template:
+  1. Replace all __PLACEHOLDER__ values in the <script> section with actual user data
+  2. Remove any Tab sections that don't apply to the user's situation
+  3. Adjust the tab-nav buttons to match the included tabs
+  4. Add/modify family expense year plans based on user's family structure
+  
+  The template includes ALL possible tabs. Remove those not needed:
+  - No stocks/RSU → remove Tab 1
+  - No property → remove Tab 2, 3
+  - No entrepreneurship → remove Tab 8 (OPC)
+  - No two scenarios to compare → simplify Tab 5
+  - No children → simplify Tab 7 (remove baby/nanny items)
+  
+  All __PLACEHOLDER__ markers indicate values to be replaced:
+  - __VALUE__ = numeric value
+  - __YUAN__ = amount in CNY yuan
+  - __WAN__ = amount in 万 (10,000 CNY)
+  - __PCT__ = percentage (e.g., 3.05 for 3.05%)
+  - __DATE__ = date string
+  - __TEXT__ = text string
+  - __N__ = integer count
+-->
+
+<div class="app-header">
+  <h1>家庭财务全景分析</h1>
+  <p>__SCENARIO_DESCRIPTION__</p>
+  <div class="date-tag">__DATE_TAG__</div>
+</div>
+
+<div class="container">
+
+  <!-- Tab Navigation — adjust based on included tabs -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab(0)">资产总览</button>
+    <!-- Add/remove tab buttons as needed -->
+    <!-- <button class="tab-btn" onclick="switchTab(1)">股票 & RSU</button> -->
+    <!-- <button class="tab-btn" onclick="switchTab(2)">房产 & 贷款</button> -->
+    <!-- <button class="tab-btn" onclick="switchTab(3)">房贷成本</button> -->
+    <button class="tab-btn" onclick="switchTab(4)">月度收支</button>
+    <button class="tab-btn" onclick="switchTab(5)">场景对比</button>
+    <button class="tab-btn" onclick="switchTab(6)">行动清单</button>
+    <!-- <button class="tab-btn" onclick="switchTab(7)">家庭支出</button> -->
+    <!-- <button class="tab-btn" onclick="switchTab(8)">创业分析</button> -->
+    <!-- <button class="tab-btn" onclick="switchTab(9)">提前还贷</button> -->
+    <button class="tab-btn" onclick="switchTab(10)" style="color:var(--fin-purple); font-weight:600;">盲区修正</button>
+    <button class="tab-btn" onclick="switchTab(11)" style="color:var(--fin-magenta); font-weight:600;">回归职场</button>
+  </div>
+
+  <!-- Tab Panels — one div per tab -->
+  <div class="tab-panel active" id="tab0"></div>
+  <div class="tab-panel" id="tab1"></div>
+  <div class="tab-panel" id="tab2"></div>
+  <div class="tab-panel" id="tab3"></div>
+  <div class="tab-panel" id="tab4"></div>
+  <div class="tab-panel" id="tab5"></div>
+  <div class="tab-panel" id="tab6"></div>
+  <div class="tab-panel" id="tab7"></div>
+  <div class="tab-panel" id="tab8"></div>
+  <div class="tab-panel" id="tab9"></div>
+  <div class="tab-panel" id="tab10"></div>
+  <div class="tab-panel" id="tab11"></div>
+
+</div>
+
+<script>
+// ===================== USER DATA — REPLACE ALL __PLACEHOLDERS__ =====================
+
+// --- Exchange rates (if applicable) ---
+// const HKD_CNY = __FX_RATE__;
+
+// --- Stocks / Securities ---
+// const totalStockCNY = __VALUE__;
+
+// --- Properties ---
+// const bjHouseValue = __WAN__;        // 自住房估值
+// const bjMortgageRemain = __WAN__;    // 商贷余额
+// const bjMonthlyMortgage = __YUAN__;  // 商贷月供
+// const bjMortgageRate = __PCT__;      // 商贷利率
+
+// --- Housing Fund Loan ---
+// const gjjLoanTotal = __WAN__;
+// const gjjLoanRemain = __WAN__;
+// const gjjMonthlyPayment = __YUAN__;
+// const gjjRate = __PCT__;
+// const gjjMinPayment = __YUAN__;
+
+// --- Investment Properties ---
+// const xianHouseValue = __WAN__;
+// const xianHouseRent = __YUAN__;      // 月租金
+
+// --- Cash ---
+// const cashSaving = __WAN__;
+
+// --- Debts ---
+// const interestFreeLoan = __WAN__;    // 需一次性归还的无息贷款（亲友借款/购房垫资/消费分期等）
+
+// --- Model Parameters ---
+const INFLATION_RATE = 0.035;   // 年通胀率
+const EMERGENCY_MONTHS = 8;     // 紧急备用金月数
+const INVEST_RETURN = 0.025;    // 投资年回报
+const SPOUSE_SOCIAL = 0;        // 配偶灵活社保月缴（没有则为0）
+
+// --- Salary (while employed) ---
+// const salaryGross = __YUAN__;
+// const salaryNet = __YUAN__;
+
+// --- Living Expenses ---
+// const nannyCost = __YUAN__;
+// const familyFood = __YUAN__;
+// const babyCost = __YUAN__;
+// const utilityBills = __YUAN__;
+// const miscLiving = __YUAN__;
+// const monthlyInsurance = __YUAN__;
+// const monthlyCarCost = __YUAN__;
+
+// --- Business Operating Costs (if applicable) ---
+// const opcMonthlyCost = __YUAN__;
+
+// ===================== CALCULATIONS =====================
+// Refer to references/financial-model-spec.md for all formulas.
+// Implement each calculation module as needed based on included tabs.
+
+// ===================== HELPERS =====================
+function fmt(n) { return n.toLocaleString('zh-CN', {maximumFractionDigits:1}); }
+function fmt2(n) { return n.toLocaleString('zh-CN', {maximumFractionDigits:2}); }
+function fmtY(n) { return '¥' + n.toLocaleString('zh-CN', {maximumFractionDigits:0}); }
+function fmtPct(n) { return n.toFixed(1) + '%'; }
+function fmtWan(n) { return fmt(n) + '万'; }
+
+function switchTab(idx) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i===idx));
+  document.querySelectorAll('.tab-panel').forEach((p,i) => p.classList.toggle('active', i===idx));
+}
+
+function barChart(items, maxVal) {
+  return items.filter(i=>i.val>0).map(item => {
+    const pct = maxVal > 0 ? (item.val / maxVal * 100) : 0;
+    return `<div class="wf-row">
+      <div class="wf-label">${item.label}</div>
+      <div class="wf-bar-wrap">
+        <div class="wf-bar" style="width:${Math.max(pct,10)}%; left:0; background:${item.color||'#0052D9'}; opacity:0.85">${item.text || fmtY(item.val)}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function progressBar(ratio, thresholds=[40,60]) {
+  let cls = 'fill-safe', label = '健康';
+  if (ratio > thresholds[1]) { cls = 'fill-danger'; label = '偏高'; }
+  else if (ratio > thresholds[0]) { cls = 'fill-warn'; label = '需注意'; }
+  return `<div class="progress-wrap">
+    <div class="progress-label"><span>比率</span><span>${fmtPct(ratio)} — ${label}</span></div>
+    <div class="progress-bar"><div class="fill ${cls}" style="width:${Math.min(ratio,100)}%"></div></div>
+  </div>`;
+}
+
+// ===================== RENDER =====================
+function render() {
+  renderTab0();  // 资产总览 — 必须
+  // renderTab1();  // 股票 & RSU — 按需
+  // renderTab2();  // 房产 & 贷款 — 按需
+  // renderTab3();  // 房贷成本 — 按需
+  renderTab4();  // 月度收支 — 必须
+  renderTab5();  // 场景对比 — 必须
+  renderTab6();  // 行动清单 — 必须
+  // renderTab7();  // 家庭支出时间线 — 按需
+  // renderTab8();  // 创业分析 — 按需
+  // renderTab9();  // 提前还贷 — 按需
+  renderTab10(); // 盲区修正 — 建议
+  renderTab11(); // 回归职场 — 建议
+}
+
+// --- TAB 0: 资产总览 ---
+function renderTab0() {
+  document.getElementById('tab0').innerHTML = `
+    <div class="info-banner">
+      <strong>基准数据</strong>：__BASE_DATA_DESCRIPTION__
+    </div>
+
+    <div class="dashboard">
+      <!-- Stat cards: 总资产、总负债、净资产、资产负债率、流动资产、月度贷款 -->
+      <!-- Implement based on user's actual data -->
+    </div>
+
+    <div class="card">
+      <h2>资产构成明细</h2>
+      <!-- barChart + detail-table -->
+    </div>
+
+    <div class="card">
+      <h2>负债构成</h2>
+      <!-- progressBar + detail-table -->
+    </div>
+  `;
+}
+
+// --- TAB 4: 月度收支 ---
+function renderTab4() {
+  document.getElementById('tab4').innerHTML = `
+    <div class="split-grid">
+      <div class="card" style="border-top:4px solid var(--success);">
+        <h2 style="color:var(--success);">在职期间月度收支</h2>
+        <!-- Income table + Expense table + Net savings -->
+      </div>
+      <div class="card" style="border-top:4px solid var(--danger);">
+        <h2 style="color:var(--danger);">离职后月度收支</h2>
+        <!-- Income (passive only) + Full expense table + Monthly deficit -->
+      </div>
+    </div>
+    <div class="card">
+      <h2>在职 vs 离职 — 月度现金流对比</h2>
+      <!-- compare-table -->
+    </div>
+  `;
+}
+
+// --- TAB 5: 场景对比 ---
+function renderTab5() {
+  document.getElementById('tab5').innerHTML = `
+    <!-- big-comparison: Scenario A vs Scenario B -->
+    <!-- Detailed comparison table -->
+    <!-- Asset layer analysis -->
+    <!-- Income scenario analysis -->
+  `;
+}
+
+// --- TAB 6: 行动清单 ---
+function renderTab6() {
+  document.getElementById('tab6').innerHTML = `
+    <div class="card">
+      <h2>待办行动清单</h2>
+      <!-- Chronological action items with priority -->
+    </div>
+  `;
+}
+
+// --- TAB 10: 盲区修正 ---
+function renderTab10() {
+  // Refer to financial-model-spec.md Section 2.6 for calcRealSurvival
+  document.getElementById('tab10').innerHTML = `
+    <div class="card" style="border:2px solid var(--fin-purple); background:#F8F6FF;">
+      <h2 style="border:none; font-size:20px; text-align:center; justify-content:center; color:var(--fin-purple);">
+        盲区修正 · 通胀 / 备用金 / 投资回报
+      </h2>
+    </div>
+    <!-- Before/after comparison table -->
+    <!-- Inflation erosion table -->
+    <!-- Dynamic survival simulation -->
+  `;
+}
+
+// --- TAB 11: 回归职场 ---
+function renderTab11() {
+  // Refer to financial-model-spec.md Section 2.7 for reverseGrossSalary
+  document.getElementById('tab11').innerHTML = `
+    <div class="card" style="border:2px solid var(--fin-magenta); background:#FFF0F6;">
+      <h2 style="border:none; font-size:20px; text-align:center; justify-content:center; color:var(--fin-magenta);">
+        创业失败 · 回归职场工资分析
+      </h2>
+    </div>
+    <!-- Min/Comfort/Good salary table per year -->
+    <!-- Gap penalty table -->
+    <!-- Stop-loss threshold analysis -->
+  `;
+}
+
+// Implement remaining renderTabN() functions as needed.
+// Refer to assets/dashboard-template.html comments and
+// references/financial-model-spec.md for complete specifications.
+
+render();
+</script>
+</body>
+</html>

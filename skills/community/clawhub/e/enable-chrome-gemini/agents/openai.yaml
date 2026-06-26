@@ -1,0 +1,4 @@
+interface:
+  display_name: "Enable Chrome Gemini"
+  short_description: "Set up Gemini in Chrome automatically"
+  default_prompt: "Use $enable-chrome-gemini to set up Gemini in Chrome on Windows, macOS, or Linux outside the US, including region and language normalization, or repair it when the sidebar or floating panel disappears."

@@ -1,35 +1,35 @@
----
-name: "Expanso secrets-scan"
-description: "Detect hardcoded secrets like API keys, tokens, and passwords in text or code using Expanso Edge pipelines."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/expanso-secrets-scan"
-sourceUrl: "https://clawhub.ai/skills/expanso-secrets-scan"
----
+# secrets-scan
 
-# Expanso secrets-scan
+Detect hardcoded secrets (API keys, tokens, passwords) in text or code
 
-> Detect hardcoded secrets like API keys, tokens, and passwords in text or code using Expanso Edge pipelines.
+## Requirements
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/expanso-secrets-scan`
-- **Source URL:** [https://clawhub.ai/skills/expanso-secrets-scan](https://clawhub.ai/skills/expanso-secrets-scan)
+- Expanso Edge installed (`expanso-edge` binary in PATH)
+- Install via: `clawhub install expanso-edge`
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### CLI Pipeline
 ```bash
-hermes skills install clawhub/expanso-secrets-scan
+# Run standalone
+echo '<input>' | expanso-edge run pipeline-cli.yaml
 ```
+
+### MCP Pipeline
+```bash
+# Start as MCP server
+expanso-edge run pipeline-mcp.yaml
+```
+
+### Deploy to Expanso Cloud
+```bash
+expanso-cli job deploy https://skills.expanso.io/secrets-scan/pipeline-cli.yaml
+```
+
+## Files
+
+| File | Purpose |
+|------|---------|
+| `skill.yaml` | Skill metadata (inputs, outputs, credentials) |
+| `pipeline-cli.yaml` | Standalone CLI pipeline |
+| `pipeline-mcp.yaml` | MCP server pipeline |

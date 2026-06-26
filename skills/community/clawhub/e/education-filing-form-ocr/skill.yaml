@@ -1,0 +1,21 @@
+name: education_filing_form_ocr
+version: 1.0.0
+description: 支持学历证书电子注册备案表识别,提取姓名、更新日期、入学日期、证件号码、院校、学历类别及专业等。
+author: SCNet
+license: MIT
+tags:
+  - ocr
+  - 文字提取
+required_env_vars:
+  - SCNET_API_KEY
+
+optional_env_vars:
+  - SCNET_API_BASE
+
+primary_credential: SCNET_API_KEY
+
+# 增加项目主页，解决 missing homepage 警告
+homepage: https://github.com/SCNet-sugon/education_filing_form_ocr.git  # 请替换为实际仓库地址
+dependencies:
+  - python3
+  - requests

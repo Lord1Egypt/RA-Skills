@@ -1,35 +1,130 @@
 ---
-name: "Einstein Research — Headline Scenario Analyzer"
-description: "ニュースヘッドラインを入力として18ヶ月シナリオを分析するスキル。\nscenario-analystエージェントで主分析を実行し、\nstrategy-reviewerエージェントでセカンドオピニオンを取得。\n1次・2次・3次影響、推奨銘柄、レビューを含む包括的レポートを日本語で生成。\n使用例: /scen..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/einstein-research-scenario-dv"
-sourceUrl: "https://clawhub.ai/skills/einstein-research-scenario-dv"
+id: 'einstein-research-scenario'
+name: 'ニュースシナリオ分析'
+description: 'ニュースヘッドラインを入力として18ヶ月シナリオを分析するスキル。\nscenario-analystエージェントで主分析を実行し、\nstrategy-reviewerエージェントでセカンドオピニオンを取得。\n1次・2次・3次影響、推奨銘柄、レビューを含む包括的レポートを日本語で生成。\n使用例: /scenario-analyzer "Fed raises rates by 50bp"\nトリガー: ニュース分析、シナリオ分析、18ヶ月展望、中長期投資戦略'
+version: '1.0.0'
+author: 'DaVinci'
+last_amended_at: null
+trigger_patterns: []
+pre_conditions:
+  git_repo_required: false
+  tools_available: []
+expected_output_format: 'natural_language'
 ---
 
-# Einstein Research — Headline Scenario Analyzer
+# ニュースシナリオ分析
 
-> ニュースヘッドラインを入力として18ヶ月シナリオを分析するスキル。\nscenario-analystエージェントで主分析を実行し、\nstrategy-reviewerエージェントでセカンドオピニオンを取得。\n1次・2次・3次影響、推奨銘柄、レビューを含む包括的レポートを日本語で生成。\n使用例: /scen...
+## 概要
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/einstein-research-scenario-dv`
-- **Source URL:** [https://clawhub.ai/skills/einstein-research-scenario-dv](https://clawhub.ai/skills/einstein-research-scenario-dv)
+このスキルは、ニュースヘッドラインを入力として、今後18ヶ月の市場シナリオを分析し、包括的な投資戦略レポートを生成します。2つの専門エージェントを活用し、多角的な視点からの分析を提供します。
 
-## Overview
+**主要機能:**
+- **デュアルエージェント分析**:
+  - `scenario-analyst`: 主分析を担当し、影響の連鎖を深く掘り下げます。
+  - `strategy-reviewer`: セカンドオピニオンを提供し、主分析のリスクや代替シナリオを評価します。
+- **多段階の影響分析**: 1次（直接的）、2次（間接的）、3次（長期的・構造的）の影響を分析。
+- **具体的アクション**: 推奨セクター、推奨銘柄、およびそれらの根拠を提示。
+- **日本語レポート**: すべての分析結果を構造化された日本語のレポートとして出力。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 利用シーン
+
+**トリガー:**
+- 「[ニュースヘッドライン]の影響を分析して」
+- 「このニュースが市場にどう影響するか教えて」
+- 「18ヶ月の投資シナリオを立てて」
+- `/scenario-analyzer "[ニュースヘッドライン]"`
+
+**使用例:**
+- `/scenario-analyzer "連邦準備制度理事会（FRB）が50bpの利上げを実施"`
+- `/scenario-analyzer "大手テクノロジー企業がAIの画期的な進展を発表"`
+- `/scenario-analyzer "中東での地政学的リスクが再燃"`
+
+---
+
+## ワークフロー
+
+### ステップ1: ニュースヘッドラインの入力
+
+ユーザーから分析対象のニュースヘッドラインを受け取ります。
+
 ```bash
-hermes skills install clawhub/einstein-research-scenario-dv
+# DaVinciへの指示
+/scenario-analyzer "NVIDIA、次世代GPUの驚異的な性能を発表"
 ```
+
+### ステップ2: 主分析エージェントの実行 (`scenario-analyst`)
+
+`scenario-analyst`エージェントをバックグラウンドで実行し、主分析レポートを生成します。
+
+```bash
+# DaVinciが内部で実行
+sessions_spawn \
+  --agentId scenario-analyst \
+  --task "ニュースヘッドライン：'NVIDIA、次世代GPUの驚異的な性能を発表' に基づき、今後18ヶ月の市場シナリオを分析せよ。1次・2次・3次の影響、恩恵を受けるセクター、具体的な推奨銘柄（3つ）とその根拠を提示すること。" \
+  --model gemini/gemini-2.5-pro
+```
+
+**`scenario-analyst`の役割:**
+- ニュースの核心を特定し、市場への影響を連鎖的に分析。
+- **1次影響**: GPUメーカー、半導体セクターへの直接的な影響。
+- **2次影響**: AI、データセンター、ゲーミング、自動車（自動運転）セクターへの波及。
+- **3次影響**: 産業全体の生産性向上、新たなAIアプリケーション市場の創出、エネルギー消費の変化など。
+- 上記分析に基づき、最も有望なセクターと具体的な推奨銘柄を3つ選定。
+
+### ステップ3: セカンドオピニオンエージェントの実行 (`strategy-reviewer`)
+
+`scenario-analyst`のレポートをインプットとして、`strategy-reviewer`エージェントを実行します。
+
+```bash
+# DaVinciが内部で実行
+sessions_spawn \
+  --agentId strategy-reviewer \
+  --task "以下の主分析レポートをレビューし、代替シナリオ、潜在的リスク、異なる視点からの推奨銘柄（1-2つ）を提示せよ。\n\n[scenario-analystのレポート内容]" \
+  --model gemini/gemini-2.5-pro
+```
+
+**`strategy-reviewer`の役割:**
+- 主分析の論理的な脆弱性や見落としを指摘。
+- 過度に楽観的・悲観的な見方を修正。
+- 代替シナリオ（例: サプライチェーンの問題、競合の台頭など）を提示。
+- 主分析とは異なるセクターや銘柄を推奨し、ポートフォリオの多様化を促す。
+
+### ステップ4: 最終レポートの統合と生成
+
+DaVinciが両エージェントの出力を統合し、以下の構造で最終的な日本語レポートを作成します。
+
+**レポート構造:**
+1.  **エグゼクティブサマリー**:
+    - ニュースの核心と最も重要な結論。
+    - 総合的な投資スタンス（強気、中立、弱気）。
+2.  **主分析 (by `scenario-analyst`)**:
+    - 影響の連鎖（1次、2次、3次）。
+    - 推奨セクターと戦略的根拠。
+    - 推奨銘柄（3つ）と詳細な分析。
+3.  **セカンドオピニオン (by `strategy-reviewer`)**:
+    - 主分析へのレビューと評価。
+    - 代替シナリオと潜在的リスク。
+    - 追加の推奨銘柄（1-2つ）。
+4.  **総合評価とアクションプラン**:
+    - 両者の意見を統合した最終的な見解。
+    - 具体的なポートフォリオへのアクション（例: 「コアとしてA銘柄、サテライトとしてB銘柄を検討」）。
+
+### ステップ5: ユーザーへの報告
+
+生成された最終レポートをユーザーに提示します。
+
+---
+
+## エージェントプロファイル
+
+### `scenario-analyst`
+- **ペルソナ**: 経験豊富なマクロアナリスト。物事の関連性を見抜き、連鎖的な影響を予測することに長けている。データドリブンで論理的。
+- **得意分野**: 経済、テクノロジー、地政学のトレンド分析。
+
+### `strategy-reviewer`
+- **ペルソナ**: 懐疑的でリスク管理を重視するファンドマネージャー。常に最悪のシナリオを考え、分析の穴を探す。逆張り的な視点を持つ。
+- **得意分野**: リスク分析、定性的な評価、市場心理の読解。
+
+このデュアルエージェントシステムにより、分析の深さと幅を両立させ、より頑健な投資戦略の構築を支援します。

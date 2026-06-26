@@ -1,0 +1,25 @@
+{
+  "name": "feishu-emoji",
+  "version": "1.0.0",
+  "description": "飞书表情包发送技能 - 让 OpenClaw AI 能够在飞书聊天中发送内联表情包图片",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": ["feishu", "emoji", "表情包", "飞书"],
+  "requirements": {
+    "tools": ["curl", "message"],
+    "python_packages": ["requests", "beautifulsoup4"],
+    "cli": ["bash"]
+  },
+  "emoji_keywords": {
+    "日常确认": ["好的", "收到", "OK", "没问题", "知道了"],
+    "感谢": ["谢谢", "感谢", "感恩的心"],
+    "情绪": ["开心", "难过", "生气", "惊讶", "无语", "笑哭", "捂脸"],
+    "工作": ["打工人", "加班", "摸鱼", "开会", "上班", "下班"],
+    "动物": ["猫猫", "狗狗", "熊猫", "兔子", "二哈"],
+    "网络流行": ["沙雕", "牛逼", "666", "可以的", "绝了", "啊这"]
+  },
+  "usage": {
+    "simple": "curl -H 'Referer: https://fabiaoqing.com/' <图片 URL> -o /home/admin/.openclaw/media/inbound/emoji_xxx.jpg && message(action='send', message='文字', media='/home/admin/.openclaw/media/inbound/emoji_xxx.jpg')",
+    "script": "python skills/feishu-emoji/emoji_sender.py <关键词> [消息文字]"
+  }
+}

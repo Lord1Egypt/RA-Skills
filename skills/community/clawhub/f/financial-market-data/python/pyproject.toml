@@ -1,0 +1,13 @@
+[project]
+name = "financial-market-data"
+version = "0.1.0"
+description = "Unified financial market data interface"
+requires-python = ">=3.10"
+dependencies = [
+    "tickflow>=0.1.17",
+    "akshare>=1.18.51",
+    "baostock>=0.8.9",
+    "pytdx>=1.72",
+    "requests>=2.33.0",
+    "pandas>=3.0.0",
+]

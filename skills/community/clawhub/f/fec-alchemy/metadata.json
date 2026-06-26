@@ -1,0 +1,64 @@
+{
+  "id": "fec-alchemy",
+  "name": "项目吸收与原创化融合",
+  "category": "project-evolution",
+  "tags": [
+    "alchemy",
+    "project-absorption",
+    "originality",
+    "reference-analysis",
+    "workflow"
+  ],
+  "summary": "Project absorption workflow for extracting useful ideas from reference systems and redesigning them into original, project-native improvements.",
+  "version": "2.6.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "project-evolution",
+    "alchemy",
+    "project-absorption",
+    "originality",
+    "reference-analysis",
+    "workflow"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when absorbing ideas, capabilities, workflows, architecture, quality systems, ecosystem extensions, or engineering practices from any reference system into the current project through original, project-native redesign rather than copying.",
+  "source": "skills/fec-alchemy",
+  "references": [
+    "assets/absorption-plan-template.md",
+    "assets/intake-template.md",
+    "assets/review-checklist.md",
+    "references/methodology.md",
+    "references/originality-and-licensing.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-source-driven-development",
+      "fec-doc-sync",
+      "fec-refactor-clean",
+      "fec-code-review",
+      "fec-testing-strategy"
+    ],
+    "boundaryWorkflows": [
+      "Use source-driven development when reference behavior depends on official docs, version-sensitive APIs, or project facts.",
+      "Use documentation sync when absorbed capabilities change public docs, runtime docs, metadata, or published capability tables.",
+      "Use refactor clean when the absorption work first requires removing proven dead code, duplicate modules, or unused dependencies."
+    ],
+    "capabilityTags": [
+      "project-absorption",
+      "originality",
+      "reference-analysis",
+      "workflow"
+    ]
+  }
+}

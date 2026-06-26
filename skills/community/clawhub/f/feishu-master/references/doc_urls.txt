@@ -1,0 +1,15 @@
+# 飞书 API 文档 URL 集合
+
+本文件记录已使用的飞书 API 文档 URL，方便快速查阅。
+
+## 认证
+- 获取 tenant_access_token: https://open.feishu.cn/document/server-docs/authentication-management/access-token/tenant_access_token
+
+## 群组
+- 获取群组信息: https://open.feishu.cn/document/server-docs/im-v1/group-group/get_group_info
+- 获取群组成员列表: https://open.feishu.cn/document/server-docs/im-v1/group-group/get_group_member_list
+
+## 一般
+- API 概览: https://open.feishu.cn/document/server-docs/api-overview
+- 错误码: https://open.feishu.cn/document/server-docs/api-call/error-code
+- 开发者工具: https://open.feishu.cn/document/common-capabilities/debugging-tools

@@ -1,0 +1,44 @@
+# ClawHub Skill Manifest
+name: feishu-voice-skill
+display_name: Feishu Voice Skill - 飞书语音条
+version: 1.2.0
+description: 让 AI 助手能够给飞书用户发送真正的语音条（点击即播，不是文件附件）
+author: 司幼 (SiYou)
+license: MIT
+
+tags:
+  - feishu
+  - voice
+  - audio
+  - tts
+  - noizai
+  - chinese
+  - 飞书
+  - 语音
+
+category: communication
+
+requirements:
+  - ffmpeg
+  - python3
+  - curl
+
+env_vars:
+  - FEISHU_APP_ID
+  - FEISHU_APP_SECRET
+  - FEISHU_CHAT_ID
+  - NOIZ_API_KEY
+
+entry_point: scripts/send_voice.sh
+
+pricing:
+  type: paid
+  price: 9.9
+  currency: CNY
+
+changelog: |
+  v1.2.0:
+  - ✅ 添加语音模板功能
+  - ✅ 预设常用语（早安/晚安/提醒/鼓励）
+  - ✅ 支持自定义模板
+  - ✅ 优化错误处理

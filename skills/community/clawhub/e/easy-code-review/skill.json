@@ -1,0 +1,41 @@
+{
+  "name": "easy-code-review",
+  "version": "1.0.0",
+  "description": "AI代码审核助手，自动审查AI修改的代码是否符合需求",
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "code-review",
+    "ai",
+    "automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/easy-code-review"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw/easy-code-review/issues"
+  },
+  "homepage": "https://clawhub.ai/skills/easy-code-review",
+  "openclaw": {
+    "minVersion": "2026.2",
+    "permissions": [
+      "file.read",
+      "file.write",
+      "git.read"
+    ],
+    "tags": [
+      "code-review",
+      "quality-assurance",
+      "developer-tools"
+    ]
+  },
+  "engines": {
+    "python": ">=3.8.0"
+  },
+  "scripts": {
+    "analyze": "python scripts/analyze_changes.py"
+  }
+}

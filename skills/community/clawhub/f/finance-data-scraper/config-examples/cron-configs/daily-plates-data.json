@@ -1,0 +1,12 @@
+{
+  "name": "daily-plates-data",
+  "category": "data-scraping",
+  "cron": "10 15 * * *",
+  "message": "执行每日热门板块数据抓取任务：收盘后抓取东方财富一级行业板块涨幅TOP3数据，仅保留一级行业，排除地域板块、细分行业和概念板块，存入NocoDB数据库。",
+  "announce": false,
+  "context": {
+    "project": "finance-data-scraper",
+    "task": "plates-data",
+    "plate_count": 3
+  }
+}

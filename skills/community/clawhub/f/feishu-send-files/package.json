@@ -1,0 +1,18 @@
+{
+  "name": "feishu-send-files",
+  "version": "1.0.1",
+  "description": "飞书文件批量发送技能",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests\""
+  },
+  "keywords": [
+    "feishu",
+    "file",
+    "send",
+    "batch"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {}
+}

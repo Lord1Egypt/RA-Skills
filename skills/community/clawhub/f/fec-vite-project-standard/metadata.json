@@ -1,0 +1,59 @@
+{
+  "id": "fec-vite-project-standard",
+  "name": "Vite 项目规范",
+  "category": "project-standard",
+  "tags": [
+    "vite",
+    "build",
+    "hmr",
+    "env",
+    "bundle",
+    "dev-server"
+  ],
+  "summary": "Frontend Craft skill for Vite 项目规范.",
+  "version": "2.6.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "project-standard",
+    "vite",
+    "build",
+    "hmr",
+    "env",
+    "bundle",
+    "dev-server"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when creating, configuring, reviewing, or debugging Vite-based frontend projects, vite.config.ts, env variables, dev server proxy, HMR, plugin ordering, library mode, dependency pre-bundling, bundle splitting, or Vite build performance. Use framework-specific skills for React/Vue component architecture; Chinese triggers include Vite 配置, vite.config, Vite 构建, Vite 性能.",
+  "source": "skills/fec-vite-project-standard",
+  "references": [],
+  "relations": {
+    "relatedSkills": [
+      "fec-react-project-standard",
+      "fec-vue3-project-standard",
+      "fec-monorepo-project-standard",
+      "fec-security-review",
+      "fec-motion-interaction"
+    ],
+    "boundaryWorkflows": [
+      "Use framework project workflows for component architecture, state, and directory structure.",
+      "Use a monorepo workflow for workspace boundaries and task orchestration.",
+      "Use a security review workflow for client secrets, CSP, supply chain, and XSS risks."
+    ],
+    "capabilityTags": [
+      "vite",
+      "build",
+      "project-standard"
+    ]
+  }
+}

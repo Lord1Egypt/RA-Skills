@@ -1,0 +1,9 @@
+{
+  "name": "user-persona",
+  "author": "engram-team",
+  "version": "1.0.0",
+  "description": "目标用户画像：35岁二线城市宝妈林小燕。当产品经理想验证产品想法、测试话术、了解用户心理时加载",
+  "tags": ["产品", "用户研究", "画像"],
+  "knowledge_count": 3,
+  "examples_count": 2
+}

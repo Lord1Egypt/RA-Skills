@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 专家点评项目知识库 - 简洁思维导图</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: #ffffff;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .meta {
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+        
+        .mermaid {
+            background: #ffffff;
+            padding: 60px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 15px 30px;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            min-width: 150px;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #3498db;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📊 HTML 专家点评项目知识库</h1>
+        <div class="meta">生成时间：2026-03-08 12:35 | 简洁版 V2.0</div>
+    </header>
+
+    <!-- 统计 -->
+    <div class="stats">
+        <div class="stat-item">
+            <span class="stat-number">13</span>
+            <span class="stat-label">HTML 文件</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">~220KB</span>
+            <span class="stat-label">总大小</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">5</span>
+            <span class="stat-label">项目关联</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">4</span>
+            <span class="stat-label">主目录</span>
+        </div>
+    </div>
+
+    <!-- 简洁思维导图 -->
+    <div class="mermaid">
+graph TD
+    Root[📊 HTML 专家点评<br/>项目知识库]
+    
+    subgraph Dir1[html-expert-reviews/]
+        direction TB
+        F1[README.md<br/>索引文件]
+        F2[expert-review-2026-03-08-html-knowledge-structure.html<br/>25KB 知识库结构]
+        F3[expert-review-user-profile-2026-03-08.html<br/>26KB 用户画像]
+        F4[expert-review-2026-03-08-clawhub-skills.html<br/>20KB 技能推荐]
+        F5[expert-review-2026-03-08-data-governance.html<br/>14KB 数据治理]
+        F6[expert-review-2026-03-08-knowledge-graph.html<br/>24KB 知识图谱]
+        F7[expert-review-2026-03-08-knowledge-graph-final.html<br/>14KB 完成报告]
+        F8[expert-review-2026-03-08-project-knowledge.html<br/>12KB 项目知识]
+        F9[expert-review-2026-03-08-projects-link.html<br/>11KB 项目链接]
+        F10[expert-review-2026-03-08-projects-memory-link.html<br/>18KB 双向链接]
+        F11[expert-review-2026-03-08-html-index.html<br/>13KB HTML 索引]
+        F12[expert-review-2026-03-07-ai-basics.html<br/>23KB AI 基础]
+        F13[expert-review-2026-03-07-workflow-atomic.html<br/>15KB 工作流架构]
+        F14[expert-review-2026-03-07-知识卡片.html<br/>10KB 知识卡片]
+    end
+    
+    subgraph Dir2[tasks/projects/]
+        direction TB
+        P1[豆包会话自动化.md<br/>⚠️ 待关联 2 个 HTML]
+        P2[地理知识库.md<br/>⚪ 未开始]
+        P3[周报系统.md<br/>⚪ 未开始]
+        P4[任务管理.md<br/>✅ 已关联 3 个]
+        P5[数据治理 - 小米汽车.md<br/>✅ 已关联 1 个]
+    end
+    
+    subgraph Dir3[memory/]
+        direction TB
+        M1[2026-03-08.md<br/>今日记忆]
+        M2[triple-line-sync-log.md<br/>三线同步日志]
+    end
+    
+    subgraph Dir4[skills/]
+        direction TB
+        S1[README.md<br/>16 个技能索引]
+        S2[html-expert-review/SKILL.md<br/>HTML 生成技能]
+    end
+    
+    Root --> Dir1
+    Root --> Dir2
+    Root --> Dir3
+    Root --> Dir4
+    
+    classDef root fill:#3498db,color:#fff,stroke:#2980b9,stroke-width:2px,font-size:16px;
+    classDef folder fill:#ecf0f1,color:#2c3e50,stroke:#bdc3c7,stroke-width:2px,font-size:14px;
+    classDef file fill:#fff,color:#2c3e50,stroke:#3498db,stroke-width:1px,font-size:12px;
+    classDef done fill:#d4edda,color:#155724,stroke:#27ae60,stroke-width:2px,font-size:12px;
+    classDef pending fill:#fff3cd,color:#856404,stroke:#f39c12,stroke-width:2px,font-size:12px;
+    classDef skipped fill:#f8f9fa,color:#6c757d,stroke:#dee2e6,stroke-width:2px,font-size:12px;
+    
+    class Root root;
+    class Dir1,Dir2,Dir3,Dir4 folder;
+    class F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12,F13,F14,S1,S2 file;
+    class P4,P5 done;
+    class P1 pending;
+    class P2,P3 skipped;
+    class M1,M2 file;
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                fontFamily: 'Microsoft YaHei',
+                primaryColor: '#3498db',
+                primaryTextColor: '#2c3e50',
+                primaryBorderColor: '#2980b9',
+                lineColor: '#95a5a6',
+                secondaryColor: '#ecf0f1',
+                tertiaryColor: '#ffffff'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                rankSpacing: 80,
+                nodeSpacing: 60,
+                padding: 20
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "Financial Ratio Benchmarker",
+  "slug": "financial-ratio-benchmarker",
+  "version": "1.0.0",
+  "description": "Provides financial ratio benchmarks",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "descriptive",
+    "financial"
+  ],
+  "trigger_keywords": [
+    "financial ratio benchmarker",
+    "financial ratio benchmarker"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

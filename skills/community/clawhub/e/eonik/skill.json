@@ -1,0 +1,35 @@
+{
+  "name": "eonik",
+  "version": "1.0.0",
+  "description": "The official eonik AI agent skill. Fully equipped with eonik capabilities including creative auditing, trend discovery, genome-based performance analysis, ad creation, and deployment. Powered by the eonik MCP server.",
+  "author": "eonik",
+  "license": "MIT",
+  "source": "https://github.com/eonik-ai/eonik-agent",
+  "homepage": "https://eonik.ai",
+  "tags": [
+    "ads",
+    "marketing",
+    "meta",
+    "tiktok",
+    "budgeting",
+    "eonik",
+    "agent"
+  ],
+  "triggers": [
+    "Audit my Meta ads",
+    "Discover cultural trends",
+    "Analyze my competitor ads",
+    "Create an ad brief",
+    "Check creative fatigue",
+    "Run the eonik ad engine",
+    "Deploy my ad campaign"
+  ],
+  "dependencies": {},
+  "requiredEnv": [
+    "EONIK_API_KEY"
+  ],
+  "requirements": {},
+  "config_required": true,
+  "readme": "README.md",
+  "skill_file": "SKILL.md"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "daily-market-data",
+  "category": "data-scraping",
+  "cron": "0 15:05 * * *",
+  "message": "执行每日大盘数据抓取任务：收盘后抓取每日大盘指数数据，存入NocoDB数据库。",
+  "announce": false,
+  "context": {
+    "project": "finance-data-scraper",
+    "task": "market-data"
+  }
+}

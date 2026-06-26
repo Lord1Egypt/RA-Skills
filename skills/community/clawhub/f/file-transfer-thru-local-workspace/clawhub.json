@@ -1,0 +1,95 @@
+{
+  "name": "file-transfer-thru-local-workspace",
+  "displayName": "File Transfer Thru Local Workspace",
+  "version": "3.1.1",
+  "description": "Upload and download files to/from local OpenClaw workspace. Web UI with drag-drop, file list, skill browser & download, smart auth (Token/Password). Files stay on your machine for AI processing.",
+  "description.zh-CN": "上传和下载文件到**本地** OpenClaw workspace。网页端拖拽上传、文件列表管理、技能浏览下载、智能认证。**文件保存在本地** - 用于 AI 处理分析。",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/openclaw",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw.git",
+    "directory": "skills/file-transfer-thru-local-workspace"
+  },
+  "keywords": [
+    "upload",
+    "download",
+    "file",
+    "transfer",
+    "local",
+    "workspace",
+    "ai-analysis",
+    "web-ui",
+    "drag-drop",
+    "file-management",
+    "skill-browser"
+  ],
+  "categories": [
+    "tools",
+    "productivity",
+    "ai-assistant"
+  ],
+  "engines": {
+    "openclaw": ">=2026.1.0",
+    "node": ">=14.0.0"
+  },
+  "main": "src/upload-server.js",
+  "scripts": {
+    "install": "./install.sh",
+    "uninstall": "./uninstall.sh",
+    "start": "node src/upload-server.js"
+  },
+  "config": {
+    "defaultPort": 15170,
+    "defaultWorkspace": "~/.openclaw/workspace",
+    "maxFileSize": "50MB"
+  },
+  "permissions": {
+    "exec": ["node", "zip"],
+    "network": ["listen"],
+    "filesystem": ["write:workspace", "read:skills"]
+  },
+  "features": [
+    "Web-based file upload/download interface",
+    "Drag and drop support",
+    "Chinese filename support",
+    "Smart authentication (Token/Password/None)",
+    "File list management",
+    "File deletion",
+    "Auto-refresh",
+    "Skill browser & download",
+    "AI reply templates",
+    "Independent uploads directory"
+  ],
+  "features.zh-CN": [
+    "网页端文件上传/下载界面",
+    "拖拽上传支持",
+    "中文文件名支持",
+    "智能认证适配（Token/Password/无认证）",
+    "文件列表管理",
+    "文件删除功能",
+    "自动/手动刷新",
+    "技能浏览和下载",
+    "AI 回复模板",
+    "独立 uploads 目录"
+  ],
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "install.sh",
+    "uninstall.sh",
+    "src/",
+    "docs/",
+    "templates/"
+  ],
+  "os": [
+    "linux",
+    "darwin",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ]
+}

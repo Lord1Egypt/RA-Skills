@@ -1,0 +1,114 @@
+{
+  "id": "retail_sales_monthly",
+  "name": "月度销售业绩分析报表",
+  "name_en": "Monthly Sales Performance Report",
+  "industry": "retail",
+  "scene": "业绩分析",
+  "description": "月度销售总结、区域/品类业绩分析，支撑销售策略调整",
+  "sheets": [
+    {
+      "name": "原始数据",
+      "type": "data_input",
+      "columns": [
+        {"field": "month", "label": "月份", "type": "string", "required": true, "aliases": ["月份", "month", "统计月份"]},
+        {"field": "region", "label": "区域", "type": "string", "aliases": ["区域", "region", "大区", "销售区域"]},
+        {"field": "store", "label": "门店", "type": "string", "aliases": ["门店", "store", "店铺", "分店"]},
+        {"field": "category", "label": "品类", "type": "string", "aliases": ["品类", "category", "商品类别"]},
+        {"field": "sales", "label": "销售额", "type": "number", "aliases": ["销售额", "sales", "销售金额"]},
+        {"field": "quantity", "label": "销量", "type": "number", "aliases": ["销量", "quantity", "销售数量"]},
+        {"field": "target_sales", "label": "目标销售额", "type": "number", "aliases": ["目标销售额", "target_sales", "销售目标", "指标"]},
+        {"field": "payment", "label": "回款金额", "type": "number", "aliases": ["回款金额", "payment", "回款", "收款"]}
+      ]
+    },
+    {
+      "name": "分析看板",
+      "type": "dashboard",
+      "kpis": [
+        {
+          "id": "achievement_rate",
+          "label": "销售目标达成率",
+          "formula": "SUM(sales)/SUM(target_sales)",
+          "format": "percent",
+          "style": "gauge",
+          "target": 1.0
+        },
+        {
+          "id": "payment_rate",
+          "label": "回款率",
+          "formula": "SUM(payment)/SUM(sales)",
+          "format": "percent",
+          "style": "gauge",
+          "target": 0.9
+        },
+        {
+          "id": "total_sales",
+          "label": "总销售额",
+          "formula": "SUM(sales)",
+          "format": "currency",
+          "style": "card"
+        },
+        {
+          "id": "growth_rate",
+          "label": "同比增长率",
+          "formula": "(SUM(sales) - LAG_SUM(sales, 12)) / LAG_SUM(sales, 12)",
+          "format": "percent",
+          "style": "card"
+        }
+      ],
+      "charts": [
+        {
+          "id": "region_radar",
+          "type": "radar",
+          "title": "各区域多维度对比",
+          "dimension": "region",
+          "metrics": ["achievement_rate", "payment_rate", "sales"],
+          "position": {"row": 1, "col": 1, "width": 12, "height": 10}
+        },
+        {
+          "id": "category_trend",
+          "type": "bar",
+          "title": "各品类月度销售额及同比增长",
+          "x": "category",
+          "y": ["sales", "sales_yoy"],
+          "series_names": ["销售额", "同比增长"],
+          "dual_axis": true,
+          "position": {"row": 1, "col": 15, "width": 15, "height": 10}
+        },
+        {
+          "id": "region_heatmap",
+          "type": "bar",
+          "title": "各区域销售额分布",
+          "x": "region",
+          "y": ["sales"],
+          "position": {"row": 12, "col": 1, "width": 12, "height": 8}
+        },
+        {
+          "id": "category_pie",
+          "type": "pie",
+          "title": "品类销售额占比",
+          "dimension": "category",
+          "metric": "sales",
+          "position": {"row": 12, "col": 15, "width": 10, "height": 8}
+        }
+      ]
+    },
+    {
+      "name": "门店排名",
+      "type": "ranking",
+      "source": "原始数据",
+      "group_by": ["store"],
+      "metrics": [
+        {"field": "sales", "agg": "SUM", "label": "销售额"},
+        {"field": "target_sales", "agg": "SUM", "label": "目标"},
+        {"field": "payment", "agg": "SUM", "label": "回款"}
+      ],
+      "computed_fields": [
+        {"field": "achievement_rate", "label": "达成率", "formula": "sales / target_sales", "format": "percent"},
+        {"field": "payment_rate", "label": "回款率", "formula": "payment / sales", "format": "percent"}
+      ],
+      "sort_by": {"field": "sales", "order": "desc"},
+      "highlight_condition": {"field": "achievement_rate", "op": "<", "value": 1.0, "style": "red_font"}
+    }
+  ],
+  "output_filename": "零售业-月度销售业绩报表-{month}.xlsx"
+}

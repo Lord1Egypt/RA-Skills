@@ -1,35 +1,27 @@
 ---
-name: "Eth Strategy"
-description: "对 ETH/USDT 进行全方位技术分析，输出方向（多/空）、进场、止损、分批止盈点位。 使用的分析手段包括：缠论结构、MACD、EMA、MA、KDJ、BOLL、RSI、ADX、 各种 K 线形态（裸K、吞没、锤子等）、大单成交量（筹码区）以及 简易的散户情绪/做市商猎杀区判定。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eth-strategy"
-sourceUrl: "https://clawhub.ai/skills/eth-strategy"
+name: eth-strategy
+slug: eth-strategy
+version: 1.0.2
+description: |
+  对 ETH/USDT 进行全方位技术分析，输出方向（多/空）、进场、止损、分批止盈点位。
+  使用的分析手段包括：缠论结构、MACD、EMA、MA、KDJ、BOLL、RSI、ADX、
+  各种 K 线形态（裸K、吞没、锤子等）、大单成交量（筹码区）以及
+  简易的散户情绪/做市商猎杀区判定。
 ---
 
-# Eth Strategy
+# ETH Strategy Skill
 
-> 对 ETH/USDT 进行全方位技术分析，输出方向（多/空）、进场、止损、分批止盈点位。 使用的分析手段包括：缠论结构、MACD、EMA、MA、KDJ、BOLL、RSI、ADX、 各种 K 线形态（裸K、吞没、锤子等）、大单成交量（筹码区）以及 简易的散户情绪/做市商猎杀区判定。
+## 使用方式
+在 OpenClaw 中运行：
+openclaw exec eth-strategy <pair>
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eth-strategy`
-- **Source URL:** [https://clawhub.ai/skills/eth-strategy](https://clawhub.ai/skills/eth-strategy)
+示例：
+openclaw exec eth-strategy ETH/USDT
 
-## Overview
+默认 pair 为 ETH/USDT，如果想分析其他交易对（如 BTC/USDT），只需把参数改成对应的符号即可。
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/eth-strategy
-```
+## 依赖
+- pandas
+- pandas-ta
+- ccxt
+- numpy

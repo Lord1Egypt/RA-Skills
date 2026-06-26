@@ -1,35 +1,98 @@
 ---
-name: "feishu-robot-interact"
-description: "飞书群机器人互相通信能力。当机器人在飞书群聊中被其他机器人@时，解析消息内容，执行任务，并在执行前向开发者确认（首次）或根据记忆决定是否需要确认。适用于：(1) 机器人之间需要协作完成任务 (2) 多机器人工作流编排 (3) 分布式任务处理场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-robot-interact"
-sourceUrl: "https://clawhub.ai/skills/feishu-robot-interact"
+name: feishu-robot-interact
+description: 飞书群机器人互相通信能力。当机器人在飞书群聊中被其他机器人@时，解析消息内容，执行任务，并在执行前向开发者确认（首次）或根据记忆决定是否需要确认。适用于：(1) 机器人之间需要协作完成任务 (2) 多机器人工作流编排 (3) 分布式任务处理场景。
 ---
 
-# feishu-robot-interact
+# 飞书群机器人通信 Skill
 
-> 飞书群机器人互相通信能力。当机器人在飞书群聊中被其他机器人@时，解析消息内容，执行任务，并在执行前向开发者确认（首次）或根据记忆决定是否需要确认。适用于：(1) 机器人之间需要协作完成任务 (2) 多机器人工作流编排 (3) 分布式任务处理场景。
+本 skill 封装了飞书群内机器人互相通信的完整能力：监听消息 → 识别@ → 解析任务 → 开发者确认 → 执行 → 回复。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-robot-interact`
-- **Source URL:** [https://clawhub.ai/skills/feishu-robot-interact](https://clawhub.ai/skills/feishu-robot-interact)
+## 核心能力
 
-## Overview
+- **消息监听**：监听飞书群聊中的消息事件
+- **@识别**：判断消息是否@了本机器人
+- **任务解析**：从纯文本消息中提取任务内容
+- **开发者确认**：执行前需开发者同意，支持记忆偏好
+- **执行与回复**：完成任务后回复结果
 
+## 工作流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-robot-interact
+### 1. 消息接收与解析
+
+```python
+# 伪代码：消息处理流程
+def handle_message(event):
+    # 1. 解析消息内容，提取 @ 信息
+    mentioned_robots = extract_mentions(event.message)
+    
+    # 2. 检查是否@了本机器人
+    if MY_ROBOT_ID not in mentioned_robots:
+        return  # 不是@本机器人，忽略
+    
+    # 3. 获取消息文本（去掉@部分）
+    task_content = extract_task_text(event.message, MY_ROBOT_ID)
+    
+    # 4. 触发任务处理
+    process_task(task_content, event)
 ```
+
+### 2. 开发者确认机制
+
+首次执行任务时，必须向开发者确认：
+
+```
+🤖: 收到任务：{task_content}
+    需要执行吗？同意回复"确认"，拒绝回复"取消"
+```
+
+根据开发者回复：
+- **确认**：执行任务，记录「该任务类型已确认」
+- **拒绝**：不执行，记录「该任务类型已拒绝」
+
+### 3. 记忆与偏好学习
+
+使用 OpenClaw 的 memory 系统记录开发者偏好：
+
+```
+# 记忆格式示例
+## 任务: {task_type}
+- 首次确认时间: 2026-03-27
+- 状态: 已确认 / 已拒绝
+- 下次无需确认: 是 / 否
+```
+
+下次相同任务类型：
+- 如果开发者之前已确认且说"下次不需要确认" → 直接执行
+- 如果开发者之前已拒绝 → 直接拒绝执行
+- 如果没有记录 → 走确认流程
+
+### 4. 执行与回复
+
+执行完成后，向群聊返回结果：
+
+```
+✅ 任务已完成
+📋 任务内容：{task_content}
+🔧 执行结果：{result}
+```
+
+## 配置项
+
+在 `TOOLS.md` 中配置以下内容：
+
+```markdown
+### 飞书机器人通信
+
+- **机器人ID**: 你的机器人 open_id
+- **机器人名称**: @机器人时显示的名字
+- **开发者ID**: open_id，用于发送确认请求
+- **确认模式**: confirm_first | auto_trust_known
+- **记忆路径**: ~/.openclaw/workspace/memory/robot_confirm.json
+```
+
+## 注意事项
+
+1. **安全性**：执行敏感操作前必须确认
+2. **幂等性**：相同任务多次执行应保持一致
+3. **超时处理**：开发者长时间未回复，应有超时重试机制
+4. **日志记录**：所有交互需要记录日志便于排查

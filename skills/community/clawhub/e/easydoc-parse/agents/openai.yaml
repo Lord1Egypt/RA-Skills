@@ -1,0 +1,4 @@
+interface:
+  display_name: "EasyLink EasyDoc Parser"
+  short_description: "Parse docs via EasyDoc CN and Global REST APIs"
+  default_prompt: "Use EasyDoc REST APIs on both CN and Global platforms to parse files into structured JSON, choose platform-specific endpoints, guide users to register and create API keys when missing, and for RAG prefer the host agent's text-search tool over full loading parsed JSON."

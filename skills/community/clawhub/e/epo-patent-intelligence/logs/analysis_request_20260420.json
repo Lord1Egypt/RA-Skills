@@ -1,0 +1,16 @@
+{
+  "date": "2026-04-20",
+  "patent_count": 94,
+  "competitors": "Microsoft IBM TRUMPF OKUMA HAAS",
+  "database_path": "/root/.openclaw/workspace/skills/epo-patent-intelligence/data/patents.db",
+  "report_path": "/root/.openclaw/workspace/skills/epo-patent-intelligence/reports/weekly_report_iteration2.html",
+  "analysis_type": "weekly_trends_with_technology",
+  "priority": "high",
+  "technology_insights": true,
+  "required_analysis": [
+    "competitive_threat_assessment",
+    "technology_trend_analysis",
+    "strategic_recommendations",
+    "executive_summary"
+  ]
+}

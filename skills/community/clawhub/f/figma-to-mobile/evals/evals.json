@@ -1,0 +1,29 @@
+{
+  "skill_name": "figma-to-mobile",
+  "evals": [
+    {
+      "id": "android-compose-single-frame",
+      "prompt": "这是一个 Figma 帧链接：https://www.figma.com/design/FILEKEY/App?node-id=100-200 ，请输出 Jetpack Compose 代码。要求：先给结构总结（2-3 行），问题不超过 3 个。",
+      "expected_output": "Detects the link contains a specific node-id, fetches via scripts/figma_fetch.py, provides a short structure summary, asks up to 3 clarifying questions if needed, then outputs Compose code with clear filenames.",
+      "files": []
+    },
+    {
+      "id": "android-xml-list-ambiguity",
+      "prompt": "Figma 链接：https://www.figma.com/design/FILEKEY/App?node-id=120-300 。目标 Android XML。里面有 8 个看起来一样的 item，优先确认是动态列表还是静态布局，然后生成 layout 文件。",
+      "expected_output": "Asks dynamic vs static list first, then generates an item layout + container layout (e.g., RecyclerView) in Android XML, following references/xml-patterns.md and generation-rules.md.",
+      "files": []
+    },
+    {
+      "id": "ios-swiftui-single-frame",
+      "prompt": "Figma 链接：https://www.figma.com/design/FILEKEY/App?node-id=200-10 ，请输出 SwiftUI 版本。若有渐变/阴影请说明近似策略。",
+      "expected_output": "Generates SwiftUI view code, calls out gradient/shadow approximations, and keeps the question set minimal when structure is clear.",
+      "files": []
+    },
+    {
+      "id": "multi-state-compare",
+      "prompt": "两个 Figma 帧分别是同一页面的不同状态：https://www.figma.com/design/FILEKEY/App?node-id=10-10 和 https://www.figma.com/design/FILEKEY/App?node-id=10-20 。请用 compare 模式提取差异摘要，并告诉我代码里应该如何做状态切换。",
+      "expected_output": "Uses scripts/figma_fetch.py with --compare to produce a diff summary, then proposes state-based UI rendering (visibility/conditional branches) without overstepping app architecture decisions.",
+      "files": []
+    }
+  ]
+}

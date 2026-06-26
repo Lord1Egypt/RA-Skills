@@ -1,0 +1,13 @@
+{
+  "target": {
+    "app_token": "bascxxxxxxxxxxxxx",
+    "table_name": "合同归档",
+    "record_id": "recxxxxxxxxxx",
+    "field_name": "附件"
+  },
+  "source": {
+    "type": "local",
+    "ref": "/tmp/contract.pdf"
+  },
+  "append": true
+}

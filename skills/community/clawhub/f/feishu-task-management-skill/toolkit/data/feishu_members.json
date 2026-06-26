@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-03-10T07:53:36.309441+00:00",
+  "member_count": 4,
+  "members": [
+    {
+      "department_ids": [
+        "od-dde24cbcfca4d4c84adcbf705f33e63f"
+      ],
+      "departments": [],
+      "email": "",
+      "en_name": "",
+      "mobile": "",
+      "name": "严浩",
+      "nickname": "",
+      "open_id": "ou_3ac4f7ee442fdc8d95a838bbc08487dc",
+      "status": "active",
+      "user_id": "G5363"
+    },
+    {
+      "department_ids": [
+        "od-dde24cbcfca4d4c84adcbf705f33e63f"
+      ],
+      "departments": [],
+      "email": "",
+      "en_name": "",
+      "mobile": "",
+      "name": "刘彦巍",
+      "nickname": "",
+      "open_id": "ou_82480db5cd453bea4c2213d6f2eff0d5",
+      "status": "active",
+      "user_id": "G5304"
+    },
+    {
+      "department_ids": [
+        "od-dde24cbcfca4d4c84adcbf705f33e63f"
+      ],
+      "departments": [],
+      "email": "",
+      "en_name": "",
+      "mobile": "",
+      "name": "张豪",
+      "nickname": "",
+      "open_id": "ou_4d4736dd5b719cdc80101a937bc79cbf",
+      "status": "active",
+      "user_id": "G2631"
+    },
+    {
+      "department_ids": [
+        "od-dde24cbcfca4d4c84adcbf705f33e63f"
+      ],
+      "departments": [],
+      "email": "",
+      "en_name": "",
+      "mobile": "",
+      "name": "徐浩钧",
+      "nickname": "",
+      "open_id": "ou_bad82d2e61b3380df1f9411441d9d160",
+      "status": "active",
+      "user_id": "G3437"
+    }
+  ],
+  "version": 1
+}

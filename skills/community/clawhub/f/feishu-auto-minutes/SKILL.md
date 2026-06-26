@@ -1,35 +1,52 @@
 ---
-name: "飞书会议纪要AI"
+name: feishu-meeting-minutes
 description: "飞书会议纪要 AI — 自动从飞书文档、群聊讨论、多维表格中提取会议信息并生成结构化纪要。当用户需要生成会议纪要、从群聊提取讨论要点、汇总会议决议和行动项、批量输出会议记录时使用。触发词：会议纪要、会议记录、会议总结、站会纪要、复盘记录、meeting minutes。"
-category: "productivity"
-source: "ClawHub"
-tags: [feishu, meeting, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-auto-minutes"
-sourceUrl: "https://clawhub.ai/skills/feishu-auto-minutes"
 ---
 
-# 飞书会议纪要AI
+# 飞书会议纪要 AI
 
-> 飞书会议纪要 AI — 自动从飞书文档、群聊讨论、多维表格中提取会议信息并生成结构化纪要。当用户需要生成会议纪要、从群聊提取讨论要点、汇总会议决议和行动项、批量输出会议记录时使用。触发词：会议纪要、会议记录、会议总结、站会纪要、复盘记录、meeting minutes。
+自动将飞书文档、聊天记录、多维表格中的会议信息转化为结构化会议纪要。
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-auto-minutes`
-- **Source URL:** [https://clawhub.ai/skills/feishu-auto-minutes](https://clawhub.ai/skills/feishu-auto-minutes)
+## 功能
+- 📝 从飞书文档提取会议内容 → 生成标准纪要
+- 💬 从飞书群聊讨论提取决议 → 生成行动项
+- 📊 从多维表格会议记录 → 批量生成纪要
+- 📅 一键输出为飞书文档，自动分发给参会人
+- 🔗 支持关联上下文（前次会议纪要、项目文档）
 
-## Overview
+## 使用场景
+- 日常站会纪要（从群聊提取 todolist）
+- 项目复盘会议（从多维表格+文档整合）
+- 客户会议记录（翻译+结构化输出）
+- 周报自动汇总（聚合本周所有会议纪要）
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-auto-minutes
+## 触发方式
 ```
+@飞书会议纪要AI https://xxx.feishu.cn/docx/xxx
+```
+或描述：`帮我总结今天飞书群聊里的会议讨论，生成纪要`
+
+## 输出格式
+```markdown
+# [会议主题] 会议纪要
+📅 日期：YYYY-MM-DD
+👥 参会人：xxx
+---
+## 讨论内容
+1. ...
+## 决议
+- [ ] 行动项1 (@负责人 截止日)
+- [ ] 行动项2
+## 下次会议
+📅 YYYY-MM-DD
+```
+
+## 技术实现
+- 使用 `feishu_doc` 读取/写入文档
+- 使用 `feishu_bitable` 读取会议数据
+- 使用 `feishu_chat` 提取群聊讨论
+- 使用 `message.send` 发送纪要给指定群聊
+
+## 参考文档
+- `references/meeting-templates.md` - 多种会议模板
+- `references/integration-guide.md` - 与多维表格/日历联动

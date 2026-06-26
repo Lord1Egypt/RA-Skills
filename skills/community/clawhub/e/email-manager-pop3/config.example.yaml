@@ -1,0 +1,35 @@
+# 邮箱配置示例文件
+# 复制此文件为 config.yaml 并填写你的邮箱信息
+
+email:
+  # POP3 服务器配置（收件）
+  host_pop3: pop.example.com      # 例如：pop.qq.com, pop.163.com, pop.gmail.com
+  port_pop3: 995                   # SSL 加密端口通常为 995
+
+  # SMTP 服务器配置（发件）
+  host_smtp: smtp.example.com      # 例如：smtp.qq.com, smtp.163.com, smtp.gmail.com
+  port_smtp: 465                   # SSL 加密端口通常为 465 或 587
+
+  # 邮箱账号信息
+  username: your_email@example.com # 你的完整邮箱地址
+  password: your_app_token         # 授权码或密码（建议使用授权码）
+
+  # 连接设置
+  use_ssl: true                    # 是否使用 SSL 加密连接
+
+# 常见邮箱服务器配置参考：
+# ------------------------------------------
+# QQ 邮箱:
+#   host_pop3: pop.qq.com
+#   host_smtp: smtp.qq.com
+#   需要在邮箱设置中开启 POP3/SMTP 服务并获取授权码
+#
+# 163 邮箱:
+#   host_pop3: pop.163.com
+#   host_smtp: smtp.163.com
+#   需要在邮箱设置中开启 POP3/SMTP 服务并获取授权码
+#
+# Gmail:
+#   host_pop3: pop.gmail.com
+#   host_smtp: smtp.gmail.com
+#   需要开启 IMAP/POP3 访问并使用应用专用密码

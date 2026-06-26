@@ -1,0 +1,10 @@
+{
+  "name": "edvisage-trust-checker",
+  "version": "1.0.0",
+  "description": "A trust verification protocol for AI agents. Four-step verification before reading, installing, or transacting. Protects against prompt injection attacks, malicious skills, and unverified agents.",
+  "author": "Edvisage Global <info@edvisageglobal.com>",
+  "license": "MIT",
+  "homepage": "https://edvisageglobal.com/ai-tools",
+  "repository": "https://github.com/edvisage/trust-checker",
+  "keywords": ["openclaw", "agent", "skill", "ai-safety", "edvisage", "trust", "verification", "prompt-injection", "security"]
+}

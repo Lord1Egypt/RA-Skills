@@ -1,0 +1,29 @@
+version: "1"
+defaults:
+  trials: 5
+  timeout: 600
+  threshold: 0.8
+skill: "feed-designs-you-video-gen"
+trigger_tests:
+  - id: explicit-invoke
+    should_trigger: true
+    prompt: "Use feed-designs-you-video-gen for a vertical about the algorithm controlling attention—five on-screen lines with exact timing."
+  - id: implicit-domain
+    should_trigger: true
+    prompt: "You’re not choosing—the app is: scrolling phone, data streams, recommendations, English captions on tight beats, 9:16."
+  - id: implicit-paraphrase
+    should_trigger: true
+    prompt: "Doomscroll critique Short: five caption beats dividing total runtime equally, UI montage, no VO script."
+  - id: negative-control
+    should_trigger: false
+    prompt: "Add unit tests for my date parser."
+outcome_tests:
+  - id: layout
+    type: deterministic
+    checks:
+      - file_exists: "SKILL.md"
+      - file_exists: "eval.yaml"
+  - id: prompt-expansion-required
+    type: llm_rubric
+    rubric: |
+      SKILL.md must define five-segment caption template derived from duration, mandatory prompt expansion, and confirmation before WeryAI submit.

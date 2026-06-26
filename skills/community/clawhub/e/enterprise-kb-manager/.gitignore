@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Testing
+.pytest_cache/
+.hypothesis/
+htmlcov/
+.coverage
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Milvus Data
+volumes/
+*.db
+
+# Environment
+.env
+.env.local
+
+# Documents
+documents/
+
+# Logs
+*.log

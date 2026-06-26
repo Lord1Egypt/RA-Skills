@@ -1,0 +1,30 @@
+name: "Echarts AI Skill"
+slug: "echarts-ai-skill"
+version: "0.1.4"
+description: "Skill-first ECharts toolkit for agents with chart recommendation and HTML/SVG export"
+author: "davaded"
+license: "MIT"
+skill_file: "SKILL.md"
+repository: "https://github.com/davaded/Echarts-AI-Skill"
+homepage: "https://github.com/davaded/Echarts-AI-Skill"
+tags:
+  - "echarts"
+  - "charts"
+  - "visualization"
+  - "codex"
+  - "agent"
+  - "skill"
+  - "svg"
+  - "html"
+platforms:
+  - "codex"
+  - "openclaw"
+  - "clawhub"
+entrypoints:
+  recommend: "node dist/cli/recommend-chart.js"
+  generate: "node dist/cli/generate-chart.js"
+  render: "node dist/cli/render-chart.js"
+validation:
+  install: "npm install"
+  test: "npm test"
+

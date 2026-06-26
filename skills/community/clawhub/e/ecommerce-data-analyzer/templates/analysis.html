@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>分析结果</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        h1 { color: #333; text-align: center; }
+        h2 { color: #555; margin-top: 30px; }
+        .section { margin: 30px 0; padding: 20px; border: 1px solid #eee; border-radius: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #f2f2f2; }
+        .chart-container { text-align: center; margin: 20px 0; }
+        .chart-container img { max-width: 100%; height: auto; }
+        button { background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #45a049; }
+        .cost-form { max-width: 600px; margin: 0 auto; }
+        .form-group { margin: 15px 0; }
+        label { display: block; margin-bottom: 5px; }
+        input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        .warning { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>电商数据分析结果</h1>
+    
+    <div class="section">
+        <h2>1. 销售趋势</h2>
+        <div class="chart-container">
+            <img src="{{ charts.daily }}" alt="日销售趋势图">
+        </div>
+        <p>日销/周销/月销数据已生成，点击下方按钮下载完整报告查看更多图表。</p>
+    </div>
+    
+    <div class="section">
+        <h2>2. 产品销售排名</h2>
+        <table>
+            <tr><th>产品名称</th><th>销售数量</th><th>销售金额</th></tr>
+            {% for name, data in product_rank.items() %}
+            <tr><td>{{ name }}</td><td>{{ data['销售数量'] }}</td><td>${{ data['销售金额'] }}</td></tr>
+            {% endfor %}
+        </table>
+        <div class="chart-container">
+            <img src="{{ charts.product }}" alt="产品销售排名">
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>3. 渠道收入占比</h2>
+        <table>
+            <tr><th>销售渠道</th><th>销售金额</th></tr>
+            {% for channel, amount in channel_sales.items() %}
+            <tr><td>{{ channel }}</td><td>${{ amount }}</td></tr>
+            {% endfor %}
+        </table>
+        <div class="chart-container">
+            <img src="{{ charts.channel }}" alt="渠道收入占比">
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>4. 利润率分析</h2>
+        <div class="cost-form">
+            <p>请输入各产品的成本数据（可选）：</p>
+            <form action="/generate_pdf/{{ filename }}" method="post">
+                {% for name in product_rank.keys() %}
+                <div class="form-group">
+                    <label>{{ name }} 单位成本（USD）：</label>
+                    <input type="number" step="0.01" name="{{ name }}_cost" placeholder="请输入单位成本" value="0">
+                </div>
+                {% endfor %}
+                <button type="submit">生成并下载PDF报告</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>5. 库存预警</h2>
+        <table>
+            <tr><th>产品名称</th><th>当前库存</th><th>日均销量</th><th>预计断货天数</th><th>预计断货日期</th></tr>
+            {% for item in inventory_data %}
+            <tr class="{% if item['预计断货天数'] < 7 %}warning{% endif %}">
+                <td>{{ item['产品名称'] }}</td>
+                <td>{{ item['库存数量'] }}</td>
+                <td>{{ "%.1f"|format(item['日均销量']) }}</td>
+                <td>{{ item['预计断货天数'] }}</td>
+                <td>{{ item['预计断货日期'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <p><span class="warning">红色</span> 表示预计7天内断货，请注意及时补货！</p>
+    </div>
+</body>
+</html>

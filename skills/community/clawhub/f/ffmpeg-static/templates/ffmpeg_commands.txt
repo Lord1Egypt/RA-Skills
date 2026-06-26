@@ -1,0 +1,179 @@
+# FFmpeg Command Templates
+# Copy-paste starters for the most common operations.
+# Replace <input>, <output>, and bracketed values with real paths/values.
+# All commands assume ffmpeg is on PATH; replace with:
+#   $(node -e "process.stdout.write(require('ffmpeg-static'))")
+# if using the bundled binary directly.
+
+# ─────────────────────────────────────────────
+# TRANSCODING
+# ─────────────────────────────────────────────
+
+# H.264 MP4 (universal compatibility)
+ffmpeg -y -i <input> -c:v libx264 -crf 23 -preset fast -c:a aac -b:a 128k -movflags +faststart <output.mp4>
+
+# H.265 HEVC (~50% smaller than H.264)
+ffmpeg -y -i <input> -c:v libx265 -crf 28 -preset fast -c:a aac -b:a 128k <output.mp4>
+
+# VP9 WebM (open format, web delivery)
+ffmpeg -y -i <input> -c:v libvpx-vp9 -crf 30 -b:v 0 -c:a libopus -b:a 128k <output.webm>
+
+# AV1 (best compression, slow)
+ffmpeg -y -i <input> -c:v libaom-av1 -crf 30 -b:v 0 -c:a libopus -b:a 128k <output.webm>
+
+# Stream copy (no re-encode, instant)
+ffmpeg -y -i <input> -c copy <output>
+
+# ─────────────────────────────────────────────
+# AUDIO CONVERSION
+# ─────────────────────────────────────────────
+
+# MP3 VBR ~190 kbps
+ffmpeg -y -i <input> -q:a 2 <output.mp3>
+
+# AAC 192 kbps
+ffmpeg -y -i <input> -c:a aac -b:a 192k -vn <output.aac>
+
+# Opus 128 kbps (best quality/size for streaming)
+ffmpeg -y -i <input> -c:a libopus -b:a 128k -vn <output.opus>
+
+# FLAC lossless
+ffmpeg -y -i <input> -c:a flac -vn <output.flac>
+
+# WAV PCM 16-bit 44.1 kHz
+ffmpeg -y -i <input> -c:a pcm_s16le -ar 44100 -ac 2 <output.wav>
+
+# Extract audio only (stream copy)
+ffmpeg -y -i <input.mp4> -vn -c:a copy <output.aac>
+
+# ─────────────────────────────────────────────
+# TRIMMING & CUTTING
+# ─────────────────────────────────────────────
+
+# Trim by start time and duration (no re-encode)
+ffmpeg -y -ss <HH:MM:SS> -i <input> -t <duration_seconds> -c copy <output>
+
+# Trim to specific end time (no re-encode)
+ffmpeg -y -ss <HH:MM:SS> -to <HH:MM:SS> -i <input> -c copy <output>
+
+# Trim with re-encode (frame-accurate)
+ffmpeg -y -i <input> -ss <HH:MM:SS> -to <HH:MM:SS> -c:v libx264 -crf 23 -c:a aac <output>
+
+# ─────────────────────────────────────────────
+# RESIZING & SCALING
+# ─────────────────────────────────────────────
+
+# Scale to 1280×720 (letterbox/pillarbox to fit)
+ffmpeg -y -i <input> -vf "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2" -c:a copy <output>
+
+# Scale width to 1280, keep aspect ratio
+ffmpeg -y -i <input> -vf "scale=1280:-2" -c:a copy <output>
+
+# Scale height to 720, keep aspect ratio
+ffmpeg -y -i <input> -vf "scale=-2:720" -c:a copy <output>
+
+# ─────────────────────────────────────────────
+# THUMBNAILS & FRAMES
+# ─────────────────────────────────────────────
+
+# Single frame at timestamp
+ffmpeg -y -ss <HH:MM:SS> -i <input> -frames:v 1 -q:v 2 <thumb.jpg>
+
+# Thumbnail every N seconds
+ffmpeg -y -i <input> -vf "fps=1/<N>" -q:v 2 thumb_%04d.jpg
+
+# Best representative thumbnail
+ffmpeg -y -i <input> -vf "thumbnail=300" -frames:v 1 <thumb.jpg>
+
+# Sprite sheet (tile NxM grid)
+ffmpeg -y -i <input> -vf "fps=1/10,scale=160:-1,tile=<N>x<M>" -frames:v 1 <sprite.jpg>
+
+# ─────────────────────────────────────────────
+# GIF GENERATION
+# ─────────────────────────────────────────────
+
+# High-quality GIF (two-pass palettegen)
+ffmpeg -y -i <input> -vf "fps=10,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" <output.gif>
+
+# GIF from specific time range
+ffmpeg -y -ss <HH:MM:SS> -t <duration> -i <input> -vf "fps=10,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" <output.gif>
+
+# ─────────────────────────────────────────────
+# CONCATENATION
+# ─────────────────────────────────────────────
+
+# Concat via file list (no re-encode, same codec required)
+# filelist.txt:
+#   file '/abs/path/clip1.mp4'
+#   file '/abs/path/clip2.mp4'
+ffmpeg -y -f concat -safe 0 -i filelist.txt -c copy <output.mp4>
+
+# Concat with re-encode (different codecs OK)
+ffmpeg -y -i clip1.mp4 -i clip2.mp4 -filter_complex "[0:v][0:a][1:v][1:a]concat=n=2:v=1:a=1[v][a]" -map "[v]" -map "[a]" <output.mp4>
+
+# ─────────────────────────────────────────────
+# OVERLAYS & WATERMARKS
+# ─────────────────────────────────────────────
+
+# Image watermark (top-right, 10px margin)
+ffmpeg -y -i <input.mp4> -i <logo.png> -filter_complex "overlay=W-w-10:10" -c:a copy <output.mp4>
+
+# Text overlay (burn-in subtitles / timestamp)
+ffmpeg -y -i <input> -vf "drawtext=text='%{pts\:hms}':fontsize=24:fontcolor=white:x=10:y=10:shadowcolor=black:shadowx=2:shadowy=2" -c:a copy <output>
+
+# ─────────────────────────────────────────────
+# AUDIO MANIPULATION
+# ─────────────────────────────────────────────
+
+# Normalize loudness (EBU R128)
+ffmpeg -y -i <input> -af "loudnorm=I=-16:TP=-1.5:LRA=11" <output>
+
+# Mix two audio tracks to stereo
+ffmpeg -y -i <input.mp4> -i <bg_music.mp3> -filter_complex "[0:a][1:a]amix=inputs=2:duration=first:dropout_transition=2[a]" -map "0:v" -map "[a]" -c:v copy <output.mp4>
+
+# Speed up audio only
+ffmpeg -y -i <input> -af "atempo=1.5" -vn <output>
+
+# Speed up video + audio together
+ffmpeg -y -i <input> -vf "setpts=0.5*PTS" -af "atempo=2.0" <output>
+
+# ─────────────────────────────────────────────
+# HLS STREAMING
+# ─────────────────────────────────────────────
+
+# Basic HLS VOD packaging
+ffmpeg -y -i <input> \
+  -c:v libx264 -crf 23 -preset fast -g 48 -sc_threshold 0 \
+  -c:a aac -b:a 128k \
+  -f hls -hls_time 6 -hls_playlist_type vod \
+  -hls_segment_filename 'segment_%03d.ts' \
+  playlist.m3u8
+
+# ─────────────────────────────────────────────
+# HARDWARE ACCELERATION (system FFmpeg only)
+# ─────────────────────────────────────────────
+
+# NVIDIA NVENC H.264
+ffmpeg -y -i <input> -c:v h264_nvenc -preset p4 -cq 23 -c:a aac -b:a 128k <output.mp4>
+
+# Apple VideoToolbox H.264 (macOS)
+ffmpeg -y -i <input> -c:v h264_videotoolbox -q:v 60 -c:a aac -b:a 128k <output.mp4>
+
+# AMD VAAPI H.264 (Linux)
+ffmpeg -y -vaapi_device /dev/dri/renderD128 -i <input> -vf "format=nv12,hwupload" -c:v h264_vaapi -qp 23 -c:a aac -b:a 128k <output.mp4>
+
+# ─────────────────────────────────────────────
+# INSPECTION (ffprobe)
+# ─────────────────────────────────────────────
+
+# Full media info as JSON
+ffprobe -v error -show_format -show_streams -of json <input>
+
+# Duration only (seconds)
+ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 <input>
+
+# Video dimensions
+ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 <input>
+
+# Codec names
+ffprobe -v error -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 <input>

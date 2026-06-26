@@ -1,0 +1,14 @@
+mne
+heartpy
+neurokit2
+bleak
+pyvista
+pyserial
+scipy
+numpy
+PyWavelets
+fastapi
+uvicorn
+pillow
+requests
+pyyaml

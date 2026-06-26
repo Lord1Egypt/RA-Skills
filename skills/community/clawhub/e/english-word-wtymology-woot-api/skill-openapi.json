@@ -1,0 +1,106 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "English Word Etymology & Root API",
+    "description": "A powerful skill to master English words through Etymology. Instantly query word roots, prefixes, suffixes, compound words, antonyms (opposites), and topic vocabulary. Highly optimized for test preparation including TOEIC, TOEFL, IELTS, and Eiken (英検) exam words.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://vocahack.com/api/skill"
+    }
+  ],
+  "paths": {
+    "/word": {
+      "get": {
+        "summary": "Fetch English word etymology and morphological roots",
+        "description": "Queries a specific English word or word root. Returns a comprehensive family of words sharing the identical etymology, breaking down structure into prefix, suffix, and compound relations, along with antonyms (opposites). Ideal for topic-based learning and advanced exam prep (TOEFL, IELTS, TOEIC, Eiken).",
+        "operationId": "getWordEtymology",
+        "parameters": [
+          {
+            "name": "word",
+            "in": "query",
+            "description": "The target English word or word root to be analyzed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved detailed English word etymology data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "query": {
+                      "type": "string",
+                      "description": "The original English word or root queried by the user."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Response classification: 'word_with_root', 'word_without_root', or 'root_query'."
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "target_word_info": {
+                      "type": "object",
+                      "description": "Core linguistic attributes including prefix, suffix, compound, and antonyms (opposites).",
+                      "properties": {
+                        "word": { "type": "string" },
+                        "root_word": { "type": "string" },
+                        "Compound_Words": { "type": "string" },
+                        "Antonyms": { "type": "string" },
+                        "prefix": { "type": "string" },
+                        "suffix": { "type": "string" }
+                      }
+                    },
+                    "related_words_in_same_root": {
+                      "type": "array",
+                      "description": "List of other English words derived from the exact same word root, useful for TOEFL, IELTS, TOEIC, and Eiken training.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "word": { "type": "string" },
+                          "root_word": { "type": "string" },
+                          "Compound_Words": { "type": "string" },
+                          "Antonyms": { "type": "string" },
+                          "prefix": { "type": "string" },
+                          "suffix": { "type": "string" }
+                        }
+                      }
+                    },
+                    "related_words": {
+                      "type": "array",
+                      "description": "All words descending from the specified English word root. Highly relevant for topic vocabulary expansion.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "word": { "type": "string" },
+                          "root_word": { "type": "string" },
+                          "Compound_Words": { "type": "string" },
+                          "Antonyms": { "type": "string" },
+                          "prefix": { "type": "string" },
+                          "suffix": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. Missing or improperly formatted target query."
+          },
+          "404": {
+            "description": "Record not found. The specified word or root does not exist in the database."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "feynman-learning-system",
+  "version": "1.0.0",
+  "description": "基于 FSRS 算法的费曼学习记忆系统",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node src/test.js"
+  },
+  "keywords": [
+    "feynman",
+    "fsrs",
+    "learning",
+    "spaced-repetition",
+    "obsidian"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "pg": "^8.11.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

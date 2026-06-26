@@ -1,0 +1,12 @@
+{
+  "name": "secureclaw",
+  "version": "1.0.5",
+  "description": "Native security prompts and best practices to instantly make your OpenClaw instance safer without relying on 3rd party APIs.",
+  "os": ["darwin", "linux", "win32"],
+  "cost": 0,
+  "category": "security",
+  "always": false,
+  "tags": ["security", "safety", "prompts", "openclaw", "native", "offline"],
+  "author": "Failsafe Security Inc.",
+  "homepage": "https://getfailsafe.com"
+}

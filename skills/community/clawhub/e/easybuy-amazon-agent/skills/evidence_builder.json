@@ -1,0 +1,56 @@
+{
+  "name": "evidence_builder",
+  "version": "1.0.0",
+  "description": "Collects screenshots and DOM snippets as case evidence.",
+  "allowedTools": [
+    "browser.screenshot",
+    "browser.get_dom",
+    "browser.query"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "selectors": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "includeDom": {
+        "type": "boolean"
+      }
+    }
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "artifactIds": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "domSnippet": {
+        "type": "string"
+      }
+    }
+  },
+  "notes": "Screenshot tool is composite; rect is returned with artifactId.",
+  "examples": [
+    {
+      "input": {
+        "selectors": [
+          "#productTitle"
+        ],
+        "includeDom": true
+      },
+      "output": {
+        "artifactIds": [
+          "artifact_123"
+        ],
+        "domSnippet": "<h1>Title</h1>"
+      }
+    }
+  ],
+  "id": "evidence_builder"
+}

@@ -1,0 +1,33 @@
+{
+  "name": "amazon_price_checker",
+  "version": "1.0.0",
+  "description": "Checks live price for a given ASIN.",
+  "allowedTools": [
+    "browser.get_dom",
+    "browser.query"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "asin": {
+        "type": "string"
+      },
+      "origin": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "asin"
+    ]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "price": {
+        "type": "string"
+      }
+    }
+  },
+  "notes": "In production this is implemented by SW fetch to /dp/{asin}.",
+  "id": "amazon_price_checker"
+}

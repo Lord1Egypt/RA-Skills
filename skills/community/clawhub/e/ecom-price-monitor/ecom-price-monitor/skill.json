@@ -1,0 +1,20 @@
+{
+  "name": "ecom-price-monitor",
+  "version": "1.0.0",
+  "description": "跨境电商价格监控系统，实时追踪竞品价格，智能预警，助力定价决策",
+  "author": "OpenClaw",
+  "tags": ["电商", "价格监控", "跨境电商", "竞品分析", "Amazon"],
+  "icon": "📊",
+  "license": "MIT-0",
+  "entry": "src/main.py",
+  "pricing": {
+    "price": 49,
+    "currency": "USD"
+  },
+  "repository": "",
+  "homepage": "",
+  "requirements": [
+    "python >= 3.8",
+    "pip install -r requirements.txt"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "fin-audit-automator",
+  "version": "1.0.0",
+  "description": "金融合规审计自动化技能",
+  "main": "index.py",
+  "license": "PROPRIETARY",
+  "clawdbot": {
+    "runtime": "python3.9+",
+    "entry_point": "on_audit_request"
+  },
+  "dependencies": {
+    "pandas": ">=1.3.0",
+    "numpy": ">=1.21.0",
+    "sqlalchemy": ">=1.4.0",
+    "cryptography": ">=3.4.0",
+    "jieba": ">=0.42.1"
+  },
+  "scripts": {
+    "test": "python -m pytest tests/"
+  }
+}

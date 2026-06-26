@@ -1,0 +1,3 @@
+OpenEXR==3.2.4
+numpy<2
+Pillow

@@ -1,35 +1,89 @@
 ---
-name: "Feishu All In One Pro"
-description: "⚡ ClawHub首款飞书全场景自动化套件 ⚡ 文档 | 消息 | 日历 | 表格 | 云盘 | 审批 | 考勤 | 任务——一站式覆盖，不用再装十几个Skill，比零散安装节省70%配置时间。"
-category: "other"
-source: "ClawHub"
-tags: [v1.0.0]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-all-in-one-skill"
-sourceUrl: "https://clawhub.ai/skills/feishu-all-in-one-skill"
+name: feishu-all-in-one-pro
+version: 1.0.0
+description: ⚡ ClawHub首款飞书全场景自动化套件 ⚡ 文档 | 消息 | 日历 | 表格 | 云盘 | 审批 | 考勤 | 任务——一站式覆盖，不用再装十几个Skill，比零散安装节省70%配置时间。
+author: 小弟
+homepage: https://github.com/your-name/feishu-all-in-one-pro
+tags:
+  - latest
 ---
 
-# Feishu All In One Pro
+# 飞书全场景办公自动化 All-in-One Pro
 
-> ⚡ ClawHub首款飞书全场景自动化套件 ⚡ 文档 | 消息 | 日历 | 表格 | 云盘 | 审批 | 考勤 | 任务——一站式覆盖，不用再装十几个Skill，比零散安装节省70%配置时间。
+> ⚡ ClawHub首款飞书全场景整合Skill | 告别零散插件，一个套件搞定所有办公场景
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-all-in-one-skill`
-- **Source URL:** [https://clawhub.ai/skills/feishu-all-in-one-skill](https://clawhub.ai/skills/feishu-all-in-one-skill)
+## 核心价值
 
-## Overview
+- 🚀 **开箱即用**：统一配置，只需填一次App ID和Secret，所有功能自动生效
+- 💰 **节省70%成本**：不用再装十几个零散Skill，内存和Token消耗大幅降低
+- 🎯 **场景全覆盖**：文档、消息、日历、表格、云盘、审批、考勤、任务、会议——一站式
+- 🔒 **企业级安全**：数据走飞书官方API，企业版支持私有化部署
 
+## 功能列表
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-all-in-one-skill
-```
+### 📄 文档管理
+- 读取/创建/更新飞书文档和知识库
+- 支持Markdown格式转换
+- 批量导出文档
+
+### 💬 消息发送
+- 文本/富文本消息发送
+- 支持@成员、话题回复
+- 群消息自动汇总
+
+### 📅 日历日程
+- 查询/创建/更新日程
+- 智能排期，自动避开冲突时间
+- 参会人自动提醒
+
+### 📊 多维表格
+- 查询/创建/批量导入表格记录
+- 高级筛选和排序
+- 数据自动同步
+
+### ☁️ 云盘管理
+- 文件上传下载
+- 批量文件操作
+- 支持大文件分片上传
+
+### ✅ 审批考勤
+- 审批状态自动查询
+- 考勤数据自动统计
+- 迟到早退预警通知
+
+### 📝 任务待办
+- 待办同步与状态更新
+- 截止时间自动提醒
+- 任务评论与协作
+
+### 🎙️ 会议妙记
+- 会议内容自动转录
+- 关键要点自动提取
+- 会议纪要自动生成
+
+## 适用人群
+
+- 🏢 企业行政/HR/运营：自动化日常办公流程
+- 👨‍💻 飞书深度用户：提升个人办公效率
+- 👨‍💻 开发者：快速搭建飞书相关自动化工作流
+- 🏭 企业IT部门：统一管理企业内部飞书自动化能力
+
+## 定价方案
+
+| 版本 | 价格 | 功能 |
+|---|---|---|
+| 免费版 | 免费 | 基础功能，100次/月调用 |
+| 专业版 | 149元/年 | 全功能开放，1000次/月，技术支持 |
+| 企业版 | 1499元/年 | 无限次调用，专属客服，定制功能 |
+| 私有化部署 | 14999元/年 | 数据100%留存在企业内部 |
+
+## 使用前提
+
+需要配置飞书企业自建应用，详见 README.md
+
+## 更新日志
+
+### v1.0.0 (2026-04-05)
+- 首个版本发布
+- 支持文档、消息、日历、多维表格核心功能
+- 支持自然语言指令调用

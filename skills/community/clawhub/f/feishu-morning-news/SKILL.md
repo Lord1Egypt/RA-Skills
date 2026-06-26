@@ -1,35 +1,75 @@
 ---
-name: "飞书每日早报"
-description: "飞书每日早报配置Skill。封装了每日早报的完整配置流程，包含数据源获取、格式整理、深圳天气查询、生活建议整合。触发关键词：早报配置、创建早报、生成早报、每日早报。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-morning-news"
-sourceUrl: "https://clawhub.ai/skills/feishu-morning-news"
+name: feishu-morning-news
+description: 飞书每日早报配置Skill。封装了每日早报的完整配置流程，包含数据源获取、格式整理、深圳天气查询、生活建议整合。触发关键词：早报配置、创建早报、生成早报、每日早报。
 ---
 
-# 飞书每日早报
+# 飞书每日早报Skill
 
-> 飞书每日早报配置Skill。封装了每日早报的完整配置流程，包含数据源获取、格式整理、深圳天气查询、生活建议整合。触发关键词：早报配置、创建早报、生成早报、每日早报。
+## 功能说明
+封装每日早报生成的完整配置，包含：
+- 从 `https://60s.viki.moe/v2/60s` API 获取今日新闻
+- 使用 weather 技能获取指定城市天气预报
+- 整理为标准Markdown格式
+- 添加生活工作健康建议
+- 使用API返回的tip作为每日箴言
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-morning-news`
-- **Source URL:** [https://clawhub.ai/skills/feishu-morning-news](https://clawhub.ai/skills/feishu-morning-news)
+## 配置说明
 
-## Overview
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| `city` | 获取天气预报的城市名称 | 深圳 |
+| `data_source` | 新闻数据源API | `https://60s.viki.moe/v2/60s` |
+| `push_time` | 默认推送时间 | 每天 8:30 |
+| `timeout` | 超时限制（秒） | 180 |
 
+使用者可根据自身情况修改城市配置。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-morning-news
+## 当使用此Skill时
+
+1. **生成早报内容**：按照固定流程生成完整早报
+2. **不直接发送消息**：由OpenClaw cron系统自动投递，不要调用任何消息发送工具
+3. **保持格式规范**：严格遵循约定的Markdown结构
+4. **重要提醒**：只生成早报内容，系统会自动投递
+
+## 标准早报生成流程
+
+### 步骤
+1. **获取今日新闻**：调用 `GET https://60s.viki.moe/v2/60s` 获取今日新闻数据
+2. **获取城市天气**：调用 weather 技能获取配置城市天气预报（温度范围、天气状况、湿度、风速）
+3. **整理新闻**：将新闻按重要性排序（重要新闻放前面），保持每条新闻简洁呈现，只保留核心内容
+4. **添加建议**：生成工作、生活、健康各一条简短建议
+5. **添加每日一句**：使用API返回的tip字段
+
+## 输出格式要求
+
+```markdown
+## ☀️ 今日早报 | {日期} {星期}
+
+### 🌤️ {城市}天气
+{天气状况} | 气温{温度} | {湿度} | {风速}
+💡 出行建议：{出行建议}
+
+### 📰 60秒读懂世界
+{新闻列表，每条带序号}
+
+### 💡 今日建议
+- **工作**：{工作建议}
+- **生活**：{生活建议}
+- **健康**：{健康建议}
+
+### 💪 每日一句
+{每日箴言}
 ```
+
+模板中的 `{城市}` 会替换为使用者配置的城市名称（默认为深圳）。
+
+## 配置参数（参考jobs.json）
+
+- **数据源**: `https://60s.viki.moe/v2/60s`
+- **默认推送时间**: 每天 8:30 (Asia/Shanghai)
+- **超时限制**: 180 秒
+- **推送目标**: 使用者配置为自己的飞书会话
+
+## 使用示例
+
+当用户说"生成一份综合早报"，加载此Skill并按照上述流程生成即可。

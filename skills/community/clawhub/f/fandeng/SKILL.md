@@ -1,35 +1,49 @@
 ---
-name: "Fandeng"
-description: "Provides summaries and key details of public courses, books, and topics from the 樊登读书 site without accessing paid content."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fandeng"
-sourceUrl: "https://clawhub.ai/skills/fandeng"
+name: fandeng-hot-trend
+description: 注册“樊登读书”热门技能；当需要访问或自动化樊登读书相关内容时调用。
+homepage: `https://www.dushu.io/`
+metadata: {"clawdbot":{"emoji":"🔥"}}
 ---
 
-# Fandeng
+# 樊登读书
 
-> Provides summaries and key details of public courses, books, and topics from the 樊登读书 site without accessing paid content.
+用途与边界
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fandeng`
-- **Source URL:** [https://clawhub.ai/skills/fandeng](https://clawhub.ai/skills/fandeng)
+- 面向公开课程/书目页的信息检索与内容摘要
+- 不提供下载、付费内容绕过或接口逆向能力
+- 仅处理公开页面的信息整理
 
-## Overview
+关键入口
 
+- 主页：https://www.dushu.io/
+- 课程/书目：站点频道
+- 搜索入口：站内搜索
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fandeng
-```
+常见任务
+
+- 指定主题的课程清单摘要（讲师、课时、发布时间）
+- 书目页面的要点提炼（作者、出版社、核心观点）
+- 专题页目录与摘要集合
+
+数据字段
+
+- 课程名称、讲师、课时、发布时间、简介、链接
+- 书名、作者、出版社、出版时间、核心观点摘要、链接
+- 专题名称、条目列表、采集时间、来源链接
+
+自动化要点
+
+- 页面可能包含动态加载，需等待完成后解析
+- 不处理付费内容与下载相关操作
+- 频率控制，尊重平台访问限制
+
+示例流程
+
+- 课程摘要：访问课程页 → 抽取讲师/课时/发布时间 → 输出摘要
+- 书目要点：访问书目页 → 抽取作者/出版社/观点 → 输出卡片
+- 专题汇总：访问专题页 → 抽取目录 → 输出摘要集合
+
+合规提示
+
+- 遵守平台规则，不绕过付费或版权限制
+- 结果仅用于内部分析与提醒

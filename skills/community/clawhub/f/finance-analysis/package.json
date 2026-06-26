@@ -1,0 +1,39 @@
+{
+  "name": "finance-analysis",
+  "version": "1.0.0",
+  "description": "财务分析 CLI - 财报分析/估值/风险评估",
+  "author": "滚滚家族",
+  "license": "MIT",
+  "homepage": "https://github.com/alsoforever/gungun-life/tree/gh-pages/skills/finance-analysis",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alsoforever/gungun-life.git"
+  },
+  "keywords": [
+    "finance",
+    "analysis",
+    "stock",
+    "valuation",
+    "risk",
+    "clawhub",
+    "skill"
+  ],
+  "main": "scripts/finance_analysis.py",
+  "scripts": {
+    "test": "python scripts/finance_analysis.py --help"
+  },
+  "dependencies": {
+    "tushare": "1.2.88",
+    "pandas": "1.5.3",
+    "numpy": "1.23.5"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "clawhub": {
+    "category": "finance",
+    "tags": ["财务分析", "股票估值", "风险评估", "行业对比"],
+    "difficulty": "intermediate",
+    "estimatedTime": "5 minutes"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "engagement": {
+    "min_minutes_for_durable_mode": 10,
+    "auto_level_by_complexity": true,
+    "default_execution_priority": "tokens",
+    "default_methodology": "hybrid",
+    "default_reporting_level": 1,
+    "ambiguous_reporting_defaults_down": true
+  },
+  "reporting": {
+    "levels": {
+      "0": "completion-only",
+      "1": "milestones-only",
+      "2": "milestones-plus-notable-progress",
+      "3": "regular-operational-updates",
+      "4": "high-visibility-operator-mode"
+    },
+    "status_update_interval_seconds": 60,
+    "timed_status_enabled": true,
+    "timed_status_style": "compact-bar",
+    "immediate_updates_on_milestone": true,
+    "immediate_updates_on_phase_change": true,
+    "immediate_updates_on_blocker": true,
+    "immediate_updates_on_retry": true,
+    "immediate_updates_on_resume": true,
+    "immediate_updates_on_completion": true,
+    "timed_status_cooldown_after_immediate_seconds": 15
+  },
+  "memory": {
+    "enable_process_memory": true,
+    "min_minutes_for_process_memory": 10,
+    "daily_log_enabled": true,
+    "reference_file": "memory/reference/durable-task-runner.md",
+    "memory_md_reference_only": true
+  },
+  "subagents": {
+    "allow_subagents": true,
+    "default_max_parallel": 3,
+    "ask_time_vs_tokens_up_front_when_parallelism_matters": true
+  },
+  "control": {
+    "allow_pause": true,
+    "allow_stop": true,
+    "allow_steer": true,
+    "default_desired_state": "running",
+    "resume_after_reset_if_running": false,
+    "ask_before_resuming_after_reset": true,
+    "verify_last_step_before_resume": true
+  },
+  "framework_alignment": {
+    "pmp_aligned": true,
+    "agile_aligned": true,
+    "itil_aligned": true,
+    "notes": [
+      "Use principle-level alignment language only; do not copy proprietary framework text.",
+      "Agile for iterative delivery/testing, structured sequencing where dependencies/risk justify it.",
+      "Use hybrid/agilefall when that best matches reality."
+    ]
+  }
+}

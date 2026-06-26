@@ -1,0 +1,35 @@
+{
+  "name": "file-upload",
+  "version": "2.0.0",
+  "description": "通过网页上传文件到 OpenClaw workspace，智能认证适配，文件列表管理",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "upload",
+    "file",
+    "workspace",
+    "web-ui"
+  ],
+  "main": "src/upload-server.js",
+  "scripts": {
+    "start": "node src/upload-server.js",
+    "install": "./install.sh",
+    "uninstall": "./uninstall.sh"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "config": {
+    "defaultPort": 15170,
+    "defaultWorkspace": "~/.openclaw/workspace"
+  },
+  "permissions": {
+    "exec": ["node"],
+    "network": ["listen"],
+    "filesystem": ["write:workspace"]
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "openclaw": ">=2026.1.0"
+  }
+}

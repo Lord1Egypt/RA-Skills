@@ -1,35 +1,32 @@
----
-name: "Ecm Perchance Image"
-description: "Generates images from text prompts using Perchance.org API with options for orientation and multiple image support."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ecm-perchance-image"
-sourceUrl: "https://clawhub.ai/skills/ecm-perchance-image"
----
+# ecm-perchance-image.py
 
-# Ecm Perchance Image
+## Description
+A Web Browser skill that sends text prompts to Perchance.org and displays the resulting images.
 
-> Generates images from text prompts using Perchance.org API with options for orientation and multiple image support.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ecm-perchance-image`
-- **Source URL:** [https://clawhub.ai/skills/ecm-perchance-image](https://clawhub.ai/skills/ecm-perchance-image)
+### In OpenClaw:
+1. Open the skill folder: `C:\Users\evstr\.openclaw\workspace\skills\ecm-perchance-image`
+2. Run: `openclaw run --cwd=skills/ecm-perchance-image/`
+3. Enter your prompt and click "Generate Image"
+4. View generated images in the web browser
 
-## Overview
+## API Endpoint
+https://perchance.org/new-image-gen-by-rs118
 
+## API Parameters
+- **prompt**: text string (required) - Type a detailed prompt here...
+- **orientation**: string, optional, default: "landscape" - Options: landscape, portrait, square
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ecm-perchance-image
-```
+## Current Status
+✅ Enhanced with error handling
+✅ Multiple image generation support
+✅ Progress indicators
+✅ User-friendly error messages
+✅ Terminal support for OpenClaw
+
+## Notes
+- Perchance.org API may have rate limits
+- Try different prompt parameters to find what works best
+- You can customize orientation (portrait, square, landscape)
+

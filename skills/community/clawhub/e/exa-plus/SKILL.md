@@ -1,35 +1,65 @@
 ---
-name: "Exa"
-description: "Neural web search via Exa AI. Search people, companies, news, research, code. Supports deep search, domain filters, date ranges."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/exa-plus"
-sourceUrl: "https://clawhub.ai/skills/exa-plus"
+name: exa-plus
+version: 1.0.0
+description: Neural web search via Exa AI. Search people, companies, news, research, code. Supports deep search, domain filters, date ranges.
+metadata: {"clawdbot":{"emoji":"🧠","requires":{"bins":["curl","jq"]}}}
 ---
 
-# Exa
+# Exa - Neural Web Search
 
-> Neural web search via Exa AI. Search people, companies, news, research, code. Supports deep search, domain filters, date ranges.
+Powerful AI-powered search with LinkedIn, news, research papers, and more.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/exa-plus`
-- **Source URL:** [https://clawhub.ai/skills/exa-plus](https://clawhub.ai/skills/exa-plus)
+## Setup
 
-## Overview
+Create `~/.clawdbot/credentials/exa/config.json`:
+```json
+{"apiKey": "your-exa-api-key"}
+```
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+### General Search
 ```bash
-hermes skills install clawhub/exa-plus
+bash scripts/search.sh "query" [options]
+```
+
+Options (as env vars):
+- `NUM=10` - Number of results (max 100)
+- `TYPE=auto` - Search type: auto, neural, fast, deep
+- `CATEGORY=` - Category: news, company, people, research paper, github, tweet, pdf, financial report
+- `DOMAINS=` - Include domains (comma-separated)
+- `EXCLUDE=` - Exclude domains (comma-separated)
+- `SINCE=` - Published after (ISO date)
+- `UNTIL=` - Published before (ISO date)
+- `LOCATION=NL` - User location (country code)
+
+### Examples
+
+```bash
+# Basic search
+bash scripts/search.sh "AI agents 2024"
+
+# LinkedIn people search
+CATEGORY=people bash scripts/search.sh "software engineer Amsterdam"
+
+# Company search
+CATEGORY=company bash scripts/search.sh "fintech startup Netherlands"
+
+# News from specific domain
+CATEGORY=news DOMAINS="reuters.com,bbc.com" bash scripts/search.sh "Netherlands"
+
+# Research papers
+CATEGORY="research paper" bash scripts/search.sh "transformer architecture"
+
+# Deep search (comprehensive)
+TYPE=deep bash scripts/search.sh "climate change solutions"
+
+# Date-filtered news
+CATEGORY=news SINCE="2026-01-01" bash scripts/search.sh "tech layoffs"
+```
+
+### Get Content
+Extract full text from URLs:
+```bash
+bash scripts/content.sh "url1" "url2"
 ```

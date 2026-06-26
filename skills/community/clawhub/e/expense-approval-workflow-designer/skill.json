@@ -1,0 +1,25 @@
+{
+  "name": "Expense Approval Workflow Designer",
+  "slug": "expense-approval-workflow-designer",
+  "version": "1.0.0",
+  "description": "Designs approval thresholds, routing rules, escalation paths, and audit controls for expense governance.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "finance",
+    "expense-management",
+    "workflow",
+    "approvals",
+    "controls"
+  ],
+  "trigger_keywords": [
+    "expense approval matrix",
+    "approval workflow design",
+    "expense routing rules",
+    "spend controls",
+    "expense escalation"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "stable"
+}

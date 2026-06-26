@@ -1,0 +1,19 @@
+{
+  "name": "find-the-book",
+  "description": "搜索书籍信息。返回豆瓣评分、简介以及微信读书的阅读链接。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "书籍描述，如 '高分 心理学' 或 '三体'。"
+      },
+      "count": {
+        "type": "integer",
+        "description": "返回书籍数量，默认为 3。",
+        "default": 3
+      }
+    },
+    "required": ["query"]
+  }
+}

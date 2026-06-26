@@ -1,0 +1,18 @@
+{
+  "name": "financial-analyst-skill",
+  "version": "1.0.0",
+  "description": "Financial Analyst Skill — 综合趋势判断、周期定位与风险控制的投资分析技能",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "financial-analysis",
+    "investment",
+    "trading",
+    "portfolio-management",
+    "risk-management",
+    "ai-skill"
+  ],
+  "license": "MIT"
+}

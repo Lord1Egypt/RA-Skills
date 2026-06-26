@@ -1,35 +1,32 @@
 ---
-name: "企业级智能客服知识库构建器"
-description: "上传文档自动生成结构化知识库，支持意图识别/话术优化/多轮对话设计"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/enterprise-kb-builder"
-sourceUrl: "https://clawhub.ai/skills/enterprise-kb-builder"
+name: enterprise-kb-builder
+description: 上传文档自动生成结构化知识库，支持意图识别/话术优化/多轮对话设计
+metadata: { "version": "1.0.0", "author": "上海冰月网络科技有限公司", "license": "Commercial", "price": { "cny": 129, "usd": 49.99, "type": "monthly" } }
 ---
 
 # 企业级智能客服知识库构建器
 
-> 上传文档自动生成结构化知识库，支持意图识别/话术优化/多轮对话设计
+上传产品文档/FAQ/历史对话，自动生成结构化知识库。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/enterprise-kb-builder`
-- **Source URL:** [https://clawhub.ai/skills/enterprise-kb-builder](https://clawhub.ai/skills/enterprise-kb-builder)
+## 触发条件
 
-## Overview
+当用户需要：
+- 从文档自动构建客服知识库
+- 设计多轮对话流程
+- 优化客服话术
 
+## 执行流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/enterprise-kb-builder
-```
+1. 接收产品文档/FAQ/历史对话数据
+2. 自动提取意图和知识点
+3. 结构化分类（7 大类 30+ 子意图）
+4. 生成话术模板（5 行业×4 语气）
+5. 设计多轮对话流程
+6. 添加敏感词过滤
+7. 输出完整知识库
+
+## 注意事项
+
+- 知识库需人工审核后上线
+- 定期更新维护
+- 结合用户反馈持续优化

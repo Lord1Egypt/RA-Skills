@@ -1,0 +1,40 @@
+{
+  "id": "fec-doc-sync",
+  "name": "文档同步",
+  "category": "maintenance-docs",
+  "tags": [
+    "docs",
+    "readme",
+    "env",
+    "api",
+    "sync",
+    "deploy-docs"
+  ],
+  "summary": "Sync frontend project docs with code, config, routes, APIs, env examples, scripts, tests, and deployment facts.",
+  "version": "2.6.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "maintenance-docs",
+    "docs",
+    "readme",
+    "env",
+    "api",
+    "sync",
+    "deploy-docs"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when synchronizing frontend project documentation with source-of-truth files such as package.json, lockfiles, config, env examples, routes, API clients or server routes, schemas, components, tests, CI, build/deploy config, ADRs, changelogs, or migration notes. Do not use for general prose polishing only; Chinese triggers include 文档同步, 更新 README, docs sync, 环境变量文档, 命令清单, API 文档同步.",
+  "source": "skills/fec-doc-sync",
+  "references": []
+}

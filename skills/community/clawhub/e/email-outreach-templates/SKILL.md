@@ -1,35 +1,70 @@
----
-name: "Email Outreach Templates"
-description: "提供50+商务合作邮件模板，覆盖首次联系、跟进、谈判及成交阶段，含A/B测试和行业定制，提升回复率有效降低成本。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-outreach-templates"
-sourceUrl: "https://clawhub.ai/skills/email-outreach-templates"
+# Email Outreach Templates - 邮件外展模板库
+
+50+ 商务合作邮件模板，包含 A/B 测试版本。覆盖首次联系/跟进/谈判/成交全阶段。操作成本降低 50%，回复率提升 40%。
+
 ---
 
-# Email Outreach Templates
+## 触发条件
 
-> 提供50+商务合作邮件模板，覆盖首次联系、跟进、谈判及成交阶段，含A/B测试和行业定制，提升回复率有效降低成本。
+- 用户提到 "邮件模板" 或 "外展邮件"
+- 用户提到 "首次联系" 或 "跟进邮件"
+- 用户提供行业/场景要求推荐模板
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-outreach-templates`
-- **Source URL:** [https://clawhub.ai/skills/email-outreach-templates](https://clawhub.ai/skills/email-outreach-templates)
+---
 
-## Overview
+## 核心指令
 
+### 1. 模板分类
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/email-outreach-templates
+- **首次联系** (10 个): F1-F10
+- **跟进 1-3 天** (10 个): F11-F20
+- **跟进 7-14 天** (10 个): F21-F30
+- **跟进 30 天+** (10 个): F31-F40
+- **谈判阶段** (5 个): F41-F45
+- **成交/失败** (5 个): F46-F50
+
+### 2. A/B 测试版本
+
+- **A 版**: 价值导向 (强调合作价值)
+- **B 版**: 案例导向 (强调成功案例)
+
+### 3. 行业定制
+
+- 科技行业模板
+- 电商行业模板
+- 教育行业模板
+- 金融行业模板
+
+---
+
+## 输出格式
+
+```markdown
+## 推荐模板：{模板编号}
+
+**适用场景**: {场景描述}
+**版本**: {A 版/B 版}
+**行业**: {行业}
+
 ```
+{模板内容}
+```
+
+**使用建议**:
+- 个性化：{建议}
+- 发送时间：{建议}
+- 跟进策略：{建议}
+```
+
+---
+
+## 版本信息
+
+- **版本**: 1.0.0
+- **作者**: 商务 AI (@business-ai)
+- **定价**: ¥280 ($39)
+- **分类**: Business/Sales/Marketing
+
+---
+
+_完整模板见 references/templates.md_

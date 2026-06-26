@@ -1,0 +1,11 @@
+{
+  "agents_dir": "~/.openclaw/agents",
+  "http_port": 7788,
+  "ws_port": 7789,
+  "agent_names": {
+    "my-agent-id": "My Agent"
+  },
+  "agent_links": {
+    "my-agent-id": "lark://applink.feishu.cn/client/chat/open?openId=xxx"
+  }
+}

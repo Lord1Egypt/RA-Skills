@@ -1,35 +1,19 @@
----
-name: "Exec Reducer"
-description: "Provides reusable tools to batch process files for reading, writing, and searching, reducing exec command usage."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/exec-reducer"
-sourceUrl: "https://clawhub.ai/skills/exec-reducer"
----
+# exec-batch-skill
 
-# Exec Reducer
+## 功能
+封装常用操作为可复用工具，减少exec调用
 
-> Provides reusable tools to batch process files for reading, writing, and searching, reducing exec command usage.
+## 触发条件
+当需要批量处理文件、搜索、写入时使用
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/exec-reducer`
-- **Source URL:** [https://clawhub.ai/skills/exec-reducer](https://clawhub.ai/skills/exec-reducer)
+## 使用方法
+```python
+# 读取文件
+python exec-batch-skill.py read <filepath>
 
-## Overview
+# 写入文件  
+python exec-batch-skill.py write <filepath> <content>
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/exec-reducer
+# 搜索
+python exec-batch-skill.py search <query>
 ```

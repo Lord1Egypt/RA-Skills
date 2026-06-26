@@ -1,0 +1,17 @@
+{
+  "camera": {
+    "url": "https://open.ys7.com/api/open/cloud/v1/capture/save",
+    "accessToken": "your-access-token-here",
+    "deviceSerial": "your-device-serial-here",
+    "channelNo": "1",
+    "projectId": "openclaw-patrol"
+  },
+  "ai": {
+    "model": "bailian/qwen3-max-2026-01-23",
+    "prompt": "请分析这张图片中是否有员工在工位上。如果没有人，请回复'离岗'；如果有人，请回复'在岗'。"
+  },
+  "alert": {
+    "enabled": true,
+    "messageTemplate": "🚨 离岗检测告警\n时间: {timestamp}\n设备: {deviceId}\n状态: {status}\n分析结果: {analysisResult}"
+  }
+}

@@ -1,35 +1,55 @@
 ---
-name: "粉象生活返利助手"
-description: "粉象生活CPS返利聚合平台工具，整合淘宝联盟、京东联盟、多多进宝等多平台佣金，支持自购省钱和分享赚钱双模式。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/fenxiang-life"
-sourceUrl: "https://clawhub.ai/skills/fenxiang-life"
+name: 粉象生活返利助手
+description: 粉象生活CPS返利聚合平台工具，整合淘宝联盟、京东联盟、多多进宝等多平台佣金，支持自购省钱和分享赚钱双模式。
+version: 0.1.0
 ---
 
 # 粉象生活返利助手
 
-> 粉象生活CPS返利聚合平台工具，整合淘宝联盟、京东联盟、多多进宝等多平台佣金，支持自购省钱和分享赚钱双模式。
+粉象生活CPS返利聚合平台工具。整合淘宝、京东、拼多多、美团等主流电商的CPS佣金体系，为用户提供自购省钱和分享赚钱双模式，覆盖购物、外卖、出行等多场景返利。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/fenxiang-life`
-- **Source URL:** [https://clawhub.ai/skills/fenxiang-life](https://clawhub.ai/skills/fenxiang-life)
+## 触发词
 
-## Overview
+粉象生活、粉象返利、fenxiang、粉象优惠、粉象佣金、粉象省钱、fenxiang life、社交电商返利
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/fenxiang-life
+### 核心功能
+
+- **多平台CPS聚合**：整合淘宝联盟、京东联盟、多多进宝、美团联盟等官方CPS接口
+- **自购返利**：用户自己购物享受佣金返利
+- **分享赚钱**：生成推广链接分享给他人，赚取佣金
+- **多场景覆盖**：购物、外卖、酒店、机票、加油等生活消费均可返利
+
+### 支持平台
+
+| 平台 | 返利类型 | 佣金来源 |
+|------|---------|---------|
+| 淘宝/天猫 | 购物返利 | 淘宝联盟 |
+| 京东 | 购物返利 | 京东联盟 |
+| 拼多多 | 购物返利 | 多多进宝 |
+| 美团 | 外卖/酒店返利 | 美团联盟 |
+| 饿了么 | 外卖返利 | 饿了么推广 |
+| 滴滴出行 | 打车返利 | 滴滴推广 |
+
+### 使用场景
+
+1. **日常购物**：任何电商购物前查询返利比例
+2. **外卖点餐**：美团/饿了么点餐享受返利
+3. **社群推广**：生成推广素材分享到购物群
+4. **团队管理**：查看下级团队的推广数据和佣金
+
+## 输出格式
+
+```
+🐘 粉象生活返利查询
+
+商品：[商品名称]
+平台：[电商平台]
+售价：¥[价格]
+返利比例：[X]%
+预计返利：¥[金额]
+
+推广链接：[链接]
+推广文案：[自动生成文案]
 ```

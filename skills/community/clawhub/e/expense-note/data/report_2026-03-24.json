@@ -1,0 +1,28 @@
+{
+  "summary": {
+    "totalRecords": 1,
+    "totalAmount": 15,
+    "lastUpdate": "2026-03-24T12:40:17.734Z"
+  },
+  "categories": [
+    "餐饮",
+    "交通",
+    "购物",
+    "娱乐",
+    "医疗",
+    "住房",
+    "通讯",
+    "教育",
+    "其他"
+  ],
+  "expenses": [
+    {
+      "id": 1774356017733,
+      "description": "午餐",
+      "amount": 15,
+      "category": "餐饮",
+      "notes": "",
+      "date": "2026-03-24T12:40:17.733Z"
+    }
+  ]
+}

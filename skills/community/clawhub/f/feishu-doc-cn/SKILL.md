@@ -1,35 +1,25 @@
----
-name: "Feishu Doc"
-description: "Read, create, update, and append content in Feishu (飞书) documents with appropriate user permissions."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-doc-cn"
-sourceUrl: "https://clawhub.ai/skills/feishu-doc-cn"
----
+# Feishu Doc Skill
 
-# Feishu Doc
+Use this skill when user wants to read, create, update, or manage Feishu (飞书) documents.
 
-> Read, create, update, and append content in Feishu (飞书) documents with appropriate user permissions.
+## Tools Available
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-doc-cn`
-- **Source URL:** [https://clawhub.ai/skills/feishu-doc-cn](https://clawhub.ai/skills/feishu-doc-cn)
+- `feishu_doc`: Read, write, append, create documents in Feishu
 
-## Overview
+## Use Cases
 
+- Read content from a Feishu document
+- Create new Feishu documents
+- Update existing Feishu documents
+- Append content to Feishu documents
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-doc-cn
-```
+## Auth
+
+User must have Feishu account with appropriate permissions to access documents.
+
+## Examples
+
+- "帮我读取一下这个飞书文档的内容"
+- "创建一个新飞书文档"
+- "更新这个飞书文档"
+- "在这个飞书文档后面追加内容"

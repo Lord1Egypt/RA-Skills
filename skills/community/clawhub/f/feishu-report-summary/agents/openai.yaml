@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feishu Report Summary"
+  short_description: "Read Feishu reports and draft daily summaries"
+  default_prompt: "Use $feishu-report-summary to fetch Feishu report entries and draft a concise daily summary."

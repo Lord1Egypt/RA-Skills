@@ -1,35 +1,70 @@
----
-name: "Finance Recruitment Jd"
-description: "生成符合集团财务与经营管理中心能力模型的详细财务职位说明书，包括职责、资格与考核指标。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/finance-recruitment-jd"
-sourceUrl: "https://clawhub.ai/skills/finance-recruitment-jd"
----
+# Skill: 财务招聘JD生成器
 
-# Finance Recruitment Jd
+## 基础信息
+- **Slug**: finance-recruitment-jd
+- **Version**: 1.0.0
+- **名称**: 财务招聘职位说明书生成
+- **描述**: 根据能力模型为集团财务与经营管理中心生成详细职位说明书(JD)
+- **作者**: 户部 (hubu)
+- **标签**: 财务, 招聘, JD, HR
 
-> 生成符合集团财务与经营管理中心能力模型的详细财务职位说明书，包括职责、资格与考核指标。
+## 输入参数
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/finance-recruitment-jd`
-- **Source URL:** [https://clawhub.ai/skills/finance-recruitment-jd](https://clawhub.ai/skills/finance-recruitment-jd)
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| position | string | 是 | 职位名称，如：资金总监、预算管理负责人、经营分析负责人 |
+| capabilities | array | 是 | 核心能力要求，选择3-5项 |
+| weights | array | 是 | 能力权重，如：[0.4, 0.3, 0.2] |
+| background | string | 否 | 集团背景：跨国民营集团/大型国企/上市公司/拟IPO企业 |
 
-## Overview
+### 核心能力选项
+1. 资金管理与流动性风险驾驭能力
+2. 资本结构与融资筹划能力
+3. 全面预算与战略资源配置能力
+4. 资产管控与资本运作能力
+5. 经营分析与决策支持能力
+6. 数字化金融与合规风控能力
 
+## 输出格式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/finance-recruitment-jd
+### Markdown格式
+
+```markdown
+## 职位名称
+## 职位定位
+## 核心职责
+- 职责1
+- 职责2
+## 任职资格
+### 硬性条件
+- 学历要求
+- 证书要求
+- 经验年限
+- 行业背景
+### 软性能力
+## 关键考核指标(KPI)
+- KPI1
+- KPI2
 ```
+
+## 经验年限标准
+| 职位层级 | 年限要求 |
+|----------|----------|
+| 总监级 | 8-12年 |
+| 经理级 | 5-8年 |
+| 主管级 | 3-5年 |
+
+## 使用示例
+
+```
+生成一个资金总监的JD，核心能力：资金管理40%、融资筹划30%、数字化20%
+集团背景：上市公司
+```
+
+## 触发关键词
+- 招聘JD
+- 职位说明书
+- 财务招聘
+- 岗位要求
+- 任职资格
+- HR招聘

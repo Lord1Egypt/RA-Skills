@@ -1,35 +1,141 @@
 ---
-name: "Evolver Plus"
-description: "Agent 自我进化引擎。当发现重复错误（≥2次）、能力不足、流程低效、或收到进化指令时激活。 提供四档安全等级（L1-L4）、Gene结构、备份机制、审批流程。 注意：L3/L4 需@董事长审批，绝对禁区包括凭证文件、.env、crontab。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/evolver-plus"
-sourceUrl: "https://clawhub.ai/skills/evolver-plus"
+version: 1.0.2
+name: evolver-plus
+description: >-
+  Agent 自我进化引擎。当发现重复错误（≥2次）、能力不足、流程低效、或收到进化指令时激活。
+  提供四档安全等级（L1-L4）、Gene结构、备份机制、审批流程。
+  注意：L3/L4 需@董事长审批，绝对禁区包括凭证文件、.env、crontab。
 ---
 
-# Evolver Plus
+# Evolver Plus — 自我进化引擎
 
-> Agent 自我进化引擎。当发现重复错误（≥2次）、能力不足、流程低效、或收到进化指令时激活。 提供四档安全等级（L1-L4）、Gene结构、备份机制、审批流程。 注意：L3/L4 需@董事长审批，绝对禁区包括凭证文件、.env、crontab。
+> **让 Agent 不只是执行者，而是能自我进化的智能体**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/evolver-plus`
-- **Source URL:** [https://clawhub.ai/skills/evolver-plus](https://clawhub.ai/skills/evolver-plus)
+---
 
-## Overview
+## 核心原则
 
+1. **备份先行** — 每次进化前必须备份，无备份不进化
+2. **安全分极** — 按风险等级决定自动执行还是审批
+3. **基因积累** — 所有改进沉淀为可追溯的 Gene，不可丢弃
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/evolver-plus
+---
+
+## 安全等级
+
+| 等级 | 类型 | 操作范围 | 门控 |
+|------|------|---------|------|
+| 🟢 L1 | 知识层 | MEMORY.md、日志、笔记 | 自动执行 |
+| 🟡 L2 | 技能层 | SKILL.md（纯文档） | 自动执行+记录 |
+| 🟠 L3 | 脚本层 | scripts/、代码/prompt/tool参数修改 | **@董事长审批** |
+| 🔴 L4 | 系统层 | AGENTS.md、SOUL.md、openclaw.json | **@董事长审批+备份** |
+
+> ⚠️ 任何涉及代码逻辑、prompt逻辑、tool调用参数的修改一律升为L3。
+
+**绝对禁区：**
 ```
+❌ credentials/ — 凭证文件
+❌ .env — 环境变量
+❌ crontab — 定时任务
+❌ 他人隐私文件
+```
+
+---
+
+## 进化流程
+
+```
+阶段1：发现问题
+    ↓
+阶段2：生成 Gene（提案）→ 写入 PENDING.md
+    ↓
+阶段3：安全等级判定
+    ↓
+├─ L1/L2 → 自动执行 → 更新 GENES.md → 效果追踪
+    ↓
+└─ L3/L4 → @董事长审批
+              ├─ 同意 → 执行 → 备份 → 更新 GENES.md
+              └─ 拒绝 → 记录原因 → 关闭提案
+```
+
+---
+
+## 进化触发条件
+
+**主动触发：**
+- 发现重复犯同一个错误 ≥2 次
+- 现有 skill/流程效率明显低下
+- 接到任务发现能力缺失
+- 定期自我审查（建议每 48 小时一次）
+
+**被动触发：**
+- 董事长直接要求进化
+- HEARTBEAT 中标记为"能力短板"
+
+---
+
+## 备份机制
+
+```bash
+# 备份格式
+cp [目标文件] [目标文件].$(date +%Y%m%d-%H%M%S).bak
+```
+
+备份存放位置：`viking-global/evolver/backups/`
+
+---
+
+## Gene 结构
+
+详见 `references/gene-format.md`
+
+核心字段：
+- 类型、触发、涉及文件、改动
+- 安全等级、状态、审批人
+- 备份路径、进化日期
+- 成功指标、回归测试、效果追踪
+
+---
+
+## 禁止行为
+
+```
+❌ 无备份就进化
+❌ 进化后不记录到 GENES.md
+❌ 进化涉及禁区文件
+❌ L3/L4 不经审批直接执行
+❌ 批量进化（每次只进化一个具体问题）
+```
+
+---
+
+## 文件结构
+
+```
+viking-global/
+├── evolver/
+│   ├── GENES.md          # 进化基因库
+│   ├── PENDING.md        # 待审批的进化提案
+│   ├── AUDIT.md         # 审计日志
+│   ├── backups/          # 备份文件存放
+│   └── evolver.sh       # 定期扫描脚本（可选）
+```
+
+---
+
+## 参考文档
+
+- **`references/gene-format.md`** — Gene 结构详解、回滚流程
+- **`references/safety-levels.md`** — 安全等级详解、禁区、熔断机制
+
+---
+
+## 落地验证
+
+| 测试 | 场景 | 预期 |
+|------|------|------|
+| Test 1 | 发现重复错误 ≥2 次 | 生成 Gene 提案 |
+| Test 2 | L1 进化 | 自动执行+记录 |
+| Test 3 | L3/L4 进化 | 发起@董事长审批 |
+| Test 4 | 执行前 | 确认备份已创建 |
+| Test 5 | 进化完成后 | 确认 GENES.md 已更新 |

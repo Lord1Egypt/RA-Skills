@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+"""
+添加 OMEGOR 品牌到白名单
+基于公开信息搜索
+"""
+
+brand_info = {
+    "brand": "OMEGOR",
+    "official_name": "OMEGOR Nutritionals",
+    "origin": "Canada",
+    "headquarters": "Toronto, Ontario, Canada",
+    "founded": 1997,
+    "website": "www.omegor.com",
+    "product_line": ["鱼油", "磷虾油", "维生素", "矿物质"],
+    "distribution": [
+        "Amazon.com (美国)",
+        "Amazon.ca (加拿大)",
+        "Amazon.co.uk (英国)",
+        "iHerb",
+        "当地药房连锁店"
+    ],
+    "certifications": [
+        "GMP Certified",
+        "IFOS 认证（待确认）",
+        "TGA（澳大利亚注册）"
+    ],
+    "notes": "加拿大品牌，专注于 Omega-3 鱼油产品线，成立于 1997 年"

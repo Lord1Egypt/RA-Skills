@@ -1,0 +1,4 @@
+interface:
+  display_name: "Duola Quant Copy Engine"
+  short_description: "Run risk-managed Polymarket copy trading with duola."
+  default_prompt: "Use this skill as a production operator for duola: validate runtime, onboard leaders, sync and backtest, enforce doctor checks, run autopilot safely, apply SkillPay billing gates, and return structured risk/performance summaries."

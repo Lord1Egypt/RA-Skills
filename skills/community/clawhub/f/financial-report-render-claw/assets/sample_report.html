@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025年度经营分析报告</title>
+<style>
+  :root {
+    --primary: #1B4F72;
+    --secondary: #2E86C1;
+    --accent: #27AE60;
+    --warning: #F39C12;
+    --danger: #E74C3C;
+    --neutral: #95A5A6;
+    --bg: #FAFBFC;
+    --text: #2C3E50;
+    --text-light: #7F8C8D;
+    --border: #E8ECF0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* 封面 */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    page-break-after: always;
+  }
+  .cover h1 { font-size: 2.4em; margin-bottom: 12px; font-weight: 700; }
+  .cover .subtitle { font-size: 1.1em; opacity: 0.85; margin-bottom: 40px; }
+  .cover .meta { font-size: 0.95em; opacity: 0.7; line-height: 2; }
+
+  /* 容器 */
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 30px; }
+
+  /* 章节标题 */
+  .section { margin-bottom: 48px; page-break-inside: avoid; }
+  .section-title {
+    font-size: 1.35em;
+    font-weight: 700;
+    color: var(--primary);
+    border-bottom: 3px solid var(--secondary);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+
+  /* 高亮卡片 */
+  .highlights { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 16px; }
+  .highlight-card {
+    background: white;
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--secondary);
+  }
+  .highlight-card .label { font-size: 0.85em; color: var(--text-light); }
+  .highlight-card .value { font-size: 1.5em; font-weight: 700; margin: 4px 0; }
+  .highlight-card .change { font-size: 0.85em; font-weight: 600; }
+  .change.positive { color: var(--accent); }
+  .change.negative { color: var(--danger); }
+
+  /* KPI 卡片 */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px; }
+  .kpi-card {
+    background: white;
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    border-top: 4px solid var(--secondary);
+  }
+  .kpi-card .label { font-size: 0.85em; color: var(--text-light); }
+  .kpi-card .value { font-size: 1.5em; font-weight: 700; margin: 4px 0; }
+  .kpi-card .target { font-size: 0.8em; color: var(--text-light); }
+  .kpi-card .status { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.75em; font-weight: 600; margin-top: 6px; }
+  .status-ok { background: #E8F8F0; color: var(--accent); }
+  .status-bad { background: #FDEDEC; color: var(--danger); }
+  .status-warn { background: #FEF5E7; color: var(--warning); }
+
+  /* 图表 */
+  .chart-container { text-align: center; margin: 16px 0; }
+  .chart-container img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .chart-caption { font-size: 0.85em; color: var(--text-light); margin-top: 8px; }
+  .chart-analysis { margin-top: 12px; padding: 16px; background: #F0F7FC; border-radius: 8px; border-left: 3px solid var(--secondary); }
+
+  /* 表格 */
+  .data-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9em; }
+  .data-table th { background: var(--primary); color: white; padding: 10px 14px; text-align: left; font-weight: 600; }
+  .data-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+  .data-table tr:last-child td { border-bottom: 2px solid var(--primary); font-weight: 600; }
+  .data-table tr:nth-child(even) td { background: #F8FAFB; }
+
+  /* 风险建议 */
+  .risk-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; padding: 10px 14px; border-radius: 8px; }
+  .risk-high { background: #FDEDEC; border-left: 4px solid var(--danger); }
+  .risk-medium { background: #FEF5E7; border-left: 4px solid var(--warning); }
+  .risk-low { background: #FEF9E7; border-left: 4px solid #F7DC6F; }
+  .risk-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; font-weight: 700; color: white; flex-shrink: 0; }
+  .risk-high .risk-badge { background: var(--danger); }
+  .risk-medium .risk-badge { background: var(--warning); }
+  .risk-low .risk-badge { background: #F7DC6F; color: var(--text); }
+  .rec-list { list-style: none; padding: 0; }
+  .rec-list li { padding: 8px 0 8px 24px; position: relative; border-bottom: 1px dashed var(--border); }
+  .rec-list li::before { content: "→"; position: absolute; left: 0; color: var(--secondary); font-weight: 700; }
+
+  /* 文本 */
+  .text-content p { margin-bottom: 12px; }
+  .text-content h2 { font-size: 1.15em; color: var(--primary); margin: 16px 0 8px; }
+  .text-content ul { padding-left: 24px; }
+  .text-content li { margin-bottom: 6px; }
+
+  /* 页脚 */
+  .page-footer { text-align: center; font-size: 0.75em; color: var(--neutral); padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--border); }
+
+  /* 打印优化 */
+  @media print {
+    body { background: white; }
+    .cover { min-height: auto; padding: 60px 20px; }
+    .section { page-break-inside: avoid; }
+    .highlight-card, .kpi-card { box-shadow: none; border: 1px solid var(--border); }
+    .chart-container img { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+
+
+<!-- 封面 -->
+<div class="cover">
+  <h1>2025年度经营分析报告</h1>
+  
+  <div class="subtitle">内部管理报告 · 机密</div>
+  
+  <div class="meta">
+    示例科技有限公司<br>
+    2025年1-6月<br>
+    数据分析部门<br>
+    2025-07-15
+  </div>
+</div>
+
+<!-- 正文 -->
+<div class="container">
+
+
+<div class="section">
+  <h2 class="section-title">执行摘要</h2>
+
+  
+  <div class="text-content"><p>2025年上半年，公司实现营业收入 5,410 万元，同比增长 13.8%，净利润 785 万元，同比增长 11.2%。整体经营态势良好，但需关注原材料成本上升压力。</p></div>
+  
+  <div class="highlights">
+  
+    <div class="highlight-card">
+      <div class="label">营业收入</div>
+      <div class="value">5,410万</div>
+      <div class="change positive">+13.8%</div>
+    </div>
+  
+    <div class="highlight-card">
+      <div class="label">净利润</div>
+      <div class="value">785万</div>
+      <div class="change positive">+11.2%</div>
+    </div>
+  
+    <div class="highlight-card">
+      <div class="label">毛利率</div>
+      <div class="value">38.5%</div>
+      <div class="change negative">-1.2pp</div>
+    </div>
+  
+    <div class="highlight-card">
+      <div class="label">客户数</div>
+      <div class="value">1,286</div>
+      <div class="change positive">+22%</div>
+    </div>
+  
+  </div>
+  
+
+  
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">收入与利润趋势</h2>
+
+  
+  
+  <div class="chart-container">
+    <img src="charts/revenue_trend.png" alt="收入与利润趋势">
+    <div class="chart-caption">图1：2025年各月营业收入（柱）及同比增长率（线）</div>
+  </div>
+  
+  
+  <div class="chart-analysis">收入呈稳步上升趋势，Q1受春节影响基数较低，Q2恢复增长。6月收入突破千万大关，创历史新高。</div>
+  
+
+  
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">月度净利润</h2>
+
+  
+  
+  <div class="chart-container">
+    <img src="charts/profit_bar.png" alt="月度净利润">
+    <div class="chart-caption">图2：2025年各月净利润（万元）</div>
+  </div>
+  
+  
+
+  
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">风险提示与建议</h2>
+
+  
+  
+  <h3 style="margin-bottom:12px;">风险提示</h3>
+  
+  <div class="risk-item risk-high">
+    <span class="risk-badge">高</span>
+    <span>原材料价格Q2环比上涨8%，毛利率持续承压</span>
+  </div>
+  
+  <div class="risk-item risk-medium">
+    <span class="risk-badge">中</span>
+    <span>应收账款周转天数从38天延长至45天</span>
+  </div>
+  
+  <div class="risk-item risk-low">
+    <span class="risk-badge">低</span>
+    <span>海外市场汇率波动可能影响Q3利润</span>
+  </div>
+  
+  
+  
+  <h3 style="margin:20px 0 12px;">行动建议</h3>
+  <ul class="rec-list">
+  
+    <li>与核心供应商锁定Q3原材料价格，建立价格对冲机制</li>
+  
+    <li>加强应收账款催收，目标将周转天数控制在40天以内</li>
+  
+    <li>关注汇率走势，适时使用远期合约进行外汇风险管理</li>
+  
+  </ul>
+  
+
+  
+
+</div>
+
+
+
+
+<div class="section">
+  <h2 class="section-title">数据来源</h2>
+  <div class="text-content">本报告数据来源于公司ERP财务系统及CRM客户管理系统，数据截至2025年6月30日。</div>
+</div>
+
+
+
+<div class="page-footer">
+  2025年度经营分析报告 · 2025-07-15
+  · 示例科技有限公司
+</div>
+
+</div>
+</body>
+</html>

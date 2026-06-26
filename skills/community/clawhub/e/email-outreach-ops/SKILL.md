@@ -1,35 +1,20 @@
 ---
-name: "Email Outreach Ops"
-description: "Draft and manage vendor outreach emails for quotes/availability, follow-up cadence, and response summarization into structured decision tables. Use when cont..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-outreach-ops"
-sourceUrl: "https://clawhub.ai/skills/email-outreach-ops"
+name: email-outreach-ops
+description: Draft and manage vendor outreach emails for quotes/availability, follow-up cadence, and response summarization into structured decision tables. Use when contacting hotels, transport vendors, or activity providers.
 ---
 
 # Email Outreach Ops
 
-> Draft and manage vendor outreach emails for quotes/availability, follow-up cadence, and response summarization into structured decision tables. Use when cont...
+## Workflow
+1. Generate concise RFQ email from user constraints.
+2. Send to multiple vendors with consistent question set.
+3. Follow up at defined intervals if no response.
+4. Parse replies into a normalized comparison summary.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-outreach-ops`
-- **Source URL:** [https://clawhub.ai/skills/email-outreach-ops](https://clawhub.ai/skills/email-outreach-ops)
+## Rules
+- Keep emails short and specific.
+- Ask only decision-critical questions (price, availability, cancellation, payment, cutoff).
+- Track pending replies and escalation date.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/email-outreach-ops
-```
+## References
+- Read `references/rfq-templates.md`.

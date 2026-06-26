@@ -1,0 +1,41 @@
+{
+  "description": "Nutrition database for Family Nutrition Planner",
+  "version": "0.1.0",
+  "activity_multipliers": {
+    "sedentary": 1.2,
+    "lightly-active": 1.375,
+    "moderately-active": 1.55,
+    "very-active": 1.725,
+    "extra-active": 1.9
+  },
+  "goal_adjustments": {
+    "balance": 0,
+    "low-carb": -0.1,
+    "high-protein": 0.05,
+    "weight-loss": -0.2,
+    "muscle-gain": 0.15
+  },
+  "macro_ratios": {
+    "balance": {"protein": 0.20, "carbs": 0.50, "fat": 0.30},
+    "low-carb": {"protein": 0.25, "carbs": 0.30, "fat": 0.45},
+    "high-protein": {"protein": 0.30, "carbs": 0.40, "fat": 0.30},
+    "weight-loss": {"protein": 0.30, "carbs": 0.40, "fat": 0.30},
+    "muscle-gain": {"protein": 0.30, "carbs": 0.45, "fat": 0.25}
+  },
+  "common_allergens": ["花生", "虾", "牛奶", "鸡蛋", "小麦", "大豆", "坚果"],
+  "food_categories": {
+    "蛋白质": ["鸡胸肉", "鸡腿", "牛肉", "猪肉", "排骨", "鲈鱼", "虾仁", "虾", "鸡蛋", "牛奶", "豆腐", "黄豆"],
+    "蔬菜": ["青菜", "西兰花", "黄瓜", "西红柿", "胡萝卜", "莲藕", "冬瓜", "洋葱", "姜", "蒜", "葱", "白菜"],
+    "主食": ["大米", "面条", "燕麦", "全麦吐司", "藜麦", "馒头", "土豆"],
+    "水果": ["香蕉", "蓝莓", "苹果", "橙子", "牛油果"],
+    "乳制品": ["牛奶", "酸奶", "奶酪"],
+    "调料": ["酱油", "醋", "橄榄油", "盐", "糖"]
+  },
+  "rda_参考值": {
+    "蛋白质": {"成人": 60, "儿童": 45, "孕妇": 75, "unit": "g"},
+    "铁": {"成人男": 12, "成人女": 20, "unit": "mg"},
+    "钙": {"成人": 800, "孕妇": 1000, "unit": "mg"},
+    "维生素C": {"成人": 100, "unit": "mg"},
+    "膳食纤维": {"成人": 25, "unit": "g"}
+  }
+}

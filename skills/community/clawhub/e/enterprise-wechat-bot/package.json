@@ -1,0 +1,25 @@
+{
+  "name": "wechat-automation",
+  "version": "0.2.0",
+  "description": "企业微信自动化技能 - 消息推送、定时任务、自动化流程",
+  "main": "index.js",
+  "bin": {
+    "wechat-automation": "./index.js"
+  },
+  "scripts": {
+    "test": "node test-webhook.js"
+  },
+  "keywords": [
+    "wechat",
+    "enterprise",
+    "automation",
+    "webhook",
+    "message"
+  ],
+  "author": "小鸣 🦞",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaising/wechat-automation"
+  }
+}

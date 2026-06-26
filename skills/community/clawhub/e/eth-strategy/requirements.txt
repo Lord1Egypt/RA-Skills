@@ -1,0 +1,4 @@
+pandas
+pandas-ta
+ccxt
+numpy

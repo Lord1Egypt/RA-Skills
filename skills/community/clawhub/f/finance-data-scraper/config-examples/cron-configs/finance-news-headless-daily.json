@@ -1,0 +1,11 @@
+{
+  "name": "finance-news-headless-daily",
+  "category": "data-scraping",
+  "cron": "0 9,12,15,18 * * *",
+  "message": "执行每日财经新闻抓取任务（无头浏览器）：抓取东方财富财经导读等新闻，去重后存入NocoDB数据库。",
+  "announce": false,
+  "context": {
+    "project": "finance-data-scraper",
+    "task": "headless-news"
+  }
+}

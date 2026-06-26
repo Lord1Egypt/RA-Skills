@@ -1,35 +1,59 @@
 ---
-name: "Short Drama Market Analysis"
-description: "短剧/动漫剧/AI剧市场分析技能。用于分析短剧、AI漫剧市场动态、爆款作品追踪、平台政策解读、竞品分析、选剧决策支持。触发词：市场分析、选剧分析、短剧市场、动漫剧分析、AI漫剧市场行情、热门作品分析。"
-category: "other"
-source: "ClawHub"
-tags: [market, shortdrama]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eleven-short-drama-market-analysis"
-sourceUrl: "https://clawhub.ai/skills/eleven-short-drama-market-analysis"
+name: short-drama-market-analysis
+description: 短剧/动漫剧/AI剧市场分析技能。用于分析短剧、AI漫剧市场动态、爆款作品追踪、平台政策解读、竞品分析、选剧决策支持。触发词：市场分析、选剧分析、短剧市场、动漫剧分析、AI漫剧市场行情、热门作品分析。
 ---
 
-# Short Drama Market Analysis
+# 短剧/动漫剧/AI剧市场分析
 
-> 短剧/动漫剧/AI剧市场分析技能。用于分析短剧、AI漫剧市场动态、爆款作品追踪、平台政策解读、竞品分析、选剧决策支持。触发词：市场分析、选剧分析、短剧市场、动漫剧分析、AI漫剧市场行情、热门作品分析。
+> 本技能读取市场动态、平台政策、爆款数据，辅助选剧和制定策略。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eleven-short-drama-market-analysis`
-- **Source URL:** [https://clawhub.ai/skills/eleven-short-drama-market-analysis](https://clawhub.ai/skills/eleven-short-drama-market-analysis)
+## 数据来源优先级
 
-## Overview
+1. 读取 `references/market-data.md` — 市场规模、主要平台一览
+2. 读取 `references/trending-works.md` — 最新爆款作品列表（按题材/平台分类）
+3. 读取 `references/toolchain.md` — 制作工具与大模型对比
+4. 读取 `references/distribution.md` — 发行渠道与变现模式
+5. 读取 `references/strategy.md` — 选剧策略框架
 
+## 分析维度
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/eleven-short-drama-market-analysis
+每次分析须覆盖以下维度：
+
+```
+① 市场规模 & 增速
+② 平台格局（抖音/快手/红果/微信视频号/海外）
+③ 最新爆款题材 & 内容趋势
+④ 制作成本 & 效率标杆
+⑤ 政策合规动态（备案制度、审核红线）
+⑥ 变现模式优先级
+⑦ 竞品动态（同类公司最近动作）
+⑧ 机会与风险提示
+```
+
+## 选剧决策框架
+
+根据以下维度给每个候选IP/题材打分（1-10分）：
+
+| 维度 | 权重 | 评分要点 |
+|------|------|---------|
+| 市场热度 | 20% | 当前搜索量、平台播放量、话题量 |
+| 竞争程度 | 15% | 同类作品数量、头部集中度 |
+| 改编难度 | 15% | IP授权状态、世界观复杂度 |
+| 合规风险 | 20% | 封建迷信/低俗/版权风险 |
+| 变现潜力 | 15% | 付费意愿、IP衍生价值 |
+| 制作成本 | 15% | 场景数、角色数、特效量 |
+
+综合得分最高的题材优先立项。
+
+## 分析报告输出模板
+
+```
+## 【短剧/AI漫剧市场分析】{日期}
+### 一、宏观概况
+### 二、平台动态
+### 三、爆款案例分析
+### 四、竞争格局
+### 五、选剧建议（TOP3题材）
+### 六、风险提示
+### 七、本周值得关注的数据
 ```

@@ -1,0 +1,49 @@
+{
+  "name": "@bovinphang/fec-ui-design",
+  "version": "2.7.0",
+  "description": "Use when building, reviewing, or improving frontend UI that needs product-specific design direction, design-system generation, Master/Page overrides, distinctive visual identity, anti-generic interface choices, first-screen hierarchy, UI polish, chart UX, interaction states, responsive behavior, or visual QA. When an external design file is authoritative, implement from that source instead of inventing direction; Chinese triggers include UI 设计, 设计系统, 视觉风格, 不要模板化, 高级感, 界面打磨, 交互状态.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-ui-design"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "design-ui",
+    "ui-design",
+    "visual-direction",
+    "visual-identity",
+    "ui-polish",
+    "anti-generic",
+    "anti-generic-ui",
+    "design-dials",
+    "visual-qa",
+    "design-system",
+    "industry-ui",
+    "chart-ux",
+    "design-system-generation",
+    "industry-specific-ui",
+    "master-page-overrides"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

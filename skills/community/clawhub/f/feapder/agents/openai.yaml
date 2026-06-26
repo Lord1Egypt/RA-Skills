@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feapder 中文助手"
+  short_description: "帮助处理 feapder 1.9.2 爬虫开发与调试"
+  default_prompt: "Use $feapder to 编写、修改或调试一个 feapder 1.9.2 爬虫项目。"

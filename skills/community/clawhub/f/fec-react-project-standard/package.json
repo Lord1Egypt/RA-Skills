@@ -1,0 +1,40 @@
+{
+  "name": "@bovinphang/fec-react-project-standard",
+  "version": "2.7.0",
+  "description": "Use when designing or reviewing React + TypeScript project structure, feature/module boundaries, component architecture, hooks organization, routing composition, state/API/error/styling defaults, or repository-wide React conventions. Prefer narrower skills for forms, data fetching, tests, accessibility, virtualization, animation, or security deep dives; Chinese triggers include React 项目规范, React 组件架构.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-react-project-standard"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "project-standard",
+    "react",
+    "typescript",
+    "hooks",
+    "components",
+    "architecture"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

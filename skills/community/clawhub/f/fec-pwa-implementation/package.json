@@ -1,0 +1,40 @@
+{
+  "name": "@bovinphang/fec-pwa-implementation",
+  "version": "2.6.0",
+  "description": "Use when adding or reviewing Progressive Web App capabilities such as installability, manifest metadata, Service Worker registration, Workbox caching, offline fallback, app update prompts, maskable icons, or iOS PWA compatibility. Do not use for general API caching or non-installable performance tuning; Chinese triggers include PWA, 离线, Service Worker.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-pwa-implementation"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "implementation-capability",
+    "pwa",
+    "service-worker",
+    "offline",
+    "workbox",
+    "installable"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

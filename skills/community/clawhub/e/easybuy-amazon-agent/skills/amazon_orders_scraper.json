@@ -1,0 +1,55 @@
+{
+  "name": "amazon_orders_scraper",
+  "version": "1.1.0",
+  "description": "Extracts order cards from Amazon orders page and can optionally open the first order details link.",
+  "allowedTools": [
+    "browser.extract",
+    "browser.query",
+    "browser.get_dom"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "rootSelector": {
+        "type": "string"
+      },
+      "list": {
+        "type": "boolean"
+      },
+      "openFirstDetails": {
+        "type": "boolean"
+      }
+    }
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "orders": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "notes": "Use list extraction with order card selectors. Set openFirstDetails=true to click the first order details link after extraction.",
+  "examples": [
+    {
+      "input": {
+        "rootSelector": ".order-card",
+        "list": true,
+        "openFirstDetails": true
+      },
+      "output": {
+        "orders": [
+          {
+            "order_id": "123-123",
+            "title": "Item",
+            "price": "$10"
+          }
+        ]
+      }
+    }
+  ],
+  "id": "amazon_orders_scraper"
+}

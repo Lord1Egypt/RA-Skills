@@ -1,35 +1,53 @@
 ---
-name: "Manage Your Family's todos"
-description: "Manage family todo lists with multi-user support"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/family-todo-management"
-sourceUrl: "https://clawhub.ai/skills/family-todo-management"
+name: Family Todo Manager
+description: Manage family todo lists with multi-user support
 ---
 
-# Manage Your Family's todos
+# Family Todo Manager
 
-> Manage family todo lists with multi-user support
+A lightweight, multi-user todo list manager for any family, powered by Node.js and JSON.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/family-todo-management`
-- **Source URL:** [https://clawhub.ai/skills/family-todo-management](https://clawhub.ai/skills/family-todo-management)
-
-## Overview
-
+## Features
+- 📝 **Natural Language Add**: "Add a task: Buy milk tomorrow"
+- 👥 **Multi-User**: Supports Admin (You), Partner, and Family shared tasks.
+- ⏰ **Cron Integration**: Designed to work with OpenClaw cron for daily briefings.
+- 💾 **JSON Storage**: Simple file-based storage (`memory/todo.json`), easy to backup.
+- 🆔 **Timestamp IDs**: Tasks have unique, time-ordered IDs.
 
 ## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/family-todo-management
+
+1.  Place `todo.js` in your skill folder (e.g., `skills/family-todo/todo.js`).
+2.  Ensure `memory/todo.json` exists (or let the script create it).
+3.  **Configuration**: Edit `todo.js` to set your user IDs (see below).
+
+## Configuration
+
+Open `todo.js` and modify the `USERS` constant at the top:
+
+```javascript
+const USERS = {
+  'Mark': 'YOUR_TELEGRAM_ID_HERE', // e.g., '123456789'
+  'Jane': 'PARTNER_TELEGRAM_ID_HERE', // e.g., '987654321'
+  'Shared':  'GROUP_ID' // Family shared tasks
+};
 ```
+
+## Usage
+
+### Add Task
+- `node todo.js add "Buy milk" "Mark"`
+- `node todo.js add "Walk the dog" "Susie"`
+
+### List Tasks
+- `node todo.js list` (Shows all active tasks)
+- `node todo.js list Mark` (Shows tasks for Mark + Family)
+
+### Complete Task
+- `node todo.js done <ID>` or `node todo.js done "Buy milk"`
+
+### Daily Briefing (Cron)
+- `node todo.js brief` (Morning reminder)
+- `node todo.js review` (Evening review)
+
+## License
+MIT

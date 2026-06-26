@@ -1,35 +1,217 @@
 ---
-name: "Family Ledger"
-description: "家庭账本管理技能 - 日常记账、人情往来、借款报销"
-category: "domain"
-source: "ClawHub"
-tags: [accounting, family, ledger]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/family-ledger"
-sourceUrl: "https://clawhub.ai/skills/family-ledger"
+name: family-ledger
+version: 1.0.0
+description: 家庭账本管理技能 - 日常记账、人情往来、借款报销
+metadata: {"openclaw":{"emoji":"📒","homepage":"","keywords":["账本","记账","家庭账本","收支"],"author":"设计虱"}}
 ---
 
-# Family Ledger
+# Family Ledger - 家庭账本
 
-> 家庭账本管理技能 - 日常记账、人情往来、借款报销
+记账技能，全家人可以通过不同渠道使用。
 
-- **Category:** Business & Finance
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/family-ledger`
-- **Source URL:** [https://clawhub.ai/skills/family-ledger](https://clawhub.ai/skills/family-ledger)
+---
 
-## Overview
+## 账本文件位置
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/family-ledger
 ```
+~/.openclaw/workspace/shared/ledger/
+├── daily.json    # 日常账本
+├── social.json   # 人情账本
+└── borrow.json   # 借款报销账本
+```
+
+---
+
+## 日常账本 (daily.json)
+
+### 字段
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| date | string | 日期，格式 YYYY-MM-DD |
+| type | string | 类型：收入 / 支出 |
+| amount | number | 金额 |
+| category | string | 类别 |
+| recorded_by | string | 记录人：设计虱 / 大脸鱼 |
+| house | string | 房屋（可选）：军龙苑/保利大都会/东方文创园/洛铜嘉苑/龙锦嘉园 |
+| child | string | 孩子（教育类别可选）：根据用户设置 |
+| note | string | 备注 |
+
+### 类别
+
+支出：餐饮、交通、购物、工资、房租、水电、通讯、医疗、教育、娱乐、房屋维护、其他
+
+收入：工资、奖金、投资、兼职、礼金、其他
+
+### 教育类别特殊处理
+
+当备注中包含教育相关关键词时（书本费、辅导书、辅导班、兴趣班、文具、学费、培训等）：
+- 自动归类为"教育"
+- 新增 child 字段记录是给哪个孩子
+
+**孩子信息初始化**：
+- 首次记录教育类费用时，询问用户"家里有几个孩子？他们的昵称是什么？"
+- 只有一个孩子 → 默认记录在该孩子名下
+- 多个孩子 → 引导用户以后记录时说明是哪个孩子（如"记一笔教育账：200 学而思 给老大"）
+
+**当前用户孩子信息**：
+- 果果（唯一孩子）
+- 家庭关系：大脸鱼是果果的妈妈，大脸鱼记教育账也记到果果名下
+
+### 房屋与类别联动
+
+当备注中包含以下地点时：
+- 军龙苑、保利大都会、东方文创园、洛铜嘉苑、龙锦嘉园
+- 自动归类为"房屋维护"，并在 house 字段记录房屋名
+
+---
+
+## 人情账本 (人情.json)
+
+### 字段
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| date | string | 日期，格式 YYYY-MM-DD |
+| type | string | 类型：压岁钱 / 随礼 / 其他 |
+| target | string | 给谁（谁收钱） |
+| giver | string | 谁给的 |
+| giver_child | string | 给出方的孩子名字 |
+| amount | number | 金额 |
+| note | string | 备注 |
+
+---
+
+## 借款报销账本 (borrow.json)
+
+### 字段
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| date | string | 日期，格式 YYYY-MM-DD |
+| type | string | 类型：借款 / 报销 |
+| direction | string | 方向：借出 / 借入 / 报销给我 / 我报销 |
+| person | string | 相关人 |
+| amount | number | 金额 |
+| due_date | string | 应还/应报销日期（可选） |
+| status | string | 状态：未还 / 已还 / 待报销 / 已报销 |
+| note | string | 备注 |
+
+---
+
+## 用户ID映射
+
+飞书用户ID与记录人对应关系：
+
+```
+~/.openclaw/workspace/shared/ledger/user-mapping.json
+```
+
+文件内容示例：
+```json
+{
+  "ou_7d82888fe950c222c78c4ba7e7ec9ab7": "设计虱",
+  "ou_2d8827e13291607774e7d518d1b5bfe0": "大脸鱼"
+}
+```
+
+技能自动从消息元数据中读取 sender_id，转换为记录人名称。
+
+---
+
+## 指令格式
+
+### 记一笔账
+
+**自动判断账本类型**：
+- 包含"餐饮/交通/购物/工资/房租/水电/通讯/医疗/教育/娱乐/房屋维护" → 日常账
+- 包含"压岁钱/随礼/人情" → 人情账
+- 包含"借/还/报销" → 借款账
+
+**时间处理**：
+- 用户没说时间 → 默认今天（2026-03-22）
+- 用户说了时间 → 按用户说的
+
+**示例**：
+
+```
+记一笔账：50元 餐饮 午餐（自动使用当天日期）
+记一笔账：2026-03-20 500 压岁钱 给儿子 张三 张小明
+记一笔账：借出 李四 1000 借钱看病
+
+# 如果用户提到房屋名称，需要确认：
+用户：记一笔账：200 军龙苑 物业费
+助手：你说的"军龙苑"是房屋名称吗？是否要记录为房屋维护？还有其他房产需要录入吗？
+用户：是的，没有了
+助手：已记录...
+
+# 如果用户提到教育相关费用，需要确认孩子：
+用户：记一笔账：500 学而思
+助手：这是教育类费用，请问是给哪个孩子报的？家里有几个孩子，他们的昵称是什么？
+用户：一个孩子，小明
+助手：已记录，教育-小明...
+
+用户：记一笔账：300 兴趣班
+助手：请问是给哪个孩子报的？（之前记录有：小明）
+用户：还是小明
+助手：已记录，教育-小明...
+```
+
+### 查询记录
+
+```
+查日常账 [时间]
+例如：查日常账 2026年3月
+```
+
+```
+查人情账 [时间]
+例如：查人情账 今年
+```
+
+```
+查借款账 [状态]
+例如：查借款账 未还
+```
+
+### 统计汇总
+
+```
+统计日常账 [时间] [类别]
+例如：统计日常账 2026年3月 餐饮
+```
+
+```
+统计人情账 [时间]
+例如：统计人情账 今年
+```
+
+```
+统计借款账
+例如：统计借款账
+```
+
+---
+
+## 实现方式
+
+通过读写 JSON 文件实现。
+
+- 读：使用 read 工具读取 JSON 文件
+- 写：使用 write 工具覆盖写入 JSON 文件（追加记录时先读后写）
+
+---
+
+## 注意事项
+
+1. 日期格式统一为 YYYY-MM-DD
+2. 金额为数字，单位 元
+3. 状态更新需要明确说明
+4. 查询时支持模糊匹配（如查询"彤彤家"会匹配包含"彤彤"的记录）
+5. **时间默认值**：用户未指定日期时，自动使用当前日期（动态获取）
+6. **账本类型自动判断**：
+   - 日常类关键词（餐饮/交通/购物/工资/房租/水电/通讯/医疗/教育/娱乐/房屋维护）→ 日常账
+   - 人情类关键词（压岁钱/随礼/人情）→ 人情账
+   - 借款类关键词（借/还/报销）→ 借款账
+7. **房屋名称确认**：当用户提到的内容可能包含房屋名称（军龙苑/保利大都会/东方文创园/洛铜嘉苑/龙锦嘉园）时，询问用户确认后再记录。确认后可询问："还有其他房产需要录入吗？"
+   - 首次确认后，后续自动识别为房屋名称，无需再确认

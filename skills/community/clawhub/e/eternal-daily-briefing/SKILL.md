@@ -1,35 +1,70 @@
 ---
-name: "Eternal Daily Briefing"
-description: "Generate a consolidated daily briefing with weather, calendar events, tasks, news, and market data. Use when the user asks for a morning briefing, daily upda..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eternal-daily-briefing"
-sourceUrl: "https://clawhub.ai/skills/eternal-daily-briefing"
+name: daily-briefing
+description: Generate a consolidated daily briefing with weather, calendar events, tasks, news, and market data. Use when the user asks for a morning briefing, daily update, daily digest, agenda summary, "what's happening today", or "give me my briefing". Also useful for scheduled morning check-ins via cron.
 ---
 
-# Eternal Daily Briefing
+# Daily Briefing
 
-> Generate a consolidated daily briefing with weather, calendar events, tasks, news, and market data. Use when the user asks for a morning briefing, daily upda...
+Generate a consolidated morning briefing from multiple data sources.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eternal-daily-briefing`
-- **Source URL:** [https://clawhub.ai/skills/eternal-daily-briefing](https://clawhub.ai/skills/eternal-daily-briefing)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/eternal-daily-briefing
+python3 scripts/briefing.py              # full briefing
+python3 scripts/briefing.py --weather    # weather only
+python3 scripts/briefing.py --news       # news only
+python3 scripts/briefing.py --crypto     # crypto prices only
+python3 scripts/briefing.py --short      # compact one-liner version
 ```
+
+## Sections
+
+| Section | Source | Content |
+|---------|--------|---------|
+| 🌤️ Weather | wttr.in | Current conditions + 3-day forecast |
+| 📰 News | Google News RSS | Top headlines by region/topic |
+| 📈 Markets | Yahoo Finance | BTC, ETH, major indices, forex |
+| 📋 Tasks | Local file | Pending tasks from tasks.json |
+| 🎂 Events | Local file | Today's events from events.json |
+
+## Configuration
+
+Edit `~/.briefing/config.json`:
+
+```json
+{
+  "location": "Dhaka, Bangladesh",
+  "news_topics": ["technology", "business"],
+  "news_region": "BD",
+  "crypto": ["BTC-USD", "ETH-USD", "SOL-USD"],
+  "stocks": ["SPY", "QQQ", "AAPL"],
+  "forex": ["EURUSD=X", "GBPUSD=X"],
+  "timezone": "Asia/Dhaka"
+}
+```
+
+## Tasks File
+
+Add tasks to `~/.briefing/tasks.json`:
+
+```json
+[
+  {"task": "Submit project report", "due": "2026-03-31", "priority": "high"},
+  {"task": "Call dentist", "due": "2026-04-01", "priority": "medium"}
+]
+```
+
+## Cron Integration
+
+Schedule daily briefing with OpenClaw cron:
+```
+Schedule: 0 8 * * * (8:00 AM daily)
+Command: python3 scripts/briefing.py --short
+```
+
+## Output Modes
+
+- **Default**: Full formatted briefing with all sections
+- **--short**: Compact single-message version (good for chat delivery)
+- **--json**: Machine-readable JSON output
+- **--section**: Only specific section (weather/news/crypto/tasks)

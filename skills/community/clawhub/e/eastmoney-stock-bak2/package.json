@@ -1,0 +1,11 @@
+{
+  "name": "eastmoney-stock",
+  "version": "1.0.0",
+  "description": "东方财富股票数据查询",
+  "scripts": {
+    "stock.py": "python3 scripts/stock.py"
+  },
+  "install": {
+    "dependencies": []
+  }
+}

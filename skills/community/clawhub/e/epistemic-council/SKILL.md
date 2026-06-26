@@ -1,35 +1,30 @@
----
-name: "Epistemic Council"
-description: "Manage and execute all Epistemic Council pipeline operations including status checks, validations, audits, and adversarial re-challenges."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/epistemic-council"
-sourceUrl: "https://clawhub.ai/skills/epistemic-council"
----
+# Epistemic Council Skill
 
-# Epistemic Council
+Use this skill for all Epistemic Council pipeline operations.
 
-> Manage and execute all Epistemic Council pipeline operations including status checks, validations, audits, and adversarial re-challenges.
+## Triggers
+"run council", "run pipeline", "substrate status", "council status",
+"health check", "validate claims", "check boundaries", "find gaps", "rechallenge"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/epistemic-council`
-- **Source URL:** [https://clawhub.ai/skills/epistemic-council](https://clawhub.ai/skills/epistemic-council)
+## How to invoke
 
-## Overview
+Use the `exec` tool with the epistemic_council working directory:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/epistemic-council
 ```
+exec: cd /root/.openclaw/workspace-epistemic-council-bot/epistemic_council && python epistemic_skill.py "run council"
+```
+
+Available commands (replace argument as needed):
+- `"run council"` — full pipeline run
+- `"substrate status"` — event counts + last run summary
+- `"health check"` — risk / integrity scan
+- `"validate claims"` — re-evaluate challenged-zone claims
+- `"check boundaries"` — domain boundary audit
+- `"find gaps"` — orphan + sparse coverage scan
+- `"rechallenge"` — adversarial re-challenge of top insight
+
+## Workspace
+`/root/.openclaw/workspace-epistemic-council-bot/`
+
+## Working directory for exec
+`/root/.openclaw/workspace-epistemic-council-bot/epistemic_council/`

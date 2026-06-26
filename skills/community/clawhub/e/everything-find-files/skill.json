@@ -1,0 +1,7 @@
+{
+  "name": "everything-find-files",
+  "version": "1.0.0",
+  "description": "使用Everything SDK快速搜索本地文件，提供文件详情和文件发送功能。支持windows系统",
+  "entry": "main.py",
+  "dependencies": []
+}

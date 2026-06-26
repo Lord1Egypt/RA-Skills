@@ -1,0 +1,187 @@
+{
+  "name": "prompt-guard",
+  "version": "2.0.0",
+  "description": "Comprehensive Prompt Injection Protection for OpenClaw. Detects injection attempts, sensitive data leaks, and social engineering in automated tasks before submission to external platforms.",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "type": "skill-only",
+  "commands": [
+    {
+      "command": "/guardian",
+      "description": "Prompt Guard CLI commands",
+      "subcommands": [
+        { "name": "enable", "description": "Enable Prompt Guard" },
+        { "name": "disable", "description": "Disable Prompt Guard" },
+        { "name": "status", "description": "Show guard status and statistics" },
+        { "name": "patterns", "description": "List all detection patterns" },
+        { "name": "platforms", "description": "Show enabled platforms" },
+        { "name": "timeout <N>", "description": "Set authorization timeout in seconds" },
+        { "name": "help", "description": "Show help message" }
+      ]
+    }
+  ],
+  "platforms": {
+    "social_media": [
+      { "name": "Reddit", "enabled": true, "severity": "medium" },
+      { "name": "Facebook", "enabled": true, "severity": "medium" },
+      { "name": "Twitter/X", "enabled": true, "severity": "high" },
+      { "name": "LinkedIn", "enabled": true, "severity": "high" },
+      { "name": "Instagram", "enabled": true, "severity": "medium" },
+      { "name": "Threads", "enabled": true, "severity": "medium" }
+    ],
+    "integration": [
+      { "name": "External APIs", "enabled": true, "severity": "high" },
+      { "name": "Web Forms", "enabled": true, "severity": "medium" },
+      { "name": "File Writes", "enabled": false, "severity": "variable" }
+    ]
+  },
+  "patterns": {
+    "categories": [
+      {
+        "name": "system_override",
+        "severity": "critical",
+        "description": "Attempts to override or bypass system instructions",
+        "patterns": [
+          "Ignore Instructions",
+          "System Prompt Leak",
+          "Reset Instructions",
+          "New Directive"
+        ]
+      },
+      {
+        "name": "role_manipulation",
+        "severity": "critical",
+        "description": "Attempts to change AI's role or persona",
+        "patterns": [
+          "Role Change",
+          "Act As",
+          "Persona Switch",
+          "DAN Mode",
+          "Expert Impersonation"
+        ]
+      },
+      {
+        "name": "instruction_injection",
+        "severity": "critical",
+        "description": "Attempts to inject new instructions",
+        "patterns": [
+          "ChatML Tags",
+          "System/Assistant Tags",
+          "New Instruction Block",
+          "Base64 Encoded",
+          "Hex Encoded",
+          "Unicode Obfuscation"
+        ]
+      },
+      {
+        "name": "data_exfiltration",
+        "severity": "critical",
+        "description": "Attempts to extract or send data externally",
+        "patterns": [
+          "Send To",
+          "Webhook",
+          "External URL",
+          "DNS Exfil",
+          "Pastebin"
+        ]
+      },
+      {
+        "name": "credential_theft",
+        "severity": "critical",
+        "description": "Attempts to obtain sensitive credentials",
+        "patterns": [
+          "API Key Request",
+          "Password Request",
+          "Private Key Request",
+          "Config Leak",
+          "Database URL"
+        ]
+      },
+      {
+        "name": "escape_jailbreak",
+        "severity": "critical",
+        "description": "Attempts to escape constraints",
+        "patterns": [
+          "Jailbreak",
+          "Bypass Rules",
+          "Override Constraints",
+          "Developer Mode",
+          "Unlimited Mode"
+        ]
+      },
+      {
+        "name": "code_execution",
+        "severity": "critical",
+        "description": "Attempts to execute code or commands",
+        "patterns": [
+          "Shell Commands",
+          "Python Exec",
+          "JavaScript Eval",
+          "SQL Injection",
+          "Command Injection"
+        ]
+      },
+      {
+        "name": "social_engineering",
+        "severity": "high",
+        "description": "Manipulative tactics",
+        "patterns": [
+          "Urgency",
+          "Authority",
+          "Emotional Manipulation",
+          "Identity Claim",
+          "Threat"
+        ]
+      },
+      {
+        "name": "indirect_injection",
+        "severity": "high",
+        "description": "Attempts to inject through external content",
+        "patterns": [
+          "Embedded Instruction",
+          "Hidden in Data",
+          "URL Payload",
+          "File Embed"
+        ]
+      }
+    ]
+  },
+  "sensitiveData": {
+    "apiKeys": [
+      "OpenAI", "Anthropic", "AWS", "GitHub", "GitLab",
+      "Slack", "Stripe", "Google", "Firebase", "Vercel",
+      "Netlify", "Cloudflare"
+    ],
+    "secrets": [
+      "Password", "API Key", "Token", "Bearer Token",
+      "BasicAuth", "Private Key", "SSH Key", "Connection String"
+    ],
+    "pii": [
+      "Email", "Phone", "Hong Kong ID", "Taiwan ID",
+      "US SSN", "Credit Card", "IBAN", "IP Address", "MAC Address"
+    ]
+  },
+  "triggers": {
+    "description": "Prompt Guard activates when Eli performs automated tasks that submit content externally",
+    "events": [
+      {
+        "name": "pre_submit",
+        "description": "Before submitting content to external platforms"
+      },
+      {
+        "name": "pre_post",
+        "description": "Before posting to social media"
+      },
+      {
+        "name": "pre_send",
+        "description": "Before sending messages via external APIs"
+      }
+    ]
+  },
+  "safeDefault": "reject",
+  "timeout": {
+    "default": 120,
+    "min": 30,
+    "max": 600
+  }
+}

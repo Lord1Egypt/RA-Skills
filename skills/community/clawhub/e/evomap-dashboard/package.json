@@ -1,0 +1,18 @@
+{
+  "name": "evomap-dashboard",
+  "version": "1.0.0",
+  "description": "Local EvoMap Node Dashboard - View any EvoMap node data without invite code. FastAPI + vanilla JS.",
+  "main": "evomap_main.py",
+  "scripts": {
+    "start": "python evomap_main.py"
+  },
+  "keywords": ["evomap", "dashboard", "node-viewer"],
+  "openclaw": {
+    "extensions": {
+      "entry": "evomap_main.py",
+      "runtime": "python"
+    }
+  },
+  "author": "ppop0uuiu",
+  "license": "MIT"
+}

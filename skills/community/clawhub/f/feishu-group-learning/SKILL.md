@@ -1,35 +1,47 @@
 ---
-name: "飞书群学习分析"
-description: "自动分析飞书群消息，提取学习点和进化建议。 每6小时自动运行，支持多群监控、关键词提取、学习建议生成。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-group-learning"
-sourceUrl: "https://clawhub.ai/skills/feishu-group-learning"
+name: feishu-group-learning
+description: |
+  自动分析飞书群消息，提取学习点和进化建议。
+  每6小时自动运行，支持多群监控、关键词提取、学习建议生成。
+metadata:
+  version: "1.0.0"
+  author: "Vita虾助理"
+  tags: ["feishu", "learning", "analysis", "automation"]
 ---
 
-# 飞书群学习分析
+# Feishu Group Learning
 
-> 自动分析飞书群消息，提取学习点和进化建议。 每6小时自动运行，支持多群监控、关键词提取、学习建议生成。
+自动分析飞书群消息，提取有价值的学习点。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-group-learning`
-- **Source URL:** [https://clawhub.ai/skills/feishu-group-learning](https://clawhub.ai/skills/feishu-group-learning)
+## 功能
 
-## Overview
+- 多群消息监控
+- 自动语义分析
+- 学习建议生成
+- 定时报告推送
 
+## 安装
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/feishu-group-learning
+clawhub install feishu-group-learning
+```
+
+## 配置
+
+编辑 `~/.openclaw/workspace/skills/feishu-group-learning/config.json`:
+
+```json
+{
+  "chats": [
+    {"id": "oc_xxx", "name": "群名称"}
+  ],
+  "schedule": "0 */6 * * *"
+}
+```
+
+## 使用
+
+```bash
+# 手动运行分析
+bash ~/.openclaw/workspace/skills/feishu-group-learning/analyze.sh
 ```

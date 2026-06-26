@@ -1,0 +1,16 @@
+{
+  "title": "Agent collaboration graph",
+  "chartType": "graph",
+  "nodes": [
+    { "name": "User", "symbolSize": 50 },
+    { "name": "Codex", "symbolSize": 70 },
+    { "name": "Chart Skill", "symbolSize": 62 },
+    { "name": "GitHub", "symbolSize": 42 }
+  ],
+  "links": [
+    { "source": "User", "target": "Codex", "value": 1 },
+    { "source": "Codex", "target": "Chart Skill", "value": 1 },
+    { "source": "Chart Skill", "target": "GitHub", "value": 1 }
+  ],
+  "dataset": []
+}

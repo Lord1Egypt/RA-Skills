@@ -1,0 +1,14 @@
+[
+  { "stack": "react", "keywords": ["react", "vite", "spa"], "guidance": ["Keep visual components pure and prop-driven", "Split expensive lists and charts", "Use existing component and token conventions before adding UI primitives"] },
+  { "stack": "next", "keywords": ["next", "nextjs", "app router"], "guidance": ["Keep route shells and loading/error states explicit", "Prefer server components for static content and data shells", "Use client components only for interaction-heavy UI"] },
+  { "stack": "vue", "keywords": ["vue", "vue3"], "guidance": ["Use scoped components and composables for view logic", "Keep Pinia/global state out of purely local UI state", "Preserve SFC style boundaries"] },
+  { "stack": "nuxt", "keywords": ["nuxt"], "guidance": ["Use layouts for persistent UI chrome", "Align useFetch/useAsyncData states with loading and error UI", "Keep route middleware separate from component display logic"] },
+  { "stack": "svelte", "keywords": ["svelte"], "guidance": ["Use component-local reactivity for UI state", "Keep transitions meaningful and reduced-motion aware", "Avoid global stores for local interaction state"] },
+  { "stack": "astro", "keywords": ["astro"], "guidance": ["Use islands only where interaction is needed", "Keep marketing content fast and mostly static", "Prioritize image optimization and content hierarchy"] },
+  { "stack": "angular", "keywords": ["angular"], "guidance": ["Prefer standalone components", "Keep templates declarative", "Use CDK/a11y patterns for overlays and focus"] },
+  { "stack": "react-native", "keywords": ["react native", "rn", "mobile"], "guidance": ["Respect safe areas and platform gestures", "Use 44/48px touch targets", "Test dynamic type and screen reader labels"] },
+  { "stack": "flutter", "keywords": ["flutter"], "guidance": ["Prefer composition with small widgets", "Use theme tokens instead of per-screen styles", "Respect platform text scaling and safe areas"] },
+  { "stack": "threejs", "keywords": ["three", "threejs", "webgl", "3d"], "guidance": ["Make the primary scene full-bleed when it is the experience", "Provide DOM controls and accessible summaries", "Verify canvas is nonblank and resources dispose cleanly"] },
+  { "stack": "shadcn", "keywords": ["shadcn", "tailwind"], "guidance": ["Use shadcn components as accessible primitives", "Map theme variables before custom styling", "Avoid arbitrary utility soup when a token exists"] },
+  { "stack": "tailwind", "keywords": ["tailwind", "html"], "guidance": ["Keep mobile-first utilities", "Extract repeated class patterns into components", "Use semantic CSS variables for theme-critical color"] }
+]

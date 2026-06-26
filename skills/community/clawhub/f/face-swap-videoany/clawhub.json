@@ -1,0 +1,12 @@
+{
+  "name": "Face Swap by VideoAny",
+  "tagline": "Create AI face swap videos from a source clip and a face image.",
+  "description": "Generate face swap videos via VideoAny at https://videoany.io/face-swap. Upload a source video (MP4/MOV/WebM), provide a face image (JPG/PNG/WEBP), choose quality/aspect ratio/duration, and render AI face swap results with responsible-use guidance.",
+  "category": "utility",
+  "tags": ["face-swap", "video-face-swap", "ai-faceswap", "deepfake", "videoany", "half-moon-ai", "character-swap"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://videoany.io/face-swap",
+  "homepage": "https://videoany.io/face-swap"
+}

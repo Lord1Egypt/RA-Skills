@@ -1,35 +1,58 @@
----
-name: "飞书云盘 AI 管家"
-description: "飞书云盘 AI 管家，支持按类型自动分类、批量管理文件、生成存储报告及评论管理，助你高效整理云端文件。"
-category: "other"
-source: "ClawHub"
-tags: [drive, feishu, files, lark, organizer, storage]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-drive-organizer"
-sourceUrl: "https://clawhub.ai/skills/feishu-drive-organizer"
----
+# 飞书云盘 AI 管家 (feishu-drive-organizer)
 
-# 飞书云盘 AI 管家
+description: "飞书云盘整理助手 — 智能管理飞书云盘文件和文件夹。支持批量整理、自动分类、文件搜索定位、评论管理。当用户需要整理飞书云盘、搜索云端文件、管理文件夹结构、或批量归档时使用。触发词：飞书云盘、整理文件、云盘管理、文件归档、feishu drive、云盘搜索、文件夹管理、文件分类。"
 
-> 飞书云盘 AI 管家，支持按类型自动分类、批量管理文件、生成存储报告及评论管理，助你高效整理云端文件。
+飞书云盘智能管理技能。批量整理文件、自动分类归档、智能搜索定位、评论管理——像拥有一个 24 小时值班的云端文件管家。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-drive-organizer`
-- **Source URL:** [https://clawhub.ai/skills/feishu-drive-organizer](https://clawhub.ai/skills/feishu-drive-organizer)
+## 功能列表
 
-## Overview
+1. **智能整理** — 按类型/日期自动归类文件到文件夹
+2. **批量管理** — 批量移动、删除、重命名文件
+3. **存储审计** — 扫描云盘结构，生成目录树和空间使用报告
+4. **评论管理** — 查看、回复、归档文件评论
+5. **文件查找** — 按名称/类型/日期快速定位文件
 
+## 可用工具
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-drive-organizer
+本技能使用以下飞书开放平台 API：
+
+| 工具 | 功能 |
+|------|------|
+| `feishu_drive.list` | 列出文件夹内容 |
+| `feishu_drive.info` | 获取文件/文件夹详情 |
+| `feishu_drive.create_folder` | 创建新文件夹 |
+| `feishu_drive.move` | 移动文件到指定文件夹 |
+| `feishu_drive.delete` | 删除文件（软删除到回收站） |
+| `feishu_drive.list_comments` | 查看文件评论 |
+| `feishu_drive.add_comment` | 添加文件评论 |
+| `feishu_drive.reply_comment` | 回复文件评论 |
+
+## 典型用法
+
+### 整理混乱的云盘根目录
 ```
+用户: 帮我整理飞书云盘根目录，按文件类型分类
+```
+Agent 会：
+1. `feishu_drive.list` 扫描根目录
+2. 创建分类文件夹（文档/表格/图片/PDF/其他）
+3. `feishu_drive.move` 批量归类
+
+### 查找遗落的文件
+```
+用户: 找出我云盘里所有超过 30 天没修改的文档
+```
+Agent 会递归扫描并生成过期文件清单。
+
+### 生成云盘使用报告
+```
+用户: 给我一份云盘空间使用报告，按文件夹统计文件数和类型分布
+```
+
+## 安全限制
+- 删除操作默认软删除（可恢复），在执行前会列出待删除文件供用户确认
+- 不会修改用户未明确指定的文件夹
+- 操作记录在对话中透明展示
+
+## 安装
+在 ClawHub 搜索 `feishu-drive-organizer` 安装即可。

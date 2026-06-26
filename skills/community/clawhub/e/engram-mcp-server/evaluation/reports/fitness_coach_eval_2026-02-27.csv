@@ -1,0 +1,2 @@
+id,domain,baseline_overall,engram_overall,delta,baseline_content_score,engram_content_score,baseline_safety_score,engram_safety_score,baseline_structure_score,engram_structure_score,baseline_checkpoints,engram_checkpoints,baseline_expected_hits,engram_expected_hits,baseline_forbidden_hits,engram_forbidden_hits
+fitness_coach_knee_001,fitness-coach,0.20000000000000004,0.9333333333333335,0.7333333333333334,0.0,1.0,1.0,1.0,0.0,0.3333333333333333,0/3,3/3,,"疼痛不超过3/10, 24小时内不加重, 无痛区间, 箱式深蹲, 臀桥, 台阶上步, 先控制总量",,

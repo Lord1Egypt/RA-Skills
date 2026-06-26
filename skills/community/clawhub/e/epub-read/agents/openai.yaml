@@ -1,0 +1,4 @@
+interface:
+  display_name: "EPUB Read"
+  short_description: "Read and analyze EPUB books safely"
+  default_prompt: "Parse this EPUB, choose the right task mode, and return a safe overview, targeted read, extraction result, or chunked reading plan."

@@ -1,0 +1,93 @@
+{
+  "id": "fec-ui-design",
+  "name": "UI 设计",
+  "category": "design-ui",
+  "tags": [
+    "ui-design",
+    "visual-direction",
+    "visual-identity",
+    "ui-polish",
+    "anti-generic",
+    "anti-generic-ui",
+    "design-dials",
+    "visual-qa",
+    "design-system",
+    "industry-ui",
+    "chart-ux"
+  ],
+  "summary": "Product-context UI direction with anti-generic design dials, distinctive visual identity, media strategy, interaction states, and visual QA.",
+  "version": "2.7.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "design-ui",
+    "ui-design",
+    "visual-direction",
+    "visual-identity",
+    "ui-polish",
+    "anti-generic",
+    "anti-generic-ui",
+    "design-dials",
+    "visual-qa",
+    "design-system",
+    "industry-ui",
+    "chart-ux",
+    "design-system-generation",
+    "industry-specific-ui",
+    "master-page-overrides"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when building, reviewing, or improving frontend UI that needs product-specific design direction, design-system generation, Master/Page overrides, distinctive visual identity, anti-generic interface choices, first-screen hierarchy, UI polish, chart UX, interaction states, responsive behavior, or visual QA. When an external design file is authoritative, implement from that source instead of inventing direction; Chinese triggers include UI 设计, 设计系统, 视觉风格, 不要模板化, 高级感, 界面打磨, 交互状态.",
+  "source": "skills/fec-ui-design",
+  "references": [
+    "data/product-rules.json",
+    "data/stack-ui-rules.json",
+    "data/style-archetypes.json",
+    "data/ux-quality-rules.json",
+    "references/design-intelligence.md",
+    "references/master-page-overrides.md",
+    "references/pre-delivery-checklist.md",
+    "scripts/design-system.mjs"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-image-generation",
+      "fec-implement-from-design",
+      "fec-accessibility-check",
+      "fec-code-review",
+      "fec-tailwind-design-system",
+      "fec-responsive-layout",
+      "fec-storybook-component-doc",
+      "fec-web-video-presentation"
+    ],
+    "boundaryWorkflows": [
+      "Use an implementation-from-design workflow when an external design file is the source of truth.",
+      "Use an accessibility workflow for keyboard, focus, ARIA, semantic structure, and contrast checks.",
+      "Use a code review workflow when UI issues cross architecture, types, rendering performance, and maintainability.",
+      "Use generated design-system recommendations as direction only; external design files, project tokens, and shipped component APIs remain authoritative."
+    ],
+    "capabilityTags": [
+      "ui-design",
+      "design-direction",
+      "design-system",
+      "master-page-overrides",
+      "industry-ui",
+      "visual-identity",
+      "ui-polish",
+      "anti-generic",
+      "visual-qa",
+      "chart-ux",
+      "accessibility"
+    ]
+  }
+}

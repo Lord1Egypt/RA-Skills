@@ -1,0 +1,109 @@
+{
+  "id": "finance_bank_revenue",
+  "name": "银行月度营收报表",
+  "name_en": "Bank Monthly Revenue Report",
+  "industry": "finance",
+  "scene": "营收分析",
+  "description": "月度营收统计、业务板块分析，适配商业银行、村镇银行场景",
+  "sheets": [
+    {
+      "name": "原始数据",
+      "type": "data_input",
+      "columns": [
+        {"field": "month", "label": "月份", "type": "string", "required": true, "aliases": ["月份", "month", "统计月份"]},
+        {"field": "business_line", "label": "业务板块", "type": "string", "aliases": ["业务板块", "business_line", "业务类型", "业务条线"]},
+        {"field": "revenue", "label": "营收金额", "type": "number", "aliases": ["营收金额", "revenue", "营收", "收入"]},
+        {"field": "transaction_count", "label": "笔数", "type": "number", "aliases": ["笔数", "transaction_count", "交易笔数", "业务笔数"]},
+        {"field": "customer_count", "label": "客户数", "type": "number", "aliases": ["客户数", "customer_count", "客户数量"]}
+      ],
+      "default_values": {
+        "business_line": "贷款业务",
+        "transaction_count": 100,
+        "customer_count": 50
+      }
+    },
+    {
+      "name": "分析看板",
+      "type": "dashboard",
+      "kpis": [
+        {
+          "id": "total_revenue",
+          "label": "总营收",
+          "formula": "SUM(revenue)",
+          "format": "currency",
+          "style": "card"
+        },
+        {
+          "id": "avg_per_transaction",
+          "label": "单笔营收均值",
+          "formula": "SUM(revenue)/SUM(transaction_count)",
+          "format": "currency",
+          "style": "card"
+        },
+        {
+          "id": "revenue_growth",
+          "label": "营收同比增长率",
+          "formula": "(SUM(revenue) - LAG_SUM(revenue, 12)) / LAG_SUM(revenue, 12)",
+          "format": "percent",
+          "style": "gauge"
+        },
+        {
+          "id": "customer_value",
+          "label": "人均客户贡献",
+          "formula": "SUM(revenue)/SUM(customer_count)",
+          "format": "currency",
+          "style": "card"
+        }
+      ],
+      "charts": [
+        {
+          "id": "business_pie",
+          "type": "pie",
+          "title": "各业务板块营收占比",
+          "dimension": "business_line",
+          "metric": "revenue",
+          "position": {"row": 1, "col": 1, "width": 10, "height": 8}
+        },
+        {
+          "id": "revenue_trend",
+          "type": "line",
+          "title": "月度营收趋势",
+          "x": "month",
+          "y": ["revenue"],
+          "series_names": ["营收"],
+          "position": {"row": 1, "col": 12, "width": 14, "height": 8}
+        },
+        {
+          "id": "business_compare",
+          "type": "bar",
+          "title": "各业务板块笔数vs营收对比",
+          "x": "business_line",
+          "y": ["transaction_count", "revenue"],
+          "series_names": ["笔数", "营收"],
+          "dual_axis": true,
+          "position": {"row": 10, "col": 1, "width": 15, "height": 8}
+        },
+        {
+          "id": "customer_distribution",
+          "type": "pie",
+          "title": "各业务客户数占比",
+          "dimension": "business_line",
+          "metric": "customer_count",
+          "position": {"row": 10, "col": 18, "width": 10, "height": 8}
+        }
+      ]
+    },
+    {
+      "name": "业务明细",
+      "type": "detail",
+      "source": "原始数据",
+      "computed_fields": [
+        {"field": "avg_per_transaction", "label": "单笔营收", "formula": "revenue / transaction_count", "format": "currency"},
+        {"field": "per_customer_revenue", "label": "人均贡献", "formula": "revenue / customer_count", "format": "currency"},
+        {"field": "revenue_share", "label": "营收占比", "formula": "revenue / TOTAL(revenue)", "format": "percent"}
+      ],
+      "sort_by": ["month", "business_line"]
+    }
+  ],
+  "output_filename": "金融业-银行月度营收报表-{month}.xlsx"
+}

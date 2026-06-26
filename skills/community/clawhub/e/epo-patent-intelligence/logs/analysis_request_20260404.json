@@ -1,0 +1,15 @@
+{
+  "request_type": "patent_analysis",
+  "timestamp": "2026-04-04T15:34:03+00:00",
+  "competitors": "Trumpf Mazak Okuma Haas",
+  "patent_count": 48,
+  "database_path": "/root/.openclaw/workspace/skills/epo-patent-intelligence/data/patents.db",
+  "output_report": "/root/.openclaw/workspace/skills/epo-patent-intelligence/reports/weekly_report_20260404.html",
+  "client_context": "DMG_Mori",
+  "analysis_required": [
+    "competitive_threat_assessment",
+    "technology_categorization",
+    "strategic_recommendations",
+    "html_report_generation"
+  ]
+}

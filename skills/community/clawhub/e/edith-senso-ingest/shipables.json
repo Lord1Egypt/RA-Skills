@@ -1,0 +1,6 @@
+{
+  "name": "edith-senso-ingest",
+  "version": "1.0.0",
+  "description": "Ingest documents into your Senso.ai knowledge base through Edith smart glasses",
+  "keywords": ["senso", "ingest", "documents", "edith", "smart-glasses", "openclaw"]
+}

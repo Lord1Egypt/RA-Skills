@@ -1,35 +1,29 @@
----
-name: "feishu-broadcast"
-description: "Broadcast text, rich Markdown posts, images, and stickers to all users in a Feishu tenant with rate limiting and dry run support."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-broadcast"
-sourceUrl: "https://clawhub.ai/skills/feishu-broadcast"
----
+# Feishu Broadcast Skill
 
-# feishu-broadcast
+Broadcast messages (Post/Rich Text) and Images/Stickers to ALL users in the Feishu tenant.
 
-> Broadcast text, rich Markdown posts, images, and stickers to all users in a Feishu tenant with rate limiting and dry run support.
+## Features
+- **Dynamic User List**: Fetches all users from Feishu API (no hardcoded IDs).
+- **Rich Text**: Supports Markdown via `feishu-post`.
+- **Media**: Supports Stickers/GIFs via `feishu-sticker`.
+- **Safety**: Rate limiting and Dry Run mode.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-broadcast`
-- **Source URL:** [https://clawhub.ai/skills/feishu-broadcast](https://clawhub.ai/skills/feishu-broadcast)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/feishu-broadcast
+# Send text
+node skills/feishu-broadcast/index.js --title "Announcement" --text "Hello Everyone!"
+
+# Send text from file (recommended for long messages)
+node skills/feishu-broadcast/index.js --title "Weekly Report" --text-file "report.md"
+
+# Send sticker
+node skills/feishu-broadcast/index.js --image "media/sticker.webp"
+
+# Combined
+node skills/feishu-broadcast/index.js --title "Hi" --text "Check this out" --image "media/cool.gif"
 ```
+
+## Dependencies
+- `feishu-post` skill (must be installed)
+- `feishu-sticker` skill (must be installed)

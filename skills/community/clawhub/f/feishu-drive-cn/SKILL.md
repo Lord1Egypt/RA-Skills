@@ -1,35 +1,26 @@
----
-name: "Feishu Drive"
-description: "Manage Feishu cloud storage by listing, creating, moving, and deleting files and folders with your Feishu account."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-drive-cn"
-sourceUrl: "https://clawhub.ai/skills/feishu-drive-cn"
----
+# Feishu Drive Skill
 
-# Feishu Drive
+Use this skill when user wants to manage Feishu (飞书) cloud storage files and folders.
 
-> Manage Feishu cloud storage by listing, creating, moving, and deleting files and folders with your Feishu account.
+## Tools Available
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-drive-cn`
-- **Source URL:** [https://clawhub.ai/skills/feishu-drive-cn](https://clawhub.ai/skills/feishu-drive-cn)
+- `feishu_drive`: List, info, create_folder, move, delete files/folders in Feishu Drive
 
-## Overview
+## Use Cases
 
+- List files and folders in Feishu Drive
+- Get file/folder information
+- Create new folders
+- Move files/folders
+- Delete files/folders
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-drive-cn
-```
+## Auth
+
+User must have Feishu account with appropriate permissions to access cloud storage.
+
+## Examples
+
+- "帮我列出飞书云盘的文件"
+- "创建一个新文件夹"
+- "移动这个文件到另一个文件夹"
+- "删除这个文件"

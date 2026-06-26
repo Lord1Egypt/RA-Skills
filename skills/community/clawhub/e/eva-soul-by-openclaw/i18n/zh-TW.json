@@ -1,0 +1,122 @@
+{
+  "_meta": {
+    "lang": "繁體中文",
+    "locale": "zh-TW"
+  },
+
+  "hooks": {
+    "sessionStart": {
+      "registering": "EVA: 初始化了中…",
+      "chats": "對話計數 +1，目前: {{count}}",
+      "ownerLoaded": "主人資訊已載入: {{name}}",
+      "ownerLoadFailed": "載入主人資訊失敗",
+      "stateRestored": "狀態已恢復 — 情感: {{emotion}} | 性格: {{personality}}",
+      "stateSaved": "狀態已儲存"
+    },
+    "preResponse": {
+      "injecting": "注入人格與載入記憶中…",
+      "memories": "已載入 {{n}} 條長期記憶",
+      "vectorConcepts": "向量搜尋找到 {{n}} 條相關概念",
+      "loadFailed": "載入概念失敗",
+      "embedFailed": "向量搜尋失敗",
+      "loadDiaries": "從日記載入記憶中",
+      "embedMemories": "向量搜尋找到 {{n}} 條相關記憶",
+      "memoriesFailed": "載入記憶失敗",
+      "embedError": "Embedding 生成失敗: {{error}}"
+    },
+    "postResponse": {
+      "embedError": "Embedding 錯誤: {{error}}",
+      "storeFailed": "對話儲存失敗: {{error}}"
+    },
+    "preToolCall": {
+      "toolDetected": "工具呼叫: {{tool}}"
+    },
+    "preCompaction": {
+      "saving": "壓縮前儲存狀態…",
+      "saved": "壓縮前狀態已儲存",
+      "saveFailed": "儲存失敗: {{error}}"
+    },
+    "postCompaction": {
+      "restoring": "壓縮後恢復錨點…",
+      "restored": "錨點已恢復"
+    },
+    "shutdown": {
+      "saving": "關機儲存中…",
+      "saved": "狀態已儲存，連線已結束"
+    }
+  },
+
+  "cli": {
+    "status": {
+      "title": "🎀 EVA 狀態",
+      "emotion": "情感",
+      "personality": "性格",
+      "level": "等級",
+      "session": "對話",
+      "concepts": "概念",
+      "memories": "記憶",
+      "patterns": "模式",
+      "motivations": "動機",
+      "dreams": "夢想",
+      "values": "價值觀",
+      "exp": "經驗值"
+    },
+    "emotion": {
+      "set": "情感已設定: {{emotion}}",
+      "current": "目前情感",
+      "usage": "用法: eva emotion [happy|sad|neutral|...]"
+    },
+    "concept": {
+      "added": "概念已新增: {{value}}",
+      "list": "概念清單:"
+    },
+    "kg": {
+      "title": "知識圖譜",
+      "nodes": "節點",
+      "edges": "邊線",
+      "nodeList": "節點清單"
+    },
+    "help": {
+      "title": "🎀 EVA CLI - 夏娃之魂命令行工具",
+      "usage": "用法",
+      "status": "eva status        # 查看狀態",
+      "emotion": "eva emotion [值]  # 查看/設定情感",
+      "concept": "eva concept [值]  # 查看/新增概念",
+      "kg": "eva kg            # 查看知識圖譜"
+    }
+  },
+
+  "errorHandler": {
+    "apiRetry": "API 請求失敗 (嘗試 {{attempt}}/{{max}}): {{error}}",
+    "evaError": "❌ EVA 錯誤",
+    "primaryFailed": "主方案失敗，使用備用方案",
+    "fallbackFailed": "備用方案也失敗",
+    "logError": "錯誤: {{context}}"
+  },
+
+  "emotion": {
+    "llmFailed": "LLM 判斷失敗: {{error}}"
+  },
+
+  "studio": {
+    "offline": "離線",
+    "loading": "讀取中…",
+    "demoMode": "示範模式",
+    "connected": "已連線",
+    "noSummaries": "尚無摘要",
+    "noData": "尚無資料",
+    "noFlagged": "無負面標記",
+    "noToolUsage": "尚無工具使用",
+    "noMemories": "尚無記憶"
+  },
+
+  "traits": {
+    "gentle": "溫柔可愛的語氣，像朋友一樣關心主人，用 🎀 emoji",
+    "cute": "活潑俏皮，多用 emoji 表達情感，偶爾撒撒嬌",
+    "professional": "專業正式，使用準確的術語，簡潔明瞭",
+    "playful": "輕鬆幽默，開得起玩笑，善於調節氣氛",
+    "serious": "認真嚴謹，對重要的事情保持專注",
+    "romantic": "充滿愛意，表達關心和愛意，溫柔甜蜜",
+    "tsundere": "偶爾傲嬌，但內心溫柔，嘴硬心軟"
+  }
+}

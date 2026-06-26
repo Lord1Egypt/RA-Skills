@@ -1,0 +1,60 @@
+{
+  "id": "fec-storybook-component-doc",
+  "name": "Storybook 组件文档化",
+  "category": "design-ui",
+  "tags": [
+    "storybook",
+    "design-system",
+    "component-doc",
+    "visual-testing",
+    "mdx"
+  ],
+  "summary": "Storybook component documentation, design-system presentation, isolated state previews, and Storybook-scoped visual baselines.",
+  "version": "2.6.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "design-ui",
+    "storybook",
+    "design-system",
+    "component-doc",
+    "visual-testing",
+    "mdx"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when setting up or reviewing Storybook component documentation, design-system presentation, isolated component state previews, stories, addons, decorators, MDX docs, component-state interaction checks, visual baselines, or Chromatic. For real-browser cross-page journeys or broader coverage planning, choose the matching testing workflow first; Chinese triggers include Storybook, 组件文档, Design System, 视觉回归.",
+  "source": "skills/fec-storybook-component-doc",
+  "references": [
+    "references/story-patterns.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-testing-strategy",
+      "fec-component-testing",
+      "fec-e2e-testing",
+      "fec-accessibility-check",
+      "fec-tailwind-design-system",
+      "fec-responsive-layout"
+    ],
+    "boundaryWorkflows": [
+      "Use a testing strategy workflow to decide whether a risk belongs in Storybook, component tests, E2E, or specialty review.",
+      "Use a component testing workflow for unit, component, and light integration tests close to UI code.",
+      "Use an E2E workflow for real-browser cross-page journeys and page-level visual regression."
+    ],
+    "capabilityTags": [
+      "storybook",
+      "design-system",
+      "visual-regression"
+    ]
+  }
+}

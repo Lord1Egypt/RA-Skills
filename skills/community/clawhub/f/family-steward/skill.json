@@ -1,0 +1,379 @@
+{
+  "id": "family-steward",
+  "name": "Family Steward",
+  "displayName": "家族管家系统",
+  "version": "1.0.0",
+  "description": "AI-powered family office management system for ultra-high-net-worth families. Manage family members, professional contacts, legal documents, and tasks with natural language.",
+  "category": "productivity",
+  "tags": [
+    "family-office",
+    "wealth-management",
+    "crm",
+    "document-management",
+    "task-management",
+    "enterprise"
+  ],
+  "author": {
+    "name": "justin",
+    "organization": "ZhenRobotics",
+    "email": "code@zhenrobot.com",
+    "url": "https://github.com/ZhenRobotics"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZhenRobotics/openclaw-family-steward"
+  },
+  "homepage": "https://github.com/ZhenRobotics/openclaw-family-steward",
+  "license": "MIT",
+  "installation": {
+    "type": "npm",
+    "package": "openclaw-family-steward",
+    "command": "npm install -g openclaw-family-steward"
+  },
+  "usage": {
+    "cli": {
+      "commands": [
+        "family-steward dashboard",
+        "family-steward family list",
+        "family-steward contact list",
+        "family-steward task today"
+      ],
+      "aliases": [
+        "fsteward"
+      ]
+    },
+    "agent": {
+      "toolsFile": "agents/tools.ts",
+      "toolCount": 17
+    }
+  },
+  "tools": [
+    {
+      "name": "list_family_members",
+      "description": "List all family members with optional generation filter",
+      "parameters": {
+        "generation": {
+          "type": "number",
+          "optional": true,
+          "description": "Filter by generation (1=patriarch, 2=children, 3=grandchildren)"
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "members": "FamilyMember[]",
+        "count": "number"
+      }
+    },
+    {
+      "name": "get_upcoming_birthdays",
+      "description": "Get family members with upcoming birthdays",
+      "parameters": {
+        "daysAhead": {
+          "type": "number",
+          "default": 30,
+          "description": "Number of days to look ahead"
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "birthdays": "Array<FamilyMember & { daysUntil: number }>"
+      }
+    },
+    {
+      "name": "search_family_members",
+      "description": "Search family members by keyword",
+      "parameters": {
+        "keyword": {
+          "type": "string",
+          "required": true,
+          "description": "Search keyword"
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "members": "FamilyMember[]"
+      }
+    },
+    {
+      "name": "get_family_member",
+      "description": "Get detailed information about a specific family member",
+      "parameters": {
+        "memberId": {
+          "type": "string",
+          "required": true,
+          "description": "Member ID"
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "member": "FamilyMember"
+      }
+    },
+    {
+      "name": "list_contacts",
+      "description": "List professional contacts with optional category filter",
+      "parameters": {
+        "category": {
+          "type": "string",
+          "optional": true,
+          "description": "Filter by category: legal, financial, investment, banking, business, social, etc."
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "contacts": "Contact[]",
+        "summary": "CategorySummary[]"
+      }
+    },
+    {
+      "name": "get_contacts_needing_followup",
+      "description": "Get contacts that need follow-up soon",
+      "parameters": {
+        "daysAhead": {
+          "type": "number",
+          "default": 7,
+          "description": "Days ahead to check"
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "contacts": "Contact[]"
+      }
+    },
+    {
+      "name": "search_contacts",
+      "description": "Search contacts by keyword",
+      "parameters": {
+        "keyword": {
+          "type": "string",
+          "required": true,
+          "description": "Search keyword"
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "contacts": "Contact[]"
+      }
+    },
+    {
+      "name": "get_contact_details",
+      "description": "Get detailed contact information including interaction history",
+      "parameters": {
+        "contactId": {
+          "type": "string",
+          "required": true,
+          "description": "Contact ID"
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "contact": "Contact"
+      }
+    },
+    {
+      "name": "log_contact_interaction",
+      "description": "Log an interaction with a contact",
+      "parameters": {
+        "contactId": {
+          "type": "string",
+          "required": true,
+          "description": "Contact ID"
+        },
+        "interaction": {
+          "type": "object",
+          "required": true,
+          "description": "Interaction details (date, type, subject, notes)"
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "contact": "Contact"
+      }
+    },
+    {
+      "name": "list_documents",
+      "description": "List documents with optional category filter",
+      "parameters": {
+        "category": {
+          "type": "string",
+          "optional": true,
+          "description": "Filter by category: legal, contract, trust, property, financial, tax, insurance, etc."
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "documents": "Document[]",
+        "statistics": "CategoryStatistics[]"
+      }
+    },
+    {
+      "name": "get_expiring_documents",
+      "description": "Get documents expiring soon",
+      "parameters": {
+        "daysAhead": {
+          "type": "number",
+          "default": 90,
+          "description": "Days ahead to check"
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "documents": "Document[]"
+      }
+    },
+    {
+      "name": "get_documents_needing_review",
+      "description": "Get documents that need review",
+      "parameters": {
+        "daysAhead": {
+          "type": "number",
+          "default": 30,
+          "description": "Days ahead to check"
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "documents": "Document[]"
+      }
+    },
+    {
+      "name": "search_documents",
+      "description": "Search documents by keyword",
+      "parameters": {
+        "keyword": {
+          "type": "string",
+          "required": true,
+          "description": "Search keyword"
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "documents": "Document[]"
+      }
+    },
+    {
+      "name": "list_tasks",
+      "description": "List tasks with optional status filter",
+      "parameters": {
+        "status": {
+          "type": "string",
+          "optional": true,
+          "description": "Filter by status: pending, in_progress, completed, cancelled"
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "tasks": "Task[]",
+        "statistics": "TaskStatistics"
+      }
+    },
+    {
+      "name": "get_todays_tasks",
+      "description": "Get tasks due today",
+      "parameters": {},
+      "returns": {
+        "success": "boolean",
+        "tasks": "Task[]"
+      }
+    },
+    {
+      "name": "get_upcoming_tasks",
+      "description": "Get upcoming tasks",
+      "parameters": {
+        "daysAhead": {
+          "type": "number",
+          "default": 14,
+          "description": "Days ahead to check"
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "tasks": "Task[]"
+      }
+    },
+    {
+      "name": "get_overdue_tasks",
+      "description": "Get overdue tasks",
+      "parameters": {},
+      "returns": {
+        "success": "boolean",
+        "tasks": "Task[]"
+      }
+    },
+    {
+      "name": "complete_task",
+      "description": "Mark a task as completed",
+      "parameters": {
+        "taskId": {
+          "type": "string",
+          "required": true,
+          "description": "Task ID"
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "task": "Task"
+      }
+    },
+    {
+      "name": "search_tasks",
+      "description": "Search tasks by keyword",
+      "parameters": {
+        "keyword": {
+          "type": "string",
+          "required": true,
+          "description": "Search keyword"
+        }
+      },
+      "returns": {
+        "success": "boolean",
+        "tasks": "Task[]"
+      }
+    },
+    {
+      "name": "get_dashboard",
+      "description": "Get comprehensive dashboard overview with all key metrics and alerts",
+      "parameters": {},
+      "returns": {
+        "success": "boolean",
+        "dashboard": {
+          "family": "object",
+          "contacts": "object",
+          "documents": "object",
+          "tasks": "object",
+          "alerts": "array"
+        }
+      }
+    }
+  ],
+  "features": [
+    "Family member genealogy tracking",
+    "Professional contact CRM",
+    "Secure document management",
+    "Task and meeting scheduling",
+    "Birthday and important date reminders",
+    "Document expiry alerts",
+    "AI-powered natural language interface",
+    "Local-first data storage",
+    "Privacy-focused design"
+  ],
+  "requirements": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "platforms": [
+    "linux",
+    "darwin",
+    "win32"
+  ],
+  "screenshots": [],
+  "documentation": {
+    "readme": "https://github.com/ZhenRobotics/openclaw-family-steward#readme",
+    "architecture": "https://github.com/ZhenRobotics/openclaw-family-steward/blob/main/ARCHITECTURE.md",
+    "changelog": "https://github.com/ZhenRobotics/openclaw-family-steward/releases"
+  },
+  "support": {
+    "issues": "https://github.com/ZhenRobotics/openclaw-family-steward/issues",
+    "email": "code@zhenrobot.com"
+  }
+}

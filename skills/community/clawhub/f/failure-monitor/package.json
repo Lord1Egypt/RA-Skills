@@ -1,0 +1,24 @@
+{
+  "name": "failure-monitor",
+  "version": "1.0.0",
+  "description": "Automated failure detection, diagnosis, and auto-repair system for cron jobs",
+  "main": "scripts/monitor.cjs",
+  "scripts": {
+    "start": "node scripts/monitor.cjs",
+    "monitor": "node scripts/monitor.cjs"
+  },
+  "keywords": [
+    "failure-monitor",
+    "auto-repair",
+    "cron-jobs",
+    "self-healing",
+    "diagnostics",
+    "openclaw"
+  ],
+  "author": "sunnyhot",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sunnyhot/failure-monitor"
+  }
+}

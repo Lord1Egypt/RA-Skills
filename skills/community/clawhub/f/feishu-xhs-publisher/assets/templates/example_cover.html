@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1242px; height: 1660px;
+  background: #0D1117;
+  font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 背景装饰 */
+.bg-glow-1 {
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(88,166,255,0.12) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  border-radius: 50%;
+}
+.bg-glow-2 {
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(188,140,255,0.10) 0%, transparent 70%);
+  bottom: 100px; left: -80px;
+  border-radius: 50%;
+}
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(48,54,61,0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(48,54,61,0.4) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 80px 80px 70px;
+}
+
+/* 顶部标签 */
+.top-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 80px;
+}
+.tag {
+  font-size: 22px;
+  font-weight: 600;
+  color: #58A6FF;
+  background: rgba(88,166,255,0.12);
+  border: 1px solid rgba(88,166,255,0.3);
+  border-radius: 999px;
+  padding: 10px 28px;
+  letter-spacing: 0.05em;
+}
+.series-label {
+  font-size: 20px;
+  color: #8B949E;
+  letter-spacing: 0.08em;
+}
+
+/* 主标题区 */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title-sub {
+  font-size: 28px;
+  font-weight: 500;
+  color: #8B949E;
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+}
+
+.title-main {
+  font-size: 88px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.title-main .gradient {
+  background: linear-gradient(135deg, #58A6FF 0%, #BC8CFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.title-main .white {
+  color: #E6EDF3;
+}
+
+.title-en {
+  font-size: 26px;
+  font-weight: 500;
+  color: #3FB950;
+  letter-spacing: 0.1em;
+  margin-bottom: 60px;
+}
+
+/* 分割线 */
+.divider {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #58A6FF, #BC8CFF);
+  border-radius: 2px;
+  margin-bottom: 60px;
+}
+
+/* 要点列表 */
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-bottom: 60px;
+}
+.point-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.point-dot {
+  width: 10px; height: 10px;
+  background: #58A6FF;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(88,166,255,0.6);
+}
+.point-text {
+  font-size: 30px;
+  font-weight: 500;
+  color: #E6EDF3;
+}
+.point-sub {
+  font-size: 22px;
+  color: #8B949E;
+  margin-left: 30px;
+  margin-top: 4px;
+}
+
+/* 底部 */
+.footer {
+  border-top: 1px solid #30363D;
+  padding-top: 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-logo {
+  font-size: 26px;
+  font-weight: 700;
+  color: #58A6FF;
+}
+.footer-logo span {
+  color: #8B949E;
+  font-weight: 400;
+}
+.footer-page {
+  font-size: 20px;
+  color: #8B949E;
+}
+</style>
+</head>
+<body>
+<div class="bg-glow-1"></div>
+<div class="bg-glow-2"></div>
+<div class="bg-grid"></div>
+
+<div class="container">
+  <div class="top-label">
+    <span class="tag"># AI Agent</span>
+    <span class="series-label">OpenClaw 系列 · 第一期</span>
+  </div>
+
+  <div class="hero">
+    <div class="title-sub">让 AI 真正"记住"你</div>
+    <div class="title-main">
+      <div class="gradient">记忆机制</div>
+      <div class="white">全解析</div>
+    </div>
+    <div class="title-en">MEMORY ARCHITECTURE</div>
+
+    <div class="divider"></div>
+
+    <div class="points">
+      <div>
+        <div class="point-item">
+          <div class="point-dot"></div>
+          <div class="point-text">👤 自己相关的记忆</div>
+        </div>
+        <div class="point-sub">我是谁？我遵守什么规则？</div>
+      </div>
+      <div>
+        <div class="point-item">
+          <div class="point-dot" style="background:#BC8CFF;box-shadow:0 0 12px rgba(188,140,255,0.6)"></div>
+          <div class="point-text">🙋 用户相关的记忆</div>
+        </div>
+        <div class="point-sub">你是谁？你喜欢什么？</div>
+      </div>
+      <div>
+        <div class="point-item">
+          <div class="point-dot" style="background:#3FB950;box-shadow:0 0 12px rgba(63,185,80,0.6)"></div>
+          <div class="point-text">📋 任务相关的记忆</div>
+        </div>
+        <div class="point-sub">这件事进展到哪了？</div>
+      </div>
+    </div>
+
+    <div style="background:rgba(88,166,255,0.08);border:1px solid rgba(88,166,255,0.2);border-radius:16px;padding:32px 36px;">
+      <div style="font-size:22px;color:#8B949E;margin-bottom:12px;">核心设计理念</div>
+      <div style="font-size:30px;font-weight:700;color:#E6EDF3;">「 File is Truth 」</div>
+      <div style="font-size:22px;color:#58A6FF;margin-top:8px;">文件即真理 · 持久化 Markdown 文件</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo">🦞 <span>龙虾科技</span></div>
+    <div class="footer-page">01 / 10</div>
+  </div>
+</div>
+</body>
+</html>

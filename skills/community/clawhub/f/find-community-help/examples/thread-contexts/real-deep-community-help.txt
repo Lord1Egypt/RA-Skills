@@ -1,0 +1,6 @@
+Source: sanitized local Codex session from 2026-06-03.
+Host: Codex / skill routing
+Problem type: trigger-boundary research request.
+Observed issue: the user asked whether provider and agent communities recommend clearer search/help trigger boundaries.
+User constraint: do not make community help a broad search tool; use external guidance only to decide when the agent is blocked or likely reinventing known work.
+Expected next outcome: build a high-mode outside-help plan anchored in official provider docs and cross-checked with agent orchestration practice.

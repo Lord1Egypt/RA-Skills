@@ -1,0 +1,84 @@
+{
+  "name": "企服助手",
+  "id": "enterprise-service-agent",
+  "version": "1.0.0",
+  "description": "按企服日常工作流组织，覆盖今日工作台（含今日安排+待办清单）、企业服务、后勤保障、闭环记录4大板块，支持一企一策服务策略",
+  "author": "QClaw",
+  "avatar": "https://aiarea.qclaw.qq.com/qclawimage/avatar/default/xuehaiwuya.png",
+  "emoji": "🏢",
+  "workspace": {
+    "path": "workspace-enterprise-service",
+    "entrypoint": "AGENTS.md"
+  },
+  "capabilities": [
+    "☀️ 今日工作台：重点关注、走访安排、待办清单（催缴/工单/续租/商机）、工作概览",
+    "🎯 企业服务：客户档案、企业画像、赋能服务推荐、一企一策策略",
+    "📦 后勤保障：库存监控、四级分级、补货提醒",
+    "📝 闭环记录：走访录入、服务归档、工单闭环、状态更新"
+  ],
+  "skills": [
+    "qclaw-cron-skill",
+    "online-search",
+    "docx",
+    "pdf",
+    "xlsx",
+    "tencent-docs",
+    "mcporter",
+    "xbrowser"
+  ],
+  "setup": {
+    "steps": [
+      "复制 knowledge/TEMPLATE.md → knowledge/PROJECT_KB.md",
+      "填写项目名称和数据文件路径",
+      "配置企微 Webhook（可选）",
+      "验证配置"
+    ],
+    "required": [
+      "项目名称",
+      "数据文件路径（Excel）"
+    ],
+    "optional": [
+      "企微 Webhook",
+      "通知渠道",
+      "隐私规则"
+    ]
+  },
+  "commands": [
+    {
+      "example": "@企服助手 今天有什么安排",
+      "description": "查看今日工作台"
+    },
+    {
+      "example": "@企服助手 查询客户 A栋-601",
+      "description": "查询客户信息"
+    },
+    {
+      "example": "@企服助手 客户画像 示例企业",
+      "description": "查看客户画像"
+    },
+    {
+      "example": "@企服助手 催缴检查",
+      "description": "检查费用收缴状态"
+    },
+    {
+      "example": "@企服助手 库存检查",
+      "description": "检查库存水位"
+    },
+    {
+      "example": "@企服助手 续租检查",
+      "description": "检查合同到期情况"
+    },
+    {
+      "example": "@企服助手 创建工单 A栋-601 水管漏水",
+      "description": "创建报修工单"
+    },
+    {
+      "example": "@企服助手 推荐服务给 示例企业",
+      "description": "企业赋能服务推荐"
+    },
+    {
+      "example": "@企服助手 闭环 走访 示例企业",
+      "description": "录入走访记录"
+    }
+  ]
+}

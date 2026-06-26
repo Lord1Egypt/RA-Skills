@@ -1,0 +1,7 @@
+{
+  "name": "feishu-multi-bot",
+  "version": "1.0.0",
+  "description": "为多个 OpenClaw Agent 配置独立的飞书机器人，支持免配对直接聊天模式",
+  "keywords": ["feishu", "飞书", "multi-bot", "openclaw", "skill"],
+  "license": "MIT"
+}

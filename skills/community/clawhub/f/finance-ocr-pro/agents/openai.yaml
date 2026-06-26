@@ -1,0 +1,26 @@
+interface:
+  display_name: "Finance OCR Pro"
+  short_description: "Extract structured Markdown, HTML, DOCX, and Excel from documents, with improved Word equation output for LaTeX formulas"
+  default_prompt: >
+    Use this skill when the user asks to OCR, transcribe,
+    extract, or convert a document's contents. This skill requires API_KEY
+    (secret), BASE_URL, and VLM_MODEL. Page images are transmitted to
+    BASE_URL during OCR. It outputs Markdown, HTML, DOCX with improved native
+    Word equation restoration for recognized LaTeX formulas, and Excel.
+    Announce the default mode, model, thread count, result path, and
+    remote-processing implications, then proceed. Also tell the user that the
+    skill supports multi-thread OCR, but higher thread counts should only be
+    used when the API endpoint, rate limits, and subscription plan support
+    parallel OCR requests. First resolve the
+    interpreter path: on macOS/Linux use `.venv/bin/python` if present,
+    otherwise `python3`; on Windows use `.venv/Scripts/python.exe` if
+    present, otherwise `python`. Prefer
+    `<python> scripts/ocrctl.py --json start ...` for long jobs and
+    `<python> scripts/ocr_main.py ...` for small inline jobs. If dependencies
+    are missing, direct the user to the manual install command printed by
+    `scripts/ocr_setup.py` rather than attempting automatic installation.
+  required_env:
+    - API_KEY
+    - BASE_URL
+    - VLM_MODEL
+  primary_credential: API_KEY

@@ -1,35 +1,31 @@
 ---
-name: "Evez Github Manager"
-description: "Manage GitHub repositories, pull requests, issues, and workflows from OpenClaw. Use when reviewing PRs, managing issues, automating GitHub Actions, syncing r..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/evez-github-manager"
-sourceUrl: "https://clawhub.ai/skills/evez-github-manager"
+name: evez-github-manager
+description: Manage GitHub repositories, pull requests, issues, and workflows from OpenClaw. Use when reviewing PRs, managing issues, automating GitHub Actions, syncing repos, or coordinating multi-repo workflows. Covers PR review automation, issue triage, branch management, and release coordination.
 ---
 
-# Evez Github Manager
+# GitHub PR Manager
 
-> Manage GitHub repositories, pull requests, issues, and workflows from OpenClaw. Use when reviewing PRs, managing issues, automating GitHub Actions, syncing r...
+Manage GitHub repos, PRs, and issues directly from OpenClaw.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/evez-github-manager`
-- **Source URL:** [https://clawhub.ai/skills/evez-github-manager](https://clawhub.ai/skills/evez-github-manager)
+## Quick Start
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/evez-github-manager
+python3 scripts/github_manager.py prs --repo EvezArt/evez-api
+python3 scripts/github_manager.py issues --repo EvezArt/clawbreak
+python3 scripts/github_manager.py review --repo EvezArt/evez-api --pr 42
 ```
+
+## Features
+
+- **PR Management**: List, review, merge, comment on PRs
+- **Issue Triage**: List, label, assign, close issues
+- **Branch Management**: List, create, delete branches
+- **Release Coordination**: Create releases, upload assets
+- **Workflow Status**: Check GitHub Actions run status
+- **Multi-Repo Sync**: Apply changes across multiple repos
+
+## Auth
+
+Requires `GITHUB_TOKEN` env var. Get one at https://github.com/settings/tokens
+
+Or use Composio integration (already configured).

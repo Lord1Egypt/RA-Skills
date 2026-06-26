@@ -1,0 +1,5 @@
+{
+    "name":  "feature-spec-enhanced",
+    "version":  "1.0.0",
+    "description":  "Write structured product requirements documents (PRDs) with problem statements, user stories, requirements, and success metrics. 增强版：支持生成交互式 HTML 功能讲解页面，带代码样本和配置说明。"
+}

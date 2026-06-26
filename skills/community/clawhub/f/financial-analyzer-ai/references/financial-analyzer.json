@@ -1,0 +1,640 @@
+{
+  "meta": {
+    "skill": "AI 财务报表分析",
+    "version": "1.0.0",
+    "last_updated": "2026-06-06",
+    "author": "AI Generated",
+    "slug": "financial-analyzer"
+  },
+  "accounting_standards": {
+    "ifrs": {
+      "full_name": "International Financial Reporting Standards",
+      "issuing_body": "IASB (International Accounting Standards Board)",
+      "key_principles": [
+        "Fair value measurement (IFRS 13)",
+        "Principle-based approach",
+        "No LIFO inventory method",
+        "Development costs can be capitalized",
+        "Revaluation of PP&E and intangibles permitted",
+        "Revenue recognition: IFRS 15 (5-step model)",
+        "Leases: IFRS 16 (single lessee model)"
+      ],
+      "financial_statement_components": [
+        "Statement of Financial Position (Balance Sheet)",
+        "Statement of Comprehensive Income",
+        "Statement of Changes in Equity",
+        "Statement of Cash Flows",
+        "Notes to Financial Statements"
+      ]
+    },
+    "us_gaap": {
+      "full_name": "United States Generally Accepted Accounting Principles",
+      "issuing_body": "FASB (Financial Accounting Standards Board)",
+      "key_principles": [
+        "Historical cost emphasis",
+        "Rule-based approach",
+        "LIFO inventory method allowed",
+        "Development costs expensed (except software)",
+        "Revaluation generally not permitted",
+        "Revenue recognition: ASC 606",
+        "Leases: ASC 842"
+      ],
+      "differences_from_ifrs": {
+        "inventory": "GAAP允许LIFO，IFRS禁止",
+        "development_costs": "GAAP费用化，IFRS可资本化",
+        "revaluation": "GAAP禁止重估，IFRS允许",
+        "financial_instruments": "分类与计量模型不同",
+        "revenue_recognition": "ASC 606与IFRS 15高度趋同但细节差异",
+        "leases": "ASC 842与IFRS 16基本趋同"
+      }
+    },
+    "china_cas": {
+      "full_name": "中国会计准则 (China Accounting Standards for Business Enterprises)",
+      "issuing_body": "财政部 (Ministry of Finance, PRC)",
+      "key_principles": [
+        "与IFRS持续趋同路线图",
+        "历史成本为主，允许有限重估",
+        "禁止LIFO",
+        "关联方交易强制披露",
+        "资产减值损失不可转回（长期资产）"
+      ],
+      "differences_from_ifrs": {
+        "asset_impairment_reversal": "CAS禁止长期资产减值转回，IFRS允许",
+        "government_grants": "CAS归类与计量方法不同",
+        "related_party": "CAS披露要求更严格",
+        "business_combinations": "同一控制下合并处理差异"
+      }
+    }
+  },
+  "financial_ratios": {
+    "solvency": {
+      "current_ratio": {
+        "formula": "流动资产 / 流动负债",
+        "healthy_range": "1.5 - 2.5",
+        "warning_below": 1.0,
+        "description": "衡量企业短期偿债能力"
+      },
+      "quick_ratio": {
+        "formula": "(流动资产 - 存货) / 流动负债",
+        "healthy_range": "1.0 - 1.5",
+        "warning_below": 0.5,
+        "description": "酸性测试比率，排除存货后的短期偿债能力"
+      },
+      "cash_ratio": {
+        "formula": "(现金 + 现金等价物) / 流动负债",
+        "healthy_range": "0.5 - 1.0",
+        "warning_below": 0.2,
+        "description": "最保守的流动性指标"
+      },
+      "debt_to_asset": {
+        "formula": "总负债 / 总资产",
+        "healthy_range": "0.3 - 0.6",
+        "warning_above": 0.7,
+        "description": "资产负债率，反映财务杠杆"
+      },
+      "debt_to_equity": {
+        "formula": "总负债 / 所有者权益",
+        "healthy_range": "0.5 - 1.5",
+        "warning_above": 2.0,
+        "description": "产权比率"
+      },
+      "interest_coverage": {
+        "formula": "EBIT / 利息费用",
+        "healthy_range": "> 3.0",
+        "warning_below": 1.5,
+        "description": "利息保障倍数"
+      },
+      "equity_multiplier": {
+        "formula": "总资产 / 所有者权益",
+        "healthy_range": "1.5 - 3.0",
+        "description": "权益乘数，反映财务杠杆程度"
+      }
+    },
+    "profitability": {
+      "gross_margin": {
+        "formula": "(营业收入 - 营业成本) / 营业收入",
+        "description": "毛利率，反映产品定价能力和成本控制"
+      },
+      "operating_margin": {
+        "formula": "营业利润 / 营业收入",
+        "description": "营业利润率"
+      },
+      "net_margin": {
+        "formula": "净利润 / 营业收入",
+        "description": "净利率"
+      },
+      "ebitda_margin": {
+        "formula": "EBITDA / 营业收入",
+        "description": "EBITDA利润率，排除折旧摊销影响"
+      },
+      "roe": {
+        "formula": "净利润 / 平均所有者权益",
+        "healthy_range": "> 0.15",
+        "description": "净资产收益率，杜邦分析核心指标"
+      },
+      "roa": {
+        "formula": "净利润 / 平均总资产",
+        "healthy_range": "> 0.05",
+        "description": "总资产收益率"
+      },
+      "roic": {
+        "formula": "NOPAT / (总资产 - 无息流动负债)",
+        "healthy_range": "> WACC",
+        "description": "投入资本回报率"
+      },
+      "eps": {
+        "formula": "(净利润 - 优先股股利) / 流通在外普通股加权平均数",
+        "description": "每股收益"
+      }
+    },
+    "efficiency": {
+      "inventory_turnover": {
+        "formula": "营业成本 / 平均存货",
+        "description": "存货周转率"
+      },
+      "days_inventory_outstanding": {
+        "formula": "365 / 存货周转率",
+        "description": "存货周转天数"
+      },
+      "receivables_turnover": {
+        "formula": "营业收入 / 平均应收账款",
+        "description": "应收账款周转率"
+      },
+      "days_sales_outstanding": {
+        "formula": "365 / 应收账款周转率",
+        "description": "应收账款周转天数"
+      },
+      "payables_turnover": {
+        "formula": "营业成本 / 平均应付账款",
+        "description": "应付账款周转率"
+      },
+      "days_payable_outstanding": {
+        "formula": "365 / 应付账款周转率",
+        "description": "应付账款周转天数"
+      },
+      "cash_conversion_cycle": {
+        "formula": "DIO + DSO - DPO",
+        "description": "现金转换周期，越短越好"
+      },
+      "asset_turnover": {
+        "formula": "营业收入 / 平均总资产",
+        "description": "总资产周转率"
+      },
+      "fixed_asset_turnover": {
+        "formula": "营业收入 / 平均固定资产",
+        "description": "固定资产周转率"
+      }
+    },
+    "growth": {
+      "revenue_growth": {
+        "formula": "(当期营业收入 - 上期营业收入) / 上期营业收入",
+        "description": "营收增长率"
+      },
+      "net_income_growth": {
+        "formula": "(当期净利润 - 上期净利润) / 上期净利润",
+        "description": "净利润增长率"
+      },
+      "asset_growth": {
+        "formula": "(期末总资产 - 期初总资产) / 期初总资产",
+        "description": "总资产增长率"
+      },
+      "operating_cf_growth": {
+        "formula": "(当期经营现金流 - 上期经营现金流) / 上期经营现金流",
+        "description": "经营活动现金流增长率"
+      },
+      "sustainable_growth_rate": {
+        "formula": "ROE × (1 - 股利支付率)",
+        "description": "可持续增长率"
+      }
+    },
+    "cashflow": {
+      "ocf_to_revenue": {
+        "formula": "经营活动现金流 / 营业收入",
+        "description": "收入现金含量"
+      },
+      "free_cashflow": {
+        "formula": "经营活动现金流 - 资本支出",
+        "description": "自由现金流"
+      },
+      "fcf_to_net_income": {
+        "formula": "自由现金流 / 净利润",
+        "description": "利润现金保障倍数"
+      },
+      "ocf_to_debt": {
+        "formula": "经营活动现金流 / 总负债",
+        "description": "现金流偿债能力"
+      }
+    }
+  },
+  "industry_benchmarks": {
+    "manufacturing": {
+      "current_ratio": {
+        "median": 1.8,
+        "q25": 1.3,
+        "q75": 2.5
+      },
+      "debt_to_asset": {
+        "median": 0.5,
+        "q25": 0.35,
+        "q75": 0.65
+      },
+      "gross_margin": {
+        "median": 0.3,
+        "q25": 0.2,
+        "q75": 0.4
+      },
+      "net_margin": {
+        "median": 0.08,
+        "q25": 0.04,
+        "q75": 0.12
+      },
+      "roe": {
+        "median": 0.15,
+        "q25": 0.08,
+        "q75": 0.22
+      },
+      "inventory_turnover": {
+        "median": 6.0,
+        "q25": 4.0,
+        "q75": 10.0
+      },
+      "asset_turnover": {
+        "median": 1.0,
+        "q25": 0.7,
+        "q75": 1.5
+      }
+    },
+    "technology": {
+      "current_ratio": {
+        "median": 2.5,
+        "q25": 1.8,
+        "q75": 3.5
+      },
+      "debt_to_asset": {
+        "median": 0.3,
+        "q25": 0.15,
+        "q75": 0.45
+      },
+      "gross_margin": {
+        "median": 0.65,
+        "q25": 0.5,
+        "q75": 0.8
+      },
+      "net_margin": {
+        "median": 0.15,
+        "q25": 0.05,
+        "q75": 0.25
+      },
+      "roe": {
+        "median": 0.2,
+        "q25": 0.1,
+        "q75": 0.35
+      },
+      "r_and_d_to_revenue": {
+        "median": 0.12,
+        "q25": 0.06,
+        "q75": 0.2
+      }
+    },
+    "retail": {
+      "current_ratio": {
+        "median": 1.5,
+        "q25": 1.0,
+        "q75": 2.0
+      },
+      "debt_to_asset": {
+        "median": 0.55,
+        "q25": 0.4,
+        "q75": 0.7
+      },
+      "gross_margin": {
+        "median": 0.35,
+        "q25": 0.25,
+        "q75": 0.45
+      },
+      "net_margin": {
+        "median": 0.04,
+        "q25": 0.02,
+        "q75": 0.07
+      },
+      "inventory_turnover": {
+        "median": 8.0,
+        "q25": 5.0,
+        "q75": 12.0
+      }
+    },
+    "healthcare": {
+      "current_ratio": {
+        "median": 2.0,
+        "q25": 1.5,
+        "q75": 3.0
+      },
+      "debt_to_asset": {
+        "median": 0.4,
+        "q25": 0.25,
+        "q75": 0.55
+      },
+      "gross_margin": {
+        "median": 0.55,
+        "q25": 0.4,
+        "q75": 0.7
+      },
+      "net_margin": {
+        "median": 0.12,
+        "q25": 0.05,
+        "q75": 0.2
+      },
+      "r_and_d_to_revenue": {
+        "median": 0.15,
+        "q25": 0.08,
+        "q75": 0.25
+      }
+    },
+    "financial_services": {
+      "tier1_capital_ratio": {
+        "median": 0.12,
+        "q25": 0.1,
+        "q75": 0.15
+      },
+      "npl_ratio": {
+        "median": 0.02,
+        "q25": 0.01,
+        "q75": 0.04
+      },
+      "roe": {
+        "median": 0.12,
+        "q25": 0.08,
+        "q75": 0.18
+      },
+      "net_interest_margin": {
+        "median": 0.025,
+        "q25": 0.015,
+        "q75": 0.035
+      }
+    },
+    "energy": {
+      "current_ratio": {
+        "median": 1.2,
+        "q25": 0.8,
+        "q75": 1.8
+      },
+      "debt_to_asset": {
+        "median": 0.5,
+        "q25": 0.35,
+        "q75": 0.65
+      },
+      "net_margin": {
+        "median": 0.08,
+        "q25": 0.02,
+        "q75": 0.15
+      },
+      "roe": {
+        "median": 0.1,
+        "q25": 0.03,
+        "q75": 0.18
+      },
+      "capex_to_revenue": {
+        "median": 0.15,
+        "q25": 0.08,
+        "q75": 0.25
+      }
+    },
+    "real_estate": {
+      "debt_to_asset": {
+        "median": 0.6,
+        "q25": 0.45,
+        "q75": 0.75
+      },
+      "interest_coverage": {
+        "median": 2.5,
+        "q25": 1.5,
+        "q75": 4.0
+      },
+      "net_margin": {
+        "median": 0.15,
+        "q25": 0.08,
+        "q75": 0.25
+      },
+      "roe": {
+        "median": 0.1,
+        "q25": 0.05,
+        "q75": 0.18
+      }
+    }
+  },
+  "dupont_framework": {
+    "level_1": {
+      "formula": "ROE = 净利润 / 所有者权益",
+      "components": [
+        "净利率 (Net Margin)",
+        "资产周转率 (Asset Turnover)",
+        "权益乘数 (Equity Multiplier)"
+      ]
+    },
+    "level_2": {
+      "formula": "ROE = (净利润/营业收入) × (营业收入/总资产) × (总资产/所有者权益)",
+      "net_margin_drivers": [
+        "毛利率",
+        "费用控制",
+        "税率",
+        "非经常性损益"
+      ],
+      "asset_turnover_drivers": [
+        "存货管理",
+        "应收账款管理",
+        "固定资产利用效率"
+      ],
+      "equity_multiplier_drivers": [
+        "资本结构",
+        "债务融资偏好",
+        "股利政策"
+      ]
+    },
+    "level_3_extended": {
+      "formula": "ROE = (净利润/EBT) × (EBT/EBIT) × (EBIT/营业收入) × (营业收入/总资产) × (总资产/所有者权益)",
+      "tax_burden": "净利润/EBT (1 - 有效税率)",
+      "interest_burden": "EBT/EBIT (利息负担)",
+      "operating_margin": "EBIT/营业收入",
+      "asset_turnover": "营业收入/总资产",
+      "leverage": "总资产/所有者权益"
+    },
+    "analysis_prompts": {
+      "high_roe_low_margin": "ROE由高周转率或高杠杆驱动，盈利质量需关注",
+      "high_roe_high_leverage": "财务风险较高，需审查债务结构和偿债能力",
+      "declining_roe": "逐层拆解变化原因：利润率下滑/周转效率降低/去杠杆",
+      "roe_vs_roa_divergence": "ROE远超ROA说明高度依赖财务杠杆"
+    }
+  },
+  "fraud_signals": {
+    "beneish_m_score": {
+      "description": "Beneish M-Score 模型，用于检测财务报表操纵可能性",
+      "threshold": "-2.22 (M-Score > -2.22 表示可能存在操纵)",
+      "variables": {
+        "DSRI": {
+          "name": "Days Sales in Receivables Index",
+          "formula": "本期应收账款周转天数 / 上期应收账款周转天数",
+          "coefficient": 0.92
+        },
+        "GMI": {
+          "name": "Gross Margin Index",
+          "formula": "上期毛利率 / 本期毛利率",
+          "coefficient": 0.528
+        },
+        "AQI": {
+          "name": "Asset Quality Index",
+          "formula": "(1 - 流动资产+固定资产/总资产) / 上期值",
+          "coefficient": 0.404
+        },
+        "SGI": {
+          "name": "Sales Growth Index",
+          "formula": "本期营业收入 / 上期营业收入",
+          "coefficient": 0.892
+        },
+        "DEPI": {
+          "name": "Depreciation Index",
+          "formula": "上期折旧率 / 本期折旧率",
+          "coefficient": 0.115
+        },
+        "SGAI": {
+          "name": "SG&A Expense Index",
+          "formula": "本期销售管理费用率 / 上期",
+          "coefficient": -0.172
+        },
+        "LVGI": {
+          "name": "Leverage Index",
+          "formula": "本期资产负债率 / 上期资产负债率",
+          "coefficient": -0.327
+        },
+        "TATA": {
+          "name": "Total Accruals to Total Assets",
+          "formula": "(净利润 - 经营现金流) / 总资产",
+          "coefficient": 4.679
+        }
+      },
+      "constant": -4.84
+    },
+    "red_flags": {
+      "revenue_manipulation": [
+        "收入增长远超行业平均水平且无合理解释",
+        "第四季度收入占比异常高",
+        "应收账款增速持续高于营收增速",
+        "关联方交易占比突然增大",
+        "收入确认政策变更",
+        "渠道压货（Channel Stuffing）迹象"
+      ],
+      "expense_manipulation": [
+        "研发支出资本化率突然提升",
+        "折旧/摊销年限变更",
+        "预提费用大幅减少",
+        "维修费用异常下降（延后确认）",
+        "COGS占比异常波动"
+      ],
+      "balance_sheet_anomalies": [
+        "商誉/无形资产占比畸高",
+        "存货积压与营收背离",
+        "应付账款周期异常延长",
+        "表外负债迹象（经营租赁/担保）",
+        "其他应收款/预付款异常增长"
+      ],
+      "cashflow_red_flags": [
+        "净利润与经营现金流持续背离",
+        "经营现金流长期为负",
+        "自由现金流持续恶化",
+        "投资活动现金流异常大额支出",
+        "筹资现金流占比过高（依赖外部输血）"
+      ],
+      "governance_red_flags": [
+        "审计师频繁更换",
+        "CFO/财务总监短期内离职",
+        "内部控制重大缺陷",
+        "关联交易未经独立审批",
+        "监管问询/调查"
+      ]
+    },
+    "altman_z_score": {
+      "description": "Altman Z-Score 破产预测模型（适用于制造业上市公司）",
+      "formula": "Z = 1.2*X1 + 1.4*X2 + 3.3*X3 + 0.6*X4 + 1.0*X5",
+      "variables": {
+        "X1": "营运资本 / 总资产",
+        "X2": "留存收益 / 总资产",
+        "X3": "EBIT / 总资产",
+        "X4": "权益市值 / 总负债",
+        "X5": "营业收入 / 总资产"
+      },
+      "zones": {
+        "safe": "Z > 2.99 (安全区)",
+        "grey": "1.81 < Z < 2.99 (灰色区，需关注)",
+        "distress": "Z < 1.81 (破产风险区)"
+      }
+    }
+  },
+  "valuation_models": {
+    "dcf": {
+      "description": "Discounted Cash Flow (现金流折现模型)",
+      "formula": "企业价值 = Σ(FCF_t / (1+WACC)^t) + 终值/(1+WACC)^n",
+      "key_inputs": [
+        "自由现金流预测 (5-10年)",
+        "加权平均资本成本 WACC",
+        "永续增长率"
+      ],
+      "wacc_formula": "WACC = (E/V)*Ke + (D/V)*Kd*(1-t)",
+      "terminal_value_methods": [
+        "Gordon Growth Model",
+        "Exit Multiple Method"
+      ]
+    },
+    "relative_valuation": {
+      "pe_ratio": {
+        "formula": "股价 / 每股收益",
+        "description": "市盈率，适用于盈利稳定的企业"
+      },
+      "pb_ratio": {
+        "formula": "股价 / 每股净资产",
+        "description": "市净率，适用于金融/重资产企业"
+      },
+      "ps_ratio": {
+        "formula": "股价 / 每股营业收入",
+        "description": "市销率，适用于高增长/亏损企业"
+      },
+      "ev_ebitda": {
+        "formula": "企业价值 / EBITDA",
+        "description": "企业价值倍数，跨杠杆比较"
+      },
+      "ev_revenue": {
+        "formula": "企业价值 / 营业收入",
+        "description": "适用于早期企业估值"
+      },
+      "peg_ratio": {
+        "formula": "PE / 盈利增长率",
+        "description": "PEG < 1 表示可能被低估"
+      }
+    },
+    "dividend_discount": {
+      "description": "Dividend Discount Model (股利折现模型)",
+      "formula": "股价 = 预期股利 / (要求回报率 - 股利增长率)",
+      "applicability": "适用于稳定派息的成熟企业"
+    }
+  },
+  "scoring_weights": {
+    "solvency": 0.25,
+    "profitability": 0.25,
+    "efficiency": 0.15,
+    "growth": 0.15,
+    "cashflow_quality": 0.1,
+    "fraud_risk_penalty": 0.1
+  },
+  "report_template": {
+    "sections": [
+      "1. 执行摘要 (Executive Summary)",
+      "2. 财务概况 (Financial Overview)",
+      "3. 偿债能力分析 (Solvency Analysis)",
+      "4. 盈利能力分析 (Profitability Analysis)",
+      "5. 营运效率分析 (Efficiency Analysis)",
+      "6. 成长能力分析 (Growth Analysis)",
+      "7. 现金流分析 (Cash Flow Analysis)",
+      "8. 杜邦分析 (DuPont Analysis)",
+      "9. 风险预警 (Risk Alerts)",
+      "10. 改进建议 (Recommendations)"
+    ]
+  }
+}

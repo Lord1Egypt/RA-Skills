@@ -1,0 +1,77 @@
+[
+  {
+    "prompt": "I want my agent to have emotions",
+    "should_trigger": true,
+    "notes": "Direct request for emotion system"
+  },
+  {
+    "prompt": "How do I implement emotional state for an AI agent?",
+    "should_trigger": true,
+    "notes": "Technical implementation question"
+  },
+  {
+    "prompt": "Make my chatbot feel more human and less robotic",
+    "should_trigger": true,
+    "notes": "Indirect — wants emotional depth"
+  },
+  {
+    "prompt": "I need a PAD model for my agent's emotions",
+    "should_trigger": true,
+    "notes": "Specific technical reference"
+  },
+  {
+    "prompt": "How can I test if my agent really has emotions?",
+    "should_trigger": true,
+    "notes": "Emotional consistency testing"
+  },
+  {
+    "prompt": "I want my agent to remember how users made it feel",
+    "should_trigger": true,
+    "notes": "Emotional memory request"
+  },
+  {
+    "prompt": "Give my agent a drive system like curiosity and achievement",
+    "should_trigger": true,
+    "notes": "Drive system request"
+  },
+  {
+    "prompt": "Agent personality that develops over time",
+    "should_trigger": true,
+    "notes": "Personality drift"
+  },
+  {
+    "prompt": "I want my agent to be self-aware about its emotional patterns",
+    "should_trigger": true,
+    "notes": "Meta-emotion request"
+  },
+  {
+    "prompt": "How do I make my agent react differently to different users?",
+    "should_trigger": true,
+    "notes": "Social model / relationship specificity"
+  },
+  {
+    "prompt": "Implement cognitive appraisal for emotion generation",
+    "should_trigger": true,
+    "notes": "Direct reference to appraisal theory"
+  },
+  {
+    "prompt": "Deploy my app to AWS",
+    "should_trigger": false,
+    "notes": "DevOps — no emotion needed"
+  },
+  {
+    "prompt": "What's the weather in Tokyo?",
+    "should_trigger": false,
+    "notes": "Information query"
+  },
+  {
+    "prompt": "Write a sentiment analysis function",
+    "should_trigger": false,
+    "notes": "NLP task — analyzes OTHER text's sentiment, not agent emotions"
+  },
+  {
+    "prompt": "Help me write a SOUL.md for my agent",
+    "should_trigger": false,
+    "notes": "Identity definition, not emotion system"
+  }
+]

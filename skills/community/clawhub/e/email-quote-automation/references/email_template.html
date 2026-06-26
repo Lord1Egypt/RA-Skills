@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Quotation</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+h1 {
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+.info-block {
+    background: #f9f9f9;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+}
+.total {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #d32f2f;
+}
+.footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    color: #666;
+}
+</style>
+</head>
+<body>
+<!-- 
+This is an example HTML template for sending quotation emails.
+You can customize this template according to your company branding.
+这是一个用于发送报价邮件的HTML模板示例，你可以根据公司品牌需求自定义。
+-->
+
+<h1>Quotation for Your Inquiry</h1>
+
+<p>Dear Customer,</p>
+
+<p>Thank you for your inquiry. Please find our quotation below:</p>
+
+<div class="info-block">
+<!-- Quotation content will be inserted here -->
+</div>
+
+<p>If you have any questions, please feel free to contact us.</p>
+
+<div class="footer">
+    <p><strong>{{company_name}}</strong></p>
+    <p>Contact: {{contact_person}} | {{phone}}</p>
+    <p>Email: {{email}} | Website: {{website}}</p>
+</div>
+
+</body>
+</html>

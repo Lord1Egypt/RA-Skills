@@ -1,0 +1,115 @@
+{
+  "id": "internet_ecommerce_order",
+  "name": "电商平台订单月度报表",
+  "name_en": "E-commerce Order Monthly Report",
+  "industry": "internet",
+  "scene": "订单分析",
+  "description": "订单数据统计、转化率分析，适配电商平台、直播电商场景",
+  "sheets": [
+    {
+      "name": "原始数据",
+      "type": "data_input",
+      "columns": [
+        {"field": "month", "label": "月份", "type": "string", "required": true, "aliases": ["月份", "month"]},
+        {"field": "order_count", "label": "订单量", "type": "number", "aliases": ["订单量", "order_count", "订单数", "下单量"]},
+        {"field": "order_users", "label": "下单用户数", "type": "number", "aliases": ["下单用户数", "order_users", "下单人数"]},
+        {"field": "paid_orders", "label": "支付订单量", "type": "number", "aliases": ["支付订单量", "paid_orders", "支付订单", "成交订单"]},
+        {"field": "refund_orders", "label": "退款订单量", "type": "number", "aliases": ["退款订单量", "refund_orders", "退款订单", "退货订单"]},
+        {"field": "avg_ticket", "label": "客单价", "type": "number", "aliases": ["客单价", "avg_ticket", "平均客单价"]},
+        {"field": "category", "label": "商品类目", "type": "string", "aliases": ["商品类目", "category", "类目", "品类"]},
+        {"field": "payment_method", "label": "支付方式", "type": "string", "aliases": ["支付方式", "payment_method", "支付渠道"]}
+      ]
+    },
+    {
+      "name": "分析看板",
+      "type": "dashboard",
+      "kpis": [
+        {
+          "id": "total_orders",
+          "label": "总订单量",
+          "formula": "SUM(order_count)",
+          "format": "number",
+          "style": "card"
+        },
+        {
+          "id": "pay_rate",
+          "label": "支付转化率",
+          "formula": "SUM(paid_orders)/SUM(order_count)",
+          "format": "percent",
+          "style": "gauge",
+          "target": 0.7
+        },
+        {
+          "id": "refund_rate",
+          "label": "退款率",
+          "formula": "SUM(refund_orders)/SUM(paid_orders)",
+          "format": "percent",
+          "style": "gauge",
+          "target": 0.05
+        },
+        {
+          "id": "total_gmv",
+          "label": "GMV",
+          "formula": "SUM(paid_orders) * AVG(avg_ticket)",
+          "format": "currency",
+          "style": "card"
+        }
+      ],
+      "charts": [
+        {
+          "id": "order_trend",
+          "type": "line",
+          "title": "订单量与支付订单趋势",
+          "x": "month",
+          "y": ["order_count", "paid_orders"],
+          "series_names": ["订单量", "支付订单"],
+          "position": {"row": 1, "col": 1, "width": 16, "height": 10}
+        },
+        {
+          "id": "category_pie",
+          "type": "pie",
+          "title": "商品类目订单占比",
+          "dimension": "category",
+          "metric": "paid_orders",
+          "position": {"row": 1, "col": 18, "width": 10, "height": 8}
+        },
+        {
+          "id": "payment_pie",
+          "type": "pie",
+          "title": "支付方式占比",
+          "dimension": "payment_method",
+          "metric": "paid_orders",
+          "position": {"row": 1, "col": 30, "width": 10, "height": 8}
+        },
+        {
+          "id": "category_convert",
+          "type": "bar",
+          "title": "各类目支付转化率",
+          "x": "category",
+          "y": ["conversion_rate"],
+          "series_names": ["转化率"],
+          "format": "percent",
+          "position": {"row": 12, "col": 1, "width": 15, "height": 8}
+        }
+      ]
+    },
+    {
+      "name": "类目明细",
+      "type": "detail",
+      "source": "原始数据",
+      "group_by": ["category"],
+      "aggregations": {
+        "order_count": "SUM",
+        "paid_orders": "SUM",
+        "refund_orders": "SUM",
+        "order_users": "SUM"
+      },
+      "computed_fields": [
+        {"field": "conversion_rate", "label": "转化率", "formula": "paid_orders / order_count", "format": "percent"},
+        {"field": "refund_rate", "label": "退款率", "formula": "refund_orders / paid_orders", "format": "percent"}
+      ],
+      "sort_by": {"field": "paid_orders", "order": "desc"}
+    }
+  ],
+  "output_filename": "互联网-电商订单月报-{month}.xlsx"
+}

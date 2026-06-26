@@ -1,35 +1,43 @@
 ---
-name: "Durable Files Weekly Review (Public)"
-description: "Run a weekly token-optimization audit for durable instruction files in any OpenClaw workspace, generate a markdown report, and propose approval-gated cleanup..."
-category: "software-development"
-source: "ClawHub"
-tags: [documentation, openclaw, ops, token-optimization]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/durable-files-weekly-review-public"
-sourceUrl: "https://clawhub.ai/skills/durable-files-weekly-review-public"
+name: durable-files-weekly-review-public
+description: Run a weekly token-optimization audit for durable instruction files in any OpenClaw workspace, generate a markdown report, and propose approval-gated cleanup actions. Use when users want to keep AGENTS/USER/TOOLS/MEMORY-style docs lean without silent deletions.
 ---
 
-# Durable Files Weekly Review (Public)
+# Durable Files Weekly Review (Sanitized / ClawHub)
 
-> Run a weekly token-optimization audit for durable instruction files in any OpenClaw workspace, generate a markdown report, and propose approval-gated cleanup...
+Use this skill to audit durable instruction files and prepare cleanup proposals.
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/durable-files-weekly-review-public`
-- **Source URL:** [https://clawhub.ai/skills/durable-files-weekly-review-public](https://clawhub.ai/skills/durable-files-weekly-review-public)
+## Default scope
+Audit these files relative to a workspace root:
+- `AGENTS.md`
+- `SOUL.md`
+- `USER.md`
+- `TOOLS.md`
+- `MEMORY.md`
+- `IDENTITY.md`
+- `PRIORITIES.md`
+- `SKILLS.md`
+- `projects.md`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Run
 ```bash
-hermes skills install clawhub/durable-files-weekly-review-public
+python3 scripts/durable_files_review_generic.py --root .
 ```
+
+Optional:
+```bash
+python3 scripts/durable_files_review_generic.py --root /path/to/workspace --out knowledge/reports/durable-files
+```
+
+## Workflow
+1. Run scanner.
+2. Open generated report.
+3. Summarize top token-heavy files + stale markers.
+4. Propose cleanup in batches.
+5. **Require explicit user approval before any deletions.**
+6. Apply approved edits and post concise changelog.
+
+## Success output
+- Dated markdown report with metrics/findings
+- Clear approval queue for removals
+- No silent content removal

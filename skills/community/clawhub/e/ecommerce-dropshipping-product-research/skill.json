@@ -1,0 +1,13 @@
+{
+  "name": "Dropshipping Product Research",
+  "slug": "dropshipping-product-research",
+  "version": "1.0.0",
+  "description": "Evaluates dropshipping product ideas with heuristic scoring across demand, competition, margin, creative fit, and risk.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": ["dropshipping", "product-research", "ecommerce", "product-selection", "scoring"],
+  "trigger_keywords": ["dropshipping", "product research", "go test reject", "product idea", "选品"],
+  "language": "en",
+  "outputs": "markdown",
+  "requires_api": false,
+  "readiness": "stable"
+}

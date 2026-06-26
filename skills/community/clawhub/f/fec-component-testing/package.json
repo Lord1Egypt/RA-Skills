@@ -1,0 +1,40 @@
+{
+  "name": "@bovinphang/fec-component-testing",
+  "version": "2.5.0",
+  "description": "Use when authoring or reviewing frontend unit, component, or light integration tests close to UI code, including React Testing Library, Vue Test Utils, hooks/composables, props/emits, callbacks, accessible queries, user-event interactions, mocks, loading/error/empty states, and regression coverage. For layer planning, real-browser journeys, or existing validation failures, choose the matching testing or validation workflow first; Chinese triggers include 组件测试, 组件单测, 单元测试, 轻量集成测试.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-component-testing"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "testing",
+    "rtl",
+    "vue-test-utils",
+    "component-test",
+    "user-event",
+    "regression"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

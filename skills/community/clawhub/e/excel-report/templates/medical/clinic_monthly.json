@@ -1,0 +1,114 @@
+{
+  "id": "medical_clinic_monthly",
+  "name": "医院门诊月度报表",
+  "name_en": "Hospital Outpatient Monthly Report",
+  "industry": "medical",
+  "scene": "门诊管理",
+  "description": "门诊数据统计、科室运营分析，适配公立医院、私立医院场景",
+  "sheets": [
+    {
+      "name": "原始数据",
+      "type": "data_input",
+      "columns": [
+        {"field": "month", "label": "月份", "type": "string", "required": true, "aliases": ["月份", "month"]},
+        {"field": "department", "label": "科室", "type": "string", "aliases": ["科室", "department", "科室名称"]},
+        {"field": "visits", "label": "门诊量", "type": "number", "aliases": ["门诊量", "visits", "就诊人次", "门诊人次"]},
+        {"field": "patients", "label": "就诊人数", "type": "number", "aliases": ["就诊人数", "patients", "患者数"]},
+        {"field": "prescriptions", "label": "处方量", "type": "number", "aliases": ["处方量", "prescriptions", "处方数"]},
+        {"field": "exams", "label": "检查项目数", "type": "number", "aliases": ["检查项目数", "exams", "检查数"]},
+        {"field": "revenue", "label": "门诊收入", "type": "number", "aliases": ["门诊收入", "revenue", "收入"]}
+      ]
+    },
+    {
+      "name": "分析看板",
+      "type": "dashboard",
+      "kpis": [
+        {
+          "id": "total_visits",
+          "label": "总门诊量",
+          "formula": "SUM(visits)",
+          "format": "number",
+          "style": "card"
+        },
+        {
+          "id": "avg_prescription_cost",
+          "label": "人均处方费用",
+          "formula": "SUM(revenue)/SUM(patients)",
+          "format": "currency",
+          "style": "card"
+        },
+        {
+          "id": "visit_growth",
+          "label": "门诊量同比增长",
+          "formula": "(SUM(visits) - LAG_SUM(visits, 12)) / LAG_SUM(visits, 12)",
+          "format": "percent",
+          "style": "gauge"
+        },
+        {
+          "id": "exam_rate",
+          "label": "检查项目使用率",
+          "formula": "SUM(exams)/SUM(visits)",
+          "format": "percent",
+          "style": "card"
+        }
+      ],
+      "charts": [
+        {
+          "id": "dept_compare",
+          "type": "bar",
+          "title": "各科室门诊量与收入对比",
+          "x": "department",
+          "y": ["visits", "revenue"],
+          "series_names": ["门诊量", "收入"],
+          "dual_axis": true,
+          "position": {"row": 1, "col": 1, "width": 18, "height": 10}
+        },
+        {
+          "id": "visit_trend",
+          "type": "line",
+          "title": "门诊量趋势",
+          "x": "month",
+          "y": ["visits"],
+          "series_names": ["门诊量"],
+          "position": {"row": 1, "col": 20, "width": 12, "height": 10}
+        },
+        {
+          "id": "dept_pie",
+          "type": "pie",
+          "title": "各科室门诊量占比",
+          "dimension": "department",
+          "metric": "visits",
+          "position": {"row": 12, "col": 1, "width": 10, "height": 8}
+        },
+        {
+          "id": "exam_rank",
+          "type": "bar",
+          "title": "各科室检查项目数排名",
+          "x": "department",
+          "y": ["exams"],
+          "series_names": ["检查项目数"],
+          "position": {"row": 12, "col": 12, "width": 14, "height": 8}
+        }
+      ]
+    },
+    {
+      "name": "科室排名",
+      "type": "ranking",
+      "source": "原始数据",
+      "group_by": ["department"],
+      "metrics": [
+        {"field": "visits", "agg": "SUM", "label": "门诊量"},
+        {"field": "patients", "agg": "SUM", "label": "就诊人数"},
+        {"field": "prescriptions", "agg": "SUM", "label": "处方量"},
+        {"field": "exams", "agg": "SUM", "label": "检查项目数"},
+        {"field": "revenue", "agg": "SUM", "label": "收入"}
+      ],
+      "computed_fields": [
+        {"field": "avg_visit_cost", "label": "次均费用", "formula": "revenue / visits", "format": "currency"},
+        {"field": "exam_per_visit", "label": "人均检查", "formula": "exams / visits", "format": "number", "decimals": 2}
+      ],
+      "sort_by": {"field": "visits", "order": "desc"}
+    }
+  ],
+  "output_filename": "医疗-门诊月度报表-{month}.xlsx"
+}

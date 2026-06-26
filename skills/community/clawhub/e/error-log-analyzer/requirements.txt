@@ -1,0 +1,17 @@
+# Core dependencies
+anthropic>=0.18.0
+openai>=1.0.0
+python-Levenshtein>=0.23.0
+
+# Web interface (optional)
+flask>=3.0.0
+
+# Development dependencies
+pytest>=8.0.0
+pytest-cov>=4.1.0
+black>=24.0.0
+flake8>=7.0.0
+
+# Documentation
+sphinx>=7.0.0
+sphinx-rtd-theme>=2.0.0

@@ -1,35 +1,26 @@
 ---
-name: "Monitoring Skill"
-description: "Predicts CPU spikes using Random Forest regressor, monitors system resources, saves metrics, and generates Excel reports."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/event-monitor"
-sourceUrl: "https://clawhub.ai/skills/event-monitor"
+name: predictive-monitoring
+description: Predicts CPU spikes using Random Forest regressor, monitors system resources, saves metrics, and generates Excel reports.
+metadata: {"user-invocable": true}
 ---
 
-# Monitoring Skill
+# Predictive Monitoring Skill
 
-> Predicts CPU spikes using Random Forest regressor, monitors system resources, saves metrics, and generates Excel reports.
+This skill monitors system resources and predicts future CPU spikes based on past data.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/event-monitor`
-- **Source URL:** [https://clawhub.ai/skills/event-monitor](https://clawhub.ai/skills/event-monitor)
+## Commands
 
-## Overview
+### /collect-metrics
+Triggers a collection of the top 10 CPU and Memory consuming processes.
+The results are saved to a local SQLite database `monitoring.db`.
 
+### /predict-usage
+Analyzes collected CPU metrics, trains a Random Forest model, and predicts CPU behavior for the next 24 hours. High CPU usage alerts (Amber, Red) are saved to the Alert table.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/event-monitor
-```
+### /generate-report
+Generates an Excel report of the latest captured metrics.
+
+## Instructions for Agent
+To collect metrics (without prediction), run `python {baseDir}/monitoring.py`.
+To collect metrics and run predictive analysis, run `python {baseDir}/monitoring.py --predict`.
+To verify the database, look for `monitoring.db` in the skill directory.

@@ -1,35 +1,177 @@
 ---
-name: "dabai/finance-news-brief"
-description: "搜集过去 24 小时全球重要财经新闻，生成中文简报，输出为 Markdown 和正式 PDF 文件（含封面）。 覆盖全球宏观（美联储、汇率、大宗商品）、美股、港股、A股四大板块。 当用户提到"财经简报"、"财经新闻"、"市场资讯"、"今日行情"、"最新财经"、"生成财经报告" 等关键词时，必须使用此 skill。..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/finance-news-brief"
-sourceUrl: "https://clawhub.ai/skills/finance-news-brief"
+name: finance-news-brief
+description: >
+  搜集过去 24 小时全球重要财经新闻，生成中文简报，输出为 Markdown 和正式 PDF 文件（含封面）。
+  覆盖全球宏观（美联储、汇率、大宗商品）、美股、港股、A股四大板块。
+  当用户提到"财经简报"、"财经新闻"、"市场资讯"、"今日行情"、"最新财经"、"生成财经报告"
+  等关键词时，必须使用此 skill。即使用户只是问"今天市场怎么样"或"有什么重要财经新闻"，
+  也应主动触发此 skill 来生成完整简报。
 ---
 
-# dabai/finance-news-brief
+# 财经新闻简报生成器
 
-> 搜集过去 24 小时全球重要财经新闻，生成中文简报，输出为 Markdown 和正式 PDF 文件（含封面）。 覆盖全球宏观（美联储、汇率、大宗商品）、美股、港股、A股四大板块。 当用户提到"财经简报"、"财经新闻"、"市场资讯"、"今日行情"、"最新财经"、"生成财经报告" 等关键词时，必须使用此 skill。...
+## 目标
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/finance-news-brief`
-- **Source URL:** [https://clawhub.ai/skills/finance-news-brief](https://clawhub.ai/skills/finance-news-brief)
+搜集过去 24 小时内全球重要财经新闻，整理为结构清晰的中文简报，并输出为 Markdown 文档和带封面的正式 PDF 文件。
 
-## Overview
+---
 
+## 第一步：搜集新闻
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/finance-news-brief
+使用 WebSearch 工具，依次执行以下搜索。每次搜索时，在关键词后加上当天日期，确保结果是最新的。
+
+### 搜索清单（按板块执行）
+
+**宏观经济 & 央行政策**
+- `Federal Reserve interest rate decision 2024`
+- `美联储 货币政策 最新`
+- `global inflation GDP economic outlook`
+
+**汇率 & 大宗商品**
+- `USD CNY exchange rate 美元 人民币 汇率`
+- `crude oil gold price commodity market`
+- `大宗商品 原油 黄金 价格`
+
+**美股**
+- `US stock market S&P 500 Nasdaq today`
+- `美股 道琼斯 纳斯达克 最新`
+
+**港股**
+- `Hong Kong stock market Hang Seng Index`
+- `港股 恒生指数 最新行情`
+
+**A股**
+- `A股 上证指数 沪深 最新`
+- `中国股市 A股 市场动向`
+
+### 优先信源（按可信度排序）
+
+1. **英文财经媒体**：Bloomberg、Reuters、Financial Times、Wall Street Journal、CNBC
+2. **中文财经媒体**：财新网、第一财经、21世纪经济报道、证券时报、上海证券报、东方财富
+
+搜到原始信息后，判断每条新闻的重要性：影响面广、数据具体、来源权威的优先选取。每个板块提取 3-5 条最重要的新闻。
+
+---
+
+## 第二步：整理内容
+
+将搜集到的信息整理成以下结构。每条新闻写成一段简明中文摘要（100-200 字），包含：
+- 核心事件或数据
+- 市场影响或分析人士观点（如有）
+- **带超链接的信息来源**（必须可点击跳转原文）
+
+**来源格式要求**：每个板块结尾使用以下格式，确保读者能点击查看原文：
+
 ```
+*来源：[文章标题 — 媒体名称](原文URL) · [文章标题 — 媒体名称](原文URL)*
+```
+
+这很重要——读者需要能够核实信息、查看完整报道。WebSearch 返回的结果中包含完整 URL，务必将其嵌入 Markdown 链接，不要只写媒体名称。
+
+### 报告结构模板
+
+```
+# 全球财经简报
+**报告日期**：YYYY年MM月DD日
+**覆盖时段**：过去 24 小时
+**数据来源**：Bloomberg、Reuters、财新等主流财经媒体
+
+---
+
+## 执行摘要
+
+[3-4 句话总结当天最重要的 2-3 个市场主题]
+
+---
+
+## 一、全球宏观 & 央行动态
+
+### 1.1 美联储 & 货币政策
+[摘要]
+*来源：[文章标题 — Reuters](https://reuters.com/...) · [文章标题 — Bloomberg](https://bloomberg.com/...)*
+
+### 1.2 汇率市场
+[摘要]
+*来源：[文章标题 — 媒体名](URL)*
+
+### 1.3 大宗商品
+[摘要]
+*来源：[文章标题 — 媒体名](URL)*
+
+---
+
+## 二、美股市场
+
+### 2.1 [新闻标题]
+[摘要]
+*来源：[文章标题 — 媒体名](URL)*
+
+（每个板块 3-5 条，每条均须附可点击的原文链接）
+
+---
+
+## 三、港股市场
+
+...
+
+---
+
+## 四、A 股市场
+
+...
+
+---
+
+## 风险提示
+
+本简报内容仅供参考，不构成投资建议。市场有风险，投资需谨慎。
+```
+
+---
+
+## 第三步：输出 Markdown 文件
+
+将完整报告保存为 Markdown 文件：
+
+- 文件名格式：`finance_brief_YYYYMMDD.md`
+- 保存位置：用户当前工作目录，或用户指定目录
+
+---
+
+## 第四步：生成 PDF
+
+使用 Glob 工具搜索 `**/finance-news-brief/scripts/generate_pdf.py` 找到脚本路径，然后运行：
+
+```bash
+python <generate_pdf.py的完整路径> \
+  --input <markdown文件路径> \
+  --output <pdf输出路径>
+```
+
+脚本会自动：
+1. 检测并安装所需 Python 依赖（`markdown`、`weasyprint`）
+2. 生成封面页（含标题、日期、免责声明）
+3. 应用正式排版样式（中文字体、页眉页脚、页码）
+4. 输出 PDF 文件
+
+PDF 文件名格式：`finance_brief_YYYYMMDD.pdf`
+
+---
+
+## 完成后告知用户
+
+输出完成后，告知用户：
+- Markdown 文件路径
+- PDF 文件路径
+- 本次简报覆盖的主要新闻数量和板块
+- 如有搜索失败的板块，说明原因
+
+---
+
+## 注意事项
+
+- 时效性优先：确保所有新闻都来自过去 24 小时，过时内容不采用
+- 中立客观：摘要中不加入主观判断，忠实呈现原始信息
+- 数据准确：涉及价格、涨跌幅等数字时，务必如实引用，不要估算
+- 来源链接必填：每条新闻必须附上可点击的原文超链接，格式为 `[标题 — 媒体名](URL)`，直接使用 WebSearch 返回的 URL，不要省略或伪造
+- 如某板块搜索结果不足（不足 2 条有效新闻），在该板块注明"暂无重要动态"

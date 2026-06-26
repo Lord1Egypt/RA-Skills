@@ -1,0 +1,38 @@
+{
+  "name": "file-transfer-thru-local-workspace",
+  "version": "3.1.1",
+  "description": "通过网页上传/下载文件到 OpenClaw workspace，智能认证适配，文件列表管理，技能包浏览下载",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "upload",
+    "download",
+    "file",
+    "transfer",
+    "workspace",
+    "web-ui",
+    "skill-browser"
+  ],
+  "main": "src/upload-server.js",
+  "scripts": {
+    "start": "node src/upload-server.js",
+    "install": "./install.sh",
+    "uninstall": "./uninstall.sh"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "config": {
+    "defaultPort": 15170,
+    "defaultWorkspace": "~/.openclaw/workspace"
+  },
+  "permissions": {
+    "exec": ["node"],
+    "network": ["listen"],
+    "filesystem": ["write:workspace"]
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "openclaw": ">=2026.1.0"
+  }
+}

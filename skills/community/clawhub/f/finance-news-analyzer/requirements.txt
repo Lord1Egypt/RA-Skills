@@ -1,0 +1,110 @@
+# 财经新闻分析器 - 依赖
+
+## Python 依赖
+
+## 基础依赖（必需）
+```txt
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+jinja2>=3.1.0
+pyyaml>=6.0
+```
+
+## LLM API 依赖（可选，根据使用模型安装）
+
+### OpenAI (GPT 系列)
+```txt
+openai>=1.0.0
+```
+
+### Anthropic (Claude 系列)
+```txt
+anthropic>=0.18.0
+```
+
+### 阿里通义千问
+```txt
+dashscope>=1.14.0
+```
+
+### 百度文心一言
+```txt
+qianfan>=0.3.0
+```
+
+### 智谱 AI (GLM 系列)
+```txt
+zhipuai>=2.0.0
+```
+
+### Ollama (本地模型)
+```txt
+openai>=1.0.0  # Ollama 使用 OpenAI 兼容 API
+```
+
+## 完整安装（所有模型支持）
+```txt
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+jinja2>=3.1.0
+pyyaml>=6.0
+openai>=1.0.0
+anthropic>=0.18.0
+dashscope>=1.14.0
+qianfan>=0.3.0
+zhipuai>=2.0.0
+```
+
+## 可选：图表生成
+```txt
+matplotlib>=3.7.0
+pandas>=2.0.0
+```
+
+## 可选：异步支持
+```txt
+aiohttp>=3.9.0
+```
+
+## 安装命令
+
+```bash
+# 基础安装（仅新闻抓取）
+pip install requests beautifulsoup4 lxml
+
+# 完整安装（包含情感分析）
+pip install requests beautifulsoup4 lxml openai anthropic jinja2 pyyaml
+
+# 开发安装（包含图表生成）
+pip install requests beautifulsoup4 lxml openai anthropic jinja2 pyyaml matplotlib pandas
+```
+
+## 环境要求
+
+- Python 3.8+
+- 网络连接（用于新闻抓取和 LLM API）
+
+## API 密钥（可选）
+
+### OpenAI（情感分析）
+```bash
+export OPENAI_API_KEY=sk-xxx
+```
+
+### Anthropic（情感分析）
+```bash
+export ANTHROPIC_API_KEY=sk-ant-xxx
+```
+
+### NewsAPI（可选，用于更多新闻源）
+```bash
+export NEWSAPI_KEY=xxx
+```
+
+## 系统要求
+
+- Windows/macOS/Linux
+- 内存：512MB+
+- 磁盘空间：100MB+

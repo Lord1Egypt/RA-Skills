@@ -1,0 +1,20 @@
+{
+  "name": "feishu-voice-skill",
+  "version": "1.0.0",
+  "description": "让 AI 助手能够给飞书用户发送真正的语音条（点击即播，不是文件附件）",
+  "author": "司幼 (SiYou)",
+  "license": "MIT",
+  "tags": ["feishu", "voice", "audio", "tts", "noizai", "chinese"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/feishu-voice-skill"
+  },
+  "keywords": [
+    "飞书",
+    "语音",
+    "TTS",
+    "NoizAI",
+    "语音条",
+    "OpenClaw"
+  ]
+}

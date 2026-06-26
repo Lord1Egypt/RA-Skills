@@ -1,0 +1,149 @@
+# Edict 配置文件示例
+
+system:
+  name: "Edict Multi-Agent System"
+  version: "1.0.0"
+  description: "三省六部制多智能体编排系统"
+  log_level: "INFO"
+  environment: "production"
+
+dashboard:
+  enabled: true
+  host: "0.0.0.0"
+  port: 8080
+  refresh_interval: 5
+  auth:
+    type: "oauth"
+    providers: ["github", "google"]
+  panels:
+    - name: "智能体状态"
+      type: "status_grid"
+      refresh: 5
+    - name: "任务队列"
+      type: "queue_monitor"
+      refresh: 10
+    - name: "资源使用"
+      type: "resource_chart"
+      refresh: 30
+
+audit:
+  enabled: true
+  storage: "database"  # database, file, or elasticsearch
+  retention_days: 2555  # 7年
+  encryption: true
+  backup: true
+  compliance_standards:
+    - "ISO27001"
+    - "GDPR"
+    - "网络安全法"
+
+# 三省配置
+provinces:
+  zhongshu:
+    enabled: true
+    model: "gpt-4-turbo"
+    temperature: 0.7
+    max_tokens: 4000
+    
+  menxia:
+    enabled: true
+    model: "gpt-4-turbo"
+    temperature: 0.5
+    max_tokens: 4000
+    
+  shangshu:
+    enabled: true
+    model: "gpt-4-turbo"
+    temperature: 0.7
+    max_tokens: 4000
+
+# 六部配置
+ministries:
+  libu:
+    enabled: true
+    model: "gpt-3.5-turbo"
+    max_agents: 100
+    
+  hubu:
+    enabled: true
+    model: "gpt-3.5-turbo"
+    budget_limit: 100000  # USD/month
+    
+  libu_rites:
+    enabled: true
+    model: "gpt-3.5-turbo"
+    
+  bingbu:
+    enabled: true
+    model: "gpt-4-turbo"
+    security_level: "high"
+    
+  xingbu:
+    enabled: true
+    model: "gpt-4-turbo"
+    compliance_checks: ["GDPR", "网络安全法", "个人信息保护法"]
+    
+  gongbu:
+    enabled: true
+    model: "gpt-4-turbo"
+    deployment_strategy: "blue_green"
+
+# 模型配置
+models:
+  default: "gpt-4-turbo"
+  fallback: "gpt-3.5-turbo"
+  routing_strategy: "smart"  # smart, cost_first, performance_first
+  
+  providers:
+    openai:
+      api_key: "${OPENAI_API_KEY}"
+      base_url: "https://api.openai.com/v1"
+      
+    anthropic:
+      api_key: "${ANTHROPIC_API_KEY}"
+      base_url: "https://api.anthropic.com"
+      
+    local:
+      endpoint: "http://localhost:8000/v1"
+      model: "llama-2-70b"
+
+# 资源配置
+resources:
+  max_agents: 100
+  max_concurrent_tasks: 50
+  auto_scale: true
+  
+  compute:
+    min_cpu: 4
+    max_cpu: 32
+    min_memory: "8GB"
+    max_memory: "64GB"
+    
+  storage:
+    type: "ssd"
+    size: "100GB"
+    backup_enabled: true
+
+# 告警配置
+alerts:
+  enabled: true
+  channels:
+    - type: "email"
+      recipients: ["ops@company.com"]
+    - type: "slack"
+      webhook: "${SLACK_WEBHOOK_URL}"
+      
+  rules:
+    - name: "CPU高负载"
+      condition: "cpu_usage > 80%"
+      duration: "5m"
+      severity: "warning"
+      
+    - name: "智能体故障"
+      condition: "agent_health == 'down'"
+      severity: "critical"
+      auto_restart: true
+      
+    - name: "成本超支"
+      condition: "daily_cost > budget * 1.2"
+      severity: "warning"

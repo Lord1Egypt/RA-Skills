@@ -1,0 +1,31 @@
+{
+  "name": "feishu_dingtalk_bridge",
+  "description": "打通飞书/钉钉开放API，实现日程同步、审批追踪、文档解析与智能待办分发的企业协同中枢",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "platform": {
+        "type": "string",
+        "enum": ["feishu", "dingtalk"],
+        "description": "目标办公平台"
+      },
+      "action": {
+        "type": "string",
+        "enum": ["sync_calendar", "fetch_approval", "parse_doc", "distribute_task"],
+        "description": "执行动作类型"
+      },
+      "auth_token": {
+        "type": "string",
+        "description": "平台应用访问凭证（App Access Token / Tenant Access Token）"
+      },
+      "query_context": {
+        "type": "string",
+        "description": "查询条件或上下文（如：时间范围/部门ID/文档链接/待办关键词）"
+      }
+    },
+    "required": ["platform", "action", "auth_token"],
+    "additionalProperties": false
+  },
+  "output_format": "markdown",
+  "strict_mode": true
+}

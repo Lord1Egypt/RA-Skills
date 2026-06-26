@@ -1,0 +1,115 @@
+{
+  "id": "medical_equipment_ops",
+  "name": "医疗设备运维报表",
+  "name_en": "Medical Equipment Operations Report",
+  "industry": "medical",
+  "scene": "设备管理",
+  "description": "设备运行状态监控、运维成本分析，适配医院设备管理场景",
+  "sheets": [
+    {
+      "name": "原始数据",
+      "type": "data_input",
+      "columns": [
+        {"field": "month", "label": "月份", "type": "string", "required": true, "aliases": ["月份", "month"]},
+        {"field": "equipment_name", "label": "设备名称", "type": "string", "aliases": ["设备名称", "equipment_name", "设备"]},
+        {"field": "equipment_model", "label": "设备型号", "type": "string", "aliases": ["设备型号", "equipment_model", "型号"]},
+        {"field": "runtime_hours", "label": "运行时长(小时)", "type": "number", "aliases": ["运行时长", "runtime_hours", "工作时长"]},
+        {"field": "fault_count", "label": "故障次数", "type": "number", "aliases": ["故障次数", "fault_count", "故障数"]},
+        {"field": "repair_hours", "label": "维修时长(小时)", "type": "number", "aliases": ["维修时长", "repair_hours", "维修时间"]},
+        {"field": "repair_cost", "label": "维修费用", "type": "number", "aliases": ["维修费用", "repair_cost", "维修金额"]},
+        {"field": "calibration_count", "label": "校准次数", "type": "number", "aliases": ["校准次数", "calibration_count", "校准数"]}
+      ]
+    },
+    {
+      "name": "分析看板",
+      "type": "dashboard",
+      "kpis": [
+        {
+          "id": "total_runtime",
+          "label": "总运行时长(小时)",
+          "formula": "SUM(runtime_hours)",
+          "format": "number",
+          "style": "card"
+        },
+        {
+          "id": "fault_rate",
+          "label": "整体故障率",
+          "formula": "SUM(fault_count)/SUM(runtime_hours)*1000",
+          "format": "number",
+          "decimals": 2,
+          "style": "gauge",
+          "suffix": "次/千小时"
+        },
+        {
+          "id": "total_repair_cost",
+          "label": "总维修费用",
+          "formula": "SUM(repair_cost)",
+          "format": "currency",
+          "style": "card"
+        },
+        {
+          "id": "calibration_rate",
+          "label": "校准达标率",
+          "formula": "SUM(calibration_count)/COUNT(equipment_name)",
+          "format": "number",
+          "decimals": 1,
+          "style": "card",
+          "suffix": "次/设备"
+        }
+      ],
+      "charts": [
+        {
+          "id": "fault_trend",
+          "type": "line",
+          "title": "各设备月度故障率趋势",
+          "x": "month",
+          "y": ["fault_rate"],
+          "series_names": ["故障率"],
+          "position": {"row": 1, "col": 1, "width": 16, "height": 10}
+        },
+        {
+          "id": "equipment_compare",
+          "type": "bar",
+          "title": "各设备运行时长与维修费用对比",
+          "x": "equipment_name",
+          "y": ["runtime_hours", "repair_cost"],
+          "series_names": ["运行时长", "维修费用"],
+          "dual_axis": true,
+          "position": {"row": 1, "col": 18, "width": 14, "height": 10}
+        },
+        {
+          "id": "cost_pie",
+          "type": "pie",
+          "title": "维修费用设备占比",
+          "dimension": "equipment_name",
+          "metric": "repair_cost",
+          "position": {"row": 12, "col": 1, "width": 10, "height": 8}
+        },
+        {
+          "id": "fault_rank",
+          "type": "bar",
+          "title": "设备故障次数排名",
+          "x": "equipment_name",
+          "y": ["fault_count"],
+          "series_names": ["故障次数"],
+          "position": {"row": 12, "col": 12, "width": 14, "height": 8}
+        }
+      ]
+    },
+    {
+      "name": "设备明细",
+      "type": "detail",
+      "source": "原始数据",
+      "computed_fields": [
+        {"field": "fault_rate", "label": "故障率(次/千小时)", "formula": "fault_count / runtime_hours * 1000", "format": "number", "decimals": 2},
+        {"field": "avg_repair_time", "label": "平均维修时长(小时)", "formula": "repair_hours / fault_count", "format": "number", "decimals": 1},
+        {"field": "repair_cost_per_hour", "label": "维修费用/运行小时", "formula": "repair_cost / runtime_hours", "format": "currency"}
+      ],
+      "conditional_formatting": [
+        {"field": "fault_rate", "condition": ">5", "format": "red_fill"},
+        {"field": "fault_rate", "condition": "<1", "format": "green_fill"}
+      ]
+    }
+  ],
+  "output_filename": "医疗-设备运维报表-{month}.xlsx"
+}

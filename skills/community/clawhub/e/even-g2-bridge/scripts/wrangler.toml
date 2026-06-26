@@ -1,0 +1,8 @@
+name = "openclaw-g2-bridge"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Uncomment to bind a custom domain:
+# [routes]
+# pattern = "g2.yourdomain.com/*"
+# zone_name = "yourdomain.com"

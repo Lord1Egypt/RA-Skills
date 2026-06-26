@@ -1,0 +1,4 @@
+shoes.jpg '$89'
+jacket.jpg '$150'
+watch.jpg '$450' --no-logo
+bag.jpg '$200' --sticker-only

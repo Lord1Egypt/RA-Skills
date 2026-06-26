@@ -1,0 +1,10 @@
+{
+  "name": "epub-to-markdown",
+  "version": "1.1.1",
+  "description": "Turn an EPUB into an AI-ready Markdown library with a META.md navigation index, chapter-by-chapter Markdown files, and extracted images—ideal for reading, summarization, retrieval, and downstream analysis without loading the whole book at once.",
+  "author": "yuu",
+  "license": "MIT",
+  "permissions": [],
+  "entry": "SKILL.md",
+  "tags": ["epub", "markdown", "books", "summarization", "retrieval", "document-processing"]
+}

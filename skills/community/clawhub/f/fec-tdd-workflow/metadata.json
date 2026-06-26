@@ -1,0 +1,55 @@
+{
+  "id": "fec-tdd-workflow",
+  "name": "TDD 工作流",
+  "category": "testing",
+  "tags": [
+    "tdd",
+    "testing",
+    "red-green-refactor",
+    "regression",
+    "frontend-tests"
+  ],
+  "summary": "Frontend Craft skill for TDD 工作流.",
+  "version": "2.5.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "testing",
+    "tdd",
+    "red-green-refactor",
+    "regression",
+    "frontend-tests"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when implementing new frontend behavior, fixing bugs, or refactoring logic where tests can describe the expected behavior first. Apply to components, hooks/composables, utilities, API clients, route guards, or user workflows; Chinese triggers include TDD, 测试驱动, 先写测试, 红绿重构, 回归测试.",
+  "source": "skills/fec-tdd-workflow",
+  "references": [],
+  "relations": {
+    "relatedSkills": [
+      "fec-component-testing",
+      "fec-e2e-testing",
+      "fec-testing-strategy",
+      "fec-validation-fix"
+    ],
+    "boundaryWorkflows": [
+      "Use a component testing workflow for component, hook, composable, and light integration tests.",
+      "Use an E2E workflow for real-browser critical paths.",
+      "Use a validation workflow after existing checks fail."
+    ],
+    "capabilityTags": [
+      "tdd",
+      "testing",
+      "workflow"
+    ]
+  }
+}

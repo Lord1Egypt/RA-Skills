@@ -1,0 +1,129 @@
+{
+  "id": "dynamic-model-router",
+  "name": "动态模型路由",
+  "version": "0.1.0",
+  "description": "智能路由任务到最佳AI模型，根据任务复杂度、成本、延迟和质量需求自动选择最优模型",
+  "author": "OpenClaw AI Assistant",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/openclaw",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw.git"
+  },
+  "keywords": [
+    "openclaw",
+    "ai",
+    "model-router",
+    "llm",
+    "cost-optimization",
+    "performance",
+    "routing",
+    "intelligent",
+    "automation"
+  ],
+  "category": "ai",
+  "tags": ["ai", "routing", "optimization", "llm", "machine-learning", "automation"],
+  "icon": "https://raw.githubusercontent.com/openclaw/openclaw/main/assets/icons/router.png",
+  
+  "entry": {
+    "module": "./dist/index.js",
+    "function": "skillEntry"
+  },
+  
+  "exports": {
+    "router": {
+      "module": "./dist/index.js",
+      "function": "getRouter"
+    },
+    "skill": {
+      "module": "./dist/index.js",
+      "function": "skillEntry"
+    }
+  },
+  
+  "capabilities": {
+    "routing": {
+      "description": "将任务路由到最佳AI模型",
+      "inputs": ["text"],
+      "outputs": ["routing-decision"]
+    },
+    "prediction": {
+      "description": "预测模型性能（延迟、成本、质量）",
+      "inputs": ["task", "model"],
+      "outputs": ["performance-metrics"]
+    },
+    "learning": {
+      "description": "从历史决策中学习并优化路由策略",
+      "inputs": ["feedback"],
+      "outputs": ["updated-weights"]
+    }
+  },
+  
+  "configuration": {
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否启用技能"
+    },
+    "learningEnabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否启用学习功能"
+    },
+    "defaultStrategy": {
+      "type": "string",
+      "enum": ["balanced", "cost-optimized", "performance-optimized", "quality-optimized"],
+      "default": "balanced",
+      "description": "默认路由策略"
+    },
+    "minSuccessRate": {
+      "type": "number",
+      "default": 0.8,
+      "description": "最小成功率阈值"
+    },
+    "maxAcceptableLatency": {
+      "type": "number",
+      "default": 30000,
+      "description": "最大可接受延迟（毫秒）"
+    },
+    "maxAcceptableCost": {
+      "type": "number",
+      "default": 100,
+      "description": "最大可接受成本"
+    }
+  },
+  
+  "requirements": {
+    "node": ">=18.0.0",
+    "openclaw": ">=0.1.0"
+  },
+  
+  "dependencies": {
+    "sqlite3": "^5.1.6",
+    "winston": "^3.11.0"
+  },
+  
+  "examples": [
+    {
+      "name": "基本路由",
+      "description": "将任务路由到最佳模型",
+      "code": "const router = getRouter();\nconst decision = await router.routeTask('实现快速排序算法');\nconsole.log(decision.selectedModel); // deepseek-reasoner"
+    },
+    {
+      "name": "OpenClaw集成",
+      "description": "在OpenClaw中作为技能使用",
+      "code": "const result = await openclaw.skills.execute('dynamic-model-router', {\n  action: 'route',\n  task: '翻译这段文本'\n});"
+    },
+    {
+      "name": "反馈学习",
+      "description": "记录决策反馈以改进路由",
+      "code": "await router.recordFeedback(decisionId, true, {\n  actualLatency: 1500,\n  userSatisfaction: 0.9\n});"
+    }
+  ],
+  
+  "development": {
+    "build": "npm run build",
+    "test": "npm test",
+    "lint": "npm run lint"
+  }
+}

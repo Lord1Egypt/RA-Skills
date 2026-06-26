@@ -1,0 +1,44 @@
+# 事件模板配置
+# 用于 create 命令的 --template 参数
+
+basic:
+  title: ""
+  type: ""
+  chapter: 1
+  description: ""
+  causality:
+    causes: []
+    effects: []
+  characters: []
+  foreshadowing: []
+  emotion_arc:
+    start: 平静
+    middle: 平静
+    end: 平静
+
+complex:
+  title: ""
+  type: ""
+  chapter: 1
+  description: |
+    详细描述事件的背景、过程和影响
+  causality:
+    causes:
+      - 前置事件1
+      - 前置事件2
+    effects:
+      - 后续事件1
+      - 后续事件2
+  characters:
+    - name: ""
+      role: ""
+      action: ""
+  foreshadowing:
+    - id: ""
+      description: ""
+      payoff_chapter: 0
+      payoff_description: ""
+  emotion_arc:
+    start: 平静
+    middle: 紧张
+    end: 高潮

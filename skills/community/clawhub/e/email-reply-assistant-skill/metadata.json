@@ -1,0 +1,19 @@
+{
+  "slug": "email-reply-assistant-skill",
+  "name": "Email Reply Assistant Skill",
+  "version": "0.1.0",
+  "tags": [
+    "communication",
+    "email-reply-assistant",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Communication",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-08",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

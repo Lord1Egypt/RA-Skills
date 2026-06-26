@@ -1,0 +1,11 @@
+# Feishu News Skill Requirements
+
+# Base dependencies for Feishu integration
+feishu-sdk>=1.0.0
+
+# For web fetching and parsing
+requests>=2.25.1
+beautifulsoup4>=4.9.3
+
+# For data processing
+pandas>=1.2.0

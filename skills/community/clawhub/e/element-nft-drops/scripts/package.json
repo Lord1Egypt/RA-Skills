@@ -1,0 +1,22 @@
+{
+  "name": "element-drop-scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "check": "pnpm run typecheck",
+    "test": "vitest run",
+    "dev": "tsx src/cli.ts"
+  },
+  "dependencies": {
+    "cuimp": "^1.10.0",
+    "ethers": "^6.13.5",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.9.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

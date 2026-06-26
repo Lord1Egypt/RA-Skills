@@ -1,0 +1,9 @@
+{
+  "name": "finance-data-fetcher",
+  "version": "1.0.0",
+  "description": "金融数据获取工具，使用AkShare获取股票行情、财务数据和资金流向信息",
+  "main": "skill_main.py",
+  "exports": ["fetch_stock_quote", "fetch_financial_data", "fetch_capital_flow", "fetch_fundamental_indicators"],
+  "dependencies": ["akshare", "pandas", "requests"],
+  "targetAgents": ["AIData", "AIFundamentals", "AITechnicals"]
+}

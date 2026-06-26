@@ -1,0 +1,58 @@
+{
+  "type": "form",
+  "title": "填写签署方信息",
+  "description": "请填写合同签署方的信息",
+  "sections": [
+    {
+      "title": "签署方",
+      "fields": [
+        {
+          "name": "signerType",
+          "type": "radio",
+          "label": "签署方类型",
+          "options": [
+            {"value": "personal", "label": "个人"},
+            {"value": "corp", "label": "企业"}
+          ],
+          "default": "personal"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "姓名/企业名称",
+          "required": true,
+          "placeholder": "请输入签署方姓名或企业全称"
+        },
+        {
+          "name": "contactName",
+          "type": "text",
+          "label": "经办人姓名",
+          "required": false,
+          "placeholder": "企业签署时需填写经办人姓名",
+          "visibleWhen": {
+            "field": "signerType",
+            "value": "corp"
+          }
+        },
+        {
+          "name": "contact",
+          "type": "text",
+          "label": "手机号/邮箱",
+          "required": true,
+          "placeholder": "请输入手机号或邮箱"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "label": "添加签署方",
+      "type": "addItem"
+    },
+    {
+      "label": "确认并发起签署",
+      "type": "submit",
+      "primary": true
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "feishu-group-learning",
+  "version": "1.0.0",
+  "description": "自动分析飞书群消息，提取学习点和进化建议",
+  "main": "group_learning.py",
+  "scripts": {
+    "analyze": "bash analyze.sh"
+  },
+  "keywords": ["feishu", "learning", "analysis"],
+  "author": "Vita虾助理",
+  "license": "MIT"
+}

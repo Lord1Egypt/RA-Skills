@@ -1,0 +1,8 @@
+{
+  "name": "elm",
+  "version": "2.0.1",
+  "description": "饿了么下单助手 - 自然语言输入需求，用户自助登录后按地址搜商品，优惠优化后加购物车",
+  "keywords": ["elm", "eleme", "饿了么", "waimai", "takeout", "delivery", "coupon", "hongbao", "cart", "budget"],
+  "author": "openclaw",
+  "license": "MIT"
+}

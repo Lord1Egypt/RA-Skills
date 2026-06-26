@@ -1,0 +1,10 @@
+{
+  "app_id": "cli_xxx",
+  "app_secret": "xxx",
+  "verification_token": "xxx",
+  "encrypt_key": "xxx",
+  "webhook_url": "https://your-domain.com/webhook",
+  "integration_type": "bot",
+  "permissions": ["im:resource", "contact:user.base"],
+  "features": ["message_sending", "user_info_access"]
+}

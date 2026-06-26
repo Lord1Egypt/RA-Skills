@@ -1,0 +1,36 @@
+{
+  "name": "feishu-message-download",
+  "version": "1.0.0",
+  "description": "从飞书消息中下载文件（视频、图片、文档等）到本地",
+  "author": "勇哥的小飞侠 🧚🏻‍♀️🌸🧚🏻",
+  "license": "MIT",
+  "keywords": [
+    "feishu",
+    "lark",
+    "download",
+    "file",
+    "message",
+    "飞书",
+    "下载",
+    "文件"
+  ],
+  "main": "download.py",
+  "scripts": {
+    "test": "python3 download.py --help"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "dependencies": {
+    "requests": "^2.28.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cindypapa/feishu-message-download"
+  },
+  "clawhub": {
+    "category": "productivity",
+    "tags": ["feishu", "download", "file-management"],
+    "icon": "📥"
+  }
+}

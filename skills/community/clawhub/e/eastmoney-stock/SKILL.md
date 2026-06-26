@@ -1,35 +1,29 @@
 ---
-name: "Eastmoney Stock"
-description: "查询东方财富股票数据，包括个股行情、涨跌幅、成交量等。用于回答股票相关问题。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/eastmoney-stock"
-sourceUrl: "https://clawhub.ai/skills/eastmoney-stock"
+name: eastmoney-stock
+version: 1.0.0
+description: 查询东方财富股票数据，包括个股行情、涨跌幅、成交量等。用于回答股票相关问题。
 ---
 
-# Eastmoney Stock
+# 东方财富股票查询
 
-> 查询东方财富股票数据，包括个股行情、涨跌幅、成交量等。用于回答股票相关问题。
+使用东方财富API获取股票数据。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/eastmoney-stock`
-- **Source URL:** [https://clawhub.ai/skills/eastmoney-stock](https://clawhub.ai/skills/eastmoney-stock)
+## 支持的查询类型
 
-## Overview
+- **个股行情**：股票代码、现价、涨跌、成交量、成交额
+- **涨跌幅排行**：当日涨跌幅排名
+- **自选股查询**：用户关注的股票信息
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/eastmoney-stock
-```
+直接问我股票相关问题，例如：
+- "600519现在多少钱？"（查询茅台股价）
+- "今天涨幅最高的股票"
+- "帮我查一下腾讯的股票"
+- "A股今天怎么样？"
+
+## 注意事项
+
+- 支持A股、港股、美股
+- 港股代码加.HK，美股代码加.N
+- 数据有几分钟延迟

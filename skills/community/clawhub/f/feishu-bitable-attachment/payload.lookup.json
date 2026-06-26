@@ -1,0 +1,17 @@
+{
+  "target": {
+    "app_token": "bascxxxxxxxxxxxxx",
+    "table_name": "合同归档",
+    "field_name": "附件",
+    "lookup": {
+      "field_name": "合同编号",
+      "value": "HT-2026-001"
+    },
+    "allow_create_if_lookup_missing": false
+  },
+  "source": {
+    "type": "local",
+    "ref": "/tmp/contract.pdf"
+  },
+  "append": true
+}

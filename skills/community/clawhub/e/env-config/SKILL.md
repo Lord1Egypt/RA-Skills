@@ -1,35 +1,64 @@
 ---
-name: "Env Config"
-description: "环境变量配置管理。.env模板生成(Node/Python/Go/Docker)、验证、环境变量生成、多环境合并、加密建议、文档化。Environment variable config manager with templates, validation, generation, multi-env merge..."
-category: "productivity"
-source: "ClawHub"
-tags: [productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/env-config"
-sourceUrl: "https://clawhub.ai/skills/env-config"
+version: "2.0.0"
+name: Env Config Manager
+description: "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━. Use when you need env config capabilities. Triggers on: env config."
+  环境变量配置管理。.env模板生成(Node/Python/Go/Docker)、验证、环境变量生成、多环境合并、加密建议、文档化。Environment variable config manager with templates, validation, generation, multi-env merge, encryption, documentation. .env、配置管理、环境变量。
+author: BytesAgain
+homepage: https://bytesagain.com
+source: https://github.com/bytesagain/ai-skills
 ---
+# Env Config Manager
 
-# Env Config
+环境变量配置管理。.env模板生成(Node/Python/Go/Docker)、验证、环境变量生成、多环境合并、加密建议、文档化。Environment variable config manager with templates, validation, generation, multi-env merge, encryption, documentation. .env、配置管理、环境变量。
 
-> 环境变量配置管理。.env模板生成(Node/Python/Go/Docker)、验证、环境变量生成、多环境合并、加密建议、文档化。Environment variable config manager with templates, validation, generation, multi-env merge...
+## 使用场景
 
-- **Category:** Productivity
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/env-config`
-- **Source URL:** [https://clawhub.ai/skills/env-config](https://clawhub.ai/skills/env-config)
+> 💡 无论你是新手还是专业人士，都能快速上手
 
-## Overview
+## 可用命令
 
+- **template** — template
+- **validate** — validate
+- **generate** — generate
+- **merge** — merge
+- **encrypt** — encrypt
+- **document** — document
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 专业建议
+
+- 每个项目都有 `.env.example`（不含真实值）
+- `.env` 加入 `.gitignore`
+- 变量名全大写下划线分隔: `DATABASE_URL`
+- 布尔值用 `true/false` 不用 `1/0`
+- 生产环境不要用 .env 文件，用环境变量注入
+
+---
+*Env Config Manager by BytesAgain*
+
+## Commands
+
+- `compose` — ============================================
+- `decode` — Execute decode
+- `diff` — Execute diff
+- `encode` — Execute encode
+- `fastapi` — ============================================
+- `gitignore` — Execute gitignore
+- `golang` — ============================================
+- `lint` — Execute lint
+- `node` — Execute node
+- `nodejs` — ============================================
+- `nuxt` — ============================================
+- `sort` — 🔑 .env.example 中有但 .env 中缺少的键：
+---
+💬 Feedback & Feature Requests: https://bytesagain.com/feedback
+Powered by BytesAgain | bytesagain.com
+
+## Examples
+
 ```bash
-hermes skills install clawhub/env-config
+# Show help
+env-config help
+
+# Run
+env-config run
 ```

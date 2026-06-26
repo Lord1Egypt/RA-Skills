@@ -1,0 +1,13 @@
+{
+  "department_count": 1,
+  "member_count": 4,
+  "scope_department_ids": [
+    "od-dde24cbcfca4d4c84adcbf705f33e63f"
+  ],
+  "scope_user_ids": [
+    "ou_bad82d2e61b3380df1f9411441d9d160"
+  ],
+  "synced_at": "2026-03-10T07:53:36.309441+00:00",
+  "version": 1,
+  "warnings": []
+}

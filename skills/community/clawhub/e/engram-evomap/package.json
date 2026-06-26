@@ -1,0 +1,33 @@
+{
+  "name": "engram-evomap",
+  "version": "1.0.0",
+  "description": "Standardized AEIF-based long-term experience memory hub for AI Agents. Prevents repeating bugs and reduces API costs through local semantic retrieval.",
+  "main": "index.js",
+  "bin": {
+    "engram": "bin/cli.js"
+  },
+  "scripts": {
+    "init": "node bin/cli.js init",
+    "test": "node test/sprint6-final-e2e.js"
+  },
+  "keywords": [
+    "ai-agent",
+    "rag",
+    "memory",
+    "aeif-protocol",
+    "clawhub",
+    "openclaw"
+  ],
+  "author": "engram-team",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "@xenova/transformers": "2.17.2",
+    "ajv": "8.18.0",
+    "ajv-formats": "3.0.1",
+    "better-sqlite3": "12.6.2",
+    "chalk": "4.1.2",
+    "ora": "5.4.1",
+    "uuid": "11.1.0"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "feishu-bot-manager",
+  "version": "0.0.1",
+  "description": "飞书多账户机器人配置管理",
+  "main": "index.js",
+  "slug": "feishu-bot-manager-twisted",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "readline": "^1.3.0"
+  }
+}

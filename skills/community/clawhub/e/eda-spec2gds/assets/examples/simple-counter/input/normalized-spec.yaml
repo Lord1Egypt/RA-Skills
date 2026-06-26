@@ -1,0 +1,36 @@
+design_name: simple_counter
+top_module: simple_counter
+description: 8-bit synchronous up counter with enable
+inputs:
+  - name: clk
+    width: 1
+    desc: main clock
+  - name: rst_n
+    width: 1
+    desc: active-low reset
+  - name: en
+    width: 1
+    desc: increment enable
+outputs:
+  - name: count
+    width: 8
+    desc: counter value
+clock:
+  name: clk
+  edge: posedge
+reset:
+  name: rst_n
+  active_level: low
+  sync_or_async: async
+functional_requirements:
+  - increment count when en is high
+  - clear count to zero on reset
+timing_target: 20
+target_flow: openlane
+verification_targets:
+  - reset behavior
+  - counting behavior
+assumptions:
+  - single clock domain
+  - no CDC
+  - no memory macros

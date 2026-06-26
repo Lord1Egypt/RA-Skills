@@ -1,35 +1,40 @@
 ---
-name: "Exa"
-description: "Neural web search and code context via Exa AI API. Requires EXA_API_KEY. Use for finding documentation, code examples, research papers, or company info."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/exa"
-sourceUrl: "https://clawhub.ai/skills/exa"
+name: exa
+description: Neural web search and code context via Exa AI API. Requires EXA_API_KEY. Use for finding documentation, code examples, research papers, or company info.
+metadata: {"clawdbot":{"emoji":"🧠","requires":{"env":["EXA_API_KEY"]}}}
 ---
 
-# Exa
+# Exa - Neural Web Search
 
-> Neural web search and code context via Exa AI API. Requires EXA_API_KEY. Use for finding documentation, code examples, research papers, or company info.
+Direct API access to Exa's neural search engine.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/exa`
-- **Source URL:** [https://clawhub.ai/skills/exa](https://clawhub.ai/skills/exa)
+## Setup
 
-## Overview
+**1. Get your API Key:**
+Get a key from [Exa Dashboard](https://dashboard.exa.ai/api-keys).
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+**2. Set it in your environment:**
 ```bash
-hermes skills install clawhub/exa
+export EXA_API_KEY="your-key-here"
+```
+
+## Usage
+
+### Web Search
+```bash
+bash scripts/search.sh "query" [num_results] [type]
+```
+*   `type`: auto (default), neural, fast, deep
+*   `category`: company, research-paper, news, github, tweet, personal-site, pdf
+
+### Code Context
+Finds relevant code snippets and documentation.
+```bash
+bash scripts/code.sh "query" [num_results]
+```
+
+### Get Content
+Extract full text from URLs.
+```bash
+bash scripts/content.sh "url1" "url2"
 ```

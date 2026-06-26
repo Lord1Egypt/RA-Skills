@@ -1,0 +1,21 @@
+{
+  "name": "feishu-progress-heartbeat",
+  "version": "1.1.0",
+  "description": "Feishu progress heartbeat skill for long-running tasks — sends short progress updates with estimated percentage every 3 minutes and surfaces stalls.",
+  "author": "Dawei",
+  "homepage": "https://github.com/wd041216-bit/openclaw-feishu-progress-heartbeat",
+  "metadata": {
+    "tags": [
+      "feishu",
+      "heartbeat",
+      "progress",
+      "long-running",
+      "status",
+      "task-management"
+    ],
+    "categories": [
+      "Productivity",
+      "Communication"
+    ]
+  }
+}

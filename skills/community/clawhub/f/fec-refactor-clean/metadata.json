@@ -1,0 +1,40 @@
+{
+  "id": "fec-refactor-clean",
+  "name": "重构清理",
+  "category": "review-quality",
+  "tags": [
+    "refactor",
+    "dead-code",
+    "cleanup",
+    "unused-exports",
+    "dependencies"
+  ],
+  "summary": "Frontend Craft skill for 重构清理.",
+  "version": "2.6.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "review-quality",
+    "refactor",
+    "dead-code",
+    "cleanup",
+    "unused-exports",
+    "dependencies"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when safely removing dead frontend code, unused exports, stale components, obsolete routes, unused dependencies, or cleanup targets found by tools such as knip, depcheck, ts-prune, TypeScript, ESLint, or manual review. Do not use for feature rewrites that change behavior; Chinese triggers include 死代码, 清理未使用, refactor clean, 依赖清理, 删除无用代码.",
+  "source": "skills/fec-refactor-clean",
+  "references": [
+    "references/report-template.md"
+  ]
+}

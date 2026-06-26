@@ -1,0 +1,16 @@
+name = "energy-tracker"
+slug = "energy-tracker"
+version = "1.1.0"
+description = "每日能量状态追踪与多日趋势分析工具 / Daily energy status tracking and multi-day trend analysis tool"
+description_en = "Daily energy status tracking and multi-day trend analysis tool. AI agent proactively collects daily energy status, provides instant interpretation and advice. Automatically performs trend analysis after 7+ days of data, identifies psychological patterns and provides professional suggestions."
+category = "生活方式"
+visibility = "public"
+
+[xiaping]
+enabled = true
+title = "能量状态追踪器"
+summary = "每日能量状态追踪与多日趋势分析工具。智能体主动采集用户每日能量状态，提供即时状态解读和建议。积累7天以上数据后，自动进行趋势分析，识别心理模式并给出专业建议。"
+summary_en = "Daily energy status tracking and multi-day trend analysis tool. AI agent proactively collects daily energy status, provides instant interpretation and advice. Automatically performs trend analysis after 7+ days of data, identifies psychological patterns and provides professional suggestions."
+trigger = "[\"能量追踪\", \"能量状态\", \"心理能量\", \"每日能量\", \"能量评估\", \"energy tracker\", \"energy status\", \"mental energy\"]"
+category = "[\"生活方式\"]"
+tags = "[\"心理健康\", \"能量管理\", \"状态追踪\", \"趋势分析\", \"mental health\", \"energy management\", \"status tracking\", \"trend analysis\"]"

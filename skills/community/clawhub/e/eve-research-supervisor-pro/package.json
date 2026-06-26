@@ -1,0 +1,32 @@
+{
+  "name": "eve-research-supervisor-pro",
+  "version": "5.1.0",
+  "description": "EVE — Persistent AI Research Supervisor Agent. Three modes (Auto/Semi-Auto/Manual), full research lifecycle: paper search, citation graph, gap detection, idea generation, LaTeX paper writing with real figures/tables, server monitoring, and experiment alerts.",
+  "author": "Zain Ul Abdeen",
+  "license": "MIT",
+  "tags": [
+    "research", "arxiv", "ai", "phd", "thesis",
+    "literature-review", "survey", "paper-writing",
+    "gap-analysis", "latex", "figures", "citation-graph",
+    "slurm", "gpu", "experiment", "persistent-agent"
+  ],
+  "homepage": "https://clawhub.ai/skills/eve-research-supervisor-pro",
+  "repository": "",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "config.yaml",
+    "install.sh",
+    "scripts/",
+    "templates/",
+    "docs/",
+    "assets/"
+  ],
+  "postinstall": "bash install.sh",
+  "engines": {
+    "python": ">=3.9"
+  },
+  "dependencies": {
+    "python": ["requests", "pypdf", "matplotlib", "numpy"]
+  }
+}

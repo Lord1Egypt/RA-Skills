@@ -1,0 +1,26 @@
+{
+  "name": "exponential-growth-system",
+  "version": "1.0.0",
+  "description": "AI Agent 指数级成长系统 - 从解决问题到固化能力的完整方法论",
+  "main": "scripts/init_growth_system.js",
+  "scripts": {
+    "init": "node scripts/init_growth_system.js",
+    "update": "node scripts/update_evolution.js",
+    "test": "echo \"Growth system ready\""
+  },
+  "keywords": [
+    "growth",
+    "learning",
+    "knowledge-management",
+    "skill-creation",
+    "evolution",
+    "ai-agent",
+    "self-improvement",
+    "exponential-growth"
+  ],
+  "author": "家庭助手",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

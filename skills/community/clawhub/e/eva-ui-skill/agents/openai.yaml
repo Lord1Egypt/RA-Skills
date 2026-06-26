@@ -1,0 +1,3 @@
+display_name: EVA UI
+short_description: Design EVA-inspired monitoring interfaces with strong red-orange instrument language.
+default_prompt: Create or review an EVA-inspired interface using high-density instrumentation, hard-edged frames, red-orange status colors, and pattern primitives such as stripes, ticks, rails, threshold bars, and reticles.

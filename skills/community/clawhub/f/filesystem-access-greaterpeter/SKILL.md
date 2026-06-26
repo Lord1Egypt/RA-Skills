@@ -1,35 +1,15 @@
 ---
-name: "Filesystem Access (GreaterPeter)"
-description: "安全的本地文件读/写/列表能力，默认只在 OpenClaw workspace 目录内工作。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/filesystem-access-greaterpeter"
-sourceUrl: "https://clawhub.ai/skills/filesystem-access-greaterpeter"
+name: filesystem-access-greaterpeter
+description: 安全的本地文件读/写/列表能力，默认只在 OpenClaw workspace 目录内工作。
 ---
 
-# Filesystem Access (GreaterPeter)
+## 使用建议
 
-> 安全的本地文件读/写/列表能力，默认只在 OpenClaw workspace 目录内工作。
+- 当你需要查看、编辑或列出工作区内的文件时使用本技能。
+- 仅访问相对路径或工作区子目录，避免越权访问用户其他目录。
+- 典型场景：查看日志、生成 Markdown 报告、保存脚本或配置文件。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/filesystem-access-greaterpeter`
-- **Source URL:** [https://clawhub.ai/skills/filesystem-access-greaterpeter](https://clawhub.ai/skills/filesystem-access-greaterpeter)
+## 安全约束
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/filesystem-access-greaterpeter
-```
+- 禁止在 workspace 之外执行写入操作。
+- 避免删除用户重要文件，如配置、源码或系统文件。

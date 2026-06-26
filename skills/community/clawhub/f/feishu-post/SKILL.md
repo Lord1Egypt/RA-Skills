@@ -1,35 +1,32 @@
----
-name: "Feishu Post"
-description: "Send rich text post messages with native emoji support and markdown-like formatting to Feishu users or chats using Feishu Post content structure."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-post"
-sourceUrl: "https://clawhub.ai/skills/feishu-post"
----
+# Feishu Post (RichText) Skill
 
-# Feishu Post
+Send Rich Text (Post) messages to Feishu.
+This format is distinct from Cards. It supports native rich text elements but is less flexible in layout than cards.
+It is better for long-form text mixed with images/links.
 
-> Send rich text post messages with native emoji support and markdown-like formatting to Feishu users or chats using Feishu Post content structure.
+## Prerequisites
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-post`
-- **Source URL:** [https://clawhub.ai/skills/feishu-post](https://clawhub.ai/skills/feishu-post)
+- Install `feishu-common` first.
+- This skill depends on `../feishu-common/index.js` via `utils/feishu-client.js`.
 
-## Overview
+## Features
+- **Native Emoji Support**: Automatically converts `[微笑]`, `[得意]` etc. to Feishu native emoji tags.
+- **Markdown-like Parsing**: Supports simple newlines and paragraphs.
+- **Rich Text**: Uses Feishu's Post content structure.
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/feishu-post
+node skills/feishu-post/send.js --target "ou_..." --text-file "temp/msg.md" --title "Optional Title"
 ```
+
+## Options
+- `-t, --target <id>`: Target ID (user `ou_...` or chat `oc_...`).
+- `-x, --text <text>`: Text content (supports `\n` for newlines and `[emoji]` tags).
+- `-f, --text-file <path>`: Read content from file.
+- `--title <text>`: Title of the post.
+- `--reply-to <id>`: Message ID to reply to.
+
+## Emoji List
+Supported emojis include: `[微笑]`, `[色]`, `[亲亲]`, `[大哭]`, `[强]`, `[加油]`, and many more.
+See `emoji-map.js` for the full mapping.

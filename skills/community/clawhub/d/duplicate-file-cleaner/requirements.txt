@@ -1,0 +1,15 @@
+# duplicate-file-cleaner 依赖说明
+
+# 核心依赖
+# 本技能使用 Python 标准库开发，无需额外安装第三方依赖
+# 主要使用的标准库模块：
+# - os: 文件系统操作
+# - hashlib: 文件哈希计算
+# - json: 报告文件生成
+# - argparse: 命令行参数解析
+# - datetime: 时间处理
+# - pathlib: 路径处理
+
+# 系统要求
+# - Python 3.8 或更高版本
+# - 操作系统：Windows、macOS、Linux

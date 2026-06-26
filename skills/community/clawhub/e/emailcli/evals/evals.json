@@ -1,0 +1,30 @@
+{
+	"skill_name": "emailcli",
+	"evals": [
+		{
+			"id": 1,
+			"prompt": "Check my inbox and show me the 10 most recent emails with their subjects and senders",
+			"expected_output": "Should compose emailcli list command with --limit 10, parse JSON output, present results clearly with subjects and senders"
+		},
+		{
+			"id": 2,
+			"prompt": "Send an email to team@company.com with subject 'Weekly Update' and body 'Here is the weekly status report for your review.' CC to manager@company.com and attach report.pdf",
+			"expected_output": "Should compose emailcli send command with --to, --subject, --body, --cc, and --attach flags, execute it, check for success/error"
+		},
+		{
+			"id": 3,
+			"prompt": "Search my email for messages containing 'invoice' in the subject from this month",
+			"expected_output": "Should compose emailcli search command with appropriate Gmail search syntax (subject:invoice after:2024/01/01 or similar), parse results"
+		},
+		{
+			"id": 4,
+			"prompt": "Mark emails with IDs 12345, 12346, and 12347 as read, then move them to the Archive folder",
+			"expected_output": "Should compose two batch commands: emailcli mark --ids 12345,12346,12347 --read and emailcli move --ids 12345,12346,12347 --folder \"[Gmail]/Archive\", check each for success"
+		},
+		{
+			"id": 5,
+			"prompt": "Delete all emails in my trash that are older than 30 days. First show me what would be deleted.",
+			"expected_output": "Should first search for emails matching that criteria, present them, then ask for confirmation before composing delete commands"
+		}
+	]
+}

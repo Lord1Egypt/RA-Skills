@@ -1,35 +1,35 @@
----
-name: "Expanso text-summarize"
-description: "Summarize input text into 3-5 concise bullet points using AI with Expanso Edge."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/expanso-text-summarize"
-sourceUrl: "https://clawhub.ai/skills/expanso-text-summarize"
----
+# text-summarize
 
-# Expanso text-summarize
+Summarize text into 3-5 bullet points using AI
 
-> Summarize input text into 3-5 concise bullet points using AI with Expanso Edge.
+## Requirements
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/expanso-text-summarize`
-- **Source URL:** [https://clawhub.ai/skills/expanso-text-summarize](https://clawhub.ai/skills/expanso-text-summarize)
+- Expanso Edge installed (`expanso-edge` binary in PATH)
+- Install via: `clawhub install expanso-edge`
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### CLI Pipeline
 ```bash
-hermes skills install clawhub/expanso-text-summarize
+# Run standalone
+echo '<input>' | expanso-edge run pipeline-cli.yaml
 ```
+
+### MCP Pipeline
+```bash
+# Start as MCP server
+expanso-edge run pipeline-mcp.yaml
+```
+
+### Deploy to Expanso Cloud
+```bash
+expanso-cli job deploy https://skills.expanso.io/text-summarize/pipeline-cli.yaml
+```
+
+## Files
+
+| File | Purpose |
+|------|---------|
+| `skill.yaml` | Skill metadata (inputs, outputs, credentials) |
+| `pipeline-cli.yaml` | Standalone CLI pipeline |
+| `pipeline-mcp.yaml` | MCP server pipeline |

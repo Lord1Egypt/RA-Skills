@@ -1,0 +1,57 @@
+{
+  "name": "ebook-reader",
+  "version": "1.0.0",
+  "description": "智能电子书阅读助手，支持EPUB/PDF等常见格式解析；提供章节总结、关键内容摘录、深度分析与落地应用建议",
+  "author": "Skill Builder",
+  "license": "MIT",
+  "keywords": [
+    "ebook",
+    "reader",
+    "epub",
+    "pdf",
+    "reading",
+    "summary",
+    "analysis",
+    "knowledge-management"
+  ],
+  "category": "productivity",
+  "main": "SKILL.md",
+  "icon": "",
+  "homepage": "",
+  "repository": "",
+  "dependencies": {
+    "python": [
+      "ebooklib==0.18",
+      "pypdf==3.17.0",
+      "beautifulsoup4==4.12.0"
+    ]
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "scripts": {
+    "parse": "scripts/ebook_parser.py"
+  },
+  "capabilities": [
+    "电子书格式解析（EPUB/PDF）",
+    "章节智能总结",
+    "关键内容摘录",
+    "深度内容分析",
+    "落地应用建议"
+  ],
+  "triggers": [
+    "阅读电子书",
+    "读书笔记",
+    "知识转化",
+    "章节分析",
+    "内容摘录"
+  ],
+  "compatibility": {
+    "platforms": ["any"],
+    "runtimes": ["python3"]
+  },
+  "readme": "README.md",
+  "changelog": "",
+  "created": "2025-03-26",
+  "updated": "2025-03-26"
+}

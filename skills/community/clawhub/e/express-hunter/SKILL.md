@@ -1,35 +1,37 @@
 ---
-name: "Express Tracker"
-description: "智能快递追踪管家。输入任意单号自动识别快递公司并查询完整物流轨迹+地图追踪链接，支持转发快递短信自动提取单号加入追踪，支持收藏夹管理和每日定时推送快递日报。覆盖顺丰、极兔、圆通、中通、韵达、京东、百世、EMS、德邦等1000+快递公司。零配置开箱即用，持续跟踪与上报。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/express-hunter"
-sourceUrl: "https://clawhub.ai/skills/express-hunter"
+name: express-hunter
+description: 智能快递追踪管家。输入任意单号自动识别快递公司并查询完整物流轨迹+地图追踪链接，支持转发快递短信自动提取单号加入追踪，支持收藏夹管理和每日定时推送快递日报。覆盖顺丰、极兔、圆通、中通、韵达、京东、百世、EMS、德邦等1000+快递公司。零配置开箱即用，持续跟踪与上报。
 ---
 
-# Express Tracker
+# 快递猎手 · 智能追踪
 
-> 智能快递追踪管家。输入任意单号自动识别快递公司并查询完整物流轨迹+地图追踪链接，支持转发快递短信自动提取单号加入追踪，支持收藏夹管理和每日定时推送快递日报。覆盖顺丰、极兔、圆通、中通、韵达、京东、百世、EMS、德邦等1000+快递公司。零配置开箱即用，持续跟踪与上报。
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/express-hunter`
-- **Source URL:** [https://clawhub.ai/skills/express-hunter](https://clawhub.ai/skills/express-hunter)
+1. **单号查询** - 输入快递单号，自动识别快递公司并返回完整物流轨迹 + 地图追踪链接
+2. **短信解析** - 转发快递通知短信，自动提取单号和快递公司并加入追踪列表
+3. **追踪管理** - 添加/删除/查看/刷新所有在途快递
+4. **定时报告** - 每天 8:00 / 12:00 / 18:00 自动推送全量快递状态（含地图链接）
+5. **地图追踪** - 每个快递附快递100地图追踪链接，点击查看包裹路线图
 
-## Overview
+## 数据引擎
 
+- **主力**: 聚合数据（juhe.cn），稳定可靠
+- **备用**: 快递100公开接口
+- **识别**: 自动识别 + 热线号匹配 + 轨迹关键词反推 + 前缀匹配
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/express-hunter
-```
+## 数据存储
+
+- 快递数据: `G:\PC先生\express_data\packages.json`
+- 聚合Key: `桌面\999.txt`（方便更新）
+
+## 使用脚本
+
+| 命令 | 说明 |
+|------|------|
+| `python scripts/track.py <单号>` | 查快递（含地图链接） |
+| `python scripts/sms_parse.py "<短信>"` | 解析快递短信 |
+| `python scripts/manage.py list` | 列出所有快递 |
+| `python scripts/manage.py add <单号>` | 添加追踪 |
+| `python scripts/manage.py refresh` | 刷新全部状态 |
+| `python scripts/report.py` | 生成日报 |
+| `python scripts/map.py` | 查看地图追踪链接 |

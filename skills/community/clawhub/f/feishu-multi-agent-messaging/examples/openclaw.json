@@ -1,0 +1,79 @@
+{
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "domain": "feishu",
+      "groupPolicy": "open",
+      "accounts": {
+        "default": {
+          "appId": "cli_your_main_bot_appid",
+          "appSecret": "your_main_bot_secret"
+        },
+        "coder": {
+          "appId": "cli_your_coder_bot_appid",
+          "appSecret": "your_coder_bot_secret",
+          "botName": "码农"
+        },
+        "reviewer": {
+          "appId": "cli_your_reviewer_bot_appid",
+          "appSecret": "your_reviewer_bot_secret",
+          "botName": "审核老师"
+        }
+      },
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        "ou_user1_openid_from_default_bot",
+        "ou_user2_openid_from_default_bot"
+      ]
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "glmcode/glm-5"
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "workspace": "/root/.openclaw/workspace"
+      },
+      {
+        "id": "coder",
+        "workspace": "/root/.openclaw/workspace/coder",
+        "agentDir": "/root/.openclaw/agents/coder",
+        "model": "glmcode/glm-5"
+      },
+      {
+        "id": "reviewer",
+        "workspace": "/root/.openclaw/workspace",
+        "agentDir": "/root/.openclaw/agents/reviewer",
+        "model": "glmcode/glm-5"
+      }
+    ]
+  },
+  "bindings": [
+    {
+      "agentId": "main",
+      "match": {
+        "channel": "feishu",
+        "accountId": "default"
+      }
+    },
+    {
+      "agentId": "coder",
+      "match": {
+        "channel": "feishu",
+        "accountId": "coder"
+      }
+    },
+    {
+      "agentId": "reviewer",
+      "match": {
+        "channel": "feishu",
+        "accountId": "reviewer"
+      }
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "id": "minimal",
+    "keywords": ["minimal", "clean", "enterprise", "trust", "calm"],
+    "description": "Quiet surfaces, strong hierarchy, restrained accents, fast scanning.",
+    "tokens": { "radius": "4-8px", "shadow": "low", "density": "medium-high" },
+    "bestFor": ["enterprise", "finance", "healthcare", "documentation"],
+    "avoid": ["empty white space without information priority", "low-contrast gray text"]
+  },
+  {
+    "id": "editorial",
+    "keywords": ["editorial", "magazine", "portfolio", "brand", "luxury"],
+    "description": "Expressive typography, strong media, controlled asymmetry, narrative pacing.",
+    "tokens": { "radius": "0-8px", "shadow": "content-dependent", "density": "medium" },
+    "bestFor": ["creative", "ecommerce", "portfolio", "launch pages"],
+    "avoid": ["decorative text that harms reading", "media that hides the actual product"]
+  },
+  {
+    "id": "glass",
+    "keywords": ["glass", "modern", "ai", "overlay", "depth"],
+    "description": "Layered translucent surfaces used sparingly for hierarchy and focus.",
+    "tokens": { "radius": "12-20px", "shadow": "soft depth", "density": "medium" },
+    "bestFor": ["modern SaaS", "AI tools", "visualization"],
+    "avoid": ["blurred low-contrast text", "using blur as pure decoration"]
+  },
+  {
+    "id": "brutalist",
+    "keywords": ["brutalist", "raw", "bold", "youth", "experimental"],
+    "description": "Hard edges, bold contrast, visible structure, intentionally direct composition.",
+    "tokens": { "radius": "0-4px", "shadow": "hard or none", "density": "variable" },
+    "bestFor": ["creative campaigns", "youth brands", "experimental portfolios"],
+    "avoid": ["serious regulated workflows", "inaccessible contrast or chaotic navigation"]
+  },
+  {
+    "id": "bento",
+    "keywords": ["bento", "cards", "modular", "features", "education"],
+    "description": "Modular information blocks with varied scale and clear grouping.",
+    "tokens": { "radius": "8px or less unless system differs", "shadow": "subtle", "density": "medium" },
+    "bestFor": ["feature overviews", "learning paths", "product summaries"],
+    "avoid": ["card-inside-card layouts", "equal-weight modules that hide priority"]
+  },
+  {
+    "id": "data-dense",
+    "keywords": ["dashboard", "analytics", "table", "monitoring", "dense"],
+    "description": "Operational density, table/chart alignment, semantic color, stable controls.",
+    "tokens": { "radius": "4-8px", "shadow": "minimal", "density": "high" },
+    "bestFor": ["dashboards", "admin", "monitoring", "analytics"],
+    "avoid": ["marketing hero screens", "large decorative cards"]
+  },
+  {
+    "id": "immersive",
+    "keywords": ["immersive", "game", "3d", "canvas", "story", "visualization"],
+    "description": "Full-bleed visual space with controls that remain predictable and readable.",
+    "tokens": { "radius": "contextual", "shadow": "scene-driven", "density": "low-medium" },
+    "bestFor": ["games", "3D previews", "interactive visualization"],
+    "avoid": ["framing the primary scene in a decorative card", "controls hidden by atmosphere"]
+  },
+  {
+    "id": "mobile-native",
+    "keywords": ["mobile", "app", "native", "touch", "safe-area"],
+    "description": "Touch-first layout with platform-safe spacing, clear feedback, and resilient text scaling.",
+    "tokens": { "radius": "platform-consistent", "shadow": "native elevation", "density": "touch-comfortable" },
+    "bestFor": ["mobile apps", "responsive tools", "field workflows"],
+    "avoid": ["hover-only behavior", "content behind safe areas"]
+  },
+  {
+    "id": "soft",
+    "keywords": ["soft", "wellness", "beauty", "calm", "organic"],
+    "description": "Warm surfaces, gentle contrast, tactile spacing, and calm interaction rhythm.",
+    "tokens": { "radius": "8-16px", "shadow": "soft", "density": "low-medium" },
+    "bestFor": ["wellness", "beauty", "lifestyle", "care services"],
+    "avoid": ["pastel contrast failures", "vague atmospheric imagery over real services"]
+  },
+  {
+    "id": "editorial-premium",
+    "keywords": ["premium", "luxury", "fashion", "magazine", "launch", "campaign"],
+    "description": "Image-led composition, restrained copy, high-contrast typography, and deliberate negative space.",
+    "tokens": { "radius": "0-8px", "shadow": "minimal", "density": "low-medium" },
+    "bestFor": ["brand launches", "premium ecommerce", "editorial landing pages", "portfolio features"],
+    "avoid": ["beige luxury defaults without brand evidence", "serif decoration that weakens readability", "hero copy that pushes the CTA below the first viewport"]
+  },
+  {
+    "id": "industrial-brutalist",
+    "keywords": ["industrial", "brutalist", "mechanical", "terminal", "tactical", "blueprint"],
+    "description": "Visible grids, hard edges, strong type scale contrast, and utilitarian metadata used with clear purpose.",
+    "tokens": { "radius": "0-2px", "shadow": "none", "density": "medium-high" },
+    "bestFor": ["technical portfolios", "developer tools", "editorial experiments", "telemetry interfaces"],
+    "avoid": ["regulated consumer flows", "tiny all-caps body copy", "decorative terminal chrome without real information"]
+  },
+  {
+    "id": "minimal-utilitarian",
+    "keywords": ["utilitarian", "document", "linear", "notion", "workspace", "minimalist"],
+    "description": "Quiet document-like surfaces, precise structure, low ornament, and typography doing most of the hierarchy work.",
+    "tokens": { "radius": "4-8px", "shadow": "none-low", "density": "medium" },
+    "bestFor": ["SaaS settings", "docs", "team workspaces", "productivity tools"],
+    "avoid": ["empty white expanses with no task priority", "low-contrast gray on gray", "identical flat cards for every section"]
+  },
+  {
+    "id": "image-led-landing",
+    "keywords": ["landing", "website", "hero", "visual", "image-led", "marketing"],
+    "description": "A clear conversion path carried by real or generated media, varied section structure, and inspectable visual assets.",
+    "tokens": { "radius": "contextual", "shadow": "media-dependent", "density": "low-medium" },
+    "bestFor": ["marketing sites", "product pages", "event pages", "agency sites"],
+    "avoid": ["text plus gradient-only hero", "fake screenshots", "repeating left-text/right-image sections", "CTA labels that wrap on desktop"]
+  },
+  {
+    "id": "brand-system-board",
+    "keywords": ["brand", "brandkit", "identity", "logo", "guidelines", "visual system"],
+    "description": "Presentation-grid identity boards that show logo logic, palette, typography, applications, and visual world coherently.",
+    "tokens": { "radius": "system-defined", "shadow": "presentation-dependent", "density": "medium" },
+    "bestFor": ["brand exploration", "identity systems", "design direction handoff", "visual language proposals"],
+    "avoid": ["random moodboards", "generic logos", "panels that do not explain the brand idea"]
+  }
+]

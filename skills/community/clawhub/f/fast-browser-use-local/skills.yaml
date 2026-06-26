@@ -1,0 +1,15 @@
+name: fast-browser-use-local
+description: Fastest Browser Use - automate web interactions via Puppeteer/Playwright
+version: 1.0.0
+author: clawhub-community
+trigger:
+  - "打开浏览器"
+  - "访问网页"
+  - "搜索"
+  - "browse"
+  - "search online"
+permissions:
+  - network
+  - filesystem
+main: index.js
+runtime: node

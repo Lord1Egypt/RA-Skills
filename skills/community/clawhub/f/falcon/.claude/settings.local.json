@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.openclaw.ai)",
+      "WebFetch(domain:docs.twitterxapi.com)",
+      "Bash(chmod:*)",
+      "Bash(bash -n /home/user/Documents/Falcon/falcon)",
+      "Bash(/home/user/Documents/Falcon/falcon help:*)",
+      "Bash(/home/user/Documents/Falcon/falcon check)",
+      "Bash(shellcheck:*)",
+      "Bash(/home/user/Documents/Falcon/falcon read:*)",
+      "Bash(echo:*)",
+      "Bash(/home/user/Documents/Falcon/falcon:*)"
+    ]
+  }
+}

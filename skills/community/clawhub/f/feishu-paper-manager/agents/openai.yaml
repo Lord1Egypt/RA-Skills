@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feishu Paper Manager"
+  short_description: "Design a Feishu bot plus OpenClaw workflow for paper ingestion, tagging, and taxonomy evolution"
+  default_prompt: "Use $feishu-openclaw-paper-manager to design or implement a paper-management system that ingests papers from Feishu, stores them in cloud docs, writes metadata into a searchable multi-dimensional table, and refines the tag taxonomy every 50 papers."

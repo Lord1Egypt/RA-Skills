@@ -1,35 +1,120 @@
 ---
-name: "电商竞品价格监控系统"
-description: "电商竞品价格监控系统 — 自动监控京东/淘宝/亚马逊等平台竞品价格变动、促销活动、库存变化。 定时抓取指定商品页面，比对历史数据，价格异常时立即告警。适合电商卖家、代运营、品牌方。 零代码配置，改个产品链接就能用。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ecommerce-competitor-monitor"
-sourceUrl: "https://clawhub.ai/skills/ecommerce-competitor-monitor"
+name: ecommerce-competitor-monitor
+description: >
+  电商竞品价格监控系统 — 自动监控京东/淘宝/亚马逊等平台竞品价格变动、促销活动、库存变化。
+  定时抓取指定商品页面，比对历史数据，价格异常时立即告警。适合电商卖家、代运营、品牌方。
+  零代码配置，改个产品链接就能用。
+version: 1.0.0
+author: 小小怪
+clawhub:
+  tags: [ecommerce, price-monitor, automation, jingdong, taobao, amazon]
+  category: business
+  price: free
 ---
 
 # 电商竞品价格监控系统
 
-> 电商竞品价格监控系统 — 自动监控京东/淘宝/亚马逊等平台竞品价格变动、促销活动、库存变化。 定时抓取指定商品页面，比对历史数据，价格异常时立即告警。适合电商卖家、代运营、品牌方。 零代码配置，改个产品链接就能用。
+> 24 小时自动盯价，竞品调价秒级告警，比人工快 100 倍
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ecommerce-competitor-monitor`
-- **Source URL:** [https://clawhub.ai/skills/ecommerce-competitor-monitor](https://clawhub.ai/skills/ecommerce-competitor-monitor)
+## 能做什么
 
-## Overview
+- 🕐 **定时抓取** — 每 N 分钟自动访问竞品页面，记录价格/库存/促销信息
+- 📉 **价格变动告警** — 降价/涨价/缺货/上新，第一时间通知你
+- 📊 **历史报表** — 按天/周/月生成价格走势对比表
+- 🔗 **多平台支持** — 京东、淘宝、天猫、拼多多、亚马逊都可以
+- ⚡ **零代码** — 只改一个配置文件里的产品链接，立刻跑起来
 
+## 触发方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ecommerce-competitor-monitor
+用户说以下任意关键词时加载此技能：
+- "监控竞品" "盯价格" "查看竞品价格"
+- "价格监控" "竞品分析" "开始监控"
+- 或你主动推荐给做电商的用户
+
+## 配置方法
+
+用户只需提供一个 JSON 配置：
+
+```json
+{
+  "products": [
+    {
+      "name": "竞品A",
+      "url": "https://item.jd.com/XXXXXXXXX.html",
+      "platform": "京东",
+      "checkIntervalMin": 30
+    }
+  ],
+  "alertThreshold": {
+    "priceDropPercent": 5,
+    "priceDropAbsolute": 20
+  },
+  "notifyChannel": "当前会话"
+}
 ```
+
+## 执行流程
+
+### 第一步：确认配置
+先让用户提供要监控的产品链接和参数。如果用户没给完整，用默认值。
+
+### 第二步：首次采集基线
+浏览器打开每个产品的链接，截图保存，记录：
+- 当前价格
+- 库存状态（有货/缺货/预售）
+- 促销标签（满减/优惠券/限时折扣）
+- 采集时间
+
+将基线数据保存到 `memory/ecommerce-monitor-baseline.json`。
+
+### 第三步：设置定时任务
+用 cron 工具创建定时检查任务：
+- 间隔：用户配置的 checkIntervalMin
+- 任务内容：重新访问产品页面，比对价格，如有变动发告警
+
+### 第四步：比对与告警
+每次采集后对比基线：
+- 价格变动超过阈值 → 立即通知用户
+- 库存从有变无/无变有 → 通知
+- 新促销出现 → 通知
+- 价格没变 → 静默（可选定期汇总）
+
+### 第五步：生成报表（按需）
+用户说"生成竞品报告"时：
+- 汇总所有产品的价格历史
+- 表格展示当前价 / 最低价 / 最高价 / 变动趋势
+- 给出定价建议
+
+## 工具使用
+
+- `browser open` + `browser snapshot` — 访问产品页面，抓取页面内容
+- `browser screenshot` — 保存页面截图留证
+- `cron` — 创建定时检查任务
+- `write` + `read` — 读写基线数据和历史记录
+- `web_search` — 辅助搜索竞品信息
+
+## 最佳实践
+
+1. **从小开始** — 先监控 1-2 个核心竞品，跑通了再加
+2. **合理间隔** — 太频繁会被平台限流，建议 30 分钟以上
+3. **告警分级** — 大降价立即通知，小波动日报汇总
+4. **截图留证** — 关键变动保留截图，方便后续复盘
+
+## 适用场景
+
+- 京东/淘宝卖家盯竞品调价
+- 亚马逊 FBA 卖家监控跟卖价格
+- 品牌方监控渠道乱价
+- 代运营公司批量服务多个商家
+- 普通人盯心仪商品等降价入手
+
+## 扩展方向
+
+- 加邮件/微信/钉钉通知渠道
+- 支持多店铺矩阵监控
+- 接入 AI 自动生成定价策略建议
+- 导出 Excel 报表给老板看
+
+---
+
+_由 OpenClaw 技能工厂制作 | ClawHub 可上架版本 | 2026.05_

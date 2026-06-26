@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Echarts-AI-Skill Product Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <style>
+      :root {
+        --paper: #f5efe4;
+        --paper-2: #efe2cf;
+        --ink: #161312;
+        --muted: #756457;
+        --accent: #ca512f;
+        --accent-2: #18493b;
+        --line: rgba(22, 19, 18, 0.12);
+        --shadow: 0 24px 60px rgba(22, 19, 18, 0.12);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top left, rgba(202, 81, 47, 0.16), transparent 28%),
+          radial-gradient(circle at right 20%, rgba(24, 73, 59, 0.15), transparent 24%),
+          linear-gradient(180deg, #f8f3eb 0%, var(--paper) 42%, #efe4d4 100%);
+        color: var(--ink);
+        font-family: "IBM Plex Sans", sans-serif;
+      }
+
+      .grain::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.08;
+        background-image: radial-gradient(#000 0.7px, transparent 0.7px);
+        background-size: 16px 16px;
+        mix-blend-mode: multiply;
+      }
+
+      .page {
+        max-width: 1360px;
+        margin: 0 auto;
+        padding: 32px 28px 56px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 28px;
+        align-items: end;
+        margin-bottom: 28px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+        padding: 8px 12px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.45);
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+
+      h1 {
+        margin: 16px 0 14px;
+        font-family: "Fraunces", serif;
+        font-size: clamp(3rem, 5vw, 5.8rem);
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+      }
+
+      .lede {
+        max-width: 760px;
+        color: var(--muted);
+        font-size: 1.06rem;
+        line-height: 1.7;
+      }
+
+      .hero-card, .chart-card, .rail-card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.58);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+      }
+
+      .hero-card {
+        min-height: 260px;
+        padding: 26px;
+        background: linear-gradient(135deg, rgba(24, 73, 59, 0.94), rgba(20, 26, 31, 0.94));
+        color: #fef9f1;
+      }
+
+      .hero-card::after {
+        content: "";
+        position: absolute;
+        inset: auto -40px -40px auto;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(202, 81, 47, 0.95), transparent 68%);
+        filter: blur(3px);
+      }
+
+      .hero-card h2 {
+        margin: 0 0 12px;
+        font-family: "Fraunces", serif;
+        font-size: 2rem;
+        line-height: 1;
+      }
+
+      .hero-card p {
+        position: relative;
+        z-index: 1;
+        color: rgba(255, 249, 241, 0.82);
+        line-height: 1.7;
+      }
+
+      .meta-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      .meta-grid div {
+        padding: 14px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .meta-grid strong {
+        display: block;
+        font-size: 1.2rem;
+        margin-bottom: 6px;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 1.6fr 0.8fr;
+        gap: 22px;
+      }
+
+      .charts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .chart-card {
+        padding: 22px;
+        min-height: 360px;
+      }
+
+      .chart-card.wide {
+        grid-column: 1 / -1;
+        min-height: 420px;
+      }
+
+      .chart-kicker {
+        color: var(--muted);
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 10px;
+      }
+
+      .chart-title {
+        font-family: "Fraunces", serif;
+        font-size: 1.7rem;
+        margin: 0 0 10px;
+      }
+
+      .chart-copy {
+        margin: 0 0 16px;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      .chart {
+        width: 100%;
+        height: 260px;
+      }
+
+      .chart-card.wide .chart {
+        height: 300px;
+      }
+
+      .rail {
+        display: grid;
+        gap: 22px;
+      }
+
+      .rail-card {
+        padding: 22px;
+      }
+
+      .rail-title {
+        margin: 0 0 14px;
+        font-family: "Fraunces", serif;
+        font-size: 1.5rem;
+      }
+
+      .steps {
+        display: grid;
+        gap: 12px;
+      }
+
+      .step {
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: rgba(22, 19, 18, 0.04);
+        border: 1px solid var(--line);
+      }
+
+      .step strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      pre {
+        margin: 0;
+        padding: 16px;
+        overflow: auto;
+        border-radius: 18px;
+        background: #161312;
+        color: #f8f3eb;
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .badge {
+        padding: 10px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        font-size: 0.82rem;
+        background: rgba(255,255,255,0.72);
+      }
+
+      @media (max-width: 1080px) {
+        .hero, .layout { grid-template-columns: 1fr; }
+        .charts { grid-template-columns: 1fr; }
+        .chart-card.wide { grid-column: auto; }
+      }
+    </style>
+  </head>
+  <body class="grain">
+    <div class="page">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">ECharts AI Skill / Product Demo</div>
+          <h1>From chart intent to shareable visual output.</h1>
+          <p class="lede">
+            A skill-first chart workflow for Codex: recommend a chart, generate a stable option, and export polished HTML or SVG artifacts without hand-writing ECharts configuration.
+          </p>
+          <div class="badge-row">
+            <span class="badge">Skill-first</span>
+            <span class="badge">TypeScript core</span>
+            <span class="badge">HTML + SVG export</span>
+            <span class="badge">Codex-ready</span>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <h2>Built for practical AI workflows.</h2>
+          <p>
+            This demo frames the project as a lightweight chart operating layer: structure in, visual artifact out. The core stays deterministic so the assistant layer can stay expressive.
+          </p>
+          <div class="meta-grid">
+            <div><strong>4</strong><span>chart families in the first release</span></div>
+            <div><strong>SVG</strong><span>server-rendered export for reports</span></div>
+            <div><strong>Codex</strong><span>skill packaging with CLI workflow</span></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="layout">
+        <div class="charts">
+          <article class="chart-card wide">
+            <div class="chart-kicker">Trend Story</div>
+            <h3 class="chart-title">Study completion vs target</h3>
+            <p class="chart-copy">A confidence-building line view for progress narratives, performance reviews, or coaching summaries.</p>
+            <div id="trend-chart" class="chart"></div>
+          </article>
+
+          <article class="chart-card">
+            <div class="chart-kicker">Composition</div>
+            <h3 class="chart-title">Time allocation mix</h3>
+            <p class="chart-copy">A compact breakdown for study modules, content categories, or workload balance.</p>
+            <div id="pie-chart" class="chart"></div>
+          </article>
+
+          <article class="chart-card">
+            <div class="chart-kicker">Comparison</div>
+            <h3 class="chart-title">Weekly cohort contrast</h3>
+            <p class="chart-copy">A dashboard-friendly bar treatment for course groups, teams, or campaigns.</p>
+            <div id="bar-chart" class="chart"></div>
+          </article>
+        </div>
+
+        <aside class="rail">
+          <section class="rail-card">
+            <h3 class="rail-title">Workflow</h3>
+            <div class="steps">
+              <div class="step"><strong>1. Describe</strong><span>Write a compact chart intent or provide a table-like payload.</span></div>
+              <div class="step"><strong>2. Recommend</strong><span>Map fields and pick a chart family with a deterministic heuristic layer.</span></div>
+              <div class="step"><strong>3. Export</strong><span>Render HTML or SVG into a shareable artifact with friendly path rules.</span></div>
+            </div>
+          </section>
+
+          <section class="rail-card">
+            <h3 class="rail-title">Sample Request</h3>
+            <pre>{
+  "title": "Study completion trend",
+  "goal": "trend",
+  "xField": "day",
+  "series": [
+    { "name": "Completion", "field": "completionRate" },
+    { "name": "Target", "field": "targetRate" }
+  ]
+}</pre>
+          </section>
+        </aside>
+      </section>
+    </div>
+
+    <script>
+      const trend = echarts.init(document.getElementById('trend-chart'));
+      trend.setOption({
+        backgroundColor: 'transparent',
+        animationDuration: 900,
+        color: ['#ca512f', '#18493b'],
+        grid: { left: 28, right: 18, top: 18, bottom: 28 },
+        tooltip: { trigger: 'axis' },
+        xAxis: {
+          type: 'category',
+          data: ['03-01', '03-02', '03-03', '03-04', '03-05', '03-06'],
+          axisLine: { lineStyle: { color: 'rgba(22,19,18,0.18)' } },
+          axisLabel: { color: '#756457' }
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: { show: false },
+          splitLine: { lineStyle: { color: 'rgba(22,19,18,0.08)' } },
+          axisLabel: { color: '#756457' }
+        },
+        series: [
+          { name: 'Completion', type: 'line', smooth: true, symbolSize: 8, data: [62, 68, 71, 77, 81, 84], areaStyle: { color: 'rgba(202,81,47,0.12)' } },
+          { name: 'Target', type: 'line', smooth: true, symbolSize: 6, lineStyle: { type: 'dashed' }, data: [75, 75, 75, 75, 75, 75] }
+        ]
+      });
+
+      const pie = echarts.init(document.getElementById('pie-chart'));
+      pie.setOption({
+        backgroundColor: 'transparent',
+        color: ['#18493b', '#ca512f', '#e5b063', '#7a6de0'],
+        tooltip: { trigger: 'item' },
+        series: [{
+          type: 'pie',
+          radius: ['38%', '72%'],
+          label: { color: '#161312' },
+          data: [
+            { value: 38, name: 'Math' },
+            { value: 26, name: 'English' },
+            { value: 18, name: 'Science' },
+            { value: 18, name: 'Review' }
+          ]
+        }]
+      });
+
+      const bar = echarts.init(document.getElementById('bar-chart'));
+      bar.setOption({
+        backgroundColor: 'transparent',
+        animationDuration: 800,
+        color: ['#18493b', '#ca512f'],
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+        grid: { left: 18, right: 8, top: 16, bottom: 26, containLabel: true },
+        xAxis: {
+          type: 'value',
+          splitLine: { lineStyle: { color: 'rgba(22,19,18,0.08)' } },
+          axisLabel: { color: '#756457' }
+        },
+        yAxis: {
+          type: 'category',
+          data: ['Group A', 'Group B', 'Group C', 'Group D'],
+          axisLabel: { color: '#161312' },
+          axisLine: { show: false }
+        },
+        series: [{
+          type: 'bar',
+          barWidth: 18,
+          data: [84, 79, 91, 73],
+          itemStyle: { borderRadius: [0, 8, 8, 0] }
+        }]
+      });
+
+      window.addEventListener('resize', () => {
+        trend.resize();
+        pie.resize();
+        bar.resize();
+      });
+    </script>
+  </body>
+</html>

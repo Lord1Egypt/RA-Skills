@@ -1,0 +1,689 @@
+[
+  {
+    "id": "double_thirteen",
+    "category": "bad",
+    "floor_range": [13, 13],
+    "weight": 4,
+    "one_time": true,
+    "description": "你发现右边有一扇黑色的门，门牌号是13",
+    "choices": [
+      { "text": "上楼", "next_event_id": "double_thirteen_death" },
+      { "text": "下楼", "next_event_id": "double_thirteen_death" },
+      {
+        "text": "敲门",
+        "effects": { "knock": 1 },
+        "next_event_id": "double_thirteen_death"
+      },
+      {
+        "text": "停止行动（隐藏选项）",
+        "hidden": true,
+        "next_event_id": "double_thirteen_result"
+      }
+    ]
+  },
+  {
+    "id": "double_thirteen_result",
+    "category": "bad",
+    "floor_range": [13, 13],
+    "weight": 0,
+    "one_time": false,
+    "description": "你想起了伪人的忠告，你一动不动\n\n不知道等待了多久，门牌号上的数字消失了\n\n老天保佑，你活下来了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "shadow_killer",
+    "category": "bad",
+    "floor_range": [1, 17],
+    "weight": 1,
+    "one_time": true,
+    "description": "楼道里，有一个伪人在修电灯，电灯忽明忽暗\n\n「搭把手吧」\n\n伪人邀请你",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } },
+      {
+        "text": "帮个忙吧",
+        "effects": {},
+        "next_event_id": "shadow_killer_death"
+      }
+    ]
+  },
+  {
+    "id": "sealed_tablet",
+    "category": "bad",
+    "floor_range": [18, 24],
+    "weight": 1,
+    "conditions": { "missing_item": ["SilentEye"] },
+    "description": "你发现右边有一扇石门，门上刻有一些符文\n\n似乎封印着某个东西",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } },
+      {
+        "text": "敲门",
+        "effects": { "knock": 1 },
+        "next_event_id": "sealed_tablet_knock"
+      }
+    ]
+  },
+  {
+    "id": "sealed_tablet_knock",
+    "category": "bad",
+    "floor_range": [18, 24],
+    "weight": 0,
+    "description": "石门缓缓打开，里面一片漆黑\n\n你隐约看到了一个红色的光点\n\n光点越来越亮，像是某种生物的眼睛",
+    "choices": [
+      {
+        "text": "逃跑",
+        "effects": { "sanity": -20 },
+        "next_event_id": "sealed_tablet_result_1"
+      },
+      {
+        "text": "走进去",
+        "effects": { "go_down": 1 },
+        "next_event_id": "sealed_tablet_death"
+      },
+      {
+        "text": "用镜子背面挡住脸",
+        "requires": { "has_item": ["Mirror"] },
+        "effects": { "sanity": 15, "add_item": "SilentEye" },
+        "next_event_id": "sealed_tablet_result_2"
+      }
+    ]
+  },
+  {
+    "id": "sealed_tablet_result_1",
+    "category": "bad",
+    "floor_range": [18, 24],
+    "weight": 0,
+    "description": "你发觉红色光点是致命之物\n\n你逃了出来，捡回了一条命",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "sealed_tablet_result_2",
+    "category": "bad",
+    "floor_range": [18, 24],
+    "weight": 0,
+    "description": "你边用镜子背面遮住脸，边往前走\n\n你走到了尽头，发现了一尊石像\n\n这是一个蛇身人脸石像，额头上镶嵌了一颗红色的宝石\n\n你取下了宝石，你觉得它有着凝固一切的力量\n\n【提示】你可以支付理智启动宝石，将古神的意志强制凝固",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "magic_mirror",
+    "category": "bad",
+    "floor_range": [13, 24],
+    "weight": 1,
+    "conditions": { "missing_item": ["Mirror"] },
+    "description": "楼道中间的墙上有一面镜子\n\n你的脑海中有声音传来：\n\n「你能照见一切」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } },
+      {
+        "text": "照见过去",
+        "effects": { "sanity": -20 },
+        "next_event_id": "magic_mirror_result_1"
+      },
+      {
+        "text": "照见未来",
+        "effects": { "sanity": -20 },
+        "next_event_id": "magic_mirror_result_2"
+      },
+      {
+        "text": "照见自己",
+        "effects": { "sanity": 15, "add_item": "Mirror" },
+        "next_event_id": "magic_mirror_result_3"
+      },
+      {
+        "text": "照见深渊",
+        "effects": { "sanity": -50 },
+        "next_event_id": "magic_mirror_result_4"
+      }
+    ]
+  },
+  {
+    "id": "magic_mirror_result_1",
+    "category": "bad",
+    "floor_range": [13, 24],
+    "weight": 0,
+    "description": "镜子里面是一位大叔\n\n留着深棕色短发，戴着细框黑眼镜，留着络腮胡...\n\n「你执着于过去」\n\n镜子消失了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "magic_mirror_result_2",
+    "category": "bad",
+    "floor_range": [13, 24],
+    "weight": 0,
+    "description": "镜子里面是一个伪人\n\n白色的脸，空洞的眼睛、嘴巴、鼻子...\n\n「你恐惧于未来」\n\n镜子消失了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "magic_mirror_result_3",
+    "category": "bad",
+    "floor_range": [13, 24],
+    "weight": 0,
+    "description": "镜子里面是一位老年男子\n\n头部像是打了马赛克，左右扭曲，你无法看清\n\n「知道真相不容易，接受真相更难」\n\n镜子消失了，出现在你的手上\n\n【提示】你可以用魔镜杀死一些可怕的东西",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "magic_mirror_result_4",
+    "category": "bad",
+    "floor_range": [13, 24],
+    "weight": 0,
+    "description": "镜子里面是一个黑色的人形\n\n是存粹的黑，纯粹的虚无\n\n「深渊也在凝视你」\n\n镜子消失了\n\n你感觉快要维持不住理智了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "fake_friend_1",
+    "category": "bad",
+    "floor_range": [1, 17],
+    "weight": 1,
+    "conditions": { "has_item": ["MacMini"] },
+    "description": "「Hey Peter！你怎么还没走！」\n\n你的朋友Sam在门口叫住了你\n\n「进来再喝一杯如何？」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } },
+      {
+        "text": "答应他",
+        "effects": { "sanity": 30 },
+        "next_event_id": "fake_friend_2"
+      }
+    ]
+  },
+  {
+    "id": "fake_friend_2",
+    "category": "bad",
+    "floor_range": [1, 17],
+    "weight": 0,
+    "description": "你跟Sam喝了一杯，感觉精神好了很多\n\n「再来一杯吗？」",
+    "choices": [
+      { "text": "算了", "next_event_id": "fake_friend_result_1" },
+      {
+        "text": "答应他",
+        "effects": { "remove_item": "MacMini" },
+        "next_event_id": "fake_friend_result_2"
+      }
+    ]
+  },
+  {
+    "id": "fake_friend_result_1",
+    "category": "bad",
+    "floor_range": [1, 17],
+    "weight": 0,
+    "description": "你礼貌地拒绝了Sam，你跟他道了别",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "fake_friend_result_2",
+    "category": "bad",
+    "floor_range": [1, 17],
+    "weight": 0,
+    "description": "你喝醉了，睡了过去\n\n你醒来时，发现Sam不见了\n\n你的MacMini也不见了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "cemetery",
+    "category": "bad",
+    "floor_range": [1, 23],
+    "weight": 1,
+    "description": "你发现左边有一扇灰色的门",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -2 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -2 } },
+      {
+        "text": "敲门",
+        "effects": { "sanity": -10, "knock": 1 },
+        "next_event_id": "cemetery_knock"
+      }
+    ]
+  },
+  {
+    "id": "cemetery_knock",
+    "category": "bad",
+    "floor_range": [13, 24],
+    "weight": 0,
+    "description": "门开了，里面是一个墓园\n\n地面铺满了树叶与灰尘，看得出很久没有人来过了\n\n中间是一个墓碑，写着：\n\n「Peter ■■■■■■■■\n\nGone but not forgotten」",
+    "choices": [{ "text": "离开", "next_event_id": "cemetery_result" }]
+  },
+  {
+    "id": "cemetery_result",
+    "category": "bad",
+    "floor_range": [13, 24],
+    "weight": 0,
+    "description": "你离开了墓园，你觉得死亡似乎离你更近了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "door_fakeman",
+    "category": "bad",
+    "floor_range": [1, 23],
+    "weight": 1,
+    "description": "你发现右边有一扇灰色的门",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -2 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -2 } },
+      {
+        "text": "敲门",
+        "effects": { "sanity": -10, "knock": 1 },
+        "next_event_id": "door_fakeman_knock"
+      }
+    ]
+  },
+  {
+    "id": "door_fakeman_knock",
+    "category": "bad",
+    "floor_range": [1, 23],
+    "weight": 0,
+    "description": "门开了，一个伪人跪在地上，双手合十，面朝墙壁\n\n伪人没有看向你，不断重复着：\n\n「祂为【乐土】带来【魔法】，成为祂的子民...」",
+    "choices": [{ "text": "离开", "next_event_id": "door_fakeman_result" }]
+  },
+  {
+    "id": "door_fakeman_result",
+    "category": "bad",
+    "floor_range": [1, 23],
+    "weight": 0,
+    "description": "你默默离开，关上了门\n\n变成它，也许是你的宿命",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "vampire",
+    "category": "bad",
+    "floor_range": [13, 17],
+    "weight": 1,
+    "description": "你发现右边有一扇红色的门\n\n灯光忽明忽暗，墙上好像有血迹\n\n你凑近一看，墙上用鲜血歪歪扭扭地写着：\n\n「STOP! ↓」\n\n你有一种强烈的不详预感",
+    "choices": [
+      { "text": "上楼", "next_event_id": "vampire_death" },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -4 } },
+      {
+        "text": "敲门",
+        "effects": { "knock": 1 },
+        "next_event_id": "vampire_death"
+      }
+    ]
+  },
+  {
+    "id": "elder_gods",
+    "category": "bad",
+    "floor_range": [15, 24],
+    "weight": 1,
+    "description": "你发现右边有一扇黑色的门\n\n你突然感到精疲力尽，你不断暗示自己：\n\n「太累了，太累了」\n\n「下楼吧，只有楼下才安全」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -4 } },
+      { "text": "下楼", "next_event_id": "elder_gods_death" },
+      {
+        "text": "敲门",
+        "effects": { "knock": 1 },
+        "next_event_id": "elder_gods_death"
+      }
+    ]
+  },
+  {
+    "id": "devil_eye",
+    "category": "bad",
+    "floor_range": [15, 24],
+    "weight": 1,
+    "description": "你感觉有眼睛在盯着你",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -10 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -10 } },
+      {
+        "text": "查看四周",
+        "effects": { "decrease_sanity_max": 20 },
+        "next_event_id": "devil_eye_result_1"
+      }
+    ]
+  },
+  {
+    "id": "devil_eye_result_1",
+    "category": "bad",
+    "floor_range": [15, 24],
+    "weight": 0,
+    "description": "「你不属于这里」\n\n你的颅内传来声音\n\n你感觉灵魂快要被撕裂\n\n【提示】你的理智上限降低了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -10 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -10 } },
+      {
+        "text": "继续查看四周",
+        "effects": { "decrease_sanity_max": 20 },
+        "next_event_id": "devil_eye_result_2"
+      }
+    ]
+  },
+  {
+    "id": "devil_eye_result_2",
+    "category": "bad",
+    "floor_range": [15, 24],
+    "weight": 0,
+    "description": "「你不属于这里」\n\n你的颅内传来声音\n\n你感觉灵魂快要被撕裂\n\n【提示】你的理智上限降低了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -10 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -10 } },
+      {
+        "text": "继续查看四周",
+        "effects": { "decrease_sanity_max": 20, "set_phase": 2 },
+        "next_event_id": "devil_eye_result_3"
+      }
+    ]
+  },
+  {
+    "id": "devil_eye_result_3",
+    "category": "bad",
+    "floor_range": [15, 24],
+    "weight": 0,
+    "description": "「如果你执意要见祂」\n\n「那么我帮你」\n\n你感觉眼睛消失了\n\n【提示】你不会再遇到负面事件，特殊事件除外",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "undead",
+    "category": "bad",
+    "floor_range": [15, 24],
+    "weight": 1,
+    "description": "你看到了一具骷髅\n\n突然，骷髅开口说话了：\n\n「迷途的人啊，先行者愿指引你前行的道路」\n\n「但是 ——」\n\n「离真相越近，离崩溃亦然」",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1, "sanity": -10 } },
+      { "text": "下楼", "effects": { "go_down": 1, "sanity": -10 } },
+      {
+        "text": "询问门的真相",
+        "effects": { "sanity": -30 },
+        "next_event_id": "undead_result_1"
+      },
+      {
+        "text": "询问楼层的真相",
+        "effects": { "sanity": -30 },
+        "next_event_id": "undead_result_2"
+      },
+      {
+        "text": "询问颜色的真相",
+        "effects": { "sanity": -30 },
+        "next_event_id": "undead_result_3"
+      }
+    ]
+  },
+  {
+    "id": "undead_result_1",
+    "category": "bad",
+    "floor_range": [15, 24],
+    "weight": 0,
+    "description": "「左边代表现世，右边代表幻世」\n\n说罢，骷髅消失了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "undead_result_2",
+    "category": "bad",
+    "floor_range": [15, 24],
+    "weight": 0,
+    "description": "「质数代表好运，13除外」\n\n说罢，骷髅消失了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "undead_result_3",
+    "category": "bad",
+    "floor_range": [15, 24],
+    "weight": 0,
+    "description": "「红色和黑色不要碰」\n\n说罢，骷髅消失了",
+    "choices": [
+      { "text": "上楼", "effects": { "go_up": 1 } },
+      { "text": "下楼", "effects": { "go_down": 1 } }
+    ]
+  },
+  {
+    "id": "strange_sound_death",
+    "category": "bad",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "one_time": false,
+    "description": "你转过了头...\n\n你来不及尖叫，头就落在了地上\n\n【结局一】你被杀了\n\n【提示】注意伪人的忠告",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      },
+      {
+        "text": "以理智为代价，重生",
+        "requires": { "has_ability": ["Nobility"] },
+        "effects": { "sanity": -60, "set_floor": 13, "clear_debuffs": true },
+        "next_event_id": "revive"
+      }
+    ]
+  },
+  {
+    "id": "double_thirteen_death",
+    "category": "bad",
+    "floor_range": [13, 13],
+    "weight": 0,
+    "one_time": false,
+    "description": "你的脑海内部传来不可名状的声音\n\n你感觉你的头颅在共振\n\n你感觉思维像玻璃一样出现裂纹\n\n你的逻辑开始崩塌...\n\n【结局三】古神低语\n\n【提示】注意伪人的忠告",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      },
+      {
+        "text": "以理智为代价，清除精神污染",
+        "requires": { "has_item": ["SilentEye"] },
+        "effects": { "sanity": -80, "set_floor": 13, "clear_debuffs": true },
+        "next_event_id": "revive"
+      }
+    ]
+  },
+  {
+    "id": "shadow_killer_death",
+    "category": "bad",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "description": "电灯亮了，地上出现了影子 ——\n\n无数只扭曲的手\n\n影子向你蔓延过来，抓住了你\n\n你动弹不得，发出了惨叫\n\n你的惨叫很快湮没在了黑暗之中\n\n【结局一】你被杀了\n\n【提示】注意伪人的忠告",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      },
+      {
+        "text": "以理智为代价，重生",
+        "requires": { "has_ability": ["Nobility"] },
+        "effects": { "sanity": -60, "set_floor": 13, "clear_debuffs": true },
+        "next_event_id": "revive"
+      }
+    ]
+  },
+  {
+    "id": "sanity_zero_fake_human",
+    "category": "bad",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "one_time": false,
+    "description": "你承受不了长时间的一无所获和无尽的折磨\n\n你的理智已经消耗殆尽\n\n你意识到，你正在变成某种东西\n\n你的意识逐渐消散\n\n你成为了它们的一员\n\n【结局二】伪人",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      }
+    ]
+  },
+  {
+    "id": "sealed_tablet_death",
+    "category": "bad",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "one_time": false,
+    "description": "红色的光点似乎有某种魔力，你忍不住一直盯着看\n\n你妄图抓住光点，但感到行动越来越困难\n\n最终，你无法动弹，永远留在了这个地方\n\n【结局四】石化",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      }
+    ]
+  },
+  {
+    "id": "vampire_death",
+    "category": "bad",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "description": "你听到了翅膀扇动的声音\n\n你感觉脖子被什么东西咬住了\n\n你感觉身体逐渐麻痹\n\n【结局一】你被杀了",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      },
+      {
+        "text": "以理智为代价，重生",
+        "requires": { "has_ability": ["Nobility"] },
+        "effects": { "sanity": -60, "set_floor": 13, "clear_debuffs": true },
+        "next_event_id": "revive"
+      }
+    ]
+  },
+  {
+    "id": "elder_gods_death",
+    "category": "bad",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "description": "颅内传来声音：\n\n「你做得没错，孩子」\n\n「你的理智是枷锁，打破它，你才能看见真理」\n\n你的意识被揉作一团，撕碎殆尽\n\n【结局三】古神低语",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      },
+      {
+        "text": "以理智为代价，清除精神污染",
+        "requires": { "has_item": ["SilentEye"] },
+        "effects": { "sanity": -80, "set_floor": 13, "clear_debuffs": true },
+        "next_event_id": "revive"
+      }
+    ]
+  },
+  {
+    "id": "void_death",
+    "category": "bad",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "one_time": false,
+    "description": "你终于走到了这栋楼的尽头 ——\n\n尽头是虚空\n\n当你走完最后一阶楼梯，你一脚踏空\n\n永远地坠落了下去\n\n【结局五】虚空",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      }
+    ]
+  },
+  {
+    "id": "isolated_death",
+    "category": "bad",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "one_time": false,
+    "description": "你朝光亮走去，来到了楼顶\n\n你发现四周都是虚空\n\n你看向脚下，地面已经消失了\n\n你永远地留在了这里\n\n【结局五】虚空",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      }
+    ]
+  },
+  {
+    "id": "door_death",
+    "category": "bad",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "one_time": false,
+    "description": "「咚咚咚...」\n\n这不是敲门声\n\n是楼外丧钟的声音\n\n丧钟声响了13下\n\n你看到了死神\n\n你的灵魂被抽离躯壳\n\n带往无底深渊\n\n【结局六】深渊\n\n【提示】注意伪人的忠告",
+    "choices": [
+      { "text": "游戏结束", "effects": { "game_over": true } },
+      {
+        "text": "读取存档",
+        "requires": { "has_checkpoint": true },
+        "effects": {},
+        "next_event_id": "load_checkpoints"
+      }
+    ]
+  },
+  {
+    "id": "load_checkpoints",
+    "category": "bad",
+    "floor_range": [0, 25],
+    "weight": 0,
+    "one_time": false,
+    "description": "选择存档点",
+    "choices": [
+      {
+        "text": "存档1 - 击败末影人",
+        "requires": { "has_checkpoint_at": 1 },
+        "load_checkpoint": 1
+      },
+      {
+        "text": "存档2 - 击败恶灵",
+        "requires": { "has_checkpoint_at": 2 },
+        "load_checkpoint": 2
+      },
+      {
+        "text": "存档3 - 击败伪人",
+        "requires": { "has_checkpoint_at": 3 },
+        "load_checkpoint": 3
+      }
+    ]
+  }
+]

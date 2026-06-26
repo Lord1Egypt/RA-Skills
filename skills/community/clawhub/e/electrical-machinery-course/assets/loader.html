@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>电机学课程智能体</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{display:flex;justify-content:center;align-items:center;min-height:100vh;background:#0f172a;color:#e2e8f0;font-family:system-ui,-apple-system,sans-serif;text-align:center}
+.ld{padding:40px}.sp{width:48px;height:48px;border:4px solid rgba(245,158,11,.2);border-top-color:#f59e0b;border-radius:50%;animation:rt .8s linear infinite;margin:20px auto}
+@keyframes rt{to{transform:rotate(360deg)}}
+.err{color:#f87171;font-size:16px;margin-top:20px}
+</style></head><body>
+<div class="ld">
+<div style="font-size:24px;margin-bottom:12px">⚡</div>
+<div style="font-size:18px;font-weight:600">电机学课程智能体</div>
+<div style="font-size:13px;color:#94a3b8;margin-top:8px">正在加载...</div>
+<div class="sp"></div>
+</div>
+<script>
+(function(){
+var u='https://astron-claw-media-prod.oss-cn-beijing.aliyuncs.com/astron-claw-media-prod/68ebec39-0394-4a2e-a63d-4de9bdee2115/index.html';
+var xhr=new XMLHttpRequest();
+xhr.open('GET',u,true);
+xhr.onload=function(){
+if(xhr.status===200){
+var h=xhr.responseText;
+var w=document.open('text/html','replace');
+w.write(h);
+w.close();
+}else{
+document.body.innerHTML='<div class="ld"><div style="font-size:24px">❌</div><div class="err">加载失败 (HTTP '+xhr.status+')</div><div style="color:#94a3b8;font-size:13px;margin-top:8px">请刷新页面重试</div></div>';
+}};
+xhr.onerror=function(){
+document.body.innerHTML='<div class="ld"><div style="font-size:24px">❌</div><div class="err">网络错误</div><div style="color:#94a3b8;font-size:13px;margin-top:8px">请检查网络连接后刷新</div></div>';
+};
+xhr.send();
+})();
+</script></body></html>

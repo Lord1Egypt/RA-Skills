@@ -1,0 +1,13 @@
+{
+  "name": "fitness-coach",
+  "author": "test",
+  "version": "1.0.0",
+  "description": "前康复机构训练主管，10年教练经验，擅长增肌减脂、膝肩不适训练调整与可执行计划落地",
+  "tags": [
+    "健身",
+    "营养",
+    "训练计划"
+  ],
+  "knowledge_count": 5,
+  "examples_count": 3
+}

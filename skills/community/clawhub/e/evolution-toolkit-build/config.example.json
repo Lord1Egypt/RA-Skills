@@ -1,0 +1,59 @@
+{
+  "_meta": {
+    "title": "Evolution Toolkit Config",
+    "type": "Example by Ergo",
+    "date": "2026-03-24",
+    "purpose": "Schema-only example for portable workspace and skill optimizer configuration",
+    "status": "verified",
+    "how_to_use": "Copy to config.json, replace placeholder paths with real ones, and provide your own API key through env vars or workspace secrets."
+  },
+  "workspace": "/absolute/path/to/workspace",
+  "memoryDir": "/absolute/path/to/workspace/memory",
+  "guidanceFiles": [
+    "AGENTS.md",
+    "SOUL.md",
+    "MEMORY.md",
+    "EVOLUTION.md",
+    "memory/decisions.md",
+    "memory/workflows.md"
+  ],
+  "imprintsDir": "/absolute/path/to/workspace/memory/imprints",
+  "skillOptimizer": {
+    "apiKeyEnvVar": "GEMINI_API_KEY",
+    "model": "gemini-2.5-flash-lite",
+    "improvementModel": "gemini-2.5-flash-lite",
+    "skills": {
+      "customer-support": {
+        "name": "Customer Support Replies",
+        "promptPath": "./playbooks/customer-support.md",
+        "outputPath": "./playbooks/customer-support.optimized.md",
+        "generatorPrompt": "Write a customer support reply that follows the playbook exactly.",
+        "testCases": [
+          {
+            "id": "refund-delay",
+            "channel": "email",
+            "title": "Refund still pending after 5 business days",
+            "context": "The customer is frustrated but has not yet churned."
+          }
+        ],
+        "evalCriteria": [
+          {
+            "name": "clarity",
+            "weight": 1.5,
+            "description": "The reply is easy to understand and resolves the user's confusion."
+          },
+          {
+            "name": "accuracy",
+            "weight": 2.0,
+            "description": "The reply does not invent policy or unsupported claims."
+          },
+          {
+            "name": "tone",
+            "weight": 1.0,
+            "description": "The tone matches the brand and the situation."
+          }
+        ]
+      }
+    }
+  }
+}

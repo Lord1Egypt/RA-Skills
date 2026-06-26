@@ -1,0 +1,6361 @@
+[
+  {
+    "name": "三文鱼寿司拼盘",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "light",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "japanese"
+  },
+  {
+    "name": "东北大拉皮",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "northern"
+  },
+  {
+    "name": "串串香",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "云南小炒",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "云吞面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "humid"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "guangdong",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "cantonese"
+  },
+  {
+    "name": "亲子丼",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "light",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "japanese"
+  },
+  {
+    "name": "低卡荞麦面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "healthy"
+  },
+  {
+    "name": "低脂鸡肉卷",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "healthy"
+  },
+  {
+    "name": "全麦三明治",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "healthy"
+  },
+  {
+    "name": "兰州牛肉拉面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "冒菜",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "农家小炒肉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "hunan",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "hunan"
+  },
+  {
+    "name": "冰粉",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "happy",
+      "light",
+      "busy"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "drink"
+  },
+  {
+    "name": "冷锅串串",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "凉拌木耳",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "vegetarian"
+  },
+  {
+    "name": "凉拌米线",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "凉皮",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "light",
+      "neutral",
+      "busy"
+    ],
+    "weather": [
+      "hot",
+      "sunny"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "刀削面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "剁椒蒸茄子",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "hunan",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "hunan"
+  },
+  {
+    "name": "剁椒鱼头",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "hunan",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "hunan"
+  },
+  {
+    "name": "南昌拌粉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "卤粉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "comfort",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "hunan",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "卤肉双拼饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "卤肉拌面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "厚蛋烧便当",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "light",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "japanese"
+  },
+  {
+    "name": "参鸡汤",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "adventurous"
+    ],
+    "weather": [
+      "all",
+      "cold"
+    ],
+    "price": "high",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "korean"
+  },
+  {
+    "name": "叉烧饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "humid"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "guangdong",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "cantonese"
+  },
+  {
+    "name": "双拼饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "humid"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "guangdong",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "cantonese"
+  },
+  {
+    "name": "双皮奶",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "comfort",
+      "party"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "dessert"
+  },
+  {
+    "name": "口水鸡",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "台式鸡排饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "台湾卤肉饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "neutral",
+      "busy"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "咖喱猪排饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "light",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "japanese"
+  },
+  {
+    "name": "咖喱饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "neutral"
+    ],
+    "weather": [
+      "cold",
+      "rainy",
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "咖喱鸡排饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "回锅肉盖饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "土豆牛肉饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "地三鲜盖饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "northern"
+  },
+  {
+    "name": "地中海素食碗",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "vegetarian"
+  },
+  {
+    "name": "培根披萨",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "party",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "western"
+  },
+  {
+    "name": "夏威夷披萨",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "party",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "western"
+  },
+  {
+    "name": "外婆菜炒饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "hunan",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "hunan"
+  },
+  {
+    "name": "夫妻肺片",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "奶油蘑菇意面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "party",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "western"
+  },
+  {
+    "name": "嫩牛五方",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "busy",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "宫保鸡丁盖饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "寿司",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "light",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "hot",
+      "sunny",
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "小炒黄牛肉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "hunan",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "hunan"
+  },
+  {
+    "name": "小笼包",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "neutral",
+      "comfort"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch"
+    ],
+    "cuisine": "breakfast"
+  },
+  {
+    "name": "小锅米线",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "川北凉粉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "布丁",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "comfort",
+      "party"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "dessert"
+  },
+  {
+    "name": "干锅花菜",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "hunan",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "hunan"
+  },
+  {
+    "name": "意大利肉酱面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "party",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "western"
+  },
+  {
+    "name": "手抓饼",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "neutral",
+      "comfort"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch"
+    ],
+    "cuisine": "breakfast"
+  },
+  {
+    "name": "折耳根拌面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "抹茶拿铁",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "happy",
+      "light",
+      "busy"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "drink"
+  },
+  {
+    "name": "担担面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "拿铁咖啡",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "happy",
+      "light",
+      "busy"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "drink"
+  },
+  {
+    "name": "提拉米苏",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "comfort",
+      "party"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "dessert"
+  },
+  {
+    "name": "新疆炒米粉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "focused",
+      "busy"
+    ],
+    "weather": [
+      "cold",
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "日式拉面",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "comfort",
+      "focused",
+      "tired"
+    ],
+    "weather": [
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "日式炸鸡块",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "light",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "japanese"
+  },
+  {
+    "name": "日式烧肉饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "日式牛肉饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "light",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "japanese"
+  },
+  {
+    "name": "杀猪粉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "neutral",
+      "busy"
+    ],
+    "weather": [
+      "cold",
+      "rainy",
+      "all"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "hunan",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "杨枝甘露",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "happy",
+      "light",
+      "busy"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "drink"
+  },
+  {
+    "name": "柠檬茶",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "happy",
+      "light",
+      "busy"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "drink"
+  },
+  {
+    "name": "桂林米粉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "桥头排骨",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "happy",
+      "party",
+      "busy"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "椰汁西米露",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "comfort",
+      "party"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "dessert"
+  },
+  {
+    "name": "榴莲披萨",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "party",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "western"
+  },
+  {
+    "name": "毛血旺",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "水煮肉片",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "party",
+      "happy"
+    ],
+    "weather": [
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "hunan",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "水煮西兰花鸡胸",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "healthy"
+  },
+  {
+    "name": "水饺",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "family",
+      "neutral"
+    ],
+    "weather": [
+      "cold",
+      "rainy",
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "汉堡薯条",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "happy",
+      "party",
+      "busy"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "汽锅鸡",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "油炸烧烤",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "late_night"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "泡芙",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "comfort",
+      "party"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "dessert"
+  },
+  {
+    "name": "浏阳蒸菜",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "neutral",
+      "family"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "hunan",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "海南椰子鸡",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "relaxed",
+      "tired"
+    ],
+    "weather": [
+      "rainy",
+      "cold",
+      "humid"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "south",
+      "guangdong",
+      "hainan"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "清炒时蔬套餐",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "vegetarian"
+  },
+  {
+    "name": "湘味口味虾",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "hunan",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "hunan"
+  },
+  {
+    "name": "湘西腊肉饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "hunan",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "hunan"
+  },
+  {
+    "name": "滑蛋牛肉饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "humid"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "guangdong",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "cantonese"
+  },
+  {
+    "name": "潮汕砂锅粥",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "tired",
+      "sick"
+    ],
+    "weather": [
+      "cold",
+      "rainy",
+      "humid"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "火锅",
+    "modes": [
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "comfort"
+    ],
+    "weather": [
+      "cold",
+      "rainy"
+    ],
+    "price": "high",
+    "spicy": "high",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "火锅鸡",
+    "modes": [
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "adventurous",
+      "happy"
+    ],
+    "weather": [
+      "cold",
+      "rainy"
+    ],
+    "price": "high",
+    "spicy": "high",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "炒年糕",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "late_night"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "late_night"
+  },
+  {
+    "name": "炒河粉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "late_night"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "late_night"
+  },
+  {
+    "name": "炒粉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "neutral",
+      "happy"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "炒面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "late_night"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "late_night"
+  },
+  {
+    "name": "炒饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "neutral",
+      "focused"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "炸虾天妇罗",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "light",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "japanese"
+  },
+  {
+    "name": "炸酱炒饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "late_night"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "late_night"
+  },
+  {
+    "name": "炸酱面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "炸鸡桶",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "late_night"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "late_night"
+  },
+  {
+    "name": "炸鸡汉堡套餐",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "late_night"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "late_night"
+  },
+  {
+    "name": "烤串拼盘",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "late_night"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "late_night"
+  },
+  {
+    "name": "烤冷面",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "busy",
+      "happy",
+      "late_night"
+    ],
+    "weather": [
+      "cold",
+      "all"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "烤肉拌饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "focused",
+      "happy",
+      "neutral"
+    ],
+    "weather": [
+      "cold",
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "烤鱼",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "烤鸡翅拼盘",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "party",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "western"
+  },
+  {
+    "name": "烧腊饭",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "focused",
+      "neutral",
+      "busy"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "烧鸭饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "humid"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "guangdong",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "cantonese"
+  },
+  {
+    "name": "热干面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "煎饺",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "comfort",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "煎饼果子",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "busy",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch"
+    ]
+  },
+  {
+    "name": "照烧鳗鱼饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "light",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "japanese"
+  },
+  {
+    "name": "照烧鸡腿饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "煲仔饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "humid"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "guangdong",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "cantonese"
+  },
+  {
+    "name": "燕麦酸奶碗",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "healthy"
+  },
+  {
+    "name": "牛丼饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "focused",
+      "neutral",
+      "busy"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "牛杂粉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "牛油果沙拉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "healthy"
+  },
+  {
+    "name": "牛肉乌冬面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "light",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "japanese"
+  },
+  {
+    "name": "牛肉粉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "focused",
+      "busy",
+      "neutral"
+    ],
+    "weather": [
+      "cold",
+      "rainy",
+      "windy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "牛肉锅贴",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "late_night"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "late_night"
+  },
+  {
+    "name": "牛肉面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "focused",
+      "neutral",
+      "tired"
+    ],
+    "weather": [
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "牛肉馅饼",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "northern"
+  },
+  {
+    "name": "猪肉炖粉条",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "northern"
+  },
+  {
+    "name": "猪肚鸡",
+    "modes": [
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "family",
+      "tired"
+    ],
+    "weather": [
+      "cold",
+      "rainy",
+      "humid"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "south",
+      "guangdong",
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "猪脚饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "focused",
+      "busy"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "珍珠奶茶",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "happy",
+      "light",
+      "busy"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "drink"
+  },
+  {
+    "name": "生椰拿铁",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "happy",
+      "light",
+      "busy"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "drink"
+  },
+  {
+    "name": "生煎包",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "neutral",
+      "comfort"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch"
+    ],
+    "cuisine": "breakfast"
+  },
+  {
+    "name": "番茄牛腩饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "番茄豆腐饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "vegetarian"
+  },
+  {
+    "name": "番茄鸡蛋面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "白切鸡饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "humid"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "guangdong",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "cantonese"
+  },
+  {
+    "name": "皮蛋瘦肉粥",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "humid"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "guangdong",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "cantonese"
+  },
+  {
+    "name": "盖码饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "focused",
+      "busy",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "hunan",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "石锅拌饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "adventurous"
+    ],
+    "weather": [
+      "all",
+      "cold"
+    ],
+    "price": "high",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "korean"
+  },
+  {
+    "name": "砂锅土豆粉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "late_night"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "late_night"
+  },
+  {
+    "name": "素春卷",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "vegetarian"
+  },
+  {
+    "name": "素炒三鲜",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "vegetarian"
+  },
+  {
+    "name": "素鸡盖饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "vegetarian"
+  },
+  {
+    "name": "紫米饭团",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "neutral",
+      "comfort"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch"
+    ],
+    "cuisine": "breakfast"
+  },
+  {
+    "name": "红豆奶冻",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "comfort",
+      "party"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "dessert"
+  },
+  {
+    "name": "羊肉泡馍",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "northern"
+  },
+  {
+    "name": "美式咖啡",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "happy",
+      "light",
+      "busy"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "drink"
+  },
+  {
+    "name": "美式热狗",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "party",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "western"
+  },
+  {
+    "name": "肉包子",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "neutral",
+      "comfort"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch"
+    ],
+    "cuisine": "breakfast"
+  },
+  {
+    "name": "肉夹馍",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "busy",
+      "adventurous",
+      "focused"
+    ],
+    "weather": [
+      "cold",
+      "all"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "肉汁拌饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "肠粉",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "light",
+      "neutral",
+      "busy"
+    ],
+    "weather": [
+      "hot",
+      "sunny",
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "south",
+      "guangdong",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch"
+    ]
+  },
+  {
+    "name": "肥肠粉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "胡辣汤",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "northern"
+  },
+  {
+    "name": "腊味煲仔饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "humid"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "guangdong",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "cantonese"
+  },
+  {
+    "name": "臊子面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "northern"
+  },
+  {
+    "name": "臭豆腐",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "late_night"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "hunan",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "艇仔粥",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "humid"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "guangdong",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "cantonese"
+  },
+  {
+    "name": "芋圆烧仙草",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "comfort",
+      "party"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "dessert"
+  },
+  {
+    "name": "芝士焗饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "party",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "western"
+  },
+  {
+    "name": "芝士葡萄",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "happy",
+      "light",
+      "busy"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "drink"
+  },
+  {
+    "name": "芝士蛋糕",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "comfort",
+      "party"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "dessert"
+  },
+  {
+    "name": "花甲米线",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "茶叶蛋套餐",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "neutral",
+      "comfort"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch"
+    ],
+    "cuisine": "breakfast"
+  },
+  {
+    "name": "菌菇豆腐煲",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "vegetarian"
+  },
+  {
+    "name": "菌菇鸡汤米线",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "葡式蛋挞",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "comfort",
+      "party"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "dessert"
+  },
+  {
+    "name": "葱油拌面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "light",
+      "busy",
+      "focused"
+    ],
+    "weather": [
+      "hot",
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "葱爆羊肉饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "northern"
+  },
+  {
+    "name": "蒸饺",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "light",
+      "comfort",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "蔬菜豆腐碗",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "healthy"
+  },
+  {
+    "name": "藜麦能量碗",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "healthy"
+  },
+  {
+    "name": "蛋包饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "蜜汁叉烧饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "螺蛳粉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "tired",
+      "late_night"
+    ],
+    "weather": [
+      "rainy",
+      "cold",
+      "all"
+    ],
+    "price": "low",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "豆浆油条",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "neutral",
+      "comfort"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch"
+    ],
+    "cuisine": "breakfast"
+  },
+  {
+    "name": "豆腐脑",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "neutral",
+      "comfort"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch"
+    ],
+    "cuisine": "breakfast"
+  },
+  {
+    "name": "豆花米线",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "豉汁排骨饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "humid"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "guangdong",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "cantonese"
+  },
+  {
+    "name": "豚骨拉面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "light",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "japanese"
+  },
+  {
+    "name": "贵州酸汤牛肉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "辣椒炒肉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "focused",
+      "happy"
+    ],
+    "weather": [
+      "cold",
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "hunan",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "辣椒炒鸡",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "hunan",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "hunan"
+  },
+  {
+    "name": "辣炒年糕套餐",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "adventurous"
+    ],
+    "weather": [
+      "all",
+      "cold"
+    ],
+    "price": "high",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "korean"
+  },
+  {
+    "name": "辣白菜五花肉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "adventurous"
+    ],
+    "weather": [
+      "all",
+      "cold"
+    ],
+    "price": "high",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "korean"
+  },
+  {
+    "name": "过桥米线",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "focused",
+      "tired"
+    ],
+    "weather": [
+      "cold",
+      "rainy",
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "过桥米线套餐",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "部队锅套餐",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "adventurous"
+    ],
+    "weather": [
+      "all",
+      "cold"
+    ],
+    "price": "high",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "korean"
+  },
+  {
+    "name": "酸汤肥牛米线",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "酸汤鱼",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "酸菜鱼",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "adventurous"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "high",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "酸辣粉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "重庆小面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "focused",
+      "busy"
+    ],
+    "weather": [
+      "cold",
+      "rainy",
+      "all"
+    ],
+    "price": "low",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "重庆酸辣粉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "金枪鱼沙拉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "healthy"
+  },
+  {
+    "name": "钵钵鸡",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "锅包肉饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "northern"
+  },
+  {
+    "name": "锅盔",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "青椒肉丝饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "韩式年糕",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "adventurous"
+    ],
+    "weather": [
+      "all",
+      "cold"
+    ],
+    "price": "high",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "korean"
+  },
+  {
+    "name": "韩式拌饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "adventurous"
+    ],
+    "weather": [
+      "all",
+      "cold"
+    ],
+    "price": "high",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "korean"
+  },
+  {
+    "name": "韩式泡菜锅",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "adventurous"
+    ],
+    "weather": [
+      "all",
+      "cold"
+    ],
+    "price": "high",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "korean"
+  },
+  {
+    "name": "韩式海鲜饼",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "adventurous"
+    ],
+    "weather": [
+      "all",
+      "cold"
+    ],
+    "price": "high",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "korean"
+  },
+  {
+    "name": "韩式炸鸡",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "late_night"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "韩式烤肉",
+    "modes": [
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "adventurous"
+    ],
+    "weather": [
+      "cold",
+      "all"
+    ],
+    "price": "high",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "韩式部队火锅",
+    "modes": [
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "comfort",
+      "happy"
+    ],
+    "weather": [
+      "cold",
+      "rainy"
+    ],
+    "price": "high",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "韩式鸡肉饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "adventurous"
+    ],
+    "weather": [
+      "all",
+      "cold"
+    ],
+    "price": "high",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "korean"
+  },
+  {
+    "name": "馄饨",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "busy",
+      "neutral"
+    ],
+    "weather": [
+      "cold",
+      "rainy",
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "香煎豆腐饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "vegetarian"
+  },
+  {
+    "name": "香菇滑鸡饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "香菇青菜面",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "vegetarian"
+  },
+  {
+    "name": "香辣小龙虾",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "happy",
+      "late_night"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "mid",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "late_night"
+  },
+  {
+    "name": "香辣虾",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "hunan",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "hunan"
+  },
+  {
+    "name": "香辣鸡丁饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "驴肉火烧",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "comfort"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "north",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "northern"
+  },
+  {
+    "name": "鱼香肉丝盖饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "happy",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "cold",
+      "rainy"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "sichuan"
+  },
+  {
+    "name": "鲜榨果汁",
+    "modes": [
+      "takeaway",
+      "dine_in"
+    ],
+    "moods": [
+      "happy",
+      "light",
+      "busy"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "drink"
+  },
+  {
+    "name": "鲜肉锅贴",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "neutral",
+      "comfort"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch"
+    ],
+    "cuisine": "breakfast"
+  },
+  {
+    "name": "鲜虾云吞",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "light",
+      "neutral"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "humid"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "guangdong",
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "cantonese"
+  },
+  {
+    "name": "鸡肉卷",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "party",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "western"
+  },
+  {
+    "name": "鸡胸肉沙拉",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "healthy",
+      "light",
+      "focused"
+    ],
+    "weather": [
+      "all",
+      "hot",
+      "sunny"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "healthy"
+  },
+  {
+    "name": "鸡腿便当",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "fusion"
+  },
+  {
+    "name": "鸡蛋灌饼",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "neutral",
+      "comfort"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "low",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch"
+    ],
+    "cuisine": "breakfast"
+  },
+  {
+    "name": "鸭血粉丝",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "comfort",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "cold",
+      "all"
+    ],
+    "price": "low",
+    "spicy": "mid",
+    "city_tags": [
+      "south",
+      "all"
+    ],
+    "time_tags": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "麻婆豆腐",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "focused",
+      "happy"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "high",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "麻辣烫",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "adventurous",
+      "tired",
+      "busy"
+    ],
+    "weather": [
+      "cold",
+      "rainy",
+      "all"
+    ],
+    "price": "low",
+    "spicy": "high",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "麻辣香锅",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "party",
+      "adventurous",
+      "happy"
+    ],
+    "weather": [
+      "cold",
+      "all"
+    ],
+    "price": "high",
+    "spicy": "high",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ]
+  },
+  {
+    "name": "黄焖鸡",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "focused",
+      "busy",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "黑森林蛋糕",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "comfort",
+      "party"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "dessert"
+  },
+  {
+    "name": "黑椒牛排",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "happy",
+      "party",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "high",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner",
+      "late_night"
+    ],
+    "cuisine": "western"
+  },
+  {
+    "name": "黑椒牛柳饭",
+    "modes": [
+      "takeaway",
+      "dine_in",
+      "cook"
+    ],
+    "moods": [
+      "busy",
+      "focused",
+      "neutral"
+    ],
+    "weather": [
+      "all"
+    ],
+    "price": "mid",
+    "spicy": "low",
+    "city_tags": [
+      "all"
+    ],
+    "time_tags": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": "fusion"
+  }
+]

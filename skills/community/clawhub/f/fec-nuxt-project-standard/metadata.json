@@ -1,0 +1,55 @@
+{
+  "id": "fec-nuxt-project-standard",
+  "name": "Nuxt 项目规范",
+  "category": "project-standard",
+  "tags": [
+    "nuxt",
+    "vue",
+    "ssr",
+    "ssg",
+    "data-fetching"
+  ],
+  "summary": "Frontend Craft skill for Nuxt 项目规范.",
+  "version": "2.4.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "project-standard",
+    "nuxt",
+    "vue",
+    "ssr",
+    "ssg",
+    "data-fetching"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when creating or reviewing Nuxt 3 projects, file routes, pages, layouts, SSR/SSG/SPA behavior, Nuxt data fetching, route middleware, plugins, modules, server routes, or Nuxt-specific Vue 3 conventions. For generic Vue component architecture, apply the project's Vue conventions separately; Chinese triggers include Nuxt, Nuxt 3.",
+  "source": "skills/fec-nuxt-project-standard",
+  "references": [],
+  "relations": {
+    "relatedSkills": [
+      "fec-vue3-project-standard",
+      "fec-route-protection",
+      "fec-data-fetching"
+    ],
+    "boundaryWorkflows": [
+      "Use a Vue project workflow for generic Vue component, composable, and Pinia boundaries.",
+      "Use a route protection workflow for login state, protected routes, redirects, and middleware risks.",
+      "Use a data-fetching workflow for client server state or cache patterns; keep Nuxt useFetch and useAsyncData policy in the Nuxt workflow."
+    ],
+    "capabilityTags": [
+      "nuxt",
+      "vue",
+      "routing"
+    ]
+  }
+}

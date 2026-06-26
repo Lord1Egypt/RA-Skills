@@ -1,0 +1,24 @@
+{
+    "from": "EngageLab Team<support@mail.engagelab.com>",
+    "to": ["recipient@example.com"],
+    "body": {
+        "subject": "Test Email from EngageLab Skill",
+        "content": {
+            "html": "<p>Hello <strong>World</strong>!</p>",
+            "text": "Hello World!",
+            "preview_text": "Preview text here"
+        },
+        "vars": {},
+        "dynamic_vars": [],
+        "attachments": [],
+        "settings": {
+            "send_mode": 0,
+            "sandbox": true,
+            "open_tracking": true,
+            "click_tracking": false,
+            "unsubscribe_tracking": false
+        }
+    },
+    "custom_args": {},
+    "request_id": ""
+}

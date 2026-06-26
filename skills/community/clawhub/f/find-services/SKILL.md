@@ -1,35 +1,73 @@
 ---
-name: "Find stable, reliable, and secure service for your agents"
-description: "Find and shortlist third-party services using OpenSpend CLI marketplace search. Use when asked to discover providers for a capability, compare options, and r..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/find-services"
-sourceUrl: "https://clawhub.ai/skills/find-services"
+name: find-services
+description: Find and shortlist third-party services using OpenSpend CLI marketplace search. Use when asked to discover providers for a capability, compare options, and return a justified recommendation for discovery tasks only.
 ---
 
-# Find stable, reliable, and secure service for your agents
+# find-services
 
-> Find and shortlist third-party services using OpenSpend CLI marketplace search. Use when asked to discover providers for a capability, compare options, and r...
+Use OpenSpend CLI to discover external services.
+This skill is discovery-only and does not set up payments, install tooling, or perform purchases.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/find-services`
-- **Source URL:** [https://clawhub.ai/skills/find-services](https://clawhub.ai/skills/find-services)
+## Scope and safety boundaries
 
-## Overview
+1. Do not run install or update commands as part of this skill.
+2. Do not configure `@coinbase/payments-mcp` in this skill.
+3. Do not request or store API keys, wallet secrets, or session tokens.
+4. If authentication is required to execute search, ask the user before running login commands.
+5. If the user asks for payment setup or paid invocation flows, hand off to `setup-services`.
 
+## Credentials and environment
 
-## Installation
-To install this skill, run the following command in your terminal:
+1. Preferred path: run search with existing CLI session only.
+2. Optional credentialed path: OpenSpend user login via `openspend auth login` with explicit user confirmation.
+3. Required environment variables: none for discovery by default.
+
+## Workflow
+
+1. Verify CLI availability and session state without changing system configuration.
+
 ```bash
-hermes skills install clawhub/find-services
+command -v openspend
+openspend version
+openspend whoami
 ```
+
+If `openspend` is missing or `whoami` fails:
+
+1. Stop search flow.
+2. Ask the user for confirmation before setup/login.
+3. Hand off setup/auth steps to `setup-services`.
+
+If user confirms login only, run:
+
+```bash
+openspend auth login -y
+```
+
+Only run login after user confirms.
+
+2. Translate user intent into a precise search query with explicit capability terms.
+
+3. Run search with a default limit of 5.
+
+```bash
+openspend search "<capability query>" --limit 5 --json
+```
+
+## Output shape
+
+When asked to "find a reliable service", produce:
+
+1. Up to 5 services in returned order
+2. A concise explanation of why each service matches the requested capability
+3. No additional ranking commentary
+
+## Recommended service usage
+
+After presenting service options, include a short "recommended way to use" note with:
+
+1. Start with a small validation call before scaling usage
+2. Capture request/response examples and expected success criteria
+3. If paid calls are needed, request explicit user approval before moving to payment setup via `setup-services`
+
+If payment is needed, do not perform payment configuration in this skill.

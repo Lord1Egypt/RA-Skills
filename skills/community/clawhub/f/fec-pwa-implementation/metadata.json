@@ -1,0 +1,58 @@
+{
+  "id": "fec-pwa-implementation",
+  "name": "PWA 实现",
+  "category": "implementation-capability",
+  "tags": [
+    "pwa",
+    "service-worker",
+    "offline",
+    "workbox",
+    "installable"
+  ],
+  "summary": "Frontend Craft skill for PWA 实现.",
+  "version": "2.6.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "implementation-capability",
+    "pwa",
+    "service-worker",
+    "offline",
+    "workbox",
+    "installable"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when adding or reviewing Progressive Web App capabilities such as installability, manifest metadata, Service Worker registration, Workbox caching, offline fallback, app update prompts, maskable icons, or iOS PWA compatibility. Do not use for general API caching or non-installable performance tuning; Chinese triggers include PWA, 离线, Service Worker.",
+  "source": "skills/fec-pwa-implementation",
+  "references": [
+    "references/manifest-and-icons.md",
+    "references/service-worker-workbox.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-data-fetching",
+      "fec-browser-storage",
+      "fec-validation-fix"
+    ],
+    "boundaryWorkflows": [
+      "Use a data-fetching workflow for API server state, cache invalidation, and optimistic updates.",
+      "Use a browser storage workflow for IndexedDB, localStorage, and client persistence choices.",
+      "Use a validation workflow for build, Lighthouse, and end-to-end verification after PWA changes."
+    ],
+    "capabilityTags": [
+      "pwa",
+      "service-worker",
+      "offline-cache"
+    ]
+  }
+}

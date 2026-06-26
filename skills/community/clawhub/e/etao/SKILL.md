@@ -1,35 +1,32 @@
 ---
-name: "一淘返利助手"
-description: "一淘返利导购工具，阿里巴巴旗下官方返利平台，专注淘宝天猫购物返利和比价服务。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/etao"
-sourceUrl: "https://clawhub.ai/skills/etao"
+name: 一淘返利助手
+description: 一淘返利导购工具，阿里巴巴旗下官方返利平台，专注淘宝天猫购物返利和比价服务。
+version: 0.1.0
 ---
 
 # 一淘返利助手
 
-> 一淘返利导购工具，阿里巴巴旗下官方返利平台，专注淘宝天猫购物返利和比价服务。
+一淘返利导购工具。作为阿里巴巴旗下官方返利平台，与淘宝/天猫深度整合，提供购物返利（集分宝）、商品比价和优惠券查找服务，官方背景保障返利稳定可靠。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/etao`
-- **Source URL:** [https://clawhub.ai/skills/etao](https://clawhub.ai/skills/etao)
+## 触发词
 
-## Overview
+一淘、一淘返利、etao、一淘优惠、一淘比价、阿里返利、集分宝
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/etao
+- **淘系官方返利**：阿里官方返利渠道，返利形式为集分宝
+- **商品比价**：全网比价，找到最低价渠道
+- **优惠券查找**：淘宝/天猫优惠券聚合
+- **官方可靠**：阿里旗下平台，返利结算有保障
+
+## 输出格式
+
+```
+🔍 一淘返利查询
+
+商品：[商品名称]
+淘宝价：¥[价格]
+返利（集分宝）：[N]个（约¥[金额]）
+优惠券：[券描述]
+到手价：¥[最终价格]
 ```

@@ -1,0 +1,19 @@
+{
+  "name": "ebay-price-check",
+  "version": "1.0.0",
+  "description": "Check eBay item prices and sold listings",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "scripts": {
+    "ebay-price-check": "./scripts/ebay-price-check.sh"
+  },
+  "dependencies": {
+    "python3": ">=3.8"
+  },
+  "installation": {
+    "steps": [
+      "chmod +x scripts/*.sh",
+      "chmod +x scripts/*.py"
+    ]
+  }
+}

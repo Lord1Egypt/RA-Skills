@@ -1,0 +1,39 @@
+{
+  "name": "@bovinphang/fec-tdd-workflow",
+  "version": "2.5.0",
+  "description": "Use when implementing new frontend behavior, fixing bugs, or refactoring logic where tests can describe the expected behavior first. Apply to components, hooks/composables, utilities, API clients, route guards, or user workflows; Chinese triggers include TDD, 测试驱动, 先写测试, 红绿重构, 回归测试.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-tdd-workflow"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "testing",
+    "tdd",
+    "red-green-refactor",
+    "regression",
+    "frontend-tests"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

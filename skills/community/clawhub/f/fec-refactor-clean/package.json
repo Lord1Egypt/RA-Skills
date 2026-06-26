@@ -1,0 +1,40 @@
+{
+  "name": "@bovinphang/fec-refactor-clean",
+  "version": "2.6.0",
+  "description": "Use when safely removing dead frontend code, unused exports, stale components, obsolete routes, unused dependencies, or cleanup targets found by tools such as knip, depcheck, ts-prune, TypeScript, ESLint, or manual review. Do not use for feature rewrites that change behavior; Chinese triggers include 死代码, 清理未使用, refactor clean, 依赖清理, 删除无用代码.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-refactor-clean"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "review-quality",
+    "refactor",
+    "dead-code",
+    "cleanup",
+    "unused-exports",
+    "dependencies"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

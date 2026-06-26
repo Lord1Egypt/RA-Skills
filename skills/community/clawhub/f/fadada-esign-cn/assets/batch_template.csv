@@ -1,0 +1,4 @@
+client_task_id,task_subject,signer_user_id,signer_type,sign_type,signer_page,signer_x,signer_y,field_party_a,field_party_b,field_amount,field_date
+task_001,服务协议-张三,user_zhangsan,PERSONAL,POSITION,1,100,200,甲方科技有限公司,张三,10000,2024-03-27
+task_002,服务协议-李四,user_lisi,PERSONAL,POSITION,1,100,200,甲方科技有限公司,李四,20000,2024-03-27
+task_003,服务协议-王五,user_wangwu,PERSONAL,POSITION,1,100,200,甲方科技有限公司,王五,30000,2024-03-27

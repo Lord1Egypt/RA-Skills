@@ -1,0 +1,324 @@
+[
+  [
+    {
+      "role": "assistant",
+      "content": "![图片](http://127.0.0.1:5030/image/16aa9deb129693538564e8260aa99797,msg\\attach\\5ab8b0f9a3a2b919af23f9ae042c22da\\2023-10\\Img\\7d5644011f37dd0d3e0aef8a793c0242)"
+    },
+    {
+      "role": "user",
+      "content": "怎么坐船了"
+    },
+    {
+      "role": "assistant",
+      "content": "偷渡回去"
+    }
+  ],
+  [
+    {
+      "role": "assistant",
+      "content": "![图片](http://127.0.0.1:5030/image/16aa9deb129693538564e8260aa99797,msg\\attach\\5ab8b0f9a3a2b919af23f9ae042c22da\\2023-10\\Img\\7d5644011f37dd0d3e0aef8a793c0242)"
+    },
+    {
+      "role": "user",
+      "content": "怎么坐船了"
+    },
+    {
+      "role": "assistant",
+      "content": "偷渡回去"
+    },
+    {
+      "role": "user",
+      "content": "注意点 别被警察叔叔逮住了"
+    },
+    {
+      "role": "assistant",
+      "content": "知道这是哪里吗"
+    }
+  ],
+  [
+    {
+      "role": "assistant",
+      "content": "偷渡回去"
+    },
+    {
+      "role": "user",
+      "content": "注意点 别被警察叔叔逮住了"
+    },
+    {
+      "role": "assistant",
+      "content": "知道这是哪里吗"
+    },
+    {
+      "role": "assistant",
+      "content": "姓张的"
+    },
+    {
+      "role": "user",
+      "content": "这是在河里呀，你好傻"
+    }
+  ],
+  [
+    {
+      "role": "user",
+      "content": "注意点 别被警察叔叔逮住了"
+    },
+    {
+      "role": "assistant",
+      "content": "知道这是哪里吗"
+    },
+    {
+      "role": "assistant",
+      "content": "姓张的"
+    },
+    {
+      "role": "user",
+      "content": "这是在河里呀，你好傻"
+    },
+    {
+      "role": "assistant",
+      "content": "[疑问]"
+    }
+  ],
+  [
+    {
+      "role": "assistant",
+      "content": "姓张的"
+    },
+    {
+      "role": "user",
+      "content": "这是在河里呀，你好傻"
+    },
+    {
+      "role": "assistant",
+      "content": "[疑问]"
+    },
+    {
+      "role": "assistant",
+      "content": "我说地方"
+    },
+    {
+      "role": "user",
+      "content": "地方是在岳阳"
+    }
+  ],
+  [
+    {
+      "role": "user",
+      "content": "这是在河里呀，你好傻"
+    },
+    {
+      "role": "assistant",
+      "content": "[疑问]"
+    },
+    {
+      "role": "assistant",
+      "content": "我说地方"
+    },
+    {
+      "role": "user",
+      "content": "地方是在岳阳"
+    },
+    {
+      "role": "user",
+      "content": "![视频](http://127.0.0.1:5030/video/msg\\video\\2023-10\\093c664058059b28d15ddd6f78d9a635)"
+    }
+  ],
+  [
+    {
+      "role": "user",
+      "content": "果然拍出来的没有自己亲眼看的好看"
+    },
+    {
+      "role": "user",
+      "content": "我去找找那里可以放孔明灯"
+    },
+    {
+      "role": "assistant",
+      "content": "呵呵"
+    },
+    {
+      "role": "assistant",
+      "content": "庆哥"
+    },
+    {
+      "role": "assistant",
+      "content": "我看你一天真的蛮闲"
+    }
+  ],
+  [
+    {
+      "role": "user",
+      "content": "我去找找那里可以放孔明灯"
+    },
+    {
+      "role": "assistant",
+      "content": "呵呵"
+    },
+    {
+      "role": "assistant",
+      "content": "庆哥"
+    },
+    {
+      "role": "assistant",
+      "content": "我看你一天真的蛮闲"
+    },
+    {
+      "role": "assistant",
+      "content": "![图片](http://127.0.0.1:5030/image/df2c3388cb35c09063e82d2c4d8855d2,msg\\attach\\5ab8b0f9a3a2b919af23f9ae042c22da\\2023-10\\Img\\81b78611d9b8746b860d55735efd3746)"
+    }
+  ],
+  [
+    {
+      "role": "assistant",
+      "content": "呵呵"
+    },
+    {
+      "role": "assistant",
+      "content": "庆哥"
+    },
+    {
+      "role": "assistant",
+      "content": "我看你一天真的蛮闲"
+    },
+    {
+      "role": "assistant",
+      "content": "![图片](http://127.0.0.1:5030/image/df2c3388cb35c09063e82d2c4d8855d2,msg\\attach\\5ab8b0f9a3a2b919af23f9ae042c22da\\2023-10\\Img\\81b78611d9b8746b860d55735efd3746)"
+    },
+    {
+      "role": "assistant",
+      "content": "我直接两不误"
+    }
+  ],
+  [
+    {
+      "role": "assistant",
+      "content": "庆哥"
+    },
+    {
+      "role": "assistant",
+      "content": "我看你一天真的蛮闲"
+    },
+    {
+      "role": "assistant",
+      "content": "![图片](http://127.0.0.1:5030/image/df2c3388cb35c09063e82d2c4d8855d2,msg\\attach\\5ab8b0f9a3a2b919af23f9ae042c22da\\2023-10\\Img\\81b78611d9b8746b860d55735efd3746)"
+    },
+    {
+      "role": "assistant",
+      "content": "我直接两不误"
+    },
+    {
+      "role": "user",
+      "content": "哈哈哈哈哈"
+    }
+  ],
+  [
+    {
+      "role": "assistant",
+      "content": "我看你一天真的蛮闲"
+    },
+    {
+      "role": "assistant",
+      "content": "![图片](http://127.0.0.1:5030/image/df2c3388cb35c09063e82d2c4d8855d2,msg\\attach\\5ab8b0f9a3a2b919af23f9ae042c22da\\2023-10\\Img\\81b78611d9b8746b860d55735efd3746)"
+    },
+    {
+      "role": "assistant",
+      "content": "我直接两不误"
+    },
+    {
+      "role": "user",
+      "content": "哈哈哈哈哈"
+    },
+    {
+      "role": "user",
+      "content": "你怎么一天到晚王者荣耀啊"
+    }
+  ],
+  [
+    {
+      "role": "user",
+      "content": "哈哈哈哈哈"
+    },
+    {
+      "role": "user",
+      "content": "你怎么一天到晚王者荣耀啊"
+    },
+    {
+      "role": "assistant",
+      "content": "你还不是天天打游戏"
+    },
+    {
+      "role": "assistant",
+      "content": "真是的"
+    },
+    {
+      "role": "user",
+      "content": "![图片](http://127.0.0.1:5030/image/fbeef3bd5f014a49854a1e254c6f6743,msg\\attach\\5ab8b0f9a3a2b919af23f9ae042c22da\\2023-10\\Img\\85900b6ec92e5084ddaef8074a80c311)"
+    }
+  ],
+  [
+    {
+      "role": "user",
+      "content": "你怎么一天到晚王者荣耀啊"
+    },
+    {
+      "role": "assistant",
+      "content": "你还不是天天打游戏"
+    },
+    {
+      "role": "assistant",
+      "content": "真是的"
+    },
+    {
+      "role": "user",
+      "content": "![图片](http://127.0.0.1:5030/image/fbeef3bd5f014a49854a1e254c6f6743,msg\\attach\\5ab8b0f9a3a2b919af23f9ae042c22da\\2023-10\\Img\\85900b6ec92e5084ddaef8074a80c311)"
+    },
+    {
+      "role": "user",
+      "content": "开始咯"
+    }
+  ],
+  [
+    {
+      "role": "user",
+      "content": "![图片](http://127.0.0.1:5030/image/fbeef3bd5f014a49854a1e254c6f6743,msg\\attach\\5ab8b0f9a3a2b919af23f9ae042c22da\\2023-10\\Img\\85900b6ec92e5084ddaef8074a80c311)"
+    },
+    {
+      "role": "user",
+      "content": "开始咯"
+    },
+    {
+      "role": "assistant",
+      "content": "怎么回事"
+    },
+    {
+      "role": "assistant",
+      "content": "10分钟"
+    },
+    {
+      "role": "assistant",
+      "content": "还没上天吗"
+    }
+  ],
+  [
+    {
+      "role": "user",
+      "content": "开始咯"
+    },
+    {
+      "role": "assistant",
+      "content": "怎么回事"
+    },
+    {
+      "role": "assistant",
+      "content": "10分钟"
+    },
+    {
+      "role": "assistant",
+      "content": "还没上天吗"
+    },
+    {
+      "role": "assistant",
+      "content": "> 张庆(wxid_1qmmvvyq31l622) [0] 10-02 13:46:37\n> 地方是在岳阳\n飘尾，真的风巨大"
+    }
+  ]
+]

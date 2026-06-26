@@ -1,0 +1,108 @@
+{
+  "id": "internet_app_dau",
+  "name": "APP日活与留存报表",
+  "name_en": "App DAU and Retention Report",
+  "industry": "internet",
+  "scene": "运营分析",
+  "description": "APP运营数据监控、用户留存分析，适配各类APP运营场景",
+  "sheets": [
+    {
+      "name": "原始数据",
+      "type": "data_input",
+      "columns": [
+        {"field": "date", "label": "日期", "type": "date", "required": true, "aliases": ["日期", "date"]},
+        {"field": "dau", "label": "日活跃用户(DAU)", "type": "number", "aliases": ["日活跃用户", "dau", "DAU", "活跃用户"]},
+        {"field": "new_users", "label": "新增用户", "type": "number", "aliases": ["新增用户", "new_users", "新用户", "新增"]},
+        {"field": "retention_1d", "label": "次日留存", "type": "percent", "aliases": ["次日留存", "retention_1d", "1日留存", "day1留存"]},
+        {"field": "retention_7d", "label": "7日留存", "type": "percent", "aliases": ["7日留存", "retention_7d", "周留存"]},
+        {"field": "retention_30d", "label": "30日留存", "type": "percent", "aliases": ["30日留存", "retention_30d", "月留存"]},
+        {"field": "avg_duration", "label": "活跃时长(分钟)", "type": "number", "aliases": ["活跃时长", "avg_duration", "使用时长", "时长"]},
+        {"field": "feature_usage", "label": "核心功能使用次数", "type": "number", "aliases": ["核心功能使用次数", "feature_usage", "功能使用", "使用次数"]}
+      ]
+    },
+    {
+      "name": "分析看板",
+      "type": "dashboard",
+      "kpis": [
+        {
+          "id": "latest_dau",
+          "label": "最新DAU",
+          "formula": "LAST(dau)",
+          "format": "number",
+          "style": "card"
+        },
+        {
+          "id": "dau_growth",
+          "label": "DAU环比增长率",
+          "formula": "(LAST(dau) - LAG(dau, 1)) / LAG(dau, 1)",
+          "format": "percent",
+          "style": "gauge"
+        },
+        {
+          "id": "avg_retention_1d",
+          "label": "平均次日留存率",
+          "formula": "AVG(retention_1d)",
+          "format": "percent",
+          "style": "gauge",
+          "target": 0.4
+        },
+        {
+          "id": "new_user_ratio",
+          "label": "新增用户占比",
+          "formula": "SUM(new_users)/SUM(dau)",
+          "format": "percent",
+          "style": "card"
+        }
+      ],
+      "charts": [
+        {
+          "id": "dau_trend",
+          "type": "line",
+          "title": "DAU与新增用户趋势",
+          "x": "date",
+          "y": ["dau", "new_users"],
+          "series_names": ["DAU", "新增用户"],
+          "position": {"row": 1, "col": 1, "width": 18, "height": 10}
+        },
+        {
+          "id": "retention_bar",
+          "type": "bar",
+          "title": "留存率对比",
+          "x": "date",
+          "y": ["retention_1d", "retention_7d", "retention_30d"],
+          "series_names": ["次日留存", "7日留存", "30日留存"],
+          "format": "percent",
+          "position": {"row": 1, "col": 20, "width": 12, "height": 10}
+        },
+        {
+          "id": "duration_scatter",
+          "type": "scatter",
+          "title": "活跃时长与留存率关联",
+          "x": "avg_duration",
+          "y": "retention_1d",
+          "position": {"row": 12, "col": 1, "width": 12, "height": 8}
+        },
+        {
+          "id": "feature_bar",
+          "type": "bar",
+          "title": "核心功能使用次数趋势",
+          "x": "date",
+          "y": ["feature_usage"],
+          "series_names": ["使用次数"],
+          "position": {"row": 12, "col": 14, "width": 14, "height": 8}
+        }
+      ]
+    },
+    {
+      "name": "每日明细",
+      "type": "detail",
+      "source": "原始数据",
+      "computed_fields": [
+        {"field": "new_user_ratio", "label": "新用户占比", "formula": "new_users / dau", "format": "percent"},
+        {"field": "dau_wow", "label": "DAU周环比", "formula": "(dau - LAG(dau, 7)) / LAG(dau, 7)", "format": "percent"}
+      ],
+      "sort_by": {"field": "date", "order": "desc"}
+    }
+  ],
+  "output_filename": "互联网-APP日活留存报表-{date}.xlsx"
+}

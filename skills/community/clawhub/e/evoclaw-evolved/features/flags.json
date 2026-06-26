@@ -1,0 +1,82 @@
+{
+  "evoclaw_auto_memory_extract": {
+    "key": "evoclaw_auto_memory_extract",
+    "type": "boolean",
+    "enabled": true,
+    "value": null,
+    "description": "自动记忆抽取",
+    "owner": "本地龙",
+    "tags": [],
+    "updated_at": 1775260039.671193
+  },
+  "evoclaw_telemetry": {
+    "key": "evoclaw_telemetry",
+    "type": "boolean",
+    "enabled": true,
+    "value": null,
+    "description": "遥测日志",
+    "owner": "本地龙",
+    "tags": [],
+    "updated_at": 1775260039.671196
+  },
+  "evoclaw_dream_task": {
+    "key": "evoclaw_dream_task",
+    "type": "boolean",
+    "enabled": true,
+    "value": null,
+    "description": "后台记忆整固",
+    "owner": "本地龙",
+    "tags": [],
+    "updated_at": 1775260039.6711981
+  },
+  "evoclaw_proactive": {
+    "key": "evoclaw_proactive",
+    "type": "boolean",
+    "enabled": true,
+    "value": null,
+    "description": "主动行动",
+    "owner": "本地龙",
+    "tags": [],
+    "updated_at": 1775260039.6711998
+  },
+  "heartbeat_interval_secs": {
+    "key": "heartbeat_interval_secs",
+    "type": "number",
+    "enabled": false,
+    "value": 1800,
+    "description": "心跳间隔（秒）",
+    "owner": "本地龙",
+    "tags": [],
+    "updated_at": 1775260039.671202
+  },
+  "dream_task_trigger_session_count": {
+    "key": "dream_task_trigger_session_count",
+    "type": "number",
+    "enabled": false,
+    "value": 5,
+    "description": "DreamTask 触发所需 session 数",
+    "owner": "本地龙",
+    "tags": [],
+    "updated_at": 1775260039.6712043
+  },
+  "memory_max_lines": {
+    "key": "memory_max_lines",
+    "type": "number",
+    "enabled": false,
+    "value": 200,
+    "description": "MEMORY.md 最大行数",
+    "owner": "本地龙",
+    "tags": [],
+    "updated_at": 1775260039.6712055
+  },
+  "telemetry_sample_rate": {
+    "key": "telemetry_sample_rate",
+    "type": "number",
+    "enabled": false,
+    "value": 1.0,
+    "description": "遥测采样率 0.0-1.0",
+    "owner": "本地龙",
+    "tags": [],
+    "updated_at": 1775260039.6712072
+  }
+}

@@ -1,0 +1,354 @@
+# Finance UX Observer – Controlled Vocabulary
+# Each category contains lowercase keywords matched via whole-word regex.
+# Add or remove keywords to tune classification sensitivity.
+
+investing:
+  - invest
+  - investing
+  - stock
+  - stocks
+  - equities
+  - equity
+  - bond
+  - bonds
+  - etf
+  - etfs
+  - mutual fund
+  - index fund
+  - portfolio
+  - brokerage
+  - dividend
+  - yield
+  - options trading
+  - covered calls
+  - short selling
+  - rebalance
+  - asset allocation
+  - dollar cost averaging
+  - dca
+  - vanguard
+  - fidelity
+  - schwab
+  - robinhood
+  - ticker
+  - market cap
+  - p/e ratio
+  - alpha
+  - beta
+  - expense ratio
+  - value investing
+  - growth investing
+  - technical analysis
+  - fundamental analysis
+
+savings:
+  - savings
+  - save money
+  - high yield savings
+  - hysa
+  - certificate of deposit
+  - cd account
+  - money market
+  - emergency fund
+  - rainy day fund
+  - savings goal
+  - savings rate
+  - compounding interest
+  - compound interest
+  - apy
+  - saving for
+  - pay yourself first
+  - sinking fund
+
+budgeting:
+  - budget
+  - budgeting
+  - 50/30/20
+  - zero based budget
+  - cash envelope
+  - spending plan
+  - monthly budget
+  - budget tracker
+  - track my spending
+  - tracking spending
+  - overspent
+  - over budget
+  - budget category
+  - ynab
+  - mint
+  - every dollar
+  - budget spreadsheet
+  - budget template
+  - spending limit
+
+retirement:
+  - retirement
+  - retire
+  - 401k
+  - 401(k)
+  - ira
+  - roth ira
+  - roth 401k
+  - traditional ira
+  - sep ira
+  - simple ira
+  - pension
+  - social security
+  - required minimum distribution
+  - rmd
+  - retirement savings
+  - nest egg
+  - fire movement
+  - financial independence
+  - early retirement
+  - target date fund
+  - annuity
+  - employer match
+  - catch-up contribution
+
+household_budgeting:
+  - household budget
+  - household expenses
+  - monthly bills
+  - utilities
+  - electric bill
+  - gas bill
+  - internet bill
+  - grocery
+  - groceries
+  - food budget
+  - rent
+  - mortgage payment
+  - property tax
+  - hoa fee
+  - home maintenance
+  - home repair
+  - recurring bills
+  - subscription costs
+  - streaming services
+  - phone bill
+  - cost of living
+
+spending:
+  - spending habits
+  - discretionary spending
+  - impulse buy
+  - impulse purchase
+  - overspending
+  - track expenses
+  - expense tracker
+  - lifestyle inflation
+  - wants vs needs
+  - frugal
+  - frugality
+  - cost cutting
+  - spend less
+  - money leaks
+  - spending analysis
+  - where does my money go
+
+shopping:
+  - shopping
+  - price comparison
+  - best price
+  - deal hunting
+  - discount
+  - coupon
+  - promo code
+  - cashback
+  - cash back
+  - rewards points
+  - loyalty points
+  - buy now pay later
+  - bnpl
+  - klarna
+  - affirm
+  - afterpay
+  - price match
+  - online shopping
+  - price drop alert
+
+crypto:
+  - bitcoin
+  - btc
+  - ethereum
+  - eth
+  - crypto
+  - cryptocurrency
+  - altcoin
+  - defi
+  - decentralized finance
+  - nft
+  - blockchain
+  - crypto wallet
+  - private key
+  - seed phrase
+  - staking
+  - yield farming
+  - smart contract
+  - solana
+  - coinbase
+  - binance
+  - cold storage
+  - hot wallet
+  - gas fee
+  - satoshi
+  - hodl
+  - crypto tax
+
+taxes:
+  - tax
+  - taxes
+  - tax return
+  - tax refund
+  - irs
+  - w-2
+  - w2
+  - 1099
+  - schedule c
+  - capital gains
+  - capital loss
+  - tax loss harvesting
+  - tax deduction
+  - deductions
+  - tax bracket
+  - marginal rate
+  - effective tax rate
+  - turbotax
+  - estimated taxes
+  - quarterly taxes
+  - filing deadline
+  - write off
+  - business expense
+  - self employed taxes
+  - withholding
+  - standard deduction
+  - itemized deduction
+  - backdoor roth
+  - tax advantaged
+
+financial_advice:
+  - financial advice
+  - financial advisor
+  - financial planner
+  - fiduciary
+  - financial plan
+  - wealth management
+  - financial goals
+  - personal finance
+  - money advice
+  - net worth
+  - cash flow
+  - debt to income
+  - dti ratio
+  - credit score
+  - financial health
+  - financial freedom
+  - money mindset
+  - financial literacy
+  - wealth building
+
+scenario_planning:
+  - what if
+  - what would happen if
+  - scenario
+  - financial scenario
+  - projection
+  - financial forecast
+  - financial model
+  - simulate
+  - simulation
+  - break even
+  - monte carlo
+  - retirement calculator
+  - compound calculator
+  - loan calculator
+  - mortgage calculator
+  - future value
+  - present value
+  - inflation adjusted
+  - run the numbers
+  - hypothetical
+  - if i retire at
+
+social_spending:
+  - splitting bills
+  - split the bill
+  - venmo
+  - zelle
+  - paypal
+  - cash app
+  - splitting costs
+  - group expense
+  - shared expense
+  - going dutch
+  - gift budget
+  - wedding gift
+  - birthday gift
+  - dining out budget
+  - travel budget
+  - vacation budget
+  - holiday spending
+
+debt:
+  - debt
+  - in debt
+  - student loan
+  - auto loan
+  - car payment
+  - personal loan
+  - credit card debt
+  - debt snowball
+  - debt avalanche
+  - debt payoff
+  - apr
+  - minimum payment
+  - payoff date
+  - debt free
+  - credit utilization
+  - fico score
+  - credit report
+  - bankruptcy
+  - debt consolidation
+  - refinance
+  - balance transfer
+
+insurance:
+  - insurance
+  - life insurance
+  - term life
+  - whole life
+  - health insurance
+  - dental insurance
+  - auto insurance
+  - car insurance
+  - home insurance
+  - homeowners insurance
+  - renters insurance
+  - umbrella policy
+  - deductible
+  - insurance premium
+  - coverage limit
+  - disability insurance
+  - long term care
+  - open enrollment
+
+estate_planning:
+  - estate planning
+  - last will
+  - living will
+  - trust
+  - living trust
+  - revocable trust
+  - irrevocable trust
+  - executor
+  - probate
+  - power of attorney
+  - healthcare directive
+  - inheritance
+  - estate tax
+  - gift tax
+  - legacy planning
+  - beneficiary designation
+  - transfer on death
+  - tod account

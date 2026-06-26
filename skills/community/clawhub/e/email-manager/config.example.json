@@ -1,0 +1,22 @@
+{
+    "email_address": "your-email@yourdomain.com",
+    "email_password": "your-password",
+    "imap_server": "mail.yourdomain.com",
+    "imap_port": 993,
+    "smtp_server": "mail.yourdomain.com",
+    "smtp_port": 465,
+    "folders": {
+        "inbox": "INBOX",
+        "drafts": "Drafts",
+        "sent": "Sent",
+        "trash": "Trash",
+        "junk": "Junk",
+        "archive": "Archive"
+    },
+    "defaults": {
+        "list_limit": 20,
+        "save_sent_copy": true,
+        "mark_as_read": true,
+        "spam_threshold": 0.8
+    }
+}

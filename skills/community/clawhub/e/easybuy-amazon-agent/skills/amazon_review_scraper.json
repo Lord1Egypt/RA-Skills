@@ -1,0 +1,34 @@
+{
+  "name": "amazon_review_scraper",
+  "version": "1.0.0",
+  "description": "Scrapes reviews from Amazon review pages with pagination.",
+  "allowedTools": [
+    "browser.query",
+    "browser.click",
+    "browser.wait",
+    "browser.scroll"
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "maxPages": {
+        "type": "number"
+      },
+      "reviewSelector": {
+        "type": "string"
+      }
+    }
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "reviews": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "id": "amazon_review_scraper"
+}

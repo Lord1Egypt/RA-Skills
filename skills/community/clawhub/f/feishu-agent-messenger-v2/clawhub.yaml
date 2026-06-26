@@ -1,0 +1,139 @@
+# clawhub.yaml - feishu-send-message 技能配置
+
+name: feishu-send-message
+version: 2.0.0
+description: |
+  飞书多 Agent 消息发送技能
+  
+  让 Ass/Ops 用自己的飞书应用发送消息（群聊/私聊），解决 open_id 应用隔离问题。
+  
+  ## 核心功能
+  - 使用当前 Agent 的飞书凭证发送消息
+  - 支持群聊和私聊两种模式
+  - 飞书显示对应的机器人名字（"小助手"或"运维助手"）
+  
+  ## 使用场景
+  - Boss 派发任务后，Ass/Ops 用自己的身份回复消息
+  - 需要显示不同机器人名字的场景
+  
+  ## 使用方法
+  ```bash
+  # Ass 发送消息
+  ./send.sh ass ou_xxx open_id "消息内容"
+  ./send.sh ass oc_xxx chat_id "群聊消息"
+  
+  # Ops 发送消息
+  ./send.sh ops ou_xxx open_id "消息内容"
+  ./send.sh ops oc_xxx chat_id "群聊消息"
+  ```
+
+author: pikaqiuyaya
+license: MIT
+tags:
+  - feishu
+  - message
+  - multi-agent
+  - open_id
+  - zh-CN
+
+requirements:
+  - jq
+  - curl
+
+usage: |
+  ## 基本用法
+  
+  ### 获取用户 open_id
+  
+  ```bash
+  # Ass
+  journalctl --user -u openclaw-gateway-ass.service | grep "received message from"
+  
+  # Ops
+  journalctl --user -u openclaw-gateway-ops.service | grep "received message from"
+  ```
+  
+  ### Ass 发送消息
+  ```bash
+  # 私聊
+  ./send.sh ass <open_id> open_id "消息内容"
+  
+  # 群聊
+  ./send.sh ass oc_88fbbe55e37eca3c3339b2f4bae1a8a9 chat_id "消息内容"
+  ```
+  
+  ### Ops 发送消息
+  ```bash
+  # 私聊
+  ./send.sh ops <open_id> open_id "消息内容"
+  
+  # 群聊
+  ./send.sh ops oc_88fbbe55e37eca3c3339b2f4bae1a8a9 chat_id "消息内容"
+  ```
+
+parameters:
+  - name: agent
+    type: string
+    required: true
+    description: "Agent 类型：ass 或 ops"
+    example: "ass"
+  
+  - name: target
+    type: string
+    required: true
+    description: "目标 ID（open_id 或 chat_id）"
+    example: "ou_afa28cfc5689f929f1b1d8f3b09b9408"
+  
+  - name: msg_type
+    type: string
+    required: true
+    description: "消息类型：open_id（私聊）或 chat_id（群聊）"
+    example: "open_id"
+  
+  - name: message
+    type: string
+    required: true
+    description: "消息内容"
+    example: "你好，这是测试消息"
+
+examples:
+  - name: "Ass 发送私聊消息"
+    command: "./send.sh ass ou_afa28cfc5689f929f1b1d8f3b09b9408 open_id \"测试消息\""
+  
+  - name: "Ass 发送群聊消息"
+    command: "./send.sh ass oc_88fbbe55e37eca3c3339b2f4bae1a8a9 chat_id \"群聊测试\""
+  
+  - name: "Ops 发送私聊消息"
+    command: "./send.sh ops ou_c4c16992e757336634acca0f9f524814 open_id \"运维消息\""
+
+notes: |
+  ## 重要说明
+  
+  1. **open_id 是应用隔离的**
+     - Boss 应用的用户 open_id ≠ Ass 应用的用户 open_id ≠ Ops 应用的用户 open_id
+     - 必须使用当前 Agent 应用中的 open_id
+  
+  2. **获取用户 open_id 的方法**
+     ```bash
+     journalctl --user -u openclaw-gateway-{agent}.service | grep "received message from"
+     ```
+  
+  3. **配置文件位置**
+     - Ass: `~/.openclaw/openclaw-ass.json`
+     - Ops: `~/.openclaw/openclaw-ops.json`
+
+changelog:
+  - version: 2.0.1
+    date: 2026-03-20
+    changes:
+      - "移除明文 open_id，改为从日志获取"
+      - "添加获取用户 open_id 的方法说明"
+      - "参数示例使用 <open_id> 占位符"
+  
+  - version: 2.0.0
+    date: 2026-03-20
+    changes:
+      - "修复 SKILL.md 文档，添加完整使用方法"
+      - "恢复脚本的 4 个参数用法（agent/target/msg_type/message）"
+      - "添加关键参数参考表"
+      - "添加获取用户 open_id 的方法"

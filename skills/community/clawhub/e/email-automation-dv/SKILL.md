@@ -1,35 +1,44 @@
 ---
-name: "Email Automation"
-description: "Send and automate emails using ConvertKit or Mailchimp."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-automation-dv"
-sourceUrl: "https://clawhub.ai/skills/email-automation-dv"
+id: 'email-automation'
+name: 'Email Automation'
+description: 'Send and automate emails using ConvertKit or Mailchimp.'
+version: '1.0.0'
+author: 'DaVinci'
+last_amended_at: null
+trigger_patterns: []
+pre_conditions:
+  git_repo_required: false
+  tools_available: []
+expected_output_format: 'natural_language'
 ---
 
 # Email Automation
 
-> Send and automate emails using ConvertKit or Mailchimp.
+Send and automate emails using ConvertKit or Mailchimp.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-automation-dv`
-- **Source URL:** [https://clawhub.ai/skills/email-automation-dv](https://clawhub.ai/skills/email-automation-dv)
+## Usage
 
-## Overview
+### Send a one-off email
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/email-automation-dv
+email-automation send \
+  --to "recipient@example.com" \
+  --subject "Hello from DaVinci" \
+  --body "This is a test email."
+```
+
+### Add a subscriber to a sequence
+
+```bash
+email-automation add-subscriber \
+  --email "new-subscriber@example.com" \
+  --sequence "Onboarding Sequence"
+```
+
+### Tag a subscriber
+
+```bash
+email-automation tag-subscriber \
+  --email "subscriber@example.com" \
+  --tag "Priority"
 ```

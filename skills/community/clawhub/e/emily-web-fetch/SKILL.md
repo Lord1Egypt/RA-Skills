@@ -1,35 +1,19 @@
----
-name: "Emily Web Fetch"
-description: "Fetch static webpage content up to 5000 characters via HTTP/HTTPS GET for analysis, summarization, or information extraction."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/emily-web-fetch"
-sourceUrl: "https://clawhub.ai/skills/emily-web-fetch"
----
+# Web Fetch Skill
 
-# Emily Web Fetch
+## Description
+抓取指定URL的网页内容，返回文本摘要或原始HTML。用于获取新闻、公告、数据页面等。
 
-> Fetch static webpage content up to 5000 characters via HTTP/HTTPS GET for analysis, summarization, or information extraction.
+## Tools Provided
+- `fetch(url)` - 抓取网页，返回文本内容（最多5000字符）
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/emily-web-fetch`
-- **Source URL:** [https://clawhub.ai/skills/emily-web-fetch](https://clawhub.ai/skills/emily-web-fetch)
+## Usage
+助手调用此工具获取网页内容，然后进行分析、摘要或提取信息。
 
-## Overview
+## Examples
+用户：抓取 https://www.cls.cn/telegraph
+助手：调用 web-fetch:fetch(url)，获取后返回内容并解读。
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/emily-web-fetch
-```
+## Limitations
+- 仅支持HTTP/HTTPS GET- 不处理JavaScript渲染的页面（静态HTML）
+- 内容长度限制为5000字符，避免过大响应
+- 需要目标网站允许爬取（遵守robots.txt）

@@ -1,0 +1,8 @@
+{
+  "name": "feynman-panel",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve -p 19380",
+    "start": "npx serve -p 19380"
+  }
+}

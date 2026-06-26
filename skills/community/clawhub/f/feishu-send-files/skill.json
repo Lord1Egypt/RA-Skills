@@ -1,0 +1,52 @@
+{
+  "name": "feishu-send-files",
+  "description": "飞书文件批量发送技能，支持指令和自然语言，自动读取群 ID/用户 ID，支持批量发送",
+  "triggers": [
+    {
+      "type": "exact_match",
+      "value": "发文件"
+    },
+    {
+      "type": "prefix_match",
+      "value": "发文件 "
+    },
+    {
+      "type": "mention",
+      "value": "发文件"
+    },
+    {
+      "type": "prefix_match",
+      "value": "帮我发"
+    },
+    {
+      "type": "prefix_match",
+      "value": "发一下"
+    },
+    {
+      "type": "prefix_match",
+      "value": "把文件"
+    },
+    {
+      "type": "prefix_match",
+      "value": "发送文件"
+    },
+    {
+      "type": "prefix_match",
+      "value": "发这个文件"
+    },
+    {
+      "type": "prefix_match",
+      "value": "发那个文件"
+    },
+    {
+      "type": "contains",
+      "value": "发文件"
+    },
+    {
+      "type": "contains",
+      "value": "发送文件"
+    }
+  ],
+  "runtime": "nodejs",
+  "entry": "index.js"
+}

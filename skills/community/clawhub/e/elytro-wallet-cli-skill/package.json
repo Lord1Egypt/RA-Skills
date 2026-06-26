@@ -1,0 +1,10 @@
+{
+  "name": "elytro-skills",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Canonical Elytro wallet + DeFi skill pack (elytro, defi, defi/elytro, defi/uniswap)",
+  "license": "MIT",
+  "scripts": {
+    "lint": "echo 'No lint steps defined'"
+  }
+}

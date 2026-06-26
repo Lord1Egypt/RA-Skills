@@ -1,0 +1,427 @@
+{
+  "name": "eComm AI — 07 Returns & FAQ Handler",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ecomm-ai/returns-faq",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Returns/FAQ Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        400
+      ],
+      "webhookId": "ecomm-returns-faq",
+      "id": "57bb83df-5cfc-40da-b3c0-d62548976a3f"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse customer inquiry\nconst body = $input.first().json.body || $input.first().json;\n\nconst inquiry = {\n  order_id: body.order_id || '',\n  customer_phone: body.customer_phone || body.phone || '',\n  customer_name: body.customer_name || body.name || '',\n  customer_email: body.customer_email || body.email || '',\n  message: body.message || body.query || body.transcript || '',\n  intent: (body.intent || 'unknown').toLowerCase(),\n  source: body.source || 'voice',\n  timestamp: new Date().toISOString()\n};\n\n// Simple intent detection from message\nconst msg = inquiry.message.toLowerCase();\nif (!body.intent || body.intent === 'unknown') {\n  if (msg.includes('return') || msg.includes('send back') || msg.includes('exchange')) inquiry.intent = 'return';\n  else if (msg.includes('refund') || msg.includes('money back')) inquiry.intent = 'refund';\n  else if (msg.includes('where') || msg.includes('track') || msg.includes('shipping') || msg.includes('delivery')) inquiry.intent = 'order_status';\n  else inquiry.intent = 'faq';\n}\n\nreturn [{ json: inquiry }];"
+      },
+      "name": "Parse Intent",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ],
+      "id": "1ae28f95-77a1-4f19-830a-5123a1aac755"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "c75aecf5-1800-469f-81c7-0a3b1bdba0e2",
+                    "leftValue": "={{ $json.intent }}",
+                    "rightValue": "return",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Return Request"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "fe7af995-1d2f-4b92-ae3a-0d49f5533bfb",
+                    "leftValue": "={{ $json.intent }}",
+                    "rightValue": "refund",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Refund Status"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "dc87428f-4102-42cf-939c-479c3304e428",
+                    "leftValue": "={{ $json.intent }}",
+                    "rightValue": "order_status",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Order Status"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "name": "Route Intent",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        700,
+        400
+      ],
+      "id": "03aed0e1-d8d1-4db8-92ef-9d2e6c57779a"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Generate return policy response via template\nconst d = $input.first().json;\nconst response = {\n  ...d,\n  ai_response: `I understand you'd like to return an item from order #${d.order_id}. `\n    + `Our return policy allows returns within 30 days of delivery. `\n    + `The item must be unused and in original packaging. `\n    + `I'll initiate a return request for you. You'll receive a return shipping label via email shortly.`,\n  action: 'initiate_return',\n  sms_response: `Return request initiated for order #${d.order_id}. Check your email for the return label. Questions? Reply HELP.`\n};\nreturn [{ json: response }];"
+      },
+      "name": "Return Policy Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        160
+      ],
+      "id": "f58b738f-72ab-4293-b34f-7357b443ff4a"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Look up refund status\nconst d = $input.first().json;\nconst response = {\n  ...d,\n  ai_response: `Let me check the refund status for order #${d.order_id}. `\n    + `Refunds typically take 5-10 business days to process after we receive the returned item. `\n    + `I'll send you an update via SMS with the current status.`,\n  action: 'check_refund',\n  sms_response: `Refund update for order #${d.order_id}: Your refund is being processed. Expected 5-10 business days. We'll notify you when complete.`\n};\nreturn [{ json: response }];"
+      },
+      "name": "Refund Status Lookup",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        340
+      ],
+      "id": "2128be4e-fc97-4ff7-aacc-59676c94fcad"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Check order/shipping status\nconst d = $input.first().json;\nconst response = {\n  ...d,\n  ai_response: `I'll look up the status of order #${d.order_id} for you right away.`,\n  action: 'check_status',\n  sms_response: `Order #${d.order_id} status update will be sent shortly. Track at your store account.`\n};\nreturn [{ json: response }];"
+      },
+      "name": "Order Status Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        520
+      ],
+      "id": "2b88dfa9-9fea-4af6-9dbf-2a4b6b599cf5"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  model: 'gpt-4o-mini',\n  messages: [\n    { role: 'system', content: 'You are an eCommerce customer support assistant. Answer the customer\\'s question helpfully and concisely. If you cannot answer, say you will connect them to a human agent.' },\n    { role: 'user', content: $json.message || 'General inquiry about order #' + $json.order_id }\n  ],\n  max_tokens: 300\n}) }}",
+        "options": {},
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.OPENAI_API_KEY}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        }
+      },
+      "name": "OpenAI FAQ Answer",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        700
+      ],
+      "id": "9473d4d5-8dc0-4cfa-b833-103f45ec2a92"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract OpenAI response\nconst aiResp = $input.first().json;\nconst inquiry = $('Parse Intent').first().json;\nconst answer = aiResp.choices?.[0]?.message?.content || 'I apologize, let me connect you to a human agent.';\n\nreturn [{ json: {\n  ...inquiry,\n  ai_response: answer,\n  action: 'faq_answered',\n  sms_response: answer.substring(0, 160)\n}}];"
+      },
+      "name": "Format FAQ Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        700
+      ],
+      "id": "87a85927-97f4-4ee0-8334-48b1d10491ba"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.TWILIO_API_URL}}/2010-04-01/Accounts/{{$env.TWILIO_ACCOUNT_SID}}/Messages.json",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ From: $env.TWILIO_PHONE_NUMBER, To: $json.customer_phone, Body: $json.sms_response }) }}",
+        "options": {},
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Basic {{$env.TWILIO_AUTH_HEADER}}"
+            }
+          ]
+        }
+      },
+      "name": "Send SMS Response",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1440,
+        400
+      ],
+      "id": "2bccefff-f511-467d-ba08-0d0c304ea5bf"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Call Log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "order_id": "={{ $json.order_id }}",
+            "customer_phone": "={{ $json.customer_phone }}",
+            "call_type": "={{ $json.intent }}",
+            "status": "={{ $json.action }}",
+            "summary": "={{ $json.ai_response?.substring(0, 200) }}",
+            "timestamp": "={{ $json.timestamp }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Log Inquiry",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1680,
+        400
+      ],
+      "id": "3a6862eb-186b-482a-948a-33a85b096f6d",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'ok', intent: $json.intent, action: $json.action }) }}",
+        "options": {}
+      },
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1920,
+        400
+      ],
+      "id": "fcfb8f37-edc3-4f4b-b6b0-39d430266811"
+    }
+  ],
+  "connections": {
+    "Returns/FAQ Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse Intent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Intent": {
+      "main": [
+        [
+          {
+            "node": "Route Intent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route Intent": {
+      "main": [
+        [
+          {
+            "node": "Return Policy Response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Refund Status Lookup",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Order Status Response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "OpenAI FAQ Answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Return Policy Response": {
+      "main": [
+        [
+          {
+            "node": "Send SMS Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Refund Status Lookup": {
+      "main": [
+        [
+          {
+            "node": "Send SMS Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Order Status Response": {
+      "main": [
+        [
+          {
+            "node": "Send SMS Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI FAQ Answer": {
+      "main": [
+        [
+          {
+            "node": "Format FAQ Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format FAQ Response": {
+      "main": [
+        [
+          {
+            "node": "Send SMS Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send SMS Response": {
+      "main": [
+        [
+          {
+            "node": "Log Inquiry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Inquiry": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

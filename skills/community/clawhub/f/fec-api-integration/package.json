@@ -1,0 +1,40 @@
+{
+  "name": "@bovinphang/fec-api-integration",
+  "version": "2.5.0",
+  "description": "Use when designing, implementing, or reviewing frontend-to-backend API integration, typed API clients, REST/tRPC/OpenAPI client choices, auth refresh, API error mapping, upload flows, SSE/WebSocket/polling choices, CORS-facing frontend behavior, or cross-boundary loading/error states. Do not use for backend-only service architecture or TanStack Query cache policy alone; Chinese triggers include API 集成, 前后端联调, typed API client, 接口错误处理, SSE, WebSocket.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-api-integration"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "implementation-capability",
+    "api",
+    "typed-client",
+    "auth-refresh",
+    "upload",
+    "realtime"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

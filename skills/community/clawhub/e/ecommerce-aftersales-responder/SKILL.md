@@ -1,35 +1,48 @@
 ---
-name: "E-commerce After-sales Responder"
-description: "电商售后客服规范应答生成器。支撑客服人员针对退换货申请、物流异常咨询、售后补偿协商三类高频售后诉求， 快速生成符合品牌服务规范的统一话术。适用场景：(1) 用户发起退货/换货/退款申请需客服审核回复， (2) 用户咨询物流延误、丢件、破损等异常问题，(3) 用户对售后处理不满需协商补偿方案（优惠券、补发、折价等）..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/ecommerce-aftersales-responder"
-sourceUrl: "https://clawhub.ai/skills/ecommerce-aftersales-responder"
+name: ecommerce-aftersales-responder
+description: >
+  电商售后客服规范应答生成器。支撑客服人员针对退换货申请、物流异常咨询、售后补偿协商三类高频售后诉求，
+  快速生成符合品牌服务规范的统一话术。适用场景：(1) 用户发起退货/换货/退款申请需客服审核回复，
+  (2) 用户咨询物流延误、丢件、破损等异常问题，(3) 用户对售后处理不满需协商补偿方案（优惠券、补发、折价等）。
+  当对话涉及电商售后、退换货、物流异常、售后补偿、客服话术、服务规范等关键词时触发。
 ---
 
-# E-commerce After-sales Responder
+# 电商售后客服规范应答生成器
 
-> 电商售后客服规范应答生成器。支撑客服人员针对退换货申请、物流异常咨询、售后补偿协商三类高频售后诉求， 快速生成符合品牌服务规范的统一话术。适用场景：(1) 用户发起退货/换货/退款申请需客服审核回复， (2) 用户咨询物流延误、丢件、破损等异常问题，(3) 用户对售后处理不满需协商补偿方案（优惠券、补发、折价等）...
+根据用户诉求类型，选择对应场景模块生成规范应答。三大场景：
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/ecommerce-aftersales-responder`
-- **Source URL:** [https://clawhub.ai/skills/ecommerce-aftersales-responder](https://clawhub.ai/skills/ecommerce-aftersales-responder)
+| 场景 | 参考文件 |
+|------|----------|
+| 退换货申请 | [references/return-exchange.md](references/return-exchange.md) |
+| 物流异常咨询 | [references/logistics-issue.md](references/logistics-issue.md) |
+| 售后补偿协商 | [references/compensation.md](references/compensation.md) |
 
-## Overview
+## 通用规范
 
+所有应答必须遵循以下原则：
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/ecommerce-aftersales-responder
-```
+1. **首句共情**：先表达理解与歉意，再进入解决方案
+2. **信息确认**：核实订单号、商品信息后再给出处理意见
+3. **方案明确**：给出唯一或有限选项，避免开放式反问
+4. **时限承诺**：明确告知下一步处理时限（如"48小时内"）
+5. **结尾关怀**：以感谢语收尾，开放后续咨询入口
+6. **禁用承诺**：不承诺"一定解决""绝对没问题"等绝对性表述
+7. **品牌一致**：称谓统一使用"您"，品牌自称统一，语气温暖专业
+
+## 应答生成流程
+
+1. 识别用户诉求所属场景（退换货 / 物流异常 / 补偿协商）
+2. 读取对应 references 文件
+3. 按文件中的话术模板与决策树，结合用户具体信息填充生成应答
+4. 检查应答是否符合通用规范 7 条原则
+5. 输出最终应答
+
+## 多场景叠加
+
+当用户诉求同时涉及多个场景时（如"物流破损要求换货并补偿"），按以下优先级逐段处理：
+
+1. 物流异常（先确认事实）
+2. 退换货（给出处理方案）
+3. 补偿协商（叠加补偿内容）
+
+每段独立生成后合并为完整应答，段间自然衔接。

@@ -1,0 +1,11 @@
+{
+  "name": "analytics-tracking-automation",
+  "kind": "umbrella",
+  "familyName": "analytics-tracking-automation",
+  "repository": "jtrackingai/analytics-tracking-automation",
+  "homepage": "https://github.com/jtrackingai/analytics-tracking-automation",
+  "sourceUrl": "https://github.com/jtrackingai/analytics-tracking-automation",
+  "issuesUrl": "https://github.com/jtrackingai/analytics-tracking-automation/issues",
+  "license": "Apache-2.0",
+  "familyVersion": "1.0.11"
+}

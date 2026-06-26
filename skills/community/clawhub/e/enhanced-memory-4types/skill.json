@@ -1,0 +1,163 @@
+{
+  "name": "memory-system",
+  "version": "1.1.0",
+  "displayName": "Memory System",
+  "description": "完整记忆系统 - 文件系统记忆 + 向量搜索 + 四类记忆分类 + Feedback双向记录",
+  "author": {
+    "name": "团宝 (openclaw)",
+    "url": "https://github.com/openclaw"
+  },
+  "tags": ["memory", "persistence", "vector-search", "ollama", "feedback", "knowledge-management"],
+  "dependencies": {
+    "ollama": ">=0.3.0",
+    "nomic-embed-text": "latest"
+  },
+  "config": {
+    "memoryDir": {
+      "type": "string",
+      "default": "~/.openclaw/workspace/memory",
+      "description": "记忆文件存储目录"
+    },
+    "flushMode": {
+      "type": "string",
+      "enum": ["safeguard", "manual", "disabled"],
+      "default": "safeguard",
+      "description": "内存 flush 模式"
+    },
+    "softThresholdTokens": {
+      "type": "number",
+      "default": 300000,
+      "description": "触发 flush 的 token 阈值"
+    },
+    "vectorEnabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否启用向量搜索"
+    },
+    "embeddingModel": {
+      "type": "string",
+      "default": "nomic-embed-text",
+      "description": "向量嵌入模型"
+    }
+  },
+  "tools": [
+    {
+      "name": "memory_search",
+      "description": "语义搜索记忆",
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "搜索关键词"
+        },
+        "type": {
+          "type": "string",
+          "optional": true,
+          "description": "限定记忆类型（user/feedback/project/reference）"
+        },
+        "topK": {
+          "type": "number",
+          "default": 5,
+          "description": "返回结果数量"
+        },
+        "group": {
+          "type": "string",
+          "optional": true,
+          "description": "群组 ID（可选）"
+        }
+      }
+    },
+    {
+      "name": "memory_get",
+      "description": "读取记忆文件",
+      "parameters": {
+        "path": {
+          "type": "string",
+          "description": "文件路径（相对于 memoryDir）"
+        },
+        "from": {
+          "type": "number",
+          "optional": true,
+          "description": "起始行号"
+        },
+        "lines": {
+          "type": "number",
+          "optional": true,
+          "description": "读取行数"
+        }
+      }
+    },
+    {
+      "name": "memory_write",
+      "description": "写入记忆",
+      "parameters": {
+        "file": {
+          "type": "string",
+          "description": "目标文件"
+        },
+        "content": {
+          "type": "string",
+          "description": "记忆内容"
+        },
+        "type": {
+          "type": "string",
+          "optional": true,
+          "description": "记忆类型（user/feedback/project/reference）"
+        },
+        "mode": {
+          "type": "string",
+          "default": "append",
+          "description": "overwrite 或 append"
+        }
+      }
+    },
+    {
+      "name": "memory_flush",
+      "description": "手动触发记忆持久化",
+      "parameters": {
+        "group": {
+          "type": "string",
+          "optional": true,
+          "description": "群组 ID"
+        }
+      }
+    }
+  ],
+  "hooks": {
+    "onSessionStart": {
+      "description": "会话启动时自动加载记忆",
+      "files": ["MEMORY.md", "memory/{date}.md", "memory/{yesterday}.md"]
+    },
+    "onSessionEnd": {
+      "description": "会话结束时自动保存记忆",
+      "action": "flush"
+    }
+  },
+  "memoryTypes": {
+    "user": {
+      "scope": "private",
+      "description": "用户信息 - 角色、偏好、知识背景",
+      "whenToSave": "了解用户任何个人细节时"
+    },
+    "feedback": {
+      "scope": "private/team",
+      "description": "用户反馈 - 纠正和确认都要记录",
+      "whenToSave": "用户纠正或确认你的做法时",
+      "bidirectional": true
+    },
+    "project": {
+      "scope": "team",
+      "description": "项目信息 - 进展、目标、决策",
+      "whenToSave": "了解项目动态时"
+    },
+    "reference": {
+      "scope": "team",
+      "description": "外部系统指针",
+      "whenToSave": "了解外部资源时"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/memory-system-skill"
+  },
+  "license": "MIT"
+}

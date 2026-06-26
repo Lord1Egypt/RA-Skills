@@ -1,35 +1,13 @@
----
-name: "Family Conflict Mediator"
-description: "Analyze family conflicts calmly and provide mediation steps, dialogue suggestions, and resources for non-emergency situations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/family-conflict-mediator"
-sourceUrl: "https://clawhub.ai/skills/family-conflict-mediator"
----
-
-# Family Conflict Mediator
-
-> Analyze family conflicts calmly and provide mediation steps, dialogue suggestions, and resources for non-emergency situations.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/family-conflict-mediator`
-- **Source URL:** [https://clawhub.ai/skills/family-conflict-mediator](https://clawhub.ai/skills/family-conflict-mediator)
+# Family Conflict Mediator（家庭冲突调解员）
 
 ## Overview
+帮助用户在家庭冲突（非紧急）情况下冷静分析，给出调解步骤和话术建议。
 
+## Trigger
+- 家庭争吵
+- 夫妻冷战
+- 亲子冲突
+- 家庭矛盾
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/family-conflict-mediator
-```
+## Output
+JSON: {detectedParties[], conflictLevel, mediationSteps[], principle, crisisResources{}}

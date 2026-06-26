@@ -1,0 +1,12 @@
+{
+    "allowed_ips": [
+        "127.0.0.1",
+        "localhost",
+        "::1"
+    ],
+    "admin_password": "change_me_now",
+    "backup_interval_days": 3,
+    "backup_hour": 2,
+    "max_backups": 5,
+    "last_backup_date": ""
+}

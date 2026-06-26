@@ -1,0 +1,77 @@
+{
+  "name": "finance-news-analyzer",
+  "displayName": "财经新闻分析器",
+  "description": "专业的财经新闻深度分析技能，支持 28+ 新闻源、10+ LLM 模型，提供情感分析、影响评估、图表生成、数据持久化等完整功能",
+  "version": "1.0.0",
+  "author": "明 & 小夏",
+  "license": "MIT",
+  "homepage": "https://github.com/yourusername/finance-news-analyzer",
+  "repository": "https://github.com/yourusername/finance-news-analyzer",
+  "keywords": [
+    "finance",
+    "news",
+    "analysis",
+    "sentiment",
+    "stocks",
+    "财经",
+    "新闻",
+    "情感分析",
+    "股票"
+  ],
+  "categories": [
+    "Finance",
+    "News",
+    "Analysis",
+    "Productivity"
+  ],
+  "requirements": {
+    "python": ">=3.8",
+    "packages": [
+      "requests>=2.31.0",
+      "beautifulsoup4>=4.12.0",
+      "jinja2>=3.1.0",
+      "pyyaml>=6.0",
+      "matplotlib>=3.7.0"
+    ]
+  },
+  "models": {
+    "supported": [
+      "openai/gpt-4o",
+      "openai/gpt-4o-mini",
+      "openai/gpt-3.5-turbo",
+      "anthropic/claude-3-5-sonnet",
+      "anthropic/claude-3-opus",
+      "dashscope/qwen-max",
+      "dashscope/qwen-plus",
+      "qianfan/ernie-bot",
+      "zhipu/glm-4",
+      "ollama/llama3.1"
+    ],
+    "recommended": "openai/gpt-4o-mini"
+  },
+  "features": [
+    "28+ 新闻源抓取",
+    "10+ LLM 模型支持",
+    "情感分析（利好/利空/中性）",
+    "影响评估（行业/公司/市场）",
+    "数据持久化（SQLite）",
+    "图表生成（趋势图/饼图/热力图）",
+    "定时任务调度",
+    "数据导出（CSV/JSON）"
+  ],
+  "usage": {
+    "basic": "python scripts/main.py --source wallstreetcn --limit 15",
+    "advanced": "python scripts/main.py --source all --keyword AI --ticker NVDA,TSLA --output brief"
+  },
+  "changelog": {
+    "1.0.0": [
+      "初始版本发布",
+      "支持 28+ 新闻源抓取",
+      "支持 10+ LLM 模型情感分析",
+      "完整的图表生成功能",
+      "SQLite 数据持久化",
+      "定时任务调度系统",
+      "完整的文档系统"
+    ]
+  }
+}

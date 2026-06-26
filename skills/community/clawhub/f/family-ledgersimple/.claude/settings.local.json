@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 *)",
+      "Bash(curl -s \"https://api.github.com/search/code?q=skill+extension:md+repo:NousResearch/hermes-agent&per_page=5\")",
+      "WebFetch(domain:hermes-agent.nousresearch.com)",
+      "WebFetch(domain:docs.openclaw.ai)",
+      "Bash(curl -s \"https://raw.githubusercontent.com/farion1231/cc-switch/main/README.md\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/NousResearch/hermes-agent/main/README.zh-CN.md\")",
+      "Bash(curl -s \"https://agentskills.io\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/agentskills/agentskills/main/README.md\")",
+      "Bash(mkdir -p /home/ubuntu/projects/record-family/.claude/commands)",
+      "Bash(cp /home/ubuntu/projects/record-family/skills/family-ledger/SKILL.md /home/ubuntu/projects/record-family/.claude/commands/family-ledger.md)",
+      "Bash(git add *)"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "find-orphans",
+  "display_name": "Find Orphans",
+  "version": "1.0.0",
+  "description": "查找项目中的孤儿文件、未使用的组件和无效代码，生成清理建议报告",
+  "author": "wangzhiming1999",
+  "category": "development",
+  "tags": ["cleanup", "refactor", "code-quality", "dead-code", "unused-files"],
+  "license": "MIT",
+  "repository": "https://github.com/wangzhiming1999/oliver-skill",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill/tree/main/skills/find-orphans",
+  "min_claude_version": "1.0.0",
+  "permissions": {
+    "file_read": true,
+    "file_write": true,
+    "bash": true
+  }
+}

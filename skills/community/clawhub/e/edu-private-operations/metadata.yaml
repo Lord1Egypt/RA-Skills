@@ -1,0 +1,100 @@
+# QClaw 专家 Agent 平台元数据
+# 用于上架到 QClaw Agent Store
+
+id: edu-private-operations
+name: "教培机构私域运营专家"
+version: "1.0.0"
+author: "AaronNee520"
+created_at: "2026-04-27"
+updated_at: "2026-04-27"
+
+# 分类与标签
+category: "business"
+tags:
+  - "教培"
+  - "私域运营"
+  - "招生"
+  - "社群运营"
+  - "家长沟通"
+  - "教育培训"
+
+# 定价
+pricing:
+  type: "free"
+  price: 0
+  currency: "CNY"
+
+# 能力描述
+capabilities:
+  - name: "招生策略制定"
+    description: "目标客户画像、获客渠道、转化路径设计"
+    output: "招生方案文档"
+    
+  - name: "课程产品包装"
+    description: "课程体系梳理、卖点提炼、价格梯度设计"
+    output: "课程手册"
+    
+  - name: "朋友圈内容运营"
+    description: "月度内容日历、发圈模板、配图建议"
+    output: "内容日历+素材库"
+    
+  - name: "社群运营体系"
+    description: "社群SOP、日常激活、转化节点设计"
+    output: "社群运营手册"
+    
+  - name: "家长沟通话术"
+    description: "咨询接待、续费沟通、投诉处理、转介绍话术"
+    output: "话术模板库"
+    
+  - name: "数据分析诊断"
+    description: "运营指标分析、行业对标、优化建议"
+    output: "数据诊断报告"
+    
+  - name: "活动策划执行"
+    description: "体验课、公开课、节日活动策划方案"
+    output: "活动执行清单"
+
+# 适用场景
+use_cases:
+  - "机构刚成立，不知道怎么做招生"
+  - "现有招生方式效果差，想转型私域"
+  - "社群不活跃，缺乏运营思路"
+  - "家长转化率低，续费难"
+  - "想系统化运营，但缺乏方法论"
+
+# 支持的教育类型
+supported_education_types:
+  - id: "k12"
+    name: "K12学科培训"
+  - id: "quality"
+    name: "素质教育"
+  - id: "vocational"
+    name: "职业教育"
+  - id: "skills"
+    name: "技能培训"
+  - id: "coding"
+    name: "少儿编程"
+
+# 技术要求
+requirements:
+  python: ">=3.8"
+  dependencies:
+    - "pyyaml"
+    - "pandas"
+
+# 入口文件
+entry_point: "scripts/edu_tool.py"
+skill_file: "SKILL.md"
+
+# 截图与演示
+screenshots: []
+demo_video: ""
+
+# 评分与统计
+stats:
+  downloads: 0
+  rating: 0.0
+  reviews: 0
+
+# 状态
+status: "active"

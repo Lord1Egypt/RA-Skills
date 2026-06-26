@@ -1,0 +1,41 @@
+{
+  "name": "@bovinphang/fec-doc-sync",
+  "version": "2.6.0",
+  "description": "Use when synchronizing frontend project documentation with source-of-truth files such as package.json, lockfiles, config, env examples, routes, API clients or server routes, schemas, components, tests, CI, build/deploy config, ADRs, changelogs, or migration notes. Do not use for general prose polishing only; Chinese triggers include 文档同步, 更新 README, docs sync, 环境变量文档, 命令清单, API 文档同步.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-doc-sync"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "maintenance-docs",
+    "docs",
+    "readme",
+    "env",
+    "api",
+    "sync",
+    "deploy-docs"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

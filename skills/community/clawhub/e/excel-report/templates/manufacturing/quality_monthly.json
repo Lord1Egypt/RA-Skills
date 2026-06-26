@@ -1,0 +1,114 @@
+{
+  "id": "manufacturing_quality_monthly",
+  "name": "生产质量月度报表",
+  "name_en": "Production Quality Monthly Report",
+  "industry": "manufacturing",
+  "scene": "质量管理",
+  "description": "月度产品质量监控、不良品分析，支撑质量改进决策",
+  "sheets": [
+    {
+      "name": "原始数据",
+      "type": "data_input",
+      "columns": [
+        {"field": "month", "label": "月份", "type": "string", "required": true, "aliases": ["月份", "month", "统计月份"]},
+        {"field": "product_model", "label": "产品型号", "type": "string", "required": true, "aliases": ["产品型号", "product_model", "型号", "SKU"]},
+        {"field": "production_qty", "label": "生产总量", "type": "number", "aliases": ["生产总量", "production_qty", "产量", "生产数量"]},
+        {"field": "defect_qty", "label": "不良品数量", "type": "number", "aliases": ["不良品数量", "defect_qty", "不良数", "缺陷数量"]},
+        {"field": "defect_type", "label": "不良类型", "type": "string", "aliases": ["不良类型", "defect_type", "缺陷类型", "不良品类型"]},
+        {"field": "batch_count", "label": "检验批次", "type": "number", "aliases": ["检验批次", "batch_count", "批次数", "检验批"]},
+        {"field": "pass_batch", "label": "合格批次", "type": "number", "aliases": ["合格批次", "pass_batch", "合格批", "通过批次"]}
+      ]
+    },
+    {
+      "name": "分析看板",
+      "type": "dashboard",
+      "kpis": [
+        {
+          "id": "overall_defect_rate",
+          "label": "整体不良率",
+          "formula": "SUM(defect_qty)/SUM(production_qty)",
+          "format": "percent",
+          "style": "gauge",
+          "target": 0.02
+        },
+        {
+          "id": "batch_pass_rate",
+          "label": "批次合格率",
+          "formula": "SUM(pass_batch)/SUM(batch_count)",
+          "format": "percent",
+          "style": "gauge",
+          "target": 0.95
+        },
+        {
+          "id": "total_defect",
+          "label": "不良品总数",
+          "formula": "SUM(defect_qty)",
+          "format": "number",
+          "style": "card"
+        },
+        {
+          "id": "top_defect",
+          "label": "主要不良类型",
+          "formula": "MODE(defect_type)",
+          "format": "string",
+          "style": "card"
+        }
+      ],
+      "charts": [
+        {
+          "id": "defect_stack",
+          "type": "bar_stacked",
+          "title": "各产品型号不良品数量及类型分布",
+          "x": "product_model",
+          "y": "defect_qty",
+          "stack_by": "defect_type",
+          "position": {"row": 1, "col": 1, "width": 15, "height": 10}
+        },
+        {
+          "id": "defect_trend",
+          "type": "line",
+          "title": "不良率趋势",
+          "x": "month",
+          "y": ["defect_rate"],
+          "series_names": ["不良率"],
+          "format": "percent",
+          "position": {"row": 1, "col": 18, "width": 12, "height": 10}
+        },
+        {
+          "id": "defect_pie",
+          "type": "pie",
+          "title": "不良类型占比",
+          "dimension": "defect_type",
+          "metric": "defect_qty",
+          "position": {"row": 12, "col": 1, "width": 10, "height": 8}
+        },
+        {
+          "id": "product_compare",
+          "type": "bar",
+          "title": "各产品不良率对比",
+          "x": "product_model",
+          "y": ["defect_rate"],
+          "format": "percent",
+          "position": {"row": 12, "col": 12, "width": 12, "height": 8}
+        }
+      ]
+    },
+    {
+      "name": "明细数据",
+      "type": "detail",
+      "source": "原始数据",
+      "computed_fields": [
+        {"field": "defect_rate", "label": "不良率", "formula": "defect_qty / production_qty", "format": "percent"},
+        {"field": "batch_pass_rate", "label": "批次合格率", "formula": "pass_batch / batch_count", "format": "percent"}
+      ],
+      "group_by": ["month", "product_model"],
+      "aggregations": {
+        "production_qty": "SUM",
+        "defect_qty": "SUM",
+        "batch_count": "SUM",
+        "pass_batch": "SUM"
+      }
+    }
+  ],
+  "output_filename": "制造业-生产质量月报-{month}.xlsx"
+}

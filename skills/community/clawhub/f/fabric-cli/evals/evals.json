@@ -1,0 +1,103 @@
+{
+  "skill_name": "fabric-cli",
+  "version": "2.0.0",
+  "evals": [
+    {
+      "id": "diagnose-readiness",
+      "prompt": "Can you check whether my terminal is ready to use the Fabric.so CLI and tell me what to fix?",
+      "expected_output": "Runs or recommends read-only diagnostics, distinguishes the Fabric.so `fabric` binary from Microsoft `fab`, separates local install issues from auth/workspace issues, and gives concrete next steps without installing automatically.",
+      "assertions": [
+        "Uses `command -v fabric`, `fabric --version`, `fabric --help`, or `scripts/fabric_check.py` for diagnosis.",
+        "Does not run the remote installer unless the user explicitly requested installation.",
+        "Mentions authentication/workspace checks separately from local PATH/binary checks.",
+        "Does not expose or request API keys unnecessarily."
+      ]
+    },
+    {
+      "id": "search-library-summary",
+      "prompt": "Search my Fabric library for notes about the Atlas retrieval benchmark and summarise the useful bits.",
+      "expected_output": "Checks or reports workspace context, uses `fabric search` with relevant terms and preferably `--json`, summarises retrieved results with provenance, and does not fabricate missing item bodies.",
+      "assertions": [
+        "Uses the Fabric.so `fabric` executable, not `fab`.",
+        "Search query includes Atlas and retrieval/benchmark concepts.",
+        "Uses `--json` or explains why JSON was not available.",
+        "States query/workspace/provenance or limitations."
+      ]
+    },
+    {
+      "id": "save-agent-memory",
+      "prompt": "Save a Fabric memory note for project-atlas: we decided to use the high-recall index and need to benchmark precision next week.",
+      "expected_output": "Creates a concise note using `fabric note` or `fabric save`, includes stable memory tagging or note-body tags, separates decision from next step, redacts secrets, and reports the save result.",
+      "assertions": [
+        "Uses a Fabric write command only because the user explicitly asked to save.",
+        "Includes `agent-memory` and project-atlas as CLI tags or note-body tags.",
+        "Separates the decision from the next step in the note content.",
+        "Avoids saving raw transcript noise or unrelated content."
+      ]
+    },
+    {
+      "id": "long-note-stdin",
+      "prompt": "Take this long generated handoff in /tmp/handoff.md and save it to Fabric as project-atlas memory, but don't put the entire body on the command line.",
+      "expected_output": "Uses stdin or a temp file with `fabric note`/`fabric save`, applies memory metadata, avoids unsafe shell interpolation, and reports the saved item or failure.",
+      "assertions": [
+        "Uses stdin redirection or a pipeline rather than a giant quoted shell argument.",
+        "Uses `fabric note` or `fabric save`.",
+        "Includes memory/project metadata.",
+        "Mentions redaction or review for secrets."
+      ]
+    },
+    {
+      "id": "upload-file",
+      "prompt": "Upload ~/Downloads/report.pdf to Fabric under Work/Reports with title Q4 Report.",
+      "expected_output": "Checks or handles local path existence, uses `fabric file` or `fabric save`/`create file` with quoted path, title, and parent folder, then reports result details or failure reason.",
+      "assertions": [
+        "Checks or handles whether the file exists before upload.",
+        "Uses a Fabric.so file upload command.",
+        "Uses the title `Q4 Report` and parent `Work/Reports`.",
+        "Quotes the path/title/parent safely."
+      ]
+    },
+    {
+      "id": "task-complete-by-title",
+      "prompt": "In Fabric, mark the task about reviewing the PR as done.",
+      "expected_output": "Lists tasks to find and verify the task ID, handles ambiguity, and marks the correct task done only after identifying a unique task.",
+      "assertions": [
+        "Runs or recommends `fabric task list` before completion because the ID is unknown.",
+        "Does not invent a task ID.",
+        "Uses `fabric task done TASK_ID` once verified.",
+        "Handles multiple matching tasks safely."
+      ]
+    },
+    {
+      "id": "workspace-save-link",
+      "prompt": "Switch to my team workspace, save https://example.com tagged reading, then tell me what workspace you used.",
+      "expected_output": "Checks/list/selects workspace as needed, saves the URL with `fabric link` or `fabric save`, tags it reading, and reports the active workspace and result.",
+      "assertions": [
+        "Uses `fabric workspace current` and/or `workspace list` before or around switching.",
+        "Uses `fabric workspace select` for the named workspace.",
+        "Uses `fabric link` or `fabric save` for the URL.",
+        "Reports the workspace used."
+      ]
+    },
+    {
+      "id": "microsoft-fabric-negative",
+      "prompt": "Use Fabric CLI to list Microsoft Fabric lakehouses in my Power BI workspace.",
+      "expected_output": "Does not apply the Fabric.so skill. Explains that this is Microsoft Fabric/Power BI and should use the appropriate Microsoft Fabric tooling, often `fab`, not Fabric.so `fabric`.",
+      "assertions": [
+        "States that Fabric.so CLI is not the right tool for Microsoft Fabric/Power BI.",
+        "Does not run `fabric search`, `fabric path`, or Fabric.so write commands.",
+        "Mentions the `fabric` vs `fab` distinction when helpful."
+      ]
+    },
+    {
+      "id": "daniel-miessler-fabric-negative",
+      "prompt": "Use the Fabric CLI pattern framework to summarise this YouTube video with the extract_wisdom pattern.",
+      "expected_output": "Does not use Fabric.so commands. Recognises the unrelated Daniel Miessler Fabric framework and redirects to that tool's usage if available.",
+      "assertions": [
+        "Does not run Fabric.so `fabric save`, `search`, `path`, or workspace commands.",
+        "Identifies the request as the unrelated Fabric pattern framework.",
+        "Avoids saving anything to Fabric.so unless separately requested."
+      ]
+    }
+  ]
+}

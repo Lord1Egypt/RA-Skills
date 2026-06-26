@@ -1,0 +1,12 @@
+{
+  "name": "Edsion Douyin Video Text Extraction",
+  "tagline": "Extract text and download watermark-free videos from Douyin share links",
+  "description": "Self-contained skill that processes Douyin (TikTok China) share links. Extracts speech-to-text transcriptions using Alibaba Cloud Bailian ASR, downloads watermark-free videos, and parses video metadata. Ships standalone Python scripts — no external server needed. Text extraction requires a DASHSCOPE_API_KEY; downloading and parsing are free.",
+  "category": "productivity",
+  "tags": ["douyin", "tiktok", "video", "transcription", "speech-to-text", "chinese", "download"],
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "pricing": "free",
+  "support_url": "https://github.com/yzfly/douyin-mcp-server/issues",
+  "homepage": "https://github.com/yzfly/douyin-mcp-server"
+}

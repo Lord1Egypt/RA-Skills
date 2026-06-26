@@ -1,35 +1,35 @@
----
-name: "Expanso json-flatten"
-description: "Flatten nested JSON objects using Expanso Edge pipelines via CLI or MCP server."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/expanso-json-flatten"
-sourceUrl: "https://clawhub.ai/skills/expanso-json-flatten"
----
+# json-flatten
 
-# Expanso json-flatten
+Flatten nested JSON objects
 
-> Flatten nested JSON objects using Expanso Edge pipelines via CLI or MCP server.
+## Requirements
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/expanso-json-flatten`
-- **Source URL:** [https://clawhub.ai/skills/expanso-json-flatten](https://clawhub.ai/skills/expanso-json-flatten)
+- Expanso Edge installed (`expanso-edge` binary in PATH)
+- Install via: `clawhub install expanso-edge`
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### CLI Pipeline
 ```bash
-hermes skills install clawhub/expanso-json-flatten
+# Run standalone
+echo '<input>' | expanso-edge run pipeline-cli.yaml
 ```
+
+### MCP Pipeline
+```bash
+# Start as MCP server
+expanso-edge run pipeline-mcp.yaml
+```
+
+### Deploy to Expanso Cloud
+```bash
+expanso-cli job deploy https://skills.expanso.io/json-flatten/pipeline-cli.yaml
+```
+
+## Files
+
+| File | Purpose |
+|------|---------|
+| `skill.yaml` | Skill metadata (inputs, outputs, credentials) |
+| `pipeline-cli.yaml` | Standalone CLI pipeline |
+| `pipeline-mcp.yaml` | MCP server pipeline |

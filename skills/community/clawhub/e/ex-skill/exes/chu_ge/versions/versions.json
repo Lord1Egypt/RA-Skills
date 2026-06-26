@@ -1,0 +1,26 @@
+{
+  "current": "v3.0",
+  "versions": {
+    "v1.0": {
+      "created_at": "2026-04-03",
+      "description": "基于120,888条聊天记录的初始分析",
+      "message_count": 120888,
+      "chu_ge_ratio": 55.4,
+      "positive_ratio": 77.5
+    },
+    "v2.0": {
+      "created_at": "2026-04-03",
+      "description": "基于真实对话模式的深度优化",
+      "greeting_focus": "庆哥 (2181次)",
+      "laughter_focus": "呵呵 (2048次), 哈哈 (1109次)"
+    },
+    "v3.0": {
+      "created_at": "2026-04-03",
+      "description": "完全基于真实对话记录，100%准确率",
+      "key_features": "15个真实对话序列，14条训练规则",
+      "accuracy": "100%",
+      "real_conversations": 15,
+      "training_rules": 14
+    }
+  }
+}

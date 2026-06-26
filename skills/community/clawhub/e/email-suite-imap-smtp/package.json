@@ -1,0 +1,36 @@
+{
+  "name": "email-suite",
+  "version": "1.2.0",
+  "description": "IMAP/SMTP email suite with markdown support, signatures, and display names. Works with Gmail, Outlook, Hostinger, and any standard IMAP/SMTP server.",
+  "main": "scripts/imap.js",
+  "scripts": {
+    "check": "node scripts/imap.js check",
+    "fetch": "node scripts/imap.js fetch",
+    "search": "node scripts/imap.js search",
+    "test": "node scripts/smtp.js test"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "iconv-lite": "^0.7.2",
+    "imap": "^0.8.19",
+    "imap-simple": "^5.1.0",
+    "imapflow": "^1.2.10",
+    "mailparser": "^3.9.3",
+    "marked": "^17.0.5",
+    "mime-types": "^3.0.2",
+    "nodemailer": "^7.0.13"
+  },
+  "keywords": [
+    "imap",
+    "smtp",
+    "email",
+    "gmail",
+    "outlook",
+    "hostinger",
+    "markdown",
+    "signature",
+    "skill"
+  ],
+  "author": "Rashed",
+  "license": "MIT"
+}

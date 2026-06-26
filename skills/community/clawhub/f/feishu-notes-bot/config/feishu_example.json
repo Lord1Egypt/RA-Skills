@@ -1,0 +1,18 @@
+{
+  "appId": "cli_your_app_id",
+  "appSecret": "your_app_secret",
+  "dmPolicy": "pairing",
+  "botName": "Notes Bot",
+  "features": {
+    "autoSync": true,
+    "notifications": true,
+    "reminderEnabled": true
+  },
+  "storage": {
+    "meetings": "feishu-doc",
+    "decisions": "feishu-doc",
+    "projects": "feishu-doc",
+    "journal": "local",
+    "quick": "local"
+  }
+}

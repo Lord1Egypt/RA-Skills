@@ -1,35 +1,25 @@
----
-name: "feishuweng"
-description: "Send text messages via configurable Feishu apps with specified recipients using App ID and Secret authentication."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishuweng"
-sourceUrl: "https://clawhub.ai/skills/feishuweng"
----
+# 通用飞书消息发送 Skill
+支持多飞书应用配置的消息发送工具，适配不同 Agent 绑定不同飞书应用的场景。
 
-# feishuweng
+## 配置项（Agent 绑定 Skill 时需填写）
+| 配置名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| APP_ID | 字符串 | 是 | 飞书应用的 App ID |
+| APP_SECRET | 字符串 | 是 | 飞书应用的 App Secret |
+| DEFAULT_RECEIVE_ID | 字符串 | 否 | 默认消息接收人/群 ID |
 
-> Send text messages via configurable Feishu apps with specified recipients using App ID and Secret authentication.
+## 调用参数（Agent 调用 Skill 时传参）
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| receive_id | 字符串 | 否 | 消息接收人/群 ID（优先级高于默认值） |
+| text | 字符串 | 是 | 要发送的文本消息内容 |
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishuweng`
-- **Source URL:** [https://clawhub.ai/skills/feishuweng](https://clawhub.ai/skills/feishuweng)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishuweng
-```
+## 返回值说明
+返回飞书 API 原始响应结果，示例：
+{
+  "code": 0,
+  "msg": "success",
+  "data": {
+    "message_id": "om_xxxxxx"
+  }
+}

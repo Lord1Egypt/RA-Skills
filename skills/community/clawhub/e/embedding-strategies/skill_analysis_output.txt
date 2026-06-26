@@ -1,0 +1,75 @@
+﻿python : C:\Users\Xiabi\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\__init__.py:113: RequestsDep
+endencyWarning: urllib3 (2.6.3) or chardet (7.1.0)/charset_normalizer (3.4.5) doesn't match a supported version!
+所在位置 行:1 字符: 93
++ ...  $env:PYTHONIOENCODING="utf-8"; python skill_analyzer.py 2>&1 | Out-F ...
++                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\Xiabi\...ported version!:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  warnings.warn(
+[INFO] Loaded vectorstore: openclaw_skills
+
+============================================================
+OpenClaw Skill Analysis Report
+============================================================
+[INFO] Loaded 0 tool usage records
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+Traceback (most recent call last):
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+  File "C:\Users\Xiabi\.openclaw\workspace\skills\rag_search\src\skill_analyzer.py", line 542, in <module>
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+[INFO] Embedded batch 1: 1 texts
+
+[INFO] Total skills analyzed: 46
+[INFO] High frequency skills: 0
+[INFO] Low/No usage skills: 46
+[INFO] Recommended for deletion: 46
+
+============================================================
+    main()
+  File "C:\Users\Xiabi\.openclaw\workspace\skills\rag_search\src\skill_analyzer.py", line 496, in main
+    report_file = workspace_dir / "skill_analysis_report.json"
+                  ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for /: 'str' and 'str'

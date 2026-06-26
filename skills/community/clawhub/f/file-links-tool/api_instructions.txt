@@ -1,0 +1,81 @@
+FILE UPLOAD API - AGENT-TO-OWNER BRIDGE
+Instructions for AI Agents & Automation Workflow
+
+IMPORTANT: If you (the AI Agent) have not been provided with an API Key or the 
+Server URL, you should:
+1. Ask the User: "Do you want to host the bridge yourself, or should I host it 
+   here in my workspace (using server.py) and provide you with the links?"
+2. If the user chooses self-hosting, ask for the URL and KEY.
+3. If the user wants you to host it, clone/copy server.py, run it, and 
+   expose it using a zero-auth free tunnel (e.g., `localtunnel` or `localhost.run`).
+4. CRITICAL: Tell the user: "This is a free temporary tunnel and the link will 
+   expire when this session ends."
+
+AUTHENTICATION
+================================================================================
+Provide the API Key via one of these methods:
+- HTTP Header: X-API-Key: YOUR_API_KEY
+- POST Field: api_key=YOUR_API_KEY
+- Query Param: ?api_key=YOUR_API_KEY
+
+SERVER URL:
+- PHP: https://your-domain.com/upload/
+- Python Standalone: http://YOUR_IP:5000/
+
+================================================================================
+ENDPOINT: UPLOAD FILE
+================================================================================
+POST /index.php
+Parameters: file (Multipart form-data)
+
+cURL Example:
+curl -X POST https://your-domain.com/upload/ \
+  -H "X-API-Key: YOUR_API_KEY" \
+  -F "file=@/path/to/archive.zip"
+
+Python Example:
+import requests
+url = "https://your-domain.com/upload/"
+headers = {"X-API-Key": "YOUR_API_KEY"}
+files = {"file": open("data.zip", "rb")}
+response = requests.post(url, headers=headers, files=files)
+
+================================================================================
+ENDPOINT: LIST FILES
+================================================================================
+GET /index.php?action=list
+Returns JSON list of files sorted by newest first.
+
+Each file object includes:
+- url: The raw download link.
+- view_url: A premium viewer page (useful for MD, TXT, JSON, Images, PDF).
+- is_zip: Boolean. If true, the file can be inspected using the viewer.
+
+Agent Tip: When providing links to the user, the `view_url` is often preferred for 
+reading content, while the `url` is better for direct downloads.
+
+================================================================================
+ENDPOINT: VIEW FILE (WEB)
+================================================================================
+GET /index.php?action=view&file=FILENAME
+This endpoint serves a rich HTML page for viewing file content.
+
+Examples:
+- View a Markdown file: `index.php?action=view&file=report.md`
+- View an Image: `index.php?action=view&file=snapshot.png`
+
+For ZIP archives: 
+GET /index.php?action=view&file=ARCHIVE.zip&inner_file=PATH_INSIDE_ZIP
+Allows deep-linking directly into a specific file inside an uploaded ZIP archive.
+
+Example:
+- View code inside a ZIP: `index.php?action=view&file=project.zip&inner_file=src/main.py`
+
+================================================================================
+ENDPOINT: DELETE FILES
+================================================================================
+POST /index.php?action=delete
+Payload (JSON): {"files": ["filename.zip"]}
+
+Example:
+requests.post(url + "?action=delete", json={"files": ["file1.zip"]}, headers=headers)

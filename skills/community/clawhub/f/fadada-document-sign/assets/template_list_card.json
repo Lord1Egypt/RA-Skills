@@ -1,0 +1,34 @@
+{
+  "type": "list",
+  "title": "签署模板列表",
+  "description": "请选择一个模板发起签署",
+  "columns": [
+    {
+      "name": "templateName",
+      "label": "模板名称",
+      "width": "40%"
+    },
+    {
+      "name": "description",
+      "label": "描述",
+      "width": "35%"
+    },
+    {
+      "name": "fileCount",
+      "label": "文件数",
+      "width": "10%"
+    },
+    {
+      "name": "participantCount",
+      "label": "签署方数",
+      "width": "15%"
+    }
+  ],
+  "emptyText": "暂无可用模板",
+  "actions": [
+    {
+      "label": "刷新列表",
+      "type": "refresh"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "description": "飞书语音回复技能配置模板",
+  "note": "复制此文件为 feishu-voice-config.local.json 并填入实际配置",
+  "volcengine": {
+    "api_key": "请从环境变量 VOLC_API_KEY 读取",
+    "resource_id": "volc.service_type.10029",
+    "default_speaker": "ICL_zh_female_tiaopigongzhu_tob",
+    "doc_url": "https://www.volcengine.com/docs/6561/1257544?lang=zh",
+    "available_speakers": [
+      {
+        "id": "ICL_zh_female_tiaopigongzhu_tob",
+        "name": "调皮公主",
+        "style": "活泼可爱",
+        "gender": "female",
+        "tested": true
+      },
+      {
+        "id": "zh_male_beijingxiaoye_emo_v2_mars_bigtts",
+        "name": "北京小爷",
+        "style": "emo 北京腔",
+        "gender": "male",
+        "tested": true
+      }
+    ]
+  },
+  "feishu": {
+    "app_id": "请从环境变量 FEISHU_APP_ID 读取",
+    "app_secret": "请从环境变量 FEISHU_APP_SECRET 读取",
+    "default_user_id": "请从环境变量 FEISHU_DEFAULT_USER_ID 读取"
+  },
+  "audio": {
+    "output_format": "opus",
+    "bitrate": "32k",
+    "sample_rate": 24000,
+    "temp_dir": "/tmp"
+  },
+  "environment_variables": {
+    "required": [
+      "VOLC_API_KEY",
+      "VOLC_RESOURCE_ID",
+      "FEISHU_APP_ID",
+      "FEISHU_APP_SECRET"
+    ],
+    "optional": [
+      "FEISHU_DEFAULT_USER_ID"
+    ],
+    "setup_guide": "在 ~/.openclaw/.env 文件中添加上述环境变量"
+  }
+}

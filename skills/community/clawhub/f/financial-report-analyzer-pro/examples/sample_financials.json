@@ -1,0 +1,8 @@
+{
+  "company": {"name": "示例科技", "ticker": "000001.SZ", "industry": "TMT"},
+  "period": {"fiscal_year": 2024, "reporting_basis": "CAS"},
+  "income_statement": {"revenue": 5000000000, "cost_of_revenue": 3000000000, "operating_income": 800000000, "net_income": 600000000},
+  "balance_sheet": {"total_assets": 12000000000, "total_equity": 5000000000, "total_liabilities": 7000000000, "goodwill": 1800000000, "accounts_receivable": 1500000000},
+  "cash_flow": {"operating_cash_flow": 200000000},
+  "prior_year": {"revenue": 4500000000, "accounts_receivable": 900000000}
+}

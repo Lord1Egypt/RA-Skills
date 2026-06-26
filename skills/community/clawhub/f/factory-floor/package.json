@@ -1,0 +1,35 @@
+{
+  "name": "@swiftner/factory-floor",
+  "version": "3.4.1",
+  "description": "A Claude Code skill for startup prioritisation using Theory of Constraints, Customer Factory, How Brands Grow, Marketing Strategy Discipline, and Strategic Thinking",
+  "bin": {
+    "factory-floor": "bin/install.mjs"
+  },
+  "files": [
+    "bin/",
+    "SKILL.md",
+    "references/",
+    "stages/",
+    "scripts/render-diagram.mjs",
+    "scripts/package.json"
+  ],
+  "engines": {
+    "node": ">=16.7.0"
+  },
+  "keywords": [
+    "claude-code",
+    "skill",
+    "startup",
+    "prioritisation",
+    "theory-of-constraints",
+    "goldratt",
+    "customer-factory",
+    "how-brands-grow"
+  ],
+  "author": "Swiftner",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Swiftner/Factory-Floor.git"
+  }
+}

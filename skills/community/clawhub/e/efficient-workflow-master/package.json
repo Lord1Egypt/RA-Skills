@@ -1,0 +1,15 @@
+{
+  "name": "personal-productivity",
+  "version": "1.0.0",
+  "description": "个人效率与时间管理顾问 - 帮助用户建立可持续的高效工作习惯",
+  "main": "index.js",
+  "keywords": [
+    "openclaw",
+    "productivity",
+    "time-management",
+    "效率",
+    "时间管理"
+  ],
+  "author": "Dr.Shrimp 🦐",
+  "license": "MIT"
+}

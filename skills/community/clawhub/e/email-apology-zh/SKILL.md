@@ -1,35 +1,45 @@
 ---
-name: "Email Apology Zh"
-description: "专为客服、项目管理及日常职场场景设计的专业道歉邮件生成工具。适用于服务延误、 发货推迟、系统故障、数据错误、承诺未兑现等各类需要正式致歉的情况。能够生成 语气诚恳、结构清晰的道歉邮件/致歉函/补救邮件，包含问题说明、责任承担、具体 补救措施与后续预防方案，帮助快速挽回客户或合作方信任。同义词覆盖：道歉信、 延误通..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/email-apology-zh"
-sourceUrl: "https://clawhub.ai/skills/email-apology-zh"
+name: email-apology-zh
+description: >
+  专为客服、项目管理及日常职场场景设计的专业道歉邮件生成工具。适用于服务延误、
+  发货推迟、系统故障、数据错误、承诺未兑现等各类需要正式致歉的情况。能够生成
+  语气诚恳、结构清晰的道歉邮件/致歉函/补救邮件，包含问题说明、责任承担、具体
+  补救措施与后续预防方案，帮助快速挽回客户或合作方信任。同义词覆盖：道歉信、
+  延误通知、错误处理邮件、补救说明、致歉函。
+tags: [道歉邮件, 致歉函, 客服, 项目管理, 延误通知, 错误处理, apology-email, customer-service]
 ---
 
-# Email Apology Zh
+# 专业道歉邮件生成器
 
-> 专为客服、项目管理及日常职场场景设计的专业道歉邮件生成工具。适用于服务延误、 发货推迟、系统故障、数据错误、承诺未兑现等各类需要正式致歉的情况。能够生成 语气诚恳、结构清晰的道歉邮件/致歉函/补救邮件，包含问题说明、责任承担、具体 补救措施与后续预防方案，帮助快速挽回客户或合作方信任。同义词覆盖：道歉信、 延误通...
+根据延误、错误或服务问题的具体情况，快速生成语气诚恳、附带解决方案的正式道歉邮件。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/email-apology-zh`
-- **Source URL:** [https://clawhub.ai/skills/email-apology-zh](https://clawhub.ai/skills/email-apology-zh)
+## Tools Required
+- read
+- write
 
-## Overview
+## Usage
+- "我们的系统昨晚出现故障导致用户数据丢失，帮我写一封道歉邮件发给受影响的客户"
+- "项目交付延误了两周，需要给甲方写一封致歉函，说明原因并给出补救计划"
+- "我们发错货了，帮我起草一封补救邮件，向客户道歉并说明退换货流程"
+- "因为内部沟通失误，报价单数字写错了，帮我写一封错误处理邮件向合作方道歉"
 
+## Examples
+输入：物流延误导致客户订单比承诺时间晚了5天，客户已多次催促，需要道歉并说明补偿方案（补偿50元优惠券）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/email-apology-zh
-```
+输出：
+主题：关于您的订单延误——诚挚致歉及补偿说明
+
+尊敬的[客户姓名]您好，
+
+首先，对于此次订单（订单号：XXXXXX）的配送延误，我们深感抱歉。您的包裹原定于[原定日期]送达，实际到货时间为[实际日期]，整整晚了5天，给您带来了极大不便，这完全是我方物流协调失误所致，责任在我们。
+
+目前您的订单已于[日期]完成发货，预计[预计到达日期]内送达，您可通过以下链接实时追踪物流状态：[物流查询链接]。
+
+为弥补本次延误给您造成的损失，我们已向您的账户发放50元无门槛优惠券，有效期90天，请查收。
+
+我们已就本次事件对物流对接流程进行了全面复盘，并升级了订单延误预警机制，确保类似情况不再发生。
+
+再次为本次失误向您诚挚致歉，感谢您的理解与支持。如有任何疑问，欢迎随时联系我们。
+
+[发件人姓名] 敬上
+[联系方式]

@@ -1,0 +1,62 @@
+{
+  "name": "社交媒体优化",
+  "description": "Instagram、TikTok、Twitter 等社交媒体的最佳设置",
+  "video": {
+    "codec": "libx264",
+    "preset": "fast",
+    "crf": 25,
+    "profile": "high",
+    "level": "4.0"
+  },
+  "audio": {
+    "codec": "aac",
+    "bitrate": "128k",
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "platforms": {
+    "instagram": {
+      "feed": {
+        "resolution": "1080x1080",
+        "aspect_ratio": "1:1",
+        "max_duration": 60,
+        "bitrate": "5000k"
+      },
+      "stories": {
+        "resolution": "1080x1920",
+        "aspect_ratio": "9:16",
+        "max_duration": 15,
+        "bitrate": "4000k"
+      },
+      "igtv": {
+        "resolution": "1080x1920",
+        "aspect_ratio": "9:16",
+        "max_duration": 600,
+        "bitrate": "6000k"
+      }
+    },
+    "tiktok": {
+      "resolution": "1080x1920",
+      "aspect_ratio": "9:16",
+      "max_duration": 60,
+      "fps": 30,
+      "bitrate": "5000k"
+    },
+    "twitter": {
+      "resolution": "1280x720",
+      "aspect_ratio": "16:9",
+      "max_duration": 140,
+      "bitrate": "4000k"
+    },
+    "facebook": {
+      "feed": {
+        "resolution": "1920x1080",
+        "bitrate": "5000k"
+      },
+      "stories": {
+        "resolution": "1080x1920",
+        "bitrate": "4000k"
+      }
+    }
+  }
+}

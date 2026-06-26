@@ -1,0 +1,62 @@
+{
+  "id": "fec-api-integration",
+  "name": "API 集成",
+  "category": "implementation-capability",
+  "tags": [
+    "api",
+    "typed-client",
+    "auth-refresh",
+    "upload",
+    "realtime"
+  ],
+  "summary": "Frontend API integration boundaries, typed clients, error mapping, auth refresh, uploads, and realtime choices.",
+  "version": "2.5.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "implementation-capability",
+    "api",
+    "typed-client",
+    "auth-refresh",
+    "upload",
+    "realtime"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when designing, implementing, or reviewing frontend-to-backend API integration, typed API clients, REST/tRPC/OpenAPI client choices, auth refresh, API error mapping, upload flows, SSE/WebSocket/polling choices, CORS-facing frontend behavior, or cross-boundary loading/error states. Do not use for backend-only service architecture or TanStack Query cache policy alone; Chinese triggers include API 集成, 前后端联调, typed API client, 接口错误处理, SSE, WebSocket.",
+  "source": "skills/fec-api-integration",
+  "references": [
+    "references/integration-patterns.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-data-fetching",
+      "fec-security-review",
+      "fec-route-protection",
+      "fec-form-handling",
+      "fec-typescript-type-safety",
+      "fec-source-driven-development"
+    ],
+    "boundaryWorkflows": [
+      "Use a data-fetching workflow for TanStack Query cache policy, query keys, optimistic updates, and server-state hooks.",
+      "Use a security review workflow for token storage, XSS, CSRF, file upload trust boundaries, and secret leakage risks.",
+      "Use a route protection workflow for page-level auth redirects, RBAC route guards, and middleware behavior."
+    ],
+    "capabilityTags": [
+      "api",
+      "typed-client",
+      "auth",
+      "upload",
+      "realtime"
+    ]
+  }
+}

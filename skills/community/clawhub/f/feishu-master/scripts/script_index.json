@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-03-13T12:00:00Z",
+  "scripts": [
+    {
+      "name": "get_group_members",
+      "description": "获取指定飞书群组的成员列表",
+      "usage_hint": "python3 get_group_members.py <chat_id> [--page-size N] [--page-token TOKEN]",
+      "added_date": "2026-02-12",
+      "tags": [
+        "group",
+        "member",
+        "list"
+      ]
+    }
+  ]
+}

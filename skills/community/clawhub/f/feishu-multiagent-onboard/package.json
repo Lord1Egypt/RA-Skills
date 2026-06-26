@@ -1,0 +1,21 @@
+{
+  "name": "feishu-multiagent-onboard",
+  "version": "1.0.0",
+  "description": "飞书多 Agent 快速配置工具 - 一键完成 OpenClaw 多 Agent 飞书通道配置",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "feishu",
+    "multiagent",
+    "skill"
+  ],
+  "author": "墨墨",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wh1ko/feishu-multiagent-onboard"
+  }
+}

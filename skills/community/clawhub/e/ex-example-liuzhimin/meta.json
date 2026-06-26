@@ -1,0 +1,35 @@
+{
+  "name": "Zhimin Liu",
+  "slug": "example_liuzhimin",
+  "created_at": "2026-03-31T00:00:00Z",
+  "updated_at": "2026-03-31T00:00:00Z",
+  "version": "v1",
+  "profile": {
+    "gender": "女",
+    "age_range": "23-27",
+    "rel_stage": "分手",
+    "duration": "unknown",
+    "sun": "白羊座",
+    "moon": "unknown",
+    "rising": "unknown",
+    "venus": "unknown",
+    "mars": "unknown",
+    "mercury": "白羊座",
+    "full_chart": null,
+    "notes": "April 11, 2000. Moon/rising not public. Mercury inferred as Aries (same sign period)."
+  },
+  "mbti": {
+    "type": "ISFP",
+    "dominant": "Fi",
+    "stack": "Fi-Se-Ni-Te",
+    "enneagram": "3w2"
+  },
+  "tags": {
+    "attachment": ["回避型"],
+    "rel_traits": ["话少但在乎", "高冷装", "行动派", "需要空间", "道歉困难户"]
+  },
+  "impression": "在外面看着很完美很得体，私下比你想象的松弛很多，但真实想法永远藏得很深，你很难知道她到底在想什么",
+  "knowledge_sources": [],
+  "corrections_count": 0,
+  "message_count": 0
+}

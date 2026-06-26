@@ -1,0 +1,47 @@
+{
+  "name": "find-items",
+  "version": "1.0.2",
+  "description": "多平台商品搜索工具 - 在淘宝、京东、拼多多、唯品会等平台搜索商品",
+  "main": "find-items",
+  "bin": {
+    "find-items": "./find-items"
+  },
+  "scripts": {
+    "test": "echo 'Run: ./find-items search test'"
+  },
+  "keywords": [
+    "shopping",
+    "search",
+    "taobao",
+    "jd",
+    "pdd",
+    "e-commerce",
+    "购物",
+    "搜索",
+    "淘宝",
+    "京东",
+    "拼多多"
+  ],
+  "author": "harrylabs0913",
+  "license": "MIT",
+  "engines": {
+    "bash": ">=4.0"
+  },
+  "platforms": [
+    "taobao",
+    "jd",
+    "pdd",
+    "vipshop",
+    "tmall",
+    "suning",
+    "meituan",
+    "eleme",
+    "douyin",
+    "xiaohongshu"
+  ],
+  "categories": [
+    "shopping",
+    "search",
+    "e-commerce"
+  ]
+}

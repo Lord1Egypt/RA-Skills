@@ -1,0 +1,197 @@
+{
+  "author" : "makejava",
+  "version" : "1.2.9",
+  "userSecure" : "",
+  "currTypeMapperGroupName" : "Default",
+  "currTemplateGroupName" : "Default",
+  "currColumnConfigGroupName" : "Default",
+  "currGlobalConfigGroupName" : "Default",
+  "typeMapper" : {
+    "Default" : {
+      "name" : "Default",
+      "elementList" : [ {
+        "columnType" : "varchar(\\(\\d+\\))?",
+        "javaType" : "java.lang.String"
+      }, {
+        "columnType" : "char(\\(\\d+\\))?",
+        "javaType" : "java.lang.String"
+      }, {
+        "columnType" : "text",
+        "javaType" : "java.lang.String"
+      }, {
+        "columnType" : "decimal(\\(\\d+\\))?",
+        "javaType" : "java.math.BigDecimal"
+      }, {
+        "columnType" : "decimal(\\(\\d+,\\d+\\))?",
+        "javaType" : "java.math.BigDecimal"
+      }, {
+        "columnType" : "integer",
+        "javaType" : "java.lang.Integer"
+      }, {
+        "columnType" : "int(\\(\\d+\\))?",
+        "javaType" : "java.lang.Integer"
+      }, {
+        "columnType" : "int4",
+        "javaType" : "java.lang.Integer"
+      }, {
+        "columnType" : "int8",
+        "javaType" : "java.lang.Long"
+      }, {
+        "columnType" : "bigint(\\(\\d+\\))?",
+        "javaType" : "java.lang.Long"
+      }, {
+        "columnType" : "datetime",
+        "javaType" : "java.util.Date"
+      }, {
+        "columnType" : "timestamp",
+        "javaType" : "java.util.Date"
+      }, {
+        "columnType" : "boolean",
+        "javaType" : "java.lang.Boolean"
+      }, {
+        "columnType" : "date",
+        "javaType" : "java.util.Date"
+      }, {
+        "columnType" : "mediumtext",
+        "javaType" : "java.lang.String"
+      }, {
+        "columnType" : "tinytext",
+        "javaType" : "java.lang.String"
+      }, {
+        "columnType" : "NUMBER(\\(\\d+\\))?",
+        "javaType" : "java.lang.Long"
+      }, {
+        "columnType" : "varchar2(\\(\\d+\\))?",
+        "javaType" : "java.lang.String"
+      }, {
+        "matchType" : "ORDINARY",
+        "columnType" : "CLOB",
+        "javaType" : "java.lang.String"
+      }, {
+        "matchType" : "ORDINARY",
+        "columnType" : "NUMBER(\\(\\d+,\\d+\\))?",
+        "javaType" : "java.math.BigDecimal"
+      }, {
+        "matchType" : "ORDINARY",
+        "columnType" : "NUMBER(4,1)",
+        "javaType" : "java.lang.Long"
+      }, {
+        "matchType" : "ORDINARY",
+        "columnType" : "NUMBER(*)",
+        "javaType" : "java.lang.Long"
+      }, {
+        "matchType" : "ORDINARY",
+        "columnType" : "VARCHAR2(2 char)",
+        "javaType" : "java.lang.String"
+      }, {
+        "matchType" : "ORDINARY",
+        "columnType" : "VARCHAR2(3 char)",
+        "javaType" : "java.lang.String"
+      }, {
+        "matchType" : "ORDINARY",
+        "columnType" : "VARCHAR2(20 char)",
+        "javaType" : "java.lang.String"
+      }, {
+        "matchType" : "ORDINARY",
+        "columnType" : "VARCHAR2(1 char)",
+        "javaType" : "java.lang.String"
+      }, {
+        "matchType" : "ORDINARY",
+        "columnType" : "VARCHAR2(32 char)",
+        "javaType" : "java.lang.String"
+      }, {
+        "matchType" : "ORDINARY",
+        "columnType" : "VARCHAR2(64 char)",
+        "javaType" : "java.lang.String"
+      }, {
+        "matchType" : "ORDINARY",
+        "columnType" : "VARCHAR2(100 char)",
+        "javaType" : "java.lang.String"
+      }, {
+        "matchType" : "ORDINARY",
+        "columnType" : "VARCHAR2(400 char)",
+        "javaType" : "java.lang.String"
+      } ]
+    }
+  },
+  "template" : {
+    "weigao_V3" : {
+      "name" : "weigao_V3",
+      "elementList" : [ {
+        "name" : "po",
+        "code" : "##导入宏定义\n$!init\n$!define\n\n##设置表后缀（宏定义）\n#setTableSuffix(\"PO\")\n\n##保存文件（宏定义）\n#save(\"/domain/repository/po\", \"PO.java\")\n\n##包路径（宏定义）\n#setPackageSuffix(\"domain.repository.po\")\n\nimport com.baomidou.mybatisplus.annotation.FieldFill;\nimport com.baomidou.mybatisplus.annotation.IdType;\nimport com.baomidou.mybatisplus.annotation.TableField;\nimport com.baomidou.mybatisplus.annotation.TableId;\nimport com.baomidou.mybatisplus.annotation.TableName;\nimport com.fasterxml.jackson.annotation.JsonFormat;\n\nimport java.io.Serializable;\nimport java.util.Date;\n\n##表注释（宏定义）\n /**\n * <p>\n * $!{tableInfo.comment}\n * </p>\n *\n * @author $!{author}\n * @since $!{time.currTime('yyyy-MM-dd HH:mm:ss')}\n */\n \n@TableName(\"$!tableInfo.obj.name\")\npublic class $!{tableInfo.name}PO implements Serializable {\n    private static final long serialVersionUID = $!tool.serial();\n\n#foreach($column in $tableInfo.pkColumn)\n    #if(${column.comment}) \n        /**\n         * ${column.comment}\n         */\n    #end\n    @TableId(type = IdType.ASSIGN_ID)\n    private $!{tool.getClsNameByFullName($column.type)} $!{column.name};\n#end\n\n#foreach($column in $tableInfo.otherColumn)\n    #if(${column.comment}) \n        /**\n         * ${column.comment}\n         */\n    #end\n    #if(${column.name} == 'creator' || ${column.name} == 'createTime' \n    || ${column.name} == 'operator' || ${column.name} == 'operateTime')\n    @TableField(fill = FieldFill.INSERT)\n    #end\n    #if(${column.name} == 'modifier' || ${column.name} == 'modifyTime'\n    || ${column.name} == 'editor' || ${column.name} == 'editTime')\n    @TableField(fill = FieldFill.INSERT_UPDATE)\n    #end\n    #if(${column.name} == 'editTime' || ${column.name} == 'modifyTime'\n    || ${column.name} == 'operateTime' || ${column.name} == 'createTime')\n    @JsonFormat(locale = \"zh\", timezone = \"GMT+8\", pattern = \"yyyy-MM-dd HH:mm:ss\")\n    #end\n    private $!{tool.getClsNameByFullName($column.type)} $!{column.name};\n#end\n\n#foreach($column in $tableInfo.fullColumn)\n        #getSetMethod($column)\n#end\n\n#noAndAllArgConstruct($!tool.append($tableInfo.name, 'PO'))\n\n#builder($!tool.append($tableInfo.name, 'PO'))\n\n}"
+      }, {
+        "name" : "mapper",
+        "code" : "##导入宏定义\n$!init\n$!define\n\n##设置表后缀（宏定义）\n#setTableSuffix(\"Mapper\")\n\n##保存文件（宏定义）\n#save(\"/domain/repository/mapper\", \"Mapper.java\")\n\n##包路径（宏定义）\n#setPackageSuffix(\"domain.repository.mapper\")\n##定义PO类名\n#set($poClassName = $!tool.append($!tableInfo.name, \"PO\"))\n##定义PO实体对象名\n#set($poName = $!tool.append($!tool.firstLowerCase($!tableInfo.name), \"PO\"))\n\nimport com.baomidou.mybatisplus.core.mapper.BaseMapper;\nimport $!{tableInfo.savePackageName}.domain.repository.po.$!{poClassName};\nimport com.baomidou.mybatisplus.core.metadata.IPage;\nimport com.baomidou.mybatisplus.extension.plugins.pagination.Page;\nimport org.apache.ibatis.annotations.Param;\n\n##表注释（宏定义）\n /**\n * <p>\n * $!{tableInfo.comment} Mapper层\n * </p>\n *\n * @author $!{author}\n * @since $!{time.currTime('yyyy-MM-dd HH:mm:ss')}\n */\npublic interface $!{tableName} extends BaseMapper<$!{poClassName}> {\n    /**\n     * 根据条件查询列表\n     * \n     * @param $!{poName} 查询参数\n     * @param page 分页参数\n     * @return\n     */\n    IPage<$!{poClassName}> findPageByParams(Page<$!{poClassName}> page, @Param(\"o\") $!{poClassName} $!{poName});\n}"
+      }, {
+        "name" : "entity",
+        "code" : "##导入宏定义\n$!init\n$!define\n\n##设置表后缀（宏定义）\n#setTableSuffix(\"\")\n\n##保存文件（宏定义）\n#save(\"/domain/entity\", \".java\")\n\n##包路径（宏定义）\n#setPackageSuffix(\"domain.entity\")\n\nimport com.wghis.common.entity.SortBase;\nimport com.wghis.common.annotation.PageSortField;\n\nimport java.io.Serializable;\nimport java.util.Date;\n\n##表注释（宏定义）\n /**\n * <p>\n * $!{tableInfo.comment}\n * </p>\n *\n * @author $!{author}\n * @since $!{time.currTime('yyyy-MM-dd HH:mm:ss')}\n */\n \npublic class $!{tableInfo.name} extends SortBase implements Serializable {\n    private static final long serialVersionUID = $!tool.serial();\n#foreach($column in $tableInfo.fullColumn)\n    #if(${column.comment}) \n    /**\n     * ${column.comment}\n     */\n    #end\n    @PageSortField(sortField = \"$!{column.obj.name}\")\n    private $!{tool.getClsNameByFullName($column.type)} $!{column.name};\n#end\n\n\n#foreach($column in $tableInfo.fullColumn)\n        #getSetMethod($column)\n#end\n\n#noAndAllArgConstruct($!{tableInfo.name})\n\n#builder($!{tableInfo.name})\n}"
+      }, {
+        "name" : "repository",
+        "code" : "##导入宏定义\n$!init\n$!define\n\n##设置表后缀（宏定义）\n#setTableSuffix(\"Repository\")\n\n##保存文件（宏定义）\n#save(\"/domain/repository/service\", \"Repository.java\")\n\n##包路径（宏定义）\n#setPackageSuffix(\"domain.repository.service\")\n\n##定义Mapper服务名\n#set($mapperName = $!tool.append($!tool.firstLowerCase($!tableInfo.name), \"Mapper\"))\n\n##定义PO类名\n#set($poClassName = $!tool.append($!tableInfo.name, \"PO\"))\n##定义PO实体对象名\n#set($poName = $!tool.append($!tool.firstLowerCase($!tableInfo.name), \"PO\"))\n\nimport com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;\nimport com.baomidou.mybatisplus.core.metadata.IPage;\nimport com.baomidou.mybatisplus.extension.plugins.pagination.Page;\nimport com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;\nimport $!{tableInfo.savePackageName}.domain.repository.mapper.$!{tableInfo.name}Mapper;\nimport $!{tableInfo.savePackageName}.domain.repository.po.$!{poClassName};\nimport javax.annotation.Resource;\nimport org.springframework.stereotype.Service;\nimport java.util.List;\n\n##表注释（宏定义）\n /**\n * <p>\n * $!{tableInfo.comment} DB查询防腐层\n * </p>\n *\n * @author $!{author}\n * @since $!{time.currTime('yyyy-MM-dd HH:mm:ss')}\n */\n@Service\npublic class $!{tableName} extends ServiceImpl<$!{tableInfo.name}Mapper, $!{poClassName}> {\n    @Resource\n    private $!{tableInfo.name}Mapper $!{mapperName};\n\n    /**\n     * 分页查询\n     *\n     * @param pagePo 分页参数\n     * @param $!{poName} 查询参数\n     * @return 分页数据\n     */\n    public IPage<$!{poClassName}> pageList(IPage<$!{poClassName}> pagePo, $!{poClassName} $!{poName}) {\n        // 创建查询条件对象\n        LambdaQueryWrapper<$!{poClassName}> queryWrapper = new LambdaQueryWrapper<>();\n        return page(pagePo, queryWrapper);\n    }\n    \n    /**\n     * 根据参数查询所有\n     * @param $!{poName} 查询参数\n     * @return 结果集\n     */\n    public List<$!{poClassName}> findAllByParams($!{poClassName} $!{poName}) {\n        // 创建查询条件对象\n        LambdaQueryWrapper<$!{poClassName}> queryWrapper = new LambdaQueryWrapper<>();\n        return list(queryWrapper);\n    }\n}"
+      }, {
+        "name" : "factory",
+        "code" : "##导入宏定义\n$!init\n$!define\n\n##设置表后缀（宏定义）\n#setTableSuffix(\"Factory\")\n\n##保存文件（宏定义）\n#save(\"/domain/factory\", \"Factory.java\")\n\n##包路径（宏定义）\n#setPackageSuffix(\"domain.factory\")\n\n##定义PO类名\n#set($poClassName = $!tool.append($!tableInfo.name, \"PO\"))\n##定义PO实体对象名\n#set($poName = $!tool.append($!tool.firstLowerCase($!tableInfo.name), \"PO\"))\n\n##定义DO类名\n#set($doClassName = $!tableInfo.name)\n##定义DO实体对象名\n#set($doName = $!tool.firstLowerCase($!tableInfo.name))\n\nimport java.io.Serializable;\nimport cn.hutool.core.bean.BeanUtil;\nimport $!{tableInfo.savePackageName}.domain.entity.$doClassName;\nimport $!{tableInfo.savePackageName}.domain.repository.po.$!{poClassName};\nimport java.util.List;\n\n##表注释（宏定义）\n /**\n * <p>\n * $!{tableInfo.comment} 转换类\n * </p>\n *\n * @author $!{author}\n * @since $!{time.currTime('yyyy-MM-dd HH:mm:ss')}\n */\npublic class $!{tableInfo.name}Factory implements Serializable {\n    private static final long serialVersionUID = $!tool.serial();\n    /**\n     * PO转DO\n     *\n     * @param $!{poName} PO数据\n     */\n    public static $!{doClassName} poToDO($!{poClassName} $!{poName}) {\n        return BeanUtil.copyProperties($!{poName}, $!{doClassName}.class);\n    }\n    \n    /**\n     * PO转DO\n     *\n     * @param $!{poName}s PO数据集合\n     */\n    public static List<$!{doClassName}> poToDO(List<$!{poClassName}> $!{poName}s) {\n        return BeanUtil.copyToList($!{poName}s, $!{doClassName}.class);\n    }\n    \n    /**\n     * DO转PO\n     *\n     * @param $!{doName} DO数据\n     */\n    public static $!{poClassName} doToPO($!{doClassName} $!{doName}) {\n        return BeanUtil.copyProperties($!{doName}, $!{poClassName}.class);\n    }\n  \n      /**\n     * DO转PO\n     *\n     * @param $!{doName}s DO数据\n     */\n    public static List<$!{poClassName}> doToPO(List<$!{doClassName}> $!{doName}s) {\n        return BeanUtil.copyToList($!{doName}s, $!{poClassName}.class);\n    }\n}"
+      }, {
+        "name" : "service",
+        "code" : "##导入宏定义\n$!init\n$!define\n\n##设置表后缀（宏定义）\n#setTableSuffix(\"Service\")\n\n##保存文件（宏定义）\n#save(\"/domain/service\", \"Service.java\")\n\n##包路径（宏定义）\n#setPackageSuffix(\"domain.service\")\n\n##定义Mapper服务名\n#set($mapperName = $!tool.append($!tool.firstLowerCase($!tableInfo.name), \"Mapper\"))\n\n##定义PO类名\n#set($poClassName = $!tool.append($!tableInfo.name, \"PO\"))\n##定义PO实体对象名\n#set($poName = $!tool.append($!tool.firstLowerCase($!tableInfo.name), \"PO\"))\n\n##定义DO类名\n#set($doClassName = $!tableInfo.name)\n##定义DO实体对象名\n#set($doName = $!tool.firstLowerCase($!tableInfo.name))\n\n##定义Fatory类名\n#set($factoryClassName = $!tool.append($!{tableInfo.name}, \"Factory\"))\n\n##定义Repository类名\n##定义PO类名\n#set($repositoryClassName = $!tool.append($!tableInfo.name, \"Repository\"))\n##定义Repository实体对象名\n#set($repositoryName = $!tool.append($!tool.firstLowerCase($!tableInfo.name), \"Repository\"))\n\nimport com.baomidou.mybatisplus.core.metadata.IPage;\nimport $!{tableInfo.savePackageName}.domain.entity.$doClassName;\nimport $!{tableInfo.savePackageName}.domain.repository.po.$poClassName;\nimport $!{tableInfo.savePackageName}.domain.repository.service.$!{repositoryClassName};\nimport $!{tableInfo.savePackageName}.domain.factory.$!{factoryClassName};\nimport javax.annotation.Resource;\nimport org.springframework.stereotype.Service;\nimport java.util.List;\n\n##表注释（宏定义）\n /**\n * <p>\n * $!{tableInfo.comment} Service层\n * </p>\n *\n * @author $!{author}\n * @since $!{time.currTime('yyyy-MM-dd HH:mm:ss')}\n */\n@Service\npublic class $!{tableName} {\n    @Resource\n    private $!{repositoryClassName} $!{repositoryName};\n\n    /**\n     * 分页查询\n     *\n     * @param queryPage 分页参数\n     * @param $!{doName} 聚合根接受的查询参数\n     * @return 分页数据\n     */\n    public IPage<$!{doClassName}> pageList(IPage<$!{doClassName}> queryPage, $!{doClassName} $!{doName}) {\n                // 对象转换\n        IPage<$!{poClassName}> pagePo = queryPage.convert($!{factoryClassName}::doToPO);\n        pagePo = $!{repositoryName}.pageList(pagePo, $!{factoryClassName}.doToPO($!{doName}));        queryPage = pagePo.convert($!{factoryClassName}::poToDO);\n        return queryPage;\n    }\n\n    /**\n     * 根据主键ID查询\n     *\n     * @param id 主键ID\n     */\n    public $!{doClassName} findById(Long id) {\n        return $!{factoryClassName}.poToDO($!{repositoryName}.getById(id));\n    }\n    \n    /**\n     * 根据参数查询所有\n     * @param $!{doName} 查询参数\n     * @return 结果集\n     */\n    public List<$!{doClassName}> findAllByParams($!{doClassName} $!{doName}) {\n        return $!{factoryClassName}.poToDO($!{repositoryName}.findAllByParams($!{factoryClassName}.doToPO($!{doName})));\n    }\n\n    /**\n     * 添加\n     *\n     * @param $!{doName} 聚合根对象\n     */\n    public void add($!{doClassName} $!{doName}) {\n        $!{repositoryName}.save($!{factoryClassName}.doToPO($!{doName}));\n    }\n\n    /**\n     * 编辑\n     *\n     * @param $!{doName} 聚合根对象\n     */\n    public void edit($!{doClassName} $!{doName}) {\n        $!{repositoryName}.updateById($!{factoryClassName}.doToPO($!{doName}));\n    }\n\n    /**\n     * 单个删除\n     *\n     * @param id 主键ID\n     */\n    public void deleteById(Long id) {\n        $!{repositoryName}.removeById(id);\n    }\n\n    /**\n     * 批量删除\n     *\n     * @param idList 主键ID集合\n     */\n    public void deleteByIds(List<Long> idList) {\n        $!{repositoryName}.removeByIds(idList);\n    }\n}"
+      }, {
+        "name" : "application",
+        "code" : "##导入宏定义\n$!init\n$!define\n\n##设置表后缀（宏定义）\n#setTableSuffix(\"ApplicationService\")\n\n##保存文件（宏定义）\n#save(\"/application/service\", \"ApplicationService.java\")\n\n##包路径（宏定义）\n#setPackageSuffix(\"application.service\")\n\n##定义Mapper服务名\n#set($serviceClassName = $!tool.append($!tableInfo.name, \"Service\"))\n#set($serviceName = $!tool.append($!tool.firstLowerCase($!tableInfo.name), \"Service\"))\n\n##定义DO类名\n#set($doClassName = $!tableInfo.name)\n##定义DO实体对象名\n#set($doName = $!tool.firstLowerCase($!tableInfo.name))\n\nimport com.baomidou.mybatisplus.core.metadata.IPage;\nimport com.baomidou.mybatisplus.extension.plugins.pagination.Page;\nimport $!{tableInfo.savePackageName}.domain.entity.$!{doClassName};\nimport $!{tableInfo.savePackageName}.domain.service.$!{serviceClassName};\nimport javax.annotation.Resource;\nimport org.springframework.stereotype.Service;\n\nimport java.util.List;\n\n##表注释（宏定义）\n /**\n * <p>\n * $!{tableInfo.comment} 应用服务层\n * </p>\n *\n * @author $!{author}\n * @since $!{time.currTime('yyyy-MM-dd HH:mm:ss')}\n */\n@Service\npublic class $!{tableName} {\n    @Resource\n    private $!{serviceClassName} $!{serviceName};\n\n    /**\n     * 分页查询\n     *\n     * @param queryPage 分页参数\n     * @param $!{doName} 聚合根接受的查询参数\n     * @return 分页数据\n     */\n    public IPage<$!{doClassName}> pageList(Page<$!{doClassName}> queryPage, $!{doClassName} $!{doName}) {\n        return $!{serviceName}.pageList(queryPage, $!{doName});\n    }\n\n    /**\n     * 根据主键ID查询\n     *\n     * @param id 主键ID\n     */\n    public $!{doClassName} findById(Long id) {\n        return $!{serviceName}.findById(id);\n    }\n\n    /**\n     * 根据参数查询所有\n     * @param $!{doName} 查询参数\n     * @return 结果集\n     */\n    public List<$!{doClassName}> findAllByParams($!{doClassName} $!{doName}) {\n        return $!{serviceName}.findAllByParams($!{doName});\n    }\n\n    /**\n     * 添加\n     *\n     * @param $!{doName} 聚合根对象\n     */\n    public void add($!{doClassName} $!{doName}) {\n        $!{serviceName}.add($!{doName});\n    }\n    \n    /**\n     * 编辑\n     *\n     * @param $!{doName} 聚合根对象\n     */\n    public void edit($!{doClassName} $!{doName}) {\n        $!{serviceName}.edit($!{doName});\n    }\n    \n    /**\n     * 单个删除\n     *\n     * @param id 主键ID\n     */\n    public void deleteById(Long id) {\n        $!{serviceName}.deleteById(id);\n    }\n    \n    /**\n     * 批量删除\n     *\n     * @param idList 主键ID集合\n     */\n    public void deleteByIds(List<Long> idList) {\n        $!{serviceName}.deleteByIds(idList);\n    }\n}"
+      }, {
+        "name" : "dto",
+        "code" : "##导入宏定义\n$!init\n$!define\n\n##设置表后缀（宏定义）\n#setTableSuffix(\"DTO\")\n\n##保存文件（宏定义）\n#save(\"/interfaces/dto\", \"DTO.java\")\n\n##包路径（宏定义）\n#setPackageSuffix(\"interfaces.dto\")\n\nimport java.io.Serializable;\nimport io.swagger.annotations.*;\n\n\n##表注释（宏定义）\n /**\n * <p>\n * $!{tableInfo.comment} DTO\n * </p>\n *\n * @author $!{author}\n * @since $!{time.currTime('yyyy-MM-dd HH:mm:ss')}\n */\n@ApiModel(\"$tableInfo.comment\")\npublic class $!{tableInfo.name}DTO implements Serializable {\n    private static final long serialVersionUID = $!tool.serial();\n#foreach($column in $tableInfo.otherColumn)\n    #if(${column.name} != 'editTime' && ${column.name} != 'modifyTime'\n    && ${column.name} != 'operateTime' && ${column.name} != 'createTime'\n    && ${column.name} != 'creator' && ${column.name} != 'modifier'\n    && ${column.name} != 'creator' && ${column.name} != 'editor')\n        @ApiModelProperty(\"#if(${column.comment})$column.comment#end\")\n        private $!{tool.getClsNameByFullName($column.type)} $!{column.name};\n        #end\n#end\n    \n\n#foreach($column in $tableInfo.otherColumn)\n    #if(${column.name} != 'editTime' && ${column.name} != 'modifyTime'\n    && ${column.name} != 'operateTime' && ${column.name} != 'createTime'\n    && ${column.name} != 'creator' && ${column.name} != 'modifier'\n    && ${column.name} != 'creator' && ${column.name} != 'editor')\n        #getSetMethod($column)\n        #end\n#end\n    \n}"
+      }, {
+        "name" : "editDto",
+        "code" : "##导入宏定义\n$!init\n$!define\n\n##设置表后缀（宏定义）\n#setTableSuffix(\"EditDTO\")\n\n##保存文件（宏定义）\n#save(\"/interfaces/dto\", \"EditDTO.java\")\n\n##包路径（宏定义）\n#setPackageSuffix(\"interfaces.dto\")\n\nimport java.io.Serializable;\nimport io.swagger.annotations.*;\n\n\n##表注释（宏定义）\n /**\n * <p>\n * $!{tableInfo.comment} DTO\n * </p>\n *\n * @author $!{author}\n * @since $!{time.currTime('yyyy-MM-dd HH:mm:ss')}\n */\n@ApiModel(\"$tableInfo.comment\")\npublic class $!{tableInfo.name}EditDTO implements Serializable {\n    private static final long serialVersionUID = $!tool.serial();\n#foreach($column in $tableInfo.fullColumn)\n    #if(${column.name} != 'editTime' && ${column.name} != 'modifyTime'\n    && ${column.name} != 'operateTime' && ${column.name} != 'createTime'\n    && ${column.name} != 'creator' && ${column.name} != 'modifier'\n    && ${column.name} != 'creator' && ${column.name} != 'editor')\n        @ApiModelProperty(\"#if(${column.comment})$column.comment#end\")\n        private $!{tool.getClsNameByFullName($column.type)} $!{column.name};\n        #end\n#end\n\n#foreach($column in $tableInfo.otherColumn)\n    #if(${column.name} != 'editTime' && ${column.name} != 'modifyTime'\n    && ${column.name} != 'operateTime' && ${column.name} != 'createTime'\n    && ${column.name} != 'creator' && ${column.name} != 'modifier'\n    && ${column.name} != 'creator' && ${column.name} != 'editor')\n        #getSetMethod($column)\n        #end\n#end\n}"
+      }, {
+        "name" : "pageDto",
+        "code" : "##导入宏定义\n$!init\n$!define\n\n##设置表后缀（宏定义）\n#setTableSuffix(\"DTO\")\n\n##保存文件（宏定义）\n#save(\"/interfaces/dto\", \"PageDTO.java\")\n\n##包路径（宏定义）\n#setPackageSuffix(\"interfaces.dto\")\n\nimport com.wghis.common.entity.BaseQryDto;\nimport io.swagger.annotations.ApiModel;\nimport io.swagger.annotations.ApiModelProperty;\n\nimport java.io.Serializable;\n\n##表注释（宏定义）\n /**\n * <p>\n * $!{tableInfo.comment} DTO\n * </p>\n *\n * @author $!{author}\n * @since $!{time.currTime('yyyy-MM-dd HH:mm:ss')}\n */\n@ApiModel(\"$tableInfo.comment\")\npublic class $!{tableInfo.name}PageDTO extends BaseQryDto implements Serializable {\n    private static final long serialVersionUID = $!tool.serial();\n#foreach($column in $tableInfo.otherColumn)\n    #if(${column.name} != 'editTime' && ${column.name} != 'modifyTime'\n    && ${column.name} != 'operateTime' && ${column.name} != 'createTime'\n    && ${column.name} != 'creator' && ${column.name} != 'modifier'\n    && ${column.name} != 'creator' && ${column.name} != 'editor')\n        @ApiModelProperty(\"#if(${column.comment})$column.comment#end\")\n        private $!{tool.getClsNameByFullName($column.type)} $!{column.name};\n    #end\n#end\n\n#foreach($column in $tableInfo.otherColumn)\n    #if(${column.name} != 'editTime' && ${column.name} != 'modifyTime'\n    && ${column.name} != 'operateTime' && ${column.name} != 'createTime'\n    && ${column.name} != 'creator' && ${column.name} != 'modifier'\n    && ${column.name} != 'creator' && ${column.name} != 'editor')\n        #getSetMethod($column)\n        #end\n#end\n}"
+      }, {
+        "name" : "vo",
+        "code" : "##导入宏定义\n$!init\n$!define\n\n##设置表后缀（宏定义）\n#setTableSuffix(\"VO\")\n\n##保存文件（宏定义）\n#save(\"/interfaces/viewobject\", \"VO.java\")\n\n##包路径（宏定义）\n#setPackageSuffix(\"interfaces.viewobject\")\n\nimport io.swagger.annotations.ApiModel;\nimport io.swagger.annotations.ApiModelProperty;\n\nimport java.io.Serializable;\nimport java.util.Date;\n\n##表注释（宏定义）\n /**\n * <p>\n * $!{tableInfo.comment} VO\n * </p>\n *\n * @author $!{author}\n * @since $!{time.currTime('yyyy-MM-dd HH:mm:ss')}\n */\n@ApiModel(\"$tableInfo.comment\")\npublic class $!{tableInfo.name}VO implements Serializable {\n    private static final long serialVersionUID = $!tool.serial();\n    $!fileName\n    #foreach($column in $tableInfo.fullColumn)\n         @ApiModelProperty(\"#if(${column.comment})$column.comment#end\")\n        private $!{tool.getClsNameByFullName($column.type)} $!{column.name};\n    #end\n    \n#foreach($column in $tableInfo.fullColumn)\n        #getSetMethod($column)\n#end\n\n#noAndAllArgConstruct($!tool.append($tableInfo.name, 'VO'))\n\n#builder($!tool.append($tableInfo.name, 'VO'))\n}"
+      }, {
+        "name" : "facade",
+        "code" : "##导入宏定义\n$!init\n$!define\n\n##设置表后缀（宏定义）\n#setTableSuffix(\"Api\")\n\n##保存文件（宏定义）\n#save(\"/interfaces/facade\", \"Api.java\")\n\n##包路径（宏定义）\n#setPackageSuffix(\"interfaces.facade\")\n\n##定义服务名\n#set($serviceClassName = $!tool.append($!tableInfo.name, \"ApplicationService\"))\n#set($serviceName = $!tool.append($!tool.firstLowerCase($!tableInfo.name), \"ApplicationService\"))\n\n##定义DO类名\n#set($doClassName = $!tableInfo.name)\n##定义DO实体对象名\n#set($doName = $!tool.firstLowerCase($!tableInfo.name))\n\n##定义Assembler类名\n#set($assemblerClassName = $!tool.append($!{tableInfo.name}, \"Assembler\"))\n\n##定义DTO类名\n#set($dtoClassName = $!tool.append($!{tableInfo.name}, \"DTO\"))\n##定义EditDTO类名\n#set($editDtoClassName = $!tool.append($!{tableInfo.name}, \"EditDTO\"))\n##定义DTO实体对象名\n#set($dtoName = $!tool.append($!tool.firstLowerCase($!{tableInfo.name}), \"DTO\"))\n##定义分页DTO实体对象名\n#set($dtoPageClassName = $!tool.append($!{tableInfo.name}, \"PageDTO\"))\n##定义分页DTO实体对象名\n#set($dtoPageName = $!tool.append($!tool.firstLowerCase($!{tableInfo.name}), \"PageDTO\"))\n\n##定义VO类名\n#set($voClassName = $!tool.append($!{tableInfo.name}, \"VO\"))\n##定义VO实体对象名\n#set($voName = $!tool.append($!tool.firstLowerCase($!{tableInfo.name}), \"VO\"))\n\nimport com.baomidou.mybatisplus.core.metadata.IPage;\nimport com.baomidou.mybatisplus.extension.plugins.pagination.Page;\nimport $!{tableInfo.savePackageName}.application.service.$!{serviceClassName};\nimport $!{tableInfo.savePackageName}.domain.entity.$!{doClassName};\nimport com.wghis.common.entity.IdDTO;\nimport com.wghis.common.entity.IdListDTO;\nimport $!{tableInfo.savePackageName}.interfaces.dto.$!{dtoClassName};\nimport $!{tableInfo.savePackageName}.interfaces.dto.$!{editDtoClassName};\nimport $!{tableInfo.savePackageName}.interfaces.dto.$!{dtoPageClassName};\nimport $!{tableInfo.savePackageName}.interfaces.viewobject.$!{voClassName};\nimport $!{tableInfo.savePackageName}.interfaces.assembler.$!{assemblerClassName};\nimport com.wghis.common.entity.Result;\nimport io.swagger.annotations.Api;\nimport io.swagger.annotations.ApiOperation;\nimport io.swagger.annotations.ApiParam;\nimport org.springframework.validation.annotation.Validated;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.RequestBody;\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.web.bind.annotation.RestController;\n\nimport javax.annotation.Resource;\nimport javax.validation.constraints.NotNull;\nimport java.util.List;\n\n##表注释（宏定义）\n /**\n * <p>\n * $!{tableInfo.comment} Api层\n * </p>\n *\n * @author $!{author}\n * @since $!{time.currTime('yyyy-MM-dd HH:mm:ss')}\n */\n@RestController\n@RequestMapping(\"$!doName\")\n@Api(tags = \"$!{tableInfo.comment}\") \n@Validated\npublic class $!{tableName} {\n    @Resource\n    private $!{serviceClassName} $!{serviceName};\n\n    @ApiOperation(\"分页接口\")\n    @GetMapping(\"pageList\")\n    public Result<IPage<$!{voClassName}>> pageList(@ApiParam(name = \"pageDto\")\n                                                @Validated $!{dtoPageClassName} pageDto) {\n        $!{doClassName} $!{doName} = $!{assemblerClassName}.pageDtoToDO(pageDto);\n        Page<$!{doClassName}> page = new Page<>(pageDto.getCurrentPage(), pageDto.getPageSize());\n        IPage<$!{doClassName}> datalist = $!{serviceName}.pageList(page, $!{doName});\n        return Result.success(datalist.convert($!{assemblerClassName}::doToVO));\n    }\n\n    @ApiOperation(\"详情接口\")\n    @GetMapping(\"findById/{id}\")\n    public Result<$!{voClassName}> findById(@PathVariable @ApiParam(name = \"id\")\n                                         @NotNull(message = \"不能为空\") Long id) {\n        $!{doClassName} $!{doName} = $!{serviceName}.findById(id);\n        return Result.success($!{assemblerClassName}.doToVO($!{doName}));\n    }\n    \n    @ApiOperation(\"根据参数查询全部接口\")\n    @GetMapping(\"findAllByParams\")\n    public Result<List<$!{voClassName}>> findAllByParams(@ApiParam(name = \"dto\") @Validated $!{dtoClassName} dto) {\n        $!{doClassName} $!{doName} = $!{assemblerClassName}.dtoToDO(dto);\n        List<$!{doClassName}> listData = $!{serviceName}.findAllByParams($!{doName});\n        return Result.success($!{assemblerClassName}.doToVOList(listData));\n    }\n\n    @ApiOperation(\"添加接口\")\n    @PostMapping(\"add\")\n    public Result<Boolean> add(@RequestBody @ApiParam(name = \"dto\") @Validated $!{dtoClassName} dto) {\n        $!{serviceName}.add($!{assemblerClassName}.dtoToDO(dto));\n        return Result.success();\n    }\n\n    @ApiOperation(\"编辑接口\")\n    @PostMapping(\"edit\")\n    public Result<Boolean> edit(@RequestBody @ApiParam(name = \"dto\") @Validated $!{editDtoClassName} dto) {\n        $!{serviceName}.edit($!{assemblerClassName}.editDtoToDO(dto));\n        return Result.success();\n    }\n\n    @ApiOperation(\"单个删除接口\")\n    @PostMapping(\"deleteById\")\n    public Result<Boolean> deleteById(@RequestBody @Validated IdDTO idDTO) {\n        $!{serviceName}.deleteById(idDTO.getId());\n        return Result.success();\n    }\n\n    @ApiOperation(\"批量删除接口\")\n    @PostMapping(\"deleteByIds\")\n    public Result<Boolean> deleteByIds(@RequestBody @Validated IdListDTO dto) {\n        $!{serviceName}.deleteByIds(dto.getIds());\n        return Result.success();\n    }\n}"
+      }, {
+        "name" : "xml",
+        "code" : "##引入mybatis支持\n$!init\n$!mybatisSupport\n\n##设置保存名称与保存位置\n$!callback.setFileName($tool.append($!{tableInfo.name}, \"Mapper.xml\"))\n$!callback.setSavePath($tool.append($modulePath, \"/src/main/resources/mapper\"))\n\n##拿到主键\n#if(!$tableInfo.pkColumn.isEmpty())\n    #set($pk = $tableInfo.pkColumn.get(0))\n#end\n\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE mapper PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\" \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">\n<mapper namespace=\"$!{tableInfo.savePackageName}.domain.repository.mapper.$!{tableInfo.name}Mapper\">\n\n    <resultMap type=\"$!{tableInfo.savePackageName}.domain.repository.po.$!{tableInfo.name}PO\" id=\"dataMap\">\n#foreach($column in $tableInfo.fullColumn)\n        <result property=\"$!column.name\" column=\"$!column.obj.name\" jdbcType=\"$!column.ext.jdbcType\"/>\n#end\n    </resultMap>\n    \n    <!--查询指定行数据-->\n    <select id=\"findPageByParams\" resultMap=\"dataMap\">\n        select\n          #allSqlColumn()\n\n        from $!{tableInfo.obj.parent.name}.$!tableInfo.obj.name\n        <where>\n            #foreach($column in $tableInfo.fullColumn)\n            <if test=\"o.$!column.name != null#if($column.type.equals(\"java.lang.String\")) and o.$!column.name != ''#end\">\n                and $!column.obj.name = #{o.$!column.name}\n            </if>\n            #end\n        </where>\n    </select>\n\n</mapper>"
+      }, {
+        "name" : "assembler",
+        "code" : "##导入宏定义\n$!init\n$!define\n\n##设置表后缀（宏定义）\n#setTableSuffix(\"Assembler\")\n\n##保存文件（宏定义）\n#save(\"/interfaces/assembler\", \"Assembler.java\")\n\n##包路径（宏定义）\n#setPackageSuffix(\"interfaces.assembler\")\n\n##定义DO类名\n#set($doClassName = $!tableInfo.name)\n##定义DO实体对象名\n#set($doName = $!tool.firstLowerCase($!tableInfo.name))\n##定义DTO类名\n#set($dtoClassName = $!tool.append($!{tableInfo.name}, \"DTO\"))\n##定义EditDTO类名\n#set($editDtoClassName = $!tool.append($!{tableInfo.name}, \"EditDTO\"))\n##定义DTO实体对象名\n#set($dtoName = $!tool.append($!tool.firstLowerCase($!{tableInfo.name}), \"DTO\"))\n##定义分页DTO实体对象名\n#set($dtoPageClassName = $!tool.append($!{tableInfo.name}, \"PageDTO\"))\n##定义分页DTO实体对象名\n#set($dtoPageName = $!tool.append($!tool.firstLowerCase($!{tableInfo.name}), \"PageDTO\"))\n\n##定义VO类名\n#set($voClassName = $!tool.append($!{tableInfo.name}, \"VO\"))\n##定义VO实体对象名\n#set($voName = $!tool.append($!tool.firstLowerCase($!{tableInfo.name}), \"VO\"))\n\nimport java.io.Serializable;\nimport cn.hutool.core.bean.BeanUtil;\nimport $!{tableInfo.savePackageName}.domain.entity.$!{doClassName};\nimport $!{tableInfo.savePackageName}.interfaces.dto.$!{dtoClassName};\nimport $!{tableInfo.savePackageName}.interfaces.dto.$!{editDtoClassName};\nimport $!{tableInfo.savePackageName}.interfaces.dto.$!{dtoPageClassName};\nimport $!{tableInfo.savePackageName}.interfaces.viewobject.$!{voClassName};\nimport java.util.List;\n\n##表注释（宏定义）\n /**\n * <p>\n * $!{tableInfo.comment} API转换类\n * </p>\n *\n * @author $!{author}\n * @since $!{time.currTime('yyyy-MM-dd HH:mm:ss')}\n */\npublic class $!{tableInfo.name}Assembler implements Serializable {\n    private static final long serialVersionUID = $!tool.serial();\n    \n    /**\n     * PageDTO转DO\n     *\n     * @param $!{dtoPageName} pageDTO数据\n     */\n    public static $!{doClassName} pageDtoToDO($!{dtoPageClassName} $!{dtoPageName}) {\n        return BeanUtil.copyProperties($!{dtoPageName}, $!{doClassName}.class);\n    }\n    \n    /**\n     * DTO转DO\n     *\n     * @param $!{dtoName} DTO数据\n     */\n    public static $!{doClassName} dtoToDO($!{dtoClassName} $!{dtoName}) {\n        return BeanUtil.copyProperties($!{dtoName}, $!{doClassName}.class);\n    }\n    \n    /**\n     * EditDTO转DO\n     *\n     * @param $!{dtoName} EditDTO数据\n     */\n    public static $!{doClassName} editDtoToDO($!{editDtoClassName} $!{dtoName}) {\n        return BeanUtil.copyProperties($!{dtoName}, $!{doClassName}.class);\n    }\n    \n    /**\n     * DO转VO\n     *\n     * @param $!{doName} DO数据\n     */\n    public static $!{voClassName} doToVO($!{doClassName} $!{doName}) {\n        return BeanUtil.copyProperties($!{doName}, $!{voClassName}.class);\n    }\n    \n    /**\n     * DO转VO\n     *\n     * @param $!{doName}s DO集合数据\n     */\n    public static List<$!{voClassName}> doToVOList(List<$!{doClassName}> $!{doName}s) {\n        return BeanUtil.copyToList($!{doName}s, $!{voClassName}.class);\n    }\n}"
+      } ]
+    }
+  },
+  "columnConfig" : {
+    "Default" : {
+      "name" : "Default",
+      "elementList" : [ {
+        "title" : "disable",
+        "type" : "BOOLEAN",
+        "selectValue" : ""
+      }, {
+        "title" : "support",
+        "type" : "SELECT",
+        "selectValue" : "add,edit,query,del,ui"
+      } ]
+    }
+  },
+  "globalConfig" : {
+    "Default" : {
+      "name" : "Default",
+      "elementList" : [ {
+        "name" : "init",
+        "value" : "##初始化区域\n\n##去掉表的t_前缀\n\n$!tableInfo.setName(${className})\n\n$!tableInfo.setName($tool.getClassName(\n$tableInfo.obj.name.replaceFirst(\"BCS_\",\"\").replaceFirst(\"EBD_\",\"\").replaceFirst(\"HIS_\",\"\").replaceFirst(\"PIX\",\"\").replaceFirst(\"MSC\",\"\").replaceFirst(\"CPOE\",\"\")\n))\n\n\n\n\n##参考阿里巴巴开发手册，POJO 类中布尔类型的变量，都不要加 is 前缀，否则部分框架解析会引起序列化错误\n#foreach($column in $tableInfo.fullColumn)\n#if($column.name.startsWith(\"is\") && $column.type.equals(\"java.lang.Boolean\"))\n    $!column.setName($tool.firstLowerCase($column.name.substring(2)))\n#end\n#end\n\n##实现动态排除列\n#set($temp = $tool.newHashSet(\"testCreateTime\", \"otherColumn\"))\n#foreach($item in $temp)\n    #set($newList = $tool.newArrayList())\n    #foreach($column in $tableInfo.fullColumn)\n        #if($column.name!=$item)\n            ##带有反回值的方法调用时使用$tool.call来消除返回值\n            $tool.call($newList.add($column))\n        #end\n    #end\n    ##重新保存\n    $tableInfo.setFullColumn($newList)\n#end\n\n##对importList进行篡改\n#set($temp = $tool.newHashSet())\n#foreach($column in $tableInfo.fullColumn)\n    #if(!$column.type.startsWith(\"java.lang.\"))\n        ##带有反回值的方法调用时使用$tool.call来消除返回值\n        $tool.call($temp.add($column.type))\n    #end\n#end\n##覆盖\n#set($importList = $temp)"
+      }, {
+        "name" : "define",
+        "value" : "##（Velocity宏定义）\n\n##定义设置表名后缀的宏定义，调用方式：#setTableSuffix(\"Test\")\n#macro(setTableSuffix $suffix)\n    #set($tableName = $!tool.append($tableInfo.name, $suffix))\n#end\n\n##定义设置包名后缀的宏定义，调用方式：#setPackageSuffix(\"Test\")\n#macro(setPackageSuffix $suffix)\n#if($suffix!=\"\")package #end#if($tableInfo.savePackageName!=\"\")$!{tableInfo.savePackageName}.#{end}$!suffix;\n#end\n\n##定义直接保存路径与文件名简化的宏定义，调用方式：#save(\"/entity\", \".java\")\n#macro(save $path $fileName)\n    $!callback.setSavePath($tool.append($tableInfo.savePath, $path))\n    $!callback.setFileName($tool.append($tableInfo.name, $fileName))\n#end\n\n##定义表注释的宏定义，调用方式：#tableComment(\"注释信息\")\n#macro(tableComment $desc)\n/**\n * $!{tableInfo.comment}($!{tableInfo.name})$desc\n *\n * @author $!author\n * @since $!time.currTime()\n */\n#end\n\n##定义GET，SET方法的宏定义，调用方式：#getSetMethod($column)\n#macro(getSetMethod $column)\n\n    public $!{tool.getClsNameByFullName($column.type)} get$!{tool.firstUpperCase($column.name)}() {\n        return $!{column.name};\n    }\n\n    public void set$!{tool.firstUpperCase($column.name)}($!{tool.getClsNameByFullName($column.type)} $!{column.name}) {\n        this.$!{column.name} = $!{column.name};\n    }\n#end"
+      }, {
+        "name" : "autoImport",
+        "value" : "##自动导入包（仅导入实体属性需要的包，通常用于实体类）\n#foreach($import in $importList)\nimport $!import;\n#end"
+      }, {
+        "name" : "mybatisSupport",
+        "value" : "##针对Mybatis 进行支持，主要用于生成xml文件\n#foreach($column in $tableInfo.fullColumn)\n    ##储存列类型\n    $tool.call($column.ext.put(\"sqlType\", $tool.getField($column.obj.dataType, \"typeName\")))\n    #if($tool.newHashSet(\"java.lang.String\").contains($column.type))\n        #set($jdbcType=\"VARCHAR\")\n    #elseif($tool.newHashSet(\"java.lang.Boolean\", \"boolean\").contains($column.type))\n        #set($jdbcType=\"BOOLEAN\")\n    #elseif($tool.newHashSet(\"java.lang.Byte\", \"byte\").contains($column.type))\n        #set($jdbcType=\"BYTE\")\n    #elseif($tool.newHashSet(\"java.lang.Integer\", \"int\", \"java.lang.Short\", \"short\").contains($column.type))\n        #set($jdbcType=\"INTEGER\")\n    #elseif($tool.newHashSet(\"java.lang.Long\", \"long\").contains($column.type))\n        #set($jdbcType=\"INTEGER\")\n    #elseif($tool.newHashSet(\"java.lang.Float\", \"float\", \"java.lang.Double\", \"double\").contains($column.type))\n        #set($jdbcType=\"NUMERIC\")\n    #elseif($tool.newHashSet(\"java.util.Date\", \"java.sql.Timestamp\", \"java.time.Instant\", \"java.time.LocalDateTime\", \"java.time.OffsetDateTime\", \"\tjava.time.ZonedDateTime\").contains($column.type))\n        #set($jdbcType=\"TIMESTAMP\")\n    #elseif($tool.newHashSet(\"java.sql.Date\", \"java.time.LocalDate\").contains($column.type))\n        #set($jdbcType=\"TIMESTAMP\")\n    #else\n        ##其他类型\n        #set($jdbcType=\"OTHER\")\n    #end\n    $tool.call($column.ext.put(\"jdbcType\", $jdbcType))\n#end\n\n##定义宏，查询所有列\n#macro(allSqlColumn)#foreach($column in $tableInfo.fullColumn)$column.obj.name#if($velocityHasNext), #end#end#end"
+      } ]
+    }
+  }
+}

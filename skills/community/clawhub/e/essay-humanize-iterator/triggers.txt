@@ -1,0 +1,40 @@
+# --- English ---
+iterate humanize
+iterative humanize
+rehumanize
+rehumanize essay
+reduce AI patterns
+AI writing patterns
+writing naturalness
+minimize AI false positive
+humanize loop
+iterative rewrite
+iterative essay rewrite
+semantic density check
+syntactic complexity
+reduce AI style score
+AI writing quality
+improve writing style
+essay iteration
+AI pattern analysis
+style alignment
+human writing alignment
+MDD variance
+measure AI patterns
+essay measurement
+pattern score
+
+# --- Chinese ---
+论文润色
+迭代改写
+AI风格优化
+减少AI痕迹
+降低AI风格分
+反复改写
+写作自然度
+人类写作对齐
+语义密度
+句法复杂度
+作文迭代优化
+写作风格对齐
+多轮改写

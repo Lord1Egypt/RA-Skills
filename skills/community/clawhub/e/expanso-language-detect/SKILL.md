@@ -1,35 +1,35 @@
----
-name: "Expanso language-detect"
-description: "Detect the language of input text using AI with Expanso Edge via CLI or MCP pipelines."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/expanso-language-detect"
-sourceUrl: "https://clawhub.ai/skills/expanso-language-detect"
----
+# language-detect
 
-# Expanso language-detect
+Detect the language of text using AI
 
-> Detect the language of input text using AI with Expanso Edge via CLI or MCP pipelines.
+## Requirements
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/expanso-language-detect`
-- **Source URL:** [https://clawhub.ai/skills/expanso-language-detect](https://clawhub.ai/skills/expanso-language-detect)
+- Expanso Edge installed (`expanso-edge` binary in PATH)
+- Install via: `clawhub install expanso-edge`
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### CLI Pipeline
 ```bash
-hermes skills install clawhub/expanso-language-detect
+# Run standalone
+echo '<input>' | expanso-edge run pipeline-cli.yaml
 ```
+
+### MCP Pipeline
+```bash
+# Start as MCP server
+expanso-edge run pipeline-mcp.yaml
+```
+
+### Deploy to Expanso Cloud
+```bash
+expanso-cli job deploy https://skills.expanso.io/language-detect/pipeline-cli.yaml
+```
+
+## Files
+
+| File | Purpose |
+|------|---------|
+| `skill.yaml` | Skill metadata (inputs, outputs, credentials) |
+| `pipeline-cli.yaml` | Standalone CLI pipeline |
+| `pipeline-mcp.yaml` | MCP server pipeline |

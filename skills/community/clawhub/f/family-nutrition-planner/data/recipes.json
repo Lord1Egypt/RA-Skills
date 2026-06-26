@@ -1,0 +1,36 @@
+{
+  "description": "Recipe database for Family Nutrition Planner",
+  "version": "0.1.0",
+  "recipes": {
+    "breakfast": [
+      {"name": "全麦吐司配鸡蛋牛油果", "calories": 420, "time": "15分钟", "ingredients": ["全麦吐司", "鸡蛋", "牛油果", "西红柿"], "protein": 18, "tags": ["西式", "高蛋白"]},
+      {"name": "燕麦粥配水果", "calories": 350, "time": "10分钟", "ingredients": ["燕麦", "牛奶", "香蕉", "蓝莓"], "protein": 12, "tags": ["健康", "快手"]},
+      {"name": "中式豆腐脑", "calories": 280, "time": "20分钟", "ingredients": ["黄豆", "内酯豆腐", "葱花", "酱油"], "protein": 22, "tags": ["中式", "素食"]},
+      {"name": "蔬菜鸡蛋饼", "calories": 380, "time": "15分钟", "ingredients": ["鸡蛋", "面粉", "青菜", "胡萝卜"], "protein": 16, "tags": ["中式", "快手"]},
+      {"name": "牛奶鸡蛋羹", "calories": 320, "time": "15分钟", "ingredients": ["鸡蛋", "牛奶", "葱花"], "protein": 20, "tags": ["中式", "宝宝辅食"]},
+      {"name": "玉米糊配葡萄干", "calories": 300, "time": "10分钟", "ingredients": ["玉米面", "葡萄干", "糖"], "protein": 8, "tags": ["甜品", "快手"]},
+      {"name": "豆浆配油条", "calories": 450, "time": "10分钟", "ingredients": ["黄豆", "油条"], "protein": 18, "tags": ["中式", "传统"]},
+      {"name": "水果沙拉配酸奶", "calories": 280, "time": "10分钟", "ingredients": ["苹果", "香蕉", "酸奶", "蜂蜜"], "protein": 10, "tags": ["健康", "素食"]}
+    ],
+    "lunch": [
+      {"name": "清蒸鲈鱼 + 米饭 + 青菜", "calories": 580, "time": "25分钟", "ingredients": ["鲈鱼", "大米", "青菜", "姜"], "protein": 35, "tags": ["中式", "清淡", "高蛋白"]},
+      {"name": "鸡胸肉沙拉配藜麦", "calories": 520, "time": "20分钟", "ingredients": ["鸡胸肉", "混合蔬菜", "藜麦", "橄榄油"], "protein": 40, "tags": ["健身", "高蛋白"]},
+      {"name": "番茄牛腩面", "calories": 620, "time": "35分钟", "ingredients": ["牛肉", "西红柿", "面条", "洋葱"], "protein": 32, "tags": ["中式", "主食"]},
+      {"name": "红烧肉 + 米饭", "calories": 720, "time": "40分钟", "ingredients": ["五花肉", "大米", "土豆", "酱油"], "protein": 28, "tags": ["中式", "硬菜"]},
+      {"name": "虾仁炒饭", "calories": 550, "time": "20分钟", "ingredients": ["虾仁", "米饭", "鸡蛋", "豌豆"], "protein": 30, "tags": ["快手", "海鲜"]},
+      {"name": "宫保鸡丁 + 米饭", "calories": 600, "time": "25分钟", "ingredients": ["鸡胸肉", "花生", "胡萝卜", "大米"], "protein": 35, "tags": ["川菜", "经典"]},
+      {"name": "鱼香肉丝 + 米饭", "calories": 580, "time": "25分钟", "ingredients": ["猪肉", "木耳", "胡萝卜", "大米"], "protein": 28, "tags": ["川菜", "下饭"]},
+      {"name": "麻婆豆腐 + 米饭", "calories": 480, "time": "20分钟", "ingredients": ["豆腐", "猪肉末", "大米", "花椒"], "protein": 25, "tags": ["川菜", "素食可"]}
+    ],
+    "dinner": [
+      {"name": "蒜蓉西兰花 + 烤鸡腿", "calories": 520, "time": "30分钟", "ingredients": ["西兰花", "鸡腿", "大蒜", "橄榄油"], "protein": 38, "tags": ["健康", "高蛋白"]},
+      {"name": "番茄鸡蛋汤 + 清炒藕片", "calories": 420, "time": "25分钟", "ingredients": ["西红柿", "鸡蛋", "莲藕", "青菜"], "protein": 22, "tags": ["清淡", "素食"]},
+      {"name": "清蒸鲈鱼 + 凉拌黄瓜", "calories": 480, "time": "30分钟", "ingredients": ["鲈鱼", "黄瓜", "蒜", "醋"], "protein": 36, "tags": ["清淡", "海鲜"]},
+      {"name": "肉末豆腐 + 米饭", "calories": 550, "time": "25分钟", "ingredients": ["猪肉", "豆腐", "大米", "葱"], "protein": 30, "tags": ["家常", "下饭"]},
+      {"name": "冬瓜排骨汤 + 炒青菜", "calories": 500, "time": "40分钟", "ingredients": ["排骨", "冬瓜", "青菜", "姜"], "protein": 28, "tags": ["滋补", "汤类"]},
+      {"name": "糖醋里脊 + 米饭", "calories": 650, "time": "30分钟", "ingredients": ["猪里脊", "大米", "醋", "糖"], "protein": 30, "tags": ["酸甜", "孩子爱"]},
+      {"name": "水煮牛肉 + 青菜", "calories": 550, "time": "35分钟", "ingredients": ["牛肉", "豆芽", "青菜", "辣椒"], "protein": 40, "tags": ["川菜", "麻辣"]},
+      {"name": "素炒时蔬 + 紫菜蛋花汤", "calories": 350, "time": "20分钟", "ingredients": ["西兰花", "胡萝卜", "紫菜", "鸡蛋"], "protein": 18, "tags": ["素食", "清淡"]}
+    ]
+  }
+}

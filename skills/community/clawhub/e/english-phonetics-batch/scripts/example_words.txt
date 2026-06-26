@@ -1,0 +1,23 @@
+# Example word list - one word per line
+# Lines starting with # are ignored
+
+apple
+banana
+cherry
+database
+english
+language
+computer
+keyboard
+mouse
+monitor
+program
+developer
+engineering
+beautiful
+question
+answer
+university
+student
+teacher
+school

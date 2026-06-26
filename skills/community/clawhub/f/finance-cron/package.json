@@ -1,0 +1,30 @@
+{
+  "name": "finance-cron-skill",
+  "version": "1.0.0",
+  "description": "A CodeBuddy skill for trading-day-aware cron scheduling supporting US, CN, HK markets",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "sync-calendars": "python3 scripts/sync_calendars.py"
+  },
+  "keywords": [
+    "cron",
+    "trading",
+    "calendar",
+    "finance",
+    "schedule"
+  ],
+  "dependencies": {
+    "date-fns": "^3.6.0",
+    "yaml": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "slug": "feishu-multi-account",
+  "name": "飞书多账号配置",
+  "description": "为OpenClaw子代理配置独立飞书机器人的完整指南",
+  "version": "1.0.0",
+  "author": "贾维斯",
+  "tags": ["飞书", "配置", "多账号", "子代理"],
+  "homepage": "",
+  "readme": "SKILL.md",
+  "install": {
+    "method": "copy",
+    "path": "skills/"
+  }
+}

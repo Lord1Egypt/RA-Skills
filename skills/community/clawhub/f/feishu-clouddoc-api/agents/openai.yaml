@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feishu OpenAPI"
+  short_description: "Feishu OpenAPI docs, sheets, Base, wiki, IM"
+  default_prompt: "Use $feishu-openapi to configure and use a Feishu OpenAPI integration."

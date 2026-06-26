@@ -1,0 +1,222 @@
+[
+  {
+    "id": "nodejs-econnrefused-001",
+    "category": "nodejs",
+    "error_message": "Error: connect ECONNREFUSED 127.0.0.1:5432",
+    "stack_trace": "Error: connect ECONNREFUSED 127.0.0.1:5432\n    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1141:16)\n    at Database.connect (/app/src/db.js:45:12)",
+    "expected_error_type": "Connection Error",
+    "expected_severity": "HIGH",
+    "expected_keywords": ["connection", "refused", "service", "port"],
+    "expected_fix_keywords": ["systemctl", "start", "running"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "nodejs-enoent-001",
+    "category": "nodejs",
+    "error_message": "Error: ENOENT: no such file or directory, open '/app/config.json'",
+    "stack_trace": "Error: ENOENT: no such file or directory, open '/app/config.json'\n    at Object.openSync (fs.js:462:3)\n    at readConfig (/app/src/config.js:12:15)",
+    "expected_error_type": "File Not Found",
+    "expected_severity": "MEDIUM",
+    "expected_keywords": ["file", "not found", "does not exist", "path"],
+    "expected_fix_keywords": ["verify", "exists", "create"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "nodejs-timeout-001",
+    "category": "nodejs",
+    "error_message": "Error: ETIMEDOUT connecting to api.example.com:443",
+    "stack_trace": "Error: ETIMEDOUT\n    at Timeout._onTimeout (/app/src/http.js:78:13)",
+    "expected_error_type": "Timeout Error",
+    "expected_severity": "MEDIUM",
+    "expected_keywords": ["timeout", "api", "connection"],
+    "expected_fix_keywords": ["network", "retry", "timeout"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "nodejs-permission-001",
+    "category": "nodejs",
+    "error_message": "Error: EACCES: permission denied, open '/var/log/app.log'",
+    "stack_trace": "Error: EACCES: permission denied\n    at Object.openSync (fs.js:462:3)",
+    "expected_error_type": "Permission Error",
+    "expected_severity": "MEDIUM",
+    "expected_keywords": ["permission", "denied", "access"],
+    "expected_fix_keywords": ["chmod", "permissions", "chown"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "python-db-table-001",
+    "category": "python",
+    "error_message": "django.request - ERROR - Internal Server Error: /api/users/",
+    "stack_trace": "Traceback (most recent call last):\n  File \"/app/views.py\", line 45, in get_users\n    users = User.objects.filter(active=True)\nOperationalError: no such table: auth_user",
+    "expected_error_type": "Database Error",
+    "expected_severity": "CRITICAL",
+    "expected_keywords": ["table", "database", "schema", "migrations"],
+    "expected_fix_keywords": ["migrate", "makemigrations", "manage.py"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "python-import-001",
+    "category": "python",
+    "error_message": "ModuleNotFoundError: No module named 'requests'",
+    "stack_trace": "Traceback (most recent call last):\n  File \"/app/main.py\", line 3, in <module>\n    import requests\nModuleNotFoundError: No module named 'requests'",
+    "expected_error_type": "Import Error",
+    "expected_severity": "HIGH",
+    "expected_keywords": ["module", "import", "installed", "pip"],
+    "expected_fix_keywords": ["pip", "install", "requirements"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "python-key-error-001",
+    "category": "python",
+    "error_message": "KeyError: 'user_id'",
+    "stack_trace": "Traceback (most recent call last):\n  File \"/app/handlers.py\", line 23, in get_user\n    user_id = request.data['user_id']\nKeyError: 'user_id'",
+    "expected_error_type": "Key Error",
+    "expected_severity": "MEDIUM",
+    "expected_keywords": ["dictionary", "key", "exist", "access"],
+    "expected_fix_keywords": ["get", "exists", "check"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "python-type-error-001",
+    "category": "python",
+    "error_message": "TypeError: 'NoneType' object is not iterable",
+    "stack_trace": "Traceback (most recent call last):\n  File \"/app/process.py\", line 15, in process_items\n    for item in items:\nTypeError: 'NoneType' object is not iterable",
+    "expected_error_type": "Type Error",
+    "expected_severity": "MEDIUM",
+    "expected_keywords": ["none", "iterable", "none", "variable"],
+    "expected_fix_keywords": ["check", "none", "if"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "python-index-error-001",
+    "category": "python",
+    "error_message": "IndexError: list index out of range",
+    "stack_trace": "Traceback (most recent call last):\n  File \"/app/utils.py\", line 8, in get_first\n    return items[0]\nIndexError: list index out of range",
+    "expected_error_type": "Index Error",
+    "expected_severity": "MEDIUM",
+    "expected_keywords": ["index", "range", "list", "empty"],
+    "expected_fix_keywords": ["length", "check", "safe"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "go-panic-001",
+    "category": "go",
+    "error_message": "panic: runtime error: invalid memory address or nil pointer dereference",
+    "stack_trace": "goroutine 1 [running]:\nmain.processUser(0x0, 0x0)\n    /app/main.go:45 +0x123\nmain.main()\n    /app/main.go:23 +0x45",
+    "expected_error_type": "Nil Pointer",
+    "expected_severity": "CRITICAL",
+    "expected_keywords": ["nil", "pointer", "memory", "panic"],
+    "expected_fix_keywords": ["check", "nil", "initialize"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "go-dial-001",
+    "category": "go",
+    "error_message": "dial tcp 127.0.0.1:6379: connect: connection refused",
+    "stack_trace": "",
+    "expected_error_type": "Connection Error",
+    "expected_severity": "HIGH",
+    "expected_keywords": ["connection", "refused", "tcp", "service"],
+    "expected_fix_keywords": ["redis", "running", "start"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "go-channel-001",
+    "category": "go",
+    "error_message": "fatal error: all goroutines are asleep - deadlock!",
+    "stack_trace": "goroutine 1 [chan receive]:\nmain.main()\n    /app/main.go:15 +0x85",
+    "expected_error_type": "Deadlock",
+    "expected_severity": "CRITICAL",
+    "expected_keywords": ["deadlock", "goroutine", "blocked", "waiting"],
+    "expected_fix_keywords": ["buffered", "timeout", "channel"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "nodejs-memory-leak-001",
+    "category": "nodejs",
+    "error_message": "FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory",
+    "stack_trace": "",
+    "expected_error_type": "Memory Error",
+    "expected_severity": "CRITICAL",
+    "expected_keywords": ["memory", "heap", "allocation", "javascript"],
+    "expected_fix_keywords": ["max-old-space-size", "heap", "profile"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "python-async-001",
+    "category": "python",
+    "error_message": "RuntimeError: cannot schedule new futures after shutdown",
+    "stack_trace": "Traceback (most recent call last):\n  File \"/app/async_worker.py\", line 67, in process\n    loop.run_until_complete(task)",
+    "expected_error_type": "Async Error",
+    "expected_severity": "HIGH",
+    "expected_keywords": ["async", "future", "shutdown", "loop"],
+    "expected_fix_keywords": ["event loop", "shutdown", "async"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "python-sqlalchemy-001",
+    "category": "python",
+    "error_message": "sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked",
+    "stack_trace": "Traceback (most recent call last):\n  File \"/app/models.py\", line 45, in save\n    session.commit()",
+    "expected_error_type": "Database Error",
+    "expected_severity": "HIGH",
+    "expected_keywords": ["database", "locked", "sqlite", "concurrent"],
+    "expected_fix_keywords": ["timeout", "pool", "postgresql"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "nodejs-mysql-001",
+    "category": "nodejs",
+    "error_message": "Error: connect ECONNREFUSED 127.0.0.1:3306",
+    "stack_trace": "Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Database.connect (/app/src/db.js:45:12)",
+    "expected_error_type": "Connection Error",
+    "expected_severity": "HIGH",
+    "expected_keywords": ["connection", "refused", "service", "port"],
+    "expected_fix_keywords": ["systemctl", "start", "running"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "python-value-error-001",
+    "category": "python",
+    "error_message": "ValueError: invalid literal for int() with base 10: 'abc'",
+    "stack_trace": "Traceback (most recent call last):\n  File \"/app/parser.py\", line 12, in parse_int\n    return int(value)\nValueError: invalid literal for int() with base 10: 'abc'",
+    "expected_error_type": "Value Error",
+    "expected_severity": "MEDIUM",
+    "expected_keywords": ["value", "convert", "int", "invalid"],
+    "expected_fix_keywords": ["try", "except", "validate"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "python-attr-error-001",
+    "category": "python",
+    "error_message": "AttributeError: 'NoneType' object has no attribute 'split'",
+    "stack_trace": "Traceback (most recent call last):\n  File \"/app/utils.py\", line 23, in process\n    parts = text.split(',')\nAttributeError: 'NoneType' object has no attribute 'split'",
+    "expected_error_type": "Attribute Error",
+    "expected_severity": "MEDIUM",
+    "expected_keywords": ["attribute", "none", "object", "method"],
+    "expected_fix_keywords": ["check", "none", "if"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "nodejs-cors-001",
+    "category": "nodejs",
+    "error_message": "Error: Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource",
+    "stack_trace": "",
+    "expected_error_type": "CORS Error",
+    "expected_severity": "MEDIUM",
+    "expected_keywords": ["cors", "origin", "cross", "blocked"],
+    "expected_fix_keywords": ["cors", "header", "allow"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "python-conn-refused-001",
+    "category": "python",
+    "error_message": "ConnectionRefusedError: [Errno 111] Connection refused",
+    "stack_trace": "Traceback (most recent call last):\n  File \"/app/client.py\", line 15, in connect\n    sock.connect((host, port))\nConnectionRefusedError: [Errno 111] Connection refused",
+    "expected_error_type": "Connection Error",
+    "expected_severity": "HIGH",
+    "expected_keywords": ["connection", "refused", "service"],
+    "expected_fix_keywords": ["running", "start", "check"],
+    "difficulty": "easy"
+  }
+]

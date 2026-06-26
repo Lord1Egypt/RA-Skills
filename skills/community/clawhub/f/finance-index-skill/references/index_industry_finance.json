@@ -1,0 +1,206 @@
+{
+  "category": "行业主题",
+  "sub_category": "金融地产",
+  "description": "理财通行业主题-金融地产指数名单",
+  "count": 33,
+  "indices": [
+    {
+      "code": "000018.SH",
+      "name": "上证180金融股指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000018"
+    },
+    {
+      "code": "000038.SH",
+      "name": "上证金融地产行业指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000038"
+    },
+    {
+      "code": "000914.SH",
+      "name": "沪深300金融地产指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000914"
+    },
+    {
+      "code": "000934.SH",
+      "name": "中证金融地产指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000934"
+    },
+    {
+      "code": "000948.CSI",
+      "name": "中证内地地产主题指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000948"
+    },
+    {
+      "code": "000974.SH",
+      "name": "中证800金融指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000974"
+    },
+    {
+      "code": "000992.SH",
+      "name": "中证全指金融地产指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=000992"
+    },
+    {
+      "code": "399393.SZ",
+      "name": "国证地产指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399393"
+    },
+    {
+      "code": "399437.SZ",
+      "name": "国证证券龙头指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399437"
+    },
+    {
+      "code": "399699.SZ",
+      "name": "国证香蜜湖金融科技指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399699"
+    },
+    {
+      "code": "399707.SZ",
+      "name": "中证申万证券行业指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399707"
+    },
+    {
+      "code": "399809.SZ",
+      "name": "中证方正富邦保险主题指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399809"
+    },
+    {
+      "code": "399965.SZ",
+      "name": "中证800地产指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399965"
+    },
+    {
+      "code": "399966.SZ",
+      "name": "中证800证券保险指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399966"
+    },
+    {
+      "code": "399975.SZ",
+      "name": "中证全指证券公司指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399975"
+    },
+    {
+      "code": "399983.SZ",
+      "name": "沪深300地产等权重指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399983"
+    },
+    {
+      "code": "399986.SZ",
+      "name": "中证银行指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=399986"
+    },
+    {
+      "code": "930709.CSI",
+      "name": "中证香港证券投资主题指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930709"
+    },
+    {
+      "code": "930792.CSI",
+      "name": "中证香港银行投资指数(港币)",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930792"
+    },
+    {
+      "code": "930793.CSI",
+      "name": "中证香港银行投资指数(人民币)",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930793"
+    },
+    {
+      "code": "930986.CSI",
+      "name": "中证金融科技主题指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=930986"
+    },
+    {
+      "code": "931024.CSI",
+      "name": "中证港股通非银行金融主题指数(HKD)",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931024"
+    },
+    {
+      "code": "931039.CSI",
+      "name": "中证银行AH价格优选指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931039"
+    },
+    {
+      "code": "931402.CSI",
+      "name": "中证证券公司先锋策略指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931402"
+    },
+    {
+      "code": "931412.CSI",
+      "name": "中证证券公司30指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931412"
+    },
+    {
+      "code": "931479.CSI",
+      "name": "中证证券保险领先指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931479"
+    },
+    {
+      "code": "931775.CSI",
+      "name": "中证全指房地产指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=931775"
+    },
+    {
+      "code": "950105.CSI",
+      "name": "上证证券行业指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=950105"
+    },
+    {
+      "code": "h11146.CSI",
+      "name": "中证港股通内地金融指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h11146"
+    },
+    {
+      "code": "h30022.CSI",
+      "name": "中证800银行指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30022"
+    },
+    {
+      "code": "h30035.CSI",
+      "name": "沪深300非银行金融指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30035"
+    },
+    {
+      "code": "h30106.CSI",
+      "name": "中证香港300金融服务指数(港币)",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30106"
+    },
+    {
+      "code": "h30588.CSI",
+      "name": "中证证券保险指数",
+      "sub_category": "金融地产",
+      "url": "https://www.txfund.com/h5/v6/pages/finance-tools/stock-index/detail?indexCode=h30588"
+    }
+  ]
+}

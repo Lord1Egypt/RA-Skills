@@ -1,0 +1,4 @@
+interface:
+  display_name: "Email IMAP/SMTP"
+  short_description: "Connect mailbox and send/receive email via IMAP/SMTP"
+  default_prompt: "Use $email-imap-smtp to connect my mailbox and send a test email."

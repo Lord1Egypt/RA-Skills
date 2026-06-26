@@ -1,0 +1,14 @@
+data_root: /home/xray/data
+db_file: samples.db
+default_owner: xray
+id_prefix: CAT
+lab_name: Electrochemistry Lab
+next_id: 2
+storage_locations:
+- fridge-4
+- rack-A2
+- rack-B1
+- desiccator-2
+- drawer-3
+- given-out
+- disposed

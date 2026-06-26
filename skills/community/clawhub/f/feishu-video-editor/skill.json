@@ -1,0 +1,19 @@
+{
+  "name": "feishu-video-editor",
+  "version": "1.0.0",
+  "description": "AI 视频剪辑 Skill - MVP 版本",
+  "author": "Spark",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rfdiosuao/openclaw-skills/tree/main/feishu-video-editor"
+  },
+  "keywords": ["video", "editor", "ffmpeg", "whisper", "feishu"],
+  "categories": ["productivity", "media", "automation"],
+  "main": "dist/index.js",
+  "files": ["dist", "SKILL.md", "README.md", "requirements.txt"],
+  "engines": {
+    "node": ">=18.0.0",
+    "python": ">=3.8.0"
+  }
+}

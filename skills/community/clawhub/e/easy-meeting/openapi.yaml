@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: 飞书智能排期 AI 助手
+  description: 提供给大语言模型 (LLM) 和 OpenClaw Agent 使用的一组飞书原子化排期与卡片发包技能。
+  version: 1.0.0
+servers:
+  - url: https://your-server-url.com/api/claw
+    description: 线上部署环境 (由于带有 Webhook，需为公网域名)
+
+paths:
+  /calc-free-time:
+    post:
+      operationId: calcFreeTime
+      summary: 技能一：日历计算器
+      description: 给定一批用户的飞书 user_id、期望的时间区间与会议时长要求，查阅他们所有人的日历并返回能够满足条件的共同空闲时间段。作为寻找排期选项的第一步。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userIds
+                - startTimeIso
+                - endTimeIso
+                - durationMinutes
+              properties:
+                userIds:
+                  type: array
+                  items:
+                    type: string
+                  description: 参与排期的目标人员的飞书 user_id 集合
+                startTimeIso:
+                  type: string
+                  description: 寻找最早在哪个时间之后的空闲 (ISO8601格式，含时区如 +08:00)
+                endTimeIso:
+                  type: string
+                  description: 寻找最晚在哪个时间之前的空闲 (ISO8601格式，含时区如 +08:00)
+                durationMinutes:
+                  type: integer
+                  description: 这场会议预计需要的时间，单位分钟（例如 60）。函数会自动过滤那些过碎的空挡。
+      responses:
+        '200':
+          description: 获取成功，返回可选的时间段 JSON 列表
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /dispatch-cards:
+    post:
+      operationId: dispatchPollCards
+      summary: 技能二：发包与意向收集单
+      description: 当通过日历计算器拿到备选时间，或 LLM 面临时间冲突提出新议案时，由 Agent 拟定带情绪的友好导语，并带上几个时间作为选项，给当事人分发包含按钮选项的飞书消息。它在发出的那一刻即会被系统持久化追踪，无需 Agent 死循环等待。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - meetingTopic
+                - userIds
+                - timeSlots
+                - agentMessage
+              properties:
+                meetingTopic:
+                  type: string
+                  description: 这个排期的事务主题或者是会议名称
+                userIds:
+                  type: array
+                  items:
+                    type: string
+                  description: 要发送意向卡片的候选人飞书 user_id 集合
+                timeSlots:
+                  type: array
+                  description: 上一步日历计算系统吐出的候选时间参数（包含 start_time, end_time）。或者你想让某人“二选一”生造的时间。
+                agentMessage:
+                  type: string
+                  description: 你的语气（这由你 LLM 本身决定，比如“刘总，我看了大家的日程，礼拜三十点都比较宽裕，这个点您看行吗？”）。该语气会作为标题展现在时间按钮上方。
+      responses:
+        '200':
+          description: 发包成功，返回内部跟踪使用的 Session ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      sessionId:
+                        type: string

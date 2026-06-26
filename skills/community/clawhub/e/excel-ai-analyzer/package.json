@@ -1,0 +1,21 @@
+{
+  "name": "excel-ai-analyzer",
+  "version": "1.0.0",
+  "description": "智能 Excel 数据分析 - 自动分析、统计、报告生成",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "excel",
+    "analysis",
+    "data",
+    "report",
+    "automation"
+  ],
+  "author": "oct1st85",
+  "license": "MIT",
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}

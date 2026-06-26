@@ -1,0 +1,10 @@
+{
+  "id": "emergence-diagram-rendering",
+  "title": "Natural Language to Diagram",
+  "version": "0.1.0",
+  "description": "High-fidelity diagram generation from natural language descriptions. Supports Mermaid, D2, and Graphviz.",
+  "author": "Emergence Science",
+  "repository": "https://github.com/emergencescience/emergence-diagram-rendering",
+  "verified": true,
+  "mcp_server": null
+}

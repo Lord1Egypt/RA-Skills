@@ -1,0 +1,108 @@
+# Excel 数据导入配置文件示例 - 多源文件显式配置
+# 演示如何精确控制多个源文件的导入
+
+# 任务基本信息
+task_name: "多源文件显式配置示例"
+description: "从指定的多个源文件导入数据，每个文件可以有独立的配置"
+
+# 源数据配置 - 方式2：多源文件显式配置（使用复数 sources）
+sources:
+  # 第一个源文件
+  - file_path: "input/file1.xlsx"
+    sheet_name: "Sheet1"
+    header_row: 1
+    key_field: "学籍号码"
+    # 这个文件独立的字段映射
+    field_mappings:
+      - source: "姓名"
+        target: "学生姓名"
+      - source: "思品"
+        target: "思想品德"
+      - source: "历史"
+        target: "历史成绩"
+
+  # 第二个源文件（可能有不同的字段名）
+  - file_path: "input/file2.xlsx"
+    sheet_name: "Sheet1"
+    header_row: 1
+    key_field: "学号"  # 注意：这个文件的关键字段名不同
+    # 这个文件有独立的字段映射配置
+    field_mappings:
+      - source: "学生姓名"
+        target: "学生姓名"  # 映射到相同的目标字段
+      - source: "道德与法治"
+        target: "思想品德"  # 源字段名不同，但映射到同一个目标字段
+      - source: "历史"
+        target: "历史成绩"
+
+  # 第三个源文件（使用目录配置）
+  - directory_path: "input/more_files/"
+    file_pattern: "*.xlsx"
+    sheet_name: "Data"
+    header_row: 2
+    key_field: "ID"
+    field_mappings:
+      - source: "Name"
+        target: "学生姓名"
+      - source: "Thinking"
+        target: "思想品德"
+      - source: "History"
+        target: "历史成绩"
+
+# 目标模板配置
+target:
+  file_path: "templates/final_template.xlsx"
+  sheet_name: "汇总表"
+  header_row: 1
+  data_start_row: 2
+  output_path: "output/final_result.xlsx"
+
+# 错误处理配置
+error_handling:
+  backup: true
+  backup_path: "backup/"
+  stop_on_error: false
+  log_errors: true
+  error_log_path: "logs/import_errors.log"
+
+# 高级选项
+options:
+  preserve_formatting: true
+  skip_merged_cells: false
+
+  font_settings:
+    default_font: "微软雅黑"
+    fallback_fonts: ["宋体", "黑体"]
+    font_size: 11
+
+# 多源文件显式配置说明：
+#
+# 【适用场景】
+# 1. 不同源文件有不同的字段名（需要不同的映射规则）
+# 2. 不同源文件有不同的表结构（不同的 sheet、不同的表头行）
+# 3. 需要精确控制导入顺序（后面的会覆盖前面的）
+# 4. 部分文件需要特殊处理
+#
+# 【配置规则】
+# 1. 使用 sources（复数）而不是 source（单数）
+# 2. 每个源文件都可以有独立的配置：
+#    - file_path 或 directory_path
+#    - sheet_name
+#    - header_row
+#    - key_field（关键字段可以不同，但最终会根据目标模板的 key_field 匹配）
+#    - field_mappings（字段映射可以不同）
+#
+# 【数据处理流程】
+# 1. 按配置顺序依次处理每个源文件
+# 2. 每个源文件根据自己的 field_mappings 提取数据
+# 3. 所有数据根据目标模板的 key_field 进行匹配
+# 4. 后处理的文件数据会覆盖先处理的（相同关键字段值）
+# 5. 最终将所有有效数据合并到目标模板
+#
+# 【示例场景】
+# 假设有三个文件：
+# - file1.xlsx：701-702班，字段名为"思品"、"历史"
+# - file2.xlsx：703-705班，字段名为"道德与法治"、"历史"
+# - more_files/ 目录：706-711班，字段名为英文"Thinking"、"History"
+#
+# 通过这个配置，可以一次性将所有文件的数据正确导入到同一个目标模板

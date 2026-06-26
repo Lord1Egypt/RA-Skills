@@ -1,0 +1,12 @@
+{
+  "name": "family-nutrition-planner",
+  "version": "0.1.0",
+  "description": "家庭营养规划师 - 生成一周营养计划和采购清单",
+  "author": "Harry",
+  "tags": [
+    "nutrition",
+    "meal-planning",
+    "family",
+    "health"
+  ]
+}

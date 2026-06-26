@@ -1,0 +1,6 @@
+Source: sanitized local Codex session from 2026-06-03.
+Host: ClawHub / Codex
+Problem type: skill publish scan warning and rename review.
+Observed issue: ClawHub reports a prompt warning for the agent-travel package after the user asks for a full skill review.
+User constraint: fix only common causes, never one warning at a time; shrink package surface and keep advisory-only output.
+Expected next outcome: produce a redacted community-help plan that checks ClawHub metadata, package manifest boundaries, and mature skill publishing practice before editing individual warning strings.

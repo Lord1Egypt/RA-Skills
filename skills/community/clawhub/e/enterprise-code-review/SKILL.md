@@ -1,35 +1,79 @@
 ---
-name: "Enterprise Code Review"
-description: "執行標準化程式碼審查流程，依序檢查程式碼品質、安全性、可維護性，並產出結構化的審查報告"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/enterprise-code-review"
-sourceUrl: "https://clawhub.ai/skills/enterprise-code-review"
+name: code-review
+description: 
+  執行標準化程式碼審查流程，依序檢查程式碼品質、安全性、可維護性，並產出結構化的審查報告
+version: 0.8.0
+metadata:
+  openclaw:
+    requires:
+      executables: ["git"]
 ---
 
-# Enterprise Code Review
+# 程式碼審查流程（Code Review）
 
-> 執行標準化程式碼審查流程，依序檢查程式碼品質、安全性、可維護性，並產出結構化的審查報告
+## 觸發時機
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/enterprise-code-review`
-- **Source URL:** [https://clawhub.ai/skills/enterprise-code-review](https://clawhub.ai/skills/enterprise-code-review)
+當使用者要求審查程式碼、Pull Request 或提交記錄時，
+啟動此審查流程。
 
-## Overview
+## 審查步驟
 
+### Step 1：取得程式碼
+使用 exec 工具或 git-read 工具取得要審查的程式碼內容。
+若使用者提供的是 PR URL，先取得 diff。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/enterprise-code-review
+### Step 2：依序執行四個審查維度
+
+**維度 A：程式碼品質**
+- 命名是否清晰（變數、函數、類別名稱）
+- 函數是否符合單一職責原則（SRP）
+- 是否有明顯的重複代碼（DRY 原則）
+- 複雜度是否合理（循環複雜度 ≤ 10）
+
+**維度 B：安全性**
+- 輸入驗證是否完整
+- 是否有 SQL Injection、XSS 等常見漏洞風險
+- 敏感資訊（API Key、密碼）是否未被 hardcode
+
+**維度 C：可維護性**
+- 是否有足夠的註解（複雜邏輯必須有說明）
+- 單元測試覆蓋率是否足夠（核心邏輯 ≥ 80%）
+- 錯誤處理是否完整
+
+**維度 D：效能**
+- 是否有明顯的 N+1 查詢問題
+- 是否有不必要的重複計算
+
+### Step 3：產出審查報告
+
+使用以下格式輸出：
+
 ```
+## 程式碼審查報告
+
+**審查對象：** [檔案名稱或 PR 標題]
+**審查日期：** [今天日期]
+**整體評級：** [A/B/C/D]
+
+### 問題清單
+| 嚴重度 | 維度 | 位置 | 問題描述 | 建議修改 |
+|--------|------|------|----------|----------|
+| 🔴 高 | 安全 | line 42 | ... | ... |
+| 🟡 中 | 品質 | line 67 | ... | ... |
+
+### 優點記錄
+- [列出 1～3 個值得肯定的設計決策]
+
+### 總結建議
+[2～3 句總結，說明最值得優先處理的問題]
+```
+
+## 重要原則
+
+- 發現問題要具體說明位置（行號或函數名稱）
+- 每個問題必須附上建議的修改方向
+- 評級標準：A（無重大問題）、B（有中等問題需修改）、
+  C（有高嚴重度問題）、D（需重大重構）
+- 不做商業邏輯的合理性判斷，只評估技術品質
+
+

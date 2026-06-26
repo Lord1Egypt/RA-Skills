@@ -1,0 +1,30 @@
+{
+  "skill_name": "email-operations",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "查看我的收件箱，看看有没有新邮件",
+      "expected_output": "能够列出收件箱中的邮件列表，包括主题、发件人、时间等基本信息"
+    },
+    {
+      "id": 2,
+      "prompt": "帮我搜索一下上周收到的来自 zhangsan@company.com 的邮件",
+      "expected_output": "能够根据发件人和日期范围搜索邮件，返回匹配的邮件列表"
+    },
+    {
+      "id": 3,
+      "prompt": "我想看一封邮件的详细内容，UID 是 12345",
+      "expected_output": "能够获取指定 UID 邮件的完整内容，包括正文、附件信息、邮件头等"
+    },
+    {
+      "id": 4,
+      "prompt": "给 manager@company.com 发一封邮件，主题是'项目进度汇报'，正文是'张总，项目已进入测试阶段，预计下周上线。'",
+      "expected_output": "能够使用 SMTP 协议发送邮件，包含正确的收件人、主题和正文内容"
+    },
+    {
+      "id": 5,
+      "prompt": "群发邮件给 all_team@company.com 和 boss@company.com，主题是'会议通知'，内容是'明天上午10点开会，请准时参加'",
+      "expected_output": "能够一次性发送邮件给多个收件人（群发功能）"
+    }
+  ]
+}

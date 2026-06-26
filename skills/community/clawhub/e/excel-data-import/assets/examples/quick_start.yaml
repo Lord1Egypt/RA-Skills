@@ -1,0 +1,35 @@
+task_name: "员工信息快速导入"
+
+source:
+  file_path: "source_sample.xlsx"
+  sheet_name: "Sheet1"
+  header_row: 1
+  key_field: "工号"
+
+target:
+  file_path: "output_sample.xlsx"
+  output_path: "output_sample.xlsx"
+  sheet_name: "员工信息"
+  header_row: 1
+
+field_mappings:
+  - source: "工号"
+    target: "工号"
+    required: true
+  - source: "姓名"
+    target: "员工姓名"
+    required: true
+  - source: "部门"
+    target: "所属部门"
+    default: "待分配"
+  - source: "手机号"
+    target: "联系电话"
+    validate: "phone"
+  - source: "入职日期"
+    target: "入职时间"
+    transform: "date"
+    transform_params:
+      output_format: "%Y-%m-%d"
+
+error_handling:
+  backup: false

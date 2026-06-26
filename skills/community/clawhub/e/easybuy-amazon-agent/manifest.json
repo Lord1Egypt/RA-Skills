@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "EasyBuy Agent Demo",
+  "version": "0.1.0",
+  "description": "MV3 Agent demo: panel -> SW -> CS -> tool -> result -> panel",
+  "permissions": ["tabs", "scripting", "storage", "downloads", "sidePanel", "activeTab"],
+  "host_permissions": ["<all_urls>", "https://api.openai.com/*"],
+  "background": {
+    "service_worker": "background/sw.js"
+  },
+  "side_panel": {
+    "default_path": "panel/index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.amazon.com/*"],
+      "js": ["content/index.js"]
+    }
+  ],
+  "action": {
+    "default_title": "EasyBuy Agent Demo"
+  }
+}

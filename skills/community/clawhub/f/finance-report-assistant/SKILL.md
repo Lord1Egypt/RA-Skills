@@ -1,35 +1,82 @@
----
-name: "Finance Report Assistant"
-description: "自动整理和分析财务共享汇报材料，分解领导批示，生成专业汇报初稿并提供进度管理与数据可视化建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/finance-report-assistant"
-sourceUrl: "https://clawhub.ai/skills/finance-report-assistant"
----
+# 财务共享汇报助手 Skill
 
-# Finance Report Assistant
+## 功能
 
-> 自动整理和分析财务共享汇报材料，分解领导批示，生成专业汇报初稿并提供进度管理与数据可视化建议。
+1. **文件读取与整理**
+   - 读取群晖上的工作文件
+   - 分类：领导批示、前期材料、运营数据、规划方案
+   - 提取关键信息
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/finance-report-assistant`
-- **Source URL:** [https://clawhub.ai/skills/finance-report-assistant](https://clawhub.ai/skills/finance-report-assistant)
+2. **批示分解**
+   - 识别领导批示内容
+   - 逐条分解为具体任务
+   - 对应到汇报框架章节
 
-## Overview
+3. **内容撰写**
+   - 根据材料生成汇报初稿
+   - 财务共享专业术语
+   - 汇报语言优化（领导视角）
 
+4. **数据可视化**
+   - 整理运营数据
+   - 制作图表建议
+   - 亮点提炼
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/finance-report-assistant
+5. **进度管理**
+   - 本周任务分解
+   - 每日进度跟踪
+   - 截止时间提醒
+
+## 工作流程
+
 ```
+1. 读取工作文件夹 → 2. 分类整理材料 → 3. 分析领导批示 
+→ 4. 生成汇报框架 → 5. 撰写各章节 → 6. 统稿润色 → 7. 输出定稿
+```
+
+## 汇报材料标准框架
+
+```markdown
+# 集团财务共享中心建设汇报
+
+## 一、建设背景与目标
+- 集团战略要求
+- 财务转型需求
+- 建设目标
+
+## 二、前期工作进展
+- 立项与调研
+- 方案设计与评审
+- 系统建设与测试
+- 人员培训与配置
+
+## 三、领导批示落实情况
+- 批示内容逐条分解
+- 落实情况
+- 完成度
+
+## 四、共享中心运营情况
+- 上线时间与范围
+- 业务处理数据
+- 效率提升情况
+- 成本节约情况
+- 存在问题
+
+## 五、后期工作规划
+- 短期目标（3-6 个月）
+- 中期目标（1 年）
+- 长期目标（2-3 年）
+- 重点建设项目
+
+## 六、需集团支持事项
+- 资源需求
+- 政策支持
+- 协调事项
+```
+
+## 输出标准
+
+- 语言：正式汇报语言，领导视角
+- 数据：准确、可量化、有对比
+- 结构：逻辑清晰、层次分明
+- 篇幅：根据汇报时间控制（15 分钟/30 分钟/1 小时）

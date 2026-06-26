@@ -1,0 +1,15 @@
+{
+  "name": "email-send",
+  "version": "1.0.2",
+  "description": "基于 Nodemailer 的邮件发送技能",
+  "main": "scripts/send.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["email", "smtp", "nodemailer"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemailer": "^6.9.0"
+  }
+}

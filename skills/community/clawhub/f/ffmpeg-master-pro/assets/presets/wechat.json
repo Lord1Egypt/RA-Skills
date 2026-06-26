@@ -1,0 +1,39 @@
+{
+  "name": "微信优化",
+  "description": "微信发送的最佳设置",
+  "version": "1.0",
+  "video": {
+    "codec": "libx264",
+    "preset": "fast",
+    "crf": 28,
+    "profile": "main",
+    "level": "3.1",
+    "pixel_format": "yuv420p"
+  },
+  "audio": {
+    "codec": "aac",
+    "bitrate": "64k",
+    "sample_rate": 44100,
+    "channels": 2
+  },
+  "platforms": {
+    "chat": {
+      "max_duration": 300,
+      "max_file_size": "100MB",
+      "resolution": "1280x720",
+      "bitrate": "1000k"
+    },
+    "moments": {
+      "max_duration": 30,
+      "max_file_size": "50MB",
+      "resolution": "1080x1920",
+      "aspect_ratio": "9:16",
+      "bitrate": "2000k"
+    }
+  },
+  "requirements": {
+    "supported_codecs": ["H.264", "H.265"],
+    "max_file_size": "100MB",
+    "supported_containers": ["mp4"]
+  }
+}

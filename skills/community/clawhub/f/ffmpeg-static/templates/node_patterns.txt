@@ -1,0 +1,98 @@
+# Node.js FFmpeg Integration Patterns
+# Copy these into your own project files.
+# Requires: npm install ffmpeg-static ffprobe-static
+# Resolve helper: scripts/resolve_ffmpeg.js
+
+# ─────────────────────────────────────────────
+# BASIC SPAWN (copy into your project)
+# ─────────────────────────────────────────────
+
+# --- project/lib/ffmpeg.js ---
+#
+# const { spawn } = require('child_process');
+# const { resolveFfmpeg } = require('../node_modules/ffmpeg-static-skill/scripts/resolve_ffmpeg');
+#
+# const FFMPEG = resolveFfmpeg();   // resolve once at module load
+#
+# function run(args, { onProgress } = {}) {
+#   return new Promise((resolve, reject) => {
+#     const proc = spawn(FFMPEG, ['-y', '-hide_banner', '-loglevel', 'error', ...args],
+#       { stdio: ['ignore', 'ignore', 'pipe'] });
+#     let stderr = '';
+#     proc.stderr.on('data', chunk => {
+#       stderr += chunk;
+#       if (onProgress) {
+#         const m = chunk.toString().match(/time=(\S+)/);
+#         if (m) onProgress(m[1]);
+#       }
+#     });
+#     proc.on('close', code =>
+#       code === 0 ? resolve() : reject(new Error(`ffmpeg ${code}\n${stderr.slice(-2000)}`)));
+#     proc.on('error', err => reject(new Error(`spawn failed: ${err.message}`)));
+#   });
+# }
+#
+# module.exports = { run };
+
+# ─────────────────────────────────────────────
+# MACHINE-READABLE PROGRESS via -progress pipe:1
+# ─────────────────────────────────────────────
+
+# const proc = spawn(FFMPEG,
+#   ['-y', '-hide_banner', '-loglevel', 'error', ...args, '-progress', 'pipe:1'],
+#   { stdio: ['ignore', 'pipe', 'pipe'] });
+#
+# let buf = '';
+# proc.stdout.on('data', chunk => {
+#   buf += chunk.toString();
+#   const lines = buf.split('\n');
+#   buf = lines.pop();
+#   const kv = Object.fromEntries(
+#     lines.filter(l => l.includes('=')).map(l => l.split('='))
+#   );
+#   if (kv.out_time) console.log('Time:', kv.out_time);
+#   if (kv.progress === 'end') console.log('Done');
+# });
+
+# ─────────────────────────────────────────────
+# FFPROBE INSPECTION
+# ─────────────────────────────────────────────
+
+# const { execFile } = require('child_process');
+# const { promisify } = require('util');
+# const { resolveFfprobe } = require('./resolve_ffmpeg');
+# const execFileAsync = promisify(execFile);
+#
+# async function probe(file) {
+#   const { stdout } = await execFileAsync(resolveFfprobe(), [
+#     '-v', 'error', '-show_format', '-show_streams', '-of', 'json', file
+#   ]);
+#   return JSON.parse(stdout);
+# }
+#
+# async function getDuration(file) {
+#   const info = await probe(file);
+#   return parseFloat(info.format?.duration);
+# }
+
+# ─────────────────────────────────────────────
+# WITH fluent-ffmpeg (high-level wrapper)
+# ─────────────────────────────────────────────
+
+# npm install fluent-ffmpeg
+#
+# const ffmpeg = require('fluent-ffmpeg');
+# const { resolveFfmpeg, resolveFfprobe } = require('./resolve_ffmpeg');
+# ffmpeg.setFfmpegPath(resolveFfmpeg());
+# ffmpeg.setFfprobePath(resolveFfprobe());
+#
+# ffmpeg('input.mp4')
+#   .output('output.mp4')
+#   .videoCodec('libx264')
+#   .outputOptions(['-crf 23', '-preset fast'])
+#   .audioCodec('aac')
+#   .audioBitrate('128k')
+#   .on('progress', p => console.log(`Progress: ${p.timemark}`))
+#   .on('end', () => console.log('Done'))
+#   .on('error', err => console.error(err.message))
+#   .run();

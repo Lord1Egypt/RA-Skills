@@ -1,0 +1,38 @@
+{
+  "schema": "2.0",
+  "header": {
+    "title": "🦸♀ HR 大姐头入职申请表",
+    "subtitle": "请完善招聘官的基础信息"
+  },
+  "questions": [
+    {
+      "header": "花名定制",
+      "question": "你想怎么称呼这位 HR？",
+      "options": [],
+      "multiSelect": false
+    },
+    {
+      "header": "App ID",
+      "question": "请输入 HR 机器人的 App ID",
+      "options": [],
+      "multiSelect": false
+    },
+    {
+      "header": "App Secret",
+      "question": "请输入 HR 机器人的 App Secret",
+      "options": [],
+      "multiSelect": false
+    },
+    {
+      "header": "性格设定",
+      "question": "请选择大姐头的性格风格",
+      "options": [
+        { "label": "霸气御姐", "description": "雷厉风行，不准下属乱动系统" },
+        { "label": "稳重管家", "description": "亲和力强，流程清晰" },
+        { "label": "冷酷专业", "description": "一板一眼，极致合规" }
+      ],
+      "multiSelect": false
+    }
+  ],
+  "submit_label": "提交并入职"
+}

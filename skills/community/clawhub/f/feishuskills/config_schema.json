@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "app_id": {
+      "type": "string",
+      "description": "Feishu App ID (required for most operations)",
+      "pattern": "^cli_[a-zA-Z0-9]+$"
+    },
+    "app_secret": {
+      "type": "string",
+      "description": "Feishu App Secret (required for most operations)",
+      "minLength": 10
+    },
+    "verification_token": {
+      "type": "string",
+      "description": "Feishu Verification Token (required for event subscriptions)",
+      "minLength": 10
+    },
+    "encrypt_key": {
+      "type": "string",
+      "description": "Feishu Encrypt Key (optional, for encrypted events)"
+    },
+    "tenant_access_token": {
+      "type": "string",
+      "description": "Pre-configured tenant access token (optional, for testing)"
+    },
+    "user_access_token": {
+      "type": "string",
+      "description": "Pre-configured user access token (optional, for testing)"
+    },
+    "default_chat_id": {
+      "type": "string",
+      "description": "Default chat ID for testing message sending"
+    },
+    "webhook_url": {
+      "type": "string",
+      "description": "Webhook URL for receiving events (required for event handling)",
+      "format": "uri"
+    },
+    "timeout": {
+      "type": "integer",
+      "description": "API timeout in seconds",
+      "minimum": 1,
+      "maximum": 300,
+      "default": 30
+    },
+    "retry_count": {
+      "type": "integer",
+      "description": "Number of retry attempts for failed API calls",
+      "minimum": 0,
+      "maximum": 10,
+      "default": 3
+    },
+    "log_level": {
+      "type": "string",
+      "description": "Logging level",
+      "enum": ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
+      "default": "INFO"
+    }
+  },
+  "required": ["app_id", "app_secret"],
+  "additionalProperties": false
+}

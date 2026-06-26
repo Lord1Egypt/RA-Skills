@@ -1,0 +1,6 @@
+{
+  "name": "edith-api-keys",
+  "version": "1.0.0",
+  "description": "Manage Edith smart glasses API keys with Unkey — create, revoke, and list keys via voice",
+  "keywords": ["unkey", "api-keys", "auth", "edith", "smart-glasses", "openclaw"]
+}

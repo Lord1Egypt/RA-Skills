@@ -1,0 +1,10 @@
+{
+  "name": "family-nutrition-planner",
+  "version": "0.1.0",
+  "description": "Family Nutrition Planner - Generate weekly meal plans and shopping lists",
+  "type": "module",
+  "main": "handler.py",
+  "scripts": {
+    "test": "python scripts/test-handler.py"
+  }
+}

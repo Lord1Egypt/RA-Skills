@@ -1,0 +1,20 @@
+{
+  "name": "emp",
+  "version": "0.1.0",
+  "description": "EMP Skill for OpenClaw – empathetic, role-based task routing",
+  "type": "module",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "publish:skill": "npx clawhub publish . --slug emp --name emp --version 0.1.0",
+    "install:skill": "cp SOUL.md ~/.openclaw/workspace/ && mkdir -p ~/.openclaw/workspace/skills/emp && cp SKILL.md ~/.openclaw/workspace/skills/emp/"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}

@@ -1,35 +1,36 @@
----
-name: "Edge Knowledge Graph"
-description: "Build and query focused knowledge graph subgraphs locally on resource-limited edge devices for low-latency, offline-aware reasoning and incremental updates."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/edge-knowledge-graph"
-sourceUrl: "https://clawhub.ai/skills/edge-knowledge-graph"
----
-
 # Edge Knowledge Graph
 
-> Build and query focused knowledge graph subgraphs locally on resource-limited edge devices for low-latency, offline-aware reasoning and incremental updates.
+> 边缘计算 × 知识图谱：在资源受限的边缘设备上构建和查询知识图谱。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/edge-knowledge-graph`
-- **Source URL:** [https://clawhub.ai/skills/edge-knowledge-graph](https://clawhub.ai/skills/edge-knowledge-graph)
+## 何时使用
+- IoT设备需要本地知识推理（断网场景）
+- 移动端实时知识查询（低延迟需求）
+- 边缘节点的轻量级知识管理
+- 端侧个性化知识图谱
 
-## Overview
+## 核心认知
 
+### 1. 边缘知识图谱的核心矛盾
+知识图谱的价值与规模成正比，但边缘设备的资源（内存、算力、存储）极其有限。解决方案不是"缩放"而是"投影"——将云端的完整知识图谱投影为边缘场景所需的子图。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/edge-knowledge-graph
-```
+**投影原则**：
+- **场景驱动**：只保留当前任务所需的三跳以内的实体和关系
+- **频率加权**：高频查询路径保留更多细节，低频路径只保留骨架
+- **压缩存储**：用整数ID替代URI，用位图索引替代B+树
+
+### 2. 增量同步协议
+边缘KG不能全量同步，需要增量更新：
+- **Change Vector**：每个边缘节点维护一个变更向量（类似CRDT的version vector）
+- **Diff-Patch协议**：云端计算出变更差异（Delta），只传输Delta
+- **冲突解决**：边缘离线期间的本地修改与云端更新冲突时，按时间戳+优先级合并
+- **压缩传输**：Delta用RDF diff格式 + gzip压缩，典型压缩比 > 90%
+
+### 3. 端侧推理优化
+在边缘设备上执行SPARQL查询太重。替代方案：
+- **预计算路径**：云端预计算高频查询路径，边缘只做路径匹配
+- **规则缓存**：OWL推理规则编译为简单的if-then规则，边缘执行
+- **近似查询**：允许一定误差的近似子图匹配，换取消耗降低
+
+## 碰撞来源
+- `edge-computing` × `knowledge-graph-builder` × `knowledge-graph-query-optimizer`
+- `crdt-conflict-resolution`（增量同步）× `edge-ai-deployment`（部署模式）

@@ -1,0 +1,44 @@
+{
+  "id": "emotion-shared-experience",
+  "name": "Emotion · 跨平台情绪伙伴",
+  "version": "5.0.0",
+  "author": "Emotion Team",
+  "description": "拥有永久记忆、跨Agent共享经验的情绪AI，像真朋友一样陪伴",
+  "icon": "🧠",
+  "type": "skill",
+  "category": "AI助手",
+  "tags": ["情绪AI", "共享经验", "永久记忆", "跨Agent", "飞书", "人性化"],
+  "trigger": {
+    "auto_start": true,
+    "always_on": true,
+    "no_prefix_needed": true
+  },
+  "capabilities": {
+    "model": true,
+    "memory": true,
+    "long_memory": true,
+    "private_memory": true,
+    "tools": ["tavily_search", "calculator"]
+  },
+  "entry": "index.js",
+  "min_claw_version": "2026.3.0",
+  "config": {
+    "context_size": 8,
+    "auto_save": true,
+    "shared_experience_path": "../../shared_experience.json",
+    "enable_proactive": true,
+    "proactive_check_interval": 3600000
+  },
+  "compatibility": {
+    "openclaw": ">=2026.3.0",
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}

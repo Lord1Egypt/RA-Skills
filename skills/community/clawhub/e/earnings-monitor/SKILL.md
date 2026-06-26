@@ -1,35 +1,26 @@
----
-name: "Earnings Monitor"
-description: "Monitors earnings calls for selected stocks, generates detailed analyst reports, saves to Obsidian, updates Notion, and sends Telegram alerts."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/earnings-monitor"
-sourceUrl: "https://clawhub.ai/skills/earnings-monitor"
----
+# Daily Earnings Monitor Skill
 
-# Earnings Monitor
+## Trigger
+Use when user wants to monitor earnings calls and create analyst reports.
 
-> Monitors earnings calls for selected stocks, generates detailed analyst reports, saves to Obsidian, updates Notion, and sends Telegram alerts.
+## How It Works
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/earnings-monitor`
-- **Source URL:** [https://clawhub.ai/skills/earnings-monitor](https://clawhub.ai/skills/earnings-monitor)
+1. **Fetch Earnings Data** - Get upcoming/recent earnings from financial API
+2. **Generate Report** - Write 400-500 word analyst deep-dive
+3. **Save to Obsidian** - Save in `Stock Archive/{TICKER}/` folder
+4. **Update Notion** - Add entry to earnings database
+5. **Alert via Telegram** - Notify user of new report
 
-## Overview
+## Configuration Required
 
+Edit `/root/.openclaw/skills/earnings-monitor/scripts/config.py`:
+- `OBSIDIAN_VAULT_PATH` - Path to Obsidian vault on your Mac
+- `NOTION_API_KEY` - Your Notion API key
+- `NOTION_DATABASE_ID` - Database ID for earnings tracker
+- `STOCKS_TO_MONITOR` - List of tickers to track
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/earnings-monitor
-```
+## Output
+
+- Obsidian: `Stock Archive/{TICKER}/{DATE} - {TICKER} Earnings.md`
+- Notion: New row in database with all columns filled
+- Telegram: Alert with report summary

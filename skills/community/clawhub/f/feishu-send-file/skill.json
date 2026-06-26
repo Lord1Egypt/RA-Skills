@@ -1,0 +1,7 @@
+{
+  "name": "feishu-send-file",
+  "version": "1.2.1",
+  "description": "飞书发送文件技能。用于通过飞书发送普通文件附件（HTML、ZIP、PDF、代码文件等），并处理本地图片路径被错误发送成路径文本的补救场景。普通文件走 `im/v1/files` -> `file_key`；当本地图片经 `message/media` 发送后只显示 `/root/...png` 路径时，改走 `im/v1/images` -> `image_key` 的稳定图片发送脚本。",
+  "author": "dadaniya99",
+  "license": "MIT"
+}

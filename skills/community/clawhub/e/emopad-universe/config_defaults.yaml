@@ -1,0 +1,9 @@
+serial_port: /dev/ttyACM0
+baudrate: 115200
+eeg_window_sec: 2
+ppg_gsr_window_sec: 60
+hop_sec: 2
+history_length: 120
+nebula_interval: 300
+service_host: 127.0.0.1
+service_port: 8766

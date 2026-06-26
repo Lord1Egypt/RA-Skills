@@ -1,0 +1,60 @@
+{
+  "name": "financial-risk-scanner",
+  "version": "1.0.4",
+  "description": "Scan listed company financial statements for 21 types of fraud risk indicators using Tushare API. Detect cash-debt paradox, receivables anomalies, inventory issues, cash flow divergence, audit concerns, and governance risks. Supports A-share market analysis with comprehensive risk reports.",
+  "homepage": "https://clawhub.ai/skills/financial-risk-scanner",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/financial-risk-scanner"
+  },
+  "author": "laigen",
+  "license": "MIT",
+  "env": {
+    "TUSHARE_TOKEN": {
+      "required": true,
+      "description": "Tushare Pro API Token for Chinese A-share market data. Required to fetch financial statements, balance sheets, and market data. Register at: https://tushare.pro/register",
+      "sensitive": true,
+      "scope": "financial-data"
+    }
+  },
+  "triggers": [
+    "财报分析",
+    "财务风险",
+    "财务造假",
+    "上市公司风险",
+    "存贷双高",
+    "应收账款异常",
+    "存货异常",
+    "审计意见",
+    "financial risk",
+    "fraud detection",
+    "balance sheet analysis",
+    "accounting anomaly"
+  ],
+  "language": "Chinese",
+  "output": {
+    "path": "~/.openclaw/workspace/memory/financial-risk",
+    "format": "markdown"
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "packages": [
+      "tushare>=1.2.0",
+      "pandas>=1.3.0"
+    ]
+  },
+  "capabilities": [
+    "financial-statement-analysis",
+    "fraud-risk-detection",
+    "accounting-anomaly-identification",
+    "audit-risk-assessment",
+    "balance-sheet-analysis",
+    "cash-flow-analysis"
+  ],
+  "limitations": [
+    "Requires Tushare Pro API token",
+    "Only supports A-share market (Chinese listed companies)",
+    "Historical data limited to last 10 years",
+    "Related party transaction data requires manual verification from annual reports"
+  ]
+}

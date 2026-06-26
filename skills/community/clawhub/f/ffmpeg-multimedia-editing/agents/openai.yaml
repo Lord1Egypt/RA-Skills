@@ -1,0 +1,4 @@
+interface:
+  display_name: "FFmpeg 多媒体编辑"
+  short_description: "使用 FFmpeg 对本地视频和音频进行 20 种编辑操作，包括剪辑、拼接、转码、压缩、特效、音频处理等。"
+  default_prompt: "Use $ffmpeg_multimedia_editing when the user wants to edit, transform, or process local video or audio files. This includes cutting, concatenating, converting formats, compressing, adding watermarks/subtitles, extracting audio, denoising, speed changes, screenshots, GIF conversion, and similar multimedia operations. All processing is done locally with FFmpeg."

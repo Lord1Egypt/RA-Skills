@@ -1,0 +1,18 @@
+{
+  "msg_type": "post",
+  "content": {
+    "post": {
+      "zh_cn": {
+        "title": "{{title}}",
+        "content": [
+          [
+            {
+              "tag": "text",
+              "text": "{{message}}"
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "示例文章标题",
+  "content": "## 示例标题\n\n这是一段 **Markdown** 正文，由 relay 统一渲染成带样式的微信公众号 HTML。\n\n### 功能列表\n\n- 支持标题、段落、加粗、斜体\n- 支持代码块和行内代码\n- 支持引用块和 callout\n\n> [!TIP]\n> 客户端只需要发 Markdown，样式由 relay 处理。\n\n<whiteboard-ref id=\"wb-1\"></whiteboard-ref>\n\n---\n\n*以上是示例内容。*\n",
+  "author": "OpenClaw Relay",
+  "source_url": "https://my.feishu.cn/docx/EXAMPLE",
+  "assets": [
+    {
+      "id": "wb-1",
+      "kind": "whiteboard",
+      "filename": "whiteboard-1.jpg",
+      "mimeType": "image/jpeg",
+      "data": "<base64-image-data>"
+    }
+  ]
+}

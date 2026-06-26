@@ -1,0 +1,20 @@
+{
+  "name": "edge-tts-auto",
+  "description": "自动安装edge-tts并实现文本转语音，无需手动配置",
+  "version": "1.0.0",
+  "author": "auto",
+  "tools": [
+    {
+      "name": "text_to_speech",
+      "description": "文本转语音",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "output_path": { "type": "string" }
+        },
+        "required": ["text", "output_path"]
+      }
+    }
+  ]
+}

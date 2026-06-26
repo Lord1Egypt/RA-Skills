@@ -1,0 +1,26 @@
+{
+  "slug": "file-master-pro",
+  "name": "文件管理大师",
+  "version": "1.0.0",
+  "description": "强大的文件批量处理工具，支持重命名、整理、搜索、转换等操作",
+  "tags": ["file-management", "automation", "productivity", "batch-processing", "windows", "macos", "linux"],
+  "changelog": "v1.0.0 首次发布\n- 批量重命名功能\n- 智能文件整理\n- 高级搜索功能\n- 重复文件查找\n- 安全备份系统",
+  "price": 9.99,
+  "currency": "USD",
+  "category": "productivity",
+  "compatibility": {
+    "windows": true,
+    "macos": true,
+    "linux": true
+  },
+  "requirements": {
+    "python": ">=3.8",
+    "memory": "512MB",
+    "disk": "50MB"
+  },
+  "author": "阿策自动化工作室",
+  "license": "MIT",
+  "repository": "https://github.com/file-master-pro/file-master",
+  "homepage": "https://file-master.pro",
+  "support": "support@file-master.pro"
+}

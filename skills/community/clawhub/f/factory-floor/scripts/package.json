@@ -1,0 +1,8 @@
+{
+  "name": "factory-floor-scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "beautiful-mermaid": "^1.1.3"
+  }
+}

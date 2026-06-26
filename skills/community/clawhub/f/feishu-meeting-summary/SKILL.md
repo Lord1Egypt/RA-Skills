@@ -1,35 +1,227 @@
 ---
-name: "飞书会议总结"
-description: "飞书会议总结技能 - 读取飞书会议纪要，生成结构化总结，沉淀知识，支持搜索"
-category: "other"
-source: "ClawHub"
-tags: [feishu, meeting, summary]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-meeting-summary"
-sourceUrl: "https://clawhub.ai/skills/feishu-meeting-summary"
+name: feishu-meeting-summary
+description: 飞书会议总结技能 - 读取飞书会议纪要，生成结构化总结，沉淀知识，支持搜索
+triggers:
+  - 会议总结
+  - meeting-summary
+config:
+  wiki_root: ""      # 知识库根目录（首次使用时配置）
+  meetings_folder: "" # meetings 文件夹（首次使用时配置）
 ---
 
-# 飞书会议总结
+# feishu-meeting-summary
 
-> 飞书会议总结技能 - 读取飞书会议纪要，生成结构化总结，沉淀知识，支持搜索
+> 读取飞书会议纪要，生成结构化总结，沉淀知识，支持搜索
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-meeting-summary`
-- **Source URL:** [https://clawhub.ai/skills/feishu-meeting-summary](https://clawhub.ai/skills/feishu-meeting-summary)
+---
 
-## Overview
+## 前置要求
 
+**必须安装飞书工具：**
+请参考飞书官方文档安装 OpenClaw 飞书插件
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/feishu-meeting-summary
+安装后需重启 Gateway 使插件生效。
+
+---
+
+## 功能
+
+| 功能 | 说明 |
+|------|------|
+| 会议总结 | 读取会议纪要，生成结构化文档 |
+| 知识沉淀 | 提炼方法论，存到 knowledge/ |
+| 搜索历史 | 搜索历史会议内容 |
+
+---
+
+## 目录结构
+
+### 会议记录（meetings/）
 ```
+meetings/
+└── YYYY-MM-DD/
+    ├── index.md          # 当日会议索引
+    └── 话题名称.md       # 独立会议文档
+```
+
+### 知识沉淀（knowledge/）
+```
+knowledge/
+├── thinking/    # 思考方法论
+├── business/    # 业务认知
+├── lessons/     # 踩坑经验
+└── workflows/   # 工作流程
+```
+
+---
+
+## 工作流程
+
+```
+用户发会议链接
+    ↓
+读取文字记录（原汁原味）
+    ↓
+提取：讨论话题 + 真实案例 + 实施方案
+    ↓
+提炼方法论 → 存到 knowledge/
+    ↓
+生成文档 → 存到 meetings/YYYY-MM-DD/
+    ↓
+返回链接
+```
+
+---
+
+## 核心逻辑
+
+### 1. 前置检查
+- 尝试调用 `feishu_fetch_doc` 读取会议链接
+- 如返回未授权/失败 → 提示用户安装飞书插件
+- 检查 config 中是否已配置 wiki_root 和 meetings_folder
+
+### 2. 读取会议
+- **必须读取文字记录**（原汁原味，最详细）
+- 提取智能纪要作为补充参考
+- AI 摘要可能删减细节，必须以文字记录为主
+
+### 3. 提取信息
+- 讨论话题
+- 真实案例（最宝贵）
+- 实施方案
+- 待办事项
+
+### 4. 提炼方法论
+- 思考方式
+- 业务流转
+- 归纳到 knowledge/ 对应分类
+
+### 5. 生成文档
+
+**技术问题说明**：
+- `feishu_create_doc` 创建文档时，markdown 末尾的链接会丢失
+- `feishu_update_doc` 的 `append` 模式也会丢失链接
+- `replace_all` 多次使用会导致内容重复
+
+**解决方案**：
+- 使用 `feishu_create_doc` 的 `overwrite` 模式写入完整内容
+- 直接在 markdown 末尾包含原文链接，不要后续 append
+
+```markdown
+# 话题名称（不含日期前缀）
+
+> 讨论话题：xxx
+
+---
+
+## 一、背景/项目介绍
+（详细描述项目背景、时间节点、业务场景等）
+
+## 二、详细讨论内容
+- 按议题分段详细描述
+- 基于原文字记录萃取（非AI摘要）
+- 保留关键细节、案例、争议点
+
+## 三、技术方案（如有）
+- 技术难点
+- 解决方案
+- 三阶段规划等
+
+## 四、待办事项
+| 负责人 | 事项 | 截止时间 |
+|--------|------|---------|
+| ... | ... | ... |
+
+## 五、会议结论
+- 核心决策要点
+
+## 六、我的看法（AI 认知）
+基于沉淀的知识和行业认知，提供：
+- 技术方案评估
+- 风险点提示
+- 优化建议
+- 相关经验参考
+
+---
+
+原文链接：
+- 智能纪要：https://m1ed09stz4r.feishu.cn/docx/xxx
+- 文字记录：https://m1ed09stz4r.feishu.cn/docx/xxx
+
+整理：{助手名称}
+```
+
+**重要原则**：
+- 标题不要加日期前缀
+- 内容要详细，基于原文字记录
+- 使用 overwrite 模式写入，不要用 append
+- **必须包含原文链接**
+
+### 6. 写入后检查
+- 文档创建后，**必须**读取文档末尾确认原文链接是否存在
+- 如链接丢失，**使用 overwrite 模式**重新写入完整内容
+- 验证通过后再返回给用户
+
+**推荐写法**：直接在 markdown 末尾写上链接，不要单独 append
+
+### 7. 权限处理
+- 自动创建 meetings/YYYY-MM-DD/ 目录
+- 权限不足时提示
+
+---
+
+## 使用案例
+
+### 触发方式
+```
+用户：会议总结 https://m1ed09stz4r.feishu.cn/docx/xxx
+```
+
+**重要**：在群聊中收到会议总结请求时，必须：
+1. 使用 `feishu-meeting-summary` 技能
+2. **生成总结后必须写入飞书文档**（调用 feishu_create_doc 存到 meetings 目录）
+3. 返回飞书文档链接给用户
+
+### 搜索历史
+```
+用户：搜索"数据结构"
+助手：找到 X 个相关会议
+- 2026-03-12 业务系统数据结构规划
+- ...
+[链接]
+```
+
+---
+
+## 配置
+
+### 首次使用配置
+用户需要提供知识库根目录 URL，然后：
+1. 使用 `feishu_wiki_space_node` 获取根目录 token → 配置为 wiki_root
+2. 列出根目录找到 meetings 文件夹 → 配置为 meetings_folder
+3. 后续会议自动存到对应目录
+
+### 目录路径（命名规范）
+```
+wiki_root/meetings/
+├── YYYY-MM-DD/
+│   ├── 话题名称1
+│   └── 话题名称2
+```
+- 命名格式: `YYYY-MM-DD 话题名称`
+- 例: `2026-03-13 资源系统规划会议`
+
+### 会议创建流程
+1. 获取 meetings 文件夹 token
+2. 检查 meetings/ 下是否存在当日日期文件夹（如 2026-03-13）
+3. 如不存在，创建日期文件夹
+4. 会议文档创建在当日日期文件夹下
+
+---
+
+## 注意事项
+
+- **必须先安装飞书工具**才能使用
+- 优先使用文字记录，AI总结可能有删减
+- 只记方法论，不记细节
+- 知识沉淀是核心，帮助AI进化

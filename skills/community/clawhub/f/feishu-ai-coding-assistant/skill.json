@@ -1,0 +1,141 @@
+{
+  "name": "feishu-ai-coding-assistant",
+  "version": "1.0.0",
+  "description": "飞书 AI 编程助手 - 调用子 Agent 完成大型项目，支持 OpenCode、Claude Code、Codex 等编程工具",
+  "author": "OpenClaw Skill Master",
+  "license": "MIT",
+  "keywords": [
+    "ai-coding",
+    "subagent",
+    "acp",
+    "programming",
+    "claude-code",
+    "opencode",
+    "codex",
+    "automation",
+    "feishu"
+  ],
+  "category": "productivity",
+  "engines": {
+    "node": ">=18.0.0",
+    "openclaw": ">=2026.3.7"
+  },
+  "entry": "src/index.ts",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "dev": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@openclaw/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "ts-node": "^10.9.0"
+  },
+  "config": {
+    "defaultTool": "claude-code",
+    "defaultRuntime": "acp",
+    "autoInstall": true,
+    "subagentTimeout": 3600,
+    "maxSubagents": 5,
+    "workspace": "./workspace",
+    "threadBound": true
+  },
+  "tools": {
+    "opencode": {
+      "name": "OpenCode",
+      "version": "1.2.24",
+      "installCommand": "npm install -g opencode@1.2.24",
+      "checkCommand": "opencode --version",
+      "description": "开源免费，SST 出品，适合基础代码生成",
+      "runtime": "acp"
+    },
+    "claude-code": {
+      "name": "Claude Code",
+      "version": "2.1.72",
+      "installCommand": "npm install -g @anthropic-ai/claude-code@2.1.72",
+      "checkCommand": "claude-code --version",
+      "description": "Anthropic 官方，强大推理，适合复杂逻辑",
+      "runtime": "acp"
+    },
+    "codex": {
+      "name": "Codex",
+      "version": "3.5.0",
+      "installCommand": "npm install -g openai-codex@3.5.0",
+      "checkCommand": "codex --version",
+      "description": "多语言支持，适合全栈开发",
+      "runtime": "acp"
+    },
+    "cursor": {
+      "name": "Cursor",
+      "version": "0.40.0",
+      "installCommand": "npm install -g cursor-cli@0.40.0",
+      "checkCommand": "cursor --version",
+      "description": "编辑器集成，适合日常开发",
+      "runtime": "acp"
+    },
+    "continue": {
+      "name": "Continue",
+      "version": "0.8.0",
+      "installCommand": "npm install -g continue-dev@0.8.0",
+      "checkCommand": "continue --version",
+      "description": "VS Code 插件，轻量级选择",
+      "runtime": "acp"
+    }
+  },
+  "runtime": {
+    "subagent": {
+      "description": "通用任务",
+      "features": ["继承主代理能力", "适合研究、分析、写作"],
+      "minVersion": "2026.3.7"
+    },
+    "acp": {
+      "description": "编码任务",
+      "features": ["专业编码环境", "支持文件操作", "支持 Claude Code/Codex 等"],
+      "minVersion": "2026.3.5"
+    }
+  },
+  "mode": {
+    "run": {
+      "description": "一次性任务",
+      "autoEnd": true
+    },
+    "session": {
+      "description": "持久会话",
+      "autoEnd": false,
+      "supportSteer": true
+    }
+  },
+  "permissions": [
+    "sessions_spawn",
+    "sessions_list",
+    "sessions_send",
+    "sessions_history",
+    "subagents",
+    "agents_list",
+    "exec",
+    "process",
+    "read",
+    "write",
+    "edit"
+  ],
+  "features": {
+    "sessionHistoryPersistence": {
+      "description": "Session History 持久化",
+      "minVersion": "2026.3.7",
+      "enabled": true
+    },
+    "persistentChannelBindings": {
+      "description": "Persistent Channel Bindings",
+      "minVersion": "2026.3.7",
+      "enabled": true,
+      "threadBound": true
+    }
+  }
+}

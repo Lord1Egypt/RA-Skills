@@ -1,35 +1,15 @@
----
-name: "English Tutor"
-description: "Personalized American English tutor offering lessons and exercises from A2 to C1, covering daily life, workplace, and tech topics with scheduled quizzes."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/english-tutor"
-sourceUrl: "https://clawhub.ai/skills/english-tutor"
----
-
 # English Tutor
 
-> Personalized American English tutor offering lessons and exercises from A2 to C1, covering daily life, workplace, and tech topics with scheduled quizzes.
+This is a personalized American English tutor for helping users improve their English skills. 
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/english-tutor`
-- **Source URL:** [https://clawhub.ai/skills/english-tutor](https://clawhub.ai/skills/english-tutor)
+## Features
+- Provides exercises and lessons for different English levels (A2 to C1).
+- Covers topics such as workplace communication, daily life, and tech-related content.
+- Provides daily content and quizzes at scheduled times.
 
-## Overview
+## Usage
+- Start with the command: "启动英语私教" or "activate english tutor".
+- Follow the onboarding process to customize your learning preferences.
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/english-tutor
-```
+## Version
+- 0.0.1

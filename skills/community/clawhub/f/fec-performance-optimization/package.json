@@ -1,0 +1,40 @@
+{
+  "name": "@bovinphang/fec-performance-optimization",
+  "version": "2.7.0",
+  "description": "Use when diagnosing or improving frontend performance, Core Web Vitals, bundle size, runtime rendering cost, network waterfalls, memory leaks, long tasks, Lighthouse findings, or performance budgets; Chinese triggers include 性能优化, 页面卡顿, 首屏慢, 包体积, Web Vitals.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-performance-optimization"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "review-quality",
+    "performance",
+    "web-vitals",
+    "bundle",
+    "runtime",
+    "lighthouse"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

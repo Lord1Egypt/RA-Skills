@@ -1,0 +1,50 @@
+{
+  "name": "feishu-ai-coding-assistant",
+  "version": "1.0.0",
+  "description": "飞书 AI 编程助手 - 调用子 Agent 完成大型项目",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "dev": "ts-node src/index.ts",
+    "lint": "eslint src/**/*.ts",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "ai-coding",
+    "subagent",
+    "programming",
+    "claude-code",
+    "opencode",
+    "codex",
+    "automation",
+    "feishu",
+    "openclaw",
+    "skill"
+  ],
+  "author": "OpenClaw Skill Master",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/jest": "^29.5.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.50.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw-skills/feishu-ai-coding-assistant"
+  },
+  "bugs": {
+    "url": "https://github.com/openclaw-skills/feishu-ai-coding-assistant/issues"
+  },
+  "homepage": "https://github.com/openclaw-skills/feishu-ai-coding-assistant#readme"
+}

@@ -1,0 +1,14 @@
+{
+  "action": "search|note|link|file|save|folder|task-add|task-done|workspace-select|ask-read",
+  "risk": "read|write|destructive",
+  "requires_confirmation": false,
+  "commands": [
+    "fabric --json search 'query'"
+  ],
+  "verification": [
+    "How to verify the result"
+  ],
+  "notes": [
+    "Safety or help-check notes"
+  ]
+}

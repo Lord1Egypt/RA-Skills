@@ -1,35 +1,161 @@
 ---
-name: "EasyClass Auto-Improve"
+name: auto-improve
 description: "Automated development workflow with task board management, code quality checks, and continuous improvement. Perfect for auto-coding projects every 30 minutes."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/easyclass-auto-improve"
-sourceUrl: "https://clawhub.ai/skills/easyclass-auto-improve"
+metadata:
+  {
+    "openclaw":
+      {
+        "requires": { "bins": ["git", "python3"] },
+        "install": [],
+      },
+  }
 ---
 
-# EasyClass Auto-Improve
+# Auto-Improve Skill
 
-> Automated development workflow with task board management, code quality checks, and continuous improvement. Perfect for auto-coding projects every 30 minutes.
+自动化开发工作流，包含任务看板管理、代码质量检查、部署测试、持续改进、限流早停、编辑防呆。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/easyclass-auto-improve`
-- **Source URL:** [https://clawhub.ai/skills/easyclass-auto-improve](https://clawhub.ai/skills/easyclass-auto-improve)
+## 特性
 
-## Overview
+- **任务看板管理**：读取和更新 TASKS.md
+- **多语言支持**：Python、JavaScript、TypeScript 等
+- **代码质量检查**：语法检查、静态分析、安全扫描
+- **部署测试**：提交前自动测试
+- **持续改进**：每轮迭代学习
+- **限流早停**：检测到 429/rate_limit 立刻停止本轮
+- **编辑防呆**：防止无实质变更的编辑导致失败
+- **并发降压**：每轮只做 1 个任务，最多改 4 个文件
 
+## 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/easyclass-auto-improve
+- 自动编码项目（每 30 分钟执行一次）
+- 持续开发
+- 任务驱动开发
+- 质量保证自动化
+
+## 工作流程
+
+1. **准备**：强制同步最新代码（git fetch + reset --hard + pull）
+2. **任务选择**：读取 TASKS.md，选择下一个未完成任务
+3. **实施**：编码实现
+4. **质量检查**：语法、lint、安全
+5. **部署测试**：提交前测试
+6. **提交推送**：版本控制
+7. **任务更新**：标记任务完成
+8. **生成报告**：执行结果汇报
+
+## 并发降压机制
+
+每轮执行必须遵守：
+1. 同一轮只实现 1 个任务
+2. 每个任务最多创建/修改 4 个文件
+3. 语法检查失败时，最多修复 1 次
+4. 部署测试失败时，最多修复 1 次
+5. 不要把规划、生成、修错、测试压在同一口气里
+
+## 限流早停机制
+
+如果任何一步出现以下错误：
+- `API rate limit reached`
+- `429 Too many requests`
+- `FailoverError`
+- `rate_limit`
+
+则必须立即执行：
+1. 立刻停止当前任务，不再继续后续步骤
+2. 不再尝试重试本轮任务
+3. 在输出中明确记录：本次因限流早停
+4. 建议下次执行延后 30 分钟冷却
+5. 仅输出简短失败说明，不要生成长报告
+
+## 编辑文件防呆规则
+
+1. 编辑文件前，必须先 read 文件，获取最新内容
+2. 对比 oldText 和 newText，确认确实有实质差异
+3. 如果 oldText 和 newText 完全一致，跳过这次 edit
+4. 如果 edit 返回 "The replacement produced identical content"，记录为无实质变更，继续执行后续步骤
+5. 如果 edit 返回其他错误，记录错误，最多重试 1 次
+6. 不要反复对同一个文件做相同的 edit 操作
+
+## 配置说明
+
+可以通过修改定时任务的 prompt 来自定义：
+
+- **项目路径**：代码所在目录
+- **任务看板**：TASKS.md 的位置和格式
+- **质量工具**：使用哪些 linter/分析器
+- **测试策略**：提交前如何测试
+- **Git 设置**：远程 URL、分支策略
+
+## 任务看板格式
+
+在项目根目录创建 `TASKS.md`：
+
+```markdown
+# 项目任务
+
+## P0 - MVP（必须完成）
+- [ ] 用户认证系统
+- [ ] 数据库模型
+- [ ] API 端点
+
+## P1 - 重要
+- [ ] 输入验证
+- [ ] 错误处理
+- [ ] 日志系统
+
+## P2 - 锦上添花
+- [ ] 性能优化
+- [ ] 文档
+- [ ] 单元测试
 ```
+
+## 最佳实践
+
+1. **提交前先测试** - 部署并验证功能
+2. **小而专注的任务** - 每个任务应能在一轮内完成
+3. **清晰的任务描述** - 包含足够的实现细节
+4. **定期回顾** - 定期检查和更新任务优先级
+5. **备份策略** - 保留重要配置的备份
+6. **限流早停** - 检测到限流立刻停止，不要死循环
+7. **编辑防呆** - 编辑前先确认有实质变更
+
+## 安全说明
+
+- 安全存储敏感凭证（不要放在 TASKS.md 中）
+- 使用环境变量进行配置
+- 定期使用 bandit/safety 进行安全扫描
+- 保持依赖更新
+
+## 故障排除
+
+### 常见问题
+
+1. **Git 认证失败**：检查远程 URL 和凭证
+2. **找不到任务**：检查 TASKS.md 格式和位置
+3. **质量检查失败**：查看 linter 输出并修复问题
+4. **部署测试失败**：检查服务依赖和端口
+5. **API 限流**：启用限流早停机制，等待冷却后重试
+6. **编辑失败**：检查是否做了无实质变更的编辑
+
+### 调试模式
+
+在工作流中添加详细日志：
+
+```bash
+set -x  # 启用调试输出
+```
+
+## 贡献
+
+欢迎扩展此技能：
+
+- 添加新的质量工具
+- 支持更多编程语言
+- 自定义测试策略
+- 添加通知系统
+- 增强限流早停机制
+
+## 许可证
+
+MIT 许可证 - 自由修改和分发。

@@ -1,0 +1,4 @@
+interface:
+  display_name: "ECharts AI Skill"
+  short_description: "Generate and export ECharts with agent workflows"
+  default_prompt: "Use $echarts-chart-skill to recommend a chart type, generate an ECharts option, or export HTML/SVG from structured data."

@@ -1,0 +1,7 @@
+{
+  "name": "emily-web-fetch",
+  "version": "1.0.1",
+  "description": "Fetch a web page and return its content",
+  "main": "index.js",
+  "license": "MIT"
+}

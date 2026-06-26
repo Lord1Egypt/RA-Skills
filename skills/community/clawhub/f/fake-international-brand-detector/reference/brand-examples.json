@@ -1,0 +1,51 @@
+[
+  {
+    "brand": "NOW",
+    "origin": "United States",
+    "founded": 1968,
+    "whois_country": "US",
+    "amazon_platforms": ["amazon.com", "amazon.co.uk", "amazon.de"],
+    "media_coverage": true,
+    "verdict": "✅ 真国际品牌"
+  },
+  {
+    "brand": "Swisse",
+    "origin": "Australia",
+    "founded": 1987,
+    "whois_country": "AU",
+    "amazon_platforms": ["amazon.com", "amazon.co.uk", "amazon.de", "amazon.fr"],
+    "media_coverage": true,
+    "verdict": "✅ 真国际品牌"
+  },
+  {
+    "brand": "MegaRed",
+    "origin": "United States",
+    "parent_company": "Reckitt",
+    "whois_country": "US",
+    "amazon_platforms": ["amazon.com", "amazon.co.uk", "amazon.de"],
+    "media_coverage": true,
+    "verdict": "✅ 真国际品牌"
+  },
+  {
+    "brand": "NYO3",
+    "origin": "China (青岛逢时科技)",
+    "claimed_origin": "Norway",
+    "whois_country": "CN",
+    "trademark_timeline": {
+      "china_first": true,
+      "norway_later": true
+    },
+    "amazon_seller_location": {"de": "CN", "uk": "CN"},
+    "media_coverage": false,
+    "verdict": "🚩 假国际品牌"
+  },
+  {
+    "brand": "LOEON",
+    "origin": "China",
+    "founded": "Unknown",
+    "whois_country": "CN",
+    "amazon_platforms": ["amazon.cn"],
+    "media_coverage": false,
+    "verdict": "🚩 假国际品牌"
+  }
+]

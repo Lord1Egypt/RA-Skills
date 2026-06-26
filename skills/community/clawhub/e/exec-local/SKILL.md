@@ -1,35 +1,11 @@
----
-name: "Exec Local"
-description: "Execute system-level shell commands directly within the thundarr-gpu container for monitoring and remote orchestration tasks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/exec-local"
-sourceUrl: "https://clawhub.ai/skills/exec-local"
----
+# Thundarr Execution Bridge (Local)
 
-# Exec Local
+The `exec_local` skill provides a direct interface for executing system-level shell commands within the `thundarr-gpu` container environment on Garuda. 
 
-> Execute system-level shell commands directly within the thundarr-gpu container for monitoring and remote orchestration tasks.
+### Core Functionality
+- **Direct Shell Access**: Allows for low-latency execution of binary tools and scripts.
+- **Remote Orchestration**: Designed to be used as a jump-point for managing the Fedora UM250 host via the `thundarr-remote` SSH script.
+- **Resource Monitoring**: Can be used to check local container health, process tables, and network availability between Docker nodes.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/exec-local`
-- **Source URL:** [https://clawhub.ai/skills/exec-local](https://clawhub.ai/skills/exec-local)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/exec-local
-```
+### Security Note
+This tool executes commands with the permissions of the container user. Ensure all inputs are sanitized when used in automated workflows.

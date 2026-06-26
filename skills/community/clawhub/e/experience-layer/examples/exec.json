@@ -1,0 +1,42 @@
+{
+  "type": "skill",
+  "name": "exec",
+  "lastUpdated": "2026-03-18T02:45:47.021360+08:00",
+  "totalExecutions": 4,
+  "successCount": 0,
+  "failureCount": 4,
+  "experiences": [
+    {
+      "mistake": "长时间运行任务不使用background/yieldMs，导致session卡住",
+      "when": "执行需要超过1分钟的命令",
+      "avoidance": "长时间任务必须使用background: true或者yieldMs参数，让任务在后台运行",
+      "count": 2
+    },
+    {
+      "mistake": "不检查命令执行结果，错误了还继续",
+      "when": "command",
+      "avoidance": "必须检查退出码，错误了要分析原因再继续",
+      "count": 1
+    },
+    {
+      "mistake": "文件名含特殊字符，引号不闭合导致bash解析失败",
+      "when": "路径含中文/特殊字符",
+      "avoidance": "路径必须完整包裹在双引号内，特殊字符不需要额外转义但引号要闭合",
+      "count": 1
+    }
+  ],
+  "patterns": {
+    "commonMistakes": [
+      "长时间任务不后台运行导致session卡住",
+      "不检查退出码，错误了还继续执行下一步",
+      "多个命令合并执行，错误难以定位",
+      "特殊文件名引号不闭合导致解析错误"
+    ],
+    "bestPractices": [
+      "预计超过1分钟的任务必须后台运行",
+      "命令执行完必须检查退出码",
+      "复杂命令分步骤执行，便于调试",
+      "含中文/特殊字符的路径必须完整包裹双引号"
+    ]
+  }
+}

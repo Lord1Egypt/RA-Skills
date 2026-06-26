@@ -1,0 +1,324 @@
+{
+  "name": "eComm AI — 08 Order Status Updater",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ecomm-ai/update-order-status",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Update Status Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        400
+      ],
+      "webhookId": "ecomm-update-order-status",
+      "id": "17c4f203-e769-4e03-a671-6e985f80761d"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse status update request\nconst body = $input.first().json.body || $input.first().json;\n\nconst update = {\n  order_id: body.order_id || '',\n  status: body.status || 'confirmed',\n  platform: (body.platform || 'auto').toLowerCase(),\n  timestamp: new Date().toISOString()\n};\n\n// Map internal status to platform status\nconst shopifyStatusMap = {\n  'confirmed': 'confirmed',\n  'cancelled': 'cancelled',\n  'shipped': 'fulfilled',\n  'delivered': 'fulfilled'\n};\nconst wooStatusMap = {\n  'confirmed': 'processing',\n  'cancelled': 'cancelled',\n  'shipped': 'completed',\n  'delivered': 'completed'\n};\n\nupdate.shopify_status = shopifyStatusMap[update.status] || update.status;\nupdate.woo_status = wooStatusMap[update.status] || update.status;\n\nreturn [{ json: update }];"
+      },
+      "name": "Parse Update",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        400
+      ],
+      "id": "ef84a670-de3d-4e0e-b1bc-c6f3f1eda01b"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "979bcf2c-bf18-42be-8c7c-85a6880b4c1a",
+                    "leftValue": "={{ $json.platform }}",
+                    "rightValue": "shopify",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Shopify"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "cb6ea28b-8af3-48b0-abbc-6001f766e31f",
+                    "leftValue": "={{ $json.platform }}",
+                    "rightValue": "woocommerce",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "WooCommerce"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "name": "Platform Router",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        700,
+        400
+      ],
+      "id": "adcfca65-23ff-4806-9e5e-58124176bbe0"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "={{$env.SHOPIFY_STORE_URL}}/admin/api/2024-01/orders/{{$json.order_id}}.json",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ order: { id: $json.order_id, tags: 'ai-confirmed,status:' + $json.status } }) }}",
+        "options": {},
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Shopify-Access-Token",
+              "value": "{{$env.SHOPIFY_ACCESS_TOKEN}}"
+            }
+          ]
+        }
+      },
+      "name": "Shopify Update Order",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        240
+      ],
+      "id": "557c8c41-9070-44c2-a5fe-ae98f108cf3e"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "={{$env.WOOCOMMERCE_STORE_URL}}/wp-json/wc/v3/orders/{{$json.order_id}}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ status: $json.woo_status }) }}",
+        "options": {},
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Basic {{$env.WOOCOMMERCE_AUTH_HEADER}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        }
+      },
+      "name": "WooCommerce Update Order",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        420
+      ],
+      "id": "7ca40e00-de4e-421d-8178-7c894625c47b"
+    },
+    {
+      "parameters": {
+        "jsCode": "// For auto-detect, we'll try the order ID format\nconst d = $input.first().json;\n// Shopify IDs are numeric, WooCommerce can be alphanumeric\nconst isNumeric = /^\\d+$/.test(d.order_id);\nreturn [{ json: { ...d, platform: isNumeric ? 'shopify' : 'woocommerce' }}];"
+      },
+      "name": "Auto-Detect Platform",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        600
+      ],
+      "id": "526941ff-b1f8-4f57-95c2-a95fee1b7a8e"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{$env.ECOMM_CALL_LOG_SHEET_ID}}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Call Log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "order_id": "={{ $json.order_id }}",
+            "call_type": "status_update",
+            "status": "={{ $json.status }}",
+            "summary": "={{ 'Platform: ' + ($json.platform || 'auto') + ', New status: ' + $json.status }}",
+            "timestamp": "={{ $json.timestamp }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "name": "Log Status Update",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1200,
+        400
+      ],
+      "id": "06e65aff-cdfb-47d8-bfaf-1cc5ee1e9e52",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'ok', order_id: $json.order_id, updated_to: $json.status }) }}",
+        "options": {}
+      },
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1440,
+        400
+      ],
+      "id": "2602f0bf-0f68-4d75-a4b9-590c435f0bde"
+    }
+  ],
+  "connections": {
+    "Update Status Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Update": {
+      "main": [
+        [
+          {
+            "node": "Platform Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Platform Router": {
+      "main": [
+        [
+          {
+            "node": "Shopify Update Order",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WooCommerce Update Order",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Auto-Detect Platform",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Shopify Update Order": {
+      "main": [
+        [
+          {
+            "node": "Log Status Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WooCommerce Update Order": {
+      "main": [
+        [
+          {
+            "node": "Log Status Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-Detect Platform": {
+      "main": [
+        [
+          {
+            "node": "Log Status Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Status Update": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

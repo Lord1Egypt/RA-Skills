@@ -1,0 +1,8 @@
+{
+  "name": "financial-statement-reading",
+  "version": "1.0.0",
+  "description": "财报解读 Skill — 整合《百大企业经理人必学的财报获利课》《大会计师教你从财报数字看懂产业本质》《大会计师教你从财报数字看懂经营本质》三本专著核心知识",
+  "author": "Wang Dongjie, CGMA/AICPA&CIMA",
+  "license": "MIT",
+  "keywords": ["financial-statement", "accounting", "investment-analysis", "CGMA", "财报解读", "财务分析"]
+}

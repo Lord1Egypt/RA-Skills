@@ -1,0 +1,21 @@
+# 飞书自动回复配置示例
+rules:
+  - keyword: "你好"
+    reply: "你好！我是自动回复机器人，有什么可以帮你的？"
+    match: contains  # 匹配方式: contains/exact/startsWith/endsWith/regex
+    only_mention: false  # 是否只有被@才回复
+  
+  - regex: "^(请假|休假|年假)"
+    reply: "请假请直接联系人事部门，审批流程请查看内部文档。"
+    match: regex
+    only_mention: true
+  
+  - keyword: "谢谢"
+    reply: "不客气，很高兴能帮到你！"
+    match: contains
+
+# 工作时间配置，只有在工作时间内才会自动回复
+working_hours:
+  - "9:00-12:30"
+  - "14:00-18:00"
+  exclude_weekends: true  # 周末不回复

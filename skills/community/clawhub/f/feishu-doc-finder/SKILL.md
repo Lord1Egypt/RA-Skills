@@ -1,35 +1,37 @@
 ---
-name: "feishuFindDoc"
-description: "Find and download files from Feishu chat history by filename."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/feishu-doc-finder"
-sourceUrl: "https://clawhub.ai/skills/feishu-doc-finder"
+name: feishu-file-finder
+description: Find and download files from Feishu chat history by filename.
+version: 1.0.0
 ---
 
-# feishuFindDoc
+# Feishu File Finder
 
-> Find and download files from Feishu chat history by filename.
+A utility skill to search for a file in a Feishu chat (by filename) and download it.
+Useful when OpenClaw's auto-download misses a file or for retrieving past files.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/feishu-doc-finder`
-- **Source URL:** [https://clawhub.ai/skills/feishu-doc-finder](https://clawhub.ai/skills/feishu-doc-finder)
+## Prerequisites
 
-## Overview
+- `FEISHU_APP_ID` and `FEISHU_APP_SECRET` must be set in environment.
 
+## Usage
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/feishu-doc-finder
+cd skills/feishu-file-finder
+npm install
+
+# Basic usage
+node index.js --chat <chat_id> --file <filename>
+
+# Options
+# -o, --output <dir>   Save path (default: current dir)
+# -h, --hours <num>    Search history lookback (default: 24h)
+```
+
+## Example
+
+```bash
+export FEISHU_APP_ID=...
+export FEISHU_APP_SECRET=...
+
+node index.js --chat oc_87435... --file travel-planner.zip
 ```

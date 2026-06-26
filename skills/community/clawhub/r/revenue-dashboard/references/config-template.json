@@ -1,0 +1,12 @@
+{
+  "accounts": {
+    "my_saas": "acct_XXXXXXXXXXXX",
+    "my_shop": "acct_YYYYYYYYYYYY"
+  },
+  "goals": {
+    "monthly": 10000,
+    "annual": 120000
+  },
+  "currency": "usd",
+  "anomaly_threshold": 2.0
+}

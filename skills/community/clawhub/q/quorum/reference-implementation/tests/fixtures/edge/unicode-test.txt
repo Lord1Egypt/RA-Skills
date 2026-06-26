@@ -1,0 +1,9 @@
+Unicode content test file.
+
+Japanese: こんにちは世界
+Chinese: 你好世界
+Arabic: مرحبا بالعالم
+Emoji: 🎉 🚀 ✅ ❌
+Math symbols: ∑ ∏ ∫ √ ∞
+Accented: café résumé naïve
+Currency: € £ ¥ ₹

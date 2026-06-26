@@ -1,0 +1,19 @@
+{
+  "name": "robinhood-agentic",
+  "version": "1.0.0",
+  "description": "MCP client for Robinhood Agentic Trading - OAuth PKCE + Streamable HTTP",
+  "type": "module",
+  "main": "rh-client.mjs",
+  "bin": {
+    "rh-client": "./rh-client.mjs"
+  },
+  "scripts": {
+    "auth": "node rh-client.mjs auth",
+    "list-tools": "node rh-client.mjs list-tools",
+    "call": "node rh-client.mjs call",
+    "status": "node rh-client.mjs status"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
+  }
+}

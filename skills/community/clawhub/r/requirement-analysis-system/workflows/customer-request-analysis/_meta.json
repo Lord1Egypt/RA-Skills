@@ -1,0 +1,14 @@
+{
+  "name": "customer-request-analysis",
+  "displayName": "客户需求分析工作流",
+  "version": "1.0.0",
+  "description": "B2B 场景的客户需求快速分析，覆盖客户调研/问题定义/方案匹配/价值量化/提案生成",
+  "author": "Elatia",
+  "license": "MIT",
+  "tags": ["requirement-analysis", "workflow", "b2b", "sales", "customer-request"],
+  "category": "Product Management",
+  "type": "workflow",
+  "parentSkill": "requirement-analysis-system",
+  "createdAt": "2026-03-09T15:15:00+08:00",
+  "updatedAt": "2026-03-09T15:15:00+08:00"
+}

@@ -1,35 +1,119 @@
 ---
-name: "redbook skill1.0"
-description: "定时采集近24小时小红书低粉爆款果茶咖啡健康饮品热点，生成手机友好HTML报告并自动推送飞书群。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/redbookskill"
-sourceUrl: "https://clawhub.ai/skills/redbookskill"
+name: drink_hotspot_tracker
+description: 定时采集小红书果茶/咖啡/健康饮品近24小时低粉爆款热点，生成HTML选题报告推送至飞书，每日9点自动运行
+metadata:
+{
+  "openclaw": {
+    "emoji": "🍹",
+    "requires": {
+      "env": ["FEISHU_WEBHOOK"],
+      "config": ["exclude_brands", "cron_expression"]
+    },
+    "primaryEnv": "FEISHU_WEBHOOK"
+  }
+}
 ---
+# 小红书饮品热点追踪 Skill
 
-# redbook skill1.0
+🍹 **专为小红书饮品赛道女性博主打造的自动热点追踪工具**
 
-> 定时采集近24小时小红书低粉爆款果茶咖啡健康饮品热点，生成手机友好HTML报告并自动推送飞书群。
+## 核心特性
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/redbookskill`
-- **Source URL:** [https://clawhub.ai/skills/redbookskill](https://clawhub.ai/skills/redbookskill)
+✅ **无特定品牌导向** - 双重过滤排除所有品牌内容，只保留普通人可复制的选题
+✅ **覆盖多赛道** - 果茶 / 咖啡 / 健康饮品全覆盖，可自定义关键词
+✅ **每日自动运行** - Cron 定时触发，默认每天早上 9 点推送
+✅ **手机友好 HTML 报告** - 马卡龙配色，完美适配手机阅读
+✅ **飞书机器人推送** - 正文预览 + 附件报告，随时查看
+✅ **合规安全** - 基于火山引擎官方合规数据源，无反爬/侵权风险
+✅ **低成本** - 火山引擎新用户免费额度可用半年，后续月成本≤5元
 
-## Overview
+## 配置参数
 
+| 参数名 | 说明 | 默认值 |
+|--------|------|--------|
+| FEISHU_WEBHOOK | 飞书机器人 Webhook 地址 | **必填** |
+| exclude_brands | 需要排除的品牌词列表 | `["喜茶","瑞幸","奈雪","星巴克","蜜雪冰城","茶百道","古茗","CoCo"]` |
+| cron_expression | 定时触发规则 | `0 9 * * *` |
+| search_keywords | 搜索关键词列表 | `["果茶","咖啡","健康饮品","自制果茶","低卡咖啡","无糖饮品","居家饮品","宿舍饮品"]` |
+| max_follower_count | 最大作者粉丝量（低粉爆款） | `100000` |
+| min_interaction | 最低总互动量（点赞+收藏） | `300` |
+| top_n_hotspots | 输出热点数量 | `10` |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/redbookskill
-```
+## 核心过滤规则
+
+1. **第一层过滤** - 采集阶段直接排除带排除品牌词的内容
+2. **第二层过滤** - AI 分析阶段二次排查，确保输出无品牌内容
+3. **只保留** - 自制 / 低卡 / 平价 / 普通人可复制的选题
+
+## 输出内容
+
+HTML 报告包含：
+
+- 📅 **日报日期**
+- 🔥 **TOP10 热门选题** - 按热度值排序（点赞*1 + 收藏*2 + 评论*3）
+  - 热点核心关键词
+  - 24小时热度值
+  - 3篇高互动参考笔记跳转链接
+  - 3个可直接复用的选题方向
+  - 5个适配的热门标签
+- ⚠️ **低潜力选题避坑** - 3个不建议做的选题及原因
+- 📊 数据来源说明
+
+## 前置准备
+
+### 1. 火山引擎开通
+
+1. 注册/登录 [火山引擎](https://www.volcengine.com/)
+2. 开通「ArkClaw 自动化编排」服务
+3. 进入应用市场，启用两个官方连接器：
+   - ✅ 小红书内容搜索（官方合规数据源）
+   - ✅ 飞书自定义机器人（官方连接器）
+
+### 2. 飞书机器人配置
+
+1. 新建仅自己可见的飞书群
+2. 进入「群设置 → 群机器人 → 添加自定义机器人」
+3. 命名为「饮品热点助手」
+4. 安全设置选择「自定义关键词」，填入 `饮品热点`（必填）
+5. 复制生成的 Webhook 地址，配置到 `FEISHU_WEBHOOK` 环境变量
+
+## 使用方式
+
+安装完成后，在 ArkClaw 控制台启用技能，系统会：
+
+1. 每日 9 点自动触发（可修改 cron 表达式）
+2. 采集近 24 小时符合条件的低粉爆款笔记
+3. AI 拆解可复用选题，计算热度排序
+4. 生成 HTML 报告
+5. 推送到指定飞书群
+
+## 扩展玩法
+
+无需修改现有逻辑，直接添加组件即可扩展功能：
+
+- **自动文案生成**：新增豆包组件，生成符合账号风格的小红书文案初稿
+- **选题库沉淀**：新增「飞书多维表写入」组件，自动同步每日热点到多维表
+- **爆点实时预警**：新增每 2 小时触发规则，热度≥5w 立即推送
+- **月度复盘报告**：每月自动生成月度热点总结，优化内容方向
+
+## 常见问题
+
+**Q: 上传 Skill 提示「无效包」**
+A: 检查打包层级，确认 ZIP 打开后直接能看到 SKILL.md，而非外层文件夹
+
+**Q: 飞书收不到消息**
+A: 检查飞书机器人是否配置了 `饮品热点` 关键词，若开启了 IP 白名单需将 ArkClaw 出口 IP 加入白名单
+
+**Q: 采集到品牌内容**
+A: 在采集组件的「排除关键词」中补充对应品牌词，或调整 AI Prompt 增强过滤规则
+
+**Q: 定时触发不准**
+A: 确认定时组件的时区选择为 `Asia/Shanghai`，不要使用默认 UTC 时区
+
+## 合规提示
+
+本 Skill 仅用于选题参考，发布内容时建议加入个人实拍 / 原创观点，符合小红书内容治理规则。
+
+## 项目地址
+
+https://github.com/openclaw-ai/drink-hotspot-tracker

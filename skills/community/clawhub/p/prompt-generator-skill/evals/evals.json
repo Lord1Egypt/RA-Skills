@@ -1,0 +1,83 @@
+{
+  "skill_name": "prompt-generator",
+  "evals": [
+    {
+      "id": 1,
+      "name": "writing-article",
+      "prompt": "帮我写一篇关于时间管理的公众号文章，目标读者是上班族",
+      "expected_output": "生成一个完整的公众号文章提示词，包含角色定位、目标读者、痛点分析、文章结构等要素",
+      "assertions": [
+        {
+          "name": "contains_role",
+          "description": "Output should contain a role definition (角色定位)",
+          "type": "contains",
+          "value": "角色"
+        },
+        {
+          "name": "contains_target_audience",
+          "description": "Output should identify target audience (目标读者)",
+          "type": "contains",
+          "value": "目标读者"
+        },
+        {
+          "name": "contains_structure",
+          "description": "Output should include article structure (文章结构)",
+          "type": "contains",
+          "value": "结构"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "image-generation",
+      "prompt": "我想生成一张职业女性头像，要专业的感觉",
+      "expected_output": "生成一个用于Midjourney或DALL-E的图像生成提示词，包含人物描述、风格、光线、比例等参数",
+      "assertions": [
+        {
+          "name": "contains_subject",
+          "description": "Output should describe the main subject",
+          "type": "contains",
+          "value": "女性"
+        },
+        {
+          "name": "contains_style",
+          "description": "Output should specify style",
+          "type": "contains",
+          "value": "专业"
+        },
+        {
+          "name": "contains_aspect_ratio",
+          "description": "Output should include aspect ratio parameter",
+          "type": "contains",
+          "value": "--ar"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "coding-script",
+      "prompt": "帮我写一个Python脚本，批量重命名文件",
+      "expected_output": "生成一个编程类提示词，包含语言、功能需求、输入输出、代码风格等要求",
+      "assertions": [
+        {
+          "name": "contains_language",
+          "description": "Output should specify programming language",
+          "type": "contains",
+          "value": "Python"
+        },
+        {
+          "name": "contains_functionality",
+          "description": "Output should describe functionality",
+          "type": "contains",
+          "value": "重命名"
+        },
+        {
+          "name": "contains_requirements",
+          "description": "Output should include requirements",
+          "type": "contains",
+          "value": "要求"
+        }
+      ]
+    }
+  ]
+}

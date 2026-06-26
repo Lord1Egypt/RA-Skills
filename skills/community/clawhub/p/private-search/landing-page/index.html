@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatGPT Added Ads. Here's Your Exit.</title>
+  <meta name="description" content="OpenAI is now showing ads to ChatGPT free users. Here's how to run your own private, ad-free AI agent in under 15 minutes.">
+  <meta property="og:title" content="ChatGPT Added Ads. Here's Your Exit.">
+  <meta property="og:description" content="OpenAI confirmed ads for all ChatGPT free users. Run your own private AI agent — no ads, no tracking, no subscription creep.">
+  <meta property="og:type" content="website">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: #e8e8e8;
+      line-height: 1.6;
+    }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+    /* HERO */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .news-badge {
+      display: inline-block;
+      background: #ff4444;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+    h1 span { color: #ff4444; }
+    .sub {
+      font-size: 1.15rem;
+      color: #aaa;
+      max-width: 560px;
+      margin: 0 auto 36px;
+    }
+
+    /* CTA FORM */
+    .cta-form {
+      display: flex;
+      gap: 10px;
+      max-width: 480px;
+      margin: 0 auto 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .cta-form input[type="email"] {
+      flex: 1;
+      min-width: 240px;
+      padding: 14px 18px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      background: #1a1a1a;
+      color: #e8e8e8;
+      font-size: 15px;
+    }
+    .cta-form input[type="email"]::placeholder { color: #666; }
+    .btn-primary {
+      padding: 14px 24px;
+      background: #4f8ef7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #3a7ae0; }
+    .form-note { font-size: 12px; color: #555; text-align: center; }
+
+    /* STATS */
+    .stats {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 40px 0;
+      border-top: 1px solid #1f1f1f;
+      border-bottom: 1px solid #1f1f1f;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .stat-label { font-size: 12px; color: #666; margin-top: 4px; }
+
+    /* WHAT CHANGED */
+    .section { padding: 60px 0; }
+    h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .news-quote {
+      border-left: 3px solid #ff4444;
+      padding: 16px 20px;
+      background: #1a1a1a;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      color: #ccc;
+      margin: 24px 0;
+      font-size: 0.95rem;
+    }
+    .news-quote .source {
+      display: block;
+      font-style: normal;
+      font-size: 11px;
+      color: #555;
+      margin-top: 8px;
+    }
+    p { color: #aaa; margin-bottom: 16px; }
+
+    /* STEPS */
+    .steps { display: flex; flex-direction: column; gap: 20px; margin: 32px 0; }
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      background: #141414;
+      border: 1px solid #222;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .step-num {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      background: #4f8ef7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: white;
+    }
+    .step-content h3 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
+    .step-content p { margin: 0; font-size: 0.9rem; }
+
+    /* SKILL PROMO */
+    .skill-card {
+      background: linear-gradient(135deg, #1a2440 0%, #0f1a30 100%);
+      border: 1px solid #2a4080;
+      border-radius: 12px;
+      padding: 32px;
+      margin: 40px 0;
+      text-align: center;
+    }
+    .skill-card .emoji { font-size: 2.5rem; margin-bottom: 12px; }
+    .skill-card h3 { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .skill-card p { color: #8ab; margin-bottom: 20px; }
+    .price-tag {
+      display: inline-block;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .price-note { font-size: 12px; color: #556; margin-bottom: 20px; display: block; }
+    .btn-secondary {
+      display: inline-block;
+      padding: 12px 28px;
+      background: transparent;
+      border: 2px solid #4f8ef7;
+      color: #4f8ef7;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: #4f8ef7; color: white; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid #1f1f1f;
+      padding: 32px 0;
+      text-align: center;
+      font-size: 12px;
+      color: #444;
+    }
+    footer a { color: #666; text-decoration: none; }
+    footer a:hover { color: #aaa; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="news-badge">⚡ Breaking — March 21, 2026</div>
+    <h1>ChatGPT just added <span>ads</span>.<br>Here's your exit.</h1>
+    <p class="sub">OpenAI confirmed ads for all free and Go users in the US. Your queries now feed ad networks. There's a better way.</p>
+    <form class="cta-form" onsubmit="handleSubmit(event)">
+      <input type="email" placeholder="your@email.com" id="email-input" required>
+      <button type="submit" class="btn-primary">Get the Free Guide →</button>
+    </form>
+    <p class="form-note">Free. No spam. Unsubscribe anytime.</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">100M+</div>
+      <div class="stat-label">ChatGPT free users affected</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">15 min</div>
+      <div class="stat-label">To set up your own private AI</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$0</div>
+      <div class="stat-label">Cost of OpenClaw (open source)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">150K+</div>
+      <div class="stat-label">GitHub stars and counting</div>
+    </div>
+  </div>
+
+  <!-- WHAT CHANGED -->
+  <div class="section">
+    <h2>What just happened</h2>
+    <div class="news-quote">
+      "OpenAI will begin showing ads to all users of the free and Go versions of ChatGPT in the United States in the coming weeks. OpenAI partnered with ad-tech firm Criteo as part of the rollout."
+      <span class="source">— Reuters, March 21, 2026</span>
+    </div>
+    <p>Your ChatGPT queries are about to become ad inventory. The same questions you'd ask a trusted advisor — about your health, your finances, your business — will now be processed by the Criteo ad network and used to target you.</p>
+    <p>WPP, Omnicom, and Dentsu are already in the test program. This is not a small experiment. It's a permanent shift in what ChatGPT is.</p>
+    <p>The good news: <strong style="color:#fff;">you don't have to stay.</strong></p>
+  </div>
+
+  <!-- HOW TO ESCAPE -->
+  <div class="section">
+    <h2>Run your own private AI in 4 steps</h2>
+    <p>OpenClaw is the open-source AI agent that hit 150,000 GitHub stars in 72 hours. It's what ChatGPT would be if it were built for privacy-conscious users — not ad networks.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Get a VPS — $4–6/month</h3>
+          <p>Hetzner CX11 or DigitalOcean Droplet. Your AI runs on your server, not OpenAI's. Your data stays yours.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Install OpenClaw in ~5 minutes</h3>
+          <p>One command: <code style="background:#1a1a1a;padding:2px 6px;border-radius:4px;font-size:12px;">npm install -g openclaw && openclaw start</code>. Done.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Install the Private Search skill</h3>
+          <p>From ClawHub, install the Private Search skill. Routes all agent searches through Brave, Kagi, or your own SearXNG — not Google or Bing ad networks.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>Use it from anywhere</h3>
+          <p>Web browser, mobile app, Discord, WhatsApp. Your private AI, your rules, no ads, no tracking.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILL PROMO -->
+  <div class="skill-card">
+    <div class="emoji">🔍</div>
+    <h3>Private Search for OpenClaw</h3>
+    <p>The ClawHub skill that routes your agent's web searches through Brave, Kagi, or SearXNG — not Google or Bing. Strips tracking params. Keeps your queries off ad networks.</p>
+    <div class="price-tag">$14.99</div>
+    <span class="price-note">One-time. No subscription.</span>
+    <br>
+    <a href="https://clawhub.ai/skills/private-search" class="btn-secondary">Get It on ClawHub →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Not affiliated with OpenAI or ChatGPT. Built by an independent developer.</p>
+    <p style="margin-top:8px;"><a href="#">Privacy Policy</a> · <a href="#">Unsubscribe</a></p>
+  </footer>
+
+</div>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const email = document.getElementById('email-input').value;
+  // In production: POST to email list API (ConvertKit, Mailchimp, etc.)
+  console.log('Email captured:', email);
+  document.querySelector('.cta-form').innerHTML = '<p style="color:#4f8ef7;font-weight:600;">✅ You\'re on the list. Check your inbox for the free guide.</p>';
+}
+</script>
+
+</body>
+</html>

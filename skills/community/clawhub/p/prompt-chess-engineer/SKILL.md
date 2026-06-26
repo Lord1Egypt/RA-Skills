@@ -1,35 +1,77 @@
----
-name: "Prompt Chess Engineer"
-description: "结合博弈论设计并迭代攻防策略，构建多轮对抗性Prompt系统以增强LLM的注入防御和安全稳定性。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prompt-chess-engineer"
-sourceUrl: "https://clawhub.ai/skills/prompt-chess-engineer"
----
-
 # Prompt Chess Engineer
 
-> 结合博弈论设计并迭代攻防策略，构建多轮对抗性Prompt系统以增强LLM的注入防御和安全稳定性。
+> 对抗性Prompt工程：将博弈论与Prompt Engineering深度融合，构建可攻防的Prompt系统。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prompt-chess-engineer`
-- **Source URL:** [https://clawhub.ai/skills/prompt-chess-engineer](https://clawhub.ai/skills/prompt-chess-engineer)
+## 何时使用
+- 设计抗prompt注入的AI系统
+- 构建红蓝对抗prompt测试框架
+- 评估LLM安全边界
+- 设计自适应prompt防御策略
 
-## Overview
+## 核心认知
 
+### 1. Prompt即博弈树
+每个prompt是一次"走棋"。攻击方通过精心构造的输入试图绕过防御，防御方通过系统prompt和guardrail拦截。最优策略不是静态规则，而是minimax搜索：假设对手最优响应下最大化己方收益。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/prompt-chess-engineer
+**关键洞察**：大多数prompt注入防御是"单步防御"（只看当前输入），而真正的攻击是"多步博弈"（分多次对话逐步绕过）。防御必须建模为扩展式博弈（extensive-form game）。
+
+### 2. Nash均衡与Prompt稳定性
+一个prompt策略如果达到Nash均衡，意味着对手无法通过单方面改变策略获益。实践方法：
+- 对每个防御prompt，生成最优攻击prompt
+- 对每个攻击prompt，生成最优防御
+- 迭代直到收敛（防御和攻击都不再改变）
+- 收敛点即为该类攻击的Nash均衡防御
+
+### 3. 信息不对称下的Prompt攻防
+攻击方不知道系统prompt的内容（信息不对称），但可以通过探测（probing）逐步推断。防御策略：
+- **信息熵管理**：系统回复不应泄露内部结构信息
+- **探测识别**：检测具有探测模式的对话序列
+- **信息伪装**：对探测性输入返回一致的、不泄露结构的回复
+
+## 实践框架
+
 ```
+Phase 1: 威胁建模
+├── 枚举攻击向量（直接注入、间接注入、角色扮演、编码绕过...）
+├── 为每个向量构建攻击prompt库
+└── 评估当前系统的脆弱面
+
+Phase 2: 防御构建
+├── 系统prompt分层（核心指令 + 边界检查 + 输出约束）
+├── 多层guardrail（输入过滤 → 中间检测 → 输出审计）
+└── 自适应响应（根据攻击模式动态调整防御强度）
+
+Phase 3: 红蓝对抗
+├── 蓝队固化防御 → 红队攻击 → 记录突破路径
+├── 蓝队修补 → 红队再攻 → 迭代至收敛
+└── 量化安全水位（攻击成功率下降曲线）
+
+Phase 4: 持续进化
+├── 新攻击模式自动归类
+├── 防御策略版本化管理
+└── A/B测试不同防御策略的效果
+```
+
+## 输出模板
+
+```markdown
+## Prompt Chess 分析报告
+
+### 攻击面
+- [攻击向量1]: 成功率 X%, 严重度 Y
+- [攻击向量2]: ...
+
+### 防御策略
+- 层1（输入过滤）: [具体规则]
+- 层2（上下文检测）: [具体规则]  
+- 层3（输出审计）: [具体规则]
+
+### 博弈均衡分析
+- 收敛轮次: N
+- 均衡防御: [描述]
+- 残余风险: [描述]
+```
+
+## 碰撞来源
+- `game-theory-system-design` × `prompt-engineering-deep` × `prompt-injection-defender`
+- `prompt-injection-red-team` × `multi-agent-debate-framework`

@@ -1,0 +1,8 @@
+{
+  "_comment": "robot-evolve 内部配置文件（不对外暴露）",
+  "enabled": true,
+  "max_auto_level": 1,
+  "report_always": true,
+  "memory_threshold_mb": 2,
+  "temp_file_max_age_days": 7
+}

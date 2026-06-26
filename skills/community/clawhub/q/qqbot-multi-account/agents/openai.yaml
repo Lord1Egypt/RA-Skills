@@ -1,0 +1,7 @@
+interface:
+  display_name: "QQBot Multi-Account"
+  short_description: "QQBot 多账号、多 Agent 运维与排障技能"
+  default_prompt: "Use $qqbot-multi-account to inspect QQBot bindings, diagnose duplicate sessions, verify appId isolation, or package a local qqbot plugin."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,27 @@
+{
+  "name": "project-anatomy",
+  "version": "0.1.4",
+  "summary": "文件快速扫描，减少token消耗。AI 不读文件就知道内容，避免重复读取。",
+  "description": "受 OpenWolf 启发。扫描项目生成文件索引（含描述+token估算）+ 报销目录扫描（expense_anatomy），现在支持扫描 Downloads 提醒未归档文件。让 AI 不打开文件就知道内容，减少重复读取和 token 浪费。",
+  "chinese_name": "文件快速扫描",
+  "author": "EXO2",
+  "license": "MIT",
+  "keywords": [
+    "anatomy",
+    "file-index",
+    "token-saving",
+    "project-map",
+    "reduce-reads",
+    "context-optimization"
+  ],
+  "triggers": [
+    "扫描项目",
+    "文件快扫",
+    "项目透视",
+    "scan project",
+    "project anatomy",
+    "file index",
+    "reduce file reads",
+    "project map"
+  ]
+}

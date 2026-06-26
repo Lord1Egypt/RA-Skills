@@ -1,0 +1,64 @@
+{
+  "domain": "机构业务域",
+  "level": "L3",
+  "generated_at": "2026-05-08",
+  "source_file": "institutional.md",
+  "includes_L2": true,
+  "exception_patterns": [
+    {"pattern": "净值触及预警线", "trigger": "PB产品净值≤0.8", "handling": "每日估值监控，通知管理人，限制加仓"},
+    {"pattern": "净值触及止损线", "trigger": "PB产品净值≤0.7", "handling": "触发强制平仓流程，通知管理人和托管人"},
+    {"pattern": "大宗交易对手违约", "trigger": "交收日资金/券不足", "handling": "标记违约，启动追偿流程"},
+    {"pattern": "场外产品敲入/敲出", "trigger": "标的价格触及障碍价格", "handling": "实时行情监控，按合同条款执行(终止或条款变更)"},
+    {"pattern": "客户资质过期", "trigger": "营业执照/备案证明到期", "handling": "定期证照检查，通知客户更新，限期整改"},
+    {"pattern": "资料过期", "trigger": "客户提交的证照已过期", "handling": "系统校验有效期，过期材料拒绝受理"},
+    {"pattern": "审批超时", "trigger": "内部审批超过5个工作日", "handling": "超时提醒和升级机制"},
+    {"pattern": "并发准入", "trigger": "同一机构通过不同渠道重复提交", "handling": "统一社会信用代码去重校验"},
+    {"pattern": "冻结期间交易", "trigger": "客户被冻结后仍有在途交易", "handling": "允许在途交易结算，禁止新增委托"},
+    {"pattern": "估值偏差", "trigger": "PB估值与管理人差异超0.1%", "handling": "触发对账流程，查明差异原因"}
+  ],
+  "intermediate_state_handling": [
+    {"state": "资料收集", "duration": "数天至数周", "rules": "需跟踪材料完整度"},
+    {"state": "内部审批", "duration": "3-5个工作日", "rules": "超时需升级，三方会签缺一不可"},
+    {"state": "系统开通", "duration": "1-2个工作日", "rules": "涉及多系统配置"},
+    {"state": "方案定制(PB)", "duration": "1-2周", "rules": "需多次沟通确认"},
+    {"state": "账户开立(PB)", "duration": "3-5个工作日", "rules": "涉及多个系统"},
+    {"state": "意向匹配(大宗)", "duration": "15分钟内完成确认", "rules": "超时自动撤回"},
+    {"state": "到期结算(场外)", "duration": "T+2完成资金划转", "rules": "计算收益并结算"}
+  ],
+  "boundary_values": [
+    {"field": "大宗交易时段", "boundary": "15:00:00", "behavior": "允许申报(开始)"},
+    {"field": "大宗交易时段", "boundary": "15:30:00", "behavior": "拒绝(超时)"},
+    {"field": "大宗交易价格", "boundary": "收盘价×110%", "behavior": "允许(≤110%)"},
+    {"field": "大宗交易价格", "boundary": "收盘价×110.01%", "behavior": "拒绝(超限)"},
+    {"field": "大宗交易数量", "boundary": "30万股", "behavior": "允许(≥30万股)"},
+    {"field": "大宗交易数量", "boundary": "29.99万股(且金额<200万)", "behavior": "拒绝"},
+    {"field": "PB预警线", "boundary": "净值=0.80", "behavior": "触发预警"},
+    {"field": "PB预警线", "boundary": "净值=0.81", "behavior": "不触发"},
+    {"field": "PB止损线", "boundary": "净值=0.70", "behavior": "触发强制平仓"},
+    {"field": "场外投资者门槛", "boundary": "金融资产恰好500万", "behavior": "满足条件"},
+    {"field": "场外投资者门槛", "boundary": "金融资产499.99万", "behavior": "不满足"},
+    {"field": "估值偏差", "boundary": "差异恰好0.1%", "behavior": "触发对账"},
+    {"field": "准入审批时限", "boundary": "第5个工作日", "behavior": "最后期限"},
+    {"field": "准入审批时限", "boundary": "第6个工作日", "behavior": "触发超时提醒"}
+  ],
+  "idempotency_retry_rules": [
+    {"operation": "准入申请", "idempotent_key": "统一社会信用代码 + 申请日期", "retry_strategy": "同一机构不可重复申请"},
+    {"operation": "系统开通", "idempotent_key": "clientId + serviceType", "retry_strategy": "重复操作返回当前状态"},
+    {"operation": "冻结/解冻", "idempotent_key": "clientId + operationType + operationDate", "retry_strategy": "不产生重复流程"},
+    {"operation": "大宗交易意向", "idempotent_key": "accountId + stockCode + direction + tradeDate", "retry_strategy": "同一标的同方向当日不重复"},
+    {"operation": "大宗交易成交", "idempotent_key": "buyerOrderId + sellerOrderId", "retry_strategy": "不产生重复交易"},
+    {"operation": "场外产品估值", "idempotent_key": "productCode + valuationDate", "retry_strategy": "同日重复返回已有结果"},
+    {"operation": "敲入/敲出事件", "idempotent_key": "productCode + eventDate + eventType", "retry_strategy": "同一事件不重复触发"},
+    {"operation": "PB预警/止损通知", "idempotent_key": "fundCode + triggerDate + triggerType", "retry_strategy": "同一触发事件不重复通知"}
+  ],
+  "violation_consequences": [
+    {"violation": "未备案私募使用PB服务", "consequence": "违规开展业务，监管处罚"},
+    {"violation": "PB账户混用", "consequence": "违反账户隔离要求，监管处罚，客户损失赔偿"},
+    {"violation": "向不合格投资者销售场外产品", "consequence": "合同可能无效，券商承担赔偿"},
+    {"violation": "大宗交易自买自卖", "consequence": "涉嫌操纵市场，监管调查"},
+    {"violation": "未完成尽调即开通权限", "consequence": "合规违规，面临内部问责"},
+    {"violation": "冻结客户新增交易未拦截", "consequence": "风控失效，可能造成损失"},
+    {"violation": "场外产品挂钩违规标的", "consequence": "产品可能被要求终止，监管处罚"},
+    {"violation": "强制平仓未及时执行", "consequence": "风险敞口扩大，券商承担损失"}
+  ]
+}

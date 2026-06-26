@@ -1,35 +1,34 @@
 ---
-name: "prowlarr-search"
-description: "用Prowlarr搜索影视资源，搜索torrent种子，磁力链接Magnet"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prowlarr-search"
-sourceUrl: "https://clawhub.ai/skills/prowlarr-search"
+name: prowlarr-search
+description: 用Prowlarr搜索影视资源，搜索torrent种子，磁力链接Magnet
+metadata: {"openclaw":{"emoji":"🔍 ","requires":{"bins":["python3"],"env":["PROWLARR_BASE_URL", "PROWLARR_API_KEY"]},"primaryEnv":"PROWLARR_API_KEY"}}
 ---
 
-# prowlarr-search
+# 资源搜索
 
-> 用Prowlarr搜索影视资源，搜索torrent种子，磁力链接Magnet
+## 用法
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prowlarr-search`
-- **Source URL:** [https://clawhub.ai/skills/prowlarr-search](https://clawhub.ai/skills/prowlarr-search)
+通过 Prowlarr API 搜索资源（ torrents/usenet 等），并返回 JSON 格式的搜索结果列表。
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+通用搜索
 ```bash
-hermes skills install clawhub/prowlarr-search
+python3 {baseDir}/scripts/prowlarr-search.py "<query>"
+```
+
+指定季数，集数搜索剧集
+```bash
+python3 {baseDir}/scripts/prowlarr-search.py "<query>" --type tv [--season SEASON] [--ep EP]
+```
+
+输出样例：
+```json
+  [                                                                                                
+    {                                                                                              
+      "title": "Example.Title.2024.1080p",                                                         
+      "size": "2.50 GB",                                                                           
+      "indexer": "SomeIndexer",                                                                    
+      "guid": "magnet:?xt=...",                                                                    
+      "publishDate": "2024-01-15T10:30:00Z"                                                        
+    }
+  ]
 ```

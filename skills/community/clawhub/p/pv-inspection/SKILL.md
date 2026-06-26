@@ -1,35 +1,241 @@
 ---
-name: "PV Inspection"
-description: "光伏电站巡检报告生成技能。支持创建标准化巡检报告、记录缺陷问题、统计汇总数据、导出 Word/PDF 格式。使用场景：(1) 生成每日/周/月巡检报告，(2) 记录电站缺陷和隐患，(3) 统计发电量数据，(4) 导出格式化报告文档。"
-category: "other"
-source: "ClawHub"
-tags: [inspection, pv, report, solar, word]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pv-inspection"
-sourceUrl: "https://clawhub.ai/skills/pv-inspection"
+name: pv-inspection
+description: 光伏电站巡检报告生成技能。支持创建标准化巡检报告、记录缺陷问题、统计汇总数据、导出 Word/PDF 格式。使用场景：(1) 生成每日/周/月巡检报告，(2) 记录电站缺陷和隐患，(3) 统计发电量数据，(4) 导出格式化报告文档。
 ---
 
-# PV Inspection
+# 光伏电站巡检报告生成技能
 
-> 光伏电站巡检报告生成技能。支持创建标准化巡检报告、记录缺陷问题、统计汇总数据、导出 Word/PDF 格式。使用场景：(1) 生成每日/周/月巡检报告，(2) 记录电站缺陷和隐患，(3) 统计发电量数据，(4) 导出格式化报告文档。
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pv-inspection`
-- **Source URL:** [https://clawhub.ai/skills/pv-inspection](https://clawhub.ai/skills/pv-inspection)
+### 1. 巡检报告生成
+- 📋 标准化巡检报告模板
+- 📸 支持照片标注和问题记录
+- 📊 自动统计缺陷类型和数量
+- 📝 输出 Word/PDF 格式报告
 
-## Overview
+### 2. 缺陷管理
+- 缺陷分类（设备缺陷、环境隐患、安全问题）
+- 严重程度分级（紧急、重要、一般）
+- 整改建议自动生成
+- 历史缺陷追踪
 
+### 3. 数据汇总
+- 发电量统计（日/周/月）
+- 设备运行状态汇总
+- 巡检覆盖率计算
+- 异常数据标记
 
-## Installation
-To install this skill, run the following command in your terminal:
+---
+
+## 快速开始
+
+### 触发词示例
+
+用户说以下任意内容时触发此技能：
+
+- "生成今天的巡检报告"
+- "汇总本周巡检记录"
+- "导出 XX 电站的巡检报告"
+- "记录一个缺陷"
+- "统计本月发电量"
+- "生成月度巡检总结"
+
+### 基本流程
+
+1. **确认电站信息**
+   - 电站名称
+   - 巡检日期
+   - 巡检人员
+
+2. **收集巡检数据**
+   - 设备检查项
+   - 缺陷记录
+   - 照片/视频
+
+3. **生成报告**
+   - 选择模板（日报/周报/月报）
+   - 输出格式（Word/PDF）
+   - 发送方式（飞书/邮件）
+
+---
+
+## 脚本工具
+
+### 报告生成脚本
+
 ```bash
-hermes skills install clawhub/pv-inspection
+# 生成日报
+python scripts/generate_report.py --type daily --station "嘉兴电站 1 号" --date 2026-03-16
+
+# 生成周报
+python scripts/generate_report.py --type weekly --station "嘉兴电站 1 号" --week 2026-W12
+
+# 生成月报
+python scripts/generate_report.py --type monthly --station "嘉兴电站 1 号" --month 2026-03
 ```
+
+### 缺陷记录脚本
+
+```bash
+# 记录缺陷
+python scripts/log_defect.py --station "嘉兴电站 1 号" --type "设备缺陷" --level "重要" --desc "逆变器故障"
+```
+
+---
+
+## 报告模板
+
+### 日报模板
+
+```markdown
+# 光伏电站巡检日报
+
+**电站名称：** [电站名称]
+**巡检日期：** YYYY-MM-DD
+**巡检人员：** [姓名]
+**天气情况：** [晴/雨/阴]
+
+## 一、发电数据
+- 今日发电量：XXX kWh
+- 累计发电量：XXX kWh
+- 峰值功率：XXX kW
+
+## 二、设备状态
+- 逆变器：正常/异常 [数量]
+- 汇流箱：正常/异常 [数量]
+- 光伏组件：正常/异常 [数量]
+
+## 三、缺陷记录
+| 序号 | 位置 | 缺陷描述 | 严重程度 | 整改建议 |
+|------|------|----------|----------|----------|
+| 1 | | | | |
+
+## 四、明日计划
+- [ ] 待整改项目
+- [ ] 重点检查项
+```
+
+### 周报/月报模板
+
+在日报基础上增加：
+- 发电量趋势图
+- 缺陷统计分析
+- 整改完成率
+- 下周期计划
+
+---
+
+## 缺陷分类标准
+
+### 设备缺陷
+- 逆变器故障
+- 汇流箱异常
+- 光伏组件损坏
+- 电缆破损
+- 支架松动
+
+### 环境隐患
+- 杂草遮挡
+- 积灰严重
+- 排水不畅
+- 周边施工
+
+### 安全问题
+- 围栏破损
+- 警示标识缺失
+- 消防设备过期
+- 电气安全隐患
+
+---
+
+## 严重程度分级
+
+| 等级 | 说明 | 响应时间 |
+|------|------|----------|
+| 🔴 紧急 | 影响发电或存在安全风险 | 24 小时内 |
+| 🟠 重要 | 影响设备寿命或效率 | 7 天内 |
+| 🟡 一般 | 轻微问题，可计划整改 | 30 天内 |
+
+---
+
+## 使用示例
+
+### 示例 1：生成日报
+
+**用户：** "生成今天嘉兴电站 1 号的巡检日报"
+
+**技能响应：**
+1. 确认巡检日期（今天）
+2. 询问巡检数据（或从历史记录读取）
+3. 生成 Word 格式日报
+4. 发送到飞书
+
+### 示例 2：记录缺陷
+
+**用户：** "记录一个缺陷，嘉兴电站 2 号，3 号逆变器故障，紧急"
+
+**技能响应：**
+1. 记录缺陷信息
+2. 生成整改建议
+3. 添加到待办事项
+4. 设置提醒（24 小时内）
+
+### 示例 3：统计汇总
+
+**用户：** "统计本月嘉兴电站的发电量"
+
+**技能响应：**
+1. 查询本月发电数据
+2. 生成统计图表
+3. 对比历史同期
+4. 输出分析报告
+
+---
+
+## 配置项
+
+### 电站信息
+
+在 `references/stations.md` 中配置电站基本信息：
+- 电站名称
+- 装机容量
+- 设备清单
+- 巡检路线
+
+### 报告模板
+
+在 `assets/templates/` 目录中存放：
+- 日报模板（daily_template.docx）
+- 周报模板（weekly_template.docx）
+- 月报模板（monthly_template.docx）
+
+### 输出设置
+
+在 `references/config.md` 中配置：
+- 默认输出格式（Word/PDF）
+- 发送方式（飞书/邮件）
+- 报告存储路径
+
+---
+
+## 注意事项
+
+1. **数据准确性** - 发电数据需从监控系统获取，不要手动填写
+2. **照片标注** - 缺陷照片需标注位置和方向
+3. **整改追踪** - 每个缺陷都应有整改状态和完成时间
+4. **报告归档** - 所有报告应保存电子版并定期备份
+
+---
+
+## 相关文件
+
+- `scripts/generate_report.py` - 报告生成脚本
+- `scripts/log_defect.py` - 缺陷记录脚本
+- `scripts/summarize_data.py` - 数据汇总脚本
+- `references/stations.md` - 电站信息配置
+- `references/templates.md` - 报告模板说明
+- `assets/templates/` - Word 报告模板
+
+---
+
+*版本：1.0.0 | 创建日期：2026-03-16*

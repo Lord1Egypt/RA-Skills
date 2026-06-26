@@ -1,0 +1,4 @@
+interface:
+  display_name: "Redline"
+  short_description: "Paragraph-level contract redlines for DOCX."
+  default_prompt: "Review this DOCX contract paragraph by paragraph, propose distinct replacement language for each issue, and generate tracked changes plus a risk report."

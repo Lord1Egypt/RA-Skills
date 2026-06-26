@@ -1,0 +1,9 @@
+{
+  "type": "upload",
+  "user_id": "default",
+  "target_id": "永仁",
+  "file_path": "demos/Cantonese_永仁/yongren_chat.json",
+  "file_type": "json",
+  "self_name": "心儿",
+  "target_name": "永仁"
+}

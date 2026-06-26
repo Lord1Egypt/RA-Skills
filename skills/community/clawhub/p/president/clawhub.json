@@ -1,0 +1,45 @@
+{
+  "name": "president",
+  "version": "1.0.0",
+  "displayName": "President Perspective Library",
+  "description": "Think and Act Like an American President. Structured decision-making frameworks extracted from U.S. Presidents — mental models, decision heuristics, expression DNA. No.1: Donald J. Trump. The most complete archive of presidential thinking ever built for AI.",
+  "author": "MiniMax",
+  "homepage": "https://github.com/minimax/president-skill",
+  "license": "MIT",
+  "tags": [
+    "president",
+    "trump",
+    "leadership",
+    "negotiation",
+    "decision-making",
+    "maga",
+    "america-first",
+    "presidential-perspective"
+  ],
+  "presidents": [
+    {
+      "slug": "trump",
+      "slot": "01-trump",
+      "name": "Donald J. Trump",
+      "terms": [45, 47],
+      "status": "sitting",
+      "flagship": true
+    }
+  ],
+  "features": {
+    "rolePlay": true,
+    "multiPresidents": true,
+    "decisionAnalysis": true,
+    "negotiationFramework": true
+  },
+  "requirements": {
+    "node": ">=18.0.0"
+  },
+  "clawhub": {
+    "registry": "https://clawhub.ai",
+    "category": "productivity",
+    "compatibility": {
+      "openclaw": ">=1.0.0"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "PUA"
+  short_description: "Push the agent to be exhaustive and proactive"
+  default_prompt: "Use $pua to push through a stuck task with more exhaustive, evidence-based execution."
+policy:
+  allow_implicit_invocation: true

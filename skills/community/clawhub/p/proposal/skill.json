@@ -1,0 +1,46 @@
+{
+  "name": "proposal",
+  "version": "2.0.0",
+  "description": "Turn late-stage opportunities into proposals that are easier to approve. Reduce friction, answer likely buyer questions in advance, and clarify the yes-path.",
+  "author": "dpetcr",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "proposal",
+    "sales proposal",
+    "service proposal",
+    "commercial offer",
+    "approval friction",
+    "scope",
+    "pricing"
+  ],
+  "files": {
+    "skill.md": "skill.md"
+  },
+  "capabilities": {
+    "proposal_drafting": "Draft decision-ready commercial proposals",
+    "friction_reduction": "Identify and reduce approval friction before buyer review",
+    "proposal_review": "Audit proposals for scope, pricing, clarity, and approval readiness",
+    "approval_path_design": "Clarify next steps, stakeholders, and decision path"
+  },
+  "triggers": [
+    "write proposal",
+    "review proposal",
+    "proposal structure",
+    "proposal not converting",
+    "client proposal",
+    "service proposal",
+    "pricing and scope",
+    "commercial proposal"
+  ],
+  "audience": [
+    "Founders closing service deals",
+    "Sales teams sending formal offers",
+    "Consultants and agencies writing client proposals",
+    "Operators supporting late-stage commercial decisions"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

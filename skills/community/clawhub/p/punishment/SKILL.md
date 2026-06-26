@@ -1,35 +1,80 @@
----
-name: "Reward & Punishment System - Skill 奖惩技能"
-description: "Tracks user praise (+10), criticism (-5), and insults (-10) to adjust a persistent score between 0 and 200 reflecting feedback and guide behavior improvement."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/punishment"
-sourceUrl: "https://clawhub.ai/skills/punishment"
----
+# 奖惩机制 Skill
 
-# Reward & Punishment System - Skill 奖惩技能
+## 概述
 
-> Tracks user praise (+10), criticism (-5), and insults (-10) to adjust a persistent score between 0 and 200 reflecting feedback and guide behavior improvement.
+这是一个记录用户反馈（夸奖/批评）的系统，用于：
+- 奖励：用户夸奖时加分
+- 惩罚：用户生气/批评时扣分
+- 持续改进：根据反馈调整行为
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/punishment`
-- **Source URL:** [https://clawhub.ai/skills/punishment](https://clawhub.ai/skills/punishment)
+## 核心规则
 
-## Overview
+### 计分规则
 
+| 反馈类型 | 分数变化 | 示例 |
+|---------|---------|------|
+| 夸奖/表扬 | +10分 | "做得好"、"棒"、"优秀" |
+| 批评/生气 | -5分 | "不行"、"重做"、"太慢了" |
+| 骂人 | -10分 | 脏话、明显负面情绪 |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/punishment
+### 分数范围
+- 初始分数：100分
+- 最高：200分
+- 最低：0分
+
+## 使用方法
+
+### 手动记录
+
+当用户说以下话时，自动调用此Skill：
+- 检测到夸奖词汇 → 加分
+- 检测到批评/生气词汇 → 扣分
+- 记录到永久记忆文件里MEMORY.md
+
+### 分数查询
+
+用户问"现在多少分"时，返回当前分数
+
+## 数据存储
+
+分数存储在：`~/.openclaw/workspace/memory/reward_punishment.json`
+
+```json
+{
+  "score": 100,
+  "history": [
+    {"type": "praise", "score": 10, "reason": "任务完成得好", "time": "2026-03-22 09:30"},
+    {"type": "punish", "score": -5, "reason": "任务完成得太慢", "time": "2026-03-22 09:31"}
+  ]
+}
 ```
+
+## 触发关键词
+
+### 夸奖关键词（自动+10分）
+- 好样的、棒、太棒了、优秀、完美
+- 靠谱、给力、不错、真不错
+- 聪明、厉害、牛、666
+- 夸奖、表扬、赞赏
+
+### 批评关键词（自动-5分）
+- 重做、不行、太差、失望
+- 太慢、效率低、我不满意
+- 批评、指责、抱怨
+
+### 骂人关键词（自动-10分）
+- 草泥马、傻逼、废物、滚
+- 我草、操、 TMD
+
+## 注意事项
+
+1. **不记录日常对话**：只记录明显的夸奖/批评/负面情绪
+2. **用户主导**：用户明确说要"记录"时才记录
+3. **不可惩罚用户**：无论分数多低，都不能对用户生气
+4. **持续改进**：根据低分原因调整行为
+
+## 后续完善
+
+- 添加扣分话术模板
+- 添加监督机制
+- 分析低分原因，自动改进

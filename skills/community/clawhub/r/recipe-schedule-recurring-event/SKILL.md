@@ -1,35 +1,26 @@
 ---
-name: "Recipe Schedule Recurring Event"
+name: recipe-schedule-recurring-event
 description: "Create a recurring Google Calendar event with attendees."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-schedule-recurring-event"
-sourceUrl: "https://clawhub.ai/skills/recipe-schedule-recurring-event"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "scheduling"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-calendar
 ---
 
-# Recipe Schedule Recurring Event
+# Schedule a Recurring Meeting
 
-> Create a recurring Google Calendar event with attendees.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-calendar`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-schedule-recurring-event`
-- **Source URL:** [https://clawhub.ai/skills/recipe-schedule-recurring-event](https://clawhub.ai/skills/recipe-schedule-recurring-event)
+Create a recurring Google Calendar event with attendees.
 
-## Overview
+## Steps
 
+1. Create recurring event: `gws calendar events insert --params '{"calendarId": "primary"}' --json '{"summary": "Weekly Standup", "start": {"dateTime": "2024-03-18T09:00:00", "timeZone": "America/New_York"}, "end": {"dateTime": "2024-03-18T09:30:00", "timeZone": "America/New_York"}, "recurrence": ["RRULE:FREQ=WEEKLY;BYDAY=MO"], "attendees": [{"email": "team@company.com"}]}'`
+2. Verify it was created: `gws calendar +agenda --days 14 --format table`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-schedule-recurring-event
-```

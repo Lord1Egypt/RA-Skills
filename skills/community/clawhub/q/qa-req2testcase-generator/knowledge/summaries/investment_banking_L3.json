@@ -1,0 +1,61 @@
+{
+  "domain": "投行业务域",
+  "level": "L3",
+  "generated_at": "2026-05-08",
+  "source_file": "investment_banking.md",
+  "includes_L2": true,
+  "exception_patterns": [
+    {"pattern": "问询回复超期", "trigger": "30个工作日内未回复问询函", "handling": "提前7天/3天/1天预警，超期自动标记中止审查"},
+    {"pattern": "批文即将过期", "trigger": "注册批文12个月有效期即将届满", "handling": "倒计时提醒(90天/30天/7天)，过期自动变更为已终止"},
+    {"pattern": "发行认购不足", "trigger": "认购总量不足发行数量70%", "handling": "触发发行失败流程，退款机制"},
+    {"pattern": "辅导期重大变更", "trigger": "辅导期间发行人发生重大资产重组", "handling": "重大事项变更审批流程和材料更新"},
+    {"pattern": "评级下调", "trigger": "债券存续期内评级被下调", "handling": "预警机制+投资者通知流程"},
+    {"pattern": "发行人违约", "trigger": "发行人未按期付息或兑付", "handling": "违约事件触发、公告发布、投资者保护"},
+    {"pattern": "内幕交易核查", "trigger": "监管要求核查项目期间相关人员交易", "handling": "内幕信息知情人登记和交易监控系统"},
+    {"pattern": "停牌超期", "trigger": "重组停牌超过10个交易日", "handling": "停牌时限监控和强制复牌提醒"},
+    {"pattern": "方案重大调整", "trigger": "审核过程中方案发生重大变更", "handling": "方案变更后重新审议流程触发"},
+    {"pattern": "并行问询", "trigger": "多轮问询同时进行", "handling": "各轮问询独立计时，互不影响"}
+  ],
+  "intermediate_state_handling": [
+    {"state": "辅导备案", "duration": "6-12个月", "rules": "长期中间态，需跟踪辅导进度"},
+    {"state": "审核问询中", "duration": "不定期(2-5轮问询)", "rules": "每轮30个工作日回复时限"},
+    {"state": "中止审查", "duration": "最长3个月", "rules": "超期自动终止"},
+    {"state": "发行定价", "duration": "1-2周", "rules": "短期中间态，询价定价配售"},
+    {"state": "尽职调查(债券)", "duration": "1-3个月", "rules": "需跟踪尽调进度"},
+    {"state": "材料申报审核", "duration": "公司债2-3个月，企业债3-6个月", "rules": "等待监管反馈"},
+    {"state": "监管审核(并购)", "duration": "2-3个月", "rules": "证监会审核期"},
+    {"state": "实施交割", "duration": "1-2个月", "rules": "涉及多方协调"}
+  ],
+  "boundary_values": [
+    {"field": "问询回复时限", "boundary": "恰好第30个工作日", "behavior": "最后期限(含当日)"},
+    {"field": "问询回复时限", "boundary": "第31个工作日", "behavior": "超期，标记中止审查"},
+    {"field": "批文有效期", "boundary": "第365天(注册生效后)", "behavior": "最后一天可启动发行"},
+    {"field": "批文有效期", "boundary": "第366天", "behavior": "批文过期，项目终止"},
+    {"field": "发行认购率", "boundary": "恰好70%", "behavior": "发行成功(≥70%)"},
+    {"field": "发行认购率", "boundary": "69.99%", "behavior": "发行失败"},
+    {"field": "停牌时限", "boundary": "第10个交易日", "behavior": "最后一天(含当日)"},
+    {"field": "停牌时限", "boundary": "第11个交易日", "behavior": "触发强制复牌"},
+    {"field": "中止审查", "boundary": "恰好3个月", "behavior": "最后期限"},
+    {"field": "中止审查", "boundary": "超过3个月", "behavior": "自动终止"},
+    {"field": "业绩承诺完成率", "boundary": "100%", "behavior": "无需补偿"},
+    {"field": "业绩承诺完成率", "boundary": "99.99%", "behavior": "触发补偿计算"}
+  ],
+  "idempotency_retry_rules": [
+    {"operation": "立项申请", "idempotent_key": "projectCode + version", "retry_strategy": "同一项目不可重复立项"},
+    {"operation": "材料提交", "idempotent_key": "filingId + submitDate", "retry_strategy": "重复提交返回已有记录"},
+    {"operation": "问询回复", "idempotent_key": "inquiryId + replyRound", "retry_strategy": "同一轮回复不可重复提交"},
+    {"operation": "簿记建档", "idempotent_key": "bondCode + bookbuildingDate", "retry_strategy": "同一债券同日不可重复簿记"},
+    {"operation": "付息指令", "idempotent_key": "bondCode + interestDate + period", "retry_strategy": "同一期付息不重复执行"},
+    {"operation": "状态变更", "idempotent_key": "projectCode + targetState + timestamp", "retry_strategy": "加分布式锁防止并发状态变更"}
+  ],
+  "violation_consequences": [
+    {"violation": "未经内核审批申报", "consequence": "严重合规违规，项目可能被撤回，保代面临处分"},
+    {"violation": "辅导期未满申报", "consequence": "监管不受理，项目延期"},
+    {"violation": "批文过期后发行", "consequence": "违法发行，面临监管处罚"},
+    {"violation": "问询回复超期", "consequence": "中止审查，可能导致项目终止"},
+    {"violation": "内幕信息知情人交易", "consequence": "涉嫌内幕交易，刑事追诉"},
+    {"violation": "关联方参与表决", "consequence": "决议可能被撤销，面临监管处罚"},
+    {"violation": "发行人违约未及时公告", "consequence": "信息披露违规，监管处罚"},
+    {"violation": "停牌超期未复牌", "consequence": "交易所可能强制复牌，影响重组进程"}
+  ]
+}

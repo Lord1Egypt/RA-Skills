@@ -1,0 +1,43 @@
+{
+  "skill_name": "promo-traffic-stress-monitor",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Black Friday just started — we’re 3 hours in. Sessions are 3x normal but orders are only 1.2x. ROAS is below our breakeven. What should we do with ads and the site?",
+      "expected_output": "Traffic → efficiency → hold/cut ads + landing/checkout checklist; breakeven framing.",
+      "files": [],
+      "expectations": [
+        "Follows or states steps: traffic, conversion efficiency, branch on high vs low efficiency",
+        "Addresses first hours of promo and ROAS below breakeven",
+        "Recommends not scaling when conversion is weak; suggests landing/checkout checks",
+        "Includes a table or matrix (efficiency snapshot and/or action matrix)",
+        "Mentions dynamic ad adjustment (pause, hold, or fix before spend)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Our hero dress SKU sold out in 20 minutes but ads still run to that PDP. CVR on that page tanked. Another color is in stock. How do we reallocate?",
+      "expected_output": "Pause OOS ads, redirect traffic, restock note, allocation table.",
+      "files": [],
+      "expectations": [
+        "Addresses instant sellout and ads still pointing to OOS",
+        "Recommends pausing or redirecting traffic to in-stock variant or category",
+        "Includes restock or traffic allocation guidance",
+        "Ties CVR drop to OOS or UX",
+        "Efficiency or action framing consistent with promo stress monitor"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "First 4 hours of our sale: ROAS is 4x breakeven, nothing OOS, server stable. We have budget left. What’s the move?",
+      "expected_output": "Scale or reallocate up; efficiency high branch.",
+      "files": [],
+      "expectations": [
+        "Recommends scaling or increasing spend on winners when ROAS above breakeven",
+        "References real-time or early-window traffic and conversion efficiency",
+        "Mentions cautions (stock, frequency cap) if appropriate",
+        "Does not only say check landing page — must endorse scaling or increasing spend"
+      ]
+    }
+  ]
+}

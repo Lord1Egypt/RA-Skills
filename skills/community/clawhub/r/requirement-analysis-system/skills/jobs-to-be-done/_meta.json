@@ -1,0 +1,14 @@
+{
+  "name": "jobs-to-be-done",
+  "displayName": "JTBD 分析",
+  "version": "1.0.0",
+  "description": "透过表面需求，挖掘用户真正想要完成的'任务'，发现创新机会",
+  "author": "Elatia (基于 Product-Manager-Skills 提炼)",
+  "license": "MIT",
+  "tags": ["requirement-analysis", "jobs-to-be-done", "product-management", "component"],
+  "category": "Product Management",
+  "type": "component",
+  "parentSkill": "requirement-analysis-system",
+  "createdAt": "2026-03-09T15:15:00+08:00",
+  "updatedAt": "2026-03-09T15:15:00+08:00"
+}

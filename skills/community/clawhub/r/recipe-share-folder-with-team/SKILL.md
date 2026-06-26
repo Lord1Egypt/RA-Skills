@@ -1,35 +1,28 @@
 ---
-name: "Recipe Share Folder With Team"
+name: recipe-share-folder-with-team
 description: "Share a Google Drive folder and all its contents with a list of collaborators."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-share-folder-with-team"
-sourceUrl: "https://clawhub.ai/skills/recipe-share-folder-with-team"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-drive
 ---
 
-# Recipe Share Folder With Team
+# Share a Google Drive Folder with a Team
 
-> Share a Google Drive folder and all its contents with a list of collaborators.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-drive`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-share-folder-with-team`
-- **Source URL:** [https://clawhub.ai/skills/recipe-share-folder-with-team](https://clawhub.ai/skills/recipe-share-folder-with-team)
+Share a Google Drive folder and all its contents with a list of collaborators.
 
-## Overview
+## Steps
 
+1. Find the folder: `gws drive files list --params '{"q": "name = '\''Project X'\'' and mimeType = '\''application/vnd.google-apps.folder'\''"}'`
+2. Share as editor: `gws drive permissions create --params '{"fileId": "FOLDER_ID"}' --json '{"role": "writer", "type": "user", "emailAddress": "colleague@company.com"}'`
+3. Share as viewer: `gws drive permissions create --params '{"fileId": "FOLDER_ID"}' --json '{"role": "reader", "type": "user", "emailAddress": "stakeholder@company.com"}'`
+4. Verify permissions: `gws drive permissions list --params '{"fileId": "FOLDER_ID"}' --format table`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-share-folder-with-team
-```

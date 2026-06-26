@@ -1,0 +1,126 @@
+# Memory Manager - 项目元数据
+# 版本: v3.5.0
+
+[project]
+name = "memory-manager"
+version = "3.5.0"
+description = "三层AI记忆管理系统 - 让 AI 拥有记忆能力"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Pupper", email = "pupper@example.com"}
+]
+keywords = [
+    "ai",
+    "memory",
+    "embedding",
+    "vector-search",
+    "knowledge-management",
+    "chatgpt",
+    "openai"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "openai>=1.0.0",
+    "numpy>=1.20.0",
+    "python-dotenv>=1.0.0",
+    "PyYAML>=6.0.1",
+]
+
+[project.optional-dependencies]
+# 向量搜索加速 (100x+)
+lancedb = ["lancedb>=0.5.0"]
+
+# 彩色终端输出
+color = ["colorama>=0.4.0"]
+
+# 完整功能
+all = [
+    "lancedb>=0.5.0",
+    "colorama>=0.4.0",
+]
+
+# 开发依赖
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "mypy>=1.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Pupper0601/memory-manager"
+Repository = "https://github.com/Pupper0601/memory-manager"
+Documentation = "https://github.com/Pupper0601/memory-manager/blob/main/SKILL.md"
+Issues = "https://github.com/Pupper0601/memory-manager/issues"
+Changelog = "https://github.com/Pupper0601/memory-manager/blob/main/CHANGELOG.md"
+
+[project.scripts]
+# mm = "mm:main"
+
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scripts*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+skip_gitignore = true
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["scripts"]
+omit = ["*/tests/*", "*/__pycache__/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "pass",
+]

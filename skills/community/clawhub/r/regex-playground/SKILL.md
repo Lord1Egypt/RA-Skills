@@ -1,35 +1,76 @@
 ---
-name: "Regex Playground"
-description: "Learn, test, and debug regular expressions with real-time matching, explanations, and common patterns. Perfect for developers learning regex or debugging com..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/regex-playground"
-sourceUrl: "https://clawhub.ai/skills/regex-playground"
+name: regex-playground
+description: Learn, test, and debug regular expressions with real-time matching, explanations, and common patterns. Perfect for developers learning regex or debugging complex patterns.
+metadata:
+  {
+    "openclaw":
+      {
+        "requires": { "bins": [] },
+        "install": [],
+      },
+  }
 ---
 
 # Regex Playground
 
-> Learn, test, and debug regular expressions with real-time matching, explanations, and common patterns. Perfect for developers learning regex or debugging com...
+Interactive regular expression learning and testing tool.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/regex-playground`
-- **Source URL:** [https://clawhub.ai/skills/regex-playground](https://clawhub.ai/skills/regex-playground)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/regex-playground
 ```
+regex "pattern" "test string"
+```
+
+## Features
+
+- 🎯 Real-time matching
+- 📖 Plain English explanation
+- 🔍 Match groups extraction
+- 📋 Common patterns library
+- 🧪 Test cases generator
+
+## Example
+
+```
+Input: regex "(\w+)@(\w+)\.(\w+)" "test@example.com"
+
+Output:
+✓ Match: test@example.com
+Group 1: test
+Group 2: example  
+Group 3: com
+
+Explanation:
+- (\w+) - capture word characters (test)
+- @ - literal @
+- (\w+) - capture word characters (example)
+- \. - literal dot
+- (\w+) - capture word characters (com)
+```
+
+## Common Patterns
+
+| Pattern | Meaning | Example |
+|---------|---------|---------|
+| `\d+` | One or more digits | 123 |
+| `\w+` | Word characters | hello_123 |
+| `[a-z]` | Letter range | a, b, c |
+| `^start` | Starts with | start... |
+| `end$` | Ends with | ...end |
+| `a|b` | OR | a or b |
+| `a*` | Zero or more a | '', a, aaa |
+| `a+` | One or more a | a, aaa |
+
+## Commands
+
+- `regex explain <pattern>` - Explain pattern in plain English
+- `regex test <pattern> <string>` - Test pattern against string
+- `regex library` - Show common patterns
+- `regex generate <type>` - Generate test cases (email, url, phone, etc.)
+
+## Use Cases
+
+- Debug regex in code
+- Learn regex by seeing matches
+- Validate input patterns
+- Extract data from strings

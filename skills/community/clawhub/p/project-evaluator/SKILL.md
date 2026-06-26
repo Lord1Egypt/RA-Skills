@@ -1,35 +1,89 @@
 ---
-name: "AI 项目评估助手"
-description: "描述一个项目想法，AI 从市场/技术/商业/风险四个维度系统评估， 输出评估报告、竞品速查、MVP建议，帮你决策「值不值得做」。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/project-evaluator"
-sourceUrl: "https://clawhub.ai/skills/project-evaluator"
+name: project-evaluator
+displayName: AI 项目评估助手
+version: 1.0.0
+description: >
+  描述一个项目想法，AI 从市场/技术/商业/风险四个维度系统评估，
+  输出评估报告、竞品速查、MVP建议，帮你决策「值不值得做」。
+author: antonia-sz
+tags: [product, evaluation, startup, pm, ai, business]
 ---
 
-# AI 项目评估助手
+# AI 项目评估助手 🔍
 
-> 描述一个项目想法，AI 从市场/技术/商业/风险四个维度系统评估， 输出评估报告、竞品速查、MVP建议，帮你决策「值不值得做」。
+## 你能做什么
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/project-evaluator`
-- **Source URL:** [https://clawhub.ai/skills/project-evaluator](https://clawhub.ai/skills/project-evaluator)
+描述你的项目想法（一句话到几段话都行），我从四个维度帮你做系统评估：
 
-## Overview
+📊 **市场维度** — 需求真实吗？竞品有哪些？差异化在哪？
+🔧 **技术维度** — 技术可行吗？主要挑战是什么？推荐技术栈？
+💰 **商业维度** — 怎么挣钱？怎么获客？变现难度如何？
+⚠️ **风险维度** — 主要风险点？平台依赖？法规合规？
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/project-evaluator
+## 使用方式
+
+### 快速评估
+
+```
+帮我评估这个项目：做一个帮用户批量管理微信好友的工具，可以按标签分组、定时发朋友圈、分析互动数据
+```
+
+### 详细评估（提供更多信息）
+
+```
+项目名称：xxx
+目标用户：xxx
+核心功能：xxx
+资源约束：1个人，业余时间，3个月
+请帮我做项目评估
+```
+
+---
+
+## 输出格式
+
+```markdown
+## 📊 综合评分
+
+| 维度 | 评分 | 简评 |
+|------|------|------|
+| 市场需求 | 8/10 | 需求真实，竞品多 |
+| 技术可行性 | 9/10 | 实现难度低 |
+| 商业价值 | 6/10 | 变现路径不清晰 |
+| 风险程度 | 4/10 | 平台风险高 |
+| **综合** | **6.8/10** | |
+
+## 🏆 市场维度
+...
+
+## 🔧 技术维度
+...
+
+## 💰 商业维度
+...
+
+## ⚠️ 风险维度
+...
+
+## 🚀 竞品速查
+1. 竞品A — 主要功能、优缺点
+2. 竞品B — ...
+
+## 💡 MVP 建议
+...
+
+## 📋 结论
+值得做 / 谨慎 / 不建议
+```
+
+---
+
+## 工具调用
+
+```python
+exec: python3 SKILL_DIR/scripts/evaluate_project.py \
+  --idea "项目描述" \
+  --output /tmp/eval_report.md
 ```

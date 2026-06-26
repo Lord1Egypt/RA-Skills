@@ -1,0 +1,20 @@
+# Standard depth profile — balanced rigor for most work
+# Critics: correctness + completeness + security (3 critics)
+# Tester: L1 (deterministic) verification active — zero API cost
+# Use for: PR reviews, config changes, research submissions
+
+critics:
+  - correctness
+  - completeness
+  - security
+
+# Model tiers — set to your preferred providers.
+# Tier 1 = strongest model (used for judgment-heavy roles)
+# Tier 2 = capable but cost-efficient (used for critics)
+model_tier1: anthropic/claude-opus-4-0
+model_tier2: anthropic/claude-sonnet-4-20250514
+
+max_fix_loops: 0       # Future: 1 fix loop on CRITICAL findings
+depth_profile: standard
+temperature: 0.1
+max_tokens: 4096

@@ -1,0 +1,12 @@
+{
+  "name": "Refactor Safely (安全重构)",
+  "tagline": "分步、可验证地重构代码，不改变对外行为，降低技术债与回归风险",
+  "description": "安全重构技能：明确范围与目标、识别依赖与风险、拆分可单独提交的小步（仅移动/重命名/抽离/替换/删废弃）、每步验证与回滚策略。适用于重构、清理技术债、改善结构但不要改行为，输出《安全重构计划》与步骤清单。",
+  "category": "development",
+  "tags": ["refactor", "technical-debt", "safe-refactor", "重构", "技术债"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/wangzhiming1999/oliver-skill/issues",
+  "homepage": "https://github.com/wangzhiming1999/oliver-skill"
+}

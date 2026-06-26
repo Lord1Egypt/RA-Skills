@@ -1,0 +1,787 @@
+{
+  "version": "1.2.5",
+  "updateDate": "2026-03-04",
+  "baseUrl": {
+  },
+  "httpMethod": "POST",
+  "contentType": "application/json;charset=UTF-8",
+  "encoding": "UTF-8",
+  "apis": [
+    {
+      "txCode": "601113",
+      "name": "查询租户下直连账户列表",
+      "businessCode": "100011",
+      "securityLevel": "10",
+      "description": "查询租户下所有直连账户信息，支持分页",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100011"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true, "description": "银行提供的租户标识"},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true, "format": "yyyyMMddHHmmss"},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true, "description": "银行提供，如 140001"},
+          {"fieldId": "pageIndex", "name": "页码", "type": "N..19", "required": true, "description": "long 类型"},
+          {"fieldId": "pageSize", "name": "每页条数", "type": "N..19", "required": true, "description": "支持 1-100"}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..100", "required": true},
+          {"fieldId": "data", "name": "响应内容", "type": "JsonArray", "required": true, "items": [
+            {"fieldId": "id", "name": "ID", "type": "AN..32", "required": true},
+            {"fieldId": "deptName", "name": "部门名称", "type": "ANS..100", "required": true},
+            {"fieldId": "deptNo", "name": "部门编码", "type": "ANS..32", "required": true},
+            {"fieldId": "bankClsName", "name": "金融机构分类名称", "type": "ANS..100", "required": true},
+            {"fieldId": "finInstName", "name": "金融机构名称", "type": "ANS..200", "required": true},
+            {"fieldId": "finInstNo", "name": "金融机构编码", "type": "AN12", "required": true},
+            {"fieldId": "accName", "name": "户名", "type": "ANS..150", "required": true},
+            {"fieldId": "bankAccno", "name": "账号", "type": "AN..60", "required": true},
+            {"fieldId": "createTime", "name": "创建时间", "type": "ANS..20", "required": true},
+            {"fieldId": "lastModTime", "name": "最后修改时间", "type": "ANS..20", "required": true},
+            {"fieldId": "accStatus", "name": "账户状态", "type": "ANS..2", "required": true, "enum": {"1": "未启用", "2": "正常", "3": "已销户", "4": "止付", "5": "待销户"}},
+            {"fieldId": "currCode", "name": "币种", "type": "AN3", "required": true},
+            {"fieldId": "currCnName", "name": "币种名称", "type": "ANS..100", "required": true},
+            {"fieldId": "openaccDate", "name": "开户日期", "type": "N8", "required": true, "format": "yyyyMMdd"},
+            {"fieldId": "accBal", "name": "账户余额", "type": "D(20,2)", "required": true},
+            {"fieldId": "avalBal", "name": "账户可用余额", "type": "D(20,2)", "required": false},
+            {"fieldId": "detailUpdateTime", "name": "明细更新时间", "type": "ANS..20", "required": true},
+            {"fieldId": "openBedlFlag", "name": "联网方式", "type": "N1", "required": true, "enum": {"0": "非直联", "1": "直联", "2": "SWIFT"}},
+            {"fieldId": "accAttrNo", "name": "账户性质编号", "type": "ANS..32", "required": true},
+            {"fieldId": "accAttrName", "name": "账户性质名称", "type": "ANS..100", "required": true},
+            {"fieldId": "balUpdateTime", "name": "余额更新时间", "type": "ANS..20", "required": true}
+          ]},
+          {"fieldId": "pagingResult", "name": "分页结果", "type": "JsonObject", "required": true, "properties": [
+            {"fieldId": "pageIndex", "name": "页码", "type": "N..19", "required": true},
+            {"fieldId": "pageSize", "name": "每页条数", "type": "N..19", "required": true},
+            {"fieldId": "total", "name": "记录总条数", "type": "AN..10", "required": true}
+          ]}
+        ]
+      }
+    },
+    {
+      "txCode": "601114",
+      "name": "批量工资代发",
+      "businessCode": "100012",
+      "securityLevel": "10",
+      "description": "批量工资代发业务，支持文件上传",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易码", "type": "ANS..6", "required": true, "description": "固定值：100012"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true, "format": "yyyyMMddHHmmss"},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "fileName", "name": "文件名", "type": "ANS..200", "required": true, "description": "租户编号 (14 位)+ 交易种类 (3 位)+ 交易日期 (8 位)+ 序列号 (5 位)+ 方向标识"},
+          {"fieldId": "importDate", "name": "导入日期", "type": "AN8", "required": true, "format": "yyyyMMdd"},
+          {"fieldId": "fileContent", "name": "文件内容", "type": "string", "required": true, "description": "Base64 编码的压缩文件内容"},
+          {"fieldId": "payerAccno", "name": "付款人账号", "type": "ANS..34", "required": true},
+          {"fieldId": "creatorName", "name": "创建人姓名", "type": "ANS..100", "required": true},
+          {"fieldId": "batchNo", "name": "批次号", "type": "AN..32", "required": false, "description": "发起系统支付单编号，要求全局唯一"}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..50", "required": true}
+        ]
+      }
+    },
+    {
+      "txCode": "601115",
+      "name": "批量工资代发结果查询",
+      "businessCode": "100013",
+      "securityLevel": "10",
+      "description": "查询批量工资代发处理结果",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100013"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "fileName", "name": "文件名", "type": "ANS..200", "required": true},
+          {"fieldId": "importDate", "name": "导入日期", "type": "AN8", "required": true},
+          {"fieldId": "payerAccno", "name": "付款人账号", "type": "ANS..34", "required": true}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..100", "required": true},
+          {"fieldId": "data", "name": "响应内容", "type": "JsonObject", "required": false, "properties": [
+            {"fieldId": "importFileStsCd", "name": "导入文件状态代码", "type": "AN1", "required": true, "enum": {"1": "校验中", "2": "校验通过", "3": "不通过", "4": "已提交", "5": "已作废", "6": "待送审", "7": "审批中", "8": "驳回", "9": "待付款", "a": "付款中", "b": "付款成功", "c": "部分成功", "d": "付款失败", "e": "已作废", "f": "已退回"}},
+            {"fieldId": "appFormStaCd", "name": "申请单状态代码", "type": "AN1", "required": false, "enum": {"4": "待付款", "5": "付款中", "6": "付款成功", "7": "部分成功", "8": "付款失败"}},
+            {"fieldId": "failMsg", "name": "文件批次整体失败原因说明", "type": "AN100", "required": false},
+            {"fieldId": "fileContent", "name": "文件内容", "type": "AN100", "required": false},
+            {"fieldId": "batchNo", "name": "批次号", "type": "AN..32", "required": false}
+          ]}
+        ]
+      }
+    },
+    {
+      "txCode": "601116",
+      "name": "生成单笔支付申请单或支付单",
+      "businessCode": "100014",
+      "securityLevel": "10",
+      "description": "生成单笔支付申请单或支付单，仅限原付款管理菜单租户使用",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100014"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "txType", "name": "交易类型", "type": "N1", "required": true, "enum": {"1": "对公支付", "2": "对私支付"}},
+          {"fieldId": "busiTypeCode", "name": "业务类型", "type": "N3", "required": true, "description": "参考附录 A.7"},
+          {"fieldId": "batchNo", "name": "批次号", "type": "AN..32", "required": true, "description": "发起系统支付单编号，要求全局唯一"},
+          {"fieldId": "budgetNo", "name": "预算编号", "type": "ANS..32", "required": false},
+          {"fieldId": "payerAccno", "name": "付款人账号", "type": "ANS..34", "required": true},
+          {"fieldId": "payAmt", "name": "支付金额", "type": "N..20", "required": true},
+          {"fieldId": "payType", "name": "支付模式", "type": "N1", "required": false, "enum": {"1": "即时支付", "2": "预约支付"}, "default": "2"},
+          {"fieldId": "paymDate", "name": "应付日期", "type": "AN8", "required": false, "format": "yyyyMMdd", "description": "支付模式为 1 时可不输"},
+          {"fieldId": "fundsUsageInfo", "name": "付款用途", "type": "ANS..500", "required": true},
+          {"fieldId": "payMode", "name": "支付方式", "type": "N1", "required": true, "enum": {"1": "账户", "2": "票据"}},
+          {"fieldId": "networkflagCode", "name": "联网标识代码", "type": "N2", "required": true, "enum": {"0": "非直连", "1": "直连"}},
+          {"fieldId": "payeeAccno", "name": "对方账号", "type": "AN..32", "required": true},
+          {"fieldId": "payeeAccname", "name": "收款人户名", "type": "AN..70", "required": true},
+          {"fieldId": "recpayBankCnapsNo", "name": "收款银行联行号", "type": "ANS..12", "required": false, "description": "联网标识为 1 时必填"},
+          {"fieldId": "txPtscrt", "name": "交易附言", "type": "ANS..300", "required": false},
+          {"fieldId": "creatorName", "name": "创建人姓名", "type": "ANS..100", "required": true},
+          {"fieldId": "remitBgnTime", "name": "预约支付时间开始", "type": "ANS..5", "required": false, "format": "HH:mm"},
+          {"fieldId": "remitEndTime", "name": "预约支付时间结束", "type": "ANS..5", "required": false, "format": "HH:mm"},
+          {"fieldId": "custFdsrcTpCd", "name": "支付单类型", "type": "ANS..2", "required": false, "enum": {"01": "普通支付单", "02": "关联支付单"}, "default": "01"}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..50", "required": true}
+        ]
+      }
+    },
+    {
+      "txCode": "601117",
+      "name": "单笔支付申请单或者支付单结果查询",
+      "businessCode": "100015",
+      "securityLevel": "10",
+      "description": "查询单笔支付申请单或支付单处理结果",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100015"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "batchNo", "name": "批次号", "type": "AN..32", "required": true, "description": "发起系统支付单编号"},
+          {"fieldId": "txType", "name": "交易类型", "type": "N1", "required": true, "enum": {"1": "对公支付", "2": "对私支付"}}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..50", "required": true},
+          {"fieldId": "data", "name": "响应数据", "type": "JsonObject", "required": false, "properties": [
+            {"fieldId": "payStatus", "name": "支付状态代码", "type": "AN1", "required": true, "enum": {"1": "待送审", "2": "审批中", "3": "驳回", "4": "待付款", "5": "付款中", "6": "付款成功", "7": "部分成功", "8": "付款失败", "9": "已作废", "a": "已退回"}},
+            {"fieldId": "bankSriNo", "name": "银行流水号", "type": "AN..64", "required": false},
+            {"fieldId": "finishDate", "name": "支付完成时间", "type": "AN14", "required": false, "format": "yyyyMMddHHmmss"}
+          ]}
+        ]
+      }
+    },
+    {
+      "txCode": "601118",
+      "name": "账户余额实时查询",
+      "businessCode": "100016",
+      "securityLevel": "10",
+      "description": "实时查询指定账户的余额和可用余额",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100016"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "bankAccno", "name": "账号", "type": "AN..60", "required": true}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..50", "required": true},
+          {"fieldId": "data", "name": "响应数据", "type": "JsonObject", "required": false, "properties": [
+            {"fieldId": "bankAccno", "name": "账号", "type": "AN..60", "required": true},
+            {"fieldId": "accBal", "name": "余额", "type": "D(20,2)", "required": true},
+            {"fieldId": "accAvalBal", "name": "可用余额", "type": "D(20,2)", "required": true}
+          ]}
+        ]
+      }
+    },
+    {
+      "txCode": "601119",
+      "name": "查询明细",
+      "businessCode": "100017",
+      "securityLevel": "10",
+      "description": "查询账户交易明细，支持分页，时间范围最多 7 天",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100017"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "bankAccno", "name": "账号", "type": "AN..60", "required": true},
+          {"fieldId": "txStartDate", "name": "交易开始时间", "type": "ANS..10", "required": true, "format": "yyyyMMdd", "description": "最早支持最近一年之内"},
+          {"fieldId": "txEndDate", "name": "交易结束时间", "type": "ANS..10", "required": true, "format": "yyyyMMdd", "description": "开始结束时间仅支持 7 天"},
+          {"fieldId": "pageIndex", "name": "页码", "type": "N..19", "required": true},
+          {"fieldId": "pageSize", "name": "每页条数", "type": "N..19", "required": true, "description": "支持 1-100"}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..100", "required": true},
+          {"fieldId": "data", "name": "响应内容", "type": "JsonArray", "required": false, "items": [
+            {"fieldId": "bankAccno", "name": "账号", "type": "AN..60", "required": true},
+            {"fieldId": "accName", "name": "户名", "type": "ANS..150", "required": true},
+            {"fieldId": "txDate", "name": "交易日期", "type": "ANS10", "required": true},
+            {"fieldId": "txTime", "name": "交易时间", "type": "ANS8", "required": true},
+            {"fieldId": "opsAccNo", "name": "交易对手账号", "type": "AN..60", "required": true},
+            {"fieldId": "opsAccName", "name": "交易对手户名", "type": "ANS..100", "required": true},
+            {"fieldId": "dcFlag", "name": "借贷标志", "type": "N1", "required": true, "enum": {"0": "借", "1": "贷"}},
+            {"fieldId": "currCode", "name": "币种", "type": "AN3", "required": true},
+            {"fieldId": "currCnName", "name": "币种名称", "type": "ANS..100", "required": true},
+            {"fieldId": "txAmt", "name": "交易金额", "type": "D(20,2)", "required": true},
+            {"fieldId": "accBal", "name": "账户余额", "type": "D(20,2)", "required": true},
+            {"fieldId": "txSriNo", "name": "银行流水号", "type": "ANS..80", "required": true},
+            {"fieldId": "remark", "name": "附言", "type": "ANS..2000", "required": true},
+            {"fieldId": "txSumm", "name": "摘要", "type": "ANS..400", "required": true},
+            {"fieldId": "id", "name": "主键 ID", "type": "AN..32", "required": true},
+            {"fieldId": "batchNo", "name": "批次号", "type": "AN..32", "required": false}
+          ]},
+          {"fieldId": "pagingResult", "name": "分页结果", "type": "JsonObject", "required": false, "properties": [
+            {"fieldId": "pageIndex", "name": "页码", "type": "N..19", "required": true},
+            {"fieldId": "pageSize", "name": "每页条数", "type": "N..19", "required": true},
+            {"fieldId": "total", "name": "记录总条数", "type": "AN..10", "required": true}
+          ]}
+        ]
+      }
+    },
+    {
+      "txCode": "601120",
+      "name": "账户历史余额查询",
+      "businessCode": "100018",
+      "securityLevel": "10",
+      "description": "查询账户历史余额",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100018"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "bankAccno", "name": "账号", "type": "AN..60", "required": true},
+          {"fieldId": "startDate", "name": "开始日期", "type": "ANS..10", "required": true},
+          {"fieldId": "endDate", "name": "结束日期", "type": "ANS..10", "required": true}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..100", "required": true},
+          {"fieldId": "data", "name": "响应内容", "type": "JsonArray", "required": false, "items": [
+            {"fieldId": "bankAccno", "name": "账号", "type": "AN..60", "required": true},
+            {"fieldId": "date", "name": "日期", "type": "ANS..10", "required": true},
+            {"fieldId": "accBal", "name": "当天余额", "type": "D(20,2)", "required": false},
+            {"fieldId": "avalBal", "name": "可用余额", "type": "D(20,2)", "required": false}
+          ]}
+        ]
+      }
+    },
+    {
+      "txCode": "601203",
+      "name": "明细关联回单信息查询",
+      "businessCode": "100019",
+      "securityLevel": "15",
+      "description": "查询明细关联的回单信息，安全级别 15，业务报文平铺传输",
+      "request": {
+        "businessFields": [
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "id", "name": "明细 id", "type": "AN..32", "required": true}
+        ],
+        "flatMode": true
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..100", "required": true},
+          {"fieldId": "data", "name": "响应内容", "type": "JsonObject", "required": false, "properties": [
+            {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS..32", "required": true},
+            {"fieldId": "feedAckTime", "name": "反馈确认时间", "type": "AN..19", "required": true, "description": "时间戳毫秒数"},
+            {"fieldId": "id", "name": "明细 id", "type": "AN..32", "required": true},
+            {"fieldId": "fileType", "name": "回单文件类型", "type": "ANA..6", "required": true, "description": "如 pdf、png"},
+            {"fieldId": "file", "name": "回单文件", "type": "CLOB", "required": true, "description": "Base64 文件流字符串"}
+          ]}
+        ]
+      }
+    },
+    {
+      "txCode": "601303",
+      "name": "查询资金归集明细",
+      "businessCode": "100024",
+      "securityLevel": "10",
+      "description": "查询资金归集明细，支持分页",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100024"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "bankAccno", "name": "账号", "type": "AN..60", "required": true},
+          {"fieldId": "txStartDate", "name": "交易开始时间", "type": "ANS..10", "required": true, "format": "yyyy-MM-dd"},
+          {"fieldId": "txEndDate", "name": "交易结束时间", "type": "ANS..10", "required": true, "format": "yyyy-MM-dd"},
+          {"fieldId": "pageIndex", "name": "页码", "type": "N..19", "required": true},
+          {"fieldId": "pageSize", "name": "每页条数", "type": "N..19", "required": true}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..100", "required": true},
+          {"fieldId": "data", "name": "响应内容", "type": "JsonArray", "required": false, "items": [
+            {"fieldId": "bankAccno", "name": "账号", "type": "AN..60", "required": true},
+            {"fieldId": "accName", "name": "户名", "type": "ANS..150", "required": true},
+            {"fieldId": "txDate", "name": "交易日期", "type": "ANS10", "required": true},
+            {"fieldId": "txTime", "name": "交易时间", "type": "ANS8", "required": true},
+            {"fieldId": "opsAccNo", "name": "交易对手账号", "type": "AN..60", "required": true},
+            {"fieldId": "opsAccName", "name": "交易对手户名", "type": "ANS..100", "required": true},
+            {"fieldId": "dcFlag", "name": "借贷标志", "type": "N1", "required": true},
+            {"fieldId": "currCode", "name": "币种", "type": "AN3", "required": true},
+            {"fieldId": "txAmt", "name": "交易金额", "type": "D(20,2)", "required": true},
+            {"fieldId": "accBal", "name": "账户余额", "type": "D(20,2)", "required": true},
+            {"fieldId": "txSriNo", "name": "银行流水号", "type": "ANS..80", "required": true},
+            {"fieldId": "postscript", "name": "附言", "type": "ANS..2000", "required": false},
+            {"fieldId": "txSumm", "name": "摘要", "type": "ANS..400", "required": true},
+            {"fieldId": "id", "name": "主键 ID", "type": "AN..32", "required": true}
+          ]},
+          {"fieldId": "pagingResult", "name": "分页结果", "type": "JsonObject", "required": false}
+        ]
+      }
+    },
+    {
+      "txCode": "601304",
+      "name": "手工下拨",
+      "businessCode": "100025",
+      "securityLevel": "10",
+      "description": "手工下拨资金到下级账户",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100025"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "bankAccno", "name": "账号", "type": "AN..60", "required": true, "description": "付方账号"},
+          {"fieldId": "opsAccNo", "name": "交易对手账号", "type": "AN..60", "required": true, "description": "下拨对手账号"},
+          {"fieldId": "txAmt", "name": "交易金额", "type": "D(20,2)", "required": true},
+          {"fieldId": "postscript", "name": "附言", "type": "ANS..2000", "required": false},
+          {"fieldId": "currCode", "name": "币种", "type": "AN3", "required": true}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..100", "required": true},
+          {"fieldId": "data", "name": "响应内容", "type": "JsonObject", "required": false, "properties": [
+            {"fieldId": "bankAccno", "name": "账号", "type": "AN..60", "required": true},
+            {"fieldId": "opsAccNo", "name": "交易对手账号", "type": "AN..60", "required": true},
+            {"fieldId": "txSriNo", "name": "银行流水号", "type": "ANS..80", "required": true},
+            {"fieldId": "applyNo", "name": "申请单编号", "type": "ANS..32", "required": false, "description": "校验通过后返回，后续通过 7.20 接口查询"}
+          ]}
+        ]
+      }
+    },
+    {
+      "txCode": "601311",
+      "name": "融资中心付款单获取",
+      "businessCode": "100023",
+      "securityLevel": "10",
+      "description": "获取融资中心已推送的付款单",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：601311"},
+          {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "deptNo", "name": "付款单位", "type": "ANS..100", "required": true}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..50", "required": true},
+          {"fieldId": "data", "name": "响应内容", "type": "JsonArray", "required": false, "items": [
+            {"fieldId": "deptNo", "name": "付款单位", "type": "ANS..100", "required": true},
+            {"fieldId": "repayNo", "name": "还款计划编号", "type": "ANS..20", "required": true},
+            {"fieldId": "repayType", "name": "业务类型", "type": "ANS..20", "required": true, "description": "还本/付息/还本付息"},
+            {"fieldId": "repayAccNo", "name": "付款账号", "type": "ANS..50", "required": false},
+            {"fieldId": "repayDate", "name": "预计还款日期", "type": "AN8", "required": true},
+            {"fieldId": "repayAmt", "name": "付款金额", "type": "D(20,2)", "required": true},
+            {"fieldId": "curName", "name": "付款币种", "type": "ANS..100", "required": true},
+            {"fieldId": "payeeName", "name": "收款人", "type": "ANS..512", "required": true}
+          ]}
+        ]
+      }
+    },
+    {
+      "txCode": "601324",
+      "name": "新增申请单",
+      "businessCode": "100021",
+      "securityLevel": "10",
+      "description": "新增申请单，仅限付款管理（新）菜单租户使用",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100021"},
+          {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "oldBatchNo", "name": "来源系统批次号", "type": "ANS..64", "required": true},
+          {"fieldId": "busiTypeCode", "name": "业务类型", "type": "ANS..100", "required": false},
+          {"fieldId": "payblAmt", "name": "应付金额", "type": "D(20,2)", "required": true},
+          {"fieldId": "orgInstCode", "name": "付方组织编码", "type": "ANS..32", "required": true},
+          {"fieldId": "payerAccno", "name": "付方账号", "type": "ANS..32", "required": false},
+          {"fieldId": "payerAccname", "name": "付方户名", "type": "ANS..32", "required": false},
+          {"fieldId": "payeeAccno", "name": "收方账号", "type": "ANS..32", "required": true},
+          {"fieldId": "payeeAccname", "name": "收方户名", "type": "ANS..32", "required": true},
+          {"fieldId": "dealAttachList", "name": "附件列表", "type": "ANS..32", "required": false},
+          {"fieldId": "payeeOacBankName", "name": "收方开户行", "type": "ANS..32", "required": false},
+          {"fieldId": "recpayBankCnapsNo", "name": "收方联行号", "type": "ANS..32", "required": false},
+          {"fieldId": "budgetNo", "name": "预算编号", "type": "ANS..32", "required": false}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..50", "required": true},
+          {"fieldId": "data", "name": "响应内容", "type": "JsonArray", "required": false}
+        ]
+      }
+    },
+    {
+      "txCode": "601325",
+      "name": "申请单结果查询",
+      "businessCode": "100022",
+      "securityLevel": "10",
+      "description": "查询申请单处理结果，仅限付款管理（新）菜单租户使用",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS6", "required": true, "description": "固定值：100022"},
+          {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS32", "required": true},
+          {"fieldId": "oldBatchNo", "name": "来源系统批次号", "type": "ANS64", "required": true}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..50", "required": true},
+          {"fieldId": "data", "name": "响应内容", "type": "JsonArray", "required": true, "items": [
+            {"fieldId": "payStatus", "name": "申请单状态", "type": "ANS..1", "required": true, "enum": {"0": "申请单待审核", "1": "申请单审核中", "2": "申请单已驳回", "f": "支付单待送审", "g": "支付单审批中", "h": "支付单已驳回", "3": "待付款", "4": "付款中", "5": "付款成功", "6": "部分成功", "7": "付款失败", "b": "已退回", "c": "已作废"}},
+            {"fieldId": "applyNo", "name": "申请单编号", "type": "ANS..32", "required": true},
+            {"fieldId": "oldBatchNo", "name": "来源系统批次号", "type": "ANS..64", "required": true},
+            {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true},
+            {"fieldId": "busiTypeCode", "name": "业务类型", "type": "ANS..100", "required": false},
+            {"fieldId": "payblAmt", "name": "应付金额", "type": "D(20,2)", "required": true},
+            {"fieldId": "orgInstCode", "name": "付方组织代码", "type": "ANS..32", "required": true},
+            {"fieldId": "orgName", "name": "付方组织名称", "type": "ANS..32", "required": true},
+            {"fieldId": "payerAccno", "name": "付方账号", "type": "ANS..32", "required": false},
+            {"fieldId": "payerAccname", "name": "付方户名", "type": "ANS..32", "required": false},
+            {"fieldId": "payeeAccno", "name": "收方账号", "type": "ANS..32", "required": true},
+            {"fieldId": "payeeAccname", "name": "收方户名", "type": "ANS..32", "required": true},
+            {"fieldId": "payList", "name": "支付单列表", "type": "list", "required": false, "items": [
+              {"fieldId": "id", "name": "支付单编号", "type": "ANS..19", "required": false},
+              {"fieldId": "txPayStaCd", "name": "支付单状态", "type": "AN1", "required": false},
+              {"fieldId": "linkType", "name": "流程链路状态", "type": "AN1", "required": false},
+              {"fieldId": "txType", "name": "支付类型", "type": "N1", "required": false},
+              {"fieldId": "payMode", "name": "支付方式", "type": "N1", "required": false},
+              {"fieldId": "networkflagCode", "name": "联网方式", "type": "N2", "required": false},
+              {"fieldId": "payAmt", "name": "支付金额", "type": "N..20", "required": false},
+              {"fieldId": "payType", "name": "支付模式", "type": "N1", "required": false},
+              {"fieldId": "paymDate", "name": "预约日期", "type": "AN8", "required": false},
+              {"fieldId": "finishDate", "name": "支付完成时间", "type": "AN14", "required": false},
+              {"fieldId": "budgetNo", "name": "预算编号", "type": "ANS..32", "required": false}
+            ]}
+          ]}
+        ]
+      }
+    },
+    {
+      "txCode": "601383",
+      "name": "获取免密登录令牌",
+      "businessCode": "100027",
+      "securityLevel": "10",
+      "description": "获取免密登录令牌，用于司库系统免密登录",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100027"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "userAccNo", "name": "用户账号", "type": "AN..100", "required": true, "description": "司库系统的登录账号 (手机号)"},
+          {"fieldId": "tenantNo", "name": "令牌类型", "type": "ANS..40", "required": true, "description": "固定值：PASS_TOKEN"}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..100", "required": true},
+          {"fieldId": "data", "name": "响应内容", "type": "JsonObject", "required": false, "properties": [
+            {"fieldId": "urlWithToken", "name": "链接", "type": "AN..500", "required": true, "description": "带令牌的登录 URL"}
+          ]}
+        ]
+      }
+    },
+    {
+      "txCode": "601417",
+      "name": "资金计划科目同步",
+      "businessCode": "100028",
+      "securityLevel": "10",
+      "description": "将资金计划科目同步到司库系统",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100028"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "交易时间", "type": "AN14", "required": true},
+          {"fieldId": "type", "name": "同步类型", "type": "AN1", "required": true, "enum": {"1": "新增", "2": "修改", "3": "停用", "4": "删除"}},
+          {"fieldId": "items", "name": "科目列表", "type": "JsonArray", "required": true, "items": [
+            {"fieldId": "cdSign", "name": "收支属性", "type": "ANS..2", "required": true, "enum": {"10": "流入", "20": "流出"}},
+            {"fieldId": "code", "name": "科目编码", "type": "AN..32", "required": false, "description": "type 为 2/3/4 时必输"},
+            {"fieldId": "name", "name": "科目名称", "type": "AN..100", "required": true},
+            {"fieldId": "superCode", "name": "上级科目编码", "type": "ANS..32", "required": false},
+            {"fieldId": "superName", "name": "上级科目名称", "type": "ANS..32", "required": false}
+          ]}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "交易时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..100", "required": true},
+          {"fieldId": "data", "name": "响应内容", "type": "List", "required": false, "items": [
+            {"fieldId": "itemCode", "name": "科目编码", "type": "ANS..32", "required": false},
+            {"fieldId": "itemName", "name": "科目名称", "type": "ANS..32", "required": false}
+          ]}
+        ]
+      }
+    },
+    {
+      "txCode": "601418",
+      "name": "资金计划填报",
+      "businessCode": "100029",
+      "securityLevel": "10",
+      "description": "上报年/季/月/周/旬资金计划金额",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100029"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "交易时间", "type": "AN14", "required": true},
+          {"fieldId": "cur", "name": "币种", "type": "ANS..3", "required": true, "description": "如 CNY"},
+          {"fieldId": "orgId", "name": "单位 id", "type": "ANS..40", "required": true},
+          {"fieldId": "timePeriod", "name": "预算类型", "type": "AN2", "required": true, "enum": {"1": "年", "2": "季", "3": "月", "4": "旬", "5": "周"}},
+          {"fieldId": "beginDate", "name": "预算开始日", "type": "AN8", "required": true, "format": "yyyyMMdd"},
+          {"fieldId": "endDate", "name": "预算结束日", "type": "AN8", "required": true, "format": "yyyyMMdd"},
+          {"fieldId": "items", "name": "预算请求提交金额 List", "type": "JsonArray", "required": true, "items": [
+            {"fieldId": "itemCode", "name": "科目编码", "type": "ANS..32", "required": false},
+            {"fieldId": "itemName", "name": "科目名称", "type": "ANS..32", "required": false},
+            {"fieldId": "budgetAmount", "name": "填报金额", "type": "D(20,2)", "required": true}
+          ]}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..100", "required": true},
+          {"fieldId": "data", "name": "响应内容", "type": "JsonObject", "required": false}
+        ]
+      }
+    },
+    {
+      "txCode": "601419",
+      "name": "资金计划追加",
+      "businessCode": "100030",
+      "securityLevel": "10",
+      "description": "对本期资金计划做追加，可追加负数表示减少",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100030"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "交易时间", "type": "AN14", "required": true},
+          {"fieldId": "cur", "name": "币种", "type": "ANS..32", "required": true},
+          {"fieldId": "orgId", "name": "单位 id", "type": "ANS..40", "required": true},
+          {"fieldId": "timePeriod", "name": "预算类型", "type": "AN2", "required": true},
+          {"fieldId": "beginDate", "name": "预算开始日", "type": "AN8", "required": true},
+          {"fieldId": "endDate", "name": "预算结束日", "type": "AN8", "required": true},
+          {"fieldId": "items", "name": "预算请求提交金额 List", "type": "JsonArray", "required": true, "items": [
+            {"fieldId": "itemCode", "name": "科目编码", "type": "ANS..32", "required": false},
+            {"fieldId": "itemName", "name": "科目名称", "type": "ANS..32", "required": false},
+            {"fieldId": "addAmount", "name": "追加金额", "type": "D(20,2)", "required": true, "description": "可以为负"}
+          ]}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..100", "required": true},
+          {"fieldId": "data", "name": "响应内容", "type": "JsonObject", "required": false}
+        ]
+      }
+    },
+    {
+      "txCode": "601420",
+      "name": "资金计划占用情况查询",
+      "businessCode": "100031",
+      "securityLevel": "10",
+      "description": "查询每期资金计划执行情况",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100031"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "交易时间", "type": "AN14", "required": true},
+          {"fieldId": "current", "name": "当前页", "type": "Int", "required": true},
+          {"fieldId": "size", "name": "每页数量", "type": "INT", "required": true},
+          {"fieldId": "orgId", "name": "单位 id", "type": "ANS..40", "required": true},
+          {"fieldId": "timePeriod", "name": "预算类型", "type": "int", "required": true},
+          {"fieldId": "beginDate", "name": "开始时间", "type": "AN8", "required": true},
+          {"fieldId": "endDate", "name": "结束时间", "type": "AN8", "required": true}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantId", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "交易日期", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..100", "required": true},
+          {"fieldId": "data", "name": "响应内容", "type": "JsonObject", "required": false, "properties": [
+            {"fieldId": "current", "name": "当前页", "type": "INT", "required": true},
+            {"fieldId": "pages", "name": "页数", "type": "INT", "required": true},
+            {"fieldId": "orgId", "name": "单位 id", "type": "ANS..40", "required": true},
+            {"fieldId": "records", "name": "数据集合", "type": "List", "required": true, "items": [
+              {"fieldId": "timePeriod", "name": "预算类型", "type": "int", "required": true},
+              {"fieldId": "beginDate", "name": "开始时间", "type": "AN8", "required": true},
+              {"fieldId": "endDate", "name": "结束时间", "type": "AN8", "required": true},
+              {"fieldId": "budgetInSumAmount", "name": "资金收入预算总额", "type": "D(20,2)", "required": true},
+              {"fieldId": "inCarrySumAmount", "name": "资金收入执行总额", "type": "D(20,2)", "required": true},
+              {"fieldId": "budgetOutSumAmount", "name": "资金支出预算总额", "type": "D(20,2)", "required": true},
+              {"fieldId": "outCarrySumAmount", "name": "资金支出执行总额", "type": "D(20,2)", "required": true},
+              {"fieldId": "items", "name": "详细执行数据", "type": "List", "required": true, "items": [
+                {"fieldId": "itemCode", "name": "科目编码", "type": "ANS..32", "required": true},
+                {"fieldId": "itemName", "name": "科目名称", "type": "ANS..32", "required": true},
+                {"fieldId": "cdsign", "name": "收支标识", "type": "Int", "required": true, "enum": {"10": "收入", "20": "支出"}},
+                {"fieldId": "budgetAmount", "name": "预算金额合计", "type": "D(20,2)", "required": true},
+                {"fieldId": "reportAmt", "name": "上报金额", "type": "D(20,2)", "required": true},
+                {"fieldId": "addedTototalAmt", "name": "追加总额", "type": "D(20,2)", "required": true},
+                {"fieldId": "processAmount", "name": "执行金额", "type": "D(20,2)", "required": true}
+              ]}
+            ]}
+          ]}
+        ]
+      }
+    },
+    {
+      "txCode": "601732",
+      "name": "手工下拨结果查询",
+      "businessCode": "100032",
+      "securityLevel": "10",
+      "description": "查询手工下拨处理结果",
+      "request": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true, "description": "固定值：100032"},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "srcSysId", "name": "来源系统 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "applyNo", "name": "申请单编号", "type": "AN..32", "required": true, "description": "7.11 返回的申请单编号"}
+        ]
+      },
+      "response": {
+        "businessFields": [
+          {"fieldId": "txCode", "name": "交易代码", "type": "ANS..6", "required": true},
+          {"fieldId": "tenantID", "name": "租户 ID", "type": "ANS..32", "required": true},
+          {"fieldId": "sendTime", "name": "发起日期", "type": "AN14", "required": true},
+          {"fieldId": "feedbackTime", "name": "反馈时间", "type": "AN14", "required": true},
+          {"fieldId": "respCode", "name": "响应码", "type": "AN6", "required": true},
+          {"fieldId": "respInfo", "name": "响应信息", "type": "ANS..50", "required": true},
+          {"fieldId": "data", "name": "响应数据", "type": "JsonObject", "required": false, "properties": [
+            {"fieldId": "applyNo", "name": "申请单编号", "type": "AN..32", "required": true},
+            {"fieldId": "applyStatus", "name": "审批状态", "type": "N2", "required": true, "enum": {"9": "审批中", "4": "审批通过", "5": "驳回"}},
+            {"fieldId": "payStatus", "name": "支付状态代码", "type": "AN1", "required": true, "enum": {"0": "待支付", "1": "支付中", "3": "支付成功", "4": "支付失败"}},
+            {"fieldId": "failReason", "name": "失败原因", "type": "AN..2048", "required": false},
+            {"fieldId": "finishDate", "name": "支付完成时间", "type": "AN14", "required": false}
+          ]}
+        ]
+      }
+    }
+  ]
+}

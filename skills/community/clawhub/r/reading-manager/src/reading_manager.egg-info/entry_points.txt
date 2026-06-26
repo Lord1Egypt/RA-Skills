@@ -1,0 +1,2 @@
+[console_scripts]
+reading = reading_cli:main

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>认知主权 - 小红书图文切片</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --coral: #FF6B5B;
+    --peach: #FFAA88;
+    --cream: #FFF5EE;
+    --ink: #1A1A2E;
+    --muted: #6B6B8A;
+    --gold: #F0B429;
+    --sage: #6BAA8B;
+  }
+
+  body {
+    background: #F0EBE3;
+    font-family: 'Noto Sans SC', sans-serif;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  h1.page-title {
+    text-align: center;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 22px;
+    color: #444;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+  }
+  .page-sub {
+    text-align: center;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 40px;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 32px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  /* === CARD BASE === */
+  .card {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+  }
+
+  .card-label {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.35);
+    color: white;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  /* === CARD 1: COVER === */
+  .card-1 {
+    background: linear-gradient(145deg, #FF6B5B 0%, #FF9A6C 50%, #FFCB8E 100%);
+  }
+  .card-1 .bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+  }
+  .card-1 .c1 { width: 280px; height: 280px; top: -80px; left: -80px; }
+  .card-1 .c2 { width: 200px; height: 200px; top: 30px; right: -60px; }
+  .card-1 .c3 { width: 150px; height: 150px; bottom: 80px; left: -40px; background: rgba(255,255,255,0.07); }
+
+  .card-1 .content {
+    position: relative;
+    z-index: 2;
+    padding: 32px 28px;
+  }
+  .card-1 .emoji-big { font-size: 52px; display: block; margin-bottom: 16px; }
+  .card-1 .main-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+  .card-1 .subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .card-1 .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .card-1 .tag {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: white;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .card-1 .series-badge {
+    position: absolute;
+    top: 22px;
+    left: 24px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+
+  /* === CARD 2: 被算法喂养 === */
+  .card-2 {
+    background: #1A1A2E;
+  }
+  .card-2 .grid-lines {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,107,91,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,107,91,0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .card-2 .glow {
+    position: absolute;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(255,107,91,0.2) 0%, transparent 70%);
+    top: -50px; right: -50px;
+  }
+  .card-2 .content {
+    position: relative; z-index: 2;
+    padding: 32px 28px;
+  }
+  .card-2 .warning-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,107,91,0.15);
+    border: 1px solid rgba(255,107,91,0.4);
+    color: #FF6B5B;
+    font-size: 11px; font-weight: 700;
+    padding: 5px 12px; border-radius: 4px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  .card-2 .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 24px; font-weight: 900;
+    color: white;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+  .card-2 .flow-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 14px;
+  }
+  .card-2 .flow-dot {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(255,107,91,0.15);
+    border: 1px solid rgba(255,107,91,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; flex-shrink: 0; margin-top: 2px;
+  }
+  .card-2 .flow-text { color: #C0C0D8; font-size: 14px; line-height: 1.5; }
+  .card-2 .flow-text .arrow { color: #FF6B5B; font-weight: 700; }
+  .card-2 .punch-line {
+    margin-top: 22px;
+    background: rgba(255,107,91,0.1);
+    border-left: 3px solid #FF6B5B;
+    padding: 14px 16px;
+    border-radius: 0 8px 8px 0;
+  }
+  .card-2 .punch-line p { color: #E0E0F0; font-size: 13px; line-height: 1.6; }
+  .card-2 .punch-line strong { color: #FF6B5B; }
+
+  /* === CARD 3: 什么是认知主权 === */
+  .card-3 {
+    background: linear-gradient(160deg, #EEF2FF 0%, #E8F5F0 100%);
+  }
+  .card-3 .deco-shape {
+    position: absolute;
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+    opacity: 0.3;
+  }
+  .card-3 .s1 { width: 200px; height: 200px; background: #6BAA8B; top: -60px; right: -40px; }
+  .card-3 .s2 { width: 140px; height: 140px; background: #FF6B5B; bottom: 60px; left: -30px; opacity: 0.15; }
+
+  .card-3 .content { position: relative; z-index: 2; padding: 32px 28px; }
+  .card-3 .top-tag {
+    display: inline-block;
+    background: #6BAA8B; color: white;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    padding: 4px 12px; border-radius: 4px; margin-bottom: 16px;
+  }
+  .card-3 .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 22px; font-weight: 900;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .card-3 .formula {
+    background: var(--ink);
+    color: white;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.7;
+  }
+  .card-3 .formula .highlight { color: #6BAA8B; font-weight: 700; font-size: 16px; }
+  .card-3 .pillar {
+    background: white;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    display: flex; align-items: flex-start; gap: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .card-3 .pillar-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .card-3 .pillar-title { font-weight: 700; color: var(--ink); font-size: 14px; margin-bottom: 3px; }
+  .card-3 .pillar-desc { font-size: 12px; color: #888; line-height: 1.5; }
+
+  /* === CARD 4: 为什么重要 === */
+  .card-4 {
+    background: linear-gradient(160deg, #FFFBF0 0%, #FFF0E8 100%);
+  }
+  .card-4 .fire-bg {
+    position: absolute; top: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle at top right, rgba(240,180,41,0.2) 0%, transparent 70%);
+  }
+  .card-4 .content { position: relative; z-index: 2; padding: 32px 28px; }
+  .card-4 .top-tag {
+    display: inline-block;
+    background: #F0B429; color: white;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    padding: 4px 12px; border-radius: 4px; margin-bottom: 16px;
+  }
+  .card-4 .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 22px; font-weight: 900; color: var(--ink);
+    margin-bottom: 20px; line-height: 1.4;
+  }
+  .card-4 .comparison {
+    display: flex; flex-direction: column; gap: 14px;
+    margin-bottom: 20px;
+  }
+  .card-4 .side {
+    border-radius: 12px; padding: 16px;
+  }
+  .card-4 .side.bad {
+    background: #FEF2F2;
+    border: 1px solid #FED7D7;
+  }
+  .card-4 .side.good {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+  }
+  .card-4 .side-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .card-4 .side.bad .side-label { color: #EF4444; }
+  .card-4 .side.good .side-label { color: #22C55E; }
+  .card-4 .flow-steps {
+    font-size: 13px; line-height: 1.9;
+    color: #555;
+  }
+  .card-4 .flow-steps .arrow { color: #aaa; margin: 0 4px; }
+  .card-4 .side.good .flow-steps .arrow { color: #22C55E; }
+  .card-4 .side.bad .flow-steps .arrow { color: #EF4444; }
+
+  /* === CARD 5: 3步行动 === */
+  .card-5 {
+    background: linear-gradient(155deg, #2D1B69 0%, #1A3A4A 100%);
+  }
+  .card-5 .stars {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 20%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 40% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 10% 70%, rgba(255,255,255,0.4) 0%, transparent 100%);
+  }
+  .card-5 .content { position: relative; z-index: 2; padding: 32px 28px; }
+  .card-5 .top-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9);
+    border: 1px solid rgba(255,255,255,0.25);
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    padding: 4px 12px; border-radius: 4px; margin-bottom: 16px;
+  }
+  .card-5 .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 24px; font-weight: 900; color: white;
+    margin-bottom: 24px;
+  }
+  .card-5 .step {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin-bottom: 18px;
+  }
+  .card-5 .step-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, #FF6B5B, #FFAA6B);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 900; color: white;
+    flex-shrink: 0;
+  }
+  .card-5 .step-body {}
+  .card-5 .step-title { color: white; font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .card-5 .step-desc { color: rgba(255,255,255,0.65); font-size: 12.5px; line-height: 1.6; }
+  .card-5 .food-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+    margin-top: 6px;
+  }
+  .card-5 .food-item {
+    background: rgba(255,255,255,0.08);
+    border-radius: 6px; padding: 5px 8px;
+    font-size: 11.5px; color: rgba(255,255,255,0.8);
+  }
+
+  /* === CARD 6: CLOSER === */
+  .card-6 {
+    background: linear-gradient(145deg, #FF6B5B 0%, #FF4D6D 60%, #C9184A 100%);
+  }
+  .card-6 .ring {
+    position: absolute; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .card-6 .r1 { width: 400px; height: 400px; top: -160px; left: -160px; }
+  .card-6 .r2 { width: 300px; height: 300px; top: -80px; left: -80px; }
+  .card-6 .r3 { width: 200px; height: 200px; bottom: -60px; right: -60px; }
+  .card-6 .content {
+    position: relative; z-index: 2;
+    padding: 32px 28px;
+    display: flex; flex-direction: column; height: 100%;
+    justify-content: flex-end;
+  }
+  .card-6 .quote-mark {
+    font-family: Georgia, serif;
+    font-size: 80px; line-height: 1;
+    color: rgba(255,255,255,0.2);
+    position: absolute; top: 28px; left: 20px;
+  }
+  .card-6 .quote-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 26px; font-weight: 900;
+    color: white;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  }
+  .card-6 .quote-sub {
+    font-size: 14px; color: rgba(255,255,255,0.8);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+  .card-6 .tags-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .card-6 .tag {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white; font-size: 11px;
+    padding: 4px 10px; border-radius: 20px;
+  }
+  .card-6 .series-note {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    font-size: 12px; color: rgba(255,255,255,0.7);
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<h1 class="page-title">🦐 养虾日记 · 认知主权</h1>
+<p class="page-sub">共 6 张 · 小红书图文切片 · 点击卡片可查看细节</p>
+
+<div class="cards-grid">
+
+  <!-- CARD 1: COVER -->
+  <div class="card card-1">
+    <div class="bg-circle c1"></div>
+    <div class="bg-circle c2"></div>
+    <div class="bg-circle c3"></div>
+    <div class="series-badge">🦐 养虾日记 Day 2</div>
+    <div class="card-label">1 / 6</div>
+    <div class="content">
+      <span class="emoji-big">🧠</span>
+      <div class="main-title">认知主权<br>别被算法<br>喂养了</div>
+      <div class="subtitle">每天早上醒来第一件事是刷手机？<br>你可能正在被算法驯化……</div>
+      <div class="tag-row">
+        <span class="tag">#认知主权</span>
+        <span class="tag">#注意力管理</span>
+        <span class="tag">#Human3.0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 2: 你被算法喂养了 -->
+  <div class="card card-2">
+    <div class="grid-lines"></div>
+    <div class="glow"></div>
+    <div class="card-label">2 / 6</div>
+    <div class="content">
+      <div class="warning-badge">⚠️ 现实检查</div>
+      <div class="section-title">你正在被<br>算法喂养</div>
+      <div class="flow-item">
+        <div class="flow-dot">😰</div>
+        <div class="flow-text">你喜欢焦虑内容 <span class="arrow">→</span> 推更多焦虑</div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-dot">⚡</div>
+        <div class="flow-text">你喜欢对立观点 <span class="arrow">→</span> 推更多对立</div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-dot">💊</div>
+        <div class="flow-text">你喜欢碎片信息 <span class="arrow">→</span> 推更多碎片</div>
+      </div>
+      <div class="punch-line">
+        <p>你以为在获取信息<br><strong>实际只是在被投喂情绪</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 3: 什么是认知主权 -->
+  <div class="card card-3">
+    <div class="deco-shape s1"></div>
+    <div class="deco-shape s2"></div>
+    <div class="card-label">3 / 6</div>
+    <div class="content">
+      <div class="top-tag">CONCEPT</div>
+      <div class="section-title">什么是认知主权？</div>
+      <div class="formula">
+        <div>🧠 <span class="highlight">认知主权</span> =</div>
+        <div>控制输入 + 控制解释权 + 控制输出</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🍽️</div>
+        <div>
+          <div class="pillar-title">控制输入：你吃什么</div>
+          <div class="pillar-desc">被动接受算法 = 吃垃圾食品<br>主动选择信息 = 吃营养均衡</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🔍</div>
+        <div>
+          <div class="pillar-title">控制解释权：你怎么理解</div>
+          <div class="pillar-desc">用自己的框架理解世界，而不是被别人的框架定义</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">✍️</div>
+        <div>
+          <div class="pillar-title">控制输出：你创造什么</div>
+          <div class="pillar-desc">消费者只输入不输出<br>主权者把输入转化为输出</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 4: 为什么重要 -->
+  <div class="card card-4">
+    <div class="fire-bg"></div>
+    <div class="card-label">4 / 6</div>
+    <div class="content">
+      <div class="top-tag">🔥 WHY IT MATTERS</div>
+      <div class="section-title">认知主权 =<br>自由意志的<br>最后防线</div>
+      <div class="comparison">
+        <div class="side bad">
+          <div class="side-label">✖ 没有认知主权</div>
+          <div class="flow-steps">
+            被算法喂养<span class="arrow">→</span>情绪被操控<span class="arrow">→</span>行为被预测<span class="arrow">→</span>成为数据点
+          </div>
+        </div>
+        <div class="side good">
+          <div class="side-label">✔ 有认知主权</div>
+          <div class="flow-steps">
+            主动选择信息<span class="arrow">→</span>建立认知框架<span class="arrow">→</span>形成独特观点<span class="arrow">→</span>创造独特价值
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 5: 3步行动 -->
+  <div class="card card-5">
+    <div class="stars"></div>
+    <div class="card-label">5 / 6</div>
+    <div class="content">
+      <div class="top-tag">ACTION PLAN</div>
+      <div class="section-title">3步建立<br>认知主权</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">清理信息源</div>
+          <div class="step-desc">取消关注 80% 的账号<br>卸载 80% 的 App</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">建立信息食谱</div>
+          <div class="food-grid">
+            <div class="food-item">🌾 主食：系统知识</div>
+            <div class="food-item">🥦 蔬菜：多元观点</div>
+            <div class="food-item">🥩 蛋白：实践反馈</div>
+            <div class="food-item">🍬 零食：娱乐限时</div>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">强制输出</div>
+          <div class="step-desc">每天写 100 字<br>记录今天学到的东西</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 6: CLOSER -->
+  <div class="card card-6">
+    <div class="ring r1"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+    <div class="card-label">6 / 6</div>
+    <div class="content">
+      <div class="quote-mark">"</div>
+      <div class="quote-text">控制输入<br>才能控制人生</div>
+      <div class="quote-sub">拥有认知主权<br>才能成为 Human 3.0</div>
+      <div class="tags-row">
+        <span class="tag">#认知主权</span>
+        <span class="tag">#信息食谱</span>
+        <span class="tag">#注意力管理</span>
+        <span class="tag">#Human3.0</span>
+        <span class="tag">#养虾日记</span>
+      </div>
+      <div class="series-note">🦐 养虾日记 Day 2 · 记录 Human3.0 与 PAI 的共生共创</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

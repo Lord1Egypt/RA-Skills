@@ -1,0 +1,91 @@
+/* @theme frexida */
+@import 'default';
+
+:root {
+  /* Brand Colors */
+  --brand-navy: #162033;
+  --brand-gold: #C9A227;
+  --deep-accent: #0E1624;
+  --bg-light: #F4F1EA;
+  --bg-white: #FAFAF8;
+  /* UI Colors */
+  --color-success: #1F7A5C;
+  --color-warning: #C97A00;
+  --color-error: #A83232;
+  --color-border: #D6D3CC;
+  --color-text-muted: #5C6370;
+}
+
+section {
+  background-color: var(--bg-white);
+  color: var(--brand-navy);
+  font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
+}
+
+section::after {
+  /* Page number styling */
+  color: var(--color-text-muted);
+}
+
+/* Logo in top-right of every slide */
+section::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  background-image: url('./logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 10;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--brand-navy);
+}
+
+h1 {
+  border-bottom: 3px solid var(--brand-gold);
+  padding-bottom: 8px;
+}
+
+a {
+  color: var(--brand-gold);
+}
+
+strong {
+  color: var(--deep-accent);
+}
+
+blockquote {
+  border-left: 4px solid var(--brand-gold);
+  background-color: var(--bg-light);
+  color: var(--brand-navy);
+}
+
+table th {
+  background-color: var(--brand-navy);
+  color: var(--bg-white);
+}
+
+table td {
+  border-color: var(--color-border);
+}
+
+code {
+  background-color: var(--bg-light);
+  color: var(--deep-accent);
+}
+
+/* Typography - em-based */
+.text-em-3xl { font-size: 1.875em; line-height: 1.2; }
+.text-em-2xl { font-size: 1.5em; line-height: 1.25; }
+.text-em-xl { font-size: 1.25em; line-height: 1.3; }
+.text-em-lg { font-size: 1.125em; line-height: 1.4; }
+.text-em-base { font-size: 1em; line-height: 1.5; }
+
+/* Primary Gradient */
+.bg-gradient-primary {
+  background: linear-gradient(to right, #1B4565, #3E9BA4);
+}

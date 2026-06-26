@@ -1,0 +1,24 @@
+{
+  "name": "psych-literature-search",
+  "version": "1.1.0",
+  "title": "心理学文献检索助手",
+  "description": "通过免费学术 API（Semantic Scholar、OpenAlex、CrossRef）快速检索中英文心理学文献，支持关键词搜索、年份过滤、被引排序、批量导出 CSV 表格，并可生成 APA/GB-T 7714 国标/MLA/Chicago 多种引用格式。无需 API key。",
+  "author": "@zhan599",
+  "license": "MIT",
+  "keywords": [
+    "心理学",
+    "文献检索",
+    "学术搜索",
+    "中文文献",
+    "APA引用",
+    "GB7714国标",
+    "参考文献导出"
+  ],
+  "icon": "search",
+  "category": "research",
+  "homepage": "https://github.com/zhan599/psych-literature-search",
+  "requirements": {
+    "python": ">=3.8"
+  },
+  "dependencies": []
+}

@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "enabled": true,
+  "timezone": "Asia/Shanghai",
+  "schedules": [
+    {
+      "id": "schedule_default",
+      "name": "默认工作时间",
+      "enabled": true,
+      "days": [1, 2, 3, 4, 5],
+      "timeSlots": [
+        { "start": "09:00", "end": "12:00", "action": "auto_reply" },
+        { "start": "14:00", "end": "18:00", "action": "auto_reply" }
+      ]
+    },
+    {
+      "id": "schedule_night",
+      "name": "夜间静默",
+      "enabled": true,
+      "days": [1, 2, 3, 4, 5, 6, 0],
+      "timeSlots": [
+        { "start": "23:00", "end": "08:00", "action": "log_only" }
+      ]
+    },
+    {
+      "id": "schedule_weekend",
+      "name": "周末模式",
+      "enabled": false,
+      "days": [6, 0],
+      "timeSlots": [
+        { "start": "10:00", "end": "20:00", "action": "auto_reply" }
+      ]
+    }
+  ],
+  "defaultAction": "log_only",
+  "actions": {
+    "auto_reply": "自动回复",
+    "log_only": "仅记录不回复",
+    "pause": "完全暂停监控"
+  },
+  "lastUpdated": null
+}

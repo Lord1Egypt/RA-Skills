@@ -1,0 +1,128 @@
+name: REP Validate
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - '**.json'
+      - '**.jsonl'
+      - 'scripts/rep.mjs'
+      - '.github/workflows/rep-validate.yml'
+  pull_request:
+    paths:
+      - '**.json'
+      - '**.jsonl'
+      - 'scripts/rep.mjs'
+      - '.github/workflows/rep-validate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-rep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Find rep.mjs script
+        id: find-rep
+        run: |
+          if [ -f "scripts/rep.mjs" ]; then
+            echo "path=scripts/rep.mjs" >> $GITHUB_OUTPUT
+          elif [ -f "rep.mjs" ]; then
+            echo "path=rep.mjs" >> $GITHUB_OUTPUT
+          else
+            echo "path=" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Validate REP bundles
+        if: steps.find-rep.outputs.path != ''
+        id: validate
+        continue-on-error: true
+        run: |
+          set -e
+          
+          # Define validation targets
+          VALIDATE_TARGETS=$(find . -name "*.json" -o -name "*.jsonl" 2>/dev/null | grep -E "(artifacts/|rep-bundle)" | head -20 || true)
+          
+          if [ -z "$VALIDATE_TARGETS" ]; then
+            echo "No REP bundles found to validate"
+            exit 0
+          fi
+          
+          echo "Validating REP bundles..."
+          echo "$VALIDATE_TARGETS"
+          
+          # Run validation and capture output
+          VALIDATION_RESULTS=""
+          FAILED=0
+          
+          for target in $VALIDATE_TARGETS; do
+            echo "::group::Validating $target"
+            
+            # Run validate with JSON output
+            result=$(node "${{ steps.find-rep.outputs.path }}" validate "$target" --json 2>&1) || true
+            exit_code=$?
+            
+            echo "$result"
+            
+            if [ $exit_code -ne 0 ] || echo "$result" | grep -q '"error"'; then
+              FAILED=1
+              echo "::error file=$target::REP validation failed for $target"
+            elif echo "$result" | grep -q '"warning"'; then
+              echo "::warning file=$target::REP validation warnings for $target"
+            else
+              echo "::notice file=$target::REP validation passed for $target"
+            fi
+            
+            # Store results for annotation
+            VALIDATION_RESULTS="$VALIDATION_RESULTS$result"$'\n'
+            
+            echo "::endgroup::"
+          done
+          
+          # Output results as JSON for annotation step
+          echo "results=$VALIDATION_RESULTS" >> $GITHUB_OUTPUT
+          echo "failed=$FAILED" >> $GITHUB_OUTPUT
+          
+          # Exit with failure if any validation failed
+          if [ $FAILED -eq 1 ]; then
+            exit 1
+          fi
+
+      - name: Parse and annotate validation results
+        if: steps.validate.outputs.results != ''
+        run: |
+          # Parse JSON results and create annotations
+          echo "${{ steps.validate.outputs.results }}" | while read -r line; do
+            if [ -n "$line" ]; then
+              echo "$line" | jq -r 'if .error then "::error title=REP Error::\(.error)" elif .warning then "::warning title=REP Warning::\(.warning)" else "" end' 2>/dev/null || true
+            fi
+          done
+
+      - name: Upload validation artifacts
+        if: steps.validate.outputs.results != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: rep-validation-results
+          path: |
+            rep-validation-*.json
+          retention-days: 7
+
+      - name: Fail if validation failed
+        if: steps.validate.outputs.failed == '1'
+        run: |
+          echo "::error::REP validation failed. Check annotations for details."
+          exit 1
+
+      - name: Success message
+        if: steps.validate.outputs.failed == '0'
+        run: |
+          echo "✅ REP validation passed for all bundles"

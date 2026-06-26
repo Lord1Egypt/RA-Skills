@@ -1,0 +1,66 @@
+{
+  "domain": "投行业务域",
+  "level": "L2",
+  "generated_at": "2026-05-08",
+  "source_file": "investment_banking.md",
+  "includes_L1": true,
+  "entity_states": {
+    "IPO项目": ["项目储备(Pipeline)", "已立项(Initiated)", "辅导备案(Tutoring)", "辅导验收(TutoringAccepted)", "申报材料制作(MaterialPrep)", "已申报(Filed)", "审核问询中(UnderReview)", "上市委审议(CommitteeReview)", "已注册(Registered)", "发行定价(Pricing)", "已上市(Listed)", "已终止(Terminated)", "中止审查(Suspended)"],
+    "债券承销": ["项目立项(Initiated)", "尽职调查(DueDiligence)", "方案设计(SchemeDesign)", "评级阶段(Rating)", "材料申报(Filing)", "审核通过(Approved)", "簿记建档(Bookbuilding)", "缴款发行(Issuance)", "存续期管理(Outstanding)", "已到期(Matured)", "已终止(Terminated)"],
+    "并购重组": ["项目接洽(Approaching)", "已立项(Initiated)", "尽职调查(DueDiligence)", "方案设计(SchemeDesign)", "内部审批(InternalApproval)", "董事会审议(BoardApproval)", "股东大会审议(ShareholderApproval)", "监管审核(RegulatoryReview)", "实施交割(Closing)", "已完成(Completed)", "已终止(Terminated)"]
+  },
+  "state_transitions": [
+    {"entity": "IPO项目", "from": "项目储备", "trigger": "内部立项审批通过", "to": "已立项"},
+    {"entity": "IPO项目", "from": "已立项", "trigger": "提交辅导备案", "to": "辅导备案"},
+    {"entity": "IPO项目", "from": "辅导备案", "trigger": "证监局验收通过", "to": "辅导验收"},
+    {"entity": "IPO项目", "from": "已申报", "trigger": "交易所受理并问询", "to": "审核问询中"},
+    {"entity": "IPO项目", "from": "审核问询中", "trigger": "问询回复完成", "to": "上市委审议"},
+    {"entity": "IPO项目", "from": "上市委审议", "trigger": "审议通过", "to": "已注册"},
+    {"entity": "IPO项目", "from": "已注册", "trigger": "批文过期未发行", "to": "已终止"},
+    {"entity": "IPO项目", "from": "审核问询中", "trigger": "因故中止", "to": "中止审查"},
+    {"entity": "债券承销", "from": "审核通过", "trigger": "启动簿记建档", "to": "簿记建档"},
+    {"entity": "债券承销", "from": "簿记建档", "trigger": "认购不足", "to": "已终止"},
+    {"entity": "债券承销", "from": "存续期管理", "trigger": "到期兑付", "to": "已到期"},
+    {"entity": "并购重组", "from": "监管审核", "trigger": "审核通过", "to": "实施交割"},
+    {"entity": "并购重组", "from": "监管审核", "trigger": "有条件通过", "to": "方案设计(修改后重新审议)"}
+  ],
+  "allowed_operations": {
+    "IPO-已申报至上市委审议": ["撤回申请"],
+    "IPO-审核问询中": ["回复问询函(30个工作日内)"],
+    "IPO-已注册": ["启动发行(12个月内)"],
+    "债券-审核通过": ["启动簿记建档(有效期内)"],
+    "债券-存续期": ["付息兑付", "信息披露", "评级跟踪"],
+    "并购-实施交割": ["资产过户", "股份登记"]
+  },
+  "forbidden_operations": {
+    "IPO-辅导期未满": ["提交申报材料"],
+    "IPO-批文过期": ["启动发行"],
+    "IPO-已终止": ["重新启动(需新建项目)"],
+    "债券-簿记中": ["修改发行条款"],
+    "并购-关联方": ["参与股东大会表决"],
+    "内幕知情人": ["敏感期内交易相关证券"]
+  },
+  "role_permission_matrix": [
+    {"role": "项目负责人(保代)", "permissions": ["项目管理", "材料审核", "问询回复协调"]},
+    {"role": "项目组成员", "permissions": ["尽调执行", "材料撰写", "数据核查"]},
+    {"role": "内核委员", "permissions": ["内核审议投票", "质量把关"]},
+    {"role": "质控人员", "permissions": ["项目质量检查", "合规审核"]},
+    {"role": "合规部门", "permissions": ["内幕信息管理", "利益冲突排查", "信息隔离"]}
+  ],
+  "cross_system_dependencies": [
+    {"system": "交易所审核系统", "interaction": "材料申报、问询接收、审核结果"},
+    {"system": "证监会/证监局", "interaction": "辅导备案、注册审批"},
+    {"system": "中国结算", "interaction": "股份登记、质押登记"},
+    {"system": "评级机构", "interaction": "信用评级、评级跟踪"},
+    {"system": "信息披露平台", "interaction": "公告发布、定期报告"},
+    {"system": "合规系统", "interaction": "内幕信息管理、知情人登记"}
+  ],
+  "core_calculation_rules": [
+    {"name": "问询回复时限", "formula": "收到问询函日期 + 30个工作日 = 回复截止日"},
+    {"name": "批文有效期", "formula": "注册生效日 + 12个月 = 批文过期日"},
+    {"name": "发行认购率", "formula": "实际认购量 / 计划发行量 ≥ 70%方可成功"},
+    {"name": "业绩承诺补偿", "formula": "补偿金额 = (承诺业绩 - 实际业绩) × 补偿比例"},
+    {"name": "停牌时限", "formula": "重组停牌不超过10个交易日"},
+    {"name": "中止审查时限", "formula": "中止最长3个月，超期自动终止"}
+  ]
+}

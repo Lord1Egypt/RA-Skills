@@ -1,0 +1,30 @@
+{
+  "name": "qxbent-skills",
+  "version": "1.0.0",
+  "description": "启信宝企业信息查询 Skill，支持企业工商信息、股东信息、主要人员、变更记录等查询。",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "test": "ts-node src/examples/test.ts",
+    "interactive": "ts-node src/examples/interactive_test.ts"
+  },
+  "keywords": [
+    "qixinbao",
+    "enterprise",
+    "skill",
+    "ai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "dotenv": "^17.3.1",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}

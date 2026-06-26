@@ -1,0 +1,27 @@
+action: crawl_homefeed
+workspace_path: .
+require_local_checkout: false
+storage_state:
+db_path: ./data/red_crawler.db
+report_dir: ./reports
+output_dir: ./output
+cache_dir: ./.cache/red-crawler
+heartbeat_dir: ./.openclaw/red-crawler
+job_log_dir: ./logs/jobs
+homefeed_url: https://www.xiaohongshu.com/explore?channel_id=homefeed.fashion_v3
+run_mode: sync
+browser_mode: local
+browser_endpoint:
+browser_auth:
+proxy:
+proxy_list:
+rotation_mode: none
+rotation_retries: 1
+randomize_headers: true
+sync_dependencies: false
+install_browser: false
+runner_command:
+  - red-crawler
+default_crawl_budget: 30
+default_report_days: 7
+default_list_limit: 20

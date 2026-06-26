@@ -1,0 +1,2 @@
+# Python 3.9+ required (uses zoneinfo, f-strings, typing.Optional)
+requests>=2.28.0

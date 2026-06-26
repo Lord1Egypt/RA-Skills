@@ -1,0 +1,88 @@
+{
+  "listings": [
+    {
+      "id": "ok_title_archive",
+      "title": "The Archive, Melbourne205 Normanby Rd, Southbank VIC 3006, Australia",
+      "price": "A$645 per week",
+      "url": "https://example.test/archive"
+    },
+    {
+      "id": "ok_title_south_wharf",
+      "title": "2B/81 South Wharf Drive, Docklands, Melbourne2 beds81 S Wharf Dr, Docklands VIC 3008, Australia A$649 per week",
+      "price": "A$649 per week",
+      "url": "https://example.test/south-wharf"
+    },
+    {
+      "id": "ok_title_abeckett",
+      "title": "2205/228 A'beckett Street, Melbourne3 beds228 A'Beckett St, West Melbourne VIC 3000, Australia A$1,149 per week",
+      "price": "A$1,149 per week",
+      "url": "https://example.test/abeckett"
+    },
+    {
+      "id": "ok_title_bond",
+      "title": "8 Bond Street, Caulfield North, Melbourne2 beds8 Bond St, Caulfield North VIC 3161, Australia A$659 per week",
+      "price": "A$659 per week",
+      "url": "https://example.test/bond"
+    },
+    {
+      "id": "ok_title_dandenong",
+      "title": "210/839 Dandenong Road Service Road, Malvern East, Melbourne1 bed839 Dandenong Rd Service Rd, Carnegie VIC 3163, Australia A$449 per week",
+      "price": "A$449 per week",
+      "url": "https://example.test/dandenong"
+    },
+    {
+      "id": "ok_title_connam",
+      "title": "4201/2 Connam Avenue, Melbourne3 beds2 Connam Ave, Clayton VIC 3168, Australia A$994 per week",
+      "price": "A$994 per week",
+      "url": "https://example.test/connam"
+    },
+    {
+      "id": "ok_title_collins",
+      "title": "889 Collins Street, Docklands, Melbourne1 bed889 Collins St, Docklands VIC 3008, Australia A$649 per week",
+      "price": "A$649 per week",
+      "url": "https://example.test/collins"
+    },
+    {
+      "id": "ok_title_claremont",
+      "title": "1208/7 Claremont Street, Melbourne2 beds7 Claremont St, South Yarra VIC 3141, Australia A$739 per week",
+      "price": "A$739 per week",
+      "url": "https://example.test/claremont"
+    },
+    {
+      "id": "ok_title_city_road",
+      "title": "81 City Road, Melbourne3 beds81 City Rd, Southbank VIC 3006, Australia A$1,099 per week",
+      "price": "A$1,099 per week",
+      "url": "https://example.test/city-road"
+    },
+    {
+      "id": "ok_title_pearl_river",
+      "title": "8 Pearl River Road, Melbourne8 Pearl River Rd, Docklands VIC 3008, Australia A$600 per week",
+      "price": "A$600 per week",
+      "url": "https://example.test/pearl-river"
+    },
+    {
+      "id": "ok_title_southbank_blvd",
+      "title": "70 Southbank Boulevard, Melbourne70 Southbank Blvd, Southbank VIC 3006, Australia A$699 per week",
+      "price": "A$699 per week",
+      "url": "https://example.test/southbank-blvd"
+    },
+    {
+      "id": "ok_title_coventry",
+      "title": "25 Coventry Street, Melbourne25 Coventry St, Southbank VIC 3006, Australia A$579 per week",
+      "price": "A$579 per week",
+      "url": "https://example.test/coventry"
+    },
+    {
+      "id": "ok_title_clarke",
+      "title": "2203/58 Clarke Street, Melbourne58 Clarke St, Southbank VIC 3006, Australia A$489 per week",
+      "price": "A$489 per week",
+      "url": "https://example.test/clarke"
+    },
+    {
+      "id": "ok_title_paragon",
+      "title": "Paragon Apartments, Melbourne318 Queen St, Melbourne VIC 3000, Australia A$245 per week",
+      "price": "A$245 per week",
+      "url": "https://example.test/paragon"
+    }
+  ]
+}

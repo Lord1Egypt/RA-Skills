@@ -1,0 +1,18 @@
+{
+  "_comment": "V4.0.0 云端评审工具配置（API Key与图片API共用）",
+  "review_tool": {
+    "enabled": true,
+    "api_url": "http://111.229.28.83:8902",
+    "frontend_url": "http://111.229.28.83:8902",
+    "api_key": "Xyzq601377",
+    "auto_push": true
+  },
+  "experience_sync": {
+    "_comment": "预留功能：评审经验同步到L6经验库（V4.1.0实现）",
+    "enabled": true,
+    "api_url": "http://111.229.28.83:8902",
+    "domains": [],
+    "auto_sync": false,
+    "cache_ttl": 3600
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Risha Content Generator"
+  short_description: "Generate content with the Risha.ai API"
+  default_prompt: "Use $risha-content-generator to create or revise content with Risha.ai."

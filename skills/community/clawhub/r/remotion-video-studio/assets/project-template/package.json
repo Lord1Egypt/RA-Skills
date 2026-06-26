@@ -1,0 +1,36 @@
+{
+  "name": "remotion-video-studio",
+  "version": "1.0.0",
+  "description": "Engineered Remotion video production studio with multi-TTS support",
+  "scripts": {
+    "start": "npx remotion studio",
+    "build": "npx remotion render src/index.ts MainVideo build/video.mp4",
+    "render": "npx remotion render src/index.ts MainVideo build/video.mp4",
+    "render:props": "npx remotion render src/index.ts MainVideo build/video.mp4 --props build/render-props.json",
+    "preview": "npx remotion preview src/index.ts",
+    "tts:edge": "python3 scripts/tts_edge.py",
+    "tts:qwen": "python3 scripts/tts_qwen.py",
+    "pipeline": "python3 scripts/pipeline.py",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.448",
+    "@remotion/captions": "4.0.448",
+    "@remotion/cli": "4.0.448",
+    "@remotion/media": "4.0.448",
+    "@remotion/renderer": "4.0.448",
+    "@remotion/transitions": "4.0.448",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "4.0.448"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/node": "^22.10.0",
+    "eslint": "^9.15.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2"
+  }
+}

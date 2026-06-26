@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" data-template="kai-report-creator" data-version="1.21.0" data-theme="corporate-blue" data-report-mode="default">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color System Fixture</title>
+  <style>
+    :root {
+      --bg: #F8F5EF;
+      --surface: #FFFDF9;
+      --text: #2B2623;
+      --text-muted: #766B63;
+      --border: #E7DDD2;
+      --primary: #1F6F50;
+      --success: #2F6B50;
+      --warning: #A8741A;
+      --danger: #A34A3F;
+      --radius: 10px;
+      --report-bg: #F8F5EF;
+      --report-surface: #FFFDF9;
+      --report-text: #2B2623;
+      --report-border: #E7DDD2;
+      --report-structure: #1F6F50;
+      --report-chip-bg: #F4EAD5;
+      --report-chip-text: #7A6858;
+      --report-chip-border: #E0D4C6;
+      --report-delta-up-bg: #E7F1EA;
+      --report-delta-up-text: #2F6B50;
+      --report-delta-down-bg: #F6E8E6;
+      --report-delta-down-text: #A34A3F;
+      --report-delta-flat-bg: #EEE7DE;
+      --report-delta-flat-text: #766B63;
+      --entity-a: #2F6B50;
+      --entity-b: #6F6A7C;
+      --entity-c: #5C768A;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .scene {
+      margin-bottom: 24px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    .scene h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .kpi-card {
+      background: var(--report-surface);
+      border: 1px solid var(--report-border);
+      border-top: 2px solid var(--report-structure);
+      border-radius: var(--radius);
+      padding: 12px;
+    }
+    .kpi-label {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .kpi-value {
+      color: var(--report-text);
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+    .kpi-delta {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .kpi-delta--up { background: var(--report-delta-up-bg); color: var(--report-delta-up-text); }
+    .kpi-delta--info { background: var(--report-delta-flat-bg); color: var(--report-delta-flat-text); }
+    .kpi-card[data-accent] { border-top-color: var(--report-structure); }
+    .kpi-card[data-accent] .kpi-value { color: var(--report-text); }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: .18rem .55rem;
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 600;
+      white-space: nowrap;
+      border: 1px solid var(--report-chip-border);
+      margin-right: 6px;
+    }
+    .badge--blue,
+    .badge--green,
+    .badge--purple,
+    .badge--orange,
+    .badge--red,
+    .badge--teal,
+    .badge--done {
+      background: var(--report-chip-bg);
+      color: var(--report-chip-text);
+      border-color: var(--report-chip-border);
+    }
+    .badge--warn {
+      background: var(--report-delta-up-bg);
+      color: var(--report-delta-up-text);
+      border-color: transparent;
+    }
+    .badge--err {
+      background: var(--report-delta-down-bg);
+      color: var(--report-delta-down-text);
+      border-color: transparent;
+    }
+    [data-report-mode="comparison"] .badge--entity-a {
+      background: rgba(47, 107, 80, .12);
+      color: var(--entity-a);
+      border-color: rgba(47, 107, 80, .18);
+    }
+    [data-report-mode="comparison"] .badge--entity-b {
+      background: rgba(111, 106, 124, .12);
+      color: var(--entity-b);
+      border-color: rgba(111, 106, 124, .18);
+    }
+    [data-report-mode="comparison"] .badge--entity-c {
+      background: rgba(92, 118, 138, .12);
+      color: var(--entity-c);
+      border-color: rgba(92, 118, 138, .18);
+    }
+
+    /* TOC */
+    .toc-toggle {
+      position: fixed; top: .75rem; left: .75rem; z-index: 200;
+      background: var(--primary); color: #fff; border: none; border-radius: 6px;
+      padding: .45rem .7rem; cursor: pointer; font-size: 1rem;
+    }
+    .toc-toggle.locked { box-shadow: 0 0 0 2px #fff, 0 2px 8px rgba(0,0,0,.2); }
+    .toc-sidebar {
+      position: fixed; top: 0; left: 0; width: 240px; height: 100vh;
+      overflow-y: auto; padding: 3rem 1rem 1.5rem; background: var(--surface);
+      border-right: 1px solid var(--border); z-index: 100;
+      transform: translateX(-100%); transition: transform .28s ease;
+    }
+    .toc-sidebar.open { transform: translateX(0); }
+    .toc-sidebar h4 { font-size: .72rem; text-transform: uppercase; color: var(--text-muted); margin: 0 0 .75rem; }
+    .toc-sidebar a { display: block; color: var(--text-muted); text-decoration: none; padding: .28rem .5rem; border-radius: 4px; margin-bottom: 1px; }
+
+    /* Summary card */
+    .title-row { display: flex; align-items: flex-end; gap: 1rem; }
+    .card-mode-btn {
+      flex-shrink: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
+      padding: .28rem .65rem; font-size: .76rem; cursor: pointer; color: var(--text-muted);
+    }
+    .sc-overlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,.4); align-items: center; justify-content: center; }
+    body.card-mode .sc-overlay { display: flex; }
+    .sc-card { display: flex; width: min(600px, 90vw); background: #fff; border-radius: 8px; padding: 2rem; }
+    .sc-close { position: absolute; top: .5rem; right: .5rem; background: none; border: 1px solid var(--border); width: 24px; height: 24px; cursor: pointer; }
+    .sc-left { flex: 0 0 44%; padding: 1rem; background: var(--primary); color: #fff; border-radius: 6px; margin-right: 1rem; }
+    .sc-right { flex: 1; }
+
+    /* Export */
+    .export-btn { position: fixed; bottom: 16px; right: 16px; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .9rem; cursor: pointer; }
+    .export-menu { display: none; position: fixed; bottom: 56px; right: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; }
+    .export-menu.open { display: block; }
+    .export-item { display: block; width: 100%; padding: .55rem 1rem; background: none; border: none; cursor: pointer; border-bottom: 1px solid var(--border); color: var(--text); }
+    .export-item:last-child { border-bottom: none; }
+
+    /* Edit mode */
+    .edit-hotzone { position: fixed; bottom: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
+    .edit-toggle { position: fixed; bottom: 16px; left: 16px; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .9rem; cursor: pointer; opacity: 0; }
+    .edit-toggle.show { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- JSON Summary Block -->
+  <script type="application/json" id="report-summary">
+  {
+    "title": "Color System Fixture",
+    "author": "",
+    "date": "2026-04-13",
+    "abstract": "Tests color rendering across badge/KPI/entity variants.",
+    "sections": ["Default mode", "Comparison mode"],
+    "kpis": [{"label": "Growth", "value": "38%", "trend": "↑ 18%"}]
+  }
+  </script>
+
+  <!-- Edit mode -->
+  <div class="edit-hotzone" id="edit-hotzone"></div>
+  <button class="edit-toggle" id="edit-toggle">✏ Edit</button>
+
+  <!-- Export -->
+  <div class="export-menu" id="export-menu">
+    <button class="export-item" id="export-print">Print</button>
+    <button class="export-item" id="export-png-desktop">Desktop</button>
+    <button class="export-item" id="export-png-mobile">Mobile</button>
+    <button class="export-item" id="export-im-share">IM</button>
+  </div>
+  <button class="export-btn" id="export-btn">↓ Export</button>
+
+  <!-- TOC -->
+  <button class="toc-toggle" id="toc-toggle-btn">☰</button>
+  <nav class="toc-sidebar" id="toc-sidebar">
+    <h4>目录</h4>
+    <a href="#default" data-section="Default mode">Default mode</a>
+    <a href="#comparison" data-section="Comparison mode">Comparison mode</a>
+  </nav>
+
+  <!-- Title row -->
+  <div class="title-row">
+    <h1>Color System Fixture</h1>
+    <button class="card-mode-btn" id="card-mode-btn">⊞ 摘要卡</button>
+  </div>
+
+  <!-- Summary card overlay -->
+  <div class="sc-overlay" id="sc-overlay">
+    <div class="sc-card" id="sc-card">
+      <button class="sc-close" id="sc-close">✕</button>
+      <div class="sc-left"><div class="sc-title">COLOR</div></div>
+      <div class="sc-right"><p>Color system fixture.</p></div>
+    </div>
+  </div>
+
+  <section id="default" class="scene">
+    <h2>Default mode</h2>
+    <div class="kpi-grid">
+      <div class="kpi-card" data-accent="blue">
+        <div class="kpi-label">Growth</div>
+        <div class="kpi-value">38%</div>
+        <div class="kpi-delta kpi-delta--up">↑ 18%</div>
+      </div>
+      <div class="kpi-card" data-accent="green">
+        <div class="kpi-label">Retention</div>
+        <div class="kpi-value">91%</div>
+        <div class="kpi-delta kpi-delta--info">Stable</div>
+      </div>
+    </div>
+    <div>
+      <span class="badge badge--blue">Blue</span>
+      <span class="badge badge--green">Green</span>
+      <span class="badge badge--purple">Purple</span>
+      <span class="badge badge--orange">Orange</span>
+      <span class="badge badge--red">Red</span>
+      <span class="badge badge--teal">Teal</span>
+      <span class="badge badge--done">Done</span>
+      <span class="badge badge--warn">Warn</span>
+      <span class="badge badge--err">Error</span>
+    </div>
+  </section>
+
+  <section id="comparison" class="scene" data-report-mode="comparison">
+    <h2>Comparison mode</h2>
+    <div>
+      <span class="badge badge--entity-a">OpenAI</span>
+      <span class="badge badge--entity-b">Anthropic</span>
+      <span class="badge badge--entity-c">Cursor</span>
+      <span class="badge badge--blue">Still Neutral</span>
+    </div>
+  </section>
+
+  <div class="report-footer">kai-report-creator v1.21.0 corporate-blue</div>
+  <div style="display:none;visibility:hidden;opacity:0;font-size:0;line-height:0;height:0;overflow:hidden;" aria-hidden="true" data-watermark="kai-report-creator v1.21.0 corporate-blue">
+    kai-report-creator v1.21.0 corporate-blue
+  </div>
+
+  <script>
+    // TOC: delayed close
+    const tocBtn = document.getElementById('toc-toggle-btn');
+    const tocSidebar = document.getElementById('toc-sidebar');
+    let locked = false, closeTimer;
+    function openToc() { clearTimeout(closeTimer); tocSidebar.classList.add('open'); }
+    function scheduleClose() { closeTimer = setTimeout(() => { if (!locked) tocSidebar.classList.remove('open'); }, 150); }
+    tocBtn.addEventListener('mouseenter', openToc);
+    tocSidebar.addEventListener('mouseenter', openToc);
+    tocBtn.addEventListener('mouseleave', scheduleClose);
+    tocSidebar.addEventListener('mouseleave', scheduleClose);
+    tocBtn.addEventListener('click', () => { locked = !locked; tocBtn.classList.toggle('locked', locked); if (locked) openToc(); else scheduleClose(); });
+  </script>
+
+</body>
+</html>

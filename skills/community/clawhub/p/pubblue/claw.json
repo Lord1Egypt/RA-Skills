@@ -1,0 +1,9 @@
+{
+  "name": "pubblue",
+  "version": "5.1.2",
+  "description": "Publish and visualize AI-agent output via the pubblue CLI. Create shareable URLs for HTML, Markdown, and text, then run encrypted P2P live canvas/chat sessions.",
+  "author": "pub.blue",
+  "license": "MIT",
+  "tags": ["publish", "show", "visualize", "real-time", "web", "canvas", "webrtc", "p2p"],
+  "entry": "SKILL.md"
+}

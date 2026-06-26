@@ -1,35 +1,284 @@
 ---
-name: "prompt-optimizer-cn"
-description: "复杂任务专用迭代式提示词优化器。严格执行ACON论文的两阶段迭代优化+APE自动提示工程，仅在用户明确要求时触发，优化完主动收集反馈，支持多轮迭代直到满意。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prompt-optimizer-cn"
-sourceUrl: "https://clawhub.ai/skills/prompt-optimizer-cn"
+name: prompt-optimizer-cn
+description: 实用提示词优化工具 - 检测原提示词缺失要素（角色/步骤/格式/约束），智能补全后输出清晰易懂的优化版，帮助用户的意图更容易被 AI 理解执行。Use when user says 优化提示词 / 改进prompt / 优化一下 / optimize prompt.
+version: 2.1.0
+author: prompt-optimizer-cn
+tags:
+  - prompt-optimization
+  - prompt-engineering
 ---
 
-# prompt-optimizer-cn
+> **Language**: 自动检测输入语言并用相同语言回复（中文输入→中文回复，English input→English reply）
 
-> 复杂任务专用迭代式提示词优化器。严格执行ACON论文的两阶段迭代优化+APE自动提示工程，仅在用户明确要求时触发，优化完主动收集反馈，支持多轮迭代直到满意。
+## 这个工具做什么
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prompt-optimizer-cn`
-- **Source URL:** [https://clawhub.ai/skills/prompt-optimizer-cn](https://clawhub.ai/skills/prompt-optimizer-cn)
+帮你把**模糊、简陋的 prompt** 改成**清晰、AI 容易理解执行的版本**。
 
-## Overview
+**核心流程**（5 步）：
+1. **诊断**：分析原 prompt 缺什么（角色？步骤？输出格式？约束？）
+2. **补全**：按需补上缺失要素（不需要的不强加）
+3. **输出**：优化后的 prompt（代码块包裹，方便复制）+ 一行说明改了什么
+4. **收集反馈**：询问用户是否满意
+5. **迭代**：根据反馈调整直到满意
 
+## 实用框架（RTCF）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/prompt-optimizer-cn
+补全时参考这 4 个维度（不是每个都必须有，按需补）：
+
+- **R (Role)**: 角色 —— "你是XX专家"，让 AI 进入专业状态
+- **T (Task)**: 任务 —— 明确要做什么，避免歧义
+- **C (Context)**: 上下文 —— 背景、约束、边界条件
+- **F (Format)**: 格式 —— 输出结构（表格/分步骤/代码块/JSON）
+
+## 真实示例（前后对比）
+
+### 示例 1：模糊任务 → 明确角色+格式
+
+**优化前**：
 ```
+帮我写一篇文章
+```
+
+**优化后**：
+```
+你是一位资深科技博客作者，擅长用通俗语言解释技术概念。
+
+请撰写一篇 800 字的技术博客文章，主题：[请用户补充主题]
+
+文章结构：
+1. 引人入胜的开头（100字）
+2. 核心概念解释（400字，用类比/示例）
+3. 实际应用场景（200字）
+4. 总结（100字）
+
+目标读者：对技术感兴趣但非专业开发者
+```
+
+**改了什么**：补充角色定义、明确字数、拆解结构、指定受众
+
+---
+
+### 示例 2：单句指令 → 分步骤+约束
+
+**优化前**：
+```
+分析这份数据
+```
+
+**优化后**：
+```
+请对提供的数据进行分析，按以下步骤进行：
+
+1. **数据概览**：数据量、字段类型、缺失值情况
+2. **关键指标**：计算均值、中位数、异常值
+3. **趋势发现**：找出 3 个最显著的趋势或异常
+4. **结论**：用 2-3 句话总结核心发现
+
+输出格式：Markdown 表格 + 文字说明
+约束：如果数据有明显错误（如负数年龄），先指出再分析
+```
+
+**改了什么**：拆分步骤、增加输出格式、加约束条件
+
+---
+
+### 示例 3：技术任务 → 加角色+示例
+
+**优化前**：
+```
+写个 Python 函数计算斐波那契数列
+```
+
+**优化后**：
+```
+你是一位 Python 专家，注重代码可读性和性能。
+
+请编写一个 Python 函数 `fibonacci(n)`，计算斐波那契数列的第 n 项。
+
+要求：
+- 使用迭代而非递归（性能考虑）
+- 加 docstring 说明参数和返回值
+- 处理边界情况（n <= 0）
+- 加 3 个测试用例
+
+示例输出格式（使用缩进代替内部代码块）：
+
+    def fibonacci(n: int) -> int:
+        """计算斐波那契数列第 n 项
+        
+        Args:
+            n: 正整数，目标项数
+        Returns:
+            第 n 项的值
+        """
+        # 实现...
+
+```
+
+**改了什么**：补角色、明确实现方式、加边界处理要求、给输出示例
+
+---
+
+### 示例 4：创意任务 → 加风格+受众
+
+**优化前**：
+```
+给我的产品写个宣传语
+```
+
+**优化后**：
+```
+你是资深广告文案，擅长洞察用户痛点并用简短有力的语言打动人心。
+
+请为产品"[产品名]"创作 3 条宣传语，每条不超过 15 字。
+
+产品特点：[请用户补充，如"AI驱动的日程管理工具"]
+目标用户：[请用户补充，如"忙碌的职场人士"]
+
+风格要求：
+- 直击痛点，避免空洞形容词
+- 口语化，易记
+- 突出核心价值而非功能堆砌
+
+输出格式：
+1. [宣传语] —— [一句话说明为什么这样写]
+2. [宣传语] —— [理由]
+3. [宣传语] —— [理由]
+```
+
+**改了什么**：补角色、要求明确产品信息、定义风格、要求给出理由
+
+---
+
+### 示例 5：英文示例
+
+**Before**:
+```
+Explain quantum computing
+```
+
+**After**:
+```
+You are a physics educator skilled at explaining complex concepts to non-experts using everyday analogies.
+
+Please explain quantum computing in simple terms.
+
+Structure:
+1. What it is (50 words, use an analogy)
+2. How it differs from classical computing (100 words)
+3. One real-world application (50 words)
+
+Audience: College students with no physics background
+Constraints: Avoid jargon like "superposition" unless you explain it first
+```
+
+**What changed**: Added role, structure, audience, jargon constraint
+
+---
+
+## 工作流程
+
+### Step 1: 诊断原 prompt（内部判断，不告诉用户）
+
+- 缺角色定义？（"你是XX专家"）
+- 任务模糊？（"帮我做XX" → 做什么具体的？）
+- 缺输出格式？（表格？分步？代码块？）
+- 有歧义？（一句话有多种理解）
+- 缺约束/边界？（什么不该做？边界情况怎么处理？）
+
+### Step 2: 按需补全
+
+**原则**：
+- ✅ 按需补充（不是每个都要有）
+- ✅ 保留原始意图
+- ✅ 不改变用户想要的核心内容
+- ❌ 不过度工程化（简单任务不要搞复杂）
+
+### Step 3: 输出
+
+**格式**：
+```
+优化后的 prompt（代码块包裹，方便复制）
+```
+
+**说明**（一行）：改了什么（补了角色/拆了步骤/加了格式/加了约束）
+
+### Step 4: 收集反馈
+
+输出后询问：
+
+> 是否满意？如需调整（太复杂了/缺了XX/格式不对/其他），告诉我，我继续改。
+>
+> *(English)* Satisfied? Let me know if any adjustments needed.
+
+### Step 5: 迭代（如果用户反馈）
+
+根据反馈调整：
+- 太复杂 → 简化，只保留核心
+- 缺了XX → 补上
+- 格式不对 → 改格式
+- 效果不好 → 加更多约束/示例
+
+重复直到满意。
+
+---
+
+## 约束规则
+
+### ✅ 必须做
+
+1. **保留原意**：不改变用户的核心意图
+2. **双语**：中文输入用中文回，英文输入用英文回
+3. **代码块输出**：优化后的 prompt 用代码块包裹
+4. **简洁说明**：用一行说改了什么，不写长篇大论
+5. **主动反馈**：输出后问用户是否满意
+
+### ❌ 禁止做
+
+1. **不自动触发**：只在用户明确说"优化提示词"时工作
+2. **不过度设计**：简单任务不要搞成 10 步流程
+3. **不讲理论**：不提论文方法名/学术框架（用户不关心）
+4. **不输出多版本**：不生成"方案A/方案B/方案C"（用户要的是直接可用的）
+5. **不评价原 prompt**：不说"你的 prompt 太差了"（直接给优化版）
+
+---
+
+## 适用场景
+
+| 原 prompt 类型 | 优化重点 | 典型补充 |
+|---------------|---------|---------|
+| 单句模糊指令 | 拆步骤 + 加格式 | "分析这个" → 分 5 步 + 表格输出 |
+| 缺角色的技术任务 | 补角色 + 约束 | "写代码" → "你是Python专家" + 性能要求 |
+| 创意类任务 | 补风格 + 受众 | "写文案" → 风格活泼 + 目标用户是学生 |
+| 复杂分析任务 | 拆步骤 + 边界 | "研究XX" → 分步骤 + "如果数据缺失怎么办" |
+| 已经很清晰的 | 微调或不改 | 如果已经很好，说"已经很清晰，建议不改" |
+
+---
+
+## 何时不应使用
+
+**不要在以下情况触发此技能**：
+
+1. **用户正在正常对话**：不是在讨论或请求优化 prompt
+2. **用户在执行其他任务**：如写代码、分析数据、回答问题等
+3. **prompt 已经很完善**：有清晰的角色、步骤、格式和约束
+4. **用户只是随口提到 "prompt" 这个词**：而非明确要求优化
+
+---
+
+## 使用说明
+
+**输入**：
+- 直接粘贴原 prompt
+- 或描述想做什么，让工具从零写一个
+
+**输出**：
+- 优化后的 prompt（代码块）
+- 一行说明改了什么
+- 询问是否需要继续调整
+
+---
+
+## 提示
+
+如果原 prompt 已经很完善（有角色、有步骤、有格式、有约束），工具会告诉你"已经很清晰，无需优化"或仅做微调。

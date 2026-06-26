@@ -1,0 +1,74 @@
+{
+  "example_name": "产品经理简历（中文）",
+  "description": "中级产品经理的示例简历数据，展示完整的中文结构化格式",
+  "language": "zh",
+  "target_role": "产品经理",
+  "industry": "product_management",
+  "experience_level": "mid",
+  "resume_data": {
+    "file_name": "产品经理简历.pdf",
+    "contact": {
+      "name": "李明远",
+      "email": "limingyuan@email.com",
+      "phone": "186-0000-1234",
+      "location": "深圳",
+      "wechat": "limingyuan_pm",
+      "website": "limingyuan.me"
+    },
+    "summary": "5年+互联网产品经理经验，主导过3款从0到1的产品，累计服务用户500万+。擅长用户研究、数据分析和跨部门协作，具备完整的产品生命周期管理经验。精通敏捷开发流程，有B端SaaS和C端移动端产品经验。",
+    "work_experience": [
+      {
+        "title": "高级产品经理",
+        "company": "字节跳动",
+        "location": "深圳",
+        "start_date": "2022.03",
+        "end_date": "至今",
+        "description": "负责抖音电商商家工具产品线，管理5人产品团队。\n主导商家数据分析平台从0到1建设，上线6个月覆盖商家20万+，工具使用率75%+。\n通过A/B测试优化商家入驻流程，转化率从38%提升至62%，月均新增商家增长40%。\n搭建商家分层运营体系，头部商家GMV增长120%，腰部商家增长85%。\n协调研发、设计、运营等跨部门团队，推动季度OKR达成率95%+。"
+      },
+      {
+        "title": "产品经理",
+        "company": "腾讯",
+        "location": "深圳",
+        "start_date": "2019.07",
+        "end_date": "2022.02",
+        "description": "负责企业微信效率工具模块的产品规划和迭代。\n主导日程管理功能重构，日活用户从50万增长至180万，NPS提升15个百分点。\n通过用户访谈和数据分析，挖掘并解决3个核心痛点，功能使用频次提升2.3倍。\n推动产品数据指标体系搭建，实现核心指标实时监控和异常预警。"
+      }
+    ],
+    "education": [
+      {
+        "degree": "硕士",
+        "field": "管理科学与工程",
+        "institution": "浙江大学",
+        "graduation_date": "2019.06",
+        "gpa": "3.8/4.0",
+        "honors": ["国家奖学金", "优秀毕业生"],
+        "relevant_coursework": ["产品设计", "数据分析", "用户研究", "项目管理"]
+      },
+      {
+        "degree": "学士",
+        "field": "信息管理与信息系统",
+        "institution": "武汉大学",
+        "graduation_date": "2017.06"
+      }
+    ],
+    "skills": [
+      "产品规划与策略", "用户研究", "数据分析（SQL、Python）",
+      "A/B测试", "需求文档PRD撰写", "敏捷/Scrum",
+      "项目管理（Jira、飞书）", "原型设计（Figma、Axure）",
+      "数据看板（Tableau、神策）", "跨部门协作", "竞品分析"
+    ],
+    "projects": [
+      {
+        "name": "商家数据分析平台",
+        "description": "从0到1建设抖音电商商家端数据产品，包含经营分析、流量分析、用户分析等核心模块",
+        "technologies": ["React", "Python", "ClickHouse", "Figma"],
+        "role": "产品负责人",
+        "url": ""
+      }
+    ],
+    "certifications": [
+      "PMP项目管理专业人士认证（2023）",
+      "Google数据分析专业证书（2022）"
+    ]
+  }
+}

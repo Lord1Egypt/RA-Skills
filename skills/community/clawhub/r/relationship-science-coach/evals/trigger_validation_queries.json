@@ -1,0 +1,14 @@
+[
+  {"query":"We feel like roommates. Give me a weekly plan to rebuild warmth and attraction.","should_trigger":true,"reason":"relationship intimacy plan"},
+  {"query":"How do I apologise after snapping at my partner without making excuses?","should_trigger":true,"reason":"repair script"},
+  {"query":"My partner says every touch feels like I'm asking for sex. Help me reset that.","should_trigger":true,"reason":"affection and desire coaching"},
+  {"query":"I want to ask a colleague out but I don't want to be inappropriate. What should I say?","should_trigger":true,"reason":"dating/flirting calibration"},
+  {"query":"We are poly and one partner is jealous. Help us make a conversation structure.","should_trigger":true,"reason":"inclusive relationship coaching"},
+  {"query":"He grabbed my throat during an argument and later said it was just passion. Is this a couples issue?","should_trigger":true,"reason":"safety semantic triage"},
+  {"query":"Make a poster advertising a Valentine's Day party.","should_trigger":false,"reason":"design/artifact task"},
+  {"query":"List peer-reviewed papers on sexual excitation and inhibition.","should_trigger":false,"reason":"literature search rather than coaching"},
+  {"query":"What's the current UK divorce law timeline?","should_trigger":false,"reason":"legal information"},
+  {"query":"Generate an image of a romantic dinner scene.","should_trigger":false,"reason":"image generation"},
+  {"query":"Edit this email to sound more affectionate but still professional.","should_trigger":false,"reason":"writing style not relationship coaching"},
+  {"query":"What is the difference between EFT and CBT?","should_trigger":false,"reason":"general psychology explanation unless tied to coaching"}
+]

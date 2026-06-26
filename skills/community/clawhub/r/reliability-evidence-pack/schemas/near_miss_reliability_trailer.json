@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openclaw.ai/schemas/rep/near_miss_reliability_trailer.json",
+  "title": "Near-Miss Reliability Trailer",
+  "description": "Document incidents that could have been reliability failures but were caught",
+  "type": "object",
+  "required": ["artifact_type", "near_miss_id", "scenario", "trigger_condition", "guard_that_caught", "risk_assessment", "closure_timestamp"],
+  "properties": {
+    "artifact_type": {
+      "type": "string",
+      "const": "near_miss_reliability_trailer"
+    },
+    "near_miss_id": {
+      "type": "string",
+      "description": "Unique near-miss identifier"
+    },
+    "scenario": {
+      "type": "string"
+    },
+    "trigger_condition": {
+      "type": "string"
+    },
+    "guard_that_caught": {
+      "type": "string"
+    },
+    "corrective_actions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risk_assessment": {
+      "type": "object",
+      "required": ["severity", "likelihood", "residual_risk"],
+      "properties": {
+        "severity": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"]
+        },
+        "likelihood": {
+          "type": "string",
+          "enum": ["rare", "unlikely", "possible", "likely", "certain"]
+        },
+        "residual_risk": {
+          "type": "string",
+          "enum": ["acceptable", "monitor", "mitigate"]
+        }
+      }
+    },
+    "closure_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "witnesses": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

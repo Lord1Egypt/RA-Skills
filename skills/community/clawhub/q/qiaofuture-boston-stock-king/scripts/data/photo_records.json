@@ -1,0 +1,32 @@
+{
+  "users": {
+    "test001": {
+      "nickname": "唐总",
+      "has_photo": true,
+      "photo_path": "/path/to/photo.jpg",
+      "photos_created": [
+        {
+          "scene": "巴黎铁塔",
+          "scene_name": "巴黎埃菲尔铁塔",
+          "created_at": "2026-03-13T03:09:49.403033"
+        },
+        {
+          "scene": "巴黎铁塔",
+          "scene_name": "巴黎埃菲尔铁塔",
+          "created_at": "2026-03-13T03:12:25.473547"
+        },
+        {
+          "scene": "巴黎铁塔",
+          "scene_name": "巴黎埃菲尔铁塔",
+          "created_at": "2026-03-13T03:14:45.641149"
+        },
+        {
+          "scene": "巴黎铁塔",
+          "scene_name": "巴黎埃菲尔铁塔",
+          "created_at": "2026-03-13T03:22:11.578120"
+        }
+      ],
+      "last_interaction": "2026-03-13T03:22:11.577811"
+    }
+  }
+}

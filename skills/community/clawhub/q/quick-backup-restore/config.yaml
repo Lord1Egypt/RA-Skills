@@ -1,0 +1,116 @@
+repository:
+  # Caminho local onde os snapshots restic serão armazenados.
+  # Pode ser um path local, S3, SFTP, etc. (qualquer backend suportado pelo restic)
+  # Exemplo local: /var/backups/time-clawshine
+  # Exemplo S3:    s3:s3.amazonaws.com/meu-bucket/time-clawshine
+  path: /var/backups/time-clawshine
+
+  # Arquivo com a senha de criptografia do repositório restic (AES-256).
+  # Criado automaticamente pelo setup.sh com uma senha aleatória de 64 chars.
+  # NUNCA commite este arquivo. Faça backup dele separadamente.
+  password_file: /etc/time-clawshine.pass
+
+retention:
+  # Quantos snapshots manter. Com cron a cada hora: 72 = 3 dias.
+  # Ajuste para mais ou menos dependendo do espaço disponível.
+  keep_last: 72
+
+schedule:
+  # Expressão cron para o backup automático.
+  # Padrão: todo :05 da hora (5 * * * *)
+  # Para backup a cada 2 horas: 0 */2 * * *
+  # Para backup a cada 30 min: */30 * * * *
+  # Para backup diário à meia-noite: 0 0 * * *
+  cron: "5 * * * *"
+
+backup:
+  # Caminhos a incluir no backup. Ajuste conforme sua instalação do OpenClaw.
+  # O padrão cobre o contexto completo de um agente principal (main).
+  paths:
+    - /root/.openclaw/workspace        # memória, skills, SOUL.md, USER.md, etc.
+    - /root/.openclaw/agents/main/sessions  # histórico de sessões (JSONL)
+    - /root/.openclaw/openclaw.json    # config principal do gateway
+    - /root/.openclaw/cron             # jobs agendados
+
+  # Padrões glob a excluir dentro dos paths acima.
+  exclude:
+    - "*.bak"           # backups temporários
+    - "*.reset"         # arquivos de reset de sessão
+    - "*.tmp"           # arquivos temporários
+    - "__pycache__"     # cache Python
+    - ".git"            # repositórios git (já versionados separadamente)
+
+integrity:
+  # Executar "restic check" a cada N backups bem-sucedidos (0 = desativado).
+  # Recomendado: 24 (= uma vez por dia com cron horário).
+  check_every: 24
+
+safety:
+  # Espaço mínimo em disco (MB) no volume do repositório para prosseguir com o backup.
+  # Se menor, o backup é abortado e um alerta Telegram mínimo é enviado apenas
+  # quando Telegram estiver explicitamente habilitado e privacy.local_only=false.
+  min_disk_mb: 500
+
+notifications:
+  telegram:
+    # Ativar notificação Telegram apenas em caso de falha.
+    # Se disabled, erros são registrados apenas no log.
+    enabled: false
+
+    # Token do bot Telegram. Obtenha em @BotFather.
+    # Exemplo: 1234567890:AAHxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    bot_token: ""
+
+    # ID do chat ou usuário que receberá as notificações.
+    # Para obter o seu: envie /start para @userinfobot no Telegram.
+    # Exemplo: 123456789
+    chat_id: ""
+
+    # Enviar resumo diário com estatísticas de backup (primeiro backup após meia-noite).
+    # Requer enabled: true, bot_token e chat_id configurados.
+    daily_digest: false
+
+  # Healthcheck.io / hc-style endpoint para monitoramento externo.
+  # Útil para detectar quando o backup PARA de rodar (Telegram só notifica em
+  # falha — se o cron quebrar, ninguém sabe).
+  # Compatível com healthchecks.io e qualquer endpoint que aceite GET <url>,
+  # GET <url>/start e GET <url>/fail.
+  healthcheck:
+    enabled: false
+
+    # URL completa do check. Exemplo:
+    #   https://hc.marzops.cloud/ping/<uuid>
+    #   https://hc-ping.com/<uuid>
+    url: ""
+
+    # Enviar ping em <url>/start no início do backup (permite medir duração).
+    # Default: true.
+    ping_start: true
+
+privacy:
+  # Modo estritamente local. Quando true, bloqueia Telegram, healthcheck e
+  # update checks mesmo se alguém tentar habilitar esses blocos por engano.
+  # Para usar integrações externas, defina explicitamente como false.
+  local_only: true
+
+  # Quando false, notificações externas enviam apenas estado mínimo. Quando true,
+  # erros podem incluir detalhes sanitizados/truncados. Mantenha false em produção.
+  send_error_details: false
+
+  # Incluir hostname em notificações externas. Hostnames podem revelar ambiente,
+  # cliente, projeto ou topologia; por isso o padrão é false.
+  include_hostname: false
+
+updates:
+  # Verificar se há uma versão mais recente no ClawHub (uma vez por dia, non-blocking).
+  # Se encontrada, registra no log — nunca atualiza automaticamente.
+  # Desativado por padrão para manter postura local-only até consentimento explícito.
+  check: false
+
+logging:
+  # Caminho do arquivo de log. Rotacionado automaticamente pelo setup.sh via logrotate.
+  file: /var/log/time-clawshine.log
+
+  # verbose: true imprime detalhes de cada arquivo processado pelo restic.
+  # Útil para debug. Em produção, mantenha false.
+  verbose: false

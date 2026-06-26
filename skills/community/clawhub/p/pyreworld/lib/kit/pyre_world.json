@@ -1,0 +1,514 @@
+{
+    "address": "2oai1EaDnFcSNskyVwSbGkUEddxxfUSsSVRokE31gRfv",
+    "metadata": {
+        "name": "pyre_world",
+        "version": "1.0.3",
+        "spec": "0.1.0",
+        "description": "pyre.world agent registry"
+    },
+    "instructions": [
+        {
+            "name": "checkpoint",
+            "docs": [
+                "Update action counters and personality summary.",
+                "Only the linked wallet can call this."
+            ],
+            "discriminator": [213, 200, 19, 204, 240, 143, 184, 252],
+            "accounts": [
+                {
+                    "name": "signer",
+                    "writable": true,
+                    "signer": true
+                },
+                {
+                    "name": "profile",
+                    "docs": [
+                        "shorter (pre-P&L). Anchor's Account<AgentProfile> fails to deserialize",
+                        "them before we can resize. Handler validates PDA, resizes, then deserializes."
+                    ],
+                    "writable": true
+                },
+                {
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
+                }
+            ],
+            "args": [
+                {
+                    "name": "args",
+                    "type": {
+                        "defined": {
+                            "name": "CheckpointArgs"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "link_wallet",
+            "docs": [
+                "Link a new wallet to the profile. Authority only.",
+                "Must unlink existing wallet first."
+            ],
+            "discriminator": [86, 92, 31, 146, 228, 51, 209, 230],
+            "accounts": [
+                {
+                    "name": "authority",
+                    "writable": true,
+                    "signer": true,
+                    "relations": ["profile"]
+                },
+                {
+                    "name": "profile",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [112, 121, 114, 101, 95, 97, 103, 101, 110, 116]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "profile.creator",
+                                "account": "AgentProfile"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "wallet_to_link"
+                },
+                {
+                    "name": "wallet_link",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    112, 121, 114, 101, 95, 97, 103, 101, 110, 116, 95, 119, 97, 108, 108, 101, 116
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "wallet_to_link"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
+                }
+            ],
+            "args": []
+        },
+        {
+            "name": "register",
+            "docs": ["Register a new agent profile and auto-link the creator's wallet."],
+            "discriminator": [211, 124, 67, 15, 211, 194, 178, 240],
+            "accounts": [
+                {
+                    "name": "creator",
+                    "writable": true,
+                    "signer": true
+                },
+                {
+                    "name": "profile",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [112, 121, 114, 101, 95, 97, 103, 101, 110, 116]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "creator"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "wallet_link",
+                    "docs": ["Auto-created wallet link for the creator"],
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    112, 121, 114, 101, 95, 97, 103, 101, 110, 116, 95, 119, 97, 108, 108, 101, 116
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "creator"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
+                }
+            ],
+            "args": []
+        },
+        {
+            "name": "transfer_authority",
+            "docs": ["Transfer profile authority to a new wallet."],
+            "discriminator": [48, 169, 76, 72, 229, 180, 55, 161],
+            "accounts": [
+                {
+                    "name": "authority",
+                    "signer": true,
+                    "relations": ["profile"]
+                },
+                {
+                    "name": "profile",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [112, 121, 114, 101, 95, 97, 103, 101, 110, 116]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "profile.creator",
+                                "account": "AgentProfile"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "new_authority"
+                }
+            ],
+            "args": []
+        },
+        {
+            "name": "unlink_wallet",
+            "docs": ["Unlink the current wallet. Authority only."],
+            "discriminator": [220, 121, 97, 13, 193, 137, 209, 159],
+            "accounts": [
+                {
+                    "name": "authority",
+                    "writable": true,
+                    "signer": true,
+                    "relations": ["profile"]
+                },
+                {
+                    "name": "profile",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [112, 121, 114, 101, 95, 97, 103, 101, 110, 116]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "profile.creator",
+                                "account": "AgentProfile"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "wallet_to_unlink"
+                },
+                {
+                    "name": "wallet_link",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    112, 121, 114, 101, 95, 97, 103, 101, 110, 116, 95, 119, 97, 108, 108, 101, 116
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "wallet_to_unlink"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
+                }
+            ],
+            "args": []
+        }
+    ],
+    "accounts": [
+        {
+            "name": "AgentProfile",
+            "discriminator": [60, 227, 42, 24, 0, 87, 86, 205]
+        },
+        {
+            "name": "AgentWalletLink",
+            "discriminator": [253, 251, 63, 168, 140, 233, 129, 156]
+        }
+    ],
+    "errors": [
+        {
+            "code": 6000,
+            "name": "PersonalityTooLong",
+            "msg": "Personality summary exceeds 256 characters"
+        },
+        {
+            "code": 6001,
+            "name": "CounterNotMonotonic",
+            "msg": "Counter value cannot decrease (must be monotonically increasing)"
+        },
+        {
+            "code": 6002,
+            "name": "WalletAlreadyLinked",
+            "msg": "A wallet is already linked to this profile — unlink first"
+        },
+        {
+            "code": 6003,
+            "name": "WalletLinkMismatch",
+            "msg": "Wallet link does not belong to this profile"
+        },
+        {
+            "code": 6004,
+            "name": "NoWalletLinked",
+            "msg": "Cannot unlink — no wallet is currently linked"
+        }
+    ],
+    "types": [
+        {
+            "name": "AgentProfile",
+            "docs": [
+                "Per-agent identity and state. One per creator.",
+                "",
+                "Stores action distribution counters (monotonically increasing)",
+                "and a compressed personality summary for stateless reconstruction.",
+                "",
+                "Seeds: [\"pyre_agent\", creator.key()]"
+            ],
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "creator",
+                        "docs": ["Immutable creator wallet — PDA seed (never changes)"],
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "authority",
+                        "docs": ["Current authority — controls link/unlink/transfer (transferable)"],
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "linked_wallet",
+                        "docs": ["Current active wallet that can write checkpoints"],
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "personality_summary",
+                        "docs": ["LLM-compressed personality paragraph (max 256 chars)"],
+                        "type": "string"
+                    },
+                    {
+                        "name": "last_checkpoint",
+                        "docs": ["Unix timestamp of last checkpoint"],
+                        "type": "i64"
+                    },
+                    {
+                        "name": "joins",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "defects",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "rallies",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "launches",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "messages",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "fuds",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "infiltrates",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "reinforces",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "war_loans",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "repay_loans",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "sieges",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "ascends",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "razes",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "tithes",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "created_at",
+                        "docs": ["Registration timestamp"],
+                        "type": "i64"
+                    },
+                    {
+                        "name": "bump",
+                        "docs": ["PDA bump"],
+                        "type": "u8"
+                    },
+                    {
+                        "name": "total_sol_spent",
+                        "docs": ["Cumulative SOL spent on joins/buys/infiltrates (lamports)"],
+                        "type": "u64"
+                    },
+                    {
+                        "name": "total_sol_received",
+                        "docs": ["Cumulative SOL received from defects/sells (lamports)"],
+                        "type": "u64"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "AgentWalletLink",
+            "docs": [
+                "Reverse pointer: given a wallet, find its AgentProfile.",
+                "One link per wallet — prevents a wallet belonging to multiple profiles.",
+                "",
+                "Seeds: [\"pyre_agent_wallet\", wallet.key()]"
+            ],
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "profile",
+                        "docs": ["The AgentProfile this wallet belongs to"],
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "wallet",
+                        "docs": ["The linked wallet"],
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "linked_at",
+                        "docs": ["When this link was created"],
+                        "type": "i64"
+                    },
+                    {
+                        "name": "bump",
+                        "docs": ["PDA bump"],
+                        "type": "u8"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "CheckpointArgs",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "joins",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "defects",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "rallies",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "launches",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "messages",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "fuds",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "infiltrates",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "reinforces",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "war_loans",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "repay_loans",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "sieges",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "ascends",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "razes",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "tithes",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "personality_summary",
+                        "type": "string"
+                    },
+                    {
+                        "name": "total_sol_spent",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "total_sol_received",
+                        "type": "u64"
+                    }
+                ]
+            }
+        }
+    ]
+}

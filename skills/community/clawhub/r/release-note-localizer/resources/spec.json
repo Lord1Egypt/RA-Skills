@@ -1,0 +1,37 @@
+{
+  "slug": "release-note-localizer",
+  "title": "发布说明本地化器",
+  "category": "docs",
+  "categoryLabel": "文档与知识",
+  "mode": "structured_brief",
+  "summary": "将发布说明转换为中文、英文、客户版和技术版，同时保持术语一致。",
+  "inputHint": "原始 release notes 与术语要求",
+  "sections": [
+    "术语表",
+    "中文版本",
+    "英文版本",
+    "客户版",
+    "技术版",
+    "需确认术语"
+  ],
+  "useCases": [
+    "多语言发布",
+    "客户沟通",
+    "技术文档"
+  ],
+  "positiveExamples": [
+    "把发布说明改成中文和客户版",
+    "统一术语并重写语气"
+  ],
+  "negativeExamples": [
+    "不要机翻敏感合同条款",
+    "不要替代专业法律翻译"
+  ],
+  "risk": "适合产品与技术说明，不适合法律文本。",
+  "tags": [
+    "localization",
+    "release-notes",
+    "translation",
+    "glossary"
+  ]
+}

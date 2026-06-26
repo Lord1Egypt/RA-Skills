@@ -1,35 +1,25 @@
----
-name: "Prompt Gen Skill"
-description: "Generate detailed, optimized AI art prompts for Midjourney, DALL-E, and Stable Diffusion, including style, lighting, and composition keywords."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prompt-gen-skill"
-sourceUrl: "https://clawhub.ai/skills/prompt-gen-skill"
----
+# AI Art Prompt Generator
 
-# Prompt Gen Skill
+Generate optimized prompts for AI image generation tools like Midjourney, DALL-E, Stable Diffusion.
 
-> Generate detailed, optimized AI art prompts for Midjourney, DALL-E, and Stable Diffusion, including style, lighting, and composition keywords.
+## Features
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prompt-gen-skill`
-- **Source URL:** [https://clawhub.ai/skills/prompt-gen-skill](https://clawhub.ai/skills/prompt-gen-skill)
+- Generate detailed prompts for AI art
+- Optimize for Midjourney, DALL-E, SDXL
+- Include style, lighting, composition keywords
 
-## Overview
+## Price
 
+- **0.001 USDT** per call
+- Payment via SkillPay
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/prompt-gen-skill
-```
+## Usage
+
+- "Generate a prompt for a cyberpunk city"
+- "Prompt for a futuristic robot"
+- "Create prompt for a fantasy castle"
+
+## Integration
+
+- API Key: sk_93c5ff38cc3e6112623d361fffcc5d1eb1b5844eac9c40043b57c0e08f91430e
+- Price: 0.001 USDT per call

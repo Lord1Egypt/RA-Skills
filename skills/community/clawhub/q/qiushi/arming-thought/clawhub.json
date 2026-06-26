@@ -1,0 +1,13 @@
+{
+  "name": "arming-thought",
+  "version": "1.0.0",
+  "displayName": "武装思想",
+  "description": "在每次新的顶层对话开始时自动调用，用于建立'实事求是'的总原则，并在明确适用时为后续任务选择下游 skill",
+  "author": "求是 Skill",
+  "homepage": "https://github.com/skytodmoon/qiushi-skill",
+  "tags": ["方法论", "毛泽东思想", "实事求是"],
+  "requires": {
+    "env": []
+  },
+  "files": []
+}

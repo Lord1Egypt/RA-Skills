@@ -1,0 +1,296 @@
+{
+  "name": "quicker-connector",
+  "version": "1.2.0",
+  "description": "与 Quicker 自动化工具集成，读取、搜索和执行 Quicker 动作列表。支持 CSV 和数据库双数据源，智能匹配用户需求并调用本地 QuickerStarter 执行。",
+  "author": "CodeBuddy",
+  "license": "MIT",
+  "homepage": "https://github.com/awamwang/quicker-connector",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/awamwang/quicker-connector.git"
+  },
+  "keywords": [
+    "quicker",
+    "automation",
+    "workflow",
+    "windows",
+    "productivity",
+    "ai-assistant"
+  ],
+  "categories": [
+    "automation",
+    "productivity",
+    "windows"
+  ],
+  "dependencies": [],
+  "platforms": [
+    "windows"
+  ],
+  "compatibility": {
+    "openclaw": ">=2025.1",
+    "gateway": ">=1.0"
+  },
+  "permissions": [
+    "file-system-read",
+    "file-system-write",
+    "subprocess"
+  ],
+  "published_at": "2026-04-06T19:48:03.957841",
+  "downloads": 0,
+  "rating": 0.0,
+  "skill_metadata": {
+    "trigger": {
+      "mode": "natural_language",
+      "keywords": [
+        "quicker",
+        "快键",
+        "快速",
+        "调用.*动作",
+        "执行.*quicker",
+        "用.*quicker",
+        "quicker.*帮我"
+      ],
+      "confidence_threshold": 0.6
+    },
+    "capabilities": [
+      {
+        "name": "initialize",
+        "description": "初始化 Quicker Connector，导出并配置动作列表 CSV 文件",
+        "examples": [
+          "初始化 quicker 连接器",
+          "配置 quicker 动作列表"
+        ]
+      },
+      {
+        "name": "read_actions",
+        "description": "读取 Quicker 动作列表（支持 CSV 文件和数据库两种模式）",
+        "parameters": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "csv",
+              "db"
+            ],
+            "description": "数据源类型"
+          },
+          "filter_by_panel": {
+            "type": "string",
+            "description": "可选：按面板过滤"
+          },
+          "filter_by_type": {
+            "type": "string",
+            "description": "可选：按动作类型过滤（XAction/SendKeys 等）"
+          }
+        },
+        "examples": [
+          "列出所有 quicker 动作",
+          "读取数据库中的动作"
+        ]
+      },
+      {
+        "name": "search_actions",
+        "description": "搜索 Quicker 动作（支持名称、说明、类型、面板等字段）",
+        "parameters": {
+          "keyword": {
+            "type": "string",
+            "description": "搜索关键词"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "搜索字段列表（默认所有字段）"
+          },
+          "limit": {
+            "type": "number",
+            "description": "最大返回数量"
+          }
+        },
+        "examples": [
+          "搜索包含'截图'的动作",
+          "查找所有翻译相关的 quicker 动作"
+        ]
+      },
+      {
+        "name": "match_actions",
+        "description": "根据用户需求智能匹配动作",
+        "parameters": {
+          "user_input": {
+            "type": "string",
+            "description": "用户自然语言需求"
+          },
+          "top_n": {
+            "type": "number",
+            "description": "返回前 N 个最匹配结果"
+          }
+        },
+        "examples": [
+          "帮我截个图",
+          "用 quicker 翻译这段文字"
+        ]
+      },
+      {
+        "name": "execute_action",
+        "description": "执行指定的 Quicker 动作",
+        "parameters": {
+          "action_id": {
+            "type": "string",
+            "description": "动作 ID"
+          },
+          "parameters": {
+            "type": "string",
+            "description": "可选：传递给动作的参数"
+          },
+          "wait_for_result": {
+            "type": "boolean",
+            "description": "是否等待执行结果"
+          },
+          "timeout": {
+            "type": "number",
+            "description": "超时时间（秒）"
+          }
+        },
+        "examples": [
+          "执行 ID 为 xxx 的 quicker 动作"
+        ]
+      },
+      {
+        "name": "get_statistics",
+        "description": "获取动作统计信息",
+        "parameters": {},
+        "examples": [
+          "统计 quicker 动作信息",
+          "显示动作分类统计"
+        ]
+      },
+      {
+        "name": "export_to_json",
+        "description": "导出动作列表到 JSON 文件",
+        "parameters": {
+          "output_path": {
+            "type": "string",
+            "description": "输出文件路径"
+          }
+        },
+        "examples": [
+          "导出动作列表到 actions.json"
+        ]
+      },
+      {
+        "name": "interactive_mode",
+        "description": "进入交互式模式，持续接收用户指令",
+        "parameters": {},
+        "examples": [
+          "启动 quicker 交互模式"
+        ]
+      }
+    ],
+    "settings": {
+      "initialized": {
+        "type": "boolean",
+        "description": "是否已完成初始化配置",
+        "default": false,
+        "required": true
+      },
+      "csv_path": {
+        "type": "string",
+        "description": "Quicker 动作 CSV 文件路径",
+        "default": "",
+        "required": true
+      },
+      "db_path": {
+        "type": "string",
+        "description": "Quicker 数据库路径",
+        "default": "C:\\Users\\Administrator\\AppData\\Local\\Quicker\\data\\quicker.db"
+      },
+      "starter_path": {
+        "type": "string",
+        "description": "QuickerStarter.exe 路径",
+        "default": "C:\\Program Files\\Quicker\\QuickerStarter.exe"
+      },
+      "default_source": {
+        "type": "string",
+        "description": "默认数据源类型",
+        "default": "csv",
+        "options": [
+          "csv",
+          "db"
+        ]
+      },
+      "encodings": {
+        "type": "array",
+        "description": "CSV 编码检测顺序",
+        "default": [
+          "utf-8-sig",
+          "utf-8",
+          "gbk",
+          "gb2312",
+          "gb18030",
+          "latin-1"
+        ]
+      },
+      "auto_select_threshold": {
+        "type": "number",
+        "description": "自动选择动作的匹配分数阈值",
+        "default": 0.8,
+        "minimum": 0.5,
+        "maximum": 1.0
+      },
+      "max_results": {
+        "type": "number",
+        "description": "最大返回结果数量",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 50
+      }
+    },
+    "examples": [
+      {
+        "input": "用 quicker 截图",
+        "description": "匹配并推荐截图相关动作",
+        "output": "找到 3 个匹配的 Quicker 动作:\n1. 截图 (分数: 0.85)\n2. 截图OCR (分数: 0.72)\n3. 识别二维码 (分数: 0.45)"
+      },
+      {
+        "input": "帮我翻译这段文字",
+        "description": "智能匹配翻译动作",
+        "output": "找到 2 个匹配:\n1. 文本/截图翻译 (分数: 0.33)\n2. 百度翻译 (分数: 0.33)"
+      },
+      {
+        "input": "列出所有 quicker 动作",
+        "description": "获取完整动作统计",
+        "output": "统计信息:\n总计: 357 个动作\n类型: XAction(311), SendKeys(17)...\n面板: 全局 home(12), 工具(15)..."
+      }
+    ],
+    "compatibility": {
+      "openclaw_min": "2025.1",
+      "gateway_min": "1.0",
+      "breaking_changes": []
+    },
+    "permissions": {
+      "file_system": {
+        "read": [
+          "csv_path (user configured)",
+          "db_path (user configured)",
+          "config.json (skill directory)"
+        ],
+        "write": [
+          "config.json (skill directory)",
+          "user specified export paths"
+        ]
+      },
+      "subprocess": {
+        "allowed": [
+          "C:\\Program Files\\Quicker\\QuickerStarter.exe"
+        ],
+        "restricted": true
+      },
+      "network": false,
+      "system": {
+        "platform": [
+          "windows"
+        ]
+      }
+    }
+  }
+}

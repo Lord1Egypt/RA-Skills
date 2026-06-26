@@ -1,35 +1,109 @@
 ---
-name: "Research Loop"
-description: "Claude Code compatibility mirror for the Codex-native 10000 Mentors Research Workflow. Use only when running from Claude Code and the user wants the same sou..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/research-loop"
-sourceUrl: "https://clawhub.ai/skills/research-loop"
+name: research-loop
+description: >-
+  Claude Code compatibility mirror for the Codex-native 10000 Mentors Research
+  Workflow. Use only when running from Claude Code and the user wants the same
+  source-gated research loop contract.
+version: 1.0.0
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python3
+        - git
+        - gh
+    emoji: "\U0001F52C"
+    homepage: https://github.com/wd041216-bit/10000-mentors-research-workflow
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
+  - WebSearch
+model: inherit
+argument-hint: "<repo-url> [--max-cycles N] [--target-journal NAME] [--no-push]"
 ---
 
-# Research Loop
+# Research Loop Compatibility Skill
 
-> Claude Code compatibility mirror for the Codex-native 10000 Mentors Research Workflow. Use only when running from Claude Code and the user wants the same sou...
+This is the Claude Code compatibility mirror. The primary skill lives at:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/research-loop`
-- **Source URL:** [https://clawhub.ai/skills/research-loop](https://clawhub.ai/skills/research-loop)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/research-loop
+```text
+.codex/skills/research-loop/
 ```
+
+Use this mirror only when the runtime is Claude Code. Keep the same safety contract:
+
+1. Treat the current target repo HEAD as primary truth.
+2. Treat MemPalace, prior handoffs, and expert memory as secondary context.
+3. Use native web search only for short, attributed fresh context when needed.
+4. Do not require Ollama API keys or Ollama native web search.
+5. Run one bounded micro-step per cycle.
+6. Write source changes into the workflow run's `source_changes/` repo-root mirror.
+7. Write the executor manifest with `python3 -m autonomous_research_workflow.cli write-executor-manifest`.
+8. Do not mark empirical progress unless runnable code or checkable result artifacts were produced.
+9. Run the protocol hygiene checks in [protocol hygiene](references/protocol-hygiene.md) before choosing a micro-step.
+10. Run the innovation-frontier checks in [innovation frontier](references/innovation-frontier.md) so current assets calibrate the loop without trapping it.
+11. Stop only when Submission Advisor reports `score >= 100` and `level = submission_ready`, executor completed, and delivery completed.
+
+## Phase Order
+
+Run the 15-phase loop described in [phases](references/phases.md):
+
+1. `source_intake`
+2. `mempalace_context`
+3. `council_knowledge`
+4. `expert_forum_coverage`
+5. `literature_refresh`
+6. `knowledge_publish`
+7. `advisor_design`
+8. `execution_packet`
+9. `executor_run`
+10. `advisor_reflection`
+11. `openspace_retrospective`
+12. `next_cycle_handoff`
+13. `star_office_status`
+14. `overwatcher_check`
+15. `github_publish`
+
+## Native Executor
+
+Phase 9 remains the key agent-native phase:
+
+- Read the execution packet.
+- Read the source clone.
+- Generate the smallest useful runnable research asset.
+- Write only to `source_changes/`.
+- Run lightweight checks when possible.
+- Write `executor_manifest.json`.
+
+Use [executor-template](references/executor-template.md) as the output contract.
+
+## Protocol Hygiene
+
+Before the advisor or executor treats a repo as submission-ready, check for:
+
+- positioning drift between README claims and later submission/package locators
+- synthetic or structural claims being mislabeled as empirical results
+- tracked reproducibility artifacts that rewrite timestamps or other volatile fields
+- CI gates that omit confirm scripts or fail to check dirty diffs
+- premature dual-venue framing before empirical results exist
+- misleading names such as `result_quality_*` for input-quality analysis
+- weak contamination checks being promoted into strong evidence
+
+Use [protocol hygiene](references/protocol-hygiene.md) as the detailed rubric.
+
+## Innovation Frontier
+
+Current assets are the evidence floor, not the imagination ceiling. Before selecting a micro-step, check whether the loop is overfitting to incomplete benchmarks, toy rows, inherited file names, or prior advisor backlog. Use [innovation frontier](references/innovation-frontier.md) to keep at least one evidence-linked but asset-transcending research route alive.
+
+## Completion Gate
+
+Only stop when all are true:
+
+- Submission Advisor score is at least `100`.
+- Submission Advisor level is `submission_ready`.
+- Executor manifest status is `completed`.
+- Delivery status is `published` or explicitly `local_only` for dry runs.

@@ -1,0 +1,29 @@
+{
+  "projects": [
+    "Smart Station系统建设项目",
+    "优理宝移动终端",
+    "场外衍生品综合管理系统",
+    "大投行业务管理系统",
+    "差异化交易SMT",
+    "数据仓库项目",
+    "智达APP",
+    "财富梦工厂",
+    "资产托管部综合管理平台",
+    "金融科技中台",
+    "集团CRM"
+  ],
+  "total_defects": 3418,
+  "generated_at": "2026-04-18",
+  "schema_version": "1.0.0",
+  "schema_file": "defect_schema.md",
+  "field_completeness": {
+    "description": "字段完整性说明：历史数据仅包含基础字段（domain, symptom, defect_type, severity），B6补强后新增 root_cause, trigger_condition, affected_state, negative_pattern 等强语义字段",
+    "required_fields": ["defect_id", "domain", "module_path", "symptom", "root_cause", "trigger_condition", "affected_state", "reproduction_summary", "test_hint", "negative_pattern", "severity", "defect_type", "created_at"],
+    "optional_fields": ["fix_pattern", "related_defects", "tags", "source_project"],
+    "legacy_coverage": {
+      "basic_fields_coverage": "100%",
+      "strong_semantic_fields_coverage": "0% (待迁移)",
+      "migration_plan": "分三阶段迁移，详见 defect_schema.md"
+    }
+  }
+}

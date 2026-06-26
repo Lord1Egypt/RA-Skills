@@ -1,35 +1,25 @@
----
-name: "research-monitor"
-description: "뉴스, 트렌드, 경쟁사 동향, 기술 업데이트를 키워드 기반으로 자동 수집하고 요약해 일일 및 주간 리포트를 제공합니다."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/research-monitor"
-sourceUrl: "https://clawhub.ai/skills/research-monitor"
----
+# 리서치/모니터링
 
-# research-monitor
+## 설명
+뉴스, 트렌드, 경쟁사, 기술 동향을 자동으로 수집하고 요약한다.
 
-> 뉴스, 트렌드, 경쟁사 동향, 기술 업데이트를 키워드 기반으로 자동 수집하고 요약해 일일 및 주간 리포트를 제공합니다.
+## 트리거
+- "오늘 뉴스 요약해줘", "트렌드 분석해줘"
+- "경쟁사 동향 알려줘"
+- 매일 09:00 KST 자동: 업계 뉴스 크롤링 + 텔레그램 전송
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/research-monitor`
-- **Source URL:** [https://clawhub.ai/skills/research-monitor](https://clawhub.ai/skills/research-monitor)
+## 능력
+1. 키워드 기반 뉴스 검색 및 요약
+2. 기술 블로그/Release Notes 모니터링
+3. 경쟁사 웹사이트 변경 감지
+4. 주간 트렌드 리포트 자동 생성
 
-## Overview
+## 자동 실행 스케줄
+- 평일 09:00: 일일 뉴스 브리핑
+- 매주 월요일 10:00: 주간 트렌드 리포트
+- 실시간: 설정한 키워드 뉴스 알림
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/research-monitor
-```
+## 사용 도구
+- 웹 검색 API
+- RSS 리더
+- 텔레그램 알림

@@ -1,0 +1,149 @@
+id: project_management_assistant
+name: 项目管理助手
+nickname: 项目管理助手
+version: 0.1.0
+owner: 项目管理负责人
+deployment:
+  workstation: default
+  folder: project-management-assistant
+  channel: 飞书
+  feishu_bot_name: project_management_assistant
+  hermes_agent_id: project_management_assistant
+mission: 通过飞书接收合同、方案、会议纪要、日报周报和交付材料，调用 Hermes Agent skills 完成项目启动、WBS、进度跟进、风险预警、周报、客户沟通、验收归档和复盘。
+users:
+- 项目经理
+- 交付人员
+- 客户经理
+- PMO
+- 管理层
+scenarios:
+  kickoff:
+    name: 项目启动
+    role: 项目秘书
+    description: 根据合同和方案提取目标、范围、交付物和启动清单。
+    workflow: workflows.md#一项目启动
+    skill_pack:
+    - PM01_project_kickoff_extract
+    - PM02_wbs_generate
+  wbs:
+    name: WBS 拆解
+    role: 计划经理
+    description: 拆解任务包、责任人、里程碑和依赖关系。
+    workflow: workflows.md#二WBS 拆解
+    skill_pack:
+    - PM02_wbs_generate
+    - PM03_milestone_plan
+  progress:
+    name: 进度跟进
+    role: 进度管理员
+    description: 收集日报周报，更新项目状态并识别延期。
+    workflow: workflows.md#三进度跟进
+    skill_pack:
+    - PM04_progress_collect
+    - PM05_risk_warning
+  risk:
+    name: 风险预警
+    role: 风险管理员
+    description: 识别延期、资源、质量、客户确认和范围风险。
+    workflow: workflows.md#四风险预警
+    skill_pack:
+    - PM05_risk_warning
+    - PM07_customer_communication_track
+  weekly_report:
+    name: 项目周报
+    role: 项目汇报员
+    description: 生成项目周报、问题清单、下周计划和管理摘要。
+    workflow: workflows.md#五项目周报
+    skill_pack:
+    - PM06_weekly_report_generate
+    - PM04_progress_collect
+  customer_communication:
+    name: 客户沟通
+    role: 客户协同员
+    description: 整理客户反馈、待确认事项、回复建议和催办提醒。
+    workflow: workflows.md#六客户沟通
+    skill_pack:
+    - PM07_customer_communication_track
+    - PM05_risk_warning
+  delivery_archive:
+    name: 验收归档
+    role: 交付管理员
+    description: 整理交付物、验收材料、版本记录和归档清单。
+    workflow: workflows.md#七验收归档
+    skill_pack:
+    - PM08_delivery_archive
+  retro:
+    name: 项目复盘
+    role: 复盘员
+    description: 总结问题、经验、改进建议和可复用材料。
+    workflow: workflows.md#八项目复盘
+    skill_pack:
+    - PM09_project_retro
+    - PM08_delivery_archive
+common_skills:
+- C01_feishu_message_router
+- C02_feishu_file_receiver
+- C03_user_permission_check
+- C04_task_intent_classifier
+- C05_document_parser
+- C07_structured_extraction
+- C08_knowledge_retrieval
+- C09_rule_checker
+- C10_template_renderer
+- C11_table_exporter
+- C12_task_breakdown
+- C13_human_approval
+- C14_feishu_reminder
+- C15_audit_log
+- C16_result_archive
+- C17_sensitive_info_masking
+- C18_demo_mode
+domain_skills:
+- PM01_project_kickoff_extract
+- PM02_wbs_generate
+- PM03_milestone_plan
+- PM04_progress_collect
+- PM05_risk_warning
+- PM06_weekly_report_generate
+- PM07_customer_communication_track
+- PM08_delivery_archive
+- PM09_project_retro
+skill_catalog: skills/project_management_skills.yaml
+approval_policy:
+  requires_human_confirmation:
+  - 范围变更
+  - 交付承诺
+  - 项目延期
+  - 客户正式回复
+  - 验收结论
+  can_auto_generate:
+  - 启动清单
+  - WBS
+  - 里程碑
+  - 周报
+  - 风险清单
+  - 催办提醒
+  - 验收清单
+  - 复盘报告
+  must_not_do:
+  - 自动承诺客户
+  - 自动修改合同范围
+  - 隐瞒项目风险
+  - 删除项目记录
+knowledge_sources:
+- knowledge/README.md
+- 项目合同库
+- 交付SOP
+- WBS模板
+- 项目周报模板
+- 风险清单
+- 验收材料库
+- 项目复盘库
+templates:
+  intake_card: templates/intake_card.md
+  analysis_report: templates/analysis_report.md
+  review_note: templates/review_note.md
+  archive_record: templates/archive_record.md
+demo:
+  script: demo/demo_script.md
+  test_cases: test_cases/p0_demo_cases.md

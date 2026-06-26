@@ -1,0 +1,23 @@
+{
+  "skill_name": "pro-code-reviewer",
+  "evals": [
+    {
+      "id": "review-last-3-html",
+      "prompt": "帮我 review 最近三次提交，并生成 HTML 报告。",
+      "expected_output": "Outputs a P0/P1/P2 review in chat and generates a .code-reviews/*.json + .html report for HEAD~3..HEAD via the deterministic runner.",
+      "files": []
+    },
+    {
+      "id": "review-staged",
+      "prompt": "review staged，重点关注 P0，给出可直接应用的修复代码片段。",
+      "expected_output": "Reviews only staged diff (git diff --cached). Reports only concrete issues in changed code, prioritizing P0 findings with actionable fix_code.",
+      "files": []
+    },
+    {
+      "id": "security-review-last-1",
+      "prompt": "security review last 1 commit，并指出是否存在 key 泄露、请求签名绕过、或不安全的日志输出。",
+      "expected_output": "Applies security lens, reports only P0/P1 security findings for HEAD~1..HEAD, avoids style/naming nits.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "pumpfun-launch",
+  "version": "1.0.1",
+  "type": "module",
+  "description": "Launch tokens on pump.fun directly from your AI agent. Zero middleware fees — direct on-chain. No PumpPortal, no third-party costs. Wallet generation, IPFS upload, token creation in one command. OpenClaw skill.",
+  "keywords": [
+    "pump.fun",
+    "pumpfun",
+    "solana",
+    "memecoin",
+    "token-launch",
+    "openclaw",
+    "ai-agent",
+    "mcp",
+    "crypto",
+    "defi"
+  ],
+  "author": "brandonhay",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brandonhay/pumpfun-launch"
+  },
+  "scripts": {
+    "launch": "bun run launch.ts"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.30.1",
+    "@solana/spl-token": "^0.4.9",
+    "@solana/web3.js": "^1.95.8",
+    "bs58": "^5.0.0",
+    "dotenv": "^16.4.7",
+    "pumpdotfun-sdk": "^1.4.2"
+  }
+}

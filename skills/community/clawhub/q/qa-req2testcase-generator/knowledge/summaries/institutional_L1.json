@@ -1,0 +1,47 @@
+{
+  "domain": "机构业务域",
+  "level": "L1",
+  "generated_at": "2026-05-08",
+  "source_file": "institutional.md",
+  "key_terms": [
+    {"term": "PB业务(主经纪商)", "definition": "为私募基金提供交易、托管、融资、研究等一站式服务"},
+    {"term": "机构客户准入", "definition": "机构客户从接洽到开通服务的完整审批流程"},
+    {"term": "大宗交易", "definition": "达到交易所最低限额(30万股或200万元)的单笔交易"},
+    {"term": "场外衍生品", "definition": "在交易所外由券商与客户签署的衍生品合约(收益凭证/场外期权)"},
+    {"term": "收益凭证", "definition": "券商以自身信用发行的债务融资工具，分固定/浮动收益型"},
+    {"term": "场外期权", "definition": "券商与机构客户一对一签署的期权合约"},
+    {"term": "预警线/止损线", "definition": "PB产品净值触发预警(0.8)和强制平仓(0.7)的阈值"},
+    {"term": "敲入/敲出", "definition": "场外衍生品中标的价格触及障碍价格的事件"},
+    {"term": "做市商", "definition": "在OTC市场提供买卖双边报价的交易商"},
+    {"term": "账户隔离", "definition": "不同PB产品的资金和证券必须严格隔离"},
+    {"term": "三方会签", "definition": "机构准入需合规+业务+风控三方审批通过"}
+  ],
+  "core_entities": [
+    {"name": "机构客户", "description": "公募/私募基金、银行、保险等机构投资者"},
+    {"name": "PB服务", "description": "为私募基金提供的主经纪商综合服务"},
+    {"name": "大宗交易", "description": "收盘后通过专门系统完成的大额交易"},
+    {"name": "场外产品", "description": "收益凭证、场外期权等OTC衍生品"},
+    {"name": "准入申请", "description": "机构客户的准入审批流程"},
+    {"name": "服务协议", "description": "与机构客户签署的各类服务合同"}
+  ],
+  "regulatory_baselines": [
+    {"rule": "完整准入流程", "description": "尽调→三方会签→协议签署→系统开通，不可跳过"},
+    {"rule": "私募备案校验", "description": "PB服务必须验证基金业协会备案状态"},
+    {"rule": "账户隔离", "description": "不同产品资金和证券严格隔离"},
+    {"rule": "场外衍生品投资者门槛", "description": "仅限专业投资者(金融资产≥500万)"},
+    {"rule": "大宗交易时间窗口", "description": "15:00-15:30，价格不偏离收盘价±10%"},
+    {"rule": "大宗交易最低门槛", "description": "单笔≥30万股或≥200万元"},
+    {"rule": "收益凭证发行限额", "description": "余额不超过券商净资本60%"},
+    {"rule": "场外期权报备", "description": "需向中证报价系统报备"}
+  ],
+  "common_missing_items": [
+    {"item": "冻结客户在途交易处理", "description": "客户被冻结后在途交易允许结算但禁止新增"},
+    {"item": "PB产品预警线/止损线联动", "description": "净值触及预警线的操作限制和止损线的强制平仓"},
+    {"item": "大宗交易时间窗口精确控制", "description": "15:30:00边界时刻的申报处理"},
+    {"item": "场外产品敲入/敲出实时监测", "description": "标的价格触及障碍的实时检测和条款执行"},
+    {"item": "客户资质过期监控", "description": "营业执照/备案证明到期的定期检查和限期整改"},
+    {"item": "并发准入去重", "description": "同一机构通过不同渠道重复提交的唯一性校验"},
+    {"item": "估值偏差对账", "description": "PB估值与管理人自行计算差异超0.1%的预警"},
+    {"item": "场外产品到期结算时效", "description": "到期日T+2完成资金划转的时效保证"}
+  ]
+}

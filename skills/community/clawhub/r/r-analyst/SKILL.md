@@ -1,35 +1,56 @@
 ---
-name: "R Analyst"
-description: "R-style statistical analysis powered by Python 3. Use when computing descriptive statistics, generating ASCII histograms, calculating correlation matrices, d..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/r-analyst"
-sourceUrl: "https://clawhub.ai/skills/r-analyst"
+name: "r-analyst"
+description: "R-style statistical analysis powered by Python 3. Use when computing descriptive statistics, generating ASCII histograms, calculating correlation matrices, detecting missing values and outliers, or describing CSV dataset structure."
 ---
 
-# R Analyst
+# r-analyst
 
-> R-style statistical analysis powered by Python 3. Use when computing descriptive statistics, generating ASCII histograms, calculating correlation matrices, d...
+## Triggers on
+r statistics, csv analysis, data correlation, missing values, ascii histogram, describe dataset, r summary, outlier detection, pearson correlation
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/r-analyst`
-- **Source URL:** [https://clawhub.ai/skills/r-analyst](https://clawhub.ai/skills/r-analyst)
+## What This Skill Does
+Perform R-style data analysis on CSV files using Python 3. No R installation required.
 
-## Overview
+## Commands
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### stats
+Compute descriptive statistics (R-style summary: Min/1st Qu/Median/Mean/3rd Qu/Max/SD).
 ```bash
-hermes skills install clawhub/r-analyst
+bash scripts/script.sh stats <file.csv> [column]
 ```
+
+### plot
+Generate an ASCII histogram for a numeric column.
+```bash
+bash scripts/script.sh plot <file.csv> [column] [bins]
+```
+
+### correlate
+Compute Pearson correlation matrix for all numeric columns.
+```bash
+bash scripts/script.sh correlate <file.csv>
+```
+
+### clean
+Detect missing values and statistical outliers (3σ rule).
+```bash
+bash scripts/script.sh clean <file.csv>
+```
+
+### describe
+Show dataset structure, column types, unique value counts, and sample values.
+```bash
+bash scripts/script.sh describe <file.csv>
+```
+
+### help
+Show all available commands.
+```bash
+bash scripts/script.sh help
+```
+
+## Requirements
+- bash 4+
+- python3 (standard library only — no R needed)
+
+Powered by BytesAgain | bytesagain.com

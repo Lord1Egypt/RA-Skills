@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "redacta"
+version = "1.1.0"
+description = "Pseudonymise patient identifiers and PII in text (and restore them) — a local, dependency-free pattern engine."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT-0" }
+authors = [{ name = "Nick Lamb", email = "info@pharmatools.ai" }]
+keywords = [
+    "redaction",
+    "pseudonymisation",
+    "de-identification",
+    "anonymisation",
+    "pii",
+    "phi",
+    "healthcare",
+    "nhs",
+    "privacy",
+    "clinical-text",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Healthcare Industry",
+    "Intended Audience :: Developers",
+    "Topic :: Text Processing :: Filters",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://www.pharmatools.ai/redacta"
+Source = "https://github.com/nickjlamb/redacta"
+Skill = "https://clawhub.ai/nickjlamb/redacta"
+
+[project.scripts]
+redacta = "redacta.structured:main"
+redacta-reinstate = "redacta.reinstate:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

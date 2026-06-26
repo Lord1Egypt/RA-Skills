@@ -1,0 +1,88 @@
+{
+  "version": "1.0.0",
+  "data_dir": "~/.openclaw/workspace/pm-pro",
+
+  "priority_framework": "eisenhower",
+
+  "check_ins": {
+    "morning": {
+      "enabled": true,
+      "time": "08:00",
+      "include_overdue": true,
+      "include_quick_wins": true,
+      "max_tasks_shown": 10
+    },
+    "evening": {
+      "enabled": true,
+      "time": "19:00",
+      "include_completion_stats": true,
+      "include_tomorrow_preview": true
+    },
+    "weekly": {
+      "enabled": true,
+      "day": "sunday",
+      "time": "10:00",
+      "include_trends": true,
+      "include_project_status": true
+    }
+  },
+
+  "quiet_hours": {
+    "enabled": true,
+    "start": "22:00",
+    "end": "07:00"
+  },
+
+  "views": {
+    "default_view": "today",
+    "default_sort": "priority",
+    "show_time_estimates": true,
+    "show_tags": true,
+    "completed_tasks_visible_days": 7
+  },
+
+  "decomposition": {
+    "auto_suggest_threshold_hours": 4,
+    "auto_suggest_for_keywords": ["launch", "move", "plan", "build", "organize", "prepare", "migrate", "redesign", "overhaul"],
+    "default_buffer_days": 2
+  },
+
+  "priority_escalation": {
+    "enabled": true,
+    "escalate_p3_within_hours": 48,
+    "escalate_p2_within_hours": 24,
+    "flag_stale_after_days": 7
+  },
+
+  "cross_tool_integrations": {
+    "expense-tracker": {
+      "enabled": false,
+      "bill_reminder_days_before": 3,
+      "subscription_reminder_days_before": 7
+    },
+    "meal-planner": {
+      "enabled": false,
+      "grocery_task_day": "saturday",
+      "prep_reminder_hours_before": 12
+    },
+    "fitness-tracker": {
+      "enabled": false,
+      "include_workout_tasks": true,
+      "supplement_reorder_days_before": 7
+    },
+    "content-calendar": {
+      "enabled": false,
+      "creation_task_days_before": 2
+    }
+  },
+
+  "archival": {
+    "auto_archive_after_days": 30,
+    "archive_on_day": 1
+  },
+
+  "recurrence": {
+    "auto_create_next": true,
+    "create_days_before": 1
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProductResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "reference",
+    "name",
+    "price_ht",
+    "price_ttc",
+    "stock_quantity",
+    "seo",
+    "active",
+    "updated_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "reference": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fr",
+        "en"
+      ],
+      "properties": {
+        "fr": {
+          "type": "string"
+        },
+        "en": {
+          "type": "string"
+        }
+      }
+    },
+    "price_ht": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "price_ttc": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "stock_quantity": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "seo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "meta_title",
+        "meta_description",
+        "url_rewrite"
+      ],
+      "properties": {
+        "meta_title": {
+          "type": "string"
+        },
+        "meta_description": {
+          "type": "string"
+        },
+        "url_rewrite": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+fastapi==0.115.0
+uvicorn[standard]==0.34.0
+pydantic==2.10.0
+pyyaml==6.0.2
+python-dotenv==1.0.1
+httpx==0.28.1
+cachetools==5.5.0
+
+# Payment & Blockchain
+web3==7.14.1
+eth-account==0.13.7
+redis==5.0.1
+
+# Testing
+pytest==8.3.5
+pytest-asyncio==0.25.0

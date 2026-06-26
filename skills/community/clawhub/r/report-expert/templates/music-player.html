@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>{{TITLE}}</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a3e 50%, #0f0f1e 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+  max-width: 900px;
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+.player-panel {
+  flex-shrink: 0;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.title { text-align: center; }
+.title h1 {
+  font-size: 22px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #f472b6, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.subtitle { font-size: 12px; color: #9585b5; margin-top: 4px; }
+.cover-wrap {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+}
+.cover-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 40px rgba(192, 132, 252, 0.3), 0 0 80px rgba(248, 164, 200, 0.15);
+}
+.cover-img.playing { animation: spin 20s linear infinite; }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.controls-card {
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 16px 20px;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.progress-wrap { margin-bottom: 12px; }
+.time-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #9585b5;
+  margin-bottom: 4px;
+}
+.progress-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #c084fc, #f472b6);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.1s;
+}
+.btn-row { display: flex; justify-content: center; margin-bottom: 12px; }
+.play-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c084fc, #f472b6);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(192, 132, 252, 0.4);
+}
+.play-btn:active { transform: scale(0.96); }
+.volume-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.volume-icon {
+  font-size: 16px;
+  color: #9585b5;
+  cursor: pointer;
+  user-select: none;
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.volume-slider {
+  flex: 1;
+  min-width: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  outline: none;
+}
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #c084fc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: #c084fc;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+.download-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9585b5;
+  font-size: 18px;
+  padding: 4px 8px;
+  flex-shrink: 0;
+}
+.download-btn:active { color: #c084fc; }
+
+/* ===== Lyrics ===== */
+.lyrics-panel {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.lyrics-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 20px 16px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+.lyrics-card::-webkit-scrollbar { width: 3px; }
+.lyrics-card::-webkit-scrollbar-track { background: transparent; }
+.lyrics-card::-webkit-scrollbar-thumb { background: rgba(192, 132, 252, 0.3); border-radius: 2px; }
+.lyrics-spacer {
+  flex-shrink: 0;
+  pointer-events: none;
+}
+.lyric-section-label {
+  text-align: center;
+  font-size: 11px;
+  color: #c084fc;
+  padding: 12px 0 6px;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+.lyric-line {
+  text-align: center;
+  padding: 7px 12px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.35);
+  transition: color 0.3s ease, font-size 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  border-radius: 8px;
+  line-height: 1.6;
+  -webkit-tap-highlight-color: transparent;
+}
+.lyric-line:active { color: rgba(255, 255, 255, 0.7); }
+.lyric-line.active {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+.lyric-line.passed {
+  color: rgba(255, 255, 255, 0.18);
+}
+
+/* ===== Mobile: lyrics-panel fills remaining viewport ===== */
+@media (max-width: 700px) {
+  .container {
+    flex-direction: column;
+    padding: 12px 12px 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .player-panel {
+    width: 100%;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .cover-wrap { width: 140px; height: 140px; }
+  .cover-img { width: 140px; height: 140px; }
+  .controls-card { padding: 10px 14px; flex-shrink: 0; }
+  .lyrics-panel {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+  }
+  .lyrics-card {
+    border-radius: 16px 16px 0 0;
+    padding: 16px 12px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="player-panel">
+    <div class="title">
+      <h1 id="songTitle"></h1>
+      <div class="subtitle" id="songSubtitle"></div>
+    </div>
+    <div class="cover-wrap">
+      <img class="cover-img" id="cover" src="cover.jpg" alt="cover">
+    </div>
+    <div class="controls-card">
+      <div class="progress-wrap">
+        <div class="time-row">
+          <span id="currentTime">0:00</span>
+          <span id="totalTime">0:00</span>
+        </div>
+        <div class="progress-bar" id="progressBar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="play-btn" id="playBtn" aria-label="播放/暂停">
+          <svg id="playIcon" width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
+          <svg id="pauseIcon" width="22" height="22" viewBox="0 0 24 24" fill="white" style="display:none"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>
+        </button>
+      </div>
+      <div class="volume-row">
+        <span class="volume-icon" id="volIcon">&#128266;</span>
+        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.8">
+        <button class="download-btn" id="downloadBtn" title="下载音乐">&#128229;</button>
+      </div>
+    </div>
+  </div>
+  <div class="lyrics-panel">
+    <div class="lyrics-card" id="lyricsCard"></div>
+  </div>
+</div>
+<audio id="audio" preload="auto" src="song.mp3"></audio>
+<script>
+(function() {
+  var audio = document.getElementById('audio');
+  var playBtn = document.getElementById('playBtn');
+  var playIcon = document.getElementById('playIcon');
+  var pauseIcon = document.getElementById('pauseIcon');
+  var progressBar = document.getElementById('progressBar');
+  var progressFill = document.getElementById('progressFill');
+  var currentTimeEl = document.getElementById('currentTime');
+  var totalTimeEl = document.getElementById('totalTime');
+  var volumeSlider = document.getElementById('volumeSlider');
+  var volIcon = document.getElementById('volIcon');
+  var cover = document.getElementById('cover');
+  var lyricsCard = document.getElementById('lyricsCard');
+  var songTitle = document.getElementById('songTitle');
+  var songSubtitle = document.getElementById('songSubtitle');
+
+  /* ===== Load config from song.json ===== */
+  var songConfig = { title: '', subtitle: '', artist: '', downloadFilename: '' };
+  var lyrics = [];
+  var lastActiveIdx = -1;
+
+  function loadResources() {
+    /* Load song.json */
+    fetch('song.json').then(function(r) { return r.json(); }).then(function(data) {
+      songConfig.title = data.title || '';
+      songConfig.subtitle = data.subtitle || '';
+      songConfig.artist = data.artist || '';
+      songConfig.downloadFilename = data.title ? (data.title + '.mp3') : 'song.mp3';
+      songTitle.textContent = songConfig.title;
+      songSubtitle.textContent = songConfig.subtitle;
+      document.title = songConfig.title;
+    }).catch(function() {});
+
+    /* Load lyrics-timed.json */
+    fetch('lyrics-timed.json').then(function(r) { return r.json(); }).then(function(data) {
+      lyrics = data;
+      buildLyricsDOM();
+    }).catch(function() {
+      /* Fallback: try plain text lyrics */
+      fetch('lyrics.txt').then(function(r) { return r.text(); }).then(function(text) {
+        lyrics = parsePlainLyrics(text);
+        buildLyricsDOM();
+      }).catch(function() {});
+    });
+  }
+
+  function parsePlainLyrics(text) {
+    var lines = text.split('\n');
+    var result = [];
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].trim();
+      if (!line) continue;
+      if (/^\[.+\]$/.test(line)) {
+        result.push({ time: 0, text: line.replace(/^\[|\]$/g, ''), isSection: true });
+      } else {
+        result.push({ time: 0, text: line, isSection: false });
+      }
+    }
+    return result;
+  }
+
+  function buildLyricsDOM() {
+    /* Clear */
+    lyricsCard.innerHTML = '';
+
+    /* Top spacer: half of lyrics-card visible height */
+    var spacerTop = document.createElement('div');
+    spacerTop.className = 'lyrics-spacer';
+    spacerTop.style.height = '40%';
+    lyricsCard.appendChild(spacerTop);
+
+    for (var i = 0; i < lyrics.length; i++) {
+      (function(item, idx) {
+        var div = document.createElement('div');
+        if (item.isSection) {
+          div.className = 'lyric-section-label';
+        } else {
+          div.className = 'lyric-line';
+          div.addEventListener('click', function() {
+            audio.currentTime = item.time;
+            if (audio.paused) audio.play();
+          });
+        }
+        div.textContent = item.text;
+        div.dataset.idx = idx;
+        lyricsCard.appendChild(div);
+      })(lyrics[i], i);
+    }
+
+    /* Bottom spacer: same as top */
+    var spacerBot = document.createElement('div');
+    spacerBot.className = 'lyrics-spacer';
+    spacerBot.style.height = '40%';
+    lyricsCard.appendChild(spacerBot);
+
+    /* If audio already playing, update immediately */
+    if (audio.duration > 0) updateLyrics();
+  }
+
+  function fmt(s) {
+    if (isNaN(s)) return '0:00';
+    var m = Math.floor(s / 60);
+    var sec = Math.floor(s % 60);
+    return m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+
+  /* ===== Scroll active lyric to vertical center of lyrics-card ===== */
+  function scrollToLyric(el) {
+    if (!el) return;
+    var cardRect = lyricsCard.getBoundingClientRect();
+    var elRect = el.getBoundingClientRect();
+    /* Current offset of element relative to card visible area */
+    var currentOffset = elRect.top - cardRect.top;
+    /* Desired: center the element vertically in the card */
+    var desiredOffset = (cardRect.height - elRect.height) / 2;
+    /* Delta to scroll */
+    var delta = currentOffset - desiredOffset;
+    if (Math.abs(delta) < 2) return;
+    lyricsCard.scrollTop += delta;
+  }
+
+  function updateLyrics() {
+    if (!lyrics.length) return;
+    var t = audio.currentTime;
+    var activeIdx = -1;
+    for (var i = lyrics.length - 1; i >= 0; i--) {
+      if (t >= lyrics[i].time) { activeIdx = i; break; }
+    }
+    if (activeIdx === lastActiveIdx) return;
+    lastActiveIdx = activeIdx;
+    var allLines = lyricsCard.querySelectorAll('.lyric-line, .lyric-section-label');
+    for (var j = 0; j < allLines.length; j++) {
+      var idx = parseInt(allLines[j].dataset.idx);
+      allLines[j].classList.remove('active', 'passed');
+      if (idx === activeIdx) allLines[j].classList.add('active');
+      else if (idx < activeIdx) allLines[j].classList.add('passed');
+    }
+    var activeEl = lyricsCard.querySelector('.active');
+    scrollToLyric(activeEl);
+  }
+
+  /* ===== Controls ===== */
+  playBtn.addEventListener('click', function() {
+    if (audio.paused) audio.play(); else audio.pause();
+  });
+  audio.addEventListener('play', function() {
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = 'block';
+    cover.classList.add('playing');
+  });
+  audio.addEventListener('pause', function() {
+    playIcon.style.display = 'block';
+    pauseIcon.style.display = 'none';
+    cover.classList.remove('playing');
+  });
+  audio.addEventListener('ended', function() {
+    playIcon.style.display = 'block';
+    pauseIcon.style.display = 'none';
+    cover.classList.remove('playing');
+    lastActiveIdx = -1;
+  });
+  audio.addEventListener('timeupdate', function() {
+    var cur = audio.currentTime;
+    var dur = audio.duration || 0;
+    currentTimeEl.textContent = fmt(cur);
+    if (dur > 0) {
+      totalTimeEl.textContent = fmt(dur);
+      progressFill.style.width = (cur / dur * 100) + '%';
+    }
+    updateLyrics();
+  });
+  progressBar.addEventListener('click', function(e) {
+    var rect = progressBar.getBoundingClientRect();
+    var pct = (e.clientX - rect.left) / rect.width;
+    if (audio.duration) audio.currentTime = pct * audio.duration;
+  });
+  progressBar.addEventListener('touchstart', function(e) {
+    e.preventDefault(); seekFromTouch(e);
+  }, { passive: false });
+  progressBar.addEventListener('touchmove', function(e) {
+    e.preventDefault(); seekFromTouch(e);
+  }, { passive: false });
+  function seekFromTouch(e) {
+    var touch = e.touches[0];
+    var rect = progressBar.getBoundingClientRect();
+    var pct = (touch.clientX - rect.left) / rect.width;
+    pct = Math.max(0, Math.min(1, pct));
+    if (audio.duration) audio.currentTime = pct * audio.duration;
+  }
+
+  audio.volume = 0.8;
+  volumeSlider.addEventListener('input', function() {
+    audio.volume = parseFloat(volumeSlider.value);
+    updateVolIcon();
+  });
+  volIcon.addEventListener('click', function() {
+    if (audio.volume > 0) {
+      audio.dataset.prevVol = audio.volume;
+      audio.volume = 0; volumeSlider.value = 0;
+    } else {
+      audio.volume = parseFloat(audio.dataset.prevVol || 0.8);
+      volumeSlider.value = audio.volume;
+    }
+    updateVolIcon();
+  });
+  function updateVolIcon() {
+    if (audio.volume === 0) volIcon.innerHTML = '&#128263;';
+    else if (audio.volume < 0.5) volIcon.innerHTML = '&#128265;';
+    else volIcon.innerHTML = '&#128266;';
+  }
+
+  function downloadMusic() {
+    var a = document.createElement('a');
+    a.href = audio.src;
+    a.download = songConfig.downloadFilename || 'song.mp3';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+  document.getElementById('downloadBtn').addEventListener('click', downloadMusic);
+
+  /* ===== Init ===== */
+  loadResources();
+})();
+</script>
+</body>
+</html>

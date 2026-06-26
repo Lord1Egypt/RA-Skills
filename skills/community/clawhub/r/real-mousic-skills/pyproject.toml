@@ -1,0 +1,63 @@
+[project]
+name = "real-mousic-skills"
+version = "1.0.0"
+description = "Real mousic - 歌曲下载工具 (Mousic = Mou + Sic = 真正的音乐，吉祥物是一头奶牛)"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.28.0",
+    "websockets>=12.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.9.0",
+    "pytest>=8.0",
+]
+
+[project.scripts]
+mousic = "real_mousic.cli:main"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "N",    # pep8-naming
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "SIM",  # flake8-simplify
+    "RUF",  # ruff-specific rules
+]
+ignore = [
+    "E402",   # module-level imports not at top (needed for sys.path manipulation)
+    "RUF001", # ambiguous unicode characters (Chinese punctuation is intentional)
+    "RUF002", # ambiguous unicode in docstrings (Chinese punctuation is intentional)
+    "RUF003", # ambiguous unicode in comments (Chinese punctuation is intentional)
+]
+
+[tool.ruff.lint.per-file-ignores]
+
+[tool.ruff.lint.isort]
+known-first-party = ["real_mousic"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/real_mousic"]

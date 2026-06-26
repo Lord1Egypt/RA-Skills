@@ -1,35 +1,90 @@
----
-name: "Pricing Calculator Cn"
-description: "根据项目类型、难度和市场行情，自动评估工时和风险，提供合理的国内外接单报价方案并支持合同生成。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pricing-calculator-cn"
-sourceUrl: "https://clawhub.ai/skills/pricing-calculator-cn"
----
+# 接单报价计算器 Skill
 
-# Pricing Calculator Cn
+## 描述
+根据项目类型、难度、市场行情，自动计算最优报价。
 
-> 根据项目类型、难度和市场行情，自动评估工时和风险，提供合理的国内外接单报价方案并支持合同生成。
+## 适用人群
+- 自由职业者
+- 独立开发者
+- 接外包的程序员
+- 咨询顾问
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pricing-calculator-cn`
-- **Source URL:** [https://clawhub.ai/skills/pricing-calculator-cn](https://clawhub.ai/skills/pricing-calculator-cn)
+## 功能
 
-## Overview
+### 1. 项目评估
+- 技术难度（1-5 星）
+- 时间估算（小时）
+- 复杂度分析
+- 风险评估
 
+### 2. 市场定价
+- 国内市场价参考
+- 海外市场价参考（美元）
+- 竞品价格对比
+- 溢价空间分析
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pricing-calculator-cn
+### 3. 报价策略
+- 时薪制 vs 项目制
+- 分期付款建议
+- 定金比例
+- 涨价时机
+
+### 4. 合同生成
+- 标准合同模板
+- 付款条款
+- 交付标准
+- 违约责任
+
+## 使用方法
+
 ```
+用户：客户要我做一个微信小程序，报价多少合适？
+
+Agent：
+1. 询问项目细节（功能/设计/API）
+2. 评估技术难度和时间
+3. 查市场行情
+4. 给出报价区间
+5. 生成报价单
+```
+
+## 输出格式
+
+```
+💰 微信小程序报价方案
+
+📊 项目评估：
+- 技术难度：⭐⭐⭐ (中等)
+- 预估工时：40-60 小时
+- 复杂度：中等
+
+💵 建议报价：
+- 基础版：¥3,000-5,000（核心功能）
+- 标准版：¥5,000-8,000（完整功能）
+- 高级版：¥8,000-15,000（定制+维护）
+
+📈 市场参考：
+- 猪八戒：¥2,000-4,000
+- 码市：¥5,000-10,000
+- Upwork：$500-2,000
+
+💡 报价策略：
+- 先报 ¥6,000 试探
+- 客户还价到 ¥4,000 可接受
+- ¥3,000 以下建议砍功能
+
+📄 需要生成报价单吗？
+```
+
+## 定价参考表
+
+| 项目类型 | 初级报价 | 中级报价 | 高级报价 |
+|----------|----------|----------|----------|
+| 网站 | ¥2-5k | ¥5-15k | ¥15-50k |
+| 小程序 | ¥3-8k | ¥8-20k | ¥20-50k |
+| App | ¥10-30k | ¥30-100k | ¥100k+ |
+| API | ¥1-3k | ¥3-10k | ¥10-30k |
+| 爬虫 | ¥500-2k | ¥2-5k | ¥5-20k |
+
+---
+**创建时间**：2026-03-12

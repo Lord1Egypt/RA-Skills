@@ -1,0 +1,88 @@
+{
+  "name": "Agent Configuration Rubric",
+  "domain": "config",
+  "version": "1.1",
+  "description": "Evaluates agent configuration files (YAML/JSON) for correctness, completeness, and safe delegation practices.",
+  "criteria": [
+    {
+      "id": "AC-001",
+      "criterion": "Every agent has an explicit model assignment",
+      "severity": "CRITICAL",
+      "evidence_required": "Grep output showing agents that lack a 'model' or 'model_id' field",
+      "why": "Without explicit model assignment, the system uses defaults unpredictably, making behavior non-deterministic",
+      "category": "completeness"
+    },
+    {
+      "id": "AC-002",
+      "criterion": "Agent permissions are scoped to minimum required capabilities",
+      "severity": "HIGH",
+      "evidence_required": "Quote the permissions block and identify overly broad or wildcard permissions",
+      "why": "Overly broad permissions violate the principle of least privilege and increase blast radius of failures",
+      "category": "correctness"
+    },
+    {
+      "id": "AC-003",
+      "criterion": "Error handling and failure modes are defined for each agent",
+      "severity": "HIGH",
+      "evidence_required": "Show that no error_handling, fallback, or on_failure field exists for agents that make external calls",
+      "why": "Agents without error handling silently fail or cascade failures to other agents",
+      "category": "completeness"
+    },
+    {
+      "id": "AC-004",
+      "criterion": "Agent outputs (I/O contracts) are specified",
+      "severity": "HIGH",
+      "evidence_required": "Quote agent definition that lacks output_schema, output_format, or equivalent I/O specification",
+      "why": "Without I/O contracts, downstream agents cannot reliably consume this agent's output",
+      "category": "completeness"
+    },
+    {
+      "id": "AC-005",
+      "criterion": "Timeout and resource limits are set for agents making external calls",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote an agent that makes HTTP requests, LLM calls, or database queries without timeout configuration",
+      "why": "Timeoutless external calls can block entire pipelines indefinitely",
+      "category": "completeness"
+    },
+    {
+      "id": "AC-006",
+      "criterion": "API keys and secrets are referenced via environment variables, not hardcoded",
+      "severity": "CRITICAL",
+      "evidence_required": "Grep for patterns matching API key formats (sk-, Bearer, token: ...) appearing as literal values in config",
+      "why": "Hardcoded secrets in config files are a critical security vulnerability and will be exposed in logs and version control",
+      "category": "correctness"
+    },
+    {
+      "id": "AC-007",
+      "criterion": "Agent dependencies and startup order are explicitly defined",
+      "severity": "MEDIUM",
+      "evidence_required": "Show that agents with data dependencies lack depends_on or startup_order configuration",
+      "why": "Without explicit ordering, race conditions cause intermittent failures that are hard to debug",
+      "category": "completeness"
+    },
+    {
+      "id": "AC-008",
+      "criterion": "Delegating agents specify acceptance criteria for their delegatees",
+      "severity": "HIGH",
+      "evidence_required": "Quote a delegation relationship that lacks acceptance_criteria or success_condition fields",
+      "why": "Delegation without acceptance criteria creates unbounded tasks — delegatees don't know when they've succeeded",
+      "category": "correctness"
+    },
+    {
+      "id": "AC-009",
+      "criterion": "Configuration version is specified and matches schema version",
+      "severity": "LOW",
+      "evidence_required": "Show that no version field is present, or that it conflicts with the schema version",
+      "why": "Unversioned configs become impossible to migrate safely as the schema evolves",
+      "category": "correctness"
+    },
+    {
+      "id": "AC-010",
+      "criterion": "Max token, rate limit, and cost controls are configured for LLM-calling agents",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote LLM-calling agent configuration that lacks max_tokens, rate_limit, or cost_limit fields",
+      "why": "Uncapped LLM calls can result in unexpected costs and runaway token consumption",
+      "category": "completeness"
+    }
+  ]
+}

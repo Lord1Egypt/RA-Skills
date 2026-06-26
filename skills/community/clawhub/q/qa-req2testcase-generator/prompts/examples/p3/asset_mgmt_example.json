@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.0.0",
+  "requirement_id": "REQ-ASSET-001",
+  "risk_points": [
+    {
+      "id": "RISK-001",
+      "source": "基金申购-并发申购资金冻结",
+      "category": "concurrency",
+      "severity": "high",
+      "description": "投资者通过多个客户端同时提交申购订单，可能导致资金重复冻结或超额冻结",
+      "impact": "可用余额计算错误，投资者实际冻结金额超过账户余额",
+      "mitigation": "申购提交时对账户加分布式锁，保证同一时刻仅处理一笔申购的资金冻结"
+    },
+    {
+      "id": "RISK-002",
+      "source": "基金申购-T+1份额确认失败",
+      "category": "data_integrity",
+      "severity": "high",
+      "description": "T+1日份额确认批处理异常，部分申购订单未完成份额确认，资金持续冻结",
+      "impact": "投资者资金长期冻结无法使用，且持仓中看不到份额",
+      "mitigation": "份额确认批处理增加异常监控，失败订单自动重试，超时后告警并人工介入"
+    },
+    {
+      "id": "RISK-003",
+      "source": "基金申购-费率计算精度",
+      "category": "data_integrity",
+      "severity": "medium",
+      "description": "费率分档边界金额（50万）的费率计算存在精度问题，可能导致多扣或少扣费用",
+      "impact": "投资者实际扣费与预期不符，引发客诉",
+      "mitigation": "费率计算统一使用BigDecimal，分档边界采用左闭右开区间，明确50万整归属高档费率"
+    }
+  ],
+  "risk_summary": {
+    "total": 3,
+    "by_severity": {
+      "high": 2,
+      "medium": 1
+    }
+  }
+}

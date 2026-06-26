@@ -1,0 +1,16 @@
+order_id,product,reason,order_date,return_date
+ORD-1001,Slim Fit Chinos - Navy,Size / fit issue,2026-01-05,2026-01-12
+ORD-1002,Slim Fit Chinos - Navy,Size / fit issue,2026-01-06,2026-01-14
+ORD-1003,Wireless Earbuds Pro,Compatibility issue,2026-01-07,2026-01-10
+ORD-1004,Hydrating Face Cream,Changed mind,2026-01-08,2026-01-20
+ORD-1005,Slim Fit Chinos - Navy,Not as described,2026-01-09,2026-01-15
+ORD-1006,Leather Crossbody Bag,Quality below expectation,2026-01-10,2026-01-18
+ORD-1007,Slim Fit Chinos - Khaki,Size / fit issue,2026-01-10,2026-01-16
+ORD-1008,Wireless Earbuds Pro,Damaged / defective,2026-01-11,2026-01-13
+ORD-1009,Slim Fit Chinos - Navy,Size / fit issue,2026-01-12,2026-01-19
+ORD-1010,Organic Cotton T-Shirt,Not as described,2026-01-13,2026-01-17
+ORD-1011,Leather Crossbody Bag,Not as described,2026-01-14,2026-01-22
+ORD-1012,Slim Fit Chinos - Khaki,Size / fit issue,2026-01-15,2026-01-21
+ORD-1013,Wireless Earbuds Pro,Compatibility issue,2026-01-16,2026-01-19
+ORD-1014,Hydrating Face Cream,Sensitivity / reaction,2026-01-17,2026-01-20
+ORD-1015,Slim Fit Chinos - Navy,Changed mind,2026-01-18,2026-01-25

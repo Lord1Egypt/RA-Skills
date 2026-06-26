@@ -1,0 +1,37 @@
+{
+  "slug": "qa-scenario-synthesizer",
+  "title": "测试场景合成器",
+  "category": "engineering",
+  "categoryLabel": "研发与测试",
+  "mode": "structured_brief",
+  "summary": "把需求拆成功能、异常、跨端、脏输入和恢复场景测试集。",
+  "inputHint": "需求规格、用户流程、限制条件",
+  "sections": [
+    "主流程场景",
+    "异常场景",
+    "跨端场景",
+    "脏输入场景",
+    "恢复与重试",
+    "优先级"
+  ],
+  "useCases": [
+    "测试设计",
+    "联调准备",
+    "验收覆盖"
+  ],
+  "positiveExamples": [
+    "根据需求生成测试场景",
+    "补边界和异常路径"
+  ],
+  "negativeExamples": [
+    "不要宣称已经完成测试",
+    "不要忽略关键用户路径"
+  ],
+  "risk": "场景生成服务于人工测试设计。",
+  "tags": [
+    "qa",
+    "test-scenarios",
+    "edge-cases",
+    "quality"
+  ]
+}

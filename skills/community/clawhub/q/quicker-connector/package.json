@@ -1,0 +1,80 @@
+{
+  "name": "quicker-connector",
+  "version": "1.2.0",
+  "description": "与 Quicker 自动化工具集成，读取、搜索和执行 Quicker 动作列表。支持 CSV 和数据库双数据源，智能匹配用户需求并调用本地 QuickerStarter 执行。",
+  "author": "CodeBuddy",
+  "license": "MIT",
+  "main": "skill.json",
+  "keywords": [
+    "quicker",
+    "automation",
+    "workflow",
+    "windows",
+    "productivity",
+    "ai-assistant"
+  ],
+  "categories": [
+    "automation",
+    "productivity",
+    "windows"
+  ],
+  "homepage": "https://github.com/awamwang/quicker-connector",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/awamwang/quicker-connector.git"
+  },
+  "bugs": {
+    "url": "https://github.com/awamwang/quicker-connector/issues"
+  },
+  "dependencies": [],
+  "peerDependencies": {
+    "python": ">=3.8"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "test": "python verify_optimization.py",
+    "install": "python scripts/init_quicker.py"
+  },
+  "files": [
+    "skill.json",
+    "skill_optimized.json",
+    "SKILL.md",
+    "SKILL_OPTIMIZED.md",
+    "README.md",
+    "README_EN.md",
+    "README_ZH.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "RELEASE.md",
+    "LICENSE",
+    "FINAL_REPORT.md",
+    "OPTIMIZATION_REPORT.md",
+    "scripts/",
+    "tests/",
+    "examples/",
+    "config.json",
+    "verify_optimization.py",
+    ".gitignore"
+  ],
+  "clawhub": {
+    "category": "automation",
+    "compatibility": {
+      "openclaw": ">=2025.1",
+      "gateway": ">=1.0"
+    },
+    "permissions": [
+      "file-system-read",
+      "file-system-write",
+      "subprocess"
+    ],
+    "platforms": ["windows"],
+    "min_skill_version": "1.0",
+    "publish_date": "2026-03-28"
+  },
+  "publishConfig": {
+    "registry": "https://registry.clawhub.ai"
+  }
+}

@@ -1,35 +1,36 @@
----
-name: "Prompt Compression"
-description: "Compress prompt files locally before iterative AI loops to reduce input tokens, with backup and undo support, for Ralph-style loops and token-billed providers."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prompt-compression"
-sourceUrl: "https://clawhub.ai/skills/prompt-compression"
----
+# Trinity Compress (Skill)
 
-# Prompt Compression
+Pre-run prompt compression for iterative AI dev loops.
 
-> Compress prompt files locally before iterative AI loops to reduce input tokens, with backup and undo support, for Ralph-style loops and token-billed providers.
+**Goal:** reduce input tokens every iteration by compressing prompt files *before* your loop runs.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prompt-compression`
-- **Source URL:** [https://clawhub.ai/skills/prompt-compression](https://clawhub.ai/skills/prompt-compression)
+- Works with Ralph-style loops, agent/skill directories, and most token-billed providers.
+- Runs as a **local script** (no model calls).
+- Creates **.bak** backups and supports instant undo.
 
-## Overview
+## What it installs into a repo
+- `trinity-compress.config.json` — rules + targets
+- `scripts/trinity-compress.sh` — compression script
+- Makefile snippet (optional): `optimize-prompts`, `optimize-undo`, etc.
+- `.gitignore` snippet: ignore `*.bak`
+- Installers:
+  - `scripts/install.ps1` (Windows)
+  - `scripts/install.sh` (bash)
 
+## Requirements
+- bash 4+
+- `jq`
+- `bc`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/prompt-compression
-```
+## Use
+1) Install into your repo (copy assets or use the included installer scripts)
+2) Run:
+   - `bash scripts/trinity-compress.sh balanced`
+   - or via Makefile target
+
+## Undo
+- Restores all `*.bak` backups from the last run.
+
+## Notes
+- This tool does not rewrite code blocks, URLs, file paths, or variable names.
+- Aggressive mode may reduce clarity; review before committing.

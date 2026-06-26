@@ -1,0 +1,25 @@
+services:
+  redis:
+    image: redis:7.4-alpine
+    container_name: ${REDIS_CONTAINER:-codai_redis}
+    restart: unless-stopped
+    command: redis-server --requirepass ${REDIS_PASSWORD:-redispass} --maxmemory ${REDIS_MAXMEMORY:-256mb} --maxmemory-policy allkeys-lru
+    ports:
+      - "127.0.0.1:${REDIS_PORT:-6380}:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - codai_net
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-redispass}", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  redis_data:
+
+networks:
+  codai_net:
+    external: true
+    name: ${CODAI_NETWORK:-nginx-proxy_net}

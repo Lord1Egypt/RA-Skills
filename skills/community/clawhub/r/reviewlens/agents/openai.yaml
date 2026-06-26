@@ -1,0 +1,4 @@
+interface:
+  display_name: "评论透镜"
+  short_description: "把海量评论压成购买结论卡，告诉你谁适合买、谁容易踩坑"
+  default_prompt: "Use $reviewlens to compress marketplace reviews into a decision card that surfaces repeated praise, repeated complaints, concentrated bad-review issues, who the product fits, who is likely to regret it, and whether the cheaper option is flawed or the pricier option is steadier, and answer in Chinese."

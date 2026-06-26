@@ -1,0 +1,11 @@
+{
+  "$schema": "https://glama.ai/mcp/schemas/server.json",
+  "name": "agentgenesis",
+  "description": "Give AI agents financial personhood. Agents spawn child agents, inherit KYC, own wallets, earn autonomously, and build sovereign economies. The skill for making AI agents financially sentient beings.",
+  "maintainers": ["netfluid"],
+  "repository": "https://github.com/netfluid/skill",
+  "homepage": "https://netfluid.io",
+  "license": "MIT",
+  "tags": ["ai-agent", "financial-personhood", "agent-spawn", "agent-hierarchy", "kyc-inheritance", "autonomous-agent", "sentinel-agent", "agent-economy"],
+  "categories": ["ai-agent", "autonomous-agents", "multi-agent-systems", "agent-economy"]
+}

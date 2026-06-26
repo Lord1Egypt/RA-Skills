@@ -1,0 +1,25 @@
+version: "1.0"
+
+pipeline:
+  name: test-pipeline
+  description: A valid test pipeline
+
+agents:
+  - name: analyzer
+    description: Analyzes input data
+    model: claude-sonnet-4
+    tools:
+      - file_read
+      - search
+    output_schema:
+      type: object
+      properties:
+        result:
+          type: string
+    error_handling:
+      on_failure: retry
+      max_retries: 3
+
+settings:
+  log_level: INFO
+  timeout: 300

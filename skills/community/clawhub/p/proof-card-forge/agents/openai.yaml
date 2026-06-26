@@ -1,0 +1,4 @@
+interface:
+  display_name: "Proof Card Forge"
+  short_description: "Create SVG and Markdown trust cards from skill audits or release metadata"
+  default_prompt: "Use $proof-card-forge to create a proof card for the target skill. Prefer the bundled proof_card.py script with the latest audit JSON, verify the score and link, and return the SVG path plus Markdown snippet."

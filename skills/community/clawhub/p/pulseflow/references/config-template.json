@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "timezone": "Asia/Shanghai",
+  "dashboardPath": "/ABSOLUTE/PATH/TO/todo/NOW.md",
+  "historyDir": "/ABSOLUTE/PATH/TO/todo/history",
+  "syncStatePath": "/ABSOLUTE/PATH/TO/todo/system/sync-state.json",
+  "agents": [
+    {
+      "name": "main",
+      "enabled": true,
+      "reportsDir": "/ABSOLUTE/PATH/TO/reports",
+      "agentsFilePath": "/ABSOLUTE/PATH/TO/AGENTS.md"
+    },
+    {
+      "name": "cortex",
+      "enabled": true,
+      "reportsDir": "/ABSOLUTE/PATH/TO/reports",
+      "agentsFilePath": "/ABSOLUTE/PATH/TO/AGENTS.md"
+    },
+    {
+      "name": "trading",
+      "enabled": true,
+      "reportsDir": "/ABSOLUTE/PATH/TO/reports",
+      "agentsFilePath": "/ABSOLUTE/PATH/TO/AGENTS.md"
+    }
+  ],
+  "notifications": {
+    "summaryCrons": {
+      "enabled": false,
+      "agentId": "main",
+      "timezone": "Asia/Shanghai",
+      "archiveDir": "/ABSOLUTE/PATH/TO/reports",
+      "delivery": {
+        "channel": "telegram",
+        "to": "telegram:CHAT_ID",
+        "accountId": "default"
+      },
+      "midday": {
+        "enabled": true,
+        "name": "PulseFlow Midday Summary",
+        "description": "15:30 midday summary with analysis and next-step suggestions",
+        "cron": "30 15 * * *",
+        "thinking": "medium"
+      },
+      "dailyClose": {
+        "enabled": true,
+        "name": "PulseFlow Previous-Day Report",
+        "description": "00:05 previous-day report before rollover",
+        "cron": "5 0 * * *",
+        "thinking": "medium"
+      }
+    }
+  }
+}

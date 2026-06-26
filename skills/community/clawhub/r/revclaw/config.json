@@ -1,0 +1,7 @@
+{
+  "revclaw_api_token": "",
+  "revclaw_api_url": "https://revclaw-api.aws-cce.workers.dev/api/v1",
+  "revclaw_proactive_mode": false,
+  "revclaw_agent_pubkey": "",
+  "revclaw_agent_signer": ""
+}

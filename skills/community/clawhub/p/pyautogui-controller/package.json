@@ -1,0 +1,35 @@
+{
+  "name": "pyautogui-controller",
+  "version": "2.0.1",
+  "description": "Advanced Windows desktop/browser automation skill wrapper for a local Python controller project",
+  "main": "main.py",
+  "bin": {
+    "pyautogui-controller": "scripts/run_controller.py"
+  },
+  "scripts": {
+    "test": "python main.py \"截图\""
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "pyautogui",
+    "desktop-automation",
+    "windows",
+    "browser-automation"
+  ],
+  "author": "昱昱",
+  "license": "UNLICENSED",
+  "os": ["win32"],
+  "files": [
+    "SKILL.md",
+    "main.py",
+    "app",
+    "action",
+    "core",
+    "nlu",
+    "perception",
+    "strategy",
+    "bridges",
+    "scripts"
+  ]
+}

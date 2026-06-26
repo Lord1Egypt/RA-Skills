@@ -1,35 +1,29 @@
 ---
-name: "Recipe Post Mortem Setup"
+name: recipe-post-mortem-setup
 description: "Create a Google Docs post-mortem, schedule a Google Calendar review, and notify via Chat."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-post-mortem-setup"
-sourceUrl: "https://clawhub.ai/skills/recipe-post-mortem-setup"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "engineering"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-docs
+        - gws-calendar
+        - gws-chat
 ---
 
-# Recipe Post Mortem Setup
+# Set Up Post-Mortem
 
-> Create a Google Docs post-mortem, schedule a Google Calendar review, and notify via Chat.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-docs`, `gws-calendar`, `gws-chat`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-post-mortem-setup`
-- **Source URL:** [https://clawhub.ai/skills/recipe-post-mortem-setup](https://clawhub.ai/skills/recipe-post-mortem-setup)
+Create a Google Docs post-mortem, schedule a Google Calendar review, and notify via Chat.
 
-## Overview
+## Steps
 
+1. Create post-mortem doc: `gws docs +write --title 'Post-Mortem: [Incident]' --body '## Summary\n\n## Timeline\n\n## Root Cause\n\n## Action Items'`
+2. Schedule review meeting: `gws calendar +insert --summary 'Post-Mortem Review: [Incident]' --attendee team@company.com --start '2026-03-16T14:00:00' --end '2026-03-16T15:00:00'`
+3. Notify in Chat: `gws chat +send --space spaces/ENG_SPACE --text '🔍 Post-mortem scheduled for [Incident].'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-post-mortem-setup
-```

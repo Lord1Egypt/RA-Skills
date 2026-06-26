@@ -1,0 +1,232 @@
+{
+  "generated_for": "resend-cli skill v3.0.0",
+  "last_reviewed": "2026-03-14",
+  "sources": [
+    {
+      "url": "https://resend.com/changelog/cli",
+      "kind": "official_changelog",
+      "used_for": [
+        "CLI announcement",
+        "install methods",
+        "53 commands across 13 resources",
+        "agent-friendly positioning",
+        "broadcast natural-language scheduling"
+      ]
+    },
+    {
+      "url": "https://github.com/resend/resend-cli",
+      "kind": "official_repo_readme",
+      "used_for": [
+        "auth priority",
+        "config paths",
+        "permissions",
+        "doctor",
+        "global flags",
+        "machine-mode contract",
+        "Node 20+ local-dev requirement"
+      ]
+    },
+    {
+      "url": "https://github.com/resend/resend-cli/releases",
+      "kind": "official_release_page",
+      "used_for": [
+        "current release version"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/lib/output.ts",
+      "kind": "source_file",
+      "used_for": [
+        "stdout/stderr JSON behaviour"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/lib/client.ts",
+      "kind": "source_file",
+      "used_for": [
+        "CLI sets RESEND_USER_AGENT",
+        "auth error path"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/lib/config.ts",
+      "kind": "source_file",
+      "used_for": [
+        "profile resolution",
+        "credentials schema",
+        "config path details"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/lib/pagination.ts",
+      "kind": "source_file",
+      "used_for": [
+        "limit validation",
+        "pagination hints"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/commands/emails/send.ts",
+      "kind": "source_file",
+      "used_for": [
+        "emails send flags",
+        "idempotency flag",
+        "attachment/header/tag support"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/commands/emails/batch.ts",
+      "kind": "source_file",
+      "used_for": [
+        "emails batch file format",
+        "100 cap",
+        "unsupported fields"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/commands/emails/receiving/listen.ts",
+      "kind": "source_file",
+      "used_for": [
+        "NDJSON stream behaviour",
+        "5 consecutive failures exit"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/commands/webhooks/listen.ts",
+      "kind": "source_file",
+      "used_for": [
+        "temporary webhook local dev loop",
+        "forwarding with Svix headers"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/commands/domains/create.ts",
+      "kind": "source_file",
+      "used_for": [
+        "receiving capability at creation",
+        "regions",
+        "TLS choices"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/commands/domains/update.ts",
+      "kind": "source_file",
+      "used_for": [
+        "current update surface and receiving-toggle ambiguity"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/commands/broadcasts/create.ts",
+      "kind": "source_file",
+      "used_for": [
+        "broadcast scheduling",
+        "topic/segment fields",
+        "triple-brace interpolation"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/commands/broadcasts/send.ts",
+      "kind": "source_file",
+      "used_for": [
+        "draft-send semantics",
+        "natural-language scheduling"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/commands/templates/index.ts",
+      "kind": "source_file",
+      "used_for": [
+        "template lifecycle",
+        "published templates note"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/commands/templates/create.ts",
+      "kind": "source_file",
+      "used_for": [
+        "template flags",
+        "variable declarations"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/commands/templates/publish.ts",
+      "kind": "source_file",
+      "used_for": [
+        "publish semantics"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/commands/topics/create.ts",
+      "kind": "source_file",
+      "used_for": [
+        "topic default_subscription"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/commands/segments/create.ts",
+      "kind": "source_file",
+      "used_for": [
+        "segments over audiences guidance"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/commands/contacts/create.ts",
+      "kind": "source_file",
+      "used_for": [
+        "contact properties JSON",
+        "segment assignment",
+        "global unsubscribed"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/resend/resend-cli/main/src/commands/api-keys/create.ts",
+      "kind": "source_file",
+      "used_for": [
+        "sending_access vs full_access",
+        "domain-scoped keys"
+      ]
+    },
+    {
+      "url": "https://resend.com/docs/webhooks/verify-webhooks-requests",
+      "kind": "official_docs",
+      "used_for": [
+        "Svix verification and raw-body guidance"
+      ]
+    },
+    {
+      "url": "https://resend.com/docs/knowledge-base/403-error-domain-mismatch",
+      "kind": "official_docs",
+      "used_for": [
+        "exact-domain mismatch guidance"
+      ]
+    },
+    {
+      "url": "https://resend.com/docs/dashboard/receiving/introduction",
+      "kind": "official_docs",
+      "used_for": [
+        "underlying inbound/receiving semantics"
+      ]
+    },
+    {
+      "url": "https://resend.com/docs/mcp-server",
+      "kind": "official_docs",
+      "used_for": [
+        "MCP fallback surface"
+      ]
+    },
+    {
+      "url": "https://resend.com/changelog",
+      "kind": "official_changelog",
+      "used_for": [
+        "30-day scheduling support"
+      ]
+    },
+    {
+      "url": "https://resend.com/docs/api-reference/introduction",
+      "kind": "official_docs",
+      "used_for": [
+        "underlying API semantics relevant to CLI users"
+      ]
+    }
+  ]
+}

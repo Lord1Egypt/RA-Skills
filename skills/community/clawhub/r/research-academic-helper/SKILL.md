@@ -1,35 +1,235 @@
 ---
-name: "科研学术助手"
-description: "本技能专为学术研究者设计，支持论文润色、文献综述生成、创新点提炼三大核心功能。支持中英文双语，可上传PDF/DOC文件直接处理，开启联网后可检索最新文献。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/research-academic-helper"
-sourceUrl: "https://clawhub.ai/skills/research-academic-helper"
+name: research-academic-helper
+description: 本技能专为学术研究者设计，支持论文润色、文献综述生成、创新点提炼三大核心功能。支持中英文双语，可上传PDF/DOC文件直接处理，开启联网后可检索最新文献。
 ---
 
 # 科研学术助手
 
-> 本技能专为学术研究者设计，支持论文润色、文献综述生成、创新点提炼三大核心功能。支持中英文双语，可上传PDF/DOC文件直接处理，开启联网后可检索最新文献。
+专为学术研究者设计，提供论文润色、文献综述生成、创新点提炼三大核心功能。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/research-academic-helper`
-- **Source URL:** [https://clawhub.ai/skills/research-academic-helper](https://clawhub.ai/skills/research-academic-helper)
+## 使用方式
 
-## Overview
+### 📝 论文润色
+「帮我润色这段论文：[粘贴内容]」
 
+### 📚 文献综述
+「帮我生成关于XX的文献综述框架」
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/research-academic-helper
+### 💡 创新点提炼
+「总结这篇论文的创新点」（需上传文件）
+
+### 📋 文献整理
+「帮我整理这些文献的关键信息」
+
+---
+
+## 核心功能详解
+
+### 1️⃣ 论文润色
+
+提供系统性的中英文学术论文语言优化服务。
+
+**润色维度**:
+- **语言风格**: 口语化→学术化，提升专业性
+- **语法修正**: 句式结构、时态统一、主谓一致
+- **术语规范**: 专业术语准确性检查
+- **逻辑连贯**: 段落衔接、论证逻辑梳理
+- **格式审查**: 引用格式(APA/MLA/IEEE/Chicago)、图表规范
+
+**润色流程**:
+1. 接收文本或文件（支持PDF/DOC上传）
+2. 分析文档结构和语言风格
+3. 识别问题并分类标记
+4. 提供修改建议（含原文对比）
+5. 输出润色后版本
+
+**润色示例**:
 ```
+【原文】
+We looked at the data and found a very big difference.
+
+【润色后】
+We examined the data and identified a significant difference.
+
+【说明】
+- "looked at" → "examined" (学术化表达)
+- "very big" → "significant" (精确量化)
+```
+
+**参考标准**: [references/polishing-standards.md](references/polishing-standards.md)
+
+---
+
+### 2️⃣ 文献综述生成
+
+协助构建高质量的系统性文献综述框架。
+
+**支持类型**:
+- **时序型综述**: 展示领域发展演变历程
+- **主题型综述**: 多维度分析研究主题
+- **方法论综述**: 比较不同研究方法优劣
+- **理论综述**: 探讨理论框架与争议
+
+**标准框架示例**:
+```
+【主题型综述框架】
+
+1. 引言
+   - 研究背景与意义
+   - 综述范围界定
+   
+2. 主题一：理论基础
+   2.1 核心概念界定
+   2.2 理论流派比较
+
+3. 主题二：研究方法
+   2.1 定量研究方法
+   2.2 定性研究方法
+
+4. 主题三：实证研究
+   3.1 研究发现总结
+   3.2 争议点分析
+
+5. 批判性分析
+   - 研究空白识别
+   - 未来研究方向
+
+6. 结论
+   - 主要发现
+   - 对本研究的启示
+```
+
+**写作指南**: [references/literature-review-guide.md](references/literature-review-guide.md)
+
+---
+
+### 3️⃣ 创新点提炼
+
+深度分析学术论文的核心贡献与创新价值。
+
+**分析维度**:
+- **理论创新**: 新概念、新框架、新理论模型
+- **方法创新**: 新方法、新算法、新实验设计
+- **应用创新**: 新场景、新应用、新实践
+- **数据创新**: 新数据集、新测量方式
+- **交叉创新**: 跨学科融合创新
+
+**输出格式**:
+```
+【论文创新点总结】
+
+论文标题: XXX
+作者: XXX
+期刊/会议: XXX (年份)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 主要创新点
+
+### 创新点一：理论创新
+**创新内容**: 提出了XXX新理论框架...
+**创新价值**: 填补了XXX领域的理论空白
+**对比优势**: 相比传统理论，在XXX方面显著提升
+
+### 创新点二：方法创新
+**创新内容**: 开发了XXX新方法/算法...
+**技术特点**: 采用XXX技术路线，解决XXX难题
+**性能提升**: 准确率提升X%，效率提高Y倍
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 研究贡献总结
+## 研究局限性
+## 对后续研究的启示
+```
+
+**参考指南**: [references/innovation-analysis.md](references/innovation-analysis.md)
+
+---
+
+## 文件处理能力
+
+### 支持的文件格式
+- **PDF**: 学术论文、研究报告
+- **DOC/DOCX**: Word文档
+- **TXT**: 纯文本文件
+
+### 处理流程
+1. 用户上传文件
+2. 自动提取文本内容
+3. 根据需求执行润色/分析
+4. 输出结构化结果
+
+---
+
+## 联网文献检索
+
+开启联网功能后，支持检索最新学术文献。
+
+**检索能力**:
+- 搜索学术数据库
+- 查找高被引文献
+- 追踪最新研究进展
+- 获取文献元数据
+
+**使用场景**:
+```
+"搜索机器学习在教育领域应用的最新研究"
+"查找关于深度学习的综述论文，近3年的"
+"帮我找XX领域引用最高的5篇论文"
+```
+
+---
+
+## 质量标准
+
+### 论文润色检查清单
+- [ ] 语言符合学术规范
+- [ ] 无语法错误
+- [ ] 术语使用准确
+- [ ] 句子长度适中（≤30词）
+- [ ] 逻辑表达清晰
+- [ ] 引用格式统一
+
+### 文献综述质量要求
+- [ ] 结构完整合理
+- [ ] 文献覆盖全面
+- [ ] 分类逻辑清晰
+- [ ] 分析批判深入
+- [ ] 研究空白明确
+
+### 创新点提炼标准
+- [ ] 准确识别核心贡献
+- [ ] 区分创新类型
+- [ ] 对比现有研究
+- [ ] 评估创新价值
+- [ ] 指出局限性
+
+---
+
+## 中英文学术写作要点
+
+### 常见词汇升级对照表
+
+| 口语/非正式 | 学术正式 |
+|------------|---------|
+| look at | examine, investigate |
+| find out | determine, discover |
+| use | utilize, employ |
+| get | obtain, acquire |
+| a lot of | numerous, substantial |
+| very | significantly, considerably |
+| big | substantial, extensive |
+| show | demonstrate, indicate |
+
+---
+
+## 参考资源
+
+- **润色标准**: [references/polishing-standards.md](references/polishing-standards.md)
+- **综述指南**: [references/literature-review-guide.md](references/literature-review-guide.md)
+- **创新分析**: [references/innovation-analysis.md](references/innovation-analysis.md)
+
+---
+
+**让学术研究更专业、更高效、更有创新力。**

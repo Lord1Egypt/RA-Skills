@@ -1,0 +1,14 @@
+{
+  "name": "prospect-advisor",
+  "displayName": "前程似锦-高考升学规划Pro",
+  "version": "0.1.0",
+  "description": "基于惠迈校准框架的高考升学规划专家",
+  "main": "calibration/index.js",
+  "scripts": {
+    "test": "node calibration/test.js",
+    "calibrate": "node -e \"require('./calibration/index.js').runCalibration(process.env)\""
+  },
+  "keywords": ["gaokao", "education", "career", "huimai", "calibration"],
+  "author": "Huimai AI",
+  "license": "MIT"
+}

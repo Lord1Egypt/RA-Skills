@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.0.0",
+  "requirement_id": "REQ-ASSET-001",
+  "feature_tree": [
+    {
+      "id": "F-001",
+      "name": "基金申购",
+      "description": "投资者申购在售的公募基金产品",
+      "children": [
+        {
+          "id": "F-001-01",
+          "name": "基金产品浏览",
+          "description": "投资者浏览在售公募基金列表，查看基金名称、净值、费率等信息",
+          "children": []
+        },
+        {
+          "id": "F-001-02",
+          "name": "申购金额校验",
+          "description": "系统校验申购金额是否满足最低1000元且按1000元递增的规则",
+          "children": []
+        },
+        {
+          "id": "F-001-03",
+          "name": "申购费率计算",
+          "description": "根据持有金额分档计算申购费率：0-50万1.5%、50万以上1.0%",
+          "children": []
+        },
+        {
+          "id": "F-001-04",
+          "name": "申购订单提交",
+          "description": "投资者确认申购信息后提交申购订单，系统冻结对应资金",
+          "children": []
+        },
+        {
+          "id": "F-001-05",
+          "name": "份额确认",
+          "description": "T+1日系统根据当日净值确认申购份额，解冻资金并扣款",
+          "children": []
+        },
+        {
+          "id": "F-001-06",
+          "name": "持仓查看",
+          "description": "份额确认后投资者可在持仓中查看基金份额和最新净值",
+          "children": []
+        }
+      ]
+    }
+  ],
+  "coverage_check": {
+    "total_features": 7,
+    "covered_requirements": ["基金申购", "金额校验", "费率计算", "份额确认", "持仓查看"],
+    "uncovered_items": []
+  }
+}

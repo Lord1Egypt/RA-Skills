@@ -1,0 +1,13 @@
+{
+  "name": "workflows",
+  "version": "1.0.0",
+  "displayName": "工作流组合",
+  "description": "当一个任务明确需要多种方法串联，需要组合使用多个技能时调用",
+  "author": "求是 Skill",
+  "homepage": "https://github.com/skytodmoon/qiushi-skill",
+  "tags": ["方法论", "毛泽东思想", "工作流组合"],
+  "requires": {
+    "env": []
+  },
+  "files": []
+}

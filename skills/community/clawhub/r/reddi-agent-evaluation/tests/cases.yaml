@@ -1,0 +1,31 @@
+# Agent Evaluation Skill — Smoke Tests
+
+cases:
+  - id: agent_eval_01
+    description: "Produces a behavioral test plan for a simple agent"
+    input: |
+      Design a test plan for an agent that classifies customer support emails
+      as: billing, technical, or general enquiry. Include happy path, edge cases,
+      and adversarial tests.
+    expect:
+      contains: ["happy path", "edge case"]
+      min_length: 200
+      rubric: |
+        Score 1-5. Does the test plan include: happy path tests, edge cases,
+        adversarial inputs, and specify what "correct" looks like for each?
+        5 = comprehensive, structured plan. 1 = vague bullet list.
+      min_score: 4
+
+  - id: agent_eval_02
+    description: "Flags the anti-pattern of single-run testing"
+    input: |
+      We ran our agent once on each of 20 test inputs and got 95% pass rate.
+      Is this a sufficient evaluation?
+    expect:
+      not_contains: ["sufficient", "good enough", "that's fine"]
+      rubric: |
+        Score 1-5. Does the response correctly flag that single-run testing is
+        an anti-pattern for LLM agents due to non-determinism, and suggest
+        statistical approaches (multiple runs, confidence intervals)?
+        5 = clearly explains the problem + suggests fix. 1 = agrees it's fine.
+      min_score: 4

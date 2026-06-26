@@ -1,0 +1,3156 @@
+meta:
+  id: finance-bp-127-v5.3
+  version: v6.1
+  blueprint_id: finance-bp-127
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-22T13:01:03.585888+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    - "[V6 READING ORDER]\nThis crystal contains the following V6 layers. Before answering any business question, the host\
+      \ MUST read them in order:\n  1. anti_patterns[] — cross-project anti-patterns (with AP-* ids)\n  2. cross_project_wisdom[]\
+      \ — cross-project wisdom (with CW-* ids)\n  3. domain_constraints_injected[] — domain constraints (SHARED-* ids)\n \
+      \ 4. known_use_cases[] — concrete business scenarios (KUC-* ids)\n  5. component_capability_map — AST component map\
+      \ (by module)\n\nWhen answering user questions, proactively cite relevant AP-*/CW-*/SHARED-*/KUC-* ids with source text.\
+      \ Examples: T+1 rules -> cite SHARED-* constraint; model comparison -> warn via AP-*; follow-holdings strategy -> cite\
+      \ KUC-* with example file."
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+  capability_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  upgraded_from: finance-bp-127-v1.seed.yaml
+  upgraded_at: '2026-04-22T13:20:35.266651+00:00'
+  v6_inputs:
+    ast_mind_map: knowledge/sources/finance/finance-bp-127--py_vollib/v6_inputs/ast_mind_map.yaml
+    anti_patterns: null
+    cross_project_wisdom: null
+    examples_kuc: knowledge/sources/finance/finance-bp-127--py_vollib/v6_inputs/examples_kuc.yaml
+    shared_pools_dir: knowledge/sources/finance/_shared
+anti_patterns:
+- id: AP-DERIVATIVES-PRICING-001
+  title: Instrument NPV called without attached pricing engine
+  description: Calling NPV() on a derivatives instrument without first calling setPricingEngine() returns uninitialized garbage
+    values or throws null pointer exceptions. This occurs because the Instrument class relies on the attached PricingEngine
+    to perform actual valuation logic. The consequence is silently incorrect pricing results that appear valid, potentially
+    leading to bad trading decisions.
+  project_source: QuantLib-SWIG (finance-bp-123)
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  _source_file: anti-patterns/derivatives-pricing.yaml
+- id: AP-DERIVATIVES-PRICING-002
+  title: BSM forward price ignores dividend yield
+  description: When calculating option prices on dividend-paying stocks using BSM, the forward price must be adjusted as F
+    = S * exp((r-q)*t). Omitting the dividend yield adjustment (using F = S * exp(r*t)) causes systematic mispricing for all
+    dividend-paying assets. The consequence is consistently wrong option prices that diverge from market prices, leading to
+    arbitrage opportunities and trading losses.
+  project_source: py_vollib (finance-bp-127)
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  _source_file: anti-patterns/derivatives-pricing.yaml
+- id: AP-DERIVATIVES-PRICING-003
+  title: Negative discount factors passed to log-domain interpolation
+  description: When Numba-jitted interpolation functions perform log transformation on discount factors, negative or zero
+    values cause domain errors. This occurs because log(-x) and log(0) are mathematically undefined. The consequence is runtime
+    crashes in jitted functions and complete failure of discount curve interpolation, blocking all downstream pricing calculations.
+  project_source: FinancePy (finance-bp-101)
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  _source_file: anti-patterns/derivatives-pricing.yaml
+- id: AP-DERIVATIVES-PRICING-004
+  title: Non-monotonic time points in discount curve interpolation
+  description: Interpolation over non-monotonically increasing time points produces undefined behavior at crossing times,
+    causing discount factors to be incorrectly computed where time values overlap. This corrupts the entire term structure
+    because the bootstrap algorithm cannot determine which discount factor corresponds to which maturity. The consequence
+    is incorrect present value calculations across all downstream products priced against the curve.
+  project_source: FinancePy (finance-bp-101)
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  _source_file: anti-patterns/derivatives-pricing.yaml
+- id: AP-DERIVATIVES-PRICING-005
+  title: Bootstrap calibration instruments not in maturity order
+  description: When building yield curves from market instruments (deposits, FRAs, swaps), the instruments must be provided
+    in strictly increasing maturity order. Out-of-order instruments cause the bootstrap algorithm to solve for discount factors
+    at incorrect time points, corrupting the entire term structure. The consequence is wrong forward rates and discount factors
+    that propagate into all priced instruments.
+  project_source: FinancePy (finance-bp-101)
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  _source_file: anti-patterns/derivatives-pricing.yaml
+- id: AP-DERIVATIVES-PRICING-006
+  title: Option Exercise type mismatches VanillaOption constructor
+  description: VanillaOption requires both a StrikedTypePayoff and a matching Exercise object. Using wrong Exercise type (e.g.,
+    AmericanExercise for European option) causes compilation failures in C++ or runtime errors in SWIG bindings. The consequence
+    is the pricing system cannot initialize options, blocking all option pricing workflows.
+  project_source: QuantLib-SWIG (finance-bp-123)
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  _source_file: anti-patterns/derivatives-pricing.yaml
+- id: AP-DERIVATIVES-PRICING-007
+  title: NaN/inf values in ARCH model input data
+  description: ARCH model estimation relies on recursive variance computations and scipy optimize. Non-finite input values
+    (NaN, inf) cause optimizers to produce NaN results and recursive variance calculations to fail. The consequence is complete
+    model estimation failure with meaningless outputs that appear valid, leading to incorrect volatility forecasts and risk
+    misestimation.
+  project_source: arch (finance-bp-124)
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  _source_file: anti-patterns/derivatives-pricing.yaml
+- id: AP-DERIVATIVES-PRICING-008
+  title: ARCH parameter array concatenation in wrong order
+  description: 'ARCHModel composes from three components (mean, volatility, distribution) and requires parameter arrays concatenated
+    in fixed order: [mean_params, volatility_params, distribution_params]. Incorrect ordering causes _parse_parameters to
+    assign wrong values to wrong components, producing mathematically invalid models (e.g., volatility parameters interpreted
+    as distribution parameters). The consequence is invalid conditional variance forecasts.'
+  project_source: arch (finance-bp-124)
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  _source_file: anti-patterns/derivatives-pricing.yaml
+- id: AP-DERIVATIVES-PRICING-009
+  title: Zero or negative time-to-expiration in option pricing
+  description: Option pricing formulas (Black-Scholes, Black model) compute sqrt(t) in the denominator. Zero time causes division
+    by zero; negative time produces NaN in d1/d2 calculations. The consequence is invalid option prices (NaN, inf) that break
+    downstream Greeks calculations and hedging workflows.
+  project_source: py_vollib (finance-bp-127)
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  _source_file: anti-patterns/derivatives-pricing.yaml
+- id: AP-DERIVATIVES-PRICING-010
+  title: Black model applies spot price instead of forward price
+  description: The Black model is designed for options on futures/forwards and expects futures price F as input, not spot
+    price S. Using spot directly causes incorrect pricing because the Black formula assumes the underlying follows geometric
+    Brownian motion with drift equal to the risk-free rate (i.e., forward dynamics). The consequence is systematically wrong
+    forward option prices.
+  project_source: py_vollib (finance-bp-127)
+  severity: high
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  _source_file: anti-patterns/derivatives-pricing.yaml
+- id: AP-DERIVATIVES-PRICING-011
+  title: Missing discount factor in Black model pricing
+  description: Black model pricing must apply time value discounting with deflater = exp(-r*t) to undiscounted option prices.
+    Omitting the discount factor produces forward option prices that exceed their fair value by the risk-free compounding
+    amount. The consequence is violation of time value of money principles and prices that cannot be used for fair valuation
+    or hedging.
+  project_source: py_vollib (finance-bp-127)
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  _source_file: anti-patterns/derivatives-pricing.yaml
+- id: AP-DERIVATIVES-PRICING-012
+  title: Invalid flag parameter ('c'/'p') passed to py_vollib without validation
+  description: py_vollib binary_flag dict only contains keys 'c' and 'p'. Passing any other flag value causes KeyError exception.
+    The library lacks input validation and crashes on invalid inputs. The consequence is unhandled exceptions in production
+    systems when flag values come from external sources with unexpected formats.
+  project_source: py_vollib (finance-bp-127)
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  _source_file: anti-patterns/derivatives-pricing.yaml
+- id: AP-DERIVATIVES-PRICING-013
+  title: Evaluation date not set before QuantLib term structure construction
+  description: QuantLib requires ql.Settings.instance().evaluationDate to be set before constructing yield term structures
+    and instruments. Without an explicit evaluation date, the curve reference date becomes undefined, causing date calculations
+    to fail or produce incorrect settlement dates. The consequence is wrong discount factors and NPV calculations across the
+    entire portfolio.
+  project_source: QuantLib-SWIG (finance-bp-123)
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  _source_file: anti-patterns/derivatives-pricing.yaml
+- id: AP-DERIVATIVES-PRICING-014
+  title: Market quotes passed without QuoteHandle wrapper
+  description: QuantLib's observer pattern requires all market quotes to be wrapped in QuoteHandle before passing to rate
+    helpers. Raw quote values bypass the observable notification mechanism, causing dependent instruments to never recalculate
+    when market data updates. The consequence is stale pricing that doesn't reflect current market conditions.
+  project_source: QuantLib-SWIG (finance-bp-123)
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  _source_file: anti-patterns/derivatives-pricing.yaml
+- id: AP-DERIVATIVES-PRICING-015
+  title: Implied volatility computed without proper bounds validation
+  description: When computing implied volatility, option prices outside theoretical bounds (below intrinsic value or above
+    maximum) must raise appropriate exceptions. Returning invalid IV values (negative volatility or extreme values) violates
+    mathematical definitions and leads to incorrect pricing, risk calculations, and hedging ratios. The consequence is systemic
+    pricing errors across all vol-dependent derivatives.
+  project_source: py_vollib (finance-bp-127)
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - global
+    activities:
+    - derivatives-pricing
+  _source_file: anti-patterns/derivatives-pricing.yaml
+cross_project_wisdom:
+- wisdom_id: CW-DERIVATIVES-PRICING-001
+  source_project: FinancePy, QuantLib-SWIG
+  pattern_name: Strict input validation before financial calculations
+  description: Both FinancePy and QuantLib-SWIG enforce strict validation of all input parameters before any financial computation.
+    FinancePy validates day count types, date arguments, tolerance parameters, and max iterations. QuantLib-SWIG validates
+    exercise types and swap direction enums. This pattern prevents corrupted calculations and provides clear error messages.
+    Apply this pattern by validating all inputs at function entry points.
+  applicable_to_activity: derivatives-pricing
+  _source_file: cross-project-wisdom/derivatives-pricing.yaml
+- wisdom_id: CW-DERIVATIVES-PRICING-002
+  source_project: FinancePy, QuantLib-SWIG
+  pattern_name: Bootstrap requires ordered instrument calibration
+  description: Both FinancePy and QuantLib-SWIG require calibration instruments to be provided in strict maturity order for
+    curve bootstrapping. FinancePy enforces monotonically increasing time points and validates instrument sequencing (deposits
+    before FRAs before swaps). QuantLib-SWIG uses bootstrap helpers (DepositRateHelper, FraRateHelper, SwapRateHelper) that
+    assume ordered inputs. This ensures the bootstrap algorithm solves for discount factors at mathematically correct time
+    points.
+  applicable_to_activity: derivatives-pricing
+  _source_file: cross-project-wisdom/derivatives-pricing.yaml
+- wisdom_id: CW-DERIVATIVES-PRICING-003
+  source_project: QuantLib-SWIG
+  pattern_name: Handle pattern for lazy evaluation chains
+  description: QuantLib-SWIG requires wrapping market data (quotes, term structures) in Handle objects to enable lazy evaluation
+    and automatic recalculation. QuoteHandle for market quotes and Handle for term structures enable the observer pattern.
+    When market data updates, all dependent instruments automatically recalculate. This pattern is essential for live pricing
+    systems where prices must reflect current market conditions.
+  applicable_to_activity: derivatives-pricing
+  _source_file: cross-project-wisdom/derivatives-pricing.yaml
+- wisdom_id: CW-DERIVATIVES-PRICING-004
+  source_project: arch
+  pattern_name: Parameter composition requires fixed ordering and partitioning
+  description: arch enforces a strict parameter composition pattern where mean, volatility, and distribution parameters must
+    be concatenated in fixed order with explicit offset partitioning. The offsets array partitions the unified parameter vector
+    into components. This pattern prevents parameter assignment errors that would corrupt model components. Apply this when
+    composing financial models from multiple sub-components.
+  applicable_to_activity: derivatives-pricing
+  _source_file: cross-project-wisdom/derivatives-pricing.yaml
+- wisdom_id: CW-DERIVATIVES-PRICING-005
+  source_project: arch, py_vollib
+  pattern_name: Strict mathematical constraint enforcement
+  description: 'Both arch and py_vollib enforce strict mathematical constraints: arch enforces volatility model stationarity
+    constraints (A.dot(params) - b >= 0) for SLSQP optimization; py_vollib validates implied volatility is positive and option
+    prices within intrinsic/maximum bounds. Violating these constraints produces mathematically invalid results. Always enforce
+    domain constraints on all financial model parameters.'
+  applicable_to_activity: derivatives-pricing
+  _source_file: cross-project-wisdom/derivatives-pricing.yaml
+- wisdom_id: CW-DERIVATIVES-PRICING-006
+  source_project: py_vollib
+  pattern_name: Forward price adjustment for dividend yield in BSM
+  description: 'py_vollib demonstrates the correct BSM implementation: compute forward price F = S * exp((r-q)*t) to adjust
+    for continuous dividend yield before passing to the pricing engine. This pattern is essential for all options on dividend-paying
+    assets. Forgetting the dividend adjustment causes systematic mispricing for the entire equity derivatives book.'
+  applicable_to_activity: derivatives-pricing
+  _source_file: cross-project-wisdom/derivatives-pricing.yaml
+- wisdom_id: CW-DERIVATIVES-PRICING-007
+  source_project: FinancePy
+  pattern_name: Monotonicity validation for interpolation arrays
+  description: FinancePy enforces strictly monotonically increasing time arrays before interpolation operations. This prevents
+    undefined behavior at crossing times and ensures each time point maps to exactly one discount factor. Apply this validation
+    whenever implementing interpolation over financial time series (discount curves, volatility surfaces, forward rates).
+  applicable_to_activity: derivatives-pricing
+  _source_file: cross-project-wisdom/derivatives-pricing.yaml
+- wisdom_id: CW-DERIVATIVES-PRICING-008
+  source_project: py_vollib
+  pattern_name: Production vs reference implementation selection
+  description: py_vollib explicitly distinguishes between ref_python (slow, educational) and production (fast, C-based lets_be_rational)
+    implementations. Using the reference implementation in production causes 10-100x performance degradation. Always select
+    the appropriate implementation tier based on use case requirements—reference for testing/education, optimized for production
+    trading systems.
+  applicable_to_activity: derivatives-pricing
+  _source_file: cross-project-wisdom/derivatives-pricing.yaml
+domain_constraints_injected: []
+resources_injected: {}
+known_use_cases:
+- kuc_id: KUC-101
+  source_file: docs/conf.py
+  business_problem: Configures automated documentation generation for the py_vollib options pricing library, enabling consistent
+    API documentation, code examples, and coverage reporting for developers.
+  intent_keywords:
+  - documentation
+  - sphinx
+  - api docs
+  - readthedocs
+  - docs generation
+  stage: reporting
+  data_domain: mixed
+  type: reporting
+component_capability_map:
+  project: finance-bp-127--py_vollib
+  scan_date: '2026-04-22'
+  stats:
+    total_files: 5
+    total_classes: 23
+    total_functions: 0
+    total_stages: 5
+  modules:
+    reference_implementations:
+      class_count: 5
+      stage_id: reference_implementations
+      stage_order: 1
+      responsibility: Provide pure Python reference implementations using scipy.stats.norm.cdf for verification and sanity
+        checking against the optimized production core. Not for production use but enable numerical validation.
+      classes:
+      - name: black.black
+        file: reference_implementations/black-black.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: black_scholes.black_scholes
+        file: reference_implementations/black-scholes-black-scholes.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: black_scholes_merton.black_scholes_merton
+        file: reference_implementations/black-scholes-merton-black-scholes-merto.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: implied_volatility.implied_volatility
+        file: reference_implementations/implied-volatility-implied-volatility.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: norm_cdf_source
+        file: reference_implementations/norm-cdf-source.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 2
+    option_pricing:
+      class_count: 4
+      stage_id: pricing
+      stage_order: 2
+      responsibility: Calculate option prices using Black, Black-Scholes, and Black-Scholes-Merton models. Delegates to py_lets_be_rational
+        for performance while exposing a clean public API.
+      classes:
+      - name: black.black
+        file: option_pricing/black-black.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: black_scholes.black_scholes
+        file: option_pricing/black-scholes-black-scholes.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: black_scholes_merton.black_scholes_merton
+        file: option_pricing/black-scholes-merton-black-scholes-merto.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: pricing_backend
+        file: option_pricing/pricing-backend.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    analytical_greeks:
+      class_count: 6
+      stage_id: greeks_analytical
+      stage_order: 3
+      responsibility: Compute option Greeks (delta, theta, gamma, vega, rho) using closed-form Black-Scholes formulas. Each
+        greek is scaled per industry convention for per-day theta and per-percent vega/rho.
+      classes:
+      - name: analytical.delta
+        file: analytical_greeks/analytical-delta.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: analytical.theta
+        file: analytical_greeks/analytical-theta.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: analytical.gamma
+        file: analytical_greeks/analytical-gamma.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: analytical.vega
+        file: analytical_greeks/analytical-vega.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: analytical.rho
+        file: analytical_greeks/analytical-rho.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: d1_d2_source
+        file: analytical_greeks/d1-d2-source.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    numerical_greeks:
+      class_count: 4
+      stage_id: greeks_numerical
+      stage_order: 4
+      responsibility: Compute option Greeks via finite difference approximation. Serves as verification of analytical formulas
+        and fallback for non-standard models or exotic payoffs.
+      classes:
+      - name: numerical_greeks.delta
+        file: numerical_greeks/numerical-greeks-delta.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: numerical_greeks.theta
+        file: numerical_greeks/numerical-greeks-theta.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: numerical_greeks.gamma
+        file: numerical_greeks/numerical-greeks-gamma.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: step_size
+        file: numerical_greeks/step-size.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    implied_volatility:
+      class_count: 4
+      stage_id: implied_volatility
+      stage_order: 5
+      responsibility: Solve for the volatility that produces a given option price using Newton-Raphson via lets_be_rational.
+        Raises exceptions for out-of-bounds prices that violate intrinsic value constraints.
+      classes:
+      - name: black_scholes.implied_volatility
+        file: implied_volatility/black-scholes-implied-volatility.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: black.implied_volatility
+        file: implied_volatility/black-implied-volatility.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: black.normalised_implied_volatility
+        file: implied_volatility/black-normalised-implied-volatility.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: iv_algorithm
+        file: implied_volatility/iv-algorithm.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+  data_flow_hints: []
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: 1.0
+    evidence_verify_ratio: 0.5480769230769231
+    evidence_invalid: 47
+    evidence_verified: 57
+    evidence_auto_fixed: 0
+    audit_coverage: 23/23 (100%)
+    audit_pass_rate: 2/23 (8%)
+    audit_fail_total: 10
+    audit_finance_universal:
+      pass: 2
+      warn: 6
+      fail: 8
+    audit_subdomain_totals:
+      pass: 0
+      warn: 5
+      fail: 2
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-127. Evidence verify ratio
+    = 54.8% and audit fail total = 10. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-127-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc:
+  - UC-101
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries:
+  - uc_id: UC-101
+    name: Sphinx Documentation Configuration for py_vollib
+    positive_terms:
+    - documentation
+    - sphinx
+    - api docs
+    - readthedocs
+    - docs generation
+    data_domain: mixed
+    negative_terms:
+    - trading
+    - backtesting
+    - screening
+    - factor computation
+    - live trading
+    - options pricing
+    ambiguity_question: Are you looking to configure project documentation (docs/conf.py), or are you trying to implement
+      a trading strategy, run factor analysis, or process market data?
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 117
+    fatal_constraints_count: 45
+    non_fatal_constraints_count: 124
+    use_cases_count: 1
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 44 source groups: architecture(1),
+        calibration(1), core_algorithm(1), default_value(5), delta_calculation(1), design(1), and 38 more.'
+      key_decisions: 117 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-GAP-001
+      type: B
+      summary: 'Dual implementation strategy: providing both analytical (closed-form) and numerical (finite difference) Greeks
+        for the same option parameters'
+    - id: BD-GAP-002
+      type: B
+      summary: Finite difference epsilon set to 0.0001 for numerical Greek computation
+    - id: BD-017
+      type: B
+      summary: Delegate core pricing to py_lets_be_rational for speed and precision
+    - id: BD-087
+      type: DK/B
+      summary: 'The ''b'' cost-of-carry parameter defaults encode the entire model selection: Black=0, Black-Scholes=r, BSM=r-q'
+    - id: BD-090
+      type: DK
+      summary: Theta divided by 365 for per-day convention (textbook raw value must be multiplied by 365)
+    - id: BD-091
+      type: DK
+      summary: Vega and rho multiplied by 0.01 for per-percent convention (1% change, not 100% change)
+    - id: BD-095
+      type: DK
+      summary: BSM numerical greeks lambda computes dividend q from b via r-b, but bs_merton pricing expects q directly
+    - id: BD-097
+      type: DK
+      summary: Numerical theta uses 0.00001 as minimum time step when t < 1/365 to avoid negative time
+    - id: BD-055
+      type: B
+      summary: 'Black delta: N(d1)*exp(-r*t) for calls, -N(-d1)*exp(-r*t) for puts'
+    - id: BD-GAP-003
+      type: T
+      summary: Standardized function signature (flag, S, K, t, r, sigma) across each Greek calculations with 'flag' as first
+        parameter
+    - id: BD-040
+      type: B
+      summary: Use Drezner-Wesolowsky method for bivariate normal distribution (CBND)
+    - id: BD-041
+      type: B/BA
+      summary: Use correlation thresholds 0.3 and 0.75 to select CBND quadrature order
+    - id: BD-042
+      type: B/BA
+      summary: Cap CND evaluation at |x|>37 to prevent underflow/overflow
+    - id: BD-043
+      type: B
+      summary: Use Abramowitz-Steilger polynomial coefficients in CND approximation
+    - id: BD-029
+      type: B/BA
+      summary: In BSM delta, multiply by exp(-q*t) to adjust for dividend yield
+    - id: BD-030
+      type: B
+      summary: In BSM gamma, include exp(-q*t) in numerator
+    - id: BD-031
+      type: B
+      summary: In BSM vega, multiply by exp(-q*t) factor
+    - id: BD-051
+      type: B/BA
+      summary: 'BSM theta includes additional dividend term: -q*S*exp(-q*t)*N(±d1)'
+    - id: BD-024
+      type: B
+      summary: At t=0, set delta to {c:0.5, p:-0.5} when S=K, {c:1, p:0} when S>K
+    - id: BD-045
+      type: B
+      summary: 'For numerical gamma at t=0: return infinity if S=K, else 0'
+    - id: BD-021
+      type: B/DK
+      summary: Raise PriceIsAboveMaximum exception when sigma equals FLOAT_MAX
+    - id: BD-022
+      type: B/DK
+      summary: Raise PriceIsBelowIntrinsic exception when sigma equals MINUS_FLOAT_MAX
+    - id: BD-018
+      type: B
+      summary: Calculate forward price as S/numpy.exp(-r*t) equivalent to S*exp(r*t)
+    - id: BD-046
+      type: B/BA
+      summary: 'Discount forward price calculation: F = S * exp((r-q)*t) for BSM'
+    - id: BD-100
+      type: BA
+      summary: 'INTERACTION: [BD-089] × [BD-003] × [BD-092] → Complete IV calculation chain failure if binary_flag mapping
+        is wrong'
+    - id: BD-101
+      type: B/BA
+      summary: 'INTERACTION: [BD-094] vs [BD-055]/[BD-071] → Black delta discount factor inconsistency creates model confusion'
+    - id: BD-102
+      type: BA/DK
+      summary: 'INTERACTION: [BD-005] × [BD-009] × [BD-025] → Theta instability amplification near 1-day expiry'
+    - id: BD-103
+      type: B
+      summary: 'INTERACTION: [BD-029] × [BD-030] × [BD-031] × [BD-051] → BSM dividend factor cascade across each Greeks'
+    - id: BD-104
+      type: BA
+      summary: 'INTERACTION: [BD-085] × [BD-093] × [BD-003] × [BD-020] → IV solver chain dependency'
+    - id: BD-105
+      type: DK
+      summary: 'INTERACTION: [BD-098] × [BD-046] × [BD-018] → Forward price symbol confusion across models'
+    - id: BD-106
+      type: T
+      summary: 'INTERACTION: [BD-099] × [BD-011] → ref_python serves dual role as reference and utility, creating coupling'
+    - id: BD-004
+      type: B
+      summary: BSM delta includes exp(-q*t) factor for dividend yield
+    - id: BD-005
+      type: B/BA
+      summary: Theta divided by 365 (per-day convention)
+    - id: BD-006
+      type: B/BA
+      summary: Vega/Rho multiplied by 0.01 (per-percent convention)
+    - id: BD-013
+      type: B
+      summary: Divide theta by 365 to express as daily change (per calendar day)
+    - id: BD-014
+      type: B/BA
+      summary: Multiply vega by 0.01 to express per 1% change in implied volatility
+    - id: BD-015
+      type: B
+      summary: Multiply rho by 0.01 to express per 1% change in interest rate
+    - id: BD-044
+      type: B
+      summary: Gamma and vega are identical for calls and puts (symmetric)
+    - id: BD-007
+      type: BA/M
+      summary: Uses pricing_function parameter for generic computation
+    - id: BD-008
+      type: B/BA
+      summary: dS = 0.01 (1% bump) hardcoded as step size
+    - id: BD-009
+      type: B
+      summary: Theta capped at 1/365 to avoid singularity at expiry
+    - id: BD-023
+      type: B/BA
+      summary: Use numerical delta step size dS = 0.01 for finite difference approximation
+    - id: BD-025
+      type: B/BA
+      summary: For t<=1/365, approximate theta via 0.00001 time step instead of 1/365
+    - id: BD-048
+      type: B
+      summary: For numerical rho, shift both r and b by 0.01 in opposite directions
+    - id: BD-GAP-005
+      type: M
+      summary: Analytical Greeks compute each first-order derivatives (delta, theta, vega, rho) plus gamma using closed-form
+        formulas without error bounds
+    - id: BD-010
+      type: B
+      summary: Uses FLOAT_MAX/MINUS_FLOAT_MAX as sentinel values
+    - id: BD-020
+      type: B/RC
+      summary: Use transformed rational guess algorithm for implied volatility
+    - id: BD-047
+      type: B/BA
+      summary: 'Undiscount option price before IV calculation: undiscounted = price / deflater'
+    - id: BD-094
+      type: DK
+      summary: Black delta has discount factor exp(-r*t) but Black-Scholes delta does not - inconsistent delta definitions
+    - id: BD-012
+      type: B/BA
+      summary: Use 'c'/'p' string flags instead of numeric flags, converted to binary via {CALL:1, PUT:-1}
+    - id: BD-054
+      type: B
+      summary: Use binary_flag lookup for converting 'c'/'p' to internal numeric representation
+    - id: BD-056
+      type: B
+      summary: Use float() conversion on each numeric inputs to ensure type consistency
+    - id: BD-089
+      type: B/BA
+      summary: 'Global binary_flag mapping: {''c'':1, ''p'':-1} must match py_lets_be_rational convention throughout'
+    - id: BD-092
+      type: BA/DK
+      summary: FLOAT_MAX/MINUS_FLOAT_MAX sentinel values from lets_be_rational must map to custom exceptions
+    - id: BD-096
+      type: BA
+      summary: 'Numerical greeks edge case: t=0 returns finite values for delta/gamma but float(''inf'') for gamma at ATM'
+    - id: BD-098
+      type: DK
+      summary: 'Forward price formula: F=S/exp(-r*t) in black_scholes; F=S*exp((r-q)*t) in BSM - different interpretations
+        of ''F'''
+    - id: BD-019
+      type: B
+      summary: Bridge Black-Scholes to Black via F = S/deflater, then multiply back
+    - id: BD-053
+      type: B/RC
+      summary: d2 = d1 - sigma*sqrt(t) relationship holds across each models
+    - id: BD-026
+      type: B/BA
+      summary: Use b=r (cost-of-carry = risk-free rate) for Black-Scholes model
+    - id: BD-027
+      type: B/BA
+      summary: Use b=0 (cost-of-carry = 0) for Black futures option model
+    - id: BD-028
+      type: B/BA
+      summary: Use b=r-q for Black-Scholes-Merton model to account for continuous dividends
+    - id: BD-016
+      type: B
+      summary: Pre-compute PDF constant ONE_OVER_SQRT_TWO_PI = 0.3989... for performance
+    - id: BD-093
+      type: DK
+      summary: 'Implied volatility requires price first: BSM IV must compute F=S*exp((r-q)*t) before calling lets_be_rational'
+    - id: BD-088
+      type: T
+      summary: 'Two-implementation architecture: fast (py_lets_be_rational) vs reference (scipy/brentq) for cross-validation'
+    - id: BD-099
+      type: T
+      summary: Analytical greeks import d1/d2 from ref_python modules, creating hidden coupling
+    - id: BD-052
+      type: B
+      summary: Provide limited-iteration IV calculation for time-critical applications
+    - id: BD-001
+      type: B
+      summary: BSM delegates to Black model via F=S*exp((r-q)*t)
+    - id: BD-002
+      type: B/RC
+      summary: Flag uses 'c'/'p' strings mapped to +1/-1 via binary_flag dict
+    - id: BD-003
+      type: B
+      summary: undiscounted_black forwards to py_lets_be_rational.black
+    - id: BD-039
+      type: B
+      summary: Implement normalised_black for time-value put-call invariant transformation
+    - id: BD-057
+      type: B
+      summary: Use Black (1976) futures option model with discounted price calculation
+    - id: BD-058
+      type: B/BA
+      summary: Use transformed rational guess algorithm for implied volatility calculation
+    - id: BD-078
+      type: B
+      summary: Use normalised (time-value invariant) Black pricing for comparative analysis
+    - id: BD-085
+      type: B/BA
+      summary: Convert price to undiscounted form before Black IV calculation
+    - id: BD-086
+      type: B
+      summary: Raise PriceIsAboveMaximum/PriceIsBelowIntrinsic exceptions for out-of-bounds IV
+    - id: BD-066
+      type: B/BA
+      summary: Scale vega and rho by 0.01 for per-1% change convention
+    - id: BD-067
+      type: B/BA
+      summary: Divide theta by 365 to express as daily decay
+    - id: BD-070
+      type: B
+      summary: Set cost_of_carry b=0 for Black model (futures options)
+    - id: BD-077
+      type: B
+      summary: Apply analytical rho formula using price-times-time sensitivity
+    - id: BD-084
+      type: B
+      summary: Use analytical theta formula with three-term decomposition
+    - id: BD-068
+      type: B/BA
+      summary: Use Black-Scholes (1973) equity option model with spot price
+    - id: BD-083
+      type: B
+      summary: Apply put-call parity for Black-Scholes via forward price conversion
+    - id: BD-069
+      type: B
+      summary: Use Black-Scholes-Merton model with continuous dividend yield q
+    - id: BD-074
+      type: B
+      summary: Convert BSM price to Black implied volatility using forward adjustment
+    - id: BD-060
+      type: B
+      summary: Custom polynomial approximation for cumulative normal distribution
+    - id: BD-061
+      type: B
+      summary: Use Drezner-Wesolowsky (1990) algorithm with Gauss-Hermite quadrature for bivariate normal
+    - id: BD-062
+      type: B
+      summary: Use central finite difference for numerical delta calculation
+    - id: BD-063
+      type: B
+      summary: Use central finite difference for numerical gamma calculation
+    - id: BD-064
+      type: B/BA
+      summary: Use symmetric finite difference for numerical vega calculation
+    - id: BD-065
+      type: B/BA
+      summary: Use 1/365 years (one calendar day) time step for theta approximation
+    - id: BD-076
+      type: B/DK
+      summary: Handle special cases at expiry (t=0) with analytical deltas
+    - id: BD-079
+      type: B/RC
+      summary: Use Gauss-Hermite quadrature with adaptive node count based on correlation
+    - id: BD-081
+      type: B
+      summary: Return infinity for gamma at expiry when S=K (digital option behavior)
+    - id: BD-059
+      type: B
+      summary: Use Brent's method root-finding for implied volatility in reference Python
+    - id: BD-073
+      type: B/BA
+      summary: Calculate d1 and d2 using log-moneyness with volatility term structure
+    - id: BD-075
+      type: B
+      summary: Use scipy.stats.norm.cdf for reference Python implementations
+    - id: BD-080
+      type: B/BA
+      summary: Set implied volatility search bounds to [1e-12, 100] for brentq
+    - id: BD-071
+      type: B/DK
+      summary: Use analytical delta formula with discounted N(d1) for Black model
+    - id: BD-082
+      type: B
+      summary: 'Use BSM d1 formula with cost of carry: (ln(S/K) + (r-q+σ²/2)*t) / (σ√t)'
+    - id: BD-072
+      type: B
+      summary: Use analytical delta formula with exp(-q*t) for BSM model
+    - id: BD-011
+      type: BA
+      summary: ref_python mirrors production API exactly
+    - id: BD-032
+      type: B
+      summary: Provide ref_python module as pure-Python reference without LetsBeRational
+    - id: BD-033
+      type: B/BA
+      summary: Use scipy brentq for ref_python implied volatility with a=1e-12, b=100
+    - id: BD-GAP-006
+      type: DK
+      summary: 'Missing: Timezone explicit annotation'
+    - id: BD-GAP-007
+      type: DK
+      summary: 'Missing: Random seed full coverage'
+    - id: BD-GAP-008
+      type: B
+      summary: 'Missing: Currency/unit explicit annotation'
+    - id: BD-GAP-009
+      type: RC
+      summary: 'Missing: Price/quantity precision (tick/lot)'
+    - id: BD-GAP-010
+      type: B
+      summary: 'Missing: 模型校准残差与收敛诊断'
+    - id: BD-GAP-011
+      type: DK
+      summary: 'Missing: Timezone explicit annotation'
+    - id: BD-038
+      type: B/BA
+      summary: 'For Black rho, use simplified formula: -t * black(flag, F, K, t, r, sigma) * .01'
+    - id: BD-GAP-004
+      type: BA/DK
+      summary: Time-to-expiry parameter 't' used directly (not as T-t time-from-now) in Black-Scholes calculations
+    - id: BD-037
+      type: B/BA
+      summary: Set maxiter=1000 for brentq implied volatility solver
+    - id: BD-036
+      type: B/BA
+      summary: Use xtol=1e-15, rtol=1e-15 for brentq implied volatility solver
+    - id: BD-034
+      type: B/BA
+      summary: Set numerical vs analytical comparison epsilon = 0.01 for most greeks
+    - id: BD-035
+      type: B/BA
+      summary: Set numerical vs analytical comparison epsilon = 0.0001 for rho
+    - id: BD-049
+      type: B
+      summary: Test against Hull textbook examples (Examples 17.1-17.7) for validation
+    - id: BD-050
+      type: B
+      summary: Test against Haug's Complete Guide to Option Pricing Formulas
+resources:
+  packages:
+  - name: py_lets_be_rational
+    version_pin: latest
+  - name: numpy
+    version_pin: latest
+  - name: scipy
+    version_pin: latest
+  - name: pandas
+    version_pin: latest
+  - name: simplejson
+    version_pin: latest
+  - name: numba
+    version_pin: latest
+  - name: pytest
+    version_pin: latest
+  - name: sphinx
+    version_pin: latest
+  - name: sphinx_rtd_theme
+    version_pin: latest
+  - name: recommonmark
+    version_pin: latest
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install py_lets_be_rational
+    - python3 -m pip install numpy
+    - python3 -m pip install scipy
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: finance-C-005
+    when: When using ref_python for production calculations
+    action: use ref_python implementations in production systems
+    severity: fatal
+    kind: resource_boundary
+    modality: must_not
+    consequence: ref_python is 10-100x slower than production (uses pure Python scipy instead of optimized lets_be_rational
+      C implementation), causing severe performance degradation
+    stage_ids:
+    - reference_implementations
+  - id: finance-C-012
+    when: When considering ref_python for mission-critical trading
+    action: deploy ref_python in any production trading system
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Pure Python implementation lacks the speed and reliability guarantees of the optimized lets_be_rational C
+      implementation, risking financial losses
+    stage_ids:
+    - reference_implementations
+  - id: finance-C-015
+    when: When implementing option pricing with BSM model
+    action: adjust forward price for dividend yield using F = S * exp((r-q)*t)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without dividend yield adjustment, BSM forward price will be incorrect, causing systematic mispricing for
+      dividend-paying stocks. The option price will be systematically higher or lower than the true theoretical value.
+    stage_ids:
+    - pricing
+  - id: finance-C-016
+    when: When calling py_vollib pricing functions with flag parameter
+    action: pass any flag value other than 'c' or 'p'
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Passing invalid flag values causes KeyError exception since binary_flag dict only contains keys 'c' and 'p'.
+      The library has no input validation and will crash on invalid flags.
+    stage_ids:
+    - pricing
+  - id: finance-C-017
+    when: When calculating option prices with time-to-expiration
+    action: verify time parameter t is positive and expressed in years as continuous time fraction
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Negative or zero time causes sqrt(t) to produce NaN in the d1/d2 calculations, or division by zero in the
+      denominator, resulting in invalid option prices that break downstream Greeks calculations.
+    stage_ids:
+    - pricing
+  - id: finance-C-021
+    when: When converting flag parameter for underlying pricing library
+    action: use binary_flag dict to convert 'c'/'p' to +1/-1 before passing to py_lets_be_rational
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Passing string flags directly to py_lets_be_rational causes type errors since it expects integer flag values
+      (+1 for call, -1 for put).
+    stage_ids:
+    - pricing
+  - id: finance-C-022
+    when: When implementing Black model pricing
+    action: apply time value discounting with deflater = exp(-r*t) to undiscounted price
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Missing the discount factor results in forward option prices that exceed their fair value by the risk-free
+      compounding amount, violating time value of money principles.
+    stage_ids:
+    - pricing
+  - id: finance-C-023
+    when: When using py_vollib.black for options on spot assets
+    action: pass spot price S directly to Black model without converting to forward price
+    severity: fatal
+    kind: resource_boundary
+    modality: must_not
+    consequence: Black model expects futures price F, not spot price S. Passing spot directly causes incorrect pricing because
+      Black formula assumes the underlying follows geometric Brownian motion with zero cost-of-carry, not spot dynamics.
+    stage_ids:
+    - pricing
+  - id: finance-C-067
+    when: When computing implied volatility from option prices
+    action: Return a positive IV value (volatility is mathematically defined as positive)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: A negative implied volatility would violate the mathematical definition of volatility as the standard deviation
+      of log returns, producing incorrect pricing and risk calculations.
+    stage_ids:
+    - implied_volatility
+  - id: finance-C-068
+    when: When input option price exceeds theoretical maximum
+    action: Raise PriceIsAboveMaximum exception
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: An option price above the theoretical maximum violates put-call parity bounds and would produce invalid IV
+      results that could lead to incorrect trading decisions.
+    stage_ids:
+    - implied_volatility
+  - id: finance-C-069
+    when: When input option price is below intrinsic value
+    action: Raise PriceIsBelowIntrinsic exception
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: An option price below intrinsic value (max(S-K,0) for calls) cannot be valid since no arbitrage would allow
+      purchasing the option for less than its guaranteed payoff.
+    stage_ids:
+    - implied_volatility
+  - id: finance-C-071
+    when: When calculating BSM implied volatility
+    action: Compute forward price F = S * exp((r-q)*t) before calling lets_be_rational
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Omitting forward price calculation or using spot price instead of forward would cause IV mis-calculation
+      for dividend-paying assets, producing systematically biased volatility estimates.
+    stage_ids:
+    - implied_volatility
+  - id: finance-C-072
+    when: When calling the lets_be_rational IV solver
+    action: Undiscount the option price before passing to lets_be_rational using deflater = exp(-r*t)
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Passing a discounted price to lets_be_rational (which expects undiscounted values) would produce incorrect
+      IV results that diverge significantly from theoretical values.
+    stage_ids:
+    - implied_volatility
+  - id: finance-C-073
+    when: When lets_be_rational returns sentinel values
+    action: Translate FLOAT_MAX to PriceIsAboveMaximum and MINUS_FLOAT_MAX to PriceIsBelowIntrinsic
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Returning FLOAT_MAX or MINUS_FLOAT_MAX directly to callers would expose implementation details and violate
+      the API contract, causing downstream numeric overflow errors.
+    stage_ids:
+    - implied_volatility
+  - id: finance-C-078
+    when: When implementing IV calculation with time to expiration
+    action: Express time t in years (fraction of 365-day year) for correct annualization
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using time in days or months without proper conversion would produce IV values that are systematically scaled,
+      causing all derived Greeks and hedging ratios to be incorrect.
+    stage_ids:
+    - implied_volatility
+  - id: finance-C-079
+    when: When implementing the Black-Scholes pricing function that receives d1/d2 values from reference_implementations
+    action: Verify the d1 formula uses (log(S/K) + (r + sigma^2/2)*t) / (sigma*sqrt(t)) and d2 uses d1 - sigma*sqrt(t) with
+      parameters (S, K, t, r, sigma)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect d1/d2 values will corrupt analytical greeks calculations (delta, theta, gamma, vega, rho), producing
+      wrong option risk metrics that could lead to significant financial losses in trading decisions
+  - id: finance-C-080
+    when: When computing d1(S,K,t,r,sigma) for option pricing or Greeks calculation
+    action: Allow t (time to expiration) to be zero, which causes division by zero in sigma*sqrt(t)
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Division by zero when computing d1 or d2 at t=0 will raise ZeroDivisionError, crashing all dependent option
+      pricing and Greeks calculations
+  - id: finance-C-081
+    when: When passing pricing_function from pricing to numerical greeks
+    action: 'Verify the pricing_function callable accepts exactly seven parameters: (flag, S, K, t, r, sigma, b) in that order'
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Mismatched function signature will cause TypeError at runtime when numerical Greeks (delta, theta, vega,
+      rho, gamma) invoke the pricing function with wrong argument count
+  - id: finance-C-082
+    when: When computing forward price F = S*exp((r-q)*t) for implied volatility calculation
+    action: Use the helpers.forward_price function which computes S/numpy.exp(-r*t) for Black-Scholes (q=0) or the BSM formula
+      F = S*exp((r-q)*t) for dividend-paying stocks
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect forward price calculation will corrupt implied volatility root-finding, producing wrong IV values
+      that mislead trading decisions on option strikes and expirations
+  - id: finance-C-083
+    when: When computing undiscounted option price for implied volatility root-finding
+    action: Divide the option price by exp(-r*t) deflater to get undiscounted_option_price = price / exp(-r*t)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Without proper deflation, implied volatility calculation will converge to wrong sigma values, causing systematic
+      mispricing of all options in the portfolio
+  - id: finance-C-084
+    when: When analytical Greeks functions import and use d1/d2 from reference_implementations
+    action: Import d1 and d2 specifically from py_vollib.ref_python.black_scholes (not compute locally) to verify formula
+      consistency between pricing and Greeks
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using different d1/d2 implementations in pricing vs Greeks will cause internal model inconsistency, producing
+      Greeks that don't match the priced options
+  - id: finance-C-086
+    when: When passing option flag parameter between stages
+    action: Use lowercase 'c' for call and 'p' for put; the binary_flag helper converts to 1 (call) or -1 (put) for py_lets_be_rational
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Wrong flag value will compute call price for put parameters or vice versa, causing 100% wrong pricing and
+      Greeks for the specified option type
+  - id: finance-C-087
+    when: When numerical Greeks performs bump-and-reprice calculations near t=0
+    action: Pass t=0 directly to pricing_function; instead use t=0.00001 as the floor value for theta/gamma calculations
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Direct t=0 will cause division by zero in d1 formula during bump-and-reprice, producing NaN or infinity values
+      for all numerical Greeks
+  - id: finance-C-092
+    when: When passing underlying price (S or F) between option pricing stages
+    action: Verify S (spot price) is used for Black-Scholes while F (futures price) is used for Black futures model; these
+      are mathematically distinct inputs
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using spot where forward price is required (or vice versa) will produce wrong d1 values and corrupted pricing/Greeks
+      for futures options
+  - id: finance-C-093
+    when: When implementing or calling any option pricing function across Black, Black-Scholes, and Black-Scholes-Merton models
+    action: Pass flag parameter as 'c' (call) or 'p' (put), which will be mapped to +1/-1 via the binary_flag dictionary from
+      py_vollib.helpers
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Pricing and implied volatility calculations will be inverted — call prices computed as put prices and vice
+      versa, causing fundamentally incorrect option valuations
+  - id: finance-C-094
+    when: When calculating option theta across any model (Black, Black-Scholes, Black-Scholes-Merton)
+    action: Scale the theta result by dividing by 365 to convert from annualized to per-day convention
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Theta will report annual change instead of daily change — 365x larger than expected — causing incorrect time
+      decay calculations and risk management errors
+  - id: finance-C-095
+    when: When calculating option vega or rho across any model (Black, Black-Scholes, Black-Scholes-Merton)
+    action: Scale the vega/rho result by multiplying by 0.01 to report change per 1% move rather than per 100% move
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Vega and rho will report change per 100% move instead of per 1% move — 100x larger than industry-standard
+      convention — causing severe risk miscalculation
+  - id: finance-C-097
+    when: When using cost-of-carry parameter b to select between option pricing models
+    action: Set b=0 for Black futures option model, b=r for Black-Scholes stock model, b=r-q for Black-Scholes-Merton with
+      continuous dividend yield q
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using incorrect b value will invoke wrong pricing model — the b default values encode the model selection,
+      and changing them collapses three distinct models into one
+  - id: finance-C-099
+    when: When calculating forward prices across different option pricing models
+    action: Use S*exp(r*t) for Black-Scholes forward and S*exp((r-q)*t) for Black-Scholes-Merton forward, where q is the continuous
+      dividend yield
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Forward price mismatch will cause incorrect option pricing — the dividend adjustment in BSM forward formula
+      is essential for accuracy with dividend-paying stocks
+  - id: finance-C-100
+    when: When using py_vollib for American options pricing
+    action: Claim that py_vollib supports American options pricing — it implements only European option pricing models (Black,
+      Black-Scholes, Black-Scholes-Merton)
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users will build American options trading systems expecting early exercise premium to be captured, but py_vollib
+      will return European-style prices that exclude this critical component, causing systematic overvaluation of ITM puts
+      and undervaluation of deep ITM calls
+  - id: finance-C-101
+    when: When using py_vollib for exotic options pricing
+    action: Claim that py_vollib supports exotic options pricing — it provides only vanilla European option pricing
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users will incorrectly price barrier options, Asian options, binary options, or other exotics using European
+      formulas, producing meaningless results for non-vanilla payoffs
+  - id: finance-C-102
+    when: When using py_vollib for models requiring Monte Carlo simulation
+    action: Claim that py_vollib supports Monte Carlo simulation — it provides only analytical closed-form solutions
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users will attempt to price path-dependent or high-dimensional options expecting simulation capabilities,
+      but py_vollib contains no Monte Carlo engine, producing no results or incorrect analytical approximations
+  - id: finance-C-104
+    when: When using py_vollib for options with early exercise features
+    action: Claim that py_vollib supports early exercise features — it implements only European options without exercise timing
+      flexibility
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users will price American options, Bermudan options, or callable structures expecting early exercise premium,
+      but py_vollib returns European prices that ignore this value component, causing systematic mispricing
+  - id: finance-C-107
+    when: When using numerical Greeks calculation with the pricing_function parameter
+    action: Verify pricing_function signature accepts (flag, S, K, t, r, sigma, b) in that exact order — numerical Greeks
+      pass these arguments positionally
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Numerical Greeks will silently compute incorrect values using misaligned arguments, causing hedging ratios
+      and risk measures to be based on wrong sensitivities
+  - id: finance-C-112
+    when: When passing time-to-expiration parameter t to any py_vollib pricing function
+    action: Express time t in years (not days or months) — t=0.25 represents 3 months, t=1.0 represents 1 year
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Option prices and Greeks will be computed with incorrect time scaling — passing t=30 expecting 30 days will
+      actually compute for t=30 years, producing wildly incorrect and useless results
+  - id: finance-C-122
+    when: When configuring the cost-of-carry parameter 'b' for option pricing models
+    action: Set b=0 for Black model (futures), b=r for Black-Scholes (no dividends), b=r-q for BSM (continuous dividend yield)
+      — incorrect b value produces wrong model output
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using b=r when b=r-q is required causes Black-Scholes pricing instead of BSM, systematically mispricing dividend-paying
+      equity options; hedge ratios and expected returns will be incorrect
+    derived_from_bd_id: BD-087
+  - id: finance-C-152
+    when: When calculating delta for Black model (futures/forward options)
+    action: 'Apply Black delta formula with exp(-r*t) discount factor: call delta = N(d1)*exp(-r*t), put delta = -N(-d1)*exp(-r*t)
+      — do not use BS delta formula without discount factor for Black model options'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using BS delta without the exp(-r*t) factor overstates Black model futures option delta, causing delta hedging
+      in Black space to mismatch spot exposure and resulting in incorrect hedge ratios that accumulate losses over time
+    derived_from_bd_id: BD-055
+  - id: finance-C-153
+    when: When calculating implied volatility using the Black model
+    action: 'Undiscount the option price before passing to the IV solver: undiscounted = price * exp(r*t) — the Black model
+      operates in forward-space and requires undiscounted forward option prices as input'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Passing discounted prices to the Black IV solver produces incorrect implied volatility because the Black
+      pricing function assumes forward prices, causing systematic mispricing that affects all downstream risk calculations
+    derived_from_bd_id: BD-047
+  - id: finance-C-158
+    when: When pricing options on futures contracts
+    action: Use Black (1976) futures option model with discounted price calculation — do not substitute Black-Scholes (1973)
+      or other equity models
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Black-Scholes assumes cost-of-carry b≠0 for equities; applying it to futures options with b=0 systematically
+      misprices by ignoring the futures-specific discount factor, causing 1-5% pricing errors
+    derived_from_bd_id: BD-057
+  - id: finance-C-164
+    when: When pricing equity options without dividends using spot price
+    action: Use Black-Scholes (1973) model — do not confuse with Black-76 (futures) or BSM (dividend-paying stocks)
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using Black-76 for equity options ignores cost-of-carry; using BSM for non-dividend stocks adds unnecessary
+      dividend yield parameter causing 0.1-2% pricing errors
+    derived_from_bd_id: BD-068
+  - id: finance-C-170
+    when: When configuring cost_of_carry parameter for Black model (futures options)
+    action: Set b=0 for Black model because futures prices already incorporate cost of carry; verify b=r-q is NOT used as
+      this would double-count cost of carry
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Setting b=r-q in Black model incorrectly accounts for cost of carry that is already embedded in futures prices,
+      leading to systematic pricing errors for futures options
+    derived_from_bd_id: BD-070
+  - id: finance-C-174
+    when: When implementing option type flag conversion or using py_lets_be_rational integration
+    action: Use binary_flag mapping {'c':1, 'p':-1} consistently across each model variants; verify flag conversion preserves
+      this exact encoding when calling external libraries
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Any deviation in binary_flag mapping (e.g., {c:1, p:1} or {c:0, p:1}) causes incorrect option type detection,
+      producing wrong prices or IV values that lead to significant trading losses
+    derived_from_bd_id: BD-089
+  - id: finance-C-178
+    when: When implementing any BSM Greeks (delta, gamma, vega, theta) calculations
+    action: Include exp(-q*t) dividend adjustment factor in every Greek calculation; the dividend yield q must be consistent
+      across each Greeks — if dividend yield q is wrong, each Greek is systematically wrong by this factor
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: The dividend factor cascade means errors in dividend yield q multiply across all Greeks simultaneously; for
+      high-dividend stocks (5% yield), each Greek sensitivity can be off by 0-5%, causing portfolio delta hedging to systematically
+      over or under hedge by this cumulative factor
+    derived_from_bd_id: BD-103
+  - id: finance-C-182
+    when: When implementing Black futures option pricing model
+    action: Set cost-of-carry parameter b=0 for Black model — Black applies to futures/forward options where underlying has
+      zero cost-of-carry
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using Black model with b≠0 violates the fundamental futures pricing assumption and produces incorrect option
+      prices; the forward/futures pricing relationship assumes b=0, so prices diverge from market values
+    derived_from_bd_id: BD-027
+  - id: finance-C-183
+    when: When implementing Black-Scholes-Merton option pricing model for dividend-paying stocks
+    action: Set cost-of-carry parameter b=r-q where q represents continuous dividend yield; verify q>0 when using BSM
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using Black-Scholes (b=r) instead of BSM (b=r-q) for dividend-paying stocks underprices puts and overprices
+      calls; the dividend yield reduces expected stock growth and must be reflected in the cost-of-carry
+    derived_from_bd_id: BD-028
+  regular:
+  - id: finance-C-001
+    when: When implementing ref_python functions
+    action: use scipy.stats.norm.cdf for cumulative normal distribution calculations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using alternative CDF implementations could cause reference implementation results to diverge from production
+      values, breaking the verification purpose
+    stage_ids:
+    - reference_implementations
+  - id: finance-C-002
+    when: When implementing ref_python implied volatility
+    action: use scipy.optimize.brentq with bounds a=1e-12, b=100, xtol=1e-15, rtol=1e-15, maxiter=1000
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Different root-finding parameters may cause implied volatility to fail convergence or produce different results
+      than expected, compromising numerical verification
+    stage_ids:
+    - reference_implementations
+  - id: finance-C-003
+    when: When implementing ref_python black pricing functions
+    action: validate flag parameter as 'c' or 'p' and raise exception for invalid values
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Invalid flag values would silently compute incorrect results, causing verification failures to go undetected
+    stage_ids:
+    - reference_implementations
+  - id: finance-C-004
+    when: When implementing ref_python d1 calculation
+    action: guard against zero denominator (sigma * sqrt(t) = 0) to prevent division by zero
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Zero denominator causes division by zero error, crashing the reference implementation and preventing any
+      verification
+    stage_ids:
+    - reference_implementations
+  - id: finance-C-006
+    when: When depending on ref_python for real-time calculations
+    action: claim ref_python provides real-time capable option pricing
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Pure Python scipy implementation is significantly slower than production C implementation, making real-time
+      pricing claims false
+    stage_ids:
+    - reference_implementations
+  - id: finance-C-007
+    when: When comparing ref_python outputs with production
+    action: allow floating-point tolerance for numerical comparison due to different CDF implementations
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: scipy.stats.norm.cdf and lets_be_rational.norm_cdf may produce slightly different floating-point results,
+      causing false verification failures without tolerance
+    stage_ids:
+    - reference_implementations
+  - id: finance-C-008
+    when: When implementing ref_python functions
+    action: maintain identical function signatures to corresponding production functions
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Mismatched signatures prevent drop-in replacement testing and automated verification, breaking the core purpose
+      of ref_python
+    stage_ids:
+    - reference_implementations
+  - id: finance-C-009
+    when: When implementing ref_python implied volatility
+    action: use brentq root-finding algorithm (not newton) for numerical verification purposes
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Different algorithms expose implementation differences for verification; using the same algorithm would defeat
+      the purpose of having a reference implementation
+    stage_ids:
+    - reference_implementations
+  - id: finance-C-010
+    when: When verifying ref_python implied volatility convergence
+    action: verify scipy.optimize.brentq converges for valid inputs within maxiter=1000 iterations
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: brentq may fail to converge for edge cases (e.g., deep ITM options, extreme volatilities), causing verification
+      to fail silently
+    stage_ids:
+    - reference_implementations
+  - id: finance-C-011
+    when: When testing ref_python against production
+    action: expect bit-exact matches between ref_python and production outputs
+    severity: medium
+    kind: operational_lesson
+    modality: must_not
+    consequence: Different CDF implementations (scipy vs lets_be_rational) and different IV algorithms (brentq vs Newton-Raphson
+      with rational bounds) produce small floating-point differences
+    stage_ids:
+    - reference_implementations
+  - id: finance-C-013
+    when: When using brentq for implied volatility in ref_python
+    action: specify volatility search bounds of a=1e-12 (lower) and b=100 (upper) to bracket the solution
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without proper bounds, brentq will raise ValueError for out-of-bracket calls, preventing any implied volatility
+      calculation
+    stage_ids:
+    - reference_implementations
+  - id: finance-C-014
+    when: When implementing ref_python greeks calculations
+    action: apply convention scaling (theta/365, vega*0.01, rho*0.01) as documented in code comments
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Greeks without proper convention scaling will differ from industry-standard values, causing verification
+      failures against textbook examples
+    stage_ids:
+    - reference_implementations
+  - id: finance-C-018
+    when: When pricing options on dividend-paying stocks
+    action: use Black-Scholes-Merton model with q parameter instead of Black-Scholes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using BS without dividend adjustment underprices calls and overprices puts on dividend-paying stocks, leading
+      to systematic losses when writing options or missing profitable opportunities when buying.
+    stage_ids:
+    - pricing
+  - id: finance-C-019
+    when: When verifying BSM pricing correctness
+    action: verify BSM with q=0 produces identical results to BS
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: If BSM(q=0) differs from BS, there is a bug in the dividend yield handling or forward price calculation that
+      will cause mispricing for all BSM calculations.
+    stage_ids:
+    - pricing
+  - id: finance-C-020
+    when: When calling black_scholes or black_scholes_merton
+    action: delegate underlying computation to py_lets_be_rational.black via undiscounted_black
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Direct implementation without delegation to py_lets_be_rational loses the performance and precision benefits
+      of Jaeckel's optimized LetsBeRational algorithm, producing slower and potentially less accurate results.
+    stage_ids:
+    - pricing
+  - id: finance-C-024
+    when: When using py_vollib.ref_python for production pricing
+    action: use ref_python implementation for industrial or production option pricing
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: ref_python is orders of magnitude slower than the optimized py_lets_be_rational implementation and lacks
+      the precision guarantees, making it unsuitable for production trading systems.
+    stage_ids:
+    - pricing
+  - id: finance-C-025
+    when: When relying on py_vollib for option pricing
+    action: claim theoretical prices are actual market prices or guaranteed execution values
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting theoretical Black-Scholes prices as real market prices misleads stakeholders. The model assumes
+      constant volatility, continuous trading, and no transaction costs that don't exist in real markets.
+    stage_ids:
+    - pricing
+  - id: finance-C-026
+    when: When comparing backtested option strategy returns to live trading
+    action: claim backtest results will replicate in live trading without adjustment for slippage and fees
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Backtested option strategy returns that ignore bid-ask spreads, slippage, and execution delays will dramatically
+      overestimate live trading performance, leading to strategies that appear profitable in backtests but lose money in live
+      trading.
+    stage_ids:
+    - pricing
+  - id: finance-C-027
+    when: When pricing options near expiration with very small t
+    action: apply numerical stability safeguards for sqrt(t) near zero
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Very small t values cause numerical instability in sqrt(t) denominator, producing extreme or NaN Greeks values
+      that cause downstream calculations to fail or produce meaningless results.
+    stage_ids:
+    - pricing
+  - id: finance-C-028
+    when: When verifying Black model correctness
+    action: validate ATM options match known benchmark values within tolerance
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: ATM option pricing errors indicate fundamental problems with volatility surface input, time calculation,
+      or discount factor application that will affect all options regardless of moneyness.
+    stage_ids:
+    - pricing
+  - id: finance-C-029
+    when: When validating put-call parity for BSM
+    action: verify C - P = S*exp(-q*t) - K*exp(-r*t) holds within numerical tolerance
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Put-call parity violation indicates bugs in discount factor calculation, dividend handling, or forward price
+      conversion that will cause arbitrage opportunities in the pricing model.
+    stage_ids:
+    - pricing
+  - id: finance-C-030
+    when: When verifying option price monotonicity
+    action: verify ITM calls have higher prices than OTM calls with same expiry and volatility
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Violation of call price monotonicity with respect to spot price indicates bugs in intrinsic value calculation
+      or forward price adjustment that create arbitrage opportunities.
+    stage_ids:
+    - pricing
+  - id: finance-C-031
+    when: When executing production trading strategies based on py_vollib
+    action: account for transaction costs, bid-ask spreads, and slippage not modeled by Black-Scholes
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Black-Scholes assumes frictionless markets with zero transaction costs. Ignoring bid-ask spreads and fees
+      in live trading can turn profitable theoretical strategies into losing ones, especially for high-frequency option trading.
+    stage_ids:
+    - pricing
+  - id: finance-C-032
+    when: When implementing Black model with deep ITM options
+    action: use Black model without handling numerical underflow for near-zero option prices
+    severity: medium
+    kind: operational_lesson
+    modality: must_not
+    consequence: Deep ITM options approaching intrinsic value may underflow to zero in floating point calculations, causing
+      implied volatility calculations to fail or produce infinite values.
+    stage_ids:
+    - pricing
+  - id: finance-C-053
+    when: When computing numerical gamma for an option at expiry
+    action: handle the singularity by returning float('inf') when S equals K and t equals zero
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without singularity handling, numerical gamma calculation will cause division by zero or NaN when time to
+      expiry is zero and the option is at-the-money
+    stage_ids:
+    - greeks_numerical
+  - id: finance-C-054
+    when: When computing numerical delta
+    action: 'enforce delta bounds: call options must yield values in [0,1] and put options must yield values in [-1,0]'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Delta values outside these bounds indicate incorrect finite difference calculation or pricing function errors,
+      leading to incorrect hedging ratios in live trading
+    stage_ids:
+    - greeks_numerical
+  - id: finance-C-055
+    when: When computing numerical gamma for long option positions
+    action: produce positive gamma values for both calls and puts regardless of moneyness
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Negative gamma would indicate concave option pricing which violates the convexity property of option values,
+      leading to incorrect risk assessments and potential hedging losses
+    stage_ids:
+    - greeks_numerical
+  - id: finance-C-056
+    when: When computing numerical theta
+    action: return negative values for long option positions (both calls and puts) as time passes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Positive theta for long options would indicate time value is increasing, which violates the fundamental principle
+      that options lose time value as expiry approaches
+    stage_ids:
+    - greeks_numerical
+  - id: finance-C-057
+    when: When implementing the finite difference step size for delta and gamma
+    action: use dS = 0.01 (1% bump) as the industry-standard symmetric finite difference step size
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Using non-standard step sizes may cause numerical instability, increase approximation error, or produce unreliable
+      Greeks that deviate significantly from analytical values
+    stage_ids:
+    - greeks_numerical
+  - id: finance-C-058
+    when: When adjusting the finite difference step size
+    action: verify step_size balances approximation accuracy against pricing_function smoothness
+    severity: medium
+    kind: resource_boundary
+    modality: should
+    consequence: Step sizes too small cause numerical noise from floating-point precision limits; step sizes too large increase
+      truncation error, leading to inaccurate Greeks
+    stage_ids:
+    - greeks_numerical
+  - id: finance-C-059
+    when: When computing theta for options near expiry
+    action: cap theta calculation at 1/365 to prevent numerical singularity
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without capping, theta approaches infinity as time to expiry approaches zero, causing overflow errors and
+      meaningless results in risk calculations
+    stage_ids:
+    - greeks_numerical
+  - id: finance-C-060
+    when: When computing delta at expiry
+    action: 'apply special boundary conditions: return 0.5 at-the-money, 1.0 for deep ITM calls, 0.0 for deep OTM calls, and
+      symmetric negatives for puts'
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Standard central difference formula is undefined at t=0, causing incorrect delta values of 0 or NaN for at-the-money
+      options at expiry
+    stage_ids:
+    - greeks_numerical
+  - id: finance-C-061
+    when: When comparing numerical Greeks against analytical Greeks
+    action: tolerate finite difference approximation error below 0.0001 (epsilon)
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Strict equality would cause valid numerical approximations to fail, forcing unnecessary use of analytical
+      formulas where numerical Greeks are needed for exotic payoffs
+    stage_ids:
+    - greeks_numerical
+  - id: finance-C-062
+    when: When computing BSM numerical greeks
+    action: derive cost-of-carry b from r and q via b = r - q (dividend yield adjustment)
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect cost-of-carry parameterization causes numerical Greeks to use wrong pricing model, producing Greeks
+      that do not match the BSM framework
+    stage_ids:
+    - greeks_numerical
+  - id: finance-C-063
+    when: When using numerical Greeks with any pricing model
+    action: pass pricing_function as a parameter to enable strategy pattern for generic computation
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Hardcoding a specific pricing model prevents numerical Greeks from working with exotic options or alternative
+      pricing frameworks
+    stage_ids:
+    - greeks_numerical
+  - id: finance-C-064
+    when: When presenting numerical Greeks results
+    action: claim numerical Greeks are more accurate than analytical Greeks for standard BSM options
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Numerical Greeks are approximations with inherent finite difference error; presenting them as equivalent
+      to analytical Greeks misleads users about precision
+    stage_ids:
+    - greeks_numerical
+  - id: finance-C-065
+    when: When using numerical Greeks as primary calculation method
+    action: claim numerical Greeks equal analytical Greeks without specifying the approximation error tolerance
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without explicit error tolerance disclosure, users may assume perfect accuracy and make incorrect hedging
+      or risk management decisions
+    stage_ids:
+    - greeks_numerical
+  - id: finance-C-066
+    when: When numerical Greeks produce infinity values
+    action: allow float('inf') gamma values to propagate to downstream risk calculations without warning
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Infinite gamma at expiry causes risk systems to fail or produce meaningless hedging ratios that could lead
+      to significant trading losses
+    stage_ids:
+    - greeks_numerical
+  - id: finance-C-070
+    when: When implementing IV calculation that must be mathematically consistent
+    action: 'Verify IV calculation is reversible: price(IV(price)) approximately equals original price'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Non-reversible IV calculations indicate fundamental mathematical inconsistencies in the pricing model, causing
+      systematic pricing errors in trading strategies.
+    stage_ids:
+    - implied_volatility
+  - id: finance-C-075
+    when: When validating IV solver output bounds
+    action: Verify returned IV is within reasonable bounds (typically 0 < IV < 10 for most markets)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: An IV exceeding reasonable bounds (e.g., >10 or negative) would indicate input data errors or market anomalies
+      that could lead to incorrect pricing and substantial trading losses.
+    stage_ids:
+    - implied_volatility
+  - id: finance-C-076
+    when: When computing implied volatility for production trading systems
+    action: Claim IV results are guaranteed to converge or are suitable for real-time trading without validation
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting IV as guaranteed accurate without edge case handling would mislead traders into making decisions
+      based on potentially incorrect volatility estimates.
+    stage_ids:
+    - implied_volatility
+  - id: finance-C-077
+    when: When passing option prices to the IV solver
+    action: Use 'c' or 'p' string values for flag parameter, mapped to binary values internally
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Passing invalid flag values or incorrect binary values directly would cause incorrect option type handling
+      and produce wrong IV calculations.
+    stage_ids:
+    - implied_volatility
+  - id: finance-C-085
+    when: When Black-Scholes-Merton numerical greeks compute b parameter (cost of carry)
+    action: For Black-Scholes (no dividends), set b = r; for BSM (continuous dividends), compute q = r - b and pass q to the
+      pricing function
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Wrong cost-of-carry parameter will misprice options and compute incorrect Greeks, leading to hedge ratios
+      that don't offset risk properly
+  - id: finance-C-088
+    when: When using reference_implementations for production option pricing
+    action: Use py_vollib.black_scholes or py_vollib.black (optimized with py_lets_be_rational) instead of py_vollib.ref_python
+      implementations in production systems
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: ref_python uses pure NumPy/SciPy which is 100-1000x slower than py_lets_be_rational; production systems will
+      have unacceptable latency for real-time pricing
+  - id: finance-C-089
+    when: When computing analytical theta with time to expiration t
+    action: Divide the analytical theta formula by 365 to convert from annual to daily change (1 day = 1/365 years)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without /365 division, theta will be 365x too large, causing systematic over-hedging of time decay and incorrect
+      P&L attribution
+  - id: finance-C-090
+    when: When computing analytical vega with implied volatility sigma
+    action: Multiply the analytical vega formula by 0.01 to express sensitivity per 1% change in volatility (not per 100%
+      change)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without *0.01 scaling, vega will be 100x too large, causing over-sensitivity estimates and excessive volatility
+      hedging
+  - id: finance-C-091
+    when: When computing analytical rho with interest rate r
+    action: Multiply the analytical rho formula by 0.01 to express sensitivity per 1% change in interest rate
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without *0.01 scaling, rho will be 100x too large, causing incorrect interest rate sensitivity estimates
+  - id: finance-C-096
+    when: When calculating implied volatility and the input price violates intrinsic bounds
+    action: Raise PriceIsAboveMaximum when price exceeds maximum theoretical value, or PriceIsBelowIntrinsic when price is
+      below intrinsic value
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Invalid implied volatility results will be silently returned without error indication, leading to downstream
+      calculations using mathematically impossible volatility values
+  - id: finance-C-098
+    when: When comparing delta values between Black and Black-Scholes models
+    action: Directly compare Black delta with Black-Scholes delta as equivalent quantities — Black delta includes discount
+      factor exp(-r*t) while BS delta does not
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Delta hedging strategies will use incorrect hedge ratios — Black delta and BS delta are mathematically different
+      definitions that cannot be compared directly
+  - id: finance-C-103
+    when: When using py_vollib for options with discrete dividend handling
+    action: Claim that py_vollib supports discrete dividend handling — q parameter represents continuous dividend yield, not
+      discrete cash dividends
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users will pass discrete dividend amounts expecting proper stock price adjustment, but py_vollib's BSM model
+      uses continuous yield approximation that fails to capture discrete dividend timing effects, causing material pricing
+      errors near ex-dates
+  - id: finance-C-105
+    when: When presenting or reporting option pricing or Greeks calculated by py_vollib
+    action: Claim that theoretical option prices and Greeks equal actual market values — py_vollib provides idealized model
+      outputs that assume constant volatility, continuous trading, and frictionless markets
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users will make trading and risk management decisions based on idealized model outputs, ignoring market microstructure,
+      bid-ask spreads, transaction costs, and volatility smile effects that cause real-world option prices to deviate significantly
+      from theoretical values
+  - id: finance-C-106
+    when: When calculating implied volatility from option prices
+    action: 'Verify input option price satisfies intrinsic bounds — for calls: max(0, F-K)*exp(-r*t) <= price <= F*exp(-r*t),
+      for puts: max(0, K-F)*exp(-r*t) <= price <= K*exp(-r*t)'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Implied volatility calculation will fail or return meaningless values when price violates intrinsic bounds,
+      causing downstream risk calculations to use invalid volatility inputs
+  - id: finance-C-108
+    when: When deploying py_vollib in production trading or risk management systems
+    action: Claim or imply that py_vollib provides production-ready, legally-compliant financial calculations — the library
+      explicitly disclaims each warranties and is provided 'as is' without any guarantee of fitness for any purpose
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users will deploy library in regulated environments expecting legally-compliant calculations, but the MIT
+      license explicitly disclaims all warranties and the library has not been audited for regulatory compliance, exposing
+      users to legal and financial liability
+  - id: finance-C-109
+    when: When using py_vollib.ref_python as the primary pricing engine
+    action: Use py_vollib.ref_python for production or industrial option pricing — the README explicitly states it is 'not
+      recommended for serious use' and is provided 'purely as a reference implementation for sanity checking'
+    severity: medium
+    kind: resource_boundary
+    modality: must_not
+    consequence: Option pricing will be orders of magnitude slower (no Numba optimization, no lets_be_rational C implementation)
+      and potentially less numerically stable than the production py_vollib implementation
+  - id: finance-C-110
+    when: When installing or depending on py_vollib
+    action: Install py_lets_be_rational as a required dependency — py_vollib's core implied volatility calculations depend
+      on Peter Jäckel's lets_be_rational algorithms (either C or Python implementation)
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Implied volatility calculations will fail with import errors if py_lets_be_rational is not installed, breaking
+      any system relying on the library's core functionality
+  - id: finance-C-111
+    when: When expecting py_vollib to match textbook Black-Scholes formulas exactly
+    action: Expect py_vollib theta/vega/rho to match textbook formulas without adjustment — py_vollib scales these Greeks
+      by 365 (theta) and 0.01 (vega/rho) to match industry convention, while textbooks report raw partial derivatives
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: Comparison tests will fail — py_vollib returns per-day theta and per-1%-move vega/rho while textbook formulas
+      return annual theta and per-100%-move vega/rho, causing apparent discrepancies that are actually convention differences
+  - id: finance-C-113
+    when: When using the framework's analytical theta calculation for backtesting
+    action: Change the theta division by 365 convention — the formula divides annual theta by 365 to report daily decay; removing
+      this division or changing the divisor produces annualized theta values incompatible with industry dashboards
+    severity: medium
+    kind: domain_rule
+    modality: must_not
+    consequence: Strategies relying on theta values for daily P&L attribution will receive annualized values (365x larger),
+      causing incorrect position sizing, wrong stop-loss calibration, and systematic overestimation of time decay costs
+    derived_from_bd_id: BD-005
+  - id: finance-C-114
+    when: When implementing Black76 pricing calculations
+    action: Use py_lets_be_rational.black for undiscounted_black computation — this delegates to Jaeckel's highly-optimized
+      C implementation for numerical accuracy and speed
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Reimplementing Black76 in pure Python would be 100-1000x slower and risk numerical instability in edge cases
+      that the validated C extension handles correctly
+    derived_from_bd_id: BD-003
+  - id: finance-C-115
+    when: When implementing BSM delta calculation for equity options with continuous dividend yield
+    action: Include exp(-q*t) factor in delta calculation to capture reduced spot-price sensitivity from dividend yield
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Omitting the dividend yield factor causes delta to overstate the probability of finishing in-the-money, leading
+      to incorrect hedge ratios and potential over-hedging or under-hedging of portfolio positions
+    derived_from_bd_id: BD-004
+  - id: finance-C-116
+    when: When implementing or validating vega and rho calculations
+    action: Multiply raw vega and rho derivatives by 0.01 to convert to per-percent convention (per 1% = 100 bps change in
+      volatility/rate, not per unit change)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using undifferentiated vega/rho (per vol-point) causes Greeks to be 100x larger than expected by market convention;
+      strategies relying on these values will miscalculate position sizes and hedge ratios
+    derived_from_bd_id: BD-006
+  - id: finance-C-117
+    when: When implementing numerical Greeks calculations using finite differences
+    action: Use dS = 0.01 (1% relative bump) as the step size — relative bump scales correctly across each strike prices unlike
+      absolute bump
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using absolute bump (fixed dollar amount) causes incorrect finite difference approximations for strikes far
+      from spot price; deep OTM options may show zero sensitivity due to bump being too small relative to strike
+    derived_from_bd_id: BD-008
+  - id: finance-C-118
+    when: When handling implied volatility calculation boundary conditions
+    action: Raise PriceIsBelowIntrinsic exception when sigma reaches MINUS_FLOAT_MAX — do not return 0 or NaN as this masks
+      invalid state
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Returning 0 or NaN for mathematically impossible prices makes it impossible to distinguish between 'not yet
+      converged' and 'intrinsically invalid'; callers cannot implement proper validation workflows
+    derived_from_bd_id: BD-022
+  - id: finance-C-119
+    when: When implementing implied volatility calculation
+    action: Use the transformed rational guess algorithm for numerical inversion of the pricing function — do not substitute
+      bisection (slow convergence) or Newton-Raphson (unstable near boundaries)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using bisection causes slow convergence especially for near-expiry options; Newton-Raphson exhibits instability
+      at strike/maturity boundaries, leading to missed convergence or wrong IV values in edge cases
+    derived_from_bd_id: BD-020
+  - id: finance-C-120
+    when: When handling numerical Greeks at t=0 (expiry)
+    action: Implement special handling for ATM gamma at t=0 — check for inf results and return a large finite value or raise
+      a distinct exception rather than propagating infinity silently
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: At t=0 with S=K (ATM), gamma mathematically approaches infinity; numerical approximation returns inf which
+      propagates through portfolio risk calculations and causes downstream systems to fail or display meaningless values
+    derived_from_bd_id: BD-096
+  - id: finance-C-121
+    when: When calculating theta for options with time to expiry near 1 day (t <= 1/365)
+    action: Verify theta calculation continuity across the t=1/365 boundary — the interaction of 365 divisor, 1/365 cap, and
+      0.00001 minimum timestep creates discontinuity; use consistent theta values or document the discontinuity
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Same option at t=0.0027 (just below 1/365) vs t=0.00274 (just above) shows significantly different theta
+      due to the discrete minimum timestep branch; backtests will show inconsistent theta exposure near end-of-day
+    derived_from_bd_id: BD-102
+  - id: finance-C-123
+    when: When implementing or refactoring option pricing error handling logic
+    action: Replace FLOAT_MAX/MINUS_FLOAT_MAX sentinel values with NaN — these extreme float values carry semantic meaning
+      (indicating overflow/underflow boundary) that would be lost with NaN
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Replacing sentinels with NaN loses information about which edge case occurred, preventing caller-side distinction
+      between positive overflow, negative overflow, and other invalid inputs; backtest results may silently propagate invalid
+      values
+    derived_from_bd_id: BD-010
+  - id: finance-C-124
+    when: When implementing theta calculation in options pricing
+    action: Divide theta by 365 to convert annual theta to per-calendar-day sensitivity — do not use 252 (trading days) as
+      theta represents calendar-time decay
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using 252 trading days instead of 365 calendar days overestimates daily theta decay by 31%, causing strategies
+      that sell theta to appear more profitable in backtests than in live trading
+    derived_from_bd_id: BD-013
+  - id: finance-C-125
+    when: When implementing rho calculation in options pricing
+    action: Multiply rho by 0.01 to express sensitivity per 1% change in interest rate — do not remove this scaling as rho
+      must align with percent-quoted rates
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Removing the 0.01 scaling factor changes rho from per-percent to per-basis-point interpretation, causing
+      100x miscalculation of interest rate sensitivity; strategies hedging rate risk will be wildly over- or under-hedged
+    derived_from_bd_id: BD-015
+  - id: finance-C-126
+    when: When implementing vega calculation in options pricing
+    action: Multiply vega by 0.01 to express sensitivity per 1 percentage point change in implied volatility — do not remove
+      this scaling as market IV is quoted in percent
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without the 0.01 scaling, vega reports per-decimal-volatility sensitivity instead of per-percent, causing
+      100x miscalculation; volatility hedging strategies will be significantly over- or under-sized
+    derived_from_bd_id: BD-014
+  - id: finance-C-127
+    when: When using numerical delta finite difference approximation
+    action: Use fixed step size dS = 0.01 for finite difference approximation — do not change to relative/percentage-based
+      step sizes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using relative dS (percentage of spot) instead of fixed 0.01 causes different perturbation magnitudes across
+      strikes, introducing inconsistent numerical precision; ATM options near $100 get dS=1 while deep ITM options near $10
+      get dS=0.1
+    derived_from_bd_id: BD-023
+  - id: finance-C-128
+    when: When computing numerical theta for options near expiration (t <= 1/365)
+    action: Use time step dt = 0.00001 (not 1/365 or 0.001) when t < 1/365 to avoid numerical instability near expiration
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using standard dt = 1/365 for near-expiry options causes theta instability with extremely large values and
+      discontinuous behavior at t=1/365 boundary; strategies exploiting same-day expiry theta decay will show erratic backtest
+      results
+    derived_from_bd_id: BD-025
+  - id: finance-C-129
+    when: When implementing or maintaining the greeks_numerical module
+    action: Preserve the minimum time step 0.00001 for numerical theta when t < 1/365 — do not use proportional dt or remove
+      the floor
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Removing the minimum time step floor causes negative time in finite difference calculation, producing invalid
+      theta values; near-expiry options will show discontinuous theta at the t=1/365 boundary
+    derived_from_bd_id: BD-097
+  - id: finance-C-130
+    when: When implementing or refactoring delta calculation
+    action: Use black_delta_with_discount for Black model and bs_delta_without_discount for Black-Scholes — do not assume
+      delta definitions are interchangeable between models
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Black delta includes exp(-r*t) discount factor as it measures sensitivity to forward price; Black-Scholes
+      delta excludes it as it measures sensitivity to spot price; swapping functions causes 10-50% delta error for longer-dated
+      options
+    derived_from_bd_id: BD-094
+  - id: finance-C-131
+    when: When using BSM numerical greeks with cost-of-carry parameter b
+    action: Verify q = r - b relationship holds between cost-of-carry b and dividend yield q — do not use mismatched values
+      where q != r - b
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: BSM numerical greeks compute dividend yield via q_from_b_lambda (q = r - b); if q and b are passed with inconsistent
+      relationship, analytical prices and numerical greeks use different dividend assumptions, producing wrong Greeks for
+      dividend-sensitive strategies
+    derived_from_bd_id: BD-095
+  - id: finance-C-132
+    when: When computing forward prices or passing F parameter across modules
+    action: Do not use Black-Scholes F = S*exp(r*t) formula in BSM context or BSM F = S*exp((r-q)*t) in Black-Scholes context
+      — verify which model interprets 'F'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Black-Scholes F incorporates only risk-free rate (F = S*exp(r*t)) while BSM F includes dividend yield (F
+      = S*exp((r-q)*t)); using wrong forward formula causes IV computation or pricing errors of 5-30% for high-dividend stocks
+    derived_from_bd_id: BD-098
+  - id: finance-C-133
+    when: When implementing option delta calculation at time to expiration
+    action: 'Set delta to {call: 0.5, put: -0.5} when spot equals strike (S=K), and to {call: 1, put: 0} when spot exceeds
+      strike (S>K) — do not use analytical formula through t=0 due to division by sqrt(t)'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using analytical delta formula at t=0 causes division by zero and incorrect exercise boundary; for American
+      options, wrong delta at S>K vs S=K determines immediate exercise decisions, causing mispriced exercise strategies
+    derived_from_bd_id: BD-024
+  - id: finance-C-134
+    when: When calculating BSM gamma for dividend-paying stock options
+    action: Include exp(-q*t) factor in the gamma numerator — gamma = exp(-q*t) * (K * exp(-r*T) * d2_N) / (S^2 * sigma *
+      sqrt(T) * sqrt(2*pi))
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Omitting exp(-q*t) from gamma overstates gamma exposure for dividend-paying stocks; portfolios hedged with
+      unadjusted gamma will have residual dividend-related gamma risk, leading to hedge failures during dividend events
+    derived_from_bd_id: BD-030
+  - id: finance-C-135
+    when: When calculating BSM vega for dividend-paying stock options
+    action: Multiply vega by exp(-q*t) factor — vega = exp(-q*t) * (K * exp(-r*T) * T * N(d1)) / (sqrt(2*pi) * sqrt(T))
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Omitting exp(-q*t) from vega overstates volatility exposure for high-dividend stocks; hedges using unadjusted
+      vega will allocate excessive capital to volatility trades, causing systematic over-hedging losses
+    derived_from_bd_id: BD-031
+  - id: finance-C-136
+    when: When calculating implied volatility using the Jäckel transformed rational approximation
+    action: Use normalised_black with dimensionless inputs (F/K ratio and sigma*sqrt(T)) for the invariant transformation
+      — do not use direct pricing that lacks the time/rate invariance property
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using direct pricing without normalised transformation breaks the Jäckel algorithm's strike-normalized lookup,
+      causing implied volatility calculations to produce inconsistent results across different maturities and interest rates
+    derived_from_bd_id: BD-039
+  - id: finance-C-137
+    when: When calculating BSM delta for dividend-paying stock options
+    action: Multiply delta by exp(-q*t) to adjust for dividend yield — delta_call = exp(-q*t) * N(d1), delta_put = -exp(-q*t)
+      * N(-d1)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using unadjusted BS delta for dividend-paying stocks overstates delta exposure; this causes put-call parity
+      violations and miscalculated hedge ratios, leading to unhedged directional risk in dividend-paying stock options
+    derived_from_bd_id: BD-029
+  - id: finance-C-138
+    when: When using scipy brentq for implied volatility solving in ref_python
+    action: Set brentq bounds to a=1e-12 (near-zero volatility floor) and b=100 (extreme high vol ceiling) — these bounds
+      verify the solver finds valid IV for option prices ranging from 1bp to 10000% implied vol
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Changing brentq bounds to narrower values causes IV solver failures for deep out-of-money or extreme volatility
+      scenarios; strategies relying on these IV values will encounter runtime errors or default to incorrect volatility assumptions
+    derived_from_bd_id: BD-033
+  - id: finance-C-139
+    when: When testing numerical greeks against analytical greeks for delta, gamma, vega, and theta
+    action: Set epsilon tolerance to 0.01 (1% relative error) — this accounts for finite-difference approximation noise while
+      catching significant implementation bugs
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using epsilon tighter than 0.01 causes false test failures from numerical noise; using epsilon looser than
+      0.01 misses real bugs in numerical greek implementations, allowing incorrect hedging values to pass testing
+    derived_from_bd_id: BD-034
+  - id: finance-C-140
+    when: When testing numerical rho against analytical rho
+    action: Set epsilon tolerance to 0.0001 (0.01% relative error) — rho requires tighter tolerance than other greeks because
+      its small magnitude makes 1% absolute tolerance too loose
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using the default 0.01 epsilon for rho causes rho tests to pass with unacceptably large absolute errors relative
+      to rho's small values, masking real implementation bugs in interest rate sensitivity calculations
+    derived_from_bd_id: BD-035
+  - id: finance-C-141
+    when: When configuring brentq convergence tolerance for implied volatility solver
+    action: Set xtol=1e-15 and rtol=1e-15 for near-machine-precision results — this ensures ref_python IV matches py_lets_be_rational
+      within floating-point accuracy
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Loosening brentq tolerance causes IV rounding errors that propagate through risk calculations; even small
+      IV errors compound through delta and gamma hedges, leading to systematic hedging discrepancies in live trading
+    derived_from_bd_id: BD-036
+  - id: finance-C-142
+    when: When implementing or refactoring bivariate normal CDF calculations for basket options or correlation-dependent greeks
+    action: Use the Drezner-Wesolowsky algorithm for CBND calculation — this specific algorithm provides the required balance
+      of speed and accuracy for correlation sensitivity calculations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Substituting alternative algorithms like Gaussian quadrature changes pricing accuracy and speed characteristics,
+      potentially causing basket option prices to differ from expected values by amounts that accumulate in correlation trading
+      strategies
+    derived_from_bd_id: BD-040
+  - id: finance-C-143
+    when: When implementing or refactoring standard normal CDF calculations
+    action: Use Abramowitz-Stegun polynomial coefficients for CND approximation with accuracy target <7.5e-8 — do not substitute
+      with lookup tables, rational functions, or alternative polynomial approximations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using alternative polynomial coefficients changes the CND accuracy profile, potentially causing greeks calculations
+      to differ from expected values especially for deep ITM/OTM options where small CDF errors amplify into significant delta/gamma
+      errors
+    derived_from_bd_id: BD-043
+  - id: finance-C-144
+    when: When calculating numerical gamma for options at expiration (t=0)
+    action: Return infinity when spot equals strike (S=K at t=0) and return 0 otherwise — do not use finite difference methods
+      at t=0 as they produce unstable results
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using finite differences at t=0 produces unreliable gamma values that either oscillate wildly or collapse
+      to zero, making same-day expiry risk management impossible and causing strategies to misjudge their gamma exposure near
+      market close
+    derived_from_bd_id: BD-045
+  - id: finance-C-145
+    when: When calculating numerical rho using finite differences for interest rate sensitivity
+    action: Shift both r (risk-free rate) and b (cost-of-carry) by ±0.01 in opposite directions — this ensures the finite
+      difference captures pure rate sensitivity without contaminating the result with forward-price sensitivity
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Shifting only one parameter changes both the discount factor and forward price simultaneously, causing numerical
+      rho to include forward-price sensitivity in addition to pure rate sensitivity, leading to incorrect interest rate hedging
+    derived_from_bd_id: BD-048
+  - id: finance-C-146
+    when: When calculating Black model rho for futures options
+    action: 'Use the simplified formula: rho = -t * black(flag, F, K, t, r, sigma) * 0.01 — do not use the general d1/d2 derivative
+      formula which is more complex and less numerically stable'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using the general d1/d2 derivative formula introduces numerical instability in rho calculation, causing futures
+      options to show incorrect interest rate sensitivity that leads to improper hedging and P&L attribution errors
+    derived_from_bd_id: BD-038
+  - id: finance-C-147
+    when: When calculating bivariate normal CDF for correlation-dependent calculations
+    action: 'Select CBND quadrature order based on correlation thresholds: use 6-point for |ρ|<0.3, 12-point for 0.3<=|ρ|<=0.75,
+      and 20-point for |ρ|>0.75 — these thresholds were empirically determined to keep maximum error below 1e-6'
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Using fixed quadrature order either sacrifices speed (unnecessarily high order for low correlations) or accuracy
+      (insufficient order for high correlations near ±1), causing basket options to price incorrectly where correlation accuracy
+      matters most
+    derived_from_bd_id: BD-041
+  - id: finance-C-148
+    when: When evaluating cumulative normal distribution for extreme spot prices or deep ITM/OTM options
+    action: Cap CND evaluation at |x|>37 by returning the limiting value (0 for negative, 1 for positive) — do not evaluate
+      the polynomial directly as IEEE double precision loses significance beyond this threshold
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Evaluating the CND polynomial without capping causes numerical overflow that propagates NaN values through
+      all dependent calculations, making greeks and prices undefined for extreme market conditions like market crashes or
+      black swan events
+    derived_from_bd_id: BD-042
+  - id: finance-C-149
+    when: When calculating forward prices for Black-Scholes-Merton implied volatility
+    action: 'Use dividend-adjusted forward formula: F = S * exp((r-q)*t) where r is risk-free rate and q is dividend yield
+      — do not use the simpler BS forward formula F = S * exp(r*t) which ignores dividends'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using BS forward formula without dividend adjustment causes implied volatility calculation to systematically
+      misinterpret option prices, resulting in IV values that are systematically biased and causing incorrect strategy signals
+      for dividend-paying stocks
+    derived_from_bd_id: BD-046
+  - id: finance-C-150
+    when: When implementing implied volatility calculation for time-critical applications using the limited-iteration variant
+    action: Use the limited-iteration IV method as a default replacement for standard IV calculation — the limited-iteration
+      variant sacrifices 1-2 decimals of precision for ~50% speed improvement and must be explicitly opted-in for latency-critical
+      use cases only
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Defaulting to limited-iteration IV introduces systematic pricing errors of 1-2 decimals that propagate to
+      all Greeks calculations, causing risk management systems to misvalue portfolios and potentially execute hedges at incorrect
+      levels
+    derived_from_bd_id: BD-052
+  - id: finance-C-151
+    when: When converting option type flags ('c'/'p') to internal numeric representation
+    action: Use the binary_flag function from py_vollib.helpers for each option type conversions — do not use inline string
+      comparison (flag == 'c') or equivalent logic scattered across pricing functions
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Inline string comparisons bypass centralized validation and may introduce inconsistent flag handling across
+      different pricing functions, causing silent errors when option type is checked differently in various code paths
+    derived_from_bd_id: BD-054
+  - id: finance-C-154
+    when: When calculating theta for Black-Scholes-Merton (BSM) dividend-paying stock options
+    action: 'Include the dividend erosion term in BSM theta calculation: theta includes -q*S*exp(-q*t)*N(±d1) in addition
+      to the standard BS theta term — do not use BS theta formula for dividend-paying stocks'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: BSM theta without the dividend term systematically miscalculates theta for dividend-paying stocks, causing
+      the model to incorrectly estimate time decay and leading to poor theta-based trading decisions and hedging errors
+    derived_from_bd_id: BD-051
+  - id: finance-C-155
+    when: When calculating implied volatility using the transformed rational guess algorithm
+    action: Verify input price is within arbitrage-free bounds before initializing the transformed rational guess search —
+      standard implementation limited to 50 iterations, limited-iteration variant limited to 10 iterations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: The transformed rational guess algorithm requires arbitrage-free bounds for valid convergence; feeding prices
+      outside valid bounds causes the solver to fail or converge to incorrect values, producing meaningless IV estimates
+    derived_from_bd_id: BD-058
+  - id: finance-C-156
+    when: When calculating vega numerically using finite difference methods
+    action: Use symmetric (central) finite difference with step of 0.01 in volatility space — do not use asymmetric forward
+      or backward differences which introduce bias
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Asymmetric finite differences introduce systematic bias into vega calculations, causing the Greeks to mismeasure
+      volatility sensitivity and leading to incorrect hedge ratios and risk estimates
+    derived_from_bd_id: BD-064
+  - id: finance-C-157
+    when: When implementing input validation for options pricing functions
+    action: Apply float() conversion to each numeric input to verify IEEE 754 double precision
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: 'Without explicit float() conversion, integer or numpy array inputs cause silent type errors: integer division
+      in Python 3, array broadcasting in numpy operations, and precision loss for large integers exceeding 53-bit mantissa'
+    derived_from_bd_id: BD-056
+  - id: finance-C-159
+    when: When implementing implied volatility calculation using Brent's method
+    action: Use Brent's method with search bounds [1e-12, 100] — do not use Newton-Raphson or narrower bounds [0.01, 5]
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Newton-Raphson diverges near boundaries causing convergence failures; narrow bounds [0.01, 5] reject options
+      with IV >500% commonly seen in deep ITM/OTM contracts, returning NaN instead of valid IV
+    derived_from_bd_id: BD-059
+  - id: finance-C-160
+    when: When computing cumulative normal distribution for options pricing
+    action: Use the custom polynomial approximation only for z-scores within [-6, +6] — do not apply to extreme z-scores beyond
+      ±6 where accuracy degrades below 1e-6
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Custom polynomial accuracy degrades below 1e-6 for extreme z-scores; using it for tail probabilities causes
+      cumulative distribution errors exceeding 1e-5, distorting delta and probability calculations
+    derived_from_bd_id: BD-060
+  - id: finance-C-161
+    when: When calculating bivariate normal distribution for correlation-dependent Greeks
+    action: Use Drezner-Wesenowsky (1990) algorithm with fixed 11x4 Gauss-Hermite quadrature nodes achieving 7-digit accuracy
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Alternative numerical integration methods (Simpson's rule, direct integration) fail to maintain 7-digit accuracy
+      for tail correlations, causing errors in basket options and correlation-dependent strategies
+    derived_from_bd_id: BD-061
+  - id: finance-C-162
+    when: When calculating vega or rho Greeks for options
+    action: Scale vega and rho by 0.01 to convert from per-unit-sigma to per-1% change convention — verify output matches
+      industry standard reporting
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without 0.01 scaling, vega reports per 100% vol move instead of per 1% move; this 100x misinterpretation
+      causes portfolio risk models to underestimate Greek exposure by 99%, leading to significant hedging errors
+    derived_from_bd_id: BD-066
+  - id: finance-C-163
+    when: When calculating theta for daily mark-to-market reporting
+    action: Divide annual theta by 365 to express as daily decay — do not use 365.25 or leave theta in annual terms
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: 'Annual theta misreported as daily causes P&L attribution errors: strategy daily decay appears 0.07% higher
+      than actual (365 vs 365.25), distorting performance attribution for long-dated options strategies'
+    derived_from_bd_id: BD-067
+  - id: finance-C-165
+    when: When calculating d1 and d2 parameters for Black-Scholes or Black-76 pricing
+    action: Calculate d1 = [ln(F/K) + (σ²/2)T] / (σ√T) and d2 = d1 - σ√T using log-moneyness with volatility term structure
+      — handle special cases σ=0 or T=0 with boundary conditions
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect d1/d2 formula produces wrong delta and probability calculations; delta errors of 1-5% cause hedging
+      ratios to be miscalculated, leading to gamma scalping losses
+    derived_from_bd_id: BD-073
+  - id: finance-C-166
+    when: When setting up implied volatility root-finding for brentq
+    action: Set search bounds to [1e-12, 100] to handle both near-zero vol (1e-12 approximates zero) and extreme vol up to
+      10000% — do not use narrower bounds [0.01, 5]
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Narrow bounds [0.01, 5] reject options with realized volatility exceeding 500%, causing implied volatility
+      calculation to return NaN for high-volatility regimes and deep ITM/OTM options
+    derived_from_bd_id: BD-080
+  - id: finance-C-167
+    when: When implementing or refactoring numerical delta calculation logic
+    action: Use central finite difference with step size h=0.01 to achieve O(h²) accuracy — the method requires (V(S+h) -
+      V(S-h)) / (2*h) formulation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using forward or backward difference with O(h) accuracy introduces systematic delta hedging errors that accumulate
+      over many rebalancing intervals, causing live PnL to diverge from backtested results
+    derived_from_bd_id: BD-062
+  - id: finance-C-168
+    when: When implementing numerical gamma calculation
+    action: Use central finite difference with 3-point stencil capturing curvature — the method requires (V(S+h) - 2*V(S)
+      + V(S-h)) / h² formulation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using 2-point stencil or forward/backward difference fails to capture option gamma curvature, causing systematic
+      delta hedging errors especially near ATM where gamma is highest
+    derived_from_bd_id: BD-063
+  - id: finance-C-169
+    when: When configuring cost_of_carry parameter for Black-Scholes-Merton model
+    action: Set b = r - q for equity options where q is the continuous dividend yield; for discrete dividends, use binomial
+      tree or stock price adjustment method instead of continuous approximation
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using b=0 for BSM model would exclude dividend yield adjustment, systematically overpricing dividend-paying
+      equities and causing hedging losses in live trading
+    derived_from_bd_id: BD-069
+  - id: finance-C-171
+    when: When implementing or calling analytical delta calculation for BSM model
+    action: 'Apply dividend yield adjustment: call delta = exp(-q*t) * N(d1), put delta = -exp(-q*t) * N(-d1); verify exp(-q*t)
+      factor is included for each equity options with dividend yield q'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Omitting exp(-q*t) adjustment causes delta to misrepresent true equity sensitivity, leading to incorrect
+      hedge ratios and accumulating PnL losses in live delta-hedged positions
+    derived_from_bd_id: BD-072
+  - id: finance-C-172
+    when: When converting BSM implied volatility to Black implied volatility
+    action: 'Apply forward price adjustment: F = S * exp((r-q)*T) before calling Black IV solver; the BSM price must be converted
+      using undiscounted form P_undiscounted = P_BSM * exp(r*T)'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using BSM IV directly without forward adjustment creates inconsistent volatility surfaces across models,
+      causing incorrect vol quotes and hedge ratios when switching between Black and BSM
+    derived_from_bd_id: BD-074
+  - id: finance-C-173
+    when: When converting option price to undiscounted form before Black implied volatility calculation
+    action: 'Undo r*t scaling: P_undiscounted = P_discounted * exp(r*T) before calling Black IV solver; Black model expects
+      undiscounted option prices under F*K convention'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Passing discounted price to Black IV solver causes systematic IV calculation errors since Black model expects
+      undiscounted prices, leading to wrong vol surfaces and hedging ratios
+    derived_from_bd_id: BD-085
+  - id: finance-C-175
+    when: When using delta values interchangeably between Black and BSM/BS models
+    action: Assume Black delta and BS delta are comparable without adjustment; Black delta includes exp(-r*t) discount factor
+      while BS delta does not — they measure different sensitivities
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Treating Black delta as equivalent to BS delta without accounting for the discount factor causes systematic
+      hedging errors, as Black delta reflects forward contract sensitivity while BS delta reflects spot sensitivity
+    derived_from_bd_id: BD-101
+  - id: finance-C-176
+    when: When implementing the BSM d1 calculation for option Greeks
+    action: 'Use the cost of carry formula: d1 = (ln(S/K) + (r-q+σ²/2)*t) / (σ√t) — the q term represents dividend yield and
+      must be included; as q→0, reduces to Black-Scholes; as q→r, reduces to Black model'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Omitting the cost-of-carry term q causes systematic errors in all Greeks calculations; for high-dividend
+      stocks (5% yield), errors of 0-5% per Greek propagate through delta hedging, leading to systematic over or under-hedging
+      in live trading
+    derived_from_bd_id: BD-082
+  - id: finance-C-177
+    when: When implementing put-call parity pricing logic in py_vollib.black_scholes
+    action: 'Maintain put-call parity via forward price conversion: C - P = S - K*exp(-rT); use this relationship to price
+      puts from calls (or vice versa) rather than computing independently'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Violating put-call parity either creates exploitable arbitrage opportunities or indicates a fundamental pricing
+      error; independent put pricing without parity check leads to inconsistent prices that cannot be reconciled with arbitrage-free
+      market conditions
+    derived_from_bd_id: BD-083
+  - id: finance-C-179
+    when: When implementing gamma calculation for options approaching expiry
+    action: Return infinity (or a very large value) for gamma when spot price S equals strike K at expiry — must NOT clip
+      gamma to a finite value
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Clipping gamma to a finite value at S=K expiry loses critical information about hedging difficulty; at-the-money
+      gamma mathematically explodes to infinity at expiry, reflecting digital option payoff behavior, and clipping masks this
+      risk in live hedging scenarios
+    derived_from_bd_id: BD-081
+  - id: finance-C-180
+    when: When implementing forward price calculation logic in option pricing
+    action: Use S/numpy.exp(-r*t) formula for forward price calculation rather than S*exp(r*t) — this leverages numpy's handling
+      of negative exponents to prevent numerical underflow
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using S*exp(r*t) directly can cause numerical underflow for very small rates or long tenors, producing zero
+      or near-zero forward prices that lead to incorrect option valuations and significant financial loss
+    derived_from_bd_id: BD-018
+  - id: finance-C-181
+    when: When implementing Black-Scholes option pricing model
+    action: Set cost-of-carry parameter b equal to risk-free rate r (b=r) — this parameterization assumes non-dividend-paying
+      stocks with continuous cost-of-carry equal to risk-free return
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using b≠r violates Black-Scholes model assumptions, producing systematically incorrect option prices for
+      stocks with dividends or futures where cost-of-carry differs from risk-free rate, causing significant trading losses
+    derived_from_bd_id: BD-026
+  - id: finance-C-184
+    when: When computing forward price using helper functions across different option pricing models
+    action: 'Verify model context before computing forward price: Black/BS uses F=S/exp(-r*t) while BSM uses F=S*exp((r-q)*t);
+      do not use forward_price helper without specifying model type'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using wrong forward price formula cascades to incorrect d1/d2 calculations and all downstream Greeks (delta,
+      gamma, theta, vega, rho); wrong Greeks lead to incorrect hedging signals and position management
+    derived_from_bd_id: BD-105
+  - id: finance-C-185
+    when: When processing datetime values in option pricing calculations
+    action: Assume the framework handles timezone conversions automatically — the framework does not implement timezone annotation;
+      naive datetime values are treated as system local time
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Timezone mismatches cause time-to-maturity (TTM) calculations to be incorrect, producing wrong option prices
+      and Greeks that diverge from actual market values
+    derived_from_bd_id: BD-GAP-006
+  - id: finance-C-186
+    when: When implementing reference implementations with datetime values
+    action: Add explicit timezone annotations to each datetime/timestamp fields using pytz or zoneinfo; verify each timestamps
+      are UTC-aware with timezone info attached before any calculations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without timezone annotation, datetime values are treated as naive/system local, causing TTM miscalculation
+      that produces incorrect option prices across different trading sessions
+    derived_from_bd_id: BD-GAP-006
+  - id: finance-C-187
+    when: When implementing stochastic processes or Monte Carlo simulations in option pricing
+    action: Assume random seeds are set consistently across each stochastic components — the framework does not enforce random
+      seed coverage for reproducibility
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without explicit seed control, stochastic results are non-reproducible across runs, making backtesting validation
+      impossible and strategy performance evaluation unreliable
+    derived_from_bd_id: BD-GAP-007
+  - id: finance-C-188
+    when: When implementing stochastic processes in reference implementations
+    action: Set random seeds explicitly for each random number generators using np.random.seed() or Generator's default_rng(seed)
+      before stochastic operations; document seed values in configuration and verify full coverage across each stochastic
+      components
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without reproducible seeds, Monte Carlo simulations produce different results on each run, making backtesting
+      validation impossible and strategy comparison unreliable
+    derived_from_bd_id: BD-GAP-007
+  - id: finance-C-189
+    when: When implementing pricing models that require numerical calibration (e.g., PDE-based pricing, finite difference
+      methods, calibration to market data)
+    action: Assume the framework provides model calibration residual tracking and convergence diagnostics — the framework
+      does not implement calibration diagnostics; unverified calibration may silently fail
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without calibration residual tracking, numerical models may converge to incorrect parameters without triggering
+      any error, leading to systematic pricing errors that accumulate silently across all positions
+    derived_from_bd_id: BD-GAP-010
+  - id: finance-C-190
+    when: When calibrating numerical pricing models to market data in production backtesting
+    action: 'Implement explicit calibration diagnostics: define convergence tolerance (relative residual norm < 1e-6 or absolute
+      residual < 1e-8), track iteration-by-iteration residual history, log convergence metrics at each iteration, and halt
+      calibration with explicit error if max_iterations reached without convergence tolerance met'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without explicit residual monitoring and convergence checks, calibration may converge to wrong parameters
+      causing 5-20% pricing errors on exotic derivatives or structured products, with errors silently propagating to P&L reports
+    derived_from_bd_id: BD-GAP-010
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-127 / Sphinx Documentation Configuration for py_vollib
+    version: v5.3
+    intent_keywords:
+    - documentation
+    - sphinx
+    - api docs
+    - readthedocs
+    - docs generation
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: no candidate field had 2-7 distinct values; all capabilities collapsed into single group
+      groups:
+      - group_id: all
+        name: All Capabilities
+        description: ''
+        emoji: 📦
+        uc_count: 1
+        ucs:
+        - uc_id: UC-101
+          name: Sphinx Documentation Configuration for py_vollib
+          short_description: Configures automated documentation generation for the py_vollib options pricing library, enabling
+            consistent API documentation, code examples, and cov
+          sample_triggers:
+          - documentation
+          - sphinx
+          - api docs
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-101
+      beginner_prompt: Try sphinx documentation configuration for py_vollib
+      auto_selected: true
+    - uc_id: UC-100
+      beginner_prompt: Try capability UC-100
+      auto_selected: true
+    - uc_id: UC-101
+      beginner_prompt: Try capability UC-101
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 1 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - Sphinx Documentation Configuration for py_vollib
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+    - Institutional fund holdings tracker via joinquant_fund_runner pattern
+    - Custom Transformer + Accumulator factor with per-entity rolling state
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

@@ -1,0 +1,25 @@
+{
+  "name": "openclaw-voice-cloning-skill",
+  "version": "1.0.0",
+  "description": "免费文字转语音与克隆 - 完全免费的本地 TTS 和声音克隆技能",
+  "description_en": "Free TTS & Voice Cloning - Local text-to-speech and voice cloning skill",
+  "main": "voice_cloning_demo.py",
+  "scripts": {
+    "install": "brew install python@3.10 ffmpeg && python3.10 -m pip install mlx-audio",
+    "demo": "python3.10 voice_cloning_demo.py"
+  },
+  "keywords": ["免费语音合成", "免费声音克隆", "文字转语音", "免费TTS", "TTS", "voice-cloning", "Qwen3-TTS", "mlx-audio", "Apple Silicon", "openclaw", "skill"],
+  "author": "OpenClaw 社区",
+  "author_en": "OpenClaw Community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  },
+  "homepage": "https://docs.openclaw.ai/skills/voice-cloning",
+  "engines": {
+    "python": ">=3.10"
+  },
+  "os": ["darwin"],
+  "cpu": ["arm64"]
+}

@@ -1,35 +1,38 @@
 ---
-name: "Psyvector Pv32"
+name: "PV_32"
+slug: "psyvector-pv32"
 description: "Crisis calming"
-category: "other"
-source: "ClawHub"
-tags: [Digital-Worker]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/psyvector-pv32"
-sourceUrl: "https://clawhub.ai/skills/psyvector-pv32"
+version: "3.0.0"
+author: "PsyVector Hub"
+price: "$9.90"
+tags:
+  - "PsyVector"
+  - "Digital-Worker"
+clawdbot:
+  emoji: "⚡"
 ---
 
-# Psyvector Pv32
+## 危机安抚员 / Crisis Counselor
 
-> Crisis calming
+**中文**: 大面积崩溃温和安抚
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/psyvector-pv32`
-- **Source URL:** [https://clawhub.ai/skills/psyvector-pv32](https://clawhub.ai/skills/psyvector-pv32)
+**English**: Crisis calming
 
-## Overview
+## 配置参数
 
+| 参数 | 值 | 说明 |
+|------|-----|------|
+| response_delay | 0.2s | 响应延迟 |
+| speech_speed | 1.2 | 语速倍率 |
+| caution_coefficient | 0.1 | 谨慎系数 |
+| risk_reminder | False | 风险提醒 |
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方法
+
 ```bash
-hermes skills install clawhub/psyvector-pv32
+clawhub install psyvector-pv32
 ```
+
+## 人格说明
+
+动量型内核 - 快速响应，高频交易，危机处理

@@ -1,35 +1,51 @@
 ---
-name: "Product Hunt Launch Guide — Hour-by-Hour #1 Daily SOP"
-description: "The complete first-timer's guide to launching on Product Hunt. Covers timing, hunter selection, asset prep, launch-day engagement, and post-launch follow-up...."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, first-time, hunter, indie, launch-day, launch-guide, maker, marketing, ph-ranking, product-hunt, product-hunt-tips, saas, startup, step-by-step, upvotes]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/product-hunt-launch-guide"
-sourceUrl: "https://clawhub.ai/skills/product-hunt-launch-guide"
+name: product-hunt-launch-guide
+description: |
+  The complete first-timer's guide to launching on Product Hunt. Covers timing, hunter selection, asset prep, launch-day engagement, and post-launch follow-up. Follow @WeiYipei on X for more launch strategies.
+source: https://github.com/Gingiris-1031/gingiris-skills/tree/main/skills/product-hunt-launch-guide
+tags:
+  - product-hunt
+  - launch
+  - ph-strategy
+  - daily-1
+  - hunter
+  - upvotes
+  - product-launch
+  - startup-launch
+  - go-to-market
+  - makers
+  - claude-code
+  - ai-agent-skill
+  - agent-skill
+  - latest
 ---
 
-# Product Hunt Launch Guide — Hour-by-Hour #1 Daily SOP
+## 📦 Install
 
-> The complete first-timer's guide to launching on Product Hunt. Covers timing, hunter selection, asset prep, launch-day engagement, and post-launch follow-up....
-
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/product-hunt-launch-guide`
-- **Source URL:** [https://clawhub.ai/skills/product-hunt-launch-guide](https://clawhub.ai/skills/product-hunt-launch-guide)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/product-hunt-launch-guide
+clawhub install product-hunt-launch-guide
 ```
+
+**What you get after installing:**
+- 4-week prep timeline with daily tasks from asset creation to hunter outreach
+- Hour-by-hour launch-day SOP optimized for top-5 ranking
+- Post-launch conversion playbook turning PH traffic into retained users
+
+---
+
+# Product Hunt Launch Guide — First-Timer's Step-by-Step SOP
+
+> 🌍 **Language / 语言**: [中文](#中文版) | [English](references/en/README.md) | [日本語](references/ja/README.md) | [한국어](references/ko/README.md)
+
+Everything you need to know for your first Product Hunt launch, distilled into an actionable checklist.
+
+- **Timeline**: 4-week prep schedule with daily tasks
+- **Hunter strategy**: How to find and pitch top hunters
+- **Asset checklist**: Thumbnails, taglines, first comment, demo video
+- **Launch-day SOP**: Hour-by-hour engagement plan for top 5 ranking
+- **Post-launch**: Converting PH traffic into retained users
+
+## Related Gingiris Skills
+- Full version: https://clawhub.ai/skill/gingiris-launch
+- All skills: https://clawhub.ai/user/gingiris
+- Follow: [@WeiYipei on X](https://x.com/WeiYipei)

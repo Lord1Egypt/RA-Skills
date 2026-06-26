@@ -1,35 +1,20 @@
 ---
-name: "利润优化引擎"
+name: profit-agent
 description: "利润优化引擎 — 订单管理/计价/结算模拟。核心能力：(1) 订单管理 (2) 计价模型 (3) 成本追踪 (4) 利润计算"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, automation, productivity]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/profit-agent"
-sourceUrl: "https://clawhub.ai/skills/profit-agent"
+version: 1.0.0
+author: Apex Catalyst
 ---
 
-# 利润优化引擎
+# Profit Agent — 利润优化引擎
 
-> 利润优化引擎 — 订单管理/计价/结算模拟。核心能力：(1) 订单管理 (2) 计价模型 (3) 成本追踪 (4) 利润计算
+## 架构
+```
+订单录入 → 成本核算 → 计价策略 → 利润计算 → 报告生成
+```
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/profit-agent`
-- **Source URL:** [https://clawhub.ai/skills/profit-agent](https://clawhub.ai/skills/profit-agent)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## 命令
 ```bash
-hermes skills install clawhub/profit-agent
+python3 scripts/order_manager.py --new-order   # 新建订单
+python3 scripts/order_manager.py --report      # 利润报告
+python3 scripts/order_manager.py --simulate    # 模拟运行
 ```

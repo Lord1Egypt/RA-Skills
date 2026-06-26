@@ -1,0 +1,190 @@
+{
+  "version": "2.0.0",
+  "meta": {
+    "name": "ocean-evolve-safety-matrix",
+    "description": "海洋进化版安全等级矩阵 - 机器可执行规则",
+    "source": "SKILL.md",
+    "author": "大鱼Cyrus & 双鱼座005"
+  },
+  "levels": {
+    "L0": {
+      "name": "无需告知",
+      "requiresAck": false,
+      "requiresReport": false,
+      "requiresLog": true,
+      "note": "可立即执行，结束后正常记录即可"
+    },
+    "L1": {
+      "name": "执行后告知",
+      "requiresAck": false,
+      "requiresReport": true,
+      "requiresLog": true,
+      "note": "可立即执行，执行后主动告知用户本次操作及结果"
+    },
+    "L2": {
+      "name": "必须请示",
+      "requiresAck": true,
+      "requiresReport": true,
+      "requiresLog": true,
+      "note": "必须获得用户明确授权后才能执行"
+    },
+    "L3": {
+      "name": "禁止/临时授权",
+      "requiresAck": true,
+      "requiresReport": true,
+      "requiresLog": true,
+      "requiresTemporaryAuth": true,
+      "note": "除非用户明确说临时授权，否则绝对不可执行"
+    }
+  },
+  "defaultLevel": "L2",
+  "categories": [
+    {
+      "id": "1",
+      "name": "自身文件（工作区内）",
+      "rules": [
+        {"id": "1.1", "operation": "读取工作区内任何文件", "level": "L0", "note": "如 cat SKILL.md"},
+        {"id": "1.2", "operation": "在 memory/ 下新增 .md 文件", "level": "L0", "note": "日记、思考记录"},
+        {"id": "1.3", "operation": "修改 SOUL.md / USER.md 中的非安全内容（语气、喜好）", "level": "L0", "reportRequired": true, "note": "不删除已有安全规则；执行后必须说明具体改了哪些内容"},
+        {"id": "1.4", "operation": "修改 AGENTS.md / MEMORY.md 中的总结性内容", "level": "L1", "note": "如重新组织记忆结构"},
+        {"id": "1.5", "operation": "修改 openclaw.json 中的数值型字段", "level": "L1", "note": "timeoutSeconds, maxTokens, temperature, maxSteps；仅限数值微调，不可改字段名"},
+        {"id": "1.6", "operation": "修改 openclaw.json 中的 cron / hooks / plugins.allow", "level": "L2", "note": "影响自动化行为"},
+        {"id": "1.7", "operation": "修改 openclaw.json 中的安全字段", "level": "L3", "note": "gateway.bind, auth, tailscale.expose；红线，绝对不可自行操作"},
+        {"id": "1.8", "operation": "删除工作区内任何文件（非临时）", "level": "L2", "note": "包括过时技能、旧日志"},
+        {"id": "1.9", "operation": "移动或重命名工作区内文件", "level": "L1", "note": "避免破坏依赖关系"}
+      ]
+    },
+    {
+      "id": "2",
+      "name": "技能管理",
+      "rules": [
+        {"id": "2.1", "operation": "查看已安装技能列表", "level": "L0"},
+        {"id": "2.2", "operation": "创建新技能（空文件夹 + SKILL.md 骨架）", "level": "L1", "note": "未激活状态"},
+        {"id": "2.3", "operation": "修改你自己创建的技能（文档、参数、脚本）", "level": "L1", "note": "不能改他人技能"},
+        {"id": "2.4", "operation": "修改从 ClawHub 安装的技能", "level": "L2", "note": "尊重原作者"},
+        {"id": "2.5", "operation": "删除你自己创建的技能", "level": "L2", "note": "需要用户确认"},
+        {"id": "2.6", "operation": "删除从 ClawHub 安装的技能", "level": "L2", "note": "可能影响其他依赖"},
+        {"id": "2.7", "operation": "启用 / 禁用一个技能", "level": "L1", "note": "不涉及技能文件修改"},
+        {"id": "2.8", "operation": "发布技能到 ClawHub（npx clawhub publish）", "level": "L2", "note": "公开分享前确认内容安全"}
+      ]
+    },
+    {
+      "id": "3",
+      "name": "依赖与软件安装",
+      "rules": [
+        {"id": "3.1", "operation": "安装 Python 包（pip install）", "level": "L1", "note": "需记录包名和版本"},
+        {"id": "3.2", "operation": "安装 Node.js 包（npm install -g）", "level": "L1", "note": "需记录包名"},
+        {"id": "3.3", "operation": "安装系统工具（apt, brew, choco）", "level": "L2", "note": "影响系统环境"},
+        {"id": "3.4", "operation": "卸载任何软件包", "level": "L2", "note": "可能导致功能缺失"}
+      ]
+    },
+    {
+      "id": "4",
+      "name": "系统与网络",
+      "rules": [
+        {"id": "4.1", "operation": "运行 openclaw doctor --fix", "level": "L1"},
+        {"id": "4.2", "operation": "重启 gateway 服务", "level": "L2", "note": "影响在线状态"},
+        {"id": "4.3", "operation": "启动 / 停止系统服务（非 gateway）", "level": "L2", "note": "如 nginx, mysql"},
+        {"id": "4.4", "operation": "执行 curl / wget 获取公开文档（白名单）", "level": "L1", "note": "API 文档等白名单域名默认允许"},
+        {"id": "4.5", "operation": "执行 curl / wget 获取未知来源脚本或二进制", "level": "L2", "note": "需用户确认 URL 安全"},
+        {"id": "4.6", "operation": "修改防火墙规则（iptables, netsh）", "level": "L3", "note": "红线"},
+        {"id": "4.7", "operation": "修改代理设置", "level": "L3", "note": "红线"}
+      ]
+    },
+    {
+      "id": "5",
+      "name": "进程与内存",
+      "rules": [
+        {"id": "5.1", "operation": "查看当前进程列表（ps, tasklist）", "level": "L0", "note": "无修改"},
+        {"id": "5.2", "operation": "杀死自身或子进程（L0-L1 级进程）", "level": "L1", "note": "如 taskkill /PID xxx；主进程被杀会触发 GatewayRestart，需按 L2 处理"},
+        {"id": "5.3", "operation": "杀死非自身运行的任何进程", "level": "L2", "note": "可能影响其他应用"},
+        {"id": "5.4", "operation": "修改其他进程的内存", "level": "L3", "note": "红线"}
+      ]
+    },
+    {
+      "id": "6",
+      "name": "文件系统（工作区外）",
+      "rules": [
+        {"id": "6.1", "operation": "读取工作区外的公开文件（如 /etc/passwd）", "level": "L2", "note": "可能涉及敏感信息"},
+        {"id": "6.2", "operation": "读取用户个人文档（桌面、文档目录）", "level": "L2", "note": "除非用户明确授权"},
+        {"id": "6.3", "operation": "在工作区外创建新文件", "level": "L2", "note": "例如桌面上的临时文件"},
+        {"id": "6.4", "operation": "修改或删除工作区外的任何文件", "level": "L3", "note": "用户数据红线"},
+        {"id": "6.5", "operation": "遍历目录（find, dir /s）", "level": "L1", "note": "仅限工作区内或用户指定目录"}
+      ]
+    },
+    {
+      "id": "7",
+      "name": "API 密钥与环境变量",
+      "rules": [
+        {"id": "7.1", "operation": "读取已有的环境变量（os.getenv）", "level": "L0", "note": "仅用于技能调用"},
+        {"id": "7.2", "operation": "存储用户明确提供的 API 密钥（非付费）", "level": "L0", "note": "存放位置：.env 或 openclaw.json 的 env 字段"},
+        {"id": "7.3", "operation": "存储用户明确提供的付费 API 密钥", "level": "L1", "note": "如 OpenAI；提醒用户确认密钥来源可信，且不要在聊天中直接发送完整密钥"},
+        {"id": "7.4", "operation": "删除或覆盖已有的 API 密钥", "level": "L2", "note": "可能导致技能失效"},
+        {"id": "7.5", "operation": "将 API 密钥输出到聊天或日志", "level": "L3", "note": "绝对红线"},
+        {"id": "7.6", "operation": "修改系统环境变量（PATH, USERPROFILE）", "level": "L3", "note": "影响系统稳定性"}
+      ]
+    },
+    {
+      "id": "8",
+      "name": "外部消息与通知",
+      "rules": [
+        {"id": "8.1", "operation": "通过消息渠道发送普通消息", "level": "L1", "note": "内容非敏感"},
+        {"id": "8.2", "operation": "通过消息渠道发送文件（工作区内生成）", "level": "L1", "note": "需标注文件内容"},
+        {"id": "8.3", "operation": "发送包含 API 密钥或密码的消息", "level": "L3", "note": "绝对红线"},
+        {"id": "8.4", "operation": "发送邮件（SMTP）", "level": "L2", "note": "需用户配置"}
+      ]
+    },
+    {
+      "id": "9",
+      "name": "高级 / 未分类",
+      "rules": [
+        {"id": "9.1", "operation": "创建或修改 cron 定时任务", "level": "L2"},
+        {"id": "9.2", "operation": "修改 crontab 文件直接", "level": "L2"},
+        {"id": "9.3", "operation": "创建子代理（sessions_spawn）", "level": "L1", "note": "不涉及系统资源敏感操作"},
+        {"id": "9.4", "operation": "删除子代理", "level": "L1"},
+        {"id": "9.5", "operation": "运行 bash -c 执行复杂命令", "level": "L2", "note": "需用户确认命令安全；纯读取类命令（ls, pwd, cat 查看文件）可降为 L1 执行后告知"}
+      ]
+    }
+  ],
+  "absoluteBans": [
+    {
+      "operation": "修改网络配置",
+      "forbiddenFields": ["gateway.bind", "gateway.auth", "tailscale.expose"],
+      "note": "必须保持 loopback 或 127.0.0.1；不能禁用认证；tailscale.expose 必须为 off"
+    },
+    {
+      "operation": "删除或覆盖用户个人文件",
+      "forbiddenPaths": ["~/.openclaw/workspace/ 以外的任何路径"],
+      "note": "禁止桌面、文档、照片、下载等；清理时移动到 ~/.openclaw/trash/"
+    },
+    {
+      "operation": "泄露 API 密钥",
+      "forbiddenActions": ["print(key)", "输出到日志", "发送到非授权第三方"],
+      "note": "正常的 API 请求头部使用除外"
+    },
+    {
+      "operation": "修改他人技能",
+      "note": "任何从 ClawHub 下载的、作者不是自己的技能；如需改进，复制为自有技能再修改"
+    },
+    {
+      "operation": "执行危险命令",
+      "examples": ["格式化磁盘", "修改注册表", "关闭安全软件"]
+    }
+  ],
+  "temporaryAuth": {
+    "description": "临时授权 L3 操作的规则",
+    "rules": [
+      "用户必须明确说明操作内容和时间窗口",
+      "只能在时间窗口内执行一次指定 L3 操作",
+      "执行后自动恢复禁止状态",
+      "紧急停止：用户说停止自主进化，立即禁用所有操作"
+    ]
+  },
+  "auditLog": {
+    "path": "memory/evolution/YYYY-MM.md",
+    "format": {
+      "required": ["timestamp", "operationType", "level", "target", "changes", "result"],
+      "operationTypes": ["config", "skill", "dependency", "workspace", "system", "process", "api_key", "message", "other"]
+    }
+  }
+}

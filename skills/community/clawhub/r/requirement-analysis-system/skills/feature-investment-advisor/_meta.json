@@ -1,0 +1,14 @@
+{
+  "name": "feature-investment-advisor",
+  "displayName": "功能投资决策顾问",
+  "version": "1.0.0",
+  "description": "评估功能投资的 ROI，收益 - 成本 - 风险三维分析，提供 Build/Don't Build 建议",
+  "author": "Elatia (基于 Product-Manager-Skills 提炼)",
+  "license": "MIT",
+  "tags": ["requirement-analysis", "feature-investment", "roi", "decision-making", "interactive"],
+  "category": "Product Management",
+  "type": "interactive",
+  "parentSkill": "requirement-analysis-system",
+  "createdAt": "2026-03-09T15:15:00+08:00",
+  "updatedAt": "2026-03-09T15:15:00+08:00"
+}

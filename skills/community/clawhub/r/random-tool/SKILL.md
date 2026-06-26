@@ -1,35 +1,26 @@
 ---
-name: "Random Tool"
-description: "Generate random numbers, passwords, and strings with configurable length and character sets. Use for security tokens, testing data, and randomization."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/random-tool"
-sourceUrl: "https://clawhub.ai/skills/random-tool"
+name: random-tool
+description: Generate random numbers, passwords, and strings with configurable length and character sets. Use for security tokens, testing data, and randomization.
 ---
+# Random - Data Generator
 
-# Random Tool
+Generate cryptographically secure random values including integers within a range, random passwords with customizable character sets, and random strings for testing.
 
-> Generate random numbers, passwords, and strings with configurable length and character sets. Use for security tokens, testing data, and randomization.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/random-tool`
-- **Source URL:** [https://clawhub.ai/skills/random-tool](https://clawhub.ai/skills/random-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/random-tool
+random-tool [options]
+```
+
+## Options
+
+- `-l N`: Generate string of length N
+- `-n MIN MAX`: Random integer between MIN and MAX
+- `-p`: Generate a random password (alphanumeric + symbols)
+
+## Examples
+
+```bash
+random-tool -l 32
+random-tool -n 1 100
+random-tool -p -l 16
 ```

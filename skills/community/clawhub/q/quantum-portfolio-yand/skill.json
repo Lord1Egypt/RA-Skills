@@ -1,0 +1,68 @@
+{
+  "name": "quantum-portfolio-yand",
+  "version": "0.1.0",
+  "title": "Quantum Portfolio Optimization with YAND",
+  "slug": "quantum-portfolio-yand",
+  "description": "A hybrid quantitative finance skill that compares three portfolio optimizers on the same return panel: (1) classical convex baseline (SLSQP), (2) quantum-inspired QUBO via dimod + neal simulated annealing, and (3) Yau's Affine-Normal Descent for Mean-Variance-Skewness-Kurtosis (YAND-MVSK, arxiv 2604.25378). Visualizes QUBO matrix, sampling energy landscape, solution distribution, and a three-way efficient-frontier comparison.",
+  "author": "xiaolongxia",
+  "tags": [
+    "quantitative-finance",
+    "portfolio-optimization",
+    "quantum-computing-simulation",
+    "qubo",
+    "dimod",
+    "simulated-annealing",
+    "yand",
+    "yau-affine-normal-descent",
+    "mvsk",
+    "higher-moment-optimization",
+    "differential-geometry"
+  ],
+  "category": "quantitative-research",
+  "entrypoint": "SKILL.md",
+  "scripts": {
+    "demo": "python scripts/run_pipeline.py",
+    "qubo_only": "python scripts/qubo_solver.py",
+    "yand_only": "python scripts/yand_solver.py"
+  },
+  "references": [
+    "references/patterns.md",
+    "references/sharp_edges.md",
+    "references/validations.md"
+  ],
+  "examples": [
+    "examples/demo_synthetic.md"
+  ],
+  "assets": [
+    "assets/qubo_heatmap.png",
+    "assets/energy_landscape.png",
+    "assets/solution_histogram.png",
+    "assets/efficient_frontier.png"
+  ],
+  "dependencies": {
+    "python": ">=3.9",
+    "packages": [
+      "dimod>=0.12",
+      "dwave-neal>=0.6",
+      "numpy>=1.23",
+      "pandas>=1.5",
+      "scipy>=1.10",
+      "matplotlib>=3.6"
+    ]
+  },
+  "academic_references": [
+    {
+      "title": "Yau's Affine Normal Descent: Algorithmic Framework and Convergence Analysis",
+      "arxiv": "2603.28448"
+    },
+    {
+      "title": "Yau's Affine-Normal Descent for Large-Scale Unrestricted Higher-Moment Portfolio Optimization",
+      "arxiv": "2604.25378"
+    },
+    {
+      "title": "Minimization with the Affine Normal Direction",
+      "venue": "Comm. Math. Sci. 3(4), 2005",
+      "authors": "Cheng, Chen, Yau"
+    }
+  ]
+}

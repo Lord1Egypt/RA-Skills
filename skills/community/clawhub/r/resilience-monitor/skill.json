@@ -1,0 +1,64 @@
+{
+  "id": "resilience",
+  "name": "Resilience",
+  "description": "LLM API error tracking, classification, retry, and task recovery. REQUIRES the @leiJack-lo/resilience plugin (install plugin first, then this skill). Provides Chinese natural language interface only; core tools + hooks + dashboard server come from the plugin.",
+  "version": "0.3.3",
+  "author": "leiJack-lo",
+  "license": "MIT",
+  "plugin": "resilience",
+  "tools": [
+    "resilience_stats",
+    "resilience_strategies",
+    "resilience_report",
+    "resilience_dashboard"
+  ],
+  "naturalLanguage": {
+    "examples": [
+      {
+        "intent": "查看今天报错统计",
+        "tool": "resilience_stats",
+        "params": { "query": "today" }
+      },
+      {
+        "intent": "查看 mimo-v2.5 的错误率",
+        "tool": "resilience_stats",
+        "params": { "query": "mimo-v2.5" }
+      },
+      {
+        "intent": "修改超时重试策略为指数退避",
+        "tool": "resilience_strategies",
+        "params": { "action": "update", "strategyName": "default-exponential", "updates": { "type": "exponential" } }
+      },
+      {
+        "intent": "查看当前所有策略配置",
+        "tool": "resilience_strategies",
+        "params": { "action": "list" }
+      },
+      {
+        "intent": "生成今日错误日报",
+        "tool": "resilience_report",
+        "params": { "reportType": "daily" }
+      },
+      {
+        "intent": "打开错误统计页面",
+        "tool": "resilience_dashboard",
+        "params": { "action": "open" }
+      },
+      {
+        "intent": "打开监控面板",
+        "tool": "resilience_dashboard",
+        "params": { "action": "open" }
+      },
+      {
+        "intent": "打开 resilience 面板",
+        "tool": "resilience_dashboard",
+        "params": { "action": "open" }
+      },
+      {
+        "intent": "打开重试策略网页",
+        "tool": "resilience_dashboard",
+        "params": { "action": "open" }
+      }
+    ]
+  }
+}

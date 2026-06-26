@@ -1,0 +1,21 @@
+{
+  "name": "Relate Coach",
+  "slug": "relate-coach",
+  "description": "Relate Coach helps users improve everyday communication, set healthier boundaries, de-escalate conflict, and maintain better relationships through practical self-help frameworks such as nonviolent communication, active listening, and respectful assertiveness.",
+  "version": "1.0.2",
+  "author": "Golden Bean",
+  "tags": ["communication", "relationships", "conflict", "boundary-setting", "interpersonal-skills", "self-help"],
+  "safety": {
+    "no_diagnosis": true,
+    "no_treatment": true,
+    "crisis_escalation": false,
+    "boundary_check": true,
+    "disclaimer_required": true,
+    "scope_limitation": true
+  },
+  "modules": {
+    "handler": "scripts/handler.py",
+    "boundary": "scripts/boundary_checker.py"
+  },
+  "entry": "scripts/handler.py"
+}

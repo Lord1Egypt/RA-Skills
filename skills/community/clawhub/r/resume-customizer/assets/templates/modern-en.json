@@ -1,0 +1,224 @@
+{
+  "template_name": "modern-en",
+  "template_description": "Modern English resume template with clean, contemporary design while maintaining ATS compatibility",
+  "language": "en",
+  "style": "modern",
+  "sections": {
+    "contact": {
+      "name": "",
+      "email": "",
+      "phone": "",
+      "location": "",
+      "linkedin": "",
+      "github": "",
+      "website": "",
+      "notes": "Clean header with name prominent. Contact info in single line below name."
+    },
+    "summary": {
+      "title": "Professional Summary",
+      "content": "",
+      "guidelines": "2-3 impactful sentences. Lead with strongest qualification. Include quantifiable impact where possible.",
+      "example": "Results-driven Software Engineer with 8+ years building high-scale distributed systems. Reduced infrastructure costs by 40% while improving system reliability from 99.5% to 99.99%. Expert in Go, Kubernetes, and cloud-native architectures."
+    },
+    "work_experience": {
+      "title": "Experience",
+      "order": "reverse-chronological",
+      "entries": [
+        {
+          "title": "",
+          "company": "",
+          "location": "",
+          "start_date": "",
+          "end_date": "",
+          "bullet_points": [],
+          "guidelines": "3-5 bullet points. Lead with impact metric. Use present tense for current role.",
+          "example_bullet": "Reduced deployment frequency from weekly to multiple times daily by implementing CI/CD pipelines, cutting release cycle time by 90%"
+        }
+      ],
+      "notes": "Company name and title on same line for compact layout. Focus on recent 3-4 roles."
+    },
+    "education": {
+      "title": "Education",
+      "order": "reverse-chronological",
+      "entries": [
+        {
+          "degree": "",
+          "field": "",
+          "institution": "",
+          "graduation_date": "",
+          "gpa": "",
+          "honors": [],
+          "notes": "GPA only if >3.5. For experienced candidates, keep this section brief."
+        }
+      ]
+    },
+    "skills": {
+      "title": "Skills",
+      "layout": "inline-categories",
+      "categories": {
+        "languages": {
+          "title": "Languages",
+          "items": [],
+          "examples": ["Python", "Go", "TypeScript", "Rust"]
+        },
+        "frameworks": {
+          "title": "Frameworks",
+          "items": [],
+          "examples": ["React", "Next.js", "FastAPI", "Kubernetes"]
+        },
+        "infrastructure": {
+          "title": "Infrastructure",
+          "items": [],
+          "examples": ["AWS", "Terraform", "Docker", "CI/CD"]
+        }
+      },
+      "notes": "Use compact inline format. Group by relevance to target role. Limit to 12-15 skills."
+    },
+    "projects": {
+      "title": "Selected Projects",
+      "entries": [
+        {
+          "name": "",
+          "description": "",
+          "technologies": [],
+          "url": "",
+          "guidelines": "Only include 1-2 most impressive projects. Keep descriptions to one line.",
+          "example": "Open-source Kubernetes operator for automated database failover — 2.3K GitHub stars"
+        }
+      ],
+      "notes": "Optional. Only include projects with measurable impact or significant recognition."
+    },
+    "certifications": {
+      "title": "Certifications",
+      "entries": [
+        {
+          "name": "",
+          "issuing_organization": "",
+          "date_obtained": ""
+        }
+      ],
+      "notes": "Optional. Only list current, relevant certifications."
+    }
+  },
+  "formatting": {
+    "font": {
+      "name": "Calibri",
+      "fallback": "Arial, Helvetica, sans-serif",
+      "size_body": 10.5,
+      "size_headings": 13,
+      "size_name": 22,
+      "notes": "Modern sans-serif for clean look. Calibri is widely available and ATS-friendly."
+    },
+    "spacing": {
+      "margins": 0.6,
+      "line_spacing": 1.1,
+      "section_spacing": 10,
+      "bullet_spacing": 2
+    },
+    "layout": {
+      "columns": 1,
+      "alignment": "left",
+      "notes": "Single column with generous whitespace. Subtle horizontal rules between sections."
+    },
+    "file_format": {
+      "preferred": "docx",
+      "acceptable": "pdf (text-based)"
+    },
+    "color_scheme": {
+      "primary": "#2D3748",
+      "accent": "#3182CE",
+      "text": "#1A202C",
+      "notes": "Muted dark tones with subtle blue accent for headings. No more than 2 colors."
+    }
+  },
+  "ats_guidelines": {
+    "do": [
+      "Use standard section headings",
+      "Keep single-column layout",
+      "Use standard fonts (Calibri, Arial)",
+      "Save as .docx or text-based .pdf",
+      "Include keywords naturally in context"
+    ],
+    "dont": [
+      "Use graphics, icons, or photos",
+      "Use tables or columns",
+      "Use headers/footers for key info",
+      "Use color as the only differentiator",
+      "Include personal information (age, photo, marital status)"
+    ]
+  },
+  "example_resume": {
+    "contact": {
+      "name": "Alex Chen",
+      "email": "alex.chen@email.com",
+      "phone": "(415) 555-0123",
+      "location": "Seattle, WA",
+      "linkedin": "linkedin.com/in/alexchen",
+      "github": "github.com/alexchen",
+      "website": "alexchen.dev"
+    },
+    "summary": "Results-driven Senior Software Engineer with 8+ years building high-scale distributed systems. Reduced infrastructure costs by 40% ($200K annually) while improving system reliability from 99.5% to 99.99%. Expert in Go, Kubernetes, and cloud-native architectures. Passionate about developer experience and platform engineering.",
+    "work_experience": [
+      {
+        "title": "Staff Platform Engineer",
+        "company": "CloudScale Inc.",
+        "location": "Seattle, WA",
+        "start_date": "March 2022",
+        "end_date": "Present",
+        "bullet_points": [
+          "Architected internal developer platform serving 200+ engineers, reducing onboarding time from 2 weeks to 2 days",
+          "Migrated 50+ microservices from EC2 to Kubernetes, cutting infrastructure costs by 35% ($150K/year)",
+          "Designed and implemented multi-region disaster recovery strategy achieving 99.99% uptime SLA",
+          "Built self-service deployment pipeline handling 500+ production deployments per week"
+        ]
+      },
+      {
+        "title": "Senior Software Engineer",
+        "company": "DataFlow Systems",
+        "location": "San Francisco, CA",
+        "start_date": "July 2018",
+        "end_date": "February 2022",
+        "bullet_points": [
+          "Led team of 6 engineers to rebuild data pipeline, increasing throughput from 10TB/day to 50TB/day",
+          "Implemented real-time monitoring and alerting system, reducing mean time to detection from 30 min to 2 min",
+          "Mentored 4 junior engineers through promotion to mid-level within 18 months"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.S.",
+        "field": "Computer Science",
+        "institution": "Stanford University",
+        "graduation_date": "June 2018",
+        "gpa": "3.9/4.0"
+      },
+      {
+        "degree": "B.S.",
+        "field": "Computer Engineering",
+        "institution": "University of Washington",
+        "graduation_date": "June 2016"
+      }
+    ],
+    "skills": {
+      "languages": ["Go", "Python", "TypeScript", "Rust", "Java"],
+      "frameworks": ["Kubernetes", "Terraform", "React", "FastAPI", "gRPC"],
+      "infrastructure": ["AWS", "GCP", "Docker", "Helm", "GitHub Actions", "ArgoCD"]
+    },
+    "projects": [
+      {
+        "name": "KubeSaver",
+        "description": "Open-source Kubernetes cost optimization operator with intelligent pod right-sizing",
+        "technologies": ["Go", "Kubernetes", "Prometheus"],
+        "url": "github.com/alexchen/kubesaver"
+      }
+    ],
+    "certifications": [
+      {
+        "name": "Certified Kubernetes Administrator (CKA)",
+        "issuing_organization": "CNCF",
+        "date_obtained": "January 2023"
+      }
+    ]
+  }
+}

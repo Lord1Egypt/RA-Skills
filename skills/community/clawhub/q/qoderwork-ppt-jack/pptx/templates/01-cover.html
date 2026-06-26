@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Cover</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      background-color: #C2EFC7;
+      font-family: 'PingFang SC', 'Microsoft YaHei', 'PingFang TC', 'Hiragino Sans GB', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    /* 底色层：保证导出 PPT 背景色稳定 */
+    .bg-color {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      background-color: #C2EFC7;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+    /* 背景图：用真实 <img> 作为底图，确保 HTML→PPTX 可抓取 */
+    .bg-image {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    /* 内容层置顶 */
+    .title-block,
+    .desc-block {
+      z-index: 2;
+    }
+    .title-block {
+      position: absolute;
+      left: 120px;
+      top: 100px;
+      width: 872px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .title-block [data-slot="title"] {
+      font-weight: 600;
+      font-size: 80px;
+      line-height: 1.22;
+      color: #000000;
+    }
+    .title-block [data-slot="subtitle"] {
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 1.22;
+      color: #000000;
+    }
+    .desc-block {
+      position: absolute;
+      left: 120px;
+      top: 360px;
+      width: 1360px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .desc-block [data-slot="description"] {
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 1.33;
+      color: #000000;
+      /* PPT 导出不稳定支持 opacity，改为等效灰色 */
+      color: #999999; /* black @ 40% on white */
+    }
+    .desc-block [data-slot="footer"] {
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 1.22;
+      color: #000000;
+      opacity: 0.99;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide" data-template="cover">
+    <div class="bg-color" aria-hidden="true"></div>
+    <img
+      class="bg-image"
+      data-slot="coverBackground"
+      src="https://img.alicdn.com/imgextra/i1/O1CN01xff8dr23BRX3kCkem_!!6000000007217-0-tps-3840-2160.jpg"
+      alt=""
+    >
+    <div class="title-block">
+      <h1 data-slot="title">I am the title</h1>
+      <p data-slot="subtitle">If the title is English, I am the subtitle; if the title is Chinese, I am the English translation</p>
+    </div>
+    <div class="desc-block">
+      <p data-slot="description">I am the theme description of this PPT. The word count can be slightly more and similar to placeholder text.</p>
+      <p data-slot="footer">February 2026 | QoderWork</p>
+    </div>
+  </div>
+</body>
+</html>

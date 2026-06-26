@@ -1,0 +1,21 @@
+{
+  "name": "@robot-id-card/extension",
+  "version": "0.2.0",
+  "description": "Browser extension for carrying Robot ID Card bot identity",
+  "private": true,
+  "scripts": {
+    "build": "npm run bundle && cp -r public/* dist/ && cp manifest.json dist/",
+    "bundle": "esbuild src/background.ts src/popup.ts --bundle --outdir=dist --target=chrome109 --platform=browser",
+    "dev": "esbuild src/background.ts src/popup.ts --bundle --outdir=dist --target=chrome109 --platform=browser --watch",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.sw.json",
+    "test": "echo no tests"
+  },
+  "dependencies": {
+    "@noble/ed25519": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.268",
+    "esbuild": "^0.24.2",
+    "typescript": "^5.4.0"
+  }
+}

@@ -1,0 +1,1 @@
+Two-layer research-paper figure Skill Factory for building evidence-backed specialized figure-making skills, then using them for concrete target-paper figures. v1.0.1 requires generated skills to include a mandatory text-candidate -> visual-candidate setup -> IMAGE_ONLY multi-image candidate board -> candidate-review/selection bridge after every multi-option figure decision.

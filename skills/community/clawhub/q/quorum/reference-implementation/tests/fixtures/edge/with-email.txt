@@ -1,0 +1,8 @@
+Contact information:
+
+John Doe: john.doe@company.com
+Support: support@example.org
+Phone: (555) 234-5678
+SSN: 123-45-6789
+
+Alternative contact: +1 555-987-6543

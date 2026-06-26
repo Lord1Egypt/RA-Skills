@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目依赖关系可视化</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #666666;
+            --accent-color: #FE2C55;
+            --bg-color: #FFFFFF;
+            --section-bg: #F8F9FA;
+            --border-color: #E0E0E0;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            border-bottom: 2px solid #000;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #F8F9FA;
+            border-radius: 8px;
+        }
+        
+        h1 { font-size: 24px; font-weight: bold; color: #000; margin-bottom: 20px; }
+        h2 { font-size: 18px; font-weight: bold; color: #000; border-left: 4px solid #FE2C55; padding-left: 10px; margin-top: 30px; }
+        h3 { font-size: 16px; font-weight: bold; color: #333; margin-top: 20px; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            border: 1px solid #E0E0E0;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background: #FE2C55;
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) { background: #fff; }
+        tr:nth-child(odd) { background: #F8F9FA; }
+        
+        .footer {
+            border-top: 1px solid #E0E0E0;
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+        }
+        
+        .dependency-card {
+            background: #fff;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .dependency-card h4 {
+            margin: 0 0 10px 0;
+            color: #FE2C55;
+        }
+        
+        .mermaid {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #E0E0E0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔗 项目依赖关系可视化</h1>
+            <p>生成时间：2026-03-08 10:50 | 项目数：3 | 依赖关系：6 条</p>
+        </div>
+        
+        <div class="section">
+            <h2>📊 项目依赖总览</h2>
+            
+            <div class="mermaid">
+graph LR
+    subgraph Projects["项目集群"]
+        P1["🔴 感知与行动中心<br/>XM-2026-001<br/>进度：45%"]
+        P2["🟡 地理知识库<br/>XM-2026-002<br/>进度：15%"]
+        P3["✅ 豆包会话自动化<br/>XM-2026-003<br/>进度：100%"]
+    end
+    
+    subgraph Infrastructure["基础设施"]
+        O1["飞书 OAuth 配置"]
+        O2["阿里云 TTS"]
+        O3["酷狗 K8 耳机"]
+    end
+    
+    subgraph External["外部依赖"]
+        E1["Thomas<br/>KML 数据导出"]
+        E2["IT 支持<br/>OAuth 授权"]
+    end
+    
+    P1 --> O1
+    P1 --> O2
+    P2 --> E1
+    P3 --> O2
+    O1 --> E2
+    
+    style P1 fill:#fee2e2,stroke:#EF4444,stroke-width:2px
+    style P2 fill:#fef3c7,stroke:#F59E0B,stroke-width:2px
+    style P3 fill:#d1fae5,stroke:#10B981,stroke-width:2px
+    style O1 fill:#e0e7ff,stroke:#667EEA,stroke-width:2px
+    style O2 fill:#e0e7ff,stroke:#667EEA,stroke-width:2px
+    style O3 fill:#e0e7ff,stroke:#667EEA,stroke-width:2px
+    style E1 fill:#f3e8ff,stroke:#8B5CF6,stroke-width:2px
+    style E2 fill:#f3e8ff,stroke:#8B5CF6,stroke-width:2px
+            </div>
+            
+            <p><strong>图例说明：</strong></p>
+            <ul>
+                <li>🔴 <strong>红色节点</strong> - 紧急重要项目（感知与行动中心）</li>
+                <li>🟡 <strong>黄色节点</strong> - 重要不紧急项目（地理知识库）</li>
+                <li>✅ <strong>绿色节点</strong> - 已完成项目（豆包会话自动化）</li>
+                <li>🔵 <strong>蓝色节点</strong> - 基础设施依赖</li>
+                <li>🟣 <strong>紫色节点</strong> - 外部依赖（人员/部门）</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>🔴 感知与行动中心（XM-2026-001）依赖关系</h2>
+            
+            <div class="dependency-card">
+                <h4>依赖 1：飞书 OAuth 配置</h4>
+                <p><strong>类型：</strong> 技术依赖<br>
+                <strong>状态：</strong> 🟡 等待 authorization code<br>
+                <strong>影响：</strong> 无法打通飞书原生待办任务管理<br>
+                <strong>解决：</strong> 用户提供 authorization code（5 分钟）</p>
+            </div>
+            
+            <div class="dependency-card">
+                <h4>依赖 2：阿里云 TTS</h4>
+                <p><strong>类型：</strong> 技术依赖<br>
+                <strong>状态：</strong> ✅ 已配置<br>
+                <strong>影响：</strong> 优先级提醒语音生成<br>
+                <strong>解决：</strong> 已完成</p>
+            </div>
+            
+            <div class="mermaid">
+graph TB
+    A["🔴 感知与行动中心"] --> B["飞书 OAuth 配置"]
+    A --> C["阿里云 TTS"]
+    B --> D["IT 支持授权"]
+    B --> E["用户 authorization code"]
+    
+    style A fill:#fee2e2,stroke:#EF4444,stroke-width:2px
+    style B fill:#fef3c7,stroke:#F59E0B,stroke-width:2px
+    style C fill:#d1fae5,stroke:#10B981,stroke-width:2px
+    style D fill:#f3e8ff,stroke:#8B5CF6,stroke-width:2px
+    style E fill:#f3e8ff,stroke:#8B5CF6,stroke-width:2px
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🟡 地理知识库（XM-2026-002）依赖关系</h2>
+            
+            <div class="dependency-card">
+                <h4>依赖 1：Thomas KML 数据导出</h4>
+                <p><strong>类型：</strong> 人员依赖<br>
+                <strong>状态：</strong> ⚪ 等待中<br>
+                <strong>影响：</strong> 无法测试 KML 解析功能<br>
+                <strong>解决：</strong> 联系 Thomas 确认导出时间</p>
+            </div>
+            
+            <div class="dependency-card">
+                <h4>依赖 2：Leaflet.js 地图库</h4>
+                <p><strong>类型：</strong> 技术依赖<br>
+                <strong>状态：</strong> ✅ 已选型<br>
+                <strong>影响：</strong> 地图可视化<br>
+                <strong>解决：</strong> 已完成（开源免费）</p>
+            </div>
+            
+            <div class="mermaid">
+graph TB
+    A["🟡 地理知识库"] --> B["Thomas KML 导出"]
+    A --> C["Leaflet.js 地图库"]
+    A --> D["System.Xml KML 解析"]
+    
+    style A fill:#fef3c7,stroke:#F59E0B,stroke-width:2px
+    style B fill:#f3e8ff,stroke:#8B5CF6,stroke-width:2px
+    style C fill:#d1fae5,stroke:#10B981,stroke-width:2px
+    style D fill:#d1fae5,stroke:#10B981,stroke-width:2px
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>✅ 豆包会话自动化系统（XM-2026-003）依赖关系</h2>
+            
+            <div class="dependency-card">
+                <h4>依赖 1：阿里云 TTS</h4>
+                <p><strong>类型：</strong> 技术依赖<br>
+                <strong>状态：</strong> ✅ 已配置<br>
+                <strong>影响：</strong> 专家点评语音生成（已精简为仅每小时提醒使用）<br>
+                <strong>解决：</strong> 已完成</p>
+            </div>
+            
+            <div class="dependency-card">
+                <h4>依赖 2：Chrome 浏览器</h4>
+                <p><strong>类型：</strong> 技术依赖<br>
+                <strong>状态：</strong> ✅ 已安装<br>
+                <strong>影响：</strong> HTML 专家点评自动预览<br>
+                <strong>解决：</strong> 已完成</p>
+            </div>
+            
+            <div class="mermaid">
+graph TB
+    A["✅ 豆包会话自动化"] --> B["阿里云 TTS"]
+    A --> C["Chrome 浏览器"]
+    A --> D["Mermaid.js 图表库"]
+    
+    style A fill:#d1fae5,stroke:#10B981,stroke-width:2px
+    style B fill:#d1fae5,stroke:#10B981,stroke-width:2px
+    style C fill:#d1fae5,stroke:#10B981,stroke-width:2px
+    style D fill:#d1fae5,stroke:#10B981,stroke-width:2px
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📋 依赖关系矩阵</h2>
+            
+            <table>
+                <tr>
+                    <th>项目</th>
+                    <th>依赖项</th>
+                    <th>类型</th>
+                    <th>状态</th>
+                    <th>优先级</th>
+                    <th>解决人</th>
+                </tr>
+                <tr>
+                    <td rowspan="2">感知与行动中心</td>
+                    <td>飞书 OAuth 配置</td>
+                    <td>技术</td>
+                    <td>🟡 等待中</td>
+                    <td>🔴 高</td>
+                    <td>Xiabi + IT</td>
+                </tr>
+                <tr>
+                    <td>阿里云 TTS</td>
+                    <td>技术</td>
+                    <td>✅ 完成</td>
+                    <td>🟡 中</td>
+                    <td>阿福</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">地理知识库</td>
+                    <td>Thomas KML 导出</td>
+                    <td>人员</td>
+                    <td>⚪ 等待中</td>
+                    <td>🟡 中</td>
+                    <td>Thomas</td>
+                </tr>
+                <tr>
+                    <td>Leaflet.js 地图库</td>
+                    <td>技术</td>
+                    <td>✅ 完成</td>
+                    <td>🟢 低</td>
+                    <td>阿福</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">豆包会话自动化</td>
+                    <td>阿里云 TTS</td>
+                    <td>技术</td>
+                    <td>✅ 完成</td>
+                    <td>🟢 低</td>
+                    <td>阿福</td>
+                </tr>
+                <tr>
+                    <td>Chrome 浏览器</td>
+                    <td>技术</td>
+                    <td>✅ 完成</td>
+                    <td>🟢 低</td>
+                    <td>Xiabi</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>🎯 关键路径分析</h2>
+            
+            <div class="mermaid">
+gantt
+    title 项目关键路径甘特图
+    dateFormat  YYYY-MM-DD
+    section 感知与行动中心
+    飞书 OAuth 配置       :crit, active, oauth, 2026-03-08, 1d
+    需求分析             :done, req, 2026-03-01, 15d
+    方案设计             :active, design, 2026-03-16, 15d
+    系统开发             :dev, after design, 45d
+    section 地理知识库
+    KML 数据导出         :crit, kml, 2026-03-08, 3d
+    KML 解析脚本         :after kml, 7d
+    地图可视化           :after kml, 14d
+    section 豆包会话自动化
+    脚本开发             :done, doubao1, 2026-03-05, 2d
+    HTML 标准制定        :done, doubao2, 2026-03-06, 2d
+    测试优化             :done, doubao3, 2026-03-07, 1d
+            </div>
+            
+            <p><strong>关键路径：</strong></p>
+            <ol>
+                <li>🔴 <strong>飞书 OAuth 配置</strong> → 感知与行动中心方案设计 → 系统开发</li>
+                <li>🟡 <strong>Thomas KML 导出</strong> → 地理知识库 KML 解析 → 地图可视化</li>
+            </ol>
+            
+            <p><strong>瓶颈分析：</strong></p>
+            <ul>
+                <li>⚠️ <strong>飞书 OAuth</strong> - 等待用户 authorization code，阻塞感知与行动中心任务管理功能</li>
+                <li>⚠️ <strong>Thomas KML 导出</strong> - 外部人员依赖，阻塞地理知识库测试</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>💡 优化建议</h2>
+            
+            <h3>短期优化（本周）</h3>
+            <ul>
+                <li>✅ <strong>优先解决飞书 OAuth</strong> - 5 分钟搞定，解锁任务管理功能</li>
+                <li>✅ <strong>联系 Thomas 确认 KML 导出时间</strong> - 明确时间点，避免无限期等待</li>
+                <li>✅ <strong>并行开发地理知识库 KML 解析脚本</strong> - 不依赖真实数据，用测试数据先行开发</li>
+            </ul>
+            
+            <h3>中期优化（本月）</h3>
+            <ul>
+                <li>🟡 <strong>建立项目依赖监控机制</strong> - 每周检查依赖状态，提前预警</li>
+                <li>🟡 <strong>减少外部人员依赖</strong> - 寻找替代方案或备份方案</li>
+                <li>🟡 <strong>技术依赖文档化</strong> - 记录所有技术依赖的配置步骤和故障排查指南</li>
+            </ul>
+            
+            <h3>长期优化（本季度）</h3>
+            <ul>
+                <li>⚪ <strong>建立项目组合管理</strong> - 统一视图管理所有项目依赖关系</li>
+                <li>⚪ <strong>自动化依赖检查</strong> - 脚本自动检查依赖状态并通知</li>
+                <li>⚪ <strong>知识库沉淀</strong> - 将依赖解决方案沉淀为知识库文章</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>科学杂志风格 | 小红书视觉 | 阿福生成 🐾</p>
+            <p>文件位置：C:\Users\Xiabi\.openclaw\workspace\project-dependencies-visualization.html</p>
+        </div>
+    </div>
+    
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            gantt: {
+                titleTopMargin: 25,
+                barHeight: 20,
+                barGap: 4,
+                topPadding: 50,
+                sidePadding: 100
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "Resilience Building Architect",
+  "slug": "resilience-building-architect",
+  "version": "1.0.0",
+  "description": "Designs personalized resilience-building practices for adversity navigation and psychological recovery.",
+  "author": "Golden Bean (OpenClaw)",
+  "tags": [
+    "resilience",
+    "mental-health",
+    "adversity",
+    "growth"
+  ],
+  "trigger_keywords": [
+    "build resilience",
+    "bounce back from setback",
+    "resilience practice",
+    "stress recovery",
+    "adversity navigation"
+  ],
+  "language": "en",
+  "outputs": "json",
+  "requires_api": false,
+  "readiness": "development"
+}

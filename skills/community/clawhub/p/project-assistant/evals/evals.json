@@ -1,0 +1,44 @@
+{
+  "evals": [
+    {
+      "id": "eval-0",
+      "prompt": "这个项目的架构是什么？",
+      "description": "架构问题触发测试"
+    },
+    {
+      "id": "eval-1",
+      "prompt": "WiFi功能是怎么实现的？",
+      "description": "功能实现问题触发测试"
+    },
+    {
+      "id": "eval-2",
+      "prompt": "如何构建这个项目？",
+      "description": "构建问题触发测试"
+    },
+    {
+      "id": "eval-3",
+      "prompt": "main函数在哪里？",
+      "description": "位置问题触发测试"
+    },
+    {
+      "id": "eval-4",
+      "prompt": "修改login函数会影响什么？",
+      "description": "影响分析问题触发测试"
+    },
+    {
+      "id": "eval-5",
+      "prompt": "帮我初始化这个项目",
+      "description": "初始化命令触发测试"
+    },
+    {
+      "id": "eval-6",
+      "prompt": "今天天气怎么样？",
+      "description": "非项目问题（不应触发）"
+    },
+    {
+      "id": "eval-7",
+      "prompt": "写一个冒泡排序",
+      "description": "编程问题（不应触发）"
+    }
+  ]
+}

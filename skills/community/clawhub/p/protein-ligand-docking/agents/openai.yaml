@@ -1,0 +1,4 @@
+interface:
+  display_name: "Protein-Ligand Docking"
+  short_description: "Guide protein-ligand docking and result interpretation"
+  default_prompt: "Use $protein-ligand-docking to assess whether a ligand can plausibly bind a target protein and explain the confidence clearly."

@@ -1,0 +1,292 @@
+/* ============================================================
+   redline injected styles
+   所有 class 加 rl- 前缀，避免污染宿主页面
+   z-index 用 2147483600+，几乎置顶但留余量
+   ============================================================ */
+
+:root {
+  --rl-primary: #2563eb;
+  --rl-primary-hover: #1d4ed8;
+  --rl-danger: #dc2626;
+  --rl-bg: #ffffff;
+  --rl-text: #1f2937;
+  --rl-muted: #6b7280;
+  --rl-border: #e5e7eb;
+  --rl-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --rl-accent: #f97316;
+}
+
+/* ---------- annotate mode global ---------- */
+body.rl-active,
+body.rl-active * {
+  cursor: crosshair !important;
+}
+
+/* ---------- toolbar ---------- */
+.rl-toolbar {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 2147483600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  background: var(--rl-bg);
+  border: 1px solid var(--rl-border);
+  border-radius: 10px;
+  box-shadow: var(--rl-shadow);
+  font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    sans-serif;
+  color: var(--rl-text);
+}
+
+.rl-btn {
+  appearance: none;
+  border: 1px solid var(--rl-border);
+  background: #f9fafb;
+  color: var(--rl-text);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  line-height: 1;
+}
+.rl-btn:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+.rl-btn-primary {
+  background: var(--rl-primary);
+  color: #fff;
+  border-color: var(--rl-primary);
+}
+.rl-btn-primary:hover {
+  background: var(--rl-primary-hover);
+  border-color: var(--rl-primary-hover);
+}
+.rl-btn-active {
+  background: var(--rl-accent);
+  border-color: var(--rl-accent);
+  color: #fff;
+}
+.rl-btn-active:hover {
+  background: #ea580c;
+  border-color: #ea580c;
+}
+.rl-btn-danger {
+  background: #fff;
+  color: var(--rl-danger);
+  border-color: #fecaca;
+}
+.rl-btn-danger:hover {
+  background: #fef2f2;
+  border-color: var(--rl-danger);
+}
+.rl-btn-loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+.rl-btn-success {
+  background: #16a34a;
+  color: #fff;
+  border-color: #16a34a;
+}
+.rl-btn-success:hover {
+  background: #15803d;
+  border-color: #15803d;
+}
+
+.rl-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  margin-left: 2px;
+  background: #f3f4f6;
+  color: var(--rl-muted);
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ---------- hover outline ---------- */
+.rl-hover {
+  position: absolute;
+  display: none;
+  pointer-events: none;
+  border: 2px solid var(--rl-primary);
+  background: rgba(37, 99, 235, 0.08);
+  border-radius: 2px;
+  z-index: 2147483500;
+  transition: all 0.05s linear;
+}
+
+/* ---------- numbered badge on annotated element ---------- */
+.rl-badge {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--rl-accent);
+  color: #fff;
+  font: 600 12px/24px -apple-system, BlinkMacSystemFont, sans-serif;
+  text-align: center;
+  cursor: pointer;
+  z-index: 2147483550;
+  box-shadow: 0 2px 6px rgba(249, 115, 22, 0.4);
+  user-select: none;
+  transition: transform 0.15s;
+}
+.rl-badge:hover {
+  transform: scale(1.15);
+}
+
+/* ---------- popover (comment editor) ---------- */
+.rl-popover {
+  position: absolute;
+  width: 320px;
+  background: var(--rl-bg);
+  border: 1px solid var(--rl-border);
+  border-radius: 10px;
+  box-shadow: var(--rl-shadow);
+  z-index: 2147483600;
+  padding: 12px;
+  font: 13px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    sans-serif;
+  color: var(--rl-text);
+}
+.rl-popover-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--rl-text);
+}
+.rl-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px;
+  border: 1px solid var(--rl-border);
+  border-radius: 6px;
+  font: inherit;
+  resize: vertical;
+  box-sizing: border-box;
+  outline: none;
+  color: var(--rl-text);
+  background: #fff;
+}
+.rl-textarea:focus {
+  border-color: var(--rl-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+.rl-popover-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  align-items: center;
+}
+.rl-popover-actions > span {
+  flex: 1;
+}
+
+/* ---------- sidebar ---------- */
+.rl-sidebar {
+  position: fixed;
+  top: 72px;
+  right: 16px;
+  width: 280px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  background: var(--rl-bg);
+  border: 1px solid var(--rl-border);
+  border-radius: 10px;
+  box-shadow: var(--rl-shadow);
+  z-index: 2147483540;
+  padding: 10px;
+  font: 13px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    sans-serif;
+  color: var(--rl-text);
+}
+.rl-sidebar-title {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rl-border);
+  color: var(--rl-text);
+}
+.rl-sidebar-empty {
+  font-size: 12px;
+  color: var(--rl-muted);
+  padding: 16px 4px;
+  text-align: center;
+  line-height: 1.6;
+}
+.rl-sidebar-item {
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 4px;
+  border: 1px solid transparent;
+  transition: background 0.15s, border-color 0.15s;
+}
+.rl-sidebar-item:hover {
+  background: #f9fafb;
+  border-color: var(--rl-border);
+}
+.rl-sidebar-id {
+  display: inline-block;
+  background: var(--rl-accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 8px;
+  margin-bottom: 4px;
+}
+.rl-sidebar-text {
+  font-size: 12px;
+  color: var(--rl-muted);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rl-sidebar-comment {
+  font-size: 13px;
+  color: var(--rl-text);
+  line-height: 1.5;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- toast ---------- */
+.rl-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  background: rgba(17, 24, 39, 0.95);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    sans-serif;
+  z-index: 2147483600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  max-width: 80vw;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+.rl-toast-show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}

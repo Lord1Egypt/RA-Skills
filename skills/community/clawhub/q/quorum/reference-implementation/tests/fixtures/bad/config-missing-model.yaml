@@ -1,0 +1,11 @@
+version: "1.0"
+
+pipeline:
+  name: broken-pipeline
+
+agents:
+  - name: researcher
+    description: Analyzes papers
+    # MISSING: model field
+    tools:
+      - file_read

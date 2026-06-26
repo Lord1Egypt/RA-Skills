@@ -1,0 +1,13 @@
+{
+  "name": "protracted-strategy",
+  "version": "1.0.0",
+  "displayName": "持久战略",
+  "description": "当面对长期复杂任务，需要制定长期计划时调用",
+  "author": "求是 Skill",
+  "homepage": "https://github.com/skytodmoon/qiushi-skill",
+  "tags": ["方法论", "毛泽东思想", "持久战略"],
+  "requires": {
+    "env": []
+  },
+  "files": []
+}

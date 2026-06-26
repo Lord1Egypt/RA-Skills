@@ -1,0 +1,123 @@
+{
+  "name": "Documentation Quality Rubric",
+  "domain": "documentation",
+  "version": "1.0",
+  "description": "Evaluates project documentation for claim discipline, internal consistency, navigation coherence, and implementation honesty. Designed for READMEs, specs, changelogs, tutorials, and user-facing guides. Complements mechanical checks (validate-docs.py) with semantic and narrative evaluation.",
+  "companion_tools": [
+    {
+      "tool": "tools/validate-docs.py",
+      "relationship": "complementary",
+      "note": "validate-docs.py handles deterministic mechanical checks: version consistency across files, critic counts vs critic-status.yaml, DEC-019 denominator fractions, and file existence. This rubric handles semantic evaluation: claim accuracy, narrative coherence, navigation structure, and boundary discipline. Run validate-docs.py BEFORE this rubric — its output can serve as evidence for DOC-002, DOC-003, and DOC-005."
+    }
+  ],
+  "criteria": [
+    {
+      "id": "DOC-001",
+      "criterion": "Every capability claim matches the actual shipped state — no features described as working that are specified-only or planned",
+      "severity": "CRITICAL",
+      "evidence_required": "Quote the claim, then show evidence it is not implemented (e.g., 'learning memory' described as active when code shows it is not wired up)",
+      "why": "Overclaiming is the #1 credibility killer for open source projects. One false claim undermines all true ones.",
+      "category": "claim_discipline",
+      "deterministic": false
+    },
+    {
+      "id": "DOC-002",
+      "criterion": "Numeric claims are accurate — critic counts, test counts, check counts, coverage percentages match reality",
+      "severity": "HIGH",
+      "evidence_required": "Quote the numeric claim and show the actual count from source code, test output, or canonical status files (e.g., critic-status.yaml) that contradicts it",
+      "why": "Stale numbers (e.g., '10 checks' when 12 exist, '9 critics' when 6 are shipped) signal unmaintained docs.",
+      "category": "claim_discipline",
+      "deterministic": false
+    },
+    {
+      "id": "DOC-003",
+      "criterion": "Version numbers are consistent across all documents — no file says v0.3.0 while another says v0.5.1",
+      "severity": "HIGH",
+      "evidence_required": "Quote the version references from two or more files that disagree",
+      "why": "Inconsistent versions confuse users about what release they are reading about.",
+      "category": "consistency",
+      "deterministic": false
+    },
+    {
+      "id": "DOC-004",
+      "criterion": "Implementation status markers are present and accurate for all major components — shipped features are not marked as planned, and vice versa",
+      "severity": "HIGH",
+      "evidence_required": "Quote a component described without status markers, or with incorrect markers (e.g., marked 'not yet built' but present in codebase, or marked 'shipped' but not callable)",
+      "why": "Users and contributors need to know what works today vs what is planned. Stale status markers are a special case of overclaiming.",
+      "category": "claim_discipline",
+      "deterministic": false
+    },
+    {
+      "id": "DOC-005",
+      "criterion": "All internal cross-references resolve — links to other docs, sections, or files point to targets that exist at the referenced path",
+      "severity": "HIGH",
+      "evidence_required": "Quote the link or reference and show the target does not exist, has been renamed, or has moved to a different path",
+      "why": "Broken links are the most common defect after file restructuring. Every broken link is a dead end for a user trying to learn the system.",
+      "category": "consistency",
+      "deterministic": true
+    },
+    {
+      "id": "DOC-006",
+      "criterion": "No internal or proprietary references leak into public-facing docs — no workspace paths, internal project names, private repo references, or team member names",
+      "severity": "CRITICAL",
+      "evidence_required": "Quote the text containing the internal reference (e.g., absolute paths, internal tool names, private repo URLs, team names)",
+      "why": "Leaking internal structure undermines professional credibility and may expose sensitive organizational information.",
+      "category": "boundary",
+      "deterministic": false
+    },
+    {
+      "id": "DOC-007",
+      "criterion": "Examples and code snippets are runnable — CLI commands use correct syntax, import paths match the actual package structure, output samples reflect current tool behavior",
+      "severity": "HIGH",
+      "evidence_required": "Quote the example and identify the specific error (wrong flag name, nonexistent module, incorrect syntax, outdated output format)",
+      "why": "Broken examples in docs are the fastest way to lose a new user during onboarding.",
+      "category": "accuracy",
+      "deterministic": false
+    },
+    {
+      "id": "DOC-008",
+      "criterion": "Navigation hubs (README, docs index, table of contents) link to all documentation files in their scope — no orphaned docs that are unreachable from any hub",
+      "severity": "MEDIUM",
+      "evidence_required": "List the documentation files that exist on disk but are not linked from any navigation hub or table of contents",
+      "why": "Orphaned docs are invisible docs. If a user can't discover a file through navigation, it effectively doesn't exist.",
+      "category": "navigation",
+      "deterministic": true
+    },
+    {
+      "id": "DOC-009",
+      "criterion": "Onboarding progression is coherent — entry points (README, QUICK_START) lead logically to deeper docs without circular references or missing steps",
+      "severity": "MEDIUM",
+      "evidence_required": "Trace the onboarding path from README and identify where the reader hits a dead end, a circular loop, or a prerequisite that was never introduced",
+      "why": "Documentation is a directed graph. If the happy path has gaps, new users fall off at the first missing link.",
+      "category": "navigation",
+      "deterministic": false
+    },
+    {
+      "id": "DOC-010",
+      "criterion": "Tone and voice are consistent within each document — no unexplained shifts between casual first-person and formal third-person",
+      "severity": "LOW",
+      "evidence_required": "Quote two passages from the same document that use conflicting voice or register",
+      "why": "Inconsistent voice makes a project feel unpolished and confuses the reader about who is speaking.",
+      "category": "quality",
+      "deterministic": false
+    },
+    {
+      "id": "DOC-011",
+      "criterion": "Changelogs and release notes accurately reflect what was actually changed — no omitted breaking changes, no listed changes that weren't included in the release",
+      "severity": "HIGH",
+      "evidence_required": "Compare the changelog entry against the actual git diff or release contents and identify discrepancies (missing entries, phantom entries, misattributed versions)",
+      "why": "Changelogs are the trust contract between maintainers and users. Inaccurate changelogs erode update confidence.",
+      "category": "accuracy",
+      "deterministic": false
+    },
+    {
+      "id": "DOC-012",
+      "criterion": "No stale 'coming soon', 'TODO', 'not yet implemented', or placeholder text remains for features that have since shipped",
+      "severity": "MEDIUM",
+      "evidence_required": "Quote the placeholder text and show that the referenced feature is now implemented in the codebase",
+      "why": "Stale placeholders make shipped features look unfinished and confuse contributors about what work remains.",
+      "category": "claim_discipline",
+      "deterministic": false
+    }
+  ]
+}

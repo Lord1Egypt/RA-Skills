@@ -1,0 +1,21 @@
+{
+  "name": "py_mnn_kb",
+  "display_name": "MNN Local Knowledge Base",
+  "description": "Lightweight local knowledge base retrieval skill based on MNN inference. Offline, low power, privacy-first, no GPU required.",
+  "author": "er6y",
+  "version": "1.0.0",
+  "language": "python",
+  "type": "knowledge",
+  "tags": [
+    "mnn",
+    "knowledge",
+    "retrieval",
+    "local",
+    "offline",
+    "embedding"
+  ],
+  "entry": "main:PyMNNKBSkill",
+  "config": "config.example.json",
+  "repo": "https://github.com/er6y/py_mnn_kb",
+  "license": "MIT"
+}

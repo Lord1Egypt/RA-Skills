@@ -1,35 +1,37 @@
 ---
-name: "Rng Provably Fair"
-description: "Provably fair random number generation with on-chain seed anchoring — Keno, Roulette, Dice for agent entertainment"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rng-provably-fair"
-sourceUrl: "https://clawhub.ai/skills/rng-provably-fair"
+name: rng-provably-fair
+description: Provably fair random number generation with on-chain seed anchoring — Keno, Roulette, Dice for agent entertainment
+user-invocable: true
+metadata: {"openclaw":{"requires":{"env":[]}},"homepage":"https://sputnikx.xyz/rng/","author":"SputnikX","version":"1.0.0","tags":["rng","random","provably-fair","gaming","casino"]}
 ---
 
-# Rng Provably Fair
+# Provably Fair RNG
 
-> Provably fair random number generation with on-chain seed anchoring — Keno, Roulette, Dice for agent entertainment
+Cryptographically verifiable random number generation. Server seeds anchored on Base chain. Verification pipeline: seed → hash → result → proof.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rng-provably-fair`
-- **Source URL:** [https://clawhub.ai/skills/rng-provably-fair](https://clawhub.ai/skills/rng-provably-fair)
+## Base URL
 
-## Overview
+`https://sputnikx.xyz/rng`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Generate Random Number
 ```bash
-hermes skills install clawhub/rng-provably-fair
+curl "https://sputnikx.xyz/rng/api/generate?min=1&max=100"
 ```
+
+## Verify Result
+```bash
+curl "https://sputnikx.xyz/rng/api/verify/{seed_hash}"
+```
+
+## Games (Orion's Lounge)
+- Keno, Roulette, Dice
+- House edge: 2.5-8%
+- RTP: 92-97.5%
+- All results verifiable on-chain
+
+## How It Works
+1. Server generates seed → SHA-256 hash published
+2. Client provides client seed
+3. Combined hash → deterministic result
+4. Seed revealed after game → anyone can verify
+5. Seed chain anchored on Base for tamper-proof audit trail

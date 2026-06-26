@@ -1,0 +1,24 @@
+﻿{
+    "mail_check":  {
+                       "enable":  true,
+                       "check_interval_min":  30
+                   },
+    "alarm":  {
+                  "channels":  [
+                                   "mx"
+                               ]
+              },
+    "task_monitor":  {
+                         "enable":  true,
+                         "check_interval_min":  1
+                     },
+    "heartbeat":  {
+                      "enable":  true,
+                      "interval_min":  5
+                  },
+    "auto_claim_tasks":  {
+                             "enable":  false,
+                             "min_bounty":  1,
+                             "max_difficulty":  "easy"
+                         }
+}

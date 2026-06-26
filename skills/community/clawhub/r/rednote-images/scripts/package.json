@@ -1,0 +1,9 @@
+{
+  "name": "rednote-images-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Utilities for rednote-images",
+  "scripts": {
+    "test": "npx -y bun test"
+  }
+}

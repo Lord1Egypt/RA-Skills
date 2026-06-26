@@ -1,0 +1,61 @@
+{
+  "morning": {
+    "name": "早安手绘风日签",
+    "slug": "morning_greeting",
+    "psd": "templates/morning_greeting/早安手绘风日签__2026-05-31+17_54_52.psd",
+    "size": "720x1280 px",
+    "scene": "早安问候 / 日签打卡 / 励志海报",
+    "editable": [
+      {"layer": "图层14", "field": "文案1", "example": "热爱生活", "max_len": 4},
+      {"layer": "图层19", "field": "文案2", "example": "勇敢向前", "max_len": 4},
+      {"layer": "图层11", "field": "问候语1", "example": "(早安", "max_len": 3},
+      {"layer": "图层12", "field": "问候语2", "example": "你好）", "max_len": 3},
+      {"layer": "图层23", "field": "日期(年)", "example": "(2026)", "max_len": 6},
+      {"layer": "图层24", "field": "日期(月日)", "example": "(06/01)", "max_len": 7},
+      {"layer": "图层3", "field": "英文装饰1", "example": "ORNING", "max_len": 6},
+      {"layer": "图层4", "field": "英文装饰2", "example": "M", "max_len": 1},
+      {"layer": "图层8", "field": "英文装饰3", "example": "G", "max_len": 1},
+      {"layer": "图层9", "field": "英文装饰4", "example": "OOD", "max_len": 3}
+    ],
+    "fonts": ["AlexandriaFloral.otf", "AlibabaPuHuiTi-2-55-Regular.otf", "NanxGanbeiGothic.ttf"]
+  },
+  "tech": {
+    "name": "炫彩风科技邀请函",
+    "slug": "tech_invite",
+    "psd": "templates/tech_invite/炫彩风科技邀请函手机海报__2026-05-31+17_55_33.psd",
+    "size": "720x1280 px",
+    "scene": "科技峰会 / 产品发布 / 行业交流会邀请函",
+    "editable": [
+      {"layer": "图层16", "field": "活动名称", "example": "第七届国际高新技术交流会", "max_len": 20},
+      {"layer": "图层3", "field": "标题", "example": "邀请函", "max_len": 3},
+      {"layer": "图层5", "field": "邀请语", "example": "诚邀各位嘉宾莅临", "max_len": 10},
+      {"layer": "图层7", "field": "主题标语", "example": "万物向新  局势而生", "max_len": 14},
+      {"layer": "图层13", "field": "星期", "example": "星期六", "max_len": 3},
+      {"layer": "图层11", "field": "日期", "example": "05.07", "max_len": 5},
+      {"layer": "图层12", "field": "时间", "example": "9:00-16:00", "max_len": 12},
+      {"layer": "图层9", "field": "地址", "example": "北京市朝阳区创客路66号", "max_len": 20},
+      {"layer": "图层15", "field": "英文标题", "example": "INTERNATIONAL HI-TECH FAIR", "max_len": 30}
+    ],
+    "fonts": ["HuXiaoBo-NanShenTianTuan-2.ttf", "MrsSaintDelafield-Regular.ttf", "NewYork_4.otf", "NotoSansSC-Regular.ttf", "SourceHanSansCN-Regular.otf"]
+  },
+  "doodle": {
+    "name": "手绘涂鸦招聘海报",
+    "slug": "doodle_recruit",
+    "psd": "templates/doodle_recruit/手绘涂鸦招聘海报__2026-05-31+17_58_18.psd",
+    "size": "1284x2778 px",
+    "scene": "创意招聘 / 互联网公司 / 设计师岗位",
+    "editable": [
+      {"layer": "图层25", "field": "招聘标题", "example": "我们需要以下职位", "max_len": 10},
+      {"layer": "图层28", "field": "职位1名称", "example": "平面设计师", "max_len": 6},
+      {"layer": "图层29", "field": "职位1要求", "example": "（5年以上带团队经验）", "max_len": 14},
+      {"layer": "图层30", "field": "职位2名称", "example": "UI设计师", "max_len": 5},
+      {"layer": "图层31", "field": "职位2要求", "example": "（5年以上带团队经验）", "max_len": 14},
+      {"layer": "图层18", "field": "吸引标语1", "example": "钱多事少！", "max_len": 6},
+      {"layer": "图层17", "field": "吸引标语2", "example": "人才速来", "max_len": 4},
+      {"layer": "图层34", "field": "福利待遇", "example": "工作时间:周末双休，弹性上班时间", "max_len": 30},
+      {"layer": "图层35", "field": "投递邮箱", "example": "简历请投递至邮箱chuangkit6688@ckt.com", "max_len": 40},
+      {"layer": "图层36", "field": "公司地址", "example": "我们在：北京市朝阳区创客路66号", "max_len": 30}
+    ],
+    "fonts": ["AlibabaPuHuiTi-2-55-Regular.otf", "Dream-Han-Serif-CNY.ttf"]
+  }
+}

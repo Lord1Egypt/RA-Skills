@@ -1,35 +1,49 @@
 ---
-name: "Privacy Policy Generator"
-description: "Generate and check privacy policy documents. Use when creating a privacy policy from scratch, checking existing policy completeness, or adding GDPR and CCPA..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/privacy-policy-generator"
-sourceUrl: "https://clawhub.ai/skills/privacy-policy-generator"
+name: "privacy-policy-generator"
+description: "Generate and check privacy policy documents. Use when creating a privacy policy from scratch, checking existing policy completeness, or adding GDPR and CCPA compliance clauses."
 ---
 
 # Privacy Policy Generator
 
-> Generate and check privacy policy documents. Use when creating a privacy policy from scratch, checking existing policy completeness, or adding GDPR and CCPA...
+## Triggers on
+privacy policy, generate privacy policy, GDPR privacy, CCPA privacy, check privacy policy, privacy policy template
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/privacy-policy-generator`
-- **Source URL:** [https://clawhub.ai/skills/privacy-policy-generator](https://clawhub.ai/skills/privacy-policy-generator)
+## What This Skill Does
+Generate and check privacy policy documents. Use when creating a privacy policy from scratch, checking existing policy completeness, or adding GDPR and CCPA compliance clauses.
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Commands
+### generate
 ```bash
-hermes skills install clawhub/privacy-policy-generator
+bash scripts/script.sh generate [args]
 ```
+
+### check
+```bash
+bash scripts/script.sh check [args]
+```
+
+### gdpr
+```bash
+bash scripts/script.sh gdpr [args]
+```
+
+### ccpa
+```bash
+bash scripts/script.sh ccpa [args]
+```
+
+### update
+```bash
+bash scripts/script.sh update [args]
+```
+
+### help
+```bash
+bash scripts/script.sh help
+```
+
+## Requirements
+- bash 4+
+- python3 (standard library)
+
+Powered by BytesAgain | bytesagain.com

@@ -1,0 +1,41 @@
+# RegexGuard -- lefthook configuration
+# Installed by: regexguard hooks install
+# Documentation: https://regexguard.pages.dev/docs/hooks
+#
+# This configuration integrates RegexGuard with git hooks via lefthook.
+# Pre-commit: scans staged files for regex issues (blocks on critical/high)
+# Pre-push: runs full scan of the working tree before push
+
+pre-commit:
+  parallel: true
+  commands:
+    regexguard-check:
+      run: |
+        REGEXGUARD_SKILL_DIR="${REGEXGUARD_SKILL_DIR:-$HOME/.openclaw/skills/regexguard}"
+        if [[ -f "$REGEXGUARD_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$REGEXGUARD_SKILL_DIR/scripts/patterns.sh"
+          source "$REGEXGUARD_SKILL_DIR/scripts/analyzer.sh"
+          hook_regexguard_check
+        else
+          echo "[RegexGuard] Skill not found at $REGEXGUARD_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Regex issues detected in staged files!
+        Run 'regexguard scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).
+
+pre-push:
+  parallel: true
+  commands:
+    regexguard-full-scan:
+      run: |
+        REGEXGUARD_SKILL_DIR="${REGEXGUARD_SKILL_DIR:-$HOME/.openclaw/skills/regexguard}"
+        if [[ -f "$REGEXGUARD_SKILL_DIR/scripts/dispatcher.sh" ]]; then
+          bash "$REGEXGUARD_SKILL_DIR/scripts/dispatcher.sh" --path . --format text
+        else
+          echo "[RegexGuard] Skill not found at $REGEXGUARD_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        RegexGuard detected regex quality issues in your codebase.
+        Run 'regexguard scan --verbose' for detailed findings.
+        Fix critical/high issues before pushing.

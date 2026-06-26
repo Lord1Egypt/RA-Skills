@@ -1,35 +1,174 @@
 ---
-name: "（司库系统）API 全生命周期管理智能 Skill"
-description: "（司库系统）API 全生命周期管理智能 Skill"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/psbc-treasury-api"
-sourceUrl: "https://clawhub.ai/skills/psbc-treasury-api"
+name: psbc-treasury-api
+description: （司库系统）API 全生命周期管理智能 Skill
+tools: [json-parser, http-client, schema-validator, code-generator]
+trigger: [财资系统接口，邮储财资 API，601113 接口，邮储银行财资系统，财资系统 API 列表，PSBC treasury，司库系统 API]
 ---
+version: 1.0.0
+
+author: tanghaowen
 
 # （司库系统）API 全生命周期管理智能 Skill
 
-> （司库系统）API 全生命周期管理智能 Skill
+## 概述
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/psbc-treasury-api`
-- **Source URL:** [https://clawhub.ai/skills/psbc-treasury-api](https://clawhub.ai/skills/psbc-treasury-api)
+本技能提供中国邮政储蓄银行财资管理系统统一前置平台的完整接口能力，包括：
 
-## Overview
+- 📋 **接口清单查询** - 列出所有可用 API
+- 📖 **接口规范详情** - HTTP 方法、请求路径、报文格式、响应结构
+- 🔢 **响应码查询** - 标准码与业务码的中英文说明
+- 🧪 **报文验证** - JSON Schema 校验、字段合法性检查
+- 🔧 **示例生成** - curl/Postman/Python 可运行示例
+- 🎭 **Mock 模拟** - 预设成功/失败响应、延迟、异常场景
 
+## 使用场景
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/psbc-treasury-api
+当用户询问以下内容时使用本技能：
+
+1. "财资系统有哪些接口？"
+2. "601113 接口怎么调用？"
+3. "帮我生成一个支付接口的 curl 示例"
+4. "验证这个请求报文是否正确"
+5. "模拟一个余额查询的响应"
+6. "ERR_INSUFFICIENT_BALANCE 是什么意思？"
+
+## 核心能力
+
+### 1. 接口清单
+
+| 交易码 | 接口名称 | 安全级别 |
+|--------|----------|----------|
+| 601113 | 查询租户下直连账户列表 | 10 |
+| 601114 | 批量工资代发 | 10 |
+| 601115 | 批量工资代发结果查询 | 10 |
+| 601116 | 生成单笔支付申请单或支付单 | 10 |
+| 601117 | 单笔支付申请单或者支付单结果查询 | 10 |
+| 601118 | 账户余额实时查询 | 10 |
+| 601119 | 查询明细 | 10 |
+| 601120 | 账户历史余额查询 | 10 |
+| 601203 | 明细关联回单信息查询 | 15 |
+| 601303 | 查询资金归集明细 | 10 |
+| 601304 | 手工下拨 | 10 |
+| 601311 | 融资中心付款单获取 | 10 |
+| 601324 | 新增申请单 | 10 |
+| 601325 | 申请单结果查询 | 10 |
+| 601383 | 获取免密登录令牌 | 10 |
+| 601417 | 资金计划科目同步 | 10 |
+| 601418 | 资金计划填报 | 10 |
+| 601419 | 资金计划追加 | 10 |
+| 601420 | 资金计划占用情况查询 | 10 |
+| 601732 | 手工下拨结果查询 | 10 |
+
+### 2. 接口规范
+
+**基础信息：**
+- 通讯方式：HTTPS + POST
+- Content-Type：`application/json;charset=UTF-8`
+- 字符编码：UTF-8
+
+### 3. 报文结构
+
+**公共请求参数 (txComm)：**
+```json
+{
+  "txComm": {
+    "sysTrackNo": "32 位系统跟踪号",
+    "reqSysCode": "12 位接入系统代码",
+    "txCode": "6 位交易码",
+    "txTime": "yyyyMMddHHmmssSSS",
+    "securityLevel": "10 或 15",
+    "sign": "签名值",
+    "bankCertSN": "银行证书序列号 (安全级别 10 必输)",
+    "userCertSN": "接入系统证书序列号",
+    "encData": "报文密文 (安全级别 10 必输)",
+    "encKey": "加密秘钥密文 (安全级别 10 必输)"
+  }
+}
 ```
+
+### 4. 响应码
+
+**标准响应码：**
+| 代码 | 说明 |
+|------|------|
+| 200 | 请求成功 |
+| 400 | 请求参数错误 |
+| 401 | 认证失败 |
+| 403 | 权限不足 |
+| 429 | 请求限流 |
+| 500 | 服务器内部错误 |
+
+**业务响应码：**
+| 代码 | 说明 | 处理建议 |
+|------|------|----------|
+| 000000 | 操作成功 | - |
+| 010002 | 查询无记录 | 检查查询条件 |
+| 020300 | 对方账号不合法 | 核实收款账号 |
+| 020301 | 未查询到开户行信息 | 检查联行号 |
+| 020302 | 查询无记录 | 确认数据存在性 |
+| 999990 | 非法参数异常 | 检查报文格式 |
+
+## 使用方法
+
+### 查询接口列表
+```
+列出所有财资系统 API 接口
+```
+
+### 获取接口详情
+```
+601113 接口的详细规范
+查询租户下直连账户列表的报文格式
+```
+
+### 生成示例代码
+```
+生成 601118 接口的 curl 示例
+帮我写一个 Python 调用 601116 的代码
+```
+
+### 报文验证
+```
+验证这个请求报文是否正确：{...}
+检查 601114 接口的 fileContent 字段格式
+```
+
+### Mock 模拟
+```
+模拟一个 601118 余额查询的成功响应
+模拟 601116 支付接口余额不足的错误响应
+```
+
+## 安全级别说明
+
+**安全级别 10：**
+- 使用国密证书对报文进行加密/解密、签名/验签
+- SM4 随机秘钥对称加密业务报文
+- 银行证书加密 SM4 秘钥
+
+**安全级别 15：**
+- 仅对报文进行签名/验签
+- 不涉及报文加密/解密
+- 业务报文平铺传输
+
+## 注意事项
+
+1. **系统跟踪号规则：** 时间戳 (14 位) + 接入系统代码 (12 位) + 6 位唯一序列号
+2. **签名顺序：** sysTrackNo → reqSysCode → txCode → txTime → (encData) → (encKey)
+3. **日期格式：** 请求时间使用 `yyyyMMddHHmmssSSS`，业务日期使用 `yyyyMMdd` 或 `yyyy-MM-dd`
+4. **金额精度：** 保留 2 位小数，使用 D(20,2) 格式
+5. **分页参数：** pageSize 支持 1-100
+
+## 相关文件
+
+- `apis.json` - 完整接口定义与 JSON Schema
+- `response-codes.json` - 响应码字典
+- `examples/` - 各接口示例报文
+- `validator.py` - 报文验证工具
+- `mock.py` - Mock 响应生成器
+
+## 版本信息
+
+- 文档版本：v1.2.5
+- 更新日期：2026-03-04
+- 技能版本：1.0.0

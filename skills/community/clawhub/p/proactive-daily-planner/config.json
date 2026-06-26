@@ -1,0 +1,79 @@
+{
+  "skill": {
+    "name": "proactive-daily-planner",
+    "version": "1.0.0",
+    "description": "Proactive daily planning assistant"
+  },
+  "user": {
+    "name": "User",
+    "timezone": "UTC",
+    "workHours": "9:00-18:00",
+    "preferredCommunication": "terminal",
+    "productivityStyle": "balanced"
+  },
+  "schedule": {
+    "morningCheckin": "8:00",
+    "middayCheckin": "13:00",
+    "afternoonCheckin": "16:00",
+    "eveningReview": "20:00",
+    "finalCheckin": "22:00",
+    "autoStart": true
+  },
+  "planning": {
+    "categories": ["work", "learning", "fitness", "personal", "career"],
+    "defaultPriority": "medium",
+    "maxTasksPerDay": 8,
+    "includeWeekends": true,
+    "carryOverUnfinished": true
+  },
+  "notifications": {
+    "enabled": true,
+    "channels": ["telegram"],
+    "motivationFrequency": "2h",
+    "progressUpdates": true,
+    "reminderAlerts": true
+  },
+  "motivation": {
+    "messages": [
+      "You've got this! 💪 One task at a time.",
+      "Remember your goals. Every step counts! 🚀",
+      "Stay focused on your vision. You're building your future! 🌟",
+      "Progress, not perfection. Keep moving forward! 📈",
+      "You're capable of amazing things. Believe in yourself! ✨",
+      "Small consistent actions lead to big results. Keep going! 🏆",
+      "Your dedication is inspiring. Keep up the great work! 🙌",
+      "Challenges are opportunities in disguise. You've got this! 💫",
+      "Today is a fresh start. Make it count! ☀️",
+      "Your hard work is paying off. Stay the course! 🎯"
+    ],
+    "celebrationMessages": [
+      "🎉 Amazing work! You completed all your tasks!",
+      "🏆 Task master! You're crushing it today!",
+      "✨ Look at you go! Making progress every day!",
+      "🌟 Halfway there! You're doing fantastic!",
+      "💪 Keep that momentum going! You're unstoppable!"
+    ]
+  },
+  "integration": {
+    "calendar": false,
+    "email": false,
+    "taskManager": false,
+    "healthData": false
+  },
+  "storage": {
+    "dailyPlansPath": "~/.openclaw/workspace/memory/daily-plan-{date}.md",
+    "taskHistoryPath": "~/.openclaw/workspace/memory/task-history.json",
+    "progressStatsPath": "~/.openclaw/workspace/memory/progress-stats.json",
+    "backupEnabled": true,
+    "backupFrequency": "weekly"
+  },
+  "features": {
+    "proactivePlanning": true,
+    "progressTracking": true,
+    "motivationSystem": true,
+    "eveningReview": true,
+    "weeklySummary": true,
+    "goalSetting": true,
+    "habitTracking": false
+  }
+}

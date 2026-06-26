@@ -1,0 +1,35 @@
+{
+  "name": "rag-retriever",
+  "version": "0.1.0",
+  "description": "RAG (Retrieval-Augmented Generation) retriever for OpenClaw - vector search and document retrieval",
+  "type": "module",
+  "main": "src/retriever.js",
+  "bin": {
+    "rag": "./src/rag-skill.js"
+  },
+  "scripts": {
+    "start": "node src/retriever.js",
+    "test": "node test/retriever.test.js",
+    "test:chinese": "node test/chinese-tokenizer.test.js",
+    "test:all": "npm run test && npm run test:chinese",
+    "rag": "node src/rag-skill.js"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.8.1",
+    "@lancedb/lancedb": "^0.5.0",
+    "@node-rs/jieba": "^2.0.1",
+    "apache-arrow": "^15.0.0"
+  },
+  "keywords": [
+    "rag",
+    "retrieval",
+    "vector-search",
+    "chinese",
+    "tokenizer",
+    "jieba",
+    "openclaw",
+    "skill"
+  ],
+  "author": "Clawd",
+  "license": "MIT"
+}

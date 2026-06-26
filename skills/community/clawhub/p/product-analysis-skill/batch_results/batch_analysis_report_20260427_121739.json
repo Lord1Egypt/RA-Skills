@@ -1,0 +1,78 @@
+{
+  "batch_info": {
+    "total_products": 5,
+    "processed_products": 5,
+    "failed_products": 0,
+    "processing_time_seconds": 0.1,
+    "timestamp": "2026-04-27T12:17:39.450621",
+    "max_workers": 2
+  },
+  "results": [
+    {
+      "product_name": "Wireless Earbuds",
+      "category": "electronics",
+      "market_trend_score": 75,
+      "competitor_score": 60,
+      "category_fit_score": 80,
+      "risk_score": 30,
+      "recommendations_count": 3,
+      "optimization_suggestions_count": 2
+    },
+    {
+      "product_name": "Smart Watch",
+      "category": "electronics",
+      "market_trend_score": 75,
+      "competitor_score": 60,
+      "category_fit_score": 80,
+      "risk_score": 30,
+      "recommendations_count": 3,
+      "optimization_suggestions_count": 2
+    },
+    {
+      "product_name": "Yoga Mat",
+      "category": "sports",
+      "market_trend_score": 75,
+      "competitor_score": 60,
+      "category_fit_score": 80,
+      "risk_score": 30,
+      "recommendations_count": 3,
+      "optimization_suggestions_count": 2
+    },
+    {
+      "product_name": "Running Shoes",
+      "category": "sports",
+      "market_trend_score": 75,
+      "competitor_score": 60,
+      "category_fit_score": 80,
+      "risk_score": 30,
+      "recommendations_count": 3,
+      "optimization_suggestions_count": 2
+    },
+    {
+      "product_name": "Coffee Maker",
+      "category": "home_goods",
+      "market_trend_score": 75,
+      "competitor_score": 60,
+      "category_fit_score": 80,
+      "risk_score": 30,
+      "recommendations_count": 3,
+      "optimization_suggestions_count": 2
+    }
+  ],
+  "summary": {
+    "average_market_trend_score": 75.0,
+    "average_competitor_score": 60.0,
+    "average_category_fit_score": 80.0,
+    "average_risk_score": 30.0,
+    "trend_distribution": {
+      "high": 5,
+      "medium": 0,
+      "low": 0
+    },
+    "competition_distribution": {
+      "high": 0,
+      "medium": 5,
+      "low": 0
+    }
+  }
+}

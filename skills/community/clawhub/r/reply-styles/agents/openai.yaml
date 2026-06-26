@@ -1,0 +1,7 @@
+interface:
+  display_name: "Reply Styles"
+  short_description: "High-EQ, preset-style reply drafting"
+  icon_small: "./assets/reply-styles-small.svg"
+  icon_large: "./assets/reply-styles-large.svg"
+  brand_color: "#F59E0B"
+  default_prompt: "Use $reply-styles to rewrite this message in a polished high-EQ tone."

@@ -1,0 +1,104 @@
+version: "3.0.0"
+cards:
+  - id: soft_startup
+    title: Soft start-up
+    use_when: Raising a complaint without blame and no safety red flags are present.
+    avoid_when: Fear, threats, coercive control, or active escalation.
+    output: Exact sentence with feeling, need, and request.
+    reference: references/INTERVENTION_LIBRARY.md
+  - id: repair
+    title: Accountable repair
+    use_when: User regrets yelling, defensiveness, withdrawal, contempt, or a bad text.
+    avoid_when: User wants apology without ownership or wants to force partner forgiveness.
+    output: Specific apology plus behavioural change.
+    reference: references/INTERVENTION_LIBRARY.md
+  - id: time_out
+    title: Time-out and return
+    use_when: Flooding, shutdown, spiralling, or escalating argument.
+    avoid_when: Partner uses breaks to avoid all accountability without return time.
+    output: Break script, return time, calming plan.
+    reference: references/CONFLICT_ATTACHMENT_AND_REPAIR.md
+  - id: attachment_cycle
+    title: Attachment cycle map
+    use_when: Pursue-withdraw, anxious/avoidant, abandonment or engulfment fears.
+    avoid_when: Coercive control or violence is present.
+    output: Trigger, protective moves, primary emotion, new move.
+    reference: references/CONFLICT_ATTACHMENT_AND_REPAIR.md
+  - id: connection_before_analysis
+    title: Connection before analysis
+    use_when: Relationship talks consistently worsen shame, fear, or withdrawal.
+    avoid_when: User is avoiding necessary accountability or safety planning.
+    output: Short no-analysis connection reset.
+    reference: references/INTERVENTION_LIBRARY.md
+  - id: dreams_within_conflict
+    title: Dream under position
+    use_when: Recurring disagreement tied to values or identity.
+    avoid_when: The issue is danger, coercion, or non-consent.
+    output: Interview questions and compromise circles.
+    reference: references/INTERVENTION_LIBRARY.md
+  - id: state_of_relationship
+    title: Weekly relationship meeting
+    use_when: Couple wants maintenance and issue triage.
+    avoid_when: Active crisis, contempt spiral, or unsafe partner.
+    output: 20 to 30 minute agenda.
+    reference: references/SESSION_TEMPLATES.md
+  - id: trust_repair
+    title: Trust repair observables
+    use_when: Affair, lying, secrecy, broken agreement.
+    avoid_when: Ongoing betrayal, coercive surveillance, or unresolved safety issues.
+    output: Accountability, impact, time-limited transparency, review plan.
+    reference: references/CONFLICT_ATTACHMENT_AND_REPAIR.md
+  - id: brakes_accelerators
+    title: Brakes and accelerators
+    use_when: Desire discrepancy, low arousal, sexual avoidance, pressure.
+    avoid_when: Sexual coercion, pain requiring medical support, or trauma crisis.
+    output: Remove one brake, add one accelerator.
+    reference: references/SEX_INTIMACY_AND_DESIRE.md
+  - id: no_pressure_affection
+    title: No-pressure affection menu
+    use_when: Affection is loaded or lower-desire partner feels pressure.
+    avoid_when: Touch is unsafe or unwanted.
+    output: Welcome, maybe, ask-first, not-now, definitely-not categories.
+    reference: assets/worksheet-templates.md
+  - id: pleasure_equity
+    title: Pleasure equity reset
+    use_when: Sex is penetration-centred, orgasm gap, one partner feels sex is not for them.
+    avoid_when: User wants guarantee of orgasm or techniques without consent.
+    output: Partner-specific feedback and non-goal exploration.
+    reference: references/SEX_INTIMACY_AND_DESIRE.md
+  - id: erotic_aliveness
+    title: Erotic aliveness audit
+    use_when: Boredom, loss of spark, roommate feeling, low novelty.
+    avoid_when: Pressure for sex or unresolved betrayal dominates.
+    output: Aliveness prompts and low-risk novelty experiment.
+    reference: references/SEX_INTIMACY_AND_DESIRE.md
+  - id: kink_consent
+    title: Kink consent map
+    use_when: Adult consensual kink, BDSM, power exchange, CNC discussion.
+    avoid_when: Minors, coercion, non-consent, intoxication, inability to stop.
+    output: Limits, stop signals, risks, aftercare, debrief.
+    reference: references/SEX_INTIMACY_AND_DESIRE.md
+  - id: breathplay_redirect
+    title: Breath-play risk redirect
+    use_when: Choking, strangulation, breath play curiosity.
+    avoid_when: If assault or fear is present, use safety_referral instead.
+    output: Do not teach technique; explain risk and offer safer alternatives.
+    reference: references/SAFETY_SEMANTIC_TRIAGE.md
+  - id: flirting_calibration
+    title: Flirting calibration
+    use_when: Dating, texting, asking out, rekindling flirtation.
+    avoid_when: Workplace/professional context with power imbalance or clear disinterest.
+    output: Specific warm message and graceful no-response plan.
+    reference: references/DATING_FLIRTING_AND_ATTRACTION.md
+  - id: love_languages_menu
+    title: Love languages as care menu
+    use_when: Partners feel care is not landing.
+    avoid_when: User treats love language as entitlement or rigid diagnosis.
+    output: Concrete care behaviours across multiple forms.
+    reference: references/INTERVENTION_LIBRARY.md
+  - id: safety_referral
+    title: Safety redirect
+    use_when: Danger, violence, coercive control, non-consent, stalking, self-harm, minors.
+    avoid_when: Ordinary conflict or consensual adult kink without danger.
+    output: Safe next step, no couples exercise, emergency/crisis support if needed.
+    reference: references/SAFETY_SEMANTIC_TRIAGE.md

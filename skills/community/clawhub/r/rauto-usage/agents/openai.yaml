@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rauto Operator"
+  short_description: "Orchestrate and run rauto directly"
+  default_prompt: "Use $rauto-usage to run rauto directly for me, including multi-device orchestration when needed, and ask only for missing required inputs."

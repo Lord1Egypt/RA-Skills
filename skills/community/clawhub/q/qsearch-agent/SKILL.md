@@ -1,35 +1,55 @@
 ---
-name: "QSearch Agent"
+name: qsearch-agent
 description: "通用搜索助手。当用户输入 /sp、/search、/找、/搜 等指令时触发，用于搜索电影、小说、股票、新闻、图片等任何内容。过滤广告和非法内容，只返回安全、可靠的搜索结果。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qsearch-agent"
-sourceUrl: "https://clawhub.ai/skills/qsearch-agent"
 ---
 
-# QSearch Agent
+# QSearch Agent 通用搜索技能
 
-> 通用搜索助手。当用户输入 /sp、/search、/找、/搜 等指令时触发，用于搜索电影、小说、股票、新闻、图片等任何内容。过滤广告和非法内容，只返回安全、可靠的搜索结果。
+通过 web_search 工具搜索任何内容，并过滤广告和非法信息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qsearch-agent`
-- **Source URL:** [https://clawhub.ai/skills/qsearch-agent](https://clawhub.ai/skills/qsearch-agent)
+## 快速开始
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/qsearch-agent
 ```
+/sp 盗墓笔记
+/sp 股票 茅台
+/sp python 教程
+/sp 最新科技新闻
+```
+
+## 支持的指令
+
+| 指令 | 说明 |
+|------|------|
+| /sp | 通用搜索 |
+| /search | 同 /sp |
+| /找 | 中文搜索指令 |
+| /搜 | 中文搜索指令 |
+
+## 搜索示例
+
+- **电影**：`/sp 盗梦空间`
+- **小说**：`/sp 三体`
+- **股票**：`/sp 腾讯控股` 或 `/sp 股票 茅台`
+- **教程**：`/sp python 入门`
+- **新闻**：`/sp AI 最新消息`
+- **图片**：`/sp 风景图片`
+
+## 返回结果
+
+- 5-10 条搜索结果
+- 每条包含：标题、描述、来源链接
+- 自动过滤广告、钓鱼、非法内容
+
+## 技术说明
+
+- 使用 Gemini + Google Search 提供搜索能力
+- 结果经过安全过滤
+- 支持中英文搜索
+
+## 示例对话
+
+> 你：/sp 最近好看的电影  
+> 我：为你找到以下电影...（列表）
+
+> 你：帮我搜一下茅台股票  
+> 我：茅台股票最新行情...（结果）

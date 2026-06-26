@@ -1,0 +1,14 @@
+{
+  "name": "problem-framing-canvas",
+  "displayName": "问题框架画布",
+  "version": "1.0.0",
+  "description": "使用结构化画布全面分析问题，避免片面理解，建立系统性认知",
+  "author": "Elatia (基于 Product-Manager-Skills 提炼)",
+  "license": "MIT",
+  "tags": ["requirement-analysis", "problem-framing-canvas", "product-management", "interactive"],
+  "category": "Product Management",
+  "type": "interactive",
+  "parentSkill": "requirement-analysis-system",
+  "createdAt": "2026-03-09T15:15:00+08:00",
+  "updatedAt": "2026-03-09T15:15:00+08:00"
+}

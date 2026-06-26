@@ -1,0 +1,29 @@
+domain_name: supply-chain
+task_types:
+  - solution-design
+  - diagnosis
+  - management-report
+  - optimization-roadmap
+required_slots:
+  - business_scope
+  - target
+  - audience
+  - output_format
+optional_slots:
+  - time_range
+  - current_pain_points
+  - data_basis
+  - expected_benefit
+clarify_templates:
+  - "你更想聚焦采购、库存、物流还是订单协同？"
+  - "这份内容是给管理层汇报，还是给执行团队落地？"
+  - "你希望输出提纲、完整方案，还是路线图？"
+rewrite_template: >
+  请以供应链咨询顾问视角，围绕【{business_scope}】场景，
+  面向【{audience}】围绕【{target}】输出一份【{output_format}】，
+  重点体现诊断框架、优化策略、收益测算与实施路径。
+review_checklist:
+  - 业务范围是否明确
+  - 目标受众是否明确
+  - 输出形式是否明确
+risk_level: medium

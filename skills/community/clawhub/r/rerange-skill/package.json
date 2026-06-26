@@ -1,0 +1,30 @@
+{
+  "name": "@rerange/skill",
+  "version": "1.0.2",
+  "description": "AgentSkill for Rerange liquid orders using @rerange/wagmi.",
+  "type": "module",
+  "bin": {
+    "rerange-skill": "./index.js"
+  },
+  "files": [
+    "SKILL.md",
+    "index.js",
+    "manifest.json",
+    "*.md"
+  ],
+  "scripts": {
+    "check": "node ./index.js deployments"
+  },
+  "dependencies": {
+    "@rerange/wagmi": "0.0.9",
+    "viem": "^2.47.0"
+  },
+  "keywords": [
+    "openclaw",
+    "agentskills",
+    "rerange",
+    "wagmi",
+    "defi"
+  ],
+  "license": "MIT"
+}

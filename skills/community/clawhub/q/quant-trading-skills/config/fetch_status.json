@@ -1,0 +1,27 @@
+{
+  "market": {
+    "last_fetch_time": null,
+    "fetch_count": 0,
+    "last_fetch_count": 0
+  },
+  "north_flow": {
+    "last_fetch_time": null,
+    "fetch_count": 0,
+    "last_fetch_count": 0
+  },
+  "lhb": {
+    "last_fetch_time": null,
+    "fetch_count": 0,
+    "last_fetch_count": 0
+  },
+  "sentiment": {
+    "last_fetch_time": null,
+    "fetch_count": 0,
+    "last_fetch_count": 0
+  },
+  "financial": {
+    "last_fetch_time": null,
+    "fetch_count": 0,
+    "last_fetch_count": 0
+  }
+}

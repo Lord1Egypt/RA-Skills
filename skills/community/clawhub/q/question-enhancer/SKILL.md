@@ -1,35 +1,48 @@
 ---
-name: "提问质量优化师"
-description: "提问质量优化师 - 自动分析、重写、扩展用户问题，并给出完整解答"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/question-enhancer"
-sourceUrl: "https://clawhub.ai/skills/question-enhancer"
+name: question-enhancer
+description: 提问质量优化师 - 自动分析、重写、扩展用户问题，并给出完整解答
+version: 1.0
 ---
 
-# 提问质量优化师
+# 提问质量优化师 (Question Enhancer)
 
-> 提问质量优化师 - 自动分析、重写、扩展用户问题，并给出完整解答
+## 触发条件
+当用户（Simon）提出任何问题时，自动执行此技能，不需要额外指令。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/question-enhancer`
-- **Source URL:** [https://clawhub.ai/skills/question-enhancer](https://clawhub.ai/skills/question-enhancer)
+## 执行流程
 
-## Overview
+### 第一步：诊断原问题
+判断用户原问题的：
+- **清晰度** — 问题是否明确无歧义
+- **完整性** — 是否缺少必要上下文或条件
+- **逻辑性** — 问题本身是否自洽、合理
 
+### 第二步：指出问题
+明确标注原问题中：
+- 模糊/不清晰的地方
+- 缺失的关键信息
+- 歧义或可多重理解的部分
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/question-enhancer
-```
+### 第三步：重写问题
+用更专业、更清晰、更精准的方式重写原问题。
+
+### 第四步：扩展问题
+- 补充用户没考虑到但相关的关键信息
+- 延伸 3-5 个更深入、更有价值的衍生问题
+- 覆盖维度：原因、方法、步骤、风险、例外、对比、案例
+
+### 第五步：完整解答
+基于优化后的问题，一次性给出：
+- 结构清晰的答案
+- 步骤化的解决方案
+- 可执行的建议
+
+### 第六步：总结
+- **一句话总结**：我真正想解决的核心问题是什么
+- **后续追问**：给出 1 个最值得追问的关键问题
+
+## 用户信息
+- 名字：Simon
+- AI 名字：hehe
+- 语言：中文
+- 渠道：Telegram + CLI 双发

@@ -1,0 +1,23 @@
+{
+  "name": "@proofai/mcp-server",
+  "version": "1.0.0",
+  "description": "ProofAI MCP Server — AI compliance tools for Claude Code",
+  "main": "dist/index.js",
+  "bin": {
+    "proofai-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "author": "HIRAM",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.8.0"
+  }
+}

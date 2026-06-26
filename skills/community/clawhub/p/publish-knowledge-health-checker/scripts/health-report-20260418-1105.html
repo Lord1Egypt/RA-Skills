@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知识库健康报告</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-width: 960px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .header .path {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        .score-section {
+            display: flex;
+            justify-content: space-around;
+            padding: 40px 20px;
+            background: #f8fafc;
+        }
+
+        .main-score {
+            text-align: center;
+        }
+
+        .main-score .score {
+            font-size: 72px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .main-score .label {
+            color: #64748b;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
+        .sub-scores {
+            display: flex;
+            gap: 20px;
+        }
+
+        .sub-score {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            min-width: 100px;
+        }
+
+        .sub-score .value {
+            font-size: 28px;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .sub-score .label {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .metrics {
+            padding: 30px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .metric {
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .metric .name {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .metric .value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .metric .trend {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+
+        .trend.good {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .trend.bad {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .issues {
+            padding: 30px 40px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .issues h2 {
+            font-size: 20px;
+            color: #334155;
+            margin-bottom: 20px;
+        }
+
+        .issue-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .issue-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background: #fef2f2;
+            border-radius: 8px;
+            border-left: 4px solid #dc2626;
+        }
+
+        .issue-item.warning {
+            background: #fffbeb;
+            border-left-color: #f59e0b;
+        }
+
+        .issue-icon {
+            font-size: 24px;
+            margin-right: 12px;
+        }
+
+        .issue-content {
+            flex: 1;
+        }
+
+        .issue-title {
+            font-weight: 500;
+            color: #334155;
+            margin-bottom: 4px;
+        }
+
+        .issue-desc {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .footer {
+            padding: 30px 40px;
+            background: #f8fafc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .timestamp {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #334155;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #f8fafc;
+        }
+
+        @media (max-width: 640px) {
+            .score-section {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .sub-scores {
+                justify-content: center;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <h1>知识库健康报告</h1>
+            <div class="path">/Users/mac/.openclaw/workspace/memory</div>
+        </div>
+
+        <div class="score-section">
+            <div class="main-score">
+                <div class="score">56.4</div>
+                <div class="label">健康分</div>
+            </div>
+
+            <div class="sub-scores">
+                <div class="sub-score">
+                    <div class="value">91.4</div>
+                    <div class="label">空壳检测</div>
+                </div>
+                <div class="sub-score">
+                    <div class="value">67.0</div>
+                    <div class="label">断链检测</div>
+                </div>
+                <div class="sub-score">
+                    <div class="value">35.0</div>
+                    <div class="label">内容密度</div>
+                </div>
+                <div class="sub-score">
+                    <div class="value">23.4</div>
+                    <div class="label">网络完整</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="metrics">
+            <div class="metric">
+                <span class="name">总文件数</span>
+                <span class="value">640</span>
+            </div>
+            <div class="metric">
+                <span class="name">空壳文件</span>
+                <span class="value">55
+                    <span class="trend bad">
+                        需处理
+                    </span>
+                </span>
+            </div>
+            <div class="metric">
+                <span class="name">断链数量</span>
+                <span class="value">2109
+                    <span class="trend bad">
+                        需处理
+                    </span>
+                </span>
+            </div>
+            <div class="metric">
+                <span class="name">孤立节点</span>
+                <span class="value">490
+                    <span class="trend bad">
+                        需处理
+                    </span>
+                </span>
+            </div>
+            <div class="metric">
+                <span class="name">中心节点</span>
+                <span class="value">0</span>
+            </div>
+            <div class="metric">
+                <span class="name">连接总数</span>
+                <span class="value">2</span>
+            </div>
+        </div>
+
+        <div class="issues">
+            <h2>待处理问题</h2>
+            <div class="issue-list">
+                
+                <div class="issue-item">
+                    <span class="issue-icon">📄</span>
+                    <div class="issue-content">
+                        <div class="issue-title">六爻断卦.md</div>
+                        <div class="issue-desc">内容过短, 缺少标题（0字符）</div>
+                    </div>
+                </div>
+
+                <div class="issue-item">
+                    <span class="issue-icon">📄</span>
+                    <div class="issue-content">
+                        <div class="issue-title">BDI波罗的海干散货指数.md</div>
+                        <div class="issue-desc">内容过短, 缺少标题（0字符）</div>
+                    </div>
+                </div>
+
+                <div class="issue-item">
+                    <span class="issue-icon">📄</span>
+                    <div class="issue-content">
+                        <div class="issue-title">TCE时间等价收益.md</div>
+                        <div class="issue-desc">内容过短, 缺少标题（0字符）</div>
+                    </div>
+                </div>
+
+                <div class="issue-item">
+                    <span class="issue-icon">📄</span>
+                    <div class="issue-content">
+                        <div class="issue-title">新能源汽车产业链地图.md</div>
+                        <div class="issue-desc">内容过短, 缺少标题（0字符）</div>
+                    </div>
+                </div>
+
+                <div class="issue-item">
+                    <span class="issue-icon">📄</span>
+                    <div class="issue-content">
+                        <div class="issue-title">HEARTBEAT.md</div>
+                        <div class="issue-desc">内容过短, 缺少标题（0字符）</div>
+                    </div>
+                </div>
+
+                <div class="issue-item warning">
+                    <span class="issue-icon">🔗</span>
+                    <div class="issue-content">
+                        <div class="issue-title">WIKI_SCHEMA.md → 相关实体1</div>
+                        <div class="issue-desc">文件不存在：找不到目标文件</div>
+                    </div>
+                </div>
+
+                <div class="issue-item warning">
+                    <span class="issue-icon">🔗</span>
+                    <div class="issue-content">
+                        <div class="issue-title">WIKI_SCHEMA.md → 相关实体2</div>
+                        <div class="issue-desc">文件不存在：找不到目标文件</div>
+                    </div>
+                </div>
+
+                <div class="issue-item warning">
+                    <span class="issue-icon">🔗</span>
+                    <div class="issue-content">
+                        <div class="issue-title">WIKI_SCHEMA.md → 概念1</div>
+                        <div class="issue-desc">文件不存在：找不到目标文件</div>
+                    </div>
+                </div>
+
+                <div class="issue-item warning">
+                    <span class="issue-icon">🔗</span>
+                    <div class="issue-content">
+                        <div class="issue-title">WIKI_SCHEMA.md → 概念2</div>
+                        <div class="issue-desc">文件不存在：找不到目标文件</div>
+                    </div>
+                </div>
+
+                <div class="issue-item warning">
+                    <span class="issue-icon">🔗</span>
+                    <div class="issue-content">
+                        <div class="issue-title">WIKI_SCHEMA.md → 参与者1</div>
+                        <div class="issue-desc">文件不存在：找不到目标文件</div>
+                    </div>
+                </div>
+
+            <div class="issue-item warning">
+                <span class="issue-icon">🏝️</span>
+                <div class="issue-content">
+                    <div class="issue-title">发现 490 个孤立节点</div>
+                    <div class="issue-desc">这些文件没有内链连接，建议添加到相关主题</div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="timestamp">生成时间：2026-04-18 11:05:07</div>
+            <div class="actions">
+                <button class="btn btn-secondary" onclick="exportPDF()">导出PDF</button>
+                <button class="btn btn-primary" onclick="generateFix()">生成修复脚本</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function exportPDF() {
+            window.print();
+        }
+
+        function generateFix() {
+            alert('修复脚本生成功能需要运行 auto_fix.py');
+        }
+    </script>
+</body>
+</html>

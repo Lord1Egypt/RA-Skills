@@ -1,0 +1,33 @@
+{
+  "id": "quantum-im",
+  "version": "1.0.1",
+  "channels": ["quantum-im"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "quantum-im": {
+        "type": "object",
+        "properties": {
+          "enabled": { "type": "boolean" },
+          "accounts": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "robotId": { "type": "string" },
+                "key": { "type": "string" },
+                "host": { "type": "string" },
+                "webhookPort": { "type": "number" },
+                "webhookPath": { "type": "string" },
+                "allowFrom": { "type": "array", "items": { "type": "string" } },
+                "dmSecurity": { "type": "string", "enum": ["allowlist", "pairing", "open"] }
+              },
+              "required": ["robotId", "key"]
+            }
+          }
+        }
+      }
+    }
+  }
+}

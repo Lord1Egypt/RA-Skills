@@ -1,0 +1,320 @@
+# ============================================================
+# Makefile for remotion-video-studio
+# ============================================================
+SHELL := /bin/bash
+
+# --- Configuration (keep in sync with config/project.json → paths) ---
+PYTHON     := python3
+NPX        := npx
+TEMPLATE   := config/project.json.template
+CONFIG     := config/project.json
+CONTENT    := content/subtitles.json
+PROPS      := build/render-props.json
+OUT_DIR    := build
+AUDIO_DIR  := public/audio
+
+# --- Python environment (read from config/project.json → tts.pythonEnv) ---
+# Supports two modes:
+#   conda  — eval "$(conda shell.bash hook)" && conda activate <name> && python
+#   venv   — source <path>/bin/activate && python
+#
+# Override on the command line:
+#   make pipeline-qwen ENV_TYPE=conda CONDA_ENV=myenv
+#   make pipeline-qwen ENV_TYPE=venv VENV_PATH=.venv
+
+# Read defaults from config JSON (fallback to conda/base if jq or python fails)
+ENV_TYPE   ?= $(shell python3 -c "import json; c=json.load(open('$(CONFIG)')); print(c.get('tts',{}).get('pythonEnv',{}).get('type','conda'))" 2>/dev/null || echo conda)
+CONDA_ENV  ?= $(shell python3 -c "import json; c=json.load(open('$(CONFIG)')); print(c.get('tts',{}).get('pythonEnv',{}).get('conda',{}).get('name','base'))" 2>/dev/null || echo base)
+VENV_PATH  ?= $(shell python3 -c "import json; c=json.load(open('$(CONFIG)')); print(c.get('tts',{}).get('pythonEnv',{}).get('venv',{}).get('path','.venv'))" 2>/dev/null || echo .venv)
+
+# Helper: activate the configured env and run python
+# Usage: $(ACTIVATE_PYTHON) script.py args...
+ifeq ($(ENV_TYPE),venv)
+ACTIVATE_PYTHON = source $(VENV_PATH)/bin/activate && python
+else
+ACTIVATE_PYTHON = eval "$$(conda shell.bash hook 2>/dev/null)" && conda activate $(CONDA_ENV) && python
+endif
+
+# Helper: ensure config/project.json exists (auto-copy from template)
+define CHECK_CONFIG
+	@if [ ! -f $(CONFIG) ]; then \
+		echo "⚠️  $(CONFIG) not found, copying from $(TEMPLATE)..."; \
+		cp $(TEMPLATE) $(CONFIG); \
+		echo "✅ $(CONFIG) created. Edit it to customize your settings."; \
+	fi
+endef
+
+.PHONY: help init-config install install-chrome dev render render-props \
+        tts tts-edge tts-qwen \
+        pipeline pipeline-edge pipeline-qwen \
+        pipeline-content \
+        rebuild rebuild-edge rebuild-qwen \
+        deps-qwen \
+        clean distclean clean-tts
+
+# --- Default target ---
+help:
+	@echo ""
+	@echo "╔══════════════════════════════════════════════════╗"
+	@echo "║       Remotion Video Studio — Makefile           ║"
+	@echo "╚══════════════════════════════════════════════════╝"
+	@echo ""
+	@echo "Setup:"
+	@echo "  init-config       Copy config template → config/project.json"
+	@echo "  install           Install npm dependencies"
+	@echo ""
+	@echo "Development:"
+	@echo "  dev               Open Remotion Studio (browser preview)"
+	@echo ""
+	@echo "TTS Generation:"
+	@echo "  tts               Generate audio (default engine from config)"
+	@echo "  tts-edge          Generate audio with Edge TTS (online)"
+	@echo "  tts-qwen          Generate audio with Qwen TTS (local MLX)"
+	@echo ""
+	@echo "Pipeline (TTS + Render):"
+	@echo "  pipeline          Full pipeline (default TTS engine)"
+	@echo "  pipeline-edge     Full pipeline with Edge TTS"
+	@echo "  pipeline-qwen     Full pipeline with Qwen TTS"
+	@echo ""
+	@echo "Incremental Rebuild:"
+	@echo "  rebuild-edge      Rebuild only changed slides (Edge TTS)"
+	@echo "  rebuild-qwen      Rebuild only changed slides (Qwen TTS)"
+	@echo ""
+	@echo "Rendering:"
+	@echo "  render            Render video (uses existing render-props.json)"
+	@echo "  render-props      Generate render-props.json from audio files"
+	@echo ""
+	@echo "Cleanup:"
+	@echo "  clean             Remove generated audio and video"
+	@echo "  clean-tts         Remove TTS manifest (force re-generate all audio)"
+	@echo "  distclean         Remove all generated files + node_modules"
+	@echo ""
+	@echo "Python Environment (from config/project.json):"
+	@echo "  Current: type=$(ENV_TYPE), conda=$(CONDA_ENV), venv=$(VENV_PATH)"
+	@echo ""
+	@echo "Dependency Install:"
+	@echo "  deps-qwen         Install Qwen TTS dependencies"
+	@echo ""
+	@echo "Override env on command line:"
+	@echo "  make pipeline-qwen ENV_TYPE=conda CONDA_ENV=myenv"
+	@echo "  make pipeline-qwen ENV_TYPE=venv VENV_PATH=.venv"
+	@echo ""
+
+# ============================================================
+# Setup
+# ============================================================
+
+## Initialize config from template (safe: won't overwrite existing)
+init-config:
+	@if [ -f $(CONFIG) ]; then \
+		echo "ℹ️  $(CONFIG) already exists, skipping."; \
+	else \
+		cp $(TEMPLATE) $(CONFIG); \
+		echo "✅ $(CONFIG) created from template. Edit it to customize your settings."; \
+	fi
+
+## Install npm dependencies
+install: init-config
+	npm install
+
+## Install Chrome Headless Shell from local zip or copy from another project.
+## Usage:
+##   make install-chrome                                    # Auto-detect zip in current or parent dir
+##   make install-chrome CHROME_ZIP=/path/to/chrome.zip     # Specify zip path
+##   make install-chrome CHROME_FROM=/other/project         # Copy from another project's node_modules
+CHROME_ZIP   ?=
+CHROME_FROM  ?=
+CHROME_DIR   := node_modules/.remotion/chrome-headless-shell
+
+# Detect platform: mac-arm64 or mac-x64 or linux-x64
+UNAME_S := $(shell uname -s)
+UNAME_M := $(shell uname -m)
+ifeq ($(UNAME_S),Darwin)
+  ifeq ($(UNAME_M),arm64)
+    CHROME_PLATFORM := mac-arm64
+  else
+    CHROME_PLATFORM := mac-x64
+  endif
+else
+  CHROME_PLATFORM := linux-x64
+endif
+
+# Get the required Chrome version from Remotion's BrowserFetcher
+CHROME_VERSION = $(shell node -e "try{const fs=require('fs');const c=fs.readFileSync('node_modules/@remotion/renderer/dist/browser/BrowserFetcher.js','utf8');const m=c.match(/TESTED_VERSION\s*=\s*[\"']([^\"']+)/);console.log(m?m[1]:'unknown')}catch(e){console.log('unknown')}" 2>/dev/null)
+
+install-chrome:
+	@echo ""
+	@echo "🌐 Chrome Headless Shell Installer"
+	@echo "   Platform: $(CHROME_PLATFORM)"
+	@echo "   Required version: $(CHROME_VERSION)"
+	@echo ""
+	@# Check if already installed
+	@if [ -f "$(CHROME_DIR)/VERSION" ] && [ "$$(cat $(CHROME_DIR)/VERSION 2>/dev/null)" = "$(CHROME_VERSION)" ]; then \
+		echo "✅ Chrome Headless Shell $(CHROME_VERSION) already installed."; \
+		exit 0; \
+	fi; \
+	\
+	ZIP_PATH="$(CHROME_ZIP)"; \
+	FROM_DIR="$(CHROME_FROM)"; \
+	\
+	if [ -n "$$FROM_DIR" ]; then \
+		echo "📦 Copying from: $$FROM_DIR"; \
+		SRC="$$FROM_DIR/node_modules/.remotion/chrome-headless-shell"; \
+		if [ ! -d "$$SRC/$(CHROME_PLATFORM)" ]; then \
+			echo "❌ Chrome not found in $$SRC/$(CHROME_PLATFORM)"; \
+			exit 1; \
+		fi; \
+		mkdir -p "$(CHROME_DIR)"; \
+		cp -R "$$SRC/$(CHROME_PLATFORM)" "$(CHROME_DIR)/"; \
+		cp "$$SRC/VERSION" "$(CHROME_DIR)/VERSION" 2>/dev/null || echo "$(CHROME_VERSION)" > "$(CHROME_DIR)/VERSION"; \
+	\
+	elif [ -n "$$ZIP_PATH" ]; then \
+		echo "📦 Installing from: $$ZIP_PATH"; \
+	\
+	else \
+		echo "🔍 Auto-detecting chrome-headless-shell zip..."; \
+		for d in . .. ../..; do \
+			for f in "$$d/chrome-headless-shell-$(CHROME_PLATFORM).zip" "$$d/chrome-headless-shell-*.zip"; do \
+				if [ -f "$$f" ]; then \
+					ZIP_PATH="$$f"; \
+					break 2; \
+				fi; \
+			done; \
+		done; \
+		if [ -z "$$ZIP_PATH" ]; then \
+			echo "❌ No chrome-headless-shell zip found."; \
+			echo "   Download from: https://storage.googleapis.com/chrome-for-testing-public/$(CHROME_VERSION)/$(CHROME_PLATFORM)/chrome-headless-shell-$(CHROME_PLATFORM).zip"; \
+			echo "   Or specify: make install-chrome CHROME_ZIP=/path/to/zip"; \
+			echo "   Or copy:    make install-chrome CHROME_FROM=/other/project"; \
+			exit 1; \
+		fi; \
+		echo "📦 Found: $$ZIP_PATH"; \
+	fi; \
+	\
+	if [ -n "$$ZIP_PATH" ]; then \
+		mkdir -p "$(CHROME_DIR)/$(CHROME_PLATFORM)"; \
+		unzip -o "$$ZIP_PATH" -d "$(CHROME_DIR)/$(CHROME_PLATFORM)/"; \
+		echo "$(CHROME_VERSION)" > "$(CHROME_DIR)/VERSION"; \
+	fi; \
+	\
+	CHROME_BIN="$(CHROME_DIR)/$(CHROME_PLATFORM)/chrome-headless-shell-$(CHROME_PLATFORM)/chrome-headless-shell"; \
+	if [ -f "$$CHROME_BIN" ]; then \
+		chmod +x "$$CHROME_BIN"; \
+		echo ""; \
+		echo "✅ Chrome Headless Shell installed successfully!"; \
+		echo "   Version: $$(cat $(CHROME_DIR)/VERSION)"; \
+		echo "   Path: $$CHROME_BIN"; \
+	else \
+		echo "❌ Chrome binary not found at: $$CHROME_BIN"; \
+		echo "   Check the zip file structure."; \
+		exit 1; \
+	fi
+
+# ============================================================
+# Development
+# ============================================================
+
+## Open Remotion Studio for preview
+dev:
+	$(NPX) remotion studio
+
+# ============================================================
+# TTS Generation
+# ============================================================
+
+## Generate audio using default engine from config
+tts:
+	$(CHECK_CONFIG)
+	$(PYTHON) scripts/tts_edge.py
+
+## Generate audio with Edge TTS (online, free)
+tts-edge:
+	$(CHECK_CONFIG)
+	$(PYTHON) scripts/tts_edge.py
+
+## Generate audio with Qwen TTS (local MLX model)
+tts-qwen:
+	$(CHECK_CONFIG)
+	$(ACTIVATE_PYTHON) scripts/tts_qwen.py
+
+# ============================================================
+# Pipeline (end-to-end)
+# ============================================================
+
+## Full pipeline: TTS → render-props → Remotion render (default engine)
+pipeline:
+	$(CHECK_CONFIG)
+	$(PYTHON) scripts/pipeline.py
+
+## Full pipeline with Edge TTS
+pipeline-edge:
+	$(CHECK_CONFIG)
+	$(PYTHON) scripts/pipeline.py --tts edge
+
+## Full pipeline with Qwen TTS
+pipeline-qwen:
+	$(CHECK_CONFIG)
+	$(ACTIVATE_PYTHON) scripts/pipeline.py --tts qwen
+
+## Full pipeline with custom content file: make pipeline-content CONTENT=content/your-topic.json
+pipeline-content:
+	$(CHECK_CONFIG)
+	@test -n "$(CONTENT)" || (echo "❌ Usage: make pipeline-content CONTENT=content/xxx.json [TTS=edge|qwen]" && exit 1)
+	$(PYTHON) scripts/pipeline.py --content $(CONTENT) $(if $(TTS),--tts $(TTS),)
+
+## Incremental rebuild: only regenerate changed slides, then re-render
+rebuild-edge:
+	$(CHECK_CONFIG)
+	$(PYTHON) scripts/pipeline.py --tts edge
+
+rebuild-qwen:
+	$(CHECK_CONFIG)
+	$(ACTIVATE_PYTHON) scripts/pipeline.py --tts qwen
+
+## Rebuild without audio normalization (faster iteration)
+rebuild-fast:
+	$(CHECK_CONFIG)
+	$(PYTHON) scripts/pipeline.py --tts edge --no-normalize
+
+# ============================================================
+# Rendering
+# ============================================================
+
+## Render video using existing render-props.json
+render:
+	$(CHECK_CONFIG)
+	$(NPX) remotion render src/index.ts MainVideo $(OUT_DIR)/video.mp4 --props $(PROPS)
+
+## Generate render-props.json from existing audio files (no TTS, no render)
+render-props:
+	$(CHECK_CONFIG)
+	$(PYTHON) scripts/pipeline.py --skip-tts --skip-render
+
+# ============================================================
+# Cleanup
+# ============================================================
+
+## Remove generated audio and video output
+clean:
+	rm -rf $(AUDIO_DIR)/*.mp3 $(AUDIO_DIR)/*.wav $(AUDIO_DIR)/*.srt
+	rm -rf $(OUT_DIR)
+
+## Remove TTS manifest to force re-generation of all audio
+clean-tts:
+	rm -f $(AUDIO_DIR)/.tts_manifest.json
+	@echo "✅ TTS manifest removed. Next TTS run will regenerate all audio."
+
+## Remove everything: output + node_modules + cache
+distclean: clean
+	rm -rf node_modules
+	rm -rf .remotion
+
+# ============================================================
+# Dependency Installation
+# ============================================================
+
+## Install Qwen TTS dependencies into the configured env
+deps-qwen:
+	@echo "Installing Qwen TTS deps (env_type=$(ENV_TYPE))..."
+	$(ACTIVATE_PYTHON) -m pip install mlx-audio soundfile numpy
+	@echo "✅ Qwen TTS deps installed"

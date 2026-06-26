@@ -1,0 +1,55 @@
+{
+  "domain": "交易域",
+  "level": "L1",
+  "generated_at": "2026-05-08",
+  "source_file": "trade.md",
+  "key_terms": [
+    {"term": "限价委托", "definition": "指定价格的买卖委托，在指定价格或更优价格成交"},
+    {"term": "市价委托", "definition": "不指定价格，以当前市场最优价格即时成交的委托"},
+    {"term": "涨跌停", "definition": "A股每日价格波动限制，普通股票±10%，ST股票±5%，科创板/创业板±20%"},
+    {"term": "集合竞价", "definition": "开盘前(9:15-9:25)和收盘前(14:57-15:00)的价格撮合方式"},
+    {"term": "连续竞价", "definition": "交易时段(9:30-11:30, 13:00-14:57)内按价格优先、时间优先撮合"},
+    {"term": "融资融券", "definition": "投资者向券商借入资金买入(融资)或借入证券卖出(融券)的信用交易"},
+    {"term": "维持担保比例", "definition": "信用账户总资产/总负债，低于警戒线需追加担保物"},
+    {"term": "强制平仓", "definition": "维持担保比例低于平仓线时券商强制卖出客户持仓"},
+    {"term": "股票质押", "definition": "以股票为质押物向券商融入资金的交易"},
+    {"term": "大宗交易", "definition": "达到交易所规定最低限额(30万股或200万元)的单笔交易"},
+    {"term": "clientOrderId", "definition": "客户端生成的委托唯一标识，用于幂等去重"},
+    {"term": "风控前置", "definition": "委托提交前的风控校验，包括资金、持仓、涨跌停等检查"},
+    {"term": "极速交易", "definition": "面向量化机构的低延迟交易通道，端到端延迟<1ms"}
+  ],
+  "core_entities": [
+    {"name": "委托单(Order)", "description": "客户提交的买卖指令，核心交易对象"},
+    {"name": "成交记录(Trade)", "description": "委托撮合成功后的成交明细"},
+    {"name": "撤单请求(CancelRequest)", "description": "对未成交委托的撤销请求"},
+    {"name": "条件单(ConditionalOrder)", "description": "满足特定条件后自动触发的委托"},
+    {"name": "信用账户(CreditAccount)", "description": "融资融券业务的专用账户"},
+    {"name": "质押合约(PledgeContract)", "description": "股票质押式回购的合约记录"},
+    {"name": "授信额度(CreditLine)", "description": "券商对客户信用业务的额度管理"},
+    {"name": "交易通道(TradingChannel)", "description": "委托报送至交易所的通信链路"}
+  ],
+  "regulatory_baselines": [
+    {"rule": "涨跌停限制", "description": "委托价格不得超出当日涨跌停价格范围"},
+    {"rule": "集合竞价不可撤单时段", "description": "9:20-9:25期间不允许撤单"},
+    {"rule": "市价单仅限连续竞价", "description": "集合竞价时段不接受市价委托"},
+    {"rule": "融资保证金比例≥100%", "description": "监管最低要求"},
+    {"rule": "融券保证金比例≥50%", "description": "监管最低要求"},
+    {"rule": "融资融券最长期限6个月", "description": "可展期但总期限有合同约定上限"},
+    {"rule": "质押率不超过60%", "description": "单只股票初始交易质押率上限"},
+    {"rule": "大宗交易价格范围", "description": "成交价格在当日收盘价的90%-110%"},
+    {"rule": "大宗交易时间窗口", "description": "15:00-15:30(盘后固定价格交易15:05-15:30)"},
+    {"rule": "场外衍生品仅限专业投资者", "description": "个人投资者不得参与场外期权等业务"}
+  ],
+  "common_missing_items": [
+    {"item": "撤单与成交竞态处理", "description": "撤单请求与成交回报同时到达时的状态一致性保证"},
+    {"item": "委托超时无回报处理", "description": "委托发送后长时间无交易所回报的超时重发和状态同步"},
+    {"item": "资金冻结与委托不一致", "description": "冻结成功但委托发送失败时的孤立冻结自动解冻"},
+    {"item": "夜市委托次日标的停牌", "description": "夜间提交委托后次日开盘前标的停牌的废单处理"},
+    {"item": "批量委托部分失败", "description": "批量接口中部分通过风控部分被拒的结果处理"},
+    {"item": "融资融券强平无法执行", "description": "跌停/停牌导致无法平仓时的风险敞口处理"},
+    {"item": "条件单触发时资金不足", "description": "条件满足但账户资金已被占用的失败处理和通知"},
+    {"item": "极速通道故障切换", "description": "极速通道不可用时自动切换至普通通道的机制"},
+    {"item": "市价单滑点保护", "description": "市场剧烈波动时市价单的最优五档保护机制"},
+    {"item": "大宗交易对手方违约", "description": "确认后对手方资金/证券不足的处理流程"}
+  ]
+}

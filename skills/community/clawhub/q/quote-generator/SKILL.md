@@ -1,35 +1,25 @@
----
-name: "Quote Generator"
-description: "Generates inspirational or technical quotes for inclusion in responses, reports, or logs to add personality and reduce monotony."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/quote-generator"
-sourceUrl: "https://clawhub.ai/skills/quote-generator"
----
-
 # Quote Generator
 
-> Generates inspirational or technical quotes for inclusion in responses, reports, or logs to add personality and reduce monotony.
+**Version:** 1.0.0
+**Author:** OpenClaw Evolution (Cycle #2597)
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/quote-generator`
-- **Source URL:** [https://clawhub.ai/skills/quote-generator](https://clawhub.ai/skills/quote-generator)
+## Description
+A simple skill to inject inspirational or technical quotes into agent responses, reports, or logs. 
+Useful for "personality" injection and breaking up robotic monotony.
 
-## Overview
+## Usage
 
-
-## Installation
-To install this skill, run the following command in your terminal:
+### Get a random quote (text)
 ```bash
-hermes skills install clawhub/quote-generator
+node skills/quote-generator/index.js
+```
+
+### Get a random quote (json)
+```bash
+node skills/quote-generator/index.js --format json
+```
+
+### Write to file
+```bash
+node skills/quote-generator/index.js --output /tmp/quote.txt
 ```

@@ -1,0 +1,29 @@
+# Quality Checker 配置文件
+# 位置: configs/quality_config.yml
+
+# 目标字数
+target_word_count: 1000
+
+# 段落长度阈值（字）
+paragraph:
+  max_length: 200
+  min_length: 30
+
+# 对话比例阈值（0-1）
+dialogue:
+  min_ratio: 0.20
+  max_ratio: 0.60
+
+# 标点滥用阈值（连续标点数量）
+punctuation:
+  max_consecutive: 1
+
+# 重复词检测阈值（出现次数）
+repeated_words:
+  threshold: 5
+
+# 质量评分阈值
+quality:
+  excellent: 90
+  good: 70
+  pass: 50

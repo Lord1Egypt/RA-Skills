@@ -1,35 +1,142 @@
 ---
-name: "陈列货盘分析"
-description: "陈列货盘分析工具。从货盘视角分析引起客户意向的商品和试用行为变化。 核心能力： 1. 三漏斗交叉分析（displayFunnel陈列SKU + behaviorFunnel试用次数 + customerFunnel客户） 2. 引起意向的商品变化（引起意向SKU数、引起意向SKU占比） 3. 客户对意向商品的试用..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/retail-store-assortment-analysis"
-sourceUrl: "https://clawhub.ai/skills/retail-store-assortment-analysis"
+name: retail-store-assortment-analysis
+description: |
+  陈列货盘分析工具。从货盘视角分析引起客户意向的商品和试用行为变化。
+  
+  核心能力：
+  1. 三漏斗交叉分析（displayFunnel陈列SKU + behaviorFunnel试用次数 + customerFunnel客户）
+  2. 引起意向的商品变化（引起意向SKU数、引起意向SKU占比）
+  3. 客户对意向商品的试用深度（平均试用深度）
+  4. 客户意向分散度（深度试用次数/有深度交互的客户数）
+  5. 货盘成交效率（货盘成交率、客户成交率）
+  
+  触发条件：
+  - 用户询问货盘（如"货盘怎么样"）
+  - 用户分析陈列效果（如"哪些商品引起客户兴趣"）
+  - 用户需要动销分析（如"货盘成交率如何"）
 ---
 
-# 陈列货盘分析
+# 陈列货盘分析 Skill
 
-> 陈列货盘分析工具。从货盘视角分析引起客户意向的商品和试用行为变化。 核心能力： 1. 三漏斗交叉分析（displayFunnel陈列SKU + behaviorFunnel试用次数 + customerFunnel客户） 2. 引起意向的商品变化（引起意向SKU数、引起意向SKU占比） 3. 客户对意向商品的试用...
+从货盘视角分析引起客户意向的商品和试用行为变化。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/retail-store-assortment-analysis`
-- **Source URL:** [https://clawhub.ai/skills/retail-store-assortment-analysis](https://clawhub.ai/skills/retail-store-assortment-analysis)
+## 使用方式
 
-## Overview
+```python
+import sys
+sys.path.insert(0, '~/.openclaw/skills/store-assortment-analysis')
+from analyze import analyze as assortment_analyze
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/retail-store-assortment-analysis
+result = assortment_analyze.analyze(
+    store_id="416759_1714379448487",
+    from_date="2026-03-01",
+    to_date="2026-03-26",
+    store_name="正义路60号店"
+)
 ```
+
+## 分析框架
+
+### 核心逻辑
+分析**引起客户意向的商品**与**客户对意向商品的试用行为**的交叉变化：
+
+```
+陈列SKU (385个)
+    ↓ 被关注（试用）
+引起意向的SKU (240个) = 深度触达SKU + 成交SKU
+    ↓ 深度体验
+深度试用次数 (581次)
+    ↓ 成交
+成交件数 (217件)
+```
+
+### 三漏斗交叉
+
+| 漏斗 | 主体 | 核心指标 |
+|------|------|---------|
+| displayFunnel | SKU | 引起意向的SKU数（深度触达+成交） |
+| behaviorFunnel | 试用次数 | 深度试用次数 |
+| customerFunnel | 客户 | 有深度交互的客户数（意向+成交） |
+
+## 核心指标
+
+### 1. 引起意向的商品变化
+- **引起意向的SKU数** = 深度触达SKU + 成交SKU
+- **引起意向SKU占比** = 引起意向SKU / 陈列SKU总数
+- **环比变化**：反映货盘吸引力变化
+
+### 2. 客户对意向商品的试用深度
+- **平均试用深度** = 深度试用次数 / 引起意向的SKU
+- **环比变化**：反映客户体验深度变化
+
+### 3. 客户意向分散度
+- **客户意向分散度** = 深度试用次数 / 有深度交互的客户数
+- **含义**：平均每个意向客户深度试用的SKU数
+- **变化**：下降说明客户选择更集中（正面）
+
+### 4. 货盘成交效率
+- **货盘成交率** = 成交SKU / 陈列SKU总数
+- **客户成交率** = 成交客户 / 有深度交互的客户数
+
+## 诊断规则
+
+| 发现 | 条件 | 含义 |
+|------|------|------|
+| ⚠️ 引起意向的商品减少 | 引起意向SKU环比下降>10% | 货盘吸引力下降 |
+| ⚠️ 试用深度下降 | 平均试用深度环比下降>10% | 客户体验变浅 |
+| ⚠️ 货盘成交率下滑 | 货盘成交率环比下降>20% | 大量陈列无效 |
+| ✅ 客户选择集中 | 客户意向分散度下降 | 意向更明确 |
+
+## 输出示例
+
+```
+======================================================================
+陈列货盘分析报告 - 正义路60号店
+分析周期: 2026-03-01 至 2026-03-26
+======================================================================
+
+【第一步：获取数据】
+...
+
+【第二步：提取核心指标】
+核心指标提取:
+  【货盘】陈列SKU: 389→385, 未触达: 18→24
+  【意向商品】引起意向的SKU: 287→240 (深度触达+成交)
+  【意向客户】有深度交互的客户: 374→277 (意向+成交)
+  【意向行为】深度试用次数: 959→581
+
+【第三步：交叉分析】
+1. 引起客户意向的商品变化:
+   引起意向的SKU数: 287个 → 240个 (-16.4%)
+   ⚠️  能引起客户深度兴趣的商品在变少
+
+2. 客户对意向商品的试用深度:
+   平均每个引起意向的SKU被深度试用: 3.34次 → 2.42次 (-27.6%)
+   ⚠️  客户对每个感兴趣商品的体验深度下降
+
+3. 客户意向分散度:
+   平均每个意向客户深度试用SKU数: 2.56个 → 2.10个
+   ✅ 客户选择更集中，意向更明确
+
+4. 货盘成交效率:
+   货盘成交率: 47.8% → 29.6%
+   ⚠️  大量陈列商品无法转化为成交
+
+【第四步：综合诊断】
+核心发现:
+  ⚠️  引起客户意向的商品大幅减少（-16.4%）
+  ⚠️  客户对意向商品的试用深度下降（-27.6%）
+  ⚠️  货盘成交率大幅下滑
+
+【第五步：行动建议】
+🔴 优化货盘结构
+🟡 提升试用体验
+🔴 提高货盘效率
+```
+
+## API 端点
+
+- `GET /api/v1/store/dashboard/bi` - 门店BI数据（displayFunnel + behaviorFunnel + customerFunnel）
+
+## 完整文档
+详见 `~/.openclaw/skills/store-assortment-analysis/analyze.py`

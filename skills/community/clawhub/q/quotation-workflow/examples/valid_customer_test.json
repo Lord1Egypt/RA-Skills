@@ -1,0 +1,56 @@
+{
+  "_comment": "真实客户数据测试文件",
+  "customer": {
+    "company_name": "Shenzhen Techtronics Co., Ltd.",
+    "contact": "David Chen",
+    "contact_email": "david.chen@techtronics.com.cn",
+    "phone": "+86-755-8888-9999",
+    "address": "Floor 12, Building A, High-Tech Industrial Park, Nanshan District, Shenzhen, Guangdong, China",
+    "country": "China",
+    "okki_customer_id": "16064"
+  },
+  "quotation": {
+    "quotation_no": "QT-20260327-001",
+    "date": "2026-03-27",
+    "valid_until": "2026-04-26"
+  },
+  "products": [
+    {
+      "description": "HDMI 2.1 Ultra High Speed Cable",
+      "specification": "8K@60Hz, 4K@120Hz, 48Gbps, HDR, eARC, 2m",
+      "quantity": 500,
+      "unit_price": 8.50
+    },
+    {
+      "description": "HDMI 2.1 Fiber Optical Cable (AOC)",
+      "specification": "8K@60Hz, 48Gbps, Active Optical, 10m",
+      "quantity": 200,
+      "unit_price": 25.00
+    },
+    {
+      "description": "USB-C to USB-C Cable",
+      "specification": "USB 4.0, 80Gbps, 100W PD 2.0, 1m",
+      "quantity": 1000,
+      "unit_price": 12.00
+    }
+  ],
+  "trade_terms": {
+    "incoterms": "FOB Shenzhen",
+    "currency": "USD",
+    "delivery": "15-20 days after deposit"
+  },
+  "freight": 350.00,
+  "tax": 0,
+  "bank_info": {
+    "beneficiary": "Farreach Electronic Co., Ltd.",
+    "bank_name": "Standard Chartered Bank",
+    "account_no": "1234 5678 9012",
+    "swift_code": "SCBLHKHH"
+  },
+  "terms": {
+    "moq": "500 pcs (negotiable)",
+    "delivery": "15-20 days after deposit",
+    "payment": "T/T 30% deposit, 70% before shipment",
+    "packaging": "Gift box, kraft box, PE bag, or customized"
+  }
+}

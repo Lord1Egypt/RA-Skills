@@ -1,35 +1,32 @@
 ---
-name: "Recipe Save Email To Doc"
+name: recipe-save-email-to-doc
 description: "Save a Gmail message body into a Google Doc for archival or reference."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-save-email-to-doc"
-sourceUrl: "https://clawhub.ai/skills/recipe-save-email-to-doc"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-gmail
+        - gws-docs
 ---
 
-# Recipe Save Email To Doc
+# Save a Gmail Message to Google Docs
 
-> Save a Gmail message body into a Google Doc for archival or reference.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-gmail`, `gws-docs`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-save-email-to-doc`
-- **Source URL:** [https://clawhub.ai/skills/recipe-save-email-to-doc](https://clawhub.ai/skills/recipe-save-email-to-doc)
+Save a Gmail message body into a Google Doc for archival or reference.
 
-## Overview
+## Steps
 
+1. Find the message: `gws gmail users messages list --params '{"userId": "me", "q": "subject:important from:boss@company.com"}' --format table`
+2. Get message content: `gws gmail users messages get --params '{"userId": "me", "id": "MSG_ID"}'`
+3. Create a doc with the content: `gws docs documents create --json '{"title": "Saved Email - Important Update"}'`
+4. Write the email body: `gws docs +write --document-id DOC_ID --text 'From: boss@company.com
+Subject: Important Update
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-save-email-to-doc
-```
+[EMAIL BODY]'`
+

@@ -1,0 +1,22 @@
+{
+  "name": "@qfc/openclaw-skill",
+  "version": "3.4.0",
+  "description": "QFC blockchain skill for AI agents — wallet management and chain interaction",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "setup": "bash scripts/setup.sh"
+  },
+  "dependencies": {
+    "ethers": "^6.13.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

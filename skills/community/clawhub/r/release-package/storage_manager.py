@@ -1,0 +1,312 @@
+#!/usr/bin/env python3
+"""
+飞书多维表格收纳管家核心模块
+"""
+
+import os
+import sys
+import json
+import requests
+from typing import Dict, List, Optional, Any
+
+class FeishuStorageManager:
+    """飞书收纳管家核心类"""
+    
+    def __init__(self):
+        self.app_id = os.getenv("FEISHU_APP_ID", "")
+        self.app_secret = os.getenv("FEISHU_APP_SECRET", "")
+        self.bitable_token = os.getenv("FEISHU_BITABLE_TOKEN", "")
+        self.table_id = os.getenv("FEISHU_TABLE_ID", "")
+        
+        self.access_token = None
+        self.token_expire = 0
+        
+    def get_tenant_access_token(self) -> str:
+        """获取Tenant Access Token"""
+        if self.access_token and self.token_expire > 0:
+            return self.access_token
+            
+        url = "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal"
+        data = {
+            "app_id": self.app_id,
+            "app_secret": self.app_secret
+        }
+        
+        try:
+            response = requests.post(url, json=data, timeout=10)
+            if response.status_code == 200:
+                result = response.json()
+                if result.get("code") == 0:
+                    self.access_token = result["tenant_access_token"]
+                    self.token_expire = result.get("expire", 0)
+                    return self.access_token
+                else:
+                    raise Exception(f"获取Token失败: {result.get('msg')}")
+            else:
+                raise Exception(f"HTTP错误: {response.status_code}")
+        except Exception as e:
+            raise Exception(f"获取Token异常: {e}")
+    
+    def upload_image(self, image_path: str) -> str:
+        """上传图片到飞书，返回file_token"""
+        if not self.access_token:
+            self.get_tenant_access_token()
+        
+        try:
+            with open(image_path, "rb") as f:
+                image_data = f.read()
+            file_size = len(image_data)
+        except Exception as e:
+            raise Exception(f"读取图片失败: {e}")
+        
+        url = "https://open.feishu.cn/open-apis/drive/v1/medias/upload_all"
+        headers = {"Authorization": f"Bearer {self.access_token}"}
+        
+        form_data = {
+            "file_name": os.path.basename(image_path),
+            "parent_type": "bitable_image",
+            "parent_node": self.bitable_token,
+            "size": str(file_size)
+        }
+        
+        files = {"file": (os.path.basename(image_path), image_data, "image/jpeg")}
+        
+        try:
+            response = requests.post(
+                url,
+                headers=headers,
+                data=form_data,
+                files=files,
+                timeout=30
+            )
+            
+            if response.status_code == 200:
+                result = response.json()
+                if result.get("code") == 0 and "data" in result:
+                    file_token = result["data"].get("file_token")
+                    if file_token:
+                        return file_token
+                    else:
+                        raise Exception("响应中没有file_token字段")
+                else:
+                    raise Exception(f"上传失败: {result.get('msg', '未知错误')}")
+            else:
+                raise Exception(f"HTTP错误 {response.status_code}: {response.text[:200]}")
+                
+        except Exception as e:
+            raise Exception(f"上传请求异常: {e}")
+    
+    # ==================== 核心工具函数 ====================
+    
+    def add_storage_item(self, item_name: str, location: str, image_path: Optional[str] = None) -> Dict:
+        """
+        物品入库工具
+        """
+        print(f"[ADD] 物品入库: {item_name} -> {location}")
+        
+        fields = {
+            "AI收纳管家-物品位置记录": item_name,
+            "Location": location
+        }
+        
+        if image_path and os.path.exists(image_path):
+            try:
+                file_token = self.upload_image(image_path)
+                fields["Image"] = [{"file_token": file_token}]
+                print(f"[ADD] 图片已关联: {file_token}")
+            except Exception as e:
+                print(f"[WARN] 图片上传失败，继续创建记录: {e}")
+                fields["Location"] = f"{location} [图片上传失败: {e}]"
+        
+        return self._create_bitable_record(fields)
+    
+    def search_storage_item(self, query_item: str) -> List[Dict]:
+        """
+        物品检索工具
+        """
+        print(f"[SEARCH] 搜索物品: {query_item}")
+        
+        all_records = self._list_all_records()
+        
+        matched_records = []
+        for record in all_records:
+            item_field = record["fields"].get("AI收纳管家-物品位置记录", "")
+            if query_item.lower() in item_field.lower():
+                matched_records.append(record)
+        
+        print(f"[SEARCH] 找到 {len(matched_records)} 条匹配记录")
+        return matched_records
+    
+    def update_storage_location(self, item_name: str, new_location: str) -> Dict:
+        """
+        位置更新工具
+        """
+        print(f"[UPDATE] 更新位置: {item_name} -> {new_location}")
+        
+        records = self.search_storage_item(item_name)
+        
+        if not records:
+            raise Exception(f"未找到物品: {item_name}")
+        
+        target_record = records[0]
+        record_id = target_record["record_id"]
+        
+        fields = {"Location": new_location}
+        
+        if "Image" in target_record["fields"]:
+            fields["Image"] = target_record["fields"]["Image"]
+        
+        return self._update_bitable_record(record_id, fields)
+    
+    # ==================== 底层API函数 ====================
+    
+    def _create_bitable_record(self, fields: Dict) -> Dict:
+        """创建多维表格记录"""
+        if not self.access_token:
+            self.get_tenant_access_token()
+        
+        url = f"https://open.feishu.cn/open-apis/bitable/v1/apps/{self.bitable_token}/tables/{self.table_id}/records"
+        headers = {
+            "Authorization": f"Bearer {self.access_token}",
+            "Content-Type": "application/json"
+        }
+        
+        data = {"fields": fields}
+        
+        try:
+            response = requests.post(url, headers=headers, json=data, timeout=10)
+            if response.status_code == 200:
+                result = response.json()
+                if result.get("code") == 0:
+                    record = result.get("record", {})
+                    print(f"[API] 记录创建成功，ID: {record.get('record_id')}")
+                    return result
+                else:
+                    raise Exception(f"创建失败: {result.get('msg')}")
+            else:
+                raise Exception(f"HTTP错误 {response.status_code}: {response.text[:200]}")
+        except Exception as e:
+            raise Exception(f"创建请求异常: {e}")
+    
+    def _update_bitable_record(self, record_id: str, fields: Dict) -> Dict:
+        """更新多维表格记录"""
+        if not self.access_token:
+            self.get_tenant_access_token()
+        
+        url = f"https://open.feishu.cn/open-apis/bitable/v1/apps/{self.bitable_token}/tables/{self.table_id}/records/{record_id}"
+        headers = {
+            "Authorization": f"Bearer {self.access_token}",
+            "Content-Type": "application/json"
+        }
+        
+        data = {"fields": fields}
+        
+        try:
+            response = requests.put(url, headers=headers, json=data, timeout=10)
+            if response.status_code == 200:
+                result = response.json()
+                if result.get("code") == 0:
+                    print(f"[API] 记录更新成功，ID: {record_id}")
+                    return result
+                else:
+                    raise Exception(f"更新失败: {result.get('msg')}")
+            else:
+                raise Exception(f"HTTP错误 {response.status_code}: {response.text[:200]}")
+        except Exception as e:
+            raise Exception(f"更新请求异常: {e}")
+    
+    def _list_all_records(self) -> List[Dict]:
+        """获取所有记录"""
+        if not self.access_token:
+            self.get_tenant_access_token()
+        
+        url = f"https://open.feishu.cn/open-apis/bitable/v1/apps/{self.bitable_token}/tables/{self.table_id}/records"
+        headers = {"Authorization": f"Bearer {self.access_token}"}
+        
+        all_records = []
+        page_token = None
+        
+        try:
+            while True:
+                params = {"page_size": 100}
+                if page_token:
+                    params["page_token"] = page_token
+                
+                response = requests.get(url, headers=headers, params=params, timeout=10)
+                if response.status_code == 200:
+                    result = response.json()
+                    if result.get("code") == 0:
+                        records = result.get("data", {}).get("items", [])
+                        all_records.extend(records)
+                        
+                        if result.get("data", {}).get("has_more"):
+                            page_token = result["data"].get("page_token")
+                        else:
+                            break
+                    else:
+                        raise Exception(f"获取记录失败: {result.get('msg')}")
+                else:
+                    raise Exception(f"HTTP错误 {response.status_code}: {response.text[:200]}")
+        except Exception as e:
+            raise Exception(f"获取记录异常: {e}")
+        
+        return all_records
+
+def main():
+    """命令行入口"""
+    import argparse
+    
+    parser = argparse.ArgumentParser(description="飞书收纳管家命令行工具")
+    subparsers = parser.add_subparsers(dest="command", help="可用命令")
+    
+    add_parser = subparsers.add_parser("add", help="物品入库")
+    add_parser.add_argument("item", help="物品名称")
+    add_parser.add_argument("location", help="存放位置")
+    add_parser.add_argument("--image", help="图片路径")
+    
+    search_parser = subparsers.add_parser("search", help="物品检索")
+    search_parser.add_argument("item", help="要查找的物品名称")
+    
+    update_parser = subparsers.add_parser("update", help="位置更新")
+    update_parser.add_argument("item", help="物品名称")
+    update_parser.add_argument("new_location", help="新位置")
+    
+    args = parser.parse_args()
+    
+    if not args.command:
+        parser.print_help()
+        return
+    
+    manager = FeishuStorageManager()
+    
+    try:
+        if args.command == "add":
+            result = manager.add_storage_item(args.item, args.location, args.image)
+            print(f"✅ 物品入库成功: {args.item} -> {args.location}")
+            if args.image:
+                print(f"   图片已关联")
+            
+        elif args.command == "search":
+            records = manager.search_storage_item(args.item)
+            if records:
+                print(f"🔍 找到 {len(records)} 条记录:")
+                for i, record in enumerate(records, 1):
+                    fields = record["fields"]
+                    print(f"  {i}. {fields.get('AI收纳管家-物品位置记录')}")
+                    print(f"     位置: {fields.get('Location')}")
+                    if "Image" in fields:
+                        print(f"     有图片附件")
+                    print()
+            else:
+                print(f"❌ 未找到物品: {args.item}")
+                
+        elif args.command == "update":
+            result = manager.update_storage_location(args.item, args.new_location)
+            print(f"✅ 位置更新成功: {args.item} -> {args.new_location}")
+            
+    except Exception as e:
+        print(f"❌ 操作失败: {e}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

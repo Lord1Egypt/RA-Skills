@@ -1,0 +1,6 @@
+[project]
+name = "property-advisor"
+version = "3.0.0"
+description = "OpenClaw-first property search orchestration skill with ok-core-skill runtime preflight and bundled OSM map enrichment."
+requires-python = ">=3.11"
+dependencies = []

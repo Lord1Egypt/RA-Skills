@@ -1,0 +1,19 @@
+{
+  "language": "en",
+  "backend": "local",
+  "default_project": "project-memory-ledger",
+  "shared_folder_id": "",
+  "projects_root_folder_id": "",
+  "projects_root_dir": "./projects",
+  "local_dir": "./ledgers",
+  "docs": {
+    "invariants_doc_id": "",
+    "decision_log_doc_id": "",
+    "change_log_doc_id": ""
+  },
+  "doc_titles": {
+    "invariants": "System Invariants & Rules（总账）",
+    "decisions": "Decision Log（总账）",
+    "changes": "Change Log（总账）"
+  }
+}

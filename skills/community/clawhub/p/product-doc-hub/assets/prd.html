@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tideo · 产品需求文档（PRD）</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;background:#08080c;color:#e2e8f0;line-height:1.7}
+.page{max-width:780px;margin:0 auto;padding:40px 24px 100px}
+.back{display:inline-flex;align-items:center;gap:4px;font-size:.78rem;color:#64748b;text-decoration:none;margin-bottom:20px}
+.back:hover{color:#94a3b8}
+.cover{text-align:center;padding:40px 0 48px;border-bottom:1px solid rgba(255,255,255,0.05);margin-bottom:32px}
+.cover h1{font-size:2rem;font-weight:800;margin-bottom:4px}
+.cover .sub{font-size:1rem;color:#94a3b8;margin-bottom:16px}
+.cover .meta{font-size:.75rem;color:#475569;line-height:1.8}
+.cover a{color:#818cf8;text-decoration:none}
+.copy-hint{position:fixed;top:16px;right:16px;padding:6px 14px;border-radius:8px;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:#10b981;font-size:.72rem;font-weight:500;opacity:0;transition:opacity .3s;pointer-events:none;z-index:100}
+.copy-hint.show{opacity:1}
+h2{font-size:1.1rem;font-weight:700;margin:32px 0 12px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.05)}
+h3{font-size:.92rem;font-weight:600;margin:18px 0 8px;color:#cbd5e1}
+h4{font-size:.82rem;font-weight:600;margin:12px 0 6px;color:#94a3b8}
+p{font-size:.85rem;color:#94a3b8;margin-bottom:10px}
+ul,ol{font-size:.85rem;color:#94a3b8;margin:0 0 12px 20px}
+li{margin-bottom:4px}
+li::marker{color:#475569}
+strong{color:#e2e8f0}
+code{background:rgba(255,255,255,0.08);padding:1px 6px;border-radius:4px;font-size:.78rem;color:#e2e8f0}
+.callout{padding:14px 16px;border-radius:10px;margin:12px 0;font-size:.82rem}
+.callout-blue{background:rgba(129,140,248,0.08);border-left:3px solid #818cf8;color:#cbd5e1}
+.callout-green{background:rgba(16,185,129,0.08);border-left:3px solid #10b981;color:#cbd5e1}
+.callout-yellow{background:rgba(245,158,11,0.08);border-left:3px solid #f59e0b;color:#cbd5e1}
+.callout-purple{background:rgba(168,85,247,0.08);border-left:3px solid #a855f7;color:#cbd5e1}
+table{width:100%;border-collapse:collapse;font-size:.8rem;margin:10px 0 16px}
+th{text-align:left;padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.1);color:#64748b;font-weight:500}
+td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.03);color:#94a3b8}
+.flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:10px 0 16px}
+.flow-step{padding:6px 14px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);font-size:.78rem;color:#cbd5e1}
+.flow-step.active{background:rgba(129,140,248,0.1);border-color:rgba(129,140,248,0.25);color:#818cf8}
+.flow-arrow{color:#334155;font-size:.75rem}
+.toc{margin:20px 0 32px;padding:20px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06)}
+.toc h3{margin:0 0 12px;font-size:.85rem;color:#94a3b8}
+.toc a{display:block;padding:4px 0;font-size:.8rem;color:#64748b;text-decoration:none;transition:color .2s}
+.toc a:hover{color:#e2e8f0}
+.toc a.l2{padding-left:16px;font-size:.75rem}
+.diagram{padding:16px;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);font-family:monospace;font-size:.72rem;color:#94a3b8;line-height:1.8;white-space:pre;overflow-x:auto;margin:10px 0 16px}
+.copy-all{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#94a3b8;font-size:.78rem;cursor:pointer;transition:all .2s;margin-bottom:20px;font-family:inherit}
+.copy-all:hover{background:rgba(255,255,255,0.1);color:#e2e8f0}
+</style>
+</head>
+<body>
+<div class="page">
+
+<a class="back" href="hub.html"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 返回产品中心</a>
+
+<button class="copy-all" id="copyBtn"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M11 5V3.5C11 2.67 10.33 2 9.5 2H3.5C2.67 2 2 2.67 2 3.5V9.5C2 10.33 2.67 11 3.5 11H5" stroke="currentColor" stroke-width="1.2"/></svg> 复制全文</button>
+
+<div class="cover">
+    <h1>Tideo PRD</h1>
+    <div class="sub">产品需求文档</div>
+    <div class="meta">
+        腾讯云音视频能力轻量化统一平台<br>
+        版本：visual1 · 2026-04-15<br>
+        <a href="https://ildar981105-create.github.io/visual1/app/create.html" target="_blank">在线体验</a>
+    </div>
+</div>
+
+<div class="toc">
+    <h3>目录</h3>
+    <a href="#s1">1. 产品定义与目标用户</a>
+    <a href="#s2">2. 产品入口</a>
+    <a href="#s3">3. 页面结构总览</a>
+    <a href="#s4">4. 创作页 — 统一入口</a>
+    <a href="#s5">5. 影视译制</a>
+    <a href="#s5-1" class="l2">5.1 工作坊对话体验</a>
+    <a href="#s5-2" class="l2">5.2 精调面板</a>
+    <a href="#s6">6. 视频制作（AI 生成）</a>
+    <a href="#s6-1" class="l2">6.1 分镜工作坊</a>
+    <a href="#s6-2" class="l2">6.2 分镜精调</a>
+    <a href="#s7">7. 直播剪辑</a>
+    <a href="#s8">8. 精调统一视觉规范</a>
+    <a href="#s9">9. 产品特色</a>
+    <a href="#s10">10. 当前状态与规划</a>
+</div>
+
+<div id="prdContent">
+
+<!-- ===== 1 ===== -->
+<h2 id="s1">1. 产品定义与目标用户</h2>
+
+<div class="callout callout-blue">
+    <strong>Tideo</strong> 是腾讯云音视频能力的轻量化统一平台 — 整合云点播（VOD）、云直播、MPS 的公用功能，提供开箱即用的可视化操作界面。<br>
+    首期聚焦三大核心功能：<strong>影视译制 · 视频制作 · 直播剪辑</strong>。
+</div>
+
+<h3>目标用户</h3>
+<ul>
+    <li><strong>中小企业</strong> — 无技术团队，需要开箱即用的音视频工具</li>
+    <li><strong>短剧出海团队</strong> — 中文短剧翻译成英/日/韩发行海外</li>
+    <li><strong>内容创作者</strong> — 视频多语言化扩大受众</li>
+    <li><strong>企业市场部</strong> — 宣传片、培训视频多语言本地化</li>
+    <li><strong>直播运营团队</strong> — 从直播中快速剪辑精彩片段</li>
+</ul>
+
+<!-- ===== 2 ===== -->
+<h2 id="s2">2. 产品入口</h2>
+
+<h3>入口一：MPS / VOD 任务列表 — 二次编辑</h3>
+<p>在腾讯云 MPS 和 VOD 的任务列表中，凡是与视频译制、视频生成相关的已完成任务，任务行上提供<strong>"二次编辑"</strong>按钮。</p>
+<ul>
+    <li>点击后直接跳转到 Tideo 对应的<strong>精调页面</strong>，跳过创作页和对话流程</li>
+    <li>用户可调整擦除区域、字幕翻译、配音参数或分镜内容，然后重新提交</li>
+</ul>
+
+<div class="diagram">MPS / VOD 控制台 → 任务列表
+  ├── 译制任务  [已完成]  [二次编辑 →]  → Tideo 擦除/字幕/配音精调
+  └── 生成任务  [已完成]  [二次编辑 →]  → Tideo 分镜精调</div>
+
+<h3>入口二：控制台菜单 — SaaS 工具</h3>
+<p>在 VOD、云直播、MPS 控制台的侧边栏菜单中，统一增加<strong>"SaaS 工具"</strong>入口，点击跳转到 Tideo 创作页，从零开始创建新任务。</p>
+
+<h3>入口三：独立访问</h3>
+<p>Tideo 同时作为独立站点直接访问，适用于无腾讯云账号的外部用户和分享链接场景。</p>
+
+<h3>账号打通</h3>
+<table>
+    <tr><th>入口</th><th>登录方式</th></tr>
+    <tr><td>腾讯云控制台</td><td>SSO 单点登录，继承腾讯云账号</td></tr>
+    <tr><td>独立站点</td><td>手机号 / 邮箱 / 微信，关联腾讯云子账号</td></tr>
+    <tr><td>分享链接</td><td>游客模式（受限功能）</td></tr>
+</table>
+
+<!-- ===== 3 ===== -->
+<h2 id="s3">3. 页面结构总览</h2>
+
+<table>
+    <tr><th>页面</th><th>说明</th></tr>
+    <tr><td><strong>创作页</strong>（主入口）</td><td>首页视图 + 智能输入框 + 技能卡片 + 配置项</td></tr>
+    <tr><td><strong>影视译制</strong></td><td>四角色对话工作坊 + 擦除/字幕/配音精调</td></tr>
+    <tr><td><strong>视频制作</strong></td><td>四角色分镜工作坊 + 分镜精调</td></tr>
+    <tr><td><strong>直播剪辑</strong></td><td>直播流监控 + 精彩片段提取</td></tr>
+    <tr><td>素材管理</td><td>已上传素材的浏览和管理</td></tr>
+    <tr><td>任务记录</td><td>历史任务列表 + 结果查看 + 下载</td></tr>
+    <tr><td>登录</td><td>手机号 / 邮箱 / 微信扫码</td></tr>
+</table>
+<p>侧边栏三个入口：<strong>创作 → 素材 → 作品</strong></p>
+
+<!-- ===== 4 ===== -->
+<h2 id="s4">4. 创作页 — 统一入口</h2>
+
+<h3>4.1 智能输入框</h3>
+<p>页面底部的统一输入框，三种触发方式：</p>
+<ul>
+    <li><strong>点击技能卡片</strong>（影视译制 / 视频制作 / 直播剪辑）→ 展示对应配置项和默认提示词</li>
+    <li><strong>自然语言输入</strong>（如"帮我翻译成英语"）→ 自动识别意图并匹配技能</li>
+    <li><strong>直接上传视频</strong> → 自动识别为影视译制</li>
+</ul>
+
+<h3>4.2 视频来源三路径</h3>
+<p>影视译制支持三种视频来源：</p>
+<ul>
+    <li><strong>上传视频</strong>：本地文件 → 进入对话工作坊流程</li>
+    <li><strong>导入任务</strong>：输入 VOD/MPS 任务 ID → 直接进入精调</li>
+    <li><strong>项目文件</strong>：原视频 + 可选配置文件 → 直接进入精调</li>
+</ul>
+
+<h3>4.3 右侧角色群像</h3>
+<p>创作页右侧展示 Tideo 团队 6 名角色群像。选中不同技能时切换为对应团队配图。Hover 角色可查看姓名、职责、技能标签和台词。</p>
+<table>
+    <tr><th>角色</th><th>职责</th><th>出现在</th></tr>
+    <tr><td>林雨晨</td><td>导演</td><td>译制 + 生成</td></tr>
+    <tr><td>陈默</td><td>后期</td><td>译制（擦除）+ 生成（剪辑）</td></tr>
+    <tr><td>李明远</td><td>翻译 / 编剧</td><td>译制（翻译）+ 生成（分镜）</td></tr>
+    <tr><td>苏雅</td><td>配音 / 艺术指导</td><td>译制（配音）+ 生成（画面）</td></tr>
+    <tr><td>赵思琪</td><td>美术指导</td><td>创作页展示</td></tr>
+    <tr><td>王大力</td><td>摄影师</td><td>创作页展示</td></tr>
+</table>
+
+<!-- ===== 5 ===== -->
+<h2 id="s5">5. 影视译制</h2>
+
+<h3>功能概述</h3>
+<p>上传视频后，系统自动完成<strong>字幕擦除 → 字幕翻译 → AI 配音</strong>，输出多语言成片。</p>
+
+<h4>处理模式</h4>
+<table>
+    <tr><th>模式</th><th>包含能力</th></tr>
+    <tr><td><strong>完整模式</strong></td><td>字幕擦除 + 字幕翻译 + AI 配音</td></tr>
+    <tr><td>字幕擦除</td><td>仅擦除画面中的字幕和水印</td></tr>
+    <tr><td>字幕翻译</td><td>识别语音 + 翻译 + 字幕压制</td></tr>
+    <tr><td>配音</td><td>语音识别 + 翻译 + AI 克隆配音</td></tr>
+</table>
+
+<h4>配置项</h4>
+<ul>
+    <li><strong>语言</strong>：源语言（中/英/日/韩/自动）→ 目标语言（英/日/韩/西/法/德/中）</li>
+    <li><strong>字幕</strong>：压制风格（标准/电影/花字/极简）或文件导出（SRT/ASS）</li>
+    <li><strong>配音</strong>：克隆音色 / 女声 / 男声 / 自动 / 关闭</li>
+</ul>
+
+<h3 id="s5-1">5.1 工作坊对话体验</h3>
+<div class="callout callout-purple">
+    <strong>核心特色</strong>：把原本枯燥的视频处理等待过程，变成一个有角色、有对话、有进度的<strong>沉浸式工作坊体验</strong>。用户能看到"工作室里正在发生什么"，降低感知等待时间。
+</div>
+<p>四个 AI 角色在右侧聊天面板中实时汇报进度：</p>
+<ul>
+    <li><strong>导演（林雨晨）</strong>：开场分工、统筹调度、最终验收</li>
+    <li><strong>后期（陈默）</strong>：字幕/水印擦除进度</li>
+    <li><strong>翻译（李明远）</strong>：语音识别、翻译进度</li>
+    <li><strong>配音（苏雅）</strong>：配音合成进度</li>
+</ul>
+<p>每个角色下方有<strong>子任务卡片</strong>，逐条从"排队中"→"处理中"→"完成"，与真实处理进度完全同步。</p>
+<p>左侧视频区域显示工作室背景视频，处理完成后自动切换到成片预览（关灯聚光效果）。</p>
+
+<h3 id="s5-2">5.2 精调面板</h3>
+<p>处理完成后（或从任务导入/二次编辑进入），可以对三个维度进行手动调整：</p>
+
+<h4>擦除精调（Tab: 擦除）</h4>
+<ul>
+    <li>擦除区域列表（E1, E2...），每条显示时间范围 + 编辑/删除</li>
+    <li>编辑态：单位选择（PX/百分比）、位置 XY、尺寸 WH、时间范围 → 取消/保存</li>
+    <li>视频上方实时显示擦除区域框，支持 8 方向拖拽调整</li>
+</ul>
+
+<h4>字幕精调（Tab: 字幕）</h4>
+<ul>
+    <li>字幕设置区：源语言、目标语言、字幕样式下拉选择</li>
+    <li>字幕列表（T1, T2...），每条显示时间范围 + 编辑/删除 → 原文 + 译文</li>
+    <li>编辑态：时间范围、原文、译文输入框 → 取消/保存</li>
+</ul>
+
+<h4>配音精调（Tab: 配音）</h4>
+<ul>
+    <li>配音设置区：配音音色下拉选择</li>
+    <li>配音列表（V1, V2...），每条显示时间范围 + 播放/编辑/删除 → 译文文本</li>
+    <li>编辑态：时间范围、语速选择、译文输入、试听/重新生成 → 取消/保存</li>
+</ul>
+
+<!-- ===== 6 ===== -->
+<h2 id="s6">6. 视频制作（AI 生成）</h2>
+
+<h3>功能概述</h3>
+<p>输入文字描述，系统自动拆分为多个分镜，调用 AIGC 模型逐段生成画面，合成完整视频。</p>
+
+<h4>配置项</h4>
+<ul>
+    <li><strong>AI 模型</strong>：可灵 3.0-Omni / Vidu Q3-Pro / 海螺 2.3 / PixVerse V6 / 即梦 3.0 Pro / GV 3.1</li>
+    <li><strong>清晰度</strong>：1080p / 720p / 2K / 4K</li>
+    <li><strong>画面比例</strong>：16:9 / 9:16 / 1:1</li>
+</ul>
+
+<h3 id="s6-1">6.1 分镜工作坊</h3>
+<p>同样是四角色协作的对话工作坊，但角色分工不同：</p>
+<div class="flow">
+    <span class="flow-step active">导演（林雨晨）开场</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step active">编剧（李明远）拆分镜</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step active">艺术指导（苏雅）生成画面</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step active">后期（陈默）剪辑合成</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">精调</span>
+</div>
+<p>全流程以角色对话 + 子任务卡片展示在聊天面板中，与译制工作坊相同的交互范式。</p>
+
+<h3 id="s6-2">6.2 分镜精调</h3>
+<p>成片生成后进入精调：</p>
+<ul>
+    <li><strong>左上</strong>：当前分镜视频预览（canvas 播放器 + 进度条）</li>
+    <li><strong>左下</strong>：时间轴（播放头 + 标尺 + 分镜色块首尾相接，点击切换）</li>
+    <li><strong>右侧</strong>：分镜卡片列表</li>
+</ul>
+
+<h4>分镜卡片结构</h4>
+<ul>
+    <li>头行：F编号 | 片段名称 + 编辑/删除按钮</li>
+    <li>内容区：分镜缩略图 + 画面描述文字</li>
+    <li>编辑态：画面描述（textarea）+ 时长（数字选择器）→ 取消/重新生成</li>
+</ul>
+<p>顶部有"添加分镜"按钮，底部有"完成分镜精调"按钮。</p>
+
+<!-- ===== 7 ===== -->
+<h2 id="s7">7. 直播剪辑</h2>
+<p>粘贴直播链接，系统实时监控直播流，自动识别高光时刻并生成精彩片段。</p>
+<ul>
+    <li><strong>类型选择</strong>：赛事 / 带货 / 游戏 / 知识 / 综艺</li>
+    <li><strong>状态</strong>：待对接</li>
+</ul>
+
+<!-- ===== 8 ===== -->
+<h2 id="s8">8. 精调统一视觉规范</h2>
+<p>所有精调面板（擦除/字幕/配音/分镜）共享同一套视觉语言：</p>
+
+<h3>布局</h3>
+<ul>
+    <li>三栏 Grid：左上视频预览 + 左下时间线 + 右侧编辑面板</li>
+    <li>深色背景 + 点阵网格（24px 间距白色圆点）+ 鼠标跟随亮光</li>
+    <li>三张黑色毛玻璃卡片（半透明深色 + 模糊 + 微弱白色边框 + 圆角）</li>
+</ul>
+
+<h3>卡片统一结构</h3>
+<table>
+    <tr><th>元素</th><th>规则</th></tr>
+    <tr><td>头行</td><td>编号（E1/T1/V1/F1）+ 竖线 + 时间或名称 + 编辑/删除 icon</td></tr>
+    <tr><td>内容区</td><td>分割线下方：擦除无内容、字幕显示双语、配音显示文本、分镜显示缩略图+描述</td></tr>
+    <tr><td>编辑态</td><td>点击编辑展开，各模块不同字段 → 底部：取消（暗色胶囊）+ 保存（白色胶囊）</td></tr>
+    <tr><td>时间线</td><td>控制栏 + 标尺 + 轨道色块 + 播放头</td></tr>
+    <tr><td>完成按钮</td><td>右侧底部吸底，白底黑字圆角："完成 XX 精调"</td></tr>
+</table>
+
+<!-- ===== 9 ===== -->
+<h2 id="s9">9. 产品特色</h2>
+
+<div class="callout callout-green">
+    Tideo 的核心差异不在于功能本身（擦除、翻译、配音都是 MPS 现有能力），而在于<strong>体验层</strong>的设计。
+</div>
+
+<h3>9.1 沉浸式工作坊 — 把等待变成体验</h3>
+<p>传统媒体处理产品：提交任务 → 进度条/空白页 → 完成通知。用户在等待期间无事可做。</p>
+<p>Tideo 的做法：把处理过程具象化为<strong>四人虚拟工作坊</strong>，用户看到角色在工作、对话、汇报进度。等待本身变成产品体验的一部分。</p>
+
+<h3>9.2 统一的精调范式</h3>
+<p>无论是擦除区域、字幕内容、配音参数还是分镜画面，都使用<strong>完全统一的视觉语言和交互模式</strong>（三栏布局 + 卡片列表 + 编辑态展开）。用户学会一种精调，就会用所有精调。</p>
+
+<h3>9.3 对话式创作入口</h3>
+<p>创作页不是传统的表单填写，而是<strong>对话式+卡片式</strong>的智能输入框。用户可以用自然语言描述需求，也可以点击技能卡片直接配置。降低上手门槛。</p>
+
+<h3>9.4 多触点嵌入</h3>
+<p>Tideo 不是孤立产品，而是嵌入在腾讯云控制台（MPS/VOD/云直播）的多个触点中。任务列表二次编辑、SaaS 工具菜单入口，用户在既有工作流中自然触达。</p>
+
+<h3>9.5 一键复用角色 IP</h3>
+<p>6 名角色各有姓名、性格、职责和台词体系。这套角色 IP 可以在译制、生成、剪辑等不同功能中复用，构建统一的产品人格。</p>
+
+<!-- ===== 10 ===== -->
+<h2 id="s10">10. 当前状态与规划</h2>
+
+<h3>已完成</h3>
+<ul>
+    <li>影视译制全流程（上传 → 处理 → 精调 → 下载）</li>
+    <li>视频制作 AI 生成流程（分镜编排 → 画面生成 → 合成 → 精调）</li>
+    <li>四角色沉浸式工作坊（对话+子任务+实时进度）</li>
+    <li>擦除/字幕/配音/分镜四套精调面板（统一视觉规范）</li>
+    <li>创作页智能输入框（意图识别+技能配置+视频来源三路径）</li>
+    <li>多任务状态持久化</li>
+    <li>用户测试埋点 + 测试数据看板</li>
+</ul>
+
+<h3>待做</h3>
+<ul>
+    <li>直播剪辑功能对接</li>
+    <li>AI 视频生成对接真实 AIGC 模型</li>
+    <li>精调数据回写（重新提交处理）</li>
+    <li>MPS/VOD 控制台二次编辑入口 + SaaS 工具菜单</li>
+    <li>账号体系（SSO + 轻量登录）</li>
+    <li>多语言支持扩展</li>
+</ul>
+
+<h3>产品规划</h3>
+<table>
+    <tr><th>阶段</th><th>内容</th><th>时间</th></tr>
+    <tr><td><strong>首期 MVP</strong></td><td>视频译制跑通 + 体验设计 + 用户测试</td><td>2026.04</td></tr>
+    <tr><td>首期完整版</td><td>三大功能全部对接</td><td>2026.05</td></tr>
+    <tr><td>控制台嵌入</td><td>MPS/VOD 二次编辑 + SaaS 工具菜单</td><td>2026.05</td></tr>
+    <tr><td>账号体系</td><td>轻量登录，SSO 对接腾讯云</td><td>2026.06</td></tr>
+    <tr><td>能力扩充</td><td>持续引入更多音视频功能</td><td>持续</td></tr>
+</table>
+
+</div><!-- /prdContent -->
+
+</div>
+
+<div class="copy-hint" id="copyHint">已复制到剪贴板</div>
+
+<script>
+document.getElementById('copyBtn').addEventListener('click', function() {
+    var content = document.getElementById('prdContent');
+    var range = document.createRange();
+    range.selectNodeContents(content);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try {
+        document.execCommand('copy');
+        var hint = document.getElementById('copyHint');
+        hint.classList.add('show');
+        setTimeout(function() { hint.classList.remove('show'); }, 2000);
+    } catch(e) {}
+    sel.removeAllRanges();
+});
+</script>
+</body>
+</html>

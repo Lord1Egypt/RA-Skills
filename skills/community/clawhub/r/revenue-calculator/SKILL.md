@@ -1,35 +1,33 @@
 ---
-name: "Revenue Calculator"
-description: "Projects revenue and net profit projections for OpenClaw sub-agent monetization strategies with sensitivity and break-even analysis."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/revenue-calculator"
-sourceUrl: "https://clawhub.ai/skills/revenue-calculator"
+name: revenue-calculator
+description: Projects revenue for OpenClaw sub-agent strategies (marketplace, subs, pay-per-task). Use for monetization estimates: input users/pricing/conversions → detailed annual/monthly projections, sensitivity analysis, break-even. Triggers: 'calculate revenue', 'project earnings', 'monetize skill/agent'.
 ---
 
 # Revenue Calculator
 
-> Projects revenue and net profit projections for OpenClaw sub-agent monetization strategies with sensitivity and break-even analysis.
+## Workflow
+1. **Gather Inputs**: Users/mo, price ($/user/task), conv rate (%), churn (%), costs (% compute).
+2. **Select Strategy**: 1=API Sales, 2=Marketplace, 3=White-label, 4=Affiliates.
+3. **Calculate**: Monthly/annual rev, net profit. Use scripts/revenue-calc.py for models.
+4. **Output**: Table + sensitivity (e.g., +/-20% users) + next steps.
+5. **Sensitivity**: Test scenarios (low/med/high).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/revenue-calculator`
-- **Source URL:** [https://clawhub.ai/skills/revenue-calculator](https://clawhub.ai/skills/revenue-calculator)
+## Quick Example
+Input: Strategy 2, 100 users, $10/mo, 80% conv, 10% churn, 20% costs.
+Output: Monthly $800, Annual $8,640 net.
 
-## Overview
+## Strategies Pricing Defaults (ref/pricing-models.md)
+- Sub: $9-99/mo
+- Per-task: $0.01-1
+- Usage: $0.001/token
+- Affiliate: 5-20%
 
+## Resources
+### scripts/revenue-calc.py
+Exec for precise calcs (input JSON → output JSON/table).
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/revenue-calculator
-```
+### references/pricing-models.md
+Full tables/examples.
+
+### assets/report-template.md
+Copy for formatted outputs.

@@ -1,0 +1,8 @@
+interface:
+  display_name: "Qstar Video Ecom"
+  short_description: "One-click Chinese e-commerce video generation and variant workflows."
+  brand_color: "#E64A19"
+  default_prompt: "Use $qstar-video-ecom to generate or revise a Chinese e-commerce short video for my product."
+
+policy:
+  allow_implicit_invocation: true

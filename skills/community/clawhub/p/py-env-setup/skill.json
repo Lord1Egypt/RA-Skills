@@ -1,0 +1,7 @@
+{
+  "name": "py-env-setup",
+  "version": "0.1.0",
+  "description": "Host-specific Python execution guidance for OpenClaw. Prefer $PYTHON over python/python3 in PATH for all Python-related commands.",
+  "author": "QAA-Tools",
+  "license": "MIT"
+}

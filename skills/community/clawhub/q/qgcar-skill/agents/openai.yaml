@@ -1,0 +1,4 @@
+interface:
+  display_name: "QG Car"
+  short_description: "Book Qiguan campus bus links"
+  default_prompt: "Use $qgcar-skill to find a Qiguan bus and generate a WeChat order link."

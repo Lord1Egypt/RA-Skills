@@ -1,0 +1,28 @@
+interface:
+  display_name: "Raven NGN Transfers"
+  short_description: "Wallet-checked NGN bank and merchant payouts"
+  default_prompt: "Use $raven-transfer to check wallet balance, resolve recipient account details, and execute a confirmed NGN transfer."
+requirements:
+  environment:
+    required:
+      - "RAVEN_API_KEY_FILE or RAVEN_API_KEY"
+    primary: "RAVEN_API_KEY_FILE"
+    optional:
+      - "RAVEN_API_BASE"
+      - "RAVEN_TIMEOUT_MS"
+      - "RAVEN_READ_RETRIES"
+      - "RAVEN_RETRY_DELAY_MS"
+      - "RAVEN_DISABLE_LOCAL_STATE"
+      - "RAVEN_CONTRACT_TESTS"
+      - "RAVEN_TEST_ACCOUNT_NUMBER"
+      - "RAVEN_TEST_BANK"
+      - "RAVEN_TEST_BANK_CODE"
+      - "RAVEN_RUN_LIVE_TRANSFER_CREATE"
+      - "RAVEN_TEST_TRANSFER_BANK"
+      - "RAVEN_TEST_TRANSFER_BANK_CODE"
+      - "RAVEN_TEST_TRANSFER_ACCOUNT_NUMBER"
+      - "RAVEN_TEST_TRANSFER_ACCOUNT_NAME"
+      - "RAVEN_TEST_TRANSFER_AMOUNT"
+      - "RAVEN_TEST_TRX_REF"
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,12 @@
+{
+  "en": {
+    "home": "Home",
+    "settings": "Settings",
+    "billing": "Billing"
+  },
+  "de": {
+    "home": "Startseite",
+    "settings": "Einstellungen",
+    "billing": "Abrechnung"
+  }
+}

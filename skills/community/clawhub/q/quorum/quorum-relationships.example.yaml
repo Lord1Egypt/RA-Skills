@@ -1,0 +1,64 @@
+# quorum-relationships.yaml — Declare relationships between artifacts for cross-validation
+#
+# Usage:
+#   quorum run --target <file> --relationships quorum-relationships.yaml
+#
+# See docs/CROSS_ARTIFACT_DESIGN.md for full schema documentation.
+#
+# Supported relationship types:
+#   implements      — spec/impl coverage verification
+#   documents       — source/docs accuracy verification
+#   delegates       — from/to boundary verification
+#   schema_contract — producer/consumer compatibility verification
+#   threat_context  — security context for authorization review (SEC-04)
+
+relationships:
+  # Example 1: Verify the pipeline implements its design spec
+  - type: implements
+    spec: docs/CROSS_ARTIFACT_DESIGN.md
+    impl: quorum/pipeline.py
+    scope: "Phase 2 cross-artifact coordination"
+
+  # Example 2: Verify the CLI docs accurately describe the CLI source
+  - type: documents
+    source: quorum/cli.py
+    docs: docs/CONFIG_REFERENCE.md
+
+  # Example 3: Verify code_hygiene delegates security patterns to the security critic
+  - type: delegates
+    from: quorum/critics/code_hygiene.py
+    to: quorum/critics/security.py
+    scope: "Security-adjacent patterns (eval/exec, credentials, prompt injection)"
+
+  # Example 4: Verify PreScreenResult model contract between producer and consumer
+  - type: schema_contract
+    producer: quorum/prescreen.py
+    consumer: quorum/critics/security.py
+    scope: "PreScreenResult model — to_evidence_block() output format"
+
+  # Example 5: Provide threat model context for authorization review (SEC-04)
+  # Without this, the Security Critic evaluates authorization logic in a vacuum —
+  # it can spot missing auth checks, but can't assess whether the right roles
+  # have access to the right resources.
+  - type: threat_context
+    target: quorum/pipeline.py
+    context:
+      roles:
+        - name: admin
+          description: "Full system access, can configure critics and rubrics"
+        - name: operator
+          description: "Can trigger validation runs, read results"
+        - name: viewer
+          description: "Read-only access to verdicts and reports"
+      trust_boundaries:
+        - name: "CLI → Pipeline"
+          description: "User input enters via CLI args and config files"
+        - name: "Pipeline → LLM Provider"
+          description: "Prompts and artifact content sent to external API"
+        - name: "Pipeline → Filesystem"
+          description: "Run artifacts written to local disk"
+      sensitive_operations:
+        - "Rubric loading (arbitrary file read)"
+        - "Pre-screen shell execution (Ruff/PSSA invocation)"
+        - "LLM prompt construction (prompt injection surface)"
+        - "Verdict writing (integrity of assessment output)"

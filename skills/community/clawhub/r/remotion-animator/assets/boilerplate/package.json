@@ -1,0 +1,24 @@
+{
+  "name": "remotion-animator-project",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "@remotion/tailwind-v4": "^4.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "^4.0.0",
+    "tailwindcss": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/web": "^0.0.166",
+    "typescript": "^5.5.0"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "render": "remotion render",
+    "build": "remotion bundle"
+  },
+  "sideEffects": ["*.css"]
+}

@@ -1,0 +1,207 @@
+# OpenClaw QWeather技能配置
+# 基于中国气象局数据的完整天气服务
+
+name: qweather-china
+version: 1.2.2
+description: 基于中国气象局数据的完整天气服务，提供实时天气、预报、生活指数、空气质量等全方位天气信息。支持智能地点处理、自然语言理解和跨平台兼容。
+
+# 技能元数据
+metadata:
+  author: OpenClaw Team
+  created: 2026-03-13
+  category: weather
+  tags: [weather, china, meteorological, qweather]
+  emoji: 🇨🇳
+  homepage: https://dev.qweather.com/
+
+# 依赖要求
+requirements:
+  python:
+    - pyjwt>=2.0.0
+    - cryptography>=3.0
+    - requests>=2.25
+  system:
+    - python3
+    - curl
+
+# 配置参数
+config:
+  qweather:
+    api_host: "p54up4xhmm.re.qweatherapi.com"
+    jwt:
+      kid: "CGWFM979C7"
+      sub: "4FKRV2BREH"
+      private_key_path: "C:\\Users\\uni_h\\.openclaw\\ed25519-private.pem"
+    
+  cache:
+    enabled: true
+    directory: "C:\\Users\\uni_h\\.openclaw\\cache\\qweather"
+    ttl:
+      now: 600        # 10分钟
+      forecast: 3600  # 1小时
+      indices: 10800  # 3小时
+      air: 1800       # 30分钟
+  
+  default_city: "beijing"
+  default_location: "beijing"  # 支持 QWEATHER_DEFAULT_LOCATION 环境变量
+  
+  cities:
+    beijing: "101010100"
+    shanghai: "101020100"
+    guangzhou: "101280101"
+    shenzhen: "101280601"
+    hangzhou: "101210101"
+    chengdu: "101270101"
+    wuhan: "101200101"
+    nanjing: "101190101"
+    xian: "101110101"
+    chongqing: "101040100"
+
+# 命令映射
+commands:
+  weather:
+    patterns:
+      - "(.*?)天气(怎么样)?[？?]?$"
+      - "(.*?)的?温度[？?]?$"
+      - "天气查询"
+    handler: "handle_weather_now"
+    description: "查询城市实时天气"
+  
+  forecast:
+    patterns:
+      - "(.*?)预报[？?]?$"
+      - "(.*?)未来(\\d+)天?预报[？?]?$"
+      - "(.*?)(今天|明天|后天)天气[？?]?$"
+    handler: "handle_forecast"
+    description: "查询天气预报"
+  
+  indices:
+    patterns:
+      - "(.*?)生活指数[？?]?$"
+      - "(.*?)指数[？?]?$"
+    handler: "handle_life_indices"
+    description: "查询生活指数"
+  
+  air:
+    patterns:
+      - "(.*?)空气质量[？?]?$"
+      - "(.*?)AQI[？?]?$"
+    handler: "handle_air_quality"
+    description: "查询空气质量"
+  
+  advice:
+    patterns:
+      - "(.*?)需要带伞吗[？?]?$"
+      - "(.*?)穿什么[？?]?$"
+      - "(.*?)穿衣建议[？?]?$"
+    handler: "handle_advice"
+    description: "获取天气建议"
+  
+  help:
+    patterns:
+      - "天气帮助[？?]?$"
+      - "天气用法[？?]?$"
+      - "weather help"
+    handler: "handle_help"
+    description: "显示帮助信息"
+
+# 响应模板
+templates:
+  weather_now: |
+    🌤️ {city}当前天气 ({time})
+    🌡️ 温度: {temp}°C (体感: {feels_like}°C)
+    🌬️ 风力: {wind_scale}级 {wind_dir}
+    💧 湿度: {humidity}%
+    🌧️ 降水: {precip}mm
+    📊 气压: {pressure}hPa
+    👁️ 能见度: {vis}公里
+    
+    🎯 建议:
+    {dressing_advice}
+    {umbrella_advice}
+  
+  forecast_day: |
+    {weekday} ({date})
+    🌅 日出: {sunrise} | 🌇 日落: {sunset}
+    🌡️ 温度: {temp_min}°C ~ {temp_max}°C
+    ☀️ 白天: {text_day}
+    🌙 夜间: {text_night}
+    🌬️ 风力: {wind_scale_day}级 {wind_dir_day}
+    💧 湿度: {humidity}%
+    🌧️ 降水: {precip}mm
+    ☀️ 紫外线: {uv_index}级
+  
+  life_index: |
+    {emoji} {name}: {level}
+    {text}
+  
+  air_quality: |
+    🌫️ {city}空气质量
+    更新时间: {update_time}
+    AQI指数: {aqi} ({category})
+    主要污染物: {primary}
+    PM2.5: {pm2p5} μg/m³
+    PM10: {pm10} μg/m³
+    
+    💡 建议: {advice}
+
+# 错误处理
+error_handling:
+  network_error: "网络连接失败，请检查网络后重试"
+  api_error: "天气服务暂时不可用，请稍后再试"
+  city_not_found: "找不到该城市，请确认城市名称是否正确"
+  invalid_request: "请求参数错误，请检查查询格式"
+  
+  fallback_strategy:
+    - use_cached_data
+    - default_to_beijing
+    - show_friendly_error
+
+# 性能优化
+performance:
+  request_timeout: 10  # 秒
+  max_retries: 3
+  retry_delay: 1  # 秒
+  
+  connection_pool:
+    enabled: true
+    max_size: 10
+    idle_timeout: 30  # 秒
+
+# 监控指标
+monitoring:
+  enabled: true
+  metrics:
+    - api_response_time
+    - cache_hit_rate
+    - error_rate
+    - request_count
+  
+  alerts:
+    - error_rate > 5%
+    - response_time > 5s
+    - cache_hit_rate < 80%
+
+# 更新策略
+updates:
+  auto_check: true
+  check_interval: 86400  # 24小时
+  notify_on_update: true
+  
+  changelog_url: "https://github.com/openclaw/skills/qweather-china/CHANGELOG.md"
+
+# 技能状态
+status:
+  enabled: true
+  maintenance: false
+  last_updated: "2026-03-13T15:27:00+08:00"
+  version_check: "1.0.0"
+
+# 使用统计（自动更新）
+usage_stats:
+  total_requests: 0
+  successful_requests: 0
+  failed_requests: 0
+  average_response_time: 0
+  most_popular_city: "beijing"
+  last_request_time: null

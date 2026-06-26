@@ -1,0 +1,11 @@
+name: Problem-Mapper
+version: 1.0.0
+description: 问题图谱 - 系统化定义问题、设定成功标准、识别风险的决策前置工具
+author: 燃冰 & ant
+license: MIT
+repository: https://github.com/lj22503/one-person-ceo-skills
+tags:
+  - decision-making
+  - problem-solving
+  - strategy
+  - planning

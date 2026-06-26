@@ -1,0 +1,179 @@
+{
+  "name": "product-launch-radar",
+  "version": "1.0.0",
+  "description": "自动追踪行业产品发布动态，智能筛选高价值信息，按优先级推送决策者",
+  "category": "productivity",
+  "tags": ["monitoring", "news", "automation", "notifications", "intelligence"],
+  
+  "triggers": [
+    {
+      "type": "manual",
+      "command": "执行产品发布雷达"
+    },
+    {
+      "type": "cron",
+      "schedule": "0 9 * * *",
+      "timezone": "Asia/Shanghai"
+    },
+    {
+      "type": "webhook",
+      "endpoint": "/api/skills/product-launch-radar/trigger"
+    }
+  ],
+
+  "workflow": {
+    "steps": [
+      {
+        "id": "aggregate",
+        "name": "多源聚合",
+        "skill": "news-aggregator",
+        "config": {
+          "sources": [
+            "github_trending",
+            "product_hunt",
+            "hacker_news",
+            "techcrunch",
+            "36kr",
+            "v2ex",
+            "weibo_hot",
+            "reddit_tech"
+          ],
+          "time_range": "24h",
+          "max_items": 50
+        },
+        "output": "raw_items"
+      },
+      {
+        "id": "quality_filter",
+        "name": "质量筛选",
+        "skill": "content-quality-auditor",
+        "config": {
+          "dimensions": [
+            "relevance",
+            "timeliness",
+            "authority",
+            "uniqueness"
+          ],
+          "min_score": 6.0,
+          "batch_size": 10
+        },
+        "input": "${steps.aggregate.output.raw_items}",
+        "output": "filtered_items"
+      },
+      {
+        "id": "prioritize",
+        "name": "优先级分级",
+        "type": "builtin",
+        "logic": {
+          "high": {
+            "condition": "score >= 8.0",
+            "label": "🔥 高优先级"
+          },
+          "medium": {
+            "condition": "score >= 6.5 AND score < 8.0",
+            "label": "📌 中优先级"
+          },
+          "low": {
+            "condition": "score < 6.5",
+            "label": "📋 低优先级"
+          }
+        },
+        "input": "${steps.quality_filter.output.filtered_items}",
+        "output": "prioritized_items"
+      },
+      {
+        "id": "format_brief",
+        "name": "生成简报",
+        "type": "builtin",
+        "template": "daily_brief",
+        "config": {
+          "include_summary": true,
+          "include_links": true,
+          "max_items_per_priority": {
+            "high": 10,
+            "medium": 15,
+            "low": 5
+          }
+        },
+        "input": "${steps.prioritize.output.prioritized_items}",
+        "output": "brief_content"
+      },
+      {
+        "id": "notify",
+        "name": "智能推送",
+        "skill": "notify",
+        "config": {
+          "channels": ["feishu", "email"],
+          "priority_mapping": {
+            "high": "immediate",
+            "medium": "digest",
+            "low": "daily_summary"
+          },
+          "quiet_hours": {
+            "start": "23:00",
+            "end": "07:00",
+            "timezone": "Asia/Shanghai"
+          }
+        },
+        "input": "${steps.format_brief.output.brief_content}"
+      }
+    ],
+    "error_handling": {
+      "retry": 3,
+      "fallback": {
+        "aggregate": "use_cache",
+        "quality_filter": "skip_step",
+        "notify": "log_and_continue"
+      }
+    }
+  },
+
+  "config_schema": {
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "enabled": { "type": "boolean", "default": true },
+          "filter": { "type": "string" }
+        }
+      }
+    },
+    "filtering": {
+      "type": "object",
+      "properties": {
+        "quality_threshold": { "type": "number", "default": 7.0 },
+        "relevance_keywords": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "notification": {
+      "type": "object",
+      "properties": {
+        "channels": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "priority_threshold": {
+          "type": "object",
+          "properties": {
+            "high": { "type": "number", "default": 8.0 },
+            "medium": { "type": "number", "default": 6.0 }
+          }
+        }
+      }
+    }
+  },
+
+  "metadata": {
+    "author": "OpenClaw Skill Combo Creator",
+    "created_at": "2026-03-20",
+    "updated_at": "2026-03-20",
+    "compatibility": {
+      "openclaw_version": ">=2025.1.0"
+    }
+  }
+}

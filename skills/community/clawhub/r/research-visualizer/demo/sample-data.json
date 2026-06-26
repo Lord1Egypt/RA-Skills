@@ -1,0 +1,123 @@
+{
+  "title": "Polymarket Top Opportunities Analysis",
+  "subtitle": "AI-powered deep research into highest probability markets",
+  "research_time": "3m 42s",
+  "conclusion": {
+    "text": "The three highest-confidence markets on Polymarket are US Midterm outcomes (Senate control at 78% YES), Fed rate decision for June 2026 (hold at 85%), and UEFA Champions League winner (Real Madrid at 32%). Combined analysis across news, polling data, and market volume suggests the Fed rate hold is the safest play.",
+    "confidence": 0.87
+  },
+  "steps": [
+    {
+      "tool": "Web Search",
+      "tool_label": "Web Search",
+      "time_range": "0:00 — 0:12",
+      "query": "Polymarket highest volume markets March 2026",
+      "summary": "Found top 20 markets by trading volume. US political markets dominate with $450M+ total volume. Identified 3 categories: Politics, Finance, Sports.",
+      "sources": [
+        { "title": "Polymarket — Top Markets Dashboard", "url": "https://polymarket.com", "icon": "📄" },
+        { "title": "The Block — Prediction Market Volumes Surge", "url": "https://theblock.co", "icon": "📄" },
+        { "title": "CoinDesk — Polymarket March 2026 Overview", "url": "https://coindesk.com", "icon": "📄" }
+      ]
+    },
+    {
+      "tool": "API",
+      "tool_label": "API Call",
+      "time_range": "0:12 — 0:28",
+      "query": "Polymarket CLOB API — fetch top 50 markets by volume",
+      "summary": "Retrieved real-time odds data for 50 markets. Filtered to markets with >$10M volume and >70% YES probability for \"safest bet\" analysis.",
+      "sources": [
+        { "title": "Polymarket CLOB API v2", "url": "https://docs.polymarket.com", "icon": "🔌" }
+      ]
+    },
+    {
+      "tool": "Web Browse",
+      "tool_label": "Web Browse",
+      "time_range": "0:28 — 1:05",
+      "query": "Browse FiveThirtyEight, Reuters, Bloomberg for corroborating data",
+      "summary": "Cross-referenced prediction market odds with polling averages and expert forecasts. Senate control prediction aligns with FiveThirtyEight model (76% vs 78%).",
+      "sources": [
+        { "title": "FiveThirtyEight — 2026 Senate Forecast", "url": "https://fivethirtyeight.com", "icon": "📄" },
+        { "title": "Reuters — Fed Rate Decision Preview", "url": "https://reuters.com", "icon": "📄" },
+        { "title": "Bloomberg — Champions League Odds Analysis", "url": "https://bloomberg.com", "icon": "📄" }
+      ]
+    },
+    {
+      "tool": "Search",
+      "tool_label": "Web Search",
+      "time_range": "1:05 — 1:35",
+      "query": "Fed June 2026 rate decision forecast CME FedWatch",
+      "summary": "CME FedWatch tool shows 88.2% probability of rate hold, closely aligned with Polymarket's 85%. Market consensus is very strong — 12 of 14 surveyed economists predict hold.",
+      "sources": [
+        { "title": "CME FedWatch Tool", "url": "https://cmegroup.com/fedwatch", "icon": "📄" },
+        { "title": "CNBC — Economist Survey: June FOMC", "url": "https://cnbc.com", "icon": "📄" }
+      ]
+    },
+    {
+      "tool": "Analysis",
+      "tool_label": "Analysis",
+      "time_range": "1:35 — 2:50",
+      "query": "Cross-correlate data sources, identify geopolitical risk factors",
+      "summary": "Mapped geopolitical events that could shift odds: US-China trade talks (impact on Fed), EU elections (impact on Champions League scheduling), key Senate primaries in swing states. Risk-adjusted confidence: 87%.",
+      "sources": [
+        { "title": "Internal cross-reference analysis", "url": "#", "icon": "🧠" },
+        { "title": "Council on Foreign Relations — US-China Trade Timeline", "url": "https://cfr.org", "icon": "📄" }
+      ]
+    },
+    {
+      "tool": "Synthesis",
+      "tool_label": "Synthesis",
+      "time_range": "2:50 — 3:42",
+      "query": "Generate final recommendation with confidence scoring",
+      "summary": "Ranked top 3 markets by risk-adjusted confidence. Fed rate hold (85% YES) is safest due to strong multi-source consensus. Senate control (78% YES) has highest potential return. Champions League (32% YES for Real Madrid) is highest risk/reward.",
+      "sources": []
+    }
+  ],
+  "visualizations": [
+    {
+      "type": "line_chart",
+      "section_title": "Probability Trends (Last 30 Days)",
+      "data": {
+        "title": "Market Odds Movement",
+        "y_format": "percent",
+        "y_min": 25,
+        "y_max": 95,
+        "x_labels": ["Mar 1", "Mar 8", "Mar 15", "Mar 22", "Mar 31"],
+        "series": [
+          { "name": "Fed Rate Hold", "values": [80, 82, 81, 84, 83, 84, 85, 85] },
+          { "name": "Senate Control", "values": [68, 70, 69, 73, 75, 76, 77, 78] },
+          { "name": "Real Madrid UCL", "values": [28, 29, 26, 30, 29, 31, 30, 32] }
+        ]
+      }
+    },
+    {
+      "type": "market_cards",
+      "section_title": "Top Markets by Confidence",
+      "data": [
+        { "name": "🏛️ Fed Holds Rate at June 2026 FOMC", "yes_price": 85, "no_price": 15, "volume": "128.5M", "change_7d": 3.2 },
+        { "name": "🗳️ Democrats Control Senate After 2026 Midterms", "yes_price": 78, "no_price": 22, "volume": "342.1M", "change_7d": 5.1 },
+        { "name": "⚽ Real Madrid Wins UEFA Champions League 2026", "yes_price": 32, "no_price": 68, "volume": "87.3M", "change_7d": -1.8 }
+      ]
+    },
+    {
+      "type": "world_map",
+      "section_title": "Geopolitical Impact Map",
+      "data": {
+        "regions": [
+          { "id": "united_states", "name": "United States", "info": "Key market: Senate Midterm Control (78% YES). 34 Senate seats up for election. Fed rate decision impacts USD globally." },
+          { "id": "europe", "name": "Europe", "info": "UEFA Champions League market (Real Madrid 32%). EU economic conditions influence Fed policy decisions." },
+          { "id": "east_asia", "name": "East Asia", "info": "US-China trade negotiations could shift Fed rate expectations. Ongoing tariff discussions add volatility." }
+        ]
+      }
+    },
+    {
+      "type": "news_cards",
+      "section_title": "Key News & Sources",
+      "data": [
+        { "title": "Fed Officials Signal Patience on Rate Cuts Amid Sticky Inflation", "source": "Reuters", "date": "Mar 28, 2026", "sentiment": "positive", "tag": "Fed Rate Decision", "url": "#" },
+        { "title": "New Polling Shows Democrats Leading in 4 of 6 Key Senate Races", "source": "FiveThirtyEight", "date": "Mar 27, 2026", "sentiment": "positive", "tag": "Senate Midterms", "url": "#" },
+        { "title": "Champions League Quarter-Final Draw Sets Up Real Madrid vs. Man City", "source": "UEFA.com", "date": "Mar 25, 2026", "sentiment": "neutral", "tag": "Champions League", "url": "#" },
+        { "title": "US-China Trade Talks Stall Over Tech Export Controls", "source": "Bloomberg", "date": "Mar 26, 2026", "sentiment": "warning", "tag": "Geopolitical Risk", "url": "#" }
+      ]
+    }
+  ]
+}

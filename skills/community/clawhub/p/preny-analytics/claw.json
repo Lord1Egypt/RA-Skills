@@ -1,0 +1,50 @@
+{
+  "name": "preny-analytics",
+  "version": "1.5.0",
+  "description": "Kết nối trực tiếp với Preny AI Chatbot để tự động tổng hợp và phân tích dữ liệu bán hàng theo thời gian thực. Cho phép theo dõi đầy đủ các chỉ số quan trọng: số lượng tin nhắn, hội thoại, hiệu quả chốt đơn, tỷ lệ chuyển đổi, phân tích theo tag khách hàng, trạng thái tương tác, số điện thoại thu thập được, khách hàng mới/khách quay lại.",
+  "author": "Preny Team",
+  "license": "MIT",
+  "keywords": ["preny", "chatbot", "analytics", "statistics", "business-intelligence", "crm", "sales"],
+  "openclaw": {
+    "requires": {
+      "bins": ["curl", "jq"],
+      "env": ["PRENY_TOKEN"]
+    },
+    "install": [
+      {
+        "id": "curl",
+        "kind": "apt",
+        "package": "curl",
+        "label": "Install curl"
+      },
+      {
+        "id": "jq",
+        "kind": "apt", 
+        "package": "jq",
+        "label": "Install jq (JSON processor)"
+      }
+    ],
+    "examples": [
+      {
+        "query": "Hôm qua có bao nhiêu khách mới?",
+        "description": "Xem số lượng khách hàng mới hôm qua"
+      },
+      {
+        "query": "Tỷ lệ chốt đơn tuần này thế nào?",
+        "description": "Xem hiệu quả chốt đơn trong tuần"
+      },
+      {
+        "query": "Tag nào mang lại nhiều khách nhất?",
+        "description": "Phân tích hiệu quả theo tag"
+      },
+      {
+        "query": "Có bao nhiêu khách không phản hồi trong 3 ngày qua?",
+        "description": "Theo dõi trạng thái tương tác khách hàng"
+      },
+      {
+        "query": "Thống kê tag màu",
+        "description": "Xem phân loại khách theo tag hệ thống"
+      }
+    ]
+  }
+}

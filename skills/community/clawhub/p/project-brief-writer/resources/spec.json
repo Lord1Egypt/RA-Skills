@@ -1,0 +1,37 @@
+{
+  "slug": "project-brief-writer",
+  "title": "项目任务书作者",
+  "category": "meeting",
+  "categoryLabel": "会议与执行",
+  "mode": "structured_brief",
+  "summary": "把零散需求、聊天和会议内容整理成项目任务书、边界、验收标准和风险清单。",
+  "inputHint": "需求点、目标、约束、相关聊天",
+  "sections": [
+    "项目目标",
+    "范围与非范围",
+    "关键需求",
+    "验收标准",
+    "依赖与风险",
+    "里程碑"
+  ],
+  "useCases": [
+    "立项文档",
+    "需求整理",
+    "交付定义"
+  ],
+  "positiveExamples": [
+    "把零散需求整理成项目 brief",
+    "补齐验收标准和边界"
+  ],
+  "negativeExamples": [
+    "不要用来生成法律合同",
+    "不要替代正式需求审批"
+  ],
+  "risk": "会尽量显式标注假设和未确认点。",
+  "tags": [
+    "project-brief",
+    "requirements",
+    "scope",
+    "acceptance"
+  ]
+}

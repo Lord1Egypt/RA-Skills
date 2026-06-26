@@ -1,0 +1,41 @@
+{
+  "enabled": true,
+  "autoRecovery": true,
+  "maxRetryAttempts": 3,
+  "retryBaseDelayMs": 5000,
+  "exponentialBackoff": true,
+  "severityLevels": {
+    "low": {
+      "continue": true,
+      "retry": true,
+      "notify": false
+    },
+    "medium": {
+      "continue": true,
+      "retry": true,
+      "notify": true
+    },
+    "high": {
+      "continue": false,
+      "retry": true,
+      "notify": true
+    },
+    "critical": {
+      "continue": false,
+      "retry": false,
+      "notify": true
+    }
+  },
+  "errorCategories": {
+    "network": ["NETWORK_TIMEOUT", "NETWORK_ERROR", "CONNECTION_LOST"],
+    "login": ["LOGIN_EXPIRED", "LOGIN_REQUIRED", "SESSION_INVALID"],
+    "page": ["PAGE_NOT_FOUND", "ELEMENT_NOT_FOUND", "PAGE_LOAD_ERROR"],
+    "operation": ["REPLY_FAILED", "COMMENT_LOAD_FAILED", "RATE_LIMITED"],
+    "browser": ["BROWSER_CRASH", "BROWSER_CLOSED"]
+  },
+  "notifications": {
+    "channels": ["log", "console"],
+    "includeStackTrace": true,
+    "includeContext": true
+  }
+}

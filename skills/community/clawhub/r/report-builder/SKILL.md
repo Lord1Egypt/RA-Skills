@@ -1,35 +1,39 @@
 ---
-name: "Report Builder"
-description: "Use when the main operator needs to turn the nightly shortlist into a Telegram morning report with inline approve/reject/later buttons."
-category: "other"
-source: "ClawHub"
-tags: [factory, telegram]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/report-builder"
-sourceUrl: "https://clawhub.ai/skills/report-builder"
+name: report-builder
+description: Use when the main operator needs to turn the nightly shortlist into a Telegram morning report with inline approve/reject/later buttons.
+metadata: { "openclaw": { "emoji": "📨", "requires": { "bins": ["node", "openclaw"] } } }
 ---
 
-# Report Builder
+# report-builder
 
-> Use when the main operator needs to turn the nightly shortlist into a Telegram morning report with inline approve/reject/later buttons.
+Use `{baseDir}/scripts/send_report.mjs` to send the 09:00 Telegram report.
+Use `{baseDir}/scripts/build_report.mjs` to deterministically build the payload file before send time.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/report-builder`
-- **Source URL:** [https://clawhub.ai/skills/report-builder](https://clawhub.ai/skills/report-builder)
+## Input shape
 
-## Overview
+Pass a JSON file with:
 
+- `date`
+- `summary`
+- `reportUrl` (optional)
+- `ideas`: array of `{ id, title, score, reason, notionUrl }`
 
-## Installation
-To install this skill, run the following command in your terminal:
+See `{baseDir}/references/report-schema.md`.
+
+## Usage
+
 ```bash
-hermes skills install clawhub/report-builder
+node {baseDir}/scripts/build_report.mjs workspace/reports/latest-nightly-report.json
+node {baseDir}/scripts/send_report.mjs report.json
+node {baseDir}/scripts/send_report.mjs report.json 1565027149
 ```
+
+## Rules
+
+- Keep the report short.
+- Build phase must leave behind a JSON payload file, even when blocked by missing env or a Notion query error.
+- Include buttons only for the shortlisted ideas.
+- Button callbacks must be:
+  - `approve:<ideaId>`
+  - `reject:<ideaId>`
+  - `later:<ideaId>`

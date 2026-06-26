@@ -1,0 +1,24 @@
+{
+  "name": "probe-first-research",
+  "version": "1.0.0",
+  "description": "Probe-first deep research skill — low-cost snippet reconnaissance before committing to full searches",
+  "author": "ClawHub",
+  "license": "MIT",
+  "keywords": [
+    "research",
+    "deep-research",
+    "probe",
+    "reconnaissance",
+    "multi-agent",
+    "openclaw",
+    "claude-code"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ClawHub/probe-first-research"
+  },
+  "homepage": "https://github.com/ClawHub/probe-first-research#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,35 +1,372 @@
 ---
-name: "Reverse Compliance"
-description: "Use when user needs reverse compliance strategy for global market entry. Use when generating compliance-first architecture plans for cross-border business. U..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/reverse-compliance"
-sourceUrl: "https://clawhub.ai/skills/reverse-compliance"
+name: reverse-compliance
+description: >-
+  Use when user needs reverse compliance strategy for global market entry.
+  Use when generating compliance-first architecture plans for cross-border business.
+  Use when creating compliance weaponization strategies and trust-building frameworks.
+  Use when planning GDPR/EU AI Act/GPSR compliance as competitive advantage.
+  Use when user mentions "逆向合规", "合规护城河", "出海合规", "GDPR", "EU AI Act", "合规降维".
+homepage: https://cloudtrip.ai
+license: MIT-0
+version: "1.0.0"
+progressive:
+  layers:
+    - name: metadata
+      tokens: 200
+      loaded: startup
+      description: "技能基础配置、输出模块、合规框架"
+    - name: instructions
+      tokens: 5000
+      loaded: trigger
+      description: "9大输出模块、4步SOP、AI自动化规则、中台配置"
+    - name: resources
+      tokens: variable
+      loaded: on-demand
+      description: "合规文案模板、信任话术、白皮书框架"
+  resource_paths:
+    - references/*.md
+metadata:
+  openclaw:
+    homepage: https://cloudtrip.ai
+    primaryEnv: OPENAI_API_KEY
+    requires:
+      env:
+        - OPENAI_API_KEY
+      bins:
+        - curl
+    apis:
+      - name: OpenAI API
+        domain: api.openai.com
+        purpose: "LLM大语言模型调用，用于合规方案生成和策略建议"
+        auth:
+          type: Bearer Token
+          env_var: OPENAI_API_KEY
+    emoji: "🛡️"
+    version: "1.0.1"
+    author: "云旅智能体超市"
+    category: "compliance"
+    tags: ["compliance", "GDPR", "EU-AI-Act", "reverse-compliance", "cross-border", "trust", "出海合规", "逆向合规", "合规护城河", "合规降维"]
+pricing:
+  - name: Starter
+    price: 99
+    currency: CNY
+    period: month
+    features:
+      - 基础合规方案生成
+      - 3个目标市场合规建议
+      - 合规文案模板
+  - name: Professional
+    price: 299
+    currency: CNY
+    period: month
+    features:
+      - 全量9大输出模块
+      - 全球市场降维地图
+      - 中台配置规则
+      - AI合规文档生成
+  - name: Enterprise
+    price: 999
+    currency: CNY
+    period: month
+    features:
+      - 私有部署
+      - 行业定制
+      - 信任算法对接
+      - 专属合规顾问
+triggers:
+  - "逆向合规"
+  - "出海合规"
+  - "GDPR合规"
+  - "欧盟合规"
+  - "合规护城河"
+  - "合规降维"
+  - "信任构建"
+  - "合规方案"
+  - "跨境合规"
+  - "EU AI Act"
+  - "GPSR"
+  - "REACH合规"
+  - "合规中台"
 ---
 
-# Reverse Compliance
+# 🛡️ 出海逆向合规战略系统
 
-> Use when user needs reverse compliance strategy for global market entry. Use when generating compliance-first architecture plans for cross-border business. U...
+## ⚡ 极简输入，全量输出
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/reverse-compliance`
-- **Source URL:** [https://clawhub.ai/skills/reverse-compliance](https://clawhub.ai/skills/reverse-compliance)
+用户只需提供三个字段，系统自动输出完整9模块逆向合规方案：
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/reverse-compliance
 ```
+输入格式：品名 + 国家 + 平台
+示例1：香薰 + 德国 + 亚马逊
+示例2：宠物用品 + 美国 + Shopify
+示例3：电子产品 + 英国 + eBay
+```
+
+收到输入后，立即搜索目标市场最新法规，按9大模块输出完整可执行方案，无需用户补充更多信息。
+
+## 简介
+
+将全球最严合规标准从"成本负担"转化为"竞争优势"的战略规划工具。通过智能生成合规方案、规划全球降维地图、搭建信任体系、自动生成合规文档，帮助企业建立难以逾越的合规护城河。
+
+**核心能力：合规方案生成 | 降维地图规划 | 信任体系搭建 | 合规文档生成**
+
+## 效果数据
+
+| 指标 | 传统模式 | 逆向合规模式 |
+|------|----------|--------------|
+| 合规方案复用率 | 0% | 90%+ |
+| 市场准入周期 | 6个月 | 2周 |
+| 产品溢价空间 | 基准价 | +20-50% |
+| 合规团队成本 | 300万/年 | 50万/年 |
+
+## 系统定位
+
+| 维度 | 传统合规 | 逆向合规 |
+|------|----------|----------|
+| 思维 | 合规是被动成本 | 合规是主动投资 |
+| 顺序 | 从易到难 | 从难到易降维 |
+| 策略 | 满足最低要求 | 建立最高壁垒 |
+| 收益 | 合规支出 | 合规溢价+信任分成 |
+
+## 9大输出模块
+
+### 模块1：最严高地锁定与全球降维地图
+基于全球各市场合规难度系数，锁定"最严高地市场"，自动生成覆盖全球主要市场的降维路线图。
+
+**输出**：目标市场合规难度排名 → 最严市场锁定建议 → 全球降维执行路径 → 各市场合规基线差异表
+
+### 模块2：合规武器化卖点与信任背书体系
+将合规资质转化为市场竞争力，通过信任分体系设计，把合规认证变成客户选择的信任锚点。
+
+**输出**：合规竞争力分析 → 信任分体系设计 → 信任背书话术库 → 竞品合规差距对比
+
+### 模块3：Day1架构倒推技术基线
+从最严合规要求倒推，从第一天建立符合全球最高标准的技术架构。
+
+**输出**：合规架构设计原则 → 数据存储/传输/删除方案 → 跨境数据传输架构 → 审计日志设计
+
+### 模块4：合规中台配置开关与自动化规则
+构建可配置化的合规中台，通过开关控制实现不同市场合规策略切换。
+
+**输出**：合规中台架构 → 5大标准字段表 → 5大AI自动化规则引擎 → 市场差异化配置方案
+
+### 模块5：AI合规检查清单与方案建议
+基于目标市场法规要求，自动生成结构化合规检查清单，对文档进行AI方案建议。
+
+**输出**：法规要点清单 → 产品合规检查建议 → 文档合规评估报告 → 风险点修正建议
+
+### 模块6：竞品降维打击策略与市场收割路径
+通过竞品合规能力分析，找到竞争对手薄弱点，制定精准市场收割策略。
+
+**输出**：竞品合规能力评估 → 合规差距对比图 → 降维打击策略 → 客户迁移话术
+
+### 模块7：信任分联动规则
+设计量化信任分体系，与平台规则、市场准入、客户评分联动。
+
+**输出**：信任分评分方案 → 与平台规则联动 → 与市场准入门槛对照 → 信任分变现路径
+
+### 模块8：风险一票否决红线与处置方案
+定义不可逾越的合规红线，建立风险分级体系，自动生成相应处置方案建议。
+
+**输出**：风险分级标准 → 一票否决红线清单 → 风险处置方案库 → 应急响应流程
+
+### 模块9：可复制合规文案+资质话术+白皮书框架
+自动生成符合各市场要求的标准化文案模板和话术库。
+
+**输出**：产品合规描述模板 → 资质说明话术库 → 隐私政策框架 → 白皮书框架模板
+
+## 合规中台标准字段表
+
+### 1. 企业合规档案
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| enterprise_id | string | 企业唯一标识 |
+| compliance_level | enum | 合规等级(L1-L5) |
+| cert_expire_date | date | 证书到期日期 |
+| market_coverage | array | 已覆盖市场列表 |
+| risk_score | float | 风险评分(0-100) |
+
+### 2. 产品合规基线库
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| product_id | string | 产品唯一标识 |
+| target_markets | array | 目标市场列表 |
+| compliance_baseline | object | 各市场合规基线 |
+| required_certs | array | 必需认证清单 |
+| data_categories | array | 数据类别 |
+
+### 3. 架构合规配置开关
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| config_id | string | 配置项唯一标识 |
+| market_scope | array | 适用市场 |
+| default_status | boolean | 默认状态 |
+| regional_overrides | object | 区域覆盖设置 |
+
+### 4. 风险提示库
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| risk_id | string | 风险项唯一标识 |
+| risk_level | enum | 风险等级(L1-L5) |
+| trigger_conditions | array | 触发条件 |
+| suggested_action | string | 建议处置方案 |
+
+### 5. 收益转化台账
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| compliance_investment | float | 合规投入金额(USD) |
+| investment_category | enum | 投入类别 |
+| expected_return | float | 预期收益(USD) |
+| roi_ratio | float | 投资回报率 |
+
+## AI自动化规则引擎
+
+### 规则1：信任分评分联动规则
+**逻辑**：完成合规认证或通过审计时，自动评估信任分变化，生成评分调整建议方案。
+
+**触发条件**：获得新认证 | 通过年度审计 | 完成合规整改 | 培训完成率达标
+
+**执行动作**：计算信任分加成 → 生成变化通知建议 → 更新合规档案 → 生成成就展示建议
+
+### 规则2：资源智能分配规则
+**逻辑**：根据市场合规难度和收益预期，自动生成合规资源分配建议方案。
+
+**评估维度**：市场潜在收益 | 准入门槛高度 | 竞品合规能力 | 企业现有基础 | 认证周期成本
+
+### 规则3：产品上架合规预检规则
+**逻辑**：产品上架前自动进行合规预检，生成上架合规性评估建议报告。
+
+**检查项目**：产品描述合规性 | 资质认证完整性 | 隐私政策 | 用户协议 | 数据收集说明
+
+### 规则4：合规文档自动生成规则
+**逻辑**：根据目标市场法规和企业信息，自动生成符合格式规范的合规文档建议稿。
+
+**支持类型**：隐私政策 | 用户协议 | 数据处理协议 | 产品合规说明 | 安全白皮书框架
+
+### 规则5：风险处置方案自动生成规则
+**逻辑**：检测到合规风险时，自动生成风险等级评估和分级处置方案建议。
+
+| 等级 | 响应时效 | 处置方案 |
+|------|----------|----------|
+| L1-严重 | 24小时内 | 紧急处置方案建议 |
+| L2-高度 | 72小时内 | 整改方案建议 |
+| L3-中度 | 1周内 | 优化建议方案 |
+| L4-低度 | 1月内 | 预防建议方案 |
+| L5-提醒 | 季度规划 | 改进建议方案 |
+
+## 4步落地SOP
+
+### 第一步：锁定最严高地
+```
+1. 输入企业基本信息（产品、市场、现有资质）
+2. 分析全球各市场合规难度系数
+3. 推荐锁定最严市场（欧盟GDPR/EU AI Act）
+4. 生成最严到次严的市场排序建议
+→ 交付物：最严高地锁定报告 + 全球降维地图初稿
+```
+
+### 第二步：架构倒推设计
+```
+1. 拆解最严市场合规要求清单
+2. 从第一天合规视角设计技术架构
+3. 生成数据存储/传输/删除全链路方案
+4. 配置合规中台架构开关
+→ 交付物：合规架构设计方案 + 技术基线清单
+```
+
+### 第三步：中台化配置
+```
+1. 部署5大标准字段表
+2. 配置5大AI自动化规则引擎
+3. 设置信任分联动机制
+4. 制定风险一票否决红线
+→ 交付物：中台配置完整方案 + 操作手册
+```
+
+### 第四步：降维市场收割
+```
+1. 基于已完成的高地合规，进行市场降维分析
+2. 识别可复用的合规投入
+3. 生成竞品降维打击策略
+→ 交付物：市场收割执行方案 + 收益预期报告
+```
+
+## 逆向合规官能力考核
+
+**基础能力**：解读核心法规要求 | 制定差异化合规路径 | 设计合规架构方案 | 管理中台配置 | 撰写风险评估报告
+
+**进阶能力**：竞品合规分析 | 信任分体系设计 | 降维打击策略制定 | 多市场文档生成 | 团队合规培训
+
+**高阶能力**：参与行业标准建设 | 建立最佳实践库 | 优化合规流程 | 评估合规ROI | 处理合规争议
+
+## 口诀
+
+```
+逆向合规四步走，降维地图心中有
+最严锁定是基础，架构先行不用愁
+中台配置提效率，信任体系上层楼
+风险红线要守住，收益转化自然牛
+```
+
+## Common Rationalizations
+
+| 误区 | 正确认知 |
+|------|----------|
+| 等做大再合规 | 合规是入场券，等做大成本翻10倍 |
+| 最严做完其他自动搞定 | 降维有前提，需要架构设计和文案适配 |
+| 合规只是法务的事 | 合规是产品、技术、运营、法务协同工程 |
+| 合规一次永久有效 | 法规持续更新，需建立持续合规机制 |
+| 合规难量化收益 | 信任分体系+收益转化台账可完整量化ROI |
+
+## Verification
+
+发布前请确认：
+
+- [ ] 9大输出模块均已定义清晰
+- [ ] 5大标准字段表格式规范完整
+- [ ] 5大AI自动化规则逻辑清晰可执行
+- [ ] 4步SOP步骤明确、交付物清晰
+- [ ] 法规引用准确（GDPR、EU AI Act、GPSR等）
+- [ ] 风险分级标准合理可操作
+
+## Security & Privacy
+
+### 数据处理原则
+
+- **处理内容**：用户输入的企业、产品、市场等业务数据
+- **处理目的**：生成合规方案、架构设计、文档生成建议
+- **存储方式**：仅会话期间内存处理，不持久化存储
+- **API调用**：仅调用OpenAI API进行文本生成
+
+### 本技能不做的事
+
+- ❌ 不采集用户未主动提供的信息
+- ❌ 不存储会话内容到外部数据库
+- ❌ 不自动监控用户合规状态变化
+- ❌ 不主动推送合规预警通知
+- ❌ 不代理用户进行合规认证申请
+- ❌ 不提供法律意见书或律师服务
+- ❌ 不进行跨境数据传输（除OpenAI API调用）
+
+### 用户责任
+
+- 合规方案建议仅供参考，最终决策需结合实际和专业法律意见
+- 本技能生成内容不构成法律建议
+- 涉及具体法规问题，建议咨询专业合规顾问或律师
+
+---
+
+## 更新日志
+
+### v1.0.0 (2024-06-20)
+
+- 初始版本发布
+- 9大输出模块完整上线
+- 5大标准字段表定义完成
+- 5大AI自动化规则引擎设计完成
+- 4步落地SOP完整定义

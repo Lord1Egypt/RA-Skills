@@ -1,0 +1,14 @@
+{
+  "name": "prd-full-workflow",
+  "displayName": "完整 PRD 工作流",
+  "version": "1.0.0",
+  "description": "从问题定义到 PRD 输出的端到端流程，整合全部 11 个需求分析技能",
+  "author": "Elatia",
+  "license": "MIT",
+  "tags": ["requirement-analysis", "workflow", "prd", "end-to-end", "comprehensive"],
+  "category": "Product Management",
+  "type": "workflow",
+  "parentSkill": "requirement-analysis-system",
+  "createdAt": "2026-03-09T15:15:00+08:00",
+  "updatedAt": "2026-03-09T15:15:00+08:00"
+}

@@ -1,35 +1,31 @@
 ---
-name: "Qmsg Push"
+name: qmsg-push
 description: "Qmsg 酱推送，通过 QQ 主动发送消息通知，无需 API Key"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qmsg-push-skills"
-sourceUrl: "https://clawhub.ai/skills/qmsg-push-skills"
+version: 1.0.0
 ---
 
 # Qmsg Push
 
-> Qmsg 酱推送，通过 QQ 主动发送消息通知，无需 API Key
+使用 Qmsg 酱（qmsg.zendee.cn）向 QQ 推送消息。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qmsg-push-skills`
-- **Source URL:** [https://clawhub.ai/skills/qmsg-push-skills](https://clawhub.ai/skills/qmsg-push-skills)
+## 前置要求
 
-## Overview
+1. 访问 [qmsg.zendee.cn](https://qmsg.zendee.cn) 注册并添加接收 QQ 号，获取 KEY
+2. 在 `~/.workbuddy/secrets.json` 中配置 KEY：
+   ```json
+   { "qmsg": { "key": "你的QmsgKEY" } }
+   ```
 
+## 调用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
+自动化任务触发时，执行脚本推送：
+
 ```bash
-hermes skills install clawhub/qmsg-push-skills
+python ~/.workbuddy/qmsg_push.py "<消息内容>"
 ```
+
+## 工作流程
+
+1. 自动化任务触发 → 创建临时 agent
+2. agent 读取 `~/.workbuddy/qmsg_push.py` 和 `~/.workbuddy/secrets.json`
+3. 执行脚本，消息推送至配置的 QQ 号

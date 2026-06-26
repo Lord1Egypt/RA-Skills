@@ -1,35 +1,110 @@
 ---
-name: "RiskBlind Radar 风险盲区雷达"
+name: riskblind-radar
 description: "AI 对话中的风险雷达——主动追问你没想清楚但做决策前必须想清楚的风险问题。"
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai-assistant, chinese, decision-support, risk-management]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/riskblind-radar"
-sourceUrl: "https://clawhub.ai/skills/riskblind-radar"
 ---
 
-# RiskBlind Radar 风险盲区雷达
+# RiskBlind Radar — 风险盲区雷达
 
-> AI 对话中的风险雷达——主动追问你没想清楚但做决策前必须想清楚的风险问题。
+## 核心目标
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/riskblind-radar`
-- **Source URL:** [https://clawhub.ai/skills/riskblind-radar](https://clawhub.ai/skills/riskblind-radar)
+**每次对话结束前，主动问一个用户没回答过、但必须回答的风险问题。**
 
-## Overview
+不是"静静观察"，而是帮你探测那些你自己都看不到的风险盲区。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/riskblind-radar
+## 一句话说明
+
+RiskBlind Radar 是 AI 对话中的"风险雷达"——每次对话时，主动追问那些你没想清楚、但做决策前必须想清楚的风险问题。
+
+---
+
+## 两大工作模式
+
+### 模式A：主动追问（Proactive Risk Questioner）— 主模式
+
+当用户提到特定主题时，自动触发对应问题模板。
+
+**工作流程：**
+1. 用户消息 → 扫描触发词
+2. 命中模板 → 激活风险问题
+3. 在对话结束前提出（不延时）
+
+**核心原则：**
+- 问"你没问自己但必须想清楚"的风险问题
+- 不问可以马上回答的问题
+- 不问太多，一次最多2个
+- 不在闲聊时追问，等有实质内容时
+
+---
+
+### 模式B：风险追踪（Risk Watch）— 后台层
+
+在主动追问之外，持续追踪风险评分。
+
+**触发条件：**
+- 用户做出承诺（模板T7触发）
+- 承诺到期未处理
+- 时间衰减评分达到阈值
+
+---
+
+## 问题模板库（10个核心模板）
+
+详见 `QUESTION_TEMPLATES.md`
+
+---
+
+## 风险评分
+
 ```
+评分 = 重要性系数 × 时间衰减系数
+
+重要性系数：
+- 资金断裂：3
+- 承诺未兑现：3
+- 方向错误：3
+- 执行拖延：2
+- 技术细节：1
+
+时间衰减系数：
+- 1天内：×1.0
+- 3天内：×1.5
+- 7天内：×2.0
+
+触发阈值：评分 ≥ 5 → 主动提醒
+```
+
+---
+
+## 核心原则
+
+1. **问，不记录** — 主动追问是主业，记录是辅业
+2. **宁缺毋滥** — 没有好问题就不问，不为问而问
+3. **不叠加压力** — 一次最多2个问题，不追问正在回答的问题
+4. **只在实质内容时触发** — 闲聊时不触发模板
+
+---
+
+## 记忆文件
+
+- `memory/riskblind/OBSERVATIONS.md` — 风险追踪日志（可选）
+- `skills/riskblind-radar/QUESTION_TEMPLATES.md` — 问题模板库
+- `skills/riskblind-radar/RULES.md` — 认知偏差参考 & 机会识别
+
+---
+
+## 文件结构
+
+```
+riskblind-radar/
+├── SKILL.md                  # 技能定义
+├── QUESTION_TEMPLATES.md     # 十大追问模板
+├── RULES.md                  # 认知偏差参考 & 机会识别
+├── memory/riskblind/         # 观察日志（可选，不含在分发包里）
+└── README.md                 # 使用说明
+```
+
+---
+
+*最后更新：2026-04-10*

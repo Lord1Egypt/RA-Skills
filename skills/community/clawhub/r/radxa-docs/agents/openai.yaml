@@ -1,0 +1,4 @@
+version: 1
+display_name: Radxa Local Docs
+short_description: 检测板型、管理本地文档镜像并查询离线 Radxa 技术资料。
+default_prompt: 检测当前 Radxa 设备，必要时部署或更新本地文档，然后查询相关硬件、接口或系统文档并给出结论。

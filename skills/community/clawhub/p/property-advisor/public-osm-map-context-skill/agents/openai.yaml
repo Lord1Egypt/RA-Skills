@@ -1,0 +1,4 @@
+interface:
+  display_name: "Public OSM Map Context"
+  short_description: "Zero-API-key OpenStreetMap context with decision-ready assessments"
+  default_prompt: "Use this skill to add best-effort public OSM map context for property listings, including approximate geocoding, nearby amenities, transit access, risk signals, manual verification links, and four decision-ready assessments: transport_access, daily_convenience, environment_risk, and area_maturity."

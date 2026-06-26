@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Confirmed | {{event_name}}</title>
+  <meta name="description" content="Your registration for {{event_name}} is confirmed.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root { --primary:#2563eb; --primary-dark:#1d4ed8; --dark:#1e293b; --light:#f8fafc; --gray:#64748b; --border:#e2e8f0; --ok:#059669; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,sans-serif;background:var(--light);color:var(--dark);line-height:1.6}
+    .container{max-width:700px;margin:0 auto;padding:0 24px}
+    .navbar{background:#fff;border-bottom:1px solid var(--border);padding:16px 0}
+    .navbar-content{display:flex;justify-content:space-between;align-items:center}
+    .navbar-brand{font-weight:700;font-size:1.25rem;color:var(--dark);text-decoration:none}
+    .success-hero{padding:80px 0 40px;text-align:center}
+    .checkmark{width:80px;height:80px;background:var(--ok);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;color:#fff;font-size:40px}
+    .success-hero h1{font-size:2rem;margin-bottom:12px}
+    .success-hero p{color:var(--gray);max-width:500px;margin:0 auto}
+    .card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:32px;margin-bottom:24px;box-shadow:0 8px 24px rgba(0,0,0,.05)}
+    .section-title{font-size:1.1rem;font-weight:700;margin-bottom:16px}
+    .event-details{display:grid;gap:16px}
+    .detail-row{display:flex;gap:12px;align-items:flex-start}
+    .detail-icon{width:40px;height:40px;background:#ecfdf5;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--ok);font-size:18px;flex-shrink:0}
+    .detail-content{flex:1}
+    .detail-content strong{display:block;margin-bottom:4px}
+    .detail-content span{color:var(--gray);font-size:.95rem}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;background:var(--primary);color:#fff;padding:14px 24px;border-radius:10px;font-weight:600;text-decoration:none;margin-top:8px}
+    .btn:hover{background:var(--primary-dark)}
+    .btn-secondary{background:#fff;color:var(--dark);border:1px solid var(--border)}
+    .btn-secondary:hover{background:var(--light)}
+    .next-steps{margin-top:24px;padding-top:24px;border-top:1px solid var(--border)}
+    .next-steps ul{margin:12px 0 0 20px}
+    .next-steps li{margin-bottom:8px;color:var(--gray)}
+    footer{padding:40px 0;text-align:center;color:var(--gray);font-size:.9rem}
+    @media(max-width:640px){.success-hero h1{font-size:1.6rem}}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container navbar-content">
+      <a href="./index.html" class="navbar-brand">{{company_name}}</a>
+    </div>
+  </nav>
+
+  <section class="success-hero">
+    <div class="container">
+      <div class="checkmark">&#10003;</div>
+      <h1>You are Registered!</h1>
+      <p>Your spot for <strong id="event-name-placeholder">{{event_name}}</strong> is reserved. Check your email for confirmation and calendar invite.</p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="card">
+      <h2 class="section-title">Event Details</h2>
+      <div class="event-details" id="event-details">
+        <!-- Filled dynamically from config or URL params -->
+        <div class="detail-row">
+          <div class="detail-icon">&#128197;</div>
+          <div class="detail-content">
+            <strong id="event-date1-placeholder">{{event_date}}</strong>
+            <span id="event-time-placeholder">{{event_time}}</span>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon">&#128205;</div>
+          <div class="detail-content">
+            <strong>Location</strong>
+            <span id="event-location-placeholder">{{event_location}}</span>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon">&#128101;</div>
+          <div class="detail-content">
+            <strong>Instructors</strong>
+            <span id="event-instructors-placeholder">{{instructors}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-steps">
+        <h3 class="section-title">What is Next</h3>
+        <ul>
+          <li>Check your email for a confirmation with calendar invite</li>
+          <li>Add the event to your calendar</li>
+          <li>You will receive Zoom link and materials 24 hours before the event</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="text-align:center">
+      <h2 class="section-title">Know someone who should attend?</h2>
+      <p style="color:var(--gray);margin-bottom:20px">Share this training with fellow investors.</p>
+      <a id="share-link" href="./index.html" class="btn">Share Registration Link</a>
+      <a href="./index.html" class="btn btn-secondary" style="margin-left:12px">Back to Home</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">&copy; 2026 {{company_name}}. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // config is injected by the server/generated page OR read from window.__EVENT_CONFIG__
+    // Falls back to URL params: ?event_id=&event_name=&event_date= etc.
+
+    const DEFAULT_CONFIG = {
+      event_name: "this event",
+      event_date: "TBD",
+      event_time: "TBD",
+      event_location: "Online",
+      instructors: "Renatus Instructors",
+      company_name: "Renatus Events",
+      registration_url: "./index.html"  # site root (index.html at web root)
+    };
+
+    // 1. Try window.__EVENT_CONFIG__ (injected by generated page)
+    const config = Object.assign({}, DEFAULT_CONFIG, window.__EVENT_CONFIG__ || {});
+
+    // 2. Override with URL params if present
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramOverrides = {};
+    for (const key of ["event_id", "event_name", "event_date", "event_time", "event_location", "instructors", "company_name"]) {
+      const v = urlParams.get(key);
+      if (v) paramOverrides[key] = decodeURIComponent(v);
+    }
+    Object.assign(config, paramOverrides);
+
+    // 3. Apply to page elements
+    const setText = (id, text) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    };
+    const setContent = (selector, text) => {
+      const el = document.querySelector(selector);
+      if (el) el.textContent = text;
+    };
+
+    setText("event-name-placeholder", config.event_name);
+    document.title = `Registration Confirmed | ${config.event_name}`;
+    setText("event-date1-placeholder", config.event_date);
+    setText("event-time-placeholder", config.event_time);
+    setText("event-location-placeholder", config.event_location);
+    setText("event-instructors-placeholder", config.instructors);
+
+    // Share link
+    const shareEl = document.getElementById("share-link");
+    if (shareEl) {
+      shareEl.href = config.registration_url;
+    }
+
+    // Company name in navbar/footer
+    document.querySelectorAll(".navbar-brand, footer .container").forEach(el => {
+      el.innerHTML = el.innerHTML.replace("{{company_name}}", config.company_name);
+    });
+  </script>
+</body>
+</html>

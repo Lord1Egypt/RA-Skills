@@ -1,35 +1,23 @@
----
-name: "Quickcsv"
-description: "Convert JSON, YAML, or TSV files to standardized CSV format with automatic header detection and consistent output for easy data analysis and processing."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/quickcsv"
-sourceUrl: "https://clawhub.ai/skills/quickcsv"
----
+# QuickCSV
 
-# Quickcsv
+Convert JSON, YAML, or TSV files into standardized CSV format with automatic header detection and consistent formatting. Ideal for data analysts, researchers, or engineers who frequently switch between data formats and need fast, reliable conversion without manual cleanup.
 
-> Convert JSON, YAML, or TSV files to standardized CSV format with automatic header detection and consistent output for easy data analysis and processing.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/quickcsv`
-- **Source URL:** [https://clawhub.ai/skills/quickcsv](https://clawhub.ai/skills/quickcsv)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/quickcsv
+# Convert JSON to CSV file
+quickcsv data.json -o output.csv
+
+# Convert YAML to stdout
+quickcsv config.yaml
+
+# Convert TSV (handles tab-delimited) to CSV
+quickcsv data.tsv -o result.csv
+
+# Suppress header row
+quickcsv data.json --no-output-header
 ```
+
+## Price
+
+$2.50

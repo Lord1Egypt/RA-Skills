@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# 测试文件
+test_*.py
+*_test.py
+test_image.png
+
+# 临时文件
+*.tmp
+*.log
+
+# 模型文件（首次运行自动下载，不纳入版本控制）
+models/*.onnx
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

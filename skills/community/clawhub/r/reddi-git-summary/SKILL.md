@@ -1,35 +1,76 @@
 ---
-name: "Reddi Git Summary"
-description: "reddi.tech fork of git-summary. Get a quick summary of the current Git repository including status, recent commits, branches, and contributors."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/reddi-git-summary"
-sourceUrl: "https://clawhub.ai/skills/reddi-git-summary"
+version: 1.0.1
+name: reddi-git-summary
+description: >
+  reddi.tech fork of git-summary. Get a quick summary of the current Git repository
+  including status, recent commits, branches, and contributors.
+user-invocable: true
+fork-of: git-summary
+metadata:
+  openclaw:
+    emoji: "📊"
+    requires:
+      bins:
+        - git
+      env: []
+    os: ["darwin", "linux", "win32"]
+    network:
+      outbound: false
+      reason: "Runs local git commands only. Remote operations are optional and user-initiated."
 ---
 
-# Reddi Git Summary
+# Git Summary Skill
 
-> reddi.tech fork of git-summary. Get a quick summary of the current Git repository including status, recent commits, branches, and contributors.
+This skill provides a comprehensive overview of the current Git repository state.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/reddi-git-summary`
-- **Source URL:** [https://clawhub.ai/skills/reddi-git-summary](https://clawhub.ai/skills/reddi-git-summary)
+## Usage
 
-## Overview
+When the user asks for a git summary, repository overview, or wants to understand the current state of a git project, use the terminal to run the following commands and present the results in a clear, organized format.
 
+## Instructions
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/reddi-git-summary
+1. **Repository Status**: Run `git status --short --branch` to get the current branch and working directory status.
+
+2. **Recent Commits**: Run `git log --oneline -10 --decorate` to show the last 10 commits with branch/tag decorations.
+
+3. **Branch Overview**: Run `git branch -a --list` to list all local and remote branches.
+
+4. **Remote Info**: Run `git remote -v` to show configured remotes.
+
+5. **Uncommitted Changes Summary**: 
+   - Run `git diff --stat` for unstaged changes
+   - Run `git diff --cached --stat` for staged changes
+
+6. **Contributors** (optional, for larger context): Run `git shortlog -sn --all | head -10` to show top 10 contributors.
+
+## Output Format
+
+Present the gathered information in a structured format:
+
 ```
+## 📊 Git Repository Summary
+
+### Current Branch & Status
+- Branch: `<branch_name>`
+- Status: <clean/dirty with X modified, Y staged, Z untracked>
+
+### Recent Commits (Last 10)
+<formatted commit list>
+
+### Branches
+- Local: <count> branches
+- Remote: <count> branches
+<list notable branches>
+
+### Remotes
+<list remotes with URLs>
+
+### Uncommitted Changes
+<summary of staged and unstaged changes>
+```
+
+## Notes
+
+- If not in a git repository, inform the user and suggest initializing one with `git init`.
+- For large repositories, the contributor list may take a moment - warn the user if this is expected.
+- Always respect that some information may be sensitive - don't expose full URLs if they contain tokens.

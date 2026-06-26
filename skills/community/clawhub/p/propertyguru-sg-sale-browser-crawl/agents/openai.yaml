@@ -1,0 +1,3 @@
+interface:
+  display_name: "PropertyGuru SG Sale Browser Crawl"
+  short_description: "Collect about 50 PropertyGuru SG sale listings via browser-backed Next.js data"

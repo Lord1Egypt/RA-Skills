@@ -1,0 +1,25 @@
+{
+  "name": "toktok_user_posts",
+  "label": "Get TokTok user posts",
+  "description": "Fetch public posts by username",
+  "host": "x.toktokapi.com",
+  "path": "/user/posts",
+  "method": "GET",
+  "querySchema": {
+    "username": {
+      "type": "string",
+      "required": true,
+      "description": "TokTok username"
+    },
+    "count": {
+      "type": "number",
+      "required": false,
+      "default": 20,
+      "description": "Number of items"
+    }
+  },
+  "response": {
+    "type": "json",
+    "dataPath": "data.items"
+  }
+}

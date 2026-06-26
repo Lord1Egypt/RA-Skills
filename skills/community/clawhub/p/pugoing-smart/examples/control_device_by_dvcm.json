@@ -1,0 +1,9 @@
+{
+  "path": "/api/device/control/voice",
+  "method": "POST",
+  "auth": "agent",
+  "data": {
+    "host_ip": "192.168.1.88",
+    "dvcm": "打开客厅灯"
+  }
+}

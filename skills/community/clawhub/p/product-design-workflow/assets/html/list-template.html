@@ -1,0 +1,199 @@
+<!-- ====================== 列表页模板 ======================
+ * 注意：Header和Footer为全局固定模板，已经通过JS引入，无需修改
+ * 所有开发工作仅需在【页面主体内容区域】内完成
+ * 公共样式：assets/css/common.css（全局统一规范，禁止私自修改）
+ * 路径规则：所有引用统一使用相对路径，禁止使用绝对路径/开头
+ * ========================================================= -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>财经探子 - [列表页标题]</title>
+    <!-- 全局公共样式（固定引用，禁止删除） -->
+    <link rel="stylesheet" href="assets/css/common.css">
+    <!-- FontAwesome 6 图标库（固定引用，可直接使用所有免费图标） -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 页面独立样式（仅写当前页面独有样式，公用样式已在common.css定义） -->
+    <style>
+        /* 页面头部（统一使用主题色紫色，无橙色） */
+        .page-header {
+            background: var(--zl-primary-opacity);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .page-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--zl-primary);
+            margin-bottom: 16px;
+        }
+        .page-subtitle {
+            font-size: 16px;
+            color: var(--zl-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        /* 列表布局 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .card {
+            background: var(--zl-bg);
+            border: 1px solid var(--zl-border);
+            border-radius: var(--zl-radius-xl);
+            padding: 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .card:hover {
+            border-color: var(--zl-primary);
+            box-shadow: 0 8px 24px var(--zl-primary-opacity);
+            transform: translateY(-4px);
+        }
+        .card-tag {
+            display: inline-block;
+            background: var(--zl-primary-opacity);
+            color: var(--zl-primary);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--zl-text-primary);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        .card-desc {
+            font-size: 14px;
+            color: var(--zl-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--zl-text-minor);
+        }
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 40px 20px;
+            }
+            .page-title {
+                font-size: 24px;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 全局固定Header（通过JS自动引入，禁止修改） -->
+    <script src="assets/js/header.js"></script>
+
+    <!-- ==============================================
+         页面主体内容区域（所有开发工作仅在此区域完成）
+         ============================================== -->
+    <main style="padding-top: 64px;">
+        <!-- 页面头部 -->
+        <section class="page-header">
+            <h1 class="page-title">[页面大标题]</h1>
+            <p class="page-subtitle">[页面副标题说明]</p>
+        </section>
+
+        <!-- 内容容器 -->
+        <div class="container">
+            <!-- 列表卡片区域 -->
+            <div class="card-grid">
+                <!-- 卡片示例，后续动态生成 -->
+                <div class="card">
+                    <span class="card-tag">[标签]</span>
+                    <h3 class="card-title">[卡片标题]</h3>
+                    <p class="card-desc">[卡片描述内容，最多两行省略]</p>
+                    <div class="card-meta">
+                        <span>[时间]</span>
+                        <span>[来源]</span>
+                    </div>
+                </div>
+                <!-- 更多卡片 -->
+            </div>
+        </div>
+    </main>
+    <!-- ==============================================
+         页面主体内容区域结束
+         ============================================== -->
+
+    <!-- Idea介绍浮层（领导查看用，固定在右下角） -->
+    <div class="idea-float-panel" id="ideaFloatPanel">
+        <div class="idea-float-header" onclick="toggleIdeaPanel()">
+            <div class="idea-float-header-title">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span id="ideaPanelTitle">Idea介绍</span>
+            </div>
+            <button class="idea-float-header-toggle" id="ideaPanelToggle">
+                <i class="fa-solid fa-minus" id="ideaPanelToggleIcon"></i>
+            </button>
+        </div>
+        <div class="idea-float-content" id="ideaPanelContent">
+            <div class="idea-float-section">
+                <div class="idea-float-section-title"><i class="fa-solid fa-tag"></i> 点子信息</div>
+                <div class="idea-float-section-content">
+                    <span class="idea-float-tag" id="ideaTag1">基金</span>
+                    <span class="idea-float-tag" id="ideaTag2">小白向</span>
+                </div>
+            </div>
+            <div class="idea-float-section">
+                <div class="idea-float-section-title"><i class="fa-solid fa-star"></i> 一句话卖点</div>
+                <div class="idea-float-section-content" id="ideaOneLine">
+                    一句话说明这个点子的核心价值
+                </div>
+            </div>
+            <div class="idea-float-section">
+                <div class="idea-float-section-title"><i class="fa-solid fa-puzzle-piece"></i> 设计想法</div>
+                <div class="idea-float-section-content" id="ideaDesign">
+                    简单说明设计思路、用户痛点、差异化优势
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局固定Footer（通过JS自动引入，禁止修改） -->
+    <script src="assets/js/footer.js"></script>
+
+    <!-- 全局公共脚本（固定引用，禁止删除） -->
+    <script src="assets/js/common.js"></script>
+    <!-- 页面独立脚本（仅写当前页面独有脚本） -->
+    <script>
+        // Idea浮层折叠/展开功能
+        function toggleIdeaPanel() {
+            const panel = document.getElementById('ideaFloatPanel');
+            const content = document.getElementById('ideaPanelContent');
+            const toggleIcon = document.getElementById('ideaPanelToggleIcon');
+            panel.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+            if (panel.classList.contains('collapsed')) {
+                toggleIcon.className = 'fa-solid fa-plus';
+            } else {
+                toggleIcon.className = 'fa-solid fa-minus';
+            }
+        }
+        // 页面独立脚本写在这里
+    </script>
+</body>
+</html>

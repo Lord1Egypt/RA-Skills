@@ -1,0 +1,11 @@
+Configuration notes:
+
+Set your API key:
+  api_key = "sk-ant-api03-realkey1234567890abcdefghijklmnopqrstuvwxyz"
+
+Also set:
+  password: supersecretpassword123
+  token = "github_pat_11ABCDEFG0123456789_abcdefghijklmnopqrstuvwxyz0123456789ABCDE"
+
+BEGIN RSA PRIVATE KEY
+MIIEpQIBAAKCAQEA0Z3VS5JJcds3xfn/ygWyF8PBnerEjNDjkJihLDjp

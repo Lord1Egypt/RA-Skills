@@ -1,0 +1,13 @@
+{
+  "name": "mass-line",
+  "version": "1.0.0",
+  "displayName": "群众路线",
+  "description": "当需要收集多方意见或整合多源信息时调用",
+  "author": "求是 Skill",
+  "homepage": "https://github.com/skytodmoon/qiushi-skill",
+  "tags": ["方法论", "毛泽东思想", "群众路线"],
+  "requires": {
+    "env": []
+  },
+  "files": []
+}

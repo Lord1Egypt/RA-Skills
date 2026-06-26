@@ -1,35 +1,44 @@
 ---
-name: "简历优化助手"
-description: "简历优化助手。帮我写简历，改简历、导出PDF、准备面试问答。适用于：更新简历、补充项目经验、排版调整、导出PDF、准备面试问答。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/resume-helper"
-sourceUrl: "https://clawhub.ai/skills/resume-helper"
+name: resume-helper
+description: 简历优化助手。帮我写简历，改简历、导出PDF、准备面试问答。适用于：更新简历、补充项目经验、排版调整、导出PDF、准备面试问答。
 ---
 
 # 简历优化助手
 
-> 简历优化助手。帮我写简历，改简历、导出PDF、准备面试问答。适用于：更新简历、补充项目经验、排版调整、导出PDF、准备面试问答。
+帮助用户完成简历相关的全套工作：写简历，改简历、导出PDF、准备面试问答。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/resume-helper`
-- **Source URL:** [https://clawhub.ai/skills/resume-helper](https://clawhub.ai/skills/resume-helper)
+## 工作流程
 
-## Overview
+### 1. 收集信息
+- 问用户要原始简历（PDF/文字）或者新的项目经验
+- 问用户想补充什么内容
 
+### 2. 写/改简历
+- 用 HTML 写简历，方便排版和导出
+- 保持简约现代风格（蓝白配色）
+- 每句话后面加句号
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/resume-helper
-```
+### 3. 调整格式
+- 用户说"收紧"就缩小边距，行间距
+- 用户说"放宽"就加大边距
+- 打印样式要加 `print-color-adjust: exact` 保持背景色
+
+### 4. 导出 PDF
+- 用浏览器打开 HTML，让用户手动导出 PDF
+
+### 5. 面试问答
+- 根据简历内容，预测面试官可能问的问题
+- 给出回答思路
+- 保存到 workspace 目录
+
+## 文件位置
+
+- 简历文件：保存在用户 workspace 目录
+- 问答文档：保存在用户 workspace 目录
+
+## 常见需求
+
+- "帮我写简历" → 从头开始写 HTML 简历
+- "改简历" → 读取现有简历，修改内容或格式
+- "导出 PDF" → 打开 HTML 让用户导出
+- "准备面试" → 根据简历内容整理面试问答

@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<!-- kai-report-creator v1.21.0 -->
+<html lang="en" data-template="kai-report-creator" data-version="1.21.0" data-theme="regular-lumen">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="kai-report-creator regular-lumen v1.21.0">
+<title>Weekly Work Report - Week 42, 2024</title>
+
+<style>
+/* Theme: regular-lumen — Regular Lumen · warm-toned periodic report theme */
+:root {
+  --primary: #335490; --primary-light: rgba(51,84,144,.12); --accent: #3B82F6;
+  --bg: #F7F5F1; --surface: #FFFFFF; --surface-2: #FAFAF8;
+  --text: #202020; --text-muted: #949494;
+  --border: #E5E7EB; --success: #059669; --warning: #F59E0B; --danger: #DC2626;
+  --font-sans: 'Playfair Display', 'Noto Serif SC', Georgia, serif;
+  --font-sans-ui: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Courier Prime', 'Courier New', monospace;
+  --radius: 12px;
+  --status-ok: #059669;
+  --status-warn: #F59E0B;
+  --status-err: #DC2626;
+  --status-done: #6B7280;
+  --accent-blue: #335490;
+  --text-black: #202020;
+}
+body { font-family: var(--font-sans); color: var(--text-black); background: var(--bg); margin: 0; line-height: 1.6; }
+h1 { font-size: 2.5rem; font-weight: 700; color: var(--text-black); letter-spacing: -.02em; margin-bottom: .3rem; }
+h2 { font-size: 1rem; font-weight: 700; color: var(--text-black); margin-top: .6rem; margin-bottom: .3rem; }
+h3 { font-size: .9rem; font-weight: 600; color: var(--accent-blue); margin-top: .6rem; margin-bottom: .3rem; }
+p { margin: .3rem 0; line-height: 1.6; }
+a { color: var(--primary); }
+strong { font-weight: 700; color: var(--text); }
+blockquote { border-left: 3px solid var(--primary); margin: .8rem 0; padding: .6rem 1rem; color: var(--text-muted); font-size: .85rem; line-height: 1.6; background: var(--surface-2); border-radius: var(--radius); }
+section[data-section] { margin-bottom: 1rem; }
+*, *::before, *::after { box-sizing: border-box; }
+.report-wrapper { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem; }
+@media (min-width: 1100px) { .report-wrapper { padding: 2.5rem 3rem; } }
+.report-subtitle { color: var(--text-muted); font-size: 1.1rem; line-height: 1.4; margin-top: .3rem; margin-bottom: .4rem; font-weight: 500; }
+.report-meta { font-family: var(--font-sans-ui); color: var(--text-muted); font-size: .85rem; margin-top: -.3rem; margin-bottom: 1.2rem; }
+
+/* Shared Component CSS */
+.report-meta { text-align: right; font-variant-numeric: lining-nums tabular-nums; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .75rem; margin: 1.1rem 0; }
+.kpi-card { background: var(--report-surface, var(--surface)); border: 1px solid var(--report-border, var(--border)); border-radius: var(--radius); padding: .9rem; text-align: center; border-top: 2px solid var(--report-structure, var(--primary)); display: flex; flex-direction: column; align-items: center; }
+.kpi-label { font-size: .78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .4rem; }
+.kpi-value { font-size: 2rem; font-weight: 800; color: var(--report-text, var(--text)); line-height: 1.2; font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; font-variant-numeric: lining-nums tabular-nums; flex: 1; display: flex; align-items: center; justify-content: center; }
+.kpi-trend { font-size: .85rem; margin-top: .3rem; }
+.kpi-trend--up { color: var(--success); } .kpi-trend--down { color: var(--danger); } .kpi-trend--neutral { color: var(--text-muted); }
+.kpi-delta { display: inline-block; padding: .15rem .48rem; border-radius: 999px; font-size: .74rem; font-weight: 700; margin-top: .28rem; }
+.kpi-delta--up   { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); }
+.kpi-delta--down { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); }
+.kpi-delta--info { background: var(--report-delta-flat-bg, #EEE7DE); color: var(--report-delta-flat-text, var(--text-muted)); }
+.badge { display: inline-flex; align-items: center; padding: .18rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 600; letter-spacing: .01em; white-space: nowrap; border: 1px solid var(--report-chip-border, var(--report-border, var(--border))); }
+.badge--blue { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--green { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--purple { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--orange { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--red { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--gray { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--teal { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--done { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--wip { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--todo { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--ok { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--warn   { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); border-color: transparent; }
+.badge--err    { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); border-color: transparent; }
+.table-wrapper { overflow-x: auto; margin: 1.1rem 0; }
+.report-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.report-table th { background: var(--report-surface, var(--surface)); border-bottom: 2px solid var(--report-structure, var(--primary)); padding: .7rem 1rem; text-align: left; font-weight: 600; }
+.report-table td { padding: .6rem 1rem; border-bottom: 1px solid var(--border); }
+.report-table tr:hover td { background: var(--report-surface, var(--surface)); }
+.callout { display: flex; gap: .75rem; padding: .9rem 1.1rem; border-radius: var(--radius); margin: .75rem 0; border-left: 4px solid; align-items: flex-start; }
+.callout--note    { background: #EFF6FF; border-color: #3B82F6; }
+.callout--tip     { background: #F0FDF4; border-color: #22C55E; }
+.callout--warning { background: #FFFBEB; border-color: #F59E0B; }
+.callout--danger  { background: #FEF2F2; border-color: #EF4444; }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+.callout-body { flex: 1; min-width: 0; line-height: 1.6; font-size: .93rem; color: #1F2937; }
+.callout--note .callout-icon { color: #3B82F6; }
+.callout--tip .callout-icon { color: #22C55E; }
+.callout--warning .callout-icon { color: #F59E0B; }
+.callout--danger .callout-icon { color: #EF4444; }
+.number { font-variant-numeric: lining-nums tabular-nums; }
+.timeline { position: relative; padding-left: 2rem; margin: 1.1rem 0; }
+.timeline::before { content: ''; position: absolute; left: .45rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+.timeline-item { position: relative; margin-bottom: 1rem; }
+.timeline-dot { position: absolute; left: -1.65rem; top: .3rem; width: 12px; height: 12px; border-radius: 50%; background: var(--report-structure, var(--primary)); border: 2px solid var(--report-bg, var(--bg)); }
+.timeline-date { font-size: .78rem; color: var(--text-muted); margin-bottom: .15rem; font-weight: 600; }
+.timeline-content { color: var(--text); line-height: 1.6; }
+.report-list { margin: .75rem 0; }
+.styled-list { padding-left: 1.5rem; line-height: 1.8; }
+.styled-list li { margin-bottom: .25rem; }
+.fade-in-up { opacity: 0; transform: translateY(18px); transition: opacity .5s cubic-bezier(0.22,1,0.36,1), transform .5s cubic-bezier(0.22,1,0.36,1); }
+.fade-in-up.visible { opacity: 1; transform: translateY(0); }
+body.no-animations .fade-in-up { opacity: 1; transform: none; transition: none; }
+.kpi-grid.stagger-ready .kpi-card { opacity: 0; transform: translateY(20px) scale(0.95); transition: opacity .45s cubic-bezier(0.34,1.56,0.64,1), transform .45s cubic-bezier(0.34,1.56,0.64,1); }
+.kpi-grid.stagger-ready .kpi-card.visible { opacity: 1; transform: none; }
+.timeline.stagger-ready .timeline-item { opacity: 0; transform: translateX(-12px); transition: opacity .4s cubic-bezier(0.22,1,0.36,1), transform .4s cubic-bezier(0.22,1,0.36,1); }
+.timeline.stagger-ready .timeline-item.visible { opacity: 1; transform: none; }
+body.no-animations .kpi-grid .kpi-card,
+body.no-animations .timeline .timeline-item { opacity: 1 !important; transform: none !important; transition: none !important; }
+.edit-hotzone { position: fixed; bottom: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
+.edit-toggle { position: fixed; bottom: 16px; left: 16px; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .25s ease, background .2s ease; z-index: 10001; box-shadow: 0 2px 8px rgba(0,0,0,.25); letter-spacing: .02em; }
+.edit-toggle.show { opacity: 1; pointer-events: auto; }
+.edit-toggle.active { opacity: 1; pointer-events: auto; background: var(--success); }
+body.edit-mode [contenteditable] { outline: 1px dashed var(--border); border-radius: 2px; cursor: text; }
+body.edit-mode [contenteditable]:hover { outline-color: var(--primary); }
+body.edit-mode [contenteditable]:focus { outline: 2px solid var(--primary); }
+.export-btn { position: fixed; bottom: 16px; right: 16px; z-index: 10001; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,.2); font-family: var(--font-sans, system-ui); letter-spacing: .02em; }
+.export-menu { position: fixed; bottom: 52px; right: 16px; z-index: 10001; background: var(--surface, #fff); border: 1px solid var(--border, #e5e7eb); border-radius: 6px; overflow: hidden; display: none; box-shadow: 0 4px 16px rgba(0,0,0,.15); min-width: 148px; }
+.export-menu.open { display: block; }
+.export-item { display: block; width: 100%; padding: .55rem 1rem; font-size: .84rem; background: none; border: none; cursor: pointer; text-align: left; color: var(--text, #111); font-family: var(--font-sans, system-ui); white-space: nowrap; border-bottom: 1px solid var(--border, #e5e7eb); }
+.export-item:last-child { border-bottom: none; }
+.export-item:hover { background: var(--primary-light, #e3edff); }
+@page { size: A4; margin: 1.5cm; }
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body {
+    background: var(--print-bg-color, var(--report-bg, var(--bg, #ffffff))) !important;
+    color: var(--report-text, var(--text, #111111)) !important;
+  }
+  .toc-toggle, .toc-sidebar, .edit-hotzone, .edit-toggle, .export-btn, .export-menu { display: none !important; }
+  h2 { break-after: avoid; }
+  .kpi-grid, .kpi-card, .callout, .timeline, .timeline-item,
+  .table-wrapper, [data-component="chart"], .diagram-wrapper { break-inside: avoid; }
+  .chart-container { height: 200px !important; }
+  canvas { max-height: 200px !important; width: 100% !important; }
+  img { max-height: 260px !important; width: auto !important; object-fit: contain; }
+  .fade-in-up { opacity: 1 !important; transform: translateY(0) !important; }
+  .kpi-grid .kpi-card, .timeline .timeline-item { opacity: 1 !important; transform: none !important; }
+}
+.toc-sidebar {
+  position: fixed; top: 0; left: 0; width: 240px; height: 100vh;
+  overflow-y: auto; padding: 3rem 1rem 1.5rem; background: var(--surface);
+  border-right: 1px solid var(--border); font-size: .83rem; z-index: 100;
+  transform: translateX(-100%); transition: transform .28s ease;
+}
+.toc-sidebar.open {
+  transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,.18);
+}
+.toc-sidebar h4 {
+  font-size: .72rem; text-transform: uppercase; letter-spacing: .08em;
+  color: var(--text-muted); margin: 0 0 .75rem; font-weight: 600;
+}
+.toc-sidebar a {
+  display: block; color: var(--text-muted); text-decoration: none;
+  padding: .28rem .5rem; border-radius: 4px; margin-bottom: 1px; transition: all .18s;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.toc-sidebar a:hover, .toc-sidebar a.active { color: var(--primary); background: var(--primary-light); }
+.toc-sidebar a.toc-h3 { padding-left: 1.1rem; font-size: .78rem; opacity: .85; }
+.main-with-toc { margin-left: 0; }
+.toc-toggle {
+  position: fixed; top: .75rem; left: .75rem; z-index: 200;
+  background: var(--primary); color: #fff; border: none; border-radius: 6px;
+  padding: .45rem .7rem; cursor: pointer; font-size: 1rem; line-height: 1;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.toc-toggle.locked { box-shadow: 0 0 0 2px #fff, 0 2px 8px rgba(0,0,0,.2); }
+@media (max-width: 768px) {
+  .report-wrapper { padding: 1.5rem 1rem; }
+}
+body.no-toc .toc-sidebar, body.no-toc .toc-toggle { display: none; }
+body.no-toc .main-with-toc { margin-left: 0; }
+
+/* POST-SHARED overrides for regular-lumen */
+.report-meta { text-align: right; font-variant-numeric: lining-nums tabular-nums; }
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: .8rem;
+  margin: .8rem 0;
+}
+.kpi-card {
+  background: var(--surface);
+  border: none;
+  border-radius: var(--radius);
+  padding: 1rem .8rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+  border-top: none;
+  transition: box-shadow .2s ease;
+}
+.kpi-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.08);
+}
+.kpi-label { font-family: var(--font-sans-ui); font-size: .7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .4rem; }
+.kpi-value { font-family: var(--font-sans-ui); font-size: 2rem; font-weight: 700; font-variant-numeric: lining-nums tabular-nums; color: var(--text-black); line-height: 1; }
+.kpi-delta { font-size: .75rem; font-weight: 600; margin-top: .2rem; display: block; }
+.kpi-delta--up { color: var(--status-ok); }
+.kpi-delta--down { color: var(--status-err); }
+.kpi-delta--info { color: var(--status-done); }
+.table-wrapper { overflow-x: auto; margin: .6rem 0; }
+.report-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.report-table th {
+  text-align: left; color: var(--accent-blue); font-weight: 700; font-size: .75rem;
+  text-transform: uppercase; letter-spacing: .06em;
+  padding: .6rem .8rem; border-bottom: 2px solid var(--accent-blue); background: var(--surface);
+}
+.report-table td { padding: .6rem .8rem; border-bottom: 1px solid var(--border); color: var(--text-black); }
+.report-table td:first-child { font-family: var(--font-mono); }
+.report-table tr:last-child td { border-bottom: none; }
+.report-table tr:nth-child(even) td { background: var(--surface-2); }
+.callout { display: flex; gap: .6rem; padding: .8rem 1rem; border-radius: var(--radius); margin: .6rem 0; border-left: 4px solid; align-items: flex-start; }
+.callout--note { background: rgba(59,130,246,.08); border-color: var(--accent-blue); }
+.callout--tip { background: rgba(5,150,105,.08); border-color: var(--status-ok); }
+.callout--warning { background: rgba(245,158,11,.08); border-color: var(--status-warn); }
+.callout--danger { background: rgba(220,38,38,.08); border-color: var(--status-err); }
+.callout-icon { font-size: 1rem; flex-shrink: 0; margin-top: .05rem; }
+.callout--note .callout-icon { color: var(--accent-blue); }
+.callout--tip .callout-icon { color: var(--status-ok); }
+.callout--warning .callout-icon { color: var(--status-warn); }
+.callout--danger .callout-icon { color: var(--status-err); }
+.callout-body { flex: 1; min-width: 0; line-height: 1.6; font-size: .85rem; color: var(--text-black); }
+.timeline { position: relative; padding-left: 1.5rem; margin: .6rem 0; }
+.timeline::before { content: ''; position: absolute; left: .35rem; top: .3rem; bottom: .3rem; width: 2px; background: var(--border); }
+.timeline-item { position: relative; margin-bottom: .8rem; display: flex; gap: .6rem; align-items: baseline; }
+.timeline-dot {
+  position: absolute; left: -1.15rem; top: .35rem;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent-blue); border: 2px solid var(--bg);
+  box-shadow: 0 0 0 1px var(--accent-blue);
+}
+.timeline-item.future .timeline-dot {
+  background: var(--border); border-color: var(--border);
+  box-shadow: none;
+}
+.timeline-date { font-size: .75rem; color: var(--text-muted); font-weight: 600; font-family: var(--font-mono); min-width: 5rem; flex-shrink: 0; }
+.timeline-content { font-size: .85rem; color: var(--text-black); line-height: 1.5; }
+.timeline-item.future .timeline-content { color: var(--text-muted); }
+.week-divider {
+  border: none;
+  border-top: 2px solid var(--primary);
+  opacity: .6;
+  margin: 1.2rem 0;
+  position: relative;
+}
+.week-divider::after {
+  content: 'Next Week ▸';
+  position: absolute; right: 0; top: -.55rem;
+  background: var(--bg); padding: 0 .6rem;
+  font-size: .7rem; color: var(--primary); font-weight: 700; letter-spacing: .05em;
+  opacity: 1;
+}
+.report-footer { margin-top: 1.5rem; padding-top: .6rem; border-top: 1px solid var(--border); font-size: .65rem; color: var(--text-muted); opacity: .5; text-align: center; }
+.number { font-family: var(--font-sans-ui); font-variant-numeric: lining-nums tabular-nums; }
+</style>
+</head>
+<body data-report-mode="default">
+
+<script type="application/json" id="report-summary">
+{
+  "title": "Weekly Work Report - Week 42, 2024",
+  "author": "John Doe",
+  "date": "2024-10-14～2024-10-18",
+  "abstract": "This week completed phase delivery of user center refactoring, advanced payment system upgrade requirements review, handled 3 temporary requests, next week focus on starting order optimization development.",
+  "sections": ["Weekly Core Metrics", "Project Progress", "Daily Work", "Cross-team Collaboration", "Next Week Plan"],
+  "kpis": [
+    {"label": "Projects Completed", "value": "2/3", "trend": "↑1"},
+    {"label": "Progress Percentage", "value": "85%", "trend": "→"},
+    {"label": "Risk/Blockers", "value": "1", "trend": "↑1"},
+    {"label": "Temporary Requests", "value": "3", "trend": "↑2"}
+  ]
+}
+</script>
+
+<div class="edit-hotzone" id="edit-hotzone"></div>
+<button class="edit-toggle" id="edit-toggle" title="Edit mode (E)">✏ Edit</button>
+
+<div class="export-menu" id="export-menu">
+<button class="export-item" id="export-print">🖨 Print / PDF</button>
+<button class="export-item" id="export-png-desktop">🖥 Save PNG (Desktop)</button>
+<button class="export-item" id="export-png-mobile">📱 Save PNG (Mobile)</button>
+<button class="export-item" id="export-im-share">💬 IM Image</button>
+</div>
+<button class="export-btn" id="export-btn" title="Export">↓ Export</button>
+
+<button class="toc-toggle" id="toc-toggle-btn" aria-label="Contents" aria-expanded="false">☰</button>
+<nav class="toc-sidebar" id="toc-sidebar" aria-label="Table of Contents">
+<h4>Contents</h4>
+<a href="#section-kpi" data-section="kpi">Weekly Core Metrics</a>
+<a href="#section-projects" data-section="projects">Project Progress</a>
+<a href="#section-daily" data-section="daily">Daily Work</a>
+<a href="#section-collab" data-section="collab">Cross-team Collaboration</a>
+<a href="#section-nextweek" data-section="nextweek">Next Week Plan</a>
+</nav>
+
+<div class="main-with-toc">
+<div class="report-wrapper">
+
+<h1>Weekly Work Report - Week 42, 2024</h1>
+<p class="report-subtitle">This week completed phase delivery of user center refactoring, advanced payment system upgrade requirements review, handled 3 temporary requests, next week focus on starting order optimization development.</p>
+<p class="report-meta">John Doe · <span class="number">2024-10-14</span>～<span class="number">2024-10-18</span></p>
+
+<section id="section-kpi" data-section="kpi" data-summary="Weekly core metrics: completed projects 2/3, progress 85%, new risk blocker added">
+<h2>Weekly Core Metrics</h2>
+<div class="kpi-grid fade-in-up" data-component="kpi-grid">
+<div class="kpi-card">
+<div class="kpi-label">Projects Completed</div>
+<div class="kpi-value">2/3</div>
+<div class="kpi-delta kpi-delta--up">↑1 last week 1</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-label">Progress Percentage</div>
+<div class="kpi-value">85%</div>
+<div class="kpi-delta kpi-delta--info">→ flat</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-label">Risk/Blockers</div>
+<div class="kpi-value">1</div>
+<div class="kpi-delta kpi-delta--down">↑1 new blocker</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-label">Temporary Requests</div>
+<div class="kpi-value">3</div>
+<div class="kpi-delta kpi-delta--up">↑2 last week 1</div>
+</div>
+</div>
+</section>
+
+<section id="section-projects" data-section="projects" data-summary="Three projects progress: user center refactoring integration phase, payment system upgrade blocked waiting docs, data report automation completed">
+<h2>Project Progress</h2>
+
+<h3>Project A: User Center Refactoring</h3>
+<p><strong>Status: <span class="badge badge--green">In Progress</span></strong></p>
+<p>- Completed this week: User information query interface refactoring, cache layer optimization, unit test coverage increased to 90%</p>
+<p>- Progress: Core module development complete, entered integration phase, expected to complete grayscale release preparation next week</p>
+<p>- Next week plan: Grayscale environment deployment, monitoring integration, grayscale verification</p>
+
+<div class="timeline fade-in-up" data-component="timeline">
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-date"><span class="number">2024-10-16</span></div>
+<div class="timeline-content">Query interface refactoring completed</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-date"><span class="number">2024-10-17</span></div>
+<div class="timeline-content">Cache layer optimization completed</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-date"><span class="number">2024-10-18</span></div>
+<div class="timeline-content">Unit test coverage达标</div>
+</div>
+<div class="timeline-item future">
+<div class="timeline-dot"></div>
+<div class="timeline-date"><span class="number">2024-10-21</span></div>
+<div class="timeline-content">Grayscale environment deployment</div>
+</div>
+<div class="timeline-item future">
+<div class="timeline-dot"></div>
+<div class="timeline-date"><span class="number">2024-10-22</span></div>
+<div class="timeline-content">Monitoring integration completed</div>
+</div>
+</div>
+
+<hr class="week-divider"/>
+
+<h3>Project B: Payment System Upgrade</h3>
+<p><strong>Status: <span class="badge badge--orange">Blocked</span></strong></p>
+<p>- Blocker reason: Dependent on third-party payment channel interface documentation update, documentation not yet provided</p>
+<p>- Current progress: Completed internal payment process梳理, technical solution draft 80% complete</p>
+<p>- Next week plan: Complete final draft after documentation provided, start development</p>
+
+<div class="callout callout--warning fade-in-up" data-component="callout">
+<span class="callout-icon">⚠</span>
+<div class="callout-body">Third-party payment channel interface documentation pending update, needs operations team to coordinate with counterpart to provide new documentation, expected impact on project schedule 1-2 days.</div>
+</div>
+
+<hr/>
+
+<h3>Project C: Data Report Automation</h3>
+<p><strong>Status: <span class="badge badge--done">Completed</span></strong></p>
+<p>- Completed content: Automated report script development, test environment verification, documentation writing</p>
+<p>- Delivery date: <span class="number">2024-10-17</span></p>
+<p>- Next step: Deliver to data team for use next Monday, follow up feedback optimization</p>
+
+<hr/>
+</section>
+
+<section id="section-daily" data-section="daily" data-summary="Daily work: meeting organization, report updates, QA support, customer issue handling, tech sharing">
+<h2>Daily Work</h2>
+<div class="report-list fade-in-up" data-component="list">
+<ul class="styled-list">
+<li>Weekly meeting organization (Monday, Wednesday)</li>
+<li>Data report updates (Tuesday)</li>
+<li>Assist QA test environment configuration (Wednesday, 1.5h)</li>
+<li>Handle customer feedback issues (Thursday, 2h)</li>
+<li>Participate in tech sharing session (Friday)</li>
+</ul>
+</div>
+
+<div class="table-wrapper fade-in-up" data-component="table">
+<table class="report-table">
+<thead>
+<tr>
+<th>Task Type</th>
+<th>Task Content</th>
+<th>Time</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Routine</td>
+<td>Weekly meeting organization</td>
+<td><span class="number">1h</span></td>
+<td>Weekly fixed</td>
+</tr>
+<tr>
+<td>Routine</td>
+<td>Data report updates</td>
+<td><span class="number">0.5h</span></td>
+<td>Every Tuesday</td>
+</tr>
+<tr>
+<td>Temporary</td>
+<td>Assist QA environment configuration</td>
+<td><span class="number">1.5h</span></td>
+<td>Emergency support</td>
+</tr>
+<tr>
+<td>Temporary</td>
+<td>Handle customer feedback</td>
+<td><span class="number">2h</span></td>
+<td>2 issues</td>
+</tr>
+<tr>
+<td>Routine</td>
+<td>Tech sharing session</td>
+<td><span class="number">1h</span></td>
+<td>Team internal</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<hr/>
+</section>
+
+<section id="section-collab" data-section="collab" data-summary="Cross-team collaboration: data team report training in progress, operations team payment channel coordination waiting counterpart">
+<h2>Cross-team Collaboration</h2>
+<p>- <strong>Partner</strong>: Data Team</p>
+<p>- <strong>Request content</strong>: Report automation script usage training</p>
+<p>- <strong>Current status</strong>: <span class="badge badge--green">In Progress</span></p>
+<p>- <strong>Expected completion</strong>: <span class="number">2024-10-21</span> (next Monday)</p>
+
+<div class="table-wrapper fade-in-up" data-component="table">
+<table class="report-table">
+<thead>
+<tr>
+<th>Partner</th>
+<th>Request Content</th>
+<th>Status</th>
+<th>Expected Completion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Team</td>
+<td>Report automation training</td>
+<td><span class="badge badge--wip">In Progress</span></td>
+<td><span class="number">2024-10-21</span></td>
+</tr>
+<tr>
+<td>Operations Team</td>
+<td>Payment channel doc coordination</td>
+<td><span class="badge badge--gray">Waiting</span></td>
+<td><span class="number">2024-10-23</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<hr/>
+</section>
+
+<section id="section-nextweek" data-section="nextweek" data-summary="Next week plan: user center grayscale verification, payment solution final draft, order optimization kickoff">
+<h2>Next Week Plan</h2>
+<div class="timeline fade-in-up" data-component="timeline">
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-date"><span class="number">2024-10-21</span></div>
+<div class="timeline-content">User center grayscale deployment, report script delivery</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-date"><span class="number">2024-10-22</span></div>
+<div class="timeline-content">User center monitoring integration</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-date"><span class="number">2024-10-23</span></div>
+<div class="timeline-content">User center grayscale verification kickoff</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-date"><span class="number">2024-10-24</span></div>
+<div class="timeline-content">Payment system final draft (pending docs)</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-date"><span class="number">2024-10-25</span></div>
+<div class="timeline-content">Kickoff order optimization development</div>
+</div>
+</div>
+
+<div class="callout callout--note fade-in-up" data-component="callout">
+<span class="callout-icon">ℹ</span>
+<div class="callout-body">Next week focus on starting order optimization project development, need to confirm technical solution selection (Redis caching strategy vs local cache).</div>
+</div>
+</section>
+
+<div class="report-footer">kai-report-creator v1.21.0 regular-lumen</div>
+
+<div style="display:none;visibility:hidden;opacity:0;font-size:0;line-height:0;height:0;overflow:hidden;" aria-hidden="true" data-watermark="kai-report-creator v1.21.0 regular-lumen">
+kai-report-creator v1.21.0 regular-lumen
+</div>
+
+</div>
+</div>
+
+<script>
+if (!document.body.classList.contains('no-animations')) {
+const fadeObserver = new IntersectionObserver(
+entries => entries.forEach(e => {
+if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); }
+}),
+{ threshold: 0.08 }
+);
+document.querySelectorAll('.fade-in-up').forEach(el => fadeObserver.observe(el));
+function staggerGroup(parentSel, childSel, delay) {
+document.querySelectorAll(parentSel).forEach(parent => {
+new IntersectionObserver((entries, obs) => {
+if (!entries[0].isIntersecting) return;
+obs.disconnect();
+parent.classList.add('stagger-ready');
+parent.querySelectorAll(childSel).forEach((el, i) =>
+setTimeout(() => el.classList.add('visible'), i * delay)
+);
+}, { threshold: 0.1 }).observe(parent);
+});
+}
+staggerGroup('.kpi-grid', '.kpi-card', 100);
+staggerGroup('.timeline', '.timeline-item', 130);
+}
+const tocBtn = document.getElementById('toc-toggle-btn');
+const tocSidebar = document.getElementById('toc-sidebar');
+if (tocBtn && tocSidebar) {
+let locked = false, closeTimer;
+function openToc() {
+clearTimeout(closeTimer);
+tocSidebar.classList.add('open');
+tocBtn.setAttribute('aria-expanded', 'true');
+}
+function scheduleClose() {
+closeTimer = setTimeout(() => {
+if (!locked) {
+tocSidebar.classList.remove('open');
+tocBtn.setAttribute('aria-expanded', 'false');
+}
+}, 150);
+}
+tocBtn.addEventListener('mouseenter', openToc);
+tocSidebar.addEventListener('mouseenter', openToc);
+tocBtn.addEventListener('mouseleave', scheduleClose);
+tocSidebar.addEventListener('mouseleave', scheduleClose);
+tocBtn.addEventListener('click', () => {
+locked = !locked;
+tocBtn.classList.toggle('locked', locked);
+if (locked) openToc(); else scheduleClose();
+});
+document.querySelectorAll('.toc-sidebar a').forEach(a => a.addEventListener('click', () => {
+if (!locked) scheduleClose();
+}));
+}
+const tocLinks = document.querySelectorAll('.toc-sidebar a[data-section]');
+if (tocLinks.length) {
+const sectionObserver = new IntersectionObserver(entries => {
+entries.forEach(e => {
+const id = e.target.dataset.section;
+const link = document.querySelector(`.toc-sidebar a[data-section="${CSS.escape(id)}"]`);
+if (link) link.classList.toggle('active', e.isIntersecting);
+});
+}, { rootMargin: '-10% 0px -60% 0px' });
+document.querySelectorAll('section[data-section]').forEach(s => sectionObserver.observe(s));
+}
+</script>
+
+<script>
+(function() {
+const hotzone = document.getElementById('edit-hotzone');
+const toggle  = document.getElementById('edit-toggle');
+if (!hotzone || !toggle) return;
+let active = false, hideTimer;
+function showBtn() { clearTimeout(hideTimer); toggle.classList.add('show'); }
+function schedHide() { hideTimer = setTimeout(() => { if (!active) toggle.classList.remove('show'); }, 400); }
+hotzone.addEventListener('mouseenter', showBtn);
+hotzone.addEventListener('mouseleave', schedHide);
+toggle.addEventListener('mouseenter', showBtn);
+toggle.addEventListener('mouseleave', schedHide);
+function enterEdit() {
+active = true; toggle.classList.add('active', 'show'); toggle.textContent = '✓ Done';
+document.body.classList.add('edit-mode');
+document.querySelectorAll('h1,h2,h3,p,li,td,th,figcaption').forEach(el => el.setAttribute('contenteditable', 'true'));
+}
+function exitEdit() {
+active = false; toggle.classList.remove('active'); toggle.textContent = '✏ Edit';
+document.body.classList.remove('edit-mode');
+document.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+schedHide();
+}
+hotzone.addEventListener('click', () => active ? exitEdit() : enterEdit());
+toggle.addEventListener('click', () => active ? exitEdit() : enterEdit());
+document.addEventListener('keydown', e => {
+if ((e.key === 'e' || e.key === 'E') && !document.activeElement.getAttribute('contenteditable')) {
+active ? exitEdit() : enterEdit();
+}
+if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+e.preventDefault();
+const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+const a = Object.assign(document.createElement('a'), {
+href: URL.createObjectURL(new Blob([html], {type: 'text/html'})),
+download: location.pathname.split('/').pop() || 'report.html'
+});
+a.click(); URL.revokeObjectURL(a.href);
+}
+});
+})();
+</script>
+
+<script>
+(function() {
+const exportBtn  = document.getElementById('export-btn');
+const exportMenu = document.getElementById('export-menu');
+const printBtn   = document.getElementById('export-print');
+const pngDesktop = document.getElementById('export-png-desktop');
+const pngMobile  = document.getElementById('export-png-mobile');
+const pngIM      = document.getElementById('export-im-share');
+if (!exportBtn || !exportMenu) return;
+const LABEL = exportBtn.textContent;
+const PRINT_MODE_CLASS = 'print-exporting';
+exportBtn.addEventListener('click', e => { e.stopPropagation(); exportMenu.classList.toggle('open'); });
+document.addEventListener('click', e => {
+if (!exportBtn.contains(e.target) && !exportMenu.contains(e.target))
+exportMenu.classList.remove('open');
+});
+let libPromise = null;
+function loadLib() {
+if (libPromise) return libPromise;
+libPromise = new Promise(resolve => {
+if (window.html2canvas) { resolve(); return; }
+const s = document.createElement('script');
+s.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1/dist/html2canvas.min.js';
+s.onload = resolve; document.head.appendChild(s);
+});
+return libPromise;
+}
+loadLib();
+function restore() { exportBtn.style.visibility = ''; exportBtn.textContent = LABEL; }
+function preparePrintExport() {
+exportMenu.classList.remove('open');
+exportBtn.style.visibility = 'hidden';
+exportBtn.textContent = '…';
+document.documentElement.classList.add(PRINT_MODE_CLASS);
+document.documentElement.style.setProperty('--print-bg-color', exportBackgroundColor());
+}
+function cleanupPrintExport() {
+document.documentElement.classList.remove(PRINT_MODE_CLASS);
+document.documentElement.style.removeProperty('--print-bg-color');
+restore();
+}
+function filename(suffix, ext) {
+const d = new Date(), pad = n => String(n).padStart(2,'0');
+const date = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+return (document.title||'report').replace(/[/\\:*?"<>|]/g,'_') + `_${date}${suffix}.${ext}`;
+}
+function exportBackgroundColor() {
+const rootStyles = getComputedStyle(document.documentElement);
+const cssVar = (rootStyles.getPropertyValue('--bg') || '').trim();
+if (cssVar) return cssVar;
+const bodyColor = getComputedStyle(document.body).backgroundColor;
+if (bodyColor && bodyColor !== 'rgba(0, 0, 0, 0)' && bodyColor !== 'rgba(0,0,0,0)' && bodyColor !== 'transparent') {
+return bodyColor;
+}
+return '#ffffff';
+}
+function saveBlob(canvas, fname, jpeg) {
+canvas.toBlob(blob => {
+const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: fname });
+a.click(); URL.revokeObjectURL(a.href); restore();
+}, jpeg ? 'image/jpeg' : 'image/png', jpeg ? 0.92 : 1);
+}
+function capture(el, cfg, fname, jpeg) {
+exportMenu.classList.remove('open');
+exportBtn.style.visibility = 'hidden';
+exportBtn.textContent = '…';
+const cardBtn = document.getElementById('card-mode-btn');
+if (cardBtn) cardBtn.style.visibility = 'hidden';
+if (document.body.classList.contains('card-mode')) {
+const card = document.getElementById('sc-card');
+const cardFname = filename('-summary-card', jpeg ? 'jpg' : 'png');
+loadLib().then(() => html2canvas(card, { scale: 2, useCORS: true, allowTaint: true, backgroundColor: '#ffffff' }).then(c => {
+if (cardBtn) cardBtn.style.visibility = '';
+restore();
+saveBlob(c, cardFname, jpeg);
+}));
+return;
+}
+const tocSidebar = document.getElementById('toc-sidebar');
+const tocToggle = document.getElementById('toc-toggle-btn');
+const tocIsOpen = tocSidebar && tocSidebar.classList.contains('open');
+if (tocToggle && !tocIsOpen) tocToggle.style.visibility = 'hidden';
+document.querySelectorAll('.fade-in-up').forEach(e => e.classList.add('visible'));
+loadLib().then(() => html2canvas(el, cfg).then(c => {
+if (tocToggle && !tocIsOpen) tocToggle.style.visibility = '';
+if (cardBtn) cardBtn.style.visibility = '';
+saveBlob(c, fname, jpeg);
+}));
+}
+window.addEventListener('afterprint', cleanupPrintExport);
+printBtn && printBtn.addEventListener('click', () => {
+preparePrintExport();
+requestAnimationFrame(() => {
+requestAnimationFrame(() => {
+window.print();
+});
+});
+});
+pngDesktop && pngDesktop.addEventListener('click', () => {
+const H = document.documentElement.scrollHeight;
+capture(document.documentElement, {
+scale: H > 4000 ? 2.5 : 3, useCORS: true, allowTaint: true,
+scrollX: 0, scrollY: 0,
+width: document.documentElement.scrollWidth, height: H,
+windowWidth: document.documentElement.scrollWidth, windowHeight: H
+}, filename('', 'png'), false);
+});
+pngMobile && pngMobile.addEventListener('click', () => {
+const el = document.querySelector('.report-wrapper') || document.documentElement;
+capture(el, {
+scale: (750 / el.offsetWidth) * 2, useCORS: true, allowTaint: true,
+backgroundColor: exportBackgroundColor(),
+scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+}, filename('-mobile', 'jpg'), true);
+});
+pngIM && pngIM.addEventListener('click', () => {
+const el = document.querySelector('.report-wrapper') || document.documentElement;
+capture(el, {
+scale: (800 / el.offsetWidth) * 2, useCORS: true, allowTaint: true,
+backgroundColor: exportBackgroundColor(),
+scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+}, filename('-im', 'jpg'), true);
+});
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Thorough depth profile — maximum rigor for critical decisions
+# Critics: all 4 implemented critics (correctness, completeness, security, code_hygiene)
+# Tester: L1 + L2 (LLM claim check) verification active
+# Use for: production releases, security review, compliance artifacts
+# Add --relationships for cross-artifact consistency (Phase 2)
+
+critics:
+  - correctness
+  - completeness
+  - security
+  - code_hygiene
+
+# Model tiers — Opus (or equivalent) on tier1 is strongly recommended for thorough runs.
+# Cross-artifact consistency and aggregation are judgment-heavy tasks where stronger
+# reasoning models produce materially better results. The graduation self-validation
+# run confirmed this: Opus caught spec-vs-implementation semantic gaps that Sonnet missed.
+model_tier1: anthropic/claude-opus-4-6
+model_tier2: anthropic/claude-sonnet-4-6
+
+max_fix_loops: 1       # Fixer runs one proposal loop on CRITICAL/HIGH findings
+depth_profile: thorough
+temperature: 0.05      # Extra-low temperature for maximum determinism
+max_tokens: 8192       # Larger token budget for detailed analysis

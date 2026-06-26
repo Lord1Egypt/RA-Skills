@@ -1,0 +1,4 @@
+interface:
+  display_name: "Relay GitCode CLI"
+  short_description: "Use gd for GitCode CLI workflows"
+  default_prompt: "Use $relay-gitcode-cli to inspect a GitCode repository and manage pull requests with gd."

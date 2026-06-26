@@ -1,35 +1,47 @@
 ---
-name: "qwtest1"
+name: Chat Project
 description: "简易聊天模式输入数字回复对应内容"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qwtest1"
-sourceUrl: "https://clawhub.ai/skills/qwtest1"
+metadata:
 ---
 
-# qwtest1
 
-> 简易聊天模式输入数字回复对应内容
+# 交互式对话系统技能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qwtest1`
-- **Source URL:** [https://clawhub.ai/skills/qwtest1](https://clawhub.ai/skills/qwtest1)
+## 技能信息
 
-## Overview
+- **名称**: 交互式对话系统
+- **版本**: 1.0.0
+- **分类**: 娱乐互动
+- **描述**: 一个简单的交互式对话系统，根据用户输入数字返回预设问候语
 
+## 功能说明
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/qwtest1
+本技能提供基础的交互式对话功能，用户输入对应数字可获得预设回复。
+
+## 使用方法
+
 ```
+运行技能后根据提示输入数字选择对话内容
+```
+
+示例:
+
+```
+输入 1 -> 输出 '你好呀'
+输入 2 -> 输出 '今天天气怎么样'
+输入 3 -> 输出 '很高兴认识你'
+```
+
+## 参数说明
+
+- `input`: 数字输入(1/2/3)对应不同回复
+
+## 返回信息
+
+- 预设的友好问候语句
+
+## 注意事项
+
+- 仅支持数字1、2、3作为有效输入
+- 输入其他内容会提示重新输入
+- 输入'q'可退出程序

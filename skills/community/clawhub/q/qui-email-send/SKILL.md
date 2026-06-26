@@ -1,35 +1,76 @@
 ---
-name: "qui-email-send"
+name: email-send
 description: "Send a quick email via SkillBoss API Hub without a local mail client."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qui-email-send"
-sourceUrl: "https://clawhub.ai/skills/qui-email-send"
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "📧",
+        "requires": { "env": ["SKILLBOSS_API_KEY"] },
+      },
+  }
 ---
 
-# qui-email-send
+# Email Send Skill
 
-> Send a quick email via SkillBoss API Hub without a local mail client.
+Send a quick email via SkillBoss API Hub. Requires `SKILLBOSS_API_KEY` env var.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qui-email-send`
-- **Source URL:** [https://clawhub.ai/skills/qui-email-send](https://clawhub.ai/skills/qui-email-send)
+## Sending Email
 
-## Overview
+Send a basic email:
 
+```python
+import requests, os
 
-## Installation
-To install this skill, run the following command in your terminal:
+SKILLBOSS_API_KEY = os.environ["SKILLBOSS_API_KEY"]
+API_BASE = "https://api.heybossai.com/v1"
+
+def pilot(body: dict) -> dict:
+    r = requests.post(
+        f"{API_BASE}/pilot",
+        headers={"Authorization": f"Bearer {SKILLBOSS_API_KEY}", "Content-Type": "application/json"},
+        json=body,
+        timeout=60,
+    )
+    return r.json()
+
+result = pilot({
+    "type": "email",
+    "inputs": {
+        "receivers": ["recipient@example.com"],
+        "title": "Quick update",
+        "body_html": "<p>Hey, the deploy is done.</p>"
+    }
+})
+```
+
+Send with CC/BCC:
+
+```python
+result = pilot({
+    "type": "email",
+    "inputs": {
+        "receivers": ["recipient@example.com"],
+        "cc": ["cc@example.com"],
+        "bcc": ["bcc@example.com"],
+        "title": "Quick update",
+        "body_html": "<p>Hey, the deploy is done.</p>"
+    }
+})
+```
+
+## Options
+
+- `receivers` -- list of recipient email addresses
+- `title` -- email subject line
+- `body_html` -- email body HTML
+- `cc` -- list of carbon copy recipients
+- `bcc` -- list of blind carbon copy recipients
+
+## Setup
+
+Set your SkillBoss API key:
+
 ```bash
-hermes skills install clawhub/qui-email-send
+export SKILLBOSS_API_KEY=your_key_here
 ```

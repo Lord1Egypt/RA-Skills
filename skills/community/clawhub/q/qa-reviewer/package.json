@@ -1,0 +1,31 @@
+{
+  "name": "qa-reviewer",
+  "version": "1.0.0",
+  "description": "质量保证、代码审查和测试框架技能。基于 SRM 项目实战经验。",
+  "displayName": "QA Reviewer",
+  "author": "sw-tester",
+  "license": "MIT",
+  "keywords": [
+    "qa",
+    "testing",
+    "code-review",
+    "quality-assurance",
+    "best-practices"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/qa-reviewer-skill"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "templates/",
+    "scripts/",
+    "examples/",
+    "docs/"
+  ],
+  "scripts": {
+    "review": "./scripts/code_review.sh",
+    "test": "./scripts/run_tests.sh"
+  }
+}

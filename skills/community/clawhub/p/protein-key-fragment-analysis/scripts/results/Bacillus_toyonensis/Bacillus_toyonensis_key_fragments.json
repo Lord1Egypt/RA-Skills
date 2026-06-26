@@ -1,0 +1,48 @@
+{
+  "species": "Bacillus toyonensis",
+  "date": "20260319",
+  "consensus_length": 413,
+  "key_fragments": [
+    {
+      "fragment_id": "高保守连续区_1_413",
+      "sequence": "MDHLKRQDEKVFAAIEAELGRQRSKIELIASENFVSEAVMEAQGSVLTNKYAEGYPGKRYYGGCEHVDVVEDIARDRVKEIFGAEHVNVQPHSGAQANMAVYFTILEQGDTVLGMNLSHGGHLTHGSPVNFSGVQYNFVEYGVDADSHRINYDDVLAKAKEHKPKLIVAGASAYPRVIDFKRFREIADEVGAYLMVDMAHIAGLVAAGLHPNPVPHAHFVTTTTHKTLRGPRGGMILCEEQFAKQIDKSIFPGIQGGPLMHVIAAKAVAFGEVLQDDFKTYAQNIINNANRLAEGLQKEGLTLVSGGTDNHLILIDVRNLEITGKVAEHVLDEVGITVNKNTIPFETASPFVTSGVRIGTAAVTSRGFGLEDMDEIAALIAYTLKNHENEAALEEARKRVEALTSKFPMYTDL",
+      "position_in_consensus": "1-413",
+      "length": 413,
+      "avg_conservation": "99.69%",
+      "criticality": "高保守（功能待确认）",
+      "function": "高度保守连续区域，可能涉及结构稳定或功能活性位点",
+      "evidence": "连续413aa保守性分析（平均99.69%）",
+      "composition": {
+        "category_counts": {
+          "Hydrophobic": 198,
+          "Nucleophilic": 40,
+          "Aromatic": 30,
+          "Amide": 32,
+          "Acidic": 55,
+          "Cationic": 58
+        },
+        "category_ratios": {
+          "Hydrophobic": 47.9,
+          "Nucleophilic": 9.7,
+          "Aromatic": 7.3,
+          "Amide": 7.7,
+          "Acidic": 13.3,
+          "Cationic": 14.0
+        },
+        "total_valid": 413,
+        "unclassified_count": 0,
+        "dominant_category": "Hydrophobic",
+        "dominant_ratio": 47.9,
+        "physicochemical_property": "疏水性（Hydrophobic）——倾向埋藏于蛋白质疏水核心，参与疏水堆积/折叠"
+      }
+    },
+    {
+      "fragment_id": "保守半胱氨酸_二硫键",
+      "sequence": "C×2（位置：64, 238）",
+      "position_in_consensus": "多位置",
+      "criticality": "结构关键",
+      "function": "形成二硫键，维持蛋白三维构象稳定性",
+      "evidence": "共识序列中检测到2个保守Cys残基"
+    }
+  ]
+}

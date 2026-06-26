@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pretext Reporter Bao - 浏览器测试</title>
+  <style>
+    body {
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+      border-bottom: 2px solid #007AFF;
+      padding-bottom: 10px;
+    }
+    h2 {
+      color: #555;
+      margin-top: 30px;
+    }
+    .test-section {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+    .result {
+      background: #f0f7ff;
+      border-left: 4px solid #007AFF;
+      padding: 15px;
+      margin: 10px 0;
+      font-family: monospace;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .success { color: #28a745; }
+    .error { color: #dc3545; }
+    input[type="text"], textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+    button {
+      background: #007AFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px 5px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    canvas {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin: 10px 0;
+      background: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧪 Pretext Reporter Bao - 浏览器测试</h1>
+    <p>测试 Pretext 文本测量和布局功能</p>
+
+    <h2>📦 模块导入测试</h2>
+    <div class="test-section">
+      <button id="test-import">测试导入</button>
+      <div id="import-result"></div>
+    </div>
+
+    <h2>📏 文本测量测试</h2>
+    <div class="test-section">
+      <input type="text" id="test-text" value="你好世界 🚀 Hello World" placeholder="输入测试文本">
+      <select id="test-font">
+        <option value="16px Inter">16px Inter</option>
+        <option value="24px Arial">24px Arial</option>
+        <option value="20px sans-serif">20px sans-serif</option>
+      </select>
+      <input type="number" id="test-width" value="320" placeholder="最大宽度 (px)">
+      <input type="number" id="test-lineheight" value="24" placeholder="行高 (px)">
+      <button id="test-measure">测量文本</button>
+      <div id="measure-result"></div>
+    </div>
+
+    <h2>🎨 Canvas 可视化</h2>
+    <div class="test-section">
+      <input type="text" id="canvas-text" value="你好世界 🚀" placeholder="输入要渲染的文本">
+      <select id="canvas-bg">
+        <option value="#ffffff">白色背景</option>
+        <option value="#f0f0f0">灰色背景</option>
+        <option value="#000000">黑色背景</option>
+      </select>
+      <select id="canvas-color">
+        <option value="#000000">黑色文字</option>
+        <option value="#ffffff">白色文字</option>
+        <option value="#ff0000">红色文字</option>
+      </select>
+      <button id="test-canvas">生成 Canvas</button>
+      <canvas id="text-canvas" width="400" height="200"></canvas>
+    </div>
+
+    <h2>📊 性能测试</h2>
+    <div class="test-section">
+      <button id="test-performance">运行性能测试</button>
+      <div id="performance-result"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { prepare, layout, layoutWithLines, clearCache } from './pretext/dist/layout.js'
+
+    // 测试 1: 模块导入
+    document.getElementById('test-import').addEventListener('click', () => {
+      const result = document.getElementById('import-result')
+      try {
+        result.innerHTML = `
+          <div class="result success">
+            ✅ 模块导入成功！
+
+          可用函数:
+          - prepare(): 文本预处理
+          - layout(): 布局计算
+          - layoutWithLines(): 带行信息的布局
+          - clearCache(): 清除缓存
+          </div>
+        `
+      } catch (error) {
+        result.innerHTML = `<div class="result error">❌ 导入失败: ${error.message}</div>`
+      }
+    })
+
+    // 测试 2: 文本测量
+    document.getElementById('test-measure').addEventListener('click', () => {
+      const text = document.getElementById('test-text').value
+      const font = document.getElementById('test-font').value
+      const maxWidth = parseInt(document.getElementById('test-width').value)
+      const lineHeight = parseInt(document.getElementById('test-lineheight').value)
+      const result = document.getElementById('measure-result')
+
+      try {
+        const prepared = prepare(text, font)
+        const { height, width, lines } = layout(prepared, maxWidth, lineHeight)
+
+        result.innerHTML = `
+          <div class="result success">
+            ✅ 测量成功！
+
+          文本: "${text}"
+          字体: ${font}
+          最大宽度: ${maxWidth}px
+          行高: ${lineHeight}px
+
+          结果:
+          - 高度: ${height}px
+          - 行数: ${lines}
+          - 实际宽度: ${width}px
+          </div>
+        `
+      } catch (error) {
+        result.innerHTML = `<div class="result error">❌ 测量失败: ${error.message}</div>`
+      }
+    })
+
+    // 测试 3: Canvas 可视化
+    document.getElementById('test-canvas').addEventListener('click', () => {
+      const text = document.getElementById('canvas-text').value
+      const font = document.getElementById('test-font').value
+      const maxWidth = parseInt(document.getElementById('test-width').value)
+      const lineHeight = parseInt(document.getElementById('test-lineheight').value)
+      const backgroundColor = document.getElementById('canvas-bg').value
+      const textColor = document.getElementById('canvas-color').value
+      const canvas = document.getElementById('text-canvas')
+      const ctx = canvas.getContext('2d')
+
+      try {
+        const prepared = prepare(text, font)
+        const { height, width } = layout(prepared, maxWidth, lineHeight)
+
+        canvas.width = Math.max(400, width + 40)
+        canvas.height = Math.max(200, height + 40)
+
+        // 清除画布
+        ctx.fillStyle = backgroundColor
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+        // 绘制文字
+        ctx.fillStyle = textColor
+        ctx.font = font
+        ctx.textBaseline = 'top'
+
+        const x = 20
+        const y = 20
+        ctx.fillText(text, x, y)
+
+        console.log(`✅ Canvas 渲染成功! 高度: ${height}px, 宽度: ${width}px`)
+        alert(`✅ Canvas 渲染成功!\n高度: ${height}px\n宽度: ${width}px`)
+      } catch (error) {
+        console.error('❌ Canvas 渲染失败:', error)
+        alert(`❌ Canvas 渲染失败: ${error.message}`)
+      }
+    })
+
+    // 测试 4: 性能测试
+    document.getElementById('test-performance').addEventListener('click', () => {
+      const result = document.getElementById('performance-result')
+
+      try {
+        const testTexts = [
+          'Hello World',
+          '你好世界 🚀',
+          '这是一个测试文本，用于测量性能性能性能性能性能性能性能',
+          'Performance test with multiple words and more content here',
+        ]
+
+        // prepare 测试
+        const prepareTimes = []
+        const preparedList = []
+
+        for (let i = 0; i < 100; i++) {
+          const text = testTexts[i % testTexts.length]
+          const start = performance.now()
+          const prepared = prepare(text, '16px Inter')
+          const end = performance.now()
+          prepareTimes.push(end - start)
+          preparedList.push(prepared)
+        }
+
+        const avgPrepareTime = prepareTimes.reduce((a, b) => a + b) / prepareTimes.length
+
+        // layout 测试
+        const layoutTimes = []
+        for (let i = 0; i < 1000; i++) {
+          const prepared = preparedList[i % preparedList.length]
+          const start = performance.now()
+          layout(prepared, 320, 24)
+          const end = performance.now()
+          layoutTimes.push(end - start)
+        }
+
+        const avgLayoutTime = layoutTimes.reduce((a, b) => a + b) / layoutTimes.length
+
+        result.innerHTML = `
+          <div class="result success">
+            ✅ 性能测试完成 (100 次准备 + 1000 次布局)
+
+          结果:
+          - prepare() 平均: ${avgPrepareTime.toFixed(3)}ms
+          - layout() 平均: ${avgLayoutTime.toFixed(3)}ms
+          - 性能评级: ${avgLayoutTime < 0.1 ? '⚡ 极快' : avgLayoutTime < 1 ? '✅ 优秀' : '⚠️ 一般'}
+
+          参考基准 (Pretext 官方):
+          - prepare(): ~19ms (500个文本批次)
+          - layout(): ~0.09ms (500个文本批次)
+          </div>
+        `
+      } catch (error) {
+        result.innerHTML = `<div class="result error">❌ 性能测试失败: ${error.message}</div>`
+      }
+    })
+  </script>
+</body>
+</html>

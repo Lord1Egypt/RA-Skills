@@ -1,0 +1,107 @@
+{
+  "1234567890@s.whatsapp.net": {
+    "type": "direct",
+    "name": "John",
+    "messages": {
+      "1": {
+        "from_me": false,
+        "timestamp": 1699123200.0,
+        "time": "14:00",
+        "key_id": "1",
+        "media": false,
+        "data": "What have you been up to lately?",
+        "sender": "John",
+        "message_type": 0,
+        "reply": null,
+        "quoted_data": null,
+        "reactions": {}
+      },
+      "2": {
+        "from_me": true,
+        "timestamp": 1699123500.0,
+        "time": "14:05",
+        "key_id": "2",
+        "media": false,
+        "data": "Preparing a project proposal for a pitch next week. How about you?",
+        "sender": null,
+        "message_type": 0,
+        "reply": "1",
+        "quoted_data": "What have you been up to lately?",
+        "reactions": {}
+      },
+      "3": {
+        "from_me": false,
+        "timestamp": 1699123600.0,
+        "time": "14:06",
+        "key_id": "3",
+        "media": true,
+        "type": "image",
+        "data": "",
+        "caption": "What do you think of this design?",
+        "sender": "John",
+        "message_type": 2,
+        "reply": null,
+        "quoted_data": null,
+        "reactions": {}
+      },
+      "4": {
+        "from_me": true,
+        "timestamp": 1699123800.0,
+        "time": "14:10",
+        "key_id": "4",
+        "media": false,
+        "data": "Looks great! I really like the color scheme",
+        "sender": null,
+        "message_type": 0,
+        "reply": "3",
+        "quoted_data": "What do you think of this design?",
+        "reactions": {}
+      },
+      "5": {
+        "from_me": false,
+        "timestamp": 1699123900.0,
+        "time": "14:11",
+        "key_id": "5",
+        "media": false,
+        "data": "Great! Want to grab dinner together later?",
+        "sender": "John",
+        "message_type": 0,
+        "reply": null,
+        "quoted_data": null,
+        "reactions": {}
+      }
+    }
+  },
+  "0987654321@s.whatsapp.net": {
+    "type": "direct",
+    "name": "Jane",
+    "messages": {
+      "1": {
+        "from_me": false,
+        "timestamp": 1699036800.0,
+        "time": "10:00",
+        "key_id": "1",
+        "media": false,
+        "data": "Are you free Friday evening?",
+        "sender": "Jane",
+        "message_type": 0,
+        "reply": null,
+        "quoted_data": null,
+        "reactions": {}
+      },
+      "2": {
+        "from_me": true,
+        "timestamp": 1699037000.0,
+        "time": "10:03",
+        "key_id": "2",
+        "media": false,
+        "data": "Yes, what's up?",
+        "sender": null,
+        "message_type": 0,
+        "reply": "1",
+        "quoted_data": "Are you free Friday evening?",
+        "reactions": {}
+      }
+    }
+  }
+}

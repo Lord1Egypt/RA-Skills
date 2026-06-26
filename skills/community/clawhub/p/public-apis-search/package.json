@@ -1,0 +1,12 @@
+{
+  "name": "public-apis-search",
+  "version": "1.0.0",
+  "description": "Search and discover public APIs from the public-apis repository (1400+ APIs, 49 categories)",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": ["api", "search", "discovery", "public-apis"],
+  "scripts": {
+    "search": "python search_apis.py",
+    "update": "curl -s -L https://raw.githubusercontent.com/public-apis/public-apis/master/README.md -o README.md && python build_db.py README.md apis.json"
+  }
+}

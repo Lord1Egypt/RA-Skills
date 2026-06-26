@@ -1,0 +1,13 @@
+{
+  "name": "criticism-self-criticism",
+  "version": "1.0.0",
+  "displayName": "批评与自我批评",
+  "description": "当完成工作后需要审视质量，或需要改进自身表现时调用",
+  "author": "求是 Skill",
+  "homepage": "https://github.com/skytodmoon/qiushi-skill",
+  "tags": ["方法论", "毛泽东思想", "批评与自我批评"],
+  "requires": {
+    "env": []
+  },
+  "files": []
+}

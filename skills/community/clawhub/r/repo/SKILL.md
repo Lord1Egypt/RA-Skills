@@ -1,35 +1,48 @@
 ---
-name: "Repo"
-description: "Project initialization toolkit. contributing - auto-generate CONTRIBUTING.md from project structure [contributing.md]. "init", "project init", "initialize pr..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/repo"
-sourceUrl: "https://clawhub.ai/skills/repo"
+name: repo
+metadata:
+  author: es6kr
+  version: "0.1.0"
+description: Project initialization toolkit. contributing - auto-generate CONTRIBUTING.md from project structure [contributing.md]. "init", "project init", "initialize project", "contributing guide", "CONTRIBUTING.md", "contributing generate" triggers
 ---
 
-# Repo
+# Init
 
-> Project initialization toolkit. contributing - auto-generate CONTRIBUTING.md from project structure [contributing.md]. "init", "project init", "initialize pr...
+Project initialization toolkit — scaffolding, boilerplate generation, and setup automation for new or existing projects.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/repo`
-- **Source URL:** [https://clawhub.ai/skills/repo](https://clawhub.ai/skills/repo)
+## Topics
 
-## Overview
+| Topic | Description | Guide |
+|-------|-------------|-------|
+| contributing | Auto-generate CONTRIBUTING.md from project structure analysis | [contributing.md](./contributing.md) |
 
+## Quick Reference
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Contributing (Auto-generate CONTRIBUTING.md)
+
 ```bash
-hermes skills install clawhub/repo
+/init contributing    # Analyze project and generate CONTRIBUTING.md
 ```
+
+Key steps:
+1. Detect project type (monorepo, single package, npm workspaces)
+2. Analyze config files (package.json, .editorconfig, eslint, husky)
+3. Detect directory structure and dependencies
+4. Generate CONTRIBUTING.md with detected settings
+
+What gets detected:
+- **Requirements**: Node.js version, package manager from `engines` and `packageManager`
+- **Code Style**: indent, EOL, charset from `.editorconfig`
+- **Lint Config**: ESLint rules, Prettier settings
+- **Build Commands**: scripts from `package.json`
+- **Commit Convention**: Conventional Commits format with detected scopes
+- **Pre-commit Hooks**: husky configuration
+- **Monorepo Structure**: package dependency graph and build order
+
+[Detailed guide](./contributing.md)
+
+## Design Philosophy
+
+- **Detection over assumption**: Only include sections for settings that actually exist in the project
+- **Language-aware**: Match project language (English for open source, Korean for internal)
+- **Non-destructive**: Always confirm before overwriting existing files

@@ -1,35 +1,157 @@
 ---
-name: "Responsive Layout"
-description: "Designs responsive layouts using mobile-first or desktop-first breakpoints, flex/grid, rem/vw units, and handles cross-device and safe area adaptations."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/responsive-layout"
-sourceUrl: "https://clawhub.ai/skills/responsive-layout"
+name: responsive-layout
+description: Designs responsive layouts: breakpoints, flex/grid, mobile-first, rem/vw, and cross-device adaptation. Use when 响应式, 布局, 移动端适配, flex, grid, 断点, rem, vw, or layout.
 ---
 
-# Responsive Layout
+# 响应式与布局（Responsive Layout）
 
-> Designs responsive layouts using mobile-first or desktop-first breakpoints, flex/grid, rem/vw units, and handles cross-device and safe area adaptations.
+帮助设计断点、Flex/Grid 布局、移动端适配与单位选择（rem/vw 等）。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/responsive-layout`
-- **Source URL:** [https://clawhub.ai/skills/responsive-layout](https://clawhub.ai/skills/responsive-layout)
+## 触发场景
 
-## Overview
+- 用户说「响应式」「布局」「移动端适配」「flex」「grid」「断点」「rem」「vw」
+- 需求：多端一致体验、不同分辨率、横竖屏、安全区
 
+## 分析维度
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/responsive-layout
+### 1. 断点与策略
+
+| 策略 | 适用 |
+|------|------|
+| 移动优先 | 先写小屏样式，再 min-width 放大；利于性能与渐进增强 |
+| 桌面优先 | 先写大屏，再 max-width 缩小； legacy 项目常见 |
+| 常用断点 | 如 640/768/1024/1280（Tailwind 系）或 375/768/1024/1440，按设计稿统一 |
+
+### 2. 布局方式
+
+| 方式 | 适用 |
+|------|------|
+| Flex | 一维、对齐、均分、换行；导航、卡片行、表单项 |
+| Grid | 二维、行列同时控制；列表、仪表盘、卡片网格 |
+| 混合 | 外层 Grid 分栏，内层 Flex 对齐；避免过度嵌套 |
+
+### 3. 单位与缩放
+
+| 单位 | 建议 |
+|------|------|
+| rem | 字体、间距，便于整体缩放（根字体 62.5% 或 16px） |
+| em | 组件内相对父字体 |
+| vw/vh | 全屏块、大标题；注意小屏溢出与安全区 |
+| % | 容器内比例；配合 flex/grid 更稳 |
+| 避免 | 整站用 px 不利于无障碍缩放；必要时仅用于 1px 边框等 |
+
+### 4. 移动端与安全区
+
+| 要点 | 做法 |
+|------|------|
+| 视口 | viewport meta、禁止缩放时仍考虑字体缩放 |
+| 安全区 | safe-area-inset 适配刘海/底部横条 |
+| 触控 | 点击区域不小于 44×44；留足间距防误触 |
+| 横竖屏 | 关键布局用 orientation 或宽高比媒体查询 |
+
+## 执行流程
+
+### 1. 先判断用户的实际问题
+
+| 用户描述 | 实际需求 | 第一步 |
+|---------|---------|-------|
+| 「响应式怎么做」「移动端适配」 | 从零设计布局方案 | 问：设计稿是移动优先还是桌面优先？主要断点是什么？用 Tailwind 还是原生 CSS？ |
+| 「这个布局在手机上乱了」 | 具体布局 bug | 直接看代码，找问题，不要先讲理论 |
+| 「flex 还是 grid」 | 布局方式选择 | 问：是一维排列（导航、卡片行）还是二维网格（仪表盘、图片墙）？ |
+| 「rem 怎么用」「vw 怎么用」 | 单位选择 | 直接给出该场景的推荐和代码示例 |
+| 「安全区怎么适配」 | 刘海屏/底部横条 | 直接给代码：`padding: env(safe-area-inset-bottom)` |
+
+### 2. 从零设计布局时，按这个顺序推进
+
+**第一步：确认设计稿信息**（没有就问）
+- 设计稿宽度（375/390/1440？）
+- 主要断点（设计稿给了几个尺寸？）
+- 是否有移动端和桌面端两套设计
+
+**第二步：给出布局方案，不要只给原则**
+
+直接给骨架代码：
+
+```css
+/* 移动优先示例 */
+.container {
+  width: 100%;
+  padding: 0 16px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+}
 ```
+
+**第三步：flex vs grid 的判断规则**
+- 导航栏、按钮组、卡片行（一维，主轴方向排列）→ Flex
+- 仪表盘、图片墙、表单网格（二维，行列同时控制）→ Grid
+- 不确定时：先用 Flex，需要二维控制时再换 Grid
+
+### 3. 单位选择的明确建议
+
+不要给「看情况」的答案，直接给推荐：
+
+- **字体大小**：`rem`（基于根字体，支持用户缩放偏好）
+- **组件内间距**（padding/margin）：`rem` 或 Tailwind 的间距类
+- **全屏高度**：`100dvh`（比 `100vh` 更准确，处理了移动端地址栏）
+- **响应式字体**：`clamp(1rem, 2.5vw, 1.5rem)`（在最小值和最大值之间流式缩放）
+- **1px 边框**：`px`（不需要缩放）
+- **避免**：整站用 `px` 做字体和间距（不支持用户缩放偏好）
+
+### 4. 常见问题的直接解法
+
+遇到这些问题，直接给代码，不要先问：
+
+**移动端点击区域太小**
+```css
+.btn { min-height: 44px; min-width: 44px; }
+```
+
+**iOS 底部安全区**
+```css
+.footer { padding-bottom: env(safe-area-inset-bottom); }
+```
+
+**图片在不同尺寸下不变形**
+```css
+img { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; }
+```
+
+**文字在小屏溢出**
+```css
+.text { overflow-wrap: break-word; word-break: break-word; }
+```
+
+## 输出模板
+
+```markdown
+## 响应式布局方案
+
+### 断点与策略
+- 策略：移动优先 / 桌面优先
+- 断点：…（与设计稿对应）
+
+### 布局结构
+- 整体：Grid / Flex …
+- 关键区块：…
+
+### 单位与缩放
+- 字体/间距：rem 基准 …
+- 特殊：vw/vh 使用处与注意
+
+### 移动端与安全区
+- 安全区：…
+- 触控/横竖屏：…
+```
+
+## 项目相关
+
+- CSS 变量：断点、间距、字号可做成变量，便于主题与维护
+- Tailwind：用默认断点或 tailwind.config 扩展；避免任意值过多
+- 组件库：覆盖栅格与间距 token，与设计系统一致

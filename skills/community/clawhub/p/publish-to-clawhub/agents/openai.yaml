@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish To ClawHub"
+  short_description: "Prepare, clean, and publish skills to GitHub and ClawHub"
+  default_prompt: "Use $publish-to-clawhub to prepare a local skill for public release on GitHub and ClawHub with safe publish checks."

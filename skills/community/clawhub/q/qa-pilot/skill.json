@@ -1,0 +1,27 @@
+{
+  "name": "qa-pilot",
+  "description": "Self-testing skill for AI agents. Automatically tests websites & apps before reporting completion. Built for vibe coders.",
+  "version": "1.0.0",
+  "author": "helal-muneer",
+  "license": "MIT",
+  "repository": "https://github.com/helal-muneer/qa-pilot",
+  "keywords": [
+    "testing",
+    "qa",
+    "automation",
+    "vibe-coding",
+    "self-testing",
+    "web-testing",
+    "browser-testing",
+    "agent-skill",
+    "openclaw",
+    "claude-code"
+  ],
+  "categories": ["testing", "quality-assurance", "developer-tools"],
+  "compatibility": {
+    "openclaw": true,
+    "claude-code": true,
+    "cursor": true,
+    "codex-cli": true
+  }
+}

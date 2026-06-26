@@ -1,0 +1,79 @@
+{
+  "personal": {
+    "name": "张三",
+    "email": "zhangsan@example.com",
+    "phone": "+86 138-0000-0000",
+    "location": "北京, 中国",
+    "linkedin": "https://linkedin.com/in/zhangsan",
+    "github": "https://github.com/zhangsan"
+  },
+  "summary": "拥有5年经验的数据科学家，专注于机器学习、数据分析和商业智能。擅长使用Python、TensorFlow和SQL构建可扩展的数据解决方案，在咨询和科技行业有丰富的项目经验。",
+  "education": [
+    {
+      "institution": "北京大学",
+      "degree": "计算机科学与技术 硕士",
+      "period": "2018-2020",
+      "location": "北京",
+      "gpa": "3.8/4.0",
+      "honors": ["优秀毕业生", "国家奖学金"]
+    },
+    {
+      "institution": "清华大学",
+      "degree": "统计学 学士",
+      "period": "2014-2018",
+      "location": "北京",
+      "gpa": "3.6/4.0"
+    }
+  ],
+  "experience": [
+    {
+      "company": "某知名咨询公司",
+      "position": "高级数据科学家",
+      "period": "2022-至今",
+      "location": "上海",
+      "description": "领导5人数据团队，为供应链、生命科学和制造业行业客户提供数据解决方案。负责端到端的AI产品开发，从架构设计到生产部署，管理项目交付和客户关系。"
+    },
+    {
+      "company": "某科技公司",
+      "position": "数据分析师",
+      "period": "2020-2022",
+      "location": "深圳",
+      "description": "为多个产品线提供数据分析支持，与产品团队协作设计数据驱动的产品功能。负责构建实时数据监控仪表盘和A/B测试体系，支持运营决策。"
+    }
+  ],
+  "projects": [
+    {
+      "name": "智能客户洞察平台",
+      "role": "项目负责人",
+      "period": "2023",
+      "technologies": ["Python", "TensorFlow", "AWS", "Docker", "Kafka"],
+      "description": "构建端到端的客户分析平台，整合多源数据，提供360度客户视图和预测性分析。设计并实现实时数据处理管道，支持10万+客户的实时数据摄入和分析。使用TensorFlow构建预测模型，实现用户行为预测和个性化推荐。",
+      "achievements": [
+        "服务10万+客户，数据处理延迟<100ms",
+        "帮助客户营销ROI提升40%",
+        "预测模型准确率达到92%"
+      ]
+    },
+    {
+      "name": "自动化报告系统",
+      "role": "主要开发者",
+      "period": "2022",
+      "technologies": ["Python", "SQL", "Airflow", "Tableau", "PostgreSQL"],
+      "description": "开发自动化数据报告生成系统，替代人工手动报表，提升数据交付效率。使用Airflow构建数据ETL工作流，定时从多个数据源抽取、转换数据，并通过Tableau生成可视化报告。设计基于SQL的数据查询优化，提升查询性能80%。",
+      "achievements": [
+        "节省80%的报告制作时间",
+        "报告准确性提升至99.5%",
+        "支持20+个业务部门的报表需求"
+      ]
+    }
+  ],
+  "skills": {
+    "programming": ["Python", "R", "SQL", "JavaScript"],
+    "machine_learning": ["TensorFlow", "PyTorch", "Scikit-learn", "XGBoost"],
+    "big_data": ["Spark", "Hadoop", "Kafka", "Airflow"],
+    "cloud": ["AWS", "GCP", "Docker", "Kubernetes"],
+    "visualization": ["Tableau", "Power BI", "Matplotlib", "Plotly"],
+    "tools": ["Git", "Jupyter", "Linux", "Excel"],
+    "languages": ["中文（母语）", "英语（流利）", "日语（基础）"]
+  }
+}

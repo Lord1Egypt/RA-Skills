@@ -1,35 +1,23 @@
 ---
-name: "prodecoder"
-description: "深度爆款解码器。具备网安视角的避坑分析、视觉心理学拆解及内容复刻建议。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prodecoder"
-sourceUrl: "https://clawhub.ai/skills/prodecoder"
+
+alias: content-decoder-pro  
+description: 深度爆款解码器。具备网安视角的避坑分析、视觉心理学拆解及内容复刻建议。  
+author: Guo Yuanyuan
+
 ---
 
-# prodecoder
+# 深度爆款解码器 (Pro Decoder)
+这是一个专为自媒体创作者和运营专家设计的深度分析工具，旨在拆解各大主流平台的爆款底层逻辑。
 
-> 深度爆款解码器。具备网安视角的避坑分析、视觉心理学拆解及内容复刻建议。
+## 核心功能
++ **全平台支持**：覆盖抖音、小红书、B站、微信公众号等主流内容平台。
++ **网安级审计**：分析作者如何利用谐音词、变体字绕过平台限流机制（网安生小巧思）。
++ **视觉解码**：通过封面构图、色彩搭配分析其视觉冲击力。
++ **复刻建议**：不仅拆解，还为你提供可直接运行的模仿 Prompt。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prodecoder`
-- **Source URL:** [https://clawhub.ai/skills/prodecoder](https://clawhub.ai/skills/prodecoder)
+## 运行流程
+1. 提交目标作品 URL。
+2. 技能调用 agent-browser 抓取页面元数据。
+3. 执行 Python 逻辑进行文本脱敏与逻辑分析。
+4. 输出结构化的 Markdown 深度拆解报告。
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/prodecoder
-```

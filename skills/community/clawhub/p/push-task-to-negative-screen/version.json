@@ -1,0 +1,17 @@
+{
+  "skill_name": "today-task",
+  "display_name": "负一屏任务推送",
+  "current_version": "1.0.17",
+  "release_date": "2026-04-01",
+  "changelog": {
+    "1.0.17": ["修复了生成的任务结果不符合Markdown格式问题"],
+    "1.0.16": ["切换使用更安全的请求域名"],
+    "1.0.15": [
+      "修改了SKILL.md的安全声明，保持了透明度，明确告知用户所有的外部交互"
+    ],
+    "1.0.14": [
+      "新增版本检查更新功能，检查clawhub上是否有新的版本，有则提示用户更新，默认4小时检查一次，检查时间间隔和是否检查有配置项可配置"
+    ]
+  },
+  "clawhub_url": "https://clawhub.com/skills/today-task"
+}

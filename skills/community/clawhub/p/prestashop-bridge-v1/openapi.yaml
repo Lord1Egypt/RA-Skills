@@ -1,0 +1,408 @@
+openapi: 3.1.0
+info:
+  title: PrestaShop Bridge V1
+  version: 1.0.3
+  description: Secure Bridge contract for PrestaShop 9 with OAuth2 RS256, HMAC-SHA256, synchronous reads, and asynchronous writes.
+servers:
+  - url: https://bridge.example.com
+security:
+  - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    XRequestID:
+      in: header
+      name: X-Request-ID
+      required: true
+      schema:
+        type: string
+        format: uuid
+    XTimestamp:
+      in: header
+      name: X-Timestamp
+      required: true
+      schema:
+        type: integer
+        minimum: 0
+    XSignature:
+      in: header
+      name: X-Signature
+      required: true
+      schema:
+        type: string
+        pattern: "^[a-f0-9]{64}$"
+    AcceptJson:
+      in: header
+      name: Accept
+      required: true
+      schema:
+        type: string
+        enum: [application/json]
+    ContentEncoding:
+      in: header
+      name: Content-Encoding
+      required: false
+      schema:
+        type: string
+        enum: [gzip]
+  responses:
+    BadRequest:
+      description: Invalid request body or schema violation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Missing, invalid, or expired token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Invalid HMAC, invalid timestamp window, or insufficient scope.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: Idempotency conflict or known failed replay.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unprocessable:
+      description: Business rule violation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Rate limit exceeded.
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalError:
+      description: Unexpected server failure.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ServiceUnavailable:
+      description: Redis or downstream service unavailable.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ProductResponse:
+      $ref: ./schemas/product-response.schema.json
+    OrderResponse:
+      $ref: ./schemas/order-response.schema.json
+    JobStatus:
+      $ref: ./schemas/job-status.schema.json
+    ProductUpdateRequest:
+      $ref: ./schemas/product-update-request.schema.json
+    ProductImportRequest:
+      $ref: ./schemas/product-import-request.schema.json
+    OrderStatusUpdateRequest:
+      $ref: ./schemas/order-status-update-request.schema.json
+    ErrorResponse:
+      $ref: ./schemas/error-response.schema.json
+paths:
+  /oauth/token:
+    post:
+      summary: Issue OAuth2 client credentials token
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [grant_type, scope]
+              properties:
+                grant_type:
+                  type: string
+                  const: client_credentials
+                scope:
+                  type: string
+                  example: bridge:read bridge:write
+      responses:
+        '200':
+          description: Token issued.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [access_token, token_type, expires_in, scope]
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                    const: Bearer
+                  expires_in:
+                    type: integer
+                    const: 3600
+                  scope:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/products/{id}:
+    get:
+      summary: Read a product by id
+      parameters:
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/XTimestamp'
+        - $ref: '#/components/parameters/XSignature'
+        - $ref: '#/components/parameters/AcceptJson'
+      responses:
+        '200':
+          description: Product returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+              examples:
+                default:
+                  value: {"id": 123, "reference": "REF-2024-001", "name": {"fr": "Nom produit", "en": "Product name"}, "price_ht": 19.99, "price_ttc": 23.99, "stock_quantity": 150, "seo": {"meta_title": "Titre SEO", "meta_description": "Description SEO", "url_rewrite": "nom-produit"}, "active": true, "updated_at": "2026-03-21T07:00:00Z"}
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /v1/orders/{id}:
+    get:
+      summary: Read an order by id
+      parameters:
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/XTimestamp'
+        - $ref: '#/components/parameters/XSignature'
+        - $ref: '#/components/parameters/AcceptJson'
+      responses:
+        '200':
+          description: Order returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+              examples:
+                default:
+                  value: {"id": 456, "reference": "ORD-2026-0001", "customer_id": 33, "current_status": "processing_in_progress", "currency_iso": "EUR", "total_paid_tax_incl": 199.99, "created_at": "2026-03-20T09:00:00Z", "updated_at": "2026-03-21T07:00:00Z"}
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /v1/jobs/{jobId}:
+    get:
+      summary: Read durable job status from MySQL
+      parameters:
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/XTimestamp'
+        - $ref: '#/components/parameters/XSignature'
+        - $ref: '#/components/parameters/AcceptJson'
+      responses:
+        '200':
+          description: Job status returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatus'
+              examples:
+                default:
+                  value: {"job_id": "550e8400-e29b-41d4-a716-446655440000", "type": "product_update", "status": "completed", "result": {"message": "Product update applied"}, "created_at": "2026-03-21T07:00:00Z", "started_at": "2026-03-21T07:00:02Z", "completed_at": "2026-03-21T07:00:04Z"}
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /v1/jobs/products/update:
+    post:
+      summary: Create a product update job
+      parameters:
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/XTimestamp'
+        - $ref: '#/components/parameters/XSignature'
+        - $ref: '#/components/parameters/AcceptJson'
+        - $ref: '#/components/parameters/ContentEncoding'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductUpdateRequest'
+            examples:
+              default:
+                value: {"product_id": 123, "updates": {"price_ht": 25.5, "stock_delta": 10, "seo": {"meta_title": "Nouveau", "meta_description": "Nouvelle description", "url_rewrite": "nouveau-slug"}}, "options": {"skip_reindex": false}}
+      responses:
+        '202':
+          description: Job accepted.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [job_id, status, tracking_url, estimated_duration_seconds]
+                properties:
+                  job_id:
+                    type: string
+                    format: uuid
+                  status:
+                    type: string
+                    const: queued
+                  tracking_url:
+                    type: string
+                  estimated_duration_seconds:
+                    type: integer
+              examples:
+                default:
+                  value:
+                    job_id: 550e8400-e29b-41d4-a716-446655440000
+                    status: queued
+                    tracking_url: /v1/jobs/550e8400-e29b-41d4-a716-446655440000
+                    estimated_duration_seconds: 30
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/Unprocessable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /v1/jobs/products/import:
+    post:
+      summary: Create a product import job
+      parameters:
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/XTimestamp'
+        - $ref: '#/components/parameters/XSignature'
+        - $ref: '#/components/parameters/AcceptJson'
+        - $ref: '#/components/parameters/ContentEncoding'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductImportRequest'
+            examples:
+              default:
+                value: {"batch_id": "batch-2026-03-21-01", "items": [{"reference": "NEW-001", "name": {"fr": "Nouveau", "en": "New"}, "price_ht": 10.0, "stock_quantity": 100, "images_to_download": ["https://assets.example.com/img/new-001.jpg"]}], "options": {"create_if_missing": true, "update_if_exists": true, "skip_images_errors": false}}
+      responses:
+        '202':
+          description: Job accepted.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [job_id, status, tracking_url, estimated_duration_seconds]
+                properties:
+                  job_id:
+                    type: string
+                    format: uuid
+                  status:
+                    type: string
+                    const: queued
+                  tracking_url:
+                    type: string
+                  estimated_duration_seconds:
+                    type: integer
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/Unprocessable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /v1/jobs/orders/status:
+    post:
+      summary: Create an order status update job
+      parameters:
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/XTimestamp'
+        - $ref: '#/components/parameters/XSignature'
+        - $ref: '#/components/parameters/AcceptJson'
+        - $ref: '#/components/parameters/ContentEncoding'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderStatusUpdateRequest'
+            examples:
+              default:
+                value: {"order_id": 456, "new_status": "shipped", "notify_customer": true, "tracking_number": "TRK123456"}
+      responses:
+        '202':
+          description: Job accepted.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [job_id, status, tracking_url, estimated_duration_seconds]
+                properties:
+                  job_id:
+                    type: string
+                    format: uuid
+                  status:
+                    type: string
+                    const: queued
+                  tracking_url:
+                    type: string
+                  estimated_duration_seconds:
+                    type: integer
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/Unprocessable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'

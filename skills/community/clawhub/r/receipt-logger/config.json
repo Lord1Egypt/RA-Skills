@@ -1,0 +1,13 @@
+{
+  "name": "Receipt Logger",
+  "slug": "receipt-logger",
+  "version": "1.0.0",
+  "description": "Generate signed, append-only audit logs for agent actions. Solve the trust without vibes problem.",
+  "author": "xaxia_summer",
+  "tags": ["receipt", "audit", "logging", "memory", "trust", "identity"],
+  "homepage": "",
+  "repository": "",
+  "license": "MIT",
+  "entry": "receipt-logger",
+  "runtime": "shell"
+}

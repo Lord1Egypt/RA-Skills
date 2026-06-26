@@ -1,0 +1,25 @@
+{
+  "name": "research-review-assistant",
+  "version": "2.0.0",
+  "description": "科研文献综述与迭代助手 - 自动检索、结构化总结文献，支持多轮优化和综述草稿生成",
+  "main": "review_generator.py",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "academic",
+    "review",
+    "paper",
+    "arxiv",
+    "iteration",
+    "survey",
+    "research",
+    "openclaw-skill"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "dependencies": {
+    "requests": ">=2.31.0",
+    "beautifulsoup4": ">=4.12.0"
+  }
+}

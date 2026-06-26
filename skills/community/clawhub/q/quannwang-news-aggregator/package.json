@@ -1,0 +1,31 @@
+{
+  "name": "news-aggregator",
+  "version": "1.0.0",
+  "description": "全网新闻聚合 Skill — 定时抓取多信源、关键词过滤、生成每日简报并推送到飞书",
+  "main": "scripts/run.js",
+  "scripts": {
+    "start": "node scripts/run.js",
+    "fetch": "node scripts/fetch.js",
+    "filter": "node scripts/filter.js",
+    "digest": "node scripts/digest.js",
+    "push": "node scripts/push.js",
+    "schedule": "node scripts/scheduler.js"
+  },
+  "keywords": [
+    "news",
+    "aggregator",
+    "rss",
+    "feishu",
+    "daily-digest",
+    "openclaw",
+    "skill"
+  ],
+  "author": "肥肥🐶",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0",
+    "node-cron": "^3.0.3",
+    "rss-parser": "^3.13.0"
+  }
+}

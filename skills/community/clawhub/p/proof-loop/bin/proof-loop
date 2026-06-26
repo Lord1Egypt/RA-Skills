@@ -1,0 +1,271 @@
+#!/usr/bin/env python3
+"""Unified Proof Loop CLI."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import subprocess
+import sys
+from pathlib import Path
+from typing import Any
+
+ROOT = Path(__file__).resolve().parents[1]
+VALID_HARNESSES = {
+    "codex": ("AGENTS.proof-loop.md", "AGENTS.md"),
+    "claude": ("CLAUDE.proof-loop.md", "CLAUDE.md"),
+    "opencode": ("opencode.proof-loop.md", "OPENCODE.md"),
+    "hermes": ("hermes.proof-loop.md", "HERMES.md"),
+}
+
+
+def run_python(script: str, args: list[str]) -> int:
+    return subprocess.call([sys.executable, str(ROOT / "scripts" / script), *args])
+
+
+def load_json(path: Path) -> Any:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def task_dir(root: Path, task_id_or_path: str) -> Path:
+    candidate = Path(task_id_or_path)
+    if candidate.exists() or "/" in task_id_or_path or task_id_or_path.startswith("."):
+        return candidate
+    return root / ".agent" / "tasks" / task_id_or_path
+
+
+def cmd_init(args: argparse.Namespace) -> int:
+    init_args = [args.task_id]
+    if args.title:
+        init_args.extend(["--title", args.title])
+    init_args.extend(["--root", str(args.root)])
+    if args.force:
+        init_args.append("--force")
+    return run_python("init_task.py", init_args)
+
+
+def cmd_check(args: argparse.Namespace) -> int:
+    return run_python("check_task.py", [str(task_dir(Path(args.root), args.task))])
+
+
+def cmd_status(args: argparse.Namespace) -> int:
+    path = task_dir(Path(args.root), args.task)
+    verdict_path = path / "verdict.json"
+    if not path.is_dir():
+        print(f"PROOF_LOOP_STATUS missing {path}")
+        return 1
+    if not verdict_path.exists():
+        print(f"PROOF_LOOP_STATUS {path} overall=UNKNOWN criteria=0")
+        return 1
+    verdict = load_json(verdict_path)
+    criteria = verdict.get("criteria", []) if isinstance(verdict, dict) else []
+    overall = verdict.get("overall", "UNKNOWN") if isinstance(verdict, dict) else "UNKNOWN"
+    print(f"PROOF_LOOP_STATUS {path} overall={overall} criteria={len(criteria)}")
+    for item in criteria:
+        if isinstance(item, dict):
+            print(f"- {item.get('id', '?')}: {item.get('status', 'UNKNOWN')} {item.get('note', '')}")
+    return 0 if overall == "PASS" else 1
+
+
+def cmd_list(args: argparse.Namespace) -> int:
+    root = Path(args.root) / ".agent" / "tasks"
+    if not root.exists():
+        print("PROOF_LOOP_TASKS none")
+        return 0
+    found = False
+    for path in sorted(p for p in root.iterdir() if p.is_dir()):
+        found = True
+        verdict_path = path / "verdict.json"
+        overall = "UNKNOWN"
+        if verdict_path.exists():
+            try:
+                verdict = load_json(verdict_path)
+                if isinstance(verdict, dict):
+                    overall = str(verdict.get("overall", "UNKNOWN"))
+            except Exception:
+                overall = "INVALID"
+        print(f"{path.name}\t{overall}\t{path}")
+    if not found:
+        print("PROOF_LOOP_TASKS none")
+    return 0
+
+
+def cmd_doctor(args: argparse.Namespace) -> int:
+    checks = [
+        ("init script", ROOT / "scripts" / "init_task.py"),
+        ("check script", ROOT / "scripts" / "check_task.py"),
+        ("spec schema", ROOT / "schemas" / "spec.schema.json"),
+        ("verdict schema", ROOT / "schemas" / "verdict.schema.json"),
+        ("evidence schema", ROOT / "schemas" / "evidence.schema.json"),
+        ("demo fixture", ROOT / "examples" / "demo-repo" / "nav_labels.json"),
+        ("test workflow", ROOT / ".github" / "workflows" / "test.yml"),
+    ]
+    missing = []
+    for label, path in checks:
+        status = "ok" if path.exists() else "missing"
+        print(f"{label}: {status}")
+        if status != "ok":
+            missing.append(label)
+    print("PROOF_LOOP_DOCTOR_PASS" if not missing else "PROOF_LOOP_DOCTOR_FAIL")
+    return 0 if not missing else 1
+
+
+def schema_validate_json(data: Any, schema: dict[str, Any], path: str) -> list[str]:
+    errors: list[str] = []
+    required = schema.get("required", [])
+    if isinstance(data, dict):
+        for key in required:
+            if key not in data:
+                errors.append(f"{path}: missing required key {key}")
+    else:
+        errors.append(f"{path}: expected object")
+    return errors
+
+
+def cmd_validate(args: argparse.Namespace) -> int:
+    path = task_dir(Path(args.root), args.task)
+    checks = [
+        (path / "verdict.json", ROOT / "schemas" / "verdict.schema.json"),
+        (path / "evidence.json", ROOT / "schemas" / "evidence.schema.json"),
+    ]
+    errors: list[str] = []
+    for data_path, schema_path in checks:
+        if not data_path.exists():
+            if data_path.name == "evidence.json" and not args.require_evidence_json:
+                continue
+            errors.append(f"missing {data_path}")
+            continue
+        try:
+            errors.extend(schema_validate_json(load_json(data_path), load_json(schema_path), str(data_path)))
+        except Exception as exc:
+            errors.append(f"{data_path}: {exc}")
+    if errors:
+        print("PROOF_LOOP_SCHEMA_FAIL")
+        for err in errors:
+            print(f"- {err}")
+        return 1
+    print(f"PROOF_LOOP_SCHEMA_PASS {path}")
+    return 0
+
+
+def read_optional(path: Path) -> str:
+    return path.read_text(encoding="utf-8").strip() if path.exists() else ""
+
+
+def cmd_report(args: argparse.Namespace) -> int:
+    if args.format != "md":
+        print("Only --format md is supported", file=sys.stderr)
+        return 2
+    path = task_dir(Path(args.root), args.task)
+    verdict = load_json(path / "verdict.json")
+    evidence_text = read_optional(path / "evidence.md")
+    problems = read_optional(path / "problems.md")
+    raw_dir = path / "raw"
+    print(f"# Proof Report - {verdict.get('task_id', path.name)}")
+    print()
+    print(f"Overall: **{verdict.get('overall', 'UNKNOWN')}**")
+    print()
+    print("## Acceptance Criteria")
+    print()
+    print("| AC | Status | Note |")
+    print("|---|---|---|")
+    for item in verdict.get("criteria", []):
+        print(f"| {item.get('id', '')} | {item.get('status', '')} | {str(item.get('note', '')).replace('|', '/')} |")
+    print()
+    print("## Evidence Summary")
+    print()
+    summary_lines = [line for line in evidence_text.splitlines() if line.strip()][:12]
+    print("\n".join(summary_lines) if summary_lines else "No evidence.md found.")
+    print()
+    print("## Raw Logs")
+    print()
+    if raw_dir.exists():
+        for raw in sorted(p for p in raw_dir.iterdir() if p.is_file()):
+            print(f"- `{raw.relative_to(path)}`")
+    else:
+        print("No raw logs recorded.")
+    print()
+    print("## Problems")
+    print()
+    print(problems if problems else "No open problems.")
+    return 0
+
+
+def cmd_install_guides(args: argparse.Namespace) -> int:
+    root = Path(args.root)
+    harnesses = args.harness or sorted(VALID_HARNESSES)
+    for harness in harnesses:
+        if harness not in VALID_HARNESSES:
+            print(f"unknown harness: {harness}", file=sys.stderr)
+            return 2
+        template_name, target_name = VALID_HARNESSES[harness]
+        source = ROOT / "templates" / template_name
+        target = root / target_name
+        if args.dry_run:
+            print(f"DRY_RUN {harness}: would write {target} from {source}")
+            continue
+        if target.exists() and not args.force:
+            print(f"refusing to overwrite {target}; use --force", file=sys.stderr)
+            return 1
+        target.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
+        print(f"WROTE {target}")
+    return 0
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(prog="proof-loop", description="Proof Loop task artifacts and done gate")
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    init = sub.add_parser("init", help="create .agent/tasks/<TASK_ID> skeleton")
+    init.add_argument("task_id")
+    init.add_argument("--title")
+    init.add_argument("--root", default=".")
+    init.add_argument("--force", action="store_true")
+    init.set_defaults(func=cmd_init)
+
+    check = sub.add_parser("check", help="run the done gate")
+    check.add_argument("task")
+    check.add_argument("--root", default=".")
+    check.set_defaults(func=cmd_check)
+
+    status = sub.add_parser("status", help="show task status")
+    status.add_argument("task")
+    status.add_argument("--root", default=".")
+    status.set_defaults(func=cmd_status)
+
+    list_cmd = sub.add_parser("list", help="list task folders")
+    list_cmd.add_argument("--root", default=".")
+    list_cmd.set_defaults(func=cmd_list)
+
+    doctor = sub.add_parser("doctor", help="check local proof-loop installation")
+    doctor.set_defaults(func=cmd_doctor)
+
+    validate = sub.add_parser("validate", help="validate JSON proof artifacts against bundled schemas")
+    validate.add_argument("task")
+    validate.add_argument("--root", default=".")
+    validate.add_argument("--require-evidence-json", action="store_true")
+    validate.set_defaults(func=cmd_validate)
+
+    report = sub.add_parser("report", help="render a Markdown proof report")
+    report.add_argument("task")
+    report.add_argument("--root", default=".")
+    report.add_argument("--format", default="md", choices=["md"])
+    report.set_defaults(func=cmd_report)
+
+    guides = sub.add_parser("install-guides", help="install or preview harness guide templates")
+    guides.add_argument("--root", default=".")
+    guides.add_argument("--harness", action="append", choices=sorted(VALID_HARNESSES))
+    guides.add_argument("--dry-run", action="store_true")
+    guides.add_argument("--force", action="store_true")
+    guides.set_defaults(func=cmd_install_guides)
+    return parser
+
+
+def main() -> int:
+    parser = build_parser()
+    args = parser.parse_args()
+    return args.func(args)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

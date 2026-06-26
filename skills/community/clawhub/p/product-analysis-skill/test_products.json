@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Wireless Earbuds",
+    "category": "electronics"
+  },
+  {
+    "name": "Smart Watch",
+    "category": "electronics"
+  },
+  {
+    "name": "Yoga Mat",
+    "category": "sports"
+  },
+  {
+    "name": "Running Shoes",
+    "category": "sports"
+  },
+  {
+    "name": "Coffee Maker",
+    "category": "home_goods"
+  }
+]

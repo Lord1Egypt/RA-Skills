@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Content-Four-Columns</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      background-color: #FFFFFF;
+      font-family: 'PingFang SC', 'Microsoft YaHei', 'PingFang TC', 'Hiragino Sans GB', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .title-block {
+      position: absolute;
+      left: 80px;
+      top: 100px;
+      width: 1680px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .title-block [data-slot="title"] {
+      font-weight: 600;
+      font-size: 64px;
+      line-height: 1.25;
+      color: #000000;
+    }
+    .title-block [data-slot="subtitle"] {
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 1.4;
+      color: #000000;
+      /* 等效灰色（避免 opacity 导出丢失） */
+      color: #666666; /* black @ 60% on white */
+    }
+    .content-grid {
+      position: absolute;
+      left: 80px;
+      top: 304px;
+      width: 1760px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .content-row {
+      display: flex;
+      flex-direction: row;
+      gap: 32px;
+      height: 340px;
+    }
+    .content-card {
+      flex: 1;
+      background-color: #F1F1F1;
+      border-radius: 16px;
+      padding: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .card-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 7px;
+      overflow: hidden;
+      background-color: #FFFFFF;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-image img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+    .card-text {
+      display: flex;
+      flex-direction: column;
+      gap: 27px;
+      flex: 1;
+    }
+    .content-card [data-slot$="Heading"] {
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 1.22;
+      color: #000000;
+    }
+    .content-card [data-slot$="Copy"] {
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 1.22;
+      color: #000000;
+      /* 等效灰色（避免 opacity 导出丢失） */
+      color: #4D4D4D; /* black @ 70% on white */
+    }
+  </style>
+</head>
+<body>
+  <div class="slide" data-template="content-four-columns">
+    <div class="title-block">
+      <h1 data-slot="title">头部企业进展</h1>
+      <p data-slot="subtitle">华为、三大运营商动态</p>
+    </div>
+    <div class="content-grid">
+      <div class="content-row">
+        <div class="content-card">
+          <div class="card-image">
+            <img data-slot="block1Image" src="data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYwLjQ2OC4wIC0gSVNDIC0tPgo8c3ZnCiAgY2xhc3M9Imx1Y2lkZSBsdWNpZGUtc21hcnRwaG9uZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSJjdXJyZW50Q29sb3IiCiAgc3Ryb2tlLXdpZHRoPSIyIgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPHJlY3Qgd2lkdGg9IjE0IiBoZWlnaHQ9IjIwIiB4PSI1IiB5PSIyIiByeD0iMiIgcnk9IjIiIC8+CiAgPHBhdGggZD0iTTEyIDE4aC4wMSIgLz4KPC9zdmc+Cg==" alt="">
+          </div>
+          <div class="card-text">
+            <h2 data-slot="block1Heading">华为</h2>
+            <p data-slot="block1Copy">6G 原型系统发布，峰值速率 100Gbps</p>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="card-image">
+            <img data-slot="block2Image" src="data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYwLjQ2OC4wIC0gSVNDIC0tPgo8c3ZnCiAgY2xhc3M9Imx1Y2lkZSBsdWNpZGUtd2lmaSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgd2lkdGg9IjI0IgogIGhlaWdodD0iMjQiCiAgdmlld0JveD0iMCAwIDI0IDI0IgogIGZpbGw9Im5vbmUiCiAgc3Ryb2tlPSJjdXJyZW50Q29sb3IiCiAgc3Ryb2tlLXdpZHRoPSIyIgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPHBhdGggZD0iTTEyIDIwaC4wMSIgLz4KICA8cGF0aCBkPSJNMiA4LjgyYTE1IDE1IDAgMCAxIDIwIDAiIC8+CiAgPHBhdGggZD0iTTUgMTIuODU5YTEwIDEwIDAgMCAxIDE0IDAiIC8+CiAgPHBhdGggZD0iTTguNSAxNi40MjlhNSA1IDAgMCAxIDcgMCIgLz4KPC9zdmc+Cg==" alt="">
+          </div>
+          <div class="card-text">
+            <h2 data-slot="block2Heading">中国电信</h2>
+            <p data-slot="block2Copy">天翼云 4.0 上线，算力节点覆盖 200+ 城市</p>
+          </div>
+        </div>
+      </div>
+      <div class="content-row">
+        <div class="content-card">
+          <div class="card-image">
+            <img data-slot="block3Image" src="data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYwLjQ2OC4wIC0gSVNDIC0tPgo8c3ZnCiAgY2xhc3M9Imx1Y2lkZSBsdWNpZGUtc2lnbmFsIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMiAyMGguMDEiIC8+CiAgPHBhdGggZD0iTTcgMjB2LTQiIC8+CiAgPHBhdGggZD0iTTEyIDIwdi04IiAvPgogIDxwYXRoIGQ9Ik0xNyAyMFY4IiAvPgogIDxwYXRoIGQ9Ik0yMiA0djE2IiAvPgo8L3N2Zz4K" alt="">
+          </div>
+          <div class="card-text">
+            <h2 data-slot="block3Heading">中国移动</h2>
+            <p data-slot="block3Copy">算力大脑平台发布，牵头 6G 国际标准 15 项</p>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="card-image">
+            <img data-slot="block4Image" src="data:image/svg+xml;base64,PCEtLSBAbGljZW5zZSBsdWNpZGUtc3RhdGljIHYwLjQ2OC4wIC0gSVNDIC0tPgo8c3ZnCiAgY2xhc3M9Imx1Y2lkZSBsdWNpZGUtZ2xvYmUiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogIHdpZHRoPSIyNCIKICBoZWlnaHQ9IjI0IgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBmaWxsPSJub25lIgogIHN0cm9rZT0iY3VycmVudENvbG9yIgogIHN0cm9rZS13aWR0aD0iMiIKICBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKPgogIDxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIiAvPgogIDxwYXRoIGQ9Ik0xMiAyYTE0LjUgMTQuNSAwIDAgMCAwIDIwIDE0LjUgMTQuNSAwIDAgMCAwLTIwIiAvPgogIDxwYXRoIGQ9Ik0yIDEyaDIwIiAvPgo8L3N2Zz4K" alt="">
+          </div>
+          <div class="card-text">
+            <h2 data-slot="block4Heading">中国联通</h2>
+            <p data-slot="block4Copy">贵州、甘肃算力中心投入运营</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body></html>

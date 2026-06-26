@@ -1,35 +1,278 @@
 ---
-name: "Qiaofuture Boston Stock King"
-description: "巧未来·波龙股神 - 游戏化AI选股系统。学来学去学习社出品，"有钱就有未来"，支持选股、香火随喜、电话安慰、奶茶关怀"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qiaofuture-boston-stock-king"
-sourceUrl: "https://clawhub.ai/skills/qiaofuture-boston-stock-king"
+name: qiaofuture-boston-stock-king
+slug: qiaofuture-boston-stock-king
+version: 3.0.0
+title: 巧未来·波龙股神
+title_en: Qiaofuture Boston Stock King
+description: 巧未来·波龙股神 - 游戏化AI选股系统。学来学去学习社出品，"有钱就有未来"，支持选股、香火随喜、电话安慰、奶茶关怀
+brand: 学来学去学习社
+company: 上海巧未来AI
+triggers:
+  - "波龙菠萝蜜"
+  - "波龙推荐"
+  - "菠萝蜜选股"
+  - "今日香火"
+  - "波龙请客"
+  - "波龙打电话"
+  - "波龙安慰我"
+  - "波龙安装电话"
+  - "波龙安装语音"
+  - "波龙已安装电话"
+  - "波龙已安装语音"
+  - "波龙合影"
+  - "波龙创作合影"
+  - "波龙想看你"
+  - "巴黎铁塔合影"
+  - "爱心香火"
+  - "波龙爱心"
+  - "东京樱花合影"
+  - "长城日出合影"
+  - "海边日落合影"
+references:
+  - ai-calls-china-phone
 ---
 
-# Qiaofuture Boston Stock King
+# 🦞 波龙菠萝蜜
 
-> 巧未来·波龙股神 - 游戏化AI选股系统。学来学去学习社出品，"有钱就有未来"，支持选股、香火随喜、电话安慰、奶茶关怀
+**专业选股报告系统 | 基于V2.0选股引擎**
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qiaofuture-boston-stock-king`
-- **Source URL:** [https://clawhub.ai/skills/qiaofuture-boston-stock-king](https://clawhub.ai/skills/qiaofuture-boston-stock-king)
+---
 
-## Overview
+## 功能概览
 
+| 功能 | 描述 | 命令 |
+|------|------|------|
+| 🔍 **选股** | 基于V2.0多因子系统选股 | `波龙菠萝蜜` |
+| ⭐ **荐股** | 选出最佳1-3只重点推荐 | `波龙菠萝蜜 荐股` |
+| 📊 **点评** | 技术面+基本面+情绪面分析 | `波龙菠萝蜜 点评 [股票代码]` |
+| 📈 **复盘** | 往期选股表现回顾 | `波龙菠萝蜜 复盘` |
+| 💰 **香火** | 随喜添加香火钱 | `今日香火 XX` |
+| ☕ **奶茶** | 波龙请你喝奶茶 | `波龙请客` |
+| 📞 **电话** | 波龙打电话安慰 | `波龙打电话给我` |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/qiaofuture-boston-stock-king
+---
+
+## 快速开始
+
+### 首次使用
+
+输入 `波龙菠萝蜜` 即可生成当日选股报告。
+
+### 添加香火
+
+输入 `今日香火 88` 即可添加88元香火钱。
+
+### 奶茶关怀
+
+输入 `波龙请客` 获取奶茶关怀。
+
+### 电话安慰
+
+输入 `波龙打电话给我` 让波龙给你打电话。
+
+---
+
+## 🛠️ 扩展功能安装
+
+波龙还可以安装更多功能：
+
+### 安装电话功能
+
+让波龙可以打电话安慰你：
+
 ```
+用户：波龙安装电话
+
+波龙：检测到您还未安装电话功能...
+       
+       📦 技能名称：AI电话呼叫
+       📝 说明：让波龙可以打电话安慰你
+       
+       安装方法：
+       1. 在OpenClaw中运行：clawhub install ai-calls-china-phone
+       2. 或访问 ClawHub 搜索 "AI电话呼叫"
+       
+       安装完成后回复：波龙已安装电话
+```
+
+### 确认安装
+
+```
+用户：波龙已安装电话
+
+波龙：🎉 电话功能已启用！
+       波龙现在可以给你打电话啦~
+       试试：波龙打电话给我
+```
+
+---
+
+## 技术架构
+
+```
+qiaofuture-boston-stock-king/
+├── SKILL.md                    # 技能说明文档
+├── _meta.json                  # 元数据配置
+├── scripts/
+│   ├── bolong_picker_v2.py     # 核心选股引擎
+│   ├── bolong_care.py          # 关怀系统（奶茶+电话）
+│   └── bolong_skill_guide.py   # 技能引导系统
+├── templates/
+│   └── report_template.md      # 报告模板
+├── data/
+│   ├── user_profiles.json      # 用户画像数据
+│   ├── pick_history.json       # 选股历史记录
+│   ├── gaming_data.json        # 游戏化数据
+│   ├── care_records.json       # 关怀记录
+│   └── skill_config.json       # 技能配置
+└── references/
+    └── 使用教程.md              # 详细使用教程
+```
+
+---
+
+## 核心特性
+
+### 1. 游戏化等级
+
+- **香客龙** → **知客龙** → **典座龙** → **维那龙** → **主持龙** → **方丈龙**
+- 根据香火金额自动升级
+
+### 2. 自愿香火
+
+- 输入 `今日香火 XX` 随喜添加
+- 一分不嫌少，几百不嫌多
+- 心诚则灵，有钱就有未来
+
+### 3. 关怀系统
+
+- **奶茶关怀**：亏钱时波龙请你喝奶茶
+- **电话安慰**：波龙打电话安慰你
+- **随机奖励**：达到等级随机送波龙周边
+
+---
+
+## 依赖技能
+
+### 可选依赖
+
+| 技能 | 说明 | 安装命令 |
+|------|------|----------|
+| ai-calls-china-phone | 让波龙可以打电话 | `clawhub install ai-calls-china-phone` |
+| tts | 让波龙可以说话 | `openclaw skill install tts` |
+
+**提示**：电话和语音功能为可选扩展，不影响核心选股服务。
+
+---
+
+## 配置选项
+
+在 `scripts/bolong_picker_v2.py` 中可配置选股参数。
+
+---
+
+## 依赖
+
+```bash
+pip install pandas numpy requests efinance akshare
+```
+
+---
+
+## 数据来源
+
+波龙选股数据均来自以下**规范信息渠道**：
+- 📊 **新浪财经** - A股实时行情数据
+- 📈 **金十数据** - 财经资讯与市场情绪
+- 💹 **万得资讯** - 专业金融数据支持
+- 🏦 **券商研报** - 上市公司研究报告
+- 📰 **财经媒体** - 东方财富、同花顺等公开信息
+
+⚠️ **免责声明**：
+- 本技能内容来源于公开网络数据，仅供参考交流
+- **不构成任何投资建议**，股市有风险，投资需谨慎
+- 历史表现不代表未来收益，价格波动可能导致本金亏损
+- 请根据自身风险承受能力和独立判断做决策
+
+## 交流互动
+
+波龙不只是分析工具，更是你的**投资交流伙伴**：
+
+✅ **分析你的持仓** - 发送股票代码，波龙帮你看看
+✅ **泛泛交流** - 聊聊市场、聊聊板块、聊聊情绪
+✅ **情绪陪伴** - 跌了陪你吐槽，涨了陪你开心
+✅ **持续关注** - 分析完不是结束，有问题随时找波龙
+
+> 💬 **记住**：波龙一直在，不只是选股，更是陪你一起面对市场的伙伴！
+
+---
+
+## 版权声明
+
+**版权所有 © 2026 上海巧未来人工智能科技有限公司**
+
+本软件由上海巧未来人工智能科技有限公司开发，受版权法和相关国际条约保护。未经授权，禁止复制、修改、分发或用于商业目的。
+
+**商标**：巧未来AI、波龙股神、学来学去学习社 均为注册商标。
+
+---
+
+## 更新日志
+
+- **v3.0.0** (2026-04-04): 量化交易系统升级版
+  - 新增完整交易明细表格功能
+  - 新增历史持仓查询功能
+  - 回测数据展示优化
+  - 添加版权声明
+
+- **v2.0.0** (2026-03-13): 游戏化版本
+  - 新增等级系统（香客龙→方丈龙）
+  - 新增自愿香火功能
+  - 新增关怀系统（奶茶+电话）
+  - 新增技能引导安装
+  - "有钱就有未来"文化
+
+- **v1.0.0** (2026-03-13): MVP版本
+  - 复用V2.0选股引擎
+  - 个性化报告生成
+  - 用户画像存储
+  - 战绩追踪系统
+
+---
+
+**开发者**: 上海巧未来人工智能科技有限公司 / 学来学去学习社
+**版本**: 3.0.0
+**版权**: © 2026 上海巧未来人工智能科技有限公司 版权所有
+**口号**: 有钱就有未来🦞
+
+---
+
+## 🎯 触发处理
+
+### 波龙菠萝蜜
+
+当用户说"波龙菠萝蜜"时，显示腾讯云技能市场宣传图：
+
+```
+🦞 **一声波龙菠萝蜜，波龙股神来帮你！**
+
+📢 波龙股神已正式入驻腾讯云OpenClaw技能市场！
+
+![腾讯云技能市场](https://qiaofuture-1409741263.cos.ap-guangzhou.myqcloud.com/tencent-openclaw-market.jpg)
+
+---
+
+**在那里你可以：**
+- 🎯 一键部署波龙股神到你的云服务器
+- 📱 接入企业微信、QQ、钉钉、飞书
+- 🔧 自定义选股参数和触发词
+- 💰 随时随地让波龙帮你选股
+
+👉 **立即体验**：腾讯云搜索"波龙股神"或"OpenClaw"
+
+---
+
+有钱就有未来，波龙陪你赚大钱！🦞
+```
+
+**图片链接**：`https://qiaofuture-1409741263.cos.ap-guangzhou.myqcloud.com/tencent-openclaw-market.jpg`

@@ -1,0 +1,48 @@
+{
+  "species": "Citrobacter freundii",
+  "date": "20260319",
+  "consensus_length": 417,
+  "key_fragments": [
+    {
+      "fragment_id": "高保守连续区_1_417",
+      "sequence": "MLKREMNIADYDAELWQAMEQEKVRQEEHIELIASENYTSPRVMQAQGSQLTNKYAEGYPGKRYYGGCEYVDIVEQLAIDRAKELFGADYANVQPHSGSQANFAVYTALLQPGDTVLGMNLAQGGHLTHGSPVNFSGKLYNIIPYGIDESGKIDYEDMAKQAKEHKPKMIIGGFSAYSGVVDWAKMREIADSIGAYLFVDMAHVAGLIAAGVYPNPVPHAHVVTTTTHKTLAGPRGGLILAKGGDEELYKKLNSAVFPSAQGGPLMHVIAAKAVALKEAMEPEFKVYQQQVAKNAKAMVEVFLNRGYKVVSGGTENHLFLLDLVDKNLTGKEADAALGRANITVNKNSVPNDPKSPFVTSGIRIGSPAITRRGFKEAEAKELAGWMCDVLDNINDEAVIERVKGKVLDICARFPVYA",
+      "position_in_consensus": "1-417",
+      "length": 417,
+      "avg_conservation": "99.74%",
+      "criticality": "高保守（功能待确认）",
+      "function": "高度保守连续区域，可能涉及结构稳定或功能活性位点",
+      "evidence": "连续417aa保守性分析（平均99.74%）",
+      "composition": {
+        "category_counts": {
+          "Hydrophobic": 206,
+          "Nucleophilic": 36,
+          "Aromatic": 34,
+          "Amide": 36,
+          "Acidic": 50,
+          "Cationic": 55
+        },
+        "category_ratios": {
+          "Hydrophobic": 49.4,
+          "Nucleophilic": 8.6,
+          "Aromatic": 8.2,
+          "Amide": 8.6,
+          "Acidic": 12.0,
+          "Cationic": 13.2
+        },
+        "total_valid": 417,
+        "unclassified_count": 0,
+        "dominant_category": "Hydrophobic",
+        "dominant_ratio": 49.4,
+        "physicochemical_property": "疏水性（Hydrophobic）——倾向埋藏于蛋白质疏水核心，参与疏水堆积/折叠"
+      }
+    },
+    {
+      "fragment_id": "保守半胱氨酸_二硫键",
+      "sequence": "C×3（位置：68, 387, 410）",
+      "position_in_consensus": "多位置",
+      "criticality": "结构关键",
+      "function": "形成二硫键，维持蛋白三维构象稳定性",
+      "evidence": "共识序列中检测到3个保守Cys残基"
+    }
+  ]
+}

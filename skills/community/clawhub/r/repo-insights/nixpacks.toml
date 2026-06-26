@@ -1,0 +1,2 @@
+[start]
+cmd = "gunicorn repo_insights:app --bind 0.0.0.0:$PORT"

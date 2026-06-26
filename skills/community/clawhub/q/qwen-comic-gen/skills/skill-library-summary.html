@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技能库总结报告 - 17 个技能完整介绍</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Microsoft YaHei"; background: linear-gradient(135deg, #fef9f3, #f8f4e8); padding: 40px 20px; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 28px; color: #2c3e50; margin-bottom: 10px; }
+        .meta { color: #7f8c8d; font-size: 13px; }
+        .container { max-width: 1400px; margin: 0 auto; background: #fff; border-radius: 20px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .section { margin: 30px 0; }
+        .section-title { font-size: 22px; color: #2c3e50; border-left: 4px solid #3498db; padding-left: 15px; margin-bottom: 20px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin: 20px 0; }
+        .stat-card { padding: 20px; border-radius: 12px; text-align: center; background: #f8f9fa; border: 2px solid #95a5a6; }
+        .stat-number { font-size: 32px; font-weight: bold; color: #2c3e50; display: block; }
+        .stat-label { font-size: 13px; color: #7f8c8d; }
+        .skill-card { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 20px 0; border-left: 4px solid #3498db; }
+        .skill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+        .skill-name { font-size: 18px; font-weight: bold; color: #2c3e50; }
+        .skill-tag { padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .tag-core { background: #e74c3c; color: #fff; }
+        .tag-assist { background: #3498db; color: #fff; }
+        .tag-clawhub { background: #9b59b6; color: #fff; }
+        .skill-desc { color: #7f8c8d; margin-bottom: 15px; line-height: 1.6; }
+        .prompt-box { background: #fff; border: 2px solid #27ae60; border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .prompt-title { font-size: 14px; font-weight: bold; color: #27ae60; margin-bottom: 10px; }
+        .prompt-list { list-style: none; }
+        .prompt-list li { padding: 8px 0; border-bottom: 1px solid #ecf0f1; font-family: "Courier New", monospace; font-size: 13px; }
+        .prompt-list li:last-child { border-bottom: none; }
+        .prompt-list li::before { content: "🎯 "; }
+        .category-section { margin: 30px 0; }
+        .category-title { font-size: 20px; color: #2c3e50; background: #3498db; color: #fff; padding: 10px 20px; border-radius: 8px; margin-bottom: 20px; }
+        .mermaid { background: #fff; padding: 20px; margin: 20px 0; }
+        .quick-ref { background: #fff3cd; border-left: 4px solid #f39c12; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .quick-ref h3 { margin-bottom: 15px; color: #2c3e50; }
+        .quick-ref ul { margin-left: 20px; line-height: 2; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🛠️ 技能库总结报告</h1>
+        <div class="meta">生成时间：2026-03-08 13:17 | 技能总数：17 个 | 阿福编制</div>
+    </header>
+
+    <div class="container">
+        <!-- 统计概览 -->
+        <div class="section">
+            <h2 class="section-title">📊 统计概览</h2>
+            <div class="stats-grid">
+                <div class="stat-card"><span class="stat-number">17</span><span class="stat-label">总技能数</span></div>
+                <div class="stat-card"><span class="stat-number">16</span><span class="stat-label">本地技能</span></div>
+                <div class="stat-card"><span class="stat-number">1</span><span class="stat-label">ClawHub 下载</span></div>
+                <div class="stat-card"><span class="stat-number">5</span><span class="stat-label">核心技能</span></div>
+                <div class="stat-card"><span class="stat-number">11</span><span class="stat-label">辅助技能</span></div>
+            </div>
+        </div>
+
+        <!-- 技能调用流程图 -->
+        <div class="section">
+            <h2 class="section-title">🗺️ 技能调用流程</h2>
+            <div class="mermaid">
+graph LR
+    A[用户说 Prompt] --> B{包含触发词？}
+    B -->|是 | C[识别技能]
+    B -->|否 | D[普通聊天]
+    C --> E[执行技能流程]
+    E --> F[生成结果]
+    F --> G[Chrome 打开/飞书发送]
+    style A fill:#3498db,color:#fff
+    style G fill:#27ae60,color:#fff
+            </div>
+        </div>
+
+        <!-- 核心技能 -->
+        <div class="category-section">
+            <div class="category-title">🔥 核心技能（5 个）</div>
+            
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">1. doubao-expert-review - 豆包会话专家点评</span>
+                    <span class="skill-tag tag-core">核心</span>
+                </div>
+                <div class="skill-desc">自动处理豆包会话内容，生成专家级点评 HTML 网页，包含知识架构图、深度洞察和行动建议。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>豆包 [粘贴豆包会话内容...]</li>
+                        <li>分析这个豆包会话</li>
+                        <li>生成豆包会话专家点评</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">2. html-expert-review - HTML 专家点评生成</span>
+                    <span class="skill-tag tag-core">核心</span>
+                </div>
+                <div class="skill-desc">从豆包会话生成专家级点评 HTML 网页，包含知识架构图、深度洞察、对比分析、行动建议，采用科学杂志排版 + 小红书视觉风格。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>生成专家点评</li>
+                        <li>创建 HTML 报告</li>
+                        <li>生成专家级点评 HTML</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">3. weekly-report-generator - 周报自动生成</span>
+                    <span class="skill-tag tag-core">核心</span>
+                </div>
+                <div class="skill-desc">从 worklog.txt 自动生成正式周报，包含本周完成、进行中、待办事项，支持 Markdown 和 HTML 格式。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>生成周报</li>
+                        <li>生成本周周报</li>
+                        <li>从 worklog 生成周报</li>
+                        <li>周三了，生成周报</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">4. cron-task-manager - Cron 定时任务管理</span>
+                    <span class="skill-tag tag-core">核心</span>
+                </div>
+                <div class="skill-desc">创建、管理、删除 Cron 定时任务，支持每小时/每天/每周定时执行，用于周报生成、优先级提醒等周期性任务。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>创建 Cron 任务</li>
+                        <li>设置定时任务</li>
+                        <li>每周三 15:00 生成周报</li>
+                        <li>每小时提醒我</li>
+                        <li>查看 Cron 任务列表</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">5. feishu-document-generation - 飞书文档生成</span>
+                    <span class="skill-tag tag-core">核心</span>
+                </div>
+                <div class="skill-desc">创建、更新、删除飞书文档，支持原子动作文档同步，使用飞书 API 进行文档操作。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>创建飞书文档</li>
+                        <li>更新飞书文档</li>
+                        <li>同步到飞书文档</li>
+                        <li>在飞书创建文档</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 辅助技能 -->
+        <div class="category-section">
+            <div class="category-title">⚙️ 辅助技能（11 个）</div>
+            
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">6. doubao-session-archiver - 豆包会话归档</span>
+                    <span class="skill-tag tag-assist">辅助</span>
+                </div>
+                <div class="skill-desc">保存豆包会话原始内容到 doubao-sessions/ 文件夹，按日期和序号自动命名，支持 worklog.txt 自动更新。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>归档豆包会话</li>
+                        <li>保存豆包内容</li>
+                        <li>豆包 [内容]（自动触发）</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">7. feishu-message-automation - 飞书消息自动化</span>
+                    <span class="skill-tag tag-assist">辅助</span>
+                </div>
+                <div class="skill-desc">发送飞书消息、创建交互式卡片、发送文件，支持@用户、回复消息、添加表情等。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>发送飞书消息</li>
+                        <li>给飞书发通知</li>
+                        <li>创建飞书卡片</li>
+                        <li>发送文件到飞书</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">8. project-progress-sync - 项目进度同步</span>
+                    <span class="skill-tag tag-assist">辅助</span>
+                </div>
+                <div class="skill-desc">同步项目进度到项目卡片，更新任务状态，生成项目进度报告。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>更新项目进度</li>
+                        <li>同步项目状态</li>
+                        <li>更新任务卡片</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">9. project-knowledge-expert - 项目知识专家</span>
+                    <span class="skill-tag tag-assist">辅助</span>
+                </div>
+                <div class="skill-desc">分析项目知识，提取关键洞察，生成项目知识库，关联项目卡片和 MEMORY.md。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>分析项目知识</li>
+                        <li>提取项目洞察</li>
+                        <li>生成项目知识库</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">10. project-summary-report - 项目总结报告</span>
+                    <span class="skill-tag tag-assist">辅助</span>
+                </div>
+                <div class="skill-desc">生成项目进度总结报告 HTML 网页，包含状态概览、项目流程图、文件列表、安全提示等。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>生成项目总结报告</li>
+                        <li>创建项目进度 HTML</li>
+                        <li>生成项目报告</li>
+                        <li>给这个项目做个总结报告</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">11. tts-automation - TTS 语音自动化</span>
+                    <span class="skill-tag tag-assist">辅助</span>
+                </div>
+                <div class="skill-desc">将文本转换为语音，自动发送到飞书并本地播放，支持优先级提醒、故事讲述等场景。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>用语音播报</li>
+                        <li>生成语音</li>
+                        <li>TTS 播放</li>
+                        <li>用阿福的声音读出来</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">12. three-line-sync - 三线同步</span>
+                    <span class="skill-tag tag-assist">辅助</span>
+                </div>
+                <div class="skill-desc">同步更新 MD 模块 + TXT 说明 + 飞书文档，保证文档一致性，支持自动触发（工作流/Skill/原子动作/项目/术语/HTML/Worklog/微信转账）。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>三线更新</li>
+                        <li>同步更新</li>
+                        <li>更新工作流（自动触发）</li>
+                        <li>创建 Skill（自动触发）</li>
+                        <li>新增原子动作（自动触发）</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">13. unified-glossary - 统一术语表</span>
+                    <span class="skill-tag tag-assist">辅助</span>
+                </div>
+                <div class="skill-desc">管理统一术语表，确保项目中术语一致性，支持术语添加、查询、更新。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>添加术语</li>
+                        <li>查询术语</li>
+                        <li>更新术语表</li>
+                        <li>这个术语什么意思？</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">14. atomic-action-doc-sync - 原子动作文档同步</span>
+                    <span class="skill-tag tag-assist">辅助</span>
+                </div>
+                <div class="skill-desc">同步原子动作定义到飞书文档，确保原子动作主数据清单与实际文档一致。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>同步原子动作</li>
+                        <li>更新原子动作文档</li>
+                        <li>同步到飞书原子动作清单</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">15. goodnight-memory-sync - 晚安记忆同步</span>
+                    <span class="skill-tag tag-assist">辅助</span>
+                </div>
+                <div class="skill-desc">每天睡前同步今日记忆到 MEMORY.md，提取关键洞察和决策，更新长期记忆。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>晚安</li>
+                        <li>同步今日记忆</li>
+                        <li>更新 MEMORY.md</li>
+                        <li>今天学到了什么？</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">16. SKILL-DOUBAO-001 - 豆包技能 001</span>
+                    <span class="skill-tag tag-assist">辅助</span>
+                </div>
+                <div class="skill-desc">豆包会话处理基础技能，支持会话读取、分析、归档等基础功能。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>豆包会话处理</li>
+                        <li>处理豆包内容</li>
+                        <li>豆包 [内容]</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ClawHub 下载 -->
+        <div class="category-section">
+            <div class="category-title">📥 ClawHub 下载（1 个）</div>
+            
+            <div class="skill-card">
+                <div class="skill-header">
+                    <span class="skill-name">17. nano-banana-pro - 图像生成</span>
+                    <span class="skill-tag tag-clawhub">ClawHub</span>
+                </div>
+                <div class="skill-desc">从 ClawHub 下载的图像生成技能，支持高质量图像生成，待配置 API 密钥。</div>
+                <div class="prompt-box">
+                    <div class="prompt-title">🎯 触发 Prompt</div>
+                    <ul class="prompt-list">
+                        <li>生成图片</li>
+                        <li>创建图像</li>
+                        <li>画一张图</li>
+                        <li>生成 [描述] 的图片</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 8px;">
+                    <strong>⚠️ 状态：</strong>已下载，待配置 API 密钥
+                </div>
+            </div>
+        </div>
+
+        <!-- 快速参考 -->
+        <div class="quick-ref">
+            <h3>🚀 快速参考：常用 Prompt</h3>
+            <ul>
+                <li><strong>豆包会话处理：</strong>"豆包 [粘贴内容]"</li>
+                <li><strong>生成专家点评：</strong>"生成专家点评" / "创建 HTML 报告"</li>
+                <li><strong>生成周报：</strong>"生成周报" / "周三了，生成周报"</li>
+                <li><strong>创建 Cron 任务：</strong>"创建 Cron 任务" / "每小时提醒我"</li>
+                <li><strong>项目报告：</strong>"生成项目总结报告" / "创建项目进度 HTML"</li>
+                <li><strong>三线同步：</strong>"三线更新" / "同步更新" / "创建 Skill（自动触发）"</li>
+                <li><strong>语音播报：</strong>"用语音播报" / "TTS 播放"</li>
+                <li><strong>飞书消息：</strong>"发送飞书消息" / "给飞书发通知"</li>
+            </ul>
+        </div>
+
+        <!-- 技能使用频率 -->
+        <div class="section">
+            <h2 class="section-title">📈 技能使用频率</h2>
+            <div class="mermaid">
+pie title 技能使用频率分布
+    "高频（每天）" : 3
+    "中频（每周）" : 4
+    "低频（按需）" : 10
+            </div>
+            <div style="text-align: center; margin-top: 20px; color: #7f8c8d;">
+                <p><strong>高频技能：</strong>cron-task-manager, tts-automation, feishu-message-automation</p>
+                <p><strong>中频技能：</strong>weekly-report-generator, doubao-expert-review, html-expert-review, project-progress-sync</p>
+            </div>
+        </div>
+
+        <!-- 技能关联项目 -->
+        <div class="section">
+            <h2 class="section-title">🔗 技能关联项目</h2>
+            <div class="mermaid">
+graph TD
+    A[豆包会话自动化] --> B[doubao-expert-review]
+    A --> C[html-expert-review]
+    A --> D[doubao-session-archiver]
+    A --> E[SKILL-DOUBAO-001]
+    A --> F[tts-automation]
+    G[周报系统] --> H[weekly-report-generator]
+    G --> I[cron-task-manager]
+    J[微信转账自动化] --> K[project-summary-report]
+    L[任务管理] --> M[three-line-sync]
+            </div>
+        </div>
+
+        <!-- 注意事项 -->
+        <div class="section" style="background: #fff3cd; padding: 20px; border-radius: 8px; border-left: 4px solid #f39c12;">
+            <h2 class="section-title" style="border:none; padding:0;">⚠️ 注意事项</h2>
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li>✅ <strong>文件命名：</strong>使用英文文件名，避免中文（2026-03-08 教训）</li>
+                <li>✅ <strong>自动触发：</strong>three-line-sync 支持自动触发（工作流/Skill/原子动作/项目/术语/HTML/Worklog/微信转账）</li>
+                <li>✅ <strong>Cron 任务：</strong>每周三 15:00 自动生成周报，每小时优先级提醒</li>
+                <li>✅ <strong>HTML 标准：</strong>所有 HTML 输出遵守《HTML-STANDARD.md》标准</li>
+                <li>✅ <strong>三线同步：</strong>MD 模块 + TXT 说明 + 飞书文档，保证一致性</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'rough' });
+    </script>
+</body>
+</html>

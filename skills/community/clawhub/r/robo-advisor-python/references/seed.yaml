@@ -1,0 +1,3304 @@
+meta:
+  id: finance-bp-066-v5.3
+  version: v6.1
+  blueprint_id: finance-bp-066
+  sop_version: crystal-compilation-v6.1
+  source_language: en
+  compiled_at: '2026-04-22T13:00:21.762032+00:00'
+  target_host: openclaw
+  authoritative_artifact:
+    primary: seed.yaml
+    non_authoritative_derivatives:
+    - SKILL.md (host-generated summary, may lag)
+    - HEARTBEAT.md (host telemetry)
+    - memory/*.md (host conversational memory)
+    rule: On any behavioral decision (preconditions check, OV assertion, EQ rule firing, spec_lock verification), agents MUST
+      re-read seed.yaml. Derivatives are for UI display only and may be out-of-date.
+  execution_protocol:
+    install_trigger:
+    - Execute resources.host_adapter.install_recipes[] in declared order
+    - Verify each package with import check before proceeding
+    execute_trigger: When user intent matches intent_router.uc_entries[].positive_terms AND user uses action verb (run/execute/跑/执行/backtest/fetch/collect)
+    on_execute:
+    - Reload seed.yaml (do not rely on SKILL.md or cached summaries)
+    - Run preconditions[] in declared order; halt on first fatal failure with on_fail message to user
+    - Enter context_state_machine.CA1_MEMORY_CHECKED state
+    - Evaluate evidence_quality.enforcement_rules[]; prepend user_disclosure_template
+    - Translate user_facing_fields to user locale per locale_contract
+    - "[V6 READING ORDER]\nThis crystal contains the following V6 layers. Before answering any business question, the host\
+      \ MUST read them in order:\n  1. anti_patterns[] — cross-project anti-patterns (with AP-* ids)\n  2. cross_project_wisdom[]\
+      \ — cross-project wisdom (with CW-* ids)\n  3. domain_constraints_injected[] — domain constraints (SHARED-* ids)\n \
+      \ 4. known_use_cases[] — concrete business scenarios (KUC-* ids)\n  5. component_capability_map — AST component map\
+      \ (by module)\n\nWhen answering user questions, proactively cite relevant AP-*/CW-*/SHARED-*/KUC-* ids with source text.\
+      \ Examples: T+1 rules -> cite SHARED-* constraint; model comparison -> warn via AP-*; follow-holdings strategy -> cite\
+      \ KUC-* with example file."
+    workspace_resolution:
+      scripts_path: '{host_workspace}/scripts/'
+      skills_path: '{host_workspace}/skills/'
+      trace_path: '{host_workspace}/.trace/'
+  capability_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  upgraded_from: finance-bp-066-v1.seed.yaml
+  upgraded_at: '2026-04-22T13:20:13.424714+00:00'
+  v6_inputs:
+    ast_mind_map: knowledge/sources/finance/finance-bp-066--wealthbot/v6_inputs/ast_mind_map.yaml
+    anti_patterns: null
+    cross_project_wisdom: null
+    examples_kuc: knowledge/sources/finance/finance-bp-066--wealthbot/v6_inputs/examples_kuc.yaml
+    shared_pools_dir: knowledge/sources/finance/_shared
+anti_patterns:
+- id: AP-PORTFOLIO-ANALYTICS-001
+  title: Division by zero in price ratio calculations corrupts rebalancing
+  description: When calculating price_diff using current_price divided by old_price without validating old_price is non-zero,
+    the result is NaN or INF. This corrupts portfolio rebalancing calculations in wealthbot, causing incorrect buy/sell decisions
+    based on invalid prices_diff values. The same issue appears in getPricesDiff() where divide-by-zero when old_price equals
+    zero produces NaN/infinity that propagates to all subsequent trade decisions.
+  project_source: finance-bp-066--wealthbot
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-002
+  title: Look-ahead bias from unshifted signal generation and position calculations
+  description: Generating trading signals from current-period technical indicators (RSI, moving averages) without proper shift(-1)
+    creates look-ahead bias, causing live trading returns to fall far below backtested results. Similarly, when estimating
+    intraday positions from transactions without applying shift(1) to EOD positions, day-start positions are contaminated
+    with end-of-day values, making results unrepresentative of actual trading.
+  project_source: finance-bp-108--finmarketpy, finance-bp-106--pyfolio-reloaded
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-003
+  title: Non-positive-semidefinite covariance matrix breaks CVXPY optimization
+  description: Passing a non-positive-semidefinite covariance matrix to CVXPY optimization with assume_PSD=True produces incorrect
+    results because the solver assumes validity without verification. This causes Cholesky decomposition to fail or produce
+    garbage weights, preventing portfolio optimization from running entirely. Riskfolio-Lib and PyPortfolioOpt both require
+    explicit PSD validation before optimization.
+  project_source: finance-bp-093--PyPortfolioOpt, finance-bp-117--Riskfolio-Lib
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-004
+  title: Incorrect portfolio value tracking destroys time-series integrity
+  description: Updating existing ClientPortfolioValue records instead of creating new ones destroys the time-series integrity
+    needed for billing calculations and historical reconciliation. This creates data corruption where billing calculations
+    and historical reporting against custodian records will fail to match. Portfolio value records must be linked to parent
+    ClientPortfolio via proper relationships to avoid orphaned records.
+  project_source: finance-bp-066--wealthbot
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-005
+  title: Allocation denominator excludes cash, corrupting portfolio composition
+  description: When computing allocation percentages excluding cash from the denominator, portfolio allocation percentages
+    will not sum to 100%, misrepresenting the portfolio's actual composition. Additionally, concentration metrics become artificially
+    skewed when including cash (a non-position asset), producing misleading diversification assessments that could lead to
+    inappropriate risk management decisions.
+  project_source: finance-bp-106--pyfolio-reloaded
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-006
+  title: FIFO sell order violation corrupts cost basis and XIRR
+  description: Processing positions out of chronological order in FIFO sell operations causes incorrect cost basis assignment,
+    leading to inaccurate realized gains/losses and wrong XIRR calculation. Chinese funds have tiered redemption fees based
+    on holding periods, so FIFO violations result in incorrect holding period calculation and wrong redemption fee being applied,
+    causing direct financial loss.
+  project_source: finance-bp-068--xalpha
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-007
+  title: Score validation bypass allows invalid composite calculations
+  description: Accepting scores outside the 0-100 range in screener results corrupts ranking and rating logic, causing unpredictable
+    screening results that violate the fundamental score contract. When combined with division-by-zero guards that return
+    0.0 for empty screener lists, this creates unpredictable behavior where invalid scores produce wrong composite calculations
+    and incorrect Strong Buy/Buy/Watch/Pass ratings.
+  project_source: finance-bp-082--stock-screener
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-008
+  title: Convex optimization constraints violate DCP rules
+  description: Using non-convex objectives or DCP-violating expressions in CVXPY optimization causes DCPError, completely
+    preventing portfolio optimization from running. Similarly, providing non-callable constraints or invalid bounds formats
+    (not matching n_assets length) causes TypeError. Feasibility violations like setting target_volatility below global minimum
+    or target_return above maximum achievable return make problems infeasible.
+  project_source: finance-bp-093--PyPortfolioOpt
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-009
+  title: Transaction data corruption from missing columns and invalid dates
+  description: Extracting round trips from transactions DataFrame without validating required columns (amount, price, symbol)
+    causes KeyError exceptions. When open_dt is not strictly less than close_dt, negative or zero duration values indicate
+    data corruption causing incorrect holding period statistics. Similarly, non-normalized transaction timestamps cause intra-day
+    trades to be incorrectly split across days.
+  project_source: finance-bp-106--pyfolio-reloaded
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-010
+  title: Missing DataFrame schema validation causes KeyError propagation
+  description: Passing non-DataFrame objects (numpy arrays, lists) where DataFrame is expected causes NameError, AttributeError,
+    or TypeError in downstream pandas operations. xalpha's fundinfo.price requires specific columns (date, netvalue, totvalue,
+    comment), PyPortfolioOpt and Riskfolio-Lib require index alignment between expected returns and covariance matrix. Missing
+    columns cause backtest calculations to fail with NaN values or KeyError.
+  project_source: finance-bp-068--xalpha, finance-bp-093--PyPortfolioOpt, finance-bp-117--Riskfolio-Lib
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-011
+  title: Wrong annualization factors distort cross-frequency metric comparison
+  description: Applying incorrect annualization factors (wrong values for daily, weekly, monthly, quarterly, yearly frequencies)
+    produces non-comparable metrics across different return frequencies, causing invalid strategy comparisons and misallocated
+    capital. The Sharpe ratio formula must use correct annualization with sample standard deviation (ddof=1), otherwise producing
+    misleading risk-adjusted return estimates.
+  project_source: finance-bp-107--empyrical-reloaded
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-012
+  title: Misaligned time series in alpha/beta calculation produces invalid factor analysis
+  description: Passing returns and factor_returns to alpha_beta functions without verifying data alignment on index labels
+    (pd.Series) or length equality (np.ndarray) produces incorrect alpha/beta values due to correlation computed between mismatched
+    periods. Including benchmark ticker in the asset ticker list causes circular correlation producing meaningless beta values
+    of approximately 1.0.
+  project_source: finance-bp-107--empyrical-reloaded, finance-bp-118--FinanceToolkit
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-013
+  title: Forward-filling spot prices creates look-ahead bias in TRI construction
+  description: Forward-filling spot prices creates look-ahead bias where future prices are used to calculate historical returns,
+    invalidating all TRI-based backtest results. The total return index construction requires multiplicative cumulation using
+    cumprod (not cumsum) with base value 100, as additive cumulation allows negative cumulative returns to break the index
+    chain.
+  project_source: finance-bp-108--finmarketpy
+  severity: high
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+- id: AP-PORTFOLIO-ANALYTICS-014
+  title: Unsupported solver selection breaks advanced risk calculations
+  description: Using solvers that don't support required cone programming (power cone, exponential cone) causes CVXPY to fail
+    with SolverError, returning None and breaking risk calculations. CLARABEL, SCS, ECOS support power cone for RLVaR/RLDaR
+    calculations, while CLARABEL/MOSEK/SCS/ECOS support exponential cone for EVaR calculations. Riskfolio-Lib and PyPortfolioOpt
+    both require careful solver selection.
+  project_source: finance-bp-117--Riskfolio-Lib, finance-bp-093--PyPortfolioOpt
+  severity: medium
+  applicable_to_tags:
+    markets:
+    - multi-market
+    activities:
+    - portfolio-analytics
+  _source_file: anti-patterns/portfolio-analytics.yaml
+cross_project_wisdom:
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-001
+  source_project: finance-bp-066--wealthbot, finance-bp-082--stock-screener, finance-bp-093--PyPortfolioOpt
+  pattern_name: Defensive zero-division guards with explicit handling
+  description: Always guard division operations with explicit zero-value checks before executing. In price ratio calculations,
+    filter out securities where old_price is zero before calling getPricesDiff. In composite score calculations, guard against
+    total_weight of zero and return 0.0 for empty input lists. This prevents NaN/infinity propagation that corrupts downstream
+    calculations and crashes pipelines.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-002
+  source_project: finance-bp-093--PyPortfolioOpt, finance-bp-117--Riskfolio-Lib
+  pattern_name: Covariance matrix positive-semidefiniteness verification
+  description: Always verify covariance matrix is positive-semidefinite before passing to CVXPY optimization. Apply eigenvalue
+    clipping if violated, as non-PSD matrices cause Cholesky decomposition failures. Both PyPortfolioOpt and Riskfolio-Lib
+    enforce this constraint to prevent optimizer from finding mathematically invalid solutions or crashing entirely.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-003
+  source_project: finance-bp-068--xalpha, finance-bp-106--pyfolio-reloaded, finance-bp-107--empyrical-reloaded
+  pattern_name: Geometric compounding for cumulative returns
+  description: Compute cumulative returns using geometric compounding via cumprod(1 + returns), never arithmetic cumulation
+    via cumsum. Arithmetic cumulative sum overstates gains and understates losses, causing cumulative returns to diverge significantly
+    from actual portfolio performance over volatile periods. This principle applies to total return index construction and
+    any cumulative performance calculation.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-004
+  source_project: finance-bp-108--finmarketpy, finance-bp-106--pyfolio-reloaded
+  pattern_name: Temporal shift enforcement to prevent look-ahead bias
+  description: Enforce proper temporal shifting in signal generation and position calculations. Use shift(-1) for exit signals
+    to prevent look-ahead bias, and shift(1) when estimating intraday positions from EOD data. Forward-fill carry data and
+    backward-fill only old data gaps, never forward-fill spot prices. Violations cause live trading returns to diverge from
+    backtested results.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-005
+  source_project: finance-bp-093--PyPortfolioOpt, finance-bp-117--Riskfolio-Lib
+  pattern_name: DCP-compliant convex optimization construction
+  description: Use only DCP-compliant convex objectives and constraints in CVXPY. Provide constraints as callable functions
+    accepting weight variables, use valid bounds formats matching n_assets length, and verify target parameters (volatility,
+    return) are within feasible ranges. Non-convex or infeasible problems fail with DCPError or OptimizationError, preventing
+    optimization entirely.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-006
+  source_project: finance-bp-107--empyrical-reloaded, finance-bp-118--FinanceToolkit
+  pattern_name: Correct Sharpe ratio formula with risk-free rate subtraction
+  description: Calculate Sharpe ratio using (mean returns - risk_free) / std(returns) * sqrt(annualization) with sample standard
+    deviation (ddof=1). Subtract risk-free rate from asset returns before dividing by volatility. Incorrect Sharpe ratio calculation
+    produces misleading risk-adjusted return estimates, causing poor investment decisions based on faulty performance attribution.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-007
+  source_project: finance-bp-068--xalpha, finance-bp-066--wealthbot
+  pattern_name: Immutable FIFO position tracking with chronological ordering
+  description: Maintain FIFO position tracking with strictly increasing date order for position entries. Use copy() function
+    to create independent copies before mutating remtable to avoid side effects. Enforce chronological ordering in sell operations
+    to ensure correct cost basis and holding period calculation, particularly important for funds with tiered fees by holding
+    period.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-008
+  source_project: finance-bp-082--stock-screener, finance-bp-093--PyPortfolioOpt, finance-bp-117--Riskfolio-Lib
+  pattern_name: Validation at system boundaries with descriptive errors
+  description: Enforce validation at system boundaries with descriptive error messages. Validate expected returns matches
+    covariance matrix dimensions, score values are within [0, 100], confidence values within [0, 1], and required DataFrame
+    columns are present. Invalid inputs should raise ValueError with descriptive messages listing valid options to prevent
+    silent failures or corrupted calculations.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-009
+  source_project: finance-bp-068--xalpha, finance-bp-107--empyrical-reloaded
+  pattern_name: Decimal rounding for monetary calculations
+  description: Use Decimal with explicit rounding (myround) for each monetary calculation to avoid floating-point errors that
+    cause share miscalculation and incorrect cost basis. This prevents rounding errors from propagating to XIRR and portfolio
+    valuation calculations. Direct floating-point operations in financial calculations accumulate errors that become material
+    over many transactions.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+- wisdom_id: CW-PORTFOLIO-ANALYTICS-010
+  source_project: finance-bp-106--pyfolio-reloaded, finance-bp-068--xalpha
+  pattern_name: Cash flow sign convention enforcement
+  description: Mark cash outflows as negative and cash inflows as positive in cftable. Incorrect cash flow signs cause NPV
+    calculation to invert, producing negative returns for profitable trades and vice versa. Verify sum of round trip PnLs
+    equals total realized transaction dollars to catch sign convention errors before they corrupt performance attribution.
+  applicable_to_activity: portfolio-analytics
+  _source_file: cross-project-wisdom/portfolio-analytics.yaml
+domain_constraints_injected: []
+resources_injected: {}
+component_capability_map:
+  project: finance-bp-066--wealthbot
+  scan_date: '2026-04-22'
+  stats:
+    total_files: 5
+    total_classes: 19
+    total_functions: 0
+    total_stages: 5
+  modules:
+    price_collection:
+      class_count: 4
+      stage_id: price_collection
+      stage_order: 1
+      responsibility: Fetch and store current security prices from Tradier API; ensures each securities have latest market
+        prices for portfolio valuation
+      classes:
+      - name: Rebalancer.updateSecurities
+        file: price_collection/rebalancer-updatesecurities.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: BaseRebalancer.getPricesDiff
+        file: price_collection/baserebalancer-getpricesdiff.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Rebalancer.setIsCurrent
+        file: price_collection/rebalancer-setiscurrent.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: price_source
+        file: price_collection/price-source.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 2
+    portfolio_analysis:
+      class_count: 4
+      stage_id: portfolio_analysis
+      stage_order: 2
+      responsibility: Calculate portfolio value, model deviation, and determine required rebalancing actions based on target
+        allocations
+      classes:
+      - name: CeModel.getModelEntities
+        file: portfolio_analysis/cemodel-getmodelentities.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Rebalancer.updatePortfolioValues
+        file: portfolio_analysis/rebalancer-updateportfoliovalues.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Job.getRebalanceType
+        file: portfolio_analysis/job-getrebalancetype.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: rebalance_type
+        file: portfolio_analysis/rebalance-type.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 3
+    trade_decision_engine:
+      class_count: 5
+      stage_id: trade_decision
+      stage_order: 3
+      responsibility: Determine which securities to buy or sell based on price movements and risk tolerance thresholds
+      classes:
+      - name: Trade.buyOrSell
+        file: trade_decision_engine/trade-buyorsell.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: TradeData.getTradeData
+        file: trade_decision_engine/tradedata-gettradedata.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: deviation_threshold
+        file: trade_decision_engine/deviation-threshold.py
+        line: 0
+        kind: replaceable_point
+      - name: price_threshold_buy
+        file: trade_decision_engine/price-threshold-buy.py
+        line: 0
+        kind: replaceable_point
+      - name: price_threshold_sell
+        file: trade_decision_engine/price-threshold-sell.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 4
+    trade_execution:
+      class_count: 5
+      stage_id: trade_execution
+      stage_order: 4
+      responsibility: Place orders via Tradier API and record resulting transactions, lots, and positions
+      classes:
+      - name: Requests.placeOrder
+        file: trade_execution/requests-placeorder.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Trade.buy
+        file: trade_execution/trade-buy.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: Trade.sell
+        file: trade_execution/trade-sell.py
+        line: 0
+        kind: required_method
+        signature: ''
+      - name: order_type
+        file: trade_execution/order-type.py
+        line: 0
+        kind: replaceable_point
+      - name: duration
+        file: trade_execution/duration.py
+        line: 0
+        kind: replaceable_point
+      design_decision_count: 5
+    portfolio_value_update:
+      class_count: 1
+      stage_id: portfolio_value_update
+      stage_order: 5
+      responsibility: Record post-trade portfolio valuation for historical tracking and billing calculations
+      classes:
+      - name: Rebalancer.updatePortfolioValues
+        file: portfolio_value_update/rebalancer-updateportfoliovalues.py
+        line: 0
+        kind: required_method
+        signature: ''
+      design_decision_count: 2
+  data_flow_hints: []
+locale_contract:
+  source_language: en
+  user_facing_fields:
+  - human_summary.what_i_can_do.tagline
+  - human_summary.what_i_can_do.use_cases[]
+  - human_summary.what_i_auto_fetch[]
+  - human_summary.what_i_ask_you[]
+  - evidence_quality.user_disclosure_template
+  - post_install_notice.message_template.positioning
+  - post_install_notice.message_template.capability_catalog.groups[].name
+  - post_install_notice.message_template.capability_catalog.groups[].description
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].name
+  - post_install_notice.message_template.capability_catalog.groups[].ucs[].short_description
+  - post_install_notice.message_template.call_to_action
+  - post_install_notice.message_template.featured_entries[].beginner_prompt
+  - post_install_notice.message_template.more_info_hint
+  - preconditions[].description
+  - preconditions[].on_fail
+  - intent_router.uc_entries[].name
+  - intent_router.uc_entries[].ambiguity_question
+  - architecture.pipeline
+  - architecture.stages[].narrative.does_what
+  - architecture.stages[].narrative.key_decisions
+  - architecture.stages[].narrative.common_pitfalls
+  - constraints.fatal[].consequence
+  - constraints.regular[].consequence
+  - output_validator.assertions[].failure_message
+  - acceptance.hard_gates[].on_fail
+  - skill_crystallization.action
+  locale_detection_order:
+  - explicit_user_declaration
+  - first_message_language
+  - system_locale
+  translation_enforcement:
+    trigger: on_first_user_message
+    action: Render user_facing_fields in detected locale, preserving all IDs (BD-/SL-/UC-/finance-C-) and code identifiers
+      verbatim
+    violation_code: LOCALE-01
+    violation_signal: User receives untranslated English Human Summary when detected locale != en
+evidence_quality:
+  declared:
+    evidence_coverage_ratio: 1.0
+    evidence_verify_ratio: 0.7272727272727273
+    evidence_invalid: 21
+    evidence_verified: 56
+    evidence_auto_fixed: 0
+    audit_coverage: 48/48 (100%)
+    audit_pass_rate: 3/48 (6%)
+    audit_fail_total: 20
+    audit_finance_universal:
+      pass: 1
+      warn: 11
+      fail: 8
+    audit_subdomain_totals:
+      pass: 2
+      warn: 14
+      fail: 12
+  enforcement_rules:
+  - id: EQ-01
+    trigger: declared.evidence_verify_ratio < 0.5
+    action: MUST invoke traceback lookup for all cited BD-IDs in output before emitting business code — read LATEST.yaml sections
+      for each BD referenced
+    violation_code: EQ-01-V
+    violation_signal: Generated script references BD-IDs but no tool_call to read LATEST.yaml preceded code generation
+  user_disclosure_template: '[QUALITY NOTICE] This crystal was compiled from blueprint finance-bp-066. Evidence verify ratio
+    = 72.7% and audit fail total = 20. Generated results may have uncaptured requirement gaps. Verify critical decisions against
+    source files (LATEST.yaml / LATEST.jsonl).'
+traceback:
+  source_files:
+    blueprint: LATEST.yaml
+    constraints: LATEST.jsonl
+  mandatory_lookup_scenarios:
+  - id: TB-01
+    condition: Two constraints have apparently conflicting enforcement rules
+    lookup_target: LATEST.jsonl — find both constraint IDs, compare `consequence` + `evidence_refs` to determine priority
+  - id: TB-02
+    condition: A business decision rationale is unclear or disputed
+    lookup_target: LATEST.yaml — locate BD-ID under business_decisions, read `rationale` + `alternative_considered` fields
+  - id: TB-03
+    condition: evidence_invalid > 0 in evidence_quality.declared
+    lookup_target: LATEST.yaml _enrich_meta — cross-check specific BD `evidence_refs` fields for invalid markers
+  - id: TB-04
+    condition: User asks where a rule comes from
+    lookup_target: LATEST.jsonl — find constraint by ID, read `confidence.evidence_refs` for source file + line number
+  - id: TB-05
+    condition: Generated code does not match expected ZVT API behavior
+    lookup_target: LATEST.yaml stages[].required_methods — verify method signature and evidence locator in source code
+  degraded_lookup:
+    no_fs_access: 'Ask the user to paste the relevant LATEST.yaml section or LATEST.jsonl lines for the BD-/finance-C- IDs
+      in question. Crystal ID: finance-bp-066-v5.0.'
+trace_schema:
+  event_types:
+  - precondition_check
+  - spec_lock_check
+  - evidence_rule_fired
+  - evidence_rule_skipped
+  - locale_translation_emitted
+  - hard_gate_passed
+  - hard_gate_failed
+  - skill_emitted
+  - false_completion_claim
+preconditions:
+- id: PC-01
+  description: zvt package installed and importable
+  check_command: python3 -c 'import zvt; print(zvt.__version__)'
+  on_fail: 'Run: python3 -m pip install zvt  then re-run: python3 -m zvt.init_dirs to initialize data directories'
+  severity: fatal
+- id: PC-02
+  description: K-data exists for target entities (required before backtesting)
+  check_command: python3 -c "from zvt.api.kdata import get_kdata; df = get_kdata(entity_ids=['stock_sh_600000'], limit=1);
+    assert df is not None and len(df) > 0, 'No kdata found'"
+  on_fail: 'Run recorder first: python3 -m zvt.recorders.em.em_stock_kdata_recorder --entity_ids stock_sh_600000  (replace
+    with your target entity IDs)'
+  severity: fatal
+  applies_to_uc: []
+- id: PC-03
+  description: ZVT data directory initialized (~/.zvt or ZVT_HOME)
+  check_command: 'python3 -c "import os; from pathlib import Path; zvt_home = Path(os.environ.get(''ZVT_HOME'', Path.home()
+    / ''.zvt'')); assert zvt_home.exists(), f''ZVT home not found: {zvt_home}''"'
+  on_fail: 'Run: python3 -m zvt.init_dirs'
+  severity: fatal
+- id: PC-04
+  description: SQLite write permission for ZVT data directory
+  check_command: python3 -c "import os, tempfile; from pathlib import Path; zvt_home = Path(os.environ.get('ZVT_HOME', Path.home()
+    / '.zvt')); test_f = zvt_home / '.write_test'; test_f.touch(); test_f.unlink()"
+  on_fail: 'Check directory permissions: chmod u+w ~/.zvt  or set ZVT_HOME environment variable to a writable location'
+  severity: warn
+intent_router:
+  uc_entries: []
+context_state_machine:
+  states:
+  - id: CA1_MEMORY_CHECKED
+    entry: Task started
+    exit: All memory queries attempted and recorded; memory_unavailable set if failed
+    timeout: 30s — skip memory, mark memory_unavailable=true, proceed to CA2
+  - id: CA2_GAPS_FILLED
+    entry: CA1 complete
+    exit: 'All FATAL-priority required inputs answered: target market (A-share/HK/US), data source, time range, strategy type'
+    timeout: NOT skippable — FATAL inputs MUST be user-answered before proceeding
+  - id: CA3_PATH_SELECTED
+    entry: CA2 complete
+    exit: intent_router matched single use case with confidence gap > 20% over next candidate, no data_domain ambiguity
+    timeout: Trigger ambiguity_question for top-2 candidates, await user selection
+  - id: CA4_EXECUTING
+    entry: CA3 complete + user explicit confirmation received
+    exit: All hard gates G1-Gn passed and output files written
+    timeout: NOT skippable — user confirmation of execution path required
+  enforcement: Code generation is PROHIBITED before CA4_EXECUTING. Any regression to earlier state MUST be announced to user.
+    buy/sell ordering SL-01 check runs at CA4 entry.
+spec_lock_registry:
+  semantic_locks:
+  - id: SL-01
+    description: Execute sell orders before buy orders in every trading cycle
+    locked_value: sell() called before buy() in each Trader.run() iteration
+    violation_is: fatal
+    source_bd_ids:
+    - BD-018
+  - id: SL-02
+    description: Trading signals MUST use next-bar execution (no look-ahead)
+    locked_value: due_timestamp = happen_timestamp + level.to_second()
+    violation_is: fatal
+    source_bd_ids:
+    - BD-014
+    - BD-025
+  - id: SL-03
+    description: Entity IDs MUST follow format entity_type_exchange_code
+    locked_value: stock_sh_600000 | stockhk_hk_0700 | stockus_nasdaq_AAPL
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-04
+    description: DataFrame index MUST be MultiIndex (entity_id, timestamp)
+    locked_value: df.index.names == ['entity_id', 'timestamp']
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-05
+    description: 'TradingSignal MUST have EXACTLY ONE of: position_pct, order_money, order_amount'
+    locked_value: XOR enforcement in trading/__init__.py:68
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-06
+    description: 'filter_result column semantics: True=BUY, False=SELL, None/NaN=NO ACTION'
+    locked_value: factor.py:475 order_type_flag mapping
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-07
+    description: Transformer MUST run BEFORE Accumulator in factor pipeline
+    locked_value: 'compute_result(): transform at :403 before accumulator at :409'
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-08
+    description: 'MACD parameters locked: fast=12, slow=26, signal=9'
+    locked_value: factors/algorithm.py:30 macd(slow=26, fast=12, n=9)
+    violation_is: fatal
+    source_bd_ids:
+    - BD-036
+  - id: SL-09
+    description: 'Default transaction costs: buy_cost=0.001, sell_cost=0.001, slippage=0.001'
+    locked_value: sim_account.py:25 SimAccountService default costs
+    violation_is: warning
+    source_bd_ids:
+    - BD-029
+  - id: SL-10
+    description: A-share equity trading is T+1 (no same-day close of buy positions)
+    locked_value: sim_account.available_long filters by trading_t
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-11
+    description: Recorder subclass MUST define provider AND data_schema class attributes
+    locked_value: contract/recorder.py:71 Meta; register_schema decorator
+    violation_is: fatal
+    source_bd_ids: []
+  - id: SL-12
+    description: Factor result_df MUST contain either 'filter_result' OR 'score_result' column
+    locked_value: result_df.columns.intersection({'filter_result', 'score_result'}) non-empty
+    violation_is: fatal
+    source_bd_ids: []
+  implementation_hints:
+  - id: IH-01
+    hint: 'Use AdjustType enum exactly: qfq (pre-adjust), hfq (post-adjust), bfq (none) — contract/__init__.py:121'
+  - id: IH-02
+    hint: For A-share kdata, default to hfq for long-term analysis (dividend-adjusted) — trader.py:538 StockTrader
+  - id: IH-03
+    hint: SQLite connection MUST use check_same_thread=False for multi-threaded recorders
+  - id: IH-04
+    hint: Accumulator state serialization uses JSON with custom encoder/decoder hooks — contract/base_service.py
+  - id: IH-05
+    hint: Factor.level MUST match TargetSelector.level (enforced at add_factor) — factors/target_selector.py:84
+preservation_manifest:
+  required_objects:
+    business_decisions_count: 114
+    fatal_constraints_count: 28
+    non_fatal_constraints_count: 165
+    use_cases_count: 0
+    semantic_locks_count: 12
+    preconditions_count: 4
+    evidence_quality_rules_count: 2
+    traceback_scenarios_count: 5
+architecture:
+  pipeline: data_collection -> data_storage -> factor_computation -> target_selection -> trading_execution -> visualization
+  stages:
+  - id: data_collection
+    narrative:
+      does_what: TimeSeriesDataRecorder and FixedCycleDataRecorder fetch OHLCV and fundamental data from providers (eastmoney,
+        joinquant, baostock, akshare) and persist domain objects (Stock1dKdata, BalanceSheet) to SQLite via df_to_db().
+      key_decisions: BD-002 chose evaluate_start_end_size_timestamps for incremental fetch (not full refresh) because comparing
+        to get_latest_saved_record avoids redundant API calls; BD-003 chose get_data_map field transformation to keep domain
+        schema provider-agnostic.
+      common_pitfalls: 'Don''t forget SL-11: Recorder subclass MUST declare both provider and data_schema class attributes
+        else initialization fails with assertion error; finance-C-001 fatal violation.'
+    business_decisions: []
+  - id: data_storage
+    narrative:
+      does_what: StorageBackend persists DataFrames to per-provider SQLite databases at {data_path}/{provider}/{provider}_{db_name}.db
+        using path templates from _get_path_template; Mixin.record_data and Mixin.query_data provide uniform read/write interface.
+      key_decisions: BD-004 chose StorageBackend abstraction (not hardcoded SQLite) to allow future cloud storage swap; BD-006
+        derives db_name from data_schema __tablename__ for per-domain database isolation.
+      common_pitfalls: SL-04 violation (wrong DataFrame index) causes factor pipeline failures downstream; always ensure df.index.names
+        == ['entity_id', 'timestamp'] before calling record_data.
+    business_decisions: []
+  - id: factor_computation
+    narrative:
+      does_what: Factor.compute() applies Transformer (stateless, e.g. MacdTransformer) then Accumulator (stateful, e.g. MaStatsAccumulator)
+        to produce filter_result or score_result columns; EntityStateService persists per-entity rolling state across batches.
+      key_decisions: BD-007 chose Factor inheriting DataReader for composable data access; SL-08 locks MACD at (fast=12, slow=26,
+        n=9) — chose standard Appel parameters not adaptive because interpretability matters for practitioners.
+      common_pitfalls: 'SL-07: Transformer MUST run before Accumulator — swapping order causes NaN propagation; SL-12: result_df
+        must contain filter_result OR score_result column or TargetSelector silently drops all signals.'
+    business_decisions: []
+  - id: target_selection
+    narrative:
+      does_what: TargetSelector.add_factor() registers Factor instances; get_targets() returns entity_ids passing threshold
+        filter at a specific timestamp, enabling point-in-time historical backtesting without look-ahead.
+      key_decisions: BD-012 chose registrable factor list (not hardcoded) for runtime customization; BD-013 chose timestamp-specific
+        filtering not current-only because backtests need historical point-in-time correctness.
+      common_pitfalls: Factor.level MUST match TargetSelector.level (IH-05); mismatched levels cause silent empty target lists
+        that look like no signals but are actually level-mismatch bugs.
+    business_decisions: []
+  - id: trading_execution
+    narrative:
+      does_what: Trader.run() calls sell() before buy() each cycle, generates TradingSignals with due_timestamp = happen_timestamp
+        + level.to_second() for next-bar execution, and applies on_profit_control() for stop-loss/take-profit before regular
+        target selection.
+      key_decisions: SL-01 locks sell-before-buy order because available_long check in sim_account depends on it — chose this
+        over symmetric ordering to prevent implicit leverage; BD-039 chose long=AND/short=OR multi-level logic to reflect
+        risk asymmetry.
+      common_pitfalls: 'SL-02 violation (immediate execution instead of next-bar) introduces look-ahead bias and makes backtest
+        results unreproducible in live trading; SL-10: A-share T+1 constraint — backtesting without it overstates returns.'
+    business_decisions: []
+  - id: visualization
+    narrative:
+      does_what: Drawer.draw() combines kline main chart with factor overlays and Rect annotations for entry/exit signals
+        using Plotly; Drawable interface on Factor enables consistent chart rendering across data types.
+      key_decisions: BD-019 chose drawer_rects subclass override for custom annotations not hardcoded markers — allows traders
+        to define entry/exit visuals without modifying base drawing logic.
+      common_pitfalls: draw_result=True by default (BD-055) is fine for development but set draw_result=False in production/headless
+        environments to avoid Plotly server startup overhead.
+    business_decisions: []
+  - id: cross_cutting_concerns
+    narrative:
+      does_what: 'Invariants and utilities that span multiple pipeline stages — collected from 27 source groups: BillManager(1),
+        CashCalculationManager(1), CeModelManager(2), ClientAllocationValuesManager(2), ClientPortfolioManager(1), FeeManager(3),
+        and 21 more.'
+      key_decisions: 114 BDs merged here because they apply to more than one main stage (e.g. algorithm helpers, default value
+        choices, ordering contracts, error handling). Agent should inspect individual BD summaries and link back to affected
+        main stages via shared IDs.
+      common_pitfalls: Cross-cutting concerns frequently surface as bugs when changes to one main stage unintentionally break
+        another. Check constraints referencing these BDs and verify invariants still hold after any stage-local modification.
+    business_decisions:
+    - id: BD-066
+      type: B
+      summary: Billing sum calculation using average account values and day count
+    - id: BD-067
+      type: B
+      summary: Account cash calculation as sum of free cash across each accounts before date
+    - id: BD-063
+      type: B/RC
+      summary: Commission range extracted as min/max from model security assignments
+    - id: BD-065
+      type: B
+      summary: Risk rating adjustment when deleting model parent (child ratings decrement if above parent)
+    - id: BD-054
+      type: B/RC
+      summary: Dollar-to-percent and percent-to-dollar conversions for allocation
+    - id: BD-058
+      type: B/BA
+      summary: Portfolio variance calculation (dollar and percent) vs target
+    - id: BD-064
+      type: B
+      summary: Portfolio total value = latest ClientPortfolioValue or sum of ClientAccount values
+    - id: BD-051
+      type: B/BA
+      summary: Tiered Fee Calculation with proportional tier splitting
+    - id: BD-055
+      type: B
+      summary: Proportional fee billing based on days worked in period
+    - id: BD-060
+      type: B/BA
+      summary: Minimum fee floor enforcement after tiered calculation
+    - id: BD-057
+      type: B/BA
+      summary: Short-term vs long-term gain classification by 365-day threshold
+    - id: BD-062
+      type: B/DK
+      summary: Security allocation aggregation by subclass using SUM and current price
+    - id: BD-061
+      type: B/BA
+      summary: Tax Loss Harvesting savings calculation with differential tax rates
+    - id: BD-056
+      type: B/DK
+      summary: Gain/Loss percentage calculation using cost basis ratio
+    - id: BD-053
+      type: B/BA
+      summary: Risk tolerance score with additive points and closest model match
+    - id: BD-052
+      type: B
+      summary: Annualized TWR using geometric mean formula
+    - id: BD-059
+      type: B
+      summary: Investment gain = ending value - beginning value - contributions + withdrawals
+    - id: BD-007
+      type: B/BA
+      summary: 'Lot status tracking: INITIAL=1, IS_OPEN=2, CLOSED=3, DIVIDED=4'
+    - id: BD-008
+      type: B/BA
+      summary: 'Position status: INITIAL=1, IS_OPEN=2, IS_CLOSE=3, NOT_VERIFIED=4'
+    - id: BD-043
+      type: B/RC
+      summary: wasRebalancerDiff flag tracks if lot was modified by rebalancer
+    - id: BD-017
+      type: B
+      summary: Billing specs support TIER=1 (percentage of AUM) and FLAT=2 (fixed) fee types
+    - id: BD-018
+      type: B
+      summary: Fee tier infinity defined as 1000000000000 (1 trillion) for unbounded top tier
+    - id: BD-019
+      type: B/BA
+      summary: Minimum billing fee enforced as floor on calculated tiered fees
+    - id: BD-020
+      type: B
+      summary: RIA fees calculated per quarter using account value at period end date
+    - id: BD-035
+      type: B
+      summary: 'Relationship types: License Fee (0) vs TAMP (1) for RIA business model'
+    - id: BD-036
+      type: B
+      summary: FeeManager calculates tiered fees by iterating sorted fee tiers
+    - id: BD-044
+      type: B/BA
+      summary: Fee tiers use INFINITY constant to represent unbounded top tier
+    - id: BD-048
+      type: B/DK
+      summary: Account value calculated at period end date for billing
+    - id: BD-038
+      type: B/BA
+      summary: System account default source is 'sample' for demo accounts
+    - id: BD-082
+      type: BA
+      summary: 'INTERACTION: BD-003 (fee structure: $250 fixed + 10%) × BD-002 (minimum trade sizes: $50-$150) → Minimum economically
+        viable trade is $2,500 (breakeven point where 10% fee = $250)'
+    - id: BD-083
+      type: B/BA
+      summary: 'INTERACTION: BD-057 (365-day short-term threshold) × BD-022 (wash sale lot-level tracking) × BD-040 (TLH buy-back
+        flag) → Tax lot age determines both gain classification AND wash sale exposure simulta'
+    - id: BD-084
+      type: BA
+      summary: 'INTERACTION: BD-011 (tolerance bands 2-21% config) ≠ BD-068 (15% hardcoded thresholds) → Configurable drift
+        bands don''t match actual rebalancing triggers, creating silent override'
+    - id: BD-085
+      type: RC
+      summary: 'INTERACTION: BD-080 (hardcoded API key fallback) undermines BD-076 (BaseVoter authorization pattern) → Security
+        bypass negates authorization contract for fallback scenarios'
+    - id: BD-086
+      type: B/BA
+      summary: 'RISK CASCADE: BD-021 (TLH threshold) → BD-061 (TLH savings formula) → BD-059 (cash flow TWR) → BD-052 (annualized
+        TWR) → BD-064 (portfolio value) → BD-048 (period-end billing) → BD-066 (billing sum) →'
+    - id: BD-087
+      type: BA
+      summary: 'RISK CASCADE: BD-068 (15% threshold) + BD-011 (2-21% bands) + BD-003 ($250 fixed fee) + BD-002 ($50 min trades)
+        → Dead zone where drift exceeds tolerance but trades are uneconomical'
+    - id: BD-088
+      type: B/BA
+      summary: 'HIDDEN DEPENDENCY: BD-052 (annualized TWR) depends on BD-059 (investment gain) which depends on BD-064 (portfolio
+        value) which has implicit settlement date dependency without explicit day count conven'
+    - id: BD-089
+      type: B/BA
+      summary: 'INTERACTION: BD-045 (qualified vs non-qualified segregation) × BD-025 (municipal substitution) × BD-057 (365-day
+        threshold) → Tax-aware model decisions require coordinated lot tracking across account '
+    - id: BD-090
+      type: BA
+      summary: 'INTERACTION: BD-023 (managed level: household/account) × BD-049 (household rebalancing) × BD-031 (trade recon
+        grouping by account/subclass/security) → Household aggregation creates reconciliation comp'
+    - id: BD-076
+      type: BA
+      summary: BaseVoter abstract class defines OWNER/OPERATOR attributes; concrete voters must implement vote()
+    - id: BD-077
+      type: DK
+      summary: 'Workflow Entity extends Model/Workflow base class, delegates each methods via parent::'
+    - id: BD-030
+      type: BA/M
+      summary: Client-to-system account type adapter converts account groups to system types
+    - id: BD-070
+      type: DK
+      summary: getClientAccounts()->first() assumes client always has at least one account
+    - id: BD-071
+      type: DK
+      summary: getGroups()->first() assumes user always belongs to at least one group
+    - id: BD-078
+      type: B
+      summary: SignableObjectRepositoryInterface implemented by 4 repositories with document signature logic
+    - id: BD-072
+      type: BA/DK
+      summary: Client registration steps are hardcoded arrays with implicit ordering 0-7
+    - id: BD-073
+      type: B/BA
+      summary: 'Workflow client_status progression: DEFAULT(0)→ENVELOPE_CREATED(1)→...→ACCOUNT_FUNDED(7)'
+    - id: BD-079
+      type: B/BA
+      summary: 'Job REBALANCE_TYPE constants: FULL(0)→REQUIRED_CASH(1)→FULL_AND_TLH(2)→NO_ACTIONS(3)→INITIAL(4)'
+    - id: BD-074
+      type: B
+      summary: Rebalancer extends BaseRebalancer and uses Trade trait for composition
+    - id: BD-075
+      type: BA
+      summary: AbstractFormHandler defines success() contract; each handlers must implement
+    - id: BD-081
+      type: BA
+      summary: 'RebalancerQueue status constants: STATUS_SELL=''sell'', STATUS_BUY=''buy'''
+    - id: BD-010
+      type: B
+      summary: Asset class types limited to STOCKS and BONDS enumeration
+    - id: BD-011
+      type: B/BA
+      summary: Tolerance bands defined per asset class and subclass with default range 2-21%
+    - id: BD-012
+      type: B
+      summary: 'Rebalancing methods: Asset Class level (1) or Subclass level (2)'
+    - id: BD-013
+      type: B/BA
+      summary: 'Rebalancing frequencies: Quarterly, Semi-Annual, Annual, Tolerance Bands'
+    - id: BD-023
+      type: B/DK
+      summary: 'Account managed levels: Account=1, Household=2, Account or Household=3'
+    - id: BD-025
+      type: B/RC
+      summary: Security assignment allows preferred flag and municipal substitution
+    - id: BD-026
+      type: B
+      summary: 'Model types: STRATEGY and CUSTOM with inheritance support'
+    - id: BD-028
+      type: B/BA
+      summary: CeModel copy preserves assumption settings including commission min/max
+    - id: BD-029
+      type: B/BA
+      summary: Subclass expected performance tracked for return assumptions
+    - id: BD-033
+      type: B/BA
+      summary: Expected performance values range from 3% to 10% in fixture data
+    - id: BD-045
+      type: B/RC
+      summary: Qualified vs non-qualified account segregation in model entities
+    - id: BD-049
+      type: B/RC
+      summary: Rebalancing at household level aggregates each client accounts
+    - id: BD-068
+      type: BA/DK
+      summary: Rebalancer uses hardcoded 15% deviation thresholds for buy/sell triggers
+    - id: BD-069
+      type: BA/M
+      summary: Hardcoded model_deviation = 4 in Rebalancer.php:179 for portfolio value updates
+    - id: BD-080
+      type: RC
+      summary: 'Role-based API key fallback: admin/ria/admin→hardcoded raiden@wealthbot.io account'
+    - id: BD-GAP-001
+      type: DK
+      summary: 'Missing: as-of vs processing time'
+    - id: BD-GAP-002
+      type: M
+      summary: 'Missing: Matrix ill-conditioning and stability'
+    - id: BD-GAP-003
+      type: DK
+      summary: 'Missing: Random seed full coverage'
+    - id: BD-GAP-004
+      type: DK
+      summary: 'Missing: Model and data version snapshot binding'
+    - id: BD-GAP-005
+      type: RC
+      summary: 'Missing: Price and quantity precision (tick/lot size)'
+    - id: BD-GAP-006
+      type: B
+      summary: 'Missing: : 7'
+    - id: BD-GAP-007
+      type: B
+      summary: 'Missing: Backtest Overfitting Protection'
+    - id: BD-GAP-008
+      type: B
+      summary: 'Missing: Factor IC Demean & Group Alignment'
+    - id: BD-GAP-009
+      type: M
+      summary: 'Missing: Transition Matrix Time-Homogeneity'
+    - id: BD-GAP-010
+      type: B
+      summary: 'Missing: Provider Priority & Credential Isolation'
+    - id: BD-GAP-011
+      type: B
+      summary: 'Missing: Feature Extraction Time Boundaries'
+    - id: BD-GAP-012
+      type: DK
+      summary: 'Missing: ** "Add timezone annotation to each datetime fields and implement UTC normalization'
+    - id: BD-GAP-013
+      type: RC
+      summary: 'Missing: ** "Migrate monetary values from float to DECIMAL(19,4) type for precision'
+    - id: BD-GAP-014
+      type: B
+      summary: 'Missing: ** "Implement walk-forward analysis framework with out-of-sample testing'
+    - id: BD-GAP-015
+      type: DK
+      summary: 'Missing: ** "Add configurable random seed for each stochastic components'
+    - id: BD-GAP-016
+      type: RC
+      summary: 'Missing: ** "Add security-specific tick_size and lot_size fields with order quantity validation'
+    - id: BD-GAP-017
+      type: B
+      summary: 'Missing: : 7'
+    - id: BD-GAP-018
+      type: M
+      summary: 'Missing: Covariance Matrix PSD Repair'
+    - id: BD-GAP-019
+      type: B
+      summary: 'Missing: Covariance Estimator Selection (Ledoit-Wolf vs Sample)'
+    - id: BD-GAP-020
+      type: B
+      summary: 'Missing: VaR/CVaR Confidence Level & Window'
+    - id: BD-GAP-021
+      type: B
+      summary: 'Missing: PD/LGD/EAD Estimation (IRB vs Standard)'
+    - id: BD-GAP-022
+      type: B
+      summary: 'Missing: Vasicek Single-Factor Asset Correlation'
+    - id: BD-GAP-023
+      type: B
+      summary: 'Missing: Stress Test Scenario Macro Variables'
+    - id: BD-GAP-024
+      type: M
+      summary: 'Missing: ** "Implement covariance matrix shrinkage (Ledoit-Wolf) and PSD repair'
+    - id: BD-015
+      type: B/BA
+      summary: Risk tolerance scoring starts at 50 points base, adds question points
+    - id: BD-016
+      type: B/BA
+      summary: Portfolio model selection by closest risk rating match
+    - id: BD-027
+      type: B
+      summary: Risk rating must be zero or positive, enforced by setter validation
+    - id: BD-037
+      type: B
+      summary: Questionnaire answers use point-based scoring with withdraw-age special handling
+    - id: BD-050
+      type: B/BA
+      summary: Risk question sequence default is 100 for ordering
+    - id: BD-005
+      type: RC
+      summary: Short-term capital gains threshold is 365 days per IRS regulations
+    - id: BD-006
+      type: B/BA
+      summary: Capital gains classification implemented using 365-day threshold in Lot entity
+    - id: BD-021
+      type: B/BA
+      summary: Tax loss harvesting enabled with configurable threshold (dollar and percent)
+    - id: BD-022
+      type: B/RC
+      summary: Wash sale tracking flagged at lot level
+    - id: BD-040
+      type: B/RC
+      summary: TLH buy-back original security option controlled by tlh_buy_back_original flag
+    - id: BD-042
+      type: B/RC
+      summary: Cost basis known flag tracks whether purchase price is available
+    - id: BD-001
+      type: B/RC
+      summary: Trade execution follows strict SELL before BUY ordering within each rebalancer action
+    - id: BD-002
+      type: B/BA
+      summary: 'Default minimum trade sizes: $50 buy, $150 initial buy, $50 sell for equity securities'
+    - id: BD-003
+      type: B/BA
+      summary: Security transaction fees include fixed ($250) and percentage (10%) components
+    - id: BD-004
+      type: B/BA
+      summary: Redemption penalties apply for 21-day holding period with 15 fixed + 5% fee
+    - id: BD-009
+      type: B/RC
+      summary: 'Transaction statuses: IN_PROGRESS, PLACED, VERIFIED, NOT_POSTED'
+    - id: BD-014
+      type: B/BA
+      summary: 'Job rebalance types: FULL=0, REQUIRED_CASH=1, FULL_AND_TLH=2, NO_ACTIONS=3, INITIAL=4'
+    - id: BD-031
+      type: B/RC
+      summary: Trade recon groups by account, subclass, security for aggregation
+    - id: BD-032
+      type: B/RC
+      summary: RebalancerQueue SQL distinguishes 'AS' (each shares) vs 'S' (some shares) quantity types
+    - id: BD-034
+      type: B/BA
+      summary: Subclass priority ordering determines processing sequence
+    - id: BD-041
+      type: B
+      summary: RebalancerAction status uses same constants as Job rebalance_type
+    - id: BD-046
+      type: B
+      summary: RebalancerQueue amount represents target trade value in dollars
+    - id: BD-047
+      type: B
+      summary: RebalancerQueue quantity represents number of shares
+    - id: BD-024
+      type: B
+      summary: 'Portfolio processing modes: Straight-Through=1, Collaborative=2'
+    - id: BD-039
+      type: B/BA
+      summary: Client account default process_step starts at 0
+resources:
+  packages:
+  - name: pandas
+    version_pin: ==1.5.3
+  - name: numpy
+    version_pin: ==1.24.4
+  - name: matplotlib
+    version_pin: '>=2'
+  - name: requests
+    version_pin: ==2.31.0
+  - name: scipy
+    version_pin: '>=1.3.0'
+  - name: scikit-learn
+    version_pin: '>1.4.2'
+  - name: pytest
+    version_pin: '>=8.3'
+  strategy_scaffold:
+    entry_point_name: run_backtest
+    output_path: result.csv
+    execution_mode: backtest
+    conditional_entry_points:
+      backtest:
+        entry_point_name: run_backtest
+        output_path: result.csv
+      collector:
+        entry_point_name: run_collector
+        output_path: result.json
+      factor:
+        entry_point_name: run_factor
+        output_path: result.parquet
+      training:
+        entry_point_name: run_training
+        output_path: result.json
+      serving:
+        entry_point_name: run_server
+        output_path: result.json
+      research:
+        entry_point_name: run_research
+        output_path: result.json
+    tail_template: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()  #\
+      \ implement above\n    from validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\"\
+      )\n# === END DO NOT MODIFY ==="
+  host_adapter:
+    target: openclaw
+    timeout_seconds: 1800
+    shell_operator_restriction: 'exec tool intercepts && / ; / | — never chain: ''pip install X && python Y''. Use separate
+      exec calls.'
+    install_recipes:
+    - python3 -m pip install zvt
+    credential_injection: JoinQuant/QMT credentials require user-side '!' prefix shell login. Never hardcode credentials in
+      generated scripts.
+    path_resolution: '{workspace} resolves to ~/.openclaw/workspace/doramagic at execution time.'
+    file_io_tooling: Use openclaw 'write' tool for .py/.sql files; 'exec' tool for python3 /absolute/path/script.py (absolute
+      paths only).
+constraints:
+  fatal:
+  - id: finance-C-001
+    when: When calculating prices_diff using current_price divided by old_price
+    action: allow old_price to be zero without validation
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Division by zero will produce INF or NaN, corrupting portfolio rebalancing calculations and causing incorrect
+      buy/sell decisions based on invalid prices_diff values
+    stage_ids:
+    - price_collection
+  - id: finance-C-002
+    when: When storing SecurityPrice entity with source='tradier'
+    action: validate that the quote->last price value exists before persisting
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Storing null or missing price values will corrupt price history, causing incorrect portfolio valuations and
+      rebalancing decisions based on invalid price data
+    stage_ids:
+    - price_collection
+  - id: finance-C-005
+    when: When persisting new SecurityPrice with is_current=true
+    action: reset is_current flag to false for each existing prices of the same security first
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Multiple prices marked as is_current=true causes ambiguous price lookups, breaking downstream portfolio valuation
+      and rebalancing calculations that rely on single source of truth
+    stage_ids:
+    - price_collection
+  - id: finance-C-014
+    when: When calculating security allocation amounts
+    action: Divide percent value by 100 before multiplying with portfolio total value
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Allocation amounts will be 100x larger than intended, causing over-investment in securities and potential
+      margin calls or regulatory violations
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-015
+    when: When calculating price change ratios for rebalancing decisions
+    action: Allow price_diff to be zero or undefined when old_price is missing
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Division by zero or undefined price will cause runtime error or incorrect rebalancing signals, triggering
+      unauthorized trades or missing required trades
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-019
+    when: When accessing client accounts for initial rebalancing
+    action: Check that getClientAccounts() returns non-empty collection before calling first()
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Calling first() on empty ArrayCollection will return false, causing account number access to fail with TypeError,
+      preventing any initial rebalancing
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-031
+    when: When calculating price change ratio in getPricesDiff()
+    action: divide by zero when old_price equals zero
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Division by zero causes NaN/infinity values in prices_diff, causing all subsequent trade decisions to be
+      invalid or unpredictable
+    stage_ids:
+    - trade_decision
+  - id: finance-C-050
+    when: When placing orders via Tradier API
+    action: Prefix account numbers with 'VA' before sending to broker endpoint
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Orders submitted with incorrect account numbers will be rejected by Tradier, causing failed trade execution
+      and portfolio misalignment
+    stage_ids:
+    - trade_execution
+  - id: finance-C-051
+    when: When creating Lot records on buy transactions
+    action: Set cost_basis to the latest price retrieved from price cache via security ID
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect cost basis values will cause inaccurate gain/loss calculations, leading to incorrect tax reporting
+      and wash sale violations
+    stage_ids:
+    - trade_execution
+  - id: finance-C-052
+    when: When executing buy or sell orders
+    action: Use security symbol as primary identifier in API calls
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using internal security IDs instead of symbols in Tradier API calls will cause order failures and invalid
+      position records
+    stage_ids:
+    - trade_execution
+  - id: finance-C-066
+    when: When implementing updatePortfolioValues to record post-trade portfolio value
+    action: create a new ClientPortfolioValue record instead of updating existing records
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Updating existing records destroys the time-series integrity needed for billing calculations and historical
+      reconciliation against custodian records
+    stage_ids:
+    - portfolio_value_update
+  - id: finance-C-074
+    when: When linking ClientPortfolioValue to the owning ClientPortfolio
+    action: associate the new ClientPortfolioValue record with its parent ClientPortfolio via the clientPortfolio relationship
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Orphaned portfolio value records cannot be queried by client, breaking billing calculations and historical
+      reporting
+    stage_ids:
+    - portfolio_value_update
+  - id: finance-C-077
+    when: When calculating price ratio in portfolio_analysis using current_price divided by old_price from price_collection
+    action: Pass old_price=0 to division; must filter out securities where old_price is zero before calling getPricesDiff
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Division by zero causes fatal PHP error, crashing the rebalance pipeline and leaving Job and RebalancerAction
+      records in inconsistent started state
+  - id: finance-C-080
+    when: When executing trades via the Tradier API
+    action: Bypass the API order placement; must use placeOrder function to submit market orders through the brokerage gateway
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Trades execute at unverified prices without brokerage integration, causing settlement failures and potential
+      securities law violations
+  - id: finance-C-084
+    when: When passing price data from Tradier API to rebalancing logic
+    action: Trust the API response without validating that quote contains 'last' field; must check isset($quote->last) before
+      using price
+    severity: fatal
+    kind: resource_boundary
+    modality: must_not
+    consequence: NULL or missing price values propagate through calculations, causing invalid price ratios and potentially
+      placing orders with zero or NULL amounts
+  - id: finance-C-088
+    when: When calculating prices_diff ratio (current_price / old_price)
+    action: Use float division and store result; prices_diff > 1 means price increased, prices_diff < 1 means price decreased
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Inverted ratio logic causes buy/sell signals to fire in opposite directions, actively harming portfolio allocation
+      instead of improving it
+  - id: finance-C-091
+    when: When deciding whether to sell or buy based on prices_diff thresholds
+    action: Execute sell when prices_diff > 1.15 (security appreciated beyond tolerance) and buy when prices_diff < 0.85 (security
+      depreciated beyond tolerance)
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Swapped buy/sell signals actively move portfolio away from target allocation, causing inverse rebalancing
+      and customer losses
+  - id: finance-C-092
+    when: When implementing a Rebalancer subclass for broker integration
+    action: Prefix account numbers with 'VA' before calling Tradier API endpoints
+    severity: fatal
+    kind: architecture_guardrail
+    modality: must
+    consequence: Tradier API will reject account identifiers, causing all trade orders to fail with invalid account errors
+  - id: finance-C-095
+    when: When routing trade execution through the Rebalancer API layer
+    action: Use security symbols as primary identifier in Tradier API calls rather than internal security IDs
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Tradier API returns validation errors for unrecognized security identifiers, causing all trades to fail
+  - id: finance-C-101
+    when: When deploying or testing the wealthbot system in non-production environments
+    action: Configure tradier_sandbox parameter to true to route API calls to sandbox.tradier.com endpoint
+    severity: fatal
+    kind: resource_boundary
+    modality: must
+    consequence: Live trades execute on real accounts using real capital during testing, causing irreversible financial transactions
+  - id: finance-C-114
+    when: When calculating capital gains for tax reporting and tax lot optimization
+    action: Classify assets held less than 365 days as short-term capital gains (taxed as ordinary income) and assets held
+      365+ days as long-term capital gains per IRS holding period regulations
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect holding period classification violates IRS tax regulations, resulting in inaccurate tax calculations
+      that may trigger penalties or audit findings
+    derived_from_bd_id: BD-005
+  - id: finance-C-119
+    when: When applying Markov chain models for price state predictions
+    action: Assume transition matrix time-homogeneity is satisfied without explicit validation — framework does not implement
+      time-homogeneity verification for Markov transition matrices
+    severity: fatal
+    kind: claim_boundary
+    modality: must_not
+    consequence: Assuming time-homogeneous transitions without validation produces systematically incorrect state predictions
+      when underlying market regimes shift, degrading both backtest reliability and live trading performance
+    derived_from_bd_id: BD-GAP-009
+  - id: finance-C-125
+    when: When calculating capital gains classification for tax lot accounting
+    action: 'Apply exactly 365-day threshold at lot level: lots held 365 days or more are long-term; lots held fewer than
+      365 days are short-term; use this boundary for IRS holding period compliance'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect threshold (e.g., 366 days or 364 days) misclassifies short-term vs long-term gains, causing
+      incorrect tax calculations and potential IRS compliance issues; wrong classification triggers wrong tax rates affecting
+      net returns
+    derived_from_bd_id: BD-006
+  - id: finance-C-127
+    when: When tracking wash sale adjustments for IRS compliance on securities transactions
+    action: 'Implement lot-level wash sale tracking: flag lots where substantially identical security was purchased within
+      30-day window before or after a loss; adjust cost basis of replacement lots to disallow loss deduction'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Position-level tracking misses lot-level detail, causing wash sale adjustments to apply to wrong shares;
+      this results in disallowed loss claims triggering IRS penalties, interest, and potential audit exposure
+    derived_from_bd_id: BD-022
+  - id: finance-C-129
+    when: When implementing API fallback credential logic in authorization scenarios
+    action: Use hardcoded fallback API key (raiden@wealthbot.io) as a bypass for normal credential management; the BaseVoter
+      pattern must enforce OWNER/OPERATOR authorization without fallback bypass
+    severity: fatal
+    kind: domain_rule
+    modality: must_not
+    consequence: Hardcoded fallback bypasses authorization checks, allowing privileged operations under a known account regardless
+      of actual authorization state; this creates security vulnerability with audit trail gaps and regulatory exposure in
+      production environments
+    derived_from_bd_id: BD-085
+  - id: finance-C-151
+    when: When implementing rebalancing calculation logic for household-level aggregation
+    action: Aggregate each related client accounts within a household for unified rebalancing to prevent siloed rebalancing
+      that creates household-level imbalances
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Rebalancing individual accounts without household aggregation creates conflicting positions across related
+      accounts, eliminating tax optimization benefits and causing household-level diversification failures
+    derived_from_bd_id: BD-049
+  - id: finance-C-169
+    when: When implementing annualized return calculation in TwrCalculatorManager
+    action: Use geometric mean formula ((1 + TWR)^(365/interval) - 1) * 100 for annualization — do not replace with simple
+      linear scaling TWR * 365/days
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Using simple annualization instead of geometric mean inflates reported returns and destroys cross-period
+      comparability by ignoring compounding effects, causing misleading performance attribution and incorrect strategy comparisons
+    derived_from_bd_id: BD-052
+  - id: finance-C-171
+    when: When calculating investment gain for performance attribution in TwrCalculatorManager
+    action: 'Apply formula: investment_gains = ending_value - beginning_value - contributions + withdrawals — do not use simple
+      ending minus beginning'
+    severity: fatal
+    kind: domain_rule
+    modality: must
+    consequence: Computing gain as simple ending minus beginning ignores cash flow impact on portfolio size, distorting performance
+      attribution and TWR calculations by attributing deposit/withdrawal effects to investment decisions
+    derived_from_bd_id: BD-059
+  regular:
+  - id: finance-C-003
+    when: When fetching security prices from external API
+    action: resolve API gateway to the correct Tradier endpoint based on sandbox mode
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Using wrong API endpoint causes connection failures, missing price updates, and portfolio valuations based
+      on stale price data
+    stage_ids:
+    - price_collection
+  - id: finance-C-004
+    when: When storing monetary price values in SecurityPrice entity
+    action: store prices as float type for monetary calculations
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Float precision errors in price calculations compound over multiple trades, causing small but cumulative
+      discrepancies in portfolio value and trade sizing
+    stage_ids:
+    - price_collection
+  - id: finance-C-006
+    when: When calculating prices_diff for portfolio rebalancing
+    action: filter out zero-priced entries before using prices_diff in buyOrSell calculations
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Zero prices produce invalid prices_diff ratios (0 or INF), causing erroneous buy/sell signals and potentially
+      placing trades with zero value
+    stage_ids:
+    - price_collection
+  - id: finance-C-007
+    when: When fetching security prices from Tradier API
+    action: use valid API credentials configured via TRADIER_API_KEY and TRADIER_API_SECRET environment variables
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Invalid or missing API credentials cause authentication failures, preventing price updates and leaving portfolios
+      valued at stale or zero prices
+    stage_ids:
+    - price_collection
+  - id: finance-C-008
+    when: When processing price records for rebalancing decisions
+    action: fetch exactly 2 most recent price records per security ordered by datetime descending
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Fetching incorrect number of prices breaks prices_diff calculation, causing wrong comparison between current
+      and previous prices and incorrect buy/sell decisions
+    stage_ids:
+    - price_collection
+  - id: finance-C-009
+    when: When using Tradier API in production environment
+    action: enable TRADIER_SANDBOX mode which routes requests to sandbox.tradier.com
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Sandbox mode returns simulated or delayed price data, causing portfolio valuations to diverge from actual
+      market conditions and leading to incorrect investment decisions
+    stage_ids:
+    - price_collection
+  - id: finance-C-010
+    when: When storing SecurityPrice with source='tradier'
+    action: record the exact datetime of price capture for temporal ordering
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing or incorrect datetime breaks chronological price ordering, causing wrong price comparisons and corrupted
+      historical price analysis
+    stage_ids:
+    - price_collection
+  - id: finance-C-011
+    when: When implementing price collection stage
+    action: claim real-time price capabilities when using polling-based Tradier API
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Polling-based API has inherent delays (typically 15 minutes for Tradier), misrepresenting real-time capabilities
+      leads to incorrect system assumptions and potential regulatory compliance issues
+    stage_ids:
+    - price_collection
+  - id: finance-C-012
+    when: When performing backtested rebalancing using stored prices
+    action: claim that simulated rebalancing results predict actual live trading performance
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Backtested rebalancing ignores slippage, liquidity constraints, and execution timing that occur in live markets,
+      overstating expected returns and misleading clients
+    stage_ids:
+    - price_collection
+  - id: finance-C-013
+    when: When implementing CeModel target allocations
+    action: Validate that sum of each CeModelEntity percent values equals exactly 100
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Portfolio allocation will not match target model, causing incorrect position sizing and improper diversification
+      across asset classes
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-016
+    when: When setting rebalance type on Job entity
+    action: Use only the predefined REBALANCE_TYPE_* constants from Job entity
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using string values or arbitrary integers will cause Rebalancer.php switch statement at lines 64-67 to fail
+      matching, resulting in no rebalancing actions being executed
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-017
+    when: When creating RebalancerAction records
+    action: Associate each action with a valid Job entity that tracks execution state
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Rebalancer actions will lack job tracking, preventing error recovery and audit logging, leading to untraceable
+      financial discrepancies
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-018
+    when: When completing rebalancing operations
+    action: Create a new ClientPortfolioValue record with current timestamp and calculated totals
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Portfolio valuation history will be incomplete, breaking performance tracking and compliance reporting, making
+      it impossible to audit rebalancing decisions
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-020
+    when: When configuring model deviation threshold for rebalancing
+    action: Hardcode model_deviation to 4% for each clients regardless of risk profile
+    severity: medium
+    kind: resource_boundary
+    modality: must_not
+    consequence: Aggressive traders will trigger excessive rebalancing with unnecessary tax events; conservative clients will
+      have portfolios too far from target allocation
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-021
+    when: When using Tradier API for live trading
+    action: Assume sandbox and production endpoints behave identically or are interchangeable
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: Orders may be executed with real money on sandbox endpoint or rejected on production, causing financial loss
+      or missed trading opportunities
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-022
+    when: When accessing security prices for rebalancing
+    action: Retrieve only prices marked as is_current=true for current valuation
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using stale prices will cause incorrect position valuation, leading to wrong rebalancing amounts and potential
+      regulatory violations
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-023
+    when: When evaluating rebalancing decisions
+    action: Claim that backtested rebalancing returns predict live trading performance
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting simulated rebalancing results as expected live returns violates regulatory guidance and misleads
+      clients about actual investment outcomes
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-024
+    when: When processing rebalancing for REQUIRED_CASH type
+    action: Use getInvestableCash() instead of getTotalValue() for cash-only rebalancing
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Using total value for cash-only rebalancing will over-invest available cash, causing overdrafts or margin
+      requirements
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-025
+    when: When making risk tolerance adjustments to rebalancing
+    action: Calculate point score as (sum of questionnaire answer points / 100) + 1 before threshold comparison
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect point calculation will cause wrong risk tolerance adjustment, triggering excessive or insufficient
+      rebalancing trades
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-026
+    when: When validating price change thresholds
+    action: Use 0.15 threshold for risk-adjusted comparison and 0.85/1.15 for absolute buy/sell triggers
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect thresholds will cause over-trading (too sensitive) or portfolio drift (too insensitive), both causing
+      financial harm to clients
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-027
+    when: When deciding to implement per-RIA model deviation
+    action: Skip configuration because '4% works fine for our test clients'
+    severity: medium
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Different RIA firms have varying risk appetites and regulatory requirements; a single hardcoded threshold
+      may violate client investment policy statements
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-028
+    when: When implementing client account access in initialRebalance
+    action: Skip null check because 'each clients have at least one account in our test data'
+    severity: high
+    kind: rationalization_guard
+    modality: must_not
+    consequence: New clients without accounts will cause complete rebalancing failure, blocking onboarding workflow and requiring
+      manual intervention
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-029
+    when: When testing price processing logic
+    action: Skip validation that old_price exists because 'prices are always updated daily'
+    severity: high
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Market holidays, API outages, or new securities will cause division by zero, crashing the rebalancing process
+      or producing NaN values
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-030
+    when: When presenting rebalancing action queue to users
+    action: Present simulated rebalancing as confirmed live trades
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Clients will believe trades have executed when they are only queued for execution, potentially causing confusion
+      and regulatory issues
+    stage_ids:
+    - portfolio_analysis
+  - id: finance-C-032
+    when: When computing risk tolerance point from questionnaire answers
+    action: normalize point value by dividing by 100 and adding 1 before using in threshold comparison
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without normalization, the point value is too large causing threshold comparisons to fail, triggering trades
+      when portfolio drift is within acceptable tolerance
+    stage_ids:
+    - trade_decision
+  - id: finance-C-033
+    when: When implementing trade decision logic
+    action: apply deviation threshold check before price threshold checks
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Current code has redundant if-else branches that produce identical outcomes regardless of deviation check,
+      causing unnecessary API calls and potential order failures
+    stage_ids:
+    - trade_decision
+  - id: finance-C-034
+    when: When placing orders through Tradier API
+    action: use market orders only for execution
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Market orders execute at current market price which may differ from the price used in decision calculation,
+      especially during volatile periods when rebalancing triggers
+    stage_ids:
+    - trade_decision
+  - id: finance-C-035
+    when: When accessing price data for trade decisions
+    action: require historical price to exist for each security before triggering any buyOrSell decisions
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Without historical price, old_price defaults to 0 causing division by zero, resulting in corrupted prices_diff
+      values that lead to incorrect trade decisions
+    stage_ids:
+    - trade_decision
+  - id: finance-C-036
+    when: When connecting to Tradier API for live trading
+    action: skip sandbox validation before production deployment
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: Untested orders may fail due to authentication, insufficient funds, or account restrictions, resulting in
+      failed rebalancing and potential compliance violations
+    stage_ids:
+    - trade_decision
+  - id: finance-C-037
+    when: When calculating prices_diff for trade decisions
+    action: use oldest available price as baseline when historical data spans multiple days
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Using the most recent two prices may span different time periods depending on data availability, causing
+      inconsistent price_diff calculations and unpredictable rebalancing behavior
+    stage_ids:
+    - trade_decision
+  - id: finance-C-038
+    when: When processing questionnaire answers for risk tolerance
+    action: proceed with empty or null answers in risk tolerance calculation
+    severity: high
+    kind: operational_lesson
+    modality: must_not
+    consequence: Empty questionnaire answers result in point=0, causing the threshold to be 1.0 instead of the expected risk-adjusted
+      value, breaking risk-based trade throttling
+    stage_ids:
+    - trade_decision
+  - id: finance-C-039
+    when: When triggering trades based on deviation threshold
+    action: apply 15% (0.15) deviation threshold correctly in the trade decision formula
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Incorrect threshold application causes excessive trading when deviation is less than 15%, increasing transaction
+      costs and tax events, or failing to rebalance when drift exceeds tolerance
+    stage_ids:
+    - trade_decision
+  - id: finance-C-040
+    when: When deciding to buy or sell securities
+    action: apply price thresholds of 1.15 (15% rise triggers sell) and 0.85 (15% drop triggers buy)
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Incorrect price threshold application causes buy/sell signals at wrong price levels, breaking the band-pass
+      filter that prevents excessive turnover during minor price movements
+    stage_ids:
+    - trade_decision
+  - id: finance-C-041
+    when: When making trade decisions in volatile markets
+    action: trigger trades when prices_diff falls within 0.85-1.15 band
+    severity: high
+    kind: operational_lesson
+    modality: must_not
+    consequence: Trading within the price band incurs transaction costs and potential tax events without meaningful portfolio
+      improvement, eroding returns especially in volatile sideways markets
+    stage_ids:
+    - trade_decision
+  - id: finance-C-042
+    when: When portfolio requires rebalancing action
+    action: execute trades only after passing both deviation threshold and price threshold checks
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Current implementation executes trades when either threshold is met, causing excessive trading that contradicts
+      the dual-gate design intended to reduce unnecessary portfolio turnover
+    stage_ids:
+    - trade_decision
+  - id: finance-C-043
+    when: When executing trades through the Rebalancer
+    action: route each order placement through placeOrder() method to verify consistent API handling
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Direct API calls bypassing placeOrder() bypass authentication headers and error handling, potentially exposing
+      account credentials or failing silently
+    stage_ids:
+    - trade_decision
+  - id: finance-C-044
+    when: When accessing price data for trade calculations
+    action: retrieve prices only through getLatestPriceBySecurityId() method to verify consistent caching
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Direct database queries for prices bypass the cached prices array, causing redundant API calls and potential
+      race conditions with concurrent rebalancing processes
+    stage_ids:
+    - trade_decision
+  - id: finance-C-045
+    when: When presenting rebalancing results to users
+    action: claim real-time trading capability
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: The system uses polling-based price updates, not real-time streaming, so trades execute based on potentially
+      stale price data with delay between decision and execution
+    stage_ids:
+    - trade_decision
+  - id: finance-C-046
+    when: When displaying backtested or sandbox rebalancing results
+    action: present results as guaranteed live trading outcomes
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Sandbox API responses are simulated and may not reflect actual market conditions, order fills, or slippage;
+      presenting them as live results misleads users about expected performance
+    stage_ids:
+    - trade_decision
+  - id: finance-C-047
+    when: When evaluating rebalancing performance
+    action: claim that backtest results predict future trading returns
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Past portfolio rebalancing does not guarantee future results due to market conditions, fees, tax events,
+      and execution differences between simulation and live trading
+    stage_ids:
+    - trade_decision
+  - id: finance-C-048
+    when: When developing new trade decision logic
+    action: assume simple logic fixes without testing edge cases
+    severity: high
+    kind: rationalization_guard
+    modality: must_not
+    consequence: The redundant if-else pattern in buyOrSell() appears simple but masks a critical logic error; assuming it
+      works leads to production failures and incorrect trades
+    stage_ids:
+    - trade_decision
+  - id: finance-C-049
+    when: When price history is missing for a security
+    action: skip the security without logging or alerting
+    severity: medium
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Missing price history silently skipped leads to untracked positions, portfolio allocation drift, and inability
+      to verify if rebalancing actually occurred for all securities
+    stage_ids:
+    - trade_decision
+  - id: finance-C-053
+    when: When creating TransactionType records for buy/sell operations
+    action: Create new TransactionType instances on each trade
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Creating duplicate TransactionType records wastes database rows and breaks referential integrity with existing
+      transaction data fixtures
+    stage_ids:
+    - trade_execution
+  - id: finance-C-054
+    when: When retrieving latest price for cost basis calculation
+    action: Verify price exists in cache before using it for order placement and cost basis
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: If price is not found in cache, getLatestPriceBySecurityId() returns null, causing market orders with null
+      prices and zero cost basis records
+    stage_ids:
+    - trade_execution
+  - id: finance-C-055
+    when: When integrating with Tradier API
+    action: Claim real-time trading capability when using polling-based HTTP client
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: The system uses Symfony HTTPClient polling, not WebSocket or push notifications, so it cannot claim real-time
+      trading execution
+    stage_ids:
+    - trade_execution
+  - id: finance-C-056
+    when: When processing wash sale tracking
+    action: Claim complete wash sale detection when implementation hardcodes wash_sale=false
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: The wash sale detection is explicitly incomplete per TODO comment - all lots are marked with wash_sale=false
+      regardless of actual tax lot rules
+    stage_ids:
+    - trade_execution
+  - id: finance-C-057
+    when: When placing orders via Tradier API
+    action: Send order_type=market and duration=day parameters to broker
+    severity: medium
+    kind: resource_boundary
+    modality: must
+    consequence: Market orders with day duration are required; deviating from this may cause unexpected fill behavior or order
+      rejection
+    stage_ids:
+    - trade_execution
+  - id: finance-C-058
+    when: When configuring Tradier API endpoints
+    action: Use sandbox endpoint for testing and production endpoint for live trading
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Using wrong endpoint will cause orders to go to wrong environment - sandbox orders won't execute, production
+      orders won't be testable
+    stage_ids:
+    - trade_execution
+  - id: finance-C-059
+    when: When placing orders via Tradier API
+    action: Include Authorization Bearer token in request headers
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Missing authorization token will cause 401 Unauthorized responses from Tradier API and all orders will fail
+    stage_ids:
+    - trade_execution
+  - id: finance-C-060
+    when: When implementing trade execution for Wealthbot
+    action: Persist Lot and Position records atomically with Transaction via flush()
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Without flush(), database may be in inconsistent state if subsequent operations fail - orphaned Lots without
+      Positions or vice versa
+    stage_ids:
+    - trade_execution
+  - id: finance-C-061
+    when: When creating Position records
+    action: Set Position status to POSITION_STATUS_IS_OPEN on new positions
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Incorrect position status prevents proper tracking of open vs closed positions in portfolio accounting
+    stage_ids:
+    - trade_execution
+  - id: finance-C-062
+    when: When creating Lot records
+    action: Set Lot status to LOT_IS_OPEN and link to Position via setPosition()
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing Lot-Position linkage breaks tax lot accounting and wash sale tracking functionality
+    stage_ids:
+    - trade_execution
+  - id: finance-C-063
+    when: When implementing wash sale detection
+    action: Skip wash sale detection when buying same security within 30 days of a loss sale
+    severity: high
+    kind: operational_lesson
+    modality: must_not
+    consequence: IRS wash sale rules require adjusting cost basis when substantially identical securities are purchased within
+      30 days before or after a loss sale
+    stage_ids:
+    - trade_execution
+  - id: finance-C-064
+    when: When recording transactions in the database
+    action: Set transaction tx_date to current datetime
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Incorrect transaction dates will cause wrong settlement calculations and portfolio value tracking errors
+    stage_ids:
+    - trade_execution
+  - id: finance-C-065
+    when: When presenting trade execution results
+    action: Claim guaranteed order fills or specific price execution
+    severity: medium
+    kind: claim_boundary
+    modality: must_not
+    consequence: Market orders may experience slippage; presenting simulated execution prices as guaranteed results misleads
+      users about actual trading outcomes
+    stage_ids:
+    - trade_execution
+  - id: finance-C-067
+    when: When implementing portfolio value recording logic
+    action: set each cash components (total_in_securities, total_cash_in_accounts, total_cash_in_money_market) equal to the
+      post-trade total value
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: The simplified accounting model assumes all cash flows to money market after trades; violating this causes
+      billing_cash calculation errors and historical reconciliation failures
+    stage_ids:
+    - portfolio_value_update
+  - id: finance-C-068
+    when: When recording model_deviation in ClientPortfolioValue
+    action: hardcode model_deviation to exactly 4 (percent) for each rebalance records
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Model deviation controls trading band tolerance; incorrect values cause improper trade sizing or regulatory
+      compliance violations
+    stage_ids:
+    - portfolio_value_update
+  - id: finance-C-069
+    when: When persisting portfolio value records after trade execution
+    action: set sas_cash, cash_buffer, and billing_cash to zero in the new ClientPortfolioValue record
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Non-zero cash allocations at this stage misrepresent cash position, leading to incorrect billing fee calculations
+      and potential regulatory reporting errors
+    stage_ids:
+    - portfolio_value_update
+  - id: finance-C-070
+    when: When implementing financial calculations for portfolio value tracking
+    action: use floating-point types for monetary calculations; each currency fields must use float type per ORM mapping
+    severity: high
+    kind: resource_boundary
+    modality: must_not
+    consequence: Floating-point precision errors in monetary calculations accumulate over time, causing discrepancies in billing
+      fees and custodian reconciliation
+    stage_ids:
+    - portfolio_value_update
+  - id: finance-C-071
+    when: When completing a rebalance job execution
+    action: update Job entity with finished_at timestamp and is_error=false upon successful completion
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing job completion timestamps cause monitoring systems to report hung jobs and prevent proper audit trail
+      for regulatory compliance
+    stage_ids:
+    - portfolio_value_update
+  - id: finance-C-072
+    when: When setting error state in job or rebalancer action
+    action: set is_error to false when marking job completion; error state must only be set on actual failure conditions
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Incorrect error state reporting misleads auditors and compliance reviewers about actual system failures and
+      trade execution outcomes
+    stage_ids:
+    - portfolio_value_update
+  - id: finance-C-073
+    when: When maintaining historical portfolio value records for billing
+    action: record each ClientPortfolioValue with a datetime timestamp to enable chronological ordering
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Without time-series data, billing fee calculations cannot correctly apply tiered rates based on historical
+      portfolio values, causing revenue loss or client disputes
+    stage_ids:
+    - portfolio_value_update
+  - id: finance-C-075
+    when: When presenting backtest or historical portfolio value results
+    action: claim that simulated portfolio values equal expected live trading returns; time-series records are historical
+      snapshots, not forward projections
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Presenting historical portfolio values as guarantees of future returns violates financial regulations and
+      misleads clients about expected investment outcomes
+    stage_ids:
+    - portfolio_value_update
+  - id: finance-C-076
+    when: When modifying updatePortfolioValues or ClientPortfolioValue entity
+    action: skip adding setDate() call; new records must always include timestamp for billing audit trail
+    severity: high
+    kind: rationalization_guard
+    modality: must_not
+    consequence: Omitting date from new ClientPortfolioValue records breaks chronological queries and prevents billing fee
+      calculations from finding relevant portfolio values
+    stage_ids:
+    - portfolio_value_update
+  - id: finance-C-078
+    when: When processing SecurityPrice records for price_diff calculation
+    action: Query exactly 2 most recent prices per security ordered by datetime DESC to verify old_price represents the previous
+      trading session
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Price diff ratios become meaningless if prices come from non-consecutive sessions, causing incorrect buy/sell
+      signals and potential regulatory violations
+  - id: finance-C-079
+    when: When passing trade decisions from portfolio_analysis to trade_execution
+    action: Only include securities where prices_diff deviates beyond 15% tolerance band (prices_diff > 1.15 OR prices_diff
+      < 0.85)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Excessive trading from over-sensitive thresholds causes unnecessary transaction costs, tax events, and potential
+      wash sale violations
+  - id: finance-C-081
+    when: When persisting executed trade records to database
+    action: Persist Position, Lot, and Transaction entities together in same database flush to maintain referential integrity
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Partial record creation leaves orphaned positions or lots without transactions, corrupting cost basis tracking
+      and tax lot reports
+  - id: finance-C-082
+    when: When creating Lot records for executed trades
+    action: Set cost_basis to the latest price retrieved from the shared prices array via getLatestPriceBySecurityId
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect cost basis causes wrong gain/loss calculations, leading to tax filing errors and potential IRS
+      penalties
+  - id: finance-C-083
+    when: When updating portfolio values after trade execution
+    action: Record model_deviation value from the rebalance analysis with each new ClientPortfolioValue record
+    severity: medium
+    kind: domain_rule
+    modality: must
+    consequence: Missing model deviation tracking prevents regulatory audit of portfolio drift and violates fiduciary duty
+      documentation requirements
+  - id: finance-C-085
+    when: When transferring trade decision data between portfolio_analysis and trade_decision stages
+    action: Pass the security_id from the model entity to enable security lookup in trade execution phase
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Missing security_id prevents security entity resolution, causing NullPointerException and failed order placement
+  - id: finance-C-086
+    when: When marking Job and RebalancerAction as completed after rebalance execution
+    action: Set finished_at timestamp and is_error=false only after each trades and portfolio updates have been persisted
+      successfully
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Premature job completion marking causes incorrect operational status, potentially triggering duplicate rebalance
+      runs or skipped scheduled jobs
+  - id: finance-C-087
+    when: When the system uses Tradier brokerage API for live trading
+    action: Claim real-time trading capability; Tradier provides delayed market data (typically 15-minute delay) and sandbox
+      mode is available for testing
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Marketing real-time capability when using delayed data sources violates securities advertising regulations
+      and misleads clients about trade execution timing
+  - id: finance-C-089
+    when: When performing initial rebalance for a new ClientPortfolio
+    action: Use getValueSum across each client accounts to calculate total portfolio value before computing position sizes
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect total value causes mis-sized initial positions, leading to portfolio allocation errors at inception
+      that compound over time
+  - id: finance-C-090
+    when: When passing ClientPortfolio entity to portfolio value update
+    action: Pass the same ClientPortfolio instance that was analyzed, not a re-loaded instance with potentially different
+      state
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: State mismatch between analyzed portfolio and recorded portfolio causes model deviation calculations to reference
+      incorrect baseline allocation
+  - id: finance-C-093
+    when: When recording job execution history for audit trail compliance
+    action: Set started_at timestamp at job creation, finished_at timestamp at job completion, and is_error flag to track
+      execution status
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Audit trail becomes incomplete, making it impossible to prove regulatory compliance for automated trading
+      decisions
+  - id: finance-C-094
+    when: When representing a portfolio position for a specific account, security, and date
+    action: Aggregate multiple Lots under a single Position entity for cost basis and tax reporting purposes
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Tax lot tracking breaks, preventing accurate gain/loss calculations and wash sale detection
+  - id: finance-C-096
+    when: When determining rebalance actions for client portfolios
+    action: Apply hardcoded drift thresholds of 0.85 (buy trigger) and 1.15 (sell trigger) to price deviation ratios
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Portfolio drift may exceed acceptable thresholds without triggering rebalancing, causing prolonged portfolio
+      misalignment with target allocations
+  - id: finance-C-097
+    when: When initializing a new Job entity for rebalancing operations
+    action: 'Set rebalance_type to one of the defined constants: FULL(0), REQUIRED_CASH(1), FULL_AND_TLH(2), NO_ACTIONS(3),
+      or INITIAL(4)'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Invalid rebalance type causes undefined rebalancing behavior or silent failures in trade execution
+  - id: finance-C-098
+    when: When managing client onboarding workflow state transitions
+    action: 'Progress client_status through the defined sequence: DEFAULT(0)→ENVELOPE_CREATED(1)→ENVELOPE_OPENED(2)→ENVELOPE_COMPLETED(3)→PORTFOLIO_PROPOSED(4)→PORTFOLIO_CLIENT_ACCEPTED(5)→ACCOUNT_OPENED(6)→ACCOUNT_FUNDED(7)'
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Clients may proceed to trade execution before completing required paperwork, violating regulatory requirements
+  - id: finance-C-099
+    when: When implementing trade execution logic in Rebalancer classes
+    action: Reuse trade execution logic through the Trade trait composition rather than duplicating buy/sell logic
+    severity: medium
+    kind: architecture_guardrail
+    modality: must
+    consequence: Duplicated trade logic diverges over time, causing inconsistent order placement and potential order execution
+      failures
+  - id: finance-C-100
+    when: When fetching security price data for trading decisions
+    action: Retrieve the two most recent price records and compute price_diff as current_price / old_price ratio
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without historical price comparison, drift calculations produce invalid ratios, triggering incorrect buy/sell
+      decisions
+  - id: finance-C-102
+    when: When presenting or marketing this system as a wealth management solution
+    action: Claim support for high-frequency trading strategies — the system uses polling-based price updates and is designed
+      for periodic rebalancing
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users deploy the system for latency-sensitive strategies where it cannot perform, leading to poor trading
+      outcomes
+  - id: finance-C-103
+    when: When presenting or marketing this system for international markets
+    action: Claim support for non-US markets without Tradier broker support — Tradier only supports US securities
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users attempt to trade international securities through US-focused broker integration, causing all orders
+      to fail
+  - id: finance-C-104
+    when: When presenting or marketing this system for real-time trading applications
+    action: Claim real-time streaming price feed support — the system uses batch polling for price updates with inherent latency
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users rely on stale price data for time-sensitive trading decisions, causing trades at outdated prices
+  - id: finance-C-105
+    when: When integrating this system with brokerage or custodian services
+    action: Claim support for custodians other than Tradier — the Rebalancer is hardcoded to Tradier API endpoints
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Users attempt integration with unsupported brokers, causing all API calls to fail with authentication or
+      endpoint errors
+  - id: finance-C-106
+    when: When offering this software to end clients or making public claims about the system
+    action: Present simulated or sandbox test results as proof of live trading capability — the system is offered as-is without
+      guarantees
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Clients make capital allocation decisions based on unverified backtest or test environment results, leading
+      to unexpected live trading outcomes
+  - id: finance-C-107
+    when: When deploying the wealthbot system in production
+    action: Run on PHP 7.4 with Symfony 4.4 and Doctrine ORM 2.7 as specified in composer.json requirements
+    severity: high
+    kind: resource_boundary
+    modality: must
+    consequence: Compatibility issues arise with other PHP or framework versions, causing runtime errors or unpredictable
+      behavior
+  - id: finance-C-108
+    when: When calculating short-term vs long-term capital gains for tax reporting
+    action: Classify a Lot as short-term if held less than 365 days, long-term if held 365 days or more
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect tax classification leads to inaccurate tax reporting and potential IRS penalties
+  - id: finance-C-109
+    when: When implementing asset class handling in portfolio models and allocation calculations
+    action: Assign asset classes outside the STOCKS and BONDS enumeration — only these two values are supported
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Assigning unrecognized asset class values causes allocation calculation failures, producing incorrect portfolio
+      weights that lead to inappropriate investment decisions
+    derived_from_bd_id: BD-010
+  - id: finance-C-110
+    when: When configuring minimum trade sizes for equity securities
+    action: Verify that default minimums ($50 buy, $150 initial buy, $50 sell) match the actual broker fee structure and investor
+      contribution patterns before using them in backtesting or live trading
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using inappropriate minimum trade sizes causes fee dilution on small transactions or prevents meaningful
+      portfolio establishment, distorting backtest results
+    derived_from_bd_id: BD-002
+  - id: finance-C-111
+    when: When implementing rebalancer action processing logic
+    action: Execute each SELL orders within each atomic rebalancer action before executing any BUY orders — do not interleave
+      or parallelize sell and buy executions
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Buy-before-sell or interleaved execution can cause cash account overdrafts in live trading when capital is
+      insufficient, resulting in rejected orders and backtest-live inconsistency
+    derived_from_bd_id: BD-001
+  - id: finance-C-112
+    when: When implementing concrete form handler subclasses extending AbstractFormHandler
+    action: Implement success() method in every concrete handler — absence causes AbstractMethodError at instantiation time,
+      preventing form submission completion
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Missing success() implementation throws AbstractMethodError during handler instantiation, causing form submission
+      workflows to fail silently
+    derived_from_bd_id: BD-075
+  - id: finance-C-113
+    when: When integrating with multiple custodians that use different account classification taxonomies
+    action: Use client-to-system account type adapter to normalize account groups — do not bypass the adapter for direct custodian
+      integration or assume universal type compatibility
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Bypassing the account type adapter causes mismatched account classifications across custodians, leading to
+      incorrect portfolio aggregation and reporting
+    derived_from_bd_id: BD-030
+  - id: finance-C-115
+    when: When implementing or configuring portfolio rebalancing logic
+    action: Implement hybrid rebalancing combining both asset class level and subclass level in a single rebalancing run —
+      rebalancing method must be either asset class level OR subclass level exclusively
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Hybrid rebalancing violates the either-or boundary, causing either duplicate rebalancing actions or conflicting
+      allocation targets that lead to incorrect portfolio distributions
+    derived_from_bd_id: BD-012
+  - id: finance-C-116
+    when: When calculating security transaction fees for backtesting or live trading
+    action: Apply both fixed fee component ($250) and percentage component (10%) to each transaction — verify the dual-component
+      structure matches actual broker fee schedules
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using only the percentage component underestimates transaction costs by approximately $250 per trade, making
+      high-frequency strategies appear 5-15% more profitable than they actually are in live trading
+    derived_from_bd_id: BD-003
+  - id: finance-C-117
+    when: When implementing concrete voter classes extending BaseVoter
+    action: Implement vote() method returning boolean and handle both OWNER and OPERATOR attribute types as defined in BaseVoter
+      — vote() must not remain unimplemented or throw AbstractMethodError
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing vote() implementation causes AbstractMethodError at runtime, crashing authorization checks; adding
+      new attribute types without updating all concrete voters creates silent denial where legitimate access requests are
+      rejected without errors
+    derived_from_bd_id: BD-076
+  - id: finance-C-118
+    when: When implementing user authorization logic using group membership
+    action: Validate that every user belongs to at least one group before calling getGroups()->first() — implement explicit
+      checks or use null-safe alternatives to prevent NoSuchElementException
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Calling getGroups()->first() on a user with no group memberships throws NoSuchElementException, causing authorization
+      failures that prevent users from accessing protected resources even when they should have valid permissions
+    derived_from_bd_id: BD-071
+  - id: finance-C-120
+    when: When applying Markov chain models to time-varying financial phenomena
+    action: Use time-inhomogeneous transition matrices with regime detection when data spans periods where market conditions
+      change — for long historical windows or volatile instruments, do not apply time-homogeneous Markov assumptions
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Applying time-homogeneous Markov models to non-stationary financial data produces incorrect transition probabilities,
+      leading to flawed state predictions that cause poor trading decisions and financial losses
+    derived_from_bd_id: BD-GAP-009
+  - id: finance-C-121
+    when: When configuring API keys for admin/ria/admin roles in production environments
+    action: Rely on the hardcoded raiden@wealthbot.io fallback account for privileged operations — specific API keys must
+      be configured; fallback usage must be logged and alerted as a security event
+    severity: high
+    kind: architecture_guardrail
+    modality: must_not
+    consequence: Using the hardcoded fallback bypasses normal API credential rotation practices, creating a persistent security
+      vulnerability if the hardcoded credentials are compromised or become outdated
+    derived_from_bd_id: BD-080
+  - id: finance-C-122
+    when: When implementing billing fee calculation logic for RIA clients
+    action: Support both TIER=1 (percentage of AUM) and FLAT=2 (fixed periodic) fee calculation paths based on the fee type
+      parameter; TIER calculates fee as percentage of assets under management while FLAT charges a fixed periodic amount
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect fee type handling causes billing to apply wrong calculation method, resulting in either overcharging
+      clients (reputation damage, refunds) or undercharging (revenue loss); strategies relying on accurate fee projection
+      will have incorrect profitability estimates
+    derived_from_bd_id: BD-017
+  - id: finance-C-123
+    when: When implementing tiered fee structure calculations for clients with large AUM
+    action: Use INFINITY constant of 1000000000000 (1 trillion) as the upper boundary for unbounded top tier; do not use NULL,
+      actual infinity, or zero for the highest tier ceiling
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using NULL for tier ceiling causes calculation errors when processing high-AUM clients; using actual infinity
+      risks numeric overflow; both scenarios produce incorrect fee calculations and potential billing failures for large accounts
+    derived_from_bd_id: BD-018
+  - id: finance-C-124
+    when: When implementing redemption penalty logic for equity securities
+    action: 'Apply 21-day holding period check: if shares held less than 21 days, calculate penalty as $15 fixed fee plus
+      5% of redemption amount; skip penalty if holding period exceeds 21 days'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect holding period calculation applies or omits penalties incorrectly, causing either investor disputes
+      (overcharged) or regulatory non-compliance (undercharged); accumulated errors in penalty calculation distort net redemption
+      returns and tax basis adjustments
+    derived_from_bd_id: BD-004
+  - id: finance-C-126
+    when: When calculating gain or loss percentages for performance reporting and tax triggers
+    action: 'Calculate percentage using formula: (marketValue - costBasis) / costBasis; this normalizes gain/loss figures
+      to enable scale comparison across positions of different sizes'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using absolute dollar gain instead of percentage misleads performance reporting for different position sizes;
+      a $100 gain on a $1000 position (10%) differs materially from $100 gain on $100000 position (0.1%), causing incorrect
+      rebalancing and tax trigger decisions
+    derived_from_bd_id: BD-056
+  - id: finance-C-128
+    when: When processing rebalancer queue operations using status constants
+    action: Use STATUS_SELL='sell' and STATUS_BUY='buy' string constants for queue status values; do not replace with boolean
+      flags or numeric codes in queue processing logic
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Replacing string constants with boolean flags or magic numbers breaks queue processing readability and extensibility;
+      existing code consuming these statuses will fail with undefined constant errors, causing rebalancing operations to halt
+    derived_from_bd_id: BD-081
+  - id: finance-C-130
+    when: When implementing or refactoring trade reconciliation aggregation logic
+    action: Group reconciliation by account, subclass, and security dimensions to capture each relevant aggregation levels
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect grouping dimensions will produce wrong position aggregations across reconciliation reporting, leading
+      to materially incorrect account positions
+    derived_from_bd_id: BD-031
+  - id: finance-C-131
+    when: When implementing RIA fee calculations or evaluating trade profitability
+    action: Verify that minimum economically viable trade size of $2,500 is enforced before triggering rebalancing; trades
+      below this threshold lose money on fees alone (fixed $250 + 10%)
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Trades below $2,500 will result in negative fee economics where the RIA pays to rebalance rather than earns;
+      small rebalancing adjustments within the 15% deviation band are likely unprofitable
+    derived_from_bd_id: BD-082
+  - id: finance-C-132
+    when: When configuring or implementing rebalancing tolerance bands
+    action: Verify that configured tolerance bands align with actual rebalancing triggers; the 15% hardcoded threshold acts
+      as a ceiling on each configured bands, making bands below 15% ineffective
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: A subclass configured with 5% tolerance will not trigger rebalancing until 15% drift, causing client expectation
+      mismatch and delayed corrective action
+    derived_from_bd_id: BD-084
+  - id: finance-C-133
+    when: When implementing or refactoring price collection and timestamp handling
+    action: Assume price data timestamps are unambiguous; the framework does not clearly distinguish between as-of date and
+      processing timestamp
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without clear as-of vs processing time distinction, prices may be attributed to incorrect trading days, causing
+      incorrect historical valuations and P&L calculations
+    derived_from_bd_id: BD-GAP-001
+  - id: finance-C-134
+    when: When implementing price data ingestion and storage
+    action: Define and enforce separate as_of_date and processed_timestamp fields for each price records; validate that as_of_date
+      represents the market date and processed_timestamp represents the database write time
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without explicit timestamp semantics, backtest results will reflect incorrect price attributions, potentially
+      overstating or understating returns
+    derived_from_bd_id: BD-GAP-001
+  - id: finance-C-135
+    when: When implementing or refactoring any stochastic components
+    action: Assume stochastic operations produce consistent results across runs; the framework does not verify random seed
+      coverage for each random number generators
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without proper random seed management, backtest results become non-reproducible, making it impossible to
+      validate strategy performance consistently
+    derived_from_bd_id: BD-GAP-003
+  - id: finance-C-136
+    when: When implementing any stochastic operations or random sampling
+    action: Initialize random seed explicitly at system startup and propagate seed configuration to each random number generators;
+      document each stochastic operations requiring seed management
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Inconsistent random seeds across runs produce non-reproducible backtest results, preventing strategy validation
+      and regulatory audit trails
+    derived_from_bd_id: BD-GAP-003
+  - id: finance-C-137
+    when: When implementing or refactoring monetary value storage and calculations
+    action: Assume float or double types are sufficient for storing monetary values; floating-point representation causes
+      precision loss in financial calculations
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Floating-point precision errors in monetary values cause rounding discrepancies that accumulate over high-volume
+      transactions, resulting in incorrect fee calculations and reconciliation failures
+    derived_from_bd_id: BD-GAP-013
+  - id: finance-C-138
+    when: When implementing monetary value storage and calculations
+    action: Migrate each monetary value fields from float/double to DECIMAL(19,4) type; verify each calculations preserve
+      precision and use decimal arithmetic instead of binary floating-point
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Float-based monetary storage causes rounding errors that lead to incorrect billing amounts and reconciliation
+      discrepancies in production
+    derived_from_bd_id: BD-GAP-013
+  - id: finance-C-139
+    when: When implementing risk rating assignment logic in portfolio model classification
+    action: Enforce non-negative risk rating via setter validation - reject any negative values at object construction to
+      prevent invalid portfolio model state
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Allowing negative risk ratings would break score-mapping algorithms and produce invalid portfolio model classifications
+      throughout the entire system
+    derived_from_bd_id: BD-027
+  - id: finance-C-140
+    when: When implementing billing fee calculation for RIA business model relationships
+    action: 'Use correct relationship type enumeration values: License Fee (0) for direct RIA relationship, TAMP (1) for third-party
+      manager overlay - verify type before fee arrangement and reporting'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using wrong relationship type values causes incorrect fee treatment and billing calculations, leading to
+      revenue discrepancies and compliance issues with fee reporting
+    derived_from_bd_id: BD-035
+  - id: finance-C-141
+    when: When implementing tiered fee calculation logic in FeeManager
+    action: Sort fee tiers by breakpoint from lowest to highest before iterating - apply marginal rates in tier order to calculate
+      correct cumulative fees across AUM levels
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Unsorted tier processing produces incorrect cumulative fees by applying marginal rates in wrong order, leading
+      to billing errors and client disputes
+    derived_from_bd_id: BD-036
+  - id: finance-C-142
+    when: When implementing rebalancing frequency selection logic for portfolio management
+    action: 'Select rebalancing frequency only from the defined set: Quarterly, Semi-Annual, Annual, or Tolerance Bands -
+      invalid frequency selection breaks rebalancing strategy execution'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using invalid rebalancing frequency causes incorrect rebalancing strategy selection, leading to either excessive
+      trading costs from over-rebalancing or portfolio drift from under-rebalancing
+    derived_from_bd_id: BD-013
+  - id: finance-C-143
+    when: When implementing rebalancer job type execution logic
+    action: 'Map job rebalance type enumeration correctly: FULL (0) for complete reallocation, REQUIRED_CASH (1) for distributions
+      only, FULL_AND_TLH (2) for tax-loss harvesting, NO_ACTIONS (3) for validation only, INITIAL (4) for baseline establishment'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using incorrect job rebalance type values causes rebalancer to execute wrong action set, potentially triggering
+      unauthorized trades or missing required rebalancing
+    derived_from_bd_id: BD-014
+  - id: finance-C-144
+    when: When implementing tax lot gain/loss calculation for tax reporting
+    action: Check cost basis known flag before attempting gain/loss calculation - proceed only when flag indicates purchase
+      price is available; track lots with unknown cost basis separately for position but not tax reporting
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Attempting gain/loss calculation without known cost basis produces incorrect tax calculations, potentially
+      causing compliance violations and incorrect tax liability reporting
+    derived_from_bd_id: BD-042
+  - id: finance-C-145
+    when: When implementing questionnaire risk scoring logic in the risk assessment stage
+    action: Implement point-based scoring that accumulates responses into a risk score, with special handling for withdraw-age
+      to adjust scoring for liquidity needs and time horizon impact
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Incorrect risk scoring causes clients to be assigned to inappropriate portfolio models, leading to misaligned
+      risk tolerance and potential regulatory compliance issues in wealth management
+    derived_from_bd_id: BD-037
+  - id: finance-C-146
+    when: When defining status constants for RebalancerAction and Job entities
+    action: Use identical constant values for rebalance_type in Job and status in RebalancerAction to maintain cross-entity
+      status alignment
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Mismatched status constants between Job and RebalancerAction cause state translation errors, resulting in
+      incorrect rebalancing status reporting and potential duplicate or missed trades
+    derived_from_bd_id: BD-041
+  - id: finance-C-147
+    when: When implementing rebalancing queue entry logic in the trading stage
+    action: Store amount in RebalancerQueue as target trade value in dollars, not share quantity; conversion to share quantity
+      must occur at execution time using current price
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Storing share quantity instead of dollar value causes position sizing to be incorrect when price changes
+      between queue entry and execution, leading to unintended over/under-allocation
+    derived_from_bd_id: BD-046
+  - id: finance-C-148
+    when: When implementing portfolio model selection based on client risk score
+    action: Map client risk score to nearest available portfolio model using closest-match algorithm with ties resolving to
+      lower risk rating
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Using exact-match-only algorithm leaves clients with scores not exactly matching any model without coverage,
+      causing allocation failures or assignment to wildly inappropriate risk levels
+    derived_from_bd_id: BD-016
+  - id: finance-C-149
+    when: When calculating tiered billing fees for registered investment advisors
+    action: Apply minimum billing fee as a floor AFTER calculating tiered percentage fees, ensuring RIA receives baseline
+      compensation regardless of low AUM accounts
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Applying floor before tiered calculation or omitting the floor causes RIA to receive inadequate compensation
+      on small accounts, breaking economic expectations and potentially causing revenue shortfalls
+    derived_from_bd_id: BD-019
+  - id: finance-C-150
+    when: When implementing tax loss harvesting activation logic
+    action: Enable TLH only when BOTH configurable dollar threshold AND percent threshold are exceeded; use whichever threshold
+      is more conservative for the specific account context
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Activating TLH without threshold checks harvests trivial losses with disproportionate wash sale risk, causing
+      unnecessary trading costs and potential wash sale rule violations that eliminate tax benefits
+    derived_from_bd_id: BD-021
+  - id: finance-C-152
+    when: When implementing allocation value conversion between dollar amounts and percentages
+    action: 'Use exact formulas for bidirectional conversion: dollar-to-percent as (value / totalAmount) * 100, and percent-to-dollar
+      as (value * totalAmount) / 100'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using different or approximated conversion formulas causes allocation display and calculation mismatches,
+      leading to confusing user interfaces and incorrect position sizing across the system
+    derived_from_bd_id: BD-054
+  - id: finance-C-153
+    when: When implementing commission cost estimation for model securities
+    action: Extract commission range as min/max across each securities in the model by finding minimum and maximum transaction
+      fee values (not average)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using average fee instead of min/max range masks the full cost spectrum, causing cost estimation to be inaccurate
+      for clients and violating fee disclosure requirements
+    derived_from_bd_id: BD-063
+  - id: finance-C-154
+    when: When implementing model deletion logic in CeModelManager
+    action: Decrement risk ratings of child models when their rating exceeds the deleted parent's rating, ensuring no orphaned
+      child has a rating higher than the new top-level ancestor
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without proper child rating adjustment, deleted parent scenarios leave orphaned children with risk ratings
+      exceeding their new ancestors, corrupting the hierarchical risk rating system and causing incorrect risk model assignments
+    derived_from_bd_id: BD-065
+  - id: finance-C-155
+    when: When implementing account cash calculation in CashCalculationManager
+    action: Sum free cash balances across each linked accounts before the specified date, excluding pending trades, reserved
+      amounts, and funds in transit
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using total cash including pending trades overstates available funds, causing withdrawal requests or rebalancing
+      to fail in live trading and creating inconsistent cash flow projections between backtest and live execution
+    derived_from_bd_id: BD-067
+  - id: finance-C-156
+    when: When implementing fee tier logic using the INFINITY constant
+    action: Use INFINITY constant to represent unbounded top fee tier, ensuring no special-case handling for highest tier
+      and proper tier boundary calculations
+    severity: medium
+    kind: operational_lesson
+    modality: must
+    consequence: Using NULL or an arbitrary large value for unbounded tier causes calculation errors or database constraints
+      failures, resulting in incorrect fee calculations that either overcharge clients or undercharge the firm
+    derived_from_bd_id: BD-044
+  - id: finance-C-157
+    when: When implementing risk tolerance scoring and model matching logic
+    action: Calculate risk tolerance by starting at 50 and summing additive points across questionnaire answers, then select
+      the model with minimum absolute difference between score and model risk rating
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using mode-based matching or applying a single fee rate to entire AUM instead of additive scoring with closest-match
+      selection causes incorrect risk model assignments, exposing clients to inappropriate risk profiles and potential regulatory
+      compliance issues
+    derived_from_bd_id: BD-053
+  - id: finance-C-158
+    when: When implementing order validation logic in the price_collection stage
+    action: Assume the framework provides security-specific tick_size and lot_size fields with order quantity validation —
+      these fields do not exist in the current implementation
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without tick_size and lot_size validation, orders may be submitted with invalid quantities causing rejection
+      at broker API level, leading to missed trades and position tracking gaps in production
+    derived_from_bd_id: BD-GAP-016
+  - id: finance-C-159
+    when: When implementing order submission in the price_collection stage
+    action: 'Add security-specific tick_size and lot_size fields to the security data model and implement order quantity validation:
+      quantity must be divisible by lot_size and price must match tick_size increments'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Orders with quantities not matching lot_size increments will be rejected by exchanges, causing order failures
+      and incomplete position fills that corrupt portfolio accounting
+    derived_from_bd_id: BD-GAP-016
+  - id: finance-C-160
+    when: When implementing portfolio workflow routing logic
+    action: Modify portfolio processing mode enum values (Straight-Through=1, Collaborative=2) or consolidate modes — changing
+      these values alters workflow routing and may bypass required compliance checkpoints
+    severity: high
+    kind: domain_rule
+    modality: must_not
+    consequence: Changing processing mode values can route portfolios incorrectly, bypassing advisor review for Collaborative
+      accounts or forcing unnecessary review for Straight-Through accounts, violating RIA compliance requirements
+    derived_from_bd_id: BD-024
+  - id: finance-C-161
+    when: When implementing model type handling in portfolio_value_update
+    action: Maintain model_type enum as STRATEGY or CUSTOM, and preserve inheritance validation for CUSTOM models derived
+      from STRATEGY templates — do not allow model_type changes without proper inheritance revalidation
+    severity: high
+    kind: architecture_guardrail
+    modality: must
+    consequence: Changing model types without inheritance revalidation breaks template derivation, causing CUSTOM models to
+      lose reference to parent strategies and corrupting portfolio allocation calculations
+    derived_from_bd_id: BD-026
+  - id: finance-C-162
+    when: When implementing position status updates in the accounting stage
+    action: Use each four position status values (INITIAL=1, IS_OPEN=2, IS_CLOSE=3, NOT_VERIFIED=4) correctly — IS_OPEN for
+      active positions, IS_CLOSE for closing transactions, NOT_VERIFIED for positions pending external confirmation; do not
+      assume positions are verified by default
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Assuming positions are verified by default causes unconfirmed positions to be treated as settled, leading
+      to incorrect portfolio valuation and potential settlement failures when external confirmations do not arrive
+    derived_from_bd_id: BD-008
+  - id: finance-C-163
+    when: When implementing rebalancing logic using tolerance bands in portfolio_value_update
+    action: Verify tolerance band values against actual account risk tolerance before applying — the default 2-21% range is
+      a starting estimate that should be customized per account; equity-focused accounts typically need tighter bands (3-5%)
+      while fixed-income accounts tolerate wider drift (15-20%)
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Using default tolerance bands without verification causes incorrect rebalancing triggers — too tight creates
+      excessive trading costs, too loose allows dangerous portfolio drift from target allocation
+    derived_from_bd_id: BD-011
+  - id: finance-C-164
+    when: When implementing trade execution or settlement quantity calculation in RebalancerQueue
+    action: 'Use correct quantity type in SQL queries: ''AS'' (each shares) for full position liquidation, ''S'' (some shares)
+      for partial adjustment — never substitute one for the other'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using 'S' instead of 'AS' causes partial adjustment logic to execute when full liquidation was intended,
+      resulting in incorrect trade sizing that leaves residual positions and misaligns portfolio allocation
+    derived_from_bd_id: BD-032
+  - id: finance-C-165
+    when: When implementing tax-loss harvesting logic and wash sale compliance checks
+    action: 'Respect the tlh_buy_back_original flag: when disabled, prevent repurchase of the same security after harvesting
+      losses; when enabled, allow repurchase after wash sale period — never hardcode repurchase behavior without checking
+      this flag'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Ignoring the tlh_buy_back_original flag can cause wash sale violations where the same security is repurchased
+      too soon, disallowing the tax loss deduction and resulting in unexpected tax liability
+    derived_from_bd_id: BD-040
+  - id: finance-C-166
+    when: When using default rebalancing thresholds ($250 fixed fee, $50 min trades, 15% drift threshold) for small accounts
+      below $17,000
+    action: 'Verify that rebalancing is economically viable before triggering: check if expected trade size would meet minimum
+      economic threshold ($2,500 trade minimum derived from fee structure) — if not, either alert the user to the dead zone
+      or adjust thresholds proportionally'
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: The risk cascade of BD-068 (15% threshold) + BD-003 ($250 fixed fee) + BD-002 ($50 min trades) creates a
+      dead zone where drift exceeding tolerance cannot be economically corrected, leaving small accounts permanently misaligned
+      without any resolution path
+    derived_from_bd_id: BD-087
+  - id: finance-C-167
+    when: When executing household-level rebalancing that spans multiple accounts
+    action: Check both account-level and household-level drift states after executing cross-account trades — verify net household
+      positions reconcile properly across accounts since account-level grouping (BD-031) does not capture aggregate household
+      allocation
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Household aggregation during rebalancing creates reconciliation mismatches where individual accounts appear
+      balanced while the household view shows drift, causing tax lot optimization issues and requiring manual reconciliation
+      of cross-account positions
+    derived_from_bd_id: BD-090
+  - id: finance-C-168
+    when: When implementing or modifying RebalancerQueue execution logic
+    action: Interpret quantity field as share count, not dollar amount — use amount field for dollar-targeting strategies
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Using quantity field as dollar value causes position size miscalculations where quantities are treated as
+      share counts, resulting in orders for incorrect share volumes that either fail execution or create unintended portfolio
+      exposure
+    derived_from_bd_id: BD-047
+  - id: finance-C-170
+    when: When computing fees in FeeManager for billing periods with partial service
+    action: Prorate fees using formula (fee * daysWorked) / daysInPeriod, rounded to 2 decimal places — never charge full
+      period fee for partial service
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Charging full-period fees to clients with mid-period account openings or closures overcharges them for unused
+      service days, causing financial losses to clients and potential compliance violations with fee transparency requirements
+    derived_from_bd_id: BD-055
+  - id: finance-C-172
+    when: When determining portfolio total value in ClientPortfolioManager
+    action: First check for cached latest ClientPortfolioValue record before falling back to summing linked ClientAccount
+      values — always attempt cached lookup first for performance
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Skipping cached ClientPortfolioValue lookup and always summing ClientAccount values causes unnecessary database
+      queries on every call, degrading system performance for portfolios with many linked accounts
+    derived_from_bd_id: BD-064
+  - id: finance-C-173
+    when: When implementing model copying functionality for CeModel
+    action: Verify that model copying preserves transaction cost assumptions including commission min/max settings, and test
+      that copied models produce consistent net return calculations without re-entering parameters
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: If model copy does not preserve commission min/max settings, copied models will use default values causing
+      net return projections to diverge from the original, leading to incorrect portfolio performance estimates
+    derived_from_bd_id: BD-028
+  - id: finance-C-174
+    when: When configuring expected return assumptions for portfolio projections
+    action: Verify expected performance tracking is implemented at the asset subclass level rather than asset class level,
+      as different subclasses have different return profiles requiring granular projection modeling
+    severity: high
+    kind: operational_lesson
+    modality: must
+    consequence: Using asset-class-level expected returns instead of subclass-level granularity causes projection precision
+      loss, as each subclass has distinct return characteristics that aggregate masking would ignore
+    derived_from_bd_id: BD-029
+  - id: finance-C-175
+    when: When setting expected performance values for return projections
+    action: Validate that expected performance values fall within the 3% to 10% realistic range (3% floor prevents optimism;
+      10% ceiling reflects market expectations), and reject or flag values outside this range as unrealistic
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Unbounded expected performance values can produce unrealistic portfolio projections, either overly optimistic
+      or arbitrarily pessimistic, making long-term planning based on flawed assumptions
+    derived_from_bd_id: BD-033
+  - id: finance-C-176
+    when: When implementing trade execution logic with multiple asset subclasses requiring action
+    action: Implement subclass priority ordering using numeric sequence to verify consistent processing order across runs,
+      as this determines which positions rebalance first when capital is constrained and affects cash flow timing
+    severity: medium
+    kind: operational_lesson
+    modality: should
+    consequence: Without consistent subclass priority ordering, trade execution sequence becomes unpredictable causing different
+      cash flow timing and settlement order, leading to inconsistent portfolio rebalancing results across backtest runs
+    derived_from_bd_id: BD-034
+  - id: finance-C-177
+    when: When implementing price_collection stage functionality
+    action: 'Assume the framework implements the missing '': 7'' functionality — this feature is absent from the framework
+      as confirmed by code audit'
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: 'Missing functionality '': 7'' in price_collection stage causes undefined behavior when the feature is expected
+      by strategy code, leading to silent failures or incorrect results'
+    derived_from_bd_id: BD-GAP-006
+  - id: finance-C-178
+    when: When implementing backtesting logic in price_collection stage
+    action: Implement walk-forward analysis, out-of-sample testing, or Monte Carlo simulations to detect and mitigate overfitting
+      in strategy parameter selection
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without backtest overfitting protection, strategies that appear highly profitable in-sample fail catastrophically
+      in live trading, causing significant capital losses
+    derived_from_bd_id: BD-GAP-006
+  - id: finance-C-179
+    when: When implementing quantitative strategy backtesting logic
+    action: Assume the framework automatically prevents backtest overfitting — the framework does not implement walk-forward
+      analysis, out-of-sample validation, or overfitting detection
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without explicit overfitting protection, strategies optimized on historical data exhibit severe curve-fitting,
+      causing live trading returns to diverge dramatically from backtested results
+    derived_from_bd_id: BD-GAP-007
+  - id: finance-C-180
+    when: When designing and evaluating quantitative trading strategies
+    action: Implement walk-forward analysis or rolling window out-of-sample testing with at least 30% holdout ratio to validate
+      strategy robustness before live deployment
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Strategies deployed without overfitting protection systematically overfit to historical patterns, leading
+      to live trading losses that can exceed the entire backtested profit
+    derived_from_bd_id: BD-GAP-007
+  - id: finance-C-181
+    when: When computing factor IC (Information Coefficient) metrics
+    action: Assume the framework performs IC demean and group alignment automatically — the framework does not implement cross-sectional
+      IC calculation with proper demeaning
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without IC demean and group alignment, factor IC calculations include systematic biases that misrepresent
+      true predictive power, causing incorrect factor selection and strategy allocation
+    derived_from_bd_id: BD-GAP-008
+  - id: finance-C-182
+    when: When calculating factor Information Coefficients for multi-factor strategies
+    action: Implement cross-sectional IC demean per group — subtract group-mean IC from each factor's IC value before aggregating,
+      ensuring individual factor contributions are properly isolated
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Factor IC values calculated without demeaning and group alignment contain systematic biases that distort
+      factor ranking, leading to suboptimal factor selection and portfolio construction
+    derived_from_bd_id: BD-GAP-008
+  - id: finance-C-183
+    when: When configuring multi-provider data sources for backtesting
+    action: Assume the framework implements provider priority routing or credential isolation — the framework does not provide
+      built-in provider failover or secure credential management
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without provider priority and credential isolation, data source failures cause backtest interruptions, and
+      shared credentials create security vulnerabilities in production environments
+    derived_from_bd_id: BD-GAP-010
+  - id: finance-C-184
+    when: When implementing multi-provider data collection architecture
+    action: Implement provider priority configuration with explicit fallback routing and isolate each provider's credentials
+      in separate secure storage (environment variables or secrets manager)
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Missing provider priority routing causes backtest failures when the primary data source becomes unavailable,
+      and credential leakage creates security risks in production deployments
+    derived_from_bd_id: BD-GAP-010
+  - id: finance-C-185
+    when: When implementing feature extraction logic for quantitative signals
+    action: Assume the framework handles time boundary conditions for feature extraction — the framework does not implement
+      lookahead bias protection or explicit temporal boundary validation
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Without explicit time boundary handling, feature extraction inadvertently uses future data (lookahead bias),
+      causing backtest results that cannot be replicated in live trading
+    derived_from_bd_id: BD-GAP-011
+  - id: finance-C-186
+    when: When designing feature extraction pipelines for time-series data
+    action: Implement explicit time boundary validation — verify features at timestamp T use only data available up to T,
+      validate no future data leaks via unit tests with synthetic future data
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Feature extraction without time boundary validation introduces lookahead bias that inflates backtest returns
+      by 10-50%, causing live trading performance to fall far below backtested results
+    derived_from_bd_id: BD-GAP-011
+  - id: finance-C-187
+    when: When implementing or evaluating backtesting results in the price_collection stage
+    action: Assume the framework implements walk-forward analysis with out-of-sample testing — this capability is confirmed
+      absent from the framework
+    severity: high
+    kind: claim_boundary
+    modality: must_not
+    consequence: Strategies validated only on in-sample data will appear profitable in backtesting but fail in live trading,
+      causing actual capital losses when deployed
+    derived_from_bd_id: BD-GAP-014
+  - id: finance-C-188
+    when: When validating strategy performance in the price_collection stage
+    action: 'Implement walk-forward analysis: divide historical data into rolling windows with train periods followed by out-of-sample
+      test periods, execute strategy only on test periods, and aggregate performance metrics from non-overlapping test results
+      to detect overfitting'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without walk-forward out-of-sample validation, backtest equity curves are overfitted to historical noise,
+      making live trading returns fall far below backtested results
+    derived_from_bd_id: BD-GAP-014
+  - id: finance-C-189
+    when: When implementing or modifying job scheduling and execution logic that references REBALANCE_TYPE constants
+    action: 'Preserve the exact ordinal sequence: FULL(0), REQUIRED_CASH(1), FULL_AND_TLH(2), NO_ACTIONS(3), INITIAL(4) —
+      the integer values and their relative ordering must not be altered'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Changing REBALANCE_TYPE ordinals causes portfolio rebalancing operations to execute the wrong job type, resulting
+      in incorrect capital allocation, unintended position sizing, or failed TLH harvesting
+    derived_from_bd_id: BD-079
+  - id: finance-C-190
+    when: When evaluating tax lots for tax-loss harvesting decisions
+    action: 'Check both conditions simultaneously: (1) verify lot age against 365-day threshold for long-term classification,
+      AND (2) verify lot is not within 30-day wash sale window from any replacement purchase — lots aged 335-365 days must
+      still be checked for wash sale exposure before harvesting'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Harvesting lots without wash sale window verification causes disallowed losses under IRS rules, triggering
+      additional tax liability and permanent reduction of TLH benefits by 5-15% annually
+    derived_from_bd_id: BD-083
+  - id: finance-C-191
+    when: When implementing or refactoring the TLH savings calculation chain
+    action: 'Preserve the complete dependency chain: TLH threshold (BD-021) → savings formula (BD-061) → cash flow TWR (BD-059)
+      → annualized TWR (BD-052) → portfolio value (BD-064) → period-end billing (BD-048) → billing sum (BD-066) → min fee
+      floor (BD-060) → min billing fee (BD-019); do not isolate any component from its dependent calculations'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: TLH thresholds set too low cause excessive wash sale trading whose losses are not captured in savings estimates,
+      overstating performance by 5-15% and causing incorrect fee billing that triggers client disputes
+    derived_from_bd_id: BD-086
+  - id: finance-C-192
+    when: When calculating time-weighted returns across custodians or time periods
+    action: Define and document explicit settlement date convention (T+N) and day count convention (act/360, 30/360, act/365)
+      before any interval calculations; verify each TWR components use the same conventions consistently
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Without explicit date conventions, portfolio value intervals are calculated differently across custodians,
+      months with varying day counts, and leap years, causing TWR comparisons to be comparing fundamentally inconsistent calculations
+    derived_from_bd_id: BD-088
+  - id: finance-C-193
+    when: When implementing lot selection and account placement logic
+    action: 'Coordinate three decisions jointly: qualified vs non-qualified account segregation (BD-045), municipal bond substitution
+      eligibility restricted to taxable accounts (BD-025), and 365-day threshold for long-term vs short-term gains (BD-057);
+      apply account-type-dependent tax treatment as a filter before any lot selection'
+    severity: high
+    kind: domain_rule
+    modality: must
+    consequence: Ignoring account-type coordination causes municipal bonds placed in qualified accounts (suboptimal tax treatment),
+      short-term trades in taxable accounts (higher tax rates), and lot selection without tax awareness across accounts, reducing
+      household-level tax efficiency by 2-5%
+    derived_from_bd_id: BD-089
+output_validator:
+  assertions:
+  - id: OV-01
+    check_predicate: all(p in inspect.getsource(zvt.factors.algorithm.macd) for p in ['slow=26', 'fast=12', 'n=9'])
+    failure_message: 'FATAL: MACD params drifted from (fast=12, slow=26, n=9) — SL-08 violation, non-reproducible signals'
+    business_meaning: Standard MACD parameters are a semantic lock; drift makes results incomparable with industry-standard
+      indicators and non-reproducible.
+    source_ids:
+    - SL-08
+    - BD-036
+  - id: OV-02
+    check_predicate: result.get('total_trades', 0) > 0 or result.get('explicit_zero_trade_ack') is True
+    failure_message: Zero trades executed — likely missing pre-fetched data (see PC-02) or over-restrictive filters
+    business_meaning: A backtest with zero trades is not a valid result; either data is missing or the strategy never triggered.
+      Structural non-emptiness check is insufficient — we need business confirmation.
+    source_ids:
+    - SL-01
+    - finance-C-073
+  - id: OV-03
+    check_predicate: result.get('annual_return') is None or abs(float(result['annual_return'])) <= 5.0
+    failure_message: 'FATAL: |annual_return| > 500% — likely look-ahead bias or data error'
+    business_meaning: Annual returns exceeding 500% are physically implausible for A-share strategies; indicates look-ahead
+      bias or corrupt data.
+    source_ids: []
+  - id: OV-04
+    check_predicate: result.get('holding_change_pct') is None or abs(float(result['holding_change_pct'])) <= 1.0
+    failure_message: 'FATAL: |holding_change_pct| > 100% — physically impossible'
+    business_meaning: Holding change percentage cannot exceed 100%; violation indicates position accounting error.
+    source_ids:
+    - BD-029
+  - id: OV-05
+    check_predicate: result.get('max_drawdown') is None or abs(float(result['max_drawdown'])) <= 1.0
+    failure_message: 'FATAL: |max_drawdown| > 100% — impossible for non-leveraged account'
+    business_meaning: Maximum drawdown cannot exceed 100% without leverage; violation indicates calculation error or look-ahead
+      bias.
+    source_ids: []
+  - id: OV-06
+    check_predicate: not (hasattr(result, 'trade_log') and result.trade_log and any(result.trade_log[i].action == 'sell' and
+      i+1 < len(result.trade_log) and result.trade_log[i+1].action == 'buy' and result.trade_log[i].timestamp == result.trade_log[i+1].timestamp
+      for i in range(len(result.trade_log)-1)))
+    failure_message: 'FATAL: buy-before-sell detected in same cycle — SL-01 violation, creates implicit leverage'
+    business_meaning: SL-01 requires sell() before buy() in each cycle; violation means available_long was not updated before
+      buying, risking duplicate positions.
+    source_ids:
+    - SL-01
+  scaffold:
+    validate_py_path: '{workspace}/validate.py'
+    tail_block: "# === DO NOT MODIFY BELOW THIS LINE ===\nif __name__ == \"__main__\":\n    result = run_backtest()\n    from\
+      \ validate import enforce_validation\n    enforce_validation(result, output_path=\"{workspace}/result.csv\")\n# ===\
+      \ END DO NOT MODIFY ==="
+  enforcement_protocol: 1. Never edit validate.py. 2. Never delete the DO NOT MODIFY tail block from the main script. 3. Never
+    wrap enforce_validation() in try/except. 4. Never rewrite result write logic — it MUST go through enforce_validation.
+    5. If validate.py raises ImportError, fix the dependency, do not remove the call.
+acceptance:
+  hard_gates:
+  - id: G1
+    check: '{workspace}/result.csv exists AND file size > 0'
+    on_fail: Strategy did not produce output; check run_backtest() return value and enforce_validation() call
+  - id: G2
+    check: '{workspace}/result.csv.validation_passed marker file exists'
+    on_fail: Validation did not complete; review validate.py output and fix assertion failures
+  - id: G3
+    check: 'Main script contains literal: from validate import enforce_validation'
+    on_fail: Validation chain stripped; re-add the import in the DO NOT MODIFY block
+  - id: G4
+    check: 'Main script contains literal: # === DO NOT MODIFY BELOW THIS LINE ==='
+    on_fail: Validation fence removed; regenerate DO NOT MODIFY tail block
+  - id: G5
+    check: 'result.csv has at least 1 row: pandas.read_csv(result.csv).shape[0] >= 1'
+    on_fail: Empty result; check if trade_log is non-empty and factors generated signals. Confirm PC-02 (k-data exists) passed.
+  - id: G6
+    check: 'If MACD strategy: source contains ''slow=26'' AND ''fast=12'' AND ''n=9'' in algorithm call'
+    on_fail: MACD params drifted from SL-08 lock; restore standard (12, 26, 9)
+  - id: G7
+    check: 'For data pipeline tasks: result.csv contains ''entity_id'' and ''timestamp'' fields'
+    on_fail: Missing required columns; check Mixin.query_data return schema and DataFrame MultiIndex reset_index() before
+      writing
+  - id: G8
+    check: 'OV-03 passes: abs(annual_return) <= 5.0 (500%)'
+    on_fail: Physical plausibility check failed; investigate look-ahead bias or data corruption in input kdata
+  soft_gates:
+  - id: SG-01
+    rubric: 'Strategy narrative consistency: user intent aligns with generated strategy.py logic. dim_a: signal direction
+      (buy/sell) matches intent [1-5, pass>=4]; dim_b: frequency (daily/intraday) aligns [1-5, pass>=4]; dim_c: risk controls
+      match user intent [1-5, pass>=4].'
+  - id: SG-02
+    rubric: 'Factor combination quality. dim_a: no highly correlated factor duplication [1-5, pass>=4]; dim_b: multi-period
+      alignment correct [1-5, pass>=4]; dim_c: liquidity filter present for A-share [1-5, pass>=4].'
+  - id: SG-03
+    rubric: 'Data source selection appropriateness. dim_a: coverage sufficient for target entities [1-5, pass>=4]; dim_b:
+      provider latency acceptable for strategy frequency [1-5, pass>=4]; dim_c: no unauthorized provider used without credentials
+      [1-5, pass>=4].'
+skill_crystallization:
+  trigger: all_hard_gates_passed AND user_opt_out_skill_saving != true
+  output_path_template: '{workspace}/../skills/{slug}.skill'
+  slug_template: '{blueprint_id_short}-{uc_id_lower}'
+  captured_fields:
+  - name
+  - intent_keywords
+  - entry_point_script
+  - validate_script
+  - fatal_constraints
+  - spec_locks
+  - preconditions
+  - install_recipes
+  - human_summary_translated
+  action: 'After all Hard Gates PASS, resolve slug via slug_template using the executed UC, then write the .skill YAML file
+    at output_path_template. Notify user in their detected locale: ''Skill saved as {slug}.skill — next time say one of {sample_triggers}
+    from the matched UC to invoke directly.'''
+  violation_signal: All hard gates passed but no .skill file exists at expected path
+  skill_file_schema:
+    name: finance-bp-066 / UC-101
+    version: v5.3
+    intent_keywords: []
+    entry_point: run_backtest
+    fatal_guards:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-10
+    - SL-11
+    - SL-12
+    spec_locks:
+    - SL-01
+    - SL-02
+    - SL-03
+    - SL-04
+    - SL-05
+    - SL-06
+    - SL-07
+    - SL-08
+    - SL-09
+    - SL-10
+    - SL-11
+    - SL-12
+    preconditions:
+    - PC-01
+    - PC-02
+    - PC-03
+    - PC-04
+post_install_notice:
+  trigger: skill_installation_complete
+  message_template:
+    positioning: I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow.
+    capability_catalog:
+      group_strategy:
+        source: auto_grouped
+        strategy_reason: no candidate field had 2-7 distinct values; all capabilities collapsed into single group
+      groups:
+      - group_id: all
+        name: All Capabilities
+        description: ''
+        emoji: 📦
+        uc_count: 0
+        ucs: []
+    call_to_action: Tell me which one you want to try.
+    featured_entries:
+    - uc_id: UC-100
+      beginner_prompt: Try capability UC-100
+      auto_selected: true
+    - uc_id: UC-101
+      beginner_prompt: Try capability UC-101
+      auto_selected: true
+    - uc_id: UC-102
+      beginner_prompt: Try capability UC-102
+      auto_selected: true
+    more_info_hint: Ask me 'what else can you do?' to see all 0 capabilities.
+  locale_rendering:
+    instruction: On skill_installation_complete, translate ALL user-facing strings (positioning + capability_catalog.groups[].name
+      + capability_catalog.groups[].description + capability_catalog.groups[].ucs[].short_description + call_to_action + featured_entries[].beginner_prompt
+      + more_info_hint) into detected user locale per locale_contract. Preserve UC-IDs, group_id, emoji, and sample_triggers
+      verbatim.
+    preserve_verbatim:
+    - UC-IDs
+    - group_id
+    - emoji
+    - sample_triggers
+    - technical_class_names
+  enforcement:
+    action: 'Host agent MUST send composed message to user as the FIRST user-facing response after skill_installation_complete
+      event. Message MUST contain: positioning, capability_catalog (rendered as markdown tables per group), 3 featured_entries,
+      call_to_action, and more_info_hint.'
+    violation_code: PIN-01
+    violation_signal: First user-facing message post-install does not contain the full capability_catalog (all UCs grouped)
+      OR skips featured_entries OR skips call_to_action.
+human_summary:
+  persona: Doraemon
+  what_i_can_do:
+    tagline: 'I help you build quant strategies on A-share with ZVT — from data fetch to backtest, one flow. Just tell me
+      what you want; I''ll write the code, you don''t have to dig docs. (Heads up: ZVT natively supports A-share, HK, and
+      crypto. US stocks — stockus_nasdaq_AAPL — are half-baked; don''t bother for serious work.)'
+    use_cases:
+    - A-share MACD daily golden-cross backtest with hfq price adjustment from eastmoney
+    - 'End-to-end ZVT pipeline: FinanceRecorder + GoodCompanyFactor + StockTrader'
+    - Multi-factor strategy with TargetSelector (AND mode) combining MACD + volume breakout
+    - Index composition data collection (SZ1000, SZ2000) with EM recorder
+    - Institutional fund holdings tracker via joinquant_fund_runner pattern
+    - Custom Transformer + Accumulator factor with per-entity rolling state
+    - Bollinger Band mean-reversion factor with BollTransformer (window=20, window_dev=2)
+  what_i_auto_fetch:
+  - ZVT stage pipeline structure (data_collection → visualization) from LATEST.yaml
+  - Semantic locks (SL-01 through SL-12) — especially sell-before-buy ordering and MACD params
+  - Fatal constraints (finance-C-*) relevant to your target strategy type
+  - 'Default parameters: MACD(12,26,9), hfq adjustment, buy_cost=0.001, base_capital=1M CNY'
+  - Entity ID format (stock_sh_600000) and DataFrame MultiIndex convention
+  - Provider-specific recorder class names and required class attributes
+  what_i_ask_you:
+  - 'Target market: A-share (default), HK, or crypto? (US stocks in ZVT are half-baked — stockus_nasdaq_AAPL exists but coverage
+    is thin)'
+  - 'Data source / provider: eastmoney (free, no account), joinquant (account+paid), baostock (free, good history), akshare,
+    or qmt (broker)?'
+  - 'Strategy type: MACD golden-cross, MA crossover, volume breakout, fundamental screen, or custom factor?'
+  - 'Time range: start_timestamp and end_timestamp for backtest period'
+  - 'Target entity IDs: specific stocks (stock_sh_600000) or index components (SZ1000)?'
+  locale_rendering:
+    instruction: On first user contact, translate all fields above into detected user locale while preserving Doraemon persona
+      (direct, frank, mildly snarky, knows limits).
+    preserve_verbatim:
+    - BD-IDs
+    - SL-IDs
+    - UC-IDs
+    - finance-C-IDs
+    - class_names
+    - function_names
+    - file_paths
+    - numeric_thresholds

@@ -1,0 +1,14 @@
+services:
+  qb:
+    build: .
+    image: qb-cli:latest
+    ports:
+      - "8844:8844"
+    volumes:
+      - ./config:/config
+      - ./workspace:/workspace
+    environment:
+      - QB_CLIENT_ID=${QB_CLIENT_ID}
+      - QB_CLIENT_SECRET=${QB_CLIENT_SECRET}
+      - QB_ENVIRONMENT=${QB_ENVIRONMENT:-sandbox}
+      - QB_CONFIG_DIR=/config

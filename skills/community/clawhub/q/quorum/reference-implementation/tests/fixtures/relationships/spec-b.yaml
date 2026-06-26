@@ -1,0 +1,17 @@
+name: data-processor
+version: "1.0"
+
+interface:
+  input:
+    type: object
+    required:
+      - name
+      - value
+  output:
+    type: object
+    required:
+      - result
+
+constraints:
+  - name must be a non-empty string
+  - value must be a positive number

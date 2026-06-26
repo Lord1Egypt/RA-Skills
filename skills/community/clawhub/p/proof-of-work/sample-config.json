@@ -1,0 +1,25 @@
+{
+  "check_paths": [
+    "~/agent-workspace/outputs/",
+    "~/agent-workspace/handoffs/"
+  ],
+  "required_sections": [
+    "## Summary",
+    "## Result",
+    "## Completion Status"
+  ],
+  "min_content_length": 100,
+  "max_age_hours": 48,
+  "placeholder_patterns": [
+    "TODO",
+    "TBD",
+    "PLACEHOLDER",
+    "FIXME",
+    "XXX",
+    "HACK"
+  ],
+  "output_format": "text",
+  "log_file": "~/.proof-of-work/checks.log",
+  "enable_json_validation": false,
+  "enable_markdown_validation": true
+}

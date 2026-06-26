@@ -1,0 +1,11 @@
+name: progress-reporter
+version: 1.0.0
+description: Auto-generated skill definition
+author: zenmejiang-commits
+license: MIT
+tags:
+  - latest
+  - auto-optimized
+entry_point: SKILL.md
+skill_file: SKILL.md
+readme: README.md

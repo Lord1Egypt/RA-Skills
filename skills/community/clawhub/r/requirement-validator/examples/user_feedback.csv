@@ -1,0 +1,16 @@
+user_id,content,timestamp,channel
+user001,"需要导出PDF功能，方便分享给客户",2026-04-01,feedback
+user002,"希望支持批量导出文档",2026-04-01,survey
+user003,"导出功能很重要，建议优先开发",2026-04-02,feedback
+user004,"能不能支持导出为Word格式？",2026-04-02,chat
+user005,"导出PDF功能很实用，期待上线",2026-04-03,feedback
+user006,"建议增加导出选项，支持自定义格式",2026-04-03,feedback
+user007,"批量导出可以提升工作效率",2026-04-04,feedback
+user008,"导出功能是刚需，希望尽快实现",2026-04-04,survey
+user009,"支持导出PDF对工作帮助很大",2026-04-05,feedback
+user010,"希望导出功能支持水印设置",2026-04-05,feedback
+user011,"产品很好用，如果能导出就完美了",2026-04-06,feedback
+user012,"批量导出和单文件导出都需要",2026-04-06,chat
+user013,"导出PDF功能已经等了很久了",2026-04-07,feedback
+user014,"建议增加导出历史记录功能",2026-04-07,feedback
+user015,"导出功能对团队协作很重要",2026-04-08,feedback

@@ -1,0 +1,53 @@
+{
+  "skill_name": "return-rate-reducer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "hey so we have a Shopify apparel store and our return rate is killing us — roughly 22% overall, and it's mostly on our slim fit chinos and wrap dresses. I pulled a returns export from Shopify, top reasons are 'wrong size' (like 40% of returns) and 'not as described' (another 25%). We don't have a size guide on most PDPs, just S/M/L/XL options. No fit-finder, no model measurements on photos. We do free returns with a 60-day window. I need a full plan — what's driving this, what to fix first, and realistic targets. Budget is limited so prioritize quick wins.",
+      "expected_output": "Return rate snapshot with 22% vs. apparel benchmark, root-cause diagnosis for size and 'not as described' issues, prioritized fix list with quick wins (add size guide, model measurements, fit notes) before larger efforts (fit quiz, photo reshoot), policy review of 60-day free returns, measurement plan with specific reduction targets.",
+      "files": [],
+      "expectations": [
+        "Compares 22% return rate to apparel benchmark (20-30%)",
+        "Identifies missing size guide as a primary driver of size-related returns",
+        "Recommends adding body-measurement size chart as a quick win",
+        "Recommends adding model stats (height, weight, size worn) on photos",
+        "Addresses 'not as described' with specific PDP fixes (color accuracy, material description)",
+        "Reviews 60-day free return policy and suggests tightening or adding conditions",
+        "Provides a measurement plan with specific return-rate reduction target",
+        "Organizes fixes by effort level (quick wins vs. medium vs. larger projects)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I run a DTC electronics accessories brand — phone cases, chargers, screen protectors. Return rate is around 8% which sounds ok but it's costing us $15k/month in reverse shipping and restocking. Main issue is compatibility — people buy a case for iPhone 15 Pro but they have the regular iPhone 15, or they get a USB-C charger when they need Lightning. Our product pages list 'compatible models' in a text block at the bottom but it's easy to miss. Also getting some 'quality below expectation' returns on our budget line cases. What should I fix and how do I track whether it works?",
+      "expected_output": "Snapshot with 8% rate and $15k cost context, compatibility-focused root cause (buried info, confusing model names), quick wins (move compat info up, add model-selection dropdown, 'works with / does not work with' callout), quality fixes for budget line, A/B testing plan for PDP changes, dashboard metrics.",
+      "files": [],
+      "expectations": [
+        "Frames 8% return rate against electronics benchmark (5-10%)",
+        "Identifies buried compatibility info as the root cause for compatibility returns",
+        "Recommends moving compatibility info above the fold or into a selector/dropdown",
+        "Suggests a 'works with / does not work with' callout box",
+        "Addresses budget-line quality returns separately from compatibility returns",
+        "Includes cost-impact estimation or acknowledges the $15k/month figure",
+        "Proposes A/B testing approach for PDP changes with measurement timeline",
+        "Suggests tracking compatibility-return rate as a specific metric"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "ok I need help figuring out our beauty brand's return situation. we sell skincare on shopify — serums, moisturizers, cleansers. overall return rate is about 6% which I know isn't crazy high for beauty but the reasons worry me: a lot of 'sensitivity/reaction' and 'shade doesn't match' for our tinted moisturizer. we also have a problem with what I think is return abuse — a few customers keep buying and returning, I think they're basically using our 90-day free returns as a try-before-you-buy. I don't have a formal returns CSV to share, just what I see in shopify admin. Can you help me figure out what to do?",
+      "expected_output": "Acknowledges 6% is reasonable for beauty but the reason mix is concerning, diagnosis of sensitivity returns (missing patch test guidance, ingredient prominence), shade-match fixes (shade finder, swatch photos, comparison guide), serial-returner policy suggestions (flag repeat returners, require reason+photo, shorten window for opened items), guidance on extracting return data from Shopify admin.",
+      "files": [],
+      "expectations": [
+        "Compares 6% to beauty benchmark (5-8%) and notes the reason mix is the real concern",
+        "Addresses sensitivity returns with specific fixes (patch test note, ingredient list prominence)",
+        "Addresses shade-mismatch with fixes (shade finder quiz, swatch photos, shade comparison)",
+        "Identifies serial-returner abuse pattern and suggests segmented policy response",
+        "Questions or suggests shortening the 90-day window for opened beauty products",
+        "Provides guidance on how to extract or structure return data from Shopify admin",
+        "Separates 'prevention' fixes from 'policy' fixes",
+        "Does not assume CSV data is available — works with qualitative information"
+      ]
+    }
+  ]
+}

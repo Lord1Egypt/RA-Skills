@@ -1,0 +1,21 @@
+{
+  "name": "qqbot-media-sender",
+  "version": "1.0.0",
+  "description": "一键发送图片/视频/文件到 QQ，支持批量发送和自动压缩",
+  "type": "skill",
+  "main": "sender.js",
+  "bin": {
+    "qqbot-send-media": "./sender.js"
+  },
+  "keywords": [
+    "qqbot",
+    "media",
+    "image",
+    "video",
+    "file",
+    "qq",
+    "send"
+  ],
+  "author": "Lin",
+  "license": "MIT"
+}

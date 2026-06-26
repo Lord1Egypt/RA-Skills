@@ -1,35 +1,22 @@
----
-name: "rednote summarize"
-description: "根据用户提供的小红书帖子链接，提取并总结该帖主贴内容和评论区主要观点，生成中文综合报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rednote-summarize"
-sourceUrl: "https://clawhub.ai/skills/rednote-summarize"
----
+# 小红书帖子总结助手工作流程 (Agent Instructions)
 
-# rednote summarize
+当你被要求使用此skill处理一个小红书帖子URL时，请严格按照以下步骤执行：
 
-> 根据用户提供的小红书帖子链接，提取并总结该帖主贴内容和评论区主要观点，生成中文综合报告。
+## 1. 登录与页面加载 (Login & Access)
+- 使用 `browser_subagent` 工具打开用户提供的小红书帖子URL。
+- **注意登录限制**：小红书网页版通常会强制要求登录才能查看完整内容和评论。
+- 在 `browser_subagent` 的任务指令中，明确要求它：
+  1. 页面加载后，如果遇到登录弹窗（通常是二维码），请暂停操作或提示用户扫码登录。如果系统支持，代理可以等待一段时间让用户完成扫码。
+  2. 如果无法自动完成登录，应通过 `notify_user` 明确告知用户需要他们手动介入或提供 Cookies 等其他协助。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rednote-summarize`
-- **Source URL:** [https://clawhub.ai/skills/rednote-summarize](https://clawhub.ai/skills/rednote-summarize)
+## 2. 提取并总结主贴内容 (Summarize Main Post)
+- 成功加载并解锁页面后，提取帖子的标题和正文文本内容。
+- 用中文撰写一段**主贴内容总结**，概述博主分享的核心信息、观点或事件。
 
-## Overview
+## 3. 提取并总结评论区 (Summarize Comments)
+- 指示 `browser_subagent` 向下滚动页面以加载更多评论。
+- 提取多条高赞或有代表性的评论文本。
+- 用中文撰写一段**评论区看法总结**，归纳大众对这个帖子的主要态度（如支持、反对、吐槽、种草等）以及有价值的补充信息。
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/rednote-summarize
-```
+## 4. 输出最终报告 (Final Output)
+- 将两部分总结（主贴总结和评论总结）排版整齐，直接回复给用户。

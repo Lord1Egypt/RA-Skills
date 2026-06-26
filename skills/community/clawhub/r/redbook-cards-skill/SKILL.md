@@ -1,35 +1,158 @@
 ---
-name: "redbook-cards-skill"
-description: "将任意文章 HTML 页面或纯文本，自动切片生成小红书风格图文卡片组（封面 + 内容图 + 金句图），输出单个可直接在浏览器预览的 HTML 文件。触发词：小红书、图文卡片、切片、种草图、笔记卡片。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/redbook-cards-skill"
-sourceUrl: "https://clawhub.ai/skills/redbook-cards-skill"
+name: redbook-cards
+description: 将任意文章 HTML 页面或纯文本，自动切片生成小红书风格图文卡片组（封面 + 内容图 + 金句图），输出单个可直接在浏览器预览的 HTML 文件。触发词：小红书、图文卡片、切片、种草图、笔记卡片。
+license: MIT License - see LICENSE.txt
+version: 1.0.0
+author: 养虾日记 · Human3.0
 ---
 
-# redbook-cards-skill
+## 技能概述
 
-> 将任意文章 HTML 页面或纯文本，自动切片生成小红书风格图文卡片组（封面 + 内容图 + 金句图），输出单个可直接在浏览器预览的 HTML 文件。触发词：小红书、图文卡片、切片、种草图、笔记卡片。
+本技能帮助 AI 将任意文章（HTML / 纯文本）自动切片为**小红书图文卡片组**，输出单个完整 HTML 文件，可直接在浏览器预览并截图发布。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/redbook-cards-skill`
-- **Source URL:** [https://clawhub.ai/skills/redbook-cards-skill](https://clawhub.ai/skills/redbook-cards-skill)
+**适用场景：**
+- 公众号/博客文章 → 小红书图文
+- 知识输出/学习笔记 → 视觉卡片
+- 品牌内容 → 种草图组
 
-## Overview
+---
 
+## 执行流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/redbook-cards-skill
+收到文章内容后，按以下步骤执行：
+
+### Step 1：内容解析
+
+从原文中提取：
+- **文章标题**（用于封面卡和 HTML `<title>`）
+- **系列/专栏名**（如「养虾日记 Day X」，用于系列标识徽章）
+- **核心论点**（2-4 个，每个对应一张内容卡）
+- **结构化信息**（列表、流程、对比、公式等，保留原始信息结构）
+- **金句**（全文最有冲击力的 1-2 句，用于收尾卡）
+- **话题标签**（从原文 # 标签中提取，无则自动生成 3-5 个）
+
+### Step 2：卡片规划
+
+固定结构如下（共 5～7 张）：
+
+| 位置 | 卡片类型 | 内容要点 |
+|------|---------|---------|
+| 第 1 张 | **封面卡** | 标题 + 一句话 hook（制造好奇心/痛点共鸣） |
+| 第 2 张 | **问题/现象卡** | 引出问题，放大用户感受 |
+| 第 3～N-1 张 | **核心内容卡** | 每张只讲一个核心点，信息密度适中 |
+| 最后 1 张 | **金句收尾卡** | 全文最强观点 + 话题标签 + 系列标识 |
+
+**内容写作原则：**
+- 每张卡片文字总量 ≤ 120 字
+- 优先使用：对比结构、流程箭头（→）、编号列表、短句断行
+- 保留原文 emoji 风格
+- 禁止大段文字堆砌
+
+### Step 3：HTML 生成
+
+输出单个完整 HTML 文件，严格遵守以下规范：
+
+#### 布局规范
+```css
+/* 页面背景 */
+body { background: #F0EBE3; } /* 暖米纸色 */
+
+/* 卡片网格 */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 32px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* 卡片比例：严格 3:4 */
+.card {
+  aspect-ratio: 3 / 4;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+}
+
+/* 悬停效果 */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+  transition: all 0.3s ease;
+}
 ```
+
+#### 字体规范
+```html
+<!-- 必须引入，中文渲染质量保证 -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+```
+- 标题/金句：`Noto Serif SC` weight 900
+- 正文/标签：`Noto Sans SC`
+
+#### 配色轮换方案
+
+每张卡片使用不同配色，**禁止相邻两张颜色相同**：
+
+| 卡片类型 | 推荐配色方案 | 适用场景 |
+|---------|------------|---------|
+| 封面卡 | 珊瑚橙暖渐变 `#FF6B5B → #FFCB8E` | 热情、吸睛 |
+| 问题/警示卡 | 深色赛博 `#1A1A2E` + 红色高亮 | 严肃、警觉 |
+| 概念解释卡 | 清爽绿白 `#EEF2FF → #E8F5F0` | 清晰、专业 |
+| 重要性卡 | 暖米黄 `#FFFBF0 → #FFF0E8` | 温和、强调 |
+| 行动方案卡 | 深蓝星空 `#2D1B69 → #1A3A4A` | 神秘、行动感 |
+| 金句收尾卡 | 高饱和红 `#FF6B5B → #C9184A` | 冲击、记忆点 |
+
+#### 装饰元素（每张必须有，禁止纯色白底）
+
+- 背景圆形/椭圆光晕（`position: absolute`, `opacity: 0.1-0.3`）
+- 几何网格线（`background-image: linear-gradient` 交叉）
+- 不规则有机形状（`border-radius: 60% 40% 70% 30%`）
+- 径向渐变发光点
+
+#### 必须包含的 UI 元素
+
+- **右上角编号徽章**：`N / 总数`，半透明背景
+- **封面卡左上角**：系列标识（从原文提取，如「养虾日记 Day X」）
+- **金句卡底部**：话题标签行 + 系列说明一行
+- **页面顶部**：文章标题 + 「共 N 张 · 小红书图文切片」副标题
+
+### Step 4：输出前自查
+
+生成代码后，逐项确认：
+
+- [ ] 封面 hook 是否能让人想继续看？（测试：如果只看封面，会不会想翻下一张）
+- [ ] 每张内容卡是否只聚焦一件事？
+- [ ] 有没有对比结构或视觉流程？
+- [ ] 金句卡文字是否够有冲击力？
+- [ ] 相邻卡片配色是否有变化？
+- [ ] 话题标签是否正确？
+- [ ] HTML 是否可独立运行，无外部依赖（除 Google Fonts）？
+
+---
+
+## 输入变量
+
+| 变量名 | 类型 | 说明 |
+|-------|------|------|
+| `article_content` | string | 原文 HTML 或纯文本（必填） |
+| `series_name` | string | 系列名称，如「养虾日记 Day 2」（可选，无则从原文提取） |
+| `style_preference` | string | 风格偏好：默认/极简/赛博/国潮/杂志风（可选） |
+| `card_count` | number | 卡片数量 5～7（可选，默认自动判断） |
+
+---
+
+## 输出
+
+单个完整 HTML 文件字符串，文件名建议：`{文章标题}-小红书.html`
+
+HTML 第一行注释格式：
+```html
+<!-- 小红书图文卡片 | 标题：{文章标题} | 卡片数：N | 生成时间：{时间} -->
+```
+
+---
+
+## 参考示例
+
+详见 `EXAMPLE.md` 和 `PROMPT.md`

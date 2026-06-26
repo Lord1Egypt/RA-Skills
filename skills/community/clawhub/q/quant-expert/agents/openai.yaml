@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quant Expert"
+  short_description: "Analyze A-share securities with Tushare-based helpers"
+  default_prompt: "Use the bundled Tushare-based scripts and references to screen Chinese stocks, diagnose individual securities, query market data, and check trading days. Use web research only when the user asks for interpretation or event context."

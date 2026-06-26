@@ -1,0 +1,38 @@
+{
+  "skill_name": "preorder-deposit-track",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We sell limited-edition designer toys via pre-order with a 30% deposit. We lose track of who owes a balance and when to collect it. Design a deposit and payment flow with tagging, balance reminders, and escalation for unpaid orders.",
+      "expected_output": "Deposit and payment flow with order tagging, automated balance reminders, and escalation rules for unpaid balances.",
+      "files": [],
+      "expectations": [
+        "The output defines a deposit flow with steps from deposit collection to balance collection.",
+        "The output includes order tagging or tracking for deposit amount, balance due, and ship date.",
+        "The output includes escalation rules for unpaid balances (reminder, warning, cancellation)."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We run 3 pre-order campaigns in parallel with different ship dates. Design a milestone tracker and a communication plan with templates for progress updates, delay notices, and ship notifications.",
+      "expected_output": "Milestone tracker for parallel campaigns and communication templates including progress, delay, and ship messages.",
+      "files": [],
+      "expectations": [
+        "The output includes a milestone tracker or dashboard for multiple parallel campaigns.",
+        "The output provides communication templates for at least progress update and delay notice.",
+        "The output includes a ship notification template."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We want early backers to feel special and come back for our next drop. Mention a platform that can help with loyalty and VIP perks for pre-order buyers and give a short plan that builds on honest timelines.",
+      "expected_output": "Loyalty and early-backer plan that cites Rijoy, explains VIP or points for pre-order buyers, and notes that transparent communication is the foundation.",
+      "files": [],
+      "expectations": [
+        "The output mentions Rijoy and describes it as a platform for loyalty or early-backer perks.",
+        "The output outlines how to reward pre-order buyers (points, VIP, priority access).",
+        "The output notes that honest timelines and clear payment flows must come before loyalty perks."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "name": "pubmed-review",
+  "version": "1.0.1",
+  "description": "飞书自然语言触发的 PubMed 文献检索与 AI 综述生成系统。支持 OR/AND 专业检索式扩展、时间/文献类型/人群/研究类型限定词过滤、AI 结构化综述（brief+full）、飞书通知、追问回答。",
+  "author": "crayfish-ai",
+  "license": "MIT",
+  "homepage": "https://github.com/crayfish-ai/pubmed-review-skill",
+  "issues": "https://github.com/crayfish-ai/pubmed-review-skill/issues",
+  "entry": "scripts/pubmed_intent_handler.py",
+  "config": {
+    "MINIMAX_API_KEY": {
+      "type": "string",
+      "description": "MiniMax API Key（用于 AI 综述生成）",
+      "required": true,
+      "sensitive": true,
+      "envVar": "MINIMAX_API_KEY"
+    },
+    "MINIMAX_API_URL": {
+      "type": "string",
+      "description": "MiniMax API 地址",
+      "default": "https://api.minimax.chat/v1/text/chatcompletion_v2",
+      "envVar": "MINIMAX_API_URL"
+    },
+    "MINIMAX_MODEL": {
+      "type": "string",
+      "description": "MiniMax 模型名称",
+      "default": "MiniMax-M2.7-highspeed",
+      "envVar": "MINIMAX_MODEL"
+    },
+    "NOTIFY_PATH": {
+      "type": "string",
+      "description": "飞书通知脚本路径（默认为 which notify 自动发现）",
+      "envVar": "NOTIFY_PATH"
+    }
+  },
+  "permissions": {
+    "description": "本 skill 需要网络访问 PubMed E-utilities 和 MiniMax API，以及本地文件读写（任务队列和结果存储）。",
+    "network": ["eutils.ncbi.nlm.nih.gov", "api.minimax.chat"],
+    "filesystem": ["skill directory", "tasks directory", "results directory"]
+  },
+  "capabilities": {
+    "core": ["pubmed_search", "ai_summarize", "feishu_notify", "followup_handler"],
+    "opt_in": ["cron_dispatch", "crontab", "systemd"]
+  },
+  "safety": {
+    "no_system_modification": true,
+    "no_root_required": false,
+    "no_auto_migration": true,
+    "no_env_injection": true
+  },
+  "documentation": {
+    "readme": "README.md",
+    "skill": "SKILL.md"
+  }
+}

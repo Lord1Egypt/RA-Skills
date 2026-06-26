@@ -1,35 +1,55 @@
 ---
-name: "refund-page-generator"
-description: "When the user wants to create or optimize a refund or return policy page. Also use when the user mentions "refund policy," "return policy," "money-back guara..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/refund-page-generator"
-sourceUrl: "https://clawhub.ai/skills/refund-page-generator"
+name: refund-page-generator
+description: When the user wants to create or optimize a refund or return policy page. Also use when the user mentions "refund policy," "return policy," "money-back guarantee," "returns and refunds," "refund page," "return process," "refund terms," or "satisfaction guarantee." For legal overview, use legal-page-generator.
+metadata:
+  version: 1.0.1
 ---
 
-# refund-page-generator
+# Pages: Refund / Return Policy
 
-> When the user wants to create or optimize a refund or return policy page. Also use when the user mentions "refund policy," "return policy," "money-back guara...
+Guides refund and return policy page content for e-commerce and digital products.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/refund-page-generator`
-- **Source URL:** [https://clawhub.ai/skills/refund-page-generator](https://clawhub.ai/skills/refund-page-generator)
+**When invoking**: On **first use**, if helpful, open with 1–2 sentences on what this skill covers and why it matters, then provide the main output. On **subsequent use** or when the user asks to skip, go directly to the main output.
 
-## Overview
+## Initial Assessment
 
+Identify:
+1. **Product type**: Physical, digital, subscription, or mixed
+2. **Policy**: Time window, conditions, process
+3. **Jurisdiction**: Consumer rights (EU, etc.)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/refund-page-generator
-```
+## Best Practices
+
+### Essential Elements
+
+| Element | Purpose |
+|---------|---------|
+| **Eligibility** | What can be returned; time limits |
+| **Process** | How to request; steps |
+| **Refund method** | Original payment; timeline |
+| **Exclusions** | Non-refundable items |
+| **Contact** | Support for returns |
+
+### Content
+
+- **Clear**: Simple language; no legalese
+- **Scannable**: Headings, bullets
+- **Complete**: Answer common questions
+- **Up to date**: Review when policy changes
+
+### Placement
+
+- Footer; checkout; product pages
+- Link from FAQ when relevant
+
+## Output Format
+
+- **Outline** for refund/return policy
+- **Key sections** and content
+- **Disclaimer**: Recommend legal review
+
+## Related Skills
+
+- **legal-page-generator**: Refund is often a legal page
+- **faq-page-generator**: FAQ may link to refund policy
+- **privacy-page-generator**: Footer grouping

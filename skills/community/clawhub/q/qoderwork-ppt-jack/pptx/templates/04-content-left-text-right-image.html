@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Content-Left-Text-Right-Image</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      background-color: #FFFFFF;
+      font-family: 'PingFang SC', 'Microsoft YaHei', 'PingFang TC', 'Hiragino Sans GB', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .title-block {
+      position: absolute;
+      left: 80px;
+      top: 100px;
+      width: 800px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .title-block [data-slot="title"] {
+      font-weight: 600;
+      font-size: 64px;
+      line-height: 1.22;
+      color: #000000;
+    }
+    .title-block [data-slot="subtitle"] {
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 1.22;
+      color: #000000;
+      /* 等效灰色（避免 opacity 导出丢失） */
+      color: #666666; /* black @ 60% on white */
+    }
+    .content-blocks {
+      position: absolute;
+      left: 80px;
+      top: 524px;
+      width: 800px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+    .content-block {
+      display: flex;
+      flex-direction: column;
+      gap: 27px;
+    }
+    .content-block [data-slot^="block"][data-slot$="Heading"] {
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 1.22;
+      color: #000000;
+    }
+    .content-block [data-slot^="block"][data-slot$="Copy"] {
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 1.22;
+      color: #000000;
+      /* 等效灰色（避免 opacity 导出丢失） */
+      color: #4D4D4D; /* black @ 70% on white */
+    }
+    .right-image {
+      position: absolute;
+      left: 944px;
+      top: 28px;
+      width: 948px;
+      height: 1024px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .right-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide" data-template="content-left-text-right-image">
+    <div class="title-block">
+      <h1 data-slot="title">I am a main title</h1>
+      <p data-slot="subtitle">If the title is English, I am the subtitle; if the title is Chinese, I am the English translation</p>
+    </div>
+    <div class="content-blocks">
+      <div class="content-block">
+        <h2 data-slot="block1Heading">I am a subheading</h2>
+        <p data-slot="block1Copy">I am the copy under the subheading, which can be 1 to 3 lines</p>
+      </div>
+      <div class="content-block">
+        <h2 data-slot="block2Heading">I am a subheading</h2>
+        <p data-slot="block2Copy">I am the copy under the subheading, which can be 1 to 3 lines</p>
+      </div>
+      <div class="content-block">
+        <h2 data-slot="block3Heading">I am a subheading</h2>
+        <p data-slot="block3Copy">I am the copy under the subheading, which can be 1 to 3 lines</p>
+      </div>
+    </div>
+    <div class="right-image">
+      <img data-slot="image" src="https://img.alicdn.com/imgextra/i2/O1CN01621Tj91bUOg1RfBfM_!!6000000003468-2-tps-948-1024.png" alt="">
+    </div>
+  </div>
+</body>
+</html>

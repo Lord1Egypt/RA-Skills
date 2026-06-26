@@ -1,0 +1,60 @@
+{
+  "domain": "自营域",
+  "level": "L2",
+  "generated_at": "2026-05-08",
+  "source_file": "proprietary.md",
+  "includes_L1": true,
+  "entity_states": {
+    "投资决策": ["研究建议(ResearchProposal)", "策略审核(StrategyReview)", "风控预审(RiskPreCheck)", "投委会审批(ICApproval)", "已授权(Authorized)", "执行中(Executing)", "已完成(Completed)", "已否决(Rejected)", "已撤回(Withdrawn)"],
+    "交易组合": ["筹建中(Preparing)", "运作中(Active)", "限制交易(Restricted)", "清盘中(Winding)", "已清盘(Closed)"]
+  },
+  "state_transitions": [
+    {"entity": "投资决策", "from": "研究建议", "trigger": "投资经理采纳", "to": "策略审核"},
+    {"entity": "投资决策", "from": "策略审核", "trigger": "审核通过", "to": "风控预审"},
+    {"entity": "投资决策", "from": "风控预审", "trigger": "风控通过(小额)", "to": "已授权"},
+    {"entity": "投资决策", "from": "风控预审", "trigger": "风控通过(大额>5000万)", "to": "投委会审批"},
+    {"entity": "投资决策", "from": "投委会审批", "trigger": "审批通过", "to": "已授权"},
+    {"entity": "投资决策", "from": "已授权", "trigger": "交易员开始执行", "to": "执行中"},
+    {"entity": "投资决策", "from": "已授权", "trigger": "授权过期(T+3)", "to": "已撤回"},
+    {"entity": "交易组合", "from": "运作中", "trigger": "风控触发/合规要求", "to": "限制交易"},
+    {"entity": "交易组合", "from": "限制交易", "trigger": "风控恢复", "to": "运作中"}
+  ],
+  "allowed_operations": {
+    "决策-已授权": ["交易员在授权范围内执行交易"],
+    "决策-研究建议": ["投资经理审核采纳或不采纳"],
+    "组合-运作中": ["正常交易(在风控指标范围内)"],
+    "组合-限制交易": ["仅允许减仓操作"]
+  },
+  "forbidden_operations": {
+    "决策-已否决": ["直接执行交易(必须重新走流程)"],
+    "决策-已授权过期": ["继续执行(需重新申请授权)"],
+    "组合-限制交易": ["加仓操作"],
+    "交易员": ["超授权范围交易", "投资禁止名单标的"],
+    "投资经理": ["自行执行交易(前中后台分离)"]
+  },
+  "role_permission_matrix": [
+    {"role": "研究员", "permissions": ["提交投资建议", "撤回建议"]},
+    {"role": "投资经理", "permissions": ["策略审核", "采纳/不采纳建议", "小额授权"]},
+    {"role": "风控部门", "permissions": ["事前风控审查", "风控指标配置", "止损执行", "额度冻结"]},
+    {"role": "投委会", "permissions": ["大额投资审批", "止损豁免审批", "策略上线审批"]},
+    {"role": "交易员", "permissions": ["在授权范围内执行交易", "算法单管理"]},
+    {"role": "合规部门", "permissions": ["关联交易审批", "防火墙管理", "内幕信息管理"]}
+  ],
+  "cross_system_dependencies": [
+    {"system": "交易系统", "interaction": "委托执行、成交回报"},
+    {"system": "风控系统", "interaction": "VaR计算、集中度监控、止损触发"},
+    {"system": "行情系统", "interaction": "实时行情、压力测试数据"},
+    {"system": "投行系统", "interaction": "内幕信息知情人名单、禁止交易标的"},
+    {"system": "合规系统", "interaction": "关联交易检测、防火墙管理"},
+    {"system": "绩效系统", "interaction": "组合收益计算、绩效归因"}
+  ],
+  "core_calculation_rules": [
+    {"name": "VaR(历史模拟法)", "formula": "99%置信水平、1天/10天持有期下的最大损失"},
+    {"name": "单票集中度", "formula": "单一股票持仓市值 / 自营权益类证券总市值 ≤ 5%"},
+    {"name": "行业集中度", "formula": "单一行业持仓 / 自营权益类证券总市值 ≤ 20%"},
+    {"name": "个股止损", "formula": "单只股票浮亏达到买入成本的-8%触发"},
+    {"name": "组合止损", "formula": "组合净值回撤达到-5%触发"},
+    {"name": "年度止损", "formula": "年度累计亏损达到年初预算的-10%触发全面止损"},
+    {"name": "授信可用额度", "formula": "基础额度 × 信用系数 × 担保品折算系数"}
+  ]
+}

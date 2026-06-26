@@ -1,0 +1,13 @@
+{
+  "name": "contradiction-analysis",
+  "version": "1.0.0",
+  "displayName": "矛盾分析法",
+  "description": "当问题复杂、存在多个冲突因素、优先级不清，或你不知道应该先解决什么时调用",
+  "author": "求是 Skill",
+  "homepage": "https://github.com/skytodmoon/qiushi-skill",
+  "tags": ["方法论", "毛泽东思想", "矛盾分析"],
+  "requires": {
+    "env": []
+  },
+  "files": []
+}

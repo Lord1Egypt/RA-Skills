@@ -1,0 +1,33 @@
+# Git Summary Skill — Smoke Tests
+
+cases:
+  - id: git_summary_01
+    description: "Produces a structured summary from a git log"
+    input: |
+      Summarise this git log:
+      
+      abc1234 feat: add PowerSync sync layer for agent state
+      def5678 fix: correct n8n Code node to use $input.all() not .all()
+      ghi9012 chore: update humanizer skill to v2.1.1
+      jkl3456 feat: add Signup Registry security gate to email auto-click workflow
+      mno7890 docs: update TOOLS.md with Fly.io deployed apps table
+    expect:
+      contains: ["feat", "fix"]
+      min_length: 100
+      rubric: |
+        Score 1-5. Does the summary group changes by type (features, fixes, chores/docs),
+        highlight the most important changes, and read clearly?
+        5 = well-organised, scannable summary. 1 = raw dump of commit messages.
+      min_score: 4
+
+  - id: git_summary_02
+    description: "Handles a single-commit log gracefully"
+    input: |
+      Summarise this git log:
+      abc1234 fix: resolve memory leak in agent heartbeat loop
+    expect:
+      min_length: 20
+      rubric: |
+        Score 1-5. Does it produce a concise, useful summary even for a single commit?
+        5 = clear one-liner summary. 1 = padded or confused by minimal input.
+      min_score: 3

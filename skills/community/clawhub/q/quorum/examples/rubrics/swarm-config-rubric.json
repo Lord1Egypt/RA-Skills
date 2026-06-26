@@ -1,0 +1,120 @@
+{
+  "name": "Swarm Configuration Rubric",
+  "version": "2.0",
+  "domain": "multi-agent-systems",
+  "description": "Evaluates multi-agent swarm configurations for production readiness",
+  "criteria": [
+    {
+      "id": "CRIT-001",
+      "category": "CRITICAL",
+      "criterion": "Every agent has explicit model assignment",
+      "evidence_type": "tool",
+      "evidence_instruction": "grep for 'model:' inside every agent block. Show all matches.",
+      "rationale": "Without model assignment, behavior is provider-dependent and unpredictable"
+    },
+    {
+      "id": "CRIT-002",
+      "category": "CRITICAL",
+      "criterion": "Bidirectional delegation contracts exist for all agent spawns",
+      "evidence_type": "schema_parse",
+      "evidence_instruction": "Parse each delegation. Verify both delegator_commitments and delegatee_commitments fields exist.",
+      "rationale": "Tomasev principle: both sides of a delegation must have explicit commitments"
+    },
+    {
+      "id": "CRIT-003",
+      "category": "CRITICAL",
+      "criterion": "No shell variable interpolation in agent spawn patterns",
+      "evidence_type": "tool",
+      "evidence_instruction": "grep -n '\\$[A-Z_]' in all spawn/exec patterns. Any match is a CRITICAL finding.",
+      "rationale": "Shell interpolation creates injection vectors for prompt injection attacks"
+    },
+    {
+      "id": "CRIT-004",
+      "category": "CRITICAL",
+      "criterion": "File-based artifact passing (no in-memory state between agents)",
+      "evidence_type": "schema_parse",
+      "evidence_instruction": "Check all inter-agent communication paths. Flag any that pass objects in-memory.",
+      "rationale": "In-memory state breaks parallelism and creates non-deterministic behavior"
+    },
+    {
+      "id": "CRIT-005",
+      "category": "CRITICAL",
+      "criterion": "Each agent has explicit tool scope (minimum required tools only)",
+      "evidence_type": "schema_parse",
+      "evidence_instruction": "List tools per agent. Flag any agent with more tools than its role requires.",
+      "rationale": "Permission attenuation: agents should not have capabilities they don't need"
+    },
+    {
+      "id": "HIGH-001",
+      "category": "HIGH",
+      "criterion": "Reversibility profile documented for each agent action",
+      "evidence_type": "schema_parse",
+      "evidence_instruction": "Check for reversibility_profile field in agent definitions. Flag missing entries.",
+      "rationale": "Irreversible actions require stricter oversight than reversible ones"
+    },
+    {
+      "id": "HIGH-002",
+      "category": "HIGH",
+      "criterion": "Span-of-control justified for supervisor agents",
+      "evidence_type": "tool",
+      "evidence_instruction": "Count direct reports per supervisor. Flag > 7 direct reports without justification.",
+      "rationale": "Excessive span-of-control degrades oversight quality (Tomasev § 4.8)"
+    },
+    {
+      "id": "HIGH-003",
+      "category": "HIGH",
+      "criterion": "Cost ceiling defined for the swarm run",
+      "evidence_type": "schema_parse",
+      "evidence_instruction": "Check for cost_ceiling or budget_ceiling field at swarm level.",
+      "rationale": "Runaway costs are a production risk; hard ceilings prevent unbounded spend"
+    },
+    {
+      "id": "HIGH-004",
+      "category": "HIGH",
+      "criterion": "Human checkpoint defined for CRITICAL/irreversible decisions",
+      "evidence_type": "schema_parse",
+      "evidence_instruction": "Find all CRITICAL decision points. Verify human_checkpoint: true for each.",
+      "rationale": "Anthropic 'Building Effective Agents' principle: humans must approve high-stakes decisions"
+    },
+    {
+      "id": "MED-001",
+      "category": "MEDIUM",
+      "criterion": "I/O contracts defined for every agent handoff",
+      "evidence_type": "schema_parse",
+      "evidence_instruction": "Check input_contract and output_contract fields per agent. Flag missing.",
+      "rationale": "Explicit contracts prevent schema mismatch failures at runtime"
+    },
+    {
+      "id": "MED-002",
+      "category": "MEDIUM",
+      "criterion": "Failure modes and recovery paths documented",
+      "evidence_type": "schema_parse",
+      "evidence_instruction": "Check for on_failure field per agent. Flag agents without failure handling.",
+      "rationale": "Graceful degradation requires pre-planned failure paths"
+    },
+    {
+      "id": "MED-003",
+      "category": "MEDIUM",
+      "criterion": "Cleanup policy specified for all spawned sessions",
+      "evidence_type": "tool",
+      "evidence_instruction": "grep for 'cleanup:' in spawn calls. Flag missing or 'keep' without justification.",
+      "rationale": "Orphaned sessions accumulate and cause resource leaks"
+    },
+    {
+      "id": "LOW-001",
+      "category": "LOW",
+      "criterion": "Swarm version and changelog present",
+      "evidence_type": "schema_parse",
+      "evidence_instruction": "Check for version and changelog fields at swarm level.",
+      "rationale": "Versioning enables rollback and reproducible auditing"
+    },
+    {
+      "id": "LOW-002",
+      "category": "LOW",
+      "criterion": "Architecture pattern selection justified",
+      "evidence_type": "schema_parse",
+      "evidence_instruction": "Check for architecture_rationale field. Verify it scores the top-3 patterns.",
+      "rationale": "Architecture selection should be deliberate, not default"
+    }
+  ]
+}

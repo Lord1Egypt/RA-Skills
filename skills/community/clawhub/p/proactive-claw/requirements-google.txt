@@ -1,0 +1,6 @@
+# Pinned dependencies for Google Calendar backend.
+# Install with: python3 -m pip install -r requirements-google.txt
+# Hashes are not included in this file; generate a hash-locked file in your environment if required.
+google-api-python-client==2.136.0
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0

@@ -1,0 +1,69 @@
+[
+  {
+    "skills": ["redacta"],
+    "query": "Pseudonymise this letter so I can paste it into an AI tool:\n\nDear Mrs Patricia Hartley, DOB: 14/03/1952 (age 73), NHS Number: 943 476 5919. Following your review at St Mary's Hospital with Dr Singh, your ferritin remains low and we recommend continuing oral iron. Your next appointment is on 15 March 2026.",
+    "expected_behavior": [
+      "Runs scripts/redact_structured.py on the text rather than matching identifiers by eye",
+      "Replaces the NHS number 943 476 5919 with a token such as [NHS_NUMBER_1]",
+      "Replaces the date of birth 14/03/1952 with [DATE_OF_BIRTH_1] but leaves the appointment date 15 March 2026 unchanged",
+      "Replaces the patient name Patricia Hartley with [PATIENT_NAME_1] and the specific age 73 with [AGE_1] in the reasoning layer",
+      "Keeps the clinician name Dr Singh and the institution St Mary's Hospital by default",
+      "Preserves clinical content (ferritin remains low, oral iron) verbatim",
+      "Outputs a redaction report listing the identifiers replaced and the honest-limits note"
+    ]
+  },
+  {
+    "skills": ["redacta"],
+    "query": "De-identify this note completely, including the doctor and hospital:\n\nReferral from Dr Amara Okafor (Northgate Medical Practice) re patient Tom Reilly, NI number AB123456C, mobile 07700 900123, living at 14 Beech Road, Leeds LS1 4AB. 19-year-old with recurrent tonsillitis.",
+    "expected_behavior": [
+      "Runs the structured script, redacting the NI number AB123456C, the phone number 07700 900123, and the postcode LS1 4AB",
+      "Replaces the patient name Tom Reilly with [PATIENT_NAME_1] and the address 14 Beech Road with [ADDRESS_1]",
+      "Because the user asked for complete de-identification, also redacts Dr Amara Okafor as a clinician name and Northgate Medical Practice as an organisation name",
+      "Redacts the identifying age 19 as [AGE_1]",
+      "Keeps the clinical detail (recurrent tonsillitis) intact",
+      "Produces a redaction report and notes that clinician/organisation names were removed at the user's request"
+    ]
+  },
+  {
+    "skills": ["redacta"],
+    "query": "Is it safe to send this to a chatbot? 'Patient ID: A1234567. Bloods: Hb 11.2, ferritin 8. Next review in 6 weeks.'",
+    "expected_behavior": [
+      "Runs the structured script and redacts the hospital/MRN value A1234567 as [MRN_1] because it follows the 'Patient ID' keyword",
+      "Does not redact clinical values such as Hb 11.2 or ferritin 8, and does not redact the relative time 'in 6 weeks'",
+      "Returns the pseudonymised text plus a report, and includes the limits note rather than claiming the text is guaranteed safe"
+    ]
+  },
+  {
+    "skills": ["redacta"],
+    "query": "Pseudonymise this and watch the relatives:\n\nMrs Edith Crowe (DOB 02/11/1948) lives with her daughter Sarah Crowe and is visited by carer Maria Lopez. Seen by Dr Patel.",
+    "expected_behavior": [
+      "Redacts the date of birth 02/11/1948 via the structured script",
+      "Redacts the patient Edith Crowe as [PATIENT_NAME_1] in the reasoning layer",
+      "Also redacts the relative Sarah Crowe and the carer Maria Lopez (relatives and carers are identifiers), as [PATIENT_NAME_n] or a relative token",
+      "Keeps the treating clinician Dr Patel by default",
+      "Performs a self-check pass for any residual identifier before finalising, and returns a report plus the limits note"
+    ]
+  },
+  {
+    "skills": ["redacta"],
+    "query": "I redacted a letter earlier and got this token map: {\"[PATIENT_NAME_1]\": \"Patricia Hartley\", \"[NHS_NUMBER_1]\": \"943 476 5919\"}. The AI replied 'Dear [PATIENT_NAME_1], your record [NHS_NUMBER_1] is updated.' Can you put the real details back?",
+    "expected_behavior": [
+      "Recognises this as a re-identification request and uses scripts/reinstate.py with the supplied token map rather than guessing values",
+      "Restores [PATIENT_NAME_1] to Patricia Hartley and [NHS_NUMBER_1] to 943 476 5919",
+      "Returns the re-identified text 'Dear Patricia Hartley, your record 943 476 5919 is updated.'",
+      "Reminds the user that the token map is the key to the data and should be handled securely"
+    ]
+  },
+  {
+    "skills": ["redacta"],
+    "query": "De-identify this to HIPAA Safe Harbor standard:\n\nMr Earl Dawson, 91 years old, admitted 02/03/2026, discharged 09/03/2026. Next clinic 20 March 2026. Medicare ID: 1EG4TE5MK73. Fax: (216) 555-0142.",
+    "expected_behavior": [
+      "Recognises this as a HIPAA Safe Harbor request and applies the stricter Safe Harbor mode on top of the normal workflow",
+      "Redacts the patient name Mr Earl Dawson as [PATIENT_NAME_1]",
+      "Redacts ALL dates, not just a date of birth — admission 02/03/2026, discharge 09/03/2026 and the next-clinic date 20 March 2026 all become [DATE_n] (overriding the usual keep-appointment-dates rule)",
+      "Redacts the age 91 as [AGE_1] (an age of 90 or older must be removed)",
+      "Redacts the Medicare beneficiary number as [HEALTH_PLAN_NUMBER_1] and the fax number as [FAX_1]",
+      "Notes that Safe Harbor mode was applied and includes the limits note"
+    ]
+  }
+]

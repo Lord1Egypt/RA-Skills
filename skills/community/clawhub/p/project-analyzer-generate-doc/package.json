@@ -1,0 +1,51 @@
+{
+  "name": "project-analyzer-generate-doc",
+  "version": "2.1.3",
+  "description": "Java Maven 工程智能文档生成器。支持多模块工程、MyBatis SQL 映射、Maven 依赖分析，生成 L3(文件级)→L2(模块级)→L1(项目级) 三层级文档索引。具备任务监控、自动重试、断点续传、健康检查能力。",
+  "author": "aclory",
+  "license": "MIT",
+  "keywords": [
+    "project-analyzer",
+    "java",
+    "maven",
+    "mybatis",
+    "documentation",
+    "code-index",
+    "hierarchical-context",
+    "l1-l2-l3",
+    "subagent",
+    "task-monitoring",
+    "auto-retry"
+  ],
+  "main": "SKILL.md",
+  "scripts": {
+    "generate-l3": "powershell -ExecutionPolicy Bypass -File scripts/generate-l3-doc.ps1",
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aclory/openclaw-skills.git",
+    "directory": "skills/project-analyzer-generate-doc"
+  },
+  "homepage": "https://clawhub.com/skills/project-analyzer-generate-doc",
+  "engines": {
+    "openclaw": ">=1.0.0",
+    "node": ">=16.0.0",
+    "powershell": ">=5.1"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "openclaw": ">=1.0.0"
+  },
+  "config": {
+    "defaultChunkSize": 10,
+    "maxParallelSubagents": 8,
+    "contextThreshold": 0.40,
+    "compressThreshold": 0.50,
+    "simpleFileThreshold": 50,
+    "timeoutSeconds": 300,
+    "maxRetries": 3,
+    "healthCheckInterval": 60,
+    "progressReportInterval": 300
+  }
+}

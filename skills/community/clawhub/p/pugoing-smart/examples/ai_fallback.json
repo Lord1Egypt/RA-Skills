@@ -1,0 +1,11 @@
+{
+  "path": "/api/ai/chat",
+  "method": "POST",
+  "auth": "agent",
+  "data": {
+    "text": "帮我看看平台里有哪些区域、主机，以及每个主机大概有多少设备",
+    "host_ip": "global",
+    "need_tts": false,
+    "use_deep_think": false
+  }
+}

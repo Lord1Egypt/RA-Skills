@@ -1,0 +1,23 @@
+{
+  "name": "research-daily-push",
+  "version": "1.0.0",
+  "description": "科研文献每日推送技能 - 自动检索 arXiv 最新论文并生成结构化总结",
+  "main": "research_push.py",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "academic",
+    "paper",
+    "daily",
+    "push",
+    "arxiv",
+    "research",
+    "openclaw-skill"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "dependencies": {
+    "requests": ">=2.31.0"
+  }
+}

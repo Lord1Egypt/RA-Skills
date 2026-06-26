@@ -1,0 +1,36 @@
+{
+  "name": "project-intro-generator",
+  "version": "0.1.2",
+  "description": "一键生成项目介绍页，支持本地编辑和长图导出。",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "bin": {
+    "project-intro": "bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js",
+    "generate": "node bin/cli.js",
+    "lint": "node -c src/index.js"
+  },
+  "keywords": [
+    "skill",
+    "project",
+    "intro",
+    "readme",
+    "generator",
+    "html",
+    "screenshot",
+    "介绍页"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^11.2.0"
+  },
+  "optionalDependencies": {
+    "playwright": "^1.58.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

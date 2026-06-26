@@ -1,0 +1,12 @@
+{
+  "name": "Prototype Generator",
+  "tagline": "Generate admin list prototypes from requirements. Cursor, OpenClaw, Claude Code.",
+  "description": "Automatically generates backend list prototypes from natural language requirements. Supports multiple output modes: mountListPage-style frameworks (e.g. kfk-mock-ui), standalone HTML with inline styles/scripts, or project-specific setups. Auto-detects project context to choose the right mode. Works with Cursor, OpenClaw, and Claude Code.",
+  "category": "development",
+  "tags": ["prototype", "admin", "list", "html", "cursor", "claude"],
+  "version": "1.0.0",
+  "license": "MIT",
+  "pricing": "free",
+  "support_url": "https://github.com/limingfa/prototype-skills/issues",
+  "homepage": "https://github.com/limingfa/prototype-skills"
+}

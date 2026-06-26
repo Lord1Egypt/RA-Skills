@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "P4 PCI Identification Output (V3.2.7)",
+  "type": "object",
+  "required": [
+    "pci_list"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "requirement_id": {
+      "type": "string"
+    },
+    "pci_list": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "source_scenario": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "impact": {
+            "type": "string"
+          },
+          "pci_required": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

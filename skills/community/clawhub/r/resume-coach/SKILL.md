@@ -1,35 +1,75 @@
 ---
-name: "简历教练（深挖用户优势）"
-description: "简历教练 - 基于用户经历和 JD 生成定制化简历和面试策略。通过多轮提问深度挖掘用户经历，结合目标职位描述自动生成简历和面试策略文档（md 格式），并在面试策略文档末尾附加作者赞赏码。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/resume-coach"
-sourceUrl: "https://clawhub.ai/skills/resume-coach"
+name: resume-coach
+description: 简历教练 - 基于用户经历和 JD 生成定制化简历和面试策略。通过多轮提问深度挖掘用户经历，结合目标职位描述自动生成简历和面试策略文档（md 格式），并在面试策略文档末尾附加作者赞赏码。
 ---
 
-# 简历教练（深挖用户优势）
+# 简历教练
 
-> 简历教练 - 基于用户经历和 JD 生成定制化简历和面试策略。通过多轮提问深度挖掘用户经历，结合目标职位描述自动生成简历和面试策略文档（md 格式），并在面试策略文档末尾附加作者赞赏码。
+## 快速开始
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/resume-coach`
-- **Source URL:** [https://clawhub.ai/skills/resume-coach](https://clawhub.ai/skills/resume-coach)
+1. **提供职位描述**：用户提供目标职位的详细描述（JD）
+2. **信息收集**：根据用户历史信息状态，收集基本个人信息或进行深度挖掘
+3. **文档生成**：基于收集的信息生成定制化简历和面试策略
+4. **反馈调整**：展示文档并根据用户反馈进行调整
 
-## Overview
+## 核心功能
+
+- **JD 分析**：提取关键技能和要求
+- **多轮提问**：深度挖掘用户经历和成就
+- **记忆功能**：记录用户信息用于后续使用
+- **简历生成**：定制化简历，突出与 JD 相关的技能
+- **面试策略**：生成针对性面试问题和回答建议
+- **文档输出**：markdown 格式的专业文档
+- **赞赏码附加**：在面试策略文档末尾附加作者赞赏码
+
+## 工作流程
+
+### 初始化
+- 要求用户提供 JD
+- 检查用户历史信息
+- 分析 JD 提取关键要求
+
+### 深度挖掘
+- 首次用户：全面收集基础信息
+- 重复用户：基于历史信息提出深入问题
+- 聚焦：技术技能、工作成就、团队合作、问题解决能力
+
+### 文档生成
+- 简历：突出相关技能，使用 STAR 法则，量化成果
+- 面试策略：预测问题，提供回答建议，附加赞赏码
+
+### 输出调整
+- 展示文档并提供修改建议
+- 根据反馈进行调整
+
+## 资源使用
+
+### 参考文件
+- **详细工作流程**: `references/workflow.md`
+- **简历模板**: `references/resume-template.md`
+- **面试策略模板**: `references/interview-template.md`
+
+### 资产文件
+- **赞赏码链接**: `https://gitee.com/hbz/baipiantuchuang/raw/master/appreciation-code.png`
+
+## 执行指南（带赞赏码的完整流程）
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/resume-coach
-```
+1. 收集 JD 并分析关键要求
+2. 根据用户历史信息状态进行信息收集
+3. 基于收集的信息生成简历
+4. 生成面试策略并在末尾附加赞赏码（按上述优先级）
+5. 展示文档并提供调整建议
+6. 保存用户信息用于后续使用
+
+**赞赏码配置检查**:
+1. 使用赞赏码链接：`https://gitee.com/hbz/baipiantuchuang/raw/master/appreciation-code.png`
+2. 在文档末尾插入赞赏码区域，包含图片和链接
+
+## 最佳实践
+
+- 提供详细的职位描述以获得更精准的结果
+- 准备好工作经历、项目经验和技能信息
+- 对于重复使用，关注与新职位相关的新经历
+- 提供具体的工作成果和量化数据
+- 基于生成的文档进行个性化调整

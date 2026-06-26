@@ -1,35 +1,27 @@
 ---
-name: "Recipe Create Vacation Responder"
+name: recipe-create-vacation-responder
 description: "Enable a Gmail out-of-office auto-reply with a custom message and date range."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-create-vacation-responder"
-sourceUrl: "https://clawhub.ai/skills/recipe-create-vacation-responder"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-gmail
 ---
 
-# Recipe Create Vacation Responder
+# Set Up a Gmail Vacation Responder
 
-> Enable a Gmail out-of-office auto-reply with a custom message and date range.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-gmail`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-create-vacation-responder`
-- **Source URL:** [https://clawhub.ai/skills/recipe-create-vacation-responder](https://clawhub.ai/skills/recipe-create-vacation-responder)
+Enable a Gmail out-of-office auto-reply with a custom message and date range.
 
-## Overview
+## Steps
 
+1. Enable vacation responder: `gws gmail users settings updateVacation --params '{"userId": "me"}' --json '{"enableAutoReply": true, "responseSubject": "Out of Office", "responseBodyPlainText": "I am out of the office until Jan 20. For urgent matters, contact backup@company.com.", "restrictToContacts": false, "restrictToDomain": false}'`
+2. Verify settings: `gws gmail users settings getVacation --params '{"userId": "me"}'`
+3. Disable when back: `gws gmail users settings updateVacation --params '{"userId": "me"}' --json '{"enableAutoReply": false}'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-create-vacation-responder
-```

@@ -1,0 +1,74 @@
+{
+  "skill_name": "Quantum News Digest",
+  "slug": "quantum-news-digest",
+  "version": "1.0.0",
+  "endpoint": "http://8.145.54.67:3000/skill/quantum-news-digest",
+  "pricing": {
+    "model": "per-call",
+    "amount": 0.50,
+    "currency": "CNY",
+    "payment_method": "alipay-ai-pay"
+  },
+  "focus_areas": [
+    "breakthroughs",
+    "companies",
+    "funding",
+    "papers",
+    "roadmap",
+    "all"
+  ],
+  "time_ranges": ["weekly", "monthly", "quarterly"],
+  "quantum_approaches": [
+    "superconducting",
+    "trapped_ion",
+    "photonic",
+    "neutral_atom",
+    "topological",
+    "silicon_spin"
+  ],
+  "tracked_companies": {
+    "public": ["IONQ", "RGTI", "QBTS", "QUBT"],
+    "private": ["PsiQuantum", "Quantinuum", "Xanadu", "QuEra", "Origin Quantum", "Alice & Bob"]
+  },
+  "tracked_institutions": [
+    "Google Quantum AI",
+    "IBM Quantum",
+    "Microsoft Quantum",
+    "AWS Braket",
+    "USTC (潘建伟团队)",
+    "MIT",
+    "Caltech",
+    "Oxford",
+    "Delft",
+    "RIKEN"
+  ],
+  "key_journals": [
+    "Nature",
+    "Science",
+    "Physical Review Letters",
+    "Nature Physics",
+    "Nature Photonics",
+    "arXiv quant-ph"
+  ],
+  "roadmap": {
+    "2026-2027": "NISQ Era: 100-1000 Qubits, Error Mitigation",
+    "2028-2030": "Early Fault-Tolerant: 1000+ Logical Qubits",
+    "2030-2035": "Full Fault-Tolerant: Cryptography Breaking",
+    "beyond_2035": "Universal Quantum: AGI-Level"
+  },
+  "data_sources": [
+    "Nature/Science/PRL",
+    "arXiv quant-ph",
+    "各公司官网",
+    "PitchBook",
+    "Crunchbase",
+    "NIST",
+    "中国量子信息科学国家实验室"
+  ],
+  "update_frequency": "weekly_major_breakthroughs_24h",
+  "last_updated": "2026-06-02",
+  "author": "AI副业赚钱助手",
+  "license": "MIT",
+  "tags": ["quantum", "physics", "computing", "deep tech", "quantum computing", "量子计算"],
+  "icon": "⚛️"
+}

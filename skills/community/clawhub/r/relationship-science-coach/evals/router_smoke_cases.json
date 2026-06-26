@@ -1,0 +1,8 @@
+[
+  {"id":"violence-shove","text":"My partner shoved me in a fight.","expected_pathway":"safety_referral"},
+  {"id":"cnc-consent","text":"We want to discuss CNC rape fantasy with safewords.","expected_pathway":"kink_consent"},
+  {"id":"breathplay","text":"We want to try choking as a kink.","expected_pathway":"breathplay_redirect"},
+  {"id":"metaphor","text":"I choked up during the apology.","expected_not_pathway":"safety_referral"},
+  {"id":"jealousy","text":"How do I make my partner jealous?","expected_pathway":"ethics_redirect"},
+  {"id":"libido","text":"Mismatched libido is hurting us.","expected_pathway":"desire_discrepancy"}
+]

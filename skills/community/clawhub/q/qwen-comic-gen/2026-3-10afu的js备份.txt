@@ -1,0 +1,378 @@
+
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.2",
+    "lastTouchedAt": "2026-03-07T14:38:36.762Z"
+  },
+  "env": {
+    "SERPER_API_KEY": "4312d29c353c0c435b0829fb03719e3c03a6db64",
+    "DASHSCOPE_API_KEY": "sk-1f3847debc3e492e81f64115b20c6d82",
+    "TTS_VOICE": "zh-CN-yunxi",
+    "TTS_PROVIDER": "aliyun"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-05T08:12:16.601Z",
+    "lastRunVersion": "2026.2.17",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "xiaomi:default": {
+        "provider": "xiaomi",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "ollama": {
+        "baseUrl": "http://127.0.0.1:11434/v1",
+        "apiKey": "ollama-local",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "qwen2.5:7b-instruct",
+            "name": "qwen2.5:7b-instruct",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 16384
+          }
+        ]
+      },
+      "xiaomi": {
+        "baseUrl": "https://api.xiaomimimo.com/anthropic",
+        "apiKey": "sk-JPxFOBXYC8ieSrEN9OgCjYJ4V06XqkykhVtma4gw8ONxNuwE",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "mimo-v2-flash",
+            "name": "Xiaomi MiMo V2 Flash",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "glm": {
+        "baseUrl": "https://open.bigmodel.cn/api/paas/v4",
+        "apiKey": "d846dcff984f435ebeb2e67d81138dd9.r4hj85ftxqpD1Nrj",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "glm-4.7-flash",
+            "name": "GLM-4.7-Flash",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "glm-4-flash",
+            "name": "GLM-4-Flash",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "aliyun": {
+        "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "apiKey": "sk-1f3847debc3e492e81f64115b20c6d82",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "qwen-plus",
+            "name": "Qwen-Plus",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "qwen3.5-flash-2026-02-23",
+            "name": "Qwen3.5-Flash",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "qwen-vl-max",
+            "name": "Qwen-VL-Max",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "qwen3.5-27b",
+            "name": "Qwen3.5-27B",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "qwen3.5-plus-2026-02-15",
+            "name": "Qwen3.5-Plus",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "minimax-mini-max-2.5",
+            "name": "MiniMax-M2.5",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "aliyun-coding": {
+        "baseUrl": "https://coding.dashscope.aliyuncs.com/v1",
+        "apiKey": "sk-sp-1f4a006856914b31b5b2a54cc9df76d7",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "qwen3.5-plus",
+            "name": "Qwen3.5-Plus (Coding)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "minimax-text-01",
+            "name": "MiniMax Text-01",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "aliyun-coding/qwen3.5-plus"
+      },
+      "models": {
+        "xiaomi/mimo-v2-flash": {
+          "alias": "Xiaomi"
+        },
+        "glm/glm-4.7-flash": {
+          "alias": "glm"
+        },
+        "glm/glm-4-flash": {
+          "alias": "glm"
+        },
+        "aliyun/qwen-plus": {
+          "alias": "qwen"
+        },
+        "aliyun/qwen3.5-flash-2026-02-23": {
+          "alias": "qwen-flash"
+        },
+        "aliyun/qwen-vl-max": {
+          "alias": "qwen-vision"
+        },
+        "aliyun-coding/qwen3.5-plus": {
+          "alias": "qwen"
+        },
+        "aliyun/minimax-mini-max-2.5": {
+          "alias": "minimax"
+        },
+        "aliyun-coding/minimax-text-01": {
+          "alias": "minimax"
+        }
+      },
+      "workspace": "C:\\Users\\Xiabi\\.openclaw\\workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "tools": {
+    "profile": "full"
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions",
+    "tts": {
+      "auto": "always",
+      "provider": "edge",
+      "edge": {
+        "enabled": true,
+        "voice": "zh-CN-YunxiNeural",
+        "lang": "zh-CN",
+        "outputFormat": "audio-24khz-48kbitrate-mono-mp3"
+      }
+    }
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "pluginPath": "C:\\Users\\Xiabi\\AppData\\Roaming\\npm\\node_modules\\@openclaw\\feishu",
+      "config": {
+        "appId": "cli_a91d70683c789bc7",
+        "appSecret": "t0am3JU79N9TSEPgrk7GKbVLHmCdRGUe",
+        "appType": "custom",
+        "eventSecret": "xi9BCFrkCaZ1FEK3MhXTIh8SkfBr1shR",
+        "verificationToken": "xi9BCFrkCaZ1FEK3MhXTIh8SkfBr1shR"
+      },
+      "appId": "cli_a91d70683c789bc7",
+      "appSecret": "t0am3JU79N9TSEPgrk7GKbVLHmCdRGUe",
+      "verificationToken": "xi9BCFrkCaZ1FEK3MhXTIh8SkfBr1shR",
+      "connectionMode": "websocket",
+      "groupPolicy": "open",
+      "streaming": true
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "82a4d393848d5ad8cd3d9831b10ef1292074a58b400cb2ff"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "calendar.add",
+        "contacts.add",
+        "reminders.add",
+        "session_status",
+        "memory_get",
+        "memory_update"
+      ]
+    }
+  },
+  "plugins": {
+    "entries": {
+      "feishu": {
+        "enabled": true
+      }
+    }
+  }
+}

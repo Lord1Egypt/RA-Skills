@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.3.0",
+  "requirement_id": "REQ-RISK-001",
+  "testcases": [
+    {
+      "id": "TC-001",
+      "source_test_point": "TP-001",
+      "fields": {
+        "project": "集团风控系统",
+        "case_type": "测试用例",
+        "case_id": "TC-001",
+        "requirement": "REQ-RISK-001",
+        "priority": "P0",
+        "title": "持仓集中度达30%触发提醒预警",
+        "menu_path": "风控/风险监控",
+        "preconditions": "1. 风控管理员账号已登录风控系统，具有风控规则查看权限；2. 预置5条风控规则（含集中度/止损/杠杆类型各至少1条），通过风控规则配置接口初始化；3. 风控系统处于正常运行状态",
+        "steps": "1. 投资者登录交易客户端\n2. 买入「贵州茅台」3 万元，持仓市值达到 31 万元\n3. 系统实时计算集中度 = 31/100 = 31%\n4. 系统判定超过30%提醒阈值\n5. 系统发送预警通知",
+        "expected_results": "1. 登录成功\n2. 买入成功，持仓市值更新为 31 万元\n3. 集中度计算结果为 31%\n4. 触发提醒级别预警\n5. 投资者收到 APP 推送和短信，内容包含股票名称、当前占比、预警级别",
+        "is_smoke": "是",
+        "creator": "AI生成",
+        "assignee": "",
+        "test_case_type": "正向验证",
+        "test_category": "功能",
+        "status": "",
+        "screenshot": "",
+        "test_suite": "风控",
+        "remarks": "[前台功能/正向流程] 业务域示例用例"
+      }
+    },
+    {
+      "id": "TC-002",
+      "source_test_point": "TP-003",
+      "fields": {
+        "project": "集团风控系统",
+        "case_type": "测试用例",
+        "case_id": "TC-002",
+        "requirement": "REQ-RISK-001",
+        "priority": "P0",
+        "title": "持仓集中度达70%禁止买入",
+        "menu_path": "风控/风险监控",
+        "preconditions": "1. 风控管理员账号已登录风控系统，具有风控规则配置权限；2. 预置1条待修改的集中度风控规则（阈值30%），通过风控规则配置接口初始化；3. 风控系统处于正常运行状态",
+        "steps": "1. 投资者登录交易客户端\n2. 尝试买入「贵州茅台」2 万元\n3. 系统计算买入后集中度 = 71/100 = 71%\n4. 系统判定超过70%禁止买入阈值",
+        "expected_results": "1. 登录成功\n2. 进入买入页面，输入金额 2 万元\n3. 集中度预计算结果为 71%\n4. 系统拒绝买入，提示'该股票持仓集中度将超过70%，禁止继续买入'",
+        "is_smoke": "是",
+        "creator": "AI生成",
+        "assignee": "",
+        "test_case_type": "正向验证",
+        "test_category": "功能",
+        "status": "",
+        "screenshot": "",
+        "test_suite": "风控",
+        "remarks": "[前台功能/正向流程] 业务域示例用例"
+      }
+    },
+    {
+      "id": "TC-003",
+      "source_test_point": "TP-005",
+      "fields": {
+        "project": "集团风控系统",
+        "case_type": "测试用例",
+        "case_id": "TC-003",
+        "requirement": "REQ-RISK-001",
+        "priority": "P1",
+        "title": "管理员调整预警阈值",
+        "menu_path": "风控/风险监控",
+        "preconditions": "1. 使用无风控规则配置权限的测试账号登录（通过权限管理后台配置）；2. 系统处于正常运行状态；3. 确认该账号在权限系统中未分配风控规则配置权限",
+        "steps": "1. 管理员登录风控管理后台\n2. 进入预警阈值配置页面\n3. 将提醒阈值修改为 25%，警告阈值修改为 45%，禁止买入阈值修改为 65%\n4. 点击保存",
+        "expected_results": "1. 登录成功，进入风控管理后台\n2. 显示当前阈值配置：30%/50%/70%\n3. 输入新阈值 25%/45%/65%\n4. 保存成功，新阈值立即生效，后续集中度判定使用新阈值",
+        "is_smoke": "否",
+        "creator": "AI生成",
+        "assignee": "",
+        "test_case_type": "正向验证",
+        "test_category": "功能",
+        "status": "",
+        "screenshot": "",
+        "test_suite": "风控",
+        "remarks": "[前台功能/正向流程] 业务域示例用例"
+      }
+    },
+    {
+      "id": "TC-004",
+      "source_test_point": "TP-006",
+      "fields": {
+        "project": "集团风控系统",
+        "case_type": "测试用例",
+        "case_id": "TC-004",
+        "requirement": "REQ-RISK-001",
+        "priority": "P1",
+        "title": "集中度恰好在阈值边界不触发预警",
+        "menu_path": "风控/风险监控",
+        "preconditions": "1. 风控管理员账号已登录风控系统，具有风控预警查看权限；2. 预置3条风控预警记录（含高/中/低级别各1条），通过风控触发接口初始化；3. 风控系统处于正常运行状态",
+        "steps": "1. 系统实时计算集中度 = 299900/1000000 = 29.99%\n2. 系统判定是否触发30%提醒阈值",
+        "expected_results": "1. 集中度计算结果为 29.99%\n2. 未达到30%阈值，不触发预警，投资者不收到任何通知",
+        "is_smoke": "否",
+        "creator": "AI生成",
+        "assignee": "",
+        "test_case_type": "边界验证",
+        "test_category": "功能",
+        "status": "",
+        "screenshot": "",
+        "test_suite": "风控",
+        "remarks": "[前台功能/正向流程] 业务域示例用例"
+      }
+    }
+  ],
+  "statistics": {
+    "total": 4,
+    "smoke_count": 2,
+    "smoke_ratio": 0.5,
+    "by_priority": {
+      "P0": 2,
+      "P1": 2,
+      "P2": 0,
+      "P3": 0
+    }
+  }
+}

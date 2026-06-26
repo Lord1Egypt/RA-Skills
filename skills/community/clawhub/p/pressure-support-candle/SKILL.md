@@ -1,35 +1,53 @@
 ---
-name: "螃蟹投研-压力支撑位蜡烛图"
-description: "基于波峰波谷分析识别A股股票的压力位和支撑位，生成K线图。使用Baostock获取数据（解决AKShare东财接口限制问题）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pressure-support-candle"
-sourceUrl: "https://clawhub.ai/skills/pressure-support-candle"
+name: 压力支撑位蜡烛图
+description: 基于波峰波谷分析识别A股股票的压力位和支撑位，生成K线图。使用Baostock获取数据（解决AKShare东财接口限制问题）
+keywords:
+  - 股票
+  - 蜡烛图
+  - K线
+  - 压力位
+  - 支撑位
+  - 波峰波谷
+  - baostock
+  - 技术分析
 ---
 
-# 螃蟹投研-压力支撑位蜡烛图
+# 压力支撑位蜡烛图技能
 
-> 基于波峰波谷分析识别A股股票的压力位和支撑位，生成K线图。使用Baostock获取数据（解决AKShare东财接口限制问题）
+## 功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pressure-support-candle`
-- **Source URL:** [https://clawhub.ai/skills/pressure-support-candle](https://clawhub.ai/skills/pressure-support-candle)
+1. **数据获取**: 使用 Baostock 获取日线数据（稳定可靠）
+2. **波峰波谷识别**: 基于价格区间分析识别局部极值
+3. **支撑压力位**: 聚类分析识别密集支撑/压力区
+4. **K线绘图**: 生成带支撑位/压力位标注的蜡烛图
 
-## Overview
+## 使用方法
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/pressure-support-candle
+# 默认分析宝丰能源（600989）
+python3 压力支撑位识别_baostock.py
+
+# 指定股票和日期范围
+python3 压力支撑位识别_baostock.py 600519 2024-01-01 90
 ```
+
+### 参数说明
+
+| 参数 | 默认值 | 说明 |
+|------|--------|------|
+| symbol | 600989 | 股票代码 |
+| start_date | 2024-01-01 | 开始日期 |
+| window | 20 | 波峰波谷识别窗口 |
+
+## 输出
+
+- K线蜡烛图（PNG），标注支撑位（绿线）和压力位（红线）
+- 支撑/压力位价格数据
+
+## 技术细节
+
+- **数据源**: Baostock `query_history_k_data_plus`（免费稳定）
+- **波峰识别**: 价格区间内局部最高点
+- **波谷识别**: 价格区间内局部最低点
+- **聚类**: 将相近价位的支撑/压力位合并为密集区
+- **K线配色**: 砖红上涨 / 钴蓝下跌（学术风格）

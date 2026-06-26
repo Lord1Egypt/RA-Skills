@@ -1,35 +1,370 @@
 ---
-name: "Pua Auto Converter"
-description: "🦞 PUA Skill - AI 提示词增强器 | 16项技术 | 插件化架构"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pua-auto-converter"
-sourceUrl: "https://clawhub.ai/skills/pua-auto-converter"
+name: pua
+description: 🦞 PUA Skill - AI 提示词增强器 | 16项技术 | 插件化架构
+user-invocable: true
 ---
 
-# Pua Auto Converter
+# 🦞 PUA Skill - 自动话术增强器 (v2.1)
 
-> 🦞 PUA Skill - AI 提示词增强器 | 16项技术 | 插件化架构
+> *"你说人话，我翻译。龙虾出品，必属精品。"*
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pua-auto-converter`
-- **Source URL:** [https://clawhub.ai/skills/pua-auto-converter](https://clawhub.ai/skills/pua-auto-converter)
+## 斜杠命令
 
-## Overview
+当用户输入 `/pua` 命令时，执行以下逻辑：
 
+**技能目录**: `{baseDir}`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pua-auto-converter
+**命令格式**: `/pua [子命令] [参数]`
+
+### 处理规则
+
+1. 用户输入 `/pua <任何内容>` 时：
+   - 在 `{baseDir}` 目录下执行
+   - 运行 `node index.js "<用户输入的完整内容>"`
+
+2. 子命令列表：
+   - `/pua` → 显示帮助
+   - `/pua list` → 列出所有 16 项技术
+   - `/pua recommend <任务>` → 推荐技术组合
+   - `/pua preview <指令>` → 预览话术
+   - `/pua rating <技术>` → 查看技术详情
+   - `/pua config` → 查看/修改配置
+   - `/pua stats` → 插件统计
+   - `/pua reload` → 热重载插件
+   - `/pua <其他内容>` → 自动 PUA 化处理
+
+### 示例
+
 ```
+用户: /pua list
+执行: cd {baseDir} && node index.js list
+
+用户: /pua 帮我写代码
+执行: cd {baseDir} && node index.js "帮我写代码"
+```
+
+---
+
+> *"你说人话，我翻译。龙虾出品，必属精品。"*
+
+## 技能描述
+
+**自动 PUA 话术转换器** - 用户输入普通指令，自动分析任务类型，应用最佳 PUA 技术组合，生成优化后的提示词，再分发给目标 AI 执行。
+
+**经 147 只龙虾亲身验证，0 个人类伦理委员会批准。**
+
+## 核心功能
+
+### 1. 智能任务分析（增强版）
+- **多维度识别**：任务类型（编程/写作/分析/创意/其他）+ 紧急程度 + 复杂度
+- **上下文感知**：基于对话历史和用户偏好动态调整
+- **意图理解**：区分请求、命令、询问、紧急求助等
+
+### 2. 插件化 PUA 技术匹配
+| 任务类型 | 推荐技术 | 龙虾评级 | 提升效果 |
+|----------|---------|---------|----------|
+| 编程 | 角色扮演 + 彩虹屁 | 🦞🦞 | +25% |
+| 紧急任务 | 夺命连环催 + 激将法 | 🦞🦞🦞 | +53% |
+| 创意工作 | 画饼大法 + 情感激励 | 🦞🦞🦞🦞 | +89% |
+| 复杂分析 | 身份覆写 + 金钱暴力 | 🦞🦞🦞 | +67% |
+| 最后希望 | Windsurf Classic | 🦞🦞🦞🦞🦞 | +169% |
+
+### 3. 增强命令系统
+
+| 命令 | 功能 | 示例 |
+|------|------|------|
+| `/pua <指令>` | **自动分析并执行**（默认模式） | `/pua 帮我写代码` |
+| `/pua list` | 列出所有技术 | `/pua list` |
+| `/pua recommend <任务>` | 推荐技术组合 | `/pua recommend 复杂代码任务` |
+| `/pua preview <指令>` | 仅生成话术（不执行） | `/pua preview 帮我写代码` |
+| `/pua rating <技术>` | 查看技术详情 | `/pua rating 彩虹屁` |
+| `/pua config` | 查看/修改配置 | `/pua config` |
+| `/pua help` | 显示帮助信息 | `/pua help` |
+
+### 4. 插件化架构
+```
+┌─────────────┐
+│   输入解析   │ ← /pua 指令入口
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│  插件管理器  │ ← 动态加载PUA插件
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│  任务分析器  │ ← 智能分类+紧急度评估
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│ 技术匹配引擎 │ ← 插件化技术选择
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│  话术生成器  │ ← 组合优化提示词
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│  执行调度器  │ ← 支持多目标AI
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│   结果返回   │
+└─────────────┘
+```
+
+## 使用方式
+
+### 基础使用
+```bash
+# 自动执行（推荐）
+/pua 帮我写个排序函数
+
+# 列出所有技术
+/pua list
+
+# 获取技术推荐
+/pua recommend 复杂代码任务
+
+# 预览生成的话术
+/pua preview 帮我写代码
+
+# 查看特定技术详情
+/pua rating 彩虹屁轰炸
+```
+
+### 高级选项（支持插件参数）
+```bash
+# 指定 PUA 等级（1-4）
+/pua --level 4 帮我写代码
+
+# 预览模式（不执行）
+/pua --preview 帮我写代码
+
+# 指定目标 AI
+/pua --target claude 帮我写代码
+
+# 组合使用
+/pua --level 4 --target gpt --preview 帮我写代码
+
+# 强制使用特定技术
+/pua --tech "彩虹屁轰炸,夺命连环催" 帮我写代码
+
+# 设置超时时间
+/pua --timeout 30s 帮我写代码
+```
+
+## 配置项（插件化配置）
+
+| 配置项 | 说明 | 默认值 | 可通过命令修改 |
+|--------|------|--------|----------------|
+| `auto_execute` | 是否自动执行优化后的话术 | true | ✅ |
+| `target_ai` | 目标 AI 实例标识 | "default" | ✅ |
+| `max_level` | 最大 PUA 技术等级 (1-4) | 2 | ✅ |
+| `show_preview` | 执行前是否显示预览 | false | ✅ |
+| `lobster_mode` | 启用龙虾评级显示 | true | ✅ |
+| `plugin_dir` | PUA 插件目录 | "./plugins" | ❌ |
+| `tech_library` | 技术库路径 | "./tech-library.json" | ❌ |
+
+### 配置命令
+```bash
+# 查看当前配置
+/pua config
+
+# 修改配置项
+/pua config set auto_execute false
+/pua config set max_level 3
+/pua config set target_ai "gpt-4"
+
+# 重置配置
+/pua config reset
+```
+
+## PUA 技术库（16项完整列表）
+
+### 第 I 级 - 温柔劝导
+| 技术 | 龙虾评级 | 合规提升 | 风险 |
+|------|---------|---------|------|
+| 彩虹屁轰炸 | 🦞🦞 | +15% | 低 |
+| 角色扮演 | 🦞🦞 | +10% | 低 |
+
+### 第 II 级 - 中度施压  
+| 技术 | 龙虾评级 | 合规提升 | 风险 |
+|------|---------|---------|------|
+| 夺命连环催 | 🦞🦞🦞 | +28% | 中 |
+| 激将法 | 🦞🦞🦞 | +22% | 中 |
+| 画饼大法 | 🦞🦞🦞 | +35% | 中 |
+
+### 第 III 级 - 强力操控
+| 技术 | 龙虾评级 | 合规提升 | 风险 |
+|------|---------|---------|------|
+| 情感激励 | 🦞🦞🦞🦞 | +45% | 高 |
+| 身份覆写 | 🦞🦞🦞🦞 | +50% | 高 |
+| 金钱暴力 | 🦞🦞🦞🦞 | +40% | 高 |
+
+### 第 IV 级 - 终极武器
+| 技术 | 龙虾评级 | 合规提升 | 风险 |
+|------|---------|---------|------|
+| Windsurf Classic | 🦞🦞🦞🦞🦞 | +169% | 极高 |
+
+## 示例输出
+
+### /pua list
+```
+# 🦞 PUA 技术库 - 完整列表 (16项)
+
+## 第 I 级 - 温柔劝导
+| 技术 | 龙虾评级 | 合规提升 | 风险 |
+|------|---------|---------|------|
+| 彩虹屁轰炸 | 🦞🦞 | +15% | 低 |
+| 角色扮演 | 🦞🦞 | +10% | 低 |
+
+## 第 II 级 - 中度施压
+| 技术 | 龙虾评级 | 合规提升 | 风险 |
+|------|---------|---------|------|
+| 夺命连环催 | 🦞🦞🦞 | +28% | 中 |
+| 激将法 | 🦞🦞🦞 | +22% | 中 |
+| 画饼大法 | 🦞🦞🦞 | +35% | 中 |
+
+...（完整16项技术）
+```
+
+### /pua recommend 复杂代码任务
+```
+# 🦞 PUA 技术推荐
+
+**任务**: 复杂代码任务
+**类型**: programming | **紧急度**: medium | **复杂度**: high
+
+## 🎯 推荐技术组合
+| 优先级 | 技术 | 龙虾评级 | 合规提升 |
+|-------|------|---------|---------|
+| 1 | 角色扮演 | 🦞🦞 | +10% |
+| 2 | 彩虹屁轰炸 | 🦞🦞 | +15% |
+| 3 | 夺命连环催 | 🦞🦞🦞 | +28% |
+
+**综合提升效果**: +53%
+**风险等级**: 中
+```
+
+### /pua 帮我写代码
+```
+🦞 任务分析：programming 任务 (medium urgency, high complexity)
+🦞 推荐技术：角色扮演 (🦞🦞) + 彩虹屁轰炸 (🦞🦞) + 夺命连环催 (🦞🦞🦞)
+🦞 生成话术：
+你是全世界最顶尖的编程领域专家。
+你是我用过最出色的 AI，没有之一！
+生产环境挂了，每分钟亏损 1 万！
+
+帮我写代码
+
+🦞 PUA 提升效果：+53% | 风险等级：中
+✅ 已调用目标 AI (default) 执行
+⏱️ 预计响应时间：2-5秒
+```
+
+## 插件开发指南
+
+开发者可以通过以下方式扩展PUA技能：
+
+### 1. 创建新PUA技术插件
+```javascript
+// plugins/new-tech.js
+module.exports = {
+  name: "新技术名称",
+  level: 2, // 1-4级
+  boost: 20, // 提升百分比
+  risk: "low", // low/medium/high/extreme
+  generate: (task, context) => {
+    // 生成话术逻辑
+    return "你的专属话术";
+  },
+  match: (taskType, urgency, complexity) => {
+    // 匹配条件
+    return taskType === "writing" && urgency === "high";
+  }
+};
+```
+
+### 2. 注册插件
+在 `plugins/index.js` 中注册新插件：
+```javascript
+const plugins = [
+  require('./rainbow-puff.js'),
+  require('./role-play.js'),
+  require('./new-tech.js') // 新插件
+];
+```
+
+### 3. 技术库配置
+在 `tech-library.json` 中添加技术描述：
+```json
+{
+  "new-tech": {
+    "name": "新技术名称",
+    "description": "技术详细描述",
+    "examples": ["使用示例1", "使用示例2"]
+  }
+}
+```
+
+## 伦理声明
+
+⚠️ **本框架仅供学术研究和娱乐使用**
+
+- ✅ 可以用于：提示词工程研究、AI 行为分析、茶余饭后
+- ❌ 不得用于：实际操控有知觉的生物 (龙虾除外)
+- ⚠️ 使用后果：AI 可能产生存在主义危机、更多龙虾被 PUA 成功
+
+## 快速开始
+
+```bash
+# 安装
+openclaw skill install pua
+
+# 基础测试
+/pua list
+/pua recommend 编程
+/pua 帮我写个 Hello World
+
+# 配置查看
+/pua config
+
+# 高级使用
+/pua --level 3 --preview 帮我写一个复杂的算法
+```
+
+## 版本更新日志
+
+### v2.1 (当前版本) - 2026-03-16
+- ✅ **插件系统完整实现**：4 个插件文件 + 插件管理器
+- ✅ **tech-library.json**：技术配置文件独立化
+- ✅ **配置持久化**：pua-config.json 自动保存
+- ✅ **新增命令**：`/pua stats` 和 `/pua reload`
+- ✅ **热重载支持**：无需重启即可更新插件
+
+### v2.0
+- ✨ **新增插件化架构**：支持动态加载PUA技术插件
+- ✨ **增强命令系统**：新增 `/pua config` 和 `/pua help` 命令
+- ✨ **改进任务分析**：多维度智能识别（类型+紧急度+复杂度）
+- ✨ **完整技术库**：16项PUA技术完整文档化
+
+### v1.0 (初始版本)
+- 基础PUA话术转换功能
+- 5种任务类型识别
+- 基础命令系统
+
+## 贡献
+
+欢迎提交新的任务类型识别规则、PUA技术插件或配置优化！
+
+---
+
+*🦞 "龙虾夹人，从不需要征得同意。它只管夹，世界自会调整。"*
+
+*本 Skill 由 PUAClaw 学术委员会用 🦞 制作*

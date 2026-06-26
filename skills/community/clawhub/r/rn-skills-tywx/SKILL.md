@@ -1,35 +1,102 @@
 ---
-name: "Rn Skills"
-description: "小红书爆款内容全自动创作助手，专注「时尚穿搭与新中式美学」赛道。 自动完成素材收集、选题筛选、文案生成、AI配图（通义万相）、本地归档的完整流程。 Use when: 用户说"创作小红书"、"收集素材"、"根据XXX创作"，或需要批量生成小红书图文笔记。 NOT for: 其他平台（抖音/微博）的内容创作，也不用..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rn-skills-tywx"
-sourceUrl: "https://clawhub.ai/skills/rn-skills-tywx"
+name: xiaohongshu-creator
+description: >
+  小红书爆款内容全自动创作助手，专注「时尚穿搭与新中式美学」赛道。
+  自动完成素材收集、选题筛选、文案生成、AI配图（通义万相）、本地归档的完整流程。
+  Use when: 用户说"创作小红书"、"收集素材"、"根据XXX创作"，或需要批量生成小红书图文笔记。
+  NOT for: 其他平台（抖音/微博）的内容创作，也不用于分析已发布笔记的数据表现。
 ---
 
-# Rn Skills
+# 小红书爆款创作助手
 
-> 小红书爆款内容全自动创作助手，专注「时尚穿搭与新中式美学」赛道。 自动完成素材收集、选题筛选、文案生成、AI配图（通义万相）、本地归档的完整流程。 Use when: 用户说"创作小红书"、"收集素材"、"根据XXX创作"，或需要批量生成小红书图文笔记。 NOT for: 其他平台（抖音/微博）的内容创作，也不用...
+## When to Run
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rn-skills-tywx`
-- **Source URL:** [https://clawhub.ai/skills/rn-skills-tywx](https://clawhub.ai/skills/rn-skills-tywx)
+- 用户说「创作小红书」— 运行完整流程，默认生成 2 条笔记
+- 用户说「收集素材」— 仅运行素材收集与选题筛选（Step 1-2）
+- 用户说「根据"XXX"创作」— 跳过选题，直接根据指定主题创作
+- 用户说「创作小红书 N条」— 生成指定数量笔记
 
-## Overview
+## Workflow
 
+### Step 1: 素材收集
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/rn-skills-tywx
+使用 WebSearch 工具**并行搜索**多平台热门素材：
+
+- 小红书站内：`小红书 穿搭 热门趋势 2026`、`小红书 新中式穿搭 爆款`、`小红书 {当季关键词} 穿搭`
+- 微博/抖音：`微博 时尚穿搭 热搜 今日`、`抖音 穿搭 流行趋势 本周`
+- 时尚资讯：`Vogue China fashion trend 2026`、`时尚芭莎 穿搭趋势`
+- 国际趋势：`Pinterest fashion trend aesthetic 2026`、`Instagram Chinese fashion aesthetic trend`
+
+整理为结构化列表，每条包含：话题名称、热度指标、来源平台、赛道关联度评分（1-10）。
+
+### Step 2: 选题筛选
+
+1. 读取 `config/keywords.json` 获取赛道关键词库
+2. 按权重评分排序：赛道匹配度 40% + 热度 30% + 差异化 20% + 内容可塑性 10%
+3. 读取 `history.json` 去重：近7天未创作过、同风格不连续超2次、穿搭类与新中式交替
+4. 选出排名最高的 2 个选题（或用户指定数量）
+
+### Step 3: 文案生成
+
+1. 读取 `config/title-formulas.json`，根据选题类型选标题公式
+2. 标题：18-25字，含情绪词+风格关键词+行动暗示，1-2个emoji，用 `｜` 或 `·` 分隔
+3. 正文：种草型结构（hook → 主题介绍 → 单品拆解 → 搭配技巧 → 互动引导），300-600字，口语化
+4. 话题标签：从 `config/keywords.json` 选取 5-8 个（2热门 + 2-3精准 + 1-2长尾）
+
+### Step 4: 图片生成
+
+1. 读取 `config/image-styles.json` 获取风格 prompt 预设
+2. 为每条笔记生成 6 张图片 prompt（cover + page_1~5）
+3. 调用通义万相 API（`$DASHSCOPE_API_KEY`）：
+   - 提交：`curl -s "https://dashscope.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis"` + async header
+   - 轮询：`curl -s "https://dashscope.aliyuncs.com/api/v1/tasks/{task_id}"`，间隔3秒，最大60秒
+   - 下载：`curl -s -o "{路径}/{文件名}.png" "{图片URL}"`
+4. 6张图片并行提交，统一轮询。API 失败则跳过图片，文案中标注「图片待补充」
+
+### Step 5: 本地保存
+
+1. 创建 `output/{YYYY-MM-DD}_{选题简称}/` 目录
+2. 保存 `文案.md`（标题+正文+标签+发布建议）
+3. 保存 `metadata.json`（创建时间、选题、风格、图片数量、状态）
+4. 更新 `history.json` 追加本次创作记录
+
+## Output Format
+
 ```
+创作完成！
+
+本次生成 {N} 条笔记：
+
+1. {标题1}
+   目录：{输出目录1}
+   风格：{风格标签}
+   图片：{N}张已生成
+
+2. {标题2}
+   目录：{输出目录2}
+   风格：{风格标签}
+   图片：{N}张已生成
+
+发布建议：
+  - 第1条建议 {时间段1} 发布
+  - 第2条建议 {时间段2} 发布
+
+预计API成本：¥{金额}
+```
+
+## Season Awareness
+
+根据当前月份自动调整内容方向：
+- 春季（3-5月）：春日穿搭、轻薄叠穿、踏青出游、樱花季
+- 夏季（6-8月）：清凉穿搭、防晒时尚、度假风、薄纱透气
+- 秋季（9-11月）：秋冬叠穿、毛衣外搭、暖色系、层次感
+- 冬季（12-2月）：保暖时尚、大衣穿搭、节日穿搭、新年新中式
+
+## Notes
+
+- 同一篇笔记的6张图片必须使用相同人物描述和色调
+- 文案必须原创，不直接复制搜索结果
+- 穿搭建议要具体可操作，标注单品类型
+- 文案结尾必须有互动引导
+- 每次生成控制在12张图以内（2笔记 x 6张），turbo模型约 ¥0.48/次
+- 环境变量 `DASHSCOPE_API_KEY` 需提前设置（阿里云百炼平台获取）

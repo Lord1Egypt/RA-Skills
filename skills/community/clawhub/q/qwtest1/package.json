@@ -1,0 +1,14 @@
+
+{
+    "name": "interactive-dialogue",
+    "version": "1.0.0",
+    "description": "一个简单的交互式对话系统",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "keywords": ["interactive", "dialogue", "nodejs"],
+    "author": "Developer",
+    "license": "MIT"
+  }
+  

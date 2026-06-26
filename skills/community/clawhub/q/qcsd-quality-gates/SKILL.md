@@ -1,35 +1,84 @@
----
-name: "Qcsd Quality Gates"
-description: "AI辅助个人开发者代码质量门禁，覆盖需求到交付全流程，自动检查与修复依赖、语法、路径和启动问题。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qcsd-quality-gates"
-sourceUrl: "https://clawhub.ai/skills/qcsd-quality-gates"
----
+# QCSD Development 质量门禁技能
 
-# Qcsd Quality Gates
+## 描述
 
-> AI辅助个人开发者代码质量门禁，覆盖需求到交付全流程，自动检查与修复依赖、语法、路径和启动问题。
+AI辅助代码开发质量门禁与自动修复，适合个人开发者，保证代码质量，减少低级错误，结合腾讯全AI自动化研发实践改进。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qcsd-quality-gates`
-- **Source URL:** [https://clawhub.ai/skills/qcsd-quality-gates](https://clawhub.ai/skills/qcsd-quality-gates)
+## 功能
 
-## Overview
+- ✅ 完整的6步质量门禁检查流程
+- ✅ 自动治理常见开发问题（依赖错误/路径错误/语法错误/启动失败）
+- ✅ 标准化项目文件结构（Next.js）
+- ✅ 遵循 Conventional Commits 提交规范
+- ✅ 适配个人开发者多项目并行开发场景
 
+## 触发条件
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/qcsd-quality-gates
-```
+- 每次开发新项目，必须执行质量门禁检查
+- 每次输出代码给用户，必须过一遍门禁，自动修复问题再交付
+- 用户要求检查质量，立即强制执行
+
+## 质量门禁检查清单
+
+### 1. 需求阶段
+- 需求完整清晰，所有核心需求点都已记录
+- 模糊歧义点已经澄清
+- 需求范围符合「单人可开发」
+- **识别核心高风险点**：确认哪些功能出问题会影响核心流程，要求必须有对应测试覆盖
+
+### 2. 架构设计阶段
+- 技术选型适合个人开发，依赖最小化
+- 文件结构符合标准化
+- 数据库设计合理，索引正确
+
+### 3. 编码阶段
+- TypeScript语法正确
+- 所有import路径正确
+- 变量函数命名清晰
+- 没有冗余代码，注释够用
+- 所有需求点都已实现
+
+### 3.5 AI生成代码专项检查（如代码由AI生成，必检）
+> 参考经验：AI生成代码容易"看起来能跑，实际埋坑"，这5关必须过
+- [ ] **覆盖面有效性**：代码/测试保护的是核心高风险点吗？失败了会不会真影响业务？如果答不上来，重构
+- [ ] **语义化稳定性**：定位器/步骤描述绑定业务语义，不靠`nth-child`、长CSS路径、位置猜测
+- [ ] **断言业务对齐**：先验证业务状态（数据/接口/数据库），再验证UI提示，不只做"截图打卡"
+- [ ] **隐式依赖清理**：不存在无理由固定时间等待，所有前置依赖显式说明
+- [ ] **失败可观测性**：测试失败后有足够日志/证据能快速定位问题
+
+### 4. 依赖检查
+- `package.json` 包含所有需要的依赖
+- 没有多余依赖
+- 版本选择稳定
+
+### 5. 环境配置
+- `.env.example` 包含所有需要的环境变量
+- 每个配置项有说明注释
+
+### 6. 交付前整体检查
+- 所有需求点都已实现
+- `README.md` 完整（介绍+配置+启动命令）
+- 数据库初始化SQL完整
+- `.gitignore` 正确
+- **可调试性检查**：测试用例失败后能通过日志/截图快速定位问题，大段用例已拆分
+
+## 自动修复能力
+
+- **依赖安装报错** → 自动分析错误，修改版本或移除冲突依赖
+- **import路径错误** → 自动查找正确路径修复
+- **语法错误** → 自动修正语法和类型错误
+- **启动失败** → 自动读取错误日志，定位问题修复
+- **缺失文件** → 自动创建
+- **AI代码坏味道自动治理**：
+  - 扫描硬编码`nth-child`/长CSS定位器，提示替换为语义化写法（`getByRole`/`getByTestId`/`getByLabel`）
+  - 发现无理由`waitForTimeout()`添加TODO注释，提示替换为状态断言等待
+  - 检测到只有UI可见性断言，提示补充业务状态断言
+  - 识别重复冗余定位，建议合并重构
+
+## 作者
+
+pejic
+
+## 许可证
+
+MIT

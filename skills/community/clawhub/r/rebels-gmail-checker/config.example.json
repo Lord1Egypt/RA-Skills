@@ -1,0 +1,20 @@
+{
+  "hours": 24,
+  "max_results": 50,
+  "high_priority_domains": [],
+  "high_priority_keywords": [
+    "security",
+    "vulnerability",
+    "alert",
+    "urgent",
+    "action required",
+    "suspended",
+    "billing"
+  ],
+  "labels_skip": [
+    "CATEGORY_PROMOTIONS",
+    "CATEGORY_UPDATES",
+    "CATEGORY_FORUMS",
+    "CATEGORY_SOCIAL"
+  ]
+}

@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply font-body bg-white text-stone-800 antialiased;
+  }
+  h1, h2, h3, h4 { @apply font-display; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold px-7 py-3.5 rounded-full transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 bg-white hover:bg-stone-50 text-primary-700 font-semibold px-7 py-3.5 rounded-full transition-all duration-300 hover:shadow-lg border border-stone-200;
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border-2 border-white text-white hover:bg-white hover:text-primary-700 font-semibold px-7 py-3.5 rounded-full transition-all duration-300;
+  }
+  .btn-outline-green {
+    @apply inline-flex items-center gap-2 border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white font-semibold px-7 py-3.5 rounded-full transition-all duration-300;
+  }
+  .section-label {
+    @apply text-primary-600 font-semibold text-sm uppercase tracking-[0.2em] mb-3 block;
+  }
+  .section-title {
+    @apply font-display text-4xl md:text-5xl font-bold text-stone-900 leading-tight;
+  }
+  .section-title-white {
+    @apply font-display text-4xl md:text-5xl font-bold text-white leading-tight;
+  }
+  .card {
+    @apply bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden;
+  }
+  .page-hero {
+    @apply relative py-32 flex items-center justify-center overflow-hidden;
+  }
+  .input-field {
+    @apply w-full px-4 py-3 border border-stone-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all bg-white text-stone-800 placeholder-stone-400;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f5f5f4; }
+::-webkit-scrollbar-thumb { background: #16a34a; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #15803d; }
+
+/* Smooth image loading */
+img { transition: opacity 0.3s ease; }

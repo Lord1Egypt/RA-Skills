@@ -1,0 +1,4 @@
+interface:
+  display_name: "Raindrop.io API"
+  short_description: "Build Raindrop.io API and MCP integrations"
+  default_prompt: "Use $raindrop-api to build or debug a Raindrop.io REST API or MCP integration."

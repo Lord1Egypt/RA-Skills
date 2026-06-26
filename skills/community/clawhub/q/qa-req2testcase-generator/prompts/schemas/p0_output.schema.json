@@ -1,0 +1,230 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "P0 Output Schema (v1.2)",
+  "type": "object",
+  "properties": {
+    "schema_version": { "type": "string" },
+    "prompt_version": { "type": "string" },
+    "quality_score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "objective": { "type": "string" },
+    "quality_check": {
+      "type": "object",
+      "properties": {
+        "status": { "type": "string", "enum": ["PASSED", "CONDITIONAL_PASS", "BLOCKED"] },
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "auto_forced": { "type": "boolean", "description": "仅当 score < 0.7 时出现，表示质量门禁被强制通过" },
+        "original_score": { "type": "number", "minimum": 0, "maximum": 1, "description": "仅当 auto_forced=true 时出现，强制通过前的原始评分" },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item": { "type": "string" },
+              "weight": { "type": "number" },
+              "score": { "type": "number" },
+              "reason": { "type": "string" }
+            },
+            "required": ["item", "weight", "score"]
+          }
+        },
+        "missing_items": { "type": "array", "items": { "type": "string" } },
+        "blocked_pci_list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pci_id": { "type": "string" },
+              "description": { "type": "string" },
+              "block_reason": { "type": "string" }
+            },
+            "required": ["pci_id", "description", "block_reason"]
+          }
+        },
+        "clarification_questions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "question": { "type": "string" },
+              "impact": { "type": "string" },
+              "related_unknown": { "type": "string" }
+            },
+            "required": ["question", "impact"]
+          }
+        }
+      },
+      "required": ["status", "score", "details", "missing_items", "blocked_pci_list"]
+    },
+    "requirement_id": { "type": "string" },
+    "domain": { "type": "string", "enum": ["trade", "asset_mgmt", "risk_ctrl", "unknown"] },
+    "blocks": {
+      "type": "object",
+      "properties": {
+        "objective": {
+          "type": "object",
+          "properties": {
+            "business_goal": { "type": "string" },
+            "acceptance_criteria": { "type": "array", "items": { "type": "string" } },
+            "success_metrics": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "business_objects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "attributes": { "type": "array", "items": { "type": "string" } }
+            },
+            "required": ["name"]
+          }
+        },
+        "field_specs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "field_name": { "type": "string" },
+              "data_type": { "type": "string", "enum": ["string", "number", "date", "boolean", "enum"] },
+              "validation_rules": { "type": "array", "items": { "type": "string" } },
+              "source_page": { "type": "string" },
+              "required": { "type": "boolean" },
+              "description": { "type": "string" }
+            },
+            "required": ["field_name", "data_type"]
+          }
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": { "type": "string" },
+              "permissions": { "type": "array", "items": { "type": "string" } }
+            },
+            "required": ["role"]
+          }
+        },
+        "pages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "parent": { "type": ["string", "null"] },
+              "description": { "type": "string" },
+              "page_path": { "type": "string" }
+            },
+            "required": ["name", "page_path"]
+          }
+        },
+        "ui_elements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "page": { "type": "string" },
+              "element_type": { "type": "string", "enum": ["button", "input", "dropdown", "table", "text", "link", "checkbox", "radio", "datepicker", "upload"] },
+              "label": { "type": "string" },
+              "field_name": { "type": "string" },
+              "selector_hint": { "type": "string" }
+            },
+            "required": ["page", "element_type", "label"]
+          }
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "trigger": { "type": "string" },
+              "actor": { "type": "string" },
+              "precondition": { "type": "string" }
+            },
+            "required": ["name", "trigger", "actor"]
+          }
+        },
+        "state_transitions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "object": { "type": "string" },
+              "from": { "type": "string" },
+              "to": { "type": "string" },
+              "condition": { "type": "string" }
+            },
+            "required": ["object", "from", "to"]
+          }
+        },
+        "business_rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "description": { "type": "string", "minLength": 5 },
+              "source": { "type": "string" }
+            },
+            "required": ["id", "description"]
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["system", "api", "data"] },
+              "name": { "type": "string" },
+              "description": { "type": "string" }
+            },
+            "required": ["type", "name"]
+          }
+        },
+        "known_risks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "description": { "type": "string" },
+              "impact": { "type": "string" }
+            },
+            "required": ["description"]
+          }
+        },
+        "unknowns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "description": { "type": "string" },
+              "source": { "type": "string" },
+              "impact": { "type": "string" },
+              "blocking": { "type": "boolean" }
+            },
+            "required": ["description"]
+          }
+        },
+        "test_point_candidates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "description": { "type": "string" },
+              "category": { "type": "string" }
+            },
+            "required": ["description"]
+          }
+        }
+      },
+      "required": [
+        "objective", "business_objects", "field_specs", "roles", "pages",
+        "ui_elements", "operations", "state_transitions", "business_rules",
+        "dependencies", "known_risks", "unknowns", "test_point_candidates"
+      ]
+    }
+  },
+  "required": ["schema_version", "prompt_version", "quality_check", "requirement_id", "domain", "blocks"],
+  "additionalProperties": true
+}

@@ -1,0 +1,11 @@
+name: quant-architecture-review
+version: 1.0.0
+description: 量化架构设计审查技能。提供架构设计检查清单、常见问题识别、优化建议。适用于量化项目的设计审查阶段。
+author: Rick
+tags:
+  - quantitative
+  - architecture
+  - design-review
+  - optimization
+commands: []
+dependencies: []

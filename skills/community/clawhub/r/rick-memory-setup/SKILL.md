@@ -1,35 +1,50 @@
----
-name: "rick-memory-setup"
-description: "Quickly configure OpenClaw's hierarchical memory system with intelligent writing, retrieval, automated weekly maintenance, and metadata tagging."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rick-memory-setup"
-sourceUrl: "https://clawhub.ai/skills/rick-memory-setup"
----
+# Rick Memory Setup
 
-# rick-memory-setup
+一键配置 OpenClaw 结构化记忆系统 - 基于2026-03专家方案优化
 
-> Quickly configure OpenClaw's hierarchical memory system with intelligent writing, retrieval, automated weekly maintenance, and metadata tagging.
+## 功能特点
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rick-memory-setup`
-- **Source URL:** [https://clawhub.ai/skills/rick-memory-setup](https://clawhub.ai/skills/rick-memory-setup)
+- ✅ **分层存储结构**：核心配置 + 项目分类 + 日常日志三层
+- ✅ **智能写入策略**：明确规则"什么信息该写入哪里"
+- ✅ **智能检索策略**：根据问题类型自动选择搜索范围
+- ✅ **自动化维护**：Heartbeat每周日自动整理记忆
+- ✅ **反馈闭环**：用户纠正记忆时自动更新文件
+- ✅ **元数据标记**：每条结论带时间戳+来源标记
 
-## Overview
+## 使用场景
 
+- 新建OpenClaw实例时快速配置记忆系统
+- 解决"金鱼脑"问题（会话重置后记不住历史）
+- 从头搭建结构化项目记忆
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/rick-memory-setup
+## 安装后文件结构
+
 ```
+~/.openclaw/workspace/
+├── AGENTS.md          # 记忆写入策略（已优化）
+├── HEARTBEAT.md       # 自动化维护任务配置
+├── USER.md            # 用户信息模板
+├── MEMORY.md          # 长期记忆（需用户自己填写）
+├── memory/            # 每日日志目录
+│   └── YYYY-MM-DD.md
+└── TOOLS.md           # 环境配置（需用户自己填写）
+```
+
+## 安装方法
+
+```bash
+skillhub install rick-memory-setup
+```
+
+安装后：
+1. 编辑 `USER.md` 填写你的信息
+2. 编辑 `MEMORY.md` 添加你的项目和偏好
+3. 编辑 `TOOLS.md` 添加环境配置
+
+## 版本历史
+
+- v1.0.0 (2026-03-19): 初始版本，基于专家优化方案
+
+## 作者
+
+Rick + OpenClaw Quant Team

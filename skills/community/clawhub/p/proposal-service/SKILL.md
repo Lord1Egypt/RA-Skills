@@ -1,35 +1,23 @@
 ---
-name: "Proposal Service"
-description: "Inspect and create real OpenClaw proposals in public.openclaw_proposals for the current closed-loop workflow. Use for checking duplicate pending proposals an..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/proposal-service"
-sourceUrl: "https://clawhub.ai/skills/proposal-service"
+name: proposal-service
+description: Inspect and create real OpenClaw proposals in public.openclaw_proposals for the current closed-loop workflow. Use for checking duplicate pending proposals and creating trigger-driven proposals based on real workspace logic.
+metadata: {"clawdbot":{"notes":["Uses only public.openclaw_* tables","Current implementation supports the stale_missions_alert proposal flow","Wraps the real proposal pattern already present in stale_missions_engine.sh"]}}
 ---
 
 # Proposal Service
 
-> Inspect and create real OpenClaw proposals in public.openclaw_proposals for the current closed-loop workflow. Use for checking duplicate pending proposals an...
+Inspect and create real proposals for the current OpenClaw closed loop.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/proposal-service`
-- **Source URL:** [https://clawhub.ai/skills/proposal-service](https://clawhub.ai/skills/proposal-service)
+## Commands
 
-## Overview
+- Check whether the current stale-missions proposal already exists as pending
+  `{baseDir}/scripts/proposal-service.sh check-stale-duplicate`
 
+- Create the current stale-missions proposal
+  `{baseDir}/scripts/proposal-service.sh create-stale-proposal`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/proposal-service
-```
+## Notes
+
+- This skill uses the current real proposal pattern already implemented in the workspace.
+- It works against `public.openclaw_proposals`.
+- It is currently scoped to the `stale_missions_alert` flow.

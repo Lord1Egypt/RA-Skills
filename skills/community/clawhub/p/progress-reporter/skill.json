@@ -1,0 +1,27 @@
+{
+  "name": "progress-reporter",
+  "version": "1.0.0",
+  "description": "定时进度汇报系统 - 每 10 分钟自动汇报任务进展",
+  "author": "Assistant for 总裁",
+  "main": "report.sh",
+  "scripts": {
+    "run": "bash report.sh",
+    "report": "bash report.sh"
+  },
+  "config": {
+    "report-interval": 600,
+    "schedule": "*/10 * * * *"
+  },
+  "features": [
+    "定时进度汇报",
+    "每 10 分钟自动发送",
+    "详细执行日志",
+    "任务状态追踪"
+  ],
+  "triggers": [
+    "进度汇报",
+    "progress report",
+    "任务汇报",
+    "定时汇报"
+  ]
+}

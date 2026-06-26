@@ -1,0 +1,268 @@
+<!-- ====================== 详情页模板 ======================
+ * 注意：Header和Footer为全局固定模板，已经通过JS引入，无需修改
+ * 所有开发工作仅需在【页面主体内容区域】内完成
+ * 公共样式：assets/css/common.css（全局统一规范，禁止私自修改）
+ * 路径规则：所有引用统一使用相对路径，禁止使用绝对路径/开头
+ * ========================================================= -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>财经探子 - [详情页标题]</title>
+    <!-- 全局公共样式（固定引用，禁止删除） -->
+    <link rel="stylesheet" href="assets/css/common.css">
+    <!-- FontAwesome 6 图标库（固定引用，可直接使用所有免费图标） -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 页面独立样式（仅写当前页面独有样式，公用样式已在common.css定义） -->
+    <style>
+        /* 文章头部 */
+        .article-header {
+            margin-bottom: 40px;
+        }
+        .article-tag {
+            display: inline-block;
+            background: var(--zl-primary-opacity);
+            color: var(--zl-primary);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .article-title {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.3;
+            color: var(--zl-text-primary);
+            margin-bottom: 24px;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-size: 14px;
+            color: var(--zl-text-minor);
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--zl-border);
+        }
+        .article-meta .tag {
+            background: var(--zl-bg-light);
+            color: var(--zl-text-secondary);
+            padding: 2px 8px;
+            border-radius: var(--zl-radius-sm);
+            font-size: 12px;
+        }
+        /* 文章内容 */
+        .article-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--zl-text-primary);
+        }
+        .article-content p {
+            margin-bottom: 24px;
+        }
+        .article-content h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 40px 0 20px;
+            color: var(--zl-text-primary);
+        }
+        .article-content h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 32px 0 16px;
+            color: var(--zl-text-primary);
+        }
+        .article-content img {
+            max-width: 100%;
+            border-radius: var(--zl-radius-lg);
+            margin: 24px 0;
+            box-shadow: var(--zl-shadow-md);
+        }
+        .article-content blockquote {
+            background: var(--zl-bg-light);
+            border-left: 4px solid var(--zl-primary);
+            padding: 16px 20px;
+            margin: 24px 0;
+            color: var(--zl-text-secondary);
+            border-radius: 0 var(--zl-radius-md) var(--zl-radius-md) 0;
+        }
+        .article-content .highlight-box {
+            background: var(--zl-primary-opacity);
+            border: 1px solid var(--zl-primary-opacity);
+            border-radius: var(--zl-radius-lg);
+            padding: 24px;
+            margin: 24px 0;
+        }
+        /* 相关推荐 */
+        .related-section {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--zl-border);
+        }
+        .related-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--zl-text-primary);
+        }
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .related-item {
+            background: var(--zl-bg-light);
+            border-radius: var(--zl-radius-lg);
+            padding: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        .related-item:hover {
+            background: var(--zl-primary-opacity);
+            transform: translateX(8px);
+        }
+        .related-item-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--zl-text-primary);
+        }
+        .related-item-desc {
+            font-size: 14px;
+            color: var(--zl-text-secondary);
+        }
+        /* 返回按钮 */
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--zl-text-secondary);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            margin: 24px 0;
+            transition: color 0.3s ease;
+        }
+        .back-btn:hover {
+            color: var(--zl-primary);
+        }
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 24px;
+            }
+            .article-content {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 全局固定Header（通过JS自动引入，禁止修改） -->
+    <script src="assets/js/header.js"></script>
+
+    <!-- ==============================================
+         页面主体内容区域（所有开发工作仅在此区域完成）
+         ============================================== -->
+    <main class="container" style="padding-top: 88px;">
+        <!-- 返回按钮 -->
+        <a href="javascript:history.back()" class="back-btn">← 返回列表</a>
+
+        <!-- 文章头部 -->
+        <div class="article-header">
+            <span class="article-tag">[分类标签]</span>
+            <h1 class="article-title">[文章大标题]</h1>
+            <div class="article-meta">
+                <span>📅 [发布时间]</span>
+                <span>📰 [来源]</span>
+                <span class="tag">[标签]</span>
+            </div>
+        </div>
+
+        <!-- 文章内容 -->
+        <div class="article-content">
+            <!-- 内容开始 -->
+            
+            <!-- 内容结束 -->
+        </div>
+
+        <!-- 相关推荐 -->
+        <div class="related-section">
+            <h2 class="related-title">相关推荐</h2>
+            <div class="related-list">
+                <a href="#" class="related-item">
+                    <h3 class="related-item-title">[相关文章标题1]</h3>
+                    <p class="related-item-desc">[相关文章简介]</p>
+                </a>
+                <a href="#" class="related-item">
+                    <h3 class="related-item-title">[相关文章标题2]</h3>
+                    <p class="related-item-desc">[相关文章简介]</p>
+                </a>
+            </div>
+        </div>
+    </main>
+    <!-- ==============================================
+         页面主体内容区域结束
+         ============================================== -->
+
+    <!-- Idea介绍浮层（领导查看用，固定在右下角） -->
+    <div class="idea-float-panel" id="ideaFloatPanel">
+        <div class="idea-float-header" onclick="toggleIdeaPanel()">
+            <div class="idea-float-header-title">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span id="ideaPanelTitle">Idea介绍</span>
+            </div>
+            <button class="idea-float-header-toggle" id="ideaPanelToggle">
+                <i class="fa-solid fa-minus" id="ideaPanelToggleIcon"></i>
+            </button>
+        </div>
+        <div class="idea-float-content" id="ideaPanelContent">
+            <div class="idea-float-section">
+                <div class="idea-float-section-title"><i class="fa-solid fa-tag"></i> 点子信息</div>
+                <div class="idea-float-section-content">
+                    <span class="idea-float-tag" id="ideaTag1">基金</span>
+                    <span class="idea-float-tag" id="ideaTag2">小白向</span>
+                </div>
+            </div>
+            <div class="idea-float-section">
+                <div class="idea-float-section-title"><i class="fa-solid fa-star"></i> 一句话卖点</div>
+                <div class="idea-float-section-content" id="ideaOneLine">
+                    一句话说明这个点子的核心价值
+                </div>
+            </div>
+            <div class="idea-float-section">
+                <div class="idea-float-section-title"><i class="fa-solid fa-puzzle-piece"></i> 设计想法</div>
+                <div class="idea-float-section-content" id="ideaDesign">
+                    简单说明设计思路、用户痛点、差异化优势
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局固定Footer（通过JS自动引入，禁止修改） -->
+    <script src="assets/js/footer.js"></script>
+
+    <!-- 全局公共脚本（固定引用，禁止删除） -->
+    <script src="assets/js/common.js"></script>
+    <!-- 页面独立脚本（仅写当前页面独有脚本） -->
+    <script>
+        // Idea浮层折叠/展开功能
+        function toggleIdeaPanel() {
+            const panel = document.getElementById('ideaFloatPanel');
+            const content = document.getElementById('ideaPanelContent');
+            const toggleIcon = document.getElementById('ideaPanelToggleIcon');
+            panel.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+            if (panel.classList.contains('collapsed')) {
+                toggleIcon.className = 'fa-solid fa-plus';
+            } else {
+                toggleIcon.className = 'fa-solid fa-minus';
+            }
+        }
+        // 页面独立脚本写在这里
+    </script>
+</body>
+</html>

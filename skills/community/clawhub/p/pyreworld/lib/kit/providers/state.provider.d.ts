@@ -1,0 +1,40 @@
+import { Connection } from '@solana/web3.js';
+import type { Stronghold } from '../types';
+import type { State, AgentGameState, SerializedGameState, TrackedAction, CheckpointConfig } from '../types/state.types';
+import { Registry } from '../types/registry.types';
+export declare class StateProvider implements State {
+    private connection;
+    private registry;
+    private publicKey;
+    private _state;
+    private checkpointConfig;
+    private ticksSinceCheckpoint;
+    private _vaultCreator;
+    private _stronghold;
+    private _vaultPromise;
+    constructor(connection: Connection, registry: Registry, publicKey: string);
+    get state(): AgentGameState | null;
+    get initialized(): boolean;
+    get tick(): number;
+    setCheckpointConfig(config: CheckpointConfig): void;
+    private resolveVault;
+    getVaultCreator(): Promise<string | null>;
+    getStronghold(): Promise<Stronghold | null>;
+    init(): Promise<AgentGameState>;
+    record(action: TrackedAction, mint?: string, description?: string): Promise<void>;
+    private updateSentiment;
+    onCheckpointDue: (() => void) | null;
+    /** Sync totalSolSpent/Received from on-chain vault data (fresh read) */
+    private syncPnl;
+    getHoldings(): Promise<Map<string, number>>;
+    getBalance(mint: string): Promise<number>;
+    getSentiment(mint: string): number;
+    get sentimentMap(): ReadonlyMap<string, number>;
+    get history(): readonly string[];
+    hasVoted(mint: string): boolean;
+    hasRallied(mint: string): boolean;
+    markVoted(mint: string): void;
+    markRallied(mint: string): void;
+    serialize(): SerializedGameState;
+    hydrate(saved: SerializedGameState): void;
+}

@@ -1,0 +1,10 @@
+name: quant-data-quality
+version: 1.0.0
+description: 数据质量检查技能。提供数据质量检查清单、常见问题识别、修复建议。适用于量化项目的数据质量管理。
+author: Rick
+tags:
+  - quantitative
+  - data-quality
+  - data-check
+commands: []
+dependencies: []

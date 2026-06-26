@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ollama Qwen No-Think"
+  short_description: "Create no-thinking Qwen Ollama tags"
+  default_prompt: "Use $ollama-qwen-nothink to make this local Qwen Ollama model default to no-thinking mode."

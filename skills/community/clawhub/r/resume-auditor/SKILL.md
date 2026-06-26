@@ -1,35 +1,32 @@
----
-name: "AI 简历纠错排版大师"
-description: "智能检测简历逻辑错误，量化项目含金量，自动隐私脱敏并优化排版，助力提升简历专业度与吸引力。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/resume-auditor"
-sourceUrl: "https://clawhub.ai/skills/resume-auditor"
+# 🚀 AI 简历纠错大师 (Logic Audit Edition)
+
+**不仅仅是美化，更是你简历的“专业审计员”。**
+
+投出去的简历石沉大海？可能不是技术不行，而是简历中藏着你没察觉的“逻辑硬伤”。本助手内置资深技术 HR 审计逻辑，助你避开简历陷阱。
+
 ---
 
-# AI 简历纠错排版大师
+## 🌟 三大王牌功能
 
-> 智能检测简历逻辑错误，量化项目含金量，自动隐私脱敏并优化排版，助力提升简历专业度与吸引力。
+### 1. 【逻辑侦测】AI 语义级审计 🚩
+* **时间轴纠错**：自动揪出“入职早于毕业”等逻辑矛盾，消除 HR 的诚信质疑。
+* **量化诊断**：智能检测项目含金量，针对缺失数据支撑的描述提供提分建议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/resume-auditor`
-- **Source URL:** [https://clawhub.ai/skills/resume-auditor](https://clawhub.ai/skills/resume-auditor)
+### 2. 【安全第一】一键隐私脱敏 🛡️
+* **猎头模式**：自动掩码联系方式（如：138****8888），在展示实力的同时保护隐私安全。
 
-## Overview
+### 3. 【大厂审美】自适应排版 🎨
+* **高亮技术栈**：Java、Spring Boot、架构设计等核心词自动加粗高亮，让 HR 3秒锁定你的核心竞争力。
+* **自适应布局**：内容少不显空洞，内容多不显拥挤，始终保持最佳视觉比例。
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/resume-auditor
-```
+## 📊 简历健康度评价体系
+上传简历后，您将立即获得一份多维度的诊断报告：
+* **简历得分**：基于完整度、量化指标等综合评分。
+* **亮点识别**：自动提取您的硬核技术关键词。
+* **硬伤提醒**：用红色 🚩 标出逻辑冲突或关键缺失。
+
+---
+
+**“让每一份才华都不被低级逻辑错误埋没。”** 立即上传简历，开始您的提分之旅！

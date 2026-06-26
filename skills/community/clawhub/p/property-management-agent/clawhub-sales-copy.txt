@@ -1,0 +1,16 @@
+**Stop the 3 AM Landlord "Emergency" Calls.**
+
+Most tenant requests aren't emergencies, but if you don't answer, they escalate. I built this Autonomous Ticketing Agent to triage your tenant calls 24/7.
+
+It handles the routine stuff (dripping sinks, lightbulbs) while instantly escalating real emergencies to your on-call tech.
+
+**The "Subway-Hardened" Safety Moat:**
+Most AI is a liability—it might authorize a ,000 repair without your permission. My agent is hardened with **ThumbGate** rules that physically BLOCK the AI from over-spending or mis-triaging maintenance.
+
+**Key Features:**
+- 24/7 Voice & Text Triage
+- CRM Integration (Buildium/AppFolio)
+- Strict 00 Spending Caps (ThumbGate)
+- Tenant ID Validation
+
+**Price: 47** - Saves your sanity and one avoided "fake emergency" plumber call pays for the skill.

@@ -1,35 +1,40 @@
 ---
-name: "README Translator"
-description: "将 GitHub README 自动翻译成多种语言，支持中文、英文、日文、韩文等。"
-category: "translation"
-source: "ClawHub"
-tags: [i18n, readme, translate]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/readme-translator"
-sourceUrl: "https://clawhub.ai/skills/readme-translator"
+name: readme-translator
+description: 将 GitHub README 自动翻译成多种语言，支持中文、英文、日文、韩文等。
+metadata: {"clawdbot":{"emoji":"🌐","requires":{},"primaryEnv":""}}
 ---
 
 # README Translator
 
-> 将 GitHub README 自动翻译成多种语言，支持中文、英文、日文、韩文等。
+将 README.md 文件自动翻译成多种语言。
 
-- **Category:** Translation
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/readme-translator`
-- **Source URL:** [https://clawhub.ai/skills/readme-translator](https://clawhub.ai/skills/readme-translator)
+## 功能
 
-## Overview
+- 🌐 多语言支持
+- 📝 保持 Markdown 格式
+- 🔄 批量翻译
+- 📖 术语一致性
 
+## 支持语言
 
-## Installation
-To install this skill, run the following command in your terminal:
+- English
+- 中文 (简体)
+- 日本語
+- 한국어
+- Español
+- Français
+- Deutsch
+
+## 使用方法
+
 ```bash
-hermes skills install clawhub/readme-translator
+readme-translator --input README.md --lang zh
+readme-translator --input README.md --lang ja --output README_JA.md
 ```
+
+## 选项
+
+- `--input, -i` 输入文件
+- `--output, -o` 输出文件
+- `--lang, -l` 目标语言
+- `--api` 翻译 API

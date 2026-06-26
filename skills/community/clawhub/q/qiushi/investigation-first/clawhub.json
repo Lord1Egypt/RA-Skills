@@ -1,0 +1,13 @@
+{
+  "name": "investigation-first",
+  "version": "1.0.0",
+  "displayName": "调查研究",
+  "description": "当需要做决策但信息不足，或需要深入了解问题背景时调用",
+  "author": "求是 Skill",
+  "homepage": "https://github.com/skytodmoon/qiushi-skill",
+  "tags": ["方法论", "毛泽东思想", "调查研究"],
+  "requires": {
+    "env": []
+  },
+  "files": []
+}

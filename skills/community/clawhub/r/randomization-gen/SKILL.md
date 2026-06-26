@@ -1,35 +1,90 @@
 ---
-name: "Randomization Gen"
-description: "Generate block randomization lists for RCTs"
-category: "other"
-source: "ClawHub"
+name: randomization-gen
+description: Generate block randomization lists for RCTs
+version: 1.0.0
+category: Pharma
 tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/randomization-gen"
-sourceUrl: "https://clawhub.ai/skills/randomization-gen"
+author: AIPOCH
+license: MIT
+status: Draft
+risk_level: Medium
+skill_type: Tool/Script
+owner: AIPOCH
+reviewer: ''
+last_updated: '2026-02-06'
 ---
 
 # Randomization Gen
 
-> Generate block randomization lists for RCTs
+RCT randomization table generator.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/randomization-gen`
-- **Source URL:** [https://clawhub.ai/skills/randomization-gen](https://clawhub.ai/skills/randomization-gen)
+## Use Cases
+- Clinical trial design
+- Animal study randomization
+- Blocked randomization
+- Stratified allocation
 
-## Overview
+## Parameters
 
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `n_subjects` | int | Yes | Total sample size |
+| `n_groups` | int | Yes | Number of arms/groups |
+| `block_size` | int | Yes | Block size (must be multiple of n_groups) |
+| `--output` | string | No | Output file path (default: randomization.txt) |
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/randomization-gen
-```
+## Returns
+- Randomization sequence
+- Block assignments
+- Allocation concealment ready
+
+## Example
+Input: n=120, 3 groups, block=6
+Output: Sealed randomization list
+
+## Risk Assessment
+
+| Risk Indicator | Assessment | Level |
+|----------------|------------|-------|
+| Code Execution | Python/R scripts executed locally | Medium |
+| Network Access | No external API calls | Low |
+| File System Access | Read input files, write output files | Medium |
+| Instruction Tampering | Standard prompt guidelines | Low |
+| Data Exposure | Output files saved to workspace | Low |
+
+## Security Checklist
+
+- [ ] No hardcoded credentials or API keys
+- [ ] No unauthorized file system access (../)
+- [ ] Output does not expose sensitive information
+- [ ] Prompt injection protections in place
+- [ ] Input file paths validated (no ../ traversal)
+- [ ] Output directory restricted to workspace
+- [ ] Script execution in sandboxed environment
+- [ ] Error messages sanitized (no stack traces exposed)
+- [ ] Dependencies audited
+## Prerequisites
+
+No additional Python packages required.
+
+## Evaluation Criteria
+
+### Success Metrics
+- [ ] Successfully executes main functionality
+- [ ] Output meets quality standards
+- [ ] Handles edge cases gracefully
+- [ ] Performance is acceptable
+
+### Test Cases
+1. **Basic Functionality**: Standard input → Expected output
+2. **Edge Case**: Invalid input → Graceful error handling
+3. **Performance**: Large dataset → Acceptable processing time
+
+## Lifecycle Status
+
+- **Current Stage**: Draft
+- **Next Review Date**: 2026-03-06
+- **Known Issues**: None
+- **Planned Improvements**: 
+  - Performance optimization
+  - Additional feature support

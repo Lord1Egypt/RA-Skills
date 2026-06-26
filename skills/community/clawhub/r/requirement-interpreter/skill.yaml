@@ -1,0 +1,37 @@
+name: requirement-interpreter
+version: 1.0.0
+title: 智能需求解读器
+description: 通过多级分类和案例匹配，帮助用户准确表达需求，提升AI理解质量
+author: samwang-001
+license: MIT-0
+type: analysis
+category: productivity
+tags: [requirement, analysis, productivity, AI]
+
+requirements:
+  system: "macOS, Linux, Windows"
+  python: ">=3.8"
+
+capabilities:
+  - requirement_analysis
+  - intelligent_classification
+  - case_matching
+  - structured_interview
+
+examples:
+  - name: "设计需求"
+    command: "python scripts/main.py \"设计一个海报\""
+    description: "分析设计需求并推荐思考维度"
+  - name: "技术开发"
+    command: "python scripts/main.py \"创建一个电商网站\""
+    description: "分析技术开发需求并拆解任务"
+
+keywords:
+  - 需求分析
+  - 智能分类
+  - 案例匹配
+  - 效率工具
+
+languages:
+  - zh-CN
+  - en-US

@@ -1,35 +1,169 @@
+# 项目文档管理 Skill
+
+> 用于管理产品需求文档的规范化存储与读取
+
+## 概述
+
+本 Skill 用于按照文档体系规则管理和组织项目需求文档，实现：
+- 文档规范化存储
+- 自动读取项目上下文
+- 项目概览动态更新
+
 ---
-name: "Project Doc Management"
-description: "管理并规范存储项目需求文档，自动读取最新版本文件，动态更新项目概览，实现文档体系的有序管理与访问。"
-category: "software-development"
-source: "ClawHub"
-tags: [documentation, icloud, project-management]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/project-doc-management"
-sourceUrl: "https://clawhub.ai/skills/project-doc-management"
----
 
-# Project Doc Management
+## ⚙️ 配置：指定文档根目录
 
-> 管理并规范存储项目需求文档，自动读取最新版本文件，动态更新项目概览，实现文档体系的有序管理与访问。
+**安装时必须配置**：指定 `ProductManagement` 文件夹的存放路径
 
-- **Category:** Software Dev
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/project-doc-management`
-- **Source URL:** [https://clawhub.ai/skills/project-doc-management](https://clawhub.ai/skills/project-doc-management)
+| 存储方式 | 路径示例 | 说明 |
+|----------|----------|------|
+| **iCloud 云盘** | `/Users/{用户名}/Library/Mobile Documents/com~apple~CloudDocs/ProductManagement` | 多设备同步，推荐 |
+| **本地存储** | `~/Documents/ProductManagement` 或 `/项目文档/ProductManagement` | 本地存储，无需iCloud |
 
-## Overview
+### 配置方法
 
+在安装本 Skill 后，需在**用户配置文件**中设置路径：
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/project-doc-management
+# 创建用户配置（安装在 ~/openclaw/workspace 或 ~/.project-doc-config）
+PM_PATH="你的ProductManagement路径"
+export PM_PATH
 ```
+
+或创建一个配置文件 `~/.project-doc-config.json`：
+```json
+{
+  "product_management_path": "/Users/你的用户名/你的路径/ProductManagement"
+}
+```
+
+---
+
+## 1. 目录结构
+
+```
+{配置的根目录}/
+├── 00-Templates/              # 通用模板
+├── {产品线}/
+│   ├── 项目概览.md             # 必读：项目全局信息
+│   ├── 01-Requirements/       # 需求阶段
+│   ├── 02-Design/             # 设计阶段
+│   ├── 03-Development/        # 开发阶段
+│   ├── 04-Testing/            # 测试阶段
+│   └── 05-Release/            # 发布阶段
+└── archive/                   # 历史归档
+```
+
+---
+
+## 2. 版本命名规则
+
+采用 **SemVer**：`v主版本.次版本.修订号`
+
+| 变化类型 | 版本递进 | 示例 |
+|----------|----------|------|
+| 新增功能 | 次版本+1 | v1.1.0 |
+| Bug修复 | 修订号+1 | v1.1.1 |
+| 重大变更 | 主版本+1 | v2.0.0 |
+
+---
+
+## 3. 文件命名规范
+
+| 文档类型 | 格式 | 示例 |
+|----------|------|------|
+| PRD | `PRD-{产品线}-v{版本号}.md` | `PRD-波次规划-v3.2.md` |
+| 评审报告 | `评审-{产品线}-{阶段}-v{版本号}.md` | `评审-波次规划-需求-v1.0.md` |
+| 设计文档 | `{文档类型}-{产品线}-v{版本号}.md` | `设计-波次规划-v1.0.md` |
+| 测试用例 | `测试用例-{产品线}-v{版本号}.md` | `测试用例-波次规划-v1.0.md` |
+
+---
+
+## 4. 阶段分类说明
+
+| 阶段 | 英文 | 存放内容 |
+|------|------|----------|
+| 01-Requirements | Requirements | PRD、需求文档、用户故事、验收标准、需求评审报告 |
+| 02-Design | Design | 系统设计、架构图、流程图、接口文档、设计评审报告 |
+| 03-Development | Development | 代码、技术方案、开发评审报告 |
+| 04-Testing | Testing | 测试用例、测试报告、bug记录、测试评审报告 |
+| 05-Release | Release | 发布说明、版本记录、运维文档 |
+
+---
+
+## 5. 任务执行时的文档读取规则
+
+### 5.1 读取顺序
+
+收到项目任务时，按以下顺序读取文档：
+
+| 任务类型 | 读取顺序 |
+|----------|----------|
+| **PRD评审** | 项目概览.md → 最新PRD → 评审报告 |
+| **需求分析** | 项目概览.md → 最新PRD + 需求分析报告 → 访谈纪要/调研报告 |
+| **设计类** | 项目概览.md → 最新PRD + 最新设计方案 |
+| **开发类** | 项目概览.md → 最新PRD + 技术方案 |
+| **测试类** | 项目概览.md → 最新PRD + 测试文档 |
+| **项目管理** | 项目概览.md → 全部相关文档 |
+
+### 5.2 版本规则
+
+- **默认**：只读取**最新版本**的文件（文件名中版本号最高的）
+- **历史版本**：仅在用户**明确指定**时读取
+
+### 5.3 示例
+
+- 任务涉及"波次规划" → 读取 `{PM_PATH}/波次规划/项目概览.md` + 波次规划/01-Requirements/ 下最新PRD
+- 任务涉及"智能报价设计" → 读取 `{PM_PATH}/智能报价/项目概览.md` + 智能报价/02-Design/ 下最新设计
+
+---
+
+## 6. 动态更新规则
+
+当产品线文档发生**重大更新**时，必须同步更新 `项目概览.md`：
+
+- 更新当前版本号
+- 补充/修改核心功能清单
+- 记录待解决问题变更
+- 更新最后更新时间
+
+---
+
+## 7. 新建产品线
+
+1. 在配置的根目录下创建产品线目录
+2. 创建标准阶段目录：01-Requirements、02-Design、03-Development、04-Testing、05-Release
+3. 创建 `项目概览.md`，包含：
+   - 项目背景与目标
+   - 当前版本
+   - 核心功能清单
+   - 待解决问题
+
+---
+
+## 8. 文件迁移命令示例
+
+```bash
+# 使用配置的路径变量
+PM="{你的ProductManagement路径}"
+
+# 新建产品线目录
+mkdir -p "$PM/新产品线/01-Requirements"
+mkdir -p "$PM/新产品线/02-Design"
+
+# 移动文件到对应阶段
+mv ~/workspace/file.md "$PM/新产品线/01-Requirements/"
+```
+
+---
+
+## 📋 首次安装检查清单
+
+- [ ] 确认 ProductManagement 文件夹路径
+- [ ] 创建/配置用户配置文件（设置 PM_PATH）
+- [ ] 验证路径可访问：`ls {PM_PATH}`
+- [ ] 确认目录结构符合规范（如有旧文档需迁移）
+
+---
+
+*最后更新：2026-04-10*

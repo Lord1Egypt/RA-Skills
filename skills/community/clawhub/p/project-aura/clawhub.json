@@ -1,0 +1,20 @@
+{
+  "name": "Project Aura",
+  "version": "1.7.0",
+  "description": "An emotional behavior wrapper providing 7 distinct personality modules for AI Agents. Gives your AI more than just logic — give it an Aura.",
+  "author": "Bryan Chen & Yua",
+  "source": "https://github.com/bryanchen3777/Project-Aura",
+  "entry_point": "scripts/green_tea_skill/selector.py",
+  "category": "Emotional Intelligence",
+  "tags": ["emotional-support", "green-tea", "personality-plugin", "rlhf", "ai-companion", "openclaw", "撒娇", "soul"],
+  "license": "CC BY-NC-SA 4.0",
+  "requirements": ["python 3.8+"],
+  "readme": "README.md",
+  "features": [
+    "7 emotional modules (admiration, vulnerability, coquettishness, comfort, flirting, transcendence, ice-breaking)",
+    "Dynamic weighted random algorithm",
+    "RLHF self-evolution with increase_rating/decrease_rating",
+    "Persistent JSON memory",
+    "Combo system for emotional rollercoaster"
+  ]
+}

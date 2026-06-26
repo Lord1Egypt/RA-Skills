@@ -1,0 +1,47 @@
+{
+  "name": "pump",
+  "version": "1.0.0",
+  "description": "Design launch momentum before a project goes live. Optimize first-day release logic, trigger sequencing, and attention concentration.",
+  "author": "agenticio",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "pump",
+    "launch strategy",
+    "release momentum",
+    "day one growth",
+    "launch sequencing",
+    "attention spike",
+    "cold start",
+    "product launch"
+  ],
+  "files": {
+    "skill.md": "skill.md"
+  },
+  "capabilities": {
+    "launch_diagnosis": "Diagnose weak launch structure before release",
+    "trigger_sequencing": "Design pre-launch, launch, and post-launch trigger flow",
+    "momentum_curve_design": "Map first-day release momentum and attention timing",
+    "launch_refinement": "Turn flat launches into more concentrated momentum events"
+  },
+  "triggers": [
+    "launch strategy",
+    "product launch",
+    "release momentum",
+    "day one growth",
+    "launch timing",
+    "how to launch",
+    "cold start launch",
+    "make launch go viral"
+  ],
+  "audience": [
+    "Indie founders",
+    "Skill creators",
+    "Operators launching digital products",
+    "Creators designing first-day release momentum"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

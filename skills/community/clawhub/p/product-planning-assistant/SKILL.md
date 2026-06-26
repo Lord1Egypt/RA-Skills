@@ -1,35 +1,177 @@
 ---
-name: "产品规划助手"
-description: "Helps complete high-quality product planning from requirements to implementation. Invoke when PM needs annual/quarterly/product iteration planning, reporting..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/product-planning-assistant"
-sourceUrl: "https://clawhub.ai/skills/product-planning-assistant"
+name: "product-planning-assistant"
+description: "Helps complete high-quality product planning from requirements to implementation. Invoke when PM needs annual/quarterly/product iteration planning, reporting to leadership, or team alignment meetings."
 ---
 
-# 产品规划助手
+# 产品规划助手 (Product Planning Assistant)
 
-> Helps complete high-quality product planning from requirements to implementation. Invoke when PM needs annual/quarterly/product iteration planning, reporting...
+帮助你完成从需求到落地的高质量产品规划。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/product-planning-assistant`
-- **Source URL:** [https://clawhub.ai/skills/product-planning-assistant](https://clawhub.ai/skills/product-planning-assistant)
+## 使用场景
 
-## Overview
+当产品经理需要做年度规划、季度规划、产品迭代规划时使用。也可用于向老板汇报产品规划、团队对齐会议前准备。
 
+## 核心流程（5步法）
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/product-planning-assistant
+### 第1步：明确目标 🎯
+
+**目的**：锚定方向，不跑偏
+
+**引导问题**：
+- 你的规划周期是？（年度/季度/版本）
+- 公司的核心业务目标是什么？（如：降本增效、用户体验提升、市场扩张）
+- 这个产品规划要达成什么具体成果？
+- 如何量化这个成果？（如：留存率提升20%、操作失误降低30%）
+
+**输出模板**：
 ```
+## 规划目标
+- 周期：2026年Q1
+- 业务对齐：公司"降本增效"战略
+- 核心指标：用户留存率提升20%
+- 可量化指标：
+  - 指标1：xxx
+  - 指标2：xxx
+```
+
+---
+
+### 第2步：筛选需求 🔍
+
+**目的**：抓核心，不贪多
+
+**引导问题**：
+- 你目前收集了哪些需求？来源是什么？（用户反馈、数据分析、竞品、老板）
+- 哪些是真实需求？哪些是伪需求？（用户说的 vs 真正痛的点）
+- 用MoSCoW法则梳理：
+  - Must have（必须有）：不做功能无法交付
+  - Should have（应该有）：重要但不紧急
+  - Could have（可以有）：锦上添花
+  - Won't have（暂不需要）：本期不做
+- 资源约束下，你只能做哪1-2个核心场景？
+
+**输出模板**：
+```
+## 需求筛选
+| 需求 | 来源 | 优先级 | 资源投入 | 备注 |
+|------|------|--------|----------|------|
+| xxx  | 用户访谈 | P0 | 2人/月 | 核心场景 |
+| xxx  | 数据分析 | P1 | 1人/月 | |
+```
+
+---
+
+### 第3步：拆解路径 🗺️
+
+**目的**：从宏观到微观，可落地
+
+**引导问题**：
+- 按时间维度，这个规划分为哪几个阶段？
+  - 阶段1：需求梳理与设计（X周）
+  - 阶段2：研发实现（X周）
+  - 阶段3：测试验收（X周）
+  - 阶段4：上线迭代（X周）
+- 每个阶段的关键里程碑是什么？
+- 核心功能模块有哪些？拆解成哪些具体任务？
+- 需要哪些团队配合？设计/研发/测试/运营/生产？
+
+**输出模板**：
+```
+## 规划路径
+### 阶段划分
+| 阶段 | 时间 | 核心目标 | 关键产出 |
+|------|------|----------|----------|
+| 需求设计 | W1-W2 | 完成原型评审 | PRD、原型 |
+| 研发实现 | W3-W6 | 完成核心功能 | 可测试版本 |
+| 测试验收 | W7-W8 | 完成bug修复 | 上线版本 |
+| 迭代优化 | W9+ | 收集反馈 | 迭代计划 |
+
+### 核心功能拆解
+- 功能模块A：
+  - 任务1：xxx（负责人A，X天）
+  - 任务2：xxx（负责人B，X天）
+```
+
+---
+
+### 第4步：制定预案 🛡️
+
+**目的**：规避风险，不翻车
+
+**引导问题**：
+- 技术层面可能有什么风险？（难度超预期、第三方依赖）
+- 资源层面可能有什么风险？（人力不足、预算削减）
+- 需求层面可能有什么风险？（需求变更、客户临时要求）
+- 外部环境有什么风险？（政策变化、市场变化）
+
+**输出模板**：
+```
+## 风险预案
+| 风险类型 | 风险描述 | 概率 | 影响 | 应对预案 |
+|----------|----------|------|------|----------|
+| 技术风险 | 核心算法开发难度超出预期 | 中 | 高 | 提前对接技术专家，预留10天缓冲 |
+| 需求风险 | 用户需求临时变更 | 高 | 中 | 建立需求变更流程，明确影响范围 |
+```
+
+---
+
+### 第5步：对齐汇报 📊
+
+**目的**：统一认知，获支持
+
+**引导问题**：
+- 汇报对象是谁？（老板/团队/跨部门）
+- 他们最关心什么？（投入产出比、业务价值、进度风险）
+- 如何用业务语言表达技术产出？
+  - ❌ "完成接口开发"
+  - ✅ "实现数据自动同步，减少人工录入成本50%"
+- 规划的核心价值点是什么？
+- 需要争取什么资源支持？
+
+**输出模板**：
+```
+## 汇报要点
+### 业务价值
+- 价值点1：xxx（量化收益）
+- 价值点2：xxx（量化收益）
+
+### 投入产出
+- 总投入：X人/月
+- 预期收益：xxx
+
+### 资源需求
+- 研发：X人
+- 设计：X人
+- 其他：xxx
+
+### 需要决策的事项
+1. xxx
+2. xxx
+```
+
+---
+
+## 避坑检查清单
+
+完成规划后，用这个清单自检：
+
+- [ ] 目标是否对齐公司战略？
+- [ ] 目标是否可量化、可验证？
+- [ ] 需求是否经过真实痛点验证？（不是伪需求）
+- [ ] 核心功能是否聚焦？（不超过2个核心场景）
+- [ ] 路径是否拆解到可执行的任务？
+- [ ] 时间节点是否清晰？
+- [ ] 资源需求是否和公司资源匹配？
+- [ ] 是否有风险预案？
+- [ ] 汇报语言是否用业务/结果导向？
+- [ ] 规划是否定期调整的机制？
+
+---
+
+## 快速启动
+
+当你需要做产品规划时，可以直接说：
+
+> "帮我做一份产品规划" 或 "按照产品规划流程来"
+
+我会依次引导你完成以上5个步骤，最后生成一份完整的规划文档。

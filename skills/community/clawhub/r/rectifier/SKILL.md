@@ -1,35 +1,102 @@
 ---
-name: "Rectifier"
+name: "rectifier"
+version: "1.0.0"
 description: "Rectifier circuit design calculator. Use when json rectifier tasks, csv rectifier tasks, checking rectifier status."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rectifier"
-sourceUrl: "https://clawhub.ai/skills/rectifier"
+author: "BytesAgain"
+homepage: "https://bytesagain.com"
+source: "https://github.com/bytesagain/ai-skills"
+tags: [rectifier, electrical, cli, tool]
+category: "electrical"
 ---
 
-# Rectifier
+# rectifier
 
-> Rectifier circuit design calculator. Use when json rectifier tasks, csv rectifier tasks, checking rectifier status.
+Rectifier circuit design calculator. Use when json rectifier tasks, csv rectifier tasks, checking rectifier status.
+## Commands
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rectifier`
-- **Source URL:** [https://clawhub.ai/skills/rectifier](https://clawhub.ai/skills/rectifier)
+### `status`
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/rectifier
+scripts/script.sh status
 ```
+
+Show current status
+
+### `add`
+
+```bash
+scripts/script.sh add
+```
+
+Add new entry
+
+### `list`
+
+```bash
+scripts/script.sh list
+```
+
+List all entries
+
+### `search`
+
+```bash
+scripts/script.sh search
+```
+
+Search entries
+
+### `remove`
+
+```bash
+scripts/script.sh remove
+```
+
+Remove entry by number
+
+### `export`
+
+```bash
+scripts/script.sh export
+```
+
+Export data to file
+
+### `stats`
+
+```bash
+scripts/script.sh stats
+```
+
+Show statistics
+
+### `config`
+
+```bash
+scripts/script.sh config
+```
+
+View or set config
+
+### `help`
+
+```bash
+scripts/script.sh help
+```
+
+### `version`
+
+```bash
+scripts/script.sh version
+```
+
+## Configuration
+
+Use `scripts/script.sh config <key> <value>` to set preferences.
+
+| Variable | Description |
+|----------|-------------|
+| `RECTIFIER_DIR` | Data directory (default: ~/.rectifier/) |
+---
+
+*Powered by BytesAgain | bytesagain.com | hello@bytesagain.com*

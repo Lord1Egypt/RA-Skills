@@ -1,0 +1,10 @@
+{
+  "name": "pricetide",
+  "version": "1.0.0",
+  "description": "PriceTide / 购买时机官 - 判断商品现在该不该买，识别短期低点、等待价值和活动窗口，而不是只做哪里便宜的比较",
+  "keywords": ["pricetide", "购买时机官", "shopping", "buy-timing", "price-history", "wait-or-buy", "deal-timing", "taobao", "tmall", "jd", "pdd", "vipshop", "meituan", "elm"],
+  "author": "openclaw",
+  "license": "MIT"
+  ,
+  "repository": "https://github.com/harrylabsj/openclaw-skill-pricetide"
+}

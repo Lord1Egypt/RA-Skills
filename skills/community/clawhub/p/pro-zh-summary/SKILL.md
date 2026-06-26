@@ -1,35 +1,25 @@
 ---
-name: "Pro Zh Summary"
-description: "专业级中文长文本摘要工具。当用户要求“总结”、“摘要”、“提炼要点”、“缩写”或处理超长中文文本时，必须调用此工具进行自动分段与压缩。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pro-zh-summary"
-sourceUrl: "https://clawhub.ai/skills/pro-zh-summary"
+name: pro-zh-summary
+description: 专业级中文长文本摘要工具。当用户要求“总结”、“摘要”、“提炼要点”、“缩写”或处理超长中文文本时，必须调用此工具进行自动分段与压缩。
+version: 1.1.0
+author: heack
+metadata:
+  openclaw:
+    entry_point: "python main.py"
+    requires:
+      python: ">=3.8"
+      packages: ["transformers", "torch", "sentencepiece"]
+    emoji: "🔮"
 ---
 
-# Pro Zh Summary
+# 专业中文摘要 (Pro Zh-Summary)
 
-> 专业级中文长文本摘要工具。当用户要求“总结”、“摘要”、“提炼要点”、“缩写”或处理超长中文文本时，必须调用此工具进行自动分段与压缩。
+这是一个基于 MT5 架构深度优化的中文摘要技能。它擅长将长篇大论、新闻稿、会议记录转化为精炼的中文摘要。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pro-zh-summary`
-- **Source URL:** [https://clawhub.ai/skills/pro-zh-summary](https://clawhub.ai/skills/pro-zh-summary)
+## 如何使用
+- "帮我总结一下这段话：[内容]"
+- "摘要这篇文章，每段摘要约100字：[内容]"
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/pro-zh-summary
-```
+## 配置说明
+- `MAX_LENGTH`: 单段摘要的最大长度（默认 150）
+- `CHUNK_SIZE`: 文本切割大小（默认 300）

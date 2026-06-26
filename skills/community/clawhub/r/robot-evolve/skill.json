@@ -1,0 +1,41 @@
+{
+  "name": "robot-evolve",
+  "version": "3.0.6",
+  "description": "机器人进化版 - 手动触发L0/L1自主进化，安全可靠",
+  "author": "大鱼Cyrus & 双鱼座005",
+  "tags": [
+    "自主进化",
+    "安全",
+    "记忆进化",
+    "自动巡检",
+    "健康检查",
+    "agent"
+  ],
+  "keywords": [
+    "self-evolve",
+    "auto-evolve",
+    "health-check",
+    "autonomous",
+    "agent"
+  ],
+  "license": "MIT",
+  "requires": {
+    "python": ">=3.8"
+  },
+  "requirements": [],
+  "dependencies": {
+    "chromadb": "optional"
+  },
+  "optionalDependencies": {
+    "chromadb": "用于知识库管理，未安装时该功能降级但不影响核心技能"
+  },
+  "features": [
+    "安全等级矩阵（L0-L3）",
+    "手动触发模式（用户说「执行进化」）",
+    "健康检查（L1）",
+    "记忆压缩（L1）",
+    "临时文件清理（L0）",
+    "技能目录扫描（L1）",
+    "进化报告推送"
+  ]
+}

@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "robin-commonplace"
+version = "0.1.0"
+description = "A digital commonplace book for AI agents — collect, curate, and periodically review personal knowledge."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+authors = [
+  {name = "Robin Contributors"}
+]
+keywords = ["commonplace-book", "knowledge-management", "ai-agent", "notes", "spaced-repetition"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Office/Business",
+]
+
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov"]
+
+[project.scripts]
+robin-add = "robin.cli:add_main"
+robin-search = "robin.cli:search_main"
+robin-topics = "robin.cli:topics_main"
+robin-review = "robin.cli:review_main"
+robin-reindex = "robin.cli:reindex_main"
+robin-doctor = "robin.cli:doctor_main"
+robin-entries = "robin.cli:entries_main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["robin*"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

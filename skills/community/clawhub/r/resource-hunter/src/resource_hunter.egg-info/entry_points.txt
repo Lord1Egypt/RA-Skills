@@ -1,0 +1,5 @@
+[console_scripts]
+resource-hunter = resource_hunter.cli:main
+resource-hunter-packaging-baseline-gate = resource_hunter.packaging_gate:main
+resource-hunter-packaging-baseline-report = resource_hunter.packaging_report:main
+resource-hunter-packaging-baseline-verify = resource_hunter.packaging_verify:main

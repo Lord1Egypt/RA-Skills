@@ -1,35 +1,106 @@
 ---
-name: "Quality Pipeline"
-description: "产出物多层级交叉质检流水线。任务完成后自动触发，干活的agent不能审自己，换agent交叉验证。适用场景：论文终稿、公文成品、报告文档等所有正式产出物。触发词：质检、验收、四层验证、交叉检查、质检流水线。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/quality-pipeline"
-sourceUrl: "https://clawhub.ai/skills/quality-pipeline"
+name: quality-pipeline
+description: 产出物多层级交叉质检流水线。任务完成后自动触发，干活的agent不能审自己，换agent交叉验证。适用场景：论文终稿、公文成品、报告文档等所有正式产出物。触发词：质检、验收、四层验证、交叉检查、质检流水线。
 ---
 
-# Quality Pipeline
+# 质检流水线
 
-> 产出物多层级交叉质检流水线。任务完成后自动触发，干活的agent不能审自己，换agent交叉验证。适用场景：论文终稿、公文成品、报告文档等所有正式产出物。触发词：质检、验收、四层验证、交叉检查、质检流水线。
+## 核心原则
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/quality-pipeline`
-- **Source URL:** [https://clawhub.ai/skills/quality-pipeline](https://clawhub.ai/skills/quality-pipeline)
+**干活的不能审自己。** 每层用不同模型/agent，交叉验证。
 
-## Overview
+## 五层质检流程
 
+### L1 存在性（豆包 Seed 2.0 Pro）
+- 文件在不在指定路径？能打开吗？
+- 输出：✅/❌ + 问题说明
+- 成本：极低
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/quality-pipeline
+### L2 真实性（DeepSeek R1）
+- 打开文件扫内容：
+  - 有无乱码/占位符/XXX未填
+  - 内容是否对题（不是上一个任务的复制）
+  - 字数是否符合要求
+- 输出：✅/❌ + 问题清单
+
+### L3 准确性（与L2不同的另一个agent）
+- 格式：标题/段落/三线表/编号是否正确
+- 命名：文件名是否符合规范
+- 路径：是否存到了ThunderVault对应目录
+- 引用：参考文献格式是否统一、是否存在假文献
+- 输出：✅/❌ + 修改建议
+
+### L4 专业审稿（editor-in-chief + academic-reviewer）
+- 编辑部主任：学术质量、逻辑、创新性、完整性
+- 学术副主编：质疑编辑部审稿意见，防AI幻觉
+- 输出：评分 + 审稿意见 + 修改指令
+
+### L5 CEO最终把关
+- 综合前四层结果
+- 判断是否需要返工或可直接交付
+- 交付给老板
+
+## 使用方式
+
+### spawn质检指令模板
+
+L1-L3合并为质检agent一次执行（省token），L4按需触发：
+
 ```
+你是质检员。请对以下产出物执行三级检查：
+
+【L1 存在性】文件在不在？能打开吗？
+【L2 真实性】有乱码/占位符/跑题吗？字数够吗？
+【L3 准确性】格式/命名/路径/引用正确吗？
+
+文件路径：{path}
+产出物类型：{论文/公文/报告}
+完成标准：{原始任务的完成标准}
+
+逐层输出检查结果，格式：
+L1: ✅/❌ {说明}
+L2: ✅/❌ {说明}  
+L3: ✅/❌ {说明}
+总结：{通过/需返工} {具体问题}
+```
+
+### L4审稿（论文专用）
+
+L1-L3通过后，spawn editor-in-chief + academic-reviewer 双审。
+
+### L5 CEO决策
+
+收到所有层级结果后，CEO判断：
+- 全部通过 → 交付老板
+- 有问题 → 附具体修复指令打回原agent
+
+## 反幻觉核查
+
+详见 `references/anti-hallucination.md`（反幻觉核查手册），包含：
+- 幻觉六大类型识别
+- 假文献检测流程（DOI验证+标题匹配+交叉验证）
+- 假数据检测信号（圆整数/完美数据/无法溯源）
+- 学术论文最新研究成果（2024-2026）
+- 论文/公文/报告逐项核查清单
+- 防御性写作规则
+
+L3准确性检查时，必须对照核查清单逐项执行。
+
+## 返工规则
+
+打回时必须包含：
+1. 哪层发现的问题
+2. 具体位置（第几段/哪个文件）
+3. 原因
+4. 修改方向
+
+返工后重走质检流程，直到全部通过。
+
+## 适用范围
+
+| 产出物 | L1 | L2 | L3 | L4 | L5 |
+|--------|----|----|----|----|----|
+| 论文 | ✅ | ✅ | ✅ | ✅双审 | ✅ |
+| 公文 | ✅ | ✅ | ✅ | ✅单审 | ✅ |
+| 报告 | ✅ | ✅ | ✅ | 可选 | ✅ |
+| 日常输出 | ✅ | ✅ | 可选 | 跳过 | ✅ |

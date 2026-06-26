@@ -1,0 +1,14 @@
+{
+  "name": "feature-iteration",
+  "displayName": "功能迭代优化工作流",
+  "version": "1.0.0",
+  "description": "基于数据和用户反馈，持续优化已有功能，覆盖数据分析/反馈收集/优先级/实验设计",
+  "author": "Elatia",
+  "license": "MIT",
+  "tags": ["requirement-analysis", "workflow", "iteration", "optimization", "growth"],
+  "category": "Product Management",
+  "type": "workflow",
+  "parentSkill": "requirement-analysis-system",
+  "createdAt": "2026-03-09T15:15:00+08:00",
+  "updatedAt": "2026-03-09T15:15:00+08:00"
+}

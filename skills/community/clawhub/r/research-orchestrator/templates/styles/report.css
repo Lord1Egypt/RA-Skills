@@ -1,0 +1,358 @@
+/* Deep Research Report Stylesheet */
+/* Professional PDF formatting */
+
+@page {
+  size: A4;
+  margin: 2cm;
+  @bottom-center {
+    content: counter(page);
+    font-size: 10pt;
+    color: #666;
+  }
+  @top-right {
+    content: "Deep Research Report";
+    font-size: 8pt;
+    color: #999;
+  }
+}
+
+body {
+  font-family: "Noto Sans SC", "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.8;
+  color: #333;
+  max-width: 100%;
+}
+
+/* Headings */
+h1 {
+  font-size: 24pt;
+  color: #1a365d;
+  border-bottom: 3px solid #3182ce;
+  padding-bottom: 0.5em;
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+  page-break-before: always;
+}
+
+h1:first-of-type {
+  page-break-before: avoid;
+}
+
+h2 {
+  font-size: 16pt;
+  color: #2c5282;
+  border-left: 4px solid #3182ce;
+  padding-left: 1em;
+  margin-top: 1.2em;
+  margin-bottom: 0.6em;
+}
+
+h3 {
+  font-size: 13pt;
+  color: #3182ce;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+h4 {
+  font-size: 12pt;
+  color: #4a5568;
+  margin-top: 0.8em;
+  margin-bottom: 0.4em;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 10pt;
+  page-break-inside: avoid;
+}
+
+th {
+  background-color: #3182ce;
+  color: white;
+  padding: 0.8em;
+  text-align: left;
+  font-weight: 600;
+}
+
+td {
+  border: 1px solid #e2e8f0;
+  padding: 0.6em 0.8em;
+}
+
+tr:nth-child(even) {
+  background-color: #f7fafc;
+}
+
+tr:hover {
+  background-color: #ebf8ff;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid #718096;
+  background-color: #f7fafc;
+  padding: 1em;
+  margin: 1em 0;
+  font-style: italic;
+  page-break-inside: avoid;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+/* Lists */
+ul, ol {
+  margin: 0.5em 0;
+  padding-left: 2em;
+}
+
+li {
+  margin-bottom: 0.3em;
+}
+
+/* Code */
+code {
+  background-color: #edf2f7;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 10pt;
+  font-family: "Fira Code", "Consolas", monospace;
+}
+
+pre {
+  background-color: #2d3748;
+  color: #e2e8f0;
+  padding: 1em;
+  border-radius: 5px;
+  overflow-x: auto;
+  font-size: 9pt;
+  line-height: 1.5;
+  page-break-inside: avoid;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+/* Strong and emphasis */
+strong {
+  color: #1a365d;
+  font-weight: 600;
+}
+
+em {
+  color: #4a5568;
+}
+
+/* Links */
+a {
+  color: #3182ce;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Cover page */
+.cover {
+  text-align: center;
+  padding-top: 25%;
+  page-break-after: always;
+}
+
+.cover h1 {
+  font-size: 28pt;
+  border: none;
+  page-break-before: avoid;
+  color: #1a365d;
+}
+
+.cover .subtitle {
+  font-size: 14pt;
+  color: #4a5568;
+  margin-top: 1em;
+}
+
+.cover .date {
+  font-size: 12pt;
+  color: #718096;
+  margin-top: 2em;
+}
+
+/* Table of contents */
+.toc {
+  page-break-after: always;
+}
+
+.toc h2 {
+  border-left: none;
+  padding-left: 0;
+}
+
+.toc ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.toc li {
+  margin-bottom: 0.5em;
+}
+
+.toc a {
+  color: #3182ce;
+  text-decoration: none;
+}
+
+.toc a:hover {
+  text-decoration: underline;
+}
+
+/* Footnote */
+.footnote {
+  font-size: 9pt;
+  color: #718096;
+  border-top: 1px solid #e2e8f0;
+  margin-top: 2em;
+  padding-top: 0.5em;
+  page-break-before: avoid;
+}
+
+/* Citation */
+.citation {
+  font-size: 9pt;
+  color: #718096;
+  font-style: italic;
+}
+
+/* Highlight boxes */
+.highlight {
+  background-color: #ebf8ff;
+  border: 1px solid #90cdf4;
+  border-radius: 5px;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+.warning {
+  background-color: #fffaf0;
+  border: 1px solid #f6ad55;
+  border-radius: 5px;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+.error {
+  background-color: #fff5f5;
+  border: 1px solid #fc8181;
+  border-radius: 5px;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+.success {
+  background-color: #f0fff4;
+  border: 1px solid #68d391;
+  border-radius: 5px;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+/* Page breaks */
+.page-break {
+  page-break-before: always;
+}
+
+.no-break {
+  page-break-inside: avoid;
+}
+
+/* Figures */
+figure {
+  margin: 1em 0;
+  text-align: center;
+  page-break-inside: avoid;
+}
+
+figcaption {
+  font-size: 9pt;
+  color: #718096;
+  font-style: italic;
+  margin-top: 0.5em;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Horizontal rule */
+hr {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  margin: 2em 0;
+}
+
+/* Metrics boxes */
+.metrics {
+  display: flex;
+  justify-content: space-around;
+  margin: 1em 0;
+}
+
+.metric {
+  text-align: center;
+  padding: 1em;
+  background-color: #f7fafc;
+  border-radius: 5px;
+  flex: 1;
+  margin: 0 0.5em;
+}
+
+.metric-value {
+  font-size: 24pt;
+  font-weight: bold;
+  color: #3182ce;
+}
+
+.metric-label {
+  font-size: 10pt;
+  color: #718096;
+}
+
+/* Confidence badges */
+.confidence-high {
+  background-color: #c6f6d5;
+  color: #22543d;
+  padding: 0.2em 0.5em;
+  border-radius: 3px;
+  font-size: 9pt;
+  font-weight: 600;
+}
+
+.confidence-medium {
+  background-color: #fefcbf;
+  color: #744210;
+  padding: 0.2em 0.5em;
+  border-radius: 3px;
+  font-size: 9pt;
+  font-weight: 600;
+}
+
+.confidence-low {
+  background-color: #fed7d7;
+  color: #742a2a;
+  padding: 0.2em 0.5em;
+  border-radius: 3px;
+  font-size: 9pt;
+  font-weight: 600;
+}

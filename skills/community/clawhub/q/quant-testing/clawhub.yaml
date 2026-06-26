@@ -1,0 +1,11 @@
+name: quant-testing
+version: 1.0.0
+description: 量化测试流程技能。提供回归测试流程、测试用例模板、测试报告模板。适用于量化项目的测试和上线阶段。
+author: Rick
+tags:
+  - quantitative
+  - testing
+  - backtest
+  - verification
+commands: []
+dependencies: []

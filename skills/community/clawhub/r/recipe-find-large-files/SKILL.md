@@ -1,35 +1,26 @@
 ---
-name: "Recipe Find Large Files"
+name: recipe-find-large-files
 description: "Identify large Google Drive files consuming storage quota."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-find-large-files"
-sourceUrl: "https://clawhub.ai/skills/recipe-find-large-files"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-drive
 ---
 
-# Recipe Find Large Files
+# Find Largest Files in Drive
 
-> Identify large Google Drive files consuming storage quota.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-drive`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-find-large-files`
-- **Source URL:** [https://clawhub.ai/skills/recipe-find-large-files](https://clawhub.ai/skills/recipe-find-large-files)
+Identify large Google Drive files consuming storage quota.
 
-## Overview
+## Steps
 
+1. List files sorted by size: `gws drive files list --params '{"orderBy": "quotaBytesUsed desc", "pageSize": 20, "fields": "files(id,name,size,mimeType,owners)"}' --format table`
+2. Review the output and identify files to archive or move
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-find-large-files
-```

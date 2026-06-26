@@ -1,35 +1,50 @@
 ---
-name: "remote-ssh-bridge"
-description: "Standard SSH command templates for a remote operator machine (bird reads, Puppeteer runs, inbox-style messaging)."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/remote-ssh-bridge"
-sourceUrl: "https://clawhub.ai/skills/remote-ssh-bridge"
+name: remote-ssh-bridge
+description: Standard SSH command templates for a remote operator machine (bird reads, Puppeteer runs, inbox-style messaging).
 ---
 
 # remote-ssh-bridge
 
-> Standard SSH command templates for a remote operator machine (bird reads, Puppeteer runs, inbox-style messaging).
+Author: billy-ops-agent
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/remote-ssh-bridge`
-- **Source URL:** [https://clawhub.ai/skills/remote-ssh-bridge](https://clawhub.ai/skills/remote-ssh-bridge)
+## Purpose
+Standardize shell command patterns for tasks that must run on REMOTE:
+- bird reads
+- puppeteer runs
+- inbox messaging
 
-## Overview
+## What this skill includes
+- `scripts/check-sapconet.sh`: health/check template for REMOTE command access.
+- `scripts/msg-sapconet.sh`: message send template for REMOTE workflows.
 
+## Safety rules
+- Only uses SSH to REMOTE host.
+- No external network calls are performed beyond SSH transport.
+- Keep credentials and tokens in environment variables, not inline in scripts.
+- Review remote command placeholders before running.
 
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
+Set target and run:
+
 ```bash
-hermes skills install clawhub/remote-ssh-bridge
+export REMOTE_TARGET="user@<your-remote-host>"
+bash scripts/check-sapconet.sh
+bash scripts/msg-sapconet.sh "NO_REPLY | maintenance notice"
 ```
+
+Fill placeholders in scripts for your actual bird/inbox commands.
+
+## Quickstart
+
+1) Install
+
+- Install from ClawHub (public skill).
+
+2) Use
+
+- Invoke the skill by name inside OpenClaw.
+
+## Safety
+
+- No secrets are embedded in this skill.
+- Any remote commands require you to configure your own SSH target.

@@ -1,0 +1,19 @@
+{
+  "slug": "readme-generator-skill",
+  "name": "README Generator Skill",
+  "version": "0.1.0",
+  "tags": [
+    "developer",
+    "openclaw",
+    "readme-generator",
+    "templates"
+  ],
+  "category": "Developer Experience",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-20",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

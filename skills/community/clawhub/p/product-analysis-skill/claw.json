@@ -1,0 +1,26 @@
+{
+  "name": "laosi-product-analysis-skill",
+  "displayName": "LAOSI Product Analysis Skill",
+  "description": "AI-powered product analysis skill for OpenClaw agents - analyzes market trends, competitor products, and provides recommendations for product selection and optimization",
+  "version": "1.0.0",
+  "author": "laosi",
+  "homepage": "https://github.com/laosi/product-analysis-skill",
+  "license": "MIT",
+  "keywords": ["product", "analysis", "market-research", "competitor-analysis", "recommendations", "e-commerce"],
+  "category": "productivity",
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "scripts": {
+    "analyze": "python product_analysis.py"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "claw.json",
+    "product_analyzer.py",
+    "product_analysis.py",
+    "market_patterns/",
+    "templates/"
+  ]
+}

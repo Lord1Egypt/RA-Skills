@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "P0.5 PRD Quality Review Output Schema",
+  "type": "object",
+  "required": ["schema_version", "prompt_version", "prd_quality_report"],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "prompt_version": { "type": "string", "const": "1.0.0" },
+    "auto_skipped": { "type": "boolean", "description": "仅当 blocker 被自动跳过时出现，表示 PRD 审查阻塞项已自动转 PCI 继续执行" },
+    "skipped_blocker_count": { "type": "integer", "minimum": 0, "description": "仅当 auto_skipped=true 时出现，被自动跳过的 blocker 数量" },
+    "prd_quality_report": {
+      "type": "object",
+      "required": [
+        "requirement_id", "overall_score", "grade", "grade_label",
+        "recommended_action", "dimensions", "summary",
+        "blocking_issues", "warning_issues", "info_issues"
+      ],
+      "properties": {
+        "requirement_id": { "type": "string" },
+        "overall_score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "grade": { "type": "string", "enum": ["A", "B", "C", "D"] },
+        "grade_label": { "type": "string" },
+        "recommended_action": {
+          "type": "string",
+          "enum": ["PROCEED", "REVIEW_REQUIRED", "BLOCKED"]
+        },
+        "score_threshold": { "type": "number", "minimum": 0, "maximum": 100 },
+        "dimensions": {
+          "type": "object",
+          "properties": {
+            "completeness": { "$ref": "#/$defs/dimension_score" },
+            "consistency": { "$ref": "#/$defs/dimension_score" },
+            "clarity": { "$ref": "#/$defs/dimension_score" },
+            "testability": { "$ref": "#/$defs/dimension_score" },
+            "performance_security": { "$ref": "#/$defs/dimension_score" }
+          },
+          "required": ["completeness", "consistency", "clarity", "testability", "performance_security"]
+        },
+        "summary": { "type": "string" },
+        "blocking_issues": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/blocking_issue" }
+        },
+        "warning_issues": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/issue" }
+        },
+        "info_issues": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/issue" }
+        },
+        "clarification_table": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "priority": { "type": "string" },
+              "category": { "type": "string" },
+              "location": { "type": "string" },
+              "question": { "type": "string" },
+              "suggestion": { "type": "string" }
+            },
+            "required": ["priority", "category", "question"]
+          }
+        },
+        "force_skip_available": { "type": "boolean" },
+        "force_skip_warning": { "type": "string" }
+      }
+    }
+  },
+  "$defs": {
+    "dimension_score": {
+      "type": "object",
+      "required": ["score", "weight", "weighted_score", "issues"],
+      "properties": {
+        "score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "weight": { "type": "number" },
+        "weighted_score": { "type": "number" },
+        "issues": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/issue" }
+        }
+      }
+    },
+    "issue": {
+      "type": "object",
+      "required": ["severity", "category", "location", "description", "impact", "suggestion"],
+      "properties": {
+        "severity": { "type": "string", "enum": ["blocking", "warning", "info"] },
+        "category": { "type": "string" },
+        "location": { "type": "string" },
+        "description": { "type": "string" },
+        "impact": { "type": "string" },
+        "suggestion": { "type": "string" }
+      }
+    },
+    "blocking_issue": {
+      "type": "object",
+      "required": ["index", "category", "location", "description", "question", "impact"],
+      "properties": {
+        "index": { "type": "integer" },
+        "category": { "type": "string" },
+        "location": { "type": "string" },
+        "description": { "type": "string" },
+        "question": { "type": "string" },
+        "impact": { "type": "string" }
+      }
+    }
+  }
+}

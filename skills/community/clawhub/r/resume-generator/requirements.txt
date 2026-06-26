@@ -1,0 +1,4 @@
+# Resume Generator dependencies
+# No external dependencies for core functionality
+# Optional: markdown2 for enhanced markdown parsing
+# Optional: pdfkit for PDF export (requires wkhtmltopdf)

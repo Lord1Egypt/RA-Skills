@@ -1,35 +1,21 @@
----
-name: "Quicksort Markdown"
-description: "Sort markdown file headings and nested content alphabetically to organize notes efficiently."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/quicksort-markdown"
-sourceUrl: "https://clawhub.ai/skills/quicksort-markdown"
----
+# QuickSort Markdown
 
-# Quicksort Markdown
+Sorts markdown headings and their nested content alphabetically by heading name, helping users organize notes quickly and reliably.
 
-> Sort markdown file headings and nested content alphabetically to organize notes efficiently.
+## Usage
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/quicksort-markdown`
-- **Source URL:** [https://clawhub.ai/skills/quicksort-markdown](https://clawhub.ai/skills/quicksort-markdown)
+Sort a markdown file in place:
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/quicksort-markdown
+python quicksort_markdown.py notes.md -o sorted_notes.md
 ```
+
+Sort markdown from stdin:
+
+```bash
+cat notes.md | python quicksort_markdown.py | tee sorted.md
+```
+
+## Price
+
+$2.50

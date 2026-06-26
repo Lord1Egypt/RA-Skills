@@ -1,35 +1,81 @@
 ---
-name: "三层筛网量化选股v1.0"
-description: "三层筛网量化选股策略。基于知乎文章介绍的量化选股方法，从A股全市场中 通过三层筛选（硬性排除→多因子打分→行业均衡）选出30-50只优质股票。 每当用户要求量化选股、股票筛选、多因子选股、从A股中挑选股票时使用此技能。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/quant-stock-selector-v5"
-sourceUrl: "https://clawhub.ai/skills/quant-stock-selector-v5"
+name: quant-stock-selector
+version: 1.0.0
+description: >
+  三层筛网量化选股策略。基于知乎文章介绍的量化选股方法，从A股全市场中
+  通过三层筛选（硬性排除→多因子打分→行业均衡）选出30-50只优质股票。
+  每当用户要求量化选股、股票筛选、多因子选股、从A股中挑选股票时使用此技能。
+metadata:
+  author: Paudy
+  category: finance
+  source: https://zhuanlan.zhihu.com/p/1996940902648796995
 ---
 
-# 三层筛网量化选股v1.0
+# 三层筛网量化选股策略
 
-> 三层筛网量化选股策略。基于知乎文章介绍的量化选股方法，从A股全市场中 通过三层筛选（硬性排除→多因子打分→行业均衡）选出30-50只优质股票。 每当用户要求量化选股、股票筛选、多因子选股、从A股中挑选股票时使用此技能。
+从4000只A股中挑出赢家的量化选股方法。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/quant-stock-selector-v5`
-- **Source URL:** [https://clawhub.ai/skills/quant-stock-selector-v5](https://clawhub.ai/skills/quant-stock-selector-v5)
+## 策略原理（三层筛网架构）
 
-## Overview
+### 第一层：硬性排除（剔除"不合格者"）
+- 净利润为负（剔除连续亏损公司）
+- 资产负债率 > 70%（剔除高杠杆公司）
+- 经营现金流为负（剔除"只赚报表不赚钱"公司）
+- 日均成交额排名后20%（剔除流动性差的股票）
+- 股价 < 1元（规避仙股风险）
 
+### 第二层：多因子综合打分（寻找"优等生"）
+| 因子 | 权重 | 指标 | 方向 |
+|------|------|------|------|
+| 价值因子 | 40% | 市净率(PB) | 越低越好 |
+| 质量因子 | 40% | 净资产收益率(ROE) | 越高越好 |
+| 动量因子 | 20% | 过去6个月涨幅 | 中间区间最好 |
 
-## Installation
-To install this skill, run the following command in your terminal:
+**总分 = 价值得分 × 40% + 质量得分 × 40% + 动量得分 × 20%**
+
+### 第三层：行业与风险均衡（构建"合理组合"）
+- 将Top200-300只候选股按行业分类
+- 每个行业独立排名选股
+- 覆盖大盘/中盘/小盘
+- 最终选出30-50只行业优质代表
+
+## 什么时候使用
+
+- 用户要求量化选股
+- 用户要求从A股中挑选股票
+- 用户要求多因子选股
+- 用户要求"从4000只股票中选出好股票"
+- 用户要求生成股票推荐列表
+
+## 使用方式
+
+### 1. 运行选股脚本
 ```bash
-hermes skills install clawhub/quant-stock-selector-v5
+cd skills/quant-stock-selector
+python quant_selector.py
 ```
+
+### 2. 输出内容
+- 第一层筛选结果（排除了多少只）
+- 第二层多因子评分排名（Top50）
+- 第三层行业均衡后的最终推荐（Top30）
+
+## 数据源
+
+| 数据源 | 接口 | 用途 |
+|--------|------|------|
+| JQData | 基本面查询 | 财务数据(ROE/资产负债率等) |
+| JQData | 日K线 | 价格动量计算 |
+| AKShare | 成分股列表 | 股票池获取 |
+
+## 关键认知
+
+- **逻辑重于数据**：每一步筛选背后应有清晰的经济学或行为金融学解释
+- **追求概率优势**：不是每只都能涨，而是整体组合上涨概率显著高于随机选择
+- **迭代是生命**：市场在变，筛选逻辑需要定期审视和调整
+
+## 注意事项
+
+- JQData免费版数据有日期范围限制
+- 建议配合OpenClaw Heartbeat每周运行一次
+- 选股结果仅供参考，不构成投资建议

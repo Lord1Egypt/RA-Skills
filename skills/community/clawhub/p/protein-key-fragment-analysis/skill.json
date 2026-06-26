@@ -1,0 +1,15 @@
+{
+  "name": "protein-key-fragment-analysis",
+  "version": "1.0.5",
+  "summary": "蛋白质关键序列片段预测分析。对任意蛋白质家族的多物种FASTA序列执行完整分析流程，提取共识序列并识别关键功能片段、统计氨基酸组成、预测片段主要功能。",
+  "description": "适用于任何蛋白质家族的关键功能片段预测。核心流程：(1)序列读取与大样本采样，(2)ClustalOmega MSA，(3)保守性阈值(默认0.5)提取共识序列，(4)三维度识别关键片段：Pfam已知功能块匹配、高保守连续区检测(≥90%保守率,≥6aa)、保守Cys检测，(5)片段氨基酸组成统计(使用与aa-pair-analysis一致的分类体系)，(6)基于组成比例的功能预测(12条优先级规则)。输出含片段序列、位置、保守率、组成分析、功能预测。",
+  "tags": ["bioinformatics", "protein-analysis", "key-fragment", "functional-prediction", "MSA"],
+  "dependencies": {
+    "python": ">=3.8",
+    "pip": [],
+    "system": ["clustalo"]
+  },
+  "cli_matchers": ["关键序列", "关键片段", "保守区", "功能片段", "蛋白片段预测", "key fragment"],
+  "author": "wuhen9nine",
+  "license": "MIT"
+}

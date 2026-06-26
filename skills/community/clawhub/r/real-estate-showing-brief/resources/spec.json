@@ -1,0 +1,37 @@
+{
+  "slug": "real-estate-showing-brief",
+  "title": "房产带看简报官",
+  "category": "vertical",
+  "categoryLabel": "垂直行业",
+  "mode": "structured_brief",
+  "summary": "为房产带看前整理买家画像、关注点、路线与现场提问清单。",
+  "inputHint": "买家需求、房源信息、看房安排",
+  "sections": [
+    "买家画像",
+    "房源关注点",
+    "现场问题清单",
+    "路线与时间",
+    "风险提醒",
+    "带看后记录"
+  ],
+  "useCases": [
+    "房产带看",
+    "经纪人准备",
+    "客户沟通"
+  ],
+  "positiveExamples": [
+    "帮我做一份带看前简报",
+    "按买家需求整理关注点"
+  ],
+  "negativeExamples": [
+    "不要编造房源信息",
+    "不要替代正式法律披露"
+  ],
+  "risk": "适合作为现场沟通准备。",
+  "tags": [
+    "real-estate",
+    "showing",
+    "brief",
+    "buyers"
+  ]
+}

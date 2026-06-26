@@ -1,0 +1,20 @@
+{
+  "accountPositioning": "AI",
+  "primaryGoal": "吸粉 / 转化",
+  "style": {
+    "dryGoods": true,
+    "opinion": true,
+    "tutorial": true,
+    "urgency": true,
+    "urgencyLevel": "轻度 / 中度",
+    "sharpness": "medium"
+  },
+  "audience": "泛互联网人群",
+  "defaultPages": 2,
+  "pageRange": "2-6",
+  "imageMode": "mixed",
+  "generateCardsByDefault": true,
+  "reviewBeforePublish": false,
+  "publishPath": "independent-browser",
+  "notes": "不要太像营销号，多做 AI 信息差；优先相关真实图或无水印图库图，轻卡片兜底；禁止去水印"
+}

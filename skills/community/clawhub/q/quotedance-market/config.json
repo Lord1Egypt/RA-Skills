@@ -1,0 +1,34 @@
+{
+  "serviceUrl": "https://quotedance.api.gapgap.cc",
+  "apiKey": "",
+  "rsshubUrl": "http://localhost:1200",
+  "watchlist": {
+    "us": ["^DJI", "^IXIC", "^GSPC", "AAPL", "NVDA", "TSLA"],
+    "cn": ["399001", "399006"],
+    "futures": ["M2605", "RB2605", "AU0", "SC0"]
+  },
+  "defaults": {
+    "plateTopCount": 8,
+    "sourceCacheTtlMinutes": 15,
+    "opportunityCount": 5,
+    "newsCount": 10
+  },
+  "network": {
+    "useProxy": true,
+    "proxyUrl": "",
+    "timeoutMs": 25000,
+    "requestRetries": 2,
+    "enableCurlFallback": true,
+    "forceProxyDomains": [
+      "query1.finance.yahoo.com",
+      "query2.finance.yahoo.com",
+      "news.google.com",
+      "feeds.bloomberg.com",
+      "feeds.reuters.com",
+      "wallstreetcn.com",
+      "jin10.com",
+      "coindesk.com",
+      "theblock.co"
+    ]
+  }
+}

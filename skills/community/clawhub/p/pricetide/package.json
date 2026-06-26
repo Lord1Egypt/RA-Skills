@@ -1,0 +1,28 @@
+{
+  "name": "pricetide",
+  "version": "1.0.0",
+  "description": "PriceTide - a buy-timing decision skill that tells users whether to buy now, wait, watch the next event, or stop chasing the price",
+  "main": "SKILL.md",
+  "scripts": {
+    "publish:clawhub": "sh scripts/publish.sh"
+  },
+  "keywords": [
+    "pricetide",
+    "buy-timing",
+    "price-history",
+    "wait-or-buy",
+    "deal-timing",
+    "shopping",
+    "taobao",
+    "tmall",
+    "jd",
+    "pdd",
+    "vipshop",
+    "meituan",
+    "elm",
+    "openclaw-skill"
+  ],
+  "repository": "https://github.com/harrylabsj/openclaw-skill-pricetide",
+  "author": "openclaw",
+  "license": "MIT"
+}

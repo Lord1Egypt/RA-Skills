@@ -1,0 +1,7 @@
+interface:
+  display_name: "Principal Agent Audit"
+  short_description: "Audit a main AI agent with proactive guardrails"
+  default_prompt: "Use $principal-agent-audit to review a principal agent's memory, learnings, skills, scheduled work, operational risks, and coordination posture."
+
+policy:
+  allow_implicit_invocation: true

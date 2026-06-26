@@ -1,0 +1,41 @@
+{
+  "feishu": {
+    "chat_id": "oc_xxxxxxxx",
+    "receive_id_type": "chat_id"
+  },
+  "keywords": {
+    "科技": ["AI", "人工智能", "大模型", "LLM", "ChatGPT", "机器学习"],
+    "财经": ["经济", "股市", "加密货币", "比特币", "美股", "A股"],
+    "行业": ["新能源", "半导体", "自动驾驶", "智能汽车"]
+  },
+  "sources": [
+    {
+      "name": "36氪",
+      "url": "https://36kr.com/feed",
+      "type": "rss"
+    },
+    {
+      "name": "虎嗅",
+      "url": "https://www.huxiu.com/rss/0.xml",
+      "type": "rss"
+    },
+    {
+      "name": "少数派",
+      "url": "https://sspai.com/feed",
+      "type": "rss"
+    },
+    {
+      "name": "IT之家",
+      "url": "https://www.ithome.com/rss/",
+      "type": "rss"
+    },
+    {
+      "name": "Solidot",
+      "url": "https://www.solidot.org/index.rss",
+      "type": "rss"
+    }
+  ],
+  "schedule": "0 8 * * *",
+  "maxNewsPerCategory": 10,
+  "historyFile": "./data/history.json"
+}

@@ -1,35 +1,37 @@
 ---
-name: "Read Only Workspace Audit"
-description: "Audit whether one imported workspace snapshot is rich enough for export, cited AI, or MCP consumption."
-category: "other"
-source: "ClawHub"
-tags: [campus-copilot, read-only]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/read-only-workspace-audit"
-sourceUrl: "https://clawhub.ai/skills/read-only-workspace-audit"
+name: read-only-workspace-audit
+description: Audit whether one imported workspace snapshot is rich enough for export, cited AI, or MCP consumption.
 ---
 
-# Read Only Workspace Audit
+# Read-Only Workspace Audit
 
-> Audit whether one imported workspace snapshot is rich enough for export, cited AI, or MCP consumption.
+Use this skill when you have an imported Campus Copilot workspace snapshot and need to answer:
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/read-only-workspace-audit`
-- **Source URL:** [https://clawhub.ai/skills/read-only-workspace-audit](https://clawhub.ai/skills/read-only-workspace-audit)
+- what is currently open
+- which site carries which evidence
+- whether the current snapshot is rich enough for export or cited AI
 
-## Overview
+Rules:
 
+- stay read-only
+- operate on imported snapshots or exported current-view artifacts
+- do not claim live browser/session truth from snapshot-only evidence
+- keep Campus Copilot positioned as a local-first academic decision workspace
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/read-only-workspace-audit
-```
+Suggested toolchain:
+
+1. `campus-copilot summary --snapshot <path>`
+2. `campus-copilot site --snapshot <path> --site <canvas|gradescope|edstem|myuw>`
+3. `pnpm --filter @campus-copilot/mcp-server start` for the generic BFF + snapshot MCP flow, or one of the site-scoped `pnpm --filter @campus-copilot/mcp-readonly start:<site>` commands for snapshot-only reads
+
+Companion examples:
+
+- `examples/integrations/codex-mcp.example.json`
+- `examples/integrations/claude-code-mcp.example.json`
+- `examples/workspace-snapshot.sample.json`
+
+Good fit:
+
+- Codex / Claude Code evaluation of the read-only toolbox
+- OpenClaw-style local consumers that need a strict audit trail
+- repo-local verification of whether one snapshot is ready for export, cited AI, or MCP consumption

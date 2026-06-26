@@ -1,0 +1,37 @@
+{
+  "slug": "receipt-expense-sorter",
+  "title": "收据报销分类员",
+  "category": "productivity",
+  "categoryLabel": "本地效率",
+  "mode": "structured_brief",
+  "summary": "整理收据和报销资料，按周期、类别、凭证完整度做分组与缺失提醒。",
+  "inputHint": "收据列表、日期、金额、类别",
+  "sections": [
+    "按周期分组",
+    "按类别分组",
+    "缺失凭证",
+    "命名建议",
+    "提交顺序",
+    "注意事项"
+  ],
+  "useCases": [
+    "报销准备",
+    "资料归档",
+    "财务协作"
+  ],
+  "positiveExamples": [
+    "帮我整理报销资料",
+    "找缺失凭证和命名方式"
+  ],
+  "negativeExamples": [
+    "不要替代正式财务报销系统",
+    "不要生成虚假发票信息"
+  ],
+  "risk": "仅做整理和提醒。",
+  "tags": [
+    "receipts",
+    "expenses",
+    "finance-ops",
+    "organization"
+  ]
+}

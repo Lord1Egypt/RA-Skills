@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ErrorResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "error_code",
+    "message",
+    "context",
+    "retryable"
+  ],
+  "properties": {
+    "error_code": {
+      "type": "string",
+      "minLength": 1
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "job_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "retryable": {
+      "type": "boolean"
+    }
+  }
+}

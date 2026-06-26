@@ -1,0 +1,2 @@
+# Python dependencies placeholder
+# 示例: pycryptodome, requests

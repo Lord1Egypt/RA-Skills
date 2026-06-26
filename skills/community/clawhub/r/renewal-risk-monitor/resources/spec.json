@@ -1,0 +1,37 @@
+{
+  "slug": "renewal-risk-monitor",
+  "title": "续约风险监测员",
+  "category": "success",
+  "categoryLabel": "客户成功与协作",
+  "mode": "structured_brief",
+  "summary": "识别续约风险信号，区分可挽回风险与高概率流失信号。",
+  "inputHint": "客户使用情况、反馈、历史互动",
+  "sections": [
+    "风险信号",
+    "可挽回项",
+    "高危项",
+    "建议动作",
+    "时间窗口",
+    "升级条件"
+  ],
+  "useCases": [
+    "续约预测",
+    "客户盘点",
+    "高危账户处理"
+  ],
+  "positiveExamples": [
+    "帮我判断这个客户的续约风险",
+    "区分还能挽回和已经很危险"
+  ],
+  "negativeExamples": [
+    "不要伪造健康度数据",
+    "不要替代正式续约决策"
+  ],
+  "risk": "适合作为客户成功预警辅助。",
+  "tags": [
+    "renewal",
+    "risk",
+    "customer-success",
+    "retention"
+  ]
+}

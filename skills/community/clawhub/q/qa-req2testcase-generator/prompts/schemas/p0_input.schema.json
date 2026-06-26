@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "P0 Input Schema",
+  "type": "object",
+  "properties": {
+    "requirement_text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "context": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "trade",
+        "asset_mgmt",
+        "risk_ctrl",
+        "crm",
+        "etrading",
+        "ops_mgmt",
+        "compliance",
+        "it_infra",
+        "unknown"
+      ],
+      "description": "业务域枚举，无法识别时传 unknown"
+    }
+  },
+  "required": [
+    "requirement_text"
+  ],
+  "additionalProperties": true
+}

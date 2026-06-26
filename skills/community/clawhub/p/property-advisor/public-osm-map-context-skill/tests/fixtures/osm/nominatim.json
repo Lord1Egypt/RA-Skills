@@ -1,0 +1,26 @@
+{
+  "205 normanby rd, southbank vic 3006": {
+    "lat": -37.8252,
+    "lng": 144.9558,
+    "display_name": "205 Normanby Rd, Southbank VIC 3006, Australia",
+    "source": "fixture_nominatim"
+  },
+  "205 normanby rd, southbank vic 3006, australia": {
+    "lat": -37.8252,
+    "lng": 144.9558,
+    "display_name": "205 Normanby Rd, Southbank VIC 3006, Australia",
+    "source": "fixture_nominatim"
+  },
+  "southbank vic": {
+    "lat": -37.8239,
+    "lng": 144.9631,
+    "display_name": "Southbank, Melbourne, Victoria, Australia",
+    "source": "fixture_nominatim"
+  },
+  "melbourne cbd vic": {
+    "lat": -37.8136,
+    "lng": 144.9631,
+    "display_name": "Melbourne CBD, Victoria, Australia",
+    "source": "fixture_nominatim"
+  }
+}

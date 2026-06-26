@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Claim Ledger"
+  short_description: "Build source-backed research claim ledgers"
+  default_prompt: "Use $research-claim-ledger to audit this draft or literature matrix into a claim-by-claim evidence ledger with unsupported claims, locator gaps, and next verification steps."

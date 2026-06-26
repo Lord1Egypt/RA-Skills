@@ -1,0 +1,30 @@
+domain_name: tech-support
+task_types:
+  - bug-diagnosis
+  - environment-setup
+  - performance-optimization
+  - architecture-debugging
+required_slots:
+  - environment
+  - error_message
+  - reproduction_steps
+  - expected_behavior
+optional_slots:
+  - version
+  - recent_changes
+  - logs
+default_slots: {}
+clarify_templates:
+  - "你当前的环境是本地、服务器、容器还是云环境？"
+  - "报错信息能贴出关键内容吗？"
+  - "这是新增功能时报错，还是原来正常现在异常？"
+rewrite_template: >
+  请以资深工程师视角，针对【{environment}】中出现的【{error_message}】问题，
+  基于【{reproduction_steps}】进行排查，结合【{expected_behavior}】
+  输出可能原因、验证步骤与修复建议。
+review_checklist:
+  - 环境是否明确
+  - 报错是否说明
+  - 复现步骤是否清晰
+  - 预期行为是否明确
+risk_level: medium

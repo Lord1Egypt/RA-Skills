@@ -1,0 +1,60 @@
+{
+  "domain": "资管域",
+  "level": "L3",
+  "generated_at": "2026-05-08",
+  "source_file": "asset_mgmt.md",
+  "includes_L2": true,
+  "exception_patterns": [
+    {"pattern": "大额赎回", "trigger": "单日赎回超过基金净资产10%", "handling": "按比例确认+剩余顺延 / 全额顺延 / 暂停赎回三种方式"},
+    {"pattern": "TA系统超时", "trigger": "份额确认请求发送后无响应", "handling": "T+2仍未确认触发超时处理和用户通知，重试3次(5min/15min/30min)"},
+    {"pattern": "净值异常", "trigger": "确认日净值计算异常", "handling": "申赎暂停机制，发布公告"},
+    {"pattern": "行情数据缺失", "trigger": "部分持仓标的无收盘价(停牌)", "handling": "使用指数收益法调整估值或最近交易日收盘价"},
+    {"pattern": "估值偏差", "trigger": "计算结果与前一日净值偏差超过±2%", "handling": "偏差告警，暂停发布，人工确认"},
+    {"pattern": "费用计提错误", "trigger": "管理费/托管费计提基数或比例错误", "handling": "修正流程：修正申请→审批→重新计算→重新发布"},
+    {"pattern": "份额变动未同步", "trigger": "当日申赎份额未及时同步至净值计算系统", "handling": "净值计算前份额数据完整性校验"},
+    {"pattern": "巨额赎回流动性危机", "trigger": "基金持仓资产无法快速变现", "handling": "暂停赎回触发条件和公告机制"},
+    {"pattern": "募集超规模", "trigger": "募集金额超过产品合同约定上限", "handling": "系统自动截止募集"},
+    {"pattern": "投资比例超限", "trigger": "市场波动导致被动超限", "handling": "宽限期10个交易日内调整，超期升级告警"}
+  ],
+  "intermediate_state_handling": [
+    {"state": "份额确认中", "duration": "T+1到T+2个交易日", "rules": "资金/份额处于冻结状态，不可用于其他操作；超T+3自动告警"},
+    {"state": "部分确认", "duration": "顺延部分在下一交易日继续确认", "rules": "顺延部分按下一交易日净值确认"},
+    {"state": "数据采集中/计算中", "duration": "应在30min内完成", "rules": "超时需告警，加排他锁防止并发计算"},
+    {"state": "待复核", "duration": "数小时，必须在T+1日9:00前完成", "rules": "基金会计审核，对比估值表"},
+    {"state": "计算异常", "duration": "无自动超时，需人工介入", "rules": "应在T+1日开盘前解决"},
+    {"state": "募集期", "duration": "根据产品合同约定", "rules": "期满未达标自动标记募集失败"}
+  ],
+  "boundary_values": [
+    {"field": "申购最低限额", "boundary": "恰好等于最低限额", "behavior": "允许申购"},
+    {"field": "申购最低限额", "boundary": "低于最低限额0.01元", "behavior": "拒绝申购"},
+    {"field": "大额赎回", "boundary": "单日赎回恰好=净资产10%", "behavior": "触发大额赎回处理"},
+    {"field": "集合计划人数", "boundary": "恰好200人", "behavior": "允许(≤200人)"},
+    {"field": "集合计划人数", "boundary": "第201人申购", "behavior": "拒绝"},
+    {"field": "杠杆率", "boundary": "恰好140%(固收类)", "behavior": "允许(≤140%)"},
+    {"field": "杠杆率", "boundary": "140.01%", "behavior": "禁止新增杠杆"},
+    {"field": "冷静期", "boundary": "恰好24小时", "behavior": "冷静期结束，可回访确认"},
+    {"field": "冷静期", "boundary": "23小时59分", "behavior": "仍在冷静期内"},
+    {"field": "备案时限", "boundary": "第10个工作日", "behavior": "最后期限(含当日)"},
+    {"field": "净值精度", "boundary": "第5位小数≥5", "behavior": "第4位进1"},
+    {"field": "净值精度", "boundary": "第5位小数<5", "behavior": "第4位不变"},
+    {"field": "合格投资者", "boundary": "金融资产恰好300万", "behavior": "满足条件"},
+    {"field": "合格投资者", "boundary": "金融资产299.99万", "behavior": "不满足"}
+  ],
+  "idempotency_retry_rules": [
+    {"operation": "申赎申请", "idempotent_key": "userId + fundCode + tradeDate + applySeqNo", "retry_strategy": "同一用户+同一基金+同一交易日+相同金额防重"},
+    {"operation": "TA确认请求", "idempotent_key": "applyNo + confirmDate", "retry_strategy": "超时重试最多3次，间隔5min/15min/30min；重试前检查是否已收到确认"},
+    {"operation": "净值计算", "idempotent_key": "fundCode + navDate", "retry_strategy": "重复触发返回已有结果或覆盖重算(取决于当前状态)"},
+    {"operation": "净值发布", "idempotent_key": "fundCode + navDate + version", "retry_strategy": "幂等，重复发布不产生副作用"},
+    {"operation": "产品备案", "idempotent_key": "productCode + filingDate", "retry_strategy": "重复提交返回已有记录"}
+  ],
+  "violation_consequences": [
+    {"violation": "保本保收益承诺", "consequence": "违反资管新规，监管处罚，产品可能被强制清盘"},
+    {"violation": "杠杆率超限", "consequence": "监管要求限期整改，禁止新增杠杆操作"},
+    {"violation": "向不合格投资者销售私募", "consequence": "产品合同可能无效，券商承担赔偿"},
+    {"violation": "信息披露不及时", "consequence": "监管警示函，严重者暂停产品发行"},
+    {"violation": "未经备案开展业务", "consequence": "监管处罚，产品可能被要求清盘"},
+    {"violation": "净值计算错误未及时修正", "consequence": "投资者损失赔偿，监管处罚"},
+    {"violation": "冷静期缺失", "consequence": "投资者可主张合同无效，券商承担损失"},
+    {"violation": "超过200人限制", "consequence": "需按公募管理，面临合规整改"}
+  ]
+}

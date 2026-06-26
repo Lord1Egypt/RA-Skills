@@ -1,0 +1,112 @@
+# Product Manager Skills 中文说明
+
+**这不是模板包，而是一个给 AI 编码工具安装的 PM 大脑。**
+
+它会把 Claude Code、Codex、Cursor、Windsurf 这类工具，变成一个能写 PRD、诊断 SaaS 指标、做路线图取舍、做用户研究框架化思考、以及辅导 PM 晋升的产品经理搭档。
+
+## 它为什么更容易被反复使用
+
+多数 AI 工具能把话说顺，但很难把 PM 判断做对。这个项目更适合这些高频场景：
+
+- 把模糊需求推进成有问题定义、有指标、有边界的 PRD
+- 根据 MRR、churn、CAC、LTV 直接做业务健康诊断
+- 在路线图和优先级讨论中指出 tradeoff，而不是只会“建议平衡”
+- 帮高级 PM 准备 Director / VP 级别的面试和能力迁移
+
+## 60 秒安装
+
+### Claude Code / OpenClaw
+
+```bash
+clawhub install product-manager-skills
+```
+
+### Codex / Cursor / Windsurf / 基于 GitHub 的 skill loader
+
+```bash
+npx skills add Digidai/product-manager-skills
+```
+
+安装后可以直接粘贴这些 prompt：
+
+```text
+帮我写一个通知偏好功能的 PRD。缺失信息请合理假设，并明确标注。
+
+分析这些指标：MRR 5 万美元，500 个客户，毛利率 80%，月流失 8%，CAC 500 美元。
+
+帮我评审这个 roadmap，指出哪些地方是利益相关方在推，而不是证据在推。
+```
+
+更多可直接复用的提示词见：[STARTER-PROMPTS.md](STARTER-PROMPTS.md)
+更多完整示例见：[examples/growth-plg-readiness.md](examples/growth-plg-readiness.md)、[examples/growth-plg-activation-recovery.md](examples/growth-plg-activation-recovery.md)、[examples/pm-sprint-idea-to-prd.md](examples/pm-sprint-idea-to-prd.md) 和 [examples/pm-sprint-sales-request-to-prd.md](examples/pm-sprint-sales-request-to-prd.md)
+
+## 三个最值得先试的场景
+
+| 场景 | 你会得到什么 | 示例 |
+|---|---|---|
+| **SaaS 业务诊断** | 它会算公式、给 benchmark、指出根因，不是泛泛建议 | [examples/saas-health-diagnostic.md](examples/saas-health-diagnostic.md) |
+| **PRD 评审与挑错** | 它会指出 Solution Smuggling、指标缺失、范围过大、交付风险 | [examples/prd-review.md](examples/prd-review.md) |
+| **晋升 / 面试辅导** | 它会判断你的“海拔”是否到 Director 级别，并给补齐方案 | [examples/director-coaching.md](examples/director-coaching.md) |
+
+## 这个项目包含什么
+
+- 7 个知识域：发现研究、战略定位、交付执行、财务指标、增长与 PLG、职业发展、AI 产品
+- 12 个模板：PRD、User Story、Problem Statement、Roadmap、Competitive Analysis 等
+- 40+ 个框架：JTBD、Geoffrey Moore、PRFAQ、OST、RICE、Kano、PLG Readiness、Viral Loop 等
+- 32 个 SaaS 指标：带公式、阶段基准值、红旗等级
+- 一套统一质量门槛：要求标注假设、量化结果、说明取舍、识别反模式
+
+## 它和通用 AI 的区别
+
+| 通用 AI | Product Manager Skills |
+|---|---|
+| 会把需求写得像样 | 会先判断问题定义是不是错了 |
+| 会说“优化用户体验降低流失” | 会算出 8% 月流失约等于 63% 年流失，并判断是否应该先停投放 |
+| 会接受模糊目标 | 会要求 baseline、target、timeframe |
+| 容易顺着你说 | 会主动推回来，指出坏 framing 和错误取舍 |
+
+## PM Sprint 工作流 (v0.5 新增)
+
+说"从想法到 PRD"或"帮我完整做一遍这个功能"，技能会启动 6 阶段端到端工作流：发现、定位、优先级、规格化、验证、度量。每个阶段的输出会喂给下一个阶段。可以跳过、重排或随时停止。
+
+## Coaching 模式 (v0.4 新增)
+
+说 "coach me"、"教练模式"、"挑战我的想法" 或 "严格审视这个" 就能让 AI 从助手变成严格的 PM 同行。它会挑战你的问题定义、质疑模糊指标、指出思维中的反模式，最后给出判决而不是摘要。
+
+每个知识域有自己的 coaching 规则。Discovery coaching 追问证据。Strategy coaching 追问定位差异化。Finance coaching 追问留存优先于增长。Career coaching 追问高度差距。
+
+示例：[Coaching Discovery 对话](examples/coaching-discovery.md)
+
+## 适合谁
+
+- 已经在 AI 编码工具里工作的技术型 PM、Founder、产品负责人
+- 想把 PM 认知嵌到本地工作流里，而不是再买一个 SaaS 工具的人
+- 需要“会挑战你”的 AI，而不是只会把格式写完整的人
+
+## 不适合谁
+
+- 更想要带审批、协作、评论、共享的网页产品的团队
+- 只想套模板，不希望 AI 指出 framing 问题的人
+- 不愿意使用本地安装或 repo 型知识包的人
+
+## 信任与安全
+
+运行时能力仍然以纯 Markdown 为主。仓库里有两个很小的 shell 脚本，供手动维护使用：
+
+- `bin/update-check`：可选的手动更新辅助脚本。它会把本地 `VERSION` 和 GitHub 上的远端版本做比对，带超时和缓存，不上传业务数据。
+- `bin/validate-release`：维护者发布前使用的一致性校验脚本，用来检查版本号、打包内容和文档同步情况。正常使用技能时不会运行它。
+- knowledge、templates、路由逻辑仍然都是可审查的 Markdown
+- 不需要密钥
+- 没有提权
+- 技能本身不会在正常使用过程中自动执行这些脚本
+
+## 相关文件
+
+- 英文主 README：[README.md](README.md)
+- 快速提示词：[STARTER-PROMPTS.md](STARTER-PROMPTS.md)
+- 技能入口：[SKILL.md](SKILL.md)
+- 核心哲学：[ETHOS.md](ETHOS.md)
+- 版本历史：[CHANGELOG.md](CHANGELOG.md)
+- 贡献方式：[CONTRIBUTING.md](CONTRIBUTING.md)
+
+[CC BY-NC-SA 4.0](LICENSE)

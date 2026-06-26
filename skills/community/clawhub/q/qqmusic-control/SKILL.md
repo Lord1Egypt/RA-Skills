@@ -1,35 +1,28 @@
 ---
-name: "Qqmusic Control"
-description: "Control QQ Music play/pause/next/prev via system media keys (AutoHotkey) on Windows. No window focus required."
-category: "other"
-source: "ClawHub"
-tags: [ahk, control, media-keys, qqmusic, windows]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qqmusic-control"
-sourceUrl: "https://clawhub.ai/skills/qqmusic-control"
+name: qqmusic-control
+description: Control QQ Music play/pause/next/prev via system media keys (AutoHotkey) on Windows. No window focus required.
 ---
 
-# Qqmusic Control
+# QQ Music Control
 
-> Control QQ Music play/pause/next/prev via system media keys (AutoHotkey) on Windows. No window focus required.
+## 用法
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qqmusic-control`
-- **Source URL:** [https://clawhub.ai/skills/qqmusic-control](https://clawhub.ai/skills/qqmusic-control)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/qqmusic-control
+### 播放/暂停
 ```
+AutoHotkey64.exe scripts/qqmusic_media_keys.ahk 1
+```
+
+### 下一首
+```
+AutoHotkey64.exe scripts/qqmusic_media_keys.ahk 2
+```
+
+### 上一首
+```
+AutoHotkey64.exe scripts/qqmusic_media_keys.ahk 3
+```
+
+## 说明
+- 依赖 AutoHotkey v2（路径可按需调整）
+- QQ音乐需已打开（后台也可）
+- 使用系统媒体键，不依赖窗口焦点

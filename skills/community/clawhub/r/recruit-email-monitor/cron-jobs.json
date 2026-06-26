@@ -1,0 +1,43 @@
+# OpenClaw 定时任务配置
+# 导入方法：openclaw cron import /path/to/this/file
+
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "recruit-email-heartbeat",
+      "name": "招聘邮件心跳检查",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "staggerMs": 300000
+      },
+      "description": "每小时检查邮箱，发现新招聘邮件时记录到表格并发送飞书通知",
+      "notifyOnMatch": true,
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "python3 scripts/email-heartbeat-check.py"
+      },
+      "sessionTarget": "main"
+    },
+    {
+      "id": "recruit-email-daily-briefing",
+      "name": "招聘邮件每日简报",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *"
+      },
+      "description": "每天早上 9:00 汇总表格中的待处理招聘邮件，生成简报发送",
+      "notifyOnMatch": true,
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "python3 scripts/email-daily-briefing.py"
+      },
+      "sessionTarget": "main"
+    }
+  ]
+}

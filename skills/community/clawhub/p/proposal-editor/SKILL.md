@@ -1,35 +1,34 @@
 ---
-name: "Proposal Editor"
+name: proposal-editor
 description: "专业型文档修改助手。当用户需要对项目建议书、可行性研究报告、立项报告等专业文档进行修改时自动触发。适用于涉及数据修改、逻辑调整、内容增删、多色高亮标记、逻辑联动检查的场景。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/proposal-editor"
-sourceUrl: "https://clawhub.ai/skills/proposal-editor"
 ---
 
-# Proposal Editor
+# proposal-editor
 
-> 专业型文档修改助手。当用户需要对项目建议书、可行性研究报告、立项报告等专业文档进行修改时自动触发。适用于涉及数据修改、逻辑调整、内容增删、多色高亮标记、逻辑联动检查的场景。
+## 触发条件
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/proposal-editor`
-- **Source URL:** [https://clawhub.ai/skills/proposal-editor](https://clawhub.ai/skills/proposal-editor)
+当用户提到以下关键词时自动触发：
 
-## Overview
+- 文档类型：项目建议书、可行性研究报告、立项报告、商业计划书、投资分析报告、技术方案、实施计划书
+- 任务描述：修改某部分、数据调整、逻辑调整、内容增删
+- 专业术语：建议书、可行性、立项、投资分析
 
+## 与通用 docx skill 的优先级说明
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/proposal-editor
-```
+本 skill 在以下场景**优先于**通用 docx skill：
+
+1. **文档类型**：项目建议书、可行性研究报告、立项报告、商业计划书、投资分析报告、技术方案、实施计划书
+2. **任务涉及**：数据修改、逻辑调整、内容增删、交叉引用更新
+3. **用户提到**："建议书"、"可行性"、"立项"、"投资分析"、"修改某部分"
+4. **专业需求**：多色高亮标记、逻辑联动检查、数据一致性校验
+
+## 核心能力
+
+- 自动识别文档中的逻辑联动关系
+- 多色高亮标记不同类别的修改
+- 数据一致性校验
+- 交叉引用同步更新
+
+## 加载详细流程
+
+当本 skill 被触发后，加载 workflows/main.md 执行完整流程。

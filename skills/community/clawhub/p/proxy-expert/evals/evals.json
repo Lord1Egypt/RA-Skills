@@ -1,0 +1,23 @@
+{
+  "skill_name": "proxy-expert",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我想搭个梯子翻墙，主要用来上谷歌和 Claude，用的是搬瓦工的 VPS，Ubuntu 24.04 系统，帮我开始吧",
+      "expected_output": "1) 简洁清晰地介绍 VLESS+Reality 方案的架构、适用场景、与其他方案的对比；2) 在当前目录创建 proxy-setup-info.txt 模板文件，内容包含 VPS_IP、SSH_PORT、SSH_AUTH、SSH_PASSWORD、SSH_KEY_PATH、UPSTREAM_* 、PLAN、SNI_DOMAIN 等字段；3) 提示用户填好后继续",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我已经填好 proxy-setup-info.txt 了，文件内容是：\n\nVPS_IP=192.168.1.100\nSSH_PORT=22\nSSH_USER=root\nSSH_AUTH=key\nSSH_PASSWORD=\nSSH_KEY_PATH=~/.ssh/id_ed25519\nUPSTREAM_IP=10.0.0.1\nUPSTREAM_PORT=1080\nUPSTREAM_USER=testuser\nUPSTREAM_PASS=testpass\nPLAN=C\nSNI_DOMAIN=www.apple.com\n\n请读取这个配置，给我展示一下即将部署的方案摘要，然后生成 clash-verge-config.yaml（假设密钥已经生成：UUID=fake-uuid-1234, PublicKey=fakePubKey5678, ShortID=abcd1234）",
+      "expected_output": "1) 展示方案摘要：VPS 192.168.1.100:22、方案 C（混合路由）、SNI www.apple.com、上游 10.0.0.1:1080；2) 在当前目录生成 clash-verge-config.yaml，包含正确的 server/uuid/public-key/short-id 字段、VPS IP 直连规则、udp:false、client-fingerprint:chrome；3) 文件顶部有导入说明注释",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我梯子之前搭好的，用着用着谷歌突然打不开了，等个5分钟又好了，反复这样，ping VPS 是通的但就是上不了谷歌，这是什么问题怎么解决",
+      "expected_output": "1) 准确识别这是 GFW 主动探测 + 临时封端口的症状（5分钟封禁周期是 GFW 的特征）；2) 给出诊断步骤：nc/Test-NetConnection 测试 443 端口，区分网络层和应用层；3) 明确指出根因是裸协议暴露或 Reality 配置问题；4) 给出解决方案建议",
+      "files": []
+    }
+  ]
+}

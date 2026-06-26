@@ -1,0 +1,22 @@
+{
+  "kind": "clawhub-skill-source-manifest",
+  "version": 1,
+  "source": {
+    "name": "proof-card-forge",
+    "purpose": "Create shareable proof cards for audited ClawHub, Codex, Claude, and OpenClaw skills.",
+    "createdAt": "2026-05-23",
+    "origin": "skill-maker-suite"
+  },
+  "package": {
+    "entrypoint": "SKILL.md",
+    "script": "scripts/proof_card.py",
+    "uiMetadata": "agents/openai.yaml"
+  },
+  "checks": [
+    "audit JSON parsing",
+    "safe SVG escaping",
+    "Markdown badge generation",
+    "honest status labeling",
+    "embeddable output paths"
+  ]
+}

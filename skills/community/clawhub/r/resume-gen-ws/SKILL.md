@@ -1,35 +1,264 @@
 ---
-name: "简历生成技能（W工作室）"
-description: "简历生成技能（W工作室）- 通过结构化信息收集，生成 Reactive Resume v2 标准 JSON，可导入 aicv.weinuo.work 生成精美简历 PDF。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/resume-gen-ws"
-sourceUrl: "https://clawhub.ai/skills/resume-gen-ws"
+name: resume-gen-ws
+description: 简历生成技能（W工作室）- 通过结构化信息收集，生成 Reactive Resume v2 标准 JSON，可导入 aicv.weinuo.work 生成精美简历 PDF。
+metadata:
+ {
+ "openclaw":
+ {
+ "emoji": "📝",
+ "version": "1.2.0",
+ "author": "Kelly (W工作室)",
+ "source": "Kelly Skills Collection",
+ },
+ }
 ---
 
-# 简历生成技能（W工作室）
+# 简历生成技能（W工作室）📝
 
-> 简历生成技能（W工作室）- 通过结构化信息收集，生成 Reactive Resume v2 标准 JSON，可导入 aicv.weinuo.work 生成精美简历 PDF。
+> 通过结构化信息收集 → 生成 **Reactive Resume v2** 标准 JSON → 导入 aicv.weinuo.work 生成精美简历 PDF。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/resume-gen-ws`
-- **Source URL:** [https://clawhub.ai/skills/resume-gen-ws](https://clawhub.ai/skills/resume-gen-ws)
+---
 
-## Overview
+## ⚠️ 使用前必读
 
+**安装后，Kelly 会依次引导你填写简历信息。**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/resume-gen-ws
+- ⭐ 标记为必填项，**必须填写后才能生成**
+- 🔒 所有内容仅本地处理，不会上传
+- 📝 可随时说「修改 XX」来更新已填写的内容
+
+---
+
+## 信息收集表单
+
+### 第一部分：基本信息（必填）
+
+| 字段 | 必填 | 说明 | 示例 |
+|------|------|------|------|
+| 姓名 | ⭐ | 真实姓名 | 张三 |
+| 职位/头衔 | ⭐ | 应聘岗位或当前职位 | 前端工程师 |
+| 邮箱 | ⭐ | 联系方式 | zhangsan@example.com |
+| 电话 | ⭐ | 联系方式 | +86 138-0000-0000 |
+| 所在地 | ⭐ | 城市/区域 | 上海市浦东新区 |
+| 个人网站 | — | 选填，博客/GitHub/作品集 | https://zhangsan.dev |
+
+---
+
+### 第二部分：个人简介（必填）
+
+| 字段 | 必填 | 说明 |
+|------|------|------|
+| 简介内容 | ⭐ | 2-4 句话概括你的背景、经验和优势 |
+
+**撰写建议：**
+- 第1句：工作年限 + 核心技术栈
+- 第2句：擅长领域和代表成就
+- 第3句：职业方向或技术追求
+
+---
+
+### 第三部分：工作经历（必填，至少 1 段）
+
+**每段经历需填写：**
+
+| 字段 | 必填 | 说明 |
+|------|------|------|
+| 公司名称 | ⭐ | 公司全称或简称 |
+| 职位名称 | ⭐ | 如：高级前端工程师 |
+| 所在城市 | ⭐ | 如：上海 |
+| 入职时间 | ⭐ | 如：2022年1月 |
+| 离职时间 | ⭐ | 如：2024年3月 或 至今 |
+| 工作描述 | ⭐ | 3-5 条工作内容或成就 |
+
+**成就描述公式：**
 ```
+[动词] + [具体行动] + [量化结果]
+```
+
+**示例：**
+- ⭐ 主导抖音创作者后台开发，服务千万级用户
+- ⭐ 优化首屏加载性能，LCP 降低 40%
+- ⭐ 带领 4 人小组完成 React 18 升级迁移
+
+---
+
+### 第四部分：教育背景（必填）
+
+| 字段 | 必填 | 说明 |
+|------|------|------|
+| 学校名称 | ⭐ | 全称 |
+| 学位 | ⭐ | 本科/硕士/博士 |
+| 专业 | ⭐ | 专业名称 |
+| 就读时间 | ⭐ | 如：2018年9月 - 2022年6月 |
+| GPA | — | 选填，如：3.8/4.0 |
+| 其他荣誉 | — | 选填 |
+
+---
+
+### 第五部分：技能特长（必填）
+
+| 字段 | 必填 | 说明 |
+|------|------|------|
+| 技能分类 | ⭐ | 如：前端开发、设计工具 |
+| 技能关键词 | ⭐ | 如：React, Vue, TypeScript |
+| 熟练度 | ⭐ | 精通 / 熟练 / 良好 / 入门 |
+
+**至少填写 2 个技能分类。**
+
+---
+
+### 第六部分：项目经历（选填）
+
+| 字段 | 必填 | 说明 |
+|------|------|------|
+| 项目名称 | ⭐ | 如：开源组件库 |
+| 项目时间 | ⭐ | 如：2023年 |
+| 项目描述 | ⭐ | 你的角色、技术栈、成果 |
+| 项目链接 | — | GitHub 或演示链接 |
+
+---
+
+### 第七部分：其他信息（选填）
+
+| 字段 | 选填 | 说明 |
+|------|------|------|
+| 证书/执照 | — | 如：CKA、AWS、PMP |
+| 语言能力 | — | 如：英语 CET-6 |
+| 兴趣爱好 | — | 选填，建议不写 |
+
+---
+
+## 工作流程
+
+```
+Step 1: Kelly 展示信息收集表单
+↓
+Step 2: 用户依次填写各部分内容
+ （可一次性填写，也可分次填写）
+↓
+Step 3: Kelly 确认必填项是否完整
+ ⚠️ 必填项未填写时，无法生成
+↓
+Step 4: 用户选择简历主题风格
+ （6 种模板可选，默认 azurill）
+↓
+Step 5: Kelly 生成以下文件：
+ 📄 [姓名]-resume.json
+ 📕 [姓名]-resume.pdf
+ 📝 [姓名]-resume-info.md（填写内容备份）
+↓
+Step 6: Kelly 提示用户导入 aicv.weinuo.work
+```
+
+---
+
+## 主题风格选择
+
+| 模板 | 风格 | 适合人群 |
+|------|------|----------|
+| `azurill` | 简约清新·绿 | ⭐ 默认，技术开发 |
+| `onyx` | 专业商务·白 | 传统行业、管理岗 |
+| `pikachu` | 活泼黄黑·黄 | 创意设计、互联网 |
+| `gengar` | 深色个性·紫 | 产品经理、设计师 |
+| `bronzor` | 经典稳重·棕 | 高管、海归 |
+| `chikorita` | 清新自然·绿 | 应届生、留学生 |
+
+---
+
+## 填写示例
+
+### 基本信息示例
+```
+姓名：张三
+职位：前端工程师
+邮箱：zhangsan@example.com
+电话：+86 138-0000-0000
+所在地：上海市浦东新区
+个人网站：https://zhangsan.dev
+```
+
+### 个人简介示例
+```
+5年前端开发经验，主精 React、Vue、TypeScript。
+曾主导抖音创作者后台开发，服务千万级用户。
+热爱技术，关注性能优化与工程化建设。
+```
+
+### 工作经历示例（每段）
+```
+公司：字节跳动
+职位：高级前端工程师
+城市：上海
+时间：2022年1月 - 至今
+描述：
+- 主导抖音创作者后台开发，服务千万级用户
+- 主导 React 18 + TypeScript 架构升级
+- 性能优化首屏加载提升 40%
+- 带领 4 人小组完成核心功能交付
+```
+
+### 技能示例
+```
+分类：前端开发
+关键词：React, Vue, TypeScript, Next.js
+熟练度：精通
+
+分类：后端基础
+关键词：Node.js, Python, MySQL
+熟练度：良好
+```
+
+---
+
+## 输出文件说明
+
+| 文件 | 说明 |
+|------|------|
+| `[姓名]-resume.json` | Reactive Resume v2 JSON，可导入 aicv.weinuo.work |
+| `[姓名]-resume.pdf` | PDF 预览版，可直接打印/分享 |
+| `[姓名]-resume-info.md` | 填写内容备份，方便下次修改 |
+
+---
+
+## aicv.weinuo.work 导入步骤
+
+1. 打开 https://aicv.weinuo.work
+2. 注册/登录 → 点击「Import」
+3. 上传 `[姓名]-resume.json` 文件
+4. 选择主题模板（已预设，可更改）
+5. 预览 → 导出 PDF
+
+---
+
+## 常见问题
+
+| 问题 | 解答 |
+|------|------|
+| 必填项没填完能生成吗？ | ❌ 不能，需补充完整才能生成 |
+| 怎么修改已填写的内容？ | 告诉 Kelly「修改 XX」即可 |
+| 能分段填写吗？ | ✅ 可以，随时说「继续填写」恢复 |
+| 生成后能换主题吗？ | ✅ 在 aicv.weinuo.work 中可随时切换 |
+
+---
+
+## 相关资源
+
+| 资源 | 链接 |
+|------|------|
+| AI 简历平台 | https://aicv.weinuo.work |
+| Reactive Resume Schema | https://rxresu.me/schema.json |
+| W工作室技能库 | Kelly Skills Collection |
+
+---
+
+## 版本历史
+
+| 版本 | 日期 | 更新内容 |
+|------|------|----------|
+| 1.2.0 | 2026-04-15 | 替换导入网站为 aicv.weinuo.work（W工作室自有平台） |
+| 1.1.0 | 2026-04-11 | 增加结构化信息收集表单，明确必填项，生成前需确认信息完整 |
+| 1.0.0 | 2026-04-11 | 初始版本 |
+
+---
+
+_由 Kelly（W工作室）提供 💕_

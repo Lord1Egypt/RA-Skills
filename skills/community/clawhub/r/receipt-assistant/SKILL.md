@@ -1,35 +1,99 @@
 ---
-name: "Receipt Assistant"
-description: "报销票据处理助手。自动识别票据（火车票、打车发票、行程单、酒店发票）、提取关键信息（日期、金额、发票号）、按规则重命名文件、生成汇总报表。触发词：报销、发票、票据识别、火车票、打车票、酒店发票、整理票据。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/receipt-assistant"
-sourceUrl: "https://clawhub.ai/skills/receipt-assistant"
+name: receipt-assistant
+version: 1.0.0
+description: 报销票据处理助手。自动识别票据（火车票、打车发票、行程单、酒店发票）、提取关键信息（日期、金额、发票号）、按规则重命名文件、生成汇总报表。触发词：报销、发票、票据识别、火车票、打车票、酒店发票、整理票据。
 ---
 
-# Receipt Assistant
+# 报销助手
 
-> 报销票据处理助手。自动识别票据（火车票、打车发票、行程单、酒店发票）、提取关键信息（日期、金额、发票号）、按规则重命名文件、生成汇总报表。触发词：报销、发票、票据识别、火车票、打车票、酒店发票、整理票据。
+自动处理报销票据：识别、提取信息、重命名、生成报表。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/receipt-assistant`
-- **Source URL:** [https://clawhub.ai/skills/receipt-assistant](https://clawhub.ai/skills/receipt-assistant)
+## 工作流程
 
-## Overview
+1. **扫描目录** → 找到票据文件（PDF/JPG/PNG/JPEG）
+2. **视觉识别** → 调用 `image` 工具识别票据
+3. **提取信息** → 解析日期、金额、发票号、销售方等
+4. **重命名文件** → 按规则生成标准化文件名
+5. **生成报表** → 输出 Excel 汇总表
 
+## 首次配置
 
-## Installation
-To install this skill, run the following command in your terminal:
+引导用户配置：
+- 公司名称（用于发票命名）
+- 默认姓名（用于火车票命名）
+- 输出目录
+
+## 票据命名规则
+
+| 类型 | 格式 |
+|------|------|
+| 火车票 | `{姓名}-{日期}-{金额}-中国铁路` |
+| 打车发票 | `{公司}-{日期}-{发票号}-{金额}-{销售方}-发票` |
+| 行程单 | `{公司}-{日期}-{发票号}-{金额}-{销售方}-行程单` |
+| 酒店发票 | `{公司}-{日期}-{发票号}-{金额}-{销售方}` |
+
+## 视觉识别 Prompt
+
+### 火车票
+```
+请识别这张火车票的以下信息，以 JSON 格式返回：
+{
+  "type": "火车票",
+  "date": "乘车日期（YYYYMMDD）",
+  "amount": "票价金额（只数字）",
+  "person": "乘客姓名"
+}
+只返回 JSON。
+```
+
+### 打车发票/行程单
+```
+请识别这张票据的以下信息，以 JSON 格式返回：
+{
+  "type": "打车发票 或 行程单",
+  "date": "开票日期（YYYYMMDD）",
+  "invoice_no": "发票号码",
+  "amount": "金额（只数字）",
+  "seller": "销售方名称"
+}
+只返回 JSON。
+```
+
+### 酒店发票
+```
+请识别这张酒店发票的以下信息，以 JSON 格式返回：
+{
+  "type": "酒店发票",
+  "date": "开票日期（YYYYMMDD）",
+  "invoice_no": "发票号码",
+  "amount": "金额（只数字）",
+  "seller": "酒店名称"
+}
+只返回 JSON。
+```
+
+## 输出结构
+
+```
+output/
+└── YYYYMMDD_HHMMSS/
+    ├── 报销汇总.xlsx
+    ├── 张三-20240327-533-中国铁路.pdf
+    └── ...
+```
+
+## 脚本接口
+
+| 函数 | 用途 |
+|------|------|
+| `scan_directory(path)` | 扫描目录，返回文件列表 |
+| `generate_filename(...)` | 生成标准化文件名 |
+| `generate_excel_report(tickets, output_dir)` | 生成 Excel 汇总 |
+| `check_config()` | 检查配置状态 |
+| `update_config(...)` | 更新配置 |
+
+## 安装依赖
+
 ```bash
-hermes skills install clawhub/receipt-assistant
+pip install openpyxl pdfplumber Pillow
 ```

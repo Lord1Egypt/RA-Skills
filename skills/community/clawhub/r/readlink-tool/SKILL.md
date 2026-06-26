@@ -1,35 +1,26 @@
 ---
-name: "Readlink Tool"
-description: "Display the target of a symbolic link. Use for resolving symlinks to find the actual file or directory they point to."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/readlink-tool"
-sourceUrl: "https://clawhub.ai/skills/readlink-tool"
+name: readlink-tool
+description: Display the target of a symbolic link. Use for resolving symlinks to find the actual file or directory they point to.
 ---
+# Readlink - Symbolic Link Resolver
 
-# Readlink Tool
+Show the target path that a symbolic link points to. Essential for understanding symlink chains and finding actual file locations.
 
-> Display the target of a symbolic link. Use for resolving symlinks to find the actual file or directory they point to.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/readlink-tool`
-- **Source URL:** [https://clawhub.ai/skills/readlink-tool](https://clawhub.ai/skills/readlink-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/readlink-tool
+readlink-tool [options] <link>
+```
+
+## Options
+
+- `-f`: Canonicalize by following every symlink in the path
+- `-e`: Canonicalize but require all components to exist
+- `-n`: Suppress trailing newline
+
+## Examples
+
+```bash
+readlink-tool /usr/bin/python
+readlink-tool -f symlink_to_file
+readlink-tool -e symlink.txt
 ```

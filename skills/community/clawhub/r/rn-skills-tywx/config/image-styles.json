@@ -1,0 +1,105 @@
+{
+  "图片生成配置": {
+    "provider": "dashscope",
+    "api_name": "通义万相",
+    "model": "wanx2.1-t2i-turbo",
+    "备选模型": {
+      "高质量": "wanx2.1-t2i-plus",
+      "快速": "wanx2.1-t2i-turbo"
+    },
+    "base_url": "https://dashscope.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis",
+    "result_url": "https://dashscope.aliyuncs.com/api/v1/tasks/{task_id}",
+    "env_key": "DASHSCOPE_API_KEY",
+    "default_size": "720*1280",
+    "cover_size": "720*1280",
+    "count_per_post": 6,
+    "说明": "通义万相采用异步API：先提交任务获取task_id，再轮询获取结果。支持中文prompt，对新中式风格理解更佳。",
+    "价格参考": {
+      "wanx2.1-t2i-turbo": "约¥0.04/张",
+      "wanx2.1-t2i-plus": "约¥0.16/张"
+    }
+  },
+  "通用基础prompt": {
+    "正面提示": "high fashion editorial photography, professional lighting, clean composition, aesthetic, visually stunning, high quality, 4K, detailed textures",
+    "负面提示": "blurry, low quality, distorted, ugly, deformed, text, watermark, logo, bad anatomy, bad proportions",
+    "小红书风格": "xiaohongshu aesthetic, soft warm tones, lifestyle photography, instagram-worthy, pinterest aesthetic"
+  },
+  "风格预设": {
+    "Offduty": {
+      "prompt_base": "effortless chic street style, off-duty model look, casual yet fashionable, neutral tones, relaxed posture, urban background, natural daylight",
+      "色调": "neutral warm tones, beige, cream, camel",
+      "场景": "city streets, coffee shop exterior, minimalist architecture"
+    },
+    "Softfit": {
+      "prompt_base": "soft and gentle outfit, pastel color palette, flowing fabrics, dreamy atmosphere, soft natural lighting, feminine and elegant",
+      "色调": "soft pastels, cream white, light pink, lavender",
+      "场景": "indoor natural light, flower garden, soft background"
+    },
+    "空气感叠穿": {
+      "prompt_base": "layered outfit with sheer fabrics, airy and light layering, translucent materials, dimensional styling, flowing movement",
+      "色调": "light and airy, white, light grey, soft blue",
+      "场景": "minimalist interior, open space, wind-blown movement"
+    },
+    "Staycation": {
+      "prompt_base": "resort vacation outfit, relaxed luxury, tropical or coastal setting, sun-kissed glow, laid-back elegance, vacation vibes",
+      "色调": "warm golden, sunset tones, earth tones, sea blue",
+      "场景": "beach resort, tropical garden, pool side, sunset terrace"
+    },
+    "叛逆学院风": {
+      "prompt_base": "dark academia meets punk, preppy style with rebellious twist, plaid and leather mix, moody lighting, confident attitude",
+      "色调": "dark tones, burgundy, navy, forest green, black",
+      "场景": "old library, gothic architecture, vintage classroom, ivy-covered walls"
+    },
+    "Sportique": {
+      "prompt_base": "athletic fashion, sporty chic outfit, athleisure luxury, dynamic pose, modern fitness aesthetic, sleek and functional",
+      "色调": "monochrome, neon accents, clean white, sport grey",
+      "场景": "modern gym, rooftop, urban park, sport facility"
+    },
+    "新中式穿搭": {
+      "prompt_base": "modern Chinese style fashion, traditional Chinese elements with contemporary design, mandarin collar, silk fabrics, oriental patterns, elegant and sophisticated",
+      "色调": "ink wash colors, jade green, porcelain blue, cinnabar red, rice paper white",
+      "场景": "Chinese garden, bamboo grove, traditional teahouse, calligraphy studio, moongate"
+    },
+    "国潮文化": {
+      "prompt_base": "Chinese streetwear, traditional motifs on modern silhouettes, bold graphics with Chinese calligraphy, dragon or phoenix elements, cultural fusion fashion",
+      "色调": "bold red, gold, black, vibrant contrast",
+      "场景": "modern Chinese city, neon lights with traditional elements, cultural landmark"
+    },
+    "茶道美学": {
+      "prompt_base": "tea ceremony aesthetic outfit, serene and elegant, traditional Chinese tea setting, zen atmosphere, natural materials, mindful lifestyle",
+      "色调": "earthy tones, bamboo green, warm wood, tea amber",
+      "场景": "tea room, Japanese-Chinese garden, wooden tea table, ceramic tea set"
+    },
+    "香道美学": {
+      "prompt_base": "incense ceremony aesthetic, oriental elegance, wisps of smoke, meditative atmosphere, refined and spiritual, traditional incense tools",
+      "色调": "smoky grey, sandalwood brown, deep purple, muted gold",
+      "场景": "incense room, zen space, traditional wooden interior, soft candlelight"
+    },
+    "书法美学": {
+      "prompt_base": "calligraphy studio aesthetic, ink and brush elements, scholarly elegance, traditional Chinese study room, intellectual charm, artistic atmosphere",
+      "色调": "ink black, rice paper white, vermillion red, stone grey",
+      "场景": "calligraphy studio, traditional study room, ink stone and brush, scrolls"
+    }
+  },
+  "封面图规则": {
+    "要求": "封面图必须最具视觉冲击力，构图完整，人物居中或三分构图，背景简洁不杂乱",
+    "prompt_suffix": "cover image, eye-catching, bold composition, centered subject, clean background, magazine cover quality"
+  },
+  "内页图规则": {
+    "分配": [
+      "全身穿搭展示（正面）",
+      "穿搭细节特写（面料/配饰）",
+      "侧面或背面角度",
+      "场景互动（喝茶/写字/走路等）",
+      "配饰或单品特写"
+    ],
+    "prompt_suffix": "detailed fashion photography, lifestyle shot, editorial quality"
+  },
+  "图片比例说明": {
+    "小红书推荐": "9:16 竖版（720*1280）最适合小红书展示，宽高必须在 512-1440 之间",
+    "备选": "1:1 方形（1024*1024）适合统一排版",
+    "通义万相支持": ["1024*1024", "720*1280", "1280*720"],
+    "尺寸限制": "宽高必须在 512-1440 之间，否则 API 会返回 InvalidParameter 错误",
+    "错误案例": "1024*1536 会失败（1536>1440），已改为 720*1280"
+  }
+}

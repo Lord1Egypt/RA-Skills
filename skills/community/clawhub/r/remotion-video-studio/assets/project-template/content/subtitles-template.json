@@ -1,0 +1,36 @@
+{
+  "_comment": "Subtitle template — copy this file and fill in your content",
+  "_usage": "cp content/subtitles.json.template content/your-topic.json",
+  "_content_guidelines": {
+    "recommended_slides": "7-12 slides for a 2-5 minute video",
+    "text_length": "50-150 characters per slide for best TTS and subtitle display",
+    "structure": "intro → core concepts (3-6 slides) → comparison/examples → applications → summary",
+    "slide_types": "Use type: intro for opening, type: outro for closing, omit for regular content"
+  },
+  "title": "Your Video Title",
+  "slides": [
+    {
+      "id": "slide_01",
+      "title": "Opening Title",
+      "text": "Your opening narration goes here. Introduce the topic and hook the audience.",
+      "speaker": "default",
+      "type": "intro",
+      "notes": "Opening slide — set the stage"
+    },
+    {
+      "id": "slide_02",
+      "title": "Core Concept",
+      "text": "Main content narration goes here. Explain the key idea clearly and concisely.",
+      "speaker": "default",
+      "notes": "Content slide — explain the main concept"
+    },
+    {
+      "id": "slide_03",
+      "title": "Closing Title",
+      "text": "Closing narration goes here. Summarize key points and thank the audience.",
+      "speaker": "default",
+      "type": "outro",
+      "notes": "Closing slide — wrap up"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+---
+title: "{{TOPIC}}"
+subtitle: "{{SUBTITLE}}"
+date: "{{DATE}}"
+author: "Deep Research Agent"
+version: "1.0"
+task_id: "{{TASK_ID}}"
+---
+
+<div class="cover">
+
+# {{TOPIC}}
+
+## {{SUBTITLE}}
+
+**{{RESEARCH_DATE_LABEL}}**: {{DATE}}
+
+**{{TASK_ID_LABEL}}**: {{TASK_ID}}
+
+---
+
+**Deep Research Agent**
+
+</div>
+
+---
+
+# {{EXECUTIVE_SUMMARY_TITLE}}
+
+> {{EXECUTIVE_SUMMARY_CONTENT}}
+
+**{{KEY_METRICS_TITLE}}**:
+- {{TOTAL_FINDINGS_LABEL}}: {{TOTAL_FINDINGS}}
+- {{TOTAL_SOURCES_LABEL}}: {{TOTAL_SOURCES}}
+- {{RESEARCH_ANGLES_LABEL}}: {{RESEARCH_ANGLES_COUNT}}
+
+---
+
+# {{TOC_TITLE}}
+
+{{TOC_CONTENT}}
+
+---
+
+# 1. {{METHODOLOGY_TITLE}}
+
+## 1.1 {{RESEARCH_OVERVIEW_TITLE}}
+
+{{RESEARCH_OVERVIEW_CONTENT}}
+
+## 1.2 {{DATA_SOURCES_TITLE}}
+
+| {{SOURCE_TYPE_LABEL}} | {{COUNT_LABEL}} | {{DESCRIPTION_LABEL}} |
+|-----------------------|-----------------|----------------------|
+{{DATA_SOURCES_TABLE}}
+
+## 1.3 {{RESEARCH_LIMITATIONS_TITLE}}
+
+{{RESEARCH_LIMITATIONS_CONTENT}}
+
+---
+
+# 2. {{FINDINGS_TITLE}}
+
+{{RESEARCH_FINDINGS_CONTENT}}
+
+---
+
+# 3. {{ANALYSIS_TITLE}}
+
+{{DEEP_ANALYSIS_CONTENT}}
+
+---
+
+# 4. {{RISKS_OPPORTUNITIES_TITLE}}
+
+## 4.1 {{KEY_RISKS_TITLE}}
+
+{{KEY_RISKS_CONTENT}}
+
+## 4.2 {{OPPORTUNITIES_TITLE}}
+
+{{OPPORTUNITIES_CONTENT}}
+
+---
+
+# 5. {{CONCLUSIONS_TITLE}}
+
+## 5.1 {{MAIN_CONCLUSIONS_TITLE}}
+
+{{MAIN_CONCLUSIONS_CONTENT}}
+
+## 5.2 {{RECOMMENDATIONS_TITLE}}
+
+{{RECOMMENDATIONS_CONTENT}}
+
+---
+
+# 6. {{REFERENCES_TITLE}}
+
+{{REFERENCES_CONTENT}}
+
+---
+
+<div class="footnote">
+
+**{{REPORT_GENERATED_LABEL}}**: {{GENERATION_TIMESTAMP}}
+
+**{{GENERATED_BY_LABEL}}**: Deep Research Agent
+
+</div>

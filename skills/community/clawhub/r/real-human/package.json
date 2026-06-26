@@ -1,0 +1,15 @@
+{
+  "name": "real-human",
+  "version": "1.0.0",
+  "description": "真实的人类 - 帮助AI识别、分析和建模人类个体",
+  "author": "@wasinc",
+  "license": "MIT",
+  "keywords": [
+    "human-modeling",
+    "personalization",
+    "user-profiling",
+    "AI",
+    "openclaw",
+    "skill"
+  ]
+}

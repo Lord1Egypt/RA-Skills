@@ -1,0 +1,22 @@
+{
+  "templates": [
+    {
+      "name": "编程语言",
+      "approach": "语法基础 → 小项目巩固 → 逐步增加复杂度",
+      "interleaving_strategy": "混合不同概念（如条件+循环+函数）",
+      "feynman_prompt": "用简单的比喻解释给非程序员听"
+    },
+    {
+      "name": "外语学习",
+      "approach": "词汇+语法并行 → 阅读巩固 → 输出强化",
+      "interleaving_strategy": "混合听说读写",
+      "feynman_prompt": "用目标语言解释，然后用母语验证"
+    },
+    {
+      "name": "考试复习",
+      "approach": "知识点梳理 → 真题练习 → 薄弱点强化",
+      "interleaving_strategy": "混合不同科目",
+      "feynman_prompt": "用自己的话解释这个考点"
+    }
+  ]
+}

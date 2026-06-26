@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quote Check-in Poster"
+  short_description: "Turn quotes and reflections from books or films into polished shareable check-in posters"
+  default_prompt: "Use $quote-checkin-poster to turn my book or movie takeaway into a shareable quote poster."

@@ -1,35 +1,162 @@
 ---
-name: "Pro Color Palette"
-description: "专业配色卡生成器。支持12组预设配色、从图片提取主色、生成场景Mockup（海报/手机界面/封面）。输入主色调自动生成3色搭配方案，输出黑底配色卡图片。支持本地脚本秒级生成和AI图片生成两种模式。"
-category: "creative"
-source: "ClawHub"
-tags: [chinese, color, design, image, palette]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/pro-color-palette"
-sourceUrl: "https://clawhub.ai/skills/pro-color-palette"
+name: color-palette
+description: 专业配色卡生成器。支持12组预设配色、从图片提取主色、生成场景Mockup（海报/手机界面/封面）。输入主色调自动生成3色搭配方案，输出黑底配色卡图片。支持本地脚本秒级生成和AI图片生成两种模式。
 ---
 
-# Pro Color Palette
+# color-palette
 
-> 专业配色卡生成器。支持12组预设配色、从图片提取主色、生成场景Mockup（海报/手机界面/封面）。输入主色调自动生成3色搭配方案，输出黑底配色卡图片。支持本地脚本秒级生成和AI图片生成两种模式。
+专业配色卡生成器。输入主色调，自动生成 3 色搭配方案（主色 + 2 个辅助色），输出图片卡片。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/pro-color-palette`
-- **Source URL:** [https://clawhub.ai/skills/pro-color-palette](https://clawhub.ai/skills/pro-color-palette)
+## 配色风格
 
-## Overview
+- 黑底 `#000000`
+- 1 个大主色块（上方）+ 2 个小辅助色块（下方左右并排）
+- 每个色块标注：中文色名（中粗体）+ Hex 色号（细体）
+- 圆角几何形状，现代简约 UI 风格
 
+## 功能一览
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 1. 配色卡生成（12组预设）
 ```bash
-hermes skills install clawhub/pro-color-palette
+python3 generate_palette.py <配色名>
+python3 generate_palette.py --all          # 批量生成所有
 ```
+
+### 2. 从图片提取配色
+```bash
+python3 extract_palette.py <图片路径或URL> --card
+# 提取主色 + 自动生成互补色/相似色推荐
+```
+
+### 3. 场景 Mockup 生成
+```bash
+python3 generate_mockup.py poster <配色名>   # 品牌海报
+python3 generate_mockup.py phone <配色名>    # 手机界面
+python3 generate_mockup.py cover <配色名>    # PPT封面
+python3 generate_mockup.py all <配色名>      # 全部三种
+```
+
+## 智能选色规则
+
+| 主题/场景 | 推荐配色 |
+|-----------|---------|
+| 时尚/奢侈品牌 | 爱马仕橙、古驰绿、玫瑰粉 |
+| 科技/商务/金融 | 普拉得蓝、长春花蓝、海洋青 |
+| 咖啡/餐饮/自然 | 孔雀蓝、抹茶绿、琥珀黄 |
+| 健康/清新 | 薄荷绿、海洋青 |
+| 儿童/活泼 | 玫瑰粉、薄荷绿、琥珀黄 |
+| 节日/热烈 | 烈焰红、爱马仕橙、琥珀黄 |
+| 未明确主题 | 默认普拉得蓝 |
+
+## 图片生成方式
+
+### 方式1：本地脚本生成（推荐）
+```bash
+python3 ~/.openclaw/workspace/skills/color-palette/generate_palette.py [配色名]
+```
+- 优点：秒级出图，无需 API，无需浏览器
+- 输出：`/tmp/color-palette-{配色名}.png`
+
+### 方式2：AI 生成（需配合 doubao-ai-image）
+调用 `doubao-ai-image` 生成图片，prompt 包含配色信息。
+
+## 输出规范
+
+生成图片后，必须回复：
+- 配色方案名称
+- 三色 Hex 对照表
+- 生成的图片
+- 适用场景建议
+
+## 预设配色方案库（12组）
+
+### 1. 爱马仕橙系
+| 角色 | 色名 | Hex |
+|------|------|-----|
+| 主色 | 爱马仕橙 | `#FF8A00` |
+| 辅助色1 | 深灰 | `#363636` |
+| 辅助色2 | 白粉 | `#FFF2DF` |
+
+### 2. 普拉得蓝系
+| 角色 | 色名 | Hex |
+|------|------|-----|
+| 主色 | 普拉得蓝 | `#0175CC` |
+| 辅助色1 | 睿智金 | `#B78D77` |
+| 辅助色2 | 米汤骄 | `#FCF5E2` |
+
+### 3. 长春花蓝系
+| 角色 | 色名 | Hex |
+|------|------|-----|
+| 主色 | 长春花蓝 | `#5357A0` |
+| 辅助色1 | 佛手黄 | `#FED81F` |
+| 辅助色2 | 荔枝白 | `#FEFFEF` |
+
+### 4. 孔雀蓝系
+| 角色 | 色名 | Hex |
+|------|------|-----|
+| 主色 | 孔雀蓝 | `#0B7E9D` |
+| 辅助色1 | 浅驼色 | `#D7B9A1` |
+| 辅助色2 | 月苍白 | `#F9F6E5` |
+
+### 5. 古驰绿系
+| 角色 | 色名 | Hex |
+|------|------|-----|
+| 主色 | 古驰绿 | `#1F4433` |
+| 辅助色1 | 杏红 | `#FF8B31` |
+| 辅助色2 | 象牙白 | `#FFFBF0` |
+
+### 6. 烈焰红系
+| 角色 | 色名 | Hex |
+|------|------|-----|
+| 主色 | 烈焰红 | `#E53935` |
+| 辅助色1 | 炭黑 | `#212121` |
+| 辅助色2 | 珍珠白 | `#FAFAFA` |
+
+### 7. 极光紫系
+| 角色 | 色名 | Hex |
+|------|------|-----|
+| 主色 | 极光紫 | `#8E24AA` |
+| 辅助色1 | 香槟金 | `#D4AF37` |
+| 辅助色2 | 雪白 | `#F8F8FF` |
+
+### 8. 薄荷绿系
+| 角色 | 色名 | Hex |
+|------|------|-----|
+| 主色 | 薄荷绿 | `#26A69A` |
+| 辅助色1 | 深空灰 | `#455A64` |
+| 辅助色2 | 泡沫白 | `#F0FFF0` |
+
+### 9. 琥珀黄系
+| 角色 | 色名 | Hex |
+|------|------|-----|
+| 主色 | 琥珀黄 | `#FFB300` |
+| 辅助色1 | 咖啡棕 | `#4E342E` |
+| 辅助色2 | 奶白 | `#FFF8E1` |
+
+### 10. 玫瑰粉系
+| 角色 | 色名 | Hex |
+|------|------|-----|
+| 主色 | 玫瑰粉 | `#EC407A` |
+| 辅助色1 | 莓果紫 | `#7B1FA2` |
+| 辅助色2 | 淡粉白 | `#FFF0F5` |
+
+### 11. 海洋青系
+| 角色 | 色名 | Hex |
+|------|------|-----|
+| 主色 | 海洋青 | `#00ACC1` |
+| 辅助色1 | 沙滩金 | `#C9A227` |
+| 辅助色2 | 贝壳白 | `#FDF5E6` |
+
+### 12. 抹茶绿系
+| 角色 | 色名 | Hex |
+|------|------|-----|
+| 主色 | 抹茶绿 | `#7CB342` |
+| 辅助色1 | 米白 | `#F5F5DC` |
+| 辅助色2 | 竹青 | `#2E7D32` |
+
+## 文件说明
+
+- `generate_palette.py` — 生成配色卡（12组预设）
+- `extract_palette.py` — 从图片提取主色并生成配色卡
+- `generate_mockup.py` — 生成场景 Mockup（海报/手机/封面）
+- `SKILL.md` — 使用说明文档

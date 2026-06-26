@@ -1,35 +1,32 @@
 ---
-name: "1.2.0"
-description: "Release-day coordination helpers for cutover, verification, and rollback readiness."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/release-coordination-toolkit"
-sourceUrl: "https://clawhub.ai/skills/release-coordination-toolkit"
+name: release-coordination-toolkit
+description: Release-day coordination helpers for cutover, verification, and rollback readiness.
+version: 1.2.0
 ---
 
-# 1.2.0
+# Release Coordination Toolkit
 
-> Release-day coordination helpers for cutover, verification, and rollback readiness.
+Use during deploy windows to keep rollout steps and checks consistent.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/release-coordination-toolkit`
-- **Source URL:** [https://clawhub.ai/skills/release-coordination-toolkit](https://clawhub.ai/skills/release-coordination-toolkit)
+## Inputs to Gather
 
-## Overview
+- Primary target (service, team, or dataset)
+- Current impact and urgency
+- Assigned owner and deadline
 
+## Core Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/release-coordination-toolkit
-```
+- `release plan --service <name> --window <time>`
+- `release gate --check <gate-name>`
+- `release rollback --prepare`
+- `workflow checklist --from templates/checklist.md`
+- `workflow report --from templates/report.md`
+
+## Operating Notes
+
+- Prefer explicit owner assignment before action.
+- Keep timeline notes concise and timestamped.
+- Save output artifacts for audit and handoff.
+- This version adds a structured report template for post-task summaries.
+
+Version marker: release-coordination-toolkit 1.2.0

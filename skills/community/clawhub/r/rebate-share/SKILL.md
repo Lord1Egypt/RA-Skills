@@ -1,35 +1,66 @@
 ---
-name: "返利推广赚手"
-description: "返利链接推广与佣金管理工具，帮助淘客和推广者生成高转化分享内容，追踪推广佣金收益。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/rebate-share"
-sourceUrl: "https://clawhub.ai/skills/rebate-share"
+name: 返利推广赚手
+description: 返利链接推广与佣金管理工具，帮助淘客和推广者生成高转化分享内容，追踪推广佣金收益。
+version: 0.1.0
 ---
 
 # 返利推广赚手
 
-> 返利链接推广与佣金管理工具，帮助淘客和推广者生成高转化分享内容，追踪推广佣金收益。
+面向返利推广者和淘客的佣金管理工具。帮助用户生成高转化的返利推广内容，管理多平台推广链接，追踪推广佣金收益，从自购省钱升级到分享赚钱。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/rebate-share`
-- **Source URL:** [https://clawhub.ai/skills/rebate-share](https://clawhub.ai/skills/rebate-share)
+## 触发词
 
-## Overview
+返利推广、淘客赚钱、推广佣金、分享赚钱、返利链接推广、淘客工具、rebate share、推广收益、佣金管理、分享返利
 
+## 计划实现能力
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/rebate-share
+### 核心功能
+
+- **高佣商品筛选**：按佣金比例、销量、好评率筛选值得推广的商品
+- **推广内容生成**：自动生成带返利链接的商品推荐文案、图片素材
+- **多渠道分发**：一键生成适配微信群、朋友圈、小红书、抖音等不同平台的推广内容
+- **佣金收益追踪**：统计各平台推广佣金，生成收益报告
+
+### 推广者收益模型
+
+| 推广方式 | 佣金来源 | 预计收益 |
+|---------|---------|---------|
+| 自购省钱 | 自己下单返利 | 每月省 ¥200-500 |
+| 朋友圈分享 | 好友下单佣金 | 每月 ¥500-2000 |
+| 社群运营 | 群成员下单佣金 | 每月 ¥2000-10000 |
+| 内容种草 | 粉丝下单佣金 | 每月 ¥5000+ |
+
+### 推广内容模板
+
+```
+文案结构：
+① 痛点引入（为什么需要这个商品）
+② 商品亮点（核心卖点 2-3 个）
+③ 价格优势（原价 vs 券后价 vs 返利到手价）
+④ 行动号召（限时/限量/专属链接）
+```
+
+### 使用场景
+
+1. **新手起步**：从自购省钱开始，学习返利推广基本流程
+2. **社群推广**：每日为购物群生成高佣商品推荐清单
+3. **内容创作**：为小红书、抖音等平台生成种草内容
+4. **收益分析**：月度复盘推广效果，优化选品和推广策略
+
+## 输出格式
+
+```
+💰 推广商品推荐
+
+商品：[商品名称]
+佣金比例：[X]%（预计佣金 ¥[金额]）
+月销量：[N]件 | 好评率：[X]%
+
+推广文案：
+[自动生成的推广文案]
+
+推广链接：
+  微信群版：[链接]
+  朋友圈版：[链接+配图建议]
+  小红书版：[种草文案]
 ```

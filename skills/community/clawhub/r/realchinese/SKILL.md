@@ -1,35 +1,71 @@
 ---
-name: "Realchinese"
+name: realchinese
 description: "中文AI文本真人化引擎 — 可执行代码实现。29种AI痕迹检测 + 8大中文平台风格改写。pip install后直接使用。"
-category: "creative"
-source: "ClawHub"
-tags: [ai-optimization, chinese, content, social-media, writing]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/realchinese"
-sourceUrl: "https://clawhub.ai/skills/realchinese"
+version: 1.1.2
+tags: [中文, 写作, 内容创作, 社交媒体, AI优化, 小红书, 公众号, 知乎, 可执行]
+category: 写作助手
 ---
 
-# Realchinese
+# RealChinese — 中文AI文本真人化引擎
 
-> 中文AI文本真人化引擎 — 可执行代码实现。29种AI痕迹检测 + 8大中文平台风格改写。pip install后直接使用。
+**不是文档，是代码。** 直接运行，检测29种AI痕迹，适配8大中文平台。
 
-- **Category:** Creative
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/realchinese`
-- **Source URL:** [https://clawhub.ai/skills/realchinese](https://clawhub.ai/skills/realchinese)
+## 快速开始
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/realchinese
+# 检测AI痕迹
+python scripts/cli.py detect "这是一个非常有效的方法，能够显著提升工作效率..."
+
+# 改写为小红书风格
+python scripts/cli.py rewrite "你的AI文本..." 小红书
+
+# Python API
+python -c "
+from scripts.detector import AIFingerprint
+from scripts.rewriter import rewrite
+
+text = '通过优化工作流程，我们可以显著提升团队效率...'
+fp = AIFingerprint(text)
+print(f'AI痕迹评分: {fp.score:.2f}')
+
+result = rewrite(text, platform='小红书', topic='效率提升')
+print(result)
+"
 ```
+
+## 29种AI痕迹检测
+
+| # | 检测项 | 说明 |
+|---|--------|------|
+| 1 | 高频AI词汇 | "显著""有效""提升""优化"等 |
+| 2 | 模板过渡词 | "此外""然而""综上所述" |
+| 3 | 模板句式 | "值得注意的是""需要强调的是" |
+| 4 | AI专用词 | "赋能""抓手""闭环""打法" |
+| 5 | 缺口语标记 | "就是说""讲真""说白了" |
+| 6 | 缺网络热词 | "YYDS""绝绝子""显眼包" |
+| 7 | 句长均匀 | 句子长度标准差/均值 |
+| 8 | 因果过度 | 每句"因为/所以/导致" |
+| 9 | 自我表达少 | "我"字比例 |
+| 10 | 标点平淡 | 缺！？ |
+| 11 | 段落均匀 | 段落长度标准差 |
+| 12 | 结论先行 | 首句总结模式 |
+| 13 | 的/de过多 | "的"字密度 |
+| 14 | 排比句式 | "通过...借助...利用..." |
+| 15 | 缺非正式标点 | … —— ～ |
+
+## 8大平台风格
+
+| 平台 | 风格 | 改写特征 |
+|------|------|---------|
+| 公众号 | 专业不端着 | 钩子标题+分段节奏+文末CTA |
+| 小红书 | 姐妹聊天感 | emoji密集+语气词+标签SEO |
+| 知乎 | 有理有据 | 引用数据+分点论证+留讨论 |
+| 抖音 | 快节奏钩子 | 黃金3秒+短句+悬念+互动引导 |
+| 微博 | 吃瓜闲聊 | 140字+话题标签+梗+吐槽 |
+| 豆瓣 | 文青细腻 | 感官描写+长句+情感真实+引经据典 |
+| 即刻 | 极客产品感 | 短平快+产品视角+why思考 |
+| B站 | Z世代up主 | 二次元梗+幽默+三连引导 |
+
+## 许可证
+
+MIT — 免费使用、修改、分发。

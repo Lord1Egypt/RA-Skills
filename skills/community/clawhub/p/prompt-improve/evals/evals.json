@@ -1,0 +1,44 @@
+{
+  "skill_name": "prompt-refiner",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我做个东西，能分析销售数据",
+      "expected_output": "A refined prompt that clarifies the sales data analysis tool requirements, including data sources, analysis types, user audience, and deliverable format.",
+      "files": [],
+      "expectations": [
+        "The refined prompt mentions data sources (e.g., CSV, database, API)",
+        "The refined prompt specifies analysis types or metrics",
+        "The refined prompt identifies target users or audience",
+        "The refined prompt defines deliverable format (e.g., web app, script, report)",
+        "The refined prompt includes timeline or constraints"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need a script to process some files, you know, make them better",
+      "expected_output": "A detailed prompt that identifies file types, processing goals, improvement criteria, and technical constraints for the file processing script.",
+      "files": [],
+      "expectations": [
+        "The refined prompt specifies file types (e.g., images, documents)",
+        "The refined prompt defines processing operations (e.g., resize, compress, convert)",
+        "The refined prompt mentions batch processing or scale",
+        "The refined prompt includes technical stack or language preference",
+        "The refined prompt addresses quality criteria or improvement metrics"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "帮我improve一下我的website，让它更专业",
+      "expected_output": "A comprehensive prompt that clarifies website improvement areas (design, content, performance), target audience, professionalism criteria, and implementation constraints.",
+      "files": [],
+      "expectations": [
+        "The refined prompt identifies design improvement areas (e.g., layout, colors, typography)",
+        "The refined prompt mentions content updates or additions",
+        "The refined prompt addresses responsiveness or mobile compatibility",
+        "The refined prompt defines professionalism criteria (e.g., modern, trustworthy)",
+        "The refined prompt includes timeline or implementation constraints"
+      ]
+    }
+  ]
+}

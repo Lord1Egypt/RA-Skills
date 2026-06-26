@@ -1,0 +1,48 @@
+{
+  "name": "redis-skill",
+  "version": "1.0.0",
+  "description": "Redis 缓存和数据结构管理技能。通过自然语言操作 Redis，支持 String、Hash、List、Set、ZSet、Stream 等数据结构操作。",
+  "author": "ryanlee-gemini <ryanlee.gemini@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "redis",
+    "cache",
+    "database",
+    "data-structures",
+    "leaderboard",
+    "queue",
+    "distributed-lock"
+  ],
+  "openclaw": {
+    "category": "database",
+    "requires": {
+      "bins": ["redis-cli"],
+      "python": ["redis"]
+    },
+    "install": [
+      {
+        "id": "redis-client",
+        "kind": "system",
+        "label": "Install Redis Client",
+        "commands": {
+          "ubuntu": "sudo apt update && sudo apt install -y redis-tools",
+          "macos": "brew install redis"
+        }
+      },
+      {
+        "id": "redis-python",
+        "kind": "python",
+        "package": "redis",
+        "label": "Install Redis Python Client"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryanlee-gemini/redis-skill"
+  },
+  "homepage": "https://clawhub.com/skills/redis-skill",
+  "bugs": {
+    "url": "https://github.com/ryanlee-gemini/redis-skill/issues"
+  }
+}

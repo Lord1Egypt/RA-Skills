@@ -1,0 +1,36 @@
+{
+  "name": "openclaw-skill-qywx-notify",
+  "version": "1.0.0",
+  "description": "OpenClaw Skill for sending notifications to WeCom (Enterprise WeChat) group chats",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "qywx",
+    "wecom",
+    "enterprise-wechat",
+    "notification",
+    "webhook"
+  ],
+  "author": "OpenClaw Assistant",
+  "license": "MIT",
+  "openclaw": {
+    "type": "skill",
+    "skill": "qywx-notify",
+    "capabilities": {
+      "notifications": true,
+      "text": true,
+      "images": true,
+      "markdown": true
+    }
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="site-base" content=".">
+  <title>{{SITE_NAME}} · 报告与研究成果</title>
+  <link rel="preconnect" href="https://fonts.loli.net">
+  <link rel="preconnect" href="https://gstatic.loli.net" crossorigin>
+  <link href="https://fonts.loli.net/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css">
+  <style>
+    /* === Header === */
+    .hp-header {
+      position: sticky; top: 0; z-index: 100;
+      height: 52px;
+      background: var(--c-surface);
+      border-bottom: 1px solid var(--c-border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+    }
+    .hp-header__brand { display: flex; align-items: center; gap: 10px; }
+    .hp-header__logo {
+      width: 26px; height: 26px; border-radius: 7px;
+      background: linear-gradient(135deg, var(--c-accent), var(--c-purple));
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .hp-header__logo svg { width: 13px; height: 13px; color: #fff; }
+    .hp-header__name { font-size: 15px; font-weight: 700; color: var(--c-text-heading); letter-spacing: -0.01em; }
+    .hp-header__sep { color: var(--c-border); font-size: 14px; }
+    .hp-header__desc { font-size: 12.5px; color: var(--c-text-muted); }
+    .hp-header__total {
+      font-size: 11px; color: var(--c-text-muted);
+      background: var(--c-surface-alt); padding: 3px 10px;
+      border-radius: 10px; font-weight: 500;
+    }
+
+    /* === Layout === */
+    html, body { height: 100%; overflow: hidden; }
+    .hp-layout { display: flex; height: calc(100vh - 52px); }
+
+    /* === Sidebar === */
+    .hp-sidebar {
+      width: 256px; flex-shrink: 0;
+      background: var(--c-surface);
+      border-right: 1px solid var(--c-border);
+      overflow-y: auto; overflow-x: hidden;
+      padding: 12px 0 24px;
+    }
+
+    /* "全部" link */
+    .hp-all {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 16px; margin: 0 8px 2px;
+      border-radius: var(--radius-sm);
+      font-size: 13px; font-weight: 600;
+      color: var(--c-text-secondary); cursor: pointer;
+      transition: all var(--transition); user-select: none;
+    }
+    .hp-all:hover { background: var(--c-surface-alt); color: var(--c-text-heading); }
+    .hp-all--active { background: var(--c-accent-light); color: var(--c-accent); }
+    .hp-all svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .hp-all__count {
+      margin-left: auto; font-size: 10px; font-weight: 600;
+      background: var(--c-surface-alt); padding: 1px 7px;
+      border-radius: 8px; color: var(--c-text-muted);
+    }
+    .hp-all--active .hp-all__count { background: rgba(59,130,246,0.15); color: var(--c-accent); }
+
+    .hp-divider { height: 1px; background: var(--c-border-light); margin: 8px 16px; }
+
+    /* Category */
+    .hp-cat {}
+    .hp-cat__head {
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 16px; margin: 1px 8px;
+      border-radius: var(--radius-sm);
+      cursor: pointer; transition: all var(--transition); user-select: none;
+    }
+    .hp-cat__head:hover { background: var(--c-surface-alt); }
+    .hp-cat--active > .hp-cat__head { background: var(--c-accent-light); }
+    .hp-cat__icon {
+      width: 28px; height: 28px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .hp-cat__icon svg { width: 14px; height: 14px; }
+    .hp-cat__name { font-size: 13px; font-weight: 600; color: var(--c-text-heading); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .hp-cat--active > .hp-cat__head .hp-cat__name { color: var(--c-accent); }
+    .hp-cat__badge {
+      font-size: 10px; font-weight: 600;
+      background: var(--c-surface-alt); padding: 1px 7px;
+      border-radius: 8px; color: var(--c-text-muted); flex-shrink: 0;
+    }
+    .hp-cat--active > .hp-cat__head .hp-cat__badge { background: rgba(59,130,246,0.15); color: var(--c-accent); }
+    .hp-cat__arrow {
+      width: 16px; height: 16px; color: var(--c-text-muted);
+      transition: transform 0.2s ease; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hp-cat__arrow svg { width: 14px; height: 14px; }
+    .hp-cat--open > .hp-cat__head .hp-cat__arrow { transform: rotate(90deg); }
+
+    /* Subcategories */
+    .hp-cat__subs { max-height: 0; overflow: hidden; transition: max-height 0.25s ease; }
+    .hp-cat--open > .hp-cat__subs { max-height: 500px; }
+    .hp-sub {
+      display: flex; align-items: center; gap: 8px;
+      padding: 5px 16px 5px 52px; margin: 1px 8px;
+      border-radius: var(--radius-sm);
+      cursor: pointer; transition: all var(--transition);
+      font-size: 12.5px; color: var(--c-text-secondary); user-select: none;
+    }
+    .hp-sub:hover { background: var(--c-surface-alt); color: var(--c-text-heading); }
+    .hp-sub--active { background: var(--c-accent-light); color: var(--c-accent); font-weight: 500; }
+    .hp-sub__dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--c-text-muted); flex-shrink: 0;
+      transition: background var(--transition);
+    }
+    .hp-sub--active .hp-sub__dot { background: var(--c-accent); }
+    .hp-sub__name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .hp-sub__count { font-size: 10px; color: var(--c-text-muted); flex-shrink: 0; }
+    .hp-sub--active .hp-sub__count { color: var(--c-accent); }
+
+    /* === Content === */
+    .hp-content {
+      flex: 1; min-width: 0;
+      overflow-y: auto;
+      display: flex; flex-direction: column;
+    }
+    .hp-content__inner { flex: 1; padding: 24px 32px 0; }
+    .hp-content__bar {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 16px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .hp-content__path {
+      font-size: 12px; color: var(--c-text-muted);
+      display: flex; align-items: center; gap: 4px; flex: 1; min-width: 0;
+    }
+    .hp-content__path svg { width: 12px; height: 12px; flex-shrink: 0; color: var(--c-text-muted); }
+    .hp-content__path-cat { font-weight: 600; color: var(--c-text-secondary); }
+    .hp-content__path-sub { font-weight: 600; color: var(--c-text-heading); }
+    .hp-content__count { font-size: 11px; color: var(--c-text-muted); flex-shrink: 0; }
+
+    /* Page cards */
+    .hp-pages { display: flex; flex-direction: column; gap: 8px; }
+    .hp-page {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 18px; background: var(--c-surface);
+      border-radius: var(--radius-md);
+      text-decoration: none; color: inherit;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .hp-page:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-1px); }
+    .hp-page__icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .hp-page__icon svg { width: 16px; height: 16px; }
+    .hp-page__body { flex: 1; min-width: 0; }
+    .hp-page__title { font-size: 14px; font-weight: 600; color: var(--c-text-heading); line-height: var(--lh-tight); }
+    .hp-page__desc {
+      font-size: 12px; color: var(--c-text-secondary); margin-top: 2px;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .hp-page__meta { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+    .hp-page__tag {
+      display: inline-block; font-size: 10px; padding: 1px 6px;
+      border-radius: 3px; background: var(--c-surface-alt);
+      color: var(--c-text-muted); font-weight: 500;
+    }
+    .hp-page__date { font-size: 11px; color: var(--c-text-muted); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+
+    /* Empty / Loading */
+    .hp-empty { text-align: center; padding: 64px 20px; color: var(--c-text-muted); font-size: 13px; }
+
+    /* Mobile toggle */
+    .hp-toggle {
+      position: fixed; left: 0; top: 50%; transform: translateY(-50%);
+      z-index: 90; width: 24px; height: 48px;
+      background: var(--c-surface); border: 1px solid var(--c-border);
+      border-left: none; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      box-shadow: var(--shadow-md); cursor: pointer;
+      display: none; align-items: center; justify-content: center;
+      color: var(--c-text-muted); transition: all var(--transition);
+    }
+    .hp-toggle:hover { color: var(--c-accent); box-shadow: var(--shadow-lg); }
+    .hp-toggle svg { width: 14px; height: 14px; }
+    .hp-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.25); z-index: 149; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hp-sidebar {
+        position: fixed; left: 0; top: 52px; bottom: 0;
+        z-index: 150; transform: translateX(-100%);
+        box-shadow: var(--shadow-lg);
+      }
+      .hp-sidebar--open { transform: translateX(0); }
+      .hp-toggle { display: flex; }
+      .hp-content__inner { padding: 20px 16px 0; }
+      .hp-page__desc { display: none; }
+      .hp-header { padding: 0 16px; }
+      .hp-header__desc { display: none; }
+    }
+
+    /* === Iframe viewer === */
+    .hp-viewer { display:none; flex-direction:column; flex:1; min-width:0; }
+    .hp-viewer.active { display:flex; }
+    .hp-viewer__bar {
+      display:flex; align-items:center; gap:8px;
+      padding:8px 16px; background:var(--c-surface);
+      border-bottom:1px solid var(--c-border);
+    }
+    .hp-viewer__back {
+      display:flex; align-items:center; gap:4px;
+      background:none; border:1px solid var(--c-border);
+      border-radius:var(--radius-sm); padding:5px 12px;
+      font-size:12px; font-weight:600; color:var(--c-text-secondary);
+      cursor:pointer; transition:all var(--transition);
+    }
+    .hp-viewer__back:hover { background:var(--c-surface-alt); color:var(--c-text-heading); }
+    .hp-viewer__back svg { width:14px; height:14px; }
+    .hp-viewer__title { flex:1; font-size:13px; font-weight:600; color:var(--c-text-heading); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .hp-viewer__actions { display:flex; gap:6px; flex-shrink:0; }
+    .hp-viewer__btn {
+      display:flex; align-items:center; gap:4px;
+      background:none; border:1px solid var(--c-border);
+      border-radius:var(--radius-sm); padding:5px 10px;
+      font-size:11px; font-weight:500; color:var(--c-text-muted);
+      cursor:pointer; transition:all var(--transition);
+    }
+    .hp-viewer__btn:hover { background:var(--c-surface-alt); color:var(--c-text-heading); }
+    .hp-viewer__btn svg { width:13px; height:13px; }
+    .hp-viewer__frame { flex:1; border:none; background:#fff; }
+    .hp-viewer__toast {
+      position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+      background:var(--c-elevated); color:var(--c-text-on-dark);
+      padding:8px 20px; border-radius:20px; font-size:13px; font-weight:500;
+      opacity:0; transition:all .3s ease; pointer-events:none; z-index:999;
+    }
+    .hp-viewer__toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+    /* === Batch Select Mode === */
+    .hp-batch-bar {
+      display:none; position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
+      z-index:200; background:var(--c-elevated); color:var(--c-text-on-dark);
+      padding:10px 20px; border-radius:14px;
+      box-shadow:0 8px 32px rgba(0,0,0,0.2);
+      align-items:center; gap:14px; font-size:13px; font-weight:500;
+    }
+    .hp-batch-bar.active { display:flex; }
+    .hp-batch-bar__count { white-space:nowrap; }
+    .hp-batch-bar__btn {
+      padding:6px 16px; border-radius:8px; border:none;
+      font-size:12px; font-weight:600; cursor:pointer; transition:all 0.15s;
+    }
+    .hp-batch-bar__cancel { background:rgba(255,255,255,0.15); color:var(--c-text-on-dark); }
+    .hp-batch-bar__cancel:hover { background:rgba(255,255,255,0.25); }
+    .hp-batch-bar__submit { background:var(--c-accent); color:#fff; }
+    .hp-batch-bar__submit:hover { background:#2563eb; }
+    .hp-batch-bar__submit:disabled { opacity:0.4; cursor:not-allowed; }
+    .hp-batch-bar__delete { background:var(--c-rose, #f43f5e); color:#fff; }
+    .hp-batch-bar__delete:hover { background:#e11d48; }
+    .hp-batch-bar__delete:disabled { opacity:0.4; cursor:not-allowed; }
+
+    .hp-page__check {
+      display:none; width:20px; height:20px; border-radius:6px;
+      border:2px solid var(--c-border); background:var(--c-surface);
+      cursor:pointer; flex-shrink:0; transition:all 0.15s;
+      align-items:center; justify-content:center;
+    }
+    .hp-page__check:hover { border-color:var(--c-accent); }
+    .hp-page__check.checked { background:var(--c-accent); border-color:var(--c-accent); }
+    .hp-page__check.checked::after { content:''; display:block; width:5px; height:9px; border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg) translateY(-1px); }
+    .batch-mode .hp-page__check { display:flex; }
+    .batch-mode .hp-page { cursor:grab; user-select:none; transition:box-shadow var(--transition),transform var(--transition),opacity var(--transition); }
+    .batch-mode .hp-page.selected { box-shadow:0 0 0 2px var(--c-rose, #f43f5e),0 4px 12px rgba(0,0,0,0.08); }
+    .batch-mode .hp-page.dragging { opacity:0.4; transform:scale(0.97); }
+    .batch-mode .hp-page.moving { box-shadow:0 0 0 2px var(--c-accent),0 4px 12px rgba(0,0,0,0.08); }
+
+    /* Drop zone highlight on sidebar */
+    .hp-cat__head.drag-over,
+    .hp-cat__head.drag-over-valid {
+      background:var(--c-accent-light) !important;
+      box-shadow:inset 0 0 0 2px var(--c-accent);
+      transition:all 0.15s;
+    }
+    .hp-cat__head.drag-over-valid::after {
+      content:'移动到此处';
+      font-size:11px; font-weight:600; color:var(--c-accent);
+      margin-left:auto; padding-left:8px;
+    }
+
+    .hp-manage-btn {
+      background:none; border:1px solid var(--c-border); border-radius:var(--radius-sm);
+      padding:4px 10px; font-size:11px; font-weight:500; color:var(--c-text-muted);
+      cursor:pointer; transition:all var(--transition); display:flex; align-items:center; gap:4px;
+    }
+    .hp-manage-btn:hover { background:var(--c-surface-alt); color:var(--c-text-heading); border-color:var(--c-text-muted); }
+    .hp-manage-btn svg { width:13px; height:13px; }
+
+    .hp-delete-modal {
+      display:none; position:fixed; inset:0; z-index:300;
+      background:rgba(0,0,0,0.4); align-items:center; justify-content:center;
+    }
+    .hp-delete-modal.active { display:flex; }
+    .hp-delete-modal__box {
+      background:var(--c-surface); border-radius:16px; padding:24px;
+      max-width:680px; width:92%; max-height:80vh; overflow:hidden;
+      box-shadow:0 24px 48px rgba(0,0,0,0.2);
+      display:flex; flex-direction:column;
+    }
+    .hp-delete-modal__header {
+      font-size:16px; font-weight:700; color:var(--c-text-heading); margin-bottom:4px;
+    }
+    .hp-delete-modal__body {
+      display:grid; grid-template-columns:1fr 1fr; gap:16px; flex:1; min-height:0; overflow:hidden;
+    }
+    .hp-delete-modal__summary {
+      background:var(--c-surface-alt); border-radius:10px; padding:16px;
+      overflow-y:auto;
+    }
+    .hp-delete-modal__summary-title {
+      font-size:12px; font-weight:600; color:var(--c-text-muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:10px;
+    }
+    .hp-delete-modal__summary-item {
+      display:flex; align-items:center; gap:8px; padding:6px 0;
+      border-bottom:1px solid var(--c-border-light); font-size:13px; color:var(--c-text-secondary);
+    }
+    .hp-delete-modal__summary-item:last-child { border-bottom:none; }
+    .hp-delete-modal__summary-badge {
+      display:inline-flex; align-items:center; justify-content:center;
+      width:20px; height:20px; border-radius:5px; font-size:10px; font-weight:700; flex-shrink:0;
+    }
+    .hp-delete-modal__summary-badge--move { background:var(--c-accent-light); color:var(--c-accent); }
+    .hp-delete-modal__summary-badge--del { background:rgba(244,63,94,0.12); color:var(--c-rose, #f43f5e); }
+    .hp-delete-modal__summary-label { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .hp-delete-modal__summary-arrow {
+      font-size:11px; color:var(--c-text-muted); flex-shrink:0;
+    }
+    .hp-delete-modal__cmd-wrap {
+      display:flex; flex-direction:column; gap:8px; min-height:0;
+    }
+    .hp-delete-modal__cmd-label {
+      font-size:12px; font-weight:600; color:var(--c-text-muted); text-transform:uppercase; letter-spacing:0.05em;
+    }
+    .hp-delete-modal__cmd {
+      background:var(--c-elevated); border-radius:10px; padding:14px 16px; font-size:12px;
+      font-family:'JetBrains Mono',monospace; color:var(--c-text-on-dark);
+      line-height:1.7; word-break:break-all; flex:1; min-height:0;
+      overflow-y:auto; white-space:pre-wrap;
+    }
+    .hp-delete-modal__actions { display:flex; gap:8px; justify-content:flex-end; margin-top:16px; }
+    .hp-delete-modal__btn {
+      padding:8px 20px; border-radius:8px; border:none;
+      font-size:13px; font-weight:600; cursor:pointer; transition:all 0.15s;
+    }
+    .hp-delete-modal__copy { background:var(--c-accent); color:#fff; }
+    .hp-delete-modal__copy:hover { background:#2563eb; }
+    .hp-delete-modal__close { background:var(--c-surface-alt); color:var(--c-text-secondary); border:1px solid var(--c-border); }
+    .hp-delete-modal__close:hover { background:var(--c-border); }
+    @media (max-width:600px) {
+      .hp-delete-modal__body { grid-template-columns:1fr; }
+      .hp-delete-modal__box { max-width:95%; padding:20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="hp-header">
+    <div class="hp-header__brand">
+      <div class="hp-header__logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <span class="hp-header__name">{{SITE_NAME}}</span>
+      <span class="hp-header__sep">·</span>
+      <span class="hp-header__desc">报告与研究成果</span>
+    </div>
+    <span class="hp-header__total" id="totalBadge">加载中</span>
+    <button class="hp-manage-btn" id="manageBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+      管理
+    </button>
+  </header>
+
+  <!-- Layout -->
+  <div class="hp-layout">
+    <aside class="hp-sidebar" id="sidebar"><div id="tree"></div></aside>
+    <button class="hp-toggle" id="toggle">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
+    </button>
+    <div class="hp-overlay" id="overlay"></div>
+    <main class="hp-content">
+      <div class="hp-content__inner">
+        <div class="hp-content__bar" id="bar"></div>
+        <div class="hp-pages" id="list"><div class="hp-empty">加载中...</div></div>
+      </div>
+      <div class="hp-viewer" id="viewer">
+        <div class="hp-viewer__bar">
+          <button class="hp-viewer__back" id="viewerBack">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            返回
+          </button>
+          <span class="hp-viewer__title" id="viewerTitle"></span>
+          <div class="hp-viewer__actions">
+            <button class="hp-viewer__btn" id="viewerCopy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              复制地址
+            </button>
+            <button class="hp-viewer__btn" id="viewerOpen">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+              新窗口
+            </button>
+          </div>
+        </div>
+        <iframe class="hp-viewer__frame" id="viewerFrame" sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe>
+      </div>
+      <div class="hp-viewer__toast" id="viewerToast"></div>
+      <div class="hp-batch-bar" id="batchBar">
+        <span class="hp-batch-bar__count" id="batchCount">已选 0 项</span>
+        <span class="hp-batch-bar__hint" id="batchHint" style="font-size:11px;color:rgba(255,255,255,0.5)"></span>
+        <button class="hp-batch-bar__btn hp-batch-bar__submit" id="batchSubmit" disabled>生成指令</button>
+        <button class="hp-batch-bar__btn hp-batch-bar__cancel" id="batchCancel">取消</button>
+      </div>
+      <div class="hp-delete-modal" id="deleteModal">
+        <div class="hp-delete-modal__box">
+          <div class="hp-delete-modal__header" id="modalHeader">执行指令</div>
+          <div class="hp-delete-modal__body">
+            <div class="hp-delete-modal__summary" id="modalSummary"></div>
+            <div class="hp-delete-modal__cmd-wrap">
+              <div class="hp-delete-modal__cmd-label">指令内容</div>
+              <div class="hp-delete-modal__cmd" id="deleteCmd"></div>
+            </div>
+          </div>
+          <div class="hp-delete-modal__actions">
+            <button class="hp-delete-modal__btn hp-delete-modal__close" id="deleteClose">取消</button>
+            <button class="hp-delete-modal__btn hp-delete-modal__copy" id="deleteCopy">复制指令</button>
+          </div>
+        </div>
+      </div>
+      <footer class="page-footer">
+        <div class="page-footer__logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <a href="index.html" class="page-footer__link">{{SITE_NAME}}</a>
+        <div class="page-footer__sep"></div>
+        <span>报告与研究成果</span>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+  (function(){
+    'use strict';
+
+    /* --- Shared state --- */
+    var siteBase = '.', data = null, ORDER = [], NAMES = {}, COLORS = {}, ICONS = {}, filter = {type:'all',key:'',sub:''};
+
+    /* --- Config (defaults, overridden by index.json categories) --- */
+    var DEFAULTS = {
+      order: ['research','analysis','project','summary','comparison','tutorial','other'],
+      names: {research:'深度研究',analysis:'数据分析',project:'项目作品',summary:'内容摘要',comparison:'对比评测',tutorial:'教程指南',other:'其他'},
+      colors: {
+        research:{c:'var(--c-amber)',b:'var(--c-amber-light)'},
+        analysis:{c:'var(--c-green)',b:'var(--c-green-light)'},
+        project:{c:'var(--c-accent)',b:'var(--c-accent-light)'},
+        summary:{c:'var(--c-purple)',b:'var(--c-purple-light)'},
+        comparison:{c:'var(--c-accent)',b:'var(--c-accent-light)'},
+        tutorial:{c:'var(--c-orange)',b:'var(--c-orange-light)'},
+        other:{c:'var(--c-text-muted)',b:'var(--c-surface-alt)'}
+      },
+      icons: {
+        research:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>',
+        analysis:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>',
+        project:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>',
+        project:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>',
+      summary:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg>',
+        comparison:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></svg>',
+        tutorial:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
+        other:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>'
+      }
+    };
+    /* var ORDER, NAMES, COLORS, ICONS; — moved to top */
+    var CHEVRON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>';
+    var GRID = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>';
+    var CHEVRON_RIGHT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>';
+
+    /* var data, filter — moved to top */
+
+    /* --- Helpers --- */
+    function esc(s){ var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+    function rel(url){ if(url.startsWith('http')){var u=new URL(url);return u.hostname===location.hostname?u.pathname:url;} return url; }
+    function dateShort(d){ return d.slice(2).replace(/-/g,'.'); }
+
+    /* --- Init --- */
+    async function init(){
+      try {
+        siteBase = (document.querySelector('meta[name="site-base"]')||{}).content || '.';
+        var r = await fetch('index.json');
+        data = await r.json();
+        /* Build ORDER/NAMES/COLORS/ICONS from index.json categories */
+
+        var cats = data.categories || {};
+        /* Auto-extract categories from pages, merge with index.json config */
+        var catSet = {};
+        (data.pages||[]).forEach(function(p){ if(p.category) catSet[p.category]=1; });
+        /* Append any cats defined in config but unused */
+        Object.keys(cats).forEach(function(k){ catSet[k]=1; });
+        ORDER = Object.keys(catSet);
+        NAMES = {}; COLORS = {}; ICONS = {};
+        ORDER.forEach(function(k){
+          var cat = cats[k] || {};
+          NAMES[k] = cat.name || DEFAULTS.names[k] || k;
+          if(cat.color) COLORS[k] = cat.color;
+          else if(DEFAULTS.colors[k]) COLORS[k] = DEFAULTS.colors[k];
+          else COLORS[k] = {c:'var(--c-text-muted)',b:'var(--c-surface-alt)'};
+          if(cat.svg) ICONS[k] = cat.svg;
+          else if(DEFAULTS.icons[k]) ICONS[k] = DEFAULTS.icons[k];
+          else ICONS[k] = DEFAULTS.icons.other || DEFAULTS.icons.project;
+        });
+        document.getElementById('totalBadge').textContent = data.pages.length + ' 篇';
+        render();
+        restoreFromHash();
+      } catch(e){
+        ORDER = DEFAULTS.order; NAMES = DEFAULTS.names; COLORS = DEFAULTS.colors; ICONS = DEFAULTS.icons;
+        document.getElementById('list').innerHTML = '<div class="hp-empty" style="white-space:pre-wrap;font-size:12px;padding:16px;">加载失败，请刷新页面</div>';
+        console.error('[init error]', e);
+      }
+    }
+
+    /* --- Render all --- */
+    function render(){
+      renderTree();
+      renderList();
+    }
+
+    /* --- Sidebar tree --- */
+    function renderTree(){
+      var el = document.getElementById('tree');
+      var grouped = {};
+      data.pages.forEach(function(p){
+        if(!grouped[p.category]) grouped[p.category]=[];
+        grouped[p.category].push(p);
+      });
+
+      var h = '';
+
+      // "全部" link
+      h += '<div class="hp-all'+(filter.type==='all'?' hp-all--active':'')+'" data-a="all">';
+      h += GRID+'<span>全部内容</span><span class="hp-all__count">'+data.pages.length+'</span></div>';
+      h += '<div class="hp-divider"></div>';
+
+      // Categories
+      ORDER.forEach(function(key){
+        var pages = grouped[key];
+        if(!pages||!pages.length) return;
+        var col = COLORS[key]||COLORS.other;
+        var ico = ICONS[key]||ICONS.other;
+        var name = NAMES[key]||key;
+
+        // Subcategories
+        var subs = {};
+        pages.forEach(function(p){
+          var s=(p.subcategory||'').trim();
+          if(s){ if(!subs[s]) subs[s]=[]; subs[s].push(p); }
+        });
+        var hasSubs = Object.keys(subs).length > 0;
+        var isCatActive = filter.type==='cat' && filter.key===key;
+        var isSubActive = filter.type==='sub' && filter.key===key;
+        var isOpen = isCatActive || isSubActive;
+
+        h += '<div class="hp-cat'+(isCatActive?' hp-cat--active':'')+(isOpen?' hp-cat--open':'')+'">';
+        h += '<div class="hp-cat__head" data-a="cat" data-k="'+key+'">';
+        h += '<div class="hp-cat__icon" style="background:'+col.b+';color:'+col.c+'">'+ico+'</div>';
+        h += '<span class="hp-cat__name">'+esc(name)+'</span>';
+        h += '<span class="hp-cat__badge">'+pages.length+'</span>';
+        if(hasSubs) h += '<span class="hp-cat__arrow">'+CHEVRON+'</span>';
+        h += '</div>';
+
+        if(hasSubs){
+          h += '<div class="hp-cat__subs">';
+          Object.keys(subs).sort().forEach(function(sn){
+            var active = filter.type==='sub' && filter.key===key && filter.sub===sn;
+            h += '<div class="hp-sub'+(active?' hp-sub--active':'')+'" data-a="sub" data-k="'+key+'" data-s="'+esc(sn)+'">';
+            h += '<span class="hp-sub__dot"></span>';
+            h += '<span class="hp-sub__name">'+esc(sn)+'</span>';
+            h += '<span class="hp-sub__count">'+subs[sn].length+'</span>';
+            h += '</div>';
+          });
+          h += '</div>';
+        }
+        h += '</div>';
+      });
+
+      el.innerHTML = h;
+    }
+
+    /* --- Page list --- */
+    function renderList(){
+      var bar = document.getElementById('bar');
+      var list = document.getElementById('list');
+      var pages = [], path = '';
+
+      if(filter.type==='all'){
+        pages = data.pages.slice().sort(function(a,b){ return b.date.localeCompare(a.date); });
+        path = '<span class="hp-content__path-cat">全部内容</span>';
+      } else if(filter.type==='cat'){
+        pages = data.pages.filter(function(p){ return p.category===filter.key; }).sort(function(a,b){ return b.date.localeCompare(a.date); });
+        path = '<span class="hp-content__path-cat">'+esc(NAMES[filter.key]||filter.key)+'</span>';
+      } else if(filter.type==='sub'){
+        pages = data.pages.filter(function(p){ return p.category===filter.key && (p.subcategory||'').trim()===filter.sub; }).sort(function(a,b){ return b.date.localeCompare(a.date); });
+        path = '<span class="hp-content__path-cat">'+esc(NAMES[filter.key]||filter.key)+'</span>';
+        path += CHEVRON_RIGHT;
+        path += '<span class="hp-content__path-sub">'+esc(filter.sub)+'</span>';
+      }
+
+      bar.innerHTML = '<div class="hp-content__path">'+path+'</div><span class="hp-content__count">'+pages.length+' 篇</span>';
+
+      if(!pages.length){
+        list.innerHTML = '<div class="hp-empty">暂无内容</div>';
+        return;
+      }
+
+      list.innerHTML = pages.map(function(p,i){
+        var col = COLORS[p.category]||COLORS.other;
+        var ico = ICONS[p.category]||ICONS.other;
+        var sub = (p.subcategory||'').trim();
+        var _u=p.url||(siteBase+'/'+p.category+'/'+p.filename);var _e=_u.startsWith('http')&&!_u.includes(location.hostname);return '\u003ca class="hp-page" href="'+rel(_u)+'"'+(_e?' data-ext="'+esc(_u)+'"':'')+' data-idx="'+i+'"\u003e'
+          +'<div class="hp-page__check"></div>'+'<div class="hp-page__icon" style="background:'+col.b+';color:'+col.c+'">'+ico+'</div>'
+          +'<div class="hp-page__body">'
+          +'<div class="hp-page__title">'+esc(p.title)+'</div>'
+          +(p.desc?'<div class="hp-page__desc">'+esc(p.desc)+'</div>':'')
+          +(sub?'<div class="hp-page__meta"><span class="hp-page__tag">'+esc(sub)+'</span></div>':'')
+          +'</div>'
+          +'<span class="hp-page__date">'+dateShort(p.date)+'</span>'
+          +'</a>';
+      }).join('');
+    }
+
+    /* --- Mobile sidebar --- */
+    function openSB(){
+      document.getElementById('sidebar').classList.add('hp-sidebar--open');
+      document.getElementById('overlay').style.display='block';
+    }
+    function closeSB(){
+      document.getElementById('sidebar').classList.remove('hp-sidebar--open');
+      document.getElementById('overlay').style.display='none';
+    }
+
+    /* --- Events --- */
+    document.getElementById('tree').addEventListener('click', function(e){
+      var t = e.target.closest('[data-a]');
+      if(!t) return;
+      var a = t.dataset.a;
+      if(a==='all') filter={type:'all'};
+      else if(a==='cat') filter={type:'cat',key:t.dataset.k};
+      else if(a==='sub') filter={type:'sub',key:t.dataset.k,sub:t.dataset.s};
+      closeViewer();
+      render();
+      closeSB();
+    });
+
+    document.getElementById('toggle').addEventListener('click', function(){
+      document.getElementById('sidebar').classList.contains('hp-sidebar--open') ? closeSB() : openSB();
+    });
+    document.getElementById('overlay').addEventListener('click', closeSB);
+
+    /* --- Iframe viewer --- */
+    var viewerEl=document.getElementById('viewer');
+    var viewerFrame=document.getElementById('viewerFrame');
+    var viewerTitle=document.getElementById('viewerTitle');
+    var viewerToast=document.getElementById('viewerToast');
+    var currentViewerUrl='';
+
+    function openViewer(url,title){
+      currentViewerUrl=url;
+      viewerTitle.textContent=title;
+      document.title=title+' — {{SITE_NAME}}';
+      viewerFrame.src=url;
+      viewerEl.classList.add('active');
+      document.querySelector('.hp-content__inner').style.display='none';
+      document.querySelector('.page-footer').style.display='none';
+      // Use hash so refresh always loads index.html first, then reopens viewer
+      history.replaceState(null,title,'#v='+encodeURIComponent(url));
+    }
+    function closeViewer(){
+      viewerEl.classList.remove('active');
+      viewerFrame.src='';
+      currentViewerUrl='';
+      document.querySelector('.hp-content__inner').style.display='';
+      document.querySelector('.page-footer').style.display='';
+      history.replaceState(null,'',location.pathname);
+    }
+    function showToast(msg){
+      viewerToast.textContent=msg;
+      viewerToast.classList.add('show');
+      setTimeout(function(){viewerToast.classList.remove('show');},1800);
+    }
+
+    document.getElementById('viewerBack').addEventListener('click',closeViewer);
+    document.getElementById('viewerCopy').addEventListener('click',function(){
+      if(!currentViewerUrl)return;
+      var absUrl=currentViewerUrl.startsWith('http')?currentViewerUrl:new URL(currentViewerUrl,location.href).href;
+      navigator.clipboard.writeText(absUrl).then(function(){showToast('已复制到剪贴板');}).catch(function(){showToast('复制失败');});
+    });
+    document.getElementById('viewerOpen').addEventListener('click',function(){
+      if(!currentViewerUrl)return;
+      var absUrl=currentViewerUrl.startsWith('http')?currentViewerUrl:new URL(currentViewerUrl,location.href).href;
+      window.open(absUrl,'_blank');
+    });
+    window.addEventListener('hashchange',function(){
+      var hash=location.hash;
+      if(hash.startsWith('#v=')){
+        var url=decodeURIComponent(hash.slice(3));
+        if(url&&!currentViewerUrl){
+          // Find title from page list
+          var link=document.querySelector('.hp-page[href="'+url+'"]');
+          var title=link?link.querySelector('.hp-page__title').textContent:url;
+          openViewer(url,title);
+        }
+      } else if(currentViewerUrl){
+        closeViewer();
+      }
+    });
+    function restoreFromHash(){
+      if(!location.hash.startsWith('#v=')) return;
+      var url=decodeURIComponent(location.hash.slice(3));
+      var title=url;
+      // Find title from index.json data
+      if(data&&data.pages){
+        for(var i=0;i<data.pages.length;i++){
+          var p=data.pages[i];
+          var pUrl=p.url||(data.site.baseUrl+'/'+p.category+'/'+p.filename);
+          if(pUrl===url||pUrl.endsWith('/'+url)||url.endsWith(p.filename)){
+            title=p.title; break;
+          }
+        }
+      }
+      openViewer(url,title);
+    }
+
+    window.addEventListener('hashchange',function(){
+      if(location.hash.startsWith('#v=')){
+        var url=decodeURIComponent(location.hash.slice(3));
+        if(!currentViewerUrl) restoreFromHash();
+      } else if(currentViewerUrl){
+        closeViewer();
+      }
+    });
+
+    window.addEventListener('message',function(e){
+      if(e.data&&e.data.type==='claw-navigate-home'){closeViewer();}
+    });
+
+    document.getElementById('list').addEventListener('click',function(e){
+      if(batchMode){
+        var card=e.target.closest('.hp-page');
+        if(!card)return;
+        e.preventDefault();
+        var idx=card.dataset.idx;
+        if(idx===undefined) return;
+        idx=parseInt(idx);
+        toggleSelect(idx,card);
+        return;
+      }
+      var a=e.target.closest('.hp-page');
+      if(!a)return;
+      e.preventDefault();
+      var url=a.getAttribute('href')||a.dataset.ext;
+      var title=a.querySelector('.hp-page__title').textContent;
+      openViewer(url,title);
+    });
+
+    /* Make page cards draggable in management mode */
+    document.getElementById('list').addEventListener('mousedown',function(e){
+      if(!batchMode) return;
+      var card=e.target.closest('.hp-page');
+      if(!card || e.target.closest('.hp-page__check')) return;
+      card.setAttribute('draggable','true');
+    });
+    document.getElementById('list').addEventListener('mouseup',function(){
+      if(!batchMode) return;
+      document.querySelectorAll('.hp-page[draggable]').forEach(function(c){
+        c.setAttribute('draggable','false');
+      });
+    });
+
+    /* --- Batch Select --- */
+    var batchMode=false;
+    var selectedSet={};       // idx -> 'delete'
+    var moveMap={};           // idx -> targetCategoryKey
+    var batchBar=document.getElementById('batchBar');
+    var batchCountEl=document.getElementById('batchCount');
+    var batchHintEl=document.getElementById('batchHint');
+    var batchSubmitBtn=document.getElementById('batchSubmit');
+    var batchCancelBtn=document.getElementById('batchCancel');
+    var deleteModal=document.getElementById('deleteModal');
+    var deleteCmd=document.getElementById('deleteCmd');
+    var modalHeader=document.getElementById('modalHeader');
+    var modalSummary=document.getElementById('modalSummary');
+    var manageBtn=document.getElementById('manageBtn');
+
+    manageBtn.addEventListener('click',function(){
+      batchMode=!batchMode;
+      if(batchMode){
+        document.getElementById('list').classList.add('batch-mode');
+        batchBar.classList.add('active');
+        manageBtn.style.borderColor='var(--c-accent)';
+        manageBtn.style.color='var(--c-accent)';
+        manageBtn.textContent='管理模式';
+        selectedSet={};
+        moveMap={};
+        updateBatchUI();
+      } else {
+        exitBatchMode();
+      }
+    });
+
+    batchCancelBtn.addEventListener('click',exitBatchMode);
+
+    /* ESC exits management mode */
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape' && batchMode){
+        e.preventDefault();
+        exitBatchMode();
+      }
+    });
+
+    function exitBatchMode(){
+      batchMode=false;
+      selectedSet={};
+      moveMap={};
+      document.getElementById('list').classList.remove('batch-mode');
+      batchBar.classList.remove('active');
+      manageBtn.style.borderColor='';
+      manageBtn.style.color='';
+      manageBtn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg> 管理';
+      document.querySelectorAll('.hp-page__check.checked').forEach(function(c){c.classList.remove('checked');});
+      document.querySelectorAll('.hp-page.selected').forEach(function(c){c.classList.remove('selected');});
+      document.querySelectorAll('.hp-page.moving').forEach(function(c){c.classList.remove('moving');});
+      updateBatchUI();
+    }
+
+    function toggleSelect(idx,card){
+      var k=String(idx);
+      if(selectedSet[k]){
+        delete selectedSet[k];
+        card.classList.remove('selected');
+        card.querySelector('.hp-page__check').classList.remove('checked');
+      } else {
+        selectedSet[k]=true;
+        card.classList.add('selected');
+        card.querySelector('.hp-page__check').classList.add('checked');
+      }
+      updateBatchUI();
+    }
+
+    function updateBatchUI(){
+      var nDel=Object.keys(selectedSet).length;
+      var nMov=Object.keys(moveMap).length;
+      var nTotal=nDel+nMov;
+      batchCountEl.textContent='已选 '+nTotal+' 项';
+      var hints=[];
+      if(nMov) hints.push(nMov+' 项待移动');
+      if(nDel) hints.push(nDel+' 项待删除');
+      batchHintEl.textContent=hints.join('，');
+      batchSubmitBtn.disabled=nTotal===0;
+    }
+
+    /* --- Drag & Drop (management mode) --- */
+    var dragIdx=null;
+    var dragCard=null;
+
+    document.getElementById('list').addEventListener('dragstart',function(e){
+      if(!batchMode) return;
+      var card=e.target.closest('.hp-page');
+      if(!card) return;
+      dragIdx=parseInt(card.dataset.idx);
+      dragCard=card;
+      card.classList.add('dragging');
+      e.dataTransfer.effectAllowed='move';
+      e.dataTransfer.setData('text/plain',String(dragIdx));
+    });
+
+    document.getElementById('list').addEventListener('dragend',function(e){
+      if(dragCard) dragCard.classList.remove('dragging');
+      dragIdx=null; dragCard=null;
+      /* Clean up all drag-over states */
+      document.querySelectorAll('.drag-over,.drag-over-valid').forEach(function(el){
+        el.classList.remove('drag-over','drag-over-valid');
+      });
+    });
+
+    document.getElementById('tree').addEventListener('dragover',function(e){
+      if(!batchMode||dragIdx===null) return;
+      var catHead=e.target.closest('.hp-cat__head[data-k]');
+      if(!catHead) return;
+      e.preventDefault();
+      e.dataTransfer.dropEffect='move';
+      /* Remove previous highlights */
+      document.querySelectorAll('.drag-over,.drag-over-valid').forEach(function(el){
+        el.classList.remove('drag-over','drag-over-valid');
+      });
+      catHead.classList.add('drag-over','drag-over-valid');
+    });
+
+    document.getElementById('tree').addEventListener('dragleave',function(e){
+      var catHead=e.target.closest('.hp-cat__head[data-k]');
+      if(catHead && !catHead.contains(e.relatedTarget)){
+        catHead.classList.remove('drag-over','drag-over-valid');
+      }
+    });
+
+    document.getElementById('tree').addEventListener('drop',function(e){
+      if(!batchMode||dragIdx===null) return;
+      var catHead=e.target.closest('.hp-cat__head[data-k]');
+      if(!catHead) return;
+      e.preventDefault();
+      var targetCat=catHead.dataset.k;
+      /* Clean up highlights */
+      document.querySelectorAll('.drag-over,.drag-over-valid').forEach(function(el){
+        el.classList.remove('drag-over','drag-over-valid');
+      });
+      /* Get the page being dragged */
+      var pages=getFilteredPages();
+      var page=pages[dragIdx];
+      if(!page) return;
+      /* Skip if same category */
+      if(page.category===targetCat){
+        showToast('已在「'+(NAMES[targetCat]||targetCat)+'」分类中');
+        return;
+      }
+      /* Record move */
+      moveMap[String(dragIdx)]=targetCat;
+      /* If it was selected for delete, remove that */
+      delete selectedSet[String(dragIdx)];
+      /* Update card visual */
+      if(dragCard){
+        dragCard.classList.remove('selected');
+        dragCard.querySelector('.hp-page__check').classList.remove('checked');
+        dragCard.classList.add('moving');
+      }
+      updateBatchUI();
+      showToast('已标记移动到「'+(NAMES[targetCat]||targetCat)+'」，可继续操作或点击「生成指令」');
+      dragIdx=null; dragCard=null;
+    });
+
+    /* --- Submit: generate combined command --- */
+    batchSubmitBtn.addEventListener('click',function(){
+      var pages=getFilteredPages();
+      var moveItems=[];
+      var deleteItems=[];
+
+      Object.keys(moveMap).forEach(function(idx){
+        var p=pages[parseInt(idx)];
+        if(p) moveItems.push({page:p, target:moveMap[idx]});
+      });
+      Object.keys(selectedSet).forEach(function(idx){
+        var p=pages[parseInt(idx)];
+        if(p) deleteItems.push(p);
+      });
+
+      if(!moveItems.length && !deleteItems.length) return;
+
+      var total=moveItems.length+deleteItems.length;
+
+      /* Build summary panel (left) */
+      var summaryH='';
+      if(moveItems.length){
+        summaryH+='<div class="hp-delete-modal__summary-title">移动 ('+moveItems.length+')</div>';
+        moveItems.forEach(function(m){
+          summaryH+='<div class="hp-delete-modal__summary-item">';
+          summaryH+='<span class="hp-delete-modal__summary-badge hp-delete-modal__summary-badge--move">'+String.fromCharCode(8594)+'</span>';
+          summaryH+='<span class="hp-delete-modal__summary-label">'+esc(m.page.title)+'</span>';
+          summaryH+='<span class="hp-delete-modal__summary-arrow">'+esc(NAMES[m.target]||m.target)+'</span>';
+          summaryH+='</div>';
+        });
+      }
+      if(deleteItems.length){
+        summaryH+='<div class="hp-delete-modal__summary-title" style="margin-top:'+(moveItems.length?'12':'0')+'px">删除 ('+deleteItems.length+')</div>';
+        deleteItems.forEach(function(p){
+          summaryH+='<div class="hp-delete-modal__summary-item">';
+          summaryH+='<span class="hp-delete-modal__summary-badge hp-delete-modal__summary-badge--del">'+String.fromCharCode(10005)+'</span>';
+          summaryH+='<span class="hp-delete-modal__summary-label">'+esc(p.title)+'</span>';
+          summaryH+='</div>';
+        });
+      }
+      modalSummary.innerHTML=summaryH;
+
+      /* Build command (right) */
+      var lines=[];
+      lines.push('请执行以下报告管理操作：');
+      lines.push('');
+      if(moveItems.length){
+        var moveGroups={};
+        moveItems.forEach(function(m){
+          if(!moveGroups[m.target]) moveGroups[m.target]=[];
+          var ref=m.page.filename ? (m.page.category+'/'+m.page.filename) : m.page.title;
+          moveGroups[m.target].push(ref);
+        });
+        lines.push('【移动分类】');
+        Object.keys(moveGroups).forEach(function(cat){
+          lines.push('- 移动到「'+(NAMES[cat]||cat)+'」('+cat+')：');
+          moveGroups[cat].forEach(function(ref){ lines.push('  - '+ref); });
+        });
+        lines.push('');
+      }
+      if(deleteItems.length){
+        lines.push('【删除页面】');
+        deleteItems.forEach(function(p){
+          var ref=p.filename ? (p.category+'/'+p.filename) : p.title;
+          lines.push('- '+ref);
+        });
+        lines.push('');
+      }
+      deleteCmd.textContent=lines.join('\n');
+
+      modalHeader.textContent='执行指令 · 共 '+total+' 项操作';
+      deleteModal.classList.add('active');
+    });
+
+    function getFilteredPages(){
+      if(filter.type==='all') return data.pages.slice().sort(function(a,b){ return b.date.localeCompare(a.date); });
+      if(filter.type==='cat') return data.pages.filter(function(p){ return p.category===filter.key; }).sort(function(a,b){ return b.date.localeCompare(a.date); });
+      if(filter.type==='sub') return data.pages.filter(function(p){ return p.category===filter.key && (p.subcategory||'').trim()===filter.sub; }).sort(function(a,b){ return b.date.localeCompare(a.date); });
+      return [];
+    }
+
+    document.getElementById('deleteClose').addEventListener('click',function(){ deleteModal.classList.remove('active'); });
+    deleteModal.addEventListener('click',function(e){ if(e.target===deleteModal) deleteModal.classList.remove('active'); });
+    document.getElementById('deleteCopy').addEventListener('click',function(){
+      navigator.clipboard.writeText(deleteCmd.textContent).then(function(){ showToast('已复制指令'); }).catch(function(){ showToast('复制失败'); });
+      deleteModal.classList.remove('active');
+    });
+
+    /* --- Go --- */
+    init();
+  })();
+  </script>
+</body>
+</html>

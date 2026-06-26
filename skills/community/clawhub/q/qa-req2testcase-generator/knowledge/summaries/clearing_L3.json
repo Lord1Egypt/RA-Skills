@@ -1,0 +1,69 @@
+{
+  "domain": "清算托管域",
+  "level": "L3",
+  "generated_at": "2026-05-08",
+  "source_file": "clearing.md",
+  "includes_L2": true,
+  "exception_patterns": [
+    {"pattern": "数据不平", "trigger": "交易所成交数据与柜台成交数据不一致", "handling": "自动挂起，生成差异报告，人工核实后补录/修正"},
+    {"pattern": "清算超时", "trigger": "清算计算超过30min", "handling": "超时告警，自动挂起"},
+    {"pattern": "交收部分失败", "trigger": "批量交收中部分账户资金不足", "handling": "标记失败账户，其余继续交收，不产生连锁反应"},
+    {"pattern": "重复触发清算", "trigger": "定时任务重复触发同一交易日", "handling": "唯一性约束(交易日+批次号)，返回已存在批次"},
+    {"pattern": "中登接口不可用", "trigger": "中登公司系统维护/网络故障", "handling": "指数退避重试最多3次，失败后挂起告警"},
+    {"pattern": "并发冻结超额", "trigger": "同一账户多笔委托并发冻结", "handling": "数据库行锁保证原子性，可用余额不变负"},
+    {"pattern": "日切冻结不一致", "trigger": "日终清算时冻结记录与实际资金不匹配", "handling": "强制对账修复后继续"},
+    {"pattern": "港股通汇率异常", "trigger": "参考汇率获取失败或波动异常", "handling": "使用前一日汇率+标记异常，人工确认"},
+    {"pattern": "交收失败连锁", "trigger": "一个账户交收失败导致对手方也无法交收", "handling": "交收失败隔离机制，不产生连锁反应"},
+    {"pattern": "异常积压", "trigger": "大量异常同时产生(系统故障后)", "handling": "优先级排序和批量处理能力"},
+    {"pattern": "零股卖出无对手盘", "trigger": "零股数量极少长时间无法成交", "handling": "当日未成交自动撤单"},
+    {"pattern": "投资超限", "trigger": "管理人投资比例超出合同约定", "handling": "实时检测超限并发出警告，T+1日前通知管理人"}
+  ],
+  "intermediate_state_handling": [
+    {"state": "数据采集中", "max_duration": "10min", "rules": "超时自动转入异常挂起"},
+    {"state": "清算计算中", "max_duration": "30min", "rules": "超时自动转入异常挂起，记录检查点支持断点恢复"},
+    {"state": "交收中", "max_duration": "1h", "rules": "超时自动转入异常挂起"},
+    {"state": "冻结请求中/解冻请求中", "max_duration": "100ms", "rules": "超过1s触发告警，可能存在数据库锁等待"},
+    {"state": "部分解冻", "max_duration": "长期(直到委托终结)", "rules": "稳定中间态，可长期存在"},
+    {"state": "对账中", "max_duration": "1-2小时", "rules": "涉及多方数据比对"},
+    {"state": "对账差异", "max_duration": "必须在T+1日16:00前处理", "rules": "超期升级告警"},
+    {"state": "异常-处理中", "max_duration": "2小时", "rules": "超时自动升级至上级"},
+    {"state": "异常-待确认", "max_duration": "4小时", "rules": "超时自动提醒确认人"}
+  ],
+  "boundary_values": [
+    {"field": "清算触发时间", "boundary": "15:30(收盘后)", "behavior": "允许触发"},
+    {"field": "清算触发时间", "boundary": "交易时段内", "behavior": "拒绝(E_MARKET_OPEN)"},
+    {"field": "冻结金额", "boundary": "恰好等于可用余额", "behavior": "允许冻结"},
+    {"field": "冻结金额", "boundary": "超过可用余额0.01元", "behavior": "冻结失败"},
+    {"field": "零股判定", "boundary": "持仓150股(送股10送3后195股)", "behavior": "零股95股正确标记"},
+    {"field": "零股买入", "boundary": "买入50股(不足100股)", "behavior": "系统拒绝"},
+    {"field": "港股通交收日", "boundary": "T+2(跳过非交易日)", "behavior": "正确计算交收日期"},
+    {"field": "估值偏差", "boundary": "差异恰好0.01%", "behavior": "触发对账流程"},
+    {"field": "估值偏差", "boundary": "差异0.009%", "behavior": "不触发"},
+    {"field": "异常处理时限", "boundary": "恰好2小时", "behavior": "触发升级"},
+    {"field": "对账差异处理", "boundary": "连续3天未处理", "behavior": "升级告警至部门负责人"},
+    {"field": "资金头寸预警线", "boundary": "可用<500万", "behavior": "触发预警"},
+    {"field": "资金头寸紧张线", "boundary": "可用<100万", "behavior": "触发紧张状态"}
+  ],
+  "idempotency_retry_rules": [
+    {"operation": "清算批次创建", "idempotent_key": "交易日期 + 批次序号", "retry_strategy": "防止重复创建，重复触发返回已存在批次"},
+    {"operation": "交收指令", "idempotent_key": "settlementId", "retry_strategy": "重复执行返回已有结果"},
+    {"operation": "资金冻结", "idempotent_key": "orderId + freezeType", "retry_strategy": "重复请求返回已有记录，不重复扣减；不建议异步重试"},
+    {"operation": "资金解冻", "idempotent_key": "freezeRecordId", "retry_strategy": "幂等，不重复释放"},
+    {"operation": "估值计算", "idempotent_key": "productCode + valuationDate", "retry_strategy": "重新估值覆盖当日结果(版本号递增)"},
+    {"operation": "对账任务", "idempotent_key": "productCode + reconcileDate + counterparty", "retry_strategy": "对账结果不可覆盖，差异处理产生新记录"},
+    {"operation": "资金调拨", "idempotent_key": "transferId", "retry_strategy": "失败重试最多3次(5min/10min/30min)"},
+    {"operation": "异常记录", "idempotent_key": "exceptionId", "retry_strategy": "不可重复执行，需新建处理记录"},
+    {"operation": "清算重跑", "idempotent_key": "tradeDate + batchNo + retrySeq", "retry_strategy": "先清除上次结果再重新计算(非增量)"}
+  ],
+  "violation_consequences": [
+    {"violation": "交易时段内触发清算", "consequence": "数据不完整导致清算结果错误"},
+    {"violation": "跳过复核直接交收", "consequence": "可能造成资金/证券错误划转，难以回滚"},
+    {"violation": "已完成清算回滚", "consequence": "已交收资金无法自动回滚，需手工调账"},
+    {"violation": "手工调账未双人复核", "consequence": "合规违规，可能造成资金损失"},
+    {"violation": "日终账户透支", "consequence": "紧急告警，需2小时内解决"},
+    {"violation": "托管人未经指令划拨", "consequence": "违反托管协议，面临赔偿和监管处罚"},
+    {"violation": "估值未对账即发布", "consequence": "净值可能错误，影响投资者利益"},
+    {"violation": "异常未处理即关闭", "consequence": "合规违规，可能导致后续清算错误"},
+    {"violation": "客户资金用于自营", "consequence": "严重违规，面临吊销业务许可"}
+  ]
+}

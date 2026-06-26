@@ -1,0 +1,79 @@
+{
+  "_comment": "项目名称→业务域知识库映射表。skill识别到项目名或关键词时，自动关联对应业务域的行业知识库",
+  "_version": "2.0",
+  "_updated": "2026-05-11",
+  "mappings": [
+    {
+      "project_keywords": ["优理宝", "移动金融终端", "网上营业厅", "网上业务厅", "优理宝移动终端"],
+      "domains": ["互联网终端域", "行情资讯域", "交易域"]
+    },
+    {
+      "project_keywords": ["财富梦工厂"],
+      "domains": ["资管域", "风控合规域", "投顾域"]
+    },
+    {
+      "project_keywords": ["集团CRM", "CRM"],
+      "domains": ["客户域", "机构业务域"]
+    },
+    {
+      "project_keywords": ["智达", "智达APP"],
+      "domains": ["交易域", "风控合规域", "机构业务域"]
+    },
+    {
+      "project_keywords": ["投行", "托管", "大投行业务管理系统"],
+      "domains": ["投行业务域", "清算托管域"]
+    },
+    {
+      "project_keywords": ["SMT", "SmartStation", "SmartTrader", "差异化交易SMT", "Smart Station", "Smart Station系统建设"],
+      "domains": ["交易域", "风控合规域", "客户域"]
+    },
+    {
+      "project_keywords": ["场外衍生品", "衍生品综合管理"],
+      "domains": ["自营域"]
+    },
+    {
+      "project_keywords": ["数据仓库"],
+      "domains": ["行情资讯域"]
+    },
+    {
+      "project_keywords": ["资产托管", "托管部综合管理"],
+      "domains": ["清算托管域", "风控合规域", "机构业务域"]
+    },
+    {
+      "project_keywords": ["金融科技中台"],
+      "domains": ["互联网终端域", "风控合规域"]
+    }
+  ],
+  "synonyms": {
+    "股票": "交易域",
+    "债券": "交易域",
+    "基金": "资管域",
+    "开户": "客户域",
+    "行情": "行情资讯域",
+    "风控": "风控合规域",
+    "清算": "清算托管域",
+    "资管": "资管域",
+    "投顾": "投顾域",
+    "投研": "投研域",
+    "自营": "自营域",
+    "承销": "投行业务域",
+    "终端": "互联网终端域",
+    "交易": "交易域",
+    "客户": "客户域",
+    "机构": "机构业务域"
+  },
+  "domain_knowledge_map": {
+    "客户域": "customer.md",
+    "交易域": "trade.md",
+    "资管域": "asset_mgmt.md",
+    "自营域": "proprietary.md",
+    "投顾域": "investment_advisory.md",
+    "投研域": "investment_research.md",
+    "投行业务域": "investment_banking.md",
+    "机构业务域": "institutional.md",
+    "清算托管域": "clearing.md",
+    "风控合规域": "risk_compliance.md",
+    "行情资讯域": "market_data.md",
+    "互联网终端域": "digital_channel.md"
+  }
+}

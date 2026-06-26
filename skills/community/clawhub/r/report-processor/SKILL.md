@@ -1,35 +1,48 @@
----
-name: "Report Processor"
-description: "Automatically parse PDF/TXT research reports to extract key viewpoints, data, investment advice, risks, and generate summaries."
-category: "data-science"
-source: "ClawHub"
-tags: [analysis, finance, knowledge-base, research]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/report-processor"
-sourceUrl: "https://clawhub.ai/skills/report-processor"
----
+# Report Processor (研报处理器)
 
-# Report Processor
+Automatically collect, parse, and extract key information from research reports. Supports PDF, TXT, and other formats.
 
-> Automatically parse PDF/TXT research reports to extract key viewpoints, data, investment advice, risks, and generate summaries.
+## Features
 
-- **Category:** Data Science
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/report-processor`
-- **Source URL:** [https://clawhub.ai/skills/report-processor](https://clawhub.ai/skills/report-processor)
+- Parse research reports (PDF/TXT)
+- Extract key information (core观点、数据、投资建议、风险)
+- Auto summary generation
+- Knowledge base storage
 
-## Overview
+## Requirements
 
+- Ollama with qwen2.5:14b model installed
+- poppler-utils (for PDF parsing)
 
 ## Installation
-To install this skill, run the following command in your terminal:
+
 ```bash
-hermes skills install clawhub/report-processor
+# Install Ollama and pull model
+ollama pull qwen2.5:14b
+
+# Install poppler (for PDF support)
+# macOS
+brew install poppler
+# Linux
+sudo apt install poppler-utils
 ```
+
+## Usage
+
+```bash
+# Process single file
+python3 scripts/report_processor.py /path/to/report.pdf
+
+# Batch process directory
+python3 scripts/report_processor.py /path/to/reports/
+```
+
+## Output
+
+Results are saved to `~/.openclaw/workspace/data/reports/` in JSON format.
+
+## Configuration
+
+Edit `scripts/report_processor.py` to customize:
+- `OLLAMA_MODEL`: Model to use (default: qwen2.5:14b)
+- `OUTPUT_DIR`: Output directory

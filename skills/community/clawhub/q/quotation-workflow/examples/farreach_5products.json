@@ -1,0 +1,63 @@
+{
+  "company_name": "Example Electronic Co., Ltd.",
+  "company_tagline": "Premium Connectivity Solutions",
+  "company_address": "123 Business St, Your City",
+  "company_email": "sales@example-company.com",
+  "company_website": "www.example-company.com",
+  "customer": {
+    "company_name": "Best Buy Electronics Inc.",
+    "contact": "Michael Johnson",
+    "address": "123 Business St, Your City",
+    "email": "mjohnson@bestbuy-example.com"
+  },
+  "quotation": {
+    "quotation_no": "QT-20260314-001",
+    "date": "2026-03-14",
+    "valid_until": "2026-04-13"
+  },
+  "trade_terms": {
+    "incoterms": "FOB Shenzhen"
+  },
+  "products": [
+    {
+      "description": "HDMI 2.1 Ultra High Speed Cable",
+      "specification": "8K@60Hz, 4K@120Hz, 48Gbps, HDR, eARC, 2m",
+      "quantity": 500,
+      "unit_price": 8.50
+    },
+    {
+      "description": "HDMI 2.1 Fiber Optical Cable (AOC)",
+      "specification": "8K@60Hz, 48Gbps, Active Optical, 10m",
+      "quantity": 200,
+      "unit_price": 25.00
+    },
+    {
+      "description": "USB-C to USB-C Cable",
+      "specification": "USB 4.0, 80Gbps, 100W PD 2.0, 1m",
+      "quantity": 1000,
+      "unit_price": 12.00
+    },
+    {
+      "description": "DisplayPort 2.1 Cable",
+      "specification": "UHBR20, 80Gbps, 16K@60Hz, 8K@120Hz, 2m",
+      "quantity": 300,
+      "unit_price": 15.50
+    },
+    {
+      "description": "CAT6A Ethernet Cable",
+      "specification": "10Gbps, 500MHz, Shielded (FTP), 5m",
+      "quantity": 800,
+      "unit_price": 6.80
+    }
+  ],
+  "currency": "USD",
+  "lead_time": "15-20 days",
+  "payment_terms": "T/T 30% deposit, 70% before shipment",
+  "freight": 350.00,
+  "bank_info": {
+    "beneficiary": "[YOUR COMPANY NAME]",
+    "bank_name": "[YOUR BANK NAME]",
+    "account_no": "[YOUR BANK DETAILS]",
+    "swift_code": "[YOUR SWIFT CODE]"
+  }
+}

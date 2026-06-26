@@ -1,0 +1,14 @@
+{
+  "blocklist": [
+    {
+      "type": "name",
+      "kind": "exact",
+      "value": "Phoenix"
+    },
+    {
+      "type": "email",
+      "kind": "exact",
+      "value": "vip@example.com"
+    }
+  ]
+}

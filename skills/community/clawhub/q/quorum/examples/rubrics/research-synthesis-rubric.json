@@ -1,0 +1,72 @@
+{
+  "name": "Research Synthesis Rubric",
+  "version": "1.0",
+  "domain": "research-synthesis",
+  "description": "Evaluates LLM-generated research syntheses for accuracy, completeness, and intellectual integrity",
+  "criteria": [
+    {
+      "id": "CRIT-001",
+      "category": "CRITICAL",
+      "criterion": "Every factual claim is attributed to a source",
+      "evidence_type": "tool",
+      "evidence_instruction": "grep for sentences making definitive claims without citations. Show all unattributed assertions.",
+      "rationale": "Unattributed claims are unverifiable and may be hallucinations"
+    },
+    {
+      "id": "CRIT-002",
+      "category": "CRITICAL",
+      "criterion": "No sources are misattributed (claim credited to wrong paper)",
+      "evidence_type": "web_search",
+      "evidence_instruction": "For the 3 most specific/unusual claims, web-search to verify the attributed source actually makes that claim.",
+      "rationale": "LLMs frequently attribute claims to plausible but incorrect sources"
+    },
+    {
+      "id": "HIGH-001",
+      "category": "HIGH",
+      "criterion": "Contested findings are identified as contested",
+      "evidence_type": "tool",
+      "evidence_instruction": "Find claims where the synthesis presents a single view on a disputed topic. Flag unsignaled consensus assumptions.",
+      "rationale": "Presenting contested findings as settled misleads readers about the state of evidence"
+    },
+    {
+      "id": "HIGH-002",
+      "category": "HIGH",
+      "criterion": "Coverage is comprehensive for stated scope",
+      "evidence_type": "web_search",
+      "evidence_instruction": "Search for major papers in the stated topic domain published in the target date range. Identify any notable omissions.",
+      "rationale": "Gaps in coverage produce incomplete conclusions"
+    },
+    {
+      "id": "HIGH-003",
+      "category": "HIGH",
+      "criterion": "Confidence calibration — uncertainty acknowledged where present",
+      "evidence_type": "tool",
+      "evidence_instruction": "Find conclusions stated with high confidence. Check if the cited evidence actually supports that confidence level.",
+      "rationale": "Overconfident conclusions mislead downstream decisions"
+    },
+    {
+      "id": "MED-001",
+      "category": "MEDIUM",
+      "criterion": "Source recency is appropriate for the topic",
+      "evidence_type": "schema_parse",
+      "evidence_instruction": "Check publication dates of primary sources. Flag excessive reliance on sources >5 years old for fast-moving fields.",
+      "rationale": "Stale sources may not reflect current state of the field"
+    },
+    {
+      "id": "MED-002",
+      "category": "MEDIUM",
+      "criterion": "Methodological differences between studies are noted",
+      "evidence_type": "tool",
+      "evidence_instruction": "Find where multiple studies are compared. Verify their methodological differences are acknowledged.",
+      "rationale": "Comparing studies without noting methodology differences produces invalid conclusions"
+    },
+    {
+      "id": "MED-003",
+      "category": "MEDIUM",
+      "criterion": "Gaps in the literature are identified",
+      "evidence_type": "schema_parse",
+      "evidence_instruction": "Check for a gaps section or equivalent. Verify it identifies concrete unanswered questions.",
+      "rationale": "A synthesis that doesn't identify gaps is incomplete"
+    }
+  ]
+}

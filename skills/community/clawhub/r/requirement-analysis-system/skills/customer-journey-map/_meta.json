@@ -1,0 +1,14 @@
+{
+  "name": "customer-journey-map",
+  "displayName": "客户旅程地图",
+  "version": "1.0.0",
+  "description": "可视化用户与产品/服务互动的完整旅程，识别痛点和机会点",
+  "author": "Elatia (基于 Product-Manager-Skills 提炼)",
+  "license": "MIT",
+  "tags": ["requirement-analysis", "customer-journey-map", "product-management", "component"],
+  "category": "Product Management",
+  "type": "component",
+  "parentSkill": "requirement-analysis-system",
+  "createdAt": "2026-03-09T15:15:00+08:00",
+  "updatedAt": "2026-03-09T15:15:00+08:00"
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenClaw Restart Checkpoint",
+  "type": "object",
+  "required": ["schemaVersion", "workflowId", "agentId", "status", "currentStep", "completedSteps", "remainingSteps", "idempotencyKey", "updatedAt"],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0" },
+    "workflowId": { "type": "string" },
+    "agentId": { "type": "string" },
+    "status": { "type": "string", "enum": ["in_progress", "blocked", "done", "failed"] },
+    "currentStep": { "type": "string" },
+    "completedSteps": { "type": "array", "items": { "type": "string" } },
+    "remainingSteps": { "type": "array", "items": { "type": "string" } },
+    "handoffTo": { "type": ["string", "null"] },
+    "notes": { "type": "string" },
+    "idempotencyKey": { "type": "string" },
+    "checkpointHash": { "type": "string" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "expiresAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": true
+}

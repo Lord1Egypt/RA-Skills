@@ -1,0 +1,7 @@
+interface:
+  display_name: "Punting Buddy: Horse Racing Analysis"
+  short_description: "Horse racing analysis and chat"
+  default_prompt: "Use $punting-buddy for conversational horse racing analysis using The Racing API, including upcoming races, runner comparisons, race breakdowns, and results."
+
+policy:
+  allow_implicit_invocation: true

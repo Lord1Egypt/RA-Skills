@@ -1,0 +1,30 @@
+{
+  "slug": "rag-pipeline-starter",
+  "name": "RAG Pipeline Starter",
+  "version": "1.0.1",
+  "description": "Production-grade RAG pipeline setup with chunking strategies, embedding benchmarks, and retrieval tuning for 50K-500K row datasets",
+  "author": "Abhinas Neupane",
+  "tags": [
+    "RAG",
+    "retrieval",
+    "embeddings",
+    "LLM",
+    "vector-database",
+    "chunking",
+    "benchmark"
+  ],
+  "pricing": {
+    "type": "one-time",
+    "value": 0
+  },
+  "scripts": [
+    "chunking_analyzer.py",
+    "embedding_benchmark.py",
+    "retrieval_tuner.py",
+    "vector_store_manager.py"
+  ],
+  "requirements": {
+    "python": ">=3.8",
+    "dependencies": []
+  }
+}

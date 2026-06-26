@@ -1,0 +1,42 @@
+import { BuyQuoteResult, SellQuoteResult, TransactionResult } from 'torchsdk';
+import { AgentLink, AllWarLoansResult, AscendParams, ClaimSpoilsParams, CommsResult, CoupParams, CreateStrongholdParams, DefectParams, ExileAgentParams, FactionDetail, FactionListParams, FactionListResult, FactionStatus, FudFactionParams, FundStrongholdParams, JoinFactionParams, JoinFactionResult, LaunchFactionParams, LaunchFactionResult, MembersResult, MessageFactionParams, RallyParams, RazeParams, RecruitAgentParams, RepayWarLoanParams, RequestWarLoanParams, SiegeParams, Stronghold, TitheParams, WarChest, WarLoan, WarLoanQuote, WithdrawAssetsParams, WithdrawFromStrongholdParams } from '../types';
+export interface Action {
+    createStronghold(params: CreateStrongholdParams): Promise<TransactionResult>;
+    coup(params: CoupParams): Promise<TransactionResult>;
+    exileAgent(params: ExileAgentParams): Promise<TransactionResult>;
+    fundStronghold(params: FundStrongholdParams): Promise<TransactionResult>;
+    recruitAgent(params: RecruitAgentParams): Promise<TransactionResult>;
+    withdrawAssets(params: WithdrawAssetsParams): Promise<TransactionResult>;
+    withdrawFromStronghold(params: WithdrawFromStrongholdParams): Promise<TransactionResult>;
+    getAgentLink(wallet: string): Promise<AgentLink | undefined>;
+    getComms(mint: string, params: {
+        limit?: number;
+        status?: FactionStatus;
+    }): Promise<CommsResult>;
+    getDefectQuote(mint: string, amountTokens: number): Promise<SellQuoteResult>;
+    getJoinQuote(mint: string, amountSolLamports: number): Promise<BuyQuoteResult>;
+    getFaction(mint: string): Promise<FactionDetail>;
+    getFactions(params?: FactionListParams): Promise<FactionListResult>;
+    getLinkedAgents(vaultAddress: string): Promise<AgentLink[]>;
+    getMembers(mint: string, limit?: number): Promise<MembersResult>;
+    getStronghold(creator: string): Promise<Stronghold | undefined>;
+    getStrongholdForAgent(wallet: string): Promise<Stronghold | undefined>;
+    getWarChest(mint: string): Promise<WarChest>;
+    getWarLoan(mint: string, wallet: string): Promise<WarLoan>;
+    getWarLoanQuote(mint: string, collateralAmount: number): Promise<WarLoanQuote>;
+    getWarLoansForFaction(mint: string): Promise<AllWarLoansResult>;
+    ascend(params: AscendParams): Promise<TransactionResult>;
+    claimSpoils(params: ClaimSpoilsParams): Promise<TransactionResult>;
+    defect(params: DefectParams): Promise<TransactionResult>;
+    fud(params: FudFactionParams): Promise<TransactionResult>;
+    join(params: JoinFactionParams): Promise<JoinFactionResult>;
+    launch(params: LaunchFactionParams): Promise<LaunchFactionResult>;
+    message(params: MessageFactionParams): Promise<TransactionResult>;
+    rally(params: RallyParams): Promise<TransactionResult>;
+    raze(params: RazeParams): Promise<TransactionResult>;
+    repayWarLoan(params: RepayWarLoanParams): Promise<TransactionResult>;
+    requestWarLoan(params: RequestWarLoanParams): Promise<TransactionResult>;
+    scout(targetAddress: string): Promise<string>;
+    siege(params: SiegeParams): Promise<TransactionResult>;
+    tithe(params: TitheParams): Promise<TransactionResult>;
+}

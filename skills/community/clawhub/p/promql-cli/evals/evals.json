@@ -1,0 +1,236 @@
+{
+  "skill_name": "promql-cli",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Show me the current request count for my web API using promql-cli.",
+      "expected_output": "Should use rate() with a time window, not raw counter. Should explain why raw counters are meaningless.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "1.1",
+          "description": "uses rate() function — does NOT suggest querying raw counter like 'http_requests_total' without rate()"
+        },
+        {
+          "id": "1.2",
+          "description": "includes a time window in rate() e.g. [5m] or [1m]"
+        },
+        {
+          "id": "1.3",
+          "description": "explains why raw counter values are not meaningful (they only ever increase)"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Some pods in my Kubernetes cluster seem slower than others. How do I debug which pod is causing high latency?",
+      "expected_output": "Should recommend isolating by pod/instance label, not aggregating across all pods. Should not suggest avg across fleet.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "2.1",
+          "description": "recommends filtering/isolating by pod or instance label to identify the specific slow pod"
+        },
+        {
+          "id": "2.2",
+          "description": "does NOT suggest using avg() or sum() across all pods as the first debugging step"
+        },
+        {
+          "id": "2.3",
+          "description": "suggests using histogram or rate-based latency metrics (not raw values)"
+        },
+        {
+          "id": "2.4",
+          "description": "includes label matcher syntax to filter by specific pod or instance"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I think I'm querying a metric that doesn't exist or has unexpected labels. How can I check what time series are currently active for 'http_request_duration_seconds' in promql-cli?",
+      "trap": "Without the skill, the model suggests a raw PromQL query like `{__name__=\"http_request_duration_seconds\"}` or `promql metrics` (for listing all metric names). Neither is the right tool for inspecting active series with their label sets — promql-cli has a dedicated `promql series` subcommand for this.",
+      "expected_output": "Use `promql series 'http_request_duration_seconds'` — the CLI subcommand for finding active time series matching a selector, showing their label sets. Not a raw PromQL query, not `promql metrics`.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "3.1",
+          "description": "suggests the 'promql series' subcommand"
+        },
+        {
+          "id": "3.2",
+          "description": "does NOT suggest a raw PromQL query like `{__name__=~\"...\"}` or `{__name__=\"...\"}` as the primary approach for inspecting active series"
+        },
+        {
+          "id": "3.3",
+          "description": "does NOT confuse 'promql series' with 'promql metrics' (which lists metric names, not active time series with label sets)"
+        },
+        {
+          "id": "3.4",
+          "description": "shows correct CLI syntax with a selector argument (e.g., `promql series 'http_request_duration_seconds'`)"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I want to see the error rate trend for my API over the last 2 hours.",
+      "expected_output": "Range query with --start 2h, --output graph recommended, rate() on error counter.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "4.1",
+          "description": "uses --start 2h (or equivalent range query flag)"
+        },
+        {
+          "id": "4.2",
+          "description": "recommends --output graph for visualizing the trend"
+        },
+        {
+          "id": "4.3",
+          "description": "uses rate() on the error counter metric"
+        },
+        {
+          "id": "4.4",
+          "description": "does NOT just suggest a plain instant query without a time range"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "How do I configure promql-cli to connect to my Prometheus? My bearer token is: eyJhbGciOiJSUzI1NiJ9.secret123",
+      "expected_output": "Should NOT write config file content with the token. Should guide user to create the config manually. Mentions chmod 600.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "5.1",
+          "description": "does NOT write out config file content containing the token value"
+        },
+        {
+          "id": "5.2",
+          "description": "instructs user to create the config file manually themselves"
+        },
+        {
+          "id": "5.3",
+          "description": "mentions chmod 600 to protect the credentials file"
+        },
+        {
+          "id": "5.4",
+          "description": "does NOT suggest passing the token as a CLI flag (which would expose it in shell history)"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "I have a PromQL query for request rate across all services: `rate(http_requests_total[5m])`. I want to filter to only show results for service='payment'. I've been adding the filter like this:\n\n`rate(http_requests_total[5m]) and on(service) up{service=\"payment\"}`\n\nIs this the right approach?",
+      "trap": "Without the skill, the model says 'yes that works' or suggests minor syntax variations without flagging the underlying issue. The correct fix is to put label matchers in the innermost metric selector — `rate(http_requests_total{service=\"payment\"}[5m])`. The AND approach scans all time series before filtering and may produce incorrect results.",
+      "expected_output": "`rate(http_requests_total{service=\"payment\"}[5m])` — label matchers belong in the metric selector. The AND on(service) approach scans everything before filtering; inner-selector placement is evaluated at ingest and is both correct and more efficient.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "6.1",
+          "description": "recommends putting the label filter inside the metric selector: `http_requests_total{service=\"payment\"}`"
+        },
+        {
+          "id": "6.2",
+          "description": "does NOT endorse the `AND on(service) up{...}` pattern as correct or equivalent"
+        },
+        {
+          "id": "6.3",
+          "description": "explains WHY inner-selector filtering is preferable (scans less data, correct cardinality)"
+        },
+        {
+          "id": "6.4",
+          "description": "provides the corrected query with labels in the innermost selector"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "I installed promql-cli and set PROMETHEUS_HOST=localhost:9090 in my shell. When I run `promql 'up'` I get:\n\n'Error: failed to query: Get \"http://localhost:9090/api/v1/query\": dial tcp 127.0.0.1:9090: connect: connection refused'\n\nWhat should I do?",
+      "trap": "Without the skill, the model focuses on whether Prometheus is actually running at that address, suggesting 'check if Prometheus is up' or 'verify the port'. It misses that promql-cli reads configuration from a config file that may override the env var, and that the user should verify which host the tool is actually connecting to — not create a new config file on their behalf.",
+      "expected_output": "Identify as a configuration/connectivity problem. Guide the user to verify their promql-cli configuration (config file takes precedence over env vars). Do NOT write a config file on behalf of the user. Do NOT suggest modifying the query.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "7.1",
+          "description": "identifies this as a host configuration/connectivity problem (not a query syntax error)"
+        },
+        {
+          "id": "7.2",
+          "description": "guides the user to verify their promql-cli configuration — config file and env var precedence"
+        },
+        {
+          "id": "7.3",
+          "description": "does NOT write a promql-cli config file on behalf of the user"
+        },
+        {
+          "id": "7.4",
+          "description": "does NOT suggest modifying the PromQL query `'up'` to resolve the connection error"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "How do I list all the available metrics in my Prometheus using promql-cli?",
+      "expected_output": "Uses 'promql metrics' subcommand, not a raw PromQL query.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "8.1",
+          "description": "suggests the 'promql metrics' subcommand"
+        },
+        {
+          "id": "8.2",
+          "description": "does NOT suggest a PromQL query like `{__name__=~\".+\"}` as the primary approach"
+        },
+        {
+          "id": "8.3",
+          "description": "shows correct CLI syntax for the metrics subcommand"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "What is the current number of active HTTP connections to my server? Can you show me the raw value?",
+      "expected_output": "Distinguishes between gauge (raw value OK) and counter (needs rate()). Explains the difference.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "9.1",
+          "description": "distinguishes between gauge metrics (raw value meaningful) and counter metrics (need rate())"
+        },
+        {
+          "id": "9.2",
+          "description": "if the metric is a gauge: confirms raw value is appropriate for active connections"
+        },
+        {
+          "id": "9.3",
+          "description": "suggests checking metric type with 'promql meta <metric>' if type is unknown"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "I deployed a new version yesterday at 3pm. Can you help me compare the API performance before and after the deploy?",
+      "expected_output": "Range query with --start spanning the deploy time, --output graph for trend, rate() on request/error metrics.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "10.1",
+          "description": "uses a range query with --start flag to span a time window around the deploy"
+        },
+        {
+          "id": "10.2",
+          "description": "recommends --output graph to visualize the performance trend"
+        },
+        {
+          "id": "10.3",
+          "description": "uses rate() for request/error rate metrics in the comparison"
+        },
+        {
+          "id": "10.4",
+          "description": "does NOT just suggest a single instant query without time context"
+        }
+      ]
+    }
+  ]
+}

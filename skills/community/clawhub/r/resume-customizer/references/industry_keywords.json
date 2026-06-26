@@ -1,0 +1,179 @@
+{
+  "industry_keywords": {
+    "technology_software_development": {
+      "job_titles": [
+        "Software Engineer", "Software Developer", "Programmer", "Coder",
+        "Full Stack Developer", "Frontend Developer", "Backend Developer",
+        "Web Developer", "Mobile Developer", "DevOps Engineer",
+        "Site Reliability Engineer", "SRE", "Platform Engineer"
+      ],
+      "technical_skills": [
+        "Python", "Java", "JavaScript", "TypeScript", "C++", "C#", "Go", "Rust", "Swift", "Kotlin",
+        "React", "Vue.js", "Angular", "Node.js", "Django", "Flask", "Spring", "ASP.NET",
+        "SQL", "MySQL", "PostgreSQL", "MongoDB", "Redis", "Cassandra",
+        "AWS", "Azure", "GCP", "Docker", "Kubernetes", "Terraform",
+        "Git", "Linux", "Unix", "Shell Scripting", "CI/CD", "Jenkins",
+        "Microservices", "REST API", "GraphQL", "gRPC", "WebSocket"
+      ],
+      "tools": [
+        "Visual Studio Code", "IntelliJ", "Eclipse", "PyCharm",
+        "Docker", "Kubernetes", "Jenkins", "GitLab CI", "GitHub Actions",
+        "Jira", "Confluence", "Figma", "Postman", "Swagger"
+      ],
+      "methodologies": [
+        "Agile", "Scrum", "Kanban", "Waterfall", "DevOps",
+        "Test Driven Development", "TDD", "Continuous Integration", "CI",
+        "Continuous Deployment", "CD", "Code Review", "Pair Programming"
+      ],
+      "certifications": [
+        "AWS Certified Solutions Architect", "AWS Certified Developer",
+        "Microsoft Azure Certification", "Google Cloud Certification",
+        "Certified Kubernetes Administrator", "CKA",
+        "Oracle Certified Professional", "OCP"
+      ]
+    },
+    "data_science_analytics": {
+      "job_titles": [
+        "Data Scientist", "Data Analyst", "Data Engineer", "Machine Learning Engineer",
+        "Business Intelligence Analyst", "BI Analyst", "Quantitative Analyst", "Quant",
+        "Research Scientist", "Statistician", "Data Architect"
+      ],
+      "technical_skills": [
+        "Python", "R", "SQL", "NoSQL", "MATLAB", "SAS", "Julia",
+        "Pandas", "NumPy", "SciPy", "Scikit-learn", "TensorFlow", "PyTorch", "Keras",
+        "Matplotlib", "Seaborn", "Plotly", "ggplot2", "D3.js",
+        "Apache Spark", "Hadoop", "Hive", "Pig", "Kafka", "Airflow",
+        "Tableau", "Power BI", "Looker", "Qlik", "Excel", "VBA"
+      ],
+      "techniques": [
+        "Machine Learning", "Deep Learning", "Natural Language Processing", "NLP",
+        "Computer Vision", "Reinforcement Learning", "Transfer Learning",
+        "Regression", "Classification", "Clustering", "Dimensionality Reduction",
+        "A/B Testing", "Hypothesis Testing", "Statistical Analysis",
+        "Data Mining", "Data Warehousing", "ETL", "Data Pipeline"
+      ],
+      "tools": [
+        "Jupyter Notebook", "RStudio", "Spyder", "Databricks",
+        "AWS SageMaker", "Google AI Platform", "Azure ML Studio",
+        "Hadoop", "Spark", "Kafka", "Airflow", "Luigi"
+      ],
+      "certifications": [
+        "Google Cloud Professional Data Engineer",
+        "AWS Certified Data Analytics",
+        "Microsoft Certified: Azure Data Scientist Associate",
+        "IBM Data Science Professional Certificate"
+      ]
+    },
+    "product_management": {
+      "job_titles": [
+        "Product Manager", "Product Owner", "Program Manager", "Project Manager",
+        "Technical Product Manager", "TPM", "Product Director", "Head of Product",
+        "Growth Product Manager", "Platform Product Manager"
+      ],
+      "skills": [
+        "Product Strategy", "Product Roadmap", "Product Discovery", "User Research",
+        "Market Research", "Competitive Analysis", "User Personas", "User Journeys",
+        "Agile", "Scrum", "Kanban", "Waterfall",
+        "Wireframing", "Prototyping", "MVP", "A/B Testing",
+        "KPIs", "OKRs", "Metrics", "Analytics", "Data-Driven Decision Making",
+        "Stakeholder Management", "Cross-Functional Collaboration", "Prioritization"
+      ],
+      "tools": [
+        "Jira", "Confluence", "Asana", "Trello", "Monday.com",
+        "Figma", "Sketch", "Adobe XD", "InVision",
+        "Tableau", "Mixpanel", "Amplitude", "Google Analytics", "Hotjar",
+        "SQL", "Excel", "PowerPoint"
+      ],
+      "methodologies": [
+        "Agile", "Scrum", "Design Thinking", "Lean Startup", "Jobs to be Done", "JTBD",
+        "Double Diamond", "User-Centered Design", "UCD"
+      ]
+    },
+    "marketing_sales": {
+      "job_titles": [
+        "Marketing Manager", "Digital Marketing Specialist", "SEO Specialist",
+        "Content Marketer", "Social Media Manager", "Brand Manager",
+        "Sales Manager", "Account Executive", "Business Development Representative", "BDR",
+        "Sales Operations", "Marketing Operations", "Growth Marketer"
+      ],
+      "skills": [
+        "Digital Marketing", "Content Marketing", "Email Marketing", "Social Media Marketing",
+        "Search Engine Optimization", "SEO", "Search Engine Marketing", "SEM",
+        "Pay-Per-Click", "PPC", "Google Ads", "Facebook Ads", "LinkedIn Ads",
+        "Marketing Automation", "Lead Generation", "Lead Nurturing",
+        "Customer Acquisition", "Customer Retention", "Customer Lifetime Value", "CLV",
+        "Brand Management", "Public Relations", "PR", "Event Marketing",
+        "Salesforce", "CRM", "Customer Relationship Management"
+      ],
+      "tools": [
+        "Google Analytics", "Google Ads", "Facebook Ads Manager", "LinkedIn Ads",
+        "HubSpot", "Marketo", "Mailchimp", "Constant Contact",
+        "Salesforce", "Zoho CRM", "Pipedrive", "HubSpot CRM",
+        "Hootsuite", "Buffer", "Sprout Social", "SEMrush", "Ahrefs", "Moz"
+      ],
+      "metrics": [
+        "Return on Investment", "ROI", "Return on Ad Spend", "ROAS",
+        "Conversion Rate", "Click-Through Rate", "CTR", "Cost Per Acquisition", "CPA",
+        "Customer Acquisition Cost", "CAC", "Customer Lifetime Value", "CLV",
+        "Monthly Recurring Revenue", "MRR", "Annual Recurring Revenue", "ARR"
+      ]
+    },
+    "finance_accounting": {
+      "job_titles": [
+        "Financial Analyst", "Finance Manager", "Accountant", "CPA", "Controller",
+        "Investment Banker", "Equity Research Analyst", "Portfolio Manager",
+        "Risk Analyst", "Treasury Analyst", "Tax Accountant"
+      ],
+      "skills": [
+        "Financial Modeling", "Financial Analysis", "Valuation", "Discounted Cash Flow", "DCF",
+        "Financial Reporting", "General Ledger", "Accounts Payable", "Accounts Receivable",
+        "Budgeting", "Forecasting", "Variance Analysis",
+        "Risk Management", "Compliance", "Auditing", "Internal Controls",
+        "Tax Preparation", "Tax Planning", "Corporate Tax", "Individual Tax"
+      ],
+      "tools": [
+        "Excel", "VBA", "Power BI", "Tableau",
+        "SAP", "Oracle ERP", "NetSuite", "QuickBooks",
+        "Bloomberg Terminal", "FactSet", "Capital IQ",
+        "SQL", "Python", "R"
+      ],
+      "certifications": [
+        "Certified Public Accountant", "CPA",
+        "Chartered Financial Analyst", "CFA",
+        "Certified Management Accountant", "CMA",
+        "MBA", "Master of Business Administration",
+        "Certified Internal Auditor", "CIA",
+        "Enrolled Agent", "EA"
+      ]
+    },
+    "general_all_industries": {
+      "soft_skills": [
+        "Communication", "Written Communication", "Verbal Communication",
+        "Leadership", "Team Leadership", "People Management",
+        "Teamwork", "Collaboration", "Cross-Functional Collaboration",
+        "Problem Solving", "Critical Thinking", "Analytical Thinking",
+        "Time Management", "Prioritization", "Multitasking",
+        "Adaptability", "Flexibility", "Resilience",
+        "Creativity", "Innovation", "Strategic Thinking",
+        "Emotional Intelligence", "Empathy", "Conflict Resolution",
+        "Negotiation", "Persuasion", "Influencing",
+        "Attention to Detail", "Organization", "Planning"
+      ],
+      "action_verbs": [
+        "Led", "Managed", "Directed", "Supervised", "Coordinated",
+        "Developed", "Created", "Built", "Designed", "Implemented",
+        "Analyzed", "Evaluated", "Assessed", "Researched", "Investigated",
+        "Improved", "Enhanced", "Optimized", "Streamlined", "Automated",
+        "Achieved", "Delivered", "Accomplished", "Exceeded", "Surpassed",
+        "Collaborated", "Partnered", "Worked with", "Communicated", "Presented",
+        "Trained", "Mentored", "Coached", "Taught", "Developed"
+      ],
+      "common_keywords": [
+        "Results-driven", "Detail-oriented", "Self-motivated", "Proven track record",
+        "Strategic", "Innovative", "Efficient", "Effective", "Successful",
+        "Team player", "Cross-functional", "Customer-focused", "Data-driven",
+        "Agile", "Adaptable", "Proactive", "Solution-oriented"
+      ]
+    }
+  }
+}

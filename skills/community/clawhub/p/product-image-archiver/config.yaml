@@ -1,0 +1,43 @@
+# 定款商品原图无损下载&规范归档 Skill 配置
+# 版本：1.0.0
+
+# ==================== 归档配置 ====================
+archive:
+  base_dir: "./archives"                      # 归档根目录
+  folder_template: "{款号}_{商品简称}"          # 文件夹命名模板
+  sub_folders:                                # 子文件夹规范
+    - "01-网商园原图归档"
+    - "02-淘宝上架素材待匹配"
+    - "03-商品资质档案"
+
+# ==================== 下载配置（无损模式） ====================
+download:
+  preserve_original: true         # 保留原图（强制 true）
+  no_compression: true            # 不压缩（强制 true）
+  no_conversion: true             # 不转换格式（强制 true）
+  timeout: 30                     # 下载超时（秒）
+  retry_times: 3                  # 失败重试次数
+  chunk_size: 8192                # 下载块大小
+  min_delay_seconds: 3            # 最小延迟
+  max_delay_seconds: 10           # 最大延迟
+
+# ==================== 侵权检测配置 ====================
+risk_detection:
+  enabled: true
+  baidu_ai:
+    detect_logo: true             # Logo 检测
+    detect_face: true             # 人脸/肖像检测
+    detect_watermark: true        # 水印检测
+  risk_threshold: 0.6             # 风险阈值（置信度）
+
+# ==================== 完整性校验配置 ====================
+integrity_check:
+  enabled: true
+  check_file_size: true           # 检查文件大小
+  check_image_openable: true      # 检查图片可打开
+  auto_redownload: true           # 自动重新下载
+
+# ==================== 日志配置 ====================
+logging:
+  level: "INFO"
+  file: "./logs/archiver.log"

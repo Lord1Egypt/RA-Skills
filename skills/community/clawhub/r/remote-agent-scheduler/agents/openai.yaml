@@ -1,0 +1,4 @@
+interface:
+  display_name: "Remote Agent Scheduler"
+  short_description: "Schedule isolated remote agent runs"
+  default_prompt: "Help me create or update a scheduled remote agent with the right repo, environment, and cron."

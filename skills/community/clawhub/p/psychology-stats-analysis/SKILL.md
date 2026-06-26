@@ -1,35 +1,137 @@
----
-name: "Psychology Statistical Analysis"
-description: "Provides comprehensive statistical analysis for psychological research, including t-tests, ANOVA, effect sizes, power analysis, and assumption checks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/psychology-stats-analysis"
-sourceUrl: "https://clawhub.ai/skills/psychology-stats-analysis"
----
+# 心理学统计分析助手
 
-# Psychology Statistical Analysis
+一个专为心理学研究设计的全面统计分析工具，特别关注社会认知和实验心理学研究。
 
-> Provides comprehensive statistical analysis for psychological research, including t-tests, ANOVA, effect sizes, power analysis, and assumption checks.
+## 功能介绍
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/psychology-stats-analysis`
-- **Source URL:** [https://clawhub.ai/skills/psychology-stats-analysis](https://clawhub.ai/skills/psychology-stats-analysis)
+提供从描述统计到假设检验再到效应量计算的完整数据分析工具包。适用于实验心理学、社会认知研究、隐性学习研究等各类定量心理学工作。
 
-## Overview
+## 主要功能
 
+### 假设检验
+- **t检验**：独立样本t检验、配对t检验、单样本t检验
+- **方差分析（ANOVA）**：单因素方差分析、多因素设计
+- **相关与回归**：皮尔逊相关、线性回归
+- **卡方检验**：分类数据分析
+- **正态性与方差齐性检验**：数据验证
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/psychology-stats-analysis
+### 描述统计
+- 均值、标准差、标准误
+- 中位数、四分位数、四分位距
+- 置信区间
+- 分布特征摘要
+
+### 效应量计算
+- Cohen's d（t检验的效应量）
+- η²（方差分析的效应量）
+- 相关强度解释
+- 效应量大小分类
+
+### 统计功效分析
+- 样本量估计
+- 统计功效计算
+- 研究设计优化与规划
+
+## 使用方法
+
+### 基础用法
+```python
+from psychology_stats import PsychologyAnalyzer
+
+analyzer = PsychologyAnalyzer()
+
+# 描述统计
+stats = analyzer.descriptive_stats(数据)
+
+# 独立样本t检验
+result = analyzer.independent_t_test(组1, 组2)
+
+# 单因素方差分析
+anova_result = analyzer.one_way_anova(组1, 组2, 组3)
 ```
+
+### 凝视线索实验（Gaze-Cueing）
+```python
+# 分析同余和不同余条件下的反应时差异
+同余凝视_rt = [450, 460, 455, ...]  # 凝视线索同向条件
+不同余凝视_rt = [480, 495, 490, ...]  # 凝视线索反向条件
+
+result = analyzer.independent_t_test(
+    np.array(同余凝视_rt), 
+    np.array(不同余凝视_rt)
+)
+# 返回: t值、p值、Cohen's d、效应量解释
+```
+
+### 隐性学习与启动效应研究
+```python
+# 比较不同条件下的启动效应
+害怕面孔_正确率 = [0.65, 0.72, 0.68, ...]
+中性面孔_正确率 = [0.58, 0.61, 0.59, ...]
+
+result = analyzer.paired_t_test(害怕面孔_正确率, 中性面孔_正确率)
+# 获得效应量和统计显著性
+```
+
+### 功效分析示例
+```python
+# 规划所需样本量
+所需样本量 = analyzer.power_analysis_ttest(
+    effect_size=0.5,  # 预期的Cohen's d
+    alpha=0.05,       # 第I类错误率
+    power=0.8         # 期望的统计功效
+)
+# 返回每组推荐样本量和总样本量
+```
+
+## 应用场景
+
+- **凝视线索与注意研究**：分析线索化效应和反应时模式
+- **社会认知研究**：检验心理理论、视角采择、归因等假设
+- **隐性学习与启动**：量化隐性记忆和启动效应
+- **实验心理学**：分析阶乘设计和复杂交互作用
+- **快速数据检查**：在进行推论统计前验证假设前提
+
+## 系统要求
+
+- Python 3.8 或更高版本
+- numpy、scipy、pandas、matplotlib
+
+## 输出格式
+
+所有函数返回包含以下内容的字典：
+- 检验统计量（t、F、r、χ²）
+- p值和显著性阈值
+- 效应量（Cohen's d、η²、r²）
+- 人性化的结果解释
+- 样本量和自由度
+
+## 输出示例
+
+```json
+{
+  "t_statistic": 2.45,
+  "p_value": 0.024,
+  "significant": true,
+  "cohens_d": 0.95,
+  "effect_size_interpretation": "large",
+  "mean_difference": 28.5,
+  "note": "发现显著差异，效应量为大"
+}
+```
+
+## 使用建议
+
+- 进行参数检验前务必检查正态性和方差齐性假设
+- 同时报告原始统计量和效应量
+- 在研究设计阶段使用功效分析
+- 如可能，在结果中包含置信区间
+- 记录数据预处理和排斥标准
+
+## 关于本工具
+
+为社会认知、实验心理学和行为科学研究人员创建。旨在使统计分析更加易于理解和应用。
+
+**作者**: @zhan599  
+**所属机构**: 华南师范大学 应用心理学系  
+**研究方向**: 社会认知、凝视线索、隐性学习

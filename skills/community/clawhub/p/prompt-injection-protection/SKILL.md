@@ -1,35 +1,29 @@
----
-name: "PROMPT INJECTION PROTECTION"
-description: "Protects against prompt injection attacks by sanitizing, validating, and securely processing untrusted external content from websites, emails, and documents."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/prompt-injection-protection"
-sourceUrl: "https://clawhub.ai/skills/prompt-injection-protection"
----
+# Prompt Injection Protection Skill
 
-# PROMPT INJECTION PROTECTION
+## Description
+A comprehensive skill to protect against prompt injection attacks when processing external content such as websites, emails, documents, and other untrusted input sources.
 
-> Protects against prompt injection attacks by sanitizing, validating, and securely processing untrusted external content from websites, emails, and documents.
+## Purpose
+This skill provides methods to safely sanitize, validate, and process external content to prevent malicious prompt injection attempts that could manipulate the AI's behavior or cause it to execute unintended actions.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/prompt-injection-protection`
-- **Source URL:** [https://clawhub.ai/skills/prompt-injection-protection](https://clawhub.ai/skills/prompt-injection-protection)
+## Features
+- Content sanitization and validation
+- Prompt injection detection and filtering
+- Secure processing of web content
+- Safe extraction of information from untrusted sources
+- Protection against jailbreak attempts
 
-## Overview
+## Security Measures
+- Input sanitization
+- Output encoding
+- Context isolation
+- Validation of external content
+- Prevention of instruction hijacking
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/prompt-injection-protection
-```
+## Usage
+The skill provides functions to:
+- Sanitize external content before processing
+- Validate content against injection patterns
+- Safely extract information from untrusted sources
+- Process web content securely
+- Filter potentially harmful instructions

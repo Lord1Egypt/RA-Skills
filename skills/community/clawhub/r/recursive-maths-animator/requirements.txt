@@ -1,0 +1,13 @@
+# Copy into your animation project root and install with:
+#   python -m venv .venv && source .venv/bin/activate  # or .venv\Scripts\activate on Windows
+#   pip install -U pip
+#   pip install -r requirements.txt
+#
+# After adding packages, re-freeze for reproducibility:
+#   pip freeze > requirements.lock.txt
+
+manim>=0.18.0
+manim-voiceover[gtts]>=0.3.1
+
+# Optional: Gemini TTS (set GEMINI_API_KEY). Uncomment if you use gemini_tts_service.py.
+# google-genai>=1.0.0

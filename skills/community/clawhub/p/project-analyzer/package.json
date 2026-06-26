@@ -1,0 +1,20 @@
+{
+    "name": "project-analyzer",
+    "version": "1.0.0",
+    "description": "SDD 软件设计文档生成器",
+    "main": "scripts/main.py",
+    "scripts": {
+        "analyze": "python scripts/main.py",
+        "analyze:verbose": "python scripts/main.py -v"
+    },
+    "keywords": [
+        "sdd",
+        "documentation",
+        "software-design",
+        "api-doc"
+    ],
+    "author": "Project Analyzer",
+    "license": "MIT",
+    "dependencies": {},
+    "devDependencies": {}
+}

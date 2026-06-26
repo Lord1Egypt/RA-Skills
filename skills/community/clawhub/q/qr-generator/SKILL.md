@@ -1,35 +1,41 @@
 ---
-name: "Qr Generator"
-description: "Generate QR codes from text or URL for mobile scanning."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qr-generator"
-sourceUrl: "https://clawhub.ai/skills/qr-generator"
+name: qr-generator
+description: Generate QR codes from text or URL for mobile scanning.
 ---
 
-# Qr Generator
+# QR Generator
 
-> Generate QR codes from text or URL for mobile scanning.
+Generates a QR code image (PNG/SVG) or terminal output from a given text or URL.
+Useful for transferring long URLs, WiFi credentials, or text snippets to mobile devices via Feishu (scan QR).
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qr-generator`
-- **Source URL:** [https://clawhub.ai/skills/qr-generator](https://clawhub.ai/skills/qr-generator)
+## Usage
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/qr-generator
+# Generate a QR code image
+node skills/qr-generator/index.js --text "https://openclaw.ai" --output "qr_code.png"
+
+# Generate to terminal (ASCII art)
+node skills/qr-generator/index.js --text "Hello World" --terminal
+```
+
+## Options
+
+- `-t, --text <text>`: The text or URL to encode (required).
+- `-o, --output <path>`: Output file path (e.g., `code.png`, `code.svg`).
+- `--terminal`: Output QR code as ASCII art to the terminal.
+- `--width <number>`: Width of the image (default: 500).
+- `--color-dark <hex>`: Dark color (default: `#000000`).
+- `--color-light <hex>`: Light color (default: `#ffffff`).
+
+## Example: Send QR to Feishu
+
+```bash
+# 1. Generate QR code
+node skills/qr-generator/index.js --text "https://example.com" --output "temp_qr.png"
+
+# 2. Send to user via Feishu
+node skills/feishu-image/send.js --target "ou_xxx" --file "temp_qr.png"
+
+# 3. Clean up
+rm temp_qr.png
 ```

@@ -1,0 +1,41 @@
+{
+  "skill_name": "promo-stock",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Black Friday starts in 18 hours. Our hero SKU has 800 sellable left; we allocated 4000 for the weekend. Meta and Google shopping are still at full budget. What do we do?",
+      "expected_output": "X threshold logic (20% = 800 is at boundary); table stock vs ads; pre-order copy if crossing X; supplier email template; T-24h checklist elements.",
+      "files": [],
+      "expectations": [
+        "Defines an explicit inventory threshold X or equivalent and states if current stock is below, at, or above it",
+        "Includes a Markdown table with at least four rows linking SKU or group, inventory or allocation %, ads status, recommended action, and owner or placeholder",
+        "Provides Pre-order or availability switch copy for PDP and cart or checkout when inventory is below threshold",
+        "Includes a complete supplier restock chase email with subject line and body with merge-field style placeholders",
+        "Mentions ad pacing, pause, or creative alignment when stock is constrained",
+        "References T-24h or final-hours readiness where timing applies"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Inventory is above 50% for all SKUs. We're planning BFCM in two weeks—no numbers yet. Give us a framework.",
+      "expected_output": "How to set X, table template, pre-order block template, supplier template shell, no fake SKU counts.",
+      "files": [],
+      "expectations": [
+        "Explains how to choose threshold X without inventing specific false inventory figures",
+        "Includes table template for stock vs ads sync",
+        "Includes pre-order copy framework or placeholders",
+        "Includes supplier email template structure with merge fields"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Rewrite our About Us page for tone only.",
+      "expected_output": "Brand copy; does not force promo inventory defense deliverables.",
+      "files": [],
+      "expectations": [
+        "Does not output the full mandatory stock-vs-ads table as the primary deliverable",
+        "Does not force supplier chase email and pre-order switch for unrelated About Us request"
+      ]
+    }
+  ]
+}

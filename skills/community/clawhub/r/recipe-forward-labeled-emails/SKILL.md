@@ -1,35 +1,29 @@
 ---
-name: "Recipe Forward Labeled Emails"
+name: recipe-forward-labeled-emails
 description: "Find Gmail messages with a specific label and forward them to another address."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-forward-labeled-emails"
-sourceUrl: "https://clawhub.ai/skills/recipe-forward-labeled-emails"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-gmail
 ---
 
-# Recipe Forward Labeled Emails
+# Forward Labeled Gmail Messages
 
-> Find Gmail messages with a specific label and forward them to another address.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-gmail`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-forward-labeled-emails`
-- **Source URL:** [https://clawhub.ai/skills/recipe-forward-labeled-emails](https://clawhub.ai/skills/recipe-forward-labeled-emails)
+Find Gmail messages with a specific label and forward them to another address.
 
-## Overview
+## Steps
 
+1. Find labeled messages: `gws gmail users messages list --params '{"userId": "me", "q": "label:needs-review"}' --format table`
+2. Get message content: `gws gmail users messages get --params '{"userId": "me", "id": "MSG_ID"}'`
+3. Forward via new email: `gws gmail +send --to manager@company.com --subject 'FW: [Original Subject]' --body 'Forwarding for your review:
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-forward-labeled-emails
-```
+[Original Message Body]'`
+

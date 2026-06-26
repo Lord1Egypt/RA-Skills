@@ -1,0 +1,32 @@
+{
+  "slug": "quantclaw-data",
+  "name": "QuantClaw Data",
+  "version": "1.0.0",
+  "description": "Comprehensive financial intelligence platform — 90+ modules, 100+ CLI commands, REST API, MCP-ready. Covers market data, quant models, options, alt data, fixed income, smart alerts. All free data sources.",
+  "author": "yoniassia",
+  "license": "MIT",
+  "repository": "https://github.com/yoniassia/quantclaw-data",
+  "homepage": "https://data.quantclaw.org",
+  "keywords": [
+    "finance",
+    "trading",
+    "quantitative",
+    "stocks",
+    "options",
+    "crypto",
+    "market-data",
+    "technical-analysis",
+    "fama-french",
+    "black-litterman",
+    "monte-carlo",
+    "kalman-filter",
+    "pairs-trading",
+    "sector-rotation",
+    "13f",
+    "sec-edgar",
+    "alternative-data",
+    "portfolio-analytics",
+    "smart-alerts",
+    "mcp"
+  ]
+}

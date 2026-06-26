@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.0.0",
+  "requirement_id": "REQ-RISK-001",
+  "pci_list": [
+    {
+      "id": "PCI-001",
+      "source_test_point": "TP-006",
+      "type": "ambiguity",
+      "question": "集中度计算的精度要求是多少位小数？占比30.00%触发提醒，那29.999%是否触发？",
+      "impact": "影响边界值测试用例的预期结果定义，精度不同测试数据构造差异大",
+      "suggested_action": "与业务方确认集中度计算的小数精度和舍入规则",
+      "status": "open",
+      "priority": "P1"
+    },
+    {
+      "id": "PCI-002",
+      "source_test_point": "TP-005",
+      "type": "missing_rule",
+      "question": "管理员调整阈值后，对已触发预警但未处理的投资者是否需要重新评估？例如原阈值30%已触发提醒，管理员将阈值调高到40%，该投资者的提醒是否自动解除？",
+      "impact": "影响阈值调整后的状态一致性测试，需明确历史预警的处理策略",
+      "suggested_action": "与产品确认阈值变更后历史预警记录的处理规则",
+      "status": "open",
+      "priority": "P0"
+    }
+  ],
+  "pci_summary": {
+    "total": 2,
+    "by_type": {
+      "ambiguity": 1,
+      "missing_rule": 1
+    },
+    "blocking_count": 0
+  }
+}

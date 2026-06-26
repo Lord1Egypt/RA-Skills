@@ -1,0 +1,112 @@
+{
+  "example_name": "Data Scientist Resume (English)",
+  "description": "Sample resume data for a senior data scientist, demonstrating complete structured format with emphasis on ML/AI projects",
+  "language": "en",
+  "target_role": "Data Scientist",
+  "industry": "data_science_analytics",
+  "experience_level": "senior",
+  "resume_data": {
+    "file_name": "data-scientist-resume.pdf",
+    "contact": {
+      "name": "Dr. Michael Zhang",
+      "email": "michael.zhang@email.com",
+      "phone": "(206) 555-0198",
+      "location": "Seattle, WA",
+      "linkedin": "linkedin.com/in/michaelzhang",
+      "website": "michaelzhang.ai"
+    },
+    "summary": "Senior Data Scientist with 7+ years of experience building and deploying machine learning systems at scale. Ph.D. in Statistics with 12+ publications in top-tier venues (NeurIPS, ICML, KDD). Expert in deep learning, NLP, and recommendation systems. Led ML initiatives generating $15M+ in measurable business impact across e-commerce and fintech domains.",
+    "work_experience": [
+      {
+        "title": "Senior Data Scientist",
+        "company": "Amazon",
+        "location": "Seattle, WA",
+        "start_date": "April 2022",
+        "end_date": "Present",
+        "description": "Lead ML Scientist for Personalization team, serving 300M+ customers globally.\nDesigned and deployed deep learning recommendation model improving click-through rate by 23% and revenue by $8M/year.\nBuilt real-time feature engineering pipeline processing 1M+ events/second with <50ms latency.\nLed team of 5 data scientists; established model monitoring and A/B testing framework adopted across 3 teams.\nReduced model training cost by 60% through distributed training optimization on AWS SageMaker."
+      },
+      {
+        "title": "Data Scientist",
+        "company": "Stripe",
+        "location": "San Francisco, CA",
+        "start_date": "July 2019",
+        "end_date": "March 2022",
+        "description": "Built ML models for fraud detection and risk assessment in payment processing platform.\nDeveloped gradient-boosted tree model reducing false positive rate by 35% while maintaining 99.7% fraud detection rate.\nImplemented NLP-based merchant categorization system covering 50+ business categories with 94% accuracy.\nCreated anomaly detection system for payment patterns, preventing $3M+ in potential fraud losses.\nCollaborated with engineering to productionize models serving 100M+ API requests/day."
+      },
+      {
+        "title": "Research Scientist Intern",
+        "company": "Google Research",
+        "location": "Mountain View, CA",
+        "start_date": "June 2018",
+        "end_date": "September 2018",
+        "description": "Conducted research on graph neural networks for social network analysis.\nDeveloped novel GNN architecture achieving state-of-the-art on 3 benchmark datasets.\nPublished findings at NeurIPS 2019 (first author)."
+      }
+    ],
+    "education": [
+      {
+        "degree": "Ph.D.",
+        "field": "Statistics",
+        "institution": "Stanford University",
+        "graduation_date": "June 2019",
+        "gpa": "3.95/4.0",
+        "honors": ["Stanford Graduate Fellowship", "Best Paper Award (AISTATS 2018)"]
+      },
+      {
+        "degree": "B.S.",
+        "field": "Mathematics and Computer Science",
+        "institution": "MIT",
+        "graduation_date": "June 2014",
+        "gpa": "4.0/4.0",
+        "honors": ["Phi Beta Kappa", "Putnam Fellow (2013)"]
+      }
+    ],
+    "skills": [
+      "Python", "R", "SQL", "PyTorch", "TensorFlow", "JAX",
+      "Scikit-learn", "XGBoost", "LightGBM", "Spark MLlib",
+      "Deep Learning", "NLP", "Computer Vision", "Recommendation Systems",
+      "A/B Testing", "Causal Inference", "Bayesian Statistics",
+      "AWS (SageMaker, EMR, Redshift)", "GCP (Vertex AI, BigQuery)",
+      "MLflow", "Kubeflow", "Docker", "Kubernetes"
+    ],
+    "projects": [
+      {
+        "name": "GraphSAGE-Next",
+        "description": "Next-generation inductive graph representation learning framework. 2,000+ citations, used in production at multiple companies.",
+        "technologies": ["Python", "PyTorch", "DGL"],
+        "role": "Lead Researcher",
+        "url": "github.com/michaelzhang/graphsage-next"
+      },
+      {
+        "name": "FairML Toolkit",
+        "description": "Open-source toolkit for fairness auditing and bias mitigation in ML models. Integrated with scikit-learn API.",
+        "technologies": ["Python", "Scikit-learn", "NumPy"],
+        "role": "Core Contributor",
+        "url": "github.com/michaelzhang/fairml"
+      }
+    ],
+    "publications": [
+      {
+        "title": "Inductive Representation Learning on Large Graphs",
+        "venue": "NeurIPS",
+        "year": 2019,
+        "citations": 2300
+      },
+      {
+        "title": "Fairness-Aware Learning with Restricted Black-Box Access",
+        "venue": "ICML",
+        "year": 2020,
+        "citations": 450
+      },
+      {
+        "title": "Scalable Causal Inference for Online Experimentation",
+        "venue": "KDD",
+        "year": 2021,
+        "citations": 180
+      }
+    ],
+    "certifications": [
+      "AWS Certified Machine Learning - Specialty (2022)",
+      "Google Cloud Professional Data Engineer (2021)"
+    ]
+  }
+}

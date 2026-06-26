@@ -1,0 +1,17 @@
+{
+  "skill_name": "release-notes",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我根据以下 commit 记录生成一份中文的发版说明：\nfeat(auth): 新增企业微信登录\nfix(db): 修复并发导致的数据死锁\nchore: 更新 README.md\nBREAKING CHANGE: 移除 v1 版本的 API 接口",
+      "expected_output": "A Chinese release notes document. It must include '💥 破坏性变更' (for the API removal), '✨ 新特性' (for enterprise WeChat login), and '🐛 问题修复' (for the DB deadlock). The 'chore' commit should be ignored.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Generate a changelog for these commits:\nfeat: add dark mode support\nfix: resolve memory leak in worker thread\ndocs: update installation guide",
+      "expected_output": "An English release notes document that categorizes the provided commits into Features and Bug Fixes. The 'docs' commit should be ignored.",
+      "files": []
+    }
+  ]
+}

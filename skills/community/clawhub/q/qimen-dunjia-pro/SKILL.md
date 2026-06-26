@@ -1,35 +1,152 @@
 ---
-name: "奇门遁甲排盘Pro"
-description: "专业级奇门遁甲排盘与解盘技能。支持时家奇门拆补法/置润法、天地人神四盘完整排列、20+吉格20+凶格自动识别、100种天干克应、12类问题深度解盘。附带初学者使用指南。触发词：奇门遁甲、排盘、奇门、遁甲、择时、占卜、吉凶、吉方"
-category: "other"
-source: "ClawHub"
-tags: [chinese, divination, dunjia, fengshui, fortune, qimen]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qimen-dunjia-pro"
-sourceUrl: "https://clawhub.ai/skills/qimen-dunjia-pro"
+name: qimen-dunjia
+description: 专业级奇门遁甲排盘与解盘技能。支持时家奇门拆补法/置润法、天地人神四盘完整排列、20+吉格20+凶格自动识别、100种天干克应、12类问题深度解盘。附带初学者使用指南。触发词：奇门遁甲、排盘、奇门、遁甲、择时、占卜、吉凶、吉方
+metadata:
+  openclaw:
+    emoji: "☯️"
+    requires:
+      bins:
+        - node
 ---
 
-# 奇门遁甲排盘Pro
+# 奇门遁甲排盘与解盘技能
 
-> 专业级奇门遁甲排盘与解盘技能。支持时家奇门拆补法/置润法、天地人神四盘完整排列、20+吉格20+凶格自动识别、100种天干克应、12类问题深度解盘。附带初学者使用指南。触发词：奇门遁甲、排盘、奇门、遁甲、择时、占卜、吉凶、吉方
+## 核心功能
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qimen-dunjia-pro`
-- **Source URL:** [https://clawhub.ai/skills/qimen-dunjia-pro](https://clawhub.ai/skills/qimen-dunjia-pro)
+1. **精确排盘** - 时家奇门拆补法（默认）/置润法，天地人神四盘完整排列
+2. **格局识别** - 20+吉格、20+凶格自动识别，100种天干克应全覆盖
+3. **深度解盘** - 12类问题分类解盘（财运/事业/婚姻/健康/出行/官司/考试等）
+4. **初学者友好** - 附带详细使用指南，解盘结论通俗易懂
+5. **多输出格式** - 文本命盘、飞书文档、邮件报告
 
-## Overview
+## 使用流程
 
+### 1. 获取用户信息
 
-## Installation
-To install this skill, run the following command in your terminal:
+**必需信息：**
+- 起盘时间（默认当前时间，也可指定）
+
+**可选信息：**
+- 想问的具体问题（事业、财运、婚姻等）
+- 排盘方法偏好（拆补法/置润法）
+
+### 2. 执行排盘
+
 ```bash
-hermes skills install clawhub/qimen-dunjia-pro
+# 当前时间排盘（综合运势）
+node scripts/main.js
+
+# 指定时间排盘
+node scripts/main.js --time "2026-03-25 14:30"
+
+# 指定问题类型
+node scripts/main.js --time "2026-03-25 14:30" --question wealth
+
+# JSON格式输出（用于程序化处理）
+node scripts/main.js --time "2026-03-25 14:30" --json
 ```
+
+### 3. 问题类型参数
+
+| 参数 | 问题类型 | 用神 |
+|------|----------|------|
+| `general` | 综合运势 | 日干为主 |
+| `wealth` | 求财 | 生门、戊 |
+| `career` | 事业官运 | 开门、天心 |
+| `marriage` | 婚姻感情 | 六合、天后 |
+| `health` | 疾病健康 | 天芮、死门 |
+| `travel` | 出行 | 值符、开门 |
+| `lawsuit` | 官司诉讼 | 开门、天心 |
+| `exam` | 考试学业 | 天辅、杜门 |
+| `lost` | 失物寻找 | 值符飞宫 |
+| `missing` | 走失寻人 | 六合、太阴 |
+| `weather` | 天气预测 | 天蓬、天冲 |
+| `fengshui` | 住宅风水 | 生门、天任 |
+| `invest` | 投资理财 | 生门、戊 |
+
+### 4. 解盘步骤（AI 解读时遵循）
+
+**解盘次序**（严格遵循）：
+1. 先看整体格局（阳遁/阴遁、局数、值符值使）
+2. 确定用神及其落宫
+3. 分析用神宫位的天地人神四盘元素
+4. 判断五行旺衰（旺相休囚死）
+5. 识别格局（吉格、凶格、天干组合）
+6. 分析日干与用神的生克关系
+7. 综合判断成败、时间、方位
+8. 给出建议
+
+**解盘原则**：
+- 吉格多则事顺，凶格多则事阻
+- 用神旺相为吉，休囚死为凶
+- 门克宫为迫，宫克门为制
+- 空亡之宫不为实，马星之宫主变动
+- 伏吟主事缓不动，反吟主事反复
+
+### 5. 输出格式
+
+- **文本命盘** - 九宫格 + 格局 + 解盘，适合飞书消息
+- **飞书文档** - 完整报告（使用 feishu-create-doc）
+- **邮件报告** - Markdown 转 HTML 发送
+
+## 脚本说明
+
+| 脚本 | 功能 |
+|------|------|
+| `scripts/main.js` | CLI 入口，整合所有模块 |
+| `scripts/engine.js` | 排盘核心引擎（节气、定局、四盘排列） |
+| `scripts/gejus.js` | 格局识别（吉格、凶格、天干组合） |
+| `scripts/interpret.js` | 深度解盘（用神、旺衰、成败判断） |
+| `scripts/format.js` | 盘面格式化输出（九宫格、文本） |
+
+## 参考资料
+
+| 文件 | 内容 |
+|------|------|
+| `references/basics.md` | 奇门遁甲基础理论 |
+| `references/four-plates.md` | 天地人神四盘详解 |
+| `references/gejus.md` | 格局大全（40+种） |
+| `references/stem-combinations.md` | 100种天干克应 |
+| `references/yongshen.md` | 用神取法系统 |
+| `references/wuxing.md` | 五行旺衰与宫位关系 |
+| `references/guide.md` | 初学者使用指南 |
+
+## 触发场景
+
+- "帮我排个奇门遁甲盘"
+- "奇门遁甲看看今天运势"
+- "用奇门遁甲帮我择时"
+- "奇门遁甲看财运"
+- "今天适合出行吗（奇门）"
+- "奇门遁甲看这个事能成吗"
+
+## 初学者快速入门
+
+### 什么是奇门遁甲？
+奇门遁甲是中国古代最高层次的预测学之一，与太乙神数、六壬并称"三式"。它通过天时（九星）、地利（八卦九宫）、人和（八门）、神助（八神）四个维度分析事物的吉凶成败。
+
+### 怎么用？
+1. **心中默念问题**（或说出来）
+2. **告诉我时间**（不说就用当前时间）
+3. **告诉我问什么**（财运？事业？婚姻？）
+4. **我来排盘解盘**
+
+### 看懂结果
+- 🟢 **吉格** = 好兆头
+- 🔴 **凶格** = 需注意
+- 📊 **评分** = 整体吉凶程度
+- 🧭 **吉方** = 有利方位
+- 🎨 **吉色** = 有利颜色
+- ⏰ **时机** = 建议行动时间
+
+## 注意事项
+
+1. **起盘时间** - 以问事的那一刻为准（"念动则占"）
+2. **一事一占** - 每次只问一个问题
+3. **诚心为要** - 心诚则灵，不可戏占
+4. **仅供参考** - 传统文化传承，重大决策请综合判断
+5. **不占三事** - 不占违法之事、不占害人之事、不占已知之事
+
+## 外部依赖
+
+- **Node.js** - 排盘计算（无需 npm install，纯原生实现）

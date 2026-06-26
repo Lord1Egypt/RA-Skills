@@ -1,0 +1,75 @@
+export type Campus = "zhuhai" | "south" | "east";
+export type ZhuhaiStationKey = "zhuhai" | "boya" | "fifth";
+
+export interface StationConfig {
+  city: string;
+  cityId: string;
+  stationName: string;
+}
+
+export const CAMPUS_LABELS: Record<Campus, string> = {
+  zhuhai: "Zhuhai",
+  south: "South Campus",
+  east: "East Campus",
+};
+
+export const ZHUHAI_STATIONS: Record<ZhuhaiStationKey, StationConfig> = {
+  zhuhai: {
+    city: "香洲",
+    cityId: "3766",
+    stationName: "珠海中大岐关服务点",
+  },
+  boya: {
+    city: "香洲",
+    cityId: "3766",
+    stationName: "博雅苑",
+  },
+  fifth: {
+    city: "香洲",
+    cityId: "3766",
+    stationName: "中大五院正门",
+  },
+};
+
+export const GUANGZHOU_CAMPUSES: Record<Exclude<Campus, "zhuhai">, StationConfig> = {
+  south: {
+    city: "广州市区",
+    cityId: "142291",
+    stationName: "广中大南校区 岐关服务部",
+  },
+  east: {
+    city: "广州市区",
+    cityId: "142291",
+    stationName: "广中大东校区（大学城）岐关服务部",
+  },
+};
+
+export function parseCampus(value: string | undefined, fallback: Campus): Campus {
+  if (!value) return fallback;
+  if (value === "zhuhai" || value === "south" || value === "east") return value;
+  throw new Error(`Invalid campus "${value}". Use zhuhai, south, or east.`);
+}
+
+export function parseZhuhaiStation(
+  value: string | undefined,
+  fallback: ZhuhaiStationKey,
+): ZhuhaiStationKey {
+  if (!value) return fallback;
+  if (value === "zhuhai" || value === "boya" || value === "fifth") return value;
+  throw new Error(`Invalid Zhuhai station "${value}". Use zhuhai, boya, or fifth.`);
+}
+
+export function defaultDestination(start: Campus): Campus {
+  return start === "zhuhai" ? "south" : "zhuhai";
+}
+
+export function getStation(campus: Campus, zhuhaiStation: ZhuhaiStationKey): StationConfig {
+  if (campus === "zhuhai") return ZHUHAI_STATIONS[zhuhaiStation];
+  return GUANGZHOU_CAMPUSES[campus];
+}
+
+export function routeLabel(start: Campus, to: Campus, zhuhaiStation: ZhuhaiStationKey): string {
+  const startLabel = start === "zhuhai" ? ZHUHAI_STATIONS[zhuhaiStation].stationName : CAMPUS_LABELS[start];
+  const toLabel = to === "zhuhai" ? ZHUHAI_STATIONS[zhuhaiStation].stationName : CAMPUS_LABELS[to];
+  return `${startLabel} -> ${toLabel}`;
+}

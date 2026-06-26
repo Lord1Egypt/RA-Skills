@@ -1,0 +1,29 @@
+{
+  "name": "psychology-stats-analysis",
+  "version": "1.0.0",
+  "title": "心理学统计分析助手",
+  "description": "为心理学研究设计的全面统计分析工具，包括描述统计、假设检验、效应量计算，适用于社会认知和实验心理学研究，特别是凝视线索、隐性学习等范式。",
+  "author": "@zhan599",
+  "license": "MIT",
+  "keywords": [
+    "心理学",
+    "统计分析",
+    "数据分析",
+    "假设检验",
+    "效应量",
+    "社会认知",
+    "实验心理学"
+  ],
+  "icon": "bar-chart-2",
+  "category": "data-analysis",
+  "homepage": "https://github.com/zhan599/psychology-stats-analysis",
+  "requirements": {
+    "python": ">=3.8"
+  },
+  "dependencies": [
+    "numpy",
+    "scipy",
+    "pandas",
+    "matplotlib"
+  ]
+}

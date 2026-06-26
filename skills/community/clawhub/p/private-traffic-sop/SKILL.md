@@ -1,35 +1,36 @@
 ---
-name: "私域流量运营SOP生成器"
-description: "根据产品类型/用户画像，自动生成完整的私域运营 SOP（引流-培育-转化-复购）"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/private-traffic-sop"
-sourceUrl: "https://clawhub.ai/skills/private-traffic-sop"
+name: private-traffic-sop
+description: 根据产品类型/用户画像，自动生成完整的私域运营 SOP（引流-培育-转化-复购）
+metadata: { "version": "1.0.0", "author": "上海冰月网络科技有限公司", "license": "Commercial", "price": { "cny": 69, "usd": 24.99, "type": "monthly" } }
 ---
 
-# 私域流量运营SOP生成器
+# 私域流量运营 SOP 生成器
 
-> 根据产品类型/用户画像，自动生成完整的私域运营 SOP（引流-培育-转化-复购）
+根据产品类型、用户画像、转化目标，自动生成完整的私域运营 SOP。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/private-traffic-sop`
-- **Source URL:** [https://clawhub.ai/skills/private-traffic-sop](https://clawhub.ai/skills/private-traffic-sop)
+## 触发条件
 
-## Overview
+当用户需要：
+- 制定私域运营方案
+- 设计社群运营 SOP
+- 规划用户转化路径
 
+## 执行流程
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/private-traffic-sop
-```
+1. 接收产品信息（品类、客单价、复购周期）
+2. 分析用户画像
+3. 选择行业模板（5 大行业）
+4. 生成全链路 SOP：
+   - 引流方案
+   - 培育策略
+   - 转化设计
+   - 复购激励
+5. 提供话术模板
+6. 设定 KPI 基准
+7. 输出完整 SOP 文档
+
+## 注意事项
+
+- SOP 需结合实际业务调整
+- 定期复盘优化
+- 关注用户反馈和满意度

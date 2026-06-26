@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.0.0",
+  "requirement_id": "REQ-TRADE-001",
+  "test_points": [
+    {
+      "id": "TP-001",
+      "source_scenario": "委托撤单-主流程",
+      "source": ["P2-TP-001"],
+      "category": "main_flow",
+      "description": "投资者对未成交买入委托发起撤单，撤单成功后冻结资金释放",
+      "precondition": "投资者已有一笔未成交的买入委托",
+      "related_rules": ["撤单仅限未成交或部分成交委托"],
+      "related_roles": ["投资者"],
+      "priority": "P0",
+      "priority_reason": "核心交易功能，撤单主流程必须保证",
+      "status": "active",
+      "blocked_by": "",
+      "smoke_candidate": true
+    },
+    {
+      "id": "TP-002",
+      "source_scenario": "委托撤单-部分成交撤单",
+      "source": ["P2-TP-002"],
+      "category": "branch",
+      "description": "投资者对部分成交委托发起撤单，仅撤销未成交部分，已成交部分不受影响",
+      "precondition": "投资者已有一笔部分成交的委托",
+      "related_rules": ["部分成交委托可撤销未成交部分"],
+      "related_roles": ["投资者"],
+      "priority": "P0",
+      "priority_reason": "部分成交撤单涉及资金计算，属于高优先级分支",
+      "status": "active",
+      "blocked_by": "",
+      "smoke_candidate": false
+    },
+    {
+      "id": "TP-003",
+      "source_scenario": "委托撤单-已成交委托撤单",
+      "source": ["P2-TP-003"],
+      "category": "exception",
+      "description": "投资者对已全部成交的委托发起撤单，系统拒绝并提示不可撤单",
+      "precondition": "投资者已有一笔全部成交的委托",
+      "related_rules": ["已成交委托不可撤单"],
+      "related_roles": ["投资者"],
+      "priority": "P1",
+      "priority_reason": "异常场景，需验证系统拒绝逻辑",
+      "status": "active",
+      "blocked_by": "",
+      "smoke_candidate": false
+    }
+  ],
+  "merge_log": {
+    "merged_count": 0,
+    "merged_pairs": [],
+    "reason": "本轮无重复测试点需合并"
+  },
+  "quality_warnings": [],
+  "coverage_summary": {
+    "total": 3,
+    "by_category": {
+      "main_flow": 1,
+      "branch": 1,
+      "exception": 1
+    },
+    "by_priority": {
+      "P0": 2,
+      "P1": 1
+    }
+  }
+}

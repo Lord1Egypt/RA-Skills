@@ -1,0 +1,52 @@
+{
+  "customer": {
+    "company_name": "Example Customer Corp",
+    "contact": "John Doe",
+    "email": "contact@example-customer.com",
+    "phone": "",
+    "address": "123 Business St, Your City"
+  },
+  "quotation": {
+    "quotation_no": "QT-20260315-001",
+    "date": "2026-03-15",
+    "valid_until": "2026-04-14"
+  },
+  "products": [
+    {
+      "description": "HDMI 2.1 Ultra High Speed Cable",
+      "specification": "8K@60Hz, 4K@120Hz, 48Gbps, HDR, eARC, 2m",
+      "quantity": 500,
+      "unit_price": 8.50
+    },
+    {
+      "description": "HDMI 2.1 Fiber Optical Cable (AOC)",
+      "specification": "8K@60Hz, 48Gbps, Active Optical, 10m",
+      "quantity": 200,
+      "unit_price": 25.00
+    },
+    {
+      "description": "USB-C to USB-C Cable",
+      "specification": "USB 4.0, 80Gbps, 100W PD 2.0, 1m",
+      "quantity": 1000,
+      "unit_price": 12.00
+    },
+    {
+      "description": "DisplayPort 2.1 Cable",
+      "specification": "UHBR20, 80Gbps, 16K@60Hz, 8K@120Hz, 2m",
+      "quantity": 300,
+      "unit_price": 15.50
+    },
+    {
+      "description": "CAT6A Ethernet Cable",
+      "specification": "10Gbps, 500MHz, Shielded (FTP), 5m",
+      "quantity": 800,
+      "unit_price": 6.80
+    }
+  ],
+  "currency": "USD",
+  "payment_terms": "T/T 30% deposit, 70% before shipment",
+  "lead_time": "15-20 days after deposit",
+  "freight": 350.00,
+  "tax": 0,
+  "notes": "1. 以上价格基于当前原材料成本，如有变动将另行通知。\n2. 报价有效期：30 天\n3. 包装：标准出口包装（礼品盒/牛皮盒可选）\n4. 认证：CE/RoHS/UL/FCC/HDMI 2.1"
+}

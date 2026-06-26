@@ -1,0 +1,145 @@
+{
+  "messages": [
+    {
+      "id": "7615818315128305057",
+      "seq": "0",
+      "timestamp": 1554096216000,
+      "time": "2019-04-01 13:23:36",
+      "sender": {
+        "uid": "target_uid_placeholder",
+        "uin": "target_uin_placeholder",
+        "name": "Martha"
+      },
+      "type": "type_1",
+      "content": {
+        "text": "Sorry for handing it in so late and causing you trouble",
+        "html": "",
+        "elements": [
+          {
+            "type": "text",
+            "data": {
+              "text": "Sorry for handing it in so late and causing you trouble"
+            }
+          }
+        ],
+        "resources": [],
+        "mentions": []
+      },
+      "recalled": false,
+      "system": false
+    },
+    {
+      "id": "7615818315128305059",
+      "seq": "0",
+      "timestamp": 1554096270000,
+      "time": "2019-04-01 13:24:30",
+      "sender": {
+        "uid": "my_uid_placeholder",
+        "uin": "my_uin",
+        "name": "Jonas"
+      },
+      "type": "type_1",
+      "content": {
+        "text": "[emoji13]",
+        "html": "",
+        "elements": [
+          {
+            "type": "text",
+            "data": {
+              "text": "[emoji13]"
+            }
+          },
+          {
+            "type": "face",
+            "data": {
+              "id": "13",
+              "name": "emoji13"
+            }
+          }
+        ],
+        "resources": [],
+        "mentions": []
+      },
+      "recalled": false,
+      "system": false
+    },
+    {
+      "id": "7615818315128305061",
+      "seq": "0",
+      "timestamp": 1554096301000,
+      "time": "2019-04-01 13:25:01",
+      "sender": {
+        "uid": "target_uid_placeholder",
+        "uin": "target_uin_placeholder",
+        "name": "Martha"
+      },
+      "type": "type_1",
+      "content": {
+        "text": "I wouldn't have remembered if you hadn't said it [emoji13]",
+        "html": "",
+        "elements": [
+          {
+            "type": "text",
+            "data": {
+              "text": "I wouldn't have remembered if you hadn't said it [emoji13]"
+            }
+          },
+          {
+            "type": "face",
+            "data": {
+              "id": "13",
+              "name": "emoji13"
+            }
+          }
+        ],
+        "resources": [],
+        "mentions": []
+      },
+      "recalled": false,
+      "system": false
+    },
+    {
+      "id": "7615818315128305064",
+      "seq": "0",
+      "timestamp": 1554096322000,
+      "time": "2019-04-01 13:25:22",
+      "sender": {
+        "uid": "my_uid_placeholder",
+        "uin": "my_uin",
+        "name": "Jonas"
+      },
+      "type": "type_1",
+      "content": {
+        "text": "[Image: 296CF683BE5DC92A16DCB385F58E93AC.jpg]",
+        "html": "",
+        "elements": [
+          {
+            "type": "text",
+            "data": {
+              "text": "[Image: 296CF683BE5DC92A16DCB385F58E93AC.jpg]"
+            }
+          },
+          {
+            "type": "image",
+            "data": {
+              "filename": "296CF683BE5DC92A16DCB385F58E93AC.jpg",
+              "size": 1789,
+              "url": ""
+            }
+          }
+        ],
+        "resources": [
+          {
+            "type": "image",
+            "filename": "296CF683BE5DC92A16DCB385F58E93AC.jpg",
+            "size": 1789,
+            "url": ""
+          }
+        ],
+        "mentions": []
+      },
+      "recalled": false,
+      "system": false
+    }
+  ]
+}

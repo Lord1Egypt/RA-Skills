@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>答题统计</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f4f8; min-height: 100vh; }
+    
+    .topbar { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 14px 24px; display: flex; align-items: center; gap: 16px; }
+    .topbar h1 { font-size: 1.1em; color: #333; flex: 1; }
+    .topbar a { color: #1a73e8; text-decoration: none; font-size: 0.9em; }
+    .topbar a:hover { text-decoration: underline; }
+    
+    .container { max-width: 900px; margin: 0 auto; padding: 24px 16px; }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+    .stat-card { background: #fff; border-radius: 14px; padding: 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .stat-num { font-size: 2em; font-weight: 800; color: #1a73e8; }
+    .stat-num.orange { color: #e37400; }
+    .stat-num.green { color: #188038; }
+    .stat-num.red { color: #c5221f; }
+    .stat-label { color: #888; font-size: 0.88em; margin-top: 4px; }
+    
+    .quiz-title { background: #fff; border-radius: 14px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .quiz-title h2 { color: #222; margin-bottom: 6px; }
+    .quiz-title p { color: #888; font-size: 0.88em; }
+    
+    .card { background: #fff; border-radius: 14px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .card h3 { color: #333; margin-bottom: 18px; font-size: 1em; border-bottom: 2px solid #f0f0f0; padding-bottom: 12px; }
+    
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: left; padding: 10px 12px; color: #888; font-size: 0.85em; border-bottom: 2px solid #f0f0f0; }
+    td { padding: 12px; border-bottom: 1px solid #f5f5f5; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8fbff; }
+    .rank-badge { display: inline-flex; width: 26px; height: 26px; border-radius: 50%; align-items: center; justify-content: center; font-weight: 700; font-size: 0.82em; }
+    .rank-1 { background: #ffd700; color: #fff; }
+    .rank-2 { background: #c0c0c0; color: #fff; }
+    .rank-3 { background: #cd7f32; color: #fff; }
+    .rank-n { background: #f0f0f0; color: #888; }
+    .score-tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-weight: 600; font-size: 0.9em; }
+    .score-high { background: #e6f4ea; color: #188038; }
+    .score-mid { background: #feefc3; color: #7a6000; }
+    .score-low { background: #fce8e6; color: #c5221f; }
+    
+    /* Question stats */
+    .q-stat-item { display: flex; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid #f5f5f5; }
+    .q-stat-item:last-child { border-bottom: none; }
+    .q-num { font-weight: 700; color: #1a73e8; width: 28px; flex-shrink: 0; }
+    .q-text { flex: 1; color: #444; font-size: 0.9em; }
+    .q-bar-wrap { width: 120px; flex-shrink: 0; }
+    .q-bar { height: 8px; border-radius: 4px; background: #e0e0e0; overflow: hidden; }
+    .q-bar-fill { height: 100%; border-radius: 4px; background: #1a73e8; transition: width 0.5s ease; }
+    .q-accuracy { font-weight: 700; font-size: 0.85em; color: #1a73e8; width: 44px; text-align: right; flex-shrink: 0; }
+    
+    .loading { text-align: center; padding: 60px; color: #888; }
+    .loading-spinner { width: 36px; height: 36px; border: 3px solid #e0e0e0; border-top-color: #1a73e8; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 14px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    .no-data { text-align: center; padding: 40px; color: #aaa; }
+    
+    .qr-section { display: flex; gap: 24px; justify-content: center; background: #fff; border-radius: 14px; padding: 28px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .qr-item { text-align: center; flex: 1; max-width: 200px; }
+    .qr-label { font-weight: 700; color: #333; margin-top: 10px; font-size: 0.95em; }
+    .qr-desc { color: #999; font-size: 0.82em; margin-top: 4px; }
+    #qr-quiz, #qr-admin { border-radius: 8px; }
+    
+    .delete-btn { background: #fce8e6; color: #c5221f; border: 1px solid #fdd; border-radius: 8px; padding: 6px 14px; cursor: pointer; font-size: 0.85em; float: right; }
+    .delete-btn:hover { background: #fdd; }
+    
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+<div class="topbar">
+  <h1>📊 答题统计</h1>
+  <a href="/">← 返回首页</a>
+</div>
+
+<div class="container" id="app">
+  <div class="loading">
+    <div class="loading-spinner"></div>
+    <div>加载中...</div>
+  </div>
+</div>
+
+<script src="/qrcode.min.js"></script>
+<script>
+const quizId = new URLSearchParams(location.search).get('id');
+const app = document.getElementById('app');
+
+async function loadStats() {
+  if (!quizId) {
+    app.innerHTML = '<div class="loading">无效的链接</div>'; return;
+  }
+  try {
+    const resp = await fetch(`/api/quiz/${quizId}/stats`);
+    if (!resp.ok) throw new Error('加载失败');
+    const data = await resp.json();
+    renderStats(data);
+    generateQR();
+  } catch (err) {
+    app.innerHTML = `<div class="loading">${err.message}</div>`;
+  }
+}
+
+function renderStats(data) {
+  app.innerHTML = `
+    <div class="quiz-title">
+      <h2>${data.title}</h2>
+      <p>创建于 ${new Date(data.createdAt).toLocaleString('zh-CN')} · ${data.description || ''}</p>
+    </div>
+    
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">${data.totalSubmissions}</div>
+        <div class="stat-label">已答人数</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num orange">${data.avgScore}%</div>
+        <div class="stat-label">平均分</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num green">${data.maxScore}%</div>
+        <div class="stat-label">最高分</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num red">${data.minScore}%</div>
+        <div class="stat-label">最低分</div>
+      </div>
+    </div>
+    
+    <div class="qr-section">
+      <div class="qr-item">
+        <canvas id="qr-quiz" width="140" height="140"></canvas>
+        <div class="qr-label">📝 答题二维码</div>
+        <div class="qr-desc">发给参与者扫码答题</div>
+      </div>
+      <div class="qr-item">
+        <canvas id="qr-admin" width="140" height="140"></canvas>
+        <div class="qr-label">📊 统计二维码</div>
+        <div class="qr-desc">老师查看成绩统计</div>
+      </div>
+    </div>
+    
+    <div class="card" style="margin-top:20px;">
+      <h3>📋 答题记录</h3>
+      ${data.totalSubmissions === 0 
+        ? '<div class="no-data">暂无答题记录</div>'
+        : `<table>
+            <thead><tr><th>排名</th><th>姓名</th><th>班级</th><th>分数</th><th>提交时间</th></tr></thead>
+            <tbody>
+              ${data.submissions.map(s => {
+                let scoreClass = 'score-high', rankClass = 'rank-n';
+                if (s.score >= 80) scoreClass = 'score-high';
+                else if (s.score >= 60) scoreClass = 'score-mid';
+                else scoreClass = 'score-low';
+                if (s.rank === 1) rankClass = 'rank-1';
+                else if (s.rank === 2) rankClass = 'rank-2';
+                else if (s.rank === 3) rankClass = 'rank-3';
+                return `<tr>
+                  <td><span class="rank-badge ${rankClass}">${s.rank}</span></td>
+                  <td><b>${s.name}</b></td>
+                  <td>${s.className || '-'}</td>
+                  <td><span class="score-tag ${scoreClass}">${s.score}分</span></td>
+                  <td style="color:#999; font-size:0.88em;">${new Date(s.submittedAt).toLocaleString('zh-CN')}</td>
+                </tr>`;
+              }).join('')}
+            </tbody>
+          </table>`
+      }
+    </div>
+    
+    <div class="card">
+      <h3>📌 各题正确率</h3>
+      ${data.questionStats.length === 0 
+        ? '<div class="no-data">暂无数据</div>'
+        : data.questionStats.map(q => `
+            <div class="q-stat-item">
+              <span class="q-num">${q.index+1}.</span>
+              <span class="q-text">${q.question}</span>
+              <div class="q-bar-wrap">
+                <div class="q-bar"><div class="q-bar-fill" style="width:${q.accuracy}%"></div></div>
+              </div>
+              <span class="q-accuracy">${q.accuracy}%</span>
+            </div>
+          `).join('')
+      }
+    </div>
+    
+    <button class="delete-btn" onclick="deleteQuiz()">🗑 删除此答题</button>
+    <div style="clear:both;"></div>
+  `;
+}
+
+function generateQR() {
+  const origin = "https://118.196.5.240:34100";
+  const quizUrl = origin + '/quiz.html?id=' + quizId;
+  const adminUrl = origin + '/admin.html?id=' + quizId;
+
+  function makeQR(canvasId, url) {
+    const el = document.getElementById(canvasId);
+    if (!el) return;
+    el.innerHTML = '';
+    new QRCode(el, {
+      text: url,
+      width: 140,
+      height: 140,
+      colorDark: '#1a73e8',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  }
+
+  makeQR('qr-quiz', quizUrl);
+  makeQR('qr-admin', adminUrl);
+}
+
+async function deleteQuiz() {
+  if (!confirm('确定删除此答题？删除后无法恢复！')) return;
+  await fetch(`/api/quiz/${quizId}`, { method: 'DELETE' });
+  location.href = '/';
+}
+
+loadStats();
+</script>
+</body>
+</html>

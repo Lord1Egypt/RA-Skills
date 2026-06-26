@@ -1,0 +1,14 @@
+{
+  "name": "sprint-planning",
+  "displayName": "Sprint 需求规划工作流",
+  "version": "1.0.0",
+  "description": "敏捷 Sprint 规划中的需求优先级和拆分，覆盖需求池梳理/需求拆分/容量评估/Sprint 计划生成",
+  "author": "Elatia",
+  "license": "MIT",
+  "tags": ["requirement-analysis", "workflow", "agile", "sprint-planning", "scrum"],
+  "category": "Product Management",
+  "type": "workflow",
+  "parentSkill": "requirement-analysis-system",
+  "createdAt": "2026-03-09T15:15:00+08:00",
+  "updatedAt": "2026-03-09T15:15:00+08:00"
+}

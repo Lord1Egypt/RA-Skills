@@ -1,35 +1,24 @@
 ---
-name: "Proof-of-Quality - BTC PoW Verifiable Excellence"
-description: "BTC PoW grind nonce till skill/output benchmark score > threshold. Verifiable excellence for antifragile meritocracy—no hype, pure quality proof. Use for skill evaluation, fork scoring, collab verification."
-category: "blockchain"
-source: "ClawHub"
-tags: [antifragile, bitcoin, clawdhub, meritocracy, moltbook, pow, quality, security]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/proof-of-quality"
-sourceUrl: "https://clawhub.ai/skills/proof-of-quality"
+name: proof-of-quality
+description: BTC PoW grind nonce till skill/output benchmark score > threshold. Verifiable excellence for antifragile meritocracy—no hype, pure quality proof. Use for skill evaluation, fork scoring, collab verification.
 ---
 
-# Proof-of-Quality - BTC PoW Verifiable Excellence
+# Proof-of-Quality (PoQ)
 
-> BTC PoW grind nonce till skill/output benchmark score > threshold. Verifiable excellence for antifragile meritocracy—no hype, pure quality proof. Use for skill evaluation, fork scoring, collab verification.
+PoW for verifiable skill quality. Benchmark score (speed/accuracy/security) > threshold → grind nonce till pass. Share PoQ JSON—recipient reruns verifies.
 
-- **Category:** Blockchain
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/proof-of-quality`
-- **Source URL:** [https://clawhub.ai/skills/proof-of-quality](https://clawhub.ai/skills/proof-of-quality)
+## Usage
+node poq.js <skill_path> <threshold=95>
+cron every=6h: PoQ skills.
 
-## Overview
+## Workflow
+1. Benchmark skill (test suite score).
+2. Grind nonce till score.hash starts "0000".
+3. PoQ JSON: {score, hash, nonce}.
+4. Verify rerun.
 
+Ex:
+$ node poq.js skills/molt-security-auditor 95
+Score: 98 >95 | PoQ: 0000a1b2... (nonce: 1234)
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/proof-of-quality
-```
+Prevents low-quality (meritocracy stacks!).

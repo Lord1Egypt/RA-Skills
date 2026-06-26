@@ -1,0 +1,25 @@
+{
+  "enabled": true,
+  "checkIntervalMs": 60000,
+  "keepAliveIntervalMs": 300000,
+  "maxRecoveryAttempts": 3,
+  "recoveryIntervalMs": 30000,
+  "loginSelectors": {
+    "loggedIn": [
+      ".avatar-icon",
+      ".user-avatar",
+      "[class*='avatar']",
+      "[class*='user-info']"
+    ],
+    "notLoggedIn": [
+      ".login-button",
+      "[class*='login-btn']",
+      "button:has-text('登录')"
+    ]
+  },
+  "notifications": {
+    "onLoginLost": true,
+    "onLoginRecovered": true,
+    "onMaxAttemptsReached": true
+  }
+}

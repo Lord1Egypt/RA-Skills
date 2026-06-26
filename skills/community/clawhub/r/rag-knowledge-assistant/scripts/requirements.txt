@@ -1,0 +1,23 @@
+# RAG 知识库检索依赖
+
+# LangChain 核心
+langchain>=0.1.0
+langchain-community>=0.0.10
+
+# 向量数据库
+chromadb>=0.4.0
+
+# Embedding 模型
+sentence-transformers>=2.2.0
+
+# 文档加载器
+pypdf>=3.0.0
+unstructured>=0.10.0
+python-docx>=0.8.11
+openpyxl>=3.1.0  # Excel 支持
+
+# 可选：PDF 处理增强
+pdfplumber>=0.9.0
+
+# 可选：使用 OpenAI Embedding
+# openai>=1.0.0

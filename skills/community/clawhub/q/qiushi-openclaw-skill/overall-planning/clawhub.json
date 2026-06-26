@@ -1,0 +1,13 @@
+{
+  "name": "overall-planning",
+  "version": "1.0.0",
+  "displayName": "统筹兼顾",
+  "description": "当多个目标需要平衡，需要统筹兼顾时调用",
+  "author": "求是 Skill",
+  "homepage": "https://github.com/skytodmoon/qiushi-skill",
+  "tags": ["方法论", "毛泽东思想", "统筹兼顾"],
+  "requires": {
+    "env": []
+  },
+  "files": []
+}

@@ -1,0 +1,20 @@
+{
+  "target_figure_class": "method-framework-figure",
+  "evidence_map_version": "1.0.0",
+  "items": [
+    {
+      "claim_id": "TAX-001",
+      "claim_type": "taxonomy_axis | figure_type | layout_pattern | visual_style | anti_pattern | prompt_rule | review_rule",
+      "claim": "",
+      "supporting_papers": ["paper_id"],
+      "supporting_figures": ["figure_id"],
+      "supporting_captions": ["caption_id"],
+      "supporting_panels": ["panel_id"],
+      "observed_pattern": "",
+      "evidence_level": "full_figure_inspection | caption_only | metadata_only | user_reference | generic_fallback",
+      "confidence": "high | medium | low",
+      "limitations": ""
+    }
+  ],
+  "unsupported_or_fallback_claims": []
+}

@@ -1,0 +1,31 @@
+{
+  "name": "qiaomai-skills",
+  "version": "1.0.5",
+  "description": "OpenClaw智能体增强工具：记忆管理、知识图谱、报告生成",
+  "author": "QiaoMai",
+  "license": "MIT",
+  "tags": ["memory", "knowledge-graph", "report", "agent"],
+  "main": "SKILL.md",
+  "env": [
+    {
+      "name": "OPENAI_API_KEY",
+      "description": "OpenAI API密钥（可选，用于增强语义理解）",
+      "required": false,
+      "sensitive": true
+    },
+    {
+      "name": "PERPLEXITY_API_KEY",
+      "description": "Perplexity API密钥（可选，用于实时搜索增强）",
+      "required": false,
+      "sensitive": true
+    },
+    {
+      "name": "GROK_API_KEY",
+      "description": "Grok API密钥（可选，用于代码生成辅助）",
+      "required": false,
+      "sensitive": true
+    }
+  ],
+  "permissions": [],
+  "storage": "~/.qiaomai/"
+}

@@ -1,0 +1,34 @@
+{
+  "name": "rohoon-6sigma",
+  "version": "1.8.0",
+  "description": "Rohoon Six Sigma professional support - AIAG-VDA SPC/MSA/DOE complete toolkit with GB/T 36077-2025",
+  "author": "William",
+  "license": "MIT",
+  "keywords": [
+    "six-sigma",
+    "SPC",
+    "MSA",
+    "DOE",
+    "AIAG-VDA",
+    "IATF16949",
+    "quality-management",
+    "lean",
+    "statistical-process-control"
+  ],
+  "files": [
+    "SKILL.md",
+    "scripts/",
+    "references/",
+    "tests/",
+    "reports/",
+    "docs/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rohoon/sixsigma-skill"
+  },
+  "scripts": {
+    "test": "python3 -m pytest tests/ -v",
+    "lint": "pylint scripts/"
+  }
+}

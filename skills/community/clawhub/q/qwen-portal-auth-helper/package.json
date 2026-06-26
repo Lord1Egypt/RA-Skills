@@ -1,0 +1,31 @@
+{
+  "name": "qwen-portal-auth-helper",
+  "version": "1.0.0",
+  "description": "Automate qwen-portal OAuth authentication - solves interactive TTY problem with tmux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Run: ./scripts/get-qwen-oauth-link.sh --test-only\" && exit 0",
+    "check": "./scripts/check-qwen-auth.sh",
+    "get-link": "./scripts/get-qwen-oauth-link.sh"
+  },
+  "keywords": [
+    "openclaw",
+    "qwen-portal",
+    "oauth",
+    "authentication",
+    "automation",
+    "tmux"
+  ],
+  "author": "Bessent <based on 2026-03-09 practical experience>",
+  "license": "MIT",
+  "dependencies": {},
+  "openclaw": {
+    "skill": true,
+    "category": "authentication",
+    "tags": ["qwen", "oauth", "troubleshooting", "automation"],
+    "compatibility": {
+      "openclaw": ">=2026.3.0"
+    },
+    "binaries": ["tmux", "openclaw"]
+  }
+}

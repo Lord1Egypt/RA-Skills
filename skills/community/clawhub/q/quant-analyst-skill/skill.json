@@ -1,0 +1,8 @@
+{
+  "name": "Quant Analyst",
+  "description": "Build financial models, backtest trading strategies, and analyze market data. Implements risk metrics, portfolio optimization, and statistical arbitrage.",
+  "version": "1.0.0",
+  "identifier": "quant-analyst",
+  "author": "sickn33",
+  "category": "finance"
+}

@@ -1,0 +1,65 @@
+{
+  "name": "quick-backup-restore",
+  "version": "3.2.3",
+  "displayName": "Time Clawshine — OpenClaw Time Machine",
+  "description": "Restic-powered encrypted time machine for OpenClaw: hourly incremental snapshots, fast restore by time/snapshot/file, local-only privacy defaults, integrity checks, retention, and optional alerts. Setup can run with sudo, install dependencies, create a systemd timer or cron job, restore files that may overwrite current state, and prune or purge old recovery data.",
+  "emoji": "⏱",
+  "author": {
+    "name": "Leandro Marz",
+    "github": "marzliak"
+  },
+  "license": "MIT",
+  "platforms": ["linux"],
+  "tags": [
+    "backup",
+    "restore",
+    "restic",
+    "snapshots",
+    "time-machine",
+    "encrypted-backup",
+    "local-backup",
+    "openclaw",
+    "disaster-recovery",
+    "privacy"
+  ],
+  "openclaw": {
+    "minVersion": "2026.1.0"
+  },
+  "requires": {
+    "bins": ["bash", "openssl", "curl", "jq"],
+    "auto_install": ["restic", "yq"]
+  },
+  "capabilities": {
+    "filesystem": [
+      "read configured backup paths",
+      "write encrypted restic repository data",
+      "restore snapshots into a chosen target, including / when explicitly confirmed",
+      "forget and prune old snapshots according to retention settings",
+      "optionally purge repository, password file, and logs during uninstall"
+    ],
+    "system": [
+      "setup requires root unless running --dry-run",
+      "optionally installs apt packages and yq",
+      "optionally writes /usr/local/bin/time-clawshine",
+      "optionally creates systemd timer/service or cron job",
+      "optionally writes logrotate configuration and lock/marker files"
+    ],
+    "network": [
+      "Telegram failure notifications are optional and disabled by default",
+      "healthcheck pings are optional and disabled by default",
+      "ClawHub update checks are optional and disabled by default",
+      "privacy.local_only blocks all external integrations by default"
+    ],
+    "sensitive_data": [
+      "OpenClaw memory, sessions, configs, and user-added paths may contain secrets",
+      "credential stores such as ~/.ssh and ~/.gnupg are not auto-suggested and require manual opt-in"
+    ]
+  },
+  "install": {
+    "command": "sudo bash {baseDir}/bin/setup.sh"
+  },
+  "links": {
+    "homepage": "https://github.com/marzliak/quick-backup-restore",
+    "issues": "https://github.com/marzliak/quick-backup-restore/issues"
+  }
+}

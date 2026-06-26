@@ -1,35 +1,74 @@
 ---
-name: "Receipt Tracker"
-description: "Распознает фотографии чеков, разбивает расходы по категориям (продукты, заправка, аптека, такси, животные и др.) и сохраняет их в базу (expenses.csv). Генери..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/receipt-tracker"
-sourceUrl: "https://clawhub.ai/skills/receipt-tracker"
+name: receipt-tracker
+description: Распознает фотографии чеков, разбивает расходы по категориям (продукты, заправка, аптека, такси, животные и др.) и сохраняет их в базу (expenses.csv). Генерирует ежемесячные отчеты по затратам. Использует быструю и дешевую модель gemini-2.5-flash для извлечения и анализа данных.
 ---
 
-# Receipt Tracker
-
-> Распознает фотографии чеков, разбивает расходы по категориям (продукты, заправка, аптека, такси, животные и др.) и сохраняет их в базу (expenses.csv). Генери...
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/receipt-tracker`
-- **Source URL:** [https://clawhub.ai/skills/receipt-tracker](https://clawhub.ai/skills/receipt-tracker)
+# Receipt Tracker (Трекер расходов по чекам)
 
 ## Overview
+Этот навык предназначен для автоматического извлечения данных из фотографий кассовых чеков, категоризации покупок и ведения базы данных расходов в формате CSV. Он позволяет пользователю просто отправить фото чека в чат, а агент сделает всю остальную работу: распознает текст, определит категории и запишет результат.
 
+**База данных хранится в файле:** `/opt/.openclaw/.openclaw/workspace/memory/expenses.csv`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/receipt-tracker
+## Категории расходов (Categories)
+При анализе чека используйте следующие основные категории:
+1. **Продукты** (Groceries)
+2. **Заправка** (Gas/Fuel)
+3. **Аптека/Медицина** (Pharmacy/Medical)
+4. **Такси/Транспорт** (Taxi/Transport)
+5. **Животные** (Pets)
+6. **Дом/Быт** (Household)
+7. **Развлечения** (Entertainment)
+8. **Одежда** (Clothing)
+9. **Прочее** (Other - для всего, что не подошло)
+
+## Workflow (Алгоритм работы)
+
+### 1. Получение и распознавание чека (OCR & Analysis)
+Когда пользователь присылает фото чека:
+1. Возьмите путь к присланному файлу (например, `/opt/.openclaw/.../file_XX.jpg`).
+2. Используйте инструмент `sessions_spawn` (runtime="subagent", mode="run"), чтобы запустить изолированного субагента для анализа картинки. 
+   - **ВАЖНО:** Обязательно укажите параметр `model: "google/gemini-2.5-flash"` (или `gemini-2.5-flash`, как указано в запросе пользователя), так как эта модель быстрая, дешевая/бесплатная и отлично справляется с OCR и анализом одновременно.
+   - В `attachments` передайте путь к фото чека.
+   - В `task` попросите субагента: *"Прочитай чек на фото. Извлеки все позиции, их стоимость и дату покупки. Каждой позиции присвой одну из категорий: Продукты, Заправка, Аптека, Такси, Животные, Дом, Развлечения, Одежда, Прочее. Верни результат строго в формате JSON: `[{"date": "YYYY-MM-DD", "item": "Название", "category": "Категория", "price": 100.50}]`"*
+
+### 2. Сохранение данных (Database Entry)
+1. Получив JSON от субагента, проверьте корректность данных.
+2. С помощью скрипта или инструмента `exec` (bash/python) допишите эти данные в файл `/opt/.openclaw/.openclaw/workspace/memory/expenses.csv`.
+3. Формат CSV: `Date,Item,Category,Price`
+   - Если файла еще нет, сначала создайте его с заголовком: `Date,Item,Category,Price`
+   - Убедитесь, что формат цен - это числа (с точкой для копеек).
+
+### 3. Отчетность (Reporting)
+Когда пользователь просит **"Отчет за месяц"** или **"Сколько я потратил"**:
+1. Прочитайте файл `expenses.csv` (например, через `exec(cat expenses.csv)` или `read`).
+2. Сгруппируйте расходы по категориям за запрошенный месяц.
+3. Посчитайте общую сумму затрат.
+4. Выведите пользователю красивый и читаемый отчет (например, в виде Markdown-таблицы или маркированного списка с суммами по категориям и итогом).
+
+## Example: Saving to CSV (Пример записи)
+Вы можете использовать Python для добавления строк:
+```python
+import csv
+import os
+
+file_path = '/opt/.openclaw/.openclaw/workspace/memory/expenses.csv'
+file_exists = os.path.isfile(file_path)
+
+data = [
+    {"date": "2026-03-10", "item": "Молоко", "category": "Продукты", "price": 89.90},
+    {"date": "2026-03-10", "item": "Корм для кота", "category": "Животные", "price": 450.00}
+]
+
+with open(file_path, 'a', newline='', encoding='utf-8') as f:
+    writer = csv.writer(f)
+    if not file_exists:
+        writer.writerow(['Date', 'Item', 'Category', 'Price'])
+    for row in data:
+        writer.writerow([row['date'], row['item'], row['category'], row['price']])
 ```
+
+## Правила (Rules)
+- **Всегда** используйте `gemini-2.5-flash` для чтения чеков (это экономит ресурсы и деньги).
+- Не запрашивайте подтверждение на каждый товар, если распознавание прошло уверенно. Просто покажите пользователю итог: *"Добавил в базу 5 позиций на сумму 1500 руб."*
+- При сомнениях в категории, ставьте "Прочее", но старайтесь быть точным.

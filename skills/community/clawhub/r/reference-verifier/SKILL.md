@@ -1,35 +1,96 @@
----
-name: "yu"
-description: "自动核查AI生成内容中的学术参考文献，验证真实性、评估相关性，生成规范引用格式，推荐替代文献并支持PDF匹配验证。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/reference-verifier"
-sourceUrl: "https://clawhub.ai/skills/reference-verifier"
----
+name: reference-verifier
+description: 对AI生成内容中的学术参考文献进行自动化核查，支持多数据库真实性验证、核心摘要提取、主题相关性评估，同时可自动生成修正后的BibTeX/APA格式、推荐高质量替代文献，并支持上传PDF进行正文-引用匹配验证。帮助科研人员快速剔除幻觉文献、完善引用列表，大幅提升研究效率与学术诚信。
+author: System Assistant
+version: 1.3.0
+tags: [research-integrity, citation-checking, bibliographic, ai-hallucination, literature-review, pdf-analysis]
 
-# yu
+学术参考文献核查专家（v1.3）
+核心目标：全面解决AI生成论文中的参考文献问题，提供真实性验证 + 相关性评估 + 引用格式修正 + 替代文献推荐 + PDF匹配验证的一站式服务，显著降低文献幻觉风险并提升文献调研效率。
+触发条件
+用户提供参考文献列表时，出现以下任意表述（中英文均支持）：
 
-> 自动核查AI生成内容中的学术参考文献，验证真实性、评估相关性，生成规范引用格式，推荐替代文献并支持PDF匹配验证。
+验证参考文献 / 核查引用 / 检查文献真实性 / AI参考文献核验
+verify references / check citations / validate bibliography
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/reference-verifier`
-- **Source URL:** [https://clawhub.ai/skills/reference-verifier](https://clawhub.ai/skills/reference-verifier)
+支持快捷指令：
 
-## Overview
+“仅验证DOI”
+“重点检查2023年后的文献”
+“生成BibTeX/APA格式”
+“推荐替代文献”
+“上传PDF进行正文匹配验证”
+
+核心工作流（6步）
+步骤1：文献解析与标准化
+自动识别并结构化提取作者、年份、标题、期刊、DOI（最高优先级）等信息。对格式异常条目尝试模糊检索并标注。
+步骤2：多源真实性验证（DOI优先）
+
+DOI优先通过CrossRef/OpenAlex验证。
+无DOI时并行调用 CrossRef + Semantic Scholar + OpenAlex。
+判定：✅ 真实 | ⚠️ 存疑 | ❌ 幻觉 | 🔍 可能格式错误。
+
+步骤3：元数据与核心内容提取
+提取DOI、作者列表、摘要（前200字优先）、关键词等。
+步骤4：主题相关性智能评估
+基于用户研究主题进行语义匹配，分为 🔴 高度相关 | 🟡 中度相关 | ⚪ 低度相关。
+步骤5：修正引用格式生成
+对验证为真实或存疑的文献，自动生成标准化的 BibTeX 和 APA 7th 引用格式，方便用户直接复制。
+步骤6：替代文献推荐与PDF匹配验证
+
+替代文献推荐：对 ❌ 幻觉 或 ⚠️ 存疑 但主题高度相关的文献，推荐3-5篇真实、高质量、近期且高度相关的替代文献（含标题、作者、年份、DOI、简要理由）。
+PDF正文-引用匹配验证（当用户上传PDF时触发）：
+解析PDF正文中的引用标记与参考文献列表进行匹配。
+输出匹配报告：已正确引用、未在正文中引用、参考列表中不存在（幻觉）、格式不一致等。
+提供改进建议。
 
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/reference-verifier
-```
+结构化输出表格
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+序号验证状态DOI第一作者年份标题（简略）相关性核心摘要建议1✅ 真实10.1016/...Smith J2022Deep learning for medical image...🔴 高度...强烈推荐
+下方附加模块：
+
+修正引用格式（BibTeX + APA）
+替代文献推荐（3-5篇，带DOI和理由）
+PDF匹配验证报告（若上传PDF）
+
+最终筛选建议：
+
+强烈推荐纳入：✅ + 🔴
+建议进一步核实：⚠️ 或 🟡
+建议排除：❌ 或 ⚪
+
+附加说明：验证基于公开学术数据库实时查询。如文献数量过多将自动分批处理。
+容错机制
+
+输入文献 >15条：优先处理 + 分批提示
+API异常：优雅降级
+PDF解析失败：提示用户提供文本版本或关键页码
+
+知识底座
+本技能采用多数据库交叉验证策略，参考 CiteAudit 与 CheckIfExist 等框架，确保结果稳健可复核。

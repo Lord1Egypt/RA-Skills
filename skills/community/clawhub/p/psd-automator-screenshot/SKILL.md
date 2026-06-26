@@ -1,35 +1,42 @@
 ---
-name: "Psd Automator Screenshot"
+name: psd-automator-screenshot
 description: "Use screenshot + natural language instruction to locate PSD text layers and dispatch automated edits with confidence gating. Requires psd-automator core."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/psd-automator-screenshot"
-sourceUrl: "https://clawhub.ai/skills/psd-automator-screenshot"
+metadata:
+  openclaw:
+    userInvocable: true
+    commandDispatch: tool
+    commandTool: psd_automator_screenshot
+    commandArgMode: raw
 ---
 
-# Psd Automator Screenshot
+# psd-automator-screenshot
 
-> Use screenshot + natural language instruction to locate PSD text layers and dispatch automated edits with confidence gating. Requires psd-automator core.
+This skill dispatches screenshot-driven PSD text updates while keeping the existing psd-automator execution pipeline.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/psd-automator-screenshot`
-- **Source URL:** [https://clawhub.ai/skills/psd-automator-screenshot](https://clawhub.ai/skills/psd-automator-screenshot)
+## Preferred command
 
-## Overview
+Use the built-in command first:
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/psd-automator-screenshot
+```text
+/main-image-editor <agentId> <中文需求> --screenshot ~/Desktop/修改3.png
 ```
+
+Use `/psd-automator-screenshot` only when you need backward-compatible command behavior.
+
+## Usage
+
+```text
+/psd-automator-screenshot <agentId> <截图改字指令>
+```
+
+Example:
+
+```text
+/psd-automator-screenshot design-mac-01 找到banner.psd或banner.psb，将红框区域替换成"限时199元"，保持字体和字号不变
+```
+
+## Notes
+
+- High confidence requests are auto-dispatched.
+- Medium confidence requests return top candidates for confirmation.
+- Every invocation/execution is recorded to skills-usage.json.

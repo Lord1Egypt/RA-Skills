@@ -1,0 +1,49 @@
+{
+  "name": "regression-test-generator",
+  "displayName": "回归测试用例生成器",
+  "version": "1.0.0",
+  "description": "当软件发生变更时，根据变更影响范围自动推荐需要执行的回归测试用例，并生成优先级排序，帮助测试团队快速聚焦",
+  "author": "Leo",
+  "license": "MIT",
+  "keywords": [
+    "测试",
+    "回归测试",
+    "质量管理",
+    "自动化",
+    "测试用例",
+    "优先级"
+  ],
+  "categories": [
+    "质量管理",
+    "测试工具",
+    "自动化"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/workspace-skills",
+    "directory": "regression-test-generator"
+  },
+  "engines": {
+    "openclaw": ">=2026.1.0"
+  },
+  "activationEvents": [
+    "onKeyword:生成回归测试",
+    "onKeyword:回归测试",
+    "onKeyword:测试用例推荐",
+    "onKeyword:regression test",
+    "onKeyword:测试建议"
+  ],
+  "contributes": {
+    "skills": [
+      {
+        "id": "regression-test-generator",
+        "label": "回归测试用例生成器",
+        "path": "./SKILL.md"
+      }
+    ]
+  },
+  "scripts": {
+    "validate": "python3 ~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/scripts/quick_validate.py .",
+    "package": "python3 ~/.npm-global/lib/node_modules/openclaw/skills/skill-creator/scripts/package_skill.py . ../"
+  }
+}

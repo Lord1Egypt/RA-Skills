@@ -1,0 +1,30 @@
+{
+  "name": "remnawave-robot",
+  "version": "1.0.6",
+  "description": "🤖 Remnawave 账号全生命周期自动化管理",
+  "main": "create-account.js",
+  "scripts": {
+    "setup": "node setup.js",
+    "test-config": "node test-config.js",
+    "test-email": "node test-email.js",
+    "create": "node create-account.js",
+    "resend": "node resend-email.js",
+    "search": "node search-account.js",
+    "get-squads": "node get-squads.js",
+    "add-to-squad": "node add-to-squad.js",
+    "sync-squads": "node sync-squads.js",
+    "delete": "node delete-account.js"
+  },
+  "keywords": [
+    "remnawave",
+    "account-management",
+    "automation",
+    "robot"
+  ],
+  "author": "AI Assistant (小 a)",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "nodemailer": "^8.0.2"
+  }
+}

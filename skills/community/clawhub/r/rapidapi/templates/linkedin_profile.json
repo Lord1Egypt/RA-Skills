@@ -1,0 +1,19 @@
+{
+  "name": "linkedin_profile",
+  "label": "Get LinkedIn profile",
+  "description": "Fetch LinkedIn profile from public URL",
+  "host": "linkedin-data-api.p.rapidapi.com",
+  "path": "/get-profile",
+  "method": "GET",
+  "querySchema": {
+    "url": {
+      "type": "string",
+      "required": true,
+      "description": "LinkedIn profile URL"
+    }
+  },
+  "response": {
+    "type": "json",
+    "dataPath": "data"
+  }
+}

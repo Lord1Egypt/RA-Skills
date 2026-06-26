@@ -1,35 +1,133 @@
----
-name: "Privacy Guard"
-description: "自动检测OpenClaw日志中的API密钥、密码、身份证等敏感信息泄露，分级报警并支持交互确认和白名单管理。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/privacy-guard-dami"
-sourceUrl: "https://clawhub.ai/skills/privacy-guard-dami"
+# Privacy Guard - 敏感信息外泄检测 v0.3
+
+> 版本：v0.3.0
+> 建立：2026-04-11
+> 用途：自动检测OpenClaw日志中的敏感信息泄露风险
+
 ---
 
-# Privacy Guard
+## 核心特性
 
-> 自动检测OpenClaw日志中的API密钥、密码、身份证等敏感信息泄露，分级报警并支持交互确认和白名单管理。
+### 三级检测机制
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/privacy-guard-dami`
-- **Source URL:** [https://clawhub.ai/skills/privacy-guard-dami](https://clawhub.ai/skills/privacy-guard-dami)
+| 级别 | 说明 | 处理方式 |
+|------|------|----------|
+| 🔴 CRITICAL | 确定的高风险（API密钥、密码、身份证、银行卡） | 立即报警 |
+| 🟠 HIGH | 较高风险（手机号、OA账号、基金持仓、资产总额） | 立即报警 |
+| 🟡 SUSPICIOUS | 可疑模式（大额数字、邮箱、6位数字） | 加入待确认列表 |
 
-## Overview
+### 容错机制
 
+- **不确定时不误报**：SUSPICIOUS级别不直接报警，而是记录到待确认列表
+- **智能去重**：相同内容只记录一次
+- **已知安全模式过滤**：自动跳过正常的时间戳、UUID、JSON数据等
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/privacy-guard-dami
+### 交互学习
+
+发现可疑信息时，你可以：
+- **`确认安全 N`** - 标记为安全，自动加入白名单
+- **`确认风险 N`** - 标记为风险，需要进一步处理
+- **`查看可疑`** - 查看待确认的可疑项目列表
+- **`白名单`** - 查看当前白名单
+- **`添加白名单 模式`** - 手动添加新白名单
+
+### 自动进化
+
+- 每次扫描自动更新可疑列表
+- 用户确认后自动学习（加入白名单/规则）
+- 白名单持久化到 `whitelist.json`
+
+---
+
+## 使用方法
+
+### 扫描日志
 ```
+python privacy_guard.py --scan
+```
+
+### 查看报告
+```
+python privacy_guard.py --report
+```
+
+### 交互模式
+```
+python privacy_guard.py --interactive
+```
+
+### 处理可疑项目
+```
+# 确认第1项为安全
+python privacy_guard.py --cmd="确认安全 1"
+
+# 确认第2项为风险
+python privacy_guard.py --cmd="确认风险 2"
+
+# 查看可疑列表
+python privacy_guard.py --cmd="查看可疑"
+```
+
+---
+
+## 文件结构
+
+```
+privacy-guard/
+├── SKILL.md           # 本文件
+├── README.md          # GitHub说明
+├── privacy_guard.py   # 核心脚本
+├── config.json        # 配置文件
+├── whitelist.json     # 用户白名单（自动生成）
+├── suspicious.json    # 可疑列表（自动生成）
+├── alert_log.md      # 告警日志
+└── scan_report.md    # 扫描报告
+```
+
+---
+
+## 检测规则
+
+### CRITICAL（立即报警）
+- API密钥/Token（sk-开头的长字符串）
+- 明文密码
+- 身份证号
+- 银行卡号
+
+### HIGH（立即报警）
+- 手机号码
+- OA系统账号
+- 基金持仓信息（含基金名称+金额）
+- 资产总额
+
+### SUSPICIOUS（待确认）
+- 大额数字组合
+- 邮箱地址
+- 6位数字
+- URL中的ID参数
+
+---
+
+## 安全声明
+
+- 所有检测在本地执行，不上传日志内容
+- 告警只发送元信息，不发送日志全文
+- 白名单和可疑列表存储在本地
+
+---
+
+## 更新日志
+
+### v0.3.0 (2026-04-11)
+- 新增三级检测机制
+- 新增容错机制（SUSPICIOUS级别待确认）
+- 新增交互学习（用户可确认安全/风险）
+- 新增自动进化（确认后自动学习）
+
+### v0.2.0 (2026-04-11)
+- 收紧检测规则，减少误报
+- 增加已知安全模式白名单
+- 增加误报过滤模式
+
+### v0.1.0 (2026-04-11)
+- 初版发布

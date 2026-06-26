@@ -1,0 +1,43 @@
+# Fly.io configuration for Selene quantum service
+# Copy this file and customize for your application
+
+app = "quantum-app"  # Change to globally unique app name
+primary_region = "lhr"  # London - near Quantinuum hardware
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "8080"
+  # QUANTUM_HARDWARE = "h2"  # Uncomment for real quantum hardware
+  # API_KEY = "your_api_key_here"  # Optional: Set for authentication
+
+[[http_services]]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  max_machines_running = 5
+  processes = ["app"]
+
+  [[http_services.checks]]
+    interval = "10s"
+    timeout = "2s"
+    method = "GET"
+    path = "/health"
+
+  [[http_services.checks]]
+    interval = "30s"
+    timeout = "5s"
+    method = "GET"
+    path = "/api/info"
+
+  # Scale based on request concurrency
+  [[http_services.concurrency]]
+    type = "requests"
+    value = 50
+
+# [mounts]  # Uncomment for persistent job storage
+#   source = "quantum_data"
+#   destination = "/data"

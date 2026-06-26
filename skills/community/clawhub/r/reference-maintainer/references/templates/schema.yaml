@@ -1,0 +1,12 @@
+schema:
+  version: 1.0
+  structure:
+    - schema
+    - overview
+    - phases
+    - architecture
+    - file_index
+    - repo
+    - credentials
+    - tools
+    - best_practices

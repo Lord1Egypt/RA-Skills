@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "P1 Input Schema",
+  "type": "object",
+  "properties": {
+    "p0_output": { "type": "object" }
+  },
+  "required": ["p0_output"],
+  "additionalProperties": true
+}

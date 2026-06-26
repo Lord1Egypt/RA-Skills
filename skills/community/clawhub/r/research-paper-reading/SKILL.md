@@ -1,35 +1,563 @@
 ---
-name: "Research Paper Reading"
-description: "Comprehensive academic paper reading and analysis skill for advanced researchers. Use when reading, analyzing, or summarizing research papers from Zotero or..."
-category: "research"
-source: "ClawHub"
-tags: [academic, paper, reading, research, zotero]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/research-paper-reading"
-sourceUrl: "https://clawhub.ai/skills/research-paper-reading"
+name: research-paper-reading
+description: |
+  Comprehensive academic paper reading and analysis skill for advanced researchers. Use when reading, analyzing, or summarizing research papers from Zotero or PDF files. 
+  Provides a systematic framework for in-depth paper analysis with complete formula derivations, theoretical frameworks, and essay-style notes.
 ---
 
-# Research Paper Reading
+# Research Paper Reading Skill (Advanced Researcher Framework)
 
-> Comprehensive academic paper reading and analysis skill for advanced researchers. Use when reading, analyzing, or summarizing research papers from Zotero or...
+This skill provides a comprehensive methodology for reading and analyzing academic research papers at a professional level, with emphasis on complete mathematical derivations and essay-style notes.
 
-- **Category:** Research
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/research-paper-reading`
-- **Source URL:** [https://clawhub.ai/skills/research-paper-reading](https://clawhub.ai/skills/research-paper-reading)
+---
 
-## Overview
+## 📋 Complete Reading Framework
 
+### 1. 摘要 (Abstract)
 
-## Installation
-To install this skill, run the following command in your terminal:
+**阅读目标：** 快速了解论文全貌
+
+**需要提取的信息：**
+- 🔬 **研究背景**：领域现状和未解决问题
+- 🎯 **研究目标**：本文要解决的具体问题
+- 🔧 **研究方法**：采用的方法和技术路线
+- 📊 **主要结论**：核心发现和结果
+- 💡 **意义**：研究的重要性和应用价值
+
+**输出格式：**
+```
+[研究领域] + [核心问题] + [采用方法] + [关键结果] + [研究意义]
+```
+
+---
+
+### 2. 研究目标 (Research Objectives)
+
+**阅读目标：** 理解论文要解决的核心问题
+
+**需要提取的信息：**
+- ❓ **核心问题**：论文试图回答什么问题？
+- 🔍 **研究空白**：之前方法的不足或未解决的问题
+- 🎯 **具体目标**：分解为哪些子目标？
+- 💎 **研究意义**：为什么这个问题重要？
+
+**输出格式：**
+```
+[领域现状] → [未解决的核心问题] → [本文目标] → [研究意义]
+```
+
+---
+
+### 3. 研究方法 (Research Methods)
+
+**阅读目标：** 理解论文如何解决问题 — 这是最核心的部分
+
+**需要提取的信息：**
+
+#### 3.1 理论框架
+- 📐 **基本假设**：论文基于哪些假设？
+- 🔬 **理论模型**：使用的理论框架和模型
+- 📝 **数学推导**：关键公式和完整推导过程
+
+#### 3.2 方法论
+- 🔧 **实验设计**：实验/模拟/观测设置
+- 📊 **数据来源**：使用的数据集和样本
+- 🛠️ **技术方法**：算法、工具、仪器
+- 📈 **分析流程**：数据处理和分析步骤
+
+#### 3.3 公式推导（核心）
+
+对于每个关键公式，需要详细说明：
+
+**公式背景：**
+- 这个公式解决什么问题？
+- 基于什么物理/数学原理？
+
+**公式推导：**
+```
+从 [初始条件/基本方程] 出发：
+1. 第一步变换：...
+2. 第二步变换：...
+3. 最终得到：...
+```
+
+**参数说明：**
+| 参数 | 符号 | 物理意义 | 单位 |
+|------|------|----------|------|
+| | | | |
+
+**适用条件和局限：**
+- 公式在什么条件下成立？
+- 有什么局限性？
+
+**输出格式：**
+```
+[理论背景] → [基本方程] → [推导过程] → [参数解释] → [适用范围]
+```
+
+---
+
+### 4. 研究结论和结果 (Results & Conclusions)
+
+**阅读目标：** 理解论文发现了什么
+
+**需要提取的信息：**
+
+#### 4.1 主要结果
+- 📊 **核心发现**：最重要的结果是什么？
+- 📈 **数据支撑**：结果的统计显著性？
+- 🔢 **数值结果**：关键指标和数值
+
+#### 4.2 结果分析
+- 💡 **结果解释**：结果说明了什么？
+- 🔄 **对比分析**：与之前工作相比如何？
+- ⚠️ **异常情况**：是否有意外发现？
+
+#### 4.3 结论
+- ✅ **确认**：验证了什么假设？
+- ❌ **否定**：否定了什么观点？
+- 🔮 **展望**：未来研究方向？
+
+---
+
+### 5. 创新点 (Innovation Points)
+
+**阅读目标：** 理解论文的贡献
+
+**需要提取的信息：**
+
+#### 5.1 方法创新
+- 🆕 **新方法**：提出了什么新方法/算法？
+- 🔧 **改进**：对现有方法有什么改进？
+- 📊 **性能提升**：效果提升多少？
+
+#### 5.2 理论创新
+- 💡 **新发现**：揭示了什么新现象？
+- 🔬 **新理解**：对问题有什么新认识？
+- 📐 **新模型**：提出了什么新模型/框架？
+
+#### 5.3 应用创新
+- 🛠️ **新应用**：有什么新应用场景？
+- 📈 **实际价值**：有什么实际意义？
+
+**创新程度评估：**
+- ⭐⭐⭐ 突破性创新
+- ⭐⭐ 重要改进
+- ⭐ 增量贡献
+
+---
+
+## 📝 阅读笔记模板（完整版）
+
+使用以下模板撰写完整的阅读笔记：
+
+---
+
+### 论文标题
+
+**arXiv/DOI:** 
+**作者:** 
+**机构:** 
+**发表日期:** 
+
+---
+
+#### 一、研究背景与问题
+
+[用300-500字概述论文所处的领域背景、当前研究状态、以及亟待解决的问题。这一部分需要说明为什么这个问题重要，以及之前的研究已经解决了什么、还有什么没解决。]
+
+**关键词：** 
+
+---
+
+#### 二、研究目标
+
+[明确陈述论文试图回答的核心科学问题。将大问题分解为具体的子目标。]
+
+---
+
+#### 三、理论框架与方法
+
+##### 3.1 基本假设
+
+[列出论文所基于的基本假设，这些假设是推导的基础。]
+
+##### 3.2 核心公式推导
+
+**（此处为核心部分，需要详细展开）**
+
+【公式名称/编号】
+
+**① 背景与目的**
+[这个公式要解决什么问题？物理/数学背景是什么？]
+
+**② 从基本方程出发**
+
+假设我们从 [基本方程/守恒律/基本原理] 出发：
+
+$$[基本方程]$$
+
+**③ 详细推导过程**
+
+*Step 1: [第一变换]*
+
+$$[第一行变换]$$
+
+其中，$[解释参数/物理量]$ 表示 [物理意义]。
+
+*Step 2: [第二变换]*
+
+$$[第二行变换]$$
+
+这里我们利用了 [使用的数学性质/物理近似]，即 [具体说明]。
+
+*Step 3: [第三变换/最终形式]*
+
+$$[最终公式]$$
+
+**④ 参数说明**
+
+| 符号 | 含义 | 取值范围/典型值 | 物理单位 |
+|------|------|-----------------|----------|
+|  |  |  |  |
+
+**⑤ 适用范围与局限**
+
+- **适用条件：** [在什么条件下公式成立]
+- **局限性：** [公式无法描述的情况]
+
+##### 3.3 方法论
+
+[描述使用的实验/模拟/数值方法，包括：
+- 数据来源和样本量
+- 使用的算法
+- 分析流程
+- 关键参数设置]
+
+---
+
+#### 四、研究结果
+
+##### 4.1 核心发现
+
+[用一段话概括最重要的发现。]
+
+##### 4.2 定量结果
+
+| 指标 | 数值 | 统计显著性 |
+|------|------|-------------|
+|  |  |  |
+
+##### 4.3 与前人工作的对比
+
+[对比本文结果与之前发表的工作，说明改进之处。]
+
+---
+
+#### 五、结论与讨论
+
+##### 5.1 主要结论
+
+[总结论文验证了哪些假设、回答了什么问题。]
+
+##### 5.2 局限性
+
+[诚实讨论研究的局限性，包括：
+- 理论假设的简化
+- 数据/样本的局限
+- 方法的适用范围]
+
+##### 5.3 未来方向
+
+[论文建议的后续研究方向。]
+
+---
+
+#### 六、创新点总结
+
+| 创新类型 | 具体内容 | 创新程度 |
+|----------|----------|----------|
+| 方法创新 |  | ⭐⭐⭐ |
+| 理论创新 |  |  |
+| 应用创新 |  |  |
+
+---
+
+#### 七、与自己研究的关联
+
+[思考这篇论文与自己的研究有什么关联：
+- 可以借鉴的方法
+- 可以应用的方向
+- 需要进一步了解的知识点]
+
+---
+
+## Zotero Integration
+
+### 搜索论文
 ```bash
-hermes skills install clawhub/research-paper-reading
+# 搜索关键词
+curl "http://127.0.0.1:23119/api/users/YOUR_ID/items?q=KEYWORD"
+
+# 获取收藏夹
+curl "http://127.0.0.1:23119/api/users/YOUR_ID/collections"
+
+# 收藏夹内论文
+curl "http://127.0.0.1:23119/api/users/YOUR_ID/collections/COLLECTION_KEY/items"
+```
+
+### 获取详情
+```bash
+curl "http://127.0.0.1:23119/api/users/YOUR_ID/items/ITEM_KEY"
+```
+
+---
+
+## 完整阅读笔记示例
+
+### 论文标题：Deep Neural Emulation of the Supermassive Black-hole Binary Population
+
+**arXiv:** 2411.10519  
+**作者:** Nima Laal, Stephen R. Taylor 等16人  
+**机构:** Vanderbilt University, UC Berkeley, University of Colorado 等  
+**发表日期:** 2024-11-15  
+
+---
+
+#### 一、研究背景与问题
+
+脉冲星计时阵列（Pulsar Timing Arrays, PTAs）正在探测低频（纳赫兹）引力波背景（Gravitational Wave Background, GWB）。超大质量黑洞双星（Supermassive Black-hole Binaries, SMBHBs）被认为是GWB最可能的来源。2023年，NANOGrav 15年数据宣布探测到GWB信号，Bayes因子超过10¹⁴。
+
+然而，将观测到的GWB频谱与SMBHB的演化物理联系起来是一个挑战。之前的方法使用高斯过程（Gaussian Processes, GPs）作为模拟器，但GP只能学习GWB应变分布的均值和方差，无法捕捉分布的尾部、非高斯性和频率间协方差。
+
+本文的研究目标是：使用归一化流（Normalizing Flows, NF）构建一个能够学习完整GWB应变分布的模拟器，并与传统GP方法进行对比。
+
+**关键词：** 超大质量黑洞双星、脉冲星计时阵列、引力波背景、归一化流、机器学习
+
+---
+
+#### 二、研究目标
+
+**核心问题：** 如何将PTA观测到的GWB频谱与SMBHB的演化物理（包括人口统计学和动力学）联系起来？
+
+**研究空白：**
+- GP只能学习均值和方差，无法捕捉非高斯性
+- GP无法捕捉频率间的协方差
+- GP在高维参数空间效率急剧下降
+
+**具体目标：**
+1. 使用ACRQS归一化流学习完整的GWB应变分布
+2. 与GP方法做详细对比
+3. 验证NF在Bayesian参数推断中的效果
+
+---
+
+#### 三、理论框架与方法
+
+##### 3.1 基本假设
+
+1. 黑洞双星在圆形轨道上演化
+2. GW频率与静止轨道频率关系：$f = 2f_{orb}/(1+z)$
+3. 使用WMAP9宇宙学参数
+4. 星系并合率遵循经验模型
+
+##### 3.2 核心公式推导
+
+###### 3.2.1 黑洞双星数量密度方程
+
+**背景：** 需要计算在给定质量比q、红移z、频率f条件下，SMBHB的数量。
+
+从星系并合率出发，考虑宇宙演化：
+
+$$\frac{\partial^4 N}{\partial M \partial q \partial z \partial \ln f} = \frac{\partial^3 \eta}{\partial M_* \partial q_* \partial z} \cdot \frac{\partial t}{\partial \ln f} \cdot \frac{\partial z}{\partial z} \cdot \frac{\partial V_c}{\partial z} \cdot \frac{\partial M_*}{\partial M} \cdot \frac{\partial q_*}{\partial q}$$
+
+其中：
+- $N$ 为双星数量
+- $M = m_1 + m_2$ 为双星总质量
+- $q = m_2/m_1 \leq 1$ 为质量比
+- $z$ 为红移
+- $f$ 为引力波频率
+- $\eta$ 为星系并合率
+- $M_*$ 为宿主星系恒星质量
+- $V_c$ 为共动体积
+
+**推导说明：** 该公式描述了在4D参数空间（M, q, z, f）中的双星数量密度，通过链式法则将星系并合率、双星演化时间尺度、宇宙体积演化等因素联系起来。
+
+---
+
+###### 3.2.2 GWB特征应变
+
+**背景：** 需要计算整个SMBHB群体产生的叠加引力波特征应变。
+
+首先，单个圆轨道双星产生的引力波特征应变（对所有方向和极化态平均）为：
+
+$$h_s^2(f) = \frac{32}{5c^8} (GM)^{10/3} (2\pi f_{orb})^{4/3}$$
+
+其中：
+- $G$ 为引力常数
+- $c$ 为光速
+- $M = \frac{M_q^{3/5}}{(1+q)^{6/5}}$ 为啁啾质量（chirp mass）
+- $M_q = M \cdot q^{3/5}$ 为有效啁啾质量
+- $f_{orb}$ 为静止参考系下的轨道频率
+
+**推导：** 该公式来源于爱因斯坦广义相对论的四极矩公式。对于圆形轨道的后牛顿近似，双星系统的引力波能量辐射率为：
+
+$$\frac{dE}{dt} = -\frac{32}{5c^5} G^4 M^5 \frac{1}{r^5}$$
+
+其中r为轨道半径。结合开普勒第三定律 $f_{orb}^2 = GM/(2\pi r^3)$，可得上述特征应变公式。
+
+---
+
+整个GWB的叠加特征应变通过对所有双星积分得到：
+
+$$h_c^2(f) = \int dM dq dz \frac{\partial^4 N}{\partial M \partial q \partial z \partial \ln f} \cdot h_s^2(f)$$
+
+**推导：** 这是对所有质量、质量比、红移的积分，求和所有贡献GWB的双星产生的应变功率。特征应变取平方是因为引力波应变是振幅量，而功率谱需要取平方。
+
+---
+
+##### 3.3 关键演化参数
+
+论文使用6个参数来描述SMBHB的演化：
+
+| 参数 | 符号 | 物理意义 |
+|------|------|----------|
+| 星系并合率参数 | $\phi_0$ | 控制星系并合的整体率 |
+| 并合质量参数 | $m_{\phi,0}$ | 与并合星系质量相关 |
+| M-M_bulge归一化 | $\mu$ | 黑洞-星系核球质量关系归一化 |
+| M-M_bulge散射 | $\epsilon_\mu$ | 该关系的本征散射 |
+| 并合时间尺度 | $\tau_f$ | 从星系并合到黑洞并合的时间 |
+| 内部散射强度 | $\nu_{inner}$ | 靠近时恒星散射强度 |
+
+这6个参数构成向量 $\theta_{evo}$，构成条件模拟器的输入空间。
+
+---
+
+##### 3.4 归一化流方法
+
+**ACRQS (Autoregressive Coupling Rational Quadratic Spline)**
+
+核心思想：使用归一化流学习条件概率分布 $p(h_c | \theta_{evo})$，而非仅学习均值和方差。
+
+**训练目标：** 最大化对数似然
+
+$$\log p(x|z) = \log \pi(z) + \log \left| \frac{\partial T}{\partial z} \right|$$
+
+其中：
+- $x$ 为GWB特征应变
+- $z$ 为潜在空间的基分布（标准正态）
+- $T$ 为可逆变换（有理二次样条）
+- $\pi$ 为基分布
+
+**超参数配置：**
+- bin-count: 16
+- neurons: 128
+- layers: 4
+- learning rate: $3 \times 10^{-3} \to 10^{-5}$ (衰减)
+- batch size: 1000
+
+---
+
+##### 3.5 Bayesian参数推断
+
+使用MCMC进行后验分布采样：
+
+**GP方法：** 使用核密度估计(KDE)作为似然函数
+
+$$p(\delta t | \rho_k) = \text{KDE}(\rho_k)$$
+
+**NF方法：** 利用训练好的NF直接评估似然
+
+**MCMC设置：**
+- 预热步数：达到收敛
+- 有效样本量：用于检验收敛
+
+---
+
+#### 四、研究结果
+
+##### 4.1 核心发现
+
+1. **NF全面优于GP**：在点统计和分布学习的所有指标上
+2. **尾部分布捕捉**：NF能够精确学习GWB应变的尾部分布，这对稀有信号敏感
+3. **频率协方差**：NF能够学习不同频率间的协方差结构
+4. **训练效率**：NF训练更快，更容易扩展到高维参数空间
+
+##### 4.2 关键性能对比
+
+| 指标 | GP | NF/ACRQS | 改进 |
+|------|-----|----------|------|
+| 训练效率 | 慢 | 快 | 显著 |
+| 点统计精度 | 中等 | 高 | +30% |
+| 尾部分布学习 | ❌ 无法 | ✅ 精确 | 质变 |
+| 非高斯性捕捉 | ❌ | ✅ | 质变 |
+| 频率协方差 | ❌ | ✅ | 质变 |
+| 后验宽度 | 较宽 | 更窄 | 更精确 |
+
+---
+
+#### 五、结论与讨论
+
+##### 5.1 主要结论
+
+1. 归一化流能够学习完整的GWB应变分布，而非仅均值和方差
+2. NF在所有指标上优于传统GP方法
+3. NF能够进行更精确的Bayesian参数推断
+4. 该方法为理解GWB的天体物理来源提供了新工具
+
+##### 5.2 局限性
+
+1. 依赖holodeck模拟的参数假设
+2. 6个参数可能简化了真实天体物理环境的复杂性
+3. arXiv预印本，尚未经过正式同行评审
+
+##### 5.3 未来方向
+
+1. 扩展到更多演化参数
+2. 结合实际PTA数据进行分析
+3. 开发实时参数推断系统
+
+---
+
+#### 六、创新点总结
+
+| 创新类型 | 具体内容 | 创新程度 |
+|----------|----------|----------|
+| 方法创新 | 首次将归一化流(NF/ACRQS)应用于GWB模拟 | ⭐⭐⭐ |
+| 理论创新 | 实现完整分布学习（捕捉尾部、非高斯性、频率协方差） | ⭐⭐⭐ |
+| 应用创新 | NF + MCMC Bayesian推断框架 | ⭐⭐ |
+
+---
+
+#### 七、与研究的关联
+
+**可借鉴的方法：**
+1. 归一化流在模拟天体物理分布中的应用
+2. 完整分布学习 vs 点估计的思路
+3. ACRQS架构设计
+
+**可应用的方向：**
+1. PTA数据分析
+2. 其他天体物理模拟的加速
+3. Bayesian参数推断
+
+---
+
+## 输出格式总结
+
+### 快速摘要
+```
+[研究领域] + [核心问题] + [方法] + [关键结果] + [创新程度]
+```
+
+### 完整阅读笔记
+```
+1. 论文基本信息
+2. 研究背景与问题 (500字)
+3. 研究目标
+4. 理论框架与方法 (重点：公式推导)
+5. 研究结果 (重点：数据支撑)
+6. 结论与讨论
+7. 创新点
+8. 与自己研究的关联
 ```

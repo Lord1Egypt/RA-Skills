@@ -1,35 +1,26 @@
 ---
-name: "Presale Service Bootstrap"
-description: "Scaffold a new presale service foundation (docs/config/plans/readiness) before coding. Use when starting a new presale automation service, rebuilding project..."
-category: "other"
-source: "ClawHub"
-tags: [latest presale]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/presale-service-bootstrap"
-sourceUrl: "https://clawhub.ai/skills/presale-service-bootstrap"
+name: presale-service-bootstrap
+description: Scaffold a new presale service foundation (docs/config/plans/readiness) before coding. Use when starting a new presale automation service, rebuilding project context, or preparing reusable one-pass execution artifacts.
 ---
 
-# Presale Service Bootstrap
+Create the service foundation before any implementation.
 
-> Scaffold a new presale service foundation (docs/config/plans/readiness) before coding. Use when starting a new presale automation service, rebuilding project...
+## Execute
+1. Create the minimal repo structure: `docs/`, `config/`, `src/`, `tests/`, `prompts/`, `scripts/`.
+2. Build canonical context docs from templates.
+3. Build at least one implementation plan with gap-check, acceptance scenarios, verification matrix, and summary snapshots.
+4. Build one-pass launch docs and readiness checklist.
+5. Freeze non-goals and constraints in writing.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/presale-service-bootstrap`
-- **Source URL:** [https://clawhub.ai/skills/presale-service-bootstrap](https://clawhub.ai/skills/presale-service-bootstrap)
+## Use deterministic scaffold tool first
+Run `tools/new-presale-service.ps1` from this skill pack when possible.
 
-## Overview
+## Then fill definitions
+Read and apply:
+- `references/workflow.md`
+- `references/artifacts.md`
 
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/presale-service-bootstrap
-```
+## Required quality gates
+- No definitions -> no coding.
+- No readiness checklist -> no one-pass launch.
+- No verification matrix template in plans -> no implementation approval.

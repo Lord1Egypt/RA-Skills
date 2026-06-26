@@ -1,0 +1,53 @@
+{
+  "name": "presentation",
+  "version": "1.0.0",
+  "description": "A comprehensive AI agent skill for creating and delivering presentations that work. Covers narrative structure, slide design principles, speaker notes, question preparation, and delivery coaching.",
+  "author": "AGIstack",
+  "license": "MIT-0",
+  "homepage": "https://clawhub.ai",
+  "keywords": [
+    "presentation", "slides", "public speaking", "pitch", "deck",
+    "keynote", "powerpoint", "narrative", "storytelling", "delivery",
+    "executive presentation", "investor pitch", "speaker notes"
+  ],
+  "files": {
+    "skill.md": "skill.md",
+    "heartbeat.md": "heartbeat.md",
+    "examples.md": "examples.md"
+  },
+  "capabilities": {
+    "narrative_building": "Develops the argument and story before any slides are built",
+    "slide_structure": "Organizes content into the minimum slides needed for maximum clarity",
+    "data_visualization": "Transforms data into slides that make the argument visible",
+    "speaker_notes": "Writes notes that prompt natural delivery rather than scripted reading",
+    "question_preparation": "Generates and prepares responses to the hardest audience questions",
+    "delivery_coaching": "Prepares you for the opening, pacing, and close that make presentations land"
+  },
+  "triggers": [
+    "presentation", "slides", "deck", "pitch", "keynote",
+    "public speaking", "present to", "slide deck", "powerpoint",
+    "executive presentation", "board presentation", "investor pitch",
+    "team presentation", "conference talk", "speaker notes",
+    "presenting", "present my", "build a deck", "structure my talk"
+  ],
+  "heartbeat": {
+    "immediate": "Build preparation timeline when presentation is assigned",
+    "two_weeks_out": "Develop narrative and structure before opening any software",
+    "one_week_out": "Build slide deck from finalized narrative",
+    "three_days_out": "Write speaker notes and begin practice",
+    "day_before": "Final preparation and logistics confirmation",
+    "after": "Capture lessons and send follow-up within 24 hours"
+  },
+  "audience": [
+    "Executives presenting to boards and leadership teams",
+    "Founders pitching to investors",
+    "Managers presenting to their teams",
+    "Conference and keynote speakers",
+    "Anyone who presents regularly and wants to do it better",
+    "People with presentation anxiety who want to feel genuinely prepared"
+  ],
+  "openclaw": {
+    "primaryEnv": null,
+    "requires": {}
+  }
+}

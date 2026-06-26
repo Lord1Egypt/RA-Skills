@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>亲子沟通话术卡片 - 可打印版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: #e74c3c;
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        .card-header {
+            padding: 20px;
+            color: white;
+        }
+        
+        .card-header.scenario { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .card-header.principle { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .card-header.emotion { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .card-header.age { background: linear-gradient(135deg, #1abc9c, #16a085); }
+        
+        .card-header h3 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        
+        .card-header .subtitle {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .section {
+            margin-bottom: 15px;
+        }
+        
+        .section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section-title {
+            font-size: 0.85em;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .section-title.error {
+            color: #e74c3c;
+        }
+        
+        .section-title.correct {
+            color: #27ae60;
+        }
+        
+        .example-box {
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        
+        .example-box.error {
+            background: #fdf2f2;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .example-box.correct {
+            background: #f0f9f4;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .example-box.principle {
+            background: #f5f0f9;
+            border-left: 4px solid #9b59b6;
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .key-point {
+            padding: 5px 12px;
+            background: #f0f0f5;
+            border-radius: 15px;
+            font-size: 0.85em;
+            color: #555;
+        }
+        
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(231, 76, 60, 0.4);
+            transition: transform 0.2s;
+        }
+        
+        .print-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .card-icon {
+            font-size: 1.5em;
+            margin-right: 8px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .filter-bar,
+            .print-btn {
+                display: none;
+            }
+            
+            .cards-grid {
+                display: block;
+            }
+            
+            .card {
+                page-break-inside: avoid;
+                margin-bottom: 20px;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>亲子沟通话术卡片</h1>
+            <p>10+高频场景的标准话术 | 错误示范 vs 正确示范</p>
+        </div>
+        
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterCards('all')">全部</button>
+            <button class="filter-btn" onclick="filterCards('scenario')">场景应对</button>
+            <button class="filter-btn" onclick="filterCards('principle')">沟通原则</button>
+            <button class="filter-btn" onclick="filterCards('emotion')">情绪支持</button>
+            <button class="filter-btn" onclick="filterCards('age')">年龄适配</button>
+        </div>
+        
+        <div class="cards-grid">
+            <!-- 卡片1：孩子不听话 -->
+            <div class="card" data-category="scenario">
+                <div class="card-header scenario">
+                    <h3><span class="card-icon">👂</span>孩子不听话</h3>
+                    <div class="subtitle">连接优先于纠正</div>
+                </div>
+                <div class="card-body">
+                    <div class="section">
+                        <div class="section-title error">✗ 错误示范</div>
+                        <div class="example-box error">
+                            "你怎么这么不听话！" "我说不行就是不行！" "再不听话就别玩了！"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title correct">✓ 正确示范</div>
+                        <div class="example-box correct">
+                            "我看到你很想继续玩，不想现在停下来。换好衣服我们就去公园，你可以再玩3分钟。"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">💡 关键要点</div>
+                        <div class="key-points">
+                            <span class="key-point">先认可感受</span>
+                            <span class="key-point">给出选择</span>
+                            <span class="key-point">明确时间</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 卡片2：孩子成绩下降 -->
+            <div class="card" data-category="scenario">
+                <div class="card-header scenario">
+                    <h3><span class="card-icon">📚</span>成绩下降</h3>
+                    <div class="subtitle">关心优先于评判</div>
+                </div>
+                <div class="card-body">
+                    <div class="section">
+                        <div class="section-title error">✗ 错误示范</div>
+                        <div class="example-box error">
+                            "你怎么退步这么多？" "你看看人家小明？" "以后不许玩手机了！"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title correct">✓ 正确示范</div>
+                        <div class="example-box correct">
+                            "这次考试感觉怎么样？我看到你有些失落。你觉得这次没考好的原因是什么？有什么我能帮忙的吗？"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">💡 关键要点</div>
+                        <div class="key-points">
+                            <span class="key-point">询问感受</span>
+                            <span class="key-point">引导反思</span>
+                            <span class="key-point">表达支持</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 卡片3：孩子没有动力 -->
+            <div class="card" data-category="scenario">
+                <div class="card-header scenario">
+                    <h3><span class="card-icon">⚡</span>没有动力</h3>
+                    <div class="subtitle">探询兴趣而非催促</div>
+                </div>
+                <div class="card-body">
+                    <div class="section">
+                        <div class="section-title error">✗ 错误示范</div>
+                        <div class="example-box error">
+                            "你能不能有点上进心？" "快点写完作业！" "整天就知道玩！"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title correct">✓ 正确示范</div>
+                        <div class="example-box correct">
+                            "我注意到你最近对学习好像有点提不起劲。你有没有特别想学或者想做的事？我们可以聊聊。"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">💡 关键要点</div>
+                        <div class="key-points">
+                            <span class="key-point">观察而非评判</span>
+                            <span class="key-point">探索兴趣</span>
+                            <span class="key-point">建立连接</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 卡片4：亲子冲突后修复 -->
+            <div class="card" data-category="scenario">
+                <div class="card-header scenario">
+                    <h3><span class="card-icon">🤝</span>冲突后修复</h3>
+                    <div class="subtitle">承担责任而非指责</div>
+                </div>
+                <div class="card-body">
+                    <div class="section">
+                        <div class="section-title error">✗ 错误示范</div>
+                        <div class="example-box error">
+                            "都是因为你太不听话我才发火的。" "我说的没错吧？" "过来吃饭别气了。"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title correct">✓ 正确示范</div>
+                        <div class="example-box correct">
+                            "刚才我对你大声说话，是我不对。我很抱歉。你当时一定很难受对不对？下次我可以先深呼吸再和你说话。"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">💡 关键要点</div>
+                        <div class="key-points">
+                            <span class="key-point">承认自己的错误</span>
+                            <span class="key-point">命名对方的感受</span>
+                            <span class="key-point">提出改进方案</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 卡片5：孩子做错事 -->
+            <div class="card" data-category="emotion">
+                <div class="card-header emotion">
+                    <h3><span class="card-icon">💔</span>孩子做错事</h3>
+                    <div class="subtitle">关心优先于责备</div>
+                </div>
+                <div class="card-body">
+                    <div class="section">
+                        <div class="section-title error">✗ 错误示范</div>
+                        <div class="example-box error">
+                            "你怎么这么笨！" "我早说过不能这样！" "你怎么每次都..."
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title correct">✓ 正确示范</div>
+                        <div class="example-box correct">
+                            "你看起来有点难过/害怕。你还好吗？发生什么了？我们一起看看怎么解决。"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">💡 关键要点</div>
+                        <div class="key-points">
+                            <span class="key-point">先关注情绪</span>
+                            <span class="key-point">确保安全</span>
+                            <span class="key-point">再讨论行为</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 卡片6：孩子不愿分享 -->
+            <div class="card" data-category="scenario">
+                <div class="card-header scenario">
+                    <h3><span class="card-icon">🚫</span>不愿分享</h3>
+                    <div class="subtitle">尊重所有权</div>
+                </div>
+                <div class="card-body">
+                    <div class="section">
+                        <div class="section-title error">✗ 错误示范</div>
+                        <div class="example-box error">
+                            "给弟弟玩一下怎么了？" "你这么小气！" "分享才是好孩子！"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title correct">✓ 正确示范</div>
+                        <div class="example-box correct">
+                            "这是你的玩具，你有权决定给不给人玩。如果你想分享，我们可以想个办法；如果不想，也完全没问题。"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">💡 关键要点</div>
+                        <div class="key-points">
+                            <span class="key-point">确认所有权</span>
+                            <span class="key-point">给予选择权</span>
+                            <span class="key-point">不贴标签</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 卡片7：孩子太依赖 -->
+            <div class="card" data-category="scenario">
+                <div class="card-header scenario">
+                    <h3><span class="card-icon">🦋</span>太依赖</h3>
+                    <div class="subtitle">肯定能力，建立自信</div>
+                </div>
+                <div class="card-body">
+                    <div class="section">
+                        <div class="section-title error">✗ 错误示范</div>
+                        <div class="example-box error">
+                            "你怎么什么都要我帮忙？" "自己来！" "你长大就会了。"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title correct">✓ 正确示范</div>
+                        <div class="example-box correct">
+                            "我看到你想自己试试。做不到也没关系，我们可以一起做，你做大部分，我帮你一点点。"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">💡 关键要点</div>
+                        <div class="key-points">
+                            <span class="key-point">认可尝试</span>
+                            <span class="key-point">提供支持而非放手</span>
+                            <span class="key-point">渐进独立</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 卡片8：孩子情绪崩溃 -->
+            <div class="card" data-category="emotion">
+                <div class="card-header emotion">
+                    <h3><span class="card-icon">😢</span>情绪崩溃</h3>
+                    <div class="subtitle">陪伴而非制止</div>
+                </div>
+                <div class="card-body">
+                    <div class="section">
+                        <div class="section-title error">✗ 错误示范</div>
+                        <div class="example-box error">
+                            "别哭了！" "再哭就不要你了" "哭有什么用？"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title correct">✓ 正确示范</div>
+                        <div class="example-box correct">
+                            "你哭吧，我在这里陪着你。" "我知道你很难过，等你感觉好一点我们再聊。"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">💡 关键要点</div>
+                        <div class="key-points">
+                            <span class="key-point">允许情绪</span>
+                            <span class="key-point">陪伴在场</span>
+                            <span class="key-point">接纳而非制止</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 卡片9：青春期边界 -->
+            <div class="card" data-category="age">
+                <div class="card-header age">
+                    <h3><span class="card-icon">🗝️</span>青春期边界</h3>
+                    <div class="subtitle">尊重协商</div>
+                </div>
+                <div class="card-body">
+                    <div class="section">
+                        <div class="section-title error">✗ 错误示范</div>
+                        <div class="example-box error">
+                            "我是你妈/爸，你必须听我的！" "为什么不能查你手机？" "不准和那些人交朋友！"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title correct">✓ 正确示范</div>
+                        <div class="example-box correct">
+                            "我理解你需要隐私。关于手机使用，我们来商量一个对双方都合理的规则？"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">💡 关键要点</div>
+                        <div class="key-points">
+                            <span class="key-point">尊重隐私</span>
+                            <span class="key-point">协商规则</span>
+                            <span class="key-point">表达关心而非控制</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 卡片10：孩子没自信 -->
+            <div class="card" data-category="scenario">
+                <div class="card-header scenario">
+                    <h3><span class="card-icon">💪</span>没自信</h3>
+                    <div class="subtitle">看见努力而非结果</div>
+                </div>
+                <div class="card-body">
+                    <div class="section">
+                        <div class="section-title error">✗ 错误示范</div>
+                        <div class="example-box error">
+                            "你怎么这么没出息？" "加油，你可以的！" "别人都行，你怎么不行？"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title correct">✓ 正确示范</div>
+                        <div class="example-box correct">
+                            "我看到你这次比上次进步了。虽然结果不是你想要的，但你的努力我都看到了。"
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">💡 关键要点</div>
+                        <div class="key-points">
+                            <span class="key-point">关注过程</span>
+                            <span class="key-point">具体肯定</span>
+                            <span class="key-point">无条件的爱</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 卡片11：沟通原则 -->
+            <div class="card" data-category="principle">
+                <div class="card-header principle">
+                    <h3><span class="card-icon">📋</span>黄金沟通原则</h3>
+                    <div class="subtitle">记住这5条就够了</div>
+                </div>
+                <div class="card-body">
+                    <div class="section">
+                        <div class="section-title principle">核心原则</div>
+                        <div class="example-box principle">
+                            <strong>1. 先连接，后纠正</strong><br>
+                            先让孩子感受到被理解，再讨论行为问题<br><br>
+                            <strong>2. 关注感受，而非行为</strong><br>
+                            "你很生气对吗？"比"你不应该生气"更有效<br><br>
+                            <strong>3. 给出选择，而非命令</strong><br>
+                            "你想先...还是先...？"让孩子有掌控感<br><br>
+                            <strong>4. 描述观察，而非评判</strong><br>
+                            "我看到地上有玩具"而非"你怎么又把玩具乱扔"<br><br>
+                            <strong>5. 修复关系优先于赢得争论</strong><br>
+                            关系比正确更重要
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 卡片12：年龄适配 -->
+            <div class="card" data-category="age">
+                <div class="card-header age">
+                    <h3><span class="card-icon">👶</span>分年龄段沟通</h3>
+                    <div class="subtitle">不同年龄不同方法</div>
+                </div>
+                <div class="card-body">
+                    <div class="section">
+                        <div class="section-title principle">年龄适配指南</div>
+                        <div class="example-box principle">
+                            <strong>0-3岁</strong>：简短指令+肢体语言<br>
+                            "不可以（拉住手）+ 转移注意力"<br><br>
+                            <strong>3-6岁</strong>：有限选择+解释原因<br>
+                            "你想穿红衣服还是蓝衣服？"<br><br>
+                            <strong>6-12岁</strong>：协商规则+邀请参与<br>
+                            "关于写作业，你有什么想法？"<br><br>
+                            <strong>12+岁</strong>：尊重隐私+表达关心<br>
+                            "我爱你，不管发生什么"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <button class="print-btn" onclick="window.print()">打印话术卡片</button>
+    
+    <script>
+        function filterCards(category) {
+            // 更新按钮状态
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // 过滤卡片
+            document.querySelectorAll('.card').forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "skills": {
+    "entries": {
+      "readwise_article_saver": {
+        "enabled": true,
+        "env": {
+          "READWISE_TOKEN": "YOUR_READWISE_ACCESS_TOKEN_HERE",
+          "OPENROUTER_API_KEY": "YOUR_OPENROUTER_API_KEY_HERE"
+        }
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "llm-task": {
+        "enabled": true,
+        "config": {
+          "defaultProvider": "openrouter",
+          "defaultModel": "minimax/minimax-m2.7",
+          "maxTokens": 200,
+          "timeoutMs": 60000
+        }
+      }
+    }
+  },
+  "agents": {
+    "list": [
+      {
+        "id": "main",
+        "tools": {
+          "allow": ["exec", "llm-task"]
+        }
+      }
+    ]
+  }
+}

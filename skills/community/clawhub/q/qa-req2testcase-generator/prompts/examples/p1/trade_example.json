@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.0.0",
+  "requirement_id": "REQ-TRADE-001",
+  "feature_tree": [
+    {
+      "id": "F-001",
+      "name": "委托撤单",
+      "description": "投资者对未成交委托发起撤单请求",
+      "children": [
+        {
+          "id": "F-001-01",
+          "name": "撤单请求提交",
+          "description": "投资者选择未成交委托，提交撤单申请",
+          "children": []
+        },
+        {
+          "id": "F-001-02",
+          "name": "撤单资格校验",
+          "description": "系统校验委托状态是否允许撤单（未成交/部分成交）",
+          "children": []
+        },
+        {
+          "id": "F-001-03",
+          "name": "撤单执行",
+          "description": "系统向交易所发送撤单指令并等待回报",
+          "children": []
+        },
+        {
+          "id": "F-001-04",
+          "name": "冻结资金释放",
+          "description": "撤单成功后释放对应委托的冻结资金",
+          "children": []
+        },
+        {
+          "id": "F-001-05",
+          "name": "撤单结果通知",
+          "description": "撤单完成后通知投资者撤单结果",
+          "children": []
+        }
+      ]
+    }
+  ],
+  "coverage_check": {
+    "total_features": 6,
+    "covered_requirements": ["委托撤单请求", "撤单校验", "资金释放", "结果通知"],
+    "uncovered_items": []
+  }
+}

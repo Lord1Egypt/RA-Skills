@@ -1,0 +1,72 @@
+[
+  {
+    "query": "什么是RAG？",
+    "expected_answer": "RAG（Retrieval-Augmented Generation）是一种结合信息检索和生成模型的技术，通过检索相关文档来增强大语言模型的回答能力。",
+    "expected_doc_ids": ["doc_001", "doc_002"],
+    "category": "概念理解",
+    "difficulty": "easy"
+  },
+  {
+    "query": "RAG系统如何优化检索效果？",
+    "expected_answer": "可以通过语义分块、由小到大检索、混合检索、重排序等策略优化，其中由小到大检索性价比最高，可将准确率从0.3提升至0.85。",
+    "expected_doc_ids": ["doc_003", "doc_004", "doc_005"],
+    "category": "技术实现",
+    "difficulty": "medium"
+  },
+  {
+    "query": "什么是HyDE？它适用于什么场景？",
+    "expected_answer": "HyDE（Hypothetical Document Embeddings）是一种查询优化技术，通过生成假设性答案来检索。适用于短查询、模糊问题等场景。",
+    "expected_doc_ids": ["doc_006"],
+    "category": "技术实现",
+    "difficulty": "medium"
+  },
+  {
+    "query": "重排序的作用是什么？有哪些常用模型？",
+    "expected_answer": "重排序用于对初步检索结果进行二次筛选，提高精确率。常用模型包括Cross-Encoder系列、BGE Reranker等。",
+    "expected_doc_ids": ["doc_007", "doc_008"],
+    "category": "技术实现",
+    "difficulty": "medium"
+  },
+  {
+    "query": "Graph RAG和传统RAG有什么区别？",
+    "expected_answer": "Graph RAG将文档构建为知识图谱，支持实体关系推理和多跳查询，适合关系密集的场景。传统RAG基于扁平文本块检索，实现简单但不支持推理。",
+    "expected_doc_ids": ["doc_009", "doc_010"],
+    "category": "架构对比",
+    "difficulty": "hard"
+  },
+  {
+    "query": "苹果公司CEO的母校在哪里？",
+    "expected_answer": "苹果公司CEO Tim Cook毕业于奥本大学（Auburn University），位于美国阿拉巴马州。",
+    "expected_doc_ids": ["doc_011", "doc_012"],
+    "category": "多跳推理",
+    "difficulty": "hard"
+  },
+  {
+    "query": "如何评估RAG系统的效果？",
+    "expected_answer": "可以使用Recall@K、Precision@K、MRR等指标评估检索质量，使用相关性、忠实度、完整性等指标评估生成质量。推荐工具包括Ragas、TruLens等。",
+    "expected_doc_ids": ["doc_013"],
+    "category": "评估方法",
+    "difficulty": "medium"
+  },
+  {
+    "query": "由小到大检索的具体实现步骤是什么？",
+    "expected_answer": "1. 将文档切分为子块（100-200字）和父块（500-1000字）；2. 对子块建立向量索引；3. 查询时用子块检索；4. 返回对应的父块给LLM。",
+    "expected_doc_ids": ["doc_014", "doc_015"],
+    "category": "技术实现",
+    "difficulty": "medium"
+  },
+  {
+    "query": "混合检索中向量权重如何设置？",
+    "expected_answer": "向量权重通常设为0.5-0.8，根据查询特征动态调整：短查询或有精确术语时降低权重（偏关键词），长查询时提高权重（偏语义）。",
+    "expected_doc_ids": ["doc_016"],
+    "category": "参数调优",
+    "difficulty": "medium"
+  },
+  {
+    "query": "如何解决RAG系统的幻觉问题？",
+    "expected_answer": "可以通过引用溯源、幻觉检测、上下文压缩等方式减少幻觉。核心是让答案有据可依，并验证答案与检索内容的一致性。",
+    "expected_doc_ids": ["doc_017", "doc_018"],
+    "category": "问题解决",
+    "difficulty": "medium"
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "name": "RhinoClaw GH Template Catalog",
+  "version": "1.0",
+  "templates": [
+    {
+      "id": "chair",
+      "name": "Parametric Chair",
+      "file": "chair.json",
+      "tags": ["furniture", "chair", "seating"],
+      "description": "Stuhl mit geschwungener Rückenlehne, konischen Beinen, Zargen"
+    },
+    {
+      "id": "table",
+      "name": "Parametric Table",
+      "file": "table.json",
+      "tags": ["furniture", "table", "dining", "desk"],
+      "description": "Tisch mit konischen Beinen, Zargen, Überhang"
+    },
+    {
+      "id": "shelf",
+      "name": "Parametric Shelf",
+      "file": "shelf.json",
+      "tags": ["furniture", "shelf", "bookshelf", "regal", "storage"],
+      "description": "Regal mit einstellbaren Böden, Trennwänden, Sockel, Rückwand"
+    }
+  ]
+}

@@ -1,35 +1,121 @@
 ---
-name: "Retail Investor Radar"
+name: Retail_Investor_Radar
 description: "A股个股体检报告，输入股票代码或名称，自动拉取公开数据，AI用大白话生成全面体检报告，包含基本面、估值、资金流向、近期新闻和风险提示。触发词：A股分析、个股体检、股票体检、帮我看看XXX这只股票、分析一下股票代码XXXXXX、这只股票怎么样、值不值得买、查一下XXXXXX"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
+version: "1.1.0"
 author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/retail-investor-radar"
-sourceUrl: "https://clawhub.ai/skills/retail-investor-radar"
+license: MIT
+requires:
+  env:
+    - DEEPSEEK_API_KEY   # 必填：platform.deepseek.com 获取，极低费用
+  python: ">=3.9"
+  packages:
+    - requests
+    - akshare
+    - pandas
+    - pypinyin
+    - pyyaml
 ---
 
-# Retail Investor Radar
+# Retail Investor Radar · A股体检报告
 
-> A股个股体检报告，输入股票代码或名称，自动拉取公开数据，AI用大白话生成全面体检报告，包含基本面、估值、资金流向、近期新闻和风险提示。触发词：A股分析、个股体检、股票体检、帮我看看XXX这只股票、分析一下股票代码XXXXXX、这只股票怎么样、值不值得买、查一下XXXXXX
+输入股票代码、名称或拼音缩写，自动拉取 A 股公开数据，AI 用大白话生成个股体检报告。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/retail-investor-radar`
-- **Source URL:** [https://clawhub.ai/skills/retail-investor-radar](https://clawhub.ai/skills/retail-investor-radar)
+## 快速开始
 
-## Overview
+### 1. 安装依赖
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/retail-investor-radar
+pip install akshare pandas requests pypinyin pyyaml
 ```
+
+### 2. 配置 API Key
+
+在 OpenClaw 环境变量中设置：
+
+```bash
+DEEPSEEK_API_KEY=你的DeepSeek密钥   # platform.deepseek.com 获取
+```
+
+### 3. 运行
+
+支持四种输入方式：
+
+```bash
+python run.py 600519        # 股票代码
+python run.py 贵州茅台       # 中文全名
+python run.py 茅台           # 中文模糊
+python run.py gzmt          # 拼音缩写
+```
+
+输出示例：
+```
+==================================================
+🏥 个股体检报告 | 贵州茅台（600519.SH）
+📅 生成时间：2026-03-25 10:54
+==================================================
+
+📊 【今日行情】
+今天茅台股价1407块，微跌0.05%，几乎就是横着走了一天。最近一周和
+一个月都在小幅阴跌，价格已经跌破了5日和20日均线，短期走势有点疲软。
+
+💪 【财务健康度】
+净利率超过55%，意思是每卖100块钱，能净赚55块多。负债率很低，只有
+12%出头，家里没欠啥钱。净资产收益率（ROE）依然强悍。整体评价：非常健康。
+
+🎯 【估值水位】
+以茅台通常的估值看，PE长期比行业平均水平高一大截，属于"贵族价"。
+当前是付高价买顶级货的逻辑。
+
+🌊 【主力资金动向】
+今天主力资金净流出1.52亿，大单在卖，但超大单有小幅买入，大资金内
+部有分歧，整体偏谨慎。
+
+📰 【近期热点】
+公司副总经理被留置调查，属于突发利空，短期可能影响市场情绪。
+
+⚡ 【总体体检结论】
+公司本身还是那个印钞机，但短期面临技术面走弱、资金流出和突发利空
+消息的三重压力。
+
+⚠️ 【风险提示】
+本报告由AI基于公开数据自动生成，仅供参考学习，不构成任何投资建议。
+股市有风险，投资需谨慎，请结合自身情况独立决策。
+```
+
+## 费用说明
+
+| 依赖 | 费用 |
+|------|------|
+| AKShare（行情/财务/资金/新闻数据） | **完全免费** |
+| DeepSeek（AI 报告生成） | 约 ¥0.02 / 次 |
+
+每天查 10 只股票，月费用不超过 **¥6**。
+
+## 数据源说明
+
+优先使用东方财富接口（数据最全）。若您的网络无法访问东方财富（境外服务器常见），
+行情和K线会自动切换至新浪财经备用接口，并在日志中给出明确提示。
+
+如需强制使用代理，在 `config.yaml` 中设置：
+
+```yaml
+proxy: "http://127.0.0.1:7890"
+```
+
+## 文件结构
+
+```
+Retail_Investor_Radar/
+├── SKILL.md       # 本文件
+├── config.yaml    # 配置（风格、模块开关、代理等）
+├── run.py         # 一键运行入口
+├── fetch.py       # AKShare 数据抓取模块
+└── report.py      # DeepSeek AI 报告生成模块
+```
+
+## 支持的市场
+
+- **沪市**：600xxx、601xxx、603xxx、688xxx
+- **深市**：000xxx、001xxx、002xxx、003xxx
+- **创业板**：300xxx、301xxx
+- **北交所**：4xxxxx、8xxxxx

@@ -1,0 +1,30 @@
+{
+  "name": "project-lifecycle-navigator",
+  "display_name": "Project Lifecycle Navigator / 项目生命周期导航助手",
+  "version": "1.0.0",
+  "language": "bilingual-en-zh",
+  "description": "Bilingual EN/ZH skill that routes users through new project intake, mid-project realignment, or code review and upgrade planning.",
+  "type": "instruction-only",
+  "modes": [
+    "new_project_intake",
+    "mid_project_realignment",
+    "code_review_upgrade_plan"
+  ],
+  "entrypoint": "SKILL.md",
+  "requires": {
+    "env": [],
+    "bins": [],
+    "network": false,
+    "install_scripts": false
+  },
+  "tags": [
+    "project-management",
+    "product-management",
+    "ai-coding-agent",
+    "mvp",
+    "code-review",
+    "bilingual",
+    "chinese",
+    "english"
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "CRS Project"
+  short_description: "Choose and explain map coordinate systems safely."
+  default_prompt: "Use $project to identify the source and target CRS, explain the tradeoffs, and recommend the right projection or EPSG code."
+
+policy:
+  allow_implicit_invocation: true

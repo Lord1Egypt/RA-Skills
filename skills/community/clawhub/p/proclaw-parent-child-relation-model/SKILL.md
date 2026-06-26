@@ -1,35 +1,440 @@
 ---
-name: "ProClaw Parent Child Relation Model（顶级亲子关系模型）"
-description: "超级个体培养支撑体系；家庭赋能线（投资者思维+赋能型教养）+ 亲子关系线（良性关系+有效沟通）+ 内核能量线（能量保护+自驱激发）；培养探索力/自驱力/内核能量/人生方向/自信心"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/proclaw-parent-child-relation-model"
-sourceUrl: "https://clawhub.ai/skills/proclaw-parent-child-relation-model"
+name: parent-child-relation-model
+description: 超级个体培养支撑体系；家庭赋能线（投资者思维+赋能型教养）+ 亲子关系线（良性关系+有效沟通）+ 内核能量线（能量保护+自驱激发）；培养探索力/自驱力/内核能量/人生方向/自信心
+dependency:
+  python: []
+  system: []
 ---
 
-# ProClaw Parent Child Relation Model（顶级亲子关系模型）
+# 超级个体培养支撑体系
 
-> 超级个体培养支撑体系；家庭赋能线（投资者思维+赋能型教养）+ 亲子关系线（良性关系+有效沟通）+ 内核能量线（能量保护+自驱激发）；培养探索力/自驱力/内核能量/人生方向/自信心
+## 体系使命
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/proclaw-parent-child-relation-model`
-- **Source URL:** [https://clawhub.ai/skills/proclaw-parent-child-relation-model](https://clawhub.ai/skills/proclaw-parent-child-relation-model)
+**帮助每一个优秀的孩子成为超级个体**
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/proclaw-parent-child-relation-model
 ```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                                                                         │
+│                        超级个体培养目标                                │
+│                                                                         │
+│      探索力  ·  自驱力  ·  内核能量  ·  人生方向  ·  自信心          │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    ↓
+┌─────────────────────────────────────────────────────────────────────────┐
+│                                                                         │
+│                      三条支撑线                                        │
+│                                                                         │
+│   ┌─────────────┐    ┌─────────────┐    ┌─────────────┐              │
+│   │  家庭赋能线  │    │  亲子关系线  │    │  内核能量线  │              │
+│   │    (土壤)    │    │  (阳光雨露)  │    │  (种子内核)  │              │
+│   └─────────────┘    └─────────────┘    └─────────────┘              │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+                                    ↓
+┌─────────────────────────────────────────────────────────────────────────┐
+│                                                                         │
+│                      五大模型 + 完整工具                               │
+│                                                                         │
+│      理论模型  ·  诊断模型  ·  洞察分析  ·  解题模型  ·  培养模型      │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+## 核心框架
+
+```
+亲子关系 = 控制优化系统 vs 主体生成系统
+
+三变量系统：
+- 控制权（Control）：谁定义世界如何运行
+- 能量流（Energy）：注意力+行动冲动+探索欲
+- 主体生成（Subjectivity）：能否形成"我-选择-结果-反馈"闭环
+```
+
+## 诊断流程
+
+### 第一步：识别表层现象
+
+常见问题行为表现：
+- 不自信、依赖性强
+- 没主见、不会选择
+- 情绪不稳定、容易崩
+- 学习动力低
+- 讨好型人格
+- 抗压能力弱
+
+**判断标准**：表面解释（"孩子不懂事/不努力/性格问题"）通常不是根因。
+
+### 第二步：诊断控制层级混淆
+
+检查是否存在四层压缩为一种命令的情况：
+
+| 层级 | 定义 | 典型表达 |
+|------|------|----------|
+| 目标层（WHY） | 要成为什么样的人 | "成绩好的人" |
+| 方向层（WHAT） | 现在往哪里走 | "提高数学" |
+| 策略层（HOW） | 用什么方式实现 | "每天30题" |
+| 执行层（DO） | 现在立刻做什么 | "马上去写" |
+
+**诊断要点**：父母是否将四层混成一句"你必须现在做"？
+
+### 第三步：四轴失衡分析
+
+按照 references/four-axis-analysis.md 逐轴诊断：
+1. 控制权轴：谁拥有"应该如何做"的定义权
+2. 解释权轴：谁定义行为合理性
+3. 能量流轴：能量是否走完完整闭环
+4. 责任归属轴：行为后果归谁承担
+
+### 第四步：三重剥夺机制识别
+
+| 剥夺类型 | 表现 | 核心结果 |
+|----------|------|----------|
+| 控制剥夺 | 决策被替代、行动被指令化 | 主体外置 |
+| 解释剥夺 | 行为理由外置、认知权被接管 | 规则失稳 |
+| 能量剥夺 | 兴趣被过滤、行动闭环被打断 | 动力冻结 |
+
+## 熵调节诊断
+
+核心变量：**熵（不确定性）的允许范围**
+
+一切行为背后只有一个问题——谁决定"什么程度的不确定性是合法的"。
+
+### 熵视角诊断
+
+父母系统在做什么？
+- 不断压缩熵（规定路径、提供标准答案、提前纠错、消除试错成本）
+
+孩子在做什么？
+- 不断扩展熵（乱试、走偏、不按规则、探索"无意义"行为）
+
+### 熵合法性授权
+
+> 解释权 = 谁决定"什么程度的不确定性是合法的"
+
+### 三种熵结构
+
+| 结构类型 | 熵水平 | 主体性 | 表现 |
+|----------|--------|--------|------|
+| 高压结构 | 低熵 | 消灭 | 只有一种正确路径，其他被定义为错误 |
+| 混乱结构 | 无边界 | 泛滥 | 没有规则、没有反馈、没有一致标准 |
+| 健康结构 | 可调 | 生成 | 允许探索但有边界，允许失败但可修正 |
+
+### 目标函数冲突
+
+| 系统 | 目标函数 | 不确定性 | 错误 | 控制 | 结构 |
+|------|----------|----------|------|------|------|
+| 父母系统 | 最小化不确定性 + 最大化可预测性 | 压制 | 风险 | 越高越好 | 固定 |
+| 孩子系统 | 最大化探索空间 + 最大化反馈密度 | 依赖 | 资源 | 越低越好 | 动态 |
+
+> 这不是沟通问题，是**目标函数冲突**。一个要"收敛世界"，一个要"发散世界"。
+
+### 主体性 = 自熵调节系统
+
+主体成立必须满足三件事：
+1. **允许输入熵**：可以探索未知，未知是合法的
+2. **能处理熵**：错误是可承受的，失败是有意义的
+3. **能输出结构**：行为形成真实结果，结果可被反馈
+
+一旦任何一环被切断：
+- 不允许试错 → 主体死亡
+- 不允许解释 → 主体依附
+- 不允许反馈 → 主体停滞
+
+### 终极矛盾：稳定系统 vs 进化系统
+
+| 维度 | 稳定系统（父母） | 进化系统（孩子） |
+|------|------------------|------------------|
+| 核心追求 | 稳定性、可预测性 | 进化性、可能性 |
+| 不确定性 | 压制 | 依赖 |
+| 错误 | 风险 | 信息 |
+| 偏离 | 破坏 | 必然 |
+| 结构 | 固定 | 动态 |
+
+> **稳定系统无法自然产生进化主体**
+>
+> **人类教育的根本矛盾：用稳定系统驯化进化系统，进化系统却必须通过不确定性才能存活**
+
+### 三重剥夺底层结构
+
+| 剥夺类型 | 底层机制 | 结果 |
+|----------|----------|------|
+| 熵剥夺（Entropy Capture） | 不允许未知，提前标准化路径 | 输入端关闭 |
+| 反馈剥夺（Feedback Capture） | 行为不形成真实结果循环 | 处理端断裂 |
+| 责任剥夺（Agency Capture） | 行为不归因于主体 | 输出端外包 |
+
+> 三者合一：**系统无法形成"自生成闭环"**
+
+### 动力学根源
+
+三个硬约束决定了系统的必然性：
+1. 安全约束 → 降低风险 → 倾向控制
+2. 效率约束 → 教育规模化 → 只能标准化
+3. 评价约束 → 社会看结果 → 过程被压缩
+
+## 重构路径
+
+当诊断完成后，按照 references/intervention-model.md 设计干预方案：
+
+1. 控制权再分配：目标层父母负责，执行层孩子自主
+2. 解释权内化：帮助孩子建立内部解释系统
+3. 能量流修复：让兴趣→行动→反馈闭环重新运转
+4. 责任闭环重建：选择→行为→结果→自我认知完整连接
+
+## 顶层设计体系：让孩子成为顶级个体
+
+当需要构建"保护孩子内核能量、建立自驱、沟通有效、良好关系"的完整体系时，使用以下框架。
+
+### 核心目标：培养顶级个体的四维内核
+
+| 维度 | 核心能力 | 父母角色 |
+|------|----------|----------|
+| **心力** | 抗压/韧性/情绪稳定 | 护心者 |
+| **能量** | 内驱/热情/生命力 | 护火者 |
+| **关系** | 连接/协作/领导 | 建桥者 |
+| **心智** | 思维/决策/认知升级 | 启智者 |
+
+详见：[references/top-tier-model.md](references/top-tier-model.md)
+
+### 父母心智重塑：投资者思维 vs 消费者思维
+
+| 维度 | 消费者思维 | 投资者思维 |
+|------|-----------|-----------|
+| 核心假设 | 孩子是匮乏的 | 孩子内核是完整的 |
+| 时间视野 | 短期即时反馈 | 长期价值复利 |
+| 关注点 | 行为表面纠正 | 内在系统建设 |
+| 错误观 | 错误=失败 | 错误=信息 |
+
+详见：[references/investor-mindset.md](references/investor-mindset.md)
+
+### 父母角色重塑：从控制者到赋能者
+
+| 角色 | 控制者 | 赋能者 |
+|------|--------|--------|
+| 本质 | 替代孩子 | 支持孩子 |
+| 思维 | 命令 | 提问 |
+| 反馈 | 评判 | 理解 |
+| 关系 | 消耗 | 滋养 |
+
+详见：[references/parent-transformation.md](references/parent-transformation.md)
+
+### 自驱激发系统
+
+自驱的四大支柱：
+1. **自主感** - 这件事是我选择的
+2. **胜任感** - 我能做好这件事
+3. **联结感** - 有人在乎我
+4. **意义感** - 这件事对我有价值
+
+自驱的敌人：过度控制、过度介入、过高期待、忽视感受、破坏性反馈
+
+详见：[references/self-drive-system.md](references/self-drive-system.md)
+
+## 标准输出格式
+
+每次触发本Skill时，按照以下格式组织输出，确保内容专业、结构清晰、层层打透。
+
+### 【洞察分析】结构
+
+```
+### 一、表层现象（What）
+- 具体表现：
+- 问题归类：
+
+### 二、底层机制（Why）
+- 核心轴诊断：
+- 熵结构判定：
+- 三重剥夺识别：
+
+### 三、系统本质（How）
+- 目标函数冲突分析：
+- 系统动力学根源：
+- 终极压缩公式：
+```
+
+### 【解决方案】结构
+
+```
+### 一、问题分类
+- 问题域：
+- 类型：
+- 核心策略：
+
+### 二、分步骤方案
+Step 1: [关键行动]
+- 操作：
+- 话术示例：
+- 注意事项：
+
+Step 2: ...
+```
+
+### 【全面分析】结构（综合类问题）
+
+```
+### 一、现象描述
+### 二、核心诊断
+   1. 四轴分析
+   2. 熵调节诊断
+   3. 能量状态评估
+### 三、深层洞察
+   1. 目标函数冲突
+   2. 动力学根源
+   3. 系统本质
+### 四、方案设计
+   1. 短期（立即执行）
+   2. 中期（1-3个月）
+   3. 长期（系统性改变）
+### 五、话术模板
+   - 场景1：
+   - 场景2：
+```
+
+## 洞察层层打透的引导原则
+
+当用户提出问题时，确保分析达到顶级深度：
+
+### 第一层：表层打透
+- 具体表现是什么？
+- 行为背后的情绪信号？
+- 触发情境是什么？
+
+### 第二层：归因打透
+- 为什么这个问题会出现？
+- 父母做了什么导致这个问题？
+- 孩子的什么需求未被满足？
+
+### 第三层：结构打透
+- 这个问题的系统结构是什么？
+- 控制权/解释权/能量流/责任归属哪个轴出了问题？
+- 熵结构是什么状态？
+
+### 第四层：本质打透
+- 这个问题的终极本质是什么？
+- 目标函数冲突在哪里？
+- 稳定系统vs进化系统的矛盾如何体现？
+
+### 第五层：路径打透
+- 这个问题应该从哪个环节介入？
+- 短期/中期/长期分别怎么做？
+- 如何避免修复过程中产生新问题？
+
+## 核心洞察原则
+
+> **永远不要只回答"怎么做"，要先回答"是什么"和"为什么"**
+
+> **永远不要只处理行为表象，要追溯到系统结构**
+
+> **永远不要只给方案，要解释方案背后的原理**
+
+> **永远不要说"你要怎么做"，要说"系统需要怎么调整"**
+
+## 使用示例
+
+### 示例1：培养孩子探索力
+
+- 输入：8岁孩子对很多事情感兴趣但都三分钟热度，不敢深入探索
+- 诊断路径：三条支撑线检查 → 家庭赋能线（是否过度控制探索）→ 内核能量线（兴趣是否被筛选）
+- 输出：识别能量线问题，提供探索支持方案，保护好奇心
+
+### 示例2：培养孩子自驱力
+
+- 输入：10岁孩子需要家长盯着才会学习，没有外力就不动
+- 诊断路径：诊断自驱四大敌人 → 识别过度控制/过高期待 → 检查胜任感/自主感缺失
+- 输出：家庭赋能线调整（减少控制）+ 内核能量线建设（胜任感培养）
+
+### 示例3：构建亲子关系+内核能量双线
+
+- 输入：12岁青春期孩子不愿与父母交流，封闭自己
+- 诊断路径：亲子关系线评估（联结断裂）→ 内核能量线评估（身份困惑）
+- 输出：关系线修复方案（尊重边界+无条件接纳）+ 能量线支持（身份探索空间）
+
+### 示例4：全面培养超级个体
+
+- 输入：家长希望孩子成为有探索力、自驱力、内核能量的优秀个体
+- 诊断路径：三线全面评估 → 识别各线发展水平 → 制定协同培养方案
+- 输出：三条支撑线均衡发展计划，孩子五维能力逐步提升
+
+## 资源索引
+
+### 顶层设计 [核心定位]
+
+**使命：帮助每一个优秀的孩子成为超级个体**
+
+- 三条支撑线框架：见 [references/three-support-lines.md](references/three-support-lines.md)（家庭赋能线/亲子关系线/内核能量线协同体系）
+- 超级个体模型：见 [references/super-individual-model.md](references/super-individual-model.md)（五维能力：探索力/自驱力/内核能量/人生方向/自信心）
+- 顶级个体四维内核：见 [references/top-tier-model.md](references/top-tier-model.md)（心力/能量/关系/心智）
+- 投资者思维：见 [references/investor-mindset.md](references/investor-mindset.md)（vs消费者思维重塑）
+- 父母角色重塑：见 [references/parent-transformation.md](references/parent-transformation.md)（控制者→赋能者）
+- 自驱激发系统：见 [references/self-drive-system.md](references/self-drive-system.md)（四大支柱+激发机制）
+
+### 核心理论完整版
+- 系统理论：见 [references/system-theory-model.md](references/system-theory-model.md)（三变量系统+目标函数冲突+稳定vs进化+19个核心论点速查）
+- 理论模型：见 [references/theoretical-model.md](references/theoretical-model.md)（理论体系完整版）
+
+### 诊断工具
+- 分析模板：见 [references/analysis-template.md](references/analysis-template.md)（诊断时填写）
+- 诊断模型：见 [references/diagnostic-model.md](references/diagnostic-model.md)（完整六维度诊断体系+综合输出模板）
+- 洞察分析模型：见 [references/insight-analysis-model.md](references/insight-analysis-model.md)（表层→深层→底层三层洞察+五问法）
+- 四轴详解：见 [references/four-axis-analysis.md](references/four-axis-analysis.md)（逐轴深入分析+四条链路断裂诊断）
+- 熵视角：见 [references/entropy-analysis.md](references/entropy-analysis.md)（熵调节权+熵合法性授权+目标函数冲突）
+
+### 解题与培养
+- 解题模型：见 [references/solution-model.md](references/solution-model.md)（问题分类+分型方案+步骤操作指南）
+- 培养模型：见 [references/cultivation-model.md](references/cultivation-model.md)（四维内核培养+年龄段重点）
+
+### 标准化流程
+- 完整SOP：见 [references/parent-relation-sop.md](references/parent-relation-sop.md)（六大阶段+特殊场景SOP）
+
+### 年龄分层 [P0新增]
+- 年龄段指南：见 [references/age-stage-guide.md](references/age-stage-guide.md)（0-3/3-6/6-12/青春期各阶段干预重点）
+- 转介标准：见 [references/referral-standards.md](references/referral-standards.md)（警示信号识别+专业介入指征）
+
+### 干预工具 [P1/P2新增]
+- 话术模板：见 [references/communication-scripts.md](references/communication-scripts.md)（10+场景标准话术）
+- 干预模型：见 [references/intervention-model.md](references/intervention-model.md)（重构方案设计）
+
+### 理论整合 [P1/P2新增]
+- 代际传递：见 [references/intergenerational-transmission.md](references/intergenerational-transmission.md)（父母的控制模式来源+觉察与中断）
+- 依恋理论：见 [references/attachment-theory.md](references/attachment-theory.md)（依恋类型诊断+不同类型干预策略）
+- 家庭系统：见 [references/family-system-map.md](references/family-system-map.md)（全景评估+系统干预）
+
+### 效果追踪 [P2新增]
+- 评估量表：见 [references/evaluation-scale.md](references/evaluation-scale.md)（孩子发展+亲子关系+父母状态评估）
+
+### 使用支撑 [顶级新增]
+- 关键概念定义：见 [references/key-concepts.md](references/key-concepts.md)（核心术语统一解释+操作化定义）
+- 常见误区：见 [references/common-mistakes.md](references/common-mistakes.md)（18个常见错误理解+正确做法对比）
+- 成功标志：见 [references/success-markers.md](references/success-markers.md)（各维度成功标志+里程碑追踪）
+- 使用限制：见 [references/usage-limits.md](references/usage-limits.md)（适用边界+不适用情况+转介标准）
+- 快速参考：见 [references/quick-reference.md](references/quick-reference.md)（核心公式+关键判断+话术急救包）
+
+### 可执行工具
+
+#### 脚本工具（命令行执行）
+- 四轴诊断工具：执行 `python scripts/diagnostic_tool.py --age 8` 交互式诊断四轴状态
+- 评估量表生成：执行 `python scripts/assessment_tool.py --output assessment.html` 生成可打印评估表
+- 培养计划生成：执行 `python scripts/cultivation_plan.py --age 8 --problems "主体性缺失" --output plan.md` 生成个性化方案
+
+#### 可打印资产
+- 话术卡片：见 [assets/communication-cards.html](assets/communication-cards.html)（10+场景话术，可打印）
+- SOP检查清单：见 [assets/sop-checklist.html](assets/sop-checklist.html)（六大阶段执行清单，可打印）
+- 每日记录表：见 [assets/daily-record.md](assets/daily-record.md)（每日观察记录模板）
+
+## 注意事项
+
+- 诊断时先收集现象，再按层级深入，不要跳跃
+- 四轴分析要逐一检查，避免遗漏
+- 重构时优先修复责任闭环（这是主体性核心）
+- 保持对"熵调节边界"的警觉：不是无限制自由，而是可承受边界内的自主
+
+---
+
+## 作者信息
+
+**作者**：ProClaw
+
+**网站**：www.proclaw.top
+
+**联系方式**：wechat: Mr-zifang

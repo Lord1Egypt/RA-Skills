@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Thank-You</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      background-color: #000000;
+      font-family: 'PingFang SC', 'Microsoft YaHei', 'PingFang TC', 'Hiragino Sans GB', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .thank-you-title {
+      position: absolute;
+      left: 40px;
+      top: 20px;
+      width: 1840px;
+      font-weight: 700;
+      font-size: 210px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #73CD94;
+    }
+    .description-block {
+      position: absolute;
+      left: 40px;
+      bottom: 40px;
+      width: 711px;
+      max-height: 180px;
+      overflow: hidden;
+    }
+    .description-block [data-slot="description"] {
+      font-family: 'PingFang SC', 'Microsoft YaHei', 'PingFang TC', 'Hiragino Sans GB', sans-serif;
+      font-weight: 400;
+      font-size: 48px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #E1EEE6;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide" data-template="thank-you">
+    <h1 class="thank-you-title">Thank you!</h1>
+    <div class="description-block">
+      <p data-slot="description">感谢观看 · 如需定制报告或深度分析请随时告知</p>
+    </div>
+  </div>
+
+
+</body></html>

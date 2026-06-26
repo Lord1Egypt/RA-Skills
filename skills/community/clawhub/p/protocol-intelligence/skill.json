@@ -1,0 +1,12 @@
+{
+  "name": "Protocol Intelligence",
+  "slug": "protocol-intelligence",
+  "version": "1.0.0",
+  "description": "Give a topic in AI governance, agent protocols, or decentralized infrastructure — get a structured research brief with competitive landscape, regulatory signals, and strategic implications. Built on direct RSAC 2026 coverage, NIST submissions, and operational experience running production AI systems.",
+  "author": "Resomnium",
+  "category": "research",
+  "tags": ["AI governance", "agent protocols", "research", "strategy", "MCP", "A2A", "EU AI Act", "NIST"],
+  "entry": "SKILL.md",
+  "price_usd": 0,
+  "license": "MIT"
+}

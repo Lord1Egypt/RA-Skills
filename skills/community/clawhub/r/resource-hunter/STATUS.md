@@ -1,0 +1,46 @@
+# Status
+
+- Date: 2026-03-23
+- Focus: `skills/resource-hunter` is being prepared for a syncable success-first retrieval release centered on real source expansion, not monorepo-wide cleanup.
+- Current retrieval posture:
+  - success-first layered retrieval is active
+  - query graph planning, source-aware budgets, validation, and evidence fusion are active
+  - indexed-discovery fallback is active through `search-index:ddg`, `search-index:bing`, and `search-index:brave`
+- Newly integrated and locally validated sources:
+  - `animetosho`
+  - `dmhy`
+  - `torlock`
+  - `dalipan`
+  - `search-index:bing`
+  - `search-index:brave`
+- Current active/result-producing source set:
+  - pan/direct-or-clue: `2fun`, `dalipan`, `hunhepan`, `pansou.vip`, `tieba`
+  - torrent/direct: `nyaa`, `animetosho`, `dmhy`, `eztv`, `tpb`, `torlock`, `yts`, `1337x`
+  - indexed discovery fallback: `search-index:ddg`, `search-index:bing`, `search-index:brave`
+- Retrieval layers:
+  - `direct-structured-pan`
+  - `direct-structured-torrent`
+  - `community-clue`
+  - `indexed-discovery`
+  - `authenticated-connector` (reserved)
+- Important release boundary:
+  - `dalipan` is currently **search-public but token-only** in runtime output
+  - anonymous search via `https://api.dalipan.com/api/v1/pan/search` is confirmed
+  - `detail/url` is still not fully usable anonymously
+  - runtime therefore exposes Dalipan results as structured clue records (`dalipan://provider/eu-token`), not as guaranteed final share URLs
+  - `search-index:bing` and `search-index:brave` are best-effort indexed discovery fallbacks, not the same stability class as structured direct sources
+- Code changes in the current expansion wave:
+  - source/runtime integration across `src/resource_hunter/adapters.py`, `engine.py`, `intent.py`, `retrieval_layers.py`, `common.py`, `core.py`, and `precision_core.py`
+  - ranking/validation changes to downgrade year-conflict results and mark Dalipan token-only records as clue-only
+  - Torlock detail-fetch hardening so a single broken detail page does not fail the whole source batch
+- Validation:
+  - `E:/DevTools/python/python.exe -m pytest tests/test_intent.py tests/test_results.py tests/test_precision.py tests/test_source_expansion.py tests/test_cli.py tests/test_runtime.py -q` -> `95 passed, 1 skipped`
+  - `E:/DevTools/python/Scripts/ruff.exe check src/resource_hunter/adapters.py src/resource_hunter/intent.py src/resource_hunter/engine.py src/resource_hunter/retrieval_layers.py src/resource_hunter/core.py src/resource_hunter/precision_core.py src/resource_hunter/common.py tests/test_source_expansion.py` -> `All checks passed!`
+- Known limits still open:
+  - `The Merry Widow 1952` remains improved but not solved end-to-end
+  - `dalipan` still needs a future follow-up on detail/url completion and transport hardening
+  - `PanSearch` has real results when queried correctly, but still needs content-card link extraction before runtime integration
+  - public HTML discovery sources remain subject to blocking, layout drift, and rate limits
+- Saturation:
+  - source expansion is now meaningful enough to prepare a syncable version
+  - the remaining work before sync is mainly release hygiene: document alignment, sync-boundary cleanup, and explicit release-note wording for current limitations

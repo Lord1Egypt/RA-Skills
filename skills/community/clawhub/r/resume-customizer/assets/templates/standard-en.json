@@ -1,0 +1,219 @@
+{
+  "template_name": "standard-en",
+  "template_description": "Standard English resume template with ATS-friendly formatting",
+  "language": "en",
+  "sections": {
+    "contact": {
+      "name": "",
+      "email": "",
+      "phone": "",
+      "location": "",
+      "linkedin": "",
+      "website": "",
+      "notes": "Place contact info at top, left-aligned. No header/footer."
+    },
+    "summary": {
+      "title": "Summary",
+      "content": "",
+      "guidelines": "2-3 sentences. Highlight 3-5 key qualifications. Tailor to target role. Include years of experience.",
+      "example": "Senior Software Engineer with 8+ years of experience building scalable web applications. Proficient in Python, React, and AWS. Led team of 10 engineers to deliver 15+ projects on time and under budget."
+    },
+    "work_experience": {
+      "title": "Work Experience",
+      "order": "reverse-chronological",
+      "entries": [
+        {
+          "title": "",
+          "company": "",
+          "location": "",
+          "start_date": "",
+          "end_date": "",
+          "bullet_points": [],
+          "guidelines": "3-5 bullet points per role. Start with action verb. Quantify achievements. Focus on results, not just duties.",
+          "example_bullet": "Developed Python scripts to automate data processing, reducing manual effort by 20 hours/week"
+        }
+      ],
+      "notes": "Most recent job first. Use standard date format (Month Year)."
+    },
+    "education": {
+      "title": "Education",
+      "order": "reverse-chronological",
+      "entries": [
+        {
+          "degree": "",
+          "field": "",
+          "institution": "",
+          "graduation_date": "",
+          "gpa": "",
+          "honors": [],
+          "relevant_coursework": [],
+          "notes": "Include GPA only if >3.5/4.0. Remove high school if you have a college degree."
+        }
+      ]
+    },
+    "skills": {
+      "title": "Skills",
+      "categories": {
+        "technical_skills": {
+          "title": "Technical Skills",
+          "items": [],
+          "examples": ["Python", "Java", "SQL", "React", "AWS"]
+        },
+        "tools_platforms": {
+          "title": "Tools & Platforms",
+          "items": [],
+          "examples": ["Git", "Docker", "Jenkins", "Jira", "VS Code"]
+        },
+        "soft_skills": {
+          "title": "Soft Skills",
+          "items": [],
+          "examples": ["Communication", "Leadership", "Teamwork", "Problem Solving"]
+        }
+      },
+      "notes": "Group skills by category. Match JD keywords. List 10-15 most relevant skills."
+    },
+    "projects": {
+      "title": "Projects",
+      "entries": [
+        {
+          "name": "",
+          "description": "",
+          "technologies": [],
+          "role": "",
+          "url": "",
+          "guidelines": "Include for entry-level or relevant side projects. Mention GitHub/portfolio links.",
+          "example": "E-Commerce Platform - Built full-stack e-commerce app using React, Node.js, MongoDB. Deployed on AWS with 99.9% uptime. github.com/username/project"
+        }
+      ],
+      "notes": "Optional section. Include only if relevant to target role."
+    },
+    "certifications": {
+      "title": "Certifications",
+      "entries": [
+        {
+          "name": "",
+          "issuing_organization": "",
+          "date_obtained": "",
+          "expiration_date": "",
+          "notes": "Include industry-recognized certifications relevant to target role."
+        }
+      ],
+      "notes": "Optional section. Include only if certification is recent (<5 years) and relevant."
+    }
+  },
+  "formatting": {
+    "font": {
+      "name": "Arial",
+      "size_body": 11,
+      "size_headings": 14,
+      "size_name": 20,
+      "notes": "Use standard ATS-friendly fonts: Arial, Calibri, Times New Roman."
+    },
+    "spacing": {
+      "margins": 0.75,
+      "line_spacing": 1.15,
+      "section_spacing": 12,
+      "bullet_spacing": 3
+    },
+    "layout": {
+      "columns": 1,
+      "alignment": "left",
+      "notes": "Use single-column layout for ATS compatibility. No tables, text boxes, or graphics."
+    },
+    "file_format": {
+      "preferred": "docx",
+      "acceptable": "pdf (text-based)",
+      "avoid": "pdf (scanned/image), pages, txt"
+    }
+  },
+  "ats_guidelines": {
+    "do": [
+      "Use standard section headings (Work Experience, Education, Skills)",
+      "Use single-column layout",
+      "Use standard fonts (Arial, Calibri, Times New Roman)",
+      "Save as .docx or text-based .pdf",
+      "Place contact info in main body (not header/footer)",
+      "Use standard bullet points (•, -, *)"
+    ],
+    "dont": [
+      "Use tables, text boxes, or graphics",
+      "Use headers/footers for contact info",
+      "Use columns (confuses ATS parsing)",
+      "Use special characters or symbols (★, ➤, etc.)",
+      "Use scanned PDF (text must be selectable)"
+    ]
+  },
+  "example_resume": {
+    "contact": {
+      "name": "John Smith",
+      "email": "john.smith@email.com",
+      "phone": "(123) 456-7890",
+      "location": "San Francisco, CA",
+      "linkedin": "linkedin.com/in/johnsmith",
+      "website": "johnsmith.dev"
+    },
+    "summary": "Senior Software Engineer with 8+ years of experience building scalable web applications. Proficient in Python, React, and AWS. Led team of 10 engineers to deliver 15+ projects on time and under budget. Passionate about clean code and agile methodologies.",
+    "work_experience": [
+      {
+        "title": "Senior Software Engineer",
+        "company": "Tech Corp",
+        "location": "San Francisco, CA",
+        "start_date": "January 2020",
+        "end_date": "Present",
+        "bullet_points": [
+          "Led team of 10 engineers to deliver 15+ projects on time and 20% under budget",
+          "Architected microservices platform using Python and Django, handling 1M+ daily active users",
+          "Reduced server costs by 40% ($50K/year) through cloud migration and optimization",
+          "Mentored 5 junior engineers, with 3 promoted to senior positions within 2 years"
+        ]
+      },
+      {
+        "title": "Software Engineer",
+        "company": "StartUp Inc",
+        "location": "Palo Alto, CA",
+        "start_date": "June 2016",
+        "end_date": "December 2019",
+        "bullet_points": [
+          "Developed RESTful APIs using Python and Flask, serving 500K+ requests/day",
+          "Built responsive web frontend using React and Redux, improving user engagement by 35%",
+          "Implemented CI/CD pipeline using Jenkins, reducing deployment time from 2 hours to 15 minutes",
+          "Collaborated with product and design teams to launch 3 major features in 12 months"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "Bachelor of Science",
+        "field": "Computer Science",
+        "institution": "University of California, Berkeley",
+        "graduation_date": "May 2016",
+        "gpa": "3.8/4.0",
+        "honors": ["Summa Cum Laude", "Dean's List (All Semesters)"],
+        "relevant_coursework": ["Data Structures", "Algorithms", "Machine Learning", "Database Systems"]
+      }
+    ],
+    "skills": {
+      "technical_skills": ["Python", "JavaScript", "TypeScript", "Java", "SQL", "C++"],
+      "frameworks": ["React", "Redux", "Django", "Flask", "Node.js", "Spring Boot"],
+      "tools_platforms": ["AWS", "Docker", "Kubernetes", "Git", "Jenkins", "Jira"],
+      "soft_skills": ["Leadership", "Communication", "Teamwork", "Problem Solving", "Agile Methodologies"]
+    },
+    "projects": [
+      {
+        "name": "E-Commerce Platform",
+        "description": "Built full-stack e-commerce web application with user authentication, payment processing, and order tracking",
+        "technologies": ["React", "Node.js", "MongoDB", "Stripe API"],
+        "role": "Full Stack Developer",
+        "url": "github.com/johnsmith/ecommerce-platform"
+      }
+    ],
+    "certifications": [
+      {
+        "name": "AWS Certified Solutions Architect - Associate",
+        "issuing_organization": "Amazon Web Services",
+        "date_obtained": "March 2022",
+        "expiration_date": "March 2025"
+      }
+    ]
+  }
+}

@@ -1,0 +1,305 @@
+<!-- ====================== 工具页模板 ======================
+ * 注意：Header和Footer为全局固定模板，已经通过JS引入，无需修改
+ * 所有开发工作仅需在【页面主体内容区域】内完成
+ * 公共样式：assets/css/common.css（全局统一规范，禁止私自修改）
+ * 路径规则：所有引用统一使用相对路径，禁止使用绝对路径/开头
+ * ========================================================= -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>财经探子 - [工具页标题]</title>
+    <!-- 全局公共样式（固定引用，禁止删除） -->
+    <link rel="stylesheet" href="assets/css/common.css">
+    <!-- FontAwesome 6 图标库（固定引用，可直接使用所有免费图标） -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 页面独立样式（仅写当前页面独有样式，公用样式已在common.css定义） -->
+    <style>
+        /* 页面头部 */
+        .tool-header {
+            background: var(--zl-primary);
+            padding: 80px 40px;
+            text-align: center;
+            color: #FFFFFF;
+        }
+        .tool-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #FFFFFF;
+        }
+        .tool-desc {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #FFFFFF;
+        }
+        /* 工具操作区 */
+        .tool-panel {
+            background: var(--zl-bg);
+            border: 1px solid var(--zl-border);
+            border-radius: var(--zl-radius-xl);
+            padding: 32px;
+            box-shadow: var(--zl-shadow-md);
+            margin-bottom: 32px;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-label {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--zl-text-primary);
+        }
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #E0E0E0;
+            border-radius: var(--zl-radius-lg);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--zl-primary);
+            box-shadow: 0 0 0 3px var(--zl-primary-opacity);
+        }
+        .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #E0E0E0;
+            border-radius: var(--zl-radius-lg);
+            font-size: 16px;
+            background: var(--zl-bg);
+            cursor: pointer;
+        }
+        .form-select:focus {
+            outline: none;
+            border-color: var(--zl-primary);
+            box-shadow: 0 0 0 3px var(--zl-primary-opacity);
+        }
+        .btn-primary {
+            background: var(--zl-primary);
+            border: none;
+            border-radius: var(--zl-radius-lg);
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px 32px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px var(--zl-primary-opacity);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px var(--zl-primary-opacity);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        .btn-secondary {
+            background: var(--zl-bg-light);
+            border: 1px solid var(--zl-border);
+            border-radius: var(--zl-radius-lg);
+            color: var(--zl-text-secondary);
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px 32px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 16px;
+        }
+        .btn-secondary:hover {
+            border-color: var(--zl-primary);
+            color: var(--zl-primary);
+        }
+        /* 结果展示区 */
+        .result-panel {
+            background: var(--zl-bg-light);
+            border: 1px solid var(--zl-border);
+            border-radius: var(--zl-radius-xl);
+            padding: 32px;
+            min-height: 200px;
+        }
+        .result-header {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--zl-text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .result-loading {
+            text-align: center;
+            color: var(--zl-text-minor);
+            padding: 40px 0;
+        }
+        .result-empty {
+            text-align: center;
+            color: var(--zl-text-minor);
+            padding: 40px 0;
+        }
+        .result-content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        .result-card {
+            background: var(--zl-bg);
+            border-radius: var(--zl-radius-lg);
+            padding: 24px;
+            margin-bottom: 16px;
+            border: 1px solid var(--zl-border);
+        }
+        .result-card.success {
+            border-left: 4px solid var(--zl-success);
+        }
+        .result-card.warning {
+            border-left: 4px solid var(--zl-warning);
+        }
+        .result-card.error {
+            border-left: 4px solid var(--zl-danger);
+        }
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .tool-header {
+                padding: 60px 20px;
+            }
+            .tool-title {
+                font-size: 28px;
+            }
+            .tool-desc {
+                font-size: 16px;
+            }
+            .tool-panel {
+                padding: 24px;
+            }
+            .btn-group {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            .btn-secondary {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 全局固定Header（通过JS自动引入，禁止修改） -->
+    <script src="assets/js/header.js"></script>
+
+    <!-- ==============================================
+         页面主体内容区域（所有开发工作仅在此区域完成）
+         ============================================== -->
+    <main style="padding-top: 64px;">
+        <!-- 页面头部 -->
+        <section class="tool-header">
+            <h1 class="tool-title">[工具名称]</h1>
+            <p class="tool-desc">[工具功能说明，一句话说清楚能做什么]</p>
+        </section>
+
+        <!-- 内容容器 -->
+        <div class="container">
+            <!-- 工具操作面板 -->
+            <div class="tool-panel">
+                <div class="form-group">
+                    <label class="form-label">[输入项1名称]</label>
+                    <input type="text" class="form-input" placeholder="[输入提示]">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">[输入项2名称]</label>
+                    <select class="form-select">
+                        <option value="">请选择</option>
+                        <option value="1">选项1</option>
+                        <option value="2">选项2</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button class="btn-primary">👉 开始计算/查询</button>
+                    <button class="btn-secondary">重置</button>
+                </div>
+            </div>
+
+            <!-- 结果展示面板 -->
+            <div class="result-panel">
+                <div class="result-header">
+                    <span>计算结果</span>
+                    <button class="btn-secondary" style="font-size: 14px; padding: 8px 16px;">复制结果</button>
+                </div>
+                <div class="result-empty">
+                    请输入参数后点击「开始计算/查询」按钮
+                </div>
+                <!-- 结果内容展示区 -->
+                <div class="result-content" style="display: none;">
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- ==============================================
+         页面主体内容区域结束
+         ============================================== -->
+
+    <!-- Idea介绍浮层（领导查看用，固定在右下角） -->
+    <div class="idea-float-panel" id="ideaFloatPanel">
+        <div class="idea-float-header" onclick="toggleIdeaPanel()">
+            <div class="idea-float-header-title">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span id="ideaPanelTitle">Idea介绍</span>
+            </div>
+            <button class="idea-float-header-toggle" id="ideaPanelToggle">
+                <i class="fa-solid fa-minus" id="ideaPanelToggleIcon"></i>
+            </button>
+        </div>
+        <div class="idea-float-content" id="ideaPanelContent">
+            <div class="idea-float-section">
+                <div class="idea-float-section-title"><i class="fa-solid fa-tag"></i> 点子信息</div>
+                <div class="idea-float-section-content">
+                    <span class="idea-float-tag" id="ideaTag1">基金</span>
+                    <span class="idea-float-tag" id="ideaTag2">小白向</span>
+                </div>
+            </div>
+            <div class="idea-float-section">
+                <div class="idea-float-section-title"><i class="fa-solid fa-star"></i> 一句话卖点</div>
+                <div class="idea-float-section-content" id="ideaOneLine">
+                    一句话说明这个点子的核心价值
+                </div>
+            </div>
+            <div class="idea-float-section">
+                <div class="idea-float-section-title"><i class="fa-solid fa-puzzle-piece"></i> 设计想法</div>
+                <div class="idea-float-section-content" id="ideaDesign">
+                    简单说明设计思路、用户痛点、差异化优势
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局固定Footer（通过JS自动引入，禁止修改） -->
+    <script src="assets/js/footer.js"></script>
+
+    <!-- 全局公共脚本（固定引用，禁止删除） -->
+    <script src="assets/js/common.js"></script>
+    <!-- 页面独立脚本（仅写当前页面独有脚本） -->
+    <script>
+        // Idea浮层折叠/展开功能
+        function toggleIdeaPanel() {
+            const panel = document.getElementById('ideaFloatPanel');
+            const content = document.getElementById('ideaPanelContent');
+            const toggleIcon = document.getElementById('ideaPanelToggleIcon');
+            panel.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+            if (panel.classList.contains('collapsed')) {
+                toggleIcon.className = 'fa-solid fa-plus';
+            } else {
+                toggleIcon.className = 'fa-solid fa-minus';
+            }
+        }
+        // 页面独立脚本写在这里
+    </script>
+</body>
+</html>

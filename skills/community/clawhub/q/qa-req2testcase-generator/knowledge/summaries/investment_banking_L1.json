@@ -1,0 +1,48 @@
+{
+  "domain": "投行业务域",
+  "level": "L1",
+  "generated_at": "2026-05-08",
+  "source_file": "investment_banking.md",
+  "key_terms": [
+    {"term": "IPO", "definition": "首次公开发行股票，企业从非上市到上市的过程"},
+    {"term": "保荐", "definition": "券商作为保荐机构推荐企业上市并持续督导"},
+    {"term": "辅导期", "definition": "IPO前的规范辅导阶段，通常不少于一年"},
+    {"term": "注册制", "definition": "以信息披露为核心的发行审核制度"},
+    {"term": "问询函", "definition": "交易所审核过程中对申报材料提出的问题"},
+    {"term": "内核委员会", "definition": "券商内部对投行项目进行质量审核的委员会"},
+    {"term": "簿记建档", "definition": "债券发行时通过投资者申购确定发行利率的过程"},
+    {"term": "并购重组", "definition": "上市公司通过收购、合并等方式进行资产重组"},
+    {"term": "业绩承诺", "definition": "并购标的公司对未来业绩的承诺及补偿方案"},
+    {"term": "信息披露", "definition": "上市公司/发行人向公众披露重要信息的法定义务"},
+    {"term": "存续期管理", "definition": "债券发行后的持续管理(付息、评级跟踪、信息披露)"},
+    {"term": "内幕信息", "definition": "尚未公开的可能影响证券价格的重大信息"}
+  ],
+  "core_entities": [
+    {"name": "IPO项目", "description": "企业首次公开发行股票的全流程项目"},
+    {"name": "债券承销项目", "description": "债券发行承销的全流程项目"},
+    {"name": "并购重组项目", "description": "上市公司并购重组的财务顾问项目"},
+    {"name": "问询回复", "description": "对交易所审核问询的回复文件"},
+    {"name": "申报材料", "description": "招股说明书、保荐书等提交监管的文件"},
+    {"name": "内幕信息知情人", "description": "知悉项目内幕信息的人员登记"}
+  ],
+  "regulatory_baselines": [
+    {"rule": "内核审批前置", "description": "所有申报材料必须经过内核委员会审议通过"},
+    {"rule": "辅导期要求", "description": "IPO辅导期通常不少于一年(科创板/创业板可缩短)"},
+    {"rule": "注册批文有效期", "description": "注册批文有效期12个月，过期需重新注册"},
+    {"rule": "问询回复时限", "description": "通常30个工作日内回复交易所问询"},
+    {"rule": "内幕信息管理", "description": "内幕信息知情人登记，敏感期禁止交易"},
+    {"rule": "关联方回避", "description": "关联股东在股东大会中必须回避表决"},
+    {"rule": "发行认购门槛", "description": "认购总量不足发行数量70%则发行失败"},
+    {"rule": "停牌时限", "description": "重组停牌通常不超过10个交易日"}
+  ],
+  "common_missing_items": [
+    {"item": "问询回复超期处理", "description": "30个工作日内未回复的中止审查和超期预警"},
+    {"item": "批文到期倒计时", "description": "注册批文12个月有效期的倒计时提醒"},
+    {"item": "发行失败退款机制", "description": "认购不足70%时的发行失败处理和退款"},
+    {"item": "多轮问询独立计时", "description": "各轮问询时限独立计算，互不影响"},
+    {"item": "内幕信息知情人交易监控", "description": "敏感期内知情人交易记录的自动告警"},
+    {"item": "债券存续期付息提醒", "description": "付息日前5个工作日的系统提醒"},
+    {"item": "并购业绩承诺跟踪", "description": "完成后每年业绩达标情况的跟踪和补偿计算"},
+    {"item": "停牌进展公告", "description": "停牌期间每5个交易日发布进展公告"}
+  ]
+}

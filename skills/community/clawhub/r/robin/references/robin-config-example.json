@@ -1,0 +1,6 @@
+{
+  "topics_dir": "topics",
+  "media_dir": "media",
+  "min_items_before_review": 30,
+  "review_cooldown_days": 60
+}

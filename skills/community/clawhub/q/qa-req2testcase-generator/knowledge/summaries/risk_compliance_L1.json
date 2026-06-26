@@ -1,0 +1,48 @@
+{
+  "domain": "风控合规域",
+  "level": "L1",
+  "generated_at": "2026-05-08",
+  "source_file": "risk_compliance.md",
+  "key_terms": [
+    {"term": "VaR（风险价值）", "definition": "给定置信水平和时间区间下，投资组合的最大可能损失"},
+    {"term": "三道防线", "definition": "业务部门(第一道)→风控部门(第二道)→内部审计(第三道)"},
+    {"term": "净资本", "definition": "净资产减去风险调整后的金额，监管底线≥2亿元"},
+    {"term": "信息隔离墙", "definition": "投行/自营/资管/研究部门间的信息隔离机制"},
+    {"term": "KYC/CDD", "definition": "客户身份识别/客户尽职调查，开户时必须执行"},
+    {"term": "EDD（增强尽职调查）", "definition": "对高风险客户（政治公众人物、高风险国家）加强审查"},
+    {"term": "压力测试", "definition": "模拟极端市场情景下的损失评估"},
+    {"term": "集中度", "definition": "单一股票/行业/关联方持仓占比上限"},
+    {"term": "大额交易报告", "definition": "单笔或累计超阈值交易需上报（现金≥5万，转账≥50万）"},
+    {"term": "静默期", "definition": "IPO/并购项目期间的交易限制期"},
+    {"term": "涨跌停", "definition": "主板±10%，科创板/创业板±20%，ST股±5%"},
+    {"term": "强制平仓", "definition": "担保比例低于平仓线时自动卖出持仓"}
+  ],
+  "core_entities": [
+    {"name": "风控限额", "description": "按业务线/产品/策略设定的多层级风险限额"},
+    {"name": "信用评级", "description": "AAA到BB及以下的信用等级分类"},
+    {"name": "授信额度", "description": "净资本×风险系数×调整因子计算的授信上限"},
+    {"name": "隔离墙", "description": "部门间信息隔离机制，防止内幕信息泄露"},
+    {"name": "可疑交易", "description": "触发反洗钱监测规则的异常交易"},
+    {"name": "整改工单", "description": "审计/检查发现问题的整改跟踪记录"}
+  ],
+  "regulatory_baselines": [
+    {"rule": "净资本≥2亿元", "description": "证券公司净资本监管底线"},
+    {"rule": "风险覆盖率≥100%", "description": "净资本/各项风险资本准备之和"},
+    {"rule": "资本杠杆率≥8%", "description": "净资本/净资产"},
+    {"rule": "严禁内幕交易", "description": "利用未公开信息交易，触犯刑法"},
+    {"rule": "客户资金第三方存管", "description": "客户资金必须由银行存管，券商不得挪用"},
+    {"rule": "大额交易5日内上报", "description": "发现大额/可疑交易后5个工作日内上报"},
+    {"rule": "信息披露真实准确完整", "description": "上市公司公告必须符合三性要求"},
+    {"rule": "自营权益类证券/净资本≤100%", "description": "自营业务规模限制"}
+  ],
+  "common_missing_items": [
+    {"item": "限额阈值边界处理", "description": "PRD常遗漏79.9%和80%的边界行为定义"},
+    {"item": "风控预警通知机制", "description": "多层级限额预警时通知渠道和频率未定义"},
+    {"item": "强制平仓时间窗口", "description": "触发平仓线后的执行时间窗口未明确"},
+    {"item": "KYC信息更新触发条件", "description": "客户信息过期后的自动触发更新逻辑缺失"},
+    {"item": "反洗钱累计计算周期", "description": "大额报告的累计周期（自然日/工作日）未明确"},
+    {"item": "隔离墙穿透异常处理", "description": "信息意外泄露后的应急处理流程缺失"},
+    {"item": "整改超期升级规则", "description": "整改超期后的自动升级阈值和升级对象未定义"},
+    {"item": "压力测试数据范围", "description": "部分业务线/产品未纳入压力测试范围"}
+  ]
+}

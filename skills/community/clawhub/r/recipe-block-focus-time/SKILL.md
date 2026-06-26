@@ -1,35 +1,26 @@
 ---
-name: "Recipe Block Focus Time"
+name: recipe-block-focus-time
 description: "Create recurring focus time blocks on Google Calendar to protect deep work hours."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-block-focus-time"
-sourceUrl: "https://clawhub.ai/skills/recipe-block-focus-time"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "scheduling"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-calendar
 ---
 
-# Recipe Block Focus Time
+# Block Focus Time on Google Calendar
 
-> Create recurring focus time blocks on Google Calendar to protect deep work hours.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-calendar`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-block-focus-time`
-- **Source URL:** [https://clawhub.ai/skills/recipe-block-focus-time](https://clawhub.ai/skills/recipe-block-focus-time)
+Create recurring focus time blocks on Google Calendar to protect deep work hours.
 
-## Overview
+## Steps
 
+1. Create recurring focus block: `gws calendar events insert --params '{"calendarId": "primary"}' --json '{"summary": "Focus Time", "description": "Protected deep work block", "start": {"dateTime": "2025-01-20T09:00:00", "timeZone": "America/New_York"}, "end": {"dateTime": "2025-01-20T11:00:00", "timeZone": "America/New_York"}, "recurrence": ["RRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR"], "transparency": "opaque"}'`
+2. Verify it shows as busy: `gws calendar +agenda`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-block-focus-time
-```

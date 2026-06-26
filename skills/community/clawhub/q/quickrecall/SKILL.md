@@ -1,35 +1,122 @@
 ---
-name: "QuickRecall - Zero-Dependency Memory Engine.  常用记忆优先出现。零依赖 AI 记忆引擎，纯 Node.js。/ Prioritizes frequently used memories. Zero deps."
-description: "Persistent memory engine for AI agents with semantic recall, hotness prioritization, importance weighting, time decay, and auto-compaction. Zero external dep..."
-category: "other"
-source: "ClawHub"
-tags: [zero-dependency]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/quickrecall"
-sourceUrl: "https://clawhub.ai/skills/quickrecall"
+name: memory-enhancement-engine
+description: Persistent memory engine for AI agents with semantic recall, hotness prioritization, importance weighting, time decay, and auto-compaction. Zero external dependencies. Pure Node.js.
+tags:
+  - memory
+  - persistent
+  - semantic-search
+  - hotness
+  - recall
+  - ai-agent
+  - nodejs
+features:
+  - Hotness-prioritized recall
+  - Semantic search (bigram + character overlap)
+  - Importance weighting (0-2.0)
+  - Exponential time decay
+  - Auto-compaction and pruning
+  - Zero external dependencies
+  - Pure Node.js
 ---
 
-# QuickRecall - Zero-Dependency Memory Engine.  常用记忆优先出现。零依赖 AI 记忆引擎，纯 Node.js。/ Prioritizes frequently used memories. Zero deps.
+# Memory Enhancement Engine
 
-> Persistent memory engine for AI agents with semantic recall, hotness prioritization, importance weighting, time decay, and auto-compaction. Zero external dep...
+**记忆增加引擎** — Persistent memory engine with hotness-prioritized semantic recall.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/quickrecall`
-- **Source URL:** [https://clawhub.ai/skills/quickrecall](https://clawhub.ai/skills/quickrecall)
+Memories that are recalled more often appear first — not just keyword matches.
 
-## Overview
+## Quick Start
 
+```bash
+# Node.js API
+const { MemorySystem } = require('./memory-enhancement-engine/memory.js');
+const mem = new MemorySystem();
+
+# CLI tool (view / search / compact)
+node memory-enhancement-engine/memo.cjs status
+node memory-enhancement-engine/memo.cjs query "something to find"
+```
+
+## Core Usage
+
+```javascript
+const { MemorySystem } = require('./memory-enhancement-engine/memory.js');
+
+// Create engine (stores to MEMORY_STORE.json automatically)
+const mem = new MemorySystem({ decayHalfLifeHours: 2 });
+
+// Write a memory
+mem.add({
+  content: "Paris is the capital of France.",
+  importance: 1.5,
+  metadata: { tags: ["geography", "fact"] }
+});
+
+// Semantic search
+const results = mem.query("France capital");
+console.log(results);
+
+// Get recent memories
+const recent = mem.recent(10);
+
+// Compact old memories (summarize low-importance clusters)
+mem.compact(5, 0.3);
+```
+
+## API
+
+| Method | Description |
+|--------|-------------|
+| `add(content, importance, metadata)` | Write a memory |
+| `retrieve(query, k)` | Semantic search (returns sorted by score) |
+| `getRecent(n)` | Get N most recent memories |
+| `remove(predicate)` | Remove memories matching predicate |
+| `compact(groupSize, minImportance)` | Compact old memories into summaries |
+| `getStatus()` | Get engine stats (count, size, etc.) |
+
+## Scoring Formula
+
+```
+score = similarity × 0.5 + recency × 0.3 + hotness × 0.2
+```
+
+Where hotness = log(1 + access_count) × exp(-time_delta / 86400)
+
+## Features
+
+- **Hotness-Prioritized Recall** — Frequently accessed memories get boosted scores
+- **Semantic Search** — Bigram overlap + character-level similarity
+- **Importance Weighting** — 0.0 (trivial) to 2.0 (critical)
+- **Time Decay** — Half-life configurable (default 2 hours)
+- **Auto-Prune** — Beyond 1000 entries, least important are pruned
+- **Auto-Compaction** — Merge low-importance groups into summaries
+- **No Server Needed** — Direct Node.js require, stores to local JSON
 
 ## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/quickrecall
+
+| Method | Command |
+|--------|---------|
+| Copy | Copy `memory.js` + `memo.cjs` to your project |
+| ClawHub | `clawhub install memory-enhancement-engine` |
+
+## File Structure
+
 ```
+memory-enhancement-engine/
+├── SKILL.md
+├── memory.js            # Core engine
+├── memo.cjs             # CLI tool
+├── package.json
+├── assets/
+│   └── icon.svg
+├── references/
+│   ├── API_SPEC.md
+│   └── USE_GUIDE.md
+└── scripts/
+    ├── init-memory.mjs  # One-time migration
+    └── test-client.js
+```
+
+## License
+
+MIT

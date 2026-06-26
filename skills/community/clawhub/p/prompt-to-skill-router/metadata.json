@@ -1,0 +1,19 @@
+{
+  "name": "prompt-to-skill-router",
+  "slug": "prompt-to-skill-router",
+  "description": "Route each request to the best execution path: direct answer, installed skill, new skill, or a multi-skill workflow, with explicit reasoning about friction, value, and fit.",
+  "author": "ToBeWin",
+  "version": "1.0.0",
+  "tags": [
+    "router",
+    "meta-skill",
+    "decision-support",
+    "workflow",
+    "orchestration",
+    "skill-routing",
+    "prompt-routing",
+    "execution-mode",
+    "skill-selection"
+  ],
+  "entry": "SKILL.md"
+}

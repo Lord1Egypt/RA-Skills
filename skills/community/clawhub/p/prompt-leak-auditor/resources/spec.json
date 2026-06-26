@@ -1,0 +1,37 @@
+{
+  "slug": "prompt-leak-auditor",
+  "title": "提示泄漏审计器",
+  "category": "security",
+  "categoryLabel": "安全与治理",
+  "mode": "pattern_audit",
+  "summary": "审查 prompt、Skill 文案和说明中是否泄漏密钥、路径、内部规则或高风险指令。",
+  "inputHint": "提示词、SKILL.md、README 或目录",
+  "sections": [
+    "扫描范围",
+    "疑似泄漏",
+    "高风险模式",
+    "建议修复",
+    "人工复核点",
+    "后续治理"
+  ],
+  "useCases": [
+    "发布前审计",
+    "内部提示检查",
+    "安全自检"
+  ],
+  "positiveExamples": [
+    "检查这些 prompt 有没有泄漏风险",
+    "扫描 skill 文案中的敏感内容"
+  ],
+  "negativeExamples": [
+    "不要把扫描到的密钥原文再次扩散",
+    "不要输出可利用攻击步骤"
+  ],
+  "risk": "报告默认掩码高敏感内容。",
+  "tags": [
+    "prompt",
+    "security",
+    "audit",
+    "leaks"
+  ]
+}

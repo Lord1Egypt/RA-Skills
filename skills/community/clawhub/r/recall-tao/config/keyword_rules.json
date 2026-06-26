@@ -1,0 +1,46 @@
+{
+  "keywordRules": [
+    {
+      "id": "kr_001",
+      "enabled": true,
+      "keywords": ["多少钱", "价格", "怎么卖", "什么价"],
+      "matchType": "any",
+      "reply": "亲，欢迎咨询价格！请告诉我您想了解哪个产品，我来为您详细介绍～ 💕",
+      "priority": 1
+    },
+    {
+      "id": "kr_002",
+      "enabled": true,
+      "keywords": ["有货吗", "还有吗", "有没有", "库存"],
+      "matchType": "any",
+      "reply": "亲，大部分商品都有现货哦！具体哪款您想了解？我来帮您确认库存～ 📦",
+      "priority": 1
+    },
+    {
+      "id": "kr_003",
+      "enabled": true,
+      "keywords": ["便宜点", "打折", "优惠", "少点"],
+      "matchType": "any",
+      "reply": "宝宝，价格已经是最优惠啦，真的没办法再低了😭 不过关注我们，活动期间会有折扣哦！💕",
+      "priority": 1
+    },
+    {
+      "id": "kr_004",
+      "enabled": true,
+      "keywords": ["发货了吗", "什么时候发", "物流", "快递"],
+      "matchType": "any",
+      "reply": "亲，您的订单正在处理中，我们会尽快安排发货的！感谢您的耐心等待 🙏",
+      "priority": 1
+    },
+    {
+      "id": "kr_005",
+      "enabled": true,
+      "keywords": ["好看", "喜欢", "赞", "棒", "厉害", "太好了"],
+      "matchType": "any",
+      "reply": "谢谢宝宝的喜欢！❤️ 你的支持是我们最大的动力～ 下次还要来哦！🎉",
+      "priority": 2
+    }
+  ],
+  "defaultAction": "ai_generate",
+  "lastUpdated": null
+}

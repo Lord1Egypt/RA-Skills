@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "response-speed-test"
+version = "1.0.0"
+description = "Response Speed Test Skill - Millisecond precision timing for OpenClaw agents"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "kingofqin2026", email = "kingofqin2026@users.noreply.github.com"}
+]
+keywords = ["openclaw", "response-time", "benchmark", "performance", "timing"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.8"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "mypy>=1.0",
+]
+
+[project.scripts]
+response-speed-test = "cli:main"
+
+[project.urls]
+Homepage = "https://github.com/kingofqin2026/response-speed-test"
+Documentation = "https://github.com/kingofqin2026/response-speed-test#readme"
+Repository = "https://github.com/kingofqin2026/response-speed-test.git"
+Issues = "https://github.com/kingofqin2026/response-speed-test/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["probes*", "reporters*", "tests*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311']
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true

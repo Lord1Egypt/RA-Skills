@@ -1,35 +1,88 @@
 ---
-name: "Price Arbitrage Finder"
-description: "发现跨平台商品价格差异，找出套利机会。支持淘宝/京东/拼多多比价，自动计算利润空间。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/price-arbitrage-finder"
-sourceUrl: "https://clawhub.ai/skills/price-arbitrage-finder"
+name: price-arbitrage-finder
+version: 1.0.0
+description: 发现跨平台商品价格差异，找出套利机会。支持淘宝/京东/拼多多比价，自动计算利润空间。
+homepage: https://github.com/openclaw/skills
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "💰",
+        "requires": { "bins": ["python3"] },
+        "install":
+          [
+            {
+              "id": "requests",
+              "kind": "pip",
+              "package": "requests",
+              "label": "安装依赖：pip3 install requests",
+            },
+          ],
+      },
+  }
 ---
 
-# Price Arbitrage Finder
+# 套利机会发现技能
 
-> 发现跨平台商品价格差异，找出套利机会。支持淘宝/京东/拼多多比价，自动计算利润空间。
+自动发现跨平台商品价格差异，找出套利机会。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/price-arbitrage-finder`
-- **Source URL:** [https://clawhub.ai/skills/price-arbitrage-finder](https://clawhub.ai/skills/price-arbitrage-finder)
+## 功能
 
-## Overview
+1. **跨平台比价**: 淘宝 vs 京东 vs 拼多多
+2. **利润计算**: 自动计算扣除运费后的利润
+3. **机会排序**: 按利润率排序展示
+4. **实时监控**: 价格变动时通知
+5. **历史分析**: 查看套利机会历史
 
+## 使用方式
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/price-arbitrage-finder
+**发现套利机会**:
 ```
+帮我找淘宝和拼多多之间的套利机会
+```
+
+**监控特定商品**:
+```
+监控这个商品的跨平台价差 https://item.taobao.com/item.htm?id=123
+```
+
+**设置利润提醒**:
+```
+当发现利润率超过 20% 的套利机会时提醒我
+```
+
+## 输出示例
+
+```
+💰 套利机会发现
+
+商品：Apple AirPods Pro 2
+├─ 拼多多：¥1,299（最低价）
+├─ 淘宝：¥1,499
+└─ 京东：¥1,599
+
+💵 利润空间:
+├─ 拼多多→淘宝：¥200 (15.4%)
+└─ 拼多多→京东：¥300 (23.1%)
+
+📊 建议：从拼多多采购，在淘宝/京东销售
+⚠️ 注意：需考虑运费、平台佣金、售后成本
+```
+
+## 变现模式
+
+- 免费：每日 5 次查询
+- 付费 (¥199/月)：无限查询 + 实时提醒
+- 企业 (¥9999/年)：API + 私有部署
+
+## 风险提示
+
+⚠️ 套利有风险，需考虑：
+- 平台规则限制
+- 假货风险
+- 售后成本
+- 价格波动
+
+---
+
+**声明**: 仅供参考，不构成投资建议。

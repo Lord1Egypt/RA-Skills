@@ -1,0 +1,14 @@
+{
+  "name": "reports-creator",
+  "version": "1.0.0",
+  "description": "Automated report generation for self-reflection and system analysis",
+  "main": "SKILL.md",
+  "scripts": {
+    "daily": "python3 scripts/daily_report.py",
+    "weekly": "python3 scripts/weekly_report.py"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "reporting"
+  }
+}

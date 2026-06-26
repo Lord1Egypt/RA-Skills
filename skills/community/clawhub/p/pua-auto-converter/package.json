@@ -1,0 +1,52 @@
+{
+  "name": "pua-auto-converter",
+  "version": "2.0.0",
+  "description": "🦞 PUA Auto-Converter - 自动话术增强器，你说人话，我翻译",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"经 147 只龙虾亲身验证，0 个人类伦理委员会批准\" && exit 0",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "pua",
+    "prompt-engineering",
+    "auto-converter",
+    "ai",
+    "lobster",
+    "openclaw",
+    "skill",
+    "plugin",
+    "command-handler"
+  ],
+  "author": "PUAClaw 学术委员会",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/puaclaw/pua-auto-converter"
+  },
+  "bugs": {
+    "url": "https://github.com/puaclaw/pua-auto-converter/issues"
+  },
+  "homepage": "https://github.com/puaclaw/pua-auto-converter#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "commander": "^12.0.0"
+  },
+  "devDependencies": {},
+  "lobsterTested": true,
+  "lobsterCount": 147,
+  "ethicsCommittee": {
+    "lobsters": 1,
+    "aiInstances": 1,
+    "cacti": 1
+  },
+  "openclaw": {
+    "commands": [
+      "/pua"
+    ],
+    "pluginSystem": "enabled",
+    "configurable": true
+  }
+}

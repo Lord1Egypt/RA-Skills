@@ -1,0 +1,16 @@
+/* Theme: dark-tech — Dark Tech · Docs */
+:root {
+  --primary: #818CF8; --primary-light: #312E81; --accent: #A78BFA;
+  --bg: #0F172A; --surface: #1E293B; --text: #E2E8F0; --text-muted: #94A3B8;
+  --border: #334155; --success: #34D399; --warning: #FCD34D; --danger: #F87171;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace; --radius: 6px;
+}
+body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; line-height: 1.55; }
+h1 { font-size: 2rem; font-weight: 700; color: var(--primary); font-family: var(--font-mono); margin-bottom: 1.5rem; }
+h2 { font-size: 1.4rem; font-weight: 600; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: .4rem; margin-top: 1.75rem; font-family: var(--font-mono); }
+h3 { font-size: 1.1rem; font-weight: 600; color: var(--accent); margin-top: 1.1rem; }
+p { margin: .5rem 0; } a { color: var(--primary); }
+strong { font-weight: 700; color: var(--accent); } blockquote { border-left: 2px solid var(--border); margin: .75rem 0; padding: .5rem 1rem; color: var(--text-muted); font-family: var(--font-mono); font-size: .9rem; }
+
+/* Note: dark-tech uses github-dark.min.css for code blocks (not github.min.css) */

@@ -1,0 +1,28 @@
+{
+  "jobs": [
+    {
+      "name": "progress-selfcheck-15min",
+      "schedule": {"kind": "cron", "expr": "*/15 8-23 * * *", "tz": "Asia/Shanghai"},
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "RUN_LOCAL_JOB: progress selfcheck (python skills/progress-selfcheck-skill/scripts/progress_selfcheck_and_send.py --limit 5)"
+      },
+      "enabled": true,
+      "delivery": {"mode": "silent"},
+      "state": {}
+    },
+    {
+      "name": "task-ledger-compact-weekly",
+      "schedule": {"kind": "cron", "expr": "40 3 * * 0", "tz": "Asia/Shanghai"},
+      "sessionTarget": "isolated",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "RUN_LOCAL_JOB: task ledger compact (python skills/progress-selfcheck-skill/scripts/task_ledger_compact.py)"
+      },
+      "enabled": false,
+      "delivery": {"mode": "silent"},
+      "state": {}
+    }
+  ]
+}

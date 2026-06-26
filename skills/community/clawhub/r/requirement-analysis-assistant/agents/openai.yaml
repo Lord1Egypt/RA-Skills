@@ -1,0 +1,4 @@
+interface:
+  display_name: "Requirement Analysis Assistant"
+  short_description: "Turn ideas, PRDs, and screenshots into requirements"
+  default_prompt: "Use $requirement-analysis-assistant to turn a rough business request, PRD, screenshot, or prototype idea into a structured requirement draft with assumptions, open questions, edge cases, acceptance criteria, and optional HTML demo guidance."

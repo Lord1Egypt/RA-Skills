@@ -1,0 +1,20 @@
+# Quick depth profile — fast feedback for low-stakes validation
+# Critics: correctness + completeness (2 critics, 0 fix loops)
+# Tester: skipped at quick depth
+# Use for: draft review, pre-commit checks, iterative development
+
+critics:
+  - correctness
+  - completeness
+
+# Model tiers — set to your preferred providers.
+# Tier 1 = strongest model (used for judgment-heavy roles)
+# Tier 2 = capable but cost-efficient (used for critics)
+# LiteLLM model names: https://docs.litellm.ai/docs/providers
+model_tier1: anthropic/claude-opus-4-0
+model_tier2: anthropic/claude-sonnet-4-20250514
+
+max_fix_loops: 0       # No fix loops in quick mode
+depth_profile: quick
+temperature: 0.1       # Low temperature for consistent, deterministic outputs
+max_tokens: 4096

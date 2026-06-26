@@ -1,0 +1,388 @@
+/* Classic Resume Theme - Elegant Serif */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', Times, serif;
+    line-height: 1.5;
+    color: #1a1a1a;
+    background: #f5f3ef;
+    padding: 30px;
+}
+
+.resume-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 48px 56px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+}
+
+/* Header */
+.resume-header {
+    text-align: center;
+    padding-bottom: 22px;
+    margin-bottom: 28px;
+    border-bottom: 3px double #1a365d;
+}
+
+.resume-header .name {
+    font-size: 2em;
+    font-weight: 700;
+    color: #1a365d;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.resume-header .contact-info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+    font-size: 0.9em;
+    color: #4a5568;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.resume-header .contact-item a {
+    color: #1a365d;
+    text-decoration: none;
+    border-bottom: 1px solid #cbd5e0;
+}
+
+.resume-header .contact-item a:hover {
+    border-bottom-color: #1a365d;
+}
+
+/* Sections */
+.resume-section {
+    margin-bottom: 24px;
+}
+
+.section-title {
+    font-size: 1.15em;
+    font-weight: 700;
+    color: #1a365d;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    border-bottom: 1px solid #d1cdc4;
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+}
+
+/* Items */
+.experience-item,
+.education-item,
+.project-item {
+    margin-bottom: 18px;
+    padding-left: 16px;
+    border-left: 2px solid #d1cdc4;
+}
+
+.experience-item:last-child,
+.education-item:last-child,
+.project-item:last-child {
+    margin-bottom: 0;
+}
+
+.experience-header,
+.education-header,
+.project-header {
+    margin-bottom: 4px;
+}
+
+.company-name,
+.institution,
+.project-name {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.position-period,
+.degree-period {
+    font-size: 0.92em;
+    color: #4a5568;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.position,
+.degree,
+.role {
+    font-style: italic;
+    color: #2d3748;
+}
+
+.period {
+    margin-left: 8px;
+    font-style: italic;
+    color: #718096;
+}
+
+.location {
+    color: #718096;
+    font-size: 0.86em;
+    margin-top: 2px;
+    font-style: italic;
+}
+
+.experience-description,
+.project-description {
+    color: #2d3748;
+    font-size: 0.94em;
+    margin: 6px 0;
+    line-height: 1.65;
+}
+
+.responsibilities,
+.achievements {
+    margin-left: 20px;
+    margin-top: 6px;
+}
+
+.responsibilities li,
+.achievements li {
+    margin-bottom: 3px;
+    color: #2d3748;
+    font-size: 0.94em;
+}
+
+.achievements li {
+    font-weight: 500;
+}
+
+.technologies {
+    color: #4a5568;
+    font-size: 0.86em;
+    margin-top: 4px;
+    font-style: italic;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.gpa {
+    color: #4a5568;
+    font-size: 0.86em;
+    font-style: italic;
+}
+
+.honors {
+    color: #4a5568;
+    font-size: 0.86em;
+    margin-top: 4px;
+}
+
+/* Skills */
+.skill-category {
+    margin-bottom: 10px;
+}
+
+.category-title {
+    font-weight: 700;
+    color: #1a365d;
+    font-size: 0.94em;
+    margin-bottom: 3px;
+}
+
+.skill-list {
+    font-size: 0.94em;
+    color: #2d3748;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Print */
+@media print {
+    @page {
+        size: A4;
+        margin: 12mm;
+    }
+
+    body {
+        background: white;
+        padding: 0;
+        font-size: 10.5pt;
+        line-height: 1.4;
+    }
+
+    .resume-container {
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .resume-header {
+        padding: 0 0 8px;
+        margin-bottom: 8px;
+    }
+
+    .resume-header .name {
+        font-size: 1.6em;
+        margin-bottom: 4px;
+    }
+
+    .resume-header .contact-info {
+        font-size: 0.82em;
+        gap: 3px 14px;
+    }
+
+    .resume-section {
+        margin-bottom: 0;
+        padding: 0;
+    }
+
+    .section-title {
+        font-size: 1.0em;
+        margin-bottom: 8px;
+        padding-bottom: 4px;
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    .experience-item,
+    .education-item,
+    .project-item {
+        margin-bottom: 10px;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .company-name,
+    .institution,
+    .project-name {
+        font-size: 1.0em;
+    }
+
+    .position,
+    .degree,
+    .role {
+        font-size: 0.92em;
+    }
+
+    .experience-description,
+    .project-description {
+        font-size: 0.9em;
+        line-height: 1.45;
+        margin: 4px 0;
+    }
+
+    .responsibilities,
+    .achievements {
+        margin-top: 4px;
+    }
+
+    .responsibilities li,
+    .achievements li {
+        font-size: 0.9em;
+        line-height: 1.4;
+        margin-bottom: 2px;
+    }
+
+    .technologies,
+    .gpa,
+    .honors,
+    .location {
+        font-size: 0.84em;
+    }
+
+    .skill-list {
+        font-size: 0.9em;
+        line-height: 1.5;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .resume-container {
+        padding: 30px 24px;
+    }
+
+    .resume-header .name {
+        font-size: 1.6em;
+        letter-spacing: 1px;
+    }
+
+    .resume-header .contact-info {
+        font-size: 0.84em;
+        gap: 4px 12px;
+    }
+
+    .experience-header,
+    .education-header,
+    .project-header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .period {
+        margin-left: 0;
+        margin-top: 2px;
+    }
+}
+
+/* Skill items rendered as inline chips; comma-separated for display */
+.skill-list .skill-item::after {
+    content: ", ";
+}
+.skill-list .skill-item:last-child::after {
+    content: "";
+}
+
+/* Photo is opt-in. Built-in themes hide it; enable in a custom theme via display: block. */
+.resume-photo {
+    display: none;
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .resume-container {
+        padding: 30px 24px;
+    }
+
+    .resume-header .name {
+        font-size: 1.6em;
+        letter-spacing: 1px;
+    }
+
+    .resume-header .contact-info {
+        font-size: 0.84em;
+        gap: 4px 12px;
+    }
+
+    .experience-header,
+    .education-header,
+    .project-header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .period {
+        margin-left: 0;
+        margin-top: 2px;
+    }
+}
+
+/* Skill items rendered as inline chips; comma-separated for display */
+.skill-list .skill-item::after {
+    content: ", ";
+}
+.skill-list .skill-item:last-child::after {
+    content: "";
+}
+
+/* Photo is opt-in. Built-in themes hide it; enable in a custom theme via display: block. */
+.resume-photo {
+    display: none;
+}

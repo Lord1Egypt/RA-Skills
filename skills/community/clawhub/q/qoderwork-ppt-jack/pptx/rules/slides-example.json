@@ -1,0 +1,173 @@
+[
+  {
+    "templateId": "cover",
+    "slots": {
+      "title": "QoderWork 2025",
+      "subtitle": "Redefining Intelligent Development",
+      "description": "An AI-native platform that transforms how teams build, test, and deploy software — from idea to production in minutes.",
+      "footer": "March 2025 | QoderWork"
+    }
+  },
+  {
+    "templateId": "contents",
+    "slots": {
+      "title": "Contents",
+      "intro": "What we will cover today",
+      "chapter1": "01 Product Overview",
+      "chapter2": "02 Core Capabilities",
+      "chapter3": "03 Customer Stories",
+      "chapter4": "04 Roadmap & Vision"
+    }
+  },
+  {
+    "templateId": "section-divider",
+    "slots": {
+      "chapterNumber": "01",
+      "title": "Product Overview\nWhat Makes Us Different",
+      "subtitle": "A new paradigm for software development",
+      "statement": "We believe the best code is the code you never have to write"
+    }
+  },
+  {
+    "templateId": "content-left-text-right-image",
+    "slots": {
+      "title": "From Idea to Deployment",
+      "subtitle": "The QoderWork Pipeline",
+      "block1Heading": "Intelligent Analysis",
+      "block1Copy": "Understands your intent through natural language and converts it into structured development tasks automatically.",
+      "block2Heading": "Adaptive Code Generation",
+      "block2Copy": "Generates production-ready code that follows your team's conventions, patterns, and best practices.",
+      "block3Heading": "Continuous Validation",
+      "block3Copy": "Runs tests, linting, and type checks in real time — catching issues before they reach production.",
+      "image": "output/images/slide-04-pipeline.png"
+    }
+  },
+  {
+    "templateId": "content-one-columns",
+    "slots": {
+      "title": "Why QoderWork",
+      "subtitle": "Two pillars that set us apart",
+      "block1Heading": "Context-Aware Intelligence",
+      "block1Copy": "Unlike generic AI tools, QoderWork deeply understands your codebase structure, dependency graph, and team conventions. Every suggestion is grounded in your project's reality, not generic patterns.",
+      "block2Heading": "Human-in-the-Loop by Design",
+      "block2Copy": "We don't replace developers — we amplify them. Every generated artifact is reviewable, editable, and traceable. Full transparency into what was changed and why, giving your team complete control."
+    }
+  },
+  {
+    "templateId": "content-two-columns",
+    "slots": {
+      "title": "Core Capabilities",
+      "subtitle": "Built for real-world engineering teams",
+      "block1Image": "lucide:brain-circuit",
+      "block1Heading": "Smart Refactoring",
+      "block1Copy": "Detects code smells and suggests safe, incremental refactors with full test coverage preserved.",
+      "block2Image": "lucide:git-pull-request-arrow",
+      "block2Heading": "PR Copilot",
+      "block2Copy": "Auto-generates PR descriptions, reviews changes, and flags potential regressions before merge."
+    }
+  },
+  {
+    "templateId": "content-three-columns",
+    "slots": {
+      "title": "Enterprise-Ready Architecture",
+      "subtitle": "Security, scale, and compliance built in",
+      "block1Image": "lucide:shield-check",
+      "block1Heading": "SOC 2 Compliant",
+      "block1Copy": "End-to-end encryption, audit logs, and role-based access control. Your code never leaves your infrastructure.",
+      "block2Image": "lucide:cloud-cog",
+      "block2Heading": "Self-Hosted Option",
+      "block2Copy": "Deploy on your own cloud or on-premise. Full air-gap support for regulated industries.",
+      "block3Image": "lucide:gauge",
+      "block3Heading": "Built to Scale",
+      "block3Copy": "Handles repositories with 10M+ lines of code. Horizontal scaling with zero-downtime deployments."
+    }
+  },
+  {
+    "templateId": "content-four-columns",
+    "slots": {
+      "title": "Integrations",
+      "subtitle": "Works where your team works",
+      "block1Image": "lucide:github",
+      "block1Heading": "GitHub",
+      "block1Copy": "Native integration with Actions, PRs, and code review workflows.",
+      "block2Image": "lucide:trello",
+      "block2Heading": "Jira & Linear",
+      "block2Copy": "Auto-links tasks to code changes for full traceability.",
+      "block3Image": "lucide:message-square",
+      "block3Heading": "Slack & Teams",
+      "block3Copy": "Real-time notifications and conversational code queries.",
+      "block4Image": "lucide:database",
+      "block4Heading": "CI/CD Pipelines",
+      "block4Copy": "Plugs into Jenkins, CircleCI, and GitHub Actions seamlessly."
+    }
+  },
+  {
+    "templateId": "data-highlight",
+    "slots": {
+      "title": "Impact at Scale",
+      "subtitle": "Measured across 200+ enterprise teams",
+      "data1Num": "73%",
+      "data1Desc": "Reduction in time-to-merge for pull requests",
+      "data2Num": "10x",
+      "data2Desc": "Faster onboarding for new team members",
+      "data3Num": "99.2%",
+      "data3Desc": "Test pass rate on AI-generated code",
+      "slogan": "Less boilerplate. More building."
+    }
+  },
+  {
+    "templateId": "quote",
+    "slots": {
+      "quote": "\"QoderWork didn't just speed up\nour development — it fundamentally\nchanged how we think about\nbuilding software.\"",
+      "subtitle": "— VP of Engineering, Fortune 500 Tech Company"
+    }
+  },
+  {
+    "templateId": "timeline",
+    "slots": {
+      "title": "Getting Started",
+      "subtitle": "Three steps to transform your workflow",
+      "step1Number": "01",
+      "step1Heading": "Connect Your Repo",
+      "step1Copy": "Link your GitHub or GitLab repository. QoderWork indexes your codebase and learns your team's patterns within minutes.",
+      "step2Number": "02",
+      "step2Heading": "Configure & Customize",
+      "step2Copy": "Set coding standards, review policies, and team preferences. The AI adapts to your conventions, not the other way around.",
+      "step3Number": "03",
+      "step3Heading": "Ship with Confidence",
+      "step3Copy": "Start building. Every PR gets intelligent review, every refactor is validated, and every deployment is safer than before."
+    }
+  },
+  {
+    "templateId": "full-image",
+    "slots": {
+      "image": "output/images/slide-12-vision.png",
+      "statement": "The future of software development is collaborative, intelligent, and human-centered",
+      "subtitle": "Our mission is to make every developer 10x more productive while maintaining the craft they love",
+      "tag": "2025 Vision"
+    }
+  },
+  {
+    "templateId": "comparison",
+    "slots": {
+      "title": "Before & After QoderWork",
+      "subtitle": "How teams transform their development workflow",
+      "leftLabel": "With QoderWork",
+      "leftItem1": "AI-assisted code review in seconds",
+      "leftItem2": "Auto-generated tests with 99% coverage",
+      "leftItem3": "Context-aware refactoring suggestions",
+      "leftItem4": "Seamless onboarding for new developers",
+      "rightLabel": "Without QoderWork",
+      "rightItem1": "Manual review cycles taking days",
+      "rightItem2": "Inconsistent test coverage across teams",
+      "rightItem3": "Risky large-scale refactors",
+      "rightItem4": "Weeks of ramp-up for new hires"
+    }
+  },
+  {
+    "templateId": "thank-you",
+    "slots": {
+      "description": "Start building at qoderwork.com"
+    }
+  }
+]

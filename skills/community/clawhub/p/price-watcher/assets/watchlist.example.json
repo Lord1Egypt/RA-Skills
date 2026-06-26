@@ -1,0 +1,25 @@
+[
+  {
+    "url": "https://www.amazon.com/dp/B0EXAMPLE1",
+    "name": "Sony WH-1000XM5 Wireless Headphones",
+    "baseline_price": 349.99,
+    "last_price": 329.99,
+    "last_checked": "2024-03-15T14:00:00+00:00",
+    "price_history": [
+      {"price": 349.99, "date": "2024-03-01T10:00:00+00:00"},
+      {"price": 339.99, "date": "2024-03-08T10:00:00+00:00"},
+      {"price": 329.99, "date": "2024-03-15T14:00:00+00:00"}
+    ]
+  },
+  {
+    "url": "https://www.bestbuy.com/site/example-tv/12345.p",
+    "name": "LG 65\" OLED C3 TV",
+    "baseline_price": 1799.99,
+    "last_price": 1799.99,
+    "last_checked": "2024-03-15T14:01:00+00:00",
+    "price_history": [
+      {"price": 1799.99, "date": "2024-03-01T10:00:00+00:00"},
+      {"price": 1799.99, "date": "2024-03-15T14:01:00+00:00"}
+    ]
+  }
+]

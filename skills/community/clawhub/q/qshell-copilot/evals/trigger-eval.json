@@ -1,0 +1,82 @@
+[
+  {
+    "query": "我本地有个视频文件 D:/videos/demo.mp4 大概200MB，帮我传到七牛云的 media-bucket 里，放在 videos/2024/ 目录下",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我看看 qshell 有没有装好，然后列一下我七牛存储空间里有哪些 bucket",
+    "should_trigger": true
+  },
+  {
+    "query": "把 my-assets 这个 bucket 里的 old-logo.png 删掉，不需要了",
+    "should_trigger": true
+  },
+  {
+    "query": "I need to upload the entire ./dist folder to my Qiniu bucket called 'static-site', with the prefix 'v2/'",
+    "should_trigger": true
+  },
+  {
+    "query": "我需要生成一个七牛私有空间的临时下载链接，文件是 reports/q4-summary.pdf，有效期1小时",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我把 cdn-bucket 里 images/ 目录下的所有文件做一次CDN刷新",
+    "should_trigger": true
+  },
+  {
+    "query": "从这个网址 https://example.com/data.json 抓取文件存到我的七牛 bucket api-data 里",
+    "should_trigger": true
+  },
+  {
+    "query": "我想把 source-bucket 里的 header.jpg 复制一份到 backup-bucket，改名叫 header-backup.jpg",
+    "should_trigger": true
+  },
+  {
+    "query": "在华东区域创建一个新的七牛存储空间叫 test-bucket-2024",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我下载 production-assets 这个 bucket 里的 config.yaml 到本地当前目录",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我把这段文字翻译成英文：今天天气很好，适合出去散步",
+    "should_trigger": false
+  },
+  {
+    "query": "我想上传一张图片到 AWS S3 的 my-bucket 里面",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我写一个 Python 脚本，用 boto3 上传文件到 S3 存储桶",
+    "should_trigger": false
+  },
+  {
+    "query": "我需要创建一个 Docker 容器，把本地的 ./app 目录挂载进去",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我配置 Cloudflare CDN 刷新缓存",
+    "should_trigger": false
+  },
+  {
+    "query": "我有一个 bucket sort 算法实现有 bug，帮我看看哪里有问题",
+    "should_trigger": false
+  },
+  {
+    "query": "把当前目录下的 data.csv 文件上传到 Google Cloud Storage",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我安装 MinIO 并配置本地对象存储服务",
+    "should_trigger": false
+  },
+  {
+    "query": "我想在阿里云 OSS 上创建一个新的存储空间",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我写一个前端组件，实现文件拖拽上传到服务器的功能",
+    "should_trigger": false
+  }
+]

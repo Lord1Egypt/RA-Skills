@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "date": "YYYY-MM-DD",
+  "lastSyncAt": null,
+  "agents": {
+    "main": {
+      "lastFile": null,
+      "lastLine": 0
+    },
+    "cortex": {
+      "lastFile": null,
+      "lastLine": 0
+    },
+    "trading": {
+      "lastFile": null,
+      "lastLine": 0
+    }
+  }
+}

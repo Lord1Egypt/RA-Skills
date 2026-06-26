@@ -1,35 +1,27 @@
 ---
-name: "Recipe Find Free Time"
+name: recipe-find-free-time
 description: "Query Google Calendar free/busy status for multiple users to find a meeting slot."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-find-free-time"
-sourceUrl: "https://clawhub.ai/skills/recipe-find-free-time"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "scheduling"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-calendar
 ---
 
-# Recipe Find Free Time
+# Find Free Time Across Calendars
 
-> Query Google Calendar free/busy status for multiple users to find a meeting slot.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-calendar`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-find-free-time`
-- **Source URL:** [https://clawhub.ai/skills/recipe-find-free-time](https://clawhub.ai/skills/recipe-find-free-time)
+Query Google Calendar free/busy status for multiple users to find a meeting slot.
 
-## Overview
+## Steps
 
+1. Query free/busy: `gws calendar freebusy query --json '{"timeMin": "2024-03-18T08:00:00Z", "timeMax": "2024-03-18T18:00:00Z", "items": [{"id": "user1@company.com"}, {"id": "user2@company.com"}]}'`
+2. Review the output to find overlapping free slots
+3. Create event in the free slot: `gws calendar +insert --summary 'Meeting' --attendee user1@company.com --attendee user2@company.com --start '2024-03-18T14:00:00' --end '2024-03-18T14:30:00'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-find-free-time
-```

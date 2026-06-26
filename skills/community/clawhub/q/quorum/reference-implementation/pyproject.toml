@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "quorum-validator"
+version = "0.7.3"
+description = "Multi-critic quality validation for agents, research, and configurations"
+authors = [
+    {name = "Daniel Cervera", email = "daniel@sharedintellect.com"},
+    {name = "Akkari", email = "akkari@sharedintellect.com"},
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "litellm>=1.40.0",
+    "pydantic>=2.0.0",
+    "pyyaml>=6.0.0",
+    "click>=8.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.1.0",
+    "bandit>=1.7.0",
+    "mypy>=1.0",
+    "jsonschema>=4.0",
+]
+
+[project.scripts]
+quorum = "quorum.cli:cli"
+
+[tool.hatch.build.targets.wheel]
+packages = ["quorum"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = false
+ignore_missing_imports = true

@@ -1,0 +1,18 @@
+[
+  {
+    "from": "Acme <alerts@example.com>",
+    "to": [
+      "alice@example.com"
+    ],
+    "subject": "Shipment 1001",
+    "text": "Your order 1001 has shipped."
+  },
+  {
+    "from": "Acme <alerts@example.com>",
+    "to": [
+      "bob@example.com"
+    ],
+    "subject": "Shipment 1002",
+    "html": "<p>Your order <strong>1002</strong> has shipped.</p>"
+  }
+]

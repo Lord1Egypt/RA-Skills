@@ -1,0 +1,84 @@
+{
+  "elements": [
+    {
+      "type": "node",
+      "id": 1,
+      "lat": -37.8248,
+      "lon": 144.9564,
+      "tags": {
+        "railway": "tram_stop",
+        "name": "Normanby Road Tram Stop"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2,
+      "lat": -37.8235,
+      "lon": 144.9570,
+      "tags": {
+        "shop": "supermarket",
+        "name": "Southbank Grocer"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3,
+      "lat": -37.8260,
+      "lon": 144.9540,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Southbank Pharmacy"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4,
+      "lat": -37.8256,
+      "lon": 144.9563,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Riverside Restaurant"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5,
+      "lat": -37.8257,
+      "lon": 144.9566,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Southbank Cafe"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6,
+      "lat": -37.8232,
+      "lon": 144.9555,
+      "tags": {
+        "leisure": "fitness_centre",
+        "name": "Fitness Studio"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7,
+      "lat": -37.8249,
+      "lon": 144.9548,
+      "tags": {
+        "highway": "primary",
+        "name": "City Road"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8,
+      "lat": -37.8280,
+      "lon": 144.9600,
+      "tags": {
+        "railway": "rail",
+        "name": "Rail corridor"
+      }
+    }
+  ]
+}

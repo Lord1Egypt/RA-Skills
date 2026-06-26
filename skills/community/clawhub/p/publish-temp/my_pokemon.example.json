@@ -1,0 +1,28 @@
+[
+  {
+    "name": "示例宝可梦1",
+    "speciesId": "azumarill",
+    "league": "1500",
+    "iv": [0, 15, 15],
+    "cp": 1499,
+    "level": 45.5,
+    "moves": ["BUBBLE", "ICE_BEAM", "PLAY_ROUGH"],
+    "built": false,
+    "note": "更换为你的宝可梦",
+    "createdAt": "2026-05-20T00:00:00.000Z",
+    "updatedAt": "2026-05-20T00:00:00.000Z"
+  },
+  {
+    "name": "示例宝可梦2",
+    "speciesId": "groudon",
+    "league": "master",
+    "iv": [15, 15, 15],
+    "cp": 4652,
+    "level": 51,
+    "moves": ["DRAGON_TAIL", "FIRE_PUNCH", "PRECIPICE_BLADES"],
+    "built": false,
+    "note": "大师联盟默认可填 15/15/15",
+    "createdAt": "2026-05-20T00:00:00.000Z",
+    "updatedAt": "2026-05-20T00:00:00.000Z"
+  }
+]

@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API 管理 — <span id="apiPageTitle">本产品</span></title>
+    <script>
+    (function(){
+      var pn=(window.API_CONSOLE_CONFIG||{}).productName||'本产品';
+      var el=document.getElementById('apiPageTitle');
+      if(el) el.textContent=pn;
+      var logoEl=document.getElementById('apiLogoText');
+      if(logoEl) logoEl.textContent=pn;
+      var linkEl=document.getElementById('apiLogoLink');
+      if(linkEl) linkEl.title=pn;
+      var t=localStorage.getItem('ptheme');
+        if (t === 'dark') {
+            document.documentElement.removeAttribute('data-theme');
+        } else if (t === 'light' || (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+        }
+    })();
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+    /* ===== API 管理页专属样式 ===== */
+
+    /* 统计卡片行 */
+    .api-stats-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin: 28px 0 32px;
+    }
+    .api-stat-card {
+        padding: 22px;
+        background: rgba(255,255,255,0.025);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 18px;
+        transition: all 0.35s cubic-bezier(.4,0,.2,1);
+        cursor: default;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        position: relative;
+        overflow: hidden;
+    }
+    .api-stat-card::before {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: 15%;
+        right: 15%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(99,102,241,0.2), transparent);
+        pointer-events: none;
+    }
+    .api-stat-card:hover {
+        border-color: rgba(99,102,241,0.2);
+        background: rgba(99,102,241,0.03);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(99,102,241,0.06);
+    }
+    .api-stat-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+    }
+    .api-stat-icon {
+        width: 42px; height: 42px;
+        border-radius: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    .api-stat-icon::after {
+        content: '';
+        position: absolute;
+        inset: -5px;
+        border-radius: 18px;
+        pointer-events: none;
+    }
+    .api-stat-icon--purple { background: rgba(99,102,241,0.12); color: #a855f7; }
+    .api-stat-icon--purple::after { background: radial-gradient(circle, rgba(168,85,247,0.07) 0%, transparent 70%); }
+    .api-stat-icon--blue { background: rgba(59,130,246,0.12); color: #3b82f6; }
+    .api-stat-icon--blue::after { background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%); }
+    .api-stat-icon--green { background: rgba(16,185,129,0.12); color: #10b981; }
+    .api-stat-icon--green::after { background: radial-gradient(circle, rgba(16,185,129,0.07) 0%, transparent 70%); }
+    .api-stat-icon--amber { background: rgba(245,158,11,0.12); color: #f59e0b; }
+    .api-stat-icon--amber::after { background: radial-gradient(circle, rgba(245,158,11,0.07) 0%, transparent 70%); }
+    .api-stat-trend {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: 6px;
+    }
+    .api-stat-trend--up { color: #10b981; background: rgba(16,185,129,0.1); }
+    .api-stat-trend--down { color: #ef4444; background: rgba(239,68,68,0.1); }
+    .api-stat-value {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-bottom: 2px;
+        font-family: 'JetBrains Mono', monospace;
+    }
+    .api-stat-label {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+    }
+
+    /* 区块标题 */
+    .api-section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+    }
+    .api-section-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .api-section-title svg { color: var(--text-muted); }
+    .api-section-badge {
+        font-size: 0.65rem;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 100px;
+        background: rgba(99,102,241,0.12);
+        color: #a78bfa;
+    }
+
+    /* 创建 API Key 按钮 */
+    .api-create-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 18px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        border-radius: 10px;
+        border: none;
+        color: #fff;
+        background: linear-gradient(135deg, #a855f7, #6366f1);
+        cursor: pointer;
+        font-family: inherit;
+        box-shadow: 0 0 16px rgba(99,102,241,0.2);
+        transition: all 0.3s;
+    }
+    .api-create-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 20px rgba(99,102,241,0.3);
+    }
+
+    /* API Key 列表 */
+    .api-keys-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 40px;
+    }
+    .api-key-card {
+        padding: 18px 22px;
+        background: rgba(255,255,255,0.025);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 14px;
+        transition: all 0.3s cubic-bezier(.4,0,.2,1);
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+    .api-key-card:hover {
+        border-color: rgba(99,102,241,0.15);
+        background: rgba(99,102,241,0.02);
+    }
+    .api-key-icon {
+        width: 40px; height: 40px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background: rgba(99,102,241,0.08);
+        color: #a78bfa;
+    }
+    .api-key-info {
+        flex: 1;
+        min-width: 0;
+    }
+    .api-key-name {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .api-key-name .key-status {
+        font-size: 0.65rem;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 100px;
+    }
+    .key-status--active { background: rgba(16,185,129,0.12); color: #10b981; }
+    .key-status--expired { background: rgba(239,68,68,0.12); color: #ef4444; }
+    .api-key-value {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        letter-spacing: 0.02em;
+    }
+    .api-key-meta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-shrink: 0;
+    }
+    .api-key-meta-item {
+        text-align: right;
+    }
+    .api-key-meta-value {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        font-family: 'JetBrains Mono', monospace;
+    }
+    .api-key-meta-label {
+        font-size: 0.68rem;
+        color: var(--text-faint);
+    }
+    .api-key-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+    }
+    .api-key-action-btn {
+        width: 34px; height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255,255,255,0.06);
+        background: rgba(255,255,255,0.03);
+        border-radius: 8px;
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .api-key-action-btn:hover {
+        color: var(--text-primary);
+        border-color: rgba(99,102,241,0.3);
+        background: rgba(99,102,241,0.06);
+    }
+    .api-key-action-btn--danger:hover {
+        color: #ef4444;
+        border-color: rgba(239,68,68,0.3);
+        background: rgba(239,68,68,0.06);
+    }
+
+    /* 调用日志 */
+    .api-log-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 40px;
+    }
+    .api-log-table thead {
+        position: sticky;
+        top: 0;
+    }
+    .api-log-table th {
+        padding: 10px 16px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--text-faint);
+        text-align: left;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        background: var(--bg-base);
+    }
+    .api-log-table td {
+        padding: 14px 16px;
+        font-size: 0.82rem;
+        color: var(--text-secondary);
+        border-bottom: 1px solid rgba(255,255,255,0.03);
+        transition: background 0.15s;
+    }
+    .api-log-table tbody tr:hover td {
+        background: rgba(99,102,241,0.02);
+    }
+    .api-log-method {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 4px;
+        letter-spacing: 0.02em;
+    }
+    .method--post { background: rgba(99,102,241,0.12); color: #818cf8; }
+    .method--get { background: rgba(16,185,129,0.12); color: #34d399; }
+    .method--put { background: rgba(245,158,11,0.12); color: #fbbf24; }
+    .method--delete { background: rgba(239,68,68,0.12); color: #f87171; }
+    .api-log-endpoint {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.78rem;
+        color: var(--text-primary);
+    }
+    .api-log-status {
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 600;
+        font-size: 0.78rem;
+    }
+    .status--200 { color: #10b981; }
+    .status--201 { color: #10b981; }
+    .status--400 { color: #f59e0b; }
+    .status--401 { color: #ef4444; }
+    .status--500 { color: #ef4444; }
+    .api-log-time {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+    }
+    .api-log-latency {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+    }
+
+    /* 快捷入口卡片 */
+    .api-quick-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-bottom: 40px;
+    }
+    .api-quick-card {
+        padding: 24px;
+        background: rgba(255,255,255,0.025);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 16px;
+        cursor: pointer;
+        transition: all 0.35s cubic-bezier(.4,0,.2,1);
+        position: relative;
+        overflow: hidden;
+    }
+    .api-quick-card::before {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: 15%;
+        right: 15%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(99,102,241,0.15), transparent);
+        pointer-events: none;
+    }
+    .api-quick-card:hover {
+        border-color: rgba(99,102,241,0.2);
+        background: rgba(99,102,241,0.03);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(99,102,241,0.06);
+    }
+    .api-quick-icon {
+        width: 44px; height: 44px;
+        border-radius: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+    }
+    .api-quick-icon--purple { background: rgba(168,85,247,0.12); color: #a855f7; }
+    .api-quick-icon--blue { background: rgba(59,130,246,0.12); color: #3b82f6; }
+    .api-quick-icon--cyan { background: rgba(6,182,212,0.12); color: #06b6d4; }
+    .api-quick-title {
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 6px;
+    }
+    .api-quick-desc {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+    }
+    .api-quick-arrow {
+        position: absolute;
+        top: 24px;
+        right: 20px;
+        color: var(--text-faint);
+        transition: all 0.3s;
+    }
+    .api-quick-card:hover .api-quick-arrow {
+        color: var(--text-primary);
+        transform: translateX(3px);
+    }
+
+    /* 空状态 */
+    .api-empty {
+        text-align: center;
+        padding: 48px 24px;
+        color: var(--text-muted);
+    }
+    .api-empty svg {
+        margin-bottom: 16px;
+        opacity: 0.4;
+    }
+    .api-empty-text {
+        font-size: 0.88rem;
+        margin-bottom: 8px;
+    }
+    .api-empty-hint {
+        font-size: 0.78rem;
+        color: var(--text-faint);
+    }
+
+    /* Toast 复制提示 */
+    .api-toast {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%) translateY(80px);
+        padding: 10px 24px;
+        background: rgba(16,185,129,0.15);
+        border: 1px solid rgba(16,185,129,0.3);
+        border-radius: 10px;
+        color: #34d399;
+        font-size: 0.82rem;
+        font-weight: 600;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        pointer-events: none;
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(.4,0,.2,1);
+        z-index: 999;
+    }
+    .api-toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    /* 创建密钥弹窗 */
+    .api-modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.6);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    .api-modal-overlay.show {
+        display: flex;
+        opacity: 1;
+    }
+    .api-modal {
+        background: var(--bg-elevated, #0f0f1a);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 20px;
+        padding: 32px;
+        width: 440px;
+        max-width: 90vw;
+        box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+        transform: scale(0.95);
+        transition: transform 0.3s;
+    }
+    .api-modal-overlay.show .api-modal {
+        transform: scale(1);
+    }
+    .api-modal-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: var(--text-primary);
+    }
+    .api-modal-desc {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        margin-bottom: 24px;
+    }
+    .api-modal-field {
+        margin-bottom: 20px;
+    }
+    .api-modal-label {
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        margin-bottom: 8px;
+    }
+    .api-modal-input {
+        width: 100%;
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 10px;
+        color: var(--text-primary);
+        outline: none;
+        transition: border-color 0.3s;
+    }
+    .api-modal-input:focus {
+        border-color: rgba(99,102,241,0.5);
+    }
+    .api-modal-input::placeholder { color: var(--text-faint); }
+    .api-modal-select {
+        width: 100%;
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 10px;
+        color: var(--text-primary);
+        outline: none;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5' stroke='%2364748b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+    }
+    .api-modal-select:focus {
+        border-color: rgba(99,102,241,0.5);
+    }
+    .api-modal-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        margin-top: 28px;
+    }
+    .api-modal-btn {
+        padding: 9px 22px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+    }
+    .api-modal-btn--cancel {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        color: var(--text-secondary);
+    }
+    .api-modal-btn--cancel:hover {
+        background: rgba(255,255,255,0.06);
+        border-color: rgba(255,255,255,0.12);
+    }
+    .api-modal-btn--primary {
+        color: #fff;
+        background: linear-gradient(135deg, #a855f7, #6366f1);
+        box-shadow: 0 0 12px rgba(99,102,241,0.2);
+    }
+    .api-modal-btn--primary:hover {
+        box-shadow: 0 4px 20px rgba(99,102,241,0.3);
+        transform: translateY(-1px);
+    }
+
+    /* 响应式 */
+    @media (max-width: 1100px) {
+        .api-stats-row { grid-template-columns: repeat(2, 1fr); }
+        .api-quick-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 700px) {
+        .api-stats-row { grid-template-columns: 1fr; }
+        .api-quick-grid { grid-template-columns: 1fr; }
+        .api-key-meta { display: none; }
+    }
+
+    /* ===== 用户下拉菜单 ===== */
+    .icon-nav-avatar { position: relative; }
+    .user-dropdown {
+        position: absolute;
+        bottom: 0;
+        left: calc(100% + 12px);
+        width: 220px;
+        background: var(--bg-elevated, #0f0f1a);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 16px;
+        padding: 12px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(-8px) scale(0.97);
+        transition: all 0.25s cubic-bezier(.4,0,.2,1);
+        z-index: 999;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+    .user-dropdown.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(0) scale(1);
+    }
+    .user-dropdown-header {
+        display: flex; align-items: center; gap: 10px; padding: 6px 4px 10px;
+    }
+    .user-dropdown-avatar {
+        width: 34px; height: 34px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #a855f7, #6366f1);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.82rem; font-weight: 700; color: #fff;
+        flex-shrink: 0;
+    }
+    .user-dropdown-info { flex: 1; min-width: 0; }
+    .user-dropdown-name { font-size: 0.82rem; font-weight: 600; color: var(--text-primary); }
+    .user-dropdown-hint { font-size: 0.68rem; color: var(--text-faint); }
+    .user-dropdown-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 6px 0; }
+    .user-dropdown-item {
+        display: flex; align-items: center; gap: 8px;
+        padding: 8px 10px; border-radius: 8px;
+        font-size: 0.78rem; color: var(--text-secondary);
+        transition: all 0.15s; cursor: pointer; text-decoration: none;
+    }
+    .user-dropdown-item:hover { background: rgba(255,255,255,0.04); color: var(--text-primary); }
+    .user-dropdown-logout { color: #ef4444 !important; }
+    .user-dropdown-logout:hover { background: rgba(239,68,68,0.06) !important; }
+
+    /* ===== 亮色模式覆盖 ===== */
+
+    /* 全局 */
+    [data-theme="light"] body,
+    [data-theme="light"] .creator-layout {
+        background: linear-gradient(180deg, transparent 35%, #F5F8FC 55%), linear-gradient(90deg, #ECF4FF 0%, #EBEBFF 45%, #FFF8FA 80%, #F5F8FC 100%), #F5F8FC !important;
+        color: #1e293b !important;
+    }
+
+    /* 侧边栏 */
+    [data-theme="light"] .icon-sidebar {
+        background: transparent !important;
+        border-right: none !important;
+        backdrop-filter: none !important;
+    }
+    [data-theme="light"] .icon-nav-item { color: #475569 !important; }
+    [data-theme="light"] .icon-nav-item:hover { color: #1e293b !important; background: rgba(0,0,0,0.04) !important; }
+    [data-theme="light"] .icon-nav-item.active { color: #1e293b !important; background: rgba(255,255,255,0.85) !important; border-radius: 14px !important; box-shadow: 0 2px 10px rgba(0,0,0,0.06) !important; }
+    .nav-icon { display: block; }
+    .icon-nav-item .nav-icon--on { display: none; }
+    .icon-nav-item .nav-icon--off { display: block; }
+    .icon-nav-item.active .nav-icon--on { display: block; }
+    .icon-nav-item.active .nav-icon--off { display: none; }
+
+    /* 顶栏 */
+    [data-theme="light"] .topbar { border-color: rgba(0,0,0,0.06) !important; }
+
+    /* 统计卡片 */
+    [data-theme="light"] .api-stat-card {
+        background: rgba(255,255,255,0.75) !important;
+        border-color: rgba(0,0,0,0.07) !important;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04) !important;
+    }
+    [data-theme="light"] .api-stat-card:hover {
+        background: #fff !important;
+        border-color: rgba(0,0,0,0.12) !important;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
+    }
+    [data-theme="light"] .api-stat-value { color: #1e293b !important; }
+
+    /* Key 卡片 */
+    [data-theme="light"] .api-key-card {
+        background: rgba(255,255,255,0.75) !important;
+        border-color: rgba(0,0,0,0.07) !important;
+    }
+    [data-theme="light"] .api-key-card:hover {
+        background: #fff !important;
+        border-color: rgba(0,0,0,0.12) !important;
+    }
+    [data-theme="light"] .api-key-name { color: #1e293b !important; }
+    [data-theme="light"] .api-key-value { color: #64748b !important; }
+    [data-theme="light"] .api-key-action-btn {
+        background: rgba(0,0,0,0.02) !important;
+        border-color: rgba(0,0,0,0.08) !important;
+        color: #64748b !important;
+    }
+    [data-theme="light"] .api-key-action-btn:hover {
+        background: rgba(99,102,241,0.06) !important;
+        border-color: rgba(99,102,241,0.2) !important;
+        color: #1e293b !important;
+    }
+
+    /* 表格 */
+    [data-theme="light"] .api-log-table th {
+        color: #64748b !important;
+        border-color: rgba(0,0,0,0.06) !important;
+        background: #f8f9fc !important;
+    }
+    [data-theme="light"] .api-log-table td {
+        color: #475569 !important;
+        border-color: rgba(0,0,0,0.04) !important;
+    }
+    [data-theme="light"] .api-log-table tbody tr:hover td {
+        background: rgba(99,102,241,0.03) !important;
+    }
+    [data-theme="light"] .api-log-endpoint { color: #1e293b !important; }
+
+    /* 快捷卡片 */
+    [data-theme="light"] .api-quick-card {
+        background: rgba(255,255,255,0.75) !important;
+        border-color: rgba(0,0,0,0.07) !important;
+    }
+    [data-theme="light"] .api-quick-card:hover {
+        background: #fff !important;
+        border-color: rgba(0,0,0,0.12) !important;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
+    }
+    [data-theme="light"] .api-quick-title { color: #1e293b !important; }
+    [data-theme="light"] .api-quick-desc { color: #64748b !important; }
+
+    /* 弹窗 */
+    [data-theme="light"] .api-modal {
+        background: #fff !important;
+        border-color: rgba(0,0,0,0.08) !important;
+        box-shadow: 0 24px 80px rgba(0,0,0,0.12) !important;
+    }
+    [data-theme="light"] .api-modal-title { color: #1e293b !important; }
+    [data-theme="light"] .api-modal-input,
+    [data-theme="light"] .api-modal-select {
+        background: rgba(0,0,0,0.02) !important;
+        border-color: rgba(0,0,0,0.1) !important;
+        color: #1e293b !important;
+    }
+    [data-theme="light"] .api-modal-btn--cancel {
+        background: rgba(0,0,0,0.03) !important;
+        border-color: rgba(0,0,0,0.1) !important;
+        color: #475569 !important;
+    }
+
+    /* 下拉菜单 */
+    [data-theme="light"] .user-dropdown {
+        background: #fff !important;
+        border-color: rgba(0,0,0,0.08) !important;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.1) !important;
+    }
+    [data-theme="light"] .user-dropdown-name { color: #1e293b !important; }
+    [data-theme="light"] .user-dropdown-item { color: #475569 !important; }
+    [data-theme="light"] .user-dropdown-item:hover { background: rgba(0,0,0,0.03) !important; }
+    [data-theme="light"] .user-dropdown-divider { background: rgba(0,0,0,0.06) !important; }
+
+    /* 额度 */
+    [data-theme="light"] .credits-badge {
+        background: rgba(0,0,0,0.04) !important;
+        border-color: rgba(0,0,0,0.08) !important;
+        color: #475569 !important;
+    }
+
+    /* Section 标题 */
+    [data-theme="light"] .api-section-title { color: #1e293b !important; }
+    [data-theme="light"] .api-section-title svg { color: #94a3b8 !important; }
+
+    /* ===== 暗/亮主题切换图标 ===== */
+    .theme-toggle-btn svg.icon-moon { display: none; }
+    .theme-toggle-btn svg.icon-sun { display: none; }
+    [data-theme="light"] .theme-toggle-btn svg.icon-moon { display: block; }
+    html:not([data-theme="light"]) .theme-toggle-btn svg.icon-sun { display: block; }
+    </style>
+</head>
+<body class="creator-layout">
+    <!-- 侧边栏 -->
+    <aside class="icon-sidebar">
+        <a href="create.html" class="icon-sidebar-logo" id="apiLogoLink"><span class="logo-wordmark" id="apiLogoText">本产品</span></a>
+        <nav class="icon-nav">
+            <a href="create.html" class="icon-nav-item"><img class="nav-icon nav-icon--off" src="assets/icons/nav-create.svg" width="22" height="22" alt=""><img class="nav-icon nav-icon--on" src="assets/icons/nav-create-active.svg" width="22" height="22" alt="">生成</a>
+            <a href="media.html" class="icon-nav-item"><img class="nav-icon nav-icon--off" src="assets/icons/nav-media.svg" width="22" height="22" alt=""><img class="nav-icon nav-icon--on" src="assets/icons/nav-media-active.svg" width="22" height="22" alt="">素材</a>
+            <a href="result.html" class="icon-nav-item"><img class="nav-icon nav-icon--off" src="assets/icons/nav-result.svg" width="22" height="22" alt=""><img class="nav-icon nav-icon--on" src="assets/icons/nav-result-active.svg" width="22" height="22" alt="">作品</a>
+        </nav>
+        <div class="icon-nav-bottom">
+            <a href="api.html" class="icon-nav-item active" title="API 管理"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 10V3L4 14H11V21L20 10H13Z" fill="currentColor" opacity="0.15"/><path d="M13 10V3L4 14H11V21L20 10H13Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></a>
+            <a href="#" class="icon-nav-item theme-toggle-btn" id="themeToggleBtn" title="切换明暗模式">
+                <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"></circle><path d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+                <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+            <div class="icon-nav-avatar" id="userAvatar" title="用户"><span id="userAvatarLetter">U</span></div>
+            <div class="user-dropdown" id="userDropdown">
+                <div class="user-dropdown-header">
+                    <div class="user-dropdown-avatar" id="dropdownAvatar">U</div>
+                    <div class="user-dropdown-info">
+                        <div class="user-dropdown-name" id="dropdownName">未登录</div>
+                        <div class="user-dropdown-hint" id="dropdownHint">点击登录</div>
+                    </div>
+                </div>
+                <div class="user-dropdown-divider"></div>
+                <a href="#" class="user-dropdown-item" id="userLoginBtn">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 2H4C2.89543 2 2 2.89543 2 4V12C2 13.1046 2.89543 14 4 14H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 11L14 8L10 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 8H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                    登录
+                </a>
+                <a href="#" class="user-dropdown-item user-dropdown-logout" id="userLogoutBtn" style="display:none;">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 2H4C2.89543 2 2 2.89543 2 4V12C2 13.1046 2.89543 14 4 14H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 11L14 8L10 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 8H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                    退出登录
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <!-- 顶部栏 -->
+        <header class="topbar">
+            <div class="topbar-left"><h1 class="page-title">API 管理</h1></div>
+            <div class="topbar-right">
+                <div class="credits-badge">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5V8L10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    <span>剩余 47 次</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 统计卡片 -->
+        <div class="api-stats-row">
+            <div class="api-stat-card">
+                <div class="api-stat-top">
+                    <div class="api-stat-icon api-stat-icon--purple">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2V18M6 6L10 2L14 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 10H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </div>
+                    <span class="api-stat-trend api-stat-trend--up">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 7L5 3L8 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        +24%
+                    </span>
+                </div>
+                <div class="api-stat-value">12,847</div>
+                <div class="api-stat-label">本月调用次数</div>
+            </div>
+            <div class="api-stat-card">
+                <div class="api-stat-top">
+                    <div class="api-stat-icon api-stat-icon--green">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                </div>
+                <div class="api-stat-value">99.2%</div>
+                <div class="api-stat-label">请求成功率</div>
+            </div>
+            <div class="api-stat-card">
+                <div class="api-stat-top">
+                    <div class="api-stat-icon api-stat-icon--blue">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M10 6V10L13 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </div>
+                </div>
+                <div class="api-stat-value">238ms</div>
+                <div class="api-stat-label">平均响应时间</div>
+            </div>
+            <div class="api-stat-card">
+                <div class="api-stat-top">
+                    <div class="api-stat-icon api-stat-icon--amber">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="8" width="3" height="9" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="8.5" y="5" width="3" height="12" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="14" y="3" width="3" height="14" rx="1" stroke="currentColor" stroke-width="1.3"/></svg>
+                    </div>
+                    <span class="api-stat-trend api-stat-trend--down">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3L5 7L8 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        -3%
+                    </span>
+                </div>
+                <div class="api-stat-value">¥186</div>
+                <div class="api-stat-label">本月消费</div>
+            </div>
+        </div>
+
+        <!-- API 密钥管理 -->
+        <div class="api-section-header">
+            <div class="api-section-title">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10.5 2.5C11.6046 2.5 12.5 3.39543 12.5 4.5C12.5 5.60457 11.6046 6.5 10.5 6.5C9.39543 6.5 8.5 5.60457 8.5 4.5C8.5 3.39543 9.39543 2.5 10.5 2.5Z" stroke="currentColor" stroke-width="1.3"/><path d="M8.5 4.5H2V7H4.5V4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                API 密钥
+                <span class="api-section-badge">3 个活跃</span>
+            </div>
+            <button class="api-create-btn" id="createKeyBtn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2V12M2 7H12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                创建密钥
+            </button>
+        </div>
+
+        <div class="api-keys-list" id="apiKeysList">
+            <!-- Key 1 -->
+            <div class="api-key-card">
+                <div class="api-key-icon">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M12 6.5C12 4.567 10.433 3 8.5 3C6.567 3 5 4.567 5 6.5C5 8.433 6.567 10 8.5 10" stroke="currentColor" stroke-width="1.3"/><path d="M8.5 10H14.5V12.5H12.5V10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="api-key-info">
+                    <div class="api-key-name">
+                        生产环境主密钥
+                        <span class="key-status key-status--active">活跃</span>
+                    </div>
+                    <div class="api-key-value">sk-api-prod-****-****-****-a3f7b2c1</div>
+                </div>
+                <div class="api-key-meta">
+                    <div class="api-key-meta-item">
+                        <div class="api-key-meta-value">8,432</div>
+                        <div class="api-key-meta-label">本月调用</div>
+                    </div>
+                    <div class="api-key-meta-item">
+                        <div class="api-key-meta-value">03-20</div>
+                        <div class="api-key-meta-label">创建日期</div>
+                    </div>
+                </div>
+                <div class="api-key-actions">
+                    <button class="api-key-action-btn" title="复制密钥" data-copy="sk-api-prod-8f4a-29c1-b7e3-a3f7b2c1">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="5" y="5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M9 5V3.5C9 2.67157 8.32843 2 7.5 2H3.5C2.67157 2 2 2.67157 2 3.5V7.5C2 8.32843 2.67157 9 3.5 9H5" stroke="currentColor" stroke-width="1.2"/></svg>
+                    </button>
+                    <button class="api-key-action-btn api-key-action-btn--danger" title="删除">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 4.5H11M5.5 4.5V3C5.5 2.44772 5.94772 2 6.5 2H7.5C8.05228 2 8.5 2.44772 8.5 3V4.5M4 4.5L4.5 11.5C4.5 12.0523 4.94772 12.5 5.5 12.5H8.5C9.05228 12.5 9.5 12.0523 9.5 11.5L10 4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Key 2 -->
+            <div class="api-key-card">
+                <div class="api-key-icon">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M12 6.5C12 4.567 10.433 3 8.5 3C6.567 3 5 4.567 5 6.5C5 8.433 6.567 10 8.5 10" stroke="currentColor" stroke-width="1.3"/><path d="M8.5 10H14.5V12.5H12.5V10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="api-key-info">
+                    <div class="api-key-name">
+                        开发测试密钥
+                        <span class="key-status key-status--active">活跃</span>
+                    </div>
+                    <div class="api-key-value">sk-api-dev-****-****-****-e9d1f8a4</div>
+                </div>
+                <div class="api-key-meta">
+                    <div class="api-key-meta-item">
+                        <div class="api-key-meta-value">3,215</div>
+                        <div class="api-key-meta-label">本月调用</div>
+                    </div>
+                    <div class="api-key-meta-item">
+                        <div class="api-key-meta-value">03-15</div>
+                        <div class="api-key-meta-label">创建日期</div>
+                    </div>
+                </div>
+                <div class="api-key-actions">
+                    <button class="api-key-action-btn" title="复制密钥" data-copy="sk-api-dev-2c7b-8e5a-f193-e9d1f8a4">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="5" y="5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M9 5V3.5C9 2.67157 8.32843 2 7.5 2H3.5C2.67157 2 2 2.67157 2 3.5V7.5C2 8.32843 2.67157 9 3.5 9H5" stroke="currentColor" stroke-width="1.2"/></svg>
+                    </button>
+                    <button class="api-key-action-btn api-key-action-btn--danger" title="删除">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 4.5H11M5.5 4.5V3C5.5 2.44772 5.94772 2 6.5 2H7.5C8.05228 2 8.5 2.44772 8.5 3V4.5M4 4.5L4.5 11.5C4.5 12.0523 4.94772 12.5 5.5 12.5H8.5C9.05228 12.5 9.5 12.0523 9.5 11.5L10 4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Key 3 -->
+            <div class="api-key-card">
+                <div class="api-key-icon" style="background:rgba(239,68,68,0.08);color:#f87171;">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M12 6.5C12 4.567 10.433 3 8.5 3C6.567 3 5 4.567 5 6.5C5 8.433 6.567 10 8.5 10" stroke="currentColor" stroke-width="1.3"/><path d="M8.5 10H14.5V12.5H12.5V10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="api-key-info">
+                    <div class="api-key-name">
+                        旧版兼容密钥
+                        <span class="key-status key-status--expired">已过期</span>
+                    </div>
+                    <div class="api-key-value">sk-api-legacy-****-****-****-7b2e4f09</div>
+                </div>
+                <div class="api-key-meta">
+                    <div class="api-key-meta-item">
+                        <div class="api-key-meta-value">1,200</div>
+                        <div class="api-key-meta-label">累计调用</div>
+                    </div>
+                    <div class="api-key-meta-item">
+                        <div class="api-key-meta-value">02-28</div>
+                        <div class="api-key-meta-label">过期日期</div>
+                    </div>
+                </div>
+                <div class="api-key-actions">
+                    <button class="api-key-action-btn" title="复制密钥" data-copy="sk-api-legacy-9a3c-1d7e-f582-7b2e4f09">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="5" y="5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M9 5V3.5C9 2.67157 8.32843 2 7.5 2H3.5C2.67157 2 2 2.67157 2 3.5V7.5C2 8.32843 2.67157 9 3.5 9H5" stroke="currentColor" stroke-width="1.2"/></svg>
+                    </button>
+                    <button class="api-key-action-btn api-key-action-btn--danger" title="删除">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 4.5H11M5.5 4.5V3C5.5 2.44772 5.94772 2 6.5 2H7.5C8.05228 2 8.5 2.44772 8.5 3V4.5M4 4.5L4.5 11.5C4.5 12.0523 4.94772 12.5 5.5 12.5H8.5C9.05228 12.5 9.5 12.0523 9.5 11.5L10 4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 最近调用日志 -->
+        <div class="api-section-header">
+            <div class="api-section-title">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 3H14M2 6.5H14M2 10H10M2 13.5H8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                最近调用
+            </div>
+        </div>
+
+        <table class="api-log-table">
+            <thead>
+                <tr>
+                    <th>方法</th>
+                    <th>接口</th>
+                    <th>状态</th>
+                    <th>延迟</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="api-log-method method--post">POST</span></td>
+                    <td class="api-log-endpoint">/v1/video/translate</td>
+                    <td><span class="api-log-status status--200">200</span></td>
+                    <td class="api-log-latency">342ms</td>
+                    <td class="api-log-time">2 分钟前</td>
+                </tr>
+                <tr>
+                    <td><span class="api-log-method method--post">POST</span></td>
+                    <td class="api-log-endpoint">/v1/subtitle/erase</td>
+                    <td><span class="api-log-status status--200">200</span></td>
+                    <td class="api-log-latency">189ms</td>
+                    <td class="api-log-time">8 分钟前</td>
+                </tr>
+                <tr>
+                    <td><span class="api-log-method method--get">GET</span></td>
+                    <td class="api-log-endpoint">/v1/task/status/t-7b2e4f09</td>
+                    <td><span class="api-log-status status--200">200</span></td>
+                    <td class="api-log-latency">45ms</td>
+                    <td class="api-log-time">12 分钟前</td>
+                </tr>
+                <tr>
+                    <td><span class="api-log-method method--post">POST</span></td>
+                    <td class="api-log-endpoint">/v1/voice/synthesize</td>
+                    <td><span class="api-log-status status--201">201</span></td>
+                    <td class="api-log-latency">1,247ms</td>
+                    <td class="api-log-time">25 分钟前</td>
+                </tr>
+                <tr>
+                    <td><span class="api-log-method method--post">POST</span></td>
+                    <td class="api-log-endpoint">/v1/video/translate</td>
+                    <td><span class="api-log-status status--400">400</span></td>
+                    <td class="api-log-latency">28ms</td>
+                    <td class="api-log-time">1 小时前</td>
+                </tr>
+                <tr>
+                    <td><span class="api-log-method method--get">GET</span></td>
+                    <td class="api-log-endpoint">/v1/media/list</td>
+                    <td><span class="api-log-status status--200">200</span></td>
+                    <td class="api-log-latency">112ms</td>
+                    <td class="api-log-time">1 小时前</td>
+                </tr>
+                <tr>
+                    <td><span class="api-log-method method--delete">DELETE</span></td>
+                    <td class="api-log-endpoint">/v1/task/t-9a3c1d7e</td>
+                    <td><span class="api-log-status status--200">200</span></td>
+                    <td class="api-log-latency">67ms</td>
+                    <td class="api-log-time">2 小时前</td>
+                </tr>
+                <tr>
+                    <td><span class="api-log-method method--post">POST</span></td>
+                    <td class="api-log-endpoint">/v1/subtitle/translate</td>
+                    <td><span class="api-log-status status--500">500</span></td>
+                    <td class="api-log-latency">5,012ms</td>
+                    <td class="api-log-time">3 小时前</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 快捷入口 -->
+        <div class="api-section-header">
+            <div class="api-section-title">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2H7V7H2V2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M9 2H14V7H9V2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M2 9H7V14H2V9Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="11.5" cy="11.5" r="2.5" stroke="currentColor" stroke-width="1.3"/></svg>
+                开发者资源
+            </div>
+        </div>
+
+        <div class="api-quick-grid">
+            <div class="api-quick-card" onclick="window.open('#docs','_blank')">
+                <div class="api-quick-icon api-quick-icon--purple">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 3H14L18 7V19H4V3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M14 3V7H18" stroke="currentColor" stroke-width="1.5"/><path d="M7 11H15M7 14H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div class="api-quick-title">API 文档</div>
+                <div class="api-quick-desc">完整的 RESTful API 参考文档，包含请求示例和响应格式</div>
+                <svg class="api-quick-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="api-quick-card" onclick="window.open('#sdk','_blank')">
+                <div class="api-quick-icon api-quick-icon--blue">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M7 7L3 11L7 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7L19 11L15 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 4L9 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div class="api-quick-title">SDK & 代码示例</div>
+                <div class="api-quick-desc">Python / Node.js / Java SDK，快速集成 API 能力到你的应用到你的应用</div>
+                <svg class="api-quick-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="api-quick-card" onclick="window.open('#webhook','_blank')">
+                <div class="api-quick-icon api-quick-icon--cyan">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="16" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="16" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M11 8V11L5 16M11 11L17 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div class="api-quick-title">Webhook 配置</div>
+                <div class="api-quick-desc">任务完成回调通知，实时获取译制/擦除/配音处理结果</div>
+                <svg class="api-quick-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+        </div>
+    </main>
+
+    <!-- 创建密钥弹窗 -->
+    <div class="api-modal-overlay" id="createKeyModal">
+        <div class="api-modal">
+            <div class="api-modal-title">创建 API 密钥</div>
+            <div class="api-modal-desc">为你的应用或服务创建一个新的 API 访问密钥</div>
+            <div class="api-modal-field">
+                <label class="api-modal-label">密钥名称</label>
+                <input class="api-modal-input" id="keyNameInput" type="text" placeholder="例如：生产环境主密钥">
+            </div>
+            <div class="api-modal-field">
+                <label class="api-modal-label">有效期</label>
+                <select class="api-modal-select" id="keyExpiry">
+                    <option value="30">30 天</option>
+                    <option value="90" selected>90 天</option>
+                    <option value="180">180 天</option>
+                    <option value="365">1 年</option>
+                    <option value="0">永不过期</option>
+                </select>
+            </div>
+            <div class="api-modal-field">
+                <label class="api-modal-label">权限范围</label>
+                <select class="api-modal-select" id="keyScope">
+                    <option value="full" selected>完整权限（读写）</option>
+                    <option value="read">只读权限</option>
+                    <option value="translate">仅译制 API</option>
+                    <option value="media">仅媒体管理 API</option>
+                </select>
+            </div>
+            <div class="api-modal-actions">
+                <button class="api-modal-btn api-modal-btn--cancel" id="cancelCreateKey">取消</button>
+                <button class="api-modal-btn api-modal-btn--primary" id="confirmCreateKey">创建</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 复制 Toast -->
+    <div class="api-toast" id="apiToast">✓ 已复制到剪贴板</div>
+
+    <script src="app.js"></script>
+
+    <!-- 主题切换逻辑 -->
+    <script>
+    (function() {
+        var STORAGE_KEY = 'ptheme';
+        var html = document.documentElement;
+
+        var saved = localStorage.getItem(STORAGE_KEY);
+        if (saved === 'dark') {
+            html.removeAttribute('data-theme');
+        } else if (saved === 'light') {
+            html.setAttribute('data-theme', 'light');
+        }
+        if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            html.setAttribute('data-theme', 'light');
+        }
+
+        var btn = document.getElementById('themeToggleBtn');
+        if (btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var current = html.getAttribute('data-theme');
+                if (current === 'light') {
+                    html.removeAttribute('data-theme');
+                    localStorage.setItem(STORAGE_KEY, 'dark');
+                } else {
+                    html.setAttribute('data-theme', 'light');
+                    localStorage.setItem(STORAGE_KEY, 'light');
+                }
+            });
+        }
+    })();
+    </script>
+
+    <!-- 用户菜单逻辑 -->
+    <script>
+    (function() {
+        var avatar = document.getElementById('userAvatar');
+        var avatarLetter = document.getElementById('userAvatarLetter');
+        var dropdown = document.getElementById('userDropdown');
+        var dropdownAvatar = document.getElementById('dropdownAvatar');
+        var dropdownName = document.getElementById('dropdownName');
+        var dropdownHint = document.getElementById('dropdownHint');
+        var loginBtn = document.getElementById('userLoginBtn');
+        var logoutBtn = document.getElementById('userLogoutBtn');
+
+        function updateUserUI() {
+            var raw = localStorage.getItem('puser');
+            if (raw) {
+                try {
+                    var user = JSON.parse(raw);
+                    var initial = user.avatar || user.name.charAt(0).toUpperCase();
+                    avatarLetter.textContent = initial;
+                    dropdownAvatar.textContent = initial;
+                    dropdownName.textContent = user.name;
+                    dropdownHint.textContent = '已登录';
+                    loginBtn.style.display = 'none';
+                    logoutBtn.style.display = 'flex';
+                    avatar.title = user.name;
+                } catch(e) {}
+            } else {
+                avatarLetter.textContent = 'U';
+                dropdownAvatar.textContent = 'U';
+                dropdownName.textContent = '未登录';
+                dropdownHint.textContent = '点击登录';
+                loginBtn.style.display = 'flex';
+                logoutBtn.style.display = 'none';
+                avatar.title = '用户';
+            }
+        }
+
+        avatar.addEventListener('click', function(e) {
+            e.stopPropagation();
+            dropdown.classList.toggle('show');
+        });
+        document.addEventListener('click', function(e) {
+            if (!dropdown.contains(e.target) && e.target !== avatar) {
+                dropdown.classList.remove('show');
+            }
+        });
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'login.html';
+        });
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('puser');
+            updateUserUI();
+            dropdown.classList.remove('show');
+        });
+        updateUserUI();
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'puser') updateUserUI();
+        });
+    })();
+    </script>
+
+    <!-- API 页面交互逻辑 -->
+    <script>
+    (function() {
+        // 复制密钥
+        document.querySelectorAll('.api-key-action-btn[data-copy]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var text = btn.getAttribute('data-copy');
+                navigator.clipboard.writeText(text).then(function() {
+                    showToast('✓ 已复制到剪贴板');
+                }).catch(function() {
+                    // 降级方案
+                    var ta = document.createElement('textarea');
+                    ta.value = text;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    showToast('✓ 已复制到剪贴板');
+                });
+            });
+        });
+
+        // Toast
+        var toastTimer = null;
+        function showToast(msg) {
+            var toast = document.getElementById('apiToast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(function() {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // 删除密钥
+        document.querySelectorAll('.api-key-action-btn--danger').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var card = btn.closest('.api-key-card');
+                var name = card.querySelector('.api-key-name').textContent.trim().split('\n')[0].trim();
+                if (confirm('确定要删除密钥「' + name + '」吗？此操作不可撤销。')) {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateX(-20px)';
+                    card.style.transition = 'all 0.3s';
+                    setTimeout(function() { card.remove(); }, 300);
+                    showToast('🗑️ 密钥已删除');
+                }
+            });
+        });
+
+        // 创建密钥弹窗
+        var modal = document.getElementById('createKeyModal');
+        document.getElementById('createKeyBtn').addEventListener('click', function() {
+            modal.classList.add('show');
+            setTimeout(function() {
+                document.getElementById('keyNameInput').focus();
+            }, 100);
+        });
+        document.getElementById('cancelCreateKey').addEventListener('click', function() {
+            modal.classList.remove('show');
+        });
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) modal.classList.remove('show');
+        });
+        document.getElementById('confirmCreateKey').addEventListener('click', function() {
+            var name = document.getElementById('keyNameInput').value.trim();
+            if (!name) {
+                document.getElementById('keyNameInput').style.borderColor = 'rgba(239,68,68,0.5)';
+                document.getElementById('keyNameInput').focus();
+                return;
+            }
+            // 模拟创建
+            var newKey = 'sk-api-' + Math.random().toString(36).substr(2, 8);
+            var list = document.getElementById('apiKeysList');
+            var card = document.createElement('div');
+            card.className = 'api-key-card';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(-10px)';
+            card.innerHTML =
+                '<div class="api-key-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M12 6.5C12 4.567 10.433 3 8.5 3C6.567 3 5 4.567 5 6.5C5 8.433 6.567 10 8.5 10" stroke="currentColor" stroke-width="1.3"/><path d="M8.5 10H14.5V12.5H12.5V10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
+                '<div class="api-key-info"><div class="api-key-name">' + name + ' <span class="key-status key-status--active">活跃</span></div><div class="api-key-value">' + newKey + '</div></div>' +
+                '<div class="api-key-meta"><div class="api-key-meta-item"><div class="api-key-meta-value">0</div><div class="api-key-meta-label">本月调用</div></div><div class="api-key-meta-item"><div class="api-key-meta-value">今天</div><div class="api-key-meta-label">创建日期</div></div></div>' +
+                '<div class="api-key-actions"><button class="api-key-action-btn" title="复制密钥" data-copy="' + newKey + '"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="5" y="5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M9 5V3.5C9 2.67157 8.32843 2 7.5 2H3.5C2.67157 2 2 2.67157 2 3.5V7.5C2 8.32843 2.67157 9 3.5 9H5" stroke="currentColor" stroke-width="1.2"/></svg></button><button class="api-key-action-btn api-key-action-btn--danger" title="删除"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 4.5H11M5.5 4.5V3C5.5 2.44772 5.94772 2 6.5 2H7.5C8.05228 2 8.5 2.44772 8.5 3V4.5M4 4.5L4.5 11.5C4.5 12.0523 4.94772 12.5 5.5 12.5H8.5C9.05228 12.5 9.5 12.0523 9.5 11.5L10 4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></button></div>';
+            list.insertBefore(card, list.firstChild);
+            requestAnimationFrame(function() {
+                card.style.transition = 'all 0.4s cubic-bezier(.4,0,.2,1)';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            });
+
+            // 绑定新卡片的复制和删除
+            card.querySelector('[data-copy]').addEventListener('click', function() {
+                navigator.clipboard.writeText(newKey).then(function() { showToast('✓ 已复制到剪贴板'); });
+            });
+            card.querySelector('.api-key-action-btn--danger').addEventListener('click', function() {
+                if (confirm('确定要删除密钥「' + name + '」吗？')) {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateX(-20px)';
+                    setTimeout(function() { card.remove(); }, 300);
+                    showToast('🗑️ 密钥已删除');
+                }
+            });
+
+            modal.classList.remove('show');
+            document.getElementById('keyNameInput').value = '';
+            showToast('🔑 新密钥已创建');
+        });
+    })();
+    </script>
+</body>
+</html>

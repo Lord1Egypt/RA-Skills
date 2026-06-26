@@ -1,0 +1,5 @@
+{
+  "name": "proxy-cn",
+  "version": "1.1.0",
+  "description": "外网智能代理：按需注入 http_proxy/ALL_PROXY；含 Bash（proxy.sh、proxy-env.sh）与 Windows PowerShell（proxy.ps1、proxy-env.ps1），支持 macOS/Linux/WSL/Git Bash/PowerShell"
+}

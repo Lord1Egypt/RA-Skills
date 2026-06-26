@@ -1,35 +1,27 @@
 ---
-name: "Recipe Copy Sheet For New Month"
+name: recipe-copy-sheet-for-new-month
 description: "Duplicate a Google Sheets template tab for a new month of tracking."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-copy-sheet-for-new-month"
-sourceUrl: "https://clawhub.ai/skills/recipe-copy-sheet-for-new-month"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "productivity"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-sheets
 ---
 
-# Recipe Copy Sheet For New Month
+# Copy a Google Sheet for a New Month
 
-> Duplicate a Google Sheets template tab for a new month of tracking.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-sheets`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-copy-sheet-for-new-month`
-- **Source URL:** [https://clawhub.ai/skills/recipe-copy-sheet-for-new-month](https://clawhub.ai/skills/recipe-copy-sheet-for-new-month)
+Duplicate a Google Sheets template tab for a new month of tracking.
 
-## Overview
+## Steps
 
+1. Get spreadsheet details: `gws sheets spreadsheets get --params '{"spreadsheetId": "SHEET_ID"}'`
+2. Copy the template sheet: `gws sheets spreadsheets sheets copyTo --params '{"spreadsheetId": "SHEET_ID", "sheetId": 0}' --json '{"destinationSpreadsheetId": "SHEET_ID"}'`
+3. Rename the new tab: `gws sheets spreadsheets batchUpdate --params '{"spreadsheetId": "SHEET_ID"}' --json '{"requests": [{"updateSheetProperties": {"properties": {"sheetId": 123, "title": "February 2025"}, "fields": "title"}}]}'`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-copy-sheet-for-new-month
-```

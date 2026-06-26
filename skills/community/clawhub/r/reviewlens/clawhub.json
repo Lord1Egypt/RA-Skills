@@ -1,0 +1,23 @@
+{
+  "name": "reviewlens",
+  "version": "1.0.0",
+  "description": "评论透镜 - 把海量商品评论压成结论卡，告诉你真实买家反复在夸什么、骂什么，谁适合买，谁容易踩坑",
+  "keywords": [
+    "reviewlens",
+    "review-intelligence",
+    "shopping-reviews",
+    "review-analysis",
+    "review-summary",
+    "user-fit",
+    "buyer-regret",
+    "comment-clustering",
+    "shopping-decision",
+    "taobao",
+    "tmall",
+    "jd",
+    "pdd",
+    "ecommerce"
+  ],
+  "author": "openclaw",
+  "license": "MIT"
+}

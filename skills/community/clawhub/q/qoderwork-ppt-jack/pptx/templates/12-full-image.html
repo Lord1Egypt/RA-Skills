@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <title>Full-Image</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      background-color: #000000;
+      font-family: 'PingFang SC', 'Microsoft YaHei', 'PingFang TC', 'Hiragino Sans GB', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .bg-image {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+    }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.5) 40%,
+        rgba(0, 0, 0, 0.15) 100%
+      );
+      z-index: 1;
+    }
+    .text-block {
+      position: absolute;
+      left: 80px;
+      bottom: 80px;
+      width: 1400px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .text-block [data-slot="statement"] {
+      font-weight: 700;
+      font-size: 72px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+    }
+    .text-block [data-slot="subtitle"] {
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 1.4;
+      color: #B3B3B3;
+      max-width: 1000px;
+    }
+    .accent-tag {
+      position: absolute;
+      right: 80px;
+      bottom: 80px;
+      z-index: 2;
+      background-color: #73CD94;
+      border-radius: 8px;
+      padding: 12px 28px;
+    }
+    .accent-tag [data-slot="tag"] {
+      font-weight: 600;
+      font-size: 28px;
+      line-height: 1.2;
+      color: #000000;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide" data-template="full-image">
+    <img class="bg-image" data-slot="image" src="https://placehold.co/1920x1080/333333/666666?text=Full+Image" alt="">
+    <div class="overlay"></div>
+    <div class="text-block">
+      <h1 data-slot="statement">A bold statement that captures attention and sets the tone</h1>
+      <p data-slot="subtitle">Supporting context or description that adds detail to the statement above</p>
+    </div>
+    <div class="accent-tag">
+      <span data-slot="tag">Key Insight</span>
+    </div>
+  </div>
+</body>
+</html>

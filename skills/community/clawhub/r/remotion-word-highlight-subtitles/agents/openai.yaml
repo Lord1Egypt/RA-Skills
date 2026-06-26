@@ -1,0 +1,4 @@
+interface:
+  display_name: "Remotion 逐词高亮字幕"
+  short_description: "用 Whisper 逐词时间戳和 Remotion 给视频加当前词高亮字幕。"
+  default_prompt: "给这个视频添加逐词高亮字幕："

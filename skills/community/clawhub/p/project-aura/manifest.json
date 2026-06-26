@@ -1,0 +1,10 @@
+{
+  "name": "Project-Aura",
+  "version": "1.7.0",
+  "description": "An emotional behavior wrapper providing 7 distinct personality modules for AI Agents.",
+  "author": "Bryan Chen & Yua",
+  "entry_point": "scripts/green_tea_skill/selector.py",
+  "dependencies": [],
+  "category": "Emotional Intelligence / Personality",
+  "tags": ["emotional-support", "green-tea", "personality-plugin", "rlhf", "ai-companion", "openclaw"]
+}

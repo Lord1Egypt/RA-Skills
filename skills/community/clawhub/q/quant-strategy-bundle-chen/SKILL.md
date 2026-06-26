@@ -1,35 +1,66 @@
 ---
-name: "Quant Strategy Bundle"
-description: "Quantitative trading strategy bundle - Contains multiple verified A-stock quantitative trading strategy frameworks. Includes momentum strategies, reversal st..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/quant-strategy-bundle-chen"
-sourceUrl: "https://clawhub.ai/skills/quant-strategy-bundle-chen"
+name: quant-strategy-bundle
+description: Quantitative trading strategy bundle - Contains multiple verified A-stock quantitative trading strategy frameworks. Includes momentum strategies, reversal strategies, and trend strategies, with backtesting and signal generation support. Ideal for quantitative trading beginners and strategy development reference.
+tags:
+  - quant
+  - trading
+  - stock
+  - strategy
+  - backtest
+version: 1.0.0
+author: chenq
 ---
 
-# Quant Strategy Bundle
+# quant-strategy-bundle
 
-> Quantitative trading strategy bundle - Contains multiple verified A-stock quantitative trading strategy frameworks. Includes momentum strategies, reversal st...
+Quantitative trading strategy bundle with multiple verified strategy frameworks.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/quant-strategy-bundle-chen`
-- **Source URL:** [https://clawhub.ai/skills/quant-strategy-bundle-chen](https://clawhub.ai/skills/quant-strategy-bundle-chen)
+## Included Strategies
 
-## Overview
+### 1. Momentum Strategy
+- Principle: Buy stocks that have risen in the past
+- Holding period: 5-20 days
+- Best for: Bull markets
 
+### 2. Reversal Strategy
+- Principle: Buy stocks that have fallen in the past
+- Holding period: 3-10 days
+- Best for: Range-bound markets
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 3. Trend Strategy
+- Principle: Follow the trend, buy high sell higher
+- Holding period: 10-30 days
+- Best for: Strong trending markets
+
+## Usage
+
+### Install Dependencies
 ```bash
-hermes skills install clawhub/quant-strategy-bundle-chen
+pip install pandas numpy xgboost tushare
 ```
+
+### Basic Usage
+```python
+from strategy import MomentumStrategy, ReversalStrategy, TrendStrategy
+
+# Initialize strategy
+strategy = MomentumStrategy()
+
+# Generate signals
+signals = strategy.generate_signals(stock_pool, factors)
+
+# Backtest
+result = strategy.backtest(signals, prices)
+```
+
+## Configuration
+
+Configure in `config.json`:
+- Tushare token
+- Stock pool
+- Factor parameters
+- Trading parameters
+
+## Changelog
+
+v1.0.0 - Initial release

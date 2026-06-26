@@ -1,35 +1,27 @@
 ---
-name: "Recipe Create Classroom Course"
+name: recipe-create-classroom-course
 description: "Create a Google Classroom course and invite students."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/recipe-create-classroom-course"
-sourceUrl: "https://clawhub.ai/skills/recipe-create-classroom-course"
+metadata:
+  version: 0.22.5
+  openclaw:
+    category: "recipe"
+    domain: "education"
+    requires:
+      bins:
+        - gws
+      skills:
+        - gws-classroom
 ---
 
-# Recipe Create Classroom Course
+# Create a Google Classroom Course
 
-> Create a Google Classroom course and invite students.
+> **PREREQUISITE:** Load the following skills to execute this recipe: `gws-classroom`
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/recipe-create-classroom-course`
-- **Source URL:** [https://clawhub.ai/skills/recipe-create-classroom-course](https://clawhub.ai/skills/recipe-create-classroom-course)
+Create a Google Classroom course and invite students.
 
-## Overview
+## Steps
 
+1. Create the course: `gws classroom courses create --json '{"name": "Introduction to CS", "section": "Period 1", "room": "Room 101", "ownerId": "me"}'`
+2. Invite a student: `gws classroom invitations create --json '{"courseId": "COURSE_ID", "userId": "student@school.edu", "role": "STUDENT"}'`
+3. List enrolled students: `gws classroom courses students list --params '{"courseId": "COURSE_ID"}' --format table`
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/recipe-create-classroom-course
-```

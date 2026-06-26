@@ -1,35 +1,125 @@
 ---
-name: "Quant Stock"
-description: "AI量化选股系统 - 基于多维度评分模型的A股选股分析工具。扫描新能源、电力、半导体、医药、AI、机器人、军工、贵金属等行业，输出每日量化选股报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/quant-stock"
-sourceUrl: "https://clawhub.ai/skills/quant-stock"
+name: quant-stock-picker
+description: AI量化选股系统 - 基于多维度评分模型的A股选股分析工具。扫描新能源、电力、半导体、医药、AI、机器人、军工、贵金属等行业，输出每日量化选股报告。
 ---
 
-# Quant Stock
+# 量化选股系统 (Quant Stock Picker)
 
-> AI量化选股系统 - 基于多维度评分模型的A股选股分析工具。扫描新能源、电力、半导体、医药、AI、机器人、军工、贵金属等行业，输出每日量化选股报告。
+基于6大模块评分系统的A股量化选股工具，自动分析股票池并生成投资建议。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/quant-stock`
-- **Source URL:** [https://clawhub.ai/skills/quant-stock](https://clawhub.ai/skills/quant-stock)
+## 使用场景
 
-## Overview
+- 每日盘后自动选股分析
+- 多行业股票池扫描（新能源、电力、半导体、医药、AI、机器人、军工、贵金属）
+- 生成飞书/文本格式的投资报告
 
+## 核心功能
 
-## Installation
-To install this skill, run the following command in your terminal:
+### 6大评分模块
+
+| 模块 | 说明 | 关键指标 |
+|------|------|----------|
+| 技术指标 | 动量分析 | MACD金叉、神奇九转、均值回归 |
+| 市场情绪 | 资金流向 | 激进买入、长期观察、高位震荡 |
+| 大盘趋势 | 环境判断 | 逆势超跌、顺势过热 |
+| 行业主题 | 潜力评估 | 景气向上/向下 |
+| 新闻舆情 | 信息增益 | 重大利好/利空、突发利好/利空 |
+| 行业优选 | 后分析 | 高频行业加分 |
+
+### 输出格式
+
+- TOP3 精选股票
+- 4-10名候选股票
+- 今日最有潜力行业板块
+- 命中标签（仅显示加分项）
+
+## 使用方法
+
+### 1. 初始化股票池
+
 ```bash
-hermes skills install clawhub/quant-stock
+python scripts/init_pool.py
+```
+
+### 2. 运行每日分析
+
+```bash
+python scripts/main.py
+```
+
+### 3. 查看报告
+
+- 文本报告：`daily_report.txt`
+- 飞书推送：自动发送至配置群聊
+
+## 配置文件
+
+### 飞书配置
+
+创建 `feishu_config.json`：
+```json
+{
+  "app_id": "your_app_id",
+  "app_secret": "your_app_secret"
+}
+```
+
+### 股票池
+
+`stock_pool.csv` - 包含股票代码、名称、行业分类
+
+## 评分规则详解
+
+### 加分项 (+)
+
+- MACD金叉: +3
+- 神奇九转: +5
+- 均值回归: +5
+- 激进买入: +3
+- 逆势超跌: +3
+- 景气向上: +3
+- 重大利好: +5
+- 突发利好: +6
+- 行业优选: +6
+
+### 扣分项 (-)
+
+- 长期观察: -5
+- 高位震荡: -5
+- 顺势过热: -3
+- 景气向下: -3
+- 重大利空: -10
+- 突发利空: -6
+
+**注意**: 输出报告中仅显示加分项标签
+
+## 依赖安装
+
+```bash
+pip install pandas requests
+```
+
+## 定时任务
+
+```bash
+# 安装每日定时任务（每日15:30运行）
+bash scripts/install_cron.sh
+```
+
+## 文件结构
+
+```
+quant-stock-skill/
+├── SKILL.md              # 本文件
+├── scripts/
+│   ├── main.py          # 主分析程序
+│   ├── init_pool.py     # 股票池初始化
+│   ├── news_module.py   # 新闻舆情模块
+│   ├── update_pool_hot.py # 热度更新
+│   ├── update_sectors.py  # 行业更新
+│   ├── run_task.sh      # 运行脚本
+│   └── install_cron.sh  # 定时任务安装
+├── references/
+│   └── RULES.md         # 详细评分规则
+└── stock_pool.csv       # 股票池数据
 ```

@@ -1,0 +1,97 @@
+{
+  "_comment": "Auto Publisher Configuration - Copy this to config.json and customize",
+
+  "platform": {
+    "type": "wordpress",
+    "url": "https://your-site.com",
+    "username": "your-username",
+    "auth_method": "application_password",
+    "app_password_env": "WP_APP_PASSWORD",
+    "_note": "Generate Application Password in WordPress: Users > Your Profile > Application Passwords"
+  },
+
+  "news_sources": [
+    {
+      "type": "rss",
+      "url": "https://feeds.bbci.co.uk/news/world/rss.xml",
+      "name": "BBC World News",
+      "max_items": 5
+    },
+    {
+      "type": "rss",
+      "url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+      "name": "NYT World",
+      "max_items": 5
+    },
+    {
+      "type": "rss",
+      "url": "https://www.aljazeera.com/xml/rss/all.xml",
+      "name": "Al Jazeera",
+      "max_items": 3
+    },
+    {
+      "_comment": "Uncomment and configure to use NewsAPI",
+      "type": "newsapi",
+      "name": "NewsAPI Headlines",
+      "category": "general",
+      "country": "us",
+      "api_key_env": "NEWS_API_KEY",
+      "max_items": 5,
+      "_disabled": true
+    },
+    {
+      "_comment": "Uncomment and configure for custom API",
+      "type": "custom",
+      "name": "My Custom Source",
+      "url": "https://api.example.com/news",
+      "headers": {
+        "Authorization": "$MY_API_TOKEN"
+      },
+      "response_path": "data.articles",
+      "field_mapping": {
+        "title": "headline",
+        "summary": "description",
+        "content": "body",
+        "source_url": "link",
+        "published_date": "created_at",
+        "image_url": "thumbnail",
+        "tags": "keywords"
+      },
+      "max_items": 5,
+      "_disabled": true
+    }
+  ],
+
+  "publishing": {
+    "posts_per_day": 5,
+    "categories": ["News", "World"],
+    "default_tags": ["news", "global"],
+    "status": "publish",
+    "language": "zh",
+    "content_template": "default",
+    "auto_translate": true,
+    "_status_options": "publish | draft | pending | future (scheduled)"
+  },
+
+  "images": {
+    "source": "unsplash",
+    "api_key_env": "UNSPLASH_API_KEY",
+    "fallback_from_rss": true,
+    "_supported_sources": "unsplash | pexels | pixabay"
+  },
+
+  "schedule": {
+    "enabled": true,
+    "cron": "0 9 * * *",
+    "timezone": "Asia/Shanghai",
+    "_note": "Cron expression: minute hour day month weekday. '0 9 * * *' = every day at 9am"
+  },
+
+  "content_rules": {
+    "min_words": 300,
+    "max_words": 800,
+    "include_source_link": true,
+    "include_image_credit": true,
+    "seo_optimize": true
+  }
+}

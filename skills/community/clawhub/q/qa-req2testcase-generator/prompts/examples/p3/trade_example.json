@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "prompt_version": "1.0.0",
+  "requirement_id": "REQ-TRADE-001",
+  "risk_points": [
+    {
+      "id": "RISK-001",
+      "source": "委托撤单-并发撤单",
+      "category": "concurrency",
+      "severity": "high",
+      "description": "多个客户端同时对同一笔委托发起撤单，可能导致重复撤单或资金重复释放",
+      "impact": "资金账户异常，冻结资金多次释放",
+      "mitigation": "撤单操作加分布式锁，保证同一委托同一时刻仅处理一次撤单"
+    },
+    {
+      "id": "RISK-002",
+      "source": "委托撤单-交易所回报延迟",
+      "category": "timeout",
+      "severity": "medium",
+      "description": "撤单指令发送后交易所回报超时，系统状态不一致",
+      "impact": "委托状态停留在'撤单中'，投资者无法进行后续操作",
+      "mitigation": "设置撤单超时机制，超时后查询交易所确认最终状态"
+    },
+    {
+      "id": "RISK-003",
+      "source": "委托撤单-资金释放失败",
+      "category": "data_integrity",
+      "severity": "high",
+      "description": "撤单成功但资金释放环节异常，冻结资金未正确归还",
+      "impact": "投资者可用资金不正确，影响后续交易",
+      "mitigation": "资金释放与撤单确认在同一事务中处理，失败时回滚并告警"
+    }
+  ],
+  "risk_summary": {
+    "total": 3,
+    "by_severity": {
+      "high": 2,
+      "medium": 1
+    }
+  }
+}

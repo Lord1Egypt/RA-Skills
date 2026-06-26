@@ -1,35 +1,27 @@
 ---
-name: "Regex Tool"
-description: "Match and extract text patterns using regular expressions. Use for data validation, text parsing, and pattern-based extraction tasks."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/regex-tool"
-sourceUrl: "https://clawhub.ai/skills/regex-tool"
+name: regex-tool
+description: Match and extract text patterns using regular expressions. Use for data validation, text parsing, and pattern-based extraction tasks.
 ---
+# Regex - Regular Expression Matcher
 
-# Regex Tool
+Search text using regular expressions to find, extract, and replace patterns. Supports standard regex syntax with capturing groups, alternation, and quantifiers for advanced text processing.
 
-> Match and extract text patterns using regular expressions. Use for data validation, text parsing, and pattern-based extraction tasks.
-
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/regex-tool`
-- **Source URL:** [https://clawhub.ai/skills/regex-tool](https://clawhub.ai/skills/regex-tool)
-
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
+## Usage
 ```bash
-hermes skills install clawhub/regex-tool
+regex-tool [options] <pattern> <file>
+```
+
+## Options
+
+- `-i`: Case-insensitive matching
+- `-o`: Show only matched text
+- `-r REPLACE`: Replace matches with text
+- `-g`: Global match (all occurrences)
+
+## Examples
+
+```bash
+regex-tool "\d{4}-\d{2}-\d{2}" dates.txt
+regex-tool -i "error|warning" log.txt
+regex-tool -r "[REDACTED]" "\b\d{3}-\d{2}-\d{4}\b" data.txt
 ```

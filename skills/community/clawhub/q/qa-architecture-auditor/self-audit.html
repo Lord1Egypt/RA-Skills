@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Architecture Auditor - Strategy Report</title>
+    <style>
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; line-height: 1.6; color: #1a1a1a; max-width: 1200px; margin: 0 auto; padding: 2rem; background: #f8fafc; }
+        h1, h2, h3 { color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
+        .header { background: #1e293b; color: white; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .header h1 { color: #38bdf8; border: none; margin: 0; }
+        .risk-critical { background: #fecaca; color: #991b1b; font-weight: bold; padding: 2px 6px; border-radius: 4px; }
+        .risk-high { background: #fed7aa; color: #9a3412; font-weight: bold; padding: 2px 6px; border-radius: 4px; }
+        .risk-medium { background: #fef08a; color: #854d0e; padding: 2px 6px; border-radius: 4px; }
+        .risk-low { background: #dcfce7; color: #166534; padding: 2px 6px; border-radius: 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1); }
+        th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        th { background: #f1f5f9; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.025em; }
+        .methodology-card { background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+        .stat-card { background: white; padding: 1.5rem; border-radius: 8px; text-align: center; box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1); }
+        .stat-value { font-size: 2rem; font-weight: 800; color: #2563eb; }
+        .stat-label { font-size: 0.875rem; color: #64748b; text-transform: uppercase; font-weight: 600; }
+        .test-case { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 1rem; margin-top: 1rem; }
+        pre { background: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 4px; overflow-x: auto; font-size: 0.9rem; }
+        code { font-family: 'Fira Code', monospace; }
+        .footer { margin-top: 4rem; text-align: center; color: #64748b; font-size: 0.875rem; border-top: 1px solid #e2e8f0; padding-top: 2rem; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧪 QA Architecture & Testing Strategy Report</h1>
+        <p>Forensic Repository Analysis | Repository: <code>/home/ubuntu/.gemini/antigravity/playground/zonal-lagoon/qa-architecture-auditor</code></p>
+        <p>Generated: 2026-03-13 | Compliance Target: ITGC</p>
+    </div>
+
+    <div class="methodology-card">
+        <h2>📋 Executive Summary</h2>
+        <p>This report presents a comprehensive, independent testing strategy for the analyzed codebase. The analysis identified <strong>7</strong> modules across <strong>2</strong> languages with <strong>0</strong> frameworks detected. The zero-trust approach assumes <strong>0% current test coverage</strong>, requiring full test strategy development from scratch.</p>
+        <p><strong>Highest Risk Areas:</strong> High complexity module with risk score 100</p>
+        <p><strong>Architecture Pattern:</strong> <code>serverless</code></p>
+        <p><strong>Entry Points:</strong> </p>
+    </div>
+
+    <h2>📊 Codebase Statistics</h2>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value">7</div>
+            <div class="stat-label">Total Modules</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">2</div>
+            <div class="stat-label">Languages</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">7</div>
+            <div class="stat-label">Files Analyzed</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">0</div>
+            <div class="stat-label">Dependencies</div>
+        </div>
+    </div>
+
+    <h2>🗣️ Languages & Frameworks</h2>
+    <table>
+        <thead><tr><th>Language</th><th>File Count</th></tr></thead>
+        <tbody>
+            <tr><td>python</td><td>1</td></tr><tr><td>markdown</td><td>6</td></tr>
+        </tbody>
+    </table>
+    <p><strong>Frameworks Detected:</strong> None detected</p>
+
+    <h2>⚠️ Risk Assessment & Vulnerability Analysis</h2>
+    <p>The following modules represent the highest risk and require the most rigorous testing focus:</p>
+    <table>
+        <thead><tr><th>Severity</th><th>Risk Type</th><th>Module</th><th>Risk Score</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr>
+                <td class="risk-high">HIGH</td>
+                <td>code_complexity</td>
+                <td><code>scripts/analyze_repo.py</code></td>
+                <td>100</td>
+                <td>High complexity module with risk score 100</td>
+            </tr><tr>
+                <td class="risk-high">HIGH</td>
+                <td>code_complexity</td>
+                <td><code>README.md</code></td>
+                <td>100</td>
+                <td>High complexity module with risk score 100</td>
+            </tr><tr>
+                <td class="risk-high">HIGH</td>
+                <td>code_complexity</td>
+                <td><code>references/methodologies.md</code></td>
+                <td>100</td>
+                <td>High complexity module with risk score 100</td>
+            </tr><tr>
+                <td class="risk-high">HIGH</td>
+                <td>code_complexity</td>
+                <td><code>references/tooling-matrix.md</code></td>
+                <td>100</td>
+                <td>High complexity module with risk score 100</td>
+            </tr><tr>
+                <td class="risk-high">HIGH</td>
+                <td>code_complexity</td>
+                <td><code>SKILL.md</code></td>
+                <td>99</td>
+                <td>High complexity module with risk score 99</td>
+            </tr><tr>
+                <td class="risk-critical">CRITICAL</td>
+                <td>security</td>
+                <td><code>multiple</code></td>
+                <td>85</td>
+                <td>Authentication handling detected in 7 module(s) - requires rigorous security testing</td>
+            </tr><tr>
+                <td class="risk-high">HIGH</td>
+                <td>cryptography</td>
+                <td><code>scripts/analyze_repo.py</code></td>
+                <td>80</td>
+                <td>Cryptographic operations detected - requires cryptographic review and testing</td>
+            </tr><tr>
+                <td class="risk-high">HIGH</td>
+                <td>data_integrity</td>
+                <td><code>multiple</code></td>
+                <td>75</td>
+                <td>Database operations detected in 7 module(s) - critical for data integrity testing</td>
+            </tr><tr>
+                <td class="risk-high">HIGH</td>
+                <td>code_complexity</td>
+                <td><code>references/risk-assessment.md</code></td>
+                <td>72</td>
+                <td>High complexity module with risk score 72</td>
+            </tr><tr>
+                <td class="risk-medium">MEDIUM</td>
+                <td>code_complexity</td>
+                <td><code>references/compliance-frameworks.md</code></td>
+                <td>61</td>
+                <td>High complexity module with risk score 61</td>
+            </tr><tr>
+                <td class="risk-medium">MEDIUM</td>
+                <td>io_security</td>
+                <td><code>scripts/analyze_repo.py</code></td>
+                <td>55</td>
+                <td>File system operations detected - test for path traversal, permissions, and injection</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>🔒 Security Surface Mapping</h2>
+    <table>
+        <thead><tr><th>Security Domain</th><th>Affected Modules</th></tr></thead>
+        <tbody>
+            <tr><td>authentication</td><td>5 modules</td></tr><tr><td>authorization</td><td>6 modules</td></tr><tr><td>input_validation</td><td>4 modules</td></tr><tr><td>output_encoding</td><td>2 modules</td></tr><tr><td>session_management</td><td>4 modules</td></tr><tr><td>cryptography</td><td>6 modules</td></tr><tr><td>file_operations</td><td>6 modules</td></tr><tr><td>network_operations</td><td>5 modules</td></tr><tr><td>database_operations</td><td>5 modules</td></tr><tr><td>usability</td><td>7 modules</td></tr><tr><td>accessibility</td><td>7 modules</td></tr><tr><td>localization</td><td>2 modules</td></tr><tr><td>monitoring</td><td>7 modules</td></tr>
+        </tbody>
+    </table>
+
+    <h2>🧩 Testing Methodology Matrix</h2>
+    <p>Below is the exhaustive testing strategy addressing every methodology requested. Each includes independent baseline definition, vulnerability assessment, and from-scratch test cases.</p>
+
+    
+            <div class="methodology-card">
+                <h3>🔲 Black Box Testing</h3>
+                <p><strong>Independent Baseline:</strong> Test functionality without internal code knowledge, treating the application as a black box with inputs and outputs.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> The 0 entry points represent the primary black-box testing surface. Focus on 5 authentication modules and 5 database interaction points.</p>
+                <p><strong>Strategy:</strong> Equivalence partitioning, boundary value analysis, decision table testing based solely on requirements and API contracts.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Input Validation - Equivalence Partitioning
+                    <pre><code># For each API endpoint in the application:
+# Test valid, boundary, and invalid inputs
+POST /api/endpoint {"field": "valid_value"}  # Expect 200
+POST /api/endpoint {"field": ""}            # Expect 400 - empty
+POST /api/endpoint {}                      # Expect 400 - missing field</code></pre>
+                    <p><em>Validation:</em> Verify correct status codes and error messages for each partition</p>
+                </div>
+                <div class="test-case">
+                    <strong>Test Case 2:</strong> Boundary Value Analysis
+                    <pre><code># Test edge cases and boundaries
+GET /api/users?page=0    # Expect 400 or redirect
+GET /api/users?page=1    # Expect 200 - first page
+GET /api/users?page=MAX  # Expect 200 or 404 - last page
+GET /api/users?page=MAX+1 # Expect 404 or empty</code></pre>
+                    <p><em>Validation:</em> Boundary conditions handled gracefully without errors</p>
+                </div>
+                <div class="test-case">
+                    <strong>Test Case 3:</strong> Decision Table Testing
+                    <pre><code># Complex business logic combinations
+# Table: Authentication + Authorization
+User Authenticated + Has Permission = Access Granted 200
+User Authenticated + No Permission = 403 Forbidden
+No Authentication = 401 Unauthorized
+Invalid Token = 401 Unauthorized</code></pre>
+                    <p><em>Validation:</em> All decision paths produce expected outcomes</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>⚪ White Box Testing</h3>
+                <p><strong>Independent Baseline:</strong> Utilize internal code structures, paths, and logic to design tests that achieve coverage of statements, branches, and paths.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> With 7 modules requiring coverage, white-box testing must achieve >80% statement coverage. 4 modules have high complexity (>15) and require path coverage analysis.</p>
+                <p><strong>Strategy:</strong> Statement coverage, branch coverage, path coverage, condition coverage. All public functions and critical logic must have unit tests.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Path Coverage: scripts/analyze_repo.py
+                    <pre><code># Module: scripts/analyze_repo.py
+# Complexity: 390
+# Logic Path analysis required for forensic validation</code></pre>
+                    <p><em>Validation:</em> All logical paths verified</p>
+                </div>
+                <div class="test-case">
+                    <strong>Test Case 2:</strong> Path Coverage: references/methodologies.md
+                    <pre><code># Module: references/methodologies.md
+# Complexity: 38
+# Logic Path analysis required for forensic validation</code></pre>
+                    <p><em>Validation:</em> All logical paths verified</p>
+                </div>
+                <div class="test-case">
+                    <strong>Test Case 3:</strong> Path Coverage: references/tooling-matrix.md
+                    <pre><code># Module: references/tooling-matrix.md
+# Complexity: 34
+# Logic Path analysis required for forensic validation</code></pre>
+                    <p><em>Validation:</em> All logical paths verified</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>👤 Manual Testing</h3>
+                <p><strong>Independent Baseline:</strong> Human-executed tests requiring intuition, exploratory thinking, and usability judgment that cannot be fully automated.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> Manual testing is essential for 7 usability-sensitive modules and 11 risk areas where automation cannot capture business logic nuances.</p>
+                <p><strong>Strategy:</strong> Exploratory testing sessions, usability walkthroughs, ad-hoc scenario validation, cross-browser compatibility checks.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Critical Flow Walkthrough
+                    <pre><code>Manual execution of top 3 workflows</code></pre>
+                    <p><em>Validation:</em> All steps verified by QA architect</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>🤖 Automated Testing</h3>
+                <p><strong>Independent Baseline:</strong> Scripted tests executed by CI/CD pipelines without human intervention, providing rapid feedback on code changes.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> All 0 entry points and 0 dependencies must be covered by automated CI/CD tests. Target: >1000 automated test cases.</p>
+                <p><strong>Strategy:</strong> Unit tests, integration tests, API tests, and E2E tests must be automated and run on every commit/PR.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> CI Regression Suite
+                    <pre><code>Automated run of all high-risk module tests</code></pre>
+                    <p><em>Validation:</em> All tests pass in CI environment</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>🔬 Unit Testing</h3>
+                <p><strong>Independent Baseline:</strong> Test individual functions, methods, or classes in isolation with mocked dependencies.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> Unit tests must cover 80 functions and 22 classes across 7 modules.</p>
+                <p><strong>Strategy:</strong> Achieve >80% code coverage. Every public function must have tests for happy path, edge cases, and error conditions.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Function Level Validation
+                    <pre><code>Unit tests for core logic</code></pre>
+                    <p><em>Validation:</em> 100% logic coverage</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>🔗 Integration Testing</h3>
+                <p><strong>Independent Baseline:</strong> Validate interactions and data flow between modules, services, or external systems.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> Integration tests must validate 3 dependency relationships and 5 database interactions.</p>
+                <p><strong>Strategy:</strong> Test module interfaces, API contracts, database interactions, and third-party service integrations with realistic test data.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Module Interface Test
+                    <pre><code>Verify data flow between scripts/analyze_repo.py</code></pre>
+                    <p><em>Validation:</em> Correct data handover verified</p>
+                </div>
+                <div class="test-case">
+                    <strong>Test Case 2:</strong> Database Integration
+                    <pre><code>Verify database operations handle constraints correctly</code></pre>
+                    <p><em>Validation:</em> DB state remains consistent after operations</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>🖥️ System Testing</h3>
+                <p><strong>Independent Baseline:</strong> Validate the complete, integrated application environment end-to-end.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> System testing must validate the complete serverless architecture with all 0 frameworks integrated.</p>
+                <p><strong>Strategy:</strong> Test the fully deployed system with realistic infrastructure, covering all hardware, software, and network components.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Full Architecture Validation
+                    <pre><code>Validate serverless flow</code></pre>
+                    <p><em>Validation:</em> System components work in harmony</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>✅ Functional Testing</h3>
+                <p><strong>Independent Baseline:</strong> Verify that business logic and requirements are correctly implemented.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> Functional tests must cover all business logic paths. 4 modules require special input validation testing.</p>
+                <p><strong>Strategy:</strong> Map requirements to test cases. Every user story and acceptance criterion must have validated test scenarios.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Requirement Verification
+                    <pre><code>Test feature against business requirements</code></pre>
+                    <p><em>Validation:</em> Feature behavior matches requirement specification</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>💨 Smoke Testing</h3>
+                <p><strong>Independent Baseline:</strong> Verify critical path functionality after a build to determine if the build is stable enough for further testing.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> Smoke tests must cover all 0 entry points and core workflows: .</p>
+                <p><strong>Strategy:</strong> Define sanity checklist covering core user journeys. Must pass before any QA or deployment.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Deployment Health Check
+                    <pre><code>Verify all entry points return 200</code></pre>
+                    <p><em>Validation:</em> Application is up and reachable</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>🧘 Sanity Testing</h3>
+                <p><strong>Independent Baseline:</strong> Focused checks on specific functionality after recent code changes to ensure stability.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> Sanity checklists must be maintained for 7 modules, with automated smoke tests for every commit.</p>
+                <p><strong>Strategy:</strong> When a bug is fixed or feature added, test that specific area and closely related functionality.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Scope-limited Regression
+                    <pre><code>Verify fix in scripts/analyze_repo.py</code></pre>
+                    <p><em>Validation:</em> Fix works without breaking immediate surroundings</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>🔄 End-to-End (E2E) Testing</h3>
+                <p><strong>Independent Baseline:</strong> Test complete user workflows from initiation to database commit, simulating real user behavior.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> E2E tests must cover 0 user journeys: . All shall use realistic data and staging environments.</p>
+                <p><strong>Strategy:</strong> Automated browser tests for core user journeys using Playwright, Cypress, or Selenium.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> User Journey Validation
+                    <pre><code>Complete end-to-end checkout/sign-up journey</code></pre>
+                    <p><em>Validation:</em> Goal achieved from start to finish</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>🔙 Regression Testing</h3>
+                <p><strong>Independent Baseline:</strong> Ensure new changes do not break existing features.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> Regression suite must include 21 minimum test cases covering all modules and their interfaces. Run on every release.</p>
+                <p><strong>Strategy:</strong> Full test suite run on every release candidate. Automated regression suite must cover all critical paths.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Total Impact Analysis
+                    <pre><code>Full suite execution on release branch</code></pre>
+                    <p><em>Validation:</em> No regressions detected across any features</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>🔌 API Testing</h3>
+                <p><strong>Independent Baseline:</strong> Validate endpoints, request/response formats, status codes, headers, and error handling.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> API endpoints need testing. Identify via route definitions (express, django, spring, etc.). All endpoints require validation of status codes, schemas, auth, and error handling.</p>
+                <p><strong>Strategy:</strong> Test all REST/GraphQL endpoints with varied inputs, authentication scenarios, and edge cases. Validate schemas.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Endpoint Schema Validation
+                    <pre><code>Verify JSON response matches expected schema</code></pre>
+                    <p><em>Validation:</em> Correct headers and payload</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>💾 Database/Data Integrity Testing</h3>
+                <p><strong>Independent Baseline:</strong> Ensure data is stored, retrieved, and migrated accurately without loss, corruption, or unauthorized access.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> Database integrity tests required for 5 modules with SQL operations. Test CRUD, constraints, transactions, and migrations.</p>
+                <p><strong>Strategy:</strong> Test CRUD operations, transactions, constraints, data validation, backup/restore, and migration scripts.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Persistence Layer Integrity
+                    <pre><code>Test concurrent writes to high-traffic modules</code></pre>
+                    <p><em>Validation:</em> No data corruption or deadlocks</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>⚡ Performance Testing</h3>
+                <p><strong>Independent Baseline:</strong> Evaluate speed, stability, load capacity, stress limits, and volume handling based on architecture.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> Performance testing required for 0 entry points and 5 database-heavy modules. Load test at 2x expected traffic.</p>
+                <p><strong>Strategy:</strong> Load testing (expected traffic), stress testing (breaking point), endurance testing (sustained load), and spike testing.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Stress Test Entry Points
+                    <pre><code>Simulated load on main entry points</code></pre>
+                    <p><em>Validation:</em> Response time < 500ms at 100 concurrent users</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>🔐 Security Testing</h3>
+                <p><strong>Independent Baseline:</strong> Identify vulnerabilities including SAST (static), DAST (dynamic), and SCA (software composition analysis).</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> 11 high-risk areas identified. All modules with auth, crypto, or external calls must undergo SAST/DAST and penetration testing.</p>
+                <p><strong>Strategy:</strong> Automated scanning, penetration testing, code reviews for OWASP Top 10, dependency vulnerability checks, and threat modeling.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Injection Vulnerability Scan
+                    <pre><code>Test all input fields for common injection patterns</code></pre>
+                    <p><em>Validation:</em> Zero successful injections detected</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>👁️ Usability Testing</h3>
+                <p><strong>Independent Baseline:</strong> Evaluate user experience flows, interface clarity, and interaction design.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> Usability testing needed for all user-facing modules. Identify UI/UX components; test with actual users for workflow clarity.</p>
+                <p><strong>Strategy:</strong> User testing sessions, heuristic evaluation, accessibility checks, and cognitive walkthroughs.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> UI Feedback Loop
+                    <pre><code>Observe user navigating core features</code></pre>
+                    <p><em>Validation:</em> Zero navigation friction reported</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>🔀 Compatibility Testing</h3>
+                <p><strong>Independent Baseline:</strong> Test across different devices, browsers, operating systems, and network conditions.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> Compatibility matrix required based on detected frameworks: . Test on latest 2 versions of major browsers and OSes.</p>
+                <p><strong>Strategy:</strong> Cross-browser testing matrix, responsive design validation, mobile device testing, and legacy support.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Compatibility Check
+                    <pre><code>pytest + pytest-cov for unit/integration, Coverage.py for reports</code></pre>
+                    <p><em>Validation:</em> Tooling verified and functional</p>
+                </div>
+                <div class="test-case">
+                    <strong>Test Case 2:</strong> Compatibility Check
+                    <pre><code>locust or k6 for performance testing</code></pre>
+                    <p><em>Validation:</em> Tooling verified and functional</p>
+                </div>
+                <div class="test-case">
+                    <strong>Test Case 3:</strong> Compatibility Check
+                    <pre><code>bandit (SAST), safety (SCA), OWASP ZAP (DAST)</code></pre>
+                    <p><em>Validation:</em> Tooling verified and functional</p>
+                </div>
+                <div class="test-case">
+                    <strong>Test Case 4:</strong> Compatibility Check
+                    <pre><code>CI/CD: GitHub Actions, GitLab CI, or Jenkins</code></pre>
+                    <p><em>Validation:</em> Tooling verified and functional</p>
+                </div>
+                <div class="test-case">
+                    <strong>Test Case 5:</strong> Compatibility Check
+                    <pre><code>Code coverage: Codecov or Coveralls</code></pre>
+                    <p><em>Validation:</em> Tooling verified and functional</p>
+                </div>
+                <div class="test-case">
+                    <strong>Test Case 6:</strong> Compatibility Check
+                    <pre><code>Containerization: Docker for consistent test environments</code></pre>
+                    <p><em>Validation:</em> Tooling verified and functional</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>♿ Accessibility Testing</h3>
+                <p><strong>Independent Baseline:</strong> Ensure compliance with WCAG 2.1/2.2 standards for people with disabilities.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> Accessibility compliance required for all UI modules. 0 entry points must meet WCAG 2.1 AA standards.</p>
+                <p><strong>Strategy:</strong> Automated accessibility scanners, screen reader testing, keyboard navigation checks, and color contrast validation.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> WCAG 2.1 Compliance
+                    <pre><code>Run Axe-core on main entry points</code></pre>
+                    <p><em>Validation:</em> Zero critical accessibility violations</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>🌍 Localization/Internationalization Testing</h3>
+                <p><strong>Independent Baseline:</strong> Validate readiness for multiple languages, regional formats, and cultural adaptations.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> Internationalization testing required if multi-language support planned. Check hardcoded strings, date/number formatting, and text expansion.</p>
+                <p><strong>Strategy:</strong> Test text expansion, date/time/number formats, RTL languages, character encoding, and localized content.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> RTL Layout Check
+                    <pre><code>Switch app to Arabic and verify no layout overlap</code></pre>
+                    <p><em>Validation:</em> Correct mirroring and text rendering</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>📝 Acceptance Testing (UAT)</h3>
+                <p><strong>Independent Baseline:</strong> Ensure the software meets end-user business needs and requirements.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> UAT must involve business stakeholders validating all 7 modules against requirements. Sign-off required before production.</p>
+                <p><strong>Strategy:</strong> Business user validation against acceptance criteria, UAT sign-off process, production-like environment testing.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> User Persona Walkthrough
+                    <pre><code>Admin user creates and deletes project</code></pre>
+                    <p><em>Validation:</em> All business constraints respected</p>
+                </div></div></div>
+
+            <div class="methodology-card">
+                <h3>🧭 Exploratory Testing</h3>
+                <p><strong>Independent Baseline:</strong> Unscripted testing to discover complex edge cases, hidden defects, and unexpected behaviors.</p>
+                <p><strong>Vulnerability & Risk Assessment:</strong> Exploratory testing charters must be created for all 11 high-risk modules and 0 entry points.</p>
+                <p><strong>Strategy:</strong> Charter-based exploration sessions, session-based test management, heuristic-based testing, and bug bashes.</p>
+                <h4>From-Scratch Test Cases</h4>
+                <div class="test-cases">
+                <div class="test-case">
+                    <strong>Test Case 1:</strong> Chaotic Input Session
+                    <pre><code>Rapid input and unexpected navigation sequences</code></pre>
+                    <p><em>Validation:</em> System remains stable without crashes or data corruption</p>
+                </div></div></div>
+
+    <h2>🛠️ Tooling Recommendations</h2>
+    <div class="tool-recommendation">
+        <ul>
+            <li>{'title': 'Compatibility Check', 'example': 'pytest + pytest-cov for unit/integration, Coverage.py for reports', 'validation': 'Tooling verified and functional'}</li>
+<li>{'title': 'Compatibility Check', 'example': 'locust or k6 for performance testing', 'validation': 'Tooling verified and functional'}</li>
+<li>{'title': 'Compatibility Check', 'example': 'bandit (SAST), safety (SCA), OWASP ZAP (DAST)', 'validation': 'Tooling verified and functional'}</li>
+<li>{'title': 'Compatibility Check', 'example': 'CI/CD: GitHub Actions, GitLab CI, or Jenkins', 'validation': 'Tooling verified and functional'}</li>
+<li>{'title': 'Compatibility Check', 'example': 'Code coverage: Codecov or Coveralls', 'validation': 'Tooling verified and functional'}</li>
+<li>{'title': 'Compatibility Check', 'example': 'Containerization: Docker for consistent test environments', 'validation': 'Tooling verified and functional'}</li>
+        </ul>
+    </div>
+
+    <h2>🏛️ IT General Controls (ITGC) Compliance</h2>
+    <p>The following controls are essential for audit readiness and system transition:</p>
+    <ul class="itgc-list">
+        <li>Change Management: All code changes must undergo peer review and testing</li><li>Access Control: Role-based access to code repository and production systems</li><li>Testing Requirements: Unit tests required for all new code; integration tests for critical paths</li><li>Security Scanning: Automated SAST/DAST scans on all commits and pull requests</li><li>Dependency Management: Regular vulnerability scanning of third-party dependencies</li><li>Code Signing: All code commits must be signed with valid GPG keys</li><li>Audit Trail: Complete git history with signed commits and traceable changes</li><li>Deployment Controls: Automated deployments with rollback capabilities and approval gates</li><li>Configuration Management: Infrastructure as code with version-controlled configurations</li><li>Incident Response: Defined procedures for security incidents and data breaches</li>
+    </ul>
+
+    <h2>📦 Dependencies Analysis</h2>
+    <p>Total dependencies: <strong>0</strong></p>
+    <table><thead><tr><th>Package</th><th>Version</th><th>Type</th><th>Ecosystem</th></tr></thead><tbody>
+    
+    </tbody></table>
+
+    <div class="footer">
+        <p><strong>QA Architecture Auditor</strong> | Zero-Trust Policy Enforced | Generated by independent forensic analysis</p>
+        <p>This report was generated assuming <strong>no existing tests</strong>. All test cases must be implemented from scratch.</p>
+    </div>
+</body>
+</html>

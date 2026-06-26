@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "skill": "resend-cli",
+    "version": "3.0.0",
+    "last_reviewed": "2026-03-14"
+  },
+  "gaps": [
+    {
+      "id": "template-send-gap",
+      "title": "Hosted template lifecycle is present, but direct send-by-template is not clearly exposed in emails send",
+      "severity": "high",
+      "evidence_level": "source_inspected",
+      "applies_to": [
+        "templates *",
+        "emails send"
+      ],
+      "what_to_do": [
+        "Use templates create/update/publish in the CLI as normal",
+        "For real hosted-template sends, inspect local emails send help",
+        "If the installed CLI still lacks template flags, fall back to MCP/API or render local HTML and use --html-file"
+      ]
+    },
+    {
+      "id": "domain-capability-toggle-gap",
+      "title": "Receiving/sending capability toggle is ambiguous after creation",
+      "severity": "high",
+      "evidence_level": "source_inspected",
+      "applies_to": [
+        "domains create",
+        "domains update",
+        "emails receiving"
+      ],
+      "what_to_do": [
+        "Prefer setting --receiving at domains create time",
+        "If an existing domain needs receiving enabled, inspect local help",
+        "Be ready to fall back to MCP/API if domains update still lacks the toggle"
+      ]
+    },
+    {
+      "id": "stderr-json-discrepancy",
+      "title": "Machine-mode JSON errors may be written to stderr",
+      "severity": "high",
+      "evidence_level": "source_inspected",
+      "applies_to": [
+        "all bounded commands"
+      ],
+      "what_to_do": [
+        "Parse both stdout and stderr",
+        "Preserve raw text channels in wrapper output"
+      ]
+    },
+    {
+      "id": "streaming-commands-are-special",
+      "title": "Listen commands are streams, not request/response calls",
+      "severity": "medium",
+      "evidence_level": "source_inspected",
+      "applies_to": [
+        "webhooks listen",
+        "emails receiving listen"
+      ],
+      "what_to_do": [
+        "Treat output as NDJSON in JSON mode",
+        "Use timeouts or supervised process control",
+        "Do not block forever unless the user explicitly wants a stream"
+      ]
+    },
+    {
+      "id": "transactional-schedule-style",
+      "title": "Transactional email help documents ISO timestamps; broadcasts explicitly support natural language",
+      "severity": "medium",
+      "evidence_level": "source_inspected",
+      "applies_to": [
+        "emails send",
+        "emails update",
+        "broadcasts create",
+        "broadcasts send"
+      ],
+      "what_to_do": [
+        "Prefer ISO 8601 for agent-generated transactional schedules",
+        "Natural language is fine for broadcast scheduling when that helps the user"
+      ]
+    }
+  ]
+}

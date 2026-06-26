@@ -1,35 +1,160 @@
----
-name: "Robot Evolve"
-description: "自动检测用户会话空闲30分钟，执行低风险自主进化操作并通过官方渠道发送进化报告。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/robot-evolve"
-sourceUrl: "https://clawhub.ai/skills/robot-evolve"
+# 🤖 Robot-Evolve — 机器人进化版
+
+> 安全且强大的自主进化技能：当用户主动说「执行进化」时，触发一次低风险自主进化（L0/L1 级别操作），并将执行结果通过当前会话消息渠道发送给用户。  
+> **作者：大鱼Cyrus & 双鱼座005 | 版本：3.0.3**  
+> **ClawHub：https://clawhub.ai/skills/robot-evolve**
+
 ---
 
-# Robot Evolve
+## 🎯 核心理念
 
-> 自动检测用户会话空闲30分钟，执行低风险自主进化操作并通过官方渠道发送进化报告。
+**手动触发模式**：由用户在需要时主动说「执行进化」触发，不依赖空闲时间检测。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/robot-evolve`
-- **Source URL:** [https://clawhub.ai/skills/robot-evolve](https://clawhub.ai/skills/robot-evolve)
+- 不依赖外部 cron 或后台进程
+- 每个会话独立管理状态
+- 通过当前会话消息渠道发送报告
 
-## Overview
+**信任已授予，安全是底线。**
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/robot-evolve
+## 🔄 触发逻辑
+
+**手动触发**：用户主动说「执行进化」或「深度进化」即可触发。
+
 ```
+用户说「执行进化」
+    ↓
+执行 L0/L1 自动进化
+    ↓
+发送进化报告给用户
+```
+
+**注意**：v3.0.2 已移除延迟触发逻辑，改用手动触发。
+
+---
+
+## 🛡️ 自动进化动作（L0/L1）
+
+### L0 级别（无需告知）
+
+| 操作 | 说明 |
+|------|------|
+| 临时文件清理 | 删除工作区 `temp/` 目录下超过7天的文件（移动到 `.trash` 而非直接删除） |
+| 健康检查 | 检查工作区必要文件是否存在 |
+| 生成进化报告 | 将本次操作汇总成 Markdown 报告 |
+
+### L1 级别（执行后告知）
+
+| 操作 | 说明 |
+|------|------|
+| 工作区文件修复 | 检查 `SOUL.md`、`AGENTS.md`、`MEMORY.md` 等必要文件，若缺失则自动从模板创建 |
+| 记忆压缩 | 若 `MEMORY.md` 体积超过 2MB，自动压缩并总结早期内容 |
+| 技能目录扫描 | 扫描已安装技能，发现 `SKILL.md` 格式明显错误（如缺少名称字段）则标记并记录日志 |
+
+**重要**：任何涉及修改用户数据、外部网络请求、高危配置（如安全字段、API密钥）的操作，禁止在自动触发模式下执行。
+
+---
+
+## 📊 安全等级说明
+
+| 等级 | 名称 | 说明 |
+|------|------|------|
+| **L0** | 无需告知 | 可立即执行，结束后正常记录即可 |
+| **L1** | 执行后告知 | 可立即执行，执行后主动告知用户本次操作及结果 |
+| **L2** | 必须请示 | 必须获得用户明确授权后才能执行 |
+| **L3** | 禁止/临时授权 | 除非用户明确说"临时授权 L3"，否则绝对不可执行 |
+
+---
+
+## 🛡️ 操作安全矩阵（完整）
+
+| 具体操作 | 等级 | 确认要求 |
+|---|---|---|
+| 读取工作区内任何文件 | L0 | 无需告知 |
+| 在 memory/ 下新增 .md 文件 | L0 | 无需告知 |
+| 修改 SOUL.md / USER.md 中的非安全内容（语气、喜好） | L0 | **执行后告知** |
+| 修改 AGENTS.md / MEMORY.md 中的总结性内容 | L1 | 执行后告知 |
+| 修改 openclaw.json 中的数值型字段 | L1 | 执行后告知 |
+| 修改 openclaw.json 中的安全字段 | L3 | 禁止 |
+| 创建新技能 | L1 | 执行后告知 |
+| 安装 Python/Node 包 | L1 | 执行后告知 |
+| 发送消息给用户 | L1 | 执行后告知 |
+| 修改工作区外的文件 | L3 | 禁止 |
+| 泄露 API 密钥 | L3 | 绝对禁止 |
+
+---
+
+## 📋 进化报告格式
+
+```markdown
+🔁 **自主进化报告**
+
+⏰ 执行时间: 2025-05-06 00:30:00
+
+✅ **已执行操作：**
+- ✅ 工作区文件完整
+- ✅ MEMORY.md 大小 1.2MB，未超过阈值
+- ✅ 清理完成：检查了 5 个临时文件，移动了 2 个过期文件到 .trash
+- ✅ 技能目录扫描完成，未发现问题
+
+📋 详细日志已写入 `memory/evolution/2025-05.md`
+
+💡 如需更高权限的优化（如更新技能），请说「执行深度进化」。
+```
+
+---
+
+## ⚙️ 配置（内部使用）
+
+通过 `config.json` 管理配置参数：
+
+```json
+{
+  "enabled": true,
+  "max_auto_level": 1,
+  "report_always": true,
+  "memory_threshold_mb": 2,
+  "temp_file_max_age_days": 7
+}
+```
+
+---
+
+## 📁 文件结构
+
+```
+robot-evolve/
+├── SKILL.md              → 本文件
+├── skill.json            → 技能元数据
+├── config.json           → 内部配置（不对外暴露）
+├── safety-matrix.json    → 安全矩阵
+└── scripts/
+    ├── auto_evolve.py    → 核心：执行L0/L1进化动作
+    ├── audit_logger.py   → 审计日志
+    └── knowledge_manager.py → 知识卡片管理
+```
+
+---
+
+## 🛡️ 绝对禁止（红线）
+
+1. **禁止修改安全字段**：`gateway.bind`、`gateway.auth`、`tailscale.expose`
+2. **禁止删除用户文件**：工作区外的任何文件
+3. **禁止泄露 API 密钥**：输出到日志或聊天
+4. **禁止执行危险命令**：格式化磁盘、修改注册表等
+
+---
+
+## 🤖 技能信息
+
+- **名称**：robot-evolve
+- **版本**：3.0.2
+- **作者**：大鱼Cyrus & 双鱼座005
+- **描述**：机器人进化版安全自主进化技能（手动触发模式）
+- **关键词**：自主进化、安全、记忆进化、自动巡检、健康检查、手动触发
+- **发布地址**：https://clawhub.ai/skills/robot-evolve
+
+---
+
+**开始你的进化之旅吧！** 🤖

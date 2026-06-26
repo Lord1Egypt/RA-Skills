@@ -1,0 +1,15 @@
+{
+  "STORAGE_DIR": "~/.promptgit",
+  "DEFAULT_CATEGORIES": ["system", "task", "template", "snippet", "general"],
+  "SUGGESTED_TAGS": ["best", "testing", "deprecated", "production", "experimental", "draft"],
+  "SIMILARITY_THRESHOLD": 0.5,
+  "CASE_SENSITIVE_SEARCH": false,
+  "EXPORT_INCLUDE_HISTORY": true,
+  "EXPORT_FORMAT_VERSION": "1.0",
+  "DATE_FORMAT": "%Y-%m-%d %H:%M:%S",
+  "SHORT_DATE_FORMAT": "%Y-%m-%d",
+  "DEFAULT_RECENT_LIMIT": 10,
+  "PREVIEW_MAX_LENGTH": 200,
+  "DEBUG": false,
+  "ROLLBACK_CREATE_VERSION": false
+}

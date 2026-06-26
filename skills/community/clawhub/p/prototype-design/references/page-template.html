@@ -1,0 +1,302 @@
+<!-- WMS 标准页面完整模板 -->
+
+<!-- 复制以下内容创建新页面 -->
+
+<div id="page-xxx" class="page">
+  <header class="header">
+    <div class="header-left">
+      <h2>页面标题</h2>
+      <div class="breadcrumb">
+        <span>首页</span>
+        <span>/</span>
+        <span>一级分类</span>
+        <span>/</span>
+        <span>当前页面</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <button class="btn btn-outline btn-sm">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        导出
+      </button>
+      <button class="btn btn-primary btn-sm" onclick="openAddXxxModal()">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14">
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+        新增
+      </button>
+    </div>
+  </header>
+
+  <div class="content">
+    <!-- 统计卡片区域 -->
+    <div class="stats-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:24px;">
+      <div class="stat-card">
+        <div class="stat-card-header">
+          <span class="stat-card-title">总数</span>
+        </div>
+        <div class="stat-card-value">128</div>
+        <div class="stat-card-change">描述信息</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-header">
+          <span class="stat-card-title">进行中</span>
+        </div>
+        <div class="stat-card-value" style="color:#F59E0B;">32</div>
+        <div class="stat-card-change up">+5</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-header">
+          <span class="stat-card-title">已完成</span>
+        </div>
+        <div class="stat-card-value" style="color:#10B981;">86</div>
+        <div class="stat-card-change up">+12</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-header">
+          <span class="stat-card-title">异常</span>
+        </div>
+        <div class="stat-card-value" style="color:#EF4444;">10</div>
+        <div class="stat-card-change down">-3</div>
+      </div>
+    </div>
+
+    <!-- Tab切换（可选） -->
+    <div class="tabs" style="margin-bottom:24px;">
+      <button class="tab active" onclick="switchTab('all')">全部</button>
+      <button class="tab" onclick="switchTab('active')">进行中</button>
+      <button class="tab" onclick="switchTab('completed')">已完成</button>
+    </div>
+
+    <!-- 表格卡片 -->
+    <div class="table-card">
+      <!-- 筛选条件 -->
+      <div class="table-filters">
+        <div class="filter-group">
+          <span class="filter-label">搜索</span>
+          <input type="text" class="filter-input" placeholder="输入关键词..." style="width:150px;">
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">状态</span>
+          <select class="filter-select">
+            <option value="">全部</option>
+            <option>启用</option>
+            <option>停用</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">仓库</span>
+          <select class="filter-select">
+            <option value="">全部仓库</option>
+            <option>北京仓</option>
+            <option>上海仓</option>
+            <option>广州仓</option>
+          </select>
+        </div>
+        <button class="btn btn-primary btn-sm" style="margin-left:8px;">查询</button>
+      </div>
+
+      <!-- 数据表格 -->
+      <table>
+        <thead>
+          <tr>
+            <th>编码</th>
+            <th>名称</th>
+            <th>类型</th>
+            <th>状态</th>
+            <th>创建时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span style="font-family:monospace;font-size:12px;color:#6366F1;">CODE-001</span></td>
+            <td><span style="font-weight:500;">数据名称</span></td>
+            <td><span class="tag" style="background:#EEF2FF;color:#4F46E5;">类型A</span></td>
+            <td><span class="status status-success">启用</span></td>
+            <td>2026-04-10 10:00</td>
+            <td>
+              <button class="btn btn-outline btn-sm" onclick="showDetail('CODE-001')">详情</button>
+              <button class="btn btn-outline btn-sm" style="margin-left:4px;" onclick="openEditModal('CODE-001')">编辑</button>
+            </td>
+          </tr>
+          <tr style="background:#FEF2F2;">
+            <td><span style="font-family:monospace;font-size:12px;color:#DC2626;">CODE-002</span></td>
+            <td><span style="font-weight:500;color:#DC2626;">异常数据</span></td>
+            <td><span class="tag" style="background:#FEE2E2;color:#DC2626;">类型B</span></td>
+            <td><span class="status status-error">异常</span></td>
+            <td>2026-04-09 15:30</td>
+            <td>
+              <button class="btn btn-outline btn-sm" onclick="showDetail('CODE-002')">详情</button>
+              <button class="btn btn-primary btn-sm" style="margin-left:4px;" onclick="handleException('CODE-002')">处理</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- 分页 -->
+      <div class="pagination">
+        <div class="pagination-info">显示 1-10 条，共 128 条</div>
+        <div class="pagination-buttons">
+          <button class="pagination-btn" disabled>‹</button>
+          <button class="pagination-btn active">1</button>
+          <button class="pagination-btn">2</button>
+          <button class="pagination-btn">3</button>
+          <button class="pagination-btn">...</button>
+          <button class="pagination-btn">13</button>
+          <button class="pagination-btn">›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 弹窗模板 - 新增/编辑 -->
+<div id="modal-xxx" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;">
+  <div style="background:white;border-radius:12px;width:90%;max-width:600px;max-height:85vh;overflow-y:auto;box-shadow:0 25px 80px rgba(0,0,0,0.35);">
+    <div style="padding:20px 24px;border-bottom:1px solid #E5E7EB;display:flex;align-items:center;justify-content:space-between;">
+      <h3 style="font-size:16px;font-weight:600;color:#1F2937;margin:0;" id="modal-xxx-title">新增</h3>
+      <button onclick="closeXxxModal()" style="width:32px;height:32px;border-radius:50%;border:none;background:#F3F4F6;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;">×</button>
+    </div>
+    <div style="padding:24px;overflow-y:auto;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:13px;font-weight:500;color:#374151;margin-bottom:6px;">编码</label>
+          <input type="text" class="form-input" placeholder="系统自动生成" disabled style="background:#F3F4F6;font-family:monospace;">
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:13px;font-weight:500;color:#374151;margin-bottom:6px;">名称 <span style="color:#EF4444;">*</span></label>
+          <input type="text" class="form-input" placeholder="输入名称" id="xxx-name">
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:13px;font-weight:500;color:#374151;margin-bottom:6px;">类型</label>
+          <select class="form-select" id="xxx-type">
+            <option value="">请选择</option>
+            <option>类型A</option>
+            <option>类型B</option>
+          </select>
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="display:block;font-size:13px;font-weight:500;color:#374151;margin-bottom:6px;">状态</label>
+          <select class="form-select" id="xxx-status">
+            <option value="1">启用</option>
+            <option value="0">停用</option>
+          </select>
+        </div>
+        <div style="margin-bottom:16px;grid-column:span 2;">
+          <label style="display:block;font-size:13px;font-weight:500;color:#374151;margin-bottom:6px;">备注</label>
+          <textarea class="form-input" style="resize:vertical;min-height:60px;" rows="2" placeholder="输入备注" id="xxx-remark"></textarea>
+        </div>
+      </div>
+    </div>
+    <div style="padding:16px 24px;border-top:1px solid #E5E7EB;display:flex;justify-content:flex-end;gap:12px;">
+      <button class="btn btn-outline" onclick="closeXxxModal()">取消</button>
+      <button class="btn btn-primary" onclick="saveXxx()">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- 详情弹窗 -->
+<div id="modal-xxx-detail" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;">
+  <div style="background:white;border-radius:12px;width:90%;max-width:520px;max-height:85vh;overflow-y:auto;box-shadow:0 25px 80px rgba(0,0,0,0.35);">
+    <div style="padding:20px 24px;border-bottom:1px solid #E5E7EB;display:flex;align-items:center;justify-content:space-between;">
+      <h3 style="font-size:16px;font-weight:600;color:#1F2937;margin:0;">详情</h3>
+      <button onclick="closeXxxDetailModal()" style="width:32px;height:32px;border-radius:50%;border:none;background:#F3F4F6;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;">×</button>
+    </div>
+    <div style="padding:24px;overflow-y:auto;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+        <div style="width:48px;height:48px;background:#EEF2FF;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;">📋</div>
+        <div>
+          <div style="font-size:16px;font-weight:600;color:#1F2937;" id="detail-xxx-name">数据名称</div>
+          <span class="tag" style="background:#DCFCE7;color:#16A34A;" id="detail-xxx-status">启用</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+        <div style="padding:12px;background:#F9FAFB;border-radius:8px;">
+          <div style="font-size:12px;color:#6B7280;margin-bottom:4px;">编码</div>
+          <div style="font-size:14px;font-weight:500;color:#374151;font-family:monospace;" id="detail-xxx-code">CODE-001</div>
+        </div>
+        <div style="padding:12px;background:#F9FAFB;border-radius:8px;">
+          <div style="font-size:12px;color:#6B7280;margin-bottom:4px;">类型</div>
+          <div style="font-size:14px;font-weight:500;color:#374151;" id="detail-xxx-type">类型A</div>
+        </div>
+        <div style="padding:12px;background:#F9FAFB;border-radius:8px;">
+          <div style="font-size:12px;color:#6B7280;margin-bottom:4px;">创建时间</div>
+          <div style="font-size:14px;font-weight:500;color:#374151;" id="detail-xxx-time">2026-04-10 10:00</div>
+        </div>
+        <div style="padding:12px;background:#F9FAFB;border-radius:8px;">
+          <div style="font-size:12px;color:#6B7280;margin-bottom:4px;">状态</div>
+          <div style="font-size:14px;font-weight:500;color:#374151;" id="detail-xxx-status2">启用</div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:16px 24px;border-top:1px solid #E5E7EB;display:flex;justify-content:flex-end;gap:12px;">
+      <button class="btn btn-outline" onclick="closeXxxDetailModal()">关闭</button>
+      <button class="btn btn-outline" onclick="deleteXxx()">删除</button>
+      <button class="btn btn-primary" onclick="closeXxxDetailModal();openEditModal()">编辑</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Tab切换
+function switchTab(tabName) {
+  // 隐藏所有tab内容，显示目标tab
+  const tabs = document.querySelectorAll('.tabs .tab');
+  tabs.forEach(t => {
+    t.style.background = '#F3F4F6';
+    t.style.color = '#6B7280';
+  });
+  event.target.style.background = '#EEF2FF';
+  event.target.style.color = '#4F46E5';
+}
+
+// 打开新增弹窗
+function openAddXxxModal() {
+  document.getElementById('modal-xxx-title').textContent = '新增';
+  // 清空表单
+  var m = document.getElementById('modal-xxx');
+  m.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+// 关闭弹窗
+function closeXxxModal() {
+  var m = document.getElementById('modal-xxx');
+  m.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// 打开详情
+function showDetail(code) {
+  var m = document.getElementById('modal-xxx-detail');
+  m.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+// 关闭详情
+function closeXxxDetailModal() {
+  var m = document.getElementById('modal-xxx-detail');
+  m.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// 保存
+function saveXxx() {
+  alert('保存成功');
+  closeXxxModal();
+}
+
+// 删除
+function deleteXxx() {
+  if (confirm('确定要删除？')) {
+    alert('已删除');
+    closeXxxDetailModal();
+  }
+}
+</script>

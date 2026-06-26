@@ -1,0 +1,14 @@
+{
+  "name": "opportunity-solution-tree",
+  "displayName": "机会方案树",
+  "version": "1.0.0",
+  "description": "从期望结果出发，系统探索机会空间，生成多样化解决方案，避免'解决方案跳跃'",
+  "author": "Elatia (基于 Product-Manager-Skills 提炼)",
+  "license": "MIT",
+  "tags": ["requirement-analysis", "opportunity-solution-tree", "product-management", "interactive"],
+  "category": "Product Management",
+  "type": "interactive",
+  "parentSkill": "requirement-analysis-system",
+  "createdAt": "2026-03-09T15:15:00+08:00",
+  "updatedAt": "2026-03-09T15:15:00+08:00"
+}

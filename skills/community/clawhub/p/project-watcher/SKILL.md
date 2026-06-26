@@ -1,35 +1,149 @@
 ---
-name: "Project Watcher"
-description: "项目规划与进度追踪。维护 roadmap，git commit 通知，远程部署感知，与飞书集成。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/project-watcher"
-sourceUrl: "https://clawhub.ai/skills/project-watcher"
+name: project-watcher
+description: 项目规划与进度追踪。维护 roadmap，git commit 通知，远程部署感知，与飞书集成。
 ---
 
-# Project Watcher
+# SKILL.md — project-watcher
 
-> 项目规划与进度追踪。维护 roadmap，git commit 通知，远程部署感知，与飞书集成。
+> 项目规划与进度追踪。维护 roadmap，让每个行动都能对应到规划条目。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/project-watcher`
-- **Source URL:** [https://clawhub.ai/skills/project-watcher](https://clawhub.ai/skills/project-watcher)
+## 核心原则
 
-## Overview
+1. **规划先行**：新项目必须先有 roadmap 再开工，没有规划就开工是无效推进
+2. **条目可追踪**：每个 roadmap 条目必须能回答"怎么算完成了"
+3. **进度有感知**：推进项目后主动更新 roadmap，不等待商人询问
+4. **变更即更新**：计划外的事项立即入 roadmap，不搁置
 
+---
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/project-watcher
+## A. 项目初始化
+
+**触发**：在非 workspace 根目录检测到 `.git`（首次进入项目目录工作）
+
+**流程**：
+1. 询问商人项目目标和技术栈
+2. 和商人一起拆解 roadmap（参考"拆解标准"）
+3. 创建 `project.md` 和 `ROADMAP.md`
+
+---
+
+## B. Roadmap 条目设计规范
+
+### 可接受的条目
 ```
+- [ ] 分帧流水线（进度：0%）
+  - 完成 criterion: 所有视频都能输出帧到 frames/
+  - 依赖：无
+  - 当前状态：等待素材
+```
+
+### 需要拆分的条目
+- ❌ "做偏好模型" → ✅ 拆成：文献调研、adapter 架构设计、训练数据准备、训练脚本、评估方案
+- ❌ "优化性能" → ✅ 拆成：profiling 定位瓶颈、制定优化方案、实施优化、验证效果
+
+**拆解由 agent 和商人共同完成**，商人确认后再开工。
+
+### ROADMAP.md 格式
+
+```markdown
+# [项目名称] Roadmap
+
+## 当前版本 v0.x
+
+### 进行中
+- [ ] **功能名称**（进度：30%）
+  - 完成标准：...
+  - 依赖：功能A
+  - 当前状态：正常推进
+
+### 已完成
+- [x] ~~已完成功能~~（v0.1）
+
+## 下一步
+- 调研方案（待确认）
+- 功能B（依赖功能A完成后解锁）
+
+## 技术债务
+- 暂无
+
+## 变更记录
+- 2026-03-28：新增功能C（需求变更）
+```
+
+---
+
+## C. 项目推进流程（核心）
+
+### 每次在项目目录推进工作时
+
+**触发条件**：Agent 在项目目录执行 exec / spawn subagent / 调用工具后
+
+**Agent 行为**：
+
+1. **执行前**：对照 roadmap，确认当前要做的是哪个条目
+2. **执行后**：判断是否有进展 → 更新对应条目的进度或状态
+
+### 进度更新判断
+
+| 情况 | 操作 |
+|------|------|
+| 条目完成 | `[ ]` → `[x]`，进度标 100%，移至已完成区 |
+| 部分进展 | 更新进度 %，注明做了什么 |
+| 遇到障碍 | 更新"当前状态"，告知商人卡点 |
+| 发现新需求 | 新增条目，标注"计划外" |
+| 依赖变更 | 更新依赖关系，告知商人 |
+
+### 更新后主动告知商人
+
+```
+✅ 已推进 [项目] — [条目名称]
+  进度：30% → 45%
+  做了什么：完成了人像过滤逻辑
+  下一步：聚合函数设计
+```
+
+---
+
+## D. 变更同步
+
+**触发**：项目中出现了 roadmap 没有记载的变化
+
+| 变化类型 | 处理 |
+|---------|------|
+| 需求变更（商人提出） | 立即更新 roadmap，标注变更原因和日期 |
+| 技术方案调整 | 更新条目描述，说明原因 |
+| 发现新任务 | 新增条目，初始进度 0% |
+| 某条目取消 | 移到"变更记录"，注明取消原因 |
+
+**原则**：变更发生后**立即更新**，不要攒到会话结束。
+
+---
+
+## E. 进度回顾
+
+**触发**：商人询问 / 每次会话开始时在项目目录工作
+
+Agent 主动报告：
+```
+📋 [项目] 进度 — v0.3
+  进行中：人像检测回溯（45%）
+  下一步：聚合函数设计
+  计划外：新增了视频质量评估需求（新增）
+  阻塞：等待标注数据
+```
+
+---
+
+## F. 与其他模块的关系
+
+- **post-commit hook**：通知只负责通知，不触发 roadmap 更新
+- **roadmap 更新**：由 agent 在推进项目时自然完成
+- **github skill**：处理 GitHub Issues → 可作为 roadmap 条目来源
+
+---
+
+## G. 配置
+
+凭证和项目配置见对应文件：
+- `configs/feishu.json` — 飞书凭证（**首次使用需填写自己的 app_id 和 app_secret**）
+- `configs/projects.yaml` — 项目路径和部署配置（根据需要添加项目）

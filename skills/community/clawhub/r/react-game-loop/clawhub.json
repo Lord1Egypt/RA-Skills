@@ -1,0 +1,13 @@
+{
+  "name": "react-hooks-game-loop",
+  "displayName": "React Game Loop Hooks",
+  "version": "1.0.0",
+  "description": "Production-ready React hooks for game loops and animations. Includes useGameLoop with stale-closure safety, delta-time clamping, and error resilience.",
+  "author": "Frieren",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["react", "hooks", "typescript", "game", "animation", "raf"],
+  "minOpenClawVersion": "1.2.0"
+}

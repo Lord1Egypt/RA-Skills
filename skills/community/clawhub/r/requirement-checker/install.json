@@ -1,0 +1,10 @@
+{
+  "name": "requirement-checker",
+  "version": "2.8.0",
+  "description": "需求文档规范自动检查技能（AI 驱动 + 智能引导 + 温柔话术 + 建议分级）",
+  "author": "红曼为帆",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "node scripts/postinstall.js"
+  }
+}

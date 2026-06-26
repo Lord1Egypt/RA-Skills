@@ -1,0 +1,25 @@
+
+{
+  "recommendations": [
+    {
+      "skill": "group-chat-summarizer-cn",
+      "reason": "如果你需要整理心理咨询相关的群聊或会议记录",
+      "scenarios": ["整理个案研讨会", "总结督导记录", "整理学习笔记"]
+    },
+    {
+      "skill": "memory-auto-update",
+      "reason": "自动记录和更新你的学习和实践笔记",
+      "scenarios": ["记录咨询心得", "保存学习笔记", "跟踪个人成长"]
+    },
+    {
+      "skill": "create-leader",
+      "reason": "如果你同时也需要处理职场关系和向上管理",
+      "scenarios": ["管理咨询团队", "处理机构管理", "职业发展规划"]
+    },
+    {
+      "skill": "nutrition-and-health",
+      "reason": "心理健康和身体健康息息相关",
+      "scenarios": ["整体健康规划", "压力管理", "身心平衡"]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "enabled": true,
+  "check_interval_hours": 4,
+  "show_notification": true,
+  "last_check_time": "2026-04-09T19:11:30.693737"
+}

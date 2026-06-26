@@ -1,35 +1,93 @@
 ---
-name: "奇门遁甲排盘系统"
+name: qimen-dunjia
 description: "奇门遁甲排盘系统。命令行版本，直接输出盘面解读（财运/事业/感情指数、吉方吉色、秘法推语）。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qimen-dunjia"
-sourceUrl: "https://clawhub.ai/skills/qimen-dunjia"
+metadata:
+  {
+    "openclaw": {
+      "emoji": "☯️",
+      "requires": { "bins": ["node"] },
+    },
+  }
 ---
 
 # 奇门遁甲排盘系统
 
-> 奇门遁甲排盘系统。命令行版本，直接输出盘面解读（财运/事业/感情指数、吉方吉色、秘法推语）。
+中国传统时空易理预测学，基于阴阳五行、九宫八卦、八门九星、八神等元素进行时空推演。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qimen-dunjia`
-- **Source URL:** [https://clawhub.ai/skills/qimen-dunjia](https://clawhub.ai/skills/qimen-dunjia)
+## 使用场景
 
-## Overview
+✅ **使用此 skill 当：**
 
+- 需要择时（选择吉时吉日）
+- 问事占卜（事业、财运、感情、人际）
+- 今日运势参考
+- 决策时机分析
+- 需要吉方吉色建议
 
-## Installation
-To install this skill, run the following command in your terminal:
+## 使用方法
+
+### 直接运行（当前时间）
+
 ```bash
-hermes skills install clawhub/qimen-dunjia
+node ~/.openclaw/workspace/skills/qimen-dunjia/qimen.js
 ```
+
+### 指定时间
+
+```bash
+node ~/.openclaw/workspace/skills/qimen-dunjia/qimen.js "2026-03-15 14:30"
+```
+
+## 输出说明
+
+| 项目 | 说明 |
+|------|------|
+| **四柱** | 年月日时干支 |
+| **节气/局制** | 当前节气、阴阳遁、局数 |
+| **财运指数** | 生门落宫+五行生克+神星权重 |
+| **问事成功率** | 值符+九星+八门综合评分 |
+| **人际/感情** | 六合神+阴阳二气+落宫状态 |
+| **结果可能性** | 全局吉门配置+空亡影响 |
+| **吉方/吉色** | 值符宫位对应的方位和颜色 |
+| **秘法推语** | AI 生成的运势解读 |
+
+## 特殊符号说明
+
+- **驿马（马）**：动迁、变化、驿动之象
+- **旬空（空）**：空亡、无力、时机未到
+- **刑**：相刑、冲突、阻碍
+- **迫**：门迫、压力大、受制
+- **墓**：入墓、收藏、隐藏
+
+## 九星吉凶
+
+| 星名 | 吉凶 | 权重 |
+|------|------|------|
+| 天禽 | 吉 | 100 |
+| 天任 | 吉 | 85 |
+| 天辅 | 吉 | 90 |
+| 天心 | 吉 | 90 |
+| 天冲 | 吉 | 80 |
+| 天英 | 平 | 60 |
+| 天蓬 | 凶 | 30 |
+| 天柱 | 凶 | 40 |
+| 天芮 | 凶 | 20 |
+
+## 八门吉凶
+
+| 门名 | 吉凶 | 权重 |
+|------|------|------|
+| 开门 | 吉 | 95 |
+| 生门 | 吉 | 100 |
+| 休门 | 吉 | 90 |
+| 景门 | 平 | 65 |
+| 杜门 | 平 | 50 |
+| 惊门 | 凶 | 40 |
+| 伤门 | 凶 | 30 |
+| 死门 | 凶 | 10 |
+
+## 注意事项
+
+- 本系统仅供娱乐参考
+- 重大决策请结合多方信息
+- 传统文化传承，仅供参考

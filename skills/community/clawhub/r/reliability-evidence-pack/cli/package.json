@@ -1,0 +1,27 @@
+{
+  "name": "rep-cli",
+  "version": "1.0.0",
+  "description": "REP CLI - Resource Evaluation Platform Command Line Interface",
+  "main": "src/index.js",
+  "bin": {
+    "rep": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "rep",
+    "resource",
+    "evaluation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

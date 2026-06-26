@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Proxy Gateway - 预授权</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .step {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+        .step-number {
+            font-weight: bold;
+            color: #007bff;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .api-key {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            word-break: break-all;
+            margin: 10px 0;
+            display: none;
+        }
+        .warning {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            color: #856404;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Proxy Gateway 预授权</h1>
+        
+        <div class="warning">
+            <strong>安全提示：</strong>您的私钥仅用于签名授权，不会被存储或传输。
+        </div>
+
+        <div class="step">
+            <div class="step-number">步骤 1</div>
+            <h3>连接钱包</h3>
+            <button onclick="connectWallet()">连接 MetaMask</button>
+            <div id="wallet-info"></div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">步骤 2</div>
+            <h3>设置授权额度</h3>
+            <p>授权 Proxy Gateway 可以使用的 USDC 额度</p>
+            <input type="number" id="amount" placeholder="授权额度 (USDC)" value="10" min="1" step="0.1">
+            <p style="font-size: 14px; color: #666;">
+                约可使用 <span id="requests">10000</span> 次
+                （0.001 USDC/次）
+            </p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">步骤 3</div>
+            <h3>确认授权</h3>
+            <button onclick="authorize()">授权并生成 API Key</button>
+        </div>
+
+        <div class="step" id="result-step" style="display: none;">
+            <div class="step-number">✅ 完成</div>
+            <h3>您的 API Key</h3>
+            <div class="api-key" id="api-key"></div>
+            <div class="warning">
+                <strong>重要：</strong>请保存好 API Key，它不会再次显示！
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let walletAddress = null;
+
+        async function connectWallet() {
+            if (typeof window.ethereum === 'undefined') {
+                alert('请安装 MetaMask 钱包');
+                return;
+            }
+
+            try {
+                const accounts = await ethereum.request({
+                    method: 'eth_requestAccounts'
+                });
+                walletAddress = accounts[0];
+                document.getElementById('wallet-info').innerHTML = `
+                    <p style="color: green;">✅ 已连接: ${walletAddress}</p>
+                `;
+            } catch (error) {
+                alert('连接失败: ' + error.message);
+            }
+        }
+
+        document.getElementById('amount').addEventListener('input', function(e) {
+            const amount = parseFloat(e.target.value) || 0;
+            document.getElementById('requests').textContent = 
+                Math.floor(amount / 0.001).toLocaleString();
+        });
+
+        async function authorize() {
+            if (!walletAddress) {
+                alert('请先连接钱包');
+                return;
+            }
+
+            const amount = document.getElementById('amount').value;
+            if (!amount || amount <= 0) {
+                alert('请输入有效的授权额度');
+                return;
+            }
+
+            try {
+                // 构建授权消息
+                const message = `Authorize Proxy Gateway to use ${amount} USDC\n` +
+                               `Wallet: ${walletAddress}\n` +
+                               `Timestamp: ${Date.now()}`;
+
+                // 请求用户签名
+                const signature = await ethereum.request({
+                    method: 'personal_sign',
+                    params: [message, walletAddress]
+                });
+
+                // 发送到服务端
+                const response = await fetch('/authorize', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        wallet_address: walletAddress,
+                        amount: parseFloat(amount),
+                        signature: signature
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    document.getElementById('api-key').textContent = result.api_key;
+                    document.getElementById('api-key').style.display = 'block';
+                    document.getElementById('result-step').style.display = 'block';
+                } else {
+                    alert('授权失败: ' + result.message);
+                }
+            } catch (error) {
+                alert('授权失败: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "defaultModel": "default",
+  "models": {
+    "default": {
+      "name": "默认模型",
+      "provider": "system",
+      "enabled": true
+    },
+    "deepseek": {
+      "name": "DeepSeek",
+      "provider": "deepseek",
+      "apiUrl": "https://api.deepseek.com/v1/chat/completions",
+      "model": "deepseek-chat",
+      "enabled": false,
+      "apiKey": null
+    },
+    "openai": {
+      "name": "OpenAI GPT-4o",
+      "provider": "openai",
+      "apiUrl": "https://api.openai.com/v1/chat/completions",
+      "model": "gpt-4o",
+      "enabled": false,
+      "apiKey": null
+    },
+    "anthropic": {
+      "name": "Anthropic Claude",
+      "provider": "anthropic",
+      "apiUrl": "https://api.anthropic.com/v1/messages",
+      "model": "claude-sonnet-4-20250514",
+      "enabled": false,
+      "apiKey": null
+    }
+  },
+  "generationConfig": {
+    "temperature": 0.7,
+    "maxTokens": 150,
+    "topP": 0.9
+  },
+  "promptTemplate": {
+    "systemPrompt": "你是一个热情、专业、友好的抖音账号运营助手。请根据用户的评论生成一个积极、大方、热情的回复。回复要自然亲切，不超过100字，不要使用表情符号开头。",
+    "userPromptTemplate": "用户评论：\"{comment}\"\n\n请生成一个合适的回复："
+  },
+  "lastUpdated": null
+}

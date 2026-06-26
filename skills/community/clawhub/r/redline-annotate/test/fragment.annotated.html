@@ -1,0 +1,711 @@
+<h1>Plain HTML fragment</h1><p>no body tag</p>
+<!-- web-annotate: injected -->
+<style data-wa-ui="1">
+/* ============================================================
+   web-annotate injected styles
+   所有 class 加 wa- 前缀，避免污染宿主页面
+   z-index 用 2147483600+，几乎置顶但留余量
+   ============================================================ */
+
+:root {
+  --wa-primary: #2563eb;
+  --wa-primary-hover: #1d4ed8;
+  --wa-danger: #dc2626;
+  --wa-bg: #ffffff;
+  --wa-text: #1f2937;
+  --wa-muted: #6b7280;
+  --wa-border: #e5e7eb;
+  --wa-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --wa-accent: #f97316;
+}
+
+/* ---------- annotate mode global ---------- */
+body.wa-active,
+body.wa-active * {
+  cursor: crosshair !important;
+}
+
+/* ---------- toolbar ---------- */
+.wa-toolbar {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 2147483600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  background: var(--wa-bg);
+  border: 1px solid var(--wa-border);
+  border-radius: 10px;
+  box-shadow: var(--wa-shadow);
+  font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    sans-serif;
+  color: var(--wa-text);
+}
+
+.wa-btn {
+  appearance: none;
+  border: 1px solid var(--wa-border);
+  background: #f9fafb;
+  color: var(--wa-text);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  line-height: 1;
+}
+.wa-btn:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+.wa-btn-primary {
+  background: var(--wa-primary);
+  color: #fff;
+  border-color: var(--wa-primary);
+}
+.wa-btn-primary:hover {
+  background: var(--wa-primary-hover);
+  border-color: var(--wa-primary-hover);
+}
+.wa-btn-active {
+  background: var(--wa-accent);
+  border-color: var(--wa-accent);
+  color: #fff;
+}
+.wa-btn-active:hover {
+  background: #ea580c;
+  border-color: #ea580c;
+}
+.wa-btn-danger {
+  background: #fff;
+  color: var(--wa-danger);
+  border-color: #fecaca;
+}
+.wa-btn-danger:hover {
+  background: #fef2f2;
+  border-color: var(--wa-danger);
+}
+
+.wa-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  margin-left: 2px;
+  background: #f3f4f6;
+  color: var(--wa-muted);
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ---------- hover outline ---------- */
+.wa-hover {
+  position: absolute;
+  display: none;
+  pointer-events: none;
+  border: 2px solid var(--wa-primary);
+  background: rgba(37, 99, 235, 0.08);
+  border-radius: 2px;
+  z-index: 2147483500;
+  transition: all 0.05s linear;
+}
+
+/* ---------- numbered badge on annotated element ---------- */
+.wa-badge {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--wa-accent);
+  color: #fff;
+  font: 600 12px/24px -apple-system, BlinkMacSystemFont, sans-serif;
+  text-align: center;
+  cursor: pointer;
+  z-index: 2147483550;
+  box-shadow: 0 2px 6px rgba(249, 115, 22, 0.4);
+  user-select: none;
+  transition: transform 0.15s;
+}
+.wa-badge:hover {
+  transform: scale(1.15);
+}
+
+/* ---------- popover (comment editor) ---------- */
+.wa-popover {
+  position: absolute;
+  width: 320px;
+  background: var(--wa-bg);
+  border: 1px solid var(--wa-border);
+  border-radius: 10px;
+  box-shadow: var(--wa-shadow);
+  z-index: 2147483600;
+  padding: 12px;
+  font: 13px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    sans-serif;
+  color: var(--wa-text);
+}
+.wa-popover-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--wa-text);
+}
+.wa-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px;
+  border: 1px solid var(--wa-border);
+  border-radius: 6px;
+  font: inherit;
+  resize: vertical;
+  box-sizing: border-box;
+  outline: none;
+  color: var(--wa-text);
+  background: #fff;
+}
+.wa-textarea:focus {
+  border-color: var(--wa-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+.wa-popover-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  align-items: center;
+}
+.wa-popover-actions > span {
+  flex: 1;
+}
+
+/* ---------- sidebar ---------- */
+.wa-sidebar {
+  position: fixed;
+  top: 72px;
+  right: 16px;
+  width: 280px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  background: var(--wa-bg);
+  border: 1px solid var(--wa-border);
+  border-radius: 10px;
+  box-shadow: var(--wa-shadow);
+  z-index: 2147483540;
+  padding: 10px;
+  font: 13px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    sans-serif;
+  color: var(--wa-text);
+}
+.wa-sidebar-title {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--wa-border);
+  color: var(--wa-text);
+}
+.wa-sidebar-empty {
+  font-size: 12px;
+  color: var(--wa-muted);
+  padding: 16px 4px;
+  text-align: center;
+  line-height: 1.6;
+}
+.wa-sidebar-item {
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 4px;
+  border: 1px solid transparent;
+  transition: background 0.15s, border-color 0.15s;
+}
+.wa-sidebar-item:hover {
+  background: #f9fafb;
+  border-color: var(--wa-border);
+}
+.wa-sidebar-id {
+  display: inline-block;
+  background: var(--wa-accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 8px;
+  margin-bottom: 4px;
+}
+.wa-sidebar-text {
+  font-size: 12px;
+  color: var(--wa-muted);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wa-sidebar-comment {
+  font-size: 13px;
+  color: var(--wa-text);
+  line-height: 1.5;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- toast ---------- */
+.wa-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  background: rgba(17, 24, 39, 0.95);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    sans-serif;
+  z-index: 2147483600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  max-width: 80vw;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+.wa-toast-show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+</style>
+<script data-wa-ui="1">
+(function () {
+  'use strict';
+
+  if (window.__webAnnotateInjected) return;
+  window.__webAnnotateInjected = true;
+
+  const STORAGE_KEY = '__web_annotate_state__';
+  const UI_ATTR = 'data-wa-ui';
+
+  const state = {
+    mode: 'idle',
+    annotations: [],
+    nextId: 1,
+    finder: null,
+    hoverEl: null,
+    activePopover: null,
+  };
+
+  // ---------- persistence ----------
+  function persist() {
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ annotations: state.annotations, nextId: state.nextId })
+      );
+    } catch (e) {}
+  }
+
+  function restore() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      state.annotations = parsed.annotations || [];
+      state.nextId = parsed.nextId || state.annotations.length + 1;
+    } catch (e) {}
+  }
+
+  // ---------- selector generation ----------
+  function loadFinder() {
+    return new Promise((resolve) => {
+      if (window.finder) {
+        state.finder = window.finder;
+        return resolve();
+      }
+      const s = document.createElement('script');
+      s.src = 'https://unpkg.com/@medv/finder@3.1.0/finder.js';
+      s.setAttribute(UI_ATTR, '1');
+      s.onload = () => {
+        state.finder = window.finder || null;
+        resolve();
+      };
+      s.onerror = () => resolve();
+      document.head.appendChild(s);
+    });
+  }
+
+  function fallbackSelector(el) {
+    const parts = [];
+    let cur = el;
+    while (cur && cur.nodeType === 1 && cur !== document.documentElement) {
+      let part = cur.tagName.toLowerCase();
+      if (cur.id) {
+        parts.unshift(part + '#' + CSS.escape(cur.id));
+        break;
+      }
+      const parent = cur.parentNode;
+      if (parent) {
+        const sibs = Array.from(parent.children).filter(
+          (c) => c.tagName === cur.tagName
+        );
+        if (sibs.length > 1) {
+          part += `:nth-of-type(${sibs.indexOf(cur) + 1})`;
+        }
+      }
+      parts.unshift(part);
+      cur = cur.parentNode;
+    }
+    return parts.join(' > ');
+  }
+
+  function getSelector(el) {
+    if (state.finder) {
+      try {
+        return state.finder(el, { className: () => true, tagName: () => true });
+      } catch (e) {}
+    }
+    return fallbackSelector(el);
+  }
+
+  // ---------- DOM helpers ----------
+  function isOurUI(el) {
+    while (el && el.nodeType === 1) {
+      if (el.hasAttribute && el.hasAttribute(UI_ATTR)) return true;
+      el = el.parentNode;
+    }
+    return false;
+  }
+
+  function el(tag, props = {}, children = []) {
+    const node = document.createElement(tag);
+    node.setAttribute(UI_ATTR, '1');
+    for (const k in props) {
+      if (k === 'style') Object.assign(node.style, props[k]);
+      else if (k === 'onclick') node.addEventListener('click', props[k]);
+      else if (k === 'oninput') node.addEventListener('input', props[k]);
+      else node[k] = props[k];
+    }
+    children.forEach((c) =>
+      node.appendChild(typeof c === 'string' ? document.createTextNode(c) : c)
+    );
+    return node;
+  }
+
+  // ---------- toolbar ----------
+  let modeBtn, sidebarBox, hoverBox;
+
+  function buildToolbar() {
+    const bar = el('div', { className: 'wa-toolbar' }, [
+      (modeBtn = el('button', {
+        className: 'wa-btn wa-btn-primary',
+        onclick: toggleMode,
+      }, ['✏️ 标注模式'])),
+      el('button', { className: 'wa-btn', onclick: exportJSON }, ['📋 复制反馈']),
+      el('button', { className: 'wa-btn', onclick: clearAll }, ['🗑 清空']),
+      el('span', { className: 'wa-count', id: 'wa-count' }, ['0']),
+    ]);
+    document.body.appendChild(bar);
+
+    hoverBox = el('div', { className: 'wa-hover' });
+    document.body.appendChild(hoverBox);
+
+    sidebarBox = el('div', { className: 'wa-sidebar' });
+    document.body.appendChild(sidebarBox);
+  }
+
+  function toggleMode() {
+    state.mode = state.mode === 'idle' ? 'annotate' : 'idle';
+    document.body.classList.toggle('wa-active', state.mode === 'annotate');
+    modeBtn.textContent =
+      state.mode === 'annotate' ? '✋ 退出标注' : '✏️ 标注模式';
+    modeBtn.classList.toggle('wa-btn-active', state.mode === 'annotate');
+    if (state.mode === 'idle') hideHover();
+  }
+
+  // ---------- hover highlight ----------
+  function moveHoverTo(target) {
+    if (!target) return hideHover();
+    const r = target.getBoundingClientRect();
+    Object.assign(hoverBox.style, {
+      display: 'block',
+      left: r.left + window.scrollX + 'px',
+      top: r.top + window.scrollY + 'px',
+      width: r.width + 'px',
+      height: r.height + 'px',
+    });
+  }
+  function hideHover() {
+    hoverBox.style.display = 'none';
+  }
+
+  // ---------- popover ----------
+  function showPopover(target, existing) {
+    closePopover();
+    const r = target.getBoundingClientRect();
+    const ta = el('textarea', {
+      className: 'wa-textarea',
+      placeholder: '写下针对这个元素的修改意见…',
+    });
+    ta.value = existing ? existing.comment : '';
+
+    const pop = el('div', { className: 'wa-popover' }, [
+      el('div', { className: 'wa-popover-title' }, [
+        existing ? `编辑标注 #${existing.id}` : '新增标注',
+      ]),
+      ta,
+      el('div', { className: 'wa-popover-actions' }, [
+        el('button', {
+          className: 'wa-btn wa-btn-primary',
+          onclick: () => {
+            const text = ta.value.trim();
+            if (!text) return;
+            if (existing) {
+              existing.comment = text;
+            } else {
+              addAnnotation(target, text);
+            }
+            persist();
+            renderAll();
+            closePopover();
+          },
+        }, ['保存']),
+        el('button', { className: 'wa-btn', onclick: closePopover }, ['取消']),
+        existing
+          ? el('button', {
+              className: 'wa-btn wa-btn-danger',
+              onclick: () => {
+                state.annotations = state.annotations.filter(
+                  (a) => a.id !== existing.id
+                );
+                persist();
+                renderAll();
+                closePopover();
+              },
+            }, ['删除'])
+          : el('span', {}),
+      ]),
+    ]);
+
+    document.body.appendChild(pop);
+    state.activePopover = pop;
+
+    const popH = 200;
+    const top =
+      r.bottom + popH + 12 < window.innerHeight
+        ? r.bottom + window.scrollY + 8
+        : r.top + window.scrollY - popH - 8;
+    Object.assign(pop.style, {
+      left: Math.max(8, r.left + window.scrollX) + 'px',
+      top: Math.max(8, top) + 'px',
+    });
+    setTimeout(() => ta.focus(), 0);
+  }
+
+  function closePopover() {
+    if (state.activePopover) {
+      state.activePopover.remove();
+      state.activePopover = null;
+    }
+  }
+
+  // ---------- annotations ----------
+  function addAnnotation(target, comment) {
+    const r = target.getBoundingClientRect();
+    state.annotations.push({
+      id: state.nextId++,
+      selector: getSelector(target),
+      elementHTML: (target.outerHTML || '').slice(0, 1000),
+      elementText: (target.textContent || '').trim().slice(0, 100),
+      boundingBox: {
+        x: Math.round(r.left + window.scrollX),
+        y: Math.round(r.top + window.scrollY),
+        w: Math.round(r.width),
+        h: Math.round(r.height),
+      },
+      comment,
+    });
+  }
+
+  function findElementBySelector(sel) {
+    try {
+      return document.querySelector(sel);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // ---------- rendering ----------
+  function renderBadges() {
+    document.querySelectorAll('.wa-badge').forEach((n) => n.remove());
+    state.annotations.forEach((a) => {
+      const target = findElementBySelector(a.selector);
+      if (!target) return;
+      const r = target.getBoundingClientRect();
+      const badge = el('div', {
+        className: 'wa-badge',
+        title: a.comment,
+        onclick: (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          showPopover(target, a);
+        },
+      }, [String(a.id)]);
+      Object.assign(badge.style, {
+        left: r.left + window.scrollX - 12 + 'px',
+        top: r.top + window.scrollY - 12 + 'px',
+      });
+      document.body.appendChild(badge);
+    });
+  }
+
+  function renderSidebar() {
+    sidebarBox.innerHTML = '';
+    sidebarBox.appendChild(
+      el('div', { className: 'wa-sidebar-title' }, [
+        `标注 (${state.annotations.length})`,
+      ])
+    );
+    if (state.annotations.length === 0) {
+      sidebarBox.appendChild(
+        el('div', { className: 'wa-sidebar-empty' }, [
+          '点"标注模式"后，点页面元素开始批注',
+        ])
+      );
+      return;
+    }
+    state.annotations.forEach((a) => {
+      const item = el('div', {
+        className: 'wa-sidebar-item',
+        onclick: () => {
+          const t = findElementBySelector(a.selector);
+          if (t) {
+            t.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => showPopover(t, a), 350);
+          }
+        },
+      }, [
+        el('div', { className: 'wa-sidebar-id' }, ['#' + a.id]),
+        el('div', { className: 'wa-sidebar-text' }, [a.elementText || a.selector]),
+        el('div', { className: 'wa-sidebar-comment' }, [a.comment]),
+      ]);
+      sidebarBox.appendChild(item);
+    });
+  }
+
+  function renderCount() {
+    const c = document.getElementById('wa-count');
+    if (c) c.textContent = String(state.annotations.length);
+  }
+
+  function renderAll() {
+    renderBadges();
+    renderSidebar();
+    renderCount();
+  }
+
+  // ---------- export / clear ----------
+  async function exportJSON() {
+    if (state.annotations.length === 0) {
+      toast('还没有任何标注');
+      return;
+    }
+    const fileName = location.pathname
+      .split('/')
+      .pop()
+      .replace(/\.annotated\.html$/, '.html');
+    const payload = {
+      file: fileName,
+      timestamp: new Date().toISOString(),
+      annotations: state.annotations,
+    };
+    const text = JSON.stringify(payload, null, 2);
+    try {
+      await navigator.clipboard.writeText(text);
+      toast(`已复制 ${state.annotations.length} 条标注，回 Claude Code 说"应用反馈"`);
+    } catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+      toast('已复制（fallback 模式）');
+    }
+  }
+
+  function clearAll() {
+    if (state.annotations.length === 0) return;
+    if (!confirm('清空所有标注？此操作不可撤销。')) return;
+    state.annotations = [];
+    state.nextId = 1;
+    persist();
+    renderAll();
+  }
+
+  // ---------- toast ----------
+  let toastTimer = null;
+  function toast(msg) {
+    let box = document.querySelector('.wa-toast');
+    if (!box) {
+      box = el('div', { className: 'wa-toast' });
+      document.body.appendChild(box);
+    }
+    box.textContent = msg;
+    box.classList.add('wa-toast-show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => box.classList.remove('wa-toast-show'), 2400);
+  }
+
+  // ---------- event handlers ----------
+  function onMouseOver(e) {
+    if (state.mode !== 'annotate') return;
+    if (isOurUI(e.target)) return hideHover();
+    state.hoverEl = e.target;
+    moveHoverTo(e.target);
+  }
+
+  function onClick(e) {
+    if (state.mode !== 'annotate') return;
+    if (isOurUI(e.target)) return;
+    e.preventDefault();
+    e.stopPropagation();
+    showPopover(e.target);
+  }
+
+  function onResize() {
+    renderBadges();
+    if (state.hoverEl && state.mode === 'annotate') moveHoverTo(state.hoverEl);
+  }
+
+  // ---------- init ----------
+  function init() {
+    restore();
+    buildToolbar();
+    renderAll();
+    document.addEventListener('mouseover', onMouseOver, true);
+    document.addEventListener('click', onClick, true);
+    window.addEventListener('scroll', renderBadges, { passive: true });
+    window.addEventListener('resize', onResize);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (state.activePopover) closePopover();
+        else if (state.mode === 'annotate') toggleMode();
+      }
+    });
+  }
+
+  loadFinder().then(() => {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  });
+})();
+</script>
+<!-- /web-annotate -->

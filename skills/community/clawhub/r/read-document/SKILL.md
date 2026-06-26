@@ -1,35 +1,46 @@
 ---
-name: "read-any-document (Canonizr)"
-description: "Convert any document to markdown using Canonizr"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/read-document"
-sourceUrl: "https://clawhub.ai/skills/read-document"
+name: read-document
+description: Convert any document to markdown using Canonizr
 ---
 
-# read-any-document (Canonizr)
+Read any document using the Canonizr pipeline. Supports PDFs, images, office files, and more.
 
-> Convert any document to markdown using Canonizr
+## Using Canonizr
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/read-document`
-- **Source URL:** [https://clawhub.ai/skills/read-document](https://clawhub.ai/skills/read-document)
+You can pass documents to Canonizr via CLI.
 
-## Overview
+```sh
+canonizr convert document.pdf
+```
 
+The output of the above command is a direct markdown transcript.
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/read-document
+Failed attempts to convert a file return an error message. Depending on context you may wish to store the output in an adjacent `.md` file to avoid re-processing.
+
+Supported file formats include PDFs, images (which will be transcribed), and office files.
+
+## Debugging
+
+You can check if the Canonizr pipeline is running by using the CLI:
+
+```sh
+canonizr health
+```
+
+If the pipeline is not running then your user may not have started it. If you have docker permissions then you can start the service with:
+
+```sh
+canonizr up
+```
+
+And stop it with:
+
+```sh
+canonizr down
+```
+
+You can get a full JSON response with metadata (instead of just markdown) using the `--json` flag:
+
+```sh
+canonizr convert --json document.pdf
 ```

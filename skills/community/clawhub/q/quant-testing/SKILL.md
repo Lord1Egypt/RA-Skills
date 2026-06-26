@@ -1,35 +1,165 @@
 ---
-name: "Quant Testing"
-description: "量化测试流程技能。当用户说"回归测试"、"策略测试"、"回测验证"、"实盘验证"、"测试"、"上线"、"发布"时自动触发。提供回归测试流程、测试用例模板、测试报告模板。适用于量化项目的测试和上线阶段。"
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/quant-testing"
-sourceUrl: "https://clawhub.ai/skills/quant-testing"
+name: quant-testing
+description: 量化测试流程技能。当用户说"回归测试"、"策略测试"、"回测验证"、"实盘验证"、"测试"、"上线"、"发布"时自动触发。提供回归测试流程、测试用例模板、测试报告模板。适用于量化项目的测试和上线阶段。
 ---
 
-# Quant Testing
+# 量化测试流程技能
 
-> 量化测试流程技能。当用户说"回归测试"、"策略测试"、"回测验证"、"实盘验证"、"测试"、"上线"、"发布"时自动触发。提供回归测试流程、测试用例模板、测试报告模板。适用于量化项目的测试和上线阶段。
+> 版本：1.0.0
+> 适用项目：量化策略项目
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/quant-testing`
-- **Source URL:** [https://clawhub.ai/skills/quant-testing](https://clawhub.ai/skills/quant-testing)
+---
 
-## Overview
+## 🎯 测试目标
 
+**确保代码质量、策略稳定性、实盘安全**
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/quant-testing
+---
+
+## 📋 回归测试流程
+
+### 阶段1：单元测试
+
+**测试范围**：
+- 核心函数独立测试
+- 边界条件测试
+- 异常情况测试
+
+**测试用例模板**：
+```python
+# tests/test_xxx.py
+import sys
+sys.path.insert(0, '/path/to/project')
+from module import function_to_test
+
+print("=" * 60)
+print("模块测试")
+print("=" * 60)
+
+# 测试1：正常流程
+result = function_to_test(normal_input)
+assert result == expected_output
+
+# 测试2：边界条件
+result = function_to_test(edge_case)
+assert result == expected_edge_output
+
+# 测试3：异常情况
+try:
+    function_to_test(invalid_input)
+    assert False
+except ValueError:
+    pass
+
+print("✅ 所有测试通过！")
 ```
+
+**检查清单**：
+- [ ] 每个核心模块有测试文件
+- [ ] 测试覆盖率 > 80%
+- [ ] 所有测试通过
+
+---
+
+### 阶段2：集成测试
+
+**测试范围**：
+- 数据流程测试
+- 策略逻辑测试
+- 接口测试
+
+**检查清单**：
+- [ ] 数据获取正常
+- [ ] 因子计算正确
+- [ ] 信号生成合理
+- [ ] 持仓更新正确
+
+---
+
+### 阶段3：回测验证
+
+**必须使用QMT回测模式**
+
+**参数设置**：
+- [ ] 初始资金
+- [ ] 单只仓位
+- [ ] 最大持仓数
+- [ ] 止损/止盈比例
+- [ ] 手续费率
+
+**检查清单**：
+- [ ] 买入股票数量合理
+- [ ] 买入价格接近实际
+- [ ] 无异常买卖
+- [ ] 持仓时间合理
+- [ ] 收益符合预期
+
+---
+
+### 阶段4：实盘验证
+
+**小资金测试（5000-10000元）**
+
+**监控要点**：
+- [ ] 策略启动正常
+- [ ] 信号加载正常
+- [ ] 数据获取正常
+- [ ] 买入触发正常
+- [ ] 委托确认正常
+- [ ] 持仓更新正常
+
+**观察期**：1-2周
+
+---
+
+## 📝 测试报告模板
+
+```markdown
+# 测试报告
+
+**测试日期**：YYYY-MM-DD
+**测试人**：XXX
+
+---
+
+## 一、测试概览
+
+| 测试类型 | 数量 | 通过 | 失败 |
+|---------|------|------|------|
+| 单元测试 | 10 | 10 | 0 |
+| 集成测试 | 5 | 5 | 0 |
+| 回测验证 | 1 | 1 | 0 |
+
+---
+
+## 二、测试详情
+
+### 2.1 单元测试
+- test_xxx.py: ✅ 通过
+- test_yyy.py: ✅ 通过
+
+### 2.2 回测验证
+- 回测期间：2023-2026
+- 年化收益：8.04%
+- 夏普比率：0.607
+- 最大回撤：-19.53%
+
+---
+
+## 三、结论
+
+✅ 可以进入实盘测试
+```
+
+---
+
+## 🚫 禁止事项
+
+1. ❌ 没有测试直接上线
+2. ❌ 测试未通过强行上线
+3. ❌ 大资金直接实盘
+4. ❌ 没有监控机制
+
+---
+
+*技能版本：1.0.0*

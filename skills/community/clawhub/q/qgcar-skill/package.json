@@ -1,0 +1,58 @@
+{
+  "name": "qg-skill",
+  "version": "0.1.0",
+  "description": "Qiguan campus bus CLI and Codex/OpenClaw skill for generating WeChat order-entry links.",
+  "keywords": [
+    "qiguan",
+    "bus",
+    "cli",
+    "skill",
+    "codex",
+    "openclaw",
+    "zhuhai",
+    "sysu"
+  ],
+  "homepage": "https://github.com/qybaihe/qg-skill#readme",
+  "bugs": {
+    "url": "https://github.com/qybaihe/qg-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qybaihe/qg-skill.git"
+  },
+  "license": "MIT",
+  "author": "qybaihe",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "qg": "dist/cli.js",
+    "qg-list": "dist/cli.js"
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "agents/",
+    "references/",
+    "SKILL.md",
+    "install.sh",
+    "LICENSE",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc",
+    "check": "npm run build && node dist/cli.js --help",
+    "dev": "tsx src/cli.ts",
+    "prepare": "npm run build",
+    "qg": "tsx src/cli.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  }
+}

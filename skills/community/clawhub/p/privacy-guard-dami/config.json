@@ -1,0 +1,22 @@
+{
+  "alerts_enabled": true,
+  "scan_interval_hours": 4,
+  "max_log_lines": 5000,
+  "max_alerts_per_scan": 50,
+  "log_directory": "auto",
+  "feishu_webhook": "",
+  "whitelist": [
+    "cn-funds-mcp",
+    "get_fund_",
+    "get_stock_",
+    "web_fetch",
+    "market_overview",
+    "northbound_capital"
+  ],
+  "sensitive_types": [
+    "持仓明细",
+    "金额数据",
+    "账号密码",
+    "个人信息"
+  ]
+}

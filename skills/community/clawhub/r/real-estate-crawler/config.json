@@ -1,0 +1,26 @@
+{
+  "name": "Real Estate Crawler",
+  "slug": "real-estate-crawler",
+  "version": "1.0.0",
+  "description": "综合房产中介网站爬虫技能，支持安居客、贝壳找房、链家、搜房网的数据抓取，包含反爬虫绕过策略和数据提取功能",
+  "author": "韩元东",
+  "category": "data-collection",
+  "tags": ["real-estate", "china", "crawler", "data-collection", "anjuke", "ke.com", "lianjia", "soufun"],
+  "requires": {
+    "bins": ["python3", "agent-browser"]
+  },
+  "read_when": [
+    "需要爬取房产中介网站数据",
+    "需要绕过网站反爬虫机制",
+    "需要提取房产信息（价格、面积、位置、户型等）"
+  ],
+  "metadata": {
+    "clawdbot": {
+      "emoji": "🏠",
+      "requires": {
+        "bins": ["python3", "agent-browser"]
+      }
+    }
+  },
+  "allowed-tools": "Bash(agent-browser:*)"
+}

@@ -1,0 +1,41 @@
+{
+  "sensitiveWords": {
+    "severe": [
+      "违禁词1",
+      "违禁词2"
+    ],
+    "warning": [
+      "加微信",
+      "加V",
+      "加Q",
+      "私信我",
+      "私聊",
+      "转账",
+      "付款"
+    ],
+    "notice": [
+      "竞品名1",
+      "竞品名2"
+    ]
+  },
+  "actionRules": {
+    "severe": {
+      "action": "auto_delete",
+      "notify": true,
+      "log": true
+    },
+    "warning": {
+      "action": "mark_pending",
+      "notify": true,
+      "log": true
+    },
+    "notice": {
+      "action": "log_only",
+      "notify": false,
+      "log": true
+    }
+  },
+  "customBlacklist": [],
+  "customWhitelist": [],
+  "lastUpdated": null
+}

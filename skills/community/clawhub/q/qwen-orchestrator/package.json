@@ -1,0 +1,17 @@
+{
+  "name": "qwen-orchestrator",
+  "version": "1.5.8",
+  "description": "Qwen Chat (chat.qwen.ai) browser automation via Puppeteer with daemon mode and auth checks",
+  "main": "ask-puppeteer.js",
+  "bin": {
+    "ask-qwen": "./ask-qwen.sh"
+  },
+  "scripts": {
+    "start": "node qwen-daemon.js",
+    "ask": "node ask-puppeteer.js",
+    "test": "bash scripts/test-mode-matrix.sh"
+  },
+  "dependencies": {
+    "puppeteer": "^24.20.0"
+  }
+}

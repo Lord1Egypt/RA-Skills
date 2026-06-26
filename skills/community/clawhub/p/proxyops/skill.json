@@ -1,0 +1,19 @@
+{
+  "name": "proxy",
+  "version": "1.0.0",
+  "description": "Local-first proxy inventory, routing planner, and health tracking engine.",
+  "entrypoints": [],
+  "files": [
+    "SKILL.md",
+    "skill.json",
+    "scripts/init_storage.py",
+    "scripts/add_proxy.py",
+    "scripts/list_proxies.py",
+    "scripts/score_proxy.py",
+    "scripts/pick_proxy.py",
+    "scripts/update_proxy.py",
+    "scripts/lib/storage.py",
+    "scripts/lib/scoring.py",
+    "references/philosophy.md"
+  ]
+}

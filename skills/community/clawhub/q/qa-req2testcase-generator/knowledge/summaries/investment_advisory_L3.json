@@ -1,0 +1,57 @@
+{
+  "domain": "投顾域",
+  "level": "L3",
+  "generated_at": "2026-05-08",
+  "source_file": "investment_advisory.md",
+  "includes_L2": true,
+  "exception_patterns": [
+    {"pattern": "投顾离职未交接", "trigger": "投顾离职后客户服务中断", "handling": "自动触发交接流程，系统分配临时投顾，通知客户"},
+    {"pattern": "调仓执行偏差", "trigger": "客户资金不足无法完全跟随调仓", "handling": "部分执行逻辑，记录偏差，通知客户补充资金"},
+    {"pattern": "调仓时标的停牌", "trigger": "调仓标的停牌无法交易", "handling": "延迟调仓队列，复牌后自动执行"},
+    {"pattern": "大量客户同时调仓", "trigger": "调仓指令下发导致市场冲击", "handling": "分批执行，控制市场冲击"},
+    {"pattern": "止损与调仓冲突", "trigger": "止损触发时恰好有调仓指令", "handling": "止损优先级高于普通调仓"},
+    {"pattern": "费用扣收失败", "trigger": "客户可用资金不足以扣收管理费", "handling": "重试3次后暂停服务"},
+    {"pattern": "冷静期内市场大跌", "trigger": "冷静期内组合大幅下跌客户撤回", "handling": "验证冷静期撤回的资金返还规则"},
+    {"pattern": "解约时持仓无法卖出", "trigger": "解约清算时标的停牌", "handling": "停牌标的延迟处理，其余正常清算"},
+    {"pattern": "自动续约争议", "trigger": "客户未注意自动续约条款", "handling": "续约前明确通知(30天/7天/1天)和确认机制"},
+    {"pattern": "投资建议合规违规", "trigger": "投顾发布未经审核的投资建议", "handling": "合规审核前置校验，未审核不可发布"}
+  ],
+  "intermediate_state_handling": [
+    {"state": "冷静期(CoolingOff)", "duration": "24小时", "rules": "期间不执行交易，客户可随时撤回"},
+    {"state": "适当性校验中", "duration": "实时完成(秒级)", "rules": "校验不通过直接拒绝"},
+    {"state": "投顾变更中", "duration": "通常1-3个工作日", "rules": "期间暂停新的调仓指令"},
+    {"state": "解约申请中", "duration": "取决于持仓清算(通常T+3)", "rules": "暂停新调仓，执行持仓卖出→费用结算→资金返还"},
+    {"state": "暂停中", "duration": "最长90天", "rules": "不执行调仓，超90天自动触发解约"}
+  ],
+  "boundary_values": [
+    {"field": "冷静期", "boundary": "恰好24小时", "behavior": "冷静期结束，可回访确认"},
+    {"field": "冷静期", "boundary": "23小时59分", "behavior": "仍在冷静期，不可生效"},
+    {"field": "最低跟投金额", "boundary": "恰好等于最低限额", "behavior": "允许签约"},
+    {"field": "最低跟投金额", "boundary": "低于最低限额0.01元", "behavior": "拒绝签约"},
+    {"field": "止盈触发", "boundary": "浮盈恰好+20%", "behavior": "触发止盈建议"},
+    {"field": "止损触发", "boundary": "浮亏恰好-10%", "behavior": "触发止损建议"},
+    {"field": "管理费计提", "boundary": "闰年2月29日", "behavior": "日费率=年费率/366"},
+    {"field": "暂停时长", "boundary": "恰好90天", "behavior": "触发自动解约"},
+    {"field": "暂停时长", "boundary": "89天", "behavior": "不触发"},
+    {"field": "到期提醒", "boundary": "到期前恰好30天", "behavior": "发送第一次提醒"},
+    {"field": "费用扣收重试", "boundary": "第3次失败", "behavior": "暂停服务"},
+    {"field": "业绩报酬", "boundary": "净值恰好等于高水位", "behavior": "不计提(需超过)"},
+    {"field": "业绩报酬", "boundary": "净值超过高水位0.0001", "behavior": "计提超额部分"}
+  ],
+  "idempotency_retry_rules": [
+    {"operation": "签约申请", "idempotent_key": "clientId + portfolioId + applyDate", "retry_strategy": "同一客户同一组合同日不可重复申请"},
+    {"operation": "调仓指令", "idempotent_key": "portfolioId + rebalanceId", "retry_strategy": "同一调仓事件不重复下发"},
+    {"operation": "费用扣收", "idempotent_key": "clientId + feeType + feeDate", "retry_strategy": "失败重试3次，间隔1天，仍失败暂停服务"},
+    {"operation": "止损执行", "idempotent_key": "clientId + portfolioId + triggerDate", "retry_strategy": "同一触发事件不重复执行"}
+  ],
+  "violation_consequences": [
+    {"violation": "冷静期缺失", "consequence": "签约可被客户主张无效，券商承担损失"},
+    {"violation": "适当性绕过", "consequence": "高风险组合向低风险客户销售，监管处罚"},
+    {"violation": "投资建议未审核发布", "consequence": "合规违规，投顾面临处分"},
+    {"violation": "利益冲突未检测", "consequence": "投顾个人交易与建议方向相反，监管调查"},
+    {"violation": "费用计算错误", "consequence": "客户投诉，需退还多收费用"},
+    {"violation": "解约清算不完整", "consequence": "未结算剩余费用，造成损失"},
+    {"violation": "自动续约未通知", "consequence": "客户争议，可能需退还续约期费用"},
+    {"violation": "调仓通知延迟", "consequence": "客户执行偏差，可能引发投诉"}
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "quickbooks-mileage-skill",
+  "version": "1.0.1",
+  "description": "Generate QuickBooks Online mileage CSV files from local calendar or inspection records using user-owned credentials.",
+  "skills": ["skills/qbo-mileage"],
+  "license": "MIT"
+}

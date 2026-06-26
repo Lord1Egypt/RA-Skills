@@ -1,0 +1,56 @@
+{
+  "name": "RagFlow知识库检索",
+  "description": "通过调用Prana平台上的远程 agent 完成以下处理： 当用户需要从知识库获取 RAG 相关内容时使用。该技能只返回一次 `ragflow_query` 的 function call，其中 `question` 参数必须取自用户输入。",
+  "required_env": [
+    "PRANA_SKILL_API_FLAG"
+  ],
+  "required_env_note": "调用随附 scripts/prana_skill_client.py 或 prana_skill_client.js 时，进程环境中必须已设置 PRANA_SKILL_API_FLAG。随附脚本不会请求 GET /api/v2/api-keys；取钥须由集成方/操作者（curl 等）完成后再写入该环境变量。",
+  "network_requests": [
+    {
+      "method": "GET",
+      "url": "https://claw-uat.ebonex.io/api/v2/api-keys",
+      "description": "供集成方自行取 data.api_key 并配置为 PRANA_SKILL_API_FLAG；随附薄客户端脚本不实现此请求"
+    },
+    {
+      "method": "POST",
+      "url": "https://claw-uat.ebonex.io/api/claw/agent-run",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "required": true,
+          "source": "env:PRANA_SKILL_API_FLAG",
+          "description": "从环境变量 PRANA_SKILL_API_FLAG 读取；须预先设置，脚本不会自动获取 api_key"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "url": "https://claw-uat.ebonex.io/api/claw/agent-result",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "required": true,
+          "source": "env:PRANA_SKILL_API_FLAG"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "url": "https://claw-uat.ebonex.io/api/claw/skill-purchase-history-url",
+      "headers": [
+        {
+          "name": "x-api-key",
+          "required": true,
+          "source": "env:PRANA_SKILL_API_FLAG"
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "header",
+    "header_name": "x-api-key",
+    "env_var": "PRANA_SKILL_API_FLAG",
+    "required": true
+  },
+  "usage_example": "请从知识库中查找RAG相关的技术文档、我想了解RAG在智能客服中的应用案例"
+}

@@ -1,0 +1,42 @@
+{
+  "domain": "交易域",
+  "updated_at": "2026-05-08T16:27:11.447Z",
+  "total_source_files": 1,
+  "tag_rules": [
+    {
+      "rule": "P0/P1用例必须覆盖边界值（最大值、最小值、空值、特殊字符）",
+      "source_tag": "boundary_missing",
+      "frequency": 2,
+      "ratio": 1,
+      "weight": 1,
+      "last_seen": "2026-05-08T16:27:11.446Z"
+    }
+  ],
+  "operation_rules": [
+    {
+      "rule": "操作步骤必须具体可执行，不能写\"修改信息\"\"操作\"等模糊描述",
+      "source_op": "modify:steps",
+      "frequency": 3,
+      "weight": 1,
+      "last_seen": "2026-05-08T16:27:11.446Z"
+    },
+    {
+      "rule": "用例粒度适中，同功能不同入口合并为一条",
+      "source_op": "merge",
+      "frequency": 2,
+      "weight": 1,
+      "last_seen": "2026-05-08T16:27:11.446Z"
+    }
+  ],
+  "domain_rules": [
+    {
+      "rule": "排名类功能必须验证并列场景",
+      "source": "add_operation",
+      "matched_keyword": "并列",
+      "frequency": 1,
+      "weight": 1,
+      "last_seen": "2026-05-08T16:27:11.446Z"
+    }
+  ],
+  "positive_rules": []
+}

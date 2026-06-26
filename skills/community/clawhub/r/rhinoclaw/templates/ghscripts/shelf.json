@@ -1,0 +1,37 @@
+{
+  "name": "Parametric Shelf",
+  "description": "Parametric bookshelf/shelving unit with adjustable shelves, divisions, and back panel",
+  "version": "1.0",
+  "author": "RhinoClaw",
+  "tags": ["furniture", "shelf", "bookshelf", "regal", "storage"],
+  "file_path": "C:\\temp\\gh_definitions\\ParametricShelf.gh",
+  "components": [
+    {"type": "slider", "name": "Width", "default": 800, "min": 300, "max": 2400, "decimals": 0, "position": [50, 40]},
+    {"type": "slider", "name": "Height", "default": 1800, "min": 600, "max": 2600, "decimals": 0, "position": [50, 100]},
+    {"type": "slider", "name": "Depth", "default": 350, "min": 200, "max": 600, "decimals": 0, "position": [50, 160]},
+    {"type": "slider", "name": "BoardT", "default": 19, "min": 12, "max": 40, "decimals": 0, "position": [50, 220]},
+    {"type": "slider", "name": "Shelves", "default": 5, "min": 1, "max": 12, "decimals": 0, "position": [50, 280]},
+    {"type": "slider", "name": "Divisions", "default": 0, "min": 0, "max": 4, "decimals": 0, "position": [50, 340]},
+    {"type": "slider", "name": "BackT", "default": 5, "min": 0, "max": 19, "decimals": 0, "position": [50, 400]},
+    {"type": "slider", "name": "Sockel", "default": 60, "min": 0, "max": 150, "decimals": 0, "position": [50, 460]},
+    {"type": "slider", "name": "SockelR", "default": 30, "min": 0, "max": 100, "decimals": 0, "position": [50, 520]},
+    {
+      "type": "python3_script",
+      "name": "Shelf",
+      "inputs": ["Width", "Height", "Depth", "BoardT", "Shelves", "Divisions", "BackT", "Sockel", "SockelR"],
+      "position": [480, 280],
+      "code": "#! python3\nimport Rhino.Geometry as rg\nimport math\n\nw = float(Width)\nh = float(Height)\nd = float(Depth)\nbt = float(BoardT)\nn_shelves = int(Shelves)\nn_div = int(Divisions)\nback_t = float(BackT)\nsockel_h = float(Sockel)\nsockel_r = float(SockelR)\n\nbreps = []\n\n# Inner dimensions\ninner_w = w - 2 * bt  # width between side panels\ninner_h = h - 2 * bt  # height between top and bottom\nstart_z = sockel_h     # bottom of corpus\n\n# ========== SIDE PANELS (Seitenwände) ==========\n# Left side\nleft = rg.Box(rg.Plane.WorldXY,\n    rg.Interval(0, bt),\n    rg.Interval(0, d),\n    rg.Interval(start_z, h))\nlb = left.ToBrep()\nif lb: breps.append(lb)\n\n# Right side\nright = rg.Box(rg.Plane.WorldXY,\n    rg.Interval(w - bt, w),\n    rg.Interval(0, d),\n    rg.Interval(start_z, h))\nrb = right.ToBrep()\nif rb: breps.append(rb)\n\n# ========== TOP & BOTTOM PANELS ==========\n# Bottom\nbottom = rg.Box(rg.Plane.WorldXY,\n    rg.Interval(bt, w - bt),\n    rg.Interval(0, d),\n    rg.Interval(start_z, start_z + bt))\nbb = bottom.ToBrep()\nif bb: breps.append(bb)\n\n# Top\ntop = rg.Box(rg.Plane.WorldXY,\n    rg.Interval(0, w),\n    rg.Interval(0, d),\n    rg.Interval(h - bt, h))\ntb = top.ToBrep()\nif tb: breps.append(tb)\n\n# ========== SHELVES (Einlegeböden) ==========\nshelf_zone_bottom = start_z + bt\nshelf_zone_top = h - bt\nshelf_zone_h = shelf_zone_top - shelf_zone_bottom\n\nfor i in range(n_shelves):\n    t = (i + 1.0) / (n_shelves + 1.0)\n    sz = shelf_zone_bottom + shelf_zone_h * t\n    \n    shelf = rg.Box(rg.Plane.WorldXY,\n        rg.Interval(bt, w - bt),\n        rg.Interval(0, d - back_t),\n        rg.Interval(sz - bt/2, sz + bt/2))\n    sb = shelf.ToBrep()\n    if sb: breps.append(sb)\n\n# ========== VERTICAL DIVISIONS (Mittelwände) ==========\nfor i in range(n_div):\n    t = (i + 1.0) / (n_div + 1.0)\n    dx = bt + inner_w * t\n    \n    div = rg.Box(rg.Plane.WorldXY,\n        rg.Interval(dx - bt/2, dx + bt/2),\n        rg.Interval(0, d - back_t),\n        rg.Interval(start_z + bt, h - bt))\n    db = div.ToBrep()\n    if db: breps.append(db)\n\n# ========== BACK PANEL (Rückwand) ==========\nif back_t > 0:\n    back = rg.Box(rg.Plane.WorldXY,\n        rg.Interval(0, w),\n        rg.Interval(d - back_t, d),\n        rg.Interval(start_z, h))\n    bkb = back.ToBrep()\n    if bkb: breps.append(bkb)\n\n# ========== SOCKEL (Plinth) ==========\nif sockel_h > 0:\n    # Front sockel with optional cutout\n    if sockel_r > 0 and sockel_r < sockel_h:\n        # Sockel left foot\n        foot_w = max(80, w * 0.08)\n        sl = rg.Box(rg.Plane.WorldXY,\n            rg.Interval(0, foot_w),\n            rg.Interval(0, bt),\n            rg.Interval(0, sockel_h))\n        slb = sl.ToBrep()\n        if slb: breps.append(slb)\n        \n        # Sockel right foot\n        sr = rg.Box(rg.Plane.WorldXY,\n            rg.Interval(w - foot_w, w),\n            rg.Interval(0, bt),\n            rg.Interval(0, sockel_h))\n        srb = sr.ToBrep()\n        if srb: breps.append(srb)\n        \n        # Sockel connecting bar (raised)\n        sc = rg.Box(rg.Plane.WorldXY,\n            rg.Interval(foot_w, w - foot_w),\n            rg.Interval(0, bt),\n            rg.Interval(sockel_r, sockel_h))\n        scb = sc.ToBrep()\n        if scb: breps.append(scb)\n    else:\n        # Full front sockel\n        sf = rg.Box(rg.Plane.WorldXY,\n            rg.Interval(0, w),\n            rg.Interval(0, bt),\n            rg.Interval(0, sockel_h))\n        sfb = sf.ToBrep()\n        if sfb: breps.append(sfb)\n    \n    # Side sockels\n    for sx in [rg.Interval(0, bt), rg.Interval(w - bt, w)]:\n        ss = rg.Box(rg.Plane.WorldXY,\n            sx,\n            rg.Interval(bt, d),\n            rg.Interval(0, sockel_h))\n        ssb = ss.ToBrep()\n        if ssb: breps.append(ssb)\n    \n    # Back sockel\n    sb_back = rg.Box(rg.Plane.WorldXY,\n        rg.Interval(bt, w - bt),\n        rg.Interval(d - bt, d),\n        rg.Interval(0, sockel_h))\n    sbb = sb_back.ToBrep()\n    if sbb: breps.append(sbb)\n\na = breps\n"
+    }
+  ],
+  "wires": [
+    {"from": "Width", "to": "Shelf", "to_input": "Width"},
+    {"from": "Height", "to": "Shelf", "to_input": "Height"},
+    {"from": "Depth", "to": "Shelf", "to_input": "Depth"},
+    {"from": "BoardT", "to": "Shelf", "to_input": "BoardT"},
+    {"from": "Shelves", "to": "Shelf", "to_input": "Shelves"},
+    {"from": "Divisions", "to": "Shelf", "to_input": "Divisions"},
+    {"from": "BackT", "to": "Shelf", "to_input": "BackT"},
+    {"from": "Sockel", "to": "Shelf", "to_input": "Sockel"},
+    {"from": "SockelR", "to": "Shelf", "to_input": "SockelR"}
+  ]
+}

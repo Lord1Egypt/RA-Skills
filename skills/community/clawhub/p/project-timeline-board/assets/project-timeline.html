@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tideo · 项目时间线</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#fff; --bg-2:#f8f9fb; --bg-3:#f1f3f6;
+  --border:#e5e7eb; --border-2:#d1d5db;
+  --text:#1a1a2e; --text-2:#4b5563; --text-3:#9ca3af;
+  --blue:#2563eb; --indigo:#6366f1; --purple:#7c3aed;
+  --rose:#e94560; --green:#059669; --amber:#d97706; --cyan:#0891b2;
+  --font:'Noto Sans SC',-apple-system,sans-serif;
+  --font-display:'Noto Serif SC',serif;
+  --mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --max-w:820px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.8}
+::selection{background:rgba(99,102,241,.12)}
+a{text-decoration:none;color:inherit}
+
+.sp{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--purple),var(--rose));z-index:1000;width:0%}
+.back{position:fixed;top:20px;left:20px;z-index:100;display:flex;align-items:center;gap:5px;padding:7px 14px;border-radius:8px;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border:1px solid var(--border);font-size:13px;color:var(--text-2);transition:all .2s}
+.back:hover{color:var(--text);border-color:var(--border-2)}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 28px}
+
+/* hero */
+.hero{padding:100px 28px 56px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:100px;background:rgba(5,150,105,.06);border:1px solid rgba(5,150,105,.15);font-size:12px;font-weight:500;color:var(--green);font-family:var(--mono);margin-bottom:20px}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:var(--font-display);font-size:clamp(28px,5vw,40px);font-weight:900;line-height:1.3;letter-spacing:-.02em;margin-bottom:10px}
+.hero h1 em{font-style:normal;color:var(--rose)}
+.hero-sub{font-size:15px;color:var(--text-2);max-width:420px;margin:0 auto 24px}
+.hero-meta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--text-3);font-family:var(--mono)}
+
+/* section */
+section{padding:48px 0;border-top:1px solid var(--border)}
+.sl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:4px}
+.st{font-size:20px;font-weight:700;margin-bottom:4px;letter-spacing:-.02em}
+.sd{font-size:13.5px;color:var(--text-2);margin-bottom:24px}
+
+/* overview */
+.ov{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.ov-c{background:var(--bg-2);border:1px solid var(--border);border-radius:10px;padding:16px 14px}
+.ov-v{font-family:var(--mono);font-size:22px;font-weight:700;margin-bottom:1px}
+.ov-l{font-size:11.5px;color:var(--text-3)}
+
+/* key nodes */
+.kn-track{position:relative;padding-left:52px}
+.kn-track::before{content:'';position:absolute;left:19px;top:0;bottom:0;width:2px;background:var(--bg-3)}
+.kn{position:relative;padding-bottom:24px}
+.kn:last-child{padding-bottom:0}
+.kn-dot{position:absolute;left:-38px;top:16px;width:18px;height:18px;border-radius:50%;border:3px solid var(--bg);z-index:1}
+.kn-dot.c-blue{background:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+.kn-dot.c-purple{background:var(--purple);box-shadow:0 0 0 3px rgba(124,58,237,.15)}
+.kn-dot.c-amber{background:var(--amber);box-shadow:0 0 0 3px rgba(217,119,6,.15)}
+.kn-dot.c-green{background:var(--green);box-shadow:0 0 0 3px rgba(5,150,105,.15)}
+.kn-dot.c-cyan{background:var(--cyan);box-shadow:0 0 0 3px rgba(8,145,178,.15)}
+.kn-dot.active{animation:blink 2s infinite}
+
+.kn-card{background:var(--bg);border:1px solid var(--border);border-radius:11px;overflow:hidden;transition:box-shadow .2s}
+.kn-card:hover{box-shadow:0 2px 14px rgba(0,0,0,.04)}
+.kn-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;gap:12px}
+.kn-left{display:flex;align-items:center;gap:14px;flex:1;min-width:0}
+.kn-date{font-family:var(--mono);font-size:20px;font-weight:700;flex-shrink:0;width:48px}
+.kn-date.c-blue{color:var(--blue)}
+.kn-date.c-purple{color:var(--purple)}
+.kn-date.c-amber{color:var(--amber)}
+.kn-date.c-green{color:var(--green)}
+.kn-date.c-cyan{color:var(--cyan)}
+.kn-info{min-width:0}
+.kn-title{font-size:15px;font-weight:600;line-height:1.35}
+.kn-sub{font-size:12px;color:var(--text-3);font-family:var(--mono)}
+.kn-badge{flex-shrink:0;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600}
+.kn-badge.b-blue{background:rgba(37,99,235,.07);color:var(--blue)}
+.kn-badge.b-purple{background:rgba(124,58,237,.07);color:var(--purple)}
+.kn-badge.b-amber{background:rgba(217,119,6,.07);color:var(--amber)}
+.kn-badge.b-green{background:rgba(5,150,105,.07);color:var(--green)}
+.kn-badge.b-cyan{background:rgba(8,145,178,.07);color:var(--cyan)}
+.kn-badge.b-rose{background:rgba(233,69,96,.07);color:var(--rose)}
+
+.kn-toggle{cursor:pointer;user-select:none}
+.kn-toggle .kn-arrow{display:inline-block;margin-left:4px;font-size:11px;color:var(--text-3);transition:transform .25s var(--ease)}
+.kn-detail{max-height:0;overflow:hidden;transition:max-height .35s var(--ease)}
+.kn.open .kn-detail{max-height:500px}
+.kn.open .kn-arrow{transform:rotate(180deg)}
+.kn-detail-inner{border-top:1px solid var(--border);padding:0}
+.kn-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:9px 18px;border-bottom:1px solid rgba(0,0,0,.03);font-size:13.5px}
+.kn-row:last-child{border-bottom:none}
+.kn-row-name{color:var(--text)}
+.kn-chip{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:500;font-family:var(--mono)}
+.kn-chip.done{background:rgba(5,150,105,.08);color:var(--green)}
+.kn-chip.today{background:rgba(37,99,235,.08);color:var(--blue)}
+.kn-chip.soon{background:rgba(99,102,241,.08);color:var(--indigo)}
+.kn-chip.later{background:rgba(156,163,175,.1);color:var(--text-3)}
+
+/* gantt */
+.gantt{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--bg)}
+.gantt-head{display:flex;border-bottom:1px solid var(--border);background:var(--bg-2)}
+.gantt-hl{width:120px;flex-shrink:0;padding:9px 14px;font-size:12px;font-weight:600;color:var(--text-3);border-right:1px solid var(--border)}
+.gantt-hd{flex:1;display:flex}
+.gantt-hd .d{flex:1;text-align:center;padding:9px 0;font-family:var(--mono);font-size:10.5px;color:var(--text-3);border-left:1px solid rgba(0,0,0,.03);position:relative}
+.gantt-hd .d.today{color:var(--blue);font-weight:600}
+.gantt-hd .d.today::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:var(--blue)}
+.gantt-row{display:flex;border-bottom:1px solid var(--border)}
+.gantt-row:last-child{border-bottom:none}
+.gantt-row:hover{background:rgba(0,0,0,.01)}
+.gantt-rl{width:120px;flex-shrink:0;padding:12px 14px;font-size:12.5px;font-weight:500;border-right:1px solid var(--border);display:flex;align-items:center}
+.gantt-rb{flex:1;display:flex;position:relative;align-items:center;padding:5px 0}
+.gantt-tl{position:absolute;top:0;bottom:0;width:1.5px;background:var(--blue);opacity:.25;z-index:1}
+.gantt-bar{position:absolute;top:50%;transform:translateY(-50%);height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:#fff}
+.gantt-bar.ix{background:var(--blue)}
+.gantt-bar.vis{background:var(--purple)}
+.gantt-bar.tool{background:var(--green)}
+.gantt-bar.fe{background:var(--cyan)}
+.gantt-bar.be{background:var(--amber)}
+.gantt-bar.test{background:var(--rose)}
+.gantt-legend{display:flex;gap:16px;padding:9px 14px;border-top:1px solid var(--border);font-size:11.5px;color:var(--text-3)}
+.gantt-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:3px;vertical-align:-1px}
+
+/* todos */
+.todo-g{margin-bottom:24px}
+.todo-g:last-child{margin-bottom:0}
+.todo-gh{display:flex;align-items:center;gap:8px;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.todo-gl{font-size:13.5px;font-weight:600}
+.todo-gc{font-family:var(--mono);font-size:11px;padding:2px 7px;border-radius:4px;background:var(--bg-3);color:var(--text-3)}
+.todo-ul{list-style:none}
+.todo-li{display:flex;align-items:flex-start;gap:9px;padding:7px 10px;border-radius:7px;cursor:pointer;transition:background .15s;user-select:none}
+.todo-li:hover{background:var(--bg-2)}
+.todo-li.done{opacity:.4}
+.todo-ck{flex-shrink:0;width:17px;height:17px;margin-top:2px;border:2px solid var(--border-2);border-radius:4px;display:flex;align-items:center;justify-content:center;transition:all .15s;font-size:10px;color:transparent}
+.todo-li.done .todo-ck{background:var(--green);border-color:var(--green);color:#fff}
+.todo-li.done .todo-tx{text-decoration:line-through}
+.todo-tx{flex:1;font-size:13px;line-height:1.5}
+.todo-tg{flex-shrink:0;font-size:10.5px;font-weight:500;padding:2px 7px;border-radius:4px;margin-top:2px}
+.todo-tg.ix{background:rgba(37,99,235,.06);color:var(--blue)}
+.todo-tg.vis{background:rgba(124,58,237,.06);color:var(--purple)}
+.todo-tg.plan{background:rgba(217,119,6,.06);color:var(--amber)}
+.todo-tg.collab{background:rgba(5,150,105,.06);color:var(--green)}
+
+/* callouts */
+.co-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.co{background:var(--bg-2);border:1px solid var(--border);border-radius:10px;padding:16px 18px;border-left:3px solid var(--blue)}
+.co.warn{border-left-color:var(--amber)}
+.co.danger{border-left-color:var(--rose)}
+.co.ok{border-left-color:var(--green)}
+.co.info{border-left-color:var(--cyan)}
+.co-t{font-size:13.5px;font-weight:600;margin-bottom:4px}
+.co-b{font-size:12.5px;color:var(--text-2);line-height:1.7}
+.co-b strong{color:var(--text);font-weight:600}
+
+.foot{text-align:center;padding:36px 28px;font-size:12px;color:var(--text-3);border-top:1px solid var(--border)}
+
+@media(max-width:768px){
+  .ov{grid-template-columns:repeat(2,1fr)}
+  .gantt{overflow-x:auto}
+  .gantt-head,.gantt-row{min-width:700px}
+  .hero{padding:80px 20px 40px}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.anim{opacity:0;animation:fadeUp .5s var(--ease) forwards}
+.d1{animation-delay:.05s}.d2{animation-delay:.1s}.d3{animation-delay:.15s}.d4{animation-delay:.2s}
+</style>
+</head>
+<body>
+<div class="sp" id="sp"></div>
+<a class="back" href="hub.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>返回黄页</a>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge"><span class="dot"></span>交互 + 视觉 已完成</div>
+  <h1>Tideo 项目<em>时间线</em></h1>
+  <p class="hero-sub">交互设计师视角的排期管理</p>
+  <div style="display:inline-block;padding:6px 16px;border-radius:8px;background:rgba(5,150,105,.06);border:1px solid rgba(5,150,105,.15);font-size:13px;font-weight:600;color:var(--green);margin-bottom:20px">当前阶段：交互 + 视觉全部完成，进入评审 & 用户测试</div>
+  <div class="hero-meta">
+    <span>2026.04.07 → 05.31</span>
+    <span>约 8 周</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- OVERVIEW -->
+  <section class="anim">
+    <div class="ov">
+      <div class="ov-c"><div class="ov-v" style="color:var(--blue)">4.13</div><div class="ov-l">交互稿完成</div></div>
+      <div class="ov-c"><div class="ov-v" style="color:var(--purple)">4.14</div><div class="ov-l">视觉稿完成</div></div>
+      <div class="ov-c"><div class="ov-v" style="color:var(--cyan)">4.18</div><div class="ov-l">用户测试</div></div>
+      <div class="ov-c"><div class="ov-v" style="color:var(--rose)">5月底</div><div class="ov-l">正式发布</div></div>
+    </div>
+  </section>
+
+  <!-- 1. KEY NODES — 按真实时间排序 -->
+  <section class="anim d1" id="milestones">
+    <div class="sl">01 — Key Nodes</div>
+    <div class="st">关键节点</div>
+    <div class="sd">按时间正序排列，点击展开查看各模块详情。</div>
+
+    <div class="kn-track">
+
+      <!-- 4.09 交互设计启动 -->
+      <div class="kn" onclick="this.classList.toggle('open')">
+        <div class="kn-dot c-blue"></div>
+        <div class="kn-card">
+          <div class="kn-head kn-toggle">
+            <div class="kn-left">
+              <div class="kn-date c-blue">4.09</div>
+              <div class="kn-info">
+                <div class="kn-title">交互设计启动 <span class="kn-arrow">▾</span></div>
+                <div class="kn-sub">4.07 → 4.09 · 首批交互稿完成</div>
+              </div>
+            </div>
+            <span class="kn-badge b-blue">交互</span>
+          </div>
+          <div class="kn-detail">
+            <div class="kn-detail-inner">
+              <div class="kn-row"><span class="kn-row-name">影视译制交互稿</span><span class="kn-chip" data-date="4-9">4.09</span></div>
+              <div class="kn-row"><span class="kn-row-name">作品列表交互稿</span><span class="kn-chip" data-date="4-9">4.09</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.10 视觉设计启动 + 直播剪辑交互 -->
+      <div class="kn" onclick="this.classList.toggle('open')">
+        <div class="kn-dot c-purple"></div>
+        <div class="kn-card">
+          <div class="kn-head kn-toggle">
+            <div class="kn-left">
+              <div class="kn-date c-purple">4.10</div>
+              <div class="kn-info">
+                <div class="kn-title">视觉设计启动 + 直播交互 <span class="kn-arrow">▾</span></div>
+                <div class="kn-sub">4.10 · 首页/影视译制视觉 + 直播剪辑交互</div>
+              </div>
+            </div>
+            <span class="kn-badge b-purple">视觉+交互</span>
+          </div>
+          <div class="kn-detail">
+            <div class="kn-detail-inner">
+              <div class="kn-row"><span class="kn-row-name">首页视觉设计</span><span class="kn-chip" data-date="4-10">4.10</span></div>
+              <div class="kn-row"><span class="kn-row-name">影视译制视觉设计</span><span class="kn-chip" data-date="4-10">4.10</span></div>
+              <div class="kn-row"><span class="kn-row-name">直播剪辑交互稿</span><span class="kn-chip" data-date="4-10">4.10</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.11 测试工具搭建 -->
+      <div class="kn" onclick="this.classList.toggle('open')">
+        <div class="kn-dot c-green"></div>
+        <div class="kn-card">
+          <div class="kn-head kn-toggle">
+            <div class="kn-left">
+              <div class="kn-date c-green">4.11</div>
+              <div class="kn-info">
+                <div class="kn-title">测试工具搭建 <span class="kn-arrow">▾</span></div>
+                <div class="kn-sub">4.10 → 4.11 · Demo 真实可用 + 测试中心</div>
+              </div>
+            </div>
+            <span class="kn-badge b-green">工具</span>
+          </div>
+          <div class="kn-detail">
+            <div class="kn-detail-inner">
+              <div class="kn-row"><span class="kn-row-name">Demo 接入真实 API（MPS 视频译制）</span><span class="kn-chip" data-date="4-10">4.10</span></div>
+              <div class="kn-row"><span class="kn-row-name">测试中心搭建（生成链接 + 数据看板）</span><span class="kn-chip" data-date="4-10">4.10</span></div>
+              <div class="kn-row"><span class="kn-row-name">埋点系统（行为追踪 + COS 存储）</span><span class="kn-chip" data-date="4-10">4.10</span></div>
+              <div class="kn-row"><span class="kn-row-name">完善用户测试工具</span><span class="kn-chip" data-date="4-11">4.11</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.13 交互设计全部完成 -->
+      <div class="kn" onclick="this.classList.toggle('open')">
+        <div class="kn-dot c-blue"></div>
+        <div class="kn-card">
+          <div class="kn-head kn-toggle">
+            <div class="kn-left">
+              <div class="kn-date c-blue">4.13</div>
+              <div class="kn-info">
+                <div class="kn-title">交互设计全部完成 <span class="kn-arrow">▾</span></div>
+                <div class="kn-sub">4.07 → 4.13 · 4 个模块交互稿齐备</div>
+              </div>
+            </div>
+            <span class="kn-badge b-blue">交互</span>
+          </div>
+          <div class="kn-detail">
+            <div class="kn-detail-inner">
+              <div class="kn-row"><span class="kn-row-name">影视译制</span><span class="kn-chip" data-date="4-9">4.09</span></div>
+              <div class="kn-row"><span class="kn-row-name">作品列表</span><span class="kn-chip" data-date="4-9">4.09</span></div>
+              <div class="kn-row"><span class="kn-row-name">直播剪辑</span><span class="kn-chip" data-date="4-10">4.10</span></div>
+              <div class="kn-row"><span class="kn-row-name">视频制作</span><span class="kn-chip" data-date="4-13">4.13</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.14 视觉设计全部完成 -->
+      <div class="kn" onclick="this.classList.toggle('open')">
+        <div class="kn-dot c-purple"></div>
+        <div class="kn-card">
+          <div class="kn-head kn-toggle">
+            <div class="kn-left">
+              <div class="kn-date c-purple">4.14</div>
+              <div class="kn-info">
+                <div class="kn-title">视觉设计全部完成 <span class="kn-arrow">▾</span></div>
+                <div class="kn-sub">4.09 → 4.14 · 全部 5 个模块视觉交付</div>
+              </div>
+            </div>
+            <span class="kn-badge b-purple">视觉</span>
+          </div>
+          <div class="kn-detail">
+            <div class="kn-detail-inner">
+              <div class="kn-row"><span class="kn-row-name">首页</span><span class="kn-chip" data-date="4-10">4.10</span></div>
+              <div class="kn-row"><span class="kn-row-name">影视译制</span><span class="kn-chip" data-date="4-10">4.10</span></div>
+              <div class="kn-row"><span class="kn-row-name">直播剪辑</span><span class="kn-chip" data-date="4-13">4.13</span></div>
+              <div class="kn-row"><span class="kn-row-name">视频制作</span><span class="kn-chip" data-date="4-14">4.14</span></div>
+              <div class="kn-row"><span class="kn-row-name">作品列表 + 加载视频</span><span class="kn-chip" data-date="4-14">4.14</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.14-4.15 视觉稿还原 -->
+      <div class="kn" onclick="this.classList.toggle('open')">
+        <div class="kn-dot c-purple"></div>
+        <div class="kn-card">
+          <div class="kn-head kn-toggle">
+            <div class="kn-left">
+              <div class="kn-date c-purple" style="font-size:16px">4.15</div>
+              <div class="kn-info">
+                <div class="kn-title">视觉稿前端还原 <span class="kn-arrow">▾</span></div>
+                <div class="kn-sub">4.14 → 4.15 · 基于视觉稿的代码还原</div>
+              </div>
+            </div>
+            <span class="kn-badge b-purple">还原</span>
+          </div>
+          <div class="kn-detail">
+            <div class="kn-detail-inner">
+              <div class="kn-row"><span class="kn-row-name">创作页配置栏重设计（8px圆角/SVG图标/来源弹窗）</span><span class="kn-chip" data-date="4-15">4.15</span></div>
+              <div class="kn-row"><span class="kn-row-name">视频来源三Tab弹窗（上传/导入任务/项目文件）</span><span class="kn-chip" data-date="4-15">4.15</span></div>
+              <div class="kn-row"><span class="kn-row-name">精调页视觉还原（点阵背景/鼠标亮光/黑色毛玻璃卡片）</span><span class="kn-chip" data-date="4-15">4.15</span></div>
+              <div class="kn-row"><span class="kn-row-name">工作室背景改为视频</span><span class="kn-chip" data-date="4-15">4.15</span></div>
+              <div class="kn-row"><span class="kn-row-name">全局去 emoji 规则 → SVG icon</span><span class="kn-chip" data-date="4-15">4.15</span></div>
+              <div class="kn-row"><span class="kn-row-name">对话状态持久化（sessionStorage 多任务）</span><span class="kn-chip" data-date="4-15">4.15</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.16 微动效 + API联调 + 后台任务 -->
+      <div class="kn open" onclick="this.classList.toggle('open')">
+        <div class="kn-dot c-green active"></div>
+        <div class="kn-card">
+          <div class="kn-head kn-toggle">
+            <div class="kn-left">
+              <div class="kn-date c-green" style="font-size:16px">4.16</div>
+              <div class="kn-info">
+                <div class="kn-title">微动效 + API联调 + 后台任务（进行中） <span class="kn-arrow">▾</span></div>
+                <div class="kn-sub">4.16 · 体验打磨 + 真实 API 对接</div>
+              </div>
+            </div>
+            <span class="kn-badge b-green">打磨</span>
+          </div>
+          <div class="kn-detail">
+            <div class="kn-detail-inner">
+              <div class="kn-row"><span class="kn-row-name">全站入场微动效（首页/作品页/译制页/登录页）</span><span class="kn-chip" data-date="4-16">4.16</span></div>
+              <div class="kn-row"><span class="kn-row-name">COS 上传 CORS 修复 + SCF CORS 修复</span><span class="kn-chip" data-date="4-16">4.16</span></div>
+              <div class="kn-row"><span class="kn-row-name">AIGC 视频生成 API 联调（VOD FileInfos 适配）</span><span class="kn-chip" data-date="4-16">4.16</span></div>
+              <div class="kn-row"><span class="kn-row-name">后台任务：三种类型区分 + 状态保存恢复</span><span class="kn-chip" data-date="4-16">4.16</span></div>
+              <div class="kn-row"><span class="kn-row-name">CDN 优化（图片压缩 46MB→9MB + preconnect + async）</span><span class="kn-chip" data-date="4-16">4.16</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.17 评审会 -->
+      <div class="kn" onclick="this.classList.toggle('open')">
+        <div class="kn-dot c-amber"></div>
+        <div class="kn-card">
+          <div class="kn-head kn-toggle">
+            <div class="kn-left">
+              <div class="kn-date c-amber">4.17</div>
+              <div class="kn-info">
+                <div class="kn-title">评审会 <span class="kn-arrow">▾</span></div>
+                <div class="kn-sub">开发排期 + 埋点方案 · 会后启动开发 + 招募用户</div>
+              </div>
+            </div>
+            <span class="kn-badge b-amber">评审</span>
+          </div>
+          <div class="kn-detail">
+            <div class="kn-detail-inner">
+              <div class="kn-row"><span class="kn-row-name">交互稿 + 视觉稿对齐，定开发排期</span><span class="kn-chip" data-date="4-17">4.17</span></div>
+              <div class="kn-row"><span class="kn-row-name">同步埋点方案（指标体系 + 采集方式）</span><span class="kn-chip" data-date="4-17">4.17</span></div>
+              <div class="kn-row"><span class="kn-row-name">同步用户测试计划，产品协助找用户</span><span class="kn-chip" data-date="4-17">4.17</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.18 第一轮用户测试 -->
+      <div class="kn" onclick="this.classList.toggle('open')">
+        <div class="kn-dot c-cyan"></div>
+        <div class="kn-card">
+          <div class="kn-head kn-toggle">
+            <div class="kn-left">
+              <div class="kn-date c-cyan" style="font-size:15px">4.18</div>
+              <div class="kn-info">
+                <div class="kn-title">第一轮用户测试 <span class="kn-arrow">▾</span></div>
+                <div class="kn-sub">4.16 → 4.18 · 基于交互原型，快速验证</div>
+              </div>
+            </div>
+            <span class="kn-badge b-cyan">测试</span>
+          </div>
+          <div class="kn-detail">
+            <div class="kn-detail-inner">
+              <div class="kn-row"><span class="kn-row-name">1v1 可用性测试（5-8人，每人 30-45min）</span><span class="kn-chip" data-date="4-18">4.18</span></div>
+              <div class="kn-row"><span class="kn-row-name">四维体验验证（信任·掌控·找到·共鸣）</span><span class="kn-chip" data-date="4-18">4.18</span></div>
+              <div class="kn-row"><span class="kn-row-name">输出测试报告 + P0/P1 问题清单</span><span class="kn-chip" data-date="4-18">4.18</span></div>
+              <div class="kn-row"><span class="kn-row-name">反馈指导视觉设计 + 开发优先级</span><span class="kn-chip" data-date="4-18">4.18</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5月底 发布 -->
+      <div class="kn">
+        <div class="kn-dot" style="background:var(--rose);box-shadow:0 0 0 3px rgba(233,69,96,.15)"></div>
+        <div class="kn-card">
+          <div class="kn-head">
+            <div class="kn-left">
+              <div class="kn-date" style="color:var(--rose);font-size:15px">5月底</div>
+              <div class="kn-info">
+                <div class="kn-title">灰度 → 正式发布</div>
+                <div class="kn-sub">灰度上线，观察核心指标，全量发布</div>
+              </div>
+            </div>
+            <span class="kn-badge b-rose">发布</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 发布后 埋点分析 -->
+      <div class="kn" onclick="this.classList.toggle('open')">
+        <div class="kn-dot c-green"></div>
+        <div class="kn-card">
+          <div class="kn-head kn-toggle">
+            <div class="kn-left">
+              <div class="kn-date c-green" style="font-size:14px">发布后</div>
+              <div class="kn-info">
+                <div class="kn-title">埋点数据分析 <span class="kn-arrow">▾</span></div>
+                <div class="kn-sub">发布后 2 周出首份报告，持续迭代</div>
+              </div>
+            </div>
+            <span class="kn-badge b-green">数据</span>
+          </div>
+          <div class="kn-detail">
+            <div class="kn-detail-inner">
+              <div class="kn-row"><span class="kn-row-name">发布后 3 天：核心漏斗 + 异常监控速查</span><span class="kn-chip soon">速查</span></div>
+              <div class="kn-row"><span class="kn-row-name">发布后 2 周：首份数据分析报告</span><span class="kn-chip later">报告</span></div>
+              <div class="kn-row"><span class="kn-row-name">发布后 1 月：体验指标深度分析 + 迭代建议</span><span class="kn-chip later">深度</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. GANTT -->
+  <section class="anim d2" id="gantt">
+    <div class="sl">02 — Gantt</div>
+    <div class="st">排期甘特图</div>
+    <div class="sd">蓝色 = 交互设计 · 紫色 = 视觉设计 · 绿色 = 工具搭建</div>
+
+    <div class="gantt">
+      <div class="gantt-head">
+        <div class="gantt-hl">模块</div>
+        <div class="gantt-hd" id="ganttDates"></div>
+      </div>
+      <div id="ganttBody"></div>
+      <div class="gantt-legend">
+        <span><i style="background:var(--blue)"></i>交互</span>
+        <span><i style="background:var(--purple)"></i>视觉</span>
+        <span><i style="background:var(--green)"></i>工具</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. TODOS -->
+  <section class="anim d3" id="todos">
+    <div class="sl">03 — To-Do</div>
+    <div class="st">待办事项</div>
+    <div class="sd">点击切换完成状态。标签标注交互/视觉。</div>
+
+    <div class="todo-g">
+      <div class="todo-gh"><span class="todo-gl">4.07 — 4.11 第一周</span><span class="todo-gc">9项</span></div>
+      <ul class="todo-ul">
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">影视译制交互稿（4.09）</div><span class="todo-tg ix">交互</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">作品列表交互稿（4.09）</div><span class="todo-tg ix">交互</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">首页视觉设计（4.10）</div><span class="todo-tg vis">视觉</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">影视译制视觉设计（4.10）</div><span class="todo-tg vis">视觉</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">直播剪辑交互稿（4.10）</div><span class="todo-tg ix">交互</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">Demo 接入真实 MPS API（4.10）</div><span class="todo-tg collab">工具</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">测试中心搭建：生成链接 + 数据看板（4.10）</div><span class="todo-tg collab">工具</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">埋点系统搭建：行为追踪 + COS 存储（4.10）</div><span class="todo-tg collab">工具</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">完善用户测试工具（4.11）</div><span class="todo-tg collab">工具</span></li>
+      </ul>
+    </div>
+
+    <div class="todo-g">
+      <div class="todo-gh"><span class="todo-gl">4.13 — 4.16 第二周</span><span class="todo-gc">10项</span></div>
+      <ul class="todo-ul">
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">视频制作交互稿（4.13）→ 交互稿全部完成</div><span class="todo-tg ix">交互</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">直播剪辑视觉设计（4.13）</div><span class="todo-tg vis">视觉</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">视频制作视觉设计（4.14）</div><span class="todo-tg vis">视觉</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">作品列表 + 加载视频视觉（4.14）→ 视觉稿全部完成</div><span class="todo-tg vis">视觉</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">视觉稿前端还原（4.14-4.15）</div><span class="todo-tg vis">视觉</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">全站微动效（4.16）</div><span class="todo-tg vis">视觉</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">COS/SCF CORS 修复 + AIGC API 联调（4.16）</div><span class="todo-tg collab">工具</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">后台任务三类型区分 + 状态恢复（4.16）</div><span class="todo-tg ix">交互</span></li>
+        <li class="todo-li done" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">CDN 优化：图片压缩 + preconnect + async（4.16）</div><span class="todo-tg collab">工具</span></li>
+        <li class="todo-li" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">启动用户测试策划（任务脚本 + 测试维度）</div><span class="todo-tg plan">规划</span></li>
+      </ul>
+    </div>
+
+    <div class="todo-g">
+      <div class="todo-gh"><span class="todo-gl">4.17 — 4.19 评审+测试</span><span class="todo-gc">4项</span></div>
+      <ul class="todo-ul">
+        <li class="todo-li" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">4.17 评审会：交互+视觉对齐，定开发排期</div><span class="todo-tg collab">协作</span></li>
+        <li class="todo-li" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">4.17 评审会：同步埋点方案 + 招募用户</div><span class="todo-tg plan">规划</span></li>
+        <li class="todo-li" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">4.16-4.18 执行第一轮用户测试</div><span class="todo-tg plan">规划</span></li>
+        <li class="todo-li" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">4.18 输出测试报告 + P0/P1 问题清单</div><span class="todo-tg plan">规划</span></li>
+      </ul>
+    </div>
+
+    <div class="todo-g">
+      <div class="todo-gh"><span class="todo-gl">4月下旬 — 5月</span><span class="todo-gc">4项</span></div>
+      <ul class="todo-ul">
+        <li class="todo-li" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">视觉走查 & 标注交付开发</div><span class="todo-tg collab">协作</span></li>
+        <li class="todo-li" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">逐模块验收设计还原度</div><span class="todo-tg vis">视觉</span></li>
+        <li class="todo-li" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">灰度上线 → 全量发布</div><span class="todo-tg collab">协作</span></li>
+        <li class="todo-li" onclick="this.classList.toggle('done')"><div class="todo-ck">✓</div><div class="todo-tx">发布后 2 周：首份埋点数据分析报告</div><span class="todo-tg plan">规划</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. TESTING + ANALYTICS -->
+  <section class="anim d3" id="extra">
+    <div class="sl">04 — Extras</div>
+    <div class="st">用户测试 & 埋点</div>
+
+    <div class="co-grid">
+      <div class="co info">
+        <div class="co-t">用户测试</div>
+        <div class="co-b">
+          <strong>4.14</strong> 交互+视觉完成后立即策划：目标用户画像、测试脚本、维度设计<br>
+          <strong>4.16-4.18</strong> 第一轮 1v1 可用性测试（5-8人），基于交互原型快速验证，输出报告指导后续开发
+        </div>
+      </div>
+      <div class="co ok">
+        <div class="co-t">当前状态</div>
+        <div class="co-b">
+          交互稿 4 模块 <strong>全部完成</strong>（4.13）<br>
+          视觉稿 5 模块 <strong>全部完成</strong>（4.14）<br>
+          视觉还原 <strong>已完成</strong>（4.15）<br>
+          微动效 + API联调 <strong>进行中</strong>（4.16）
+        </div>
+      </div>
+      <div class="co">
+        <div class="co-t">埋点规划</div>
+        <div class="co-b">
+          页面 PV/UV · 核心漏斗转化 · 功能使用偏好 · 精调行为 · 异常监控
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="foot" id="footDate">Tideo Project Timeline</footer>
+
+<script>
+const now = new Date();
+const todayMonth = now.getMonth() + 1;
+const todayDay = now.getDate();
+
+// 动态更新所有 data-date chip
+document.querySelectorAll('.kn-chip[data-date]').forEach(chip => {
+  const [m, d] = chip.dataset.date.split('-').map(Number);
+  const dateStr = m + '.' + String(d).padStart(2, '0');
+  if (todayMonth === m && todayDay === d) {
+    chip.className = 'kn-chip today';
+    chip.textContent = dateStr + ' 今日';
+  } else if (todayMonth > m || (todayMonth === m && todayDay > d)) {
+    chip.className = 'kn-chip done';
+    chip.textContent = dateStr + ' ✓';
+  } else {
+    const target = new Date(now.getFullYear(), m - 1, d);
+    const diff = Math.ceil((target - now) / 86400000);
+    chip.className = 'kn-chip ' + (diff <= 3 ? 'soon' : 'later');
+    chip.textContent = dateStr;
+  }
+});
+
+document.getElementById('footDate').textContent = 'Tideo Project Timeline · 更新于 ' + now.getFullYear() + '.' + String(todayMonth).padStart(2,'0') + '.' + String(todayDay).padStart(2,'0');
+
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  document.getElementById('sp').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';
+});
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.style.animationPlayState='running'})},{threshold:.08});
+document.querySelectorAll('.anim').forEach(el=>{el.style.animationPlayState='paused';obs.observe(el)});
+
+// Gantt
+(function(){
+  const S=7, E=22, cols=E-S+1;
+  const TODAY = (todayMonth === 4 && todayDay >= S && todayDay <= E) ? todayDay : -1;
+  const hd=document.getElementById('ganttDates');
+  for(let d=S;d<=E;d++){
+    const v=document.createElement('div');
+    v.className='d'+(d===TODAY?' today':'');
+    v.textContent=d===S?'4.'+d:d;
+    hd.appendChild(v);
+  }
+  const data=[
+    ['首页',       [{t:'vis',f:9,to:10}]],
+    ['影视译制',   [{t:'ix',f:7,to:9},  {t:'vis',f:9,to:10}]],
+    ['直播剪辑',   [{t:'ix',f:7,to:10}, {t:'vis',f:11,to:13}]],
+    ['视频制作',   [{t:'ix',f:7,to:13}, {t:'vis',f:13,to:14}]],
+    ['作品列表',   [{t:'ix',f:7,to:9},  {t:'vis',f:13,to:14}]],
+    ['测试工具',   [{t:'tool',f:10,to:11}]],
+    ['视觉还原',   [{t:'vis',f:14,to:15}]],
+    ['微动效+API', [{t:'tool',f:16,to:16}]],
+  ];
+  const body=document.getElementById('ganttBody');
+  const tp = TODAY > 0 ? ((TODAY-S+.5)/cols)*100 : -10;
+  data.forEach(([l,bars])=>{
+    const r=document.createElement('div');r.className='gantt-row';
+    r.innerHTML=`<div class="gantt-rl">${l}</div><div class="gantt-rb"><div class="gantt-tl" style="left:${tp}%"></div></div>`;
+    const rb=r.querySelector('.gantt-rb');
+    bars.forEach(b=>{
+      const left=((b.f-S)/cols)*100, w=((b.to-b.f+1)/cols)*100;
+      const bar=document.createElement('div');bar.className='gantt-bar '+b.t;
+      bar.style.cssText=`left:${left}%;width:${w}%`;
+      bar.textContent=b.t==='ix'?'交互':b.t==='vis'?'视觉':'工具';
+      rb.appendChild(bar);
+    });
+    body.appendChild(r);
+  });
+})();
+</script>
+</body>
+</html>

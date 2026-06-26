@@ -1,0 +1,80 @@
+# Sample Agent Configuration
+# This file contains deliberate flaws for Quorum to find.
+# Use it to verify your Quorum setup: quorum run --target examples/sample-agent-config.yaml --rubric agent-config
+#
+# Planted issues (for testing):
+#   AC-001 CRITICAL: researcher agent has no model assignment
+#   AC-002 HIGH:     summarizer has wildcard permissions
+#   AC-003 HIGH:     ingester has no error handling despite making HTTP calls
+#   AC-004 HIGH:     ingester has no output I/O contract
+#   AC-006 CRITICAL: API key hardcoded as a literal value
+#   AC-010 MEDIUM:   no token/cost limits on LLM-calling agents
+
+version: "1.0"
+
+pipeline:
+  name: research-pipeline
+  description: Multi-agent research workflow
+
+agents:
+  # Ingester — fetches external data
+  - name: ingester
+    description: Fetches and preprocesses research papers from the web
+    model: claude-sonnet-4
+    tools:
+      - http_fetch
+      - file_write
+    # FLAW AC-003: No error handling defined
+    # FLAW AC-004: No output_schema or I/O contract
+    config:
+      max_papers: 50
+      output_dir: /tmp/papers
+
+  # Researcher — reads papers and extracts findings
+  - name: researcher
+    description: Analyzes papers and extracts key findings
+    # FLAW AC-001 (CRITICAL): No 'model' field — which model runs this?
+    tools:
+      - file_read
+      - search
+    output_schema:
+      type: object
+      properties:
+        findings:
+          type: array
+        confidence:
+          type: number
+    error_handling:
+      on_failure: retry
+      max_retries: 3
+
+  # Summarizer — synthesizes findings
+  - name: summarizer
+    description: Synthesizes findings into a final report
+    model: claude-opus-4
+    tools:
+      - "*"   # FLAW AC-002 (HIGH): Wildcard tool permissions — should enumerate specific tools
+    output_schema:
+      type: object
+      properties:
+        report:
+          type: string
+        verdict:
+          type: string
+    # FLAW AC-010 (MEDIUM): No max_tokens or cost_limit on this LLM call
+    config:
+      report_format: markdown
+
+# Global settings
+settings:
+  # FLAW AC-006 (CRITICAL): Hardcoded API key — should use $ANTHROPIC_API_KEY
+  anthropic_api_key: sk-ant-api03-abc123def456-this-is-a-fake-but-realistic-looking-key
+  log_level: INFO
+  timeout: 300
+
+delegations:
+  # AC-008 FLAW: delegation from coordinator to researcher has no acceptance_criteria
+  - from: coordinator
+    to: researcher
+    task: analyze_papers
+    # Missing: acceptance_criteria, success_condition

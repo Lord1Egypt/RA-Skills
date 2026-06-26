@@ -1,0 +1,45 @@
+# Requirement Agent 规则配置
+# https://skills.sh/requirement-agent
+
+# 追问规则
+questioning:
+  max_rounds: 5                    # 最大追问轮数
+  auto_skip_if_clear: true        # 需求明确时快速跳过
+  trigger_keywords:                # 触发追问的关键词
+    - "大概"
+    - "优化一下"
+    - "类似"
+    - "感觉"
+    - "可能"
+    - "差不多"
+    - "改进"
+    - "改进一下"
+
+# 自动执行规则（满足任一即自动执行）
+auto_execute:
+  text_only: true                  # 纯文本修改
+  single_file: true                # 单文件小改动
+  safe_operations:                 # 安全操作关键词
+    - "加注释"
+    - "注释"
+    - "格式化"
+    - "重命名"
+    - "整理代码"
+    - "规范格式"
+  explicit_safe: true             # 用户明确说"直接改"时
+
+# 需要确认的规则（满足任一即需要确认）
+require_confirmation:
+  multi_file: true                 # 多文件修改（2+ 文件）
+  delete: true                     # 删除操作（文件、函数、代码块）
+  logic_change: true               # 逻辑变更（改变行为、修改业务逻辑）
+  dependency: true                 # 添加依赖（package.json、requirements.txt 等）
+  irreversible: true                # 不可逆操作（git reset、强制覆盖等）
+  migration: true                  # 数据迁移、数据库变更
+  keywords:                         # 触发确认的关键词
+    - "删除"
+    - "重写"
+    - "替换"
+    - "迁移"
+    - "删掉"
+    - "改掉"

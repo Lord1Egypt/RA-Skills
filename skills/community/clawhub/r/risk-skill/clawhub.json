@@ -1,0 +1,63 @@
+{
+  "name": "Chief Risk Officer",
+  "version": "1.0.0",
+  "description": "Helps enterprises identify, assess, and manage various types of risks",
+  "author": "AI Agent",
+  "license": "MIT",
+  "tags": ["risk", "management", "compliance", "monitoring"],
+  "main": "cro_skill.py",
+  "dependencies": {
+    "python": ">=3.8"
+  },
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "risk_type": {"type": "string", "description": "Risk type"},
+      "company_info": {"type": "object", "description": "Company information"},
+      "risk_factors": {"type": "array", "items": {"type": "string"}, "description": "Risk factors"}
+    },
+    "required": ["risk_type"]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "status": {"type": "string"},
+      "risk_type": {"type": "string"},
+      "assessment": {"type": "object"},
+      "recommendations": {"type": "array", "items": {"type": "string"}}
+    }
+  },
+  "examples": [
+    {
+      "input": {
+        "risk_type": "market risk",
+        "company_info": {
+          "name": "Test Company",
+          "industry": "Finance",
+          "size": "Large"
+        },
+        "risk_factors": ["Interest rate fluctuations", "Exchange rate risk", "Competitor actions"]
+      },
+      "output": {
+        "status": "success",
+        "risk_type": "market risk",
+        "assessment": {
+          "risk_level": "high",
+          "risk_score": 85,
+          "identified_risks": ["Interest rate fluctuations", "Exchange rate risk", "Competitor actions"],
+          "impact_analysis": {
+            "financial": "May cause 10-20% revenue loss",
+            "reputational": "May affect corporate brand image",
+            "operational": "May cause business interruption"
+          }
+        },
+        "recommendations": [
+          "Immediately activate emergency response plan",
+          "Establish risk monitoring indicators",
+          "Conduct regular stress tests",
+          "Seek professional consulting services"
+        ]
+      }
+    }
+  ]
+}

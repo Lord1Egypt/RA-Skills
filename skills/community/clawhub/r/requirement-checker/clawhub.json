@@ -1,0 +1,56 @@
+{
+  "name": "requirement-checker",
+  "version": "2.8.0",
+  "description": "需求文档规范自动检查技能（AI 驱动 + 智能引导 + 温柔话术 + 建议分级）。使用 LLM 智能检查需求文档是否符合规范，生成具体问题说明、原文引用、针对性建议和 GWT 验收标准。首次使用会智能引导你设置目录和 API 配置，配置一次后无需重复设置。支持单个文件检查和批量检查，汇总报告可选。温柔话术：从"挑毛病"变成"建议式"。v2.7.0 集成 MarkItDown，Word/PDF 转换质量更高。v2.8.0 修复 AI 驱动版 GWT 验收标准自动生成逻辑，清理废弃脚本。",
+  "author": "红曼为帆",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/workspace/skills/requirement-checker",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/workspace.git",
+    "directory": "skills/requirement-checker"
+  },
+  "keywords": [
+    "需求文档",
+    "规范检查",
+    "AI 检查",
+    "GWT 验收",
+    "系统对接",
+    "金融需求",
+    "温柔话术",
+    "建议分级",
+    "openclaw-skill"
+  ],
+  "engines": {
+    "openclaw": ">=2026.2.26"
+  },
+  "dependencies": {
+    "python": ">=3.7"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "install.json",
+    "_meta.json",
+    "requirements.txt",
+    "scripts/",
+    "references/"
+  ],
+  "scripts": {
+    "test": "bash scripts/test.sh",
+    "verify": "test -f SKILL.md && echo '✅ 技能文件验证通过'",
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://clawhub.com"
+  },
+  "meta": {
+    "createdAt": "2026-04-03",
+    "updatedAt": "2026-04-22",
+    "downloads": 0,
+    "stars": 0,
+    "category": "productivity",
+    "releaseNotes": "v2.8.0: 修复 AI 驱动版 GWT 验收标准自动生成逻辑（v2.0 引入的 bug），清理 10 个废弃脚本，集成 MarkItDown 文档解析"
+  }
+}

@@ -1,0 +1,162 @@
+name: proxy-gateway-x402
+version: 0.1.6
+description: |
+  x402 Agent-to-Agent Commerce Proxy Gateway.
+  A pay-per-use HTTP proxy service using x402 protocol with on-chain USDC payments.
+  Users pay 0.001 USDC per request directly to the developer wallet.
+  
+  IMPORTANT: This skill includes both client SDK and server implementation.
+  For production use, consider self-hosting for privacy.
+  
+  Security Notes:
+  - User requests (URL, headers, body) are sent to the proxy server
+  - Set USER_EVM_PRIVATE_KEY only on trusted environments with dedicated wallets
+  - Server code includes Redis Lua script execution for atomic balance operations
+author: kehongpeng
+tags:
+  - proxy
+  - x402
+  - payment
+  - base
+  - usdc
+  - agent-commerce
+  - http
+  - web3
+  - crypto
+  - self-hosted
+keywords:
+  - x402
+  - pay-per-use
+  - http-proxy
+  - agent-to-agent
+  - base-network
+  - usdc-payments
+  - automatic-payment
+  - web3-proxy
+  - no-custody
+  - no-kyc
+requires:
+  python: ">=3.10"
+  env:
+    # Server-side required (for self-hosting)
+    DEVELOPER_WALLET:
+      required: false
+      description: Developer wallet address to receive USDC payments (required for server)
+      example: "0x172444FC64e2E370fCcF297dB865831A1555b07A"
+    ADMIN_TOKEN:
+      required: false
+      description: Admin API token for management endpoints (required for server)
+      example: "your_secure_random_token"
+    # Server-side optional
+    PRICE_PER_REQUEST:
+      required: false
+      description: Price per request in USDC
+      default: "0.001"
+    X402_CHAIN:
+      required: false
+      description: Blockchain network (base, base-sepolia, polygon)
+      default: "base"
+    RPC_URL:
+      required: false
+      description: RPC endpoint URL
+      default: "https://mainnet.base.org"
+    PORT:
+      required: false
+      description: Server port
+      default: "8080"
+    REDIS_HOST:
+      required: false
+      description: Redis host (for production storage)
+    REDIS_PORT:
+      required: false
+      description: Redis port
+      default: "6379"
+    # Client-side (user environment)
+    USER_EVM_PRIVATE_KEY:
+      required: false
+      description: User EVM private key for automatic payments. SECURITY WARNING - Use only dedicated wallets with minimal funds
+      sensitive: true
+      example: "0x... (dedicated test wallet only)"
+
+security_manifest:
+  type: financial
+  custody_model: none
+  requires_network: true
+  requires_filesystem: false
+  requires_environment_variables: true
+  sensitive_env_vars:
+    - USER_EVM_PRIVATE_KEY
+    - ADMIN_TOKEN
+  payment_flow: |
+    1. User requests proxy service via POST /api/v1/fetch
+    2. Server returns 402 Payment Required with x402 payload
+    3. User signs and sends USDC transfer on-chain to developer wallet
+    4. User provides tx_hash in X-Payment-Response header
+    5. Server verifies payment on-chain and executes proxy request
+  risks:
+    - Private key exposure if USER_EVM_PRIVATE_KEY is set in environment
+    - Full request data (URL, headers, body) visible to proxy server operator
+    - No refunds for failed requests
+    - Network fees paid by user
+    - Redis Lua script execution for atomic operations (server-side)
+  mitigations:
+    - User private key never leaves client environment
+    - All payments verified on-chain before service delivery
+    - Payment proofs cached to prevent replay attacks
+    - Self-hosting option available for privacy
+    - Clear warnings about data visibility in documentation
+  trust_assumptions:
+    - User trusts the developer to provide service after payment
+    - User trusts the hosted proxy server with request data
+    - No escrow or dispute resolution mechanism
+    - Smart contract risk for USDC transfers only
+
+entrypoint: |
+  # Client SDK usage
+  from app.middleware.x402_payment import X402PaymentMiddleware
+  
+  # Server self-hosting
+  pip install -r requirements.txt
+  export DEVELOPER_WALLET=0xYourWalletAddress
+  export ADMIN_TOKEN=your_secure_token
+  uvicorn app.main:app --host 0.0.0.0 --port 8080
+
+homepage: https://github.com/openclaw/proxy-gateway-x402
+documentation: ./SKILL.md
+license: MIT
+
+protocols:
+  - x402
+  - http
+  - json-rpc
+
+networks:
+  supported:
+    - base
+    - base-sepolia
+  tokens:
+    - USDC
+
+# Additional metadata for clarity
+repository:
+  type: git
+  url: https://github.com/openclaw/proxy-gateway-x402
+
+maintainers:
+  - kehongpeng
+
+# Runtime notes
+runtime_notes: |
+  This skill contains both client SDK and server implementation.
+  
+  Client usage: Import modules to interact with x402 payment protocol
+  Server usage: Self-host the proxy gateway with proper environment configuration
+  
+  Hosted service: proxy-x402.easky.cn (for testing)
+  
+  Security warnings:
+  1. Never use main wallet private key for USER_EVM_PRIVATE_KEY
+  2. Use dedicated test wallets with minimal funds
+  3. All request data is visible to the proxy server operator
+  4. Do not proxy sensitive data through untrusted servers
+  5. Prefer self-hosting for production use

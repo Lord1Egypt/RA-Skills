@@ -1,35 +1,38 @@
 ---
-name: "Product Hunt Launch"
-description: "Track your Product Hunt launch stats (Rank, Upvotes, Comments) in real-time via CLI."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/product-hunt-launch"
-sourceUrl: "https://clawhub.ai/skills/product-hunt-launch"
+name: product-hunt-launch
+version: 1.0.0
+description: Track your Product Hunt launch stats (Rank, Upvotes, Comments) in real-time via CLI.
+author: abakermi
+metadata:
+  openclaw:
+    emoji: "🚀"
+    requires:
+      env: ["PH_API_TOKEN"]
 ---
 
-# Product Hunt Launch
+# Product Hunt Launch 🚀
 
-> Track your Product Hunt launch stats (Rank, Upvotes, Comments) in real-time via CLI.
+Track your launch day metrics from the terminal.
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/product-hunt-launch`
-- **Source URL:** [https://clawhub.ai/skills/product-hunt-launch](https://clawhub.ai/skills/product-hunt-launch)
+## Setup
 
-## Overview
+1. Get a Developer Token from [Product Hunt API Dashboard](https://www.producthunt.com/v2/oauth/applications).
+2. Set it: `export PH_API_TOKEN="your_token"`
 
+## Commands
 
-## Installation
-To install this skill, run the following command in your terminal:
+### Check Post Stats
 ```bash
-hermes skills install clawhub/product-hunt-launch
+ph-launch stats --slug "your-product-slug"
+# Output: Rank #4 | 🔼 450 | 💬 56
+```
+
+### Monitor Launch (Live Dashboard)
+```bash
+ph-launch monitor --slug "your-product-slug" --interval 60
+```
+
+### List Today's Leaderboard
+```bash
+ph-launch leaderboard
 ```

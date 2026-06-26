@@ -1,0 +1,23 @@
+name: resend-notification
+
+on:
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    env:
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+    steps:
+      - name: Install Resend CLI
+        run: curl -fsSL https://resend.com/install.sh | bash
+
+      - name: Add CLI to PATH
+        run: echo "$HOME/.resend/bin" >> "$GITHUB_PATH"
+
+      - name: Sanity-check environment
+        run: resend --json -q doctor
+
+      - name: Send notification email
+        run: |
+          resend --json -q emails send             --from "deploy@example.com"             --to "team@example.com"             --subject "Deploy complete"             --text "Version ${{ github.sha }} deployed."             --idempotency-key "deploy-${{ github.run_id }}"

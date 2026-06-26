@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  proxy-gateway:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      # x402 Configuration
+      - X402_PAY_TO_ADDRESS=${X402_PAY_TO_ADDRESS:-}
+      - X402_NETWORK=${X402_NETWORK:-polygon}
+      - X402_PRICE=${X402_PRICE:-0.001}
+      - X402_FACILITATOR_URL=${X402_FACILITATOR_URL:-https://x402.org/facilitator}
+      
+      # Alternative: SkillPay
+      # - SKILLPAY_API_KEY=${SKILLPAY_API_KEY:-}
+      
+      # Service Config
+      - ENV=production
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+    volumes:
+      - ./config:/app/config:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Optional: Clash proxy (if running locally)
+  # clash:
+  #   image: dreamacro/clash
+  #   volumes:
+  #     - ~/.config/clash:/root/.config/clash:ro
+  #   ports:
+  #     - "7890:7890"
+  #     - "7891:7891"
+  #     - "9090:9090"
+  #   restart: unless-stopped

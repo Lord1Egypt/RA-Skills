@@ -1,0 +1,21 @@
+{
+  "name": "qcsd-quality-gates",
+  "version": "1.0.0",
+  "description": "Quality gates and auto-healing for AI-assisted personal development",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "quality",
+    "codegen",
+    "qcsd"
+  ],
+  "author": "pejic",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

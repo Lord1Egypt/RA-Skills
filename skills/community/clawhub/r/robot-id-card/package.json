@@ -1,0 +1,30 @@
+{
+  "name": "robot-id-card",
+  "version": "0.4.0",
+  "private": true,
+  "description": "Universal identity standard for AI bots and agents on the internet — cryptographically signed certificates, public audit registry, and permission-based access control",
+  "homepage": "https://github.com/Cosmofang/robot-id-card",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "node node_modules/vitest/vitest.mjs run packages/registry/src packages/sdk/src",
+    "dev:registry": "npm run dev --workspace=packages/registry",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "bot-identity", "ai-agent", "robot-id", "bot-passport", "bot-certificate",
+    "ed25519", "cryptographic-identity", "bot-verification", "web-security",
+    "browser-extension", "sdk", "registry", "bot-accountability",
+    "permission-system", "audit-trail", "bot-grade", "ai-safety"
+  ],
+  "overrides": {
+    "vitest": "1.6.1"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cosmofang/robot-id-card"
+  }
+}

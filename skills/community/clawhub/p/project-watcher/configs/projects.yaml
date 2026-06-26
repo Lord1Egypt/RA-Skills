@@ -1,0 +1,14 @@
+# Project Watcher — 项目配置
+# 路径为相对于 workspace 的路径或绝对路径
+
+projects:
+  clip-rating:
+    path: /Volumes/File/OpenClaw/workspace/clip-rating
+    repo_url: null
+    auto_commit: false
+    feishu_user: ou_303e303666b03ee6300a4944c8d77d16
+    remote_deploy:
+      host: 192.168.2.34
+      user: claw
+      ssh_key: /Volumes/File/OpenClaw/workspace/ssh/sh.pem
+      target_base: C:\clip_rating_demo

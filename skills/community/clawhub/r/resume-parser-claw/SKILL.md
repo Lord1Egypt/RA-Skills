@@ -1,35 +1,85 @@
 ---
-name: "简历标准化解析虾"
-description: "简历标准化解析虾 — 将非标简历（PDF/Word/图片/文本）解析为结构化候选人数据，并可写入飞书多维表格或导出 Excel/JSON。 **当以下情况时使用此 Skill**： (1) 用户上传或提供简历文件（PDF、Word、图片），要求提取候选人信息 (2) 需要批量解析简历并录入数据库或飞书多维表格 (..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/resume-parser-claw"
-sourceUrl: "https://clawhub.ai/skills/resume-parser-claw"
+name: resume-parser-claw
+description: |
+  简历标准化解析虾 — 将非标简历（PDF/Word/图片/文本）解析为结构化候选人数据，并可写入飞书多维表格或导出 Excel/JSON。
+
+  **当以下情况时使用此 Skill**：
+  (1) 用户上传或提供简历文件（PDF、Word、图片），要求提取候选人信息
+  (2) 需要批量解析简历并录入数据库或飞书多维表格
+  (3) 需要提取技能标签、工作年限、最高学历等结构化字段
+  (4) 需要对简历进行去重、质量评分或格式统一
+  (5) 用户提到"解析简历"、"简历录入"、"简历标准化"、"提取技能"、"简历筛选"、"候选人信息"、"简历数据库"、"批量简历"、"简历去重"、"人才数据"
 ---
 
 # 简历标准化解析虾
 
-> 简历标准化解析虾 — 将非标简历（PDF/Word/图片/文本）解析为结构化候选人数据，并可写入飞书多维表格或导出 Excel/JSON。 **当以下情况时使用此 Skill**： (1) 用户上传或提供简历文件（PDF、Word、图片），要求提取候选人信息 (2) 需要批量解析简历并录入数据库或飞书多维表格 (...
+将非标简历转化为标准化候选人数据，支持单份和批量处理，可输出到飞书多维表格、Excel 或 JSON。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/resume-parser-claw`
-- **Source URL:** [https://clawhub.ai/skills/resume-parser-claw](https://clawhub.ai/skills/resume-parser-claw)
+## 工作流程
 
-## Overview
-
-
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/resume-parser-claw
 ```
+[简历文件/文本] → [格式识别] → [内容提取] → [字段解析] → [标准化] → [输出/入库]
+```
+
+### 步骤 1：获取简历内容
+
+| 输入类型 | 处理方式 |
+|---------|---------|
+| PDF（文本层） | 用 `scripts/parse-resume.py` 提取文本 |
+| PDF（扫描件）/ 图片 | 先 OCR，再提取文本 |
+| Word/DOCX | 用 `scripts/parse-resume.py` 解析段落和表格 |
+| 纯文本 | 直接进入字段解析 |
+| 飞书消息中的文件 | 用 `feishu_im_bot_image` 下载到本地，再解析 |
+
+### 步骤 2：字段解析
+
+解析目标字段（参考 `references/resume-schema.md`）：
+- 基本信息：姓名、手机、邮箱、性别、年龄、所在城市
+- 求职意向：期望职位、期望薪资、到岗时间
+- 教育经历：学校、专业、学历、时间
+- 工作经历：公司、职位、时间段、职责描述（自动计算工作年限）
+- 技能标签：技术技能、语言能力、证书（参考 `references/skills-dictionary.md` 标准化）
+- 项目经历：项目名称、角色、技术栈、成果
+
+### 步骤 3：标准化处理
+
+- 时间格式统一为 `YYYY-MM`
+- 学历统一为枚举：本科 / 硕士 / 博士 / 专科 / 高中
+- 技能名称标准化（如 "JS" → "JavaScript"，参考 `references/skills-dictionary.md`）
+- 工作年限自动计算（当前年份 - 最早工作年份）
+- 对置信度低的字段标记 `[待确认]`
+
+### 步骤 4：质量评分
+
+- 完整度评分（0-100）：必填字段覆盖率
+- 逻辑校验：工作时间是否重叠、学历时间是否合理
+- 核心字段（姓名、手机/邮箱）缺失时标记为"低质量简历"
+
+### 步骤 5：输出
+
+根据用户需求选择输出方式：
+
+| 输出方式 | 操作 |
+|---------|------|
+| 飞书多维表格 | 用 `feishu_bitable_app_table_record` 写入，表结构参考 `references/resume-schema.md` |
+| Excel | 用 `scripts/parse-resume.py export` 导出 |
+| JSON | 直接输出标准化 JSON |
+| 飞书消息摘要 | 格式化后直接回复用户 |
+
+## 批量处理
+
+用户提供多份简历时：
+1. 逐份解析，汇总结果
+2. 相同手机号/邮箱的候选人自动去重（保留最新版本）
+3. 最终输出汇总表格，注明解析成功/失败数量
+
+## 与其他虾的协作
+
+- 解析完成后，可直接触发 **面试邀约虾**（interview-scheduler-claw）发送面试邀请
+- 标准化数据可传给 **简历筛选虾** 按条件筛选候选人
+
+## 参考文件
+
+- `references/resume-schema.md` — 标准字段定义和飞书多维表格建表结构
+- `references/skills-dictionary.md` — 技能名称标准化词典
+- `scripts/parse-resume.py` — 文件解析脚本（PDF/Word/图片）

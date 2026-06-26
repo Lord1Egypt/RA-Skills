@@ -1,0 +1,37 @@
+{
+  "slug": "regression-story-builder",
+  "title": "回归故事构建器",
+  "category": "engineering",
+  "categoryLabel": "研发与测试",
+  "mode": "structured_brief",
+  "summary": "基于历史问题生成回归测试故事集、风险等级和优先级。",
+  "inputHint": "历史 bug、受影响模块、发布时间",
+  "sections": [
+    "回归故事",
+    "高风险场景",
+    "建议优先级",
+    "触发条件",
+    "验收信号",
+    "补充数据"
+  ],
+  "useCases": [
+    "回归清单",
+    "测试补强",
+    "质量治理"
+  ],
+  "positiveExamples": [
+    "根据历史 bug 生成回归测试故事",
+    "按风险高低排序"
+  ],
+  "negativeExamples": [
+    "不要宣称已经执行测试",
+    "不要跳过高风险路径"
+  ],
+  "risk": "只生成故事和清单，不自动跑测试。",
+  "tags": [
+    "regression",
+    "testing",
+    "qa",
+    "risk"
+  ]
+}

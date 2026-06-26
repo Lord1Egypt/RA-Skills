@@ -1,0 +1,41 @@
+{
+    "stages": {
+        "smoke_test": {
+            "start": "2024-01-01",
+            "end": "2024-03-31",
+            "max_dd": 0.50,
+            "expected_time": "15-20 min",
+            "purpose": "Fast elimination",
+            "order": 1
+        },
+        "stress_test": {
+            "start": "2024-02-01",
+            "end": "2024-06-30",
+            "max_dd": 0.45,
+            "expected_time": "25-30 min",
+            "purpose": "Worst-case survival",
+            "order": 2
+        },
+        "medium": {
+            "start": "2024-01-01",
+            "end": "2025-06-30",
+            "max_dd": 0.42,
+            "expected_time": "45-60 min",
+            "purpose": "Seasonal validation",
+            "order": 3
+        },
+        "full": {
+            "start": "2023-01-01",
+            "end": "2026-01-31",
+            "max_dd": 0.40,
+            "expected_time": "2-3 hours",
+            "purpose": "Final benchmark",
+            "order": 4
+        }
+    },
+    "acceptance_criteria": {
+        "min_sharpe": 2.0,
+        "max_drawdown": 0.40,
+        "min_profit": 3.0
+    }
+}

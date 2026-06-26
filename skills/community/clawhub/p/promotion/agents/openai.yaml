@@ -1,0 +1,4 @@
+interface:
+  display_name: "Promotion"
+  short_description: "追踪主流电商平台热门促销，判断哪些活动真值得追"
+  default_prompt: "Use $promotion to scan Taobao, Tmall, JD, PDD, VIPSHOP, and similar mainland China shopping platforms, rank the hottest current promotions by real savings and friction, and tell me which campaigns are actually worth chasing right now."

@@ -1,0 +1,57 @@
+{
+  "send-basic": {
+    "description": "Single transactional send using an HTML file and idempotency.",
+    "command": "resend --json -q emails send --from \"Acme <alerts@example.com>\" --to user@example.com --subject \"Welcome\" --html-file ./newsletter.html --idempotency-key welcome-001",
+    "files": [
+      "newsletter.html"
+    ]
+  },
+  "batch-send": {
+    "description": "Batch send from a JSON file.",
+    "command": "resend --json -q emails batch --file ./batch-emails.json --idempotency-key batch-001",
+    "files": [
+      "batch-emails.json"
+    ]
+  },
+  "domain-sending-receiving": {
+    "description": "Create a sending + receiving domain in EU region.",
+    "command": "resend --json -q domains create --name eu.example.com --region eu-west-1 --receiving",
+    "files": []
+  },
+  "webhook-dev-listen": {
+    "description": "Local webhook loop using a tunnel and forward-to.",
+    "command": "resend --json webhooks listen --url https://example.ngrok-free.app --forward-to localhost:3000/webhooks/resend",
+    "files": []
+  },
+  "receiving-listen": {
+    "description": "Observe inbound emails as NDJSON.",
+    "command": "resend --json emails receiving listen --interval 5",
+    "files": []
+  },
+  "broadcast-draft": {
+    "description": "Create a draft broadcast backed by an HTML file.",
+    "command": "resend --json -q broadcasts create --from hello@example.com --subject \"Weekly Update\" --segment-id <segment-id> --html-file ./broadcast.html --topic-id <topic-id>",
+    "files": [
+      "broadcast.html"
+    ]
+  },
+  "template-create": {
+    "description": "Create a hosted template draft and then publish it.",
+    "command": "resend --json -q templates create --name \"Welcome\" --html-file ./template.html --subject \"Welcome\" --var NAME:string && resend --json -q templates publish <template-id>",
+    "files": [
+      "template.html"
+    ]
+  },
+  "api-key-domain-scope": {
+    "description": "Create a sending-only API key scoped to one domain.",
+    "command": "resend --json -q api-keys create --name \"ci-token\" --permission sending_access --domain-id <domain-id>",
+    "files": []
+  },
+  "github-actions-email": {
+    "description": "GitHub Actions job that sends a notification using RESEND_API_KEY.",
+    "command": "cat ./github-actions-resend.yml",
+    "files": [
+      "github-actions-resend.yml"
+    ]
+  }
+}

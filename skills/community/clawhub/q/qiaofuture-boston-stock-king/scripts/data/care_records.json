@@ -1,0 +1,12 @@
+{
+  "users": {
+    "test001": {
+      "nickname": "小明",
+      "milk_tea_count": 1,
+      "call_count": 0,
+      "last_care": "2026-03-13T01:49:38.913783",
+      "address": "北京市朝阳区xxx街道xxx号",
+      "phone": "13800138000"
+    }
+  }
+}

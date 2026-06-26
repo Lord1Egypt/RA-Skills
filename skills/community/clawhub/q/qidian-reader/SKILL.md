@@ -1,35 +1,229 @@
 ---
-name: "Qidian Reader"
-description: "起点中文网好书推荐与榜单查询。Use when the user wants to find good novels on Qidian (起点中文网), browse rankings by genre or category, get personalized book recommendations, or..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qidian-reader"
-sourceUrl: "https://clawhub.ai/skills/qidian-reader"
+name: qidian-reader
+description: 起点中文网好书推荐与榜单查询。Use when the user wants to find good novels on Qidian (起点中文网), browse rankings by genre or category, get personalized book recommendations, or discover trending/completed novels. Real-time ranking access should be done through openclaw browser automation rather than curl because Qidian uses anti-bot protection and dynamic rendering.
+version: 1.1.0
+license: MIT-0
+metadata:
+  openclaw:
+    emoji: "📚"
+    requires:
+      bins:
+        - google-chrome
+        - chromium
+        - node
+        - npx
 ---
 
-# Qidian Reader
+# 起点好书推荐 Qidian Reader
 
-> 起点中文网好书推荐与榜单查询。Use when the user wants to find good novels on Qidian (起点中文网), browse rankings by genre or category, get personalized book recommendations, or...
+通过 openclaw 的浏览器自动化能力访问起点中文网榜单页，等待页面真实渲染完成后提取书单数据，再结合用户偏好做推荐。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qidian-reader`
-- **Source URL:** [https://clawhub.ai/skills/qidian-reader](https://clawhub.ai/skills/qidian-reader)
+不要把 `curl` 作为主路径。起点存在反爬和动态渲染，默认必须使用 openclaw 浏览器自动化；如果仍然被风控，就要明确降级，而不是假装拿到了实时榜单。
 
-## Overview
+榜单 URL 完整列表 → `references/urls.md`
+分类与标签说明 → `references/categories.md`
 
+## 触发时机
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/qidian-reader
+- "帮我找几本好看的玄幻小说"
+- "起点现在什么书最火"
+- "推荐几本完结的都市爽文"
+- "我喜欢《诡秘之主》这种风格，有类似的吗"
+- "最近有什么新书值得看"
+- "帮我找几本适合睡前看的轻松小说"
+
+---
+
+## Step 1：理解用户需求
+
+从用户描述中提取以下维度：
+
+```text
+题材偏好：玄幻/仙侠/都市/历史/科幻/悬疑/军事/游戏/轻小说
+  → 未指定则抓全部分类榜单
+
+完结状态：连载中 / 已完结 / 不限
+  → 完结优先抓完本榜，连载抓主榜单
+
+参考作品：用户提到的喜欢的书
+  → 提取该书的核心标签，作为推荐依据
+
+字数偏好：短篇(<100万字) / 中篇(100-300万) / 长篇(>300万)
+  → 从抓取数据的字数字段筛选
+
+其他要求：免费/VIP、男频/女频、新书/老书
 ```
+
+---
+
+## Step 2：选择榜单并通过 openclaw 浏览器自动化抓取
+
+根据用户需求选择对应榜单，见 `references/urls.md`。
+
+### 抓取原则
+
+```text
+1. 必须调用 openclaw 的真实浏览器上下文，不要只请求静态 HTML。
+2. 等待榜单列表、书名、作者等关键节点渲染完成后再提取。
+3. 优先执行页面内 DOM 提取，不要依赖整页 HTML 正则。
+4. 单次任务控制访问频率，避免连续高频打开多个榜单页。
+5. 如果页面出现验证、跳转或空白榜单，明确告知用户“实时榜单暂时不可稳定获取”，并降级为基于用户口味和已知热门书的推荐。
+```
+
+### 推荐执行方式
+
+优先使用 openclaw 提供的浏览器自动化能力。推荐流程：
+
+```text
+打开目标榜单 URL
+  → 等待 networkidle 或榜单主容器出现
+  → 检查是否进入反爬/验证页
+  → 在页面上下文内 querySelectorAll 提取书名、作者、分类、字数、简介、链接
+  → 结果去重、清洗、结构化
+  → 进入推荐逻辑
+
+必要时：
+  → 放慢节奏
+  → 只抓 1-2 个榜单
+  → 保留截图或页面标题用于诊断
+```
+
+### 自动化抓取失败处理
+
+```text
+页面标题、DOM、截图显示验证页/风控页
+  → 不要继续硬刷
+  → 终止本轮抓取
+  → 告知用户当前实时数据不可稳定获取
+  → 切换到“基于用户口味 + 经典热门书 + 已知榜单记忆”的降级推荐
+
+页面打开成功但内容为空或节点缺失
+  → 等待3-5秒后重试一次
+  → 仍失败则只保留当前已成功抓到的榜单结果
+
+浏览器环境不可用
+  → 明确说明该 skill 依赖浏览器自动化
+  → 不要伪装成实时抓取成功
+```
+
+---
+
+## Step 3：解析提取书目信息
+
+从浏览器已渲染的 DOM 中提取以下字段：
+
+```text
+书名       → <h2> 或 class 含 "book-name" 的元素
+作者       → class 含 "author" 的元素
+分类       → class 含 "tag" 或 "type" 的元素
+字数       → 含 "万字" 的文本节点
+连载状态   → "连载" / "完本"
+简介       → class 含 "intro" 或 "desc" 的元素
+月票数     → 榜单排名旁的数字（月票榜专有）
+链接       → 书籍详情页 URL
+```
+
+提取后转为结构化列表，每本书保留：书名、作者、分类、字数、状态、简介摘要、链接。
+
+---
+
+## Step 4：智能筛选与推荐
+
+基于抓取数据 + 用户需求，进行以下处理：
+
+**按用户偏好筛选：**
+
+```text
+字数筛选：用户要短篇 → 过滤掉 >150万字的书
+完结筛选：用户要完结 → 只保留"完本"标记的书
+分类筛选：已在抓取时通过 chn 参数处理
+```
+
+**参考书匹配推荐：**
+
+```text
+用户说"类似《诡秘之主》"：
+  → 《诡秘之主》标签：西方奇幻、克苏鲁、悬疑、硬核世界观
+  → 在抓取结果中优先推荐：奇幻分类 + 悬疑元素 + 大字数
+  → 同时补充大模型知识：风格相近的经典作品
+```
+
+**多榜单交叉验证：**
+
+```text
+同一本书在月票榜 + 畅销榜 + 阅读榜都排名靠前
+→ 标记为"多榜推荐"，权重最高
+```
+
+**抓取降级时的推荐策略：**
+
+```text
+如果实时榜单抓取失败：
+  → 明确标注“以下推荐不代表当前实时榜单，仅基于已知热门作品和你的口味偏好”
+  → 优先给出高确定性的经典作品、完本精品、同风格代表作
+```
+
+---
+
+## Step 5：格式化输出
+
+```text
+📚 起点好书推荐
+━━━━━━━━━━━━━━━━━━━━
+数据来源：起点中文网榜单页 / 降级推荐
+采集方式：openclaw 浏览器自动化渲染后提取
+筛选条件：玄幻 · 连载中 · 不限字数
+
+🏆 强烈推荐（多榜上榜）
+
+1. 《书名》— 作者名
+   📖 玄幻 | 🔄 连载中 | 📝 320万字
+   💡 简介摘要（50字以内）
+   ⭐ 月票榜 #2 · 畅销榜 #1
+
+2. 《书名》— 作者名
+   ...
+
+✨ 也值得看
+
+3-5. ...（次推荐，上了一个榜单）
+
+🎯 根据你的口味特别推荐
+
+（结合用户提到的参考书，补充1-2本风格相近的经典完结作品，
+来自模型知识或稳定书库，标注"经典推荐"以区分实时榜单数据）
+
+━━━━━━━━━━━━━━━━━━━━
+🔗 查看完整榜单：https://www.qidian.com/rank/
+```
+
+如果用了降级结果，必须明确标注：
+
+```text
+本次未能稳定获取实时榜单，以下为基于你的口味偏好和已知热门作品给出的替代推荐。
+```
+
+---
+
+## 多轮对话支持
+
+用户对推荐结果有进一步要求时：
+
+```text
+"有没有完结的"     → 优先抓完本榜；抓不到则推荐已知完本精品
+"字数少一点的"     → 筛选 <150万字
+"有没有免费的"     → 优先抓免费榜
+"第一本讲什么的"   → 展开该书的详细简介
+"还有其他类似的吗" → 扩展同分类推荐
+```
+
+---
+
+## 注意事项
+
+- 该 skill 的实时数据获取默认依赖 openclaw 浏览器自动化，不依赖裸 `curl`
+- 若触发反爬或验证页，应立即降级，不要伪造实时榜单结果
+- 起点榜单数据每天更新，抓取成功时结果反映当前实时排名
+- 部分内容为 VIP 付费章节，免费读者只能看前几章
+- 女频内容在女生网（nvsheng.qidian.com），与主站榜单分开
+- 如抓取失败，可引导用户直接访问 https://www.qidian.com/rank/

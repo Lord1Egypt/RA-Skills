@@ -1,0 +1,8 @@
+{
+  "type": "video_generation_wait",
+  "user_id": "default",
+  "target_id": "永仁",
+  "task_id": "cgt-20260316174749-mqx99",
+  "poll_interval_seconds": 5,
+  "poll_timeout_seconds": 600
+}

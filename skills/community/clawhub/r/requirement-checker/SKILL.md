@@ -1,35 +1,462 @@
 ---
-name: "Requirement Checker"
-description: "需求文档规范自动检查技能（AI 驱动 + 智能引导 + 温柔话术 + 建议分级）。使用 LLM 智能检查需求文档是否符合规范，生成具体问题说明、原文引用、针对性建议和 GWT 验收标准。首次使用会智能引导你设置目录和 API 配置，配置一次后无需重复设置。支持单个文件检查和批量检查，汇总报告可选。温柔话术：从"挑..."
-category: "autonomous-ai-agents"
-source: "ClawHub"
-tags: [ai, checker, prd, requirement, stable]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/requirement-checker"
-sourceUrl: "https://clawhub.ai/skills/requirement-checker"
+name: requirement-checker
+version: 2.7.0
+description: 需求文档规范自动检查技能（AI 驱动 + 智能引导 + 温柔话术 + 建议分级）。使用 LLM 智能检查需求文档是否符合规范，生成具体问题说明、原文引用、针对性建议和 GWT 验收标准。首次使用会智能引导你设置目录和 API 配置，配置一次后无需重复设置。支持单个文件检查和批量检查，汇总报告可选。温柔话术：从"挑毛病"变成"建议式"。v2.7.0 集成 MarkItDown，Word/PDF转换质量更高。v2.6.0 基于 Claude Code 技巧优化文档结构。
 ---
 
-# Requirement Checker
+## 🎯 定位
 
-> 需求文档规范自动检查技能（AI 驱动 + 智能引导 + 温柔话术 + 建议分级）。使用 LLM 智能检查需求文档是否符合规范，生成具体问题说明、原文引用、针对性建议和 GWT 验收标准。首次使用会智能引导你设置目录和 API 配置，配置一次后无需重复设置。支持单个文件检查和批量检查，汇总报告可选。温柔话术：从"挑...
+**需求文档规范自动检查技能** - AI 驱动 + 智能引导 + 温柔话术 + 建议分级
 
-- **Category:** AI Agents
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/requirement-checker`
-- **Source URL:** [https://clawhub.ai/skills/requirement-checker](https://clawhub.ai/skills/requirement-checker)
+---
 
-## Overview
+## 🚀 快速开始
 
+### 30 秒开始使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/requirement-checker
+# 1. 安装技能
+clawhub install requirement-checker
+
+# 2. 使用
+请检查需求文档
+
+# 3. 查看报告
+~/Downloads/requirementReports/
 ```
+
+### 基础用法
+
+| 场景 | 命令 | 说明 |
+|------|------|------|
+| **检查单个文件** | `请检查需求文档` | 自动使用配置的目录 |
+| **批量检查** | `请检查需求文档，并生成汇总报告` | 批量检查 + 汇总报告 |
+| **重新配置** | `请重新设置检查目录` | 修改目录配置 |
+| **查看帮助** | `requirement-checker 怎么用` | 显示使用说明 |
+
+---
+
+## ⚠️ 重要规则（必须遵守）
+
+### 🤖 执行方式：默认使用子代理
+
+**当用户要求检查需求文档时，必须**：
+1. ✅ **使用子代理执行**（sessions_spawn with runtime="subagent"）
+2. ✅ **不要直接用 exec 命令执行**
+3. ✅ **执行完毕后自动关闭子代理**（cleanup: "delete"）
+
+**正确示例**：
+```python
+sessions_spawn({
+  runtime: "subagent",
+  task: """请使用 requirement-checker 技能检查需求文档：
+  目录：/Users/lifan/Downloads/requirementDocs/
+  请执行：python3 ~/.openclaw/workspace/skills/requirement-checker/scripts/batch_check_ai.py
+  """,
+  timeoutSeconds: 600,
+  cleanup: "delete"
+})
+```
+
+**错误示例**：
+```bash
+# ❌ 不要这样做
+python3 check_requirement.py
+```
+
+**为什么**：
+- ✅ 子代理隔离执行环境，不占用主会话资源
+- ❌ exec 命令会阻塞主会话，不适合长时间运行
+
+---
+
+## 📋 检查内容
+
+### 13 项规范检查【v2.6 优化】
+
+#### 核心建议（影响理解的关键项）
+
+##### 1. 流程描述
+
+**检查点**：
+- [ ] 是否有业务流程图或流程说明
+- [ ] 流程步骤是否清晰
+- [ ] 分支流程是否完整
+
+**✅ 通过示例**：
+```markdown
+业务流程：
+1. 用户提交订单
+2. 系统验证库存
+   - 有库存 → 生成订单
+   - 无库存 → 提示用户
+3. 发送确认邮件
+```
+
+**❌ 失败示例**：
+```markdown
+业务流程：
+- 用户下单，然后系统处理
+```
+*缺少具体步骤和分支流程*
+
+---
+
+##### 2. 异常处理
+
+**检查点**：
+- [ ] 异常场景和错误提示是否说明
+- [ ] 是否有异常恢复机制
+
+**✅ 通过示例**：
+```markdown
+异常情况：
+1. 网络异常：显示"网络连接失败，请检查网络设置"，支持重试
+2. 数据异常：显示"数据加载失败，请稍后重试"，记录日志
+```
+
+**❌ 失败示例**：
+```markdown
+异常情况：
+- 出错了请联系管理员
+```
+*未说明具体错误和处理方式*
+
+---
+
+#### 完善建议（提升文档质量）
+
+##### 3-8. 其他检查项
+
+| 检查项 | 说明 | 示例 |
+|--------|------|------|
+| **改造内容标注** | 新增/改造/优化内容是否清晰标注 | ✅ "新增用户登录功能" |
+| **元素完整性** | 输入/输出/处理/界面元素是否完整 | ✅ 输入：username, password |
+| **交互逻辑** | 用户操作流程和系统响应逻辑是否清晰 | ✅ 点击→验证→跳转 |
+| **算法公式** | 计算逻辑、公式规则是否说明 | ✅ 利息 = 本金 × 利率 × 期限 |
+| **查询关联** | 数据查询逻辑、表关联关系是否说明 | ✅ SELECT * FROM users WHERE... |
+| **GWT 验收标准** | 是否有 Given-When-Then 格式 | ✅ Given 用户已登录，When 点击保存，Then 成功保存 |
+
+---
+
+##### 9. 系统对接描述 ⭐新增
+
+**检查点**：
+- [ ] 对接方（哪个系统/部门）
+- [ ] 对接数据内容（具体字段、数据类型）
+- [ ] 对接数据应用（用途、业务场景）
+- [ ] 对接频率（实时/定时/批量）
+- [ ] 对接方式（API/文件/MQ/数据库）
+- [ ] 数据时效性（T+0/T+1/延迟要求）
+
+**✅ 通过示例**：
+```markdown
+系统对接：
+- 对接方：核心银行系统（科技部门）
+- 对接数据：客户信息（客户号、姓名、身份证号）
+- 对接应用：客户身份验证
+- 对接频率：实时（T+0）
+- 对接方式：REST API
+```
+
+**❌ 失败示例**：
+```markdown
+系统对接：
+- 需要和核心系统对接
+```
+*缺少具体对接细节*
+
+---
+
+#### 优化建议（锦上添花）
+
+##### 10-13. 优化检查项
+
+| 检查项 | 说明 | 优先级 |
+|--------|------|--------|
+| **分项描述** | 功能点是否拆分清晰 | 🟢 可选 |
+| **界面细节** | UI/UX 说明、原型图是否完整 | 🟢 可选 |
+| **改造类型** | 新增/改造/优化类型是否标注 | 🟢 可选 |
+| **原型附件** | 是否有原型图或截图 | 🟢 可选 |
+
+---
+
+### 输出内容
+
+- ✅ 具体问题说明（引用原文）
+- ✅ 针对性优化建议（温柔话术："如果能...会更完整"）
+- ✅ 建议优先级分级（核心/完善/优化）
+- ✅ GWT 验收标准自动生成
+- ✅ 结论（🌟 质量优秀 / ✅ 通过 / 💡 建议自检 / 🔧 建议完善）
+- ✅ 检查概览（按优先级分类显示）
+- ✅ 汇总报告（可选）
+
+---
+
+### 评分机制【v2.5 更新】
+
+**建议分级扣分**：
+- 核心建议：15 分/项（影响理解的关键内容）
+- 完善建议：10 分/项（提升文档质量）
+- 优化建议：5 分/项（锦上添花）
+
+**质量等级**：
+- 🌟 质量优秀（≥85 分）：文档完整清晰
+- ✅ 通过（70-84 分）：整体不错，有优化空间
+- 💡 建议自检（50-69 分）：有核心建议需要确认
+- 🔧 建议完善（<50 分）：需要补充核心内容
+
+---
+
+## 📚 使用场景
+
+### 场景 1：检查单个文件
+
+**✅ 推荐**：
+```
+请检查需求文档
+```
+*自动使用配置的目录，快速检查*
+
+**❌ 不推荐**：
+```
+请检查 /Users/lifan/Downloads/requirementDocs/product_prd.md
+```
+*需要指定完整路径，效率低*
+
+---
+
+### 场景 2：批量检查
+
+**✅ 推荐**：
+```
+请检查需求文档，并生成汇总报告
+```
+*批量检查 + 汇总报告，一次性完成*
+
+**❌ 不推荐**：
+```
+请检查需求文档
+...（等待完成）
+请生成汇总报告
+```
+*分两步执行，效率低*
+
+---
+
+### 场景 3：重新配置
+
+**✅ 推荐**：
+```
+请重新设置检查目录
+```
+*智能体引导你重新配置*
+
+**❌ 不推荐**：
+```
+修改 config.json，把 input_dir 改成...
+```
+*直接修改配置文件，容易出错*
+
+---
+
+## 📁 输出位置
+
+报告默认生成在配置的输出目录：
+```
+~/Downloads/requirementReports/
+├── 2026-04-08_10-30-00_product_prd.md  # 单个文件检查报告
+├── 2026-04-08_10-35-00_order_system.md # 单个文件检查报告
+└── 00_汇总报告.md                       # 汇总报告（可选）
+```
+
+---
+
+## ⚙️ 配置管理
+
+### 首次使用
+智能体会主动引导你设置：
+1. **输入目录** - 需求文档所在目录
+2. **输出目录** - 检查报告保存目录
+
+### 配置后
+- ✅ 配置保存到 `config.json`
+- ✅ 下次使用无需重复设置
+- ✅ 可随时修改配置
+
+### 修改配置
+```
+请修改 requirement-checker 的输入目录
+```
+
+---
+
+## 🔧 API 配置（v2.4 优化）
+
+### ✨ 自动检测（推荐）
+
+首次运行时自动检测并保存：
+
+**检测顺序**：
+1. 本地缓存（config.json）→ 最快
+2. 环境变量 → 通用方案
+3. OpenClaw 配置 → 自动扫描所有 provider
+4. 引导用户配置 → 简化交互
+
+**支持的 Provider**（按优先级）：
+1. bailian（阿里云百炼，性价比高）⭐
+2. moonshot（Kimi，长文本）
+3. openai（通用）
+4. zhipu（智谱）
+5. 其他自定义 provider
+
+### 手动配置（可选）
+
+如果自动检测失败，可选择：
+
+**方式 1**：OpenClaw 配置（`~/.openclaw/openclaw.json`）
+**方式 2**：环境变量（`OPENAI_API_KEY`, `OPENAI_BASE_URL`）
+**方式 3**：运行时输入（保存到 config.json）
+
+---
+
+## ❓ 常见问题
+
+### Q1: 首次使用需要配置什么？
+**A**: 只需配置一次目录：
+1. 输入目录（需求文档所在目录）
+2. 输出目录（检查报告保存目录）
+3. API 配置（自动检测 OpenClaw 配置）
+
+### Q2: 检查一个文件需要多久？
+**A**: 通常 30-60 秒，取决于：
+- 文档大小（建议 <10MB）
+- 网络速度（调用 LLM API）
+- 文档复杂度
+
+### Q3: 检查报告保存在哪里？
+**A**: 默认保存在：
+```
+~/Downloads/requirementReports/
+├── 2026-04-08_10-30-00_product_prd.md
+├── 2026-04-08_10-35-00_order_system.md
+└── 00_汇总报告.md（汇总报告）
+```
+
+### Q4: 如何重新配置目录？
+**A**: 说"请重新设置检查目录"，智能体会引导你重新配置。
+
+### Q5: 支持哪些文档格式？
+**A**: 支持：
+- ✅ Markdown (.md)
+- ✅ Word (.docx) - 使用 MarkItDown 优先解析，格式保留更好
+- ✅ PDF (.pdf) - 使用 MarkItDown 优先解析，格式保留更好
+- ✅ 图片 (.jpg/.png) - OCR 识别
+- ✅ HTML (.html/.htm)
+- ❌ 不支持：Excel、PPT（可以用 MarkItDown 先转 Markdown）
+
+**💡 提示**：已集成 MarkItDown，Word/PDF 文档转换质量更高，表格/列表格式保留更好。
+
+### Q6: 批量检查最多支持多少个文件？
+**A**: 建议每次 ≤50 个文件，过多会导致：
+- 检查时间过长（>30 分钟）
+- API 调用次数过多
+- 汇总报告生成困难
+
+### Q7: 温柔话术是什么？
+**A**: 从"挑毛病"变成"建议式"：
+- ❌ "这里缺少流程图"
+- ✅ "如果能添加业务流程图，会更清晰完整"
+
+### Q8: 如何查看历史检查报告？
+**A**: 直接查看输出目录：
+```bash
+cd ~/Downloads/requirementReports/
+ls -lt  # 按时间排序
+```
+
+---
+
+## 📊 版本历史
+
+| 版本 | 日期 | 变更内容 |
+|------|------|---------|
+| **v2.8.0** | **2026-04-22** | **🔧 修复 GWT 生成** - AI 驱动版(batch_check_ai.py)补全 GWT 验收标准自动生成逻辑，废弃旧版 batch_check.py |
+| **v2.7.0** | **2026-04-21** | **🔄 集成 MarkItDown** - Word/PDF 优先使用 MarkItDown 解析，格式保留更好（表格/列表），原有解析器作为 fallback |
+| **v2.6.0** | **2026-04-08** | **📖 基于 Claude Code 技巧优化** - 添加快速开始、正误示例对比、FAQ |
+| **v2.5.0** | **2026-04-05** | **🔍 新增系统对接检查项** - 对接方/数据内容/数据应用 + 建议分级体系 |
+| **v2.4.0** | **2026-04-03** | **🤖 智能配置引导** - 自动检测 API 配置 + 配置保存 + Provider 自动扫描 |
+| **v2.3.0** | **2026-04-02** | **💬 优化温柔话术** - 从"挑毛病"变成"建议式" |
+| **v2.0.0** | **2026-03-28** | **✨ AI 驱动检查** - LLM 智能检查 + GWT 自动生成 |
+| **v1.0.0** | **2026-03-20** | **🚀 初始版本** - 13 项规范检查 |
+
+---
+
+## 🔧 技术实现
+
+### 环境要求
+
+- **Python**: >= 3.7（必需）
+- **requests**: >= 2.28.0（必需，HTTP 请求库）
+
+### 安装
+
+#### 自动安装（推荐）
+
+技能安装后会自动检测并安装依赖：
+
+```bash
+# ClawHub 安装
+clawhub install requirement-checker
+
+# 或手动安装
+tar -xzf requirement-checker.tar.gz -C ~/.openclaw/skills/
+cd ~/.openclaw/skills/requirement-checker
+npm run postinstall  # 触发依赖安装
+```
+
+#### 手动安装
+
+如果自动安装失败，可手动安装依赖：
+
+```bash
+# 安装 Python 依赖
+pip3 install --break-system-packages requests
+
+# 或使用 requirements.txt
+pip3 install -r requirements.txt
+```
+
+### 验证安装
+
+```bash
+# 验证 requests 库
+python3 -c "import requests; print(requests.__version__)"
+
+# 环境检测
+cd ~/.openclaw/skills/requirement-checker/scripts
+python3 check_environment.py
+```
+
+### 依赖说明
+
+| 依赖 | 版本 | 类型 | 用途 |
+|------|------|------|------|
+| Python | >= 3.7 | 必需 | Python 运行环境 |
+| requests | >= 2.28.0 | 必需 | HTTP 请求库（调用 LLM API） |
+| **markitdown** | >= 0.0.2 | 可选⭐ | Word/PDF转Markdown（推荐安装，格式保留更好） |
+| python-docx | >= 0.8 | 可选 | Word 解析（MarkItDown 不可用时 fallback） |
+| pdfplumber | >= 0.11 | 可选 | PDF 解析（MarkItDown 不可用时 fallback） |
+
+**💡 推荐安装 MarkItDown**：
+```bash
+pipx install markitdown  # 全局安装
+# 或
+pip install 'markitdown[all]'  # 带所有依赖
+```
+
+安装 MarkItDown 后，Word/PDF 文档转换质量更高，表格/列表格式保留更好。
+
+---
+
+*Last Updated: 2026-04-22 15:01 (v2.8.0 已发布)*

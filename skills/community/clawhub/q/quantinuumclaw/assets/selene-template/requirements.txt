@@ -1,0 +1,7 @@
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+# guppy==0.1.0  # TODO: Uncomment and update version when using real quantum hardware
+pydantic==2.5.0
+python-dotenv==1.0.0
+# Optional: For production
+# gunicorn==21.2.0

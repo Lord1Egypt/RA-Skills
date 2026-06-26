@@ -1,0 +1,18 @@
+services:
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: ${COMMANDER_CONTAINER:-codai_redis_commander}
+    restart: unless-stopped
+    environment:
+      REDIS_HOSTS: "local:${REDIS_CONTAINER:-codai_redis}:6379:0:${REDIS_PASSWORD:-redispass}"
+      HTTP_USER: ${COMMANDER_USER:-admin}
+      HTTP_PASSWORD: ${COMMANDER_PASSWORD:-admin}
+    ports:
+      - "127.0.0.1:${COMMANDER_PORT:-8083}:8081"
+    networks:
+      - codai_net
+
+networks:
+  codai_net:
+    external: true
+    name: ${CODAI_NETWORK:-nginx-proxy_net}

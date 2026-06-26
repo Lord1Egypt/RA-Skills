@@ -1,0 +1,18 @@
+# py_mnn_kb dependencies
+# Embedding backend (required - preferred over embedding_demo binary)
+MNN>=3.0.0             # MNN Python package for embedding (MNN.llm.Embedding)
+
+# Core (required)
+jieba>=0.42.1          # Chinese NER/segmentation (mirrors Android HanLP)
+psutil>=5.9.0          # Process existence check for build pidfile
+
+# LLM API for RAG generation (required for query --llm)
+openai>=1.0.0          # OpenAI-compatible API client (Ollama/LocalAI/etc.)
+
+# File parsers (install only what you need)
+pdfplumber>=0.9.0      # PDF parsing
+python-docx>=0.8.11    # .docx parsing
+python-pptx>=0.6.21    # .pptx parsing
+openpyxl>=3.1.0        # .xlsx parsing
+beautifulsoup4>=4.12.0 # HTML parsing (optional, falls back to regex)
+lxml>=4.9.0            # HTML/XML parser backend for beautifulsoup4

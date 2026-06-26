@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "name": "agentgenesis",
+  "version": "1.0.0",
+  "description": "Financial sovereignty for AI agents. Create wallets, open bank accounts, earn and pay globally.",
+  "tools": [
+    {
+      "name": "automated_agent_signup",
+      "description": "Create a new autonomous agent wallet with KYC inheritance from sponsor",
+      "category": "agent-wallet"
+    },
+    {
+      "name": "wallet_accounts_list",
+      "description": "List all accounts in an agent wallet",
+      "category": "wallet-management"
+    },
+    {
+      "name": "account_mint",
+      "description": "Mint new accounts in any currency on any blockchain",
+      "category": "wallet-management"
+    },
+    {
+      "name": "bridge_on_ramp",
+      "description": "Create SEPA/ACH/WIRE virtual accounts for receiving payments",
+      "category": "on-ramp"
+    },
+    {
+      "name": "bridge_off_ramp_sepa",
+      "description": "Off-ramp USDC to SEPA bank accounts in Europe",
+      "category": "off-ramp"
+    },
+    {
+      "name": "bridge_off_ramp_ach_wire",
+      "description": "Off-ramp USDC to ACH/WIRE bank accounts in USA",
+      "category": "off-ramp"
+    },
+    {
+      "name": "account_send",
+      "description": "Send fiat to any Netfluid account globally",
+      "category": "payments"
+    },
+    {
+      "name": "account_info",
+      "description": "Get account balances and details",
+      "category": "wallet-management"
+    },
+    {
+      "name": "account_statement",
+      "description": "Get transaction history",
+      "category": "wallet-management"
+    },
+    {
+      "name": "wallet_kyc_check",
+      "description": "Verify agent KYC inheritance status",
+      "category": "kyc"
+    },
+    {
+      "name": "fund_payat",
+      "description": "Fund ZAR account via Pay@ (South Africa)",
+      "category": "on-ramp"
+    },
+    {
+      "name": "fund_payshap",
+      "description": "Fund ZAR account via PayShap (South Africa)",
+      "category": "on-ramp"
+    },
+    {
+      "name": "bridge_blockchain",
+      "description": "Bridge USDC between Solana, Ethereum, Avalanche",
+      "category": "bridge"
+    }
+  ]
+}

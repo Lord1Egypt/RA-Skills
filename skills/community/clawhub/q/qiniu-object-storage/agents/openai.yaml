@@ -1,0 +1,4 @@
+interface:
+  display_name: "Qiniu Object Storage"
+  short_description: "Upload local files to Qiniu and return a public URL or a signed private URL."
+  default_prompt: "Use $qiniu_object_storage when a local file already exists and needs object-storage delivery. Respect bucket privacy: return a signed URL by default for private buckets, and only return a public URL for public buckets or when the user explicitly asks for one."

@@ -1,0 +1,19 @@
+{
+  "slug": "quran-study-notes-skill",
+  "name": "Quran Study Notes Skill",
+  "version": "0.1.0",
+  "tags": [
+    "faith",
+    "openclaw",
+    "quran-study-notes",
+    "templates"
+  ],
+  "category": "Faith & Language",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-05-12",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

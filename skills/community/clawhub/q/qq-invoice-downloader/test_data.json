@@ -1,0 +1,68 @@
+{
+  "collection_time": "2026-03-09T22:56:53.158366",
+  "test_directory": "Z:\\OpenClaw\\InvoiceOC",
+  "statistics": {
+    "total_records": 4,
+    "total_files": 151,
+    "total_pdf": 76,
+    "total_browser": 4,
+    "total_size_mb": 87.49,
+    "avg_files_per_run": 37.8,
+    "latest_record": "260301-260309_v2",
+    "first_record": "260101-260309_v1"
+  },
+  "records": [
+    {
+      "timestamp": "2026-03-09T22:40:41.315580",
+      "directory": "260101-260309_v1",
+      "date_range": "260101-260309",
+      "total_files": 85,
+      "pdf_count": 43,
+      "zip_count": 15,
+      "ofd_count": 12,
+      "xml_count": 10,
+      "browser_files": 1,
+      "total_size_mb": 33.27,
+      "version": "unknown"
+    },
+    {
+      "timestamp": "2026-03-09T22:49:32.022584",
+      "directory": "260228-260309_v1",
+      "date_range": "260228-260309",
+      "total_files": 23,
+      "pdf_count": 11,
+      "zip_count": 4,
+      "ofd_count": 3,
+      "xml_count": 3,
+      "browser_files": 2,
+      "total_size_mb": 18.14,
+      "version": "unknown"
+    },
+    {
+      "timestamp": "2026-03-09T22:13:23.300565",
+      "directory": "260301-260309_v1",
+      "date_range": "260301-260309",
+      "total_files": 21,
+      "pdf_count": 11,
+      "zip_count": 4,
+      "ofd_count": 3,
+      "xml_count": 3,
+      "browser_files": 0,
+      "total_size_mb": 17.99,
+      "version": "unknown"
+    },
+    {
+      "timestamp": "2026-03-09T22:56:20.368588",
+      "directory": "260301-260309_v2",
+      "date_range": "260301-260309",
+      "total_files": 22,
+      "pdf_count": 11,
+      "zip_count": 4,
+      "ofd_count": 3,
+      "xml_count": 3,
+      "browser_files": 1,
+      "total_size_mb": 18.09,
+      "version": "unknown"
+    }
+  ]
+}

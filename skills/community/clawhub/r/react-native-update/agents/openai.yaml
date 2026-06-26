@@ -1,0 +1,7 @@
+interface:
+  display_name: "React Native Update"
+  short_description: "Integrate Pushy/Cresc OTA updates"
+  default_prompt: "Use $react-native-update to integrate OTA updates into this React Native app."
+
+policy:
+  allow_implicit_invocation: true

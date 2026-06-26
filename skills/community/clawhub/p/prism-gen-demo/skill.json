@@ -1,0 +1,44 @@
+{
+  "name": "prism-gen-demo",
+  "version": "2.0.0",
+  "description": "PRISM-Gen molecular screening data analysis tool. Retrieve, filter, sort, merge, and visualize multi-stage pipeline results from the PRISM-Gen broad-spectrum coronavirus Mpro inhibitor discovery framework.",
+  "author": "SenaZeng",
+  "license": "MIT-0",
+  "skills": [
+    {
+      "name": "retrieve",
+      "description": "Retrieve and display data from any pipeline stage CSV (step3a through step5b).",
+      "command": "python3 scripts/retrieve.py"
+    },
+    {
+      "name": "filter",
+      "description": "Filter molecules by property thresholds (pIC50, QED, MW, LogP, gap_ev, hERG_Prob, etc.).",
+      "command": "python3 scripts/filter.py"
+    },
+    {
+      "name": "sort",
+      "description": "Sort and rank molecules by any column (Reward, R_global, Broad_Spectrum_Score, pIC50, etc.).",
+      "command": "python3 scripts/sort.py"
+    },
+    {
+      "name": "merge",
+      "description": "Merge/join data across pipeline stages on SMILES keys.",
+      "command": "python3 scripts/merge.py"
+    },
+    {
+      "name": "score",
+      "description": "Compute composite scores, multi-target worst-case analysis, and summarize key metrics.",
+      "command": "python3 scripts/score.py"
+    },
+    {
+      "name": "plot",
+      "description": "Generate visualizations: histograms, scatter plots, heatmaps, funnel charts, Pareto fronts.",
+      "command": "python3 scripts/plot.py"
+    },
+    {
+      "name": "summary",
+      "description": "Generate a full pipeline summary report with attrition statistics and key findings.",
+      "command": "python3 scripts/summary.py"
+    }
+  ]
+}

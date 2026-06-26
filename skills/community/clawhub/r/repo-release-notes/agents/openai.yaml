@@ -1,0 +1,4 @@
+interface:
+  display_name: "Repo Release Notes"
+  short_description: "Draft release notes from Git history"
+  default_prompt: "Use $repo-release-notes to draft concise release notes for the current repository."

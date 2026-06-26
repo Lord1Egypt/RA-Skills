@@ -1,35 +1,38 @@
 ---
-name: "奇门遁甲排盘技能"
-description: "奇门遁甲排盘技能。支持阴阳遁、局数、八门九星八神落宫、断卦解盘自动化分析。"
-category: "other"
-source: "ClawHub"
-tags: [chinese-culture, divination, qimen]
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/qimen-pan-skill"
-sourceUrl: "https://clawhub.ai/skills/qimen-pan-skill"
+name: qimen-pan-skill
+description: 奇门遁甲排盘技能。支持阴阳遁、局数、八门九星八神落宫、断卦解盘自动化分析。
+version: 3.0.0
+author: 天工长老
 ---
 
-# 奇门遁甲排盘技能
+# 奇门遁甲排盘技能 v3.0.0
 
-> 奇门遁甲排盘技能。支持阴阳遁、局数、八门九星八神落宫、断卦解盘自动化分析。
+> "奇门遁甲，帝王之学。"
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/qimen-pan-skill`
-- **Source URL:** [https://clawhub.ai/skills/qimen-pan-skill](https://clawhub.ai/skills/qimen-pan-skill)
+## 功能
 
-## Overview
+- ✅ 精确农历转换（1900-2100 年）
+- ✅ 精确节气计算（天文算法）
+- ✅ 阴阳遁判断与局数计算
+- ✅ 四柱排盘
+- ✅ 值符值使推算
+- ✅ 九宫落位排布（八门/九星/八神）
+- ✅ 断卦解盘自动化分析
+- ✅ 用神选取规则细化
+- ✅ 吉凶量化评分（0-100）
+- ✅ 应期推算
+- ✅ 趋吉避凶建议
 
+## 使用
 
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/qimen-pan-skill
+python3 scripts/qimen_pan_v2.py --date "2026-03-18 15:00"
+python3 scripts/qimen_pan_v2.py --date "2026-03-18 15:00" --question "财运"
+python3 scripts/qimen_pan_v2.py --date "2026-03-18 15:00" --city "北京"
 ```
+
+## 变更
+
+v3.0.0: 81 格局判断、吉凶评分、应期推算、趋吉避凶建议
+v2.0.1: 断卦自动化、用神选取、吉凶判断
+v2.0.0: 精确农历、节气计算、真太阳时

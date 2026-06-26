@@ -1,0 +1,43 @@
+{
+  "slug": "prompt-library-gardener",
+  "name": "Prompt Library Gardener",
+  "version": "1.0.0",
+  "type": "prompt-flow",
+  "description": "Clean, tag, and index a user-provided prompt collection so the right prompt can be found, reused, and improved quickly.",
+  "category": "AI Productivity",
+  "tags": [
+    "prompt-library",
+    "prompt-management",
+    "AI-productivity",
+    "knowledge-organization",
+    "reuse-notes",
+    "workflow-design"
+  ],
+  "trigger_keywords": [
+    "organize my prompts",
+    "prompt library",
+    "saved prompts",
+    "find the right prompt",
+    "clean up prompts",
+    "tag my prompts",
+    "prompt index",
+    "prompt collection"
+  ],
+  "use_cases": [
+    "Turn a user-provided list of saved prompts into a tagged reusable library.",
+    "Group prompts by job, workflow, audience, and output format.",
+    "Trim duplicates and near-duplicates without losing useful variants.",
+    "Create naming rules, reuse notes, and an index for fast retrieval."
+  ],
+  "requires": {},
+  "requires_api": false,
+  "no_code_execution": true,
+  "no_network": true,
+  "no_credentials": true,
+  "hasExecutableCode": false,
+  "contentType": "document-only",
+  "language": "en",
+  "license": "MIT-0",
+  "project": "daily-50-skills-2026-05-08",
+  "priority": "P2"
+}

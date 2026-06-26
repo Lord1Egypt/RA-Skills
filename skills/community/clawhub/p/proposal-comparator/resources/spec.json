@@ -1,0 +1,37 @@
+{
+  "slug": "proposal-comparator",
+  "title": "方案对比裁判",
+  "category": "docs",
+  "categoryLabel": "文档与知识",
+  "mode": "structured_brief",
+  "summary": "对比多个方案文档，输出差异、隐含成本、风险与推荐结论。",
+  "inputHint": "多个方案摘要、约束条件、评估标准",
+  "sections": [
+    "对比维度",
+    "方案优劣",
+    "隐藏成本",
+    "主要风险",
+    "推荐结论",
+    "保留意见"
+  ],
+  "useCases": [
+    "方案评审",
+    "采购对比",
+    "技术选型"
+  ],
+  "positiveExamples": [
+    "比较 A/B 两个方案并给出取舍",
+    "指出隐藏成本和风险"
+  ],
+  "negativeExamples": [
+    "不要忽略用户给的约束",
+    "不要伪造数据支持结论"
+  ],
+  "risk": "会显式分开事实比较与推断建议。",
+  "tags": [
+    "proposal",
+    "comparison",
+    "decision",
+    "analysis"
+  ]
+}

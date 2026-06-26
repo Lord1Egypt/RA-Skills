@@ -1,0 +1,41 @@
+# RateLint -- lefthook configuration
+# Installed by: ratelint hooks install
+# Documentation: https://ratelint.pages.dev/docs/hooks
+#
+# This configuration integrates RateLint with git hooks via lefthook.
+# Pre-commit: scans staged files for rate limiting issues (blocks on critical/high)
+# Pre-push: runs full scan of the working tree before push
+
+pre-commit:
+  parallel: true
+  commands:
+    ratelint-check:
+      run: |
+        RATELINT_SKILL_DIR="${RATELINT_SKILL_DIR:-$HOME/.openclaw/skills/ratelint}"
+        if [[ -f "$RATELINT_SKILL_DIR/scripts/analyzer.sh" ]]; then
+          source "$RATELINT_SKILL_DIR/scripts/patterns.sh"
+          source "$RATELINT_SKILL_DIR/scripts/analyzer.sh"
+          hook_ratelint_check
+        else
+          echo "[RateLint] Skill not found at $RATELINT_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        Rate limiting issues detected in staged files!
+        Run 'ratelint scan' to see details.
+        Or 'git commit --no-verify' to skip (NOT recommended).
+
+pre-push:
+  parallel: true
+  commands:
+    ratelint-full-scan:
+      run: |
+        RATELINT_SKILL_DIR="${RATELINT_SKILL_DIR:-$HOME/.openclaw/skills/ratelint}"
+        if [[ -f "$RATELINT_SKILL_DIR/scripts/dispatcher.sh" ]]; then
+          bash "$RATELINT_SKILL_DIR/scripts/dispatcher.sh" --path . --format text
+        else
+          echo "[RateLint] Skill not found at $RATELINT_SKILL_DIR -- skipping scan"
+        fi
+      fail_text: |
+        RateLint detected rate limiting quality issues in your codebase.
+        Run 'ratelint scan --verbose' for detailed findings.
+        Fix critical/high issues before pushing.

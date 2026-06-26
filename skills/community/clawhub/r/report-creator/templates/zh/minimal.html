@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI用户调研分析报告</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <style>
+    /* ── Minimal Theme ── */
+    :root {
+      --primary: #111827; --primary-light: #F3F4F6; --accent: #6B7280;
+      --bg: #FFFFFF; --surface: #F9FAFB; --text: #374151; --text-muted: #9CA3AF;
+      --border: #E5E7EB; --success: #065F46; --warning: #92400E; --danger: #991B1B;
+      --font-sans: 'Georgia', 'Noto Serif SC', serif;
+      --font-mono: 'Courier New', monospace; --radius: 4px;
+    }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--bg); margin: 0; line-height: 1.6; font-variant-numeric: lining-nums tabular-nums; }
+    h1 { font-size: 2rem; font-weight: 700; color: var(--primary); letter-spacing: -.02em; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.35rem; font-weight: 700; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: .4rem; margin-top: 1.75rem; }
+    h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-top: 1.1rem; }
+    p { margin: .6rem 0; } a { color: var(--primary); text-decoration: underline; }
+    strong { font-weight: 700; } blockquote { border-left: 2px solid var(--border); margin: .75rem 0; padding: .5rem 1.25rem; font-style: italic; color: var(--text-muted); }
+
+    /* ── Shared Components ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    .report-wrapper { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem; }
+    @media (min-width: 1100px) { .report-wrapper { padding: 2.5rem 3rem; } }
+    .report-meta { color: var(--text-muted); font-size: .9rem; margin-top: -.5rem; margin-bottom: 1.5rem; }
+
+    /* KPI */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .75rem; margin: 1.1rem 0; }
+    .kpi-card { background: var(--report-surface, var(--surface)); border: 1px solid var(--report-border, var(--border)); border-radius: var(--radius); padding: .9rem; text-align: center; border-top: 2px solid var(--report-structure, var(--primary)); display: flex; flex-direction: column; align-items: center; }
+    .kpi-label { font-size: .78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .4rem; }
+    .kpi-value { font-size: 2rem; font-weight: 800; color: var(--primary); line-height: 1.2; font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; font-variant-numeric: lining-nums tabular-nums; }
+    .kpi-trend { font-size: .85rem; margin-top: .3rem; }
+    .kpi-trend--up { color: var(--success); } .kpi-trend--down { color: var(--danger); } .kpi-trend--neutral { color: var(--text-muted); }
+/* KPI accent palette */
+.kpi-card[data-accent] { border-top-color: var(--report-structure, var(--primary)); }
+.kpi-card[data-accent] .kpi-value { color: inherit; }
+/* KPI delta badge */
+.kpi-delta { display: inline-block; padding: .15rem .48rem; border-radius: 999px; font-size: .74rem; font-weight: 700; margin-top: .28rem; }
+.kpi-delta--up { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); } .kpi-delta--down { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); } .kpi-delta--info { background: var(--report-delta-flat-bg, #EEE7DE); color: var(--report-delta-flat-text, var(--text-muted)); }
+/* Badges/chips */
+.badge { display: inline-flex; align-items: center; padding: .18rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 600; letter-spacing: .01em; white-space: nowrap; border: 1px solid var(--report-chip-border, var(--report-border, var(--border))); }
+.badge--blue { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--green { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--purple { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--orange { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--red { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--gray { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--teal { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--done { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--wip { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--todo { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--ok { background: var(--report-chip-bg, var(--surface)); color: var(--report-chip-text, var(--text-muted)); }
+.badge--warn { background: var(--report-delta-up-bg, #E7F1EA); color: var(--report-delta-up-text, var(--success)); border-color: transparent; }
+.badge--err { background: var(--report-delta-down-bg, #F6E8E6); color: var(--report-delta-down-text, var(--danger)); border-color: transparent; }
+[data-report-mode="comparison"] .badge--entity-a { background: rgba(47, 107, 80, .12); color: var(--entity-a, #2F6B50); border-color: rgba(47, 107, 80, .18); }
+[data-report-mode="comparison"] .badge--entity-b { background: rgba(111, 106, 124, .12); color: var(--entity-b, #6F6A7C); border-color: rgba(111, 106, 124, .18); }
+[data-report-mode="comparison"] .badge--entity-c { background: rgba(92, 118, 138, .12); color: var(--entity-c, #5C768A); border-color: rgba(92, 118, 138, .18); }
+    /* Tables */
+    .table-wrapper { overflow-x: auto; margin: 1.1rem 0; }
+    .report-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .report-table th { background: var(--report-surface, var(--surface)); border-bottom: 2px solid var(--report-structure, var(--primary)); padding: .7rem 1rem; text-align: left; font-weight: 600; }
+    .report-table td { padding: .6rem 1rem; border-bottom: 1px solid var(--border); }
+    .report-table tr:hover td { background: var(--report-surface, var(--surface)); }
+
+    /* Callout */
+    .callout { display: flex; gap: .75rem; padding: .9rem 1.1rem; border-radius: var(--radius); margin: .75rem 0; border-left: 4px solid; align-items: flex-start; }
+    .callout--note { background: #EFF6FF; border-color: #3B82F6; }
+    .callout--tip { background: #F0FDF4; border-color: #22C55E; }
+    .callout--warning { background: #FFFBEB; border-color: #F59E0B; }
+    .callout--danger { background: #FEF2F2; border-color: #EF4444; }
+    .callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+    .callout-body { line-height: 1.6; font-size: .93rem; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 2rem; margin: 1.1rem 0; }
+    .timeline::before { content: ''; position: absolute; left: .45rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .timeline-item { position: relative; margin-bottom: 1rem; }
+    .timeline-dot { position: absolute; left: -1.65rem; top: .3rem; width: 12px; height: 12px; border-radius: 50%; background: var(--report-structure, var(--primary)); border: 2px solid var(--report-bg, var(--bg)); }
+    .timeline-date { font-size: .78rem; color: var(--text-muted); margin-bottom: .15rem; font-weight: 600; }
+    .timeline-content { color: var(--text); line-height: 1.6; }
+
+    /* Image */
+    .report-image { margin: 1.1rem 0; }
+    .report-image img { max-width: 100%; border-radius: var(--radius); }
+    .report-image figcaption { font-size: .82rem; color: var(--text-muted); text-align: center; margin-top: .4rem; }
+    .report-image--full { width: 100%; display: block; }
+    .report-image--left { float: left; max-width: 40%; margin-right: 1.5rem; margin-bottom: .5rem; }
+    .report-image--right { float: right; max-width: 40%; margin-left: 1.5rem; margin-bottom: .5rem; }
+    .clearfix::after { content: ''; display: table; clear: both; }
+
+    /* Code */
+    .code-wrapper { margin: 1.1rem 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+    .code-title { background: var(--surface); padding: .35rem 1rem; font-size: .78rem; color: var(--text-muted); font-family: var(--font-mono); border-bottom: 1px solid var(--border); }
+    .code-wrapper pre { margin: 0; overflow-x: auto; }
+
+    /* List */
+    .report-list { margin: .75rem 0; }
+    .styled-list { padding-left: 1.5rem; line-height: 1.8; }
+    .styled-list li { margin-bottom: .25rem; }
+
+    /* Diagram */
+    .diagram-wrapper { margin: 1.1rem 0; text-align: center; }
+    .diagram-wrapper svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+    /* Chart */
+    [data-component="chart"] { margin: 1.1rem 0; }
+
+    /* Animations */
+    .fade-in-up { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* Image placeholder */
+    .image-placeholder { display: flex; align-items: center; justify-content: center; background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); height: 200px; color: var(--text-muted); font-size: .9rem; font-family: var(--font-sans); }
+
+    /* ── TOC ── */
+    .toc-sidebar {
+      position: fixed; top: 0; left: 0; width: 240px; height: 100vh;
+      overflow-y: auto; padding: 3rem 1rem 1.5rem; background: var(--surface);
+      border-right: 1px solid var(--border); font-size: .83rem; z-index: 100;
+      transform: translateX(-100%); transition: transform .28s ease;
+    }
+    .toc-sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,.15); }
+    .toc-sidebar h4 {
+      font-size: .72rem; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--text-muted); margin: 0 0 .75rem; font-weight: 600;
+    }
+    .toc-sidebar a {
+      display: block; color: var(--text-muted); text-decoration: none;
+      padding: .28rem .5rem; border-radius: 4px; margin-bottom: 1px; transition: all .18s;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .toc-sidebar a:hover, .toc-sidebar a.active { color: var(--primary); background: var(--primary-light); }
+    .toc-sidebar a.toc-h3 { padding-left: 1.1rem; font-size: .78rem; opacity: .85; }
+    .main-with-toc { margin-left: 0; }
+    .toc-toggle {
+      position: fixed; top: .75rem; left: .75rem; z-index: 200;
+      background: var(--primary); color: #fff; border: none; border-radius: 6px;
+      padding: .45rem .7rem; cursor: pointer; font-size: 1rem; line-height: 1;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    }
+    .toc-toggle.locked { box-shadow: 0 0 0 2px #fff, 0 2px 8px rgba(0,0,0,.2); }
+    @media (max-width: 768px) { .report-wrapper { padding: 1.5rem 1rem; } }
+
+    /* Edit mode */
+    .edit-hotzone { position: fixed; bottom: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
+    .edit-toggle { position: fixed; bottom: 16px; left: 16px; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .25s ease, background .2s ease; z-index: 10001; box-shadow: 0 2px 8px rgba(0,0,0,.25); letter-spacing: .02em; }
+    .edit-toggle.show { opacity: 1; pointer-events: auto; }
+    .edit-toggle.active { opacity: 1; pointer-events: auto; background: var(--success); }
+    body.edit-mode [contenteditable] { outline: 1px dashed var(--border); border-radius: 2px; cursor: text; }
+    body.edit-mode [contenteditable]:hover { outline-color: var(--primary); }
+    body.edit-mode [contenteditable]:focus { outline: 2px solid var(--primary); }
+
+    /* ── Export ── */
+    .export-btn {
+      position: fixed; bottom: 16px; right: 16px; z-index: 10001;
+      background: var(--primary); color: #fff; border: none; border-radius: 6px;
+      padding: .45rem .9rem; font-size: .82rem; cursor: pointer; font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2); font-family: var(--font-sans, system-ui);
+      letter-spacing: .02em;
+    }
+    .export-menu {
+      position: fixed; bottom: 52px; right: 16px; z-index: 10001;
+      background: var(--surface, #fff); border: 1px solid var(--border, #e5e7eb);
+      border-radius: 6px; overflow: hidden; display: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,.15); min-width: 148px;
+    }
+    .export-menu.open { display: block; }
+    .export-item {
+      display: block; width: 100%; padding: .55rem 1rem; font-size: .84rem;
+      background: none; border: none; cursor: pointer; text-align: left;
+      color: var(--text, #111); font-family: var(--font-sans, system-ui);
+      white-space: nowrap; border-bottom: 1px solid var(--border, #e5e7eb);
+    }
+    .export-item:last-child { border-bottom: none; }
+    .export-item:hover { background: var(--primary-light, #e3edff); }
+    @page { size: A4; margin: 1.5cm; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .toc-toggle, .toc-sidebar, .edit-hotzone, .edit-toggle,
+      .export-btn, .export-menu { display: none !important; }
+      /* Granular page-break rules — avoid blank pages */
+      h2 { break-after: avoid; }
+      .kpi-grid { break-inside: avoid; }
+      .kpi-card { break-inside: avoid; }
+      .callout { break-inside: avoid; }
+      .timeline { break-inside: avoid; }
+      .timeline-item { break-inside: avoid; }
+      .table-wrapper { break-inside: avoid; }
+      [data-component="chart"] { break-inside: avoid; }
+      /* Reduce chart & image height so they fit without skipping to next page */
+      .chart-container { height: 200px !important; }
+      canvas { max-height: 200px !important; width: 100% !important; }
+      img { max-height: 260px !important; width: auto !important; object-fit: contain; }
+      .diagram-wrapper { break-inside: avoid; }
+      .fade-in-up { opacity: 1 !important; transform: translateY(0) !important; }
+    }
+  </style>
+</head>
+<body data-report-mode="default">
+
+  <div class="edit-hotzone" id="edit-hotzone"></div>
+  <button class="edit-toggle" id="edit-toggle" title="Edit mode (E)">✏ Edit</button>
+
+    <div class="export-menu" id="export-menu">
+    <button class="export-item" onclick="window.print()">🖨 打印 / PDF</button>
+    <button class="export-item" id="export-png-desktop">🖥 保存图片（桌面）</button>
+    <button class="export-item" id="export-png-mobile">📱 保存图片（手机）</button>
+    <button class="export-item" id="export-im-share">💬 IM 分享长图</button>
+  </div>
+  <button class="export-btn" id="export-btn" title="导出">↓ 导出</button>
+
+
+  <!-- AI Readability Layer: Report Summary JSON -->
+  <script type="application/json" id="report-summary">
+  {
+    "title": "AI用户调研分析报告",
+    "author": "用户研究部",
+    "date": "2024-11-20",
+    "abstract": "本报告基于对1,240名AI产品用户的结构化问卷调研，系统评估了用户满意度、功能偏好与流失风险。总体满意度较上期提升6个百分点至78%，推荐意愿达71%，流失风险率降至12%。",
+    "sections": ["核心发现", "满意度趋势", "受访者构成", "调研时间线", "调研流程", "数据处理代码", "研究局限与建议", "图片示例", "报告摘要"],
+    "kpis": [
+      {"label": "样本量", "value": "1,240人", "trend": "→"},
+      {"label": "满意度", "value": "78%", "trend": "↑6%"},
+      {"label": "推荐意愿", "value": "71%", "trend": "↑4%"},
+      {"label": "流失风险率", "value": "12%", "trend": "↓3%"}
+    ]
+  }
+  </script>
+
+  <!-- Floating TOC toggle -->
+  <button class="toc-toggle" id="toc-toggle-btn" aria-label="目录" aria-expanded="false">☰</button>
+  <nav class="toc-sidebar" id="toc-sidebar" aria-label="报告目录">
+    <h4>目录</h4>
+    <a href="#section-core-findings">核心发现</a>
+    <a href="#section-satisfaction-trend">满意度趋势</a>
+    <a href="#section-respondent-composition">受访者构成</a>
+    <a href="#section-timeline">调研时间线</a>
+    <a href="#section-flowchart">调研流程</a>
+    <a href="#section-code">数据处理代码</a>
+    <a href="#section-limitations">研究局限与建议</a>
+    <a href="#section-images">图片示例</a>
+    <a href="#section-summary">报告摘要</a>
+  </nav>
+
+  <div class="main-with-toc">
+    <div class="report-wrapper">
+
+      <h1>AI用户调研分析报告</h1>
+      <p class="report-meta">用户研究部 &nbsp;·&nbsp; 2024年11月20日 &nbsp;·&nbsp; 第三期</p>
+
+      <!-- ══ 一、核心发现 ══ -->
+      <section data-section="核心发现" data-summary="本次调研共收集有效样本1,240份，总体满意度78%，较上期上升6个百分点，推荐意愿71%，流失风险率降至12%。">
+        <h2 id="section-core-findings">一、核心发现</h2>
+        <p>本期调研于2024年9月至10月间开展，采用分层随机抽样方式，覆盖企业级与消费级AI产品用户群体。以下四项指标集中反映了当前用户群体的整体健康状况。</p>
+        <div data-component="kpi" class="kpi-grid">
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">样本量</div>
+            <div class="kpi-value">1,240</div>
+            <div class="kpi-trend kpi-trend--neutral">人</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">总体满意度</div>
+            <div class="kpi-value">78%</div>
+            <div class="kpi-trend kpi-trend--up">↑ 6%</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">净推荐意愿</div>
+            <div class="kpi-value">71%</div>
+            <div class="kpi-trend kpi-trend--up">↑ 4%</div>
+          </div>
+          <div class="kpi-card fade-in-up">
+            <div class="kpi-label">流失风险率</div>
+            <div class="kpi-value">12%</div>
+            <div class="kpi-trend kpi-trend--down">↓ 3%</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ 二、满意度趋势 ══ -->
+      <section data-section="满意度趋势" data-summary="月度满意度呈稳步上升趋势，功能满意度方面智能推荐与对话理解得分最高。">
+        <h2 id="section-satisfaction-trend">二、满意度趋势</h2>
+
+        <h3>2.1 月度满意度趋势（近6个月）</h3>
+        <p>自2024年5月产品迭代以来，用户满意度连续六个月保持正向增长，10月达到78%的历史高位。</p>
+        <div data-component="chart" data-type="line"
+             data-raw='{"labels":["5月","6月","7月","8月","9月","10月"],"datasets":[{"label":"满意度（%）","data":[65,67,70,72,75,78]},{"label":"基准线","data":[70,70,70,70,70,70]}]}'
+             class="fade-in-up">
+          <canvas id="chart-line-satisfaction"></canvas>
+          <script>
+            new Chart(document.getElementById('chart-line-satisfaction'), {
+              type: 'line',
+              data: {
+                labels: ['5月', '6月', '7月', '8月', '9月', '10月'],
+                datasets: [
+                  {
+                    label: '满意度（%）',
+                    data: [65, 67, 70, 72, 75, 78],
+                    borderColor: 'rgba(17,24,39,0.85)',
+                    backgroundColor: 'rgba(17,24,39,0.06)',
+                    tension: 0.35,
+                    fill: true,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#111827'
+                  },
+                  {
+                    label: '基准线（70%）',
+                    data: [70, 70, 70, 70, 70, 70],
+                    borderColor: 'rgba(156,163,175,0.6)',
+                    backgroundColor: 'transparent',
+                    borderDash: [6, 4],
+                    tension: 0,
+                    pointRadius: 0
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                plugins: { legend: { position: 'top' } },
+                scales: {
+                  y: {
+                    beginAtZero: false,
+                    min: 55,
+                    max: 90,
+                    ticks: { callback: v => v + '%' }
+                  }
+                }
+              }
+            });
+          </script>
+        </div>
+
+        <h3>2.2 功能满意度对比</h3>
+        <p>在七项核心功能维度中，智能推荐与多轮对话理解的满意度评分最高，数据导出与批量处理功能有待优化。</p>
+        <div data-component="chart" data-type="bar"
+             data-raw='{"labels":["智能推荐","对话理解","内容生成","搜索增强","数据分析","批量处理","数据导出"],"datasets":[{"label":"满意度均值（满分5分）","data":[4.3,4.1,3.9,3.8,3.6,3.2,3.0]}]}'
+             class="fade-in-up">
+          <canvas id="chart-bar-features"></canvas>
+          <script>
+            new Chart(document.getElementById('chart-bar-features'), {
+              type: 'bar',
+              data: {
+                labels: ['智能推荐', '对话理解', '内容生成', '搜索增强', '数据分析', '批量处理', '数据导出'],
+                datasets: [{
+                  label: '满意度均值（满分5分）',
+                  data: [4.3, 4.1, 3.9, 3.8, 3.6, 3.2, 3.0],
+                  backgroundColor: [
+                    'rgba(6,95,70,0.8)',
+                    'rgba(6,95,70,0.7)',
+                    'rgba(17,24,39,0.65)',
+                    'rgba(17,24,39,0.55)',
+                    'rgba(107,114,128,0.65)',
+                    'rgba(146,64,14,0.7)',
+                    'rgba(153,27,27,0.7)'
+                  ],
+                  borderRadius: 2
+                }]
+              },
+              options: {
+                responsive: true,
+                plugins: { legend: { position: 'top' } },
+                scales: {
+                  y: {
+                    beginAtZero: false,
+                    min: 2.5,
+                    max: 5.0,
+                    ticks: { stepSize: 0.5 }
+                  }
+                }
+              }
+            });
+          </script>
+        </div>
+      </section>
+
+      <!-- ══ 三、受访者构成 ══ -->
+      <section data-section="受访者构成" data-summary="受访者覆盖四类用户群体，企业研发用户满意度最高（82%），学生群体推荐率最低（61%）。">
+        <h2 id="section-respondent-composition">三、受访者构成</h2>
+
+        <h3>3.1 用户分群概况</h3>
+        <p>本次调研依据使用场景与组织背景，将受访者划分为四类用户群体，各群体在样本中的分布及满意度如下表所示。</p>
+        <div data-component="table" class="table-wrapper fade-in-up">
+          <table class="report-table">
+            <thead>
+              <tr>
+                <th>用户分群</th>
+                <th>人数</th>
+                <th>占比</th>
+                <th>满意度均值</th>
+                <th>推荐意愿（NPS）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>企业研发人员</td>
+                <td>412</td>
+                <td>33.2%</td>
+                <td><strong>82%</strong></td>
+                <td>76%</td>
+              </tr>
+              <tr>
+                <td>内容创作者</td>
+                <td>328</td>
+                <td>26.5%</td>
+                <td>79%</td>
+                <td>74%</td>
+              </tr>
+              <tr>
+                <td>学术科研人员</td>
+                <td>284</td>
+                <td>22.9%</td>
+                <td>77%</td>
+                <td>70%</td>
+              </tr>
+              <tr>
+                <td>在校学生</td>
+                <td>216</td>
+                <td>17.4%</td>
+                <td>71%</td>
+                <td>61%</td>
+              </tr>
+              <tr>
+                <td><strong>合计</strong></td>
+                <td><strong>1,240</strong></td>
+                <td><strong>100%</strong></td>
+                <td><strong>78%</strong></td>
+                <td><strong>71%</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>3.2 用户评价最高的功能（Top 5）</h3>
+        <div data-component="list" class="report-list fade-in-up">
+          <ol class="styled-list">
+            <li><strong>多轮上下文记忆</strong> — 用户认为这是提升工作连续性的最关键特性，好评率达91%</li>
+            <li><strong>代码补全与解释</strong> — 研发群体反馈显著提升了日常编码效率，满意度4.3/5</li>
+            <li><strong>长文档摘要生成</strong> — 学术与内容创作用户使用频率最高，认为节省大量时间</li>
+            <li><strong>多语言翻译与润色</strong> — 国际化场景下的刚性需求，评分稳定</li>
+            <li><strong>个性化推荐内容</strong> — 新用户转化和留存的重要驱动因素</li>
+          </ol>
+        </div>
+
+        <h3>3.3 用户反映的主要痛点</h3>
+        <div data-component="list" class="report-list fade-in-up">
+          <ul class="styled-list">
+            <li>响应速度在高并发时段明显变慢，影响使用体验</li>
+            <li>复杂推理任务偶发幻觉，需要反复校验，增加额外负担</li>
+            <li>批量文件处理上传限制较严，不满足重度用户需求</li>
+            <li>数据导出格式单一，缺乏与主流办公软件的深度集成</li>
+            <li>对话历史管理功能粗糙，缺乏分类与检索能力</li>
+            <li>定价层级划分不够灵活，轻度用户认为性价比偏低</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ══ 四、调研时间线 ══ -->
+      <section data-section="调研时间线" data-summary="本次调研历时八周，经历问卷设计、用户招募、数据采集、初步分析、专家评审、报告发布六个阶段。">
+        <h2 id="section-timeline">四、调研时间线</h2>
+        <p>本次调研严格遵循标准用户研究流程，各阶段任务与时间节点如下。</p>
+        <div data-component="timeline" class="timeline fade-in-up">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2024-09-02</div>
+            <div class="timeline-content"><strong>问卷设计</strong> — 研究团队依据上期反馈与产品路线图，设计包含42道题目的结构化问卷，涵盖满意度量表、功能评分与开放性问题三大模块。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2024-09-09</div>
+            <div class="timeline-content"><strong>用户招募</strong> — 通过应用内通知与邮件邀请，面向活跃用户发起参与邀请，最终完成分层配额抽样，确保四类群体比例符合预设目标。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2024-09-16 — 09-30</div>
+            <div class="timeline-content"><strong>数据采集</strong> — 问卷开放收集两周，共回收1,387份，经数据清洗剔除无效问卷147份，最终保留1,240份有效样本，有效率89.4%。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2024-10-07</div>
+            <div class="timeline-content"><strong>初步分析</strong> — 完成描述性统计、满意度方差分析及用户群体聚类，生成初步分析报告初稿，提交内部评审。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2024-10-14</div>
+            <div class="timeline-content"><strong>专家评审</strong> — 产品、运营与数据科学团队联合评审，对分析结论与可视化图表提出修改意见，并补充情境化解读。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2024-11-20</div>
+            <div class="timeline-content"><strong>报告发布</strong> — 最终报告经管理层审阅后正式发布，同步同步分发至产品、市场及战略规划部门。</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ 五、调研流程 ══ -->
+      <section data-section="调研流程" data-summary="调研流程覆盖从确定目标到形成报告的完整生命周期，共六个环节。">
+        <h2 id="section-flowchart">五、调研流程</h2>
+        <p>下图以流程图形式展示了本次调研的完整方法论路径，各环节之间存在明确的逻辑依赖关系。</p>
+        <div data-component="diagram" data-type="flowchart" class="diagram-wrapper fade-in-up">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 130" width="720" height="130" role="img" aria-label="调研流程图">
+            <!-- Node backgrounds -->
+            <rect x="4"   y="40" width="100" height="44" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1.5"/>
+            <rect x="124" y="40" width="100" height="44" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1.5"/>
+            <rect x="244" y="40" width="100" height="44" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1.5"/>
+            <rect x="364" y="40" width="100" height="44" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1.5"/>
+            <rect x="484" y="40" width="100" height="44" rx="4" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1.5"/>
+            <rect x="604" y="40" width="110" height="44" rx="4" fill="#111827"  stroke="#111827" stroke-width="1.5"/>
+            <!-- Arrows -->
+            <line x1="104" y1="62" x2="122" y2="62" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arr)"/>
+            <line x1="224" y1="62" x2="242" y2="62" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arr)"/>
+            <line x1="344" y1="62" x2="362" y2="62" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arr)"/>
+            <line x1="464" y1="62" x2="482" y2="62" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arr)"/>
+            <line x1="584" y1="62" x2="602" y2="62" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arr)"/>
+            <!-- Arrow marker -->
+            <defs>
+              <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="#9CA3AF"/>
+              </marker>
+            </defs>
+            <!-- Labels -->
+            <text x="54"  y="58" text-anchor="middle" font-size="11" font-family="Georgia,serif" fill="#374151">确定目标</text>
+            <text x="54"  y="73" text-anchor="middle" font-size="10" font-family="Georgia,serif" fill="#9CA3AF">Step 1</text>
+            <text x="174" y="58" text-anchor="middle" font-size="11" font-family="Georgia,serif" fill="#374151">设计问卷</text>
+            <text x="174" y="73" text-anchor="middle" font-size="10" font-family="Georgia,serif" fill="#9CA3AF">Step 2</text>
+            <text x="294" y="58" text-anchor="middle" font-size="11" font-family="Georgia,serif" fill="#374151">发放问卷</text>
+            <text x="294" y="73" text-anchor="middle" font-size="10" font-family="Georgia,serif" fill="#9CA3AF">Step 3</text>
+            <text x="414" y="58" text-anchor="middle" font-size="11" font-family="Georgia,serif" fill="#374151">数据清洗</text>
+            <text x="414" y="73" text-anchor="middle" font-size="10" font-family="Georgia,serif" fill="#9CA3AF">Step 4</text>
+            <text x="534" y="58" text-anchor="middle" font-size="11" font-family="Georgia,serif" fill="#374151">统计分析</text>
+            <text x="534" y="73" text-anchor="middle" font-size="10" font-family="Georgia,serif" fill="#9CA3AF">Step 5</text>
+            <text x="659" y="58" text-anchor="middle" font-size="11" font-family="Georgia,serif" fill="#FFFFFF">形成报告</text>
+            <text x="659" y="73" text-anchor="middle" font-size="10" font-family="Georgia,serif" fill="#9CA3AF" style="fill:#D1D5DB">Step 6</text>
+          </svg>
+        </div>
+      </section>
+
+      <!-- ══ 六、数据处理代码 ══ -->
+      <section data-section="数据处理代码" data-summary="展示用于本次调研数据清洗的Python脚本，基于pandas完成异常值过滤与满意度标准化。">
+        <h2 id="section-code">六、数据处理代码</h2>
+        <p>以下脚本为本次调研实际采用的数据清洗流程，负责处理原始问卷响应中的异常值、缺失项与量表归一化工作。</p>
+        <div data-component="code" data-lang="python" class="code-wrapper fade-in-up">
+          <div class="code-title">数据清洗脚本 &nbsp;·&nbsp; data_cleaning.py</div>
+          <pre><code class="language-python">import pandas as pd
+import numpy as np
+
+# 读取原始问卷数据
+df = pd.read_csv("survey_raw_2024Q3.csv", encoding="utf-8-sig")
+
+# ── 1. 剔除无效样本 ──────────────────────────────────────────
+# 完成时间少于90秒视为无效（直通作答）
+df = df[df["completion_seconds"] >= 90]
+
+# 关键题项缺失超过30%的记录剔除
+threshold = int(df.shape[1] * 0.30)
+df.dropna(thresh=df.shape[1] - threshold, inplace=True)
+
+print(f"有效样本数: {len(df)}")  # → 1240
+
+# ── 2. 量表数据归一化（1-5分 → 0-100%）───────────────────────
+likert_cols = [c for c in df.columns if c.startswith("q_sat_")]
+df[likert_cols] = (df[likert_cols] - 1) / 4 * 100
+
+# ── 3. 计算综合满意度指数 ────────────────────────────────────
+# 加权平均：核心功能权重0.4，服务支持0.3，整体体验0.3
+weights = {"q_sat_feature": 0.4, "q_sat_support": 0.3, "q_sat_overall": 0.3}
+df["satisfaction_index"] = sum(
+    df[col] * w for col, w in weights.items()
+)
+
+# ── 4. 异常值检测（IQR 方法）────────────────────────────────
+Q1 = df["satisfaction_index"].quantile(0.25)
+Q3 = df["satisfaction_index"].quantile(0.75)
+IQR = Q3 - Q1
+df_clean = df[
+    (df["satisfaction_index"] >= Q1 - 1.5 * IQR) &
+    (df["satisfaction_index"] <= Q3 + 1.5 * IQR)
+]
+
+# ── 5. 分群标签编码 ──────────────────────────────────────────
+segment_map = {1: "企业研发", 2: "内容创作", 3: "学术科研", 4: "在校学生"}
+df_clean["segment_label"] = df_clean["user_segment"].map(segment_map)
+
+# ── 6. 输出清洗后数据 ────────────────────────────────────────
+df_clean.to_csv("survey_clean_2024Q3.csv", index=False, encoding="utf-8-sig")
+print("数据清洗完成，输出至 survey_clean_2024Q3.csv")
+
+# ── 7. 分群满意度汇总 ────────────────────────────────────────
+summary = df_clean.groupby("segment_label")["satisfaction_index"].agg(
+    ["mean", "std", "count"]
+).round(2)
+print(summary)
+</code></pre>
+        </div>
+      </section>
+
+      <!-- ══ 七、研究局限与建议 ══ -->
+      <section data-section="研究局限与建议" data-summary="本研究存在自愿响应偏差与横截面时效性局限，数据使用需遵守GDPR及国内个人信息保护法相关规定。">
+        <h2 id="section-limitations">七、研究局限与建议</h2>
+
+        <div data-component="callout" class="callout callout--note fade-in-up">
+          <span class="callout-icon">ℹ️</span>
+          <div class="callout-body">
+            <strong>研究说明：</strong>本报告所呈现的调研结论基于特定时间窗口内的用户样本，采用分层随机抽样方法，95%置信区间下抽样误差不超过±2.8个百分点。所有统计检验均采用双尾假设，显著性水平设定为 α = 0.05。
+          </div>
+        </div>
+
+        <div data-component="callout" class="callout callout--tip fade-in-up">
+          <span class="callout-icon">💡</span>
+          <div class="callout-body">
+            <strong>改进建议：</strong>建议下期调研引入行为数据（产品埋点日志）与问卷数据的多源融合分析，以弥补自我报告数据的主观偏差，同时增加纵向追踪组件，以捕捉用户满意度的动态演变轨迹。
+          </div>
+        </div>
+
+        <div data-component="callout" class="callout callout--warning fade-in-up">
+          <span class="callout-icon">⚠️</span>
+          <div class="callout-body">
+            <strong>数据使用限制：</strong>本报告中的满意度数据仅代表参与调研的活跃用户群体，存在自愿响应偏差（Voluntary Response Bias）；已流失用户未纳入样本，整体满意度数据可能高于真实全量用户水平。引用本报告结论时，请注明此局限性。
+          </div>
+        </div>
+
+        <div data-component="callout" class="callout callout--danger fade-in-up">
+          <span class="callout-icon">🔒</span>
+          <div class="callout-body">
+            <strong>隐私保护要求：</strong>本调研数据依法受《个人信息保护法》及GDPR保护。所有原始问卷响应均已进行匿名化处理，任何形式的再识别尝试均属违规行为。如需访问原始数据，请向数据治理委员会提交正式数据访问申请，获得书面授权后方可使用。
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ 八、图片示例 ══ -->
+      <section data-section="图片示例" data-summary="展示调研现场照片及图片布局示例。">
+        <h2 id="section-images">八、图片示例</h2>
+
+        <!-- Full-width placeholder -->
+        <figure class="report-image report-image--full fade-in-up">
+          <div class="image-placeholder">
+            [ 调研现场照片（示意）]
+          </div>
+          <figcaption>图1：2024年第三期AI用户调研执行现场（焦点小组讨论环节）</figcaption>
+        </figure>
+
+        <!-- Layout left example with wrapped text -->
+        <div class="clearfix fade-in-up">
+          <figure class="report-image report-image--left">
+            <div class="image-placeholder" style="height:140px; font-size:.8rem;">[ 问卷界面截图 ]</div>
+            <figcaption>图2：线上问卷界面</figcaption>
+          </figure>
+          <p>
+            本次线上问卷采用响应式设计，支持移动端与桌面端无缝切换。问卷共分五个页面，每页平均包含8至10道题目，并在关键决策节点设置分支逻辑，以确保不同用户群体收到与其使用场景高度匹配的问题集。问卷完成时间中位数为7分48秒，与设计目标（8分钟以内）基本吻合。
+          </p>
+          <p>
+            在用户体验方面，进度指示器与即时保存功能的引入将中途退出率从上期的18.3%降至本期的9.7%，显著提升了问卷完整填写率，也是本期有效样本数量创历史新高的重要原因之一。
+          </p>
+        </div>
+      </section>
+
+      <!-- ══ 九、报告摘要 ══ -->
+      <section data-section="报告摘要" data-summary="执行摘要：满意度持续提升，技术稳定性与功能深度是下一阶段产品迭代的核心优先级。">
+        <h2 id="section-summary">九、报告摘要</h2>
+
+        <p>
+          综合本期1,240份有效调研数据，AI产品用户群体的整体满意度呈现持续上升态势，78%的总体满意度评分与71%的净推荐意愿均创近三期调研历史新高。这一向好趋势在企业研发人员与内容创作者群体中尤为突出——两类群体的满意度均高于均值，且均表现出较强的留存意愿。
+        </p>
+        <p>
+          然而，值得高度关注的是，技术稳定性与功能深度仍是横跨全部用户群体的核心痛点。批量处理上限不足与数据导出能力薄弱，在重度用户的开放性反馈中出现频率最高，构成当前用户满意度天花板的主要制约因素。流失风险率虽已从15%降至12%，但在校学生群体的流失风险依然较高（18.4%），需要专项产品策略加以应对。
+        </p>
+
+        <blockquote>
+          "如果批量处理的文件数量限制能从10个提升到50个，我愿意将套餐升级到专业版——这对我们团队而言是真正的效率跃升。"
+          <br><em>— 企业研发用户，深圳，2024年10月</em>
+        </blockquote>
+
+        <h3>主要结论与行动建议</h3>
+        <ul class="styled-list">
+          <li>
+            <strong>优先解决技术稳定性问题</strong>
+            <ul class="styled-list" style="margin-top:.25rem;">
+              <li>高峰时段响应延迟问题需通过容量规划与缓存优化在Q1前完成改善</li>
+              <li>幻觉率控制目标建议纳入下季度模型评估体系的核心KPI</li>
+            </ul>
+          </li>
+          <li>
+            <strong>提升重度用户功能天花板</strong>
+            <ul class="styled-list" style="margin-top:.25rem;">
+              <li>批量处理限额建议提升至50个文件，企业版可进一步放开至无限制</li>
+              <li>数据导出应支持Excel、JSON、Notion等主流格式，降低工作流集成成本</li>
+            </ul>
+          </li>
+          <li>
+            <strong>针对学生群体制定专项保留策略</strong>
+            <ul class="styled-list" style="margin-top:.25rem;">
+              <li>考虑推出学术认证用户的专属定价方案，降低付费转化门槛</li>
+              <li>学习场景功能（论文辅助、知识整理）应在产品路线图中获得更高优先级</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div><!-- /.report-wrapper -->
+  </div><!-- /.main-with-toc -->
+
+  <script>
+    // ── Highlight.js init ──────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', function() {
+      hljs.highlightAll();
+    });
+
+    // ── Intersection Observer: fade-in-up ─────────────────────────────
+    // Auto-reveal in headless/screenshot environments (Playwright, Puppeteer, etc.)
+    if (navigator.webdriver) { document.body.classList.add('no-animations'); }
+
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+    // ── TOC: hover-open + click-lock ──────────────────────────────────
+    const tocBtn    = document.getElementById('toc-toggle-btn');
+    const tocSidebar = document.getElementById('toc-sidebar');
+    let tocLocked = false;
+    let hoverTimer  = null;
+
+    tocBtn.addEventListener('mouseenter', () => {
+      if (tocLocked) return;
+      hoverTimer = setTimeout(() => { tocSidebar.classList.add('open'); }, 120);
+    });
+    tocBtn.addEventListener('mouseleave', () => {
+      clearTimeout(hoverTimer);
+      if (!tocLocked) tocSidebar.classList.remove('open');
+    });
+    tocSidebar.addEventListener('mouseleave', () => {
+      if (!tocLocked) tocSidebar.classList.remove('open');
+    });
+
+    tocBtn.addEventListener('click', () => {
+      tocLocked = !tocLocked;
+      tocBtn.classList.toggle('locked', tocLocked);
+      tocBtn.setAttribute('aria-expanded', String(tocLocked));
+      tocSidebar.classList.toggle('open', tocLocked);
+    });
+
+    // ── TOC: active link on scroll ────────────────────────────────────
+    const tocLinks  = document.querySelectorAll('.toc-sidebar a');
+    const sections  = Array.from(document.querySelectorAll('section[data-section]'));
+
+    const scrollSpy = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.querySelector('h2')?.id;
+            tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+          }
+        });
+      },
+      { rootMargin: '-30% 0px -60% 0px' }
+    );
+    sections.forEach(s => scrollSpy.observe(s));
+  </script>
+
+
+  <script>
+    // Edit mode: hover bottom-left hotzone to reveal button, click to toggle
+    (function() {
+      const hotzone = document.getElementById('edit-hotzone');
+      const toggle  = document.getElementById('edit-toggle');
+      if (!hotzone || !toggle) return;
+      let active = false, hideTimer;
+      function showBtn() { clearTimeout(hideTimer); toggle.classList.add('show'); }
+      function schedHide() { hideTimer = setTimeout(() => { if (!active) toggle.classList.remove('show'); }, 400); }
+      hotzone.addEventListener('mouseenter', showBtn);
+      hotzone.addEventListener('mouseleave', schedHide);
+      toggle.addEventListener('mouseenter', showBtn);
+      toggle.addEventListener('mouseleave', schedHide);
+      function enterEdit() {
+        active = true; toggle.classList.add('active', 'show'); toggle.textContent = '✓ Done';
+        document.body.classList.add('edit-mode');
+        document.querySelectorAll('h1,h2,h3,p,li,td,th,figcaption').forEach(el => el.setAttribute('contenteditable', 'true'));
+      }
+      function exitEdit() {
+        active = false; toggle.classList.remove('active'); toggle.textContent = '✏ Edit';
+        document.body.classList.remove('edit-mode');
+        document.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+        schedHide();
+      }
+      hotzone.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      toggle.addEventListener('click', () => active ? exitEdit() : enterEdit());
+      document.addEventListener('keydown', e => {
+        if ((e.key === 'e' || e.key === 'E') && !document.activeElement.getAttribute('contenteditable')) {
+          active ? exitEdit() : enterEdit();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          e.preventDefault();
+          const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+          const a = Object.assign(document.createElement('a'), {
+            href: URL.createObjectURL(new Blob([html], {type: 'text/html'})),
+            download: location.pathname.split('/').pop() || 'report.html'
+          });
+          a.click(); URL.revokeObjectURL(a.href);
+        }
+      });
+    })();
+  </script>
+
+  <script>
+        (function() {
+      const exportBtn  = document.getElementById('export-btn');
+      const exportMenu = document.getElementById('export-menu');
+      const pngDesktop = document.getElementById('export-png-desktop');
+      const pngMobile  = document.getElementById('export-png-mobile');
+      const pngIM      = document.getElementById('export-im-share');
+      if (!exportBtn || !exportMenu) return;
+      const LABEL = exportBtn.textContent;
+
+      exportBtn.addEventListener('click', e => { e.stopPropagation(); exportMenu.classList.toggle('open'); });
+      document.addEventListener('click', e => {
+        if (!exportBtn.contains(e.target) && !exportMenu.contains(e.target))
+          exportMenu.classList.remove('open');
+      });
+
+      /* Preload html2canvas eagerly — fires while user reads, so first export is instant */
+      let libPromise = null;
+      function loadLib() {
+        if (libPromise) return libPromise;
+        libPromise = new Promise(resolve => {
+          if (window.html2canvas) { resolve(); return; }
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1/dist/html2canvas.min.js';
+          s.onload = resolve; document.head.appendChild(s);
+        });
+        return libPromise;
+      }
+      loadLib(); /* start loading immediately */
+
+      function restore() { exportBtn.style.visibility = ''; exportBtn.textContent = LABEL; }
+      function filename(suffix, ext) {
+        const d = new Date(), pad = n => String(n).padStart(2,'0');
+        const date = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+        return (document.title||'report').replace(/[/\:*?"<>|]/g,'_') + `_${date}${suffix}.${ext}`;
+      }
+      function exportBackgroundColor() {
+        const rootStyles = getComputedStyle(document.documentElement);
+        const cssVar = (rootStyles.getPropertyValue('--bg') || '').trim();
+        if (cssVar) return cssVar;
+        const bodyColor = getComputedStyle(document.body).backgroundColor;
+        if (bodyColor && bodyColor !== 'rgba(0, 0, 0, 0)' && bodyColor !== 'rgba(0,0,0,0)' && bodyColor !== 'transparent') {
+          return bodyColor;
+        }
+        return '#ffffff';
+      }
+      function saveBlob(canvas, fname, jpeg) {
+        canvas.toBlob(blob => {
+          const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: fname });
+          a.click(); URL.revokeObjectURL(a.href); restore();
+        }, jpeg ? 'image/jpeg' : 'image/png', jpeg ? 0.92 : 1);
+      }
+      function capture(el, cfg, fname, jpeg) {
+        exportMenu.classList.remove('open');
+        exportBtn.style.visibility = 'hidden';
+        exportBtn.textContent = '…';
+        document.querySelectorAll('.fade-in-up').forEach(e => e.classList.add('visible'));
+        loadLib().then(() => html2canvas(el, cfg).then(c => saveBlob(c, fname, jpeg)));
+      }
+
+      /* Desktop: full-page PNG — adaptive scale (2× short / 1.5× long pages) */
+      pngDesktop && pngDesktop.addEventListener('click', () => {
+        const H = document.documentElement.scrollHeight;
+        const scale = H > 4000 ? 1.5 : 2;
+        capture(document.documentElement, {
+          scale, useCORS: true, allowTaint: true, scrollX: 0, scrollY: 0,
+          width: document.documentElement.scrollWidth, height: H,
+          windowWidth: document.documentElement.scrollWidth, windowHeight: H
+        }, filename('', 'png'), false);
+      });
+
+      /* Mobile: 750px wide JPEG (iPhone 2× Retina) */
+      pngMobile && pngMobile.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 750 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-mobile', 'jpg'), true);
+      });
+
+      /* IM Share: 800px wide JPEG — IM long image format */
+      pngIM && pngIM.addEventListener('click', () => {
+        const el = document.querySelector('.report-wrapper') || document.documentElement;
+        capture(el, {
+          scale: 800 / el.offsetWidth, useCORS: true, allowTaint: true,
+          backgroundColor: exportBackgroundColor(),
+          scrollX: 0, scrollY: 0, width: el.scrollWidth, height: el.scrollHeight
+        }, filename('-im', 'jpg'), true);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+interface:
+  display_name: "QLD Property Research"
+  short_description: "Queensland property due diligence"
+  default_prompt: "Use $qld-property-research to assess a Queensland property address for NBN technology, flood, train access, and main-road proximity."

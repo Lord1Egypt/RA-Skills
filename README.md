@@ -80,12 +80,12 @@ Tokens: `CLAWHUB_TOKEN` authenticates the ClawHub API; `GITHUB_TOKEN` raises Git
 
 | Source | Full folders | Total | % |
 |--------|-------------:|------:|--:|
-| ClawHub | 61,934 | 69,842 | 89% |
-| skills.sh | 16,952 | 19,938 | 85% |
+| ClawHub | 61,945 | 69,842 | 89% |
+| skills.sh | 16,969 | 19,938 | 85% |
 | LobeHub | 476 | 505 | 94% |
-| gstack | 51 | 52 | 98% |
+| gstack | 52 | 52 | 100% |
 | browse.sh | 13 | 389 | 3% ¹ |
-| **Total** | **79,426** | **90,726** | **88%** |
+| **Total** | **79,455** | **90,726** | **88%** |
 
 ¹ The upstream `browserbase/browse.sh` repository was removed from GitHub, so most browse.sh skills are no longer fetchable.
 
